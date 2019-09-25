@@ -24,9 +24,11 @@ export type OverrideObjectT<T> = {|
   style?: ?ConfigurationOverrideT,
 |};
 
-export type OverrideT<T> =
-  | OverrideObjectT<T>
-  | React.ComponentType<T & {children: React.Node}>;
+export type OverrideComponentT<T> = React.ComponentType<
+  T & {children: React.Node},
+>;
+
+export type OverrideT<T> = OverrideObjectT<T> | OverrideComponentT<T>;
 
 export type OverridesT<T> = {
   [string]: OverrideT<T>,
@@ -35,10 +37,11 @@ export type OverridesT<T> = {
 /**
  * Given an override argument, returns the component implementation override if it exists
  */
-// eslint-disable-next-line flowtype/no-weak-types
-export function getOverride(override: any): any {
+export function getOverrideComponent<T>(
+  override?: OverrideT<T>,
+): OverrideComponentT<T> | null {
   if (isValidElementType(override)) {
-    return override;
+    return ((override: any): OverrideComponentT<T>);
   }
 
   // Check if override is OverrideObjectT
@@ -46,29 +49,31 @@ export function getOverride(override: any): any {
     // Remove this 'any' once this flow issue is fixed:
     // https://github.com/facebook/flow/issues/6666
     // eslint-disable-next-line flowtype/no-weak-types
-    return (override: any).component;
+    return ((override: any).component: OverrideComponentT<T>);
   }
 
-  // null/undefined
-  return override;
+  return null;
 }
 
 /**
  * Given an override argument, returns the override props that should be passed
  * to the component when rendering it.
  */
-export function getOverrideProps<T>(override: ?OverrideT<T>) {
-  if (override && typeof override === 'object') {
-    const props =
-      typeof override.props === 'function'
-        ? override.props(override)
-        : override.props;
-    return {
-      ...props,
-      $style: override.style,
-    };
-  }
-  return {};
+export function getOverridePropsFn<Props>(override: ?OverrideT<Props>) {
+  return function(props: Props) {
+    if (override && typeof override === 'object') {
+      const props =
+        typeof override.props === 'function'
+          ? override.props(override)
+          : override.props;
+      return {
+        ...props,
+        $style: override.style,
+      };
+    }
+
+    return props;
+  };
 }
 
 /**
@@ -96,13 +101,13 @@ export function toObjectOverride<T>(
  * Get a convenient override array that will always have [component, props]
  */
 /* eslint-disable flowtype/no-weak-types */
-export function getOverrides(
-  override: any,
-  defaultComponent: React.ComponentType<any>,
-): [React.ComponentType<any>, {}] {
-  const component = getOverride(override) || defaultComponent;
-  const props = getOverrideProps(override);
-  return [component, props];
+export function getOverrides<T>(
+  override?: OverrideT<T>,
+  defaultComponent: React.ComponentType<T>,
+): [React.ComponentType<T>, (T) => Object] {
+  const component = getOverrideComponent<T>(override) || defaultComponent;
+  const propsFn = getOverridePropsFn<T>(override);
+  return [component, propsFn];
 }
 /* eslint-enable flowtype/no-weak-types */
 

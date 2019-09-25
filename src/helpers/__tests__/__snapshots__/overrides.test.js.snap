@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Helpers - Overrides getOverrideProps 2`] = `
+Object {
+  "$style": undefined,
+  "dynamic": undefined,
+  "static": "staticValue",
+}
+`;
+
 exports[`Helpers - Overrides getOverrideProps: returns correct object when override has props and styles 1`] = `
 Object {
   "$style": Object {

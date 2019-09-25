@@ -12,14 +12,28 @@ import {STYLE_TYPE} from './constants.js';
 export type LabelPlacementT = 'top' | 'right' | 'bottom' | 'left';
 export type StyleTypeT = $Keys<typeof STYLE_TYPE>;
 
+export type SharedStylePropsT = {
+  $isFocused: boolean,
+  $isHovered: boolean,
+  $isActive: boolean,
+  $isError: boolean,
+  $checked: boolean,
+  $isIndeterminate: boolean,
+  $required: boolean,
+  $disabled: boolean,
+  $value: string,
+  $checkmarkType: StyleTypeT,
+  $labelPlacement: LabelPlacementT,
+};
+
 export type OverridesT = {
-  Checkmark?: OverrideT<*>,
-  Label?: OverrideT<*>,
-  Root?: OverrideT<*>,
-  Input?: OverrideT<*>,
-  Toggle?: OverrideT<*>,
-  ToggleInner?: OverrideT<*>,
-  ToggleTrack?: OverrideT<*>,
+  Checkmark?: OverrideT<SharedStylePropsT>,
+  Label?: OverrideT<SharedStylePropsT>,
+  Root?: OverrideT<SharedStylePropsT>,
+  Input?: OverrideT<SharedStylePropsT>,
+  Toggle?: OverrideT<SharedStylePropsT>,
+  ToggleInner?: OverrideT<SharedStylePropsT>,
+  ToggleTrack?: OverrideT<SharedStylePropsT>,
 };
 
 export type DefaultPropsT = {
@@ -153,18 +167,4 @@ export type StatefulCheckboxPropsT = {
   onFocus?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for blur events on trigger element. */
   onBlur?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
-};
-
-export type SharedStylePropsT = {
-  $isFocused: boolean,
-  $isHovered: boolean,
-  $isActive: boolean,
-  $isError: boolean,
-  $checked: boolean,
-  $isIndeterminate: boolean,
-  $required: boolean,
-  $disabled: boolean,
-  $value: string,
-  $checkmarkType: StyleTypeT,
-  $labelPlacement: LabelPlacementT,
 };

@@ -35,15 +35,11 @@ describe('Helpers - Overrides', () => {
       props: {propName: 'propsValue'},
       style: {color: 'blue'},
     };
-    const propsAsFunction = override => {
-      const props: {propName: string, className?: string} = {
-        propName: 'propValue',
-      };
-      if (override.style) {
-        props.className = 'someCSSClass';
-      }
-      return props;
+
+    const nextPropsFunction = props => {
+      return {static: 'staticValue', dynamic: props.dynamic};
     };
+
     expect(getOverrideProps(null)).toMatchSnapshot(
       'returns empty object when no overrides',
     );
@@ -53,17 +49,26 @@ describe('Helpers - Overrides', () => {
     expect(getOverrideProps(override)).toMatchSnapshot(
       'returns correct object when override has props and styles',
     );
-    expect(getOverrideProps({props: propsAsFunction})).toMatchSnapshot(
-      'returns correct object when props is a function and styles in override is not present',
-    );
+
+    expect(getOverrideProps({props: nextPropsFunction})).toMatchInlineSnapshot(`
+Object {
+  "$style": undefined,
+  "propName": "propValue",
+}
+`);
+
     expect(
       getOverrideProps({
-        props: propsAsFunction,
-        style: {color: 'red'},
+        props: nextPropsFunction,
       }),
-    ).toMatchSnapshot(
-      'returns correct object when props is a function and styles in override is present',
-    );
+    ).toMatchInlineSnapshot(`
+Object {
+  "$style": undefined,
+  "dynamic": undefined,
+  "static": "staticValue",
+}
+`);
+
     expect(
       getOverrideProps({
         props: () => null,

@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 import * as React from 'react';
-import {getOverride, getOverrideProps} from '../helpers/overrides.js';
+import {getOverrides} from '../helpers/overrides.js';
 import {
   Label as StyledLabel,
   Caption as StyledCaption,
@@ -63,10 +63,15 @@ export default class FormControl extends React.Component<FormControlPropsT> {
       $positive: !!positive,
     };
 
-    const Label = getOverride(LabelOverride) || StyledLabel;
-    const Caption = getOverride(CaptionOverride) || StyledCaption;
-    const ControlContainer =
-      getOverride(ControlContainerOverride) || StyledControlContainer;
+    const [Label, getLabelProps] = getOverrides(LabelOverride, StyledLabel);
+    const [Caption, getCaptionProps] = getOverrides(
+      CaptionOverride,
+      StyledCaption,
+    );
+    const [ControlContainer, getControlContainerProps] = getOverrides(
+      ControlContainerOverride,
+      StyledControlContainer,
+    );
 
     const hint = chooseRenderedHint(caption, error, positive, sharedProps);
 
@@ -83,24 +88,24 @@ export default class FormControl extends React.Component<FormControlPropsT> {
       <React.Fragment>
         {label && (
           <Label
-            data-baseweb="form-control-label"
-            htmlFor={onlyChildProps.id}
-            {...sharedProps}
-            {...getOverrideProps(LabelOverride)}
+            {...getLabelProps({
+              'data-baseweb': 'form-control-label',
+              htmlFor: onlyChildProps.id,
+              ...sharedProps,
+            })}
           >
             {typeof label === 'function' ? label(sharedProps) : label}
           </Label>
         )}
         <ControlContainer
-          data-baseweb="form-control-container"
-          {...sharedProps}
-          {...getOverrideProps(ControlContainerOverride)}
+          {...getControlContainerProps({
+            'data-baseweb': 'form-conrol-container',
+            ...sharedProps,
+          })}
         >
           {children}
           {(caption || error || positive) && (
-            <Caption {...sharedProps} {...getOverrideProps(CaptionOverride)}>
-              {hint}
-            </Caption>
+            <Caption {...getCaptionProps(sharedProps)}>{hint}</Caption>
           )}
         </ControlContainer>
       </React.Fragment>

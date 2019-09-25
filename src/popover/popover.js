@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable react/no-find-dom-node */
 import * as React from 'react';
 
-import {getOverride, getOverrideProps} from '../helpers/overrides.js';
+import {getOverrides} from '../helpers/overrides.js';
 import getBuiId from '../utils/get-bui-id.js';
 import {
   ACCESSIBILITY_TYPE,
@@ -393,34 +393,46 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       Inner: InnerOverride,
     } = overrides;
 
-    const Arrow = getOverride(ArrowOverride) || StyledArrow;
-    const Body = getOverride(BodyOverride) || StyledBody;
-    const Inner = getOverride(InnerOverride) || StyledInner;
+    const [Arrow, getArrowProps] = getOverrides<SharedStylePropsArgT>(
+      ArrowOverride,
+      StyledArrow,
+    );
+    const [Body, getBodyProps] = getOverrides<SharedStylePropsArgT>(
+      BodyOverride,
+      StyledBody,
+    );
+    const [Inner, getInnerProps] = getOverrides<SharedStylePropsArgT>(
+      InnerOverride,
+      StyledInner,
+    );
 
     const sharedProps = this.getSharedProps();
     const bodyProps = this.getPopoverBodyProps();
 
     return (
       <Body
-        key="popover-body"
-        ref={this.popperRef}
-        data-baseweb={this.props['data-baseweb'] || 'popover'}
-        {...bodyProps}
-        {...sharedProps}
-        {...getOverrideProps(BodyOverride)}
+        {...getBodyProps({
+          key: 'popover-body',
+          ref: this.popperRef,
+          'data-baseweb': this.props['data-baseweb'] || 'popover',
+          ...bodyProps,
+          ...sharedProps,
+        })}
       >
         {showArrow ? (
           <Arrow
-            key="popover-arrow"
-            ref={this.arrowRef}
-            {...sharedProps}
-            {...getOverrideProps(ArrowOverride)}
+            {...getArrowProps({
+              key: 'popover-arrow',
+              ref: this.arrowRef,
+              ...sharedProps,
+            })}
           />
         ) : null}
         <Inner
-          key="popover-inner"
-          {...sharedProps}
-          {...getOverrideProps(InnerOverride)}
+          {...getInnerProps({
+            key: 'popover-inner',
+            ...sharedProps,
+          })}
         >
           {typeof content === 'function' ? content() : content}
         </Inner>

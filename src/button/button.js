@@ -46,17 +46,17 @@ class Button extends React.Component<ButtonPropsT & {forwardedRef: any}> {
       ...restProps
     } = this.props;
     // Get overrides
-    const [BaseButton, baseButtonProps] = getOverrides(
+    const [BaseButton, getBaseButtonProps] = getOverrides(
       overrides.BaseButton,
       StyledBaseButton,
     );
-    const [LoadingSpinner, loadingSpinnerProps] = getOverrides(
+    const [LoadingSpinner, getLoadingSpinnerProps] = getOverrides(
       overrides.LoadingSpinner,
       StyledLoadingSpinner,
     );
     const [
       LoadingSpinnerContainer,
-      loadingSpinnerContainerProps,
+      getLoadingSpinnerContainerProps,
     ] = getOverrides(
       overrides.LoadingSpinnerContainer,
       StyledLoadingSpinnerContainer,
@@ -68,7 +68,7 @@ class Button extends React.Component<ButtonPropsT & {forwardedRef: any}> {
         data-baseweb="button"
         {...sharedProps}
         {...restProps}
-        {...baseButtonProps}
+        {...getBaseButtonProps(sharedProps)}
         // Applies last to override passed in onClick
         onClick={this.internalOnClick}
       >
@@ -78,8 +78,13 @@ class Button extends React.Component<ButtonPropsT & {forwardedRef: any}> {
             <div style={{opacity: 0, display: 'flex'}}>
               <ButtonInternals {...this.props} />
             </div>
-            <LoadingSpinnerContainer {...loadingSpinnerContainerProps}>
-              <LoadingSpinner {...sharedProps} {...loadingSpinnerProps} />
+            <LoadingSpinnerContainer
+              {...getLoadingSpinnerContainerProps(sharedProps)}
+            >
+              <LoadingSpinner
+                {...sharedProps}
+                {...getLoadingSpinnerProps(sharedProps)}
+              />
             </LoadingSpinnerContainer>
           </React.Fragment>
         ) : (

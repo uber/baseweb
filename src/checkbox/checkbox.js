@@ -6,8 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverride, getOverrideProps} from '../helpers/overrides.js';
-import type {PropsT, DefaultPropsT, StatelessStateT} from './types.js';
+import {getOverrides} from '../helpers/overrides.js';
+import type {
+  PropsT,
+  DefaultPropsT,
+  StatelessStateT,
+  SharedStylePropsT,
+} from './types.js';
 import {
   Checkmark as StyledCheckmark,
   Input as StyledInput,
@@ -110,13 +115,34 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       ToggleTrack: ToggleTrackOverride,
     } = overrides;
 
-    const Root = getOverride(RootOverride) || StyledRoot;
-    const Checkmark = getOverride(CheckmarkOverride) || StyledCheckmark;
-    const Label = getOverride(LabelOverride) || StyledLabel;
-    const Input = getOverride(InputOverride) || StyledInput;
-    const Toggle = getOverride(ToggleOverride) || StyledToggle;
-    const ToggleInner = getOverride(ToggleInnerOverride) || StyledToggleInner;
-    const ToggleTrack = getOverride(ToggleTrackOverride) || StyledToggleTrack;
+    const [Root, getRootProps] = getOverrides<SharedStylePropsT>(
+      RootOverride,
+      StyledRoot,
+    );
+    const [Checkmark, getCheckmarkProps] = getOverrides<SharedStylePropsT>(
+      CheckmarkOverride,
+      StyledCheckmark,
+    );
+    const [Label, getLabelProps] = getOverrides<SharedStylePropsT>(
+      LabelOverride,
+      StyledLabel,
+    );
+    const [Input, getInputProps] = getOverrides<SharedStylePropsT>(
+      InputOverride,
+      StyledInput,
+    );
+    const [Toggle, getToggleProps] = getOverrides<SharedStylePropsT>(
+      ToggleOverride,
+      StyledToggle,
+    );
+    const [ToggleInner, getToggleInnerProps] = getOverrides<SharedStylePropsT>(
+      ToggleInnerOverride,
+      StyledToggleInner,
+    );
+    const [ToggleTrack, getToggleTrackProps] = getOverrides<SharedStylePropsT>(
+      ToggleTrackOverride,
+      StyledToggleTrack,
+    );
 
     const inputEvents = {
       onChange,
@@ -129,68 +155,55 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       onMouseDown: this.onMouseDown,
       onMouseUp: this.onMouseUp,
     };
+
     const sharedProps = {
       $isFocused: this.state.isFocused,
       $isHovered: this.state.isHovered,
       $isActive: this.state.isActive,
-      $isError: isError,
-      $checked: checked,
-      $isIndeterminate: isIndeterminate,
-      $required: required,
-      $disabled: disabled,
-      $value: value,
+      $isError: Boolean(isError),
+      $checked: Boolean(checked),
+      $isIndeterminate: Boolean(isIndeterminate),
+      $labelPlacement: labelPlacement,
+      $required: Boolean(required),
+      $disabled: Boolean(disabled),
+      $value: value || '',
       $checkmarkType: checkmarkType,
     };
-    const labelComp = (
-      <Label
-        $labelPlacement={labelPlacement}
-        {...sharedProps}
-        {...getOverrideProps(LabelOverride)}
-      >
-        {children}
-      </Label>
-    );
+
+    const labelComp = <Label {...getLabelProps(sharedProps)}>{children}</Label>;
     return (
       <Root
         data-baseweb="checkbox"
-        $labelPlacement={labelPlacement}
-        {...sharedProps}
-        {...mouseEvents}
-        {...getOverrideProps(RootOverride)}
+        {...getRootProps({
+          'data-baseweb': 'checkbox',
+          ...mouseEvents,
+          ...sharedProps,
+        })}
       >
         {(labelPlacement === 'top' || labelPlacement === 'left') && labelComp}
         {checkmarkType === STYLE_TYPE.toggle ? (
-          <ToggleTrack
-            {...sharedProps}
-            {...getOverrideProps(ToggleTrackOverride)}
-          >
-            <Toggle {...sharedProps} {...getOverrideProps(ToggleOverride)}>
-              <ToggleInner
-                {...sharedProps}
-                {...getOverrideProps(ToggleInnerOverride)}
-              />
+          <ToggleTrack {...getToggleTrackProps(sharedProps)}>
+            <Toggle {...getToggleProps(sharedProps)}>
+              <ToggleInner {...getToggleInnerProps(sharedProps)} />
             </Toggle>
           </ToggleTrack>
         ) : (
-          <Checkmark
-            checked={checked}
-            {...sharedProps}
-            {...getOverrideProps(CheckmarkOverride)}
-          />
+          <Checkmark {...getCheckmarkProps({checked, ...sharedProps})} />
         )}
         <Input
-          value={value}
-          name={name}
-          checked={checked}
-          required={required}
-          aria-invalid={isError || null}
-          aria-required={required || null}
-          disabled={disabled}
-          type={type}
-          ref={inputRef}
-          {...sharedProps}
-          {...inputEvents}
-          {...getOverrideProps(InputOverride)}
+          {...getInputProps({
+            value,
+            name,
+            checked,
+            required,
+            disabled,
+            type,
+            ref: inputRef,
+            'aria-invalid': isError || null,
+            'aria-required': required || null,
+            ...sharedProps,
+            ...inputEvents,
+          })}
         />
         {(labelPlacement === 'bottom' || labelPlacement === 'right') &&
           labelComp}

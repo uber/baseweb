@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverride, getOverrideProps} from '../helpers/overrides.js';
+import {getOverrides} from '../helpers/overrides.js';
 import {Root as StyledRoot} from './styled-components.js';
 
 import type {ComponentPropsT, SharedStylePropsT} from './types.js';
@@ -28,15 +28,19 @@ class Component extends React.Component<ComponentPropsT> {
     const {overrides = {}, children} = this.props;
     const {Root: RootOverride} = overrides;
 
-    const Root = getOverride(RootOverride) || StyledRoot;
+    const [Root, getRootProps] = getOverrides<SharedStylePropsT>(
+      RootOverride,
+      StyledRoot,
+    );
     const sharedProps = this.getSharedProps();
 
     return (
       <Root
-        data-baseweb="component"
-        onClick={this.props.onClick}
-        {...sharedProps}
-        {...getOverrideProps(RootOverride)}
+        {...getRootProps({
+          'data-baseweb': 'component',
+          onClick: this.props.onClick,
+          ...sharedProps,
+        })}
       >
         {children}
       </Root>
