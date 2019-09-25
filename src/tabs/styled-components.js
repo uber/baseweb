@@ -42,6 +42,7 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
         ? `2px solid ${colors.primary}`
         : 'none',
     display: 'inline-block',
+    outline: 'none',
   };
   if (!$disabled) {
     style = {
