@@ -184,6 +184,10 @@ const routes = [
             itemId: '/components/icon',
           },
           {
+            title: 'List',
+            itemId: '/components/list',
+          },
+          {
             title: 'Table',
             itemId: '/components/table',
           },

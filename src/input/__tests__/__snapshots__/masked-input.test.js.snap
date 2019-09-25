@@ -60,7 +60,6 @@ Object {
   "aria-labelledby": null,
   "aria-required": false,
   "autoComplete": "on",
-  "autoFocus": false,
   "disabled": false,
   "id": undefined,
   "inputMode": "text",
@@ -77,7 +76,6 @@ Object {
   "placeholder": "Placeholder",
   "required": false,
   "rows": null,
-  "size": "default",
   "styled-component": "true",
   "test-style": Object {
     "::placeholder": Object {
