@@ -23,11 +23,12 @@ module.exports = {
   browsers: [
     {
       browserName: 'chrome',
+      includeRules: [/^screener/],
     },
     {
       browserName: 'internet explorer',
       version: '11',
-      excludeRules: [/(^baseui-dark|-rtl$)/],
+      includeRules: [/^screener/],
     },
   ],
 };

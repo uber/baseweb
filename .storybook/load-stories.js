@@ -32,3 +32,12 @@ scenarios.forEach(scenario => {
   light.add(scenario.name, () => <Component />);
   dark.add(scenario.name, () => <Component />);
 });
+
+light.add('screener', () => {
+  <React.Fragment>
+    {scenarios.map(scenario => {
+      const Component = scenario.component;
+      return <Component />;
+    })}
+  </React.Fragment>;
+});
