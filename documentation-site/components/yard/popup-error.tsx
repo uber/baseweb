@@ -10,7 +10,10 @@ const PopupError: React.FC<{error: string | null}> = ({error}) => {
     fontSize: '11px',
     fontFamily: `Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace`,
     color: theme.colors.mono100,
-    padding: theme.sizing.scale400,
+    paddingLeft: theme.sizing.scale400,
+    paddingRight: theme.sizing.scale400,
+    paddingTop: theme.sizing.scale400,
+    paddingBottom: theme.sizing.scale400,
     overflowX: 'scroll',
   });
   if (error === null) {
