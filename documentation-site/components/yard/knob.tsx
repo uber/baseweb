@@ -8,6 +8,7 @@ import {Textarea} from 'baseui/textarea';
 import {Radio, RadioGroup} from 'baseui/radio';
 import {Checkbox} from 'baseui/checkbox';
 import {StatefulTooltip} from 'baseui/tooltip';
+import PopupError from './popup-error';
 
 const getTooltip = (description: string, type: string, name: string) => (
   <span>
@@ -48,20 +49,19 @@ const Label: React.FC<{
 
 const Knob: React.SFC<{
   name: string;
+  error: string | null;
   description: string;
   val: any;
   set: (val: any) => void;
   type: PropTypes;
   options?: any;
   placeholder?: string;
-}> = ({name, type, val, set, options, description, placeholder}) => {
-  //const [useCss, theme] = useStyletron();
+}> = ({name, error, type, val, set, options, description, placeholder}) => {
   switch (type) {
     case PropTypes.Ref:
       return (
         <Spacing>
           <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
-
           <StyledLink
             href="https://reactjs.org/docs/refs-and-the-dom.html"
             target="_blank"
@@ -72,6 +72,7 @@ const Knob: React.SFC<{
           >
             React Ref documentation
           </StyledLink>
+          <PopupError error={error} />
         </Spacing>
       );
     case PropTypes.String:
@@ -83,11 +84,13 @@ const Knob: React.SFC<{
           <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
           <Input
             //@ts-ignore
-            onChange={event => set(event.target.value)}
+            error={Boolean(error)}
+            onChange={event => set((event.target as any).value)}
             placeholder={placeholder}
             size="compact"
             value={val}
           />
+          <PopupError error={error} />
         </Spacing>
       );
     case PropTypes.Boolean:
@@ -102,6 +105,7 @@ const Knob: React.SFC<{
               {name}
             </StatefulTooltip>
           </Checkbox>
+          <PopupError error={error} />
         </Spacing>
       );
     case PropTypes.Enum:
@@ -145,6 +149,7 @@ const Knob: React.SFC<{
               </Radio>
             ))}
           </RadioGroup>
+          <PopupError error={error} />
         </Spacing>
       );
     case PropTypes.ReactNode:
@@ -156,6 +161,7 @@ const Knob: React.SFC<{
             //@ts-ignore
             onChange={event => set(event.target.value)}
             value={val}
+            error={Boolean(error)}
             size="compact"
             placeholder={placeholder}
             overrides={{
@@ -170,6 +176,7 @@ const Knob: React.SFC<{
               },
             }}
           />
+          <PopupError error={error} />
         </Spacing>
       );
     case PropTypes.Overrides:

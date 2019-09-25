@@ -89,17 +89,11 @@ const Override: React.FC<TProps> = ({
 }) => {
   const [, theme] = useStyletron();
   const isLightTheme = theme.name.startsWith('light-theme');
-  const upStreamCode = overridesObj[overrideKey]
-    ? overridesObj[overrideKey].style
-    : '';
-  const [code, setCode] = React.useState(upStreamCode);
-  React.useEffect(() => setCode(upStreamCode), [upStreamCode]);
-
+  const code = overridesObj[overrideKey] ? overridesObj[overrideKey].style : '';
   return (
     <React.Fragment>
       <Editor
         onChange={newCode => {
-          setCode(newCode);
           set({
             ...overrides.value,
             [overrideKey]: {style: newCode, active: true},
