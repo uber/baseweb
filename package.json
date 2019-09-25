@@ -38,6 +38,7 @@
     "e2e:serve": "static-server e2e/dist --port 8080",
     "e2e:test": "jest --runInBand -c jest.e2e.config.js",
     "e2e:test:ci": "jest -c jest.e2e.config.js",
+    "e2e:vrt": "jest --runInBand -c jest.vrt.config.js",
     "icon:generate": "node ./src/icon/build-icons.js",
     "thumbs:generate": "svgr --template ./documentation-site/components/thumbs/template.js --replace-attr-values \"#F6F6F6={props.colors[0]}\" --replace-attr-values \"#E2E2E2={props.colors[1]}\" --replace-attr-values \"#CBCBCB={props.colors[2]}\" -d ./documentation-site/components/thumbs/components ./documentation-site/components/thumbs/svg",
     "predocumentation:dev": "node ./scripts/build-documentation-site-files.js",
