@@ -225,6 +225,7 @@ function Thumbnail({children, href}) {
       href={href}
       className={useCss({
         ...theme.borders.border300,
+        borderColor: theme.colors.border,
         display: 'flex',
         flexDirection: 'column',
         marginRight: theme.sizing.scale800,
@@ -248,6 +249,7 @@ function Thumbnail({children, href}) {
           fontFamily:
             'SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace',
           ...theme.borders.border300,
+          borderColor: theme.colors.border,
           borderTop: 0,
           borderLeft: 0,
           borderRight: 0,
