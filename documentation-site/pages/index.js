@@ -59,7 +59,7 @@ const Adopters = (props: {logoSrcs: string[]}) => (
       </FlexGrid>
       <Button
         $as="a"
-        href="http://t.uber.com/base-web-adopters"
+        href="https://github.com/uber-web/baseui/issues/1889"
         size="compact"
         kind="secondary"
         overrides={{
@@ -206,6 +206,7 @@ const Index = (props: {
       logoSrcs={[
         '/static/images/uber-logo.png',
         '/static/images/broadcom-logo.png',
+        '/static/images/extensis-logo.png',
       ]}
     />
     <Contributors contributors={props.contributors} />
