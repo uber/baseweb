@@ -12,12 +12,6 @@ module.exports = {
   projectRepo: 'uber-web/baseui',
   storybookConfigDir: '.storybook',
   apiKey: process.env.SCREENER_API_KEY,
-  resolutions: [
-    {
-      width: 1024,
-      height: 768,
-    },
-  ],
   baseBranch: 'master',
   failureExitCode: 0,
   browsers: [
