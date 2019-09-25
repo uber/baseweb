@@ -58,6 +58,8 @@ function ElementMeasurer(props: ElementMeasurerPropsT) {
 
 type MeasureColumnWidthsPropsT = {
   columns: ColumnT<>[],
+  // if selectable, measure the first column with checkbox included
+  isSelectable: boolean,
   onWidthsChange: (number[]) => void,
   rows: RowT[],
   widths: number[],
@@ -100,6 +102,8 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
   }, [props.columns, props.rows, props.widths, sampleSize]);
 
   function handleDimensionsChange(columnIndex, rowIndex, dimensions) {
+    if (dimensions.width === undefined) return;
+
     measurementCount.current += 1;
 
     const nextWidth = Math.max(
@@ -139,7 +143,13 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
               handleDimensionsChange(columnIndex, rowIndex, dimensions)
             }
             item={
-              <Cell value={props.rows[rowIndex].data[columnIndex]} isMeasured />
+              <Cell
+                value={props.rows[rowIndex].data[columnIndex]}
+                isMeasured
+                onSelect={
+                  props.isSelectable && columnIndex === 0 ? () => {} : undefined
+                }
+              />
             }
           />
         ));
@@ -158,10 +168,15 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
               isFilterOpen={false}
               isHovered
               isMeasured
+              isSelectable={props.isSelectable && columnIndex === 0}
+              isSelectedAll={false}
+              isSelectedIndeterminate={false}
               onFilterOpen={() => {}}
               onFilterClose={() => {}}
               onMouseEnter={() => {}}
               onMouseLeave={() => {}}
+              onSelectAll={() => {}}
+              onSelectNone={() => {}}
               onSort={i => {}}
               sortable={column.sortable}
               sortDirection={null}

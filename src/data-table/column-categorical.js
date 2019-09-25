@@ -14,6 +14,7 @@ import {Input, SIZE as INPUT_SIZE} from '../input/index.js';
 import {useStyletron, withStyle} from '../styles/index.js';
 import {Label3} from '../typography/index.js';
 
+import CellShell from './cell-shell.js';
 import {COLUMNS} from './constants.js';
 import type {ColumnT} from './types.js';
 import FilterShell from './filter-shell.js';
@@ -228,24 +229,18 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
   );
 }
 
-const CategoricalCell = React.forwardRef<CellPropsT, HTMLDivElement>(
-  (props, ref) => {
-    const [useCss, theme] = useStyletron();
-    return (
-      <div
-        ref={ref}
-        className={useCss({
-          ...theme.typography.font200,
-          display: props.isMeasured ? 'inline-block' : null,
-          paddingLeft: theme.sizing.scale600,
-          paddingRight: theme.sizing.scale600,
-        })}
-      >
-        {props.value}
-      </div>
-    );
-  },
-);
+const CategoricalCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
+  return (
+    <CellShell
+      ref={ref}
+      isMeasured={props.isMeasured}
+      isSelected={props.isSelected}
+      onSelect={props.onSelect}
+    >
+      {props.value}
+    </CellShell>
+  );
+});
 CategoricalCell.displayName = 'CategoricalCell';
 
 function CategoricalColumn(options: OptionsT): CategoricalColumnT {

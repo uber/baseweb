@@ -10,13 +10,25 @@ import * as React from 'react';
 import {VariableSizeGrid} from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 
+import {
+  Button,
+  SHAPE as BUTTON_SHAPES,
+  SIZE as BUTTON_SIZES,
+  KIND as BUTTON_KINDS,
+} from '../button/index.js';
 import {useStyletron} from '../styles/index.js';
 import {Tag} from '../tag/index.js';
 
 import HeaderCell from './header-cell.js';
 import {SORT_DIRECTIONS} from './constants.js';
 import MeasureColumnWidths from './measure-column-widths.js';
-import type {ColumnT, Props, RowT, SortDirectionsT} from './types.js';
+import type {
+  ColumnT,
+  Props,
+  RowT,
+  SortDirectionsT,
+  BatchActionT,
+} from './types.js';
 
 function CellPlacement({columnIndex, rowIndex, data, style}) {
   const [useCss, theme] = useStyletron();
@@ -41,9 +53,19 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
   const Cell = column.renderCell;
   // minus one to account for additional header row
   const value = data.rows[rowIndex - 1].data[columnIndex];
+  const id = data.rows[rowIndex - 1].id;
+
   return (
     <div className={cellStyle} style={style}>
-      <Cell value={value} />
+      <Cell
+        value={value}
+        onSelect={
+          data.isSelectable && columnIndex === 0
+            ? () => data.onSelect(id)
+            : undefined
+        }
+        isSelected={data.isRowSelected(id)}
+      />
     </div>
   );
 }
@@ -87,9 +109,14 @@ const HeaderContext = React.createContext<{
   addFilter: (mixed, string, string) => void,
   columns: ColumnT<>[],
   filterOpenIndex: number,
-  setFilterOpenIndex: number => void,
   handleSort: number => void,
   headerHoverIndex: number,
+  isSelectable: boolean,
+  isSelectedAll: boolean,
+  isSelectedIndeterminate: boolean,
+  onSelectAll: () => void,
+  onSelectNone: () => void,
+  setFilterOpenIndex: number => void,
   setHeaderHoverIndex: number => void,
   rows: RowT[],
   sortIndex: number,
@@ -99,9 +126,14 @@ const HeaderContext = React.createContext<{
   addFilter: () => {},
   columns: [],
   filterOpenIndex: -1,
-  setFilterOpenIndex: () => {},
   handleSort: () => {},
   headerHoverIndex: -1,
+  isSelectable: false,
+  isSelectedAll: false,
+  isSelectedIndeterminate: false,
+  onSelectAll: () => {},
+  onSelectNone: () => {},
+  setFilterOpenIndex: () => {},
   setHeaderHoverIndex: () => {},
   rows: [],
   sortIndex: -1,
@@ -170,6 +202,9 @@ const InnerTableElement = React.forwardRef<
                   }
                 }}
                 onFilterClose={() => ctx.setFilterOpenIndex(-1)}
+                isSelectable={ctx.isSelectable && columnIndex === 0}
+                isSelectedAll={ctx.isSelectedAll}
+                isSelectedIndeterminate={ctx.isSelectedIndeterminate}
                 onMouseEnter={() => {
                   ctx.setHeaderHoverIndex(columnIndex);
                   if (columnIndex !== ctx.filterOpenIndex) {
@@ -177,6 +212,8 @@ const InnerTableElement = React.forwardRef<
                   }
                 }}
                 onMouseLeave={() => ctx.setHeaderHoverIndex(-1)}
+                onSelectAll={ctx.onSelectAll}
+                onSelectNone={ctx.onSelectNone}
                 onSort={ctx.handleSort}
                 filter={({close}) => {
                   const Filter = column.renderFilter;
@@ -206,6 +243,7 @@ const InnerTableElement = React.forwardRef<
 InnerTableElement.displayName = 'InnerTableElement';
 
 export function Unstable_DataTable(props: Props) {
+  const [, theme] = useStyletron();
   useDuplicateColumnTitleWarning(props.columns);
   const [sortIndex, sortDirection, handleSort] = useSortParameters();
   const [filters, setFilters] = React.useState(new Map());
@@ -216,16 +254,6 @@ export function Unstable_DataTable(props: Props) {
   // filter open state tracked outside of header cell so that mouse-leave from the header
   // does not cause the popover to close.
   const [filterOpenIndex, setFilterOpenIndex] = React.useState(-1);
-
-  function addFilter(filterParams, title, description) {
-    filters.set(title, {filterParams, description});
-    setFilters(new Map(filters));
-  }
-
-  function removeFilter(title) {
-    filters.delete(title);
-    setFilters(new Map(filters));
-  }
 
   const sortedIndices = React.useMemo(() => {
     let toSort = props.rows.map((r, i) => [r, i]);
@@ -272,12 +300,40 @@ export function Unstable_DataTable(props: Props) {
       .map(idx => props.rows[idx]);
   }, [sortedIndices, filteredIndices, props.rows]);
 
+  function addFilter(filterParams, title, description) {
+    filters.set(title, {filterParams, description});
+    setFilters(new Map(filters));
+  }
+  function removeFilter(title) {
+    filters.delete(title);
+    setFilters(new Map(filters));
+  }
+
+  const [selectedRows, setSelectedRows] = React.useState(new Set());
+  const isSelectable = props.batchActions ? !!props.batchActions.length : false;
+  function handleSelectAll() {
+    // only adds rows that are visible in the table
+    handleSelectChange(new Set([...selectedRows, ...rows.map(r => r.id)]));
+  }
+  function handleSelectNone() {
+    handleSelectChange(new Set());
+  }
+  function handleSelectChange(next) {
+    setSelectedRows(next);
+
+    const selectionCallback = props.onSelectionChange;
+    if (selectionCallback) {
+      selectionCallback(rows.filter(r => next.has(r.id)));
+    }
+  }
+
   return (
     <React.Fragment>
       <MeasureColumnWidths
         columns={props.columns}
         rows={props.rows}
         widths={widths}
+        isSelectable={isSelectable}
         onWidthsChange={nextWidths => {
           setWidths(nextWidths);
           if (gridRef.current) {
@@ -293,6 +349,52 @@ export function Unstable_DataTable(props: Props) {
         </Tag>
       ))}
 
+      {Boolean(selectedRows.size) && props.batchActions && (
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            marginBottom: theme.sizing.scale300,
+          }}
+        >
+          {props.batchActions.map(action => {
+            function onClick(event) {
+              action.onClick({
+                clearSelection: handleSelectNone,
+                event,
+                rows: rows.filter(r => selectedRows.has(r.id)),
+              });
+            }
+
+            if (action.renderIcon) {
+              const Icon = action.renderIcon;
+              return (
+                <Button
+                  overrides={{
+                    BaseButton: {props: {'aria-label': action.label}},
+                  }}
+                  onClick={onClick}
+                  kind={BUTTON_KINDS.tertiary}
+                  shape={BUTTON_SHAPES.round}
+                >
+                  <Icon size={16} />
+                </Button>
+              );
+            }
+
+            return (
+              <Button
+                onClick={onClick}
+                kind={BUTTON_KINDS.secondary}
+                size={BUTTON_SIZES.compact}
+              >
+                {action.label}
+              </Button>
+            );
+          })}
+        </div>
+      )}
+
       <AutoSizer>
         {({height, width}) => (
           <HeaderContext.Provider
@@ -304,6 +406,12 @@ export function Unstable_DataTable(props: Props) {
               setFilterOpenIndex,
               handleSort,
               headerHoverIndex,
+              isSelectable,
+              isSelectedAll: !!rows.length && selectedRows.size >= rows.length,
+              isSelectedIndeterminate:
+                !!selectedRows.size && selectedRows.size < rows.length,
+              onSelectAll: handleSelectAll,
+              onSelectNone: handleSelectNone,
               setHeaderHoverIndex,
               sortDirection,
               sortIndex,
@@ -323,6 +431,16 @@ export function Unstable_DataTable(props: Props) {
               rowHeight={rowIndex => (rowIndex === 0 ? 48 : 40)}
               width={width}
               itemData={{
+                isRowSelected: id => selectedRows.has(id),
+                isSelectable,
+                onSelect: id => {
+                  if (selectedRows.has(id)) {
+                    selectedRows.delete(id);
+                  } else {
+                    selectedRows.add(id);
+                  }
+                  handleSelectChange(new Set(selectedRows));
+                },
                 columns: props.columns,
                 rows,
               }}

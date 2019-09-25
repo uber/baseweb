@@ -27,10 +27,10 @@ export const component = () => {
   ];
 
   const rows = [
-    {data: [true, 'A', 2, 'one']},
-    {data: [false, 'B', 1, 'two']},
-    {data: [true, 'A', 4, 'three']},
-    {data: [false, 'A', 3, 'four']},
+    {id: 1, data: [true, 'A', 2, 'one']},
+    {id: 2, data: [false, 'B', 1, 'two']},
+    {id: 3, data: [true, 'A', 4, 'three']},
+    {id: 4, data: [false, 'A', 3, 'four']},
   ];
 
   return (

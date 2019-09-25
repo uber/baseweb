@@ -14,6 +14,7 @@ import {Input} from '../input/index.js';
 import {useStyletron} from '../styles/index.js';
 import {Paragraph4} from '../typography/index.js';
 
+import CellShell from './cell-shell.js';
 import {COLUMNS, NUMERICAL_FORMATS, NUMERICAL_OPERATIONS} from './constants.js';
 import FilterShell from './filter-shell.js';
 import type {ColumnT} from './types.js';
@@ -30,15 +31,7 @@ type NumericalOperations =
   | typeof NUMERICAL_OPERATIONS.LT
   | typeof NUMERICAL_OPERATIONS.LTE;
 
-type NumericalCellPropsT = {
-  format: NumericalFormats,
-  highlight: number => boolean,
-  isMeasured?: boolean,
-  precision: number,
-  value: number,
-};
-
-export type OptionsT = {|
+type OptionsT = {|
   title: string,
   sortable?: boolean,
   filterable?: boolean,
@@ -226,22 +219,23 @@ function NumericalFilter(props) {
   );
 }
 
-const NumericalCell = React.forwardRef<NumericalCellPropsT, HTMLDivElement>(
-  (props, ref) => {
-    const [useCss, theme] = useStyletron();
+const NumericalCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
+  const [useCss, theme] = useStyletron();
 
-    return (
+  return (
+    <CellShell
+      ref={ref}
+      isMeasured={props.isMeasured}
+      isSelected={props.isSelected}
+      onSelect={props.onSelect}
+    >
       <div
-        ref={ref}
         className={useCss({
-          ...theme.typography.font200,
+          display: 'flex',
+          justifyContent: 'flex-end',
           color: props.highlight(props.value) ? theme.colors.negative : null,
-          display: props.isMeasured ? 'inline-block' : null,
           fontFamily: `"Lucida Console", Monaco, monospace`,
-          paddingLeft: theme.sizing.scale600,
-          paddingRight: theme.sizing.scale600,
-          textAlign: 'right',
-          width: props.isMeasured ? null : '100%',
+          width: '100%',
         })}
       >
         {format(props.value, {
@@ -249,9 +243,9 @@ const NumericalCell = React.forwardRef<NumericalCellPropsT, HTMLDivElement>(
           precision: props.precision,
         })}
       </div>
-    );
-  },
-);
+    </CellShell>
+  );
+});
 NumericalCell.displayName = 'NumericalCell';
 
 const defaultOptions = {
@@ -259,7 +253,7 @@ const defaultOptions = {
   sortable: true,
   filterable: true,
   format: NUMERICAL_FORMATS.DEFAULT,
-  highlight: () => false,
+  highlight: (n: number) => false,
   precision: 0,
 };
 
@@ -291,8 +285,11 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
     renderCell: React.forwardRef((props, ref) => {
       return (
         <NumericalCell
-          {...props}
           ref={ref}
+          isMeasured={props.isMeasured}
+          isSelected={props.isSelected}
+          onSelect={props.onSelect}
+          value={props.value}
           format={normalizedOptions.format}
           highlight={normalizedOptions.highlight}
           precision={normalizedOptions.precision}
