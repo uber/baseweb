@@ -91,24 +91,6 @@ But as you might guess, there are multiple React components under the hood, comp
 />
 ```
 
-Overrides for `style`, `component` and `props` can be passed as functions too. For example, the overrides below are valid and equivalent.
-
-```jsx
-<Component
-  active
-  overrides={{
-    props: { 'data-test': props.active ? 'foo-active' : 'foo' }
-  }}
-/>
-
-<Component
-  active
-  overrides={{
-    props: props => ({ 'data-test': props.active ? 'foo-active' : 'foo' })
-  }}
-/>
-```
-
 We defined `overrides.Label.style` and `overrides.Label.props` properties and this is the result (inspect the element to see the `data-test-id` attribute):
 
 <DndListExampleStyle />
