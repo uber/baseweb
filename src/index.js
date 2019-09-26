@@ -20,6 +20,7 @@ export {
   createTheme,
   lightThemePrimitives,
   darkThemePrimitives,
+  darkThemeOverrides,
   DarkTheme,
   DarkThemeMove,
   LightTheme,
