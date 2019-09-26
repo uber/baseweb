@@ -20,7 +20,14 @@ export const component = () => {
           return (
             <tr key={kind}>
               <td>
-                <Button kind={kind}>Move</Button>
+                <Button
+                  kind={kind}
+                  overrides={{
+                    BaseButton: {props: {'data-vrt-id': `button-${kind}`}},
+                  }}
+                >
+                  Move
+                </Button>
               </td>
               <td>
                 <Button kind={kind} isSelected>

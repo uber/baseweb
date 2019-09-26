@@ -36,13 +36,36 @@ describe('button', () => {
         const page = await target.newPage();
         await page.goto(`http://localhost:8080?name=${name}`);
         await page.setViewport({width: 1600, height: 1200});
-        await page.waitFor(1000);
+
         const image = await page.screenshot();
         const result = await target.toMatchSnapshot(image);
+
         await page.close();
         expect(result).toEqual(true);
       },
       30000,
     );
+  });
+
+  describe('button-hover', () => {
+    ['primary', 'secondary', 'tertiary', 'minimal'].forEach(kind => {
+      it(
+        kind,
+        async () => {
+          const target = differencify.init({chain: false});
+          const page = await target.newPage();
+          await page.goto(`http://localhost:8080?name=button`);
+          await page.setViewport({width: 1600, height: 1200});
+
+          await page.hover(`[data-vrt-id="button-${kind}"]`);
+          const image = await page.screenshot();
+          const result = await target.toMatchSnapshot(image);
+
+          await page.close();
+          expect(result).toEqual(true);
+        },
+        30000,
+      );
+    });
   });
 });
