@@ -337,6 +337,7 @@ export default withRouter(
               set={(value: any, name: string) => {
                 try {
                   trackEvent('yard', `${componentName}:knob_change_${name}`);
+                  !hydrated && setHydrated(true);
                   const newCode = getCode(
                     buildPropsObj(state.props, {[name]: value}),
                     componentName,

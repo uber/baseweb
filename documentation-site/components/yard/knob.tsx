@@ -9,6 +9,7 @@ import {Radio, RadioGroup} from 'baseui/radio';
 import {Checkbox} from 'baseui/checkbox';
 import {StatefulTooltip} from 'baseui/tooltip';
 import PopupError from './popup-error';
+import Editor from './editor';
 
 const getTooltip = (description: string, type: string, name: string) => (
   <span>
@@ -87,6 +88,13 @@ const Knob: React.SFC<{
             error={Boolean(error)}
             onChange={event => set((event.target as any).value)}
             placeholder={placeholder}
+            overrides={{
+              Input: {
+                style: {
+                  height: '36px',
+                },
+              },
+            }}
             size="compact"
             value={val}
           />
@@ -157,24 +165,11 @@ const Knob: React.SFC<{
       return (
         <Spacing>
           <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
-          <Textarea
-            //@ts-ignore
-            onChange={event => set(event.target.value)}
-            value={val}
-            error={Boolean(error)}
-            size="compact"
+          <Editor
+            onChange={code => set(code)}
+            code={val}
             placeholder={placeholder}
-            overrides={{
-              Input: {
-                style: ({$isFocused}) => ({
-                  height: $isFocused ? 'auto' : '32px',
-                  fontSize: '12px',
-                  fontFamily:
-                    "Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",
-                  resize: $isFocused ? 'vertical' : 'none',
-                }),
-              },
-            }}
+            small
           />
           <PopupError error={error} />
         </Spacing>
