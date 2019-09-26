@@ -2,6 +2,11 @@ import {Tabs, Tab, ORIENTATION} from 'baseui/tabs';
 import {PropTypes} from '../const';
 
 export default {
+  extraImports: {
+    named: {
+      'baseui/tabs': ['Tab'],
+    },
+  },
   scopeConfig: {
     Tabs,
     Tab,

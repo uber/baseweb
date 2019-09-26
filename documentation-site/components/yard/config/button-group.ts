@@ -3,6 +3,11 @@ import {Button} from 'baseui/button';
 import {PropTypes} from '../const';
 
 export default {
+  extraImports: {
+    named: {
+      'baseui/button': ['Button'],
+    },
+  },
   scopeConfig: {
     Button,
     ButtonGroup,
@@ -36,9 +41,6 @@ export default {
         '<Button>One</Button>\n<Button>Two</Button>\n<Button>Three</Button>',
       type: PropTypes.ReactNode,
       description: 'Buttons within the group',
-      meta: {
-        imports: ['Button'],
-      },
     },
     onClick: {
       value: '(event, index) => {\n  setSelected([index]);\n}',

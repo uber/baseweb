@@ -1,4 +1,4 @@
-import {TProp} from './types';
+import {TProp, TExtraImports} from './types';
 import {PropTypes} from './const';
 import {parse} from './ast';
 import template from '@babel/template';
@@ -189,10 +189,38 @@ const nameToImportSource = (name: string) =>
     .join('-')
     .toLowerCase()}`;
 
+const getAstImports = (
+  componentName: string,
+  enums: string[],
+  extraImports?: TExtraImports,
+) => {
+  const defaultFrom = nameToImportSource(componentName);
+  const importList = {
+    named: {
+      ...(extraImports && extraImports.named ? extraImports.named : {}),
+      [defaultFrom]: [componentName, ...enums].concat(
+        extraImports && extraImports.named && extraImports.named[defaultFrom]
+          ? extraImports.named[defaultFrom]
+          : [],
+      ),
+    },
+    default: extraImports && extraImports.default ? extraImports.default : {},
+  };
+  return [
+    ...Object.keys(importList.named).map(from =>
+      getAstImport(importList.named[from], from),
+    ),
+    ...Object.keys(importList.default).map(from =>
+      getAstImport(importList.default[from], from),
+    ),
+  ];
+};
+
 export const getAst = (
   props: {[key: string]: TProp},
   componentName: string,
   theme: any,
+  extraImports?: TExtraImports,
 ) => {
   const {children, ...restProps} = props;
   const isCustomTheme =
@@ -203,18 +231,12 @@ export const getAst = (
       : 'lightThemePrimitives';
 
   const buildExport = template(`export default () => {%%body%%}`);
-  const childrenImports =
-    children && children.meta && children.meta.imports
-      ? children.meta.imports
-      : [];
   return t.file(
     t.program([
-      getAstImport(
-        [componentName, ...getEnumsToImport(restProps)],
-        nameToImportSource(componentName),
-      ),
-      ...childrenImports.map(name =>
-        getAstImport([name], nameToImportSource(name)),
+      ...getAstImports(
+        componentName,
+        getEnumsToImport(restProps),
+        extraImports,
       ),
       ...getAstThemeImport(isCustomTheme, themePrimitives),
       buildExport({
@@ -265,7 +287,8 @@ export const getCode = (
   props: {[key: string]: TProp},
   componentName: string,
   theme: {themeValues: {[key: string]: string}; themeName: string},
+  extraImports?: TExtraImports,
 ) => {
-  const ast = getAst(props, componentName, theme);
+  const ast = getAst(props, componentName, theme, extraImports);
   return formatAstAndPrint(ast as any);
 };

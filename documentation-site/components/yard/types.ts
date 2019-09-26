@@ -5,9 +5,15 @@ export type TPropHook = {
   into: string;
 } | null;
 
+export type TExtraImports = {
+  named?: {[key: string]: string[]};
+  default?: {[key: string]: string[]};
+};
+
 export type TYardProps = {
   componentName: string;
   minHeight: number;
+  extraImports?: TExtraImports;
   scopeConfig: {[key: string]: any};
   propsConfig: {[key: string]: TProp};
   themeConfig: string[];
