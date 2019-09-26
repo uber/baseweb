@@ -4,7 +4,6 @@ import {StyledLink} from 'baseui/link';
 import {assertUnreachable} from './utils';
 import {PropTypes} from './const';
 import {Input} from 'baseui/input';
-import {Textarea} from 'baseui/textarea';
 import {Radio, RadioGroup} from 'baseui/radio';
 import {Checkbox} from 'baseui/checkbox';
 import {StatefulTooltip} from 'baseui/tooltip';
