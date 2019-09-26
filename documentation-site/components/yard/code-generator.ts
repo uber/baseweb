@@ -54,8 +54,10 @@ export const getAstPropValue = (prop: TProp) => {
     case PropTypes.Array:
     case PropTypes.Number:
     case PropTypes.Function:
-    case PropTypes.ReactNode:
       return (template.ast(value, {plugins: ['jsx']}) as any).expression;
+    case PropTypes.ReactNode:
+      return (template.ast(`<>${value}</>`, {plugins: ['jsx']}) as any)
+        .expression.children;
     case PropTypes.Overrides:
       const activeValues = Object.entries(value).filter(
         ([, val]: any) => val.active,
@@ -181,6 +183,12 @@ export const getAstThemeWrapper = (
   );
 };
 
+const nameToImportSource = (name: string) =>
+  `baseui/${name
+    .split(/(?=[A-Z])/)
+    .join('-')
+    .toLowerCase()}`;
+
 export const getAst = (
   props: {[key: string]: TProp},
   componentName: string,
@@ -195,15 +203,18 @@ export const getAst = (
       : 'lightThemePrimitives';
 
   const buildExport = template(`export default () => {%%body%%}`);
-
+  const childrenImports =
+    children && children.meta && children.meta.imports
+      ? children.meta.imports
+      : [];
   return t.file(
     t.program([
       getAstImport(
         [componentName, ...getEnumsToImport(restProps)],
-        `baseui/${componentName
-          .split(/(?=[A-Z])/)
-          .join('-')
-          .toLowerCase()}`,
+        nameToImportSource(componentName),
+      ),
+      ...childrenImports.map(name =>
+        getAstImport([name], nameToImportSource(name)),
       ),
       ...getAstThemeImport(isCustomTheme, themePrimitives),
       buildExport({
@@ -216,7 +227,7 @@ export const getAst = (
               getAstJsxElement(
                 componentName,
                 getAstPropsArray(restProps),
-                children && children.value ? [t.jsxText(children.value)] : [],
+                children && children.value ? getAstPropValue(children) : [],
               ),
             ),
           ),

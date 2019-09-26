@@ -32,10 +32,12 @@ export default {
   ],
   propsConfig: {
     children: {
-      value:
-        '<Button>Label</Button><Button>Label</Button><Button>Label</Button>',
+      value: '<Button>One</Button><Button>Two</Button><Button>Three</Button>',
       type: PropTypes.ReactNode,
       description: 'Buttons within the group',
+      meta: {
+        imports: ['Button'],
+      },
     },
     onClick: {
       value: '(event, index) => {\n  setSelected([index]);\n}',

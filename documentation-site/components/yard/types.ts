@@ -25,6 +25,7 @@ export type TProp = {
     sharedKeys?: any;
     stateful?: boolean;
     propHook?: TPropHook;
+    imports?: string[];
   };
 };
 
