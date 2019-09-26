@@ -32,7 +32,8 @@ export default {
   ],
   propsConfig: {
     children: {
-      value: '<Button>One</Button><Button>Two</Button><Button>Three</Button>',
+      value:
+        '<Button>One</Button>\n<Button>Two</Button>\n<Button>Three</Button>',
       type: PropTypes.ReactNode,
       description: 'Buttons within the group',
       meta: {
