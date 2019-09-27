@@ -31,76 +31,10 @@ steps:
   # This way we can download the built image from a registry instead of building each for each test task.
   - wait
   # All of the commands after the wait are run in parallel.
-  - name: ':validate-examples:'
-    command: yarn validate:examples
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers
-  - name: ':typescript:'
-    command: yarn tsc
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers
-  - name: ':eslint:'
-    command: yarn lint
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers
-  - name: ':flowtype:'
-    command: yarn flow check
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers
-  - name: ':jest:'
-    command: yarn unit-test
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers
-  - name: ':fossa:'
-    command: 'curl https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | bash && fossa'
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers
-  - name: ':deploy:'
-    command: './deploy.sh'
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers
-  - name: ':guard-component-sizes:'
-    command: './scripts/component-sizes.js'
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers
-  - name: ':documentation-site-link-checker:'
-    command: yarn blc http://localhost:8081 -ro --exclude components/avatar --exclude github.com
-    plugins:
-      'docker-compose#v3.0.3':
-        run: docs-site
-        pull:
-          - docs-site-server
-          - docs-site-healthy
-    agents:
-      queue: builders
-  - name: ':puppeteer:'
+  - name: ':differencify:'
     # we have to install puppeteer here to trigger the install.js script
     # and also to make sure we do not add this to the released build artifact
-    command: yarn add puppeteer && yarn e2e:test:ci
+    command: yarn add puppeteer && yarn vrt:test:ci
     plugins:
       'docker-compose#v3.0.3':
         run: e2e-test
@@ -109,3 +43,81 @@ steps:
           - e2e-server-healthy
     agents:
       queue: builders
+  # - name: ':validate-examples:'
+  #   command: yarn validate:examples
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       run: baseui
+  #   agents:
+  #     queue: workers
+  # - name: ':typescript:'
+  #   command: yarn tsc
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       run: baseui
+  #   agents:
+  #     queue: workers
+  # - name: ':eslint:'
+  #   command: yarn lint
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       run: baseui
+  #   agents:
+  #     queue: workers
+  # - name: ':flowtype:'
+  #   command: yarn flow check
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       run: baseui
+  #   agents:
+  #     queue: workers
+  # - name: ':jest:'
+  #   command: yarn unit-test
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       run: baseui
+  #   agents:
+  #     queue: workers
+  # - name: ':fossa:'
+  #   command: 'curl https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | bash && fossa'
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       run: baseui
+  #   agents:
+  #     queue: workers
+  # - name: ':deploy:'
+  #   command: './deploy.sh'
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       run: baseui
+  #   agents:
+  #     queue: workers
+  # - name: ':guard-component-sizes:'
+  #   command: './scripts/component-sizes.js'
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       run: baseui
+  #   agents:
+  #     queue: workers
+  # - name: ':documentation-site-link-checker:'
+  #   command: yarn blc http://localhost:8081 -ro --exclude components/avatar --exclude github.com
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       run: docs-site
+  #       pull:
+  #         - docs-site-server
+  #         - docs-site-healthy
+  #   agents:
+  #     queue: builders
+  # - name: ':puppeteer:'
+  #   # we have to install puppeteer here to trigger the install.js script
+  #   # and also to make sure we do not add this to the released build artifact
+  #   command: yarn add puppeteer && yarn e2e:test:ci
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       run: e2e-test
+  #       pull:
+  #         - e2e-server
+  #         - e2e-server-healthy
+  #   agents:
+  #     queue: builders
