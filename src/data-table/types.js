@@ -52,7 +52,7 @@ export type BatchActionT = {|
   onClick: ({
     clearSelection: () => mixed,
     event: SyntheticEvent<HTMLButtonElement>,
-    rows: RowT[],
+    selection: RowT[],
   }) => mixed,
   renderIcon?: React.ComponentType<{|size: number|}>,
 |};

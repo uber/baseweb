@@ -19,11 +19,6 @@ import {COLUMNS} from './constants.js';
 import type {ColumnT} from './types.js';
 import FilterShell from './filter-shell.js';
 
-type CellPropsT = {
-  isMeasured?: boolean,
-  value: string,
-};
-
 type OptionsT = {|
   title: string,
   sortable?: boolean,

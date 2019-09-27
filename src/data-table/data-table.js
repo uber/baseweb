@@ -22,13 +22,7 @@ import {Tag} from '../tag/index.js';
 import HeaderCell from './header-cell.js';
 import {SORT_DIRECTIONS} from './constants.js';
 import MeasureColumnWidths from './measure-column-widths.js';
-import type {
-  ColumnT,
-  Props,
-  RowT,
-  SortDirectionsT,
-  BatchActionT,
-} from './types.js';
+import type {ColumnT, Props, RowT, SortDirectionsT} from './types.js';
 
 function CellPlacement({columnIndex, rowIndex, data, style}) {
   const [useCss, theme] = useStyletron();
@@ -362,7 +356,7 @@ export function Unstable_DataTable(props: Props) {
               action.onClick({
                 clearSelection: handleSelectNone,
                 event,
-                rows: rows.filter(r => selectedRows.has(r.id)),
+                selection: rows.filter(r => selectedRows.has(r.id)),
               });
             }
 
@@ -370,6 +364,7 @@ export function Unstable_DataTable(props: Props) {
               const Icon = action.renderIcon;
               return (
                 <Button
+                  key={action.label}
                   overrides={{
                     BaseButton: {props: {'aria-label': action.label}},
                   }}
@@ -384,6 +379,7 @@ export function Unstable_DataTable(props: Props) {
 
             return (
               <Button
+                key={action.label}
                 onClick={onClick}
                 kind={BUTTON_KINDS.secondary}
                 size={BUTTON_SIZES.compact}

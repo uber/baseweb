@@ -45,7 +45,7 @@ export type BatchActionT = {
   onClick: (params: {
     clearSelection: () => any;
     event: React.MouseEvent<HTMLButtonElement>;
-    rows: RowT[];
+    selection: RowT[];
   }) => any;
   renderIcon?: any;
 };
