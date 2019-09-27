@@ -1,6 +1,20 @@
 [
   {
     "status": "passed",
+    "testName": "accordion accordion-expanded",
+    "snapshotPath": "../src/accordion/__tests__/__image_snapshots__/accordion accordion-expanded.snap.png",
+    "currentImagePath": false,
+    "diffPath": false
+  },
+  {
+    "status": "passed",
+    "testName": "accordion accordion",
+    "snapshotPath": "../src/accordion/__tests__/__image_snapshots__/accordion accordion.snap.png",
+    "currentImagePath": false,
+    "diffPath": false
+  },
+  {
+    "status": "passed",
     "testName": "button button-enhancers-compact",
     "snapshotPath": "../src/button/__tests__/__image_snapshots__/button button-enhancers-compact.snap.png",
     "currentImagePath": false,
