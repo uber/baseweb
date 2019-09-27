@@ -195,18 +195,16 @@ describe('parseCode', () => {
       parsedProps: {
         children: '',
         onChange: 'e => setValue(e.target.value)',
-        overrides: `{
+        overrides: `({
   Root: {
-    style: ({
-      $theme
-    }) => {
+    style: ({ $theme }) => {
       return {
         outline: \`\${$theme.colors.warning200} solid\`,
         backgroundColor: $theme.colors.warning200
       };
     }
   }
-}`,
+})`,
         placeholder: 'Controlled Input',
         value: 'Hello',
       },

@@ -232,7 +232,7 @@ export function parseCode(code: string, elementName: string) {
                   value = formatAstAndPrint(
                     //@ts-ignore
                     t.program([t.expressionStatement(attr.value.expression)]),
-                    30,
+                    name === 'overrides' ? 70 : 30,
                   );
                 }
               }
@@ -245,7 +245,8 @@ export function parseCode(code: string, elementName: string) {
           )
             .replace(/\n  /g, '\n')
             .replace(/^<YardRoot>\n?/, '')
-            .replace(/<\/YardRoot>$/, '');
+            .replace(/<\/YardRoot>$/, '')
+            .replace(/\s*<YardRoot \/>\s*/, '');
         }
       },
       VariableDeclarator(path) {
