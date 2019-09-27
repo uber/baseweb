@@ -10,6 +10,9 @@ LICENSE file in the root directory of this source tree.
 const Differencify = require('differencify');
 const differencify = new Differencify();
 
+// TODO: deploy to "Now"/"Next"
+// TODO: use puppeteer to run browserstack ??
+
 describe('button', () => {
   beforeAll(async () => {
     await differencify.launchBrowser({
@@ -37,7 +40,8 @@ describe('button', () => {
         await page.goto(`http://localhost:8080?name=${name}`);
         await page.setViewport({width: 1600, height: 1200});
 
-        const image = await page.screenshot();
+        const root = await page.$('#root');
+        const image = await root.screenshot();
         const result = await target.toMatchSnapshot(image);
 
         await page.close();
@@ -58,7 +62,9 @@ describe('button', () => {
           await page.setViewport({width: 1600, height: 1200});
 
           await page.hover(`[data-vrt-id="button-${kind}"]`);
-          const image = await page.screenshot();
+
+          const root = await page.$('#root');
+          const image = await root.screenshot();
           const result = await target.toMatchSnapshot(image);
 
           await page.close();
