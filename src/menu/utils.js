@@ -6,11 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable import/prefer-default-export */
-import smoothscroll from 'smoothscroll-polyfill';
-
-if (__BROWSER__) {
-  smoothscroll.polyfill();
-}
 
 // Helps scroll a list item into view when cycling through list via
 // keybindings and highlighted item is not in view.

@@ -294,10 +294,6 @@
         "approximateSize": 243
       },
       {
-        "name": "smoothscroll-polyfill",
-        "approximateSize": 2903
-      },
-      {
         "name": "polished",
         "approximateSize": 28614
       },
@@ -823,10 +819,6 @@
         "approximateSize": 5008
       },
       {
-        "name": "smoothscroll-polyfill",
-        "approximateSize": 2903
-      },
-      {
         "name": "popper.js",
         "approximateSize": 16380
       },
@@ -923,10 +915,6 @@
       {
         "name": "polished",
         "approximateSize": 28614
-      },
-      {
-        "name": "smoothscroll-polyfill",
-        "approximateSize": 2903
       },
       {
         "name": "popper.js",
@@ -1172,10 +1160,6 @@
       {
         "name": "object-assign",
         "approximateSize": 1085
-      },
-      {
-        "name": "smoothscroll-polyfill",
-        "approximateSize": 2903
       },
       {
         "name": "popper.js",
