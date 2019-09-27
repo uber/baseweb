@@ -16,8 +16,8 @@ const {generateCheatSheet} = require('./cheat-sheet-generator.js');
 
 async function main() {
   generateBlogPosts();
-  await generateVersions();
-  await generateCheatSheet();
+  // await generateVersions();
+  // await generateCheatSheet();
 }
 
 main().catch(console.error);

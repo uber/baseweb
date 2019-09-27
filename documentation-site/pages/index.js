@@ -118,9 +118,13 @@ const Index = (props: {
         Block: {
           style: ({$theme}) => ({
             flexWrap: 'wrap',
-            [$theme.media.small]: {
-              flexWrap: 'nowrap',
-            },
+            ...($theme.media
+              ? {
+                  [$theme.media.small]: {
+                    flexWrap: 'nowrap',
+                  },
+                }
+              : {}),
           }),
         },
       }}
