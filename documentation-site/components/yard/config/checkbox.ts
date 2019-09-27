@@ -31,7 +31,6 @@ export default {
         },
       },
     },
-
     overrides: {
       value: undefined,
       type: PropTypes.Overrides,
