@@ -1,22 +1,22 @@
 steps:
   # Build the image in a single place for all parallel steps to leverage the same image.
-  - name: ':docker: :package: unit'
-    plugins:
-      'docker-compose#v3.0.3':
-        build: baseui
-        image-repository: 027047743804.dkr.ecr.us-east-2.amazonaws.com/uber
-    agents:
-      queue: builders
-  - name: ':docker: :package: docs'
-    plugins:
-      'docker-compose#v3.0.3':
-        build:
-          - docs-site
-          - docs-site-server
-          - docs-site-healthy
-        image-repository: 027047743804.dkr.ecr.us-east-2.amazonaws.com/uber
-    agents:
-      queue: builders
+  # - name: ':docker: :package: unit'
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       build: baseui
+  #       image-repository: 027047743804.dkr.ecr.us-east-2.amazonaws.com/uber
+  #   agents:
+  #     queue: builders
+  # - name: ':docker: :package: docs'
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       build:
+  #         - docs-site
+  #         - docs-site-server
+  #         - docs-site-healthy
+  #       image-repository: 027047743804.dkr.ecr.us-east-2.amazonaws.com/uber
+  #   agents:
+  #     queue: builders
   - name: ':docker: :package: e2e'
     plugins:
       'docker-compose#v3.0.3':
