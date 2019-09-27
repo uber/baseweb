@@ -275,11 +275,11 @@ export const getAst = (
   );
 };
 
-export const formatAstAndPrint = (ast: t.Program) => {
+export const formatAstAndPrint = (ast: t.Program, printWidth?: number) => {
   const result = (prettier as any).__debug.formatAST(ast, {
     originalText: '',
     parser: 'babel',
-    printWidth: 70,
+    printWidth: printWidth ? printWidth : 70,
     plugins: [parsers],
   });
   return (
