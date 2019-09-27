@@ -23,8 +23,10 @@ const highlightCode = (code: string, theme: any) => (
 
 const Editor: React.FC<{
   code: string;
+  placeholder?: string;
   onChange: (code: string) => void;
-}> = ({code, onChange}) => {
+  small?: boolean;
+}> = ({code, onChange, placeholder, small}) => {
   const [css, theme] = useStyletron();
   const [focused, setFocused] = React.useState(false);
   const plainStyles = theme.name.startsWith('light-theme')
@@ -34,6 +36,7 @@ const Editor: React.FC<{
     ...plainStyles,
     plain: {
       ...plainStyles.plain,
+      fontSize: small ? '13px' : '14px',
       backgroundColor: focused
         ? theme.colors.inputFillActive
         : theme.colors.inputFill,
@@ -44,6 +47,11 @@ const Editor: React.FC<{
     <div
       className={css({
         boxSizing: 'border-box',
+        backgroundColor: editorTheme.plain.backgroundColor,
+        paddingLeft: '4px',
+        paddingRight: '4px',
+        height: small && !focused ? '40px' : 'auto',
+        overflow: 'hidden',
         border: focused
           ? `2px solid ${theme.colors.borderFocus}`
           : `2px solid ${theme.colors.inputFill}`,
@@ -55,12 +63,13 @@ const Editor: React.FC<{
         }}
       />
       <SimpleEditor
-        value={code}
+        value={code || ''}
+        placeholder={placeholder}
         highlight={code => highlightCode(code, editorTheme)}
         onValueChange={code => onChange(code)}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
-        padding={10}
+        padding={small ? 6 : 12}
         style={editorTheme.plain}
       />
     </div>

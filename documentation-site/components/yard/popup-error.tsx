@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {Popover, PLACEMENT} from 'baseui/popover';
 import {useStyletron} from 'baseui';
+import {formatBabelError} from './utils';
 
 const PopupError: React.FC<{error: string | null}> = ({error}) => {
   const [css, theme] = useStyletron();
@@ -19,15 +20,12 @@ const PopupError: React.FC<{error: string | null}> = ({error}) => {
   if (error === null) {
     return null;
   }
-  const formatError = error
-    .replace('1 | /* @babel/template */;', '')
-    .replace(/(\d+ \|)/g, num => `${parseInt(num, 10) - 1} |`);
   return (
     <Popover
       isOpen
       accessibilityType="tooltip"
       placement={PLACEMENT.bottom}
-      content={<div className={errorCx}>{formatError}</div>}
+      content={<div className={errorCx}>{formatBabelError(error)}</div>}
     >
       <div />
     </Popover>

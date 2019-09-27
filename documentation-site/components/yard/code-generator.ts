@@ -1,4 +1,4 @@
-import {TProp} from './types';
+import {TProp, TExtraImports} from './types';
 import {PropTypes} from './const';
 import {parse} from './ast';
 import template from '@babel/template';
@@ -16,6 +16,8 @@ type TJsxChild =
   | t.JSXSpreadChild
   | t.JSXElement
   | t.JSXFragment;
+
+const reactImport = template.ast(`import * as React from 'react';`);
 
 export const getAstPropsArray = (props: {[key: string]: TProp}) => {
   return Object.entries(props).map(([name, prop]) => {
@@ -54,8 +56,10 @@ export const getAstPropValue = (prop: TProp) => {
     case PropTypes.Array:
     case PropTypes.Number:
     case PropTypes.Function:
-    case PropTypes.ReactNode:
       return (template.ast(value, {plugins: ['jsx']}) as any).expression;
+    case PropTypes.ReactNode:
+      return (template.ast(`<>${value}</>`, {plugins: ['jsx']}) as any)
+        .expression.children;
     case PropTypes.Overrides:
       const activeValues = Object.entries(value).filter(
         ([, val]: any) => val.active,
@@ -92,11 +96,20 @@ export const getAstReactHooks = (props: {[key: string]: TProp}) => {
   return hooks;
 };
 
-export const getAstImport = (identifiers: string[], source: string) => {
+export const getAstImport = (
+  identifiers: string[],
+  source: string,
+  defaultIdentifier?: string,
+) => {
   return t.importDeclaration(
-    identifiers.map(identifier =>
-      t.importSpecifier(t.identifier(identifier), t.identifier(identifier)),
-    ),
+    [
+      ...(defaultIdentifier
+        ? [t.importDefaultSpecifier(t.identifier(defaultIdentifier))]
+        : []),
+      ...identifiers.map(identifier =>
+        t.importSpecifier(t.identifier(identifier), t.identifier(identifier)),
+      ),
+    ],
     t.stringLiteral(source),
   );
 };
@@ -181,10 +194,46 @@ export const getAstThemeWrapper = (
   );
 };
 
+const nameToImportSource = (name: string) =>
+  `baseui/${name
+    .split(/(?=[A-Z])/)
+    .join('-')
+    .toLowerCase()}`;
+
+export const getAstImports = (
+  componentName: string,
+  enums: string[],
+  extraImports?: TExtraImports,
+) => {
+  const defaultFrom = nameToImportSource(componentName);
+  const importList = {
+    ...(extraImports ? extraImports : {}),
+    [defaultFrom]: {
+      named: [
+        componentName,
+        ...(extraImports &&
+        extraImports[defaultFrom] &&
+        extraImports[defaultFrom].named
+          ? (extraImports[defaultFrom].named as string[])
+          : []),
+        ...enums,
+      ],
+      default:
+        extraImports && extraImports[defaultFrom]
+          ? extraImports[defaultFrom].default
+          : undefined,
+    },
+  };
+  return Object.keys(importList).map(from =>
+    getAstImport(importList[from].named || [], from, importList[from].default),
+  );
+};
+
 export const getAst = (
   props: {[key: string]: TProp},
   componentName: string,
   theme: any,
+  extraImports?: TExtraImports,
 ) => {
   const {children, ...restProps} = props;
   const isCustomTheme =
@@ -195,15 +244,13 @@ export const getAst = (
       : 'lightThemePrimitives';
 
   const buildExport = template(`export default () => {%%body%%}`);
-
   return t.file(
     t.program([
-      getAstImport(
-        [componentName, ...getEnumsToImport(restProps)],
-        `baseui/${componentName
-          .split(/(?=[A-Z])/)
-          .join('-')
-          .toLowerCase()}`,
+      reactImport,
+      ...getAstImports(
+        componentName,
+        getEnumsToImport(restProps),
+        extraImports,
       ),
       ...getAstThemeImport(isCustomTheme, themePrimitives),
       buildExport({
@@ -216,7 +263,7 @@ export const getAst = (
               getAstJsxElement(
                 componentName,
                 getAstPropsArray(restProps),
-                children && children.value ? [t.jsxText(children.value)] : [],
+                children && children.value ? getAstPropValue(children) : [],
               ),
             ),
           ),
@@ -228,11 +275,11 @@ export const getAst = (
   );
 };
 
-export const formatAstAndPrint = (ast: t.Program) => {
+export const formatAstAndPrint = (ast: t.Program, printWidth?: number) => {
   const result = (prettier as any).__debug.formatAST(ast, {
     originalText: '',
     parser: 'babel',
-    printWidth: 70,
+    printWidth: printWidth ? printWidth : 70,
     plugins: [parsers],
   });
   return (
@@ -254,7 +301,8 @@ export const getCode = (
   props: {[key: string]: TProp},
   componentName: string,
   theme: {themeValues: {[key: string]: string}; themeName: string},
+  extraImports?: TExtraImports,
 ) => {
-  const ast = getAst(props, componentName, theme);
+  const ast = getAst(props, componentName, theme, extraImports);
   return formatAstAndPrint(ast as any);
 };
