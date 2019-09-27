@@ -1,8 +1,22 @@
 [
   {
     "status": "passed",
-    "testName": "button button",
-    "snapshotPath": "../src/button/__tests__/__image_snapshots__/button button.snap.png",
+    "testName": "button button-enhancers-compact",
+    "snapshotPath": "../src/button/__tests__/__image_snapshots__/button button-enhancers-compact.snap.png",
+    "currentImagePath": false,
+    "diffPath": false
+  },
+  {
+    "status": "passed",
+    "testName": "button button-enhancers",
+    "snapshotPath": "../src/button/__tests__/__image_snapshots__/button button-enhancers.snap.png",
+    "currentImagePath": false,
+    "diffPath": false
+  },
+  {
+    "status": "passed",
+    "testName": "button button-rtl",
+    "snapshotPath": "../src/button/__tests__/__image_snapshots__/button button-rtl.snap.png",
     "currentImagePath": false,
     "diffPath": false
   },
@@ -22,50 +36,36 @@
   },
   {
     "status": "passed",
-    "testName": "button button-rtl",
-    "snapshotPath": "../src/button/__tests__/__image_snapshots__/button button-rtl.snap.png",
+    "testName": "button button",
+    "snapshotPath": "../src/button/__tests__/__image_snapshots__/button button.snap.png",
     "currentImagePath": false,
     "diffPath": false
   },
   {
     "status": "passed",
-    "testName": "button button-enhancers",
-    "snapshotPath": "../src/button/__tests__/__image_snapshots__/button button-enhancers.snap.png",
+    "testName": "button button buttonprimary",
+    "snapshotPath": "../src/button/__tests__/__image_snapshots__/button button buttonprimary.snap.png",
     "currentImagePath": false,
     "diffPath": false
   },
   {
     "status": "passed",
-    "testName": "button button-enhancers-compact",
-    "snapshotPath": "../src/button/__tests__/__image_snapshots__/button button-enhancers-compact.snap.png",
+    "testName": "button button buttonsecondary",
+    "snapshotPath": "../src/button/__tests__/__image_snapshots__/button button buttonsecondary.snap.png",
     "currentImagePath": false,
     "diffPath": false
   },
   {
     "status": "passed",
-    "testName": "button button-hover primary",
-    "snapshotPath": "../src/button/__tests__/__image_snapshots__/button button-hover primary.snap.png",
+    "testName": "button button buttontertiary",
+    "snapshotPath": "../src/button/__tests__/__image_snapshots__/button button buttontertiary.snap.png",
     "currentImagePath": false,
     "diffPath": false
   },
   {
     "status": "passed",
-    "testName": "button button-hover secondary",
-    "snapshotPath": "../src/button/__tests__/__image_snapshots__/button button-hover secondary.snap.png",
-    "currentImagePath": false,
-    "diffPath": false
-  },
-  {
-    "status": "passed",
-    "testName": "button button-hover tertiary",
-    "snapshotPath": "../src/button/__tests__/__image_snapshots__/button button-hover tertiary.snap.png",
-    "currentImagePath": false,
-    "diffPath": false
-  },
-  {
-    "status": "passed",
-    "testName": "button button-hover minimal",
-    "snapshotPath": "../src/button/__tests__/__image_snapshots__/button button-hover minimal.snap.png",
+    "testName": "button button buttonminimal",
+    "snapshotPath": "../src/button/__tests__/__image_snapshots__/button button buttonminimal.snap.png",
     "currentImagePath": false,
     "diffPath": false
   }
