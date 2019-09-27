@@ -10,9 +10,6 @@ LICENSE file in the root directory of this source tree.
 const Differencify = require('differencify');
 const differencify = new Differencify();
 
-// TODO: deploy to "Now"/"Next"
-// TODO: use puppeteer to run browserstack ??
-
 describe('button', () => {
   beforeAll(async () => {
     await differencify.launchBrowser({
