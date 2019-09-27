@@ -5,6 +5,7 @@ import * as t from 'babel-types';
 import {TProp, TPropHook} from './types';
 import {PropTypes} from './const';
 import {parse as babelParse} from '@babel/parser';
+import {getAstJsxElement, formatAstAndPrint} from './code-generator';
 
 export const parse = (code: string) =>
   babelParse(code, {
@@ -228,18 +229,24 @@ export function parseCode(code: string, elementName: string) {
                 if (attr.value.expression.type === 'BooleanLiteral') {
                   value = attr.value.expression.value;
                 } else {
-                  value = generate(attr.value.expression).code;
+                  value = formatAstAndPrint(
+                    //@ts-ignore
+                    t.program([t.expressionStatement(attr.value.expression)]),
+                    name === 'overrides' ? 70 : 30,
+                  );
                 }
               }
             }
             propValues[name] = value;
           });
-          propValues['children'] = (path.node as any).children
-            .reduce(
-              (result: string, node: any) => `${result}${generate(node).code}`,
-              '',
-            )
-            .replace(/^\s+|\s+$/g, '');
+          propValues['children'] = formatAstAndPrint(
+            getAstJsxElement('YardRoot', [], path.node.children as any) as any,
+            30,
+          )
+            .replace(/\n  /g, '\n')
+            .replace(/^<YardRoot>\n?/, '')
+            .replace(/<\/YardRoot>$/, '')
+            .replace(/\s*<YardRoot \/>\s*/, '');
         }
       },
       VariableDeclarator(path) {

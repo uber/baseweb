@@ -16,15 +16,19 @@ import TabsVertical from 'examples/tabs/vertical.js';
 import TabsRenderAll from 'examples/tabs/renderall.js';
 import TabsOverrides from 'examples/tabs/overrides.js';
 
-import Overrides from '../../components/overrides';
 import {StatefulTabs, Tab} from 'baseui/tabs';
 import * as TabsExports from 'baseui/tabs';
+
+import Yard from '../../components/yard/index';
+import tabsYardConfig from '../../components/yard/config/tabs';
 
 export default Layout;
 
 # Tabs
 
-The Tabs component is used for navigating frequently accessed, but distinct categories.
+<Yard componentName="Tabs" placeholderHeight={102} {...tabsYardConfig} />
+
+The Tabs component is used for navigating frequently accesssed, but distinct categories.
 
 ## Accessibility
 
@@ -54,42 +58,5 @@ The Tabs component is used for navigating frequently accessed, but distinct cate
 <Example title="Tabs Overrides" path="tabs/overrides.js">
   <TabsOverrides />
 </Example>
-
-## Overrides
-
-<Overrides
-  name="Tabs"
-  component={TabsExports}
-  renderExample={props => (
-    <StatefulTabs initialState={{activeKey: '0'}} overrides={props.overrides}>
-      <Tab overrides={props.overrides} title="Tab Link 1">
-        Tab 1 content
-      </Tab>
-      <Tab overrides={props.overrides} title="Tab Link 2">
-        Tab 2 content
-      </Tab>
-      <Tab overrides={props.overrides} title="Tab Link 3">
-        Tab 3 content
-      </Tab>
-    </StatefulTabs>
-  )}
-/>
-
-## API
-
-<API
-  heading="Tabs API"
-  api={require('!!extract-react-types-loader!../../../src/tabs/tabs.js')}
-/>
-
-<API
-  heading="StatefulTabs API"
-  api={require('!!extract-react-types-loader!../../../src/tabs/stateful-tabs.js')}
-/>
-
-<API
-  heading="Tab API"
-  api={require('!!extract-react-types-loader!../../../src/tabs/tab.js')}
-/>
 
 <Exports component={TabsExports} title="Tabs exports" path="baseui/tabs" />

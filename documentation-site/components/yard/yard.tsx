@@ -127,6 +127,7 @@ export default withRouter(
     propsConfig,
     themeConfig,
     scopeConfig,
+    extraImports,
     minHeight,
     placeholderElement,
   }: TYardProps & {
@@ -143,10 +144,15 @@ export default withRouter(
     const [state, dispatch] = React.useReducer(reducer, {
       code:
         router.query.code ||
-        getCode(propsConfig, componentName, {
-          themeValues: {},
-          themeName: theme.name,
-        }),
+        getCode(
+          propsConfig,
+          componentName,
+          {
+            themeValues: {},
+            themeName: theme.name,
+          },
+          extraImports,
+        ),
       codeNoRecompile: '',
       props: propsConfig,
       theme: componentThemeObj,
@@ -200,10 +206,15 @@ export default withRouter(
         key => componentThemeObj[key] === state.theme[key],
       );
       if (!isIdentical) {
-        const newCode = getCode(state.props, componentName, {
-          themeValues: {},
-          themeName: theme.name,
-        });
+        const newCode = getCode(
+          state.props,
+          componentName,
+          {
+            themeValues: {},
+            themeName: theme.name,
+          },
+          extraImports,
+        );
         dispatch({
           type: Action.UpdateThemeAndCode,
           payload: {
@@ -233,6 +244,7 @@ export default withRouter(
           themeValues: {},
           themeName: '',
         },
+        extraImports,
       );
       dispatch({
         type: Action.UpdatePropsAndCodeNoRecompile,
@@ -337,10 +349,12 @@ export default withRouter(
               set={(value: any, name: string) => {
                 try {
                   trackEvent('yard', `${componentName}:knob_change_${name}`);
+                  !hydrated && setHydrated(true);
                   const newCode = getCode(
                     buildPropsObj(state.props, {[name]: value}),
                     componentName,
                     componentThemeDiff,
+                    extraImports,
                   );
                   if (error.msg !== null) setError({where: '', msg: null});
                   dispatch({
@@ -387,6 +401,7 @@ export default withRouter(
                     buildPropsObj(state.props, {overrides: value}),
                     componentName,
                     componentThemeDiff,
+                    extraImports,
                   );
                   if (error.msg !== null) {
                     setError({where: '', msg: null});
@@ -450,6 +465,7 @@ export default withRouter(
                   state.props,
                   componentName,
                   componentThemeDiff,
+                  extraImports,
                 );
                 dispatch({
                   type: Action.UpdateThemeAndCode,
@@ -565,10 +581,15 @@ export default withRouter(
               dispatch({
                 type: Action.Reset,
                 payload: {
-                  code: getCode(propsConfig, componentName, {
-                    themeValues: {},
-                    themeName: '',
-                  } as any),
+                  code: getCode(
+                    propsConfig,
+                    componentName,
+                    {
+                      themeValues: {},
+                      themeName: '',
+                    } as any,
+                    extraImports,
+                  ),
                   props: propsConfig,
                   theme: componentThemeObj,
                 },
