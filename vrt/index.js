@@ -37,8 +37,8 @@ function test({name, interactions}) {
       interactions.forEach(interaction => {
         createSnapshotTest({
           differencify,
-          scenarioName: name,
-          testName: name + interaction.name,
+          scenarioName: interaction.scenarioName || name,
+          testName: name + interaction.testName,
           interaction: interaction.ux,
         });
       });

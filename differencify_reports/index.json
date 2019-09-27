@@ -15,6 +15,69 @@
   },
   {
     "status": "passed",
+    "testName": "datepicker datepicker-int",
+    "snapshotPath": "../src/datepicker/__tests__/__image_snapshots__/datepicker datepicker-int.snap.png",
+    "currentImagePath": false,
+    "diffPath": false
+  },
+  {
+    "status": "passed",
+    "testName": "datepicker datepicker-range-highlight",
+    "snapshotPath": "../src/datepicker/__tests__/__image_snapshots__/datepicker datepicker-range-highlight.snap.png",
+    "currentImagePath": false,
+    "diffPath": false
+  },
+  {
+    "status": "passed",
+    "testName": "datepicker datepicker-range",
+    "snapshotPath": "../src/datepicker/__tests__/__image_snapshots__/datepicker datepicker-range.snap.png",
+    "currentImagePath": false,
+    "diffPath": false
+  },
+  {
+    "status": "passed",
+    "testName": "datepicker datepicker-rtl",
+    "snapshotPath": "../src/datepicker/__tests__/__image_snapshots__/datepicker datepicker-rtl.snap.png",
+    "currentImagePath": false,
+    "diffPath": false
+  },
+  {
+    "status": "passed",
+    "testName": "datepicker datepicker",
+    "snapshotPath": "../src/datepicker/__tests__/__image_snapshots__/datepicker datepicker.snap.png",
+    "currentImagePath": false,
+    "diffPath": false
+  },
+  {
+    "status": "passed",
+    "testName": "datepicker datepickers-color-states",
+    "snapshotPath": "../src/datepicker/__tests__/__image_snapshots__/datepicker datepickers-color-states.snap.png",
+    "currentImagePath": false,
+    "diffPath": false
+  },
+  {
+    "status": "passed",
+    "testName": "datepicker datepickers-composed-range",
+    "snapshotPath": "../src/datepicker/__tests__/__image_snapshots__/datepicker datepickers-composed-range.snap.png",
+    "currentImagePath": false,
+    "diffPath": false
+  },
+  {
+    "status": "passed",
+    "testName": "datepicker datepickers-composed-single",
+    "snapshotPath": "../src/datepicker/__tests__/__image_snapshots__/datepicker datepickers-composed-single.snap.png",
+    "currentImagePath": false,
+    "diffPath": false
+  },
+  {
+    "status": "passed",
+    "testName": "datepicker datepicker-range-highlight datepickerrange sans highlight",
+    "snapshotPath": "../src/datepicker/__tests__/__image_snapshots__/datepicker datepicker-range-highlight datepickerrange sans highlight.snap.png",
+    "currentImagePath": false,
+    "diffPath": false
+  },
+  {
+    "status": "passed",
     "testName": "button button-enhancers-compact",
     "snapshotPath": "../src/button/__tests__/__image_snapshots__/button button-enhancers-compact.snap.png",
     "currentImagePath": false,
