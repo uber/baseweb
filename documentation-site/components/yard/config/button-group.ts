@@ -3,6 +3,11 @@ import {Button} from 'baseui/button';
 import {PropTypes} from '../const';
 
 export default {
+  extraImports: {
+    'baseui/button': {
+      named: ['Button'],
+    },
+  },
   scopeConfig: {
     Button,
     ButtonGroup,
@@ -33,7 +38,7 @@ export default {
   propsConfig: {
     children: {
       value:
-        '<Button>Label</Button><Button>Label</Button><Button>Label</Button>',
+        '<Button>One</Button>\n<Button>Two</Button>\n<Button>Three</Button>',
       type: PropTypes.ReactNode,
       description: 'Buttons within the group',
     },

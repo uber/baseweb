@@ -11,6 +11,7 @@ const YardWrapper: React.FC<TYardProps & {placeholderHeight: number}> = ({
   propsConfig,
   themeConfig,
   placeholderHeight,
+  extraImports,
 }) => {
   const [useCss] = useStyletron();
   const placeholderCx = useCss({
@@ -27,6 +28,7 @@ const YardWrapper: React.FC<TYardProps & {placeholderHeight: number}> = ({
         scopeConfig={scopeConfig}
         propsConfig={propsConfig}
         themeConfig={themeConfig}
+        extraImports={extraImports}
         minHeight={placeholderHeight}
         placeholderElement={() => (
           <div className={placeholderCx}>
