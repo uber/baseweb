@@ -17,7 +17,6 @@ const columns = [
 ];
 
 export default () => {
-  const [count, setCount] = React.useState(0);
   const [rows, setRows] = React.useState([
     {id: 1, data: [1, false]},
     {id: 2, data: [2, false]},
@@ -71,7 +70,6 @@ export default () => {
       <Unstable_DataTable
         batchActions={actions}
         columns={columns}
-        onSelectionChange={() => setCount(count + 1)}
         rows={rows}
       />
     </div>

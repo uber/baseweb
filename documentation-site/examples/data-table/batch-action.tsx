@@ -1,13 +1,14 @@
 // @flow
 
 import React from 'react';
-import {useStyletron} from 'baseui';
-import {Alert, Check} from 'baseui/icon/alert.js';
+import {Alert, Check} from 'baseui/icon';
 
 import {
   Unstable_DataTable,
   BooleanColumn,
   NumericalColumn,
+  BatchActionT,
+  RowT,
 } from 'baseui/data-table';
 
 const columns = [
@@ -24,7 +25,7 @@ export default () => {
     {id: 5, data: [5, false]},
   ]);
 
-  function flagRows(ids) {
+  function flagRows(ids: Array<string | number>) {
     const nextRows = rows.map(row => {
       if (ids.includes(row.id)) {
         const nextData = [row.data[0], true];
@@ -36,16 +37,16 @@ export default () => {
     setRows(nextRows);
   }
 
-  function removeRows(ids) {
+  function removeRows(ids: Array<string | number>) {
     const nextRows = rows.filter(row => !ids.includes(row.id));
     setRows(nextRows);
   }
 
-  const actions = [
+  const actions: BatchActionT[] = [
     {
       label: 'Flag',
       onClick: ({selection, clearSelection}) => {
-        flagRows(selection.map(r => r.id));
+        flagRows(selection.map((r: RowT) => r.id));
         clearSelection();
       },
       renderIcon: Alert,
@@ -53,7 +54,7 @@ export default () => {
     {
       label: 'Approve',
       onClick: ({selection, clearSelection}) => {
-        removeRows(selection.map(r => r.id));
+        removeRows(selection.map((r: RowT) => r.id));
         clearSelection();
       },
       renderIcon: Check,
@@ -69,7 +70,6 @@ export default () => {
       <Unstable_DataTable
         batchActions={actions}
         columns={columns}
-        onSelectionChange={() => setCount(count + 1)}
         rows={rows}
       />
     </div>
