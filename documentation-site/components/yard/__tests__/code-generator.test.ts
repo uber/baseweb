@@ -2,6 +2,7 @@ import {
   getAstPropValue,
   getAstReactHooks,
   getAstImport,
+  getAstImports,
   getEnumsToImport,
   getAstThemeImport,
   getAstThemeWrapper,
@@ -137,23 +138,25 @@ describe('getAstPropValue', () => {
         type: PropTypes.ReactNode,
         description: '',
       }),
-    ).toEqual({
-      children: [],
-      closingElement: null,
-      loc: undefined,
-      openingElement: {
-        attributes: [],
+    ).toEqual([
+      {
+        children: [],
+        closingElement: null,
         loc: undefined,
-        name: {
+        openingElement: {
+          attributes: [],
           loc: undefined,
-          name: 'div',
-          type: 'JSXIdentifier',
+          name: {
+            loc: undefined,
+            name: 'div',
+            type: 'JSXIdentifier',
+          },
+          selfClosing: true,
+          type: 'JSXOpeningElement',
         },
-        selfClosing: true,
-        type: 'JSXOpeningElement',
+        type: 'JSXElement',
       },
-      type: 'JSXElement',
-    });
+    ]);
   });
   test('function', () => {
     expect(
@@ -290,6 +293,25 @@ describe('getAstImport', () => {
   });
 });
 
+describe('getAstImports', () => {
+  test('return multiple named and default imports', () => {
+    expect(
+      generate(t.program(
+        getAstImports('Tabs', ['ORIENTATION'], {
+          'baseui/tabs': {
+            named: ['Tab'],
+            default: 'Root',
+          },
+          'react-motion': {
+            named: ['Motion'],
+          },
+        }),
+      ) as any).code,
+    ).toBe(`import Root, { Tabs, Tab, ORIENTATION } from "baseui/tabs";
+import { Motion } from "react-motion";`);
+  });
+});
+
 describe('getEnumsToImport', () => {
   test('get enums', () => {
     expect(
@@ -366,7 +388,8 @@ describe('getCode', () => {
         'Input',
         {themeValues: {inputFill: 'yellow'}, themeName: 'light'},
       ),
-    ).toBe(`import { Input } from "baseui/input";
+    ).toBe(`import * as React from "react";
+import { Input } from "baseui/input";
 import {
   ThemeProvider,
   createTheme,

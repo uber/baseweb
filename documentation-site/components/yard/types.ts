@@ -6,8 +6,10 @@ export type TPropHook = {
 } | null;
 
 export type TExtraImports = {
-  named?: {[key: string]: string[]};
-  default?: {[key: string]: string[]};
+  [key: string]: {
+    named?: string[];
+    default?: string;
+  };
 };
 
 export type TYardProps = {

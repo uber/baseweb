@@ -17,6 +17,8 @@ type TJsxChild =
   | t.JSXElement
   | t.JSXFragment;
 
+const reactImport = template.ast(`import * as React from 'react';`);
+
 export const getAstPropsArray = (props: {[key: string]: TProp}) => {
   return Object.entries(props).map(([name, prop]) => {
     const {value, meta} = prop;
@@ -94,11 +96,20 @@ export const getAstReactHooks = (props: {[key: string]: TProp}) => {
   return hooks;
 };
 
-export const getAstImport = (identifiers: string[], source: string) => {
+export const getAstImport = (
+  identifiers: string[],
+  source: string,
+  defaultIdentifier?: string,
+) => {
   return t.importDeclaration(
-    identifiers.map(identifier =>
-      t.importSpecifier(t.identifier(identifier), t.identifier(identifier)),
-    ),
+    [
+      ...(defaultIdentifier
+        ? [t.importDefaultSpecifier(t.identifier(defaultIdentifier))]
+        : []),
+      ...identifiers.map(identifier =>
+        t.importSpecifier(t.identifier(identifier), t.identifier(identifier)),
+      ),
+    ],
     t.stringLiteral(source),
   );
 };
@@ -189,31 +200,33 @@ const nameToImportSource = (name: string) =>
     .join('-')
     .toLowerCase()}`;
 
-const getAstImports = (
+export const getAstImports = (
   componentName: string,
   enums: string[],
   extraImports?: TExtraImports,
 ) => {
   const defaultFrom = nameToImportSource(componentName);
   const importList = {
-    named: {
-      ...(extraImports && extraImports.named ? extraImports.named : {}),
-      [defaultFrom]: [componentName, ...enums].concat(
-        extraImports && extraImports.named && extraImports.named[defaultFrom]
-          ? extraImports.named[defaultFrom]
-          : [],
-      ),
+    ...(extraImports ? extraImports : {}),
+    [defaultFrom]: {
+      named: [
+        componentName,
+        ...(extraImports &&
+        extraImports[defaultFrom] &&
+        extraImports[defaultFrom].named
+          ? (extraImports[defaultFrom].named as string[])
+          : []),
+        ...enums,
+      ],
+      default:
+        extraImports && extraImports[defaultFrom]
+          ? extraImports[defaultFrom].default
+          : undefined,
     },
-    default: extraImports && extraImports.default ? extraImports.default : {},
   };
-  return [
-    ...Object.keys(importList.named).map(from =>
-      getAstImport(importList.named[from], from),
-    ),
-    ...Object.keys(importList.default).map(from =>
-      getAstImport(importList.default[from], from),
-    ),
-  ];
+  return Object.keys(importList).map(from =>
+    getAstImport(importList[from].named || [], from, importList[from].default),
+  );
 };
 
 export const getAst = (
@@ -233,6 +246,7 @@ export const getAst = (
   const buildExport = template(`export default () => {%%body%%}`);
   return t.file(
     t.program([
+      reactImport,
       ...getAstImports(
         componentName,
         getEnumsToImport(restProps),

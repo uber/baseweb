@@ -3,9 +3,7 @@ import {PropTypes} from '../const';
 
 export default {
   extraImports: {
-    named: {
-      'baseui/tabs': ['Tab'],
-    },
+    'baseui/tabs': {named: ['Tab']},
   },
   scopeConfig: {
     Tabs,

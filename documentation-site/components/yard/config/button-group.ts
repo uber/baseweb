@@ -4,8 +4,8 @@ import {PropTypes} from '../const';
 
 export default {
   extraImports: {
-    named: {
-      'baseui/button': ['Button'],
+    'baseui/button': {
+      named: ['Button'],
     },
   },
   scopeConfig: {
