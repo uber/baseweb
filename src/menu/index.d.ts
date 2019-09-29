@@ -75,6 +75,7 @@ export interface StatefulContainerProps {
   getRequiredItemProps?: GetRequiredItemProps;
   onItemSelect?: OnItemSelect;
   rootRef?: React.Ref<any>;
+  initialScrollAllignInView?: 'auto' | 'center';
   children?: (args: RenderProps) => React.ReactNode;
   addMenuToNesting?: (ref: React.Ref<HTMLElement>) => void;
   removeMenuFromNesting?: (ref: React.Ref<HTMLElement>) => void;

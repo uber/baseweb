@@ -27,6 +27,7 @@ export function scrollItemIntoView(
   parent: HTMLElement,
   isFirst?: boolean,
   isLast?: boolean,
+  scrollAllignInView?: 'auto' | 'center' = 'auto',
 ) {
   if (!child) return;
 
@@ -39,7 +40,11 @@ export function scrollItemIntoView(
       parent.scrollTop = parent.scrollHeight - parentRect.height;
     } else {
       const targetBottom = child.offsetTop + childRect.height;
-      parent.scrollTop = targetBottom - parentRect.height;
+      parent.scrollTop =
+        targetBottom -
+        (scrollAllignInView === 'center'
+          ? Math.round((parentRect.height + childRect.height) / 2)
+          : parentRect.height);
     }
 
     // while scrolling up, if element is above view
@@ -47,7 +52,11 @@ export function scrollItemIntoView(
     if (isFirst) {
       parent.scrollTop = 0;
     } else {
-      parent.scrollTop = child.offsetTop;
+      parent.scrollTop =
+        child.offsetTop -
+        (scrollAllignInView === 'center'
+          ? Math.round((parentRect.height - childRect.height) / 2)
+          : 0);
     }
   }
 }
