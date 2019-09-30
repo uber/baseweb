@@ -188,7 +188,6 @@
     "react-virtualized": "^9.21.1",
     "react-virtualized-auto-sizer": "^1.0.2",
     "react-window": "^1.8.5",
-    "smoothscroll-polyfill": "^0.4.3",
     "timezone-support": "^2.0.0"
   },
   "peerDependencies": {
