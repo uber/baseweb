@@ -32,9 +32,7 @@ steps:
   - wait
   # All of the commands after the wait are run in parallel.
   - name: ':differencify:'
-    # we have to install puppeteer here to trigger the install.js script
-    # and also to make sure we do not add this to the released build artifact
-    command: yarn add puppeteer && yarn vrt:test:ci
+    command: yarn vrt:test:ci
     plugins:
       'docker-compose#v3.0.3':
         run: e2e-test
