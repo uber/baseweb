@@ -35,10 +35,24 @@ export type SortDirectionsT =
   | SORT_DIRECTIONS['DESC']
   | null;
 export type ColumnT = any;
-export type Row = {
+export type RowT = {
+  id: number | string;
   data: any[];
 };
+
+export type BatchActionT = {
+  label: string;
+  onClick: (params: {
+    clearSelection: () => any;
+    event: React.MouseEvent<HTMLButtonElement>;
+    selection: RowT[];
+  }) => any;
+  renderIcon?: any;
+};
+
 export type Props = {
+  batchActions?: BatchActionT[];
   columns: ColumnT[];
-  rows: Row[];
+  onSelectionChange?: (rows: RowT[]) => any;
+  rows: RowT[];
 };
