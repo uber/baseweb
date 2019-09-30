@@ -114,7 +114,7 @@ export const updateThemeAndCode = (
 export const reset = (
   dispatch: TDispatch,
   initialCode: string,
-  propsConfig: {[key: string]: string},
+  propsConfig: {[key: string]: TProp},
   initialThemeObj: {[key: string]: string},
 ) => {
   dispatch({
