@@ -201,7 +201,8 @@
     "styletron-react": "^5.2.1"
   },
   "resolutions": {
-    "@types/react": "16.8.23"
+    "@types/react": "16.8.23",
+    "differencify/puppeteer": "^1.19.0"
   },
   "husky": {
     "hooks": {
