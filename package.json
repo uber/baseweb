@@ -164,7 +164,7 @@
     "styletron-engine-atomic": "^1.4.0",
     "styletron-react": "^5.2.0",
     "styletron-standard": "^3.0.0",
-    "tar": "^4.4.8",
+    "tar": "^5.0.0",
     "terser": "^4.1.4",
     "typescript": "^3.5.3",
     "webpack": "^4.17.1",
