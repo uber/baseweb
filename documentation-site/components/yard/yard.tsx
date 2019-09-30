@@ -94,9 +94,7 @@ const Yard: React.FC<
       setHydrated(true);
       try {
         updateAll(dispatch, urlCode, componentName, propsConfig);
-      } catch (e) {
-        console.warn(e);
-      }
+      } catch (e) {}
     }
   }, [urlCode]);
 
@@ -195,7 +193,7 @@ const Yard: React.FC<
                 updateUrl(pathname, newCode);
               } catch (e) {
                 updateProps(dispatch, propName, propValue);
-                setError({where: name, msg: e.toString()});
+                setError({where: propName, msg: e.toString()});
               }
             }}
           />
