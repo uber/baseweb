@@ -14333,10 +14333,10 @@ react-range@^1.3.0:
   resolved "https://registry.yarnpkg.com/react-range/-/react-range-1.3.0.tgz#68ded5396cf29b765a73a3dc85fe084ca84b8351"
   integrity sha512-FIVXwY0AIFoLRJRwDKlZtoLA1CZ4ONOtpmSoHwQRD5kMcakPfxpPqvLqHMN9R5lyJqkHO4ljUQdLX+P3vzxuNg==
 
-react-simple-code-editor@^0.9.14:
-  version "0.9.14"
-  resolved "https://registry.yarnpkg.com/react-simple-code-editor/-/react-simple-code-editor-0.9.14.tgz#5b8fdc36a975cbf02fdafa2597398d8e212afebc"
-  integrity sha512-doNaIIt4w7QIiB6ysWHMtYL4M3xOGPvZJH8vGq3W/hGk43pn25RDA27IS8GkbfhA1eLX72CWDhuC7KmDKax13g==
+react-simple-code-editor@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/react-simple-code-editor/-/react-simple-code-editor-0.10.0.tgz#73e7ac550a928069715482aeb33ccba36efe2373"
+  integrity sha512-bL5W5mAxSW6+cLwqqVWY47Silqgy2DKDTR4hDBrLrUqC5BXc29YVx17l2IZk5v36VcDEq1Bszu2oHm1qBwKqBA==
 
 react-split-pane@^0.1.84:
   version "0.1.84"

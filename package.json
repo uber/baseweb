@@ -152,7 +152,7 @@
     "react-codesandboxer": "^3.1.1",
     "react-dom": "^16.9.0",
     "react-markdown": "^4.0.3",
-    "react-simple-code-editor": "^0.9.14",
+    "react-simple-code-editor": "^0.10.0",
     "react-vis": "^1.11.6",
     "recursive-readdir": "^2.2.2",
     "remove-flow-types-loader": "^1.1.0",
