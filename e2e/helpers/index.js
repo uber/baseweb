@@ -138,4 +138,5 @@ expect.extend({
 module.exports = {
   analyzeAccessibility,
   mount,
+  getPuppeteerUrl,
 };

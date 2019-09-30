@@ -11,6 +11,8 @@ LICENSE file in the root directory of this source tree.
 const globby = require('globby');
 const Differencify = require('differencify');
 
+const {getPuppeteerUrl} = require('../e2e/helpers');
+
 function test({name, interactions}) {
   describe(name, () => {
     const differencify = new Differencify();
@@ -58,7 +60,7 @@ function createSnapshotTest({
       const target = differencify.init({chain: false});
       const page = await target.newPage();
 
-      await page.goto(`http://localhost:8080?name=${scenarioName}`);
+      await page.goto(getPuppeteerUrl(scenarioName));
       await page.setViewport({width: 1600, height: 1200});
       // freeze animations
       await page.addStyleTag({
