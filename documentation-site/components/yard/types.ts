@@ -13,7 +13,7 @@ export type TPropHook = {
   into: string;
 } | null;
 
-export type TExtraImports = {
+export type TImportsConfig = {
   [key: string]: {
     named?: string[];
     default?: string;
@@ -28,7 +28,7 @@ export type TError = {
 export type TYardProps = {
   componentName: string;
   minHeight: number;
-  extraImports?: TExtraImports;
+  importsConfig?: TImportsConfig;
   scopeConfig: {[key: string]: any};
   propsConfig: {[key: string]: TProp};
   themeConfig: string[];

@@ -62,7 +62,7 @@ const Yard: React.FC<
   propsConfig,
   themeConfig,
   scopeConfig,
-  extraImports,
+  importsConfig,
   minHeight,
   placeholderElement,
   pathname,
@@ -81,7 +81,7 @@ const Yard: React.FC<
         propsConfig,
         componentName,
         getThemeForCodeGenerator(themeConfig, {}, theme),
-        extraImports,
+        importsConfig,
       ),
     codeNoRecompile: '',
     props: propsConfig,
@@ -112,7 +112,7 @@ const Yard: React.FC<
         state.props,
         componentName,
         getThemeForCodeGenerator(themeConfig, {}, theme),
-        extraImports,
+        importsConfig,
       );
       updateThemeAndCode(
         dispatch,
@@ -138,7 +138,7 @@ const Yard: React.FC<
       buildPropsObj(state.props, {[propName]: propValue}),
       componentName,
       getThemeForCodeGenerator(themeConfig, state.theme, theme),
-      extraImports,
+      importsConfig,
     );
     updatePropsAndCodeNoRecompile(dispatch, newCode, propName, propValue);
     updateUrl(pathname, newCode);
@@ -188,7 +188,7 @@ const Yard: React.FC<
                   buildPropsObj(state.props, {[propName]: propValue}),
                   componentName,
                   componentThemeDiff,
-                  extraImports,
+                  importsConfig,
                 );
                 if (error.msg !== null) setError({where: '', msg: null});
                 updatePropsAndCode(dispatch, newCode, propName, propValue);
@@ -216,7 +216,7 @@ const Yard: React.FC<
                   buildPropsObj(state.props, {[propName]: propValue}),
                   componentName,
                   componentThemeDiff,
-                  extraImports,
+                  importsConfig,
                 );
                 if (error.msg !== null) {
                   setError({where: '', msg: null});
@@ -249,7 +249,7 @@ const Yard: React.FC<
                 state.props,
                 componentName,
                 componentThemeDiff,
-                extraImports,
+                importsConfig,
               );
               updateThemeAndCode(dispatch, newCode, updatedThemeValues);
               updateUrl(pathname, newCode);
@@ -319,7 +319,7 @@ const Yard: React.FC<
                 propsConfig,
                 componentName,
                 getThemeForCodeGenerator(themeConfig, {}, theme),
-                extraImports,
+                importsConfig,
               ),
               propsConfig,
               initialThemeObj,

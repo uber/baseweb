@@ -3,7 +3,7 @@ import {Button} from 'baseui/button';
 import {PropTypes} from '../const';
 
 export default {
-  extraImports: {
+  importsConfig: {
     'baseui/button': {
       named: ['Button'],
     },

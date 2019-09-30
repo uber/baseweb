@@ -1,4 +1,4 @@
-import {TProp, TExtraImports} from './types';
+import {TProp, TImportsConfig} from './types';
 import {PropTypes} from './const';
 import {parse} from './ast';
 import template from '@babel/template';
@@ -204,24 +204,24 @@ const nameToImportSource = (name: string) =>
 export const getAstImports = (
   componentName: string,
   enums: string[],
-  extraImports?: TExtraImports,
+  importsConfig?: TImportsConfig,
 ) => {
   const defaultFrom = nameToImportSource(componentName);
   const importList = {
-    ...(extraImports ? extraImports : {}),
+    ...(importsConfig ? importsConfig : {}),
     [defaultFrom]: {
       named: [
         componentName,
-        ...(extraImports &&
-        extraImports[defaultFrom] &&
-        extraImports[defaultFrom].named
-          ? (extraImports[defaultFrom].named as string[])
+        ...(importsConfig &&
+        importsConfig[defaultFrom] &&
+        importsConfig[defaultFrom].named
+          ? (importsConfig[defaultFrom].named as string[])
           : []),
         ...enums,
       ],
       default:
-        extraImports && extraImports[defaultFrom]
-          ? extraImports[defaultFrom].default
+        importsConfig && importsConfig[defaultFrom]
+          ? importsConfig[defaultFrom].default
           : undefined,
     },
   };
@@ -234,7 +234,7 @@ export const getAst = (
   props: {[key: string]: TProp},
   componentName: string,
   theme: any,
-  extraImports?: TExtraImports,
+  importsConfig?: TImportsConfig,
 ) => {
   const {children, ...restProps} = props;
   const isCustomTheme =
@@ -251,7 +251,7 @@ export const getAst = (
       ...getAstImports(
         componentName,
         getEnumsToImport(restProps),
-        extraImports,
+        importsConfig,
       ),
       ...getAstThemeImport(isCustomTheme, themePrimitives),
       buildExport({
@@ -302,8 +302,8 @@ export const getCode = (
   props: {[key: string]: TProp},
   componentName: string,
   theme: {themeValues: {[key: string]: string}; themeName: string},
-  extraImports?: TExtraImports,
+  importsConfig?: TImportsConfig,
 ) => {
-  const ast = getAst(props, componentName, theme, extraImports);
+  const ast = getAst(props, componentName, theme, importsConfig);
   return formatAstAndPrint(ast as any);
 };

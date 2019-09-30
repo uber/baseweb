@@ -94,7 +94,7 @@ export const transformBeforeCompilation = (
       },
     });
   } catch (e) {
-    console.log(e);
+    console.warn(e);
   }
   return ast;
 };
@@ -271,7 +271,7 @@ export function parseCode(code: string, elementName: string) {
       },
     });
   } catch (e) {
-    console.log(e);
+    console.warn(e);
     throw new Error("Code is not valid and can't be parsed.");
   }
 
