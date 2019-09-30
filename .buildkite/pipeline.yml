@@ -32,7 +32,7 @@ steps:
   - wait
   # All of the commands after the wait are run in parallel.
   - name: ':differencify:'
-    command: yarn add differencify && yarn e2e:vrt:ci
+    command: node node_modules/puppeteer/install.js && yarn e2e:vrt:ci
     plugins:
       'docker-compose#v3.0.3':
         run: e2e-test
