@@ -41,17 +41,13 @@ const SharedPropsTooltip: React.FC<{
 }> = ({componentConfig, children}) => {
   const sharedProps = Object.keys(componentConfig.overrides.meta.sharedProps);
   const getDescription = (name: string) => {
-    console.log(componentConfig, name);
     let metaObj: any = {};
     if (typeof componentConfig.overrides.meta.sharedProps[name] === 'string') {
-      console.log(1);
       metaObj =
         componentConfig[componentConfig.overrides.meta.sharedProps[name]];
     } else {
-      console.log(2);
       metaObj = componentConfig.overrides.meta.sharedProps[name];
     }
-    console.log(metaObj, 'metaObj');
     return (
       <React.Fragment>
         <i>{metaObj.type}</i> - {metaObj.description}
