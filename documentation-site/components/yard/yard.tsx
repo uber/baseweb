@@ -8,11 +8,8 @@ import {
 } from 'baseui';
 import {withRouter} from 'next/router';
 import {Button, KIND, SIZE} from 'baseui/button';
-import {StatefulTabs, Tab} from 'baseui/tabs';
 import {ButtonGroup} from 'baseui/button-group';
 import copy from 'copy-to-clipboard';
-import {StatefulTooltip} from 'baseui/tooltip';
-import {Tag, VARIANT} from 'baseui/tag';
 
 import {Action} from './const';
 import {getCode, formatCode} from './code-generator';
@@ -23,11 +20,12 @@ import {buildPropsObj, getComponentThemeFromContext, updateUrl} from './utils';
 import Overrides from './overrides';
 import ThemeEditor from './theme-editor';
 import PopupError from './popup-error';
-import {TYardProps} from './types';
+import {TYardProps, TError} from './types';
 
 import Compiler from './compiler';
 import Editor from './editor';
 import Error from './error';
+import {Beta, YardTabs, YardTab} from './styled-components';
 
 import {trackEvent} from '../../helpers/ga';
 
@@ -45,12 +43,9 @@ export default withRouter(
     router: any;
     placeholderElement: React.FC;
   }) => {
-    const [css, theme] = useStyletron();
+    const [, theme] = useStyletron();
     const [hydrated, setHydrated] = React.useState(false);
-    const [error, setError] = React.useState<{
-      where: string;
-      msg: string | null;
-    }>({where: '', msg: null});
+    const [error, setError] = React.useState<TError>({where: '', msg: null});
     const initialThemeObj = getComponentThemeFromContext(theme, themeConfig);
     const [state, dispatch] = React.useReducer(reducer, {
       code:
@@ -219,34 +214,9 @@ export default withRouter(
         />
         {(error.where === '__compiler' || error.where === 'overrides') &&
           error.msg && <PopupError error={error.msg} />}
-        <StatefulTabs
-          initialState={{activeKey: '0'}}
-          onChange={({activeKey}) => {
-            trackEvent('yard', `${componentName}:tab_switch_${activeKey}`);
-          }}
-          overrides={{
-            Root: {
-              style: {
-                marginBottom: theme.sizing.scale400,
-              },
-            },
-            TabBar: {
-              style: {backgroundColor: 'transparent', paddingLeft: 0},
-            },
-            TabContent: {style: {paddingLeft: 0, paddingRight: 0}},
-          }}
-        >
-          <Tab
+        <YardTabs>
+          <YardTab
             title={`Props${changedProps > 0 ? ` (${changedProps})` : ''}`}
-            overrides={{
-              Tab: {
-                style: ({$theme}) =>
-                  ({
-                    marginLeft: 0,
-                    ...$theme.typography.font450,
-                  } as any),
-              },
-            }}
           >
             <Knobs
               knobProps={state.props}
@@ -279,19 +249,11 @@ export default withRouter(
                 }
               }}
             />
-          </Tab>
-          <Tab
+          </YardTab>
+          <YardTab
             title={`Style Overrides${
               activeOverrides > 0 ? ` (${activeOverrides})` : ''
             }`}
-            overrides={{
-              Tab: {
-                style: ({$theme}) =>
-                  ({
-                    ...$theme.typography.font450,
-                  } as any),
-              },
-            }}
           >
             <Overrides
               componentName={componentName}
@@ -325,21 +287,13 @@ export default withRouter(
                 }
               }}
             />
-          </Tab>
-          <Tab
+          </YardTab>
+          <YardTab
             title={`Theme ${
               Object.keys(componentThemeValueDiff).length > 0
                 ? `(${Object.keys(componentThemeValueDiff).length})`
                 : ''
             }`}
-            overrides={{
-              Tab: {
-                style: ({$theme}) =>
-                  ({
-                    ...$theme.typography.font450,
-                  } as any),
-              },
-            }}
           >
             <ThemeEditor
               themeInit={initialThemeObj}
@@ -376,8 +330,8 @@ export default withRouter(
                 updateUrl(router.pathname, newCode);
               }}
             />
-          </Tab>
-        </StatefulTabs>
+          </YardTab>
+        </YardTabs>
         <Editor
           code={
             state.codeNoRecompile !== '' ? state.codeNoRecompile : state.code
@@ -494,17 +448,7 @@ export default withRouter(
             Reset
           </Button>
         </ButtonGroup>
-        <div className={css({display: 'flex', justifyContent: 'flex-end'})}>
-          <Tag closeable={false} variant={VARIANT.outlined} kind="warning">
-            <StatefulTooltip
-              accessibilityType="tooltip"
-              placement="bottomLeft"
-              content="This is a new experimental component playground. Please use GitHub issues to report any feedback and bugs. Thank you!"
-            >
-              Beta
-            </StatefulTooltip>
-          </Tag>
-        </div>
+        <Beta />
       </React.Fragment>
     );
   },

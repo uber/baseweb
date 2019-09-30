@@ -12,6 +12,11 @@ export type TExtraImports = {
   };
 };
 
+export type TError = {
+  where: string;
+  msg: string | null;
+};
+
 export type TYardProps = {
   componentName: string;
   minHeight: number;
