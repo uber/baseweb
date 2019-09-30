@@ -15,7 +15,9 @@ const {getPuppeteerUrl} = require('../e2e/helpers');
 
 function test({name, interactions}) {
   describe(name, () => {
-    const differencify = new Differencify();
+    const differencify = new Differencify({
+      debug: true,
+    });
 
     beforeAll(async () => {
       await differencify.launchBrowser({
