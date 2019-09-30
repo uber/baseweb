@@ -125,6 +125,9 @@ const Yard: React.FC<
     }
   }, [theme.name]);
 
+  // this callback is secretely inserted into props marked with
+  // "propHook" this way we can get notified when the internal
+  // state of previewed component is changed by user
   const __yard_onChange = (
     componentName: string,
     propName: string,
@@ -134,7 +137,7 @@ const Yard: React.FC<
     const newCode = getCode(
       buildPropsObj(state.props, {[propName]: propValue}),
       componentName,
-      getThemeForCodeGenerator(themeConfig, {}, theme),
+      getThemeForCodeGenerator(themeConfig, state.theme, theme),
       extraImports,
     );
     updatePropsAndCodeNoRecompile(dispatch, newCode, propName, propValue);
