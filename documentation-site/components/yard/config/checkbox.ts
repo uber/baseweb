@@ -1,10 +1,11 @@
-import {Checkbox, STYLE_TYPE} from 'baseui/checkbox';
+import {Checkbox, STYLE_TYPE, LABEL_PLACEMENT} from 'baseui/checkbox';
 import {PropTypes} from '../const';
 
 export default {
   scopeConfig: {
     Checkbox,
     STYLE_TYPE,
+    LABEL_PLACEMENT,
   },
   themeConfig: [],
   propsConfig: {
@@ -43,6 +44,87 @@ export default {
           into: 'checked',
         },
       },
+    },
+    isError: {
+      value: false,
+      type: PropTypes.Boolean,
+      description: 'Renders component in error state.',
+    },
+    isIndeterminate: {
+      value: false,
+      type: PropTypes.Boolean,
+      description:
+        'Indicates indeterminate state for the checkmark. Checked property is ignored.',
+    },
+    labelPlacement: {
+      value: undefined,
+      options: LABEL_PLACEMENT,
+      type: PropTypes.Enum,
+      enumName: 'LABEL_PLACEMENT',
+      description:
+        'Determines how to position the label relative to the checkbox.',
+    },
+    //////////////////
+    // Hidden props //
+    //////////////////
+    required: {
+      value: false,
+      type: PropTypes.Boolean,
+      description: 'Renders component in required state.',
+      hidden: true,
+    },
+    inputRef: {
+      value: undefined,
+      type: PropTypes.Ref,
+      description: 'A ref to access an input element.',
+      hidden: true,
+    },
+    autoFocus: {
+      value: false,
+      type: PropTypes.Boolean,
+      description: 'If true the component will be focused on the first mount.',
+      hidden: true,
+    },
+    type: {
+      value: undefined,
+      type: PropTypes.String,
+      description: 'Input type attribute.',
+    },
+    name: {
+      value: undefined,
+      type: PropTypes.String,
+      description: 'Name attribute.',
+      hidden: true,
+    },
+    onBlur: {
+      value: undefined,
+      type: PropTypes.Function,
+      description: 'Called when input loses focus.',
+      hidden: true,
+    },
+    onFocus: {
+      value: undefined,
+      type: PropTypes.Function,
+      description: 'Called when input is focused.',
+      hidden: true,
+    },
+    onMouseEnter: {
+      value: undefined,
+      type: PropTypes.Function,
+      description: 'Called when mouseenter triggers.',
+      hidden: true,
+    },
+    onMouseLeave: {
+      value: undefined,
+      type: PropTypes.Function,
+      description: 'Called when mouseleave triggers.',
+      hidden: true,
+    },
+    onMouseDown: {
+      value: undefined,
+      type: PropTypes.Function,
+      description: 'Called when mousedown triggers.',
+      hidden: true,
     },
     overrides: {
       value: undefined,
