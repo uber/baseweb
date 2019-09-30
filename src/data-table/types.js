@@ -26,7 +26,12 @@ export type ColumnT<ValueT = any, FilterParamsT = any> = {|
   title: string,
   sortable: boolean,
   filterable: boolean,
-  renderCell: React.ComponentType<{value: ValueT, isMeasured?: boolean}>,
+  renderCell: React.ComponentType<{
+    value: ValueT,
+    isMeasured?: boolean,
+    isSelected?: boolean,
+    onSelect?: () => void,
+  }>,
   renderFilter: React.ComponentType<{|
     data: ValueT[],
     close: () => void,
@@ -37,11 +42,24 @@ export type ColumnT<ValueT = any, FilterParamsT = any> = {|
 |};
 
 export type RowT = {
+  id: number | string,
   // eslint-disable-next-line flowtype/no-weak-types
   data: any[],
 };
 
-export type Props = {
+export type BatchActionT = {|
+  label: string,
+  onClick: ({
+    clearSelection: () => mixed,
+    event: SyntheticEvent<HTMLButtonElement>,
+    selection: RowT[],
+  }) => mixed,
+  renderIcon?: React.ComponentType<{|size: number|}>,
+|};
+
+export type Props = {|
+  batchActions?: BatchActionT[],
   columns: ColumnT<>[],
+  onSelectionChange?: (RowT[]) => mixed,
   rows: RowT[],
-};
+|};
