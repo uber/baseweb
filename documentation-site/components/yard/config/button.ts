@@ -1,7 +1,8 @@
 import {Button, KIND, SIZE, SHAPE} from 'baseui/button';
 import {PropTypes} from '../const';
+import {TConfig} from '../types';
 
-export default {
+const ButtonConfig: TConfig = {
   scopeConfig: {
     Button,
     KIND,
@@ -90,23 +91,23 @@ export default {
       value: undefined,
       type: PropTypes.Overrides,
       description: 'Lets you customize all aspects of the component.',
-      meta: {
-        names: [
-          'BaseButton',
-          'EndEnhancer',
-          'LoadingSpinner',
-          'LoadingSpinnerContainer',
-          'StartEnhancer',
-        ],
-        sharedProps: {
-          $kind: 'kind',
-          $isSelected: 'isSelected',
-          $shape: 'shape',
-          $size: 'size',
-          $isLoading: 'isLoading',
-          $disabled: 'disabled',
-        },
+      names: [
+        'BaseButton',
+        'EndEnhancer',
+        'LoadingSpinner',
+        'LoadingSpinnerContainer',
+        'StartEnhancer',
+      ],
+      sharedProps: {
+        $kind: 'kind',
+        $isSelected: 'isSelected',
+        $shape: 'shape',
+        $size: 'size',
+        $isLoading: 'isLoading',
+        $disabled: 'disabled',
       },
     },
   },
 };
+
+export default ButtonConfig;

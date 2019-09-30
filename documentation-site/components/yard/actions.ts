@@ -1,7 +1,7 @@
 import Router from 'next/router';
 import {parseCode, parseOverrides} from './ast';
 import {Action} from './const';
-import {TProp, TDispatch} from './types';
+import {TProp, TDispatch, TPropValue} from './types';
 
 export const updateCode = (dispatch: TDispatch, newCode: string) => {
   dispatch({
@@ -16,7 +16,7 @@ export const updateAll = (
   componentName: string,
   propsConfig: {[key: string]: TProp},
 ) => {
-  const propValues: any = {};
+  const propValues: {[key: string]: TPropValue} = {};
   const {parsedProps, parsedTheme} = parseCode(newCode, componentName);
   Object.keys(propsConfig).forEach(name => {
     propValues[name] = propsConfig[name].value;
@@ -25,9 +25,7 @@ export const updateAll = (
       // be further analyzed and parsed
       propValues[name] = parseOverrides(
         parsedProps[name],
-        propsConfig.overrides && propsConfig.overrides.meta
-          ? propsConfig.overrides.meta.names || []
-          : [],
+        propsConfig.overrides ? propsConfig.overrides.names || [] : [],
       );
     } else {
       propValues[name] = parsedProps[name];
@@ -60,7 +58,7 @@ export const updatePropsAndCodeNoRecompile = (
   dispatch: TDispatch,
   newCode: string,
   propName: string,
-  propValue: any,
+  propValue: TPropValue,
 ) => {
   dispatch({
     type: Action.UpdatePropsAndCodeNoRecompile,
@@ -75,7 +73,7 @@ export const updatePropsAndCode = (
   dispatch: TDispatch,
   newCode: string,
   propName: string,
-  propValue: any,
+  propValue: TPropValue,
 ) => {
   dispatch({
     type: Action.UpdatePropsAndCode,
@@ -89,7 +87,7 @@ export const updatePropsAndCode = (
 export const updateProps = (
   dispatch: TDispatch,
   propName: string,
-  propValue: any,
+  propValue: TPropValue,
 ) => {
   dispatch({
     type: Action.UpdateProps,

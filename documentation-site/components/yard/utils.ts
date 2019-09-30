@@ -1,5 +1,5 @@
 import {Theme} from 'baseui/theme';
-import {TProp, TThemeDiff} from './types';
+import {TProp, TThemeDiff, TPropValue} from './types';
 
 export function assertUnreachable(): never {
   throw new Error("Didn't expect to get here");
@@ -24,7 +24,7 @@ export const formatBabelError = (error: string) => {
 
 export const buildPropsObj = (
   stateProps: {[key: string]: TProp},
-  updatedPropValues: {[key: string]: any},
+  updatedPropValues: {[key: string]: TPropValue},
 ) => {
   const newProps: {
     [key: string]: TProp;
@@ -41,7 +41,10 @@ export const buildPropsObj = (
       description: stateProps[name].description,
       placeholder: stateProps[name].placeholder,
       hidden: stateProps[name].hidden,
-      meta: stateProps[name].meta,
+      names: stateProps[name].names,
+      sharedProps: stateProps[name].sharedProps,
+      stateful: stateProps[name].stateful,
+      propHook: stateProps[name].propHook,
     };
   });
   return newProps;

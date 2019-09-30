@@ -2,7 +2,7 @@ import traverse from '@babel/traverse';
 import generate from '@babel/generator';
 import {formatCode} from './code-generator';
 import * as t from 'babel-types';
-import {TProp, TPropHook} from './types';
+import {TProp} from './types';
 import {PropTypes} from './const';
 import {parse as babelParse} from '@babel/parser';
 import {getAstJsxElement, formatAstAndPrint} from './code-generator';
@@ -54,9 +54,7 @@ export const transformBeforeCompilation = (
             .forEach(attr => {
               const name = (attr.get('name') as any).node.name;
               if (propsConfig[name].type === PropTypes.Function) {
-                const propHook: TPropHook = propsConfig[name].meta
-                  ? (propsConfig[name].meta as any).propHook
-                  : null;
+                const propHook = propsConfig[name].propHook;
                 if (propHook) {
                   const yardOnChageCallExpression = t.callExpression(
                     t.identifier('__yard_onChange'),

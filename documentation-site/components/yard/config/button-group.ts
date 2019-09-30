@@ -1,8 +1,9 @@
 import {ButtonGroup, MODE} from 'baseui/button-group';
 import {Button} from 'baseui/button';
 import {PropTypes} from '../const';
+import {TConfig} from '../types';
 
-export default {
+const ButtonGroupConfig: TConfig = {
   importsConfig: {
     'baseui/button': {
       named: ['Button'],
@@ -46,20 +47,16 @@ export default {
       value: '(event, index) => {\n  setSelected([index]);\n}',
       type: PropTypes.Function,
       description: `Function called when any button is clicked.`,
-      meta: {
-        propHook: {
-          what: '`[${index}]`',
-          into: 'selected',
-        },
+      propHook: {
+        what: '`[${index}]`',
+        into: 'selected',
       },
     },
     selected: {
       value: '[0]',
       type: PropTypes.Array,
       description: 'Defines which buttons are selected',
-      meta: {
-        stateful: true,
-      },
+      stateful: true,
     },
     disabled: {
       value: false,
@@ -70,10 +67,10 @@ export default {
       value: undefined,
       type: PropTypes.Overrides,
       description: 'Lets you customize all aspects of the component.',
-      meta: {
-        names: ['Root'],
-        sharedProps: {},
-      },
+      names: ['Root'],
+      sharedProps: {},
     },
   },
 };
+
+export default ButtonGroupConfig;

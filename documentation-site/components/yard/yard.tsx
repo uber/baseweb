@@ -22,7 +22,7 @@ import {
   countProps,
   countThemeValues,
 } from './utils';
-import {TYardProps, TError} from './types';
+import {TYardProps, TPropValue, TError} from './types';
 
 // tabs aka editing UIs
 import Knobs from './knobs';
@@ -131,7 +131,7 @@ const Yard: React.FC<
   const __yard_onChange = (
     componentName: string,
     propName: string,
-    propValue: any,
+    propValue: TPropValue,
   ) => {
     !hydrated && setHydrated(true);
     const newCode = getCode(
@@ -180,7 +180,7 @@ const Yard: React.FC<
           <Knobs
             knobProps={state.props}
             error={error}
-            set={(propValue: any, propName: string) => {
+            set={(propValue: TPropValue, propName: string) => {
               try {
                 trackEvent('yard', `${componentName}:knob_change_${propName}`);
                 !hydrated && setHydrated(true);
@@ -209,7 +209,7 @@ const Yard: React.FC<
             componentName={componentName}
             componentConfig={propsConfig}
             overrides={state.props.overrides}
-            set={(propValue: any) => {
+            set={(propValue: TPropValue) => {
               const propName = 'overrides';
               try {
                 const newCode = getCode(

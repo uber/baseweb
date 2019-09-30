@@ -11,7 +11,7 @@ export type TThemeDiff = {
 export type TPropHook = {
   what: string;
   into: string;
-} | null;
+};
 
 export type TImportsConfig = {
   [key: string]: {
@@ -28,27 +28,42 @@ export type TError = {
 export type TYardProps = {
   componentName: string;
   minHeight: number;
-  importsConfig?: TImportsConfig;
   scopeConfig: {[key: string]: any};
   propsConfig: {[key: string]: TProp};
   themeConfig: string[];
+  importsConfig?: TImportsConfig;
 };
 
+export type TConfig = {
+  scopeConfig: {[key: string]: any};
+  propsConfig: {[key: string]: TProp};
+  themeConfig: string[];
+  importsConfig?: TImportsConfig;
+};
+
+export type TPropValue =
+  | undefined
+  | boolean
+  | string
+  | {
+      [key: string]: {
+        active: boolean;
+        style: string;
+      };
+    };
+
 export type TProp = {
-  value: any;
+  value: TPropValue;
   type: PropTypes;
   description: string;
   options?: any;
   placeholder?: string;
   enumName?: string;
   hidden?: boolean;
-  meta?: {
-    names?: string[];
-    sharedKeys?: any;
-    stateful?: boolean;
-    propHook?: TPropHook;
-    imports?: string[];
-  };
+  names?: string[];
+  sharedProps?: {[key: string]: string | {type: string; description: string}};
+  stateful?: boolean;
+  propHook?: TPropHook;
 };
 
 export type TState = {
