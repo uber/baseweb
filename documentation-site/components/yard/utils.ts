@@ -1,6 +1,5 @@
 import {Theme} from 'baseui/theme';
-import Router from 'next/router';
-import {TProp} from './types';
+import {TProp, TThemeDiff} from './types';
 
 export function assertUnreachable(): never {
   throw new Error("Didn't expect to get here");
@@ -59,15 +58,27 @@ export const getComponentThemeFromContext = (
   return componentThemeObj;
 };
 
-export const updateUrl = (pathname: string, code?: string) => {
-  Router.push(
-    code
-      ? {
-          pathname: pathname,
-          query: {code},
-        }
-      : {
-          pathname: pathname,
-        },
-  );
+export const getThemeForCodeGenerator = (
+  themeConfig: string[],
+  updatedThemeValues: {[key: string]: string},
+  theme: Theme,
+) => {
+  const componentThemeValueDiff: {[key: string]: string} = {};
+  themeConfig.forEach(key => {
+    if (
+      updatedThemeValues[key] &&
+      (theme.colors as any)[key] !== updatedThemeValues[key]
+    ) {
+      componentThemeValueDiff[key] = updatedThemeValues[key];
+    }
+  });
+  const componentThemeDiff: TThemeDiff = {
+    themeValues: {},
+    themeName: '',
+  };
+  if (Object.keys(componentThemeValueDiff).length > 0) {
+    componentThemeDiff.themeValues = componentThemeValueDiff;
+    componentThemeDiff.themeName = theme.name;
+  }
+  return componentThemeDiff;
 };

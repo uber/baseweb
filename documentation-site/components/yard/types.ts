@@ -1,4 +1,12 @@
 import {PropTypes} from './const';
+import {Action} from './const';
+
+export type TDispatch = (value: {type: Action; payload: any}) => void;
+
+export type TThemeDiff = {
+  themeValues: {[key: string]: string};
+  themeName: string;
+};
 
 export type TPropHook = {
   what: string;

@@ -10,24 +10,44 @@ import {withRouter} from 'next/router';
 import {Button, KIND, SIZE} from 'baseui/button';
 import {ButtonGroup} from 'baseui/button-group';
 import copy from 'copy-to-clipboard';
+import {trackEvent} from '../../helpers/ga';
 
-import {Action} from './const';
+// transformations, code generation
+import {transformBeforeCompilation} from './ast';
 import {getCode, formatCode} from './code-generator';
-import Knobs from './knobs';
-import reducer from './reducer';
-import {transformBeforeCompilation, parseCode, parseOverrides} from './ast';
-import {buildPropsObj, getComponentThemeFromContext, updateUrl} from './utils';
-import Overrides from './overrides';
-import ThemeEditor from './theme-editor';
-import PopupError from './popup-error';
+import {
+  buildPropsObj,
+  getComponentThemeFromContext,
+  getThemeForCodeGenerator,
+} from './utils';
 import {TYardProps, TError} from './types';
 
+// tabs aka editing UIs
+import Knobs from './knobs';
+import Overrides from './overrides';
+import ThemeEditor from './theme-editor';
+
+// other UIs
+import {Beta, YardTabs, YardTab} from './styled-components';
+import PopupError from './popup-error';
+
+// compiler
 import Compiler from './compiler';
 import Editor from './editor';
 import Error from './error';
-import {Beta, YardTabs, YardTab} from './styled-components';
 
-import {trackEvent} from '../../helpers/ga';
+// actions that can be dispatched
+import {
+  reset,
+  updateAll,
+  updateCode,
+  updateProps,
+  updateUrl,
+  updateThemeAndCode,
+  updatePropsAndCode,
+  updatePropsAndCodeNoRecompile,
+} from './actions';
+import reducer from './reducer';
 
 export default withRouter(
   ({
@@ -53,10 +73,7 @@ export default withRouter(
         getCode(
           propsConfig,
           componentName,
-          {
-            themeValues: {},
-            themeName: theme.name,
-          },
+          getThemeForCodeGenerator(themeConfig, {}, theme),
           extraImports,
         ),
       codeNoRecompile: '',
@@ -64,42 +81,14 @@ export default withRouter(
       theme: initialThemeObj,
     });
 
+    // initialize from the URL
     React.useEffect(() => {
-      // initialize from the URL
       if (router.query.code && !hydrated) {
         setHydrated(true);
         try {
-          const propValues: {[key: string]: any} = {};
-          const {parsedProps, parsedTheme} = parseCode(
-            router.query.code as string,
-            componentName,
-          );
-          Object.keys(propsConfig).forEach(name => {
-            //@ts-ignore
-            propValues[name] = propsConfig[name].value;
-            if (name === 'overrides') {
-              // overrides need a special treatment since the value needs to
-              // be further analyzed and parsed
-              propValues[name] = parseOverrides(
-                parsedProps[name],
-                propsConfig.overrides && propsConfig.overrides.meta
-                  ? propsConfig.overrides.meta.names || []
-                  : [],
-              );
-            } else {
-              propValues[name] = parsedProps[name];
-            }
-          });
-          dispatch({
-            type: Action.Update,
-            payload: {
-              code: router.query.code,
-              updatedPropValues: propValues,
-              theme: parsedTheme,
-            },
-          });
+          updateAll(dispatch, router.query.code, componentName, propsConfig);
         } catch (e) {
-          console.log(e);
+          console.warn(e);
         }
       }
     }, [router.query.code]);
@@ -115,19 +104,14 @@ export default withRouter(
         const newCode = getCode(
           state.props,
           componentName,
-          {
-            themeValues: {},
-            themeName: theme.name,
-          },
+          getThemeForCodeGenerator(themeConfig, {}, theme),
           extraImports,
         );
-        dispatch({
-          type: Action.UpdateThemeAndCode,
-          payload: {
-            code: newCode,
-            theme: getComponentThemeFromContext(theme, themeConfig),
-          },
-        });
+        updateThemeAndCode(
+          dispatch,
+          newCode,
+          getComponentThemeFromContext(theme, themeConfig),
+        );
         if (state.code !== newCode) {
           updateUrl(router.pathname, newCode);
         }
@@ -143,19 +127,10 @@ export default withRouter(
       const newCode = getCode(
         buildPropsObj(state.props, {[propName]: propValue}),
         componentName,
-        {
-          themeValues: {},
-          themeName: '',
-        },
+        getThemeForCodeGenerator(themeConfig, {}, theme),
         extraImports,
       );
-      dispatch({
-        type: Action.UpdatePropsAndCodeNoRecompile,
-        payload: {
-          codeNoRecompile: newCode,
-          updatedPropValues: {[propName]: propValue},
-        },
-      });
+      updatePropsAndCodeNoRecompile(dispatch, newCode, propName, propValue);
       updateUrl(router.pathname, newCode);
     };
 
@@ -172,18 +147,11 @@ export default withRouter(
       }
     });
 
-    const componentThemeValueDiff: any = {};
-    themeConfig.forEach(key => {
-      if ((theme.colors as any)[key] !== state.theme[key]) {
-        componentThemeValueDiff[key] = state.theme[key];
-      }
-    });
-
-    const componentThemeDiff: any = {};
-    if (Object.keys(componentThemeValueDiff).length > 0) {
-      componentThemeDiff.themeValues = componentThemeValueDiff;
-      componentThemeDiff.themeName = theme.name;
-    }
+    const componentThemeDiff = getThemeForCodeGenerator(
+      themeConfig,
+      state.theme,
+      theme,
+    );
 
     const existingOverrides = state.props.overrides.value
       ? Object.keys(state.props.overrides.value)
@@ -221,30 +189,24 @@ export default withRouter(
             <Knobs
               knobProps={state.props}
               error={error}
-              set={(value: any, name: string) => {
+              set={(propValue: any, propName: string) => {
                 try {
-                  trackEvent('yard', `${componentName}:knob_change_${name}`);
+                  trackEvent(
+                    'yard',
+                    `${componentName}:knob_change_${propName}`,
+                  );
                   !hydrated && setHydrated(true);
                   const newCode = getCode(
-                    buildPropsObj(state.props, {[name]: value}),
+                    buildPropsObj(state.props, {[propName]: propValue}),
                     componentName,
                     componentThemeDiff,
                     extraImports,
                   );
                   if (error.msg !== null) setError({where: '', msg: null});
-                  dispatch({
-                    type: Action.UpdatePropsAndCode,
-                    payload: {
-                      code: newCode,
-                      updatedPropValues: {[name]: value},
-                    },
-                  });
+                  updatePropsAndCode(dispatch, newCode, propName, propValue);
                   updateUrl(router.pathname, newCode);
                 } catch (e) {
-                  dispatch({
-                    type: Action.UpdateProps,
-                    payload: {[name]: value},
-                  });
+                  updateProps(dispatch, propName, propValue);
                   setError({where: name, msg: e.toString()});
                 }
               }}
@@ -259,10 +221,11 @@ export default withRouter(
               componentName={componentName}
               componentConfig={propsConfig}
               overrides={state.props.overrides}
-              set={(value: any) => {
+              set={(propValue: any) => {
+                const propName = 'overrides';
                 try {
                   const newCode = getCode(
-                    buildPropsObj(state.props, {overrides: value}),
+                    buildPropsObj(state.props, {[propName]: propValue}),
                     componentName,
                     componentThemeDiff,
                     extraImports,
@@ -270,28 +233,19 @@ export default withRouter(
                   if (error.msg !== null) {
                     setError({where: '', msg: null});
                   }
-                  dispatch({
-                    type: Action.UpdatePropsAndCode,
-                    payload: {
-                      code: newCode,
-                      updatedPropValues: {overrides: value},
-                    },
-                  });
+                  updatePropsAndCode(dispatch, newCode, propName, propValue);
                   updateUrl(router.pathname, newCode);
                 } catch (e) {
-                  dispatch({
-                    type: Action.UpdateProps,
-                    payload: {overrides: value},
-                  });
-                  setError({where: `overrides`, msg: e.toString()});
+                  updateProps(dispatch, propName, propValue);
+                  setError({where: propName, msg: e.toString()});
                 }
               }}
             />
           </YardTab>
           <YardTab
             title={`Theme ${
-              Object.keys(componentThemeValueDiff).length > 0
-                ? `(${Object.keys(componentThemeValueDiff).length})`
+              Object.keys(componentThemeDiff.themeValues).length > 0
+                ? `(${Object.keys(componentThemeDiff.themeValues).length})`
                 : ''
             }`}
           >
@@ -299,34 +253,19 @@ export default withRouter(
               themeInit={initialThemeObj}
               theme={state.theme}
               componentName={componentName}
-              set={(value: any) => {
-                const componentThemeValueDiff: any = {};
-                themeConfig.forEach(key => {
-                  if ((theme.colors as any)[key] !== value[key]) {
-                    componentThemeValueDiff[key] = value[key];
-                  }
-                });
-                const componentThemeDiff: any = {
-                  themeValues: {},
-                  themeName: '',
-                };
-                if (Object.keys(componentThemeValueDiff).length > 0) {
-                  componentThemeDiff.themeValues = componentThemeValueDiff;
-                  componentThemeDiff.themeName = theme.name;
-                }
+              set={(updatedThemeValues: {[key: string]: string}) => {
+                const componentThemeDiff = getThemeForCodeGenerator(
+                  themeConfig,
+                  updatedThemeValues,
+                  theme,
+                );
                 const newCode = getCode(
                   state.props,
                   componentName,
                   componentThemeDiff,
                   extraImports,
                 );
-                dispatch({
-                  type: Action.UpdateThemeAndCode,
-                  payload: {
-                    code: newCode,
-                    theme: value,
-                  },
-                });
+                updateThemeAndCode(dispatch, newCode, updatedThemeValues);
                 updateUrl(router.pathname, newCode);
               }}
             />
@@ -337,44 +276,11 @@ export default withRouter(
             state.codeNoRecompile !== '' ? state.codeNoRecompile : state.code
           }
           onChange={newCode => {
-            const propValues: any = {};
             try {
-              const {parsedProps, parsedTheme} = parseCode(
-                newCode,
-                componentName,
-              );
-              Object.keys(state.props).forEach(name => {
-                propValues[name] =
-                  //@ts-ignore
-                  propsConfig[name].value;
-                if (name === 'overrides') {
-                  // overrides need a special treatment since the value needs to
-                  // be further analyzed and parsed
-                  propValues[name] = parseOverrides(
-                    parsedProps[name],
-                    propsConfig.overrides && propsConfig.overrides.meta
-                      ? propsConfig.overrides.meta.names || []
-                      : [],
-                  );
-                } else {
-                  propValues[name] = parsedProps[name];
-                }
-              });
-
-              dispatch({
-                type: Action.Update,
-                payload: {
-                  code: newCode,
-                  updatedPropValues: propValues,
-                  theme: parsedTheme,
-                },
-              });
+              updateAll(dispatch, newCode, componentName, propsConfig);
               updateUrl(router.pathname, newCode);
             } catch (e) {
-              dispatch({
-                type: Action.UpdateCode,
-                payload: newCode,
-              });
+              updateCode(dispatch, newCode);
             }
           }}
         />
@@ -396,10 +302,7 @@ export default withRouter(
             kind={KIND.tertiary}
             onClick={() => {
               trackEvent('yard', `${componentName}:format_code`);
-              dispatch({
-                type: Action.UpdateCode,
-                payload: formatCode(state.code),
-              });
+              updateCode(dispatch, formatCode(state.code));
             }}
           >
             Format
@@ -425,23 +328,18 @@ export default withRouter(
           <Button
             kind={KIND.tertiary}
             onClick={() => {
-              dispatch({
-                type: Action.Reset,
-                payload: {
-                  code: getCode(
-                    propsConfig,
-                    componentName,
-                    {
-                      themeValues: {},
-                      themeName: '',
-                    } as any,
-                    extraImports,
-                  ),
-                  props: propsConfig,
-                  theme: initialThemeObj,
-                },
-              });
               trackEvent('yard', `${componentName}:reset_code`);
+              reset(
+                dispatch,
+                getCode(
+                  propsConfig,
+                  componentName,
+                  getThemeForCodeGenerator(themeConfig, {}, theme),
+                  extraImports,
+                ),
+                propsConfig,
+                initialThemeObj,
+              );
               updateUrl(router.pathname);
             }}
           >
