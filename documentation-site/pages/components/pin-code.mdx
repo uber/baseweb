@@ -27,6 +27,9 @@ import PinCodeStateful from 'examples/pin-code/stateful.js';
 import * as PinCodeExports from 'baseui/pin-code/index.js';
 import {StatefulPinCode} from 'baseui/pin-code/index.js';
 
+import Yard from '../../components/yard/index';
+import pinYardConfig from '../../components/yard/config/pin-code';
+
 export default Layout;
 
 # Pin Code
@@ -34,6 +37,8 @@ export default Layout;
 The `PinCode` component is optimized for entering sequences of digits.
 The most common application is for entering single-use security codes.
 It is optimized for entering digits quickly.
+
+<Yard componentName="Pin Code" placeholderHeight={48} {...pinYardConfig} />
 
 ## Examples
 
