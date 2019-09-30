@@ -38,4 +38,4 @@ export const StyledTextarea: StyletronComponent<any>;
 
 export const ADJOINED: ADJOINED;
 export const SIZE: SIZE;
-export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
+export {STATE_CHANGE_TYPE};
