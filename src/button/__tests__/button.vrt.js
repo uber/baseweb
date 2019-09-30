@@ -8,6 +8,14 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
+const {getPuppeteerUrl} = require('../../../e2e/helpers');
+
+it('testing normal stuff', async () => {
+  await page.goto(getPuppeteerUrl('button'));
+  await page.waitFor('#root');
+});
+
+/*
 const vrt = require('../../../vrt');
 
 const hoverTests = ['primary', 'secondary', 'tertiary', 'minimal'].map(
@@ -23,3 +31,4 @@ vrt.test({
   name: 'button',
   interactions: [...hoverTests],
 });
+*/
