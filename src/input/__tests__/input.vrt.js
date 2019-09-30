@@ -11,16 +11,16 @@ LICENSE file in the root directory of this source tree.
 const vrt = require('../../../vrt');
 
 const rangeTest = {
-  scenarioName: 'datepicker-range-highlight',
-  testName: 'no-highlight',
+  scenarioName: 'input-password',
+  testName: 'mask-toggled',
   ux: async function(page) {
-    await page.click('input');
-    await page.waitFor('[role="application"]');
-    await page.click('[aria-label="Next month"]');
+    const toggleSelector = `[data-e2e="mask-toggle"]`;
+    await page.click(toggleSelector);
+    await page.waitFor(toggleSelector);
   },
 };
 
 vrt.test({
-  name: 'datepicker',
+  name: 'input',
   interactions: [rangeTest],
 });

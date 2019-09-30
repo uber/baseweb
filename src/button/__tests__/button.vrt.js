@@ -12,7 +12,7 @@ const vrt = require('../../../vrt');
 
 const hoverTests = ['primary', 'secondary', 'tertiary', 'minimal'].map(
   kind => ({
-    testName: kind,
+    testName: `hover-${kind}`,
     ux: async function(page) {
       await page.hover(`[data-vrt-id="button-${kind}"]`);
     },
