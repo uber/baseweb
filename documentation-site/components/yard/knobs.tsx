@@ -23,6 +23,7 @@ const KnobColumn = ({knobProps, knobNames, error, set}: any) => {
           options={knobProps[name].options}
           placeholder={knobProps[name].placeholder}
           set={(value: any) => set(value, name)}
+          enumName={knobProps[name].enumName}
         />
       ))}
     </div>

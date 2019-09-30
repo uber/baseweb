@@ -46,6 +46,7 @@ const buildPropsObj = (
       value: updatedPropValues[name],
       type: stateProps[name].type,
       options: stateProps[name].options,
+      enumName: stateProps[name].enumName,
       description: stateProps[name].description,
       placeholder: stateProps[name].placeholder,
       hidden: stateProps[name].hidden,

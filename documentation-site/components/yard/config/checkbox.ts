@@ -30,10 +30,11 @@ export default {
       value: undefined,
       options: STYLE_TYPE,
       type: PropTypes.Enum,
+      enumName: 'STYLE_TYPE',
       description: 'Renders component in a toggle state.',
     },
     onChange: {
-      value: 'e => setChecked(!e.target.checked)',
+      value: 'e => setChecked(e.target.checked)',
       type: PropTypes.Function,
       description: 'Called when checkbox value is changed.',
       meta: {

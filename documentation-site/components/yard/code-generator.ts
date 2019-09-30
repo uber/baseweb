@@ -119,7 +119,8 @@ export const getEnumsToImport = (props: {[key: string]: TProp}) => {
   const enums: string[] = [];
   Object.keys(props).forEach(name => {
     if (props[name].type === PropTypes.Enum && props[name].value) {
-      enums.push(name.toUpperCase());
+      console.log(props[name].enumName, name);
+      enums.push(props[name].enumName || name.toUpperCase());
     }
   });
   return enums;
