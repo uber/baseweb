@@ -13743,10 +13743,10 @@ pretty-quick@^1.4.1:
     ignore "^3.3.7"
     mri "^1.1.0"
 
-prism-react-renderer@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/prism-react-renderer/-/prism-react-renderer-1.0.0.tgz#620af2f5a85dcfdb22eba74c5910d675208c4c40"
-  integrity sha512-0B8JBjh7oaqf/jkjB7CciMTtQlBT89T/keOKdPcAL/H0n1dTG7TkOEC28ETo75L0TpJmHeaiZVfPFCbIuRhkiw==
+prism-react-renderer@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/prism-react-renderer/-/prism-react-renderer-1.0.1.tgz#98a437b01a5e48f140ae2321a95fa6693d4fe9de"
+  integrity sha512-EDdbBEoG9xD1zhN3pKYxTc10ifpTV2rqJBKpCTKRVAxNE3YP1XVp6Ewa+ydTnYALQOmHWsNVVJC0zzA9fafbew==
 
 private@^0.1.6, private@^0.1.8, private@~0.1.5:
   version "0.1.8"
