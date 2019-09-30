@@ -6,8 +6,7 @@ import {
   darkThemePrimitives,
   ThemeProvider,
 } from 'baseui';
-import {Theme} from 'baseui/theme';
-import Router, {withRouter} from 'next/router';
+import {withRouter} from 'next/router';
 import {Button, KIND, SIZE} from 'baseui/button';
 import {StatefulTabs, Tab} from 'baseui/tabs';
 import {ButtonGroup} from 'baseui/button-group';
@@ -18,108 +17,19 @@ import {Tag, VARIANT} from 'baseui/tag';
 import {Action} from './const';
 import {getCode, formatCode} from './code-generator';
 import Knobs from './knobs';
+import reducer from './reducer';
 import {transformBeforeCompilation, parseCode, parseOverrides} from './ast';
-import {assertUnreachable} from './utils';
+import {buildPropsObj, getComponentThemeFromContext, updateUrl} from './utils';
 import Overrides from './overrides';
 import ThemeEditor from './theme-editor';
 import PopupError from './popup-error';
-import {TYardProps, TState, TProp} from './types';
+import {TYardProps} from './types';
 
 import Compiler from './compiler';
 import Editor from './editor';
 import Error from './error';
 
 import {trackEvent} from '../../helpers/ga';
-
-const buildPropsObj = (
-  stateProps: {[key: string]: TProp},
-  updatedPropValues: {[key: string]: any},
-) => {
-  const newProps: {
-    [key: string]: TProp;
-  } = {};
-  Object.keys(stateProps).forEach(name => {
-    newProps[name] = {...stateProps[name]};
-  });
-  Object.keys(updatedPropValues).forEach(name => {
-    newProps[name] = {
-      value: updatedPropValues[name],
-      type: stateProps[name].type,
-      options: stateProps[name].options,
-      enumName: stateProps[name].enumName,
-      description: stateProps[name].description,
-      placeholder: stateProps[name].placeholder,
-      hidden: stateProps[name].hidden,
-      meta: stateProps[name].meta,
-    };
-  });
-  return newProps;
-};
-
-const getComponentThemeFromContext = (theme: Theme, themeConfig: string[]) => {
-  const componentThemeObj: {[key: string]: string} = {};
-  themeConfig.forEach(key => {
-    componentThemeObj[key] = (theme.colors as any)[key];
-  });
-  return componentThemeObj;
-};
-
-function reducer(state: TState, action: {type: Action; payload: any}): TState {
-  switch (action.type) {
-    case Action.UpdateCode:
-      return {...state, code: action.payload, codeNoRecompile: ''};
-    case Action.Update:
-      const newTheme = {...state.theme};
-      Object.keys(state.theme).forEach(key => {
-        if (action.payload.theme[key]) {
-          newTheme[key] = action.payload.theme[key];
-        }
-      });
-      return {
-        ...state,
-        code: action.payload.code,
-        codeNoRecompile: '',
-        theme: newTheme,
-        props: buildPropsObj(state.props, action.payload.updatedPropValues),
-      };
-    case Action.UpdatePropsAndCodeNoRecompile:
-      return {
-        ...state,
-        codeNoRecompile: action.payload.codeNoRecompile,
-        props: buildPropsObj(state.props, action.payload.updatedPropValues),
-      };
-    case Action.UpdateProps:
-      return {
-        ...state,
-        codeNoRecompile: '',
-        props: buildPropsObj(state.props, action.payload),
-      };
-    case Action.UpdatePropsAndCode:
-      return {
-        ...state,
-        code: action.payload.code,
-        codeNoRecompile: '',
-        props: buildPropsObj(state.props, action.payload.updatedPropValues),
-      };
-    case Action.UpdateThemeAndCode:
-      return {
-        ...state,
-        code: action.payload.code,
-        codeNoRecompile: '',
-        theme: action.payload.theme,
-      };
-    case Action.Reset:
-      return {
-        ...state,
-        code: action.payload.code,
-        codeNoRecompile: '',
-        props: action.payload.props,
-        theme: action.payload.theme,
-      };
-    default:
-      return assertUnreachable();
-  }
-}
 
 export default withRouter(
   ({
@@ -141,7 +51,7 @@ export default withRouter(
       where: string;
       msg: string | null;
     }>({where: '', msg: null});
-    const componentThemeObj = getComponentThemeFromContext(theme, themeConfig);
+    const initialThemeObj = getComponentThemeFromContext(theme, themeConfig);
     const [state, dispatch] = React.useReducer(reducer, {
       code:
         router.query.code ||
@@ -156,7 +66,7 @@ export default withRouter(
         ),
       codeNoRecompile: '',
       props: propsConfig,
-      theme: componentThemeObj,
+      theme: initialThemeObj,
     });
 
     React.useEffect(() => {
@@ -203,8 +113,8 @@ export default withRouter(
     React.useEffect(() => {
       // don't make the reset if theme values were untouched
       // prevents the initial re-update
-      const isIdentical = Object.keys(componentThemeObj).every(
-        key => componentThemeObj[key] === state.theme[key],
+      const isIdentical = Object.keys(initialThemeObj).every(
+        key => initialThemeObj[key] === state.theme[key],
       );
       if (!isIdentical) {
         const newCode = getCode(
@@ -224,10 +134,7 @@ export default withRouter(
           },
         });
         if (state.code !== newCode) {
-          Router.push({
-            pathname: router.pathname,
-            query: {code: newCode},
-          } as any);
+          updateUrl(router.pathname, newCode);
         }
       }
     }, [theme.name]);
@@ -254,10 +161,7 @@ export default withRouter(
           updatedPropValues: {[propName]: propValue},
         },
       });
-      Router.push({
-        pathname: router.pathname,
-        query: {code: newCode},
-      } as any);
+      updateUrl(router.pathname, newCode);
     };
 
     let changedProps = 0;
@@ -365,10 +269,7 @@ export default withRouter(
                       updatedPropValues: {[name]: value},
                     },
                   });
-                  Router.push({
-                    pathname: router.pathname,
-                    query: {code: newCode},
-                  } as any);
+                  updateUrl(router.pathname, newCode);
                 } catch (e) {
                   dispatch({
                     type: Action.UpdateProps,
@@ -414,10 +315,7 @@ export default withRouter(
                       updatedPropValues: {overrides: value},
                     },
                   });
-                  Router.push({
-                    pathname: router.pathname,
-                    query: {code: newCode},
-                  } as any);
+                  updateUrl(router.pathname, newCode);
                 } catch (e) {
                   dispatch({
                     type: Action.UpdateProps,
@@ -444,7 +342,7 @@ export default withRouter(
             }}
           >
             <ThemeEditor
-              themeInit={componentThemeObj}
+              themeInit={initialThemeObj}
               theme={state.theme}
               componentName={componentName}
               set={(value: any) => {
@@ -475,10 +373,7 @@ export default withRouter(
                     theme: value,
                   },
                 });
-                Router.push({
-                  pathname: router.pathname,
-                  query: {code: newCode},
-                } as any);
+                updateUrl(router.pathname, newCode);
               }}
             />
           </Tab>
@@ -520,10 +415,7 @@ export default withRouter(
                   theme: parsedTheme,
                 },
               });
-              Router.push({
-                pathname: router.pathname,
-                query: {code: newCode},
-              } as any);
+              updateUrl(router.pathname, newCode);
             } catch (e) {
               dispatch({
                 type: Action.UpdateCode,
@@ -592,13 +484,11 @@ export default withRouter(
                     extraImports,
                   ),
                   props: propsConfig,
-                  theme: componentThemeObj,
+                  theme: initialThemeObj,
                 },
               });
               trackEvent('yard', `${componentName}:reset_code`);
-              Router.push({
-                pathname: router.pathname,
-              } as any);
+              updateUrl(router.pathname);
             }}
           >
             Reset
