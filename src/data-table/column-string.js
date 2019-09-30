@@ -8,17 +8,11 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {useStyletron} from '../styles/index.js';
-
+import CellShell from './cell-shell.js';
 import {COLUMNS} from './constants.js';
 import type {ColumnT} from './types.js';
 
-type StringCellPropsT = {
-  isMeasured?: boolean,
-  value: string,
-};
-
-export type OptionsT = {|
+type OptionsT = {|
   title: string,
   sortable?: boolean,
 |};
@@ -33,24 +27,18 @@ function StringFilter(props) {
   return <div>not implemented for string column</div>;
 }
 
-const StringCell = React.forwardRef<StringCellPropsT, HTMLDivElement>(
-  (props, ref) => {
-    const [useCss, theme] = useStyletron();
-    return (
-      <div
-        ref={ref}
-        className={useCss({
-          ...theme.typography.font200,
-          display: props.isMeasured ? 'inline-block' : null,
-          paddingLeft: theme.sizing.scale600,
-          paddingRight: theme.sizing.scale600,
-        })}
-      >
-        {props.value}
-      </div>
-    );
-  },
-);
+const StringCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
+  return (
+    <CellShell
+      ref={ref}
+      isMeasured={props.isMeasured}
+      isSelected={props.isSelected}
+      onSelect={props.onSelect}
+    >
+      {props.value}
+    </CellShell>
+  );
+});
 StringCell.displayName = 'StringCell';
 
 function StringColumn(options: OptionsT): StringColumnT {
