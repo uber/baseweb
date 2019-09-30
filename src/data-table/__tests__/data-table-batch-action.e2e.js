@@ -103,13 +103,8 @@ describe('data-table batch-actions', () => {
     const table = await getTable(page);
     await clickCheckboxAtRowIndex(table, 0);
 
-    const buttons = await page.$$('button');
-    await buttons[1].click();
-
-    // waits for rows to be removed
-    await page.waitForFunction(
-      `document.querySelectorAll('input[type="checkbox"]').length <= 2`,
-    );
+    const button = await page.$('button[aria-label="Approve"]');
+    await button.click();
 
     const actual = await getCheckboxValues(table);
     const expected = [false];
@@ -137,10 +132,8 @@ describe('data-table batch-actions', () => {
     const buttons = await page.$$('button');
     await buttons[1].click();
 
-    // waits for batch action buttons to hide
-    await page.waitForFunction(
-      `document.querySelectorAll('button').length <= 2`,
-    );
+    const button = await page.$('button[aria-label="Approve"]');
+    await button.click();
 
     const actual = await getCheckboxValues(table);
     const expected = [false, false, false, false, false];
@@ -156,13 +149,8 @@ describe('data-table batch-actions', () => {
     const beforeExpected = [true, true, false, false, false, false];
     expect(matchArrayElements(beforeActual, beforeExpected)).toBe(true);
 
-    const buttons = await page.$$('button');
-    await buttons[0].click();
-
-    // waits for batch action buttons to hide
-    await page.waitForFunction(
-      `document.querySelectorAll('button').length <= 2`,
-    );
+    const button = await page.$('button[aria-label="Flag"]');
+    await button.click();
 
     const afterActual = await getCheckboxValues(table);
     const afterExpected = [false, false, false, false, false, false];
