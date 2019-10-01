@@ -44,15 +44,11 @@ const PlainInput = themedStyled<{$inputVisible: boolean}>(
       ':focus': {
         borderColor: $theme.colors.primary,
       },
-      ...($theme.media
-        ? {
-            [$theme.media.small]: {
-              position: 'static',
-              display: 'block',
-              width: '250px',
-            },
-          }
-        : {}),
+      [$theme.media.small]: {
+        position: 'static',
+        display: 'block',
+        width: '250px',
+      },
     }: {}),
 );
 
@@ -77,15 +73,11 @@ const IconWrapper = themedStyled<{$inputVisible: boolean}>(
     marginTop: $inputVisible ? '4px' : 0,
     height: '32px',
     cursor: 'pointer',
-    ...($theme.media
-      ? {
-          [$theme.media.small]: {
-            [$theme.direction === 'rtl' ? 'right' : 'left']: '12px',
-            marginTop: '4px',
-            cursor: 'inherit',
-          },
-        }
-      : {}),
+    [$theme.media.small]: {
+      [$theme.direction === 'rtl' ? 'right' : 'left']: '12px',
+      marginTop: '4px',
+      cursor: 'inherit',
+    },
   }),
 );
 
@@ -130,15 +122,11 @@ class DocSearch extends React.Component<Props, State> {
                     height: searchInputOpen ? '22px' : '32px',
                     width: searchInputOpen ? '22px' : '32px',
                     fill: searchInputOpen ? '#666' : '#333',
-                    ...($theme.media
-                      ? {
-                          [$theme.media.small]: {
-                            height: '22px',
-                            width: '22px',
-                            fill: '#666',
-                          },
-                        }
-                      : {}),
+                    [$theme.media.small]: {
+                      height: '22px',
+                      width: '22px',
+                      fill: '#666',
+                    },
                   }),
                 },
               }}
