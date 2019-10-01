@@ -13,5 +13,5 @@ const BlueDiv = styled<
 }));
 
 export default () => (
-  <BlueDiv $color="primary">This is a blue div</BlueDiv>
+  <BlueDiv $color="accent">This is a blue div</BlueDiv>
 );
