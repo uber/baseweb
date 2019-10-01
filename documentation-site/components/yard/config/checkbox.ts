@@ -104,11 +104,6 @@ export default {
       description: 'If true the component will be focused on the first mount.',
       hidden: true,
     },
-    type: {
-      value: undefined,
-      type: PropTypes.String,
-      description: 'Input type attribute.',
-    },
     name: {
       value: undefined,
       type: PropTypes.String,
