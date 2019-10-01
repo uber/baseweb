@@ -127,10 +127,6 @@ export type StatefulContainerPropsT = {
   getChildMenu?: (ref: {current: HTMLElement | null}) => ?{
     current: HTMLElement | null,
   },
-  /* Indicates where the highlighted item would show in a view.
-  If `auto`, we scroll the least amount possible to ensure that the highlighted item is visible.
-  If `center`, highlighted item would occur in the center of a view. */
-  initialScrollAllignInView?: 'auto' | 'center',
 };
 
 export type MenuPropsT = {

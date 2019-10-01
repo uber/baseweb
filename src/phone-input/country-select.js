@@ -105,7 +105,6 @@ export default function CountrySelect(props: CountrySelectPropsT) {
           isFocused: true,
           highlightedIndex: scrollIndex,
         },
-        initialScrollAllignInView: 'center',
       },
     },
     DropdownContainer: {
