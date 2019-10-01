@@ -24,11 +24,13 @@ async function run() {
         '**/*.scenario.js',
         '**/*stories.js',
         'test/**/*.js',
+        '**/__tests__/*',
         '**/__mocks__/*.js',
         '**/e2e.js',
         'coverage/**/*.js',
         '**/*examples.js',
         'template-component/*',
+        'test/*',
       ],
     },
   );
