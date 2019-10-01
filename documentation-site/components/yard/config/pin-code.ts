@@ -3,17 +3,31 @@ import omit from 'just-omit';
 
 import {PinCode, SIZE} from 'baseui/pin-code';
 import {PropTypes} from '../const';
+import {TConfig} from '../types';
+import {theme, inputProps} from './input';
 
-import {themeConfig} from './input';
-import {inputProps} from './input';
-
-export default {
-  scopeConfig: {
+const PincodeConfig: TConfig = {
+  scope: {
     PinCode,
     SIZE,
   },
-  themeConfig,
-  propsConfig: {
+  theme,
+  props: {
+    values: {
+      value: `["", "", "", ""]`,
+      type: PropTypes.Array,
+      description: 'PinCode value attribute.',
+      stateful: true,
+    },
+    onChange: {
+      value: '({ values }) => setValues(values)',
+      type: PropTypes.Function,
+      description: 'Called when input value is changed.',
+      propHook: {
+        what: `JSON.stringify(values).split('",').join('", ')`,
+        into: 'values',
+      },
+    },
     ...omit(inputProps, [
       'placeholder',
       'value',
@@ -32,34 +46,14 @@ export default {
       type: PropTypes.String,
       hidden: true,
     },
-    values: {
-      value: '["", "", "", ""]',
-      type: PropTypes.Array,
-      description: 'PinCode value attribute.',
-      meta: {
-        stateful: true,
-      },
-    },
-    onChange: {
-      value: '({values}) => setValues(values)',
-      type: PropTypes.Function,
-      description: 'Called when input value is changed.',
-      meta: {
-        propHook: {
-          what: 'JSON.stringify(values)',
-          into: 'values',
-        },
-      },
-    },
-
     overrides: {
       value: undefined,
       type: PropTypes.Overrides,
       description: 'Lets you customize all aspects of the component.',
-      meta: {
-        names: ['Root', 'Input'],
-        sharedProps: {},
-      },
+      names: ['Root', 'Input'],
+      sharedProps: {},
     },
   },
 };
+
+export default PincodeConfig;
