@@ -107,7 +107,7 @@ const Knob: React.SFC<{
               },
             }}
             size="compact"
-            value={String(val)}
+            value={val ? String(val) : undefined}
           />
           <PopupError error={error} />
         </Spacing>
@@ -178,7 +178,7 @@ const Knob: React.SFC<{
           <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
           <Editor
             onChange={code => set(code)}
-            code={String(val)}
+            code={val ? String(val) : ''}
             placeholder={placeholder}
             small
           />
