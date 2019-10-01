@@ -4,17 +4,17 @@ import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
 const ButtonGroupConfig: TConfig = {
-  importsConfig: {
+  imports: {
     'baseui/button': {
       named: ['Button'],
     },
   },
-  scopeConfig: {
+  scope: {
     Button,
     ButtonGroup,
     MODE,
   },
-  themeConfig: [
+  theme: [
     'buttonPrimaryFill',
     'buttonPrimaryText',
     'buttonPrimaryHover',
@@ -36,7 +36,7 @@ const ButtonGroupConfig: TConfig = {
     'buttonDisabledFill',
     'buttonDisabledText',
   ],
-  propsConfig: {
+  props: {
     children: {
       value:
         '<Button>One</Button>\n<Button>Two</Button>\n<Button>Three</Button>',

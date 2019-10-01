@@ -3,12 +3,12 @@ import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
 const CheckboxConfig: TConfig = {
-  scopeConfig: {
+  scope: {
     Checkbox,
     STYLE_TYPE,
     LABEL_PLACEMENT,
   },
-  themeConfig: [
+  theme: [
     'tickFill',
     'tickFillHover',
     'tickFillActive',
@@ -28,7 +28,7 @@ const CheckboxConfig: TConfig = {
     'tickMarkFillError',
     'tickMarkFillDisabled',
   ],
-  propsConfig: {
+  props: {
     checked: {
       value: false,
       type: PropTypes.Boolean,

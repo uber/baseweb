@@ -28,29 +28,27 @@ export type TError = {
 export type TYardProps = {
   componentName: string;
   minHeight: number;
-  scopeConfig: {[key: string]: any};
-  propsConfig: {[key: string]: TProp};
-  themeConfig: string[];
-  importsConfig?: TImportsConfig;
+  scope: {[key: string]: any};
+  props: {[key: string]: TProp};
+  theme: string[];
+  imports?: TImportsConfig;
 };
 
 export type TConfig = {
-  scopeConfig: {[key: string]: any};
-  propsConfig: {[key: string]: TProp};
-  themeConfig: string[];
-  importsConfig?: TImportsConfig;
+  scope: {[key: string]: any};
+  props: {[key: string]: TProp};
+  theme: string[];
+  imports?: TImportsConfig;
 };
 
-export type TPropValue =
-  | undefined
-  | boolean
-  | string
-  | {
-      [key: string]: {
-        active: boolean;
-        style: string;
-      };
-    };
+type TPropValueOverrides = {
+  [key: string]: {
+    active: boolean;
+    style: string;
+  };
+};
+
+export type TPropValue = undefined | boolean | string | TPropValueOverrides;
 
 export type TProp = {
   value: TPropValue;

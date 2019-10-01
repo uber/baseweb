@@ -4,16 +4,16 @@ import omit from 'just-omit';
 import {Textarea, SIZE, ADJOINED} from 'baseui/textarea';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
-import {themeConfig, inputProps} from './input';
+import {theme, inputProps} from './input';
 
 const TextareaConfig: TConfig = {
-  scopeConfig: {
+  scope: {
     Textarea,
     SIZE,
     ADJOINED,
   },
-  themeConfig,
-  propsConfig: {
+  theme,
+  props: {
     ...omit(inputProps, ['type', 'startEnhancer', 'endEnhancer']),
     overrides: {
       value: undefined,

@@ -3,13 +3,13 @@ import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
 const ButtonConfig: TConfig = {
-  scopeConfig: {
+  scope: {
     Button,
     KIND,
     SIZE,
     SHAPE,
   },
-  themeConfig: [
+  theme: [
     'buttonPrimaryFill',
     'buttonPrimaryText',
     'buttonPrimaryHover',
@@ -31,7 +31,7 @@ const ButtonConfig: TConfig = {
     'buttonDisabledFill',
     'buttonDisabledText',
   ],
-  propsConfig: {
+  props: {
     children: {
       value: 'Hello',
       type: PropTypes.ReactNode,

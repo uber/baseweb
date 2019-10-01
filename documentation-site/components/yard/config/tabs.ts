@@ -3,16 +3,16 @@ import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
 const TabsConfig: TConfig = {
-  importsConfig: {
+  imports: {
     'baseui/tabs': {named: ['Tab']},
   },
-  scopeConfig: {
+  scope: {
     Tabs,
     Tab,
     ORIENTATION,
   },
-  themeConfig: ['tabBarFill', 'tabColor'],
-  propsConfig: {
+  theme: ['tabBarFill', 'tabColor'],
+  props: {
     children: {
       value: `<Tab title="Tab Link 1">
   Content 1

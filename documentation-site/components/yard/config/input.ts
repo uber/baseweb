@@ -2,7 +2,7 @@ import {Input, ADJOINED, SIZE} from 'baseui/input';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
-export const themeConfig = [
+export const theme = [
   'inputFill',
   'inputFillError',
   'inputFillDisabled',
@@ -193,13 +193,13 @@ export const inputProps = {
 };
 
 const InputConfig: TConfig = {
-  scopeConfig: {
+  scope: {
     Input,
     SIZE,
     ADJOINED,
   },
-  themeConfig,
-  propsConfig: {
+  theme,
+  props: {
     ...inputProps,
     overrides: {
       value: undefined,

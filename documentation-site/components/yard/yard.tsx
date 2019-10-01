@@ -59,10 +59,10 @@ const Yard: React.FC<
   }
 > = ({
   componentName,
-  propsConfig,
-  themeConfig,
-  scopeConfig,
-  importsConfig,
+  props: propsConfig,
+  theme: themeConfig,
+  scope: scopeConfig,
+  imports: importsConfig,
   minHeight,
   placeholderElement,
   pathname,
@@ -94,7 +94,9 @@ const Yard: React.FC<
       setHydrated(true);
       try {
         updateAll(dispatch, urlCode, componentName, propsConfig);
-      } catch (e) {}
+      } catch (e) {
+        console.warn(e);
+      }
     }
   }, [urlCode]);
 
@@ -193,7 +195,7 @@ const Yard: React.FC<
                 updateUrl(pathname, newCode);
               } catch (e) {
                 updateProps(dispatch, propName, propValue);
-                setError({where: propName, msg: e.toString()});
+                setError({where: name, msg: e.toString()});
               }
             }}
           />
