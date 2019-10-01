@@ -8,7 +8,7 @@ exports[`Stateless progress bar should render component: Component has correct r
   successValue={100}
   value={75}
 >
-  <ForwardRef
+  <Root
     $successValue={100}
     $value={75}
     data-baseweb="progress-bar"
@@ -31,7 +31,7 @@ exports[`Stateless progress bar should render component: Component has correct r
           }
         }
       >
-        <ForwardRef
+        <Bar
           $successValue={100}
           $value={75}
         >
@@ -57,7 +57,7 @@ exports[`Stateless progress bar should render component: Component has correct r
                 }
               }
             >
-              <ForwardRef
+              <BarProgress
                 $successValue={100}
                 $value={75}
               >
@@ -82,12 +82,12 @@ exports[`Stateless progress bar should render component: Component has correct r
                     }
                   />
                 </MockStyledComponent>
-              </ForwardRef>
+              </BarProgress>
             </div>
           </MockStyledComponent>
-        </ForwardRef>
+        </Bar>
       </div>
     </MockStyledComponent>
-  </ForwardRef>
+  </Root>
 </ProgressBar>
 `;

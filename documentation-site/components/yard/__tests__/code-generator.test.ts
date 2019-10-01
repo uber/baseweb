@@ -305,7 +305,7 @@ describe('getAstImports', () => {
           },
         }),
       ) as any).code,
-    ).toBe(`import Root, { Tabs, Tab, ORIENTATION } from "baseui/tabs";
+    ).toBe(`import Root, { Tab } from "baseui/tabs";
 import { Motion } from "react-motion";`);
   });
 });
@@ -383,6 +383,7 @@ describe('getCode', () => {
         },
         'Input',
         {themeValues: {inputFill: 'yellow'}, themeName: 'light'},
+        {'baseui/input': {named: ['Input']}},
       ),
     ).toBe(`import * as React from "react";
 import { Input } from "baseui/input";

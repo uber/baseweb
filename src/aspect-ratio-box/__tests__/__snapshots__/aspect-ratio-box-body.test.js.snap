@@ -17,7 +17,7 @@ exports[`AspectRatioBoxBody renders: with default styles 1`] = `
       top={0}
       width="100%"
     >
-      <ForwardRef
+      <StyledBlock
         $as="div"
         $bottom={0}
         $position="absolute"
@@ -47,7 +47,7 @@ exports[`AspectRatioBoxBody renders: with default styles 1`] = `
             }
           />
         </MockStyledComponent>
-      </ForwardRef>
+      </StyledBlock>
     </Block>
   </Block>
 </AspectRatioBoxBody>
@@ -98,7 +98,7 @@ exports[`AspectRatioBoxBody renders: with overridden styles 1`] = `
       top={0}
       width="100%"
     >
-      <ForwardRef
+      <StyledBlock
         $as="div"
         $bottom={0}
         $position="absolute"
@@ -139,7 +139,7 @@ exports[`AspectRatioBoxBody renders: with overridden styles 1`] = `
             }
           />
         </MockStyledComponent>
-      </ForwardRef>
+      </StyledBlock>
     </Block>
   </Block>
 </AspectRatioBoxBody>

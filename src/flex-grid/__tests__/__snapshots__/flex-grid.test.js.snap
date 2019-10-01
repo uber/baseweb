@@ -13,7 +13,7 @@ exports[`BaseFlexGrid renders: with default styles 1`] = `
       flexWrap={true}
       forwardedRef={null}
     >
-      <ForwardRef
+      <StyledBlock
         $as="div"
         $display="flex"
         $flexWrap={true}
@@ -37,7 +37,7 @@ exports[`BaseFlexGrid renders: with default styles 1`] = `
             }
           />
         </MockStyledComponent>
-      </ForwardRef>
+      </StyledBlock>
     </Block>
   </Block>
 </BaseFlexGrid>
@@ -86,7 +86,7 @@ exports[`BaseFlexGrid renders: with overridden styles 1`] = `
         }
       }
     >
-      <ForwardRef
+      <StyledBlock
         $as="div"
         $display="none"
         $flexWrap={false}
@@ -121,7 +121,7 @@ exports[`BaseFlexGrid renders: with overridden styles 1`] = `
             }
           />
         </MockStyledComponent>
-      </ForwardRef>
+      </StyledBlock>
     </Block>
   </Block>
 </BaseFlexGrid>
@@ -143,7 +143,7 @@ exports[`FlexGrid passes FlexGrid props to children: FlexGridItem with flexGridC
         flexWrap={true}
         forwardedRef={null}
       >
-        <ForwardRef
+        <StyledBlock
           $as="div"
           $display="flex"
           $flexWrap={true}
@@ -188,7 +188,7 @@ exports[`FlexGrid passes FlexGrid props to children: FlexGridItem with flexGridC
               </MockFlexGridItem>
             </div>
           </MockStyledComponent>
-        </ForwardRef>
+        </StyledBlock>
       </Block>
     </Block>
   </BaseFlexGrid>
@@ -209,7 +209,7 @@ exports[`FlexGrid renders: with default styles 1`] = `
         flexWrap={true}
         forwardedRef={null}
       >
-        <ForwardRef
+        <StyledBlock
           $as="div"
           $display="flex"
           $flexWrap={true}
@@ -233,7 +233,7 @@ exports[`FlexGrid renders: with default styles 1`] = `
               }
             />
           </MockStyledComponent>
-        </ForwardRef>
+        </StyledBlock>
       </Block>
     </Block>
   </BaseFlexGrid>
@@ -280,7 +280,7 @@ exports[`FlexGrid renders: with overridden styles 1`] = `
         flexWrap={true}
         forwardedRef={null}
       >
-        <ForwardRef
+        <StyledBlock
           $as="div"
           $display="flex"
           $flexWrap={true}
@@ -315,7 +315,7 @@ exports[`FlexGrid renders: with overridden styles 1`] = `
               }
             />
           </MockStyledComponent>
-        </ForwardRef>
+        </StyledBlock>
       </Block>
     </Block>
   </BaseFlexGrid>
