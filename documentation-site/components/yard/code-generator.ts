@@ -23,12 +23,13 @@ export const getAstPropsArray = (props: {[key: string]: TProp}) => {
   return Object.entries(props).map(([name, prop]) => {
     const {value, meta} = prop;
     const isStateful: boolean = meta ? (meta as any).stateful === true : false;
-    if (!value) return null;
+
     if (isStateful)
       return t.jsxAttribute(
         t.jsxIdentifier(name),
         t.jsxExpressionContainer(t.identifier(name)),
       );
+    if (!value) return null;
     const astValue = getAstPropValue(prop);
     if (!astValue) return null;
     return t.jsxAttribute(
@@ -118,7 +119,7 @@ export const getEnumsToImport = (props: {[key: string]: TProp}) => {
   const enums: string[] = [];
   Object.keys(props).forEach(name => {
     if (props[name].type === PropTypes.Enum && props[name].value) {
-      enums.push(name.toUpperCase());
+      enums.push(props[name].enumName || name.toUpperCase());
     }
   });
   return enums;
