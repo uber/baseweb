@@ -1,6 +1,4 @@
-// @ts-ignore
 import omit from 'just-omit';
-
 import {PinCode, SIZE} from 'baseui/pin-code';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
@@ -29,7 +27,6 @@ const PincodeConfig: TConfig = {
       },
     },
     ...omit(inputProps, [
-      'placeholder',
       'value',
       'startEnhancer',
       'endEnhancer',
@@ -41,11 +38,6 @@ const PincodeConfig: TConfig = {
       'type',
       'inputRef',
     ]),
-    placeholder: {
-      value: undefined,
-      type: PropTypes.String,
-      hidden: true,
-    },
     overrides: {
       value: undefined,
       type: PropTypes.Overrides,
