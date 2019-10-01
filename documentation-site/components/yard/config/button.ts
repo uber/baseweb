@@ -1,14 +1,15 @@
 import {Button, KIND, SIZE, SHAPE} from 'baseui/button';
 import {PropTypes} from '../const';
+import {TConfig} from '../types';
 
-export default {
-  scopeConfig: {
+const ButtonConfig: TConfig = {
+  scope: {
     Button,
     KIND,
     SIZE,
     SHAPE,
   },
-  themeConfig: [
+  theme: [
     'buttonPrimaryFill',
     'buttonPrimaryText',
     'buttonPrimaryHover',
@@ -30,7 +31,7 @@ export default {
     'buttonDisabledFill',
     'buttonDisabledText',
   ],
-  propsConfig: {
+  props: {
     children: {
       value: 'Hello',
       type: PropTypes.ReactNode,
@@ -90,23 +91,23 @@ export default {
       value: undefined,
       type: PropTypes.Overrides,
       description: 'Lets you customize all aspects of the component.',
-      meta: {
-        names: [
-          'BaseButton',
-          'EndEnhancer',
-          'LoadingSpinner',
-          'LoadingSpinnerContainer',
-          'StartEnhancer',
-        ],
-        sharedProps: {
-          $kind: 'kind',
-          $isSelected: 'isSelected',
-          $shape: 'shape',
-          $size: 'size',
-          $isLoading: 'isLoading',
-          $disabled: 'disabled',
-        },
+      names: [
+        'BaseButton',
+        'EndEnhancer',
+        'LoadingSpinner',
+        'LoadingSpinnerContainer',
+        'StartEnhancer',
+      ],
+      sharedProps: {
+        $kind: 'kind',
+        $isSelected: 'isSelected',
+        $shape: 'shape',
+        $size: 'size',
+        $isLoading: 'isLoading',
+        $disabled: 'disabled',
       },
     },
   },
 };
+
+export default ButtonConfig;
