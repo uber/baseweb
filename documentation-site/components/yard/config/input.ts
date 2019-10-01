@@ -27,7 +27,6 @@ export const inputProps = {
     value: 'e => setValue(e.target.value)',
     type: PropTypes.Function,
     description: 'Called when input value is changed.',
-
     propHook: {
       what: 'e.target.value',
       into: 'value',
