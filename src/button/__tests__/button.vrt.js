@@ -31,15 +31,38 @@ describe('differencify', () => {
   });
 
   it('button', async () => {
-    await differencify
-      .init()
-      .launch()
-      .newPage()
-      .goto(getPuppeteerUrl('button'))
-      .screenshot()
-      .toMatchSnapshot()
-      .close()
-      .end();
+    const target = differencify.init({chain: false});
+
+    console.log('target: ');
+    console.log(target);
+
+    const page = await target.newPage();
+
+    console.log('page: ');
+    console.log(page);
+
+    await page.goto(getPuppeteerUrl(scenarioName));
+    await page.setViewport({width: 1600, height: 1200});
+    // freeze animations
+    await page.addStyleTag({
+      content: `*, *::before, *::after {
+        -moz-transition: none !important;
+        transition: none !important;
+        -moz-animation: none !important;
+        animation: none !important;
+       }`,
+    });
+
+    if (interaction) {
+      await interaction(page);
+    }
+
+    const root = await page.$('#root');
+    const image = await root.screenshot();
+    const result = await target.toMatchSnapshot(image);
+
+    await page.close();
+    expect(result).toEqual(true);
   });
 });
 
