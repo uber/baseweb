@@ -13,16 +13,12 @@ const Differencify = require('differencify');
 
 const {getPuppeteerUrl} = require('../e2e/helpers');
 
+const differencify = new Differencify();
+
 function test({name, interactions}) {
   describe(name, () => {
-    const differencify = new Differencify({
-      debug: true,
-    });
-
     beforeAll(async () => {
-      await differencify.launchBrowser({
-        args: ['--no-sandbox', '--disable-setuid-sandbox'],
-      });
+      await differencify.launchBrowser();
     });
 
     afterAll(async () => {
