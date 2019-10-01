@@ -1,4 +1,4 @@
-import {TProp, TExtraImports} from './types';
+import {TProp, TImportsConfig} from './types';
 import {PropTypes} from './const';
 import {parse} from './ast';
 import template from '@babel/template';
@@ -21,14 +21,13 @@ const reactImport = template.ast(`import * as React from 'react';`);
 
 export const getAstPropsArray = (props: {[key: string]: TProp}) => {
   return Object.entries(props).map(([name, prop]) => {
-    const {value, meta} = prop;
-    const isStateful: boolean = meta ? (meta as any).stateful === true : false;
-    if (!value) return null;
-    if (isStateful)
+    const {value, stateful} = prop;
+    if (stateful)
       return t.jsxAttribute(
         t.jsxIdentifier(name),
         t.jsxExpressionContainer(t.identifier(name)),
       );
+    if (!value) return null;
     const astValue = getAstPropValue(prop);
     if (!astValue) return null;
     return t.jsxAttribute(
@@ -44,11 +43,11 @@ export const getAstPropValue = (prop: TProp) => {
   const value = prop.value;
   switch (prop.type as PropTypes) {
     case PropTypes.String:
-      return t.stringLiteral(value);
+      return t.stringLiteral(String(value));
     case PropTypes.Boolean:
-      return t.booleanLiteral(value);
+      return t.booleanLiteral(Boolean(value));
     case PropTypes.Enum:
-      return t.identifier(value);
+      return t.identifier(String(value));
     case PropTypes.Ref:
       return null;
     case PropTypes.Object:
@@ -56,14 +55,15 @@ export const getAstPropValue = (prop: TProp) => {
     case PropTypes.Array:
     case PropTypes.Number:
     case PropTypes.Function:
-      return (template.ast(value, {plugins: ['jsx']}) as any).expression;
+      return (template.ast(String(value), {plugins: ['jsx']}) as any)
+        .expression;
     case PropTypes.ReactNode:
       return (template.ast(`<>${value}</>`, {plugins: ['jsx']}) as any)
         .expression.children;
     case PropTypes.Overrides:
-      const activeValues = Object.entries(value).filter(
-        ([, val]: any) => val.active,
-      );
+      const activeValues = Object.entries(value as {
+        [key: string]: {active: boolean; style: string};
+      }).filter(([, val]: any) => val.active);
       if (activeValues.length === 0) return null;
       const keys = activeValues.map(([key, val]: [string, any]) =>
         t.objectProperty(
@@ -85,7 +85,7 @@ export const getAstReactHooks = (props: {[key: string]: TProp}) => {
     `const [%%name%%, %%setName%%] = React.useState(%%value%%);`,
   );
   Object.keys(props).forEach(name => {
-    if (props[name].meta && (props[name] as any).meta.stateful === true) {
+    if (props[name].stateful === true) {
       hooks.push(buildReactHook({
         name: t.identifier(name),
         setName: t.identifier(`set${name[0].toUpperCase() + name.slice(1)}`),
@@ -118,7 +118,7 @@ export const getEnumsToImport = (props: {[key: string]: TProp}) => {
   const enums: string[] = [];
   Object.keys(props).forEach(name => {
     if (props[name].type === PropTypes.Enum && props[name].value) {
-      enums.push(name.toUpperCase());
+      enums.push(props[name].enumName || name.toUpperCase());
     }
   });
   return enums;
@@ -203,24 +203,24 @@ const nameToImportSource = (name: string) =>
 export const getAstImports = (
   componentName: string,
   enums: string[],
-  extraImports?: TExtraImports,
+  importsConfig?: TImportsConfig,
 ) => {
   const defaultFrom = nameToImportSource(componentName);
   const importList = {
-    ...(extraImports ? extraImports : {}),
+    ...(importsConfig ? importsConfig : {}),
     [defaultFrom]: {
       named: [
         componentName,
-        ...(extraImports &&
-        extraImports[defaultFrom] &&
-        extraImports[defaultFrom].named
-          ? (extraImports[defaultFrom].named as string[])
+        ...(importsConfig &&
+        importsConfig[defaultFrom] &&
+        importsConfig[defaultFrom].named
+          ? (importsConfig[defaultFrom].named as string[])
           : []),
         ...enums,
       ],
       default:
-        extraImports && extraImports[defaultFrom]
-          ? extraImports[defaultFrom].default
+        importsConfig && importsConfig[defaultFrom]
+          ? importsConfig[defaultFrom].default
           : undefined,
     },
   };
@@ -233,7 +233,7 @@ export const getAst = (
   props: {[key: string]: TProp},
   componentName: string,
   theme: any,
-  extraImports?: TExtraImports,
+  importsConfig?: TImportsConfig,
 ) => {
   const {children, ...restProps} = props;
   const isCustomTheme =
@@ -250,7 +250,7 @@ export const getAst = (
       ...getAstImports(
         componentName,
         getEnumsToImport(restProps),
-        extraImports,
+        importsConfig,
       ),
       ...getAstThemeImport(isCustomTheme, themePrimitives),
       buildExport({
@@ -301,8 +301,8 @@ export const getCode = (
   props: {[key: string]: TProp},
   componentName: string,
   theme: {themeValues: {[key: string]: string}; themeName: string},
-  extraImports?: TExtraImports,
+  importsConfig?: TImportsConfig,
 ) => {
-  const ast = getAst(props, componentName, theme, extraImports);
+  const ast = getAst(props, componentName, theme, importsConfig);
   return formatAstAndPrint(ast as any);
 };

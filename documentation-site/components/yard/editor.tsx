@@ -5,7 +5,7 @@ import lightTheme from './light-theme';
 import darkTheme from './dark-theme';
 import {useStyletron} from 'baseui';
 
-const highlightCode = (code: string, theme: any) => (
+const highlightCode = (code: string, theme: typeof lightTheme) => (
   <Highlight Prism={Prism} code={code} theme={theme} language="jsx">
     {({tokens, getLineProps, getTokenProps}) => (
       <React.Fragment>
