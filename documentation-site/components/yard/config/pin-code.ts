@@ -33,7 +33,7 @@ export default {
       hidden: true,
     },
     values: {
-      value: "['', '', '', '']",
+      value: '["", "", "", ""]',
       type: PropTypes.Array,
       description: 'PinCode value attribute.',
       meta: {
@@ -46,7 +46,7 @@ export default {
       description: 'Called when input value is changed.',
       meta: {
         propHook: {
-          what: '{values}',
+          what: 'JSON.stringify(values)',
           into: 'values',
         },
       },
