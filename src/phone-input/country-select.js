@@ -18,7 +18,6 @@ import {
   StyledCountrySelectDropdownDialcodeColumn as DefaultDialcodeColumn,
 } from './styled-components.js';
 import {COUNTRIES} from './constants.js';
-import {Block} from '../block/index.js';
 import {Select as DefaultSelect} from '../select/index.js';
 import {PLACEMENT} from '../popover/index.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
@@ -186,7 +185,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
   );
 
   return (
-    <Block display="flex" alignItems="center">
+    <div style={{display: 'flex', alignItems: 'center'}}>
       <Select
         clearable={false}
         disabled={disabled}
@@ -243,6 +242,6 @@ export default function CountrySelect(props: CountrySelectPropsT) {
       <DialCode {...sharedProps} {...dialCodeProps}>
         {country.dialCode}
       </DialCode>
-    </Block>
+    </div>
   );
 }
