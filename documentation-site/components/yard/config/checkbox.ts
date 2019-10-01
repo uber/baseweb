@@ -8,6 +8,11 @@ const CheckboxConfig: TConfig = {
     STYLE_TYPE,
     LABEL_PLACEMENT,
   },
+  imports: {
+    'baseui/checkbox': {
+      named: ['Checkbox', 'STYLE_TYPE', 'LABEL_PLACEMENT'],
+    },
+  },
   theme: [
     'tickFill',
     'tickFillHover',

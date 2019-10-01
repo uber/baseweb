@@ -4,7 +4,7 @@ import {TConfig} from '../types';
 
 const TabsConfig: TConfig = {
   imports: {
-    'baseui/tabs': {named: ['Tab']},
+    'baseui/tabs': {named: ['Tab', 'Tabs', 'ORIENTATION']},
   },
   scope: {
     Tabs,

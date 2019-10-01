@@ -8,6 +8,9 @@ const ButtonGroupConfig: TConfig = {
     'baseui/button': {
       named: ['Button'],
     },
+    'baseui/button-group': {
+      named: ['ButtonGroup', 'MODE'],
+    },
   },
   scope: {
     Button,

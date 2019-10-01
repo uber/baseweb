@@ -198,6 +198,11 @@ const InputConfig: TConfig = {
     SIZE,
     ADJOINED,
   },
+  imports: {
+    'baseui/input': {
+      named: ['Input', 'ADJOINED', 'SIZE'],
+    },
+  },
   theme,
   props: {
     ...inputProps,

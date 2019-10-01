@@ -9,6 +9,11 @@ const ButtonConfig: TConfig = {
     SIZE,
     SHAPE,
   },
+  imports: {
+    'baseui/button': {
+      named: ['Button', 'KIND', 'SIZE', 'SHAPE'],
+    },
+  },
   theme: [
     'buttonPrimaryFill',
     'buttonPrimaryText',

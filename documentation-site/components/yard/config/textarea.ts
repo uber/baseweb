@@ -12,6 +12,9 @@ const TextareaConfig: TConfig = {
     SIZE,
     ADJOINED,
   },
+  imports: {
+    'baseui/textarea': {named: ['Textarea', 'SIZE', 'ADJOINED']},
+  },
   theme,
   props: {
     ...omit(inputProps, ['type', 'startEnhancer', 'endEnhancer']),

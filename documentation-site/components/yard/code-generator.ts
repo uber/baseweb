@@ -194,35 +194,9 @@ export const getAstThemeWrapper = (
   );
 };
 
-const nameToImportSource = (name: string) =>
-  `baseui/${name
-    .split(/(?=[A-Z])/)
-    .join('-')
-    .toLowerCase()}`;
-
-export const getAstImports = (
-  componentName: string,
-  enums: string[],
-  importsConfig?: TImportsConfig,
-) => {
-  const defaultFrom = nameToImportSource(componentName);
+export const getAstImports = (importsConfig?: TImportsConfig) => {
   const importList = {
     ...(importsConfig ? importsConfig : {}),
-    [defaultFrom]: {
-      named: [
-        componentName,
-        ...(importsConfig &&
-        importsConfig[defaultFrom] &&
-        importsConfig[defaultFrom].named
-          ? (importsConfig[defaultFrom].named as string[])
-          : []),
-        ...enums,
-      ],
-      default:
-        importsConfig && importsConfig[defaultFrom]
-          ? importsConfig[defaultFrom].default
-          : undefined,
-    },
   };
   return Object.keys(importList).map(from =>
     getAstImport(importList[from].named || [], from, importList[from].default),
@@ -247,11 +221,7 @@ export const getAst = (
   return t.file(
     t.program([
       reactImport,
-      ...getAstImports(
-        componentName,
-        getEnumsToImport(restProps),
-        importsConfig,
-      ),
+      ...getAstImports(importsConfig),
       ...getAstThemeImport(isCustomTheme, themePrimitives),
       buildExport({
         body: [

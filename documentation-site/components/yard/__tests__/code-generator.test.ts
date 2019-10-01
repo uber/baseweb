@@ -295,7 +295,7 @@ describe('getAstImports', () => {
   test('return multiple named and default imports', () => {
     expect(
       generate(t.program(
-        getAstImports('Tabs', ['ORIENTATION'], {
+        getAstImports({
           'baseui/tabs': {
             named: ['Tab'],
             default: 'Root',
