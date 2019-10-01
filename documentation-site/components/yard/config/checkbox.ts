@@ -1,13 +1,14 @@
 import {Checkbox, STYLE_TYPE, LABEL_PLACEMENT} from 'baseui/checkbox';
 import {PropTypes} from '../const';
+import {TConfig} from '../types';
 
-export default {
-  scopeConfig: {
+const CheckboxConfig: TConfig = {
+  scope: {
     Checkbox,
     STYLE_TYPE,
     LABEL_PLACEMENT,
   },
-  themeConfig: [
+  theme: [
     'tickFill',
     'tickFillHover',
     'tickFillActive',
@@ -27,14 +28,12 @@ export default {
     'tickMarkFillError',
     'tickMarkFillDisabled',
   ],
-  propsConfig: {
+  props: {
     checked: {
       value: false,
       type: PropTypes.Boolean,
       description: 'Renders component in checked state.',
-      meta: {
-        stateful: true,
-      },
+      stateful: true,
     },
     children: {
       value: `Sign up for the newsletter`,
@@ -57,11 +56,9 @@ export default {
       value: 'e => setChecked(e.target.checked)',
       type: PropTypes.Function,
       description: 'Called when checkbox value is changed.',
-      meta: {
-        propHook: {
-          what: 'e.target.checked',
-          into: 'checked',
-        },
+      propHook: {
+        what: 'e.target.checked',
+        into: 'checked',
       },
     },
     isError: {
@@ -83,9 +80,6 @@ export default {
       description:
         'Determines how to position the label relative to the checkbox.',
     },
-    //////////////////
-    // Hidden props //
-    //////////////////
     required: {
       value: false,
       type: PropTypes.Boolean,
@@ -144,37 +138,37 @@ export default {
       value: undefined,
       type: PropTypes.Overrides,
       description: 'Lets you customize all aspects of the component.',
-      meta: {
-        names: [
-          'Root',
-          'Checkmark',
-          'Label',
-          'Toggle',
-          'ToggleInner',
-          'ToggleTrack',
-        ],
-        sharedProps: {
-          $isFocused: {
-            type: PropTypes.Boolean,
-            description: 'True when the component is focused.',
-          },
-          $isHovered: {
-            type: PropTypes.Boolean,
-            description: 'True when the component is hovered.',
-          },
-          $isActive: {
-            type: PropTypes.Boolean,
-            description: 'True when the component is active.',
-          },
-          $isError: 'isError',
-          $checked: 'checked',
-          $isIndeterminate: 'isIndeterminate',
-          $required: 'required',
-          $disabled: 'disabled',
-          $checkmarkType: 'checkmarkType',
-          $labelPlacement: 'labelPlacement',
+      names: [
+        'Root',
+        'Checkmark',
+        'Label',
+        'Toggle',
+        'ToggleInner',
+        'ToggleTrack',
+      ],
+      sharedProps: {
+        $isFocused: {
+          type: PropTypes.Boolean,
+          description: 'True when the component is focused.',
         },
+        $isHovered: {
+          type: PropTypes.Boolean,
+          description: 'True when the component is hovered.',
+        },
+        $isActive: {
+          type: PropTypes.Boolean,
+          description: 'True when the component is active.',
+        },
+        $isError: 'isError',
+        $checked: 'checked',
+        $isIndeterminate: 'isIndeterminate',
+        $required: 'required',
+        $disabled: 'disabled',
+        $checkmarkType: 'checkmarkType',
+        $labelPlacement: 'labelPlacement',
       },
     },
   },
 };
+
+export default CheckboxConfig;

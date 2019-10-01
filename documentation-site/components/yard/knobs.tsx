@@ -1,9 +1,21 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {Button, KIND, SIZE} from 'baseui/button';
+import {TPropValue, TProp, TError} from './types';
 import Knob from './knob';
 
-const KnobColumn = ({knobProps, knobNames, error, set}: any) => {
+type TKnobsProps = {
+  knobProps: {[key: string]: TProp};
+  set: (propValue: TPropValue, propName: string) => void;
+  error: TError;
+};
+
+const KnobColumn: React.FC<TKnobsProps & {knobNames: string[]}> = ({
+  knobProps,
+  knobNames,
+  error,
+  set,
+}) => {
   const [useCss, theme] = useStyletron();
   return (
     <div
@@ -22,7 +34,7 @@ const KnobColumn = ({knobProps, knobNames, error, set}: any) => {
           val={knobProps[name].value}
           options={knobProps[name].options}
           placeholder={knobProps[name].placeholder}
-          set={(value: any) => set(value, name)}
+          set={(value: TPropValue) => set(value, name)}
           enumName={knobProps[name].enumName}
         />
       ))}
@@ -30,7 +42,7 @@ const KnobColumn = ({knobProps, knobNames, error, set}: any) => {
   );
 };
 
-const Knobs = ({knobProps, set, error}: any) => {
+const Knobs: React.FC<TKnobsProps> = ({knobProps, set, error}) => {
   const [useCss, theme] = useStyletron();
   const [showAllKnobs, setShowAllKnobs] = React.useState(false);
   const allKnobNames = Object.keys(knobProps);

@@ -269,9 +269,7 @@ describe('getAstReactHooks', () => {
               value: 'Hey',
               type: PropTypes.String,
               description: '',
-              meta: {
-                stateful: true,
-              },
+              stateful: true,
             },
             foo: {
               value: 'Not stateful',
@@ -362,13 +360,13 @@ describe('getCode', () => {
             value: 'Hello',
             type: PropTypes.String,
             description: 'Input value attribute.',
-            meta: {stateful: true},
+            stateful: true,
           },
           onChange: {
             value: 'e => setValue(e.target.value)',
             type: PropTypes.Function,
             description: '',
-            meta: {propHook: {what: 'e.target.value', into: 'value'}},
+            propHook: {what: 'e.target.value', into: 'value'},
           },
           overrides: {
             value: {
@@ -380,9 +378,7 @@ describe('getCode', () => {
             },
             type: PropTypes.Overrides,
             description: '',
-            meta: {
-              names: ['Root'],
-            },
+            names: ['Root'],
           },
         },
         'Input',

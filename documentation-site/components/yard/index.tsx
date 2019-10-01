@@ -3,16 +3,12 @@ import {Card} from 'baseui/card';
 import {Spinner} from 'baseui/spinner';
 import {TYardProps} from './types';
 import Yard from './yard';
+import {withRouter} from 'next/router';
 import {useStyletron} from 'baseui';
 
-const YardWrapper: React.FC<TYardProps & {placeholderHeight: number}> = ({
-  componentName,
-  scopeConfig,
-  propsConfig,
-  themeConfig,
-  placeholderHeight,
-  extraImports,
-}) => {
+const YardWrapper: React.FC<
+  TYardProps & {placeholderHeight: number; router: any}
+> = ({router, placeholderHeight, ...restProps}) => {
   const [useCss] = useStyletron();
   const placeholderCx = useCss({
     height: `${placeholderHeight}px`,
@@ -21,23 +17,22 @@ const YardWrapper: React.FC<TYardProps & {placeholderHeight: number}> = ({
     justifyContent: 'center',
     alignItems: 'center',
   });
+
   return (
     <Card>
       <Yard
-        componentName={componentName}
-        scopeConfig={scopeConfig}
-        propsConfig={propsConfig}
-        themeConfig={themeConfig}
-        extraImports={extraImports}
         minHeight={placeholderHeight}
+        pathname={router.pathname}
+        urlCode={router.query.code}
         placeholderElement={() => (
           <div className={placeholderCx}>
             <Spinner size={placeholderHeight > 50 ? 50 : placeholderHeight} />
           </div>
         )}
+        {...restProps}
       />
     </Card>
   );
 };
 
-export default YardWrapper;
+export default withRouter(YardWrapper);
