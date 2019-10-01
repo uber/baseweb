@@ -94,14 +94,19 @@ const Compiler: React.FC<{
   return (
     <div
       className={css({
-        display: 'flex',
         minHeight: `${minHeight}px`,
-        justifyContent: 'center',
         paddingTop: theme.sizing.scale600,
         paddingBottom: theme.sizing.scale600,
       })}
     >
-      {Element ? <Element /> : <PlaceholderElement />}
+      <div
+        className={css({
+          display: 'flex',
+          justifyContent: 'center',
+        })}
+      >
+        {Element ? <Element /> : <PlaceholderElement />}
+      </div>
     </div>
   );
 };
