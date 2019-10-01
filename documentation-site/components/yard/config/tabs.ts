@@ -1,17 +1,18 @@
 import {Tabs, Tab, ORIENTATION} from 'baseui/tabs';
 import {PropTypes} from '../const';
+import {TConfig} from '../types';
 
-export default {
-  extraImports: {
+const TabsConfig: TConfig = {
+  imports: {
     'baseui/tabs': {named: ['Tab']},
   },
-  scopeConfig: {
+  scope: {
     Tabs,
     Tab,
     ORIENTATION,
   },
-  themeConfig: ['tabBarFill', 'tabColor'],
-  propsConfig: {
+  theme: ['tabBarFill', 'tabColor'],
+  props: {
     children: {
       value: `<Tab title="Tab Link 1">
   Content 1
@@ -29,11 +30,9 @@ export default {
       value: '({ activeKey }) => {\n  setActiveKey(activeKey);\n}',
       type: PropTypes.Function,
       description: `Change handler that is called every time a new tab is selected.`,
-      meta: {
-        propHook: {
-          what: 'activeKey',
-          into: 'activeKey',
-        },
+      propHook: {
+        what: 'activeKey',
+        into: 'activeKey',
       },
     },
     orientation: {
@@ -46,9 +45,7 @@ export default {
       value: '0',
       type: PropTypes.String,
       description: 'Key of the the tab to be selected.',
-      meta: {
-        stateful: true,
-      },
+      stateful: true,
     },
     disabled: {
       value: false,
@@ -65,17 +62,17 @@ export default {
       value: undefined,
       type: PropTypes.Overrides,
       description: 'Lets you customize all aspects of the component.',
-      meta: {
-        names: ['Root', 'Tab', 'TabBar', 'TabContent'],
-        sharedProps: {
-          $disabled: 'disabled',
-          $active: {
-            type: PropTypes.Boolean,
-            description: 'True when the tab is active.',
-          },
-          $orientation: 'orientation',
+      names: ['Root', 'Tab', 'TabBar', 'TabContent'],
+      sharedProps: {
+        $disabled: 'disabled',
+        $active: {
+          type: PropTypes.Boolean,
+          description: 'True when the tab is active.',
         },
+        $orientation: 'orientation',
       },
     },
   },
 };
+
+export default TabsConfig;

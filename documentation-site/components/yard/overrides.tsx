@@ -23,11 +23,7 @@ const Overrides: React.FC<TOverridesProps> = ({
 }) => {
   const [, theme] = useStyletron();
   const isLightTheme = theme.name.startsWith('light-theme');
-  if (
-    !overrides.meta ||
-    !overrides.meta.names ||
-    overrides.meta.names.length === 0
-  ) {
+  if (!overrides.names || overrides.names.length === 0) {
     return null;
   }
 
@@ -37,7 +33,7 @@ const Overrides: React.FC<TOverridesProps> = ({
     };
   } = {};
 
-  overrides.meta.names.forEach((key: string) => {
+  overrides.names.forEach((key: string) => {
     if (overrides.value && overrides.value[key]) {
       overridesObj[key] = overrides.value[key];
     } else {

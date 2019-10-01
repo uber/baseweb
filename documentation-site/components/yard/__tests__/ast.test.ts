@@ -38,11 +38,9 @@ describe('transformBeforeCompilation', () => {
             value: '',
             type: PropTypes.Function,
             description: '',
-            meta: {
-              propHook: {
-                what: 'e.target.value',
-                into: 'value',
-              },
+            propHook: {
+              what: 'e.target.value',
+              into: 'value',
             },
           },
         }),
@@ -64,11 +62,9 @@ describe('transformBeforeCompilation', () => {
             value: '',
             type: PropTypes.Function,
             description: '',
-            meta: {
-              propHook: {
-                what: 'e.target.value',
-                into: 'value',
-              },
+            propHook: {
+              what: 'e.target.value',
+              into: 'value',
             },
           },
         }),
