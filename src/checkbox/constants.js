@@ -16,4 +16,11 @@ export const STYLE_TYPE = Object.freeze({
   toggle: 'toggle',
 });
 
+export const LABEL_PLACEMENT = Object.freeze({
+  top: 'top',
+  right: 'right',
+  bottom: 'bottom',
+  left: 'left',
+});
+
 /* eslint-enable import/prefer-default-export */

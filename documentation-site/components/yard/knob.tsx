@@ -56,7 +56,18 @@ const Knob: React.SFC<{
   type: PropTypes;
   options?: any;
   placeholder?: string;
-}> = ({name, error, type, val, set, options, description, placeholder}) => {
+  enumName?: string;
+}> = ({
+  name,
+  error,
+  type,
+  val,
+  set,
+  options,
+  description,
+  placeholder,
+  enumName,
+}) => {
   switch (type) {
     case PropTypes.Ref:
       return (
@@ -138,7 +149,7 @@ const Knob: React.SFC<{
             {Object.keys(options).map(opt => (
               <Radio
                 key={opt}
-                value={`${name.toUpperCase()}.${opt}`}
+                value={`${enumName || name.toUpperCase()}.${opt}`}
                 overrides={{
                   Root: {
                     style: ({$theme}) => ({
