@@ -248,8 +248,14 @@ function getDayStyles(code, {colors}) {
       ':before': {content: null},
     }),
     // range: selected start and end dates are the same
-    ...generateDayStyles('100111100000000', highlightedStyle),
-    ...generateDayStyles('101111100000000', highlightedStyle),
+    ...generateDayStyles('100111100000000', {
+      color: colors.calendarDayForegroundSelected,
+      ':before': {content: null},
+    }),
+    ...generateDayStyles('101111100000000', {
+      color: colors.calendarDayForegroundSelectedHighlighted,
+      ':before': {content: null},
+    }),
     // range: selected start date
     '100111000000000': {
       color: colors.calendarDayForegroundSelected,
