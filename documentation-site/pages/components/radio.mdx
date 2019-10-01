@@ -21,11 +21,21 @@ import Overrides from '../../components/overrides';
 import {Radio, StatefulRadioGroup} from 'baseui/radio';
 import * as RadioExports from 'baseui/radio';
 
+import Yard from '../../components/yard/index';
+import radioYardConfig from '../../components/yard/config/radio';
+
 export default Layout;
 
 # Radio
 
 Radios are used when only one choice may be selected in a series of options.
+
+<Yard
+  componentName="RadioGroup"
+  importPath="baseui/radio"
+  placeholderHeight={48}
+  {...radioYardConfig}
+/>
 
 ## When to use
 
