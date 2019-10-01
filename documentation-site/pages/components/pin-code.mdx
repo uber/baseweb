@@ -27,6 +27,9 @@ import PinCodeStateful from 'examples/pin-code/stateful.js';
 import * as PinCodeExports from 'baseui/pin-code/index.js';
 import {StatefulPinCode} from 'baseui/pin-code/index.js';
 
+import Yard from '../../components/yard/index';
+import pinYardConfig from '../../components/yard/config/pin-code';
+
 export default Layout;
 
 # Pin Code
@@ -34,6 +37,8 @@ export default Layout;
 The `PinCode` component is optimized for entering sequences of digits.
 The most common application is for entering single-use security codes.
 It is optimized for entering digits quickly.
+
+<Yard componentName="PinCode" placeholderHeight={48} {...pinYardConfig} />
 
 ## Examples
 
@@ -145,33 +150,7 @@ If things seem promising, `PinCode` will call `onChange` will all of the values 
 
 As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulPinCode`, which manages its own state. The default code length for this component is four, but you can change that by passing in an array of a different length to `initialState`.
 
-## Overrides
-
-<Overrides
-  name="Pin Code"
-  component={PinCodeExports}
-  renderExample={props => <StatefulPinCode {...props} />}
-  whitelisted={['Root', 'Input']}
-/>
-
-**Second Note:** You may have noticed that the `Input` override above does not highlight.
-To set the background and/or border styles for an `Input` component, you need to style the nested `InputContainer` override like so:
-
-<Example title="Overriding the Input" path="pin-code/override.js">
-  <PinCodeOverride />
-</Example>
-
 ## API
-
-<API
-  heading="PinCode API"
-  api={require('!!extract-react-types-loader!../../../src/pin-code/pin-code.js')}
-/>
-
-<API
-  heading="StatefulPinCode API"
-  api={require('!!extract-react-types-loader!../../../src/pin-code/stateful-pin-code.js')}
-/>
 
 <Exports
   component={PinCodeExports}

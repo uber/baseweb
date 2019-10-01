@@ -1,6 +1,4 @@
-// @ts-ignore
 import omit from 'just-omit';
-
 import {Textarea, SIZE, ADJOINED} from 'baseui/textarea';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
