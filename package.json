@@ -1,6 +1,6 @@
 {
   "name": "baseui",
-  "version": "9.5.2",
+  "version": "9.6.0",
   "description": "A React Component library implementing the Base design language",
   "keywords": [
     "react",
@@ -145,14 +145,14 @@
     "prettier": "^1.18.2",
     "pretty-proptypes": "^1.0.0",
     "pretty-quick": "^1.4.1",
-    "prism-react-renderer": "^0.1.7",
+    "prism-react-renderer": "^1.0.1",
     "puppeteer": "^1.19.0",
     "raw-loader": "^3.1.0",
     "react": "^16.9.0",
     "react-codesandboxer": "^3.1.1",
     "react-dom": "^16.9.0",
     "react-markdown": "^4.0.3",
-    "react-simple-code-editor": "^0.9.14",
+    "react-simple-code-editor": "^0.10.0",
     "react-vis": "^1.11.6",
     "recursive-readdir": "^2.2.2",
     "remove-flow-types-loader": "^1.1.0",
@@ -164,7 +164,7 @@
     "styletron-engine-atomic": "^1.4.0",
     "styletron-react": "^5.2.0",
     "styletron-standard": "^3.0.0",
-    "tar": "^4.4.8",
+    "tar": "^5.0.0",
     "terser": "^4.1.4",
     "typescript": "^3.5.3",
     "webpack": "^4.17.1",
@@ -188,7 +188,6 @@
     "react-virtualized": "^9.21.1",
     "react-virtualized-auto-sizer": "^1.0.2",
     "react-window": "^1.8.5",
-    "smoothscroll-polyfill": "^0.4.3",
     "timezone-support": "^2.0.0"
   },
   "peerDependencies": {

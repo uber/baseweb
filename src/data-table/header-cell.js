@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 
+import {Checkbox} from '../checkbox/index.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
 import {useStyletron} from '../styles/index.js';
 import ChevronDown from '../icon/chevron-down.js';
@@ -25,10 +26,15 @@ type HeaderCellPropsT = {
   isFilterOpen: boolean,
   isHovered: boolean,
   isMeasured?: boolean,
+  isSelectable: boolean,
+  isSelectedAll: boolean,
+  isSelectedIndeterminate: boolean,
   onFilterOpen: () => void,
   onFilterClose: () => void,
   onMouseEnter: number => void,
   onMouseLeave: number => void,
+  onSelectAll: () => void,
+  onSelectNone: () => void,
   onSort: number => void,
   sortable: boolean,
   sortDirection: SortDirectionsT,
@@ -39,6 +45,7 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
   (props, ref) => {
     const [useCss, theme] = useStyletron();
     const sortRef = React.useRef(null);
+    const chevronRef = React.useRef(null);
 
     const controlStyles = useCss({
       alignItems: 'center',
@@ -101,12 +108,26 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
         onClick={event => {
           if (
             event.target.isSameNode(sortRef.current) ||
-            (sortRef.current && sortRef.current.contains(event.target))
+            event.target.isSameNode(chevronRef.current) ||
+            (chevronRef.current && chevronRef.current.contains(event.target))
           ) {
             props.onSort(props.index);
           }
         }}
       >
+        {props.isSelectable && (
+          <Checkbox
+            onChange={e => {
+              if (props.isSelectedAll || props.isSelectedIndeterminate) {
+                props.onSelectNone();
+              } else {
+                props.onSelectAll();
+              }
+            }}
+            checked={props.isSelectedAll || props.isSelectedIndeterminate}
+            isIndeterminate={props.isSelectedIndeterminate}
+          />
+        )}
         {props.title}
         <div className={controlStyles}>
           {props.isHovered && props.filterable ? (
@@ -140,7 +161,10 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
           )}
 
           {(props.isHovered || props.sortDirection) && props.sortable && (
-            <>
+            <div
+              style={{display: 'flex', alignItems: 'center'}}
+              ref={chevronRef}
+            >
               {(props.sortDirection === SORT_DIRECTIONS.DESC ||
                 !props.sortDirection) && (
                 <ChevronDown
@@ -152,7 +176,7 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
                   color={props.sortDirection ? theme.colors.primary : undefined}
                 />
               )}
-            </>
+            </div>
           )}
         </div>
       </div>

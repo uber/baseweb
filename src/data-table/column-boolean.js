@@ -10,16 +10,12 @@ import * as React from 'react';
 
 import {useStyletron} from '../styles/index.js';
 
+import CellShell from './cell-shell.js';
 import {CategoricalFilter} from './column-categorical.js';
 import {COLUMNS} from './constants.js';
 import type {ColumnT} from './types.js';
 
-type BooleanCellPropsT = {
-  isMeasured?: boolean,
-  value: boolean,
-};
-
-export type OptionsT = {|
+type OptionsT = {|
   title: string,
   sortable?: boolean,
   filterable?: boolean,
@@ -52,27 +48,27 @@ function BooleanFilter(props) {
   );
 }
 
-const BooleanCell = React.forwardRef<BooleanCellPropsT, HTMLDivElement>(
-  (props, ref) => {
-    const [useCss, theme] = useStyletron();
-    return (
+const BooleanCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
+  const [useCss, theme] = useStyletron();
+  return (
+    <CellShell
+      ref={ref}
+      isMeasured={props.isMeasured}
+      isSelected={props.isSelected}
+      onSelect={props.onSelect}
+    >
       <div
-        ref={ref}
         className={useCss({
-          ...theme.typography.font200,
-          display: props.isMeasured ? 'inline-block' : null,
-          paddingLeft: theme.sizing.scale600,
-          paddingRight: theme.sizing.scale600,
           textAlign: props.value ? 'left' : 'right',
           minWidth: theme.sizing.scale1400,
-          width: props.isMeasured ? null : '100%',
+          width: '100%',
         })}
       >
         {props.value ? 'T' : 'F'}
       </div>
-    );
-  },
-);
+    </CellShell>
+  );
+});
 BooleanCell.displayName = 'BooleanCell';
 
 function BooleanColumn(options: OptionsT): BooleanColumnT {

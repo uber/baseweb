@@ -8,8 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {useStyletron} from '../styles/index.js';
-
+import CellShell from './cell-shell.js';
 import {COLUMNS} from './constants.js';
 import type {ColumnT} from './types.js';
 
@@ -29,26 +28,6 @@ type OptionsT<ValueT, FilterParamsT> = {|
   sortFn?: (ValueT, ValueT) => number,
 |};
 
-const CustomCell = React.forwardRef<
-  {isMeasured?: boolean, children: React.Node},
-  HTMLDivElement,
->((props, ref) => {
-  const [useCss, theme] = useStyletron();
-  return (
-    <div
-      ref={ref}
-      className={useCss({
-        display: props.isMeasured ? 'inline-block' : null,
-        paddingLeft: theme.sizing.scale600,
-        paddingRight: theme.sizing.scale600,
-      })}
-    >
-      {props.children}
-    </div>
-  );
-});
-CustomCell.displayName = 'CustomCell';
-
 function CustomColumn<ValueT, FilterParamsT>(
   options: OptionsT<ValueT, FilterParamsT>,
 ): ColumnT<ValueT, FilterParamsT> {
@@ -63,9 +42,14 @@ function CustomColumn<ValueT, FilterParamsT>(
     renderCell: React.forwardRef((props, ref) => {
       const ProvidedCell = options.renderCell;
       return (
-        <CustomCell {...props} ref={ref}>
+        <CellShell
+          ref={ref}
+          isMeasured={props.isMeasured}
+          isSelected={props.isSelected}
+          onSelect={props.onSelect}
+        >
           <ProvidedCell value={props.value} />
-        </CustomCell>
+        </CellShell>
       );
     }),
     renderFilter: options.renderFilter || (() => null),
