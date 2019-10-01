@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
@@ -22,10 +21,12 @@ import ComponentOverrides from 'examples/checkbox/component-overrides.js';
 import Focus from 'examples/checkbox/focus.js';
 import Toggle from 'examples/checkbox/toggle.js';
 
-import Overrides from '../../components/overrides';
 import {Block} from 'baseui/block';
 import {StatefulCheckbox, STYLE_TYPE} from 'baseui/checkbox';
 import * as CheckboxExports from 'baseui/checkbox';
+
+import Yard from '../../components/yard/index';
+import checkboxYardConfig from '../../components/yard/config/checkbox';
 
 export default Layout;
 
@@ -36,6 +37,8 @@ Checkboxes are used to provide users with multiple options for selection in a se
 When used as a toggle they allow the user to make a binary choice usually (but not limited) in
 the form of a yes/no or on/off suggestion. Toggles are often used in product settings or as filter
 options. When engaged (on), Base Web toggles are colored and when disengaged (off) they’re grey.
+
+<Yard componentName="Checkbox" placeholderHeight={48} {...checkboxYardConfig} />
 
 ## When to use
 
@@ -96,44 +99,6 @@ options. When engaged (on), Base Web toggles are colored and when disengaged (of
 </Example>
 
 As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulCheckbox`, which manages its own state.
-
-## Overrides
-
-<Overrides
-  name="Checkbox"
-  component={CheckboxExports}
-  renderExample={props => (
-    <Block width="200px" marginTop="scale400">
-      <StatefulCheckbox onChange={console.log} overrides={props.overrides}>
-        Check Label
-      </StatefulCheckbox>
-      <br />
-      <StatefulCheckbox
-        checkmarkType={STYLE_TYPE.toggle}
-        overrides={props.overrides}
-      >
-        Toggle Label
-      </StatefulCheckbox>
-    </Block>
-  )}
-/>
-
-## API
-
-<API
-  heading="Checkbox API"
-  api={require('!!extract-react-types-loader!../../../src/checkbox/checkbox.js')}
-/>
-
-<API
-  heading="Stateful Checkbox API"
-  api={require('!!extract-react-types-loader!../../../src/checkbox/stateful-checkbox.js')}
-/>
-
-<API
-  heading="Stateful Checkbox Container API"
-  api={require('!!extract-react-types-loader!../../../src/checkbox/stateful-checkbox-container.js')}
-/>
 
 <Exports
   component={CheckboxExports}

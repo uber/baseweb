@@ -20,7 +20,7 @@ export {
   ToggleTrack as StyledToggleTrack,
 } from './styled-components.js';
 
-export {STATE_TYPE, STYLE_TYPE} from './constants.js';
+export {STATE_TYPE, STYLE_TYPE, LABEL_PLACEMENT} from './constants.js';
 
 // Flow
 export * from './types.js';

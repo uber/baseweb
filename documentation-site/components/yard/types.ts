@@ -27,6 +27,7 @@ export type TProp = {
   description: string;
   options?: any;
   placeholder?: string;
+  enumName?: string;
   hidden?: boolean;
   meta?: {
     names?: string[];
