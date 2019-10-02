@@ -1,19 +1,21 @@
 import {Radio, RadioGroup} from 'baseui/radio';
 import {PropTypes} from '../const';
+import {TConfig} from '../types';
 
-export default {
-  scopeConfig: {
+const RadioGroupConfig: TConfig = {
+  scope: {
     Radio,
     RadioGroup,
   },
-  extraImports: {
+  imports: {
     'baseui/radio': {named: ['Radio, RadioGroup']},
   },
-  themeConfig: [],
-  propsConfig: {
+  theme: [],
+  props: {
     children: {
-      value:
-        '<Radio value="1">One</Radio>\n<Radio value="2">Two</Radio>\n<Radio value="3">Three</Radio>',
+      value: `<Radio value="1">One</Radio>
+<Radio value="2">Two</Radio>
+<Radio value="3">Three</Radio>`,
       type: PropTypes.ReactNode,
       description: 'Radios within the RadioGroup',
     },
@@ -21,10 +23,11 @@ export default {
       value: undefined,
       type: PropTypes.Overrides,
       description: 'Lets you customize all aspects of the component.',
-      meta: {
-        names: ['Root'],
-        sharedProps: {},
-      },
+
+      names: ['Root'],
+      sharedProps: {},
     },
   },
 };
+
+export default RadioGroupConfig;
