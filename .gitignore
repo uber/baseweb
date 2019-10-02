@@ -24,6 +24,6 @@ documentation-site/posts.js
 documentation-site/cheat-sheet.js
 public
 versions.json
-
+__vrt_diffs__
 # Local Netlify folder
 .netlify

@@ -41,6 +41,8 @@ steps:
           - e2e-server-healthy
     agents:
       queue: builders
+    artifact_paths:
+      - '__vrt_diffs__/*.png'
   # - name: ':validate-examples:'
   #   command: yarn validate:examples
   #   plugins:
