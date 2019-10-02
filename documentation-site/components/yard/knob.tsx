@@ -9,6 +9,7 @@ import {Checkbox} from 'baseui/checkbox';
 import {StatefulTooltip} from 'baseui/tooltip';
 import PopupError from './popup-error';
 import Editor from './editor';
+import {TPropValue} from './types';
 
 const getTooltip = (description: string, type: string, name: string) => (
   <span>
@@ -36,7 +37,7 @@ const Label: React.FC<{
   return (
     <label
       className={useCss({
-        ...(theme.typography.font250 as any),
+        ...theme.typography.font250,
         color: theme.colors.foreground,
       })}
     >
@@ -51,12 +52,23 @@ const Knob: React.SFC<{
   name: string;
   error: string | null;
   description: string;
-  val: any;
-  set: (val: any) => void;
+  val: TPropValue;
+  set: (val: TPropValue) => void;
   type: PropTypes;
-  options?: any;
+  options?: {[key: string]: string};
   placeholder?: string;
-}> = ({name, error, type, val, set, options, description, placeholder}) => {
+  enumName?: string;
+}> = ({
+  name,
+  error,
+  type,
+  val,
+  set,
+  options,
+  description,
+  placeholder,
+  enumName,
+}) => {
   switch (type) {
     case PropTypes.Ref:
       return (
@@ -95,7 +107,7 @@ const Knob: React.SFC<{
               },
             }}
             size="compact"
-            value={val}
+            value={val ? String(val) : undefined}
           />
           <PopupError error={error} />
         </Spacing>
@@ -103,7 +115,7 @@ const Knob: React.SFC<{
     case PropTypes.Boolean:
       return (
         <Spacing>
-          <Checkbox checked={val} onChange={() => set(!val)}>
+          <Checkbox checked={Boolean(val)} onChange={() => set(!val)}>
             <StatefulTooltip
               accessibilityType="tooltip"
               content={getTooltip(description, type, name)}
@@ -133,12 +145,12 @@ const Knob: React.SFC<{
             }}
             //@ts-ignore
             onChange={e => set(e.target.value)}
-            value={val}
+            value={String(val)}
           >
-            {Object.keys(options).map(opt => (
+            {Object.keys(options ? options : {}).map(opt => (
               <Radio
                 key={opt}
-                value={`${name.toUpperCase()}.${opt}`}
+                value={`${enumName || name.toUpperCase()}.${opt}`}
                 overrides={{
                   Root: {
                     style: ({$theme}) => ({
@@ -166,7 +178,7 @@ const Knob: React.SFC<{
           <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
           <Editor
             onChange={code => set(code)}
-            code={val}
+            code={val ? String(val) : ''}
             placeholder={placeholder}
             small
           />

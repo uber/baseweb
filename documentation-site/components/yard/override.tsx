@@ -39,14 +39,13 @@ const SharedPropsTooltip: React.FC<{
   componentConfig: any;
   children: React.ReactNode;
 }> = ({componentConfig, children}) => {
-  const sharedProps = Object.keys(componentConfig.overrides.meta.sharedProps);
+  const sharedProps = Object.keys(componentConfig.overrides.sharedProps);
   const getDescription = (name: string) => {
     let metaObj: any = {};
-    if (typeof componentConfig.overrides.meta.sharedProps[name] === 'string') {
-      metaObj =
-        componentConfig[componentConfig.overrides.meta.sharedProps[name]];
+    if (typeof componentConfig.overrides.sharedProps[name] === 'string') {
+      metaObj = componentConfig[componentConfig.overrides.sharedProps[name]];
     } else {
-      metaObj = componentConfig.overrides.meta.sharedProps[name];
+      metaObj = componentConfig.overrides.sharedProps[name];
     }
     return (
       <React.Fragment>
@@ -135,7 +134,7 @@ const Override: React.FC<TProps> = ({
             const newCode = formatCode(
               toggleOverrideSharedProps(
                 overrides.value[overrideKey].style,
-                Object.keys(overrides.meta.sharedProps),
+                Object.keys(overrides.sharedProps),
               ),
             );
             set({

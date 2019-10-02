@@ -1,4 +1,5 @@
-import {TProp, TExtraImports} from './types';
+import clone from 'just-clone';
+import {TProp, TImportsConfig} from './types';
 import {PropTypes} from './const';
 import {parse} from './ast';
 import template from '@babel/template';
@@ -21,14 +22,13 @@ const reactImport = template.ast(`import * as React from 'react';`);
 
 export const getAstPropsArray = (props: {[key: string]: TProp}) => {
   return Object.entries(props).map(([name, prop]) => {
-    const {value, meta} = prop;
-    const isStateful: boolean = meta ? (meta as any).stateful === true : false;
-    if (!value) return null;
-    if (isStateful)
+    const {value, stateful} = prop;
+    if (stateful)
       return t.jsxAttribute(
         t.jsxIdentifier(name),
         t.jsxExpressionContainer(t.identifier(name)),
       );
+    if (!value) return null;
     const astValue = getAstPropValue(prop);
     if (!astValue) return null;
     return t.jsxAttribute(
@@ -44,11 +44,11 @@ export const getAstPropValue = (prop: TProp) => {
   const value = prop.value;
   switch (prop.type as PropTypes) {
     case PropTypes.String:
-      return t.stringLiteral(value);
+      return t.stringLiteral(String(value));
     case PropTypes.Boolean:
-      return t.booleanLiteral(value);
+      return t.booleanLiteral(Boolean(value));
     case PropTypes.Enum:
-      return t.identifier(value);
+      return t.identifier(String(value));
     case PropTypes.Ref:
       return null;
     case PropTypes.Object:
@@ -56,14 +56,15 @@ export const getAstPropValue = (prop: TProp) => {
     case PropTypes.Array:
     case PropTypes.Number:
     case PropTypes.Function:
-      return (template.ast(value, {plugins: ['jsx']}) as any).expression;
+      return (template.ast(String(value), {plugins: ['jsx']}) as any)
+        .expression;
     case PropTypes.ReactNode:
       return (template.ast(`<>${value}</>`, {plugins: ['jsx']}) as any)
         .expression.children;
     case PropTypes.Overrides:
-      const activeValues = Object.entries(value).filter(
-        ([, val]: any) => val.active,
-      );
+      const activeValues = Object.entries(value as {
+        [key: string]: {active: boolean; style: string};
+      }).filter(([, val]: any) => val.active);
       if (activeValues.length === 0) return null;
       const keys = activeValues.map(([key, val]: [string, any]) =>
         t.objectProperty(
@@ -85,7 +86,7 @@ export const getAstReactHooks = (props: {[key: string]: TProp}) => {
     `const [%%name%%, %%setName%%] = React.useState(%%value%%);`,
   );
   Object.keys(props).forEach(name => {
-    if (props[name].meta && (props[name] as any).meta.stateful === true) {
+    if (props[name].stateful === true) {
       hooks.push(buildReactHook({
         name: t.identifier(name),
         setName: t.identifier(`set${name[0].toUpperCase() + name.slice(1)}`),
@@ -112,16 +113,6 @@ export const getAstImport = (
     ],
     t.stringLiteral(source),
   );
-};
-
-export const getEnumsToImport = (props: {[key: string]: TProp}) => {
-  const enums: string[] = [];
-  Object.keys(props).forEach(name => {
-    if (props[name].type === PropTypes.Enum && props[name].value) {
-      enums.push(name.toUpperCase());
-    }
-  });
-  return enums;
 };
 
 export const getAstJsxElement = (
@@ -194,36 +185,43 @@ export const getAstThemeWrapper = (
   );
 };
 
-const nameToImportSource = (name: string) =>
-  `baseui/${name
-    .split(/(?=[A-Z])/)
-    .join('-')
-    .toLowerCase()}`;
-
 export const getAstImports = (
-  componentName: string,
-  enums: string[],
-  extraImports?: TExtraImports,
+  importsConfig: TImportsConfig,
+  props: {[key: string]: TProp},
 ) => {
-  const defaultFrom = nameToImportSource(componentName);
-  const importList = {
-    ...(extraImports ? extraImports : {}),
-    [defaultFrom]: {
-      named: [
-        componentName,
-        ...(extraImports &&
-        extraImports[defaultFrom] &&
-        extraImports[defaultFrom].named
-          ? (extraImports[defaultFrom].named as string[])
-          : []),
-        ...enums,
-      ],
-      default:
-        extraImports && extraImports[defaultFrom]
-          ? extraImports[defaultFrom].default
-          : undefined,
-    },
-  };
+  // global scoped import that are always displayed
+  const importList = clone(importsConfig);
+
+  // prop level imports (typically enums related) that are displayed
+  // only when the prop is being used
+  Object.values(props).forEach(prop => {
+    if (prop.imports && prop.value && prop.value !== '') {
+      for (let [importFrom, importNames] of Object.entries(prop.imports)) {
+        if (!importList.hasOwnProperty(importFrom)) {
+          importList[importFrom] = {
+            named: [],
+            default: '',
+          };
+        }
+        if (importNames.default) {
+          importList[importFrom].default = importNames.default;
+        }
+        if (importNames.named && importNames.named.length > 0) {
+          if (!importList[importFrom].hasOwnProperty('named')) {
+            importList[importFrom]['named'] = [];
+          }
+          importList[importFrom].named = [
+            ...new Set(
+              (importList[importFrom].named as string[]).concat(
+                importNames.named,
+              ),
+            ),
+          ];
+        }
+      }
+    }
+  });
+
   return Object.keys(importList).map(from =>
     getAstImport(importList[from].named || [], from, importList[from].default),
   );
@@ -233,7 +231,7 @@ export const getAst = (
   props: {[key: string]: TProp},
   componentName: string,
   theme: any,
-  extraImports?: TExtraImports,
+  importsConfig: TImportsConfig,
 ) => {
   const {children, ...restProps} = props;
   const isCustomTheme =
@@ -247,11 +245,7 @@ export const getAst = (
   return t.file(
     t.program([
       reactImport,
-      ...getAstImports(
-        componentName,
-        getEnumsToImport(restProps),
-        extraImports,
-      ),
+      ...getAstImports(importsConfig, props),
       ...getAstThemeImport(isCustomTheme, themePrimitives),
       buildExport({
         body: [
@@ -301,8 +295,8 @@ export const getCode = (
   props: {[key: string]: TProp},
   componentName: string,
   theme: {themeValues: {[key: string]: string}; themeName: string},
-  extraImports?: TExtraImports,
+  importsConfig: TImportsConfig,
 ) => {
-  const ast = getAst(props, componentName, theme, extraImports);
+  const ast = getAst(props, componentName, theme, importsConfig);
   return formatAstAndPrint(ast as any);
 };

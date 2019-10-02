@@ -10,6 +10,13 @@ export interface STYLE_TYPE {
   toggle: 'toggle';
 }
 
+export interface LABEL_PLACEMENT {
+  top: 'top';
+  right: 'right';
+  bottom: 'bottom';
+  left: 'left';
+}
+
 type initialState = {
   checked?: boolean;
   isIndeterminate?: boolean;
@@ -116,3 +123,4 @@ export class Checkbox extends React.Component<CheckboxProps, CheckboxState> {
 
 export const STATE_TYPE: STATE_TYPE;
 export const STYLE_TYPE: STYLE_TYPE;
+export const LABEL_PLACEMENT: LABEL_PLACEMENT;

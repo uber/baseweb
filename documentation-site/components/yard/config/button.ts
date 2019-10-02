@@ -1,14 +1,20 @@
 import {Button, KIND, SIZE, SHAPE} from 'baseui/button';
 import {PropTypes} from '../const';
+import {TConfig} from '../types';
 
-export default {
-  scopeConfig: {
+const ButtonConfig: TConfig = {
+  imports: {
+    'baseui/button': {
+      named: ['Button'],
+    },
+  },
+  scope: {
     Button,
     KIND,
     SIZE,
     SHAPE,
   },
-  themeConfig: [
+  theme: [
     'buttonPrimaryFill',
     'buttonPrimaryText',
     'buttonPrimaryHover',
@@ -30,7 +36,7 @@ export default {
     'buttonDisabledFill',
     'buttonDisabledText',
   ],
-  propsConfig: {
+  props: {
     children: {
       value: 'Hello',
       type: PropTypes.ReactNode,
@@ -63,18 +69,33 @@ export default {
       options: KIND,
       type: PropTypes.Enum,
       description: 'Defines the kind (purpose) of a button.',
+      imports: {
+        'baseui/button': {
+          named: ['KIND'],
+        },
+      },
     },
     size: {
       value: undefined,
       options: SIZE,
       type: PropTypes.Enum,
       description: 'Defines the size of the button.',
+      imports: {
+        'baseui/button': {
+          named: ['SIZE'],
+        },
+      },
     },
     shape: {
       value: undefined,
       options: SHAPE,
       type: PropTypes.Enum,
       description: 'Defines the shape of the button.',
+      imports: {
+        'baseui/button': {
+          named: ['SHAPE'],
+        },
+      },
     },
     isLoading: {
       value: false,
@@ -90,23 +111,23 @@ export default {
       value: undefined,
       type: PropTypes.Overrides,
       description: 'Lets you customize all aspects of the component.',
-      meta: {
-        names: [
-          'BaseButton',
-          'EndEnhancer',
-          'LoadingSpinner',
-          'LoadingSpinnerContainer',
-          'StartEnhancer',
-        ],
-        sharedProps: {
-          $kind: 'kind',
-          $isSelected: 'isSelected',
-          $shape: 'shape',
-          $size: 'size',
-          $isLoading: 'isLoading',
-          $disabled: 'disabled',
-        },
+      names: [
+        'BaseButton',
+        'EndEnhancer',
+        'LoadingSpinner',
+        'LoadingSpinnerContainer',
+        'StartEnhancer',
+      ],
+      sharedProps: {
+        $kind: 'kind',
+        $isSelected: 'isSelected',
+        $shape: 'shape',
+        $size: 'size',
+        $isLoading: 'isLoading',
+        $disabled: 'disabled',
       },
     },
   },
 };
+
+export default ButtonConfig;

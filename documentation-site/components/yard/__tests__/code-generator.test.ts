@@ -3,7 +3,6 @@ import {
   getAstReactHooks,
   getAstImport,
   getAstImports,
-  getEnumsToImport,
   getAstThemeImport,
   getAstThemeWrapper,
   getCode,
@@ -269,9 +268,7 @@ describe('getAstReactHooks', () => {
               value: 'Hey',
               type: PropTypes.String,
               description: '',
-              meta: {
-                stateful: true,
-              },
+              stateful: true,
             },
             foo: {
               value: 'Not stateful',
@@ -297,33 +294,43 @@ describe('getAstImports', () => {
   test('return multiple named and default imports', () => {
     expect(
       generate(t.program(
-        getAstImports('Tabs', ['ORIENTATION'], {
-          'baseui/tabs': {
-            named: ['Tab'],
-            default: 'Root',
+        getAstImports(
+          {
+            'baseui/tabs': {
+              named: ['Tab'],
+              default: 'Root',
+            },
+            'react-motion': {
+              named: ['Motion'],
+            },
           },
-          'react-motion': {
-            named: ['Motion'],
+          {
+            a: {
+              value: true,
+              type: PropTypes.Boolean,
+              description: '',
+              imports: {
+                'baseui/tabs': {
+                  named: ['Tab', 'Tabs'],
+                  default: 'OverrideRoot',
+                },
+              },
+            },
+            b: {
+              value: undefined,
+              type: PropTypes.String,
+              description: '',
+              imports: {
+                'baseui/button': {
+                  named: ['Button'],
+                },
+              },
+            },
           },
-        }),
+        ),
       ) as any).code,
-    ).toBe(`import Root, { Tabs, Tab, ORIENTATION } from "baseui/tabs";
+    ).toBe(`import OverrideRoot, { Tab, Tabs } from "baseui/tabs";
 import { Motion } from "react-motion";`);
-  });
-});
-
-describe('getEnumsToImport', () => {
-  test('get enums', () => {
-    expect(
-      getEnumsToImport({
-        size: {
-          value: 'large',
-          options: {large: 'large'},
-          type: PropTypes.Enum,
-          description: '',
-        },
-      }),
-    ).toEqual(['SIZE']);
   });
 });
 
@@ -362,13 +369,13 @@ describe('getCode', () => {
             value: 'Hello',
             type: PropTypes.String,
             description: 'Input value attribute.',
-            meta: {stateful: true},
+            stateful: true,
           },
           onChange: {
             value: 'e => setValue(e.target.value)',
             type: PropTypes.Function,
             description: '',
-            meta: {propHook: {what: 'e.target.value', into: 'value'}},
+            propHook: {what: 'e.target.value', into: 'value'},
           },
           overrides: {
             value: {
@@ -380,13 +387,16 @@ describe('getCode', () => {
             },
             type: PropTypes.Overrides,
             description: '',
-            meta: {
-              names: ['Root'],
-            },
+            names: ['Root'],
           },
         },
         'Input',
         {themeValues: {inputFill: 'yellow'}, themeName: 'light'},
+        {
+          'baseui/input': {
+            named: ['Input'],
+          },
+        },
       ),
     ).toBe(`import * as React from "react";
 import { Input } from "baseui/input";
