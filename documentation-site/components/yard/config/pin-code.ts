@@ -28,6 +28,7 @@ const PincodeConfig: TConfig = {
     },
     ...omit(inputProps, [
       'value',
+      'placeholder',
       'startEnhancer',
       'endEnhancer',
       'onChange',
@@ -38,6 +39,12 @@ const PincodeConfig: TConfig = {
       'type',
       'inputRef',
     ]),
+    placeholder: {
+      value: undefined,
+      placeholder: 'x',
+      type: PropTypes.String,
+      description: 'Displayed when the pin code is not entered yet.',
+    },
     overrides: {
       value: undefined,
       type: PropTypes.Overrides,
