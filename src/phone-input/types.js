@@ -46,6 +46,7 @@ export type CountrySelectDropdownPropsT = {
   $mapIsoToLabel?: mapIsoToLabelT,
   $maxDropdownHeight: string,
   $overrides: {
+    CountrySelectContainer?: OverrideT<*>,
     CountrySelectDropdown?: OverrideT<*>,
     CountrySelectDropdownListItem?: OverrideT<*>,
     CountrySelectDropdownFlagColumn?: OverrideT<*>,
@@ -65,6 +66,7 @@ export type CountrySelectPropsT = {
   maxDropdownHeight: string,
   maxDropdownWidth: string,
   overrides: {
+    CountrySelectContainer?: OverrideT<*>,
     CountrySelectDropdown?: OverrideT<*>,
     CountrySelectDropdownListItem?: OverrideT<*>,
     CountrySelectDropdownFlagColumn?: OverrideT<*>,
@@ -108,6 +110,7 @@ export type PropsT = {
   onTextChange: (event: SyntheticInputEvent<HTMLInputElement>) => mixed,
   overrides: {
     Input?: OverrideT<*>,
+    CountrySelectContainer?: OverrideT<*>,
     CountrySelectDropdown?: OverrideT<*>,
     CountrySelectDropdownListItem?: OverrideT<*>,
     CountrySelectDropdownFlagColumn?: OverrideT<*>,
