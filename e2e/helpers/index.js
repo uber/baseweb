@@ -14,7 +14,6 @@ const axe = require('axe-core');
 const {printReceived} = require('jest-matcher-utils');
 const {resolve} = require('path');
 const {realpathSync} = require('fs');
-const {toMatchImageSnapshot} = require('jest-image-snapshot');
 
 const PATH_TO_AXE = './node_modules/axe-core/axe.min.js';
 const appDirectory = realpathSync(process.cwd());
@@ -135,8 +134,6 @@ expect.extend({
     };
   },
 });
-
-expect.extend({toMatchImageSnapshot});
 
 module.exports = {
   analyzeAccessibility,
