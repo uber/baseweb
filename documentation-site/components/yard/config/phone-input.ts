@@ -5,6 +5,11 @@ import {TConfig} from '../types';
 import {theme} from './input';
 
 const InputConfig: TConfig = {
+  imports: {
+    'baseui/phone-input': {
+      named: ['PhoneInput'],
+    },
+  },
   scope: {
     PhoneInput,
     COUNTRIES,
@@ -19,6 +24,11 @@ const InputConfig: TConfig = {
       enumName: 'COUNTRIES',
       description: 'Input value attribute.',
       stateful: true,
+      imports: {
+        'baseui/phone-input': {
+          named: ['COUNTRIES'],
+        },
+      },
     },
     onCountryChange: {
       value: '({option}) => setCountry(option)',
@@ -64,6 +74,11 @@ const InputConfig: TConfig = {
       options: SIZE,
       type: PropTypes.Enum,
       description: 'Renders component in provided size.',
+      imports: {
+        'baseui/phone-input': {
+          named: ['SIZE'],
+        },
+      },
     },
     maxDropdownHeight: {
       value: undefined,
