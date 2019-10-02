@@ -92,50 +92,7 @@ COUNTRIES: {
   />
 </Block>
 
-## Overrides
-
-<Overrides
-  name="Phone Input"
-  component={PhoneInputExports}
-  renderExample={props => <StatefulPhoneInput {...props} />}
-  whitelisted={[
-    'Input',
-    'DialCode',
-    'CountrySelect',
-    'CountrySelectDropdown',
-    'CountrySelectDropdownListItem',
-    'CountrySelectDropdownFlagColumn',
-    'CountrySelectDropdownNameColumn',
-    'CountrySelectDropdownDialcodeColumn',
-  ]}
-/>
-
 ## API
-
-<API
-  heading="PhoneInput API"
-  api={require('!!extract-react-types-loader!../../../src/phone-input/phone-input.js')}
-/>
-
-<API
-  heading="StatefulPhoneInput API"
-  api={require('!!extract-react-types-loader!../../../src/phone-input/stateful-phone-input.js')}
-/>
-
-<API
-  heading="StatefulPhoneInputContainer API"
-  api={require('!!extract-react-types-loader!../../../src/phone-input/stateful-phone-input-container.js')}
-/>
-
-<API
-  heading="CountrySelect API"
-  api={require('!!extract-react-types-loader!../../../src/phone-input/country-select.js')}
-/>
-
-<API
-  heading="CountrySelectDropdown API"
-  api={require('!!extract-react-types-loader!../../../src/phone-input/country-select-dropdown.js')}
-/>
 
 <Exports
   component={PhoneInputExports}
