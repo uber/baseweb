@@ -139,6 +139,7 @@
     "jest": "^24.0.0",
     "jest-circus": "^24.9.0",
     "jest-enzyme": "^7.0.1",
+    "jest-image-snapshot": "^2.11.0",
     "jest-matcher-utils": "^24.0.0",
     "jest-puppeteer": "^4.0.0",
     "jscodeshift": "^0.6.4",
