@@ -12,13 +12,13 @@ import {
   StyledRoot,
   StyledFlagContainer,
   StyledDialCode,
+  StyledCountrySelectContainer,
   StyledCountrySelectDropdownListItem as DefaultListItem,
   StyledCountrySelectDropdownFlagColumn as DefaultFlagColumn,
   StyledCountrySelectDropdownNameColumn as DefaultNameColumn,
   StyledCountrySelectDropdownDialcodeColumn as DefaultDialcodeColumn,
 } from './styled-components.js';
 import {COUNTRIES} from './constants.js';
-import {Block} from '../block/index.js';
 import {Select as DefaultSelect} from '../select/index.js';
 import {PLACEMENT} from '../popover/index.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
@@ -161,6 +161,10 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     selectProps.overrides,
   );
 
+  const [CountrySelectContainer, countrySelectContainerProps] = getOverrides(
+    overrides.CountrySelectContainer,
+    StyledCountrySelectContainer,
+  );
   const [FlagColumn, flagColumnProps] = getOverrides(
     overrides.CountrySelectDropdownFlagColumn,
     DefaultFlagColumn,
@@ -183,7 +187,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
   );
 
   return (
-    <Block display="flex" alignItems="center">
+    <CountrySelectContainer {...countrySelectContainerProps}>
       <Select
         clearable={false}
         disabled={disabled}
@@ -240,6 +244,6 @@ export default function CountrySelect(props: CountrySelectPropsT) {
       <DialCode {...sharedProps} {...dialCodeProps}>
         {country.dialCode}
       </DialCode>
-    </Block>
+    </CountrySelectContainer>
   );
 }
