@@ -12,6 +12,7 @@ import {
   StyledRoot,
   StyledFlagContainer,
   StyledDialCode,
+  StyledCountrySelectContainer,
   StyledCountrySelectDropdownListItem as DefaultListItem,
   StyledCountrySelectDropdownFlagColumn as DefaultFlagColumn,
   StyledCountrySelectDropdownNameColumn as DefaultNameColumn,
@@ -163,6 +164,10 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     selectProps.overrides,
   );
 
+  const [CountrySelectContainer, countrySelectContainerProps] = getOverrides(
+    overrides.CountrySelectContainer,
+    StyledCountrySelectContainer,
+  );
   const [FlagColumn, flagColumnProps] = getOverrides(
     overrides.CountrySelectDropdownFlagColumn,
     DefaultFlagColumn,
@@ -185,7 +190,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
   );
 
   return (
-    <div style={{display: 'flex', alignItems: 'center'}}>
+    <CountrySelectContainer {...countrySelectContainerProps}>
       <Select
         clearable={false}
         disabled={disabled}
@@ -242,6 +247,6 @@ export default function CountrySelect(props: CountrySelectPropsT) {
       <DialCode {...sharedProps} {...dialCodeProps}>
         {country.dialCode}
       </DialCode>
-    </div>
+    </CountrySelectContainer>
   );
 }
