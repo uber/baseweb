@@ -54,6 +54,11 @@ export const StyledDialCode = styled<{}>('div', ({$theme: {sizing}}) => ({
   marginLeft: sizing.scale100,
 }));
 
+export const StyledCountrySelectContainer = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+});
+
 export const StyledCountrySelectDropdownContainer = withStyle<
   typeof StyledList,
   HeightStyleProps,
