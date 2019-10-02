@@ -5,6 +5,9 @@ import {TConfig} from '../types';
 import {theme, inputProps} from './input';
 
 const TextareaConfig: TConfig = {
+  imports: {
+    'baseui/textarea': {named: ['Textarea']},
+  },
   scope: {
     Textarea,
     SIZE,

@@ -1,3 +1,4 @@
+import clone from 'just-clone';
 import {TProp, TImportsConfig} from './types';
 import {PropTypes} from './const';
 import {parse} from './ast';
@@ -114,16 +115,6 @@ export const getAstImport = (
   );
 };
 
-export const getEnumsToImport = (props: {[key: string]: TProp}) => {
-  const enums: string[] = [];
-  Object.keys(props).forEach(name => {
-    if (props[name].type === PropTypes.Enum && props[name].value) {
-      enums.push(props[name].enumName || name.toUpperCase());
-    }
-  });
-  return enums;
-};
-
 export const getAstJsxElement = (
   name: string,
   attrs: (t.JSXAttribute | null)[],
@@ -194,36 +185,43 @@ export const getAstThemeWrapper = (
   );
 };
 
-const nameToImportSource = (name: string) =>
-  `baseui/${name
-    .split(/(?=[A-Z])/)
-    .join('-')
-    .toLowerCase()}`;
-
 export const getAstImports = (
-  componentName: string,
-  enums: string[],
-  importsConfig?: TImportsConfig,
+  importsConfig: TImportsConfig,
+  props: {[key: string]: TProp},
 ) => {
-  const defaultFrom = nameToImportSource(componentName);
-  const importList = {
-    ...(importsConfig ? importsConfig : {}),
-    [defaultFrom]: {
-      named: [
-        componentName,
-        ...(importsConfig &&
-        importsConfig[defaultFrom] &&
-        importsConfig[defaultFrom].named
-          ? (importsConfig[defaultFrom].named as string[])
-          : []),
-        ...enums,
-      ],
-      default:
-        importsConfig && importsConfig[defaultFrom]
-          ? importsConfig[defaultFrom].default
-          : undefined,
-    },
-  };
+  // global scoped import that are always displayed
+  const importList = clone(importsConfig);
+
+  // prop level imports (typically enums related) that are displayed
+  // only when the prop is being used
+  Object.values(props).forEach(prop => {
+    if (prop.imports && prop.value && prop.value !== '') {
+      for (let [importFrom, importNames] of Object.entries(prop.imports)) {
+        if (!importList.hasOwnProperty(importFrom)) {
+          importList[importFrom] = {
+            named: [],
+            default: '',
+          };
+        }
+        if (importNames.default) {
+          importList[importFrom].default = importNames.default;
+        }
+        if (importNames.named && importNames.named.length > 0) {
+          if (!importList[importFrom].hasOwnProperty('named')) {
+            importList[importFrom]['named'] = [];
+          }
+          importList[importFrom].named = [
+            ...new Set(
+              (importList[importFrom].named as string[]).concat(
+                importNames.named,
+              ),
+            ),
+          ];
+        }
+      }
+    }
+  });
+
   return Object.keys(importList).map(from =>
     getAstImport(importList[from].named || [], from, importList[from].default),
   );
@@ -233,7 +231,7 @@ export const getAst = (
   props: {[key: string]: TProp},
   componentName: string,
   theme: any,
-  importsConfig?: TImportsConfig,
+  importsConfig: TImportsConfig,
 ) => {
   const {children, ...restProps} = props;
   const isCustomTheme =
@@ -247,11 +245,7 @@ export const getAst = (
   return t.file(
     t.program([
       reactImport,
-      ...getAstImports(
-        componentName,
-        getEnumsToImport(restProps),
-        importsConfig,
-      ),
+      ...getAstImports(importsConfig, props),
       ...getAstThemeImport(isCustomTheme, themePrimitives),
       buildExport({
         body: [
@@ -301,7 +295,7 @@ export const getCode = (
   props: {[key: string]: TProp},
   componentName: string,
   theme: {themeValues: {[key: string]: string}; themeName: string},
-  importsConfig?: TImportsConfig,
+  importsConfig: TImportsConfig,
 ) => {
   const ast = getAst(props, componentName, theme, importsConfig);
   return formatAstAndPrint(ast as any);
