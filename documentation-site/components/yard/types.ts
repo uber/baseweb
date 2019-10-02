@@ -31,14 +31,14 @@ export type TYardProps = {
   scope: {[key: string]: any};
   props: {[key: string]: TProp};
   theme: string[];
-  imports?: TImportsConfig;
+  imports: TImportsConfig;
 };
 
 export type TConfig = {
   scope: {[key: string]: any};
   props: {[key: string]: TProp};
   theme: string[];
-  imports?: TImportsConfig;
+  imports: TImportsConfig;
 };
 
 type TPropValueOverrides = {
@@ -62,6 +62,7 @@ export type TProp = {
   sharedProps?: {[key: string]: string | {type: string; description: string}};
   stateful?: boolean;
   propHook?: TPropHook;
+  imports?: TImportsConfig;
 };
 
 export type TState = {

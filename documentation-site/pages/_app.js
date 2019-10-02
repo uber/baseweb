@@ -115,7 +115,7 @@ export default class MyApp extends App {
 
   componentDidMount() {
     Router.onRouteChangeComplete = url => {
-      trackPageView(url);
+      trackPageView(url.split('?')[0]);
     };
     if (window.matchMedia) {
       const mmDark = window.matchMedia(DARK_MEDIA_QUERY);

@@ -64,6 +64,7 @@ export default class MenuStatefulContainer extends React.Component<
           rootRef.current,
           this.state.highlightedIndex === 0,
           this.state.highlightedIndex === this.props.items.length - 1,
+          'center',
         );
       }
 
