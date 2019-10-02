@@ -17,7 +17,6 @@ import {
   StyledCountrySelectDropdownNameColumn as DefaultNameColumn,
   StyledCountrySelectDropdownDialcodeColumn as DefaultDialcodeColumn,
 } from './styled-components.js';
-import {COUNTRIES} from './constants.js';
 import {Block} from '../block/index.js';
 import {Select as DefaultSelect} from '../select/index.js';
 import {PLACEMENT} from '../popover/index.js';
@@ -71,7 +70,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     $required: required,
     $size: size,
   };
-  const options = Object.values(COUNTRIES);
+  const options = Object.values(props.countries);
   const scrollIndex = Math.min(
     // $FlowFixMe
     options.findIndex(opt => opt.id === country.id) + 5,

@@ -56,6 +56,7 @@ export type CountrySelectDropdownPropsT = {
 };
 
 export type CountrySelectPropsT = {
+  countries: {[string]: CountryT},
   country: CountryT,
   disabled: boolean,
   error: boolean,
@@ -127,6 +128,11 @@ export type PropsT = {
   size: SizeT,
   /** Defines the value of the input element. */
   text: string,
+};
+
+export type LitePropsT = {
+  ...$Exact<PropsT>,
+  countries: {[string]: CountryT},
 };
 
 export type StatefulPhoneInputContainerPropsT = {
