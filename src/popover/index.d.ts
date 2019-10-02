@@ -104,6 +104,7 @@ export interface BasePopoverProps {
   triggerType?: TRIGGER_TYPE[keyof TRIGGER_TYPE];
   mountNode?: HTMLElement;
   animateOutTime?: number;
+  popperOptions?: any;
 }
 export type PopoverProps = BasePopoverProps & {
   children: React.ReactNode;
