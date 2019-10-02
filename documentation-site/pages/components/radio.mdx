@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
@@ -17,15 +16,19 @@ import Error from 'examples/radio/error.js';
 import Customization from 'examples/radio/overrides.js';
 import Disabled from 'examples/radio/disabled.js';
 
-import Overrides from '../../components/overrides';
 import {Radio, StatefulRadioGroup} from 'baseui/radio';
 import * as RadioExports from 'baseui/radio';
+
+import Yard from '../../components/yard/index';
+import radioYardConfig from '../../components/yard/config/radio';
 
 export default Layout;
 
 # Radio
 
 Radios are used when only one choice may be selected in a series of options.
+
+<Yard componentName="RadioGroup" placeholderHeight={122} {...radioYardConfig} />
 
 ## When to use
 
@@ -58,59 +61,5 @@ Radios are used when only one choice may be selected in a series of options.
 </Example>
 
 As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulRadioGroup`, which manages its own state.
-
-## Overrides
-
-<Overrides
-  name="Radio"
-  component={RadioExports}
-  whitelisted={[
-    'Root',
-    'RadioMarkInner',
-    'RadioMarkOuter',
-    'Label',
-    'Input',
-    'RadioGroupRoot',
-  ]}
-  renderExample={props => (
-    <StatefulRadioGroup
-      overrides={{RadioGroupRoot: props.overrides.RadioGroupRoot}}
-      name="choose one option"
-      initialState={{value: '2'}}
-    >
-      <Radio overrides={props.overrides} value="1">
-        First
-      </Radio>
-      <Radio overrides={props.overrides} value="2">
-        Second
-      </Radio>
-      <Radio overrides={props.overrides} value="3">
-        Third
-      </Radio>
-    </StatefulRadioGroup>
-  )}
-/>
-
-## API
-
-<API
-  heading="Radio API"
-  api={require('!!extract-react-types-loader!../../../src/radio/radio.js')}
-/>
-
-<API
-  heading="RadioGroup API"
-  api={require('!!extract-react-types-loader!../../../src/radio/radiogroup.js')}
-/>
-
-<API
-  heading="StatefulRadioGroup API"
-  api={require('!!extract-react-types-loader!../../../src/radio/stateful-radiogroup.js')}
-/>
-
-<API
-  heading="StatefulRadioGroupContainer API"
-  api={require('!!extract-react-types-loader!../../../src/radio/stateful-radiogroup-container.js')}
-/>
 
 <Exports component={RadioExports} title="Radio exports" path="baseui/radio" />

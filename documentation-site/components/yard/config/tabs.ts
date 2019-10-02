@@ -4,7 +4,7 @@ import {TConfig} from '../types';
 
 const TabsConfig: TConfig = {
   imports: {
-    'baseui/tabs': {named: ['Tab']},
+    'baseui/tabs': {named: ['Tabs']},
   },
   scope: {
     Tabs,
@@ -25,6 +25,9 @@ const TabsConfig: TConfig = {
 </Tab>`,
       type: PropTypes.ReactNode,
       description: `An array of Tab components.`,
+      imports: {
+        'baseui/tabs': {named: ['Tab']},
+      },
     },
     onChange: {
       value: '({ activeKey }) => {\n  setActiveKey(activeKey);\n}',
@@ -40,6 +43,9 @@ const TabsConfig: TConfig = {
       type: PropTypes.Enum,
       options: ORIENTATION,
       description: 'The orientation of the tab component.',
+      imports: {
+        'baseui/tabs': {named: ['ORIENTATION']},
+      },
     },
     activeKey: {
       value: '0',

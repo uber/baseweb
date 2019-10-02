@@ -3,6 +3,11 @@ import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
 const CheckboxConfig: TConfig = {
+  imports: {
+    'baseui/checkbox': {
+      named: ['Checkbox'],
+    },
+  },
   scope: {
     Checkbox,
     STYLE_TYPE,

@@ -45,6 +45,7 @@ export const buildPropsObj = (
       sharedProps: stateProps[name].sharedProps,
       stateful: stateProps[name].stateful,
       propHook: stateProps[name].propHook,
+      imports: stateProps[name].imports,
     };
   });
   return newProps;
