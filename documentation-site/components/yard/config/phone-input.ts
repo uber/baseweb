@@ -1,4 +1,4 @@
-import {PhoneInput, COUNTRIES} from 'baseui/phone-input';
+import {PhoneInput, COUNTRIES, SIZE} from 'baseui/phone-input';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
@@ -8,6 +8,7 @@ const InputConfig: TConfig = {
   scope: {
     PhoneInput,
     COUNTRIES,
+    SIZE,
   },
   theme,
   props: {
@@ -58,11 +59,57 @@ const InputConfig: TConfig = {
       type: PropTypes.Boolean,
       description: 'Renders component in positive state.',
     },
+    size: {
+      value: undefined,
+      options: SIZE,
+      type: PropTypes.Enum,
+      description: 'Renders component in provided size.',
+    },
+    maxDropdownHeight: {
+      value: undefined,
+      type: PropTypes.String,
+      description: 'Sets the max height of the country select dropdown.',
+      hidden: true,
+    },
+    maxDropdownWidth: {
+      value: undefined,
+      type: PropTypes.String,
+      description: 'Sets the max width of the country select dropdown.',
+      hidden: true,
+    },
+    mapIsoToLabel: {
+      value: undefined,
+      type: PropTypes.Function,
+      description:
+        'Function for mapping ISO codes to country names. Useful for localization of the country select dropdown.',
+      hidden: true,
+    },
+    id: {
+      value: undefined,
+      type: PropTypes.String,
+      description:
+        "Id attribute value to be added to the input element and as a label's for attribute value.",
+      hidden: true,
+    },
+    placeholder: {
+      value: '',
+      type: PropTypes.String,
+      description: "Input's placeholder.",
+    },
     overrides: {
       value: undefined,
       type: PropTypes.Overrides,
       description: 'Lets you customize all aspects of the component.',
-      names: ['Root'],
+      names: [
+        'CountrySelect',
+        'CountrySelectDropdown',
+        'CountrySelectDropdownDialcodeColumn',
+        'CountrySelectDropdownFlagColumn',
+        'CountrySelectDropdownListItem',
+        'CountrySelectDropdownNameColumn',
+        'DialCode',
+        'Input',
+      ],
       sharedProps: {},
     },
   },

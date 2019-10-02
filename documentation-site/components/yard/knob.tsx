@@ -134,7 +134,7 @@ const Knob: React.SFC<{
       const selectOptions = optionsKeys.map(option => {
         return {
           _key: option,
-          ...options[option],
+          ...(options[option] as Object),
         };
       });
       const valueKey = val && val.split('.')[1];
@@ -182,6 +182,7 @@ const Knob: React.SFC<{
           ) : (
             <Select
               options={selectOptions}
+              //@ts-ignore
               value={valueKey && options[valueKey]}
               valueKey="_key"
               onChange={({value}) =>
