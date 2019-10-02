@@ -9,9 +9,36 @@ LICENSE file in the root directory of this source tree.
 
 const {mount} = require('../../../e2e/helpers');
 
-describe('button', () => {
-  it('looks the same', async () => {
-    await mount(page, 'button');
-    await page.waitFor('button');
+it('button', async () => {
+  await mount(page, 'button');
+  const root = await page.$('#root');
+
+  // freeze animations
+  await page.addStyleTag({
+    content: `*, *::before, *::after {
+      -moz-transition: none !important;
+      transition: none !important;
+      -moz-animation: none !important;
+      animation: none !important;
+     }`,
+  });
+
+  // take a screenshot
+  let image = await root.screenshot();
+  expect(image).toMatchImageSnapshot({
+    customSnapshotIdentifier: function({currentTestName}) {
+      return currentTestName;
+    },
+  });
+
+  // hover over a button
+  await page.hover('button');
+
+  // take a screenshot
+  image = await root.screenshot();
+  expect(image).toMatchImageSnapshot({
+    customSnapshotIdentifier: function({currentTestName}) {
+      return `${currentTestName}-hover`;
+    },
   });
 });
