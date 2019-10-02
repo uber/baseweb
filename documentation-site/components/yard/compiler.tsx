@@ -32,7 +32,7 @@ const evalCode = (ast: babel.types.Node, scope: any) => {
   const resultCode = transformedCode ? transformedCode.code : '';
   const scopeKeys = Object.keys(scope);
   const scopeValues = Object.values(scope);
-  // @ts-ignore
+  //@ts-ignore
   const res = new Function('React', ...scopeKeys, `return ${resultCode}`);
   return res(React, ...scopeValues);
 };
@@ -95,14 +95,19 @@ const Compiler: React.FC<{
   return (
     <div
       className={css({
-        display: 'flex',
         minHeight: `${minHeight}px`,
-        justifyContent: 'center',
         paddingTop: theme.sizing.scale600,
         paddingBottom: theme.sizing.scale600,
       })}
     >
-      {Element ? <Element /> : <PlaceholderElement />}
+      <div
+        className={css({
+          display: 'flex',
+          justifyContent: 'center',
+        })}
+      >
+        {Element ? <Element /> : <PlaceholderElement />}
+      </div>
     </div>
   );
 };
