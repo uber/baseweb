@@ -137,6 +137,7 @@ const Knob: React.SFC<{
           ...(options[option] as Object),
         };
       });
+      //@ts-ignore
       const valueKey = val && val.split('.')[1];
       return (
         <Spacing>
