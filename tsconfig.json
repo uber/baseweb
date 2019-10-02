@@ -17,6 +17,7 @@
 
     /* Additional Checks */
     "noUnusedLocals": true /* Report errors on unused locals. */,
+    "downlevelIteration": true /* Provide full support for iterables in for..of, spread and destructuring when targeting ES5 or ES3. */,
     "noUnusedParameters": true /* Report errors on unused parameters. */,
     "noImplicitReturns": true /* Report error when not all code paths in function return a value. */,
     "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */,

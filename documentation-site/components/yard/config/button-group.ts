@@ -5,8 +5,8 @@ import {TConfig} from '../types';
 
 const ButtonGroupConfig: TConfig = {
   imports: {
-    'baseui/button': {
-      named: ['Button'],
+    'baseui/button-group': {
+      named: ['ButtonGroup'],
     },
   },
   scope: {
@@ -42,6 +42,11 @@ const ButtonGroupConfig: TConfig = {
         '<Button>One</Button>\n<Button>Two</Button>\n<Button>Three</Button>',
       type: PropTypes.ReactNode,
       description: 'Buttons within the group',
+      imports: {
+        'baseui/button': {
+          named: ['Button'],
+        },
+      },
     },
     onClick: {
       value: '(event, index) => {\n  setSelected([index]);\n}',
