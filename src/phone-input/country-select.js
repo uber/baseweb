@@ -72,11 +72,8 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     $size: size,
   };
   const options = Object.values(COUNTRIES);
-  const scrollIndex = Math.min(
-    // $FlowFixMe
-    options.findIndex(opt => opt.id === country.id) + 5,
-    options.length - 1,
-  );
+  // $FlowFixMe
+  const scrollIndex = options.findIndex(opt => opt.id === country.id);
   const baseOverrides = {
     Root: {
       component: StyledRoot,
