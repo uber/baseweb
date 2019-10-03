@@ -169,6 +169,18 @@ export const StyledWeek = styled<SharedStylePropsT>('div', props => {
   };
 });
 
+function generateDayStyles(defaultCode, defaultStyle) {
+  const codeForSM =
+    defaultCode.substr(0, 12) + '1' + defaultCode.substr(12 + 1);
+  const codeForEM =
+    defaultCode.substr(0, 13) + '1' + defaultCode.substr(13 + 1);
+  return {
+    [defaultCode]: defaultStyle,
+    [codeForSM]: defaultStyle,
+    [codeForEM]: defaultStyle,
+  };
+}
+
 function getDayStyles(code, {colors}) {
   const disabledDateStyle = {
     color: colors.calendarForegroundDisabled,
@@ -183,35 +195,17 @@ function getDayStyles(code, {colors}) {
   // '000000000000000'
   const dayStateStyle = {
     // highlighted date
-    '001000000000000': {
+    ...generateDayStyles('001000000000000', {
       color: colors.calendarDayForegroundPseudoSelected,
-    },
-    '001000000000100': {
-      color: colors.calendarDayForegroundPseudoSelected,
-    },
-    '001000000000010': {
-      color: colors.calendarDayForegroundPseudoSelected,
-    },
+    }),
     // selected date
-    '000100000000000': {
+    ...generateDayStyles('000100000000000', {
       color: colors.calendarDayForegroundSelected,
-    },
-    '000100000000100': {
-      color: colors.calendarDayForegroundSelected,
-    },
-    '000100000000010': {
-      color: colors.calendarDayForegroundSelected,
-    },
+    }),
     // selected hightlighted date
-    '001100000000000': {
+    ...generateDayStyles('001100000000000', {
       color: colors.calendarDayForegroundSelectedHighlighted,
-    },
-    '001100000000100': {
-      color: colors.calendarDayForegroundSelectedHighlighted,
-    },
-    '001100000000010': {
-      color: colors.calendarDayForegroundSelectedHighlighted,
-    },
+    }),
     // disabled date
     '010000000000000': {
       color: colors.calendarForegroundDisabled,
@@ -228,42 +222,20 @@ function getDayStyles(code, {colors}) {
     },
     // Range Datepicker
     // range: highlighted date outside of a selected range
-    '101000000000000': highlightedStyle,
-    '101000000000100': highlightedStyle,
-    '101000000000010': highlightedStyle,
-    '101010000000000': highlightedStyle,
-    '101010000000100': highlightedStyle,
-    '101010000000010': highlightedStyle,
+    ...generateDayStyles('101000000000000', highlightedStyle),
+    ...generateDayStyles('101010000000000', highlightedStyle),
     // range: disabled date
-    '110000000000000': disabledDateStyle,
-    '110000000000100': disabledDateStyle,
-    '110000000000010': disabledDateStyle,
-    '110010000000000': disabledDateStyle,
-    '110010000000100': disabledDateStyle,
-    '110010000000010': disabledDateStyle,
-    '110000001010000': disabledDateStyle,
-    '110000001010100': disabledDateStyle,
-    '110000001010010': disabledDateStyle,
-    '110000001001000': disabledDateStyle,
-    '110000001001100': disabledDateStyle,
-    '110000001001010': disabledDateStyle,
+    ...generateDayStyles('110000000000000', disabledDateStyle),
+    ...generateDayStyles('110010000000000', disabledDateStyle),
+    ...generateDayStyles('110000001010000', disabledDateStyle),
+    ...generateDayStyles('110000001001000', disabledDateStyle),
     // range: disabled highlighted date
-    '111000000000000': disabledDateStyle,
-    '111000000000100': disabledDateStyle,
-    '111000000000010': disabledDateStyle,
-    '111010000000000': disabledDateStyle,
-    '111010000000100': disabledDateStyle,
-    '111010000000010': disabledDateStyle,
-    '111000001010000': disabledDateStyle,
-    '111000001010100': disabledDateStyle,
-    '111000001010010': disabledDateStyle,
-    '111000001001000': disabledDateStyle,
-    '111000001001100': disabledDateStyle,
-    '111000001001010': disabledDateStyle,
+    ...generateDayStyles('111000000000000', disabledDateStyle),
+    ...generateDayStyles('111010000000000', disabledDateStyle),
+    ...generateDayStyles('111000001010000', disabledDateStyle),
+    ...generateDayStyles('111000001001000', disabledDateStyle),
     // disabled pseudo-highlighted
-    '110000001100000': disabledDateStyle,
-    '110000001100100': disabledDateStyle,
-    '110000001100010': disabledDateStyle,
+    ...generateDayStyles('110000001100000', disabledDateStyle),
     // range: selected date
     '100100000000000': {
       color: colors.calendarDayForegroundSelected,
@@ -271,25 +243,19 @@ function getDayStyles(code, {colors}) {
     },
     // range: selected highlighted date
     // when single date selected in a range
-    '101100000000000': {
+    ...generateDayStyles('101100000000000', {
       color: colors.calendarDayForegroundSelectedHighlighted,
       ':before': {content: null},
-    },
-    '101100000000100': {
-      color: colors.calendarDayForegroundSelectedHighlighted,
-      ':before': {content: null},
-    },
-    '101100000000010': {
-      color: colors.calendarDayForegroundSelectedHighlighted,
-      ':before': {content: null},
-    },
+    }),
     // range: selected start and end dates are the same
-    '100111100000000': highlightedStyle,
-    '100111100000100': highlightedStyle,
-    '100111100000010': highlightedStyle,
-    '101111100000000': highlightedStyle,
-    '101111100000100': highlightedStyle,
-    '101111100000010': highlightedStyle,
+    ...generateDayStyles('100111100000000', {
+      color: colors.calendarDayForegroundSelected,
+      ':before': {content: null},
+    }),
+    ...generateDayStyles('101111100000000', {
+      color: colors.calendarDayForegroundSelectedHighlighted,
+      ':before': {content: null},
+    }),
     // range: selected start date
     '100111000000000': {
       color: colors.calendarDayForegroundSelected,
@@ -320,28 +286,14 @@ function getDayStyles(code, {colors}) {
     },
     // range: first selected date while a range is highlighted but no second date selected yet
     // highlighted range on the right from the selected
-    '100100001010000': {
+    ...generateDayStyles('100100001010000', {
       color: colors.calendarDayForegroundSelected,
-    },
-    '100100001010100': {
-      color: colors.calendarDayForegroundSelected,
-    },
-    '100100001010010': {
-      color: colors.calendarDayForegroundSelected,
-    },
-    '100100001001000': {
-      color: colors.calendarDayForegroundSelected,
-      ':before': {left: null, right: '50%'},
-    },
+    }),
     // highlighted range on the left from the selected
-    '100100001001100': {
+    ...generateDayStyles('100100001001000', {
       color: colors.calendarDayForegroundSelected,
       ':before': {left: null, right: '50%'},
-    },
-    '100100001001010': {
-      color: colors.calendarDayForegroundSelected,
-      ':before': {left: null, right: '50%'},
-    },
+    }),
     // range: second date in a range that is highlighted but not selected
     '101000001010000': {
       ':before': {left: null, right: '50%'},

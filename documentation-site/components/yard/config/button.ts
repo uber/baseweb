@@ -3,6 +3,11 @@ import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
 const ButtonConfig: TConfig = {
+  imports: {
+    'baseui/button': {
+      named: ['Button'],
+    },
+  },
   scope: {
     Button,
     KIND,
@@ -64,18 +69,33 @@ const ButtonConfig: TConfig = {
       options: KIND,
       type: PropTypes.Enum,
       description: 'Defines the kind (purpose) of a button.',
+      imports: {
+        'baseui/button': {
+          named: ['KIND'],
+        },
+      },
     },
     size: {
       value: undefined,
       options: SIZE,
       type: PropTypes.Enum,
       description: 'Defines the size of the button.',
+      imports: {
+        'baseui/button': {
+          named: ['SIZE'],
+        },
+      },
     },
     shape: {
       value: undefined,
       options: SHAPE,
       type: PropTypes.Enum,
       description: 'Defines the shape of the button.',
+      imports: {
+        'baseui/button': {
+          named: ['SHAPE'],
+        },
+      },
     },
     isLoading: {
       value: false,

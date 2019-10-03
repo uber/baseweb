@@ -6,6 +6,7 @@ import {PropTypes} from './const';
 import {Input} from 'baseui/input';
 import {Radio, RadioGroup} from 'baseui/radio';
 import {Checkbox} from 'baseui/checkbox';
+import {Select} from 'baseui/select';
 import {StatefulTooltip} from 'baseui/tooltip';
 import PopupError from './popup-error';
 import Editor from './editor';
@@ -64,7 +65,7 @@ const Knob: React.SFC<{
   type,
   val,
   set,
-  options,
+  options = {},
   description,
   placeholder,
   enumName,
@@ -128,46 +129,69 @@ const Knob: React.SFC<{
         </Spacing>
       );
     case PropTypes.Enum:
+      const optionsKeys = Object.keys(options);
+      const numberOfOptions = optionsKeys.length;
+      const selectOptions = optionsKeys.map(option => {
+        return {
+          _key: option,
+          ...(options[option] as Object),
+        };
+      });
+      //@ts-ignore
+      const valueKey = val && val.split('.')[1];
       return (
         <Spacing>
           <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
-          <RadioGroup
-            name="radio group"
-            align="horizontal"
-            overrides={{
-              RadioGroupRoot: {
-                style: ({$theme}) => ({
-                  flexWrap: 'wrap',
-                  marginTop: 0,
-                  marginBottom: $theme.sizing.scale300,
-                }),
-              },
-            }}
-            //@ts-ignore
-            onChange={e => set(e.target.value)}
-            value={String(val)}
-          >
-            {Object.keys(options ? options : {}).map(opt => (
-              <Radio
-                key={opt}
-                value={`${enumName || name.toUpperCase()}.${opt}`}
-                overrides={{
-                  Root: {
-                    style: ({$theme}) => ({
-                      marginRight: $theme.sizing.scale600,
-                      marginTop: 0,
-                      marginBottom: 0,
-                    }),
-                  },
-                  Label: {
-                    style: ({$theme}) => $theme.typography.font250,
-                  },
-                }}
-              >
-                {opt}
-              </Radio>
-            ))}
-          </RadioGroup>
+          {numberOfOptions < 6 ? (
+            <RadioGroup
+              name="radio group"
+              align="horizontal"
+              overrides={{
+                RadioGroupRoot: {
+                  style: ({$theme}) => ({
+                    flexWrap: 'wrap',
+                    marginTop: 0,
+                    marginBottom: $theme.sizing.scale300,
+                  }),
+                },
+              }}
+              //@ts-ignore
+              onChange={e => set(e.target.value)}
+              value={String(val)}
+            >
+              {Object.keys(options).map(opt => (
+                <Radio
+                  key={opt}
+                  value={`${enumName || name.toUpperCase()}.${opt}`}
+                  overrides={{
+                    Root: {
+                      style: ({$theme}) => ({
+                        marginRight: $theme.sizing.scale600,
+                        marginTop: 0,
+                        marginBottom: 0,
+                      }),
+                    },
+                    Label: {
+                      style: ({$theme}) => $theme.typography.font250,
+                    },
+                  }}
+                >
+                  {opt}
+                </Radio>
+              ))}
+            </RadioGroup>
+          ) : (
+            <Select
+              options={selectOptions}
+              //@ts-ignore
+              value={valueKey && options[valueKey]}
+              valueKey="_key"
+              onChange={({value}) =>
+                set(`${enumName || name.toUpperCase()}.${value[0]._key}`)
+              }
+            />
+          )}
+
           <PopupError error={error} />
         </Spacing>
       );

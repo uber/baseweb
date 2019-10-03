@@ -5,6 +5,11 @@ import {TConfig} from '../types';
 import {theme, inputProps} from './input';
 
 const PincodeConfig: TConfig = {
+  imports: {
+    'baseui/pin-code': {
+      named: ['PinCode'],
+    },
+  },
   scope: {
     PinCode,
     SIZE,

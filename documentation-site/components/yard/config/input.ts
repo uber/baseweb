@@ -52,6 +52,11 @@ export const inputProps = {
     options: SIZE,
     type: PropTypes.Enum,
     description: 'Renders component in provided size.',
+    imports: {
+      'baseui/input': {
+        named: ['SIZE'],
+      },
+    },
   },
   placeholder: {
     value: 'Controlled Input',
@@ -114,6 +119,11 @@ export const inputProps = {
     type: PropTypes.Enum,
     description: `Defines styles for inputs that are grouped with other controls.`,
     hidden: true,
+    imports: {
+      'baseui/input': {
+        named: ['ADJOINED'],
+      },
+    },
   },
   autoComplete: {
     value: undefined,
@@ -193,6 +203,11 @@ export const inputProps = {
 };
 
 const InputConfig: TConfig = {
+  imports: {
+    'baseui/input': {
+      named: ['Input'],
+    },
+  },
   scope: {
     Input,
     SIZE,
