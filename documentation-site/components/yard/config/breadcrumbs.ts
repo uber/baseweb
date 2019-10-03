@@ -13,11 +13,14 @@ const BreadcrumbsConfig: TConfig = {
   theme: ['breadcrumbsText', 'breadcrumbsSeparatorFill'],
   props: {
     children: {
-      value: `
-        <StyledLink href="#basic-parent">Parent Page</StyledLink>
-        <StyledLink href="#basic-subparent">Sub-Parent Page</StyledLink>
-        <span>Current Page</span>
-      `,
+      value: `<StyledLink href="#parent">
+  Parent Page
+</StyledLink>
+<StyledLink href="#sub">
+  Sub-Parent Page
+</StyledLink>
+<span>Current Page</span>
+`,
       type: PropTypes.ReactNode,
       description: 'Elements separated by divider',
       imports: {
