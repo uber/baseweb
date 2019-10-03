@@ -53,7 +53,7 @@ export type PropsT = {|
   onFileDialogCancel?: () => mixed,
   preventDropOnDocument?: boolean,
 
-  // baseui
+  // Error message to be displayed
   errorMessage?: string,
   onCancel?: () => mixed,
   onRetry?: () => mixed,
