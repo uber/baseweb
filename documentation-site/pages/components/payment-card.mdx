@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
@@ -15,7 +14,6 @@ import Uncontrolled from 'examples/payment-card/uncontrolled.js';
 import DefaultValue from 'examples/payment-card/defaultvalue.js';
 import Form from 'examples/payment-card/form.js';
 
-import Overrides from '../../components/overrides';
 import {StatefulPaymentCard} from 'baseui/payment-card';
 
 import * as PaymentCardExports from 'baseui/payment-card';
@@ -23,9 +21,18 @@ import * as InputExports from 'baseui/input';
 
 import {Table} from 'baseui/table';
 
+import Yard from '../../components/yard/index';
+import paymentCardYardConfig from '../../components/yard/config/payment-card';
+
 export default Layout;
 
 # Payment Card
+
+<Yard
+  componentName="PaymentCard"
+  placeholderHeight={48}
+  {...paymentCardYardConfig}
+/>
 
 The Payment Card input **automatically detects and formats credit card types**. It shows a small thumbnail icon of the parsed credit card brand to let users know they have entered their card in the correct format. The supported credit card brands are listed here:
 
@@ -73,22 +80,6 @@ package that Base Web uses under the hood too.
 </Example>
 
 As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulPaymentCard`, which manages its own state.
-
-## Overrides
-
-<Overrides
-  name="Payment Card"
-  component={{...PaymentCardExports, ...InputExports}}
-  blacklisted={['InputEnhancer', 'StartEnhancer', 'EndEnhancer']}
-  renderExample={props => <StatefulPaymentCard overrides={props.overrides} />}
-/>
-
-## API
-
-<API
-  heading="PaymentCard API"
-  api={require('!!extract-react-types-loader!../../../src/payment-card/payment-card.js')}
-/>
 
 <Exports
   component={PaymentCardExports}
