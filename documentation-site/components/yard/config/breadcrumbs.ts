@@ -26,6 +26,7 @@ const BreadcrumbsConfig: TConfig = {
     },
     ariaLabel: {
       value: undefined,
+      description: 'Elements separated by divider',
       type: PropTypes.String,
     },
     overrides: {
