@@ -37,6 +37,7 @@ const Editor: React.FC<{
     plain: {
       ...plainStyles.plain,
       fontSize: small ? '13px' : '14px',
+      whiteSpace: 'break-spaces',
       backgroundColor: focused
         ? theme.colors.inputFillActive
         : theme.colors.inputFill,
@@ -50,7 +51,8 @@ const Editor: React.FC<{
         backgroundColor: editorTheme.plain.backgroundColor,
         paddingLeft: '4px',
         paddingRight: '4px',
-        height: small && !focused ? '40px' : 'auto',
+        height: small && !focused ? '36px' : 'auto',
+        maxWidth: small ? '255px' : 'auto',
         overflow: 'hidden',
         border: focused
           ? `2px solid ${theme.colors.borderFocus}`
@@ -69,8 +71,8 @@ const Editor: React.FC<{
         onValueChange={code => onChange(code)}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
-        padding={small ? 6 : 12}
-        style={editorTheme.plain}
+        padding={small ? 4 : 12}
+        style={editorTheme.plain as any}
       />
     </div>
   );

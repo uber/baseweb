@@ -6,7 +6,7 @@ import {PropTypes} from './const';
 import {Input} from 'baseui/input';
 import {Radio, RadioGroup} from 'baseui/radio';
 import {Checkbox} from 'baseui/checkbox';
-import {Select} from 'baseui/select';
+import {Select, SIZE} from 'baseui/select';
 import {StatefulTooltip} from 'baseui/tooltip';
 import PopupError from './popup-error';
 import Editor from './editor';
@@ -100,13 +100,6 @@ const Knob: React.SFC<{
             error={Boolean(error)}
             onChange={event => set((event.target as any).value)}
             placeholder={placeholder}
-            overrides={{
-              Input: {
-                style: {
-                  height: '36px',
-                },
-              },
-            }}
             size="compact"
             value={val ? String(val) : undefined}
           />
@@ -182,6 +175,7 @@ const Knob: React.SFC<{
             </RadioGroup>
           ) : (
             <Select
+              size={SIZE.compact}
               options={selectOptions}
               //@ts-ignore
               value={valueKey && options[valueKey]}
