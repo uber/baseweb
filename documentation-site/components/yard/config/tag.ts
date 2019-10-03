@@ -33,7 +33,8 @@ const TagConfig: TConfig = {
       description: `onClick handler for the action button element.`,
     },
     closeable: {
-      value: false,
+      value: undefined,
+      renderFalseValue: true,
       type: PropTypes.Boolean,
       description: `Include or exclude the "x" button and click action.`,
     },
