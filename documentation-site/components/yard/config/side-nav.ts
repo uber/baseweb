@@ -78,9 +78,18 @@ const SideNavigationConfig: TConfig = {
         'SubNavContainer',
       ],
       sharedProps: {
-        $active: PropTypes.Boolean,
-        $level: PropTypes.Number,
-        $selectable: PropTypes.Boolean,
+        $active: {
+          type: PropTypes.Boolean,
+          description: 'True if nav item is active.',
+        },
+        $level: {
+          type: PropTypes.Number,
+          description: 'Indicates the nav item nesting level.',
+        },
+        $selectable: {
+          type: PropTypes.Boolean,
+          description: 'True if the nav item is selectable.',
+        },
       },
     },
   },
