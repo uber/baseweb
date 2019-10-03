@@ -20,9 +20,18 @@ import Overrides from '../../components/overrides';
 import OverridesExample from 'examples/file-uploader/_overrides_component.js';
 import * as FileUploaderExports from 'baseui/file-uploader';
 
+import Yard from '../../components/yard/index';
+import fileUploaderYardConfig from '../../components/yard/config/file-uploader';
+
 export default Layout;
 
 # File Uploader
+
+<Yard
+  componentName="FileUploader"
+  placeholderHeight={180}
+  {...fileUploaderYardConfig}
+/>
 
 Creates a dropzone for file uploads.
 
