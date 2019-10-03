@@ -2901,6 +2901,11 @@
   dependencies:
     "@types/jest-diff" "*"
 
+"@types/just-pick@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@types/just-pick/-/just-pick-2.1.0.tgz#6047b6e2dae44c13d4a52dfe66815f286f6cf0d1"
+  integrity sha512-rI0414YLAJwo+eFUiEIzkHTilR6BbUNrWXKV5l2dY+8ag40Mtt8ewWLCDGs6uBWQfWZKQwz1QDdhiMGq8Ig6RQ==
+
 "@types/minimatch@*":
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
@@ -11253,6 +11258,11 @@ just-omit@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/just-omit/-/just-omit-1.1.0.tgz#ea507d3a251a36383d09e47324181d7f4acb2ea6"
   integrity sha512-MBDr0a1Yyzht8KK3RS2oUKtJSKRrm+6txDuEFJOXoALnX4h+FcQyWSKVNDlZiClOSIRf1PkzJ+QkKm0pjLS7Mw==
+
+just-pick@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/just-pick/-/just-pick-2.1.0.tgz#534553da8d71bf9ff4dc94f432f06201e0c912ca"
+  integrity sha512-C1PuyjBfPOqv8mHxva3tcEG/BuZfyTjeNpFbg7/R9c/+/YVqVQd/tECZ7l4QX4vhONSRiOlJ6NyTbBJLMRw0wg==
 
 kefir@^3.7.3:
   version "3.8.3"
