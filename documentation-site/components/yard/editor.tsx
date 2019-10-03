@@ -72,7 +72,7 @@ const Editor: React.FC<{
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
         padding={small ? 4 : 12}
-        style={editorTheme.plain}
+        style={editorTheme.plain as any}
       />
     </div>
   );
