@@ -5,6 +5,8 @@ import {OnItemSelect} from '../menu';
 import {Override} from '../overrides';
 import {Locale} from '../locale';
 
+export {SIZE} from '../input';
+
 export interface TYPE {
   select: 'select';
   search: 'search';
