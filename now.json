@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "package.json",
+      "src": "./build-now.sh",
       "use": "@now/static-build",
       "config": {"distDir": "public"}
     }
