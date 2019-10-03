@@ -1,4 +1,5 @@
 import {Breadcrumbs} from 'baseui/breadcrumbs';
+import {StyledLink} from 'baseui/link';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
@@ -8,13 +9,20 @@ const BreadcrumbsConfig: TConfig = {
       named: ['Breadcrumbs'],
     },
   },
-  scope: {Breadcrumbs},
+  scope: {Breadcrumbs, StyledLink},
   theme: ['breadcrumbsText', 'breadcrumbsSeparatorFill'],
   props: {
     children: {
-      value: '<span>hello</span><span>world</span>',
+      value: `
+        <StyledLink href="#basic-parent">Parent Page</StyledLink>
+        <StyledLink href="#basic-subparent">Sub-Parent Page</StyledLink>
+        <span>Current Page</span>
+      `,
       type: PropTypes.ReactNode,
       description: 'Elements separated by divider',
+      imports: {
+        'baseui/link': {named: ['StyledLink']},
+      },
     },
     ariaLabel: {
       value: undefined,
