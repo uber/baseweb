@@ -15,6 +15,7 @@ const {mount} = require('../e2e/helpers');
 
 const toMatchImageSnapshot = configureToMatchImageSnapshot({
   customDiffDir: '__vrt_diffs__',
+  diffDirection: 'vertical',
 });
 
 expect.extend({toMatchImageSnapshot});
