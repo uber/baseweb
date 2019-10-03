@@ -18,9 +18,18 @@ import {Breadcrumbs} from 'baseui/breadcrumbs';
 import * as BreadcrumbsExports from 'baseui/breadcrumbs';
 import {StyledLink as Link} from 'baseui/link';
 
+import Yard from '../../components/yard/index';
+import breadcrumbsYardConfig from '../../components/yard/config/breadcrumbs';
+
 export default Layout;
 
 # Breadcrumbs
+
+<Yard
+  componentName="Breadcrumbs"
+  placeholderHeight={52}
+  {...breadcrumbsYardConfig}
+/>
 
 The Breadcrumbs component is secondary navigation scheme that reveals
 the user’s location in an application.
@@ -55,11 +64,6 @@ This is the recommended approach where SEO/Accessibility is important.
 />
 
 ## API
-
-<API
-  heading="Breadcrumbs API"
-  api={require('!!extract-react-types-loader!../../../src/breadcrumbs/breadcrumbs.js')}
-/>
 
 <Exports
   component={BreadcrumbsExports}
