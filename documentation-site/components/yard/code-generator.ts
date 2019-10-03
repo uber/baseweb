@@ -273,7 +273,7 @@ export const formatAstAndPrint = (ast: t.Program, printWidth?: number) => {
   const result = (prettier as any).__debug.formatAST(ast, {
     originalText: '',
     parser: 'babel',
-    printWidth: printWidth ? printWidth : 70,
+    printWidth: printWidth ? printWidth : 58,
     plugins: [parsers],
   });
   return (
