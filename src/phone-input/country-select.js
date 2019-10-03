@@ -19,7 +19,7 @@ import {
   StyledCountrySelectDropdownDialcodeColumn as DefaultDialcodeColumn,
 } from './styled-components.js';
 import {COUNTRIES} from './constants.js';
-import {Select as DefaultSelect} from '../select/index.js';
+import {SingleSelect as DefaultSelect} from '../select/index.js';
 import {PLACEMENT} from '../popover/index.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import defaultProps from './default-props.js';
