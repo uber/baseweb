@@ -4,7 +4,12 @@ import {TConfig} from '../types';
 
 import {theme} from './input';
 
-const InputConfig: TConfig = {
+const countriesEnum: {[key: string]: string} = {};
+Object.values(COUNTRIES).forEach(country => {
+  countriesEnum[country.id] = country.label;
+});
+
+const PhoneInputConfig: TConfig = {
   imports: {
     'baseui/phone-input': {
       named: ['PhoneInput'],
@@ -19,7 +24,7 @@ const InputConfig: TConfig = {
   props: {
     country: {
       value: undefined,
-      options: COUNTRIES,
+      options: countriesEnum,
       type: PropTypes.Enum,
       enumName: 'COUNTRIES',
       description: 'Input value attribute.',
@@ -130,4 +135,4 @@ const InputConfig: TConfig = {
   },
 };
 
-export default InputConfig;
+export default PhoneInputConfig;
