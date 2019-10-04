@@ -10,6 +10,7 @@ import {Button, KIND, SIZE} from 'baseui/button';
 import {ButtonGroup} from 'baseui/button-group';
 import copy from 'copy-to-clipboard';
 import {trackEvent} from '../../helpers/ga';
+import debounce from 'lodash/debounce';
 
 // transformations, code generation
 import {transformBeforeCompilation} from './ast';
@@ -126,21 +127,20 @@ const Yard: React.FC<
   // this callback is secretely inserted into props marked with
   // "propHook" this way we can get notified when the internal
   // state of previewed component is changed by user
-  const __yard_onChange = (
-    componentName: string,
-    propName: string,
-    propValue: TPropValue,
-  ) => {
-    !hydrated && setHydrated(true);
-    const newCode = getCode(
-      buildPropsObj(state.props, {[propName]: propValue}),
-      componentName,
-      getThemeForCodeGenerator(themeConfig, state.theme, theme),
-      importsConfig,
-    );
-    updatePropsAndCodeNoRecompile(dispatch, newCode, propName, propValue);
-    updateUrl(pathname, newCode);
-  };
+  const __yard_onChange = debounce(
+    (componentName: string, propName: string, propValue: TPropValue) => {
+      !hydrated && setHydrated(true);
+      const newCode = getCode(
+        buildPropsObj(state.props, {[propName]: propValue}),
+        componentName,
+        getThemeForCodeGenerator(themeConfig, state.theme, theme),
+        importsConfig,
+      );
+      updatePropsAndCodeNoRecompile(dispatch, newCode, propName, propValue);
+      updateUrl(pathname, newCode);
+    },
+    200,
+  );
 
   const componentThemeDiff = getThemeForCodeGenerator(
     themeConfig,
@@ -188,7 +188,7 @@ const Yard: React.FC<
                   componentThemeDiff,
                   importsConfig,
                 );
-                if (error.msg !== null) setError({where: '', msg: null});
+                setError({where: '', msg: null});
                 updatePropsAndCode(dispatch, newCode, propName, propValue);
                 updateUrl(pathname, newCode);
               } catch (e) {
@@ -216,9 +216,7 @@ const Yard: React.FC<
                   componentThemeDiff,
                   importsConfig,
                 );
-                if (error.msg !== null) {
-                  setError({where: '', msg: null});
-                }
+                setError({where: '', msg: null});
                 updatePropsAndCode(dispatch, newCode, propName, propValue);
                 updateUrl(pathname, newCode);
               } catch (e) {
