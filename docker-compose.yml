@@ -42,6 +42,7 @@ services:
       - BUILDKITE_BUILD_URL
       - BUILDKITE_PROJECT_SLUG
       - BUILDKITE_COMMIT
+      - NODE_OPTIONS
 
   docs-site-server:
     build: .
@@ -82,6 +83,7 @@ services:
       - BUILDKITE_BUILD_URL
       - BUILDKITE_PROJECT_SLUG
       - BUILDKITE_COMMIT
+      - NODE_OPTIONS
 
   baseui:
     build: .
@@ -107,3 +109,4 @@ services:
       - NPM_TOKEN
       - NETLIFY_AUTH_TOKEN
       - NETLIFY_SITE_ID
+      - NODE_OPTIONS
