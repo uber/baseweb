@@ -22,6 +22,9 @@ import Overrides from '../../components/overrides';
 import {StatefulSlider as Slider} from 'baseui/slider';
 import * as SliderExports from 'baseui/slider';
 
+import Yard from '../../components/yard/index';
+import sliderYardConfig from '../../components/yard/config/slider';
+
 export default Layout;
 
 # Slider
@@ -30,6 +33,8 @@ Control input with sliding axis to choose a single value or range between min an
 
 There are two slider options in Base that allow users to select a single value or a range.
 Each slider has a primary control handle that cues user interaction.
+
+<Yard componentName="Slider" placeholderHeight={90} {...sliderYardConfig} />
 
 ## Accessibility
 

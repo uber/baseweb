@@ -1,6 +1,10 @@
+import pick from 'just-pick';
+
 import {Input, ADJOINED, SIZE} from 'baseui/input';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
+
+import {changeHandlers} from './common';
 
 export const theme = [
   'inputFill',
@@ -84,6 +88,7 @@ export const inputProps = {
   },
   endEnhancer: {
     value: undefined,
+    placeholder: '() => <span>?</span>',
     type: PropTypes.Function,
     description:
       'An input helper rendered after and attached to the input field.',
@@ -163,37 +168,13 @@ export const inputProps = {
     description: 'Name attribute.',
     hidden: true,
   },
-  onBlur: {
-    value: undefined,
-    type: PropTypes.Function,
-    description: 'Called when input loses focus.',
-    hidden: true,
-  },
-  onKeyDown: {
-    value: undefined,
-    type: PropTypes.Function,
-    description: 'Called when a key is pressed down.',
-    hidden: true,
-  },
-  onKeyPress: {
-    value: undefined,
-    type: PropTypes.Function,
-    description: 'Called when a key is pressed.',
-    hidden: true,
-  },
-  onKeyUp: {
-    value: undefined,
-    type: PropTypes.Function,
-    description: 'Called when a key is released.',
-    hidden: true,
-  },
-  onFocus: {
-    value: undefined,
-    type: PropTypes.Function,
-    description: 'Called when input is focused.',
-    hidden: true,
-  },
-
+  ...pick(changeHandlers, [
+    'onBlur',
+    'onKeyDown',
+    'onKeyPress',
+    'onKeyUp',
+    'onFocus',
+  ]),
   required: {
     value: false,
     type: PropTypes.Boolean,

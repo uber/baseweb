@@ -12,6 +12,9 @@ latest_tagged_commit=$(echo $tags | jq '.[-1].object.sha' | tr -d '"')
 echo this commit: $this_commit
 echo latest tagged commit: $latest_tagged_commit
 
+# deploy to netlify the master
+yarn netlify deploy --dir=public --prod
+
 #BUILDKITE_MESSAGE="Release v8.4.0 (#1532)"
 
 if [ "$this_commit" = "$latest_tagged_commit" ]; then
@@ -26,7 +29,7 @@ if [ "$this_commit" = "$latest_tagged_commit" ]; then
   yarn build
   npm publish dist
 
-  # deploy to now
+  # deploy to now the versioned docs site
   now --scope=uber-ui-platform --token=$ZEIT_NOW_TOKEN --public --no-clipboard deploy ./public > deployment.txt
   deployment=`cat deployment.txt`
   cname="${version//./-}"

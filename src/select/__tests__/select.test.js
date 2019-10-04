@@ -7,7 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {mount} from 'enzyme';
-import {Select} from '../index.js';
+import Select from '../select.js';
+import SelectComponent from '../select-component.js';
 import {STATE_CHANGE_TYPE, TYPE} from '../constants.js';
 
 describe('Select component', function() {
@@ -55,17 +56,19 @@ describe('Select component', function() {
   );
   test('calls onInputChange when input value changes', function() {
     wrapper = mount(<Select {...props} />);
+    const select = wrapper.find(SelectComponent).first();
     const e = {target: {value: 'test'}};
     // $FlowFixMe
-    wrapper.instance().handleInputChange(e);
+    select.instance().handleInputChange(e);
     expect(props.onInputChange).toHaveBeenCalledWith(e);
   });
 
   test('removes selected tag on clear', function() {
     wrapper = mount(<Select {...props} value={[item]} />);
+    const select = wrapper.find(SelectComponent).first();
     const e = {type: 'click', button: 0, preventDefault: jest.fn()};
     // $FlowFixMe
-    wrapper.instance().clearValue(e);
+    select.instance().clearValue(e);
     expect(props.onChange).toHaveBeenCalled();
     expect(props.onChange.mock.calls[0][0]).toEqual({
       type: STATE_CHANGE_TYPE.clear,

@@ -24,3 +24,6 @@ documentation-site/posts.js
 documentation-site/cheat-sheet.js
 public
 versions.json
+
+# Local Netlify folder
+.netlify

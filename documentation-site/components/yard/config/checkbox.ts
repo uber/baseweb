@@ -1,6 +1,8 @@
+import pick from 'just-pick';
 import {Checkbox, STYLE_TYPE, LABEL_PLACEMENT} from 'baseui/checkbox';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
+import {changeHandlers} from './common';
 
 const CheckboxConfig: TConfig = {
   imports: {
@@ -109,36 +111,13 @@ const CheckboxConfig: TConfig = {
       description: 'Name attribute.',
       hidden: true,
     },
-    onBlur: {
-      value: undefined,
-      type: PropTypes.Function,
-      description: 'Called when input loses focus.',
-      hidden: true,
-    },
-    onFocus: {
-      value: undefined,
-      type: PropTypes.Function,
-      description: 'Called when input is focused.',
-      hidden: true,
-    },
-    onMouseEnter: {
-      value: undefined,
-      type: PropTypes.Function,
-      description: 'Called when mouseenter triggers.',
-      hidden: true,
-    },
-    onMouseLeave: {
-      value: undefined,
-      type: PropTypes.Function,
-      description: 'Called when mouseleave triggers.',
-      hidden: true,
-    },
-    onMouseDown: {
-      value: undefined,
-      type: PropTypes.Function,
-      description: 'Called when mousedown triggers.',
-      hidden: true,
-    },
+    ...pick(changeHandlers, [
+      'onBlur',
+      'onFocus',
+      'onMouseDown',
+      'onMouseEnter',
+      'onMouseLeave',
+    ]),
     overrides: {
       value: undefined,
       type: PropTypes.Overrides,
