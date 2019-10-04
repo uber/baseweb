@@ -13,7 +13,9 @@ echo this commit: $this_commit
 echo latest tagged commit: $latest_tagged_commit
 
 # deploy to netlify the master
-yarn netlify deploy --dir=public --prod
+if [ "$BUILDKITE_BRANCH" = "master" ]; then
+  yarn netlify deploy --dir=public --prod
+fi
 
 #BUILDKITE_MESSAGE="Release v8.4.0 (#1532)"
 
