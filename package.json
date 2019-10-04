@@ -145,6 +145,7 @@
     "markdownlint-cli": "^0.18.0",
     "memory-fs": "^0.4.1",
     "mkdirp": "^0.5.1",
+    "netlify-cli": "^2.15.0",
     "next": "^9.0.5",
     "next-images": "^1.1.0",
     "npm-run-all": "^4.1.5",

@@ -105,3 +105,5 @@ services:
       - CF_API_KEY
       - CF_AUTH_EMAIL
       - NPM_TOKEN
+      - NETLIFY_AUTH_TOKEN
+      - NETLIFY_SITE_ID
