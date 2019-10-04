@@ -124,18 +124,15 @@ const Knob: React.SFC<{
     case PropTypes.Enum:
       const optionsKeys = Object.keys(options);
       const numberOfOptions = optionsKeys.length;
-      const selectOptions = optionsKeys.map(option => {
-        return {
-          _key: option,
-          ...(options[option] as Object),
-        };
-      });
-      //@ts-ignore
-      const valueKey = val && val.split('.')[1];
+      const selectOptions = optionsKeys.map(key => ({
+        id: key,
+        option: options[key],
+      }));
+      const valueKey = val && String(val).split('.')[1];
       return (
         <Spacing>
           <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
-          {numberOfOptions < 6 ? (
+          {numberOfOptions < 7 ? (
             <RadioGroup
               name="radio group"
               align="horizontal"
@@ -177,12 +174,13 @@ const Knob: React.SFC<{
             <Select
               size={SIZE.compact}
               options={selectOptions}
-              //@ts-ignore
-              value={valueKey && options[valueKey]}
-              valueKey="_key"
-              onChange={({value}) =>
-                set(`${enumName || name.toUpperCase()}.${value[0]._key}`)
-              }
+              clearable={false}
+              value={[{id: valueKey || '', option: valueKey}]}
+              labelKey="option"
+              valueKey="id"
+              onChange={({value}) => {
+                set(`${enumName || name.toUpperCase()}.${value[0].id}`);
+              }}
             />
           )}
 

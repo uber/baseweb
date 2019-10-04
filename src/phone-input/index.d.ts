@@ -336,6 +336,11 @@ export interface PhoneInputProps {
 }
 export const PhoneInput: React.FC<PhoneInputProps>;
 
+export interface PhoneInputLiteProps extends PhoneInputProps {
+  countries: {[key: string]: Country};
+}
+export const PhoneInputLite: React.FC<PhoneInputLiteProps>;
+
 export interface StatefulPhoneInputProps {
   'aria-label'?: string;
   initialState?: State;
@@ -382,6 +387,7 @@ export class StatefulPhoneInputContainer extends React.Component<
 }
 
 export interface CountrySelectProps {
+  countries: {[key: string]: Country};
   country?: Country;
   inputRef?: React.Ref<HTMLInputElement>;
   onCountryChange?: (event: OnChangeParams) => any;
