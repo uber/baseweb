@@ -22,7 +22,6 @@ type ColumnProps = {
 
 const ColorInput: React.FC<{
   themeKey: string;
-  theme: {[key: string]: string};
   themeInit: {[key: string]: string};
   globalColor: string;
   globalSet: (color: string) => void;
