@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
+// needs to be removed from here
 import {COUNTRIES, STATE_CHANGE_TYPE} from './constants.js';
 import type {
   StatefulPhoneInputContainerPropsT,

@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
@@ -20,13 +19,17 @@ import NonCloseable from 'examples/tag/non-closeable.js';
 import ClickableNonCloseable from 'examples/tag/clickable-non-closeable.js';
 import CustomColor from 'examples/tag/custom-color.js';
 
-import Overrides from '../../components/overrides';
 import {Tag} from 'baseui/tag';
 import * as TagExports from 'baseui/tag';
+
+import Yard from '../../components/yard/index';
+import tagYardConfig from '../../components/yard/config/tag';
 
 export default Layout;
 
 # Tag
+
+<Yard componentName="Tag" placeholderHeight={34} {...tagYardConfig} />
 
 Compact UI to display a collection of concise information.
 
@@ -75,19 +78,6 @@ Compact UI to display a collection of concise information.
   <CustomColor />
 </Example>
 
-## Overrides
-
-<Overrides
-  name="Tag"
-  component={TagExports}
-  renderExample={props => <Tag overrides={props.overrides}>Tag</Tag>}
-/>
-
 ## API
-
-<API
-  heading="Tag API"
-  api={require('!!extract-react-types-loader!../../../src/tag/tag.js')}
-/>
 
 <Exports component={TagExports} title="Tag exports" path="baseui/tag" />

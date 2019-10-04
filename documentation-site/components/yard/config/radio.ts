@@ -1,6 +1,10 @@
+import pick from 'just-pick';
+
 import {Radio, RadioGroup} from 'baseui/radio';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
+
+import {changeHandlers} from './common';
 
 const RadioGroupConfig: TConfig = {
   imports: {
@@ -111,30 +115,12 @@ const RadioGroupConfig: TConfig = {
       description: `Sets aria-labelledby attribute.`,
       hidden: true,
     },
-    onMouseEnter: {
-      value: undefined,
-      type: PropTypes.Function,
-      description: 'Called when mouseenter triggers.',
-      hidden: true,
-    },
-    onMouseLeave: {
-      value: undefined,
-      type: PropTypes.Function,
-      description: 'Called when mouseleave triggers.',
-      hidden: true,
-    },
-    onBlur: {
-      value: undefined,
-      type: PropTypes.Function,
-      description: 'Called when input loses focus.',
-      hidden: true,
-    },
-    onFocus: {
-      value: undefined,
-      type: PropTypes.Function,
-      description: 'Called when input is focused.',
-      hidden: true,
-    },
+    ...pick(changeHandlers, [
+      'onBlur',
+      'onFocus',
+      'onMouseLeave',
+      'onMouseEnter',
+    ]),
     overrides: {
       value: undefined,
       type: PropTypes.Overrides,
