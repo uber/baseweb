@@ -162,6 +162,7 @@
     "react-simple-code-editor": "^0.10.0",
     "react-vis": "^1.11.6",
     "remove-flow-types-loader": "^1.1.0",
+    "scheduler": "^0.16.2",
     "screener-storybook": "^0.18.7",
     "semver": "^6.2.0",
     "shx": "^0.3.2",

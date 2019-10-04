@@ -6,6 +6,8 @@ import {
   darkThemePrimitives,
   ThemeProvider,
 } from 'baseui';
+// @ts-ignore
+import * as Scheduler from 'scheduler';
 import {Button, KIND, SIZE} from 'baseui/button';
 import {ButtonGroup} from 'baseui/button-group';
 import copy from 'copy-to-clipboard';
@@ -131,15 +133,17 @@ const Yard: React.FC<
     propName: string,
     propValue: TPropValue,
   ) => {
-    !hydrated && setHydrated(true);
-    const newCode = getCode(
-      buildPropsObj(state.props, {[propName]: propValue}),
-      componentName,
-      getThemeForCodeGenerator(themeConfig, state.theme, theme),
-      importsConfig,
-    );
-    updatePropsAndCodeNoRecompile(dispatch, newCode, propName, propValue);
-    updateUrl(pathname, newCode);
+    Scheduler.unstable_scheduleCallback(Scheduler.unstable_LowPriority, () => {
+      !hydrated && setHydrated(true);
+      const newCode = getCode(
+        buildPropsObj(state.props, {[propName]: propValue}),
+        componentName,
+        getThemeForCodeGenerator(themeConfig, state.theme, theme),
+        importsConfig,
+      );
+      updatePropsAndCodeNoRecompile(dispatch, newCode, propName, propValue);
+      updateUrl(pathname, newCode);
+    });
   };
 
   const componentThemeDiff = getThemeForCodeGenerator(
