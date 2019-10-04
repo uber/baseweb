@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import {
   SIZE,
-  COUNTRIES,
   DEFAULT_MAX_DROPDOWN_HEIGHT,
   DEFAULT_MAX_DROPDOWN_WIDTH,
 } from './constants.js';
@@ -17,7 +16,7 @@ const defaultProps = {
   'aria-describedby': null,
   'aria-labelledby': null,
   autoFocus: false,
-  country: COUNTRIES.US,
+  country: {label: 'United States', id: 'US', dialCode: '+1'},
   disabled: false,
   error: false,
   id: null,
