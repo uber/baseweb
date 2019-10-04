@@ -7,17 +7,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import SelectComponent from './select-component.js';
-import MultiValue from './multi-value.js';
-import SingleValue from './value.js';
+import Value from './value.js';
 import type {PropsT} from './types.js';
 
-function Select(props: $Shape<PropsT>) {
-  return (
-    <SelectComponent
-      {...props}
-      valueComponent={props.multi ? MultiValue : SingleValue}
-    />
-  );
+function MultiSelect(props: $Shape<PropsT>) {
+  return <SelectComponent {...props} multi={false} valueComponent={Value} />;
 }
 
-export default Select;
+export default MultiSelect;

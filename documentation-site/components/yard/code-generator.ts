@@ -22,13 +22,14 @@ const reactImport = template.ast(`import * as React from 'react';`);
 
 export const getAstPropsArray = (props: {[key: string]: TProp}) => {
   return Object.entries(props).map(([name, prop]) => {
-    const {value, stateful} = prop;
+    const {value, stateful, renderFalseValue} = prop;
     if (stateful)
       return t.jsxAttribute(
         t.jsxIdentifier(name),
         t.jsxExpressionContainer(t.identifier(name)),
       );
-    if (!value) return null;
+    if (!value && !(typeof value === 'boolean' && renderFalseValue))
+      return null;
     const astValue = getAstPropValue(prop);
     if (!astValue) return null;
     return t.jsxAttribute(
@@ -273,7 +274,7 @@ export const formatAstAndPrint = (ast: t.Program, printWidth?: number) => {
   const result = (prettier as any).__debug.formatAST(ast, {
     originalText: '',
     parser: 'babel',
-    printWidth: printWidth ? printWidth : 70,
+    printWidth: printWidth ? printWidth : 58,
     plugins: [parsers],
   });
   return (
