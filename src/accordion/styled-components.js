@@ -18,6 +18,7 @@ export const Root = styled('ul', {
   marginTop: 0,
   paddingLeft: 0,
   paddingRight: 0,
+  width: '100%',
 });
 
 export const PanelContainer = styled('li', {
