@@ -10,7 +10,7 @@ import {getTrackBackground} from 'react-range';
 import {styled} from '../styles/index.js';
 import type {StylePropsT} from './types.js';
 
-export const Root = styled('div', {position: 'relative'});
+export const Root = styled('div', {position: 'relative', width: '100%'});
 Root.displayName = 'StyledRoot';
 
 export const Track = styled<StylePropsT>('div', props => {

@@ -6,6 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 export {default as Select} from './select.js';
+export {default as SingleSelect} from './single-select.js';
+export {default as MultiSelect} from './multi-select.js';
 export {default as SingleValue} from './value.js';
 export {default as MultiValue} from './multi-value.js';
 export {default as AutosizeInput} from './autosize-input.js';
