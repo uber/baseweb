@@ -25,10 +25,10 @@ import {
 } from '../index.js';
 import Select from '../select.js';
 
-jest.mock('../select');
+jest.mock('../select', () => jest.fn(() => null));
 
 describe('Stateful select', function() {
-  let wrapper = null;
+  let wrapper;
 
   afterEach(function() {
     wrapper && wrapper.unmount();

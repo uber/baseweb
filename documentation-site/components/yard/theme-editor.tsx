@@ -54,10 +54,15 @@ const Column: React.FC<ColumnProps> = ({themeKeys, themeInit, theme, set}) => {
               overrides={{Root: {style: {width: '100px'}}}}
             />
             <div
+              title={key}
               className={useCss({
                 ...($theme.typography.font100 as any),
                 color: $theme.colors.foreground,
                 marginLeft: $theme.sizing.scale300,
+                maxWidth: '150px',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
               })}
             >
               {key}
