@@ -17,9 +17,18 @@ import Overrides from '../../components/overrides';
 import {Navigation} from 'baseui/side-navigation';
 import * as NavExports from 'baseui/side-navigation';
 
+import Yard from '../../components/yard/index';
+import sideNavYardConfig from '../../components/yard/config/side-nav';
+
 export default Layout;
 
 # Side Navigation
+
+<Yard
+  componentName="Navigation"
+  placeholderHeight={336}
+  {...sideNavYardConfig}
+/>
 
 The side navigation menu is a list of links that is used for a website navigation. The side navigation can provide a multi-level structure.
 
@@ -76,46 +85,7 @@ a `React.memo` call on the `NavItem` component. See React's
 this works. Take care to ensure that you diff all of the props you care about. While powerful,
 intervening in React's default update schedule can lead to unexpected results.
 
-## Overrides
-
-<Overrides
-  name="Side Navigation"
-  component={NavExports}
-  renderExample={props => (
-    <Navigation
-      items={[
-        {
-          title: 'Colors',
-          itemId: '#level1.1',
-          subnav: [
-            {
-              title: 'Primary',
-              itemId: '#level1.1.1',
-            },
-            {
-              title: 'Shades',
-              itemId: '#level1.1.2',
-            },
-          ],
-        },
-        {
-          title: 'Sizing',
-          itemId: '#level1.2',
-        },
-      ]}
-      activeItemId="#level1.1"
-      overrides={props.overrides}
-      {...props}
-    />
-  )}
-/>
-
 ## API
-
-<API
-  heading="Side Navigation API"
-  api={require('!!extract-react-types-loader!../../../src/side-navigation/nav.js')}
-/>
 
 <Exports
   component={NavExports}
