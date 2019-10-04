@@ -46,6 +46,7 @@ export const buildPropsObj = (
       stateful: stateProps[name].stateful,
       propHook: stateProps[name].propHook,
       imports: stateProps[name].imports,
+      renderFalseValue: stateProps[name].renderFalseValue,
     };
   });
   return newProps;
