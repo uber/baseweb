@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {StyledLink} from 'baseui/link';
+import debounce from 'lodash/debounce';
 import {assertUnreachable} from './utils';
 import {PropTypes} from './const';
 import {Input} from 'baseui/input';
@@ -63,13 +64,20 @@ const Knob: React.SFC<{
   name,
   error,
   type,
-  val,
-  set,
+  val: globalVal,
+  set: globalSet,
   options = {},
   description,
   placeholder,
   enumName,
 }) => {
+  // to be able debounce internal state and sync the upstream changes
+  const [val, set] = React.useState(globalVal);
+  const debouncedSet = React.useRef(debounce(globalSet, 250)).current;
+  React.useEffect(() => {
+    set(globalVal);
+  }, [globalVal]);
+
   switch (type) {
     case PropTypes.Ref:
       return (
@@ -98,7 +106,10 @@ const Knob: React.SFC<{
           <Input
             //@ts-ignore
             error={Boolean(error)}
-            onChange={event => set((event.target as any).value)}
+            onChange={event => {
+              set((event.target as any).value);
+              debouncedSet((event.target as any).value);
+            }}
             placeholder={placeholder}
             size="compact"
             value={val ? String(val) : undefined}
@@ -109,7 +120,12 @@ const Knob: React.SFC<{
     case PropTypes.Boolean:
       return (
         <Spacing>
-          <Checkbox checked={Boolean(val)} onChange={() => set(!val)}>
+          <Checkbox
+            checked={Boolean(val)}
+            onChange={() => {
+              globalSet(!val);
+            }}
+          >
             <StatefulTooltip
               accessibilityType="tooltip"
               content={getTooltip(description, type, name)}
@@ -145,8 +161,9 @@ const Knob: React.SFC<{
                   }),
                 },
               }}
-              //@ts-ignore
-              onChange={e => set(e.target.value)}
+              onChange={e => {
+                globalSet((e.target as any).value);
+              }}
               value={String(val)}
             >
               {Object.keys(options).map(opt => (
@@ -179,7 +196,7 @@ const Knob: React.SFC<{
               labelKey="option"
               valueKey="id"
               onChange={({value}) => {
-                set(`${enumName || name.toUpperCase()}.${value[0].id}`);
+                globalSet(`${enumName || name.toUpperCase()}.${value[0].id}`);
               }}
             />
           )}
@@ -193,7 +210,9 @@ const Knob: React.SFC<{
         <Spacing>
           <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
           <Editor
-            onChange={code => set(code)}
+            onChange={code => {
+              globalSet(code);
+            }}
             code={val ? String(val) : ''}
             placeholder={placeholder}
             small
