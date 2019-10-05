@@ -49,12 +49,12 @@ function StringColumn(options: OptionsT): StringColumnT {
     filterable: false,
     renderCell: StringCell,
     renderFilter: StringFilter,
-    buildFilter: function(params) {
+    buildFilter(params) {
       return function(data) {
         return true;
       };
     },
-    sortFn: function(a, b) {
+    sortFn(a, b) {
       return a.localeCompare(b);
     },
   };

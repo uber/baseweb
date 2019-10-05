@@ -117,7 +117,7 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
     const steps = this.buildSteps();
     if (this.props.value instanceof Date) {
       this.setState({
-        steps: steps,
+        steps,
         value: this.buildSelectedOption(this.props.value, this.props.format),
       });
     } else {
@@ -129,7 +129,7 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
         }
       });
       this.setState({
-        steps: steps,
+        steps,
         value: {id: closestStep, label: secondsToLabel(closestStep)},
       });
       this.handleChange(closestStep);

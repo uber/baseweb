@@ -23,7 +23,7 @@ describe('Select component', function() {
 
   beforeEach(function() {
     props = {
-      options: options,
+      options,
       onChange: jest.fn(),
       onInputChange: jest.fn(),
       onFocus: jest.fn(),

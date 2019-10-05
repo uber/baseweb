@@ -49,7 +49,7 @@ class TabComponent extends React.Component<TabPropsT> {
     return {
       $disabled: disabled,
       $active: active,
-      $orientation: $orientation,
+      $orientation,
     };
   }
 

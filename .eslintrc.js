@@ -29,6 +29,7 @@ module.exports = {
     'flowtype/space-after-type-colon': 'off',
     'react/jsx-filename-extension': 0,
     'react/prop-types': 0,
+    'object-shorthand': ['error', 'always', {avoidQuotes: true}],
     // Enforces imports of external modules to be declared in the package.json
     'import/no-extraneous-dependencies': [
       'error',

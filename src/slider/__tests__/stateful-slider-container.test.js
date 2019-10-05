@@ -21,7 +21,7 @@ describe('Stateful Slider Container', function() {
     allProps = {
       children: childFn,
       initialState: {},
-      stateReducer: stateReducer,
+      stateReducer,
       prop1: 'some other slider prop',
     };
   });

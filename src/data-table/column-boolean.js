@@ -79,13 +79,13 @@ function BooleanColumn(options: OptionsT): BooleanColumnT {
     filterable: options.filterable === undefined ? true : options.filterable,
     renderCell: BooleanCell,
     renderFilter: BooleanFilter,
-    buildFilter: function(params) {
+    buildFilter(params) {
       return function(data) {
         const included = params.selection.has(data);
         return params.exclude ? !included : included;
       };
     },
-    sortFn: function(a, b) {
+    sortFn(a, b) {
       if (a === b) return 0;
       return a ? -1 : 1;
     },

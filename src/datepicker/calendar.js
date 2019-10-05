@@ -165,11 +165,11 @@ export default class Calendar extends React.Component<
   };
 
   changeMonth = ({date}: {date: Date}) => {
-    this.setState({date: date}, () => this.handleMonthChange(this.state.date));
+    this.setState({date}, () => this.handleMonthChange(this.state.date));
   };
 
   changeYear = ({date}: {date: Date}) => {
-    this.setState({date: date}, () => this.handleYearChange(this.state.date));
+    this.setState({date}, () => this.handleYearChange(this.state.date));
   };
 
   renderCalendarHeader = (date: Date = this.state.date, order: number) => {

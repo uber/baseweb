@@ -44,7 +44,7 @@ export const BarProgress = styled<StylePropsT>('div', props => {
     borderBottomRightRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
     backgroundColor: colors.accent,
-    width: width,
+    width,
     transition: 'width 0.5s',
     height: '100%',
   };

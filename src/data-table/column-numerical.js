@@ -299,7 +299,7 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
     renderFilter: function RenderNumericalFilter(props) {
       return <NumericalFilter {...props} options={normalizedOptions} />;
     },
-    buildFilter: function(params) {
+    buildFilter(params) {
       return function(data) {
         let included = true;
         const left = roundToFixed(data, normalizedOptions.precision);
@@ -327,7 +327,7 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
       };
     },
     // initial sort should display largest values first
-    sortFn: function(a, b) {
+    sortFn(a, b) {
       return b - a;
     },
   };

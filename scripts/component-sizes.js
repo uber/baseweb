@@ -122,7 +122,7 @@ function getDependencySizes(stats) {
     return {
       path: modulePath(mod.identifier),
       sources: [source],
-      source: source,
+      source,
     };
   };
 

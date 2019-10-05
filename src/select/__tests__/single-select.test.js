@@ -23,7 +23,7 @@ describe('SingleSelect component', function() {
       {id: 'id3', label: 'bel3'},
     ];
     const props = {
-      options: options,
+      options,
       onChange: jest.fn(),
     };
     wrapper = mount(<SingleSelect {...props} />);

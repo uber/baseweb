@@ -42,7 +42,7 @@ describe('Stateless checkbox', function() {
       ...events,
       labelPlacement: 'left',
       children: 'some',
-      isError: isError,
+      isError,
       inputRef: React.createRef(),
       autoFocus: false,
       isIndeterminate: false,
@@ -99,7 +99,7 @@ describe('Stateless checkbox', function() {
     current.focus = mockFocus;
     allProps.autoFocus = true;
     allProps.inputRef = {
-      current: current,
+      current,
     };
     wrapper = shallow(<StatelessCheckbox {...allProps} />);
     expect(mockFocus).toHaveBeenCalled();

@@ -195,13 +195,10 @@ export class ToasterContainer extends React.Component<
 }
 
 const toaster = {
-  getRef: function(): ?React.ElementRef<typeof ToasterContainer> {
+  getRef(): ?React.ElementRef<typeof ToasterContainer> {
     return toasterRef;
   },
-  show: function(
-    children: React.Node,
-    props: ToastPropsShapeT = {},
-  ): ?React.Key {
+  show(children: React.Node, props: ToastPropsShapeT = {}): ?React.Key {
     // toasts can not be added until Toaster is mounted
     // no SSR for the `toaster.show()`
     const toasterInstance = this.getRef();
@@ -211,31 +208,19 @@ const toaster = {
       throw new Error('Can not add any toasts until Toaster is mounted!');
     }
   },
-  info: function(
-    children: React.Node,
-    props: ToastPropsShapeT = {},
-  ): React.Key {
+  info(children: React.Node, props: ToastPropsShapeT = {}): React.Key {
     return this.show(children, {...props, kind: KIND.info});
   },
-  positive: function(
-    children: React.Node,
-    props: ToastPropsShapeT = {},
-  ): React.Key {
+  positive(children: React.Node, props: ToastPropsShapeT = {}): React.Key {
     return this.show(children, {...props, kind: KIND.positive});
   },
-  warning: function(
-    children: React.Node,
-    props: ToastPropsShapeT = {},
-  ): React.Key {
+  warning(children: React.Node, props: ToastPropsShapeT = {}): React.Key {
     return this.show(children, {...props, kind: KIND.warning});
   },
-  negative: function(
-    children: React.Node,
-    props: ToastPropsShapeT = {},
-  ): React.Key {
+  negative(children: React.Node, props: ToastPropsShapeT = {}): React.Key {
     return this.show(children, {...props, kind: KIND.negative});
   },
-  update: function(key: React.Key, props: $Shape<ToastPropsT>): void {
+  update(key: React.Key, props: $Shape<ToastPropsT>): void {
     const toasterInstance = this.getRef();
     if (toasterInstance) {
       toasterInstance.update(key, props);
@@ -244,7 +229,7 @@ const toaster = {
       console.error('No ToasterContainer is mounted yet.');
     }
   },
-  clear: function(key?: ?React.Key): void {
+  clear(key?: ?React.Key): void {
     const toasterInstance = this.getRef();
     if (toasterInstance) {
       toasterInstance.clear(key);

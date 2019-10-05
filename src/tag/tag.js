@@ -83,7 +83,7 @@ class Tag extends React.Component<PropsT, {}> {
     const rootHandlers = disabled
       ? {}
       : {
-          onClick: onClick,
+          onClick,
           onKeyDown: this.handleKeyDown,
         };
     const actionHandlers = disabled

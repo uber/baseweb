@@ -246,13 +246,13 @@ function CategoricalColumn(options: OptionsT): CategoricalColumnT {
     filterable: options.filterable === undefined ? true : options.filterable,
     renderCell: CategoricalCell,
     renderFilter: CategoricalFilter,
-    buildFilter: function(params) {
+    buildFilter(params) {
       return function(data) {
         const included = params.selection.has(data);
         return params.exclude ? !included : included;
       };
     },
-    sortFn: function(a, b) {
+    sortFn(a, b) {
       return a.localeCompare(b);
     },
   };
