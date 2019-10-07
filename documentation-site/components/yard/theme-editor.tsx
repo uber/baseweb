@@ -1,4 +1,5 @@
 import * as React from 'react';
+import debounce from 'lodash/debounce';
 import {Input, SIZE} from 'baseui/input';
 import {useStyletron} from 'baseui';
 import Link from 'next/link';
@@ -19,8 +20,66 @@ type ColumnProps = {
   set: (value: {[key: string]: string}) => void;
 };
 
-const Column: React.FC<ColumnProps> = ({themeKeys, themeInit, theme, set}) => {
+const ColorInput: React.FC<{
+  themeKey: string;
+  themeInit: {[key: string]: string};
+  globalColor: string;
+  globalSet: (color: string) => void;
+}> = ({themeKey, themeInit, globalSet, globalColor}) => {
   const [useCss, $theme] = useStyletron();
+
+  // debounce setting theme color
+  const [color, setColor] = React.useState(globalColor);
+  React.useEffect(() => {
+    setColor(globalColor);
+  }, [globalColor]);
+  const debouncedSetColor = React.useRef(debounce(globalSet, 250)).current;
+
+  return (
+    <label
+      className={useCss({
+        display: 'flex',
+        alignItems: 'center',
+      })}
+    >
+      <div
+        className={useCss({
+          width: '4px',
+          height: '36px',
+          backgroundColor: color,
+        })}
+      ></div>
+      <Input
+        positive={color !== themeInit[themeKey]}
+        size={SIZE.compact}
+        placeholder={themeInit[themeKey]}
+        value={color}
+        onChange={e => {
+          setColor((e.target as HTMLInputElement).value);
+          debouncedSetColor((e.target as HTMLInputElement).value);
+        }}
+        overrides={{Root: {style: {width: '100px'}}}}
+      />
+      <div
+        title={themeKey}
+        className={useCss({
+          ...($theme.typography.font100 as any),
+          color: $theme.colors.foreground,
+          marginLeft: $theme.sizing.scale300,
+          maxWidth: '150px',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+        })}
+      >
+        {themeKey}
+      </div>
+    </label>
+  );
+};
+
+const Column: React.FC<ColumnProps> = ({themeKeys, themeInit, theme, set}) => {
+  const [useCss] = useStyletron();
   return (
     <div
       className={useCss({
@@ -29,45 +88,18 @@ const Column: React.FC<ColumnProps> = ({themeKeys, themeInit, theme, set}) => {
     >
       {themeKeys.map(key => {
         return (
-          <label
+          <ColorInput
             key={key}
-            className={useCss({
-              display: 'flex',
-              alignItems: 'center',
-            })}
-          >
-            <div
-              className={useCss({
-                width: '4px',
-                height: '36px',
-                backgroundColor: theme[key],
-              })}
-            ></div>
-            <Input
-              positive={theme[key] !== themeInit[key]}
-              size={SIZE.compact}
-              placeholder={themeInit[key]}
-              value={theme[key]}
-              onChange={e =>
-                set({...theme, [key]: (e.target as HTMLInputElement).value})
-              }
-              overrides={{Root: {style: {width: '100px'}}}}
-            />
-            <div
-              title={key}
-              className={useCss({
-                ...($theme.typography.font100 as any),
-                color: $theme.colors.foreground,
-                marginLeft: $theme.sizing.scale300,
-                maxWidth: '150px',
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-              })}
-            >
-              {key}
-            </div>
-          </label>
+            themeKey={key}
+            globalColor={theme[key]}
+            globalSet={color =>
+              set({
+                ...theme,
+                [key]: color,
+              })
+            }
+            themeInit={themeInit}
+          />
         );
       })}
     </div>
