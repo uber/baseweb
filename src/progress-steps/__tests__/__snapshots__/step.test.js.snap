@@ -1,135 +1,135 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Step applies isActive prop correctly 1`] = `
-<StyledStep
+<ForwardRef
   $isActive={true}
   $isCompleted={false}
 >
-  <StyledIcon
+  <ForwardRef
     $isActive={true}
     $isCompleted={false}
   >
-    <StyledInnerIcon />
-  </StyledIcon>
-  <StyledContentTail
+    <ForwardRef />
+  </ForwardRef>
+  <ForwardRef
     $isActive={true}
     $isCompleted={false}
   />
-  <StyledContent
+  <ForwardRef
     $isActive={true}
     $isCompleted={false}
   >
-    <StyledContentTitle
+    <ForwardRef
       $isActive={true}
       $isCompleted={false}
     />
-    <StyledContentDescription />
-  </StyledContent>
-</StyledStep>
+    <ForwardRef />
+  </ForwardRef>
+</ForwardRef>
 `;
 
 exports[`Step applies isCompleted prop correctly 1`] = `
-<StyledStep
+<ForwardRef
   $isActive={false}
   $isCompleted={true}
 >
-  <StyledIcon
+  <ForwardRef
     $isActive={false}
     $isCompleted={true}
   />
-  <StyledContentTail
+  <ForwardRef
     $isActive={false}
     $isCompleted={true}
   />
-  <StyledContent
+  <ForwardRef
     $isActive={false}
     $isCompleted={true}
   >
-    <StyledContentTitle
+    <ForwardRef
       $isActive={false}
       $isCompleted={true}
     />
-    <StyledContentDescription />
-  </StyledContent>
-</StyledStep>
+    <ForwardRef />
+  </ForwardRef>
+</ForwardRef>
 `;
 
 exports[`Step applies isLast prop correctly 1`] = `
-<StyledStep
+<ForwardRef
   $isActive={false}
   $isCompleted={false}
 >
-  <StyledIcon
+  <ForwardRef
     $isActive={false}
     $isCompleted={false}
   />
-  <StyledContent
+  <ForwardRef
     $isActive={false}
     $isCompleted={false}
   >
-    <StyledContentTitle
+    <ForwardRef
       $isActive={false}
       $isCompleted={false}
     />
-    <StyledContentDescription />
-  </StyledContent>
-</StyledStep>
+    <ForwardRef />
+  </ForwardRef>
+</ForwardRef>
 `;
 
 exports[`Step applies title prop correctly 1`] = `
-<StyledStep
+<ForwardRef
   $isActive={false}
   $isCompleted={false}
 >
-  <StyledIcon
+  <ForwardRef
     $isActive={false}
     $isCompleted={false}
   />
-  <StyledContentTail
+  <ForwardRef
     $isActive={false}
     $isCompleted={false}
   />
-  <StyledContent
+  <ForwardRef
     $isActive={false}
     $isCompleted={false}
   >
-    <StyledContentTitle
+    <ForwardRef
       $isActive={false}
       $isCompleted={false}
     >
       Test Title
-    </StyledContentTitle>
-    <StyledContentDescription />
-  </StyledContent>
-</StyledStep>
+    </ForwardRef>
+    <ForwardRef />
+  </ForwardRef>
+</ForwardRef>
 `;
 
 exports[`Step renders children correctly if isActive is provided 1`] = `
-<StyledStep
+<ForwardRef
   $isActive={true}
   $isCompleted={false}
 >
-  <StyledIcon
+  <ForwardRef
     $isActive={true}
     $isCompleted={false}
   >
-    <StyledInnerIcon />
-  </StyledIcon>
-  <StyledContentTail
+    <ForwardRef />
+  </ForwardRef>
+  <ForwardRef
     $isActive={true}
     $isCompleted={false}
   />
-  <StyledContent
+  <ForwardRef
     $isActive={true}
     $isCompleted={false}
   >
-    <StyledContentTitle
+    <ForwardRef
       $isActive={true}
       $isCompleted={false}
     />
-    <StyledContentDescription>
+    <ForwardRef>
       Content
-    </StyledContentDescription>
-  </StyledContent>
-</StyledStep>
+    </ForwardRef>
+  </ForwardRef>
+</ForwardRef>
 `;

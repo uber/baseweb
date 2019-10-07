@@ -8,7 +8,7 @@ exports[`Block FlexWrap renders flexWrap styling as expected 1`] = `
     flexWrap={true}
     forwardedRef={null}
   >
-    <StyledBlock
+    <ForwardRef
       $as="div"
       $flexWrap={true}
       data-baseweb="block"
@@ -31,7 +31,7 @@ exports[`Block FlexWrap renders flexWrap styling as expected 1`] = `
           test
         </div>
       </MockStyledComponent>
-    </StyledBlock>
+    </ForwardRef>
   </Block>
 </Block>
 `;
@@ -44,7 +44,7 @@ exports[`Block Overflow renders overflow styling if provided any other value 1`]
     forwardedRef={null}
     overflow="auto"
   >
-    <StyledBlock
+    <ForwardRef
       $as="div"
       $overflow="auto"
       data-baseweb="block"
@@ -69,7 +69,7 @@ exports[`Block Overflow renders overflow styling if provided any other value 1`]
           test
         </div>
       </MockStyledComponent>
-    </StyledBlock>
+    </ForwardRef>
   </Block>
 </Block>
 `;
@@ -82,7 +82,7 @@ exports[`Block Overflow renders overflowX styling if provided with scrollX value
     forwardedRef={null}
     overflow="scrollX"
   >
-    <StyledBlock
+    <ForwardRef
       $as="div"
       $overflow="scrollX"
       data-baseweb="block"
@@ -107,7 +107,7 @@ exports[`Block Overflow renders overflowX styling if provided with scrollX value
           test
         </div>
       </MockStyledComponent>
-    </StyledBlock>
+    </ForwardRef>
   </Block>
 </Block>
 `;
@@ -120,7 +120,7 @@ exports[`Block Overflow renders overflowY styling if provided with scrollY value
     forwardedRef={null}
     overflow="scrollY"
   >
-    <StyledBlock
+    <ForwardRef
       $as="div"
       $overflow="scrollY"
       data-baseweb="block"
@@ -145,7 +145,7 @@ exports[`Block Overflow renders overflowY styling if provided with scrollY value
           test
         </div>
       </MockStyledComponent>
-    </StyledBlock>
+    </ForwardRef>
   </Block>
 </Block>
 `;
@@ -168,7 +168,7 @@ exports[`Block Responsive applies expected styles if responsive array has less t
       ]
     }
   >
-    <StyledBlock
+    <ForwardRef
       $as="div"
       $marginLeft={
         Array [
@@ -204,7 +204,7 @@ exports[`Block Responsive applies expected styles if responsive array has less t
           test
         </div>
       </MockStyledComponent>
-    </StyledBlock>
+    </ForwardRef>
   </Block>
 </Block>
 `;
@@ -231,7 +231,7 @@ exports[`Block Responsive applies expected styles if responsive array is provide
       ]
     }
   >
-    <StyledBlock
+    <ForwardRef
       $as="div"
       $marginLeft={
         Array [
@@ -277,7 +277,7 @@ exports[`Block Responsive applies expected styles if responsive array is provide
           test
         </div>
       </MockStyledComponent>
-    </StyledBlock>
+    </ForwardRef>
   </Block>
 </Block>
 `;
@@ -404,7 +404,7 @@ exports[`Block applies expected style rules 1`] = `
     top="1px"
     width="100px"
   >
-    <StyledBlock
+    <ForwardRef
       $alignContent="start"
       $alignItems="start"
       $as="div"
@@ -598,7 +598,7 @@ exports[`Block applies expected style rules 1`] = `
           test
         </div>
       </MockStyledComponent>
-    </StyledBlock>
+    </ForwardRef>
   </Block>
 </Block>
 `;
@@ -611,7 +611,7 @@ exports[`Block does not throw if provided unknown font prop 1`] = `
     font="not-a-real-font"
     forwardedRef={null}
   >
-    <StyledBlock
+    <ForwardRef
       $as="div"
       $font="not-a-real-font"
       data-baseweb="block"
@@ -637,7 +637,7 @@ exports[`Block does not throw if provided unknown font prop 1`] = `
           test
         </div>
       </MockStyledComponent>
-    </StyledBlock>
+    </ForwardRef>
   </Block>
 </Block>
 `;
@@ -650,7 +650,7 @@ exports[`Block renders themed backgroundColor if provided 1`] = `
     backgroundColor="primary200"
     forwardedRef={null}
   >
-    <StyledBlock
+    <ForwardRef
       $as="div"
       $backgroundColor="primary200"
       data-baseweb="block"
@@ -673,7 +673,7 @@ exports[`Block renders themed backgroundColor if provided 1`] = `
           test
         </div>
       </MockStyledComponent>
-    </StyledBlock>
+    </ForwardRef>
   </Block>
 </Block>
 `;
@@ -686,7 +686,7 @@ exports[`Block renders themed color if provided 1`] = `
     color="primary200"
     forwardedRef={null}
   >
-    <StyledBlock
+    <ForwardRef
       $as="div"
       $color="primary200"
       data-baseweb="block"
@@ -709,7 +709,7 @@ exports[`Block renders themed color if provided 1`] = `
           test
         </div>
       </MockStyledComponent>
-    </StyledBlock>
+    </ForwardRef>
   </Block>
 </Block>
 `;
@@ -722,7 +722,7 @@ exports[`Block renders themed font if provided 1`] = `
     font="font200"
     forwardedRef={null}
   >
-    <StyledBlock
+    <ForwardRef
       $as="div"
       $font="font200"
       data-baseweb="block"
@@ -748,7 +748,7 @@ exports[`Block renders themed font if provided 1`] = `
           test
         </div>
       </MockStyledComponent>
-    </StyledBlock>
+    </ForwardRef>
   </Block>
 </Block>
 `;

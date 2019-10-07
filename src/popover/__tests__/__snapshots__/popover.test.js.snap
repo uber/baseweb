@@ -97,7 +97,7 @@ exports[`Popover component as anchor 1`] = `
         </div>
       }
     >
-      <Body
+      <ForwardRef
         $arrowOffset={
           Object {
             "left": 0,
@@ -180,7 +180,7 @@ exports[`Popover component as anchor 1`] = `
               }
             }
           >
-            <Inner
+            <ForwardRef
               $arrowOffset={
                 Object {
                   "left": 0,
@@ -237,10 +237,10 @@ exports[`Popover component as anchor 1`] = `
                   </strong>
                 </div>
               </MockStyledComponent>
-            </Inner>
+            </ForwardRef>
           </div>
         </MockStyledComponent>
-      </Body>
+      </ForwardRef>
     </mockConstructor>
   </mockConstructor>
 </Popover>

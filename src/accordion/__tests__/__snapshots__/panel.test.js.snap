@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Panel aria-controls populated when provided: Content has correct props w/ ID 1`] = `
-<Content
+<ForwardRef
   $disabled={false}
   $expanded={false}
   id="panel"
@@ -43,11 +43,11 @@ exports[`Panel aria-controls populated when provided: Content has correct props 
       }
     />
   </MockStyledComponent>
-</Content>
+</ForwardRef>
 `;
 
 exports[`Panel aria-controls populated when provided: Header has correct props w/ aria-controls 1`] = `
-<Header
+<ForwardRef
   $disabled={false}
   $expanded={false}
   aria-controls="panel"
@@ -115,7 +115,6 @@ exports[`Panel aria-controls populated when provided: Header has correct props w
             "Svg": Object {
               "component": Object {
                 "$$typeof": Symbol(react.forward_ref),
-                "displayName": "ToggleIcon",
                 "render": [Function],
               },
             },
@@ -132,7 +131,6 @@ exports[`Panel aria-controls populated when provided: Header has correct props w
               "Svg": Object {
                 "component": Object {
                   "$$typeof": Symbol(react.forward_ref),
-                  "displayName": "ToggleIcon",
                   "render": [Function],
                 },
               },
@@ -142,7 +140,7 @@ exports[`Panel aria-controls populated when provided: Header has correct props w
           title="Expand"
           viewBox="0 0 24 24"
         >
-          <ToggleIcon
+          <ForwardRef
             $disabled={false}
             $expanded={false}
             $size={16}
@@ -182,12 +180,12 @@ exports[`Panel aria-controls populated when provided: Header has correct props w
                 />
               </svg>
             </MockStyledComponent>
-          </ToggleIcon>
+          </ForwardRef>
         </Icon>
       </Plus>
     </div>
   </MockStyledComponent>
-</Header>
+</ForwardRef>
 `;
 
 exports[`Panel basic rendering: Content has correct props 1`] = `
@@ -214,7 +212,6 @@ Object {
           "Svg": Object {
             "component": Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "ToggleIcon",
               "render": [Function],
             },
           },

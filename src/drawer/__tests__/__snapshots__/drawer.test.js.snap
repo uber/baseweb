@@ -143,7 +143,7 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
             shards={Array []}
           />
         </SideEffect(FocusWatcher)>
-        <StyledRoot
+        <ForwardRef
           $anchor="right"
           $animating={true}
           $closeable={true}
@@ -209,7 +209,7 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
             }
           >
             <Portal>
-              <StyledBackdrop
+              <ForwardRef
                 $anchor="right"
                 $animating={true}
                 $closeable={true}
@@ -230,8 +230,8 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
                 >
                   <Portal />
                 </MockStyledComponent>
-              </StyledBackdrop>
-              <StyledDrawerContainer
+              </ForwardRef>
+              <ForwardRef
                 $anchor="right"
                 $animating={true}
                 $closeable={true}
@@ -251,7 +251,7 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
                   forwardedRef={null}
                 >
                   <Portal>
-                    <StyledDrawerBody
+                    <ForwardRef
                       $anchor="right"
                       $animating={true}
                       $closeable={true}
@@ -270,8 +270,8 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
                       >
                         <Portal />
                       </MockStyledComponent>
-                    </StyledDrawerBody>
-                    <StyledClose
+                    </ForwardRef>
+                    <ForwardRef
                       $anchor="right"
                       $animating={true}
                       $closeable={true}
@@ -304,7 +304,7 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
                                 title="Delete"
                                 viewBox="0 0 24 24"
                               >
-                                <Svg
+                                <ForwardRef
                                   $color="inherit"
                                   $size="inherit"
                                   data-baseweb="icon"
@@ -322,19 +322,19 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
                                       <Portal />
                                     </Portal>
                                   </MockStyledComponent>
-                                </Svg>
+                                </ForwardRef>
                               </Icon>
                             </Delete>
                           </CloseIcon>
                         </Portal>
                       </MockStyledComponent>
-                    </StyledClose>
+                    </ForwardRef>
                   </Portal>
                 </MockStyledComponent>
-              </StyledDrawerContainer>
+              </ForwardRef>
             </Portal>
           </MockStyledComponent>
-        </StyledRoot>
+        </ForwardRef>
       </Portal>
       <Portal />
     </FocusLock>

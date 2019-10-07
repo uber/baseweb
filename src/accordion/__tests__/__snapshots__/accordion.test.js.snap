@@ -17,7 +17,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
     renderPanelContent={true}
     stateReducer={[Function]}
   >
-    <Root
+    <ForwardRef
       $disabled={false}
       data-baseweb="accordion"
     >
@@ -52,7 +52,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
             renderPanelContent={true}
             title="Accordion panel 1"
           >
-            <PanelContainer
+            <ForwardRef
               $disabled={false}
               $expanded={false}
             >
@@ -70,7 +70,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                     }
                   }
                 >
-                  <Header
+                  <ForwardRef
                     $disabled={false}
                     $expanded={false}
                     aria-disabled={null}
@@ -135,7 +135,6 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                               "Svg": Object {
                                 "component": Object {
                                   "$$typeof": Symbol(react.forward_ref),
-                                  "displayName": "ToggleIcon",
                                   "render": [Function],
                                 },
                               },
@@ -152,7 +151,6 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                                 "Svg": Object {
                                   "component": Object {
                                     "$$typeof": Symbol(react.forward_ref),
-                                    "displayName": "ToggleIcon",
                                     "render": [Function],
                                   },
                                 },
@@ -162,7 +160,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                             title="Expand"
                             viewBox="0 0 24 24"
                           >
-                            <ToggleIcon
+                            <ForwardRef
                               $disabled={false}
                               $expanded={false}
                               $size={16}
@@ -202,13 +200,13 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                                   />
                                 </svg>
                               </MockStyledComponent>
-                            </ToggleIcon>
+                            </ForwardRef>
                           </Icon>
                         </Plus>
                       </div>
                     </MockStyledComponent>
-                  </Header>
-                  <Content
+                  </ForwardRef>
+                  <ForwardRef
                     $disabled={false}
                     $expanded={false}
                   >
@@ -249,10 +247,10 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                         panel 1
                       </div>
                     </MockStyledComponent>
-                  </Content>
+                  </ForwardRef>
                 </li>
               </MockStyledComponent>
-            </PanelContainer>
+            </ForwardRef>
           </Panel>
           <Panel
             accordion={true}
@@ -266,7 +264,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
             renderPanelContent={true}
             title="Accordion panel 2"
           >
-            <PanelContainer
+            <ForwardRef
               $disabled={false}
               $expanded={false}
             >
@@ -284,7 +282,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                     }
                   }
                 >
-                  <Header
+                  <ForwardRef
                     $disabled={false}
                     $expanded={false}
                     aria-disabled={null}
@@ -349,7 +347,6 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                               "Svg": Object {
                                 "component": Object {
                                   "$$typeof": Symbol(react.forward_ref),
-                                  "displayName": "ToggleIcon",
                                   "render": [Function],
                                 },
                               },
@@ -366,7 +363,6 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                                 "Svg": Object {
                                   "component": Object {
                                     "$$typeof": Symbol(react.forward_ref),
-                                    "displayName": "ToggleIcon",
                                     "render": [Function],
                                   },
                                 },
@@ -376,7 +372,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                             title="Expand"
                             viewBox="0 0 24 24"
                           >
-                            <ToggleIcon
+                            <ForwardRef
                               $disabled={false}
                               $expanded={false}
                               $size={16}
@@ -416,13 +412,13 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                                   />
                                 </svg>
                               </MockStyledComponent>
-                            </ToggleIcon>
+                            </ForwardRef>
                           </Icon>
                         </Plus>
                       </div>
                     </MockStyledComponent>
-                  </Header>
-                  <Content
+                  </ForwardRef>
+                  <ForwardRef
                     $disabled={false}
                     $expanded={false}
                   >
@@ -463,10 +459,10 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                         panel 2
                       </div>
                     </MockStyledComponent>
-                  </Content>
+                  </ForwardRef>
                 </li>
               </MockStyledComponent>
-            </PanelContainer>
+            </ForwardRef>
           </Panel>
           <Panel
             accordion={true}
@@ -480,7 +476,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
             renderPanelContent={true}
             title="Accordion panel 3"
           >
-            <PanelContainer
+            <ForwardRef
               $disabled={false}
               $expanded={false}
             >
@@ -498,7 +494,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                     }
                   }
                 >
-                  <Header
+                  <ForwardRef
                     $disabled={false}
                     $expanded={false}
                     aria-disabled={null}
@@ -563,7 +559,6 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                               "Svg": Object {
                                 "component": Object {
                                   "$$typeof": Symbol(react.forward_ref),
-                                  "displayName": "ToggleIcon",
                                   "render": [Function],
                                 },
                               },
@@ -580,7 +575,6 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                                 "Svg": Object {
                                   "component": Object {
                                     "$$typeof": Symbol(react.forward_ref),
-                                    "displayName": "ToggleIcon",
                                     "render": [Function],
                                   },
                                 },
@@ -590,7 +584,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                             title="Expand"
                             viewBox="0 0 24 24"
                           >
-                            <ToggleIcon
+                            <ForwardRef
                               $disabled={false}
                               $expanded={false}
                               $size={16}
@@ -630,13 +624,13 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                                   />
                                 </svg>
                               </MockStyledComponent>
-                            </ToggleIcon>
+                            </ForwardRef>
                           </Icon>
                         </Plus>
                       </div>
                     </MockStyledComponent>
-                  </Header>
-                  <Content
+                  </ForwardRef>
+                  <ForwardRef
                     $disabled={false}
                     $expanded={false}
                   >
@@ -677,14 +671,14 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                         panel 3
                       </div>
                     </MockStyledComponent>
-                  </Content>
+                  </ForwardRef>
                 </li>
               </MockStyledComponent>
-            </PanelContainer>
+            </ForwardRef>
           </Panel>
         </ul>
       </MockStyledComponent>
-    </Root>
+    </ForwardRef>
   </Accordion>
 </Component>
 `;
@@ -704,7 +698,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
     renderPanelContent={false}
     stateReducer={[Function]}
   >
-    <Root
+    <ForwardRef
       $disabled={false}
       data-baseweb="accordion"
     >
@@ -739,7 +733,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
             renderPanelContent={false}
             title="Accordion panel 1"
           >
-            <PanelContainer
+            <ForwardRef
               $disabled={false}
               $expanded={false}
             >
@@ -757,7 +751,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                     }
                   }
                 >
-                  <Header
+                  <ForwardRef
                     $disabled={false}
                     $expanded={false}
                     aria-disabled={null}
@@ -822,7 +816,6 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                               "Svg": Object {
                                 "component": Object {
                                   "$$typeof": Symbol(react.forward_ref),
-                                  "displayName": "ToggleIcon",
                                   "render": [Function],
                                 },
                               },
@@ -839,7 +832,6 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                                 "Svg": Object {
                                   "component": Object {
                                     "$$typeof": Symbol(react.forward_ref),
-                                    "displayName": "ToggleIcon",
                                     "render": [Function],
                                   },
                                 },
@@ -849,7 +841,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                             title="Expand"
                             viewBox="0 0 24 24"
                           >
-                            <ToggleIcon
+                            <ForwardRef
                               $disabled={false}
                               $expanded={false}
                               $size={16}
@@ -889,13 +881,13 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                                   />
                                 </svg>
                               </MockStyledComponent>
-                            </ToggleIcon>
+                            </ForwardRef>
                           </Icon>
                         </Plus>
                       </div>
                     </MockStyledComponent>
-                  </Header>
-                  <Content
+                  </ForwardRef>
+                  <ForwardRef
                     $disabled={false}
                     $expanded={false}
                   >
@@ -934,10 +926,10 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                         }
                       />
                     </MockStyledComponent>
-                  </Content>
+                  </ForwardRef>
                 </li>
               </MockStyledComponent>
-            </PanelContainer>
+            </ForwardRef>
           </Panel>
           <Panel
             accordion={true}
@@ -951,7 +943,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
             renderPanelContent={false}
             title="Accordion panel 2"
           >
-            <PanelContainer
+            <ForwardRef
               $disabled={false}
               $expanded={false}
             >
@@ -969,7 +961,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                     }
                   }
                 >
-                  <Header
+                  <ForwardRef
                     $disabled={false}
                     $expanded={false}
                     aria-disabled={null}
@@ -1034,7 +1026,6 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                               "Svg": Object {
                                 "component": Object {
                                   "$$typeof": Symbol(react.forward_ref),
-                                  "displayName": "ToggleIcon",
                                   "render": [Function],
                                 },
                               },
@@ -1051,7 +1042,6 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                                 "Svg": Object {
                                   "component": Object {
                                     "$$typeof": Symbol(react.forward_ref),
-                                    "displayName": "ToggleIcon",
                                     "render": [Function],
                                   },
                                 },
@@ -1061,7 +1051,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                             title="Expand"
                             viewBox="0 0 24 24"
                           >
-                            <ToggleIcon
+                            <ForwardRef
                               $disabled={false}
                               $expanded={false}
                               $size={16}
@@ -1101,13 +1091,13 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                                   />
                                 </svg>
                               </MockStyledComponent>
-                            </ToggleIcon>
+                            </ForwardRef>
                           </Icon>
                         </Plus>
                       </div>
                     </MockStyledComponent>
-                  </Header>
-                  <Content
+                  </ForwardRef>
+                  <ForwardRef
                     $disabled={false}
                     $expanded={false}
                   >
@@ -1146,10 +1136,10 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                         }
                       />
                     </MockStyledComponent>
-                  </Content>
+                  </ForwardRef>
                 </li>
               </MockStyledComponent>
-            </PanelContainer>
+            </ForwardRef>
           </Panel>
           <Panel
             accordion={true}
@@ -1163,7 +1153,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
             renderPanelContent={false}
             title="Accordion panel 3"
           >
-            <PanelContainer
+            <ForwardRef
               $disabled={false}
               $expanded={false}
             >
@@ -1181,7 +1171,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                     }
                   }
                 >
-                  <Header
+                  <ForwardRef
                     $disabled={false}
                     $expanded={false}
                     aria-disabled={null}
@@ -1246,7 +1236,6 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                               "Svg": Object {
                                 "component": Object {
                                   "$$typeof": Symbol(react.forward_ref),
-                                  "displayName": "ToggleIcon",
                                   "render": [Function],
                                 },
                               },
@@ -1263,7 +1252,6 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                                 "Svg": Object {
                                   "component": Object {
                                     "$$typeof": Symbol(react.forward_ref),
-                                    "displayName": "ToggleIcon",
                                     "render": [Function],
                                   },
                                 },
@@ -1273,7 +1261,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                             title="Expand"
                             viewBox="0 0 24 24"
                           >
-                            <ToggleIcon
+                            <ForwardRef
                               $disabled={false}
                               $expanded={false}
                               $size={16}
@@ -1313,13 +1301,13 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                                   />
                                 </svg>
                               </MockStyledComponent>
-                            </ToggleIcon>
+                            </ForwardRef>
                           </Icon>
                         </Plus>
                       </div>
                     </MockStyledComponent>
-                  </Header>
-                  <Content
+                  </ForwardRef>
+                  <ForwardRef
                     $disabled={false}
                     $expanded={false}
                   >
@@ -1358,14 +1346,14 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                         }
                       />
                     </MockStyledComponent>
-                  </Content>
+                  </ForwardRef>
                 </li>
               </MockStyledComponent>
-            </PanelContainer>
+            </ForwardRef>
           </Panel>
         </ul>
       </MockStyledComponent>
-    </Root>
+    </ForwardRef>
   </Accordion>
 </Component>
 `;
