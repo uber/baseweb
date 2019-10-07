@@ -2,7 +2,8 @@
 
 set -e
 
-branchUrl=$(echo $BUILDKITE_BRANCH | tr /_ -)
+branchUrl=$(echo $BUILDKITE_BRANCH | tr / -)
+branchUrl=$(echo $branchUrl | tr -d _)
 url="https://baseui-git-$branchUrl.uber-ui-platform.now.sh/"
 
 # based on recent zeit builds, it can take up to 7 minutes to do the build
