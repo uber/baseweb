@@ -13,7 +13,7 @@ import Screener, {Steps} from 'screener-storybook/src/screener';
 
 export const name = 'select-highlight';
 export const component = () => {
-  const [value, setValue] = React.useState([]);
+  const [value, setValue] = React.useState([{id: 'Beige', color: '#F5F5DC'}]);
   const input = 'div[data-baseweb=select] > div:nth-child(1)';
   return (
     <Screener
@@ -35,7 +35,7 @@ export const component = () => {
         labelKey="id"
         valueKey="color"
         onChange={({value}) => setValue(value)}
-        value={[{id: 'Beige', color: '#F5F5DC'}]}
+        value={value}
       />
     </Screener>
   );
