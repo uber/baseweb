@@ -28,8 +28,17 @@ export const getAstPropsArray = (props: {[key: string]: TProp}) => {
         t.jsxIdentifier(name),
         t.jsxExpressionContainer(t.identifier(name)),
       );
-    if (!value && !(typeof value === 'boolean' && renderFalseValue))
+    // The second condition in the if statement prevents a boolean
+    // prop that is set to `true` and has `renderFalseValue` set
+    // from rendereding in the component's props.
+    // Those are supposed to be set to true in default props.
+    if (
+      !value ||
+      (typeof value === 'boolean' &&
+        ((value && renderFalseValue) || (!value && !renderFalseValue)))
+    ) {
       return null;
+    }
     const astValue = getAstPropValue(prop);
     if (!astValue) return null;
     return t.jsxAttribute(
