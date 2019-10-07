@@ -73,7 +73,13 @@ const Knob: React.SFC<{
 }) => {
   // to be able debounce internal state and sync the upstream changes
   const [val, set] = React.useState(globalVal);
-  const debouncedSet = React.useRef(debounce(globalSet, 250)).current;
+  React.useEffect(() => {
+    // begins a countdown when 'val' changes. if it changes before countdown ends, clear the timeout
+    // avoids lodash debounce to avoid stale values in globalSet.
+    const timeout = setTimeout(() => globalSet(val), 250);
+    return () => clearTimeout(timeout);
+  }, [val]);
+
   React.useEffect(() => {
     set(globalVal);
   }, [globalVal]);
@@ -106,10 +112,7 @@ const Knob: React.SFC<{
           <Input
             //@ts-ignore
             error={Boolean(error)}
-            onChange={event => {
-              set((event.target as any).value);
-              debouncedSet((event.target as any).value);
-            }}
+            onChange={event => set((event.target as any).value)}
             placeholder={placeholder}
             size="compact"
             value={val ? String(val) : undefined}
