@@ -20,9 +20,14 @@ import {Avatar} from 'baseui/avatar';
 import * as AvatarExports from 'baseui/avatar';
 import {Block} from 'baseui/block';
 
+import Yard from '../../components/yard/index';
+import avatarYardConfig from '../../components/yard/config/avatar';
+
 export default Layout;
 
 # Avatar
+
+<Yard componentName="Avatar" placeholderHeight={52} {...avatarYardConfig} />
 
 Adds additional visual information about a user.
 
@@ -54,37 +59,7 @@ Adds additional visual information about a user.
   <Override />
 </Example>
 
-## Overrides
-
-<Overrides
-  name="Avatar"
-  component={AvatarExports}
-  renderExample={props => (
-    <React.Fragment>
-      <Avatar
-        overrides={props.overrides}
-        name="user name #1"
-        size="scale1400"
-        src="https://api.adorable.io/avatars/285/11@adorable.io.png"
-      />
-      <Block marginTop="scale800">
-        <Avatar
-          overrides={props.overrides}
-          name={`user`}
-          size="scale1400"
-          src="https://not-a-real-image.png"
-        />
-      </Block>
-    </React.Fragment>
-  )}
-/>
-
 ## API
-
-<API
-  heading="Avatar API"
-  api={require('!!extract-react-types-loader!../../../src/avatar/avatar.js')}
-/>
 
 <Exports
   component={AvatarExports}
