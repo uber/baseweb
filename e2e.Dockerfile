@@ -6,11 +6,11 @@ WORKDIR /baseui
 # Doing this before a build step can more effectively leverage Docker caching.
 COPY package.json yarn.lock /baseui/
 RUN yarn --ignore-scripts
-RUN yarn global add now
 
 # Copy the current files to the docker image.
 COPY . .
 
 # Perform any build steps if you want binaries inside of the image
 RUN yarn build
-RUN yarn build:documentation-site-files
+RUN yarn build-storybook
+RUN yarn e2e:build
