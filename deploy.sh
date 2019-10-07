@@ -14,6 +14,8 @@ echo latest tagged commit: $latest_tagged_commit
 
 # deploy to netlify the master
 if [ "$BUILDKITE_BRANCH" = "master" ]; then
+  # we build the doc site on purpose here - it will slow down builds on the master only
+  yarn documentation:build
   yarn netlify deploy --dir=public --prod
 fi
 
