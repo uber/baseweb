@@ -106,7 +106,9 @@ const Compiler: React.FC<{
           justifyContent: 'center',
         })}
       >
-        {Element ? <Element /> : <PlaceholderElement />}
+        <div className={css({width: '400px'})}>
+          {Element ? <Element /> : <PlaceholderElement />}
+        </div>
       </div>
     </div>
   );
