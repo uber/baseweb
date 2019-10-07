@@ -182,6 +182,11 @@ function generateDayStyles(defaultCode, defaultStyle) {
 }
 
 function getDayStyles(code, {colors}) {
+  const undefinedDayStyle = {
+    ':before': {content: null},
+    ':after': {content: null},
+  };
+  let defaultDayStyle = undefinedDayStyle;
   const disabledDateStyle = {
     color: colors.calendarForegroundDisabled,
     ':before': {content: null},
@@ -190,6 +195,10 @@ function getDayStyles(code, {colors}) {
   const highlightedStyle = {
     ':before': {content: null},
   };
+  const CODE_DISABLED_INDEX = 1;
+  if (code && code[CODE_DISABLED_INDEX] === '1') {
+    defaultDayStyle = disabledDateStyle;
+  }
   // See the ./utils/day-state.js file for the description of all available states
   // rdhsrSsDeDpSrHpHrRrLsMeMoM
   // '000000000000000'
@@ -224,18 +233,6 @@ function getDayStyles(code, {colors}) {
     // range: highlighted date outside of a selected range
     ...generateDayStyles('101000000000000', highlightedStyle),
     ...generateDayStyles('101010000000000', highlightedStyle),
-    // range: disabled date
-    ...generateDayStyles('110000000000000', disabledDateStyle),
-    ...generateDayStyles('110010000000000', disabledDateStyle),
-    ...generateDayStyles('110000001010000', disabledDateStyle),
-    ...generateDayStyles('110000001001000', disabledDateStyle),
-    // range: disabled highlighted date
-    ...generateDayStyles('111000000000000', disabledDateStyle),
-    ...generateDayStyles('111010000000000', disabledDateStyle),
-    ...generateDayStyles('111000001010000', disabledDateStyle),
-    ...generateDayStyles('111000001001000', disabledDateStyle),
-    // disabled pseudo-highlighted
-    ...generateDayStyles('110000001100000', disabledDateStyle),
     // range: selected date
     '100100000000000': {
       color: colors.calendarDayForegroundSelected,
@@ -437,12 +434,7 @@ function getDayStyles(code, {colors}) {
       ':before': {left: null, right: '50%'},
     },
   };
-  return (
-    dayStateStyle[code] || {
-      ':before': {content: null},
-      ':after': {content: null},
-    }
-  );
+  return dayStateStyle[code] || defaultDayStyle;
 }
 
 function getEdgeDayBeforeStyle(code, firstChild, peekNextMonth) {
