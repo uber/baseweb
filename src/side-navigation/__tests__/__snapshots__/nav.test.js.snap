@@ -35,7 +35,7 @@ Array [
     }
     overrides={Object {}}
   >
-    <ForwardRef
+    <StyledNavLink
       $active={false}
       $level={1}
       $selectable={false}
@@ -58,7 +58,7 @@ Array [
             }
           }
         >
-          <ForwardRef
+          <StyledNavItem
             $active={false}
             $level={1}
             $selectable={false}
@@ -184,10 +184,10 @@ Array [
                 </span>
               </div>
             </MockStyledComponent>
-          </ForwardRef>
+          </StyledNavItem>
         </a>
       </MockStyledComponent>
-    </ForwardRef>
+    </StyledNavLink>
   </NavItem>,
   <NavItem
     $active={true}
@@ -214,7 +214,7 @@ Array [
     }
     overrides={Object {}}
   >
-    <ForwardRef
+    <StyledNavLink
       $active={true}
       $level={2}
       $selectable={true}
@@ -246,7 +246,7 @@ Array [
             }
           }
         >
-          <ForwardRef
+          <StyledNavItem
             $active={true}
             $level={2}
             $selectable={true}
@@ -348,10 +348,10 @@ Array [
                 </span>
               </div>
             </MockStyledComponent>
-          </ForwardRef>
+          </StyledNavItem>
         </a>
       </MockStyledComponent>
-    </ForwardRef>
+    </StyledNavLink>
   </NavItem>,
   <NavItem
     $active={false}
@@ -369,7 +369,7 @@ Array [
     }
     overrides={Object {}}
   >
-    <ForwardRef
+    <StyledNavLink
       $active={false}
       $level={3}
       $selectable={true}
@@ -401,7 +401,7 @@ Array [
             }
           }
         >
-          <ForwardRef
+          <StyledNavItem
             $active={false}
             $level={3}
             $selectable={true}
@@ -476,10 +476,10 @@ Array [
                 </span>
               </div>
             </MockStyledComponent>
-          </ForwardRef>
+          </StyledNavItem>
         </a>
       </MockStyledComponent>
-    </ForwardRef>
+    </StyledNavLink>
   </NavItem>,
   <NavItem
     $active={false}
@@ -497,7 +497,7 @@ Array [
     }
     overrides={Object {}}
   >
-    <ForwardRef
+    <StyledNavLink
       $active={false}
       $level={1}
       $selectable={true}
@@ -529,7 +529,7 @@ Array [
             }
           }
         >
-          <ForwardRef
+          <StyledNavItem
             $active={false}
             $level={1}
             $selectable={true}
@@ -604,10 +604,10 @@ Array [
                 </span>
               </div>
             </MockStyledComponent>
-          </ForwardRef>
+          </StyledNavItem>
         </a>
       </MockStyledComponent>
-    </ForwardRef>
+    </StyledNavLink>
   </NavItem>,
   <NavItem
     $active={false}
@@ -625,7 +625,7 @@ Array [
     }
     overrides={Object {}}
   >
-    <ForwardRef
+    <StyledNavLink
       $active={false}
       $level={1}
       $selectable={true}
@@ -657,7 +657,7 @@ Array [
             }
           }
         >
-          <ForwardRef
+          <StyledNavItem
             $active={false}
             $level={1}
             $selectable={true}
@@ -732,10 +732,10 @@ Array [
                 </span>
               </div>
             </MockStyledComponent>
-          </ForwardRef>
+          </StyledNavItem>
         </a>
       </MockStyledComponent>
-    </ForwardRef>
+    </StyledNavLink>
   </NavItem>,
 ]
 `;

@@ -176,7 +176,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
             shards={Array []}
           />
         </SideEffect(FocusWatcher)>
-        <ForwardRef
+        <Root
           $animate={true}
           $closeable={true}
           $isOpen={true}
@@ -259,7 +259,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
             }
           >
             <Portal>
-              <ForwardRef
+              <Backdrop
                 $animate={true}
                 $closeable={true}
                 $isOpen={true}
@@ -280,8 +280,8 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                 >
                   <Portal />
                 </MockStyledComponent>
-              </ForwardRef>
-              <ForwardRef
+              </Backdrop>
+              <DialogContainer
                 $animate={true}
                 $closeable={true}
                 $isOpen={true}
@@ -299,7 +299,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                   forwardedRef={null}
                 >
                   <Portal>
-                    <ForwardRef
+                    <Dialog
                       $animate={true}
                       $closeable={true}
                       $isOpen={true}
@@ -371,28 +371,28 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                         tabIndex={-1}
                       >
                         <Portal>
-                          <ForwardRef>
+                          <ModalHeader>
                             <MockStyledComponent
                               forwardedRef={null}
                             >
                               <Portal />
                             </MockStyledComponent>
-                          </ForwardRef>
-                          <ForwardRef>
+                          </ModalHeader>
+                          <ModalBody>
                             <MockStyledComponent
                               forwardedRef={null}
                             >
                               <Portal />
                             </MockStyledComponent>
-                          </ForwardRef>
-                          <ForwardRef>
+                          </ModalBody>
+                          <ModalFooter>
                             <MockStyledComponent
                               forwardedRef={null}
                             >
                               <Portal />
                             </MockStyledComponent>
-                          </ForwardRef>
-                          <ForwardRef
+                          </ModalFooter>
+                          <Close
                             $animate={true}
                             $closeable={true}
                             $isOpen={true}
@@ -421,16 +421,16 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                                 </CloseIcon>
                               </Portal>
                             </MockStyledComponent>
-                          </ForwardRef>
+                          </Close>
                         </Portal>
                       </MockStyledComponent>
-                    </ForwardRef>
+                    </Dialog>
                   </Portal>
                 </MockStyledComponent>
-              </ForwardRef>
+              </DialogContainer>
             </Portal>
           </MockStyledComponent>
-        </ForwardRef>
+        </Root>
       </Portal>
       <Portal />
     </FocusLock>
