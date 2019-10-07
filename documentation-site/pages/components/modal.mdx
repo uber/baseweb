@@ -13,6 +13,7 @@ import ModalBasic from 'examples/modal/basic.js';
 import ModalAutoFocus from 'examples/modal/autofocus.js';
 import ModalBuriedInteractiveElement from 'examples/modal/buried-interactive-element.js';
 import ModalNested from 'examples/modal/nested.js';
+import ModalSized from 'examples/modal/sized.js';
 
 export default Layout;
 
@@ -59,6 +60,12 @@ We have built in functionality based on the recommendations for dialogs and moda
 The modal will by default focus the first interactive element.
 If you want to focus something further down in the tab order, you can use the `autoFocus` property.
 This might be useful for targeting the most common action in the modal, such as a confirmation button.
+
+<Example title="Setting the size of the modal" path="modal/sized.js">
+  <ModalSized />
+</Example>
+
+A typical use case for more complex modals is to increase the size of the modal. Here, we are using a combination of overrides and in-line styles to set the height of the modal to `80vh` and the width to `80vw`. We also set the Modal to be a column-based flex container, while the ModalBody is then set to flex `1 1 0` in order to properly space the header and footer.
 
 <Example
   title="Dealing with a buried interactive element"
