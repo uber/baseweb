@@ -19,9 +19,18 @@ import Overrides from '../../components/overrides';
 import {StatefulPagination} from 'baseui/pagination';
 import * as PaginationExports from 'baseui/pagination';
 
+import Yard from '../../components/yard/index';
+import paginationYardConfig from '../../components/yard/config/pagination';
+
 export default Layout;
 
 # Pagination
+
+<Yard
+  componentName="Pagination"
+  placeholderHeight={52}
+  {...paginationYardConfig}
+/>
 
 Divide content into separate pages.
 
@@ -56,36 +65,6 @@ Divide content into separate pages.
 <Example title="Pagination with Overrides" path="pagination/overrides.js">
   <Customization />
 </Example>
-
-## Overrides
-
-<Overrides
-  name="Pagination"
-  component={PaginationExports}
-  whitelisted={[
-    'Root',
-    'PrevButton',
-    'NextButton',
-    'MaxLabel',
-    'DropdownContainer',
-    'Select',
-  ]}
-  renderExample={props => (
-    <StatefulPagination numPages={10} overrides={props.overrides} />
-  )}
-/>
-
-## API
-
-<API
-  heading="Pagination API"
-  api={require('!!extract-react-types-loader!../../../src/pagination/pagination.js')}
-/>
-
-<API
-  heading="Stateful Pagination API"
-  api={require('!!extract-react-types-loader!../../../src/pagination/stateful-pagination.js')}
-/>
 
 <Exports
   component={PaginationExports}
