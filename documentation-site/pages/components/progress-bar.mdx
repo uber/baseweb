@@ -21,11 +21,20 @@ import Overrides from '../../components/overrides';
 import {ProgressBar} from 'baseui/progress-bar';
 import * as ProgressBarExports from 'baseui/progress-bar';
 
+import Yard from '../../components/yard/index';
+import progressBarYardConfig from '../../components/yard/config/progress-bar';
+
 export default Layout;
 
 # ProgressBar
 
 Indicates a wait time for deterministic actions- either within an experience flow or loading data.
+
+<Yard
+  componentName="ProgressBar"
+  placeholderHeight={48}
+  {...progressBarYardConfig}
+/>
 
 ## Accessibility
 
