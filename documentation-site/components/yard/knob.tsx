@@ -76,8 +76,10 @@ const Knob: React.SFC<{
   React.useEffect(() => {
     // begins a countdown when 'val' changes. if it changes before countdown ends, clear the timeout
     // avoids lodash debounce to avoid stale values in globalSet.
-    const timeout = setTimeout(() => globalSet(val), 250);
-    return () => clearTimeout(timeout);
+    if (val !== globalVal) {
+      const timeout = setTimeout(() => globalSet(val), 250);
+      return () => clearTimeout(timeout);
+    }
   }, [val]);
 
   React.useEffect(() => {
