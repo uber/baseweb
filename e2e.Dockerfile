@@ -11,5 +11,4 @@ RUN yarn --ignore-scripts
 COPY . .
 
 # Perform any build steps if you want binaries inside of the image
-RUN yarn build
 RUN yarn e2e:build
