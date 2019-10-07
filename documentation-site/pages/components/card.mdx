@@ -19,6 +19,9 @@ import {Card, StyledBody, StyledAction, StyledThumbnail} from 'baseui/card';
 import {Button} from 'baseui/button';
 import * as CardExports from 'baseui/card';
 
+import Yard from '../../components/yard/index';
+import cardYardConfig from '../../components/yard/config/card';
+
 export default Layout;
 
 # Card
@@ -27,6 +30,8 @@ Cards are a self-contained unit of information, usually as part of a feed or ser
 content. Cards have a dynamic range of modifiers that allow text-only, text and illustration,
 and photography. All cards have an option to include text links or buttons as a primary action.
 The entire card can become an active click-target.
+
+<Yard componentName="Card" placeholderHeight={48} {...cardYardConfig} />
 
 ## Examples
 
