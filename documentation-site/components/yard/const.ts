@@ -19,4 +19,5 @@ export enum PropTypes {
   Function = 'function',
   Overrides = 'overrides',
   Ref = 'ref',
+  Date = 'date',
 }

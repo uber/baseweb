@@ -61,6 +61,11 @@ export const getAstPropValue = (prop: TProp) => {
       return t.booleanLiteral(Boolean(value));
     case PropTypes.Enum:
       return t.identifier(String(value));
+    case PropTypes.Date:
+      return t.newExpression(
+        t.identifier('Date'),
+        value ? [t.stringLiteral(value as any)] : [],
+      );
     case PropTypes.Ref:
       return null;
     case PropTypes.Object:
