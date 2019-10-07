@@ -2,8 +2,10 @@ version: '2.3'
 services:
   # this spins up a server that serves the html/js/css for the e2e tests
   e2e-server:
-    build: .
     command: yarn e2e:serve
+    build:
+      dockerfile: e2e.Dockerfile
+      context: .
     expose:
       - 8080
     ports:
@@ -43,46 +45,6 @@ services:
       - BUILDKITE_PROJECT_SLUG
       - BUILDKITE_COMMIT
 
-  docs-site-server:
-    build: .
-    command: yarn documentation:serve
-    expose:
-      - 8081
-    ports:
-      - '8081:8081'
-    healthcheck:
-      test:
-        [
-          'CMD-SHELL',
-          'curl -H "Accept: text/html" -f http://localhost:8081 || exit 1',
-        ]
-      interval: 5s
-      timeout: 10s
-      retries: 5
-
-  docs-site-healthy:
-    build: .
-    network_mode: 'host'
-    depends_on:
-      docs-site-server:
-        condition: service_healthy
-
-  docs-site:
-    build: .
-    network_mode: 'host'
-    depends_on:
-      - docs-site-healthy
-    environment:
-      - CODECOV_TOKEN
-      - CI=true
-      - BUILDKITE
-      - BUILDKITE_BRANCH
-      - BUILDKITE_BUILD_NUMBER
-      - BUILDKITE_JOB_ID
-      - BUILDKITE_BUILD_URL
-      - BUILDKITE_PROJECT_SLUG
-      - BUILDKITE_COMMIT
-
   baseui:
     build: .
     environment:
@@ -105,3 +67,5 @@ services:
       - CF_API_KEY
       - CF_AUTH_EMAIL
       - NPM_TOKEN
+      - NETLIFY_AUTH_TOKEN
+      - NETLIFY_SITE_ID

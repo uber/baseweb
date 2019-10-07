@@ -1,12 +1,13 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {StyledLink} from 'baseui/link';
+import debounce from 'lodash/debounce';
 import {assertUnreachable} from './utils';
 import {PropTypes} from './const';
 import {Input} from 'baseui/input';
 import {Radio, RadioGroup} from 'baseui/radio';
 import {Checkbox} from 'baseui/checkbox';
-import {Select} from 'baseui/select';
+import {Select, SIZE} from 'baseui/select';
 import {StatefulTooltip} from 'baseui/tooltip';
 import PopupError from './popup-error';
 import Editor from './editor';
@@ -63,13 +64,20 @@ const Knob: React.SFC<{
   name,
   error,
   type,
-  val,
-  set,
+  val: globalVal,
+  set: globalSet,
   options = {},
   description,
   placeholder,
   enumName,
 }) => {
+  // to be able debounce internal state and sync the upstream changes
+  const [val, set] = React.useState(globalVal);
+  const debouncedSet = React.useRef(debounce(globalSet, 250)).current;
+  React.useEffect(() => {
+    set(globalVal);
+  }, [globalVal]);
+
   switch (type) {
     case PropTypes.Ref:
       return (
@@ -98,15 +106,11 @@ const Knob: React.SFC<{
           <Input
             //@ts-ignore
             error={Boolean(error)}
-            onChange={event => set((event.target as any).value)}
-            placeholder={placeholder}
-            overrides={{
-              Input: {
-                style: {
-                  height: '36px',
-                },
-              },
+            onChange={event => {
+              set((event.target as any).value);
+              debouncedSet((event.target as any).value);
             }}
+            placeholder={placeholder}
             size="compact"
             value={val ? String(val) : undefined}
           />
@@ -116,7 +120,12 @@ const Knob: React.SFC<{
     case PropTypes.Boolean:
       return (
         <Spacing>
-          <Checkbox checked={Boolean(val)} onChange={() => set(!val)}>
+          <Checkbox
+            checked={Boolean(val)}
+            onChange={() => {
+              globalSet(!val);
+            }}
+          >
             <StatefulTooltip
               accessibilityType="tooltip"
               content={getTooltip(description, type, name)}
@@ -131,18 +140,15 @@ const Knob: React.SFC<{
     case PropTypes.Enum:
       const optionsKeys = Object.keys(options);
       const numberOfOptions = optionsKeys.length;
-      const selectOptions = optionsKeys.map(option => {
-        return {
-          _key: option,
-          ...(options[option] as Object),
-        };
-      });
-      //@ts-ignore
-      const valueKey = val && val.split('.')[1];
+      const selectOptions = optionsKeys.map(key => ({
+        id: key,
+        option: options[key],
+      }));
+      const valueKey = val && String(val).split('.')[1];
       return (
         <Spacing>
           <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
-          {numberOfOptions < 6 ? (
+          {numberOfOptions < 7 ? (
             <RadioGroup
               name="radio group"
               align="horizontal"
@@ -155,8 +161,9 @@ const Knob: React.SFC<{
                   }),
                 },
               }}
-              //@ts-ignore
-              onChange={e => set(e.target.value)}
+              onChange={e => {
+                globalSet((e.target as any).value);
+              }}
               value={String(val)}
             >
               {Object.keys(options).map(opt => (
@@ -182,13 +189,15 @@ const Knob: React.SFC<{
             </RadioGroup>
           ) : (
             <Select
+              size={SIZE.compact}
               options={selectOptions}
-              //@ts-ignore
-              value={valueKey && options[valueKey]}
-              valueKey="_key"
-              onChange={({value}) =>
-                set(`${enumName || name.toUpperCase()}.${value[0]._key}`)
-              }
+              clearable={false}
+              value={[{id: valueKey || '', option: valueKey}]}
+              labelKey="option"
+              valueKey="id"
+              onChange={({value}) => {
+                globalSet(`${enumName || name.toUpperCase()}.${value[0].id}`);
+              }}
             />
           )}
 
@@ -201,7 +210,9 @@ const Knob: React.SFC<{
         <Spacing>
           <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
           <Editor
-            onChange={code => set(code)}
+            onChange={code => {
+              globalSet(code);
+            }}
             code={val ? String(val) : ''}
             placeholder={placeholder}
             small

@@ -48,7 +48,12 @@ type TPropValueOverrides = {
   };
 };
 
-export type TPropValue = undefined | boolean | string | TPropValueOverrides;
+export type TPropValue =
+  | undefined
+  | boolean
+  | string
+  | number
+  | TPropValueOverrides;
 
 export type TProp = {
   value: TPropValue;
@@ -56,6 +61,7 @@ export type TProp = {
   description: string;
   options?: any;
   placeholder?: string;
+  renderFalseValue?: boolean;
   enumName?: string;
   hidden?: boolean;
   names?: string[];
