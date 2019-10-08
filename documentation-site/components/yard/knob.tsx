@@ -91,8 +91,6 @@ const Knob: React.SFC<{
       );
     case PropTypes.String:
     case PropTypes.Number:
-    case PropTypes.Array:
-    case PropTypes.Object:
       return (
         <Spacing>
           <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
@@ -196,6 +194,8 @@ const Knob: React.SFC<{
       );
     case PropTypes.ReactNode:
     case PropTypes.Function:
+    case PropTypes.Array:
+    case PropTypes.Object:
       return (
         <Spacing>
           <Label tooltip={getTooltip(description, type, name)}>{name}</Label>

@@ -6,7 +6,6 @@ import {TConfig} from '../types';
 const TabsConfig: TConfig = {
   imports: {
     'baseui/card': {named: ['Card']},
-    'baseui/button': {named: ['Button']},
   },
   scope: {
     Card,
@@ -32,6 +31,7 @@ const TabsConfig: TConfig = {
       description: `An array of Tab components.`,
       imports: {
         'baseui/card': {named: ['StyledBody', 'StyledAction']},
+        'baseui/button': {named: ['Button']},
       },
     },
     title: {
