@@ -32,7 +32,7 @@ steps:
   - wait
   # All of the commands after the wait are run in parallel.
   - name: ':vrt:'
-    command: yarn vrt
+    command: yarn add puppeteer && yarn vrt
     plugins:
       'docker-compose#v3.0.3':
         run: e2e-test
