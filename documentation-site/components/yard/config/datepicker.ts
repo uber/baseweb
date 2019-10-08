@@ -12,9 +12,9 @@ const DatepickerConfig: TConfig = {
   theme: [],
   props: {
     value: {
-      value: '1995-12-17T03:24:00',
+      value: new Date().toISOString(),
       type: PropTypes.Date,
-      description: 'Currently selected date.',
+      description: 'Currently selected date (Date object).',
       stateful: true,
     },
     onChange: {
@@ -22,9 +22,33 @@ const DatepickerConfig: TConfig = {
       type: PropTypes.Function,
       description: 'Event handler that is called when a new date is selected.',
       propHook: {
-        what: 'date.toString()',
+        what: 'date.toISOString()',
         into: 'value',
       },
+    },
+    autoFocusCalendar: {
+      value: undefined,
+      type: PropTypes.Function,
+      description:
+        'Defines if the calendar is set to be focused on an initial render.',
+      hidden: true,
+    },
+    excludeDates: {
+      value: undefined,
+      type: PropTypes.Array,
+      description: 'A list of dates to disable. Array<Date>',
+    },
+    quickSelect: {
+      value: undefined,
+      type: PropTypes.Boolean,
+      description:
+        'Display select for quickly choosing date ranges. range must be true as well.',
+    },
+    quickSelectOptions: {
+      value: undefined,
+      type: PropTypes.Array,
+      description:
+        'Array of custom options (Array<{ id: string; beginDate: Date }>) displayed in the quick select. Overrides default options if provided.',
     },
     overrides: {
       value: undefined,
