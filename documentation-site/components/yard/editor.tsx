@@ -1,5 +1,5 @@
 import * as React from 'react';
-import debounce from 'lodash/debounce';
+import {useValueDebounce} from './utils';
 import SimpleEditor from 'react-simple-code-editor';
 import Highlight, {Prism} from 'prism-react-renderer';
 import lightTheme from './light-theme';
@@ -45,12 +45,7 @@ const Editor: React.FC<{
     },
   };
 
-  // debouncing editor code updates
-  const [code, setCode] = React.useState(globalCode);
-  const debouncedOnChange = React.useRef(debounce(onChange, 300)).current;
-  React.useEffect(() => {
-    setCode(globalCode);
-  }, [globalCode]);
+  const [code, setCode] = useValueDebounce<string>(globalCode, onChange);
 
   return (
     <div
@@ -76,10 +71,7 @@ const Editor: React.FC<{
         value={code || ''}
         placeholder={placeholder}
         highlight={code => highlightCode(code, editorTheme)}
-        onValueChange={code => {
-          setCode(code);
-          debouncedOnChange(code);
-        }}
+        onValueChange={code => setCode(code)}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
         padding={small ? 4 : 12}

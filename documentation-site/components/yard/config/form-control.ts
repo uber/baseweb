@@ -20,24 +20,24 @@ const TextareaConfig: TConfig = {
       imports: {'baseui/input': {named: ['Input']}},
     },
     label: {
-      value: 'label',
-      type: PropTypes.String,
+      value: `() => 'label'`,
+      type: PropTypes.Function,
       description: 'A label rendered above the input field.',
     },
     caption: {
-      value: 'caption',
-      type: PropTypes.String,
+      value: `() => 'caption'`,
+      type: PropTypes.Function,
       description: 'A caption rendered below the input field.',
     },
     positive: {
       value: undefined,
-      type: PropTypes.String,
+      type: PropTypes.Function,
       description:
         'Positive state of the input. If an error prop passed it will be rendered in place of positive as an error message.',
     },
     error: {
       value: undefined,
-      type: PropTypes.String,
+      type: PropTypes.Function,
       description:
         'Error state of the input. If an error prop passed it will be rendered in place of caption as an error message.',
     },

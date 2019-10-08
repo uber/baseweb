@@ -104,11 +104,10 @@ const Compiler: React.FC<{
         className={css({
           display: 'flex',
           justifyContent: 'center',
+          flexWrap: 'wrap',
         })}
       >
-        <div className={css({width: '400px'})}>
-          {Element ? <Element /> : <PlaceholderElement />}
-        </div>
+        {Element ? <Element /> : <PlaceholderElement />}
       </div>
     </div>
   );

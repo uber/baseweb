@@ -1,8 +1,7 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {StyledLink} from 'baseui/link';
-import debounce from 'lodash/debounce';
-import {assertUnreachable} from './utils';
+import {assertUnreachable, useValueDebounce} from './utils';
 import {PropTypes} from './const';
 import {Input} from 'baseui/input';
 import {Radio, RadioGroup} from 'baseui/radio';
@@ -71,21 +70,7 @@ const Knob: React.SFC<{
   placeholder,
   enumName,
 }) => {
-  // to be able debounce internal state and sync the upstream changes
-  const [val, set] = React.useState(globalVal);
-  React.useEffect(() => {
-    // begins a countdown when 'val' changes. if it changes before countdown ends, clear the timeout
-    // avoids lodash debounce to avoid stale values in globalSet.
-    if (val !== globalVal) {
-      const timeout = setTimeout(() => globalSet(val), 250);
-      return () => clearTimeout(timeout);
-    }
-  }, [val]);
-
-  React.useEffect(() => {
-    set(globalVal);
-  }, [globalVal]);
-
+  const [val, set] = useValueDebounce<TPropValue>(globalVal, globalSet);
   switch (type) {
     case PropTypes.Ref:
       return (
