@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Exports from '../../components/exports';
 import Layout from '../../components/layout';
 
@@ -21,7 +20,6 @@ import Dropdown from 'examples/button-group/dropdown.js';
 import StatefulRadio from 'examples/button-group/stateful-radio.js';
 import StatefulCheckbox from 'examples/button-group/stateful-checkbox.js';
 
-import Overrides from '../../components/overrides';
 import {Button} from 'baseui/button';
 import {ButtonGroup} from 'baseui/button-group';
 import * as ButtonGroupExports from 'baseui/button-group';
@@ -102,36 +100,7 @@ As with many of our components, there is also an [uncontrolled](https://reactjs.
   <StatefulCheckbox />
 </Example>
 
-## Overrides
-
-<Overrides
-  name="ButtonGroup"
-  component={ButtonGroupExports}
-  renderExample={props => (
-    <ButtonGroup overrides={props.overrides}>
-      <Button>Label</Button>
-      <Button>Label</Button>
-      <Button>Label</Button>
-    </ButtonGroup>
-  )}
-/>
-
 ## API
-
-<API
-  heading="ButtonGroup API"
-  api={require('!!extract-react-types-loader!../../../src/button-group/button-group.js')}
-/>
-
-<API
-  heading="StatefulButtonGroup API"
-  api={require('!!extract-react-types-loader!../../../src/button-group/stateful-button-group.js')}
-/>
-
-<API
-  heading="StatefulContainer API"
-  api={require('!!extract-react-types-loader!../../../src/button-group/stateful-container.js')}
-/>
 
 <Exports
   component={ButtonGroupExports}

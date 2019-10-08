@@ -6,9 +6,7 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
-import Overrides from '../../components/overrides';
 import Exports from '../../components/exports';
 
 import PinCodeBasic from 'examples/pin-code/basic.js';
@@ -34,11 +32,11 @@ export default Layout;
 
 # Pin Code
 
+<Yard componentName="PinCode" placeholderHeight={48} {...pinYardConfig} />
+
 The `PinCode` component is optimized for entering sequences of digits.
 The most common application is for entering single-use security codes.
 It is optimized for entering digits quickly.
-
-<Yard componentName="PinCode" placeholderHeight={48} {...pinYardConfig} />
 
 ## Examples
 

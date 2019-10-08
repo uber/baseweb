@@ -19,19 +19,7 @@ const items = `[
             title: 'Dark',
             itemId: '#dark',
           },
-          {
-            title: 'Light',
-            itemId: '#light',
-          },
         ]
-      },
-      {
-        title: 'Sizing',
-        itemId: '#sizing',
-      },
-      {
-        title: 'Typography',
-        itemId: '#typography',
       },
     ],
   },
