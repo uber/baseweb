@@ -1,4 +1,5 @@
 import {Theme} from 'baseui/theme';
+import * as React from 'react';
 import {TProp, TThemeDiff, TPropValue} from './types';
 
 export function assertUnreachable(): never {
@@ -115,3 +116,29 @@ export const countProps = (
 export const countThemeValues = (componentThemeDiff: TThemeDiff) => {
   return Object.keys(componentThemeDiff.themeValues).length;
 };
+
+// creates a duplicate internal state, so we can preserve instant value editing
+// while debouncing top-level state updates that are slow
+export function useValueDebounce<T>(
+  globalVal: T,
+  globalSet: (val: T) => void,
+): [T, (val: T) => void] {
+  const [val, set] = React.useState(globalVal);
+
+  React.useEffect(() => {
+    // begins a countdown when 'val' changes. if it changes before countdown
+    // ends, clear the timeout avoids lodash debounce to avoid stale
+    // values in globalSet.
+    if (val !== globalVal) {
+      const timeout = setTimeout(() => globalSet(val), 250);
+      return () => clearTimeout(timeout);
+    }
+    return void 0;
+  }, [val]);
+
+  React.useEffect(() => {
+    set(globalVal);
+  }, [globalVal]);
+
+  return [val, set];
+}
