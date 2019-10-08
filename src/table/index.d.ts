@@ -44,7 +44,7 @@ export interface FilterProps {
 }
 export const Filter: React.FC<FilterProps>;
 
-export const StyledTable: React.FC<any>;
+export const StyledTable: StyletronComponent<any>;
 export const StyledFilterButton: StyletronComponent<any>;
 export const StyledFilterContent: StyletronComponent<any>;
 export const StyledFilterHeading: StyletronComponent<any>;
