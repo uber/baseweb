@@ -1,5 +1,5 @@
 import * as React from 'react';
-import debounce from 'lodash/debounce';
+import {useValueDebounce} from './utils';
 import {Input, SIZE} from 'baseui/input';
 import {useStyletron} from 'baseui';
 import Link from 'next/link';
@@ -27,13 +27,7 @@ const ColorInput: React.FC<{
   globalSet: (color: string) => void;
 }> = ({themeKey, themeInit, globalSet, globalColor}) => {
   const [useCss, $theme] = useStyletron();
-
-  // debounce setting theme color
-  const [color, setColor] = React.useState(globalColor);
-  React.useEffect(() => {
-    setColor(globalColor);
-  }, [globalColor]);
-  const debouncedSetColor = React.useRef(debounce(globalSet, 250)).current;
+  const [color, setColor] = useValueDebounce<string>(globalColor, globalSet);
 
   return (
     <label
@@ -54,10 +48,7 @@ const ColorInput: React.FC<{
         size={SIZE.compact}
         placeholder={themeInit[themeKey]}
         value={color}
-        onChange={e => {
-          setColor((e.target as HTMLInputElement).value);
-          debouncedSetColor((e.target as HTMLInputElement).value);
-        }}
+        onChange={e => setColor((e.target as HTMLInputElement).value)}
         overrides={{Root: {style: {width: '100px'}}}}
       />
       <div
