@@ -32,7 +32,7 @@ services:
   e2e-test:
     build: .
     volumes:
-      - .:/baseui
+      - .:/baseui:delegated
     network_mode: 'host'
     depends_on:
       - e2e-server-healthy
