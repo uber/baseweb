@@ -198,60 +198,64 @@ const Yard: React.FC<
             }}
           />
         </YardTab>
-        <YardTab
-          title={`Style Overrides${
-            activeOverrides > 0 ? ` (${activeOverrides})` : ''
-          }`}
-        >
-          <Overrides
-            componentName={componentName}
-            componentConfig={propsConfig}
-            overrides={state.props.overrides}
-            set={(propValue: TPropValue) => {
-              const propName = 'overrides';
-              try {
+        {Object.keys(propsConfig.overrides).length > 0 && (
+          <YardTab
+            title={`Style Overrides${
+              activeOverrides > 0 ? ` (${activeOverrides})` : ''
+            }`}
+          >
+            <Overrides
+              componentName={componentName}
+              componentConfig={propsConfig}
+              overrides={state.props.overrides}
+              set={(propValue: TPropValue) => {
+                const propName = 'overrides';
+                try {
+                  const newCode = getCode(
+                    buildPropsObj(state.props, {[propName]: propValue}),
+                    componentName,
+                    componentThemeDiff,
+                    importsConfig,
+                  );
+                  setError({where: '', msg: null});
+                  updatePropsAndCode(dispatch, newCode, propName, propValue);
+                  updateUrl(pathname, newCode);
+                } catch (e) {
+                  updateProps(dispatch, propName, propValue);
+                  setError({where: propName, msg: e.toString()});
+                }
+              }}
+            />
+          </YardTab>
+        )}
+        {themeConfig.length > 0 && (
+          <YardTab
+            title={`Theme ${
+              activeThemeValues > 0 ? `(${activeThemeValues})` : ''
+            }`}
+          >
+            <ThemeEditor
+              themeInit={initialThemeObj}
+              theme={state.theme}
+              componentName={componentName}
+              set={(updatedThemeValues: {[key: string]: string}) => {
+                const componentThemeDiff = getThemeForCodeGenerator(
+                  themeConfig,
+                  updatedThemeValues,
+                  theme,
+                );
                 const newCode = getCode(
-                  buildPropsObj(state.props, {[propName]: propValue}),
+                  state.props,
                   componentName,
                   componentThemeDiff,
                   importsConfig,
                 );
-                setError({where: '', msg: null});
-                updatePropsAndCode(dispatch, newCode, propName, propValue);
+                updateThemeAndCode(dispatch, newCode, updatedThemeValues);
                 updateUrl(pathname, newCode);
-              } catch (e) {
-                updateProps(dispatch, propName, propValue);
-                setError({where: propName, msg: e.toString()});
-              }
-            }}
-          />
-        </YardTab>
-        <YardTab
-          title={`Theme ${
-            activeThemeValues > 0 ? `(${activeThemeValues})` : ''
-          }`}
-        >
-          <ThemeEditor
-            themeInit={initialThemeObj}
-            theme={state.theme}
-            componentName={componentName}
-            set={(updatedThemeValues: {[key: string]: string}) => {
-              const componentThemeDiff = getThemeForCodeGenerator(
-                themeConfig,
-                updatedThemeValues,
-                theme,
-              );
-              const newCode = getCode(
-                state.props,
-                componentName,
-                componentThemeDiff,
-                importsConfig,
-              );
-              updateThemeAndCode(dispatch, newCode, updatedThemeValues);
-              updateUrl(pathname, newCode);
-            }}
-          />
-        </YardTab>
+              }}
+            />
+          </YardTab>
+        )}
       </YardTabs>
       <Editor
         code={state.codeNoRecompile !== '' ? state.codeNoRecompile : state.code}
