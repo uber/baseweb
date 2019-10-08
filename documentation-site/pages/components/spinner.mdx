@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
@@ -15,15 +14,19 @@ import SpinnerNegative from 'examples/spinner/negative.js';
 import SpinnerWithSize from 'examples/spinner/with-size.js';
 import SpinnerWithOverrides from 'examples/spinner/with-overrides.js';
 
-import Overrides from '../../components/overrides';
 import {Spinner} from 'baseui/spinner';
 import * as SpinnerExports from 'baseui/spinner';
+
+import Yard from '../../components/yard/index';
+import spinnerYardConfig from '../../components/yard/config/spinner';
 
 export default Layout;
 
 # Spinner
 
 Spinners provide a visual cue that an action is processing awaiting a course of change or a result.
+
+<Yard componentName="Spinner" placeholderHeight={48} {...spinnerYardConfig} />
 
 ## Accessibility
 
@@ -47,20 +50,7 @@ Spinners provide a visual cue that an action is processing awaiting a course of 
   <SpinnerWithOverrides />
 </Example>
 
-## Overrides
-
-<Overrides
-  name="Spinner"
-  component={SpinnerExports}
-  renderExample={props => <Spinner overrides={props.overrides} />}
-/>
-
 ## API
-
-<API
-  heading="Spinner API"
-  api={require('!!extract-react-types-loader!../../../src/spinner/spinner.js')}
-/>
 
 <Exports
   component={SpinnerExports}
