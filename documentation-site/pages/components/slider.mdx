@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
@@ -18,7 +17,6 @@ import StepMinMax from 'examples/slider/step-min-max.js';
 import CustomTicks from 'examples/slider/custom-ticks.js';
 import Customization from 'examples/slider/overrides.js';
 
-import Overrides from '../../components/overrides';
 import {StatefulSlider as Slider} from 'baseui/slider';
 import * as SliderExports from 'baseui/slider';
 
@@ -29,12 +27,12 @@ export default Layout;
 
 # Slider
 
+<Yard componentName="Slider" placeholderHeight={90} {...sliderYardConfig} />
+
 Control input with sliding axis to choose a single value or range between min and max values.
 
 There are two slider options in Base that allow users to select a single value or a range.
 Each slider has a primary control handle that cues user interaction.
-
-<Yard componentName="Slider" placeholderHeight={90} {...sliderYardConfig} />
 
 ## Accessibility
 
@@ -87,32 +85,7 @@ The component is also **optimized for iOS and Android devices**.
 
 As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulSlider`, which manages its own state.
 
-## Overrides
-
-<Overrides
-  name="Slider"
-  component={SliderExports}
-  renderExample={props => (
-    <Slider initialState={{value: [25, 75]}} overrides={props.overrides} />
-  )}
-/>
-
 ## API
-
-<API
-  heading="Slider API"
-  api={require('!!extract-react-types-loader!../../../src/slider/slider.js')}
-/>
-
-<API
-  heading="Stateful Slider API"
-  api={require('!!extract-react-types-loader!../../../src/slider/stateful-slider.js')}
-/>
-
-<API
-  heading="Stateful Slider Container API"
-  api={require('!!extract-react-types-loader!../../../src/slider/stateful-slider-container.js')}
-/>
 
 <Exports
   component={SliderExports}
