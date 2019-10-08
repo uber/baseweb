@@ -34,7 +34,7 @@ export const getAstPropsArray = (props: {[key: string]: TProp}) => {
     if (!astValue) return null;
     return t.jsxAttribute(
       t.jsxIdentifier(name),
-      prop.type === PropTypes.String
+      astValue.type === 'StringLiteral'
         ? astValue
         : t.jsxExpressionContainer(astValue),
     );
@@ -57,11 +57,15 @@ export const getAstPropValue = (prop: TProp) => {
     case PropTypes.Array:
     case PropTypes.Number:
     case PropTypes.Function:
-      return (template.ast(String(value), {plugins: ['jsx']}) as any)
-        .expression;
     case PropTypes.ReactNode:
-      return (template.ast(`<>${value}</>`, {plugins: ['jsx']}) as any)
-        .expression.children;
+      const output = (template.ast(String(value), {plugins: ['jsx']}) as any)
+        .expression;
+      // we never expect that user would input a variable as the value
+      // treat it as a string instead
+      if (output.type === 'Identifier') {
+        return t.stringLiteral(output.name);
+      }
+      return output;
     case PropTypes.Overrides:
       const activeValues = Object.entries(value as {
         [key: string]: {active: boolean; style: string};
@@ -228,6 +232,12 @@ export const getAstImports = (
   );
 };
 
+const getChildrenAst = (value: string) => {
+  return (template.ast(`<>${value}</>`, {
+    plugins: ['jsx'],
+  }) as any).expression.children;
+};
+
 export const getAst = (
   props: {[key: string]: TProp},
   componentName: string,
@@ -258,7 +268,9 @@ export const getAst = (
               getAstJsxElement(
                 componentName,
                 getAstPropsArray(restProps),
-                children && children.value ? getAstPropValue(children) : [],
+                children && children.value
+                  ? getChildrenAst(String(children.value))
+                  : [],
               ),
             ),
           ),
