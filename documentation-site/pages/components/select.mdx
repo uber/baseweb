@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
@@ -25,14 +24,18 @@ import SelectCreatable from 'examples/select/creatable.js';
 import SelectCreatableMulti from 'examples/select/creatable-multi.js';
 import SelectOverriddenDropdown from 'examples/select/overridden-dropdown.js';
 
-import Overrides from '../../components/overrides';
 import {StatefulSelect, TYPE} from 'baseui/select';
 import * as SelectExports from 'baseui/select';
 import {Block} from 'baseui/block';
 
+import Yard from '../../components/yard/index';
+import selectYardConfig from '../../components/yard/config/select';
+
 export default Layout;
 
 # Select
+
+<Yard componentName="Select" placeholderHeight={48} {...selectYardConfig} />
 
 The select and search controls allow the user to select an option or options.
 
@@ -122,83 +125,6 @@ If you want the dropdown to stay open you might be better off using [`Menu`](/co
 </Example>
 
 To override the `Popover` that's being used by the Dropdown subcomponent, you have to use a [nested override](/guides/understanding-overrides/#override-nested-components).
-
-## Overrides
-
-<Overrides
-  name="Select"
-  component={SelectExports}
-  whitelisted={[
-    'Root',
-    'ControlContainer',
-    'Placeholder',
-    'ValueContainer',
-    'SingleValue',
-    'MultiValue',
-    'InputContainer',
-    'Input',
-    'IconsContainer',
-    'SelectArrow',
-    'ClearIcon',
-    'LoadingIndicator',
-    'SearchIcon',
-    'Popover',
-    'DropdownContainer',
-    'Dropdown',
-    'DropdownOption',
-    'DropdownListItem',
-    'OptionContent',
-    'StatefulMenu',
-  ]}
-  renderExample={props => (
-    <React.Fragment>
-      <StatefulSelect
-        overrides={props.overrides}
-        options={[
-          {id: 'AliceBlue', color: '#F0F8FF'},
-          {id: 'AntiqueWhite', color: '#FAEBD7'},
-          {id: 'Aqua', color: '#00FFFF'},
-          {id: 'Aquamarine', color: '#7FFFD4'},
-          {id: 'Azure', color: '#F0FFFF'},
-          {id: 'Beige', color: '#F5F5DC'},
-        ]}
-        labelKey="id"
-        valueKey="color"
-        multi
-        type={TYPE.search}
-        onChange={event => console.log(event)}
-      />
-      <Block marginTop="scale800">
-        <StatefulSelect
-          overrides={props.overrides}
-          options={[
-            {id: 'AliceBlue', color: '#F0F8FF'},
-            {id: 'AntiqueWhite', color: '#FAEBD7'},
-            {id: 'Aqua', color: '#00FFFF'},
-            {id: 'Aquamarine', color: '#7FFFD4'},
-            {id: 'Azure', color: '#F0FFFF'},
-            {id: 'Beige', color: '#F5F5DC'},
-          ]}
-          labelKey="id"
-          valueKey="color"
-          onChange={event => console.log(event)}
-        />
-      </Block>
-    </React.Fragment>
-  )}
-/>
-
-## API
-
-<API
-  heading="Select API"
-  api={require('!!extract-react-types-loader!../../../src/select/select.js')}
-/>
-
-<API
-  heading="StatefulSelectContainer API"
-  api={require('!!extract-react-types-loader!../../../src/select/stateful-select-container.js')}
-/>
 
 <Exports
   component={SelectExports}
