@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
@@ -21,15 +20,23 @@ import Clipping from 'examples/popover/clipping.js';
 import Customization from 'examples/popover/overrides.js';
 import AnchorRefHandling from 'examples/popover/ref-handling.js';
 
-import Overrides from '../../components/overrides';
 import {Popover, PLACEMENT} from 'baseui/popover';
 import * as PopoverExports from 'baseui/popover';
 import {Block} from 'baseui/block';
 import {Paragraph3, Label3} from 'baseui/typography';
 
+import Yard from '../../components/yard/index';
+import popoverYardConfig from '../../components/yard/config/popover';
+
 export default Layout;
 
 # Popover
+
+<Yard
+  componentName="StatefulPopover"
+  placeholderHeight={20}
+  {...popoverYardConfig}
+/>
 
 Popovers provide the container and styles to overlay menus, tooltips, controls or text. They’re
 visually represented as a layer above other components and objects in a view, and float above a
@@ -95,45 +102,7 @@ structured content and imagery/illustration. It’s usage depends on the context
   <Customization />
 </Example>
 
-## Overrides
-
-<Overrides
-  name="Popover"
-  blacklisted={['Padding']}
-  component={PopoverExports}
-  renderExample={props => (
-    <Popover
-      isOpen
-      content={<Paragraph3 padding="scale500">hello world</Paragraph3>}
-      showArrow
-      placement={PLACEMENT.right}
-      overrides={props.overrides}
-    >
-      <span>
-        <Label3 as="span" padding="scale500">
-          always open
-        </Label3>
-      </span>
-    </Popover>
-  )}
-/>
-
 ## API
-
-<API
-  heading="Popover API"
-  api={require('!!extract-react-types-loader!../../../src/popover/popover.js')}
-/>
-
-<API
-  heading="Stateful Popover API"
-  api={require('!!extract-react-types-loader!../../../src/popover/stateful-popover.js')}
-/>
-
-<API
-  heading="Stateful Container API"
-  api={require('!!extract-react-types-loader!../../../src/popover/stateful-container.js')}
-/>
 
 <Exports
   component={PopoverExports}
