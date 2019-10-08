@@ -19,6 +19,9 @@ import * as AccordionExports from 'baseui/accordion';
 import * as PanelExports from 'baseui/accordion/panel.js';
 import {Accordion, Panel, StatefulPanel} from 'baseui/accordion';
 
+import Yard from '../../components/yard/index';
+import accordionYardConfig from '../../components/yard/config/accordion';
+
 <SEO
   description="Accordions display a list of high-level options that can expand/contract to reveal more detailed information."
   keywords="accordion, react accordion, react expansion panel, react collapse"
@@ -29,6 +32,12 @@ export default Layout;
 # Accordion
 
 Accordions display a list of high-level options that can expand/contract to reveal more detailed information.
+
+<Yard
+  componentName="Accordion"
+  placeholderHeight={180}
+  {...accordionYardConfig}
+/>
 
 ## Accessibility
 
@@ -50,47 +59,9 @@ Accordions display a list of high-level options that can expand/contract to reve
   <StatefulAccordion />
 </Example>
 
-## Overrides
-
-<Overrides
-  name="Accordion"
-  component={AccordionExports}
-  renderExample={props => {
-    const content = 'Some sample content';
-    return (
-      <Accordion overrides={props.overrides}>
-        <Panel overrides={props.overrides} title="Accordion panel 1">
-          {content}
-        </Panel>
-        <Panel overrides={props.overrides} title="Accordion panel 2">
-          {content}
-        </Panel>
-        <Panel overrides={props.overrides} title="Accordion panel 3">
-          {content}
-        </Panel>
-      </Accordion>
-    );
-  }}
-/>
-
 **Note:** the `Panel` has the same overrides, with the exception of the `Root` subcomponent.
 
 ## API
-
-<API
-  heading="Accordion API"
-  api={require('!!extract-react-types-loader!../../../src/accordion/accordion.js')}
-/>
-
-<API
-  heading="Panel API"
-  api={require('!!extract-react-types-loader!../../../src/accordion/panel.js')}
-/>
-
-<API
-  heading="Stateful Panel API"
-  api={require('!!extract-react-types-loader!../../../src/accordion/stateful-panel.js')}
-/>
 
 <Exports
   component={AccordionExports}
