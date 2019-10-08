@@ -119,6 +119,7 @@ export const StyledRoot = styled<SharedStylePropsArgT>('div', props => {
     ...getFont($size, typography),
     boxSizing: 'border-box',
     position: 'relative',
+    width: '100%',
   };
 });
 

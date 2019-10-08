@@ -225,6 +225,7 @@ exports[`Select component renders component in search mode and false for multipl
                 "fontWeight": "$theme.typography.font300.fontWeight",
                 "lineHeight": "$theme.typography.font300.lineHeight",
                 "position": "relative",
+                "width": "100%",
               }
             }
           >
@@ -1042,6 +1043,7 @@ exports[`Select component renders component in search mode and true for multiple
                 "fontWeight": "$theme.typography.font300.fontWeight",
                 "lineHeight": "$theme.typography.font300.lineHeight",
                 "position": "relative",
+                "width": "100%",
               }
             }
           >
@@ -1853,6 +1855,7 @@ exports[`Select component renders component in select mode and false for multipl
                 "fontWeight": "$theme.typography.font300.fontWeight",
                 "lineHeight": "$theme.typography.font300.lineHeight",
                 "position": "relative",
+                "width": "100%",
               }
             }
           >
@@ -2682,6 +2685,7 @@ exports[`Select component renders component in select mode and true for multiple
                 "fontWeight": "$theme.typography.font300.fontWeight",
                 "lineHeight": "$theme.typography.font300.lineHeight",
                 "position": "relative",
+                "width": "100%",
               }
             }
           >
