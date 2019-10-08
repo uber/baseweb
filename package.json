@@ -146,7 +146,7 @@
     "just-pick": "^2.1.0",
     "lodash": "^4.17.15",
     "markdownlint-cli": "^0.18.0",
-    "memory-fs": "^0.4.1",
+    "memory-fs": "^0.5.0",
     "mkdirp": "^0.5.1",
     "netlify-cli": "^2.15.0",
     "next": "^9.0.5",
