@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
@@ -16,7 +15,6 @@ import FileUploaderIndeterminate from 'examples/file-uploader/indeterminate-prog
 import FileUploaderDisabled from 'examples/file-uploader/disabled.js';
 import FileUploaderOverrides from 'examples/file-uploader/overrides.js';
 
-import Overrides from '../../components/overrides';
 import OverridesExample from 'examples/file-uploader/_overrides_component.js';
 import * as FileUploaderExports from 'baseui/file-uploader';
 
@@ -71,20 +69,7 @@ Creates a dropzone for file uploads.
   <FileUploaderOverrides />
 </Example>
 
-## Overrides
-
-<Overrides
-  name="File Uploader"
-  component={FileUploaderExports}
-  renderExample={props => <OverridesExample overrides={props.overrides} />}
-/>
-
 ## API
-
-<API
-  heading="File Uploader API"
-  api={require('!!extract-react-types-loader!../../../src/file-uploader/file-uploader.js')}
-/>
 
 <Exports
   component={FileUploaderExports}
