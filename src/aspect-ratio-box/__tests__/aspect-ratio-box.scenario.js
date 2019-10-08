@@ -10,7 +10,7 @@ import React from 'react';
 
 import {AspectRatioBox, AspectRatioBoxBody} from '../index.js';
 
-export const name = 'aspect-ratio-basic';
+export const name = 'aspect-ratio-box';
 
 const bodyProps = {
   display: 'flex',

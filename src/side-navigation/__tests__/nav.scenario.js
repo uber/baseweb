@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {Navigation} from '../index.js';
 
-export const name = 'side-navigation';
+export const name = 'nav';
 
 const nav = [
   {

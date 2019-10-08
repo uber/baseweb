@@ -1,53 +1,40 @@
 # Visual testing
 
-We use jest-image-snapshot for a simple suite of visual regression tests (VRT). Note, that the current system is a work in progress and may change in the future.
+We use `jest-image-snapshot` for a simple suite of visual regression tests (VRT). Note, that the current system is a work in progress and may change in the future.
 
 ## Set up
 
-The suite will pick up and run any test file with the `*.vrt.js` extension. To add a component to the suite you have to create a `vrt.js` file in the component's `__tests__` directory.
+The suite will pick up and run any test file with the `*.vrt.js` extension. By default we turn every storybook scenario file into a single snapshot test. To add a new test, simply create a new `.scenario.js` file in the `__tests__` directory of a component.
 
-```
-$ touch src/button/__tests__/button.vrt.js
-```
+> Note, a temporary requirement is that the export `name` and file name of the scenario are identical.
 
-Within this file you can use the vrt helper function to load all the Storybook scenarios as visual tests:
+You can also add an interaction test for an existing scenario. Simply update the object exported by `vrt/interactions.js`.
 
 ```js
-// src/button/__tests__/button.vrt.js
-const {vrt} = require('../../../vrt');
-vrt('button');
+// vrt/interactions.js
+module.exports = {
+  // ...
+  'input-password': [
+    {
+      name: 'togglesMask',
+      behavior: async page => {
+        const toggleSelector = `[data-e2e="mask-toggle"]`;
+        await page.$(toggleSelector);
+        await page.click(toggleSelector);
+      },
+    },
+  ],
+}
 ```
 
-That is all you have to do to get all the `button` scenarios covered with a snapshot test.
-If you want to add an interaction test, you can pass a second argument to `vrt`.
+The key on the object is the name of the scenario to run interactions against. In the above example, we are adding an interaction for the  `input-password` scenario.
 
-```js
-// src/button/__tests__/button.vrt.js
-const {vrt} = require('../../../vrt');
-vrt('button', {
-  button: [{
-    name: 'hoverOverPrimary',
-    behavior: async page => await page.hover('button'),
-  }],
-});
-```
+Each scenario/key should reference an array of interaction descriptor objects. These objects require two properties:
 
-The second argument is an object where each key corresponds to a specific scenario name. In the example above, we are adding an interaction test to the `button`, a.k.a. `button.scenario.js` scenario. 
+1. A `name`, which will be appended to the snapshot file name for identification.
+2. A `behavior`, which is an async function that is passed `page`, a Puppeteer Page instance. Use `page` to arrange the scenario however you like. The actual snapshot will be generated after this `behavior` function resolves.
 
-You can then associate an array of interactions with that scenario. In our example we add only one interaction, called `hoverOverPrimary`, and then specify a `behavior`, an async function that is passed the Puppeteer `page` object. The `behavior` function should arrange the page for a snapshot.
-
-Here is an example where we enter text into a clearable input to verify the clear button appears:
-
-```js
-// src/input/__tests__/input.vrt.js
-const {vrt} = require('../../../vrt');
-vrt('input', {
-  'input-clearable': [{
-    name: 'clearButtonAppears',
-    behavior: async page => await page.type('input', 'Move!'),
-  }],
-});
-```
+In the example above we click the password input's toggle mask button to verify that the text properly unmasks. This snapshot is saved separately in our snapshot directory as `input-password__togglesMask.png`.
 
 ## Docker
 
@@ -77,6 +64,6 @@ Note, you can still run the test suite locally for debugging purposes with `yarn
 
 ## CI
 
-If your there are visual regressions detected in the `vrt` job, any diffs will be uploaded as artifacts to the build step in Buildkite. Simply follow the link to the failed job, then click the `Artifacts` tab on that job. There should be a list of images that display the offending diffs.
+If there are any visual regression diffs detected in the `vrt` job, they will be uploaded as artifacts to the build step in Buildkite. Simply follow the link to the failed job, then click the `Artifacts` tab on that job. There should be a list of images that display the offending diffs.
 
 You can then either fix the regressions or update the snapshots locally (see Docker section above).
