@@ -67,7 +67,13 @@ export default class Accordion extends React.Component<
 
   getItems() {
     const {expanded} = this.state;
-    const {accordion, disabled, children, renderPanelContent} = this.props;
+    const {
+      accordion,
+      disabled,
+      children,
+      renderPanelContent,
+      overrides,
+    } = this.props;
     // eslint-disable-next-line flowtype/no-weak-types
     const newChildren = React.Children.map(children, (child: *, index) => {
       if (!child) return;
@@ -85,8 +91,8 @@ export default class Accordion extends React.Component<
         expanded: isExpanded || child.props.expanded,
         accordion,
         renderPanelContent,
-        disabled:
-          child.props.disabled === null ? disabled : child.props.disabled,
+        overrides,
+        disabled: child.props.disabled || disabled,
         onChange: (...args) =>
           this.onPanelChange(key, child.props.onChange, ...args),
       };

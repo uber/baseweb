@@ -36,6 +36,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
               "marginTop": 0,
               "paddingLeft": 0,
               "paddingRight": 0,
+              "width": "100%",
             }
           }
         >
@@ -47,6 +48,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
             onChange={[Function]}
             onClick={[Function]}
             onKeyDown={[Function]}
+            overrides={Object {}}
             renderPanelContent={true}
             title="Accordion panel 1"
           >
@@ -258,6 +260,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
             onChange={[Function]}
             onClick={[Function]}
             onKeyDown={[Function]}
+            overrides={Object {}}
             renderPanelContent={true}
             title="Accordion panel 2"
           >
@@ -469,6 +472,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
             onChange={[Function]}
             onClick={[Function]}
             onKeyDown={[Function]}
+            overrides={Object {}}
             renderPanelContent={true}
             title="Accordion panel 3"
           >
@@ -713,6 +717,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
               "marginTop": 0,
               "paddingLeft": 0,
               "paddingRight": 0,
+              "width": "100%",
             }
           }
         >
@@ -724,6 +729,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
             onChange={[Function]}
             onClick={[Function]}
             onKeyDown={[Function]}
+            overrides={Object {}}
             renderPanelContent={false}
             title="Accordion panel 1"
           >
@@ -933,6 +939,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
             onChange={[Function]}
             onClick={[Function]}
             onKeyDown={[Function]}
+            overrides={Object {}}
             renderPanelContent={false}
             title="Accordion panel 2"
           >
@@ -1142,6 +1149,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
             onChange={[Function]}
             onClick={[Function]}
             onKeyDown={[Function]}
+            overrides={Object {}}
             renderPanelContent={false}
             title="Accordion panel 3"
           >
