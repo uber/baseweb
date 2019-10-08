@@ -137,25 +137,23 @@ describe('getAstPropValue', () => {
         type: PropTypes.ReactNode,
         description: '',
       }),
-    ).toEqual([
-      {
-        children: [],
-        closingElement: null,
+    ).toEqual({
+      children: [],
+      closingElement: null,
+      loc: undefined,
+      openingElement: {
+        attributes: [],
         loc: undefined,
-        openingElement: {
-          attributes: [],
+        name: {
           loc: undefined,
-          name: {
-            loc: undefined,
-            name: 'div',
-            type: 'JSXIdentifier',
-          },
-          selfClosing: true,
-          type: 'JSXOpeningElement',
+          name: 'div',
+          type: 'JSXIdentifier',
         },
-        type: 'JSXElement',
+        selfClosing: true,
+        type: 'JSXOpeningElement',
       },
-    ]);
+      type: 'JSXElement',
+    });
   });
   test('function', () => {
     expect(
