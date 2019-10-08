@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
@@ -17,7 +16,6 @@ import CustomLabel from 'examples/progress-bar/custom-label.js';
 import SuccessValue from 'examples/progress-bar/success-value.js';
 import Customization from 'examples/progress-bar/overrides.js';
 
-import Overrides from '../../components/overrides';
 import {ProgressBar} from 'baseui/progress-bar';
 import * as ProgressBarExports from 'baseui/progress-bar';
 
@@ -78,27 +76,7 @@ Indicates a wait time for deterministic actions- either within an experience flo
   <Customization />
 </Example>
 
-## Overrides
-
-<Overrides
-  name="ProgressBar"
-  component={ProgressBarExports}
-  renderExample={props => (
-    <ProgressBar
-      value={60}
-      successValue={100}
-      showLabel
-      overrides={props.overrides}
-    />
-  )}
-/>
-
 ## API
-
-<API
-  heading="ProgressBar API"
-  api={require('!!extract-react-types-loader!../../../src/progress-bar/progressbar.js')}
-/>
 
 <Exports
   component={ProgressBarExports}
