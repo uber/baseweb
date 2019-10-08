@@ -31,7 +31,6 @@ export const component = () => (
       valueKey="color"
     />
     <br />
-    {/* // $FlowFixMe */}
     <SingleSelect
       aria-label="Select a color"
       options={options}
@@ -40,7 +39,6 @@ export const component = () => (
       value={[{color: '#00FFFF'}]}
     />
     <br />
-    {/* // $FlowFixMe */}
     <MultiSelect
       aria-label="Select a color"
       options={options}

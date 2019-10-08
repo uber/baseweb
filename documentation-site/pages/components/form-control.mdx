@@ -22,9 +22,18 @@ import {FormControl} from 'baseui/form-control';
 import {StatefulInput} from 'baseui/input';
 import * as FormControlExports from 'baseui/form-control';
 
+import Yard from '../../components/yard/index';
+import formControlYardConfig from '../../components/yard/config/form-control';
+
 export default Layout;
 
 # Form Control
+
+<Yard
+  componentName="FormControl"
+  placeholderHeight={136}
+  {...formControlYardConfig}
+/>
 
 The `FormControl` component adds a label and caption for its child control.
 If an error message is passed it renders that message in place of the caption.

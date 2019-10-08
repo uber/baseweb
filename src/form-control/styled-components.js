@@ -17,6 +17,7 @@ export const Label = styled<StylePropsT>('label', props => {
   return {
     ...typography.font250,
     fontWeight: 500,
+    width: '100%',
     color: $disabled ? colors.foregroundAlt : colors.foreground,
     display: 'block',
     paddingTop: 0,
@@ -63,6 +64,7 @@ export const ControlContainer = styled<StylePropsT>('div', props => {
     $theme: {sizing},
   } = props;
   return {
+    width: '100%',
     marginBottom: sizing.scale600,
   };
 });
