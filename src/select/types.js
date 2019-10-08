@@ -87,7 +87,7 @@ export type PropsT = {
   disabled: boolean,
   /** Defines if the control is in error state. */
   error: boolean,
-  /** Defines if the control if in positive state. */
+  /** Defines if the control is in positive state. */
   positive: boolean,
   /** Defines if the value is cleared when escape is pressed and the dropdown is closed. */
   escapeClearsValue: boolean,
@@ -114,7 +114,7 @@ export type PropsT = {
   getValueLabel: ?({option: OptionT}) => React.Node,
   /** Sets the id attribute of the internal input element. Allows for usage with labels. */
   id?: string,
-  /** Defines if the select if in a loading (async) state. */
+  /** Defines if the select is in a loading (async) state. */
   isLoading: boolean,
   /** Defines an option key for a default label value. */
   labelKey: string,
@@ -156,7 +156,7 @@ export type PropsT = {
   /** Defines the size (scale) of dropdown menu items. See the Menu component API. */
   size: SizeT,
   /** Defines type of the component to be in select or search mode.
-   * When set to TYPE.search the search icon if rendered on the
+   * When set to TYPE.search the search icon is rendered on the
    * left and the select arrow icon is not rendered. */
   type: TypeT,
   /** A current selected value(s). If a selected value has a clearableValue
