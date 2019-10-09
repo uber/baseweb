@@ -18,6 +18,8 @@ export class StatefulContainer extends React.Component<
   StatefulTooltipContainerProps
 > {}
 
+export {ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE};
+
 export type TooltipProps = PopoverProps;
 export class Tooltip extends React.Component<TooltipProps> {}
 
