@@ -48,10 +48,16 @@ describe('visual regression tests', () => {
     if (interactions.length > 0) {
       interactions.forEach(interaction => {
         const testName = `${scenarioName}__${interaction.name}`;
-        const _fullPage = interaction.hasOwnProperty('fullPage')
+        const _fullPage = Object.prototype.hasOwnProperty.call(
+          interaction,
+          'fullPage',
+        )
           ? interaction.fullPage
           : fullPage;
-        const _selector = interaction.hasOwnProperty('selector')
+        const _selector = Object.prototype.hasOwnProperty.call(
+          interaction,
+          'selector',
+        )
           ? interaction.selector
           : selector;
 
