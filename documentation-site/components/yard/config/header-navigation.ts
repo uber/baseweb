@@ -50,7 +50,7 @@ const HeaderNavigationConfig: TConfig = {
 </StyledNavigationItem>
 </StyledNavigationList>
 `,
-      type: PropTypes.String,
+      type: PropTypes.ReactNode,
       description: 'Header navigation content.',
     },
     overrides: {
