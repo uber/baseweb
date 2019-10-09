@@ -91,7 +91,7 @@ export default class Accordion extends React.Component<
         expanded: isExpanded || child.props.expanded,
         accordion,
         renderPanelContent,
-        overrides,
+        overrides: child.props.overrides || overrides,
         disabled: child.props.disabled || disabled,
         onChange: (...args) =>
           this.onPanelChange(key, child.props.onChange, ...args),

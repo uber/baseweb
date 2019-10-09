@@ -13,7 +13,7 @@ import {
   StyledOptionContent,
 } from './styled-components.js';
 import {StatefulMenu} from '../menu/index.js';
-import type {DropdownPropsT} from './types.js';
+import type {DropdownPropsT, OptionT} from './types.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 
 export default class SelectDropdown extends React.Component<DropdownPropsT> {
@@ -80,6 +80,26 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
     e.preventDefault();
   };
 
+  getHighlightedIndex = () => {
+    const {value, options, valueKey} = this.props;
+    // Highlight only first value as menu supports only a single highlight index
+    let firstValue: OptionT = {};
+
+    if (Array.isArray(value) && value.length > 0) {
+      firstValue = value[0];
+    } else if (!(value instanceof Array)) {
+      firstValue = value;
+    }
+
+    if (Object.keys(firstValue).length > 0) {
+      const a = options.findIndex(
+        option => option && option[valueKey] === firstValue[valueKey],
+      );
+      return a || 0;
+    }
+    return 0;
+  };
+
   render() {
     // TODO(#185) Add no-results and loading states to menu
     const {
@@ -103,6 +123,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
       overrides.StatefulMenu,
       StatefulMenu,
     );
+    const highlightedIndex = this.getHighlightedIndex();
     return (
       <DropdownContainer
         ref={this.props.innerRef}
@@ -117,7 +138,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
           size={size}
           initialState={{
             isFocused: true,
-            highlightedIndex: 0,
+            highlightedIndex: highlightedIndex,
           }}
           overrides={mergeOverrides(
             {
