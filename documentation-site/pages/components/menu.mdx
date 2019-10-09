@@ -23,9 +23,14 @@ import * as MenuExports from 'baseui/menu';
 import {Block} from 'baseui/block';
 import Code from '../../components/code';
 
+import Yard from '../../components/yard/index';
+import menuYardConfig from '../../components/yard/config/menu';
+
 export default Layout;
 
 # Menu
+
+<Yard componentName="StatefulMenu" placeholderHeight={52} {...menuYardConfig} />
 
 Menus in Base Web provide an opportunity to nest various hierarchical navigation, features, or
 settings. Each menu item has an option to include an icon by default, but this can be removed.
