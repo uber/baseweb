@@ -65,7 +65,8 @@ const ButtonConfig: TConfig = {
       description: 'Indicates that the button is disabled',
     },
     kind: {
-      value: undefined,
+      value: 'KIND.primary',
+      defaultValue: 'KIND.primary',
       options: KIND,
       type: PropTypes.Enum,
       description: 'Defines the kind (purpose) of a button.',
@@ -76,7 +77,8 @@ const ButtonConfig: TConfig = {
       },
     },
     size: {
-      value: undefined,
+      value: 'SIZE.default',
+      defaultValue: 'SIZE.default',
       options: SIZE,
       type: PropTypes.Enum,
       description: 'Defines the size of the button.',
@@ -87,7 +89,8 @@ const ButtonConfig: TConfig = {
       },
     },
     shape: {
-      value: undefined,
+      value: 'SHAPE.default',
+      defaultValue: 'SHAPE.default',
       options: SHAPE,
       type: PropTypes.Enum,
       description: 'Defines the shape of the button.',

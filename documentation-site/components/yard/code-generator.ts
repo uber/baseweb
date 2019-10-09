@@ -22,7 +22,7 @@ const reactImport = template.ast(`import * as React from 'react';`);
 
 export const getAstPropsArray = (props: {[key: string]: TProp}) => {
   return Object.entries(props).map(([name, prop]) => {
-    const {value, stateful, renderFalseValue} = prop;
+    const {value, stateful, defaultValue} = prop;
     if (stateful)
       return t.jsxAttribute(
         t.jsxIdentifier(name),
@@ -34,8 +34,8 @@ export const getAstPropsArray = (props: {[key: string]: TProp}) => {
     // Those are supposed to be set to true in default props.
     if (
       (typeof value !== 'boolean' && !value) ||
-      (typeof value === 'boolean' &&
-        ((value && renderFalseValue) || (!value && !renderFalseValue)))
+      value === defaultValue ||
+      (typeof value === 'boolean' && !value && !defaultValue)
     ) {
       return null;
     }

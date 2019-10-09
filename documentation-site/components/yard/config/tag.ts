@@ -167,13 +167,14 @@ const TagConfig: TConfig = {
       description: `onClick handler for the action button element.`,
     },
     closeable: {
-      value: undefined,
-      renderFalseValue: true,
+      value: true,
+      defaultValue: true,
       type: PropTypes.Boolean,
       description: `Include or exclude the "x" button and click action.`,
     },
     kind: {
-      value: undefined,
+      value: 'KIND.primary',
+      defaultValue: 'KIND.primary',
       options: KIND,
       type: PropTypes.Enum,
       description:
@@ -190,7 +191,8 @@ const TagConfig: TConfig = {
       description: `The color theme to be applied to a Tag. To make this custom color active, you have to set kind to custom.`,
     },
     variant: {
-      value: undefined,
+      value: 'VARIANT.light',
+      defaultValue: 'VARIANT.light',
       options: VARIANT,
       type: PropTypes.Enum,
       description:
