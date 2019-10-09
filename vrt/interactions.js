@@ -8,6 +8,7 @@ module.exports = {
         page.waitForSelector(selectSelector);
         page.click(selectSelector);
         page.waitForSelector(dropdownSelector);
+        await page.waitFor(2000);
       },
     },
   ],
@@ -20,6 +21,7 @@ module.exports = {
         page.waitForSelector(selectSelector);
         page.click(selectSelector);
         page.waitForSelector(dropdownSelector);
+        await page.waitFor(2000);
       },
     },
   ],
@@ -107,6 +109,7 @@ module.exports = {
         page.waitForSelector(inputSelector);
         page.click(inputSelector);
         page.waitForSelector(dropdownSelector);
+        await page.waitFor(2000);
       },
     },
   ],

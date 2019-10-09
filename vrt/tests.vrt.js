@@ -37,7 +37,6 @@ describe('visual regression tests', () => {
         it(testName, async () => {
           await prepare(page, scenarioName);
           await interaction.behavior(page);
-          await page.waitFor(1000);
           const image = await page.screenshot({fullPage: true});
           expect(image).toMatchImageSnapshot({
             customSnapshotIdentifier: testName,
