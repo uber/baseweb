@@ -68,7 +68,7 @@ describe('visual regression tests', () => {
           await interaction.behavior(page);
 
           // let things settle down
-          await page.waitFor(1000);
+          await page.waitFor(500);
 
           let image;
           if (_selector) {
@@ -104,7 +104,7 @@ animation: none !important;
   });
 
   // let things settle down
-  await page.waitFor(1000);
+  await page.waitFor(500);
 
   // return root element for screenshot
   return await page.$('#root');
