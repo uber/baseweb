@@ -6,14 +6,12 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
 import Star from 'examples/rating/star.js';
 import Emoticon from 'examples/rating/emoticon.js';
 
-import Overrides from '../../components/overrides';
 import {EmoticonRating, StarRating} from 'baseui/rating';
 import {Block} from 'baseui/block';
 import * as RatingExports from 'baseui/rating';
@@ -24,13 +22,13 @@ export default Layout;
 
 # Rating
 
+<Yard componentName="StarRating" placeholderHeight={25} {...ratingYardConfig} />
+
 **Emoji ratings** are to be used to collect a user’s experience in the form of an emotional ranking.
 Like star ratings, there five options.
 
 **Star ratings** are to be used to collect feedback from a user’s experience with a product. The
 stars indicate a performance rating from one to five.
-
-<Yard componentName="StarRating" placeholderHeight={25} {...ratingYardConfig} />
 
 ## Accessibility
 
