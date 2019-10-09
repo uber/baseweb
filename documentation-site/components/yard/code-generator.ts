@@ -33,7 +33,7 @@ export const getAstPropsArray = (props: {[key: string]: TProp}) => {
     // from rendereding in the component's props.
     // Those are supposed to be set to true in default props.
     if (
-      !value ||
+      (typeof value !== 'boolean' && !value) ||
       (typeof value === 'boolean' &&
         ((value && renderFalseValue) || (!value && !renderFalseValue)))
     ) {
