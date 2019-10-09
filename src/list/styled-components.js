@@ -20,6 +20,7 @@ export const StyledRoot = styled<{}>('li', ({$theme}) => {
     backgroundColor: $theme.colors.backgroundAlt,
     display: 'flex',
     listStyleType: 'none',
+    width: '100%',
   };
 });
 
