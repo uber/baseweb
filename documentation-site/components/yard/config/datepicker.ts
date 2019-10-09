@@ -1,14 +1,15 @@
-import {Calendar, ORIENTATION} from 'baseui/datepicker';
+import {Datepicker, ORIENTATION} from 'baseui/datepicker';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
+import inputConfig from './input';
 
-const CalendarConfig: TConfig = {
+const DatepickerConfig: TConfig = {
   imports: {
     'baseui/datepicker': {
-      named: ['Calendar'],
+      named: ['Datepicker'],
     },
   },
-  scope: {Calendar, ORIENTATION},
+  scope: {Datepicker, ORIENTATION},
   theme: [
     'datepickerBackground',
     'datepickerDayFont',
@@ -30,20 +31,25 @@ const CalendarConfig: TConfig = {
     'calendarDayForegroundSelected',
     'calendarDayBackgroundSelectedHighlighted',
     'calendarDayForegroundSelectedHighlighted',
+    ...inputConfig.theme,
   ],
   props: {
     value: {
-      value: new Date().toISOString(),
-      type: PropTypes.Date,
+      value: '[new Date()]',
+      type: PropTypes.Array,
       description: 'Currently selected date (Date object).',
       stateful: true,
     },
     onChange: {
-      value: '({ date }) => setValue(date)',
+      value: '({ date }) => setValue(Array.isArray(date) ? date : [date])',
       type: PropTypes.Function,
       description: 'Event handler that is called when a new date is selected.',
       propHook: {
-        what: 'date.toISOString()',
+        // yikes, onChange can return Date, [Date] or [Date, Date] and we need to handle
+        // them all
+        what: `Array.isArray(date) && date.length === 2 ? 
+    "[new Date('" + date[0].toISOString() + "'), new Date('" + date[1].toISOString() + "')]"
+  : (Array.isArray(date) ? "[new Date('" + date[0].toISOString() + "')]" : "[new Date('" + date.toISOString() + "')]")`,
         into: 'value',
       },
     },
@@ -98,6 +104,8 @@ const CalendarConfig: TConfig = {
       type: PropTypes.Boolean,
       description: 'Defines if a range of dates can be selected.',
     },
+    positive: inputConfig.props.positive,
+    error: inputConfig.props.error,
     locale: {
       value: undefined,
       type: PropTypes.Object,
@@ -109,11 +117,13 @@ const CalendarConfig: TConfig = {
       value: undefined,
       type: PropTypes.Date,
       description: 'A max date that is selectable.',
+      placeholder: '2020-10-17T07:00:00.000Z',
     },
     minDate: {
       value: undefined,
       type: PropTypes.Date,
       description: 'A min date that is selectable.',
+      placeholder: '2018-10-17T07:00:00.000Z',
     },
     monthsShown: {
       value: undefined,
@@ -189,6 +199,7 @@ const CalendarConfig: TConfig = {
       description:
         'Determines if TimePicker component will be enabled for end time',
     },
+    disabled: inputConfig.props.disabled,
     trapTabbing: {
       value: undefined,
       type: PropTypes.Boolean,
@@ -214,6 +225,7 @@ const CalendarConfig: TConfig = {
         'PrevButton',
         'Week',
         'WeekdayHeader',
+        'InputWrapper',
       ],
       sharedProps: {
         $date: 'value',
@@ -241,10 +253,7 @@ const CalendarConfig: TConfig = {
           type: PropTypes.Boolean,
           description: '',
         },
-        $peekNextMonth: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
+        $peekNextMonth: 'peekNextMonth',
         $pseudoHighlighted: {
           type: PropTypes.Boolean,
           description: '',
@@ -265,10 +274,7 @@ const CalendarConfig: TConfig = {
           type: PropTypes.Boolean,
           description: '',
         },
-        $range: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
+        $range: 'range',
         $hasRangeHighlighted: {
           type: PropTypes.Boolean,
           description: '',
@@ -286,4 +292,4 @@ const CalendarConfig: TConfig = {
   },
 };
 
-export default CalendarConfig;
+export default DatepickerConfig;
