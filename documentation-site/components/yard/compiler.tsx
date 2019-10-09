@@ -96,8 +96,8 @@ const Compiler: React.FC<{
     <div
       className={css({
         minHeight: `${minHeight}px`,
-        paddingTop: minHeight ? theme.sizing.scale600 : null,
-        paddingBottom: minHeight ? theme.sizing.scale600 : null,
+        paddingTop: minHeight ? theme.sizing.scale600 : 0,
+        paddingBottom: minHeight ? theme.sizing.scale600 : 0,
       })}
     >
       <div

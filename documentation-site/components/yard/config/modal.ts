@@ -20,7 +20,6 @@ const AvatarConfig: TConfig = {
   theme: [],
   props: {
     children: {
-      value: '<div>modal content</div>',
       value: `<ModalHeader>Hello world</ModalHeader>
 <ModalBody>
   Proin ut dui sed metus pharetra hend rerit vel non mi.
