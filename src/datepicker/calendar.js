@@ -439,14 +439,6 @@ export default class Calendar extends React.Component<
 
     const NOW = new Date();
     NOW.setHours(12, 0, 0);
-    const QUICK_SELECT_ACTIONS = [
-      {id: 'Past Week', beginDate: subWeeks(NOW, 1)},
-      {id: 'Past Month', beginDate: subMonths(NOW, 1)},
-      {id: 'Past 3 Months', beginDate: subMonths(NOW, 3)},
-      {id: 'Past 6 Months', beginDate: subMonths(NOW, 6)},
-      {id: 'Past Year', beginDate: subYears(NOW, 1)},
-      {id: 'Past 2 Years', beginDate: subYears(NOW, 2)},
-    ];
 
     return (
       <LocaleContext.Consumer>
@@ -476,8 +468,35 @@ export default class Calendar extends React.Component<
                     }
                   }
                 }}
-                options={this.props.quickSelectOptions || QUICK_SELECT_ACTIONS}
-                placeholder="None"
+                options={
+                  this.props.quickSelectOptions || [
+                    {
+                      id: locale.datepicker.pastWeek,
+                      beginDate: subWeeks(NOW, 1),
+                    },
+                    {
+                      id: locale.datepicker.pastMonth,
+                      beginDate: subMonths(NOW, 1),
+                    },
+                    {
+                      id: locale.datepicker.pastThreeMonths,
+                      beginDate: subMonths(NOW, 3),
+                    },
+                    {
+                      id: locale.datepicker.pastSixMonths,
+                      beginDate: subMonths(NOW, 6),
+                    },
+                    {
+                      id: locale.datepicker.pastYear,
+                      beginDate: subYears(NOW, 1),
+                    },
+                    {
+                      id: locale.datepicker.pastTwoYears,
+                      beginDate: subYears(NOW, 2),
+                    },
+                  ]
+                }
+                placeholder={locale.datepicker.quickSelectPlaceholder}
                 value={
                   this.state.quickSelectId && [{id: this.state.quickSelectId}]
                 }
