@@ -8,33 +8,78 @@ The suite will pick up and run any test file with the `*.vrt.js` extension. By d
 
 > Note, a temporary requirement is that the export `name` and file name of the scenario are identical.
 
-You can also add an interaction test for an existing scenario. Simply update the object exported by `vrt/interactions.js`.
+You can configure each scenario by adding a property matching the scenario name to the vrt config object in `vrt/config.js`.
 
 ```js
-// vrt/interactions.js
+// vrt/config.js
 module.exports = {
-  // ...
-  'input-password': [
-    {
-      name: 'togglesMask',
-      behavior: async page => {
-        const toggleSelector = `[data-e2e="mask-toggle"]`;
-        await page.$(toggleSelector);
-        await page.click(toggleSelector);
-      },
-    },
-  ],
+  'modal': {
+    // configuration for `modal` scenario
+  }
 }
 ```
 
-The key on the object is the name of the scenario to run interactions against. In the above example, we are adding an interaction for the  `input-password` scenario.
+The possible properties are:
 
-Each scenario/key should reference an array of interaction descriptor objects. These objects require two properties:
+1. `skip`: Skip this scenario. Default is `false`.
+2. `selector`: A selector to target for the snapshot image. Default is `null`. Takes precedence over `fullPage`
+3. `fullPage`: If `true`, takes a picture of entire page. Useful for tests with absolutely positioned elements. Default is `false`.
+4. `interactions`: An array of interaction configuration objects. Default is `[]`.
+
+The first three properties are pretty simple, but let's look at the last one, `interactions`. What does an interaction configuration look like?
+
+```js
+// vrt/config.js
+module.exports = {
+  // ...
+  'input-password': {
+    interactions: [
+      {
+        name: 'togglesMask',
+        behavior: async page => {
+          const toggleSelector = `[data-e2e="mask-toggle"]`;
+          await page.$(toggleSelector);
+          await page.click(toggleSelector);
+        },
+      },
+    ],
+  },
+}
+```
+
+In this example we are adding interactions via the `interactions` property to the  `input-password` scenario. In the specified behavior we click the password input's toggle mask button to verify that the text properly unmasks.
+
+The interactions array can consist of multiple interaction configuration objects. Each object corresponds to a single new snapshot test (in addition to default snapshot). The snapshot in the above example is saved in our snapshot directory as `input-password__togglesMask.png`.
+
+The interaction configuration object require two properties:
 
 1. A `name`, which will be appended to the snapshot file name for identification.
 2. A `behavior`, which is an async function that is passed `page`, a Puppeteer Page instance. Use `page` to arrange the scenario however you like. The actual snapshot will be generated after this `behavior` function resolves.
 
-In the example above we click the password input's toggle mask button to verify that the text properly unmasks. This snapshot is saved separately in our snapshot directory as `input-password__togglesMask.png`.
+By default, the interaction will inherit `selector` and `fullPage` properties from the main scenario configuration object, but you can overrwrite them explicitly in each interaction configuration.
+
+```js
+// vrt/config.js
+module.exports = {
+  // ...
+  'input-password': {
+    fullPage: true,
+    interactions: [
+      {
+        name: 'togglesMask',
+        selector: 'input',
+        behavior: async page => {
+          const toggleSelector = `[data-e2e="mask-toggle"]`;
+          await page.$(toggleSelector);
+          await page.click(toggleSelector);
+        },
+      },
+    ],
+  },
+}
+```
+
+In this contrived example we take a full page screenshot of the main scenario, but only take a screenshot of the element that resovles from the `input` selector.
 
 ## Docker
 
