@@ -90,7 +90,7 @@ describe('visual regression tests', () => {
 });
 
 async function prepare(page, scenarioName) {
-  // load page and let things settle down
+  // load page
   await mount(page, scenarioName);
 
   // freeze animations
@@ -102,6 +102,9 @@ transition: none !important;
 animation: none !important;
 }`,
   });
+
+  // let things settle down
+  await page.waitFor(1000);
 
   // return root element for screenshot
   return await page.$('#root');
