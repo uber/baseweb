@@ -93,13 +93,14 @@ async function prepare(page, scenarioName) {
   // load page
   await mount(page, scenarioName);
 
-  // freeze animations
+  // freeze animations and disable caret blinking
   await page.addStyleTag({
     content: `*, *::before, *::after {
 -moz-transition: none !important;
 transition: none !important;
 -moz-animation: none !important;
 animation: none !important;
+caret-color: transparent !important;
 }`,
   });
 
