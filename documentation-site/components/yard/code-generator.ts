@@ -28,10 +28,12 @@ export const getAstPropsArray = (props: {[key: string]: TProp}) => {
         t.jsxIdentifier(name),
         t.jsxExpressionContainer(t.identifier(name)),
       );
-    // The second condition in the if statement prevents a boolean
-    // prop that is set to `true` and has `renderFalseValue` set
-    // from rendereding in the component's props.
-    // Those are supposed to be set to true in default props.
+    // When the `defaultValue` is set and `value` is the same as the `defaultValue`
+    // we don't add it to the list of props.
+    // It handles boolean props where `defaultValue` set to true,
+    // and enum props that have a `defaultValue` set to be displayed
+    // in the yard correctly (checked checkboxes and selected default value in radio groups)
+    // and not rendered in the component's props.
     if (
       (typeof value !== 'boolean' && !value) ||
       value === defaultValue ||
@@ -209,7 +211,12 @@ export const getAstImports = (
   // prop level imports (typically enums related) that are displayed
   // only when the prop is being used
   Object.values(props).forEach(prop => {
-    if (prop.imports && prop.value && prop.value !== '') {
+    if (
+      prop.imports &&
+      prop.value &&
+      prop.value !== '' &&
+      prop.value !== prop.defaultValue
+    ) {
       for (let [importFrom, importNames] of Object.entries(prop.imports)) {
         if (!importList.hasOwnProperty(importFrom)) {
           importList[importFrom] = {
