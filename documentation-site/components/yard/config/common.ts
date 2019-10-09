@@ -57,6 +57,13 @@ const changeHandlers = {
     placeholder: '(event) => {}',
     hidden: true,
   },
+  onEsc: {
+    value: undefined,
+    type: PropTypes.Function,
+    description: 'Called when ESC keypress triggers.',
+    placeholder: '(event) => {}',
+    hidden: true,
+  },
 };
 
 export {changeHandlers};
