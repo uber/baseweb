@@ -4,8 +4,10 @@ module.exports = {
       name: 'expanded',
       behavior: async page => {
         const selectSelector = `[data-baseweb="select"]`;
-        page.waitFor(selectSelector);
+        const dropdownSelector = `[data-baseweb="menu"]`;
+        page.waitForSelector(selectSelector);
         page.click(selectSelector);
+        page.waitForSelector(dropdownSelector);
       },
     },
   ],
@@ -14,8 +16,10 @@ module.exports = {
       name: 'expanded',
       behavior: async page => {
         const selectSelector = `[data-baseweb="select"]`;
-        page.waitFor(selectSelector);
+        const dropdownSelector = `[data-baseweb="menu"]`;
+        page.waitForSelector(selectSelector);
         page.click(selectSelector);
+        page.waitForSelector(dropdownSelector);
       },
     },
   ],
@@ -26,9 +30,9 @@ module.exports = {
         const input = `input`;
         const calendar = `[role="application"]`;
         const rightArrow = `[aria-label="Next month"]`;
-        await page.waitFor(input);
+        await page.waitForSelector(input);
         await page.click(input);
-        await page.waitFor(calendar);
+        await page.waitForSelector(calendar);
         await page.click(rightArrow);
       },
     },
@@ -51,11 +55,11 @@ module.exports = {
         const btnNoZIndex = `[data-test="no-zindex-btn"]`;
         const layerZIndex = `[data-test="zindex-layer"]`;
         const layerNoZIndex = `[data-test="no-zindex-layer"]`;
-        await page.waitFor(btnZIndex);
+        await page.waitForSelector(btnZIndex);
         await page.click(btnZIndex);
-        await page.waitFor(layerZIndex);
+        await page.waitForSelector(layerZIndex);
         await page.click(btnNoZIndex);
-        await page.waitFor(layerNoZIndex);
+        await page.waitForSelector(layerNoZIndex);
       },
     },
   ],
@@ -85,10 +89,12 @@ module.exports = {
       behavior: async page => {
         const buttonSelector = `[data-baseweb="button"]`;
         const selectSelector = `[data-baseweb="select"] input`;
-        await page.waitFor(buttonSelector);
+        const dropdownSelector = `[role="listbox"]`;
+        await page.waitForSelector(buttonSelector);
         await page.click(buttonSelector);
-        await page.waitFor(selectSelector);
+        await page.waitForSelector(selectSelector);
         await page.click(selectSelector);
+        await page.waitForSelector(dropdownSelector);
       },
     },
   ],
@@ -96,9 +102,11 @@ module.exports = {
     {
       name: 'open',
       behavior: async page => {
-        const selector = `[data-baseweb="select"] input`;
-        page.waitFor(selector);
-        page.click(selector);
+        const inputSelector = `[data-baseweb="select"]`;
+        const dropdownSelector = `[role="listbox"]`;
+        page.waitForSelector(inputSelector);
+        page.click(inputSelector);
+        page.waitForSelector(dropdownSelector);
       },
     },
   ],
