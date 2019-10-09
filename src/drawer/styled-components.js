@@ -181,17 +181,17 @@ export const StyledClose = styled<SharedStylePropsArgT>('button', props => {
     paddingBottom: 0,
 
     // colors
-    fill: $theme.colors.mono500,
+    fill: $theme.colors.primary,
     transitionProperty: 'fill, border-color',
     transitionDuration: $theme.animation.timing100,
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: 'transparent',
     ':hover': {
-      fill: $theme.colors.mono600,
+      fill: $theme.colors.primary600,
     },
     ':focus': {
-      fill: $theme.colors.mono600,
+      fill: $theme.colors.primary600,
       borderColor: $theme.colors.primary,
     },
 
