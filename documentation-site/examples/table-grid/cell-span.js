@@ -13,7 +13,7 @@ import {
 
 const row = [
   'feat(docs-site): theme editor POC',
-  'https://github.com/uber-web/baseui/pull/1296',
+  'https://github.com/uber/baseweb/pull/1296',
   [
     [new Date(2019, 6, 22), 'jh3y added a commit'],
     [new Date(2019, 6, 22), 'chasestarr left a comment'],

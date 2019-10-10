@@ -13,7 +13,7 @@
   "types": "index.d.ts",
   "sideEffects": false,
   "module": "/esm/index.js",
-  "repository": "uber-web/baseui",
+  "repository": "uber/baseweb",
   "scripts": {
     "lint:code": "eslint ./",
     "lint:markdown": "markdownlint -c ./.markdownlint.json proposals",
