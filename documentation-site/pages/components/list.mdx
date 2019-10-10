@@ -6,9 +6,7 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
-import Overrides from '../../components/overrides';
 import Exports from '../../components/exports';
 
 import Basic from 'examples/list/basic.js';
@@ -22,9 +20,14 @@ import Search from 'baseui/icon/search';
 import {ListItem, ListItemLabel} from 'baseui/list';
 import * as ListExports from 'baseui/list';
 
+import Yard from '../../components/yard/index';
+import listItemYardConfig from '../../components/yard/config/list-item';
+
 export default Layout;
 
 # List
+
+<Yard componentName="ListItem" placeholderHeight={52} {...listItemYardConfig} />
 
 List items best used in mobile applications.
 
@@ -50,37 +53,6 @@ List items best used in mobile applications.
   <MenuAdapter />
 </Example>
 
-## Overrides
-
-<Overrides
-  name="ListItem"
-  component={ListExports}
-  whitelisted={['Root', 'ArtworkContainer', 'Content', 'EndEnhancerContainer']}
-  renderExample={props => (
-    <ListItem
-      artwork={Search}
-      endEnhancer={() => (
-        <Button size="compact" kind="secondary" shape="pill">
-          Action
-        </Button>
-      )}
-      overrides={props.overrides}
-    >
-      <ListItemLabel>Label</ListItemLabel>
-    </ListItem>
-  )}
-/>
-
 ## API
-
-<API
-  heading="ListItem API"
-  api={require('!!extract-react-types-loader!../../../src/list/list-item.js')}
-/>
-
-<API
-  heading="ListItemLabel API"
-  api={require('!!extract-react-types-loader!../../../src/list/list-item-label.js')}
-/>
 
 <Exports component={ListExports} title="List exports" path="baseui/list" />
