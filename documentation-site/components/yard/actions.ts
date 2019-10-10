@@ -28,7 +28,9 @@ export const updateAll = (
         propsConfig.overrides ? propsConfig.overrides.names || [] : [],
       );
     } else if (propsConfig[name].type === PropTypes.Date) {
-      const match = parsedProps[name].match(/^new\sDate\("([0-9-T:.Z]+)"\)$/);
+      const match = parsedProps[name].match(
+        /^new\s*Date\(\s*"([0-9-T:.Z]+)"\s*\)$/,
+      );
       if (match) {
         propValues[name] = match[1];
       } else {
