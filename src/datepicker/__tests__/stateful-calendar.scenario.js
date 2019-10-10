@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {StatefulCalendar} from '../index.js';
 
-export const name = 'Stateful calendar';
+export const name = 'stateful-calendar';
 
 export const component = () => (
   <StatefulCalendar highlightedDate={new Date('2019-02-14T10:00:00Z')} />
