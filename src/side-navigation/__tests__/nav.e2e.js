@@ -15,7 +15,7 @@ const selectors = {
 };
 
 describe('side navigation', () => {
-  it('a11y test error', async () => {
+  it('passes basic a11y tests', async () => {
     await mount(page, 'nav');
     await page.waitFor(selectors.root);
     const accessibilityReport = await analyzeAccessibility(page, {
