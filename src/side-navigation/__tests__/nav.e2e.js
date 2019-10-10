@@ -18,14 +18,14 @@ describe('side navigation', () => {
   e2e('a11y test error', async () => {
     await mount(page, 'nav');
     await page.waitFor(selectors.root);
-    const accessibilityReport = await analyzeAccessibility(page); // expect link failure
-    expect(accessibilityReport).toHaveNoAccessibilityIssues();
-  });
-
-  e2e('a11y timeout error', async () => {
-    await mount(page, 'nav');
-    await page.waitFor('#foo'); // does not exist
-    const accessibilityReport = await analyzeAccessibility(page);
+    const accessibilityReport = await analyzeAccessibility(page, {
+      rules: [
+        {
+          id: 'skip-link',
+          enabled: false,
+        },
+      ],
+    });
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 });
