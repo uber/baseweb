@@ -160,9 +160,9 @@ function e2e(name, fn, timeout = 5000) {
         // succeeded, clear timeout
         timeoutID.unref && timeoutID.unref();
       } catch (er) {
-        await captureFailure();
         // failed within test, clear timeout
         timeoutID.unref && timeoutID.unref();
+        await captureFailure();
         throw er;
       }
     },
