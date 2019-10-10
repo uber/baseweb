@@ -3,7 +3,7 @@ import {Button} from 'baseui/button';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
-const TabsConfig: TConfig = {
+const CardConfig: TConfig = {
   imports: {
     'baseui/card': {named: ['Card']},
   },
@@ -65,4 +65,4 @@ const TabsConfig: TConfig = {
   },
 };
 
-export default TabsConfig;
+export default CardConfig;

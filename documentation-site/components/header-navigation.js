@@ -175,7 +175,7 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                     }),
                   },
                 }}
-                href="https://github.com/uber-web/baseui"
+                href="https://github.com/uber/baseweb"
                 marginLeft="scale300"
                 $style={{textDecoration: 'none'}}
                 target="_blank"

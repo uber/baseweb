@@ -29,11 +29,15 @@ const YardWrapper: React.FC<
             : router.query.code
         }
         queryStringName={queryStringName}
-        placeholderElement={() => (
-          <div className={placeholderCx}>
-            <Spinner size={placeholderHeight > 50 ? 50 : placeholderHeight} />
-          </div>
-        )}
+        placeholderElement={() => {
+          if (!placeholderHeight) return null;
+
+          return (
+            <div className={placeholderCx}>
+              <Spinner size={placeholderHeight > 50 ? 50 : placeholderHeight} />
+            </div>
+          );
+        }}
         {...restProps}
       />
     </Card>

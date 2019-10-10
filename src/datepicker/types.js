@@ -47,6 +47,7 @@ export type DatepickerOverridesT<T> = {
   Day?: OverrideT<T>,
   /** Override for reused Input component. Input is **not a styled  element** but a react component that can be replaced */
   Input?: OverrideT<T>,
+  InputWrapper?: OverrideT<T>,
   /** Override for reused Popover component. Popover is **not a styled  element** but a react component that can be replaced */
   Popover?: OverrideT<T>,
 };

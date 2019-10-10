@@ -588,7 +588,9 @@ class Select extends React.Component<
       );
       return showPlaceholder ? (
         <Placeholder {...sharedProps} {...placeholderProps}>
-          {this.props.placeholder || locale.select.placeholder}
+          {typeof this.props.placeholder !== 'undefined'
+            ? this.props.placeholder
+            : locale.select.placeholder}
         </Placeholder>
       ) : null;
     }

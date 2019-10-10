@@ -10175,15 +10175,15 @@ get-stdin@7.0.0, get-stdin@^7.0.0:
   resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-7.0.0.tgz#8d5de98f15171a125c5e516643c7a6d0ea8a96f6"
   integrity sha512-zRKcywvrXlXsA0v0i9Io4KDRaAw7+a1ZpjRwl9Wox8PFlVCCHra7E9c4kqXCoCM9nR5tBkaTTZRBoCm60bFqTQ==
 
+get-stdin@^5.0.1, get-stdin@~5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-5.0.1.tgz#122e161591e21ff4c52530305693f20e6393a398"
+  integrity sha1-Ei4WFZHiH/TFJTAwVpPyDmOTo5g=
+
 get-stdin@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-6.0.0.tgz#9e09bf712b360ab9225e812048f71fde9c89657b"
   integrity sha512-jp4tHawyV7+fkkSKyvjuLZswblUtz+SQKzSWnBbii16BuZksJlU1wuBYXY75r+duh/llF1ur6oNwi+2ZzjKZ7g==
-
-get-stdin@~5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-5.0.1.tgz#122e161591e21ff4c52530305693f20e6393a398"
-  integrity sha1-Ei4WFZHiH/TFJTAwVpPyDmOTo5g=
 
 get-stream@3.0.0, get-stream@^3.0.0:
   version "3.0.0"
@@ -10450,6 +10450,11 @@ globby@^10.0.1:
     ignore "^5.1.1"
     merge2 "^1.2.3"
     slash "^3.0.0"
+
+glur@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/glur/-/glur-1.1.2.tgz#f20ea36db103bfc292343921f1f91e83c3467689"
+  integrity sha1-8g6jbbEDv8KSNDkh8fkeg8NGdok=
 
 gonzales-pe@^4.2.3:
   version "4.2.4"
@@ -12178,6 +12183,20 @@ jest-haste-map@^24.9.0:
     walker "^1.0.7"
   optionalDependencies:
     fsevents "^1.2.7"
+
+jest-image-snapshot@^2.11.0:
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/jest-image-snapshot/-/jest-image-snapshot-2.11.0.tgz#25d2977a9125bed5c889bc190b327b353a6106c8"
+  integrity sha512-InfWqQdqIl6ZDWbUs7cZnbbT82AlirB5B0O31HRltCPUOZMJy0D6ln4i+Pk5CtKHK9zVfU4AI2b3LR3YJD2Ddw==
+  dependencies:
+    chalk "^1.1.3"
+    get-stdin "^5.0.1"
+    glur "^1.1.2"
+    lodash "^4.17.4"
+    mkdirp "^0.5.1"
+    pixelmatch "^4.0.2"
+    pngjs "^3.3.3"
+    rimraf "^2.6.2"
 
 jest-jasmine2@^24.1.0:
   version "24.1.0"
@@ -15497,6 +15516,13 @@ pirates@^4.0.1:
   dependencies:
     node-modules-regexp "^1.0.0"
 
+pixelmatch@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/pixelmatch/-/pixelmatch-4.0.2.tgz#8f47dcec5011b477b67db03c243bc1f3085e8854"
+  integrity sha1-j0fc7FARtHe2fbA8JDvB8wheiFQ=
+  dependencies:
+    pngjs "^3.0.0"
+
 pkg-dir@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/pkg-dir/-/pkg-dir-1.0.0.tgz#7a4b508a8d5bb2d629d447056ff4e9c9314cf3d4"
@@ -15543,6 +15569,11 @@ pn@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/pn/-/pn-1.1.0.tgz#e2f4cef0e219f463c179ab37463e4e1ecdccbafb"
   integrity sha512-2qHaIQr2VLRFoxe2nASzsV6ef4yOOH+Fi9FBOVH6cqeSgUnoyySPZkxzLuzd+RYOQTRpROA0ztTMqxROKSb/nA==
+
+pngjs@^3.0.0, pngjs@^3.3.3:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/pngjs/-/pngjs-3.4.0.tgz#99ca7d725965fb655814eaf65f38f12bbdbf555f"
+  integrity sha512-NCrCHhWmnQklfH4MtJMRjZ2a8c80qXeMlQMv2uVp9ISJMTt562SbGd6n2oq0PaPgKm7Z6pL9E2UlLIhC+SHL3w==
 
 polished@^3.2.0:
   version "3.2.0"
@@ -16021,10 +16052,10 @@ punycode@^2.1.0, punycode@^2.1.1:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
-puppeteer@^1.19.0:
-  version "1.19.0"
-  resolved "https://registry.yarnpkg.com/puppeteer/-/puppeteer-1.19.0.tgz#e3b7b448c2c97933517078d7a2c53687361bebea"
-  integrity sha512-2S6E6ygpoqcECaagDbBopoSOPDv0pAZvTbnBgUY+6hq0/XDFDOLEMNlHF/SKJlzcaZ9ckiKjKDuueWI3FN/WXw==
+puppeteer@^1.20.0:
+  version "1.20.0"
+  resolved "https://registry.yarnpkg.com/puppeteer/-/puppeteer-1.20.0.tgz#e3d267786f74e1d87cf2d15acc59177f471bbe38"
+  integrity sha512-bt48RDBy2eIwZPrkgbcwHtb51mj2nKvHOPMaSH2IsWiv7lOG9k9zhaRzpDZafrk05ajMc3cu+lSQYYOfH2DkVQ==
   dependencies:
     debug "^4.1.0"
     extract-zip "^1.6.6"

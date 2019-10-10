@@ -18,7 +18,7 @@ const VERSIONS_PATH = resolve(__dirname, '../versions.json');
 
 async function fetchVersionsByPage(page = 1) {
   const res = await fetch(
-    `https://api.github.com/repos/uber-web/baseui/releases?access_token=${process
+    `https://api.github.com/repos/uber/baseweb/releases?access_token=${process
       .env.GITHUB_AUTH_TOKEN || ''}&page=${page}`,
   );
 
