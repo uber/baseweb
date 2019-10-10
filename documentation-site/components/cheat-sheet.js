@@ -18,7 +18,7 @@ import {trackEvent} from '../helpers/ga';
 
 function buildHref(file, line) {
   const commit = process.env.COMMIT_REF || 'master';
-  const base = 'https://github.com/uber-web/baseui/blob';
+  const base = 'https://github.com/uber/baseweb/blob';
   const href = `${base}/${commit}/${file}`;
 
   if (line) {

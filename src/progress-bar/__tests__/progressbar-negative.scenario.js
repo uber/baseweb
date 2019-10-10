@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {ProgressBar} from '../index.js';
 
-export const name = 'progress-bar-negative';
+export const name = 'progressbar-negative';
 
 export const component = () => (
   <ProgressBar

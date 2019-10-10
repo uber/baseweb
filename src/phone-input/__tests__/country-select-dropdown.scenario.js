@@ -11,7 +11,7 @@ import React from 'react';
 import Screener, {Steps} from 'screener-storybook/src/screener';
 import {StatefulPhoneInput, SIZE} from '../index.js';
 
-export const name = 'phone-input-dropdown';
+export const name = 'country-select-dropdown';
 
 export const component = () => {
   const selectSelector = `[data-baseweb="select"]`;

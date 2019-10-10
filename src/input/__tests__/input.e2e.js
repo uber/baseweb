@@ -85,7 +85,7 @@ describe('input', () => {
       });
     });
 
-    // regression test for https://github.com/uber-web/baseui/issues/1643
+    // regression test for https://github.com/uber/baseweb/issues/1643
     // verify that the input receiving the clear event is cleared and not another input
     it('clears the correct input', async () => {
       await mount(page, 'input-clearable');
@@ -113,7 +113,7 @@ describe('input', () => {
       );
     });
 
-    // regression tests for https://github.com/uber-web/baseui/issues/1662
+    // regression tests for https://github.com/uber/baseweb/issues/1662
     describe('while in a form', () => {
       beforeEach(async () => {
         await mount(page, 'input-password');

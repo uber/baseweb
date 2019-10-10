@@ -24,7 +24,7 @@ import DirectionContext from '../components/direction-context';
 import ComponentSizes from '../../component-sizes.json';
 
 const GH_URL =
-  'https://github.com/uber-web/baseui/edit/master/documentation-site/pages';
+  'https://github.com/uber/baseweb/edit/master/documentation-site/pages';
 
 function findByPath(o, path) {
   if (!path) return;

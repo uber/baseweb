@@ -59,7 +59,7 @@ const Adopters = (props: {logoSrcs: string[]}) => (
       </FlexGrid>
       <Button
         $as="a"
-        href="https://github.com/uber-web/baseui/issues/1889"
+        href="https://github.com/uber/baseweb/issues/1889"
         size="compact"
         kind="secondary"
         overrides={{
@@ -215,7 +215,7 @@ const Index = (props: {
 
 async function fetchContributorsByPage(page = 1) {
   const res = await fetch(
-    `https://api.github.com/repos/uber-web/baseui/contributors?access_token=${process
+    `https://api.github.com/repos/uber/baseweb/contributors?access_token=${process
       .env.GITHUB_AUTH_TOKEN || ''}&page=${page}`,
   );
   return res.json();

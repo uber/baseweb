@@ -6,7 +6,7 @@ branchUrl=$(echo $BUILDKITE_BRANCH | tr /: -)
 branchUrl=$(echo $branchUrl | tr -d ._)
 
 # on master, BUILDKITE_PULL_REQUEST_REPO is empty
-if [[ -z $BUILDKITE_PULL_REQUEST_REPO || $BUILDKITE_PULL_REQUEST_REPO == *"uber-web/baseui"* ]]; then
+if [[ -z $BUILDKITE_PULL_REQUEST_REPO || $BUILDKITE_PULL_REQUEST_REPO == *"uber/baseweb"* ]]; then
   url="https://baseui-git-$branchUrl.uber-ui-platform.now.sh/"
 else
   author=$(echo $BUILDKITE_PULL_REQUEST_REPO | cut -d'/' -f 4)

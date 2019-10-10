@@ -11,7 +11,7 @@ import * as React from 'react';
 import {StyledLink as Link} from '../../link/index.js';
 import {Breadcrumbs} from '../index.js';
 
-export const name = 'breadcrumbs with pseudo separators';
+export const name = 'breadcrumbs-pseudo';
 
 export const component = () => (
   <Breadcrumbs
