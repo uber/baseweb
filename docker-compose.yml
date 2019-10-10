@@ -33,7 +33,7 @@ services:
     build: .
     volumes:
       - ./__artifacts__:/baseui/__artifacts__:delegated
-      - ./vrt/__image_snapshots__:/baseui/vrt/__image_snapshots__
+      - ./vrt/__image_snapshots__:/baseui/vrt/__image_snapshots__:delegated
     network_mode: 'host'
     depends_on:
       - e2e-server-healthy
