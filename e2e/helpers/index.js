@@ -135,17 +135,21 @@ expect.extend({
   },
 });
 
+// A Jest unit test wrapper - captures a screenshot when something goes wrong.
+// Can use instead of `test` or `it`-- takes the same arguments.
 function e2e(name, fn, timeout = 5000) {
+  const artifactsDirectory = `__artifacts__`;
+
   // takes a screenshot and logs to console in Buildkite
   const captureFailure = async () => {
-    if (!existsSync(`__artifacts__`)) mkdirSync(`__artifacts__`);
+    if (!existsSync(artifactsDirectory)) mkdirSync(artifactsDirectory);
 
-    const fileName = `__artifacts__/${name.replace(/\W/g, '_')}.png`;
-    const image = await page.screenshot({path: fileName});
+    const filePath = `${artifactsDirectory}/${name.replace(/\W/g, '_')}.png`;
+    const image = await page.screenshot({path: filePath});
 
     if (process.env.CI) {
       console.log(
-        `\u001B]1338;url="artifact://${fileName}";alt="Screenshot"\u0007`,
+        `\u001B]1338;url="artifact://${filePath}";alt="Screenshot"\u0007`,
       );
     }
   };
@@ -154,9 +158,7 @@ function e2e(name, fn, timeout = 5000) {
     name,
     async () => {
       // Take a screenshot if test is about to time out
-      const timeoutID = setTimeout(async () => {
-        await captureFailure();
-      }, timeout - 500);
+      const timeoutID = setTimeout(captureFailure, timeout - 500);
 
       try {
         await fn();
