@@ -9,21 +9,13 @@ LICENSE file in the root directory of this source tree.
 
 /* eslint-env node */
 // @flow
-
-const fs = require('fs').promises;
+const fs = require('fs');
 const globby = require('globby');
 const path = require('path');
 
-(async () => {
-  const files = await globby(['src/**/*.ts']);
-  files.forEach(async file => {
-    try {
-      const from = path.join(__dirname, '../', file);
-      const to = path.join(__dirname, '../', file.replace('src', 'dist'));
-      await fs.copyFile(from, to);
-    } catch (e) {
-      console.log(e);
-      process.exit(1);
-    }
-  });
-})();
+const files = globby.sync(['src/**/*.ts']);
+files.forEach(file => {
+  const from = path.join(__dirname, '../', file);
+  const to = path.join(__dirname, '../', file.replace('src', 'dist'));
+  fs.copyFileSync(from, to);
+});
