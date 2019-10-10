@@ -2,11 +2,9 @@ import React, {useState} from 'react';
 
 import {useStyletron} from 'baseui';
 import {FormControl} from 'baseui/form-control';
-import {
-  Datepicker,
-  TimePicker,
-  TimezonePicker,
-} from 'baseui/datepicker';
+import {Datepicker} from 'baseui/datepicker';
+import {TimezonePicker} from 'baseui/timezonepicker';
+import {TimePicker} from 'baseui/timepicker';
 
 const DATE = new Date(2019, 3, 1, 12, 0, 0);
 

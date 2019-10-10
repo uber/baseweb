@@ -3,11 +3,9 @@ import React from 'react';
 import {useStyletron} from 'baseui';
 import {FormControl} from 'baseui/form-control';
 import {FlexGrid} from 'baseui/flex-grid';
-import {
-  StatefulDatepicker,
-  TimePicker,
-  TimezonePicker,
-} from 'baseui/datepicker';
+import {StatefulDatepicker} from 'baseui/datepicker';
+import {TimezonePicker} from 'baseui/timezonepicker';
+import {TimePicker} from 'baseui/timepicker';
 
 export default () => {
   const [useCss, theme] = useStyletron();
