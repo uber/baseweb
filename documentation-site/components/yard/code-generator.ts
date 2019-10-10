@@ -43,6 +43,10 @@ export const getAstPropsArray = (props: {[key: string]: TProp}) => {
     }
     const astValue = getAstPropValue(prop);
     if (!astValue) return null;
+    // shortcut render "isDisabled" vs "isDisabled={true}"
+    if (astValue.type === 'BooleanLiteral' && astValue.value === true) {
+      return t.jsxAttribute(t.jsxIdentifier(name), null);
+    }
     return t.jsxAttribute(
       t.jsxIdentifier(name),
       astValue.type === 'StringLiteral'
@@ -61,6 +65,11 @@ export const getAstPropValue = (prop: TProp) => {
       return t.booleanLiteral(Boolean(value));
     case PropTypes.Enum:
       return t.identifier(String(value));
+    case PropTypes.Date:
+      return t.newExpression(
+        t.identifier('Date'),
+        value ? [t.stringLiteral(value as any)] : [],
+      );
     case PropTypes.Ref:
       return null;
     case PropTypes.Object:
