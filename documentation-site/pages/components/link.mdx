@@ -5,20 +5,13 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import Example from '../../components/example';
-import API from '../../components/api';
-import Layout from '../../components/layout';
+import Yard from '../../components/yard/index';
+import linkConfig from '../../components/yard/config/link';
 
-import Basic from 'examples/link/basic.js';
+import Layout from '../../components/layout';
 
 export default Layout;
 
 # Link
 
-A simple styled anchor element.
-
-## Examples
-
-<Example title="Basic usage" path="link/basic.js">
-  <Basic />
-</Example>
+<Yard componentName="StyledLink" placeholderHeight={20} {...linkConfig} />
