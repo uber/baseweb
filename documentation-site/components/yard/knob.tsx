@@ -90,6 +90,7 @@ const Knob: React.SFC<{
         </Spacing>
       );
     case PropTypes.String:
+    case PropTypes.Date:
     case PropTypes.Number:
       return (
         <Spacing>

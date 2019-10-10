@@ -184,32 +184,6 @@ export const StatefulDatepicker: React.FC<
   StatefulDatepickerProps<DatepickerProps>
 >;
 
-export interface TimePickerProps {
-  format?: '12' | '24';
-  onChange?: (args: Date) => any;
-  overrides?: {
-    Select?: Override<any>;
-  };
-  positive?: boolean;
-  error?: boolean;
-  creatable?: boolean;
-  disabled?: boolean;
-  step?: number;
-  value?: Date | null;
-}
-export interface TimePickerState {
-  steps: number[];
-  value?: Option;
-}
-export class TimePicker extends React.Component<
-  TimePickerProps,
-  TimePickerState
-> {
-  handleChange(steps: number): void;
-  buildSteps(): number[];
-  buildSelectedOption(value: Date, format: string): object;
-}
-
 export interface TimezonePickerProps {
   date?: Date;
   disabled?: boolean;
