@@ -81,6 +81,10 @@ const COMPONENTS = {
       href: '/components/select',
       Component: thumbnails.SvgSelect,
     },
+    {
+      href: '/components/timepicker',
+      Component: thumbnails.SvgSelect,
+    },
   ],
   Navigation: [
     {

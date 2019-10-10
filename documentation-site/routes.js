@@ -129,6 +129,10 @@ const routes = [
             title: 'Select',
             itemId: '/components/select',
           },
+          {
+            title: 'Timepicker',
+            itemId: '/components/timepicker',
+          },
         ],
       },
       {

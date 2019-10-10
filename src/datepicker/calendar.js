@@ -11,7 +11,7 @@ import {LocaleContext} from '../locale/index.js';
 import {Select} from '../select/index.js';
 import CalendarHeader from './calendar-header.js';
 import Month from './month.js';
-import TimePicker from './timepicker.js';
+import TimePicker from '../timepicker/timepicker.js';
 import {
   StyledCalendarContainer,
   StyledMonthContainer,
