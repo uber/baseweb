@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
@@ -14,13 +13,17 @@ import Basic from 'examples/icon/basic.js';
 import List from 'examples/icon/list.js';
 import Button from 'examples/icon/button.js';
 
-import Overrides from '../../components/overrides';
 import ArrowRight from 'baseui/icon/arrow-right';
 import * as IconExports from 'baseui/icon';
+
+import Yard from '../../components/yard/index';
+import iconConfig from '../../components/yard/config/icon';
 
 export default Layout;
 
 # Icon
+
+<Yard componentName="ArrowUp" placeholderHeight={64} {...iconConfig} />
 
 Visually indicate an action or option.
 
@@ -45,19 +48,6 @@ _If you are an Uber employee, you can access the full list of icons [here](http:
   <Button />
 </Example>
 
-## Overrides
-
-<Overrides
-  name="Icon"
-  component={IconExports}
-  renderExample={props => <ArrowRight size={36} overrides={props.overrides} />}
-/>
-
 ## API
-
-<API
-  heading="Icon API"
-  api={require('!!extract-react-types-loader!../../../src/icon/icon.js')}
-/>
 
 <Exports component={IconExports} title="Icon exports" path="baseui/icon" />
