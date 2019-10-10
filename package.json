@@ -211,9 +211,6 @@
   "resolutions": {
     "@types/react": "16.8.23"
   },
-  "engines": {
-    "node": ">=10"
-  },
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -e $GIT_PARAMS",
