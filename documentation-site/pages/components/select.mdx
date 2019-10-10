@@ -12,7 +12,6 @@ import Exports from '../../components/exports';
 import SelectUncontrolled from 'examples/select/uncontrolled.js';
 import SelectSizes from 'examples/select/sizes.js';
 import SelectControlled from 'examples/select/controlled.js';
-import SelectOpen from 'examples/select/open.js';
 import SelectOverridden from 'examples/select/overridden.js';
 import SelectLabel from 'examples/select/label.js';
 import SelectInModal from 'examples/select/in-modal.js';
@@ -106,15 +105,6 @@ existing options.
 <Example title="Select in a modal dialog" path="select/in-modal.js">
   <SelectInModal />
 </Example>
-
-<Example title="Select with open dropdown" path="select/open.js">
-  <SelectOpen />
-</Example>
-
-Use `startOpen` to mount the Select with an open dropdown.
-Combine this with `autoFocus` if you want the input to be focused as well.
-Note, the dropdown will close once an item is selected or if the `escape` key is pressed while the Select has focus.
-If you want the dropdown to stay open you might be better off using [`Menu`](/components/menu) directly.
 
 <Example title="Select with overridden menu" path="select/overridden.js">
   <SelectOverridden />
