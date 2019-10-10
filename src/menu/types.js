@@ -76,7 +76,7 @@ export type StatefulContainerStateT = {
   // index of currently highlighted item (from keyboard control)
   highlightedIndex: number,
   // indicates when the menu can be navigated by keyboard and affects menu item option rendering
-  // see https://github.com/uber-web/baseui/issues/993 for a description.
+  // see https://github.com/uber/baseweb/issues/993 for a description.
   isFocused: boolean,
 };
 
@@ -86,7 +86,7 @@ export type InitialStateT = {
   // index of currently highlighted item (from keyboard control)
   highlightedIndex?: number,
   // indicates when the menu can be navigated by keyboard and affects menu item option rendering
-  // see https://github.com/uber-web/baseui/issues/993 for a description.
+  // see https://github.com/uber/baseweb/issues/993 for a description.
   isFocused?: boolean,
 };
 
