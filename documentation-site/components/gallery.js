@@ -82,7 +82,11 @@ const COMPONENTS = {
       Component: thumbnails.SvgSelect,
     },
     {
-      href: '/components/timepicker',
+      href: '/components/time-picker',
+      Component: thumbnails.SvgSelect,
+    },
+    {
+      href: '/components/timezone-picker',
       Component: thumbnails.SvgSelect,
     },
   ],

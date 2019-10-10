@@ -130,8 +130,12 @@ const routes = [
             itemId: '/components/select',
           },
           {
-            title: 'Timepicker',
-            itemId: '/components/timepicker',
+            title: 'Time Picker',
+            itemId: '/components/time-picker',
+          },
+          {
+            title: 'Timezone Picker',
+            itemId: '/components/timezone-picker',
           },
         ],
       },
