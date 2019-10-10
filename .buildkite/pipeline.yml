@@ -96,24 +96,24 @@ steps:
     # and also to make sure we do not add this to the released build artifact
     command: yarn add puppeteer && yarn e2e:test:ci
     artifact_paths:
-      - '__e2e_artifacts__/*.png'
-    plugins:
-      'docker-compose#v3.0.3':
-        run: e2e-test
-        pull:
-          - e2e-server
-          - e2e-server-healthy
-    agents:
-      queue: builders
-  - name: ':visual-regression-tests:'
-    command: yarn add puppeteer && yarn vrt
-    plugins:
-      'docker-compose#v3.0.3':
-        run: e2e-test
-        pull:
-          - e2e-server
-          - e2e-server-healthy
-    agents:
-      queue: builders
-    artifact_paths:
       - '__artifacts__/*.png'
+    plugins:
+      'docker-compose#v3.0.3':
+        run: e2e-test
+        pull:
+          - e2e-server
+          - e2e-server-healthy
+    agents:
+      queue: builders
+  # - name: ':visual-regression-tests:'
+  #   command: yarn add puppeteer && yarn vrt
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       run: e2e-test
+  #       pull:
+  #         - e2e-server
+  #         - e2e-server-healthy
+  #   agents:
+  #     queue: builders
+  #   artifact_paths:
+  #     - '__artifacts__/*.png'
