@@ -13,6 +13,7 @@ const DrawerConfig: TConfig = {
   props: {
     animate: {
       value: undefined,
+      defaultValue: true,
       type: PropTypes.Boolean,
       description:
         'Sets whether the Drawer should be displayed by easing in and out.',
@@ -48,6 +49,7 @@ const DrawerConfig: TConfig = {
     size: {
       value: 'SIZE.default',
       options: SIZE,
+      defaultValue: 'SIZE.default',
       type: PropTypes.Enum,
       description: 'Defines the modal size.',
       imports: {
@@ -59,6 +61,7 @@ const DrawerConfig: TConfig = {
     anchor: {
       value: 'ANCHOR.default',
       options: ANCHOR,
+      defaultValue: 'ANCHOR.default',
       type: PropTypes.Enum,
       description: 'Window side from which the drawer originates from.',
       imports: {
@@ -69,6 +72,7 @@ const DrawerConfig: TConfig = {
     },
     closeable: {
       value: true,
+      defaultValue: true,
       type: PropTypes.Boolean,
       description: 'Whether the drawer should be closeable by the user.',
       hidden: true,
