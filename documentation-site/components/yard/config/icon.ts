@@ -1,11 +1,11 @@
-import ArrowUp from 'baseui/icon/arrow-up';
+import {ArrowUp} from 'baseui/icon';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
 const IconConfig: TConfig = {
   imports: {
-    'baseui/icon/arrow-up': {
-      default: 'ArrowUp',
+    'baseui/icon': {
+      named: ['ArrowUp'],
     },
   },
   scope: {ArrowUp},
