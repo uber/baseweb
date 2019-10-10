@@ -13,7 +13,7 @@ const config = require('../../jest-puppeteer.config.js');
 const axe = require('axe-core');
 const {printReceived} = require('jest-matcher-utils');
 const {resolve} = require('path');
-const {realpathSync} = require('fs');
+const {realpathSync, existsSync, mkdirSync} = require('fs');
 
 const PATH_TO_AXE = './node_modules/axe-core/axe.min.js';
 const appDirectory = realpathSync(process.cwd());
@@ -138,8 +138,11 @@ expect.extend({
 function e2e(name, fn, timeout = 5000) {
   // takes a screenshot and logs to console in Buildkite
   const captureFailure = async () => {
-    const fileName = `__e2e_artifacts__/${name.replace(/\W/g, '_')}.png`;
-    await page.screenshot({path: fileName});
+    if (!existsSync(`__artifacts__`)) mkdirSync(`__artifacts__`);
+
+    const fileName = `__artifacts__/${name.replace(/\W/g, '_')}.png`;
+    const image = await page.screenshot({path: fileName});
+
     if (process.env.CI) {
       console.log(
         `\u001B]1338;url="artifact://${fileName}";alt="Screenshot"\u0007`,
