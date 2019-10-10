@@ -61,7 +61,7 @@ export type TProp = {
   description: string;
   options?: any;
   placeholder?: string;
-  renderFalseValue?: boolean;
+  defaultValue?: TPropValue;
   enumName?: string;
   hidden?: boolean;
   names?: string[];

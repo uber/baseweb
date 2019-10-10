@@ -53,7 +53,8 @@ const CheckboxConfig: TConfig = {
       description: 'Renders component in disabled state.',
     },
     checkmarkType: {
-      value: undefined,
+      value: 'STYLE_TYPE.default',
+      defaultValue: 'STYLE_TYPE.default',
       options: STYLE_TYPE,
       type: PropTypes.Enum,
       enumName: 'STYLE_TYPE',

@@ -33,7 +33,8 @@ const PopoverConfig: TConfig = {
       description: `The content that will trigger the popover.`,
     },
     placement: {
-      value: undefined,
+      value: 'PLACEMENT.auto',
+      defaultValue: 'PLACEMENT.auto',
       options: PLACEMENT,
       type: PropTypes.Enum,
       description:
@@ -45,7 +46,8 @@ const PopoverConfig: TConfig = {
       },
     },
     triggerType: {
-      value: undefined,
+      value: 'TRIGGER_TYPE.click',
+      defaultValue: 'TRIGGER_TYPE.click',
       options: TRIGGER_TYPE,
       enumName: 'TRIGGER_TYPE',
       type: PropTypes.Enum,
@@ -64,7 +66,8 @@ const PopoverConfig: TConfig = {
         'If true, an arrow will be shown pointing from the popover to the trigger element.',
     },
     accessibilityType: {
-      value: undefined,
+      value: 'ACCESSIBILITY_TYPE.menu',
+      defaultValue: 'ACCESSIBILITY_TYPE.menu',
       options: ACCESSIBILITY_TYPE,
       enumName: 'ACCESSIBILITY_TYPE',
       type: PropTypes.Enum,

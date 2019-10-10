@@ -14,7 +14,7 @@ import {
   Root as StyledRoot,
   InputEnhancer as StyledInputEnhancer,
 } from './styled-components.js';
-import {ADJOINED, ENHANCER_POSITION} from './constants.js';
+import {SIZE, ADJOINED, ENHANCER_POSITION} from './constants.js';
 
 class Input extends React.Component<InputPropsT, InternalStateT> {
   static defaultProps = {
@@ -27,7 +27,7 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
     onFocus: () => {},
     overrides: {},
     required: false,
-    size: 'default',
+    size: SIZE.default,
     startEnhancer: null,
     endEnhancer: null,
   };
