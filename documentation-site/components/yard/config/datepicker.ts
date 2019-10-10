@@ -168,7 +168,8 @@ const DatepickerConfig: TConfig = {
       hidden: true,
     },
     orientation: {
-      value: undefined,
+      value: ORIENTATION.vertical,
+      defaultValue: ORIENTATION.vertical,
       type: PropTypes.Enum,
       options: ORIENTATION,
       description:

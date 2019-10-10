@@ -43,6 +43,10 @@ export const getAstPropsArray = (props: {[key: string]: TProp}) => {
     }
     const astValue = getAstPropValue(prop);
     if (!astValue) return null;
+    // shortcut render "isDisabled" vs "isDisabled={true}"
+    if (astValue.type === 'BooleanLiteral' && astValue.value === true) {
+      return t.jsxAttribute(t.jsxIdentifier(name), null);
+    }
     return t.jsxAttribute(
       t.jsxIdentifier(name),
       astValue.type === 'StringLiteral'
