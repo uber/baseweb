@@ -110,10 +110,6 @@ const routes = [
         title: 'Pickers',
         subNav: [
           {
-            title: 'Datepicker',
-            itemId: '/components/datepicker',
-          },
-          {
             title: 'File Uploader',
             itemId: '/components/file-uploader',
           },
@@ -128,6 +124,23 @@ const routes = [
           {
             title: 'Select',
             itemId: '/components/select',
+          },
+        ],
+      },
+      {
+        title: 'Date & Time',
+        subNav: [
+          {
+            title: 'Datepicker',
+            itemId: '/components/datepicker',
+          },
+          {
+            title: 'Time Picker',
+            itemId: '/components/time-picker',
+          },
+          {
+            title: 'Timezone Picker',
+            itemId: '/components/timezone-picker',
           },
         ],
       },
