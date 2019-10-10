@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {Datepicker, TimezonePicker} from 'baseui/datepicker';
+import {Datepicker} from 'baseui/datepicker';
+import {TimezonePicker} from 'baseui/timezonepicker';
 import {FormControl} from 'baseui/form-control';
 
 export default () => {

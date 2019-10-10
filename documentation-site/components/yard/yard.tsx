@@ -198,7 +198,7 @@ const Yard: React.FC<
             }}
           />
         </YardTab>
-        {Object.keys(propsConfig.overrides).length > 0 && (
+        {propsConfig.overrides.names && propsConfig.overrides.names.length > 0 && (
           <YardTab
             title={`Style Overrides${
               activeOverrides > 0 ? ` (${activeOverrides})` : ''
