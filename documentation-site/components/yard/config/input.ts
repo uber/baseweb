@@ -52,7 +52,8 @@ export const inputProps = {
     description: 'Renders component in positive state.',
   },
   size: {
-    value: undefined,
+    value: 'SIZE.default',
+    defaultValue: 'SIZE.default',
     options: SIZE,
     type: PropTypes.Enum,
     description: 'Renders component in provided size.',
@@ -119,7 +120,8 @@ export const inputProps = {
     hidden: true,
   },
   adjoined: {
-    value: undefined,
+    value: 'ADJOINED.none',
+    defaultValue: 'ADJOINED.none',
     options: ADJOINED,
     type: PropTypes.Enum,
     description: `Defines styles for inputs that are grouped with other controls.`,

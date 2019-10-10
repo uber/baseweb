@@ -46,20 +46,20 @@ const SelectConfig: TConfig = {
     backspaceRemoves: {
       value: true,
       type: PropTypes.Boolean,
-      renderFalseValue: true,
+      defaultValue: true,
       description: 'Defines if options can be removed by pressing backspace.',
     },
     clearable: {
       value: true,
       type: PropTypes.Boolean,
-      renderFalseValue: true,
+      defaultValue: true,
       description:
         'Defines if the select value can be cleared. If true a clear icon is rendered when a value is set.',
     },
     closeOnSelect: {
       value: true,
       type: PropTypes.Boolean,
-      renderFalseValue: true,
+      defaultValue: true,
       description: 'Defines if the menu closes after a selection if made.',
     },
     creatable: {
@@ -71,7 +71,7 @@ const SelectConfig: TConfig = {
     deleteRemoves: {
       value: true,
       type: PropTypes.Boolean,
-      renderFalseValue: true,
+      defaultValue: true,
       description: 'Defines if options can be removed by pressing backspace.',
     },
     disabled: {
@@ -92,12 +92,13 @@ const SelectConfig: TConfig = {
     escapeClearsValue: {
       value: true,
       type: PropTypes.Boolean,
-      renderFalseValue: true,
+      defaultValue: true,
       description:
         'Defines if the value is cleared when escape is pressed and the dropdown is closed.',
     },
     size: {
-      value: undefined,
+      value: 'SIZE.default',
+      defaultValue: 'SIZE.default',
       options: SIZE,
       type: PropTypes.Enum,
       description:
@@ -195,7 +196,7 @@ const SelectConfig: TConfig = {
     filterOutSelected: {
       value: true,
       type: PropTypes.Boolean,
-      renderFalseValue: true,
+      defaultValue: true,
       description:
         'Defines if currently selected options are filtered out in the dropdown options.',
     },
@@ -212,28 +213,28 @@ const SelectConfig: TConfig = {
     onBlurResetsInput: {
       value: true,
       type: PropTypes.Boolean,
-      renderFalseValue: true,
+      defaultValue: true,
       description:
         'Defines if the input value is reset to an empty string when a blur event happens on the select.',
     },
     onCloseResetsInput: {
       value: true,
       type: PropTypes.Boolean,
-      renderFalseValue: true,
+      defaultValue: true,
       description:
         'Defines if the input value is reset to an empty string when dropdown is closed.',
     },
     onSelectResetsInput: {
       value: true,
       type: PropTypes.Boolean,
-      renderFalseValue: true,
+      defaultValue: true,
       description:
         'Defines if the input value is reset to an empty string when a selection is made.',
     },
     openOnClick: {
       value: true,
       type: PropTypes.Boolean,
-      renderFalseValue: true,
+      defaultValue: true,
       description:
         'Defines if the dropdown opens on a click event on the select.',
     },
@@ -246,7 +247,7 @@ const SelectConfig: TConfig = {
     searchable: {
       value: true,
       type: PropTypes.Boolean,
-      renderFalseValue: true,
+      defaultValue: true,
       description: 'Defines if the search functionality is enabled.',
     },
     startOpen: {
@@ -255,7 +256,8 @@ const SelectConfig: TConfig = {
       description: 'If true, opens the dropdown when the select mounts.',
     },
     type: {
-      value: undefined,
+      value: 'TYPE.select',
+      defaultValue: 'TYPE.select',
       options: TYPE,
       type: PropTypes.Enum,
       description: `Defines type of the component to be in a select or search mode.

@@ -1,4 +1,5 @@
 import {
+  getAstPropsArray,
   getAstPropValue,
   getAstReactHooks,
   getAstImport,
@@ -11,6 +12,89 @@ import {PropTypes} from '../const';
 import generate from '@babel/generator';
 import * as t from '@babel/types';
 
+describe('getAstPropsArray', () => {
+  test('boolean (true) and value === defaulValue', () => {
+    expect(
+      getAstPropsArray({
+        a: {
+          value: true,
+          defaultValue: true,
+          type: PropTypes.Boolean,
+          description: '',
+        },
+      }),
+    ).toEqual([null]);
+  });
+  test('boolean (false) and value === defaulValue', () => {
+    expect(
+      getAstPropsArray({
+        a: {
+          value: false,
+          defaultValue: false,
+          type: PropTypes.Boolean,
+          description: '',
+        },
+      }),
+    ).toEqual([null]);
+  });
+  test('boolean (false) and !defaulValue', () => {
+    expect(
+      getAstPropsArray({
+        a: {
+          value: false,
+          type: PropTypes.Boolean,
+          description: '',
+        },
+      }),
+    ).toEqual([null]);
+  });
+  test('enum and value === defaulValue', () => {
+    expect(
+      getAstPropsArray({
+        a: {
+          value: 'SIZE.default',
+          defaultValue: 'SIZE.default',
+          type: PropTypes.Enum,
+          description: '',
+        },
+      }),
+    ).toEqual([null]);
+  });
+  test('!value', () => {
+    expect(
+      getAstPropsArray({
+        a: {
+          value: undefined,
+          type: PropTypes.String,
+          description: '',
+        },
+      }),
+    ).toEqual([null]);
+  });
+  test('boolean (true) and value !== defaulValue', () => {
+    expect(
+      getAstPropsArray({
+        a: {
+          value: true,
+          type: PropTypes.Boolean,
+          description: '',
+        },
+      }),
+    ).not.toEqual([null]);
+  });
+  test('enum and value !== defaulValue', () => {
+    expect(
+      getAstPropsArray({
+        a: {
+          value: 'SIZE.large',
+          defaultValue: 'SIZE.default',
+          type: PropTypes.Enum,
+          description: '',
+        },
+      }),
+    ).not.toEqual([null]);
+  });
+});
 describe('getAstPropValue', () => {
   test('boolean', () => {
     expect(
@@ -324,10 +408,32 @@ describe('getAstImports', () => {
                 },
               },
             },
+            c: {
+              value: 'SIZE.default',
+              defaultValue: 'SIZE.default',
+              type: PropTypes.Enum,
+              description: '',
+              imports: {
+                'baseui/button': {
+                  named: ['SIZE'],
+                },
+              },
+            },
+            d: {
+              value: 'ORIENTATION.vertical',
+              defaultValue: 'ORIENTATION.horizontal',
+              type: PropTypes.Enum,
+              description: '',
+              imports: {
+                'baseui/tabs': {
+                  named: ['ORIENTATION'],
+                },
+              },
+            },
           },
         ),
       ) as any).code,
-    ).toBe(`import OverrideRoot, { Tab, Tabs } from "baseui/tabs";
+    ).toBe(`import OverrideRoot, { Tab, Tabs, ORIENTATION } from "baseui/tabs";
 import { Motion } from "react-motion";`);
   });
 });
