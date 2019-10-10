@@ -10,7 +10,7 @@ import * as React from 'react';
 import {ThemeProvider, LightTheme} from '../../index.js';
 import {component as NavScenario} from './nav.scenario.js';
 
-export const name = 'side-navigation-rtl';
+export const name = 'nav-rtl';
 
 export const component = () => (
   <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>

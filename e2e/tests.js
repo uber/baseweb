@@ -45,7 +45,7 @@ export default function showTestcase() {
 
   const scenario = scenarios.find(s => s.name === name);
   if (!scenario) {
-    const message = `No scenario found with the name: '${name}.'`;
+    const message = `No scenario found with the name: ${name}`;
     console.error(message);
     return <A11yFail message={message} />;
   }

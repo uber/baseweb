@@ -28,7 +28,7 @@ type RowT = [string, string, string, string, string, EventT[]];
 
 const row = [
   'feat(docs-site): theme editor POC',
-  'https://github.com/uber-web/baseui/pull/1296',
+  'https://github.com/uber/baseweb/pull/1296',
   `integrates an inline theme editor for the base web documentation site user can edit a theme
     and see update applied to site globally user can copy to clipboard, import and export theme`,
   'feature',

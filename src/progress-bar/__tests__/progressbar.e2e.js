@@ -12,7 +12,7 @@ const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 describe('Progress Bar', () => {
   it('passes basic a11y tests', async () => {
-    await mount(page, 'progress-bar');
+    await mount(page, 'progressbar');
     await page.waitFor('[role="progressbar"]');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();

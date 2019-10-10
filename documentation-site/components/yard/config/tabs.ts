@@ -39,7 +39,8 @@ const TabsConfig: TConfig = {
       },
     },
     orientation: {
-      value: false,
+      value: 'ORIENTATION.horizontal',
+      defaultValue: 'ORIENTATION.horizontal',
       type: PropTypes.Enum,
       options: ORIENTATION,
       description: 'The orientation of the tab component.',

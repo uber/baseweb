@@ -20,7 +20,7 @@ function buildRow(status: string) {
     status,
     new Date(2019, 6, 22),
     'feat(side-navigation): improve item rendering performance',
-    'https://github.com/uber-web/baseui/pull/1449',
+    'https://github.com/uber/baseweb/pull/1449',
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt',
     [
       [

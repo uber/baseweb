@@ -11,7 +11,7 @@ import {LocaleContext} from '../locale/index.js';
 import {Select} from '../select/index.js';
 import CalendarHeader from './calendar-header.js';
 import Month from './month.js';
-import TimePicker from './timepicker.js';
+import TimePicker from '../timepicker/timepicker.js';
 import {
   StyledCalendarContainer,
   StyledMonthContainer,
@@ -294,13 +294,11 @@ export default class Calendar extends React.Component<
         return applyTime(values[index], date);
       });
       onChange({date: dates});
-    } else if (!Array.isArray(this.props.value)) {
-      if (data.date) {
-        const nextDate = applyTime(this.props.value, data.date);
-        onChange({date: nextDate});
-      } else {
-        onChange({date: data.date});
-      }
+    } else if (!Array.isArray(this.props.value) && data.date) {
+      const nextDate = applyTime(this.props.value, data.date);
+      onChange({date: nextDate});
+    } else {
+      onChange({date: data.date});
     }
   };
 

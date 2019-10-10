@@ -4,11 +4,8 @@ import React, {useState} from 'react';
 import {useStyletron} from 'baseui';
 import {FormControl} from 'baseui/form-control';
 import ArrowRight from 'baseui/icon/arrow-right';
-import {
-  Datepicker,
-  TimePicker,
-  formatDate,
-} from 'baseui/datepicker';
+import {Datepicker, formatDate} from 'baseui/datepicker';
+import {TimePicker} from 'baseui/timepicker';
 
 const START_DATE = new Date(2019, 3, 1, 12, 0, 0);
 const END_DATE = new Date(2019, 3, 10, 16, 0, 0);

@@ -62,7 +62,7 @@ const StyledLink = themedStyled('a', ({$theme}) => ({
 export default () => (
   <StyledFooter>
     <Block paddingBottom="scale1000">
-      <StyledLink href="https://github.com/uber-web/baseui" target="_blank">
+      <StyledLink href="https://github.com/uber/baseweb" target="_blank">
         GitHub
       </StyledLink>
       <StyledLink href="https://twitter.com/BaseWebReact" target="_blank">
@@ -75,7 +75,7 @@ export default () => (
         Slack Chat room
       </StyledLink>
       <StyledLink
-        href="https://github.com/uber-web/baseui/releases"
+        href="https://github.com/uber/baseweb/releases"
         target="_blank"
       >
         Changelog

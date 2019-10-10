@@ -53,11 +53,17 @@ const CheckboxConfig: TConfig = {
       description: 'Renders component in disabled state.',
     },
     checkmarkType: {
-      value: undefined,
+      value: 'STYLE_TYPE.default',
+      defaultValue: 'STYLE_TYPE.default',
       options: STYLE_TYPE,
       type: PropTypes.Enum,
       enumName: 'STYLE_TYPE',
       description: 'Renders component in a toggle state.',
+      imports: {
+        'baseui/checkbox': {
+          named: ['STYLE_TYPE'],
+        },
+      },
     },
     onChange: {
       value: 'e => setChecked(e.target.checked)',
@@ -80,12 +86,18 @@ const CheckboxConfig: TConfig = {
         'Indicates indeterminate state for the checkmark. Checked property is ignored.',
     },
     labelPlacement: {
-      value: undefined,
+      value: 'LABEL_PLACEMENT.right',
+      defaultValue: 'LABEL_PLACEMENT.right',
       options: LABEL_PLACEMENT,
       type: PropTypes.Enum,
       enumName: 'LABEL_PLACEMENT',
       description:
         'Determines how to position the label relative to the checkbox.',
+      imports: {
+        'baseui/checkbox': {
+          named: ['LABEL_PLACEMENT'],
+        },
+      },
     },
     required: {
       value: false,

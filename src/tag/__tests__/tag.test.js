@@ -74,7 +74,7 @@ describe('Stateless tag', function() {
   });
 
   describe('tag flow validation', function() {
-    // https://github.com/uber-web/baseui/issues/1910
+    // https://github.com/uber/baseweb/issues/1910
     // eslint-disable-next-line no-unused-vars
     function TagWrapper(props: {kind: TagKindT}) {
       return <Tag kind={props.kind} />;
