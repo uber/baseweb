@@ -14,10 +14,6 @@ const generateBlogPosts = require('./post-generator.js');
 const generateVersions = require('./version-generator.js');
 const {generateCheatSheet} = require('./cheat-sheet-generator.js');
 
-async function main() {
-  generateBlogPosts();
-  await generateVersions();
-  await generateCheatSheet();
-}
-
-main().catch(console.error);
+generateBlogPosts();
+generateVersions();
+generateCheatSheet();
