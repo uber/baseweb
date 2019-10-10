@@ -24,7 +24,6 @@ documentation-site/posts.js
 documentation-site/cheat-sheet.js
 public
 versions.json
-__e2e_artifacts__
-
+__artifacts__
 # Local Netlify folder
 .netlify

@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {StatefulCalendar} from '../index.js';
 
-export const name = 'Stateful calendar overrides';
+export const name = 'stateful-calendar-overrides';
 
 const arrowBtnOverrides = ({$theme}) => {
   return {
