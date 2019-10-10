@@ -1,7 +1,7 @@
 # Codemods for Base Web (`baseui`)
 
 You can use this CLI tool to run various scripts (codemods) that will
-automate laborious migrations between major versions of the [baseui](https://github.com/uber-web/baseui) library.
+automate laborious migrations between major versions of the [baseui](https://github.com/uber/baseweb) library.
 
 > What is a "codemod"?
 

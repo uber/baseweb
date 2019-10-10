@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
@@ -17,13 +16,20 @@ import Customization from 'examples/notification/overrides.js';
 import CustomDismiss from 'examples/notification/custom-dismiss.js';
 import FullWidth from 'examples/notification/full-width.js';
 
-import Overrides from '../../components/overrides';
 import {Notification} from 'baseui/notification';
-import * as NotificationExports from 'baseui/toast';
+import * as NotificationExports from 'baseui/notification';
+import Yard from '../../components/yard/index';
+import notificationYardConfig from '../../components/yard/config/notification';
 
 export default Layout;
 
 # Notification
+
+<Yard
+  componentName="Notification"
+  placeholderHeight={68}
+  {...notificationYardConfig}
+/>
 
 Notifications provide important information inline with the content body within a view. These
 notifications do not self-dismiss and have the option to include a close “X”.
@@ -68,26 +74,6 @@ notifications do not self-dismiss and have the option to include a close “X”
 >
   <CustomDismiss />
 </Example>
-
-## Overrides
-
-<Overrides
-  name="Notification"
-  component={NotificationExports}
-  blacklisted={['Root']}
-  renderExample={props => (
-    <Notification overrides={props.overrides} closeable>
-      Default info notification
-    </Notification>
-  )}
-/>
-
-## API
-
-<API
-  heading="Notification API"
-  api={require('!!extract-react-types-loader!../../../src/notification/notification.js')}
-/>
 
 <Exports
   component={NotificationExports}

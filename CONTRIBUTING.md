@@ -10,7 +10,7 @@ page: Contributing
 1. Clone the repo locally and run `yarn` to install dependencies from npm.
 
 ```bash
-git clone git@github.com:uber-web/baseui.git
+git clone git@github.com:uber/baseweb.git
 cd baseui
 yarn
 ```

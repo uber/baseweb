@@ -15,6 +15,7 @@ import Calendar from './calendar.js';
 import {formatDate} from './utils/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {LocaleContext} from '../locale/index.js';
+import {StyledInputWrapper} from './styled-components.js';
 import type {DatepickerPropsT} from './types.js';
 
 export default class Datepicker extends React.Component<
@@ -181,6 +182,10 @@ export default class Datepicker extends React.Component<
       overrides.Popover,
       Popover,
     );
+    const [InputWrapper, inputWrapperProps] = getOverrides(
+      overrides.InputWrapper,
+      StyledInputWrapper,
+    );
     const mask =
       // using the mask provided through the top-level API
       this.props.mask ||
@@ -239,7 +244,7 @@ export default class Datepicker extends React.Component<
               }
               {...popoverProps}
             >
-              <span>
+              <InputWrapper {...inputWrapperProps}>
                 <InputComponent
                   aria-disabled={this.props.disabled}
                   aria-label={
@@ -261,7 +266,7 @@ export default class Datepicker extends React.Component<
                   required={this.props.required}
                   {...inputProps}
                 />
-              </span>
+              </InputWrapper>
             </PopoverComponent>
             <p
               id="datepicker--screenreader--message--input"

@@ -12,6 +12,13 @@ import type {SharedStylePropsT} from './types.js';
 /**
  * Main component container element
  */
+export const StyledInputWrapper = styled<SharedStylePropsT>('div', () => ({
+  width: '100%',
+}));
+
+/**
+ * Main component container element
+ */
 export const StyledRoot = styled<SharedStylePropsT>('div', props => {
   const {
     $theme: {typography, colors, borders},
