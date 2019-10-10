@@ -32,7 +32,8 @@ services:
   e2e-test:
     build: .
     volumes:
-      - .:/baseui:delegated
+      - ./__artifacts__:/baseui/__artifacts__:delegated
+      - ./vrt/__image_snapshots__:/baseui/vrt/__image_snapshots__
     network_mode: 'host'
     depends_on:
       - e2e-server-healthy

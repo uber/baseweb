@@ -114,4 +114,4 @@ steps:
     agents:
       queue: builders
     artifact_paths:
-      - '__vrt_diffs__/*.png'
+      - '__artifacts__/*.png'

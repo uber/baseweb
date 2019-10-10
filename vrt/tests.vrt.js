@@ -14,7 +14,7 @@ const config = require('./config.js');
 const {getAllScenarioNames} = require('./utils.js');
 
 const toMatchImageSnapshot = configureToMatchImageSnapshot({
-  customDiffDir: '__vrt_diffs__',
+  customDiffDir: '__artifacts__',
   diffDirection: 'vertical',
 });
 
