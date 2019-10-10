@@ -39,7 +39,7 @@ export const flexGridItemMediaQueryStyle = ({
     $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
   return {
     // Subtract .5px to avoid rounding issues on IE/Edge
-    // See https://github.com/uber-web/baseui/pull/1748
+    // See https://github.com/uber/baseweb/pull/1748
     width: `calc(${widthCalc} - .5px)`,
     ...[...Array(colCount).keys()].reduce(
       (acc, i) => ({

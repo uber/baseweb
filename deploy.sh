@@ -6,7 +6,7 @@ apt-get update
 apt-get install -y jq
 
 this_commit=$(echo $BUILDKITE_COMMIT | tr -d '"')
-tags=$(curl https://api.github.com/repos/uber-web/baseui/git/refs/tags?access_token=${GITHUB_AUTH_TOKEN})
+tags=$(curl https://api.github.com/repos/uber/baseweb/git/refs/tags?access_token=${GITHUB_AUTH_TOKEN})
 latest_tagged_commit=$(echo $tags | jq '.[-1].object.sha' | tr -d '"')
 
 echo this commit: $this_commit
