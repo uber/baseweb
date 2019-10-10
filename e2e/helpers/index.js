@@ -135,7 +135,43 @@ expect.extend({
   },
 });
 
+function e2e(name, fn, timeout = 5000) {
+  // takes a screenshot and logs to console in Buildkite
+  const captureFailure = async () => {
+    const fileName = `__e2e_artifacts__/${name.replace(/\W/g, '_')}.png`;
+    await page.screenshot({path: fileName});
+    if (process.env.CI) {
+      console.log(
+        `\u001B]1338;url="artifact://${fileName}";alt="Screenshot"\u0007`,
+      );
+    }
+  };
+
+  test(
+    name,
+    async () => {
+      // Take a screenshot if test is about to time out
+      const timeoutID = setTimeout(async () => {
+        await captureFailure();
+      }, timeout - 500);
+
+      try {
+        await fn();
+        // succeeded, clear timeout
+        timeoutID.unref && timeoutID.unref();
+      } catch (er) {
+        await captureFailure();
+        // failed within test, clear timeout
+        timeoutID.unref && timeoutID.unref();
+        throw er;
+      }
+    },
+    timeout,
+  );
+}
+
 module.exports = {
   analyzeAccessibility,
   mount,
+  e2e,
 };

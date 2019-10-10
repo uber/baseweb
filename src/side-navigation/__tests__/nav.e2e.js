@@ -8,24 +8,26 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
+const {e2e, mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const selectors = {
   root: 'nav[data-test="e2e"]',
 };
 
 describe('side navigation', () => {
-  it('passes basic a11y tests', async () => {
+  e2e('passes basic a11y tests', async () => {
     await mount(page, 'side-navigation');
+    // await page.waitFor('#foo');
     await page.waitFor(selectors.root);
-    const accessibilityReport = await analyzeAccessibility(page, {
-      rules: [
-        {
-          id: 'skip-link',
-          enabled: false,
-        },
-      ],
-    });
+    const accessibilityReport = await analyzeAccessibility(page);
+    // const accessibilityReport = await analyzeAccessibility(page, {
+    //   rules: [
+    //     {
+    //       id: 'skip-link',
+    //       enabled: false,
+    //     },
+    //   ],
+    // });
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 });
