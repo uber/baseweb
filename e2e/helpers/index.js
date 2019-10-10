@@ -13,8 +13,7 @@ const config = require('../../jest-puppeteer.config.js');
 const axe = require('axe-core');
 const {printReceived} = require('jest-matcher-utils');
 const {resolve} = require('path');
-const {realpathSync, existsSync} = require('fs');
-const mkdirp = require('mkdirp');
+const {realpathSync} = require('fs');
 
 const PATH_TO_AXE = './node_modules/axe-core/axe.min.js';
 const appDirectory = realpathSync(process.cwd());
@@ -136,47 +135,7 @@ expect.extend({
   },
 });
 
-// A Jest unit test wrapper - captures a screenshot when something goes wrong.
-// Can use instead of `test` or `it`-- takes the same arguments.
-function e2e(name, fn, timeout = 5000) {
-  const artifactsDirectory = `__artifacts__`;
-
-  // takes a screenshot and logs to console in Buildkite
-  const captureFailure = async () => {
-    mkdirp.sync(artifactsDirectory);
-    const filePath = `${artifactsDirectory}/${name.replace(/\W/g, '_')}.png`;
-
-    const image = await page.screenshot({path: filePath});
-    if (process.env.CI) {
-      console.log(
-        `\u001B]1338;url="artifact://${filePath}";alt="Screenshot"\u0007`,
-      );
-    }
-  };
-
-  test(
-    name,
-    async () => {
-      // Take a screenshot if test is about to time out
-      const timeoutID = setTimeout(captureFailure, timeout - 500);
-
-      try {
-        await fn();
-        // succeeded, clear timeout
-        timeoutID.unref && timeoutID.unref();
-      } catch (er) {
-        // failed within test, clear timeout
-        timeoutID.unref && timeoutID.unref();
-        await captureFailure();
-        throw er;
-      }
-    },
-    timeout,
-  );
-}
-
 module.exports = {
   analyzeAccessibility,
   mount,
-  e2e,
 };
