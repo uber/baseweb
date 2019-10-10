@@ -1,6 +1,6 @@
 import Router from 'next/router';
 import {parseCode, parseOverrides} from './ast';
-import {Action} from './const';
+import {Action, PropTypes} from './const';
 import {TProp, TDispatch, TPropValue} from './types';
 
 export const updateCode = (dispatch: TDispatch, newCode: string) => {
@@ -27,6 +27,13 @@ export const updateAll = (
         parsedProps[name],
         propsConfig.overrides ? propsConfig.overrides.names || [] : [],
       );
+    } else if (propsConfig[name].type === PropTypes.Date) {
+      const match = parsedProps[name].match(/^new\sDate\("([0-9-T:.Z]+)"\)$/);
+      if (match) {
+        propValues[name] = match[1];
+      } else {
+        propValues[name] = parsedProps[name];
+      }
     } else {
       propValues[name] = parsedProps[name];
     }

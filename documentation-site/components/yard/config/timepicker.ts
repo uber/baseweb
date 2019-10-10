@@ -1,6 +1,8 @@
 import {TimePicker} from 'baseui/timepicker';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
+import inputConfig from './input';
+import selectConfig from './select';
 
 const TimepickerConfig: TConfig = {
   imports: {
@@ -9,40 +11,52 @@ const TimepickerConfig: TConfig = {
   scope: {
     TimePicker,
   },
-  theme: [],
+  theme: selectConfig.theme,
   props: {
     value: {
-      value: undefined,
+      value: new Date().toISOString(),
       type: PropTypes.Date,
-      description: 'Input value attribute.',
+      description:
+        'Optional value that can be provided to fully control the component. If not provided, TimePicker will manage state internally and default to the closest step to new Date().',
       stateful: true,
     },
     onChange: {
-      value: 'e => setValue(e.target.value)',
+      value: 'date => setValue(date)',
       type: PropTypes.Function,
-      description: 'Called when input value is changed.',
+      description: 'Callback for when time selection changes.',
       propHook: {
-        what: 'e.target.value',
+        what: 'date.toISOString()',
         into: 'value',
       },
     },
+    creatable: {
+      value: undefined,
+      type: PropTypes.Boolean,
+      description: `Set to true to allow times that aren't displayed in the options list to be entered manually. Defaults to false.`,
+    },
+    disabled: inputConfig.props.disabled,
+    format: {
+      value: undefined,
+      type: PropTypes.String,
+      placeholder: '12',
+      description:
+        '12 or 24. Render options in AM/PM format or 24 hour format. Defaults to 12 hour.',
+    },
+    step: {
+      value: undefined,
+      type: PropTypes.Number,
+      placeholder: '900',
+      description:
+        'Amount of seconds between each option time. Defaults to 900 (15 minutes).',
+    },
+    error: inputConfig.props.error,
+    positive: inputConfig.props.positive,
     overrides: {
       value: undefined,
       type: PropTypes.Overrides,
       description: 'Lets you customize all aspects of the component.',
-      names: ['Root', 'Input', 'InputContainer', 'IconWrapper'],
-      sharedProps: {
-        $isFocused: {
-          type: PropTypes.Boolean,
-          description: 'True when the component is focused.',
-        },
-        $disabled: 'disabled',
-        $error: 'error',
-        $positive: 'positive',
-        $adjoined: 'adjoined',
-        $size: 'size',
-        $required: 'required',
-      },
+      names: [],
+      sharedProps: {},
     },
   },
 };
