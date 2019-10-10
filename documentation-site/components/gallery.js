@@ -62,10 +62,6 @@ const COMPONENTS = {
   ],
   Pickers: [
     {
-      href: '/components/datepicker',
-      Component: thumbnails.SvgDatepicker,
-    },
-    {
       href: '/components/file-uploader',
       Component: thumbnails.SvgFileUploader,
     },
@@ -80,6 +76,12 @@ const COMPONENTS = {
     {
       href: '/components/select',
       Component: thumbnails.SvgSelect,
+    },
+  ],
+  'Date & Time': [
+    {
+      href: '/components/datepicker',
+      Component: thumbnails.SvgDatepicker,
     },
     {
       href: '/components/time-picker',
