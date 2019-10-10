@@ -131,7 +131,7 @@ async function getReleases() {
 
 async function getReleasesForPage(page) {
   const result = await fetch(
-    `https://api.github.com/repos/uber-web/baseui/releases?page=${page}`,
+    `https://api.github.com/repos/uber/baseweb/releases?page=${page}`,
     {
       headers: {
         // $FlowFixMe

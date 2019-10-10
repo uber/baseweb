@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
@@ -17,21 +16,23 @@ import DatepickerTimeSelect from 'examples/datepicker/calendar-time-select.js';
 import DatepickerMultipleMonths from 'examples/datepicker/calendar-multiple-months.js';
 import DatepickerI18n from 'examples/datepicker/i18n.js';
 import DatepickerWithOverrides from 'examples/datepicker/with-overrides.js';
-import TimePicker from 'examples/datepicker/timepicker.js';
-import TimezonePicker from 'examples/datepicker/timezone-picker.js';
 import ComposedRangePickers from 'examples/datepicker/composed-range-pickers.js';
 import ComposedSinglePickers from 'examples/datepicker/composed-single-pickers.js';
 import DatePickersColorStates from 'examples/datepicker/datepickers-color-states.js';
 import DatePickerTimezone from 'examples/datepicker/datepicker-with-timezone.js';
 import NestedOverride from 'examples/datepicker/nested-override.js';
 
-import Overrides from '../../components/overrides';
 import {StatefulCalendar} from 'baseui/datepicker';
 import * as DatepickerExports from 'baseui/datepicker';
+
+import Yard from '../../components/yard/index';
+import datepickerConfig from '../../components/yard/config/datepicker';
 
 export default Layout;
 
 # Datepicker
+
+<Yard componentName="Datepicker" placeholderHeight={48} {...datepickerConfig} />
 
 A simple and reusable component to work with or select a date or a range of dates.
 
@@ -66,14 +67,6 @@ A simple and reusable component to work with or select a date or a range of date
 
 <Example title="Datepicker with overrides" path="datepicker/with-overrides.js">
   <DatepickerWithOverrides />
-</Example>
-
-<Example title="TimePicker" path="datepicker/timepicker.js">
-  <TimePicker />
-</Example>
-
-<Example title="Timezone picker" path="datepicker/timezone-picker.js">
-  <TimezonePicker />
 </Example>
 
 <Example
@@ -129,45 +122,6 @@ A simple and reusable component to work with or select a date or a range of date
 </Example>
 
 In this example we use a [nested override](/guides/understanding-overrides/#override-nested-components) to customize the `ListItem` within the month/year dropdown (`MonthYearSelectStatefulMenu`).
-
-## Overrides
-
-<Overrides
-  name="Datepicker"
-  component={DatepickerExports}
-  blacklisted={['SelectorContainer']}
-  renderExample={props => (
-    <StatefulCalendar
-      initialState={{value: new Date()}}
-      range
-      quickSelect
-      timeSelect
-      overrides={props.overrides}
-    />
-  )}
-/>
-
-## API
-
-<API
-  heading="Calendar API"
-  api={require('!!extract-react-types-loader!../../../src/datepicker/calendar.js')}
-/>
-
-<API
-  heading="Datepicker API"
-  api={require('!!extract-react-types-loader!../../../src/datepicker/datepicker.js')}
-/>
-
-<API
-  heading="TimePicker API"
-  api={require('!!extract-react-types-loader!../../../src/datepicker/timepicker.js')}
-/>
-
-<API
-  heading="TimezonePicker API"
-  api={require('!!extract-react-types-loader!../../../src/datepicker/timezone-picker.js')}
-/>
 
 <Exports
   component={DatepickerExports}

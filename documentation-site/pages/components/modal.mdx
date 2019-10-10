@@ -6,18 +6,24 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import ModalBasic from 'examples/modal/basic.js';
 import ModalAutoFocus from 'examples/modal/autofocus.js';
 import ModalBuriedInteractiveElement from 'examples/modal/buried-interactive-element.js';
 import ModalNested from 'examples/modal/nested.js';
 import ModalSized from 'examples/modal/sized.js';
+import * as ModalExports from 'baseui/modal';
+
+import Yard from '../../components/yard/index';
+import modalYardConfig from '../../components/yard/config/modal';
 
 export default Layout;
 
 # Modal
+
+<Yard componentName="Modal" placeholderHeight={0} {...modalYardConfig} />
 
 A design structure to organize and hide content, so as not to overwhelm the user.
 
@@ -95,7 +101,4 @@ passed as a callback to the modal that is stacked on top of it `toggleConfirm(fa
 
 ## API
 
-<API
-  heading="Modal API"
-  api={require('!!extract-react-types-loader!../../../src/modal/modal.js')}
-/>
+<Exports component={ModalExports} title="Modal exports" path="baseui/modal" />

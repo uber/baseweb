@@ -61,7 +61,7 @@ In many cases, you would want to override Base Web’s breakpoints with your own
 - **`medium: 600`**
 - **`large: 1280`**
 
-To override these, we recommend creating your own mapping, as well as generating the respective `min-width` media query strings using `getMediaQuery()` ([v6.19.0](https://github.com/uber-web/baseui/releases/tag/v6.19.0)+), so we could target different screen widths for styling:
+To override these, we recommend creating your own mapping, as well as generating the respective `min-width` media query strings using `getMediaQuery()` ([v6.19.0](https://github.com/uber/baseweb/releases/tag/v6.19.0)+), so we could target different screen widths for styling:
 
 ```js
 const MyBreakpoints = {
@@ -192,7 +192,7 @@ const NavLink = props => <Block display={['none', 'block']} {...props} />;
 
 ## FlexGrid component
 
-Another handy tool for building responsive UIs is the [FlexGrid](/components/flex-grid/) component ([v6.19.0](https://github.com/uber-web/baseui/releases/tag/v6.19.0)+). This component lets you build grid layouts using CSS flexbox, supporting Internet Explorer 10+ users. It sets gaps between the columns and rows [using `:nth-child` and `:nth-last-child` math](https://github.com/uber-web/baseui/blob/master/src/flex-grid/flex-grid-item.js), which avoids extra margins at the end of each row or column, and also adds extra margins to account for incomplete rows. **FlexGrid** also allows for responsive prop arrays like the [Block](/components/block/#responsive-layouts) component.
+Another handy tool for building responsive UIs is the [FlexGrid](/components/flex-grid/) component ([v6.19.0](https://github.com/uber/baseweb/releases/tag/v6.19.0)+). This component lets you build grid layouts using CSS flexbox, supporting Internet Explorer 10+ users. It sets gaps between the columns and rows [using `:nth-child` and `:nth-last-child` math](https://github.com/uber/baseweb/blob/master/src/flex-grid/flex-grid-item.js), which avoids extra margins at the end of each row or column, and also adds extra margins to account for incomplete rows. **FlexGrid** also allows for responsive prop arrays like the [Block](/components/block/#responsive-layouts) component.
 
 ```js
 // Example usage
@@ -229,7 +229,7 @@ These `columnCount` props mean that the Filters component will have two columns 
 
 On slower network connections, especially apparent on cellular networks, images can cause content to jump around (reflow) as they are downloaded. When browsers see an image tag, they typically do not know how much space to allocate until it begins downloading the image headers, which can take some time.
 
-In order to avoid these reflows, we can take advantage of the [AspectRatioBox](/components/aspect-ratio-box) component ([v7.5.0](https://github.com/uber-web/baseui/releases/tag/v7.5.0)+), which allows us to specify the aspect ratio for an element ahead of time using CSS (see [CSS-Tricks](https://css-tricks.com/aspect-ratio-boxes/#article-header-id-6) for how this works).
+In order to avoid these reflows, we can take advantage of the [AspectRatioBox](/components/aspect-ratio-box) component ([v7.5.0](https://github.com/uber/baseweb/releases/tag/v7.5.0)+), which allows us to specify the aspect ratio for an element ahead of time using CSS (see [CSS-Tricks](https://css-tricks.com/aspect-ratio-boxes/#article-header-id-6) for how this works).
 
 ```js
 // Example usage
@@ -251,4 +251,4 @@ In order to avoid these reflows, we can take advantage of the [AspectRatioBox](/
 
 ## Final thoughts
 
-Base Web currently gives you a few foundational components to build responsive web applications: from **Block**, to **FlexGrid**, to **AspectRatioBox**. We hope these components, along with this guide, will help and encourage you to build applications that are accessible to as many users as possible. Base Web is also open-source, so if you want to contribute enhancements or additional components, please check out our [contributing guide](https://github.com/uber-web/baseui/blob/master/CONTRIBUTING.md)!
+Base Web currently gives you a few foundational components to build responsive web applications: from **Block**, to **FlexGrid**, to **AspectRatioBox**. We hope these components, along with this guide, will help and encourage you to build applications that are accessible to as many users as possible. Base Web is also open-source, so if you want to contribute enhancements or additional components, please check out our [contributing guide](https://github.com/uber/baseweb/blob/master/CONTRIBUTING.md)!

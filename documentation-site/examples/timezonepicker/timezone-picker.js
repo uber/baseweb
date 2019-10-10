@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {TimezonePicker} from 'baseui/datepicker';
+import {TimezonePicker} from 'baseui/timezonepicker';
 import {FormControl} from 'baseui/form-control';
 
 export default () => {

@@ -12,7 +12,7 @@ const {parse} = require('@babel/parser');
 const traverse = require('@babel/traverse').default;
 const t = require('@babel/types');
 
-const fs = require('fs').promises;
+const fs = require('fs');
 const globby = require('globby');
 const path = require('path');
 
@@ -93,25 +93,23 @@ function parseFileToOutline(code) {
 }
 
 // type Outline = {file: string, definitions: TypeNode[]};
-async function generateCheatSheet() {
+function generateCheatSheet() {
   const outlines = [];
 
-  const filepaths = await globby(['src/**/types.js']);
-  await Promise.all(
-    filepaths.map(async file => {
-      const from = path.join(__dirname, '../', file);
-      const source = await fs.readFile(from, 'utf-8');
-      const definitions = parseFileToOutline(source);
-      outlines.push({file, definitions});
-    }),
-  );
+  const filepaths = globby.sync(['src/**/types.js']);
+  filepaths.map(file => {
+    const from = path.join(__dirname, '../', file);
+    const source = fs.readFileSync(from, 'utf-8');
+    const definitions = parseFileToOutline(source);
+    outlines.push({file, definitions});
+  });
 
   const content = `
     const outlines = ${JSON.stringify(outlines)};
     export default outlines;
   `;
 
-  await fs.writeFile(
+  fs.writeFileSync(
     `${process.cwd()}/documentation-site/cheat-sheet.js`,
     content,
   );
