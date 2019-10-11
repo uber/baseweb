@@ -3,7 +3,6 @@ import generate from '@babel/generator';
 import {formatCode} from './code-generator';
 import * as t from 'babel-types';
 import {TProp} from './types';
-import {PropTypes} from './const';
 import {parse as babelParse} from '@babel/parser';
 import {getAstJsxElement, formatAstAndPrint} from './code-generator';
 
@@ -12,6 +11,35 @@ export const parse = (code: string) =>
     sourceType: 'module',
     plugins: ['jsx'],
   });
+
+// creates a call expression that synchronizes yard state
+const getYardOnChange = (what: string, into: string) =>
+  t.callExpression(t.identifier('__yard_onChange'), [
+    t.identifier(what),
+    t.stringLiteral(into),
+  ]);
+
+// appends a call expression to a function body
+const fnBodyAppend = (path: any, callExpression: t.CallExpression) => {
+  if (path.node.type !== 'JSXExpressionContainer') {
+    return;
+  }
+  const callbackBody = path.get('expression').get('body');
+  if (callbackBody.type === 'BlockStatement') {
+    // when the callback body is a block
+    // e.g.: e => { setValue(e.target.value) }
+    callbackBody.pushContainer('body', callExpression);
+  } else {
+    // when it is a single statement like e => setValue(e.target.value)
+    // we have to create a BlockStatement first
+    callbackBody.replaceWith(
+      t.blockStatement([
+        t.expressionStatement(callbackBody.node),
+        t.expressionStatement(callExpression),
+      ]),
+    );
+  }
+};
 
 // clean-up for react-live, removing all imports, exports and top level
 // variable declaration, add __yard_onChange instrumentation when needed
@@ -48,44 +76,30 @@ export const transformBeforeCompilation = (
           //@ts-ignore
           path.node.openingElement.name.name === elementName
         ) {
+          if (propsConfig['children'] && propsConfig['children'].propHook) {
+            const propHook = propsConfig['children'].propHook;
+            path.get('children').forEach(child => {
+              typeof propHook === 'object'
+                ? fnBodyAppend(
+                    child,
+                    getYardOnChange(propHook.what, propHook.into),
+                  )
+                : child.traverse(propHook({getYardOnChange, fnBodyAppend}));
+            });
+          }
           path
             .get('openingElement')
             .get('attributes')
             .forEach(attr => {
               const name = (attr.get('name') as any).node.name;
-              if (propsConfig[name].type === PropTypes.Function) {
-                const propHook = propsConfig[name].propHook;
-                if (propHook) {
-                  const yardOnChageCallExpression = t.callExpression(
-                    t.identifier('__yard_onChange'),
-                    [
-                      t.stringLiteral(elementName),
-                      t.stringLiteral(propHook.into),
-                      t.identifier(propHook.what),
-                    ],
-                  );
-                  const callbackBody = (attr.get('value') as any)
-                    .get('expression')
-                    .get('body');
-
-                  if (callbackBody.type === 'BlockStatement') {
-                    // when the callback body is a block
-                    // e.g.: e => { setValue(e.target.value) }
-                    callbackBody.pushContainer(
-                      'body',
-                      yardOnChageCallExpression,
-                    );
-                  } else {
-                    // when it is a single statement like e => setValue(e.target.value)
-                    // we have to create a BlockStatement first
-                    callbackBody.replaceWith(
-                      t.blockStatement([
-                        t.expressionStatement(callbackBody.node),
-                        t.expressionStatement(yardOnChageCallExpression),
-                      ]),
-                    );
-                  }
-                }
+              const propHook = propsConfig[name].propHook;
+              if (typeof propHook !== 'undefined') {
+                typeof propHook === 'object'
+                  ? fnBodyAppend(
+                      attr.get('value'),
+                      getYardOnChange(propHook.what, propHook.into),
+                    )
+                  : attr.traverse(propHook({getYardOnChange, fnBodyAppend}));
               }
             });
         }

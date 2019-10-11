@@ -130,7 +130,7 @@ const Yard: React.FC<
   // "propHook" this way we can get notified when the internal
   // state of previewed component is changed by user
   const __yard_onChange = debounce(
-    (componentName: string, propName: string, propValue: TPropValue) => {
+    (propValue: TPropValue, propName: string) => {
       !hydrated && setHydrated(true);
       const newCode = getCode(
         buildPropsObj(state.props, {[propName]: propValue}),

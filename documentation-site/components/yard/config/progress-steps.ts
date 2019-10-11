@@ -36,6 +36,13 @@ const ProgressStepsConfig: TConfig = {
         'baseui/progress-steps': {named: ['Step']},
         'baseui/button': {named: ['Button']},
       },
+      propHook: ({getYardOnChange, fnBodyAppend}) => ({
+        JSXAttribute(path: any) {
+          if (path.get('name').node.name === 'onClick') {
+            fnBodyAppend(path.get('value'), getYardOnChange('1', 'current'));
+          }
+        },
+      }),
     },
     overrides: {
       value: undefined,

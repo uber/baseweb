@@ -30,6 +30,7 @@ const ProgressStepsNumberedConfig: TConfig = {
         'baseui/progress-steps': {named: ['NumberedStep']},
         'baseui/button': {named: ['Button']},
       },
+      propHook: ProgressStepsConfig.props.children.propHook,
     },
   },
 };
