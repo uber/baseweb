@@ -44,8 +44,10 @@ function CustomColumn<ValueT, FilterParamsT>(
       return (
         <CellShell
           ref={ref}
+          isExpanded={props.isExpanded}
           isMeasured={props.isMeasured}
           isSelected={props.isSelected}
+          onExpand={props.onExpand}
           onSelect={props.onSelect}
         >
           <ProvidedCell value={props.value} />

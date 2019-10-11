@@ -225,8 +225,10 @@ const NumericalCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
   return (
     <CellShell
       ref={ref}
+      isExpanded={props.isExpanded}
       isMeasured={props.isMeasured}
       isSelected={props.isSelected}
+      onExpand={props.onExpand}
       onSelect={props.onSelect}
     >
       <div
@@ -286,8 +288,10 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
       return (
         <NumericalCell
           ref={ref}
+          isExpanded={props.isExpanded}
           isMeasured={props.isMeasured}
           isSelected={props.isSelected}
+          onExpand={props.onExpand}
           onSelect={props.onSelect}
           value={props.value}
           format={normalizedOptions.format}

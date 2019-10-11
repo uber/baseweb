@@ -27,17 +27,6 @@ import type {ColumnT, Props, RowT, SortDirectionsT} from './types.js';
 function CellPlacement({columnIndex, rowIndex, data, style}) {
   const [useCss, theme] = useStyletron();
 
-  const cellStyle = useCss({
-    ...theme.borders.border200,
-    alignItems: 'center',
-    backgroundColor: rowIndex % 2 ? null : theme.colors.mono200,
-    borderTop: 'none',
-    borderBottom: 'none',
-    borderLeft: 'none',
-    boxSizing: 'border-box',
-    display: 'flex',
-  });
-
   // ignores the table header row
   if (rowIndex === 0) {
     return null;
@@ -46,20 +35,63 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
   const column = data.columns[columnIndex];
   const Cell = column.renderCell;
   // minus one to account for additional header row
-  const value = data.rows[rowIndex - 1].data[columnIndex];
-  const id = data.rows[rowIndex - 1].id;
+  const row = data.rows[rowIndex - 1];
+  const isExpanded = data.isRowExpanded(row.id);
 
   return (
-    <div className={cellStyle} style={style}>
-      <Cell
-        value={value}
-        onSelect={
-          data.isSelectable && columnIndex === 0
-            ? () => data.onSelect(id)
-            : undefined
-        }
-        isSelected={data.isRowSelected(id)}
-      />
+    <div
+      className={useCss({
+        ...theme.borders.border200,
+        backgroundColor: rowIndex % 2 ? null : theme.colors.mono200,
+        borderTop: 'none',
+        borderBottom: 'none',
+        borderLeft: 'none',
+        boxSizing: 'border-box',
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+      })}
+      style={style}
+    >
+      <div
+        className={useCss({
+          alignItems: 'center',
+          display: 'flex',
+        })}
+        style={{height: 40}}
+      >
+        <Cell
+          value={row.data[columnIndex]}
+          onExpand={
+            row.children && columnIndex === 0
+              ? () => data.onExpand(row.id)
+              : undefined
+          }
+          onSelect={
+            data.isSelectable && columnIndex === 0
+              ? () => data.onSelect(row.id)
+              : undefined
+          }
+          isExpanded={isExpanded}
+          isSelected={data.isRowSelected(row.id)}
+        />
+      </div>
+      {isExpanded &&
+        row.children &&
+        row.children.map(child => {
+          return (
+            <div
+              key={child.id}
+              className={useCss({
+                alignItems: 'center',
+                display: 'flex',
+              })}
+              style={{height: 40}}
+            >
+              <Cell value={child.data[columnIndex]} />
+            </div>
+          );
+        })}
     </div>
   );
 }
@@ -294,15 +326,6 @@ export function Unstable_DataTable(props: Props) {
       .map(idx => props.rows[idx]);
   }, [sortedIndices, filteredIndices, props.rows]);
 
-  function addFilter(filterParams, title, description) {
-    filters.set(title, {filterParams, description});
-    setFilters(new Map(filters));
-  }
-  function removeFilter(title) {
-    filters.delete(title);
-    setFilters(new Map(filters));
-  }
-
   const [selectedRows, setSelectedRows] = React.useState(new Set());
   const isSelectable = props.batchActions ? !!props.batchActions.length : false;
   function handleSelectAll() {
@@ -319,6 +342,27 @@ export function Unstable_DataTable(props: Props) {
     if (selectionCallback) {
       selectionCallback(rows.filter(r => next.has(r.id)));
     }
+  }
+
+  const [expandedRows, setExpandedRows] = React.useState(new Set());
+  function resetRowHeights() {
+    if (gridRef.current) {
+      // trigger react-window to layout the rows again this could be optimized by
+      // supplying an accurate row index to begin resetting, but not sure of best option.
+      // $FlowFixMe
+      gridRef.current.resetAfterRowIndex(1, true);
+    }
+  }
+
+  function addFilter(filterParams, title, description) {
+    filters.set(title, {filterParams, description});
+    setFilters(new Map(filters));
+    resetRowHeights();
+  }
+  function removeFilter(title) {
+    filters.delete(title);
+    setFilters(new Map(filters));
+    resetRowHeights();
   }
 
   return (
@@ -400,7 +444,10 @@ export function Unstable_DataTable(props: Props) {
               addFilter,
               filterOpenIndex,
               setFilterOpenIndex,
-              handleSort,
+              handleSort: index => {
+                handleSort(index);
+                resetRowHeights();
+              },
               headerHoverIndex,
               isSelectable,
               isSelectedAll: !!rows.length && selectedRows.size >= rows.length,
@@ -424,11 +471,38 @@ export function Unstable_DataTable(props: Props) {
               height={height}
               // plus one to account for additional header row
               rowCount={rows.length + 1}
-              rowHeight={rowIndex => (rowIndex === 0 ? 48 : 40)}
+              rowHeight={rowIndex => {
+                if (rowIndex === 0) {
+                  return 48;
+                }
+
+                if (
+                  expandedRows.has(rows[rowIndex - 1].id) &&
+                  rows[rowIndex - 1].children
+                ) {
+                  // already checked that children is defined. want to refrain from initializing
+                  // a new variable in a somewhat common code path.
+                  // $FlowFixMe
+                  return rows[rowIndex - 1].children.length * 40 + 40;
+                }
+
+                return 40;
+              }}
               width={width}
               itemData={{
-                isRowSelected: id => selectedRows.has(id),
+                isRowExpanded: id => expandedRows.has(id),
+                onExpand: id => {
+                  if (expandedRows.has(id)) {
+                    expandedRows.delete(id);
+                  } else {
+                    expandedRows.add(id);
+                  }
+
+                  setExpandedRows(new Set(expandedRows));
+                  resetRowHeights();
+                },
                 isSelectable,
+                isRowSelected: id => selectedRows.has(id),
                 onSelect: id => {
                   if (selectedRows.has(id)) {
                     selectedRows.delete(id);

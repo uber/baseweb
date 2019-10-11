@@ -9,12 +9,16 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {Checkbox} from '../checkbox/index.js';
+import ChevronDown from '../icon/chevron-down.js';
+import ChevronRight from '../icon/chevron-right.js';
 import {useStyletron} from '../styles/index.js';
 
 type PropsT = {|
   children: React.Node,
+  isExpanded?: boolean,
   isMeasured?: boolean,
   isSelected?: boolean,
+  onExpand?: () => void,
   onSelect?: () => void,
 |};
 
@@ -35,6 +39,11 @@ const CellShell = React.forwardRef<PropsT, HTMLDivElement>((props, ref) => {
       <div className={useCss({display: 'flex', alignItems: 'center'})}>
         {Boolean(props.onSelect) && (
           <Checkbox onChange={props.onSelect} checked={props.isSelected} />
+        )}
+        {Boolean(props.onExpand) && (
+          <div onClick={props.onExpand}>
+            {props.isExpanded ? <ChevronDown /> : <ChevronRight />}
+          </div>
         )}
         {props.children}
       </div>

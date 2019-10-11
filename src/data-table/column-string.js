@@ -31,8 +31,10 @@ const StringCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
   return (
     <CellShell
       ref={ref}
+      isExpanded={props.isExpanded}
       isMeasured={props.isMeasured}
       isSelected={props.isSelected}
+      onExpand={props.onExpand}
       onSelect={props.onSelect}
     >
       {props.value}

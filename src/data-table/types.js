@@ -28,8 +28,10 @@ export type ColumnT<ValueT = any, FilterParamsT = any> = {|
   filterable: boolean,
   renderCell: React.ComponentType<{
     value: ValueT,
+    isExpanded?: boolean,
     isMeasured?: boolean,
     isSelected?: boolean,
+    onExpand?: () => void,
     onSelect?: () => void,
   }>,
   renderFilter: React.ComponentType<{|
