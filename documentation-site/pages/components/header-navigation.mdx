@@ -6,14 +6,12 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
 import BasicHeader from 'examples/header-navigation/basic.js';
 import WithSearch from 'examples/header-navigation/with-search.js';
 
-import Overrides from '../../components/overrides';
 import {
   HeaderNavigation,
   ALIGN,
@@ -22,9 +20,18 @@ import {
 } from 'baseui/header-navigation';
 import * as HeaderNavigationExports from 'baseui/header-navigation';
 
+import Yard from '../../components/yard/index';
+import headerNavigationYardConfig from '../../components/yard/config/header-navigation';
+
 export default Layout;
 
 # Header navigation
+
+<Yard
+  componentName="HeaderNavigation"
+  placeholderHeight={52}
+  {...headerNavigationYardConfig}
+/>
 
 ## Examples
 
@@ -42,32 +49,7 @@ export default Layout;
   <WithSearch />
 </Example>
 
-## Overrides
-
-<Overrides
-  name="Header Navigation"
-  component={HeaderNavigationExports}
-  blacklisted={['NavigationItem', 'NavigationList']}
-  renderExample={props => (
-    <HeaderNavigation overrides={props.overrides}>
-      <NavigationList $align={ALIGN.left}>
-        <NavigationItem>Uber</NavigationItem>
-      </NavigationList>
-      <NavigationList $align={ALIGN.center} />
-      <NavigationList $align={ALIGN.right}>
-        <NavigationItem>Tab One</NavigationItem>
-        <NavigationItem>Tab Two</NavigationItem>
-      </NavigationList>
-    </HeaderNavigation>
-  )}
-/>
-
 ## API
-
-<API
-  heading="HeaderNavigation API"
-  api={require('!!extract-react-types-loader!../../../src/header-navigation/header-navigation.js')}
-/>
 
 <Exports
   component={HeaderNavigationExports}

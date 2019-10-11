@@ -17,13 +17,16 @@ import VaryingHeights from 'examples/dnd-list/varyingHeights.js';
 import CustomDragHandle from 'examples/dnd-list/customDragHandle.js';
 import OverrideLabel from 'examples/dnd-list/overrideLabel.js';
 
-import Overrides from '../../components/overrides';
 import {StatefulList} from 'baseui/dnd-list';
 import * as ListExports from 'baseui/dnd-list';
+import Yard from '../../components/yard/index';
+import dndListYardConfig from '../../components/yard/config/dnd-list';
 
 export default Layout;
 
 # Drag and Drop List
+
+<Yard componentName="List" placeholderHeight={208} {...dndListYardConfig} />
 
 Allows users to create vertically sortable lists supporting drag and drop, touch or keyboard input.
 
@@ -79,35 +82,11 @@ This component also supports iOS and Android browsers and screen readers.
   <OverrideLabel />
 </Example>
 
-## Overrides
-
-<Overrides
-  name="Drag and Drop List"
-  component={ListExports}
-  renderExample={props => (
-    <StatefulList
-      removable
-      initialState={{items: ['Item 1', 'Item 2', 'Item 3', 'Item 4']}}
-      overrides={props.overrides}
-    />
-  )}
-/>
-
 ## API
-
-<API
-  heading="List API"
-  api={require('!!extract-react-types-loader!../../../src/dnd-list/list.js')}
-/>
 
 <API
   heading="Stateful List API"
   api={require('!!extract-react-types-loader!../../../src/dnd-list/stateful-list.js')}
-/>
-
-<API
-  heading="Stateful List Container API"
-  api={require('!!extract-react-types-loader!../../../src/dnd-list/stateful-list-container.js')}
 />
 
 <Exports component={ListExports} title="DnD exports" path="baseui/dnd-list" />
