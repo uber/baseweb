@@ -217,6 +217,10 @@ const routes = [
             itemId: '/components/tag',
           },
           {
+            title: 'Tree View',
+            itemId: '/components/tree-view',
+          },
+          {
             title: 'Typography',
             itemId: '/components/typography',
           },
