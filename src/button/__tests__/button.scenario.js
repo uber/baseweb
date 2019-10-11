@@ -20,7 +20,7 @@ export const component = () => {
           return (
             <tr key={kind}>
               <td>
-                <Button kind={kind}>Move</Button>
+                <Button kind={kind}>Moove</Button>
               </td>
               <td>
                 <Button kind={kind} isSelected>
