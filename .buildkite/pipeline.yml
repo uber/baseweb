@@ -95,6 +95,8 @@ steps:
     # we have to install puppeteer here to trigger the install.js script
     # and also to make sure we do not add this to the released build artifact
     command: yarn add puppeteer && yarn e2e:test:ci
+    artifact_paths:
+      - '__artifacts__/*.png'
     plugins:
       'docker-compose#v3.0.3':
         run: e2e-test
