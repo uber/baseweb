@@ -16,8 +16,6 @@ export type NotificationTypeT = $Values<typeof TYPE>;
 export type PlacementTypeT = $Values<typeof PLACEMENT>;
 
 export type SharedStylePropsArgT = {
-  $color?: string,
-  $size?: number | string,
   $kind: KindTypeT,
   $type: NotificationTypeT,
   $closeable: boolean,

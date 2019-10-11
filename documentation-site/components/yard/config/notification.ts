@@ -43,7 +43,7 @@ const NotificationConfig: TConfig = {
         'When set to true a close button is displayed and the notification can be dismissed by a user.',
     },
     children: {
-      value: '{() => "Default info notification."}',
+      value: '{() => "This is a notification."}',
       type: PropTypes.Function,
       description: `Toast notification content. The children-as-function
         receives a dismiss method that can be called to
