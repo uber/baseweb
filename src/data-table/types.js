@@ -41,11 +41,11 @@ export type ColumnT<ValueT = any, FilterParamsT = any> = {|
   sortFn: (ValueT, ValueT) => number,
 |};
 
-export type RowT = {
+export type RowT = {|
   id: number | string,
-  // eslint-disable-next-line flowtype/no-weak-types
-  data: any[],
-};
+  data: any[], // eslint-disable-line flowtype/no-weak-types
+  children?: RowT[],
+|};
 
 export type BatchActionT = {|
   label: string,
