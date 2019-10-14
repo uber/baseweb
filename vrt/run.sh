@@ -17,11 +17,17 @@ git reset --hard origin/$BUILDKITE_BRANCH
 echo "👁  VRT: Update foo.txt"
 echo $BUILDKITE_COMMIT > foo.txt
 
+echo "👁  VRT: Stash changes"
+git stash
+
 echo "👁  VRT: Create a branch or checkout already existing one"
 git checkout $BUILDKITE_BRANCH--vrt || git checkout -b $BUILDKITE_BRANCH--vrt
 
 echo "👁  VRT: Pull to ensure tip is up to date"
 git pull
+
+echo "👁  VRT: Unstash changes"
+git stash pop
 
 echo "👁  VRT: Stage new file"
 git add foo.txt
