@@ -26,7 +26,8 @@ const NotificationConfig: TConfig = {
   ],
   props: {
     kind: {
-      value: undefined,
+      value: 'KIND.info',
+      defaultValue: 'KIND.info',
       options: KIND,
       type: PropTypes.Enum,
       description: 'Defines the type of notification.',

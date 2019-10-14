@@ -1,32 +1,90 @@
 import pick from 'just-pick';
-import {Toast, KIND, PLACEMENT} from 'baseui/toast';
+import {toaster, ToasterContainer, Toast, KIND, PLACEMENT} from 'baseui/toast';
+import {Button, SIZE} from 'baseui/button';
+import {Block} from 'baseui/block';
 import {PropTypes} from '../const';
 import {changeHandlers} from './common';
 import {TConfig} from '../types';
 
 const toastConfig: TConfig = {
   imports: {
-    'baseui/dnd-list': {
-      named: ['Toast'],
+    'baseui/toast': {
+      named: ['toaster', 'ToasterContainer', 'Toast'],
+    },
+    'baseui/button': {
+      named: ['Button', 'SIZE'],
+    },
+    'baseui/block': {
+      named: ['Block'],
     },
   },
-  scope: {Toast, KIND, PLACEMENT},
-  theme: [],
+  scope: {
+    toaster,
+    ToasterContainer,
+    Toast,
+    KIND,
+    PLACEMENT,
+    Button,
+    SIZE,
+    Block,
+  },
+  theme: [
+    'toastInfoBackground',
+    'toastPositiveBackground',
+    'toastWarningBackground',
+    'toastNegativeBackground',
+    'toastText',
+  ],
   props: {
-    closeable: {
-      value: true,
-      defaultValue: true,
-      type: PropTypes.Boolean,
-      description: `When set to true a close button is displayed 
-        and the notification can be dismissed by a user.`,
+    placement: {
+      value: 'PLACEMENT.top',
+      defaultValue: 'PLACEMENT.top',
+      options: PLACEMENT,
+      type: PropTypes.Enum,
+      description: `Defines notifications placement.`,
+      imports: {
+        'baseui/toast': {
+          named: ['PLACEMENT'],
+        },
+      },
     },
     children: {
-      value: '{({dismiss}) => "This is a toast notification."}',
-      type: PropTypes.Function,
-      description: `Toast notification content. The children-as-function
-        receives a dismiss method that can be called to
-        dismiss the notification and can be used as a
-        handler for an action inside the toast content.`,
+      value: `<Button onClick={()=>{
+          let toastKey;
+          const msg = 'This is an info notification.';
+          const showMore = (<Block marginTop="15px" display="flex" justifyContent="center">
+            <Button size={SIZE.compact} onClick={()=>toaster.update(
+              toastKey, 
+              {children: (<>{msg} And extended notification details. {ok}</>)}
+            )}>Show more</Button>
+          </Block>);
+          const ok = (
+            <Block marginTop="15px" display="flex" justifyContent="center"> 
+              <Button size={SIZE.compact} onClick={()=>toaster.clear(toastKey)}>Ok</Button> 
+            </Block>
+          );
+          toastKey = toaster.info((<>{msg}{showMore}</>), {closeable: false, overrides: {InnerContainer: {style: {width: '100%'}}}});
+        }}
+        >
+          Info
+        </Button>
+        <Block marginRight="15px"/>
+        <Button onClick={()=>{toaster.positive('This is a confirmation notification.', {onClose: ()=>console.log('Toast closed.')})}}>
+          Positive
+        </Button>
+        <Block marginRight="15px"/>
+        <Button onClick={()=>{toaster.warning('This is a warning notification.')}}>
+          Warning
+        </Button>
+        <Block marginRight="15px"/>
+        <Button onClick={()=>{toaster.negative('This is a negative notification.')}}>
+          Negative
+        </Button>
+      `,
+      type: PropTypes.ReactNode,
+      description: `Additional elements to render in the place where the ToasterContainer is added.
+        When 'usePortal' is set to true only the ToasterContainer is rendered with portal into 
+        the body element but not children.`,
     },
     autoHideDuration: {
       value: '0',
@@ -35,32 +93,18 @@ const toastConfig: TConfig = {
       description: `The number of milliseconds to wait before automatically dismissing a
         notification. This behavior is disabled when the value is set to 0.`,
     },
-    ...pick(changeHandlers, ['onBlur', 'onFocus']),
-    kind: {
-      value: 'KIND.info',
-      defaultValue: 'KIND.info',
-      options: KIND,
-      type: PropTypes.Enum,
-      description: 'Defines the type of notification.',
-      imports: {
-        'baseui/toast': {
-          named: ['KIND'],
-        },
-      },
+    usePortal: {
+      value: true,
+      defaultValue: true,
+      type: PropTypes.Boolean,
+      description: `Indicates if 'createPortal' is used to append the toaster container to the body element.`,
+      hidden: true,
     },
-    onClose: {
-      value: undefined,
-      placeholder: '() => {}',
-      type: PropTypes.Function,
-      description:
-        'A callback function called when a notification is dismissed.',
-    },
-    ...pick(changeHandlers, ['onMouseEnter', 'onMouseLeave']),
     overrides: {
       value: undefined,
       type: PropTypes.Overrides,
       description: 'Lets you customize all aspects of the component.',
-      names: ['Root', 'Body', 'CloseIconSvg'],
+      names: ['Root', 'ToastBody', 'ToastInnerContainer', 'ToastCloseIcon'],
       sharedProps: {
         $kind: 'kind',
         $closeable: 'closeable',

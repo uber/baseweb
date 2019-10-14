@@ -77,9 +77,11 @@ export type ToasterOverridesT = {
   Root?: OverrideT<ToasterSharedStylePropsArgT>,
   ToastBody?: OverrideT<SharedStylePropsArgT>,
   ToastCloseIcon?: OverrideT<SharedStylePropsArgT>,
+  ToastInnerContainer?: OverrideT<SharedStylePropsArgT>,
 };
 
 export type ToasterPropsT = {
+  children: React.Node,
   overrides: ToasterOverridesT,
   placement: PlacementTypeT,
   usePortal: boolean,
