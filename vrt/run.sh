@@ -3,7 +3,7 @@
 # set -euo pipefail
 
 echo "👁  VRT: Authenticate with GitHub"
-git config --global url."https://{$GITHUB_BOT_AUTH_TOKEN}:@github.com/".insteadOf "https://github.com/"
+git config --global url."https://$GITHUB_BOT_AUTH_TOKEN:@github.com/".insteadOf "https://github.com/"
 git config --global user.email $GITHUB_BOT_EMAIL
 git config --global user.name $GITHUB_BOT_NAME
 
@@ -19,7 +19,7 @@ echo "👁  VRT: Create a branch or checkout already existing one"
 git checkout -q $BUILDKITE_BRANCH--vrt || git checkout -b $BUILDKITE_BRANCH--vrt
 
 echo "👁  VRT: Stage new file"
-git add vrt/__image_snapshots__
+git add foo.txt
 
 echo "👁  VRT: Commit new shapshots"
 git commit -m "tests(vrt): update snapshots for ${BUILDKITE_COMMIT:0:5}"
