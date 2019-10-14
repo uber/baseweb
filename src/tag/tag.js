@@ -89,7 +89,11 @@ class Tag extends React.Component<PropsT, {}> {
     const actionHandlers = disabled
       ? {}
       : {
-          onClick: onActionClick,
+          onClick: event => {
+            // we don't want onClick to be called when the close icon is clicked
+            event.stopPropagation();
+            onActionClick(event);
+          },
           onKeyDown: this.handleActionKeyDown,
         };
     const sharedProps: SharedPropsArgT = {
