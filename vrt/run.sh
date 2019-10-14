@@ -24,7 +24,7 @@ echo "👁  VRT: Stage new file"
 git add foo.txt
 
 echo "👁  VRT: Commit new shapshots"
-git commit -m "tests(vrt): update snapshots for ${BUILDKITE_COMMIT:0:7}"
+git commit -m "tests(vrt): update snapshots for ${BUILDKITE_COMMIT:0:7} [ci skip]"
 
 echo "👁  VRT: Push branch upstream"
 git push origin $BUILDKITE_BRANCH--vrt
@@ -58,7 +58,7 @@ else
     git status
     
     echo "👁  VRT: Commit new shapshots"
-    git commit -m "tests(vrt): update snapshots for ${BUILDKITE_COMMIT:0:5}"
+    git commit -m "tests(vrt): update snapshots for ${BUILDKITE_COMMIT:0:5} [ci skip]"
     
     # echo "👁  VRT: Push branch upstream"
     # git push --set-upstream origin $BUILDKITE_BRANCH--vrt
