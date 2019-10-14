@@ -47,6 +47,9 @@ services:
       - BUILDKITE_BUILD_URL
       - BUILDKITE_PROJECT_SLUG
       - BUILDKITE_COMMIT
+      - GITHUB_BOT_AUTH_TOKEN
+      - GITHUB_BOT_EMAIL
+      - GITHUB_BOT_NAME
 
   baseui:
     build: .

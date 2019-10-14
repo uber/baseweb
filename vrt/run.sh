@@ -2,11 +2,10 @@
 
 # set -euo pipefail
 
-git config --global user.email "$GITHUB_BOT_EMAIL"
-git config --global user.name "$GITHUB_BOT_NAME"
-
 echo "👁  VRT: Authenticate with GitHub"
-git remote set-url origin https://x-access-token:${GITHUB_BOT_AUTH_TOKEN}@github.com/uber/baseweb.git
+git config --global url."https://{$GITHUB_BOT_AUTH_TOKEN}:@github.com/".insteadOf "https://github.com/"
+git config --global user.email $GITHUB_BOT_EMAIL
+git config --global user.name $GITHUB_BOT_NAME
 
 echo "👁  VRT: Fetch branches in case the --vrt branch already exists"
 git fetch
