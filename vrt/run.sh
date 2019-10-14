@@ -9,6 +9,7 @@ git config --global user.name $GITHUB_BOT_NAME
 
 echo "👁  VRT: Fetch branches in case the --vrt branch already exists"
 git fetch
+git pull
 
 # TEMP CODE START
 
