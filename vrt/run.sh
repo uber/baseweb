@@ -5,8 +5,8 @@
 echo "👁  VRT: Fetch branches in case the --vrt branch already exists"
 git fetch
 
-# echo "Trigger install script for puppeteer"
-# yarn add puppeteer
+echo "👁  VRT: Trigger install script for puppeteer"
+yarn add puppeteer
 
 echo "👁  VRT: Run and update visual regression tests"
 yarn vrt -u
@@ -18,17 +18,21 @@ if git diff-index --quiet HEAD vrt/__image_snapshots__; then
 else
     echo "👁  VRT: Changes were detected and snapshots have been updated"
     
-    echo $BUILDKITE_COMMIT
-    echo $BUILDKITE_BRANCH
-
-    # create a branch or checkout existing one
+    echo "👁  VRT: Create a branch or checkout existing one"
     git checkout $BUILDKITE_BRANCH--vrt || git checkout -b $BUILDKITE_BRANCH--vrt
-    # stage new shapshots
+
+    echo "👁  VRT: Stage new shapshots"
     git add vrt/__image_snapshots__
-    # commit new shapshots
+    
+    echo "👁  VRT: Commit new shapshots"
     git commit -m "tests(vrt): update snapshots for ${BUILDKITE_COMMIT:0:5}"
-    # push branch upstream
-    git push --set-upstream origin $BUILDKITE_BRANCH--vrt
+
+    echo "👁  VRT(TEST): Print git status"
+    git status
+    
+    # echo "👁  VRT: Push branch upstream"
+    # git push --set-upstream origin $BUILDKITE_BRANCH--vrt
+    
     # open a pull request with vrt branch into base branch
     # ???
 
