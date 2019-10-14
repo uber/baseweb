@@ -123,7 +123,7 @@ const SelectConfig: TConfig = {
         If an option has a disabled prop value set to true it will be rendered as a disabled option in the dropdown.`,
     },
     value: {
-      value: undefined,
+      value: '[]',
       type: PropTypes.Array,
       description: `A current selected value(s). If a selected value has a clearableValue
         prop set to true it will be rendered as a disabled selected option that can't be cleared.`,

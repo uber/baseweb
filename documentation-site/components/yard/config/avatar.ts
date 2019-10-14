@@ -34,7 +34,7 @@ const AvatarConfig: TConfig = {
       names: ['Root', 'Avatar', 'Initials'],
       sharedProps: {
         $size: 'size',
-        $disImageFailToLoad: {
+        $didImageFailToLoad: {
           type: PropTypes.Boolean,
           description: 'True when the src does not resolve to a valid image.',
         },

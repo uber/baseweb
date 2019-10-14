@@ -48,7 +48,7 @@ describe('transformBeforeCompilation', () => {
     ).toBe(`<Input
   onChange={e => {
     foo();
-    __yard_onChange("Input", "value", e.target.value);
+    __yard_onChange(e.target.value, "value");
   }}
 />`);
   });
@@ -73,8 +73,103 @@ describe('transformBeforeCompilation', () => {
   onChange={e => {
     foo();
     baz();
-    __yard_onChange("Input", "value", e.target.value)
+    __yard_onChange(e.target.value, "value")
   }}
+/>`);
+  });
+
+  test('instrument a children callback with __yard_onChange', () => {
+    const source = '<Foo>{e => foo()}</Foo>';
+    expect(
+      formatAstAndPrint(
+        transformBeforeCompilation(parse(source), 'Foo', {
+          children: {
+            value: '',
+            type: PropTypes.Function,
+            description: '',
+            propHook: {
+              what: 'e.target.value',
+              into: 'value',
+            },
+          },
+        }),
+      ),
+    ).toBe(`<Foo>
+  {e => {
+    foo();
+    __yard_onChange(e.target.value, "value");
+  }}
+</Foo>`);
+  });
+
+  test('instrument a children callback with propHook function', () => {
+    const source = '<Foo><button onClick={e => foo()}>Ha</button></Foo>';
+    expect(
+      formatAstAndPrint(
+        transformBeforeCompilation(parse(source), 'Foo', {
+          children: {
+            value: '',
+            type: PropTypes.Function,
+            description: '',
+            propHook: ({getYardOnChange, fnBodyAppend}) => ({
+              JSXAttribute(path: any) {
+                if (path.get('name').node.name === 'onClick') {
+                  fnBodyAppend(
+                    path.get('value'),
+                    getYardOnChange('e.target.value', 'value'),
+                  );
+                }
+              },
+            }),
+          },
+        }),
+      ),
+    ).toBe(`<Foo>
+  <button
+    onClick={e => {
+      foo();
+      __yard_onChange(e.target.value, "value");
+    }}
+  >
+    Ha
+  </button>
+</Foo>`);
+  });
+
+  test('instrument a callback with propHook function', () => {
+    const source =
+      '<Foo render={() => <button onClick={e => foo()}>Ha</button>} />';
+    expect(
+      formatAstAndPrint(
+        transformBeforeCompilation(parse(source), 'Foo', {
+          render: {
+            value: '',
+            type: PropTypes.Function,
+            description: '',
+            propHook: ({getYardOnChange, fnBodyAppend}) => ({
+              JSXAttribute(path: any) {
+                if (path.get('name').node.name === 'onClick') {
+                  fnBodyAppend(
+                    path.get('value'),
+                    getYardOnChange('e.target.value', 'value'),
+                  );
+                }
+              },
+            }),
+          },
+        }),
+      ),
+    ).toBe(`<Foo
+  render={() => (
+    <button
+      onClick={e => {
+        foo();
+        __yard_onChange(e.target.value, "value");
+      }}
+    >
+      Ha
+    </button>
+  )}
 />`);
   });
 });
