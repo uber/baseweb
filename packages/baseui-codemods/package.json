@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@babel/types": "^7.4.4",
-    "@dubstep/core": "^3.3.1",
+    "@dubstep/core": "^3.5.1",
     "chalk": "^2.4.2",
     "yargs": "^14.0.0"
   }
