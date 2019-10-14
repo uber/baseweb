@@ -13,7 +13,7 @@ git fetch
 # TEMP CODE START
 
 echo "👁  VRT: Create random file"
-touch foo.txt
+echo $BUILDKITE_COMMIT > foo.txt
 
 echo "👁  VRT: Create a branch or checkout already existing one"
 git checkout -q $BUILDKITE_BRANCH--vrt || git checkout -b $BUILDKITE_BRANCH--vrt
@@ -22,7 +22,7 @@ echo "👁  VRT: Stage new file"
 git add foo.txt
 
 echo "👁  VRT: Commit new shapshots"
-git commit -m "tests(vrt): update snapshots for ${BUILDKITE_COMMIT:0:5}"
+git commit -m "tests(vrt): update snapshots for ${BUILDKITE_COMMIT:0:7}"
 
 echo "👁  VRT: Push branch upstream"
 git push origin $BUILDKITE_BRANCH--vrt
