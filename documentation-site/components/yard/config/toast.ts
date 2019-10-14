@@ -1,15 +1,13 @@
-import pick from 'just-pick';
-import {toaster, ToasterContainer, Toast, KIND, PLACEMENT} from 'baseui/toast';
+import {toaster, ToasterContainer, PLACEMENT} from 'baseui/toast';
 import {Button, SIZE} from 'baseui/button';
 import {Block} from 'baseui/block';
 import {PropTypes} from '../const';
-import {changeHandlers} from './common';
 import {TConfig} from '../types';
 
 const toastConfig: TConfig = {
   imports: {
     'baseui/toast': {
-      named: ['toaster', 'ToasterContainer', 'Toast'],
+      named: ['toaster', 'ToasterContainer'],
     },
     'baseui/button': {
       named: ['Button', 'SIZE'],
@@ -21,8 +19,6 @@ const toastConfig: TConfig = {
   scope: {
     toaster,
     ToasterContainer,
-    Toast,
-    KIND,
     PLACEMENT,
     Button,
     SIZE,
@@ -51,34 +47,24 @@ const toastConfig: TConfig = {
     children: {
       value: `<Button onClick={()=>{
           let toastKey;
-          const msg = 'This is an info notification.';
-          const showMore = (<Block marginTop="15px" display="flex" justifyContent="center">
-            <Button size={SIZE.compact} onClick={()=>toaster.update(
-              toastKey, 
-              {children: (<>{msg} And extended notification details. {ok}</>)}
-            )}>Show more</Button>
-          </Block>);
+          const msg = 'Use toaster.info(), toaster.positive(), toaster.warning(), or toaster.negative()';
           const ok = (
             <Block marginTop="15px" display="flex" justifyContent="center"> 
               <Button size={SIZE.compact} onClick={()=>toaster.clear(toastKey)}>Ok</Button> 
             </Block>
           );
-          toastKey = toaster.info((<>{msg}{showMore}</>), {closeable: false, overrides: {InnerContainer: {style: {width: '100%'}}}});
+          const showMore = (<Block marginTop="15px" display="flex" justifyContent="center">
+            <Button size={SIZE.compact} onClick={()=>toaster.update(
+              toastKey, 
+              {children: (<>{msg} to show different notification type. {ok}</>)}
+            )}>Show more</Button>
+          </Block>);
+          toastKey = toaster.info((<>{msg}{showMore}</>), {
+            onClose: ()=>console.log('Toast closed.'),
+            overrides: {InnerContainer: {style: {width: '100%'}}}});
         }}
         >
-          Info
-        </Button>
-        <Block marginRight="15px"/>
-        <Button onClick={()=>{toaster.positive('This is a confirmation notification.', {onClose: ()=>console.log('Toast closed.')})}}>
-          Positive
-        </Button>
-        <Block marginRight="15px"/>
-        <Button onClick={()=>{toaster.warning('This is a warning notification.')}}>
-          Warning
-        </Button>
-        <Block marginRight="15px"/>
-        <Button onClick={()=>{toaster.negative('This is a negative notification.')}}>
-          Negative
+          Show notification
         </Button>
       `,
       type: PropTypes.ReactNode,
@@ -106,8 +92,15 @@ const toastConfig: TConfig = {
       description: 'Lets you customize all aspects of the component.',
       names: ['Root', 'ToastBody', 'ToastInnerContainer', 'ToastCloseIcon'],
       sharedProps: {
-        $kind: 'kind',
-        $closeable: 'closeable',
+        $kind: {
+          type: PropTypes.Enum,
+          description: 'Defines the type of notification.',
+        },
+        $closeable: {
+          type: PropTypes.Boolean,
+          description: `When set to true a close button is displayed
+            and the notification can be dismissed by a user.`,
+        },
       },
     },
   },
