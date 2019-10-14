@@ -8,7 +8,7 @@ WORKDIR /baseui
 # RUN yarn --ignore-scripts
 
 # Copy the current files to the docker image.
-# COPY . .
+COPY . .
 
 # Perform any build steps if you want binaries inside of the image
 # RUN yarn e2e:build
