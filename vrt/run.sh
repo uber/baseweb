@@ -2,9 +2,11 @@
 
 # set -euo pipefail
 
+git config user.email $GITHUB_BOT_EMAIL
+git config user.name $GITHUB_BOT_NAME
+
 echo "👁  VRT: Authenticate with GitHub"
-git remote rm origin
-git remote add origin https://x-access-token:${GITHUB_BOT_AUTH_TOKEN}@github.com/uber/baseweb.git
+git remote set-url origin https://x-access-token:${GITHUB_BOT_AUTH_TOKEN}@github.com/uber/baseweb.git
 
 echo "👁  VRT: Fetch branches in case the --vrt branch already exists"
 git fetch
@@ -24,7 +26,7 @@ echo "👁  VRT: Commit new shapshots"
 git commit -m "tests(vrt): update snapshots for ${BUILDKITE_COMMIT:0:5}"
 
 echo "👁  VRT: Push branch upstream"
-git push --set-upstream origin $BUILDKITE_BRANCH--vrt
+git push origin $BUILDKITE_BRANCH--vrt
 
 exit
 
