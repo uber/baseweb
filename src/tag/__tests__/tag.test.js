@@ -61,12 +61,14 @@ describe('Stateless tag', function() {
   describe('On action', function() {
     beforeEach(function() {
       allProps.onActionClick = jest.fn();
+      allProps.onClick = jest.fn();
       wrapper = mount(<Tag {...allProps}>{children}</Tag>);
     });
 
     test('should call callback if action button is clicked', function() {
       const actionIcon = wrapper.find(StyledAction);
       actionIcon.first().simulate('click');
+      expect(allProps.onClick).not.toHaveBeenCalled();
       expect(allProps.onActionClick).toHaveBeenCalledWith(
         allProps.onActionClick.mock.calls[0][0],
       );
