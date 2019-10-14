@@ -50,12 +50,21 @@ export const updateAll = (
   });
 };
 
-export const updateUrl = (pathname: string, code?: string) => {
+type TUpdateUrl = {
+  pathname: string;
+  code?: string;
+  queryStringName?: string;
+};
+
+export const updateUrl = ({pathname, code, queryStringName}: TUpdateUrl) => {
+  const query = queryStringName || 'code';
   Router.push(
     code
       ? {
           pathname: pathname,
-          query: {code},
+          query: {
+            [query]: code,
+          },
         }
       : {
           pathname: pathname,
