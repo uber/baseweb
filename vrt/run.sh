@@ -2,8 +2,8 @@
 
 # set -euo pipefail
 
-git config --global user.email $GITHUB_BOT_EMAIL
-git config --global user.name $GITHUB_BOT_NAME
+git config --global user.email "$GITHUB_BOT_EMAIL"
+git config --global user.name "$GITHUB_BOT_NAME"
 
 echo "👁  VRT: Authenticate with GitHub"
 git remote set-url origin https://x-access-token:${GITHUB_BOT_AUTH_TOKEN}@github.com/uber/baseweb.git
