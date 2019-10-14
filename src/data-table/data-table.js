@@ -27,10 +27,19 @@ import type {ColumnT, Props, RowT, SortDirectionsT} from './types.js';
 function CellPlacement({columnIndex, rowIndex, data, style}) {
   const [useCss, theme] = useStyletron();
 
+  const isStriped = rowIndex % 2;
+  const isHovered = columnIndex === data.headerHoverIndex;
+  let backgroundColor = theme.colors.mono100;
+  if (isStriped && isHovered) {
+    backgroundColor = theme.colors.mono300;
+  } else if (isStriped || isHovered) {
+    backgroundColor = theme.colors.mono200;
+  }
+
   const cellStyle = useCss({
     ...theme.borders.border200,
     alignItems: 'center',
-    backgroundColor: rowIndex % 2 ? null : theme.colors.mono200,
+    backgroundColor,
     borderTop: 'none',
     borderBottom: 'none',
     borderLeft: 'none',
@@ -427,6 +436,7 @@ export function Unstable_DataTable(props: Props) {
               rowHeight={rowIndex => (rowIndex === 0 ? 48 : 40)}
               width={width}
               itemData={{
+                headerHoverIndex,
                 isRowSelected: id => selectedRows.has(id),
                 isSelectable,
                 onSelect: id => {
