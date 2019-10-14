@@ -20,6 +20,9 @@ echo $BUILDKITE_COMMIT > foo.txt
 echo "👁  VRT: Create a branch or checkout already existing one"
 git checkout $BUILDKITE_BRANCH--vrt || git checkout -b $BUILDKITE_BRANCH--vrt
 
+echo "👁  VRT: Pull to ensure tip is up to date"
+git pull
+
 echo "👁  VRT: Stage new file"
 git add foo.txt
 
