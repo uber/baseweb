@@ -9,15 +9,16 @@ git config --global user.name $GITHUB_BOT_NAME
 
 echo "👁  VRT: Fetch branches in case the --vrt branch already exists"
 git fetch
-git pull
+git checkout $BUILDKITE_BRANCH
+git reset --hard origin/$BUILDKITE_BRANCH
 
 # TEMP CODE START
 
-echo "👁  VRT: Create random file"
+echo "👁  VRT: Update foo.txt"
 echo $BUILDKITE_COMMIT > foo.txt
 
 echo "👁  VRT: Create a branch or checkout already existing one"
-git checkout -q $BUILDKITE_BRANCH--vrt || git checkout -b $BUILDKITE_BRANCH--vrt
+git checkout $BUILDKITE_BRANCH--vrt || git checkout -b $BUILDKITE_BRANCH--vrt
 
 echo "👁  VRT: Stage new file"
 git add foo.txt
