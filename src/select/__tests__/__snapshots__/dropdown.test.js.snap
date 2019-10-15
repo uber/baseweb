@@ -47,6 +47,7 @@ Object {
   "List": Object {
     "component": Object {
       "$$typeof": Symbol(react.forward_ref),
+      "displayName": "StyledList",
       "render": [MockFunction],
     },
     "props": Object {
@@ -63,6 +64,7 @@ Object {
         "ListItem": Object {
           "component": Object {
             "$$typeof": Symbol(react.forward_ref),
+            "displayName": "StyledListItem",
             "render": [MockFunction],
           },
           "props": Object {

@@ -21,7 +21,7 @@ describe('AutosizeInput component', function() {
     const renderedSizer = wrapper.find(StyledInputSizer).first();
     expect(renderedInput).toExist();
     expect(renderedInput.props()).toMatchObject({
-      $width: '2px',
+      $width: null,
       ...props,
     });
     expect(renderedSizer).toExist();

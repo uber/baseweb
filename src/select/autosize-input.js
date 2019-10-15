@@ -70,7 +70,8 @@ export default class AutosizeInput extends React.Component<
     );
     const componentInputProps = {
       ...restProps,
-      $width: `${this.state.inputWidth}px`,
+      // set width only if sizer has non-zero width
+      $width: this.state.inputWidth > 2 ? `${this.state.inputWidth}px` : null,
     };
     return (
       <React.Fragment>
