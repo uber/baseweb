@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env node */
 
-const fs = require('fs');
 const shell = require('shelljs');
 const Octokit = require('@octokit/rest');
 
@@ -20,6 +19,17 @@ const {
   BUILDKITE_COMMIT,
   BUILDKITE_PULL_REQUEST,
 } = process.env;
+
+// Test to see if this build is from a PR
+if (!(BUILDKITE_PULL_REQUEST > 0)) {
+  shell.echo(
+    `This build is not associated with a PR. We only update snapshots against open PRs. Running tests without update flag.`,
+  );
+  // Assuming if we reach here there were updated snapshots
+  shell.echo(`TODO: run snapshot tests without updating`);
+  // Exit with test status.
+  shell.exit();
+}
 
 const SNAPSHOT_BRANCH = `${BUILDKITE_BRANCH}--vrt`;
 const SHORT_BASE_COMMIT_HASH = BUILDKITE_COMMIT.substring(0, 7); // First 7 chars makes it linkable in GitHub
@@ -44,8 +54,8 @@ shell.exec(`git push --force origin ${SNAPSHOT_BRANCH}`);
     auth: GITHUB_BOT_AUTH_TOKEN,
   });
 
-  // list PRs from snapshot branch into base branch (should only be one)
-  pullRequests = await octokit.pulls.list({
+  // verify there is no snapshot PR yet
+  const snapshotPullRequests = await octokit.pulls.list({
     owner: `uber`,
     repo: `baseweb`,
     head: `uber:${SNAPSHOT_BRANCH}`,
@@ -53,31 +63,39 @@ shell.exec(`git push --force origin ${SNAPSHOT_BRANCH}`);
   });
 
   // If no PR exists yet, let's make one!
-  if (pullRequests.data.length === 0) {
+  if (snapshotPullRequests.data.length === 0) {
     // Open a new PR against base branch
-    const openPullRequest = await octokit.pulls.create({
-      owner: `uber`,
-      repo: `baseweb`,
-      title: `test(vrt): update visual snapshots for ${BUILDKITE_BRANCH} [ci skip]`,
-      head: SNAPSHOT_BRANCH,
-      base: BUILDKITE_BRANCH,
-      body: `This PR was generated based on visual changes detected in ${BUILDKITE_PULL_REQUEST}. Please verify that the updated snapshots look correct before merging this PR into \`${BUILDKITE_BRANCH}\`.`,
-    });
-
-    shell.echo(`Pull Request created: ${openPullRequest.data.html_url}`);
-
+    let newSnapshotPullRequest;
     try {
-      // Add a comment to original PR, notifying of new snapshot PR
+      newSnapshotPullRequest = await octokit.pulls.create({
+        owner: `uber`,
+        repo: `baseweb`,
+        title: `test(vrt): update visual snapshots for ${BUILDKITE_BRANCH} [ci skip]`,
+        head: SNAPSHOT_BRANCH,
+        base: BUILDKITE_BRANCH,
+        body: `This PR was generated based on visual changes detected in ${BUILDKITE_PULL_REQUEST}. Please verify that the updated snapshots look correct before merging this PR into \`${BUILDKITE_BRANCH}\`.`,
+      });
+
+      shell.echo(`Created a new PR: ${newSnapshotPullRequest.data.html_url}`);
+    } catch (er) {
+      shell.echo(`Error opening new snapshot PR.`);
+      shell.echo(er);
+      shell.exit(1);
+    }
+
+    // Add a comment to original PR, notifying of new snapshot PR
+    try {
       const comment = await octokit.issues.createComment({
         owner: `uber`,
         repo: `baseweb`,
         issue_number: BUILDKITE_PULL_REQUEST,
-        body: `👀 Visual changes were found on this branch. Please review the following PR containing updated snapshots: ${newPullRequest.data.html_url}.`,
+        body: `👀 Visual changes were found on this branch. Please review the following PR containing updated snapshots: ${newSnapshotPullRequest.data.html_url}.`,
       });
-      shell.echo(`Posted a comment on original PR. ${comment.data.html_url}`);
+      shell.echo(`Posted a comment on original PR: ${comment.data.html_url}`);
     } catch (er) {
-      shell.echo(`Failed to post a comment on PR. Request failed.`);
-      fs.writeFileSync(`__artifacts__/log.txt`, JSON.stringify(er));
+      shell.echo(`Error creating comment on original PR.`);
+      shell.echo(er);
+      shell.echo(`BUILDKITE_PULL_REQUEST: ${BUILDKITE_PULL_REQUEST}`); // wondering if this is sometimes undefined
     }
   }
   // Exit with an error to fail Buildkite
