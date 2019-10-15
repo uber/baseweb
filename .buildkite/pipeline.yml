@@ -30,3 +30,4 @@ steps:
       queue: builders
     artifact_paths:
       - '__artifacts__/*.png'
+      - '__artifacts__/*.txt'

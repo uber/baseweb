@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env node */
 
+const fs = require('fs');
 const shell = require('shelljs');
 const Octokit = require('@octokit/rest');
 
@@ -62,14 +63,42 @@ shell.exec(`git push --force origin ${SNAPSHOT_BRANCH}`);
       base: BUILDKITE_BRANCH,
     });
 
-    // Comment on the original PR with link
-    const comment = octokit.issues.createComment({
-      owner: `uber`,
-      repo: `baseweb`,
-      issue_number: BUILDKITE_PULL_REQUEST,
-      body: `We detected some visual changes on this branch. Please review the following PR containing updated snapshots:
-${newPullRequest.html_url}`,
-    });
+    shell.echo(`Pull Request created: ${newPullRequest.html_url}`);
+
+    let ORIGINAL_PULL_REQUEST_NUMBER = null;
+    if (BUILDKITE_PULL_REQUEST > 0) {
+      ORIGINAL_PULL_REQUEST_NUMBER = BUILDKITE_PULL_REQUEST;
+    } else {
+      const originalPullRequest = await octokit.pulls.list({
+        owner: `uber`,
+        repo: `baseweb`,
+        head: `uber:${BUILDKITE_BRANCH}`,
+      });
+
+      if (originalPullRequest.data.length === 1) {
+        ORIGINAL_PULL_REQUEST_NUMBER = originalPullRequest.data[0].number;
+      } else {
+        shell.echo(
+          `Could not find the original PR associated with these changes.`,
+        );
+        shell.exit(1);
+      }
+    }
+
+    try {
+      // Add a comment to original PR, notifying of new snapshot PR
+      const comment = await octokit.issues.createComment({
+        owner: `uber`,
+        repo: `baseweb`,
+        issue_number: ORIGINAL_PULL_REQUEST_NUMBER,
+        body: `We detected some visual changes on this branch. Please review the following PR containing updated snapshots:
+        ${newPullRequest.html_url}`,
+      });
+      shell.echo(`Posted a comment on original PR. ${comment.html_url}`);
+    } catch (er) {
+      shell.echo(`Failed to post a comment on PR. Request failed.`);
+      await fs.writeFile(`__artifacts__/log.txt`, JSON.stringify(er));
+    }
   }
 
   // Exit with an error to fail Buildkite
