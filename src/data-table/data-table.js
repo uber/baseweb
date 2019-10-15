@@ -27,51 +27,103 @@ import type {ColumnT, Props, RowT, SortDirectionsT} from './types.js';
 function CellPlacement({columnIndex, rowIndex, data, style}) {
   const [useCss, theme] = useStyletron();
 
-  const isStriped = rowIndex % 2;
-  const isHovered = columnIndex === data.headerHoverIndex;
-  let backgroundColor = theme.colors.mono100;
-  if (isStriped && isHovered) {
-    backgroundColor = theme.colors.mono300;
-  } else if (isStriped || isHovered) {
-    backgroundColor = theme.colors.mono200;
-  }
-
-  const cellStyle = useCss({
-    ...theme.borders.border200,
-    alignItems: 'center',
-    backgroundColor,
-    borderTop: 'none',
-    borderBottom: 'none',
-    borderLeft: 'none',
-    boxSizing: 'border-box',
-    display: 'flex',
-  });
-
   // ignores the table header row
   if (rowIndex === 0) {
     return null;
   }
 
-  const column = data.columns[columnIndex];
-  const Cell = column.renderCell;
-  // minus one to account for additional header row
-  const value = data.rows[rowIndex - 1].data[columnIndex];
-  const id = data.rows[rowIndex - 1].id;
+  let backgroundColor = theme.colors.mono100;
+  if (
+    (rowIndex % 2 && columnIndex === data.headerHoverIndex) ||
+    rowIndex === data.rowHoverIndex
+  ) {
+    backgroundColor = theme.colors.mono300;
+  } else if (rowIndex % 2 || columnIndex === data.headerHoverIndex) {
+    backgroundColor = theme.colors.mono200;
+  }
 
+  const Cell = data.columns[columnIndex].renderCell;
   return (
-    <div className={cellStyle} style={style}>
+    <div
+      className={useCss({
+        ...theme.borders.border200,
+        alignItems: 'center',
+        backgroundColor,
+        borderTop: 'none',
+        borderBottom: 'none',
+        borderLeft: 'none',
+        boxSizing: 'border-box',
+        display: 'flex',
+      })}
+      style={style}
+      onMouseEnter={() => data.onRowHover(rowIndex)}
+    >
       <Cell
-        value={value}
+        value={data.rows[rowIndex - 1].data[columnIndex]}
         onSelect={
           data.isSelectable && columnIndex === 0
-            ? () => data.onSelect(id)
+            ? () => data.onSelect(data.rows[rowIndex - 1].id)
             : undefined
         }
-        isSelected={data.isRowSelected(id)}
+        isSelected={data.isRowSelected(data.rows[rowIndex - 1].id)}
       />
     </div>
   );
 }
+function compareCellPlacement(prevProps, nextProps) {
+  if (prevProps.data.columns !== nextProps.data.columns) return false;
+  // no need to re-render column header cells on data changes
+  if (prevProps.rowIndex === 0) {
+    return true;
+  }
+
+  if (prevProps.data.rows !== nextProps.data.rows) return false;
+
+  if (
+    prevProps.data.isSelectable === nextProps.data.isSelectable &&
+    prevProps.data.headerHoverIndex === nextProps.data.headerHoverIndex &&
+    prevProps.data.rowHoverIndex === nextProps.data.rowHoverIndex
+  ) {
+    return true;
+  }
+
+  // row does not need to re-render if not transitioning _from_ or _to_ highlighted
+  // also ensures that all cells are invalidated on column-header hover
+  if (
+    prevProps.rowIndex !== prevProps.data.rowHoverIndex &&
+    prevProps.rowIndex !== nextProps.data.rowHoverIndex &&
+    prevProps.data.headerHoverIndex === nextProps.data.headerHoverIndex
+  ) {
+    return true;
+  }
+
+  return false;
+}
+const CellPlacementMemo = React.memo<
+  {
+    columnIndex: number,
+    rowIndex: number,
+    style: {
+      position: string,
+      height: number,
+      width: number,
+      top: number,
+      left: number,
+    },
+    data: {
+      columns: ColumnT<>[],
+      headerHoverIndex: number,
+      isSelectable: boolean,
+      isRowSelected: (string | number) => boolean,
+      onRowHover: number => void,
+      onSelect: (string | number) => void,
+      rowHoverIndex: number,
+      rows: RowT[],
+    },
+  },
+  mixed,
+>(CellPlacement, compareCellPlacement);
+CellPlacementMemo.displayName = 'CellPlacement';
 
 function useDuplicateColumnTitleWarning(columns: ColumnT<>[]) {
   React.useEffect(() => {
@@ -164,14 +216,6 @@ const InnerTableElement = React.forwardRef<
     return null;
   }
 
-  const headerStyle = useCss({
-    ...theme.borders.border200,
-    backgroundColor: theme.colors.mono100,
-    borderTop: 'none',
-    borderLeft: 'none',
-    boxSizing: 'border-box',
-  });
-
   return (
     <div ref={ref} data-baseweb="data-table" style={props.style}>
       <div
@@ -190,7 +234,17 @@ const InnerTableElement = React.forwardRef<
         {ctx.columns.map((column, columnIndex) => {
           const width = ctx.widths[columnIndex];
           return (
-            <div className={headerStyle} key={columnIndex} style={{width}}>
+            <div
+              className={useCss({
+                ...theme.borders.border200,
+                backgroundColor: theme.colors.mono100,
+                borderTop: 'none',
+                borderLeft: 'none',
+                boxSizing: 'border-box',
+              })}
+              key={columnIndex}
+              style={{width}}
+            >
               <HeaderCell
                 index={columnIndex}
                 filterable={column.filterable}
@@ -254,6 +308,9 @@ export function Unstable_DataTable(props: Props) {
   const gridRef = React.useRef<React.Ref<typeof VariableSizeGrid> | null>(null);
   // indicates which header cell is currently hovered
   const [headerHoverIndex, setHeaderHoverIndex] = React.useState(-1);
+  // indicates which row is currently hovered
+  const [rowHoverIndex, setRowHoverIndex] = React.useState(-1);
+
   // filter open state tracked outside of header cell so that mouse-leave from the header
   // does not cause the popover to close.
   const [filterOpenIndex, setFilterOpenIndex] = React.useState(-1);
@@ -329,6 +386,51 @@ export function Unstable_DataTable(props: Props) {
       selectionCallback(rows.filter(r => next.has(r.id)));
     }
   }
+
+  const handleRowHover = React.useCallback(
+    nextIndex => {
+      if (nextIndex !== rowHoverIndex) {
+        setRowHoverIndex(nextIndex);
+      }
+    },
+    [rowHoverIndex],
+  );
+  const handleRowSelect = React.useCallback(
+    id => {
+      if (selectedRows.has(id)) {
+        selectedRows.delete(id);
+      } else {
+        selectedRows.add(id);
+      }
+      handleSelectChange(new Set(selectedRows));
+    },
+    [selectedRows],
+  );
+  const isRowSelected = React.useCallback(id => selectedRows.has(id), [
+    selectedRows,
+  ]);
+
+  const itemData = React.useMemo(() => {
+    return {
+      headerHoverIndex,
+      rowHoverIndex,
+      isRowSelected,
+      isSelectable,
+      onRowHover: handleRowHover,
+      onSelect: handleRowSelect,
+      columns: props.columns,
+      rows,
+    };
+  }, [
+    handleRowHover,
+    handleRowSelect,
+    headerHoverIndex,
+    isRowSelected,
+    isSelectable,
+    props.columns,
+    rowHoverIndex,
+    rows,
+  ]);
 
   return (
     <React.Fragment>
@@ -435,23 +537,9 @@ export function Unstable_DataTable(props: Props) {
               rowCount={rows.length + 1}
               rowHeight={rowIndex => (rowIndex === 0 ? 48 : 40)}
               width={width}
-              itemData={{
-                headerHoverIndex,
-                isRowSelected: id => selectedRows.has(id),
-                isSelectable,
-                onSelect: id => {
-                  if (selectedRows.has(id)) {
-                    selectedRows.delete(id);
-                  } else {
-                    selectedRows.add(id);
-                  }
-                  handleSelectChange(new Set(selectedRows));
-                },
-                columns: props.columns,
-                rows,
-              }}
+              itemData={itemData}
             >
-              {CellPlacement}
+              {CellPlacementMemo}
             </VariableSizeGrid>
           </HeaderContext.Provider>
         )}
