@@ -16,9 +16,10 @@ steps:
 
   - name: ':eye: Visual regression tests'
     # command: yarn add puppeteer && yarn vrt
-    commands:
-      - 'chmod +x ./vrt/run.sh'
-      - './vrt/run.sh'
+    # commands:
+    #   - 'chmod +x ./vrt/run.sh'
+    #   - './vrt/run.sh'
+    command: node vrt/run.js
     plugins:
       'docker-compose#v3.0.3':
         run: e2e-test
