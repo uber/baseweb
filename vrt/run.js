@@ -35,7 +35,7 @@ shell.exec(`echo ${BUILDKITE_COMMIT} > foo.txt`);
 shell.exec(`git checkout -b ${SNAPSHOT_BRANCH}`);
 shell.exec(`git add foo.txt`);
 shell.exec(
-  `git commit -m "test(vrt): update snapshots for ${SHORT_BASE_COMMIT_HASH} [ci skip]"`,
+  `git commit -m "test(vrt): update visual snapshots for ${SHORT_BASE_COMMIT_HASH} [ci skip]"`,
 );
 shell.exec(`git push --force origin ${SNAPSHOT_BRANCH}`);
 
@@ -55,42 +55,32 @@ shell.exec(`git push --force origin ${SNAPSHOT_BRANCH}`);
   // If no PR exists yet, let's make one!
   if (pullRequests.data.length === 0) {
     // Open a new PR against base branch
-    const newPullRequest = await octokit.pulls.create({
+    const openPullRequest = await octokit.pulls.create({
       owner: `uber`,
       repo: `baseweb`,
-      title: `test(vrt): update snapshots for ${BUILDKITE_BRANCH} [ci skip]`,
+      title: `test(vrt): update visual snapshots for ${BUILDKITE_BRANCH}`,
       head: SNAPSHOT_BRANCH,
       base: BUILDKITE_BRANCH,
+      body: `This PR was generated based on visual changes detected in ${BUILDKITE_PULL_REQUEST}. Please verify that the updated snapshots look correct before merging this PR into \`${BUILDKITE_BRANCH}\`.`,
     });
 
-    shell.echo(`Pull Request created: ${newPullRequest.data.html_url}`);
+    shell.echo(`Pull Request created: ${openPullRequest.data.html_url}`);
 
-    let ORIGINAL_PULL_REQUEST_NUMBER = null;
-    if (BUILDKITE_PULL_REQUEST > 0) {
-      ORIGINAL_PULL_REQUEST_NUMBER = BUILDKITE_PULL_REQUEST;
-    } else {
-      const originalPullRequest = await octokit.pulls.list({
-        owner: `uber`,
-        repo: `baseweb`,
-        head: `uber:${BUILDKITE_BRANCH}`,
-      });
+    const addLabels = await octokit.issues.addLabels({
+      owner: `uber`,
+      repo: `baseweb`,
+      issue_number: openPullRequest.data.number,
+      labels: [`work in progress`, `ci`],
+    });
 
-      if (originalPullRequest.data.length === 1) {
-        ORIGINAL_PULL_REQUEST_NUMBER = originalPullRequest.data[0].number;
-      } else {
-        shell.echo(
-          `Could not find the original PR associated with these changes.`,
-        );
-        shell.exit(1);
-      }
-    }
+    shell.echo(`Added labels to the PR.`);
 
     try {
       // Add a comment to original PR, notifying of new snapshot PR
       const comment = await octokit.issues.createComment({
         owner: `uber`,
         repo: `baseweb`,
-        issue_number: ORIGINAL_PULL_REQUEST_NUMBER,
+        issue_number: BUILDKITE_PULL_REQUEST,
         body: `👀 Visual changes were found on this branch. Please review the following PR containing updated snapshots: ${newPullRequest.data.html_url}.`,
       });
       shell.echo(`Posted a comment on original PR. ${comment.data.html_url}`);
