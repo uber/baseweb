@@ -63,7 +63,7 @@ shell.exec(`git push --force origin ${SNAPSHOT_BRANCH}`);
       base: BUILDKITE_BRANCH,
     });
 
-    shell.echo(`Pull Request created: ${newPullRequest.html_url}`);
+    shell.echo(`Pull Request created: ${newPullRequest.data.html_url}`);
 
     let ORIGINAL_PULL_REQUEST_NUMBER = null;
     if (BUILDKITE_PULL_REQUEST > 0) {
@@ -91,8 +91,7 @@ shell.exec(`git push --force origin ${SNAPSHOT_BRANCH}`);
         owner: `uber`,
         repo: `baseweb`,
         issue_number: ORIGINAL_PULL_REQUEST_NUMBER,
-        body: `We detected some visual changes on this branch. Please review the following PR containing updated snapshots:
-        ${newPullRequest.data.html_url}`,
+        body: `👀 Visual changes were found on this branch. Please review the following PR containing updated snapshots: ${newPullRequest.data.html_url}.`,
       });
       shell.echo(`Posted a comment on original PR. ${comment.data.html_url}`);
     } catch (er) {
@@ -100,7 +99,6 @@ shell.exec(`git push --force origin ${SNAPSHOT_BRANCH}`);
       await fs.writeFile(`__artifacts__/log.txt`, JSON.stringify(er));
     }
   }
-
   // Exit with an error to fail Buildkite
   shell.echo(`Snapshots require updating before this PR can be merged.`);
   shell.exit(1);
