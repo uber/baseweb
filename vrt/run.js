@@ -58,7 +58,7 @@ shell.exec(`git push --force origin ${SNAPSHOT_BRANCH}`);
     const openPullRequest = await octokit.pulls.create({
       owner: `uber`,
       repo: `baseweb`,
-      title: `test(vrt): update visual snapshots for ${BUILDKITE_BRANCH}`,
+      title: `test(vrt): update visual snapshots for ${BUILDKITE_BRANCH} [ci skip]`,
       head: SNAPSHOT_BRANCH,
       base: BUILDKITE_BRANCH,
       body: `This PR was generated based on visual changes detected in ${BUILDKITE_PULL_REQUEST}. Please verify that the updated snapshots look correct before merging this PR into \`${BUILDKITE_BRANCH}\`.`,
