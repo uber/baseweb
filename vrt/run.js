@@ -92,9 +92,9 @@ shell.exec(`git push --force origin ${SNAPSHOT_BRANCH}`);
         repo: `baseweb`,
         issue_number: ORIGINAL_PULL_REQUEST_NUMBER,
         body: `We detected some visual changes on this branch. Please review the following PR containing updated snapshots:
-        ${newPullRequest.html_url}`,
+        ${newPullRequest.data.html_url}`,
       });
-      shell.echo(`Posted a comment on original PR. ${comment.html_url}`);
+      shell.echo(`Posted a comment on original PR. ${comment.data.html_url}`);
     } catch (er) {
       shell.echo(`Failed to post a comment on PR. Request failed.`);
       await fs.writeFile(`__artifacts__/log.txt`, JSON.stringify(er));
