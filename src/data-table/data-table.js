@@ -169,10 +169,12 @@ const HeaderContext = React.createContext<{
   isSelectable: boolean,
   isSelectedAll: boolean,
   isSelectedIndeterminate: boolean,
+  onFilterOpen: number => void,
+  onFilterClose: () => void,
+  onMouseEnter: number => void,
+  onMouseLeave: () => void,
   onSelectAll: () => void,
   onSelectNone: () => void,
-  setFilterOpenIndex: number => void,
-  setHeaderHoverIndex: number => void,
   rows: RowT[],
   sortIndex: number,
   sortDirection: SortDirectionsT,
@@ -186,10 +188,12 @@ const HeaderContext = React.createContext<{
   isSelectable: false,
   isSelectedAll: false,
   isSelectedIndeterminate: false,
+  onFilterOpen: () => {},
+  onFilterClose: () => {},
+  onMouseEnter: () => {},
+  onMouseLeave: () => {},
   onSelectAll: () => {},
   onSelectNone: () => {},
-  setFilterOpenIndex: () => {},
-  setHeaderHoverIndex: () => {},
   rows: [],
   sortIndex: -1,
   sortDirection: null,
@@ -251,24 +255,13 @@ const InnerTableElement = React.forwardRef<
                 sortable={column.sortable}
                 isHovered={ctx.headerHoverIndex === columnIndex}
                 isFilterOpen={ctx.filterOpenIndex === columnIndex}
-                onFilterOpen={() => {
-                  if (ctx.filterOpenIndex === columnIndex) {
-                    ctx.setFilterOpenIndex(-1);
-                  } else {
-                    ctx.setFilterOpenIndex(columnIndex);
-                  }
-                }}
-                onFilterClose={() => ctx.setFilterOpenIndex(-1)}
+                onFilterOpen={() => ctx.onFilterOpen(columnIndex)}
+                onFilterClose={() => ctx.onFilterClose()}
                 isSelectable={ctx.isSelectable && columnIndex === 0}
                 isSelectedAll={ctx.isSelectedAll}
                 isSelectedIndeterminate={ctx.isSelectedIndeterminate}
-                onMouseEnter={() => {
-                  ctx.setHeaderHoverIndex(columnIndex);
-                  if (columnIndex !== ctx.filterOpenIndex) {
-                    ctx.setFilterOpenIndex(-1);
-                  }
-                }}
-                onMouseLeave={() => ctx.setHeaderHoverIndex(-1)}
+                onMouseEnter={() => ctx.onMouseEnter(columnIndex)}
+                onMouseLeave={() => ctx.onMouseLeave()}
                 onSelectAll={ctx.onSelectAll}
                 onSelectNone={ctx.onSelectNone}
                 onSort={ctx.handleSort}
@@ -306,14 +299,40 @@ export function Unstable_DataTable(props: Props) {
   const [filters, setFilters] = React.useState(new Map());
   const [widths, setWidths] = React.useState(props.columns.map(() => 0));
   const gridRef = React.useRef<React.Ref<typeof VariableSizeGrid> | null>(null);
-  // indicates which header cell is currently hovered
-  const [headerHoverIndex, setHeaderHoverIndex] = React.useState(-1);
-  // indicates which row is currently hovered
-  const [rowHoverIndex, setRowHoverIndex] = React.useState(-1);
 
-  // filter open state tracked outside of header cell so that mouse-leave from the header
-  // does not cause the popover to close.
+  const [rowHoverIndex, setRowHoverIndex] = React.useState(-1);
+  const handleRowHover = React.useCallback(
+    nextIndex => {
+      if (nextIndex !== rowHoverIndex) {
+        setRowHoverIndex(nextIndex);
+      }
+    },
+    [rowHoverIndex],
+  );
+
   const [filterOpenIndex, setFilterOpenIndex] = React.useState(-1);
+  function handleFilterOpen(columnIndex) {
+    if (filterOpenIndex === columnIndex) {
+      setFilterOpenIndex(-1);
+    } else {
+      setFilterOpenIndex(columnIndex);
+    }
+  }
+  function handleFilterClose() {
+    setFilterOpenIndex(-1);
+  }
+
+  const [headerHoverIndex, setHeaderHoverIndex] = React.useState(-1);
+  function handleColumnHeaderMouseEnter(columnIndex) {
+    setHeaderHoverIndex(columnIndex);
+    setRowHoverIndex(-1);
+    if (columnIndex !== filterOpenIndex) {
+      setFilterOpenIndex(-1);
+    }
+  }
+  function handleColumnHeaderMouseLeave() {
+    setHeaderHoverIndex(-1);
+  }
 
   const sortedIndices = React.useMemo(() => {
     let toSort = props.rows.map((r, i) => [r, i]);
@@ -387,14 +406,6 @@ export function Unstable_DataTable(props: Props) {
     }
   }
 
-  const handleRowHover = React.useCallback(
-    nextIndex => {
-      if (nextIndex !== rowHoverIndex) {
-        setRowHoverIndex(nextIndex);
-      }
-    },
-    [rowHoverIndex],
-  );
   const handleRowSelect = React.useCallback(
     id => {
       if (selectedRows.has(id)) {
@@ -510,16 +521,18 @@ export function Unstable_DataTable(props: Props) {
               rows: props.rows,
               addFilter,
               filterOpenIndex,
-              setFilterOpenIndex,
               handleSort,
               headerHoverIndex,
               isSelectable,
               isSelectedAll: !!rows.length && selectedRows.size >= rows.length,
               isSelectedIndeterminate:
                 !!selectedRows.size && selectedRows.size < rows.length,
+              onFilterOpen: handleFilterOpen,
+              onFilterClose: handleFilterClose,
+              onMouseEnter: handleColumnHeaderMouseEnter,
+              onMouseLeave: handleColumnHeaderMouseLeave,
               onSelectAll: handleSelectAll,
               onSelectNone: handleSelectNone,
-              setHeaderHoverIndex,
               sortDirection,
               sortIndex,
               widths,
