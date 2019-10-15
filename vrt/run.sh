@@ -7,8 +7,7 @@ git config --global url."https://$GITHUB_BOT_AUTH_TOKEN:@github.com/".insteadOf 
 git config --global user.email $GITHUB_BOT_EMAIL
 git config --global user.name $GITHUB_BOT_NAME
 
-echo "👁  VRT: Fetch branches in case the --vrt branch already exists"
-git fetch
+echo "👁  VRT: Set environment to latest commit on branch"
 git checkout $BUILDKITE_BRANCH
 git reset --hard origin/$BUILDKITE_BRANCH
 
@@ -17,17 +16,8 @@ git reset --hard origin/$BUILDKITE_BRANCH
 echo "👁  VRT: Update foo.txt"
 echo $BUILDKITE_COMMIT > foo.txt
 
-echo "👁  VRT: Stash changes"
-git stash
-
-echo "👁  VRT: Create a branch or checkout already existing one"
-git checkout $BUILDKITE_BRANCH--vrt || git checkout -b $BUILDKITE_BRANCH--vrt
-
-echo "👁  VRT: Pull to ensure tip is up to date"
-git pull
-
-echo "👁  VRT: Unstash changes"
-git stash pop
+echo "👁  VRT: Checkout a new local VRT branch"
+git checkout -b $BUILDKITE_BRANCH--vrt
 
 echo "👁  VRT: Stage new file"
 git add foo.txt
@@ -35,8 +25,8 @@ git add foo.txt
 echo "👁  VRT: Commit new shapshots"
 git commit -m "tests(vrt): update snapshots for ${BUILDKITE_COMMIT:0:7} [ci skip]"
 
-echo "👁  VRT: Push branch upstream"
-git push origin $BUILDKITE_BRANCH--vrt
+echo "👁  VRT: Push branch upstream with great force"
+git push --force origin $BUILDKITE_BRANCH--vrt
 
 exit
 
