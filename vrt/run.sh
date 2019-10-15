@@ -9,7 +9,7 @@ git config --global user.name $GITHUB_BOT_NAME
 
 echo "👁  VRT: Set environment to latest commit on branch"
 git checkout $BUILDKITE_BRANCH
-git reset --hard origin/$BUILDKITE_BRANCH
+git reset --hard --quiet origin/$BUILDKITE_BRANCH
 
 # TEMP CODE START
 
