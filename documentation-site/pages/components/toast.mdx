@@ -13,13 +13,20 @@ import Exports from '../../components/exports';
 import ToastBasic from 'examples/toast/basic.js';
 import ToastNotification from 'examples/toast/toast-notification.js';
 
-import Overrides from '../../components/overrides';
 import {Toast} from 'baseui/toast';
 import * as ToastExports from 'baseui/toast';
+import Yard from '../../components/yard/index';
+import toastYardConfig from '../../components/yard/config/toast';
 
 export default Layout;
 
 # Toast
+
+<Yard
+  componentName="ToasterContainer"
+  placeholderHeight={52}
+  {...toastYardConfig}
+/>
 
 Toasts can be dismissed and sit on top of a view in various position options - top/right, top/center,
 top/left, bottom/right, bottom/center, bottom/left. Toasts are intended to provide feedback to a user
@@ -34,10 +41,6 @@ it’s status type of neutral, positive, warning and alert.
 
 ## Examples
 
-<Example title="Toaster Basic Usage" path="toast/basic.js">
-  <ToastBasic />
-</Example>
-
 <Example
   title="Toast Notification Basic Usage"
   path="toast/toast-notification.js"
@@ -45,24 +48,11 @@ it’s status type of neutral, positive, warning and alert.
   <ToastNotification />
 </Example>
 
-## Overrides
-
-<Overrides
-  name="Toast"
-  component={ToastExports}
-  renderExample={props => <Toast overrides={props.overrides}>Toast</Toast>}
-/>
-
 ## API
 
-<API
-  heading="Toaster API"
-  api={require('!!extract-react-types-loader!../../../src/toast/toaster.js')}
-/>
-
-<API
-  heading="Toast API"
-  api={require('!!extract-react-types-loader!../../../src/toast/toast.js')}
+<API	
+  heading="Toast API"	
+  api={require('!!extract-react-types-loader!../../../src/toast/toast.js')}	
 />
 
 <Exports component={ToastExports} title="Toast exports" path="baseui/toast" />
