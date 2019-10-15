@@ -66,15 +66,6 @@ shell.exec(`git push --force origin ${SNAPSHOT_BRANCH}`);
 
     shell.echo(`Pull Request created: ${openPullRequest.data.html_url}`);
 
-    const addLabels = await octokit.issues.addLabels({
-      owner: `uber`,
-      repo: `baseweb`,
-      issue_number: openPullRequest.data.number,
-      labels: [`work in progress`, `ci`],
-    });
-
-    shell.echo(`Added labels to the PR.`);
-
     try {
       // Add a comment to original PR, notifying of new snapshot PR
       const comment = await octokit.issues.createComment({
@@ -86,7 +77,7 @@ shell.exec(`git push --force origin ${SNAPSHOT_BRANCH}`);
       shell.echo(`Posted a comment on original PR. ${comment.data.html_url}`);
     } catch (er) {
       shell.echo(`Failed to post a comment on PR. Request failed.`);
-      await fs.writeFile(`__artifacts__/log.txt`, JSON.stringify(er));
+      fs.writeFileSync(`__artifacts__/log.txt`, JSON.stringify(er));
     }
   }
   // Exit with an error to fail Buildkite
