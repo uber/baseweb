@@ -23,7 +23,7 @@ shell.exec(
   `git config --global url."https://${GITHUB_BOT_AUTH_TOKEN}:@github.com/".insteadOf "https://github.com/"`,
 );
 shell.exec(`git config --global user.email ${GITHUB_BOT_EMAIL}`);
-shell.exect(`git config --global user.name ${GITHUB_BOT_NAME}`);
+shell.exec(`git config --global user.name ${GITHUB_BOT_NAME}`);
 shell.exec(`git checkout ${BUILDKITE_BRANCH}`);
 shell.exec(`git reset --hard origin/${BUILDKITE_BRANCH}`);
 shell.exec(`echo ${BUILDKITE_COMMIT} > foo.txt`);
