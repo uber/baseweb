@@ -74,7 +74,6 @@ shell.exec(`git push --force origin ${SNAPSHOT_BRANCH}`);
         head: SNAPSHOT_BRANCH,
         base: BUILDKITE_BRANCH,
         body: `This PR was generated based on visual changes detected in #${BUILDKITE_PULL_REQUEST}. Please verify that the updated snapshots look correct before merging this PR into \`${BUILDKITE_BRANCH}\`.`,
-        draft: true, // this makes the PR not auto request reviews from everyone
       });
 
       shell.echo(`Created a new PR: ${newSnapshotPullRequest.data.html_url}`);
