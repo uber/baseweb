@@ -6,21 +6,38 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
 import ProgressStepsDotted from 'examples/progress-steps/dotted';
 import ProgressStepsNumbered from 'examples/progress-steps/numbered';
 
-import Overrides from '../../components/overrides';
 import {ProgressSteps, Step, NumberedStep} from 'baseui/progress-steps';
 import * as ProgressStepsExports from 'baseui/progress-steps';
 import {Block} from 'baseui/block';
 
+import Yard from '../../components/yard/index';
+import progressStepsYardConfig from '../../components/yard/config/progress-steps';
+import progressStepsNumberedYardConfig from '../../components/yard/config/progress-steps-numbered';
+
 export default Layout;
 
 # Progress steps
+
+<Yard
+  componentName="ProgressSteps"
+  placeholderHeight={20}
+  {...progressStepsYardConfig}
+/>
+
+## Numbered progress steps
+
+<Yard
+  componentName="ProgressSteps"
+  placeholderHeight={20}
+  queryStringName="numbered-steps-state"
+  {...progressStepsNumberedYardConfig}
+/>
 
 Progress lists in Base are used to denote staged progress of an action or activity. This
 list type provides the user with a sense of awareness around progress and the steps remaining.
@@ -38,56 +55,7 @@ list type provides the user with a sense of awareness around progress and the st
   <ProgressStepsNumbered />
 </Example>
 
-## Overrides
-
-<Overrides
-  name="ProgressSteps"
-  whitelisted={[
-    'Root',
-    'Icon',
-    'InnerIcon',
-    'Tail',
-    'Content',
-    'Title',
-    'Description',
-  ]}
-  component={ProgressStepsExports}
-  renderExample={props => (
-    <React.Fragment>
-      <ProgressSteps current={0} overrides={props.overrides}>
-        <Step title="Step 1" overrides={props.overrides}>
-          Content
-        </Step>
-        <Step title="Step 2" overrides={props.overrides} />
-      </ProgressSteps>
-      <Block marginTop="scale600">
-        <ProgressSteps current={1} overrides={props.overrides}>
-          <NumberedStep title="Step 1" overrides={props.overrides} />
-          <NumberedStep title="Step 2" overrides={props.overrides}>
-            Content
-          </NumberedStep>
-        </ProgressSteps>
-      </Block>
-    </React.Fragment>
-  )}
-/>
-
 ## API
-
-<API
-  heading="ProgressSteps API"
-  api={require('!!extract-react-types-loader!../../../src/progress-steps/progress-steps.js')}
-/>
-
-<API
-  heading="NumberedStep API"
-  api={require('!!extract-react-types-loader!../../../src/progress-steps/numbered-step.js')}
-/>
-
-<API
-  heading="Step API"
-  api={require('!!extract-react-types-loader!../../../src/progress-steps/step.js')}
-/>
 
 <Exports
   component={ProgressStepsExports}

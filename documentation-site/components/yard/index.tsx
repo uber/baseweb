@@ -7,8 +7,8 @@ import {withRouter} from 'next/router';
 import {useStyletron} from 'baseui';
 
 const YardWrapper: React.FC<
-  TYardProps & {placeholderHeight: number; router: any}
-> = ({router, placeholderHeight, ...restProps}) => {
+  TYardProps & {placeholderHeight: number; queryStringName: string; router: any}
+> = ({router, placeholderHeight, queryStringName, ...restProps}) => {
   const [useCss] = useStyletron();
   const placeholderCx = useCss({
     height: `${placeholderHeight}px`,
@@ -23,7 +23,12 @@ const YardWrapper: React.FC<
       <Yard
         minHeight={placeholderHeight}
         pathname={router.pathname}
-        urlCode={router.query.code}
+        urlCode={
+          typeof queryStringName !== 'undefined'
+            ? router.query[queryStringName]
+            : router.query.code
+        }
+        queryStringName={queryStringName}
         placeholderElement={() => {
           if (!placeholderHeight) return null;
 
