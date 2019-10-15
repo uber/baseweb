@@ -26,7 +26,8 @@ const NotificationConfig: TConfig = {
   ],
   props: {
     kind: {
-      value: undefined,
+      value: 'KIND.info',
+      defaultValue: 'KIND.info',
       options: KIND,
       type: PropTypes.Enum,
       description: 'Defines the type of notification.',
@@ -43,7 +44,7 @@ const NotificationConfig: TConfig = {
         'When set to true a close button is displayed and the notification can be dismissed by a user.',
     },
     children: {
-      value: '{() => "Default info notification."}',
+      value: '{() => "This is a notification."}',
       type: PropTypes.Function,
       description: `Toast notification content. The children-as-function
         receives a dismiss method that can be called to
