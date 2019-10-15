@@ -23,7 +23,8 @@ const {
 // Test to see if this build is from a PR
 if (!(BUILDKITE_PULL_REQUEST > 0)) {
   shell.echo(
-    `This build is not associated with a PR. We only update snapshots against open PRs. Running tests without update flag.`,
+    `This build is not associated with a PR. ` +
+      `We only update snapshots against open PRs. Running tests without update flag.`,
   );
   // Assuming if we reach here there were updated snapshots
   shell.echo(`TODO: run snapshot tests without updating`);
@@ -73,7 +74,9 @@ shell.exec(`git push --force origin ${SNAPSHOT_BRANCH}`);
         title: `test(vrt): update visual snapshots for ${BUILDKITE_BRANCH} [ci skip]`,
         head: SNAPSHOT_BRANCH,
         base: BUILDKITE_BRANCH,
-        body: `This PR was generated based on visual changes detected in #${BUILDKITE_PULL_REQUEST}. Please verify that the updated snapshots look correct before merging this PR into \`${BUILDKITE_BRANCH}\`.`,
+        body:
+          `This PR was generated based on visual changes detected in #${BUILDKITE_PULL_REQUEST}. ` +
+          `Please verify that the updated snapshots look correct before merging this PR into \`${BUILDKITE_BRANCH}\`.`,
       });
 
       shell.echo(`Created a new PR: ${newSnapshotPullRequest.data.html_url}`);
@@ -89,7 +92,9 @@ shell.exec(`git push --force origin ${SNAPSHOT_BRANCH}`);
         owner: `uber`,
         repo: `baseweb`,
         issue_number: BUILDKITE_PULL_REQUEST,
-        body: `👀 Visual changes were found on this branch. Please review the following PR containing updated snapshots: ${newSnapshotPullRequest.data.html_url}.`,
+        body:
+          `👀 Visual changes were found on this branch. ` +
+          `Please review the following PR containing updated snapshots: ${newSnapshotPullRequest.data.html_url}.`,
       });
       shell.echo(`Posted a comment on original PR: ${comment.data.html_url}`);
     } catch (er) {
