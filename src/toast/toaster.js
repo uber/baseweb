@@ -14,6 +14,7 @@ import {
   Root as StyledRoot,
   Body as StyledBody,
   CloseIconSvg as StyledCloseIcon,
+  InnerContainer as StyledInnerContainer,
 } from './styled-components.js';
 import Toast from './toast.js';
 import type {
@@ -30,6 +31,7 @@ export class ToasterContainer extends React.Component<
   ToasterContainerStateT,
 > {
   static defaultProps: ToasterPropsT = {
+    children: null,
     placement: PLACEMENT.top,
     usePortal: true,
     overrides: {},
@@ -121,11 +123,20 @@ export class ToasterContainer extends React.Component<
     const {
       ToastBody: BodyOverride,
       ToastCloseIcon: CloseIconOverride,
+      ToastInnerContainer: InnerContainerOverride,
     } = this.props.overrides;
     const globalToastOverrides = mergeOverrides(
-      {Body: StyledBody, CloseIcon: StyledCloseIcon},
+      {
+        Body: StyledBody,
+        CloseIcon: StyledCloseIcon,
+        InnerContainer: StyledInnerContainer,
+      },
       // $FlowFixMe
-      {Body: BodyOverride, CloseIcon: CloseIconOverride},
+      {
+        Body: BodyOverride,
+        CloseIcon: CloseIconOverride,
+        InnerContainer: InnerContainerOverride,
+      },
     );
     const toastOverrides = mergeOverrides(
       globalToastOverrides,
@@ -180,14 +191,24 @@ export class ToasterContainer extends React.Component<
       // Only render on the browser (portals aren't supported server-side)
       if (this.props.usePortal) {
         if (__BROWSER__) {
-          return ReactDOM.createPortal(
-            root,
-            // $FlowFixMe
-            document.body,
+          return (
+            <>
+              {ReactDOM.createPortal(
+                root,
+                // $FlowFixMe
+                document.body,
+              )}
+              {this.props.children}
+            </>
           );
         }
       } else {
-        return root;
+        return (
+          <>
+            {root}
+            {this.props.children}
+          </>
+        );
       }
     }
     return null;
