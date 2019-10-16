@@ -251,7 +251,7 @@ async function openNewSnapshotPullRequest() {
     const pullRequest = await octokit.pulls.create({
       owner: `uber`,
       repo: `baseweb`,
-      title: `test(vrt): update visual snapshots for ${BUILDKITE_BRANCH} [ci skip]`,
+      title: `test(vrt): update visual snapshots for ${BUILDKITE_BRANCH}`,
       head: SNAPSHOT_BRANCH,
       base: BUILDKITE_BRANCH,
       body:
