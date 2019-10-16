@@ -22,6 +22,7 @@ export const List = styled<SharedStylePropsArgT>('ul', ({$isDragged}) => {
   return ({
     paddingLeft: 0,
     cursor: $isDragged ? 'grabbing' : null,
+    pointerEvents: $isDragged ? 'none' : 'auto',
   }: {});
 });
 List.displayName = 'StyledList';
