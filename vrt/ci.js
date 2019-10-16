@@ -102,6 +102,7 @@ async function updatePullRequests(snapshotPullRequest) {
     _echo(
       `The existing snapshot PR has been updated with the latest snapshot diffs.`,
     );
+    await addCommentToOriginalPullRequest(snapshotPullRequest.number);
   } else {
     const newSnapshotPullRequest = await openNewSnapshotPullRequest();
     await addLabelsToNewPullRequest(newSnapshotPullRequest.number);
