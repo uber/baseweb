@@ -293,7 +293,7 @@ const InnerTableElement = React.forwardRef<
 InnerTableElement.displayName = 'InnerTableElement';
 
 export function Unstable_DataTable(props: Props) {
-  const [, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   useDuplicateColumnTitleWarning(props.columns);
   const [sortIndex, sortDirection, handleSort] = useSortParameters();
   const [filters, setFilters] = React.useState(new Map());
@@ -311,7 +311,7 @@ export function Unstable_DataTable(props: Props) {
     if (recentlyScrolledY) {
       const timeout = setTimeout(() => {
         setRecentlyScrolledY(false);
-      }, 250);
+      }, 400);
       return () => clearTimeout(timeout);
     }
   }, [recentlyScrolledY]);
@@ -580,23 +580,51 @@ export function Unstable_DataTable(props: Props) {
             >
               {CellPlacementMemo}
             </VariableSizeGrid>
-            {rowHoverIndex > 0 && !isScrollingY && (
-              <div
-                style={{
-                  alignItems: 'center',
-                  backgroundColor: 'rgba(41, 216, 240, 0.6)',
-                  // backgroundColor: 'rgba(238, 238, 238, 0.6)',
-                  display: 'flex',
-                  height: '40px',
-                  padding: '0 16px',
-                  top: (rowHoverIndex - 1) * 40 + 48 - scrollTop,
-                  right: '15px',
-                  position: 'absolute',
-                }}
-              >
-                actions
-              </div>
-            )}
+            {props.rowActions &&
+              props.rowActions.length &&
+              rowHoverIndex > 0 &&
+              !isScrollingY && (
+                <div
+                  style={{
+                    alignItems: 'center',
+                    backgroundColor: 'rgba(238, 238, 238, 0.99)',
+                    display: 'flex',
+                    height: '39px',
+                    padding: '0 16px',
+                    paddingLeft: theme.sizing.scale300,
+                    paddingRight: theme.sizing.scale300,
+                    top: (rowHoverIndex - 1) * 40 + 48 - scrollTop,
+                    right: '15px',
+                    position: 'absolute',
+                  }}
+                >
+                  {props.rowActions.map(rowAction => {
+                    const RowActionIcon = rowAction.renderIcon;
+                    return (
+                      <Button
+                        alt="label"
+                        key={rowAction.label}
+                        onClick={event =>
+                          rowAction.onClick({
+                            event,
+                            row: rows[rowHoverIndex - 1],
+                          })
+                        }
+                        size={BUTTON_SIZES.compact}
+                        kind={BUTTON_KINDS.minimal}
+                        shape={BUTTON_SHAPES.round}
+                        overrides={{
+                          BaseButton: {
+                            style: {marginLeft: theme.sizing.scale300},
+                          },
+                        }}
+                      >
+                        <RowActionIcon size={24} />
+                      </Button>
+                    );
+                  })}
+                </div>
+              )}
           </HeaderContext.Provider>
         )}
       </AutoSizer>
