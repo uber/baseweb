@@ -69,7 +69,7 @@ function runWithNoUpdates() {
     log(`No visual changes were detected.`);
   } catch (er) {
     log(`Visual changes were detected.`);
-    process.exit(1);
+    throw er;
   }
 }
 
@@ -84,6 +84,7 @@ async function updateGitHub() {
   if (someSnapshotsWereUpdated()) {
     pushChangesToGitHub();
     await updatePullRequests(snapshotPullRequest);
+    process.exit(1);
   } else {
     await removeSnapshotsWorkFromGitHub(snapshotPullRequest);
     process.exit(0);
@@ -112,7 +113,6 @@ async function updatePullRequests(snapshotPullRequest) {
       `Snapshots on \`${SNAPSHOT_BRANCH}\` must be merged into \`${BUILDKITE_BRANCH}\` before it can be merged into \`master\`.`,
     );
   }
-  process.exit(1);
 }
 
 async function addOriginalAuthorAsReviewer(newSnapshotPullRequestNumber) {
@@ -134,7 +134,7 @@ async function addOriginalAuthorAsReviewer(newSnapshotPullRequestNumber) {
     log(
       `There was an error adding the original PR author as a reviewer for the new snapshot PR.`,
     );
-    log(er);
+    throw er;
   }
 }
 
@@ -148,7 +148,7 @@ async function removeSnapshotBranchFromGitHub() {
     log(`Removed the snapshot branch from GitHub`);
   } catch (er) {
     log(`There was an error removing the snapshot branch from GitHub.`);
-    log(er);
+    throw er;
   }
 }
 
@@ -164,7 +164,7 @@ async function closeSnapshotPullRequest(snapshotPullRequestNumber) {
     log(`Closed the existing snapshot PR.`);
   } catch (er) {
     log(`There was an error closing the existing snapshot PR.`);
-    log(er);
+    throw er;
   }
   await notifyOriginalPullRequestOfClosure(snapshotPullRequestNumber);
 }
@@ -186,7 +186,7 @@ async function notifyOriginalPullRequestOfClosure(snapshotPullRequestNumber) {
     log(
       `There was an error commenting on the original PR about snapshot resolution.`,
     );
-    log(er);
+    throw er;
   }
 }
 
@@ -206,7 +206,7 @@ async function notifySnapshotPullRequestOfClosure(snapshotPullRequestNumber) {
     log(
       `There was an error commenting on the existing snapshot PR about snapshot resolution.`,
     );
-    log(er);
+    throw er;
   }
 }
 
@@ -221,7 +221,7 @@ async function addLabelsToNewPullRequest(newPullRequestNumber) {
     log(`Added labels to new snapshot PR.`);
   } catch (er) {
     log(`There was an error adding labels to new snapshot PR.`);
-    log(er);
+    throw er;
   }
 }
 
@@ -240,7 +240,7 @@ async function addCommentToOriginalPullRequest(newPullRequestNumber) {
     );
   } catch (er) {
     log(`Error creating comment on original PR.`);
-    log(er);
+    throw er;
   }
 }
 
@@ -260,8 +260,7 @@ async function openNewSnapshotPullRequest() {
     return pullRequest.data;
   } catch (er) {
     log(`There was an error creating a new snapshot PR.`);
-    log(er);
-    process.exit(1);
+    throw er;
   }
 }
 
@@ -281,10 +280,10 @@ async function getSnapshotPullRequest() {
       return null;
     }
   } catch (er) {
-    log(`There was an error fetching existing PRs.`);
-    log(`⮑ Could not find an existing snapshot PR.`);
-    log(er);
-    process.exit(1);
+    log(
+      `There was an error fetching existing PRs so could not find an existing snapshot PR.`,
+    );
+    throw er;
   }
 }
 
