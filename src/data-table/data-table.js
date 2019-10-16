@@ -34,11 +34,11 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
 
   let backgroundColor = theme.colors.mono100;
   if (
-    (rowIndex % 2 && columnIndex === data.headerHoverIndex) ||
+    (rowIndex % 2 && columnIndex === data.columnHoverIndex) ||
     rowIndex === data.rowHoverIndex
   ) {
     backgroundColor = theme.colors.mono300;
-  } else if (rowIndex % 2 || columnIndex === data.headerHoverIndex) {
+  } else if (rowIndex % 2 || columnIndex === data.columnHoverIndex) {
     backgroundColor = theme.colors.mono200;
   }
 
@@ -81,7 +81,7 @@ function compareCellPlacement(prevProps, nextProps) {
 
   if (
     prevProps.data.isSelectable === nextProps.data.isSelectable &&
-    prevProps.data.headerHoverIndex === nextProps.data.headerHoverIndex &&
+    prevProps.data.columnHoverIndex === nextProps.data.columnHoverIndex &&
     prevProps.data.rowHoverIndex === nextProps.data.rowHoverIndex
   ) {
     return true;
@@ -92,7 +92,7 @@ function compareCellPlacement(prevProps, nextProps) {
   if (
     prevProps.rowIndex !== prevProps.data.rowHoverIndex &&
     prevProps.rowIndex !== nextProps.data.rowHoverIndex &&
-    prevProps.data.headerHoverIndex === nextProps.data.headerHoverIndex
+    prevProps.data.columnHoverIndex === nextProps.data.columnHoverIndex
   ) {
     return true;
   }
@@ -112,7 +112,7 @@ const CellPlacementMemo = React.memo<
     },
     data: {
       columns: ColumnT<>[],
-      headerHoverIndex: number,
+      columnHoverIndex: number,
       isSelectable: boolean,
       isRowSelected: (string | number) => boolean,
       onRowHover: number => void,
@@ -165,7 +165,7 @@ const HeaderContext = React.createContext<{
   columns: ColumnT<>[],
   filterOpenIndex: number,
   handleSort: number => void,
-  headerHoverIndex: number,
+  columnHoverIndex: number,
   isSelectable: boolean,
   isSelectedAll: boolean,
   isSelectedIndeterminate: boolean,
@@ -184,7 +184,7 @@ const HeaderContext = React.createContext<{
   columns: [],
   filterOpenIndex: -1,
   handleSort: () => {},
-  headerHoverIndex: -1,
+  columnHoverIndex: -1,
   isSelectable: false,
   isSelectedAll: false,
   isSelectedIndeterminate: false,
@@ -253,7 +253,7 @@ const InnerTableElement = React.forwardRef<
                 index={columnIndex}
                 filterable={column.filterable}
                 sortable={column.sortable}
-                isHovered={ctx.headerHoverIndex === columnIndex}
+                isHovered={ctx.columnHoverIndex === columnIndex}
                 isFilterOpen={ctx.filterOpenIndex === columnIndex}
                 onFilterOpen={() => ctx.onFilterOpen(columnIndex)}
                 onFilterClose={() => ctx.onFilterClose()}
@@ -298,11 +298,28 @@ export function Unstable_DataTable(props: Props) {
   const [sortIndex, sortDirection, handleSort] = useSortParameters();
   const [filters, setFilters] = React.useState(new Map());
   const [widths, setWidths] = React.useState(props.columns.map(() => 0));
-  const gridRef = React.useRef<React.Ref<typeof VariableSizeGrid> | null>(null);
+  const gridRef = React.useRef<typeof VariableSizeGrid | null>(null);
+
+  const [scrollTop, setScrollTop] = React.useState(0);
+  const [isScrollingY, setIsScrollingY] = React.useState(false);
+  const [recentlyScrolledY, setRecentlyScrolledY] = React.useState(false);
+  React.useEffect(() => {
+    if (recentlyScrolledY !== isScrollingY) {
+      setIsScrollingY(recentlyScrolledY);
+    }
+
+    if (recentlyScrolledY) {
+      const timeout = setTimeout(() => {
+        setRecentlyScrolledY(false);
+      }, 250);
+      return () => clearTimeout(timeout);
+    }
+  }, [recentlyScrolledY]);
 
   const [rowHoverIndex, setRowHoverIndex] = React.useState(-1);
   const handleRowHover = React.useCallback(
     nextIndex => {
+      setColumnHoverIndex(-1);
       if (nextIndex !== rowHoverIndex) {
         setRowHoverIndex(nextIndex);
       }
@@ -322,16 +339,19 @@ export function Unstable_DataTable(props: Props) {
     setFilterOpenIndex(-1);
   }
 
-  const [headerHoverIndex, setHeaderHoverIndex] = React.useState(-1);
+  const [columnHoverIndex, setColumnHoverIndex] = React.useState(-1);
   function handleColumnHeaderMouseEnter(columnIndex) {
-    setHeaderHoverIndex(columnIndex);
+    setColumnHoverIndex(columnIndex);
     setRowHoverIndex(-1);
     if (columnIndex !== filterOpenIndex) {
       setFilterOpenIndex(-1);
     }
   }
   function handleColumnHeaderMouseLeave() {
-    setHeaderHoverIndex(-1);
+    // $FlowFixMe - unable to get the state type from react-window
+    if (gridRef.current && !gridRef.current.state.isScrolling) {
+      setColumnHoverIndex(-1);
+    }
   }
 
   const sortedIndices = React.useMemo(() => {
@@ -423,7 +443,7 @@ export function Unstable_DataTable(props: Props) {
 
   const itemData = React.useMemo(() => {
     return {
-      headerHoverIndex,
+      columnHoverIndex,
       rowHoverIndex,
       isRowSelected,
       isSelectable,
@@ -435,7 +455,7 @@ export function Unstable_DataTable(props: Props) {
   }, [
     handleRowHover,
     handleRowSelect,
-    headerHoverIndex,
+    columnHoverIndex,
     isRowSelected,
     isSelectable,
     props.columns,
@@ -522,7 +542,7 @@ export function Unstable_DataTable(props: Props) {
               addFilter,
               filterOpenIndex,
               handleSort,
-              headerHoverIndex,
+              columnHoverIndex,
               isSelectable,
               isSelectedAll: !!rows.length && selectedRows.size >= rows.length,
               isSelectedIndeterminate:
@@ -551,9 +571,32 @@ export function Unstable_DataTable(props: Props) {
               rowHeight={rowIndex => (rowIndex === 0 ? 48 : 40)}
               width={width}
               itemData={itemData}
+              onScroll={params => {
+                setScrollTop(params.scrollTop);
+                if (params.scrollTop !== scrollTop) {
+                  setRecentlyScrolledY(true);
+                }
+              }}
             >
               {CellPlacementMemo}
             </VariableSizeGrid>
+            {rowHoverIndex > 0 && !isScrollingY && (
+              <div
+                style={{
+                  alignItems: 'center',
+                  backgroundColor: 'rgba(41, 216, 240, 0.6)',
+                  // backgroundColor: 'rgba(238, 238, 238, 0.6)',
+                  display: 'flex',
+                  height: '40px',
+                  padding: '0 16px',
+                  top: (rowHoverIndex - 1) * 40 + 48 - scrollTop,
+                  right: '15px',
+                  position: 'absolute',
+                }}
+              >
+                actions
+              </div>
+            )}
           </HeaderContext.Provider>
         )}
       </AutoSizer>
