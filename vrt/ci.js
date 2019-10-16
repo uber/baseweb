@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env node */
 
-const shell = require('shelljs');
+const {execSync} = require('child_process');
 const Octokit = require('@octokit/rest');
 
 // Load environment variables
@@ -46,31 +46,31 @@ async function main() {
 }
 
 function installChromium() {
-  _echo(`Add Puppeteer package to trigger Chromium installation script.`);
-  _exec(`yarn add puppeteer`);
+  log(`Add Puppeteer package to trigger Chromium installation script.`);
+  execSync(`yarn add puppeteer`);
 }
 
 function buildWasTriggeredByPR() {
   // This env variable can be a PR number ("1234") or "false"
   const result = BUILDKITE_PULL_REQUEST > 0;
   if (result) {
-    _echo('This build was triggerd by a PR.');
+    log('This build was triggerd by a PR.');
   } else {
-    _echo('This build was not triggered by a PR.');
+    log('This build was not triggered by a PR.');
   }
   return result;
 }
 
 function runWithNoUpdates() {
-  _echo('Running visual snapshot tests with no updates.');
-  _echo(`⮑ We only update tests for PR builds.`);
-  const testResults = _exec(`yarn vrt`);
-  if (testResults.code === 0) {
-    _echo(`No visual changes were detected.`);
-  } else {
-    _echo(`Visual changes were detected.`);
+  log('Running visual snapshot tests with no updates.');
+  log(`⮑ We only update tests for PR builds.`);
+  try {
+    execSync(`yarn vrt`, {stdio: 'inherit'});
+    log(`No visual changes were detected.`);
+  } catch (er) {
+    log(`Visual changes were detected.`);
+    process.exit(1);
   }
-  _exit(testResults.code);
 }
 
 async function runWithUpdates() {
@@ -81,12 +81,12 @@ async function runWithUpdates() {
 
 async function updateGitHub() {
   const snapshotPullRequest = await getSnapshotPullRequest();
-  if (await someSnapshotsWereUpdated()) {
+  if (someSnapshotsWereUpdated()) {
     pushChangesToGitHub();
     await updatePullRequests(snapshotPullRequest);
   } else {
     await removeSnapshotsWorkFromGitHub(snapshotPullRequest);
-    _exit(0);
+    process.exit(0);
   }
 }
 
@@ -99,7 +99,7 @@ async function removeSnapshotsWorkFromGitHub(snapshotPullRequest) {
 
 async function updatePullRequests(snapshotPullRequest) {
   if (snapshotPullRequest) {
-    _echo(
+    log(
       `The existing snapshot PR has been updated with the latest snapshot diffs.`,
     );
     await addCommentToOriginalPullRequest(snapshotPullRequest.number);
@@ -108,11 +108,11 @@ async function updatePullRequests(snapshotPullRequest) {
     await addLabelsToNewPullRequest(newSnapshotPullRequest.number);
     await addCommentToOriginalPullRequest(newSnapshotPullRequest.number);
     await addOriginalAuthorAsReviewer(newSnapshotPullRequest.number);
-    _echo(
+    log(
       `Snapshots on \`${SNAPSHOT_BRANCH}\` must be merged into \`${BUILDKITE_BRANCH}\` before it can be merged into \`master\`.`,
     );
   }
-  _exit(1);
+  process.exit(1);
 }
 
 async function addOriginalAuthorAsReviewer(newSnapshotPullRequestNumber) {
@@ -129,12 +129,12 @@ async function addOriginalAuthorAsReviewer(newSnapshotPullRequestNumber) {
       pull_number: newSnapshotPullRequestNumber,
       reviewers: [author.login],
     });
-    _echo(`Requested review from \`${author.login}\` on new snapshot PR.`);
+    log(`Requested review from \`${author.login}\` on new snapshot PR.`);
   } catch (er) {
-    _echo(
+    log(
       `There was an error adding the original PR author as a reviewer for the new snapshot PR.`,
     );
-    _echo(er);
+    log(er);
   }
 }
 
@@ -145,10 +145,10 @@ async function removeSnapshotBranchFromGitHub() {
       repo: `baseweb`,
       ref: `heads/${SNAPSHOT_BRANCH}`,
     });
-    _echo(`Removed the snapshot branch from GitHub`);
+    log(`Removed the snapshot branch from GitHub`);
   } catch (er) {
-    _echo(`There was an error removing the snapshot branch from GitHub.`);
-    _echo(er);
+    log(`There was an error removing the snapshot branch from GitHub.`);
+    log(er);
   }
 }
 
@@ -161,10 +161,10 @@ async function closeSnapshotPullRequest(snapshotPullRequestNumber) {
       pull_number: snapshotPullRequestNumber,
       state: 'closed',
     });
-    _echo(`Closed the existing snapshot PR.`);
+    log(`Closed the existing snapshot PR.`);
   } catch (er) {
-    _echo(`There was an error closing the existing snapshot PR.`);
-    _echo(er);
+    log(`There was an error closing the existing snapshot PR.`);
+    log(er);
   }
   await notifyOriginalPullRequestOfClosure(snapshotPullRequestNumber);
 }
@@ -179,14 +179,14 @@ async function notifyOriginalPullRequestOfClosure(snapshotPullRequestNumber) {
         `Visual changes have been resolved. #${snapshotPullRequestNumber} has been closed. ` +
         `A new snapshot branch will be created and a new PR will be opened if future commits on \`${BUILDKITE_BRANCH}\` trigger visual changes.`,
     });
-    _echo(
+    log(
       `Posted a comment on original PR about closure of existing snapshot PR.`,
     );
   } catch (er) {
-    _echo(
+    log(
       `There was an error commenting on the original PR about snapshot resolution.`,
     );
-    _echo(er);
+    log(er);
   }
 }
 
@@ -201,14 +201,12 @@ async function notifySnapshotPullRequestOfClosure(snapshotPullRequestNumber) {
         `This PR will be closed and \`${SNAPSHOT_BRANCH}\` will be deleted. ` +
         `A new snapshot branch will be created and a new PR will be opened if future commits on \`${BUILDKITE_BRANCH}\` trigger visual changes.`,
     });
-    _echo(
-      `Posted a comment on snapshot PR about visual resolution and closure.`,
-    );
+    log(`Posted a comment on snapshot PR about visual resolution and closure.`);
   } catch (er) {
-    _echo(
+    log(
       `There was an error commenting on the existing snapshot PR about snapshot resolution.`,
     );
-    _echo(er);
+    log(er);
   }
 }
 
@@ -220,10 +218,10 @@ async function addLabelsToNewPullRequest(newPullRequestNumber) {
       issue_number: newPullRequestNumber,
       labels: [`bugfix`, `ci`],
     });
-    _echo(`Added labels to new snapshot PR.`);
+    log(`Added labels to new snapshot PR.`);
   } catch (er) {
-    _echo(`There was an error adding labels to new snapshot PR.`);
-    _echo(er);
+    log(`There was an error adding labels to new snapshot PR.`);
+    log(er);
   }
 }
 
@@ -237,12 +235,12 @@ async function addCommentToOriginalPullRequest(newPullRequestNumber) {
         `Visual changes were detected on this branch. ` +
         `Please review the following PR containing updated snapshots: #${newPullRequestNumber}`,
     });
-    _echo(
+    log(
       `Posted a comment linking to snapshot PR on original PR: ${comment.data.html_url}`,
     );
   } catch (er) {
-    _echo(`Error creating comment on original PR.`);
-    _echo(er);
+    log(`Error creating comment on original PR.`);
+    log(er);
   }
 }
 
@@ -258,12 +256,12 @@ async function openNewSnapshotPullRequest() {
         `This PR was generated based on visual changes detected in #${BUILDKITE_PULL_REQUEST}. ` +
         `Please verify that the updated snapshots look correct before merging this PR into \`${BUILDKITE_BRANCH}\`.`,
     });
-    _echo(`Created a new snapshot PR: ${pullRequest.data.html_url}`);
+    log(`Created a new snapshot PR: ${pullRequest.data.html_url}`);
     return pullRequest.data;
   } catch (er) {
-    _echo(`There was an error creating a new snapshot PR.`);
-    _echo(er);
-    _exit(1);
+    log(`There was an error creating a new snapshot PR.`);
+    log(er);
+    process.exit(1);
   }
 }
 
@@ -276,76 +274,64 @@ async function getSnapshotPullRequest() {
     });
     const pullRequest = pullRequests.data[0]; // should only ever be one PR
     if (pullRequest) {
-      _echo(`An exisitng snapshot PR was found.`);
+      log(`An exisitng snapshot PR was found.`);
       return pullRequest;
     } else {
-      _echo(`No exisitng snapshot PR was found.`);
+      log(`No exisitng snapshot PR was found.`);
       return null;
     }
   } catch (er) {
-    _echo(`There was an error fetching existing PRs.`);
-    _echo(`⮑ Could not find an existing snapshot PR.`);
-    _echo(er);
-    _exit(1);
+    log(`There was an error fetching existing PRs.`);
+    log(`⮑ Could not find an existing snapshot PR.`);
+    log(er);
+    process.exit(1);
   }
 }
 
 function pushChangesToGitHub() {
-  _echo(
+  log(
     `Creating a new snapshot branch: ${SNAPSHOT_BRANCH}. ` +
       `This will overwrite any existing snapshot branch.`,
   );
-  _exec(`git checkout -b ${SNAPSHOT_BRANCH}`);
-  _exec(`git add vrt/__image_snapshots__/`);
-  _echo(`Commiting updated snapshots to ${SNAPSHOT_BRANCH}.`);
-  _exec(
+  execSync(`git checkout -b ${SNAPSHOT_BRANCH}`);
+  execSync(`git add vrt/__image_snapshots__/`);
+  log(`Commiting updated snapshots to ${SNAPSHOT_BRANCH}.`);
+  execSync(
     `git commit -m "test(vrt): update visual snapshots for ${SHORT_BASE_COMMIT_HASH} [ci skip]"`,
   );
-  _echo(`Force pushing updated snapshot branch to GitHub.`);
-  _exec(`git push --force origin ${SNAPSHOT_BRANCH}`);
+  log(`Force pushing updated snapshot branch to GitHub.`);
+  execSync(`git push --force origin ${SNAPSHOT_BRANCH}`);
 }
 
 function configureGit() {
-  _echo(`Configuring git to allow for pushing new commits & branches.`);
-  _exec(
+  log(`Configuring git to allow for pushing new commits & branches.`);
+  execSync(
     `git config --global url."https://${GITHUB_BOT_AUTH_TOKEN}:@github.com/".insteadOf "https://github.com/"`,
   );
-  _exec(`git config --global user.email ${GITHUB_BOT_EMAIL}`);
-  _exec(`git config --global user.name ${GITHUB_BOT_NAME}`);
+  execSync(`git config --global user.email ${GITHUB_BOT_EMAIL}`);
+  execSync(`git config --global user.name ${GITHUB_BOT_NAME}`);
 }
 
 function runTestsWithUpdates() {
-  _echo(`Running visual snapshot tests with updates.`);
-  _exec(`yarn vrt -u`);
+  log(`Running visual snapshot tests with updates.`);
+  execSync(`yarn vrt -u`);
 }
 
 function someSnapshotsWereUpdated() {
-  return new Promise(resolve => {
-    _exec(`git status --porcelain`, (code, stdout, stderr) => {
-      const changedFiles = stdout.split(`\n`);
-      const updatedSnapshots = changedFiles.filter(s =>
-        s.match(/vrt\/__image_snapshots__\//),
-      );
-      const result = updatedSnapshots.length > 0;
-      if (result) {
-        _echo(`Some snapshots were updated.`);
-      } else {
-        _echo(`No snapshots were updated.`);
-      }
-      resolve(result);
-    });
-  });
+  const stdout = execSync(`git status --porcelain`).toString();
+  const changedFiles = stdout.split(`\n`);
+  const updatedSnapshots = changedFiles.filter(s =>
+    s.match(/vrt\/__image_snapshots__\//),
+  );
+  const result = updatedSnapshots.length > 0;
+  if (result) {
+    log(`Some snapshots were updated.`);
+  } else {
+    log(`No snapshots were updated.`);
+  }
+  return result;
 }
 
-// A few wrappers around shell commands
-function _echo(message) {
-  return shell.echo(`❖ VRT: ${message}`);
-}
-
-function _exec(command, callback) {
-  return shell.exec(command, {silent: true}, callback);
-}
-
-function _exit(code) {
-  return shell.exit(code);
+function log(message) {
+  console.log(`❖ VRT: ${message}`);
 }

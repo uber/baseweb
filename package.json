@@ -173,7 +173,6 @@
     "remove-flow-types-loader": "^1.1.0",
     "screener-storybook": "^0.18.7",
     "semver": "^6.2.0",
-    "shelljs": "^0.8.3",
     "shx": "^0.3.2",
     "static-server": "^2.2.1",
     "storybook-addon-rtl": "^0.2.2",
