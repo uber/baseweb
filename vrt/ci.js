@@ -153,6 +153,7 @@ async function removeSnapshotBranchFromGitHub() {
 }
 
 async function closeSnapshotPullRequest(snapshotPullRequestNumber) {
+  await notifySnapshotPullRequestOfClosure(snapshotPullRequestNumber);
   try {
     await octokit.pulls.update({
       owner: `uber`,
@@ -163,6 +164,50 @@ async function closeSnapshotPullRequest(snapshotPullRequestNumber) {
     _echo(`Closed the existing snapshot PR.`);
   } catch (er) {
     _echo(`There was an error closing the existing snapshot PR.`);
+    _echo(er);
+  }
+  await notifyOriginalPullRequestOfClosure(snapshotPullRequestNumber);
+}
+
+async function notifyOriginalPullRequestOfClosure(snapshotPullRequestNumber) {
+  try {
+    await octokit.issues.createComment({
+      owner: `uber`,
+      repo: `baseweb`,
+      issue_number: BUILDKITE_PULL_REQUEST,
+      body:
+        `Visual changes have been resolved. #${snapshotPullRequestNumber} has been closed. ` +
+        `A new snapshot branch will be created and a new PR will be opened if future commits on \`${BUILDKITE_BRANCH}\` trigger visual changes.`,
+    });
+    _echo(
+      `Posted a comment on original PR about closure of existing snapshot PR.`,
+    );
+  } catch (er) {
+    _echo(
+      `There was an error commenting on the original PR about snapshot resolution.`,
+    );
+    _echo(er);
+  }
+}
+
+async function notifySnapshotPullRequestOfClosure(snapshotPullRequestNumber) {
+  try {
+    await octokit.issues.createComment({
+      owner: `uber`,
+      repo: `baseweb`,
+      issue_number: snapshotPullRequestNumber,
+      body:
+        `Visual changes have been resolved. ` +
+        `This PR will be closed and \`${SNAPSHOT_BRANCH}\` will be deleted. ` +
+        `A new snapshot branch will be created and a new PR will be opened if future commits on \`${BUILDKITE_BRANCH}\` trigger visual changes.`,
+    });
+    _echo(
+      `Posted a comment on snapshot PR about visual resolution and closure.`,
+    );
+  } catch (er) {
+    _echo(
+      `There was an error commenting on the existing snapshot PR about snapshot resolution.`,
+    );
     _echo(er);
   }
 }
