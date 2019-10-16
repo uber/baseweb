@@ -45,15 +45,4 @@ const initialData = [
   },
 ];
 
-export const component = () => (
-  <StatefulTreeView
-    data={initialData}
-    overrides={{
-      IconContainer: {
-        style: {
-          borderStyle: 'none',
-        },
-      },
-    }}
-  />
-);
+export const component = () => <StatefulTreeView data={initialData} />;

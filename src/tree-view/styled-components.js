@@ -9,10 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import {styled} from '../styles/index.js';
 
-import type {StylePropsT} from './types.js';
-
-// $FlowFixMe https://github.com/facebook/flow/issues/7745
-export const StyledTreeItemList = styled<StylePropsT>(
+export const StyledTreeItemList = styled<{$isChildNode?: boolean}>(
   'ul',
   ({$theme, $isChildNode}) => {
     return {
@@ -30,8 +27,7 @@ export const StyledTreeItemList = styled<StylePropsT>(
   },
 );
 
-// $FlowFixMe https://github.com/facebook/flow/issues/7745
-export const StyledTreeItem = styled<StylePropsT>(
+export const StyledTreeItem = styled<{$isLeafNode?: boolean}>(
   'li',
   ({$theme, $isLeafNode}) => {
     return {
@@ -50,8 +46,7 @@ export const StyledTreeItem = styled<StylePropsT>(
   },
 );
 
-// $FlowFixMe https://github.com/facebook/flow/issues/7745
-export const StyledItemContent = styled<StylePropsT>('div', ({$theme}) => {
+export const StyledItemContent = styled<{}>('div', ({$theme}) => {
   return {
     ...$theme.typography.font300,
     alignItems: 'center',
@@ -68,8 +63,7 @@ export const StyledItemContent = styled<StylePropsT>('div', ({$theme}) => {
   };
 });
 
-// $FlowFixMe https://github.com/facebook/flow/issues/7745
-export const StyledIconContainer = styled<StylePropsT>('div', ({$theme}) => {
+export const StyledIconContainer = styled<{}>('div', ({$theme}) => {
   return {
     ...$theme.borders.border600,
     alignItems: 'center',

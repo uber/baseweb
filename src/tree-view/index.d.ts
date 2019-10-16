@@ -2,19 +2,14 @@ import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
 import {Override} from '../overrides';
 
-export interface StyleProps {
-  $isChildNode?: boolean;
-  $isLeafNode?: boolean;
-}
-
-export interface TreeViewOverrides<T> {
-  Root?: Override<T>;
-  TreeItemList?: Override<T>;
-  TreeItem?: Override<T>;
-  TreeItemContent?: Override<T>;
-  IconContainer?: Override<T>;
-  ExpandIcon?: Override<T>;
-  CollapseIcon?: Override<T>;
+export interface TreeViewOverrides {
+  Root?: Override<{}>;
+  TreeItemList?: Override<{$isChildNode?: boolean}>;
+  TreeItem?: Override<{$isLeafNode?: boolean}>;
+  TreeItemContent?: Override<{}>;
+  IconContainer?: Override<{}>;
+  ExpandIcon?: Override<{}>;
+  CollapseIcon?: Override<{}>;
 }
 
 export interface TreeNode {
@@ -28,7 +23,7 @@ export interface TreeNode {
 export interface TreeNodeProps {
   node: TreeNode;
   onToggle?: (node: TreeNode) => void;
-  overrides?: TreeViewOverrides<StyleProps>;
+  overrides?: TreeViewOverrides;
 }
 
 export type StatefulContainerProps = TreeViewProps & {
@@ -38,7 +33,7 @@ export type StatefulContainerProps = TreeViewProps & {
 export interface TreeViewProps {
   data: TreeNode[];
   onToggle?: (node: TreeNode) => void;
-  overrides?: TreeViewOverrides<StyleProps>;
+  overrides?: TreeViewOverrides;
 }
 
 export const Unstable_TreeView: React.FC<TreeViewProps>;

@@ -8,19 +8,14 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 
-export type StylePropsT = {
-  $isChildNode?: boolean,
-  $isLeafNode?: boolean,
-};
-
-export type TreeViewOverridesT<T> = {
-  Root?: OverrideT<T>,
-  TreeItemList?: OverrideT<T>,
-  TreeItem?: OverrideT<T>,
-  TreeItemContent?: OverrideT<T>,
-  IconContainer?: OverrideT<T>,
-  ExpandIcon?: OverrideT<T>,
-  CollapseIcon?: OverrideT<T>,
+export type TreeViewOverridesT = {
+  Root?: OverrideT<{}>,
+  TreeItemList?: OverrideT<{$isChildNode?: boolean}>,
+  TreeItem?: OverrideT<{$isLeafNode?: boolean}>,
+  TreeItemContent?: OverrideT<{}>,
+  IconContainer?: OverrideT<{}>,
+  ExpandIcon?: OverrideT<{}>,
+  CollapseIcon?: OverrideT<{}>,
 };
 
 export type TreeNodeT = {
@@ -35,7 +30,7 @@ export type TreeNodeT = {
 export type TreeNodePropsT = {
   node: TreeNodeT,
   onToggle?: (node: TreeNodeT) => void,
-  overrides?: TreeViewOverridesT<StylePropsT>,
+  overrides?: TreeViewOverridesT,
 };
 
 export type StatefulContainerPropsT = {
@@ -46,5 +41,5 @@ export type StatefulContainerPropsT = {
 export type TreeViewPropsT = {|
   data: TreeNodeT[],
   onToggle?: (node: TreeNodeT) => void,
-  overrides?: TreeViewOverridesT<StylePropsT>,
+  overrides?: TreeViewOverridesT,
 |};
