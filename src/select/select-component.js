@@ -736,7 +736,12 @@ class Select extends React.Component<
         overrides={{
           Svg: {
             component: StyledSelectArrow,
-            ...overrides.SelectArrow,
+            ...(overrides.SelectArrow && overrides.SelectArrow.props
+              ? {props: overrides.SelectArrow.props}
+              : {}),
+            ...(overrides.SelectArrow && overrides.SelectArrow.style
+              ? {style: overrides.SelectArrow.style}
+              : {}),
           },
         }}
         {...sharedProps}
