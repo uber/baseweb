@@ -1,9 +1,5 @@
-// @flow
 import * as React from 'react';
-import {
-  Unstable_TreeView as TreeView,
-  TreeNode,
-} from 'baseui/tree-view';
+import {Unstable_StatefulTreeView as StatefulTreeView} from 'baseui/tree-view';
 import {ChevronRight} from 'baseui/icon';
 import {ChevronDown} from 'baseui/icon';
 
@@ -49,20 +45,9 @@ const initialData = [
 ];
 
 export default function TreeViewOverrides() {
-  const [data, setData] = React.useState(initialData);
-
-  const onToggle = (node: TreeNode) => {
-    setData(prevData => {
-      node.isExpanded = !node.isExpanded;
-      const newData = [...prevData];
-      return newData;
-    });
-  };
-
   return (
-    <TreeView
-      data={data}
-      onToggle={onToggle}
+    <StatefulTreeView
+      data={initialData}
       overrides={{
         IconContainer: {
           style: {

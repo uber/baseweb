@@ -1,7 +1,6 @@
-// @flow
 import * as React from 'react';
 import {
-  Unstable_TreeView as TreeView,
+  Unstable_StatefulTreeView as StatefulTreeView,
   TreeNode,
 } from 'baseui/tree-view';
 import {styled} from 'baseui';
@@ -53,15 +52,5 @@ const initialData = [
 ];
 
 export default function CustomLabelledTreeView() {
-  const [data, setData] = React.useState(initialData);
-
-  const onToggle = (node: TreeNode) => {
-    setData(prevData => {
-      node.isExpanded = !node.isExpanded;
-      const newData = [...prevData];
-      return newData;
-    });
-  };
-
-  return <TreeView data={data} onToggle={onToggle} />;
+  return <StatefulTreeView data={initialData} />;
 }

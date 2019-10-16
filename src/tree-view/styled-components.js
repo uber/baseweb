@@ -31,22 +31,24 @@ export const StyledTreeItemList = styled<StylePropsT>(
 );
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
-export const StyledTreeItem = styled<StylePropsT>('li', ({$theme}) => {
-  return {
-    cursor: 'pointer',
-    marginTop: 0,
-    marginBottom: 0,
-    marginLeft: 0,
-    marginRight: 0,
-    minHeight: $theme.sizing.scale800,
-    overflow: 'auto',
-    paddingTop: $theme.sizing.scale300,
-    paddingBottom: 0,
-    paddingLeft: 0,
-    paddingRight: 0,
-    position: 'relative',
-  };
-});
+export const StyledTreeItem = styled<StylePropsT>(
+  'li',
+  ({$theme, $isLeafNode}) => {
+    return {
+      cursor: $isLeafNode ? 'auto' : 'pointer',
+      marginTop: 0,
+      marginBottom: 0,
+      marginLeft: 0,
+      marginRight: 0,
+      overflow: 'auto',
+      paddingTop: 0,
+      paddingBottom: 0,
+      paddingLeft: 0,
+      paddingRight: 0,
+      position: 'relative',
+    };
+  },
+);
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const StyledItemContent = styled<StylePropsT>('div', ({$theme}) => {
@@ -58,8 +60,11 @@ export const StyledItemContent = styled<StylePropsT>('div', ({$theme}) => {
     display: 'flex',
     marginTop: 0,
     marginBottom: 0,
-    marginLeft: $theme.sizing.scale1200,
+    marginLeft: 0,
     marginRight: 0,
+    ':hover': {
+      backgroundColor: $theme.colors.mono300,
+    },
   };
 });
 
@@ -70,11 +75,9 @@ export const StyledIconContainer = styled<StylePropsT>('div', ({$theme}) => {
     alignItems: 'center',
     display: 'flex',
     justifyContent: 'center',
-    left: $theme.sizing.scale800,
     marginTop: 0,
     marginBottom: 0,
     marginLeft: 0,
-    marginRight: $theme.sizing.scale300,
-    position: 'absolute',
+    marginRight: $theme.sizing.scale200,
   };
 });

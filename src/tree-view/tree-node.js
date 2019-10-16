@@ -14,9 +14,9 @@ import PlusIcon from '../icon/plus.js';
 import {
   StyledIconContainer,
   StyledItemContent,
+  StyledTreeItemList,
   StyledTreeItem,
 } from './styled-components.js';
-import TreeView from './tree-view.js';
 import type {TreeNodePropsT} from './types.js';
 
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
@@ -34,12 +34,15 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
     const {children, isExpanded, label} = node;
     const hasChildren = children && children.length !== 0;
     const {
+      TreeItemList: TreeItemListOverride,
       TreeItem: TreeItemOverride,
       TreeItemContent: TreeItemContentOverride,
       IconContainer: IconContainerOverride,
       ExpandIcon: ExapandIconOverride,
       CollapseIcon: CollapseIconOverride,
     } = overrides;
+    const TreeItemList =
+      getOverride(TreeItemListOverride) || StyledTreeItemList;
     const TreeItem = getOverride(TreeItemOverride) || StyledTreeItem;
     const TreeItemContent =
       getOverride(TreeItemContentOverride) || StyledItemContent;
@@ -50,8 +53,9 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
       getOverride(CollapseIconOverride) || CheckIndeterminateIcon;
     return (
       <TreeItem
-        role={hasChildren ? 'treeitem' : 'none'}
+        role="treeitem"
         aria-expanded={isExpanded ? true : false}
+        $isLeafNode={!hasChildren}
         {...getOverrideProps(TreeItemOverride)}
       >
         <TreeItemContent
@@ -70,12 +74,20 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
           {typeof label === 'function' ? label(node) : label}
         </TreeItemContent>
         {children && isExpanded && (
-          <TreeView
-            data={children}
-            onToggle={onToggle}
-            overrides={overrides}
-            isChildNode={true}
-          />
+          <TreeItemList
+            role="group"
+            $isChildNode={true}
+            {...getOverrideProps(TreeItemListOverride)}
+          >
+            {children.map((node, index) => (
+              <TreeNode
+                key={index}
+                node={node}
+                onToggle={onToggle}
+                overrides={overrides}
+              />
+            ))}
+          </TreeItemList>
         )}
       </TreeItem>
     );
