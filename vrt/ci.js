@@ -216,7 +216,7 @@ async function addLabelsToNewPullRequest(newPullRequestNumber) {
       owner: `uber`,
       repo: `baseweb`,
       issue_number: newPullRequestNumber,
-      labels: [`bugfix`, `ci`],
+      labels: [`bugfix`, `ci`, `update-snapshots`],
     });
     log(`Added labels to new snapshot PR.`);
   } catch (er) {
