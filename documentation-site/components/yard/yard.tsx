@@ -12,6 +12,12 @@ import copy from 'copy-to-clipboard';
 import {trackEvent} from '../../helpers/ga';
 import debounce from 'lodash/debounce';
 
+// code sandbox stuff
+//@ts-ignore
+import CodeSandboxer from 'react-codesandboxer';
+import {version} from '../../../package.json';
+import {codesandboxIndexCode} from '../const';
+
 // transformations, code generation
 import {transformBeforeCompilation} from './ast';
 import {getCode, formatCode} from './code-generator';
@@ -331,6 +337,31 @@ const Yard: React.FC<
         >
           Reset
         </Button>
+        <CodeSandboxer
+          key="js"
+          examplePath="/example.js"
+          example={state.code}
+          providedFiles={{
+            'index.js': {
+              content: codesandboxIndexCode,
+            },
+          }}
+          template="create-react-app"
+          name={componentName}
+          dependencies={{
+            baseui: version,
+            react: '16.8.6',
+            'react-dom': '16.8.6',
+            'react-scripts': '3.0.1',
+            'styletron-engine-atomic': '1.4.0',
+            'styletron-react': '5.2.0',
+          }}
+          children={() => (
+            <Button kind={KIND.secondary} size={SIZE.compact}>
+              CodeSandbox
+            </Button>
+          )}
+        />
       </ButtonGroup>
       <Beta />
     </React.Fragment>
