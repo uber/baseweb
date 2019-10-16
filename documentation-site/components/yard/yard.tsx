@@ -15,7 +15,9 @@ import debounce from 'lodash/debounce';
 // code sandbox stuff
 //@ts-ignore
 import CodeSandboxer from 'react-codesandboxer';
+//@ts-ignore
 import {version} from '../../../package.json';
+//@ts-ignore
 import {codesandboxIndexCode} from '../const';
 
 // transformations, code generation
