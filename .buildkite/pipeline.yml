@@ -17,8 +17,6 @@ steps:
         image-repository: 027047743804.dkr.ecr.us-east-2.amazonaws.com/uber
     agents:
       queue: builders
-    concurrency: 1
-    concurrency_group: 'e2e-and-vrt-test-server'
   # Wait until all images are built.
   # This way we can download the built image from a registry instead of building each for each test task.
   - wait
