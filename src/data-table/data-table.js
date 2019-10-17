@@ -293,7 +293,7 @@ const InnerTableElement = React.forwardRef<
 InnerTableElement.displayName = 'InnerTableElement';
 
 export function Unstable_DataTable(props: Props) {
-  const [css, theme] = useStyletron();
+  const [, theme] = useStyletron();
   useDuplicateColumnTitleWarning(props.columns);
   const [sortIndex, sortDirection, handleSort] = useSortParameters();
   const [filters, setFilters] = React.useState(new Map());
@@ -602,7 +602,7 @@ export function Unstable_DataTable(props: Props) {
                     const RowActionIcon = rowAction.renderIcon;
                     return (
                       <Button
-                        alt="label"
+                        alt={rowAction.label}
                         key={rowAction.label}
                         onClick={event =>
                           rowAction.onClick({

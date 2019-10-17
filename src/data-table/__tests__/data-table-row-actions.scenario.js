@@ -8,14 +8,10 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {useStyletron} from '../../styles/index.js';
-
-import BooleanColumn from '../column-boolean.js';
 import CategoricalColumn from '../column-categorical.js';
-import CustomColumn from '../column-custom.js';
 import NumericalColumn from '../column-numerical.js';
 import StringColumn from '../column-string.js';
-import {COLUMNS, NUMERICAL_FORMATS} from '../constants.js';
+import {NUMERICAL_FORMATS} from '../constants.js';
 import {Unstable_DataTable} from '../data-table.js';
 
 import {ArrowUp} from '../../icon/index.js';
@@ -72,18 +68,40 @@ const rows = [
   ['Zookeeper', 'Romantic Comedy', 80, 170, 2.1, 5.0],
 ].map(r => ({id: r[0], data: r}));
 
-const rowActions = [
-  {label: 'hello', onClick: ({row}) => console.log(row), renderIcon: ArrowUp},
-];
-
 export const component = () => {
+  const [selected, setSelected] = React.useState([]);
+
+  const rowActions = [
+    {
+      label: 'row-action-label-one',
+      onClick: ({row}) => {
+        setSelected([...selected, row.id]);
+      },
+      renderIcon: ArrowUp,
+    },
+    {
+      label: 'row-action-label-two',
+      onClick: ({row}) => {
+        setSelected([...selected, row.id]);
+      },
+      renderIcon: ArrowUp,
+    },
+  ];
+
   return (
-    <div style={{height: '500px', width: '1100px'}}>
-      <Unstable_DataTable
-        columns={columns}
-        rows={rows}
-        rowActions={rowActions}
-      />
+    <div>
+      <div style={{height: '500px', width: '400px'}}>
+        <Unstable_DataTable
+          columns={columns}
+          rows={rows}
+          rowActions={rowActions}
+        />
+      </div>
+      <ul id="clicked-rows">
+        {selected.map(r => (
+          <li key={r}>{r}</li>
+        ))}
+      </ul>
     </div>
   );
 };
