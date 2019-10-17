@@ -318,7 +318,7 @@ function handleError() {
   // Fail the CI job if an error propagates to this level
   // Any non critical function should handle error and log a useful message
   // Basically everything other than the test results and pushing a new branch is non critical (PR/Comments/Labels/Reviewers)
-  log(`Visual regression tests failed.`);
+  log(`The job has failed, but it is not a failure.`);
   process.exit(1);
 }
 
