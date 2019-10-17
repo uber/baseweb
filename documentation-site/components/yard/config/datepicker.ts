@@ -47,7 +47,7 @@ const DatepickerConfig: TConfig = {
       propHook: {
         // yikes, onChange can return Date, [Date] or [Date, Date] and we need to handle
         // them all
-        what: `Array.isArray(date) && date.length === 2 ? 
+        what: `Array.isArray(date) && date.length === 2 ?
     "[new Date('" + date[0].toISOString() + "'), new Date('" + date[1].toISOString() + "')]"
   : (Array.isArray(date) ? "[new Date('" + date[0].toISOString() + "')]" : "[new Date('" + date.toISOString() + "')]")`,
         into: 'value',
@@ -71,6 +71,20 @@ const DatepickerConfig: TConfig = {
       type: PropTypes.Boolean,
       description:
         'Display select for quickly choosing date ranges. range must be true as well.',
+    },
+    formatString: {
+      value: undefined,
+      type: PropTypes.String,
+      description: 'String format passed to date-fns.',
+      placeholder: 'yyyy/MM/dd',
+      hidden: true,
+    },
+    mask: {
+      value: undefined,
+      type: PropTypes.String,
+      description: 'Mask used for the text input. Passed to react-input-mask.',
+      placeholder: '9999/99/99',
+      hidden: true,
     },
     quickSelectOptions: {
       value: undefined,
