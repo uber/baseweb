@@ -42,6 +42,10 @@ describe('visual regression tests', () => {
         try {
           image = await root.screenshot();
         } catch (er) {
+          console.log(
+            `Could not take a snapshot of root element. Please update snapshot config.`,
+          );
+          console.log(er);
           image = await page.screenshot({fullPage: true});
         }
       }
@@ -88,6 +92,10 @@ describe('visual regression tests', () => {
             try {
               image = await root.screenshot();
             } catch (er) {
+              console.log(
+                `Could not take a snapshot of root element. Please update snapshot config.`,
+              );
+              console.log(er);
               image = await page.screenshot({fullPage: true});
             }
           }
