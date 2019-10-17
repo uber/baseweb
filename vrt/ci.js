@@ -248,7 +248,7 @@ async function openNewSnapshotPullRequest() {
     const pullRequest = await octokit.pulls.create({
       owner: `uber`,
       repo: `baseweb`,
-      title: `test(vrt): update visual snapshots for ${BUILDKITE_BRANCH}`,
+      title: `test(vrt): update visual snapshots for ${BUILDKITE_BRANCH} [skip ci]`,
       head: SNAPSHOT_BRANCH,
       base: BUILDKITE_BRANCH,
       body:
@@ -293,7 +293,7 @@ function pushChangesToGitHub() {
   execSync(`git add vrt/__image_snapshots__/`);
   log(`Commiting updated snapshots to ${SNAPSHOT_BRANCH}.`);
   execSync(
-    `git commit -m "test(vrt): update visual snapshots for ${SHORT_BASE_COMMIT_HASH} [skip ci]"`,
+    `git commit -m "test(vrt): update visual snapshots for ${SHORT_BASE_COMMIT_HASH}"`,
   );
   log(`Force pushing updated snapshot branch to GitHub.`);
   execSync(`git push --force origin ${SNAPSHOT_BRANCH}`);
