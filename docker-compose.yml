@@ -9,7 +9,9 @@ services:
     expose:
       - 8080
     ports:
-      - '8080:8080'
+      - '8080:${E2E_SERVER_PORT}'
+    environment:
+      - E2E_SERVER_PORT
     healthcheck:
       test:
         [
