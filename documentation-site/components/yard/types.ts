@@ -1,5 +1,6 @@
 import {PropTypes} from './const';
 import {Action} from './const';
+import * as t from 'babel-types';
 
 export type TDispatch = (value: {type: Action; payload: any}) => void;
 
@@ -8,10 +9,17 @@ export type TThemeDiff = {
   themeName: string;
 };
 
-export type TPropHook = {
-  what: string;
-  into: string;
-};
+type TPropHookFn = (params: {
+  getYardOnChange: (what: string, into: string) => t.CallExpression;
+  fnBodyAppend: (path: any, callExpression: t.CallExpression) => void;
+}) => any;
+
+export type TPropHook =
+  | {
+      what: string;
+      into: string;
+    }
+  | TPropHookFn;
 
 export type TImportsConfig = {
   [key: string]: {

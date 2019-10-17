@@ -12,6 +12,14 @@ import copy from 'copy-to-clipboard';
 import {trackEvent} from '../../helpers/ga';
 import debounce from 'lodash/debounce';
 
+// code sandbox stuff
+//@ts-ignore
+import CodeSandboxer from 'react-codesandboxer';
+//@ts-ignore
+import {version} from '../../../package.json';
+//@ts-ignore
+import {codesandboxIndexCode} from '../const';
+
 // transformations, code generation
 import {transformBeforeCompilation} from './ast';
 import {getCode, formatCode} from './code-generator';
@@ -57,6 +65,7 @@ const Yard: React.FC<
     placeholderElement: React.FC;
     pathname: string;
     urlCode?: string;
+    queryStringName?: string;
   }
 > = ({
   componentName,
@@ -68,6 +77,7 @@ const Yard: React.FC<
   placeholderElement,
   pathname,
   urlCode,
+  queryStringName,
 }) => {
   const [, theme] = useStyletron();
   const [hydrated, setHydrated] = React.useState(false);
@@ -119,7 +129,7 @@ const Yard: React.FC<
         getComponentThemeFromContext(theme, themeConfig),
       );
       if (state.code !== newCode) {
-        updateUrl(pathname, newCode);
+        updateUrl({pathname, code: newCode, queryStringName});
       }
     }
   }, [theme.name]);
@@ -128,7 +138,7 @@ const Yard: React.FC<
   // "propHook" this way we can get notified when the internal
   // state of previewed component is changed by user
   const __yard_onChange = debounce(
-    (componentName: string, propName: string, propValue: TPropValue) => {
+    (propValue: TPropValue, propName: string) => {
       !hydrated && setHydrated(true);
       const newCode = getCode(
         buildPropsObj(state.props, {[propName]: propValue}),
@@ -137,7 +147,7 @@ const Yard: React.FC<
         importsConfig,
       );
       updatePropsAndCodeNoRecompile(dispatch, newCode, propName, propValue);
-      updateUrl(pathname, newCode);
+      updateUrl({pathname, code: newCode, queryStringName});
     },
     200,
   );
@@ -190,7 +200,7 @@ const Yard: React.FC<
                 );
                 setError({where: '', msg: null});
                 updatePropsAndCode(dispatch, newCode, propName, propValue);
-                updateUrl(pathname, newCode);
+                updateUrl({pathname, code: newCode, queryStringName});
               } catch (e) {
                 updateProps(dispatch, propName, propValue);
                 setError({where: propName, msg: e.toString()});
@@ -219,7 +229,7 @@ const Yard: React.FC<
                   );
                   setError({where: '', msg: null});
                   updatePropsAndCode(dispatch, newCode, propName, propValue);
-                  updateUrl(pathname, newCode);
+                  updateUrl({pathname, code: newCode, queryStringName});
                 } catch (e) {
                   updateProps(dispatch, propName, propValue);
                   setError({where: propName, msg: e.toString()});
@@ -251,7 +261,7 @@ const Yard: React.FC<
                   importsConfig,
                 );
                 updateThemeAndCode(dispatch, newCode, updatedThemeValues);
-                updateUrl(pathname, newCode);
+                updateUrl({pathname, code: newCode, queryStringName});
               }}
             />
           </YardTab>
@@ -262,7 +272,7 @@ const Yard: React.FC<
         onChange={newCode => {
           try {
             updateAll(dispatch, newCode, componentName, propsConfig);
-            updateUrl(pathname, newCode);
+            updateUrl({pathname, code: newCode, queryStringName});
           } catch (e) {
             updateCode(dispatch, newCode);
           }
@@ -324,11 +334,36 @@ const Yard: React.FC<
               propsConfig,
               initialThemeObj,
             );
-            updateUrl(pathname);
+            updateUrl({pathname});
           }}
         >
           Reset
         </Button>
+        <CodeSandboxer
+          key="js"
+          examplePath="/example.js"
+          example={state.code}
+          providedFiles={{
+            'index.js': {
+              content: codesandboxIndexCode,
+            },
+          }}
+          template="create-react-app"
+          name={componentName}
+          dependencies={{
+            baseui: version,
+            react: '16.8.6',
+            'react-dom': '16.8.6',
+            'react-scripts': '3.0.1',
+            'styletron-engine-atomic': '1.4.0',
+            'styletron-react': '5.2.0',
+          }}
+          children={() => (
+            <Button kind={KIND.secondary} size={SIZE.compact}>
+              CodeSandbox
+            </Button>
+          )}
+        />
       </ButtonGroup>
       <Beta />
     </React.Fragment>
