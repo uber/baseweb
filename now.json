@@ -6,8 +6,5 @@
       "use": "@now/static-build",
       "config": {"distDir": "public"}
     }
-  ],
-  "github": {
-    "silent": true
-  }
+  ]
 }
