@@ -56,9 +56,9 @@ function buildWasTriggeredByPR() {
   // This env variable can be a PR number ("1234") or "false"
   const result = BUILDKITE_PULL_REQUEST > 0;
   if (result) {
-    log('This build was triggerd by a PR.');
+    log(`This build was triggerd by a PR.`);
   } else {
-    log('This build was not triggered by a PR.');
+    log(`This build was not triggered by a PR.`);
   }
   return result;
 }
