@@ -32,21 +32,16 @@ const octokit = Octokit({
 
 //
 
-main();
+main().catch(handleError);
 
 //
 
 async function main() {
-  try {
-    installChromium();
-    if (buildWasTriggeredByPR()) {
-      await runWithUpdates();
-    } else {
-      runWithNoUpdates();
-    }
-  } catch (er) {
-    log(`A wild Error appears!`);
-    process.exit(1);
+  installChromium();
+  if (buildWasTriggeredByPR()) {
+    await runWithUpdates();
+  } else {
+    runWithNoUpdates();
   }
 }
 
@@ -337,6 +332,12 @@ function someSnapshotsWereUpdated() {
     log(`No snapshots were updated.`);
   }
   return result;
+}
+
+function handleError(er) {
+  log(`A wild Error appears!`);
+  log(er);
+  process.exit(1);
 }
 
 function log(message) {
