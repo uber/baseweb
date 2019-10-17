@@ -30,6 +30,11 @@ describe('visual regression tests', () => {
     it(scenarioName, async () => {
       const root = await prepare(page, scenarioName);
 
+      // TEST CODE - SHOULD BE REMOVED BEFORE MERGE
+      if (scenarioName === 'button') {
+        throw new Error(`TEST ERROR`);
+      }
+
       let image;
       if (selector) {
         const elementHandle = page.$(selector);
