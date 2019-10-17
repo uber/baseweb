@@ -319,7 +319,7 @@ function handleError(er) {
   // Any non critical function should handle error and log a useful message
   // Basically everything other than the test results and pushing a new branch is non critical (PR/Comments/Labels/Reviewers)
   log(`The job has failed, but it is not a failure.`);
-  throw er;
+  process.exit(1);
 }
 
 function log(message) {
