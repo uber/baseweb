@@ -293,7 +293,7 @@ function pushChangesToGitHub() {
   execSync(`git add vrt/__image_snapshots__/`);
   log(`Commiting updated snapshots to ${SNAPSHOT_BRANCH}.`);
   execSync(
-    `git commit -m "test(vrt): update visual snapshots for ${SHORT_BASE_COMMIT_HASH} [ci skip]"`,
+    `git commit -m "test(vrt): update visual snapshots for ${SHORT_BASE_COMMIT_HASH} [skip ci]"`,
   );
   log(`Force pushing updated snapshot branch to GitHub.`);
   execSync(`git push --force origin ${SNAPSHOT_BRANCH}`);
