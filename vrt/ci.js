@@ -32,7 +32,7 @@ const octokit = Octokit({
 
 //
 
-main().catch(handleError);
+main();
 
 //
 

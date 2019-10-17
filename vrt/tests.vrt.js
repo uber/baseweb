@@ -122,6 +122,10 @@ describe('visual regression tests', () => {
 });
 
 async function testState({selector, fullPage, root, scenarioName}) {
+  // REMOVE BEFORE MERGE
+  if (scenarioName === 'button') {
+    throw new Error('TEST FAILURE!');
+  }
   let image;
   if (selector) {
     const elementHandle = page.$(selector);
