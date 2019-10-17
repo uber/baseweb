@@ -37,7 +37,13 @@ describe('visual regression tests', () => {
       } else if (fullPage) {
         image = await page.screenshot({fullPage: true});
       } else {
-        image = await root.screenshot();
+        // sometimes the root node will have a height of 0
+        // in this case, fallback to taking a picture of the entire page
+        try {
+          image = await root.screenshot();
+        } catch (er) {
+          image = await page.screenshot({fullPage: true});
+        }
       }
 
       expect(image).toMatchImageSnapshot({
@@ -77,7 +83,13 @@ describe('visual regression tests', () => {
           } else if (_fullPage) {
             image = await page.screenshot({fullPage: true});
           } else {
-            image = await root.screenshot();
+            // sometimes the root node will have a height of 0
+            // in this case, fallback to taking a picture of the entire page
+            try {
+              image = await root.screenshot();
+            } catch (er) {
+              image = await page.screenshot({fullPage: true});
+            }
           }
 
           expect(image).toMatchImageSnapshot({
