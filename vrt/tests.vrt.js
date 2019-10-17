@@ -22,7 +22,7 @@ expect.extend({toMatchImageSnapshot});
 
 describe('visual regression tests', () => {
   getAllScenarioNames().forEach(scenarioName => {
-    let {fullPage = false, interactions = [], selector = null, skip = false} =
+    const {fullPage = false, interactions = [], selector = null, skip = false} =
       config[scenarioName] || {};
 
     if (skip) return;
@@ -41,7 +41,7 @@ describe('visual regression tests', () => {
       });
     });
 
-    let mobileScenarioName = `${scenarioName}--mobile`;
+    const mobileScenarioName = `${scenarioName}--mobile`;
 
     it(mobileScenarioName, async () => {
       const root = await prepare({
@@ -61,10 +61,16 @@ describe('visual regression tests', () => {
     if (interactions.length > 0) {
       interactions.forEach(interaction => {
         const testName = `${scenarioName}__${interaction.name}`;
-        fullPage = Object.prototype.hasOwnProperty.call(interaction, 'fullPage')
+        const fullPage = Object.prototype.hasOwnProperty.call(
+          interaction,
+          'fullPage',
+        )
           ? interaction.fullPage
           : fullPage;
-        selector = Object.prototype.hasOwnProperty.call(interaction, 'selector')
+        const selector = Object.prototype.hasOwnProperty.call(
+          interaction,
+          'selector',
+        )
           ? interaction.selector
           : selector;
 
@@ -140,6 +146,11 @@ async function prepare({page, scenarioName, isMobile}) {
     await page.setViewport({
       width: 375,
       height: 812,
+    });
+  } else {
+    await page.setViewport({
+      width: 1024,
+      height: 768,
     });
   }
 
