@@ -2354,8 +2354,10 @@ exports[`Select component renders component in select mode and false for multipl
                           overrides={
                             Object {
                               "Svg": Object {
-                                "$$typeof": Symbol(react.forward_ref),
-                                "render": [Function],
+                                "component": Object {
+                                  "$$typeof": Symbol(react.forward_ref),
+                                  "render": [Function],
+                                },
                               },
                             }
                           }
@@ -2380,8 +2382,10 @@ exports[`Select component renders component in select mode and false for multipl
                             overrides={
                               Object {
                                 "Svg": Object {
-                                  "$$typeof": Symbol(react.forward_ref),
-                                  "render": [Function],
+                                  "component": Object {
+                                    "$$typeof": Symbol(react.forward_ref),
+                                    "render": [Function],
+                                  },
                                 },
                               }
                             }
@@ -3184,8 +3188,10 @@ exports[`Select component renders component in select mode and true for multiple
                           overrides={
                             Object {
                               "Svg": Object {
-                                "$$typeof": Symbol(react.forward_ref),
-                                "render": [Function],
+                                "component": Object {
+                                  "$$typeof": Symbol(react.forward_ref),
+                                  "render": [Function],
+                                },
                               },
                             }
                           }
@@ -3210,8 +3216,10 @@ exports[`Select component renders component in select mode and true for multiple
                             overrides={
                               Object {
                                 "Svg": Object {
-                                  "$$typeof": Symbol(react.forward_ref),
-                                  "render": [Function],
+                                  "component": Object {
+                                    "$$typeof": Symbol(react.forward_ref),
+                                    "render": [Function],
+                                  },
                                 },
                               }
                             }
