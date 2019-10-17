@@ -273,10 +273,10 @@ async function getSnapshotPullRequest() {
     });
     const pullRequest = pullRequests.data[0]; // should only ever be one PR
     if (pullRequest) {
-      log(`An exisitng snapshot PR was found.`);
+      log(`An existing snapshot PR was found.`);
       return pullRequest;
     } else {
-      log(`No exisitng snapshot PR was found.`);
+      log(`No existing snapshot PR was found.`);
       return null;
     }
   } catch (er) {
