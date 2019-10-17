@@ -22,6 +22,7 @@ import PencilIcon from './pencil-icon';
 import Routes from '../routes';
 import DirectionContext from '../components/direction-context';
 import ComponentSizes from '../../component-sizes.json';
+import Help from './help';
 
 const GH_URL =
   'https://github.com/uber/baseweb/edit/master/documentation-site/pages';
@@ -231,6 +232,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
               </TOCWrapper>
             </Block>
             <Footer />
+            <Help />
           </React.Fragment>
         )}
       </DirectionContext.Consumer>
