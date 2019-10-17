@@ -39,9 +39,11 @@ main().catch(handleError);
 async function main() {
   installChromium();
   if (buildWasTriggeredByPR()) {
-    await runWithUpdates();
+    configureGit();
+    runTestsWithUpdates();
+    await updateGitHub();
   } else {
-    runWithNoUpdates();
+    runTestsWithNoUpdates();
   }
 }
 
@@ -61,22 +63,23 @@ function buildWasTriggeredByPR() {
   return result;
 }
 
-function runWithNoUpdates() {
-  log('Running visual snapshot tests with no updates.');
-  log(`⮑ We only update tests for PR builds.`);
-  try {
-    execSync(`yarn vrt`, {stdio: 'inherit'});
-    log(`No visual changes were detected.`);
-  } catch (er) {
-    log(`Visual changes were detected.`);
-    throw er;
-  }
+function configureGit() {
+  log(`Configuring git to allow for pushing new commits & branches.`);
+  execSync(
+    `git config --global url."https://${GITHUB_BOT_AUTH_TOKEN}:@github.com/".insteadOf "https://github.com/"`,
+  );
+  execSync(`git config --global user.email ${GITHUB_BOT_EMAIL}`);
+  execSync(`git config --global user.name ${GITHUB_BOT_NAME}`);
 }
 
-async function runWithUpdates() {
-  configureGit();
-  runTestsWithUpdates();
-  await updateGitHub();
+function runTestsWithUpdates() {
+  log(`Running visual snapshot tests with updates.`);
+  execSync(`yarn vrt -u`, {stdio: 'inherit'});
+}
+
+function runTestsWithNoUpdates() {
+  log(`Running visual snapshot tests with no updates.`);
+  execSync(`yarn vrt`, {stdio: 'inherit'});
 }
 
 async function updateGitHub() {
@@ -137,7 +140,6 @@ async function addOriginalAuthorAsReviewer(newSnapshotPullRequestNumber) {
     log(
       `There was an error adding the original PR author as a reviewer for the new snapshot PR.`,
     );
-    throw er;
   }
 }
 
@@ -151,7 +153,6 @@ async function removeSnapshotBranchFromGitHub() {
     log(`Removed the snapshot branch from GitHub`);
   } catch (er) {
     log(`There was an error removing the snapshot branch from GitHub.`);
-    throw er;
   }
 }
 
@@ -167,7 +168,6 @@ async function closeSnapshotPullRequest(snapshotPullRequestNumber) {
     log(`Closed the existing snapshot PR.`);
   } catch (er) {
     log(`There was an error closing the existing snapshot PR.`);
-    throw er;
   }
   await notifyOriginalPullRequestOfClosure(snapshotPullRequestNumber);
 }
@@ -189,7 +189,6 @@ async function notifyOriginalPullRequestOfClosure(snapshotPullRequestNumber) {
     log(
       `There was an error commenting on the original PR about snapshot resolution.`,
     );
-    throw er;
   }
 }
 
@@ -209,7 +208,6 @@ async function notifySnapshotPullRequestOfClosure(snapshotPullRequestNumber) {
     log(
       `There was an error commenting on the existing snapshot PR about snapshot resolution.`,
     );
-    throw er;
   }
 }
 
@@ -224,7 +222,6 @@ async function addLabelsToNewPullRequest(newPullRequestNumber) {
     log(`Added labels to new snapshot PR.`);
   } catch (er) {
     log(`There was an error adding labels to new snapshot PR.`);
-    throw er;
   }
 }
 
@@ -243,7 +240,6 @@ async function addCommentToOriginalPullRequest(newPullRequestNumber) {
     );
   } catch (er) {
     log(`Error creating comment on original PR.`);
-    throw er;
   }
 }
 
@@ -263,7 +259,6 @@ async function openNewSnapshotPullRequest() {
     return pullRequest.data;
   } catch (er) {
     log(`There was an error creating a new snapshot PR.`);
-    throw er;
   }
 }
 
@@ -286,7 +281,6 @@ async function getSnapshotPullRequest() {
     log(
       `There was an error fetching existing PRs so could not find an existing snapshot PR.`,
     );
-    throw er;
   }
 }
 
@@ -305,20 +299,6 @@ function pushChangesToGitHub() {
   execSync(`git push --force origin ${SNAPSHOT_BRANCH}`);
 }
 
-function configureGit() {
-  log(`Configuring git to allow for pushing new commits & branches.`);
-  execSync(
-    `git config --global url."https://${GITHUB_BOT_AUTH_TOKEN}:@github.com/".insteadOf "https://github.com/"`,
-  );
-  execSync(`git config --global user.email ${GITHUB_BOT_EMAIL}`);
-  execSync(`git config --global user.name ${GITHUB_BOT_NAME}`);
-}
-
-function runTestsWithUpdates() {
-  log(`Running visual snapshot tests with updates.`);
-  execSync(`yarn vrt -u`);
-}
-
 function someSnapshotsWereUpdated() {
   const stdout = execSync(`git status --porcelain`).toString();
   const changedFiles = stdout.split(`\n`);
@@ -334,9 +314,11 @@ function someSnapshotsWereUpdated() {
   return result;
 }
 
-function handleError(er) {
-  log(`A wild Error appears!`);
-  log(er);
+function handleError() {
+  // Fail the CI job if an error propagates to this level
+  // Any non critical function should handle error and log a useful message
+  // Basically everything other than the test results and pushing a new branch is non critical (PR/Comments/Labels/Reviewers)
+  log(`Visual regression tests failed.`);
   process.exit(1);
 }
 
