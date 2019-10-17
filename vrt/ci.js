@@ -95,6 +95,8 @@ async function removeSnapshotsWorkFromGitHub(snapshotPullRequest) {
   if (snapshotPullRequest) {
     await closeSnapshotPullRequest(snapshotPullRequest.number);
     await removeSnapshotBranchFromGitHub();
+  } else {
+    log(`Nothing to clean up.`);
   }
 }
 
