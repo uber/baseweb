@@ -37,11 +37,16 @@ main();
 //
 
 async function main() {
-  installChromium();
-  if (buildWasTriggeredByPR()) {
-    await runWithUpdates();
-  } else {
-    runWithNoUpdates();
+  try {
+    installChromium();
+    if (buildWasTriggeredByPR()) {
+      await runWithUpdates();
+    } else {
+      runWithNoUpdates();
+    }
+  } catch (er) {
+    log(`A wild Error appears!`);
+    process.exit(1);
   }
 }
 
@@ -84,10 +89,11 @@ async function updateGitHub() {
   if (someSnapshotsWereUpdated()) {
     pushChangesToGitHub();
     await updatePullRequests(snapshotPullRequest);
-    process.exit(1);
+    throw new Error(
+      `Generated snapshots do not match currently checked in snapshots.`,
+    );
   } else {
     await removeSnapshotsWorkFromGitHub(snapshotPullRequest);
-    process.exit(0);
   }
 }
 
