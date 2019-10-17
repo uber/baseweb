@@ -21,6 +21,9 @@ const Help = () => {
         boxShadow: theme.lighting.shadow400,
         padding: theme.sizing.scale400,
         backgroundColor: theme.colors.background,
+        [`@media screen and (max-width: ${theme.breakpoints.medium}px`]: {
+          display: 'none',
+        },
       })}
     >
       <Label3
@@ -42,6 +45,7 @@ const Help = () => {
           Join our{' '}
           <a
             target="_blank"
+            rel="noopener noreferrer"
             href="https://join.slack.com/t/baseui/shared_invite/enQtNDI0NTgwMjU0NDUyLWQ0M2RhZWNiMDAwNDA4MDFiOWQyNmViODNkMzFmZDczYzM4MDliNjU3MmZhYWE5YjZhZmJjZWY0MDIxZjdkYzE"
           >
             Slack channel
@@ -49,6 +53,7 @@ const Help = () => {
           , or open a{' '}
           <a
             target="_blank"
+            rel="noopener noreferrer"
             href="https://github.com/uber/baseweb/issues/new/choose"
           >
             GitHub issue
