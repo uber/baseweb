@@ -105,8 +105,8 @@ steps:
           - e2e-server-healthy
     agents:
       queue: builders
-  - name: ':visual-regression-tests:'
-    command: yarn add puppeteer && yarn vrt
+  - name: 'Visual regression tests'
+    command: yarn vrt:ci
     plugins:
       'docker-compose#v3.0.3':
         run: e2e-test
