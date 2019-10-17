@@ -11,7 +11,7 @@ import memoize from 'memoize-one';
 import {LocaleContext} from '../locale/index.js';
 import {ThemeContext} from '../styles/theme-provider.js';
 import {Select as BaseSelect} from '../select/index.js';
-import {Button, StyledBaseButton, KIND} from '../button/index.js';
+import {Button, KIND} from '../button/index.js';
 import {
   StyledRoot,
   StyledMaxLabel,
@@ -89,14 +89,6 @@ export default class Pagination extends React.PureComponent<PaginationPropsT> {
     const {overrides = {}, currentPage, labels, numPages} = this.props;
 
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
-    const [PrevButton, prevButtonProps] = getOverrides(
-      overrides.PrevButton,
-      StyledBaseButton,
-    );
-    const [NextButton, nextButtonProps] = getOverrides(
-      overrides.NextButton,
-      StyledBaseButton,
-    );
     const [MaxLabel, maxLabelProps] = getOverrides(
       overrides.MaxLabel,
       StyledMaxLabel,
@@ -135,9 +127,8 @@ export default class Pagination extends React.PureComponent<PaginationPropsT> {
                   }}
                   kind={KIND.tertiary}
                   overrides={{
-                    BaseButton: PrevButton,
+                    BaseButton: overrides.PrevButton,
                   }}
-                  {...prevButtonProps}
                 >
                   {labels && labels.prevButton
                     ? labels.prevButton
@@ -226,9 +217,8 @@ export default class Pagination extends React.PureComponent<PaginationPropsT> {
                   }}
                   kind={KIND.tertiary}
                   overrides={{
-                    BaseButton: NextButton,
+                    BaseButton: overrides.NextButton,
                   }}
-                  {...nextButtonProps}
                 >
                   {labels && labels.nextButton
                     ? labels.nextButton
