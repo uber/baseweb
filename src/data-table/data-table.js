@@ -86,7 +86,8 @@ function compareCellPlacement(prevProps, nextProps) {
     prevProps.data.isSelectable === nextProps.data.isSelectable &&
     prevProps.data.isRowSelected === nextProps.data.isRowSelected &&
     prevProps.data.headerHoverIndex === nextProps.data.headerHoverIndex &&
-    prevProps.data.rowHoverIndex === nextProps.data.rowHoverIndex
+    prevProps.data.rowHoverIndex === nextProps.data.rowHoverIndex &&
+    prevProps.data.textQuery === nextProps.data.textQuery
   ) {
     return true;
   }
