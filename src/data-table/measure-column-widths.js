@@ -124,7 +124,18 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
     height: 0,
   });
 
-  if (measurementCount === finishedMeasurementCount) {
+  const [shouldMeasure, setShouldMeasure] = React.useState(true);
+  React.useEffect(() => {
+    if (measurementCount.current >= finishedMeasurementCount) {
+      setShouldMeasure(false);
+    } else {
+      if (!shouldMeasure) {
+        setShouldMeasure(true);
+      }
+    }
+  }, [measurementCount.current, finishedMeasurementCount]);
+
+  if (!shouldMeasure) {
     return null;
   }
 
