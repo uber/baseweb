@@ -10,6 +10,7 @@ import * as React from 'react';
 
 import CellShell from './cell-shell.js';
 import {COLUMNS} from './constants.js';
+import {HighlightCellText} from './text-search.js';
 import type {ColumnT} from './types.js';
 
 type OptionsT = {|
@@ -35,7 +36,11 @@ const StringCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
       isSelected={props.isSelected}
       onSelect={props.onSelect}
     >
-      {props.value}
+      {props.textQuery ? (
+        <HighlightCellText text={props.value} query={props.textQuery} />
+      ) : (
+        props.value
+      )}
     </CellShell>
   );
 });

@@ -18,6 +18,7 @@ import CellShell from './cell-shell.js';
 import {COLUMNS} from './constants.js';
 import type {ColumnT} from './types.js';
 import FilterShell from './filter-shell.js';
+import {matchesQuery, splitByQuery, HighlightCellText} from './text-search.js';
 
 type OptionsT = {|
   title: string,
@@ -103,10 +104,6 @@ const StyledHighlightLabel = withStyle(StyledLabel, props => {
   return style;
 });
 
-function matchesQuery(category, query) {
-  return category.toLowerCase().includes(query.toLowerCase());
-}
-
 function HighlightCheckboxLabel(props) {
   const {children, ...restProps} = props;
 
@@ -114,7 +111,7 @@ function HighlightCheckboxLabel(props) {
     return <StyledLabel {...restProps}>{children}</StyledLabel>;
   }
 
-  return children.split(new RegExp(`(${props.query})`, 'i')).map((el, i) => {
+  return splitByQuery(children, props.query).map((el, i) => {
     if (matchesQuery(el, props.query)) {
       return (
         <StyledHighlightLabel {...restProps} key={i} $isFirst={!i} $isActive>
@@ -232,7 +229,11 @@ const CategoricalCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
       isSelected={props.isSelected}
       onSelect={props.onSelect}
     >
-      {props.value}
+      {props.textQuery ? (
+        <HighlightCellText text={props.value} query={props.textQuery} />
+      ) : (
+        props.value
+      )}
     </CellShell>
   );
 });

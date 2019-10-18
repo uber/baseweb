@@ -61,6 +61,7 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
             : undefined
         }
         isSelected={data.isRowSelected(id)}
+        textQuery={data.textQuery}
       />
     </div>
   );
@@ -489,6 +490,7 @@ export function Unstable_DataTable(props: Props) {
               rowHeight={rowIndex => (rowIndex === 0 ? 48 : 40)}
               width={width}
               itemData={{
+                textQuery,
                 isRowSelected: id => selectedRows.has(id),
                 isSelectable,
                 onSelect: id => {

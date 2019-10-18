@@ -31,6 +31,7 @@ export type ColumnT<ValueT = any, FilterParamsT = any> = {|
     isMeasured?: boolean,
     isSelected?: boolean,
     onSelect?: () => void,
+    textQuery?: string,
   }>,
   renderFilter: React.ComponentType<{|
     data: ValueT[],
