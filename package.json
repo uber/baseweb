@@ -45,7 +45,6 @@
     "vrt:docker:run": "docker-compose run e2e-test bash -c 'yarn add puppeteer && yarn vrt'",
     "vrt:docker:update": "docker-compose run e2e-test bash -c 'yarn add puppeteer && yarn vrt -u'",
     "vrt:ci": "node ./vrt/ci.js",
-    "vrt:serve": "static-server e2e/dist --port 8081",
     "icon:generate": "node ./src/icon/build-icons.js",
     "thumbs:generate": "svgr --template ./documentation-site/components/thumbs/template.js --replace-attr-values \"#F6F6F6={props.colors[0]}\" --replace-attr-values \"#E2E2E2={props.colors[1]}\" --replace-attr-values \"#CBCBCB={props.colors[2]}\" -d ./documentation-site/components/thumbs/components ./documentation-site/components/thumbs/svg",
     "install": "node -e \"console.log('If you are using Webpack, please make sure to update to version ^4.32.0, as this Base Web version depends on a webpack fix delivered in that version. If you are using Fusion.js make sure to upgrade fusion-cli to ^2.4.2 as it has the Webpack upgrade.')\"",

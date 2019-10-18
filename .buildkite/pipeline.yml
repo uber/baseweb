@@ -17,16 +17,6 @@ steps:
         image-repository: 027047743804.dkr.ecr.us-east-2.amazonaws.com/uber
     agents:
       queue: builders
-  - name: ':docker: :package: vrt'
-    plugins:
-      'docker-compose#v3.0.3':
-        build:
-          - vrt-test
-          - vrt-server
-          - vrt-server-healthy
-        image-repository: 027047743804.dkr.ecr.us-east-2.amazonaws.com/uber
-    agents:
-      queue: builders
   # Wait until all images are built.
   # This way we can download the built image from a registry instead of building each for each test task.
   - wait
@@ -101,10 +91,10 @@ steps:
         run: baseui
     agents:
       queue: workers
-  - name: ':puppeteer:'
+  - name: ':e2e:'
     # we have to install puppeteer here to trigger the install.js script
     # and also to make sure we do not add this to the released build artifact
-    command: yarn add puppeteer && yarn e2e:test:ci
+    command: yarn add puppeteer && yarn e2e:test:ci && yarn vrt:ci
     artifact_paths:
       - '__artifacts__/*.png'
     plugins:
@@ -115,15 +105,3 @@ steps:
           - e2e-server-healthy
     agents:
       queue: builders
-  - name: 'Visual regression tests'
-    command: PORT=8081 yarn vrt:ci
-    plugins:
-      'docker-compose#v3.0.3':
-        run: vrt-test
-        pull:
-          - vrt-server
-          - vrt-server-healthy
-    agents:
-      queue: builders
-    artifact_paths:
-      - '__artifacts__/*.png'
