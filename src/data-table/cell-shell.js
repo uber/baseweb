@@ -29,6 +29,7 @@ const CellShell = React.forwardRef<PropsT, HTMLDivElement>((props, ref) => {
         display: props.isMeasured ? 'inline-block' : null,
         paddingLeft: theme.sizing.scale600,
         paddingRight: theme.sizing.scale600,
+        whiteSpace: 'pre',
         width: props.isMeasured ? null : '100%',
       })}
     >
