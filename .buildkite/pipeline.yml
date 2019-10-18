@@ -56,13 +56,6 @@ steps:
         run: baseui
     agents:
       queue: workers
-  - name: ':screener:'
-    command: yarn remove screener-storybook && yarn add screener-storybook && yarn storybook:screener:ci
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers
   - name: ':fossa:'
     command: 'curl https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | bash && fossa'
     plugins:

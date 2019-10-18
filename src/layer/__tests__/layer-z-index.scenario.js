@@ -15,9 +15,6 @@ import {
 import {Block} from '../../block/index.js';
 import {Button} from '../../button/index.js';
 
-// eslint-disable-next-line import/extensions
-import Screener, {Steps} from 'screener-storybook/src/screener';
-
 export const name = 'layer-z-index';
 
 function BlockComponent(props) {
@@ -188,23 +185,4 @@ class Example extends React.Component<
   }
 }
 
-export const component = () => {
-  const btnZIndex = '[data-test="zindex-btn"]';
-  const btnNoZIndex = '[data-test="no-zindex-btn"]';
-  const layerZIndex = '[data-test="zindex-layer"]';
-  const layerNoZIndex = '[data-test="no-zindex-layer"]';
-  return (
-    <Screener
-      steps={new Steps()
-        .wait(btnZIndex)
-        .click(btnZIndex)
-        .wait(layerZIndex)
-        .click(btnNoZIndex)
-        .wait(layerNoZIndex)
-        .snapshot('Layers with and no z-index')
-        .end()}
-    >
-      <Example />
-    </Screener>
-  );
-};
+export const component = () => <Example />;
