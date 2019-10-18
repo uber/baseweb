@@ -20,8 +20,22 @@ const toMatchImageSnapshot = configureToMatchImageSnapshot({
 
 expect.extend({toMatchImageSnapshot});
 
+const allScenarios = [
+  ...getAllScenarioNames().map(scenarioName => ({
+    scenarioName,
+    theme: 'light',
+  })),
+  // remove rtl from dark theme checks
+  ...getAllScenarioNames()
+    .filter(scenarioName => !scenarioName.includes('rtl'))
+    .map(scenarioName => ({
+      scenarioName,
+      theme: 'dark',
+    })),
+];
+
 describe('visual regression tests', () => {
-  getAllScenarioNames().forEach(scenarioName => {
+  allScenarios.forEach(({scenarioName, theme}) => {
     const {fullPage = false, interactions = [], selector = null, skip = false} =
       config[scenarioName] || {};
 
@@ -31,6 +45,7 @@ describe('visual regression tests', () => {
       const root = await prepare({
         page,
         scenarioName,
+        theme,
       });
 
       await testState({
@@ -38,25 +53,30 @@ describe('visual regression tests', () => {
         fullPage,
         root,
         scenarioName,
+        theme,
       });
     });
 
     const mobileScenarioName = `${scenarioName}--mobile`;
 
-    it(mobileScenarioName, async () => {
-      const root = await prepare({
-        page,
-        scenarioName,
-        isMobile: true,
-      });
+    if (theme === 'light') {
+      it(mobileScenarioName, async () => {
+        const root = await prepare({
+          page,
+          scenarioName,
+          isMobile: true,
+          theme,
+        });
 
-      await testState({
-        selector,
-        fullPage,
-        root,
-        scenarioName: mobileScenarioName,
+        await testState({
+          selector,
+          fullPage,
+          root,
+          scenarioName: mobileScenarioName,
+          theme,
+        });
       });
-    });
+    }
 
     if (interactions.length > 0) {
       interactions.forEach(interaction => {
@@ -78,6 +98,7 @@ describe('visual regression tests', () => {
           const root = await prepare({
             page,
             scenarioName,
+            theme,
           });
 
           // run interaction script
@@ -91,37 +112,42 @@ describe('visual regression tests', () => {
             fullPage,
             root,
             scenarioName: testName,
+            theme,
           });
         });
 
         const mobileScenarioName = `${testName}--mobile`;
 
-        it(mobileScenarioName, async () => {
-          const root = await prepare({
-            page,
-            scenarioName,
-            isMobile: true,
+        if (theme === 'light') {
+          it(mobileScenarioName, async () => {
+            const root = await prepare({
+              page,
+              scenarioName,
+              isMobile: true,
+              theme,
+            });
+
+            // run interaction script
+            await interaction.behavior(page);
+
+            // let things settle down
+            await page.waitFor(500);
+
+            await testState({
+              selector,
+              fullPage,
+              root,
+              scenarioName: testName,
+              theme,
+            });
           });
-
-          // run interaction script
-          await interaction.behavior(page);
-
-          // let things settle down
-          await page.waitFor(500);
-
-          await testState({
-            selector,
-            fullPage,
-            root,
-            scenarioName: testName,
-          });
-        });
+        }
       });
     }
   });
 });
 
-async function testState({selector, fullPage, root, scenarioName}) {
+async function testState({selector, fullPage, root, scenarioName, theme}) {
   let image;
   if (selector) {
     const elementHandle = page.$(selector);
@@ -143,13 +169,15 @@ async function testState({selector, fullPage, root, scenarioName}) {
   }
 
   expect(image).toMatchImageSnapshot({
-    customSnapshotIdentifier: scenarioName,
+    customSnapshotIdentifier: `${scenarioName}${
+      theme === 'dark' ? '--dark' : ''
+    }`,
   });
 }
 
-async function prepare({page, scenarioName, isMobile}) {
+async function prepare({page, scenarioName, isMobile, theme}) {
   // load page
-  await mount(page, scenarioName);
+  await mount(page, scenarioName, theme);
 
   // set viewport for mobile - iPhone X
   if (isMobile) {

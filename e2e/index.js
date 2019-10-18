@@ -14,14 +14,18 @@ import tests from './tests.js';
 
 import {Provider as StyletronProvider} from 'styletron-react';
 import {Client as Styletron} from 'styletron-engine-atomic';
-import {LightTheme} from '../src/themes/index.js';
+import {LightTheme, DarkTheme} from '../src/themes/index.js';
 import BaseProvider from '../src/helpers/base-provider.js';
 
 window.E2E_TEST = true;
 const engine = new Styletron();
+const urlParams = new URLSearchParams(window.location.search);
+const theme = urlParams.get('theme');
 const app = (
   <StyletronProvider value={engine}>
-    <BaseProvider theme={LightTheme}>{tests()}</BaseProvider>
+    <BaseProvider theme={theme === 'dark' ? DarkTheme : LightTheme}>
+      {tests()}
+    </BaseProvider>
   </StyletronProvider>
 );
 
