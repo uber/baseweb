@@ -8,14 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {useStyletron} from '../../styles/index.js';
-
-import BooleanColumn from '../column-boolean.js';
 import CategoricalColumn from '../column-categorical.js';
-import CustomColumn from '../column-custom.js';
-import NumericalColumn from '../column-numerical.js';
 import StringColumn from '../column-string.js';
-import {COLUMNS, NUMERICAL_FORMATS} from '../constants.js';
 import {Unstable_DataTable} from '../data-table.js';
 
 import AnimalData from './animal-data.js';

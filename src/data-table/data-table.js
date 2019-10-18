@@ -252,17 +252,19 @@ function QueryInput(props) {
     <div className={css({maxWidth: '375px'})}>
       <Input
         overrides={{
-          Before: () => (
-            <div
-              className={css({
-                display: 'flex',
-                alignItems: 'center',
-                paddingLeft: theme.sizing.scale500,
-              })}
-            >
-              <Search size="18px" />
-            </div>
-          ),
+          Before: function Before() {
+            return (
+              <div
+                className={css({
+                  display: 'flex',
+                  alignItems: 'center',
+                  paddingLeft: theme.sizing.scale500,
+                })}
+              >
+                <Search size="18px" />
+              </div>
+            );
+          },
         }}
         onChange={event => setValue(event.target.value)}
         value={value}
