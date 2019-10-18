@@ -74,13 +74,18 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
   );
 }
 function compareCellPlacement(prevProps, nextProps) {
-  if (prevProps.data.columns !== nextProps.data.columns) return false;
   // no need to re-render column header cells on data changes
   if (prevProps.rowIndex === 0) {
     return true;
   }
 
-  if (prevProps.data.rows !== nextProps.data.rows) return false;
+  if (
+    prevProps.data.columns !== nextProps.data.columns ||
+    prevProps.data.rows !== nextProps.data.rows ||
+    prevProps.style !== nextProps.style
+  ) {
+    return false;
+  }
 
   if (
     prevProps.data.isSelectable === nextProps.data.isSelectable &&
