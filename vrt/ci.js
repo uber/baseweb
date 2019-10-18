@@ -30,16 +30,15 @@ const octokit = Octokit({
   auth: GITHUB_BOT_AUTH_TOKEN,
 });
 
-//
-main();
-
 process.on('unhandledRejection', function(err) {
-  console.log(err);
+  log(`The job has failed, but it is not a failure.`);
   throw err;
 });
-//
+
+main();
 
 async function main() {
+  if (!buildIsValid()) return;
   installChromium();
   if (buildWasTriggeredByPR()) {
     configureGit();
@@ -47,6 +46,16 @@ async function main() {
     await updateGitHub();
   } else {
     runTestsWithNoUpdates();
+  }
+}
+
+function buildIsValid() {
+  if (BUILDKITE_BRANCH.endsWith(`--vrt`)) {
+    log(`This build was somehow triggered from a snapshot update branch!`);
+    log(`This should not happen! Check the logs! Exiting early.`);
+    return false;
+  } else {
+    return true;
   }
 }
 
