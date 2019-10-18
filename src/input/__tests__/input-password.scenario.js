@@ -8,45 +8,33 @@ LICENSE file in the root directory of this source tree.
 /* global window */
 
 import React from 'react';
-// eslint-disable-next-line import/extensions
-import Screener, {Steps} from 'screener-storybook/src/screener';
 import {StatefulInput} from '../index.js';
 
 export const name = 'input-password';
 
-export const component = () => {
-  const toggleSelector = `[data-e2e="mask-toggle"]`;
-  const steps = new Steps()
-    .wait(toggleSelector)
-    .click(toggleSelector)
-    .snapshot('Input with password masking toggle')
-    .end();
-  return (
-    <form
-      onSubmit={event => {
-        event.preventDefault();
-        window.__e2e__formSubmitted__ = true;
-        return false;
+export const component = () => (
+  <form
+    onSubmit={event => {
+      event.preventDefault();
+      window.__e2e__formSubmitted__ = true;
+      return false;
+    }}
+  >
+    <StatefulInput
+      type="password"
+      initialState={{value: '1234'}}
+      overrides={{
+        Input: {
+          props: {
+            'data-e2e': 'input',
+          },
+        },
+        MaskToggleButton: {
+          props: {
+            'data-e2e': 'mask-toggle',
+          },
+        },
       }}
-    >
-      <Screener steps={steps}>
-        <StatefulInput
-          type="password"
-          initialState={{value: '1234'}}
-          overrides={{
-            Input: {
-              props: {
-                'data-e2e': 'input',
-              },
-            },
-            MaskToggleButton: {
-              props: {
-                'data-e2e': 'mask-toggle',
-              },
-            },
-          }}
-        />
-      </Screener>
-    </form>
-  );
-};
+    />
+  </form>
+);

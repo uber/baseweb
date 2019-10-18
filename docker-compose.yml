@@ -67,7 +67,6 @@ services:
       - BUILDKITE_COMMIT
       - BUILDKITE_MESSAGE
       - GITHUB_AUTH_TOKEN
-      - SCREENER_API_KEY
       - ZEIT_NOW_TOKEN
       - FOSSA_API_KEY
       - CF_ZONE_ID
