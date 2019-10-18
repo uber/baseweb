@@ -32,7 +32,7 @@ const octokit = Octokit({
 
 //
 
-main();
+main().catch(handleError);
 
 process.on('unhandledRejection', function(err) {
   console.log(err);
@@ -44,9 +44,11 @@ process.on('unhandledRejection', function(err) {
 async function main() {
   installChromium();
   if (buildWasTriggeredByPR()) {
-    await runWithUpdates();
+    configureGit();
+    runTestsWithUpdates();
+    await updateGitHub();
   } else {
-    runWithNoUpdates();
+    runTestsWithNoUpdates();
   }
 }
 
@@ -59,29 +61,30 @@ function buildWasTriggeredByPR() {
   // This env variable can be a PR number ("1234") or "false"
   const result = BUILDKITE_PULL_REQUEST > 0;
   if (result) {
-    log('This build was triggerd by a PR.');
+    log(`This build was triggerd by a PR.`);
   } else {
-    log('This build was not triggered by a PR.');
+    log(`This build was not triggered by a PR.`);
   }
   return result;
 }
 
-function runWithNoUpdates() {
-  log('Running visual snapshot tests with no updates.');
-  log(`⮑ We only update tests for PR builds.`);
-  try {
-    execSync(`yarn vrt`, {stdio: 'inherit'});
-    log(`No visual changes were detected.`);
-  } catch (er) {
-    log(`Visual changes were detected.`);
-    throw er;
-  }
+function configureGit() {
+  log(`Configuring git to allow for pushing new commits & branches.`);
+  execSync(
+    `git config --global url."https://${GITHUB_BOT_AUTH_TOKEN}:@github.com/".insteadOf "https://github.com/"`,
+  );
+  execSync(`git config --global user.email ${GITHUB_BOT_EMAIL}`);
+  execSync(`git config --global user.name ${GITHUB_BOT_NAME}`);
 }
 
-async function runWithUpdates() {
-  configureGit();
-  runTestsWithUpdates();
-  await updateGitHub();
+function runTestsWithUpdates() {
+  log(`Running visual snapshot tests with updates.`);
+  execSync(`yarn vrt -u`, {stdio: 'inherit'});
+}
+
+function runTestsWithNoUpdates() {
+  log(`Running visual snapshot tests with no updates.`);
+  execSync(`yarn vrt`, {stdio: 'inherit'});
 }
 
 async function updateGitHub() {
@@ -89,10 +92,11 @@ async function updateGitHub() {
   if (someSnapshotsWereUpdated()) {
     pushChangesToGitHub();
     await updatePullRequests(snapshotPullRequest);
-    process.exit(1);
+    throw new Error(
+      `Generated snapshots do not match currently checked in snapshots.`,
+    );
   } else {
     await removeSnapshotsWorkFromGitHub(snapshotPullRequest);
-    process.exit(0);
   }
 }
 
@@ -141,7 +145,6 @@ async function addOriginalAuthorAsReviewer(newSnapshotPullRequestNumber) {
     log(
       `There was an error adding the original PR author as a reviewer for the new snapshot PR.`,
     );
-    throw er;
   }
 }
 
@@ -155,7 +158,6 @@ async function removeSnapshotBranchFromGitHub() {
     log(`Removed the snapshot branch from GitHub`);
   } catch (er) {
     log(`There was an error removing the snapshot branch from GitHub.`);
-    throw er;
   }
 }
 
@@ -171,7 +173,6 @@ async function closeSnapshotPullRequest(snapshotPullRequestNumber) {
     log(`Closed the existing snapshot PR.`);
   } catch (er) {
     log(`There was an error closing the existing snapshot PR.`);
-    throw er;
   }
   await notifyOriginalPullRequestOfClosure(snapshotPullRequestNumber);
 }
@@ -193,7 +194,6 @@ async function notifyOriginalPullRequestOfClosure(snapshotPullRequestNumber) {
     log(
       `There was an error commenting on the original PR about snapshot resolution.`,
     );
-    throw er;
   }
 }
 
@@ -213,7 +213,6 @@ async function notifySnapshotPullRequestOfClosure(snapshotPullRequestNumber) {
     log(
       `There was an error commenting on the existing snapshot PR about snapshot resolution.`,
     );
-    throw er;
   }
 }
 
@@ -228,7 +227,6 @@ async function addLabelsToNewPullRequest(newPullRequestNumber) {
     log(`Added labels to new snapshot PR.`);
   } catch (er) {
     log(`There was an error adding labels to new snapshot PR.`);
-    throw er;
   }
 }
 
@@ -247,7 +245,6 @@ async function addCommentToOriginalPullRequest(newPullRequestNumber) {
     );
   } catch (er) {
     log(`Error creating comment on original PR.`);
-    throw er;
   }
 }
 
@@ -256,7 +253,7 @@ async function openNewSnapshotPullRequest() {
     const pullRequest = await octokit.pulls.create({
       owner: `uber`,
       repo: `baseweb`,
-      title: `test(vrt): update visual snapshots for ${BUILDKITE_BRANCH}`,
+      title: `test(vrt): update visual snapshots for ${BUILDKITE_BRANCH} [skip ci]`,
       head: SNAPSHOT_BRANCH,
       base: BUILDKITE_BRANCH,
       body:
@@ -267,7 +264,6 @@ async function openNewSnapshotPullRequest() {
     return pullRequest.data;
   } catch (er) {
     log(`There was an error creating a new snapshot PR.`);
-    throw er;
   }
 }
 
@@ -290,7 +286,6 @@ async function getSnapshotPullRequest() {
     log(
       `There was an error fetching existing PRs so could not find an existing snapshot PR.`,
     );
-    throw er;
   }
 }
 
@@ -303,24 +298,10 @@ function pushChangesToGitHub() {
   execSync(`git add vrt/__image_snapshots__/`);
   log(`Commiting updated snapshots to ${SNAPSHOT_BRANCH}.`);
   execSync(
-    `git commit -m "test(vrt): update visual snapshots for ${SHORT_BASE_COMMIT_HASH} [ci skip]"`,
+    `git commit -m "test(vrt): update visual snapshots for ${SHORT_BASE_COMMIT_HASH} [skip ci]"`,
   );
   log(`Force pushing updated snapshot branch to GitHub.`);
   execSync(`git push --force origin ${SNAPSHOT_BRANCH}`);
-}
-
-function configureGit() {
-  log(`Configuring git to allow for pushing new commits & branches.`);
-  execSync(
-    `git config --global url."https://${GITHUB_BOT_AUTH_TOKEN}:@github.com/".insteadOf "https://github.com/"`,
-  );
-  execSync(`git config --global user.email ${GITHUB_BOT_EMAIL}`);
-  execSync(`git config --global user.name ${GITHUB_BOT_NAME}`);
-}
-
-function runTestsWithUpdates() {
-  log(`Running visual snapshot tests with updates.`);
-  execSync(`yarn vrt -u`);
 }
 
 function someSnapshotsWereUpdated() {
@@ -336,6 +317,14 @@ function someSnapshotsWereUpdated() {
     log(`No snapshots were updated.`);
   }
   return result;
+}
+
+function handleError(er) {
+  // Fail the CI job if an error propagates to this level
+  // Any non critical function should handle error and log a useful message
+  // Basically everything other than the test results and pushing a new branch is non critical (PR/Comments/Labels/Reviewers)
+  log(`The job has failed, but it is not a failure.`);
+  process.exit(1);
 }
 
 function log(message) {
