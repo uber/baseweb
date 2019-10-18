@@ -34,6 +34,11 @@ const octokit = Octokit({
 
 main();
 
+process.on('unhandledRejection', function(err) {
+  console.log(err);
+  throw err;
+});
+
 //
 
 async function main() {

@@ -20,8 +20,13 @@ const toMatchImageSnapshot = configureToMatchImageSnapshot({
 
 expect.extend({toMatchImageSnapshot});
 
+const allScenarios = [
+  ...getAllScenarioNames(),
+  ...getAllScenarioNames().map(scenarioName => `${scenarioName}-dark`),
+];
+
 describe('visual regression tests', () => {
-  getAllScenarioNames().forEach(scenarioName => {
+  allScenarios.forEach(scenarioName => {
     const {fullPage = false, interactions = [], selector = null, skip = false} =
       config[scenarioName] || {};
 
