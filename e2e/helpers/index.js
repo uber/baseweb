@@ -37,7 +37,7 @@ function getPuppeteerUrl(name, theme) {
   });
 }
 
-async function mount(page, scenarioName) {
+async function mount(page, scenarioName, theme) {
   // replicate console events into terminal
   page.on('console', msg => {
     for (let i = 0; i < msg.args().length; ++i) {
@@ -46,12 +46,7 @@ async function mount(page, scenarioName) {
     }
   });
 
-  await page.goto(
-    getPuppeteerUrl(
-      scenarioName,
-      scenarioName.includes('dark') ? 'dark' : 'light',
-    ),
-  );
+  await page.goto(getPuppeteerUrl(scenarioName, theme));
 }
 
 async function analyzeAccessibility(page, options = {rules: []}) {
