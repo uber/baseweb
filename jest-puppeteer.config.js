@@ -21,7 +21,9 @@ module.exports = {
   },
   browserContext: 'default',
   tests: {
-    url: process.env.PUPPETEER_TARGET_URL || 'http://localhost:8080',
+    url:
+      process.env.PUPPETEER_TARGET_URL ||
+      `http://localhost:${process.env.PORT || '8080'}`,
   },
   exitOnPageError: false,
 };

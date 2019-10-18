@@ -107,12 +107,14 @@ steps:
       queue: builders
   - name: 'Visual regression tests'
     command: yarn vrt:ci
+    env:
+      - PORT: 8081
     plugins:
       'docker-compose#v3.0.3':
         run: e2e-test
         pull:
-          - e2e-server
-          - e2e-server-healthy
+          - vrt-server
+          - vrt-server-healthy
     agents:
       queue: builders
     artifact_paths:
