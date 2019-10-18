@@ -129,7 +129,17 @@ async function testState({selector, fullPage, root, scenarioName}) {
   } else if (fullPage) {
     image = await page.screenshot({fullPage: true});
   } else {
-    image = await root.screenshot();
+    // sometimes the root node will have a height of 0
+    // in this case, fallback to taking a picture of the entire page
+    try {
+      image = await root.screenshot();
+    } catch (er) {
+      console.log(
+        `Could not take a snapshot of root element. Please update snapshot config.`,
+      );
+      console.log(er);
+      image = await page.screenshot({fullPage: true});
+    }
   }
 
   expect(image).toMatchImageSnapshot({
