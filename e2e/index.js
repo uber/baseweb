@@ -23,7 +23,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const theme = urlParams.get('theme');
 const app = (
   <StyletronProvider value={engine}>
-    <BaseProvider theme={theme === 'light' ? LightTheme : DarkTheme}>
+    <BaseProvider theme={theme === 'dark' ? DarkTheme : LightTheme}>
       {tests()}
     </BaseProvider>
   </StyletronProvider>

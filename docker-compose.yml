@@ -22,6 +22,8 @@ services:
 
   vrt-server:
     command: yarn vrt:serve
+    environment:
+      - PORT=8081
     build:
       dockerfile: e2e.Dockerfile
       context: .
@@ -59,11 +61,9 @@ services:
     build: .
     volumes:
       - ./__artifacts__:/baseui/__artifacts__:delegated
-      - ./vrt/__image_snapshots__:/baseui/vrt/__image_snapshots__:delegated
     network_mode: 'host'
     depends_on:
       - e2e-server-healthy
-      - vrt-server-healthy
     environment:
       - CODECOV_TOKEN
       - CI=true
@@ -78,6 +78,25 @@ services:
       - GITHUB_BOT_AUTH_TOKEN
       - GITHUB_BOT_EMAIL
       - GITHUB_BOT_NAME
+
+  vrt-test:
+    build: .
+    volumes:
+      - ./__artifacts__:/baseui/__artifacts__:delegated
+      - ./vrt/__image_snapshots__:/baseui/vrt/__image_snapshots__:delegated
+    network_mode: 'host'
+    depends_on:
+      - vrt-server-healthy
+    environment:
+      - CI=true
+      - BUILDKITE
+      - BUILDKITE_BRANCH
+      - BUILDKITE_COMMIT
+      - BUILDKITE_PULL_REQUEST
+      - GITHUB_BOT_AUTH_TOKEN
+      - GITHUB_BOT_EMAIL
+      - GITHUB_BOT_NAME
+      - PORT
 
   baseui:
     build: .
