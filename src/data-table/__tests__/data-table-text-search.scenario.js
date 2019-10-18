@@ -14,7 +14,7 @@ import {Unstable_DataTable} from '../data-table.js';
 
 import AnimalData from './animal-data.js';
 
-export const name = 'data-table-string-search';
+export const name = 'data-table-text-search';
 
 const columns = [
   StringColumn({title: 'Name'}),
