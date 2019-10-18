@@ -16,11 +16,13 @@ import {
   SIZE as BUTTON_SIZES,
   KIND as BUTTON_KINDS,
 } from '../button/index.js';
+import Search from '../icon/search.js';
+import {Input} from '../input/index.js';
 import {useStyletron} from '../styles/index.js';
 import {Tag} from '../tag/index.js';
 
 import HeaderCell from './header-cell.js';
-import {SORT_DIRECTIONS} from './constants.js';
+import {COLUMNS, SORT_DIRECTIONS} from './constants.js';
 import MeasureColumnWidths from './measure-column-widths.js';
 import type {ColumnT, Props, RowT, SortDirectionsT} from './types.js';
 
@@ -236,6 +238,39 @@ const InnerTableElement = React.forwardRef<
 });
 InnerTableElement.displayName = 'InnerTableElement';
 
+function QueryInput(props) {
+  const [css, theme] = useStyletron();
+  const [value, setValue] = React.useState('');
+
+  React.useEffect(() => {
+    const timeout = setTimeout(() => props.onChange(value), 250);
+    return () => clearTimeout(timeout);
+  }, [value]);
+
+  return (
+    <div className={css({maxWidth: '375px'})}>
+      <Input
+        overrides={{
+          Before: () => (
+            <div
+              className={css({
+                display: 'flex',
+                alignItems: 'center',
+                paddingLeft: theme.sizing.scale500,
+              })}
+            >
+              <Search size="18px" />
+            </div>
+          ),
+        }}
+        onChange={event => setValue(event.target.value)}
+        value={value}
+        clearable
+      />
+    </div>
+  );
+}
+
 export function Unstable_DataTable(props: Props) {
   const [, theme] = useStyletron();
   useDuplicateColumnTitleWarning(props.columns);
@@ -248,6 +283,8 @@ export function Unstable_DataTable(props: Props) {
   // filter open state tracked outside of header cell so that mouse-leave from the header
   // does not cause the popover to close.
   const [filterOpenIndex, setFilterOpenIndex] = React.useState(-1);
+
+  const [textQuery, setTextQuery] = React.useState('');
 
   const sortedIndices = React.useMemo(() => {
     let toSort = props.rows.map((r, i) => [r, i]);
@@ -285,8 +322,29 @@ export function Unstable_DataTable(props: Props) {
       });
     });
 
+    if (textQuery) {
+      const stringishColumnIndices = [];
+      for (let i = 0; i < props.columns.length; i++) {
+        if (
+          props.columns[i].kind === COLUMNS.CATEGORICAL ||
+          props.columns[i].kind === COLUMNS.STRING
+        ) {
+          stringishColumnIndices.push(i);
+        }
+      }
+      Array.from(set).forEach(idx => {
+        const matches = stringishColumnIndices.some(cdx => {
+          return props.rows[idx].data[cdx].toLowerCase().includes(textQuery);
+        });
+
+        if (!matches) {
+          set.delete(idx);
+        }
+      });
+    }
+
     return set;
-  }, [filters, props.columns, props.rows]);
+  }, [filters, textQuery, props.columns, props.rows]);
 
   const rows = React.useMemo(() => {
     return sortedIndices
@@ -337,59 +395,63 @@ export function Unstable_DataTable(props: Props) {
         }}
       />
 
-      {Array.from(filters).map(([title, filter]) => (
-        <Tag key={title} onActionClick={() => removeFilter(title)}>
-          {title} | {filter.description}
-        </Tag>
-      ))}
+      <div style={{height: 60}}>
+        {Array.from(filters).map(([title, filter]) => (
+          <Tag key={title} onActionClick={() => removeFilter(title)}>
+            {title} | {filter.description}
+          </Tag>
+        ))}
 
-      {Boolean(selectedRows.size) && props.batchActions && (
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            marginBottom: theme.sizing.scale300,
-          }}
-        >
-          {props.batchActions.map(action => {
-            function onClick(event) {
-              action.onClick({
-                clearSelection: handleSelectNone,
-                event,
-                selection: rows.filter(r => selectedRows.has(r.id)),
-              });
-            }
+        {!filters.size && <QueryInput onChange={setTextQuery} />}
 
-            if (action.renderIcon) {
-              const Icon = action.renderIcon;
+        {Boolean(selectedRows.size) && props.batchActions && (
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              marginBottom: theme.sizing.scale300,
+            }}
+          >
+            {props.batchActions.map(action => {
+              function onClick(event) {
+                action.onClick({
+                  clearSelection: handleSelectNone,
+                  event,
+                  selection: rows.filter(r => selectedRows.has(r.id)),
+                });
+              }
+
+              if (action.renderIcon) {
+                const Icon = action.renderIcon;
+                return (
+                  <Button
+                    key={action.label}
+                    overrides={{
+                      BaseButton: {props: {'aria-label': action.label}},
+                    }}
+                    onClick={onClick}
+                    kind={BUTTON_KINDS.tertiary}
+                    shape={BUTTON_SHAPES.round}
+                  >
+                    <Icon size={16} />
+                  </Button>
+                );
+              }
+
               return (
                 <Button
                   key={action.label}
-                  overrides={{
-                    BaseButton: {props: {'aria-label': action.label}},
-                  }}
                   onClick={onClick}
-                  kind={BUTTON_KINDS.tertiary}
-                  shape={BUTTON_SHAPES.round}
+                  kind={BUTTON_KINDS.secondary}
+                  size={BUTTON_SIZES.compact}
                 >
-                  <Icon size={16} />
+                  {action.label}
                 </Button>
               );
-            }
-
-            return (
-              <Button
-                key={action.label}
-                onClick={onClick}
-                kind={BUTTON_KINDS.secondary}
-                size={BUTTON_SIZES.compact}
-              >
-                {action.label}
-              </Button>
-            );
-          })}
-        </div>
-      )}
+            })}
+          </div>
+        )}
+      </div>
 
       <AutoSizer>
         {({height, width}) => (
@@ -421,7 +483,7 @@ export function Unstable_DataTable(props: Props) {
               innerElementType={InnerTableElement}
               columnCount={props.columns.length}
               columnWidth={columnIndex => widths[columnIndex]}
-              height={height}
+              height={height - 60}
               // plus one to account for additional header row
               rowCount={rows.length + 1}
               rowHeight={rowIndex => (rowIndex === 0 ? 48 : 40)}
