@@ -21,12 +21,21 @@ const toMatchImageSnapshot = configureToMatchImageSnapshot({
 expect.extend({toMatchImageSnapshot});
 
 const allScenarios = [
-  ...getAllScenarioNames(),
-  ...getAllScenarioNames().map(scenarioName => `${scenarioName}-dark`),
+  ...getAllScenarioNames().map(scenarioName => ({
+    scenarioName,
+    theme: 'light',
+  })),
+  // remove rtl from dark theme checks
+  ...getAllScenarioNames()
+    .filter(scenarioName => !scenarioName.includes('rtl'))
+    .map(scenarioName => ({
+      scenarioName,
+      theme: 'dark',
+    })),
 ];
 
 describe('visual regression tests', () => {
-  allScenarios.forEach(scenarioName => {
+  allScenarios.forEach(({scenarioName, theme}) => {
     const {fullPage = false, interactions = [], selector = null, skip = false} =
       config[scenarioName] || {};
 
@@ -36,6 +45,7 @@ describe('visual regression tests', () => {
       const root = await prepare({
         page,
         scenarioName,
+        theme,
       });
 
       await testState({
@@ -43,6 +53,7 @@ describe('visual regression tests', () => {
         fullPage,
         root,
         scenarioName,
+        theme,
       });
     });
 
@@ -53,6 +64,7 @@ describe('visual regression tests', () => {
         page,
         scenarioName,
         isMobile: true,
+        theme,
       });
 
       await testState({
@@ -60,6 +72,7 @@ describe('visual regression tests', () => {
         fullPage,
         root,
         scenarioName: mobileScenarioName,
+        theme,
       });
     });
 
@@ -83,6 +96,7 @@ describe('visual regression tests', () => {
           const root = await prepare({
             page,
             scenarioName,
+            theme,
           });
 
           // run interaction script
@@ -96,6 +110,7 @@ describe('visual regression tests', () => {
             fullPage,
             root,
             scenarioName: testName,
+            theme,
           });
         });
 
@@ -106,6 +121,7 @@ describe('visual regression tests', () => {
             page,
             scenarioName,
             isMobile: true,
+            theme,
           });
 
           // run interaction script
@@ -119,6 +135,7 @@ describe('visual regression tests', () => {
             fullPage,
             root,
             scenarioName: testName,
+            theme,
           });
         });
       });
@@ -126,7 +143,7 @@ describe('visual regression tests', () => {
   });
 });
 
-async function testState({selector, fullPage, root, scenarioName}) {
+async function testState({selector, fullPage, root, scenarioName, theme}) {
   let image;
   if (selector) {
     const elementHandle = page.$(selector);
@@ -148,13 +165,15 @@ async function testState({selector, fullPage, root, scenarioName}) {
   }
 
   expect(image).toMatchImageSnapshot({
-    customSnapshotIdentifier: scenarioName,
+    customSnapshotIdentifier: `${scenarioName}-${
+      theme === 'dark' ? 'dark' : ''
+    }`,
   });
 }
 
-async function prepare({page, scenarioName, isMobile}) {
+async function prepare({page, scenarioName, isMobile, theme}) {
   // load page
-  await mount(page, scenarioName);
+  await mount(page, scenarioName, theme);
 
   // set viewport for mobile - iPhone X
   if (isMobile) {
