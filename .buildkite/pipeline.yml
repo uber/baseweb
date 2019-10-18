@@ -95,8 +95,6 @@ steps:
     # we have to install puppeteer here to trigger the install.js script
     # and also to make sure we do not add this to the released build artifact
     command: yarn add puppeteer && yarn e2e:test:ci
-    env:
-      - E2E_SERVER_PORT: 8080
     artifact_paths:
       - '__artifacts__/*.png'
     plugins:
@@ -109,8 +107,6 @@ steps:
       queue: builders
   - name: 'Visual regression tests'
     command: yarn vrt:ci
-    env:
-      - E2E_SERVER_PORT: 8081
     plugins:
       'docker-compose#v3.0.3':
         run: e2e-test
