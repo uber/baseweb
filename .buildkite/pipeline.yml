@@ -96,6 +96,8 @@ steps:
         pull:
           - e2e-server
           - e2e-server-healthy
+    agents:
+      queue: workers
   - name: ':vrt:'
     command: yarn vrt:ci
     artifact_paths:
@@ -106,3 +108,5 @@ steps:
         pull:
           - e2e-server
           - e2e-server-healthy
+    agents:
+      queue: workers
