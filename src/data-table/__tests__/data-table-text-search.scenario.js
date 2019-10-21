@@ -34,7 +34,7 @@ const rows = AnimalData.map(row => {
 
 export const component = () => {
   return (
-    <div style={{height: '800px', width: '900px'}}>
+    <div style={{height: '600px', width: '900px'}}>
       <Unstable_DataTable columns={columns} rows={rows} />
     </div>
   );

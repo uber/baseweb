@@ -17,7 +17,7 @@ import {
   KIND as BUTTON_KINDS,
 } from '../button/index.js';
 import Search from '../icon/search.js';
-import {Input} from '../input/index.js';
+import {Input, SIZE as INPUT_SIZES} from '../input/index.js';
 import {useStyletron} from '../styles/index.js';
 import {Tag} from '../tag/index.js';
 
@@ -169,6 +169,21 @@ function useSortParameters() {
   }
 
   return [sortIndex, sortDirection, handleSort];
+}
+
+function useResizeObserver(
+  ref: {current: HTMLElement | null},
+  callback: (ResizeObserverEntry[], ResizeObserver) => mixed,
+) {
+  React.useLayoutEffect(() => {
+    if (__BROWSER__) {
+      if (ref.current) {
+        const observer = new ResizeObserver(callback);
+        observer.observe(ref.current);
+        return () => observer.disconnect();
+      }
+    }
+  }, [ref]);
 }
 
 const HeaderContext = React.createContext<{
@@ -330,6 +345,7 @@ function QueryInput(props) {
             );
           },
         }}
+        size={INPUT_SIZES.compact}
         onChange={event => setValue(event.target.value)}
         value={value}
         clearable
@@ -339,7 +355,7 @@ function QueryInput(props) {
 }
 
 export function Unstable_DataTable(props: Props) {
-  const [, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   useDuplicateColumnTitleWarning(props.columns);
   const [sortIndex, sortDirection, handleSort] = useSortParameters();
   const [filters, setFilters] = React.useState(new Map());
@@ -514,6 +530,12 @@ export function Unstable_DataTable(props: Props) {
     textQuery,
   ]);
 
+  const headlineRef = React.useRef(null);
+  const [headlineHeight, setHeadlineHeight] = React.useState(60);
+  useResizeObserver(headlineRef, entries => {
+    setHeadlineHeight(entries[0].contentRect.height);
+  });
+
   return (
     <React.Fragment>
       <MeasureColumnWidths
@@ -530,14 +552,21 @@ export function Unstable_DataTable(props: Props) {
         }}
       />
 
-      <div style={{height: 60}}>
+      <div
+        ref={headlineRef}
+        className={css({
+          height: headlineHeight,
+          paddingTop: theme.sizing.scale500,
+          paddingBottom: theme.sizing.scale500,
+        })}
+      >
+        <QueryInput onChange={setTextQuery} />
+
         {Array.from(filters).map(([title, filter]) => (
           <Tag key={title} onActionClick={() => removeFilter(title)}>
             {title} | {filter.description}
           </Tag>
         ))}
-
-        {!filters.size && <QueryInput onChange={setTextQuery} />}
 
         {Boolean(selectedRows.size) && props.batchActions && (
           <div
@@ -620,12 +649,13 @@ export function Unstable_DataTable(props: Props) {
               innerElementType={InnerTableElement}
               columnCount={props.columns.length}
               columnWidth={columnIndex => widths[columnIndex]}
-              height={height - 60}
+              height={height - headlineHeight}
               // plus one to account for additional header row
               rowCount={rows.length + 1}
               rowHeight={rowIndex => (rowIndex === 0 ? 48 : 40)}
               width={width}
               itemData={itemData}
+              style={{...theme.borders.border200}}
             >
               {CellPlacementMemo}
             </VariableSizeGrid>
