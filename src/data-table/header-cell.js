@@ -82,7 +82,7 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
           sortRef.current = r;
         }}
         className={useCss({
-          ...theme.typography.font250,
+          ...theme.typography.font150,
           alignItems: 'center',
           backgroundColor: props.isHovered ? theme.colors.mono200 : null,
           boxSizing: 'border-box',

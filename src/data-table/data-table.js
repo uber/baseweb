@@ -581,7 +581,7 @@ export function Unstable_DataTable(props: Props) {
           <Tag key={title} onActionClick={() => removeFilter(title)}>
             <span
               className={css({
-                ...theme.typography.font250,
+                ...theme.typography.font150,
                 color: theme.colors.mono1000,
               })}
             >
@@ -675,7 +675,7 @@ export function Unstable_DataTable(props: Props) {
               height={height - headlineHeight}
               // plus one to account for additional header row
               rowCount={rows.length + 1}
-              rowHeight={rowIndex => (rowIndex === 0 ? 48 : 40)}
+              rowHeight={rowIndex => (rowIndex === 0 ? 48 : 36)}
               width={width}
               itemData={itemData}
               style={{
