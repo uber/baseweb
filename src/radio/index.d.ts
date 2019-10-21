@@ -41,6 +41,7 @@ export interface StatefulRadioGroupProps {
   autoFocus?: boolean;
   name?: string;
   onChange?: React.FormEventHandler<HTMLInputElement>;
+  align?: 'horizontal' | 'vertical';
 }
 
 export const StatefulRadioGroup: React.FC<StatefulRadioGroupProps>;
@@ -55,7 +56,7 @@ export interface RadioGroupProps {
   required?: boolean;
   isError?: boolean;
   autoFocus?: boolean;
-  align?: string;
+  align?: 'horizontal' | 'vertical';
   name?: string;
   labelPlacement?: 'top' | 'right' | 'bottom' | 'left';
   onChange?: React.FormEventHandler<HTMLInputElement>;

@@ -65,7 +65,7 @@ export type PropsT = {
   /** Set to be focused (active) on selected\checked radio. */
   autoFocus?: boolean,
   /** How to position radio buttons in the group. */
-  align?: string,
+  align?: 'horizontal' | 'vertical',
   /** String value for the name of RadioGroup, it is used to group buttons. If missed default is random ID string. */
   name?: string,
   /** How to position the label relative to the radio itself. */
