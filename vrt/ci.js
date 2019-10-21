@@ -19,11 +19,15 @@ const {
   BUILDKITE_BRANCH,
   BUILDKITE_COMMIT,
   BUILDKITE_PULL_REQUEST,
+  BUILDKITE_PULL_REQUEST_REPO,
 } = process.env;
 
 // Derive some useful constants
 const SNAPSHOT_BRANCH = `${BUILDKITE_BRANCH}--vrt`;
-const SHORT_BASE_COMMIT_HASH = BUILDKITE_COMMIT.substring(0, 7); // First 7 chars makes it linkable in GitHub
+const ORIGINAL_PULL_REQUEST_OWNER = getOwnerFromRepoURL(
+  BUILDKITE_PULL_REQUEST_REPO,
+);
+const ORIGINAL_COMMIT_SHORT_HASH = BUILDKITE_COMMIT.substring(0, 7); // First 7 chars makes it linkable in GitHub
 
 // Prepare GitHub API helper
 const octokit = Octokit({
@@ -123,8 +127,8 @@ async function updatePullRequests(snapshotPullRequest) {
     );
     await addCommentToOriginalPullRequest(snapshotPullRequest.number);
   } else {
-    const newSnapshotPullRequest = await openNewSnapshotPullRequest();
-    await addLabelsToNewPullRequest(newSnapshotPullRequest.number);
+    const newSnapshotPullRequest = await createSnapshotPullRequest();
+    await addLabelsToSnapshotPullRequest(newSnapshotPullRequest.number);
     await addCommentToOriginalPullRequest(newSnapshotPullRequest.number);
     await addOriginalAuthorAsReviewer(newSnapshotPullRequest.number);
     log(
@@ -142,7 +146,7 @@ async function addOriginalAuthorAsReviewer(newSnapshotPullRequestNumber) {
     });
     const author = originalPullRequest.data.user;
     await octokit.pulls.createReviewRequest({
-      owner: `uber`,
+      owner: ORIGINAL_PULL_REQUEST_OWNER,
       repo: `baseweb`,
       pull_number: newSnapshotPullRequestNumber,
       reviewers: [author.login],
@@ -172,7 +176,7 @@ async function closeSnapshotPullRequest(snapshotPullRequestNumber) {
   await notifySnapshotPullRequestOfClosure(snapshotPullRequestNumber);
   try {
     await octokit.pulls.update({
-      owner: `uber`,
+      owner: ORIGINAL_PULL_REQUEST_OWNER,
       repo: `baseweb`,
       pull_number: snapshotPullRequestNumber,
       state: 'closed',
@@ -207,7 +211,7 @@ async function notifyOriginalPullRequestOfClosure(snapshotPullRequestNumber) {
 async function notifySnapshotPullRequestOfClosure(snapshotPullRequestNumber) {
   try {
     await octokit.issues.createComment({
-      owner: `uber`,
+      owner: ORIGINAL_PULL_REQUEST_OWNER,
       repo: `baseweb`,
       issue_number: snapshotPullRequestNumber,
       body:
@@ -223,10 +227,10 @@ async function notifySnapshotPullRequestOfClosure(snapshotPullRequestNumber) {
   }
 }
 
-async function addLabelsToNewPullRequest(newPullRequestNumber) {
+async function addLabelsToSnapshotPullRequest(newPullRequestNumber) {
   try {
     await octokit.issues.addLabels({
-      owner: `uber`,
+      owner: ORIGINAL_PULL_REQUEST_OWNER,
       repo: `baseweb`,
       issue_number: newPullRequestNumber,
       labels: [`greenkeeping`, `visual snapshot updates`],
@@ -255,10 +259,10 @@ async function addCommentToOriginalPullRequest(newPullRequestNumber) {
   }
 }
 
-async function openNewSnapshotPullRequest() {
+async function createSnapshotPullRequest() {
   try {
     const pullRequest = await octokit.pulls.create({
-      owner: `uber`,
+      owner: ORIGINAL_PULL_REQUEST_OWNER,
       repo: `baseweb`,
       title: `test(vrt): update visual snapshots for ${BUILDKITE_BRANCH} [skip ci]`,
       head: SNAPSHOT_BRANCH,
@@ -277,7 +281,7 @@ async function openNewSnapshotPullRequest() {
 async function getSnapshotPullRequest() {
   try {
     const pullRequests = await octokit.pulls.list({
-      owner: `uber`,
+      owner: ORIGINAL_PULL_REQUEST_OWNER,
       repo: `baseweb`,
       head: `uber:${SNAPSHOT_BRANCH}`,
     });
@@ -305,7 +309,7 @@ function pushChangesToGitHub() {
   execSync(`git add vrt/__image_snapshots__/`);
   log(`Commiting updated snapshots to ${SNAPSHOT_BRANCH}.`);
   execSync(
-    `git commit -m "test(vrt): update visual snapshots for ${SHORT_BASE_COMMIT_HASH} [skip ci]"`,
+    `git commit -m "test(vrt): update visual snapshots for ${ORIGINAL_COMMIT_SHORT_HASH} [skip ci]"`,
   );
   log(`Force pushing updated snapshot branch to GitHub.`);
   execSync(`git push --force origin ${SNAPSHOT_BRANCH}`);
@@ -324,6 +328,12 @@ function someSnapshotsWereUpdated() {
     log(`No snapshots were updated.`);
   }
   return result;
+}
+
+// Extract basweb fork owner from a GitHub repository url
+function getOwnerFromRepoURL(url) {
+  const matches = url.match(/https:\/\/github\.com\/(.*)\/baseweb\.git/);
+  return matches[1] ? matches[1] : `uber`;
 }
 
 function log(message) {
