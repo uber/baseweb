@@ -665,7 +665,10 @@ export function Unstable_DataTable(props: Props) {
               rowHeight={rowIndex => (rowIndex === 0 ? 48 : 40)}
               width={width}
               itemData={itemData}
-              style={{...theme.borders.border200}}
+              style={{
+                ...theme.borders.border200,
+                borderColor: theme.colors.mono500,
+              }}
             >
               {CellPlacementMemo}
             </VariableSizeGrid>
