@@ -16,6 +16,7 @@ import type {ColumnT} from './types.js';
 type OptionsT = {|
   title: string,
   sortable?: boolean,
+  minWidth?: number,
 |};
 
 type FilterParametersT = {|
@@ -62,6 +63,7 @@ function StringColumn(options: OptionsT): StringColumnT {
     sortFn: function(a, b) {
       return a.localeCompare(b);
     },
+    minWidth: options.minWidth,
   };
 }
 

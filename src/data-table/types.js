@@ -40,6 +40,7 @@ export type ColumnT<ValueT = any, FilterParamsT = any> = {|
   |}>,
   buildFilter: FilterParamsT => ValueT => boolean,
   sortFn: (ValueT, ValueT) => number,
+  minWidth?: number,
 |};
 
 export type RowT = {

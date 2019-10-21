@@ -17,7 +17,7 @@ import AnimalData from './animal-data.js';
 export const name = 'data-table-text-search';
 
 const columns = [
-  StringColumn({title: 'Name'}),
+  StringColumn({title: 'Name', minWidth: 300}),
   CategoricalColumn({title: 'Kingdom'}),
   CategoricalColumn({title: 'Phylum'}),
   CategoricalColumn({title: 'Class'}),

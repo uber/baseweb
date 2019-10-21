@@ -24,6 +24,7 @@ type OptionsT = {|
   title: string,
   sortable?: boolean,
   filterable?: boolean,
+  minWidth?: number,
 |};
 
 type FilterParametersT = {|
@@ -256,6 +257,7 @@ function CategoricalColumn(options: OptionsT): CategoricalColumnT {
     sortFn: function(a, b) {
       return a.localeCompare(b);
     },
+    minWidth: options.minWidth,
   };
 }
 
