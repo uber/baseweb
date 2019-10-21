@@ -89,8 +89,8 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
           cursor: props.sortable ? 'pointer' : null,
           display: props.isMeasured ? 'inline-flex' : 'flex',
           height: '100%',
-          paddingLeft: theme.sizing.scale600,
-          paddingRight: theme.sizing.scale600,
+          paddingLeft: theme.sizing.scale500,
+          paddingRight: theme.sizing.scale500,
           flexWrap: 'nowrap',
           whiteSpace: 'nowrap',
         })}
