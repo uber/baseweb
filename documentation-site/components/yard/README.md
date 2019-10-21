@@ -57,7 +57,7 @@ import {
 
 <View
   componentName="Button"
-  componentPlaceholder={<div />}
+  componentPlaceholder={<div>Loading...</div>}
   componentMinHeight="200px"
   scope={{ Button }}
   imports={{
