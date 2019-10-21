@@ -92,9 +92,14 @@ function compareCellPlacement(prevProps, nextProps) {
     prevProps.data.isRowSelected === nextProps.data.isRowSelected &&
     prevProps.data.headerHoverIndex === nextProps.data.headerHoverIndex &&
     prevProps.data.rowHoverIndex === nextProps.data.rowHoverIndex &&
-    prevProps.data.textQuery === nextProps.data.textQuery &&
-    // row does not need to re-render if not transitioning _from_ or _to_ highlighted
-    // also ensures that all cells are invalidated on column-header hover
+    prevProps.data.textQuery === nextProps.data.textQuery
+  ) {
+    return true;
+  }
+
+  // row does not need to re-render if not transitioning _from_ or _to_ highlighted
+  // also ensures that all cells are invalidated on column-header hover
+  if (
     prevProps.rowIndex !== prevProps.data.rowHoverIndex &&
     prevProps.rowIndex !== nextProps.data.rowHoverIndex &&
     prevProps.data.headerHoverIndex === nextProps.data.headerHoverIndex
@@ -539,10 +544,12 @@ export function Unstable_DataTable(props: Props) {
   ]);
 
   const headlineRef = React.useRef(null);
-  const [headlineHeight, setHeadlineHeight] = React.useState(60);
+  const [headlineHeight, setHeadlineHeight] = React.useState(64);
   useResizeObserver(headlineRef, entries => {
     setHeadlineHeight(entries[0].contentRect.height);
   });
+
+  console.log(headlineHeight);
 
   return (
     <React.Fragment>
@@ -560,79 +567,85 @@ export function Unstable_DataTable(props: Props) {
         }}
       />
 
-      <div
-        ref={headlineRef}
-        className={css({
-          display: 'flex',
-          flexWrap: 'wrap',
-          height: headlineHeight,
-          paddingTop: theme.sizing.scale500,
-          paddingBottom: theme.sizing.scale500,
-        })}
-      >
-        <QueryInput onChange={setTextQuery} />
-
-        {Array.from(filters).map(([title, filter]) => (
-          <Tag key={title} onActionClick={() => removeFilter(title)}>
-            <span
+      <div className={css({height: `${headlineHeight}px`})}>
+        <div ref={headlineRef}>
+          {!selectedRows.size && (
+            <div
               className={css({
-                ...theme.typography.font150,
-                color: theme.colors.mono1000,
+                alignItems: 'baseline',
+                display: 'flex',
+                flexWrap: 'wrap',
+                paddingTop: theme.sizing.scale500,
+                paddingBottom: theme.sizing.scale500,
               })}
             >
-              {title}
-            </span>
-            : {filter.description}
-          </Tag>
-        ))}
+              <QueryInput onChange={setTextQuery} />
 
-        {Boolean(selectedRows.size) && props.batchActions && (
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              marginBottom: theme.sizing.scale300,
-            }}
-          >
-            {props.batchActions.map(action => {
-              function onClick(event) {
-                action.onClick({
-                  clearSelection: handleSelectNone,
-                  event,
-                  selection: rows.filter(r => selectedRows.has(r.id)),
-                });
-              }
+              {Array.from(filters).map(([title, filter]) => (
+                <Tag key={title} onActionClick={() => removeFilter(title)}>
+                  <span
+                    className={css({
+                      ...theme.typography.font150,
+                      color: theme.colors.mono1000,
+                    })}
+                  >
+                    {title}
+                  </span>
+                  : {filter.description}
+                </Tag>
+              ))}
+            </div>
+          )}
 
-              if (action.renderIcon) {
-                const Icon = action.renderIcon;
+          {Boolean(selectedRows.size) && props.batchActions && (
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                paddingTop: theme.sizing.scale400,
+                paddingBottom: theme.sizing.scale400,
+              }}
+            >
+              {props.batchActions.map(action => {
+                function onClick(event) {
+                  action.onClick({
+                    clearSelection: handleSelectNone,
+                    event,
+                    selection: rows.filter(r => selectedRows.has(r.id)),
+                  });
+                }
+
+                if (action.renderIcon) {
+                  const Icon = action.renderIcon;
+                  return (
+                    <Button
+                      key={action.label}
+                      overrides={{
+                        BaseButton: {props: {'aria-label': action.label}},
+                      }}
+                      onClick={onClick}
+                      kind={BUTTON_KINDS.tertiary}
+                      shape={BUTTON_SHAPES.round}
+                    >
+                      <Icon size={16} />
+                    </Button>
+                  );
+                }
+
                 return (
                   <Button
                     key={action.label}
-                    overrides={{
-                      BaseButton: {props: {'aria-label': action.label}},
-                    }}
                     onClick={onClick}
-                    kind={BUTTON_KINDS.tertiary}
-                    shape={BUTTON_SHAPES.round}
+                    kind={BUTTON_KINDS.secondary}
+                    size={BUTTON_SIZES.compact}
                   >
-                    <Icon size={16} />
+                    {action.label}
                   </Button>
                 );
-              }
-
-              return (
-                <Button
-                  key={action.label}
-                  onClick={onClick}
-                  kind={BUTTON_KINDS.secondary}
-                  size={BUTTON_SIZES.compact}
-                >
-                  {action.label}
-                </Button>
-              );
-            })}
-          </div>
-        )}
+              })}
+            </div>
+          )}
+        </div>
       </div>
 
       <AutoSizer>
