@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env node */
 
-module.exports = {
+const config = {
   'country-select-dropdown': {
     fullPage: true,
     interactions: [
@@ -181,4 +181,25 @@ module.exports = {
       },
     ],
   },
+};
+
+function getSnapshotConfig(scenarioName) {
+  const defaultConfig = {
+    skip: false,
+    interactions: [],
+  };
+  const snapshotConfig = config[scenarioName];
+  if (!snapshotConfig) {
+    return defaultConfig;
+  } else {
+    return {
+      ...defaultConfig,
+      ...snapshotConfig,
+    };
+  }
+}
+
+module.exports = {
+  config,
+  getSnapshotConfig,
 };
