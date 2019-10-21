@@ -328,7 +328,7 @@ function QueryInput(props) {
   }, [value]);
 
   return (
-    <div className={css({maxWidth: '375px'})}>
+    <div className={css({width: '375px'})}>
       <Input
         overrides={{
           Before: function Before() {
@@ -555,6 +555,8 @@ export function Unstable_DataTable(props: Props) {
       <div
         ref={headlineRef}
         className={css({
+          display: 'flex',
+          flexWrap: 'wrap',
           height: headlineHeight,
           paddingTop: theme.sizing.scale500,
           paddingBottom: theme.sizing.scale500,
@@ -564,7 +566,15 @@ export function Unstable_DataTable(props: Props) {
 
         {Array.from(filters).map(([title, filter]) => (
           <Tag key={title} onActionClick={() => removeFilter(title)}>
-            {title} | {filter.description}
+            <span
+              className={css({
+                ...theme.typography.font250,
+                color: theme.colors.mono1000,
+              })}
+            >
+              {title}
+            </span>
+            : {filter.description}
           </Tag>
         ))}
 
