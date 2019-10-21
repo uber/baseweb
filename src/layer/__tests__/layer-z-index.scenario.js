@@ -14,9 +14,7 @@ import {
 } from '../index.js';
 import {Block} from '../../block/index.js';
 import {Button} from '../../button/index.js';
-
-// eslint-disable-next-line import/extensions
-import Screener, {Steps} from 'screener-storybook/src/screener';
+import type {NormalizedOffsetsT} from '../../layer/types.js';
 
 export const name = 'layer-z-index';
 
@@ -58,10 +56,10 @@ class Example extends React.Component<
     offset2: {top: number, left: number},
   },
 > {
-  anchorRef1 = React.createRef();
-  popperRef1 = React.createRef();
-  anchorRef2 = React.createRef();
-  popperRef2 = React.createRef();
+  anchorRef1 = React.createRef<HTMLElement>();
+  popperRef1 = React.createRef<HTMLElement>();
+  anchorRef2 = React.createRef<HTMLElement>();
+  popperRef2 = React.createRef<HTMLElement>();
 
   state = {
     isFirstOpen: false,
@@ -72,7 +70,7 @@ class Example extends React.Component<
     offset2: {top: 0, left: 0},
   };
 
-  onPopperUpdate = (order, normalizedOffsets) => {
+  onPopperUpdate = (order: number, normalizedOffsets: NormalizedOffsetsT) => {
     this.setState({
       [`offset${order}`]: normalizedOffsets.popper,
     });
@@ -188,23 +186,4 @@ class Example extends React.Component<
   }
 }
 
-export const component = () => {
-  const btnZIndex = '[data-test="zindex-btn"]';
-  const btnNoZIndex = '[data-test="no-zindex-btn"]';
-  const layerZIndex = '[data-test="zindex-layer"]';
-  const layerNoZIndex = '[data-test="no-zindex-layer"]';
-  return (
-    <Screener
-      steps={new Steps()
-        .wait(btnZIndex)
-        .click(btnZIndex)
-        .wait(layerZIndex)
-        .click(btnNoZIndex)
-        .wait(layerNoZIndex)
-        .snapshot('Layers with and no z-index')
-        .end()}
-    >
-      <Example />
-    </Screener>
-  );
-};
+export const component = () => <Example />;

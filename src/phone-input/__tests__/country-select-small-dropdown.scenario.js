@@ -7,25 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-// eslint-disable-next-line import/extensions
-import Screener, {Steps} from 'screener-storybook/src/screener';
 import {StatefulPhoneInput} from '../index.js';
 
 export const name = 'country-select-small-dropdown';
 
-export const component = () => {
-  const selectSelector = `[data-baseweb="select"]`;
-  return (
-    <Screener
-      steps={new Steps()
-        .wait(selectSelector)
-        .click(selectSelector)
-        .snapshot(
-          'Phone input with small dropdown (should see highlighted USA flag)',
-        )
-        .end()}
-    >
-      <StatefulPhoneInput maxDropdownHeight="100px" />
-    </Screener>
-  );
-};
+export const component = () => <StatefulPhoneInput maxDropdownHeight="100px" />;

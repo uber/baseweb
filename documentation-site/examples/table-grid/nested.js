@@ -83,13 +83,6 @@ function buildRow(status) {
         'Passed (1 minute, 33 seconds)',
         'https://buildkite.com/uberopensource/baseui/builds/7728',
       ],
-      [
-        'buildkite/baseui/screener',
-        'running',
-        new Date(2019, 6, 22),
-        'Passed (1 minute, 33 seconds)',
-        'https://buildkite.com/uberopensource/baseui/builds/7728',
-      ],
     ],
   ];
 }
