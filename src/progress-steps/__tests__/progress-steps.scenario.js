@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import Screener, {Steps} from 'screener-storybook/src/screener.js';
 
 import {Block} from '../../block/index.js';
 import {Button} from '../../button/index.js';
@@ -15,20 +14,7 @@ import {ProgressSteps, Step} from '../index.js';
 
 export const name = 'progress-steps';
 
-export const component = () => {
-  const selector = 'button:enabled';
-  return (
-    <Screener
-      steps={new Steps()
-        .wait(selector)
-        .click(selector)
-        .snapshot('progressSteps: next step triggered')
-        .end()}
-    >
-      <ProgressStepsContainer />
-    </Screener>
-  );
-};
+export const component = () => <ProgressStepsContainer />;
 
 class ProgressStepsContainer extends React.Component<{}, {current: number}> {
   state = {current: 0};
