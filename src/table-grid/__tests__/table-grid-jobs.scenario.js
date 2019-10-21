@@ -20,11 +20,7 @@ import {StatefulPopover, PLACEMENT} from '../../popover/index.js';
 import {styled, withStyle, useStyletron} from '../../styles/index.js';
 import {Tag} from '../../tag/index.js';
 
-import {
-  Unstable_StyledTable as StyledTable,
-  Unstable_StyledHeadCell as StyledHeadCell,
-  Unstable_StyledBodyCell as StyledBodyCell,
-} from '../index.js';
+import {StyledTable, StyledHeadCell, StyledBodyCell} from '../index.js';
 
 export const name = 'table-grid-jobs';
 
