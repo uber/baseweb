@@ -6,9 +6,9 @@ import {StyledLink} from 'baseui/link';
 import {useStyletron} from 'baseui';
 
 import {
-  Unstable_StyledTable as StyledTable,
-  Unstable_StyledHeadCell as StyledHeadCell,
-  Unstable_StyledBodyCell as StyledBodyCell,
+  StyledTable,
+  StyledHeadCell,
+  StyledBodyCell,
 } from 'baseui/table-grid';
 
 const row = [
