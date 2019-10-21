@@ -333,7 +333,7 @@ function someSnapshotsWereUpdated() {
 // Extract basweb fork owner from a GitHub repository url
 function getOwnerFromRepoURL(url) {
   const matches = url.match(/https:\/\/github\.com\/(.*)\/baseweb\.git/);
-  return matches[1] ? matches[1] : `uber`;
+  return matches && matches[1] ? matches[1] : `uber`;
 }
 
 function log(message) {
