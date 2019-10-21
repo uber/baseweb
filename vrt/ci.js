@@ -27,7 +27,7 @@ const SNAPSHOT_BRANCH = `${BUILDKITE_BRANCH}--vrt`;
 const ORIGINAL_PULL_REQUEST_OWNER = getOwnerFromRepoURL(
   BUILDKITE_PULL_REQUEST_REPO,
 );
-const SHORT_BASE_COMMIT_HASH = BUILDKITE_COMMIT.substring(0, 7); // First 7 chars makes it linkable in GitHub
+const ORIGINAL_COMMIT_SHORT_HASH = BUILDKITE_COMMIT.substring(0, 7); // First 7 chars makes it linkable in GitHub
 
 // Prepare GitHub API helper
 const octokit = Octokit({
@@ -127,8 +127,8 @@ async function updatePullRequests(snapshotPullRequest) {
     );
     await addCommentToOriginalPullRequest(snapshotPullRequest.number);
   } else {
-    const newSnapshotPullRequest = await openNewSnapshotPullRequest();
-    await addLabelsToNewPullRequest(newSnapshotPullRequest.number);
+    const newSnapshotPullRequest = await createSnapshotPullRequest();
+    await addLabelsToSnapshotPullRequest(newSnapshotPullRequest.number);
     await addCommentToOriginalPullRequest(newSnapshotPullRequest.number);
     await addOriginalAuthorAsReviewer(newSnapshotPullRequest.number);
     log(
@@ -227,7 +227,7 @@ async function notifySnapshotPullRequestOfClosure(snapshotPullRequestNumber) {
   }
 }
 
-async function addLabelsToNewPullRequest(newPullRequestNumber) {
+async function addLabelsToSnapshotPullRequest(newPullRequestNumber) {
   try {
     await octokit.issues.addLabels({
       owner: ORIGINAL_PULL_REQUEST_OWNER,
@@ -259,7 +259,7 @@ async function addCommentToOriginalPullRequest(newPullRequestNumber) {
   }
 }
 
-async function openNewSnapshotPullRequest() {
+async function createSnapshotPullRequest() {
   try {
     const pullRequest = await octokit.pulls.create({
       owner: ORIGINAL_PULL_REQUEST_OWNER,
@@ -309,7 +309,7 @@ function pushChangesToGitHub() {
   execSync(`git add vrt/__image_snapshots__/`);
   log(`Commiting updated snapshots to ${SNAPSHOT_BRANCH}.`);
   execSync(
-    `git commit -m "test(vrt): update visual snapshots for ${SHORT_BASE_COMMIT_HASH} [skip ci]"`,
+    `git commit -m "test(vrt): update visual snapshots for ${ORIGINAL_COMMIT_SHORT_HASH} [skip ci]"`,
   );
   log(`Force pushing updated snapshot branch to GitHub.`);
   execSync(`git push --force origin ${SNAPSHOT_BRANCH}`);
