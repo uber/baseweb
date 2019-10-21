@@ -312,7 +312,20 @@ const InnerTableElement = React.forwardRef<
           );
         })}
       </div>
-      {props.children}
+      {React.Children.toArray(props.children).length <= ctx.columns.length ? (
+        <div
+          className={useCss({
+            ...theme.typography.font100,
+            marginTop: theme.sizing.scale600,
+            marginLeft: theme.sizing.scale600,
+          })}
+        >
+          No rows match the filter criteria defined. Please remove one or more
+          filters to view more data.
+        </div>
+      ) : (
+        props.children
+      )}
     </div>
   );
 });
