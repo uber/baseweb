@@ -92,14 +92,9 @@ function compareCellPlacement(prevProps, nextProps) {
     prevProps.data.isRowSelected === nextProps.data.isRowSelected &&
     prevProps.data.headerHoverIndex === nextProps.data.headerHoverIndex &&
     prevProps.data.rowHoverIndex === nextProps.data.rowHoverIndex &&
-    prevProps.data.textQuery === nextProps.data.textQuery
-  ) {
-    return true;
-  }
-
-  // row does not need to re-render if not transitioning _from_ or _to_ highlighted
-  // also ensures that all cells are invalidated on column-header hover
-  if (
+    prevProps.data.textQuery === nextProps.data.textQuery &&
+    // row does not need to re-render if not transitioning _from_ or _to_ highlighted
+    // also ensures that all cells are invalidated on column-header hover
     prevProps.rowIndex !== prevProps.data.rowHoverIndex &&
     prevProps.rowIndex !== nextProps.data.rowHoverIndex &&
     prevProps.data.headerHoverIndex === nextProps.data.headerHoverIndex
