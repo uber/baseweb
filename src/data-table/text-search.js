@@ -30,7 +30,7 @@ export function HighlightCellText(props: {text: string, query: string}) {
       {splitByQuery(props.text, props.query).map((el, i) => {
         if (matchesQuery(el, props.query)) {
           return (
-            <span className={css({...theme.typography.font250})} key={i}>
+            <span className={css({...theme.typography.font150})} key={i}>
               {el}
             </span>
           );
