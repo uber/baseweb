@@ -12,7 +12,7 @@ const globby = require('globby');
 
 function getAllScenarioNames() {
   return globby
-    .sync('src/**/*.scenario.js')
+    .sync('src/card/**/*.scenario.js')
     .map(filePath => filePath.match(/__tests__\/(.*).scenario/)[1]);
 }
 
