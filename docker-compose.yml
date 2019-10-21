@@ -8,13 +8,11 @@ services:
       context: .
     expose:
       - 8080
-    ports:
-      - '8080:8080'
     healthcheck:
       test:
         [
           'CMD-SHELL',
-          'curl -H "Accept: text/html" -f http://localhost:8080 || exit 1',
+          'curl -H "Accept: text/html" -f http://e2e-server:8080 || exit 1',
         ]
       interval: 5s
       timeout: 10s
@@ -23,7 +21,8 @@ services:
   # tests if the e2e-server is ready to serve traffic
   e2e-server-healthy:
     build: .
-    network_mode: 'host'
+    links:
+      - e2e-server
     depends_on:
       e2e-server:
         condition: service_healthy
@@ -31,10 +30,11 @@ services:
   # running the e2e tests in ci
   e2e-test:
     build: .
+    links:
+      - e2e-server
     volumes:
       - ./__artifacts__:/baseui/__artifacts__:delegated
       - ./vrt/__image_snapshots__:/baseui/vrt/__image_snapshots__:delegated
-    network_mode: 'host'
     depends_on:
       - e2e-server-healthy
     environment:
