@@ -89,20 +89,22 @@ function compareCellPlacement(prevProps, nextProps) {
 
   if (
     prevProps.data.isSelectable === nextProps.data.isSelectable &&
-    prevProps.data.isRowSelected === nextProps.data.isRowSelected &&
     prevProps.data.headerHoverIndex === nextProps.data.headerHoverIndex &&
     prevProps.data.rowHoverIndex === nextProps.data.rowHoverIndex &&
-    prevProps.data.textQuery === nextProps.data.textQuery
+    prevProps.data.textQuery === nextProps.data.textQuery &&
+    prevProps.data.isRowSelected === nextProps.data.isRowSelected
   ) {
     return true;
   }
 
+  // at this point we know that the rowHoverIndex or the columnHoverIndex has changed.
   // row does not need to re-render if not transitioning _from_ or _to_ highlighted
   // also ensures that all cells are invalidated on column-header hover
   if (
     prevProps.rowIndex !== prevProps.data.rowHoverIndex &&
     prevProps.rowIndex !== nextProps.data.rowHoverIndex &&
-    prevProps.data.headerHoverIndex === nextProps.data.headerHoverIndex
+    prevProps.data.headerHoverIndex === nextProps.data.headerHoverIndex &&
+    prevProps.data.isRowSelected === nextProps.data.isRowSelected
   ) {
     return true;
   }
@@ -548,8 +550,6 @@ export function Unstable_DataTable(props: Props) {
   useResizeObserver(headlineRef, entries => {
     setHeadlineHeight(entries[0].contentRect.height);
   });
-
-  console.log(headlineHeight);
 
   return (
     <React.Fragment>
