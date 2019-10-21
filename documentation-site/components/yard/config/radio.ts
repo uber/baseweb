@@ -1,6 +1,6 @@
 import pick from 'just-pick';
 
-import {Radio, RadioGroup} from 'baseui/radio';
+import {Radio, RadioGroup, ALIGN} from 'baseui/radio';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
@@ -13,6 +13,7 @@ const RadioGroupConfig: TConfig = {
   scope: {
     Radio,
     RadioGroup,
+    ALIGN,
   },
   theme: [
     'tickFill',
@@ -68,10 +69,15 @@ const RadioGroupConfig: TConfig = {
       },
     },
     align: {
-      value: undefined,
-      type: PropTypes.String,
-      placeholder: 'vertical',
+      value: 'ALIGN.vertical',
+      type: PropTypes.Enum,
+      options: ALIGN,
       description: 'How to position radio buttons in the group.',
+      imports: {
+        'baseui/radio': {
+          named: ['ALIGN'],
+        },
+      },
     },
     disabled: {
       value: false,

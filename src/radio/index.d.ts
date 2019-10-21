@@ -6,6 +6,11 @@ export interface STATE_TYPE {
   change: 'CHANGE';
 }
 
+export interface ALIGN {
+  vertical: 'vertical';
+  horizontal: 'horizontal';
+}
+
 export type StateReducer = (
   stateType: string,
   nextState: State,
@@ -127,3 +132,4 @@ export const StyledRadioMarkOuter: StyletronComponent<any>;
 export const StyledRadioGroupRoot: StyletronComponent<any>;
 
 export const STATE_TYPE: STATE_TYPE;
+export const ALIGN: ALIGN;
