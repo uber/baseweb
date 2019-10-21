@@ -7,26 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import Screener, {Steps} from 'screener-storybook/src/screener.js';
 
 import {StatefulSelect, TYPE} from '../index.js';
 
 export const name = 'select-search-single';
 
-export const component = () => {
-  const selector = '[data-baseweb="select"] input';
-  return (
-    <Screener
-      steps={new Steps()
-        .wait(selector)
-        .click(selector)
-        .snapshot('select: open state')
-        .end()}
-    >
-      <SelectComponent />
-    </Screener>
-  );
-};
+export const component = () => <SelectComponent />;
 
 function SelectComponent() {
   return (

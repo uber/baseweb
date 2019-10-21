@@ -20,8 +20,8 @@ const appDirectory = realpathSync(process.cwd());
 
 const resolvePath = relativePath => resolve(appDirectory, relativePath);
 
-function getUrl({launchUrl, name}) {
-  const query = [[name, 'name']]
+function getUrl({launchUrl, name, theme}) {
+  const query = [[name, 'name'], [theme, 'theme']]
     .filter(([value]) => Boolean(value))
     .map(([value, key]) => `${key}=${encodeURIComponent(value)}`)
     .join('&');
@@ -29,14 +29,15 @@ function getUrl({launchUrl, name}) {
   return `${launchUrl}?${query}`;
 }
 
-function getPuppeteerUrl(name) {
+function getPuppeteerUrl(name, theme) {
   return getUrl({
     launchUrl: config.tests.url,
     name,
+    theme,
   });
 }
 
-async function mount(page, scenarioName) {
+async function mount(page, scenarioName, theme) {
   // replicate console events into terminal
   page.on('console', msg => {
     for (let i = 0; i < msg.args().length; ++i) {
@@ -45,7 +46,7 @@ async function mount(page, scenarioName) {
     }
   });
 
-  await page.goto(getPuppeteerUrl(scenarioName));
+  await page.goto(getPuppeteerUrl(scenarioName, theme));
 }
 
 async function analyzeAccessibility(page, options = {rules: []}) {

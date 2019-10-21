@@ -31,9 +31,12 @@ const octokit = Octokit({
 });
 
 //
+main();
 
-main().catch(handleError);
-
+process.on('unhandledRejection', function(err) {
+  console.log(err);
+  throw err;
+});
 //
 
 async function main() {
@@ -312,14 +315,6 @@ function someSnapshotsWereUpdated() {
     log(`No snapshots were updated.`);
   }
   return result;
-}
-
-function handleError(er) {
-  // Fail the CI job if an error propagates to this level
-  // Any non critical function should handle error and log a useful message
-  // Basically everything other than the test results and pushing a new branch is non critical (PR/Comments/Labels/Reviewers)
-  log(`The job has failed, but it is not a failure.`);
-  process.exit(1);
 }
 
 function log(message) {
