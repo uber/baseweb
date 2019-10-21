@@ -47,6 +47,10 @@ function matchArrayElements(a, b) {
   return true;
 }
 
+function wait(ms) {
+  return new Promise(res => setTimeout(res, ms));
+}
+
 describe('data table text search', () => {
   jest.setTimeout(10 * 1000);
   it('filters to expected number of rows', async () => {
@@ -54,11 +58,12 @@ describe('data table text search', () => {
     await page.waitFor(TABLE_ROOT);
 
     const before = await page.$eval(TABLE_ROOT, node => node.childNodes.length);
-    expect(before).toBe(169);
+    expect(before).toBe(145);
 
     await page.type('input', 'arti');
+    await wait(250); // input is debounced by 250ms
+
     const actual = await getCellContentsAtColumnIndex(page, 0);
-    console.log(actual);
     const expected = ['American bison', 'Goat', 'Giraffe', 'Llama', 'Reindeer'];
     expect(matchArrayElements(actual, expected)).toBe(true);
   });

@@ -345,6 +345,7 @@ function QueryInput(props) {
   return (
     <div className={css({width: '375px'})}>
       <Input
+        aria-label="Search by text"
         overrides={{
           Before: function Before() {
             return (
