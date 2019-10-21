@@ -21,3 +21,4 @@ export {
 } from './styled-components.js';
 export {default as Radio} from './radio.js';
 export * from './types.js';
+export {ALIGN} from './constants.js';
