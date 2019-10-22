@@ -40,6 +40,7 @@ const Survey = () => {
         left: 0,
         width: '100%',
         boxShadow: theme.lighting.shadow400,
+        color: theme.colors.foreground,
         textAlign: 'center',
         paddingTop: theme.sizing.scale800,
         paddingBottom: theme.sizing.scale800,
