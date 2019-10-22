@@ -48,6 +48,7 @@ describe('TetherBehavior', () => {
     // Popper library should have been initialized
     expect(Popper).toHaveBeenCalled();
     const tethered = wrapper.childAt(1);
+    // $FlowFixMe
     const calls = Popper.mock.calls;
 
     expect(tethered).toHaveText('This is popper');

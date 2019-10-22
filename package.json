@@ -1,6 +1,6 @@
 {
   "name": "baseui",
-  "version": "9.9.0",
+  "version": "9.10.0",
   "description": "A React Component library implementing the Base design language",
   "keywords": [
     "react",
@@ -178,6 +178,7 @@
     "tar": "^5.0.0",
     "terser": "^4.1.4",
     "typescript": "^3.5.3",
+    "universal-cookie": "^4.0.2",
     "webpack": "^4.17.1",
     "webpack-bundle-analyzer": "^3.5.0",
     "webpack-cli": "^3.1.0"
@@ -188,7 +189,7 @@
     "just-extend": "^4.0.2",
     "memoize-one": "^5.0.0",
     "polished": "^3.2.0",
-    "popper.js": "^1.14.3",
+    "popper.js": "^1.16.0",
     "react-dropzone": "^9.0.0",
     "react-focus-lock": "^1.9.1",
     "react-input-mask": "^2.0.4",
