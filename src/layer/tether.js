@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import Popper from 'popper.js';
+import type {Instance as PopperInstance} from 'popper.js';
 import {toPopperPlacement, parsePopperOffset} from './utils.js';
 import {TETHER_PLACEMENT} from './constants.js';
 import type {TetherPropsT, TetherStateT, PopperDataObjectT} from './types.js';
@@ -20,7 +21,7 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
     popperOptions: {},
   };
 
-  popper: ?Popper;
+  popper: ?PopperInstance;
   popperHeight = 0;
 
   state = {
@@ -66,6 +67,9 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
   initializePopper() {
     const {placement, popperOptions} = this.props;
     const {modifiers, ...restOptions} = popperOptions;
+
+    if (!this.props.anchorRef || !this.props.popperRef) return;
+
     this.popper = new Popper(this.props.anchorRef, this.props.popperRef, {
       // Recommended placement (popper may ignore if it causes a viewport overflow, etc)
       placement: toPopperPlacement(placement),

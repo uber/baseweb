@@ -188,7 +188,7 @@
     "just-extend": "^4.0.2",
     "memoize-one": "^5.0.0",
     "polished": "^3.2.0",
-    "popper.js": "^1.14.3",
+    "popper.js": "^1.16.0",
     "react-dropzone": "^9.0.0",
     "react-focus-lock": "^1.9.1",
     "react-input-mask": "^2.0.4",
