@@ -61,7 +61,7 @@ In many cases, you would want to override Base Web’s breakpoints with your own
 - **`medium: 600`**
 - **`large: 1280`**
 
-To override these, we recommend creating your own mapping, as well as generating the respective `min-width` media query strings using `getMediaQuery()` ([v6.19.0](https://github.com/uber/baseweb/releases/tag/v6.19.0)+), so we could target different screen widths for styling:
+To override these, we recommend creating your own mapping, as well as generating the respective `min-width` media query strings so we can target different screen widths for styling:
 
 ```js
 const MyBreakpoints = {
@@ -73,9 +73,7 @@ const MyBreakpoints = {
 const ResponsiveTheme = Object.keys(MyBreakpoints).reduce(
   (acc, key) => {
     acc.breakpoints[key] = MyBreakpoints[key];
-    acc.media[key] = getMediaQuery({
-      'min-width': `${MyBreakpoints[key]}px`,
-    });
+    acc.media[key] = `@media screen and (min-width: ${MyBreakpoints[key]}px)`
     return acc;
   },
   {
