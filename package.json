@@ -178,6 +178,7 @@
     "tar": "^5.0.0",
     "terser": "^4.1.4",
     "typescript": "^3.5.3",
+    "universal-cookie": "^4.0.2",
     "webpack": "^4.17.1",
     "webpack-bundle-analyzer": "^3.5.0",
     "webpack-cli": "^3.1.0"
