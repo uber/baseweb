@@ -96,7 +96,7 @@ async function preparePageForSnapshot(
   } else {
     await setViewportToDesktop(page);
   }
-  await page.waitFor(500);
+  await page.waitFor(250);
 }
 
 async function setViewportToDesktop() {
