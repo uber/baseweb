@@ -156,6 +156,7 @@ async function addOriginalAuthorAsReviewer(newSnapshotPullRequestNumber) {
     log(
       `There was an error adding the original PR author as a reviewer for the new snapshot PR.`,
     );
+    log(er);
   }
 }
 
@@ -169,6 +170,7 @@ async function removeSnapshotBranchFromGitHub() {
     log(`Removed the snapshot branch from GitHub`);
   } catch (er) {
     log(`There was an error removing the snapshot branch from GitHub.`);
+    log(er);
   }
 }
 
@@ -184,6 +186,7 @@ async function closeSnapshotPullRequest(snapshotPullRequestNumber) {
     log(`Closed the existing snapshot PR.`);
   } catch (er) {
     log(`There was an error closing the existing snapshot PR.`);
+    log(er);
   }
   await notifyOriginalPullRequestOfClosure(snapshotPullRequestNumber);
 }
@@ -205,6 +208,7 @@ async function notifyOriginalPullRequestOfClosure(snapshotPullRequestNumber) {
     log(
       `There was an error commenting on the original PR about snapshot resolution.`,
     );
+    log(er);
   }
 }
 
@@ -224,6 +228,7 @@ async function notifySnapshotPullRequestOfClosure(snapshotPullRequestNumber) {
     log(
       `There was an error commenting on the existing snapshot PR about snapshot resolution.`,
     );
+    log(er);
   }
 }
 
@@ -238,6 +243,7 @@ async function addLabelsToSnapshotPullRequest(newPullRequestNumber) {
     log(`Added labels to new snapshot PR.`);
   } catch (er) {
     log(`There was an error adding labels to new snapshot PR.`);
+    log(er);
   }
 }
 
@@ -256,6 +262,7 @@ async function addCommentToOriginalPullRequest(snapshotPullRequestUrl) {
     );
   } catch (er) {
     log(`Error creating comment on original PR.`);
+    log(er);
   }
 }
 
@@ -297,6 +304,7 @@ async function getSnapshotPullRequest() {
     log(
       `There was an error fetching existing PRs so could not find an existing snapshot PR.`,
     );
+    log(er);
   }
 }
 
