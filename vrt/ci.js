@@ -196,7 +196,7 @@ async function notifyOriginalPullRequestOfClosure(snapshotPullRequestNumber) {
       issue_number: BUILDKITE_PULL_REQUEST,
       body:
         `Visual changes have been resolved. #${snapshotPullRequestNumber} has been closed. ` +
-        `A new snapshot branch will be created and a new PR will be opened if future commits on \`${BUILDKITE_BRANCH}\` trigger visual changes.`,
+        `If future commits on \`${BUILDKITE_BRANCH}\` trigger visual changes, a new snapshot branch will be created and a new PR will be opened.`,
     });
     log(
       `Posted a comment on original PR about closure of existing snapshot PR.`,
