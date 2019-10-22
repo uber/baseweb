@@ -14,12 +14,17 @@ export const trackPageView = (url: string) => {
   } catch (error) {}
 };
 
-export const trackEvent = (eventName: string, label: string) => {
+export const trackEvent = (
+  eventName: string,
+  label: string,
+  value?: string,
+) => {
   try {
     (window as any).gtag('event', eventName, {
       send_to: GA_ID,
       event_category: 'general',
       event_label: label,
+      event_value: value,
     });
   } catch (error) {}
 };
