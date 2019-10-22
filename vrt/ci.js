@@ -113,7 +113,9 @@ async function updateGitHub() {
 
 async function removeSnapshotsWorkFromGitHub(snapshotPullRequest) {
   if (snapshotPullRequest) {
+    await notifySnapshotPullRequestOfClosure(snapshotPullRequest.number);
     await closeSnapshotPullRequest(snapshotPullRequest.number);
+    await notifyOriginalPullRequestOfClosure(snapshotPullRequest.html_url);
     await removeSnapshotBranchFromGitHub();
   } else {
     log(`Nothing to clean up.`);
@@ -137,7 +139,7 @@ async function updatePullRequests(snapshotPullRequest) {
   }
 }
 
-async function addOriginalAuthorAsReviewer(newSnapshotPullRequestNumber) {
+async function addOriginalAuthorAsReviewer(snapshotPullRequestNumber) {
   try {
     const originalPullRequest = await octokit.pulls.get({
       owner: `uber`,
@@ -148,7 +150,7 @@ async function addOriginalAuthorAsReviewer(newSnapshotPullRequestNumber) {
     await octokit.pulls.createReviewRequest({
       owner: ORIGINAL_PULL_REQUEST_OWNER,
       repo: `baseweb`,
-      pull_number: newSnapshotPullRequestNumber,
+      pull_number: snapshotPullRequestNumber,
       reviewers: [author.login],
     });
     log(`Requested review from \`${author.login}\` on new snapshot PR.`);
@@ -175,7 +177,6 @@ async function removeSnapshotBranchFromGitHub() {
 }
 
 async function closeSnapshotPullRequest(snapshotPullRequestNumber) {
-  await notifySnapshotPullRequestOfClosure(snapshotPullRequestNumber);
   try {
     await octokit.pulls.update({
       owner: ORIGINAL_PULL_REQUEST_OWNER,
@@ -188,17 +189,16 @@ async function closeSnapshotPullRequest(snapshotPullRequestNumber) {
     log(`There was an error closing the existing snapshot PR.`);
     log(er);
   }
-  await notifyOriginalPullRequestOfClosure(snapshotPullRequestNumber);
 }
 
-async function notifyOriginalPullRequestOfClosure(snapshotPullRequestNumber) {
+async function notifyOriginalPullRequestOfClosure(snapshotPullRequestUrl) {
   try {
     await octokit.issues.createComment({
       owner: `uber`,
       repo: `baseweb`,
       issue_number: BUILDKITE_PULL_REQUEST,
       body:
-        `Visual changes have been resolved. #${snapshotPullRequestNumber} has been closed. ` +
+        `Visual changes have been resolved. ${snapshotPullRequestUrl} has been closed. ` +
         `If future commits on \`${BUILDKITE_BRANCH}\` trigger visual changes, a new snapshot branch will be created and a new PR will be opened.`,
     });
     log(
@@ -232,12 +232,12 @@ async function notifySnapshotPullRequestOfClosure(snapshotPullRequestNumber) {
   }
 }
 
-async function addLabelsToSnapshotPullRequest(newPullRequestNumber) {
+async function addLabelsToSnapshotPullRequest(snapshotPullRequestNumber) {
   try {
     await octokit.issues.addLabels({
       owner: ORIGINAL_PULL_REQUEST_OWNER,
       repo: `baseweb`,
-      issue_number: newPullRequestNumber,
+      issue_number: snapshotPullRequestNumber,
       labels: [`greenkeeping`, `visual snapshot updates`],
     });
     log(`Added labels to new snapshot PR.`);
@@ -305,6 +305,7 @@ async function getSnapshotPullRequest() {
       `There was an error fetching existing PRs so could not find an existing snapshot PR.`,
     );
     log(er);
+    return null;
   }
 }
 
