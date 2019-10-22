@@ -72,7 +72,7 @@ const NotificationConfig: TConfig = {
       value: undefined,
       type: PropTypes.Overrides,
       description: 'Lets you customize all aspects of the component.',
-      names: ['Root', 'ToastBody', 'ToastCloseIcon'],
+      names: ['Body', 'CloseIcon', 'InnerContainer'],
       sharedProps: {
         $kind: 'kind',
         $closeable: 'closeable',
