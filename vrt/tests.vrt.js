@@ -69,6 +69,7 @@ describe('visual snapshot tests', () => {
             VIEWPORT.desktop,
           );
           await interaction.behavior(page);
+          await page.waitFor(250);
           await snapshot(`${scenarioName}__${interaction.name}`);
         });
       });
