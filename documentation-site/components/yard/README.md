@@ -77,7 +77,7 @@ import {
     console.log(code, props);
   }}
   initialCode="useful to hydrate the state from URL"
-  providerValues={['buttonFillPrimary']}
+  providerValues={{'buttonFillPrimary': '#000000' }}
   provider={{
     parse: ({ astRoot }) => ({ key1: 'value1' }),
     generate: ({ values, initialValues }) => t.jsx(),
@@ -186,7 +186,7 @@ const engine = new Styletron();
         Router.push(`/code=${code}`);
       }}
       initialCode={queryParams(window.location).code}
-      providerValues={['buttonPrimaryFill']}
+      providerValues={{'buttonPrimaryFill': '#000000'}}
       provider={/* optional, default = Base Web theme */}
     />
   </BaseProvider>
@@ -244,6 +244,15 @@ export const PropTypes {
 }
 export type PropTypes = typeof PropTypes;
 ```
+
+## providerValues & provider
+
+The overall idea is to pass `value: any` into providerValues. Then you have to do four things:
+
+- in `provider.parsespecify` how to get the value out of the code (string)
+- in `provider.generate` specify how to get the AST of provider based on value
+- define related imports
+- build an UI editor based on `providerProps` (`values`, `initialValues`, `onChange`, `reset`)
 
 ## Prior Art & Similar Projects
 
