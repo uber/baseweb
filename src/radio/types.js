@@ -9,8 +9,10 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import type {OverrideT} from '../helpers/overrides.js';
+import {ALIGN} from './constants.js';
 
 export type LabelPlacementT = 'top' | 'right' | 'bottom' | 'left';
+export type AlignT = $Keys<typeof ALIGN>;
 
 export type RadioOverridesT = {
   RadioMarkInner?: OverrideT<*>,
@@ -65,7 +67,7 @@ export type PropsT = {
   /** Set to be focused (active) on selected\checked radio. */
   autoFocus?: boolean,
   /** How to position radio buttons in the group. */
-  align?: string,
+  align?: AlignT,
   /** String value for the name of RadioGroup, it is used to group buttons. If missed default is random ID string. */
   name?: string,
   /** How to position the label relative to the radio itself. */

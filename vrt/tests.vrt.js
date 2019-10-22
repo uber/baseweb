@@ -9,189 +9,111 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 
 const {configureToMatchImageSnapshot} = require('jest-image-snapshot');
-const {mount} = require('../e2e/helpers');
-const config = require('./config.js');
+const {getSnapshotConfig} = require('./config.js');
 const {getAllScenarioNames} = require('./utils.js');
+const {mount} = require('../e2e/helpers');
 
-const toMatchImageSnapshot = configureToMatchImageSnapshot({
-  customDiffDir: '__artifacts__',
-  diffDirection: 'vertical',
-});
+const THEME = {
+  light: 'light',
+  dark: 'dark',
+};
 
-expect.extend({toMatchImageSnapshot});
+const VIEWPORT = {
+  mobile: 'mobile',
+  desktop: 'desktop',
+};
 
-const allScenarios = [
-  ...getAllScenarioNames().map(scenarioName => ({
-    scenarioName,
-    theme: 'light',
-  })),
-  // remove rtl from dark theme checks
-  ...getAllScenarioNames()
-    .filter(scenarioName => !scenarioName.includes('rtl'))
-    .map(scenarioName => ({
-      scenarioName,
-      theme: 'dark',
-    })),
-];
+configureJest();
 
-describe('visual regression tests', () => {
-  allScenarios.forEach(({scenarioName, theme}) => {
-    const {fullPage = false, interactions = [], selector = null, skip = false} =
-      config[scenarioName] || {};
+describe('visual snapshot tests', () => {
+  getAllScenarioNames().forEach(scenarioName => {
+    const snapshotConfig = getSnapshotConfig(scenarioName);
 
-    if (skip) return;
+    if (snapshotConfig.skip) return;
 
-    it(scenarioName, async () => {
-      const root = await prepare({
-        page,
-        scenarioName,
-        theme,
+    describe(scenarioName, () => {
+      it(`desktop`, async () => {
+        await preparePageForSnapshot(
+          scenarioName,
+          THEME.light,
+          VIEWPORT.desktop,
+        );
+        await snapshot(`${scenarioName}__desktop`);
       });
 
-      await testState({
-        selector,
-        fullPage,
-        root,
-        scenarioName,
-        theme,
+      it(`mobile`, async () => {
+        await preparePageForSnapshot(
+          scenarioName,
+          THEME.light,
+          VIEWPORT.mobile,
+        );
+        await snapshot(`${scenarioName}__mobile`);
+      });
+
+      if (!scenarioName.includes('rtl')) {
+        it(`dark`, async () => {
+          await preparePageForSnapshot(
+            scenarioName,
+            THEME.dark,
+            VIEWPORT.desktop,
+          );
+          await snapshot(`${scenarioName}__dark`);
+        });
+      }
+
+      snapshotConfig.interactions.forEach(interaction => {
+        it(interaction.name, async () => {
+          await preparePageForSnapshot(
+            scenarioName,
+            THEME.light,
+            VIEWPORT.desktop,
+          );
+          await interaction.behavior(page);
+          await page.waitFor(250);
+          await snapshot(`${scenarioName}__${interaction.name}`);
+        });
       });
     });
-
-    const mobileScenarioName = `${scenarioName}--mobile`;
-
-    if (theme === 'light') {
-      it(mobileScenarioName, async () => {
-        const root = await prepare({
-          page,
-          scenarioName,
-          isMobile: true,
-          theme,
-        });
-
-        await testState({
-          selector,
-          fullPage,
-          root,
-          scenarioName: mobileScenarioName,
-          theme,
-        });
-      });
-    }
-
-    if (interactions.length > 0) {
-      interactions.forEach(interaction => {
-        const testName = `${scenarioName}__${interaction.name}`;
-        const fullPage = Object.prototype.hasOwnProperty.call(
-          interaction,
-          'fullPage',
-        )
-          ? interaction.fullPage
-          : fullPage;
-        const selector = Object.prototype.hasOwnProperty.call(
-          interaction,
-          'selector',
-        )
-          ? interaction.selector
-          : selector;
-
-        it(testName, async () => {
-          const root = await prepare({
-            page,
-            scenarioName,
-            theme,
-          });
-
-          // run interaction script
-          await interaction.behavior(page);
-
-          // let things settle down
-          await page.waitFor(500);
-
-          await testState({
-            selector,
-            fullPage,
-            root,
-            scenarioName: testName,
-            theme,
-          });
-        });
-
-        const mobileScenarioName = `${testName}--mobile`;
-
-        if (theme === 'light') {
-          it(mobileScenarioName, async () => {
-            const root = await prepare({
-              page,
-              scenarioName,
-              isMobile: true,
-              theme,
-            });
-
-            // run interaction script
-            await interaction.behavior(page);
-
-            // let things settle down
-            await page.waitFor(500);
-
-            await testState({
-              selector,
-              fullPage,
-              root,
-              scenarioName: testName,
-              theme,
-            });
-          });
-        }
-      });
-    }
   });
 });
 
-async function testState({selector, fullPage, root, scenarioName, theme}) {
-  let image;
-  if (selector) {
-    const elementHandle = page.$(selector);
-    image = await elementHandle.screenshot();
-  } else if (fullPage) {
-    image = await page.screenshot({fullPage: true});
-  } else {
-    // sometimes the root node will have a height of 0
-    // in this case, fallback to taking a picture of the entire page
-    try {
-      image = await root.screenshot();
-    } catch (er) {
-      console.log(
-        `Could not take a snapshot of root element. Please update snapshot config.`,
-      );
-      console.log(er);
-      image = await page.screenshot({fullPage: true});
-    }
-  }
-
+async function snapshot(identifier) {
+  const image = await page.screenshot({fullPage: true});
   expect(image).toMatchImageSnapshot({
-    customSnapshotIdentifier: `${scenarioName}${
-      theme === 'dark' ? '--dark' : ''
-    }`,
+    customSnapshotIdentifier: identifier,
   });
 }
 
-async function prepare({page, scenarioName, isMobile, theme}) {
-  // load page
+async function preparePageForSnapshot(
+  scenarioName,
+  theme = THEME.light,
+  viewport = VIEWPORT.desktop,
+) {
   await mount(page, scenarioName, theme);
-
-  // set viewport for mobile - iPhone X
-  if (isMobile) {
-    await page.setViewport({
-      width: 375,
-      height: 812,
-    });
+  await freezeAnimations(page);
+  if (viewport === VIEWPORT.mobile) {
+    await setViewportToMobile(page);
   } else {
-    await page.setViewport({
-      width: 1024,
-      height: 768,
-    });
+    await setViewportToDesktop(page);
   }
+  await page.waitFor(250);
+}
 
+async function setViewportToDesktop() {
+  await page.setViewport({
+    width: 1024,
+    height: 768,
+  });
+}
+
+async function setViewportToMobile() {
+  await page.setViewport({
+    width: 375,
+    height: 812,
+  });
+}
+
+async function freezeAnimations() {
   // freeze animations and disable caret blinking
   await page.addStyleTag({
     content: `*, *::before, *::after {
@@ -202,10 +124,12 @@ animation: none !important;
 caret-color: transparent !important;
 }`,
   });
+}
 
-  // let things settle down
-  await page.waitFor(500);
-
-  // return root element for screenshot
-  return await page.$('#root');
+function configureJest() {
+  const toMatchImageSnapshot = configureToMatchImageSnapshot({
+    customDiffDir: '__artifacts__',
+    diffDirection: 'vertical',
+  });
+  expect.extend({toMatchImageSnapshot});
 }
