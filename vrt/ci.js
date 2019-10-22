@@ -221,7 +221,7 @@ async function notifySnapshotPullRequestOfClosure(snapshotPullRequestNumber) {
       body:
         `Visual changes have been resolved. ` +
         `This PR will be closed and \`${SNAPSHOT_BRANCH}\` will be deleted. ` +
-        `A new snapshot branch will be created and a new PR will be opened if future commits on \`${BUILDKITE_BRANCH}\` trigger visual changes.`,
+        `If future commits on \`${BUILDKITE_BRANCH}\` trigger visual changes, a new snapshot branch will be created and a new PR will be opened.`,
     });
     log(`Posted a comment on snapshot PR about visual resolution and closure.`);
   } catch (er) {
