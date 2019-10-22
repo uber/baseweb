@@ -265,7 +265,7 @@ async function createSnapshotPullRequest() {
       owner: ORIGINAL_PULL_REQUEST_OWNER,
       repo: `baseweb`,
       title: `test(vrt): update visual snapshots for ${BUILDKITE_BRANCH} [skip ci]`,
-      head: SNAPSHOT_BRANCH,
+      head: `uber:${SNAPSHOT_BRANCH}`,
       base: BUILDKITE_BRANCH,
       body:
         `This PR was generated based on visual changes detected in #${BUILDKITE_PULL_REQUEST}. ` +
