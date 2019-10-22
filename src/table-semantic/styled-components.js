@@ -5,168 +5,155 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+import Blank from '../icon/blank.js';
+import ChevronDown from '../icon/chevron-down.js';
+import ChevronUp from '../icon/chevron-up.js';
+import {styled, withStyle} from '../styles/index.js';
 
-import {styled} from '../styles/index.js';
-
-type StyledTableContainerPropsT = {
-  $fill?: boolean,
-};
-
-export const StyledTableContainer = styled<StyledTableContainerPropsT>(
-  'div',
-  ({$theme, $fill}) => {
-    const position = $fill
-      ? {
-          position: 'absolute',
-          top: '0',
-          right: '0',
-          bottom: '0',
-          left: '0',
-          overflow: 'auto',
-          WebkitOverflowScrolling: 'touch',
-        }
-      : {
-          position: 'relative',
-        };
-
-    return {
-      ...position,
-      border: `1px solid ${$theme.colors.border}`,
-    };
-  },
-);
+export const StyledRoot = styled<{}>('div', ({$theme}) => {
+  return {
+    ...$theme.borders.border300,
+    position: 'relative',
+    overflow: 'auto',
+    WebkitOverflowScrolling: 'touch',
+    backgroundColor: $theme.colors.tableBackground,
+    borderTopLeftRadius: $theme.borders.radius200,
+    borderTopRightRadius: $theme.borders.radius200,
+    borderBottomRightRadius: $theme.borders.radius200,
+    borderBottomLeftRadius: $theme.borders.radius200,
+  };
+});
 
 type StyledTablePropsT = {
-  $border?: boolean,
+  $width?: ?string,
 };
 
-export const StyledTable = styled<StyledTablePropsT>(
+export const StyledTable = styled<StyleTablePropsT>(
   'table',
-  ({$theme, $border}) => {
-    const border =
-      $border !== false
-        ? {
-            border: `1px solid ${$theme.colors.border}`,
-          }
-        : {
-            borderStyle: 'hidden',
-          };
-
+  ({$theme, $width}) => {
     return {
-      ...border,
-      position: 'relative',
-      zIndex: 0,
-      backgroundColor: $theme.colors.background,
       borderCollapse: 'collapse',
       boxSizing: 'border-box',
       minWidth: '100%',
+      width: $width || null,
     };
   },
 );
 
-export const StyledTableHead = styled<{}>('thead', () => ({}));
+export const StyledTableHead = styled<{}>('thead', ({$theme}) => {
+  return {
+    textAlign: 'left',
+  };
+});
 
-export const StyledTableHeadRow = styled<{}>('tr', () => ({}));
+export const StyledTableHeadRow = styled<{}>('tr', ({$theme}) => {
+  return {};
+});
 
-type StyledTableHeadCellProps = {
-  $isFrozen?: boolean,
-  $isSortable?: ?boolean,
-};
+export const StyledTableHeadCell = styled<{}>('th', ({$theme}) => {
+  const borderLeft = Object.values($theme.borders.border300).join(' ');
 
-export const StyledTableHeadCell = styled<StyledTableHeadCellProps>(
-  'th',
-  ({$theme, $isFrozen, $isSortable}) => {
-    const {colors, sizing, typography} = $theme;
-    let sortableStyles = {};
-
-    if ($isSortable) {
-      sortableStyles = {
-        cursor: 'pointer',
-        outline: 'none',
-        ':focus': {
-          backgroundColor: $theme.colors.mono200,
-        },
-        ':hover': {
-          backgroundColor: $theme.colors.mono200,
-        },
-      };
-    }
-
-    return {
-      ...typography.font350,
-
-      position: $isFrozen ? 'sticky' : 'relative',
-      top: '0',
-      zIndex: 1,
-      paddingTop: sizing.scale500,
-      paddingRight: sizing.scale600,
-      paddingBottom: sizing.scale500,
-      paddingLeft: sizing.scale600,
-      backgroundColor: colors.background,
-      cursor: 'normal',
-      textAlign: 'left',
-      userSelect: 'none',
-      verticalAlign: 'middle',
-      whiteSpace: 'nowrap',
-
-      '::before': {
-        content: '""',
-        position: 'absolute',
-        top: '0',
-        right: '100%',
-        bottom: '0',
-        borderLeft: `1px solid ${colors.border}`,
-      },
-
-      '::after': {
-        content: '""',
-        position: 'absolute',
-        top: '100%',
-        right: '0',
-        left: '0',
-        height: sizing.scale100,
-        pointerEvents: 'none',
-        backgroundImage: `
-          linear-gradient(
-            to bottom,
-            rgba(0, 0, 0, 0.1),
-            rgba(0, 0, 0, 0)
-          )
-        `,
-      },
-
-      ...sortableStyles,
-    };
-  },
-);
-
-export const StyledTableHeadCellIcon = styled<{}>('span', () => ({
-  verticalAlign: 'middle',
-}));
-
-export const StyledTableBody = styled<{}>('tbody', () => ({}));
-
-export const StyledTableBodyRow = styled<{}>('tr', ({$theme}) => ({
-  ':hover': {
-    backgroundColor: $theme.colors.mono200,
-  },
-}));
-
-type StyledTableBodyCellProps = {
-  $isLiteral?: boolean,
-  $isNumeric?: boolean,
-};
-
-export const StyledTableBodyCell = styled<StyledTableBodyCellProps>(
-  'td',
-  ({$theme, $isLiteral, $isNumeric}) => ({
-    ...$theme.typography.font300,
+  return {
+    ...$theme.typography.font350,
+    position: 'sticky',
+    top: 0,
     paddingTop: $theme.sizing.scale500,
     paddingRight: $theme.sizing.scale600,
     paddingBottom: $theme.sizing.scale500,
     paddingLeft: $theme.sizing.scale600,
-    textAlign: $isNumeric ? 'right' : 'left',
-    verticalAlign: 'top',
-    whiteSpace: $isLiteral || $isNumeric ? 'nowrap' : 'normal',
-  }),
+    backgroundColor: $theme.colors.tableHeadBackgroundColor,
+    color: $theme.colors.colorPrimary,
+    whiteSpace: 'nowrap',
+
+    '::before': {
+      content: '""',
+      position: 'absolute',
+      top: '0',
+      right: '100%',
+      bottom: '0',
+      borderLeft,
+    },
+
+    '::after': {
+      content: '""',
+      position: 'absolute',
+      top: '100%',
+      right: '0',
+      left: '0',
+      height: $theme.sizing.scale100,
+      pointerEvents: 'none',
+      backgroundImage: `
+        linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.16),
+          rgba(0, 0, 0, 0)
+        )
+      `,
+    },
+  };
+});
+
+export const StyledTableHeadCellSortable = withStyle<{}>(
+  StyledTableHeadCell,
+  ({$theme}) => {
+    return {
+      cursor: 'pointer',
+
+      ':focus': {
+        backgroundColor: $theme.colors.tableStripedBackground,
+      },
+
+      ':hover': {
+        backgroundColor: $theme.colors.tableStripedBackground,
+      },
+    };
+  },
+);
+
+export const StyledSortAscIcon = styled<{}>(ChevronDown, ({$theme}) => {
+  return {
+    verticalAlign: 'middle',
+  };
+});
+
+export const StyledSortDescIcon = styled<{}>(ChevronUp, ({$theme}) => {
+  return {
+    verticalAlign: 'middle',
+  };
+});
+
+export const StyledSortNoneIcon = styled<{}>(Blank, ({$theme}) => {
+  return {
+    verticalAlign: 'middle',
+  };
+});
+
+export const StyledTableBody = styled<{}>('tbody', ({$theme}) => {
+  return {};
+});
+
+export const StyledTableBodyRow = styled<{}>('tr', ({$theme}) => {
+  return {
+    ':hover': {
+      backgroundColor: $theme.colors.tableStripedBackground,
+    },
+  };
+});
+
+type StyledTableBodyCellPropsT = {
+  $isNumeric?: ?boolean,
+};
+
+export const StyledTableBodyCell = styled<StyledTableBodyCellPropsT>(
+  'td',
+  ({$theme, $isNumeric}) => {
+    return {
+      paddingTop: $theme.sizing.scale300,
+      paddingRight: $theme.sizing.scale600,
+      paddingBottom: $theme.sizing.scale300,
+      paddingLeft: $theme.sizing.scale600,
+      color: $theme.colors.colorPrimary,
+      textAlign: $isNumeric ? 'right' : null,
+    };
+  },
 );

@@ -5,144 +5,98 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-
-import React, {useMemo, type ComponentType, type Node} from 'react';
-import {ChevronDown, ChevronUp} from '../icon/index.js';
+import * as React from 'react';
 
 import {
-  StyledTableContainer,
+  StyledRoot,
   StyledTable,
   StyledTableHead,
   StyledTableHeadRow,
   StyledTableHeadCell,
-  StyledTableHeadCellIcon,
   StyledTableBody,
   StyledTableBodyRow,
   StyledTableBodyCell,
 } from './styled-components.js';
+import {getOverrides} from '../helpers/overrides.js';
 
-export type SortOrderT = 'ASC' | 'DESC';
+import type {TablePropsT} from './types.js';
 
-export type TableColumnT = {
-  key: string,
-  header: Node,
-  Cell: ComponentType<{row: any}>,
-  isLiteral?: boolean,
-  isNumeric?: boolean,
-  isSortable?: boolean,
-};
+export default class Table extends React.Component<TablePropsT> {
+  static defaultProps = {
+    overrides: {},
+    columns: [],
+    data: [[]],
+    horizontalScrollWidth: null,
+  };
 
-export type TableHeadCellPropsT = {
-  column: TableColumnT,
-  sortKey?: ?string,
-  sortOrder?: ?SortOrderT,
-  onSort?: (string, SortOrderT) => void,
-};
+  render() {
+    const {
+      overrides = {},
+      columns,
+      data,
+      horizontalScrollWidth,
+      ...rest
+    } = this.props;
 
-export function TableHeadCell(props: TableHeadCellPropsT) {
-  const {column, sortKey, sortOrder, onSort, ...rest} = props;
-  const {key, header, isSortable} = column;
-  const isSorted = isSortable && key === sortKey;
+    const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
 
-  const icon = isSorted && (
-    <StyledTableHeadCellIcon
-      $as={sortOrder === 'ASC' ? ChevronUp : ChevronDown}
-    />
-  );
+    const [Table, tableProps] = getOverrides(overrides.Table, StyledTable);
 
-  function handleSort() {
-    if (isSortable && onSort) {
-      if (key === sortKey) {
-        onSort(key, sortOrder === 'ASC' ? 'DESC' : 'ASC');
-      } else {
-        onSort(key, 'ASC');
-      }
-    }
-  }
+    const [TableHead, tableHeadProps] = getOverrides(
+      overrides.TableHead,
+      StyledTableHead,
+    );
 
-  function handleKeyPress(event) {
-    if (event.key === 'Enter') {
-      handleSort();
-    }
-  }
+    const [TableHeadRow, tableHeadRowProps] = getOverrides(
+      overrides.TableHeadRow,
+      StyledTableHeadRow,
+    );
 
-  return (
-    <StyledTableHeadCell
-      $isSortable={isSortable}
-      tabIndex={isSortable ? 0 : null}
-      onClick={handleSort}
-      onKeyPress={handleKeyPress}
-      {...rest}
-    >
-      {header}
-      &nbsp;
-      {icon}
-    </StyledTableHeadCell>
-  );
-}
+    const [TableHeadCell, tableHeadCellProps] = getOverrides(
+      overrides.TableHeadCell,
+      StyledTableHeadCell,
+    );
 
-export type TableBodyRowPropsT = {
-  columns: Array<TableColumnT>,
-  row: any,
-};
+    const [TableBody, tableBodyProps] = getOverrides(
+      overrides.TableBody,
+      StyledTableBody,
+    );
 
-export function TableBodyRow(props: TableBodyRowPropsT) {
-  const {columns, row} = props;
+    const [TableBodyRow, tableBodyRowProps] = getOverrides(
+      overrides.TableBodyRow,
+      StyledTableBodyRow,
+    );
 
-  // Memoize row rendering to improve performance of large tables
-  return useMemo(
-    () => (
-      <StyledTableBodyRow>
-        {columns.map(column => (
-          <StyledTableBodyCell
-            key={column.key}
-            $isLiteral={column.isLiteral}
-            $isNumeric={column.isNumeric}
-          >
-            <column.Cell row={row} />
-          </StyledTableBodyCell>
-        ))}
-      </StyledTableBodyRow>
-    ),
-    [columns, row],
-  );
-}
+    const [TableBodyCell, tableBodyCellProps] = getOverrides(
+      overrides.TableBodyCell,
+      StyledTableBodyCell,
+    );
 
-export type TablePropsT = {
-  columns: Array<TableColumnT>,
-  fill?: boolean,
-  rows: Array<any>,
-  sortKey?: ?string,
-  sortOrder?: ?SortOrderT,
-  onSort?: (string, SortOrderT) => void,
-};
-
-export function Table(props: TablePropsT) {
-  const {columns, fill, rows, sortKey, sortOrder, onSort} = props;
-
-  return (
-    <StyledTableContainer $fill={fill}>
-      <StyledTable $border={!fill}>
-        <StyledTableHead>
-          <StyledTableHeadRow>
-            {columns.map(column => (
-              <TableHeadCell
-                $isFrozen={fill}
-                key={column.key}
-                column={column}
-                sortKey={sortKey}
-                sortOrder={sortOrder}
-                onSort={onSort}
-              />
+    return (
+      <Root data-baseweb="table-semantic" {...rootProps} {...rest}>
+        <Table $width={horizontalScrollWidth} {...tableProps}>
+          <TableHead {...tableHeadProps}>
+            <TableHeadRow {...tableHeadRowProps}>
+              {columns.map((col, colIndex) => (
+                <TableHeadCell key={colIndex} {...tableHeadCellProps}>
+                  {col}
+                </TableHeadCell>
+              ))}
+            </TableHeadRow>
+          </TableHead>
+          <TableBody {...tableBodyProps}>
+            {data.map((row, rowIndex) => (
+              <TableBodyRow key={rowIndex} {...tableBodyRowProps}>
+                {columns.map((col, colIndex) => (
+                  <TableBodyCell key={colIndex} {...tableBodyCellProps}>
+                    {row[colIndex]}
+                  </TableBodyCell>
+                ))}
+              </TableBodyRow>
             ))}
-          </StyledTableHeadRow>
-        </StyledTableHead>
-        <StyledTableBody>
-          {rows.map(row => (
-            <TableBodyRow key={row.key} columns={columns} row={row} />
-          ))}
-        </StyledTableBody>
-      </StyledTable>
-    </StyledTableContainer>
-  );
+          </TableBody>
+        </Table>
+      </Root>
+    );
+  }
 }
