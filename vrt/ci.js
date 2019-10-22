@@ -129,7 +129,7 @@ async function updatePullRequests(snapshotPullRequest) {
   } else {
     const newSnapshotPullRequest = await createSnapshotPullRequest();
     await addLabelsToSnapshotPullRequest(newSnapshotPullRequest.number);
-    await addCommentToOriginalPullRequest(newSnapshotPullRequest.number);
+    await addCommentToOriginalPullRequest(newSnapshotPullRequest.html_url);
     await addOriginalAuthorAsReviewer(newSnapshotPullRequest.number);
     log(
       `Snapshots on \`${SNAPSHOT_BRANCH}\` must be merged into \`${BUILDKITE_BRANCH}\` before it can be merged into \`master\`.`,
@@ -241,7 +241,7 @@ async function addLabelsToSnapshotPullRequest(newPullRequestNumber) {
   }
 }
 
-async function addCommentToOriginalPullRequest(newPullRequestNumber) {
+async function addCommentToOriginalPullRequest(snapshotPullRequestUrl) {
   try {
     const comment = await octokit.issues.createComment({
       owner: `uber`,
@@ -249,7 +249,7 @@ async function addCommentToOriginalPullRequest(newPullRequestNumber) {
       issue_number: BUILDKITE_PULL_REQUEST,
       body:
         `Visual changes were detected on this branch. ` +
-        `Please review the following PR containing updated snapshots: #${newPullRequestNumber}`,
+        `Please review the following PR containing updated snapshots: ${snapshotPullRequestUrl}`,
     });
     log(
       `Posted a comment linking to snapshot PR on original PR: ${comment.data.html_url}`,
