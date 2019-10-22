@@ -9,21 +9,6 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 
 const config = {
-  'country-select-dropdown': {
-    interactions: [
-      {
-        name: 'expanded',
-        behavior: async page => {
-          const selectSelector = `[data-baseweb="select"]`;
-          const dropdownSelector = `[data-baseweb="menu"]`;
-          page.waitForSelector(selectSelector);
-          page.click(selectSelector);
-          page.waitForSelector(dropdownSelector);
-          await page.waitFor(1000);
-        },
-      },
-    ],
-  },
   'country-select-small-dropdown': {
     interactions: [
       {

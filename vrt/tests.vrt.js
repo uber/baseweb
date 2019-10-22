@@ -23,11 +23,22 @@ const VIEWPORT = {
   desktop: 'desktop',
 };
 
+const scenarioNames = getAllScenarioNames();
+
 configureJest();
 
-describe('visual snapshot tests', () => {
-  getAllScenarioNames().forEach(scenarioName => {
-    const snapshotConfig = getSnapshotConfig(scenarioName);
+describe('visual snapshot tests', async () => {
+  for (let i = 0; i < scenarioNames.length; i += 1) {
+    const scenarioName = scenarioNames[i];
+    const vrt = JSON.parse(
+      // eslint-disable-next-line
+      await page.evaluate(() => JSON.stringify(window.vry ? window.vrt : {})),
+    );
+
+    const snapshotConfig = {
+      ...getSnapshotConfig(scenarioName),
+      ...vrt,
+    };
 
     if (snapshotConfig.skip) return;
 
@@ -74,7 +85,7 @@ describe('visual snapshot tests', () => {
         });
       });
     });
-  });
+  }
 });
 
 async function snapshot(identifier) {
