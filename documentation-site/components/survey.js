@@ -111,8 +111,8 @@ function shouldShowSurvey() {
     FIRST_SEEN: 'survey-user-first-seen',
     LAST_SURVEYED: 'survey-last-surveyed',
   };
-  const TWO_MONTHS_AGO = 60 * 24 * 60 * 60 * 1000;
-  const ONE_WEEK_AGO = 7 * 24 * 60 * 60 * 1000;
+  const TWO_MONTHS = 60 * 24 * 60 * 60 * 1000;
+  const ONE_WEEK = 7 * 24 * 60 * 60 * 1000;
   const SURVEY_DELAY = 2 * 60 * 1000; // 2 minutes
 
   const firstSeen = Cookies.get(cookies.FIRST_SEEN);
@@ -131,12 +131,12 @@ function shouldShowSurvey() {
   }
 
   // the person only knows base web for less than a week
-  if (firstSeen > ONE_WEEK_AGO) {
+  if (now.getTime() - ONE_WEEK < firstSeen) {
     return {showSurvey: false, delay};
   }
 
   // the person was surveyed less than two months ago, bailing out
-  if (lastSurveyed > TWO_MONTHS_AGO) {
+  if (now.getTime() - TWO_MONTHS < lastSurveyed) {
     return {showSurvey: false, delay};
   }
 
