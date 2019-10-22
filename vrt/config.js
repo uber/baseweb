@@ -10,7 +10,6 @@ LICENSE file in the root directory of this source tree.
 
 const config = {
   'country-select-dropdown': {
-    fullPage: true,
     interactions: [
       {
         name: 'expanded',
@@ -26,7 +25,6 @@ const config = {
     ],
   },
   'country-select-small-dropdown': {
-    fullPage: true,
     interactions: [
       {
         name: 'expanded',
@@ -56,15 +54,6 @@ const config = {
         },
       },
     ],
-  },
-  drawer: {
-    fullPage: true,
-  },
-  'drawer-select': {
-    fullPage: true,
-  },
-  'drawer-rtl': {
-    fullPage: true,
   },
   'input-password': {
     interactions: [
@@ -96,26 +85,8 @@ const config = {
       },
     ],
   },
-  modal: {
-    fullPage: true,
-  },
-  'modal-select': {
-    fullPage: true,
-  },
-  'modal-rtl': {
-    fullPage: true,
-  },
   'nav-long': {
     skip: true,
-  },
-  popover: {
-    fullPage: true,
-  },
-  'popover-click': {
-    fullPage: true,
-  },
-  'popover-hover': {
-    fullPage: true,
   },
   'progress-steps': {
     interactions: [
@@ -142,7 +113,6 @@ const config = {
     ],
   },
   'select-in-modal': {
-    fullPage: true,
     interactions: [
       {
         name: 'opens',
@@ -159,17 +129,10 @@ const config = {
       },
     ],
   },
-  toaster: {
-    fullPage: true,
-  },
-  tooltip: {
-    fullPage: true,
-  },
   'select-search-single': {
     interactions: [
       {
         name: 'open',
-        fullPage: true,
         behavior: async page => {
           const inputSelector = `[data-baseweb="select"]`;
           const dropdownSelector = `[role="listbox"]`;
