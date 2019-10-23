@@ -49,8 +49,6 @@ export const StyledTableHeadRow = styled<{}>('tr', ({$theme}) => {
 });
 
 export const StyledTableHeadCell = styled<{}>('th', ({$theme}) => {
-  const borderLeft = Object.values($theme.borders.border300).join(' ');
-
   return {
     ...$theme.typography.font350,
     position: 'sticky',
@@ -74,7 +72,7 @@ export const StyledTableHeadCell = styled<{}>('th', ({$theme}) => {
       top: '0',
       right: '100%',
       bottom: '0',
-      borderLeft,
+      borderLeft: Object.values($theme.borders.border300).join(' '),
     },
 
     // We have to use pseudo elements to add the shadow to prevent
