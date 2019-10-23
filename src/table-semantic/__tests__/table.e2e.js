@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
-describe('checkbox', () => {
+describe('table-semantic', () => {
   it(`passes basic a11y tests`, async () => {
     await mount(page, 'table-semantic');
     const accessibilityReport = await analyzeAccessibility(page);
