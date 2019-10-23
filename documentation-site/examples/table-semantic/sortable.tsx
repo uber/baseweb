@@ -6,7 +6,7 @@ import {
 } from 'baseui/table-semantic';
 
 export default () => {
-  const [sortColumn, setSortColumn] = useState(null);
+  const [sortColumn, setSortColumn] = useState('bar');
   const [sortAsc, setSortAsc] = useState(true);
 
   const [data] = useState([
@@ -32,11 +32,13 @@ export default () => {
       return data;
     }
 
-    return data.sort((a, b) => {
-      const left = sortAsc ? a[sortColumn] : b[sortColumn];
-      const right = sortAsc ? b[sortColumn] : a[sortColumn];
+    return data.slice().sort((a, b) => {
+      const left = sortAsc ? a : b;
+      const right = sortAsc ? b : a;
+      const leftValue = String(left[sortColumn]);
+      const rightValue = String(right[sortColumn]);
 
-      return String(left).localeCompare(String(right), 'en', {
+      return leftValue.localeCompare(rightValue, 'en', {
         numeric: true,
         sensitivity: 'base',
       });

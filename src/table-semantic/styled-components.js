@@ -98,6 +98,7 @@ export const StyledTableHeadCellSortable = withStyle<{}>(
   ({$theme}) => {
     return {
       cursor: 'pointer',
+      paddingRight: $theme.sizing.scale1000,
 
       ':focus': {
         backgroundColor: $theme.colors.tableStripedBackground,
@@ -112,19 +113,28 @@ export const StyledTableHeadCellSortable = withStyle<{}>(
 
 export const StyledSortAscIcon = styled<{}>(ChevronDown, ({$theme}) => {
   return {
-    verticalAlign: 'middle',
+    position: 'absolute',
+    top: '50%',
+    right: $theme.sizing.scale500,
+    transform: 'translateY(-50%)',
   };
 });
 
 export const StyledSortDescIcon = styled<{}>(ChevronUp, ({$theme}) => {
   return {
-    verticalAlign: 'middle',
+    position: 'absolute',
+    top: '50%',
+    right: $theme.sizing.scale500,
+    transform: 'translateY(-50%)',
   };
 });
 
 export const StyledSortNoneIcon = styled<{}>(Blank, ({$theme}) => {
   return {
-    verticalAlign: 'middle',
+    position: 'absolute',
+    top: '50%',
+    right: $theme.sizing.scale500,
+    transform: 'translateY(-50%)',
   };
 });
 

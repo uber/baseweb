@@ -1,5 +1,5 @@
 // @flow
-import React, {useState, useMemo} from 'react';
+import React, {useState} from 'react';
 import {Checkbox} from 'baseui/checkbox';
 import {StyledLink as Link} from 'baseui/link';
 import {
@@ -10,22 +10,22 @@ import {
 export default () => {
   const [data, setData] = useState([
     {
+      foo: 10,
+      bar: 'banana',
+      url: 'https://example.com/c',
+      selected: true,
+    },
+    {
       foo: 1,
       bar: 'carrot',
-      selected: true,
-      url: 'https://example.com/c',
+      url: 'https://example.com/b',
+      selected: false,
     },
     {
       foo: 2,
-      bar: 'banana',
-      selected: false,
-      url: 'https://example.com/b',
-    },
-    {
-      foo: 10,
       bar: 'apple',
-      selected: false,
       url: 'https://example.com/a',
+      selected: false,
     },
   ]);
 

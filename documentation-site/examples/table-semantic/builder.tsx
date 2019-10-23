@@ -7,17 +7,17 @@ import {
 
 const DATA = [
   {
-    foo: 1,
-    bar: 'carrot',
+    foo: 10,
+    bar: 'banana',
     url: 'https://example.com/c',
   },
   {
-    foo: 2,
-    bar: 'banana',
+    foo: 1,
+    bar: 'carrot',
     url: 'https://example.com/b',
   },
   {
-    foo: 10,
+    foo: 2,
     bar: 'apple',
     url: 'https://example.com/a',
   },
