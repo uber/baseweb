@@ -40,6 +40,7 @@ export default () => {
             formatDisplayValue={date => formatDateAtIndex(date, 0)}
             timeSelectStart
             range
+            mask="9999/99/99"
           />
         </FormControl>
       </div>
@@ -84,6 +85,7 @@ export default () => {
             }}
             timeSelectEnd
             range
+            mask="9999/99/99"
           />
         </FormControl>
       </div>
