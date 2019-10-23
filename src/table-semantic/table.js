@@ -23,10 +23,8 @@ import type {TablePropsT} from './types.js';
 
 export default class Table extends React.Component<TablePropsT> {
   static defaultProps = {
-    overrides: {},
     columns: [],
     data: [[]],
-    horizontalScrollWidth: null,
   };
 
   render() {

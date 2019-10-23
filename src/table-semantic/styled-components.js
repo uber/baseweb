@@ -28,7 +28,7 @@ type StyledTablePropsT = {
   $width?: ?string,
 };
 
-export const StyledTable = styled<StyleTablePropsT>(
+export const StyledTable = styled<StyledTablePropsT>(
   'table',
   ({$theme, $width}) => {
     return {
@@ -65,6 +65,9 @@ export const StyledTableHeadCell = styled<{}>('th', ({$theme}) => {
     verticalAlign: 'top',
     whiteSpace: 'nowrap',
 
+    // We have to use pseudo elements to add the border for headers
+    // because browsers don't properly handle borders on sticky cells.
+    // The cells stay fixed in place, but the borders scroll.
     '::before': {
       content: '""',
       position: 'absolute',
@@ -74,6 +77,8 @@ export const StyledTableHeadCell = styled<{}>('th', ({$theme}) => {
       borderLeft,
     },
 
+    // We have to use pseudo elements to add the shadow to prevent
+    // the shadows from casting on sibling cells.
     '::after': {
       content: '""',
       position: 'absolute',
@@ -93,50 +98,59 @@ export const StyledTableHeadCell = styled<{}>('th', ({$theme}) => {
   };
 });
 
-export const StyledTableHeadCellSortable = withStyle<{}>(
-  StyledTableHeadCell,
+export const StyledTableHeadCellSortable = withStyle<
+  typeof StyledTableHeadCell,
+  {},
+>(StyledTableHeadCell, ({$theme}) => {
+  return {
+    cursor: 'pointer',
+    paddingRight: $theme.sizing.scale1000,
+
+    ':focus': {
+      backgroundColor: $theme.colors.tableStripedBackground,
+    },
+
+    ':hover': {
+      backgroundColor: $theme.colors.tableStripedBackground,
+    },
+  };
+});
+
+export const StyledSortAscIcon = styled<typeof ChevronDown, {}>(
+  ChevronDown,
   ({$theme}) => {
     return {
-      cursor: 'pointer',
-      paddingRight: $theme.sizing.scale1000,
-
-      ':focus': {
-        backgroundColor: $theme.colors.tableStripedBackground,
-      },
-
-      ':hover': {
-        backgroundColor: $theme.colors.tableStripedBackground,
-      },
+      position: 'absolute',
+      top: '50%',
+      right: $theme.sizing.scale500,
+      transform: 'translateY(-50%)',
     };
   },
 );
 
-export const StyledSortAscIcon = styled<{}>(ChevronDown, ({$theme}) => {
-  return {
-    position: 'absolute',
-    top: '50%',
-    right: $theme.sizing.scale500,
-    transform: 'translateY(-50%)',
-  };
-});
+export const StyledSortDescIcon = styled<typeof ChevronUp, {}>(
+  ChevronUp,
+  ({$theme}) => {
+    return {
+      position: 'absolute',
+      top: '50%',
+      right: $theme.sizing.scale500,
+      transform: 'translateY(-50%)',
+    };
+  },
+);
 
-export const StyledSortDescIcon = styled<{}>(ChevronUp, ({$theme}) => {
-  return {
-    position: 'absolute',
-    top: '50%',
-    right: $theme.sizing.scale500,
-    transform: 'translateY(-50%)',
-  };
-});
-
-export const StyledSortNoneIcon = styled<{}>(Blank, ({$theme}) => {
-  return {
-    position: 'absolute',
-    top: '50%',
-    right: $theme.sizing.scale500,
-    transform: 'translateY(-50%)',
-  };
-});
+export const StyledSortNoneIcon = styled<typeof Blank, {}>(
+  Blank,
+  ({$theme}) => {
+    return {
+      position: 'absolute',
+      top: '50%',
+      right: $theme.sizing.scale500,
+      transform: 'translateY(-50%)',
+    };
+  },
+);
 
 export const StyledTableBody = styled<{}>('tbody', ({$theme}) => {
   return {};

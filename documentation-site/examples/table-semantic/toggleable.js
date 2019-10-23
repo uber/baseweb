@@ -12,13 +12,13 @@ export default () => {
     {
       foo: 10,
       bar: 'banana',
-      url: 'https://example.com/c',
+      url: 'https://example.com/b',
       selected: true,
     },
     {
       foo: 1,
       bar: 'carrot',
-      url: 'https://example.com/b',
+      url: 'https://example.com/c',
       selected: false,
     },
     {

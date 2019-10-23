@@ -10,12 +10,12 @@ const DATA = [
   {
     foo: 10,
     bar: 'banana',
-    url: 'https://example.com/c',
+    url: 'https://example.com/b',
   },
   {
     foo: 1,
     bar: 'carrot',
-    url: 'https://example.com/b',
+    url: 'https://example.com/c',
   },
   {
     foo: 2,

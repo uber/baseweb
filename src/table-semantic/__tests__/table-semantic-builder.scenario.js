@@ -1,11 +1,15 @@
-import React, {useState, useMemo} from 'react';
-import {StyledLink as Link} from 'baseui/link';
-import {
-  Unstable_TableBuilder,
-  Unstable_TableBuilderColumn,
-} from 'baseui/table-semantic';
+/*
+Copyright (c) 2018-2019 Uber Technologies, Inc.
 
-export default () => {
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
+
+import React, {useState, useMemo} from 'react';
+import {Unstable_TableBuilder, Unstable_TableBuilderColumn} from '../index.js';
+
+function SortableTable() {
   const [sortColumn, setSortColumn] = useState('bar');
   const [sortAsc, setSortAsc] = useState(true);
   const [data] = useState([
@@ -56,21 +60,14 @@ export default () => {
       sortOrder={sortAsc ? 'ASC' : 'DESC'}
       onSort={handleSort}
     >
-      <Unstable_TableBuilderColumn
-        id="bar"
-        header="Produce"
-        sortable
-      >
-        {row => <Link href={row.url}>{row.bar}</Link>}
+      <Unstable_TableBuilderColumn id="bar" header="Produce" sortable>
+        {row => <a href={row.url}>{row.bar}</a>}
       </Unstable_TableBuilderColumn>
-      <Unstable_TableBuilderColumn
-        id="foo"
-        header="Quantity"
-        numeric
-        sortable
-      >
+      <Unstable_TableBuilderColumn id="foo" header="Quantity" numeric sortable>
         {row => row.foo}
       </Unstable_TableBuilderColumn>
     </Unstable_TableBuilder>
   );
-};
+}
+
+export const component = () => <SortableTable />;

@@ -9,17 +9,16 @@ import {
 export default () => {
   const [sortColumn, setSortColumn] = useState('bar');
   const [sortAsc, setSortAsc] = useState(true);
-
   const [data] = useState([
     {
       foo: 10,
       bar: 'banana',
-      url: 'https://example.com/c',
+      url: 'https://example.com/b',
     },
     {
       foo: 1,
       bar: 'carrot',
-      url: 'https://example.com/b',
+      url: 'https://example.com/c',
     },
     {
       foo: 2,
@@ -55,7 +54,7 @@ export default () => {
     <Unstable_TableBuilder
       data={sortedData}
       sortColumn={sortColumn}
-      sortOrder={sortAsc ? 'asc' : 'desc'}
+      sortOrder={sortAsc ? 'ASC' : 'DESC'}
       onSort={handleSort}
     >
       <Unstable_TableBuilderColumn

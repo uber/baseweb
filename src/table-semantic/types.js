@@ -15,13 +15,9 @@ export type OverridesT = {
   TableHead?: OverrideT<*>,
   TableHeadRow?: OverrideT<*>,
   TableHeadCell?: OverrideT<*>,
-  TableHeadCellSortable?: OverrideT<*>,
   TableBody?: OverrideT<*>,
   TableBodyRow?: OverrideT<*>,
   TableBodyCell?: OverrideT<*>,
-  SortAscIcon?: OverrideT<*>,
-  SortDescIcon?: OverrideT<*>,
-  SortNoneIcon?: OverrideT<*>,
 };
 
 export type TablePropsT = {
@@ -37,13 +33,22 @@ export type TableBuilderPropsT<T> = {
   data: Array<T>,
   horizontalScrollWidth?: string,
   sortColumn?: ?string,
-  sortOrder?: 'asc' | 'desc' | null,
-  onSort?: string => void,
+  sortOrder?: 'ASC' | 'DESC' | null,
+  onSort?: (columnId: string) => void,
+};
+
+export type ColumnOverridesT = {
+  TableHeadCell?: OverrideT<*>,
+  TableHeadCellSortable?: OverrideT<*>,
+  TableBodyCell?: OverrideT<*>,
+  SortAscIcon?: OverrideT<*>,
+  SortDescIcon?: OverrideT<*>,
+  SortNoneIcon?: OverrideT<*>,
 };
 
 export type TableBuilderColumnPropsT<T> = {
-  overrides?: OverridesT,
-  children: (T, ?number) => React.Node,
+  overrides?: ColumnOverridesT,
+  children: (row: T, rowIndex?: number) => React.Node,
   id?: string,
   header?: React.Node,
   numeric?: boolean,

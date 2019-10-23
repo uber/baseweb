@@ -39,7 +39,7 @@ export default class TableBuilder<T> extends React.Component<
       data,
       horizontalScrollWidth,
       sortColumn,
-      sortOrder = 'asc',
+      sortOrder = 'ASC',
       onSort,
       ...rest
     } = this.props;
@@ -132,10 +132,10 @@ export default class TableBuilder<T> extends React.Component<
       let sortIcon = null;
 
       switch (col.id === sortColumn && sortOrder) {
-        case 'asc':
+        case 'ASC':
           sortIcon = <SortAscIcon {...sortAscIconProps} />;
           break;
-        case 'desc':
+        case 'DESC':
           sortIcon = <SortDescIcon {...sortDescIconProps} />;
           break;
         default:

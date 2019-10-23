@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Unstable_Table} from 'baseui/table-semantic';
 
-const SIZER = Array(100).fill();
+const SIZER = Array(100).fill(null);
 
 const COLUMNS = SIZER.map((col, colIndex) => {
   return `Column ${colIndex + 1}`;
