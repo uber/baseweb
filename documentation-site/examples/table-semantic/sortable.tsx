@@ -27,7 +27,7 @@ export default () => {
   ]);
 
   const sortedData = useMemo(() => {
-    return data.slice().sort((a, b) => {
+    return data.slice().sort((a: any, b: any) => {
       const left = sortAsc ? a : b;
       const right = sortAsc ? b : a;
       const leftValue = String(left[sortColumn]);
@@ -40,7 +40,7 @@ export default () => {
     });
   }, [sortColumn, sortAsc, data]);
 
-  function handleSort(id) {
+  function handleSort(id: string) {
     if (id === sortColumn) {
       setSortAsc(asc => !asc);
     } else {

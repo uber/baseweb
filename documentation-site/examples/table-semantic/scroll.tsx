@@ -3,12 +3,12 @@ import {Unstable_Table} from 'baseui/table-semantic';
 
 const SIZER = Array(100).fill(null);
 
-const COLUMNS = SIZER.map((col, colIndex) => {
+const COLUMNS = SIZER.map((_col, colIndex) => {
   return `Column ${colIndex + 1}`;
 });
 
-const DATA = SIZER.map((row, rowIndex) => {
-  return SIZER.map((col, colIndex) => {
+const DATA = SIZER.map((_row, rowIndex) => {
+  return SIZER.map((_col, colIndex) => {
     return `Row ${rowIndex + 1}.${colIndex + 1}`;
   });
 });

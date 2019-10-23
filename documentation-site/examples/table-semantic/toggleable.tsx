@@ -32,7 +32,7 @@ export default () => {
   const hasAll = hasAny && data.every(x => x.selected);
   const hasSome = hasAny && data.some(x => x.selected);
 
-  function toggleAll(event) {
+  function toggleAll() {
     setData(data =>
       data.map(row => ({
         ...row,
@@ -41,7 +41,7 @@ export default () => {
     );
   }
 
-  function toggle(event) {
+  function toggle(event: any) {
     const {name, checked} = event.currentTarget;
 
     setData(data =>

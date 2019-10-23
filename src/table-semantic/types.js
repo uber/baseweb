@@ -27,10 +27,18 @@ export type TablePropsT = {
   horizontalScrollWidth?: string,
 };
 
-export type TableBuilderPropsT<T> = {
-  overrides?: OverridesT,
+export type BuilderOverridesT = {
+  ...OverridesT,
+  TableHeadCellSortable?: OverrideT<*>,
+  SortAscIcon?: OverrideT<*>,
+  SortDescIcon?: OverrideT<*>,
+  SortNoneIcon?: OverrideT<*>,
+};
+
+export type TableBuilderPropsT<RowT> = {
+  overrides?: BuilderOverridesT,
   children?: React.Node,
-  data: Array<T>,
+  data: Array<RowT>,
   horizontalScrollWidth?: string,
   sortColumn?: ?string,
   sortOrder?: 'ASC' | 'DESC' | null,
@@ -46,9 +54,9 @@ export type ColumnOverridesT = {
   SortNoneIcon?: OverrideT<*>,
 };
 
-export type TableBuilderColumnPropsT<T> = {
+export type TableBuilderColumnPropsT<RowT> = {
   overrides?: ColumnOverridesT,
-  children: (row: T, rowIndex?: number) => React.Node,
+  children: (row: RowT, rowIndex?: number) => React.Node,
   id?: string,
   header?: React.Node,
   numeric?: boolean,
