@@ -314,7 +314,7 @@ const Yard: React.FC<
                     `${tokenProps.className} ` +
                     css({
                       cursor: 'default',
-                      ':hover': {backgroundColor: theme.colors.accent},
+                      ':hover': {backgroundColor: theme.colors.mono100},
                     })
                   }
                   style={{
