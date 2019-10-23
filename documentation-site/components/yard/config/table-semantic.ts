@@ -13,10 +13,6 @@ const TableSemanticConfig: TConfig = {
     'tableHeadBackgroundColor',
     'tableBackground',
     'tableStripedBackground',
-    'tableFilter',
-    'tableFilterHeading',
-    'tableFilterBackground',
-    'tableFilterFooterBackground',
   ],
   props: {
     columns: {
@@ -26,8 +22,8 @@ const TableSemanticConfig: TConfig = {
     },
     data: {
       value: `[
-  ['Sarah Brown', 31, '100 Broadway st. New York City, New York'],
-  ['Jane Smith', 32, '100 Market st. San Francisco, California'],
+  ['Sarah Brown', 31, '100 Broadway St., New York City, New York'],
+  ['Jane Smith', 32, '100 Market St., San Francisco, California'],
 ]`,
       type: PropTypes.Array,
       description: 'Table rows. Data passed to each row and cell',

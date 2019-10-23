@@ -43,6 +43,7 @@ export default class TableBuilder<T> extends React.Component<
       onSort,
       ...rest
     } = this.props;
+
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
 
     const [Table, tableProps] = getOverrides(overrides.Table, StyledTable);

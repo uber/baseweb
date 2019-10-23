@@ -41,9 +41,7 @@ export const StyledTable = styled<StyleTablePropsT>(
 );
 
 export const StyledTableHead = styled<{}>('thead', ({$theme}) => {
-  return {
-    textAlign: 'left',
-  };
+  return {};
 });
 
 export const StyledTableHeadRow = styled<{}>('tr', ({$theme}) => {
@@ -63,6 +61,8 @@ export const StyledTableHeadCell = styled<{}>('th', ({$theme}) => {
     paddingLeft: $theme.sizing.scale600,
     backgroundColor: $theme.colors.tableHeadBackgroundColor,
     color: $theme.colors.colorPrimary,
+    textAlign: 'left',
+    verticalAlign: 'top',
     whiteSpace: 'nowrap',
 
     '::before': {
@@ -154,6 +154,7 @@ export const StyledTableBodyCell = styled<StyledTableBodyCellPropsT>(
       paddingLeft: $theme.sizing.scale600,
       color: $theme.colors.colorPrimary,
       textAlign: $isNumeric ? 'right' : null,
+      verticalAlign: 'top',
     };
   },
 );
