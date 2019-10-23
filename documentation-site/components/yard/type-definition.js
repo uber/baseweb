@@ -1,3 +1,11 @@
+/*
+Copyright (c) 2018-2019 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+/* eslint-disable flowtype/require-valid-file-annotation */
+
 import * as React from 'react';
 import {useStyletron} from 'baseui';
 
@@ -53,27 +61,6 @@ const unaryWhiteList = ['-', '+', '!'];
 function mapConvertAndJoin(array, joiner = ', ') {
   if (!Array.isArray(array)) return '';
   return array.map(a => convert(a)).join(joiner);
-}
-
-function getKind(type) {
-  switch (type.kind) {
-    case 'nullable':
-      return `nullable ${getKind(type.arguments)}`;
-    case 'id':
-      return convert(type);
-    case 'exists':
-    case 'typeof':
-      return convert(type);
-    case 'generic': {
-      if (type.typeParams) {
-        let typeParams = type.typeParams.params.map(getKind).join(', ');
-        return `${convert(type.value)}<${typeParams}>`;
-      }
-      return getKind(resolveFromGeneric(type));
-    }
-    default:
-      return type.kind;
-  }
 }
 
 const converters = {
@@ -327,16 +314,8 @@ const converters = {
   export: type => {
     if (type.exports.length === 1) {
       return convert(type.exports[0]);
-    } else {
-      console.warn(
-        `kind2string has received an export type with multiple exports, and have no way of printing this.
-The exports we found were: ${type.exports
-          .map(xport => convert(xport, mode))
-          .join(', ')}
-from file: ${convert(type.source, mode)}`,
-      );
-      return '';
     }
+    return '';
   },
   exportSpecifier: (type, mode) => convert(type.exported),
 
