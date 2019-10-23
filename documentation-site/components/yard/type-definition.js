@@ -111,7 +111,7 @@ const converters = {
   id: type => {
     return type.name;
   },
-  // TODO - this is not right and needs to be improved
+  // this is not right and needs to be improved
   opaqueType: type => {
     return convert(type.id);
   },
@@ -154,7 +154,7 @@ const converters = {
     }`;
   },
   /*
-    TODO: Make this resolve members in a unique way that will allow us to
+    Make this resolve members in a unique way that will allow us to
     handle property keys with no assigned value
   */
   objectPattern: type => {
