@@ -168,7 +168,8 @@ const converters = {
   },
 
   arrayType: type => {
-    return `Array of ${convert(type.type)}`;
+    // return `Array of ${convert(type.type)}`;
+    return `Array<${convert(type.type)}>`;
   },
 
   spread: type => {
