@@ -19,19 +19,19 @@ export function component() {
     {
       foo: 10,
       bar: 'banana',
-      url: '#b',
+      url: 'https://example.com/b',
       selected: true,
     },
     {
       foo: 1,
       bar: 'carrot',
-      url: '#c',
+      url: 'https://example.com/c',
       selected: false,
     },
     {
       foo: 2,
       bar: 'apple',
-      url: '#a',
+      url: 'https://example.com/a',
       selected: false,
     },
   ]);

@@ -12,17 +12,17 @@ export default () => {
     {
       foo: 10,
       bar: 'banana',
-      url: '#b',
+      url: 'https://example.com/b',
     },
     {
       foo: 1,
       bar: 'carrot',
-      url: '#c',
+      url: 'https://example.com/c',
     },
     {
       foo: 2,
       bar: 'apple',
-      url: '#a',
+      url: 'https://example.com/a',
     },
   ]);
 
