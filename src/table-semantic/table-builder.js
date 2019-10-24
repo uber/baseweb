@@ -121,6 +121,7 @@ export default class TableBuilder<T> extends React.Component<
           </ColTableHeadCell>
         );
       }
+
       const [
         ColTableHeadCellSortable,
         colTableHeadCellSortableProps,
