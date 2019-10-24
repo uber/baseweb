@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React, {useState, useMemo} from 'react';
-import {Checkbox} from '../../checkbox';
+import {Checkbox} from '../../checkbox/index.js';
 import {Unstable_TableBuilder, Unstable_TableBuilderColumn} from '../index.js';
 
 export const name = 'table-semantic-builder';
