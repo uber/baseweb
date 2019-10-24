@@ -98,7 +98,7 @@ describe('Table Semantic Builder', () => {
     const anchors = wrapper.find('a');
 
     expect(anchors).toHaveLength(DATA.length);
-    expect(anchors.at(0).prop('href')).toBe('#b');
+    expect(anchors.at(0).prop('href')).toBe('https://example.com/b');
     expect(anchors.at(0).prop('children')).toBe('banana');
   });
 
