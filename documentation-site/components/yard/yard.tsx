@@ -8,7 +8,6 @@ import {
 } from 'baseui';
 import {Button, KIND, SIZE} from 'baseui/button';
 import {ButtonGroup} from 'baseui/button-group';
-import {StatefulPopover, PLACEMENT, TRIGGER_TYPE} from 'baseui/popover';
 import copy from 'copy-to-clipboard';
 import {trackEvent} from '../../helpers/ga';
 import debounce from 'lodash/debounce';
@@ -32,8 +31,7 @@ import {
   countProps,
   countThemeValues,
 } from './utils';
-//@ts-ignore
-import TypeDefinition from './type-definition';
+import PropsTooltip from './props-tooltip';
 import {TYardProps, TPropValue, TError} from './types';
 
 // tabs aka editing UIs
@@ -83,7 +81,7 @@ const Yard: React.FC<
   urlCode,
   queryStringName,
 }) => {
-  const [css, theme] = useStyletron();
+  const [, theme] = useStyletron();
   const [hydrated, setHydrated] = React.useState(false);
   const [error, setError] = React.useState<TError>({where: '', msg: null});
   const initialThemeObj = getComponentThemeFromContext(theme, themeConfig);
@@ -285,47 +283,12 @@ const Yard: React.FC<
           const token = tokenProps.children.trim();
           if (mapTokensToProps && mapTokensToProps[token]) {
             return (
-              <StatefulPopover
-                key={tokenProps.key}
-                accessibilityType={'tooltip'}
-                triggerType={TRIGGER_TYPE.hover}
-                onMouseEnterDelay={500}
-                placement={PLACEMENT.topLeft}
-                content={
-                  <div
-                    className={css({
-                      backgroundColor: theme.colors.backgroundAlt,
-                      maxHeight: '300px',
-                      maxWidth: '400px',
-                      overflow: 'auto',
-                      paddingTop: theme.sizing.scale100,
-                      paddingRight: theme.sizing.scale200,
-                      paddingBottom: theme.sizing.scale100,
-                      paddingLeft: theme.sizing.scale200,
-                    })}
-                  >
-                    <TypeDefinition type={mapTokensToProps[token]} />
-                  </div>
-                }
-              >
-                <span
-                  {...tokenProps}
-                  className={
-                    `${tokenProps.className} ` +
-                    css({
-                      cursor: 'default',
-                      ':hover': {backgroundColor: theme.colors.mono100},
-                    })
-                  }
-                  style={{
-                    pointerEvents: 'auto',
-                    ...tokenProps.style,
-                  }}
-                />
-              </StatefulPopover>
+              <PropsTooltip
+                {...tokenProps}
+                typeDefinition={mapTokensToProps[token]}
+              />
             );
           }
-
           return <span {...tokenProps} />;
         }}
       />
