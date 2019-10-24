@@ -945,7 +945,11 @@ class Select extends React.Component<
                 {...controlContainerProps}
               >
                 {type === TYPE.search ? this.renderSearch() : null}
-                <ValueContainer {...sharedProps} {...valueContainerProps}>
+                <ValueContainer
+                  $isEmpty={!valueArray.length}
+                  {...sharedProps}
+                  {...valueContainerProps}
+                >
                   {this.renderValue(valueArray, isOpen, locale)}
                   {this.renderInput()}
                 </ValueContainer>

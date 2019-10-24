@@ -22,13 +22,14 @@ function getFont(size = SIZE.default, typography) {
   }[size];
 }
 
-function getControlPadding(props, emptyValue) {
+function getControlPadding(props) {
   const {
     $theme,
     $theme: {sizing},
     $size = SIZE.default,
     $type,
     $multi,
+    $isEmpty,
   } = props;
   const isSearch = $type === TYPE.search;
   const paddingLeft = isSearch ? sizing.scale1000 : sizing.scale500;
@@ -36,15 +37,15 @@ function getControlPadding(props, emptyValue) {
     [SIZE.compact]: {
       // `sizing.scale0` based on the multi value component (Tag) top and bottom margin
       paddingTop:
-        $multi && !emptyValue
-          ? `calc(${sizing.scale200} - ${sizing.scale0})`
+        $multi && !$isEmpty
+          ? `calc(${sizing.scale100} - ${sizing.scale0})`
           : sizing.scale200,
       paddingBottom:
-        $multi && !emptyValue
-          ? `calc(${sizing.scale200} - ${sizing.scale0})`
+        $multi && !$isEmpty
+          ? `calc(${sizing.scale100} - ${sizing.scale0})`
           : sizing.scale200,
       [$theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft']:
-        $multi && !emptyValue
+        $multi && !$isEmpty
           ? `calc(${paddingLeft} - ${sizing.scale0})`
           : paddingLeft,
       [$theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight']: '0',
@@ -52,11 +53,11 @@ function getControlPadding(props, emptyValue) {
     [SIZE.default]: {
       // `sizing.scale0` based on the multi value component (Tag) top and bottom margin
       paddingTop:
-        $multi && !emptyValue
+        $multi && !$isEmpty
           ? `calc(${sizing.scale400} - ${sizing.scale0})`
           : sizing.scale400,
       paddingBottom:
-        $multi && !emptyValue
+        $multi && !$isEmpty
           ? `calc(${sizing.scale400} - ${sizing.scale0})`
           : sizing.scale400,
       [$theme.direction === 'rtl'
@@ -67,15 +68,15 @@ function getControlPadding(props, emptyValue) {
     [SIZE.large]: {
       // `sizing.scale0` based on the multi value component (Tag) top and bottom margin
       paddingTop:
-        $multi && !emptyValue
-          ? `calc(${sizing.scale550} - ${sizing.scale0})`
+        $multi && !$isEmpty
+          ? `calc(${sizing.scale600} - ${sizing.scale0})`
           : sizing.scale550,
       paddingBottom:
-        $multi && !emptyValue
-          ? `calc(${sizing.scale550} - ${sizing.scale0})`
+        $multi && !$isEmpty
+          ? `calc(${sizing.scale600} - ${sizing.scale0})`
           : sizing.scale550,
       [$theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft']:
-        $multi && !emptyValue
+        $multi && !$isEmpty
           ? `calc(${paddingLeft} - ${sizing.scale0})`
           : paddingLeft,
       [$theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight']: 0,
@@ -216,7 +217,7 @@ export const StyledControlContainer = styled<SharedStylePropsArgT>(
 );
 
 export const StyledValueContainer = styled<SharedStylePropsArgT>(
-  'span',
+  'div',
   props => {
     const padding = getControlPadding(props);
     return {
@@ -240,17 +241,11 @@ export const StyledPlaceholder = styled<SharedStylePropsArgT>('div', props => {
     $theme: {colors},
   } = props;
   return {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    right: 0,
-    left: 0,
     color: $disabled ? colors.inputTextDisabled : colors.foregroundAlt,
     maxWidth: '100%',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
-    ...getControlPadding(props, true),
   };
 });
 
@@ -265,13 +260,10 @@ export const StyledSingleValue = styled<SharedStylePropsArgT>('div', props => {
   return {
     lineHeight: !$searchable ? font.lineHeight : 'inherit',
     boxSizing: 'border-box',
-    position: 'absolute',
-    top: 0,
     [$theme.direction === 'rtl' ? 'right' : 'left']: 0,
     height: '100%',
     maxWidth: '100%',
     ...ellipsisText,
-    ...getControlPadding(props),
   };
 });
 
