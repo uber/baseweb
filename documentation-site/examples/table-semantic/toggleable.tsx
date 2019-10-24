@@ -11,19 +11,19 @@ export default () => {
     {
       foo: 10,
       bar: 'banana',
-      url: 'https://example.com/b',
+      url: '#b',
       selected: true,
     },
     {
       foo: 1,
       bar: 'carrot',
-      url: 'https://example.com/c',
+      url: '#c',
       selected: false,
     },
     {
       foo: 2,
       bar: 'apple',
-      url: 'https://example.com/a',
+      url: '#a',
       selected: false,
     },
   ]);

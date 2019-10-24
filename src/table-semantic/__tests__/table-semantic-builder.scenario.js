@@ -7,28 +7,38 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React, {useState, useMemo} from 'react';
+import {Checkbox} from '../../checkbox';
 import {Unstable_TableBuilder, Unstable_TableBuilderColumn} from '../index.js';
 
-function SortableTable() {
+export const name = 'table-semantic-builder';
+
+export function component() {
   const [sortColumn, setSortColumn] = useState('bar');
   const [sortAsc, setSortAsc] = useState(true);
-  const [data] = useState([
+  const [data, setData] = useState([
     {
       foo: 10,
       bar: 'banana',
-      url: 'https://example.com/b',
+      url: '#b',
+      selected: true,
     },
     {
       foo: 1,
       bar: 'carrot',
-      url: 'https://example.com/c',
+      url: '#c',
+      selected: false,
     },
     {
       foo: 2,
       bar: 'apple',
-      url: 'https://example.com/a',
+      url: '#a',
+      selected: false,
     },
   ]);
+
+  const hasAny = Boolean(data.length);
+  const hasAll = hasAny && data.every(x => x.selected);
+  const hasSome = hasAny && data.some(x => x.selected);
 
   const sortedData = useMemo(() => {
     return data.slice().sort((a, b) => {
@@ -43,6 +53,26 @@ function SortableTable() {
       });
     });
   }, [sortColumn, sortAsc, data]);
+
+  function toggleAll(event) {
+    setData(data =>
+      data.map(row => ({
+        ...row,
+        selected: !hasAll,
+      })),
+    );
+  }
+
+  function toggle(event) {
+    const {name, checked} = event.currentTarget;
+
+    setData(data =>
+      data.map(row => ({
+        ...row,
+        selected: String(row.foo) === name ? checked : row.selected,
+      })),
+    );
+  }
 
   function handleSort(id) {
     if (id === sortColumn) {
@@ -60,6 +90,23 @@ function SortableTable() {
       sortOrder={sortAsc ? 'ASC' : 'DESC'}
       onSort={handleSort}
     >
+      <Unstable_TableBuilderColumn
+        overrides={{
+          TableHeadCell: {style: {width: '1%'}},
+          TableBodyCell: {style: {width: '1%'}},
+        }}
+        header={
+          <Checkbox
+            checked={hasAll}
+            isIndeterminate={!hasAll && hasSome}
+            onChange={toggleAll}
+          />
+        }
+      >
+        {row => (
+          <Checkbox name={row.foo} checked={row.selected} onChange={toggle} />
+        )}
+      </Unstable_TableBuilderColumn>
       <Unstable_TableBuilderColumn id="bar" header="Produce" sortable>
         {row => <a href={row.url}>{row.bar}</a>}
       </Unstable_TableBuilderColumn>
@@ -69,5 +116,3 @@ function SortableTable() {
     </Unstable_TableBuilder>
   );
 }
-
-export const component = () => <SortableTable />;

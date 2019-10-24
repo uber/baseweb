@@ -10,17 +10,17 @@ const DATA = [
   {
     foo: 10,
     bar: 'banana',
-    url: 'https://example.com/b',
+    url: '#b',
   },
   {
     foo: 1,
     bar: 'carrot',
-    url: 'https://example.com/c',
+    url: '#c',
   },
   {
     foo: 2,
     bar: 'apple',
-    url: 'https://example.com/a',
+    url: '#a',
   },
 ];
 

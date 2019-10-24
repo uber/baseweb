@@ -9,6 +9,8 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {Unstable_Table} from '../index.js';
 
+export const name = 'table-semantic';
+
 const COLUMNS = ['Name', 'Age', 'Address'];
 
 const DATA = [
@@ -17,8 +19,6 @@ const DATA = [
   ['Joe Black', 33, '100 Macquarie St., Sydney, Australia'],
 ];
 
-function BasicTable() {
+export function component() {
   return <Unstable_Table columns={COLUMNS} data={DATA} />;
 }
-
-export const component = () => <BasicTable />;

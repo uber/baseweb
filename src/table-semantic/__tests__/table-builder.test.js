@@ -24,17 +24,17 @@ const DATA = [
   {
     foo: 10,
     bar: 'banana',
-    url: 'https://example.com/b',
+    url: '#b',
   },
   {
     foo: 1,
     bar: 'carrot',
-    url: 'https://example.com/c',
+    url: '#c',
   },
   {
     foo: 2,
     bar: 'apple',
-    url: 'https://example.com/a',
+    url: '#a',
   },
 ];
 
@@ -98,7 +98,7 @@ describe('Table Semantic Builder', () => {
     const anchors = wrapper.find('a');
 
     expect(anchors).toHaveLength(DATA.length);
-    expect(anchors.at(0).prop('href')).toBe('https://example.com/b');
+    expect(anchors.at(0).prop('href')).toBe('#b');
     expect(anchors.at(0).prop('children')).toBe('banana');
   });
 

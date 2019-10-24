@@ -170,6 +170,7 @@ export const StyledTableBodyCell = styled<StyledTableBodyCellPropsT>(
   'td',
   ({$theme, $isNumeric}) => {
     return {
+      ...$theme.typography.font200,
       paddingTop: $theme.sizing.scale300,
       paddingRight: $theme.sizing.scale600,
       paddingBottom: $theme.sizing.scale300,
