@@ -363,8 +363,19 @@ const getPropTypes = propTypesObj => {
 
 function TypeDefinition(props) {
   const [css, theme] = useStyletron();
-  const name = props.type.component.value.referenceIdName;
-  const proptypes = getPropTypes(props.type.component.value).map(property => {
+
+  let name = '';
+  let value = null;
+
+  if (props.type.component.value.name === '$Shape') {
+    value = props.type.component.typeParams.params[0];
+    name = value.value.referenceIdName;
+  } else {
+    value = props.type.component.value;
+    name = value.referenceIdName;
+  }
+
+  const proptypes = getPropTypes(value).map(property => {
     return convert(property, true);
   });
 
