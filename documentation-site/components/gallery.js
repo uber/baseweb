@@ -148,6 +148,10 @@ const COMPONENTS = {
       Component: thumbnails.SvgTableGrid,
     },
     {
+      href: '/components/table-semantic',
+      Component: thumbnails.SvgTable,
+    },
+    {
       href: '/components/unstable-data-table',
       Component: thumbnails.SvgDataTable,
     },
