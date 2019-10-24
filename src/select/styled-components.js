@@ -32,7 +32,9 @@ function getControlPadding(props) {
     $isEmpty,
   } = props;
   const isSearch = $type === TYPE.search;
-  const paddingLeft = isSearch ? sizing.scale1000 : sizing.scale500;
+  const paddingLeft = isSearch
+    ? `calc(${sizing.scale1000} - ${sizing.scale0})`
+    : sizing.scale400;
   return {
     [SIZE.compact]: {
       // `sizing.scale0` based on the multi value component (Tag) top and bottom margin
@@ -60,9 +62,10 @@ function getControlPadding(props) {
         $multi && !$isEmpty
           ? `calc(${sizing.scale400} - ${sizing.scale0})`
           : sizing.scale400,
-      [$theme.direction === 'rtl'
-        ? 'paddingRight'
-        : 'paddingLeft']: paddingLeft,
+      [$theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft']:
+        $multi && !$isEmpty
+          ? `calc(${paddingLeft} + ${sizing.scale0})`
+          : paddingLeft,
       [$theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight']: 0,
     },
     [SIZE.large]: {
@@ -228,7 +231,7 @@ export const StyledValueContainer = styled<SharedStylePropsArgT>(
       flexBasis: '0%',
       display: 'flex',
       alignItems: 'center',
-      flexWrap: 'wrap',
+      flexWrap: props.$multi ? 'wrap' : 'no-wrap',
       overflow: 'hidden',
       ...padding,
     };
@@ -260,7 +263,8 @@ export const StyledSingleValue = styled<SharedStylePropsArgT>('div', props => {
   return {
     lineHeight: !$searchable ? font.lineHeight : 'inherit',
     boxSizing: 'border-box',
-    [$theme.direction === 'rtl' ? 'right' : 'left']: 0,
+    [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: $theme.sizing
+      .scale0,
     height: '100%',
     maxWidth: '100%',
     ...ellipsisText,
@@ -303,14 +307,13 @@ export const StyledInput = styled<SharedStylePropsArgT>('input', props => {
   const {
     $theme: {typography},
     $size,
-    $disabled,
     $searchable,
     $width,
   } = props;
   return {
     ...getFont($size, typography),
     boxSizing: 'content-box',
-    width: $disabled || !$searchable ? '1px' : $width || '100%',
+    width: !$searchable ? '1px' : $width || '100%',
     maxWidth: '100%',
     background: 'transparent',
     border: 'none',

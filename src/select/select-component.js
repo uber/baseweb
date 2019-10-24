@@ -576,23 +576,8 @@ class Select extends React.Component<
     const sharedProps = this.getSharedProps();
     const renderLabel = this.props.getValueLabel || this.getValueLabel;
     const Value = valueComponent || Noop;
-    const [Placeholder, placeholderProps] = getOverrides(
-      overrides.Placeholder,
-      StyledPlaceholder,
-    );
     if (!valueArray.length) {
-      const showPlaceholder = shouldShowPlaceholder(
-        this.state,
-        this.props,
-        isOpen,
-      );
-      return showPlaceholder ? (
-        <Placeholder {...sharedProps} {...placeholderProps}>
-          {typeof this.props.placeholder !== 'undefined'
-            ? this.props.placeholder
-            : locale.select.placeholder}
-        </Placeholder>
-      ) : null;
+      return null;
     }
     if (this.props.multi) {
       return valueArray.map((value, i) => {
@@ -860,6 +845,10 @@ class Select extends React.Component<
       overrides.Popover,
       Popover,
     );
+    const [Placeholder, placeholderProps] = getOverrides(
+      overrides.Placeholder,
+      StyledPlaceholder,
+    );
     const sharedProps = this.getSharedProps();
 
     const valueArray = this.getValueArray(value);
@@ -885,6 +874,10 @@ class Select extends React.Component<
         );
       }
     }
+
+    const showPlaceholder =
+      !valueArray.length &&
+      shouldShowPlaceholder(this.state, this.props, isOpen);
 
     return (
       <LocaleContext.Consumer>
@@ -952,6 +945,13 @@ class Select extends React.Component<
                 >
                   {this.renderValue(valueArray, isOpen, locale)}
                   {this.renderInput()}
+                  {showPlaceholder ? (
+                    <Placeholder {...sharedProps} {...placeholderProps}>
+                      {typeof this.props.placeholder !== 'undefined'
+                        ? this.props.placeholder
+                        : locale.select.placeholder}
+                    </Placeholder>
+                  ) : null}
                 </ValueContainer>
                 <IconsContainer {...sharedProps} {...iconsContainerProps}>
                   {this.renderLoading()}

@@ -13,7 +13,7 @@ export default () => {
   const [creatableTime, setCreatableTime] = useState(null);
 
   return (
-    <div className={useCss({width: '120px'})}>
+    <div className={useCss({width: '130px'})}>
       <FormControl label="12 hour format">
         <TimePicker
           value={twelveHourTime}

@@ -178,12 +178,6 @@ exports[`Select component renders component in search mode and false for multipl
                       styled-component="true"
                       test-style="[object Object]"
                     >
-                      Select...
-                    </div>
-                    <div
-                      styled-component="true"
-                      test-style="[object Object]"
-                    >
                       <input
                         aria-autocomplete="list"
                         aria-expanded="false"
@@ -198,6 +192,12 @@ exports[`Select component renders component in search mode and false for multipl
                         styled-component="true"
                         test-style="[object Object]"
                       />
+                    </div>
+                    <div
+                      styled-component="true"
+                      test-style="[object Object]"
+                    >
+                      Select...
                     </div>
                   </div>
                   <div
@@ -446,7 +446,7 @@ exports[`Select component renders component in search mode and false for multipl
                             "flexBasis": "0%",
                             "flexGrow": 1,
                             "flexShrink": 1,
-                            "flexWrap": "wrap",
+                            "flexWrap": "no-wrap",
                             "overflow": "hidden",
                             "paddingBottom": "$theme.sizing.scale400",
                             "paddingLeft": "$theme.sizing.scale1000",
@@ -456,55 +456,6 @@ exports[`Select component renders component in search mode and false for multipl
                           }
                         }
                       >
-                        <ForwardRef
-                          $clearable={true}
-                          $creatable={false}
-                          $disabled={false}
-                          $error={false}
-                          $isFocused={false}
-                          $isLoading={false}
-                          $isOpen={false}
-                          $isPseudoFocused={false}
-                          $multi={false}
-                          $positive={false}
-                          $required={false}
-                          $searchable={true}
-                          $size="default"
-                          $type="search"
-                        >
-                          <MockStyledComponent
-                            $clearable={true}
-                            $creatable={false}
-                            $disabled={false}
-                            $error={false}
-                            $isFocused={false}
-                            $isLoading={false}
-                            $isOpen={false}
-                            $isPseudoFocused={false}
-                            $multi={false}
-                            $positive={false}
-                            $required={false}
-                            $searchable={true}
-                            $size="default"
-                            $type="search"
-                            forwardedRef={null}
-                          >
-                            <div
-                              styled-component="true"
-                              test-style={
-                                Object {
-                                  "color": "$theme.colors.foregroundAlt",
-                                  "maxWidth": "100%",
-                                  "overflow": "hidden",
-                                  "textOverflow": "ellipsis",
-                                  "whiteSpace": "nowrap",
-                                }
-                              }
-                            >
-                              Select...
-                            </div>
-                          </MockStyledComponent>
-                        </ForwardRef>
                         <ForwardRef
                           $clearable={true}
                           $creatable={false}
@@ -745,6 +696,55 @@ exports[`Select component renders component in search mode and false for multipl
                                   </MockStyledComponent>
                                 </ForwardRef>
                               </AutosizeInput>
+                            </div>
+                          </MockStyledComponent>
+                        </ForwardRef>
+                        <ForwardRef
+                          $clearable={true}
+                          $creatable={false}
+                          $disabled={false}
+                          $error={false}
+                          $isFocused={false}
+                          $isLoading={false}
+                          $isOpen={false}
+                          $isPseudoFocused={false}
+                          $multi={false}
+                          $positive={false}
+                          $required={false}
+                          $searchable={true}
+                          $size="default"
+                          $type="search"
+                        >
+                          <MockStyledComponent
+                            $clearable={true}
+                            $creatable={false}
+                            $disabled={false}
+                            $error={false}
+                            $isFocused={false}
+                            $isLoading={false}
+                            $isOpen={false}
+                            $isPseudoFocused={false}
+                            $multi={false}
+                            $positive={false}
+                            $required={false}
+                            $searchable={true}
+                            $size="default"
+                            $type="search"
+                            forwardedRef={null}
+                          >
+                            <div
+                              styled-component="true"
+                              test-style={
+                                Object {
+                                  "color": "$theme.colors.foregroundAlt",
+                                  "maxWidth": "100%",
+                                  "overflow": "hidden",
+                                  "textOverflow": "ellipsis",
+                                  "whiteSpace": "nowrap",
+                                }
+                              }
+                            >
+                              Select...
                             </div>
                           </MockStyledComponent>
                         </ForwardRef>
@@ -989,12 +989,6 @@ exports[`Select component renders component in search mode and true for multiple
                       styled-component="true"
                       test-style="[object Object]"
                     >
-                      Select...
-                    </div>
-                    <div
-                      styled-component="true"
-                      test-style="[object Object]"
-                    >
                       <input
                         aria-autocomplete="list"
                         aria-expanded="false"
@@ -1009,6 +1003,12 @@ exports[`Select component renders component in search mode and true for multiple
                         styled-component="true"
                         test-style="[object Object]"
                       />
+                    </div>
+                    <div
+                      styled-component="true"
+                      test-style="[object Object]"
+                    >
+                      Select...
                     </div>
                   </div>
                   <div
@@ -1257,7 +1257,7 @@ exports[`Select component renders component in search mode and true for multiple
                             "flexBasis": "0%",
                             "flexGrow": 1,
                             "flexShrink": 1,
-                            "flexWrap": "wrap",
+                            "flexWrap": "no-wrap",
                             "overflow": "hidden",
                             "paddingBottom": "$theme.sizing.scale400",
                             "paddingLeft": "$theme.sizing.scale1000",
@@ -1267,55 +1267,6 @@ exports[`Select component renders component in search mode and true for multiple
                           }
                         }
                       >
-                        <ForwardRef
-                          $clearable={true}
-                          $creatable={false}
-                          $disabled={false}
-                          $error={false}
-                          $isFocused={false}
-                          $isLoading={false}
-                          $isOpen={false}
-                          $isPseudoFocused={false}
-                          $multi={false}
-                          $positive={false}
-                          $required={false}
-                          $searchable={true}
-                          $size="default"
-                          $type="search"
-                        >
-                          <MockStyledComponent
-                            $clearable={true}
-                            $creatable={false}
-                            $disabled={false}
-                            $error={false}
-                            $isFocused={false}
-                            $isLoading={false}
-                            $isOpen={false}
-                            $isPseudoFocused={false}
-                            $multi={false}
-                            $positive={false}
-                            $required={false}
-                            $searchable={true}
-                            $size="default"
-                            $type="search"
-                            forwardedRef={null}
-                          >
-                            <div
-                              styled-component="true"
-                              test-style={
-                                Object {
-                                  "color": "$theme.colors.foregroundAlt",
-                                  "maxWidth": "100%",
-                                  "overflow": "hidden",
-                                  "textOverflow": "ellipsis",
-                                  "whiteSpace": "nowrap",
-                                }
-                              }
-                            >
-                              Select...
-                            </div>
-                          </MockStyledComponent>
-                        </ForwardRef>
                         <ForwardRef
                           $clearable={true}
                           $creatable={false}
@@ -1559,6 +1510,55 @@ exports[`Select component renders component in search mode and true for multiple
                             </div>
                           </MockStyledComponent>
                         </ForwardRef>
+                        <ForwardRef
+                          $clearable={true}
+                          $creatable={false}
+                          $disabled={false}
+                          $error={false}
+                          $isFocused={false}
+                          $isLoading={false}
+                          $isOpen={false}
+                          $isPseudoFocused={false}
+                          $multi={false}
+                          $positive={false}
+                          $required={false}
+                          $searchable={true}
+                          $size="default"
+                          $type="search"
+                        >
+                          <MockStyledComponent
+                            $clearable={true}
+                            $creatable={false}
+                            $disabled={false}
+                            $error={false}
+                            $isFocused={false}
+                            $isLoading={false}
+                            $isOpen={false}
+                            $isPseudoFocused={false}
+                            $multi={false}
+                            $positive={false}
+                            $required={false}
+                            $searchable={true}
+                            $size="default"
+                            $type="search"
+                            forwardedRef={null}
+                          >
+                            <div
+                              styled-component="true"
+                              test-style={
+                                Object {
+                                  "color": "$theme.colors.foregroundAlt",
+                                  "maxWidth": "100%",
+                                  "overflow": "hidden",
+                                  "textOverflow": "ellipsis",
+                                  "whiteSpace": "nowrap",
+                                }
+                              }
+                            >
+                              Select...
+                            </div>
+                          </MockStyledComponent>
+                        </ForwardRef>
                       </div>
                     </MockStyledComponent>
                   </ForwardRef>
@@ -1780,12 +1780,6 @@ exports[`Select component renders component in select mode and false for multipl
                       styled-component="true"
                       test-style="[object Object]"
                     >
-                      Select...
-                    </div>
-                    <div
-                      styled-component="true"
-                      test-style="[object Object]"
-                    >
                       <input
                         aria-autocomplete="list"
                         aria-expanded="false"
@@ -1800,6 +1794,12 @@ exports[`Select component renders component in select mode and false for multipl
                         styled-component="true"
                         test-style="[object Object]"
                       />
+                    </div>
+                    <div
+                      styled-component="true"
+                      test-style="[object Object]"
+                    >
+                      Select...
                     </div>
                   </div>
                   <div
@@ -1963,65 +1963,16 @@ exports[`Select component renders component in select mode and false for multipl
                             "flexBasis": "0%",
                             "flexGrow": 1,
                             "flexShrink": 1,
-                            "flexWrap": "wrap",
+                            "flexWrap": "no-wrap",
                             "overflow": "hidden",
                             "paddingBottom": "$theme.sizing.scale400",
-                            "paddingLeft": "$theme.sizing.scale500",
+                            "paddingLeft": "$theme.sizing.scale400",
                             "paddingRight": 0,
                             "paddingTop": "$theme.sizing.scale400",
                             "position": "relative",
                           }
                         }
                       >
-                        <ForwardRef
-                          $clearable={true}
-                          $creatable={false}
-                          $disabled={false}
-                          $error={false}
-                          $isFocused={false}
-                          $isLoading={false}
-                          $isOpen={false}
-                          $isPseudoFocused={false}
-                          $multi={false}
-                          $positive={false}
-                          $required={false}
-                          $searchable={true}
-                          $size="default"
-                          $type="select"
-                        >
-                          <MockStyledComponent
-                            $clearable={true}
-                            $creatable={false}
-                            $disabled={false}
-                            $error={false}
-                            $isFocused={false}
-                            $isLoading={false}
-                            $isOpen={false}
-                            $isPseudoFocused={false}
-                            $multi={false}
-                            $positive={false}
-                            $required={false}
-                            $searchable={true}
-                            $size="default"
-                            $type="select"
-                            forwardedRef={null}
-                          >
-                            <div
-                              styled-component="true"
-                              test-style={
-                                Object {
-                                  "color": "$theme.colors.foregroundAlt",
-                                  "maxWidth": "100%",
-                                  "overflow": "hidden",
-                                  "textOverflow": "ellipsis",
-                                  "whiteSpace": "nowrap",
-                                }
-                              }
-                            >
-                              Select...
-                            </div>
-                          </MockStyledComponent>
-                        </ForwardRef>
                         <ForwardRef
                           $clearable={true}
                           $creatable={false}
@@ -2262,6 +2213,55 @@ exports[`Select component renders component in select mode and false for multipl
                                   </MockStyledComponent>
                                 </ForwardRef>
                               </AutosizeInput>
+                            </div>
+                          </MockStyledComponent>
+                        </ForwardRef>
+                        <ForwardRef
+                          $clearable={true}
+                          $creatable={false}
+                          $disabled={false}
+                          $error={false}
+                          $isFocused={false}
+                          $isLoading={false}
+                          $isOpen={false}
+                          $isPseudoFocused={false}
+                          $multi={false}
+                          $positive={false}
+                          $required={false}
+                          $searchable={true}
+                          $size="default"
+                          $type="select"
+                        >
+                          <MockStyledComponent
+                            $clearable={true}
+                            $creatable={false}
+                            $disabled={false}
+                            $error={false}
+                            $isFocused={false}
+                            $isLoading={false}
+                            $isOpen={false}
+                            $isPseudoFocused={false}
+                            $multi={false}
+                            $positive={false}
+                            $required={false}
+                            $searchable={true}
+                            $size="default"
+                            $type="select"
+                            forwardedRef={null}
+                          >
+                            <div
+                              styled-component="true"
+                              test-style={
+                                Object {
+                                  "color": "$theme.colors.foregroundAlt",
+                                  "maxWidth": "100%",
+                                  "overflow": "hidden",
+                                  "textOverflow": "ellipsis",
+                                  "whiteSpace": "nowrap",
+                                }
+                              }
+                            >
+                              Select...
                             </div>
                           </MockStyledComponent>
                         </ForwardRef>
@@ -2607,12 +2607,6 @@ exports[`Select component renders component in select mode and true for multiple
                       styled-component="true"
                       test-style="[object Object]"
                     >
-                      Select...
-                    </div>
-                    <div
-                      styled-component="true"
-                      test-style="[object Object]"
-                    >
                       <input
                         aria-autocomplete="list"
                         aria-expanded="false"
@@ -2627,6 +2621,12 @@ exports[`Select component renders component in select mode and true for multiple
                         styled-component="true"
                         test-style="[object Object]"
                       />
+                    </div>
+                    <div
+                      styled-component="true"
+                      test-style="[object Object]"
+                    >
+                      Select...
                     </div>
                   </div>
                   <div
@@ -2790,65 +2790,16 @@ exports[`Select component renders component in select mode and true for multiple
                             "flexBasis": "0%",
                             "flexGrow": 1,
                             "flexShrink": 1,
-                            "flexWrap": "wrap",
+                            "flexWrap": "no-wrap",
                             "overflow": "hidden",
                             "paddingBottom": "$theme.sizing.scale400",
-                            "paddingLeft": "$theme.sizing.scale500",
+                            "paddingLeft": "$theme.sizing.scale400",
                             "paddingRight": 0,
                             "paddingTop": "$theme.sizing.scale400",
                             "position": "relative",
                           }
                         }
                       >
-                        <ForwardRef
-                          $clearable={true}
-                          $creatable={false}
-                          $disabled={false}
-                          $error={false}
-                          $isFocused={false}
-                          $isLoading={false}
-                          $isOpen={false}
-                          $isPseudoFocused={false}
-                          $multi={false}
-                          $positive={false}
-                          $required={false}
-                          $searchable={true}
-                          $size="default"
-                          $type="select"
-                        >
-                          <MockStyledComponent
-                            $clearable={true}
-                            $creatable={false}
-                            $disabled={false}
-                            $error={false}
-                            $isFocused={false}
-                            $isLoading={false}
-                            $isOpen={false}
-                            $isPseudoFocused={false}
-                            $multi={false}
-                            $positive={false}
-                            $required={false}
-                            $searchable={true}
-                            $size="default"
-                            $type="select"
-                            forwardedRef={null}
-                          >
-                            <div
-                              styled-component="true"
-                              test-style={
-                                Object {
-                                  "color": "$theme.colors.foregroundAlt",
-                                  "maxWidth": "100%",
-                                  "overflow": "hidden",
-                                  "textOverflow": "ellipsis",
-                                  "whiteSpace": "nowrap",
-                                }
-                              }
-                            >
-                              Select...
-                            </div>
-                          </MockStyledComponent>
-                        </ForwardRef>
                         <ForwardRef
                           $clearable={true}
                           $creatable={false}
@@ -3089,6 +3040,55 @@ exports[`Select component renders component in select mode and true for multiple
                                   </MockStyledComponent>
                                 </ForwardRef>
                               </AutosizeInput>
+                            </div>
+                          </MockStyledComponent>
+                        </ForwardRef>
+                        <ForwardRef
+                          $clearable={true}
+                          $creatable={false}
+                          $disabled={false}
+                          $error={false}
+                          $isFocused={false}
+                          $isLoading={false}
+                          $isOpen={false}
+                          $isPseudoFocused={false}
+                          $multi={false}
+                          $positive={false}
+                          $required={false}
+                          $searchable={true}
+                          $size="default"
+                          $type="select"
+                        >
+                          <MockStyledComponent
+                            $clearable={true}
+                            $creatable={false}
+                            $disabled={false}
+                            $error={false}
+                            $isFocused={false}
+                            $isLoading={false}
+                            $isOpen={false}
+                            $isPseudoFocused={false}
+                            $multi={false}
+                            $positive={false}
+                            $required={false}
+                            $searchable={true}
+                            $size="default"
+                            $type="select"
+                            forwardedRef={null}
+                          >
+                            <div
+                              styled-component="true"
+                              test-style={
+                                Object {
+                                  "color": "$theme.colors.foregroundAlt",
+                                  "maxWidth": "100%",
+                                  "overflow": "hidden",
+                                  "textOverflow": "ellipsis",
+                                  "whiteSpace": "nowrap",
+                                }
+                              }
+                            >
+                              Select...
                             </div>
                           </MockStyledComponent>
                         </ForwardRef>
