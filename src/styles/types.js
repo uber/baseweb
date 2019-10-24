@@ -605,6 +605,7 @@ export type IconT = {
   ArrowLeft?: ComponentType<IconPropsT>,
   ArrowRight?: ComponentType<IconPropsT>,
   ArrowUp?: ComponentType<IconPropsT>,
+  Blank?: ComponentType<IconPropsT>,
   CheckIndeterminate?: ComponentType<IconPropsT>,
   Check?: ComponentType<IconPropsT>,
   ChevronDown?: ComponentType<IconPropsT>,
