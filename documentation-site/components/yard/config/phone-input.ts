@@ -4,6 +4,8 @@ import {TConfig} from '../types';
 
 import {theme} from './input';
 
+const phoneInputProps = require('!!extract-react-types-loader!../../../../src/phone-input/phone-input.js');
+
 const countriesEnum: {[key: string]: string} = {};
 Object.values(COUNTRIES).forEach(country => {
   countriesEnum[country.id] = country.label;
@@ -132,6 +134,9 @@ const PhoneInputConfig: TConfig = {
       ],
       sharedProps: {},
     },
+  },
+  mapTokensToProps: {
+    PhoneInput: phoneInputProps,
   },
 };
 

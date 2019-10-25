@@ -73,7 +73,7 @@ const MyBreakpoints = {
 const ResponsiveTheme = Object.keys(MyBreakpoints).reduce(
   (acc, key) => {
     acc.breakpoints[key] = MyBreakpoints[key];
-    acc.media[key] = `@media screen and (min-width: ${MyBreakpoints[key]}px)`
+    acc.media[key] = `@media screen and (min-width: ${MyBreakpoints[key]}px)`;
     return acc;
   },
   {

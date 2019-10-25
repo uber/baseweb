@@ -2,6 +2,8 @@ import {Slider} from 'baseui/slider';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
+const sliderProps = require('!!extract-react-types-loader!../../../../src/slider/slider.js');
+
 const SliderConfig: TConfig = {
   imports: {
     'baseui/slider': {named: ['Slider']},
@@ -103,6 +105,9 @@ const SliderConfig: TConfig = {
         $value: 'value',
       },
     },
+  },
+  mapTokensToProps: {
+    Slider: sliderProps,
   },
 };
 

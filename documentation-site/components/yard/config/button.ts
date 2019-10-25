@@ -2,6 +2,8 @@ import {Button, KIND, SIZE, SHAPE} from 'baseui/button';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
+const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button.js');
+
 const ButtonConfig: TConfig = {
   imports: {
     'baseui/button': {
@@ -130,6 +132,9 @@ const ButtonConfig: TConfig = {
         $disabled: 'disabled',
       },
     },
+  },
+  mapTokensToProps: {
+    Button: buttonProps,
   },
 };
 
