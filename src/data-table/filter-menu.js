@@ -42,6 +42,7 @@ function Options(props: OptionsPropsT) {
         Select column to filter by
       </p>
       <ul
+        role="listbox"
         className={css({
           listStyleType: 'none',
           marginBlockStart: 'unset',
@@ -49,38 +50,44 @@ function Options(props: OptionsPropsT) {
           paddingInlineStart: 'unset',
         })}
       >
-        {props.columns.map((column, index) => (
-          <li
-            onMouseEnter={() => props.onMouseEnter(index)}
-            onClick={() => props.onClick(column)}
-            key={column.title}
-            className={css({
-              ...theme.typography.font100,
-              alignItems: 'center',
-              backgroundColor:
-                index === props.highlightIndex ? 'lightgreen' : null,
-              cursor: 'pointer',
-              display: 'flex',
-              paddingTop: theme.sizing.scale100,
-              paddingRight: theme.sizing.scale600,
-              paddingBottom: theme.sizing.scale100,
-              paddingLeft: theme.sizing.scale600,
-            })}
-          >
-            <div
+        {props.columns.map((column, index) => {
+          const isHighlighted = index === props.highlightIndex;
+          return (
+            // handled on the wrapper element
+            // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+            <li
+              role="option"
+              aria-selected={isHighlighted}
+              onMouseEnter={() => props.onMouseEnter(index)}
+              onClick={() => props.onClick(column)}
+              key={column.title}
               className={css({
-                backgroundColor: theme.colors.mono300,
-                borderRadius: theme.borders.radius200,
-                height: theme.sizing.scale800,
-                marginRight: theme.sizing.scale300,
-                width: theme.sizing.scale800,
+                ...theme.typography.font100,
+                alignItems: 'center',
+                backgroundColor: isHighlighted ? theme.colors.mono200 : null,
+                cursor: 'pointer',
+                display: 'flex',
+                paddingTop: theme.sizing.scale100,
+                paddingRight: theme.sizing.scale600,
+                paddingBottom: theme.sizing.scale100,
+                paddingLeft: theme.sizing.scale600,
               })}
             >
-              #
-            </div>
-            {column.title}
-          </li>
-        ))}
+              <div
+                className={css({
+                  backgroundColor: theme.colors.mono300,
+                  borderRadius: theme.borders.radius200,
+                  height: theme.sizing.scale800,
+                  marginRight: theme.sizing.scale300,
+                  width: theme.sizing.scale800,
+                })}
+              >
+                #
+              </div>
+              {column.title}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
@@ -100,7 +107,7 @@ type PropsT = {
 };
 
 function FilterMenu(props: PropsT) {
-  const [css, theme] = useStyletron();
+  const [, theme] = useStyletron();
   const [isOpen, setIsOpen] = React.useState(false);
   const [highlightIndex, setHighlightIndex] = React.useState(-1);
 

@@ -170,17 +170,12 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
           }
           item={
             <HeaderCell
-              filterable={column.filterable}
-              filter={p => null}
               index={columnIndex}
-              isFilterOpen={false}
               isHovered
               isMeasured
               isSelectable={props.isSelectable && columnIndex === 0}
               isSelectedAll={false}
               isSelectedIndeterminate={false}
-              onFilterOpen={() => {}}
-              onFilterClose={() => {}}
               onMouseEnter={() => {}}
               onMouseLeave={() => {}}
               onSelectAll={() => {}}
