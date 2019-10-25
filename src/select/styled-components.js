@@ -278,6 +278,7 @@ export const StyledInputContainer = styled<SharedStylePropsArgT>(
       $size,
       $searchable,
       $theme: {typography, sizing},
+      $isEmpty,
     } = props;
     const font = getFont($size, typography);
     return {
@@ -291,7 +292,7 @@ export const StyledInputContainer = styled<SharedStylePropsArgT>(
       outline: 'none',
       marginTop: 0,
       marginBottom: 0,
-      marginLeft: sizing.scale0,
+      marginLeft: $isEmpty ? 0 : sizing.scale0,
       marginRight: 0,
       paddingTop: 0,
       paddingBottom: 0,

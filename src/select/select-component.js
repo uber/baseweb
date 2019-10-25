@@ -799,6 +799,7 @@ class Select extends React.Component<
       size,
       searchable,
       type,
+      value,
     } = this.props;
     const {isOpen, isFocused, isPseudoFocused} = this.state;
     return {
@@ -816,6 +817,7 @@ class Select extends React.Component<
       $searchable: searchable,
       $size: size,
       $type: type,
+      $isEmpty: !this.getValueArray(value).length,
     };
   }
 
@@ -938,11 +940,7 @@ class Select extends React.Component<
                 {...controlContainerProps}
               >
                 {type === TYPE.search ? this.renderSearch() : null}
-                <ValueContainer
-                  $isEmpty={!valueArray.length}
-                  {...sharedProps}
-                  {...valueContainerProps}
-                >
+                <ValueContainer {...sharedProps} {...valueContainerProps}>
                   {this.renderValue(valueArray, isOpen, locale)}
                   {this.renderInput()}
                   {showPlaceholder ? (

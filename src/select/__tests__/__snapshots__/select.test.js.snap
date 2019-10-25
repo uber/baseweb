@@ -101,6 +101,7 @@ exports[`Select component renders component in search mode and false for multipl
         $creatable={false}
         $disabled={false}
         $error={false}
+        $isEmpty={true}
         $isFocused={false}
         $isLoading={false}
         $isOpen={false}
@@ -123,6 +124,7 @@ exports[`Select component renders component in search mode and false for multipl
           $creatable={false}
           $disabled={false}
           $error={false}
+          $isEmpty={true}
           $isFocused={false}
           $isLoading={false}
           $isOpen={false}
@@ -234,6 +236,7 @@ exports[`Select component renders component in search mode and false for multipl
               $creatable={false}
               $disabled={false}
               $error={false}
+              $isEmpty={true}
               $isFocused={false}
               $isLoading={false}
               $isOpen={false}
@@ -255,6 +258,7 @@ exports[`Select component renders component in search mode and false for multipl
                 $creatable={false}
                 $disabled={false}
                 $error={false}
+                $isEmpty={true}
                 $isFocused={false}
                 $isLoading={false}
                 $isOpen={false}
@@ -307,6 +311,7 @@ exports[`Select component renders component in search mode and false for multipl
                     $creatable={false}
                     $disabled={false}
                     $error={false}
+                    $isEmpty={true}
                     $isFocused={false}
                     $isLoading={false}
                     $isOpen={false}
@@ -323,6 +328,7 @@ exports[`Select component renders component in search mode and false for multipl
                       $creatable={false}
                       $disabled={false}
                       $error={false}
+                      $isEmpty={true}
                       $isFocused={false}
                       $isLoading={false}
                       $isOpen={false}
@@ -461,6 +467,7 @@ exports[`Select component renders component in search mode and false for multipl
                           $creatable={false}
                           $disabled={false}
                           $error={false}
+                          $isEmpty={true}
                           $isFocused={false}
                           $isLoading={false}
                           $isOpen={false}
@@ -477,6 +484,7 @@ exports[`Select component renders component in search mode and false for multipl
                             $creatable={false}
                             $disabled={false}
                             $error={false}
+                            $isEmpty={true}
                             $isFocused={false}
                             $isLoading={false}
                             $isOpen={false}
@@ -500,7 +508,7 @@ exports[`Select component renders component in search mode and false for multipl
                                   "display": "inline-block",
                                   "height": "auto",
                                   "marginBottom": 0,
-                                  "marginLeft": "$theme.sizing.scale0",
+                                  "marginLeft": 0,
                                   "marginRight": 0,
                                   "marginTop": 0,
                                   "maxHeight": "$theme.typography.font300.lineHeight",
@@ -519,6 +527,7 @@ exports[`Select component renders component in search mode and false for multipl
                                 $creatable={false}
                                 $disabled={false}
                                 $error={false}
+                                $isEmpty={true}
                                 $isFocused={false}
                                 $isLoading={false}
                                 $isOpen={false}
@@ -558,6 +567,7 @@ exports[`Select component renders component in search mode and false for multipl
                                   $creatable={false}
                                   $disabled={false}
                                   $error={false}
+                                  $isEmpty={true}
                                   $isFocused={false}
                                   $isLoading={false}
                                   $isOpen={false}
@@ -592,6 +602,7 @@ exports[`Select component renders component in search mode and false for multipl
                                     $creatable={false}
                                     $disabled={false}
                                     $error={false}
+                                    $isEmpty={true}
                                     $isFocused={false}
                                     $isLoading={false}
                                     $isOpen={false}
@@ -704,6 +715,7 @@ exports[`Select component renders component in search mode and false for multipl
                           $creatable={false}
                           $disabled={false}
                           $error={false}
+                          $isEmpty={true}
                           $isFocused={false}
                           $isLoading={false}
                           $isOpen={false}
@@ -720,6 +732,7 @@ exports[`Select component renders component in search mode and false for multipl
                             $creatable={false}
                             $disabled={false}
                             $error={false}
+                            $isEmpty={true}
                             $isFocused={false}
                             $isLoading={false}
                             $isOpen={false}
@@ -756,6 +769,7 @@ exports[`Select component renders component in search mode and false for multipl
                     $creatable={false}
                     $disabled={false}
                     $error={false}
+                    $isEmpty={true}
                     $isFocused={false}
                     $isLoading={false}
                     $isOpen={false}
@@ -772,6 +786,7 @@ exports[`Select component renders component in search mode and false for multipl
                       $creatable={false}
                       $disabled={false}
                       $error={false}
+                      $isEmpty={true}
                       $isFocused={false}
                       $isLoading={false}
                       $isOpen={false}
@@ -912,6 +927,7 @@ exports[`Select component renders component in search mode and true for multiple
         $creatable={false}
         $disabled={false}
         $error={false}
+        $isEmpty={true}
         $isFocused={false}
         $isLoading={false}
         $isOpen={false}
@@ -934,6 +950,7 @@ exports[`Select component renders component in search mode and true for multiple
           $creatable={false}
           $disabled={false}
           $error={false}
+          $isEmpty={true}
           $isFocused={false}
           $isLoading={false}
           $isOpen={false}
@@ -1045,6 +1062,7 @@ exports[`Select component renders component in search mode and true for multiple
               $creatable={false}
               $disabled={false}
               $error={false}
+              $isEmpty={true}
               $isFocused={false}
               $isLoading={false}
               $isOpen={false}
@@ -1066,6 +1084,7 @@ exports[`Select component renders component in search mode and true for multiple
                 $creatable={false}
                 $disabled={false}
                 $error={false}
+                $isEmpty={true}
                 $isFocused={false}
                 $isLoading={false}
                 $isOpen={false}
@@ -1118,6 +1137,7 @@ exports[`Select component renders component in search mode and true for multiple
                     $creatable={false}
                     $disabled={false}
                     $error={false}
+                    $isEmpty={true}
                     $isFocused={false}
                     $isLoading={false}
                     $isOpen={false}
@@ -1134,6 +1154,7 @@ exports[`Select component renders component in search mode and true for multiple
                       $creatable={false}
                       $disabled={false}
                       $error={false}
+                      $isEmpty={true}
                       $isFocused={false}
                       $isLoading={false}
                       $isOpen={false}
@@ -1272,6 +1293,7 @@ exports[`Select component renders component in search mode and true for multiple
                           $creatable={false}
                           $disabled={false}
                           $error={false}
+                          $isEmpty={true}
                           $isFocused={false}
                           $isLoading={false}
                           $isOpen={false}
@@ -1288,6 +1310,7 @@ exports[`Select component renders component in search mode and true for multiple
                             $creatable={false}
                             $disabled={false}
                             $error={false}
+                            $isEmpty={true}
                             $isFocused={false}
                             $isLoading={false}
                             $isOpen={false}
@@ -1311,7 +1334,7 @@ exports[`Select component renders component in search mode and true for multiple
                                   "display": "inline-block",
                                   "height": "auto",
                                   "marginBottom": 0,
-                                  "marginLeft": "$theme.sizing.scale0",
+                                  "marginLeft": 0,
                                   "marginRight": 0,
                                   "marginTop": 0,
                                   "maxHeight": "$theme.typography.font300.lineHeight",
@@ -1330,6 +1353,7 @@ exports[`Select component renders component in search mode and true for multiple
                                 $creatable={false}
                                 $disabled={false}
                                 $error={false}
+                                $isEmpty={true}
                                 $isFocused={false}
                                 $isLoading={false}
                                 $isOpen={false}
@@ -1369,6 +1393,7 @@ exports[`Select component renders component in search mode and true for multiple
                                   $creatable={false}
                                   $disabled={false}
                                   $error={false}
+                                  $isEmpty={true}
                                   $isFocused={false}
                                   $isLoading={false}
                                   $isOpen={false}
@@ -1403,6 +1428,7 @@ exports[`Select component renders component in search mode and true for multiple
                                     $creatable={false}
                                     $disabled={false}
                                     $error={false}
+                                    $isEmpty={true}
                                     $isFocused={false}
                                     $isLoading={false}
                                     $isOpen={false}
@@ -1515,6 +1541,7 @@ exports[`Select component renders component in search mode and true for multiple
                           $creatable={false}
                           $disabled={false}
                           $error={false}
+                          $isEmpty={true}
                           $isFocused={false}
                           $isLoading={false}
                           $isOpen={false}
@@ -1531,6 +1558,7 @@ exports[`Select component renders component in search mode and true for multiple
                             $creatable={false}
                             $disabled={false}
                             $error={false}
+                            $isEmpty={true}
                             $isFocused={false}
                             $isLoading={false}
                             $isOpen={false}
@@ -1567,6 +1595,7 @@ exports[`Select component renders component in search mode and true for multiple
                     $creatable={false}
                     $disabled={false}
                     $error={false}
+                    $isEmpty={true}
                     $isFocused={false}
                     $isLoading={false}
                     $isOpen={false}
@@ -1583,6 +1612,7 @@ exports[`Select component renders component in search mode and true for multiple
                       $creatable={false}
                       $disabled={false}
                       $error={false}
+                      $isEmpty={true}
                       $isFocused={false}
                       $isLoading={false}
                       $isOpen={false}
@@ -1723,6 +1753,7 @@ exports[`Select component renders component in select mode and false for multipl
         $creatable={false}
         $disabled={false}
         $error={false}
+        $isEmpty={true}
         $isFocused={false}
         $isLoading={false}
         $isOpen={false}
@@ -1745,6 +1776,7 @@ exports[`Select component renders component in select mode and false for multipl
           $creatable={false}
           $disabled={false}
           $error={false}
+          $isEmpty={true}
           $isFocused={false}
           $isLoading={false}
           $isOpen={false}
@@ -1850,6 +1882,7 @@ exports[`Select component renders component in select mode and false for multipl
               $creatable={false}
               $disabled={false}
               $error={false}
+              $isEmpty={true}
               $isFocused={false}
               $isLoading={false}
               $isOpen={false}
@@ -1871,6 +1904,7 @@ exports[`Select component renders component in select mode and false for multipl
                 $creatable={false}
                 $disabled={false}
                 $error={false}
+                $isEmpty={true}
                 $isFocused={false}
                 $isLoading={false}
                 $isOpen={false}
@@ -1978,6 +2012,7 @@ exports[`Select component renders component in select mode and false for multipl
                           $creatable={false}
                           $disabled={false}
                           $error={false}
+                          $isEmpty={true}
                           $isFocused={false}
                           $isLoading={false}
                           $isOpen={false}
@@ -1994,6 +2029,7 @@ exports[`Select component renders component in select mode and false for multipl
                             $creatable={false}
                             $disabled={false}
                             $error={false}
+                            $isEmpty={true}
                             $isFocused={false}
                             $isLoading={false}
                             $isOpen={false}
@@ -2017,7 +2053,7 @@ exports[`Select component renders component in select mode and false for multipl
                                   "display": "inline-block",
                                   "height": "auto",
                                   "marginBottom": 0,
-                                  "marginLeft": "$theme.sizing.scale0",
+                                  "marginLeft": 0,
                                   "marginRight": 0,
                                   "marginTop": 0,
                                   "maxHeight": "$theme.typography.font300.lineHeight",
@@ -2036,6 +2072,7 @@ exports[`Select component renders component in select mode and false for multipl
                                 $creatable={false}
                                 $disabled={false}
                                 $error={false}
+                                $isEmpty={true}
                                 $isFocused={false}
                                 $isLoading={false}
                                 $isOpen={false}
@@ -2075,6 +2112,7 @@ exports[`Select component renders component in select mode and false for multipl
                                   $creatable={false}
                                   $disabled={false}
                                   $error={false}
+                                  $isEmpty={true}
                                   $isFocused={false}
                                   $isLoading={false}
                                   $isOpen={false}
@@ -2109,6 +2147,7 @@ exports[`Select component renders component in select mode and false for multipl
                                     $creatable={false}
                                     $disabled={false}
                                     $error={false}
+                                    $isEmpty={true}
                                     $isFocused={false}
                                     $isLoading={false}
                                     $isOpen={false}
@@ -2221,6 +2260,7 @@ exports[`Select component renders component in select mode and false for multipl
                           $creatable={false}
                           $disabled={false}
                           $error={false}
+                          $isEmpty={true}
                           $isFocused={false}
                           $isLoading={false}
                           $isOpen={false}
@@ -2237,6 +2277,7 @@ exports[`Select component renders component in select mode and false for multipl
                             $creatable={false}
                             $disabled={false}
                             $error={false}
+                            $isEmpty={true}
                             $isFocused={false}
                             $isLoading={false}
                             $isOpen={false}
@@ -2273,6 +2314,7 @@ exports[`Select component renders component in select mode and false for multipl
                     $creatable={false}
                     $disabled={false}
                     $error={false}
+                    $isEmpty={true}
                     $isFocused={false}
                     $isLoading={false}
                     $isOpen={false}
@@ -2289,6 +2331,7 @@ exports[`Select component renders component in select mode and false for multipl
                       $creatable={false}
                       $disabled={false}
                       $error={false}
+                      $isEmpty={true}
                       $isFocused={false}
                       $isLoading={false}
                       $isOpen={false}
@@ -2320,6 +2363,7 @@ exports[`Select component renders component in select mode and false for multipl
                           $creatable={false}
                           $disabled={false}
                           $error={false}
+                          $isEmpty={true}
                           $isFocused={false}
                           $isLoading={false}
                           $isOpen={false}
@@ -2348,6 +2392,7 @@ exports[`Select component renders component in select mode and false for multipl
                             $creatable={false}
                             $disabled={false}
                             $error={false}
+                            $isEmpty={true}
                             $isFocused={false}
                             $isLoading={false}
                             $isOpen={false}
@@ -2377,6 +2422,7 @@ exports[`Select component renders component in select mode and false for multipl
                               $creatable={false}
                               $disabled={false}
                               $error={false}
+                              $isEmpty={true}
                               $isFocused={false}
                               $isLoading={false}
                               $isOpen={false}
@@ -2395,6 +2441,7 @@ exports[`Select component renders component in select mode and false for multipl
                                 $creatable={false}
                                 $disabled={false}
                                 $error={false}
+                                $isEmpty={true}
                                 $isFocused={false}
                                 $isLoading={false}
                                 $isOpen={false}
@@ -2550,6 +2597,7 @@ exports[`Select component renders component in select mode and true for multiple
         $creatable={false}
         $disabled={false}
         $error={false}
+        $isEmpty={true}
         $isFocused={false}
         $isLoading={false}
         $isOpen={false}
@@ -2572,6 +2620,7 @@ exports[`Select component renders component in select mode and true for multiple
           $creatable={false}
           $disabled={false}
           $error={false}
+          $isEmpty={true}
           $isFocused={false}
           $isLoading={false}
           $isOpen={false}
@@ -2677,6 +2726,7 @@ exports[`Select component renders component in select mode and true for multiple
               $creatable={false}
               $disabled={false}
               $error={false}
+              $isEmpty={true}
               $isFocused={false}
               $isLoading={false}
               $isOpen={false}
@@ -2698,6 +2748,7 @@ exports[`Select component renders component in select mode and true for multiple
                 $creatable={false}
                 $disabled={false}
                 $error={false}
+                $isEmpty={true}
                 $isFocused={false}
                 $isLoading={false}
                 $isOpen={false}
@@ -2805,6 +2856,7 @@ exports[`Select component renders component in select mode and true for multiple
                           $creatable={false}
                           $disabled={false}
                           $error={false}
+                          $isEmpty={true}
                           $isFocused={false}
                           $isLoading={false}
                           $isOpen={false}
@@ -2821,6 +2873,7 @@ exports[`Select component renders component in select mode and true for multiple
                             $creatable={false}
                             $disabled={false}
                             $error={false}
+                            $isEmpty={true}
                             $isFocused={false}
                             $isLoading={false}
                             $isOpen={false}
@@ -2844,7 +2897,7 @@ exports[`Select component renders component in select mode and true for multiple
                                   "display": "inline-block",
                                   "height": "auto",
                                   "marginBottom": 0,
-                                  "marginLeft": "$theme.sizing.scale0",
+                                  "marginLeft": 0,
                                   "marginRight": 0,
                                   "marginTop": 0,
                                   "maxHeight": "$theme.typography.font300.lineHeight",
@@ -2863,6 +2916,7 @@ exports[`Select component renders component in select mode and true for multiple
                                 $creatable={false}
                                 $disabled={false}
                                 $error={false}
+                                $isEmpty={true}
                                 $isFocused={false}
                                 $isLoading={false}
                                 $isOpen={false}
@@ -2902,6 +2956,7 @@ exports[`Select component renders component in select mode and true for multiple
                                   $creatable={false}
                                   $disabled={false}
                                   $error={false}
+                                  $isEmpty={true}
                                   $isFocused={false}
                                   $isLoading={false}
                                   $isOpen={false}
@@ -2936,6 +2991,7 @@ exports[`Select component renders component in select mode and true for multiple
                                     $creatable={false}
                                     $disabled={false}
                                     $error={false}
+                                    $isEmpty={true}
                                     $isFocused={false}
                                     $isLoading={false}
                                     $isOpen={false}
@@ -3048,6 +3104,7 @@ exports[`Select component renders component in select mode and true for multiple
                           $creatable={false}
                           $disabled={false}
                           $error={false}
+                          $isEmpty={true}
                           $isFocused={false}
                           $isLoading={false}
                           $isOpen={false}
@@ -3064,6 +3121,7 @@ exports[`Select component renders component in select mode and true for multiple
                             $creatable={false}
                             $disabled={false}
                             $error={false}
+                            $isEmpty={true}
                             $isFocused={false}
                             $isLoading={false}
                             $isOpen={false}
@@ -3100,6 +3158,7 @@ exports[`Select component renders component in select mode and true for multiple
                     $creatable={false}
                     $disabled={false}
                     $error={false}
+                    $isEmpty={true}
                     $isFocused={false}
                     $isLoading={false}
                     $isOpen={false}
@@ -3116,6 +3175,7 @@ exports[`Select component renders component in select mode and true for multiple
                       $creatable={false}
                       $disabled={false}
                       $error={false}
+                      $isEmpty={true}
                       $isFocused={false}
                       $isLoading={false}
                       $isOpen={false}
@@ -3147,6 +3207,7 @@ exports[`Select component renders component in select mode and true for multiple
                           $creatable={false}
                           $disabled={false}
                           $error={false}
+                          $isEmpty={true}
                           $isFocused={false}
                           $isLoading={false}
                           $isOpen={false}
@@ -3175,6 +3236,7 @@ exports[`Select component renders component in select mode and true for multiple
                             $creatable={false}
                             $disabled={false}
                             $error={false}
+                            $isEmpty={true}
                             $isFocused={false}
                             $isLoading={false}
                             $isOpen={false}
@@ -3204,6 +3266,7 @@ exports[`Select component renders component in select mode and true for multiple
                               $creatable={false}
                               $disabled={false}
                               $error={false}
+                              $isEmpty={true}
                               $isFocused={false}
                               $isLoading={false}
                               $isOpen={false}
@@ -3222,6 +3285,7 @@ exports[`Select component renders component in select mode and true for multiple
                                 $creatable={false}
                                 $disabled={false}
                                 $error={false}
+                                $isEmpty={true}
                                 $isFocused={false}
                                 $isLoading={false}
                                 $isOpen={false}
