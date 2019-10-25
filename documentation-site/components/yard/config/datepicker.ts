@@ -3,6 +3,8 @@ import {PropTypes} from '../const';
 import {TConfig} from '../types';
 import inputConfig from './input';
 
+const datepickerProps = require('!!extract-react-types-loader!../../../../src/datepicker/datepicker.js');
+
 const DatepickerConfig: TConfig = {
   imports: {
     'baseui/datepicker': {
@@ -304,6 +306,9 @@ const DatepickerConfig: TConfig = {
         },
       },
     },
+  },
+  mapTokensToProps: {
+    Datepicker: datepickerProps,
   },
 };
 

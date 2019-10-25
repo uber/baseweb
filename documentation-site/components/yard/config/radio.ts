@@ -6,6 +6,9 @@ import {TConfig} from '../types';
 
 import {changeHandlers} from './common';
 
+const radioProps = require('!!extract-react-types-loader!../../../../src/radio/radio.js');
+const radioGroupProps = require('!!extract-react-types-loader!../../../../src/radio/radiogroup.js');
+
 const RadioGroupConfig: TConfig = {
   imports: {
     'baseui/radio': {named: ['RadioGroup']},
@@ -161,6 +164,10 @@ const RadioGroupConfig: TConfig = {
         $disabled: 'disabled',
       },
     },
+  },
+  mapTokensToProps: {
+    Radio: radioProps,
+    RadioGroup: radioGroupProps,
   },
 };
 

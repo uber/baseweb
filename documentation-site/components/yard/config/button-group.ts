@@ -3,6 +3,9 @@ import {Button} from 'baseui/button';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
+const buttonGroupProps = require('!!extract-react-types-loader!../../../../src/button-group/button-group.js');
+const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button.js');
+
 const ButtonGroupConfig: TConfig = {
   imports: {
     'baseui/button-group': {
@@ -75,6 +78,10 @@ const ButtonGroupConfig: TConfig = {
       names: ['Root'],
       sharedProps: {},
     },
+  },
+  mapTokensToProps: {
+    ButtonGroup: buttonGroupProps,
+    Button: buttonProps,
   },
 };
 

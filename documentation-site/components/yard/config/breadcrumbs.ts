@@ -3,6 +3,8 @@ import {StyledLink} from 'baseui/link';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
+const breadcrumbsProps = require('!!extract-react-types-loader!../../../../src/breadcrumbs/breadcrumbs.js');
+
 const BreadcrumbsConfig: TConfig = {
   imports: {
     'baseui/breadcrumbs': {
@@ -39,6 +41,9 @@ const BreadcrumbsConfig: TConfig = {
       names: ['Root', 'Separator', 'List', 'ListItem', 'Icon'],
       sharedProps: {},
     },
+  },
+  mapTokensToProps: {
+    Breadcrumbs: breadcrumbsProps,
   },
 };
 
