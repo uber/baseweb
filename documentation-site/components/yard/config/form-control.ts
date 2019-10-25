@@ -3,6 +3,9 @@ import {Input} from 'baseui/input';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
+const formControlProps = require('!!extract-react-types-loader!../../../../src/form-control/form-control.js');
+const inputProps = require('!!extract-react-types-loader!../../../../src/input/input.js');
+
 const TextareaConfig: TConfig = {
   imports: {
     'baseui/form-control': {named: ['FormControl']},
@@ -63,6 +66,10 @@ const TextareaConfig: TConfig = {
         },
       },
     },
+  },
+  mapTokensToProps: {
+    FormControl: formControlProps,
+    Input: inputProps,
   },
 };
 

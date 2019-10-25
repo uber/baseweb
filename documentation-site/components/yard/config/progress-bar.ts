@@ -2,6 +2,8 @@ import {ProgressBar} from 'baseui/progress-bar';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
+const progressBarProps = require('!!extract-react-types-loader!../../../../src/progress-bar/progressbar.js');
+
 const ProgressBarConfig: TConfig = {
   imports: {
     'baseui/progress-bar': {named: ['ProgressBar']},
@@ -46,6 +48,9 @@ const ProgressBarConfig: TConfig = {
         $value: 'value',
       },
     },
+  },
+  mapTokensToProps: {
+    ProgressBar: progressBarProps,
   },
 };
 

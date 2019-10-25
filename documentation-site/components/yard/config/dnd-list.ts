@@ -2,6 +2,8 @@ import {List, arrayMove, arrayRemove} from 'baseui/dnd-list';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
+const listProps = require('!!extract-react-types-loader!../../../../src/dnd-list/list.js');
+
 const dndListConfig: TConfig = {
   imports: {
     'baseui/dnd-list': {
@@ -23,9 +25,9 @@ const dndListConfig: TConfig = {
       description: 'Indicates if items can be removed from the list.',
     },
     onChange: {
-      value: `({oldIndex, newIndex}) => 
-        setItems(newIndex === -1 ? 
-          arrayRemove(items, oldIndex) : 
+      value: `({oldIndex, newIndex}) =>
+        setItems(newIndex === -1 ?
+          arrayRemove(items, oldIndex) :
           arrayMove(items, oldIndex, newIndex))`,
       placeholder: '({oldIdx, newIdx}) => {}',
       type: PropTypes.Function,
@@ -76,6 +78,9 @@ const dndListConfig: TConfig = {
         },
       },
     },
+  },
+  mapTokensToProps: {
+    List: listProps,
   },
 };
 

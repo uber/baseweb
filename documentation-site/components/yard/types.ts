@@ -40,6 +40,7 @@ export type TYardProps = {
   props: {[key: string]: TProp};
   theme: string[];
   imports: TImportsConfig;
+  mapTokensToProps?: {[key: string]: any};
 };
 
 export type TConfig = {
@@ -47,6 +48,7 @@ export type TConfig = {
   props: {[key: string]: TProp};
   theme: string[];
   imports: TImportsConfig;
+  mapTokensToProps?: {[key: string]: any};
 };
 
 type TPropValueOverrides = {

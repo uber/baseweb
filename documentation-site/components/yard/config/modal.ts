@@ -10,7 +10,9 @@ import {
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
-const AvatarConfig: TConfig = {
+const modalProps = require('!!extract-react-types-loader!../../../../src/modal/modal.js');
+
+const ModalConfig: TConfig = {
   imports: {
     'baseui/modal': {
       named: ['Modal'],
@@ -111,6 +113,9 @@ const AvatarConfig: TConfig = {
       },
     },
   },
+  mapTokensToProps: {
+    Modal: modalProps,
+  },
 };
 
-export default AvatarConfig;
+export default ModalConfig;

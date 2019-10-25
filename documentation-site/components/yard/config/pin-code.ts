@@ -4,6 +4,8 @@ import {PropTypes} from '../const';
 import {TConfig} from '../types';
 import {theme, inputProps} from './input';
 
+const pinCodeProps = require('!!extract-react-types-loader!../../../../src/pin-code/pin-code.js');
+
 const PincodeConfig: TConfig = {
   imports: {
     'baseui/pin-code': {
@@ -57,6 +59,9 @@ const PincodeConfig: TConfig = {
       names: ['Root', 'Input'],
       sharedProps: {},
     },
+  },
+  mapTokensToProps: {
+    PinCode: pinCodeProps,
   },
 };
 

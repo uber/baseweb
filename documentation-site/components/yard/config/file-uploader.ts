@@ -2,6 +2,8 @@ import {FileUploader} from 'baseui/file-uploader';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
+const fileUploaderProps = require('!!extract-react-types-loader!../../../../src/file-uploader/file-uploader.js');
+
 const changeHandlers = [
   'onClick',
   'onFocus',
@@ -96,6 +98,9 @@ const FileUploaderConfig: TConfig = {
       ],
       sharedProps: {},
     },
+  },
+  mapTokensToProps: {
+    FileUploader: fileUploaderProps,
   },
 };
 
