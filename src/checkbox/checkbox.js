@@ -142,7 +142,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       $value: value,
       $checkmarkType: checkmarkType,
     };
-    const labelComp = children && (
+    const labelComp = (
       <Label
         $labelPlacement={labelPlacement}
         {...sharedProps}
