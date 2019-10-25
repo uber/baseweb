@@ -2,6 +2,8 @@ import {Spinner} from 'baseui/spinner';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
+const spinnerProps = require('!!extract-react-types-loader!../../../../src/spinner/spinner.js');
+
 const SpinnerConfig: TConfig = {
   imports: {
     'baseui/spinner': {
@@ -37,6 +39,9 @@ const SpinnerConfig: TConfig = {
       names: ['ActivePath', 'Svg', 'TrackPath'],
       sharedProps: {},
     },
+  },
+  mapTokensToProps: {
+    Spinner: spinnerProps,
   },
 };
 

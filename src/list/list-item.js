@@ -41,61 +41,66 @@ function artworkSizeToIconSize(artworkSize, isSublist) {
   }
 }
 
-const ListItem = React.forwardRef<PropsT, HTMLLIElement>((props, ref) => {
-  const {overrides = {}} = props;
-  const Artwork = props.artwork;
-  const EndEnhancer = props.endEnhancer;
+const ListItem = React.forwardRef<PropsT, HTMLLIElement>(
+  (props: PropsT, ref) => {
+    const {overrides = {}} = props;
+    const Artwork = props.artwork;
+    const EndEnhancer = props.endEnhancer;
 
-  const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
-  const [ArtworkContainer, artworkContainerProps] = getOverrides(
-    overrides.ArtworkContainer,
-    StyledArtworkContainer,
-  );
-  const [Content, contentProps] = getOverrides(
-    overrides.Content,
-    StyledContent,
-  );
-  const [EndEnhancerContainer, endEnhancerContainerProps] = getOverrides(
-    overrides.EndEnhancerContainer,
-    StyledEndEnhancerContainer,
-  );
+    const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+    const [ArtworkContainer, artworkContainerProps] = getOverrides(
+      overrides.ArtworkContainer,
+      StyledArtworkContainer,
+    );
+    const [Content, contentProps] = getOverrides(
+      overrides.Content,
+      StyledContent,
+    );
+    const [EndEnhancerContainer, endEnhancerContainerProps] = getOverrides(
+      overrides.EndEnhancerContainer,
+      StyledEndEnhancerContainer,
+    );
 
-  const artworkSize = React.useMemo(() => {
-    if (props.sublist) {
-      let size = props.artworkSize || ARTWORK_SIZES.SMALL;
-      if (props.artworkSize === ARTWORK_SIZES.MEDIUM) {
-        size = ARTWORK_SIZES.SMALL;
-        if (__DEV__) {
-          console.warn(
-            'When ListItem sublist prop is true, artworkSize MEDIUM is aliased to SMALL',
-          );
+    const artworkSize = React.useMemo(() => {
+      if (props.sublist) {
+        let size = props.artworkSize || ARTWORK_SIZES.SMALL;
+        if (props.artworkSize === ARTWORK_SIZES.MEDIUM) {
+          size = ARTWORK_SIZES.SMALL;
+          if (__DEV__) {
+            console.warn(
+              'When ListItem sublist prop is true, artworkSize MEDIUM is aliased to SMALL',
+            );
+          }
         }
+        return size;
+      } else {
+        return props.artworkSize || ARTWORK_SIZES.MEDIUM;
       }
-      return size;
-    } else {
-      return props.artworkSize || ARTWORK_SIZES.MEDIUM;
-    }
-  }, [props.artworkSize, props.sublist]);
+    }, [props.artworkSize, props.sublist]);
 
-  return (
-    // eslint-disable-next-line flowtype/no-weak-types
-    <Root ref={(ref: any)} {...rootProps}>
-      {Artwork && (
-        <ArtworkContainer $artworkSize={artworkSize} {...artworkContainerProps}>
-          <Artwork size={artworkSizeToIconSize(artworkSize, props.sublist)} />
-        </ArtworkContainer>
-      )}
-      <Content $mLeft={!Artwork} $sublist={!!props.sublist} {...contentProps}>
-        {props.children}
-        {EndEnhancer && (
-          <EndEnhancerContainer {...endEnhancerContainerProps}>
-            <EndEnhancer />
-          </EndEnhancerContainer>
+    return (
+      // eslint-disable-next-line flowtype/no-weak-types
+      <Root ref={(ref: any)} {...rootProps}>
+        {Artwork && (
+          <ArtworkContainer
+            $artworkSize={artworkSize}
+            {...artworkContainerProps}
+          >
+            <Artwork size={artworkSizeToIconSize(artworkSize, props.sublist)} />
+          </ArtworkContainer>
         )}
-      </Content>
-    </Root>
-  );
-});
+        <Content $mLeft={!Artwork} $sublist={!!props.sublist} {...contentProps}>
+          {props.children}
+          {EndEnhancer && (
+            <EndEnhancerContainer {...endEnhancerContainerProps}>
+              <EndEnhancer />
+            </EndEnhancerContainer>
+          )}
+        </Content>
+      </Root>
+    );
+  },
+);
 ListItem.displayName = 'ListItem';
 
 export default ListItem;

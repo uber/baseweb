@@ -5,6 +5,8 @@ import {PropTypes} from '../const';
 import {TConfig} from '../types';
 import {theme, inputProps} from './input';
 
+const paymentCardProps = require('!!extract-react-types-loader!../../../../src/payment-card/payment-card.js');
+
 const PaymentCardConfig: TConfig = {
   imports: {
     'baseui/payment-card': {named: ['PaymentCard']},
@@ -49,6 +51,9 @@ const PaymentCardConfig: TConfig = {
         $required: 'required',
       },
     },
+  },
+  mapTokensToProps: {
+    PaymentCard: paymentCardProps,
   },
 };
 

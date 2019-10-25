@@ -5,6 +5,10 @@ import {TConfig} from '../types';
 
 import ProgressStepsConfig from './progress-steps';
 
+const progressStepsProps = require('!!extract-react-types-loader!../../../../src/progress-steps/progress-steps.js');
+const numberedStepProps = require('!!extract-react-types-loader!../../../../src/progress-steps/numbered-step.js');
+const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button.js');
+
 const ProgressStepsNumberedConfig: TConfig = {
   ...ProgressStepsConfig,
   scope: {
@@ -32,6 +36,11 @@ const ProgressStepsNumberedConfig: TConfig = {
       },
       propHook: ProgressStepsConfig.props.children.propHook,
     },
+  },
+  mapTokensToProps: {
+    ProgressSteps: progressStepsProps,
+    NumberedStep: numberedStepProps,
+    Button: buttonProps,
   },
 };
 

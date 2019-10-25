@@ -3,8 +3,8 @@ import {StyletronComponent} from 'styletron-react';
 import {Override} from '../overrides';
 
 export enum SORT_DIRECTION {
-  ASC = 'asc',
-  DESC = 'desc',
+  ASC = 'ASC',
+  DESC = 'DESC',
 }
 
 export interface SortableHeadCellProps {

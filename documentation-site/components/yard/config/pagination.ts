@@ -2,6 +2,8 @@ import {Pagination} from 'baseui/pagination';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
+const paginationProps = require('!!extract-react-types-loader!../../../../src/pagination/pagination.js');
+
 const PaginationConfig: TConfig = {
   imports: {
     'baseui/pagination': {
@@ -52,6 +54,9 @@ const PaginationConfig: TConfig = {
       ],
       sharedProps: {},
     },
+  },
+  mapTokensToProps: {
+    Pagination: paginationProps,
   },
 };
 

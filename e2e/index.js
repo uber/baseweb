@@ -29,5 +29,9 @@ const app = (
   </StyletronProvider>
 );
 
+if (theme === 'dark') {
+  window.document.body.classList.add('dark');
+}
+
 // $FlowFixMe
 ReactDOM.render(app, document.getElementById('root'));
