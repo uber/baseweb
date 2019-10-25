@@ -21,6 +21,7 @@ import {Input, SIZE as INPUT_SIZES} from '../input/index.js';
 import {useStyletron} from '../styles/index.js';
 import {Tag} from '../tag/index.js';
 
+import FilterMenu from './filter-menu.js';
 import HeaderCell from './header-cell.js';
 import {COLUMNS, SORT_DIRECTIONS} from './constants.js';
 import MeasureColumnWidths from './measure-column-widths.js';
@@ -573,7 +574,7 @@ export function Unstable_DataTable(props: Props) {
           {!selectedRows.size && (
             <div
               className={css({
-                alignItems: 'baseline',
+                alignItems: 'end',
                 display: 'flex',
                 flexWrap: 'wrap',
                 paddingTop: theme.sizing.scale500,
@@ -595,6 +596,12 @@ export function Unstable_DataTable(props: Props) {
                   : {filter.description}
                 </Tag>
               ))}
+
+              <FilterMenu
+                columns={props.columns}
+                rows={rows}
+                onSetFilter={addFilter}
+              />
             </div>
           )}
 
