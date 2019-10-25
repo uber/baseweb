@@ -89,13 +89,13 @@ async function preparePageForSnapshot(
   theme = THEME.light,
   viewport = VIEWPORT.desktop,
 ) {
-  await mount(page, scenarioName, theme);
-  await freezeAnimations(page);
   if (viewport === VIEWPORT.mobile) {
     await setViewportToMobile(page);
   } else {
     await setViewportToDesktop(page);
   }
+  await mount(page, scenarioName, theme);
+  await freezeAnimations(page);
   await page.waitFor(250);
 }
 
@@ -110,6 +110,8 @@ async function setViewportToMobile() {
   await page.setViewport({
     width: 375,
     height: 812,
+    isMobile: true,
+    hasTouch: true,
   });
 }
 
