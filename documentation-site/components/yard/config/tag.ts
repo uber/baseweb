@@ -2,6 +2,8 @@ import {Tag, KIND, VARIANT} from 'baseui/tag';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
+const tagProps = require('!!extract-react-types-loader!../../../../src/tag/tag.js');
+
 const TagConfig: TConfig = {
   imports: {
     'baseui/tag': {
@@ -258,6 +260,9 @@ const TagConfig: TConfig = {
         $isFocused: 'isFocused',
       },
     },
+  },
+  mapTokensToProps: {
+    Tag: tagProps,
   },
 };
 
