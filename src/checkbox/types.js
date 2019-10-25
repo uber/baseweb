@@ -68,6 +68,8 @@ export type PropsT = {
   labelPlacement?: LabelPlacementT,
   /** Renders UI as checkmark or toggle switch. */
   checkmarkType: StyleTypeT,
+  /** Text to display in native OS tooltip on long hover. */
+  title?: ?string,
   /** Handler for change events on trigger element. */
   onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for mouseenter events on trigger element. */

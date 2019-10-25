@@ -98,6 +98,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       checked,
       children,
       required,
+      title,
     } = this.props;
 
     const {
@@ -141,7 +142,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       $value: value,
       $checkmarkType: checkmarkType,
     };
-    const labelComp = (
+    const labelComp = children && (
       <Label
         $labelPlacement={labelPlacement}
         {...sharedProps}
@@ -153,6 +154,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     return (
       <Root
         data-baseweb="checkbox"
+        title={title || null}
         $labelPlacement={labelPlacement}
         {...sharedProps}
         {...mouseEvents}
