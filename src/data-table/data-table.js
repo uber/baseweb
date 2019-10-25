@@ -16,11 +16,13 @@ import {
   SIZE as BUTTON_SIZES,
   KIND as BUTTON_KINDS,
 } from '../button/index.js';
+import Search from '../icon/search.js';
+import {Input, SIZE as INPUT_SIZES} from '../input/index.js';
 import {useStyletron} from '../styles/index.js';
 import {Tag} from '../tag/index.js';
 
 import HeaderCell from './header-cell.js';
-import {SORT_DIRECTIONS} from './constants.js';
+import {COLUMNS, SORT_DIRECTIONS} from './constants.js';
 import MeasureColumnWidths from './measure-column-widths.js';
 import type {ColumnT, Props, RowT, SortDirectionsT} from './types.js';
 
@@ -66,34 +68,43 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
             : undefined
         }
         isSelected={data.isRowSelected(data.rows[rowIndex - 1].id)}
+        textQuery={data.textQuery}
       />
     </div>
   );
 }
 function compareCellPlacement(prevProps, nextProps) {
-  if (prevProps.data.columns !== nextProps.data.columns) return false;
   // no need to re-render column header cells on data changes
   if (prevProps.rowIndex === 0) {
     return true;
   }
 
-  if (prevProps.data.rows !== nextProps.data.rows) return false;
+  if (
+    prevProps.data.columns !== nextProps.data.columns ||
+    prevProps.data.rows !== nextProps.data.rows ||
+    prevProps.style !== nextProps.style
+  ) {
+    return false;
+  }
 
   if (
     prevProps.data.isSelectable === nextProps.data.isSelectable &&
-    prevProps.data.isRowSelected === nextProps.data.isRowSelected &&
     prevProps.data.headerHoverIndex === nextProps.data.headerHoverIndex &&
-    prevProps.data.rowHoverIndex === nextProps.data.rowHoverIndex
+    prevProps.data.rowHoverIndex === nextProps.data.rowHoverIndex &&
+    prevProps.data.textQuery === nextProps.data.textQuery &&
+    prevProps.data.isRowSelected === nextProps.data.isRowSelected
   ) {
     return true;
   }
 
+  // at this point we know that the rowHoverIndex or the columnHoverIndex has changed.
   // row does not need to re-render if not transitioning _from_ or _to_ highlighted
   // also ensures that all cells are invalidated on column-header hover
   if (
     prevProps.rowIndex !== prevProps.data.rowHoverIndex &&
     prevProps.rowIndex !== nextProps.data.rowHoverIndex &&
-    prevProps.data.headerHoverIndex === nextProps.data.headerHoverIndex
+    prevProps.data.headerHoverIndex === nextProps.data.headerHoverIndex &&
+    prevProps.data.isRowSelected === nextProps.data.isRowSelected
   ) {
     return true;
   }
@@ -120,6 +131,7 @@ const CellPlacementMemo = React.memo<
       onSelect: (string | number) => void,
       rowHoverIndex: number,
       rows: RowT[],
+      textQuery: string,
     },
   },
   mixed,
@@ -159,6 +171,21 @@ function useSortParameters() {
   }
 
   return [sortIndex, sortDirection, handleSort];
+}
+
+function useResizeObserver(
+  ref: {current: HTMLElement | null},
+  callback: (ResizeObserverEntry[], ResizeObserver) => mixed,
+) {
+  React.useLayoutEffect(() => {
+    if (__BROWSER__) {
+      if (ref.current) {
+        const observer = new ResizeObserver(callback);
+        observer.observe(ref.current);
+        return () => observer.disconnect();
+      }
+    }
+  }, [ref]);
 }
 
 const HeaderContext = React.createContext<{
@@ -287,14 +314,64 @@ const InnerTableElement = React.forwardRef<
           );
         })}
       </div>
-      {props.children}
+      {React.Children.toArray(props.children).length <= ctx.columns.length ? (
+        <div
+          className={useCss({
+            ...theme.typography.font100,
+            marginTop: theme.sizing.scale600,
+            marginLeft: theme.sizing.scale600,
+          })}
+        >
+          No rows match the filter criteria defined. Please remove one or more
+          filters to view more data.
+        </div>
+      ) : (
+        props.children
+      )}
     </div>
   );
 });
 InnerTableElement.displayName = 'InnerTableElement';
 
+function QueryInput(props) {
+  const [css, theme] = useStyletron();
+  const [value, setValue] = React.useState('');
+
+  React.useEffect(() => {
+    const timeout = setTimeout(() => props.onChange(value), 250);
+    return () => clearTimeout(timeout);
+  }, [value]);
+
+  return (
+    <div className={css({width: '375px'})}>
+      <Input
+        aria-label="Search by text"
+        overrides={{
+          Before: function Before() {
+            return (
+              <div
+                className={css({
+                  display: 'flex',
+                  alignItems: 'center',
+                  paddingLeft: theme.sizing.scale500,
+                })}
+              >
+                <Search size="18px" />
+              </div>
+            );
+          },
+        }}
+        size={INPUT_SIZES.compact}
+        onChange={event => setValue(event.target.value)}
+        value={value}
+        clearable
+      />
+    </div>
+  );
+}
+
 export function Unstable_DataTable(props: Props) {
-  const [, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   useDuplicateColumnTitleWarning(props.columns);
   const [sortIndex, sortDirection, handleSort] = useSortParameters();
   const [filters, setFilters] = React.useState(new Map());
@@ -335,6 +412,8 @@ export function Unstable_DataTable(props: Props) {
     setHeaderHoverIndex(-1);
   }
 
+  const [textQuery, setTextQuery] = React.useState('');
+
   const sortedIndices = React.useMemo(() => {
     let toSort = props.rows.map((r, i) => [r, i]);
 
@@ -371,8 +450,29 @@ export function Unstable_DataTable(props: Props) {
       });
     });
 
+    if (textQuery) {
+      const stringishColumnIndices = [];
+      for (let i = 0; i < props.columns.length; i++) {
+        if (
+          props.columns[i].kind === COLUMNS.CATEGORICAL ||
+          props.columns[i].kind === COLUMNS.STRING
+        ) {
+          stringishColumnIndices.push(i);
+        }
+      }
+      Array.from(set).forEach(idx => {
+        const matches = stringishColumnIndices.some(cdx => {
+          return props.rows[idx].data[cdx].toLowerCase().includes(textQuery);
+        });
+
+        if (!matches) {
+          set.delete(idx);
+        }
+      });
+    }
+
     return set;
-  }, [filters, props.columns, props.rows]);
+  }, [filters, textQuery, props.columns, props.rows]);
 
   const rows = React.useMemo(() => {
     return sortedIndices
@@ -432,6 +532,7 @@ export function Unstable_DataTable(props: Props) {
       onSelect: handleRowSelect,
       columns: props.columns,
       rows,
+      textQuery,
     };
   }, [
     handleRowHover,
@@ -442,7 +543,14 @@ export function Unstable_DataTable(props: Props) {
     props.columns,
     rowHoverIndex,
     rows,
+    textQuery,
   ]);
+
+  const headlineRef = React.useRef(null);
+  const [headlineHeight, setHeadlineHeight] = React.useState(64);
+  useResizeObserver(headlineRef, entries => {
+    setHeadlineHeight(entries[0].contentRect.height);
+  });
 
   return (
     <React.Fragment>
@@ -460,59 +568,86 @@ export function Unstable_DataTable(props: Props) {
         }}
       />
 
-      {Array.from(filters).map(([title, filter]) => (
-        <Tag key={title} onActionClick={() => removeFilter(title)}>
-          {title} | {filter.description}
-        </Tag>
-      ))}
+      <div className={css({height: `${headlineHeight}px`})}>
+        <div ref={headlineRef}>
+          {!selectedRows.size && (
+            <div
+              className={css({
+                alignItems: 'baseline',
+                display: 'flex',
+                flexWrap: 'wrap',
+                paddingTop: theme.sizing.scale500,
+                paddingBottom: theme.sizing.scale500,
+              })}
+            >
+              <QueryInput onChange={setTextQuery} />
 
-      {Boolean(selectedRows.size) && props.batchActions && (
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            marginBottom: theme.sizing.scale300,
-          }}
-        >
-          {props.batchActions.map(action => {
-            function onClick(event) {
-              action.onClick({
-                clearSelection: handleSelectNone,
-                event,
-                selection: rows.filter(r => selectedRows.has(r.id)),
-              });
-            }
+              {Array.from(filters).map(([title, filter]) => (
+                <Tag key={title} onActionClick={() => removeFilter(title)}>
+                  <span
+                    className={css({
+                      ...theme.typography.font150,
+                      color: theme.colors.mono1000,
+                    })}
+                  >
+                    {title}
+                  </span>
+                  : {filter.description}
+                </Tag>
+              ))}
+            </div>
+          )}
 
-            if (action.renderIcon) {
-              const Icon = action.renderIcon;
-              return (
-                <Button
-                  key={action.label}
-                  overrides={{
-                    BaseButton: {props: {'aria-label': action.label}},
-                  }}
-                  onClick={onClick}
-                  kind={BUTTON_KINDS.tertiary}
-                  shape={BUTTON_SHAPES.round}
-                >
-                  <Icon size={16} />
-                </Button>
-              );
-            }
+          {Boolean(selectedRows.size) && props.batchActions && (
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                paddingTop: theme.sizing.scale400,
+                paddingBottom: theme.sizing.scale400,
+              }}
+            >
+              {props.batchActions.map(action => {
+                function onClick(event) {
+                  action.onClick({
+                    clearSelection: handleSelectNone,
+                    event,
+                    selection: rows.filter(r => selectedRows.has(r.id)),
+                  });
+                }
 
-            return (
-              <Button
-                key={action.label}
-                onClick={onClick}
-                kind={BUTTON_KINDS.secondary}
-                size={BUTTON_SIZES.compact}
-              >
-                {action.label}
-              </Button>
-            );
-          })}
+                if (action.renderIcon) {
+                  const Icon = action.renderIcon;
+                  return (
+                    <Button
+                      key={action.label}
+                      overrides={{
+                        BaseButton: {props: {'aria-label': action.label}},
+                      }}
+                      onClick={onClick}
+                      kind={BUTTON_KINDS.tertiary}
+                      shape={BUTTON_SHAPES.round}
+                    >
+                      <Icon size={16} />
+                    </Button>
+                  );
+                }
+
+                return (
+                  <Button
+                    key={action.label}
+                    onClick={onClick}
+                    kind={BUTTON_KINDS.secondary}
+                    size={BUTTON_SIZES.compact}
+                  >
+                    {action.label}
+                  </Button>
+                );
+              })}
+            </div>
+          )}
         </div>
-      )}
+      </div>
 
       <AutoSizer>
         {({height, width}) => (
@@ -546,12 +681,16 @@ export function Unstable_DataTable(props: Props) {
               innerElementType={InnerTableElement}
               columnCount={props.columns.length}
               columnWidth={columnIndex => widths[columnIndex]}
-              height={height}
+              height={height - headlineHeight}
               // plus one to account for additional header row
               rowCount={rows.length + 1}
-              rowHeight={rowIndex => (rowIndex === 0 ? 48 : 40)}
+              rowHeight={rowIndex => (rowIndex === 0 ? 48 : 36)}
               width={width}
               itemData={itemData}
+              style={{
+                ...theme.borders.border200,
+                borderColor: theme.colors.mono500,
+              }}
             >
               {CellPlacementMemo}
             </VariableSizeGrid>
