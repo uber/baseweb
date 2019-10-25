@@ -235,7 +235,7 @@ describe('data table columns', () => {
       return button.click();
     });
 
-    await page.type('div[data-baseweb="input"] input', '2');
+    await page.type('div[data-baseweb="popover"] input', '2');
     await popover.$$eval('button', items => {
       const button = items.find(item => item.textContent === 'Apply');
       return button.click();
