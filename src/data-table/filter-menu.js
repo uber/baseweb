@@ -89,6 +89,8 @@ function Options(props: OptionsPropsT) {
 type PropsT = {
   columns: ColumnT<>[],
   // eslint-disable-next-line flowtype/no-weak-types
+  filters: Map<string, any>,
+  // eslint-disable-next-line flowtype/no-weak-types
   rows: any[],
   onSetFilter: (
     filterParams: mixed,
@@ -111,8 +113,10 @@ function FilterMenu(props: PropsT) {
   }, []);
 
   const columns = React.useMemo(() => {
-    return props.columns.filter(column => column.filterable);
-  }, [props.columns]);
+    return props.columns.filter(column => {
+      return column.filterable && !props.filters.has(column.title);
+    });
+  }, [props.columns, props.filters]);
 
   const Filter = React.useMemo(() => {
     if (!activeColumn) return null;

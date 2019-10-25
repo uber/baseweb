@@ -599,6 +599,7 @@ export function Unstable_DataTable(props: Props) {
 
               <FilterMenu
                 columns={props.columns}
+                filters={filters}
                 rows={rows}
                 onSetFilter={addFilter}
               />
