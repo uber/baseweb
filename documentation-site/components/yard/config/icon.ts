@@ -2,6 +2,8 @@ import {ArrowUp} from 'baseui/icon';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
+const iconProps = require('!!extract-react-types-loader!../../../../src/icon/icon.js');
+
 const IconConfig: TConfig = {
   imports: {
     'baseui/icon': {
@@ -38,6 +40,9 @@ const IconConfig: TConfig = {
         $color: 'color',
       },
     },
+  },
+  mapTokensToProps: {
+    ArrowUp: iconProps,
   },
 };
 

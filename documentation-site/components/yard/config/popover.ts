@@ -10,6 +10,8 @@ import {TConfig} from '../types';
 
 import {changeHandlers} from './common';
 
+const popoverProps = require('!!extract-react-types-loader!../../../../src/popover/stateful-popover.js');
+
 const PopoverConfig: TConfig = {
   imports: {
     'baseui/popover': {named: ['StatefulPopover']},
@@ -148,6 +150,9 @@ const PopoverConfig: TConfig = {
         },
       },
     },
+  },
+  mapTokensToProps: {
+    StatefulPopover: popoverProps,
   },
 };
 

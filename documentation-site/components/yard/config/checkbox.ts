@@ -4,6 +4,8 @@ import {PropTypes} from '../const';
 import {TConfig} from '../types';
 import {changeHandlers} from './common';
 
+const checkboxProps = require('!!extract-react-types-loader!../../../../src/checkbox/checkbox.js');
+
 const CheckboxConfig: TConfig = {
   imports: {
     'baseui/checkbox': {
@@ -164,6 +166,9 @@ const CheckboxConfig: TConfig = {
         $labelPlacement: 'labelPlacement',
       },
     },
+  },
+  mapTokensToProps: {
+    Checkbox: checkboxProps,
   },
 };
 

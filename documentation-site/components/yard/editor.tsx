@@ -6,15 +6,32 @@ import lightTheme from './light-theme';
 import darkTheme from './dark-theme';
 import {useStyletron} from 'baseui';
 
-const highlightCode = (code: string, theme: typeof lightTheme) => (
+type TransformTokenT = (tokenProps: {
+  // https://github.com/FormidableLabs/prism-react-renderer/blob/86c05728b6cbea735480a8354546da77ae8b00d9/src/types.js#L64
+  style?: {[key: string]: string | number | null};
+  className: string;
+  children: string;
+  [key: string]: any;
+}) => React.ReactNode;
+
+const highlightCode = (
+  code: string,
+  theme: typeof lightTheme,
+  transformToken?: TransformTokenT,
+) => (
   <Highlight Prism={Prism} code={code} theme={theme} language="jsx">
     {({tokens, getLineProps, getTokenProps}) => (
       <React.Fragment>
         {tokens.map((line, i) => (
           <div {...getLineProps({line, key: i})}>
-            {line.map((token, key) => (
-              <span {...getTokenProps({token, key})} />
-            ))}
+            {line.map((token, key) => {
+              const tokenProps = getTokenProps({token, key});
+
+              if (transformToken) {
+                return transformToken(tokenProps);
+              }
+              return <span {...tokenProps} />;
+            })}
           </div>
         ))}
       </React.Fragment>
@@ -24,10 +41,11 @@ const highlightCode = (code: string, theme: typeof lightTheme) => (
 
 const Editor: React.FC<{
   code: string;
+  transformToken?: TransformTokenT;
   placeholder?: string;
   onChange: (code: string) => void;
   small?: boolean;
-}> = ({code: globalCode, onChange, placeholder, small}) => {
+}> = ({code: globalCode, transformToken, onChange, placeholder, small}) => {
   const [css, theme] = useStyletron();
   const [focused, setFocused] = React.useState(false);
   const plainStyles = theme.name.startsWith('light-theme')
@@ -70,7 +88,7 @@ const Editor: React.FC<{
       <SimpleEditor
         value={code || ''}
         placeholder={placeholder}
-        highlight={code => highlightCode(code, editorTheme)}
+        highlight={code => highlightCode(code, editorTheme, transformToken)}
         onValueChange={code => setCode(code)}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}

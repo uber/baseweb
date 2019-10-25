@@ -6,6 +6,8 @@ import {TConfig} from '../types';
 
 import {changeHandlers} from './common';
 
+const inputPropsType = require('!!extract-react-types-loader!../../../../src/input/input.js');
+
 export const theme = [
   'inputFill',
   'inputFillError',
@@ -235,6 +237,9 @@ const InputConfig: TConfig = {
         },
       },
     },
+  },
+  mapTokensToProps: {
+    Input: inputPropsType,
   },
 };
 

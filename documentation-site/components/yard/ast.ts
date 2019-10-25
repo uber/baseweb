@@ -9,7 +9,7 @@ import {getAstJsxElement, formatAstAndPrint} from './code-generator';
 export const parse = (code: string) =>
   babelParse(code, {
     sourceType: 'module',
-    plugins: ['jsx'],
+    plugins: ['jsx', 'flow'],
   });
 
 // creates a call expression that synchronizes yard state
