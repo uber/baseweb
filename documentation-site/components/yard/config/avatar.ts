@@ -2,6 +2,8 @@ import {Avatar} from 'baseui/avatar';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
+const avatarProps = require('!!extract-react-types-loader!../../../../src/avatar/avatar.js');
+
 const AvatarConfig: TConfig = {
   imports: {
     'baseui/avatar': {
@@ -40,6 +42,9 @@ const AvatarConfig: TConfig = {
         },
       },
     },
+  },
+  mapTokensToProps: {
+    Avatar: avatarProps,
   },
 };
 

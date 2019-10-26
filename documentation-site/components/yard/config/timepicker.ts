@@ -4,6 +4,8 @@ import {TConfig} from '../types';
 import inputConfig from './input';
 import selectConfig from './select';
 
+const timepickerProps = require('!!extract-react-types-loader!../../../../src/timepicker/timepicker.js');
+
 const TimepickerConfig: TConfig = {
   imports: {
     'baseui/timepicker': {named: ['TimePicker']},
@@ -58,6 +60,9 @@ const TimepickerConfig: TConfig = {
       names: [],
       sharedProps: {},
     },
+  },
+  mapTokensToProps: {
+    TimePicker: timepickerProps,
   },
 };
 

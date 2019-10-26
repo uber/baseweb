@@ -2,6 +2,9 @@ import {Accordion, Panel} from 'baseui/accordion';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
+const accordionProps = require('!!extract-react-types-loader!../../../../src/accordion/accordion.js');
+const panelProps = require('!!extract-react-types-loader!../../../../src/accordion/panel.js');
+
 const AccordionConfig: TConfig = {
   imports: {
     'baseui/accordion': {named: ['Accordion']},
@@ -47,6 +50,10 @@ const AccordionConfig: TConfig = {
         $disabled: 'disabled',
       },
     },
+  },
+  mapTokensToProps: {
+    Accordion: accordionProps,
+    Panel: panelProps,
   },
 };
 

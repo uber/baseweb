@@ -3,6 +3,10 @@ import {Button} from 'baseui/button';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
+const progressStepsProps = require('!!extract-react-types-loader!../../../../src/progress-steps/progress-steps.js');
+const stepProps = require('!!extract-react-types-loader!../../../../src/progress-steps/step.js');
+const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button.js');
+
 const ProgressStepsConfig: TConfig = {
   imports: {
     'baseui/progress-steps': {named: ['ProgressSteps']},
@@ -72,6 +76,11 @@ const ProgressStepsConfig: TConfig = {
         },
       },
     },
+  },
+  mapTokensToProps: {
+    ProgressSteps: progressStepsProps,
+    Step: stepProps,
+    Button: buttonProps,
   },
 };
 

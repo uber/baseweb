@@ -7,6 +7,8 @@ import {
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
+const tooltipProps = require('!!extract-react-types-loader!../../../../src/popover/stateful-popover.js');
+
 import PopoverConfig from './popover';
 
 const TooltipConfig: TConfig = {
@@ -52,6 +54,9 @@ const TooltipConfig: TConfig = {
       type: PropTypes.ReactNode,
       description: `The content that will trigger the popover.`,
     },
+  },
+  mapTokensToProps: {
+    StatefulTooltip: tooltipProps,
   },
 };
 

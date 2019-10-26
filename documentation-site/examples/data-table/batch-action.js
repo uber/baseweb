@@ -23,6 +23,9 @@ export default () => {
     {id: 3, data: [3, false]},
     {id: 4, data: [4, false]},
     {id: 5, data: [5, false]},
+    {id: 6, data: [6, false]},
+    {id: 7, data: [7, false]},
+    {id: 8, data: [8, false]},
   ]);
 
   function flagRows(ids) {
