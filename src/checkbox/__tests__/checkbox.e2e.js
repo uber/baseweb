@@ -20,6 +20,12 @@ describe('checkbox', () => {
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
+  it(`passes basic a11y tests when unlabeled`, async () => {
+    await mount(page, 'checkbox-unlabeled');
+    const accessibilityReport = await analyzeAccessibility(page);
+    expect(accessibilityReport).toHaveNoAccessibilityIssues();
+  });
+
   it('can switch states', async () => {
     await mount(page, 'checkbox-indeterminate');
     await page.waitFor(childLabel1);
