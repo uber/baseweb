@@ -89,13 +89,12 @@ async function preparePageForSnapshot(
   theme = THEME.light,
   viewport = VIEWPORT.desktop,
 ) {
-  await mount(page, scenarioName, theme);
-  await freezeAnimations(page);
   if (viewport === VIEWPORT.mobile) {
     await setViewportToMobile(page);
   } else {
     await setViewportToDesktop(page);
   }
+  await mount(page, scenarioName, theme);
   await page.waitFor(250);
 }
 
@@ -110,19 +109,6 @@ async function setViewportToMobile() {
   await page.setViewport({
     width: 375,
     height: 812,
-  });
-}
-
-async function freezeAnimations() {
-  // freeze animations and disable caret blinking
-  await page.addStyleTag({
-    content: `*, *::before, *::after {
--moz-transition: none !important;
-transition: none !important;
--moz-animation: none !important;
-animation: none !important;
-caret-color: transparent !important;
-}`,
   });
 }
 
