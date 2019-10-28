@@ -1,0 +1,45 @@
+import metadata from './metadata.json';
+import Layout from '../../../components/layout';
+import {BlogImage, Meta, Caption} from '../../../components/blog';
+import {TwitterTweetEmbed} from 'react-twitter-embed';
+
+export default Layout;
+
+<Meta data={metadata} />
+
+<BlogImage
+  src="https://res.cloudinary.com/flycatcher/image/upload/v1572289775/listgif_igl9j7.gif"
+  alt="Base Web DnD List component"
+  caption="Base Web DnD List component"
+/>
+
+The drag and drop interaction was invented in 1970's by Jef Raskin as a part of the Macintosh project. That's 40 years ago! So how come that making things draggable on the web is still so painful? We were recently looking for answers since our component library needs to support a sortable list and slider.
+
+## HTML Drag and Drop API
+
+There is an official [HTML drag and drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API), it was introduced in the HTML5 standard and it comes with eight different events:
+
+- drag
+- dragend
+- dragenter
+- dragexit
+- dragleave
+- dragover
+- dragstart
+- drop
+
+Here is a little pop quiz for you. What's the difference between `dragexit` and `dragleave`? Not sure? It takes some imagination to implement eight different events for something that could be described by three user actions:
+
+- pressing the mouse button
+- moving the mouse
+- releasing the mouse button
+
+That is not the only strange thing about this API. Some other "glitches":
+
+- **no support for touch devices** (seriously?)
+- limited styling options for dragged items
+- the API is wildly incosistent across browsers
+
+You might wonder why this relatively new API is so bad. The answer might surprise you:
+
+<TwitterTweetEmbed tweetId={'4075253361'} />

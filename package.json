@@ -166,6 +166,7 @@
     "react-dom": "^16.9.0",
     "react-markdown": "^4.0.3",
     "react-simple-code-editor": "^0.10.0",
+    "react-twitter-embed": "^2.0.8",
     "react-vis": "^1.11.6",
     "remove-flow-types-loader": "^1.1.0",
     "semver": "^6.2.0",
