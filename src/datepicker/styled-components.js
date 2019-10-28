@@ -83,6 +83,8 @@ export const StyledCalendarHeader = styled<SharedStylePropsT>('div', props => {
     borderTopRightRadius: borders.surfaceBorderRadius,
     borderBottomRightRadius: 0,
     borderBottomLeftRadius: 0,
+    // account for the left/right arrow heights
+    minHeight: `calc(${sizing.scale800} + ${sizing.scale100})`,
   };
 });
 
