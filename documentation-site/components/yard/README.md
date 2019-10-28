@@ -24,18 +24,20 @@ These three parts are **3-way synchronized**. 😱 What does it mean?
 
 ## Installation
 
-    yarn add react-view
+```
+yarn add react-view
+```
 
 ## Building Blocks
 
-- **react-view basic**
-    - Comes with no UIs or styling, focused on the data.
+- **react-view useView hook**
+    - no UIs or styling, focused on the data, turns config into data (props)
     - Customization of parsing/code generation for all PropTypes.
     - Adding custom PropTypes.
     - Adding an optional Provider (Theme) parsing / code generation.
-    - Render prop to build your own UIs.
-    - Exports basic UIs for Compiler, Editor, Error.
-- **react-view/minimalistic**
+- **react-view components**
+    - unopinionated Compiler, Editor, Error
+- **react-view/default**
     - Comes with a basic minimal styling but should be useful out of the box.
     - Allows adding an optional Provider (Theme) parsing / code generation.
 - **react-view/base**
@@ -44,64 +46,74 @@ These three parts are **3-way synchronized**. 😱 What does it mean?
     - Requires installing / setting up baseui and styletron.
     - Fully supports `PropTypes.Overrides`.
 
-## react-view basic
+## react-view basic usage
 
 ```jsx
-import {
-  View,
-  Compiler,
-  Editor,
-  Error,
-  PropTypes,
-} from 'react-view';
+import {useView, Compiler, Editor, Error, PropTypes} from 'react-view';
+import {Button} from 'baseui/button';
 
-<View
-  componentName="Button"
-  componentPlaceholder={<div>Loading...</div>}
-  componentMinHeight="200px"
-  scope={{ Button }}
-  imports={{
-    'baseui/button': {
-      named: ['Button'],
-    },
-  }}
-  props={{
-    checked: {
-      value: false,
-      type: PropTypes.Boolean,
-      description: 'Is checkbox checked?'
-    }
-  }}
-  onUpdate={({ code, props }) => {
-    // useful to update the URL
-    console.log(code, props);
-  }}
-  initialCode="useful to hydrate the state from URL"
-  providerValues={{'buttonFillPrimary': '#000000' }}
-  provider={{
-    parse: ({ astRoot }) => ({ key1: 'value1' }),
-    generate: ({ values, initialValues }) => t.jsx(),
+export default () => {
+  const {
+    compilerProps,
+    knobProps,
+    providerProps,
+    editorProps,
+    error,
+    actions,
+  } = useView({
+    componentName: 'Button',
+    componentPlaceholder: '<div>Loading...</div>',
+    componentMinHeight: '200px',
+    scope: {Button},
     imports: {
-      'baseui': {
-        named: ['ThemeProvider'],
+      'baseui/button': {
+        named: ['Button'],
       },
-    }
-  }}
-  propTypes={{
-    // override the default parse/generate handlers for the Boolean type
-    [PropTypes.Boolean]: {
-      parse: ({ astAttrValue }) =>
-        astAttrValue.get('expression').get('value'),
-      generate: ({ value }) => t.booleanLiteral(Boolean(value)),
-    }
-  }}
-  render={({ compilerProps, knobProps, providerProps, editorProps, error, actions }) => (
+    },
+    props: {
+      checked: {
+        value: false,
+        type: PropTypes.Boolean,
+        description: 'Is checkbox checked?',
+      },
+    },
+    onUpdate: ({code, props}) => {
+      // useful to update the URL
+      console.log(code, props);
+    },
+    initialCode: 'useful to hydrate the state from URL',
+    providerValues: {buttonFillPrimary: '#000000'},
+    provider: {
+      parse: ({astRoot}) => ({key1: 'value1'}),
+      generate: ({values, initialValues}) => t.jsx(),
+      imports: {
+        baseui: {
+          named: ['ThemeProvider'],
+        },
+      },
+    },
+    propTypes: {
+      // override the default parse/generate handlers for the Boolean type
+      [PropTypes.Boolean]: {
+        parse: ({astAttrValue}) => astAttrValue.get('expression').get('value'),
+        generate: ({value}) => t.booleanLiteral(Boolean(value)),
+      },
+    },
+  });
+
+  return (
     <div>
       <Compiler {...compilerProps} />
       <Tabs>
-        <Tab><Knobs {...omit(knobProps, 'overrides')} /></Tab>
-        <Tab><Overrides {...knobProps.overrides} /></Tab>
-        <Tab><ThemeEditor {...providerProps} /></Tab>
+        <Tab>
+          <Knobs {...omit(knobProps, 'overrides')} />
+        </Tab>
+        <Tab>
+          <Overrides {...knobProps.overrides} />
+        </Tab>
+        <Tab>
+          <ThemeEditor {...providerProps} />
+        </Tab>
       </Tabs>
       <Editor {...editorProps} />
       <Error error={error} />
@@ -109,38 +121,41 @@ import {
       <Button onClick={actions.reset}>Reset</Button>
       <Button onClick={actions.copyCode}>Copy code</Button>
     </div>
-  )}
-/>
+  );
+};
 ```
-## react-view/minimalistic
+## react-view/default
 
 ```jsx
-import {View} from 'react-view/minimal';
+import {useView} from 'react-view';
+import {View} from 'react-view/default';
 
-<View
-  componentName="Button"
-  componentPlaceholder={<div />}
-  componentMinHeight="200px"
-  scope={{ Button }}
-  imports={{
-    'baseui/button': {
-      named: ['Button'],
+export default () => {
+  const viewProps = useView({
+    componentName: 'Button',
+    componentPlaceholder: '<div>Loading...</div>',
+    componentMinHeight: '200px',
+    scope: {Button},
+    imports: {
+      'baseui/button': {
+        named: ['Button'],
+      },
     },
-  }}
-  props={{
-    checked: {
-      value: false,
-      type: PropTypes.Boolean,
-      description: 'Is checkbox checked?'
-    }
-  }}
-  onUpdate={({ code, props }) => {
-    console.log(code, props);
-  }}
-  initialCode=""
-  providerValues={/* optional, default = no-op */}
-  provider={/* optional, default = no-op */}
-/>
+    props: {
+      checked: {
+        value: false,
+        type: PropTypes.Boolean,
+        description: 'Is checkbox checked?',
+      },
+    },
+    onUpdate: ({code, props}) => {
+      // useful to update the URL
+      console.log(code, props);
+    },
+    initialCode: 'useful to hydrate the state from URL',
+  });
+  return <View {...viewProps} />
+};
 ```
 
 ## react-view/base
@@ -152,7 +167,7 @@ This also comes with `PropTypes.Overrides`
 This is a 100% drop-in for the current yard.
 
 ```sh
-    yarn add baseui styletron-react styletron-engine-atomic
+yarn add baseui styletron-react styletron-engine-atomic
 ```
 
 ```jsx
@@ -163,34 +178,16 @@ import {View, PropTypes} from 'react-view/base';
 
 const engine = new Styletron();
 
-<StyletronProvider value={engine}>
-  <BaseProvider theme={LightTheme}>
-    <View
-      componentName="Button"
-      componentPlaceholder={<div />}
-      componentMinHeight="48px"
-      scope={{ Button }}
-      imports={{
-        'baseui/button': {
-          named: ['Button'],
-        },
-      }}
-      props={{
-        checked: {
-          value: false,
-          type: PropTypes.Boolean,
-          description: 'Is checkbox checked?'
-        }
-      }}
-      onUpdate={({ code, props }) => {
-        Router.push(`/code=${code}`);
-      }}
-      initialCode={queryParams(window.location).code}
-      providerValues={{'buttonPrimaryFill': '#000000'}}
-      provider={/* optional, default = Base Web theme */}
-    />
-  </BaseProvider>
-</StyletronProvider>
+export default () => {
+  const viewProps = useView(/* config... */);
+  return (
+    <StyletronProvider value={engine}>
+      <BaseProvider theme={LightTheme}>
+        <View {...viewProps} />
+      </BaseProvider>
+    </StyletronProvider>
+  );
+}
 ```
 
 ## Exports
@@ -198,7 +195,7 @@ const engine = new Styletron();
 An overview of all exports.
 
 ```js
-import { View } from 'react-view/minimal'; // unstyled / inline styles
+import { View } from 'react-view/default'; // unstyled / inline styles
 
 import {
   View,
@@ -208,7 +205,7 @@ import {
 } from 'react-view/base'; // opinionated
 
 import {
-  View, // build your own
+  useView,
   Compiler,
   Error,
   Editor,
