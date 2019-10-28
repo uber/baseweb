@@ -42,7 +42,7 @@ const Controlled = ({format, step, initialDate, creatable = false}) => {
 
 export const component = () => {
   return (
-    <div style={{width: '120px'}}>
+    <div style={{width: '130px'}}>
       <div data-e2e="12-hour">
         12 hour format
         <Controlled

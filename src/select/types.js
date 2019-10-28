@@ -266,4 +266,5 @@ export type SharedStylePropsArgT = {
   $maxHeight?: string,
   $isHighlighted?: boolean,
   $selected?: boolean,
+  $isEmpty?: boolean,
 };
