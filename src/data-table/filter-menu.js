@@ -132,7 +132,7 @@ function FilterMenu(props: PropsT) {
 
   const activeColumnData = React.useMemo(() => {
     const columnIndex = props.columns.findIndex(c => c === activeColumn);
-    if (columnIndex <= 0) return [];
+    if (columnIndex < 0) return [];
     return props.rows.map(row => row.data[columnIndex]);
   }, [props.columns, props.rows, activeColumn]);
 
