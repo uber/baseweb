@@ -10,9 +10,28 @@ import React from 'react';
 import FocusLock from 'react-focus-lock';
 
 import {Button, SHAPE, SIZE} from '../button/index.js';
+import {Filter as FilterIcon} from '../icon/index.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
 import {useStyletron} from '../styles/index.js';
+
+import {COLUMNS} from './constants.js';
 import type {ColumnT} from './types.js';
+
+function ColumnIcon(props: {column: ColumnT<>}) {
+  if (props.column.kind === COLUMNS.BOOLEAN) {
+    return '01';
+  }
+
+  if (props.column.kind === COLUMNS.CATEGORICAL) {
+    return 'abc';
+  }
+
+  if (props.column.kind === COLUMNS.NUMERICAL) {
+    return '#';
+  }
+
+  return <FilterIcon />;
+}
 
 type OptionsPropsT = {
   columns: ColumnT<>[],
@@ -75,14 +94,19 @@ function Options(props: OptionsPropsT) {
             >
               <div
                 className={css({
+                  ...theme.typography.font150,
+                  fontSize: '8px',
+                  alignItems: 'center',
                   backgroundColor: theme.colors.mono300,
                   borderRadius: theme.borders.radius200,
+                  display: 'flex',
                   height: theme.sizing.scale800,
+                  justifyContent: 'center',
                   marginRight: theme.sizing.scale300,
                   width: theme.sizing.scale800,
                 })}
               >
-                #
+                <ColumnIcon column={column} />
               </div>
               {column.title}
             </li>
