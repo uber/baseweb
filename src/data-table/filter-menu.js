@@ -11,10 +11,12 @@ import FocusLock from 'react-focus-lock';
 
 import {Button, SHAPE, SIZE} from '../button/index.js';
 import {Filter as FilterIcon} from '../icon/index.js';
+import {Input, SIZE as INPUT_SIZE} from '../input/index.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
 import {useStyletron} from '../styles/index.js';
 
 import {COLUMNS} from './constants.js';
+import {matchesQuery} from './text-search.js';
 import type {ColumnT} from './types.js';
 
 function ColumnIcon(props: {column: ColumnT<>}) {
@@ -37,18 +39,30 @@ type OptionsPropsT = {
   columns: ColumnT<>[],
   highlightIndex: number,
   onClick: (ColumnT<>) => void,
+  onKeyDown: KeyboardEvent => void,
   onMouseEnter: number => void,
+  onQueryChange: string => void,
+  query: string,
+  searchable: boolean,
 };
 
 function Options(props: OptionsPropsT) {
   const [css, theme] = useStyletron();
+  const inputRef = React.useRef(null);
+  React.useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [inputRef.current]);
 
   return (
     <div
       className={css({
+        minWidth: '320px',
         paddingTop: theme.sizing.scale600,
         paddingBottom: theme.sizing.scale600,
       })}
+      onKeyDown={props.onKeyDown}
     >
       <p
         className={css({
@@ -60,6 +74,38 @@ function Options(props: OptionsPropsT) {
       >
         Select column to filter by
       </p>
+
+      {props.searchable && (
+        <div
+          className={css({
+            marginBottom: theme.sizing.scale500,
+            marginRight: theme.sizing.scale600,
+            marginLeft: theme.sizing.scale600,
+          })}
+        >
+          <Input
+            inputRef={inputRef}
+            value={props.query}
+            onChange={event => props.onQueryChange(event.target.value)}
+            placeholder="Search for a column to filter by..."
+            size={INPUT_SIZE.compact}
+            clearable
+          />
+        </div>
+      )}
+
+      {!props.columns.length && (
+        <div
+          className={css({
+            ...theme.typography.font100,
+            paddingRight: theme.sizing.scale600,
+            paddingLeft: theme.sizing.scale600,
+          })}
+        >
+          No columns available.
+        </div>
+      )}
+
       <ul
         role="listbox"
         className={css({
@@ -134,6 +180,7 @@ function FilterMenu(props: PropsT) {
   const [, theme] = useStyletron();
   const [isOpen, setIsOpen] = React.useState(false);
   const [highlightIndex, setHighlightIndex] = React.useState(-1);
+  const [query, setQuery] = React.useState('');
 
   const [activeColumn, setActiveColumn] = React.useState(null);
   const handleOptionClick = React.useCallback(setActiveColumn, []);
@@ -141,13 +188,20 @@ function FilterMenu(props: PropsT) {
     setIsOpen(false);
     setActiveColumn(null);
     setHighlightIndex(-1);
+    setQuery('');
   }, []);
 
-  const columns = React.useMemo(() => {
+  const filterableColumns = React.useMemo(() => {
     return props.columns.filter(column => {
       return column.filterable && !props.filters.has(column.title);
     });
   }, [props.columns, props.filters]);
+
+  const columns = React.useMemo(() => {
+    return filterableColumns.filter(column =>
+      matchesQuery(column.title, query),
+    );
+  }, [filterableColumns, query]);
 
   const Filter = React.useMemo(() => {
     if (!activeColumn) return null;
@@ -159,6 +213,25 @@ function FilterMenu(props: PropsT) {
     if (columnIndex < 0) return [];
     return props.rows.map(row => row.data[columnIndex]);
   }, [props.columns, props.rows, activeColumn]);
+
+  function handleKeyDown(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      setActiveColumn(columns[highlightIndex]);
+    }
+    if (event.keyCode === 38) {
+      event.preventDefault();
+      setHighlightIndex(Math.max(0, highlightIndex - 1));
+    }
+    if (event.keyCode === 40) {
+      event.preventDefault();
+      if (!isOpen) {
+        setIsOpen(true);
+      } else {
+        setHighlightIndex(Math.min(columns.length - 1, highlightIndex + 1));
+      }
+    }
+  }
 
   return (
     <Popover
@@ -188,7 +261,11 @@ function FilterMenu(props: PropsT) {
             columns={columns}
             highlightIndex={highlightIndex}
             onClick={handleOptionClick}
+            onKeyDown={handleKeyDown}
             onMouseEnter={setHighlightIndex}
+            onQueryChange={setQuery}
+            query={query}
+            searchable={filterableColumns.length >= 10}
           />
         );
       }}
@@ -207,29 +284,8 @@ function FilterMenu(props: PropsT) {
       <Button
         shape={SHAPE.pill}
         size={SIZE.compact}
-        overrides={{
-          BaseButton: {style: {marginLeft: theme.sizing.scale500}},
-        }}
-        onKeyDown={(event: KeyboardEvent) => {
-          if (event.keyCode === 13) {
-            event.preventDefault();
-            setActiveColumn(columns[highlightIndex]);
-          }
-          if (event.keyCode === 38) {
-            event.preventDefault();
-            setHighlightIndex(Math.max(0, highlightIndex - 1));
-          }
-          if (event.keyCode === 40) {
-            event.preventDefault();
-            if (!isOpen) {
-              setIsOpen(true);
-            } else {
-              setHighlightIndex(
-                Math.min(columns.length - 1, highlightIndex + 1),
-              );
-            }
-          }
-        }}
+        onKeyDown={handleKeyDown}
+        overrides={{BaseButton: {style: {marginLeft: theme.sizing.scale500}}}}
       >
         Add Filter
       </Button>
