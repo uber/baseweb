@@ -231,7 +231,7 @@ export const StyledValueContainer = styled<SharedStylePropsArgT>(
       flexBasis: '0%',
       display: 'flex',
       alignItems: 'center',
-      flexWrap: props.$multi ? 'wrap' : 'no-wrap',
+      flexWrap: props.$multi ? 'wrap' : 'nowrap',
       overflow: 'hidden',
       ...padding,
     };
@@ -299,7 +299,7 @@ export const StyledInputContainer = styled<SharedStylePropsArgT>(
       paddingLeft: 0,
       paddingRight: 0,
       height: String(!$searchable ? font.lineHeight : 'auto'),
-      maxHeight: font.lineHeight,
+      maxHeight: String(font.lineHeight),
     };
   },
 );
