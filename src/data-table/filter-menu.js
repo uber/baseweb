@@ -57,6 +57,8 @@ function Options(props: OptionsPropsT) {
 
   return (
     <div
+      tabIndex="0"
+      role="listbox"
       className={css({
         minWidth: '320px',
         paddingTop: theme.sizing.scale600,
@@ -107,7 +109,6 @@ function Options(props: OptionsPropsT) {
       )}
 
       <ul
-        role="listbox"
         className={css({
           listStyleType: 'none',
           marginBlockStart: 'unset',
