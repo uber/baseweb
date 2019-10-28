@@ -17,7 +17,7 @@ export const component = () => (
     onChange={({date}) => console.log(date)}
     orientation={ORIENTATION.horizontal}
     highlightedDate={new Date('March 10, 2019')}
-    monthsShown={2}
+    monthsShown={3}
     range
     quickSelect
   />
