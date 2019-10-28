@@ -125,7 +125,7 @@ const columns = [
           <ul>
             {Array.from(colors).map(color => {
               return (
-                <li className={css({backgroundColor: color})}>
+                <li key={color} className={css({backgroundColor: color})}>
                   <input
                     type="checkbox"
                     onChange={() => {
