@@ -101,6 +101,7 @@ exports[`Select component renders component in search mode and false for multipl
         $creatable={false}
         $disabled={false}
         $error={false}
+        $isEmpty={true}
         $isFocused={false}
         $isLoading={false}
         $isOpen={false}
@@ -123,6 +124,7 @@ exports[`Select component renders component in search mode and false for multipl
           $creatable={false}
           $disabled={false}
           $error={false}
+          $isEmpty={true}
           $isFocused={false}
           $isLoading={false}
           $isOpen={false}
@@ -170,16 +172,10 @@ exports[`Select component renders component in search mode and false for multipl
                       />
                     </svg>
                   </div>
-                  <span
+                  <div
                     styled-component="true"
                     test-style="[object Object]"
                   >
-                    <div
-                      styled-component="true"
-                      test-style="[object Object]"
-                    >
-                      Select...
-                    </div>
                     <div
                       styled-component="true"
                       test-style="[object Object]"
@@ -199,7 +195,13 @@ exports[`Select component renders component in search mode and false for multipl
                         test-style="[object Object]"
                       />
                     </div>
-                  </span>
+                    <div
+                      styled-component="true"
+                      test-style="[object Object]"
+                    >
+                      Select...
+                    </div>
+                  </div>
                   <div
                     styled-component="true"
                     test-style="[object Object]"
@@ -234,6 +236,7 @@ exports[`Select component renders component in search mode and false for multipl
               $creatable={false}
               $disabled={false}
               $error={false}
+              $isEmpty={true}
               $isFocused={false}
               $isLoading={false}
               $isOpen={false}
@@ -255,6 +258,7 @@ exports[`Select component renders component in search mode and false for multipl
                 $creatable={false}
                 $disabled={false}
                 $error={false}
+                $isEmpty={true}
                 $isFocused={false}
                 $isLoading={false}
                 $isOpen={false}
@@ -307,6 +311,7 @@ exports[`Select component renders component in search mode and false for multipl
                     $creatable={false}
                     $disabled={false}
                     $error={false}
+                    $isEmpty={true}
                     $isFocused={false}
                     $isLoading={false}
                     $isOpen={false}
@@ -323,6 +328,7 @@ exports[`Select component renders component in search mode and false for multipl
                       $creatable={false}
                       $disabled={false}
                       $error={false}
+                      $isEmpty={true}
                       $isFocused={false}
                       $isLoading={false}
                       $isOpen={false}
@@ -406,6 +412,7 @@ exports[`Select component renders component in search mode and false for multipl
                     $creatable={false}
                     $disabled={false}
                     $error={false}
+                    $isEmpty={true}
                     $isFocused={false}
                     $isLoading={false}
                     $isOpen={false}
@@ -422,6 +429,7 @@ exports[`Select component renders component in search mode and false for multipl
                       $creatable={false}
                       $disabled={false}
                       $error={false}
+                      $isEmpty={true}
                       $isFocused={false}
                       $isLoading={false}
                       $isOpen={false}
@@ -434,7 +442,7 @@ exports[`Select component renders component in search mode and false for multipl
                       $type="search"
                       forwardedRef={null}
                     >
-                      <span
+                      <div
                         styled-component="true"
                         test-style={
                           Object {
@@ -444,10 +452,10 @@ exports[`Select component renders component in search mode and false for multipl
                             "flexBasis": "0%",
                             "flexGrow": 1,
                             "flexShrink": 1,
-                            "flexWrap": "wrap",
+                            "flexWrap": "no-wrap",
                             "overflow": "hidden",
                             "paddingBottom": "$theme.sizing.scale400",
-                            "paddingLeft": "$theme.sizing.scale1000",
+                            "paddingLeft": "calc($theme.sizing.scale1000 - $theme.sizing.scale0)",
                             "paddingRight": 0,
                             "paddingTop": "$theme.sizing.scale400",
                             "position": "relative",
@@ -459,6 +467,7 @@ exports[`Select component renders component in search mode and false for multipl
                           $creatable={false}
                           $disabled={false}
                           $error={false}
+                          $isEmpty={true}
                           $isFocused={false}
                           $isLoading={false}
                           $isOpen={false}
@@ -475,64 +484,7 @@ exports[`Select component renders component in search mode and false for multipl
                             $creatable={false}
                             $disabled={false}
                             $error={false}
-                            $isFocused={false}
-                            $isLoading={false}
-                            $isOpen={false}
-                            $isPseudoFocused={false}
-                            $multi={false}
-                            $positive={false}
-                            $required={false}
-                            $searchable={true}
-                            $size="default"
-                            $type="search"
-                            forwardedRef={null}
-                          >
-                            <div
-                              styled-component="true"
-                              test-style={
-                                Object {
-                                  "bottom": 0,
-                                  "color": "$theme.colors.foregroundAlt",
-                                  "left": 0,
-                                  "maxWidth": "100%",
-                                  "overflow": "hidden",
-                                  "paddingBottom": "$theme.sizing.scale400",
-                                  "paddingLeft": "$theme.sizing.scale1000",
-                                  "paddingRight": 0,
-                                  "paddingTop": "$theme.sizing.scale400",
-                                  "position": "absolute",
-                                  "right": 0,
-                                  "textOverflow": "ellipsis",
-                                  "top": 0,
-                                  "whiteSpace": "nowrap",
-                                }
-                              }
-                            >
-                              Select...
-                            </div>
-                          </MockStyledComponent>
-                        </ForwardRef>
-                        <ForwardRef
-                          $clearable={true}
-                          $creatable={false}
-                          $disabled={false}
-                          $error={false}
-                          $isFocused={false}
-                          $isLoading={false}
-                          $isOpen={false}
-                          $isPseudoFocused={false}
-                          $multi={false}
-                          $positive={false}
-                          $required={false}
-                          $searchable={true}
-                          $size="default"
-                          $type="search"
-                        >
-                          <MockStyledComponent
-                            $clearable={true}
-                            $creatable={false}
-                            $disabled={false}
-                            $error={false}
+                            $isEmpty={true}
                             $isFocused={false}
                             $isLoading={false}
                             $isOpen={false}
@@ -575,6 +527,7 @@ exports[`Select component renders component in search mode and false for multipl
                                 $creatable={false}
                                 $disabled={false}
                                 $error={false}
+                                $isEmpty={true}
                                 $isFocused={false}
                                 $isLoading={false}
                                 $isOpen={false}
@@ -614,6 +567,7 @@ exports[`Select component renders component in search mode and false for multipl
                                   $creatable={false}
                                   $disabled={false}
                                   $error={false}
+                                  $isEmpty={true}
                                   $isFocused={false}
                                   $isLoading={false}
                                   $isOpen={false}
@@ -648,6 +602,7 @@ exports[`Select component renders component in search mode and false for multipl
                                     $creatable={false}
                                     $disabled={false}
                                     $error={false}
+                                    $isEmpty={true}
                                     $isFocused={false}
                                     $isLoading={false}
                                     $isOpen={false}
@@ -755,7 +710,58 @@ exports[`Select component renders component in search mode and false for multipl
                             </div>
                           </MockStyledComponent>
                         </ForwardRef>
-                      </span>
+                        <ForwardRef
+                          $clearable={true}
+                          $creatable={false}
+                          $disabled={false}
+                          $error={false}
+                          $isEmpty={true}
+                          $isFocused={false}
+                          $isLoading={false}
+                          $isOpen={false}
+                          $isPseudoFocused={false}
+                          $multi={false}
+                          $positive={false}
+                          $required={false}
+                          $searchable={true}
+                          $size="default"
+                          $type="search"
+                        >
+                          <MockStyledComponent
+                            $clearable={true}
+                            $creatable={false}
+                            $disabled={false}
+                            $error={false}
+                            $isEmpty={true}
+                            $isFocused={false}
+                            $isLoading={false}
+                            $isOpen={false}
+                            $isPseudoFocused={false}
+                            $multi={false}
+                            $positive={false}
+                            $required={false}
+                            $searchable={true}
+                            $size="default"
+                            $type="search"
+                            forwardedRef={null}
+                          >
+                            <div
+                              styled-component="true"
+                              test-style={
+                                Object {
+                                  "color": "$theme.colors.foregroundAlt",
+                                  "maxWidth": "100%",
+                                  "overflow": "hidden",
+                                  "textOverflow": "ellipsis",
+                                  "whiteSpace": "nowrap",
+                                }
+                              }
+                            >
+                              Select...
+                            </div>
+                          </MockStyledComponent>
+                        </ForwardRef>
+                      </div>
                     </MockStyledComponent>
                   </ForwardRef>
                   <ForwardRef
@@ -763,6 +769,7 @@ exports[`Select component renders component in search mode and false for multipl
                     $creatable={false}
                     $disabled={false}
                     $error={false}
+                    $isEmpty={true}
                     $isFocused={false}
                     $isLoading={false}
                     $isOpen={false}
@@ -779,6 +786,7 @@ exports[`Select component renders component in search mode and false for multipl
                       $creatable={false}
                       $disabled={false}
                       $error={false}
+                      $isEmpty={true}
                       $isFocused={false}
                       $isLoading={false}
                       $isOpen={false}
@@ -919,6 +927,7 @@ exports[`Select component renders component in search mode and true for multiple
         $creatable={false}
         $disabled={false}
         $error={false}
+        $isEmpty={true}
         $isFocused={false}
         $isLoading={false}
         $isOpen={false}
@@ -941,6 +950,7 @@ exports[`Select component renders component in search mode and true for multiple
           $creatable={false}
           $disabled={false}
           $error={false}
+          $isEmpty={true}
           $isFocused={false}
           $isLoading={false}
           $isOpen={false}
@@ -988,16 +998,10 @@ exports[`Select component renders component in search mode and true for multiple
                       />
                     </svg>
                   </div>
-                  <span
+                  <div
                     styled-component="true"
                     test-style="[object Object]"
                   >
-                    <div
-                      styled-component="true"
-                      test-style="[object Object]"
-                    >
-                      Select...
-                    </div>
                     <div
                       styled-component="true"
                       test-style="[object Object]"
@@ -1017,7 +1021,13 @@ exports[`Select component renders component in search mode and true for multiple
                         test-style="[object Object]"
                       />
                     </div>
-                  </span>
+                    <div
+                      styled-component="true"
+                      test-style="[object Object]"
+                    >
+                      Select...
+                    </div>
+                  </div>
                   <div
                     styled-component="true"
                     test-style="[object Object]"
@@ -1052,6 +1062,7 @@ exports[`Select component renders component in search mode and true for multiple
               $creatable={false}
               $disabled={false}
               $error={false}
+              $isEmpty={true}
               $isFocused={false}
               $isLoading={false}
               $isOpen={false}
@@ -1073,6 +1084,7 @@ exports[`Select component renders component in search mode and true for multiple
                 $creatable={false}
                 $disabled={false}
                 $error={false}
+                $isEmpty={true}
                 $isFocused={false}
                 $isLoading={false}
                 $isOpen={false}
@@ -1125,6 +1137,7 @@ exports[`Select component renders component in search mode and true for multiple
                     $creatable={false}
                     $disabled={false}
                     $error={false}
+                    $isEmpty={true}
                     $isFocused={false}
                     $isLoading={false}
                     $isOpen={false}
@@ -1141,6 +1154,7 @@ exports[`Select component renders component in search mode and true for multiple
                       $creatable={false}
                       $disabled={false}
                       $error={false}
+                      $isEmpty={true}
                       $isFocused={false}
                       $isLoading={false}
                       $isOpen={false}
@@ -1224,6 +1238,7 @@ exports[`Select component renders component in search mode and true for multiple
                     $creatable={false}
                     $disabled={false}
                     $error={false}
+                    $isEmpty={true}
                     $isFocused={false}
                     $isLoading={false}
                     $isOpen={false}
@@ -1240,6 +1255,7 @@ exports[`Select component renders component in search mode and true for multiple
                       $creatable={false}
                       $disabled={false}
                       $error={false}
+                      $isEmpty={true}
                       $isFocused={false}
                       $isLoading={false}
                       $isOpen={false}
@@ -1252,7 +1268,7 @@ exports[`Select component renders component in search mode and true for multiple
                       $type="search"
                       forwardedRef={null}
                     >
-                      <span
+                      <div
                         styled-component="true"
                         test-style={
                           Object {
@@ -1262,10 +1278,10 @@ exports[`Select component renders component in search mode and true for multiple
                             "flexBasis": "0%",
                             "flexGrow": 1,
                             "flexShrink": 1,
-                            "flexWrap": "wrap",
+                            "flexWrap": "no-wrap",
                             "overflow": "hidden",
                             "paddingBottom": "$theme.sizing.scale400",
-                            "paddingLeft": "$theme.sizing.scale1000",
+                            "paddingLeft": "calc($theme.sizing.scale1000 - $theme.sizing.scale0)",
                             "paddingRight": 0,
                             "paddingTop": "$theme.sizing.scale400",
                             "position": "relative",
@@ -1277,6 +1293,7 @@ exports[`Select component renders component in search mode and true for multiple
                           $creatable={false}
                           $disabled={false}
                           $error={false}
+                          $isEmpty={true}
                           $isFocused={false}
                           $isLoading={false}
                           $isOpen={false}
@@ -1293,64 +1310,7 @@ exports[`Select component renders component in search mode and true for multiple
                             $creatable={false}
                             $disabled={false}
                             $error={false}
-                            $isFocused={false}
-                            $isLoading={false}
-                            $isOpen={false}
-                            $isPseudoFocused={false}
-                            $multi={false}
-                            $positive={false}
-                            $required={false}
-                            $searchable={true}
-                            $size="default"
-                            $type="search"
-                            forwardedRef={null}
-                          >
-                            <div
-                              styled-component="true"
-                              test-style={
-                                Object {
-                                  "bottom": 0,
-                                  "color": "$theme.colors.foregroundAlt",
-                                  "left": 0,
-                                  "maxWidth": "100%",
-                                  "overflow": "hidden",
-                                  "paddingBottom": "$theme.sizing.scale400",
-                                  "paddingLeft": "$theme.sizing.scale1000",
-                                  "paddingRight": 0,
-                                  "paddingTop": "$theme.sizing.scale400",
-                                  "position": "absolute",
-                                  "right": 0,
-                                  "textOverflow": "ellipsis",
-                                  "top": 0,
-                                  "whiteSpace": "nowrap",
-                                }
-                              }
-                            >
-                              Select...
-                            </div>
-                          </MockStyledComponent>
-                        </ForwardRef>
-                        <ForwardRef
-                          $clearable={true}
-                          $creatable={false}
-                          $disabled={false}
-                          $error={false}
-                          $isFocused={false}
-                          $isLoading={false}
-                          $isOpen={false}
-                          $isPseudoFocused={false}
-                          $multi={false}
-                          $positive={false}
-                          $required={false}
-                          $searchable={true}
-                          $size="default"
-                          $type="search"
-                        >
-                          <MockStyledComponent
-                            $clearable={true}
-                            $creatable={false}
-                            $disabled={false}
-                            $error={false}
+                            $isEmpty={true}
                             $isFocused={false}
                             $isLoading={false}
                             $isOpen={false}
@@ -1393,6 +1353,7 @@ exports[`Select component renders component in search mode and true for multiple
                                 $creatable={false}
                                 $disabled={false}
                                 $error={false}
+                                $isEmpty={true}
                                 $isFocused={false}
                                 $isLoading={false}
                                 $isOpen={false}
@@ -1432,6 +1393,7 @@ exports[`Select component renders component in search mode and true for multiple
                                   $creatable={false}
                                   $disabled={false}
                                   $error={false}
+                                  $isEmpty={true}
                                   $isFocused={false}
                                   $isLoading={false}
                                   $isOpen={false}
@@ -1466,6 +1428,7 @@ exports[`Select component renders component in search mode and true for multiple
                                     $creatable={false}
                                     $disabled={false}
                                     $error={false}
+                                    $isEmpty={true}
                                     $isFocused={false}
                                     $isLoading={false}
                                     $isOpen={false}
@@ -1573,7 +1536,58 @@ exports[`Select component renders component in search mode and true for multiple
                             </div>
                           </MockStyledComponent>
                         </ForwardRef>
-                      </span>
+                        <ForwardRef
+                          $clearable={true}
+                          $creatable={false}
+                          $disabled={false}
+                          $error={false}
+                          $isEmpty={true}
+                          $isFocused={false}
+                          $isLoading={false}
+                          $isOpen={false}
+                          $isPseudoFocused={false}
+                          $multi={false}
+                          $positive={false}
+                          $required={false}
+                          $searchable={true}
+                          $size="default"
+                          $type="search"
+                        >
+                          <MockStyledComponent
+                            $clearable={true}
+                            $creatable={false}
+                            $disabled={false}
+                            $error={false}
+                            $isEmpty={true}
+                            $isFocused={false}
+                            $isLoading={false}
+                            $isOpen={false}
+                            $isPseudoFocused={false}
+                            $multi={false}
+                            $positive={false}
+                            $required={false}
+                            $searchable={true}
+                            $size="default"
+                            $type="search"
+                            forwardedRef={null}
+                          >
+                            <div
+                              styled-component="true"
+                              test-style={
+                                Object {
+                                  "color": "$theme.colors.foregroundAlt",
+                                  "maxWidth": "100%",
+                                  "overflow": "hidden",
+                                  "textOverflow": "ellipsis",
+                                  "whiteSpace": "nowrap",
+                                }
+                              }
+                            >
+                              Select...
+                            </div>
+                          </MockStyledComponent>
+                        </ForwardRef>
+                      </div>
                     </MockStyledComponent>
                   </ForwardRef>
                   <ForwardRef
@@ -1581,6 +1595,7 @@ exports[`Select component renders component in search mode and true for multiple
                     $creatable={false}
                     $disabled={false}
                     $error={false}
+                    $isEmpty={true}
                     $isFocused={false}
                     $isLoading={false}
                     $isOpen={false}
@@ -1597,6 +1612,7 @@ exports[`Select component renders component in search mode and true for multiple
                       $creatable={false}
                       $disabled={false}
                       $error={false}
+                      $isEmpty={true}
                       $isFocused={false}
                       $isLoading={false}
                       $isOpen={false}
@@ -1737,6 +1753,7 @@ exports[`Select component renders component in select mode and false for multipl
         $creatable={false}
         $disabled={false}
         $error={false}
+        $isEmpty={true}
         $isFocused={false}
         $isLoading={false}
         $isOpen={false}
@@ -1759,6 +1776,7 @@ exports[`Select component renders component in select mode and false for multipl
           $creatable={false}
           $disabled={false}
           $error={false}
+          $isEmpty={true}
           $isFocused={false}
           $isLoading={false}
           $isOpen={false}
@@ -1786,16 +1804,10 @@ exports[`Select component renders component in select mode and false for multipl
                   styled-component="true"
                   test-style="[object Object]"
                 >
-                  <span
+                  <div
                     styled-component="true"
                     test-style="[object Object]"
                   >
-                    <div
-                      styled-component="true"
-                      test-style="[object Object]"
-                    >
-                      Select...
-                    </div>
                     <div
                       styled-component="true"
                       test-style="[object Object]"
@@ -1815,7 +1827,13 @@ exports[`Select component renders component in select mode and false for multipl
                         test-style="[object Object]"
                       />
                     </div>
-                  </span>
+                    <div
+                      styled-component="true"
+                      test-style="[object Object]"
+                    >
+                      Select...
+                    </div>
+                  </div>
                   <div
                     styled-component="true"
                     test-style="[object Object]"
@@ -1864,6 +1882,7 @@ exports[`Select component renders component in select mode and false for multipl
               $creatable={false}
               $disabled={false}
               $error={false}
+              $isEmpty={true}
               $isFocused={false}
               $isLoading={false}
               $isOpen={false}
@@ -1885,6 +1904,7 @@ exports[`Select component renders component in select mode and false for multipl
                 $creatable={false}
                 $disabled={false}
                 $error={false}
+                $isEmpty={true}
                 $isFocused={false}
                 $isLoading={false}
                 $isOpen={false}
@@ -1937,6 +1957,7 @@ exports[`Select component renders component in select mode and false for multipl
                     $creatable={false}
                     $disabled={false}
                     $error={false}
+                    $isEmpty={true}
                     $isFocused={false}
                     $isLoading={false}
                     $isOpen={false}
@@ -1953,6 +1974,7 @@ exports[`Select component renders component in select mode and false for multipl
                       $creatable={false}
                       $disabled={false}
                       $error={false}
+                      $isEmpty={true}
                       $isFocused={false}
                       $isLoading={false}
                       $isOpen={false}
@@ -1965,7 +1987,7 @@ exports[`Select component renders component in select mode and false for multipl
                       $type="select"
                       forwardedRef={null}
                     >
-                      <span
+                      <div
                         styled-component="true"
                         test-style={
                           Object {
@@ -1975,10 +1997,10 @@ exports[`Select component renders component in select mode and false for multipl
                             "flexBasis": "0%",
                             "flexGrow": 1,
                             "flexShrink": 1,
-                            "flexWrap": "wrap",
+                            "flexWrap": "no-wrap",
                             "overflow": "hidden",
                             "paddingBottom": "$theme.sizing.scale400",
-                            "paddingLeft": "$theme.sizing.scale500",
+                            "paddingLeft": "$theme.sizing.scale400",
                             "paddingRight": 0,
                             "paddingTop": "$theme.sizing.scale400",
                             "position": "relative",
@@ -1990,6 +2012,7 @@ exports[`Select component renders component in select mode and false for multipl
                           $creatable={false}
                           $disabled={false}
                           $error={false}
+                          $isEmpty={true}
                           $isFocused={false}
                           $isLoading={false}
                           $isOpen={false}
@@ -2006,64 +2029,7 @@ exports[`Select component renders component in select mode and false for multipl
                             $creatable={false}
                             $disabled={false}
                             $error={false}
-                            $isFocused={false}
-                            $isLoading={false}
-                            $isOpen={false}
-                            $isPseudoFocused={false}
-                            $multi={false}
-                            $positive={false}
-                            $required={false}
-                            $searchable={true}
-                            $size="default"
-                            $type="select"
-                            forwardedRef={null}
-                          >
-                            <div
-                              styled-component="true"
-                              test-style={
-                                Object {
-                                  "bottom": 0,
-                                  "color": "$theme.colors.foregroundAlt",
-                                  "left": 0,
-                                  "maxWidth": "100%",
-                                  "overflow": "hidden",
-                                  "paddingBottom": "$theme.sizing.scale400",
-                                  "paddingLeft": "$theme.sizing.scale500",
-                                  "paddingRight": 0,
-                                  "paddingTop": "$theme.sizing.scale400",
-                                  "position": "absolute",
-                                  "right": 0,
-                                  "textOverflow": "ellipsis",
-                                  "top": 0,
-                                  "whiteSpace": "nowrap",
-                                }
-                              }
-                            >
-                              Select...
-                            </div>
-                          </MockStyledComponent>
-                        </ForwardRef>
-                        <ForwardRef
-                          $clearable={true}
-                          $creatable={false}
-                          $disabled={false}
-                          $error={false}
-                          $isFocused={false}
-                          $isLoading={false}
-                          $isOpen={false}
-                          $isPseudoFocused={false}
-                          $multi={false}
-                          $positive={false}
-                          $required={false}
-                          $searchable={true}
-                          $size="default"
-                          $type="select"
-                        >
-                          <MockStyledComponent
-                            $clearable={true}
-                            $creatable={false}
-                            $disabled={false}
-                            $error={false}
+                            $isEmpty={true}
                             $isFocused={false}
                             $isLoading={false}
                             $isOpen={false}
@@ -2106,6 +2072,7 @@ exports[`Select component renders component in select mode and false for multipl
                                 $creatable={false}
                                 $disabled={false}
                                 $error={false}
+                                $isEmpty={true}
                                 $isFocused={false}
                                 $isLoading={false}
                                 $isOpen={false}
@@ -2145,6 +2112,7 @@ exports[`Select component renders component in select mode and false for multipl
                                   $creatable={false}
                                   $disabled={false}
                                   $error={false}
+                                  $isEmpty={true}
                                   $isFocused={false}
                                   $isLoading={false}
                                   $isOpen={false}
@@ -2179,6 +2147,7 @@ exports[`Select component renders component in select mode and false for multipl
                                     $creatable={false}
                                     $disabled={false}
                                     $error={false}
+                                    $isEmpty={true}
                                     $isFocused={false}
                                     $isLoading={false}
                                     $isOpen={false}
@@ -2286,7 +2255,58 @@ exports[`Select component renders component in select mode and false for multipl
                             </div>
                           </MockStyledComponent>
                         </ForwardRef>
-                      </span>
+                        <ForwardRef
+                          $clearable={true}
+                          $creatable={false}
+                          $disabled={false}
+                          $error={false}
+                          $isEmpty={true}
+                          $isFocused={false}
+                          $isLoading={false}
+                          $isOpen={false}
+                          $isPseudoFocused={false}
+                          $multi={false}
+                          $positive={false}
+                          $required={false}
+                          $searchable={true}
+                          $size="default"
+                          $type="select"
+                        >
+                          <MockStyledComponent
+                            $clearable={true}
+                            $creatable={false}
+                            $disabled={false}
+                            $error={false}
+                            $isEmpty={true}
+                            $isFocused={false}
+                            $isLoading={false}
+                            $isOpen={false}
+                            $isPseudoFocused={false}
+                            $multi={false}
+                            $positive={false}
+                            $required={false}
+                            $searchable={true}
+                            $size="default"
+                            $type="select"
+                            forwardedRef={null}
+                          >
+                            <div
+                              styled-component="true"
+                              test-style={
+                                Object {
+                                  "color": "$theme.colors.foregroundAlt",
+                                  "maxWidth": "100%",
+                                  "overflow": "hidden",
+                                  "textOverflow": "ellipsis",
+                                  "whiteSpace": "nowrap",
+                                }
+                              }
+                            >
+                              Select...
+                            </div>
+                          </MockStyledComponent>
+                        </ForwardRef>
+                      </div>
                     </MockStyledComponent>
                   </ForwardRef>
                   <ForwardRef
@@ -2294,6 +2314,7 @@ exports[`Select component renders component in select mode and false for multipl
                     $creatable={false}
                     $disabled={false}
                     $error={false}
+                    $isEmpty={true}
                     $isFocused={false}
                     $isLoading={false}
                     $isOpen={false}
@@ -2310,6 +2331,7 @@ exports[`Select component renders component in select mode and false for multipl
                       $creatable={false}
                       $disabled={false}
                       $error={false}
+                      $isEmpty={true}
                       $isFocused={false}
                       $isLoading={false}
                       $isOpen={false}
@@ -2341,6 +2363,7 @@ exports[`Select component renders component in select mode and false for multipl
                           $creatable={false}
                           $disabled={false}
                           $error={false}
+                          $isEmpty={true}
                           $isFocused={false}
                           $isLoading={false}
                           $isOpen={false}
@@ -2369,6 +2392,7 @@ exports[`Select component renders component in select mode and false for multipl
                             $creatable={false}
                             $disabled={false}
                             $error={false}
+                            $isEmpty={true}
                             $isFocused={false}
                             $isLoading={false}
                             $isOpen={false}
@@ -2398,6 +2422,7 @@ exports[`Select component renders component in select mode and false for multipl
                               $creatable={false}
                               $disabled={false}
                               $error={false}
+                              $isEmpty={true}
                               $isFocused={false}
                               $isLoading={false}
                               $isOpen={false}
@@ -2416,6 +2441,7 @@ exports[`Select component renders component in select mode and false for multipl
                                 $creatable={false}
                                 $disabled={false}
                                 $error={false}
+                                $isEmpty={true}
                                 $isFocused={false}
                                 $isLoading={false}
                                 $isOpen={false}
@@ -2571,6 +2597,7 @@ exports[`Select component renders component in select mode and true for multiple
         $creatable={false}
         $disabled={false}
         $error={false}
+        $isEmpty={true}
         $isFocused={false}
         $isLoading={false}
         $isOpen={false}
@@ -2593,6 +2620,7 @@ exports[`Select component renders component in select mode and true for multiple
           $creatable={false}
           $disabled={false}
           $error={false}
+          $isEmpty={true}
           $isFocused={false}
           $isLoading={false}
           $isOpen={false}
@@ -2620,16 +2648,10 @@ exports[`Select component renders component in select mode and true for multiple
                   styled-component="true"
                   test-style="[object Object]"
                 >
-                  <span
+                  <div
                     styled-component="true"
                     test-style="[object Object]"
                   >
-                    <div
-                      styled-component="true"
-                      test-style="[object Object]"
-                    >
-                      Select...
-                    </div>
                     <div
                       styled-component="true"
                       test-style="[object Object]"
@@ -2649,7 +2671,13 @@ exports[`Select component renders component in select mode and true for multiple
                         test-style="[object Object]"
                       />
                     </div>
-                  </span>
+                    <div
+                      styled-component="true"
+                      test-style="[object Object]"
+                    >
+                      Select...
+                    </div>
+                  </div>
                   <div
                     styled-component="true"
                     test-style="[object Object]"
@@ -2698,6 +2726,7 @@ exports[`Select component renders component in select mode and true for multiple
               $creatable={false}
               $disabled={false}
               $error={false}
+              $isEmpty={true}
               $isFocused={false}
               $isLoading={false}
               $isOpen={false}
@@ -2719,6 +2748,7 @@ exports[`Select component renders component in select mode and true for multiple
                 $creatable={false}
                 $disabled={false}
                 $error={false}
+                $isEmpty={true}
                 $isFocused={false}
                 $isLoading={false}
                 $isOpen={false}
@@ -2771,6 +2801,7 @@ exports[`Select component renders component in select mode and true for multiple
                     $creatable={false}
                     $disabled={false}
                     $error={false}
+                    $isEmpty={true}
                     $isFocused={false}
                     $isLoading={false}
                     $isOpen={false}
@@ -2787,6 +2818,7 @@ exports[`Select component renders component in select mode and true for multiple
                       $creatable={false}
                       $disabled={false}
                       $error={false}
+                      $isEmpty={true}
                       $isFocused={false}
                       $isLoading={false}
                       $isOpen={false}
@@ -2799,7 +2831,7 @@ exports[`Select component renders component in select mode and true for multiple
                       $type="select"
                       forwardedRef={null}
                     >
-                      <span
+                      <div
                         styled-component="true"
                         test-style={
                           Object {
@@ -2809,10 +2841,10 @@ exports[`Select component renders component in select mode and true for multiple
                             "flexBasis": "0%",
                             "flexGrow": 1,
                             "flexShrink": 1,
-                            "flexWrap": "wrap",
+                            "flexWrap": "no-wrap",
                             "overflow": "hidden",
                             "paddingBottom": "$theme.sizing.scale400",
-                            "paddingLeft": "$theme.sizing.scale500",
+                            "paddingLeft": "$theme.sizing.scale400",
                             "paddingRight": 0,
                             "paddingTop": "$theme.sizing.scale400",
                             "position": "relative",
@@ -2824,6 +2856,7 @@ exports[`Select component renders component in select mode and true for multiple
                           $creatable={false}
                           $disabled={false}
                           $error={false}
+                          $isEmpty={true}
                           $isFocused={false}
                           $isLoading={false}
                           $isOpen={false}
@@ -2840,64 +2873,7 @@ exports[`Select component renders component in select mode and true for multiple
                             $creatable={false}
                             $disabled={false}
                             $error={false}
-                            $isFocused={false}
-                            $isLoading={false}
-                            $isOpen={false}
-                            $isPseudoFocused={false}
-                            $multi={false}
-                            $positive={false}
-                            $required={false}
-                            $searchable={true}
-                            $size="default"
-                            $type="select"
-                            forwardedRef={null}
-                          >
-                            <div
-                              styled-component="true"
-                              test-style={
-                                Object {
-                                  "bottom": 0,
-                                  "color": "$theme.colors.foregroundAlt",
-                                  "left": 0,
-                                  "maxWidth": "100%",
-                                  "overflow": "hidden",
-                                  "paddingBottom": "$theme.sizing.scale400",
-                                  "paddingLeft": "$theme.sizing.scale500",
-                                  "paddingRight": 0,
-                                  "paddingTop": "$theme.sizing.scale400",
-                                  "position": "absolute",
-                                  "right": 0,
-                                  "textOverflow": "ellipsis",
-                                  "top": 0,
-                                  "whiteSpace": "nowrap",
-                                }
-                              }
-                            >
-                              Select...
-                            </div>
-                          </MockStyledComponent>
-                        </ForwardRef>
-                        <ForwardRef
-                          $clearable={true}
-                          $creatable={false}
-                          $disabled={false}
-                          $error={false}
-                          $isFocused={false}
-                          $isLoading={false}
-                          $isOpen={false}
-                          $isPseudoFocused={false}
-                          $multi={false}
-                          $positive={false}
-                          $required={false}
-                          $searchable={true}
-                          $size="default"
-                          $type="select"
-                        >
-                          <MockStyledComponent
-                            $clearable={true}
-                            $creatable={false}
-                            $disabled={false}
-                            $error={false}
+                            $isEmpty={true}
                             $isFocused={false}
                             $isLoading={false}
                             $isOpen={false}
@@ -2940,6 +2916,7 @@ exports[`Select component renders component in select mode and true for multiple
                                 $creatable={false}
                                 $disabled={false}
                                 $error={false}
+                                $isEmpty={true}
                                 $isFocused={false}
                                 $isLoading={false}
                                 $isOpen={false}
@@ -2979,6 +2956,7 @@ exports[`Select component renders component in select mode and true for multiple
                                   $creatable={false}
                                   $disabled={false}
                                   $error={false}
+                                  $isEmpty={true}
                                   $isFocused={false}
                                   $isLoading={false}
                                   $isOpen={false}
@@ -3013,6 +2991,7 @@ exports[`Select component renders component in select mode and true for multiple
                                     $creatable={false}
                                     $disabled={false}
                                     $error={false}
+                                    $isEmpty={true}
                                     $isFocused={false}
                                     $isLoading={false}
                                     $isOpen={false}
@@ -3120,7 +3099,58 @@ exports[`Select component renders component in select mode and true for multiple
                             </div>
                           </MockStyledComponent>
                         </ForwardRef>
-                      </span>
+                        <ForwardRef
+                          $clearable={true}
+                          $creatable={false}
+                          $disabled={false}
+                          $error={false}
+                          $isEmpty={true}
+                          $isFocused={false}
+                          $isLoading={false}
+                          $isOpen={false}
+                          $isPseudoFocused={false}
+                          $multi={false}
+                          $positive={false}
+                          $required={false}
+                          $searchable={true}
+                          $size="default"
+                          $type="select"
+                        >
+                          <MockStyledComponent
+                            $clearable={true}
+                            $creatable={false}
+                            $disabled={false}
+                            $error={false}
+                            $isEmpty={true}
+                            $isFocused={false}
+                            $isLoading={false}
+                            $isOpen={false}
+                            $isPseudoFocused={false}
+                            $multi={false}
+                            $positive={false}
+                            $required={false}
+                            $searchable={true}
+                            $size="default"
+                            $type="select"
+                            forwardedRef={null}
+                          >
+                            <div
+                              styled-component="true"
+                              test-style={
+                                Object {
+                                  "color": "$theme.colors.foregroundAlt",
+                                  "maxWidth": "100%",
+                                  "overflow": "hidden",
+                                  "textOverflow": "ellipsis",
+                                  "whiteSpace": "nowrap",
+                                }
+                              }
+                            >
+                              Select...
+                            </div>
+                          </MockStyledComponent>
+                        </ForwardRef>
+                      </div>
                     </MockStyledComponent>
                   </ForwardRef>
                   <ForwardRef
@@ -3128,6 +3158,7 @@ exports[`Select component renders component in select mode and true for multiple
                     $creatable={false}
                     $disabled={false}
                     $error={false}
+                    $isEmpty={true}
                     $isFocused={false}
                     $isLoading={false}
                     $isOpen={false}
@@ -3144,6 +3175,7 @@ exports[`Select component renders component in select mode and true for multiple
                       $creatable={false}
                       $disabled={false}
                       $error={false}
+                      $isEmpty={true}
                       $isFocused={false}
                       $isLoading={false}
                       $isOpen={false}
@@ -3175,6 +3207,7 @@ exports[`Select component renders component in select mode and true for multiple
                           $creatable={false}
                           $disabled={false}
                           $error={false}
+                          $isEmpty={true}
                           $isFocused={false}
                           $isLoading={false}
                           $isOpen={false}
@@ -3203,6 +3236,7 @@ exports[`Select component renders component in select mode and true for multiple
                             $creatable={false}
                             $disabled={false}
                             $error={false}
+                            $isEmpty={true}
                             $isFocused={false}
                             $isLoading={false}
                             $isOpen={false}
@@ -3232,6 +3266,7 @@ exports[`Select component renders component in select mode and true for multiple
                               $creatable={false}
                               $disabled={false}
                               $error={false}
+                              $isEmpty={true}
                               $isFocused={false}
                               $isLoading={false}
                               $isOpen={false}
@@ -3250,6 +3285,7 @@ exports[`Select component renders component in select mode and true for multiple
                                 $creatable={false}
                                 $disabled={false}
                                 $error={false}
+                                $isEmpty={true}
                                 $isFocused={false}
                                 $isLoading={false}
                                 $isOpen={false}
