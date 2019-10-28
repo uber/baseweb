@@ -6,28 +6,29 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {lighten, darken} from 'polished';
+import tinycolor from 'tinycolor2';
 
 import {styled} from '../styles/index.js';
 import {KIND, VARIANT} from './constants.js';
 import type {SharedPropsArgT} from './types.js';
 
 export function customOnRamp(color?: string, unit?: string) {
+  const tinyColor = tinycolor(color);
   switch (unit) {
     case '50':
-      return lighten(0.4, color);
+      return tinyColor.lighten(0.4).toHexString();
     case '100':
-      return lighten(0.32, color);
+      return tinyColor.lighten(0.32).toHexString();
     case '200':
-      return lighten(0.2, color);
+      return tinyColor.lighten(0.2).toHexString();
     case '300':
-      return lighten(0.12, color);
+      return tinyColor.lighten(0.12).toHexString();
     case '500':
-      return darken(0.24, color);
+      return tinyColor.darken(0.24).toHexString();
     case '600':
-      return darken(0.3, color);
+      return tinyColor.darken(0.3).toHexString();
     case '700':
-      return darken(0.4, color);
+      return tinyColor.darken(0.4).toHexString();
     case '400':
     default:
       return color;
