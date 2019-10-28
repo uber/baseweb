@@ -97,6 +97,7 @@ export interface CheckboxProps {
   isIndeterminate?: boolean;
   labelPlacement?: 'top' | 'right' | 'bottom' | 'left';
   checkmarkType?: STYLE_TYPE[keyof STYLE_TYPE];
+  title?: string;
   onChange?: React.FormEventHandler<HTMLInputElement>;
   onMouseEnter?: React.MouseEventHandler<HTMLInputElement>;
   onMouseLeave?: React.MouseEventHandler<HTMLInputElement>;
