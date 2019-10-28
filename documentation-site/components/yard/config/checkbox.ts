@@ -125,6 +125,12 @@ const CheckboxConfig: TConfig = {
       description: 'Name attribute.',
       hidden: true,
     },
+    title: {
+      value: undefined,
+      type: PropTypes.String,
+      description: 'Title attribute.',
+      hidden: true,
+    },
     ...pick(changeHandlers, [
       'onBlur',
       'onFocus',
