@@ -84,7 +84,7 @@ export const StyledCalendarHeader = styled<SharedStylePropsT>('div', props => {
     borderBottomRightRadius: 0,
     borderBottomLeftRadius: 0,
     // account for the left/right arrow heights
-    height: `calc(${sizing.scale800} + ${sizing.scale0})`,
+    minHeight: `calc(${sizing.scale800} + ${sizing.scale0})`,
   };
 });
 
@@ -135,6 +135,8 @@ function getArrowBtnStyle({$theme, $disabled}) {
     paddingRight: '0',
     marginLeft: '6px',
     marginRight: '6px',
+    marginBottom: 0,
+    marginTop: 0,
     outline: 'none',
     ':focus': $disabled
       ? {}
