@@ -215,5 +215,9 @@
       "commit-msg": "commitlint -e $GIT_PARAMS",
       "pre-commit": "pretty-quick --staged"
     }
+  },
+  "volta": {
+    "node": "10.17.0",
+    "yarn": "1.19.1"
   }
 }
