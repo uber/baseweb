@@ -16,19 +16,19 @@ export function customOnRamp(color?: string, unit?: string) {
   const tinyColor = tinycolor(color);
   switch (unit) {
     case '50':
-      return tinyColor.lighten(0.4).toHexString();
+      return tinyColor.lighten(40).toHexString();
     case '100':
-      return tinyColor.lighten(0.32).toHexString();
+      return tinyColor.lighten(32).toHexString();
     case '200':
-      return tinyColor.lighten(0.2).toHexString();
+      return tinyColor.lighten(20).toHexString();
     case '300':
-      return tinyColor.lighten(0.12).toHexString();
+      return tinyColor.lighten(12).toHexString();
     case '500':
-      return tinyColor.darken(0.24).toHexString();
+      return tinyColor.darken(24).toHexString();
     case '600':
-      return tinyColor.darken(0.3).toHexString();
+      return tinyColor.darken(30).toHexString();
     case '700':
-      return tinyColor.darken(0.4).toHexString();
+      return tinyColor.darken(40).toHexString();
     case '400':
     default:
       return color;
@@ -49,6 +49,14 @@ function fontColor(props, isHovered?: boolean, isActionText?: boolean) {
       case KIND.negative:
         return props.$theme.colors.tagNegativeFontDisabled;
       case KIND.custom:
+        console.log(
+          props.$color,
+          props.$theme.colors.tagFontDisabledRampUnit,
+          customOnRamp(
+            props.$color,
+            props.$theme.colors.tagFontDisabledRampUnit,
+          ),
+        );
         return customOnRamp(
           props.$color,
           props.$theme.colors.tagFontDisabledRampUnit,
