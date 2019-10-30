@@ -27,4 +27,3 @@ export {
   CUSTOM_INPUT_TYPE,
 } from './constants.js';
 export * from './types.js';
-export {validateEmail} from './utils.js';

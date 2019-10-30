@@ -1,8 +1,9 @@
 import * as React from 'react';
 import {FormControl} from 'baseui/form-control';
-import {Input, validateEmail} from 'baseui/input';
+import {Input} from 'baseui/input';
 import {useStyletron} from 'baseui';
 import Alert from 'baseui/icon/alert';
+import {validate as validateEmail} from 'email-validator'; // add this package to your repo: `$ yarn add email-validator`
 
 function Negative() {
   const [useCss, theme] = useStyletron();

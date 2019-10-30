@@ -1,9 +1,11 @@
 // @flow
 import * as React from 'react';
 import {FormControl} from 'baseui/form-control';
-import {Input, validateEmail} from 'baseui/input';
+import {Input} from 'baseui/input';
 import {useStyletron} from 'baseui';
 import Alert from 'baseui/icon/alert';
+import {Button} from 'baseui/button';
+import {validate as validateEmail} from 'email-validator'; // add this package to your repo with `$ yarn add email-validator`
 
 function Negative() {
   const [useCss, theme] = useStyletron();
@@ -32,22 +34,27 @@ export default () => {
   };
 
   return (
-    <FormControl
-      label="Your email"
-      error={
-        shouldShowError
-          ? 'Please input a valid email address'
-          : null
-      }
-    >
-      <Input
-        id="input-id"
-        value={value}
-        onChange={onChange}
-        onBlur={() => setIsVisited(true)}
-        error={shouldShowError}
-        overrides={shouldShowError ? {After: Negative} : {}}
-      />
-    </FormControl>
+    <form onSubmit={e => e.preventDefault()}>
+      <FormControl
+        label="Your email"
+        error={
+          shouldShowError
+            ? 'Please input a valid email address'
+            : null
+        }
+      >
+        <Input
+          id="input-id"
+          value={value}
+          onChange={onChange}
+          onBlur={() => setIsVisited(true)}
+          error={shouldShowError}
+          overrides={shouldShowError ? {After: Negative} : {}}
+          type="email"
+          required
+        />
+      </FormControl>
+      <Button type="submit">Submit email</Button>
+    </form>
   );
 };
