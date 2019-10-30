@@ -24,10 +24,10 @@ const {
 
 // Derive some useful constants
 const SNAPSHOT_BRANCH = `${BUILDKITE_BRANCH}--vrt`;
-const ORIGINAL_PULL_REQUEST_OWNER = getOwnerFromRepoURL(
-  BUILDKITE_PULL_REQUEST_REPO,
-);
-const REPOSITORY_NAME = getRepositoryFromRepoURL(BUILDKITE_PULL_REQUEST_REPO);
+const [
+  ORIGINAL_REPOSITORY_OWNER,
+  ORIGINAL_REPOSITORY_NAME,
+] = getRepositoryOwnerAndNameFromURL(BUILDKITE_PULL_REQUEST_REPO);
 const ORIGINAL_COMMIT_SHORT_HASH = BUILDKITE_COMMIT.substring(0, 7); // First 7 chars makes it linkable in GitHub
 
 // Prepare GitHub API helper
@@ -149,8 +149,8 @@ async function addOriginalAuthorAsReviewer(snapshotPullRequestNumber) {
     });
     const author = originalPullRequest.data.user;
     await octokit.pulls.createReviewRequest({
-      owner: ORIGINAL_PULL_REQUEST_OWNER,
-      repo: REPOSITORY_NAME,
+      owner: ORIGINAL_REPOSITORY_OWNER,
+      repo: ORIGINAL_REPOSITORY_NAME,
       pull_number: snapshotPullRequestNumber,
       reviewers: [author.login],
     });
@@ -180,8 +180,8 @@ async function removeSnapshotBranchFromGitHub() {
 async function closeSnapshotPullRequest(snapshotPullRequestNumber) {
   try {
     await octokit.pulls.update({
-      owner: ORIGINAL_PULL_REQUEST_OWNER,
-      repo: REPOSITORY_NAME,
+      owner: ORIGINAL_REPOSITORY_OWNER,
+      repo: ORIGINAL_REPOSITORY_NAME,
       pull_number: snapshotPullRequestNumber,
       state: 'closed',
     });
@@ -216,8 +216,8 @@ async function notifyOriginalPullRequestOfClosure(snapshotPullRequestUrl) {
 async function notifySnapshotPullRequestOfClosure(snapshotPullRequestNumber) {
   try {
     await octokit.issues.createComment({
-      owner: ORIGINAL_PULL_REQUEST_OWNER,
-      repo: REPOSITORY_NAME,
+      owner: ORIGINAL_REPOSITORY_OWNER,
+      repo: ORIGINAL_REPOSITORY_NAME,
       issue_number: snapshotPullRequestNumber,
       body:
         `Visual changes have been resolved. ` +
@@ -236,8 +236,8 @@ async function notifySnapshotPullRequestOfClosure(snapshotPullRequestNumber) {
 async function addLabelsToSnapshotPullRequest(snapshotPullRequestNumber) {
   try {
     await octokit.issues.addLabels({
-      owner: ORIGINAL_PULL_REQUEST_OWNER,
-      repo: REPOSITORY_NAME,
+      owner: ORIGINAL_REPOSITORY_OWNER,
+      repo: ORIGINAL_REPOSITORY_NAME,
       issue_number: snapshotPullRequestNumber,
       labels: [`greenkeeping`, `visual snapshot updates`],
     });
@@ -270,8 +270,8 @@ async function addCommentToOriginalPullRequest(snapshotPullRequestUrl) {
 async function createSnapshotPullRequest() {
   try {
     const pullRequest = await octokit.pulls.create({
-      owner: ORIGINAL_PULL_REQUEST_OWNER,
-      repo: REPOSITORY_NAME,
+      owner: ORIGINAL_REPOSITORY_OWNER,
+      repo: ORIGINAL_REPOSITORY_NAME,
       title: `test(vrt): update visual snapshots for ${BUILDKITE_BRANCH} [skip ci]`,
       head: `uber:${SNAPSHOT_BRANCH}`,
       base: BUILDKITE_BRANCH,
@@ -289,9 +289,9 @@ async function createSnapshotPullRequest() {
 async function getSnapshotPullRequest() {
   try {
     const pullRequests = await octokit.pulls.list({
-      owner: ORIGINAL_PULL_REQUEST_OWNER,
-      repo: REPOSITORY_NAME,
-      head: `uber:${SNAPSHOT_BRANCH}`,
+      owner: ORIGINAL_REPOSITORY_OWNER,
+      repo: ORIGINAL_REPOSITORY_NAME,
+      head: `uber/baseweb:${SNAPSHOT_BRANCH}`,
     });
     const pullRequest = pullRequests.data[0]; // should only ever be one PR
     if (pullRequest) {
@@ -340,13 +340,10 @@ function someSnapshotsWereUpdated() {
   return result;
 }
 
-// Extract basweb fork owner from a GitHub repository url
-function getOwnerFromRepoURL(url) {
-  return url.replace('.git', '').split('/')[2] || 'uber';
-}
-
-function getRepositoryFromRepoURL(url) {
-  return url.replace('.git', '').split('/')[3] || 'baseweb';
+function getRepositoryOwnerAndNameFromURL(url) {
+  const [, , , owner, name] = url.replace('.git', '').split('/');
+  log(`Original repository identified as ${owner}/${name}.`);
+  return [owner, name];
 }
 
 function log(message) {
