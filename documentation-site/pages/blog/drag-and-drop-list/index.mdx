@@ -51,6 +51,8 @@ You might wonder why this relatively new API is so bad. The answer might surpris
 
 Yes, Internet Explorer 6 is the culprit here. If we don't want to settle with no mobile support and other shortcomings, what else we can do?
 
+(The dragexit event is fired when an element is no longer the drag operation's immediate selection target. The dragleave event is fired when a dragged element or text selection leaves a valid drop target.)
+
 ## Tracking Basic Actions
 
 Fortunately, there are still good old mouse and touch events:
@@ -177,7 +179,7 @@ What does it mean? You should be able to control our component only through the 
 - `k` or `arrow up` to move the lifted item up
 - `escape` to cancel the lift and return the item to its initial position
 
-We also need to provide audible cues through the screen reader. First, we should describe each item so it's clear that you can move it:
+We also need to provide audible cues through the screen reader. First, we should [describe each item](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Application_Role) so it's clear that you can move it:
 
 ```html
 <li aria-roledescription="This is a draggable item. Press space to lift.">
@@ -193,7 +195,7 @@ Then we provide additional messages as the user goes through the interaction:
 </div>
 ```
 
-This is called [ARIA live region](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions). Whatever you set its content to gets announced by the screen reader.
+This is called [ARIA live region](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions). Whatever you set its content to gets announced by the screen reader. Check [this article](https://medium.com/salesforce-ux/4-major-patterns-for-accessible-drag-and-drop-1d43f64ebf09) for more details.
 
 ## Little Things
 
@@ -265,7 +267,7 @@ test('move the first item to second position', async () => {
 
 ## Gotchas
 
-There is a class of bugs that regular tests might not cover. Since we deal with a lot of positioning it's quite easy to misplace some items by a few pixels. We can utilize visual regression testing with [jest-image-snapshot](https://github.com/americanexpress/jest-image-snapshot). It takes an image (snapshot) of our functioning component, takes another one on the subsequent run and compares them pixel by pixel. If there is any difference, the test fails.
+There is a class of bugs that regular tests might not cover. Since we deal with a lot of positioning it's quite easy to misplace some items by a few pixels. We can utilize visual regression testing with [jest-image-snapshot](https://github.com/americanexpress/jest-image-snapshot). It takes an image (snapshot) of our functioning component, takes another one on the subsequent run and compares them pixel by pixel. If there is any difference, the test fails. Be aware that each OS renders fonts differently. You might need to use docker to keep the tests reliable.
 
 ### Internet Explorer
 
@@ -295,3 +297,5 @@ since otherwise the `e.preventDefault()` calls are ignored by default. This also
 ## Conclusion
 
 Building a drag and drop web experience is involved but not impossible. **You should never compromise on mobile support and accessibility**. To ensure that, avoid the HTML5 API and go with mouse/touch events. For positioning, CSS transforms are the right choice. Browsers provide many great APIs like getBoundingClientRect for measuring things. And before you release anything, don't forget to write tests. Puppeteer makes it easy!
+
+I gave a talk about this topic at [React Advanced London 2019](https://www.youtube.com/watch?v=q6TD3PvmQts&feature=youtu.be&t=6770). We published a separate open-source library [react-movable](https://github.com/tajo/react-movable). The Base DnD List uses it internally.
