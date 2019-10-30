@@ -162,7 +162,7 @@ const columns = [
       return a.color.localeCompare(b.color);
     },
   }),
-  StringColumn({title: 'string'}),
+  StringColumn({title: 'string', minWidth: 148}),
   BooleanColumn({title: 'boolean'}),
   CategoricalColumn({title: 'second category'}),
 ];
