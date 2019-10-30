@@ -49,14 +49,6 @@ function fontColor(props, isHovered?: boolean, isActionText?: boolean) {
       case KIND.negative:
         return props.$theme.colors.tagNegativeFontDisabled;
       case KIND.custom:
-        console.log(
-          props.$color,
-          props.$theme.colors.tagFontDisabledRampUnit,
-          customOnRamp(
-            props.$color,
-            props.$theme.colors.tagFontDisabledRampUnit,
-          ),
-        );
         return customOnRamp(
           props.$color,
           props.$theme.colors.tagFontDisabledRampUnit,
