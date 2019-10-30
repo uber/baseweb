@@ -15,7 +15,13 @@ const modalProps = require('!!extract-react-types-loader!../../../../src/modal/m
 const ModalConfig: TConfig = {
   imports: {
     'baseui/modal': {
-      named: ['Modal'],
+      named: [
+        'Modal',
+        'ModalHeader',
+        'ModalBody',
+        'ModalFooter',
+        'ModalButton',
+      ],
     },
   },
   scope: {Modal, ModalHeader, ModalBody, ModalFooter, ModalButton, SIZE, ROLE},
