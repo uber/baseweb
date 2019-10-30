@@ -57,6 +57,9 @@ const Knobs: React.FC<TKnobsProps> = ({knobProps, set, error}) => {
       <div
         className={useCss({
           display: 'flex',
+          [`@media screen and (max-width: ${theme.breakpoints.medium}px)`]: {
+            flexWrap: 'wrap',
+          },
           margin: `0 -${theme.sizing.scale600}`,
         })}
       >
