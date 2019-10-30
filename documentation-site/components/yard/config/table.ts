@@ -2,6 +2,8 @@ import {Table} from 'baseui/table';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
+const tableProps = require('!!extract-react-types-loader!../../../../src/table/table.js');
+
 const TableConfig: TConfig = {
   imports: {
     'baseui/table': {
@@ -44,6 +46,9 @@ const TableConfig: TConfig = {
       names: [],
       sharedProps: {},
     },
+  },
+  mapTokensToProps: {
+    Table: tableProps,
   },
 };
 

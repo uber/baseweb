@@ -12,11 +12,7 @@ import {format} from 'date-fns';
 import {StyledLink} from '../../link/index.js';
 import {useStyletron} from '../../styles/index.js';
 
-import {
-  Unstable_StyledTable as StyledTable,
-  Unstable_StyledHeadCell as StyledHeadCell,
-  Unstable_StyledBodyCell as StyledBodyCell,
-} from '../index.js';
+import {StyledTable, StyledHeadCell, StyledBodyCell} from '../index.js';
 
 export const name = 'table-grid-records';
 

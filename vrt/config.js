@@ -8,9 +8,8 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env node */
 
-module.exports = {
+const config = {
   'country-select-dropdown': {
-    fullPage: true,
     interactions: [
       {
         name: 'expanded',
@@ -26,7 +25,6 @@ module.exports = {
     ],
   },
   'country-select-small-dropdown': {
-    fullPage: true,
     interactions: [
       {
         name: 'expanded',
@@ -56,15 +54,6 @@ module.exports = {
         },
       },
     ],
-  },
-  drawer: {
-    fullPage: true,
-  },
-  'drawer-select': {
-    fullPage: true,
-  },
-  'drawer-rtl': {
-    fullPage: true,
   },
   'input-password': {
     interactions: [
@@ -96,26 +85,8 @@ module.exports = {
       },
     ],
   },
-  modal: {
-    fullPage: true,
-  },
-  'modal-select': {
-    fullPage: true,
-  },
-  'modal-rtl': {
-    fullPage: true,
-  },
   'nav-long': {
     skip: true,
-  },
-  popover: {
-    fullPage: true,
-  },
-  'popover-click': {
-    fullPage: true,
-  },
-  'popover-hover': {
-    fullPage: true,
   },
   'progress-steps': {
     interactions: [
@@ -142,7 +113,6 @@ module.exports = {
     ],
   },
   'select-in-modal': {
-    fullPage: true,
     interactions: [
       {
         name: 'opens',
@@ -159,17 +129,10 @@ module.exports = {
       },
     ],
   },
-  toaster: {
-    fullPage: true,
-  },
-  tooltip: {
-    fullPage: true,
-  },
   'select-search-single': {
     interactions: [
       {
         name: 'open',
-        fullPage: true,
         behavior: async page => {
           const inputSelector = `[data-baseweb="select"]`;
           const dropdownSelector = `[role="listbox"]`;
@@ -181,4 +144,25 @@ module.exports = {
       },
     ],
   },
+};
+
+function getSnapshotConfig(scenarioName) {
+  const defaultConfig = {
+    skip: false,
+    interactions: [],
+  };
+  const snapshotConfig = config[scenarioName];
+  if (!snapshotConfig) {
+    return defaultConfig;
+  } else {
+    return {
+      ...defaultConfig,
+      ...snapshotConfig,
+    };
+  }
+}
+
+module.exports = {
+  config,
+  getSnapshotConfig,
 };

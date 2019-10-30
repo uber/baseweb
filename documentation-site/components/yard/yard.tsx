@@ -31,6 +31,7 @@ import {
   countProps,
   countThemeValues,
 } from './utils';
+import PropsTooltip from './props-tooltip';
 import {TYardProps, TPropValue, TError} from './types';
 
 // tabs aka editing UIs
@@ -73,6 +74,7 @@ const Yard: React.FC<
   theme: themeConfig,
   scope: scopeConfig,
   imports: importsConfig,
+  mapTokensToProps,
   minHeight,
   placeholderElement,
   pathname,
@@ -276,6 +278,18 @@ const Yard: React.FC<
           } catch (e) {
             updateCode(dispatch, newCode);
           }
+        }}
+        transformToken={tokenProps => {
+          const token = tokenProps.children.trim();
+          if (mapTokensToProps && mapTokensToProps[token]) {
+            return (
+              <PropsTooltip
+                {...tokenProps}
+                typeDefinition={mapTokensToProps[token]}
+              />
+            );
+          }
+          return <span {...tokenProps} />;
         }}
       />
       <Error

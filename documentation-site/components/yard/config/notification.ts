@@ -4,6 +4,8 @@ import {PropTypes} from '../const';
 import {TConfig} from '../types';
 import {changeHandlers} from './common';
 
+const notificationProps = require('!!extract-react-types-loader!../../../../src/notification/notification.js');
+
 const NotificationConfig: TConfig = {
   imports: {
     'baseui/notification': {
@@ -49,7 +51,7 @@ const NotificationConfig: TConfig = {
       description: `Toast notification content. The children-as-function
         receives a dismiss method that can be called to
         dismiss the notification and can be used as a
-        handler for an action inside the toast content. 
+        handler for an action inside the toast content.
         React.ChildrenArray type is also accepted.`,
       placeholder: '({dismiss}) => {}',
     },
@@ -72,12 +74,15 @@ const NotificationConfig: TConfig = {
       value: undefined,
       type: PropTypes.Overrides,
       description: 'Lets you customize all aspects of the component.',
-      names: ['Root', 'ToastBody', 'ToastCloseIcon'],
+      names: ['Body', 'CloseIcon', 'InnerContainer'],
       sharedProps: {
         $kind: 'kind',
         $closeable: 'closeable',
       },
     },
+  },
+  mapTokensToProps: {
+    Notification: notificationProps,
   },
 };
 

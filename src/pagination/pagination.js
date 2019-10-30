@@ -164,6 +164,11 @@ export default class Pagination extends React.PureComponent<PaginationPropsT> {
                             : $theme.colors.buttonTertiaryFill,
                         }),
                       },
+                      InputContainer: {
+                        style: {
+                          marginLeft: 0,
+                        },
+                      },
                       ValueContainer: {
                         style: ({$theme}) => ({
                           flexBasis: 'auto',

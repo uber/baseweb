@@ -30,4 +30,4 @@ until $(curl --output /dev/null --silent --head --fail $url); do
     sleep 30
 done
 
-yarn blc $url -ro --exclude components/avatar --exclude github.com
+yarn blc $url -ro --exclude components/avatar --exclude example.com --exclude github.com

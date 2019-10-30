@@ -4,6 +4,8 @@ import {PropTypes} from '../const';
 import {changeHandlers} from './common';
 import {TConfig} from '../types';
 
+const selectProps = require('!!extract-react-types-loader!../../../../src/select/select.js');
+
 const SelectConfig: TConfig = {
   imports: {
     'baseui/select': {
@@ -119,7 +121,7 @@ const SelectConfig: TConfig = {
         {label: 'Beige', id: '#F5F5DC'},
       ]`,
       type: PropTypes.Array,
-      description: `Options to be displayed in the dropdown. 
+      description: `Options to be displayed in the dropdown.
         If an option has a disabled prop value set to true it will be rendered as a disabled option in the dropdown.`,
     },
     value: {
@@ -389,6 +391,9 @@ const SelectConfig: TConfig = {
         $type: 'type',
       },
     },
+  },
+  mapTokensToProps: {
+    Select: selectProps,
   },
 };
 

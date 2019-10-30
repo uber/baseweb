@@ -224,7 +224,6 @@ export default class MyApp extends App {
   }
 
   toggleDirection() {
-    console.log(1);
     if (this.state.direction === 'rtl') {
       this.setState({
         direction: 'ltr',

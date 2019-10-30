@@ -2,6 +2,8 @@ import {Navigation} from 'baseui/side-navigation';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
+const sideNavProps = require('!!extract-react-types-loader!../../../../src/side-navigation/nav.js');
+
 const items = `[
   {
     title: 'Colors',
@@ -80,6 +82,9 @@ const SideNavigationConfig: TConfig = {
         },
       },
     },
+  },
+  mapTokensToProps: {
+    Navigation: sideNavProps,
   },
 };
 

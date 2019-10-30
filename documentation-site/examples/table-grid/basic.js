@@ -2,9 +2,9 @@
 import React from 'react';
 import {useStyletron} from 'baseui';
 import {
-  Unstable_StyledTable as StyledTable,
-  Unstable_StyledHeadCell as StyledHeadCell,
-  Unstable_StyledBodyCell as StyledBodyCell,
+  StyledTable,
+  StyledHeadCell,
+  StyledBodyCell,
 } from 'baseui/table-grid';
 
 const data = Array(100)

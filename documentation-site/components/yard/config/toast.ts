@@ -4,6 +4,10 @@ import {Block} from 'baseui/block';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
+const toasterContainerProps = require('!!extract-react-types-loader!../../../../src/toast/toaster.js');
+const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button.js');
+const blockProps = require('!!extract-react-types-loader!../../../../src/block/block.js');
+
 const toastConfig: TConfig = {
   imports: {
     'baseui/toast': {
@@ -49,13 +53,13 @@ const toastConfig: TConfig = {
           let toastKey;
           const msg = 'Use toaster.info(), toaster.positive(), toaster.warning(), or toaster.negative()';
           const ok = (
-            <Block marginTop="15px" display="flex" justifyContent="center"> 
-              <Button size={SIZE.compact} onClick={()=>toaster.clear(toastKey)}>Ok</Button> 
+            <Block marginTop="15px" display="flex" justifyContent="center">
+              <Button size={SIZE.compact} onClick={()=>toaster.clear(toastKey)}>Ok</Button>
             </Block>
           );
           const showMore = (<Block marginTop="15px" display="flex" justifyContent="center">
             <Button size={SIZE.compact} onClick={()=>toaster.update(
-              toastKey, 
+              toastKey,
               {children: (<>{msg} to show different notification type. {ok}</>)}
             )}>Show more</Button>
           </Block>);
@@ -69,7 +73,7 @@ const toastConfig: TConfig = {
       `,
       type: PropTypes.ReactNode,
       description: `Additional elements to render in the place where the ToasterContainer is added.
-        When 'usePortal' is set to true only the ToasterContainer is rendered with portal into 
+        When 'usePortal' is set to true only the ToasterContainer is rendered with portal into
         the body element but not children.`,
     },
     autoHideDuration: {
@@ -103,6 +107,11 @@ const toastConfig: TConfig = {
         },
       },
     },
+  },
+  mapTokensToProps: {
+    ToasterContainer: toasterContainerProps,
+    Button: buttonProps,
+    Block: blockProps,
   },
 };
 

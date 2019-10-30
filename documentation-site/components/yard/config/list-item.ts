@@ -3,6 +3,9 @@ import {Check} from 'baseui/icon';
 import {PropTypes} from '../const';
 import {TConfig} from '../types';
 
+const listItemProps = require('!!extract-react-types-loader!../../../../src/list/list-item.js');
+const listItemLabelProps = require('!!extract-react-types-loader!../../../../src/list/list-item-label.js');
+
 const ListItemConfig: TConfig = {
   imports: {
     'baseui/list': {
@@ -66,6 +69,10 @@ const ListItemConfig: TConfig = {
         $sublist: 'sublist',
       },
     },
+  },
+  mapTokensToProps: {
+    ListItem: listItemProps,
+    ListItemLabel: listItemLabelProps,
   },
 };
 

@@ -19,27 +19,31 @@ const {
   BUILDKITE_BRANCH,
   BUILDKITE_COMMIT,
   BUILDKITE_PULL_REQUEST,
+  BUILDKITE_PULL_REQUEST_REPO,
 } = process.env;
 
 // Derive some useful constants
 const SNAPSHOT_BRANCH = `${BUILDKITE_BRANCH}--vrt`;
-const SHORT_BASE_COMMIT_HASH = BUILDKITE_COMMIT.substring(0, 7); // First 7 chars makes it linkable in GitHub
+const ORIGINAL_PULL_REQUEST_OWNER = getOwnerFromRepoURL(
+  BUILDKITE_PULL_REQUEST_REPO,
+);
+const REPOSITORY_NAME = getRepositoryFromRepoURL(BUILDKITE_PULL_REQUEST_REPO);
+const ORIGINAL_COMMIT_SHORT_HASH = BUILDKITE_COMMIT.substring(0, 7); // First 7 chars makes it linkable in GitHub
 
 // Prepare GitHub API helper
 const octokit = Octokit({
   auth: GITHUB_BOT_AUTH_TOKEN,
 });
 
-//
-main();
-
 process.on('unhandledRejection', function(err) {
-  console.log(err);
+  log(`The job has failed, but it is not a failure.`);
   throw err;
 });
-//
+
+main();
 
 async function main() {
+  if (!buildIsValid()) return;
   installChromium();
   if (buildWasTriggeredByPR()) {
     configureGit();
@@ -47,6 +51,16 @@ async function main() {
     await updateGitHub();
   } else {
     runTestsWithNoUpdates();
+  }
+}
+
+function buildIsValid() {
+  if (BUILDKITE_BRANCH.endsWith(`--vrt`)) {
+    log(`This build was somehow triggered from a snapshot update branch!`);
+    log(`This should not happen! Check the logs! Exiting early.`);
+    return false;
+  } else {
+    return true;
   }
 }
 
@@ -100,7 +114,9 @@ async function updateGitHub() {
 
 async function removeSnapshotsWorkFromGitHub(snapshotPullRequest) {
   if (snapshotPullRequest) {
+    await notifySnapshotPullRequestOfClosure(snapshotPullRequest.number);
     await closeSnapshotPullRequest(snapshotPullRequest.number);
+    await notifyOriginalPullRequestOfClosure(snapshotPullRequest.html_url);
     await removeSnapshotBranchFromGitHub();
   } else {
     log(`Nothing to clean up.`);
@@ -114,9 +130,9 @@ async function updatePullRequests(snapshotPullRequest) {
     );
     await addCommentToOriginalPullRequest(snapshotPullRequest.number);
   } else {
-    const newSnapshotPullRequest = await openNewSnapshotPullRequest();
-    await addLabelsToNewPullRequest(newSnapshotPullRequest.number);
-    await addCommentToOriginalPullRequest(newSnapshotPullRequest.number);
+    const newSnapshotPullRequest = await createSnapshotPullRequest();
+    await addLabelsToSnapshotPullRequest(newSnapshotPullRequest.number);
+    await addCommentToOriginalPullRequest(newSnapshotPullRequest.html_url);
     await addOriginalAuthorAsReviewer(newSnapshotPullRequest.number);
     log(
       `Snapshots on \`${SNAPSHOT_BRANCH}\` must be merged into \`${BUILDKITE_BRANCH}\` before it can be merged into \`master\`.`,
@@ -124,7 +140,7 @@ async function updatePullRequests(snapshotPullRequest) {
   }
 }
 
-async function addOriginalAuthorAsReviewer(newSnapshotPullRequestNumber) {
+async function addOriginalAuthorAsReviewer(snapshotPullRequestNumber) {
   try {
     const originalPullRequest = await octokit.pulls.get({
       owner: `uber`,
@@ -133,9 +149,9 @@ async function addOriginalAuthorAsReviewer(newSnapshotPullRequestNumber) {
     });
     const author = originalPullRequest.data.user;
     await octokit.pulls.createReviewRequest({
-      owner: `uber`,
-      repo: `baseweb`,
-      pull_number: newSnapshotPullRequestNumber,
+      owner: ORIGINAL_PULL_REQUEST_OWNER,
+      repo: REPOSITORY_NAME,
+      pull_number: snapshotPullRequestNumber,
       reviewers: [author.login],
     });
     log(`Requested review from \`${author.login}\` on new snapshot PR.`);
@@ -143,6 +159,7 @@ async function addOriginalAuthorAsReviewer(newSnapshotPullRequestNumber) {
     log(
       `There was an error adding the original PR author as a reviewer for the new snapshot PR.`,
     );
+    log(er);
   }
 }
 
@@ -156,34 +173,34 @@ async function removeSnapshotBranchFromGitHub() {
     log(`Removed the snapshot branch from GitHub`);
   } catch (er) {
     log(`There was an error removing the snapshot branch from GitHub.`);
+    log(er);
   }
 }
 
 async function closeSnapshotPullRequest(snapshotPullRequestNumber) {
-  await notifySnapshotPullRequestOfClosure(snapshotPullRequestNumber);
   try {
     await octokit.pulls.update({
-      owner: `uber`,
-      repo: `baseweb`,
+      owner: ORIGINAL_PULL_REQUEST_OWNER,
+      repo: REPOSITORY_NAME,
       pull_number: snapshotPullRequestNumber,
       state: 'closed',
     });
     log(`Closed the existing snapshot PR.`);
   } catch (er) {
     log(`There was an error closing the existing snapshot PR.`);
+    log(er);
   }
-  await notifyOriginalPullRequestOfClosure(snapshotPullRequestNumber);
 }
 
-async function notifyOriginalPullRequestOfClosure(snapshotPullRequestNumber) {
+async function notifyOriginalPullRequestOfClosure(snapshotPullRequestUrl) {
   try {
     await octokit.issues.createComment({
       owner: `uber`,
       repo: `baseweb`,
       issue_number: BUILDKITE_PULL_REQUEST,
       body:
-        `Visual changes have been resolved. #${snapshotPullRequestNumber} has been closed. ` +
-        `A new snapshot branch will be created and a new PR will be opened if future commits on \`${BUILDKITE_BRANCH}\` trigger visual changes.`,
+        `Visual changes have been resolved. ${snapshotPullRequestUrl} has been closed. ` +
+        `If future commits on \`${BUILDKITE_BRANCH}\` trigger visual changes, a new snapshot branch will be created and a new PR will be opened.`,
     });
     log(
       `Posted a comment on original PR about closure of existing snapshot PR.`,
@@ -192,43 +209,46 @@ async function notifyOriginalPullRequestOfClosure(snapshotPullRequestNumber) {
     log(
       `There was an error commenting on the original PR about snapshot resolution.`,
     );
+    log(er);
   }
 }
 
 async function notifySnapshotPullRequestOfClosure(snapshotPullRequestNumber) {
   try {
     await octokit.issues.createComment({
-      owner: `uber`,
-      repo: `baseweb`,
+      owner: ORIGINAL_PULL_REQUEST_OWNER,
+      repo: REPOSITORY_NAME,
       issue_number: snapshotPullRequestNumber,
       body:
         `Visual changes have been resolved. ` +
         `This PR will be closed and \`${SNAPSHOT_BRANCH}\` will be deleted. ` +
-        `A new snapshot branch will be created and a new PR will be opened if future commits on \`${BUILDKITE_BRANCH}\` trigger visual changes.`,
+        `If future commits on \`${BUILDKITE_BRANCH}\` trigger visual changes, a new snapshot branch will be created and a new PR will be opened.`,
     });
     log(`Posted a comment on snapshot PR about visual resolution and closure.`);
   } catch (er) {
     log(
       `There was an error commenting on the existing snapshot PR about snapshot resolution.`,
     );
+    log(er);
   }
 }
 
-async function addLabelsToNewPullRequest(newPullRequestNumber) {
+async function addLabelsToSnapshotPullRequest(snapshotPullRequestNumber) {
   try {
     await octokit.issues.addLabels({
-      owner: `uber`,
-      repo: `baseweb`,
-      issue_number: newPullRequestNumber,
-      labels: [`bugfix`, `ci`, `visual snapshot updates`],
+      owner: ORIGINAL_PULL_REQUEST_OWNER,
+      repo: REPOSITORY_NAME,
+      issue_number: snapshotPullRequestNumber,
+      labels: [`greenkeeping`, `visual snapshot updates`],
     });
     log(`Added labels to new snapshot PR.`);
   } catch (er) {
     log(`There was an error adding labels to new snapshot PR.`);
+    log(er);
   }
 }
 
-async function addCommentToOriginalPullRequest(newPullRequestNumber) {
+async function addCommentToOriginalPullRequest(snapshotPullRequestUrl) {
   try {
     const comment = await octokit.issues.createComment({
       owner: `uber`,
@@ -236,23 +256,24 @@ async function addCommentToOriginalPullRequest(newPullRequestNumber) {
       issue_number: BUILDKITE_PULL_REQUEST,
       body:
         `Visual changes were detected on this branch. ` +
-        `Please review the following PR containing updated snapshots: #${newPullRequestNumber}`,
+        `Please review the following PR containing updated snapshots: ${snapshotPullRequestUrl}`,
     });
     log(
       `Posted a comment linking to snapshot PR on original PR: ${comment.data.html_url}`,
     );
   } catch (er) {
     log(`Error creating comment on original PR.`);
+    log(er);
   }
 }
 
-async function openNewSnapshotPullRequest() {
+async function createSnapshotPullRequest() {
   try {
     const pullRequest = await octokit.pulls.create({
-      owner: `uber`,
-      repo: `baseweb`,
+      owner: ORIGINAL_PULL_REQUEST_OWNER,
+      repo: REPOSITORY_NAME,
       title: `test(vrt): update visual snapshots for ${BUILDKITE_BRANCH} [skip ci]`,
-      head: SNAPSHOT_BRANCH,
+      head: `uber:${SNAPSHOT_BRANCH}`,
       base: BUILDKITE_BRANCH,
       body:
         `This PR was generated based on visual changes detected in #${BUILDKITE_PULL_REQUEST}. ` +
@@ -268,8 +289,8 @@ async function openNewSnapshotPullRequest() {
 async function getSnapshotPullRequest() {
   try {
     const pullRequests = await octokit.pulls.list({
-      owner: `uber`,
-      repo: `baseweb`,
+      owner: ORIGINAL_PULL_REQUEST_OWNER,
+      repo: REPOSITORY_NAME,
       head: `uber:${SNAPSHOT_BRANCH}`,
     });
     const pullRequest = pullRequests.data[0]; // should only ever be one PR
@@ -284,6 +305,8 @@ async function getSnapshotPullRequest() {
     log(
       `There was an error fetching existing PRs so could not find an existing snapshot PR.`,
     );
+    log(er);
+    return null;
   }
 }
 
@@ -296,7 +319,7 @@ function pushChangesToGitHub() {
   execSync(`git add vrt/__image_snapshots__/`);
   log(`Commiting updated snapshots to ${SNAPSHOT_BRANCH}.`);
   execSync(
-    `git commit -m "test(vrt): update visual snapshots for ${SHORT_BASE_COMMIT_HASH} [skip ci]"`,
+    `git commit -m "test(vrt): update visual snapshots for ${ORIGINAL_COMMIT_SHORT_HASH} [skip ci]"`,
   );
   log(`Force pushing updated snapshot branch to GitHub.`);
   execSync(`git push --force origin ${SNAPSHOT_BRANCH}`);
@@ -315,6 +338,15 @@ function someSnapshotsWereUpdated() {
     log(`No snapshots were updated.`);
   }
   return result;
+}
+
+// Extract basweb fork owner from a GitHub repository url
+function getOwnerFromRepoURL(url) {
+  return url.replace('.git', '').split('/')[2] || 'uber';
+}
+
+function getRepositoryFromRepoURL(url) {
+  return url.replace('.git', '').split('/')[3] || 'baseweb';
 }
 
 function log(message) {
