@@ -3,7 +3,7 @@ import * as React from 'react';
 import {FormControl} from 'baseui/form-control';
 import {Input} from 'baseui/input';
 import {useStyletron} from 'baseui';
-import Alert from 'baseui/icon/alert';
+import {Alert} from 'baseui/icon';
 import {Button} from 'baseui/button';
 import {validate as validateEmail} from 'email-validator'; // add this package to your repo with `$ yarn add email-validator`
 

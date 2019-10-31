@@ -2,7 +2,7 @@ import * as React from 'react';
 import {FormControl} from 'baseui/form-control';
 import {Input} from 'baseui/input';
 import {useStyletron} from 'baseui';
-import Alert from 'baseui/icon/alert';
+import {Alert} from 'baseui/icon';
 import {validate as validateEmail} from 'email-validator'; // add this package to your repo: `$ yarn add email-validator`
 
 function Negative() {
@@ -26,7 +26,8 @@ export default () => {
   const [isValid, setIsValid] = React.useState(false);
   const [isVisited, setIsVisited] = React.useState(false);
   const shouldShowError = !isValid && isVisited;
-  const onChange = ({target: {value}}) => {
+  const onChange = (event: React.FormEvent<HTMLInputElement>) => {
+    const {value} = event.currentTarget;
     setIsValid(validateEmail(value));
     setValue(value);
   };
