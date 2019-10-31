@@ -254,12 +254,12 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
               {...sharedProps}
               {...rootProps}
             >
-              <Backdrop
-                onClick={this.onBackdropClick}
-                {...sharedProps}
-                {...backdropProps}
-              />
               <DialogContainer {...sharedProps} {...dialogContainerProps}>
+                <Backdrop
+                  onClick={this.onBackdropClick}
+                  {...sharedProps}
+                  {...backdropProps}
+                />
                 <Dialog
                   tabIndex={-1}
                   aria-modal={

@@ -77,7 +77,7 @@ export const DialogContainer = styled<SharedStylePropsArgT>('div', props => {
     justifyContent: 'center',
     width: '100%',
     minHeight: '100%',
-    pointerEvents: 'none',
+    transform: 'scale(1)',
     userSelect: 'none',
   };
 });
