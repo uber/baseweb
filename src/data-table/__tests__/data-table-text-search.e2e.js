@@ -56,10 +56,6 @@ describe('data table text search', () => {
   it('filters to expected number of rows', async () => {
     await mount(page, 'data-table-text-search');
     await page.waitFor(TABLE_ROOT);
-
-    const before = await page.$eval(TABLE_ROOT, node => node.childNodes.length);
-    expect(before).toBe(145);
-
     await page.type('input', 'arti');
     await wait(250); // input is debounced by 250ms
 

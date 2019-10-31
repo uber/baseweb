@@ -62,7 +62,7 @@ type MeasureColumnWidthsPropsT = {
 };
 
 // sample size could likely be generated based on row count, to have higher confidence
-const MAX_SAMPLE_SIZE = 10;
+const MAX_SAMPLE_SIZE = 50;
 
 export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
   const [useCss] = useStyletron();
