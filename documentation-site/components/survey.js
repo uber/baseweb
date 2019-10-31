@@ -126,6 +126,7 @@ function shouldShowSurvey() {
       // by default, cookies are session cookies, so without an expiration they are removed
       // when the browser window is closed.
       expires: new Date(now.getFullYear() + 10, now.getMonth()),
+      path: '/',
     });
     return {showSurvey: false, delay};
   }
@@ -142,6 +143,7 @@ function shouldShowSurvey() {
 
   Cookies.set(cookies.LAST_SURVEYED, now.getTime(), {
     expires: new Date(now.getFullYear() + 10, now.getMonth()),
+    path: '/',
   });
   return {showSurvey: true, delay: SURVEY_DELAY};
 }
