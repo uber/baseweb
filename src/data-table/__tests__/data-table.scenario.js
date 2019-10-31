@@ -83,14 +83,23 @@ function makeRowsFromColumns(columns, rowCount) {
 
 const columns = [
   CategoricalColumn({title: 'categorical'}),
-  NumericalColumn({title: 'numerical'}),
-  NumericalColumn({title: 'neg std', highlight: n => n < 0}),
-  NumericalColumn({title: 'accounting', format: NUMERICAL_FORMATS.ACCOUNTING}),
-  NumericalColumn({title: 'percent', format: NUMERICAL_FORMATS.PERCENTAGE}),
+  NumericalColumn({title: 'numerical', minWidth: 90}),
+  NumericalColumn({title: 'neg std', highlight: n => n < 0, minWidth: 90}),
+  NumericalColumn({
+    title: 'accounting',
+    format: NUMERICAL_FORMATS.ACCOUNTING,
+    minWidth: 120,
+  }),
+  NumericalColumn({
+    title: 'percent',
+    format: NUMERICAL_FORMATS.PERCENTAGE,
+    minWidth: 120,
+  }),
   CustomColumn<{color: string}, {selection: Set<string>}>({
     title: 'custom color',
     filterable: true,
     sortable: true,
+    minWidth: 120,
     renderCell: function Cell(props) {
       const [useCss] = useStyletron();
       return (
