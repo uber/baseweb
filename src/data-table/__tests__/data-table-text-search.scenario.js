@@ -19,8 +19,8 @@ export const name = 'data-table-text-search';
 const columns = [
   StringColumn({title: 'Name', minWidth: 300}),
   CategoricalColumn({title: 'Kingdom'}),
-  CategoricalColumn({title: 'Phylum'}),
-  CategoricalColumn({title: 'Class'}),
+  CategoricalColumn({title: 'Phylum', minWidth: 90}),
+  CategoricalColumn({title: 'Class', minWidth: 120}),
   CategoricalColumn({title: 'Order'}),
   CategoricalColumn({title: 'Family'}),
 ];
