@@ -229,72 +229,44 @@ export const Input = styled('input', {
   position: 'absolute',
 });
 
-export const Toggle = styled<SharedStylePropsT>('div', ({$theme}) => {
-  const borderRadius = $theme.borders.useRoundedCorners
-    ? $theme.borders.radius200
-    : null;
-  return ({
-    ...$theme.borders.border300,
-    alignItems: 'center',
-    backgroundColor: $theme.colors.mono100,
-    borderTopLeftRadius: borderRadius,
-    borderTopRightRadius: borderRadius,
-    borderBottomRightRadius: borderRadius,
-    borderBottomLeftRadius: borderRadius,
-    boxShadow: $theme.lighting.shadow400,
-    display: 'flex',
-    justifyContent: 'center',
-    height: $theme.sizing.scale800,
-    width: $theme.sizing.scale800,
-  }: {});
-});
+export const Toggle = styled<SharedStylePropsT>(
+  'div',
+  ({$theme, $checked, $disabled}) => {
+    let backgroundColor = $theme.colors.white;
+    if ($checked) backgroundColor = $theme.colors.black;
+    if ($disabled) backgroundColor = $theme.colors.mono600;
+    return {
+      backgroundColor,
+      borderTopLeftRadius: '50%',
+      borderTopRightRadius: '50%',
+      borderBottomRightRadius: '50%',
+      borderBottomLeftRadius: '50%',
+      boxShadow: $theme.lighting.shadow400,
+      height: $theme.sizing.scale700,
+      width: $theme.sizing.scale700,
+    };
+  },
+);
 
-export const ToggleInner = styled<SharedStylePropsT>('div', props => {
-  function backgroundColor() {
-    if (props.$disabled) {
-      return props.$theme.colors.sliderHandleInnerFillDisabled;
-    }
-
-    if (props.$isActive && props.$checked) {
-      return props.$theme.colors.sliderHandleInnerFillSelectedActive;
-    }
-
-    if (props.$isHovered && props.$checked) {
-      return props.$theme.colors.sliderHandleInnerFillSelectedHover;
-    }
-
-    return props.$theme.colors.sliderHandleInnerFill;
-  }
-
-  return {
-    height: props.$theme.sizing.scale300,
-    width: props.$theme.sizing.scale0,
-    borderTopLeftRadius: props.$theme.borders.radius100,
-    borderTopRightRadius: props.$theme.borders.radius100,
-    borderBottomRightRadius: props.$theme.borders.radius100,
-    borderBottomLeftRadius: props.$theme.borders.radius100,
-    backgroundColor: backgroundColor(),
-  };
-});
+export const ToggleInner = styled('div', {});
 
 export const ToggleTrack = styled<SharedStylePropsT>('div', props => {
-  const borderRadius = props.$theme.borders.useRoundedCorners
-    ? props.$theme.borders.radius200
-    : null;
-  return ({
+  return {
     alignItems: 'center',
-    backgroundColor: getBackgroundColor(props),
-    borderTopLeftRadius: borderRadius,
-    borderTopRightRadius: borderRadius,
-    borderBottomRightRadius: borderRadius,
-    borderBottomLeftRadius: borderRadius,
+    backgroundColor: props.$disabled
+      ? props.$theme.colors.sliderTrackFillDisabled
+      : props.$theme.colors.sliderTrackFill,
+    borderTopLeftRadius: '7px',
+    borderTopRightRadius: '7px',
+    borderBottomRightRadius: '7px',
+    borderBottomLeftRadius: '7px',
     display: 'flex',
-    height: props.$theme.sizing.scale600,
+    height: props.$theme.sizing.scale550,
     justifyContent: props.$checked ? 'flex-end' : 'flex-start',
-    marginTop: props.$theme.sizing.scale100,
+    marginTop: props.$theme.sizing.scale200,
     marginBottom: props.$theme.sizing.scale100,
-    marginLeft: props.$theme.sizing.scale100,
+    marginLeft: props.$theme.sizing.scale200,
     marginRight: props.$theme.sizing.scale100,
-    width: props.$theme.sizing.scale1000,
-  }: {});
+    width: '36px',
+  };
 });
