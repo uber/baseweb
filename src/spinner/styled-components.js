@@ -32,7 +32,7 @@ export const Svg = styled<StylePropsT>('svg', props => {
     fill: $color || $theme.colors.accent,
     cursor: 'wait',
     animationName: spin,
-    animationDuration: $theme.animation.timing700,
+    animationDuration: $theme.animation.timing1000,
     animationIterationCount: 'infinite',
     animationTimingFunction: 'linear',
   };
