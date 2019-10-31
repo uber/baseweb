@@ -50,8 +50,18 @@ export type BatchActionT = {
   renderIcon?: any;
 };
 
+export type RowActionT = {
+  label: string;
+  onClick: (params: {
+    event: React.MouseEvent<HTMLButtonElement>;
+    row: RowT;
+  }) => any;
+  renderIcon: any;
+};
+
 export type Props = {
   batchActions?: BatchActionT[];
+  rowActions?: RowActionT[];
   columns: ColumnT[];
   onSelectionChange?: (rows: RowT[]) => any;
   rows: RowT[];
