@@ -76,16 +76,6 @@ describe('data table columns', () => {
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('renders expected number of cells', async () => {
-    await mount(page, 'data-table-columns');
-    await page.waitFor(TABLE_ROOT);
-
-    // one extra child to account for header row
-    expect(await page.$eval(TABLE_ROOT, node => node.childNodes.length)).toBe(
-      17,
-    );
-  });
-
   it('sorts boolean column', async () => {
     const index = 0;
     await mount(page, 'data-table-columns');
