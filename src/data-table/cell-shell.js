@@ -26,6 +26,7 @@ const CellShell = React.forwardRef<PropsT, HTMLDivElement>((props, ref) => {
       ref={ref}
       className={useCss({
         ...theme.typography.font100,
+        boxSizing: 'border-box',
         display: props.isMeasured ? 'inline-block' : null,
         paddingLeft: theme.sizing.scale500,
         paddingRight: theme.sizing.scale500,

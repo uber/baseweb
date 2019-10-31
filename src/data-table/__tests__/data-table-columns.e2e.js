@@ -53,11 +53,9 @@ async function sortColumnAtIndex(page, index) {
 }
 
 async function openFilterAtIndex(page, index) {
-  const headerCell = await getHeaderCellAtIndex(page, index);
-  await headerCell.hover();
-  const hoveredHeaderCell = await getHeaderCellAtIndex(page, index);
-  const filterButton = await hoveredHeaderCell.$('button');
-  await filterButton.click();
+  await page.click('button');
+  const options = await page.$$('li[role="option"]');
+  await options[index].click();
   return page.$('div[data-baseweb="popover"]');
 }
 
@@ -74,16 +72,6 @@ describe('data table columns', () => {
     await mount(page, 'data-table-columns');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
-  });
-
-  it('renders expected number of cells', async () => {
-    await mount(page, 'data-table-columns');
-    await page.waitFor(TABLE_ROOT);
-
-    // one extra child to account for header row
-    expect(await page.$eval(TABLE_ROOT, node => node.childNodes.length)).toBe(
-      17,
-    );
   });
 
   it('sorts boolean column', async () => {
