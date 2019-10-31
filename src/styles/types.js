@@ -546,6 +546,7 @@ export type AnimationT = {
   timing100: string,
   timing400: string,
   timing700: string,
+  timing1000: string,
   easeOutCurve: string,
   easeInCurve: string,
   easeInOutCurve: string,
