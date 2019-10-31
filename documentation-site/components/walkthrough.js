@@ -6,6 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 
 // @flow
+/* eslint-env browser, node */
+
 import * as React from 'react';
 import {
   Modal,
@@ -34,9 +36,19 @@ const COOKIE_NAME = `baseweb-news-${CAMPAIGN_NAME}`;
 export default () => {
   const cookie = Cookies.get(COOKIE_NAME);
   const [useCss, theme] = useStyletron();
-  const [isOpen, setIsOpen] = React.useState(!cookie);
   const [currentPage, setPage] = React.useState(0);
+  let isComponentPage = false;
+  // $FlowFixMe
+  if (process.browser) {
+    if (window.location.pathname.includes('/components')) {
+      isComponentPage = true;
+    }
+  }
+  const [isOpen, setIsOpen] = React.useState(!cookie && isComponentPage);
   React.useEffect(() => {
+    if (!isComponentPage) {
+      return;
+    }
     const now = new Date();
     Cookies.set(COOKIE_NAME, now.getTime(), {
       // by default, cookies are session cookies, so without an expiration they are removed
@@ -57,8 +69,8 @@ export default () => {
       >
         <ModalHeader>
           New API Documentation{' '}
-          <span role="img" aria-label="celebratation emoji">
-            🎉
+          <span role="img" aria-label="new feature">
+            🎁
           </span>
         </ModalHeader>
         <MinHeightBody>{Content[currentPage]()}</MinHeightBody>
