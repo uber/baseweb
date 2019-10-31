@@ -117,6 +117,7 @@
     "broken-link-checker": "^0.7.8",
     "copy-to-clipboard": "^3.2.0",
     "cross-env": "^6.0.0",
+    "email-validator": "^2.0.4",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.10.0",
     "enzyme-to-json": "^3.3.5",
