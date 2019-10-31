@@ -24,6 +24,7 @@ import DirectionContext from '../components/direction-context';
 import ComponentSizes from '../../component-sizes.json';
 import Help from './help';
 import Survey from './survey';
+import Walkthrough from './walkthrough';
 
 const GH_URL =
   'https://github.com/uber/baseweb/edit/master/documentation-site/pages';
@@ -233,6 +234,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
               </TOCWrapper>
             </Block>
             <Footer />
+            <Walkthrough />
             <Help />
             <Survey />
           </React.Fragment>
