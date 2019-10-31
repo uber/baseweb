@@ -21,6 +21,7 @@ import {Input, SIZE as INPUT_SIZES} from '../input/index.js';
 import {useStyletron} from '../styles/index.js';
 import {Tag} from '../tag/index.js';
 
+import FilterMenu from './filter-menu.js';
 import HeaderCell from './header-cell.js';
 import {COLUMNS, SORT_DIRECTIONS} from './constants.js';
 import MeasureColumnWidths from './measure-column-widths.js';
@@ -43,7 +44,7 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
   let backgroundColor = theme.colors.mono100;
   if (
     (rowIndex % 2 && columnIndex === data.columnHoverIndex) ||
-    rowIndex === data.rowHoverIndex
+    rowIndex === data.columnHoverIndex
   ) {
     backgroundColor = theme.colors.mono300;
   } else if (rowIndex % 2 || columnIndex === data.columnHoverIndex) {
@@ -195,10 +196,8 @@ function useResizeObserver(
 }
 
 const HeaderContext = React.createContext<{|
-  addFilter: (mixed, string, string) => void,
   allRows: RowT[],
   columns: ColumnT<>[],
-  filterOpenIndex: number,
   handleSort: number => void,
   columnHoverIndex: number,
   rowHoverIndex: number,
@@ -207,8 +206,6 @@ const HeaderContext = React.createContext<{|
   isSelectable: boolean,
   isSelectedAll: boolean,
   isSelectedIndeterminate: boolean,
-  onFilterOpen: number => void,
-  onFilterClose: () => void,
   onMouseEnter: number => void,
   onMouseLeave: () => void,
   onSelectAll: () => void,
@@ -219,10 +216,8 @@ const HeaderContext = React.createContext<{|
   sortDirection: SortDirectionsT,
   widths: number[],
 |}>({
-  addFilter: () => {},
   allRows: [],
   columns: [],
-  filterOpenIndex: -1,
   handleSort: () => {},
   columnHoverIndex: -1,
   rowHoverIndex: -1,
@@ -231,8 +226,6 @@ const HeaderContext = React.createContext<{|
   isSelectable: false,
   isSelectedAll: false,
   isSelectedIndeterminate: false,
-  onFilterOpen: () => {},
-  onFilterClose: () => {},
   onMouseEnter: () => {},
   onMouseLeave: () => {},
   onSelectAll: () => {},
@@ -295,12 +288,8 @@ const InnerTableElement = React.forwardRef<
             >
               <HeaderCell
                 index={columnIndex}
-                filterable={column.filterable}
                 sortable={column.sortable}
                 isHovered={ctx.columnHoverIndex === columnIndex}
-                isFilterOpen={ctx.filterOpenIndex === columnIndex}
-                onFilterOpen={() => ctx.onFilterOpen(columnIndex)}
-                onFilterClose={() => ctx.onFilterClose()}
                 isSelectable={ctx.isSelectable && columnIndex === 0}
                 isSelectedAll={ctx.isSelectedAll}
                 isSelectedIndeterminate={ctx.isSelectedIndeterminate}
@@ -309,18 +298,6 @@ const InnerTableElement = React.forwardRef<
                 onSelectAll={ctx.onSelectAll}
                 onSelectNone={ctx.onSelectNone}
                 onSort={ctx.handleSort}
-                filter={({close}) => {
-                  const Filter = column.renderFilter;
-                  return (
-                    <Filter
-                      setFilter={(filterParams, description) => {
-                        ctx.addFilter(filterParams, column.title, description);
-                      }}
-                      data={ctx.allRows.map(r => r.data[columnIndex])}
-                      close={close}
-                    />
-                  );
-                }}
                 sortDirection={
                   ctx.sortIndex === columnIndex ? ctx.sortDirection : null
                 }
@@ -467,25 +444,10 @@ export function Unstable_DataTable(props: Props) {
     [rowHoverIndex],
   );
 
-  const [filterOpenIndex, setFilterOpenIndex] = React.useState(-1);
-  function handleFilterOpen(columnIndex) {
-    if (filterOpenIndex === columnIndex) {
-      setFilterOpenIndex(-1);
-    } else {
-      setFilterOpenIndex(columnIndex);
-    }
-  }
-  function handleFilterClose() {
-    setFilterOpenIndex(-1);
-  }
-
   const [columnHoverIndex, setColumnHoverIndex] = React.useState(-1);
   function handleColumnHeaderMouseEnter(columnIndex) {
     setColumnHoverIndex(columnIndex);
     setRowHoverIndex(-1);
-    if (columnIndex !== filterOpenIndex) {
-      setFilterOpenIndex(-1);
-    }
   }
   function handleColumnHeaderMouseLeave() {
     // $FlowFixMe - unable to get the state type from react-window
@@ -655,7 +617,7 @@ export function Unstable_DataTable(props: Props) {
           {!selectedRows.size && (
             <div
               className={css({
-                alignItems: 'baseline',
+                alignItems: 'end',
                 display: 'flex',
                 flexWrap: 'wrap',
                 paddingTop: theme.sizing.scale500,
@@ -677,6 +639,13 @@ export function Unstable_DataTable(props: Props) {
                   : {filter.description}
                 </Tag>
               ))}
+
+              <FilterMenu
+                columns={props.columns}
+                filters={filters}
+                rows={rows}
+                onSetFilter={addFilter}
+              />
             </div>
           )}
 
@@ -737,10 +706,8 @@ export function Unstable_DataTable(props: Props) {
             value={{
               allRows: props.rows,
               columns: props.columns,
-              rows,
+              rows: props.rows,
               rowActions: props.rowActions || [],
-              addFilter,
-              filterOpenIndex,
               handleSort,
               columnHoverIndex,
               rowHoverIndex,
@@ -750,8 +717,6 @@ export function Unstable_DataTable(props: Props) {
               isSelectedAll: !!rows.length && selectedRows.size >= rows.length,
               isSelectedIndeterminate:
                 !!selectedRows.size && selectedRows.size < rows.length,
-              onFilterOpen: handleFilterOpen,
-              onFilterClose: handleFilterClose,
               onMouseEnter: handleColumnHeaderMouseEnter,
               onMouseLeave: handleColumnHeaderMouseLeave,
               onSelectAll: handleSelectAll,
