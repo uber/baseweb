@@ -106,6 +106,9 @@ const Override: React.FC<TProps> = ({
           Root: {
             style: ({$theme}) => ({
               marginTop: $theme.sizing.scale300,
+              [`@media screen and (max-width: ${$theme.breakpoints.medium}px)`]: {
+                flexWrap: 'wrap',
+              },
             }),
           },
         }}

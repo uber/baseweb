@@ -301,6 +301,7 @@ const Yard: React.FC<
         overrides={{
           Root: {
             style: ({$theme}) => ({
+              flexWrap: 'wrap',
               marginTop: $theme.sizing.scale300,
             }),
           },
