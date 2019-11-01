@@ -14,6 +14,7 @@ export const STATE_TYPE = {
 export const STYLE_TYPE = Object.freeze({
   default: 'default',
   toggle: 'toggle',
+  toggle_round: 'toggle_round',
 });
 
 export const LABEL_PLACEMENT = Object.freeze({
