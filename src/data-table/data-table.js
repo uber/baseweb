@@ -44,7 +44,7 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
   let backgroundColor = theme.colors.mono100;
   if (
     (rowIndex % 2 && columnIndex === data.columnHoverIndex) ||
-    rowIndex === data.columnHoverIndex
+    rowIndex === data.rowHoverIndex
   ) {
     backgroundColor = theme.colors.mono300;
   } else if (rowIndex % 2 || columnIndex === data.columnHoverIndex) {
