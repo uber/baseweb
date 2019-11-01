@@ -283,6 +283,7 @@ export const Toggle = styled<SharedStylePropsT>('div', props => {
 
 export const ToggleInner = styled<SharedStylePropsT>('div', props => {
   if (props.$checkmarkType === STYLE_TYPE.toggle) {
+    // eslint-disable-next-line no-inner-declarations
     function backgroundColor() {
       if (props.$disabled) {
         return props.$theme.colors.sliderHandleInnerFillDisabled;
