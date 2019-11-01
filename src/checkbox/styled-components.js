@@ -244,6 +244,10 @@ export const Toggle = styled<SharedStylePropsT>(
       boxShadow: $theme.lighting.shadow400,
       height: $theme.sizing.scale700,
       width: $theme.sizing.scale700,
+      transform: $checked
+        ? `translateX(${$theme.direction === 'rtl' ? '-100%' : '100%'})`
+        : null,
+      transition: `transform ${$theme.animation.timing100}`,
     };
   },
 );
@@ -262,7 +266,7 @@ export const ToggleTrack = styled<SharedStylePropsT>('div', props => {
     borderBottomLeftRadius: '7px',
     display: 'flex',
     height: props.$theme.sizing.scale550,
-    justifyContent: props.$checked ? 'flex-end' : 'flex-start',
+    // justifyContent: props.$checked ? 'flex-end' : 'flex-start',
     marginTop: props.$theme.sizing.scale200,
     marginBottom: props.$theme.sizing.scale100,
     marginLeft: props.$theme.sizing.scale200,
