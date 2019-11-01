@@ -174,6 +174,23 @@ describe('Datepicker', () => {
     });
   });
 
+  test('onChance triggered when input is cleared', () => {
+    const onChange = jest.fn();
+    const date = new Date('2019 01 01');
+    const component = mount(<Datepicker onChange={onChange} value={date} />);
+
+    // $FlowFixMe
+    component.instance().handleInputChange({
+      currentTarget: {
+        value: '',
+      },
+    });
+
+    expect(onChange.mock.calls[0][0]).toEqual({
+      date: null,
+    });
+  });
+
   test('returns an array of date objects on input change', () => {
     const onChange = jest.fn();
     const date = new Date('2019 01 01');

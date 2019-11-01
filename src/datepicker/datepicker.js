@@ -116,6 +116,10 @@ export default class Datepicker extends React.Component<
   handleInputChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
     const inputValue = event.currentTarget.value;
 
+    if (inputValue.length === 0) {
+      return this.props.onChange && this.props.onChange({date: null});
+    }
+
     this.setState({
       inputValue,
       isInputUsed: true,
