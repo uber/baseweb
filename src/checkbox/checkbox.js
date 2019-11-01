@@ -50,6 +50,13 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     if (autoFocus && inputRef.current) {
       inputRef.current.focus();
     }
+
+    if (this.props.checkmarkType === STYLE_TYPE.toggle) {
+      console.warn(
+        "baseui:Checkbox The STYLE_TYPE.toggle value on the 'checkmarkType' prop does not conform to the current base design specification. " +
+          'Please update your code to STYLE_TYPE.toggle_round. This will be updated automatically in a future major version.',
+      );
+    }
   }
 
   onMouseEnter = (e: SyntheticInputEvent<HTMLInputElement>) => {
@@ -82,12 +89,19 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     this.props.onBlur(e);
   };
 
+  isToggle = () => {
+    return (
+      this.props.checkmarkType === STYLE_TYPE.toggle ||
+      this.props.checkmarkType === STYLE_TYPE.toggle_round
+    );
+  };
+
   render() {
     const {checkmarkType} = this.props;
     const {
       overrides = {},
       onChange,
-      labelPlacement = checkmarkType === STYLE_TYPE.toggle ? 'left' : 'right',
+      labelPlacement = this.isToggle() ? 'left' : 'right',
       inputRef,
       isIndeterminate,
       isError,
@@ -161,7 +175,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
         {...getOverrideProps(RootOverride)}
       >
         {(labelPlacement === 'top' || labelPlacement === 'left') && labelComp}
-        {checkmarkType === STYLE_TYPE.toggle ? (
+        {this.isToggle() ? (
           <ToggleTrack
             {...sharedProps}
             {...getOverrideProps(ToggleTrackOverride)}
