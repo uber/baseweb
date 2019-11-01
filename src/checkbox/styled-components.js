@@ -229,72 +229,141 @@ export const Input = styled('input', {
   position: 'absolute',
 });
 
-export const Toggle = styled<SharedStylePropsT>('div', ({$theme}) => {
-  const borderRadius = $theme.borders.useRoundedCorners
-    ? $theme.borders.radius200
-    : null;
-  return ({
-    ...$theme.borders.border300,
-    alignItems: 'center',
-    backgroundColor: $theme.colors.mono100,
-    borderTopLeftRadius: borderRadius,
-    borderTopRightRadius: borderRadius,
-    borderBottomRightRadius: borderRadius,
-    borderBottomLeftRadius: borderRadius,
-    boxShadow: $theme.lighting.shadow400,
-    display: 'flex',
-    justifyContent: 'center',
-    height: $theme.sizing.scale800,
-    width: $theme.sizing.scale800,
-  }: {});
+export const Toggle = styled<SharedStylePropsT>('div', props => {
+  if (props.$checkmarkType === STYLE_TYPE.toggle) {
+    const borderRadius = props.$theme.borders.useRoundedCorners
+      ? props.$theme.borders.radius200
+      : null;
+    return ({
+      ...props.$theme.borders.border300,
+      alignItems: 'center',
+      backgroundColor: props.$theme.colors.mono100,
+      borderTopLeftRadius: borderRadius,
+      borderTopRightRadius: borderRadius,
+      borderBottomRightRadius: borderRadius,
+      borderBottomLeftRadius: borderRadius,
+      boxShadow: props.$theme.lighting.shadow400,
+      display: 'flex',
+      justifyContent: 'center',
+      height: props.$theme.sizing.scale800,
+      width: props.$theme.sizing.scale800,
+    }: {});
+  }
+
+  if (props.$checkmarkType === STYLE_TYPE.toggle_round) {
+    let backgroundColor = props.$theme.colors.white;
+    if (props.$disabled) {
+      backgroundColor = props.$theme.colors.mono600;
+    } else if (props.$checked && props.$isError) {
+      backgroundColor = props.$theme.colors.borderError;
+    } else if (props.$checked) {
+      backgroundColor = props.$theme.colors.black;
+    }
+    return {
+      backgroundColor,
+      borderTopLeftRadius: '50%',
+      borderTopRightRadius: '50%',
+      borderBottomRightRadius: '50%',
+      borderBottomLeftRadius: '50%',
+      boxShadow:
+        (props.$isFocused || props.$isHovered) && !props.$disabled
+          ? props.$theme.lighting.shadow500
+          : props.$theme.lighting.shadow400,
+      height: props.$theme.sizing.scale700,
+      width: props.$theme.sizing.scale700,
+      transform: props.$checked
+        ? `translateX(${props.$theme.direction === 'rtl' ? '-100%' : '100%'})`
+        : null,
+      transition: `transform ${props.$theme.animation.timing100}`,
+    };
+  }
+
+  return {};
 });
 
 export const ToggleInner = styled<SharedStylePropsT>('div', props => {
-  function backgroundColor() {
-    if (props.$disabled) {
-      return props.$theme.colors.sliderHandleInnerFillDisabled;
-    }
+  if (props.$checkmarkType === STYLE_TYPE.toggle) {
+    // eslint-disable-next-line no-inner-declarations
+    function backgroundColor() {
+      if (props.$disabled) {
+        return props.$theme.colors.sliderHandleInnerFillDisabled;
+      }
 
-    if (props.$isActive && props.$checked) {
-      return props.$theme.colors.sliderHandleInnerFillSelectedActive;
-    }
+      if (props.$isActive && props.$checked) {
+        return props.$theme.colors.sliderHandleInnerFillSelectedActive;
+      }
 
-    if (props.$isHovered && props.$checked) {
-      return props.$theme.colors.sliderHandleInnerFillSelectedHover;
-    }
+      if (props.$isHovered && props.$checked) {
+        return props.$theme.colors.sliderHandleInnerFillSelectedHover;
+      }
 
-    return props.$theme.colors.sliderHandleInnerFill;
+      return props.$theme.colors.sliderHandleInnerFill;
+    }
+    return {
+      height: props.$theme.sizing.scale300,
+      width: props.$theme.sizing.scale0,
+      borderTopLeftRadius: props.$theme.borders.radius100,
+      borderTopRightRadius: props.$theme.borders.radius100,
+      borderBottomRightRadius: props.$theme.borders.radius100,
+      borderBottomLeftRadius: props.$theme.borders.radius100,
+      backgroundColor: backgroundColor(),
+    };
   }
 
-  return {
-    height: props.$theme.sizing.scale300,
-    width: props.$theme.sizing.scale0,
-    borderTopLeftRadius: props.$theme.borders.radius100,
-    borderTopRightRadius: props.$theme.borders.radius100,
-    borderBottomRightRadius: props.$theme.borders.radius100,
-    borderBottomLeftRadius: props.$theme.borders.radius100,
-    backgroundColor: backgroundColor(),
-  };
+  if (props.$checkmarkType === STYLE_TYPE.toggle_round) {
+    return {};
+  }
+
+  return {};
 });
 
 export const ToggleTrack = styled<SharedStylePropsT>('div', props => {
-  const borderRadius = props.$theme.borders.useRoundedCorners
-    ? props.$theme.borders.radius200
-    : null;
-  return ({
-    alignItems: 'center',
-    backgroundColor: getBackgroundColor(props),
-    borderTopLeftRadius: borderRadius,
-    borderTopRightRadius: borderRadius,
-    borderBottomRightRadius: borderRadius,
-    borderBottomLeftRadius: borderRadius,
-    display: 'flex',
-    height: props.$theme.sizing.scale600,
-    justifyContent: props.$checked ? 'flex-end' : 'flex-start',
-    marginTop: props.$theme.sizing.scale100,
-    marginBottom: props.$theme.sizing.scale100,
-    marginLeft: props.$theme.sizing.scale100,
-    marginRight: props.$theme.sizing.scale100,
-    width: props.$theme.sizing.scale1000,
-  }: {});
+  if (props.$checkmarkType === STYLE_TYPE.toggle) {
+    const borderRadius = props.$theme.borders.useRoundedCorners
+      ? props.$theme.borders.radius200
+      : null;
+    return ({
+      alignItems: 'center',
+      backgroundColor: getBackgroundColor(props),
+      borderTopLeftRadius: borderRadius,
+      borderTopRightRadius: borderRadius,
+      borderBottomRightRadius: borderRadius,
+      borderBottomLeftRadius: borderRadius,
+      display: 'flex',
+      height: props.$theme.sizing.scale600,
+      justifyContent: props.$checked ? 'flex-end' : 'flex-start',
+      marginTop: props.$theme.sizing.scale100,
+      marginBottom: props.$theme.sizing.scale100,
+      marginLeft: props.$theme.sizing.scale100,
+      marginRight: props.$theme.sizing.scale100,
+      width: props.$theme.sizing.scale1000,
+    }: {});
+  }
+
+  if (props.$checkmarkType === STYLE_TYPE.toggle_round) {
+    let backgroundColor = props.$theme.colors.sliderTrackFill;
+    if (props.$disabled) {
+      backgroundColor = props.$theme.colors.sliderTrackFillDisabled;
+    } else if (props.$isError && props.$checked) {
+      backgroundColor = props.$theme.colors.tickFillError;
+    }
+
+    return {
+      alignItems: 'center',
+      backgroundColor,
+      borderTopLeftRadius: '7px',
+      borderTopRightRadius: '7px',
+      borderBottomRightRadius: '7px',
+      borderBottomLeftRadius: '7px',
+      display: 'flex',
+      height: props.$theme.sizing.scale550,
+      marginTop: props.$theme.sizing.scale200,
+      marginBottom: props.$theme.sizing.scale100,
+      marginLeft: props.$theme.sizing.scale200,
+      marginRight: props.$theme.sizing.scale100,
+      width: props.$theme.sizing.scale1000,
+    };
+  }
+
+  return {};
 });
