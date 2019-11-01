@@ -83,14 +83,24 @@ export default () => {
           >
             Previous
           </ModalButton>
-          <ModalButton
-            disabled={!Content[currentPage + 1]}
-            onClick={() => {
-              setPage(currentPage + 1);
-            }}
-          >
-            Next
-          </ModalButton>
+          {Content[currentPage + 1] ? (
+            <ModalButton
+              onClick={() => {
+                setPage(currentPage + 1);
+              }}
+            >
+              Next
+            </ModalButton>
+          ) : (
+            <ModalButton
+              onClick={() => {
+                setPage(0);
+                setIsOpen(false);
+              }}
+            >
+              Done
+            </ModalButton>
+          )}
         </ModalFooter>
       </Modal>
       <div
