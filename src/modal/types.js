@@ -72,7 +72,6 @@ export type ModalStateT = {
 };
 
 export type SharedStylePropsArgT = {
-  children?: React.Node,
   $animate: boolean,
   $isVisible: boolean,
   $isOpen: boolean,
