@@ -82,12 +82,19 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     this.props.onBlur(e);
   };
 
+  isToggle = () => {
+    return (
+      this.props.checkmarkType === STYLE_TYPE.toggle ||
+      this.props.checkmarkType === STYLE_TYPE.toggle_round
+    );
+  };
+
   render() {
     const {checkmarkType} = this.props;
     const {
       overrides = {},
       onChange,
-      labelPlacement = checkmarkType === STYLE_TYPE.toggle ? 'left' : 'right',
+      labelPlacement = this.isToggle() ? 'left' : 'right',
       inputRef,
       isIndeterminate,
       isError,
@@ -161,7 +168,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
         {...getOverrideProps(RootOverride)}
       >
         {(labelPlacement === 'top' || labelPlacement === 'left') && labelComp}
-        {checkmarkType === STYLE_TYPE.toggle ? (
+        {this.isToggle() ? (
           <ToggleTrack
             {...sharedProps}
             {...getOverrideProps(ToggleTrackOverride)}

@@ -48,7 +48,7 @@ function FilterShell(props: PropsT) {
         <Checkbox
           checked={props.exclude}
           onChange={props.onExcludeChange}
-          checkmarkType={STYLE_TYPE.toggle}
+          checkmarkType={STYLE_TYPE.toggle_round}
           labelPlacement="right"
         >
           Exclude
