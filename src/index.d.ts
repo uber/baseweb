@@ -12,10 +12,6 @@ export function createTheme<P extends object>(
   primitives: ThemePrimitives,
   overrides?: P,
 ): Theme & P;
-export function withProps(
-  Component: React.ComponentType,
-  customProps?: object,
-): (props: object) => any;
 export function mergeOverrides<T>(
   target?: Overrides<T>,
   source?: Overrides<T>,
