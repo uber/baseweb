@@ -70,10 +70,9 @@ function getBackgroundColor(props) {
     $theme,
     $checkmarkType,
   } = props;
-  const isToggle = $checkmarkType === STYLE_TYPE.toggle;
   const {colors} = $theme;
   if ($disabled) {
-    return isToggle ? colors.sliderTrackFillDisabled : colors.tickFillDisabled;
+    return colors.tickFillDisabled;
   } else if ($isError && ($isIndeterminate || $checked)) {
     if ($isActive || $isFocused) {
       return colors.tickFillErrorSelectedHoverActive;
@@ -100,11 +99,11 @@ function getBackgroundColor(props) {
     }
   } else {
     if ($isActive || $isFocused) {
-      return isToggle ? colors.sliderTrackFillActive : colors.tickFillActive;
+      return colors.tickFillActive;
     } else if ($isHovered) {
-      return isToggle ? colors.sliderTrackFillHover : colors.tickFillHover;
+      return colors.tickFillHover;
     } else {
-      return isToggle ? colors.sliderTrackFill : colors.tickFill;
+      return colors.tickFill;
     }
   }
 }
@@ -231,17 +230,24 @@ export const Input = styled('input', {
 
 export const Toggle = styled<SharedStylePropsT>(
   'div',
-  ({$theme, $checked, $disabled}) => {
+  ({$theme, $checked, $disabled, $isError, $isFocused}) => {
     let backgroundColor = $theme.colors.white;
-    if ($checked) backgroundColor = $theme.colors.black;
-    if ($disabled) backgroundColor = $theme.colors.mono600;
+    if ($disabled) {
+      backgroundColor = $theme.colors.mono600;
+    } else if ($checked && $isError) {
+      backgroundColor = $theme.colors.borderError;
+    } else if ($checked) {
+      backgroundColor = $theme.colors.black;
+    }
     return {
       backgroundColor,
       borderTopLeftRadius: '50%',
       borderTopRightRadius: '50%',
       borderBottomRightRadius: '50%',
       borderBottomLeftRadius: '50%',
-      boxShadow: $theme.lighting.shadow400,
+      boxShadow: $isFocused
+        ? $theme.lighting.shadow500
+        : $theme.lighting.shadow400,
       height: $theme.sizing.scale700,
       width: $theme.sizing.scale700,
       transform: $checked
@@ -255,11 +261,16 @@ export const Toggle = styled<SharedStylePropsT>(
 export const ToggleInner = styled('div', {});
 
 export const ToggleTrack = styled<SharedStylePropsT>('div', props => {
+  let backgroundColor = props.$theme.colors.sliderTrackFill;
+  if (props.$disabled) {
+    backgroundColor = props.$theme.colors.sliderTrackFillDisabled;
+  } else if (props.$isError && props.$checked) {
+    backgroundColor = props.$theme.colors.tickFillError;
+  }
+
   return {
     alignItems: 'center',
-    backgroundColor: props.$disabled
-      ? props.$theme.colors.sliderTrackFillDisabled
-      : props.$theme.colors.sliderTrackFill,
+    backgroundColor,
     borderTopLeftRadius: '7px',
     borderTopRightRadius: '7px',
     borderBottomRightRadius: '7px',
