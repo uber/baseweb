@@ -266,7 +266,6 @@ export const ToggleTrack = styled<SharedStylePropsT>('div', props => {
     borderBottomLeftRadius: '7px',
     display: 'flex',
     height: props.$theme.sizing.scale550,
-    // justifyContent: props.$checked ? 'flex-end' : 'flex-start',
     marginTop: props.$theme.sizing.scale200,
     marginBottom: props.$theme.sizing.scale100,
     marginLeft: props.$theme.sizing.scale200,
