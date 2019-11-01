@@ -49,6 +49,7 @@ export const Root = styled<SharedStylePropsArgT>('div', props => {
 export const Backdrop = styled<SharedStylePropsArgT>('div', props => {
   const {$animate, $isOpen, $isVisible, $theme} = props;
   return {
+    pointerEvents: 'none',
     position: 'fixed',
     right: 0,
     bottom: 0,
@@ -77,7 +78,6 @@ export const DialogContainer = styled<SharedStylePropsArgT>('div', props => {
     justifyContent: 'center',
     width: '100%',
     minHeight: '100%',
-    pointerEvents: 'none',
     userSelect: 'none',
   };
 });
