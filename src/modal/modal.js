@@ -128,14 +128,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     this.triggerClose(CLOSE_SOURCE.backdrop);
   };
 
-  onDialogContainerClick = (e: SyntheticEvent<HTMLElement>) => {
-    const dialogRef = this.getRef('Dialog');
-    if (dialogRef.current && dialogRef.current.contains(e.target)) {
-      return;
-    }
-    this.onBackdropClick();
-  };
-
   onCloseClick = () => {
     this.triggerClose(CLOSE_SOURCE.closeButton);
   };
@@ -267,11 +259,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
                 {...sharedProps}
                 {...backdropProps}
               />
-              <DialogContainer
-                onClick={this.onDialogContainerClick}
-                {...sharedProps}
-                {...dialogContainerProps}
-              >
+              <DialogContainer {...sharedProps} {...dialogContainerProps}>
                 <Dialog
                   tabIndex={-1}
                   aria-modal={
