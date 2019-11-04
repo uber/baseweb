@@ -79,6 +79,11 @@ class Panel extends React.Component<PanelPropsT> {
       ToggleIcon: ToggleIconOverride,
     } = overrides;
 
+    const isIconOverriden =
+      ToggleIconOverride &&
+      (typeof ToggleIconOverride === 'function' ||
+        typeof ToggleIconOverride.component === 'function');
+
     const [PanelContainer, panelContainerProps] = getOverrides(
       PanelContainerOverride,
       StyledPanelContainer,
@@ -99,7 +104,14 @@ class Panel extends React.Component<PanelPropsT> {
       {Svg: ToggleIconOverride},
     );
 
-    const ToggleIconComponent = expanded ? CheckIndeterminateIcon : PlusIcon;
+    // it's a bit tricky ¯\_(ツ)_/¯
+    // we only want to use the theme overrides, if it was not override locally
+    const ToggleIconComponent = isIconOverriden
+      ? ToggleIcon
+      : expanded
+      ? CheckIndeterminateIcon
+      : PlusIcon;
+
     return (
       <LocaleContext.Consumer>
         {locale => (
