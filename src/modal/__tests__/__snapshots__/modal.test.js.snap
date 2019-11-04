@@ -321,7 +321,6 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                   $isVisible={false}
                   $role="dialog"
                   $size="default"
-                  onClick={[Function]}
                 >
                   <MockStyledComponent
                     $animate={true}
@@ -331,7 +330,6 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                     $role="dialog"
                     $size="default"
                     forwardedRef={null}
-                    onClick={[Function]}
                   >
                     <Portal>
                       <ForwardRef
