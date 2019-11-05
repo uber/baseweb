@@ -20,7 +20,7 @@ export const component = () => {
     <React.Fragment>
       <Button
         onClick={() => {
-          setDate(new Date('2019/03/18'));
+          setDate(new Date('2019/07/01'));
         }}
         size="compact"
       >

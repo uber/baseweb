@@ -7,16 +7,18 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-
+import {Button} from '../../button/index.js';
 import {StatefulSelect} from '../../select/index.js';
 import {Drawer} from '../index.js';
 
 export const name = 'drawer-select';
 
 const Example = () => {
+  const [isOpen, setIsOpen] = React.useState(true);
   return (
     <div>
-      <Drawer closeable={false} isOpen>
+      <Button onClick={() => setIsOpen(true)}>Open Drawer</Button>
+      <Drawer animate={false} isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <StatefulSelect
           options={[
             {id: 'AliceBlue', color: '#F0F8FF'},

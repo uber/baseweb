@@ -101,7 +101,7 @@ describe('Datepicker', () => {
       selectors.input,
       input => input.value,
     );
-    expect(selectedValue).toBe('2019/03/18');
+    expect(selectedValue).toBe('2019/07/01');
   });
 
   it('month year dropdown opens on arrow down', async () => {
