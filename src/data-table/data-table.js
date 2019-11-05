@@ -627,7 +627,30 @@ export function Unstable_DataTable(props: Props) {
               <QueryInput onChange={setTextQuery} />
 
               {Array.from(filters).map(([title, filter]) => (
-                <Tag key={title} onActionClick={() => removeFilter(title)}>
+                <Tag
+                  key={title}
+                  onActionClick={() => removeFilter(title)}
+                  overrides={{
+                    Root: {
+                      style: {
+                        borderTopLeftRadius: '36px',
+                        borderTopRightRadius: '36px',
+                        borderBottomLeftRadius: '36px',
+                        borderBottomRightRadius: '36px',
+                        height: '36px',
+                        marginTop: null,
+                        marginBottom: null,
+                      },
+                    },
+                    Action: {
+                      style: {
+                        borderTopRightRadius: '36px',
+                        borderBottomRightRadius: '36px',
+                        height: '22px',
+                      },
+                    },
+                  }}
+                >
                   <span
                     className={css({
                       ...theme.typography.font150,
