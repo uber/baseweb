@@ -20,73 +20,33 @@ import {
 
 export const name = 'modal';
 
-type ModalStateContainerPropsT = {
-  isInitiallyOpen: boolean,
-  children: ({
-    toggle: (open?: boolean) => void,
-    open: () => void,
-    close: () => void,
-    isOpen: boolean,
-  }) => React.Node,
+export const component = () => {
+  const [isOpen, setIsOpen] = React.useState(true);
+  return (
+    <React.Fragment>
+      <Button onClick={() => setIsOpen(true)} className="open-modal-button">
+        Open Modal
+      </Button>
+      <Modal
+        onClose={() => setIsOpen(false)}
+        isOpen={isOpen}
+        size={SIZE.default}
+      >
+        <ModalHeader>Hello world</ModalHeader>
+        <ModalBody>
+          Proin ut dui sed metus pharetra hend rerit vel non mi. Nulla ornare
+          faucibus ex, non facilisis nisl. Maecenas aliquet mauris ut tempus.
+        </ModalBody>
+        <ModalFooter>
+          <ModalButton
+            onClick={() => setIsOpen(false)}
+            data-e2e="cancel-button"
+          >
+            Cancel
+          </ModalButton>
+          <ModalButton onClick={() => setIsOpen(false)}>Okay</ModalButton>
+        </ModalFooter>
+      </Modal>
+    </React.Fragment>
+  );
 };
-
-type ModalStateContainerStateT = {
-  isOpen: boolean,
-};
-
-class ModalStateContainer extends React.Component<
-  ModalStateContainerPropsT,
-  ModalStateContainerStateT,
-> {
-  static defaultProps = {
-    isInitiallyOpen: false,
-  };
-  state = {
-    isOpen: this.props.isInitiallyOpen,
-  };
-  toggle = (open?: boolean = !this.state.isOpen) => {
-    this.setState({
-      isOpen: !!open,
-    });
-  };
-  open = () => {
-    this.toggle(true);
-  };
-  close = () => {
-    this.toggle(false);
-  };
-  render() {
-    return this.props.children({
-      toggle: this.toggle,
-      open: this.open,
-      close: this.close,
-      setState: this.setState.bind(this),
-      ...this.state,
-    });
-  }
-}
-
-export const component = () => (
-  <ModalStateContainer isInitiallyOpen>
-    {({open, close, isOpen}) => (
-      <React.Fragment>
-        <Button onClick={open} className="open-modal-button">
-          Open Modal
-        </Button>
-        <Modal onClose={close} isOpen={isOpen} size={SIZE.default}>
-          <ModalHeader>Hello world</ModalHeader>
-          <ModalBody>
-            Proin ut dui sed metus pharetra hend rerit vel non mi. Nulla ornare
-            faucibus ex, non facilisis nisl. Maecenas aliquet mauris ut tempus.
-          </ModalBody>
-          <ModalFooter>
-            <ModalButton onClick={close} data-e2e="cancel-button">
-              Cancel
-            </ModalButton>
-            <ModalButton onClick={close}>Okay</ModalButton>
-          </ModalFooter>
-        </Modal>
-      </React.Fragment>
-    )}
-  </ModalStateContainer>
-);
