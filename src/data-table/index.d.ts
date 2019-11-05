@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export class Unstable_DataTable extends React.Component<any, any> {}
+export class Unstable_StatefulDataTable extends React.Component<any, any> {}
 
 export function BooleanColumn(options: any): any;
 export function CategoricalColumn(options: any): any;

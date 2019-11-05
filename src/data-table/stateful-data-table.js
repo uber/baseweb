@@ -409,7 +409,7 @@ function QueryInput(props) {
   );
 }
 
-export function Unstable_DataTable(props: Props) {
+export function Unstable_StatefulDataTable(props: Props) {
   const [css, theme] = useStyletron();
   useDuplicateColumnTitleWarning(props.columns);
   const [sortIndex, sortDirection, handleSort] = useSortParameters();

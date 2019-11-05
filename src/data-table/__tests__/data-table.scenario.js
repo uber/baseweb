@@ -16,7 +16,7 @@ import CustomColumn from '../column-custom.js';
 import NumericalColumn from '../column-numerical.js';
 import StringColumn from '../column-string.js';
 import {COLUMNS, NUMERICAL_FORMATS} from '../constants.js';
-import {Unstable_DataTable} from '../data-table.js';
+import {Unstable_StatefulDataTable} from '../stateful-data-table.js';
 
 export const name = 'data-table';
 
@@ -181,7 +181,7 @@ const rows = makeRowsFromColumns(columns, 2000);
 export const component = () => {
   return (
     <div style={{height: '800px', width: '900px'}}>
-      <Unstable_DataTable columns={columns} rows={rows} />
+      <Unstable_StatefulDataTable columns={columns} rows={rows} />
     </div>
   );
 };
