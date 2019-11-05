@@ -113,7 +113,7 @@ function shouldShowSurvey() {
   };
   const TWO_MONTHS = 60 * 24 * 60 * 60 * 1000;
   const ONE_WEEK = 7 * 24 * 60 * 60 * 1000;
-  const SURVEY_DELAY = 2 * 60 * 1000; // 2 minutes
+  const SURVEY_DELAY = 0.5 * 60 * 1000; // 30 seconds
 
   const firstSeen = Cookies.get(cookies.FIRST_SEEN);
   const lastSurveyed = Cookies.get(cookies.LAST_SURVEYED);
