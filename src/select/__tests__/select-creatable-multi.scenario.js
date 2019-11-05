@@ -16,14 +16,7 @@ export const component = () => (
   <StatefulSelect
     creatable
     multi
-    options={[
-      {id: 'Portland', label: 'Portland'},
-      {id: 'NYC', label: 'New York City'},
-      {id: 'LosAngeles', label: 'Los Angeles'},
-      {id: 'Boston', label: 'Boston'},
-      {id: 'Atlanta', label: 'Atlanta'},
-      {id: 'SanFrancisco', label: 'San Francisco'},
-    ]}
+    options={[{id: 'Portland', label: 'Portland'}]}
     labelKey="label"
     valueKey="id"
     overrides={{ValueContainer: {props: {'data-id': 'selected'}}}}
