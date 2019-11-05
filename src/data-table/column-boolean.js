@@ -60,7 +60,7 @@ const BooleanCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
     >
       <div
         className={useCss({
-          textAlign: props.value ? 'left' : 'right',
+          textAlign: props.value ? 'right' : 'left',
           minWidth: theme.sizing.scale1400,
           width: '100%',
         })}
