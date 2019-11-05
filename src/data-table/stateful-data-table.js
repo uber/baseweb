@@ -196,7 +196,6 @@ function useResizeObserver(
 }
 
 const HeaderContext = React.createContext<{|
-  allRows: RowT[],
   columns: ColumnT<>[],
   handleSort: number => void,
   columnHoverIndex: number,
@@ -216,7 +215,6 @@ const HeaderContext = React.createContext<{|
   sortDirection: SortDirectionsT,
   widths: number[],
 |}>({
-  allRows: [],
   columns: [],
   handleSort: () => {},
   columnHoverIndex: -1,
@@ -704,9 +702,8 @@ export function Unstable_StatefulDataTable(props: Props) {
         {({height, width}) => (
           <HeaderContext.Provider
             value={{
-              allRows: props.rows,
               columns: props.columns,
-              rows: props.rows,
+              rows: rows,
               rowActions: props.rowActions || [],
               handleSort,
               columnHoverIndex,
