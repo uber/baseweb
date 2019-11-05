@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {Button} from '../../button/index.js';
 import {StatefulSelect} from '../../select/index.js';
-import {Modal, ModalBody} from '../index.js';
+import {Modal, ModalBody, ModalHeader} from '../index.js';
 
 export const name = 'modal-select';
 
@@ -20,6 +20,7 @@ const Example = () => {
     <div>
       <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <ModalHeader>Hello world</ModalHeader>
         <ModalBody>
           <StatefulSelect
             options={[
