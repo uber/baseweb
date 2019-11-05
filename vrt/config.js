@@ -39,6 +39,61 @@ const config = {
       },
     ],
   },
+  datepicker: {
+    interactions: [
+      {
+        name: 'setDateHighlighted',
+        behavior: async page => {
+          const button = '[data-baseweb="button"]';
+          const input = 'input';
+          const calendar = '[role="application"]';
+          await page.waitForSelector(button);
+          await page.click(button);
+          await page.waitForSelector(input);
+          await page.click(input);
+          await page.waitForSelector(calendar);
+        },
+      },
+    ],
+  },
+  'datepicker-rtl': {
+    interactions: [
+      {
+        name: 'calendarOpened',
+        behavior: async page => {
+          const input = 'input';
+          const calendar = '[role="application"]';
+          await page.waitForSelector(input);
+          await page.click(input);
+          await page.waitForSelector(calendar);
+        },
+      },
+    ],
+  },
+  'datepicker-range': {
+    interactions: [
+      {
+        name: 'selectedRangeHighlighted',
+        behavior: async page => {
+          const input = 'input';
+          const calendar = '[role="application"]';
+          const startDay =
+            '[aria-label="Choose Sunday, March 10th 2019. It\'s available."]';
+          const endDay =
+            '[aria-label="Choose Wednesday, March 20th 2019. It\'s available."]';
+          await page.waitForSelector(input);
+          await page.click(input);
+          await page.waitForSelector(calendar);
+          await page.click(startDay);
+          await page.click(endDay);
+          await page.waitForSelector(calendar, {hidden: true});
+          await page.waitForSelector(input);
+          await page.click(input);
+          await page.waitForSelector(calendar);
+        },
+      },
+    ],
+  },
   'datepicker-range-highlight': {
     interactions: [
       {
@@ -112,17 +167,33 @@ const config = {
       },
     ],
   },
+  'drawer-select': {
+    interactions: [
+      {
+        name: 'selectDropdownVisible',
+        behavior: async page => {
+          const selectSelector = `[data-baseweb="select"] input`;
+          const dropdownSelector = `[role="listbox"]`;
+          await page.waitForSelector(selectSelector);
+          await page.click(selectSelector);
+          await page.waitForSelector(dropdownSelector);
+        },
+      },
+    ],
+  },
   'select-in-modal': {
     interactions: [
       {
-        name: 'opens',
+        name: 'selectDropdownVisible',
         behavior: async page => {
           const buttonSelector = `[data-baseweb="button"]`;
           const selectSelector = `[data-baseweb="select"] input`;
           const dropdownSelector = `[role="listbox"]`;
           await page.waitForSelector(buttonSelector);
+          // open modal
           await page.click(buttonSelector);
           await page.waitForSelector(selectSelector);
+          // open select dropdown
           await page.click(selectSelector);
           await page.waitForSelector(dropdownSelector);
         },
