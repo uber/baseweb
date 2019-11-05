@@ -118,8 +118,8 @@ export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
   const [filters, setFilters] = React.useState(new Map());
   const [textQuery, setTextQuery] = React.useState('');
 
-  function addFilter(filterParams, title, description) {
-    filters.set(title, {filterParams, description});
+  function addFilter(filterParams, title) {
+    filters.set(title, filterParams);
     setFilters(new Map(filters));
   }
   function removeFilter(title) {
@@ -186,7 +186,7 @@ export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
                   >
                     {title}
                   </span>
-                  {filter.description}
+                  : {filter.description}
                 </Tag>
               ))}
 

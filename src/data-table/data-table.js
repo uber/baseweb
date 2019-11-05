@@ -273,7 +273,7 @@ const InnerTableElement = React.forwardRef<
       )}
 
       {ctx.rowActions &&
-        ctx.rowActions.length &&
+        Boolean(ctx.rowActions.length) &&
         ctx.rowHoverIndex > 0 &&
         !ctx.isScrollingX && (
           <div
@@ -413,7 +413,8 @@ export function Unstable_DataTable(props: DataTablePropsT) {
         return;
       }
 
-      const filterFn = column.buildFilter(filter.filterParams);
+      // start here after
+      const filterFn = column.buildFilter(filter);
       Array.from(set).forEach(idx => {
         if (!filterFn(props.rows[idx].data[columnIndex])) {
           set.delete(idx);

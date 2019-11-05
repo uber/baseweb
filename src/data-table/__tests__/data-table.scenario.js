@@ -95,7 +95,10 @@ const columns = [
     format: NUMERICAL_FORMATS.PERCENTAGE,
     minWidth: 120,
   }),
-  CustomColumn<{color: string}, {selection: Set<string>}>({
+  CustomColumn<
+    {color: string},
+    {selection: Set<string>, exclude: boolean, description: string},
+  >({
     title: 'custom color',
     filterable: true,
     sortable: true,
@@ -153,7 +156,11 @@ const columns = [
           </ul>
           <button
             onClick={() => {
-              props.setFilter({selection}, Array.from(selection).join(', '));
+              props.setFilter({
+                selection,
+                description: Array.from(selection).join(', '),
+                exclude: false,
+              });
               props.close();
             }}
           >

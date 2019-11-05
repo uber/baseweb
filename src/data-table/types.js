@@ -38,7 +38,7 @@ export type ColumnT<ValueT = any, FilterParamsT = any> = {|
   renderFilter: React.ComponentType<{|
     data: ValueT[],
     close: () => void,
-    setFilter: (filterParams: FilterParamsT, description: string) => void,
+    setFilter: FilterParamsT => void,
   |}>,
   buildFilter: FilterParamsT => ValueT => boolean,
   sortFn: (ValueT, ValueT) => number,
@@ -77,7 +77,7 @@ export type StatefulDataTablePropsT = {|
 
 export type DataTablePropsT = {|
   ...StatefulDataTablePropsT,
-  filters: Map<string, mixed>,
+  filters: Map<string, {description: string}>,
   onSelectMany: (RowT[]) => void,
   onSelectNone: () => void,
   onSelectOne: RowT => void,
