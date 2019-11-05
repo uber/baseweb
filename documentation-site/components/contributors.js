@@ -36,6 +36,7 @@ function Contributors(props: {contributors: Contributor[]}) {
             target="_blank"
             marginRight="scale200"
             key={contributor.login}
+            title={contributor.login}
           >
             <Avatar
               name={contributor.login}
