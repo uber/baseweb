@@ -50,7 +50,11 @@ const Adopters = (props: {logoSrcs: string[]}) => (
   <>
     <H2>Who is using Base Web?</H2>
     <Block>
-      <FlexGrid flexGridColumnCount={3} backgroundColor="mono100">
+      <FlexGrid
+        flexGridColumnCount={3}
+        backgroundColor="mono100"
+        paddingBottom="scale600"
+      >
         {props.logoSrcs.map((logoSrc, i) => (
           <FlexGridItem
             key={i}
@@ -212,6 +216,7 @@ const Index = (props: {
         '/static/images/uber-logo.png',
         '/static/images/broadcom-logo.png',
         '/static/images/extensis-logo.png',
+        '/static/images/uptime-logo.png',
       ]}
     />
     <Contributors contributors={props.contributors} />
