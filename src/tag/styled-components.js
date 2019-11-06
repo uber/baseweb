@@ -6,7 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {lighten, darken} from 'polished';
+import darken from 'polished/lib/color/darken.js';
+import lighten from 'polished/lib/color/lighten.js';
 
 import {styled} from '../styles/index.js';
 import {KIND, VARIANT} from './constants.js';
