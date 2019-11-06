@@ -171,9 +171,8 @@ type PropsT = {
   // eslint-disable-next-line flowtype/no-weak-types
   rows: any[],
   onSetFilter: (
-    filterParams: mixed,
+    filterParams: {description: string},
     columnTitle: string,
-    description: string,
   ) => void,
 };
 
@@ -245,12 +244,8 @@ function FilterMenu(props: PropsT) {
               <Filter
                 data={activeColumnData}
                 close={handleClose}
-                setFilter={(filterParams, description) =>
-                  props.onSetFilter(
-                    filterParams,
-                    activeColumn.title,
-                    description,
-                  )
+                setFilter={filterParams =>
+                  props.onSetFilter(filterParams, activeColumn.title)
                 }
               />
             </FocusLock>

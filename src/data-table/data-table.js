@@ -16,22 +16,68 @@ import {
   SIZE as BUTTON_SIZES,
   KIND as BUTTON_KINDS,
 } from '../button/index.js';
-import Search from '../icon/search.js';
-import {Input, SIZE as INPUT_SIZES} from '../input/index.js';
 import {useStyletron} from '../styles/index.js';
-import {Tag} from '../tag/index.js';
 
-import FilterMenu from './filter-menu.js';
-import HeaderCell from './header-cell.js';
 import {COLUMNS, SORT_DIRECTIONS} from './constants.js';
+import HeaderCell from './header-cell.js';
 import MeasureColumnWidths from './measure-column-widths.js';
 import type {
   ColumnT,
-  Props,
+  DataTablePropsT,
   RowT,
   SortDirectionsT,
   RowActionT,
 } from './types.js';
+
+type InnerTableElementProps = {|
+  children: React.Node,
+  style: {[string]: mixed},
+|};
+
+type HeaderContextT = {|
+  allRows: RowT[],
+  columns: ColumnT<>[],
+  handleSort: number => void,
+  columnHoverIndex: number,
+  rowHoverIndex: number,
+  scrollLeft: number,
+  isScrollingX: boolean,
+  isSelectable: boolean,
+  isSelectedAll: boolean,
+  isSelectedIndeterminate: boolean,
+  onMouseEnter: number => void,
+  onMouseLeave: () => void,
+  onSelectMany: () => void,
+  onSelectNone: () => void,
+  rowActions: RowActionT[],
+  rows: RowT[],
+  sortIndex: number,
+  sortDirection: SortDirectionsT,
+  widths: number[],
+|};
+
+type CellPlacementPropsT = {
+  columnIndex: number,
+  rowIndex: number,
+  style: {
+    position: string,
+    height: number,
+    width: number,
+    top: number,
+    left: number,
+  },
+  data: {
+    columns: ColumnT<>[],
+    columnHoverIndex: number,
+    isSelectable: boolean,
+    isRowSelected: (string | number) => boolean,
+    onHoverRow: number => void,
+    onSelectOne: RowT => void,
+    rowHoverIndex: number,
+    rows: RowT[],
+    textQuery: string,
+  },
+};
 
 function CellPlacement({columnIndex, rowIndex, data, style}) {
   const [useCss, theme] = useStyletron();
@@ -65,13 +111,13 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
         display: 'flex',
       })}
       style={style}
-      onMouseEnter={() => data.onRowHover(rowIndex)}
+      onMouseEnter={() => data.onHoverRow(rowIndex)}
     >
       <Cell
         value={data.rows[rowIndex - 1].data[columnIndex]}
         onSelect={
           data.isSelectable && columnIndex === 0
-            ? () => data.onSelect(data.rows[rowIndex - 1].id)
+            ? () => data.onSelectOne(data.rows[rowIndex - 1])
             : undefined
         }
         isSelected={data.isRowSelected(data.rows[rowIndex - 1].id)}
@@ -81,7 +127,7 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
   );
 }
 function compareCellPlacement(prevProps, nextProps) {
-  // no need to re-render column header cells on data changes
+  // header cells are not rendered through this component
   if (prevProps.rowIndex === 0) {
     return true;
   }
@@ -116,106 +162,26 @@ function compareCellPlacement(prevProps, nextProps) {
     return true;
   }
 
-  return false;
-}
-const CellPlacementMemo = React.memo<
-  {
-    columnIndex: number,
-    rowIndex: number,
-    style: {
-      position: string,
-      height: number,
-      width: number,
-      top: number,
-      left: number,
-    },
-    data: {
-      columns: ColumnT<>[],
-      columnHoverIndex: number,
-      isSelectable: boolean,
-      isRowSelected: (string | number) => boolean,
-      onRowHover: number => void,
-      onSelect: (string | number) => void,
-      rowHoverIndex: number,
-      rows: RowT[],
-      textQuery: string,
-    },
-  },
-  mixed,
->(CellPlacement, compareCellPlacement);
-CellPlacementMemo.displayName = 'CellPlacement';
-
-function useDuplicateColumnTitleWarning(columns: ColumnT<>[]) {
-  React.useEffect(() => {
-    const titles = columns.reduce(
-      (set, column) => set.add(column.title),
-      new Set(),
-    );
-    if (titles.size < columns.length) {
-      console.warn(
-        'Columns titles must be unique else will result in non-deterministic filtering.',
-      );
-    }
-  }, [columns]);
-}
-
-function useSortParameters() {
-  const [sortIndex, setSortIndex] = React.useState(-1);
-  const [sortDirection, setSortDirection] = React.useState(null);
-
-  function handleSort(columnIndex) {
-    if (columnIndex === sortIndex) {
-      if (sortDirection === SORT_DIRECTIONS.ASC) {
-        setSortIndex(-1);
-        setSortDirection(SORT_DIRECTIONS.DESC);
-      } else {
-        setSortDirection(SORT_DIRECTIONS.ASC);
-      }
-    } else {
-      setSortIndex(columnIndex);
-      setSortDirection(SORT_DIRECTIONS.DESC);
-    }
+  // similar to the row highlight optimization, do not update the cell if not in the previously
+  // highlighted column or next highlighted.
+  if (
+    prevProps.columnIndex !== prevProps.data.columnHoverIndex &&
+    prevProps.columnIndex !== nextProps.data.columnHoverIndex &&
+    prevProps.data.rowHoverIndex === nextProps.data.rowHoverIndex &&
+    prevProps.data.isRowSelected === nextProps.data.isRowSelected
+  ) {
+    return true;
   }
 
-  return [sortIndex, sortDirection, handleSort];
+  return false;
 }
+const CellPlacementMemo = React.memo<CellPlacementPropsT, mixed>(
+  CellPlacement,
+  compareCellPlacement,
+);
+CellPlacementMemo.displayName = 'CellPlacement';
 
-function useResizeObserver(
-  ref: {current: HTMLElement | null},
-  callback: (ResizeObserverEntry[], ResizeObserver) => mixed,
-) {
-  React.useLayoutEffect(() => {
-    if (__BROWSER__) {
-      if (ref.current) {
-        const observer = new ResizeObserver(callback);
-        observer.observe(ref.current);
-        return () => observer.disconnect();
-      }
-    }
-  }, [ref]);
-}
-
-const HeaderContext = React.createContext<{|
-  allRows: RowT[],
-  columns: ColumnT<>[],
-  handleSort: number => void,
-  columnHoverIndex: number,
-  rowHoverIndex: number,
-  scrollLeft: number,
-  isScrollingX: boolean,
-  isSelectable: boolean,
-  isSelectedAll: boolean,
-  isSelectedIndeterminate: boolean,
-  onMouseEnter: number => void,
-  onMouseLeave: () => void,
-  onSelectAll: () => void,
-  onSelectNone: () => void,
-  rowActions: RowActionT[],
-  rows: RowT[],
-  sortIndex: number,
-  sortDirection: SortDirectionsT,
-  widths: number[],
-|}>({
+const HeaderContext = React.createContext<HeaderContextT>({
   allRows: [],
   columns: [],
   handleSort: () => {},
@@ -228,7 +194,7 @@ const HeaderContext = React.createContext<{|
   isSelectedIndeterminate: false,
   onMouseEnter: () => {},
   onMouseLeave: () => {},
-  onSelectAll: () => {},
+  onSelectMany: () => {},
   onSelectNone: () => {},
   rowActions: [],
   rows: [],
@@ -241,12 +207,7 @@ HeaderContext.displayName = 'HeaderContext';
 // replaces the content of the virtualized window with contents. in this case,
 // we are prepending a table header row before the table rows (children to the fn).
 const InnerTableElement = React.forwardRef<
-  {
-    children: React.Node,
-    style: {
-      [string]: mixed,
-    },
-  },
+  InnerTableElementProps,
   HTMLDivElement,
 >((props, ref) => {
   const [useCss, theme] = useStyletron();
@@ -295,7 +256,7 @@ const InnerTableElement = React.forwardRef<
                 isSelectedIndeterminate={ctx.isSelectedIndeterminate}
                 onMouseEnter={() => ctx.onMouseEnter(columnIndex)}
                 onMouseLeave={() => ctx.onMouseLeave()}
-                onSelectAll={ctx.onSelectAll}
+                onSelectAll={ctx.onSelectMany}
                 onSelectNone={ctx.onSelectNone}
                 onSort={ctx.handleSort}
                 sortDirection={
@@ -323,7 +284,7 @@ const InnerTableElement = React.forwardRef<
       )}
 
       {ctx.rowActions &&
-        ctx.rowActions.length &&
+        Boolean(ctx.rowActions.length) &&
         ctx.rowHoverIndex > 0 &&
         !ctx.isScrollingX && (
           <div
@@ -372,50 +333,20 @@ const InnerTableElement = React.forwardRef<
 });
 InnerTableElement.displayName = 'InnerTableElement';
 
-function QueryInput(props) {
-  const [css, theme] = useStyletron();
-  const [value, setValue] = React.useState('');
-
-  React.useEffect(() => {
-    const timeout = setTimeout(() => props.onChange(value), 250);
-    return () => clearTimeout(timeout);
-  }, [value]);
-
-  return (
-    <div className={css({width: '375px'})}>
-      <Input
-        aria-label="Search by text"
-        overrides={{
-          Before: function Before() {
-            return (
-              <div
-                className={css({
-                  display: 'flex',
-                  alignItems: 'center',
-                  paddingLeft: theme.sizing.scale500,
-                })}
-              >
-                <Search size="18px" />
-              </div>
-            );
-          },
-        }}
-        size={INPUT_SIZES.compact}
-        onChange={event => setValue(event.target.value)}
-        value={value}
-        clearable
-      />
-    </div>
-  );
-}
-
-export function Unstable_DataTable(props: Props) {
-  const [css, theme] = useStyletron();
-  useDuplicateColumnTitleWarning(props.columns);
-  const [sortIndex, sortDirection, handleSort] = useSortParameters();
-  const [filters, setFilters] = React.useState(new Map());
-  const [widths, setWidths] = React.useState(props.columns.map(() => 0));
+export function Unstable_DataTable(props: DataTablePropsT) {
+  const [, theme] = useStyletron();
   const gridRef = React.useRef<typeof VariableSizeGrid | null>(null);
+  const [widths, setWidths] = React.useState(props.columns.map(() => 0));
+  const handleWidthsChange = React.useCallback(
+    nextWidths => {
+      setWidths(nextWidths);
+      if (gridRef.current) {
+        // $FlowFixMe trigger react-window to layout the elements again
+        gridRef.current.resetAfterColumnIndex(0, true);
+      }
+    },
+    [gridRef.current],
+  );
 
   const [scrollLeft, setScrollLeft] = React.useState(0);
   const [isScrollingX, setIsScrollingX] = React.useState(false);
@@ -432,6 +363,15 @@ export function Unstable_DataTable(props: Props) {
       return () => clearTimeout(timeout);
     }
   }, [recentlyScrolledX]);
+  const handleScroll = React.useCallback(
+    params => {
+      setScrollLeft(params.scrollLeft);
+      if (params.scrollLeft !== scrollLeft) {
+        setRecentlyScrolledX(true);
+      }
+    },
+    [scrollLeft, setScrollLeft, setRecentlyScrolledX],
+  );
 
   const [rowHoverIndex, setRowHoverIndex] = React.useState(-1);
   const handleRowHover = React.useCallback(
@@ -456,43 +396,45 @@ export function Unstable_DataTable(props: Props) {
     }
   }
 
-  const [textQuery, setTextQuery] = React.useState('');
-
   const sortedIndices = React.useMemo(() => {
     let toSort = props.rows.map((r, i) => [r, i]);
+    const index = props.sortIndex;
 
-    if (sortIndex !== -1) {
-      const sortFn = props.columns[sortIndex].sortFn;
-      if (sortDirection === SORT_DIRECTIONS.DESC) {
-        toSort.sort((a, b) =>
-          sortFn(a[0].data[sortIndex], b[0].data[sortIndex]),
-        );
-      } else if (sortDirection === SORT_DIRECTIONS.ASC) {
-        toSort.sort((a, b) =>
-          sortFn(b[0].data[sortIndex], a[0].data[sortIndex]),
-        );
+    if (index !== null && index !== undefined && index !== -1) {
+      const sortFn = props.columns[index].sortFn;
+      if (props.sortDirection === SORT_DIRECTIONS.DESC) {
+        toSort.sort((a, b) => sortFn(a[0].data[index], b[0].data[index]));
+      } else if (props.sortDirection === SORT_DIRECTIONS.ASC) {
+        toSort.sort((a, b) => sortFn(b[0].data[index], a[0].data[index]));
       }
     }
 
     return toSort.map(el => el[1]);
-  }, [sortIndex, sortDirection, props.columns, props.rows]);
+  }, [props.sortIndex, props.sortDirection, props.columns, props.rows]);
+
+  const textQuery = React.useMemo(() => props.textQuery || '', [
+    props.textQuery,
+  ]);
 
   const filteredIndices = React.useMemo(() => {
     const set = new Set(props.rows.map((_, idx) => idx));
-    Array.from(filters, f => f).forEach(([title, filter]) => {
-      const columnIndex = props.columns.findIndex(c => c.title === title);
-      const column = props.columns[columnIndex];
-      if (!column) {
-        return;
-      }
-
-      const filterFn = column.buildFilter(filter.filterParams);
-      Array.from(set).forEach(idx => {
-        if (!filterFn(props.rows[idx].data[columnIndex])) {
-          set.delete(idx);
+    Array.from(props.filters || new Set(), f => f).forEach(
+      ([title, filter]) => {
+        const columnIndex = props.columns.findIndex(c => c.title === title);
+        const column = props.columns[columnIndex];
+        if (!column) {
+          return;
         }
-      });
-    });
+
+        // start here after
+        const filterFn = column.buildFilter(filter);
+        Array.from(set).forEach(idx => {
+          if (!filterFn(props.rows[idx].data[columnIndex])) {
+            set.delete(idx);
+          }
+        });
+      },
+    );
 
     if (textQuery) {
       const stringishColumnIndices = [];
@@ -516,7 +458,7 @@ export function Unstable_DataTable(props: Props) {
     }
 
     return set;
-  }, [filters, textQuery, props.columns, props.rows]);
+  }, [props.filters, textQuery, props.columns, props.rows]);
 
   const rows = React.useMemo(() => {
     return sortedIndices
@@ -524,47 +466,57 @@ export function Unstable_DataTable(props: Props) {
       .map(idx => props.rows[idx]);
   }, [sortedIndices, filteredIndices, props.rows]);
 
-  function addFilter(filterParams, title, description) {
-    filters.set(title, {filterParams, description});
-    setFilters(new Map(filters));
-  }
-  function removeFilter(title) {
-    filters.delete(title);
-    setFilters(new Map(filters));
-  }
-
-  const [selectedRows, setSelectedRows] = React.useState(new Set());
   const isSelectable = props.batchActions ? !!props.batchActions.length : false;
-  function handleSelectAll() {
-    // only adds rows that are visible in the table
-    handleSelectChange(new Set([...selectedRows, ...rows.map(r => r.id)]));
-  }
-  function handleSelectNone() {
-    handleSelectChange(new Set());
-  }
-  function handleSelectChange(next) {
-    setSelectedRows(next);
-
-    const selectionCallback = props.onSelectionChange;
-    if (selectionCallback) {
-      selectionCallback(rows.filter(r => next.has(r.id)));
+  const isSelectedAll = React.useMemo(() => {
+    if (!props.selectedRowIds) {
+      return false;
     }
-  }
-
-  const handleRowSelect = React.useCallback(
+    return !!rows.length && props.selectedRowIds.size >= rows.length;
+  }, [props.selectedRowIds, rows.length]);
+  const isSelectedIndeterminate = React.useMemo(() => {
+    if (!props.selectedRowIds) {
+      return false;
+    }
+    return (
+      !!props.selectedRowIds.size && props.selectedRowIds.size < rows.length
+    );
+  }, [props.selectedRowIds, rows.length]);
+  const isRowSelected = React.useCallback(
     id => {
-      if (selectedRows.has(id)) {
-        selectedRows.delete(id);
-      } else {
-        selectedRows.add(id);
+      if (props.selectedRowIds) {
+        return props.selectedRowIds.has(id);
       }
-      handleSelectChange(new Set(selectedRows));
+      return false;
     },
-    [selectedRows],
+    [props.selectedRowIds],
   );
-  const isRowSelected = React.useCallback(id => selectedRows.has(id), [
-    selectedRows,
-  ]);
+  const handleSelectMany = React.useCallback(() => {
+    if (props.onSelectMany) {
+      props.onSelectMany(rows);
+    }
+  }, [rows, props.onSelectMany]);
+  const handleSelectNone = React.useCallback(() => {
+    if (props.onSelectNone) {
+      props.onSelectNone();
+    }
+  }, [props.onSelectNone]);
+  const handleSelectOne = React.useCallback(
+    row => {
+      if (props.onSelectOne) {
+        props.onSelectOne(row);
+      }
+    },
+    [props.onSelectOne],
+  );
+
+  const handleSort = React.useCallback(
+    columnIndex => {
+      if (props.onSort) {
+        props.onSort(columnIndex);
+      }
+    },
+    [props.onSort],
+  );
 
   const itemData = React.useMemo(() => {
     return {
@@ -572,29 +524,23 @@ export function Unstable_DataTable(props: Props) {
       rowHoverIndex,
       isRowSelected,
       isSelectable,
-      onRowHover: handleRowHover,
-      onSelect: handleRowSelect,
+      onHoverRow: handleRowHover,
+      onSelectOne: handleSelectOne,
       columns: props.columns,
       rows,
       textQuery,
     };
   }, [
     handleRowHover,
-    handleRowSelect,
     columnHoverIndex,
     isRowSelected,
     isSelectable,
-    props.columns,
     rowHoverIndex,
     rows,
+    props.columns,
+    handleSelectOne,
     textQuery,
   ]);
-
-  const headlineRef = React.useRef(null);
-  const [headlineHeight, setHeadlineHeight] = React.useState(64);
-  useResizeObserver(headlineRef, entries => {
-    setHeadlineHeight(entries[0].contentRect.height);
-  });
 
   return (
     <React.Fragment>
@@ -603,149 +549,30 @@ export function Unstable_DataTable(props: Props) {
         rows={props.rows}
         widths={widths}
         isSelectable={isSelectable}
-        onWidthsChange={nextWidths => {
-          setWidths(nextWidths);
-          if (gridRef.current) {
-            // $FlowFixMe trigger react-window to layout the elements again
-            gridRef.current.resetAfterColumnIndex(0, true);
-          }
-        }}
+        onWidthsChange={handleWidthsChange}
       />
-
-      <div className={css({height: `${headlineHeight}px`})}>
-        <div ref={headlineRef}>
-          {!selectedRows.size && (
-            <div
-              className={css({
-                alignItems: 'end',
-                display: 'flex',
-                flexWrap: 'wrap',
-                paddingTop: theme.sizing.scale500,
-                paddingBottom: theme.sizing.scale500,
-              })}
-            >
-              <QueryInput onChange={setTextQuery} />
-
-              {Array.from(filters).map(([title, filter]) => (
-                <Tag
-                  key={title}
-                  onActionClick={() => removeFilter(title)}
-                  overrides={{
-                    Root: {
-                      style: {
-                        borderTopLeftRadius: '36px',
-                        borderTopRightRadius: '36px',
-                        borderBottomLeftRadius: '36px',
-                        borderBottomRightRadius: '36px',
-                        height: '36px',
-                        marginTop: null,
-                        marginBottom: null,
-                      },
-                    },
-                    Action: {
-                      style: {
-                        borderTopRightRadius: '36px',
-                        borderBottomRightRadius: '36px',
-                        height: '22px',
-                      },
-                    },
-                  }}
-                >
-                  <span
-                    className={css({
-                      ...theme.typography.font150,
-                      color: theme.colors.mono1000,
-                    })}
-                  >
-                    {title}
-                  </span>
-                  : {filter.description}
-                </Tag>
-              ))}
-
-              <FilterMenu
-                columns={props.columns}
-                filters={filters}
-                rows={rows}
-                onSetFilter={addFilter}
-              />
-            </div>
-          )}
-
-          {Boolean(selectedRows.size) && props.batchActions && (
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                paddingTop: theme.sizing.scale400,
-                paddingBottom: theme.sizing.scale400,
-              }}
-            >
-              {props.batchActions.map(action => {
-                function onClick(event) {
-                  action.onClick({
-                    clearSelection: handleSelectNone,
-                    event,
-                    selection: rows.filter(r => selectedRows.has(r.id)),
-                  });
-                }
-
-                if (action.renderIcon) {
-                  const Icon = action.renderIcon;
-                  return (
-                    <Button
-                      key={action.label}
-                      overrides={{
-                        BaseButton: {props: {'aria-label': action.label}},
-                      }}
-                      onClick={onClick}
-                      kind={BUTTON_KINDS.tertiary}
-                      shape={BUTTON_SHAPES.round}
-                    >
-                      <Icon size={16} />
-                    </Button>
-                  );
-                }
-
-                return (
-                  <Button
-                    key={action.label}
-                    onClick={onClick}
-                    kind={BUTTON_KINDS.secondary}
-                    size={BUTTON_SIZES.compact}
-                  >
-                    {action.label}
-                  </Button>
-                );
-              })}
-            </div>
-          )}
-        </div>
-      </div>
-
       <AutoSizer>
         {({height, width}) => (
           <HeaderContext.Provider
             value={{
               allRows: props.rows,
               columns: props.columns,
-              rows: props.rows,
-              rowActions: props.rowActions || [],
               handleSort,
               columnHoverIndex,
               rowHoverIndex,
               scrollLeft,
               isScrollingX,
               isSelectable,
-              isSelectedAll: !!rows.length && selectedRows.size >= rows.length,
-              isSelectedIndeterminate:
-                !!selectedRows.size && selectedRows.size < rows.length,
+              isSelectedAll,
+              isSelectedIndeterminate,
               onMouseEnter: handleColumnHeaderMouseEnter,
               onMouseLeave: handleColumnHeaderMouseLeave,
-              onSelectAll: handleSelectAll,
+              onSelectMany: handleSelectMany,
               onSelectNone: handleSelectNone,
-              sortDirection,
-              sortIndex,
+              rows,
+              rowActions: props.rowActions || [],
+              sortDirection: props.sortDirection || null,
+              sortIndex: props.sortIndex || -1,
               widths,
             }}
           >
@@ -756,18 +583,13 @@ export function Unstable_DataTable(props: Props) {
               innerElementType={InnerTableElement}
               columnCount={props.columns.length}
               columnWidth={columnIndex => widths[columnIndex]}
-              height={height - headlineHeight}
+              height={height}
               // plus one to account for additional header row
               rowCount={rows.length + 1}
               rowHeight={rowIndex => (rowIndex === 0 ? 48 : 36)}
               width={width}
               itemData={itemData}
-              onScroll={params => {
-                setScrollLeft(params.scrollLeft);
-                if (params.scrollLeft !== scrollLeft) {
-                  setRecentlyScrolledX(true);
-                }
-              }}
+              onScroll={handleScroll}
               style={{
                 ...theme.borders.border200,
                 borderColor: theme.colors.mono500,
