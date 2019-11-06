@@ -576,23 +576,8 @@ class Select extends React.Component<
     const sharedProps = this.getSharedProps();
     const renderLabel = this.props.getValueLabel || this.getValueLabel;
     const Value = valueComponent || Noop;
-    const [Placeholder, placeholderProps] = getOverrides(
-      overrides.Placeholder,
-      StyledPlaceholder,
-    );
     if (!valueArray.length) {
-      const showPlaceholder = shouldShowPlaceholder(
-        this.state,
-        this.props,
-        isOpen,
-      );
-      return showPlaceholder ? (
-        <Placeholder {...sharedProps} {...placeholderProps}>
-          {typeof this.props.placeholder !== 'undefined'
-            ? this.props.placeholder
-            : locale.select.placeholder}
-        </Placeholder>
-      ) : null;
+      return null;
     }
     if (this.props.multi) {
       return valueArray.map((value, i) => {
@@ -814,6 +799,7 @@ class Select extends React.Component<
       size,
       searchable,
       type,
+      value,
     } = this.props;
     const {isOpen, isFocused, isPseudoFocused} = this.state;
     return {
@@ -831,6 +817,7 @@ class Select extends React.Component<
       $searchable: searchable,
       $size: size,
       $type: type,
+      $isEmpty: !this.getValueArray(value).length,
     };
   }
 
@@ -860,21 +847,17 @@ class Select extends React.Component<
       overrides.Popover,
       Popover,
     );
+    const [Placeholder, placeholderProps] = getOverrides(
+      overrides.Placeholder,
+      StyledPlaceholder,
+    );
     const sharedProps = this.getSharedProps();
 
     const valueArray = this.getValueArray(value);
     const options = this.filterOptions(
       multi && filterOutSelected ? valueArray : null,
     );
-    let isOpen = this.state.isOpen;
-    if (
-      multi &&
-      !options.length &&
-      valueArray.length &&
-      !this.state.inputValue
-    ) {
-      isOpen = false;
-    }
+    const isOpen = this.state.isOpen;
     sharedProps.$isOpen = isOpen;
 
     if (__DEV__) {
@@ -885,6 +868,10 @@ class Select extends React.Component<
         );
       }
     }
+
+    const showPlaceholder =
+      !valueArray.length &&
+      shouldShowPlaceholder(this.state, this.props, isOpen);
 
     return (
       <LocaleContext.Consumer>
@@ -948,6 +935,13 @@ class Select extends React.Component<
                 <ValueContainer {...sharedProps} {...valueContainerProps}>
                   {this.renderValue(valueArray, isOpen, locale)}
                   {this.renderInput()}
+                  {showPlaceholder ? (
+                    <Placeholder {...sharedProps} {...placeholderProps}>
+                      {typeof this.props.placeholder !== 'undefined'
+                        ? this.props.placeholder
+                        : locale.select.placeholder}
+                    </Placeholder>
+                  ) : null}
                 </ValueContainer>
                 <IconsContainer {...sharedProps} {...iconsContainerProps}>
                   {this.renderLoading()}

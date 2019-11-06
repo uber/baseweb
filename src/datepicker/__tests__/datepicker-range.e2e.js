@@ -54,22 +54,6 @@ describe('Datepicker, Range', () => {
     expect(selectedValue).toBe('2019/12/25 - 2019/12/31');
   });
 
-  it('does not highlight random days when the right arrow is clicked', async () => {
-    await mount(page, 'datepicker-range');
-    await page.waitFor(selectors.input);
-    await page.click(selectors.input);
-    await page.waitFor(selectors.calendar);
-    await page.click(selectors.rightArrow);
-    await page.waitFor(selectors.day4);
-    const value = await page.$(selectors.day4);
-    const highlighted = await page.evaluate(
-      element => element.getAttribute('data-highlighted'),
-      value,
-    );
-    // Check the value of a custom data-highlighted attribute
-    expect(highlighted).toBe('false');
-  });
-
   it('selects range', async () => {
     await mount(page, 'datepicker-range');
     await page.waitFor(selectors.input);

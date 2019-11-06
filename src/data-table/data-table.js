@@ -21,10 +21,17 @@ import {Input, SIZE as INPUT_SIZES} from '../input/index.js';
 import {useStyletron} from '../styles/index.js';
 import {Tag} from '../tag/index.js';
 
+import FilterMenu from './filter-menu.js';
 import HeaderCell from './header-cell.js';
 import {COLUMNS, SORT_DIRECTIONS} from './constants.js';
 import MeasureColumnWidths from './measure-column-widths.js';
-import type {ColumnT, Props, RowT, SortDirectionsT} from './types.js';
+import type {
+  ColumnT,
+  Props,
+  RowT,
+  SortDirectionsT,
+  RowActionT,
+} from './types.js';
 
 function CellPlacement({columnIndex, rowIndex, data, style}) {
   const [useCss, theme] = useStyletron();
@@ -36,11 +43,11 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
 
   let backgroundColor = theme.colors.mono100;
   if (
-    (rowIndex % 2 && columnIndex === data.headerHoverIndex) ||
+    (rowIndex % 2 && columnIndex === data.columnHoverIndex) ||
     rowIndex === data.rowHoverIndex
   ) {
     backgroundColor = theme.colors.mono300;
-  } else if (rowIndex % 2 || columnIndex === data.headerHoverIndex) {
+  } else if (rowIndex % 2 || columnIndex === data.columnHoverIndex) {
     backgroundColor = theme.colors.mono200;
   }
 
@@ -89,7 +96,7 @@ function compareCellPlacement(prevProps, nextProps) {
 
   if (
     prevProps.data.isSelectable === nextProps.data.isSelectable &&
-    prevProps.data.headerHoverIndex === nextProps.data.headerHoverIndex &&
+    prevProps.data.columnHoverIndex === nextProps.data.columnHoverIndex &&
     prevProps.data.rowHoverIndex === nextProps.data.rowHoverIndex &&
     prevProps.data.textQuery === nextProps.data.textQuery &&
     prevProps.data.isRowSelected === nextProps.data.isRowSelected
@@ -103,7 +110,7 @@ function compareCellPlacement(prevProps, nextProps) {
   if (
     prevProps.rowIndex !== prevProps.data.rowHoverIndex &&
     prevProps.rowIndex !== nextProps.data.rowHoverIndex &&
-    prevProps.data.headerHoverIndex === nextProps.data.headerHoverIndex &&
+    prevProps.data.columnHoverIndex === nextProps.data.columnHoverIndex &&
     prevProps.data.isRowSelected === nextProps.data.isRowSelected
   ) {
     return true;
@@ -124,7 +131,7 @@ const CellPlacementMemo = React.memo<
     },
     data: {
       columns: ColumnT<>[],
-      headerHoverIndex: number,
+      columnHoverIndex: number,
       isSelectable: boolean,
       isRowSelected: (string | number) => boolean,
       onRowHover: number => void,
@@ -188,40 +195,42 @@ function useResizeObserver(
   }, [ref]);
 }
 
-const HeaderContext = React.createContext<{
-  addFilter: (mixed, string, string) => void,
+const HeaderContext = React.createContext<{|
+  allRows: RowT[],
   columns: ColumnT<>[],
-  filterOpenIndex: number,
   handleSort: number => void,
-  headerHoverIndex: number,
+  columnHoverIndex: number,
+  rowHoverIndex: number,
+  scrollLeft: number,
+  isScrollingX: boolean,
   isSelectable: boolean,
   isSelectedAll: boolean,
   isSelectedIndeterminate: boolean,
-  onFilterOpen: number => void,
-  onFilterClose: () => void,
   onMouseEnter: number => void,
   onMouseLeave: () => void,
   onSelectAll: () => void,
   onSelectNone: () => void,
+  rowActions: RowActionT[],
   rows: RowT[],
   sortIndex: number,
   sortDirection: SortDirectionsT,
   widths: number[],
-}>({
-  addFilter: () => {},
+|}>({
+  allRows: [],
   columns: [],
-  filterOpenIndex: -1,
   handleSort: () => {},
-  headerHoverIndex: -1,
+  columnHoverIndex: -1,
+  rowHoverIndex: -1,
+  scrollLeft: 0,
+  isScrollingX: false,
   isSelectable: false,
   isSelectedAll: false,
   isSelectedIndeterminate: false,
-  onFilterOpen: () => {},
-  onFilterClose: () => {},
   onMouseEnter: () => {},
   onMouseLeave: () => {},
   onSelectAll: () => {},
   onSelectNone: () => {},
+  rowActions: [],
   rows: [],
   sortIndex: -1,
   sortDirection: null,
@@ -279,12 +288,8 @@ const InnerTableElement = React.forwardRef<
             >
               <HeaderCell
                 index={columnIndex}
-                filterable={column.filterable}
                 sortable={column.sortable}
-                isHovered={ctx.headerHoverIndex === columnIndex}
-                isFilterOpen={ctx.filterOpenIndex === columnIndex}
-                onFilterOpen={() => ctx.onFilterOpen(columnIndex)}
-                onFilterClose={() => ctx.onFilterClose()}
+                isHovered={ctx.columnHoverIndex === columnIndex}
                 isSelectable={ctx.isSelectable && columnIndex === 0}
                 isSelectedAll={ctx.isSelectedAll}
                 isSelectedIndeterminate={ctx.isSelectedIndeterminate}
@@ -293,18 +298,6 @@ const InnerTableElement = React.forwardRef<
                 onSelectAll={ctx.onSelectAll}
                 onSelectNone={ctx.onSelectNone}
                 onSort={ctx.handleSort}
-                filter={({close}) => {
-                  const Filter = column.renderFilter;
-                  return (
-                    <Filter
-                      setFilter={(filterParams, description) => {
-                        ctx.addFilter(filterParams, column.title, description);
-                      }}
-                      data={ctx.rows.map(r => r.data[columnIndex])}
-                      close={close}
-                    />
-                  );
-                }}
                 sortDirection={
                   ctx.sortIndex === columnIndex ? ctx.sortDirection : null
                 }
@@ -328,6 +321,52 @@ const InnerTableElement = React.forwardRef<
       ) : (
         props.children
       )}
+
+      {ctx.rowActions &&
+        ctx.rowActions.length &&
+        ctx.rowHoverIndex > 0 &&
+        !ctx.isScrollingX && (
+          <div
+            style={{
+              alignItems: 'center',
+              backgroundColor: 'rgba(238, 238, 238, 0.99)',
+              display: 'flex',
+              height: '36px',
+              padding: '0 16px',
+              paddingLeft: theme.sizing.scale300,
+              paddingRight: theme.sizing.scale300,
+              position: 'absolute',
+              right: 0 - ctx.scrollLeft,
+              top: (ctx.rowHoverIndex - 1) * 36 + 48,
+            }}
+          >
+            {ctx.rowActions.map(rowAction => {
+              const RowActionIcon = rowAction.renderIcon;
+              return (
+                <Button
+                  alt={rowAction.label}
+                  key={rowAction.label}
+                  onClick={event =>
+                    rowAction.onClick({
+                      event,
+                      row: ctx.rows[ctx.rowHoverIndex - 1],
+                    })
+                  }
+                  size={BUTTON_SIZES.compact}
+                  kind={BUTTON_KINDS.minimal}
+                  shape={BUTTON_SHAPES.round}
+                  overrides={{
+                    BaseButton: {
+                      style: {marginLeft: theme.sizing.scale300},
+                    },
+                  }}
+                >
+                  <RowActionIcon size={24} />
+                </Button>
+              );
+            })}
+          </div>
+        )}
     </div>
   );
 });
@@ -376,11 +415,28 @@ export function Unstable_DataTable(props: Props) {
   const [sortIndex, sortDirection, handleSort] = useSortParameters();
   const [filters, setFilters] = React.useState(new Map());
   const [widths, setWidths] = React.useState(props.columns.map(() => 0));
-  const gridRef = React.useRef<React.Ref<typeof VariableSizeGrid> | null>(null);
+  const gridRef = React.useRef<typeof VariableSizeGrid | null>(null);
+
+  const [scrollLeft, setScrollLeft] = React.useState(0);
+  const [isScrollingX, setIsScrollingX] = React.useState(false);
+  const [recentlyScrolledX, setRecentlyScrolledX] = React.useState(false);
+  React.useLayoutEffect(() => {
+    if (recentlyScrolledX !== isScrollingX) {
+      setIsScrollingX(recentlyScrolledX);
+    }
+
+    if (recentlyScrolledX) {
+      const timeout = setTimeout(() => {
+        setRecentlyScrolledX(false);
+      }, 200);
+      return () => clearTimeout(timeout);
+    }
+  }, [recentlyScrolledX]);
 
   const [rowHoverIndex, setRowHoverIndex] = React.useState(-1);
   const handleRowHover = React.useCallback(
     nextIndex => {
+      setColumnHoverIndex(-1);
       if (nextIndex !== rowHoverIndex) {
         setRowHoverIndex(nextIndex);
       }
@@ -388,28 +444,16 @@ export function Unstable_DataTable(props: Props) {
     [rowHoverIndex],
   );
 
-  const [filterOpenIndex, setFilterOpenIndex] = React.useState(-1);
-  function handleFilterOpen(columnIndex) {
-    if (filterOpenIndex === columnIndex) {
-      setFilterOpenIndex(-1);
-    } else {
-      setFilterOpenIndex(columnIndex);
-    }
-  }
-  function handleFilterClose() {
-    setFilterOpenIndex(-1);
-  }
-
-  const [headerHoverIndex, setHeaderHoverIndex] = React.useState(-1);
+  const [columnHoverIndex, setColumnHoverIndex] = React.useState(-1);
   function handleColumnHeaderMouseEnter(columnIndex) {
-    setHeaderHoverIndex(columnIndex);
+    setColumnHoverIndex(columnIndex);
     setRowHoverIndex(-1);
-    if (columnIndex !== filterOpenIndex) {
-      setFilterOpenIndex(-1);
-    }
   }
   function handleColumnHeaderMouseLeave() {
-    setHeaderHoverIndex(-1);
+    // $FlowFixMe - unable to get the state type from react-window
+    if (gridRef.current && !gridRef.current.state.isScrolling) {
+      setColumnHoverIndex(-1);
+    }
   }
 
   const [textQuery, setTextQuery] = React.useState('');
@@ -524,7 +568,7 @@ export function Unstable_DataTable(props: Props) {
 
   const itemData = React.useMemo(() => {
     return {
-      headerHoverIndex,
+      columnHoverIndex,
       rowHoverIndex,
       isRowSelected,
       isSelectable,
@@ -537,7 +581,7 @@ export function Unstable_DataTable(props: Props) {
   }, [
     handleRowHover,
     handleRowSelect,
-    headerHoverIndex,
+    columnHoverIndex,
     isRowSelected,
     isSelectable,
     props.columns,
@@ -573,7 +617,7 @@ export function Unstable_DataTable(props: Props) {
           {!selectedRows.size && (
             <div
               className={css({
-                alignItems: 'baseline',
+                alignItems: 'end',
                 display: 'flex',
                 flexWrap: 'wrap',
                 paddingTop: theme.sizing.scale500,
@@ -583,7 +627,30 @@ export function Unstable_DataTable(props: Props) {
               <QueryInput onChange={setTextQuery} />
 
               {Array.from(filters).map(([title, filter]) => (
-                <Tag key={title} onActionClick={() => removeFilter(title)}>
+                <Tag
+                  key={title}
+                  onActionClick={() => removeFilter(title)}
+                  overrides={{
+                    Root: {
+                      style: {
+                        borderTopLeftRadius: '36px',
+                        borderTopRightRadius: '36px',
+                        borderBottomLeftRadius: '36px',
+                        borderBottomRightRadius: '36px',
+                        height: '36px',
+                        marginTop: null,
+                        marginBottom: null,
+                      },
+                    },
+                    Action: {
+                      style: {
+                        borderTopRightRadius: '36px',
+                        borderBottomRightRadius: '36px',
+                        height: '22px',
+                      },
+                    },
+                  }}
+                >
                   <span
                     className={css({
                       ...theme.typography.font150,
@@ -595,6 +662,13 @@ export function Unstable_DataTable(props: Props) {
                   : {filter.description}
                 </Tag>
               ))}
+
+              <FilterMenu
+                columns={props.columns}
+                filters={filters}
+                rows={rows}
+                onSetFilter={addFilter}
+              />
             </div>
           )}
 
@@ -653,18 +727,19 @@ export function Unstable_DataTable(props: Props) {
         {({height, width}) => (
           <HeaderContext.Provider
             value={{
+              allRows: props.rows,
               columns: props.columns,
               rows: props.rows,
-              addFilter,
-              filterOpenIndex,
+              rowActions: props.rowActions || [],
               handleSort,
-              headerHoverIndex,
+              columnHoverIndex,
+              rowHoverIndex,
+              scrollLeft,
+              isScrollingX,
               isSelectable,
               isSelectedAll: !!rows.length && selectedRows.size >= rows.length,
               isSelectedIndeterminate:
                 !!selectedRows.size && selectedRows.size < rows.length,
-              onFilterOpen: handleFilterOpen,
-              onFilterClose: handleFilterClose,
               onMouseEnter: handleColumnHeaderMouseEnter,
               onMouseLeave: handleColumnHeaderMouseLeave,
               onSelectAll: handleSelectAll,
@@ -687,6 +762,12 @@ export function Unstable_DataTable(props: Props) {
               rowHeight={rowIndex => (rowIndex === 0 ? 48 : 36)}
               width={width}
               itemData={itemData}
+              onScroll={params => {
+                setScrollLeft(params.scrollLeft);
+                if (params.scrollLeft !== scrollLeft) {
+                  setRecentlyScrolledX(true);
+                }
+              }}
               style={{
                 ...theme.borders.border200,
                 borderColor: theme.colors.mono500,

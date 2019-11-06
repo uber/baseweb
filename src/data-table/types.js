@@ -59,9 +59,16 @@ export type BatchActionT = {|
   renderIcon?: React.ComponentType<{|size: number|}>,
 |};
 
+export type RowActionT = {|
+  label: string,
+  onClick: ({event: SyntheticEvent<HTMLButtonElement>, row: RowT}) => mixed,
+  renderIcon: React.ComponentType<{|size: number|}>,
+|};
+
 export type Props = {|
   batchActions?: BatchActionT[],
   columns: ColumnT<>[],
   onSelectionChange?: (RowT[]) => mixed,
+  rowActions?: RowActionT[],
   rows: RowT[],
 |};

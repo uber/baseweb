@@ -83,12 +83,23 @@ function makeRowsFromColumns(columns, rowCount) {
 
 const columns = [
   CategoricalColumn({title: 'categorical'}),
-  NumericalColumn({title: 'numerical'}),
-  NumericalColumn({title: 'neg std', highlight: n => n < 0}),
-  NumericalColumn({title: 'accounting', format: NUMERICAL_FORMATS.ACCOUNTING}),
-  NumericalColumn({title: 'percent', format: NUMERICAL_FORMATS.PERCENTAGE}),
-  CustomColumn<{color: string}, {}>({
+  NumericalColumn({title: 'numerical', minWidth: 90}),
+  NumericalColumn({title: 'neg std', highlight: n => n < 0, minWidth: 90}),
+  NumericalColumn({
+    title: 'accounting',
+    format: NUMERICAL_FORMATS.ACCOUNTING,
+    minWidth: 120,
+  }),
+  NumericalColumn({
+    title: 'percent',
+    format: NUMERICAL_FORMATS.PERCENTAGE,
+    minWidth: 120,
+  }),
+  CustomColumn<{color: string}, {selection: Set<string>}>({
     title: 'custom color',
+    filterable: true,
+    sortable: true,
+    minWidth: 120,
     renderCell: function Cell(props) {
       const [useCss] = useStyletron();
       return (
@@ -111,8 +122,56 @@ const columns = [
         </div>
       );
     },
+    renderFilter: function ColorFilter(props) {
+      const [css] = useStyletron();
+      const [selection, setSelection] = React.useState(new Set());
+      const colors = React.useMemo(() => {
+        return props.data.reduce((set, item) => set.add(item.color), new Set());
+      }, [props.data]);
+
+      return (
+        <div>
+          <ul>
+            {Array.from(colors).map(color => {
+              return (
+                <li key={color} className={css({backgroundColor: color})}>
+                  <input
+                    type="checkbox"
+                    onChange={() => {
+                      if (selection.has(color)) {
+                        selection.delete(color);
+                      } else {
+                        selection.add(color);
+                      }
+                      setSelection(selection);
+                    }}
+                  />
+                  <span className={css({paddingLeft: '8px'})}>{color}</span>
+                </li>
+              );
+            })}
+          </ul>
+          <button
+            onClick={() => {
+              props.setFilter({selection}, Array.from(selection).join(', '));
+              props.close();
+            }}
+          >
+            apply
+          </button>
+        </div>
+      );
+    },
+    buildFilter: function(params) {
+      return function(data) {
+        return params.selection.has(data.color);
+      };
+    },
+    sortFn: function(a, b) {
+      return a.color.localeCompare(b.color);
+    },
   }),
-  StringColumn({title: 'string'}),
+  StringColumn({title: 'string', minWidth: 148}),
   BooleanColumn({title: 'boolean'}),
   CategoricalColumn({title: 'second category'}),
 ];

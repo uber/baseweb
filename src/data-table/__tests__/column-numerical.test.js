@@ -99,15 +99,17 @@ describe('numerical column', () => {
       <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
     );
 
-    const input = container.querySelector('div[data-baseweb="input"] input');
-    fireEvent.change(input, {target: {value: '2'}});
+    const inputs = container.querySelectorAll(
+      'div[data-baseweb="input"] input',
+    );
+    fireEvent.change(inputs[1], {target: {value: '2'}});
     fireEvent.click(getByText('Apply'));
 
     expect(mockSetFilter.mock.calls.length).toBe(1);
     const [filterParams, description] = mockSetFilter.mock.calls[0];
-    expect(filterParams.value).toBe(2);
+    expect(filterParams.comparisons[0].value).toBe(2);
     expect(filterParams.exclude).toBe(false);
-    expect(filterParams.operation).toBe('LT');
+    expect(filterParams.comparisons[0].operation).toBe('LT');
     expect(description).toBe('LT 2');
   });
 
@@ -137,24 +139,36 @@ describe('numerical column', () => {
   it('builds default filter function for integers', () => {
     const column = NumericalColumn({title: 'column'});
     const eq = column.buildFilter({
-      value: 2,
-      operation: 'EQ',
+      comparisons: [
+        {
+          value: 2,
+          operation: 'EQ',
+        },
+      ],
       exclude: false,
     });
     expect(eq(2)).toBe(true);
     expect(eq(-2)).toBe(false);
 
     const lt = column.buildFilter({
-      value: 2,
-      operation: 'LT',
+      comparisons: [
+        {
+          value: 2,
+          operation: 'LT',
+        },
+      ],
       exclude: false,
     });
     expect(lt(1)).toBe(true);
     expect(lt(2)).toBe(false);
 
     const lte = column.buildFilter({
-      value: 2,
-      operation: 'LTE',
+      comparisons: [
+        {
+          value: 2,
+          operation: 'LTE',
+        },
+      ],
       exclude: false,
     });
     expect(lte(1)).toBe(true);
@@ -162,16 +176,24 @@ describe('numerical column', () => {
     expect(lte(3)).toBe(false);
 
     const gt = column.buildFilter({
-      value: 2,
-      operation: 'GT',
+      comparisons: [
+        {
+          value: 2,
+          operation: 'GT',
+        },
+      ],
       exclude: false,
     });
     expect(gt(3)).toBe(true);
     expect(lt(2)).toBe(false);
 
     const gte = column.buildFilter({
-      value: 2,
-      operation: 'GTE',
+      comparisons: [
+        {
+          value: 2,
+          operation: 'GTE',
+        },
+      ],
       exclude: false,
     });
     expect(gte(3)).toBe(true);
@@ -183,8 +205,12 @@ describe('numerical column', () => {
   it('builds default filter function for floats', () => {
     const column = NumericalColumn({title: 'column'});
     const eq = column.buildFilter({
-      value: 2.95,
-      operation: 'EQ',
+      comparisons: [
+        {
+          value: 2.95,
+          operation: 'EQ',
+        },
+      ],
       exclude: false,
     });
     expect(eq(3)).toBe(true);
@@ -192,8 +218,12 @@ describe('numerical column', () => {
     expect(eq(2)).toBe(false);
 
     const lt = column.buildFilter({
-      value: 2.95,
-      operation: 'LT',
+      comparisons: [
+        {
+          value: 2.95,
+          operation: 'LT',
+        },
+      ],
       exclude: false,
     });
     expect(lt(1)).toBe(true);
@@ -203,8 +233,12 @@ describe('numerical column', () => {
     expect(lt(3)).toBe(false);
 
     const lte = column.buildFilter({
-      value: 2.95,
-      operation: 'LTE',
+      comparisons: [
+        {
+          value: 2.95,
+          operation: 'LTE',
+        },
+      ],
       exclude: false,
     });
     expect(lte(2)).toBe(true);
@@ -215,8 +249,12 @@ describe('numerical column', () => {
     expect(lte(4)).toBe(false);
 
     const gt = column.buildFilter({
-      value: 2.95,
-      operation: 'GT',
+      comparisons: [
+        {
+          value: 2.95,
+          operation: 'GT',
+        },
+      ],
       exclude: false,
     });
     expect(gt(4)).toBe(true);
@@ -224,8 +262,12 @@ describe('numerical column', () => {
     expect(lt(2.96)).toBe(false);
 
     const gte = column.buildFilter({
-      value: 2.95,
-      operation: 'GTE',
+      comparisons: [
+        {
+          value: 2.95,
+          operation: 'GTE',
+        },
+      ],
       exclude: false,
     });
     expect(gte(4)).toBe(true);
@@ -242,8 +284,12 @@ describe('numerical column', () => {
       format: NUMERICAL_FORMATS.ACCOUNTING,
     });
     const eq = column.buildFilter({
-      value: 2.95,
-      operation: 'EQ',
+      comparisons: [
+        {
+          value: 2.95,
+          operation: 'EQ',
+        },
+      ],
       exclude: false,
     });
     expect(eq(3)).toBe(false);
@@ -251,8 +297,12 @@ describe('numerical column', () => {
     expect(eq(2)).toBe(false);
 
     const lt = column.buildFilter({
-      value: 2.95,
-      operation: 'LT',
+      comparisons: [
+        {
+          value: 2.95,
+          operation: 'LT',
+        },
+      ],
       exclude: false,
     });
     expect(lt(2)).toBe(true);
@@ -261,8 +311,12 @@ describe('numerical column', () => {
     expect(lt(3)).toBe(false);
 
     const lte = column.buildFilter({
-      value: 2.95,
-      operation: 'LTE',
+      comparisons: [
+        {
+          value: 2.95,
+          operation: 'LTE',
+        },
+      ],
       exclude: false,
     });
     expect(lte(2)).toBe(true);
@@ -272,8 +326,12 @@ describe('numerical column', () => {
     expect(lte(3)).toBe(false);
 
     const gt = column.buildFilter({
-      value: 2.95,
-      operation: 'GT',
+      comparisons: [
+        {
+          value: 2.95,
+          operation: 'GT',
+        },
+      ],
       exclude: false,
     });
     expect(gt(4)).toBe(true);
@@ -283,8 +341,12 @@ describe('numerical column', () => {
     expect(gt(2.94)).toBe(false);
 
     const gte = column.buildFilter({
-      value: 2.95,
-      operation: 'GTE',
+      comparisons: [
+        {
+          value: 2.95,
+          operation: 'GTE',
+        },
+      ],
       exclude: false,
     });
     expect(gte(4)).toBe(true);
@@ -301,8 +363,12 @@ describe('numerical column', () => {
       precision: 3,
     });
     const eq = column.buildFilter({
-      value: 2.954,
-      operation: 'EQ',
+      comparisons: [
+        {
+          value: 2.954,
+          operation: 'EQ',
+        },
+      ],
       exclude: false,
     });
     expect(eq(3)).toBe(false);
@@ -311,8 +377,12 @@ describe('numerical column', () => {
     expect(eq(2)).toBe(false);
 
     const lt = column.buildFilter({
-      value: 2.954,
-      operation: 'LT',
+      comparisons: [
+        {
+          value: 2.954,
+          operation: 'LT',
+        },
+      ],
       exclude: false,
     });
     expect(lt(2.95)).toBe(true);
@@ -321,8 +391,12 @@ describe('numerical column', () => {
     expect(lt(2.955)).toBe(false);
 
     const lte = column.buildFilter({
-      value: 2.954,
-      operation: 'LTE',
+      comparisons: [
+        {
+          value: 2.954,
+          operation: 'LTE',
+        },
+      ],
       exclude: false,
     });
     expect(lte(2.95)).toBe(true);
@@ -331,8 +405,12 @@ describe('numerical column', () => {
     expect(lte(2.956)).toBe(false);
 
     const gt = column.buildFilter({
-      value: 2.954,
-      operation: 'GT',
+      comparisons: [
+        {
+          value: 2.954,
+          operation: 'GT',
+        },
+      ],
       exclude: false,
     });
     expect(gt(3)).toBe(true);
@@ -343,8 +421,12 @@ describe('numerical column', () => {
     expect(gt(2.95)).toBe(false);
 
     const gte = column.buildFilter({
-      value: 2.954,
-      operation: 'GTE',
+      comparisons: [
+        {
+          value: 2.954,
+          operation: 'GTE',
+        },
+      ],
       exclude: false,
     });
     expect(gte(3)).toBe(true);
@@ -354,6 +436,140 @@ describe('numerical column', () => {
     expect(gte(2.953)).toBe(false);
     expect(gte(2.95)).toBe(false);
     expect(gte(2)).toBe(false);
+  });
+
+  it('builds filter function with multiple comparisons', () => {
+    const column = NumericalColumn({title: 'column'});
+    const eq = column.buildFilter({
+      comparisons: [
+        {
+          value: 2,
+          operation: 'EQ',
+        },
+        {
+          value: 3,
+          operation: 'EQ',
+        },
+      ],
+      exclude: false,
+    });
+    expect(eq(2)).toBe(true);
+    expect(eq(3)).toBe(true);
+    expect(eq(4)).toBe(false);
+
+    const outerExclusive = column.buildFilter({
+      comparisons: [
+        {
+          value: 2,
+          operation: 'LT',
+        },
+        {
+          value: 8,
+          operation: 'GT',
+        },
+      ],
+      exclude: false,
+    });
+    expect(outerExclusive(1)).toBe(true);
+    expect(outerExclusive(2)).toBe(false);
+    expect(outerExclusive(5)).toBe(false);
+    expect(outerExclusive(8)).toBe(false);
+    expect(outerExclusive(9)).toBe(true);
+
+    const outerInclusive = column.buildFilter({
+      comparisons: [
+        {
+          value: 2,
+          operation: 'LTE',
+        },
+        {
+          value: 8,
+          operation: 'GTE',
+        },
+      ],
+      exclude: false,
+    });
+    expect(outerInclusive(1)).toBe(true);
+    expect(outerInclusive(2)).toBe(true);
+    expect(outerInclusive(5)).toBe(false);
+    expect(outerInclusive(8)).toBe(true);
+    expect(outerInclusive(9)).toBe(true);
+
+    const innerExclusive = column.buildFilter({
+      comparisons: [
+        {
+          value: 2,
+          operation: 'LT',
+        },
+        {
+          value: 8,
+          operation: 'GT',
+        },
+      ],
+      exclude: true,
+    });
+    expect(innerExclusive(1)).toBe(false);
+    expect(innerExclusive(2)).toBe(true);
+    expect(innerExclusive(5)).toBe(true);
+    expect(innerExclusive(8)).toBe(true);
+    expect(innerExclusive(9)).toBe(false);
+
+    const innerInclusive = column.buildFilter({
+      comparisons: [
+        {
+          value: 2,
+          operation: 'LTE',
+        },
+        {
+          value: 8,
+          operation: 'GTE',
+        },
+      ],
+      exclude: true,
+    });
+    expect(innerInclusive(1)).toBe(false);
+    expect(innerInclusive(2)).toBe(false);
+    expect(innerInclusive(5)).toBe(true);
+    expect(innerInclusive(8)).toBe(false);
+    expect(innerInclusive(9)).toBe(false);
+
+    const overlapExclusive = column.buildFilter({
+      comparisons: [
+        {
+          value: 2,
+          operation: 'GT',
+        },
+        {
+          value: 8,
+          operation: 'LT',
+        },
+      ],
+      exclude: false,
+    });
+    expect(overlapExclusive(1)).toBe(true);
+    expect(overlapExclusive(2)).toBe(true);
+    expect(overlapExclusive(5)).toBe(true);
+    expect(overlapExclusive(8)).toBe(true);
+    expect(overlapExclusive(9)).toBe(true);
+
+    const overlapInclusive = column.buildFilter({
+      comparisons: [
+        {
+          value: 2,
+          operation: 'GTE',
+        },
+        {
+          value: 8,
+          operation: 'LTE',
+        },
+      ],
+      exclude: false,
+    });
+    expect(overlapInclusive(1)).toBe(true);
+    expect(overlapInclusive(2)).toBe(true);
+    expect(overlapInclusive(5)).toBe(true);
+    expect(overlapInclusive(8)).toBe(true);
+    expect(overlapInclusive(9)).toBe(true);
   });
 
   it('builds expected sort function', () => {
