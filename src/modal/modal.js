@@ -15,7 +15,6 @@ import {Layer} from '../layer/index.js';
 import {SIZE, ROLE, CLOSE_SOURCE} from './constants.js';
 import {
   Root as StyledRoot,
-  Backdrop as StyledBackdrop,
   Dialog as StyledDialog,
   DialogContainer as StyledDialogContainer,
   Close as StyledClose,
@@ -121,11 +120,16 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     this.triggerClose(CLOSE_SOURCE.escape);
   };
 
-  onBackdropClick = () => {
+  onBackdropClick = (e: SyntheticEvent<HTMLElement>) => {
+    const containerRef = this.getRef('DialogContainer');
     if (!this.props.closeable) {
       return;
+    } else if (
+      e.target instanceof HTMLElement &&
+      e.target.contains(containerRef.current)
+    ) {
+      this.triggerClose(CLOSE_SOURCE.backdrop);
     }
-    this.triggerClose(CLOSE_SOURCE.backdrop);
   };
 
   onCloseClick = () => {
@@ -224,15 +228,10 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       Root: RootOverride,
       Dialog: DialogOverride,
       DialogContainer: DialogContainerOverride,
-      Backdrop: BackdropOverride,
       Close: CloseOverride,
     } = overrides;
 
     const [Root, rootProps] = getOverrides(RootOverride, StyledRoot);
-    const [Backdrop, backdropProps] = getOverrides(
-      BackdropOverride,
-      StyledBackdrop,
-    );
     const [DialogContainer, dialogContainerProps] = getOverrides(
       DialogContainerOverride,
       StyledDialogContainer,
@@ -254,12 +253,12 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
               {...sharedProps}
               {...rootProps}
             >
-              <Backdrop
+              <DialogContainer
                 onClick={this.onBackdropClick}
+                ref={this.getRef('DialogContainer')}
                 {...sharedProps}
-                {...backdropProps}
-              />
-              <DialogContainer {...sharedProps} {...dialogContainerProps}>
+                {...dialogContainerProps}
+              >
                 <Dialog
                   tabIndex={-1}
                   aria-modal={

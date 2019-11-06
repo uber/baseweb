@@ -47,18 +47,21 @@ export const Root = styled<SharedStylePropsArgT>('div', props => {
 });
 
 export const Backdrop = styled<SharedStylePropsArgT>('div', props => {
+  return {};
+});
+
+export const DialogContainer = styled<SharedStylePropsArgT>('div', props => {
   const {$animate, $isOpen, $isVisible, $theme} = props;
   return {
-    position: 'fixed',
-    right: 0,
-    bottom: 0,
-    top: 0,
-    left: 0,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    minHeight: '100%',
+    userSelect: 'none',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     // Remove grey highlight
     WebkitTapHighlightColor: 'transparent',
-    // Disable scroll capabilities.
-    touchAction: 'none',
     opacity: $isVisible && $isOpen ? 1 : 0,
     ...($animate
       ? {
@@ -67,18 +70,6 @@ export const Backdrop = styled<SharedStylePropsArgT>('div', props => {
           transitionTimingFunction: $theme.animation.easeOutCurve,
         }
       : null),
-  };
-});
-
-export const DialogContainer = styled<SharedStylePropsArgT>('div', props => {
-  return {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    minHeight: '100%',
-    pointerEvents: 'none',
-    userSelect: 'none',
   };
 });
 
