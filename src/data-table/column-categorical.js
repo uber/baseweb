@@ -28,8 +28,9 @@ type OptionsT = {|
 |};
 
 type FilterParametersT = {|
-  selection: Set<string>,
+  description: string,
   exclude: boolean,
+  selection: Set<string>,
 |};
 
 type CategoricalColumnT = ColumnT<string, FilterParametersT>;
@@ -131,7 +132,7 @@ function HighlightCheckboxLabel(props) {
 type CategoricalFilterProps = {
   data: string[],
   close: () => void,
-  setFilter: (FilterParametersT, string) => void,
+  setFilter: FilterParametersT => void,
 };
 
 export function CategoricalFilter(props: CategoricalFilterProps) {
@@ -155,7 +156,11 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
       exclude={exclude}
       onExcludeChange={() => setExclude(!exclude)}
       onApply={() => {
-        props.setFilter({selection, exclude}, Array.from(selection).join(', '));
+        props.setFilter({
+          description: Array.from(selection).join(', '),
+          exclude,
+          selection,
+        });
         props.close();
       }}
     >

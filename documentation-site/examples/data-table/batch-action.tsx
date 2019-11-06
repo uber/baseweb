@@ -2,7 +2,7 @@ import React from 'react';
 import {Alert, Check} from 'baseui/icon';
 
 import {
-  Unstable_DataTable,
+  Unstable_StatefulDataTable,
   BooleanColumn,
   CategoricalColumn,
   NumericalColumn,
@@ -169,7 +169,7 @@ export default () => {
 
   return (
     <div style={{height: '300px'}}>
-      <Unstable_DataTable
+      <Unstable_StatefulDataTable
         batchActions={batchActions}
         rowActions={rowActions}
         columns={columns}

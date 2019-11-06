@@ -106,11 +106,11 @@ describe('numerical column', () => {
     fireEvent.click(getByText('Apply'));
 
     expect(mockSetFilter.mock.calls.length).toBe(1);
-    const [filterParams, description] = mockSetFilter.mock.calls[0];
+    const [filterParams] = mockSetFilter.mock.calls[0];
     expect(filterParams.comparisons[0].value).toBe(2);
     expect(filterParams.exclude).toBe(false);
     expect(filterParams.comparisons[0].operation).toBe('LT');
-    expect(description).toBe('LT 2');
+    expect(filterParams.description).toBe('LT 2');
   });
 
   it('hides operators if filter single value', () => {
@@ -145,6 +145,7 @@ describe('numerical column', () => {
           operation: 'EQ',
         },
       ],
+      description: '',
       exclude: false,
     });
     expect(eq(2)).toBe(true);
@@ -157,6 +158,7 @@ describe('numerical column', () => {
           operation: 'LT',
         },
       ],
+      description: '',
       exclude: false,
     });
     expect(lt(1)).toBe(true);
@@ -169,6 +171,7 @@ describe('numerical column', () => {
           operation: 'LTE',
         },
       ],
+      description: '',
       exclude: false,
     });
     expect(lte(1)).toBe(true);
@@ -182,6 +185,7 @@ describe('numerical column', () => {
           operation: 'GT',
         },
       ],
+      description: '',
       exclude: false,
     });
     expect(gt(3)).toBe(true);
@@ -194,6 +198,7 @@ describe('numerical column', () => {
           operation: 'GTE',
         },
       ],
+      description: '',
       exclude: false,
     });
     expect(gte(3)).toBe(true);
@@ -211,6 +216,7 @@ describe('numerical column', () => {
           operation: 'EQ',
         },
       ],
+      description: '',
       exclude: false,
     });
     expect(eq(3)).toBe(true);
@@ -224,6 +230,7 @@ describe('numerical column', () => {
           operation: 'LT',
         },
       ],
+      description: '',
       exclude: false,
     });
     expect(lt(1)).toBe(true);
@@ -239,6 +246,7 @@ describe('numerical column', () => {
           operation: 'LTE',
         },
       ],
+      description: '',
       exclude: false,
     });
     expect(lte(2)).toBe(true);
@@ -255,6 +263,7 @@ describe('numerical column', () => {
           operation: 'GT',
         },
       ],
+      description: '',
       exclude: false,
     });
     expect(gt(4)).toBe(true);
@@ -268,6 +277,7 @@ describe('numerical column', () => {
           operation: 'GTE',
         },
       ],
+      description: '',
       exclude: false,
     });
     expect(gte(4)).toBe(true);
@@ -290,6 +300,7 @@ describe('numerical column', () => {
           operation: 'EQ',
         },
       ],
+      description: '',
       exclude: false,
     });
     expect(eq(3)).toBe(false);
@@ -303,6 +314,7 @@ describe('numerical column', () => {
           operation: 'LT',
         },
       ],
+      description: '',
       exclude: false,
     });
     expect(lt(2)).toBe(true);
@@ -317,6 +329,7 @@ describe('numerical column', () => {
           operation: 'LTE',
         },
       ],
+      description: '',
       exclude: false,
     });
     expect(lte(2)).toBe(true);
@@ -332,6 +345,7 @@ describe('numerical column', () => {
           operation: 'GT',
         },
       ],
+      description: '',
       exclude: false,
     });
     expect(gt(4)).toBe(true);
@@ -347,6 +361,7 @@ describe('numerical column', () => {
           operation: 'GTE',
         },
       ],
+      description: '',
       exclude: false,
     });
     expect(gte(4)).toBe(true);
@@ -369,6 +384,7 @@ describe('numerical column', () => {
           operation: 'EQ',
         },
       ],
+      description: '',
       exclude: false,
     });
     expect(eq(3)).toBe(false);
@@ -383,6 +399,7 @@ describe('numerical column', () => {
           operation: 'LT',
         },
       ],
+      description: '',
       exclude: false,
     });
     expect(lt(2.95)).toBe(true);
@@ -397,6 +414,7 @@ describe('numerical column', () => {
           operation: 'LTE',
         },
       ],
+      description: '',
       exclude: false,
     });
     expect(lte(2.95)).toBe(true);
@@ -411,6 +429,7 @@ describe('numerical column', () => {
           operation: 'GT',
         },
       ],
+      description: '',
       exclude: false,
     });
     expect(gt(3)).toBe(true);
@@ -427,6 +446,7 @@ describe('numerical column', () => {
           operation: 'GTE',
         },
       ],
+      description: '',
       exclude: false,
     });
     expect(gte(3)).toBe(true);
@@ -451,6 +471,7 @@ describe('numerical column', () => {
           operation: 'EQ',
         },
       ],
+      description: '',
       exclude: false,
     });
     expect(eq(2)).toBe(true);
@@ -468,6 +489,7 @@ describe('numerical column', () => {
           operation: 'GT',
         },
       ],
+      description: '',
       exclude: false,
     });
     expect(outerExclusive(1)).toBe(true);
@@ -487,6 +509,7 @@ describe('numerical column', () => {
           operation: 'GTE',
         },
       ],
+      description: '',
       exclude: false,
     });
     expect(outerInclusive(1)).toBe(true);
@@ -506,6 +529,7 @@ describe('numerical column', () => {
           operation: 'GT',
         },
       ],
+      description: '',
       exclude: true,
     });
     expect(innerExclusive(1)).toBe(false);
@@ -525,6 +549,7 @@ describe('numerical column', () => {
           operation: 'GTE',
         },
       ],
+      description: '',
       exclude: true,
     });
     expect(innerInclusive(1)).toBe(false);
@@ -544,6 +569,7 @@ describe('numerical column', () => {
           operation: 'LT',
         },
       ],
+      description: '',
       exclude: false,
     });
     expect(overlapExclusive(1)).toBe(true);
@@ -563,6 +589,7 @@ describe('numerical column', () => {
           operation: 'LTE',
         },
       ],
+      description: '',
       exclude: false,
     });
     expect(overlapInclusive(1)).toBe(true);
