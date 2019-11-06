@@ -136,6 +136,23 @@ describe('select', () => {
     expect(inputValue).toBe('Paris');
   });
 
+  it('shows the no result msg if there are no options', async () => {
+    await mount(page, 'select-creatable-multi');
+    await page.waitFor(selectors.selectInput);
+    await page.click(selectors.selectInput);
+    await page.waitFor(selectors.selectDropDown);
+    await page.click(optionAtPosition(1));
+
+    await page.click(selectors.selectInput);
+    await page.waitFor(selectors.selectDropDown);
+    const dropdown = await page.$(selectors.selectDropDown);
+    const text = await page.evaluate(
+      dropdown => dropdown.textContent,
+      dropdown,
+    );
+    expect(text).toBe('No results');
+  });
+
   it('creates multiple options', async () => {
     await mount(page, 'select-creatable-multi');
     await page.waitFor(selectors.selectInput);

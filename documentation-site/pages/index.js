@@ -16,12 +16,17 @@ import {H1, H2} from '../components/markdown-elements';
 import {Card, StyledBody} from 'baseui/card';
 import {Tag} from 'baseui/tag';
 import fetch from 'isomorphic-fetch';
+import {withStyle} from 'baseui';
 
 import BlogPosts from '../posts.js';
 
 import Layout from '../components/layout';
 import Contributors from '../components/contributors';
 import Markdown from '../components/markdown-elements';
+
+const MinHeightBody = withStyle(StyledBody, {
+  minHeight: '100px',
+});
 
 type Contributor = {
   avatar_url: string,
@@ -126,10 +131,10 @@ const Index = (props: {
       }}
     >
       <Card title="Setup Base Web" overrides={cardOverrides}>
-        <StyledBody>
+        <MinHeightBody>
           Base Web is distributed as an npm package. As Base Web is built on top
           of a CSS-in-JS engine, all you need is the dependencies from npm.
-        </StyledBody>
+        </MinHeightBody>
         <Button
           $as="a"
           href="/getting-started/setup"
@@ -147,11 +152,11 @@ const Index = (props: {
       </Card>
 
       <Card title="Learning Base Web" overrides={cardOverrides}>
-        <StyledBody>
+        <MinHeightBody>
           Probably the best way to learn Base Web is by start building an
           application using it. On this page, you’ll find a simple and a more
           complex app built using Base Web.
-        </StyledBody>
+        </MinHeightBody>
         <Button
           $as="a"
           href="/getting-started/learn"
