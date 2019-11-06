@@ -27,6 +27,7 @@ export default class Accordion extends React.Component<
       expanded: [],
     },
     renderPanelContent: false,
+    renderAll: false,
     onChange: () => {},
     overrides: {},
     stateReducer: (type, newState) => newState,
@@ -72,6 +73,7 @@ export default class Accordion extends React.Component<
       disabled,
       children,
       renderPanelContent,
+      renderAll,
       overrides,
     } = this.props;
     // eslint-disable-next-line flowtype/no-weak-types
@@ -91,6 +93,7 @@ export default class Accordion extends React.Component<
         expanded: isExpanded || child.props.expanded,
         accordion,
         renderPanelContent,
+        renderAll,
         overrides: child.props.overrides || overrides,
         disabled: child.props.disabled || disabled,
         onChange: (...args) =>
