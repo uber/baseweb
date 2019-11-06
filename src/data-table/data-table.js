@@ -387,42 +387,45 @@ export function Unstable_DataTable(props: DataTablePropsT) {
 
   const sortedIndices = React.useMemo(() => {
     let toSort = props.rows.map((r, i) => [r, i]);
+    const index = props.sortIndex;
 
-    if (props.sortIndex !== -1) {
-      const sortFn = props.columns[props.sortIndex].sortFn;
+    if (index !== null && index !== undefined && index !== -1) {
+      const sortFn = props.columns[index].sortFn;
       if (props.sortDirection === SORT_DIRECTIONS.DESC) {
-        toSort.sort((a, b) =>
-          sortFn(a[0].data[props.sortIndex], b[0].data[props.sortIndex]),
-        );
+        toSort.sort((a, b) => sortFn(a[0].data[index], b[0].data[index]));
       } else if (props.sortDirection === SORT_DIRECTIONS.ASC) {
-        toSort.sort((a, b) =>
-          sortFn(b[0].data[props.sortIndex], a[0].data[props.sortIndex]),
-        );
+        toSort.sort((a, b) => sortFn(b[0].data[index], a[0].data[index]));
       }
     }
 
     return toSort.map(el => el[1]);
   }, [props.sortIndex, props.sortDirection, props.columns, props.rows]);
 
+  const textQuery = React.useMemo(() => props.textQuery || '', [
+    props.textQuery,
+  ]);
+
   const filteredIndices = React.useMemo(() => {
     const set = new Set(props.rows.map((_, idx) => idx));
-    Array.from(props.filters, f => f).forEach(([title, filter]) => {
-      const columnIndex = props.columns.findIndex(c => c.title === title);
-      const column = props.columns[columnIndex];
-      if (!column) {
-        return;
-      }
-
-      // start here after
-      const filterFn = column.buildFilter(filter);
-      Array.from(set).forEach(idx => {
-        if (!filterFn(props.rows[idx].data[columnIndex])) {
-          set.delete(idx);
+    Array.from(props.filters || new Set(), f => f).forEach(
+      ([title, filter]) => {
+        const columnIndex = props.columns.findIndex(c => c.title === title);
+        const column = props.columns[columnIndex];
+        if (!column) {
+          return;
         }
-      });
-    });
 
-    if (props.textQuery) {
+        // start here after
+        const filterFn = column.buildFilter(filter);
+        Array.from(set).forEach(idx => {
+          if (!filterFn(props.rows[idx].data[columnIndex])) {
+            set.delete(idx);
+          }
+        });
+      },
+    );
+
+    if (textQuery) {
       const stringishColumnIndices = [];
       for (let i = 0; i < props.columns.length; i++) {
         if (
@@ -434,9 +437,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
       }
       Array.from(set).forEach(idx => {
         const matches = stringishColumnIndices.some(cdx => {
-          return props.rows[idx].data[cdx]
-            .toLowerCase()
-            .includes(props.textQuery);
+          return props.rows[idx].data[cdx].toLowerCase().includes(textQuery);
         });
 
         if (!matches) {
@@ -446,7 +447,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
     }
 
     return set;
-  }, [props.filters, props.textQuery, props.columns, props.rows]);
+  }, [props.filters, textQuery, props.columns, props.rows]);
 
   const rows = React.useMemo(() => {
     return sortedIndices
@@ -455,16 +456,56 @@ export function Unstable_DataTable(props: DataTablePropsT) {
   }, [sortedIndices, filteredIndices, props.rows]);
 
   const isSelectable = props.batchActions ? !!props.batchActions.length : false;
-  const isSelectedAll =
-    !!rows.length && props.selectedRowIds.size >= rows.length;
-  const isSelectedIndeterminate =
-    !!props.selectedRowIds.size && props.selectedRowIds.size < rows.length;
-  const isRowSelected = React.useCallback(id => props.selectedRowIds.has(id), [
-    props.selectedRowIds,
-  ]);
+  const isSelectedAll = React.useMemo(() => {
+    if (!props.selectedRowIds) {
+      return false;
+    }
+    return !!rows.length && props.selectedRowIds.size >= rows.length;
+  }, [props.selectedRowIds, rows.length]);
+  const isSelectedIndeterminate = React.useMemo(() => {
+    if (!props.selectedRowIds) {
+      return false;
+    }
+    return (
+      !!props.selectedRowIds.size && props.selectedRowIds.size < rows.length
+    );
+  }, [props.selectedRowIds, rows.length]);
+  const isRowSelected = React.useCallback(
+    id => {
+      if (props.selectedRowIds) {
+        return props.selectedRowIds.has(id);
+      }
+      return false;
+    },
+    [props.selectedRowIds],
+  );
   const handleSelectMany = React.useCallback(() => {
-    props.onSelectMany(rows);
+    if (props.onSelectMany) {
+      props.onSelectMany(rows);
+    }
   }, [rows, props.onSelectMany]);
+  const handleSelectNone = React.useCallback(() => {
+    if (props.onSelectNone) {
+      props.onSelectNone();
+    }
+  }, [props.onSelectNone]);
+  const handleSelectOne = React.useCallback(
+    row => {
+      if (props.onSelectOne) {
+        props.onSelectOne(row);
+      }
+    },
+    [props.onSelectOne],
+  );
+
+  const handleSort = React.useCallback(
+    columnIndex => {
+      if (props.onSort) {
+        props.onSort(columnIndex);
+      }
+    },
+    [props.onSort],
+  );
 
   const itemData = React.useMemo(() => {
     return {
@@ -473,10 +514,10 @@ export function Unstable_DataTable(props: DataTablePropsT) {
       isRowSelected,
       isSelectable,
       onHoverRow: handleRowHover,
-      onSelectOne: props.onSelectOne,
+      onSelectOne: handleSelectOne,
       columns: props.columns,
       rows,
-      textQuery: props.textQuery,
+      textQuery,
     };
   }, [
     handleRowHover,
@@ -486,8 +527,8 @@ export function Unstable_DataTable(props: DataTablePropsT) {
     rowHoverIndex,
     rows,
     props.columns,
-    props.onSelectOne,
-    props.textQuery,
+    handleSelectOne,
+    textQuery,
   ]);
 
   return (
@@ -505,7 +546,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
             value={{
               allRows: props.rows,
               columns: props.columns,
-              handleSort: props.onSort,
+              handleSort,
               columnHoverIndex,
               rowHoverIndex,
               scrollLeft,
@@ -516,11 +557,11 @@ export function Unstable_DataTable(props: DataTablePropsT) {
               onMouseEnter: handleColumnHeaderMouseEnter,
               onMouseLeave: handleColumnHeaderMouseLeave,
               onSelectMany: handleSelectMany,
-              onSelectNone: props.onSelectNone,
+              onSelectNone: handleSelectNone,
               rows,
               rowActions: props.rowActions || [],
-              sortDirection: props.sortDirection,
-              sortIndex: props.sortIndex,
+              sortDirection: props.sortDirection || null,
+              sortIndex: props.sortIndex || -1,
               widths,
             }}
           >

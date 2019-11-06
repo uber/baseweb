@@ -77,13 +77,13 @@ export type StatefulDataTablePropsT = {|
 
 export type DataTablePropsT = {|
   ...StatefulDataTablePropsT,
-  filters: Map<string, {description: string}>,
-  onSelectMany: (RowT[]) => void,
-  onSelectNone: () => void,
-  onSelectOne: RowT => void,
-  onSort: number => void,
-  selectedRowIds: Set<string | number>,
-  sortIndex: number,
-  sortDirection: SortDirectionsT,
-  textQuery: string,
+  filters?: Map<string, {description: string}>,
+  onSelectMany?: (RowT[]) => void,
+  onSelectNone?: () => void,
+  onSelectOne?: RowT => void,
+  onSort?: number => void,
+  selectedRowIds?: Set<string | number>,
+  sortIndex?: number,
+  sortDirection?: SortDirectionsT,
+  textQuery?: string,
 |};
