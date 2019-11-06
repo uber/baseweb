@@ -74,7 +74,6 @@ export const StyledEmptyState = styled<StyledPropsT>('li', props => {
     display: 'block',
     color: $theme.colors.menuFontDisabled,
     textAlign: 'center',
-    textTransform: 'capitalize',
     cursor: 'not-allowed',
     backgroundColor: 'transparent',
     marginBottom: 0,
