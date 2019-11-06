@@ -15,14 +15,16 @@ export type SortDirectionsT =
   | typeof SORT_DIRECTIONS.DESC
   | null;
 
+export type ColumnsT =
+  | typeof COLUMNS.BOOLEAN
+  | typeof COLUMNS.CATEGORICAL
+  | typeof COLUMNS.CUSTOM
+  | typeof COLUMNS.NUMERICAL
+  | typeof COLUMNS.STRING;
+
 // eslint-disable-next-line flowtype/no-weak-types
 export type ColumnT<ValueT = any, FilterParamsT = any> = {|
-  kind:
-    | typeof COLUMNS.BOOLEAN
-    | typeof COLUMNS.CATEGORICAL
-    | typeof COLUMNS.CUSTOM
-    | typeof COLUMNS.NUMERICAL
-    | typeof COLUMNS.STRING,
+  kind: ColumnsT,
   title: string,
   sortable: boolean,
   filterable: boolean,
@@ -36,7 +38,7 @@ export type ColumnT<ValueT = any, FilterParamsT = any> = {|
   renderFilter: React.ComponentType<{|
     data: ValueT[],
     close: () => void,
-    setFilter: (filterParams: FilterParamsT, description: string) => void,
+    setFilter: FilterParamsT => void,
   |}>,
   buildFilter: FilterParamsT => ValueT => boolean,
   sortFn: (ValueT, ValueT) => number,
@@ -59,9 +61,29 @@ export type BatchActionT = {|
   renderIcon?: React.ComponentType<{|size: number|}>,
 |};
 
-export type Props = {|
+export type RowActionT = {|
+  label: string,
+  onClick: ({event: SyntheticEvent<HTMLButtonElement>, row: RowT}) => mixed,
+  renderIcon: React.ComponentType<{|size: number|}>,
+|};
+
+export type StatefulDataTablePropsT = {|
   batchActions?: BatchActionT[],
   columns: ColumnT<>[],
   onSelectionChange?: (RowT[]) => mixed,
   rows: RowT[],
+  rowActions?: RowActionT[],
+|};
+
+export type DataTablePropsT = {|
+  ...StatefulDataTablePropsT,
+  filters?: Map<string, {description: string}>,
+  onSelectMany?: (RowT[]) => void,
+  onSelectNone?: () => void,
+  onSelectOne?: RowT => void,
+  onSort?: number => void,
+  selectedRowIds?: Set<string | number>,
+  sortIndex?: number,
+  sortDirection?: SortDirectionsT,
+  textQuery?: string,
 |};

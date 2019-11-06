@@ -9,9 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
-function getTable(page) {
-  return page.$('div[data-baseweb="data-table"]');
-}
+const {getTable} = require('./utilities.js');
 
 function getCheckboxes(parent) {
   return parent.$$('label[data-baseweb="checkbox"]');

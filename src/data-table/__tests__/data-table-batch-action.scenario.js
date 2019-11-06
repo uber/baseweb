@@ -13,7 +13,7 @@ import Check from '../../icon/check.js';
 
 import BooleanColumn from '../column-boolean.js';
 import NumericalColumn from '../column-numerical.js';
-import {Unstable_DataTable} from '../data-table.js';
+import {Unstable_StatefulDataTable} from '../stateful-data-table.js';
 
 export const name = 'data-table-batch-action';
 
@@ -75,7 +75,7 @@ export const component = () => {
   return (
     <div>
       <div style={{height: '800px', width: '900px'}}>
-        <Unstable_DataTable
+        <Unstable_StatefulDataTable
           batchActions={actions}
           columns={columns}
           onSelectionChange={() => setCount(count + 1)}

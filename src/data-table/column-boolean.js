@@ -24,6 +24,7 @@ type OptionsT = {|
 
 type FilterParametersT = {|
   selection: Set<boolean>,
+  description: string,
   exclude: boolean,
 |};
 
@@ -34,16 +35,17 @@ function BooleanFilter(props) {
     <CategoricalFilter
       data={['true', 'false']}
       close={props.close}
-      setFilter={(params, description) => {
+      setFilter={params => {
         const coercedSelection = new Set();
         params.selection.forEach(item =>
           coercedSelection.add(item.toLowerCase() === 'true'),
         );
 
-        props.setFilter(
-          {selection: coercedSelection, exclude: params.exclude},
-          description,
-        );
+        props.setFilter({
+          selection: coercedSelection,
+          exclude: params.exclude,
+          description: params.description,
+        });
       }}
     />
   );
@@ -60,7 +62,7 @@ const BooleanCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
     >
       <div
         className={useCss({
-          textAlign: props.value ? 'left' : 'right',
+          textAlign: props.value ? 'right' : 'left',
           minWidth: theme.sizing.scale1400,
           width: '100%',
         })}

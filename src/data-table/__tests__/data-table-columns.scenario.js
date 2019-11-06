@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {
-  Unstable_DataTable,
+  Unstable_StatefulDataTable,
   BooleanColumn,
   CategoricalColumn,
   NumericalColumn,
@@ -36,7 +36,7 @@ export const component = () => {
   return (
     <React.Fragment>
       <div style={{height: '600px', width: '1000px', marginBottom: '100px'}}>
-        <Unstable_DataTable columns={columns} rows={rows} />
+        <Unstable_StatefulDataTable columns={columns} rows={rows} />
       </div>
     </React.Fragment>
   );

@@ -14,6 +14,7 @@ import TextareaExample from 'examples/form-control/textarea.js';
 import CheckboxExample from 'examples/form-control/checkbox.js';
 import RadioGroupExample from 'examples/form-control/radio-group.js';
 import SelectExample from 'examples/form-control/select.js';
+import ValidationExample from 'examples/form-control/validation.js';
 import Kinds from 'examples/form-control/kinds.js';
 
 import {FormControl} from 'baseui/form-control';
@@ -48,6 +49,16 @@ If that child has an `id` prop, the `label` in the form control will assign the 
 <Example title="Textarea" path="form-control/textarea.js">
   <TextareaExample />
 </Example>
+
+<Example
+  title="Validation example (with email)"
+  path="form-control/validation.js"
+  additionalPackages={{'email-validator': '2.0.4'}}
+>
+  <ValidationExample />
+</Example>
+
+A common use case for an input on a form is to do some quick client side validation. Here, we are using the validate method from the `email-validator` package to track and update error states for both the form control and input components. This particular example shows the input in the context of a `<form>` element to show how the components' custom error states can compliment the browser's native form validation. The default form behavior is prevented so no network requests are sent on submit.
 
 <Example title="Checkbox" path="form-control/checkbox.js">
   <CheckboxExample />

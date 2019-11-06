@@ -67,25 +67,27 @@ describe('boolean column', () => {
     fireEvent.click(getByText('Apply'));
 
     expect(mockSetFilter.mock.calls.length).toBe(1);
-    const [filterParams, description] = mockSetFilter.mock.calls[0];
+    const [filterParams] = mockSetFilter.mock.calls[0];
     expect(filterParams.selection.has(true)).toBe(true);
     expect(filterParams.selection.has(false)).toBe(false);
     expect(filterParams.exclude).toBe(false);
-    expect(description).toBe('true');
+    expect(filterParams.description).toBe('true');
   });
 
   it('builds expected filter function', () => {
     const column = BooleanColumn({title: 'column'});
     const simple = column.buildFilter({
-      selection: new Set([true]),
+      description: '',
       exclude: false,
+      selection: new Set([true]),
     });
     expect(simple(true)).toBe(true);
     expect(simple(false)).toBe(false);
 
     const exclude = column.buildFilter({
-      selection: new Set([true]),
+      description: '',
       exclude: true,
+      selection: new Set([true]),
     });
     expect(exclude(true)).toBe(false);
     expect(exclude(false)).toBe(true);

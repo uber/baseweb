@@ -62,7 +62,7 @@ type MeasureColumnWidthsPropsT = {
 };
 
 // sample size could likely be generated based on row count, to have higher confidence
-const MAX_SAMPLE_SIZE = 10;
+const MAX_SAMPLE_SIZE = 50;
 
 export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
   const [useCss] = useStyletron();
@@ -170,17 +170,12 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
           }
           item={
             <HeaderCell
-              filterable={column.filterable}
-              filter={p => null}
               index={columnIndex}
-              isFilterOpen={false}
               isHovered
               isMeasured
               isSelectable={props.isSelectable && columnIndex === 0}
               isSelectedAll={false}
               isSelectedIndeterminate={false}
-              onFilterOpen={() => {}}
-              onFilterClose={() => {}}
               onMouseEnter={() => {}}
               onMouseLeave={() => {}}
               onSelectAll={() => {}}

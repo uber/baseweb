@@ -64,7 +64,7 @@ describe('custom column', () => {
   });
 
   it('cell renders according to provided renderCell', () => {
-    const column = CustomColumn<{color: string}, {}>({
+    const column = CustomColumn<{color: string}, {description: string}>({
       title: 'column',
       renderCell: function CustomCell(props) {
         return <div>{props.value.color}</div>;

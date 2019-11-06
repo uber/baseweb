@@ -857,15 +857,7 @@ class Select extends React.Component<
     const options = this.filterOptions(
       multi && filterOutSelected ? valueArray : null,
     );
-    let isOpen = this.state.isOpen;
-    if (
-      multi &&
-      !options.length &&
-      valueArray.length &&
-      !this.state.inputValue
-    ) {
-      isOpen = false;
-    }
+    const isOpen = this.state.isOpen;
     sharedProps.$isOpen = isOpen;
 
     if (__DEV__) {

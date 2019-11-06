@@ -103,7 +103,7 @@ const ThemeEditor: React.FC<ThemeEditorProps> = ({
   set,
   componentName,
 }) => {
-  const [useCss] = useStyletron();
+  const [useCss, currentTheme] = useStyletron();
   const themeKeys = Object.keys(theme);
 
   const midPoint =
@@ -133,6 +133,9 @@ const ThemeEditor: React.FC<ThemeEditorProps> = ({
         className={useCss({
           display: 'flex',
           flexDirection: 'row',
+          [`@media screen and (max-width: ${currentTheme.breakpoints.medium}px)`]: {
+            flexWrap: 'wrap',
+          },
         })}
       >
         <Column
