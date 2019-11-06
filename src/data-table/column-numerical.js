@@ -46,6 +46,7 @@ type FilterParametersT = {|
     value: number,
     operation: NumericalOperations,
   |}>,
+  description: string,
   exclude: boolean,
 |};
 
@@ -153,49 +154,41 @@ function NumericalFilter(props) {
             case 0: {
               const value = parseFloat(right);
               const operation = NUMERICAL_OPERATIONS.LT;
-              props.setFilter(
-                {
-                  comparisons: [{value, operation}],
-                  exclude,
-                },
-                `${operation} ${value}`,
-              );
+              props.setFilter({
+                comparisons: [{value, operation}],
+                description: `${operation} ${value}`,
+                exclude,
+              });
               break;
             }
             case 1: {
               const value = parseFloat(left);
               const operation = NUMERICAL_OPERATIONS.GT;
-              props.setFilter(
-                {
-                  comparisons: [{value, operation}],
-                  exclude,
-                },
-                `${operation} ${value}`,
-              );
+              props.setFilter({
+                comparisons: [{value, operation}],
+                description: `${operation} ${value}`,
+                exclude,
+              });
               break;
             }
             case 2: {
               const value = parseFloat(right);
               const operation = NUMERICAL_OPERATIONS.LTE;
-              props.setFilter(
-                {
-                  comparisons: [{value, operation}],
-                  exclude,
-                },
-                `${operation} ${value}`,
-              );
+              props.setFilter({
+                comparisons: [{value, operation}],
+                description: `${operation} ${value}`,
+                exclude,
+              });
               break;
             }
             case 3: {
               const value = parseFloat(left);
               const operation = NUMERICAL_OPERATIONS.GTE;
-              props.setFilter(
-                {
-                  comparisons: [{value, operation}],
-                  exclude,
-                },
-                `${operation} ${value}`,
-              );
+              props.setFilter({
+                comparisons: [{value, operation}],
+                description: `${operation} ${value}`,
+                exclude,
+              });
               break;
             }
             case 4: {
@@ -203,22 +196,20 @@ function NumericalFilter(props) {
               // comparators, the filter will include _all_ numbers.
               const leftValue = parseFloat(left);
               const rightValue = parseFloat(right);
-              props.setFilter(
-                {
-                  comparisons: [
-                    {
-                      value: leftValue,
-                      operation: NUMERICAL_OPERATIONS.LT,
-                    },
-                    {
-                      value: rightValue,
-                      operation: NUMERICAL_OPERATIONS.GT,
-                    },
-                  ],
-                  exclude: !exclude,
-                },
-                `${NUMERICAL_OPERATIONS.GTE} ${leftValue} & ${NUMERICAL_OPERATIONS.LTE} ${rightValue}`,
-              );
+              props.setFilter({
+                comparisons: [
+                  {
+                    value: leftValue,
+                    operation: NUMERICAL_OPERATIONS.LT,
+                  },
+                  {
+                    value: rightValue,
+                    operation: NUMERICAL_OPERATIONS.GT,
+                  },
+                ],
+                description: `${NUMERICAL_OPERATIONS.GTE} ${leftValue} & ${NUMERICAL_OPERATIONS.LTE} ${rightValue}`,
+                exclude: !exclude,
+              });
               break;
             }
             default:
@@ -227,13 +218,11 @@ function NumericalFilter(props) {
         } else {
           const value = parseFloat(left);
           const operation = NUMERICAL_OPERATIONS.EQ;
-          props.setFilter(
-            {
-              comparisons: [{value, operation}],
-              exclude,
-            },
-            `${operation} ${value}`,
-          );
+          props.setFilter({
+            comparisons: [{value, operation}],
+            description: `${operation} ${value}`,
+            exclude,
+          });
         }
 
         props.close();

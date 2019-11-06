@@ -22,7 +22,7 @@ type OptionsT<ValueT, FilterParamsT> = {|
   renderFilter?: React.ComponentType<{|
     data: ValueT[],
     close: () => void,
-    setFilter: (filterParams: FilterParamsT, description: string) => void,
+    setFilter: FilterParamsT => void,
   |}>,
   buildFilter?: FilterParamsT => ValueT => boolean,
   sortFn?: (ValueT, ValueT) => number,

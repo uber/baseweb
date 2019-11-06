@@ -73,12 +73,12 @@ describe('categorical column', () => {
     fireEvent.click(getByText('Apply'));
 
     expect(mockSetFilter.mock.calls.length).toBe(1);
-    const [filterParams, description] = mockSetFilter.mock.calls[0];
+    const [filterParams] = mockSetFilter.mock.calls[0];
     expect(filterParams.selection.has('A')).toBe(true);
     expect(filterParams.selection.has('B')).toBe(false);
     expect(filterParams.selection.has('C')).toBe(false);
     expect(filterParams.exclude).toBe(false);
-    expect(description).toBe('A');
+    expect(filterParams.description).toBe('A');
   });
 
   it('selects all options', () => {
@@ -173,20 +173,23 @@ describe('categorical column', () => {
     const column = CategoricalColumn({title: 'column'});
 
     const filterSelectionEmpty = column.buildFilter({
-      selection: new Set(),
+      description: '',
       exclude: false,
+      selection: new Set(),
     });
     expect(filterSelectionEmpty('A')).toBe(false);
 
     const filterSelectionSingle = column.buildFilter({
-      selection: new Set(['A']),
+      description: '',
       exclude: false,
+      selection: new Set(['A']),
     });
     expect(filterSelectionSingle('A')).toBe(true);
 
     const filterSelectionExclude = column.buildFilter({
-      selection: new Set(['A']),
+      description: '',
       exclude: true,
+      selection: new Set(['A']),
     });
     expect(filterSelectionExclude('A')).toBe(false);
     expect(filterSelectionExclude('B')).toBe(true);

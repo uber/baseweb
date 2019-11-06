@@ -20,6 +20,7 @@ type OptionsT = {|
 |};
 
 type FilterParametersT = {|
+  description: string,
   exclude: boolean,
 |};
 

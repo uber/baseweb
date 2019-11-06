@@ -12,7 +12,7 @@ import CategoricalColumn from '../column-categorical.js';
 import NumericalColumn from '../column-numerical.js';
 import StringColumn from '../column-string.js';
 import {NUMERICAL_FORMATS} from '../constants.js';
-import {Unstable_DataTable} from '../data-table.js';
+import {Unstable_StatefulDataTable} from '../stateful-data-table.js';
 
 import {ArrowUp} from '../../icon/index.js';
 
@@ -91,7 +91,7 @@ export const component = () => {
   return (
     <div>
       <div style={{height: '500px', width: '400px'}}>
-        <Unstable_DataTable
+        <Unstable_StatefulDataTable
           columns={columns}
           rows={rows}
           rowActions={rowActions}

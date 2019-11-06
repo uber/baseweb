@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import CategoricalColumn from '../column-categorical.js';
 import StringColumn from '../column-string.js';
-import {Unstable_DataTable} from '../data-table.js';
+import {Unstable_StatefulDataTable} from '../stateful-data-table.js';
 
 import AnimalData from './animal-data.js';
 
@@ -35,7 +35,7 @@ const rows = AnimalData.map(row => {
 export const component = () => {
   return (
     <div style={{height: '600px', width: '700px'}}>
-      <Unstable_DataTable columns={columns} rows={rows} />
+      <Unstable_StatefulDataTable columns={columns} rows={rows} />
     </div>
   );
 };
