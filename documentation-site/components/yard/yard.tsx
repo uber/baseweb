@@ -40,7 +40,7 @@ import Overrides from './overrides';
 import ThemeEditor from './theme-editor';
 
 // other UIs
-import {Beta, YardTabs, YardTab} from './styled-components';
+import {YardTabs, YardTab} from './styled-components';
 import PopupError from './popup-error';
 
 // compiler
@@ -83,8 +83,18 @@ const Yard: React.FC<
 }) => {
   const [, theme] = useStyletron();
   const [hydrated, setHydrated] = React.useState(false);
+  const [view, setView] = React.useState(1);
   const [error, setError] = React.useState<TError>({where: '', msg: null});
   const initialThemeObj = getComponentThemeFromContext(theme, themeConfig);
+
+  React.useEffect(() => {
+    document.addEventListener('keydown', e => {
+      const num = parseInt(e.key, 10);
+      if (num > 0 && num < 8) {
+        setView(num);
+      }
+    });
+  });
 
   // initial state
   const [state, dispatch] = React.useReducer(reducer, {
@@ -185,44 +195,19 @@ const Yard: React.FC<
       />
       {(error.where === '__compiler' || error.where === 'overrides') &&
         error.msg && <PopupError error={error.msg} />}
-      <YardTabs>
-        <YardTab title={`Props${activeProps > 0 ? ` (${activeProps})` : ''}`}>
-          <Knobs
-            knobProps={state.props}
-            error={error}
-            set={(propValue: TPropValue, propName: string) => {
-              try {
-                trackEvent('yard', `${componentName}:knob_change_${propName}`);
-                !hydrated && setHydrated(true);
-                const newCode = getCode(
-                  buildPropsObj(state.props, {[propName]: propValue}),
-                  componentName,
-                  componentThemeDiff,
-                  importsConfig,
-                );
-                setError({where: '', msg: null});
-                updatePropsAndCode(dispatch, newCode, propName, propValue);
-                updateUrl({pathname, code: newCode, queryStringName});
-              } catch (e) {
-                updateProps(dispatch, propName, propValue);
-                setError({where: propName, msg: e.toString()});
-              }
-            }}
-          />
-        </YardTab>
-        {propsConfig.overrides.names && propsConfig.overrides.names.length > 0 && (
-          <YardTab
-            title={`Style Overrides${
-              activeOverrides > 0 ? ` (${activeOverrides})` : ''
-            }`}
-          >
-            <Overrides
-              componentName={componentName}
-              componentConfig={propsConfig}
-              overrides={state.props.overrides}
-              set={(propValue: TPropValue) => {
-                const propName = 'overrides';
+      {view > 3 && (
+        <YardTabs>
+          <YardTab title={`Props${activeProps > 0 ? ` (${activeProps})` : ''}`}>
+            <Knobs
+              knobProps={state.props}
+              error={error}
+              set={(propValue: TPropValue, propName: string) => {
                 try {
+                  trackEvent(
+                    'yard',
+                    `${componentName}:knob_change_${propName}`,
+                  );
+                  !hydrated && setHydrated(true);
                   const newCode = getCode(
                     buildPropsObj(state.props, {[propName]: propValue}),
                     componentName,
@@ -239,148 +224,190 @@ const Yard: React.FC<
               }}
             />
           </YardTab>
-        )}
-        {themeConfig.length > 0 && (
-          <YardTab
-            title={`Theme ${
-              activeThemeValues > 0 ? `(${activeThemeValues})` : ''
-            }`}
-          >
-            <ThemeEditor
-              themeInit={initialThemeObj}
-              theme={state.theme}
-              componentName={componentName}
-              set={(updatedThemeValues: {[key: string]: string}) => {
-                const componentThemeDiff = getThemeForCodeGenerator(
-                  themeConfig,
-                  updatedThemeValues,
-                  theme,
-                );
-                const newCode = getCode(
-                  state.props,
-                  componentName,
-                  componentThemeDiff,
-                  importsConfig,
-                );
-                updateThemeAndCode(dispatch, newCode, updatedThemeValues);
-                updateUrl({pathname, code: newCode, queryStringName});
-              }}
-            />
-          </YardTab>
-        )}
-      </YardTabs>
-      <Editor
-        code={state.codeNoRecompile !== '' ? state.codeNoRecompile : state.code}
-        onChange={newCode => {
-          try {
-            updateAll(dispatch, newCode, componentName, propsConfig);
-            updateUrl({pathname, code: newCode, queryStringName});
-          } catch (e) {
-            updateCode(dispatch, newCode);
-          }
-        }}
-        transformToken={tokenProps => {
-          const token = tokenProps.children.trim();
-          if (mapTokensToProps && mapTokensToProps[token]) {
-            return (
-              <PropsTooltip
-                {...tokenProps}
-                typeDefinition={mapTokensToProps[token]}
+          {view > 5 &&
+            propsConfig.overrides.names &&
+            propsConfig.overrides.names.length > 0 && (
+              <YardTab
+                title={`Style Overrides${
+                  activeOverrides > 0 ? ` (${activeOverrides})` : ''
+                }`}
+              >
+                <Overrides
+                  componentName={componentName}
+                  componentConfig={propsConfig}
+                  overrides={state.props.overrides}
+                  set={(propValue: TPropValue) => {
+                    const propName = 'overrides';
+                    try {
+                      const newCode = getCode(
+                        buildPropsObj(state.props, {[propName]: propValue}),
+                        componentName,
+                        componentThemeDiff,
+                        importsConfig,
+                      );
+                      setError({where: '', msg: null});
+                      updatePropsAndCode(
+                        dispatch,
+                        newCode,
+                        propName,
+                        propValue,
+                      );
+                      updateUrl({pathname, code: newCode, queryStringName});
+                    } catch (e) {
+                      updateProps(dispatch, propName, propValue);
+                      setError({where: propName, msg: e.toString()});
+                    }
+                  }}
+                />
+              </YardTab>
+            )}
+          {view > 4 && themeConfig.length > 0 && (
+            <YardTab
+              title={`Theme ${
+                activeThemeValues > 0 ? `(${activeThemeValues})` : ''
+              }`}
+            >
+              <ThemeEditor
+                themeInit={initialThemeObj}
+                theme={state.theme}
+                componentName={componentName}
+                set={(updatedThemeValues: {[key: string]: string}) => {
+                  const componentThemeDiff = getThemeForCodeGenerator(
+                    themeConfig,
+                    updatedThemeValues,
+                    theme,
+                  );
+                  const newCode = getCode(
+                    state.props,
+                    componentName,
+                    componentThemeDiff,
+                    importsConfig,
+                  );
+                  updateThemeAndCode(dispatch, newCode, updatedThemeValues);
+                  updateUrl({pathname, code: newCode, queryStringName});
+                }}
               />
-            );
+            </YardTab>
+          )}
+        </YardTabs>
+      )}
+      {view > 1 && (
+        <Editor
+          code={
+            state.codeNoRecompile !== '' ? state.codeNoRecompile : state.code
           }
-          return <span {...tokenProps} />;
-        }}
-      />
+          onChange={newCode => {
+            try {
+              updateAll(dispatch, newCode, componentName, propsConfig);
+              updateUrl({pathname, code: newCode, queryStringName});
+            } catch (e) {
+              updateCode(dispatch, newCode);
+            }
+          }}
+          transformToken={tokenProps => {
+            const token = tokenProps.children.trim();
+            if (mapTokensToProps && mapTokensToProps[token]) {
+              return (
+                <PropsTooltip
+                  {...tokenProps}
+                  typeDefinition={mapTokensToProps[token]}
+                />
+              );
+            }
+            return <span {...tokenProps} />;
+          }}
+        />
+      )}
       <Error
         error={error.where === '__compiler' ? error.msg : null}
         code={state.code}
       />
-      <ButtonGroup
-        size={SIZE.compact}
-        overrides={{
-          Root: {
-            style: ({$theme}) => ({
-              flexWrap: 'wrap',
-              marginTop: $theme.sizing.scale300,
-            }),
-          },
-        }}
-      >
-        <Button
-          kind={KIND.tertiary}
-          onClick={() => {
-            trackEvent('yard', `${componentName}:format_code`);
-            updateCode(dispatch, formatCode(state.code));
-          }}
-        >
-          Format
-        </Button>
-        <Button
-          kind={KIND.tertiary}
-          onClick={() => {
-            trackEvent('yard', `${componentName}:copy_code`);
-            copy(state.code);
-          }}
-        >
-          Copy code
-        </Button>
-        <Button
-          kind={KIND.tertiary}
-          onClick={() => {
-            trackEvent('yard', `${componentName}:copy_url`);
-            copy(window.location.href);
-          }}
-        >
-          Copy URL
-        </Button>
-        <Button
-          kind={KIND.tertiary}
-          onClick={() => {
-            trackEvent('yard', `${componentName}:reset_code`);
-            reset(
-              dispatch,
-              getCode(
-                propsConfig,
-                componentName,
-                getThemeForCodeGenerator(themeConfig, {}, theme),
-                importsConfig,
-              ),
-              propsConfig,
-              initialThemeObj,
-            );
-            updateUrl({pathname});
-          }}
-        >
-          Reset
-        </Button>
-        <CodeSandboxer
-          key="js"
-          examplePath="/example.js"
-          example={state.code}
-          providedFiles={{
-            'index.js': {
-              content: codesandboxIndexCode,
+      {view > 2 && (
+        <ButtonGroup
+          size={SIZE.compact}
+          overrides={{
+            Root: {
+              style: ({$theme}) => ({
+                flexWrap: 'wrap',
+                marginTop: $theme.sizing.scale300,
+              }),
             },
           }}
-          template="create-react-app"
-          name={componentName}
-          dependencies={{
-            baseui: version,
-            react: '16.8.6',
-            'react-dom': '16.8.6',
-            'react-scripts': '3.0.1',
-            'styletron-engine-atomic': '1.4.0',
-            'styletron-react': '5.2.0',
-          }}
-          children={() => (
-            <Button kind={KIND.secondary} size={SIZE.compact}>
-              CodeSandbox
-            </Button>
-          )}
-        />
-      </ButtonGroup>
-      <Beta />
+        >
+          <Button
+            kind={KIND.tertiary}
+            onClick={() => {
+              trackEvent('yard', `${componentName}:format_code`);
+              updateCode(dispatch, formatCode(state.code));
+            }}
+          >
+            Format
+          </Button>
+          <Button
+            kind={KIND.tertiary}
+            onClick={() => {
+              trackEvent('yard', `${componentName}:copy_code`);
+              copy(state.code);
+            }}
+          >
+            Copy code
+          </Button>
+          <Button
+            kind={KIND.tertiary}
+            onClick={() => {
+              trackEvent('yard', `${componentName}:copy_url`);
+              copy(window.location.href);
+            }}
+          >
+            Copy URL
+          </Button>
+          <Button
+            kind={KIND.tertiary}
+            onClick={() => {
+              trackEvent('yard', `${componentName}:reset_code`);
+              reset(
+                dispatch,
+                getCode(
+                  propsConfig,
+                  componentName,
+                  getThemeForCodeGenerator(themeConfig, {}, theme),
+                  importsConfig,
+                ),
+                propsConfig,
+                initialThemeObj,
+              );
+              updateUrl({pathname});
+            }}
+          >
+            Reset
+          </Button>
+          <CodeSandboxer
+            key="js"
+            examplePath="/example.js"
+            example={state.code}
+            providedFiles={{
+              'index.js': {
+                content: codesandboxIndexCode,
+              },
+            }}
+            template="create-react-app"
+            name={componentName}
+            dependencies={{
+              baseui: version,
+              react: '16.8.6',
+              'react-dom': '16.8.6',
+              'react-scripts': '3.0.1',
+              'styletron-engine-atomic': '1.4.0',
+              'styletron-react': '5.2.0',
+            }}
+            children={() => (
+              <Button kind={KIND.secondary} size={SIZE.compact}>
+                CodeSandbox
+              </Button>
+            )}
+          />
+        </ButtonGroup>
+      )}
     </React.Fragment>
   );
 };

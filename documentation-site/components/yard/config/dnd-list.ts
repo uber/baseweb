@@ -14,7 +14,7 @@ const dndListConfig: TConfig = {
   theme: [],
   props: {
     items: {
-      value: `['Item 1', 'Item 2', 'Item 3']`,
+      value: `["Item 1","Item 2","Item 3"]`,
       type: PropTypes.Array,
       description: 'The total number of items to display.',
       stateful: true,
