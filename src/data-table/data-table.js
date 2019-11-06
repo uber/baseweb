@@ -127,7 +127,7 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
   );
 }
 function compareCellPlacement(prevProps, nextProps) {
-  // no need to re-render column header cells on data changes
+  // header cells are not rendered through this component
   if (prevProps.rowIndex === 0) {
     return true;
   }
@@ -157,6 +157,17 @@ function compareCellPlacement(prevProps, nextProps) {
     prevProps.rowIndex !== prevProps.data.rowHoverIndex &&
     prevProps.rowIndex !== nextProps.data.rowHoverIndex &&
     prevProps.data.columnHoverIndex === nextProps.data.columnHoverIndex &&
+    prevProps.data.isRowSelected === nextProps.data.isRowSelected
+  ) {
+    return true;
+  }
+
+  // similar to the row highlight optimization, do not update the cell if not in the previously
+  // highlighted column or next highlighted.
+  if (
+    prevProps.columnIndex !== prevProps.data.columnHoverIndex &&
+    prevProps.columnIndex !== nextProps.data.columnHoverIndex &&
+    prevProps.data.rowHoverIndex === nextProps.data.rowHoverIndex &&
     prevProps.data.isRowSelected === nextProps.data.isRowSelected
   ) {
     return true;
