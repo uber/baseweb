@@ -6,4 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-export {Grid, StyledGrid, StyledCell, SIZING} from './styled-components.js';
+export {
+  Grid,
+  Cell,
+  StyledGrid,
+  StyledCell,
+  SIZING,
+  ALIGNMENT,
+} from './styled-components.js';

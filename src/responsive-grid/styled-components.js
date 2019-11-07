@@ -15,12 +15,17 @@ export const SIZING = {
   fixed: 'fixed',
 };
 
+export const ALIGNMENT = {
+  start: 'flex-start',
+  center: 'center',
+  end: 'flex-end',
+};
+
 // defaults
 const GRID_COLUMNS = [4, 8, 12];
 const GRID_MARGINS = [16, 36, 64];
 const GRID_GUTTERS = [16, 36, 36];
 const GRID_MAX_WIDTH = 1280;
-const GRID_ROW_GAPS = 16;
 
 export function Grid({
   children,
@@ -30,7 +35,7 @@ export function Grid({
   gridGutters,
   gridRowGaps,
   gridMaxWidth,
-  ...props
+  align,
 }) {
   return (
     <StyledGrid
@@ -38,12 +43,12 @@ export function Grid({
       $gridMargins={gridMargins}
       $gridGutters={gridGutters}
       $gridMaxWidth={gridMaxWidth}
+      $align={align}
     >
       {React.Children.map(children, child =>
         React.cloneElement(child, {
           $gridColumns: gridColumns,
           $gridGutters: gridGutters,
-          $gridRowGaps: gridRowGaps,
         }),
       )}
     </StyledGrid>
@@ -58,6 +63,7 @@ export const StyledGrid = styled(
     $gridMargins = GRID_MARGINS,
     $gridGutters = GRID_GUTTERS,
     $gridMaxWidth = GRID_MAX_WIDTH,
+    $align,
   }) => {
     const mediaQueries = getMediaQueries($theme.breakpoints);
     const paddingStyles = mediaQueries.reduce(
@@ -69,6 +75,7 @@ export const StyledGrid = styled(
               getResponsiveValue($gridGutters, idx) / 2}px`,
             paddingRight: `${getResponsiveValue($gridMargins, idx) -
               getResponsiveValue($gridGutters, idx) / 2}px`,
+            alignItems: getResponsiveValue($align, idx),
           },
         };
       },
@@ -77,6 +84,7 @@ export const StyledGrid = styled(
           getResponsiveValue($gridGutters, 0) / 2}px`,
         paddingRight: `${getResponsiveValue($gridMargins, 0) -
           getResponsiveValue($gridGutters, 0) / 2}px`,
+        alignItems: getResponsiveValue($align, 0),
       },
     );
     return {
@@ -95,9 +103,9 @@ export const StyledGrid = styled(
   },
 );
 
-export function Cell({children, span, skip}) {
+export function Cell({children, span, skip, align}) {
   return (
-    <StyledCell $span={span} $skip={skip}>
+    <StyledCell $span={span} $skip={skip} $align={align}>
       {children}
     </StyledCell>
   );
@@ -111,7 +119,7 @@ export const StyledCell = styled(
     $span = [1, 1, 1],
     $gridColumns = GRID_COLUMNS,
     $gridGutters = GRID_GUTTERS,
-    $gridRowGaps = GRID_ROW_GAPS,
+    $align,
   }) => {
     const mediaQueries = getMediaQueries($theme.breakpoints);
     const cellStyles = mediaQueries.reduce(
@@ -129,17 +137,17 @@ export const StyledCell = styled(
                 getResponsiveValue($skip, idx),
                 getResponsiveValue($gridColumns, idx) - 1,
               )}%`,
-            marginBottom: getResponsiveValue($gridRowGaps, idx) + 'px',
             paddingLeft: getResponsiveValue($gridGutters, idx) / 2 + 'px',
             paddingRight: getResponsiveValue($gridGutters, idx) / 2 + 'px',
+            alignSelf: getResponsiveValue($align, idx),
           },
         };
       },
       {
         width: '100%',
-        marginBottom: getResponsiveValue($gridRowGaps, 0) + 'px',
         paddingLeft: getResponsiveValue($gridGutters, 0) / 2 + 'px',
         paddingRight: getResponsiveValue($gridGutters, 0) / 2 + 'px',
+        alignSelf: getResponsiveValue($align, 0),
       },
     );
     return {
@@ -155,6 +163,9 @@ export const getResponsiveValue = (responsive, i) => {
   }
   if (!Array.isArray(responsive)) {
     return responsive;
+  }
+  if (responsive[i] === null || typeof responsive[i] === 'number') {
+    return responsive[i];
   }
   return responsive[i] || responsive[responsive.length - 1];
 };
