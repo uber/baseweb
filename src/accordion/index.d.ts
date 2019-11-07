@@ -32,6 +32,7 @@ export interface AccordionProps {
   overrides?: AccordionOverrides<SharedProps & {$expanded?: never}>;
   stateReducer?: StateReducer<AccordionState>;
   renderPanelContent?: boolean;
+  renderAll?: boolean;
 }
 
 export interface AccordionState {
@@ -64,6 +65,7 @@ export interface SharedPanelProps {
   overrides?: PanelOverrides<SharedProps>;
   title?: React.ReactNode;
   renderPanelContent?: boolean;
+  renderAll?: boolean;
 }
 
 export interface SharedStatefulPanelContainerProps {
