@@ -84,7 +84,8 @@ Allowing users to see the text they have entered is considered a [usability best
 If you want to opt-out of this behavior, you can override the toggle with a null component:
 
 ```jsx
-<Password
+<Input
+  type="password"
   overrides={{
     MaskToggleButton: () => null,
   }}
@@ -94,7 +95,8 @@ If you want to opt-out of this behavior, you can override the toggle with a null
 You can also use `overrides` to customize the icons used in the toggle:
 
 ```jsx
-<Password
+<Input
+  type="password"
   overrides={{
     MaskToggleHideIcon: () => '🙈',
     MaskToggleShowIcon: () => '🐵',

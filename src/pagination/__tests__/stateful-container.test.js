@@ -15,7 +15,7 @@ const mockChildrenFn = jest.fn().mockImplementation(() => <div />);
 const mockOnPageChangeFn = jest.fn();
 const mockStateReducerFn = jest
   .fn()
-  .mockImplementation((changeType, changes) => changes);
+  .mockImplementation((changeType, changes) => (changes: any));
 
 function getSharedProps() {
   return {
