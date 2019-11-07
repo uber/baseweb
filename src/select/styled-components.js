@@ -299,7 +299,7 @@ export const StyledInputContainer = styled<SharedStylePropsArgT>(
       paddingLeft: 0,
       paddingRight: 0,
       height: String(!$searchable ? font.lineHeight : 'auto'),
-      maxHeight: font.lineHeight,
+      maxHeight: String(font.lineHeight),
     };
   },
 );
