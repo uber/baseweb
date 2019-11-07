@@ -10,7 +10,7 @@ import React from 'react';
 import {styled} from '../styles/index.js';
 import {getMediaQueries} from '../helpers/responsive-helpers.js';
 
-const SIZING = {
+export const SIZING = {
   fluid: 'fluid',
   fixed: 'fixed',
 };
