@@ -342,6 +342,10 @@ const routes = [
         title: 'Roadmap',
         itemId: '/discover-more/roadmap',
       },
+      {
+        title: 'SEO',
+        itemId: '/guides/seo',
+      },
     ],
   },
   {

@@ -24,7 +24,7 @@ describe('Accordion', () => {
   });
 
   test('basic render w/ SEO', () => {
-    const component = mount(<Component renderPanelContent />);
+    const component = mount(<Component renderAll />);
     const Panel1Content = component
       .find(Panel)
       .at(0)
@@ -41,7 +41,7 @@ describe('Accordion', () => {
       .text();
     expect(Panel3Content).not.toBe(null);
     expect(component).toMatchSnapshot(
-      'Accordion renders all panel content with renderPanelContent',
+      'Accordion renders all panel content with renderAll',
     );
   });
 });
