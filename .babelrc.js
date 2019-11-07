@@ -1,9 +1,21 @@
-const {BABEL_ENV} = process.env;
-const modules = !(BABEL_ENV === 'es' || BABEL_ENV === 'modules') && 'commonjs';
+let defaultPresets;
+
+if (process.env.BABEL_ENV === 'es') {
+  defaultPresets = [];
+} else {
+  defaultPresets = [
+    [
+      '@babel/preset-env',
+      {
+        modules: process.env.BABEL_ENV === 'esm' ? false : 'commonjs',
+      },
+    ],
+  ];
+}
 
 module.exports = {
   presets: [
-    ['@babel/preset-env', {modules}],
+    ...defaultPresets,
     '@babel/react',
     ['@babel/preset-flow', {all: true}],
   ],
