@@ -40,6 +40,7 @@ class Textarea extends React.Component<TextareaPropsT> {
       this.props.overrides,
     );
     return (
+      //$FlowFixMe
       <BaseInput
         data-baseweb="textarea"
         {...this.props}
