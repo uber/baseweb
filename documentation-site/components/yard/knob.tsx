@@ -11,6 +11,7 @@ import {StatefulTooltip} from 'baseui/tooltip';
 import PopupError from './popup-error';
 import Editor from './editor';
 import {TPropValue} from './types';
+import {MdHelp} from 'react-icons/md';
 
 const getTooltip = (description: string, type: string, name: string) => (
   <span>
@@ -43,7 +44,9 @@ const Label: React.FC<{
       })}
     >
       <StatefulTooltip accessibilityType="tooltip" content={tooltip}>
-        {children}
+        <span>
+          {children} <MdHelp color={theme.colors.primary600} size="0.75em" />
+        </span>
       </StatefulTooltip>
     </label>
   );
@@ -71,6 +74,7 @@ const Knob: React.SFC<{
   enumName,
 }) => {
   const [val, set] = useValueDebounce<TPropValue>(globalVal, globalSet);
+  const [, theme] = useStyletron();
   switch (type) {
     case PropTypes.Ref:
       return (
@@ -120,7 +124,9 @@ const Knob: React.SFC<{
               content={getTooltip(description, type, name)}
               placement="right"
             >
-              {name}
+              <span>
+                {name} <MdHelp color={theme.colors.primary600} size="0.75em" />
+              </span>
             </StatefulTooltip>
           </Checkbox>
           <PopupError error={error} />
