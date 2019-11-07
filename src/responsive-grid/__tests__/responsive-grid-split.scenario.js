@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {Grid, StyledCell as Cell} from '../index.js';
+import {Grid, Cell} from '../index.js';
 
 export const name = 'responsive-grid-split';
 
@@ -26,10 +26,10 @@ function Inner(props) {
 export function component() {
   return (
     <Grid>
-      <Cell $span={[4, 4, 6]}>
+      <Cell span={[4, 4, 6]}>
         <Inner>1</Inner>
       </Cell>
-      <Cell $span={[4, 4, 6]}>
+      <Cell span={[4, 4, 6]}>
         <Inner>2</Inner>
       </Cell>
     </Grid>

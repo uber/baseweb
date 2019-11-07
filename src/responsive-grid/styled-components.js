@@ -95,6 +95,14 @@ export const StyledGrid = styled(
   },
 );
 
+export function Cell({children, span, skip}) {
+  return (
+    <StyledCell $span={span} $skip={skip}>
+      {children}
+    </StyledCell>
+  );
+}
+
 export const StyledCell = styled(
   'div',
   ({

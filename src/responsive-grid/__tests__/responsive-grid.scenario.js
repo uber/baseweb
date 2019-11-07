@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {Grid, StyledCell as Cell} from '../index.js';
+import {Grid, Cell} from '../index.js';
 
 export const name = 'responsive-grid';
 
@@ -26,16 +26,16 @@ function Inner(props) {
 export function component() {
   return (
     <Grid>
-      <Cell $span={[1, 2, 3]}>
+      <Cell span={[1, 2, 3]}>
         <Inner>1</Inner>
       </Cell>
-      <Cell $span={[1, 2, 3]}>
+      <Cell span={[1, 2, 3]}>
         <Inner>2</Inner>
       </Cell>
-      <Cell $span={[1, 2, 3]}>
+      <Cell span={[1, 2, 3]}>
         <Inner>3</Inner>
       </Cell>
-      <Cell $span={[1, 2, 3]}>
+      <Cell span={[1, 2, 3]}>
         <Inner>4</Inner>
       </Cell>
     </Grid>
