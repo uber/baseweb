@@ -78,12 +78,30 @@ export type StatefulDataTablePropsT = {|
 export type DataTablePropsT = {|
   ...StatefulDataTablePropsT,
   filters?: Map<string, {description: string}>,
-  onSelectMany?: (RowT[]) => void,
+  onSelectMany?: (rows: RowT[]) => void,
   onSelectNone?: () => void,
-  onSelectOne?: RowT => void,
-  onSort?: number => void,
+  onSelectOne?: (row: RowT) => void,
+  onSort?: (columnIndex: number) => void,
   selectedRowIds?: Set<string | number>,
   sortIndex?: number,
   sortDirection?: SortDirectionsT,
   textQuery?: string,
+|};
+
+export type StatefulContainerPropsT = {|
+  ...StatefulDataTablePropsT,
+  children: ({|
+    filters: Map<string, {description: string}>,
+    onFilterAdd: (filterParams: {description: string}, title: string) => void,
+    onFilterRemove: (title: string) => void,
+    onSelectMany: (rows: RowT[]) => void,
+    onSelectNone: () => void,
+    onSelectOne: (row: RowT) => void,
+    onSort: (columnIndex: number) => void,
+    onTextQueryChange: (query: string) => void,
+    selectedRowIds: Set<string | number>,
+    sortIndex: number,
+    sortDirection: SortDirectionsT,
+    textQuery: string,
+  |}) => React.Node,
 |};

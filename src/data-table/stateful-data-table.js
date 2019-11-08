@@ -19,45 +19,10 @@ import {Input, SIZE as INPUT_SIZES} from '../input/index.js';
 import {useStyletron} from '../styles/index.js';
 import {Tag} from '../tag/index.js';
 
-import {SORT_DIRECTIONS} from './constants.js';
 import FilterMenu from './filter-menu.js';
 import {Unstable_DataTable} from './data-table.js';
-import type {ColumnT, StatefulDataTablePropsT} from './types.js';
-
-function useDuplicateColumnTitleWarning(columns: ColumnT<>[]) {
-  React.useEffect(() => {
-    const titles = columns.reduce(
-      (set, column) => set.add(column.title),
-      new Set(),
-    );
-    if (titles.size < columns.length) {
-      console.warn(
-        'Columns titles must be unique else will result in non-deterministic filtering.',
-      );
-    }
-  }, [columns]);
-}
-
-function useSortParameters() {
-  const [sortIndex, setSortIndex] = React.useState(-1);
-  const [sortDirection, setSortDirection] = React.useState(null);
-
-  function handleSort(columnIndex) {
-    if (columnIndex === sortIndex) {
-      if (sortDirection === SORT_DIRECTIONS.ASC) {
-        setSortIndex(-1);
-        setSortDirection(SORT_DIRECTIONS.DESC);
-      } else {
-        setSortDirection(SORT_DIRECTIONS.ASC);
-      }
-    } else {
-      setSortIndex(columnIndex);
-      setSortDirection(SORT_DIRECTIONS.DESC);
-    }
-  }
-
-  return [sortIndex, sortDirection, handleSort];
-}
+import {Unstable_StatefulContainer} from './stateful-container.js';
+import type {StatefulDataTablePropsT} from './types.js';
 
 function useResizeObserver(
   ref: {current: HTMLElement | null},
@@ -113,47 +78,6 @@ function QueryInput(props) {
 
 export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
   const [css, theme] = useStyletron();
-  useDuplicateColumnTitleWarning(props.columns);
-  const [sortIndex, sortDirection, handleSort] = useSortParameters();
-  const [filters, setFilters] = React.useState(new Map());
-  const [textQuery, setTextQuery] = React.useState('');
-
-  function addFilter(filterParams, title) {
-    filters.set(title, filterParams);
-    setFilters(new Map(filters));
-  }
-  function removeFilter(title) {
-    filters.delete(title);
-    setFilters(new Map(filters));
-  }
-
-  const [selectedRowIds, setSelectedRowIds] = React.useState(new Set());
-  function handleSelectChange(next) {
-    setSelectedRowIds(next);
-
-    const selectionCallback = props.onSelectionChange;
-    if (selectionCallback) {
-      selectionCallback(props.rows.filter(r => next.has(r.id)));
-    }
-  }
-  function handleSelectMany(incomingRows) {
-    // only adds rows that are visible in the table
-    handleSelectChange(
-      new Set([...selectedRowIds, ...incomingRows.map(r => r.id)]),
-    );
-  }
-  function handleSelectNone() {
-    handleSelectChange(new Set());
-  }
-  function handleSelectOne(row) {
-    if (selectedRowIds.has(row.id)) {
-      selectedRowIds.delete(row.id);
-    } else {
-      selectedRowIds.add(row.id);
-    }
-    handleSelectChange(new Set(selectedRowIds));
-  }
-
   const headlineRef = React.useRef(null);
   const [headlineHeight, setHeadlineHeight] = React.useState(64);
   useResizeObserver(headlineRef, entries => {
@@ -161,136 +85,163 @@ export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
   });
 
   return (
-    <React.Fragment>
-      <div className={css({height: `${headlineHeight}px`})}>
-        <div ref={headlineRef}>
-          {!selectedRowIds.size && (
-            <div
-              className={css({
-                alignItems: 'end',
-                display: 'flex',
-                flexWrap: 'wrap',
-                paddingTop: theme.sizing.scale500,
-                paddingBottom: theme.sizing.scale500,
-              })}
-            >
-              <QueryInput onChange={setTextQuery} />
+    <Unstable_StatefulContainer
+      batchActions={props.batchActions}
+      columns={props.columns}
+      onSelectionChange={props.onSelectionChange}
+      rows={props.rows}
+      rowActions={props.rowActions}
+    >
+      {({
+        filters,
+        onFilterAdd,
+        onFilterRemove,
+        onSelectMany,
+        onSelectNone,
+        onSelectOne,
+        onSort,
+        onTextQueryChange,
+        selectedRowIds,
+        sortIndex,
+        sortDirection,
+        textQuery,
+      }) => (
+        <React.Fragment>
+          <div className={css({height: `${headlineHeight}px`})}>
+            <div ref={headlineRef}>
+              {!selectedRowIds.size && (
+                <div
+                  className={css({
+                    alignItems: 'end',
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    paddingTop: theme.sizing.scale500,
+                    paddingBottom: theme.sizing.scale500,
+                  })}
+                >
+                  <QueryInput onChange={onTextQueryChange} />
 
-              {Array.from(filters).map(([title, filter]) => (
-                <Tag
-                  key={title}
-                  onActionClick={() => removeFilter(title)}
-                  overrides={{
-                    Root: {
-                      style: {
-                        borderTopLeftRadius: '36px',
-                        borderTopRightRadius: '36px',
-                        borderBottomLeftRadius: '36px',
-                        borderBottomRightRadius: '36px',
-                        height: '36px',
-                        marginTop: null,
-                        marginBottom: null,
-                      },
-                    },
-                    Action: {
-                      style: {
-                        borderTopRightRadius: '36px',
-                        borderBottomRightRadius: '36px',
-                        height: '22px',
-                      },
-                    },
+                  {Array.from(filters).map(([title, filter]) => (
+                    <Tag
+                      key={title}
+                      onActionClick={() => onFilterRemove(title)}
+                      overrides={{
+                        Root: {
+                          style: {
+                            borderTopLeftRadius: '36px',
+                            borderTopRightRadius: '36px',
+                            borderBottomLeftRadius: '36px',
+                            borderBottomRightRadius: '36px',
+                            height: '36px',
+                            marginTop: null,
+                            marginBottom: null,
+                          },
+                        },
+                        Action: {
+                          style: {
+                            borderTopRightRadius: '36px',
+                            borderBottomRightRadius: '36px',
+                            height: '22px',
+                          },
+                        },
+                      }}
+                    >
+                      <span
+                        className={css({
+                          ...theme.typography.font150,
+                          color: theme.colors.mono1000,
+                        })}
+                      >
+                        {title}
+                      </span>
+                      : {filter.description}
+                    </Tag>
+                  ))}
+
+                  <FilterMenu
+                    columns={props.columns}
+                    filters={filters}
+                    rows={props.rows}
+                    onSetFilter={onFilterAdd}
+                  />
+                </div>
+              )}
+
+              {Boolean(selectedRowIds.size) && props.batchActions && (
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    paddingTop: theme.sizing.scale400,
+                    paddingBottom: theme.sizing.scale400,
                   }}
                 >
-                  <span
-                    className={css({
-                      ...theme.typography.font150,
-                      color: theme.colors.mono1000,
-                    })}
-                  >
-                    {title}
-                  </span>
-                  : {filter.description}
-                </Tag>
-              ))}
+                  {props.batchActions.map(action => {
+                    function onClick(event) {
+                      action.onClick({
+                        clearSelection: onSelectNone,
+                        event,
+                        selection: props.rows.filter(r =>
+                          selectedRowIds.has(r.id),
+                        ),
+                      });
+                    }
 
-              <FilterMenu
-                columns={props.columns}
-                filters={filters}
-                rows={props.rows}
-                onSetFilter={addFilter}
-              />
+                    if (action.renderIcon) {
+                      const Icon = action.renderIcon;
+                      return (
+                        <Button
+                          key={action.label}
+                          overrides={{
+                            BaseButton: {props: {'aria-label': action.label}},
+                          }}
+                          onClick={onClick}
+                          kind={BUTTON_KINDS.tertiary}
+                          shape={BUTTON_SHAPES.round}
+                        >
+                          <Icon size={16} />
+                        </Button>
+                      );
+                    }
+
+                    return (
+                      <Button
+                        key={action.label}
+                        onClick={onClick}
+                        kind={BUTTON_KINDS.secondary}
+                        size={BUTTON_SIZES.compact}
+                      >
+                        {action.label}
+                      </Button>
+                    );
+                  })}
+                </div>
+              )}
             </div>
-          )}
+          </div>
 
-          {Boolean(selectedRowIds.size) && props.batchActions && (
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                paddingTop: theme.sizing.scale400,
-                paddingBottom: theme.sizing.scale400,
-              }}
-            >
-              {props.batchActions.map(action => {
-                function onClick(event) {
-                  action.onClick({
-                    clearSelection: handleSelectNone,
-                    event,
-                    selection: props.rows.filter(r => selectedRowIds.has(r.id)),
-                  });
-                }
-
-                if (action.renderIcon) {
-                  const Icon = action.renderIcon;
-                  return (
-                    <Button
-                      key={action.label}
-                      overrides={{
-                        BaseButton: {props: {'aria-label': action.label}},
-                      }}
-                      onClick={onClick}
-                      kind={BUTTON_KINDS.tertiary}
-                      shape={BUTTON_SHAPES.round}
-                    >
-                      <Icon size={16} />
-                    </Button>
-                  );
-                }
-
-                return (
-                  <Button
-                    key={action.label}
-                    onClick={onClick}
-                    kind={BUTTON_KINDS.secondary}
-                    size={BUTTON_SIZES.compact}
-                  >
-                    {action.label}
-                  </Button>
-                );
-              })}
-            </div>
-          )}
-        </div>
-      </div>
-
-      <div style={{width: '100%', height: `calc(100% - ${headlineHeight}px)`}}>
-        <Unstable_DataTable
-          batchActions={props.batchActions}
-          columns={props.columns}
-          filters={filters}
-          onSelectionChange={props.onSelectionChange}
-          onSelectMany={handleSelectMany}
-          onSelectNone={handleSelectNone}
-          onSelectOne={handleSelectOne}
-          onSort={handleSort}
-          rows={props.rows}
-          rowActions={props.rowActions}
-          selectedRowIds={selectedRowIds}
-          sortDirection={sortDirection}
-          sortIndex={sortIndex}
-          textQuery={textQuery}
-        />
-      </div>
-    </React.Fragment>
+          <div
+            style={{width: '100%', height: `calc(100% - ${headlineHeight}px)`}}
+          >
+            <Unstable_DataTable
+              batchActions={props.batchActions}
+              columns={props.columns}
+              filters={filters}
+              onSelectionChange={props.onSelectionChange}
+              onSelectMany={onSelectMany}
+              onSelectNone={onSelectNone}
+              onSelectOne={onSelectOne}
+              onSort={onSort}
+              rows={props.rows}
+              rowActions={props.rowActions}
+              selectedRowIds={selectedRowIds}
+              sortDirection={sortDirection}
+              sortIndex={sortIndex}
+              textQuery={textQuery}
+            />
+          </div>
+        </React.Fragment>
+      )}
+    </Unstable_StatefulContainer>
   );
 }
