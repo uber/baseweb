@@ -38,7 +38,7 @@ export function component() {
           <Inner>2</Inner>
         </Cell>
         <Cell span={4}>
-          <Inner>2</Inner>
+          <Inner>3</Inner>
         </Cell>
       </Grid>
       <br />
