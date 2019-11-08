@@ -124,9 +124,23 @@ export const StyledCell = styled(
     const mediaQueries = getMediaQueries($theme.breakpoints);
     const cellStyles = mediaQueries.reduce(
       (acc, cur, idx) => {
+        if (getResponsiveValue($span, idx) === 0) {
+          return {
+            ...acc,
+            [cur]: {
+              width: '0',
+              paddingLeft: '0',
+              paddingRight: '0',
+              marginLeft: '0',
+              marginRight: '0',
+              display: 'none',
+            },
+          };
+        }
         return {
           ...acc,
           [cur]: {
+            display: 'block',
             width: `${(100 / getResponsiveValue($gridColumns, idx)) *
               Math.min(
                 getResponsiveValue($span, idx),
