@@ -15,40 +15,54 @@ export const name = 'grid-skip';
 export function component() {
   return (
     <>
-      <Grid>
-        <Cell>
-          <Inner>1A</Inner>
-        </Cell>
-        <Cell skip={2}>
-          <Inner>1B</Inner>
-        </Cell>
-      </Grid>
+      {/* skip a cell */}
       <Grid>
         <Cell skip={1}>
+          <Inner>1</Inner>
+        </Cell>
+      </Grid>
+      <br />
+      {/* skip between cells */}
+      <Grid>
+        <Cell>
+          <Inner>1</Inner>
+        </Cell>
+        <Cell skip={2}>
           <Inner>2</Inner>
         </Cell>
       </Grid>
-      {/* Skip will not be greater than or equal to the column count. */}
+      <br />
+      {/* skip is responsive */}
       <Grid>
-        <Cell skip={4}>
-          <Inner>3</Inner>
+        <Cell>
+          <Inner>1</Inner>
         </Cell>
-      </Grid>
-      {/* Skips will shrink spans to fit on same line. */}
-      <Grid>
-        <Cell span={4}>
-          <Inner>4A</Inner>
-        </Cell>
-      </Grid>
-      <Grid>
-        <Cell skip={1} span={4}>
-          <Inner>4B</Inner>
-        </Cell>
-      </Grid>
-      {/* Skips are responsive. */}
-      <Grid>
         <Cell skip={[0, 1, 2]}>
-          <Inner>5</Inner>
+          <Inner>2</Inner>
+        </Cell>
+      </Grid>
+      <br />
+      {/* skip cannot exceed column count */}
+      <Grid>
+        <Cell skip={12}>
+          <Inner>1</Inner>
+        </Cell>
+      </Grid>
+      <br />
+      {/* skip can shrink cells */}
+      <Grid>
+        <Cell skip={1} span={[4, 8, 12]}>
+          <Inner>1</Inner>
+        </Cell>
+      </Grid>
+      <br />
+      {/* skip can wrap cells */}
+      <Grid>
+        <Cell span={[3, 7, 11]}>
+          <Inner>1</Inner>
+        </Cell>
+        <Cell skip={1}>
+          <Inner>2</Inner>
         </Cell>
       </Grid>
     </>
