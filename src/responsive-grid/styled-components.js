@@ -33,7 +33,7 @@ export function Grid({
   gridColumns,
   gridMargins,
   gridGutters,
-  gridRowGaps,
+  gridGaps,
   gridMaxWidth,
   align,
 }) {
@@ -49,6 +49,7 @@ export function Grid({
         React.cloneElement(child, {
           $gridColumns: gridColumns,
           $gridGutters: gridGutters,
+          $gridGaps: gridGaps,
         }),
       )}
     </StyledGrid>
@@ -103,9 +104,24 @@ export const StyledGrid = styled(
   },
 );
 
-export function Cell({children, span, skip, align}) {
+export function Cell({
+  children,
+  span,
+  skip,
+  align,
+  $gridColumns,
+  $gridGutters,
+  $gridGaps,
+}) {
   return (
-    <StyledCell $span={span} $skip={skip} $align={align}>
+    <StyledCell
+      $span={span}
+      $skip={skip}
+      $align={align}
+      $gridColumns={$gridColumns}
+      $gridGutters={$gridGutters}
+      $gridGaps={$gridGaps}
+    >
       {children}
     </StyledCell>
   );
@@ -117,9 +133,11 @@ export const StyledCell = styled(
     $theme,
     $skip = [0, 0, 0],
     $span = [1, 1, 1],
+    $align,
+    // Grid passes these down
     $gridColumns = GRID_COLUMNS,
     $gridGutters = GRID_GUTTERS,
-    $align,
+    $gridGaps = 0,
   }) => {
     const mediaQueries = getMediaQueries($theme.breakpoints);
     const cellStyles = mediaQueries.reduce(
@@ -153,6 +171,7 @@ export const StyledCell = styled(
               )}%`,
             paddingLeft: getResponsiveValue($gridGutters, idx) / 2 + 'px',
             paddingRight: getResponsiveValue($gridGutters, idx) / 2 + 'px',
+            marginBottom: getResponsiveValue($gridGaps, idx) + 'px',
             alignSelf: getResponsiveValue($align, idx),
           },
         };
@@ -161,6 +180,7 @@ export const StyledCell = styled(
         width: '100%',
         paddingLeft: getResponsiveValue($gridGutters, 0) / 2 + 'px',
         paddingRight: getResponsiveValue($gridGutters, 0) / 2 + 'px',
+        marginBottom: getResponsiveValue($gridGaps, 0) + 'px',
         alignSelf: getResponsiveValue($align, 0),
       },
     );
