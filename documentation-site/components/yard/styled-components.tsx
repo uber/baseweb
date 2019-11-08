@@ -1,25 +1,6 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {StatefulTooltip} from 'baseui/tooltip';
-import {Tag, VARIANT} from 'baseui/tag';
 import {StatefulTabs, Tab} from 'baseui/tabs';
-
-export const Beta = () => {
-  const [css] = useStyletron();
-  return (
-    <div className={css({display: 'flex', justifyContent: 'flex-end'})}>
-      <Tag closeable={false} variant={VARIANT.outlined} kind="warning">
-        <StatefulTooltip
-          accessibilityType="tooltip"
-          placement="bottomLeft"
-          content="This is a new experimental component playground. Please use GitHub issues to report any feedback and bugs. Thank you!"
-        >
-          Beta
-        </StatefulTooltip>
-      </Tag>
-    </div>
-  );
-};
 
 export const YardTabs: React.FC<{children: React.ReactNode}> = ({children}) => {
   const [, theme] = useStyletron();

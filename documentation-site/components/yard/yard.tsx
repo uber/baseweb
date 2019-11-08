@@ -46,7 +46,7 @@ import Overrides from './overrides';
 import ThemeEditor from './theme-editor';
 
 // other UIs
-import {Beta, YardTabs, YardTab} from './styled-components';
+import {YardTabs, YardTab} from './styled-components';
 import PopupError from './popup-error';
 
 // compiler
@@ -400,8 +400,22 @@ const Yard: React.FC<
             </Button>
           )}
         />
+        <Button
+          overrides={{
+            BaseButton: {
+              props: {
+                $as: 'a',
+              },
+            },
+          }}
+          href={`/cheat-sheet#${Object.keys(importsConfig)[0]
+            .split('/')[1]
+            .toLowerCase()}`}
+          kind={KIND.tertiary}
+        >
+          API
+        </Button>
       </ButtonGroup>
-      <Beta />
     </React.Fragment>
   );
 };
