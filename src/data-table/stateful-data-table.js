@@ -49,7 +49,7 @@ function QueryInput(props) {
   }, [value]);
 
   return (
-    <div className={css({width: '375px'})}>
+    <div className={css({width: '375px', marginBottom: theme.sizing.scale500})}>
       <Input
         aria-label="Search by text"
         overrides={{
@@ -57,8 +57,8 @@ function QueryInput(props) {
             return (
               <div
                 className={css({
-                  display: 'flex',
                   alignItems: 'center',
+                  display: 'flex',
                   paddingLeft: theme.sizing.scale500,
                 })}
               >
@@ -116,10 +116,16 @@ export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
                     display: 'flex',
                     flexWrap: 'wrap',
                     paddingTop: theme.sizing.scale500,
-                    paddingBottom: theme.sizing.scale500,
                   })}
                 >
                   <QueryInput onChange={onTextQueryChange} />
+
+                  <FilterMenu
+                    columns={props.columns}
+                    filters={filters}
+                    rows={props.rows}
+                    onSetFilter={onFilterAdd}
+                  />
 
                   {Array.from(filters).map(([title, filter]) => (
                     <Tag
@@ -134,7 +140,7 @@ export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
                             borderBottomRightRadius: '36px',
                             height: '36px',
                             marginTop: null,
-                            marginBottom: null,
+                            marginBottom: theme.sizing.scale500,
                           },
                         },
                         Action: {
@@ -157,13 +163,6 @@ export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
                       : {filter.description}
                     </Tag>
                   ))}
-
-                  <FilterMenu
-                    columns={props.columns}
-                    filters={filters}
-                    rows={props.rows}
-                    onSetFilter={onFilterAdd}
-                  />
                 </div>
               )}
 
