@@ -29,7 +29,7 @@ export type TimePickerPropsT = {
   disabled?: boolean,
   error?: boolean,
   positive?: boolean,
-  indeterminate?: boolean,
+  nullable?: boolean,
   placeholder?: string,
 };
 export type TimePickerStateT = {

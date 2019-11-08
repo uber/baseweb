@@ -130,7 +130,7 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
       });
       this.setState({
         steps: steps,
-        value: this.props.indeterminate
+        value: this.props.nullable
           ? undefined
           : {id: closestStep, label: secondsToLabel(closestStep)},
       });

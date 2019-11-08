@@ -12,7 +12,7 @@ export interface TimePickerProps {
   error?: boolean;
   creatable?: boolean;
   disabled?: boolean;
-  indeterminate?: boolean;
+  nullable?: boolean;
   placeholder?: string;
   step?: number;
   value?: Date | null;
