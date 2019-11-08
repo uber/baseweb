@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Accordion basic render w/ SEO: Accordion renders all panel content with renderPanelContent 1`] = `
+exports[`Accordion basic render w/ SEO: Accordion renders all panel content with renderAll 1`] = `
 <Component
-  renderPanelContent={true}
+  renderAll={true}
 >
   <Accordion
     accordion={true}
@@ -14,7 +14,8 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
     }
     onChange={[Function]}
     overrides={Object {}}
-    renderPanelContent={true}
+    renderAll={true}
+    renderPanelContent={false}
     stateReducer={[Function]}
   >
     <ForwardRef
@@ -49,7 +50,8 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
             onClick={[Function]}
             onKeyDown={[Function]}
             overrides={Object {}}
-            renderPanelContent={true}
+            renderAll={true}
+            renderPanelContent={false}
             title="Accordion panel 1"
           >
             <ForwardRef
@@ -261,7 +263,8 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
             onClick={[Function]}
             onKeyDown={[Function]}
             overrides={Object {}}
-            renderPanelContent={true}
+            renderAll={true}
+            renderPanelContent={false}
             title="Accordion panel 2"
           >
             <ForwardRef
@@ -473,7 +476,8 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
             onClick={[Function]}
             onKeyDown={[Function]}
             overrides={Object {}}
-            renderPanelContent={true}
+            renderAll={true}
+            renderPanelContent={false}
             title="Accordion panel 3"
           >
             <ForwardRef
@@ -695,6 +699,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
     }
     onChange={[Function]}
     overrides={Object {}}
+    renderAll={false}
     renderPanelContent={false}
     stateReducer={[Function]}
   >
@@ -730,6 +735,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
             onClick={[Function]}
             onKeyDown={[Function]}
             overrides={Object {}}
+            renderAll={false}
             renderPanelContent={false}
             title="Accordion panel 1"
           >
@@ -940,6 +946,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
             onClick={[Function]}
             onKeyDown={[Function]}
             overrides={Object {}}
+            renderAll={false}
             renderPanelContent={false}
             title="Accordion panel 2"
           >
@@ -1150,6 +1157,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
             onClick={[Function]}
             onKeyDown={[Function]}
             overrides={Object {}}
+            renderAll={false}
             renderPanelContent={false}
             title="Accordion panel 3"
           >

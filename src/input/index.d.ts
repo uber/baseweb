@@ -71,6 +71,11 @@ export type InputOverrides = BaseInputOverrides<SharedProps> & {
   Root?: Override<SharedProps>;
   StartEnhancer?: Override<SharedProps>;
   EndEnhancer?: Override<SharedProps>;
+  ClearIcon?: Override<SharedProps>;
+  ClearIconContainer?: Override<SharedProps>;
+  MaskToggleButton?: Override<SharedProps>;
+  MaskToggleHideIcon?: Override<SharedProps>;
+  MaskToggleShowIcon?: Override<SharedProps>;
 };
 
 export type SharedProps = {
