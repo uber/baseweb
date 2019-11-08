@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {Grid, Cell} from '../index.js';
+import {Unstable_Grid as Grid, Unstable_Cell as Cell} from '../index.js';
 import Inner from './inner.js';
 
-export const name = 'responsive-grid-skip';
+export const name = 'grid-skip';
 
 export function component() {
   return (
