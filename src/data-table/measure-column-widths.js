@@ -102,10 +102,13 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
 
     measurementCount.current += 1;
 
-    const nextWidth = Math.max(
-      props.columns[columnIndex].minWidth || 0,
-      dimensionsCache.current[columnIndex],
-      dimensions.width,
+    const nextWidth = Math.min(
+      Math.max(
+        props.columns[columnIndex].minWidth || 0,
+        dimensionsCache.current[columnIndex],
+        dimensions.width,
+      ),
+      props.columns[columnIndex].maxWidth || Infinity,
     );
 
     if (nextWidth !== dimensionsCache.current[columnIndex]) {

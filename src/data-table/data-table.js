@@ -29,6 +29,9 @@ import type {
   RowActionT,
 } from './types.js';
 
+// consider pulling this out to a prop if useful.
+const HEADER_ROW_HEIGHT = 48;
+
 type InnerTableElementProps = {|
   children: React.Node,
   style: {[string]: mixed},
@@ -49,8 +52,9 @@ type HeaderContextT = {|
   onMouseLeave: () => void,
   onSelectMany: () => void,
   onSelectNone: () => void,
-  rowActions: RowActionT[],
   rows: RowT[],
+  rowActions: RowActionT[],
+  rowHeight: number,
   sortIndex: number,
   sortDirection: SortDirectionsT,
   widths: number[],
@@ -80,7 +84,7 @@ type CellPlacementPropsT = {
 };
 
 function CellPlacement({columnIndex, rowIndex, data, style}) {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
 
   // ignores the table header row
   if (rowIndex === 0) {
@@ -100,15 +104,13 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
   const Cell = data.columns[columnIndex].renderCell;
   return (
     <div
-      className={useCss({
+      className={css({
         ...theme.borders.border200,
-        alignItems: 'center',
         backgroundColor,
         borderTop: 'none',
         borderBottom: 'none',
         borderLeft: 'none',
         boxSizing: 'border-box',
-        display: 'flex',
       })}
       style={style}
       onMouseEnter={() => data.onHoverRow(rowIndex)}
@@ -196,8 +198,9 @@ const HeaderContext = React.createContext<HeaderContextT>({
   onMouseLeave: () => {},
   onSelectMany: () => {},
   onSelectNone: () => {},
-  rowActions: [],
   rows: [],
+  rowActions: [],
+  rowHeight: 0,
   sortIndex: -1,
   sortDirection: null,
   widths: [],
@@ -210,7 +213,7 @@ const InnerTableElement = React.forwardRef<
   InnerTableElementProps,
   HTMLDivElement,
 >((props, ref) => {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   const ctx = React.useContext(HeaderContext);
 
   // no need to render the cells until the columns have been measured
@@ -221,12 +224,12 @@ const InnerTableElement = React.forwardRef<
   return (
     <div ref={ref} data-baseweb="data-table" style={props.style}>
       <div
-        className={useCss({
+        className={css({
           position: 'sticky',
           top: 0,
           left: 0,
           width: `${ctx.widths.reduce((sum, w) => sum + w, 0)}px`,
-          height: '48px',
+          height: `${HEADER_ROW_HEIGHT}px`,
           display: 'flex',
           // this feels bad.. the absolutely positioned children elements
           // stack on top of this element with the layer component.
@@ -237,7 +240,7 @@ const InnerTableElement = React.forwardRef<
           const width = ctx.widths[columnIndex];
           return (
             <div
-              className={useCss({
+              className={css({
                 ...theme.borders.border200,
                 backgroundColor: theme.colors.mono100,
                 borderTop: 'none',
@@ -270,7 +273,7 @@ const InnerTableElement = React.forwardRef<
       </div>
       {React.Children.toArray(props.children).length <= ctx.columns.length ? (
         <div
-          className={useCss({
+          className={css({
             ...theme.typography.font100,
             marginTop: theme.sizing.scale600,
             marginLeft: theme.sizing.scale600,
@@ -292,13 +295,13 @@ const InnerTableElement = React.forwardRef<
               alignItems: 'center',
               backgroundColor: 'rgba(238, 238, 238, 0.99)',
               display: 'flex',
-              height: '36px',
+              height: `${ctx.rowHeight}px`,
               padding: '0 16px',
               paddingLeft: theme.sizing.scale300,
               paddingRight: theme.sizing.scale300,
               position: 'absolute',
               right: 0 - ctx.scrollLeft,
-              top: (ctx.rowHoverIndex - 1) * 36 + 48,
+              top: (ctx.rowHoverIndex - 1) * ctx.rowHeight + HEADER_ROW_HEIGHT,
             }}
           >
             {ctx.rowActions.map(rowAction => {
@@ -335,6 +338,7 @@ InnerTableElement.displayName = 'InnerTableElement';
 
 export function Unstable_DataTable(props: DataTablePropsT) {
   const [, theme] = useStyletron();
+  const rowHeight = props.rowHeight || 36;
   const gridRef = React.useRef<typeof VariableSizeGrid | null>(null);
   const [widths, setWidths] = React.useState(props.columns.map(() => 0));
   const handleWidthsChange = React.useCallback(
@@ -571,6 +575,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
               onSelectNone: handleSelectNone,
               rows,
               rowActions: props.rowActions || [],
+              rowHeight,
               sortDirection: props.sortDirection || null,
               sortIndex: props.sortIndex || -1,
               widths,
@@ -586,7 +591,9 @@ export function Unstable_DataTable(props: DataTablePropsT) {
               height={height}
               // plus one to account for additional header row
               rowCount={rows.length + 1}
-              rowHeight={rowIndex => (rowIndex === 0 ? 48 : 36)}
+              rowHeight={rowIndex =>
+                rowIndex === 0 ? HEADER_ROW_HEIGHT : rowHeight
+              }
               width={width}
               itemData={itemData}
               onScroll={handleScroll}

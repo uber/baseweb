@@ -28,13 +28,19 @@ const CellShell = React.forwardRef<PropsT, HTMLDivElement>((props, ref) => {
         ...theme.typography.font100,
         boxSizing: 'border-box',
         display: props.isMeasured ? 'inline-block' : null,
+        paddingTop: theme.sizing.scale400,
         paddingLeft: theme.sizing.scale500,
+        paddingBottom: theme.sizing.scale400,
         paddingRight: theme.sizing.scale500,
-        whiteSpace: 'pre',
         width: props.isMeasured ? null : '100%',
       })}
     >
-      <div className={useCss({display: 'flex', alignItems: 'center'})}>
+      <div
+        className={useCss({
+          display: 'flex',
+          alignItems: 'center',
+        })}
+      >
         {Boolean(props.onSelect) && (
           <Checkbox onChange={props.onSelect} checked={props.isSelected} />
         )}
