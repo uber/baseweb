@@ -234,7 +234,6 @@ const InnerTableElement = React.forwardRef<
         })}
       >
         {ctx.columns.map((column, columnIndex) => {
-          const width = ctx.widths[columnIndex];
           return (
             <div
               className={useCss({
@@ -245,7 +244,7 @@ const InnerTableElement = React.forwardRef<
                 boxSizing: 'border-box',
               })}
               key={columnIndex}
-              style={{width}}
+              style={{width: ctx.widths[columnIndex]}}
             >
               <HeaderCell
                 index={columnIndex}
@@ -572,7 +571,8 @@ export function Unstable_DataTable(props: DataTablePropsT) {
               rows,
               rowActions: props.rowActions || [],
               sortDirection: props.sortDirection || null,
-              sortIndex: props.sortIndex || -1,
+              sortIndex:
+                typeof props.sortIndex === 'number' ? props.sortIndex : -1,
               widths,
             }}
           >
