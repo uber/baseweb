@@ -10,22 +10,22 @@ import React from 'react';
 import {
   Unstable_Grid as Grid,
   Unstable_Cell as Cell,
-  SIZING,
+  BEHAVIOR,
 } from '../index.js';
 import Inner from './inner.js';
 
-export const name = 'grid-sizing';
+export const name = 'grid-behavior';
 
 export function component() {
   return (
     <>
-      <Grid sizing={SIZING.fixed}>
+      <Grid behavior={BEHAVIOR.fixed}>
         <Cell span={12}>
           <Inner>1</Inner>
         </Cell>
       </Grid>
       <br />
-      <Grid sizing={SIZING.fluid}>
+      <Grid behavior={BEHAVIOR.fluid}>
         <Cell span={12}>
           <Inner>2</Inner>
         </Cell>

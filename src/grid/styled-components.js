@@ -9,17 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {styled} from '../styles/index.js';
 import {getMediaQueries} from '../helpers/responsive-helpers.js';
-
-export const SIZING = {
-  fluid: 'fluid',
-  fixed: 'fixed',
-};
-
-export const ALIGNMENT = {
-  start: 'flex-start',
-  center: 'center',
-  end: 'flex-end',
-};
+import {BEHAVIOR} from './constants.js';
 
 // defaults
 const GRID_COLUMNS = [4, 8, 12];
@@ -30,7 +20,7 @@ const GRID_MAX_WIDTH = 1280;
 export function Grid({
   align,
   children,
-  sizing,
+  behavior,
   gridColumns,
   gridMargins,
   gridGutters,
@@ -39,7 +29,7 @@ export function Grid({
 }) {
   return (
     <StyledGrid
-      $sizing={sizing}
+      $behavior={behavior}
       $gridMargins={gridMargins}
       $gridGutters={gridGutters}
       $gridMaxWidth={gridMaxWidth}
@@ -60,7 +50,7 @@ export const StyledGrid = styled(
   'div',
   ({
     $align,
-    $sizing = SIZING.fixed,
+    $behavior = BEHAVIOR.fixed,
     $theme,
     $gridMargins = GRID_MARGINS,
     $gridGutters = GRID_GUTTERS,
@@ -99,7 +89,7 @@ export const StyledGrid = styled(
       marginLeft: 'auto',
       marginRight: 'auto',
       maxWidth:
-        $sizing === SIZING.fixed
+        $behavior === BEHAVIOR.fixed
           ? `${$gridMaxWidth +
               2 * getResponsiveValue($gridMargins, Infinity) -
               1}px`

@@ -11,6 +11,6 @@ export {
   Cell as Unstable_Cell,
   StyledGrid as Unstable_StyledGrid,
   StyledCell as Unstable_StyledCell,
-  SIZING,
-  ALIGNMENT,
 } from './styled-components.js';
+
+export * from './constants.js';
