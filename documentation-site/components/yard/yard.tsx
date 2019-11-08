@@ -12,6 +12,12 @@ import copy from 'copy-to-clipboard';
 import {trackEvent} from '../../helpers/ga';
 import debounce from 'lodash/debounce';
 
+import {
+  MdContentCopy,
+  MdFormatIndentIncrease,
+  MdRotateRight,
+} from 'react-icons/md';
+
 // code sandbox stuff
 //@ts-ignore
 import CodeSandboxer from 'react-codesandboxer';
@@ -314,6 +320,9 @@ const Yard: React.FC<
             updateCode(dispatch, formatCode(state.code));
           }}
         >
+          <MdFormatIndentIncrease
+            style={{paddingRight: theme.sizing.scale100}}
+          />{' '}
           Format
         </Button>
         <Button
@@ -323,16 +332,7 @@ const Yard: React.FC<
             copy(state.code);
           }}
         >
-          Copy code
-        </Button>
-        <Button
-          kind={KIND.tertiary}
-          onClick={() => {
-            trackEvent('yard', `${componentName}:copy_url`);
-            copy(window.location.href);
-          }}
-        >
-          Copy URL
+          <MdContentCopy style={{paddingRight: theme.sizing.scale100}} /> Copy
         </Button>
         <Button
           kind={KIND.tertiary}
@@ -352,7 +352,28 @@ const Yard: React.FC<
             updateUrl({pathname});
           }}
         >
-          Reset
+          <MdRotateRight style={{paddingRight: theme.sizing.scale100}} /> Reset
+        </Button>
+      </ButtonGroup>
+      <ButtonGroup
+        size={SIZE.compact}
+        overrides={{
+          Root: {
+            style: ({$theme}) => ({
+              flexWrap: 'wrap',
+              marginTop: $theme.sizing.scale300,
+            }),
+          },
+        }}
+      >
+        <Button
+          kind={KIND.tertiary}
+          onClick={() => {
+            trackEvent('yard', `${componentName}:copy_url`);
+            copy(window.location.href);
+          }}
+        >
+          Copy URL
         </Button>
         <CodeSandboxer
           key="js"
