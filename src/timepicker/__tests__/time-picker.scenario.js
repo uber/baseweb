@@ -43,7 +43,7 @@ const Controlled = ({format, step, initialDate, creatable = false}) => {
 export const component = () => {
   return (
     <div style={{width: '130px'}}>
-      <div data-e2e="12-hour">
+      {/* <div data-e2e="12-hour">
         12 hour format
         <Controlled
           format="12"
@@ -78,6 +78,10 @@ export const component = () => {
           initialDate={OFF_STEP_TIME}
           creatable
         />
+      </div> */}
+      <div data-e2e="12-hour">
+        Without a value
+        <TimePicker indeterminate />
       </div>
     </div>
   );
