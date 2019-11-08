@@ -7,15 +7,15 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {Grid, Cell, SIZING} from '../index.js';
+import {Grid, Cell} from '../index.js';
 import Inner from './inner.js';
 
-export const name = 'responsive-grid-fluid';
+export const name = 'responsive-grid';
 
 export function component() {
   return (
     <>
-      <Grid sizing={SIZING.fluid}>
+      <Grid>
         <Cell>
           <Inner>1A</Inner>
         </Cell>
@@ -53,7 +53,7 @@ export function component() {
           <Inner>1L</Inner>
         </Cell>
       </Grid>
-      <Grid sizing={SIZING.fluid}>
+      <Grid>
         <Cell span={2}>
           <Inner>2A</Inner>
         </Cell>
@@ -73,7 +73,7 @@ export function component() {
           <Inner>2F</Inner>
         </Cell>
       </Grid>
-      <Grid sizing={SIZING.fluid}>
+      <Grid>
         <Cell span={3}>
           <Inner>3A</Inner>
         </Cell>
@@ -87,7 +87,7 @@ export function component() {
           <Inner>3D</Inner>
         </Cell>
       </Grid>
-      <Grid sizing={SIZING.fluid}>
+      <Grid>
         <Cell span={4}>
           <Inner>4A</Inner>
         </Cell>
@@ -98,7 +98,7 @@ export function component() {
           <Inner>4C</Inner>
         </Cell>
       </Grid>
-      <Grid sizing={SIZING.fluid}>
+      <Grid>
         <Cell span={6}>
           <Inner>5A</Inner>
         </Cell>
@@ -106,13 +106,13 @@ export function component() {
           <Inner>5B</Inner>
         </Cell>
       </Grid>
-      <Grid sizing={SIZING.fluid}>
+      <Grid>
         <Cell span={12}>
           <Inner>6</Inner>
         </Cell>
       </Grid>
       <br />
-      <Grid sizing={SIZING.fluid}>
+      <Grid>
         <Cell span={1}>
           <Inner>A1</Inner>
         </Cell>

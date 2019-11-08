@@ -10,7 +10,7 @@ import React from 'react';
 import {Grid, Cell, ALIGNMENT} from '../index.js';
 import Inner from './inner.js';
 
-export const name = 'responsive-grid-height';
+export const name = 'responsive-grid-align';
 
 export function component() {
   return (

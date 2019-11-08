@@ -66,7 +66,7 @@ export const StyledGrid = styled(
     $align,
   }) => {
     const mediaQueries = getMediaQueries($theme.breakpoints);
-    const paddingStyles = mediaQueries.reduce(
+    const gridStyles = mediaQueries.reduce(
       (acc, cur, idx) => {
         return {
           ...acc,
@@ -98,7 +98,7 @@ export const StyledGrid = styled(
           ? `${$gridMaxWidth +
               2 * getResponsiveValue($gridMargins, Infinity)}px`
           : null,
-      ...paddingStyles,
+      ...gridStyles,
     };
   },
 );
