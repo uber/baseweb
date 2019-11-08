@@ -28,6 +28,7 @@ const GRID_GUTTERS = [16, 36, 36];
 const GRID_MAX_WIDTH = 1280;
 
 export function Grid({
+  align,
   children,
   sizing,
   gridColumns,
@@ -35,7 +36,6 @@ export function Grid({
   gridGutters,
   gridGaps,
   gridMaxWidth,
-  align,
 }) {
   return (
     <StyledGrid
@@ -59,12 +59,12 @@ export function Grid({
 export const StyledGrid = styled(
   'div',
   ({
-    $theme,
+    $align,
     $sizing = SIZING.fixed,
+    $theme,
     $gridMargins = GRID_MARGINS,
     $gridGutters = GRID_GUTTERS,
     $gridMaxWidth = GRID_MAX_WIDTH,
-    $align,
   }) => {
     const mediaQueries = getMediaQueries($theme.breakpoints);
     const gridStyles = mediaQueries.reduce(
@@ -105,19 +105,19 @@ export const StyledGrid = styled(
 );
 
 export function Cell({
-  children,
-  span,
-  skip,
   align,
+  children,
+  skip,
+  span,
   $gridColumns,
   $gridGutters,
   $gridGaps,
 }) {
   return (
     <StyledCell
-      $span={span}
-      $skip={skip}
       $align={align}
+      $skip={skip}
+      $span={span}
       $gridColumns={$gridColumns}
       $gridGutters={$gridGutters}
       $gridGaps={$gridGaps}
@@ -130,10 +130,10 @@ export function Cell({
 export const StyledCell = styled(
   'div',
   ({
-    $theme,
+    $align,
     $skip = [0, 0, 0],
     $span = [1, 1, 1],
-    $align,
+    $theme,
     // Grid passes these down
     $gridColumns = GRID_COLUMNS,
     $gridGutters = GRID_GUTTERS,
