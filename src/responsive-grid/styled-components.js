@@ -73,18 +73,22 @@ export const StyledGrid = styled(
           ...acc,
           [cur]: {
             paddingLeft: `${getResponsiveValue($gridMargins, idx) -
-              getResponsiveValue($gridGutters, idx) / 2}px`,
+              getResponsiveValue($gridGutters, idx) / 2 -
+              0.5}px`,
             paddingRight: `${getResponsiveValue($gridMargins, idx) -
-              getResponsiveValue($gridGutters, idx) / 2}px`,
+              getResponsiveValue($gridGutters, idx) / 2 -
+              0.5}px`,
             alignItems: getResponsiveValue($align, idx),
           },
         };
       },
       {
         paddingLeft: `${getResponsiveValue($gridMargins, 0) -
-          getResponsiveValue($gridGutters, 0) / 2}px`,
+          getResponsiveValue($gridGutters, 0) / 2 -
+          0.5}px`,
         paddingRight: `${getResponsiveValue($gridMargins, 0) -
-          getResponsiveValue($gridGutters, 0) / 2}px`,
+          getResponsiveValue($gridGutters, 0) / 2 -
+          0.5}px`,
         alignItems: getResponsiveValue($align, 0),
       },
     );
@@ -97,7 +101,8 @@ export const StyledGrid = styled(
       maxWidth:
         $sizing === SIZING.fixed
           ? `${$gridMaxWidth +
-              2 * getResponsiveValue($gridMargins, Infinity)}px`
+              2 * getResponsiveValue($gridMargins, Infinity) -
+              1}px`
           : null,
       ...gridStyles,
     };
