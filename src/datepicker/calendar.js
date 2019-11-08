@@ -520,7 +520,6 @@ export default class Calendar extends React.Component<
             ref={root => {
               this.root = root;
             }}
-            role="application"
             aria-label="calendar"
             onKeyDown={this.props.trapTabbing ? this.handleTabbing : null}
             {...rootProps}
