@@ -8,11 +8,18 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {H3, Paragraph, UnorderedList, ListItem} from './markdown-elements';
+import {
+  H3,
+  Paragraph,
+  UnorderedList,
+  ListItem,
+  DocLink,
+} from './markdown-elements';
 import Code from './code';
 
 const Exports = props => {
   const {component, path, title} = props;
+  const componentName = path.split('/')[1];
 
   const exportNames = Object.keys(component);
   const code = `import {${exportNames[0]}} from '${path}'`;
@@ -26,7 +33,11 @@ const Exports = props => {
       </Paragraph>
       <UnorderedList>
         {exportNames.map(name => (
-          <ListItem key={name}>{name}</ListItem>
+          <ListItem key={name}>
+            <DocLink href={`/cheat-sheet#${componentName.toLowerCase()}`}>
+              {name}
+            </DocLink>
+          </ListItem>
         ))}
       </UnorderedList>
     </React.Fragment>
