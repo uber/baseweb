@@ -43,7 +43,7 @@ export const component = () => {
         batchActions={actions}
         columns={columns}
         rows={rows}
-        rowHeight={80}
+        rowHeight={78}
       />
     </div>
   );
