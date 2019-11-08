@@ -79,6 +79,10 @@ export const component = () => {
           creatable
         />
       </div>
+      <div data-e2e="12-hour">
+        Without a value
+        <TimePicker nullable placeholder="XX:YY" />
+      </div>
     </div>
   );
 };
