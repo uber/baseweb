@@ -107,6 +107,7 @@ export const StyledGrid = styled(
 export function Cell({
   align,
   children,
+  order,
   skip,
   span,
   $gridColumns,
@@ -116,6 +117,7 @@ export function Cell({
   return (
     <StyledCell
       $align={align}
+      $order={order}
       $skip={skip}
       $span={span}
       $gridColumns={$gridColumns}
@@ -131,6 +133,7 @@ export const StyledCell = styled(
   'div',
   ({
     $align,
+    $order,
     $skip = [0, 0, 0],
     $span = [1, 1, 1],
     $theme,
@@ -173,6 +176,7 @@ export const StyledCell = styled(
             paddingRight: getResponsiveValue($gridGutters, idx) / 2 + 'px',
             marginBottom: getResponsiveValue($gridGaps, idx) + 'px',
             alignSelf: getResponsiveValue($align, idx),
+            order: getResponsiveValue($order, idx),
           },
         };
       },
@@ -182,6 +186,7 @@ export const StyledCell = styled(
         paddingRight: getResponsiveValue($gridGutters, 0) / 2 + 'px',
         marginBottom: getResponsiveValue($gridGaps, 0) + 'px',
         alignSelf: getResponsiveValue($align, 0),
+        order: getResponsiveValue($order, 0),
       },
     );
     return {
