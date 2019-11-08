@@ -36,6 +36,16 @@ const TimepickerConfig: TConfig = {
       type: PropTypes.Boolean,
       description: `Set to true to allow times that aren't displayed in the options list to be entered manually. Defaults to false.`,
     },
+    nullable: {
+      value: undefined,
+      type: PropTypes.Boolean,
+      description: `Set to true to allow the timepicker to have an undefined value. Defaults to false.`,
+    },
+    placeholder: {
+      value: undefined,
+      type: PropTypes.String,
+      description: `If the value is undefined, the placeholder is shown. Defaults to HH:mm.`,
+    },
     disabled: inputConfig.props.disabled,
     format: {
       value: undefined,
