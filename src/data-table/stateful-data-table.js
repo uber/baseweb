@@ -16,6 +16,7 @@ import {
 } from '../button/index.js';
 import Search from '../icon/search.js';
 import {Input, SIZE as INPUT_SIZES} from '../input/index.js';
+import {Popover} from '../popover/index.js';
 import {useStyletron} from '../styles/index.js';
 import {Tag} from '../tag/index.js';
 
@@ -76,6 +77,74 @@ function QueryInput(props) {
   );
 }
 
+function FilterTag(props) {
+  const [css, theme] = useStyletron();
+  const [isOpen, setIsOpen] = React.useState(false);
+  const columnIndex = props.columns.findIndex(c => c.title === props.title);
+  const column = props.columns[columnIndex];
+  if (!column) {
+    return null;
+  }
+
+  const data = props.rows.map(r => r.data[columnIndex]);
+  const Filter = column.renderFilter;
+
+  return (
+    <Popover
+      key={props.title}
+      isOpen={isOpen}
+      onClickOutside={() => setIsOpen(false)}
+      content={() => (
+        <Filter
+          close={() => setIsOpen(false)}
+          data={data}
+          filterParams={props.filter}
+          setFilter={filterParams =>
+            props.onFilterAdd(filterParams, props.title)
+          }
+        />
+      )}
+    >
+      <div>
+        <Tag
+          onClick={() => setIsOpen(!isOpen)}
+          onActionClick={() => props.onFilterRemove(props.title)}
+          overrides={{
+            Root: {
+              style: {
+                borderTopLeftRadius: '36px',
+                borderTopRightRadius: '36px',
+                borderBottomLeftRadius: '36px',
+                borderBottomRightRadius: '36px',
+                height: '36px',
+                marginTop: null,
+                marginBottom: theme.sizing.scale500,
+              },
+            },
+            Action: {
+              style: {
+                borderTopRightRadius: '36px',
+                borderBottomRightRadius: '36px',
+                height: '22px',
+              },
+            },
+          }}
+        >
+          <span
+            className={css({
+              ...theme.typography.font150,
+              color: theme.colors.mono1000,
+            })}
+          >
+            {props.title}
+          </span>
+          : {props.filter.description}
+        </Tag>
+      </div>
+    </Popover>
+  );
+}
+
 export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
   const [css, theme] = useStyletron();
   const headlineRef = React.useRef(null);
@@ -128,40 +197,15 @@ export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
                   />
 
                   {Array.from(filters).map(([title, filter]) => (
-                    <Tag
+                    <FilterTag
                       key={title}
-                      onActionClick={() => onFilterRemove(title)}
-                      overrides={{
-                        Root: {
-                          style: {
-                            borderTopLeftRadius: '36px',
-                            borderTopRightRadius: '36px',
-                            borderBottomLeftRadius: '36px',
-                            borderBottomRightRadius: '36px',
-                            height: '36px',
-                            marginTop: null,
-                            marginBottom: theme.sizing.scale500,
-                          },
-                        },
-                        Action: {
-                          style: {
-                            borderTopRightRadius: '36px',
-                            borderBottomRightRadius: '36px',
-                            height: '22px',
-                          },
-                        },
-                      }}
-                    >
-                      <span
-                        className={css({
-                          ...theme.typography.font150,
-                          color: theme.colors.mono1000,
-                        })}
-                      >
-                        {title}
-                      </span>
-                      : {filter.description}
-                    </Tag>
+                      columns={props.columns}
+                      filter={filter}
+                      onFilterAdd={onFilterAdd}
+                      onFilterRemove={onFilterRemove}
+                      rows={props.rows}
+                      title={title}
+                    />
                   ))}
                 </div>
               )}
