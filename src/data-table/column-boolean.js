@@ -19,6 +19,7 @@ type OptionsT = {|
   title: string,
   sortable?: boolean,
   filterable?: boolean,
+  maxWidth?: number,
   minWidth?: number,
 |};
 
@@ -92,6 +93,7 @@ function BooleanColumn(options: OptionsT): BooleanColumnT {
       if (a === b) return 0;
       return a ? -1 : 1;
     },
+    maxWidth: options.maxWidth,
     minWidth: options.minWidth,
   };
 }

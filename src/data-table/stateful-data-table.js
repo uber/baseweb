@@ -233,6 +233,7 @@ export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
               onSort={onSort}
               rows={props.rows}
               rowActions={props.rowActions}
+              rowHeight={props.rowHeight}
               selectedRowIds={selectedRowIds}
               sortDirection={sortDirection}
               sortIndex={sortIndex}
