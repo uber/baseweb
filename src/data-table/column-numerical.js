@@ -37,6 +37,7 @@ type OptionsT = {|
   filterable?: boolean,
   format?: NumericalFormats,
   highlight?: number => boolean,
+  maxWidth?: number,
   minWidth?: number,
   precision?: number,
 |};
@@ -453,6 +454,7 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
     sortFn: function(a, b) {
       return b - a;
     },
+    maxWidth: options.maxWidth,
     minWidth: options.minWidth,
   };
 }
