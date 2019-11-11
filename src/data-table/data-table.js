@@ -16,6 +16,7 @@ import {
   SIZE as BUTTON_SIZES,
   KIND as BUTTON_KINDS,
 } from '../button/index.js';
+import {Popover} from '../popover/index.js';
 import {useStyletron} from '../styles/index.js';
 
 import {COLUMNS, SORT_DIRECTIONS} from './constants.js';
@@ -35,9 +36,7 @@ type InnerTableElementProps = {|
 |};
 
 type HeaderContextT = {|
-  allRows: RowT[],
   columns: ColumnT<>[],
-  handleSort: number => void,
   columnHoverIndex: number,
   rowHoverIndex: number,
   scrollLeft: number,
@@ -49,6 +48,7 @@ type HeaderContextT = {|
   onMouseLeave: () => void,
   onSelectMany: () => void,
   onSelectNone: () => void,
+  onSort: number => void,
   rowActions: RowActionT[],
   rows: RowT[],
   sortIndex: number,
@@ -182,9 +182,7 @@ const CellPlacementMemo = React.memo<CellPlacementPropsT, mixed>(
 CellPlacementMemo.displayName = 'CellPlacement';
 
 const HeaderContext = React.createContext<HeaderContextT>({
-  allRows: [],
   columns: [],
-  handleSort: () => {},
   columnHoverIndex: -1,
   rowHoverIndex: -1,
   scrollLeft: 0,
@@ -196,6 +194,7 @@ const HeaderContext = React.createContext<HeaderContextT>({
   onMouseLeave: () => {},
   onSelectMany: () => {},
   onSelectNone: () => {},
+  onSort: () => {},
   rowActions: [],
   rows: [],
   sortIndex: -1,
@@ -257,7 +256,7 @@ const InnerTableElement = React.forwardRef<
                 onMouseLeave={() => ctx.onMouseLeave()}
                 onSelectAll={ctx.onSelectMany}
                 onSelectNone={ctx.onSelectNone}
-                onSort={ctx.handleSort}
+                onSort={ctx.onSort}
                 sortDirection={
                   ctx.sortIndex === columnIndex ? ctx.sortDirection : null
                 }
@@ -554,9 +553,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
         {({height, width}) => (
           <HeaderContext.Provider
             value={{
-              allRows: props.rows,
               columns: props.columns,
-              handleSort,
               columnHoverIndex,
               rowHoverIndex,
               scrollLeft,
@@ -568,6 +565,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
               onMouseLeave: handleColumnHeaderMouseLeave,
               onSelectMany: handleSelectMany,
               onSelectNone: handleSelectNone,
+              onSort: handleSort,
               rows,
               rowActions: props.rowActions || [],
               sortDirection: props.sortDirection || null,
