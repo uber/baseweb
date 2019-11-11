@@ -125,6 +125,10 @@ export type BaseInputPropsT<T> = {|
   /** Input value attribute. */
   value?: string,
   rows?: number,
+  /** min value when used as input type=number */
+  min?: number,
+  /** max value when used as input type=number */
+  max?: number,
 |};
 
 export type InputPropsT = {|
