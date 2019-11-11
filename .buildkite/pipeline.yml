@@ -99,7 +99,7 @@ steps:
     agents:
       queue: workers
   - name: ':danger:'
-    command: yarn danger ci
+    command: yarn danger ci --verbose
     plugins:
       'docker-compose#v3.0.3':
         run: baseui
