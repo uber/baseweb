@@ -116,6 +116,11 @@ export default class MenuStatefulContainer extends React.Component<
         this.handleArrowKey(event);
         break;
       case KEY_STRINGS.Enter:
+        if (event.keyCode === 229) {
+          // ref.
+          // https://github.com/JedWatson/react-select/blob/e12b42b0e7598ec4a96a1a6480e0b2b4c7dc03e3/packages/react-select/src/Select.js#L1209
+          break;
+        }
         this.handleEnterKey(event);
         break;
     }
