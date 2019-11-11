@@ -28,7 +28,7 @@ export type GridPropsT = {
   gridGaps?: ResponsiveT<number>,
   gridGutters?: ResponsiveT<number>,
   gridMargins?: ResponsiveT<number>,
-  gridMaxWidth?: ResponsiveT<number>,
+  gridMaxWidth?: number,
 };
 
 export type StyledGridPropsT = {
@@ -36,7 +36,7 @@ export type StyledGridPropsT = {
   $behavior?: BehaviorT,
   $gridGutters?: ResponsiveT<number>,
   $gridMargins?: ResponsiveT<number>,
-  $gridMaxWidth?: ResponsiveT<number>,
+  $gridMaxWidth?: number,
 };
 
 export type CellPropsT = {
