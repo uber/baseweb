@@ -8,7 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-export default function Inner({style, ...props}) {
+// eslint-disable-next-line flowtype/no-weak-types
+export default function Inner({style, ...props}: any) {
   return (
     <div
       style={{

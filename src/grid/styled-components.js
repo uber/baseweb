@@ -11,22 +11,30 @@ import {styled} from '../styles/index.js';
 import {getMediaQueries} from '../helpers/responsive-helpers.js';
 import {BEHAVIOR} from './constants.js';
 
+import type {
+  SoftResponsiveT,
+  GridPropsT,
+  CellPropsT,
+  StyledGridPropsT,
+  StyledCellPropsT,
+} from './types.js';
+
 // defaults
 const GRID_COLUMNS = [4, 8, 12];
-const GRID_MARGINS = [16, 36, 64];
 const GRID_GUTTERS = [16, 36, 36];
+const GRID_MARGINS = [16, 36, 64];
 const GRID_MAX_WIDTH = 1280;
 
 export function Grid({
   align,
-  children,
   behavior,
+  children,
   gridColumns,
-  gridMargins,
-  gridGutters,
   gridGaps,
+  gridGutters,
+  gridMargins,
   gridMaxWidth,
-}) {
+}: GridPropsT) {
   return (
     <StyledGrid
       $behavior={behavior}
@@ -46,15 +54,15 @@ export function Grid({
   );
 }
 
-export const StyledGrid = styled(
+export const StyledGrid = styled<StyledGridPropsT>(
   'div',
   ({
     $align,
     $behavior = BEHAVIOR.fixed,
-    $theme,
-    $gridMargins = GRID_MARGINS,
     $gridGutters = GRID_GUTTERS,
+    $gridMargins = GRID_MARGINS,
     $gridMaxWidth = GRID_MAX_WIDTH,
+    $theme,
   }) => {
     const mediaQueries = getMediaQueries($theme.breakpoints);
     const gridStyles = mediaQueries.reduce(
@@ -62,22 +70,22 @@ export const StyledGrid = styled(
         return {
           ...acc,
           [cur]: {
-            paddingLeft: `${getResponsiveValue($gridMargins, idx) -
-              getResponsiveValue($gridGutters, idx) / 2 -
+            paddingLeft: `${getResponsiveNumber($gridMargins, idx) -
+              getResponsiveNumber($gridGutters, idx) / 2 -
               0.5}px`,
-            paddingRight: `${getResponsiveValue($gridMargins, idx) -
-              getResponsiveValue($gridGutters, idx) / 2 -
+            paddingRight: `${getResponsiveNumber($gridMargins, idx) -
+              getResponsiveNumber($gridGutters, idx) / 2 -
               0.5}px`,
             alignItems: getResponsiveValue($align, idx),
           },
         };
       },
       {
-        paddingLeft: `${getResponsiveValue($gridMargins, 0) -
-          getResponsiveValue($gridGutters, 0) / 2 -
+        paddingLeft: `${getResponsiveNumber($gridMargins, 0) -
+          getResponsiveNumber($gridGutters, 0) / 2 -
           0.5}px`,
-        paddingRight: `${getResponsiveValue($gridMargins, 0) -
-          getResponsiveValue($gridGutters, 0) / 2 -
+        paddingRight: `${getResponsiveNumber($gridMargins, 0) -
+          getResponsiveNumber($gridGutters, 0) / 2 -
           0.5}px`,
         alignItems: getResponsiveValue($align, 0),
       },
@@ -91,7 +99,7 @@ export const StyledGrid = styled(
       maxWidth:
         $behavior === BEHAVIOR.fixed
           ? `${$gridMaxWidth +
-              2 * getResponsiveValue($gridMargins, Infinity) -
+              2 * getResponsiveNumber($gridMargins, Infinity) -
               1}px`
           : null,
       ...gridStyles,
@@ -108,7 +116,7 @@ export function Cell({
   $gridColumns,
   $gridGutters,
   $gridGaps,
-}) {
+}: CellPropsT) {
   return (
     <StyledCell
       $align={align}
@@ -124,23 +132,22 @@ export function Cell({
   );
 }
 
-export const StyledCell = styled(
+export const StyledCell = styled<StyledCellPropsT>(
   'div',
   ({
     $align,
+    $gridColumns = GRID_COLUMNS,
+    $gridGaps = 0,
+    $gridGutters = GRID_GUTTERS,
     $order,
     $skip = [0, 0, 0],
     $span = [1, 1, 1],
     $theme,
-    // Grid passes these down
-    $gridColumns = GRID_COLUMNS,
-    $gridGutters = GRID_GUTTERS,
-    $gridGaps = 0,
   }) => {
     const mediaQueries = getMediaQueries($theme.breakpoints);
     const cellStyles = mediaQueries.reduce(
       (acc, cur, idx) => {
-        if (getResponsiveValue($span, idx) === 0) {
+        if (getResponsiveNumber($span, idx) === 0) {
           return {
             ...acc,
             [cur]: {
@@ -157,29 +164,29 @@ export const StyledCell = styled(
           ...acc,
           [cur]: {
             display: 'block',
-            width: `${(100 / getResponsiveValue($gridColumns, idx)) *
+            width: `${(100 / getResponsiveNumber($gridColumns, idx)) *
               Math.min(
-                getResponsiveValue($span, idx),
-                getResponsiveValue($gridColumns, idx),
+                getResponsiveNumber($span, idx),
+                getResponsiveNumber($gridColumns, idx),
               )}%`,
-            marginLeft: `${(100 / getResponsiveValue($gridColumns, idx)) *
+            marginLeft: `${(100 / getResponsiveNumber($gridColumns, idx)) *
               Math.min(
-                getResponsiveValue($skip, idx),
-                getResponsiveValue($gridColumns, idx) - 1,
+                getResponsiveNumber($skip, idx),
+                getResponsiveNumber($gridColumns, idx) - 1,
               )}%`,
-            paddingLeft: getResponsiveValue($gridGutters, idx) / 2 + 'px',
-            paddingRight: getResponsiveValue($gridGutters, idx) / 2 + 'px',
-            marginBottom: getResponsiveValue($gridGaps, idx) + 'px',
+            paddingLeft: getResponsiveNumber($gridGutters, idx) / 2 + 'px',
+            paddingRight: getResponsiveNumber($gridGutters, idx) / 2 + 'px',
+            marginBottom: getResponsiveNumber($gridGaps, idx) + 'px',
             alignSelf: getResponsiveValue($align, idx),
-            order: getResponsiveValue($order, idx),
+            order: getResponsiveNumber($order, idx),
           },
         };
       },
       {
         width: '100%',
-        paddingLeft: getResponsiveValue($gridGutters, 0) / 2 + 'px',
-        paddingRight: getResponsiveValue($gridGutters, 0) / 2 + 'px',
-        marginBottom: getResponsiveValue($gridGaps, 0) + 'px',
+        paddingLeft: getResponsiveNumber($gridGutters, 0) / 2 + 'px',
+        paddingRight: getResponsiveNumber($gridGutters, 0) / 2 + 'px',
+        marginBottom: getResponsiveNumber($gridGaps, 0) + 'px',
         alignSelf: getResponsiveValue($align, 0),
         order: getResponsiveValue($order, 0),
       },
@@ -191,7 +198,15 @@ export const StyledCell = styled(
   },
 );
 
-export const getResponsiveValue = (responsive, i) => {
+function getResponsiveNumber<T>(
+  responsive: SoftResponsiveT<T>,
+  i: number,
+): number {
+  const res = getResponsiveValue(responsive, i);
+  return typeof res === 'number' ? res : 0;
+}
+
+function getResponsiveValue<T>(responsive: SoftResponsiveT<T>, i: number): ?T {
   if (!responsive) {
     return null;
   }
@@ -202,4 +217,4 @@ export const getResponsiveValue = (responsive, i) => {
     return responsive[i];
   }
   return responsive[i] || responsive[responsive.length - 1];
-};
+}
