@@ -16,8 +16,8 @@ import {
   SIZE as BUTTON_SIZES,
   KIND as BUTTON_KINDS,
 } from '../button/index.js';
-import {Popover} from '../popover/index.js';
 import {useStyletron} from '../styles/index.js';
+import {Tooltip, PLACEMENT} from '../tooltip/index.js';
 
 import {COLUMNS, SORT_DIRECTIONS} from './constants.js';
 import HeaderCell from './header-cell.js';
@@ -38,8 +38,7 @@ type InnerTableElementProps = {|
 type HeaderContextT = {|
   columns: ColumnT<>[],
   columnHoverIndex: number,
-  rowHoverIndex: number,
-  scrollLeft: number,
+  filters: $PropertyType<DataTablePropsT, 'filters'>,
   isScrollingX: boolean,
   isSelectable: boolean,
   isSelectedAll: boolean,
@@ -50,7 +49,9 @@ type HeaderContextT = {|
   onSelectNone: () => void,
   onSort: number => void,
   rowActions: RowActionT[],
+  rowHoverIndex: number,
   rows: RowT[],
+  scrollLeft: number,
   sortIndex: number,
   sortDirection: SortDirectionsT,
   widths: number[],
@@ -184,8 +185,7 @@ CellPlacementMemo.displayName = 'CellPlacement';
 const HeaderContext = React.createContext<HeaderContextT>({
   columns: [],
   columnHoverIndex: -1,
-  rowHoverIndex: -1,
-  scrollLeft: 0,
+  filters: new Map(),
   isScrollingX: false,
   isSelectable: false,
   isSelectedAll: false,
@@ -196,7 +196,9 @@ const HeaderContext = React.createContext<HeaderContextT>({
   onSelectNone: () => {},
   onSort: () => {},
   rowActions: [],
+  rowHoverIndex: -1,
   rows: [],
+  scrollLeft: 0,
   sortIndex: -1,
   sortDirection: null,
   widths: [],
@@ -233,36 +235,71 @@ const InnerTableElement = React.forwardRef<
         })}
       >
         {ctx.columns.map((column, columnIndex) => {
+          const activeFilter = ctx.filters
+            ? ctx.filters.get(column.title)
+            : null;
+
           return (
-            <div
-              className={useCss({
-                ...theme.borders.border200,
-                backgroundColor: theme.colors.mono100,
-                borderTop: 'none',
-                borderLeft: 'none',
-                boxSizing: 'border-box',
-              })}
+            <Tooltip
               key={columnIndex}
-              style={{width: ctx.widths[columnIndex]}}
+              placement={PLACEMENT.bottomLeft}
+              isOpen={
+                ctx.columnHoverIndex === columnIndex && Boolean(activeFilter)
+              }
+              content={() => {
+                return (
+                  <div>
+                    <p
+                      className={useCss({
+                        ...theme.typography.font100,
+                        color: theme.colors.foregroundInv,
+                      })}
+                    >
+                      filter applied to {column.title}
+                    </p>
+                    {activeFilter && (
+                      <p
+                        className={useCss({
+                          ...theme.typography.font150,
+                          color: theme.colors.foregroundInv,
+                        })}
+                      >
+                        {activeFilter.description}
+                      </p>
+                    )}
+                  </div>
+                );
+              }}
             >
-              <HeaderCell
-                index={columnIndex}
-                sortable={column.sortable}
-                isHovered={ctx.columnHoverIndex === columnIndex}
-                isSelectable={ctx.isSelectable && columnIndex === 0}
-                isSelectedAll={ctx.isSelectedAll}
-                isSelectedIndeterminate={ctx.isSelectedIndeterminate}
-                onMouseEnter={() => ctx.onMouseEnter(columnIndex)}
-                onMouseLeave={() => ctx.onMouseLeave()}
-                onSelectAll={ctx.onSelectMany}
-                onSelectNone={ctx.onSelectNone}
-                onSort={ctx.onSort}
-                sortDirection={
-                  ctx.sortIndex === columnIndex ? ctx.sortDirection : null
-                }
-                title={column.title}
-              />
-            </div>
+              <div
+                className={useCss({
+                  ...theme.borders.border200,
+                  backgroundColor: theme.colors.mono100,
+                  borderTop: 'none',
+                  borderLeft: 'none',
+                  boxSizing: 'border-box',
+                })}
+                style={{width: ctx.widths[columnIndex]}}
+              >
+                <HeaderCell
+                  index={columnIndex}
+                  sortable={column.sortable}
+                  isHovered={ctx.columnHoverIndex === columnIndex}
+                  isSelectable={ctx.isSelectable && columnIndex === 0}
+                  isSelectedAll={ctx.isSelectedAll}
+                  isSelectedIndeterminate={ctx.isSelectedIndeterminate}
+                  onMouseEnter={() => ctx.onMouseEnter(columnIndex)}
+                  onMouseLeave={() => ctx.onMouseLeave()}
+                  onSelectAll={ctx.onSelectMany}
+                  onSelectNone={ctx.onSelectNone}
+                  onSort={ctx.onSort}
+                  sortDirection={
+                    ctx.sortIndex === columnIndex ? ctx.sortDirection : null
+                  }
+                  title={column.title}
+                />
+              </div>
+            </Tooltip>
           );
         })}
       </div>
@@ -555,8 +592,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
             value={{
               columns: props.columns,
               columnHoverIndex,
-              rowHoverIndex,
-              scrollLeft,
+              filters: props.filters,
               isScrollingX,
               isSelectable,
               isSelectedAll,
@@ -566,8 +602,10 @@ export function Unstable_DataTable(props: DataTablePropsT) {
               onSelectMany: handleSelectMany,
               onSelectNone: handleSelectNone,
               onSort: handleSort,
-              rows,
               rowActions: props.rowActions || [],
+              rowHoverIndex,
+              rows,
+              scrollLeft,
               sortDirection: props.sortDirection || null,
               sortIndex:
                 typeof props.sortIndex === 'number' ? props.sortIndex : -1,
