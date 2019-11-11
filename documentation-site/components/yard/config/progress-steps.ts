@@ -58,6 +58,7 @@ const ProgressStepsConfig: TConfig = {
         'Icon',
         'InnerIcon',
         'Root',
+        'StepRoot',
         'Tail',
         'Title',
       ],

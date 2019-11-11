@@ -29,6 +29,10 @@ function ProgressSteps({
         isCompleted: index < current,
         isActive: index === current,
         step: index + 1,
+        overrides: {
+          ...overrides,
+          Root: overrides.StepRoot,
+        },
       }: StepPropsT),
     );
   });
