@@ -118,6 +118,7 @@
     "copy-to-clipboard": "^3.2.0",
     "core-js": "^2.5.7",
     "cross-env": "^6.0.0",
+    "danger": "^9.2.4",
     "email-validator": "^2.0.4",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.10.0",
