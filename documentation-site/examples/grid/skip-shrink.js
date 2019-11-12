@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {
   Unstable_Grid as Grid,
@@ -17,7 +17,9 @@ export default () => (
   </Outer>
 );
 
-function Outer({children}) {
+const Outer: React.StatelessFunctionalComponent<{
+  children: React.Node,
+}> = ({children}) => {
   const [css, theme] = useStyletron();
   return (
     <div
@@ -28,9 +30,11 @@ function Outer({children}) {
       {children}
     </div>
   );
-}
+};
 
-function Inner({children}) {
+const Inner: React.StatelessFunctionalComponent<{
+  children: React.Node,
+}> = ({children}) => {
   const [css, theme] = useStyletron();
   return (
     <div
@@ -46,4 +50,4 @@ function Inner({children}) {
       {children}
     </div>
   );
-}
+};
