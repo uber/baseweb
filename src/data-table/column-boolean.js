@@ -31,19 +31,39 @@ type FilterParametersT = {|
 
 type BooleanColumnT = ColumnT<boolean, FilterParametersT>;
 
+function mapSelection<X, Y>(selection: Set<X>, transform: X => Y): Set<Y> {
+  const coercedSelection = new Set<Y>();
+  selection.forEach(item => coercedSelection.add(transform(item)));
+  return coercedSelection;
+}
+
 function BooleanFilter(props) {
+  let selectionString = new Set();
+  if (props.filterParams && props.filterParams.selection) {
+    selectionString = mapSelection(props.filterParams.selection, i =>
+      String(i),
+    );
+  }
+
   return (
     <CategoricalFilter
-      data={['true', 'false']}
       close={props.close}
+      data={['true', 'false']}
+      filterParams={
+        props.filterParams
+          ? {
+              selection: selectionString,
+              description: props.filterParams.description,
+              exclude: props.filterParams.exclude,
+            }
+          : undefined
+      }
       setFilter={params => {
-        const coercedSelection = new Set();
-        params.selection.forEach(item =>
-          coercedSelection.add(item.toLowerCase() === 'true'),
-        );
-
         props.setFilter({
-          selection: coercedSelection,
+          selection: mapSelection(
+            params.selection,
+            i => i.toLowerCase() === 'true',
+          ),
           exclude: params.exclude,
           description: params.description,
         });

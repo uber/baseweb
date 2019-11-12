@@ -12,6 +12,13 @@ import type {OverrideT} from '../helpers/overrides.js';
 
 export type ProgressStepsOverridesT = {
   Root?: OverrideT<*>,
+  StepRoot?: OverrideT<*>,
+  Icon?: OverrideT<*>,
+  InnerIcon?: OverrideT<*>,
+  Tail?: OverrideT<*>,
+  Content?: OverrideT<*>,
+  Title?: OverrideT<*>,
+  Description?: OverrideT<*>,
 };
 
 export type ProgressStepsPropsT = {

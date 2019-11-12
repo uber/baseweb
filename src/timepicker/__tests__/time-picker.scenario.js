@@ -41,6 +41,7 @@ const Controlled = ({format, step, initialDate, creatable = false}) => {
 };
 
 export const component = () => {
+  const [value, setValue] = React.useState(null);
   return (
     <div style={{width: '130px'}}>
       <div data-e2e="12-hour">
@@ -81,7 +82,12 @@ export const component = () => {
       </div>
       <div data-e2e="12-hour">
         Without a value
-        <TimePicker nullable placeholder="XX:YY" />
+        <TimePicker
+          value={value}
+          onChange={date => setValue(date)}
+          nullable
+          placeholder="XX:YY"
+        />
       </div>
     </div>
   );

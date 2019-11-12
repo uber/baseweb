@@ -86,21 +86,101 @@ function validateInput(input) {
   return Boolean(parseFloat(input)) || input === '' || input === '-';
 }
 
+function filterParamsToInitialState(filterParams) {
+  if (filterParams) {
+    if (filterParams.comparisons.length > 1) {
+      if (
+        filterParams.comparisons[0].operation === NUMERICAL_OPERATIONS.LT &&
+        filterParams.comparisons[1].operation === NUMERICAL_OPERATIONS.GT
+      ) {
+        return {
+          exclude: !filterParams.exclude,
+          comparatorIndex: 0,
+          operatorIndex: 4,
+          right: filterParams.comparisons[1].value.toString(),
+          left: filterParams.comparisons[0].value.toString(),
+        };
+      }
+    } else {
+      const comparison = filterParams.comparisons[0];
+      if (comparison.operation === NUMERICAL_OPERATIONS.LT) {
+        return {
+          exclude: filterParams.exclude,
+          comparatorIndex: 0,
+          operatorIndex: 0,
+          left: '',
+          right: comparison.value.toString(),
+        };
+      } else if (comparison.operation === NUMERICAL_OPERATIONS.GT) {
+        return {
+          exclude: filterParams.exclude,
+          comparatorIndex: 0,
+          operatorIndex: 1,
+          left: comparison.value.toString(),
+          right: '',
+        };
+      } else if (comparison.operation === NUMERICAL_OPERATIONS.LTE) {
+        return {
+          exclude: filterParams.exclude,
+          comparatorIndex: 0,
+          operatorIndex: 2,
+          left: '',
+          right: comparison.value.toString(),
+        };
+      } else if (comparison.operation === NUMERICAL_OPERATIONS.GTE) {
+        return {
+          exclude: filterParams.exclude,
+          comparatorIndex: 0,
+          operatorIndex: 3,
+          left: comparison.value.toString(),
+          right: '',
+        };
+      } else if (comparison.operation === NUMERICAL_OPERATIONS.EQ) {
+        return {
+          exclude: filterParams.exclude,
+          comparatorIndex: 1,
+          operatorIndex: 0,
+          left: comparison.value.toString(),
+          right: '',
+        };
+      }
+    }
+  }
+
+  return {
+    exclude: false,
+    comparatorIndex: 0,
+    operatorIndex: 0,
+    left: '',
+    right: '',
+  };
+}
+
 function NumericalFilter(props) {
   const [useCss, theme] = useStyletron();
-  const [exclude, setExclude] = React.useState(false);
-  const [comparatorIndex, setComparatorIndex] = React.useState(0);
-  const [operatorIndex, setOperatorIndex] = React.useState(0);
-  const [left, setLeft] = React.useState('');
-  const [right, setRight] = React.useState('');
+
+  const initialState = filterParamsToInitialState(props.filterParams);
+  const [exclude, setExclude] = React.useState(initialState.exclude);
+  const [comparatorIndex, setComparatorIndex] = React.useState(
+    initialState.comparatorIndex,
+  );
+  const [operatorIndex, setOperatorIndex] = React.useState(
+    initialState.operatorIndex,
+  );
+  const [left, setLeft] = React.useState(initialState.left);
+  const [right, setRight] = React.useState(initialState.right);
 
   const isRange = comparatorIndex === 0;
   const min = React.useMemo(() => Math.min(...props.data), [props.data]);
   const max = React.useMemo(() => Math.max(...props.data), [props.data]);
 
   React.useEffect(() => {
-    setLeft(min.toString());
-    setRight(max.toString());
+    if (!left) {
+      setLeft(min.toString());
+    }
+    if (!right) {
+      setRight(max.toString());
+    }
   }, []);
 
   const [leftDisabled, rightDisabled] = React.useMemo(() => {
