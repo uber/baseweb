@@ -6,18 +6,26 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
+import * as React from 'react';
+import {useStyletron} from '../../styles/index.js';
 
-// eslint-disable-next-line flowtype/no-weak-types
-export default function Inner({style, ...props}: any) {
+const Inner: React.StatelessFunctionalComponent<{children: React.Node}> = ({
+  children,
+}) => {
+  const [css, theme] = useStyletron();
   return (
     <div
-      style={{
-        border: 'solid 1px black',
-        padding: '8px',
-        ...style,
-      }}
-      {...props}
-    />
+      className={css({
+        padding: theme.sizing.scale300,
+        color: theme.colors.foreground,
+        borderStyle: `solid`,
+        borderWidth: `1px`,
+        borderColor: theme.colors.foreground,
+      })}
+    >
+      {children}
+    </div>
   );
-}
+};
+
+export default Inner;
