@@ -66,8 +66,6 @@ We use the `span` prop to specify how many grid columns we want a cell to span. 
 
 In this example each cell has a span of 4, which exceeds the number of available columns on small (4) and medium (8) viewports. This causes the excess cells to wrap. Note, wrapped cells will still align content to the columns of the grid.
 
-By default the gap between wrapped cell rows is 0. You can specify a gap with the responsive `gridGaps` prop.
-
 Oftentimes, a layout will need to adapt to different breakpoints. The grid handles this by exposing "responsive" props. These allow you to quickly specify responsive layouts.
 
 <Example title="Responsive" path="grid/responsive.js">
@@ -136,7 +134,7 @@ The `behavior` prop is not responsive.
   <CustomExample />
 </Example>
 
-In this example we customize the grid to have 12 columns at each breakpoint. We also shrink the gutters and margins, add a row gap for wrapped cells, and increase the maximum width of the grid to `1440px`.
+In this example we customize the grid to have 12 columns at each breakpoint. We also shrink the gutters, margins, and row gaps for wrapped cells. Finally, we increase the maximum width of the grid to `1440px`.
 
 You can customize pretty much any part of the grid while maintaining the core responsibility of aligning cells to columns. Here are the relevant props (also used in the above example) for customizing the grid:
 
