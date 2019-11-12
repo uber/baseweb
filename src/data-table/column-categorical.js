@@ -134,12 +134,17 @@ type CategoricalFilterProps = {
   data: string[],
   close: () => void,
   setFilter: FilterParametersT => void,
+  filterParams?: FilterParametersT,
 };
 
 export function CategoricalFilter(props: CategoricalFilterProps) {
   const [useCss, theme] = useStyletron();
-  const [selection, setSelection] = React.useState<Set<string>>(new Set());
-  const [exclude, setExclude] = React.useState(false);
+  const [selection, setSelection] = React.useState<Set<string>>(
+    props.filterParams ? props.filterParams.selection : new Set(),
+  );
+  const [exclude, setExclude] = React.useState(
+    props.filterParams ? props.filterParams.exclude : false,
+  );
   const [query, setQuery] = React.useState('');
   const categories = React.useMemo(() => {
     return props.data.reduce((set, category) => set.add(category), new Set());
