@@ -21,19 +21,15 @@ export const name = 'data-table-collection-of-objects';
 
 const applicationMinWidth = 130;
 const columns = [
-  CustomColumn<
-    {name: string, cluster: string, id: string, applicationTags: string},
-    {selection: Set<string>, exclude: boolean, description: string},
-  >({
+  CustomColumn<{name: string, id: string, applicationTags: string}, {}>({
     title: 'Application',
-    filterable: true,
     sortable: true,
     minWidth: applicationMinWidth,
     renderCell: function Cell(props) {
       const [css] = useStyletron();
       return (
         <a
-          href={`#id=${props.value.id}&cluster=${props.value.cluster}`}
+          href={`#id=${props.value.id}`}
           title={props.value.applicationTags}
           className={css({
             ...ellipsis(`${applicationMinWidth}px`),
@@ -47,12 +43,8 @@ const columns = [
       return a.name.localeCompare(b.name);
     },
   }),
-  CustomColumn<
-    string,
-    {selection: Set<string>, exclude: boolean, description: string},
-  >({
+  CustomColumn<string, {}>({
     title: 'User',
-    filterable: true,
     sortable: true,
     minWidth: 80,
     renderCell: function Cell(props) {
@@ -72,12 +64,11 @@ const rows = [
   ...graphqlArrayData,
 ].map(row => {
   return {
-    id: row.Name,
+    id: row.id,
     data: [
       {
-        name: row.name,
-        cluster: row.cluster,
         id: row.id,
+        name: row.name,
         applicationTags: row.applicationTags,
       },
       row.realUser,
