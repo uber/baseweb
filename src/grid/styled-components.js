@@ -6,62 +6,24 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
 import {styled} from '../styles/index.js';
 import {getMediaQueries} from '../helpers/responsive-helpers.js';
 import {BEHAVIOR} from './constants.js';
+import type {ResponsiveT, StyledGridPropsT, StyledCellPropsT} from './types.js';
 
-import type {
-  ResponsiveT,
-  GridPropsT,
-  CellPropsT,
-  StyledGridPropsT,
-  StyledCellPropsT,
-} from './types.js';
-
-// defaults
-const GRID_COLUMNS = [4, 8, 12];
-const GRID_GUTTERS = [16, 36, 36];
-const GRID_MARGINS = [16, 36, 64];
-const GRID_MAX_WIDTH = 1280;
-
-export function Grid({
-  align,
-  behavior,
-  children,
-  gridColumns,
-  gridGaps,
-  gridGutters,
-  gridMargins,
-  gridMaxWidth,
-}: GridPropsT) {
-  return (
-    <StyledGrid
-      $behavior={behavior}
-      $gridMargins={gridMargins}
-      $gridGutters={gridGutters}
-      $gridMaxWidth={gridMaxWidth}
-      $align={align}
-    >
-      {React.Children.map(children, child =>
-        React.cloneElement(child, {
-          $gridColumns: gridColumns,
-          $gridGutters: gridGutters,
-          $gridGaps: gridGaps,
-        }),
-      )}
-    </StyledGrid>
-  );
-}
+const DEFAULT_GRID_COLUMNS = [4, 8, 12];
+const DEFAULT_GRID_GUTTERS = [16, 36, 36];
+const DEFAULT_GRID_MARGINS = [16, 36, 64];
+const DEFAULT_GRID_MAX_WIDTH = 1280;
 
 export const StyledGrid = styled<StyledGridPropsT>(
   'div',
   ({
     $align = null,
     $behavior = BEHAVIOR.fixed,
-    $gridGutters = GRID_GUTTERS,
-    $gridMargins = GRID_MARGINS,
-    $gridMaxWidth = GRID_MAX_WIDTH,
+    $gridGutters = DEFAULT_GRID_GUTTERS,
+    $gridMargins = DEFAULT_GRID_MARGINS,
+    $gridMaxWidth = DEFAULT_GRID_MAX_WIDTH,
     $theme,
   }) => {
     const mediaQueries = getMediaQueries($theme.breakpoints);
@@ -107,38 +69,13 @@ export const StyledGrid = styled<StyledGridPropsT>(
   },
 );
 
-export function Cell({
-  align,
-  children,
-  order,
-  skip,
-  span,
-  $gridColumns,
-  $gridGutters,
-  $gridGaps,
-}: CellPropsT) {
-  return (
-    <StyledCell
-      $align={align}
-      $order={order}
-      $skip={skip}
-      $span={span}
-      $gridColumns={$gridColumns}
-      $gridGutters={$gridGutters}
-      $gridGaps={$gridGaps}
-    >
-      {children}
-    </StyledCell>
-  );
-}
-
 export const StyledCell = styled<StyledCellPropsT>(
   'div',
   ({
     $align = null,
-    $gridColumns = GRID_COLUMNS,
+    $gridColumns = DEFAULT_GRID_COLUMNS,
     $gridGaps = 0,
-    $gridGutters = GRID_GUTTERS,
+    $gridGutters = DEFAULT_GRID_GUTTERS,
     $order = null,
     $skip = [0, 0, 0],
     $span = [1, 1, 1],

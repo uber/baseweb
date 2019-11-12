@@ -7,10 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 export {
-  Grid as Unstable_Grid,
-  Cell as Unstable_Cell,
   StyledGrid as Unstable_StyledGrid,
   StyledCell as Unstable_StyledCell,
 } from './styled-components.js';
-
+export {default as Unstable_Grid} from './grid.js';
+export {default as Unstable_Cell} from './cell.js';
 export * from './constants.js';
