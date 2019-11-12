@@ -16,8 +16,3 @@ export const ALIGNMENT = Object.freeze({
   center: 'center',
   end: 'flex-end',
 });
-
-export const DEFAULT_GRID_COLUMNS = [4, 8, 12];
-export const DEFAULT_GRID_GUTTERS = [16, 36, 36];
-export const DEFAULT_GRID_MARGINS = [16, 36, 64];
-export const DEFAULT_GRID_MAX_WIDTH = 1280;

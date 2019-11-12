@@ -12,6 +12,7 @@ import {BEHAVIOR} from './constants.js';
 import type {ResponsiveT, StyledGridPropsT, StyledCellPropsT} from './types.js';
 
 const DEFAULT_GRID_COLUMNS = [4, 8, 12];
+const DEFAULT_GRID_GAPS = [8, 16];
 const DEFAULT_GRID_GUTTERS = [16, 36, 36];
 const DEFAULT_GRID_MARGINS = [16, 36, 64];
 const DEFAULT_GRID_MAX_WIDTH = 1280;
@@ -24,6 +25,7 @@ export const StyledGrid = styled<StyledGridPropsT>(
     $gridGutters = DEFAULT_GRID_GUTTERS,
     $gridMargins = DEFAULT_GRID_MARGINS,
     $gridMaxWidth = DEFAULT_GRID_MAX_WIDTH,
+    $gridGaps = DEFAULT_GRID_GAPS,
     $theme,
   }) => {
     const mediaQueries = getMediaQueries($theme.breakpoints);
@@ -39,6 +41,7 @@ export const StyledGrid = styled<StyledGridPropsT>(
               getResponsiveNumber($gridGutters, idx) / 2 -
               0.5}px`,
             alignItems: getResponsiveValue($align, idx),
+            marginBottom: `-${getResponsiveNumber($gridGaps, idx)}px`,
           },
         };
       },
@@ -50,6 +53,7 @@ export const StyledGrid = styled<StyledGridPropsT>(
           getResponsiveNumber($gridGutters, 0) / 2 -
           0.5}px`,
         alignItems: getResponsiveValue($align, 0),
+        marginBottom: `-${getResponsiveNumber($gridGaps, 0)}px`,
       },
     );
     return {
@@ -74,7 +78,7 @@ export const StyledCell = styled<StyledCellPropsT>(
   ({
     $align = null,
     $gridColumns = DEFAULT_GRID_COLUMNS,
-    $gridGaps = [8, 16],
+    $gridGaps = DEFAULT_GRID_GAPS,
     $gridGutters = DEFAULT_GRID_GUTTERS,
     $order = null,
     $skip = [0, 0, 0],

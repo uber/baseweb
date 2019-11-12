@@ -43,6 +43,8 @@ export type StyledGridPropsT = {
   $align?: ResponsiveT<AlignmentT>,
   /** Grid container behavior beyond max width. Fluid will continue to expand. Fixed will limit grid container to max width and center the container horizontally within parent element. */
   $behavior?: BehaviorT,
+  /** Gap between rows at each breakpoint. */
+  $gridGaps?: ResponsiveT<number>,
   /** Gap between columns at each breakpoint. */
   $gridGutters?: ResponsiveT<number>,
   /** Gap on either side of grid container at each breakpoint. */

@@ -23,6 +23,7 @@ export default function Grid({
   return (
     <StyledGrid
       $behavior={behavior}
+      $gridGaps={gridGaps}
       $gridMargins={gridMargins}
       $gridGutters={gridGutters}
       $gridMaxWidth={gridMaxWidth}
