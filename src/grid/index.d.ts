@@ -6,19 +6,17 @@ export enum ALIGNMENT {
   center = 'center',
   end = 'end',
 }
-export const ALIGNMENT: ALIGNMENT;
 
 export enum BEHAVIOR {
   fluid = 'fluid',
   fixed = 'fixed',
 }
-export const BEHAVIOR: BEHAVIOR;
 
 export type Responsive<T> = T | T[];
 
 export interface GridProps {
   align?: Responsive<ALIGNMENT>;
-  behavior?: Behavior;
+  behavior?: BEHAVIOR;
   children?: React.ReactNode;
   gridColumns?: Responsive<number>;
   gridGaps?: Responsive<number>;
@@ -29,7 +27,7 @@ export interface GridProps {
 
 export interface StyledGridProps {
   $align?: Responsive<ALIGNMENT>;
-  $behavior?: Behavior;
+  $behavior?: BEHAVIOR;
   $gridGutters?: Responsive<number>;
   $gridMargins?: Responsive<number>;
   $gridMaxWidth?: number;
