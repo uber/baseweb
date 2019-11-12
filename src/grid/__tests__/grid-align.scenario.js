@@ -22,94 +22,94 @@ export function component() {
       {/* Align grid. */}
       <Grid align={ALIGNMENT.center}>
         <Cell>
-          <Inner style={{height: '50px'}}>1</Inner>
+          <Inner h="50px">1</Inner>
         </Cell>
         <Cell>
-          <Inner style={{height: '75px'}}>2</Inner>
+          <Inner h="75px">2</Inner>
         </Cell>
         <Cell>
-          <Inner style={{height: '25px'}}>3</Inner>
+          <Inner h="25px">3</Inner>
         </Cell>
       </Grid>
       <br />
       {/* Align grid with wrapping cells. */}
       <Grid align={ALIGNMENT.center}>
         <Cell span={5}>
-          <Inner style={{height: '50px'}}>1</Inner>
+          <Inner h="50px">1</Inner>
         </Cell>
         <Cell span={5}>
-          <Inner style={{height: '75px'}}>2</Inner>
+          <Inner h="75px">2</Inner>
         </Cell>
         <Cell span={5}>
-          <Inner style={{height: '25px'}}>3</Inner>
+          <Inner h="25px">3</Inner>
         </Cell>
         <Cell span={5}>
-          <Inner style={{height: '75px'}}>3</Inner>
+          <Inner h="75px">3</Inner>
         </Cell>
       </Grid>
       <br />
       {/* Align single cell. */}
       <Grid>
         <Cell>
-          <Inner style={{height: '50px'}}>1</Inner>
+          <Inner h="50px">1</Inner>
         </Cell>
         <Cell>
-          <Inner style={{height: '75px'}}>2</Inner>
+          <Inner h="75px">2</Inner>
         </Cell>
         <Cell align={ALIGNMENT.end}>
-          <Inner style={{height: '25px'}}>3</Inner>
+          <Inner h="25px">3</Inner>
         </Cell>
       </Grid>
       <br />
       {/* Align single cell. */}
       <Grid align={ALIGNMENT.center}>
         <Cell>
-          <Inner style={{height: '50px'}}>1</Inner>
+          <Inner h="50px">1</Inner>
         </Cell>
         <Cell>
-          <Inner style={{height: '75px'}}>2</Inner>
+          <Inner h="75px">2</Inner>
         </Cell>
         <Cell align={ALIGNMENT.start}>
-          <Inner style={{height: '25px'}}>3</Inner>
+          <Inner h="25px">3</Inner>
         </Cell>
       </Grid>
       <br />
       {/* Align grid responsive. */}
       <Grid align={[ALIGNMENT.center, ALIGNMENT.start, ALIGNMENT.end]}>
         <Cell>
-          <Inner style={{height: '50px'}}>1</Inner>
+          <Inner h="50px">1</Inner>
         </Cell>
         <Cell>
-          <Inner style={{height: '75px'}}>2</Inner>
+          <Inner h="75px">2</Inner>
         </Cell>
         <Cell>
-          <Inner style={{height: '25px'}}>3</Inner>
+          <Inner h="25px">3</Inner>
         </Cell>
       </Grid>
       <br />
       {/* Align cell responsive. */}
       <Grid>
         <Cell>
-          <Inner style={{height: '50px'}}>1</Inner>
+          <Inner h="50px">1</Inner>
         </Cell>
         <Cell>
-          <Inner style={{height: '75px'}}>2</Inner>
+          <Inner h="75px">2</Inner>
         </Cell>
         <Cell align={[ALIGNMENT.center, ALIGNMENT.start, ALIGNMENT.end]}>
-          <Inner style={{height: '25px'}}>3</Inner>
+          <Inner h="25px">3</Inner>
         </Cell>
       </Grid>
       <br />
       {/* Align grid and cell responsive. */}
       <Grid align={[ALIGNMENT.start, ALIGNMENT.end]}>
         <Cell>
-          <Inner style={{height: '50px'}}>1</Inner>
+          <Inner h="50px">1</Inner>
         </Cell>
         <Cell>
-          <Inner style={{height: '75px'}}>2</Inner>
+          <Inner h="75px">2</Inner>
         </Cell>
         <Cell align={[ALIGNMENT.end, ALIGNMENT.start]}>
-          <Inner style={{height: '25px'}}>3</Inner>
+          <Inner h="25px">3</Inner>
         </Cell>
       </Grid>
     </>

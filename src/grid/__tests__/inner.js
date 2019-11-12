@@ -9,9 +9,10 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {useStyletron} from '../../styles/index.js';
 
-const Inner: React.StatelessFunctionalComponent<{children: React.Node}> = ({
-  children,
-}) => {
+const Inner: React.StatelessFunctionalComponent<{
+  children: React.Node,
+  h?: string,
+}> = ({children, h = 'auto'}) => {
   const [css, theme] = useStyletron();
   return (
     <div
@@ -21,6 +22,7 @@ const Inner: React.StatelessFunctionalComponent<{children: React.Node}> = ({
         borderStyle: `solid`,
         borderWidth: `1px`,
         borderColor: theme.colors.foreground,
+        height: h,
       })}
     >
       {children}
