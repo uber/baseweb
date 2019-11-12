@@ -35,7 +35,7 @@ export const buildPropsObj = (
   });
   Object.keys(updatedPropValues).forEach(name => {
     newProps[name] = {
-      value: updatedPropValues[name],
+      value: updatedPropValues[name] || stateProps[name].defaultValue,
       type: stateProps[name].type,
       options: stateProps[name].options,
       enumName: stateProps[name].enumName,
