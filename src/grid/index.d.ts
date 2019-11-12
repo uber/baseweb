@@ -1,22 +1,23 @@
 import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
 
-export enum Alignment {
+export enum ALIGNMENT {
   start = 'start',
   center = 'center',
   end = 'end',
 }
+export const ALIGNMENT: ALIGNMENT;
 
-export enum Behavior {
+export enum BEHAVIOR {
   fluid = 'fluid',
   fixed = 'fixed',
 }
+export const BEHAVIOR: BEHAVIOR;
 
 export type Responsive<T> = T | T[];
-export type SoftResponsive<T> = Responsive<T | null>;
 
 export interface GridProps {
-  align?: Responsive<number>;
+  align?: Responsive<ALIGNMENT>;
   behavior?: Behavior;
   children?: React.ReactNode;
   gridColumns?: Responsive<number>;
@@ -27,7 +28,7 @@ export interface GridProps {
 }
 
 export interface StyledGridProps {
-  $align?: Responsive<Alignment>;
+  $align?: Responsive<ALIGNMENT>;
   $behavior?: Behavior;
   $gridGutters?: Responsive<number>;
   $gridMargins?: Responsive<number>;
@@ -35,17 +36,18 @@ export interface StyledGridProps {
 }
 
 export interface CellProps {
-  align?: Responsive<Alignment>;
+  align?: Responsive<ALIGNMENT>;
   children?: React.ReactNode;
   order?: Responsive<number>;
   skip?: Responsive<number>;
+  span?: Responsive<number>;
   $gridColumns?: Responsive<number>;
   $gridGaps?: Responsive<number>;
   $gridGutters?: Responsive<number>;
 }
 
 export type StyledCellProps = {
-  $align?: Responsive<Alignment>;
+  $align?: Responsive<ALIGNMENT>;
   $gridColumns?: Responsive<number>;
   $gridGaps?: Responsive<number>;
   $gridGutters?: Responsive<number>;
@@ -54,7 +56,7 @@ export type StyledCellProps = {
   $span?: Responsive<number>;
 };
 
-export const Grid: React.FC<GridProps>;
-export const Cell: React.FC<CellProps>;
-export const StyledGrid: StyletronComponent<any>;
-export const StyledCell: StyletronComponent<any>;
+export const Unstable_Grid: React.FunctionComponent<GridProps>;
+export const Unstable_Cell: React.FunctionComponent<CellProps>;
+export const Unstable_StyledGrid: StyletronComponent<StyledGridProps>;
+export const Unstable_StyledCell: StyletronComponent<StyledCellProps>;
