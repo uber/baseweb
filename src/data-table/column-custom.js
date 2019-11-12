@@ -27,6 +27,7 @@ type OptionsT<ValueT, FilterParamsT> = {|
   |}>,
   buildFilter?: FilterParamsT => ValueT => boolean,
   sortFn?: (ValueT, ValueT) => number,
+  maxWidth?: number,
   minWidth?: number,
 |};
 
@@ -57,6 +58,7 @@ function CustomColumn<ValueT, FilterParamsT>(
     renderFilter: options.renderFilter || (() => null),
     buildFilter: options.buildFilter || (() => () => true),
     sortFn: options.sortFn || (() => 0),
+    maxWidth: options.maxWidth,
     minWidth: options.minWidth,
   };
 }

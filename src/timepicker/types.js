@@ -29,6 +29,8 @@ export type TimePickerPropsT = {
   disabled?: boolean,
   error?: boolean,
   positive?: boolean,
+  nullable?: boolean,
+  placeholder?: string,
 };
 export type TimePickerStateT = {
   /** List of times (in seconds) displayed in the dropdown menu. */

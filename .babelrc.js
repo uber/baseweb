@@ -8,6 +8,9 @@ if (process.env.BABEL_ENV === 'es') {
       '@babel/preset-env',
       {
         modules: process.env.BABEL_ENV === 'esm' ? false : 'commonjs',
+        targets: {
+          ie: '11',
+        },
       },
     ],
   ];

@@ -46,6 +46,31 @@ describe('ProgressSteps', () => {
     });
   });
 
+  it('passes down overrides to the Step component', () => {
+    const steps = [];
+    const overrides = {
+      Icon: {
+        style: {
+          backgroundColor: 'pink',
+        },
+      },
+    };
+
+    for (let x = 0; x < 5; x++) {
+      steps.push(<Step key={x}>Step {x}</Step>);
+    }
+
+    const component = shallow(
+      <ProgressSteps overrides={overrides} current={3}>
+        {steps}
+      </ProgressSteps>,
+    );
+
+    component.children().forEach((element, index) => {
+      expect(element).toHaveProp('overrides', overrides);
+    });
+  });
+
   it('applies step prop to child for the current index', () => {
     example.children().forEach((element, index) => {
       const step = index + 1;

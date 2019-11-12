@@ -43,6 +43,7 @@ export type ColumnT<ValueT = any, FilterParamsT = any> = {|
   |}>,
   buildFilter: FilterParamsT => ValueT => boolean,
   sortFn: (ValueT, ValueT) => number,
+  maxWidth?: number,
   minWidth?: number,
 |};
 
@@ -74,6 +75,7 @@ export type StatefulDataTablePropsT = {|
   onSelectionChange?: (RowT[]) => mixed,
   rows: RowT[],
   rowActions?: RowActionT[],
+  rowHeight?: number,
 |};
 
 export type DataTablePropsT = {|

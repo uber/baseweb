@@ -63,6 +63,8 @@ Object {
   "disabled": false,
   "id": undefined,
   "inputMode": "text",
+  "max": undefined,
+  "min": undefined,
   "name": "",
   "onBlur": [Function],
   "onChange": [Function],

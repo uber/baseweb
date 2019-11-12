@@ -122,6 +122,18 @@ const config = {
       },
     ],
   },
+  'input-number': {
+    interactions: [
+      {
+        name: 'numberInput',
+        behavior: async page => {
+          const toggleSelector = `input`;
+          await page.$(toggleSelector);
+          await page.click(toggleSelector);
+        },
+      },
+    ],
+  },
   'layer-z-index': {
     interactions: [
       {
