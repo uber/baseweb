@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {ALIGNMENT, BEHAVIOR} from './constants.js';
+import Cell from './cell.js';
 
 export type ResponsiveT<T> = T | Array<T>;
 
@@ -24,7 +25,7 @@ export type GridPropsT = {
   /** Grid container behavior beyond max width. Fluid will continue to expand. Fixed will limit grid container to max width and center the container horizontally within parent element. */
   behavior?: BehaviorT,
   /** Children should be Cells. */
-  children?: React.Node,
+  children: React.ChildrenArray<React.Element<typeof Cell>>,
   /** Number of columns at each breakpoint. */
   gridColumns?: ResponsiveT<number>,
   /** Gap between rows at each breakpoint. */
