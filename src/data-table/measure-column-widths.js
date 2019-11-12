@@ -106,7 +106,7 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
       Math.max(
         props.columns[columnIndex].minWidth || 0,
         dimensionsCache.current[columnIndex],
-        dimensions.width,
+        dimensions.width + 1,
       ),
       props.columns[columnIndex].maxWidth || Infinity,
     );
