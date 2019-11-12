@@ -61,12 +61,6 @@ export type CellPropsT = {
   skip?: ResponsiveT<number>,
   /** Control number of columns the cell should span. */
   span?: ResponsiveT<number>,
-  /** DO NOT USE! Number of columns at each breakpoint. */
-  $gridColumns?: ResponsiveT<number>,
-  /** DO NOT USE! Gap between rows at each breakpoint. */
-  $gridGaps?: ResponsiveT<number>,
-  /** DO NOT USE! Gap between columns at each breakpoint. */
-  $gridGutters?: ResponsiveT<number>,
 };
 
 export type StyledCellPropsT = {

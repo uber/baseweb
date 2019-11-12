@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {StyledGrid} from './styled-components.js';
+import {StyledGrid, StyledCell} from './styled-components.js';
 import type {GridPropsT} from './types.js';
 
 export default function Grid({
@@ -28,13 +28,19 @@ export default function Grid({
       $gridMaxWidth={gridMaxWidth}
       $align={align}
     >
-      {React.Children.map(children, child =>
-        React.cloneElement(child, {
-          $gridColumns: gridColumns,
-          $gridGutters: gridGutters,
-          $gridGaps: gridGaps,
-        }),
-      )}
+      {React.Children.map(children, child => (
+        <StyledCell
+          $align={child.props.align}
+          $order={child.props.order}
+          $skip={child.props.skip}
+          $span={child.props.span}
+          $gridColumns={gridColumns}
+          $gridGutters={gridGutters}
+          $gridGaps={gridGaps}
+        >
+          {child.props.children}
+        </StyledCell>
+      ))}
     </StyledGrid>
   );
 }

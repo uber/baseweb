@@ -39,9 +39,6 @@ export interface CellProps {
   order?: Responsive<number>;
   skip?: Responsive<number>;
   span?: Responsive<number>;
-  $gridColumns?: Responsive<number>;
-  $gridGaps?: Responsive<number>;
-  $gridGutters?: Responsive<number>;
 }
 
 export type StyledCellProps = {

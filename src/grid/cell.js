@@ -10,26 +10,11 @@ import React from 'react';
 import {StyledCell} from './styled-components.js';
 import type {CellPropsT} from './types.js';
 
-export default function Cell({
-  align,
-  children,
-  order,
-  skip,
-  span,
-  $gridColumns,
-  $gridGutters,
-  $gridGaps,
-}: CellPropsT) {
+// When used with Grid, Cell does not actually return anything.
+// All of the props are forwarded to a StyledCell inside of Grid.
+export default function Cell({align, children, order, skip, span}: CellPropsT) {
   return (
-    <StyledCell
-      $align={align}
-      $order={order}
-      $skip={skip}
-      $span={span}
-      $gridColumns={$gridColumns}
-      $gridGutters={$gridGutters}
-      $gridGaps={$gridGaps}
-    >
+    <StyledCell $align={align} $order={order} $skip={skip} $span={span}>
       {children}
     </StyledCell>
   );
