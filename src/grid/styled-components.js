@@ -12,7 +12,7 @@ import {getMediaQueries} from '../helpers/responsive-helpers.js';
 import {BEHAVIOR} from './constants.js';
 
 import type {
-  SoftResponsiveT,
+  ResponsiveT,
   GridPropsT,
   CellPropsT,
   StyledGridPropsT,
@@ -57,7 +57,7 @@ export function Grid({
 export const StyledGrid = styled<StyledGridPropsT>(
   'div',
   ({
-    $align,
+    $align = null,
     $behavior = BEHAVIOR.fixed,
     $gridGutters = GRID_GUTTERS,
     $gridMargins = GRID_MARGINS,
@@ -135,11 +135,11 @@ export function Cell({
 export const StyledCell = styled<StyledCellPropsT>(
   'div',
   ({
-    $align,
+    $align = null,
     $gridColumns = GRID_COLUMNS,
     $gridGaps = 0,
     $gridGutters = GRID_GUTTERS,
-    $order,
+    $order = null,
     $skip = [0, 0, 0],
     $span = [1, 1, 1],
     $theme,
@@ -188,7 +188,7 @@ export const StyledCell = styled<StyledCellPropsT>(
         paddingRight: getResponsiveNumber($gridGutters, 0) / 2 + 'px',
         marginBottom: getResponsiveNumber($gridGaps, 0) + 'px',
         alignSelf: getResponsiveValue($align, 0),
-        order: getResponsiveValue($order, 0),
+        order: getResponsiveNumber($order, 0),
       },
     );
     return {
@@ -198,23 +198,20 @@ export const StyledCell = styled<StyledCellPropsT>(
   },
 );
 
-function getResponsiveNumber<T>(
-  responsive: SoftResponsiveT<T>,
-  i: number,
-): number {
+function getResponsiveNumber<T>(responsive: ResponsiveT<T>, i: number): number {
   const res = getResponsiveValue(responsive, i);
   return typeof res === 'number' ? res : 0;
 }
 
-function getResponsiveValue<T>(responsive: SoftResponsiveT<T>, i: number): ?T {
+function getResponsiveValue<T>(responsive: ResponsiveT<T>, i: number): ?T {
   if (!responsive) {
     return null;
   }
   if (!Array.isArray(responsive)) {
     return responsive;
   }
-  if (responsive[i] === null || typeof responsive[i] === 'number') {
-    return responsive[i];
+  if (typeof responsive[i] === 'undefined') {
+    return responsive[responsive.length - 1];
   }
-  return responsive[i] || responsive[responsive.length - 1];
+  return responsive[i];
 }

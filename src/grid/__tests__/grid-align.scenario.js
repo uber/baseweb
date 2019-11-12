@@ -19,8 +19,47 @@ export const name = 'grid-align';
 export function component() {
   return (
     <>
-      {/* Align grid. */}
+      {/* No alignment specified. (defaults to `normal`) */}
+      <Grid>
+        <Cell>
+          <Inner h="50px">1</Inner>
+        </Cell>
+        <Cell>
+          <Inner h="75px">2</Inner>
+        </Cell>
+        <Cell>
+          <Inner h="25px">3</Inner>
+        </Cell>
+      </Grid>
+      <br />
+      {/* Align grid along start. */}
+      <Grid align={ALIGNMENT.start}>
+        <Cell>
+          <Inner h="50px">1</Inner>
+        </Cell>
+        <Cell>
+          <Inner h="75px">2</Inner>
+        </Cell>
+        <Cell>
+          <Inner h="25px">3</Inner>
+        </Cell>
+      </Grid>
+      <br />
+      {/* Align grid along center. */}
       <Grid align={ALIGNMENT.center}>
+        <Cell>
+          <Inner h="50px">1</Inner>
+        </Cell>
+        <Cell>
+          <Inner h="75px">2</Inner>
+        </Cell>
+        <Cell>
+          <Inner h="25px">3</Inner>
+        </Cell>
+      </Grid>
+      <br />
+      {/* Align grid along end. */}
+      <Grid align={ALIGNMENT.end}>
         <Cell>
           <Inner h="50px">1</Inner>
         </Cell>
@@ -34,16 +73,16 @@ export function component() {
       <br />
       {/* Align grid with wrapping cells. */}
       <Grid align={ALIGNMENT.center}>
-        <Cell span={5}>
+        <Cell span={4}>
           <Inner h="50px">1</Inner>
         </Cell>
-        <Cell span={5}>
+        <Cell span={4}>
           <Inner h="75px">2</Inner>
         </Cell>
-        <Cell span={5}>
+        <Cell span={4}>
           <Inner h="25px">3</Inner>
         </Cell>
-        <Cell span={5}>
+        <Cell span={4}>
           <Inner h="75px">3</Inner>
         </Cell>
       </Grid>
@@ -61,7 +100,7 @@ export function component() {
         </Cell>
       </Grid>
       <br />
-      {/* Align single cell. */}
+      {/* Align grid and single cell. */}
       <Grid align={ALIGNMENT.center}>
         <Cell>
           <Inner h="50px">1</Inner>

@@ -18,31 +18,21 @@ export function component() {
       {/* Make a cell appear first. */}
       <Grid>
         <Cell>
-          <Inner>1A</Inner>
+          <Inner>1</Inner>
         </Cell>
         <Cell order={-1}>
-          <Inner>1B</Inner>
+          <Inner>2</Inner>
         </Cell>
       </Grid>
       <br />
       {/* Responsive ordering for multiple cells. */}
       <Grid>
-        {/* Normal, Last, Normal */}
-        <Cell order={[0, 1, 0]}>
-          <Inner>2A</Inner>
-        </Cell>
         <Cell>
-          <Inner>2B</Inner>
+          <Inner>1</Inner>
         </Cell>
-        <Cell>
-          <Inner>2C</Inner>
-        </Cell>
-        <Cell>
-          <Inner>2D</Inner>
-        </Cell>
-        {/* First, Normal, First */}
-        <Cell order={[-1, 0, -1]}>
-          <Inner>2E</Inner>
+        {/* First on small, Normal on middle and up. */}
+        <Cell order={[-1, 0]}>
+          <Inner>2</Inner>
         </Cell>
       </Grid>
     </>

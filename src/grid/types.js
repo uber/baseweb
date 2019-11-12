@@ -11,8 +11,6 @@ import {ALIGNMENT, BEHAVIOR} from './constants.js';
 
 export type ResponsiveT<T> = T | Array<T>;
 
-export type SoftResponsiveT<T> = ResponsiveT<T | null>;
-
 export type AlignmentT =
   | typeof ALIGNMENT.start
   | typeof ALIGNMENT.center
