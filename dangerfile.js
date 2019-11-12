@@ -7,6 +7,6 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import {message} from 'danger';
+const {message} = require('danger');
 
 message('hello world');
