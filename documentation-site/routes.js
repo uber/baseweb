@@ -189,6 +189,10 @@ const routes = [
             itemId: '/components/dnd-list',
           },
           {
+            title: 'Layout Grid',
+            itemId: '/components/layout-grid',
+          },
+          {
             title: 'Heading',
             itemId: '/components/heading',
           },
