@@ -74,7 +74,7 @@ export const StyledCell = styled<StyledCellPropsT>(
   ({
     $align = null,
     $gridColumns = DEFAULT_GRID_COLUMNS,
-    $gridGaps = [8, 16],
+    $gridGaps = 0,
     $gridGutters = DEFAULT_GRID_GUTTERS,
     $order = null,
     $skip = [0, 0, 0],
