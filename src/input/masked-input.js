@@ -67,7 +67,8 @@ export default function MaskedInput(props: MaskedInputPropsT) {
     ...restOverrides,
   };
 
-  return <Input {...props} overrides={nextOverrides} />;
+  const {mask, maskChar, ...restInputProps} = props;
+  return <Input {...restInputProps} overrides={nextOverrides} />;
 }
 
 MaskedInput.defaultProps = {

@@ -12,7 +12,7 @@ const {mount} = require('../../../e2e/helpers');
 
 const selectors = {
   input: 'input',
-  calendar: '[role="application"]',
+  calendar: '[data-baseweb="calendar"]',
   day: '[aria-label="Choose Sunday, March 10th 2019. It\'s available."]',
   day2: '[aria-label="Choose Thursday, March 28th 2019. It\'s available."]',
   monthYearSelectButton: '[data-id="monthYearSelectButton"]',

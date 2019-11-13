@@ -28,11 +28,13 @@ export const flexGridItemMediaQueryStyle = ({
   flexGridRowGap: ScaleT,
 }): StyleOverrideT => {
   const colCount = flexGridColumnCount;
+  const nthChild = colCount === 1 ? 'n' : colCount + 'n';
   // 0px needed for calc() to behave properly
   const colGap = $theme.sizing[flexGridColumnGap] || flexGridColumnGap || '0px';
   const colGapQuantity = parseFloat(colGap);
   const colGapUnit = colGap.match(/[a-zA-Z]+/)[0];
   const rowGap = $theme.sizing[flexGridRowGap] || flexGridRowGap || '0px';
+  const rowGapQuantity = parseFloat(rowGap);
   const widthCalc = `(100% - ${(colCount - 1) *
     colGapQuantity}${colGapUnit}) / ${colCount}`;
   const marginDirection =
@@ -41,17 +43,19 @@ export const flexGridItemMediaQueryStyle = ({
     // Subtract .5px to avoid rounding issues on IE/Edge
     // See https://github.com/uber/baseweb/pull/1748
     width: `calc(${widthCalc} - .5px)`,
-    ...[...Array(colCount).keys()].reduce(
-      (acc, i) => ({
+    ...[...Array(colCount).keys()].reduce((acc, i) => {
+      const nthChildOffset = i === 0 ? '' : '-' + i;
+      return {
         // Iterate over each column i for 0 <= i < colCount
         ...acc,
-        [`:nth-child(${colCount}n-${i})`]: {
+        // Duplicate nth-child selector to match specificity of other selectors
+        [`:nth-child(${nthChild}${nthChildOffset}):nth-child(${nthChild}${nthChildOffset})`]: {
           // Add colGap except at end of row
-          [marginDirection]: i && colGap,
+          [marginDirection]: i && colGapQuantity && colGap,
           // Add rowGap below in general
-          marginBottom: rowGap,
+          marginBottom: rowGapQuantity && rowGap,
         },
-        [`:nth-child(${colCount}n-${i}):last-child`]: {
+        [`:nth-child(${nthChild}${nthChildOffset}):last-child`]: {
           // Add space to make up for missing columns if row ends early
           [marginDirection]: `calc(${i} * (${colGap} + ${widthCalc}))`,
         },
@@ -59,16 +63,16 @@ export const flexGridItemMediaQueryStyle = ({
           (acc, j) => ({
             // Iterate over each column j for 0 <= j <= i
             ...acc,
-            [`:nth-child(${colCount}n-${i}):nth-last-child(${j + 1})`]: {
+            [`:nth-child(${nthChild}${nthChildOffset}):nth-last-child(${j +
+              1})`]: {
               // Remove rowGap below for last row items
               marginBottom: 0,
             },
           }),
           {},
         ),
-      }),
-      {},
-    ),
+      };
+    }, {}),
   };
 };
 

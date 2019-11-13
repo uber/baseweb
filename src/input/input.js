@@ -51,12 +51,13 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
   };
 
   render() {
-    const {startEnhancer, endEnhancer, ...restProps} = this.props;
+    const {startEnhancer, endEnhancer, overrides, ...restProps} = this.props;
 
     const {
       Root: RootOverride,
       StartEnhancer: StartEnhancerOverride,
       EndEnhancer: EndEnhancerOverride,
+      ...restOverrides
     } = this.props.overrides;
 
     const [Root, rootProps] = getOverrides(RootOverride, StyledRoot);
@@ -95,6 +96,7 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
         )}
         <BaseInput
           {...restProps}
+          overrides={restOverrides}
           adjoined={getAdjoinedProp(startEnhancer, endEnhancer)}
           onFocus={this.onFocus}
           onBlur={this.onBlur}

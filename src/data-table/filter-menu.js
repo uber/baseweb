@@ -281,7 +281,14 @@ function FilterMenu(props: PropsT) {
         shape={SHAPE.pill}
         size={SIZE.compact}
         onKeyDown={handleKeyDown}
-        overrides={{BaseButton: {style: {marginLeft: theme.sizing.scale500}}}}
+        overrides={{
+          BaseButton: {
+            style: {
+              marginLeft: theme.sizing.scale500,
+              marginBottom: theme.sizing.scale500,
+            },
+          },
+        }}
       >
         Add Filter
       </Button>

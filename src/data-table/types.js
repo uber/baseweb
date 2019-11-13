@@ -36,12 +36,14 @@ export type ColumnT<ValueT = any, FilterParamsT = any> = {|
     textQuery?: string,
   }>,
   renderFilter: React.ComponentType<{|
-    data: ValueT[],
     close: () => void,
+    data: ValueT[],
+    filterParams?: FilterParamsT,
     setFilter: FilterParamsT => void,
   |}>,
   buildFilter: FilterParamsT => ValueT => boolean,
   sortFn: (ValueT, ValueT) => number,
+  maxWidth?: number,
   minWidth?: number,
 |};
 
@@ -73,17 +75,36 @@ export type StatefulDataTablePropsT = {|
   onSelectionChange?: (RowT[]) => mixed,
   rows: RowT[],
   rowActions?: RowActionT[],
+  rowHeight?: number,
 |};
 
 export type DataTablePropsT = {|
   ...StatefulDataTablePropsT,
   filters?: Map<string, {description: string}>,
-  onSelectMany?: (RowT[]) => void,
+  onSelectMany?: (rows: RowT[]) => void,
   onSelectNone?: () => void,
-  onSelectOne?: RowT => void,
-  onSort?: number => void,
+  onSelectOne?: (row: RowT) => void,
+  onSort?: (columnIndex: number) => void,
   selectedRowIds?: Set<string | number>,
   sortIndex?: number,
   sortDirection?: SortDirectionsT,
   textQuery?: string,
+|};
+
+export type StatefulContainerPropsT = {|
+  ...StatefulDataTablePropsT,
+  children: ({|
+    filters: Map<string, {description: string}>,
+    onFilterAdd: (filterParams: {description: string}, title: string) => void,
+    onFilterRemove: (title: string) => void,
+    onSelectMany: (rows: RowT[]) => void,
+    onSelectNone: () => void,
+    onSelectOne: (row: RowT) => void,
+    onSort: (columnIndex: number) => void,
+    onTextQueryChange: (query: string) => void,
+    selectedRowIds: Set<string | number>,
+    sortIndex: number,
+    sortDirection: SortDirectionsT,
+    textQuery: string,
+  |}) => React.Node,
 |};

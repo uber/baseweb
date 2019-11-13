@@ -34,16 +34,25 @@ const Label: React.FC<{
   children: React.ReactNode;
   tooltip: React.ReactNode;
 }> = ({children, tooltip}) => {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   return (
     <label
-      className={useCss({
+      className={css({
         ...theme.typography.font250,
         color: theme.colors.foreground,
       })}
     >
       <StatefulTooltip accessibilityType="tooltip" content={tooltip}>
-        {children}
+        <span
+          className={css({
+            textDecoration: 'underline',
+            ':hover': {
+              color: theme.colors.foregroundAlt,
+            },
+          })}
+        >
+          {children}
+        </span>
       </StatefulTooltip>
     </label>
   );
@@ -71,6 +80,7 @@ const Knob: React.SFC<{
   enumName,
 }) => {
   const [val, set] = useValueDebounce<TPropValue>(globalVal, globalSet);
+  const [css, theme] = useStyletron();
   switch (type) {
     case PropTypes.Ref:
       return (
@@ -120,7 +130,16 @@ const Knob: React.SFC<{
               content={getTooltip(description, type, name)}
               placement="right"
             >
-              {name}
+              <span
+                className={css({
+                  textDecoration: 'underline',
+                  ':hover': {
+                    color: theme.colors.foregroundAlt,
+                  },
+                })}
+              >
+                {name}
+              </span>
             </StatefulTooltip>
           </Checkbox>
           <PopupError error={error} />

@@ -28,7 +28,7 @@ function getSharedProps() {
     children: mockChildrenFn,
     stateReducer: jest
       .fn()
-      .mockImplementation((changeType, changes) => changes),
+      .mockImplementation((changeType, changes) => (changes: any)),
   };
 }
 

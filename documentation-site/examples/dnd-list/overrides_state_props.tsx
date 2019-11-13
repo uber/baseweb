@@ -11,7 +11,7 @@ export default () => (
         style: ({$theme, $isDragged}) => ({
           color: $isDragged
             ? $theme.colors.primary
-            : $theme.colors.negative600,
+            : $theme.colors.accent400,
         }),
       },
     }}

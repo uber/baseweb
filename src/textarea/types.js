@@ -46,4 +46,4 @@ type OmitPropsT = {
 
 type FullStPropsT = TextareaPropsT & StatefulContainerPropsT;
 
-export type StatefulTextareaPropsT = $Diff<FullStPropsT, OmitPropsT>;
+export type StatefulTextareaPropsT = $Shape<$Diff<FullStPropsT, OmitPropsT>>;

@@ -11,10 +11,10 @@ import type {SharedStylePropsArgT, SizePropT, AnchorPropT} from './types.js';
 
 function getSizeStyles($size: SizePropT, $anchor: AnchorPropT) {
   const styles: {
-    maxWidth: string | number,
-    maxHeight: string | number,
-    width: string | number,
-    height: string | number,
+    maxWidth: string,
+    maxHeight: string,
+    width: string,
+    height: string,
   } = {
     maxWidth: '100%',
     maxHeight: '100%',

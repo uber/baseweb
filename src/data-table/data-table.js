@@ -17,6 +17,7 @@ import {
   KIND as BUTTON_KINDS,
 } from '../button/index.js';
 import {useStyletron} from '../styles/index.js';
+import {Tooltip, PLACEMENT} from '../tooltip/index.js';
 
 import {COLUMNS, SORT_DIRECTIONS} from './constants.js';
 import HeaderCell from './header-cell.js';
@@ -29,18 +30,18 @@ import type {
   RowActionT,
 } from './types.js';
 
+// consider pulling this out to a prop if useful.
+const HEADER_ROW_HEIGHT = 48;
+
 type InnerTableElementProps = {|
   children: React.Node,
   style: {[string]: mixed},
 |};
 
 type HeaderContextT = {|
-  allRows: RowT[],
   columns: ColumnT<>[],
-  handleSort: number => void,
   columnHoverIndex: number,
-  rowHoverIndex: number,
-  scrollLeft: number,
+  filters: $PropertyType<DataTablePropsT, 'filters'>,
   isScrollingX: boolean,
   isSelectable: boolean,
   isSelectedAll: boolean,
@@ -49,8 +50,12 @@ type HeaderContextT = {|
   onMouseLeave: () => void,
   onSelectMany: () => void,
   onSelectNone: () => void,
+  onSort: number => void,
   rowActions: RowActionT[],
+  rowHeight: number,
+  rowHoverIndex: number,
   rows: RowT[],
+  scrollLeft: number,
   sortIndex: number,
   sortDirection: SortDirectionsT,
   widths: number[],
@@ -80,7 +85,7 @@ type CellPlacementPropsT = {
 };
 
 function CellPlacement({columnIndex, rowIndex, data, style}) {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
 
   // ignores the table header row
   if (rowIndex === 0) {
@@ -100,15 +105,13 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
   const Cell = data.columns[columnIndex].renderCell;
   return (
     <div
-      className={useCss({
+      className={css({
         ...theme.borders.border200,
-        alignItems: 'center',
         backgroundColor,
         borderTop: 'none',
         borderBottom: 'none',
         borderLeft: 'none',
         boxSizing: 'border-box',
-        display: 'flex',
       })}
       style={style}
       onMouseEnter={() => data.onHoverRow(rowIndex)}
@@ -182,12 +185,9 @@ const CellPlacementMemo = React.memo<CellPlacementPropsT, mixed>(
 CellPlacementMemo.displayName = 'CellPlacement';
 
 const HeaderContext = React.createContext<HeaderContextT>({
-  allRows: [],
   columns: [],
-  handleSort: () => {},
   columnHoverIndex: -1,
-  rowHoverIndex: -1,
-  scrollLeft: 0,
+  filters: new Map(),
   isScrollingX: false,
   isSelectable: false,
   isSelectedAll: false,
@@ -196,8 +196,12 @@ const HeaderContext = React.createContext<HeaderContextT>({
   onMouseLeave: () => {},
   onSelectMany: () => {},
   onSelectNone: () => {},
+  onSort: () => {},
   rowActions: [],
+  rowHeight: 0,
+  rowHoverIndex: -1,
   rows: [],
+  scrollLeft: 0,
   sortIndex: -1,
   sortDirection: null,
   widths: [],
@@ -210,7 +214,7 @@ const InnerTableElement = React.forwardRef<
   InnerTableElementProps,
   HTMLDivElement,
 >((props, ref) => {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   const ctx = React.useContext(HeaderContext);
 
   // no need to render the cells until the columns have been measured
@@ -221,12 +225,12 @@ const InnerTableElement = React.forwardRef<
   return (
     <div ref={ref} data-baseweb="data-table" style={props.style}>
       <div
-        className={useCss({
+        className={css({
           position: 'sticky',
           top: 0,
           left: 0,
           width: `${ctx.widths.reduce((sum, w) => sum + w, 0)}px`,
-          height: '48px',
+          height: `${HEADER_ROW_HEIGHT}px`,
           display: 'flex',
           // this feels bad.. the absolutely positioned children elements
           // stack on top of this element with the layer component.
@@ -234,43 +238,77 @@ const InnerTableElement = React.forwardRef<
         })}
       >
         {ctx.columns.map((column, columnIndex) => {
-          const width = ctx.widths[columnIndex];
+          const activeFilter = ctx.filters
+            ? ctx.filters.get(column.title)
+            : null;
+
           return (
-            <div
-              className={useCss({
-                ...theme.borders.border200,
-                backgroundColor: theme.colors.mono100,
-                borderTop: 'none',
-                borderLeft: 'none',
-                boxSizing: 'border-box',
-              })}
+            <Tooltip
               key={columnIndex}
-              style={{width}}
+              placement={PLACEMENT.bottomLeft}
+              isOpen={
+                ctx.columnHoverIndex === columnIndex && Boolean(activeFilter)
+              }
+              content={() => {
+                return (
+                  <div>
+                    <p
+                      className={css({
+                        ...theme.typography.font100,
+                        color: theme.colors.foregroundInv,
+                      })}
+                    >
+                      filter applied to {column.title}
+                    </p>
+                    {activeFilter && (
+                      <p
+                        className={css({
+                          ...theme.typography.font150,
+                          color: theme.colors.foregroundInv,
+                        })}
+                      >
+                        {activeFilter.description}
+                      </p>
+                    )}
+                  </div>
+                );
+              }}
             >
-              <HeaderCell
-                index={columnIndex}
-                sortable={column.sortable}
-                isHovered={ctx.columnHoverIndex === columnIndex}
-                isSelectable={ctx.isSelectable && columnIndex === 0}
-                isSelectedAll={ctx.isSelectedAll}
-                isSelectedIndeterminate={ctx.isSelectedIndeterminate}
-                onMouseEnter={() => ctx.onMouseEnter(columnIndex)}
-                onMouseLeave={() => ctx.onMouseLeave()}
-                onSelectAll={ctx.onSelectMany}
-                onSelectNone={ctx.onSelectNone}
-                onSort={ctx.handleSort}
-                sortDirection={
-                  ctx.sortIndex === columnIndex ? ctx.sortDirection : null
-                }
-                title={column.title}
-              />
-            </div>
+              <div
+                className={css({
+                  ...theme.borders.border200,
+                  backgroundColor: theme.colors.mono100,
+                  borderTop: 'none',
+                  borderLeft: 'none',
+                  boxSizing: 'border-box',
+                })}
+                style={{width: ctx.widths[columnIndex]}}
+              >
+                <HeaderCell
+                  index={columnIndex}
+                  sortable={column.sortable}
+                  isHovered={ctx.columnHoverIndex === columnIndex}
+                  isSelectable={ctx.isSelectable && columnIndex === 0}
+                  isSelectedAll={ctx.isSelectedAll}
+                  isSelectedIndeterminate={ctx.isSelectedIndeterminate}
+                  onMouseEnter={() => ctx.onMouseEnter(columnIndex)}
+                  onMouseLeave={() => ctx.onMouseLeave()}
+                  onSelectAll={ctx.onSelectMany}
+                  onSelectNone={ctx.onSelectNone}
+                  onSort={ctx.onSort}
+                  sortDirection={
+                    ctx.sortIndex === columnIndex ? ctx.sortDirection : null
+                  }
+                  title={column.title}
+                />
+              </div>
+            </Tooltip>
           );
         })}
       </div>
       {React.Children.toArray(props.children).length <= ctx.columns.length ? (
         <div
-          className={useCss({
+          className={css({
             ...theme.typography.font100,
             marginTop: theme.sizing.scale600,
             marginLeft: theme.sizing.scale600,
@@ -292,13 +330,13 @@ const InnerTableElement = React.forwardRef<
               alignItems: 'center',
               backgroundColor: 'rgba(238, 238, 238, 0.99)',
               display: 'flex',
-              height: '36px',
+              height: `${ctx.rowHeight}px`,
               padding: '0 16px',
               paddingLeft: theme.sizing.scale300,
               paddingRight: theme.sizing.scale300,
               position: 'absolute',
               right: 0 - ctx.scrollLeft,
-              top: (ctx.rowHoverIndex - 1) * 36 + 48,
+              top: (ctx.rowHoverIndex - 1) * ctx.rowHeight + HEADER_ROW_HEIGHT,
             }}
           >
             {ctx.rowActions.map(rowAction => {
@@ -335,6 +373,7 @@ InnerTableElement.displayName = 'InnerTableElement';
 
 export function Unstable_DataTable(props: DataTablePropsT) {
   const [, theme] = useStyletron();
+  const rowHeight = props.rowHeight || 36;
   const gridRef = React.useRef<typeof VariableSizeGrid | null>(null);
   const [widths, setWidths] = React.useState(props.columns.map(() => 0));
   const handleWidthsChange = React.useCallback(
@@ -555,12 +594,9 @@ export function Unstable_DataTable(props: DataTablePropsT) {
         {({height, width}) => (
           <HeaderContext.Provider
             value={{
-              allRows: props.rows,
               columns: props.columns,
-              handleSort,
               columnHoverIndex,
-              rowHoverIndex,
-              scrollLeft,
+              filters: props.filters,
               isScrollingX,
               isSelectable,
               isSelectedAll,
@@ -569,10 +605,15 @@ export function Unstable_DataTable(props: DataTablePropsT) {
               onMouseLeave: handleColumnHeaderMouseLeave,
               onSelectMany: handleSelectMany,
               onSelectNone: handleSelectNone,
-              rows,
+              onSort: handleSort,
               rowActions: props.rowActions || [],
+              rowHeight,
+              rowHoverIndex,
+              rows,
+              scrollLeft,
               sortDirection: props.sortDirection || null,
-              sortIndex: props.sortIndex || -1,
+              sortIndex:
+                typeof props.sortIndex === 'number' ? props.sortIndex : -1,
               widths,
             }}
           >
@@ -586,7 +627,9 @@ export function Unstable_DataTable(props: DataTablePropsT) {
               height={height}
               // plus one to account for additional header row
               rowCount={rows.length + 1}
-              rowHeight={rowIndex => (rowIndex === 0 ? 48 : 36)}
+              rowHeight={rowIndex =>
+                rowIndex === 0 ? HEADER_ROW_HEIGHT : rowHeight
+              }
               width={width}
               itemData={itemData}
               onScroll={handleScroll}

@@ -172,6 +172,18 @@ export const inputProps = {
     description: 'Name attribute.',
     hidden: true,
   },
+  min: {
+    value: undefined,
+    type: PropTypes.String,
+    description: 'min value when used as input type=number',
+    hidden: true,
+  },
+  max: {
+    value: undefined,
+    type: PropTypes.String,
+    description: 'max value when used as input type=number',
+    hidden: true,
+  },
   ...pick(changeHandlers, [
     'onBlur',
     'onKeyDown',

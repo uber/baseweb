@@ -69,6 +69,7 @@ class Panel extends React.Component<PanelPropsT> {
       'aria-controls': ariaControls,
       title,
       renderPanelContent,
+      renderAll,
     } = this.props;
 
     const sharedProps = this.getSharedProps();
@@ -143,7 +144,7 @@ class Panel extends React.Component<PanelPropsT> {
               {...contentProps}
               {...(ariaControls ? {id: ariaControls} : {})}
             >
-              {expanded || renderPanelContent ? children : null}
+              {expanded || renderPanelContent || renderAll ? children : null}
             </Content>
           </PanelContainer>
         )}

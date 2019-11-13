@@ -46,7 +46,7 @@ const config = {
         behavior: async page => {
           const button = '[data-baseweb="button"]';
           const input = 'input';
-          const calendar = '[role="application"]';
+          const calendar = '[data-baseweb="calendar"]';
           await page.waitForSelector(button);
           await page.click(button);
           await page.waitForSelector(input);
@@ -62,7 +62,7 @@ const config = {
         name: 'calendarOpened',
         behavior: async page => {
           const input = 'input';
-          const calendar = '[role="application"]';
+          const calendar = '[data-baseweb="calendar"]';
           await page.waitForSelector(input);
           await page.click(input);
           await page.waitForSelector(calendar);
@@ -76,7 +76,7 @@ const config = {
         name: 'selectedRangeHighlighted',
         behavior: async page => {
           const input = 'input';
-          const calendar = '[role="application"]';
+          const calendar = '[data-baseweb="calendar"]';
           const startDay =
             '[aria-label="Choose Sunday, March 10th 2019. It\'s available."]';
           const endDay =
@@ -100,7 +100,7 @@ const config = {
         name: 'noHighlight',
         behavior: async page => {
           const input = `input`;
-          const calendar = `[role="application"]`;
+          const calendar = '[data-baseweb="calendar"]';
           const rightArrow = `[aria-label="Next month"]`;
           await page.waitForSelector(input);
           await page.click(input);
@@ -116,6 +116,18 @@ const config = {
         name: 'togglesMask',
         behavior: async page => {
           const toggleSelector = `[data-e2e="mask-toggle"]`;
+          await page.$(toggleSelector);
+          await page.click(toggleSelector);
+        },
+      },
+    ],
+  },
+  'input-number': {
+    interactions: [
+      {
+        name: 'numberInput',
+        behavior: async page => {
+          const toggleSelector = `input`;
           await page.$(toggleSelector);
           await page.click(toggleSelector);
         },

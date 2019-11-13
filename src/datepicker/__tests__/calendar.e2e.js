@@ -11,7 +11,7 @@ LICENSE file in the root directory of this source tree.
 const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const selectors = {
-  calendar: '[role="application"]',
+  calendar: '[data-baseweb="calendar"]',
 };
 
 describe('Calendar', () => {

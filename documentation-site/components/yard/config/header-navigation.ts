@@ -15,7 +15,12 @@ const buttonProps = require('!!extract-react-types-loader!../../../../src/button
 const HeaderNavigationConfig: TConfig = {
   imports: {
     'baseui/header-navigation': {
-      named: ['HeaderNavigation', 'ALIGN'],
+      named: [
+        'HeaderNavigation',
+        'ALIGN',
+        'StyledNavigationList',
+        'StyledNavigationItem',
+      ],
     },
     'baseui/link': {
       named: ['StyledLink'],

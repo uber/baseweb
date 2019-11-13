@@ -25,9 +25,10 @@ function getHeaderCellAtIndex(page: any, index: number) {
 
 // eslint-disable-next-line flowtype/no-weak-types
 function getCellsAtColumnIndex(page: any, columnCount: number, index: number) {
-  // hard-coded related column count for now. could be calcuated by number of children if scenario changes.
+  // At most, sample 20 rows. Seems like a reasonable ceiling for now.
+  const MAX_ROW_SAMPLES = 20;
   const indices = [];
-  for (let i = 0; i < columnCount; i++) {
+  for (let i = 0; i < MAX_ROW_SAMPLES; i++) {
     indices.push(i * columnCount + index);
   }
 

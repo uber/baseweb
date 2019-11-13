@@ -20,12 +20,14 @@ type OptionsT<ValueT, FilterParamsT> = {|
   filterable?: boolean,
   renderCell: React.ComponentType<{value: ValueT, isMeasured?: boolean}>,
   renderFilter?: React.ComponentType<{|
-    data: ValueT[],
     close: () => void,
+    data: ValueT[],
+    filterParams?: FilterParamsT,
     setFilter: FilterParamsT => void,
   |}>,
   buildFilter?: FilterParamsT => ValueT => boolean,
   sortFn?: (ValueT, ValueT) => number,
+  maxWidth?: number,
   minWidth?: number,
 |};
 
@@ -56,6 +58,7 @@ function CustomColumn<ValueT, FilterParamsT>(
     renderFilter: options.renderFilter || (() => null),
     buildFilter: options.buildFilter || (() => () => true),
     sortFn: options.sortFn || (() => 0),
+    maxWidth: options.maxWidth,
     minWidth: options.minWidth,
   };
 }
