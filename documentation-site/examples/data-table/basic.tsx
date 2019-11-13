@@ -8,6 +8,7 @@ import {
   NumericalColumn,
   StringColumn,
   COLUMNS,
+  NUMERICAL_FORMATS,
 } from 'baseui/data-table';
 
 // https://gist.github.com/6174/6062387
@@ -71,18 +72,50 @@ function makeRowsFromColumns(columns: any, rowCount: number) {
   return rows;
 }
 
+type RowDataT = [
+  string,
+  string,
+  number,
+  number,
+  number,
+  {color: string},
+  boolean,
+  string,
+];
+
 const columns = [
-  CategoricalColumn({title: 'one'}),
-  StringColumn({title: 'two'}),
-  NumericalColumn({title: 'three'}),
-  CustomColumn({
-    title: 'four',
+  CategoricalColumn({
+    title: 'categorical',
+    mapDataToValue: (data: RowDataT) => data[0],
+  }),
+  StringColumn({
+    title: 'string',
+    mapDataToValue: (data: RowDataT) => data[1],
+  }),
+  NumericalColumn({
+    title: 'three',
+    mapDataToValue: (data: RowDataT) => data[2],
+  }),
+  NumericalColumn({
+    title: 'neg std',
+    highlight: (n: number) => n < 0,
+    mapDataToValue: (data: RowDataT) => data[3],
+  }),
+  NumericalColumn({
+    title: 'accounting',
+    format: NUMERICAL_FORMATS.ACCOUNTING,
+    mapDataToValue: (data: RowDataT) => data[4],
+  }),
+  CustomColumn<{color: string}, {}>({
+    title: 'custom color',
+    mapDataToValue: (data: RowDataT) => data[5],
     renderCell: function Cell(props: any) {
       const [useCss] = useStyletron();
       return (
         <div
           className={useCss({
             alignItems: 'center',
+            fontFamily: '"Comic Sans MS", cursive, sans-serif',
             display: 'flex',
           })}
         >
@@ -99,11 +132,14 @@ const columns = [
       );
     },
   }),
-  BooleanColumn({title: 'five'}),
-  CategoricalColumn({title: 'six'}),
-  StringColumn({title: 'seven'}),
-  StringColumn({title: 'eight'}),
-  StringColumn({title: 'nine'}),
+  BooleanColumn({
+    title: 'boolean',
+    mapDataToValue: (data: RowDataT) => data[6],
+  }),
+  CategoricalColumn({
+    title: 'second category',
+    mapDataToValue: (data: RowDataT) => data[7],
+  }),
 ];
 
 const rows = makeRowsFromColumns(columns, 2000);

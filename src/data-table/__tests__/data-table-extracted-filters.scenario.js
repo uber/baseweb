@@ -22,13 +22,36 @@ import AnimalData from './animal-data.js';
 
 export const name = 'data-table-extracted-filters';
 
+type RowDataT = [string, string, string, string, string, string];
+
 const columns = [
-  StringColumn({title: 'Name', minWidth: 300}),
-  CategoricalColumn({title: 'Kingdom'}),
-  CategoricalColumn({title: 'Phylum', minWidth: 90}),
-  CategoricalColumn({title: 'Class', minWidth: 120}),
-  CategoricalColumn({title: 'Order'}),
-  CategoricalColumn({title: 'Family'}),
+  StringColumn({
+    title: 'Name',
+    minWidth: 300,
+    mapDataToValue: (data: RowDataT) => data[0],
+  }),
+  CategoricalColumn({
+    title: 'Kingdom',
+    mapDataToValue: (data: RowDataT) => data[1],
+  }),
+  CategoricalColumn({
+    title: 'Phylum',
+    minWidth: 90,
+    mapDataToValue: (data: RowDataT) => data[2],
+  }),
+  CategoricalColumn({
+    title: 'Class',
+    minWidth: 120,
+    mapDataToValue: (data: RowDataT) => data[3],
+  }),
+  CategoricalColumn({
+    title: 'Order',
+    mapDataToValue: (data: RowDataT) => data[4],
+  }),
+  CategoricalColumn({
+    title: 'Family',
+    mapDataToValue: (data: RowDataT) => data[5],
+  }),
 ];
 
 const rows = AnimalData.map(row => {

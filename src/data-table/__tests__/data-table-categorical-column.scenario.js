@@ -10,7 +10,10 @@ import * as React from 'react';
 
 import {CategoricalColumn} from '../index.js';
 
-const Column = CategoricalColumn({title: 'categorical-column'});
+const Column = CategoricalColumn({
+  title: 'categorical-column',
+  mapDataToValue: () => '',
+});
 
 const Filter = Column.renderFilter;
 

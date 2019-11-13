@@ -13,12 +13,20 @@ import {CustomColumn} from '../index.js';
 
 describe('custom column', () => {
   it('is not sortable by default', () => {
-    const column = CustomColumn({title: 'column', renderCell: () => null});
+    const column = CustomColumn({
+      title: 'column',
+      renderCell: () => null,
+      mapDataToValue: () => null,
+    });
     expect(column.sortable).toBe(false);
   });
 
   it('is not filterable by default', () => {
-    const column = CustomColumn({title: 'column', renderCell: () => null});
+    const column = CustomColumn({
+      title: 'column',
+      renderCell: () => null,
+      mapDataToValue: () => null,
+    });
     expect(column.filterable).toBe(false);
   });
 
@@ -27,6 +35,7 @@ describe('custom column', () => {
       title: 'column',
       sortable: true,
       renderCell: () => null,
+      mapDataToValue: () => null,
     });
     expect(column.sortable).toBe(false);
   });
@@ -39,6 +48,7 @@ describe('custom column', () => {
         return 0;
       },
       renderCell: () => null,
+      mapDataToValue: () => null,
     });
     expect(column.sortable).toBe(true);
   });
@@ -48,6 +58,7 @@ describe('custom column', () => {
       title: 'column',
       filterable: true,
       renderCell: () => null,
+      mapDataToValue: () => null,
     });
     expect(column.filterable).toBe(false);
   });
@@ -59,6 +70,7 @@ describe('custom column', () => {
       renderFilter: () => null,
       buildFilter: params => value => true,
       renderCell: () => null,
+      mapDataToValue: () => null,
     });
     expect(column.filterable).toBe(true);
   });
@@ -69,6 +81,7 @@ describe('custom column', () => {
       renderCell: function CustomCell(props) {
         return <div>{props.value.color}</div>;
       },
+      mapDataToValue: () => ({color: 'blue'}),
     });
     const Cell = column.renderCell;
 

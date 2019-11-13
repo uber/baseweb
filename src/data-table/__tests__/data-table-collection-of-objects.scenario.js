@@ -19,9 +19,24 @@ import graphqlArrayData from './graphql-array-data.js';
 
 export const name = 'data-table-collection-of-objects';
 
+type RowDataT = {
+  id: string,
+  name: string,
+  applicationTags: string,
+  realUser: string,
+  source: string,
+  allocatedVCores: number,
+  allocatedGB: number,
+};
+
 const applicationMinWidth = 130;
 const columns = [
   CustomColumn<{name: string, id: string, applicationTags: string}, {}>({
+    mapDataToValue: (data: RowDataT) => ({
+      id: data.id,
+      name: data.name,
+      applicationTags: data.applicationTags,
+    }),
     title: 'Application',
     sortable: true,
     minWidth: applicationMinWidth,
@@ -47,13 +62,24 @@ const columns = [
     title: 'User',
     sortable: true,
     minWidth: 80,
+    mapDataToValue: (data: RowDataT) => data.realUser,
     renderCell: function Cell(props) {
       return <a href={`#user=${props.value}`}>{props.value}</a>;
     },
   }),
-  CategoricalColumn({title: 'Source', minWidth: 90}),
-  NumericalColumn({title: 'CPU vCores'}),
-  NumericalColumn({title: 'Memory GB'}),
+  CategoricalColumn({
+    title: 'Source',
+    minWidth: 90,
+    mapDataToValue: (data: RowDataT) => data.source,
+  }),
+  NumericalColumn({
+    title: 'CPU vCores',
+    mapDataToValue: (data: RowDataT) => data.allocatedVCores,
+  }),
+  NumericalColumn({
+    title: 'Memory GB',
+    mapDataToValue: (data: RowDataT) => data.allocatedGB,
+  }),
 ];
 
 const rows = [
@@ -62,22 +88,10 @@ const rows = [
   ...graphqlArrayData,
   ...graphqlArrayData,
   ...graphqlArrayData,
-].map(row => {
-  return {
-    id: row.id,
-    data: [
-      {
-        id: row.id,
-        name: row.name,
-        applicationTags: row.applicationTags,
-      },
-      row.realUser,
-      row.source,
-      row.allocatedVCores,
-      row.allocatedGB,
-    ],
-  };
-});
+].map(row => ({
+  id: row.id,
+  data: row,
+}));
 
 export const component = () => {
   return (

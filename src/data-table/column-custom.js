@@ -15,9 +15,11 @@ import type {ColumnT} from './types.js';
 // I could not re-use the ColumnT type to build this.. tried to spread the ColumnT
 // and define renderFilter, etc. to optional, but required status was maintained.
 type OptionsT<ValueT, FilterParamsT> = {|
-  title: string,
-  sortable?: boolean,
   filterable?: boolean,
+  // eslint-disable-next-line flowtype/no-weak-types
+  mapDataToValue: (data: any) => ValueT,
+  maxWidth?: number,
+  minWidth?: number,
   renderCell: React.ComponentType<{value: ValueT, isMeasured?: boolean}>,
   renderFilter?: React.ComponentType<{|
     data: ValueT[],
@@ -25,9 +27,9 @@ type OptionsT<ValueT, FilterParamsT> = {|
     setFilter: FilterParamsT => void,
   |}>,
   buildFilter?: FilterParamsT => ValueT => boolean,
+  sortable?: boolean,
   sortFn?: (ValueT, ValueT) => number,
-  maxWidth?: number,
-  minWidth?: number,
+  title: string,
 |};
 
 function CustomColumn<ValueT, FilterParamsT>(
@@ -35,12 +37,14 @@ function CustomColumn<ValueT, FilterParamsT>(
 ): ColumnT<ValueT, FilterParamsT> {
   return {
     kind: COLUMNS.CUSTOM,
-    title: options.title,
-    sortable: Boolean(options.sortable) && Boolean(options.sortFn),
+    buildFilter: options.buildFilter || (() => () => true),
     filterable:
       Boolean(options.filterable) &&
       Boolean(options.renderFilter) &&
       Boolean(options.buildFilter),
+    mapDataToValue: options.mapDataToValue,
+    maxWidth: options.maxWidth,
+    minWidth: options.minWidth,
     renderCell: React.forwardRef((props, ref) => {
       const ProvidedCell = options.renderCell;
       return (
@@ -55,10 +59,9 @@ function CustomColumn<ValueT, FilterParamsT>(
       );
     }),
     renderFilter: options.renderFilter || (() => null),
-    buildFilter: options.buildFilter || (() => () => true),
+    sortable: Boolean(options.sortable) && Boolean(options.sortFn),
     sortFn: options.sortFn || (() => 0),
-    maxWidth: options.maxWidth,
-    minWidth: options.minWidth,
+    title: options.title,
   };
 }
 

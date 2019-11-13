@@ -88,17 +88,43 @@ function makeRowsFromColumns(columns, rowCount) {
   return rows;
 }
 
+type RowDataT = [
+  string,
+  string,
+  number,
+  number,
+  number,
+  {color: string},
+  boolean,
+  string,
+];
+
 const columns = [
-  CategoricalColumn({title: 'categorical'}),
-  StringColumn({title: 'string'}),
-  NumericalColumn({title: 'three'}),
-  NumericalColumn({title: 'neg std', highlight: n => n < 0}),
+  CategoricalColumn({
+    title: 'categorical',
+    mapDataToValue: (data: RowDataT) => data[0],
+  }),
+  StringColumn({
+    title: 'string',
+    mapDataToValue: (data: RowDataT) => data[1],
+  }),
+  NumericalColumn({
+    title: 'three',
+    mapDataToValue: (data: RowDataT) => data[2],
+  }),
+  NumericalColumn({
+    title: 'neg std',
+    highlight: n => n < 0,
+    mapDataToValue: (data: RowDataT) => data[3],
+  }),
   NumericalColumn({
     title: 'accounting',
     format: NUMERICAL_FORMATS.ACCOUNTING,
+    mapDataToValue: (data: RowDataT) => data[4],
   }),
   CustomColumn<{color: string}, {}>({
     title: 'custom color',
+    mapDataToValue: (data: RowDataT) => data[5],
     renderCell: function Cell(props) {
       const [useCss] = useStyletron();
       return (
@@ -122,8 +148,14 @@ const columns = [
       );
     },
   }),
-  BooleanColumn({title: 'boolean'}),
-  CategoricalColumn({title: 'second category'}),
+  BooleanColumn({
+    title: 'boolean',
+    mapDataToValue: (data: RowDataT) => data[6],
+  }),
+  CategoricalColumn({
+    title: 'second category',
+    mapDataToValue: (data: RowDataT) => data[7],
+  }),
 ];
 
 const rows = makeRowsFromColumns(columns, 2000);
