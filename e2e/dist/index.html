@@ -5,15 +5,24 @@
   <meta charset="utf-8">
   <title>e2e test</title>
   <style>
-    .dark {
-      background: #000;
-    }
-    *, *::before, *::after {
+    /* Prevent animations and transitions from causing flakey visual snapshots. */
+    *,
+    *::before,
+    *::after {
       -moz-transition: none !important;
       transition: none !important;
       -moz-animation: none !important;
       animation: none !important;
       caret-color: transparent !important;
+    }
+
+    body {
+      /* Clamp the width of the screen for visual snapshots. */
+      overflow-x: hidden;
+    }
+
+    .dark {
+      background: #000;
     }
   </style>
 </head>
