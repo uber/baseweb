@@ -189,8 +189,8 @@ const routes = [
             itemId: '/components/dnd-list',
           },
           {
-            title: 'Grid',
-            itemId: '/components/unstable-grid',
+            title: 'Layout Grid',
+            itemId: '/components/unstable-layout-grid',
           },
           {
             title: 'Heading',
