@@ -28,7 +28,6 @@ export interface GridProps {
 export interface StyledGridProps {
   $align?: Responsive<ALIGNMENT>;
   $behavior?: BEHAVIOR;
-  $gridGaps?: Responsive<number>;
   $gridGutters?: Responsive<number>;
   $gridMargins?: Responsive<number>;
   $gridMaxWidth?: number;
