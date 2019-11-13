@@ -16,11 +16,13 @@ import {COLUMNS} from './constants.js';
 import type {ColumnT} from './types.js';
 
 type OptionsT = {|
-  title: string,
-  sortable?: boolean,
   filterable?: boolean,
+  // eslint-disable-next-line flowtype/no-weak-types
+  mapDataToValue: (data: any) => boolean,
   maxWidth?: number,
   minWidth?: number,
+  sortable?: boolean,
+  title: string,
 |};
 
 type FilterParametersT = {|
@@ -98,23 +100,24 @@ BooleanCell.displayName = 'BooleanCell';
 function BooleanColumn(options: OptionsT): BooleanColumnT {
   return {
     kind: COLUMNS.BOOLEAN,
-    title: options.title,
-    sortable: options.sortable === undefined ? true : options.sortable,
-    filterable: options.filterable === undefined ? true : options.filterable,
-    renderCell: BooleanCell,
-    renderFilter: BooleanFilter,
     buildFilter: function(params) {
       return function(data) {
         const included = params.selection.has(data);
         return params.exclude ? !included : included;
       };
     },
+    filterable: options.filterable === undefined ? true : options.filterable,
+    mapDataToValue: options.mapDataToValue,
+    maxWidth: options.maxWidth,
+    minWidth: options.minWidth,
+    renderCell: BooleanCell,
+    renderFilter: BooleanFilter,
+    sortable: options.sortable === undefined ? true : options.sortable,
     sortFn: function(a, b) {
       if (a === b) return 0;
       return a ? -1 : 1;
     },
-    maxWidth: options.maxWidth,
-    minWidth: options.minWidth,
+    title: options.title,
   };
 }
 

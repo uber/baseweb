@@ -13,27 +13,44 @@ import {CategoricalColumn} from '../index.js';
 
 describe('categorical column', () => {
   it('is sortable by default', () => {
-    const column = CategoricalColumn({title: 'column'});
+    const column = CategoricalColumn({
+      title: 'column',
+      mapDataToValue: () => '',
+    });
     expect(column.sortable).toBe(true);
   });
 
   it('is filterable by default', () => {
-    const column = CategoricalColumn({title: 'column'});
+    const column = CategoricalColumn({
+      title: 'column',
+      mapDataToValue: () => '',
+    });
     expect(column.filterable).toBe(true);
   });
 
   it('applies provided sortable value', () => {
-    const column = CategoricalColumn({title: 'column', sortable: false});
+    const column = CategoricalColumn({
+      title: 'column',
+      sortable: false,
+      mapDataToValue: () => '',
+    });
     expect(column.sortable).toBe(false);
   });
 
   it('applies provided filterable value', () => {
-    const column = CategoricalColumn({title: 'column', filterable: false});
+    const column = CategoricalColumn({
+      title: 'column',
+      filterable: false,
+      mapDataToValue: () => '',
+    });
     expect(column.filterable).toBe(false);
   });
 
   it('cell renders provided value', () => {
-    const column = CategoricalColumn({title: 'column'});
+    const column = CategoricalColumn({
+      title: 'column',
+      mapDataToValue: () => '',
+    });
     const Cell = column.renderCell;
 
     const {container} = render(<Cell value="A" />);
@@ -42,7 +59,10 @@ describe('categorical column', () => {
   });
 
   it('renders expected number of checkboxes in filter component', () => {
-    const column = CategoricalColumn({title: 'column'});
+    const column = CategoricalColumn({
+      title: 'column',
+      mapDataToValue: () => '',
+    });
     const Filter = column.renderFilter;
 
     const mockSetFilter = jest.fn();
@@ -57,7 +77,10 @@ describe('categorical column', () => {
   });
 
   it('can call setFilter with expected selection', () => {
-    const column = CategoricalColumn({title: 'column'});
+    const column = CategoricalColumn({
+      title: 'column',
+      mapDataToValue: () => '',
+    });
     const Filter = column.renderFilter;
 
     const mockSetFilter = jest.fn();
@@ -82,7 +105,10 @@ describe('categorical column', () => {
   });
 
   it('selects all options', () => {
-    const column = CategoricalColumn({title: 'column'});
+    const column = CategoricalColumn({
+      title: 'column',
+      mapDataToValue: () => '',
+    });
     const Filter = column.renderFilter;
 
     const mockSetFilter = jest.fn();
@@ -100,7 +126,10 @@ describe('categorical column', () => {
   });
 
   it('clears current selection', () => {
-    const column = CategoricalColumn({title: 'column'});
+    const column = CategoricalColumn({
+      title: 'column',
+      mapDataToValue: () => '',
+    });
     const Filter = column.renderFilter;
 
     const mockSetFilter = jest.fn();
@@ -119,7 +148,10 @@ describe('categorical column', () => {
   });
 
   it('renders input if more than 10 categories', () => {
-    const column = CategoricalColumn({title: 'column'});
+    const column = CategoricalColumn({
+      title: 'column',
+      mapDataToValue: () => '',
+    });
     const Filter = column.renderFilter;
 
     const mockSetFilter = jest.fn();
@@ -133,7 +165,10 @@ describe('categorical column', () => {
   });
 
   it('filters categories based on query', () => {
-    const column = CategoricalColumn({title: 'column'});
+    const column = CategoricalColumn({
+      title: 'column',
+      mapDataToValue: () => '',
+    });
     const Filter = column.renderFilter;
 
     const mockSetFilter = jest.fn();
@@ -150,7 +185,10 @@ describe('categorical column', () => {
   });
 
   it('quick actions hide when search query present', () => {
-    const column = CategoricalColumn({title: 'column'});
+    const column = CategoricalColumn({
+      title: 'column',
+      mapDataToValue: () => '',
+    });
     const Filter = column.renderFilter;
 
     const mockSetFilter = jest.fn();
@@ -170,7 +208,10 @@ describe('categorical column', () => {
   });
 
   it('builds expected filter function', () => {
-    const column = CategoricalColumn({title: 'column'});
+    const column = CategoricalColumn({
+      title: 'column',
+      mapDataToValue: () => '',
+    });
 
     const filterSelectionEmpty = column.buildFilter({
       description: '',
@@ -196,7 +237,10 @@ describe('categorical column', () => {
   });
 
   it('builds expected sort function', () => {
-    const column = CategoricalColumn({title: 'column'});
+    const column = CategoricalColumn({
+      title: 'column',
+      mapDataToValue: () => '',
+    });
     const input = ['A', 'B', 'C', 'C', 'B', 'A'];
     input.sort(column.sortFn);
 

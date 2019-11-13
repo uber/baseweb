@@ -32,14 +32,16 @@ type NumericalOperations =
   | typeof NUMERICAL_OPERATIONS.LTE;
 
 type OptionsT = {|
-  title: string,
-  sortable?: boolean,
   filterable?: boolean,
   format?: NumericalFormats,
   highlight?: number => boolean,
+  // eslint-disable-next-line flowtype/no-weak-types
+  mapDataToValue: (data: any) => number,
   maxWidth?: number,
   minWidth?: number,
   precision?: number,
+  sortable?: boolean,
+  title: string,
 |};
 
 type FilterParametersT = {|
@@ -486,26 +488,6 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
 
   return {
     kind: COLUMNS.NUMERICAL,
-    title: normalizedOptions.title,
-    sortable: normalizedOptions.sortable,
-    filterable: normalizedOptions.filterable,
-    renderCell: React.forwardRef((props, ref) => {
-      return (
-        <NumericalCell
-          ref={ref}
-          isMeasured={props.isMeasured}
-          isSelected={props.isSelected}
-          onSelect={props.onSelect}
-          value={props.value}
-          format={normalizedOptions.format}
-          highlight={normalizedOptions.highlight}
-          precision={normalizedOptions.precision}
-        />
-      );
-    }),
-    renderFilter: function RenderNumericalFilter(props) {
-      return <NumericalFilter {...props} options={normalizedOptions} />;
-    },
     buildFilter: function(params) {
       return function(data) {
         const included = params.comparisons.some(c => {
@@ -526,16 +508,36 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
               return true;
           }
         });
-
         return params.exclude ? !included : included;
       };
     },
+    filterable: normalizedOptions.filterable,
+    mapDataToValue: options.mapDataToValue,
+    maxWidth: options.maxWidth,
+    minWidth: options.minWidth,
+    renderCell: React.forwardRef((props, ref) => {
+      return (
+        <NumericalCell
+          ref={ref}
+          isMeasured={props.isMeasured}
+          isSelected={props.isSelected}
+          onSelect={props.onSelect}
+          value={props.value}
+          format={normalizedOptions.format}
+          highlight={normalizedOptions.highlight}
+          precision={normalizedOptions.precision}
+        />
+      );
+    }),
+    renderFilter: function RenderNumericalFilter(props) {
+      return <NumericalFilter {...props} options={normalizedOptions} />;
+    },
+    sortable: normalizedOptions.sortable,
     // initial sort should display largest values first
     sortFn: function(a, b) {
       return b - a;
     },
-    maxWidth: options.maxWidth,
-    minWidth: options.minWidth,
+    title: normalizedOptions.title,
   };
 }
 

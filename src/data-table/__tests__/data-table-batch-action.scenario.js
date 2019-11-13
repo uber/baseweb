@@ -17,9 +17,17 @@ import {Unstable_StatefulDataTable} from '../stateful-data-table.js';
 
 export const name = 'data-table-batch-action';
 
+type RowDataT = [number, boolean];
+
 const columns = [
-  NumericalColumn({title: 'row-id'}),
-  BooleanColumn({title: 'is-it-flagged'}),
+  NumericalColumn({
+    title: 'row-id',
+    mapDataToValue: (data: RowDataT) => data[0],
+  }),
+  BooleanColumn({
+    title: 'is-it-flagged',
+    mapDataToValue: (data: RowDataT) => data[1],
+  }),
 ];
 
 export const component = () => {

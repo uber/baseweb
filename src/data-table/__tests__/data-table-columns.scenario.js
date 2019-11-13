@@ -18,12 +18,26 @@ import {
 
 export const name = 'data-table-columns';
 
+type RowDataT = [boolean, string, number, string];
+
 export const component = () => {
   const columns = [
-    BooleanColumn({title: 'boolean-column'}),
-    CategoricalColumn({title: 'categorical-column'}),
-    NumericalColumn({title: 'numerical-column'}),
-    StringColumn({title: 'string-column'}),
+    BooleanColumn({
+      title: 'boolean-column',
+      mapDataToValue: (data: RowDataT) => data[0],
+    }),
+    CategoricalColumn({
+      title: 'categorical-column',
+      mapDataToValue: (data: RowDataT) => data[1],
+    }),
+    NumericalColumn({
+      title: 'numerical-column',
+      mapDataToValue: (data: RowDataT) => data[2],
+    }),
+    StringColumn({
+      title: 'string-column',
+      mapDataToValue: (data: RowDataT) => data[3],
+    }),
   ];
 
   const rows = [

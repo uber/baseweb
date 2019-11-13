@@ -16,11 +16,13 @@ import {HighlightCellText} from './text-search.js';
 import type {ColumnT} from './types.js';
 
 type OptionsT = {|
-  title: string,
-  sortable?: boolean,
+  lineClamp?: number,
+  // eslint-disable-next-line flowtype/no-weak-types
+  mapDataToValue: (data: any) => string,
   maxWidth?: number,
   minWidth?: number,
-  lineClamp?: number,
+  sortable?: boolean,
+  title: string,
 |};
 
 type FilterParametersT = {|
@@ -65,23 +67,24 @@ StringCell.displayName = 'StringCell';
 function StringColumn(options: OptionsT): StringColumnT {
   return {
     kind: COLUMNS.STRING,
-    title: options.title,
-    sortable: options.sortable === undefined ? true : options.sortable,
-    filterable: false,
-    renderCell: React.forwardRef((props, ref) => {
-      return <StringCell {...props} ref={ref} lineClamp={options.lineClamp} />;
-    }),
-    renderFilter: StringFilter,
     buildFilter: function(params) {
       return function(data) {
         return true;
       };
     },
+    filterable: false,
+    mapDataToValue: options.mapDataToValue,
+    maxWidth: options.maxWidth,
+    minWidth: options.minWidth,
+    renderCell: React.forwardRef((props, ref) => {
+      return <StringCell {...props} ref={ref} lineClamp={options.lineClamp} />;
+    }),
+    renderFilter: StringFilter,
+    sortable: options.sortable === undefined ? true : options.sortable,
     sortFn: function(a, b) {
       return a.localeCompare(b);
     },
-    maxWidth: options.maxWidth,
-    minWidth: options.minWidth,
+    title: options.title,
   };
 }
 

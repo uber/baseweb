@@ -103,6 +103,10 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
   }
 
   const Cell = data.columns[columnIndex].renderCell;
+  const value = data.columns[columnIndex].mapDataToValue(
+    data.rows[rowIndex - 1].data,
+  );
+
   return (
     <div
       className={css({
@@ -117,7 +121,7 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
       onMouseEnter={() => data.onHoverRow(rowIndex)}
     >
       <Cell
-        value={data.rows[rowIndex - 1].data[columnIndex]}
+        value={value}
         onSelect={
           data.isSelectable && columnIndex === 0
             ? () => data.onSelectOne(data.rows[rowIndex - 1])
@@ -441,10 +445,11 @@ export function Unstable_DataTable(props: DataTablePropsT) {
 
     if (index !== null && index !== undefined && index !== -1) {
       const sortFn = props.columns[index].sortFn;
+      const getValue = row => props.columns[index].mapDataToValue(row.data);
       if (props.sortDirection === SORT_DIRECTIONS.DESC) {
-        toSort.sort((a, b) => sortFn(a[0].data[index], b[0].data[index]));
+        toSort.sort((a, b) => sortFn(getValue(a[0]), getValue(b[0])));
       } else if (props.sortDirection === SORT_DIRECTIONS.ASC) {
-        toSort.sort((a, b) => sortFn(b[0].data[index], a[0].data[index]));
+        toSort.sort((a, b) => sortFn(getValue(b[0]), getValue(a[0])));
       }
     }
 
@@ -468,7 +473,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
         // start here after
         const filterFn = column.buildFilter(filter);
         Array.from(set).forEach(idx => {
-          if (!filterFn(props.rows[idx].data[columnIndex])) {
+          if (!filterFn(column.mapDataToValue(props.rows[idx].data))) {
             set.delete(idx);
           }
         });
@@ -487,7 +492,11 @@ export function Unstable_DataTable(props: DataTablePropsT) {
       }
       Array.from(set).forEach(idx => {
         const matches = stringishColumnIndices.some(cdx => {
-          return props.rows[idx].data[cdx].toLowerCase().includes(textQuery);
+          const column = props.columns[cdx];
+          return column
+            .mapDataToValue(props.rows[idx].data)
+            .toLowerCase()
+            .includes(textQuery);
         });
 
         if (!matches) {
