@@ -89,7 +89,6 @@ const CheckboxConfig: TConfig = {
     },
     labelPlacement: {
       value: 'LABEL_PLACEMENT.right',
-      defaultValue: 'LABEL_PLACEMENT.right',
       options: LABEL_PLACEMENT,
       type: PropTypes.Enum,
       enumName: 'LABEL_PLACEMENT',
