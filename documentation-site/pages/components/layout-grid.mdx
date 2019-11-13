@@ -28,7 +28,7 @@ export default Layout;
 
 <UnstableWarning />
 
-The `Grid` and `Cell` components can be used to create consistent layouts across all of your application's pages. Within a `Grid` container, `Cell`s can be placed and aligned along a series of columns via the `span` and `skip` props.
+The `Grid` and `Cell` components can be used to create consistent & responsive layouts across your Base Web application. Within a `Grid` container, `Cell`s can be placed and aligned along a series of columns via the `span` and `skip` props.
 
 The implementation uses [flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes) which makes it easy to control vertical alignment (`align`) and cell ordering (`order`). Almost all of the props available on `Cell` and `Grid` are responsive, meaning they accept an array of values that map to various breakpoints defined in your app's theme.
 
@@ -54,43 +54,45 @@ Some examples may require you to open them in CodeSandbox to achieve a wide enou
 
 Place cells in a grid container and each cell will align to a column.
 
-Cells are meant to contain your content. The grid implementation calculates margins and paddings for the various containing elements such that any content _inside_ of a cell is properly aligned.
+Cells are meant to contain your content. The grid implementation calculates margins and paddings for the various containing elements such that any content _inside_ of a cell is properly aligned to a column.
 
-Note, you _can_ nest the grid inside of cells or other elements. The cell widths are calculated as percentages of the parent container. Use caution with this pattern though- the main use case for these components is to align sections of the page using a consistent layout grid. Nesting can be an indication of a layout that is too complex and requires some design refactoring.
+Any cells that do not fit on a single row will wrap to a new row. The default gap between wrapped cell rows is 0. You can specify a gap with the responsive `gridGaps` prop. You can also use a new `Grid` below the first one if you want to closely control vertical spacing.
 
-By default the gap between wrapped cell rows is 0. You can specify a gap with the responsive `gridGaps` prop. You could also just use a new `Grid` below the first one if you want to closely control vertical spacing.
+You can nest grids inside of cells or other elements. The cell widths are calculated as percentages of the parent container. Use caution with this pattern though- the main use case for the grid is to align sections of the page using a consistent layout. Nesting can be an indication of a layout that is too complex and requires some design refactoring.
 
 <Example title="Span" path="layout-grid/span.js">
   <SpanExample />
 </Example>
 
-We use the `span` prop to specify how many grid columns we want a cell to span. There is no upper bound on what can be passed to `span`, however if the passed in number exceeds the current number of grid columns, the cell will be shrunk in order to fit. For instance, a cell with a span of 12 will span 8 on a medium viewport, and 4 on a small viewport.
+Use the `span` prop to specify how many grid columns a cell should span.
 
-In this example each cell has a span of 4, which exceeds the number of available columns on small (4) and medium (8) viewports. This causes the excess cells to wrap. Note, wrapped cells will still align content to the columns of the grid.
+If the number passed to `span` exceeds the current number of grid columns (based on current breakpoint), the cell will simply shrink to fit the current number of columns. For instance, a cell with a span of 12 will span 8 on a medium viewport, and 4 on a small viewport.
 
-Oftentimes, a layout will need to adapt to different breakpoints. The grid handles this by exposing "responsive" props. These allow you to quickly specify responsive layouts.
+In the example above, each cell has a span of 2. This causes the excess cells to wrap on our small breakpoint. Cells that wrap to a new line will still align content to the columns of the grid.
+
+Sometimes this wrapping behavior is desireable, but sometimes you want to adapt to different breakpoints by setting spans specific to each breakpoint. The layout grid handles this by exposing "responsive" props.
 
 <Example title="Responsive" path="layout-grid/responsive.js">
   <ResponsiveExample />
 </Example>
 
-`span` is a "responsive" prop. It accepts both a single value or an array of values. Each value in the array corresponds to the value to use for each [breakpoint in our theme](https://baseweb.design/guides/theming/#the-shape-of-the-theme-file).
+`span` is a "responsive" prop. It accepts both a single value or an array of values. Each value in the array corresponds to each [breakpoint in our theme](https://baseweb.design/guides/theming/#the-shape-of-the-theme-file).
 
-In this example, we specify that on the first breakpoint each cell should span 1 column. On the second breakpoint, each cell should span 2 columns, and on the third breakpoint, each cell should span 3 columns: `[1, 2, 3]`. Effectively, this keeps each cell to 1/4 of the width of the grid on all breakpoints.
+In the above example, we specify that on the first breakpoint each cell should span 1 column. On the second breakpoint, each cell should span 2 columns, and on the third breakpoint, each cell should span 3 columns: `[1, 2, 3]`. Effectively, this keeps each cell to 1/4 of the width of the grid on all breakpoints.
 
 This terse way of describing responsive values was originally used in our [Block](/components/block) component- it allows you to very quickly specify even the most complicated responsive layouts.
 
-Note, you do not need to define every value in the responsive array- assuming a value does not change on larger breakpoints. For instance, `[1, 2]` is the same as `[1, 2, 2]`.
+Note, you can omit larger breakpoint values if they do not change. For example, `[1, 2]` is the same as `[1, 2, 2]`. This is a result of using a `min-height` based media query approach in the implementation of the layout grid.
 
-Also note that every `Cell` prop is responsive. The same holds for `Grid`, with the exception of `behavior` and `gridMaxWidth`, which only accept one value across all breakpoints.
+Also note that every `Cell` prop is "responsive". Almost all of the props for `Grid` are also "responsive" props, with the exception of `behavior` and `gridMaxWidth`, which only accept one value across all breakpoints.
 
-One last thing to note: cells will take up the full width of the grid on viewports smaller than the smallest breakpoint. The responsive props essentially ignore this range as there is no reasonable application for most props.
+One last thing to note: Cells will take up the full width of the grid on viewports smaller than the smallest breakpoint (`<319px` by default). The "responsive" props essentially ignore this range.
 
 <Example title="Hide" path="layout-grid/hide.js">
   <HideExample />
 </Example>
 
-In this example we hide the `1` cell on viewports larger than small. The `span` prop allows you to pass a `0` in as away of indicating that the cell should be hidden. This is useful for responsive layouts where some section may be hidden on smaller viewports.
+In this example we hide the first (`1`) cell on viewports larger than the first breakpoint. Notice how we hide the cell by passing a `0` to `span`. This is useful for responsive layouts where some section may be hidden on a specific breakpoint.
 
 <Example title="Skip" path="layout-grid/skip.js">
   <SkipExample />
@@ -98,13 +100,13 @@ In this example we hide the `1` cell on viewports larger than small. The `span` 
 
 Another common layout scenario is "offsetting" or "skipping" columns. In this example we use the `skip` prop to offset the `2` cell by 1 column on small, 4 columns on medium, and 7 columns on large viewports. This effectively maximizes the space between the `1` and `2` cells on each breakpoint.
 
-An important detail: `skip` essentially specifies how many columns the left margin of the cell should span. This means that `skip` can wrap cells onto a new line in order to allow enough space for that margin. It will also shrink the width or `span` of a cell to fit on one line.
+An important detail: `skip` specifies how many columns the left margin of the cell should span. This means that `skip` can wrap cells onto a new line in order to allow enough space for that margin. This leads to one other behavior that you may not expect...
 
 <Example title="Shrink" path="layout-grid/skip-shrink.js">
   <SkipShrinkExample />
 </Example>
 
-Notice how the cell has a `span` set to fill each breakpoint, but the `skip` of 1 shrinks the cell to fit on one line.
+Notice how the cell has a `span` set to fill each breakpoint, but the `skip` of 1 takes precedence and shrinks the cell to fit on one line.
 
 <Example title="Align" path="layout-grid/align.js">
   <AlignExample />
@@ -116,7 +118,9 @@ You can horizontally align the cells of the grid with the `align` prop. Note tha
   <OrderExample />
 </Example>
 
-Notice that the `1` cell is rendered last even though it is declared first in our markup. This is mostly useful when used as a responsive prop. Imagine a card that is rendered at the top of a list of items on small viewports, but on the rightmost side on larger viewports.
+Notice that the `1` cell is rendered last even though it is declared first in our markup.
+
+This prop is mostly useful when used as a responsive prop. Imagine a card that is rendered at the top of a list of items on small viewports, but last on larger viewports, when the items are on a single row.
 
 The `order` prop is simply a proxy for the CSS property of the same name. [Click here](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Ordering_Flex_Items) to read more about how `order` works with flexbox.
 
@@ -124,13 +128,13 @@ The `order` prop is simply a proxy for the CSS property of the same name. [Click
   <BehaviorExample />
 </Example>
 
-To appreciate this example you may need to open it in CodeSandbox. The "behavior" is only visible on a wider viewport.
+To appreciate this example you may need to open it in CodeSandbox. The "behavior" (😅) is only visible on a wider viewport.
 
 The grid can have one of two possible behaviors: `fixed` or `fluid`. By default the grid is `fixed`- that is, once it reaches its maximum width, it will stay centered in the containing element.
 
 A fluid grid essentially ignores any maximum width. The grid will continue to expand to fill the containing element's width ad inifinitum. Note, both fluid and fixed grids still have a margin on both sides.
 
-The `behavior` prop is not responsive.
+The `behavior` prop is not responsive. This is because, below the maximum width, both `fluid` and `fixed` grids are identical.
 
 <Example title="Custom" path="layout-grid/custom.js">
   <CustomExample />
@@ -146,7 +150,7 @@ You can customize pretty much any part of the grid while maintaining the core re
 - `gridMargins`
 - `gridMaxWidth` (Not responsive)
 
-If you want to customize the breakpoints of the grid you should [customize your theme object](https://baseweb.design/guides/theming/#creating-a-custom-theme). The grid will always pull breakpoints from the theme and correlate responsive props with those breakpoints.
+If you want to customize the breakpoints of the grid you need to [customize your theme object](https://baseweb.design/guides/theming/#creating-a-custom-theme). The grid will always pull breakpoints from the theme and correlate responsive props with those breakpoints.
 
 ## API
 
