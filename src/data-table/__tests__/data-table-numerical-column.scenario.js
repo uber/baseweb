@@ -10,7 +10,10 @@ import * as React from 'react';
 
 import {NumericalColumn} from '../index.js';
 
-const Column = NumericalColumn({title: 'categorical-column'});
+const Column = NumericalColumn({
+  title: 'categorical-column',
+  mapDataToValue: () => 0,
+});
 
 const Filter = Column.renderFilter;
 

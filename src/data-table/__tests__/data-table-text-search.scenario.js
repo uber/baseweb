@@ -16,19 +16,49 @@ import AnimalData from './animal-data.js';
 
 export const name = 'data-table-text-search';
 
+type RowDataT = {
+  Name: string,
+  Kingdom: string,
+  Phylum: string,
+  Class: string,
+  Order: string,
+  Family: string,
+};
+
 const columns = [
-  StringColumn({title: 'Name', minWidth: 300}),
-  CategoricalColumn({title: 'Kingdom'}),
-  CategoricalColumn({title: 'Phylum', minWidth: 90}),
-  CategoricalColumn({title: 'Class', minWidth: 120}),
-  CategoricalColumn({title: 'Order'}),
-  CategoricalColumn({title: 'Family'}),
+  StringColumn({
+    title: 'Name',
+    minWidth: 300,
+    mapDataToValue: (data: RowDataT) => data.Name,
+  }),
+  CategoricalColumn({
+    title: 'Kingdom',
+    mapDataToValue: (data: RowDataT) => data.Kingdom,
+  }),
+  CategoricalColumn({
+    title: 'Phylum',
+    minWidth: 90,
+    mapDataToValue: (data: RowDataT) => data.Phylum,
+  }),
+  CategoricalColumn({
+    title: 'Class',
+    minWidth: 120,
+    mapDataToValue: (data: RowDataT) => data.Class,
+  }),
+  CategoricalColumn({
+    title: 'Order',
+    mapDataToValue: (data: RowDataT) => data.Order,
+  }),
+  CategoricalColumn({
+    title: 'Family',
+    mapDataToValue: (data: RowDataT) => data.Family,
+  }),
 ];
 
 const rows = AnimalData.map(row => {
   return {
     id: row.Name,
-    data: [row.Name, row.Kingdom, row.Phylum, row.Class, row.Order, row.Family],
+    data: row,
   };
 });
 

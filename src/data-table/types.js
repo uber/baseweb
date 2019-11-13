@@ -28,6 +28,8 @@ export type ColumnT<ValueT = any, FilterParamsT = any> = {|
   title: string,
   sortable: boolean,
   filterable: boolean,
+  // eslint-disable-next-line flowtype/no-weak-types
+  mapDataToValue: (data: any) => ValueT,
   renderCell: React.ComponentType<{
     value: ValueT,
     isMeasured?: boolean,
@@ -50,7 +52,7 @@ export type ColumnT<ValueT = any, FilterParamsT = any> = {|
 export type RowT = {
   id: number | string,
   // eslint-disable-next-line flowtype/no-weak-types
-  data: any[],
+  data: any,
 };
 
 export type BatchActionT = {|

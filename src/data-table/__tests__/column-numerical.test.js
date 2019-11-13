@@ -13,27 +13,35 @@ import {NumericalColumn, NUMERICAL_FORMATS} from '../index.js';
 
 describe('numerical column', () => {
   it('is sortable by default', () => {
-    const column = NumericalColumn({title: 'column'});
+    const column = NumericalColumn({title: 'column', mapDataToValue: () => 0});
     expect(column.sortable).toBe(true);
   });
 
   it('is filterable by default', () => {
-    const column = NumericalColumn({title: 'column'});
+    const column = NumericalColumn({title: 'column', mapDataToValue: () => 0});
     expect(column.filterable).toBe(true);
   });
 
   it('applies provided sortable value', () => {
-    const column = NumericalColumn({title: 'column', sortable: false});
+    const column = NumericalColumn({
+      title: 'column',
+      sortable: false,
+      mapDataToValue: () => 0,
+    });
     expect(column.sortable).toBe(false);
   });
 
   it('applies provided filterable value', () => {
-    const column = NumericalColumn({title: 'column', filterable: false});
+    const column = NumericalColumn({
+      title: 'column',
+      filterable: false,
+      mapDataToValue: () => 0,
+    });
     expect(column.filterable).toBe(false);
   });
 
   it('cell renders provided value with default options', () => {
-    const column = NumericalColumn({title: 'column'});
+    const column = NumericalColumn({title: 'column', mapDataToValue: () => 0});
     const Cell = column.renderCell;
 
     const {container} = render(<Cell value={1999.888} />);
@@ -42,55 +50,63 @@ describe('numerical column', () => {
   });
 
   it('cell renders positive value according to accounting format', () => {
+    const value = 1999.888;
     const column = NumericalColumn({
       title: 'column',
       format: NUMERICAL_FORMATS.ACCOUNTING,
+      mapDataToValue: () => value,
     });
     const Cell = column.renderCell;
 
-    const {container} = render(<Cell value={1999.888} />);
+    const {container} = render(<Cell value={value} />);
     const cell = container.querySelector('div');
     expect(cell.textContent).toBe('$1999.89');
   });
 
   it('cell renders negative value according to accounting format', () => {
+    const value = -1999.888;
     const column = NumericalColumn({
       title: 'column',
       format: NUMERICAL_FORMATS.ACCOUNTING,
+      mapDataToValue: () => value,
     });
     const Cell = column.renderCell;
 
-    const {container} = render(<Cell value={-1999.888} />);
+    const {container} = render(<Cell value={value} />);
     const cell = container.querySelector('div');
     expect(cell.textContent).toBe('($1999.89)');
   });
 
   it('cell renders value according to percentage format', () => {
+    const value = 1999.888;
     const column = NumericalColumn({
       title: 'column',
       format: NUMERICAL_FORMATS.PERCENTAGE,
+      mapDataToValue: () => value,
     });
     const Cell = column.renderCell;
 
-    const {container} = render(<Cell value={1999.888} />);
+    const {container} = render(<Cell value={value} />);
     const cell = container.querySelector('div');
     expect(cell.textContent).toBe('1999.89%');
   });
 
   it('cell renders value according to provided precision', () => {
+    const value = 1999.888;
     const column = NumericalColumn({
       title: 'column',
       precision: 3,
+      mapDataToValue: () => value,
     });
     const Cell = column.renderCell;
 
-    const {container} = render(<Cell value={1999.888} />);
+    const {container} = render(<Cell value={value} />);
     const cell = container.querySelector('div');
     expect(cell.textContent).toBe('1999.888');
   });
 
   it('can call setFilter with expected selection', () => {
-    const column = NumericalColumn({title: 'column'});
+    const column = NumericalColumn({title: 'column', mapDataToValue: () => 0});
     const Filter = column.renderFilter;
 
     const mockSetFilter = jest.fn();
@@ -114,7 +130,7 @@ describe('numerical column', () => {
   });
 
   it('hides operators if filter single value', () => {
-    const column = NumericalColumn({title: 'column'});
+    const column = NumericalColumn({title: 'column', mapDataToValue: () => 0});
     const Filter = column.renderFilter;
 
     const mockSetFilter = jest.fn();
@@ -137,7 +153,7 @@ describe('numerical column', () => {
   });
 
   it('builds default filter function for integers', () => {
-    const column = NumericalColumn({title: 'column'});
+    const column = NumericalColumn({title: 'column', mapDataToValue: () => 0});
     const eq = column.buildFilter({
       comparisons: [
         {
@@ -208,7 +224,7 @@ describe('numerical column', () => {
 
   // it rounds based on the default precision, which is 0, so to closest whole number.
   it('builds default filter function for floats', () => {
-    const column = NumericalColumn({title: 'column'});
+    const column = NumericalColumn({title: 'column', mapDataToValue: () => 0});
     const eq = column.buildFilter({
       comparisons: [
         {
@@ -292,6 +308,7 @@ describe('numerical column', () => {
     const column = NumericalColumn({
       title: 'column',
       format: NUMERICAL_FORMATS.ACCOUNTING,
+      mapDataToValue: () => 0,
     });
     const eq = column.buildFilter({
       comparisons: [
@@ -376,6 +393,7 @@ describe('numerical column', () => {
     const column = NumericalColumn({
       title: 'column',
       precision: 3,
+      mapDataToValue: () => 0,
     });
     const eq = column.buildFilter({
       comparisons: [
@@ -459,7 +477,7 @@ describe('numerical column', () => {
   });
 
   it('builds filter function with multiple comparisons', () => {
-    const column = NumericalColumn({title: 'column'});
+    const column = NumericalColumn({title: 'column', mapDataToValue: () => 0});
     const eq = column.buildFilter({
       comparisons: [
         {
@@ -600,7 +618,7 @@ describe('numerical column', () => {
   });
 
   it('builds expected sort function', () => {
-    const column = NumericalColumn({title: 'column'});
+    const column = NumericalColumn({title: 'column', mapDataToValue: () => 0});
     const input = [2, 1, 3, 4];
     input.sort(column.sortFn);
 

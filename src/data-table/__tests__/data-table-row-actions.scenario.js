@@ -18,19 +18,34 @@ import {ArrowUp} from '../../icon/index.js';
 
 export const name = 'data-table-row-actions';
 
+type RowDataT = [string, string, number, number, number, number];
+
 const columns = [
-  StringColumn({title: 'Movie'}),
-  CategoricalColumn({title: 'Genre'}),
+  StringColumn({title: 'Movie', mapDataToValue: (data: RowDataT) => data[0]}),
+  CategoricalColumn({
+    title: 'Genre',
+    mapDataToValue: (data: RowDataT) => data[1],
+  }),
   NumericalColumn({
     title: 'Production Budget (millions)',
     format: NUMERICAL_FORMATS.ACCOUNTING,
+    mapDataToValue: (data: RowDataT) => data[2],
   }),
   NumericalColumn({
     title: 'Box Office (millions)',
     format: NUMERICAL_FORMATS.ACCOUNTING,
+    mapDataToValue: (data: RowDataT) => data[3],
   }),
-  NumericalColumn({title: 'ROI', precision: 2}),
-  NumericalColumn({title: 'Rating IMDB', precision: 2}),
+  NumericalColumn({
+    title: 'ROI',
+    precision: 2,
+    mapDataToValue: (data: RowDataT) => data[4],
+  }),
+  NumericalColumn({
+    title: 'Rating IMDB',
+    precision: 2,
+    mapDataToValue: (data: RowDataT) => data[5],
+  }),
 ];
 
 const rows = [

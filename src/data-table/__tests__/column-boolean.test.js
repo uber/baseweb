@@ -13,27 +13,44 @@ import {BooleanColumn} from '../index.js';
 
 describe('boolean column', () => {
   it('is sortable by default', () => {
-    const column = BooleanColumn({title: 'column'});
+    const column = BooleanColumn({
+      title: 'column',
+      mapDataToValue: () => false,
+    });
     expect(column.sortable).toBe(true);
   });
 
   it('is filterable by default', () => {
-    const column = BooleanColumn({title: 'column'});
+    const column = BooleanColumn({
+      title: 'column',
+      mapDataToValue: () => false,
+    });
     expect(column.filterable).toBe(true);
   });
 
   it('applies provided sortable value', () => {
-    const column = BooleanColumn({title: 'column', sortable: false});
+    const column = BooleanColumn({
+      title: 'column',
+      sortable: false,
+      mapDataToValue: () => false,
+    });
     expect(column.sortable).toBe(false);
   });
 
   it('applies provided filterable value', () => {
-    const column = BooleanColumn({title: 'column', filterable: false});
+    const column = BooleanColumn({
+      title: 'column',
+      filterable: false,
+      mapDataToValue: () => false,
+    });
     expect(column.filterable).toBe(false);
   });
 
   it('cell renders T if true value provided', () => {
-    const column = BooleanColumn({title: 'column'});
+    const column = BooleanColumn({
+      title: 'column',
+      mapDataToValue: () => false,
+    });
     const Cell = column.renderCell;
 
     const {container} = render(<Cell value={true} />);
@@ -42,7 +59,10 @@ describe('boolean column', () => {
   });
 
   it('cell renders F if false value provided', () => {
-    const column = BooleanColumn({title: 'column'});
+    const column = BooleanColumn({
+      title: 'column',
+      mapDataToValue: () => false,
+    });
     const Cell = column.renderCell;
 
     const {container} = render(<Cell value={false} />);
@@ -51,7 +71,10 @@ describe('boolean column', () => {
   });
 
   it('applies filter with expected selection', () => {
-    const column = BooleanColumn({title: 'column'});
+    const column = BooleanColumn({
+      title: 'column',
+      mapDataToValue: () => false,
+    });
     const Filter = column.renderFilter;
 
     const mockSetFilter = jest.fn();
@@ -75,7 +98,10 @@ describe('boolean column', () => {
   });
 
   it('builds expected filter function', () => {
-    const column = BooleanColumn({title: 'column'});
+    const column = BooleanColumn({
+      title: 'column',
+      mapDataToValue: () => false,
+    });
     const simple = column.buildFilter({
       description: '',
       exclude: false,
@@ -94,7 +120,10 @@ describe('boolean column', () => {
   });
 
   it('builds expected sort function', () => {
-    const column = BooleanColumn({title: 'column'});
+    const column = BooleanColumn({
+      title: 'column',
+      mapDataToValue: () => false,
+    });
     const input = [true, false, true, false, false, true, true, false];
     input.sort(column.sortFn);
 

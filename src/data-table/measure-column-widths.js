@@ -155,7 +155,9 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
             }
             item={
               <Cell
-                value={props.rows[rowIndex].data[columnIndex]}
+                value={props.columns[columnIndex].mapDataToValue(
+                  props.rows[rowIndex].data,
+                )}
                 isMeasured
                 onSelect={
                   props.isSelectable && columnIndex === 0 ? () => {} : undefined

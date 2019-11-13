@@ -21,11 +21,13 @@ import FilterShell from './filter-shell.js';
 import {matchesQuery, splitByQuery, HighlightCellText} from './text-search.js';
 
 type OptionsT = {|
-  title: string,
-  sortable?: boolean,
   filterable?: boolean,
+  // eslint-disable-next-line flowtype/no-weak-types
+  mapDataToValue: (data: any) => string,
   maxWidth?: number,
   minWidth?: number,
+  sortable?: boolean,
+  title: string,
 |};
 
 type FilterParametersT = {|
@@ -254,22 +256,23 @@ CategoricalCell.displayName = 'CategoricalCell';
 function CategoricalColumn(options: OptionsT): CategoricalColumnT {
   return {
     kind: COLUMNS.CATEGORICAL,
-    title: options.title,
-    sortable: options.sortable === undefined ? true : options.sortable,
-    filterable: options.filterable === undefined ? true : options.filterable,
-    renderCell: CategoricalCell,
-    renderFilter: CategoricalFilter,
     buildFilter: function(params) {
       return function(data) {
         const included = params.selection.has(data);
         return params.exclude ? !included : included;
       };
     },
+    filterable: options.filterable === undefined ? true : options.filterable,
+    mapDataToValue: options.mapDataToValue,
+    maxWidth: options.maxWidth,
+    minWidth: options.minWidth,
+    renderCell: CategoricalCell,
+    renderFilter: CategoricalFilter,
+    sortable: options.sortable === undefined ? true : options.sortable,
     sortFn: function(a, b) {
       return a.localeCompare(b);
     },
-    maxWidth: options.maxWidth,
-    minWidth: options.minWidth,
+    title: options.title,
   };
 }
 

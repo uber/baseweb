@@ -15,17 +15,31 @@ import AnimalData from './animal-data.js';
 
 export const name = 'data-table-row-height';
 
+type RowDataT = {
+  Name: string,
+  loremIpsum: string,
+};
+
 const loremIpsum = `"We went upstairs together, the colonel first with the lamp, the fat manager and I behind him. It was a labyrinth of an old house, with corridors, passages, narrow winding staircases, and little low doors, the thresholds of which were hollowed out by the generations who had crossed them. There were no carpets and no signs of any furniture above the ground floor, while the plaster was peeling off the walls, and the damp was breaking through in green, unhealthy blotches. I tried to put on as unconcerned an air as possible, but I had not forgotten the warnings of the lady, even though I disregarded them, and I kept a keen eye upon my two companions. Ferguson appeared to be a morose and silent man, but I could see from the little that he said that he was at least a fellow-countryman.`;
 
 const columns = [
-  StringColumn({title: 'Name', minWidth: 300}),
-  StringColumn({title: 'Long Text', maxWidth: 300, lineClamp: 3}),
+  StringColumn({
+    title: 'Name',
+    minWidth: 300,
+    mapDataToValue: (data: RowDataT) => data.Name,
+  }),
+  StringColumn({
+    title: 'Long Text',
+    maxWidth: 300,
+    lineClamp: 3,
+    mapDataToValue: (data: RowDataT) => data.loremIpsum,
+  }),
 ];
 
 const rows = AnimalData.map((row, index) => {
   return {
     id: row.Name,
-    data: [row.Name, loremIpsum],
+    data: {Name: row.Name, loremIpsum},
   };
 });
 

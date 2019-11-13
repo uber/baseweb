@@ -20,6 +20,18 @@ import {Unstable_StatefulDataTable} from '../stateful-data-table.js';
 
 export const name = 'data-table';
 
+type RowDataT = [
+  string,
+  number,
+  number,
+  number,
+  number,
+  {color: string},
+  string,
+  boolean,
+  string,
+];
+
 // https://gist.github.com/6174/6062387
 function pseudoRandomString(rowIdx, columnIdx) {
   return (
@@ -82,18 +94,32 @@ function makeRowsFromColumns(columns, rowCount) {
 }
 
 const columns = [
-  CategoricalColumn({title: 'categorical'}),
-  NumericalColumn({title: 'numerical', minWidth: 90}),
-  NumericalColumn({title: 'neg std', highlight: n => n < 0, minWidth: 90}),
+  CategoricalColumn({
+    title: 'categorical',
+    mapDataToValue: (data: RowDataT) => data[0],
+  }),
+  NumericalColumn({
+    title: 'numerical',
+    minWidth: 90,
+    mapDataToValue: (data: RowDataT) => data[1],
+  }),
+  NumericalColumn({
+    title: 'neg std',
+    highlight: n => n < 0,
+    minWidth: 90,
+    mapDataToValue: (data: RowDataT) => data[2],
+  }),
   NumericalColumn({
     title: 'accounting',
     format: NUMERICAL_FORMATS.ACCOUNTING,
     minWidth: 120,
+    mapDataToValue: (data: RowDataT) => data[3],
   }),
   NumericalColumn({
     title: 'percent',
     format: NUMERICAL_FORMATS.PERCENTAGE,
     minWidth: 120,
+    mapDataToValue: (data: RowDataT) => data[4],
   }),
   CustomColumn<
     {color: string},
@@ -103,6 +129,7 @@ const columns = [
     filterable: true,
     sortable: true,
     minWidth: 120,
+    mapDataToValue: (data: RowDataT) => data[5],
     renderCell: function Cell(props) {
       const [useCss] = useStyletron();
       return (
@@ -178,9 +205,19 @@ const columns = [
       return a.color.localeCompare(b.color);
     },
   }),
-  StringColumn({title: 'string', minWidth: 148}),
-  BooleanColumn({title: 'boolean'}),
-  CategoricalColumn({title: 'second category'}),
+  StringColumn({
+    title: 'string',
+    minWidth: 148,
+    mapDataToValue: (data: RowDataT) => data[6],
+  }),
+  BooleanColumn({
+    title: 'boolean',
+    mapDataToValue: (data: RowDataT) => data[7],
+  }),
+  CategoricalColumn({
+    title: 'second category',
+    mapDataToValue: (data: RowDataT) => data[8],
+  }),
 ];
 
 const rows = makeRowsFromColumns(columns, 2000);
