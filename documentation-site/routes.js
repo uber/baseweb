@@ -190,7 +190,7 @@ const routes = [
           },
           {
             title: 'Layout Grid',
-            itemId: '/components/unstable-layout-grid',
+            itemId: '/components/layout-grid',
           },
           {
             title: 'Heading',
