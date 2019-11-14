@@ -127,7 +127,7 @@ const Index = (props: {
         Block: {
           style: ({$theme}) => ({
             flexWrap: 'wrap',
-            [$theme.media.small]: {
+            [$theme.mediaQuery.small]: {
               flexWrap: 'nowrap',
             },
           }),

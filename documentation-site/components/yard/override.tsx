@@ -1,3 +1,9 @@
+/*
+Copyright (c) 2018-2019 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
 import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {StatefulTooltip} from 'baseui/tooltip';
@@ -106,8 +112,9 @@ const Override: React.FC<TProps> = ({
           Root: {
             style: ({$theme}) => ({
               marginTop: $theme.sizing.scale300,
-              [`@media screen and (max-width: ${$theme.breakpoints.medium}px)`]: {
-                flexWrap: 'wrap',
+              flexWrap: 'wrap',
+              [theme.mediaQuery.medium]: {
+                flexWrap: 'nowrap',
               },
             }),
           },
