@@ -45,8 +45,9 @@ const Survey = () => {
         paddingTop: theme.sizing.scale800,
         paddingBottom: theme.sizing.scale800,
         backgroundColor: theme.colors.background,
-        [`@media screen and (max-width: ${theme.breakpoints.medium}px`]: {
-          display: 'none',
+        display: 'none',
+        [theme.mediaQuery.medium]: {
+          display: 'block',
         },
       })}
     >

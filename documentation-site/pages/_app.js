@@ -19,7 +19,6 @@ import {
   LightTheme,
   LightThemeMove,
 } from 'baseui';
-import {getMediaQuery} from 'baseui/helpers/responsive-helpers';
 import type {BreakpointsT, ThemeT} from 'baseui/styles/types';
 
 import App from 'next/app';
@@ -34,50 +33,35 @@ import {styletron, debug} from '../helpers/styletron';
 import {trackPageView} from '../helpers/ga';
 import DirectionContext from '../components/direction-context';
 
-const Breakpoints = {
+const breakpoints: BreakpointsT = {
   small: 670,
   medium: 920,
   large: 1280,
 };
 
-const ResponsiveTheme = Object.keys(Breakpoints).reduce(
+const ResponsiveTheme = Object.keys(breakpoints).reduce(
   (acc, key) => {
-    acc.breakpoints[key] = Breakpoints[key];
-    acc.media[key] = getMediaQuery({
-      'min-width': `${Breakpoints[key]}px`,
-    });
+    acc.mediaQuery[
+      key
+    ] = `@media screen and (min-width: ${breakpoints[key]}px)`;
     return acc;
   },
   {
-    breakpoints: {},
-    media: {},
+    breakpoints,
+    mediaQuery: {},
   },
 );
 
 const themes = {
-  LightTheme: {
-    ...LightTheme,
-    ...ResponsiveTheme,
-  },
-  LightThemeMove: {
-    ...LightThemeMove,
-    ...ResponsiveTheme,
-  },
-  DarkTheme: {
-    ...DarkTheme,
-    ...ResponsiveTheme,
-  },
-  DarkThemeMove: {
-    ...DarkThemeMove,
-    ...ResponsiveTheme,
-  },
+  LightTheme: {...LightTheme, ...ResponsiveTheme},
+  LightThemeMove: {...LightThemeMove, ...ResponsiveTheme},
+  DarkTheme: {...DarkTheme, ...ResponsiveTheme},
+  DarkThemeMove: {...DarkThemeMove, ...ResponsiveTheme},
 };
 
-type AppThemeT = ThemeT & {media: $ObjMap<BreakpointsT, <V>(V) => string>};
-
-export const themedStyled = createThemedStyled<AppThemeT>();
-export const themedWithStyle = createThemedWithStyle<AppThemeT>();
-export const themedUseStyletron = createThemedUseStyletron<AppThemeT>();
+export const themedStyled = createThemedStyled<ThemeT>();
+export const themedWithStyle = createThemedWithStyle<ThemeT>();
+export const themedUseStyletron = createThemedUseStyletron<ThemeT>();
 
 const DARK_MEDIA_QUERY = '(prefers-color-scheme: dark)';
 const LIGHT_MEDIA_QUERY = '(prefers-color-scheme: light)';
