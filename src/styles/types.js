@@ -14,6 +14,12 @@ export type BreakpointsT = {
   large: number,
 };
 
+export type MediaQueryT = {
+  small: string,
+  medium: string,
+  large: string,
+};
+
 export type ColorsT = {
   // Primary Palette
   primary50: string,
@@ -584,6 +590,7 @@ export type ThemeT = {|
   name: string,
   direction: 'auto' | 'rtl' | 'ltr',
   breakpoints: BreakpointsT,
+  mediaQuery: MediaQueryT,
   colors: ColorsT,
   typography: TypographyT,
   sizing: SizingT,

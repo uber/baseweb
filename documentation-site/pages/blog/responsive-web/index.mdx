@@ -64,28 +64,26 @@ In many cases, you would want to override Base Web’s breakpoints with your own
 To override these, we recommend creating your own mapping, as well as generating the respective `min-width` media query strings so we can target different screen widths for styling:
 
 ```js
-const MyBreakpoints = {
+const breakpoints = {
   small: 769,
   medium: 1024,
   large: 1216,
 };
 
-const ResponsiveTheme = Object.keys(MyBreakpoints).reduce(
+const ResponsiveTheme = Object.keys(breakpoints).reduce(
   (acc, key) => {
-    acc.breakpoints[key] = MyBreakpoints[key];
-    acc.media[key] = `@media screen and (min-width: ${MyBreakpoints[key]}px)`;
+    acc.mediaQuery[
+      key
+    ] = `@media screen and (min-width: ${breakpoints[key]}px)`;
     return acc;
   },
   {
-    breakpoints: {},
-    media: {},
+    breakpoints,
+    mediaQuery: {},
   },
 );
 
-export const MyTheme = {
-  ...LightTheme,
-  ...ResponsiveTheme,
-};
+export const MyTheme = {...LightTheme, ...ResponsiveTheme};
 ```
 
 This sets the following values inside `MyTheme`:
@@ -97,7 +95,7 @@ This sets the following values inside `MyTheme`:
     "medium": 1024,
     "large": 1216,
   },
-  "media": {
+  "mediaQuery": {
     "small": "@media screen and (min-width: 769px)"
     "medium": "@media screen and (min-width: 1024px)",
     "large": "@media screen and (min-width: 1216px)",
@@ -119,7 +117,7 @@ Now that our theme is set up with media queries, we can start using them to crea
 const LoadStatus = themedStyled('span', ({$theme}) => ({
   ...$theme.typography.font250,
   color: $theme.colors.mono800,
-  [$theme.media.small]: {
+  [$theme.mediaQuery.small]: {
     ...$theme.typography.font550,
     color: $theme.colors.mono900,
   },
@@ -156,7 +154,7 @@ const NavBar = themedStyled('div', ({$theme}) => ({
   height: $theme.sizing.scale1400,
   paddingRight: $theme.sizing.scale800,
   paddingLeft: $theme.sizing.scale800,
-  [$theme.media.small]: {
+  [$theme.mediaQuery.small]: {
     height: $theme.sizing.scale1600,
     paddingRight: $theme.sizing.scale1200,
     paddingLeft: $theme.sizing.scale1200,

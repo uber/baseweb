@@ -71,7 +71,7 @@ const SidebarWrapper = themedStyled<{
   paddingTop: $theme.sizing.scale700,
   marginLeft: $theme.sizing.scale800,
   marginRight: $theme.sizing.scale800,
-  [$theme.media.medium]: {
+  [$theme.mediaQuery.medium]: {
     display: $hideSideNavigation ? 'none' : 'block',
     maxWidth: '16em',
   },
@@ -88,7 +88,7 @@ const ContentWrapper = themedStyled<{
   paddingRight: $theme.sizing.scale800,
   width: '100%',
   maxWidth: $maxWidth ? $maxWidth : '40em',
-  [$theme.media.medium]: {
+  [$theme.mediaQuery.medium]: {
     display: 'block',
     maxWidth: $maxWidth ? $maxWidth : '40em',
   },

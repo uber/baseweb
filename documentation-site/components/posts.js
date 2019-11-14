@@ -35,7 +35,7 @@ const Index = () => {
         Block: {
           style: ({$theme}) => ({
             justifyContent: 'center',
-            [$theme.media.small]: {
+            [$theme.mediaQuery.small]: {
               justifyContent: 'flex-start',
             },
           }),
