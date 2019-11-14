@@ -1,19 +1,19 @@
 let defaultPresets;
 
-if (process.env.BABEL_ENV === 'es') {
-  defaultPresets = [];
-} else {
+if (process.env.BABEL_ENV === 'cjs') {
   defaultPresets = [
     [
       '@babel/preset-env',
       {
-        modules: process.env.BABEL_ENV === 'esm' ? false : 'commonjs',
+        modules: false,
         targets: {
           ie: '11',
         },
       },
     ],
   ];
+} else {
+  defaultPresets = [];
 }
 
 module.exports = {
