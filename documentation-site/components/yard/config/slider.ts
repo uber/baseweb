@@ -51,7 +51,7 @@ const SliderConfig: TConfig = {
       },
     },
     onFinalChange: {
-      value: 'console.log("onFinalChange triggered")',
+      value: '({value}) => console.log(value)',
       type: PropTypes.Function,
       description: 'Called when slider value is done changing.',
     },
