@@ -49,8 +49,5 @@ export default function createTheme(
       modal: 2000,
     },
   };
-
-  // to remove the FlowFixMe, we have to make deepMerge accept a ThemeT
-  // $FlowFixMe
   return deepMerge(theme, overrides);
 }
