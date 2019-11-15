@@ -8,7 +8,7 @@ import {
 export default () => (
   <Outer>
     <Grid>
-      <Cell skip={2} span={[4, 8, 12]}>
+      <Cell skip={1} span={[4, 8, 12]}>
         <Inner>1</Inner>
       </Cell>
     </Grid>

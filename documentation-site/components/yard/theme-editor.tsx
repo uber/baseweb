@@ -133,8 +133,9 @@ const ThemeEditor: React.FC<ThemeEditorProps> = ({
         className={useCss({
           display: 'flex',
           flexDirection: 'row',
-          [`@media screen and (max-width: ${currentTheme.breakpoints.medium}px)`]: {
-            flexWrap: 'wrap',
+          flexWrap: 'wrap',
+          [currentTheme.mediaQuery.medium]: {
+            flexWrap: 'nowrap',
           },
         })}
       >
