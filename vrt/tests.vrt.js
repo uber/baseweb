@@ -32,14 +32,14 @@ describe('visual snapshot tests', () => {
     if (snapshotConfig.skip) return;
 
     describe(scenarioName, () => {
-      // it(`desktop`, async () => {
-      //   await preparePageForSnapshot(
-      //     scenarioName,
-      //     THEME.light,
-      //     VIEWPORT.desktop,
-      //   );
-      //   await snapshot(`${scenarioName}__desktop`);
-      // });
+      it(`desktop`, async () => {
+        await preparePageForSnapshot(
+          scenarioName,
+          THEME.light,
+          VIEWPORT.desktop,
+        );
+        await snapshot(`${scenarioName}__desktop`);
+      });
 
       it(`mobile`, async () => {
         await preparePageForSnapshot(
@@ -50,16 +50,16 @@ describe('visual snapshot tests', () => {
         await snapshot(`${scenarioName}__mobile`);
       });
 
-      // if (!scenarioName.includes('rtl')) {
-      //   it(`dark`, async () => {
-      //     await preparePageForSnapshot(
-      //       scenarioName,
-      //       THEME.dark,
-      //       VIEWPORT.desktop,
-      //     );
-      //     await snapshot(`${scenarioName}__dark`);
-      //   });
-      // }
+      if (!scenarioName.includes('rtl')) {
+        it(`dark`, async () => {
+          await preparePageForSnapshot(
+            scenarioName,
+            THEME.dark,
+            VIEWPORT.desktop,
+          );
+          await snapshot(`${scenarioName}__dark`);
+        });
+      }
 
       snapshotConfig.interactions.forEach(interaction => {
         it(interaction.name, async () => {
