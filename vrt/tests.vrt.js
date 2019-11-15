@@ -128,6 +128,6 @@ function configureJest() {
 
 function getAllScenarioNames() {
   return globby
-    .sync('src/modal/**/*.scenario.js')
+    .sync('src/**/*.scenario.js')
     .map(filePath => filePath.match(/__tests__\/(.*).scenario/)[1]);
 }
