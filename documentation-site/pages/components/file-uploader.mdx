@@ -41,6 +41,12 @@ Creates a dropzone for file uploads.
 
 - Enable file(s) upload through drag and drop or the system _Browse files_ dialog.
 
+## Security considerations
+
+By default, the file uploader does not concern itself with validating and discarding potentially malicious files, as Base Web never runs any of the uploaded files. **It's the responsibility of the consuming application to do so.** To help with that, this component supports the `accept` property, which can limit the acceptable file extensions.
+
+To learn more, read the corresponding [OWASP article on file uploads](https://www.owasp.org/index.php/Unrestricted_File_Upload).
+
 ## Examples
 
 <Example title="File uploader basic usage" path="file-uploader/basic.js">
