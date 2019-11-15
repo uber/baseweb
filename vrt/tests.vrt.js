@@ -101,14 +101,14 @@ async function preparePageForSnapshot(
 async function setViewportToDesktop() {
   await page.setViewport({
     width: 1024,
-    height: 768,
+    height: 100,
   });
 }
 
 async function setViewportToMobile() {
   await page.setViewport({
     width: 375,
-    height: 812,
+    height: 100,
   });
 }
 
