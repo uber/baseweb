@@ -122,8 +122,9 @@ export default () => {
           textAlign: 'center',
           padding: theme.sizing.scale400,
           backgroundColor: theme.colors.background,
-          [`@media screen and (max-width: ${theme.breakpoints.medium}px`]: {
-            display: 'none',
+          display: 'none',
+          [theme.mediaQuery.medium]: {
+            display: 'block',
           },
         })}
       >
