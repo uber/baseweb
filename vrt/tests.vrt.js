@@ -100,7 +100,7 @@ async function preparePageForSnapshot(
 
 async function setViewportToDesktop() {
   await page.setViewport({
-    width: 1024,
+    width: 1200,
     height: 100,
   });
 }
