@@ -10,7 +10,6 @@ import * as React from 'react';
 import {MDXProvider} from '@mdx-js/tag';
 import {Block} from 'baseui/block';
 import {Button, KIND, SIZE} from 'baseui/button';
-import {StatefulTooltip} from 'baseui/tooltip';
 
 import TableOfContents from './table-of-contents';
 import {themedStyled} from '../pages/_app';
@@ -117,8 +116,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
     if (path.includes('/components')) {
       component = path.replace('/components/', '');
     }
-
-    const componentStats = ComponentSizes[component] || {dependencySizes: []};
+    const componentStats = ComponentSizes[component] || {};
     const componentSizeKb = Math.floor(componentStats.gzip / 1000);
 
     const route = findByPath(Routes, path);
@@ -195,35 +193,10 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
                     </Button>
                   </Block>
                 )}
-                {componentStats.size ? (
-                  <StatefulTooltip
-                    accessibilityType={'tooltip'}
-                    content={
-                      <div>
-                        <p>
-                          Some of the component{"'"}s dependencies are one-time
-                          costs for your application, like React or Styletron.
-                        </p>
-                        <p>
-                          Below you can find the full breakdown of dependencies
-                          and their approximate size associated with this
-                          component:
-                        </p>
-                        <ul>
-                          {componentStats.dependencySizes.map(dep => (
-                            <li key={dep.name}>
-                              {dep.name} -{' '}
-                              {Math.floor(dep.approximateSize / 1000)}kb
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    }
-                  >
-                    <Block font="font100">
-                      [?] Component size, gzipped: {componentSizeKb}kb
-                    </Block>
-                  </StatefulTooltip>
+                {componentSizeKb ? (
+                  <Block font="font100">
+                    Component size, gzipped: {componentSizeKb}kb
+                  </Block>
                 ) : null}
                 <MDXProvider components={MarkdownElements}>
                   {children}
