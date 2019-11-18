@@ -50,6 +50,11 @@ const SliderConfig: TConfig = {
         into: 'value',
       },
     },
+    onFinalChange: {
+      value: '({value}) => console.log(value)',
+      type: PropTypes.Function,
+      description: 'Called when slider value is done changing.',
+    },
     min: {
       value: undefined,
       type: PropTypes.Number,
