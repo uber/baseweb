@@ -41,6 +41,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     overrides: {},
     role: ROLE.dialog,
     size: SIZE.default,
+    unstable_ModalBackdropScroll: false,
   };
 
   animateOutTimer: ?TimeoutID;
@@ -130,6 +131,16 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     this.triggerClose(CLOSE_SOURCE.backdrop);
   };
 
+  // Handles modal closure when unstable_ModalBackdropScroll is set to true
+  onDialogContainerBackdropClick = e => {
+    if (
+      e.target instanceof HTMLElement &&
+      e.target.contains(this.getRef('DialogContainer').current)
+    ) {
+      this.onBackdropClick();
+    }
+  };
+
   onCloseClick = () => {
     this.triggerClose(CLOSE_SOURCE.closeButton);
   };
@@ -186,7 +197,14 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   };
 
   getSharedProps(): $Diff<SharedStylePropsArgT, {children?: React.Node}> {
-    const {animate, isOpen, size, role, closeable} = this.props;
+    const {
+      animate,
+      isOpen,
+      size,
+      role,
+      closeable,
+      unstable_ModalBackdropScroll,
+    } = this.props;
     return {
       $animate: animate,
       $isVisible: this.state.isVisible,
@@ -194,6 +212,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       $size: size,
       $role: role,
       $closeable: !!closeable,
+      $unstable_ModalBackdropScroll: unstable_ModalBackdropScroll,
     };
   }
 
@@ -220,7 +239,12 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   }
 
   renderModal() {
-    const {overrides = {}, closeable, role} = this.props;
+    const {
+      overrides = {},
+      closeable,
+      role,
+      unstable_ModalBackdropScroll,
+    } = this.props;
 
     const {
       Root: RootOverride,
@@ -252,6 +276,17 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       );
     }
 
+    // Handles backdrop click when `unstable_ModalBackdropScroll` is set to true
+    if (dialogContainerProps.ref) {
+      this._refs.DialogContainer = dialogContainerProps.ref;
+    }
+    const dialogContainerConditionalProps = unstable_ModalBackdropScroll
+      ? {
+          ref: this.getRef('DialogContainer'),
+          onClick: this.onDialogContainerBackdropClick,
+        }
+      : {};
+
     return (
       <LocaleContext.Consumer>
         {locale => (
@@ -267,11 +302,17 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
               {...rootProps}
             >
               <Backdrop
-                onClick={this.onBackdropClick}
+                {...(unstable_ModalBackdropScroll
+                  ? {}
+                  : {onClick: this.onBackdropClick})}
                 {...sharedProps}
                 {...backdropProps}
               />
-              <DialogContainer {...sharedProps} {...dialogContainerProps}>
+              <DialogContainer
+                {...dialogContainerConditionalProps}
+                {...sharedProps}
+                {...dialogContainerProps}
+              >
                 <Dialog
                   tabIndex={-1}
                   aria-modal={
