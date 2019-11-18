@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* global window */
 
 import React from 'react';
-import {StatefulInput} from '../index.js';
+import {StatefulInput, SIZE} from '../index.js';
 
 export const name = 'input-password';
 
@@ -20,6 +20,12 @@ export const component = () => (
       return false;
     }}
   >
+    <StatefulInput
+      size={SIZE.compact}
+      type="password"
+      initialState={{value: '1234'}}
+    />
+    <br />
     <StatefulInput
       type="password"
       initialState={{value: '1234'}}
@@ -35,6 +41,12 @@ export const component = () => (
           },
         },
       }}
+    />
+    <br />
+    <StatefulInput
+      size={SIZE.large}
+      type="password"
+      initialState={{value: '1234'}}
     />
   </form>
 );
