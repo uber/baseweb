@@ -48,6 +48,7 @@ class Slider extends React.Component<PropsT> {
     overrides: {},
     disabled: false,
     onChange: () => {},
+    onFinalChange: () => {},
     min: 0,
     max: 100,
     step: 1,
@@ -65,7 +66,15 @@ class Slider extends React.Component<PropsT> {
   }
 
   render() {
-    const {overrides = {}, min, max, step, onChange, disabled} = this.props;
+    const {
+      overrides = {},
+      min,
+      max,
+      step,
+      onChange,
+      onFinalChange,
+      disabled,
+    } = this.props;
     const value = limitValue(this.props.value);
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [Track, trackProps] = getOverrides(overrides.Track, StyledTrack);
@@ -99,6 +108,7 @@ class Slider extends React.Component<PropsT> {
               values={value}
               disabled={disabled}
               onChange={value => onChange({value})}
+              onFinalChange={value => onFinalChange({value})}
               ref={this.rangeRef}
               rtl={theme.direction === 'rtl'}
               renderTrack={({props, children, isDragged}) => (
