@@ -33,7 +33,9 @@ import type {
 class Modal extends React.Component<ModalPropsT, ModalStateT> {
   static defaultProps: $Shape<ModalPropsT> = {
     animate: true,
-    autofocus: true,
+    // remove in a future major version
+    autofocus: false,
+    autoFocus: true,
     closeable: true,
     isOpen: false,
     overrides: {},
@@ -243,11 +245,21 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     const sharedProps = this.getSharedProps();
     const children = this.getChildren();
 
+    if (this.props.autofocus && __DEV__) {
+      console.warn(
+        `The prop "autofocus" is deprecated in favor of "autoFocus" to be consistent across the project.
+        The property "autofocus" will be removed in a future major version.`,
+      );
+    }
+
     return (
       <LocaleContext.Consumer>
         {locale => (
-          // eslint-disable-next-line jsx-a11y/no-autofocus
-          <FocusLock returnFocus autoFocus={this.props.autofocus}>
+          <FocusLock
+            returnFocus
+            // eslint-disable-next-line jsx-a11y/no-autofocus
+            autoFocus={this.props.autofocus || this.props.autoFocus}
+          >
             <Root
               data-baseweb="modal"
               ref={this.getRef('Root')}
