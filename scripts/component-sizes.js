@@ -32,6 +32,7 @@ async function main() {
     drawer: 'Drawer',
     'file-uploader': 'FileUploader',
     'flex-grid': 'FlexGrid',
+    'form-control': 'FormControl',
     'header-navigation': 'HeaderNavigation',
     heading: 'Heading',
     icon: 'Icon',
