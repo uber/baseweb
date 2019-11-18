@@ -39,10 +39,10 @@ const {component, exportName} = program;
 const js = `
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ${exportName} from "../../src/${component}";
+import {${exportName}} from "../../src/${component}";
 
 function App () {
-  return <${exportName} />
+  return <${exportName.includes(',') ? exportName[0] : exportName} />
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
@@ -75,11 +75,11 @@ const stats = JSON.parse(statsCleaned);
 const assets = new Map(stats.assets.map(asset => [asset.name, asset]));
 
 const webpackSize = Object.entries(stats.assetsByChunkName).map(
-  ([chunkName, assetName]) => {
+  ([, assetName]) => {
     const parsedSize = assets.get(assetName).size;
     const gzipSize = assets.get(`${assetName}.gz`).size;
-    return [chunkName, {parsed: parsedSize, gzip: gzipSize}];
+    return {parsed: parsedSize, gzip: gzipSize};
   },
 );
 
-console.log(webpackSize);
+console.log(JSON.stringify(webpackSize));
