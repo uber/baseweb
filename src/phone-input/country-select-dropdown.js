@@ -104,7 +104,7 @@ function CountrySelectDropdown(
                         data-iso={iso}
                         {...flagContainerProps}
                       >
-                        ABC {iso2FlagEmoji(iso)}
+                        {iso2FlagEmoji(iso)}
                       </FlagContainer>
                     </FlagColumn>
                     <NameColumn {...nameColumnProps}>
