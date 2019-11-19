@@ -31,7 +31,7 @@ describe('Datepicker, Int', () => {
       selectors.input,
       input => input.value,
     );
-    expect(selectedValue1).toBe('10.03.2019 -   .  .    ');
+    expect(selectedValue1).toBe('10.03.2019 –   .  .    ');
 
     await page.click(selectors.day2);
     await page.waitFor(selectors.calendar, {
@@ -41,6 +41,6 @@ describe('Datepicker, Int', () => {
       selectors.input,
       input => input.value,
     );
-    expect(selectedValue2).toBe('10.03.2019 - 28.03.2019');
+    expect(selectedValue2).toBe('10.03.2019 – 28.03.2019');
   });
 });

@@ -16,7 +16,7 @@ export const component = () => (
   <StatefulDatepicker
     aria-label="Select a date"
     formatString="dd.MM.yyyy"
-    placeholder="dd.mm.yyyy - dd.mm.yyyy"
+    placeholder="dd.mm.yyyy – dd.mm.yyyy"
     highlightedDate={new Date('March 10, 2019')}
     range
     overrides={{
