@@ -12,10 +12,10 @@ interface MediaQuery {
 
 type Responsive<T> = T | T[];
 interface Grid {
-  columns: ResponsiveT<number>;
-  gutters: ResponsiveT<number>;
-  margins: ResponsiveT<number>;
-  gaps: ResponsiveT<number>;
+  columns: Responsive<number>;
+  gutters: Responsive<number>;
+  margins: Responsive<number>;
+  gaps: Responsive<number>;
   maxWidth: number;
 }
 
