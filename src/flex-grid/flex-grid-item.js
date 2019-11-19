@@ -140,7 +140,7 @@ export const flexGridItemStyle = ({
     const mediaQuery =
       i === 0
         ? // Custom media query needed so :nth-child styles don't conflict
-          getMediaQuery({'min-width': '0px'})
+          getMediaQuery(0)
         : mediaQueries[i - 1];
     if (mediaQuery) {
       acc[mediaQuery] = flexGridItemMediaQueryStyle({
