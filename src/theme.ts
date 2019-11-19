@@ -4,6 +4,12 @@ interface Breakpoints {
   large: number;
 }
 
+interface MediaQuery {
+  small: string;
+  medium: string;
+  large: string;
+}
+
 interface Colors {
   // Primary Palette
   primary50: string;
@@ -571,6 +577,7 @@ export interface Theme {
   name: string;
   direction: 'auto' | 'rtl' | 'ltr';
   breakpoints: Breakpoints;
+  mediaQuery: MediaQuery;
   colors: Colors;
   typography: Typography;
   sizing: Sizing;

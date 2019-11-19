@@ -44,15 +44,12 @@ export interface ModalOverrides {
 export interface ModalProps {
   animate?: boolean;
   autofocus?: boolean;
+  autoFocus?: boolean;
   children?: React.ReactNode;
   closeable?: boolean;
   isOpen?: boolean;
   mountNode?: HTMLElement;
-  onClose?: (
-    args: {
-      closeSource?: CLOSE_SOURCE[keyof CLOSE_SOURCE];
-    },
-  ) => any;
+  onClose?: (args: {closeSource?: CLOSE_SOURCE[keyof CLOSE_SOURCE]}) => any;
   overrides?: ModalOverrides;
   role?: ROLE[keyof ROLE];
   size?: SIZE[keyof SIZE];

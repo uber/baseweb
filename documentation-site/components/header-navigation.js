@@ -35,7 +35,7 @@ const Hamburger = themedStyled<{}>('div', ({$theme}) => ({
   height: '32px',
   paddingLeft: $theme.sizing.scale600,
   cursor: 'pointer',
-  [$theme.media.medium]: {
+  [$theme.mediaQuery.medium]: {
     display: 'none',
   },
 }));
@@ -47,7 +47,7 @@ const LogoSegment = themedStyled<{$searchInputOpen: boolean}>(
     justifySelf: 'flex-start',
     justifyContent: 'flex-start',
     flex: 'none',
-    [$theme.media.small]: {
+    [$theme.mediaQuery.small]: {
       display: 'flex',
     },
   }),
@@ -148,7 +148,7 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                     style: ({$theme}) => ({
                       display: 'none',
                       height: $theme.sizing.scale800,
-                      [$theme.media.small]: {
+                      [$theme.mediaQuery.small]: {
                         display: 'block',
                       },
                     }),
@@ -169,7 +169,7 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                     style: ({$theme}) => ({
                       display: 'none',
                       height: $theme.sizing.scale800,
-                      [$theme.media.small]: {
+                      [$theme.mediaQuery.small]: {
                         display: 'block',
                       },
                     }),
@@ -194,7 +194,7 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                       cursor: 'pointer',
                       display: 'none',
                       height: $theme.sizing.scale800,
-                      [$theme.media.small]: {
+                      [$theme.mediaQuery.small]: {
                         display: 'block',
                       },
                     }),
@@ -213,7 +213,7 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                   Block: {
                     style: ({$theme}) => ({
                       height: $theme.sizing.scale800,
-                      [$theme.media.small]: {
+                      [$theme.mediaQuery.small]: {
                         display: 'block',
                       },
                     }),

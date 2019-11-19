@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 import type {ThemeT} from '../styles/types.js';
 import type {PrimitivesT} from './types.js';
 import deepMerge from '../utils/deep-merge.js';
+import {getMediaQuery} from '../helpers/responsive-helpers.js';
 
 const WHITE = '#FFFFFF';
 const BLACK = '#000000';
@@ -22,6 +23,12 @@ export default function createTheme(
       small: 320,
       medium: 600,
       large: 1136,
+    },
+
+    mediaQuery: {
+      small: getMediaQuery({'min-width': `${320}px`}),
+      medium: getMediaQuery({'min-width': `${600}px`}),
+      large: getMediaQuery({'min-width': `${1136}px`}),
     },
 
     colors: {

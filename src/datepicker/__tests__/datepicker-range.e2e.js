@@ -51,7 +51,7 @@ describe('Datepicker, Range', () => {
       selectors.input,
       input => input.value,
     );
-    expect(selectedValue).toBe('2019/12/25 - 2019/12/31');
+    expect(selectedValue).toBe('2019/12/25 – 2019/12/31');
   });
 
   it('selects range', async () => {
@@ -65,7 +65,7 @@ describe('Datepicker, Range', () => {
       selectors.input,
       input => input.value,
     );
-    expect(selectedValue1).toBe('2019/03/10 -     /  /  ');
+    expect(selectedValue1).toBe('2019/03/10 –     /  /  ');
 
     await page.click(selectors.day2);
     await page.waitFor(selectors.calendar, {
@@ -75,6 +75,6 @@ describe('Datepicker, Range', () => {
       selectors.input,
       input => input.value,
     );
-    expect(selectedValue2).toBe('2019/03/10 - 2019/03/28');
+    expect(selectedValue2).toBe('2019/03/10 – 2019/03/28');
   });
 });

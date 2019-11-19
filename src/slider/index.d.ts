@@ -35,6 +35,7 @@ export interface SliderProps {
   overrides?: SliderOverrides;
   disabled?: boolean;
   onChange?: (e: State) => any;
+  onFinalChange?: (e: State) => any;
 }
 
 export interface StatefulSliderProps {
@@ -44,6 +45,7 @@ export interface StatefulSliderProps {
   max?: number;
   step?: number;
   onChange?: (e: State) => any;
+  onFinalChange?: (e: State) => any;
 }
 
 export interface StatefulContainerProps {
@@ -55,6 +57,7 @@ export interface StatefulContainerProps {
   initialState?: State;
   stateReducer?: StateReducer;
   onChange?: (e: State) => any;
+  onFinalChange?: (e: State) => any;
 }
 
 export type SharedProps = {
@@ -73,6 +76,7 @@ export class StatefulContainer extends React.Component<
   State
 > {
   onChange(params: State): any;
+  onFinalChange?: (params: State) => any;
   internalSetState(type: 'change', {value}: State): void;
 }
 

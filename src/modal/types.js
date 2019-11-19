@@ -38,6 +38,7 @@ export type ModalPropsT = {
    * Moving focus into a newly opened modal is important for accessibility purposes, so please be careful!
    */
   autofocus: boolean,
+  autoFocus: boolean,
   /** Modal content. The children-as-function API may be preferable
    * for performance reasons (wont render until opened) */
   children?: React.Node | (() => React.Node),
