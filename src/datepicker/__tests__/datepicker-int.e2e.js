@@ -40,6 +40,6 @@ describe('Datepicker, Int', () => {
       selectors.input,
       input => input.value,
     );
-    expect(selectedValue2).toBe('2019 vasárnap 10 - 2019 csütörtök 28');
+    expect(selectedValue2).toBe('2019 vasárnap 10 – 2019 csütörtök 28');
   });
 });

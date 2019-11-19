@@ -72,7 +72,7 @@ export default class Datepicker extends React.Component<
     } else if (Array.isArray(date)) {
       return date
         .map(day => formatDate(day, formatString, this.props.locale))
-        .join(' - ');
+        .join(' – ');
     } else {
       return formatDate(date, formatString, this.props.locale);
     }
@@ -200,12 +200,12 @@ export default class Datepicker extends React.Component<
 
         // 1. mask generation from the formatstring if it's a range input
         (formatString && this.props.range
-          ? `${formatString} - ${formatString}`.replace(/[a-z]/gi, '9')
+          ? `${formatString} – ${formatString}`.replace(/[a-z]/gi, '9')
           : null) ||
         // 2. mask generation from the formatstring if it is NOT a range input
         (formatString ? formatString.replace(/[a-z]/gi, '9') : null) ||
         // falling back to the default masks
-        (this.props.range ? '9999/99/99 - 9999/99/99' : '9999/99/99');
+        (this.props.range ? '9999/99/99 – 9999/99/99' : '9999/99/99');
     }
 
     const placeholder =
