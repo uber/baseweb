@@ -26,9 +26,9 @@ export default function createTheme(
     },
 
     mediaQuery: {
-      small: getMediaQuery({'min-width': `${320}px`}),
-      medium: getMediaQuery({'min-width': `${600}px`}),
-      large: getMediaQuery({'min-width': `${1136}px`}),
+      small: getMediaQuery(320),
+      medium: getMediaQuery(600),
+      large: getMediaQuery(1136),
     },
 
     colors: {

@@ -125,7 +125,7 @@ export default class Datepicker extends React.Component<
     });
 
     if (this.props.range) {
-      const dates = inputValue.split(' - ');
+      const dates = inputValue.split(' – ');
       const startDate = new Date(dates[0]);
       const endDate = new Date(dates[1]);
       isValid(startDate) &&
@@ -210,7 +210,7 @@ export default class Datepicker extends React.Component<
 
     const placeholder =
       this.props.placeholder ||
-      (this.props.range ? 'YYYY/MM/DD - YYYY/MM/DD' : 'YYYY/MM/DD');
+      (this.props.range ? 'YYYY/MM/DD – YYYY/MM/DD' : 'YYYY/MM/DD');
 
     return (
       <LocaleContext.Consumer>

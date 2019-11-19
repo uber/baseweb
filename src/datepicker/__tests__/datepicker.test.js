@@ -153,7 +153,7 @@ describe('Datepicker', () => {
     const component = mount(<Datepicker onChange={onChange} value={value} />);
     const renderedInput = component.find(Input).first();
 
-    expect(renderedInput.props().value).toEqual('2019/01/01 - 2019/01/04');
+    expect(renderedInput.props().value).toEqual('2019/01/01 – 2019/01/04');
   });
 
   test('returns a single date object on input change', () => {
@@ -185,7 +185,7 @@ describe('Datepicker', () => {
     // $FlowFixMe
     component.instance().handleInputChange({
       currentTarget: {
-        value: '2019/10/10 - 2019/10/12',
+        value: '2019/10/10 – 2019/10/12',
       },
     });
 

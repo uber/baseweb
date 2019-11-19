@@ -117,8 +117,9 @@ function getLabelColor(props) {
 export const RadioGroupRoot = styled<StylePropsT>('div', props => {
   const {$disabled, $align} = props;
   return {
-    flexDirection: $align === 'horizontal' ? 'row' : 'column',
     display: 'flex',
+    flexWrap: 'wrap',
+    flexDirection: $align === 'horizontal' ? 'row' : 'column',
     alignItems: $align === 'horizontal' ? 'center' : 'flex-start',
     cursor: $disabled ? 'not-allowed' : 'pointer',
   };
