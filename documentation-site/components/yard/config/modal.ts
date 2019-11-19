@@ -98,6 +98,13 @@ const ModalConfig: TConfig = {
         },
       },
     },
+    unstable_ModalBackdropScroll: {
+      value: false,
+      type: PropTypes.Boolean,
+      description: `Makes modal scrollable while cursor is over the modal's backdrop.
+        Will be removed and implemented as the default behavior in the next major version.`,
+      hidden: true,
+    },
     overrides: {
       value: undefined,
       type: PropTypes.Overrides,

@@ -57,6 +57,21 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
 
   componentDidMount() {
     this.setState({mounted: true});
+    if (__DEV__) {
+      if (!this.props.unstable_ModalBackdropScroll) {
+        console.warn(`Consider setting 'unstable_ModalBackdropScroll' prop to true 
+        to prepare for the next major version upgrade. 'unstable_ModalBackdropScroll' 
+        prop will be removed in the next major version but implemented as the default behavior.`);
+      }
+      if (this.props.overrides && this.props.overrides.Backdrop) {
+        console.warn(`Backdrop element will be removed in the next major version in favor of 
+        DialogContainer element that will have the backdrop styles and backdrop click handle. 
+        Consider setting 'unstable_ModalBackdropScroll' prop to true that will apply backdrop 
+        styles to DialogContainer enable modal scrolling while cursor in over the backdrop. 
+        Then pass backdrop overrides to DialogContainer instead. Tha will help you with 
+        the next major version upgrade.`);
+      }
+    }
   }
 
   componentWillUnmount() {
@@ -132,7 +147,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   };
 
   // Handles modal closure when unstable_ModalBackdropScroll is set to true
-  onDialogContainerBackdropClick = e => {
+  onDialogContainerBackdropClick = (e: Event) => {
     if (
       e.target instanceof HTMLElement &&
       e.target.contains(this.getRef('DialogContainer').current)
@@ -277,7 +292,9 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     }
 
     // Handles backdrop click when `unstable_ModalBackdropScroll` is set to true
+    // $FlowFixMe
     if (dialogContainerProps.ref) {
+      // $FlowFixMe
       this._refs.DialogContainer = dialogContainerProps.ref;
     }
     const dialogContainerConditionalProps = unstable_ModalBackdropScroll
