@@ -10,18 +10,9 @@ import {getMediaQueries, getMediaQuery} from '../responsive-helpers.js';
 
 describe('Helpers - ResponsiveHelpers', () => {
   test('getMediaQuery', () => {
-    expect(getMediaQuery({'max-width': '1280px'})).toEqual(
-      '@media screen and (max-width: 1280px)',
+    expect(getMediaQuery(1280)).toEqual(
+      '@media screen and (min-width: 1280px)',
     );
-    expect(
-      getMediaQuery(
-        {
-          'max-width': '1280px',
-          'min-height': '720px',
-        },
-        'AND',
-      ),
-    ).toEqual('@media screen and (max-width: 1280px) and (min-height: 720px)');
   });
 
   test('getMediaQueries', () => {
