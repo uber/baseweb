@@ -17,6 +17,7 @@ export const component = () => (
   <StatefulDatepicker
     aria-label="Select a date"
     formatString="yyyy EEEE d"
+    placeholder="dd.mm.yyyy – dd.mm.yyyy"
     locale={hu}
     highlightedDate={new Date('March 10, 2019')}
     mask={null}
