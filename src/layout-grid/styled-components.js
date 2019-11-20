@@ -11,43 +11,41 @@ import {getMediaQueries} from '../helpers/responsive-helpers.js';
 import {BEHAVIOR} from './constants.js';
 import type {ResponsiveT, StyledGridPropsT, StyledCellPropsT} from './types.js';
 
-const DEFAULT_GRID_COLUMNS = [4, 8, 12];
-const DEFAULT_GRID_GUTTERS = [16, 36, 36];
-const DEFAULT_GRID_MARGINS = [16, 36, 64];
-const DEFAULT_GRID_MAX_WIDTH = 1280;
-
 export const StyledGrid = styled<StyledGridPropsT>(
   'div',
   ({
     $align = null,
     $behavior = BEHAVIOR.fixed,
-    $gridGutters = DEFAULT_GRID_GUTTERS,
-    $gridMargins = DEFAULT_GRID_MARGINS,
-    $gridMaxWidth = DEFAULT_GRID_MAX_WIDTH,
+    $gridGutters = null,
+    $gridMargins = null,
+    $gridMaxWidth = null,
     $theme,
   }) => {
     const mediaQueries = getMediaQueries($theme.breakpoints);
+    const gridGutters = $gridGutters || $theme.grid.gutters;
+    const gridMargins = $gridMargins || $theme.grid.margins;
+    const gridMaxWidth = $gridMaxWidth || $theme.grid.maxWidth;
     const gridStyles = mediaQueries.reduce(
       (acc, cur, idx) => {
         return {
           ...acc,
           [cur]: {
-            paddingLeft: `${getResponsiveNumber($gridMargins, idx) -
-              getResponsiveNumber($gridGutters, idx) / 2 -
+            paddingLeft: `${getResponsiveNumber(gridMargins, idx) -
+              getResponsiveNumber(gridGutters, idx) / 2 -
               0.5}px`,
-            paddingRight: `${getResponsiveNumber($gridMargins, idx) -
-              getResponsiveNumber($gridGutters, idx) / 2 -
+            paddingRight: `${getResponsiveNumber(gridMargins, idx) -
+              getResponsiveNumber(gridGutters, idx) / 2 -
               0.5}px`,
             alignItems: getResponsiveValue($align, idx),
           },
         };
       },
       {
-        paddingLeft: `${getResponsiveNumber($gridMargins, 0) -
-          getResponsiveNumber($gridGutters, 0) / 2 -
+        paddingLeft: `${getResponsiveNumber(gridMargins, 0) -
+          getResponsiveNumber(gridGutters, 0) / 2 -
           0.5}px`,
-        paddingRight: `${getResponsiveNumber($gridMargins, 0) -
-          getResponsiveNumber($gridGutters, 0) / 2 -
+        paddingRight: `${getResponsiveNumber(gridMargins, 0) -
+          getResponsiveNumber(gridGutters, 0) / 2 -
           0.5}px`,
         alignItems: getResponsiveValue($align, 0),
       },
@@ -60,8 +58,8 @@ export const StyledGrid = styled<StyledGridPropsT>(
       marginRight: 'auto',
       maxWidth:
         $behavior === BEHAVIOR.fixed
-          ? `${$gridMaxWidth +
-              2 * getResponsiveNumber($gridMargins, Infinity) -
+          ? `${gridMaxWidth +
+              2 * getResponsiveNumber(gridMargins, Infinity) -
               1}px`
           : null,
       ...gridStyles,
@@ -73,15 +71,18 @@ export const StyledCell = styled<StyledCellPropsT>(
   'div',
   ({
     $align = null,
-    $gridColumns = DEFAULT_GRID_COLUMNS,
+    $gridColumns = null,
     $gridGaps = 0,
-    $gridGutters = DEFAULT_GRID_GUTTERS,
+    $gridGutters = null,
     $order = null,
     $skip = [0, 0, 0],
     $span = [1, 1, 1],
     $theme,
   }) => {
     const mediaQueries = getMediaQueries($theme.breakpoints);
+    const gridColumns = $gridColumns || $theme.grid.columns;
+    const gridGaps = $gridGaps || $theme.grid.gaps;
+    const gridGutters = $gridGutters || $theme.grid.gutters;
     const cellStyles = mediaQueries.reduce(
       (acc, cur, idx) => {
         if (getResponsiveNumber($span, idx) === 0) {
@@ -101,19 +102,19 @@ export const StyledCell = styled<StyledCellPropsT>(
           ...acc,
           [cur]: {
             display: 'block',
-            width: `${(100 / getResponsiveNumber($gridColumns, idx)) *
+            width: `${(100 / getResponsiveNumber(gridColumns, idx)) *
               Math.min(
                 getResponsiveNumber($span, idx),
-                getResponsiveNumber($gridColumns, idx),
+                getResponsiveNumber(gridColumns, idx),
               )}%`,
-            marginLeft: `${(100 / getResponsiveNumber($gridColumns, idx)) *
+            marginLeft: `${(100 / getResponsiveNumber(gridColumns, idx)) *
               Math.min(
                 getResponsiveNumber($skip, idx),
-                getResponsiveNumber($gridColumns, idx) - 1,
+                getResponsiveNumber(gridColumns, idx) - 1,
               )}%`,
-            paddingLeft: getResponsiveNumber($gridGutters, idx) / 2 + 'px',
-            paddingRight: getResponsiveNumber($gridGutters, idx) / 2 + 'px',
-            marginBottom: getResponsiveNumber($gridGaps, idx) + 'px',
+            paddingLeft: getResponsiveNumber(gridGutters, idx) / 2 + 'px',
+            paddingRight: getResponsiveNumber(gridGutters, idx) / 2 + 'px',
+            marginBottom: getResponsiveNumber(gridGaps, idx) + 'px',
             alignSelf: getResponsiveValue($align, idx),
             order: getResponsiveNumber($order, idx),
           },
@@ -121,9 +122,9 @@ export const StyledCell = styled<StyledCellPropsT>(
       },
       {
         width: '100%',
-        paddingLeft: getResponsiveNumber($gridGutters, 0) / 2 + 'px',
-        paddingRight: getResponsiveNumber($gridGutters, 0) / 2 + 'px',
-        marginBottom: getResponsiveNumber($gridGaps, 0) + 'px',
+        paddingLeft: getResponsiveNumber(gridGutters, 0) / 2 + 'px',
+        paddingRight: getResponsiveNumber(gridGutters, 0) / 2 + 'px',
+        marginBottom: getResponsiveNumber(gridGaps, 0) + 'px',
         alignSelf: getResponsiveValue($align, 0),
         order: getResponsiveNumber($order, 0),
       },

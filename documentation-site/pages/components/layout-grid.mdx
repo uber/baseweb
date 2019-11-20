@@ -44,6 +44,8 @@ Here are the default responsive values for the grid, based on the default Base W
   ]}
 />
 
+All of these values are [customizable via your theme](https://baseweb.design/guides/theming). The grid will default to whatever values are in your theme but you can additionally override any of them with props on `Grid` and `Cell`.
+
 ## Examples
 
 Some examples may require you to open them in CodeSandbox to achieve a wide enough viewport for certain behaviors.
@@ -78,7 +80,9 @@ Sometimes this wrapping behavior is desireable, but sometimes you want to adapt 
 
 `span` is a "responsive" prop. It accepts both a single value or an array of values. Each value in the array corresponds to each [breakpoint in our theme](https://baseweb.design/guides/theming/#the-shape-of-the-theme-file).
 
-In the above example, we specify that on the first breakpoint each cell should span 1 column. On the second breakpoint, each cell should span 2 columns, and on the third breakpoint, each cell should span 3 columns: `[1, 2, 3]`. Effectively, this keeps each cell to 1/4 of the width of the grid on all breakpoints.
+When you specify the first value in the array, you are specifying the value for any viewport larger than or equal to the first (`small`) breakpoint in your theme. The second value applies to viewports greater than or equal to the `medium` breakpoint, and the third value applies to viewports greater than or equal to the `large` breakpoint.
+
+In the example above, we specify that on the first breakpoint and up each cell should span 1 column. On the second breakpoint and up, each cell should span 2 columns, and on the third breakpoint and up, each cell should span 3 columns: `[1, 2, 3]`. Effectively, this keeps each cell to 1/4 of the width of the grid on all breakpoints.
 
 This terse way of describing responsive values was originally used in our [Block](/components/block) component- it allows you to very quickly specify even the most complicated responsive layouts.
 
@@ -86,7 +90,7 @@ Note, you can omit larger breakpoint values if they do not change. For example, 
 
 Also note that every `Cell` prop is "responsive". Almost all of the props for `Grid` are also "responsive" props, with the exception of `behavior` and `gridMaxWidth`, which only accept one value across all breakpoints.
 
-One last thing to note: Cells will take up the full width of the grid on viewports smaller than the smallest breakpoint (`<319px` by default). The "responsive" props essentially ignore this range.
+Last thing to note: The grid has only one column on viewports smaller than the first breakpoint (`<320px`). Cells will effectively take up the full width of the grid. Most props have no reasonable effect with one column so "responsive" props essentially ignore this range.
 
 <Example title="Hide" path="layout-grid/hide.js">
   <HideExample />
@@ -150,7 +154,23 @@ You can customize pretty much any part of the grid while maintaining the core re
 - `gridMargins`
 - `gridMaxWidth` (Not responsive)
 
-If you want to customize the breakpoints of the grid you need to [customize your theme object](https://baseweb.design/guides/theming/#creating-a-custom-theme). The grid will always pull breakpoints from the theme and correlate responsive props with those breakpoints.
+The grid will use whatever values are on your theme `grid` property as the default values for these props. This way you do not have to create a "wrapper" grid if yours differs from the default Base grid. [Click here for the full theme shape](https://baseweb.design/guides/theming/#the-shape-of-the-theme-file)or see below for the grid relevant section of the theme:
+
+```js
+const theme = {
+  grid: {
+    columns: [4, 8, 12],
+    gutters: [16, 36, 36],
+    margins: [16, 36, 64],
+    gaps: 0,
+    maxWidth: 1280,
+  },
+};
+```
+
+Note how these are defined in a similar fashion to responsive props. Each value in the array corresponds to a theme breakpoint.
+
+If you want to customize the breakpoints of the grid, you can do so via the `breakpoints` and `mediaQuery` properties. The grid will always pull breakpoints from the theme and correlate responsive props with those breakpoints.
 
 ## API
 
