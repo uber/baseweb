@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env node */
 
+const globby = require('globby');
 const {configureToMatchImageSnapshot} = require('jest-image-snapshot');
 const {getSnapshotConfig} = require('./config.js');
-const {getAllScenarioNames} = require('./utils.js');
 const {mount} = require('../e2e/helpers');
 
 const THEME = {
@@ -21,6 +21,11 @@ const THEME = {
 const VIEWPORT = {
   mobile: 'mobile',
   desktop: 'desktop',
+};
+
+const VIEWPORT_WIDTH = {
+  [VIEWPORT.mobile]: 375,
+  [VIEWPORT.desktop]: 1200,
 };
 
 configureJest();
@@ -47,7 +52,7 @@ describe('visual snapshot tests', () => {
           THEME.light,
           VIEWPORT.mobile,
         );
-        await snapshot(`${scenarioName}__mobile`);
+        await snapshot(`${scenarioName}__mobile`, VIEWPORT.mobile);
       });
 
       if (!scenarioName.includes('rtl')) {
@@ -77,8 +82,24 @@ describe('visual snapshot tests', () => {
   });
 });
 
-async function snapshot(identifier) {
-  const image = await page.screenshot({fullPage: true});
+async function snapshot(identifier, viewport = VIEWPORT.desktop) {
+  // Snapshots should have fixed widths but allow for scrolling in the y dimension.
+  // We use the raw Chrome Devtools Protocol to get scroll height of page.
+  const client = await page.target().createCDPSession();
+  const metrics = await client.send('Page.getLayoutMetrics');
+  const height = Math.ceil(metrics.contentSize.height);
+
+  console.log('content height', height);
+
+  const image = await page.screenshot({
+    clip: {
+      x: 0,
+      y: 0,
+      width: VIEWPORT_WIDTH[viewport], // Clamp width to either mobile or desktop.
+      height: height,
+    },
+  });
+
   expect(image).toMatchImageSnapshot({
     customSnapshotIdentifier: identifier,
   });
@@ -89,27 +110,12 @@ async function preparePageForSnapshot(
   theme = THEME.light,
   viewport = VIEWPORT.desktop,
 ) {
-  if (viewport === VIEWPORT.mobile) {
-    await setViewportToMobile(page);
-  } else {
-    await setViewportToDesktop(page);
-  }
+  await page.setViewport({
+    width: VIEWPORT_WIDTH[viewport],
+    height: 800,
+  });
   await mount(page, scenarioName, theme);
   await page.waitFor(250);
-}
-
-async function setViewportToDesktop() {
-  await page.setViewport({
-    width: 1024,
-    height: 768,
-  });
-}
-
-async function setViewportToMobile() {
-  await page.setViewport({
-    width: 375,
-    height: 812,
-  });
 }
 
 function configureJest() {
@@ -118,4 +124,10 @@ function configureJest() {
     diffDirection: 'vertical',
   });
   expect.extend({toMatchImageSnapshot});
+}
+
+function getAllScenarioNames() {
+  return globby
+    .sync('src/**/*.scenario.js')
+    .map(filePath => filePath.match(/__tests__\/(.*).scenario/)[1]);
 }
