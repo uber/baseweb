@@ -493,7 +493,7 @@ export type TypographyT = {
   font1450: Font,
 };
 
-export type Font = {
+export type Font = {|
   fontFamily: string,
   // eslint-disable-next-line flowtype/space-after-type-colon
   fontWeight:
@@ -509,7 +509,7 @@ export type Font = {
     | number,
   fontSize: string,
   lineHeight: string | number,
-};
+|};
 
 export type SizingT = {
   scale0: string,
