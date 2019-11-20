@@ -148,7 +148,7 @@ export type DatepickerProps = CalendarProps & {
   required?: boolean;
   formatDisplayValue?: (date: Date | Date[], formatString: string) => string;
   formatString?: string;
-  mask?: string;
+  mask?: string | null;
   mountNode?: HTMLElement;
   onClose?: () => any;
 };
