@@ -26,9 +26,17 @@ export default function createTheme(
     },
 
     mediaQuery: {
-      small: getMediaQuery({'min-width': `${320}px`}),
-      medium: getMediaQuery({'min-width': `${600}px`}),
-      large: getMediaQuery({'min-width': `${1136}px`}),
+      small: getMediaQuery(320),
+      medium: getMediaQuery(600),
+      large: getMediaQuery(1136),
+    },
+
+    grid: {
+      columns: [4, 8, 12],
+      gutters: [16, 36, 36],
+      margins: [16, 36, 64],
+      gaps: 0,
+      maxWidth: 1280,
     },
 
     colors: {

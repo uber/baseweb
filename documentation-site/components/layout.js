@@ -22,7 +22,6 @@ import Routes from '../routes';
 import DirectionContext from '../components/direction-context';
 import ComponentSizes from '../../component-sizes.json';
 import Help from './help';
-import Survey from './survey';
 import Walkthrough from './walkthrough';
 
 const GH_URL =
@@ -209,7 +208,6 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
             <Footer />
             <Walkthrough />
             <Help />
-            <Survey />
           </React.Fragment>
         )}
       </DirectionContext.Consumer>

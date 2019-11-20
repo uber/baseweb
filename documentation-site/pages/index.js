@@ -209,7 +209,7 @@ const Index = (props: {
       <Link href="https://ryantsao.com/blog/virtual-css-with-styletron">
         our benchmarks
       </Link>
-      , this is one of the fastest solution.
+      , this is one of the fastest solutions.
     </Markdown.p>
     <Adopters
       logoSrcs={[

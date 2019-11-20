@@ -3,7 +3,8 @@
 exports[`Modal renders portal when open: Rendered Modal 1`] = `
 <Modal
   animate={true}
-  autofocus={true}
+  autoFocus={true}
+  autofocus={false}
   closeable={true}
   isOpen={true}
   overrides={Object {}}

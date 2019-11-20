@@ -10,6 +10,15 @@ interface MediaQuery {
   large: string;
 }
 
+type Responsive<T> = T | T[];
+interface Grid {
+  columns: Responsive<number>;
+  gutters: Responsive<number>;
+  margins: Responsive<number>;
+  gaps: Responsive<number>;
+  maxWidth: number;
+}
+
 interface Colors {
   // Primary Palette
   primary50: string;
@@ -578,6 +587,7 @@ export interface Theme {
   direction: 'auto' | 'rtl' | 'ltr';
   breakpoints: Breakpoints;
   mediaQuery: MediaQuery;
+  grid: Grid;
   colors: Colors;
   typography: Typography;
   sizing: Sizing;

@@ -20,7 +20,7 @@ export default () => {
         range
         value={rangeDate}
         onChange={({date}) => setRangeDate(date)}
-        placeholder="YYYY/MM/DD - YYYY/MM/DD"
+        placeholder="YYYY/MM/DD – YYYY/MM/DD"
       />
     </React.Fragment>
   );
