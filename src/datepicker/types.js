@@ -189,7 +189,7 @@ export type DatepickerPropsT = CalendarPropsT & {
   mountNode?: HTMLElement,
   /** Called when calendar is closed */
   onClose?: () => mixed,
-  mask?: string,
+  mask?: string | null,
 };
 
 export type SharedStylePropsT = {
