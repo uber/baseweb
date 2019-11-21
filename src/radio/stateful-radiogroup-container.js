@@ -53,18 +53,12 @@ class StatefulRadioGroupContainer extends React.Component<
   };
 
   render() {
-    const {
-      children = (childProps: {}) => null, // eslint-disable-line no-unused-vars
-      initialState, // eslint-disable-line no-unused-vars
-      stateReducer, // eslint-disable-line no-unused-vars
-      ...restProps
-    } = this.props;
-    const {onChange} = this;
+    const {children = childProps => null} = this.props;
     return children({
       overrides: this.props.overrides,
       autoFocus: this.props.autoFocus,
       value: this.state.value,
-      onChange,
+      onChange: this.onChange,
     });
   }
 }

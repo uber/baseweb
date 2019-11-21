@@ -23,6 +23,7 @@ class Tooltip extends React.Component<TooltipPropsT> {
   };
 
   render() {
+    // eslint-disable-next-line flowtype/no-weak-types
     const overrides = mergeOverrides<any>(
       {
         Arrow: StyledArrow,

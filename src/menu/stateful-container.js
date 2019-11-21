@@ -14,7 +14,6 @@ import type {
   StatefulContainerPropsT,
   StatefulContainerStateT,
   GetRequiredItemPropsFnT,
-  RenderPropsT,
   StateReducerFnT,
 } from './types.js';
 
