@@ -52,7 +52,7 @@ export const EndEnhancer = styled<SharedStylePropsT>('div', ({$theme}) => {
 
 export const StartEnhancer = styled<SharedStylePropsT>('div', ({$theme}) => {
   const marginDirection: string =
-    $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+    $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
   return {
     display: 'flex',
     [marginDirection]: $theme.sizing.scale500,
