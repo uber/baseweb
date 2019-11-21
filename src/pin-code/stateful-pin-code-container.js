@@ -45,6 +45,8 @@ export default class StatefulPinCodeContainer extends React.Component<
     const {children, initialState, stateReducer, ...restProps} = this.props;
     return children({
       ...defaultProps,
+      // $FlowFixMe it's fine, we want to overwrite values from defaultProps
+      ...restProps,
       onChange: this.handleChange,
       values: this.state.values,
     });
