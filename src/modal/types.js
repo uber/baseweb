@@ -60,6 +60,9 @@ export type ModalPropsT = {
   /** Controls the size of the modal (primarily width).
    * Can be a SIZE constant or css width property value. */
   size: SizePropT,
+  /** Make modal scrollable while cursor is over the modal's backdrop.
+   * Will be removed and implemented as the default behavior in the next major version */
+  unstable_ModalBackdropScroll?: boolean,
 };
 
 export type ModalPropsWithoutChildrenT = $Diff<
@@ -79,4 +82,5 @@ export type SharedStylePropsArgT = {
   $size: SizePropT,
   $role: RolePropT,
   $closeable: boolean,
+  $unstable_ModalBackdropScroll?: boolean,
 };
