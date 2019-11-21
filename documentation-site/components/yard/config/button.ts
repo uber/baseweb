@@ -1,6 +1,6 @@
 import {Button, KIND, SIZE, SHAPE} from 'baseui/button';
-import {PropTypes} from '../const';
-import {TConfig} from '../types';
+import {PropTypes} from 'react-view';
+import {TConfig} from 'react-view';
 
 const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button.js');
 

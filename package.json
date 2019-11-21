@@ -172,6 +172,7 @@
     "react-markdown": "^4.0.3",
     "react-simple-code-editor": "^0.10.0",
     "react-twitter-embed": "^2.0.8",
+    "react-view": "^1.0.1",
     "react-vis": "^1.11.6",
     "remove-flow-types-loader": "^1.1.0",
     "semver": "^6.2.0",

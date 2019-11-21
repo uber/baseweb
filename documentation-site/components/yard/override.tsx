@@ -1,18 +1,74 @@
-/*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
-
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
-*/
 import * as React from 'react';
+import generate from '@babel/generator';
+import traverse from '@babel/traverse';
+import * as t from '@babel/types';
 import {useStyletron} from 'baseui';
 import {StatefulTooltip} from 'baseui/tooltip';
 import {Button, KIND, SIZE} from 'baseui/button';
 import {ButtonGroup} from 'baseui/button-group';
-import {toggleOverrideSharedProps} from './ast';
-import {formatCode} from './code-generator';
-import {trackEvent} from '../../helpers/ga';
 import Editor from './editor';
+
+import {formatCode, parse} from 'react-view';
+
+export function toggleOverrideSharedProps(code: string, sharedProps: string[]) {
+  let result: string = '';
+  try {
+    const ast = parse(code) as any;
+    traverse(ast, {
+      ArrowFunctionExpression(path) {
+        if (result !== '') return;
+        if (path.node.params.length !== 1) return;
+        const firstParam: any = path.node.params[0];
+        let newParams: string[] = [];
+        if (firstParam.type === 'ObjectPattern') {
+          const properties = firstParam.properties;
+          newParams = properties.map((prop: any) => prop.key.name);
+        }
+
+        const shoudlWeAddSharedProps = newParams.every(
+          name => !sharedProps.includes(name),
+        );
+
+        if (shoudlWeAddSharedProps) {
+          sharedProps.forEach(param => {
+            if (!newParams.includes(param)) {
+              newParams.push(param);
+            }
+          });
+          path.node.params = [
+            //@ts-ignore
+            t.objectPattern(
+              newParams.map(param =>
+                t.objectProperty(
+                  t.identifier(param),
+                  t.identifier(param),
+                  false,
+                  true,
+                ),
+              ),
+            ),
+          ];
+        } else {
+          path.node.params = [
+            //@ts-ignore
+            t.objectPattern([
+              t.objectProperty(
+                t.identifier('$theme'),
+                t.identifier('$theme'),
+                false,
+                true,
+              ),
+            ]),
+          ];
+        }
+        result = generate(path.node as any).code;
+      },
+    });
+  } catch (e) {
+    throw new Error('Override params transform was no good.');
+  }
+  return result;
+}
 
 export const getHighlightStyles = (
   isLightTheme: boolean,
@@ -45,13 +101,16 @@ const SharedPropsTooltip: React.FC<{
   componentConfig: any;
   children: React.ReactNode;
 }> = ({componentConfig, children}) => {
-  const sharedProps = Object.keys(componentConfig.overrides.sharedProps);
+  const sharedProps = Object.keys(componentConfig.overrides.custom.sharedProps);
   const getDescription = (name: string) => {
     let metaObj: any = {};
-    if (typeof componentConfig.overrides.sharedProps[name] === 'string') {
-      metaObj = componentConfig[componentConfig.overrides.sharedProps[name]];
+    if (
+      typeof componentConfig.overrides.custom.sharedProps[name] === 'string'
+    ) {
+      metaObj =
+        componentConfig[componentConfig.overrides.custom.sharedProps[name]];
     } else {
-      metaObj = componentConfig.overrides.sharedProps[name];
+      metaObj = componentConfig.overrides.custom.sharedProps[name];
     }
     return (
       <React.Fragment>
@@ -89,7 +148,6 @@ const Override: React.FC<TProps> = ({
   overrides,
   overridesObj,
   componentConfig,
-  componentName,
   set,
 }) => {
   const [, theme] = useStyletron();
@@ -112,9 +170,8 @@ const Override: React.FC<TProps> = ({
           Root: {
             style: ({$theme}) => ({
               marginTop: $theme.sizing.scale300,
-              flexWrap: 'wrap',
-              [theme.mediaQuery.medium]: {
-                flexWrap: 'nowrap',
+              [`@media screen and (max-width: ${$theme.breakpoints.medium}px)`]: {
+                flexWrap: 'wrap',
               },
             }),
           },
@@ -130,10 +187,6 @@ const Override: React.FC<TProps> = ({
                 active: true,
               },
             });
-            trackEvent(
-              'yard',
-              `${componentName}:override_format_${overrideKey}`,
-            );
           }}
         >
           Format
@@ -144,7 +197,7 @@ const Override: React.FC<TProps> = ({
             const newCode = formatCode(
               toggleOverrideSharedProps(
                 overrides.value[overrideKey].style,
-                Object.keys(overrides.sharedProps),
+                Object.keys(overrides.custom.sharedProps),
               ),
             );
             set({
@@ -154,10 +207,6 @@ const Override: React.FC<TProps> = ({
                 active: true,
               },
             });
-            trackEvent(
-              'yard',
-              `${componentName}:override_toggle_shared_props_${overrideKey}`,
-            );
           }}
         >
           <SharedPropsTooltip componentConfig={componentConfig}>
@@ -167,10 +216,6 @@ const Override: React.FC<TProps> = ({
         <Button
           kind={KIND.tertiary}
           onClick={() => {
-            trackEvent(
-              'yard',
-              `${componentName}:override_empty_${overrideKey}`,
-            );
             set({
               ...overrides.value,
               [overrideKey]: {
@@ -185,10 +230,6 @@ const Override: React.FC<TProps> = ({
         <Button
           kind={KIND.tertiary}
           onClick={() => {
-            trackEvent(
-              'yard',
-              `${componentName}:override_reset_${overrideKey}`,
-            );
             set({
               ...overrides.value,
               [overrideKey]: {

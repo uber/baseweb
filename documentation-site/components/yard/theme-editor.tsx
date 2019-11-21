@@ -1,23 +1,22 @@
 import * as React from 'react';
-import {useValueDebounce} from './utils';
+import {useValueDebounce} from 'react-view';
 import {Input, SIZE} from 'baseui/input';
 import {useStyletron} from 'baseui';
-import Link from 'next/link';
-import {StyledLink} from 'baseui/link';
 import {Caption1} from 'baseui/typography';
+import {getActiveTheme, getThemeDiff} from './provider';
 
 type ThemeEditorProps = {
   componentName: string;
   theme: {[key: string]: string};
   themeInit: {[key: string]: string};
-  set: (value: {[key: string]: string}) => void;
+  set: (value: {[key: string]: string} | undefined) => void;
 };
 
 type ColumnProps = {
   themeKeys: string[];
   theme: {[key: string]: string};
   themeInit: {[key: string]: string};
-  set: (value: {[key: string]: string}) => void;
+  set: (value: {[key: string]: string} | undefined) => void;
 };
 
 const ColorInput: React.FC<{
@@ -83,12 +82,16 @@ const Column: React.FC<ColumnProps> = ({themeKeys, themeInit, theme, set}) => {
             key={key}
             themeKey={key}
             globalColor={theme[key]}
-            globalSet={color =>
-              set({
-                ...theme,
-                [key]: color,
-              })
-            }
+            globalSet={color => {
+              const diff = getThemeDiff(
+                {
+                  ...theme,
+                  [key]: color,
+                },
+                themeInit,
+              );
+              set(Object.keys(diff).length > 0 ? diff : undefined);
+            }}
             themeInit={themeInit}
           />
         );
@@ -104,7 +107,8 @@ const ThemeEditor: React.FC<ThemeEditorProps> = ({
   componentName,
 }) => {
   const [useCss, currentTheme] = useStyletron();
-  const themeKeys = Object.keys(theme);
+  const activeTheme = getActiveTheme(theme, themeInit);
+  const themeKeys = Object.keys(activeTheme);
 
   const midPoint =
     themeKeys.length % 2 === 0
@@ -121,33 +125,27 @@ const ThemeEditor: React.FC<ThemeEditorProps> = ({
         marginBottom="scale400"
       >
         Do you want to change {componentName} colors globally? You can customize
-        the theme through ThemeProvider and set your own colors.{' '}
-        <Link href="/guides/theming#creating-a-custom-theme">
-          <StyledLink href="/guides/theming#creating-a-custom-theme">
-            Learn more
-          </StyledLink>
-        </Link>
-        . Try different values:
+        the theme through ThemeProvider and set your own colors. . Try different
+        values:
       </Caption1>
       <div
         className={useCss({
           display: 'flex',
           flexDirection: 'row',
-          flexWrap: 'wrap',
-          [currentTheme.mediaQuery.medium]: {
-            flexWrap: 'nowrap',
+          [`@media screen and (max-width: ${currentTheme.breakpoints.medium}px)`]: {
+            flexWrap: 'wrap',
           },
         })}
       >
         <Column
           themeKeys={firstThemeKeys}
-          theme={theme}
+          theme={activeTheme}
           themeInit={themeInit}
           set={set}
         />
         <Column
           themeKeys={secondThemeKeys}
-          theme={theme}
+          theme={activeTheme}
           themeInit={themeInit}
           set={set}
         />

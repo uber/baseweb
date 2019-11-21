@@ -4,7 +4,7 @@ import {useStyletron} from 'baseui';
 import {StatefulPopover, PLACEMENT, TRIGGER_TYPE} from 'baseui/popover';
 
 //@ts-ignore
-import TypeDefinition from './type-definition';
+import TypeDefinition from '../type-definition';
 
 function PropsTooltip(props: any) {
   const [css, theme] = useStyletron();

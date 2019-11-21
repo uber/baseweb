@@ -8,10 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {useStyletron} from 'baseui';
+import {formatCode} from 'react-view';
 
-import {formatCode} from './code-generator';
-
-export function resolveToLast(type /*: MemberExpression | Obj | Id */) {
+export function resolveToLast(type) {
   switch (type.kind) {
     case 'id':
     case 'object':
