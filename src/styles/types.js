@@ -558,11 +558,11 @@ export type AnimationT = {
   easeInOutCurve: string,
 };
 
-export type BorderT = {
+export type BorderT = {|
   borderColor: string,
   borderStyle: string,
   borderWidth: string,
-};
+|};
 
 export type BordersT = {
   border100: BorderT,
