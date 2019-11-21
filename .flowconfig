@@ -26,3 +26,12 @@ log.file=.flow.log
 sharedmemory.hash_table_pow=21
 
 [strict]
+
+; declaration config maintains type definitions exposed from packages, but silences errors from within
+; the directory in node_modules. useful for when we want to upgrade flow-bin, but a dependecy lags behind.
+[declarations]
+; has untyped computed properties
+.*/node_modules/jest-enzyme/.*
+.*/node_modules/react-window/.*
+; has an non-strict spread
+.*/node_modules/styletron-engine-atomic/.*
