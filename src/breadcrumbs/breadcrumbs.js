@@ -44,10 +44,8 @@ export function BreadcrumbsRoot(props: {|...BreadcrumbsPropsT, ...LocaleT|}) {
 
   const iconOverrides = mergeOverrides(
     {Svg: {style: {verticalAlign: 'text-bottom'}}},
-    // $FlowFixMe
     baseIconProps && baseIconProps.overrides,
   );
-  // $FlowFixMe
   baseIconProps.overrides = iconOverrides;
 
   Children.forEach(props.children, (child, index) => {

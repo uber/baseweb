@@ -164,7 +164,6 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
                       props: {...listItemProps, role: 'option'},
                       // slightly hacky way to handle the list item style overrides
                       // since the menu component doesn't provide a top level overrides for it
-                      // $FlowFixMe
                       style: listItemProps.$style,
                     },
                   },

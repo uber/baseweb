@@ -153,10 +153,8 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     Dropdown: overrides.CountrySelectDropdown,
     DropdownListItem: overrides.CountrySelectDropdownListItem,
   });
-  // $FlowFixMe
   selectProps.overrides = mergeOverrides(
     selectOverrides,
-    // $FlowFixMe
     selectProps.overrides,
   );
 

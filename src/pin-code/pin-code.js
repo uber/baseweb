@@ -47,7 +47,6 @@ export default class PinCode extends React.Component<PropsT, StateT> {
       Root: {component: StyledInputOverrideRoot},
       Input: {component: StyledInputOverrideInput},
     };
-    // $FlowFixMe
     inputProps.overrides = mergeOverrides(baseOverrides, inputProps.overrides);
     return (
       <Root data-baseweb="pin-code" {...rootProps}>

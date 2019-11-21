@@ -284,10 +284,8 @@ export default class CalendarHeader extends React.Component<
     );
     const menuOverrides = mergeOverrides(
       {List: {style: {height: 'auto', maxHeight: '257px'}}},
-      // $FlowFixMe
       menuProps && menuProps.overrides,
     );
-    // $FlowFixMe
     menuProps.overrides = menuOverrides;
 
     const defaultMonths = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];

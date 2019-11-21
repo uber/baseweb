@@ -155,10 +155,8 @@ class BaseInput<T: EventTarget> extends React.Component<
         }),
       },
     };
-    // $FlowFixMe
     maskToggleButtonProps.overrides = mergeOverrides(
       baseButtonOverrides,
-      // $FlowFixMe
       maskToggleButtonProps.overrides,
     );
     const [MaskToggleShowIcon, maskToggleIconShowProps] = getOverrides(

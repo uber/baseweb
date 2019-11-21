@@ -210,10 +210,8 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
     );
     const selectOverrides = mergeOverrides(
       {Dropdown: {style: {maxHeight: '126px'}}},
-      // $FlowFixMe
       selectProps.overrides,
     );
-    // $FlowFixMe
     selectProps.overrides = selectOverrides;
 
     const value =
