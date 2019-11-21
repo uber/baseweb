@@ -77,7 +77,7 @@ export type StateReducerFnT = (
   currentState: StatefulContainerStateT,
 ) => StatefulContainerStateT;
 
-export type StatefulContainerStateT = {
+export type StatefulContainerStateT = {|
   // id of the currently highlighted item (from keyboard control)
   activedescendantId?: ?string,
   // index of currently highlighted item (from keyboard control)
@@ -85,7 +85,7 @@ export type StatefulContainerStateT = {
   // indicates when the menu can be navigated by keyboard and affects menu item option rendering
   // see https://github.com/uber/baseweb/issues/993 for a description.
   isFocused: boolean,
-};
+|};
 
 export type InitialStateT = {
   // id of the currently highlighted item (from keyboard control)

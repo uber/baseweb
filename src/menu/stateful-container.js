@@ -42,10 +42,12 @@ export default class MenuStatefulContainer extends React.Component<
     getChildMenu: () => {},
   };
 
-  state: StatefulContainerStateT = {
-    ...this.constructor.defaultProps.initialState,
+  state: StatefulContainerStateT = Object.freeze({
+    highlightedIndex: -1,
+    isFocused: false,
+    activedescendantId: null,
     ...this.props.initialState,
-  };
+  });
 
   // We need to have access to the root component user renders
   // to correctly facilitate keyboard scrolling behavior
