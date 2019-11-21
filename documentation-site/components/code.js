@@ -9,7 +9,7 @@ import * as React from 'react';
 import {useStyletron} from 'baseui';
 import Highlight, {defaultProps} from 'prism-react-renderer';
 //$FlowFixMe
-import lightTheme from 'react-view';
+import {lightTheme} from 'react-view';
 //$FlowFixMe
 import darkTheme from './yard/dark-theme';
 //$FlowFixMe

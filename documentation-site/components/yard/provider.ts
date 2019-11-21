@@ -53,7 +53,7 @@ export const getProvider = (
     value: undefined,
     parse: (astRoot: t.File): TProviderValue => {
       const newThemeValues: {[key: string]: string} = {};
-      traverse(astRoot, {
+      traverse(astRoot as any, {
         CallExpression(path) {
           if (
             //@ts-ignore
@@ -81,6 +81,7 @@ export const getProvider = (
         ? newThemeValues
         : undefined;
     },
+    //@ts-ignore
     generate: (value: TProviderValue, childTree: t.JSXElement) =>
       generate(value, childTree, themePrimitives),
     imports: {
@@ -122,8 +123,8 @@ export const generate = (
             ]),
           ]),
         ),
-      ),
+      ) as any,
     ],
-    [childTree],
+    [childTree as any],
   );
 };
