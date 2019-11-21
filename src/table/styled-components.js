@@ -70,8 +70,8 @@ const StyledHeadCellElement = styled<HorizontalStyleProps>(
   'div',
   ({$theme, $cursor}) => {
     return {
-      ...$theme.borders.border300,
       ...$theme.typography.font350,
+      ...$theme.borders.border300,
       borderTop: 'none',
       borderBottom: 'none',
       borderLeft: 'none',

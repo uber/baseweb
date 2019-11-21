@@ -6,13 +6,13 @@ import type {ValueT} from 'baseui/select';
 
 const ColorSwatch = styled<{$color: string}>('div', props => {
   return {
-    ...props.$theme.borders.border400,
     width: props.$theme.sizing.scale300,
     height: props.$theme.sizing.scale300,
     marginRight: props.$theme.sizing.scale200,
     display: 'inline-block',
     backgroundColor: props.$color,
     verticalAlign: 'baseline',
+    ...props.$theme.borders.border400,
   };
 });
 

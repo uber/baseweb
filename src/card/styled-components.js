@@ -59,7 +59,6 @@ export const Thumbnail = styled<{}>('img', props => {
     $theme: {borders, sizing},
   } = props;
   return {
-    ...borders.border200,
     float: 'right',
     height: sizing.scale2400,
     width: sizing.scale2400,
@@ -68,6 +67,7 @@ export const Thumbnail = styled<{}>('img', props => {
     borderTopRightRadius: borders.surfaceBorderRadius,
     borderBottomLeftRadius: borders.surfaceBorderRadius,
     borderBottomRightRadius: borders.surfaceBorderRadius,
+    ...borders.border200,
     margin: `0 0 ${sizing.scale500} ${sizing.scale500}`,
   };
 });
