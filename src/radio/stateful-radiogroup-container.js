@@ -21,9 +21,7 @@ class StatefulRadioGroupContainer extends React.Component<
   StateT,
 > {
   static defaultProps: DefaultStatefulPropsT = {
-    initialState: {
-      value: '',
-    },
+    initialState: {},
     stateReducer: defaultStateReducer,
     onChange: () => {},
   };
@@ -32,6 +30,7 @@ class StatefulRadioGroupContainer extends React.Component<
     super(props);
     const {initialState} = this.props;
     this.state = {
+      value: '',
       ...initialState,
     };
   }

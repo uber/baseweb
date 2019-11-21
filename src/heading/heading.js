@@ -21,7 +21,7 @@ const FONTS = [
   'font550',
 ];
 
-const Heading = (props: HeadingPropsT) => (
+const Heading = ({styleLevel, ...props}: HeadingPropsT) => (
   <LevelContext.Consumer>
     {level => {
       if (level === 0) {
@@ -35,19 +35,17 @@ const Heading = (props: HeadingPropsT) => (
         );
       }
       if (
-        typeof props.styleLevel !== 'undefined' &&
-        (props.styleLevel < 1 || props.styleLevel > 6)
+        typeof styleLevel !== 'undefined' &&
+        (styleLevel < 1 || styleLevel > 6)
       ) {
-        throw new Error(
-          `styleLevel = ${props.styleLevel} is out of 1-6 range.`,
-        );
+        throw new Error(`styleLevel = ${styleLevel} is out of 1-6 range.`);
       }
 
       let font = FONTS[level];
       if (props.font) {
         font = props.font;
-      } else if (props.styleLevel) {
-        font = FONTS[props.styleLevel];
+      } else if (styleLevel) {
+        font = FONTS[styleLevel];
       }
 
       return (

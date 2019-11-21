@@ -35,13 +35,11 @@ describe('Stateful container', function() {
   test('should provide all needed props to children render func', function() {
     wrapper = mount(<StatefulContainer {...allProps} />);
     const actualProps = childFn.mock.calls[0][0];
-    expect(actualProps).toMatchObject({
-      prop1: allProps.prop1,
-    });
+    expect(actualProps).toMatchObject({value: ''});
   });
 
   test('should provide initial state as part of state', function() {
-    allProps.initialState = {prop3: 'some initial state'};
+    allProps.initialState = {value: 'x'};
     wrapper = mount(<StatefulContainer {...allProps} />);
     const actualProps = childFn.mock.calls[0][0];
     expect(actualProps).toMatchObject(allProps.initialState);
@@ -73,7 +71,7 @@ describe('Stateful container', function() {
         expect(stateReducerMock).toHaveBeenCalledWith(
           type,
           newState,
-          {},
+          {value: ''},
           event,
         );
       },
