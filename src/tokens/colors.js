@@ -9,8 +9,6 @@ import type {ColorTokensT} from './types.js';
 
 const colors: ColorTokensT = {
   white: '#FFFFFF',
-  black: '#000000',
-
   gray50: '#F6F6F6',
   gray100: '#EEEEEE',
   gray200: '#E2E2E2',
@@ -21,6 +19,7 @@ const colors: ColorTokensT = {
   gray700: '#333333',
   gray800: '#1F1F1F',
   gray900: '#141414',
+  black: '#000000',
 
   platinum50: '#F5F7F8',
   platinum100: '#EBF5F7',
@@ -49,14 +48,14 @@ const colors: ColorTokensT = {
   red600: '#7F281E',
   red700: '#541A14',
 
-  green50: '#EFF7F3',
-  green100: '#D7EDE1',
-  green200: '#A8D8BE',
-  green300: '#69BC90',
-  green400: '#3AA76D',
-  green500: '#2C7E52',
-  green600: '#226441',
-  green700: '#17422B',
+  green50: '#F0FAF3',
+  green100: '#CFF3DD',
+  green200: '#9EE2B8',
+  green300: '#43BF75',
+  green400: '#21A453',
+  green500: '#09863D',
+  green600: '#156A36',
+  green700: '#0D4020',
 
   orange50: '#FDF3EE',
   orange100: '#FBE2D6',

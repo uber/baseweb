@@ -6,20 +6,21 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import type {ThemeT} from '../styles/types.js';
-import type {PrimitivesT} from './types.js';
 import deepMerge from '../utils/deep-merge.js';
 import colorTokens from './light-theme/color-tokens.js';
 import getColorComponentTokens from './light-theme/color-component-tokens.js';
 import getDeprecatedSemanticColors from './light-theme/color-deprecated-semantic-tokens.js';
 import getTypography from './shared/typography.js';
+import animation from './shared/animation.js';
 import breakpoints from './shared/breakpoints.js';
+import borders from './shared/borders.js';
+import grid from './shared/grid.js';
+import lighting from './shared/lighting.js';
 import mediaQuery from './shared/media-query.js';
 import sizing from './shared/sizing.js';
-import lighting from './shared/lighting.js';
-import borders from './shared/borders.js';
-import animation from './shared/animation.js';
-import grid from './shared/grid.js';
+
+import type {ThemeT} from '../styles/types.js';
+import type {PrimitivesT} from './types.js';
 
 export default function createTheme(
   // overrides for colorTokens + primatyFontFamily
