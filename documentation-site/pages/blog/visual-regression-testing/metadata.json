@@ -1,0 +1,11 @@
+{
+  "author": "Graham Murdoch",
+  "authorLink": "https://githum.com/sandgraham",
+  "title": "Catching Visual Regressions",
+  "tagline": "Or, How to sleep well at night",
+  "date": "24 November 2019",
+  "coverImage": "https://i.imgur.com/X0jy3lO.png",
+  "coverImageWidth": 600,
+  "coverImageHeight": 383,
+  "keyWords": ["Design System", "Testing", "React", "Jest"]
+}
