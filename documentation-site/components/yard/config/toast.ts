@@ -1,7 +1,7 @@
 import {toaster, ToasterContainer, PLACEMENT} from 'baseui/toast';
 import {Button, SIZE} from 'baseui/button';
 import {Block} from 'baseui/block';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
 const toasterContainerProps = require('!!extract-react-types-loader!../../../../src/toast/toaster.js');
@@ -92,18 +92,20 @@ const toastConfig: TConfig = {
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: ['Root', 'ToastBody', 'ToastInnerContainer', 'ToastCloseIcon'],
-      sharedProps: {
-        $kind: {
-          type: PropTypes.Enum,
-          description: 'Defines the type of notification.',
-        },
-        $closeable: {
-          type: PropTypes.Boolean,
-          description: `When set to true a close button is displayed
+      custom: {
+        names: ['Root', 'ToastBody', 'ToastInnerContainer', 'ToastCloseIcon'],
+        sharedProps: {
+          $kind: {
+            type: PropTypes.Enum,
+            description: 'Defines the type of notification.',
+          },
+          $closeable: {
+            type: PropTypes.Boolean,
+            description: `When set to true a close button is displayed
             and the notification can be dismissed by a user.`,
+          },
         },
       },
     },

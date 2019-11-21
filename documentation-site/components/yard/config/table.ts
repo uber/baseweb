@@ -1,5 +1,5 @@
 import {Table} from 'baseui/table';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
 const tableProps = require('!!extract-react-types-loader!../../../../src/table/table.js');
@@ -41,10 +41,12 @@ const TableConfig: TConfig = {
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: [],
-      sharedProps: {},
+      custom: {
+        names: [],
+        sharedProps: {},
+      },
     },
   },
   mapTokensToProps: {

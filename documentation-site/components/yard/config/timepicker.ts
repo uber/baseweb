@@ -1,5 +1,5 @@
 import {TimePicker} from 'baseui/timepicker';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 import inputConfig from './input';
 import selectConfig from './select';
@@ -65,10 +65,12 @@ const TimepickerConfig: TConfig = {
     positive: inputConfig.props.positive,
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: [],
-      sharedProps: {},
+      custom: {
+        names: [],
+        sharedProps: {},
+      },
     },
   },
   mapTokensToProps: {

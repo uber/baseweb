@@ -1,4 +1,4 @@
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 
 const changeHandlers = {
   onBlur: {
