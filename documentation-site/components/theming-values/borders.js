@@ -19,10 +19,10 @@ const StyledBorderBox = themedStyled<{$border: BorderT}>(
   'div',
   ({$theme, $border = {}}) => {
     return {
+      ...$border,
       marginTop: $theme.sizing.scale200,
       height: $theme.sizing.scale4800,
       backgroundColor: $theme.colors.mono100,
-      ...$border,
     };
   },
 );

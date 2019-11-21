@@ -4,14 +4,15 @@ import {Button} from 'baseui/button';
 import {Drawer, SIZE} from 'baseui/drawer';
 
 export default () => {
-  let initialState = {};
-  for (let size in SIZE) {
-    initialState[size] = false;
-  }
+  const initialState = {
+    auto: false,
+    default: false,
+    full: false,
+  };
   const [isOpen, setIsOpen] = React.useState(initialState);
 
   function close(sizeType) {
-    setIsOpen({...isOpen, [sizeType]: false});
+    setIsOpen({...isOpen, [(sizeType: string)]: false});
   }
 
   return (
@@ -19,7 +20,9 @@ export default () => {
       {Object.keys(SIZE).map(eachSize => (
         <React.Fragment>
           <Button
-            onClick={() => setIsOpen({...isOpen, [eachSize]: true})}
+            onClick={() =>
+              setIsOpen({...isOpen, [(eachSize: string)]: true})
+            }
             overrides={{
               BaseButton: {
                 style: {

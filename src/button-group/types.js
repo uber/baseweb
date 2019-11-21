@@ -65,11 +65,11 @@ export type StatefulPropsT = $Diff<
 // stateful-container
 export type StatefulContainerPropsT = {|
   ...StatefulPropsT,
-  children: (props: {
+  children: (props: {|
     ...$Diff<PropsT, {children: mixed}>,
     onClick: ClickHandlerT,
     selected: number | Array<number>,
-  }) => React.Node,
+  |}) => React.Node,
 |};
 
 export type StateT = {

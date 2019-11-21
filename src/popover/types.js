@@ -180,10 +180,10 @@ export type InnerStylePropsArgT = {};
  * Can't use Intersection types because of https://github.com/facebook/flow/issues/7946
  * export type SharedStylePropsArgT = ArrowStylePropsArgT & BodyStylePropsArgT & InnerStylePropsArgT;
  */
-export type SharedStylePropsArgT = {
+export type SharedStylePropsArgT = {|
   ...$Exact<ArrowStylePropsArgT>,
   ...$Exact<BodyStylePropsArgT>,
-};
+|};
 
 export type AnchorPropsT = {
   'aria-controls'?: string | null,

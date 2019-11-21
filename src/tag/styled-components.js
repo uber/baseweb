@@ -258,21 +258,26 @@ export const Action = styled<SharedPropsArgT>('span', props => {
     }
   }
 
+  const bottomRadiusDirection: string =
+    $theme.direction === 'rtl'
+      ? 'borderBottomLeftRadius'
+      : 'borderBottomRightRadius';
+  const topRadiusDirection: string =
+    $theme.direction === 'rtl' ? 'borderTopLeftRadius' : 'borderTopRightRadius';
+  const marginDirection: string =
+    $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+
   return ({
     alignItems: 'center',
-    [$theme.direction === 'rtl'
-      ? 'borderBottomLeftRadius'
-      : 'borderBottomRightRadius']: $theme.borders.useRoundedCorners
+    [bottomRadiusDirection]: $theme.borders.useRoundedCorners
       ? $theme.borders.radius400
       : 0,
-    [$theme.direction === 'rtl'
-      ? 'borderTopLeftRadius'
-      : 'borderTopRightRadius']: $theme.borders.useRoundedCorners
+    [topRadiusDirection]: $theme.borders.useRoundedCorners
       ? $theme.borders.radius400
       : 0,
     cursor: $disabled ? 'not-allowed' : 'pointer',
     display: 'flex',
-    [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: '8px',
+    [marginDirection]: '8px',
     outline: 'none',
     paddingTop: $variant === VARIANT.outlined ? '5px' : '7px',
     paddingBottom: $variant === VARIANT.outlined ? '5px' : '7px',
@@ -612,6 +617,10 @@ export const Root = styled<SharedPropsArgT>('span', props => {
   const borderRadius = $theme.borders.useRoundedCorners
     ? $theme.borders.radius400
     : 0;
+  const paddingPrefix: string =
+    $theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
+  const paddingSuffix: string =
+    $theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
 
   return ({
     ...font150,
@@ -636,10 +645,8 @@ export const Root = styled<SharedPropsArgT>('span', props => {
     marginRight: '5px',
     paddingTop: scale0,
     paddingBottom: scale0,
-    [$theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft']: scale500,
-    [$theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight']: $closeable
-      ? null
-      : scale500,
+    [paddingPrefix]: scale500,
+    [paddingSuffix]: $closeable ? null : scale500,
     outline: 'none',
     ':hover':
       $disabled || !$clickable

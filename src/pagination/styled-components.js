@@ -14,17 +14,27 @@ export const StyledRoot = styled<{}>('div', ({$theme}) => ({
   ...$theme.typography.font350,
 }));
 
-export const StyledMaxLabel = styled<{}>('span', ({$theme}) => ({
-  [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: $theme.sizing
-    .scale300,
-  [$theme.direction === 'rtl' ? 'marginLeft' : 'marginRight']: $theme.sizing
-    .scale600,
-}));
+export const StyledMaxLabel = styled<{}>('span', ({$theme}) => {
+  const left: string =
+    $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+  const right: string =
+    $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
 
-export const StyledDropdownContainer = styled<{}>('div', ({$theme}) => ({
-  position: 'relative',
-  [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: $theme.sizing
-    .scale600,
-  [$theme.direction === 'rtl' ? 'marginLeft' : 'marginRight']: $theme.sizing
-    .scale300,
-}));
+  return {
+    [left]: $theme.sizing.scale300,
+    [right]: $theme.sizing.scale600,
+  };
+});
+
+export const StyledDropdownContainer = styled<{}>('div', ({$theme}) => {
+  const left: string =
+    $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+  const right: string =
+    $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
+
+  return {
+    position: 'relative',
+    [left]: $theme.sizing.scale600,
+    [right]: $theme.sizing.scale300,
+  };
+});

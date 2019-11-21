@@ -68,7 +68,10 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
   }
   render() {
     const {
-      overrides = {},
+      overrides: {
+        IconWrapper: IconWrapperOverride,
+        ...overrides
+      } = Object.freeze({IconWrapper: null}),
       size = SIZE.default,
       onChange,
       value,
@@ -77,7 +80,7 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
     } = this.props;
 
     const [IconWrapper, iconWrapperProps] = getOverrides(
-      overrides.IconWrapper,
+      IconWrapperOverride,
       StyledIconWrapper,
     );
 
@@ -111,14 +114,15 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
       <ThemeContext.Consumer>
         {theme => (
           <Input
+            {...restProps}
             size={size}
             aria-label={ariaLabel}
             data-baseweb="payment-card-input"
             inputMode="numeric"
-            overrides={{
+            overrides={Object.freeze({
               ...overrides,
               Before: getBeforeComponent(theme),
-            }}
+            })}
             onChange={e => {
               const [position, value] = getCaretPosition(
                 e.target.value,
@@ -131,7 +135,6 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
               onChange && onChange(e);
             }}
             value={addGaps(gaps, value || '')}
-            {...restProps}
           />
         )}
       </ThemeContext.Consumer>

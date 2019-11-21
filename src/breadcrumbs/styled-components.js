@@ -11,24 +11,24 @@ import {styled} from '../styles/index.js';
 
 export const StyledRoot = styled<{}>('nav', ({$theme}) => {
   return {
-    color: $theme.colors.breadcrumbsText,
     ...$theme.typography.font350,
+    color: $theme.colors.breadcrumbsText,
   };
 });
 
 export const StyledList = styled<{}>('ol', ({$theme}) => {
   return {
+    ...$theme.typography.font350,
     listStyleType: 'none',
     margin: 0,
     padding: 0,
-    ...$theme.typography.font350,
   };
 });
 
 export const StyledListItem = styled<{}>('li', ({$theme}) => {
   return {
-    display: 'inline-block',
     ...$theme.typography.font350,
+    display: 'inline-block',
   };
 });
 

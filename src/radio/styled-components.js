@@ -203,12 +203,13 @@ export const Input = styled('input', {
 });
 
 export const Description = styled<StylePropsT>('div', props => {
+  const marginDirection: string =
+    props.$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
   return {
     ...props.$theme.typography.font200,
     color: props.$theme.colors.colorSecondary,
     cursor: 'auto',
-    [props.$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: props
-      .$theme.sizing.scale900,
+    [marginDirection]: props.$theme.sizing.scale900,
     maxWidth: '240px',
   };
 });

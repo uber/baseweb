@@ -65,7 +65,7 @@ class StatefulSliderContainer extends React.Component<
     } = this.props;
     return children({
       ...restProps,
-      ...this.state,
+      value: this.state.value,
       onChange: this.onChange,
       onFinalChange: this.onFinalChange,
     });

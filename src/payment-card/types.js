@@ -13,15 +13,15 @@ import type {
 } from '../input/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 
-export type PaymentCardComponentsT = {
+export type PaymentCardComponentsT = {|
   ...InputComponentsT,
   IconWrapper?: OverrideT<*>,
-};
+|};
 
-export type PaymentCardPropsT = {
+export type PaymentCardPropsT = {|
   ...InputPropsT,
   overrides: PaymentCardComponentsT,
-};
+|};
 
 export type StatefulPaymentCardPropsT = {
   ...StInputPropsDiffT,

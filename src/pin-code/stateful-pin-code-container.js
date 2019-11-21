@@ -45,9 +45,8 @@ export default class StatefulPinCodeContainer extends React.Component<
     const {children, initialState, stateReducer, ...restProps} = this.props;
     return children({
       ...defaultProps,
-      ...restProps,
-      ...this.state,
       onChange: this.handleChange,
+      values: this.state.values,
     });
   }
 }

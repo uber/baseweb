@@ -483,7 +483,7 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
     normalizedOptions.format === NUMERICAL_FORMATS.ACCOUNTING &&
     (options.highlight === null || options.highlight === undefined)
   ) {
-    normalizedOptions.highlight = n => n < 0;
+    normalizedOptions.highlight = (n: number): boolean => n < 0;
   }
 
   return {

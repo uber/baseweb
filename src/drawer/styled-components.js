@@ -9,13 +9,14 @@ import {styled} from '../styles/index.js';
 import {SIZE, SIZE_DIMENSION, ANCHOR} from './constants.js';
 import type {SharedStylePropsArgT, SizePropT, AnchorPropT} from './types.js';
 
-function getSizeStyles($size: SizePropT, $anchor: AnchorPropT) {
-  const styles: {
-    maxWidth: string,
-    maxHeight: string,
-    width: string,
-    height: string,
-  } = {
+type SizeStylesT = {|
+  maxWidth: string,
+  maxHeight: string,
+  width: string,
+  height: string,
+|};
+function getSizeStyles($size: SizePropT, $anchor: AnchorPropT): SizeStylesT {
+  const styles = {
     maxWidth: '100%',
     maxHeight: '100%',
     width: SIZE_DIMENSION.default,
@@ -42,53 +43,65 @@ function getSizeStyles($size: SizePropT, $anchor: AnchorPropT) {
   return styles;
 }
 
-function getAnchorStyles(props: SharedStylePropsArgT) {
+type AnchorStylesT = {|
+  height?: string,
+  maxHeight?: string,
+  width?: string,
+  maxWidth?: string,
+  transform?: string,
+  top?: string | 0,
+  right?: string | 0,
+  bottom?: string | 0,
+  left?: string | 0,
+|};
+
+function getAnchorStyles(props: SharedStylePropsArgT): AnchorStylesT {
   const {$anchor, $isVisible, $size} = props;
   const sizeStyles = getSizeStyles($size, $anchor);
   const {left, right, top, bottom} = ANCHOR;
   switch ($anchor) {
     case right: {
       return {
+        ...sizeStyles,
         transform: $isVisible
           ? 'translateX(0)'
           : `translateX(${sizeStyles.width})`,
         right: $isVisible ? 0 : `-${sizeStyles.width}`,
         top: 0,
-        ...sizeStyles,
       };
     }
     case left: {
       return {
+        ...sizeStyles,
         transform: $isVisible
           ? 'translateX(0)'
           : `translateX(-${sizeStyles.width})`,
         left: $isVisible ? 0 : `-${sizeStyles.width}`,
         top: 0,
-        ...sizeStyles,
       };
     }
     case bottom: {
       return {
+        ...sizeStyles,
         transform: $isVisible
           ? 'translateY(0)'
           : `translateY(${sizeStyles.height})`,
         left: 0,
         bottom: $isVisible ? '0' : `-${sizeStyles.height}`,
-        ...sizeStyles,
       };
     }
     case top: {
       return {
+        ...sizeStyles,
         transform: $isVisible
           ? 'translateY(0)'
           : `translateY(-${sizeStyles.height})`,
         left: 0,
         top: $isVisible ? '0' : `-${sizeStyles.height}`,
-        ...sizeStyles,
       };
     }
     default: {
-      return {};
+      return Object.freeze({});
     }
   }
 }
@@ -171,6 +184,7 @@ export const StyledDrawerBody = styled<SharedStylePropsArgT>('div', props => {
 
 export const StyledClose = styled<SharedStylePropsArgT>('button', props => {
   const {$theme} = props;
+  const direction: string = $theme.direction === 'rtl' ? 'left' : 'right';
   return {
     // Reset button styles
     background: 'transparent',
@@ -198,7 +212,7 @@ export const StyledClose = styled<SharedStylePropsArgT>('button', props => {
     // Positioning
     position: 'absolute',
     top: $theme.sizing.scale500,
-    [$theme.direction === 'rtl' ? 'left' : 'right']: $theme.sizing.scale500,
+    [direction]: $theme.sizing.scale500,
     width: $theme.sizing.scale800,
     height: $theme.sizing.scale800,
     display: 'flex',

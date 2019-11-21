@@ -33,9 +33,9 @@ class Component extends React.Component<ComponentPropsT> {
 
     return (
       <Root
+        {...sharedProps}
         data-baseweb="component"
         onClick={this.props.onClick}
-        {...sharedProps}
         {...getOverrideProps(RootOverride)}
       >
         {children}

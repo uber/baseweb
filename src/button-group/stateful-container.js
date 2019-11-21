@@ -87,8 +87,8 @@ export default class StatefulContainer extends React.Component<
   };
 
   render() {
-    const {initialState, stateReducer, ...props} = this.props;
-    return this.props.children({
+    const {initialState, stateReducer, children, ...props} = this.props;
+    return children({
       ...props,
       onClick: this.onClick,
       selected: this.state.selected,

@@ -13,7 +13,7 @@ function CustomFlag(props: {
   $iso: CountryIsoT,
 }) {
   const {children, ...rest} = props;
-  return <StyledFlag iso={props.$iso} {...rest} />;
+  return <StyledFlag {...rest} iso={props.$iso} />;
 }
 
 export default () => {

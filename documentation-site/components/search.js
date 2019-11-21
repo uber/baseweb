@@ -67,14 +67,14 @@ const IconWrapper = themedStyled<{$inputVisible: boolean}>(
   'div',
   ({$inputVisible, $theme}) => ({
     position: 'absolute',
-    [$theme.direction === 'rtl' ? 'right' : 'left']: $inputVisible
+    [(($theme.direction === 'rtl' ? 'right' : 'left'): string)]: $inputVisible
       ? '12px'
       : '-33px',
     marginTop: $inputVisible ? '4px' : 0,
     height: '32px',
     cursor: 'pointer',
     [$theme.mediaQuery.small]: {
-      [$theme.direction === 'rtl' ? 'right' : 'left']: '12px',
+      [(($theme.direction === 'rtl' ? 'right' : 'left'): string)]: '12px',
       marginTop: '4px',
       cursor: 'inherit',
     },

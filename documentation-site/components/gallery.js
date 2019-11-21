@@ -259,10 +259,10 @@ function Thumbnail({children, href}) {
     >
       <div
         className={useCss({
+          ...theme.borders.border300,
           ...theme.typography.font100,
           fontFamily:
             'SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace',
-          ...theme.borders.border300,
           borderColor: theme.colors.border,
           borderTop: 0,
           borderLeft: 0,

@@ -15,11 +15,13 @@ export const StyledClearIconContainer = styled<{
   $alignTop: boolean,
   $theme: ThemeT,
 }>('div', ({$alignTop = false, $theme}) => {
+  const paddingDirection: string =
+    $theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
+
   return {
     display: 'flex',
     alignItems: $alignTop ? 'flex-start' : 'center',
-    [$theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight']: $theme.sizing
-      .scale500,
+    [paddingDirection]: $theme.sizing.scale500,
     paddingTop: $alignTop ? $theme.sizing.scale500 : '0px',
     color: $theme.colors.foreground,
   };
@@ -75,7 +77,15 @@ export const Root = styled<SharedPropsT>('div', props => {
 
 // InputEnhancer
 
-function getInputEnhancerBorderRadius(position, radius) {
+function getInputEnhancerBorderRadius(
+  position,
+  radius,
+): {|
+  borderTopLeftRadius: string | 0,
+  borderBottomLeftRadius: string | 0,
+  borderTopRightRadius: string | 0,
+  borderBottomRightRadius: string | 0,
+|} {
   return {
     [ENHANCER_POSITION.start]: {
       borderTopLeftRadius: radius,
@@ -92,7 +102,10 @@ function getInputEnhancerBorderRadius(position, radius) {
   }[position];
 }
 
-function getInputEnhancerPadding($size, sizing) {
+function getInputEnhancerPadding(
+  $size,
+  sizing,
+): {|paddingLeft: string, paddingRight: string|} {
   return {
     [SIZE.compact]: {
       paddingRight: sizing.scale400,
@@ -160,6 +173,7 @@ export const InputEnhancer = styled<SharedPropsT>('div', props => {
     $positive,
     $theme: {borders, colors, sizing, typography, animation},
   } = props;
+
   return {
     display: 'flex',
     alignItems: 'center',

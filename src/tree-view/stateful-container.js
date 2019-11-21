@@ -37,11 +37,11 @@ export default class StatefulContainer extends React.Component<
   };
 
   render() {
-    const {children, ...restProps} = this.props;
+    const {children} = this.props;
     const {onToggle} = this;
     return children({
-      ...restProps,
-      ...this.state,
+      overrides: this.props.overrides,
+      data: this.state.data,
       onToggle,
     });
   }

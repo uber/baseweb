@@ -61,8 +61,9 @@ class StatefulRadioGroupContainer extends React.Component<
     } = this.props;
     const {onChange} = this;
     return children({
-      ...restProps,
-      ...this.state,
+      overrides: this.props.overrides,
+      autoFocus: this.props.autoFocus,
+      value: this.state.value,
       onChange,
     });
   }

@@ -20,13 +20,10 @@ export default class PaginationStatefulContainer extends React.Component<
   StatefulContainerStateT,
 > {
   static defaultProps = {
-    initialState: {
-      currentPage: 1,
-    },
     stateReducer: (changeType: *, changes: *) => changes,
   };
 
-  state = {...this.props.initialState};
+  state = {currentPage: 1, ...this.props.initialState};
 
   // Internal set state function that will also invoke stateReducer
   internalSetState(

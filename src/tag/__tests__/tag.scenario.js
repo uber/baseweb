@@ -90,7 +90,8 @@ export const component = () => (
           <Row
             key={kind}
             kind={kind}
-            {...(kind === 'custom' ? {color: '#748ecc'} : {})}
+            // $FlowFixMe
+            color={kind === 'custom' ? '#748ecc' : null}
           />
         ))}
       </tbody>

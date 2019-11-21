@@ -39,10 +39,10 @@ class Spinner extends React.Component<SpinnerPropsT> {
 
     return (
       <Icon
-        data-baseweb="spinner"
-        title="Spinner"
-        viewBox="3 3 18 18"
         {...this.props}
+        data-baseweb="spinner"
+        title={this.props.title || 'Spinner'}
+        viewBox="3 3 18 18"
         overrides={mergedOverrides}
       >
         <TrackPath

@@ -4,14 +4,16 @@ import {Button} from 'baseui/button';
 import {Drawer, ANCHOR} from 'baseui/drawer';
 
 export default () => {
-  let initialState = {};
-  for (let anchor in ANCHOR) {
-    initialState[anchor] = false;
-  }
+  const initialState = {
+    bottom: false,
+    top: false,
+    left: false,
+    right: false,
+  };
   const [isOpen, setIsOpen] = React.useState(initialState);
 
   function close(anchorType) {
-    setIsOpen({...isOpen, [anchorType]: false});
+    setIsOpen({...isOpen, [(anchorType: string)]: false});
   }
 
   return (
@@ -20,7 +22,7 @@ export default () => {
         <React.Fragment>
           <Button
             onClick={() =>
-              setIsOpen({...isOpen, [eachAnchor]: true})
+              setIsOpen({...isOpen, [(eachAnchor: string)]: true})
             }
             overrides={{
               BaseButton: {

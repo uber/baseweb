@@ -43,10 +43,10 @@ export const AspectRatioBox = ({
   const blockOverrides = mergeOverrides(aspectRatioBoxOverrides, overrides);
   return (
     <Block
+      {...restProps}
       overrides={blockOverrides}
       $aspectRatio={aspectRatio}
       data-baseweb="aspect-ratio-box"
-      {...restProps}
     />
   );
 };

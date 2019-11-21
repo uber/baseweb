@@ -23,7 +23,7 @@ class Tooltip extends React.Component<TooltipPropsT> {
   };
 
   render() {
-    const overrides = mergeOverrides(
+    const overrides = mergeOverrides<any>(
       {
         Arrow: StyledArrow,
         Body: StyledBody,

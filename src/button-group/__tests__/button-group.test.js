@@ -15,6 +15,7 @@ import {ButtonGroupRoot as ButtonGroup} from '../button-group.js';
 
 function buildSimpleWrapper(props = {}) {
   return shallow(
+    // $FlowFixMe
     <ButtonGroup {...props}>
       <Button />
       <Button />

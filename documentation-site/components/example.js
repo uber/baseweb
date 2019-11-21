@@ -93,13 +93,13 @@ class Example extends React.Component<PropsT, StateT> {
         trackEvent('codesandbox_deployed_error', this.props.title);
       },
       dependencies: {
+        ...this.props.additionalPackages,
         baseui: version,
         react: '16.8.6',
         'react-dom': '16.8.6',
         'react-scripts': '3.0.1',
         'styletron-engine-atomic': '1.4.0',
         'styletron-react': '5.2.0',
-        ...this.props.additionalPackages,
       },
       children: () => (
         <Link>

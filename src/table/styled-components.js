@@ -29,10 +29,10 @@ const StyledTableElement = styled<{}>('div', ({$theme}) => {
 export const StyledTable = ((React.forwardRef<{}, any>((props, ref) => {
   return (
     <StyledTableElement
+      {...props}
       ref={ref}
       data-baseweb="table-custom"
       role="grid"
-      {...props}
     />
   );
   // eslint-disable-next-line flowtype/no-weak-types
@@ -60,7 +60,7 @@ const StyledHeadElement = styled<HorizontalStyleProps>(
 
 // eslint-disable-next-line flowtype/no-weak-types
 export const StyledHead = ((React.forwardRef<HorizontalStyleProps, any>(
-  (props, ref) => <StyledHeadElement ref={ref} role="row" {...props} />,
+  (props, ref) => <StyledHeadElement {...props} ref={ref} role="row" />,
   // eslint-disable-next-line flowtype/no-weak-types
 ): any): StyletronComponent<HorizontalStyleProps>);
 StyledHead.__STYLETRON__ = StyledHeadElement.__STYLETRON__;
@@ -70,8 +70,8 @@ const StyledHeadCellElement = styled<HorizontalStyleProps>(
   'div',
   ({$theme, $cursor}) => {
     return {
-      ...$theme.typography.font350,
       ...$theme.borders.border300,
+      ...$theme.typography.font350,
       borderTop: 'none',
       borderBottom: 'none',
       borderLeft: 'none',
@@ -93,7 +93,7 @@ const StyledHeadCellElement = styled<HorizontalStyleProps>(
 
 // eslint-disable-next-line flowtype/no-weak-types
 export const StyledHeadCell = ((React.forwardRef<{}, any>((props, ref) => (
-  <StyledHeadCellElement ref={ref} role="columnheader" {...props} />
+  <StyledHeadCellElement {...props} ref={ref} role="columnheader" />
   // eslint-disable-next-line flowtype/no-weak-types
 )): any): StyletronComponent<{}>);
 StyledHeadCell.__STYLETRON__ = StyledHeadCellElement.__STYLETRON__;
@@ -128,7 +128,7 @@ const StyledBodyElement = styled<HorizontalStyleProps>('div', ({$width}) => {
 
 // eslint-disable-next-line flowtype/no-weak-types
 export const StyledBody = ((React.forwardRef<HorizontalStyleProps, any>(
-  (props, ref) => <StyledBodyElement ref={ref} role="rowgroup" {...props} />,
+  (props, ref) => <StyledBodyElement {...props} ref={ref} role="rowgroup" />,
   // eslint-disable-next-line flowtype/no-weak-types
 ): any): StyletronComponent<HorizontalStyleProps>);
 StyledBody.__STYLETRON__ = StyledBodyElement.__STYLETRON__;
@@ -141,7 +141,7 @@ const StyledRowElement = styled('div', {
 
 // eslint-disable-next-line flowtype/no-weak-types
 export const StyledRow = ((React.forwardRef<{}, any>((props, ref) => (
-  <StyledRowElement ref={ref} role="row" {...props} />
+  <StyledRowElement {...props} ref={ref} role="row" />
   // eslint-disable-next-line flowtype/no-weak-types
 )): any): StyletronComponent<{}>);
 StyledRow.__STYLETRON__ = StyledRowElement.__STYLETRON__;
@@ -168,7 +168,7 @@ const StyledCellElement = styled<CellStyledProps>(
 
 // eslint-disable-next-line flowtype/no-weak-types
 export const StyledCell = ((React.forwardRef<CellStyledProps, any>(
-  (props, ref) => <StyledCellElement ref={ref} role="gridcell" {...props} />,
+  (props, ref) => <StyledCellElement {...props} ref={ref} role="gridcell" />,
   // eslint-disable-next-line flowtype/no-weak-types
 ): any): StyletronComponent<CellStyledProps>);
 StyledCell.__STYLETRON__ = StyledCellElement.__STYLETRON__;

@@ -11,20 +11,14 @@ import * as React from 'react';
 import Block from '../block/block.js';
 import type {BlockPropsT} from '../block/types.js';
 
-export const AspectRatioBoxBody = ({
-  position,
-  top,
-  bottom,
-  width,
-  ...restProps
-}: BlockPropsT): React.Node => (
+export const AspectRatioBoxBody = (props: BlockPropsT): React.Node => (
   <Block
+    {...props}
     data-baseweb="aspect-ratio-box-body"
-    position={position || 'absolute'}
-    top={top || 0}
-    bottom={bottom || 0}
-    width={width || '100%'}
-    {...restProps}
+    position={props.position || 'absolute'}
+    top={props.top || 0}
+    bottom={props.bottom || 0}
+    width={props.width || '100%'}
   />
 );
 

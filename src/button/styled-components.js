@@ -41,17 +41,23 @@ export const BaseButton = styled<SharedStylePropsT>(
   }),
 );
 
-export const EndEnhancer = styled<SharedStylePropsT>('div', ({$theme}) => ({
-  display: 'flex',
-  [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: $theme.sizing
-    .scale500,
-}));
+export const EndEnhancer = styled<SharedStylePropsT>('div', ({$theme}) => {
+  const marginDirection: string =
+    $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+  return {
+    display: 'flex',
+    [marginDirection]: $theme.sizing.scale500,
+  };
+});
 
-export const StartEnhancer = styled<SharedStylePropsT>('div', ({$theme}) => ({
-  display: 'flex',
-  [$theme.direction === 'rtl' ? 'marginLeft' : 'marginRight']: $theme.sizing
-    .scale500,
-}));
+export const StartEnhancer = styled<SharedStylePropsT>('div', ({$theme}) => {
+  const marginDirection: string =
+    $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+  return {
+    display: 'flex',
+    [marginDirection]: $theme.sizing.scale500,
+  };
+});
 
 export const LoadingSpinnerContainer = styled('div', {
   // To center within parent
@@ -203,9 +209,29 @@ function getPaddingStyles({$theme, $size, $shape}) {
   }
 }
 
-function getKindStyles({$theme, $isLoading, $isSelected, $kind, $disabled}) {
+type KindStylesT = {|
+  color?: string,
+  backgroundColor?: string,
+  ':hover'?: {
+    backgroundColor: string,
+  },
+  ':focus'?: {
+    backgroundColor: string,
+  },
+  ':active'?: {
+    backgroundColor: string,
+  },
+|};
+
+function getKindStyles({
+  $theme,
+  $isLoading,
+  $isSelected,
+  $kind,
+  $disabled,
+}): KindStylesT {
   if ($disabled) {
-    return {};
+    return Object.freeze({});
   }
   switch ($kind) {
     case KIND.primary:
@@ -305,6 +331,6 @@ function getKindStyles({$theme, $isLoading, $isSelected, $kind, $disabled}) {
         },
       };
     default:
-      return {};
+      return Object.freeze({});
   }
 }

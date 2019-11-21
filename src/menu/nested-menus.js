@@ -10,12 +10,12 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 type Ref = {current: HTMLElement | null};
-type ContextT = {
+type ContextT = {|
   addMenuToNesting: (ref: Ref) => void,
   removeMenuFromNesting: (ref: Ref) => void,
   getParentMenu: (ref: Ref) => ?Ref,
   getChildMenu: (ref: Ref) => ?Ref,
-};
+|};
 type StateT = {
   menus: Ref[],
 };

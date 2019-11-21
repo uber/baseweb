@@ -49,7 +49,7 @@ export type ProfileOverridesT = {
   ProfileBody?: OverrideT<*>,
 };
 
-export type RenderItemPropsT = {
+export type RenderItemPropsT = {|
   disabled?: boolean,
   ref?: React$ElementRef<*>,
   id?: ?string,
@@ -57,7 +57,14 @@ export type RenderItemPropsT = {
   // indicates when the item is visually focused
   isHighlighted?: boolean,
   resetMenu?: () => mixed,
-};
+  onClick?: (
+    activedescendantId: ?string,
+    index: number,
+    item: *,
+    event?: SyntheticMouseEvent<HTMLElement>,
+  ) => void,
+  onMouseEnter?: (?string, number) => void,
+|};
 
 export type GetRequiredItemPropsFnT = (
   item: ItemT,
@@ -90,10 +97,14 @@ export type InitialStateT = {
   isFocused?: boolean,
 };
 
-export type RenderPropsT = StatefulContainerStateT & {
+export type RenderPropsT = {|
+  ...StatefulContainerStateT,
   items: ItemsT,
   getRequiredItemProps: GetRequiredItemPropsFnT,
-};
+  focusMenu: (event: FocusEvent | MouseEvent | KeyboardEvent) => void,
+  unfocusMenu: () => void,
+  rootRef: RootRefT,
+|};
 
 /**
  * Component Prop Types

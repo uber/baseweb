@@ -71,6 +71,6 @@ export type StatefulContainerPropsT = {
   onPageChange?: $PropertyType<CallbacksT, 'onPageChange'>,
 };
 
-export type StatefulContainerStateT = {
+export type StatefulContainerStateT = {|
   currentPage: number,
-};
+|};

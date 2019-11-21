@@ -26,7 +26,12 @@ export const flexGridItemMediaQueryStyle = ({
   flexGridColumnCount: number,
   flexGridColumnGap: ScaleT,
   flexGridRowGap: ScaleT,
-}): StyleOverrideT => {
+}): {|
+  marginLeft?: string | number,
+  marginRight?: string | number,
+  marginBottom?: string | number,
+  width: string,
+|} => {
   const colCount = flexGridColumnCount;
   const nthChild = colCount === 1 ? 'n' : colCount + 'n';
   // 0px needed for calc() to behave properly
@@ -37,12 +42,12 @@ export const flexGridItemMediaQueryStyle = ({
   const rowGapQuantity = parseFloat(rowGap);
   const widthCalc = `(100% - ${(colCount - 1) *
     colGapQuantity}${colGapUnit}) / ${colCount}`;
-  const marginDirection =
+  const marginDirection: string =
     $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
-  return {
+
+  return Object.freeze({
     // Subtract .5px to avoid rounding issues on IE/Edge
     // See https://github.com/uber/baseweb/pull/1748
-    width: `calc(${widthCalc} - .5px)`,
     ...[...Array(colCount).keys()].reduce((acc, i) => {
       const nthChildOffset = i === 0 ? '' : '-' + i;
       return {
@@ -73,7 +78,8 @@ export const flexGridItemMediaQueryStyle = ({
         ),
       };
     }, {}),
-  };
+    width: `calc(${widthCalc} - .5px)`,
+  });
 };
 
 export const getResponsiveValue = <T>(
@@ -173,13 +179,13 @@ const FlexGridItem = ({
     : flexGridItemOverrides;
   return (
     <Block
+      {...restProps}
       as={as}
       overrides={blockOverrides}
       $flexGridColumnCount={flexGridColumnCount}
       $flexGridColumnGap={flexGridColumnGap}
       $flexGridRowGap={flexGridRowGap}
       data-baseweb="flex-grid-item"
-      {...restProps}
     >
       {children}
     </Block>

@@ -81,32 +81,38 @@ export const Item = styled<SharedStylePropsArgT>(
 );
 List.displayName = 'StyledItem';
 
-export const DragHandle = styled<SharedStylePropsArgT>('div', ({$theme}) => ({
-  [$theme.direction === 'rtl' ? 'marginLeft' : 'marginRight']: $theme.sizing
-    .scale600,
-  width: $theme.sizing.scale800,
-  display: 'flex',
-  alignItems: 'center',
-}));
+export const DragHandle = styled<SharedStylePropsArgT>('div', ({$theme}) => {
+  const marginDirection: string =
+    $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
+  return {
+    [marginDirection]: $theme.sizing.scale600,
+    width: $theme.sizing.scale800,
+    display: 'flex',
+    alignItems: 'center',
+  };
+});
 DragHandle.displayName = 'StyledDragHandle';
 
 export const CloseHandle = styled<SharedStylePropsArgT>(
   'button',
-  ({$theme}) => ({
-    border: 'none',
-    paddingTop: 0,
-    paddingBottom: 0,
-    paddingLeft: 0,
-    paddingRight: 0,
-    overflow: 'visible',
-    cursor: 'pointer',
-    backgroundColor: 'transparent',
-    [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: $theme.sizing
-      .scale600,
-    width: $theme.sizing.scale800,
-    display: 'flex',
-    alignItems: 'center',
-  }),
+  ({$theme}) => {
+    const marginDirection: string =
+      $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+    return {
+      border: 'none',
+      paddingTop: 0,
+      paddingBottom: 0,
+      paddingLeft: 0,
+      paddingRight: 0,
+      overflow: 'visible',
+      cursor: 'pointer',
+      backgroundColor: 'transparent',
+      [marginDirection]: $theme.sizing.scale600,
+      width: $theme.sizing.scale800,
+      display: 'flex',
+      alignItems: 'center',
+    };
+  },
 );
 CloseHandle.displayName = 'StyledCloseHandle';
 

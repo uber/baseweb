@@ -99,7 +99,7 @@ export function toObjectOverride<T>(
 export function getOverrides(
   override: any,
   defaultComponent: React.ComponentType<any>,
-): [React.ComponentType<any>, {}] {
+): [React.ComponentType<any>, any] {
   const component = getOverride(override) || defaultComponent;
   const props = getOverrideProps(override);
   return [component, props];
@@ -115,6 +115,8 @@ export function mergeOverrides<T>(
   target?: OverridesT<T> = {},
   source?: OverridesT<T> = {},
 ): OverridesT<T> {
+  // thank you flow, but we do want to purposely overwrite properties from target
+  // $FlowFixMe
   const allIdentifiers = Object.keys({...target, ...source});
   return allIdentifiers.reduce((acc, name) => {
     acc[name] = mergeOverride(

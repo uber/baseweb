@@ -20,10 +20,10 @@ export const BaseFlexGrid = ({
   ...restProps
 }: BlockPropsT) => (
   <Block
+    {...restProps}
     display={display || 'flex'}
     flexWrap={flexWrap || flexWrap === false ? flexWrap : true}
     data-baseweb="flex-grid"
-    {...restProps}
   />
 );
 

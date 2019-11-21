@@ -112,11 +112,12 @@ export const StyledMonthYearSelectButton = styled<{}>('button', props => {
 });
 
 export const StyledMonthYearSelectIconContainer = styled<{}>('span', props => {
+  const marginDirection: string =
+    props.$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
   return {
     alignItems: 'center',
     display: 'flex',
-    [props.$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: props
-      .$theme.sizing.scale500,
+    [marginDirection]: props.$theme.sizing.scale500,
   };
 });
 
@@ -180,7 +181,7 @@ export const StyledWeek = styled<SharedStylePropsT>('div', props => {
   };
 });
 
-function generateDayStyles(defaultCode, defaultStyle) {
+function generateDayStyles(defaultCode: string, defaultStyle) {
   const codeForSM =
     defaultCode.substr(0, 12) + '1' + defaultCode.substr(12 + 1);
   const codeForEM =

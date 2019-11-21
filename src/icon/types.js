@@ -30,4 +30,5 @@ export type IconPropsT = {
   /** Allows you to set the SVG `<title>` label, which is used for accessibility */
   title?: string,
   overrides?: OverridesT,
+  viewBox?: string,
 };

@@ -30,12 +30,12 @@ const FixedSizeListItem = ({
   const {item, overrides, ...restChildProps} = data[index].props;
   return (
     <ListItem
+      {...restChildProps}
       key={item.id}
       style={{
-        boxSizing: 'border-box',
         ...style,
+        boxSizing: 'border-box',
       }}
-      {...restChildProps}
     >
       {item.id}
     </ListItem>

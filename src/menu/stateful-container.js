@@ -187,8 +187,9 @@ export default class MenuStatefulContainer extends React.Component<
     activedescendantId: ?string,
     index: number,
     item: *,
-    event: SyntheticMouseEvent<HTMLElement>,
+    event?: SyntheticMouseEvent<HTMLElement>,
   ) => {
+    console.log(activedescendantId, index, item, event);
     if (this.props.onItemSelect && !item.disabled) {
       this.props.onItemSelect({item, event});
       this.internalSetState(STATE_CHANGE_TYPES.click, {
@@ -226,12 +227,15 @@ export default class MenuStatefulContainer extends React.Component<
       isHighlighted: this.state.highlightedIndex === index,
       // binds so that in-line functions can be avoided. this is to ensure
       // referential equality when option-list compares props in memoized compoent
+      // flow fails to detect the bind allowing for partial application of the function
+      // arguments. it errors on event not being a string like the first argument.
+      // $FlowFixMe
       onClick: this.handleItemClick.bind(this, activedescendantId, index, item),
       onMouseEnter: this.handleMouseEnter.bind(this, activedescendantId, index),
       resetMenu: this.resetMenu,
       ...(this.state.highlightedIndex === index
         ? {id: activedescendantId}
-        : {}),
+        : Object.freeze({})),
       ...requiredItemProps,
     };
   };
@@ -284,7 +288,7 @@ export default class MenuStatefulContainer extends React.Component<
       ...restProps
     } = this.props;
     return this.props.children(
-      ({
+      Object.freeze({
         ...restProps,
         rootRef: this.props.rootRef ? this.props.rootRef : this.rootRef,
         activedescendantId: this.state.activedescendantId,
@@ -293,7 +297,7 @@ export default class MenuStatefulContainer extends React.Component<
         isFocused: this.state.isFocused,
         focusMenu: this.focusMenu,
         unfocusMenu: this.unfocusMenu,
-      }: RenderPropsT),
+      }),
     );
   }
 }

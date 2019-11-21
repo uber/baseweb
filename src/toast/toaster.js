@@ -227,7 +227,7 @@ const toaster = {
     // no SSR for the `toaster.show()`
     const toasterInstance = this.getRef();
     if (toasterInstance) {
-      return toasterInstance.show({children, ...props});
+      return toasterInstance.show({...props, children});
     } else if (__DEV__) {
       throw new Error('Can not add any toasts until Toaster is mounted!');
     }
