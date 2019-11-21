@@ -10,7 +10,7 @@ import type {ColorTokensT, DeprecatedSemanticColorTokensT} from '../types.js';
 
 /* ---- DEPRECATED ---- */
 export default (
-  primitives: ColorTokensT = colorTokens,
+  themePrimitives: ColorTokensT = colorTokens,
 ): DeprecatedSemanticColorTokensT => ({
   // TODO(#2318) Remove Legacy Semantic Colors values in the next major
   // since it's not used in the component specific tokens
@@ -19,21 +19,21 @@ export default (
   /* ---- Legacy Semantic Colors ---- */
 
   // Font Color
-  colorPrimary: primitives.black,
-  colorSecondary: primitives.mono800,
+  colorPrimary: themePrimitives.black,
+  colorSecondary: themePrimitives.mono800,
   // Background
-  background: primitives.white,
-  backgroundAlt: primitives.white,
-  backgroundInv: primitives.primary,
+  background: themePrimitives.white,
+  backgroundAlt: themePrimitives.white,
+  backgroundInv: themePrimitives.primary,
   // Foreground
-  foreground: primitives.black,
-  foregroundAlt: primitives.mono800,
-  foregroundInv: primitives.white,
+  foreground: themePrimitives.black,
+  foregroundAlt: themePrimitives.mono800,
+  foregroundInv: themePrimitives.white,
   // Borders
-  border: primitives.mono500,
-  borderAlt: primitives.mono600,
-  borderFocus: primitives.primary,
-  borderError: primitives.negative,
+  border: themePrimitives.mono500,
+  borderAlt: themePrimitives.mono600,
+  borderFocus: themePrimitives.primary,
+  borderError: themePrimitives.negative,
   // Shadow
   shadowFocus: 'rgba(39, 110, 241, 0.32)',
   shadowError: 'rgba(229, 73, 55, 0.32)',

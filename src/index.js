@@ -13,6 +13,7 @@ export {
   createThemedWithStyle,
   createThemedUseStyletron,
   ThemeProvider,
+  ThemeConsumer,
 } from './styles/index.js';
 export {
   createTheme,
