@@ -1,5 +1,5 @@
 import {parseOverrides} from '../custom-props';
-import {toggleOverrideSharedProps} from '../override';
+import {toggleOverrideSharedProps} from '../ast';
 
 describe('parseOverrides', () => {
   test('get overrides active state and value', () => {

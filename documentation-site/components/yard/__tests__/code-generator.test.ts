@@ -1,5 +1,6 @@
-import {getAstPropValue, getCode} from '../../code-generator';
-import {PropTypes} from '../../const';
+//@ts-ignore
+import {getAstPropValue, getCode} from 'react-view/dist/lib/code-generator';
+import {PropTypes} from 'react-view';
 import generate from '@babel/generator';
 import {customProps} from '../custom-props';
 import {generate as generateThemeWrapper, getProvider} from '../provider';
