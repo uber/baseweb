@@ -32,6 +32,7 @@ export interface SharedStylePropsArg {
   $size?: SIZE[keyof SIZE];
   $role?: ROLE[keyof ROLE];
   $closeable?: boolean;
+  $unstable_ModalBackdropScroll?: boolean;
 }
 
 export interface ModalOverrides {
@@ -53,6 +54,7 @@ export interface ModalProps {
   overrides?: ModalOverrides;
   role?: ROLE[keyof ROLE];
   size?: SIZE[keyof SIZE];
+  unstable_ModalBackdropScroll?: boolean;
 }
 export interface ModalState {
   isVisible: boolean;
