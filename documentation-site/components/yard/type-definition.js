@@ -365,20 +365,45 @@ function TypeDefinition(props) {
 
   let name = '';
   let value = null;
+  let definition = '';
+  let errored = false;
 
-  if (props.type.component.value.name === '$Shape') {
-    value = props.type.component.typeParams.params[0];
-    name = value.value.referenceIdName;
-  } else {
-    value = props.type.component.value;
-    name = value.referenceIdName;
+  try {
+    if (props.type.component.value.name === '$Shape') {
+      value = props.type.component.typeParams.params[0];
+      name = value.value.referenceIdName;
+    } else {
+      value = props.type.component.value;
+      name = value.referenceIdName;
+    }
+
+    const proptypes = getPropTypes(value).map(property => {
+      return convert(property, true);
+    });
+
+    definition = formatCode(`type ${name} = {` + proptypes.join(',') + '}');
+  } catch (e) {
+    errored = true;
   }
 
-  const proptypes = getPropTypes(value).map(property => {
-    return convert(property, true);
-  });
-
-  const definition = formatCode(`type ${name} = {` + proptypes.join(',') + '}');
+  if (errored) {
+    return (
+      <div
+        className={css({
+          paddingLeft: theme.sizing.scale700,
+          paddingRight: theme.sizing.scale700,
+        })}
+      >
+        <p>
+          extract-react-types is not being run in dev mode for speed reasons. If
+          you need to see prop types, run:
+        </p>
+        <p>
+          <code>FORCE_EXTRACT_REACT_TYPES=true yarn documentation:dev</code>
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div

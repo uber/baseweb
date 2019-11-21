@@ -24,13 +24,8 @@ import ActionButtons from './action-buttons';
 import Knobs from './knobs';
 import {YardTabs, YardTab} from './styled-components';
 import {countProps, countOverrides, countThemeValues} from './utils';
-import {TConfig} from './types';
-
-type TYardProps = TConfig & {
-  componentName: string;
-  placeholderHeight: number;
-  queryStringName?: string;
-};
+import PropsTooltip from './props-tooltip';
+import {TYardProps} from './types';
 
 const Yard: React.FC<TYardProps> = ({
   componentName,
@@ -40,7 +35,7 @@ const Yard: React.FC<TYardProps> = ({
   theme,
   imports,
   queryStringName,
-  //mapTokensToProps
+  mapTokensToProps,
 }) => {
   const [css, baseTheme] = useStyletron();
   const componentTheme = getThemeFromContext(baseTheme, theme);
@@ -140,7 +135,21 @@ const Yard: React.FC<TYardProps> = ({
           </YardTab>
         )}
       </YardTabs>
-      <Editor {...params.editorProps} />
+      <Editor
+        {...params.editorProps}
+        transformToken={tokenProps => {
+          const token = tokenProps.children.trim();
+          if (mapTokensToProps && mapTokensToProps[token]) {
+            return (
+              <PropsTooltip
+                {...tokenProps}
+                typeDefinition={mapTokensToProps[token]}
+              />
+            );
+          }
+          return <span {...tokenProps} />;
+        }}
+      />
       <Error {...params.errorProps} />
       <ActionButtons
         {...params.actions}

@@ -7,3 +7,10 @@ export type TConfig = {
   imports: TImportsConfig;
   mapTokensToProps?: {[key: string]: any};
 };
+
+export type TYardProps = TConfig & {
+  componentName: string;
+  placeholderHeight: number;
+  queryStringName?: string;
+  mapTokensToProps?: {[key: string]: any};
+};
