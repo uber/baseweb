@@ -13,7 +13,7 @@ export function parseOverrides(code: string, names: string[]) {
   const resultOverrides: any = {};
   try {
     // to make the AST root valid, let's add a const definition
-    const ast: any = parse(`const foo = ${code};`);
+    const ast = parse(`const foo = ${code};`);
     traverse(ast, {
       ObjectProperty(path) {
         const propertyName = path.node.key.name;

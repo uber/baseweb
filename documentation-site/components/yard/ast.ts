@@ -6,7 +6,7 @@ import {parse} from 'react-view';
 export function toggleOverrideSharedProps(code: string, sharedProps: string[]) {
   let result: string = '';
   try {
-    const ast = parse(code) as any;
+    const ast = parse(code);
     traverse(ast, {
       ArrowFunctionExpression(path) {
         if (result !== '') return;
@@ -54,7 +54,7 @@ export function toggleOverrideSharedProps(code: string, sharedProps: string[]) {
             ]),
           ];
         }
-        result = generate(path.node as any).code;
+        result = generate(path.node).code;
       },
     });
   } catch (e) {
