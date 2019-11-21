@@ -190,7 +190,6 @@ export default class MenuStatefulContainer extends React.Component<
     item: *,
     event?: SyntheticMouseEvent<HTMLElement>,
   ) => {
-    console.log(activedescendantId, index, item, event);
     if (this.props.onItemSelect && !item.disabled) {
       this.props.onItemSelect({item, event});
       this.internalSetState(STATE_CHANGE_TYPES.click, {
