@@ -60,6 +60,9 @@ export default class StatefulPhoneInputContainer extends React.Component<
     const {children, initialState, stateReducer, ...restProps} = this.props;
     return children({
       ...defaultProps,
+      // It's fine, we want to overwrite values from defaultProps
+      // $FlowFixMe
+      ...restProps,
       country: this.state.country,
       text: this.state.text,
       onTextChange: this.onTextChange,
