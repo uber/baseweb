@@ -47,17 +47,34 @@ class StatefulRadioGroupContainer extends React.Component<
     if (type === STATE_TYPE.change) {
       nextState = {value: e.target.value};
     }
-    const newState = stateReducer(type, nextState, this.state, e);
-    this.setState(newState);
+
+    if (stateReducer) {
+      const newState = stateReducer(type, nextState, this.state, e);
+      this.setState(newState);
+    } else {
+      this.setState(nextState);
+    }
   };
 
   render() {
     const {children = childProps => null} = this.props;
     return children({
-      overrides: this.props.overrides,
-      autoFocus: this.props.autoFocus,
       value: this.state.value,
+      ['aria-label']: this.props['aria-label'],
+      ['aria-labelledby']: this.props['aria-labelledby'],
+      autoFocus: this.props.autoFocus,
+      overrides: this.props.overrides,
+      name: this.props.name,
+      disabled: this.props.disabled,
+      labelPlacement: this.props.labelPlacement,
+      align: this.props.align,
+      isError: this.props.isError,
+      required: this.props.required,
       onChange: this.onChange,
+      onMouseEnter: this.props.onMouseEnter,
+      onMouseLeave: this.props.onMouseLeave,
+      onFocus: this.props.onFocus,
+      onBlur: this.props.onBlur,
     });
   }
 }

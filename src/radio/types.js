@@ -157,23 +157,29 @@ export type StatefulContainerPropsT = {
   /** Initial state populated into the component */
   initialState?: StateT,
   /** Reducer function to manipulate internal state updates. */
-  stateReducer: StateReducerT,
+  stateReducer?: StateReducerT,
   /** Handler for change events on trigger element. */
   onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Set to be focused (active) on selected\checked radio. */
   autoFocus?: boolean,
+  /** Passed to the input element name attribute */
+  name?: string,
+  disabled?: boolean,
+  labelPlacement?: LabelPlacementT,
+  align?: AlignT,
+  isError?: boolean,
+  required?: boolean,
+  onMouseEnter?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  onMouseLeave?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  onFocus?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  onBlur?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  'aria-label'?: string,
+  'aria-labelledby'?: string,
 };
 
 export type StatefulRadioGroupPropsT = {
-  overrides?: OverridesT,
-  /** A list of `Radio` components. */
+  ...StatefulContainerPropsT,
   children?: Array<React.Node>,
-  /** Initial state populated into the component */
-  initialState?: StateT,
-  /** Set to be focused (active) on selected\checked radio. */
-  autoFocus?: boolean,
-  /** Handler for change events on trigger element. */
-  onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
 };
 
 export type StylePropsT = {
