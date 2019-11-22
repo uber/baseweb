@@ -1,5 +1,5 @@
 import {Unstable_Table} from 'baseui/table-semantic';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
 const TableSemanticConfig: TConfig = {
@@ -35,23 +35,25 @@ const TableSemanticConfig: TConfig = {
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: [
-        'Root',
-        'Table',
-        'TableHead',
-        'TableHeadRow',
-        'TableHeadCell',
-        'TableHeadCellSortable',
-        'TableBody',
-        'TableBodyRow',
-        'TableBodyCell',
-        'SortAscIcon',
-        'SortDescIcon',
-        'SortNoneIcon',
-      ],
-      sharedProps: {},
+      custom: {
+        names: [
+          'Root',
+          'Table',
+          'TableHead',
+          'TableHeadRow',
+          'TableHeadCell',
+          'TableHeadCellSortable',
+          'TableBody',
+          'TableBodyRow',
+          'TableBodyCell',
+          'SortAscIcon',
+          'SortDescIcon',
+          'SortNoneIcon',
+        ],
+        sharedProps: {},
+      },
     },
   },
 };

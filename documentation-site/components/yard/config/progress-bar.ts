@@ -1,5 +1,5 @@
 import {ProgressBar} from 'baseui/progress-bar';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
 const progressBarProps = require('!!extract-react-types-loader!../../../../src/progress-bar/progressbar.js');
@@ -40,12 +40,14 @@ const ProgressBarConfig: TConfig = {
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: ['Bar', 'BarProgress', 'Label', 'Root'],
-      sharedProps: {
-        $successValue: 'successValue',
-        $value: 'value',
+      custom: {
+        names: ['Bar', 'BarProgress', 'Label', 'Root'],
+        sharedProps: {
+          $successValue: 'successValue',
+          $value: 'value',
+        },
       },
     },
   },

@@ -1,5 +1,5 @@
 import {Spinner} from 'baseui/spinner';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
 const spinnerProps = require('!!extract-react-types-loader!../../../../src/spinner/spinner.js');
@@ -34,10 +34,12 @@ const SpinnerConfig: TConfig = {
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: ['ActivePath', 'Svg', 'TrackPath'],
-      sharedProps: {},
+      custom: {
+        names: ['ActivePath', 'Svg', 'TrackPath'],
+        sharedProps: {},
+      },
     },
   },
   mapTokensToProps: {

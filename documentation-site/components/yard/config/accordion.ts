@@ -1,5 +1,5 @@
 import {Accordion, Panel} from 'baseui/accordion';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
 const accordionProps = require('!!extract-react-types-loader!../../../../src/accordion/accordion.js');
@@ -43,11 +43,13 @@ const AccordionConfig: TConfig = {
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: ['Content', 'Header', 'PanelContainer', 'Root', 'ToggleIcon'],
-      sharedProps: {
-        $disabled: 'disabled',
+      custom: {
+        names: ['Content', 'Header', 'PanelContainer', 'Root', 'ToggleIcon'],
+        sharedProps: {
+          $disabled: 'disabled',
+        },
       },
     },
   },
