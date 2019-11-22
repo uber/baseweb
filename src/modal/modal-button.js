@@ -15,7 +15,9 @@ import {mergeOverrides} from '../helpers/overrides.js';
 const overrides = {
   BaseButton: {
     style: ({$theme}) => ({
-      marginLeft: $theme.sizing.scale500,
+      ':nth-last-child(n+2)': {
+        marginRight: $theme.sizing.scale500,
+      },
     }),
   },
 };
