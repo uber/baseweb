@@ -220,14 +220,14 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
       sharedProps.$selected
         ? sharedProps.$range
           ? sharedProps.$startDate
-            ? localeContext.datepicker.selectedStartDate
-            : localeContext.datepicker.selectedEndDate
-          : localeContext.datepicker.selected
+            ? localeContext.datepicker.selectedStartDateLabel
+            : localeContext.datepicker.selectedEndDateLabel
+          : localeContext.datepicker.selectedLabel
         : sharedProps.$disabled
-        ? localeContext.datepicker.notAvailable
-        : localeContext.datepicker.choose
+        ? localeContext.datepicker.dateNotAvailableLabel
+        : localeContext.datepicker.chooseLabel
     } ${formatDate(date, 'EEEE, MMMM do yyyy', locale)}. ${
-      !sharedProps.$disabled ? localeContext.datepicker.available : ''
+      !sharedProps.$disabled ? localeContext.datepicker.dateAvailableLabel : ''
     }`;
   }
 

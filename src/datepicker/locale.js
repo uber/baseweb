@@ -24,12 +24,12 @@ export type DatepickerLocaleT = {|
   timeSelectStartLabel: string,
   timePickerAriaLabel: string,
   timezonePickerAriaLabel: string,
-  selectedStartDate: string,
-  selectedEndDate: string,
-  notAvailable: string,
-  available: string,
-  selected: string,
-  choose: string,
+  selectedStartDateLabel: string,
+  selectedEndDateLabel: string,
+  dateNotAvailableLabel: string,
+  dateAvailableLabel: string,
+  selectedLabel: string,
+  chooseLabel: string,
 |};
 
 const locale = {
@@ -51,12 +51,12 @@ const locale = {
   timeSelectStartLabel: 'Start time',
   timePickerAriaLabel: 'Select a time',
   timezonePickerAriaLabel: 'Select a timezone',
-  selectedStartDate: 'Selected start date.',
-  selectedEndDate: 'Selected end date.',
-  notAvailable: 'Not available.',
-  available: "It's available.",
-  selected: 'Selected.',
-  choose: 'Choose',
+  selectedStartDateLabel: 'Selected start date.',
+  selectedEndDateLabel: 'Selected end date.',
+  dateNotAvailableLabel: 'Not available.',
+  dateAvailableLabel: "It's available.",
+  selectedLabel: 'Selected.',
+  chooseLabel: 'Choose',
 };
 
 export default locale;
