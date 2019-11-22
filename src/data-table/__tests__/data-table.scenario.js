@@ -10,6 +10,7 @@ import * as React from 'react';
 
 import {useStyletron} from '../../styles/index.js';
 
+import AnchorColumn from '../column-anchor.js';
 import BooleanColumn from '../column-boolean.js';
 import CategoricalColumn from '../column-categorical.js';
 import CustomColumn from '../column-custom.js';
@@ -30,6 +31,7 @@ type RowDataT = [
   string,
   boolean,
   string,
+  {content: string, href: string},
 ];
 
 // https://gist.github.com/6174/6062387
@@ -49,6 +51,8 @@ function makeRowsFromColumns(columns, rowCount) {
       id: i,
       data: columns.map((column, j) => {
         switch (column.kind) {
+          case COLUMNS.ANCHOR:
+            return {content: 'hello', href: 'https://google.com'};
           case COLUMNS.CATEGORICAL:
             switch (i % 5) {
               case 4:
@@ -217,6 +221,10 @@ const columns = [
   CategoricalColumn({
     title: 'second category',
     mapDataToValue: (data: RowDataT) => data[8],
+  }),
+  AnchorColumn({
+    title: 'anchor',
+    mapDataToValue: (data: RowDataT) => data[9],
   }),
 ];
 
