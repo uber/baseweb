@@ -90,8 +90,23 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
       }
 
       const indices = [];
+      const seen = {};
       for (let i = 0; i < sampleSize; i++) {
-        indices.push(Math.floor(Math.random() * props.rows.length));
+        // this seems to handle large sets fine, but there's a pathological case where
+        // the total number of rows is only slightly larger than the MAX_SAMPLE_SIZE (50).
+        // Consider the situation where the total row count is 51. This while loop just
+        // repeats until it has randomly chosen 50 unique integers. In this hypothetical,
+        // the last index chosen has a 1:51 chance of proceeding and the prior choice has 2:51.
+        // This is a lot of wasted cycles. I imagine there is a better way to handle this...
+        // but nothing jumps out to me that can be generalized between small and large sets.
+        const getRandom = () => Math.floor(Math.random() * props.rows.length);
+        let randomIndex = getRandom();
+        while (seen[randomIndex]) {
+          randomIndex = getRandom();
+        }
+        seen[randomIndex] = true;
+
+        indices.push(randomIndex);
       }
       return indices;
     });
