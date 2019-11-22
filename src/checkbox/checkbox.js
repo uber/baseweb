@@ -51,6 +51,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       inputRef.current.focus();
     }
 
+    // TODO(v10)
     if (this.props.checkmarkType === STYLE_TYPE.toggle) {
       console.warn(
         "baseui:Checkbox The STYLE_TYPE.toggle value on the 'checkmarkType' prop does not conform to the current base design specification. " +
