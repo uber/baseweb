@@ -34,7 +34,14 @@ describe('PhoneInput', () => {
   });
 
   it('passes basic a11y tests', async () => {
-    const accessibilityReport = await analyzeAccessibility(page);
+    const accessibilityReport = await analyzeAccessibility(page, {
+      rules: [
+        {
+          id: 'label',
+          enabled: false,
+        },
+      ],
+    });
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
@@ -61,6 +68,23 @@ describe('PhoneInput', () => {
     await page.waitForSelector(countryListItemForIso(unitedStates.iso), {
       visible: true,
     });
+  });
+
+  it('allows a user select a country using the keyboard', async () => {
+    // click select
+    await page.click(selectors.phoneInputSelect);
+    // verify dropdown is open
+    await page.waitFor(selectors.phoneInputSelectDropdown);
+
+    await page.keyboard.type('United Kingdom');
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('Enter');
+
+    const dialcode = await page.$eval(
+      selectors.phoneInputDialcode,
+      block => block.innerText,
+    );
+    expect(dialcode).toEqual(unitedKingdom.dialCode);
   });
 
   it('allows a user to select a country from the dropdown, \

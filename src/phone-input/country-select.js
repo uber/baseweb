@@ -77,6 +77,11 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     Root: {
       component: StyledRoot,
     },
+    Input: {
+      style: {
+        width: 0,
+      },
+    },
     ControlContainer: {
       style: props => {
         if (!props.$isFocused && !props.$isPseudoFocused) {
@@ -235,7 +240,6 @@ export default function CountrySelect(props: CountrySelectPropsT) {
         options={options}
         positive={positive}
         required={required}
-        searchable={false}
         size={size}
         value={[country]}
         {...selectProps}
