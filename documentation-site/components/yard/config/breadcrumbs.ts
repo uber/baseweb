@@ -1,6 +1,6 @@
 import {Breadcrumbs} from 'baseui/breadcrumbs';
 import {StyledLink} from 'baseui/link';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
 const breadcrumbsProps = require('!!extract-react-types-loader!../../../../src/breadcrumbs/breadcrumbs.js');
@@ -36,10 +36,12 @@ const BreadcrumbsConfig: TConfig = {
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: ['Root', 'Separator', 'List', 'ListItem', 'Icon'],
-      sharedProps: {},
+      custom: {
+        names: ['Root', 'Separator', 'List', 'ListItem', 'Icon'],
+        sharedProps: {},
+      },
     },
   },
   mapTokensToProps: {

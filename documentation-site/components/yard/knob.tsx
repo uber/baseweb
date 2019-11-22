@@ -1,16 +1,20 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {StyledLink} from 'baseui/link';
-import {assertUnreachable, useValueDebounce} from './utils';
-import {PropTypes} from './const';
 import {Input} from 'baseui/input';
 import {Radio, RadioGroup} from 'baseui/radio';
 import {Checkbox} from 'baseui/checkbox';
 import {Select, SIZE} from 'baseui/select';
 import {StatefulTooltip} from 'baseui/tooltip';
-import PopupError from './popup-error';
+
 import Editor from './editor';
-import {TPropValue} from './types';
+import {
+  assertUnreachable,
+  useValueDebounce,
+  PropTypes,
+  Error,
+  TPropValue,
+} from 'react-view';
 
 const getTooltip = (description: string, type: string, name: string) => (
   <span>
@@ -96,7 +100,7 @@ const Knob: React.SFC<{
           >
             React Ref documentation
           </StyledLink>
-          <PopupError error={error} />
+          <Error msg={error} isPopup />
         </Spacing>
       );
     case PropTypes.String:
@@ -106,14 +110,13 @@ const Knob: React.SFC<{
         <Spacing>
           <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
           <Input
-            //@ts-ignore
             error={Boolean(error)}
-            onChange={event => set((event.target as any).value)}
+            onChange={event => set((event.target as HTMLInputElement).value)}
             placeholder={placeholder}
             size="compact"
             value={val ? String(val) : undefined}
           />
-          <PopupError error={error} />
+          <Error msg={error} isPopup />
         </Spacing>
       );
     case PropTypes.Boolean:
@@ -142,7 +145,7 @@ const Knob: React.SFC<{
               </span>
             </StatefulTooltip>
           </Checkbox>
-          <PopupError error={error} />
+          <Error msg={error} isPopup />
         </Spacing>
       );
     case PropTypes.Enum:
@@ -170,7 +173,7 @@ const Knob: React.SFC<{
                 },
               }}
               onChange={e => {
-                globalSet((e.target as any).value);
+                globalSet((e.target as HTMLInputElement).value);
               }}
               value={String(val)}
             >
@@ -208,8 +211,7 @@ const Knob: React.SFC<{
               }}
             />
           )}
-
-          <PopupError error={error} />
+          <Error msg={error} isPopup />
         </Spacing>
       );
     case PropTypes.ReactNode:
@@ -227,10 +229,10 @@ const Knob: React.SFC<{
             placeholder={placeholder}
             small
           />
-          <PopupError error={error} />
+          <Error msg={error} isPopup />
         </Spacing>
       );
-    case PropTypes.Overrides:
+    case PropTypes.Custom:
       return null;
     default:
       return assertUnreachable();

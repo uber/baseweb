@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import {useStyletron} from 'baseui';
 import {StatefulPopover, PLACEMENT, TRIGGER_TYPE} from 'baseui/popover';
