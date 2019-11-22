@@ -1,6 +1,6 @@
 import {ProgressSteps, Step} from 'baseui/progress-steps';
 import {Button} from 'baseui/button';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
 const progressStepsProps = require('!!extract-react-types-loader!../../../../src/progress-steps/progress-steps.js');
@@ -40,40 +40,45 @@ const ProgressStepsConfig: TConfig = {
         'baseui/progress-steps': {named: ['Step']},
         'baseui/button': {named: ['Button']},
       },
-      propHook: ({getYardOnChange, fnBodyAppend}) => ({
+      propHook: ({getInstrumentOnChange, fnBodyAppend}) => ({
         JSXAttribute(path: any) {
           if (path.get('name').node.name === 'onClick') {
-            fnBodyAppend(path.get('value'), getYardOnChange('1', 'current'));
+            fnBodyAppend(
+              path.get('value'),
+              getInstrumentOnChange('1', 'current'),
+            );
           }
         },
       }),
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: [
-        'Content',
-        'Description',
-        'Icon',
-        'InnerIcon',
-        'Root',
-        'StepRoot',
-        'Tail',
-        'Title',
-      ],
-      sharedProps: {
-        $isActive: {
-          type: PropTypes.Boolean,
-          description: 'Used when in active state',
-        },
-        $isCompleted: {
-          type: PropTypes.Boolean,
-          description: 'Used when in completed state',
-        },
-        $disabled: {
-          type: PropTypes.Boolean,
-          description: 'Used when in disabled state',
+      custom: {
+        names: [
+          'Content',
+          'Description',
+          'Icon',
+          'InnerIcon',
+          'Root',
+          'StepRoot',
+          'Tail',
+          'Title',
+        ],
+        sharedProps: {
+          $isActive: {
+            type: PropTypes.Boolean,
+            description: 'Used when in active state',
+          },
+          $isCompleted: {
+            type: PropTypes.Boolean,
+            description: 'Used when in completed state',
+          },
+          $disabled: {
+            type: PropTypes.Boolean,
+            description: 'Used when in disabled state',
+          },
         },
       },
     },

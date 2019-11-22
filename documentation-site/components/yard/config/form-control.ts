@@ -1,6 +1,6 @@
 import {FormControl} from 'baseui/form-control';
 import {Input} from 'baseui/input';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
 const formControlProps = require('!!extract-react-types-loader!../../../../src/form-control/form-control.js');
@@ -51,18 +51,20 @@ const TextareaConfig: TConfig = {
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: ['Label', 'Caption', 'ControlContainer'],
-      sharedProps: {
-        $disabled: 'disabled',
-        $error: {
-          type: PropTypes.Boolean,
-          description: 'True if error message provided.',
-        },
-        $positive: {
-          type: PropTypes.Boolean,
-          description: 'True if positive message provided.',
+      custom: {
+        names: ['Label', 'Caption', 'ControlContainer'],
+        sharedProps: {
+          $disabled: 'disabled',
+          $error: {
+            type: PropTypes.Boolean,
+            description: 'True if error message provided.',
+          },
+          $positive: {
+            type: PropTypes.Boolean,
+            description: 'True if positive message provided.',
+          },
         },
       },
     },

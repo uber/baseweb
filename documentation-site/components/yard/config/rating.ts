@@ -1,5 +1,5 @@
 import {StarRating} from 'baseui/rating';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
 const starRatingProps = require('!!extract-react-types-loader!../../../../src/rating/star-rating.js');
@@ -36,22 +36,24 @@ const ratingConfig: TConfig = {
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: ['Root', 'Item'],
-      sharedProps: {
-        $isActive: {
-          type: PropTypes.Boolean,
-          description:
-            'Indicates if the item is a part of the current selection.',
-        },
-        $isSelected: {
-          type: PropTypes.Boolean,
-          description: 'Indicates if the item is currently selected.',
-        },
-        $index: {
-          type: PropTypes.Number,
-          description: 'Index of the rendered item.',
+      custom: {
+        names: ['Root', 'Item'],
+        sharedProps: {
+          $isActive: {
+            type: PropTypes.Boolean,
+            description:
+              'Indicates if the item is a part of the current selection.',
+          },
+          $isSelected: {
+            type: PropTypes.Boolean,
+            description: 'Indicates if the item is currently selected.',
+          },
+          $index: {
+            type: PropTypes.Number,
+            description: 'Index of the rendered item.',
+          },
         },
       },
     },

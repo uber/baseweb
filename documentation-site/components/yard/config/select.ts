@@ -1,6 +1,6 @@
 import pick from 'just-pick';
 import {Select, SIZE, TYPE} from 'baseui/select';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {changeHandlers} from './common';
 import {TConfig} from '../types';
 
@@ -329,66 +329,68 @@ const SelectConfig: TConfig = {
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: [
-        'Root',
-        'ControlContainer',
-        'Placeholder',
-        'ValueContainer',
-        'SingleValue',
-        'MultiValue',
-        'InputContainer',
-        'Input',
-        'IconsContainer',
-        'SelectArrow',
-        'ClearIcon',
-        'LoadingIndicator',
-        'SearchIcon',
-        'Popover',
-        'DropdownContainer',
-        'Dropdown',
-        'DropdownOption',
-        'DropdownListItem',
-        'OptionContent',
-        'StatefulMenu',
-      ],
-      sharedProps: {
-        $clearable: 'clearable',
-        $creatable: 'creatable',
-        $disabled: 'disabled',
-        $error: 'error',
-        $isFocused: {
-          type: PropTypes.Boolean,
-          description: "Indicates the control's current focus state.",
+      custom: {
+        names: [
+          'Root',
+          'ControlContainer',
+          'Placeholder',
+          'ValueContainer',
+          'SingleValue',
+          'MultiValue',
+          'InputContainer',
+          'Input',
+          'IconsContainer',
+          'SelectArrow',
+          'ClearIcon',
+          'LoadingIndicator',
+          'SearchIcon',
+          'Popover',
+          'DropdownContainer',
+          'Dropdown',
+          'DropdownOption',
+          'DropdownListItem',
+          'OptionContent',
+          'StatefulMenu',
+        ],
+        sharedProps: {
+          $clearable: 'clearable',
+          $creatable: 'creatable',
+          $disabled: 'disabled',
+          $error: 'error',
+          $isFocused: {
+            type: PropTypes.Boolean,
+            description: "Indicates the control's current focus state.",
+          },
+          $isHighlighted: {
+            type: PropTypes.Boolean,
+            description:
+              "Prop passed to an option indicating it's currently highlighted.",
+          },
+          $isLoading: 'isLoading',
+          $isOpen: {
+            type: PropTypes.Boolean,
+            description:
+              "Indicates if the select's dropdown is currently opened.",
+          },
+          $isPseudoFocused: {
+            type: PropTypes.Boolean,
+            description: "Indicates the select's current focus state.",
+          },
+          $maxHeight: 'maxDropdownHeight',
+          $multi: 'multi',
+          $positive: 'positive',
+          $required: 'required',
+          $searchable: 'searchable',
+          $selected: {
+            type: PropTypes.Boolean,
+            description:
+              "Prop passed to an option indicating it's currently selected.",
+          },
+          $size: 'size',
+          $type: 'type',
         },
-        $isHighlighted: {
-          type: PropTypes.Boolean,
-          description:
-            "Prop passed to an option indicating it's currently highlighted.",
-        },
-        $isLoading: 'isLoading',
-        $isOpen: {
-          type: PropTypes.Boolean,
-          description:
-            "Indicates if the select's dropdown is currently opened.",
-        },
-        $isPseudoFocused: {
-          type: PropTypes.Boolean,
-          description: "Indicates the select's current focus state.",
-        },
-        $maxHeight: 'maxDropdownHeight',
-        $multi: 'multi',
-        $positive: 'positive',
-        $required: 'required',
-        $searchable: 'searchable',
-        $selected: {
-          type: PropTypes.Boolean,
-          description:
-            "Prop passed to an option indicating it's currently selected.",
-        },
-        $size: 'size',
-        $type: 'type',
       },
     },
   },
