@@ -1,7 +1,8 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {Button, KIND, SIZE} from 'baseui/button';
-import {ButtonGroup} from 'baseui/button-group';
+import {TImportsConfig} from 'react-view';
+import {useRouter} from 'next/router';
+import copy from 'copy-to-clipboard';
 //@ts-ignore
 import CodeSandboxer from 'react-codesandboxer';
 import {
@@ -9,14 +10,13 @@ import {
   MdFormatIndentIncrease,
   MdRotateRight,
 } from 'react-icons/md';
+
+import {Button, KIND, SIZE} from 'baseui/button';
+import {ButtonGroup} from 'baseui/button-group';
+
 //@ts-ignore
-//import {version} from '../../../package.json';
-// import {codesandboxIndexCode} from '../const';
-
-import {TImportsConfig} from '../index';
-
-const version = '9.19.0'; // todo: replace
-const codesandboxIndexCode = 'foo'; // todo: replace
+import {version} from '../../../package.json';
+import {codesandboxIndexCode} from '../const';
 
 const ActionButtons: React.FC<{
   formatCode: () => void;
@@ -26,16 +26,9 @@ const ActionButtons: React.FC<{
   code: string;
   componentName: string;
   importsConfig: TImportsConfig;
-}> = ({
-  formatCode,
-  copyCode,
-  copyUrl,
-  reset,
-  code,
-  componentName,
-  importsConfig,
-}) => {
+}> = ({formatCode, copyCode, reset, code, componentName, importsConfig}) => {
   const [, theme] = useStyletron();
+  const {push, pathname} = useRouter();
   return (
     <React.Fragment>
       <ButtonGroup
@@ -58,7 +51,13 @@ const ActionButtons: React.FC<{
         <Button kind={KIND.tertiary} onClick={copyCode}>
           <MdContentCopy style={{paddingRight: theme.sizing.scale100}} /> Copy
         </Button>
-        <Button kind={KIND.tertiary} onClick={reset}>
+        <Button
+          kind={KIND.tertiary}
+          onClick={() => {
+            reset();
+            push(pathname);
+          }}
+        >
           <MdRotateRight style={{paddingRight: theme.sizing.scale100}} /> Reset
         </Button>
       </ButtonGroup>
@@ -73,7 +72,32 @@ const ActionButtons: React.FC<{
           },
         }}
       >
-        <Button kind={KIND.tertiary} onClick={copyUrl}>
+        <Button
+          kind={KIND.tertiary}
+          onClick={async () => {
+            try {
+              const response = await fetch(
+                'https://api-ssl.bitly.com/v4/shorten',
+                {
+                  method: 'POST',
+                  headers: new Headers({
+                    'Content-Type': 'application/json',
+                    Authorization:
+                      'Bearer 6582bc718a8b1cf679126f776da131041ed644df',
+                  }),
+                  body: JSON.stringify({
+                    long_url: String(window.location).replace(
+                      'http://localhost:3000',
+                      'https://baseweb.design',
+                    ),
+                  }),
+                },
+              );
+              const resJson = await response.json();
+              copy(resJson.link.replace('http://', 'https://'));
+            } catch (e) {}
+          }}
+        >
           Copy URL
         </Button>
         <CodeSandboxer

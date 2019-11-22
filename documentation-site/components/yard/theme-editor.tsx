@@ -2,6 +2,8 @@ import * as React from 'react';
 import {useValueDebounce} from 'react-view';
 import {Input, SIZE} from 'baseui/input';
 import {useStyletron} from 'baseui';
+import Link from 'next/link';
+import {StyledLink} from 'baseui/link';
 import {Caption1} from 'baseui/typography';
 import {getActiveTheme, getThemeDiff} from './provider';
 
@@ -125,8 +127,13 @@ const ThemeEditor: React.FC<ThemeEditorProps> = ({
         marginBottom="scale400"
       >
         Do you want to change {componentName} colors globally? You can customize
-        the theme through ThemeProvider and set your own colors. . Try different
-        values:
+        the theme through ThemeProvider and set your own colors.{' '}
+        <Link href="/guides/theming#creating-a-custom-theme">
+          <StyledLink href="/guides/theming#creating-a-custom-theme">
+            Learn more
+          </StyledLink>
+        </Link>
+        . Try different values:
       </Caption1>
       <div
         className={useCss({
