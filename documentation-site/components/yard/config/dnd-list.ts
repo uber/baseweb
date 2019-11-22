@@ -1,5 +1,5 @@
 import {List, arrayMove, arrayRemove} from 'baseui/dnd-list';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
 const listProps = require('!!extract-react-types-loader!../../../../src/dnd-list/list.js');
@@ -46,35 +46,37 @@ const dndListConfig: TConfig = {
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: ['Root', 'List', 'Item', 'DragHandle', 'CloseHandle', 'Label'],
-      sharedProps: {
-        $isDragged: {
-          type: PropTypes.Boolean,
-          description: 'Indicates if the item is being dragged.',
-        },
-        $isSelected: {
-          type: PropTypes.Boolean,
-          description: 'Indicates if the item is selected.',
-        },
-        $isRemovable: {
-          type: PropTypes.Boolean,
-          description: 'Indicates if the item can be removed from the list.',
-        },
-        $isRemovableByMove: {
-          type: PropTypes.Boolean,
-          description:
-            'Indicates if the item can be removed from the list by dnd outside of the list.',
-        },
-        $isOutOfBounds: {
-          type: PropTypes.Boolean,
-          description:
-            'Indicates if the item is being out of the list boundaries.',
-        },
-        $value: {
-          type: PropTypes.Array,
-          description: 'The array of items passed into the list.',
+      custom: {
+        names: ['Root', 'List', 'Item', 'DragHandle', 'CloseHandle', 'Label'],
+        sharedProps: {
+          $isDragged: {
+            type: PropTypes.Boolean,
+            description: 'Indicates if the item is being dragged.',
+          },
+          $isSelected: {
+            type: PropTypes.Boolean,
+            description: 'Indicates if the item is selected.',
+          },
+          $isRemovable: {
+            type: PropTypes.Boolean,
+            description: 'Indicates if the item can be removed from the list.',
+          },
+          $isRemovableByMove: {
+            type: PropTypes.Boolean,
+            description:
+              'Indicates if the item can be removed from the list by dnd outside of the list.',
+          },
+          $isOutOfBounds: {
+            type: PropTypes.Boolean,
+            description:
+              'Indicates if the item is being out of the list boundaries.',
+          },
+          $value: {
+            type: PropTypes.Array,
+            description: 'The array of items passed into the list.',
+          },
         },
       },
     },

@@ -9,11 +9,11 @@ import * as React from 'react';
 import {useStyletron} from 'baseui';
 import Highlight, {defaultProps} from 'prism-react-renderer';
 //$FlowFixMe
-import lightTheme from './yard/light-theme';
+import {lightTheme} from 'react-view';
 //$FlowFixMe
 import darkTheme from './yard/dark-theme';
 //$FlowFixMe
-import CodeBox from './yard/code-box';
+import CodeBox from './code-box';
 
 type PropsT = {
   children: string,

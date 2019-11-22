@@ -6,7 +6,6 @@ import {StyledLink} from 'baseui/link';
 import {useStyletron} from 'baseui';
 
 import Override, {getHighlightStyles} from './override';
-import {trackEvent} from '../../helpers/ga';
 
 type TOverridesProps = {
   set: any;
@@ -23,7 +22,12 @@ const Overrides: React.FC<TOverridesProps> = ({
 }) => {
   const [, theme] = useStyletron();
   const isLightTheme = theme.name.startsWith('light-theme');
-  if (!overrides.names || overrides.names.length === 0) {
+  if (
+    !overrides ||
+    !overrides.custom ||
+    !overrides.custom.names ||
+    overrides.custom.names.length === 0
+  ) {
     return null;
   }
 
@@ -33,7 +37,7 @@ const Overrides: React.FC<TOverridesProps> = ({
     };
   } = {};
 
-  overrides.names.forEach((key: string) => {
+  overrides.custom.names.forEach((key: string) => {
     if (overrides.value && overrides.value[key]) {
       overridesObj[key] = overrides.value[key];
     } else {
@@ -93,14 +97,6 @@ const Overrides: React.FC<TOverridesProps> = ({
           <Panel
             key={overrideKey}
             title={overrideKey}
-            onChange={({expanded}) => {
-              if (expanded) {
-                trackEvent(
-                  'yard',
-                  `${componentName}:expand_override_${overrideKey}`,
-                );
-              }
-            }}
             overrides={{
               Content: {
                 style: {
