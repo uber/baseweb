@@ -1,5 +1,5 @@
 import {TimezonePicker} from 'baseui/timezonepicker';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 import inputConfig from './input';
 import selectConfig from './select';
@@ -48,10 +48,12 @@ const TimezonepickerConfig: TConfig = {
     disabled: inputConfig.props.disabled,
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: [],
-      sharedProps: {},
+      custom: {
+        names: [],
+        sharedProps: {},
+      },
     },
   },
   mapTokensToProps: {

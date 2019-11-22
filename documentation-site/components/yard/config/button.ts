@@ -1,5 +1,5 @@
 import {Button, KIND, SIZE, SHAPE} from 'baseui/button';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
 const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button.js');
@@ -114,22 +114,24 @@ const ButtonConfig: TConfig = {
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: [
-        'BaseButton',
-        'EndEnhancer',
-        'LoadingSpinner',
-        'LoadingSpinnerContainer',
-        'StartEnhancer',
-      ],
-      sharedProps: {
-        $kind: 'kind',
-        $isSelected: 'isSelected',
-        $shape: 'shape',
-        $size: 'size',
-        $isLoading: 'isLoading',
-        $disabled: 'disabled',
+      custom: {
+        names: [
+          'BaseButton',
+          'EndEnhancer',
+          'LoadingSpinner',
+          'LoadingSpinnerContainer',
+          'StartEnhancer',
+        ],
+        sharedProps: {
+          $kind: 'kind',
+          $isSelected: 'isSelected',
+          $shape: 'shape',
+          $size: 'size',
+          $isLoading: 'isLoading',
+          $disabled: 'disabled',
+        },
       },
     },
   },

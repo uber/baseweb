@@ -106,6 +106,9 @@ const config = {
           await page.click(input);
           await page.waitForSelector(calendar);
           await page.click(rightArrow);
+          await page.waitForFunction(
+            `document.querySelector("button[aria-haspopup]").innerText === 'April 2019'`,
+          );
         },
       },
     ],

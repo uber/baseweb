@@ -1,5 +1,5 @@
 import {Slider} from 'baseui/slider';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
 const sliderProps = require('!!extract-react-types-loader!../../../../src/slider/slider.js');
@@ -83,31 +83,33 @@ const SliderConfig: TConfig = {
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: [
-        'InnerThumb',
-        'InnerTrack',
-        'Root',
-        'Thumb',
-        'ThumbValue',
-        'Tick',
-        'TickBar',
-        'Track',
-      ],
-      sharedProps: {
-        $disabled: 'disabled',
-        $isDragged: {
-          type: PropTypes.Boolean,
-          description: 'True when the handler is being dragged.',
+      custom: {
+        names: [
+          'InnerThumb',
+          'InnerTrack',
+          'Root',
+          'Thumb',
+          'ThumbValue',
+          'Tick',
+          'TickBar',
+          'Track',
+        ],
+        sharedProps: {
+          $disabled: 'disabled',
+          $isDragged: {
+            type: PropTypes.Boolean,
+            description: 'True when the handler is being dragged.',
+          },
+          $max: 'max',
+          $min: 'min',
+          $thumbIndex: {
+            type: PropTypes.Number,
+            description: 'The index of the handler that is being rendered.',
+          },
+          $value: 'value',
         },
-        $max: 'max',
-        $min: 'min',
-        $thumbIndex: {
-          type: PropTypes.Number,
-          description: 'The index of the handler that is being rendered.',
-        },
-        $value: 'value',
       },
     },
   },
