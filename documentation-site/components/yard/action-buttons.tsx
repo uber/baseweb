@@ -16,6 +16,7 @@ import {ButtonGroup} from 'baseui/button-group';
 
 //@ts-ignore
 import {version} from '../../../package.json';
+//@ts-ignore
 import {codesandboxIndexCode} from '../const';
 
 const ActionButtons: React.FC<{
