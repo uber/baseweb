@@ -1,5 +1,5 @@
 import {Drawer, ANCHOR, SIZE} from 'baseui/drawer';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
 const drawerProps = require('!!extract-react-types-loader!../../../../src/drawer/drawer.js');
@@ -99,22 +99,24 @@ const DrawerConfig: TConfig = {
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: ['Root', 'Backdrop', 'DrawerBody', 'DrawerContainer', 'Close'],
-      sharedProps: {
-        $animating: {
-          type: PropTypes.Boolean,
-          description: 'True if drawer is animating.',
+      custom: {
+        names: ['Root', 'Backdrop', 'DrawerBody', 'DrawerContainer', 'Close'],
+        sharedProps: {
+          $animating: {
+            type: PropTypes.Boolean,
+            description: 'True if drawer is animating.',
+          },
+          $isVisible: {
+            type: PropTypes.Boolean,
+            description: 'True if drawer is visible.',
+          },
+          $isOpen: 'isOpen',
+          $size: 'size',
+          $closeable: 'closeable',
+          $anchor: 'anchor',
         },
-        $isVisible: {
-          type: PropTypes.Boolean,
-          description: 'True if drawer is visible.',
-        },
-        $isOpen: 'isOpen',
-        $size: 'size',
-        $closeable: 'closeable',
-        $anchor: 'anchor',
       },
     },
   },

@@ -1,23 +1,12 @@
-/*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
-
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
-*/
 import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {Button, KIND, SIZE} from 'baseui/button';
-import {TPropValue, TProp, TError} from './types';
+
+import {TPropValue, TKnobsProps, PropTypes} from 'react-view';
 import Knob from './knob';
 
-type TKnobsProps = {
-  knobProps: {[key: string]: TProp};
-  set: (propValue: TPropValue, propName: string) => void;
-  error: TError;
-};
-
 const KnobColumn: React.FC<TKnobsProps & {knobNames: string[]}> = ({
-  knobProps,
+  state,
   knobNames,
   error,
   set,
@@ -35,29 +24,31 @@ const KnobColumn: React.FC<TKnobsProps & {knobNames: string[]}> = ({
           key={name}
           name={name}
           error={error.where === name ? error.msg : null}
-          description={knobProps[name].description}
-          type={knobProps[name].type}
-          val={knobProps[name].value}
-          options={knobProps[name].options}
-          placeholder={knobProps[name].placeholder}
+          description={state[name].description}
+          type={state[name].type}
+          val={state[name].value}
+          options={state[name].options}
+          placeholder={state[name].placeholder}
           set={(value: TPropValue) => set(value, name)}
-          enumName={knobProps[name].enumName}
+          enumName={state[name].enumName}
         />
       ))}
     </div>
   );
 };
 
-const Knobs: React.FC<TKnobsProps> = ({knobProps, set, error}) => {
+const Knobs: React.FC<TKnobsProps> = ({state, set, error}) => {
   const [useCss, theme] = useStyletron();
   const [showAllKnobs, setShowAllKnobs] = React.useState(false);
-  const allKnobNames = Object.keys(knobProps);
+  const allKnobNames = Object.keys(state).filter(
+    name => state[name].type !== PropTypes.Custom,
+  );
   const filteredKnobNames = allKnobNames.filter(
-    (name: string) => knobProps[name].hidden !== true,
+    (name: string) => state[name].hidden !== true,
   );
   const knobNames = showAllKnobs ? allKnobNames : filteredKnobNames;
-  const firstGroup = knobNames.slice(0, knobNames.length / 2);
-  const secondGroup = knobNames.slice(knobNames.length / 2);
+  const firstGroup = knobNames.slice(0, Math.round(knobNames.length / 2));
+  const secondGroup = knobNames.slice(Math.round(knobNames.length / 2));
   return (
     <React.Fragment>
       <div
@@ -71,13 +62,13 @@ const Knobs: React.FC<TKnobsProps> = ({knobProps, set, error}) => {
         })}
       >
         <KnobColumn
-          knobProps={knobProps}
+          state={state}
           knobNames={firstGroup}
           set={set}
           error={error}
         />
         <KnobColumn
-          knobProps={knobProps}
+          state={state}
           knobNames={secondGroup}
           set={set}
           error={error}

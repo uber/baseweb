@@ -4,7 +4,7 @@ import {
   PLACEMENT,
   TRIGGER_TYPE,
 } from 'baseui/tooltip';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
 const tooltipProps = require('!!extract-react-types-loader!../../../../src/popover/stateful-popover.js');

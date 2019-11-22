@@ -1,6 +1,6 @@
 import omit from 'just-omit';
 import {PinCode, SIZE} from 'baseui/pin-code';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 import {theme, inputProps} from './input';
 
@@ -54,10 +54,12 @@ const PincodeConfig: TConfig = {
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: ['Root', 'Input'],
-      sharedProps: {},
+      custom: {
+        names: ['Root', 'Input'],
+        sharedProps: {},
+      },
     },
   },
   mapTokensToProps: {

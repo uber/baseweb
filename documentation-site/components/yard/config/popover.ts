@@ -5,7 +5,7 @@ import {
   PLACEMENT,
   TRIGGER_TYPE,
 } from 'baseui/popover';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
 import {changeHandlers} from './common';
@@ -134,19 +134,21 @@ const PopoverConfig: TConfig = {
     ]),
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: ['Arrow', 'Body', 'Inner'],
-      sharedProps: {
-        $showArrow: 'showArrow',
-        $placement: 'placement',
-        $isOpen: {
-          type: PropTypes.Boolean,
-          description: 'True when the popover is opened.',
-        },
-        $isAnimating: {
-          type: PropTypes.Boolean,
-          description: 'True when the popover is animating.',
+      custom: {
+        names: ['Arrow', 'Body', 'Inner'],
+        sharedProps: {
+          $showArrow: 'showArrow',
+          $placement: 'placement',
+          $isOpen: {
+            type: PropTypes.Boolean,
+            description: 'True when the popover is opened.',
+          },
+          $isAnimating: {
+            type: PropTypes.Boolean,
+            description: 'True when the popover is animating.',
+          },
         },
       },
     },
