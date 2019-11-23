@@ -355,6 +355,7 @@ export default class Calendar extends React.Component<
           ref={calendar => {
             this.calendar = calendar;
           }}
+          role="grid"
           onKeyDown={this.onKeyDown}
           {...calendarContainerProps}
         >
