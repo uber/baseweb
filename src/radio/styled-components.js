@@ -137,7 +137,7 @@ export const Root = styled<StylePropsT>('label', props => {
     alignItems: 'center',
     cursor: $disabled ? 'not-allowed' : 'pointer',
     marginTop: sizing.scale200,
-    marginBottom: $hasDescription ? null : sizing.scale200,
+    marginBottom: ($hasDescription) && ($align !== 'horizontal')  ? null : sizing.scale200,
   }: {});
 });
 
