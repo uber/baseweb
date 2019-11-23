@@ -1,8 +1,8 @@
 {
   "author": "Graham Murdoch",
   "authorLink": "https://githum.com/sandgraham",
-  "title": "Catching Visual Regressions",
-  "tagline": "Or, How to sleep well at night",
+  "title": "Visual Snapshot Testing",
+  "tagline": "A picture is worth a thousand sheep.",
   "date": "24 November 2019",
   "coverImage": "https://i.imgur.com/X0jy3lO.png",
   "coverImageWidth": 600,

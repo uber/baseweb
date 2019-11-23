@@ -1,0 +1,81 @@
+import metadata from './metadata.json';
+import Layout from '../../../components/layout';
+import {BlogImage, Meta, Caption} from '../../../components/blog';
+
+export default Layout;
+
+<Meta data={metadata} />
+
+<BlogImage
+  src="https://i.imgur.com/X0jy3lO.png"
+  alt="Two almost identical sheep standing in a verdant field"
+  caption="Similar, yet different."
+/>
+
+Today we are going to talk about Visual Snapshot Testing. We are going to consider why you want visual tests, what visual testing looks like in practice, and how the Base Web team leverages visual testing in our continuous integration (CI) workflow.
+
+## Snapshots
+
+Before we consider _visual_ snapshot testing, let's clarify what snapshot testing is.
+
+A snapshot test runs a process and compares the output of that process to a previous test run's output (the baseline). If the outputs match, the test passes. If the outputs do not match, the test fails and you either need to update your baseline snapshot to the new output or fix something in your source code.
+
+Because snapshot tests are assertions of equality, snapshots need to be serialized, comparable, and the process that creates them needs to be deterministic. The format of the snapshot is flexible, it can be inlined into the test as a string or stored as a file— it can be a DOM tree, a JSON blob or even an image.
+
+This is where the _visual_ in Visual Snapshot Testing comes from. We use images as our snapshots and compare those images across test runs using an [image comparison library](https://github.com/mapbox/pixelmatch). When an image differs from our baseline image, we either update the baseline or fix the issue in source.
+
+In Base Web, we render each of our components in a variety of states- we capture an image of each state and save all of these as baseline snapshots. Whenever we make a change to source we can run our visual snapshot tests to ensure that all of our components' visual states have remained as expected.
+
+## Value Added
+
+As we will see in a bit, introducing a suite of visual snapshots to your project comes with a non-negligible maintenance burden. For one, storing lots of images under source control adds considerable size to your repository. Taking deterministic screenshots requires running a consistent browser and operating system across test runs. Test runs can add significant time to your CI pipeline, depending on how many snapshots you need to generate and compare.
+
+If you are familiar with snapshot testing you may also wonder why we need to bother with images at all. Why not simply capture the state of the React tree as with traditional snapshot tests? Is all the overhead with visual snapshots worthwhile?
+
+For a UI component library such as Base Web the tradeoff is certainly worth making. Here are a some of the reasons why:
+
+- **Catch visual regressions**. This is the first and most obvious reason to use visual snapshot tests. When we make a change to source code we want to be sure we have not broken any styles. For a UI library such as Base Web, styling is immensely important— its one of our main responsibilities. Having coverage over our component visuals means better quality components and better sleep at night for us maintainers.
+- **Test what users see**. Traditional snapshot tests will certainly warn you when something in your code has changed, but the change detected is going to be your React implementation, not the result of that implementation which is what you actually care about.
+- **Obvious updates**. It is a lot easier to decide to update a snapshot when you can see what the before and after look like. Many traditional snapshots have been erroneously updated because a developer didn't understand what had actually changed. Anyone who has worked with snapshots in the past has seen a diff with hundreds or thousands of changed lines in snapshots. An image tells the full story.
+- **Centralized coverage**. Most testing strategies focus on coverage for application state and behavior. For instance, a typical UI unit test might make assertions about a rendering function's output or an end-to-end test might verify that certain elements appear on the page. But we care as much, if not more, about how our components _look_. If a color is off or something is not aligned, we want to catch that before dependent apps can consume it. By focusing thorough visual coverage on the Base Web library, downstream projects can focus on testing what actually matters to them.
+- **Verifying appearances across browsers & device sizes**. One of the potential benefits of setting up visual tests is to be able to run them on different browsers and devices. Depending on your support requirements, catching an environment specific regression before it ships is a huge win.
+- **A component changelog**. One of the benefits of having visual snapshots under version control is that you get a component changelog for free. By looking at the history of a snapshot you can track every visual change that's been made to the component. If your project has very thorough visual tests you can even track props and functionality through snapshot histories. The snapshots can also function as a contract to dependent projects— as a supplement to documentation, snapshots can give someone an exact picture of the state of every component.
+
+There may be other reasons to set up visual snapshot tests, but so far these have been enough to warrant the investment for our team.
+
+## Options
+
+There are a variety of products and libraries out there which will help you with visual test coverage in your codebase. Although we ended up piecing together our own system using open source tools, it seems we should briefly touch on what other options you have. Before we built our own solution we spent some time evaluating all the possibilities, both paid and free.
+
+### Paid
+
+A whole host of services exist to serve your visual testing needs— too many to detail here. The ones that seemed most intriguing to us were the more specialized services that focused solely on visual comparisons. Here is a list of the companies we considered (sorted alphabetically):
+
+- [Applitools](https://applitools.com/)
+- [Chromatic](https://www.chromaticqa.com/)
+- [Happo](https://happo.io/)
+- [Percy](https://percy.io/)
+- [Screener](https://screener.io/)
+
+With all of these paid solutions you do not have to worry about storing or comparing images yourself. The service runs a suite of comparison tests and then flags failures for you to review in their UI. Generally these runs are triggered from, and report their status to, your CI pipeline.
+
+If you are maintaining a web based UI component library there is a decent chance you are already using Storybook in your project to develop components in isolation. Most of the services above provide libraries or integrations for using your already existing Storybook scenarios as visual snapshots.
+
+Also of interest, most services allow you to capture images of scenarios in different environments such as IE11 or iOS Safari. This is not a trivial (or free) thing to set up for your own project- so if cross browser coverage is important for you, a paid solution may be an easy decision.
+
+In terms of cost, all of these solutions charge per snapshot. If you have 50 scenarios and test each one in 3 environments (Chrome, IE11, iOS Safari), a single test run will generate 150 snapshots. Ultimately one of the reasons we built our own solution is that we generate over half a million snapshots a month running the test suite on every PR commit. This is well above any of these services advertised cost tier.
+
+## What we have now
+
+## Some implementation details
+
+## Potential
+
+- git lfs
+- vrt on downstream projects
+- pulling out pieces for os
+- testing on other browsers/devices
+- using snapshot code for other things (e2e, doc site examples)
+- color contrast tests
+
+## Conclusion
