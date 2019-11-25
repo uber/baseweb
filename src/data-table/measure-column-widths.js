@@ -64,6 +64,29 @@ type MeasureColumnWidthsPropsT = {
 // sample size could likely be generated based on row count, to have higher confidence
 const MAX_SAMPLE_SIZE = 50;
 
+function generateSampleIndices(inputMin, inputMax, maxSamples) {
+  const indices = [];
+  const queue = [[inputMin, inputMax]];
+
+  while (queue.length > 0) {
+    const [min, max] = queue.shift();
+    if (indices.length < maxSamples) {
+      const pivot = Math.floor((min + max) / 2);
+      indices.push(pivot);
+      const left = pivot - 1;
+      const right = pivot + 1;
+      if (left >= min) {
+        queue.push([min, left]);
+      }
+      if (right <= max) {
+        queue.push([right, max]);
+      }
+    }
+  }
+
+  return indices;
+}
+
 export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
   const [useCss] = useStyletron();
 
@@ -84,32 +107,8 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
     measurementCount.current = 0;
     dimensionsCache.current = props.widths;
 
-    return props.columns.map(() => {
-      if (props.rows.length <= sampleSize) {
-        return props.rows.map((_, i) => i);
-      }
-
-      const indices = [];
-      const seen = {};
-      for (let i = 0; i < sampleSize; i++) {
-        // this seems to handle large sets fine, but there's a pathological case where
-        // the total number of rows is only slightly larger than the MAX_SAMPLE_SIZE (50).
-        // Consider the situation where the total row count is 51. This while loop just
-        // repeats until it has randomly chosen 50 unique integers. In this hypothetical,
-        // the last index chosen has a 1:51 chance of proceeding and the prior choice has 2:51.
-        // This is a lot of wasted cycles. I imagine there is a better way to handle this...
-        // but nothing jumps out to me that can be generalized between small and large sets.
-        const getRandom = () => Math.floor(Math.random() * props.rows.length);
-        let randomIndex = getRandom();
-        while (seen[randomIndex]) {
-          randomIndex = getRandom();
-        }
-        seen[randomIndex] = true;
-
-        indices.push(randomIndex);
-      }
-      return indices;
-    });
+    const indices = generateSampleIndices(0, props.rows.length - 1, sampleSize);
+    return props.columns.map(() => indices);
   }, [props.columns, props.rows, props.widths, sampleSize]);
 
   function handleDimensionsChange(columnIndex, rowIndex, dimensions) {
