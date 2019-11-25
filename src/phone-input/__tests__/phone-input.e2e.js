@@ -71,6 +71,7 @@ describe('PhoneInput', () => {
 
     await page.keyboard.type('United');
     await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
 
     const dialcode = await page.$eval(

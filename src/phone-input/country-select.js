@@ -63,7 +63,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     required,
     size,
   } = props;
-  const [inputValue, setInputValue] = useState('');
+  const [resetScrollIndex, setResetScrollIndex] = useState(false);
   const sharedProps = {
     $disabled: disabled,
     $error: error,
@@ -72,10 +72,8 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     $size: size,
   };
   const options = Object.values(props.countries);
-  const scrollIndex = inputValue.length
-    ? // $FlowFixMe
-      options.findIndex(opt => opt.id === country.id)
-    : 0;
+  // $FlowFixMe
+  const scrollIndex = options.findIndex(opt => opt.id === country.id);
   const baseOverrides = {
     Root: {
       component: StyledRoot,
@@ -108,6 +106,14 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     },
     StatefulMenu: {
       props: {
+        stateReducer: (type, nextState) => {
+          const next = {
+            ...nextState,
+            highlightedIndex: resetScrollIndex ? 0 : nextState.highlightedIndex,
+          };
+          setResetScrollIndex(false);
+          return next;
+        },
         initialState: {
           isFocused: true,
           highlightedIndex: scrollIndex,
@@ -245,8 +251,8 @@ export default function CountrySelect(props: CountrySelectPropsT) {
         required={required}
         size={size}
         value={[country]}
-        onInputChange={event => {
-          setInputValue(event.target.value);
+        onInputChange={() => {
+          setResetScrollIndex(true);
         }}
         {...selectProps}
       />
