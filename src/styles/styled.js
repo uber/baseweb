@@ -95,8 +95,8 @@ export function createThemedUseStyletron<Theme>(): UseStyletronFn<Theme> {
   return function() {
     // eslint-disable-next-line flowtype/no-weak-types
     const theme = ((React.useContext(ThemeContext): any): Theme);
-    const [useCss] = styletronUseStyletron();
-    return [useCss, theme];
+    const [css] = styletronUseStyletron();
+    return [css, theme];
   };
 }
 

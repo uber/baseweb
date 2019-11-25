@@ -2,11 +2,11 @@ import * as React from 'react';
 import {useStyletron} from 'baseui';
 
 const CodeBox = ({children}: {children: React.ReactNode}) => {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   const isLight = theme.name.startsWith('light-theme');
   return (
     <div
-      className={useCss({
+      className={css({
         overflow: 'scroll',
         borderLeft: `5px solid ${
           isLight ? theme.colors.warning200 : theme.colors.mono500

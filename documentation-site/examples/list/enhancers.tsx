@@ -6,10 +6,10 @@ import {ListItem, ListItemLabel} from 'baseui/list';
 import {useStyletron} from 'baseui';
 
 export default () => {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   return (
     <ul
-      className={useCss({
+      className={css({
         width: '375px',
         paddingLeft: 0,
         paddingRight: 0,
