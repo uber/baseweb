@@ -236,6 +236,7 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
 }
 
 const CategoricalCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
+  const [css] = useStyletron();
   return (
     <CellShell
       ref={ref}
@@ -243,11 +244,20 @@ const CategoricalCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
       isSelected={props.isSelected}
       onSelect={props.onSelect}
     >
-      {props.textQuery ? (
-        <HighlightCellText text={props.value} query={props.textQuery} />
-      ) : (
-        props.value
-      )}
+      <div
+        className={css({
+          display: '-webkit-box',
+          WebkitLineClamp: 1,
+          WebkitBoxOrient: 'vertical',
+          overflow: 'hidden',
+        })}
+      >
+        {props.textQuery ? (
+          <HighlightCellText text={props.value} query={props.textQuery} />
+        ) : (
+          props.value
+        )}
+      </div>
     </CellShell>
   );
 });
