@@ -57,18 +57,19 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
 
   componentDidMount() {
     this.setState({mounted: true});
+    // TODO(v10)
     if (__DEV__) {
       if (!this.props.unstable_ModalBackdropScroll) {
-        console.warn(`Consider setting 'unstable_ModalBackdropScroll' prop to true 
-        to prepare for the next major version upgrade. 'unstable_ModalBackdropScroll' 
+        console.warn(`Consider setting 'unstable_ModalBackdropScroll' prop to true
+        to prepare for the next major version upgrade. 'unstable_ModalBackdropScroll'
         prop will be removed in the next major version but implemented as the default behavior.`);
       }
       if (this.props.overrides && this.props.overrides.Backdrop) {
-        console.warn(`Backdrop element will be removed in the next major version in favor of 
-        DialogContainer element that will have the backdrop styles and backdrop click handle. 
-        Consider setting 'unstable_ModalBackdropScroll' prop to true that will apply backdrop 
-        styles to DialogContainer enable modal scrolling while cursor in over the backdrop. 
-        Then pass backdrop overrides to DialogContainer instead. Tha will help you with 
+        console.warn(`Backdrop element will be removed in the next major version in favor of
+        DialogContainer element that will have the backdrop styles and backdrop click handle.
+        Consider setting 'unstable_ModalBackdropScroll' prop to true that will apply backdrop
+        styles to DialogContainer enable modal scrolling while cursor in over the backdrop.
+        Then pass backdrop overrides to DialogContainer instead. Tha will help you with
         the next major version upgrade.`);
       }
     }
