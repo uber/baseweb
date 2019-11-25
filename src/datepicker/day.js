@@ -21,6 +21,8 @@ import {
 import getDayStateCode from './utils/day-state.js';
 import {getOverrides} from '../helpers/overrides.js';
 import type {DayPropsT, DayStateT} from './types.js';
+import {LocaleContext} from '../locale/index.js';
+import type {LocaleT} from '../locale/types.js';
 
 export default class Day extends React.Component<DayPropsT, DayStateT> {
   static defaultProps = {
@@ -204,25 +206,28 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     };
   }
 
-  getAriaLabel(sharedProps: {
-    $disabled: boolean,
-    $range: boolean,
-    $selected: boolean,
-    $startDate: boolean,
-  }) {
+  getAriaLabel(
+    sharedProps: {
+      $disabled: boolean,
+      $range: boolean,
+      $selected: boolean,
+      $startDate: boolean,
+    },
+    localeContext: LocaleT,
+  ) {
     const {date, locale} = this.props;
     return `${
       sharedProps.$selected
         ? sharedProps.$range
           ? sharedProps.$startDate
-            ? 'Selected start date.'
-            : 'Selected end date.'
-          : 'Selected.'
+            ? localeContext.datepicker.selectedStartDateLabel
+            : localeContext.datepicker.selectedEndDateLabel
+          : localeContext.datepicker.selectedLabel
         : sharedProps.$disabled
-        ? 'Not available.'
-        : 'Choose'
+        ? localeContext.datepicker.dateNotAvailableLabel
+        : localeContext.datepicker.chooseLabel
     } ${formatDate(date, 'EEEE, MMMM do yyyy', locale)}. ${
-      !sharedProps.$disabled ? "It's available." : ''
+      !sharedProps.$disabled ? localeContext.datepicker.dateAvailableLabel : ''
     }`;
   }
 
@@ -234,34 +239,39 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
       <Day data-state-code={getDayStateCode(sharedProps)} />
     ) : (
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
-      <Day
-        data-state-code={getDayStateCode(sharedProps)}
-        aria-label={this.getAriaLabel(sharedProps)}
-        ref={dayElm => {
-          this.dayElm = dayElm;
-        }}
-        role="button"
-        tabIndex={
-          this.props.highlighted ||
-          (!this.props.highlightedDate && this.isSelected())
-            ? 0
-            : -1
-        }
-        {...sharedProps}
-        {...dayProps}
-        // Adding event handlers after customers overrides in order to
-        // make sure the components functions as expected
-        // We can extract the handlers from props overrides
-        // and call it along with internal handlers by creating an inline handler
-        onBlur={this.props.onBlur}
-        onFocus={this.props.onFocus}
-        onClick={this.onClick}
-        onKeyDown={this.onKeyDown}
-        onMouseOver={this.onMouseOver}
-        onMouseLeave={this.onMouseLeave}
-      >
-        {getDate(date)}
-      </Day>
+
+      <LocaleContext.Consumer>
+        {(locale: LocaleT) => (
+          <Day
+            data-state-code={getDayStateCode(sharedProps)}
+            aria-label={this.getAriaLabel(sharedProps, locale)}
+            ref={dayElm => {
+              this.dayElm = dayElm;
+            }}
+            role="button"
+            tabIndex={
+              this.props.highlighted ||
+              (!this.props.highlightedDate && this.isSelected())
+                ? 0
+                : -1
+            }
+            {...sharedProps}
+            {...dayProps}
+            // Adding event handlers after customers overrides in order to
+            // make sure the components functions as expected
+            // We can extract the handlers from props overrides
+            // and call it along with internal handlers by creating an inline handler
+            onBlur={this.props.onBlur}
+            onFocus={this.props.onFocus}
+            onClick={this.onClick}
+            onKeyDown={this.onKeyDown}
+            onMouseOver={this.onMouseOver}
+            onMouseLeave={this.onMouseLeave}
+          >
+            {getDate(date)}
+          </Day>
+        )}
+      </LocaleContext.Consumer>
     );
   }
 }
