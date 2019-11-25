@@ -88,7 +88,7 @@ function generateSampleIndices(inputMin, inputMax, maxSamples) {
 }
 
 export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
 
   const measurementCount = React.useRef(0);
   const sampleSize = React.useMemo(() => {
@@ -136,7 +136,7 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
     }
   }
 
-  const hiddenStyle = useCss({
+  const hiddenStyle = css({
     position: 'absolute',
     overflow: 'hidden',
     height: 0,

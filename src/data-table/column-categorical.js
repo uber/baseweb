@@ -39,10 +39,10 @@ type FilterParametersT = {|
 type CategoricalColumnT = ColumnT<string, FilterParametersT>;
 
 function InputBefore() {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   return (
     <div
-      className={useCss({
+      className={css({
         display: 'flex',
         alignItems: 'center',
         paddingLeft: theme.sizing.scale500,
@@ -57,12 +57,12 @@ function FilterQuickControls(props: {
   onSelectAll: () => void,
   onClearSelection: () => void,
 }) {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   return (
     <React.Fragment>
       <button
         type="button"
-        className={useCss({
+        className={css({
           ...theme.typography.font100,
           borderTop: 0,
           borderRight: 0,
@@ -74,10 +74,10 @@ function FilterQuickControls(props: {
       >
         Select All
       </button>
-      <span className={useCss({...theme.typography.font100})}> | </span>
+      <span className={css({...theme.typography.font100})}> | </span>
       <button
         type="button"
-        className={useCss({
+        className={css({
           ...theme.typography.font100,
           borderTop: 0,
           borderRight: 0,
@@ -140,7 +140,7 @@ type CategoricalFilterProps = {
 };
 
 export function CategoricalFilter(props: CategoricalFilterProps) {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   const [selection, setSelection] = React.useState<Set<string>>(
     props.filterParams ? props.filterParams.selection : new Set(),
   );
@@ -152,7 +152,7 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
     return props.data.reduce((set, category) => set.add(category), new Set());
   }, [props.data]);
 
-  const checkboxStyles = useCss({marginBottom: theme.sizing.scale200});
+  const checkboxStyles = css({marginBottom: theme.sizing.scale200});
 
   const showQuery = Boolean(categories.size >= 10);
   const filteredCategories = Array.from(categories, c => c).filter(c =>
@@ -201,7 +201,7 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
       )}
 
       <div
-        className={useCss({
+        className={css({
           maxHeight: '256px',
           overflowY: 'auto',
           marginTop: theme.sizing.scale600,

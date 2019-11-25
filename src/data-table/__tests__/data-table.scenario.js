@@ -135,17 +135,17 @@ const columns = [
     minWidth: 120,
     mapDataToValue: (data: RowDataT) => data[5],
     renderCell: function Cell(props) {
-      const [useCss] = useStyletron();
+      const [css] = useStyletron();
       return (
         <div
-          className={useCss({
+          className={css({
             alignItems: 'center',
             fontFamily: '"Comic Sans MS", cursive, sans-serif',
             display: 'flex',
           })}
         >
           <div
-            className={useCss({
+            className={css({
               backgroundColor: props.value.color,
               height: '12px',
               marginRight: '24px',
