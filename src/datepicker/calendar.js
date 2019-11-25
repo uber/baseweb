@@ -39,6 +39,8 @@ import {
   setSeconds,
   getHours,
   getMinutes,
+  getStartOfWeek,
+  getEndOfWeek,
 } from './utils/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import type {CalendarPropsT, CalendarInternalState} from './types.js';
@@ -191,6 +193,10 @@ export default class Calendar extends React.Component<
       case 'ArrowDown':
       case 'ArrowLeft':
       case 'ArrowRight':
+      case 'Home':
+      case 'End':
+      case 'PageUp':
+      case 'PageDown':
         this.handleArrowKey(event.key);
         event.preventDefault();
         event.stopPropagation();
@@ -225,6 +231,32 @@ export default class Calendar extends React.Component<
         break;
       case 'ArrowDown':
         highlightedDate = addWeeks(
+          // adding `new Date()` as the last option to satisfy Flow
+          highlightedDate ? highlightedDate : new Date(),
+          1,
+        );
+        break;
+      case 'Home':
+        highlightedDate = getStartOfWeek(
+          // adding `new Date()` as the last option to satisfy Flow
+          highlightedDate ? highlightedDate : new Date(),
+        );
+        break;
+      case 'End':
+        highlightedDate = getEndOfWeek(
+          // adding `new Date()` as the last option to satisfy Flow
+          highlightedDate ? highlightedDate : new Date(),
+        );
+        break;
+      case 'PageUp':
+        highlightedDate = subMonths(
+          // adding `new Date()` as the last option to satisfy Flow
+          highlightedDate ? highlightedDate : new Date(),
+          1,
+        );
+        break;
+      case 'PageDown':
+        highlightedDate = addMonths(
           // adding `new Date()` as the last option to satisfy Flow
           highlightedDate ? highlightedDate : new Date(),
           1,
