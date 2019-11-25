@@ -40,6 +40,7 @@ class TabComponent extends React.Component<TabPropsT> {
     // toggle on Enter or Space button pressed
     if (e.key === 'Enter' || e.which === 32) {
       typeof onSelect === 'function' && onSelect();
+      e.which === 32 && e.preventDefault(); // prevent jumping scroll when using Space
     }
     return;
   };
