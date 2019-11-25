@@ -101,13 +101,13 @@ class FilterTable extends React.Component<any> {
 }
 
 export default () => {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   const FILTER_DATA = [...new Array(100)].map((_, i) => [
     i,
     'row title',
   ]);
   return (
-    <div className={useCss({height: '500px'})}>
+    <div className={css({height: '500px'})}>
       <FilterTable data={FILTER_DATA} />
     </div>
   );
