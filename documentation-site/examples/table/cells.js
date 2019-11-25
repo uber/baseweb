@@ -264,9 +264,9 @@ const DATA = [
 ];
 
 export default () => {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   return (
-    <div className={useCss({height: '400px'})}>
+    <div className={css({height: '400px'})}>
       <StyledTable>
         <StyledHead $width="1000px">
           <StyledHeadCell>Name</StyledHeadCell>
