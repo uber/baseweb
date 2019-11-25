@@ -76,7 +76,7 @@ describe('PhoneInput', () => {
     // verify dropdown is open
     await page.waitFor(selectors.phoneInputSelectDropdown);
 
-    await page.keyboard.type('United Kingdom');
+    await page.keyboard.type('United');
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
 
