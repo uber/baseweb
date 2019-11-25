@@ -75,7 +75,7 @@ function BooleanFilter(props) {
 }
 
 const BooleanCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   return (
     <CellShell
       ref={ref}
@@ -84,7 +84,7 @@ const BooleanCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
       onSelect={props.onSelect}
     >
       <div
-        className={useCss({
+        className={css({
           textAlign: props.value ? 'right' : 'left',
           minWidth: theme.sizing.scale1400,
           width: '100%',

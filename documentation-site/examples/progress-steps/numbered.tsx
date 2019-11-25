@@ -22,11 +22,11 @@ function SpacedButton(props: ButtonProps) {
 
 function ProgressStepsContainer() {
   const [current, setCurrent] = React.useState(0);
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   return (
     <ProgressSteps current={current}>
       <NumberedStep title="Create Account">
-        <div className={useCss({...theme.typography.font300})}>
+        <div className={css({...theme.typography.font300})}>
           Here is some step content
         </div>
         <SpacedButton disabled>Previous</SpacedButton>
@@ -35,7 +35,7 @@ function ProgressStepsContainer() {
         </SpacedButton>
       </NumberedStep>
       <NumberedStep title="Verify Payment">
-        <div className={useCss({...theme.typography.font300})}>
+        <div className={css({...theme.typography.font300})}>
           Here is some more content
         </div>
         <SpacedButton onClick={() => setCurrent(0)}>
@@ -46,7 +46,7 @@ function ProgressStepsContainer() {
         </SpacedButton>
       </NumberedStep>
       <NumberedStep title="Add Payment Method">
-        <div className={useCss({...theme.typography.font300})}>
+        <div className={css({...theme.typography.font300})}>
           Here too!
         </div>
         <SpacedButton onClick={() => setCurrent(1)}>
