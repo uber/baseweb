@@ -47,6 +47,7 @@ class Panel extends React.Component<PanelPropsT> {
     // toggle on Enter or Space button pressed
     if (e.key === 'Enter' || e.which === 32) {
       typeof onChange === 'function' && onChange({expanded: !expanded});
+      e.which === 32 && e.preventDefault(); // prevent jumping scroll when using Space
     }
     typeof onKeyDown === 'function' && onKeyDown(e);
     return;
