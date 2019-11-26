@@ -19,12 +19,12 @@ type PropsT = {|
 |};
 
 const CellShell = React.forwardRef<PropsT, HTMLDivElement>((props, ref) => {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
 
   return (
     <div
       ref={ref}
-      className={useCss({
+      className={css({
         ...theme.typography.font100,
         boxSizing: 'border-box',
         display: props.isMeasured ? 'inline-block' : null,
@@ -36,7 +36,7 @@ const CellShell = React.forwardRef<PropsT, HTMLDivElement>((props, ref) => {
       })}
     >
       <div
-        className={useCss({
+        className={css({
           display: 'flex',
           alignItems: 'center',
         })}

@@ -159,7 +159,7 @@ function filterParamsToInitialState(filterParams) {
 }
 
 function NumericalFilter(props) {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
 
   const initialState = filterParamsToInitialState(props.filterParams);
   const [exclude, setExclude] = React.useState(initialState.exclude);
@@ -382,7 +382,7 @@ function NumericalFilter(props) {
       )}
 
       <div
-        className={useCss({
+        className={css({
           display: 'flex',
           justifyContent: 'space-between',
           marginLeft: theme.sizing.scale300,
@@ -393,9 +393,7 @@ function NumericalFilter(props) {
         <Paragraph4>{format(max, props.options)}</Paragraph4>
       </div>
 
-      <div
-        className={useCss({display: 'flex', justifyContent: 'space-between'})}
-      >
+      <div className={css({display: 'flex', justifyContent: 'space-between'})}>
         <Input
           size={INPUT_SIZE.compact}
           overrides={{Root: {style: {width: isRange ? '152px' : '100%'}}}}
@@ -429,7 +427,7 @@ function NumericalFilter(props) {
 }
 
 const NumericalCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
 
   return (
     <CellShell
@@ -439,7 +437,7 @@ const NumericalCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
       onSelect={props.onSelect}
     >
       <div
-        className={useCss({
+        className={css({
           display: 'flex',
           justifyContent: 'flex-end',
           color: props.highlight(props.value) ? theme.colors.negative : null,

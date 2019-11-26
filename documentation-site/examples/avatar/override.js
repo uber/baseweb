@@ -4,12 +4,10 @@ import {Avatar} from 'baseui/avatar';
 import {useStyletron} from 'baseui';
 
 export default () => {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   return (
     <React.Fragment>
-      <div
-        className={useCss({display: 'flex', alignItems: 'center'})}
-      >
+      <div className={css({display: 'flex', alignItems: 'center'})}>
         <Avatar
           overrides={{
             Root: {
@@ -36,9 +34,7 @@ export default () => {
           src="https://not-a-real-image.png"
         />
       </div>
-      <div
-        className={useCss({display: 'flex', alignItems: 'center'})}
-      >
+      <div className={css({display: 'flex', alignItems: 'center'})}>
         <Avatar
           overrides={{
             Avatar: {
