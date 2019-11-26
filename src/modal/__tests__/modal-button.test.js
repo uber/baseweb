@@ -33,7 +33,9 @@ describe('ModalButton', () => {
     const result = mergedOverrides.BaseButton.style({$theme: mockTheme});
     expect(result).toEqual({
       color: 'red',
-      marginLeft: '$theme.sizing.scale500',
+      ':nth-last-child(n+2)': {
+        marginRight: '$theme.sizing.scale500',
+      },
     });
   });
 });
