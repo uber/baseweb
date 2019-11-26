@@ -110,17 +110,17 @@ const columns = [
     title: 'custom color',
     mapDataToValue: (data: RowDataT) => data[5],
     renderCell: function Cell(props: any) {
-      const [useCss] = useStyletron();
+      const [css] = useStyletron();
       return (
         <div
-          className={useCss({
+          className={css({
             alignItems: 'center',
             fontFamily: '"Comic Sans MS", cursive, sans-serif',
             display: 'flex',
           })}
         >
           <div
-            className={useCss({
+            className={css({
               backgroundColor: props.value.color,
               height: '12px',
               marginRight: '24px',
@@ -145,9 +145,9 @@ const columns = [
 const rows = makeRowsFromColumns(columns, 2000);
 
 export default () => {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   return (
-    <div className={useCss({height: '800px'})}>
+    <div className={css({height: '800px'})}>
       <Unstable_StatefulDataTable columns={columns} rows={rows} />
     </div>
   );

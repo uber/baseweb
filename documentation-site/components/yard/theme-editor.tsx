@@ -27,18 +27,18 @@ const ColorInput: React.FC<{
   globalColor: string;
   globalSet: (color: string) => void;
 }> = ({themeKey, themeInit, globalSet, globalColor}) => {
-  const [useCss, $theme] = useStyletron();
+  const [css, $theme] = useStyletron();
   const [color, setColor] = useValueDebounce<string>(globalColor, globalSet);
 
   return (
     <label
-      className={useCss({
+      className={css({
         display: 'flex',
         alignItems: 'center',
       })}
     >
       <div
-        className={useCss({
+        className={css({
           width: '4px',
           height: '36px',
           backgroundColor: color,
@@ -54,7 +54,7 @@ const ColorInput: React.FC<{
       />
       <div
         title={themeKey}
-        className={useCss({
+        className={css({
           ...($theme.typography.font100 as any),
           color: $theme.colors.foreground,
           marginLeft: $theme.sizing.scale300,
@@ -71,10 +71,10 @@ const ColorInput: React.FC<{
 };
 
 const Column: React.FC<ColumnProps> = ({themeKeys, themeInit, theme, set}) => {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   return (
     <div
-      className={useCss({
+      className={css({
         flexBasis: '50%',
       })}
     >
@@ -108,7 +108,7 @@ const ThemeEditor: React.FC<ThemeEditorProps> = ({
   set,
   componentName,
 }) => {
-  const [useCss, currentTheme] = useStyletron();
+  const [css, currentTheme] = useStyletron();
   const activeTheme = getActiveTheme(theme, themeInit);
   const themeKeys = Object.keys(activeTheme);
 
@@ -136,7 +136,7 @@ const ThemeEditor: React.FC<ThemeEditorProps> = ({
         . Try different values:
       </Caption1>
       <div
-        className={useCss({
+        className={css({
           display: 'flex',
           flexDirection: 'row',
           [`@media screen and (max-width: ${currentTheme.breakpoints.medium}px)`]: {

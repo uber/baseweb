@@ -10,11 +10,11 @@ import {useStyletron} from 'baseui';
 import {Label3, Paragraph3} from 'baseui/typography';
 
 const Help = () => {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div
-      className={useCss({
+      className={css({
         position: 'fixed',
         bottom: '0px',
         right: theme.sizing.scale2400,

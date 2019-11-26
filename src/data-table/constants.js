@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 export const COLUMNS = Object.freeze({
+  ANCHOR: 'ANCHOR',
   CATEGORICAL: 'CATEGORICAL',
   NUMERICAL: 'NUMERICAL',
   BOOLEAN: 'BOOLEAN',

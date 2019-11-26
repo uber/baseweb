@@ -35,7 +35,7 @@ const COOKIE_NAME = `baseweb-news-${CAMPAIGN_NAME}`;
 
 export default () => {
   const cookie = Cookies.get(COOKIE_NAME);
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   const [currentPage, setPage] = React.useState(0);
   let isComponentPage = false;
   // $FlowFixMe
@@ -114,7 +114,7 @@ export default () => {
         }}
         tabIndex={0}
         role="button"
-        className={useCss({
+        className={css({
           position: 'fixed',
           bottom: '0px',
           right: theme.sizing.scale4800,

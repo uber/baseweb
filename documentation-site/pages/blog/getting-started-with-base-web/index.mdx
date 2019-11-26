@@ -157,9 +157,9 @@ Our app looks almost there but the layout for those options doesn't look right. 
 Alternatively, you can use the [useStyletron](/components/use-styletron/) hook to achive the same result:
 
 ```js
-const [useCss, theme] = useStyletron();
+const [css, theme] = useStyletron();
 
-<div className={useCss({marginBottom: theme.sizing.scale800})}>
+<div className={css({marginBottom: theme.sizing.scale800})}>
   <FormControl label="Length">
     <Slider {...sliderProps} />
   </FormControl>
