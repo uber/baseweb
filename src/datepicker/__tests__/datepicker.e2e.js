@@ -19,10 +19,24 @@ const selectors = {
   day4: '[aria-label="Choose Monday, April 1st 2019. It\'s available."]',
   day5: '[aria-label="Choose Saturday, March 10th 2018. It\'s available."]',
   day6: '[aria-label="Choose Monday, July 1st 2019. It\'s available."]',
+  day7: '[aria-label="Choose Sunday, February 10th 2019. It\'s available."]',
+  day8: '[aria-label="Choose Sunday, March 3rd 2019. It\'s available."]',
+  day9: '[aria-label="Choose Saturday, March 9th 2019. It\'s available."]',
+  day10: '[aria-label="Choose Monday, March 11th 2019. It\'s available."]',
+  day11: '[aria-label="Choose Sunday, March 17th 2019. It\'s available."]',
+  day12: '[aria-label="Choose Saturday, March 16th 2019. It\'s available."]',
+  day13: '[aria-label="Choose Wednesday, April 10th 2019. It\'s available."]',
   leftArrow: '[aria-label="Previous month"]',
   rightArrow: '[aria-label="Next month"]',
   monthYearSelectButton: '[data-id="monthYearSelectButton"]',
   monthYearSelectMenu: '[data-id="monthYearSelectMenu"]',
+};
+
+const isActiveEl = async (page, selector) => {
+  const el = await page.evaluateHandle(() => document.activeElement);
+  const selectedEl = await page.$(selector);
+  const equal = await page.evaluate((e1, e2) => e1 === e2, el, selectedEl);
+  return equal;
 };
 
 describe('Datepicker', () => {
@@ -139,5 +153,67 @@ describe('Datepicker', () => {
     await page.waitFor(selectors.monthYearSelectMenu);
     await page.keyboard.press('Tab');
     await page.waitFor(selectors.monthYearSelectMenu, {hidden: true});
+  });
+
+  const waitTillDay = async page => {
+    await mount(page, 'datepicker');
+    await page.waitFor(selectors.input);
+    await page.click(selectors.input);
+    await page.waitFor(selectors.calendar);
+    await page.waitFor(selectors.day);
+    await page.focus(selectors.day);
+  };
+
+  it('navigates to next day on ArrowRight key press', async () => {
+    await waitTillDay(page);
+    await page.keyboard.press('ArrowRight');
+    const isday10Active = await isActiveEl(page, selectors.day10);
+    expect(isday10Active).toBe(true);
+  });
+
+  it('navigates to prev day on ArrowLeft key press', async () => {
+    await waitTillDay(page);
+    await page.keyboard.press('ArrowLeft');
+    const isday9Active = await isActiveEl(page, selectors.day9);
+    expect(isday9Active).toBe(true);
+  });
+
+  it('navigates to prev week on ArrowUp key press', async () => {
+    await waitTillDay(page);
+    await page.keyboard.press('ArrowUp');
+    const isday8Active = await isActiveEl(page, selectors.day8);
+    expect(isday8Active).toBe(true);
+  });
+
+  it('navigates to prev week on ArrowDown key press', async () => {
+    await waitTillDay(page);
+    await page.keyboard.press('ArrowDown');
+    const isday11Active = await isActiveEl(page, selectors.day11);
+    expect(isday11Active).toBe(true);
+  });
+
+  it('navigates to start of week on Home key press', async () => {
+    await waitTillDay(page);
+    await page.keyboard.press('Home');
+    const isdayActive = await isActiveEl(page, selectors.day);
+    expect(isdayActive).toBe(true);
+  });
+  it('navigates to end of week on End key press', async () => {
+    await waitTillDay(page);
+    await page.keyboard.press('End');
+    const isday12Active = await isActiveEl(page, selectors.day12);
+    expect(isday12Active).toBe(true);
+  });
+  it('navigates to prev month on PageUp key press', async () => {
+    await waitTillDay(page);
+    await page.keyboard.press('PageUp');
+    const isday7Active = await isActiveEl(page, selectors.day7);
+    expect(isday7Active).toBe(true);
+  });
+  it('navigates to next month on PageDown key press', async () => {
+    await waitTillDay(page);
+    await page.keyboard.press('PageDown');
+    const isday13Active = await isActiveEl(page, selectors.day13);
+    expect(isday13Active).toBe(true);
   });
 });
