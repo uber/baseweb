@@ -6,18 +6,14 @@ import {Button} from 'baseui/button';
 import {ChevronLeft, ChevronRight, Upload} from 'baseui/icon';
 
 export default () => {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   return (
     <div>
-      <div
-        className={useCss({paddingBottom: theme.sizing.scale300})}
-      >
+      <div className={css({paddingBottom: theme.sizing.scale300})}>
         <Button startEnhancer={ChevronLeft}>Start Enhancer</Button>
       </div>
 
-      <div
-        className={useCss({paddingBottom: theme.sizing.scale300})}
-      >
+      <div className={css({paddingBottom: theme.sizing.scale300})}>
         <Button endEnhancer={ChevronRight}>End Enhancer</Button>
       </div>
 

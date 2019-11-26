@@ -11,10 +11,10 @@ const KnobColumn: React.FC<TKnobsProps & {knobNames: string[]}> = ({
   error,
   set,
 }) => {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   return (
     <div
-      className={useCss({
+      className={css({
         flexBasis: '50%',
         padding: `0 ${theme.sizing.scale600}`,
       })}
@@ -38,7 +38,7 @@ const KnobColumn: React.FC<TKnobsProps & {knobNames: string[]}> = ({
 };
 
 const Knobs: React.FC<TKnobsProps> = ({state, set, error}) => {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   const [showAllKnobs, setShowAllKnobs] = React.useState(false);
   const allKnobNames = Object.keys(state).filter(
     name => state[name].type !== PropTypes.Custom,
@@ -52,7 +52,7 @@ const Knobs: React.FC<TKnobsProps> = ({state, set, error}) => {
   return (
     <React.Fragment>
       <div
-        className={useCss({
+        className={css({
           display: 'flex',
           flexWrap: 'wrap',
           [theme.mediaQuery.medium]: {

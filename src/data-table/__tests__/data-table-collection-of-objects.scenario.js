@@ -8,12 +8,12 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import CategoricalColumn from '../column-categorical.js';
-import CustomColumn from '../column-custom.js';
-import ellipsis from 'polished/lib/mixins/ellipsis.js';
-import NumericalColumn from '../column-numerical.js';
-import {useStyletron} from '../../styles/index.js';
-import {Unstable_StatefulDataTable} from '../stateful-data-table.js';
+import {
+  AnchorColumn,
+  CategoricalColumn,
+  NumericalColumn,
+  Unstable_StatefulDataTable,
+} from '../index.js';
 
 import graphqlArrayData from './graphql-array-data.js';
 
@@ -29,43 +29,24 @@ type RowDataT = {
   allocatedGB: number,
 };
 
-const applicationMinWidth = 130;
 const columns = [
-  CustomColumn<{name: string, id: string, applicationTags: string}, {}>({
-    mapDataToValue: (data: RowDataT) => ({
-      id: data.id,
-      name: data.name,
-      applicationTags: data.applicationTags,
-    }),
+  AnchorColumn({
     title: 'Application',
-    sortable: true,
-    minWidth: applicationMinWidth,
-    renderCell: function Cell(props) {
-      const [css] = useStyletron();
-      return (
-        <a
-          href={`#id=${props.value.id}`}
-          title={props.value.applicationTags}
-          className={css({
-            ...ellipsis(`${applicationMinWidth}px`),
-          })}
-        >
-          {props.value.name}
-        </a>
-      );
-    },
-    sortFn: function(a, b) {
-      return a.name.localeCompare(b.name);
-    },
+    mapDataToValue: (data: RowDataT) => ({
+      content: data.name,
+      href: `#id=${data.id}`,
+    }),
+    minWidth: 130,
   }),
-  CustomColumn<string, {}>({
-    title: 'User',
-    sortable: true,
+  AnchorColumn({
+    // illustrates that this could be provided with a react-router-link
+    elementAs: 'div',
+    title: 'Application',
+    mapDataToValue: (data: RowDataT) => ({
+      content: data.realUser,
+      href: `#id=${data.realUser}`,
+    }),
     minWidth: 80,
-    mapDataToValue: (data: RowDataT) => data.realUser,
-    renderCell: function Cell(props) {
-      return <a href={`#user=${props.value}`}>{props.value}</a>;
-    },
   }),
   CategoricalColumn({
     title: 'Source',
