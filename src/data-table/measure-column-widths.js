@@ -64,6 +64,29 @@ type MeasureColumnWidthsPropsT = {
 // sample size could likely be generated based on row count, to have higher confidence
 const MAX_SAMPLE_SIZE = 50;
 
+function generateSampleIndices(inputMin, inputMax, maxSamples) {
+  const indices = [];
+  const queue = [[inputMin, inputMax]];
+
+  while (queue.length > 0) {
+    const [min, max] = queue.shift();
+    if (indices.length < maxSamples) {
+      const pivot = Math.floor((min + max) / 2);
+      indices.push(pivot);
+      const left = pivot - 1;
+      const right = pivot + 1;
+      if (left >= min) {
+        queue.push([min, left]);
+      }
+      if (right <= max) {
+        queue.push([right, max]);
+      }
+    }
+  }
+
+  return indices;
+}
+
 export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
   const [css] = useStyletron();
 
@@ -84,17 +107,8 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
     measurementCount.current = 0;
     dimensionsCache.current = props.widths;
 
-    return props.columns.map(() => {
-      if (props.rows.length <= sampleSize) {
-        return props.rows.map((_, i) => i);
-      }
-
-      const indices = [];
-      for (let i = 0; i < sampleSize; i++) {
-        indices.push(Math.floor(Math.random() * props.rows.length));
-      }
-      return indices;
-    });
+    const indices = generateSampleIndices(0, props.rows.length - 1, sampleSize);
+    return props.columns.map(() => indices);
   }, [props.columns, props.rows, props.widths, sampleSize]);
 
   function handleDimensionsChange(columnIndex, rowIndex, dimensions) {
