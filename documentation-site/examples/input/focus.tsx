@@ -4,10 +4,10 @@ import {Button} from 'baseui/button';
 import {Input} from 'baseui/input';
 
 export default () => {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   const inputRef = React.createRef<HTMLInputElement>();
   return (
-    <div className={useCss({display: 'flex'})}>
+    <div className={css({display: 'flex'})}>
       <Input
         inputRef={inputRef}
         placeholder="With input ref"

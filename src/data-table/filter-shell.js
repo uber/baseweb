@@ -20,10 +20,10 @@ type PropsT = {
 };
 
 function FilterShell(props: PropsT) {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   return (
     <form
-      className={useCss({
+      className={css({
         backgroundColor: theme.colors.white,
         paddingTop: theme.sizing.scale600,
         paddingRight: theme.sizing.scale600,
@@ -38,7 +38,7 @@ function FilterShell(props: PropsT) {
     >
       {props.children}
       <div
-        className={useCss({
+        className={css({
           alignItems: 'center',
           display: 'flex',
           justifyContent: 'space-between',

@@ -26,9 +26,9 @@ const getTooltip = (description: string, type: string, name: string) => (
 );
 
 const Spacing: React.FC<{children: React.ReactNode}> = ({children}) => {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   return (
-    <div className={useCss({margin: `${theme.sizing.scale400} 0`})}>
+    <div className={css({margin: `${theme.sizing.scale400} 0`})}>
       {children}
     </div>
   );
