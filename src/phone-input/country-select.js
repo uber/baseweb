@@ -82,6 +82,9 @@ export default function CountrySelect(props: CountrySelectPropsT) {
       style: {
         width: 0,
       },
+      props: {
+        'aria-label': 'Select country',
+      },
     },
     ControlContainer: {
       style: props => {

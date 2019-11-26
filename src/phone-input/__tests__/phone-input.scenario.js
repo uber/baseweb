@@ -15,7 +15,6 @@ export const name = 'phone-input';
 export const component = () => (
   <>
     <StatefulPhoneInput
-      aria-label="Phone input"
       overrides={{
         CountrySelectDropdownListItem: {
           props: {'data-e2e': 'country-select-list-item'},
@@ -32,7 +31,6 @@ export const component = () => (
     <br />
     <p>phone input lite</p>
     <PhoneInputLite
-      aria-label="Phone input"
       country={{label: 'Afghanistan (‫افغانستان‬‎)', id: 'AF', dialCode: '+93'}}
       countries={{
         AF: {label: 'Afghanistan (‫افغانستان‬‎)', id: 'AF', dialCode: '+93'},
