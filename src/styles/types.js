@@ -470,6 +470,13 @@ export type ColorsT = {
   toastWarningBackground: string,
   toastNegativeBackground: string,
 
+  // Toggle
+  toggleFill: string,
+  toggleFillChecked: string,
+  toggleFillDisabled: string,
+  toggleTrackFill: string,
+  toggleTrackFillDisabled: string,
+
   // Spinner
   spinnerTrackFill: string,
 
