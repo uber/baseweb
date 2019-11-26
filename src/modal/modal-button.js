@@ -14,11 +14,15 @@ import {mergeOverrides} from '../helpers/overrides.js';
 // ModalButtons should have some margin pre-applied
 const overrides = {
   BaseButton: {
-    style: ({$theme}) => ({
-      ':nth-last-child(n+2)': {
-        marginRight: $theme.sizing.scale500,
-      },
-    }),
+    style: ({$theme}) => {
+      const marginInlineEnd =
+        $theme.direction !== 'rtl' ? 'marginRight' : 'marginLeft';
+      return {
+        ':nth-last-child(n+2)': {
+          [marginInlineEnd]: $theme.sizing.scale500,
+        },
+      };
+    },
   },
 };
 
