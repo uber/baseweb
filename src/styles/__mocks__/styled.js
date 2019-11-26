@@ -27,14 +27,14 @@ const IDENTITY = x => x;
 
 export function useStyletron() {
   // eslint-disable-next-line flowtype/no-weak-types
-  function useCss(styles: Object) {
+  function css(styles: Object) {
     return {
       label: 'useStyletron mock describes the applied css properties',
       ...styles,
     };
   }
 
-  return [useCss, MOCK_THEME];
+  return [css, MOCK_THEME];
 }
 
 export function styled(

@@ -12730,11 +12730,6 @@ jsx-ast-utils@^2.0.1:
   dependencies:
     array-includes "^3.0.3"
 
-just-clone@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/just-clone/-/just-clone-3.1.0.tgz#10efc422e9b041355c43b8076d7b768b7a09fbbd"
-  integrity sha512-sROn15yHaeNYSTG49HmfbQLtsZvMBb2COvVofNXbeUXx6GkERkdjG3dfejD0fe78gdHJLyS+fOz897H73S8LqA==
-
 just-extend@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/just-extend/-/just-extend-4.0.2.tgz#f3f47f7dfca0f989c55410a7ebc8854b07108afc"
@@ -16643,10 +16638,10 @@ react-twitter-embed@^2.0.8:
     react-proptype-conditional-require "^1.0.4"
     scriptjs "^2.5.9"
 
-react-view@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/react-view/-/react-view-1.0.3.tgz#9a10610d9b0b88c4a26bf6b76cef66a07750b3de"
-  integrity sha512-rwMvyceBi0NfMJ0PdR0kIgLhGWlsCLlybjDh531OPH8TCrnwlFgpjwrmeHnF8pbbUkwXK13uP45Z8ZZsjQ4FWA==
+react-view@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-view/-/react-view-1.0.4.tgz#ab65e2b073d0a09bc1b93339f026e3064b5028c2"
+  integrity sha512-XKi6dm/hx6E6V3zYXjS/9TaJsiafYf2j/CsTY5/hj+nLzbSCPmTRwYms0PmY4IhP26DdnGnLHGJ2riLt09GNTQ==
   dependencies:
     "@babel/code-frame" "^7.5.5"
     "@babel/core" "^7.7.0"
@@ -16658,7 +16653,6 @@ react-view@^1.0.3:
     "@miksu/prettier" "^1.18.3"
     "@miksu/react-tiny-popover" "^3.5.1"
     copy-to-clipboard "^3.2.0"
-    just-clone "^3.1.0"
     lodash "^4.17.15"
     prism-react-renderer "^1.0.2"
     react-simple-code-editor "^0.10.0"

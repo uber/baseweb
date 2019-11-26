@@ -8,10 +8,10 @@ import {Button} from 'baseui/button';
 import {validate as validateEmail} from 'email-validator'; // add this package to your repo with `$ yarn add email-validator`
 
 function Negative() {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   return (
     <div
-      className={useCss({
+      className={css({
         display: 'flex',
         alignItems: 'center',
         paddingRight: theme.sizing.scale500,

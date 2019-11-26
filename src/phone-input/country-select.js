@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
+import React, {useState} from 'react';
 
 import {
   StyledRoot,
@@ -63,6 +63,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     required,
     size,
   } = props;
+  const [resetScrollIndex, setResetScrollIndex] = useState(false);
   const sharedProps = {
     $disabled: disabled,
     $error: error,
@@ -76,6 +77,14 @@ export default function CountrySelect(props: CountrySelectPropsT) {
   const baseOverrides = {
     Root: {
       component: StyledRoot,
+    },
+    Input: {
+      style: {
+        width: 0,
+      },
+      props: {
+        'aria-label': 'Select country',
+      },
     },
     ControlContainer: {
       style: props => {
@@ -100,6 +109,14 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     },
     StatefulMenu: {
       props: {
+        stateReducer: (type, nextState) => {
+          const next = {
+            ...nextState,
+            highlightedIndex: resetScrollIndex ? 0 : nextState.highlightedIndex,
+          };
+          setResetScrollIndex(false);
+          return next;
+        },
         initialState: {
           isFocused: true,
           highlightedIndex: scrollIndex,
@@ -235,9 +252,11 @@ export default function CountrySelect(props: CountrySelectPropsT) {
         options={options}
         positive={positive}
         required={required}
-        searchable={false}
         size={size}
         value={[country]}
+        onInputChange={() => {
+          setResetScrollIndex(true);
+        }}
         {...selectProps}
       />
       <DialCode {...sharedProps} {...dialCodeProps}>

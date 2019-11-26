@@ -3,12 +3,12 @@ import React from 'react';
 import {useStyletron} from 'baseui';
 
 function ReuseDefinitions() {
-  const [useCss, theme] = useStyletron();
-  const red = useCss({backgroundColor: theme.colors.negative});
-  const green = useCss({backgroundColor: theme.colors.positive});
+  const [css, theme] = useStyletron();
+  const red = css({backgroundColor: theme.colors.negative});
+  const green = css({backgroundColor: theme.colors.positive});
 
   return (
-    <ul className={useCss({color: 'white'})}>
+    <ul className={css({color: 'white'})}>
       <li className={red}>1</li>
       <li className={green}>2</li>
       <li className={red}>3</li>
