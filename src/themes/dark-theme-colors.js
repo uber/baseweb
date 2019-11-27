@@ -297,6 +297,13 @@ export default {
     tableFilterBackground: primitives.mono700,
     tableFilterFooterBackground: primitives.mono800,
 
+    // Toggle
+    toggleFill: primitives.mono300,
+    toggleFillChecked: WHITE,
+    toggleFillDisabled: primitives.mono600,
+    toggleTrackFill: primitives.mono400,
+    toggleTrackFillDisabled: primitives.mono700,
+
     // Tick
     tickFill: primitives.mono1000,
     tickFillHover: primitives.mono700,
