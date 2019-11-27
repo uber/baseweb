@@ -88,7 +88,6 @@ export default class Datepicker extends React.Component<
     this.setState({
       isOpen: true,
       isPseudoFocused: true,
-      calendarFocused: true,
     });
   };
 
