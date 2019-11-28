@@ -345,6 +345,7 @@ const SelectConfig: TConfig = {
           'SelectArrow',
           'ClearIcon',
           'LoadingIndicator',
+          'SearchIconContainer',
           'SearchIcon',
           'Popover',
           'DropdownContainer',

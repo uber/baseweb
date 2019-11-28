@@ -29,7 +29,7 @@ export {
   StyledIconsContainer,
   StyledSelectArrow,
   StyledClearIcon,
-  StyledSearchIcon,
+  StyledSearchIconContainer,
   StyledDropdownContainer,
   StyledDropdown,
   StyledDropdownListItem,
