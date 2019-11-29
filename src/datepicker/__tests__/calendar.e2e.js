@@ -22,7 +22,8 @@ const selectors = {
   day6: '[aria-label="Choose Tuesday, January 22nd 2019. It\'s available."]',
 };
 const isActiveEl = async (page, selector) => {
-  const el = await page.evaluateHandle(() => document.activeElement);
+  // eslint-disable-next-line cup/no-undef
+  const el = await page.evaluateHandle(() => window.document.activeElement);
   const selectedEl = await page.$(selector);
   const equal = await page.evaluate((e1, e2) => e1 === e2, el, selectedEl);
   return equal;
