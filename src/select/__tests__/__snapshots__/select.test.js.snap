@@ -353,6 +353,7 @@ exports[`Select component renders component in search mode and false for multipl
                             "height": "100%",
                             "left": "$theme.sizing.scale500",
                             "position": "absolute",
+                            "top": 0,
                             "width": "$theme.sizing.scale600",
                           }
                         }
@@ -1179,6 +1180,7 @@ exports[`Select component renders component in search mode and true for multiple
                             "height": "100%",
                             "left": "$theme.sizing.scale500",
                             "position": "absolute",
+                            "top": 0,
                             "width": "$theme.sizing.scale600",
                           }
                         }
