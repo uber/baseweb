@@ -1,4 +1,5 @@
 import {Datepicker, ORIENTATION} from 'baseui/datepicker';
+import {SIZE} from 'baseui/input';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 import inputConfig from './input';
@@ -11,7 +12,7 @@ const DatepickerConfig: TConfig = {
       named: ['Datepicker'],
     },
   },
-  scope: {Datepicker, ORIENTATION},
+  scope: {Datepicker, ORIENTATION, SIZE},
   theme: [
     'datepickerBackground',
     'datepickerDayFont',
@@ -122,6 +123,7 @@ const DatepickerConfig: TConfig = {
     },
     positive: inputConfig.props.positive,
     error: inputConfig.props.error,
+    size: inputConfig.props.size,
     locale: {
       value: undefined,
       type: PropTypes.Object,
