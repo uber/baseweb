@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 
 import {
   PhoneInput,
@@ -14,10 +14,11 @@ import {
   CountrySelectDropdown,
   StyledFlag,
 } from '../../phone-input/index.js';
+import type {CountryIsoT} from '../../phone-input/index.js';
 
 export const name = 'phone-input-custom-flags';
 
-function CustomFlag(props) {
+function CustomFlag(props: {children: React.Node, $iso: CountryIsoT}) {
   const {children, ...rest} = props;
   return <StyledFlag iso={props.$iso} {...rest} />;
 }
@@ -32,7 +33,8 @@ export const component = () => {
       onTextChange={event => {
         setText(event.currentTarget.value);
       }}
-      onCountryChange={event => {
+      // eslint-disable-next-line flowtype/no-weak-types
+      onCountryChange={(event: any) => {
         setCountry(event.option);
       }}
       overrides={{
