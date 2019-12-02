@@ -158,6 +158,23 @@ const config = {
   'nav-long': {
     skip: true,
   },
+  'phone-input-custom-flags': {
+    interactions: [
+      {
+        name: 'expandedAndFiltered',
+        behavior: async page => {
+          const selectSelector = `[data-baseweb="select"]`;
+          const selectInputSelector = `input[role="combobox]`;
+          const dropdownSelector = `[data-baseweb="menu"]`;
+          await page.waitForSelector(selectSelector);
+          await page.click(selectSelector);
+          await page.waitForSelector(dropdownSelector);
+          await page.type(selectInputSelector, 'zzz');
+          await page.waitFor(1000);
+        },
+      },
+    ],
+  },
   'progress-steps': {
     interactions: [
       {
