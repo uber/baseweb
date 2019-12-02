@@ -263,6 +263,7 @@ export default class Datepicker extends React.Component<
                   aria-describedby={this.props['aria-describedby']}
                   aria-required={this.props.required || null}
                   disabled={this.props.disabled}
+                  size={this.props.size}
                   value={this.state.inputValue}
                   onFocus={this.open}
                   onBlur={this.handleInputBlur}

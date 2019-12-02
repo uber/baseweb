@@ -39,6 +39,34 @@ export const component = () => {
           },
         }}
       />
+      <span>Large</span>
+      <Datepicker
+        aria-label="Select a date"
+        highlightedDate={new Date('March 10, 2019')}
+        size="large"
+        overrides={{
+          MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
+          MonthYearSelectStatefulMenu: {
+            props: {
+              overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}},
+            },
+          },
+        }}
+      />
+      <span>Compact</span>
+      <Datepicker
+        aria-label="Select a date"
+        highlightedDate={new Date('March 10, 2019')}
+        size="compact"
+        overrides={{
+          MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
+          MonthYearSelectStatefulMenu: {
+            props: {
+              overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}},
+            },
+          },
+        }}
+      />
     </React.Fragment>
   );
 };
