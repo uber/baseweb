@@ -42,6 +42,7 @@ export const component = () => {
       <span>Large</span>
       <Datepicker
         aria-label="Select a date"
+        aria-describedby="large-datepicker"
         highlightedDate={new Date('March 10, 2019')}
         size="large"
         overrides={{
@@ -56,6 +57,7 @@ export const component = () => {
       <span>Compact</span>
       <Datepicker
         aria-label="Select a date"
+        aria-describedby="compact-datepicker"
         highlightedDate={new Date('March 10, 2019')}
         size="compact"
         overrides={{
