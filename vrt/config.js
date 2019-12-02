@@ -16,10 +16,9 @@ const config = {
         behavior: async page => {
           const selectSelector = `[data-baseweb="select"]`;
           const dropdownSelector = `[data-baseweb="menu"]`;
-          page.waitForSelector(selectSelector);
-          page.click(selectSelector);
-          page.waitForSelector(dropdownSelector);
-          await page.waitFor(1000);
+          await page.waitForSelector(selectSelector);
+          await page.click(selectSelector);
+          await page.waitForSelector(dropdownSelector);
         },
       },
     ],
@@ -31,10 +30,9 @@ const config = {
         behavior: async page => {
           const selectSelector = `[data-baseweb="select"]`;
           const dropdownSelector = `[data-baseweb="menu"]`;
-          page.waitForSelector(selectSelector);
-          page.click(selectSelector);
-          page.waitForSelector(dropdownSelector);
-          await page.waitFor(1000);
+          await page.waitForSelector(selectSelector);
+          await page.click(selectSelector);
+          await page.waitForSelector(dropdownSelector);
         },
       },
     ],
@@ -238,10 +236,9 @@ const config = {
         behavior: async page => {
           const inputSelector = `[data-baseweb="select"]`;
           const dropdownSelector = `[role="listbox"]`;
-          page.waitForSelector(inputSelector);
-          page.click(inputSelector);
-          page.waitForSelector(dropdownSelector);
-          await page.waitFor(2000);
+          await page.waitForSelector(inputSelector);
+          await page.click(inputSelector);
+          await page.waitForSelector(dropdownSelector);
         },
       },
     ],
