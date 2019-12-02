@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
+import type {SizeT} from '../input/types.js';
 import {ORIENTATION, STATE_CHANGE_TYPE} from './constants.js';
 
 import type {OptionT} from '../select/index.js';
@@ -175,6 +176,7 @@ export type DatepickerPropsT = CalendarPropsT & {
   'aria-labelledby'?: string,
   'aria-describedby'?: ?string,
   disabled?: boolean,
+  size?: SizeT,
   /** Renders UI in 'error' state. */
   error?: boolean,
   positive?: boolean,
