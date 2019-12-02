@@ -412,6 +412,7 @@ export const StyledSearchIconContainer = styled<SharedStylePropsArgT>(
       color: $disabled ? colors.inputTextDisabled : colors.foreground,
       cursor: $disabled ? 'not-allowed' : 'pointer',
       position: 'absolute',
+      top: 0,
       [$theme.direction === 'rtl' ? 'right' : 'left']: sizing.scale500,
       display: 'flex',
       alignItems: 'center',

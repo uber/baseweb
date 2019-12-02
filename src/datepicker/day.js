@@ -248,7 +248,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
             ref={dayElm => {
               this.dayElm = dayElm;
             }}
-            role="button"
+            role="cell"
             tabIndex={
               this.props.highlighted ||
               (!this.props.highlightedDate && this.isSelected())

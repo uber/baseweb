@@ -263,6 +263,7 @@ export default class Datepicker extends React.Component<
                   aria-describedby={this.props['aria-describedby']}
                   aria-required={this.props.required || null}
                   disabled={this.props.disabled}
+                  size={this.props.size}
                   value={this.state.inputValue}
                   onFocus={this.open}
                   onBlur={this.handleInputBlur}
@@ -276,7 +277,7 @@ export default class Datepicker extends React.Component<
               </InputWrapper>
             </PopoverComponent>
             <p
-              id="datepicker--screenreader--message--input"
+              id={this.props['aria-describedby']}
               style={{
                 position: 'absolute',
                 width: '1px',
