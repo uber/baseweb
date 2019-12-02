@@ -42,12 +42,13 @@ describe('Side navigation', () => {
   });
 
   it('renders titles correctly modified by mapItem', () => {
+    const Title = ({item}) => <span>New {item.title}</span>;
     const mapItem = item => ({
       ...item,
-      title: <span>New {item.title}</span>,
+      title: <Title item={item} />,
     });
     const wrapper = mount(<Navigation items={nav} mapItem={mapItem} />);
-    expect(wrapper.find('NavItem')).toMatchSnapshot();
+    expect(wrapper.find(Title)).toHaveLength(5);
   });
 
   it('calls mapItem exactly once for each item', () => {
