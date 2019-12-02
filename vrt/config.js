@@ -164,13 +164,12 @@ const config = {
         name: 'expandedAndFiltered',
         behavior: async page => {
           const selectSelector = `[data-baseweb="select"]`;
-          const selectInputSelector = `input[role="combobox]`;
-          const dropdownSelector = `[data-baseweb="menu"]`;
+          const selectInputSelector = `input[role="combobox"]`;
+          const dropdownSelector = `[role="listbox"]`;
           await page.waitForSelector(selectSelector);
           await page.click(selectSelector);
           await page.waitForSelector(dropdownSelector);
           await page.type(selectInputSelector, 'zzz');
-          await page.waitFor(1000);
         },
       },
     ],
