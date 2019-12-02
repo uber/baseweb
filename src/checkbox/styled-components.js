@@ -251,13 +251,13 @@ export const Toggle = styled<SharedStylePropsT>('div', props => {
   }
 
   if (props.$checkmarkType === STYLE_TYPE.toggle_round) {
-    let backgroundColor = props.$theme.colors.white;
+    let backgroundColor = props.$theme.colors.toggleFill;
     if (props.$disabled) {
-      backgroundColor = props.$theme.colors.mono600;
+      backgroundColor = props.$theme.colors.toggleFillDisabled;
     } else if (props.$checked && props.$isError) {
       backgroundColor = props.$theme.colors.borderError;
     } else if (props.$checked) {
-      backgroundColor = props.$theme.colors.black;
+      backgroundColor = props.$theme.colors.toggleFillChecked;
     }
     return {
       backgroundColor,
@@ -341,13 +341,12 @@ export const ToggleTrack = styled<SharedStylePropsT>('div', props => {
   }
 
   if (props.$checkmarkType === STYLE_TYPE.toggle_round) {
-    let backgroundColor = props.$theme.colors.sliderTrackFill;
+    let backgroundColor = props.$theme.colors.toggleTrackFill;
     if (props.$disabled) {
-      backgroundColor = props.$theme.colors.sliderTrackFillDisabled;
+      backgroundColor = props.$theme.colors.toggleTrackFillDisabled;
     } else if (props.$isError && props.$checked) {
       backgroundColor = props.$theme.colors.tickFillError;
     }
-
     return {
       alignItems: 'center',
       backgroundColor,

@@ -235,6 +235,14 @@ export default function createTheme(
       progressStepsActiveFill: primitives.primary,
       progressStepsIconActiveFill: primitives.primary,
 
+      // Toggle
+      toggleFill: WHITE,
+      toggleFillChecked: BLACK,
+      toggleFillDisabled: primitives.mono600,
+      toggleTrackFill: primitives.mono400,
+      toggleTrackFillChecked: primitives.mono400,
+      toggleTrackFillDisabled: primitives.mono300,
+
       // Tick
       tickFill: primitives.mono100,
       tickFillHover: primitives.mono200,
