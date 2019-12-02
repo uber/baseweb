@@ -72,6 +72,7 @@ function CountrySelectDropdown(
     overrides.EmptyState,
     StyledEmptyState,
   );
+  // Handle no results, likely from filtering
   if (children.length === 1 && children[0].props.children) {
     return (
       <LocaleContext.Consumer>
