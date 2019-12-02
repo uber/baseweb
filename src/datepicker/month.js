@@ -93,7 +93,7 @@ export default class CalendarMonth extends React.Component<MonthPropsT> {
     const {overrides = {}} = this.props;
     const [Month, monthProps] = getOverrides(overrides.Month, StyledMonth);
     return (
-      <Month aria-multiselectable={this.props.range || null} {...monthProps}>
+      <Month role="rowgroup" {...monthProps}>
         {this.renderWeeks()}
       </Month>
     );
