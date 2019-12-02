@@ -17,6 +17,7 @@ import {
   StyledCountrySelectDropdownNameColumn as DefaultNameColumn,
   StyledCountrySelectDropdownDialcodeColumn as DefaultDialcodeColumn,
 } from './styled-components.js';
+import {StyledEmptyState} from '../menu/styled-components.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {iso2FlagEmoji} from './utils.js';
 
@@ -36,6 +37,7 @@ function CountrySelectDropdown(
     $maxDropdownHeight: maxDropdownHeight,
     $mapIsoToLabel: mapIsoToLabel,
     $overrides: overrides,
+    $noResultsMsg = 'No results',
   } = props;
 
   const children = React.Children.toArray(props.children);
@@ -64,6 +66,13 @@ function CountrySelectDropdown(
     overrides.CountrySelectDropdownDialcodeColumn,
     DefaultDialcodeColumn,
   );
+  const [EmptyState, emptyStateProps] = getOverrides(
+    overrides.EmptyState,
+    StyledEmptyState,
+  );
+  if (children.length === 1 && children[0].props.children) {
+    return <EmptyState {...emptyStateProps}>{$noResultsMsg}</EmptyState>;
+  }
   const scrollIndex = Math.min(
     children.findIndex(
       opt => opt.props.item && opt.props.item.id === country.id,
