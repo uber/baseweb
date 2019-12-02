@@ -11,14 +11,16 @@ export default Layout;
 
 <Meta data={metadata} />
 
-React View is an **interactive playground**, **documentation** and **code generator** for your components. You can use it to document your React component APIs, let users live-edit props and grab the generated ready-to-use source code.
+React View is a set of tools that aspires to close the gap between users, developers and designers of component libraries. React View aims to make documentation more interactive and useful. It utilizes already popular tools such as babel and prettier.
 
-The example below demonstrates all basic features of React View:
+It is an interactive playground, documentation and code generator for your components. You can use it to document your React component APIs, enabling users to live-edit the props and grab the generated ready-to-use source code.
 
-- The component **live preview**. (`baseui/button` in this case)
-- Knobs representing `Button` props. Fully **interactive**.
-- The **source code editor**. The source code is automatically generated based on the initial configuration and playground state. The source code is **also editable**.
-- Some additional actions. For example, you can **format the code with Prettier** or reset the playground state.
+The example below demonstrates the basic features of React View:
+
+- The component live preview (`baseui/button` in this case).
+- Knobs representing `Button` props (fully interactive).
+- The source code editor. The source code is automatically generated based on the initial configuration and playground state. The source code is also editable.
+- Some additional actions. For example, you can format the code with Prettier or reset the playground state.
 
 <div style={{margin: '2em 0.5em'}}>
   <Yard
@@ -75,17 +77,17 @@ The example below demonstrates all basic features of React View:
   />
 </div>
 
-All these parts work in harmony. An update to one of them synchronizes the state across all of them. So you can change a knob to update the source code or edit the source code to update knobs.
+All these parts work in harmony—an update to one of them synchronizes the state across all of them. So you can change a knob to update the source code or edit the source code to update knobs.
 
-**React View is open sourced as [uber/react-view](https://github.com/uber/react-view)** and you can get it from npm right now:
+React View is open sourced as [uber/react-view](https://github.com/uber/react-view) and you can get it from npm right now:
 
 ```
 yarn add react-view
 ```
 
-## Wait But Why?
+## Wait...But Why?
 
-Our team is responsible for this website and the entire Base Web component library. Naturally, you might assume that most of our job consists of building React components. However, as the number of Base Web users grows, some days it feels more like this:
+Our team is responsible for this website and the entire Base Web component library. You might assume that most of our job consists of building React components. However, as the number of Base Web users grows, some days it feels more like this:
 
 <BlogImage
   src="https://user-images.githubusercontent.com/1387913/69685208-785d8d80-1070-11ea-82bf-81bd6b7f28ee.png"
@@ -104,11 +106,11 @@ Does it work? Check for yourself! You can browse through our components on the l
 
 ## How to Use React View
 
-**There are three main ways** of using React View:
+There are three main ways of using React View:
 
 - **All-in-one playground**. Import `<View />`, give it the component configuration and drop it in your web documentation. This is ideal if you want to start as quickly as possible and don't need to customize anything.
-- **Build your own playground**. Import the `useView` hook and give it the component configuration. This hook handles the playground state and returns various props and callbacks that you can fit into your own UI components. React View also exports all default UI parts separately (`Editor`, `ActionButtons`, `Compiler`, `Knobs`, `Error`...) so you can reuse them. This is a great option if you want to customize some parts of the default UI (or all of it) and not worry about the rest.
-- **Live code editing only**. Sometimes it is useful to only have an editable source code and live preview without the list of props. You can use `useView` for that too. Just don't give it any component configuration and don't render the `<Knobs />` component. React View uses babel, so **you can add additional presets and enable TypeScript**.
+- **Build your own playground**. Import the `useView` hook and give it the component configuration. This hook handles the playground state and returns various props and callbacks that you can use in your own UI components. React View also exports all default UI parts separately (`Editor`, `ActionButtons`, `Compiler`, `Knobs`, `Error`...) so you can reuse them. This is a great option if you want to customize some parts of the default UI (or all of it) without worrying about the rest.
+- **Live code editing only**. Sometimes it's useful to only have editable source code and live preview without the list of props. You can use `useView` for that too. Just don't give it any component configuration and don't render the `<Knobs />` component. React View uses babel, so you can add additional presets and enable TypeScript.
 
 ### All-in-one Playground
 
@@ -152,7 +154,7 @@ This is a basic example demonstrating the all-in-one `View` component. You need 
 
 ### Build Your Own Playground
 
-**Bring your own UI**. The View component is a tiny wrapper around the `useView` hook. If you wish to customize and have more control, you can use the `useView` hook directly. You can still re-use our default UI components or create your own:
+**Bring your own UI**. The View component is a tiny wrapper around the `useView` hook. If you want to customize and have more control, you can use the `useView` hook directly. You can still re-use our default UI components or create your own:
 
 ```tsx
 import * as React from 'react';
@@ -253,7 +255,7 @@ export default () => {
 };
 ```
 
-This example also demonstrates **how to opt-in into TypeScript support**. Since **we use babel** as the compiler, you can simply add additional presets (`preset-react` is applied by default). If you are using additional components or dependencies, you need to pass them through `scope`.
+This example also demonstrates how to opt-in into TypeScript support. Since we use babel as the compiler, you can simply add additional presets (`preset-react` is applied by default). If you are using additional components or dependencies, you need to pass them through `scope`.
 
 It can also compile a naked JSX element:
 
@@ -263,16 +265,14 @@ Or pretty much anything that can be executed after the return statement of JavaS
 
 <LiveEditor initialCode={`2 + 5`} />
 
-## So What Really Is React View?
+## Future
 
-**It is a set of tools** that aspires to close the gap between users, developers and designers of component libraries. React View aims to make documentation more interactive and useful. It utilizes already popular tools such as babel and prettier.
-
-**This is just a start for us**. We are always gathering feedback and moving forward. There is already a [list of things](https://github.com/uber/react-view/issues/2) we want to improve. And there is also a long-term vision about how far the automatic code generation could get us.
+This is just a start for us. We're always gathering feedback and moving forward. There is already a [list of things](https://github.com/uber/react-view/issues/2) we want to improve. And there is also a long-term vision about how far the automatic code generation could get us.
 
 > React View is a set of tools that aspires to close the gap between users, developers and designers of component libraries.
 
 For now, we have designed React View to be as flexible as possible. Our hope is that it will resonate with the community and we will see new applications, custom built UI components and 3rd party design system integrations.
 
-**We could all save a lot of time by not writing code that can be generated**.
+We could all save a lot of time by not writing code that can be generated.
 
 Please visit our [GitHub repository](https://github.com/uber/react-view) for more examples and documentation.
