@@ -24,7 +24,12 @@ export default ({initialCode}: {initialCode: string}) => {
 
   return (
     <React.Fragment>
-      <div style={{marginBottom: '8px'}}>
+      <div
+        style={{
+          marginBottom: '8px',
+          fontFamily: `system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif`,
+        }}
+      >
         <Compiler {...params.compilerProps} presets={[presetTypescript]} />
       </div>
       <Editor {...params.editorProps} language="tsx" />
