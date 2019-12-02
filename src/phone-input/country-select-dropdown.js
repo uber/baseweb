@@ -42,8 +42,6 @@ function CountrySelectDropdown(
     $overrides: overrides,
   } = props;
 
-  const children = React.Children.toArray(props.children);
-
   const [Container, containerProps] = getOverrides(
     overrides.CountrySelectDropdown,
     DefaultContainer,
@@ -72,8 +70,9 @@ function CountrySelectDropdown(
     overrides.EmptyState,
     StyledEmptyState,
   );
+
   // Handle no results, likely from filtering
-  if (children.length === 1 && children[0].props.children) {
+  if (!props.children.length) {
     return (
       <LocaleContext.Consumer>
         {(locale: LocaleT) => (
@@ -84,10 +83,10 @@ function CountrySelectDropdown(
       </LocaleContext.Consumer>
     );
   }
+
+  const children = React.Children.toArray(props.children);
   const scrollIndex = Math.min(
-    children.findIndex(
-      opt => opt.props.item && opt.props.item.id === country.id,
-    ) + 5,
+    children.findIndex(opt => opt.props.item.id === country.id) + 5,
     children.length - 1,
   );
   return (
@@ -111,9 +110,6 @@ function CountrySelectDropdown(
                 const {item, resetMenu, getItemLabel, ...rest} = children[
                   index
                 ].props;
-                // A list might be filtered, in which case `item` is `undefined`.
-                // We can exit early if there is no item to show.
-                if (!item) return;
                 const {id: iso, label, dialCode} = item;
                 return (
                   <ListItem
