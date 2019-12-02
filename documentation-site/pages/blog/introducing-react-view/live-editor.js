@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {useView, Compiler, Error} from 'react-view';
+//$FlowFixMe
 import Editor from '../../../components/yard/editor';
 
 /* eslint-disable */
