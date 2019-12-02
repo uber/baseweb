@@ -355,6 +355,8 @@ export default class Calendar extends React.Component<
           ref={calendar => {
             this.calendar = calendar;
           }}
+          role="grid"
+          aria-multiselectable={this.props.range || null}
           onKeyDown={this.onKeyDown}
           {...calendarContainerProps}
         >
