@@ -65,7 +65,9 @@ function CountrySelectDropdown(
     DefaultDialcodeColumn,
   );
   const scrollIndex = Math.min(
-    children.findIndex(opt => opt.props.item.id === country.id) + 5,
+    children.findIndex(
+      opt => opt.props.item && opt.props.item.id === country.id,
+    ) + 5,
     children.length - 1,
   );
   return (
@@ -86,14 +88,18 @@ function CountrySelectDropdown(
               scrollToIndex={scrollIndex}
               rowRenderer={({index, key, style}) => {
                 // resetMenu and getItemLabel should not end up on native html elements
-                const {resetMenu, getItemLabel, ...rest} = children[
+                const {item, resetMenu, getItemLabel, ...rest} = children[
                   index
                 ].props;
-                const iso = children[index].props.item.id;
+                // A list might be filtered, in which case `item` is `undefined`.
+                // We can exit early if there is no item to show.
+                if (!item) return;
+                const {id: iso, label, dialCode} = item;
                 return (
                   <ListItem
                     key={key}
                     style={style}
+                    item={item}
                     {...rest}
                     {...listItemProps}
                     data-iso={iso}
@@ -108,13 +114,9 @@ function CountrySelectDropdown(
                       </FlagContainer>
                     </FlagColumn>
                     <NameColumn {...nameColumnProps}>
-                      {mapIsoToLabel
-                        ? mapIsoToLabel(iso)
-                        : children[index].props.item.label}
+                      {mapIsoToLabel ? mapIsoToLabel(iso) : label}
                     </NameColumn>
-                    <Dialcode {...dialcodeProps}>
-                      {children[index].props.item.dialCode}
-                    </Dialcode>
+                    <Dialcode {...dialcodeProps}>{dialCode}</Dialcode>
                   </ListItem>
                 );
               }}
