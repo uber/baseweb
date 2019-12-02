@@ -17,11 +17,13 @@ import {
   StyledCountrySelectDropdownNameColumn as DefaultNameColumn,
   StyledCountrySelectDropdownDialcodeColumn as DefaultDialcodeColumn,
 } from './styled-components.js';
+import {LocaleContext} from '../locale/index.js';
 import {StyledEmptyState} from '../menu/styled-components.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {iso2FlagEmoji} from './utils.js';
 
 import type {CountrySelectDropdownPropsT} from './types.js';
+import type {LocaleT} from '../locale/types.js';
 
 CountrySelectDropdown.defaultProps = {
   maxDropdownHeight: defaultProps.maxDropdownHeight,
@@ -36,8 +38,8 @@ function CountrySelectDropdown(
     $forwardedRef: forwardedRef,
     $maxDropdownHeight: maxDropdownHeight,
     $mapIsoToLabel: mapIsoToLabel,
+    $noResultsMsg: noResultsMsg,
     $overrides: overrides,
-    $noResultsMsg = 'No results',
   } = props;
 
   const children = React.Children.toArray(props.children);
@@ -71,7 +73,15 @@ function CountrySelectDropdown(
     StyledEmptyState,
   );
   if (children.length === 1 && children[0].props.children) {
-    return <EmptyState {...emptyStateProps}>{$noResultsMsg}</EmptyState>;
+    return (
+      <LocaleContext.Consumer>
+        {(locale: LocaleT) => (
+          <EmptyState {...emptyStateProps}>
+            {noResultsMsg || locale.menu.noResultsMsg}
+          </EmptyState>
+        )}
+      </LocaleContext.Consumer>
+    );
   }
   const scrollIndex = Math.min(
     children.findIndex(
