@@ -96,7 +96,26 @@ export default class FormControl extends React.Component<FormControlPropsT> {
           {...sharedProps}
           {...getOverrideProps(ControlContainerOverride)}
         >
-          {children}
+          {React.Children.map(children, (child, index) => {
+            if (!child) return;
+
+            const key = child.key || String(index);
+            return React.cloneElement(child, {
+              key,
+              disabled:
+                typeof onlyChildProps.disabled !== 'undefined'
+                  ? onlyChildProps.disabled
+                  : disabled,
+              error:
+                typeof onlyChildProps.error !== 'undefined'
+                  ? onlyChildProps.error
+                  : error,
+              positive:
+                typeof onlyChildProps.positive !== 'undefined'
+                  ? onlyChildProps.positive
+                  : positive,
+            });
+          })}
           {(caption || error || positive) && (
             <Caption {...sharedProps} {...getOverrideProps(CaptionOverride)}>
               {hint}

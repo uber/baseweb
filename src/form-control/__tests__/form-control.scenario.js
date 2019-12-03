@@ -22,6 +22,22 @@ export const component = () => (
     <FormControl label="Input label" caption="Input caption">
       <StatefulInput size={SIZE.compact} />
     </FormControl>
+    <FormControl disabled label="Input label disabled" caption="Input caption">
+      <StatefulInput size={SIZE.compact} />
+    </FormControl>
+    <FormControl
+      disabled
+      label="Input label disabled with enabled input"
+      caption="Input caption"
+    >
+      <StatefulInput disabled={false} size={SIZE.compact} />
+    </FormControl>
+    <FormControl positive label="Input label positive" caption="Input caption">
+      <StatefulInput size={SIZE.compact} />
+    </FormControl>
+    <FormControl error label="Input label error" caption="Input caption">
+      <StatefulInput size={SIZE.compact} />
+    </FormControl>
     <FormControl label="Textarea label" caption="Textarea caption">
       <StatefulTextarea size={SIZE.compact} />
     </FormControl>
