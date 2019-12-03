@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {configure, addDecorator} from '@storybook/react';
+import {configure, addDecorator, addParameters} from '@storybook/react';
 import {initializeRTL} from 'storybook-addon-rtl';
 
 import {Provider as StyletronProvider} from 'styletron-react';
@@ -23,5 +23,7 @@ addDecorator((story, context) => {
     </StyletronProvider>
   );
 });
+
+addParameters({options: {showAddonPanel: false}});
 
 configure(() => require('./load-stories.js'), module);
