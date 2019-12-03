@@ -89,8 +89,6 @@ async function snapshot(identifier, viewport = VIEWPORT.desktop) {
   const metrics = await client.send('Page.getLayoutMetrics');
   const height = Math.ceil(metrics.contentSize.height);
 
-  console.log('content height', height);
-
   const image = await page.screenshot({
     clip: {
       x: 0,
