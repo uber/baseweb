@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2018-2019 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
 import * as React from 'react';
 
 // baseui imports
@@ -79,6 +86,9 @@ const Yard: React.FC<TYardProps> = ({
   const activeOverrides = countOverrides(params.knobProps.state.overrides);
   const activeThemeValues = countThemeValues(params.providerValue);
 
+  const showOverrides =
+    props.overrides.custom.names && props.overrides.custom.names.length > 0;
+  const showTheme = theme.length > 0;
   return (
     <Card>
       <Compiler
@@ -99,12 +109,12 @@ const Yard: React.FC<TYardProps> = ({
         )}
       />
       <Error msg={params.errorProps.msg} isPopup />
-      <YardTabs>
-        <YardTab title={`Props${activeProps > 0 ? ` (${activeProps})` : ''}`}>
-          <Knobs {...params.knobProps} />
-        </YardTab>
-        {props.overrides.custom.names &&
-          props.overrides.custom.names.length > 0 && (
+      {showOverrides || showTheme ? (
+        <YardTabs>
+          <YardTab title={`Props${activeProps > 0 ? ` (${activeProps})` : ''}`}>
+            <Knobs {...params.knobProps} />
+          </YardTab>
+          {showOverrides && (
             <YardTab
               title={`Style Overrides${
                 activeOverrides > 0 ? ` (${activeOverrides})` : ''
@@ -120,21 +130,24 @@ const Yard: React.FC<TYardProps> = ({
               />
             </YardTab>
           )}
-        {theme.length > 0 && (
-          <YardTab
-            title={`Theme ${
-              activeThemeValues > 0 ? `(${activeThemeValues})` : ''
-            }`}
-          >
-            <ThemeEditor
-              theme={params.providerValue || {}}
-              themeInit={componentTheme}
-              set={params.actions.updateProvider}
-              componentName={componentName}
-            />
-          </YardTab>
-        )}
-      </YardTabs>
+          {showTheme && (
+            <YardTab
+              title={`Theme ${
+                activeThemeValues > 0 ? `(${activeThemeValues})` : ''
+              }`}
+            >
+              <ThemeEditor
+                theme={params.providerValue || {}}
+                themeInit={componentTheme}
+                set={params.actions.updateProvider}
+                componentName={componentName}
+              />
+            </YardTab>
+          )}
+        </YardTabs>
+      ) : (
+        <Knobs {...params.knobProps} />
+      )}
       <Editor
         {...params.editorProps}
         transformToken={tokenProps => {
