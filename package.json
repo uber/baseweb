@@ -12,7 +12,7 @@
   "main": "index.js",
   "types": "index.d.ts",
   "sideEffects": false,
-  "module": "/esm/index.js",
+  "module": "./esm/index.js",
   "repository": "uber/baseweb",
   "scripts": {
     "lint:code": "eslint ./",
