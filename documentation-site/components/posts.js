@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {Block} from 'baseui/block';
 import Link from 'next/link';
-import {Card, StyledBody, StyledAction} from 'baseui/card';
+import {Card, StyledBody, StyledAction, StyledTitle} from 'baseui/card';
 import {Button, KIND} from 'baseui/button';
 import {themedStyled} from '../pages/_app';
 import posts from '../posts';
@@ -30,7 +30,7 @@ const Index = () => {
   return (
     <Block
       display="flex"
-      flexWrap="wrap"
+      flexWrap
       overrides={{
         Block: {
           style: ({$theme}) => ({
@@ -50,7 +50,6 @@ const Index = () => {
             <Card
               key={`post--${i}`}
               href={p.path}
-              title={p.title}
               headerImage={p.coverImage}
               overrides={{
                 Root: {
@@ -72,8 +71,6 @@ const Index = () => {
                 },
               }}
             >
-              <MetaData>{`${p.author} - ${p.date}`}</MetaData>
-              <StyledBody />
               <StyledAction>
                 <Link href={p.path}>
                   <Button
@@ -91,6 +88,9 @@ const Index = () => {
                   </Button>
                 </Link>
               </StyledAction>
+              <StyledTitle $style={{marginTop: '1em'}}>{p.title}</StyledTitle>
+              <MetaData>{`${p.author} - ${p.date}`}</MetaData>
+              <StyledBody />
             </Card>
           );
         })}

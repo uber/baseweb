@@ -7,10 +7,10 @@ import Search from 'baseui/icon/search';
 import {Input} from 'baseui/input';
 
 function Before() {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   return (
     <div
-      className={useCss({
+      className={css({
         display: 'flex',
         alignItems: 'center',
         paddingLeft: theme.sizing.scale500,
@@ -22,10 +22,10 @@ function Before() {
 }
 
 function After() {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   return (
     <div
-      className={useCss({
+      className={css({
         display: 'flex',
         alignItems: 'center',
         paddingRight: theme.sizing.scale500,
@@ -37,10 +37,10 @@ function After() {
 }
 
 function Negative() {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   return (
     <div
-      className={useCss({
+      className={css({
         display: 'flex',
         alignItems: 'center',
         paddingRight: theme.sizing.scale500,
@@ -53,10 +53,10 @@ function Negative() {
 }
 
 function Positive() {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   return (
     <div
-      className={useCss({
+      className={css({
         display: 'flex',
         alignItems: 'center',
         paddingRight: theme.sizing.scale500,

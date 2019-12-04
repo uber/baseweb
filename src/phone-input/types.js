@@ -45,6 +45,7 @@ export type CountrySelectDropdownPropsT = {
   $country: CountryT,
   $mapIsoToLabel?: mapIsoToLabelT,
   $maxDropdownHeight: string,
+  $noResultsMsg: string,
   $overrides: {
     CountrySelectContainer?: OverrideT<*>,
     CountrySelectDropdown?: OverrideT<*>,
@@ -53,6 +54,7 @@ export type CountrySelectDropdownPropsT = {
     CountrySelectDropdownNameColumn?: OverrideT<*>,
     CountrySelectDropdownDialcodeColumn?: OverrideT<*>,
     FlagContainer?: OverrideT<*>,
+    EmptyState?: OverrideT<*>,
   },
 };
 

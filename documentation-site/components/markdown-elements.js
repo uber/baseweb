@@ -112,12 +112,17 @@ export const DocLink = ({children, href}: {children: string, href: string}) => {
   const parts = href.split('#');
   const internal =
     (parts[0] === '' && parts[1] !== '') || !href.includes('http');
+  if (internal) {
+    return (
+      <Link href={href}>
+        <StyledLink href={href}>{children}</StyledLink>
+      </Link>
+    );
+  }
   return (
-    <Link href={href}>
-      <StyledLink href={href} {...(internal ? {} : {target: '_blank'})}>
-        {children}
-      </StyledLink>
-    </Link>
+    <StyledLink href={href} target="_blank">
+      {children}
+    </StyledLink>
   );
 };
 

@@ -30,11 +30,11 @@ already loaded in your project, **we recommend you using Styletron to style any 
 import {useStyletron} from 'baseui';
 
 export default () => {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   return (
     <a
       href="/my-link"
-      className={useCss({
+      className={css({
         fontSize: '20px',
         color: theme.colors.primary,
       })}

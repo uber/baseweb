@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 export {Unstable_DataTable} from './data-table.js';
 export {Unstable_StatefulContainer} from './stateful-container.js';
 export {Unstable_StatefulDataTable} from './stateful-data-table.js';
+export {default as AnchorColumn} from './column-anchor.js';
 export {default as BooleanColumn} from './column-boolean.js';
 export {default as CategoricalColumn} from './column-categorical.js';
 export {default as CustomColumn} from './column-custom.js';

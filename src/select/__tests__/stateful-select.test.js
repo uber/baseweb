@@ -20,9 +20,10 @@ import {
   StyledInputSizer,
   StyledSelectArrow,
   StyledClearIcon,
-  StyledSearchIcon,
+  StyledSearchIconContainer,
   StyledOptionContent,
 } from '../index.js';
+import SearchIconComponent from '../../icon/search.js';
 import Select from '../select.js';
 
 jest.mock('../select', () => jest.fn(() => null));
@@ -54,7 +55,8 @@ describe('Stateful select', function() {
         InputSizer: StyledInputSizer,
         SelectArrow: StyledSelectArrow,
         ClearIcon: StyledClearIcon,
-        SearchIcon: StyledSearchIcon,
+        SearchIconContainer: StyledSearchIconContainer,
+        SearchIcon: SearchIconComponent,
         OptionContent: StyledOptionContent,
       },
     };
