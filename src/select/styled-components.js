@@ -402,18 +402,21 @@ export const getLoadingIconStyles = (props: {$theme: ThemeT}) => {
   };
 };
 
-export const StyledSearchIcon = styled<SharedStylePropsArgT>('div', props => {
-  const {$disabled, $theme} = props;
-  const {colors, sizing} = $theme;
-  return {
-    ...getSvgStyles(props),
-    color: $disabled ? colors.inputTextDisabled : colors.foreground,
-    cursor: $disabled ? 'not-allowed' : 'pointer',
-    position: 'absolute',
-    top: 0,
-    [$theme.direction === 'rtl' ? 'right' : 'left']: sizing.scale500,
-    display: 'flex',
-    alignItems: 'center',
-    height: '100%',
-  };
-});
+export const StyledSearchIconContainer = styled<SharedStylePropsArgT>(
+  'div',
+  props => {
+    const {$disabled, $theme} = props;
+    const {colors, sizing} = $theme;
+    return {
+      ...getSvgStyles(props),
+      color: $disabled ? colors.inputTextDisabled : colors.foreground,
+      cursor: $disabled ? 'not-allowed' : 'pointer',
+      position: 'absolute',
+      top: 0,
+      [$theme.direction === 'rtl' ? 'right' : 'left']: sizing.scale500,
+      display: 'flex',
+      alignItems: 'center',
+      height: '100%',
+    };
+  },
+);

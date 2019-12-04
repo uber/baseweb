@@ -29,7 +29,9 @@ export {
   StyledIconsContainer,
   StyledSelectArrow,
   StyledClearIcon,
-  StyledSearchIcon,
+  // TODO(v10): remove StyledSearchIconContainer as StyledSearchIcon
+  StyledSearchIconContainer as StyledSearchIcon,
+  StyledSearchIconContainer,
   StyledDropdownContainer,
   StyledDropdown,
   StyledDropdownListItem,
