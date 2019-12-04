@@ -390,6 +390,27 @@ export function Unstable_DataTable(props: DataTablePropsT) {
     },
     [gridRef.current],
   );
+  const normalizedWidths = React.useMemo(() => {
+    const sum = ns => ns.reduce((s, n) => s + n, 0);
+    if (gridRef.current) {
+      // $FlowFixMe
+      const domWidth = gridRef.current.props.width;
+      const measuredWidth = sum(widths);
+      // $FlowFixMe
+      const offsetWidth = gridRef.current._outerRef.offsetWidth;
+      // $FlowFixMe
+      const clientWidth = gridRef.current._outerRef.clientWidth;
+      // sub 2 for border width
+      const scrollbar = offsetWidth - clientWidth - 2;
+
+      const remainder = domWidth - measuredWidth - scrollbar;
+      const padding = remainder / widths.length;
+      if (padding > 0) {
+        return widths.map(w => w + padding);
+      }
+    }
+    return widths;
+  }, [widths]);
 
   const [scrollLeft, setScrollLeft] = React.useState(0);
   const [isScrollingX, setIsScrollingX] = React.useState(false);
@@ -623,7 +644,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
               sortDirection: props.sortDirection || null,
               sortIndex:
                 typeof props.sortIndex === 'number' ? props.sortIndex : -1,
-              widths,
+              widths: normalizedWidths,
             }}
           >
             <VariableSizeGrid
@@ -632,7 +653,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
               overscanRowCount={10}
               innerElementType={InnerTableElement}
               columnCount={props.columns.length}
-              columnWidth={columnIndex => widths[columnIndex]}
+              columnWidth={columnIndex => normalizedWidths[columnIndex]}
               height={height}
               // plus one to account for additional header row
               rowCount={rows.length + 1}
