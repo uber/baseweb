@@ -24,6 +24,9 @@ export function getSvgStyles({
   } else {
     $size = $theme.sizing.scale600;
   }
+  if ($color && $theme.colors[$color]) {
+    $color = $theme.colors[$color];
+  }
   return {
     display: 'inline-block',
     fill: $color || 'currentColor',
