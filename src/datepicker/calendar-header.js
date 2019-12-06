@@ -146,8 +146,10 @@ export default class CalendarHeader extends React.Component<
     if (allPrevDaysDisabled) {
       isDisabled = true;
     }
+    
     const nextMonth = subMonths(date, 1);
-    if (getYear(nextMonth) < MIN_YEAR) {
+    const minYear = this.props.minDate ? getYear(this.props.minDate) : MIN_YEAR;
+    if (getYear(nextMonth) < minYear) {
       isDisabled = true;
     }
 
@@ -202,9 +204,10 @@ export default class CalendarHeader extends React.Component<
     if (allNextDaysDisabled) {
       isDisabled = true;
     }
+    
     const nextMonth = addMonths(date, 1);
-
-    if (getYear(nextMonth) > MAX_YEAR) {
+    const maxYear = this.props.maxDate ? getYear(this.props.maxDate) : MAX_YEAR;
+    if (getYear(nextMonth) > maxYear) {
       isDisabled = true;
     }
 
