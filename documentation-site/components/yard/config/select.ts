@@ -113,13 +113,13 @@ const SelectConfig: TConfig = {
     },
     options: {
       value: `[
-        {label: 'AliceBlue', id: '#F0F8FF'},
-        {label: 'AntiqueWhite', id: '#FAEBD7'},
-        {label: 'Aqua', id: '#00FFFF'},
-        {label: 'Aquamarine', id: '#7FFFD4'},
-        {label: 'Azure', id: '#F0FFFF'},
-        {label: 'Beige', id: '#F5F5DC'},
-      ]`,
+  {label: 'AliceBlue', id: '#F0F8FF'},
+  {label: 'AntiqueWhite', id: '#FAEBD7'},
+  {label: 'Aqua', id: '#00FFFF'},
+  {label: 'Aquamarine', id: '#7FFFD4'},
+  {label: 'Azure', id: '#F0FFFF'},
+  {label: 'Beige', id: '#F5F5DC'},
+]`,
       type: PropTypes.Array,
       description: `Options to be displayed in the dropdown.
         If an option has a disabled prop value set to true it will be rendered as a disabled option in the dropdown.`,
@@ -136,14 +136,14 @@ const SelectConfig: TConfig = {
       type: PropTypes.Function,
       description:
         'A custom method to get a display value for a dropdown option.',
-      placeholder: '({opt, state}) => opt.label',
+      placeholder: '({option}) => option.label',
     },
     getValueLabel: {
       value: undefined,
       type: PropTypes.Function,
       description:
         'A custom method to get a display value for a selected option.',
-      placeholder: '({opt}) => opt.label',
+      placeholder: '({option}) => option.label',
     },
     labelKey: {
       value: undefined,
