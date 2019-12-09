@@ -89,4 +89,30 @@ describe('SelectDropdown', function() {
       'OptionContent gets correct props when an option is selected',
     );
   });
+
+  test('StatefulMenu overrides merge with default overrides', function() {
+    const prevOverrides = {...wrapper.find(StatefulMenu).props().overrides};
+    const emptyStateOverrides = {
+      EmptyState: {
+        style: {
+          backgroundColor: 'red',
+        },
+      },
+    };
+    wrapper.setProps({
+      overrides: {
+        StatefulMenu: {
+          props: {
+            overrides: emptyStateOverrides,
+          },
+        },
+      },
+    });
+    expect(wrapper.find(StatefulMenu).props().overrides.EmptyState).toEqual(
+      emptyStateOverrides.EmptyState,
+    );
+    expect(wrapper.find(StatefulMenu).props().overrides.Option).toEqual(
+      prevOverrides.Option,
+    );
+  });
 });

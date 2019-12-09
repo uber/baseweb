@@ -119,10 +119,11 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
       overrides.DropdownListItem,
       StyledDropdownListItem,
     );
-    const [OverriddenStatefulMenu, statefulMenuProps] = getOverrides(
-      overrides.StatefulMenu,
-      StatefulMenu,
-    );
+    const [
+      OverriddenStatefulMenu,
+      // $FlowFixMe
+      {overrides: statefulMenuOverrides = {}, ...restStatefulMenuProps},
+    ] = getOverrides(overrides.StatefulMenu, StatefulMenu);
     const highlightedIndex = this.getHighlightedIndex();
     return (
       <DropdownContainer
@@ -174,9 +175,10 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
             {
               List: overrides.Dropdown || {},
               Option: overrides.DropdownOption || {},
+              ...statefulMenuOverrides,
             },
           )}
-          {...statefulMenuProps}
+          {...restStatefulMenuProps}
         />
       </DropdownContainer>
     );
