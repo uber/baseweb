@@ -16,9 +16,13 @@ import type {MaskedInputPropsT} from './types.js';
 const MaskOverride = React.forwardRef<MaskedInputPropsT, HTMLElement>(
   (
     {
+      // do nothing with these - we just don't want to pass it to the InputMask, as
+      // it does not have these properties
       startEnhancer,
       endEnhancer,
       error,
+      positive,
+      // below are props that are used by the masked-input
       onChange,
       onFocus,
       onBlur,
