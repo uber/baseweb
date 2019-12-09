@@ -427,14 +427,10 @@ class Select extends React.Component<
         $isHighlighted: boolean,
       },
     },
-  ): React.Node => {
-    if (option.isCreatable) {
-      return (
-        locale.select.create + ' ' + '"' + option[this.props.labelKey] + '"'
-      );
-    }
-    return option[this.props.labelKey];
-  };
+  ): React.Node =>
+    option.isCreatable
+      ? `${locale.select.create} “${option[this.props.labelKey]}”`
+      : option[this.props.labelKey];
 
   getValueLabel = ({option}: {option: OptionT}): React.Node => {
     return option[this.props.labelKey];
