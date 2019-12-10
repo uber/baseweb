@@ -5,12 +5,13 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {colors} from '../tokens/index.js';
-import type {PrimitivesT} from './types.js';
+import {colors} from '../../tokens/index.js';
+import type {ColorTokensT} from '../types.js';
 
 // color constants
-export const primitives: PrimitivesT = {
-  primary: colors.black,
+export const darkColorTokens: ColorTokensT = {
+  // Primary Palette
+  primary: colors.white,
   primary50: colors.gray50,
   primary100: colors.gray100,
   primary200: colors.gray200,
@@ -19,7 +20,7 @@ export const primitives: PrimitivesT = {
   primary500: colors.gray500,
   primary600: colors.gray600,
   primary700: colors.gray700,
-
+  // Accent Palette
   accent: colors.blue400,
   accent50: colors.blue50,
   accent100: colors.blue100,
@@ -29,7 +30,7 @@ export const primitives: PrimitivesT = {
   accent500: colors.blue500,
   accent600: colors.blue600,
   accent700: colors.blue700,
-
+  // Negative Palette
   negative: colors.red400,
   negative50: colors.red50,
   negative100: colors.red100,
@@ -39,7 +40,7 @@ export const primitives: PrimitivesT = {
   negative500: colors.red500,
   negative600: colors.red600,
   negative700: colors.red700,
-
+  // Warning Palette
   warning: colors.orange400,
   warning50: colors.orange50,
   warning100: colors.orange100,
@@ -49,7 +50,7 @@ export const primitives: PrimitivesT = {
   warning500: colors.orange500,
   warning600: colors.orange600,
   warning700: colors.orange700,
-
+  // Positive Palette
   positive: colors.green400,
   positive50: colors.green50,
   positive100: colors.green100,
@@ -59,21 +60,23 @@ export const primitives: PrimitivesT = {
   positive500: colors.green500,
   positive600: colors.green600,
   positive700: colors.green700,
-
-  mono100: colors.white,
-  mono200: colors.gray50,
-  mono300: colors.gray100,
-  mono400: colors.gray200,
-  mono500: colors.gray300,
-  mono600: colors.gray400,
-  mono700: colors.gray500,
-  mono800: colors.gray600,
-  mono900: colors.gray700,
+  // Monochrome Palette
+  white: colors.white,
+  black: colors.black,
+  mono100: colors.gray300,
+  mono200: colors.gray400,
+  mono300: colors.gray500,
+  mono400: colors.gray600,
+  mono500: colors.gray700,
+  // mono600 and mono900 are not in official brand tokens atm
+  mono600: '#292929',
+  mono700: '#1F1F1F',
+  mono800: '#141414',
+  mono900: '#111111',
   mono1000: colors.black,
-
+  // Rating Palette,
   rating200: colors.yellow200,
   rating400: colors.yellow400,
-
-  primaryFontFamily:
-    'system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif',
 };
+
+export default darkColorTokens;

@@ -6,25 +6,33 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import createTheme from './creator.js';
-import {primitives as lightThemePrimitives} from './light-theme-primitives.js';
-import {primitives as darkThemePrimitives} from './dark-theme-primitives.js';
-import darkThemeOverrides from './dark-theme-colors.js';
-import {LightThemeMove} from './light-theme-with-move.js';
-import {DarkThemeMove} from './dark-theme-with-move.js';
-import {DarkTheme} from './dark-theme.js';
+import {LightTheme} from './light-theme/light-theme.js';
+import {LightThemeMove} from './move-theme/light-theme-with-move.js';
+import lightColorTokens from './light-theme/color-tokens.js';
+import {fontTokens} from './shared/typography.js';
+import {DarkTheme} from './dark-theme/dark-theme.js';
+import {DarkThemeMove} from './move-theme/dark-theme-with-move.js';
+import darkColorTokens from './dark-theme/color-tokens.js';
 
-export const LightTheme = createTheme(lightThemePrimitives, {
-  name: 'light-theme',
-});
+const lightThemePrimitives = {
+  ...lightColorTokens,
+  ...fontTokens,
+};
+
+const darkThemePrimitives = {
+  ...darkColorTokens,
+  ...fontTokens,
+};
 
 export {
   createTheme,
+  LightTheme,
   LightThemeMove,
   lightThemePrimitives,
-  darkThemePrimitives,
-  darkThemeOverrides,
   DarkTheme,
   DarkThemeMove,
+  darkThemePrimitives,
+  DarkTheme as darkThemeOverrides,
 };
 
 export * from './types';
