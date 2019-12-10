@@ -63,6 +63,24 @@ describe('PhoneInput', () => {
     });
   });
 
+  it('allows a user select a country using the keyboard', async () => {
+    // click select
+    await page.click(selectors.phoneInputSelect);
+    // verify dropdown is open
+    await page.waitFor(selectors.phoneInputSelectDropdown);
+
+    await page.keyboard.type('United');
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('Enter');
+
+    const dialcode = await page.$eval(
+      selectors.phoneInputDialcode,
+      block => block.innerText,
+    );
+    expect(dialcode).toEqual(unitedKingdom.dialCode);
+  });
+
   it('allows a user to select a country from the dropdown, \
   which populates a dial code', async () => {
     // click select

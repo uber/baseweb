@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
 import {Option} from '../select';
+import {SIZE} from '../input';
 import {Override} from '../overrides';
 import {Locale} from '../locale';
 import {any} from 'prop-types';
@@ -142,13 +143,14 @@ export type DatepickerProps = CalendarProps & {
   'aria-labelledby'?: string;
   'aria-describedby'?: string;
   disabled?: boolean;
+  size?: SIZE[keyof SIZE];
   error?: boolean;
   positive?: boolean;
   placeholder?: string;
   required?: boolean;
   formatDisplayValue?: (date: Date | Date[], formatString: string) => string;
   formatString?: string;
-  mask?: string;
+  mask?: string | null;
   mountNode?: HTMLElement;
   onClose?: () => any;
 };

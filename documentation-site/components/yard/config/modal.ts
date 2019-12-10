@@ -7,7 +7,7 @@ import {
   SIZE,
   ROLE,
 } from 'baseui/modal';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
 const modalProps = require('!!extract-react-types-loader!../../../../src/modal/modal.js');
@@ -98,24 +98,33 @@ const ModalConfig: TConfig = {
         },
       },
     },
+    unstable_ModalBackdropScroll: {
+      value: false,
+      type: PropTypes.Boolean,
+      description: `Makes modal scrollable while cursor is over the modal's backdrop.
+        Will be removed and implemented as the default behavior in the next major version.`,
+      hidden: true,
+    },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: ['Root', 'Backdrop', 'Dialog', 'DialogContainer', 'Close'],
-      sharedProps: {
-        $animate: 'animate',
-        $isVisible: {
-          type: PropTypes.Boolean,
-          description: 'True if the modal is visible.',
+      custom: {
+        names: ['Root', 'Backdrop', 'Dialog', 'DialogContainer', 'Close'],
+        sharedProps: {
+          $animate: 'animate',
+          $isVisible: {
+            type: PropTypes.Boolean,
+            description: 'True if the modal is visible.',
+          },
+          $isOpen: {
+            type: PropTypes.Boolean,
+            description: 'True if the modal is open.',
+          },
+          $size: 'size',
+          $role: 'role',
+          $closeable: 'closeable',
         },
-        $isOpen: {
-          type: PropTypes.Boolean,
-          description: 'True if the modal is open.',
-        },
-        $size: 'size',
-        $role: 'role',
-        $closeable: 'closeable',
       },
     },
   },

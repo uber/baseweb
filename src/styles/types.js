@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import type {ComponentType} from 'react';
 import type {IconPropsT} from '../icon/types.js';
+import type {ResponsiveT} from '../layout-grid/types.js';
 
 export type BreakpointsT = {
   small: number,
@@ -18,6 +19,14 @@ export type MediaQueryT = {
   small: string,
   medium: string,
   large: string,
+};
+
+export type GridT = {
+  columns: ResponsiveT<number>,
+  gutters: ResponsiveT<number>,
+  margins: ResponsiveT<number>,
+  gaps: ResponsiveT<number>,
+  maxWidth: number,
 };
 
 export type ColorsT = {
@@ -461,6 +470,13 @@ export type ColorsT = {
   toastWarningBackground: string,
   toastNegativeBackground: string,
 
+  // Toggle
+  toggleFill: string,
+  toggleFillChecked: string,
+  toggleFillDisabled: string,
+  toggleTrackFill: string,
+  toggleTrackFillDisabled: string,
+
   // Spinner
   spinnerTrackFill: string,
 
@@ -591,6 +607,7 @@ export type ThemeT = {|
   direction: 'auto' | 'rtl' | 'ltr',
   breakpoints: BreakpointsT,
   mediaQuery: MediaQueryT,
+  grid: GridT,
   colors: ColorsT,
   typography: TypographyT,
   sizing: SizingT,

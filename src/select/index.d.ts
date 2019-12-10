@@ -57,6 +57,7 @@ export interface SelectOverrides {
   SelectArrow?: Override<any>;
   ClearIcon?: Override<any>;
   LoadingIndicator?: Override<any>;
+  SearchIconContainer?: Override<any>;
   SearchIcon?: Override<any>;
   Popover?: Override<any>;
   DropdownContainer?: Override<any>;
@@ -313,6 +314,8 @@ export const StyledInputSizer: StyletronComponent<any>;
 export const StyledIconsContainer: StyletronComponent<any>;
 export const StyledSelectArrow: StyletronComponent<any>;
 export const StyledClearIcon: StyletronComponent<any>;
+export const StyledSearchIconContainer: StyletronComponent<any>;
+// TODO(v10): remove StyledSearchIcon
 export const StyledSearchIcon: StyletronComponent<any>;
 export const StyledDropdownContainer: StyletronComponent<any>;
 export const StyledDropdown: StyletronComponent<any>;

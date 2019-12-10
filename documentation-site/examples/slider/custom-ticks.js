@@ -7,7 +7,7 @@ const mToKm = (value: number) => `${(value / 1000).toFixed(1)}km`;
 
 function CustomTicks() {
   const [value, setValue] = React.useState([4500]);
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   return (
     <Slider
       value={value}
@@ -24,7 +24,7 @@ function CustomTicks() {
       overrides={{
         ThumbValue: ({$value}) => (
           <div
-            className={useCss({
+            className={css({
               position: 'absolute',
               top: `-${theme.sizing.scale800}`,
               ...theme.typography.font200,
@@ -36,7 +36,7 @@ function CustomTicks() {
         ),
         TickBar: ({$min, $max}) => (
           <div
-            className={useCss({
+            className={css({
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',

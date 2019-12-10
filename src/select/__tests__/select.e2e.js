@@ -127,7 +127,7 @@ describe('select', () => {
       optionAtPosition(1),
       select => select.innerText,
     );
-    expect(option1Text).toBe('Create "Paris"');
+    expect(option1Text).toBe('Create “Paris”');
     await page.click(optionAtPosition(1));
     const inputValue = await page.$eval(
       selectors.selectedList,

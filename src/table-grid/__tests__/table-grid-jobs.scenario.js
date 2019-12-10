@@ -132,10 +132,10 @@ function statusToTagKind(status: StatusT) {
 }
 
 function Tasks(props: {tasks: TaskT[]}) {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   return (
     <div
-      className={useCss({
+      className={css({
         gridColumn: 'span 5',
         padding: '32px 24px',
       })}
@@ -242,12 +242,12 @@ function Row({striped, row}: {striped: boolean, row: RowT}) {
 }
 
 export function component() {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   return (
-    <div className={useCss({height: '600px'})}>
+    <div className={css({height: '600px'})}>
       <HeadingLevel>
         <div
-          className={useCss({
+          className={css({
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',

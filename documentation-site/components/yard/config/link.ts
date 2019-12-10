@@ -1,5 +1,5 @@
 import {StyledLink} from 'baseui/link';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
 const LinkConfig: TConfig = {
@@ -23,10 +23,12 @@ const LinkConfig: TConfig = {
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: [],
-      sharedProps: {},
+      custom: {
+        names: [],
+        sharedProps: {},
+      },
     },
   },
 };

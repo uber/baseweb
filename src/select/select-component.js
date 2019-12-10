@@ -30,7 +30,7 @@ import {
   StyledSelectArrow,
   StyledClearIcon,
   getLoadingIconStyles,
-  StyledSearchIcon,
+  StyledSearchIconContainer,
 } from './styled-components.js';
 import type {
   PropsT,
@@ -427,14 +427,10 @@ class Select extends React.Component<
         $isHighlighted: boolean,
       },
     },
-  ): React.Node => {
-    if (option.isCreatable) {
-      return (
-        locale.select.create + ' ' + '"' + option[this.props.labelKey] + '"'
-      );
-    }
-    return option[this.props.labelKey];
-  };
+  ): React.Node =>
+    option.isCreatable
+      ? `${locale.select.create} “${option[this.props.labelKey]}”`
+      : option[this.props.labelKey];
 
   getValueLabel = ({option}: {option: OptionT}): React.Node => {
     return option[this.props.labelKey];
@@ -740,6 +736,10 @@ class Select extends React.Component<
       return null;
     }
     const {overrides = {}} = this.props;
+    const [SearchIconContainer, searchIconContainerProps] = getOverrides(
+      overrides.SearchIconContainer,
+      StyledSearchIconContainer,
+    );
     const [SearchIcon, searchIconProps] = getOverrides(
       overrides.SearchIcon,
       SearchIconComponent,
@@ -747,9 +747,14 @@ class Select extends React.Component<
     const sharedProps = this.getSharedProps();
 
     return (
-      <StyledSearchIcon {...sharedProps} {...searchIconProps}>
-        <SearchIcon size={16} title={'search'} />
-      </StyledSearchIcon>
+      // TODO(v10): remove searchIconProps from SearchIconContainer
+      <SearchIconContainer
+        {...sharedProps}
+        {...searchIconProps}
+        {...searchIconContainerProps}
+      >
+        <SearchIcon size={16} title={'search'} {...searchIconProps} />
+      </SearchIconContainer>
     );
   }
 

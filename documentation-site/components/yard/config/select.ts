@@ -1,6 +1,6 @@
 import pick from 'just-pick';
 import {Select, SIZE, TYPE} from 'baseui/select';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {changeHandlers} from './common';
 import {TConfig} from '../types';
 
@@ -113,13 +113,13 @@ const SelectConfig: TConfig = {
     },
     options: {
       value: `[
-        {label: 'AliceBlue', id: '#F0F8FF'},
-        {label: 'AntiqueWhite', id: '#FAEBD7'},
-        {label: 'Aqua', id: '#00FFFF'},
-        {label: 'Aquamarine', id: '#7FFFD4'},
-        {label: 'Azure', id: '#F0FFFF'},
-        {label: 'Beige', id: '#F5F5DC'},
-      ]`,
+  {label: 'AliceBlue', id: '#F0F8FF'},
+  {label: 'AntiqueWhite', id: '#FAEBD7'},
+  {label: 'Aqua', id: '#00FFFF'},
+  {label: 'Aquamarine', id: '#7FFFD4'},
+  {label: 'Azure', id: '#F0FFFF'},
+  {label: 'Beige', id: '#F5F5DC'},
+]`,
       type: PropTypes.Array,
       description: `Options to be displayed in the dropdown.
         If an option has a disabled prop value set to true it will be rendered as a disabled option in the dropdown.`,
@@ -136,14 +136,14 @@ const SelectConfig: TConfig = {
       type: PropTypes.Function,
       description:
         'A custom method to get a display value for a dropdown option.',
-      placeholder: '({opt, state}) => opt.label',
+      placeholder: '({option}) => option.label',
     },
     getValueLabel: {
       value: undefined,
       type: PropTypes.Function,
       description:
         'A custom method to get a display value for a selected option.',
-      placeholder: '({opt}) => opt.label',
+      placeholder: '({option}) => option.label',
     },
     labelKey: {
       value: undefined,
@@ -329,66 +329,69 @@ const SelectConfig: TConfig = {
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: [
-        'Root',
-        'ControlContainer',
-        'Placeholder',
-        'ValueContainer',
-        'SingleValue',
-        'MultiValue',
-        'InputContainer',
-        'Input',
-        'IconsContainer',
-        'SelectArrow',
-        'ClearIcon',
-        'LoadingIndicator',
-        'SearchIcon',
-        'Popover',
-        'DropdownContainer',
-        'Dropdown',
-        'DropdownOption',
-        'DropdownListItem',
-        'OptionContent',
-        'StatefulMenu',
-      ],
-      sharedProps: {
-        $clearable: 'clearable',
-        $creatable: 'creatable',
-        $disabled: 'disabled',
-        $error: 'error',
-        $isFocused: {
-          type: PropTypes.Boolean,
-          description: "Indicates the control's current focus state.",
+      custom: {
+        names: [
+          'Root',
+          'ControlContainer',
+          'Placeholder',
+          'ValueContainer',
+          'SingleValue',
+          'MultiValue',
+          'InputContainer',
+          'Input',
+          'IconsContainer',
+          'SelectArrow',
+          'ClearIcon',
+          'LoadingIndicator',
+          'SearchIconContainer',
+          'SearchIcon',
+          'Popover',
+          'DropdownContainer',
+          'Dropdown',
+          'DropdownOption',
+          'DropdownListItem',
+          'OptionContent',
+          'StatefulMenu',
+        ],
+        sharedProps: {
+          $clearable: 'clearable',
+          $creatable: 'creatable',
+          $disabled: 'disabled',
+          $error: 'error',
+          $isFocused: {
+            type: PropTypes.Boolean,
+            description: "Indicates the control's current focus state.",
+          },
+          $isHighlighted: {
+            type: PropTypes.Boolean,
+            description:
+              "Prop passed to an option indicating it's currently highlighted.",
+          },
+          $isLoading: 'isLoading',
+          $isOpen: {
+            type: PropTypes.Boolean,
+            description:
+              "Indicates if the select's dropdown is currently opened.",
+          },
+          $isPseudoFocused: {
+            type: PropTypes.Boolean,
+            description: "Indicates the select's current focus state.",
+          },
+          $maxHeight: 'maxDropdownHeight',
+          $multi: 'multi',
+          $positive: 'positive',
+          $required: 'required',
+          $searchable: 'searchable',
+          $selected: {
+            type: PropTypes.Boolean,
+            description:
+              "Prop passed to an option indicating it's currently selected.",
+          },
+          $size: 'size',
+          $type: 'type',
         },
-        $isHighlighted: {
-          type: PropTypes.Boolean,
-          description:
-            "Prop passed to an option indicating it's currently highlighted.",
-        },
-        $isLoading: 'isLoading',
-        $isOpen: {
-          type: PropTypes.Boolean,
-          description:
-            "Indicates if the select's dropdown is currently opened.",
-        },
-        $isPseudoFocused: {
-          type: PropTypes.Boolean,
-          description: "Indicates the select's current focus state.",
-        },
-        $maxHeight: 'maxDropdownHeight',
-        $multi: 'multi',
-        $positive: 'positive',
-        $required: 'required',
-        $searchable: 'searchable',
-        $selected: {
-          type: PropTypes.Boolean,
-          description:
-            "Prop passed to an option indicating it's currently selected.",
-        },
-        $size: 'size',
-        $type: 'type',
       },
     },
   },

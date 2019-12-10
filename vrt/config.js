@@ -16,10 +16,9 @@ const config = {
         behavior: async page => {
           const selectSelector = `[data-baseweb="select"]`;
           const dropdownSelector = `[data-baseweb="menu"]`;
-          page.waitForSelector(selectSelector);
-          page.click(selectSelector);
-          page.waitForSelector(dropdownSelector);
-          await page.waitFor(1000);
+          await page.waitForSelector(selectSelector);
+          await page.click(selectSelector);
+          await page.waitForSelector(dropdownSelector);
         },
       },
     ],
@@ -31,10 +30,9 @@ const config = {
         behavior: async page => {
           const selectSelector = `[data-baseweb="select"]`;
           const dropdownSelector = `[data-baseweb="menu"]`;
-          page.waitForSelector(selectSelector);
-          page.click(selectSelector);
-          page.waitForSelector(dropdownSelector);
-          await page.waitFor(1000);
+          await page.waitForSelector(selectSelector);
+          await page.click(selectSelector);
+          await page.waitForSelector(dropdownSelector);
         },
       },
     ],
@@ -106,6 +104,9 @@ const config = {
           await page.click(input);
           await page.waitForSelector(calendar);
           await page.click(rightArrow);
+          await page.waitForFunction(
+            `document.querySelector("button[aria-haspopup]").innerText === 'April 2019'`,
+          );
         },
       },
     ],
@@ -154,6 +155,22 @@ const config = {
   },
   'nav-long': {
     skip: true,
+  },
+  'phone-input-custom-flags': {
+    interactions: [
+      {
+        name: 'expandedAndFiltered',
+        behavior: async page => {
+          const selectSelector = `[data-baseweb="select"]`;
+          const selectInputSelector = `input[role="combobox"]`;
+          const dropdownSelector = `[role="listbox"]`;
+          await page.waitForSelector(selectSelector);
+          await page.click(selectSelector);
+          await page.waitForSelector(dropdownSelector);
+          await page.type(selectInputSelector, 'zzz');
+        },
+      },
+    ],
   },
   'progress-steps': {
     interactions: [
@@ -219,10 +236,9 @@ const config = {
         behavior: async page => {
           const inputSelector = `[data-baseweb="select"]`;
           const dropdownSelector = `[role="listbox"]`;
-          page.waitForSelector(inputSelector);
-          page.click(inputSelector);
-          page.waitForSelector(dropdownSelector);
-          await page.waitFor(2000);
+          await page.waitForSelector(inputSelector);
+          await page.click(inputSelector);
+          await page.waitForSelector(dropdownSelector);
         },
       },
     ],

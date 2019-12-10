@@ -34,10 +34,10 @@ const CheckboxWrapped = props => {
 };
 
 export default () => {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   return (
     <div
-      className={useCss({
+      className={css({
         paddingTop: '24px',
         paddingBottom: '24px',
       })}
@@ -54,7 +54,7 @@ export default () => {
       >
         <CheckboxWithRef>
           Created a wrapper component that renders Checkbox and
-          passes popover's anchor props to the Chackbox's Root
+          passes popover's anchor props to the Checkbox's Root
           element.
         </CheckboxWithRef>
       </StatefulPopover>

@@ -1,23 +1,20 @@
 import * as React from 'react';
-import {useValueDebounce} from './utils';
 import SimpleEditor from 'react-simple-code-editor';
 import Highlight, {Prism} from 'prism-react-renderer';
-import lightTheme from './light-theme';
-import darkTheme from './dark-theme';
 import {useStyletron} from 'baseui';
 
-type TransformTokenT = (tokenProps: {
-  // https://github.com/FormidableLabs/prism-react-renderer/blob/86c05728b6cbea735480a8354546da77ae8b00d9/src/types.js#L64
-  style?: {[key: string]: string | number | null};
-  className: string;
-  children: string;
-  [key: string]: any;
-}) => React.ReactNode;
+import {
+  lightTheme,
+  useValueDebounce,
+  TTransformToken,
+  TEditorProps,
+} from 'react-view';
+import darkTheme from './dark-theme';
 
 const highlightCode = (
   code: string,
   theme: typeof lightTheme,
-  transformToken?: TransformTokenT,
+  transformToken?: TTransformToken,
 ) => (
   <Highlight Prism={Prism} code={code} theme={theme} language="jsx">
     {({tokens, getLineProps, getTokenProps}) => (
@@ -39,13 +36,13 @@ const highlightCode = (
   </Highlight>
 );
 
-const Editor: React.FC<{
-  code: string;
-  transformToken?: TransformTokenT;
-  placeholder?: string;
-  onChange: (code: string) => void;
-  small?: boolean;
-}> = ({code: globalCode, transformToken, onChange, placeholder, small}) => {
+const Editor: React.FC<TEditorProps> = ({
+  code: globalCode,
+  transformToken,
+  onChange,
+  placeholder,
+  small,
+}) => {
   const [css, theme] = useStyletron();
   const [focused, setFocused] = React.useState(false);
   const plainStyles = theme.name.startsWith('light-theme')
@@ -72,7 +69,8 @@ const Editor: React.FC<{
         backgroundColor: editorTheme.plain.backgroundColor,
         paddingLeft: '4px',
         paddingRight: '4px',
-        height: small && !focused ? '36px' : 'auto',
+        paddingTop: small ? '2px' : '0px',
+        paddingBottom: small ? '2px' : '0px',
         maxWidth: small ? '255px' : 'auto',
         overflow: 'hidden',
         border: focused
@@ -93,7 +91,7 @@ const Editor: React.FC<{
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
         padding={small ? 4 : 12}
-        style={editorTheme.plain as any}
+        style={editorTheme.plain as React.CSSProperties}
       />
     </div>
   );

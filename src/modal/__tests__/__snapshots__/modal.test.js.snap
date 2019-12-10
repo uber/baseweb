@@ -3,12 +3,14 @@
 exports[`Modal renders portal when open: Rendered Modal 1`] = `
 <Modal
   animate={true}
-  autofocus={true}
+  autoFocus={true}
+  autofocus={null}
   closeable={true}
   isOpen={true}
   overrides={Object {}}
   role="dialog"
   size="default"
+  unstable_ModalBackdropScroll={false}
 >
   <mockConstructor>
     <ForwardRef
@@ -216,6 +218,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
             $isVisible={false}
             $role="dialog"
             $size="default"
+            $unstable_ModalBackdropScroll={false}
             data-baseweb="modal"
           >
             <MockStyledComponent
@@ -225,6 +228,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
               $isVisible={false}
               $role="dialog"
               $size="default"
+              $unstable_ModalBackdropScroll={false}
               data-baseweb="modal"
               forwardedRef={
                 Object {
@@ -299,6 +303,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                   $isVisible={false}
                   $role="dialog"
                   $size="default"
+                  $unstable_ModalBackdropScroll={false}
                   onClick={[Function]}
                 >
                   <MockStyledComponent
@@ -308,6 +313,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                     $isVisible={false}
                     $role="dialog"
                     $size="default"
+                    $unstable_ModalBackdropScroll={false}
                     forwardedRef={null}
                     onClick={[Function]}
                   >
@@ -321,6 +327,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                   $isVisible={false}
                   $role="dialog"
                   $size="default"
+                  $unstable_ModalBackdropScroll={false}
                 >
                   <MockStyledComponent
                     $animate={true}
@@ -329,6 +336,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                     $isVisible={false}
                     $role="dialog"
                     $size="default"
+                    $unstable_ModalBackdropScroll={false}
                     forwardedRef={null}
                   >
                     <Portal>
@@ -339,6 +347,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                         $isVisible={false}
                         $role="dialog"
                         $size="default"
+                        $unstable_ModalBackdropScroll={false}
                         aria-modal="true"
                         role="dialog"
                         tabIndex={-1}
@@ -350,6 +359,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                           $isVisible={false}
                           $role="dialog"
                           $size="default"
+                          $unstable_ModalBackdropScroll={false}
                           aria-modal="true"
                           forwardedRef={
                             Object {
@@ -432,6 +442,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                               $isVisible={false}
                               $role="dialog"
                               $size="default"
+                              $unstable_ModalBackdropScroll={false}
                               aria-label="Close"
                               onClick={[Function]}
                             >
@@ -442,6 +453,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                                 $isVisible={false}
                                 $role="dialog"
                                 $size="default"
+                                $unstable_ModalBackdropScroll={false}
                                 aria-label="Close"
                                 forwardedRef={null}
                                 onClick={[Function]}

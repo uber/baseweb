@@ -1,5 +1,6 @@
 import {Datepicker, ORIENTATION} from 'baseui/datepicker';
-import {PropTypes} from '../const';
+import {SIZE} from 'baseui/input';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 import inputConfig from './input';
 
@@ -11,7 +12,7 @@ const DatepickerConfig: TConfig = {
       named: ['Datepicker'],
     },
   },
-  scope: {Datepicker, ORIENTATION},
+  scope: {Datepicker, ORIENTATION, SIZE},
   theme: [
     'datepickerBackground',
     'datepickerDayFont',
@@ -122,6 +123,7 @@ const DatepickerConfig: TConfig = {
     },
     positive: inputConfig.props.positive,
     error: inputConfig.props.error,
+    size: inputConfig.props.size,
     locale: {
       value: undefined,
       type: PropTypes.Object,
@@ -226,83 +228,85 @@ const DatepickerConfig: TConfig = {
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: [
-        'Root',
-        'CalendarContainer',
-        'CalendarHeader',
-        'Day',
-        'Month',
-        'MonthContainer',
-        'MonthHeader',
-        'MonthYearSelectButton',
-        'MonthYearSelectIconContainer',
-        'NextButton',
-        'PrevButton',
-        'Week',
-        'WeekdayHeader',
-        'InputWrapper',
-      ],
-      sharedProps: {
-        $date: 'value',
-        $disabled: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
-        $endDate: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
-        $endOfMonth: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
-        $isHighlighted: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
-        $isHovered: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
-        $outsideMonth: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
-        $peekNextMonth: 'peekNextMonth',
-        $pseudoHighlighted: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
-        $pseudoSelected: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
-        $selected: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
-        $startDate: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
-        $startOfMonth: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
-        $range: 'range',
-        $hasRangeHighlighted: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
-        $hasRangeOnRight: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
-        $hasRangeSelected: {
-          type: PropTypes.Boolean,
-          description: '',
+      custom: {
+        names: [
+          'Root',
+          'CalendarContainer',
+          'CalendarHeader',
+          'Day',
+          'Month',
+          'MonthContainer',
+          'MonthHeader',
+          'MonthYearSelectButton',
+          'MonthYearSelectIconContainer',
+          'NextButton',
+          'PrevButton',
+          'Week',
+          'WeekdayHeader',
+          'InputWrapper',
+        ],
+        sharedProps: {
+          $date: 'value',
+          $disabled: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
+          $endDate: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
+          $endOfMonth: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
+          $isHighlighted: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
+          $isHovered: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
+          $outsideMonth: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
+          $peekNextMonth: 'peekNextMonth',
+          $pseudoHighlighted: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
+          $pseudoSelected: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
+          $selected: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
+          $startDate: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
+          $startOfMonth: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
+          $range: 'range',
+          $hasRangeHighlighted: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
+          $hasRangeOnRight: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
+          $hasRangeSelected: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
         },
       },
     },

@@ -1,23 +1,24 @@
 import * as React from 'react';
-import {useValueDebounce} from './utils';
+import {useValueDebounce} from 'react-view';
 import {Input, SIZE} from 'baseui/input';
 import {useStyletron} from 'baseui';
 import Link from 'next/link';
 import {StyledLink} from 'baseui/link';
 import {Caption1} from 'baseui/typography';
+import {getActiveTheme, getThemeDiff} from './provider';
 
 type ThemeEditorProps = {
   componentName: string;
   theme: {[key: string]: string};
   themeInit: {[key: string]: string};
-  set: (value: {[key: string]: string}) => void;
+  set: (value: {[key: string]: string} | undefined) => void;
 };
 
 type ColumnProps = {
   themeKeys: string[];
   theme: {[key: string]: string};
   themeInit: {[key: string]: string};
-  set: (value: {[key: string]: string}) => void;
+  set: (value: {[key: string]: string} | undefined) => void;
 };
 
 const ColorInput: React.FC<{
@@ -26,18 +27,18 @@ const ColorInput: React.FC<{
   globalColor: string;
   globalSet: (color: string) => void;
 }> = ({themeKey, themeInit, globalSet, globalColor}) => {
-  const [useCss, $theme] = useStyletron();
+  const [css, $theme] = useStyletron();
   const [color, setColor] = useValueDebounce<string>(globalColor, globalSet);
 
   return (
     <label
-      className={useCss({
+      className={css({
         display: 'flex',
         alignItems: 'center',
       })}
     >
       <div
-        className={useCss({
+        className={css({
           width: '4px',
           height: '36px',
           backgroundColor: color,
@@ -53,7 +54,7 @@ const ColorInput: React.FC<{
       />
       <div
         title={themeKey}
-        className={useCss({
+        className={css({
           ...($theme.typography.font100 as any),
           color: $theme.colors.foreground,
           marginLeft: $theme.sizing.scale300,
@@ -70,10 +71,10 @@ const ColorInput: React.FC<{
 };
 
 const Column: React.FC<ColumnProps> = ({themeKeys, themeInit, theme, set}) => {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   return (
     <div
-      className={useCss({
+      className={css({
         flexBasis: '50%',
       })}
     >
@@ -83,12 +84,16 @@ const Column: React.FC<ColumnProps> = ({themeKeys, themeInit, theme, set}) => {
             key={key}
             themeKey={key}
             globalColor={theme[key]}
-            globalSet={color =>
-              set({
-                ...theme,
-                [key]: color,
-              })
-            }
+            globalSet={color => {
+              const diff = getThemeDiff(
+                {
+                  ...theme,
+                  [key]: color,
+                },
+                themeInit,
+              );
+              set(Object.keys(diff).length > 0 ? diff : undefined);
+            }}
             themeInit={themeInit}
           />
         );
@@ -103,8 +108,9 @@ const ThemeEditor: React.FC<ThemeEditorProps> = ({
   set,
   componentName,
 }) => {
-  const [useCss, currentTheme] = useStyletron();
-  const themeKeys = Object.keys(theme);
+  const [css, currentTheme] = useStyletron();
+  const activeTheme = getActiveTheme(theme, themeInit);
+  const themeKeys = Object.keys(activeTheme);
 
   const midPoint =
     themeKeys.length % 2 === 0
@@ -130,24 +136,23 @@ const ThemeEditor: React.FC<ThemeEditorProps> = ({
         . Try different values:
       </Caption1>
       <div
-        className={useCss({
+        className={css({
           display: 'flex',
           flexDirection: 'row',
-          flexWrap: 'wrap',
-          [currentTheme.mediaQuery.medium]: {
-            flexWrap: 'nowrap',
+          [`@media screen and (max-width: ${currentTheme.breakpoints.medium}px)`]: {
+            flexWrap: 'wrap',
           },
         })}
       >
         <Column
           themeKeys={firstThemeKeys}
-          theme={theme}
+          theme={activeTheme}
           themeInit={themeInit}
           set={set}
         />
         <Column
           themeKeys={secondThemeKeys}
-          theme={theme}
+          theme={activeTheme}
           themeInit={themeInit}
           set={set}
         />
