@@ -192,7 +192,7 @@
     "react-focus-lock": "^2.2.1",
     "react-input-mask": "^2.0.4",
     "react-is": "^16.8.6",
-    "react-movable": "^2.3.0",
+    "react-movable": "^2.4.0",
     "react-multi-ref": "^1.0.0",
     "react-range": "^1.4.4",
     "react-virtualized": "^9.21.1",
