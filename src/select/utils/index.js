@@ -41,9 +41,24 @@ export const expandValue = (
 ): OptionT => {
   let {options, valueKey} = props;
   if (!options) return value;
-  for (let i = 0; i < options.length; i++) {
-    if (String(options[i][valueKey]) === String(value[valueKey])) {
-      return options[i];
+
+  if (Array.isArray(options)) {
+    for (let i = 0; i < options.length; i++) {
+      if (String(options[i][valueKey]) === String(value[valueKey])) {
+        return options[i];
+      }
+    }
+  } else {
+    const optgroups = Object.keys(options);
+    for (let i = 0; i < optgroups.length; i++) {
+      const optgroupOptions = optgroups[i];
+      for (let j = 0; j < optgroupOptions.length; j++) {
+        // $FlowFixMe already ensured that this is an option type
+        const option = (options[optgroupOptions[j]]: OptionT);
+        if (String(option[valueKey]) === String(value[valueKey])) {
+          return option;
+        }
+      }
     }
   }
   return value;

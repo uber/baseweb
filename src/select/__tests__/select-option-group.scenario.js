@@ -12,15 +12,28 @@ import {StatefulSelect} from '../index.js';
 
 export const name = 'select-option-group';
 
-const options = [
-  {id: 'AliceBlue', color: '#F0F8FF', optgroup: 'Blueish'},
-  {id: 'AntiqueWhite', color: '#FAEBD7', optgroup: 'Whiteish'},
-  {id: 'Aqua', color: '#00FFFF', optgroup: 'Blueish'},
-  {id: 'Aquamarine', color: '#7FFFD4', optgroup: 'Blueish'},
-  {id: 'Azure', color: '#F0FFFF', optgroup: 'Whiteish'},
-  {id: 'Beige', color: '#F5F5DC', optgroup: 'Whiteish'},
-  {id: 'Black', color: '#000000'},
-];
+// const options = [
+//   {id: 'AliceBlue', color: '#F0F8FF', optgroup: 'Blueish'},
+//   {id: 'Aqua', color: '#00FFFF', optgroup: 'Blueish'},
+//   {id: 'Aquamarine', color: '#7FFFD4', optgroup: 'Blueish'},
+//   {id: 'AntiqueWhite', color: '#FAEBD7', optgroup: 'Whiteish'},
+//   {id: 'Azure', color: '#F0FFFF', optgroup: 'Whiteish'},
+//   {id: 'Beige', color: '#F5F5DC', optgroup: 'Whiteish'},
+//   {id: 'Black', color: '#000000'},
+// ];
+
+const options = {
+  Blueish: [
+    {id: 'AliceBlue', color: '#F0F8FF', optgroup: 'Blueish'},
+    {id: 'Aqua', color: '#00FFFF', optgroup: 'Blueish'},
+    {id: 'Aquamarine', color: '#7FFFD4', optgroup: 'Blueish'},
+  ],
+  Whiteish: [
+    {id: 'AntiqueWhite', color: '#FAEBD7', optgroup: 'Whiteish'},
+    {id: 'Azure', color: '#F0FFFF', optgroup: 'Whiteish'},
+    {id: 'Beige', color: '#F5F5DC', optgroup: 'Whiteish'},
+  ],
+};
 
 export const component = () => (
   <StatefulSelect

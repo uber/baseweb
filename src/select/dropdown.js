@@ -95,31 +95,26 @@ export default function SelectDropdown(props: DropdownPropsT) {
     }
 
     if (Object.keys(firstValue).length > 0) {
-      const a = props.options.findIndex(
+      let optionsArray = [];
+      if (Array.isArray(props.options)) {
+        optionsArray = props.options;
+      } else if (props.options && typeof props.options === 'object') {
+        const optgroups = Object.keys(props.options);
+        optionsArray = optgroups.reduce((arr, optgroup) => {
+          // $FlowFixMe - checked above that props.options is an object
+          return arr.concat(props.options[optgroup]);
+        }, []);
+      }
+
+      const index = optionsArray.findIndex(
         option =>
           option && option[props.valueKey] === firstValue[props.valueKey],
       );
-      return a || 0;
+      return index || 0;
     }
+
     return 0;
   }, [props.value, props.options, props.valueKey]);
-
-  const groupedOptions = React.useMemo(() => {
-    return props.options.reduce(
-      (groups, option) => {
-        if (option.optgroup) {
-          if (!groups[option.optgroup]) {
-            groups[option.optgroup] = [];
-          }
-          groups[option.optgroup].push(option);
-        } else {
-          groups.__ungrouped.push(option);
-        }
-        return groups;
-      },
-      {__ungrouped: []},
-    );
-  }, [props.options]);
 
   return (
     <DropdownContainer
@@ -131,7 +126,7 @@ export default function SelectDropdown(props: DropdownPropsT) {
       <OverriddenStatefulMenu
         noResultsMsg={props.noResultsMsg}
         onItemSelect={props.onItemSelect}
-        items={groupedOptions}
+        items={props.options}
         size={props.size}
         initialState={{
           isFocused: true,

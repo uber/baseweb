@@ -22,12 +22,14 @@ export type OptionT = $ReadOnly<{
   disabled?: boolean,
   clearableValue?: boolean,
   isCreatable?: boolean,
-  optgroup?: string,
   // eslint-disable-next-line flowtype/no-weak-types
   [string]: any,
 }>;
 
 export type ValueT = $ReadOnlyArray<OptionT>;
+
+export type OptionGroupT = {__ungrouped?: ValueT, [string]: ValueT};
+export type OptionsT = ?ValueT | OptionGroupT;
 
 export type OnChangeParamsT = {
   value: ValueT,
@@ -96,7 +98,7 @@ export type PropsT = {
   /** Defaults to filterOptions that excludes selected options for
    * multi select. A custom method to filter options to be displayed in the dropdown. */
   filterOptions: ?(
-    options: ValueT,
+    options: OptionsT,
     filterValue: string,
     excludeOptions: ?ValueT,
     {valueKey: string, labelKey: string},
@@ -147,7 +149,7 @@ export type PropsT = {
   startOpen: boolean,
   /** Options to be displayed in the dropdown. If an option has a
    * disabled prop value set to true it will be rendered as a disabled option in the dropdown. */
-  options: ?ValueT,
+  options: OptionsT,
   overrides: OverridesT,
   /** Sets the placeholder. */
   placeholder?: React.Node,
@@ -222,7 +224,7 @@ export type DropdownPropsT = {
   multi: boolean,
   noResultsMsg?: React.Node,
   onItemSelect: OnItemSelectFnT,
-  options: ValueT,
+  options: OptionsT,
   overrides?: OverridesDropdownT,
   required: boolean,
   searchable: boolean,

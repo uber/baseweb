@@ -64,30 +64,63 @@ const filterOptions = (
     props.ignoreCase ? 'i' : '',
   );
 
-  // $FlowFixMe
-  return options.filter(option => {
-    if (excludeValues.has(option[props.valueKey])) return false;
-    if (props.filterOption)
-      return props.filterOption.call(undefined, option, filterValue);
-    if (!filterValue) return true;
+  if (Array.isArray(options)) {
+    // $FlowFixMe
+    return options.filter(option => {
+      if (excludeValues.has(option[props.valueKey])) return false;
+      if (props.filterOption)
+        return props.filterOption.call(undefined, option, filterValue);
+      if (!filterValue) return true;
 
-    const value = option[props.valueKey];
-    const label = option[props.labelKey];
-    const hasValue = isValid(value);
-    const hasLabel = isValid(label);
+      const value = option[props.valueKey];
+      const label = option[props.labelKey];
+      const hasValue = isValid(value);
+      const hasLabel = isValid(label);
 
-    if (!hasValue && !hasLabel) {
-      return false;
-    }
+      if (!hasValue && !hasLabel) {
+        return false;
+      }
 
-    const valueTest = hasValue ? String(value) : null;
-    const labelTest = hasLabel ? String(label) : null;
+      const valueTest = hasValue ? String(value) : null;
+      const labelTest = hasLabel ? String(label) : null;
 
-    return (
-      (valueTest && props.matchProp !== 'label' && re.test(valueTest)) ||
-      (labelTest && props.matchProp !== 'value' && re.test(labelTest))
-    );
-  });
+      return (
+        (valueTest && props.matchProp !== 'label' && re.test(valueTest)) ||
+        (labelTest && props.matchProp !== 'value' && re.test(labelTest))
+      );
+    });
+  } else {
+    const optgroups = Object.keys(options);
+    return optgroups.reduce((nextOptions, optgroup) => {
+      const filteredOptions = options[optgroup].filter(option => {
+        if (excludeValues.has(option[props.valueKey])) return false;
+        if (props.filterOption)
+          return props.filterOption.call(undefined, option, filterValue);
+        if (!filterValue) return true;
+
+        const value = option[props.valueKey];
+        const label = option[props.labelKey];
+        const hasValue = isValid(value);
+        const hasLabel = isValid(label);
+
+        if (!hasValue && !hasLabel) {
+          return false;
+        }
+
+        const valueTest = hasValue ? String(value) : null;
+        const labelTest = hasLabel ? String(label) : null;
+
+        return (
+          (valueTest && props.matchProp !== 'label' && re.test(valueTest)) ||
+          (labelTest && props.matchProp !== 'value' && re.test(labelTest))
+        );
+      });
+      if (filteredOptions.length) {
+        nextOptions[optgroup] = filteredOptions;
+      }
+      return nextOptions;
+    }, {});
+  }
 };
 
 export default filterOptions;

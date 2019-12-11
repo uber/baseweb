@@ -768,11 +768,23 @@ class Select extends React.Component<
         labelKey: this.props.labelKey,
       });
     }
+
+    let optionsArray: ValueT = [];
+    if (!Array.isArray(options)) {
+      const optgroups = Object.keys(options);
+      optionsArray = optgroups.reduce((arr, optgroup) => {
+        // $FlowFixMe - checked above that props.options is an object
+        return arr.concat(options[optgroup]);
+      }, []);
+    } else {
+      optionsArray = options;
+    }
+
     // can user create a new option + there's no exact match already
     if (
       filterValue &&
       this.props.creatable &&
-      options
+      optionsArray
         .concat(this.props.value)
         .every(
           opt =>
@@ -780,14 +792,29 @@ class Select extends React.Component<
             filterValue.toLowerCase().trim(),
         )
     ) {
-      // $FlowFixMe
-      options.push({
-        id: filterValue,
-        [this.props.labelKey]: filterValue,
-        [this.props.valueKey]: filterValue,
-        isCreatable: true,
-      });
+      if (Array.isArray(options)) {
+        // $FlowFixMe
+        return options.concat({
+          id: filterValue,
+          [this.props.labelKey]: filterValue,
+          [this.props.valueKey]: filterValue,
+          isCreatable: true,
+        });
+      } else {
+        // append the new option to the __ungrouped field
+        if (!options.__ungorouped) {
+          options.__ungrouped = [];
+        }
+        // $FlowFixMe ensured that __ungrouped array is defined above
+        options.__ungrouped = options.__ungrouped.concat({
+          id: filterValue,
+          [this.props.labelKey]: filterValue,
+          [this.props.valueKey]: filterValue,
+          isCreatable: true,
+        });
+      }
     }
+
     return options;
   }
 
