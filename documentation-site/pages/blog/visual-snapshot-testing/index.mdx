@@ -85,7 +85,7 @@ Eventually, we decided to roll out our own solution for visual snapshot testing.
 
 ## Down to business
 
-Let's go ahead and dive into how our solution works. After a high level overview, we can drill into some of the implementation details and cover the tradeoffs with our approach. Finally, we can go over possible improvements we might make in the future.
+Let's go ahead and dive into how our solution works. After a high level overview, we can drill into some of the implementation details, cover the tradeoffs with our approach, and finally we can go over possible improvements we might make in the future.
 
 ### Overview
 
@@ -99,13 +99,172 @@ Let's go ahead and dive into how our solution works. After a high level overview
 
 ## Implementation
 
-While implementing the above system, we ran into a few issues. Below we will go over some of the gotchas you might encounter while trying a custom solution.
+There are a lot of different pieces needed to get the above system to work. Below, we will go over some of the tools you will need and some of the gotchas you might encounter while building out a custom visual testing solution.
 
-### Flakiness
+### Puppeteer
+
+[Puppeteer](https://pptr.dev/) is a library for automating usage of Chrome via the Chrome Devtools Protocol. Puppeteer is what allows us to easily generate screenshots for our snapshot tests. If using Jest, you can use [`jest-puppeteer`](https://github.com/smooth-code/jest-puppeteer) to set up a global reference to the Puppeteer Page (`page`) object in your unit tests. In many of the code snippets below you will see references to this global `page` object.
+
+### A static site
+
+At some point you will need to host a site somewhere which Puppeteer can visit in order to render your UI. As part of our CI pipeline, we build a small static site that renders ever Storybook scenario in our codebase at a unique URL. Once this site is built, we run visual regression tests as well as end-to-end tests against it.
+
+### Extending Jest
+
+We already had Jest, Puppeteer, and [`jest-puppeteer`](https://github.com/smooth-code/jest-puppeteer) set up for our end-to-end tests so it was fairly easy to use the same tools to run our visual regression tests. We required only one extra library: [`jest-image-snapshot`](https://github.com/americanexpress/jest-image-snapshot). This library provides a new Jest assertion to make comparing visual snapshots as easy as writing a unit test:
+
+```js
+const image = await page.screenshot(); // generate a new image with puppeteer
+expect(image).toMatchImageSnapshot(); // compare to baseline image
+```
+
+If you already use snapshots in your codebase there is almost nothing new to learn here. The only difference from normal inline snapshots is that you will have image files added to your project which will need to be kept under version control as baselines for future tests.
+
+For a JS/React project this is a very low overhead way to add visual tests to your codebase.
+
+### The test run
+
+All of our snapshot tests are run under one Jest `describe` block. It essentially looks like this:
+
+```js
+describe('Visual Regression Tests', () => {
+  getAllScenarios().forEach(scenario => {
+    describe(scenario, () => {
+      it('desktop', async () => {
+        await setupDesktop();
+        await snapshot();
+      });
+      it('mobile', async () => {
+        await setupMobile();
+        await snapshot();
+      });
+      it('dark', async () => {
+        await setupDark();
+        await snapshot();
+      });
+      getAllInteractionsForScenario(scenario).forEach(interaction => {
+        it(interaction.name, async () => {
+          await interaction.behavior();
+          await snapshot();
+        });
+      });
+    });
+  });
+});
+```
+
+This is a fairly abbreviated version of the real code, but it shows the structure of our test run. One of the key bits here is the `getAllScenarios()` function - this will return every Storybook scenario file in the codebase. The result is that you do not have to add any configuration to add a test- **if there is a Storybook scenario it will automatically become a visual regression test**.
+
+That said, there _is_ a configuration file for when you need to modify the behavior of a specific snapshot test. This configuration object is a little clunky but it lets you target a specific scenario and do things like skip the scenario or add additional interaction snapshots based on that scenario.
+
+The config object looks something like this:
+
+```js
+const config = {
+  'input-password': {
+    interactions: [
+      {
+        name: 'togglesMask',
+        behavior: async page => {
+          const toggleSelector = `[data-e2e="mask-toggle"]`;
+          await page.$(toggleSelector);
+          await page.click(toggleSelector);
+        },
+      },
+    ],
+  },
+};
+```
+
+Each `behavior` for an interaction is a function that takes a [Puppeteer Page](https://pptr.dev/#?product=Puppeteer&version=v2.0.0&show=api-class-page) instance and returns a Promise that when resolved has arranged the UI into a desired state for a snapshot.
+
+In the above example, we will generate a new snapshot based on the `input-password` scenario. The behavior function will run before a snapshot is saved as `input-password__togglesMask-snap.png`.
+
+### Screenshot dimensions
+
+We went through a few iterations of tinkering with screenshot dimensions. At first we only took a screenshot of the root element on the page. This had the advantage of capturing as small as possible an area- leading to smaller images. We had to change the approach however due to a few edge cases:
+
+For one, any component that uses CSS to absolutely position elements, such as a modal or dropdown, will no longer contribute to the size of the root element. This means that most of the relevant UI will be left out of the final screenshot. This could be solved with some configuration parameters, but we wanted things to work well by default.
+
+Another issue was that some elements would expand past the desired viewport width. Becuase of this we weren't getting a real picture of what a mobile user would see and screenshots varied in width from snapshot to snapshot. The solution was to "clamp" the screenshot to a fixed width while capturing the maximum height of the page.
+
+With Puppeteer that looks something like this:
+
+```js
+// Use Chrome Devtools Protocol to get the scroll height of the page.
+const client = await page.target().createCDPSession();
+const metrics = await client.send('Page.getLayoutMetrics');
+const height = Math.ceil(metrics.contentSize.height);
+const image = await page.screenshot({
+  clip: {
+    x: 0,
+    y: 0,
+    width: VIEWPORT_WIDTH[viewport],
+    height: height,
+  },
+});
+```
+
+The result is that every screenshot has the same dimensions for the given viewport (mobile/desktop) across test runs. This makes comparisons for developers a little bit easier, but it also shows us a more realistic simulation of what an end user might see on their device.
+
+The added size to each screenshot is actually fairly limited. The white/black areas can be compressed fairly effeciently so most of the empty space does not contribute to the size of the file. Even though the overall dimensions of the images increased by about 40% the storage footprint only increased around 10%.
 
 ### Docker
 
-### Puppeteer
+One of the first things you will encounter when adding visual tests to your codebase is that the enviroment of a test run matters. Fonts and colors are not rendered in exactly the same way across all operating systems. The discrepency is enough that a pixel diffing algorithm will consider images generated in each operating system as incompatible, even if they have rendered the exact same UI. The result is that if someone runs the test suite on Mac and checks in the generated snapshots, all of the tests will fail when run on Windows or Linux.
+
+The solution for this is to always run the tests in the same environment, which for most projects means running tests in a Docker container. Our CI pipeline was already configured to use Docker & Linux so this became our "environment of truth". Note that it is also possible to set up your CI pipeline to always run tests on a Mac, Windows, or other environment.
+
+### Flakiness
+
+Snapshot tests should be deterministic. That is, they should yield the same result if run in the same environment with the same inputs. Yet even after nailing down a consistent environment there can be variations in the UI that lead to flakey test results. When your test runs take 5-10 minutes, you don't want to have flakey tests be the reason your tests did not pass.
+
+Here are the two main things that produced flakiness in our snapshots:
+
+#### **Animations**
+
+If you have any components that make use of transitions or animations you are going to want to shut those down. You don't want a millisecond difference in rendering time to affect the outcome of the test. Thankfully, it should be as simple as adding a little CSS to your page:
+
+```css
+*,
+*::before,
+*::after {
+  -moz-transition: none !important;
+  transition: none !important;
+  -moz-animation: none !important;
+  animation: none !important;
+  caret-color: transparent !important;
+}
+```
+
+#### **Asynchronicity**
+
+When testing components that require interactions, you often need to wait for the UI to change before you can proceed to the next step in the interaction. It might be tempting to simply pad steps with arbirary wait times, but trust me, you do not want do this.
+
+```js
+await page.waitFor(250); // waits for 250ms before proceeding
+```
+
+This should be a last resort as it will almost certainly flake at some point. The preferable approach is to wait for assertions on the page to pass. Take this example from one of our interaction snapshots:
+
+```js
+'select-search-single': {
+    interactions: [
+      {
+        name: 'open',
+        behavior: async page => {
+          const inputSelector = `[data-baseweb="select"]`;
+          const dropdownSelector = `[role="listbox"]`;
+          await page.waitForSelector(inputSelector);
+          await page.click(inputSelector);
+          await page.waitForSelector(dropdownSelector);
+        },
+      },
+    ],
+  },
+```
+
+`page`, an instance of [Page](https://pptr.dev/#?product=Puppeteer&version=v2.0.0&show=api-class-page), has numerous methods for awaiting events or assertions. While it is still possible for an assertion to time out, it is far, far less likely to occur.
 
 ### GitHub
 
