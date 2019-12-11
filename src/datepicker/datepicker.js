@@ -279,7 +279,7 @@ export default class Datepicker extends React.Component<
             <p
               id={this.props['aria-describedby']}
               style={{
-                position: 'absolute',
+                position: 'fixed',
                 width: '1px',
                 height: '1px',
                 margin: '-1px',
