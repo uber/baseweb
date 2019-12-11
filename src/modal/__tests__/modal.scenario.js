@@ -28,7 +28,7 @@ export const component = () => {
   // mounts into the scenario react tree where we control the dir attr.
   React.useEffect(() => {
     setIsOpen(true);
-  });
+  }, []);
   // eslint-disable-next-line flowtype/no-weak-types
   const modalRoot = React.useRef<any>(null);
 

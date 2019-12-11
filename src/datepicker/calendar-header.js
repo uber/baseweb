@@ -340,6 +340,7 @@ export default class CalendarHeader extends React.Component<
     ) : (
       <OverriddenPopover
         placement="bottom"
+        mountNode={this.props.popoverMountNode}
         isOpen={this.state.isMonthYearDropdownOpen}
         onClick={() => {
           this.setState(prev => ({
