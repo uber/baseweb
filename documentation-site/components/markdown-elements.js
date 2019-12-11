@@ -55,7 +55,7 @@ export const Heading = ({
       font={fontType}
       ref={hoverRef}
       id={slug}
-      color="foreground"
+      color="contentPrimary"
     >
       <React.Fragment>
         {children}{' '}
@@ -152,26 +152,32 @@ export const H3 = ({children}: {children: React.Node}) => (
   </Heading>
 );
 
+export const H4 = ({children}: {children: React.Node}) => (
+  <Heading element="h4" fontType="font400">
+    {children}
+  </Heading>
+);
+
+export const H5 = ({children}: {children: React.Node}) => (
+  <Heading element="h5" fontType="font350">
+    {children}
+  </Heading>
+);
+
+export const H6 = ({children}: {children: React.Node}) => (
+  <Heading element="h6" fontType="font250">
+    {children}
+  </Heading>
+);
+
 export default {
   code: Code,
   h1: H1,
   h2: H2,
   h3: H3,
-  h4: ({children}: {children: React.Node}) => (
-    <Heading element="h4" fontType="font300">
-      {children}
-    </Heading>
-  ),
-  h5: ({children}: {children: React.Node}) => (
-    <Heading element="h5" fontType="font300">
-      {children}
-    </Heading>
-  ),
-  h6: ({children}: {children: React.Node}) => (
-    <Heading element="h6" fontType="font200">
-      {children}
-    </Heading>
-  ),
+  h4: H4,
+  h5: H5,
+  h6: H6,
   li: ListItem,
   p: Paragraph,
   ul: UnorderedList,
