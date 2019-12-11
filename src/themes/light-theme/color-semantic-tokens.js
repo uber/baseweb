@@ -58,9 +58,9 @@ const coreExtensions: CoreExtensionSemanticColorTokensT = {
   backgroundWarning: foundation.warning,
   backgroundPositive: foundation.positive,
   backgroundLightAccent: colors.blue50,
-  backgroundLightPositive: colors.green50,
   backgroundLightNegative: colors.red50,
   backgroundLightWarning: colors.yellow50,
+  backgroundLightPositive: colors.green50,
   backgroundAlwaysDark: colors.black,
 
   // Content

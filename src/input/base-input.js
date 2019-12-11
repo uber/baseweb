@@ -151,7 +151,7 @@ class BaseInput<T: EventTarget> extends React.Component<
     const baseButtonOverrides = {
       BaseButton: {
         style: ({$theme}) => ({
-          color: $theme.colors.foreground,
+          color: $theme.colors.contentPrimary,
         }),
       },
     };

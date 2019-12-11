@@ -56,7 +56,7 @@ const ColorInput: React.FC<{
         title={themeKey}
         className={css({
           ...($theme.typography.font100 as any),
-          color: $theme.colors.foreground,
+          color: $theme.colors.contentPrimary,
           marginLeft: $theme.sizing.scale300,
           maxWidth: '150px',
           whiteSpace: 'nowrap',
