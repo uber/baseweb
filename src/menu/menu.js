@@ -16,47 +16,19 @@ import {
 import OptionList from './option-list.js';
 import {getOverrides} from '../helpers/overrides.js';
 // Types
-import type {StatelessMenuPropsT, GroupedItemsT, ItemT} from './types.js';
+import type {StatelessMenuPropsT} from './types.js';
 import type {LocaleT} from '../locale/types.js';
 
-function Item(props: {
-  ...$Diff<StatelessMenuPropsT, {items: mixed}>,
-  item: ItemT,
-  index: number,
-}) {
-  const {getRequiredItemProps = (item, index) => ({}), overrides = {}} = props;
-  const [Option, optionProps] = getOverrides(overrides.Option, OptionList);
+export default function Menu(props: StatelessMenuPropsT) {
   const {
-    disabled,
-    isFocused,
-    isHighlighted,
-    ref,
-    resetMenu = () => {},
-    ...restProps
-  } = getRequiredItemProps(props.item, props.index);
+    overrides = {},
+    rootRef = React.createRef(),
+    focusMenu = () => {},
+    unfocusMenu = () => {},
+  } = props;
 
-  return (
-    <Option
-      key={props.index}
-      item={props.item}
-      overrides={props.overrides}
-      resetMenu={resetMenu}
-      role="option"
-      $disabled={disabled}
-      ref={ref}
-      $isFocused={isFocused}
-      $isHighlighted={isHighlighted}
-      aria-selected={isHighlighted && isFocused}
-      {...restProps}
-      {...optionProps}
-    />
-  );
-}
-
-function Items(props: {...StatelessMenuPropsT, items: GroupedItemsT}) {
-  const {overrides = {}} = props;
-  const {items, noResultsMsg, ...restProps} = props;
-
+  const [List, listProps] = getOverrides(overrides.List, StyledList);
+  const [Option, optionProps] = getOverrides(overrides.Option, OptionList);
   const [EmptyState, emptyStateProps] = getOverrides(
     overrides.EmptyState,
     StyledEmptyState,
@@ -66,13 +38,10 @@ function Items(props: {...StatelessMenuPropsT, items: GroupedItemsT}) {
     StyledOptgroupHeader,
   );
 
-  const optgroups = Object.keys(items);
-  const isEmpty = optgroups.every(optgroup => !items[optgroup].length);
-
-  if (isEmpty) {
-    return <EmptyState {...emptyStateProps}>{noResultsMsg}</EmptyState>;
-  }
-
+  const groupedItems = Array.isArray(props.items)
+    ? {__ungrouped: props.items}
+    : props.items;
+  const optgroups = Object.keys(groupedItems);
   const [elements] = optgroups.reduce(
     ([els, itemIndex], optgroup) => {
       if (optgroup !== '__ungrouped') {
@@ -82,14 +51,31 @@ function Items(props: {...StatelessMenuPropsT, items: GroupedItemsT}) {
           </OptgroupHeader>,
         );
       }
-      const groupItems = items[optgroup].map((item, index) => {
+      const groupItems = groupedItems[optgroup].map((item, index) => {
         itemIndex = itemIndex + 1;
+        const {getRequiredItemProps = (item, index) => ({})} = props;
+
+        const {
+          disabled,
+          isFocused,
+          isHighlighted,
+          resetMenu = () => {},
+          ...restProps
+        } = getRequiredItemProps(item, itemIndex);
+
         return (
-          <Item
-            key={`${optgroup}-${index}`}
-            {...restProps}
+          <Option
+            key={itemIndex}
             item={item}
-            index={itemIndex}
+            overrides={props.overrides}
+            resetMenu={resetMenu}
+            role="option"
+            $disabled={disabled}
+            $isFocused={isFocused}
+            $isHighlighted={isHighlighted}
+            aria-selected={isHighlighted && isFocused}
+            {...restProps}
+            {...optionProps}
           />
         );
       });
@@ -98,20 +84,7 @@ function Items(props: {...StatelessMenuPropsT, items: GroupedItemsT}) {
     [[], -1],
   );
 
-  return elements;
-}
-
-export default function Menu(props: StatelessMenuPropsT) {
-  const {items, noResultsMsg, ...restProps} = props;
-  const {
-    overrides = {},
-    rootRef = React.createRef(),
-    focusMenu = () => {},
-    unfocusMenu = () => {},
-  } = props;
-
-  const [List, listProps] = getOverrides(overrides.List, StyledList);
-  const groupedItems = Array.isArray(items) ? {__ungrouped: items} : items;
+  const isEmpty = optgroups.every(optgroup => !groupedItems[optgroup].length);
 
   return (
     <LocaleContext.Consumer>
@@ -128,11 +101,13 @@ export default function Menu(props: StatelessMenuPropsT) {
           data-baseweb="menu"
           {...listProps}
         >
-          <Items
-            {...restProps}
-            items={groupedItems}
-            noResultsMsg={noResultsMsg || locale.menu.noResultsMsg}
-          />
+          {isEmpty ? (
+            <EmptyState {...emptyStateProps}>
+              {props.noResultsMsg || locale.menu.noResultsMsg}
+            </EmptyState>
+          ) : (
+            elements
+          )}
         </List>
       )}
     </LocaleContext.Consumer>
