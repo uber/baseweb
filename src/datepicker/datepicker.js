@@ -220,25 +220,7 @@ export default class Datepicker extends React.Component<
               mountNode={this.props.mountNode}
               placement={PLACEMENT.bottom}
               isOpen={this.state.isOpen}
-              onClickOutside={event => {
-                // Required to check that items rendered in a sub-popover does not trigger close.
-                // For example, upon selecting an option from the month dropdown it would cause
-                // this code to run since the two popovers are DOM siblings rather than parent/child.
-                // There's likely a more robust way to check this, but ignores clicks from elements
-                // that are select options for now.
-                function isOption(element) {
-                  if (!element) return false;
-                  return element.getAttribute('role') === 'option';
-                }
-                if (
-                  isOption(event.target) ||
-                  isOption(event.target.parentElement)
-                ) {
-                  return;
-                }
-
-                this.close();
-              }}
+              onClickOutside={this.close}
               onEsc={this.handleEsc}
               content={
                 <Calendar

@@ -112,6 +112,7 @@ export type CalendarInternalState = {
   focused: boolean,
   date: Date,
   quickSelectId: ?string,
+  rootElement: ?HTMLElement,
 };
 
 export type CalendarPropsT = {
@@ -169,6 +170,7 @@ export type CalendarPropsT = {
 export type HeaderPropsT = CalendarPropsT & {
   date: Date,
   order: number,
+  popoverMountNode: ?HTMLElement,
 };
 
 export type DatepickerPropsT = CalendarPropsT & {

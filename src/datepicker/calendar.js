@@ -81,7 +81,6 @@ export default class Calendar extends React.Component<
     trapTabbing: false,
   };
 
-  root: React.ElementRef<*>;
   calendar: React.ElementRef<*>;
 
   constructor(props: CalendarPropsT) {
@@ -94,6 +93,7 @@ export default class Calendar extends React.Component<
       focused: false,
       date: this.getDateInView(),
       quickSelectId: null,
+      rootElement: null,
     };
   }
 
@@ -183,6 +183,7 @@ export default class Calendar extends React.Component<
         order={order}
         onMonthChange={this.changeMonth}
         onYearChange={this.changeYear}
+        popoverMountNode={this.state.rootElement}
       />
     );
   };
@@ -287,8 +288,8 @@ export default class Calendar extends React.Component<
         const activeElm = document.activeElement;
         // need to look for any tabindex >= 0 and ideally for not disabled
         // focusable by default elements like input, button, etc.
-        const focusable = this.root
-          ? this.root.querySelectorAll('[tabindex="0"]')
+        const focusable = this.state.rootElement
+          ? this.state.rootElement.querySelectorAll('[tabindex="0"]')
           : null;
         const length = focusable ? focusable.length : 0;
         if (event.shiftKey) {
@@ -552,7 +553,13 @@ export default class Calendar extends React.Component<
           <Root
             data-baseweb="calendar"
             ref={root => {
-              this.root = root;
+              if (
+                root &&
+                root instanceof HTMLElement &&
+                !this.state.rootElement
+              ) {
+                this.setState({rootElement: (root: HTMLElement)});
+              }
             }}
             aria-label="calendar"
             onKeyDown={this.props.trapTabbing ? this.handleTabbing : null}
