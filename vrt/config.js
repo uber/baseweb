@@ -243,6 +243,22 @@ const config = {
       },
     ],
   },
+  'select-search-single-fontsize': {
+    interactions: [
+      {
+        name: 'showsAllText',
+        behavior: async page => {
+          const inputSelector = `[data-baseweb="select"]`;
+          const selectInputSelector = `input[role="combobox"]`;
+          const dropdownSelector = `[role="listbox"]`;
+          await page.waitForSelector(inputSelector);
+          await page.click(inputSelector);
+          await page.waitForSelector(dropdownSelector);
+          await page.type(selectInputSelector, 'zzz');
+        },
+      },
+    ],
+  },
   'modal-select': {
     interactions: [
       {

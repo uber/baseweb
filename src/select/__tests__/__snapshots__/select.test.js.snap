@@ -682,9 +682,11 @@ exports[`Select component renders component in search mode and false for multipl
                                 </ForwardRef>
                                 <ForwardRef
                                   $size="default"
+                                  $style={null}
                                 >
                                   <MockStyledComponent
                                     $size="default"
+                                    $style={null}
                                     forwardedRef={[Function]}
                                   >
                                     <div
@@ -1509,9 +1511,11 @@ exports[`Select component renders component in search mode and true for multiple
                                 </ForwardRef>
                                 <ForwardRef
                                   $size="default"
+                                  $style={null}
                                 >
                                   <MockStyledComponent
                                     $size="default"
+                                    $style={null}
                                     forwardedRef={[Function]}
                                   >
                                     <div
@@ -2228,9 +2232,11 @@ exports[`Select component renders component in select mode and false for multipl
                                 </ForwardRef>
                                 <ForwardRef
                                   $size="default"
+                                  $style={null}
                                 >
                                   <MockStyledComponent
                                     $size="default"
+                                    $style={null}
                                     forwardedRef={[Function]}
                                   >
                                     <div
@@ -3072,9 +3078,11 @@ exports[`Select component renders component in select mode and true for multiple
                                 </ForwardRef>
                                 <ForwardRef
                                   $size="default"
+                                  $style={null}
                                 >
                                   <MockStyledComponent
                                     $size="default"
+                                    $style={null}
                                     forwardedRef={[Function]}
                                   >
                                     <div
