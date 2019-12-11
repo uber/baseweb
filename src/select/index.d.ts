@@ -23,6 +23,7 @@ export interface Option {
   readonly disabled?: boolean;
   readonly clearableValue?: boolean;
   readonly isCreatable?: boolean;
+  readonly optgroup?: string;
   [others: string]: any;
 }
 export type Value = ReadonlyArray<Option>;
