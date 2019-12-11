@@ -84,6 +84,18 @@ export const StyledEmptyState = styled<StyledPropsT>('li', props => {
   };
 });
 
+export const StyledOptgroupHeader = styled<{}>('li', props => {
+  const paddingX = props.$theme.sizing.scale300;
+  const paddingY = props.$theme.sizing.scale200;
+  return {
+    ...props.$theme.typography.font250,
+    paddingTop: paddingY,
+    paddingBottom: paddingY,
+    paddingRight: paddingX,
+    paddingLeft: paddingX,
+  };
+});
+
 export const StyledListItem = styled<StyledPropsT>('li', props => {
   const {$disabled, $theme, $size} = props;
   return {

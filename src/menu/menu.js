@@ -8,19 +8,102 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {LocaleContext} from '../locale/index.js';
 // Components
-import {StyledList, StyledEmptyState} from './styled-components.js';
+import {
+  StyledList,
+  StyledEmptyState,
+  StyledOptgroupHeader,
+} from './styled-components.js';
 import OptionList from './option-list.js';
 import {getOverrides} from '../helpers/overrides.js';
 // Types
-import type {StatelessMenuPropsT} from './types.js';
+import type {StatelessMenuPropsT, GroupedItemsT, ItemT} from './types.js';
 import type {LocaleT} from '../locale/types.js';
 
-export default function Menu(props: StatelessMenuPropsT) {
+function Item(props: {
+  ...$Diff<StatelessMenuPropsT, {items: mixed}>,
+  item: ItemT,
+  index: number,
+}) {
+  const {getRequiredItemProps = (item, index) => ({}), overrides = {}} = props;
+  const [Option, optionProps] = getOverrides(overrides.Option, OptionList);
   const {
-    activedescendantId,
-    getRequiredItemProps = (item, index) => ({}),
-    items,
-    noResultsMsg,
+    disabled,
+    isFocused,
+    isHighlighted,
+    ref,
+    resetMenu = () => {},
+    ...restProps
+  } = getRequiredItemProps(props.item, props.index);
+
+  return (
+    <Option
+      key={props.index}
+      item={props.item}
+      overrides={props.overrides}
+      resetMenu={resetMenu}
+      role="option"
+      $disabled={disabled}
+      ref={ref}
+      $isFocused={isFocused}
+      $isHighlighted={isHighlighted}
+      aria-selected={isHighlighted && isFocused}
+      {...restProps}
+      {...optionProps}
+    />
+  );
+}
+
+function Items(props: {...StatelessMenuPropsT, items: GroupedItemsT}) {
+  const {overrides = {}} = props;
+  const {items, noResultsMsg, ...restProps} = props;
+
+  const [EmptyState, emptyStateProps] = getOverrides(
+    overrides.EmptyState,
+    StyledEmptyState,
+  );
+  const [OptgroupHeader, optgroupHeaderProps] = getOverrides(
+    overrides.OptgroupHeader,
+    StyledOptgroupHeader,
+  );
+
+  const optgroups = Object.keys(items);
+  const isEmpty = optgroups.every(optgroup => !items[optgroup].length);
+
+  if (isEmpty) {
+    return <EmptyState {...emptyStateProps}>{noResultsMsg}</EmptyState>;
+  }
+
+  const [elements] = optgroups.reduce(
+    ([els, itemIndex], optgroup) => {
+      if (optgroup !== '__ungrouped') {
+        els.push(
+          <OptgroupHeader key={optgroup} {...optgroupHeaderProps}>
+            {optgroup}
+          </OptgroupHeader>,
+        );
+      }
+      const groupItems = items[optgroup].map((item, index) => {
+        itemIndex = itemIndex + 1;
+        return (
+          <Item
+            key={`${optgroup}-${index}`}
+            {...restProps}
+            item={item}
+            index={itemIndex}
+          />
+        );
+      });
+      return [els.concat(groupItems), itemIndex];
+    },
+    [[], -1],
+  );
+
+  return elements;
+}
+
+export default function Menu(props: StatelessMenuPropsT) {
+  const {items, noResultsMsg, ...restProps} = props;
+  const {
     overrides = {},
     rootRef = React.createRef(),
     focusMenu = () => {},
@@ -28,16 +111,13 @@ export default function Menu(props: StatelessMenuPropsT) {
   } = props;
 
   const [List, listProps] = getOverrides(overrides.List, StyledList);
-  const [Option, optionProps] = getOverrides(overrides.Option, OptionList);
-  const [EmptyState, emptyStateProps] = getOverrides(
-    overrides.EmptyState,
-    StyledEmptyState,
-  );
+  const groupedItems = Array.isArray(items) ? {__ungrouped: items} : items;
+
   return (
     <LocaleContext.Consumer>
       {(locale: LocaleT) => (
         <List
-          aria-activedescendant={activedescendantId || null}
+          aria-activedescendant={props.activedescendantId || null}
           role="listbox"
           ref={rootRef}
           onMouseEnter={focusMenu}
@@ -48,39 +128,11 @@ export default function Menu(props: StatelessMenuPropsT) {
           data-baseweb="menu"
           {...listProps}
         >
-          {!items || !items.length ? (
-            <EmptyState {...emptyStateProps}>
-              {noResultsMsg || locale.menu.noResultsMsg}
-            </EmptyState>
-          ) : (
-            items.map((item, index) => {
-              const {
-                disabled,
-                isFocused,
-                isHighlighted,
-                ref,
-                resetMenu = () => {},
-                ...restProps
-              } = getRequiredItemProps(item, index);
-
-              return (
-                <Option
-                  key={index}
-                  item={item}
-                  overrides={overrides}
-                  resetMenu={resetMenu}
-                  role="option"
-                  $disabled={disabled}
-                  ref={ref}
-                  $isFocused={isFocused}
-                  $isHighlighted={isHighlighted}
-                  aria-selected={isHighlighted && isFocused}
-                  {...restProps}
-                  {...optionProps}
-                />
-              );
-            })
-          )}
+          <Items
+            {...restProps}
+            items={groupedItems}
+            noResultsMsg={noResultsMsg || locale.menu.noResultsMsg}
+          />
         </List>
       )}
     </LocaleContext.Consumer>
