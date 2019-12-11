@@ -11,7 +11,9 @@ import type {OverrideT} from '../helpers/overrides.js';
 import {STATE_CHANGE_TYPES, OPTION_LIST_SIZE} from './constants.js';
 
 export type ItemT = *;
-export type ItemsT = $ReadOnlyArray<ItemT>;
+export type ArrayItemsT = $ReadOnlyArray<ItemT>;
+export type GroupedItemsT = {__ungrouped: ArrayItemsT, [string]: ArrayItemsT};
+export type ItemsT = ArrayItemsT | GroupedItemsT;
 
 export type GetItemLabelFnT = (item: ItemT) => React.Node;
 
@@ -134,6 +136,7 @@ export type MenuPropsT = {
     EmptyState?: OverrideT<*>,
     List?: OverrideT<*>,
     Option?: OverrideT<*>,
+    OptgroupHeader?: OverrideT<*>,
   },
 };
 
