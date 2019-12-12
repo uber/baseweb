@@ -179,6 +179,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
         {this.isToggle() ? (
           <ToggleTrack
             role="checkbox"
+            aria-checked={checked}
             {...sharedProps}
             {...getOverrideProps(ToggleTrackOverride)}
           >
@@ -193,6 +194,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
           <Checkmark
             role="checkbox"
             checked={checked}
+            aria-checked={checked}
             {...sharedProps}
             {...getOverrideProps(CheckmarkOverride)}
           />
