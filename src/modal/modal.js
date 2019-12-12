@@ -118,7 +118,11 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     const mountNode = this.getMountNode();
     const lastStyle = this.lastMountNodeOverflowStyle;
     if (mountNode && lastStyle !== null) {
-      mountNode.style.overflow = lastStyle || '';
+      // If overflow is not 'hidden', something else has changed the
+      // overflow style and we shouldn't try to reset it.
+      if (mountNode.style.overflow === 'hidden') {
+        mountNode.style.overflow = lastStyle || '';
+      }
       this.lastMountNodeOverflowStyle = null;
     }
   }

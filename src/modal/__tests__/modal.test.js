@@ -149,6 +149,53 @@ describe('Modal', () => {
     expect(body.style.overflow).toBe('');
   });
 
+  describe('nested modals', () => {
+    const TwoModals = ({isOpen1 = false, isOpen2 = false}) => (
+      <>
+        <Modal isOpen={isOpen1}>Modal 1</Modal>
+        <Modal isOpen={isOpen2}>Modal 2</Modal>,
+      </>
+    );
+
+    test('resets body scroll when top closes first', () => {
+      wrapper = mount(<TwoModals />);
+
+      const body = ((document.body: any): HTMLBodyElement);
+      expect(body.style.overflow).toBe('');
+
+      wrapper.setProps({isOpen1: true, isOpen2: false});
+      expect(body.style.overflow).toBe('hidden');
+
+      wrapper.setProps({isOpen1: true, isOpen2: true});
+      expect(body.style.overflow).toBe('hidden');
+
+      wrapper.setProps({isOpen1: true, isOpen2: false});
+      expect(body.style.overflow).toBe('hidden');
+
+      wrapper.setProps({isOpen1: false, isOpen2: false});
+      expect(body.style.overflow).toBe('');
+    });
+
+    test('resets body scroll when bottom closes first', () => {
+      wrapper = mount(<TwoModals />);
+
+      const body = ((document.body: any): HTMLBodyElement);
+      expect(body.style.overflow).toBe('');
+
+      wrapper.setProps({isOpen1: true, isOpen2: false});
+      expect(body.style.overflow).toBe('hidden');
+
+      wrapper.setProps({isOpen1: true, isOpen2: true});
+      expect(body.style.overflow).toBe('hidden');
+
+      wrapper.setProps({isOpen1: false, isOpen2: true});
+      expect(body.style.overflow).toBe('');
+
+      wrapper.setProps({isOpen1: false, isOpen2: false});
+      expect(body.style.overflow).toBe('');
+    });
+  });
+
   test('override components', () => {
     const Root = styled('div', {});
     const Backdrop = styled('div', {});
