@@ -19,6 +19,20 @@ import {Button, KIND} from 'baseui/button';
 import {version} from '../../package.json';
 import versions from '../../versions.json';
 
+// list of version for which we don't have a deployed documentation site
+// for some reason
+const disabledVersions = [
+  'v9.29.0',
+  'v9.28.1',
+  'v9.28.0',
+  'v9.27.0',
+  'v9.26.0',
+  'v9.25.0',
+  'v9.24.0',
+  'v9.23.1',
+  'v9.23.0',
+];
+
 const majorVersions = Array.from(
   versions.reduce((set, version) => {
     if (!version || !version.tag_name) {
@@ -52,6 +66,7 @@ const versionsToShowPerMajor = versions
 
     acc[key].push({
       label: version.tag_name,
+      disabled: disabledVersions.includes(version.tag_name),
     });
 
     return acc;
