@@ -41,12 +41,12 @@ export const component = () => {
                   <MenuAdapter
                     {...props}
                     ref={ref}
-                    artwork={props.item.icon}
+                    artwork={props.$item.icon}
                     artworkSize={ARTWORK_SIZES.LARGE}
                     endEnhancer={() => <ChevronRight />}
                   >
-                    <ListItemLabel description={props.item.subtitle}>
-                      {props.item.title}
+                    <ListItemLabel description={props.$item.subtitle}>
+                      {props.$item.title}
                     </ListItemLabel>
                   </MenuAdapter>
                 )),
