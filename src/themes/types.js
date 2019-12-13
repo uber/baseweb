@@ -9,6 +9,8 @@ LICENSE file in the root directory of this source tree.
 import type {ResponsiveT} from '../layout-grid/types.js';
 export type ColorTokensT = {
   // Primary Palette
+  primaryA: string,
+  primaryB: string,
   primary: string,
   primary50: string,
   primary100: string,
@@ -81,6 +83,63 @@ export type ColorTokensT = {
   rating200: string,
   rating400: string,
 };
+
+export type CoreSemanticColorTokensT = {
+  // Background
+  backgroundPrimary: string,
+  backgroundSecondary: string,
+  backgroundTertiary: string,
+  backgroundInversePrimary: string,
+  backgroundInverseSecondary: string,
+
+  // Content
+  contentPrimary: string,
+  contentSecondary: string,
+  contentTertiary: string,
+  contentInversePrimary: string,
+  contentInverseSecondary: string,
+  contentInverseTertiary: string,
+
+  // Border
+  borderOpaque: string,
+  borderTransparent: ?string,
+  borderSelected: string,
+  borderInverseOpaque: string,
+  borderInverseTransparent: ?string,
+  borderInverseSelected: string,
+};
+export type CoreExtensionSemanticColorTokensT = {
+  // Backgrounds
+  backgroundStateDisabled: string,
+  backgroundOverlayDark: ?string,
+  backgroundOverlayLight: ?string,
+  backgroundAccent: string,
+  backgroundNegative: string,
+  backgroundWarning: string,
+  backgroundPositive: string,
+  backgroundLightAccent: string,
+  backgroundLightPositive: string,
+  backgroundLightNegative: string,
+  backgroundLightWarning: string,
+  backgroundAlwaysDark: string,
+
+  // Content
+  contentStateDisabled: string,
+  contentAccent: string,
+  contentOnColor: string,
+  contentNegative: string,
+  contentWarning: string,
+  contentPositive: string,
+
+  // Border
+  borderStateDisabled: string,
+  borderAccent: string,
+  borderNegative: string,
+  borderWarning: string,
+  borderPositive: string,
+};
+export type SemanticColorTokensT = CoreSemanticColorTokensT &
+  CoreExtensionSemanticColorTokensT;
 
 export type ComponentColorTokensT = {
   // Buttons

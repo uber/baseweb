@@ -11,6 +11,8 @@ import type {ColorTokensT} from '../types.js';
 // color constants
 const lightColorTokens: ColorTokensT = {
   // Primary Palette
+  primaryA: colors.black,
+  primaryB: colors.white,
   primary: colors.black,
   primary50: colors.gray50,
   primary100: colors.gray100,
