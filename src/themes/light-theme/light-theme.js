@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import colors from './color-tokens.js';
+import getSemanticColors from './color-semantic-tokens.js';
 import getColorComponentTokens from './color-component-tokens.js';
 import getDeprecatedSemanticColors from './color-deprecated-semantic-tokens.js';
 import getTypography from '../shared/typography.js';
@@ -25,6 +26,7 @@ export const LightTheme: ThemeT = {
     ...colors,
     ...getColorComponentTokens(),
     ...getDeprecatedSemanticColors(),
+    ...getSemanticColors(),
   },
   animation,
   breakpoints,
