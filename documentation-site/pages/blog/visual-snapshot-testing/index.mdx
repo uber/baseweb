@@ -1,6 +1,7 @@
 import metadata from './metadata.json';
 import Layout from '../../../components/layout';
 import {BlogImage, Meta, Caption} from '../../../components/blog';
+import OnionSkinPNG from './onionskin.png';
 
 export default Layout;
 
@@ -264,46 +265,58 @@ This should be a last resort as it will almost certainly flake at some point. Th
   },
 ```
 
-`page`, an instance of [Page](https://pptr.dev/#?product=Puppeteer&version=v2.0.0&show=api-class-page), has numerous methods for awaiting events or assertions. While it is still possible for an assertion to time out, it is far, far less likely to occur.
+`page`, an instance of [Page](https://pptr.dev/#?product=Puppeteer&version=v2.0.0&show=api-class-page), has numerous methods for awaiting events or assertions. While it is still possible for an assertion to time out while waiting, this rarely happens in practice.
 
-### GitHub
+### Developer UX
 
-## Benefits
+Having a visual test suite pass or fail as part of CI/CD is a great start, but what do you do when a test fails? If you have access to the CI environment you can read the test run's output, but even knowing which tests failed is not especially useful if you can't _see_ what changed. Consider also that sometimes you need to update snapshots or add new ones. If our CI/CD test run only reports successes and failures we are back to running tests locally in order to update the snapshots.
 
-The best part of this system is that you never have to run snapshots locally. Everything is run asynchronously in our CI pipeline. You don't want contributors having to run a Docker instance locally to generate new snapshots. It adds an especially huge hurdle for external or first time contributors. By keeping the process fully within CI, developers can focus on their actual work.
+We implemented a [simple Node script](https://github.com/uber/baseweb/blob/master/vrt/ci.js) to make viewing diffs and updating snapshots much more seamless.
 
-Another useful feature of this workflow is that everything is in GitHub. Developers can easily compare images within the GitHub interface, using some nifty built-in tools. Visual snapshots have a clear changelog, searchable by commit or pull request label. Also important, snapshots are public. External contributors do not have to worry about priviledges or log into a third party solution's site. In fact, developers do not need to learn anything new to benefit from visual snapshots. If they can merge a pull request, they can contribute to Base Web.
+The script runs our visual snapshot tests with the update flag. If nothing is updated, the job has passed. If any snapshots were created or updated we raise a new pull request into the original branch with those updates. The author of the original pull request can then view new and updated snapshots in an isolated diff.
+
+GitHub makes this process even better due to a few built-in image comparison tools. Not only can you see the images side by side, but you can also use two alternative methods of comparison known as "Swipe" and "Onion Skin".
+
+<BlogImage
+  src={OnionSkinPNG}
+  caption="An example of GitHub's image comparison interface."
+  alt="An example of GitHub's image comparison interface."
+/>
+
+Once the snapshot pull request is merged in, any new commits to the original branch will have the updated snapshots. This is actually a useful feature because it allows developers to incrementaly update snapshots as they work on a branch.
+
+When the original pull request is merged into `master` it will contain any updated snapshots as part of its diff. We now have both a changelog of the work and the visual changes it caused- and because the snapshots were in an isolated PR we can also look at visual changes and then easily find the pull request they were associated with.
+
+Finally, this workflow is inclusive for external contributors (of which there are over one hundred so far!). In the past we used a paid solution for snapshot testing which required a priviledged account for viewing snapshots. Our main team of contributors would have to log into that service and either relay information or fix it ourselves. Now external contributors can add and update snapshots without depending on anyone else or even having to learn anything new. Afterall, the whole system is built with plain old Git and GitHub. If you can merge in a pull request you can work with snapshots.
 
 ## The future
 
-There are a few gaps in our current solution.
+So far we've covered how our current visual testing solution works and gone into some of the implementation details. What we have now is useful and, now that most of the kinks have been worked out, fairly seamless. That said, there is still a lot of room for improvement. Here are some of the things we are considering for the future.
 
 ### Devices
 
-The first and perhaps largest issue is that our tests only run within a Chrome browser (puppeteer). While we can modify the viewport size and do some rough simulations of a mobile device through meta tags, there is no denying it isn't the real thing. For now we have to manually investigate regressions using real devices or a service such as [BrowserStack](https://www.browserstack.com/). It would be ideal to have snapshots generated against mobile Safari and Internet Explorer 11.
+The first and perhaps largest issue with our current solution is that our tests only run within a Chrome browser. While we can modify the viewport size and do some rough simulations of a mobile device with html meta tags, there is no denying we aren't testing the real thing. We have to manually investigate regressions using real devices or a service such as [BrowserStack](https://www.browserstack.com/) and have no automated preventative measures for alternate browsers. At the very least, it would be ideal to have snapshots generated against mobile Safari and Internet Explorer 11 so that every major browser engine is accounted for.
 
 ### Speed
 
-The snapshots tests add about 8 minutes to our CI pipeline. They are by far the longest running step in the process. While developers do not need to be attentive during this 8 minutes, it would be ideal to halve or quarter this length of time. Doing so would likely require us to move the tests out of Jest so we could better parallelize the job.
+The snapshots tests add 5-8 minutes to our CI pipeline. They are the longest running step in our pipeline. While developers do not need to be attentive during this 8 minutes, it would be ideal to halve or quarter this duration. To do this we would likely need to move tests out of Jest that so we could better parallelize the job. Jest is a convenient test runner, and we already have it set up in our project, but it is not necessarily the best tool for the job of running many side-effect (screenshots, reads/writes) laden tests.
 
 ### Git
 
-Our snapshots currently add about 10MB to our Git repository. It hasn't resulted in any noticeble difference for our workflow but in the future, as the project grows, we might need to make use of [Git LFS](https://git-lfs.github.com/) or move images out of Git entirely.
-
-### A11y
-
-Perhaps we could use the snapshot images for visual accessibilty audits. Perhaps there are other potential use-cases for the snapshot images.
+Our snapshots currently add about 10MB to our Git repository. It hasn't resulted in any noticeble difference in our workflow but as the project grows we might need to make use of [Git LFS](https://git-lfs.github.com/) or move images out of Git entirely.
 
 ### Downstream
 
-Base Web is used by hundreds of internal projects at Uber. When we make a change to Base Web we can verify that our visual snapshots look correct - but we have no idea how our changes have affected downstream projects until we run those projects themselves. Visual testing isn't often implemented in these projects so they require manual testing.
+Base Web is used by hundreds of internal projects at Uber. When we make a change we can use visual snapshots to verify everything looks good on our end, but we have no idea how our changes affect downstream projects unless we run those projects manually. It would be amazing if we could leverage the same system we have built for Base Web with dependent projects downstream. A project might implement a small suite of scenarios for their app which could be snapshotted and verified against every time we bump `baseui`.
 
-In the future we would like to componentize our visual regression testing solution such that it could be easily added to dependent internal projects. A project might setup a few scenarios, simple static renderings of their app, and use these as as a visual contract between Base Web and that project.
+### A New Service
 
-### Open source
+Moving images out of Git, speeding up test runs, investing in cross browser testing, allowing other projects to use our tools... all of these point towards a more generalized service for visual snapshot testing. Essentially we want the benefits of one of the paid visual testing services, but scaleable for hundreds of projects and with the option of privacy for internal projects.
 
-We would love to make the scripts and tools we've leveraged somehow useful for the open source community. The challenge is in bundling all of the discreete pieces. Right now we have logic spread out over GitHub, Buildkite, Docker, and custom JS scripts. There are a number of conventions and assumptions across this logic that could be easily broken if even one piece was off. In other words we have a very brittle custom solution. It works well for us but wrapping all of this logic up into a package that is more general and still useful is no small effort.
+This is likely the next step for our visual testing solution: Taking all of the logic spread out across GitHub, CI/CD, Docker, and duck-tape utility scripts and making that easily runnable or accessible for other projects. By getting more projects onboarded we also make the investment in new and improved features more valuable to the company. Ideally the solutions we create can also be leveraged by the community, so stay tuned if you are interested in this space!
 
 ## Conclusion
 
 The purpose of this post is to give anyone interested in Visual Regression Testing an overview of their options and some reasons why the effort might be worthwhile. There are a number of factors to consider when evaluating what will work best for your own project. By going over paid and free options, as well as the implementation and tradeoffs of our own custom solution, we hope that you might be able to save some time in your own endeavours.
+
+Thanks for reading!
