@@ -158,7 +158,7 @@ export const RadioMarkInner = styled<StylePropsT>('div', props => {
 });
 
 export const RadioMarkOuter = styled<StylePropsT>('div', props => {
-  const {sizing} = props.$theme;
+  const {animation, sizing} = props.$theme;
 
   return ({
     alignItems: 'center',
@@ -177,6 +177,8 @@ export const RadioMarkOuter = styled<StylePropsT>('div', props => {
     verticalAlign: 'middle',
     width: sizing.scale700,
     flexShrink: 0,
+    transitionDuration: animation.timing100,
+    transitionTimingFunction: animation.easeOutCurve,
   }: {});
 });
 
