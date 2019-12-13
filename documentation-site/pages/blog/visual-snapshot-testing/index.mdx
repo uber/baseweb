@@ -1,6 +1,7 @@
 import metadata from './metadata.json';
 import Layout from '../../../components/layout';
 import {BlogImage, Meta, Caption} from '../../../components/blog';
+import ExampleSnapshotPNG from './examplesnapshot.png';
 import SwipeGIF from './swipe.gif';
 
 export default Layout;
@@ -10,7 +11,7 @@ export default Layout;
 <BlogImage
   src="https://i.imgur.com/X0jy3lO.png"
   alt="Two almost identical sheep standing in a verdant field"
-  caption="Similar, yet different."
+  caption="Don't count sheep. Test regressions."
 />
 
 Today we are going to talk about Visual Regression Testing. We will consider the benefits of visual regression testing, the availability of existing solutions, and, for the more adventurous folks out there, how to set up a visual snapshot testing pipeline for your own project.
@@ -19,25 +20,25 @@ Today we are going to talk about Visual Regression Testing. We will consider the
 
 The purpose of regression testing is to verify that changes to source code do not have unforeseen consequences. This is a fairly common occurrence in software development: you change one thing and unintentionally break something else in the process.
 
-When we talk about visual regression testing, we are concerned with preventing unintentional changes to our application's visuals. When we change the styles of our `Button`, how can we be sure we haven't messed up the styles of our `ButtonGroup`? The most common strategy for this sort of assertion is known as a **visual snapshot test**.
+When we talk about visual regression testing, we are concerned with preventing unintentional changes to our application's visuals. If we change the styles of `Button`, how can we be sure we haven't messed up the styles of our `ButtonGroup`? The most common strategy for this sort of assertion is known as a **visual snapshot test**.
 
 ## Snapshots
 
-Before we consider _visual_ snapshot testing, let's clarify what plain old snapshot testing is.
-
 A snapshot test runs a process and compares the output of that process to a previous test run's output (the baseline). If the outputs match, the test passes. If the outputs do not match, the test fails and you either need to update your baseline snapshot or fix something in your source code.
-
-TODO: DIAGRAM OF SNAPSHOT TESTING CYCLE
 
 Because snapshot tests are assertions of equality, snapshots need to be serializable, comparable, and deterministic. The format of the snapshot is flexible, it can be inlined into the test as a string or stored as a file— it can be a DOM tree, a JSON blob or even an image.
 
 ### Visual
 
-This is where the _visual_ in Visual Snapshot Testing comes from. We use images as our snapshots and compare those images across test runs using an [image comparison library](https://github.com/mapbox/pixelmatch). When an image differs from our baseline image, we either update the baseline or fix the issue in source.
+This is where the _visual_ in "visual snapshot testing" comes from. We use images as our snapshots and compare those images across test runs using an [image comparison library](https://github.com/mapbox/pixelmatch). When an image differs from our baseline image, we either update the baseline or fix the issue in source.
 
 In Base Web, we render each of our components in a variety of states- we capture an image of each state and save all of these as baseline snapshots. Whenever we make a change to source we can run our visual snapshot tests to ensure that all of our components' visual states look as expected.
 
-TODO: IMAGE OF BUTTONS BEFORE AND AFTER
+<BlogImage
+  src={ExampleSnapshotPNG}
+  alt="An example of button states in a snapshot."
+  caption="An example of button states in a snapshot."
+/>
 
 ## Value Added
 
@@ -64,11 +65,11 @@ There are a variety of products and libraries out there which will help you with
 
 A whole host of paid services exist to serve your visual testing needs— too many to detail here. With all of these paid solutions, you do not have to worry about storing or comparing images yourself. The service runs a suite of comparison tests and then flags failures for you to review in their UI. Generally, these runs are triggered from and report their status to, your CI pipeline. As might be expected from a premium service, these all offer entire workflows for managing your project's visual tests.
 
-If you are maintaining even a small component library there is a decent chance that you are already using [Storybook](https://storybook.js.org/) in your project to develop components in isolation. Most of the above services provide libraries or integrations for using your already existing Storybook scenarios for visual snapshots. This is extremely convenient as you receive free test coverage every time you create a new Storybook scenario.
+If you are maintaining even a small component library there is a decent chance that you are already using [Storybook](https://storybook.js.org/) in your project to develop components in isolation. Most services provide libraries or integrations for using your already existing Storybook scenarios for visual snapshots. This is extremely convenient as you receive free test coverage every time you create a new Storybook scenario.
 
 Also of interest, most services allow you to capture images of scenarios in different environments such as IE11 or iOS Safari. This is not a trivial (or free) thing to set up for your project- so if cross-browser coverage is important for you, choosing a paid solution might be an easy decision to make.
 
-In terms of cost, all of these solutions charge per snapshot. If you have 50 scenarios and test each one in 3 environments (Chrome, IE11, iOS Safari), a single test run will generate 150 snapshots. Generally, you pay for a monthly allotment of snapshots with any "overdraft" snapshots having a flat cost per snapshot. Ultimately one of the reasons we built our solution is that we generate over half a million snapshots a month running our visual test suite on every PR commit. This is well above the monthly allotments quoted by these services and can become quite expensive.
+In terms of cost, the industry charges per snapshot. If you have 50 scenarios and test each one in 3 environments (Chrome, IE11, iOS Safari), a single test run will generate 150 snapshots. Generally, you pay for a monthly allotment of snapshots with any "overdraft" snapshots having a flat cost per snapshot. Ultimately one of the reasons we built our solution is that we generate over half a million snapshots a month running our visual test suite on every PR commit. This is well above the monthly allotments quoted by most services and can become quite expensive.
 
 ### Free
 
@@ -92,9 +93,7 @@ Just so, we decided to roll out our solution, tailored for our needs. We already
 
 Let's go ahead and dive into how our solution works. After a high-level overview, we can drill into some of the implementation details, cover the tradeoffs with our current approach, and finally, we can consider some potential next steps.
 
-### Overview
-
-TODO: DIAGRAM OF WORKFLOW, OVERVIEW, WITH ZOOMED IN PARTS FOR VARIOUS SECTIONS
+### The workflow
 
 #### **1 - Open a pull request**
 
@@ -110,7 +109,7 @@ When the Storybook scenario site is built, **`vrt`** initiates a suite of Jest t
 
 #### **4 - Compare screenshots to baseline**
 
-We use `jest-image-snapshot` for comparing a screenshot taken with our `puppeteer` instance against our baseline image snapshot. If a snapshot does not match our baseline, we update the snapshot locally within our Docker instance.
+We use [`jest-image-snapshot`](https://github.com/americanexpress/jest-image-snapshot) for comparing a screenshot taken with our `puppeteer` instance against our baseline image snapshot. If a snapshot does not match our baseline, we update the snapshot locally within our Docker instance.
 
 #### **5 - Check for updates**
 
