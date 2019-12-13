@@ -20,7 +20,7 @@ exports[`Panel aria-controls populated when provided: Content has correct props 
           "backgroundColor": "$theme.colors.listBodyFill",
           "borderBottom": "none",
           "boxSizing": "border-box",
-          "color": "$theme.colors.foreground",
+          "color": "$theme.colors.contentPrimary",
           "fontFamily": "$theme.typography.font200.fontFamily",
           "fontSize": "$theme.typography.font200.fontSize",
           "fontWeight": "$theme.typography.font200.fontWeight",
@@ -87,7 +87,7 @@ exports[`Panel aria-controls populated when provided: Header has correct props w
           "alignItems": "center",
           "backgroundColor": "$theme.colors.listHeaderFill",
           "borderBottom": "1px solid $theme.colors.mono400",
-          "color": "$theme.colors.colorPrimary",
+          "color": "$theme.colors.contentPrimary",
           "cursor": "pointer",
           "display": "flex",
           "fontFamily": "$theme.typography.font350.fontFamily",
@@ -160,7 +160,7 @@ exports[`Panel aria-controls populated when provided: Header has correct props w
                 styled-component="true"
                 test-style={
                   Object {
-                    "color": "$theme.colors.foreground",
+                    "color": "$theme.colors.contentPrimary",
                     "cursor": "pointer",
                     "display": "inline-block",
                     "fill": "currentColor",

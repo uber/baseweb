@@ -20,7 +20,7 @@ const Help = () => {
         right: theme.sizing.scale2400,
         boxShadow: theme.lighting.shadow400,
         padding: theme.sizing.scale400,
-        backgroundColor: theme.colors.background,
+        backgroundColor: theme.colors.backgroundPrimary,
         display: 'none',
         [theme.mediaQuery.medium]: {
           display: 'block',
