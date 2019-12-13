@@ -21,7 +21,7 @@ const StyledTableElement = styled<{}>('div', ({$theme}) => {
     display: 'flex',
     flexDirection: 'column',
     height: '100%',
-    overflowX: 'scroll',
+    overflowX: 'auto',
   };
 });
 
