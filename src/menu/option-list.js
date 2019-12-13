@@ -42,7 +42,7 @@ function OptionList(props: OptionListPropsT, ref: React.ElementRef<*>) {
     >
       <ListItem
         ref={ref}
-        $item={item}
+        item={item}
         onMouseEnter={onMouseEnter}
         $size={size}
         $isHighlighted={$isHighlighted}
