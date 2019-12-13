@@ -56,7 +56,7 @@ There are a variety of products and libraries out there which will help you with
 
 ### Paid
 
-A whole host of paid services exist to serve your visual testing needs— too many to detail here. The ones that seemed most intriguing to us were the more specialized services that focused solely on visual comparisons. Here is a list of the companies we considered (sorted alphabetically):
+A whole host of paid services exist to serve your visual testing needs— too many to detail here. The ones that seemed most intriguing to us were the more specialized services that focused solely on visual comparisons. Here is a list of the products we considered (sorted alphabetically):
 
 - [Applitools](https://applitools.com/)
 - [Chromatic](https://www.chromaticqa.com/)
@@ -64,17 +64,17 @@ A whole host of paid services exist to serve your visual testing needs— too ma
 - [Percy](https://percy.io/)
 - [Screener](https://screener.io/)
 
-With all of these paid solutions you do not have to worry about storing or comparing images yourself. The service runs a suite of comparison tests and then flags failures for you to review in their UI. Generally these runs are triggered from, and report their status to, your CI pipeline.
+With all of these paid solutions you do not have to worry about storing or comparing images yourself. The service runs a suite of comparison tests and then flags failures for you to review in their UI. Generally these runs are triggered from, and report their status to, your CI pipeline. As might be expected from a premium service, these all offer entire workflows for managing your project's visual tests.
 
-If you are maintaining a web based UI component library there is a decent chance you are already using [Storybook](https://storybook.js.org/) in your project to develop components in isolation. Most of the above services provide libraries or integrations for using your already existing Storybook scenarios as visual snapshots.
+If you are maintaining even a small component library there is a decent chance that you are already using [Storybook](https://storybook.js.org/) in your project to develop components in isolation. Most of the above services provide libraries or integrations for using your already existing Storybook scenarios for visual snapshots. This is extremely convenient as you recieve free test coverage every time you create a new Storybook scenario.
 
 Also of interest, most services allow you to capture images of scenarios in different environments such as IE11 or iOS Safari. This is not a trivial (or free) thing to set up for your own project- so if cross browser coverage is important for you, choosing a paid solution might be an easy decision to make.
 
-In terms of cost, all of these solutions charge per snapshot. If you have 50 scenarios and test each one in 3 environments (Chrome, IE11, iOS Safari), a single test run will generate 150 snapshots. Ultimately one of the reasons we built our own solution is that we generate over half a million snapshots a month running our visual test suite on every PR commit. This is well above the amounts quoted by these services and can become quite expensive.
+In terms of cost, all of these solutions charge per snapshot. If you have 50 scenarios and test each one in 3 environments (Chrome, IE11, iOS Safari), a single test run will generate 150 snapshots. Generally you pay for a monthly allotment of snapshots with any "overdraft" snapshots having a flat cost per snapshot. Ultimately one of the reasons we built our own solution is that we generate over half a million snapshots a month running our visual test suite on every PR commit. This is well above the monthly allotments quoted by these services and can become quite expensive.
 
 ### Free
 
-If you want to add visual tests to your codebase there are also open source solutions which you can use for free, albeit with some setup. The three below were the ones that seemed most promising for Base Web:
+If you want to add visual tests to your codebase there are also a few open source solutions which you can use for free, albeit with some setup. The three below were the ones that seemed most promising for Base Web:
 
 - [BackstopJS](https://github.com/garris/BackstopJS)
 - [Loki](https://github.com/oblador/loki/)
@@ -92,35 +92,53 @@ Just so, we decided to roll out our own solution, tailored for our needs. We alr
 
 ## Down to business
 
-Let's go ahead and dive into how our solution works. After a high level overview, we can drill into some of the implementation details, cover the tradeoffs with our approach, and finally we can go over possible improvements we might make in the future.
+Let's go ahead and dive into how our solution works. After a high level overview, we can drill into some of the implementation details, cover the tradeoffs with our current approach, and finally we can consider some potential next steps.
 
 ### Overview
 
 TODO: DIAGRAM OF WORKFLOW, OVERVIEW, WITH ZOOMED IN PARTS FOR VARIOUS SECTIONS
 
-1. When a pull request is opened against `origin/master`, or a commit is pushed to a branch with an open pull request, our CI pipeline (Buildkite) begins a series of parallelized jobs. One of these jobs is responsible for running our visual snapshot tests. We will call this job `VRT` (Visual Regression Tests).
-2. One of the initial steps in the pipeline is spinning up a server which runs each of our Storybook scenarios on a separate page. This is used by `VRT` as well as our end-to-end test job.
-3. When the Storybook scenario site is built, `VRT` runs a suite of Jest tests focused on capturing visual snapshots.
-4. We use `puppeteer` (via `jest-puppeteer`) to visit each scenario page, where we execute a collection of snapshot tests. We take one snapshot of a component at a desktop size, one snapshot for mobile, one for our dark theme, and, if specified through a configuration file, we can run multiple "interactions" on a given scenario before taking snapshots.
-5. We use `jest-image-snapshot` for comparing a screenshot taken with our `puppeteer` instance against our baseline image snapshot. If a snapshot does not match our baseline, we update the snapshot locally within our Docker instance.
-6. After all the snapshot tests finish, `VRT` checks to see if any snapshots were updated locally. If none were updated, the job passes our `VRT` check. If there were updates, `VRT` commits those changes to a new branch, pushes the branch to GitHub, and then opens a pull request from the `VRT` branch into the original PR branch. The original branch owner is pinged for review and a comment is added to the original PR with information about the new visual snapshot PR. The `VRT` step is then failed to indicate that changes are required to the original PR branch before merging into `master`.
-7. The `VRT` PR contains updated or new visual snapshot images. These can be easily reviewed in the GitHub interface. If the new snapshots look as expected, the original PR author can squash and merge the `VRT` PR into their branch. If the images look off the original author can amend their changes. Any new commit to the original PR branch will trigger a new `VRT` build, which if it passes will close any open `VRT` PR and delete the appropriate branch. If the new build does not pass, the `VRT` branch will be updated accordingly.
+#### **1 - Open a pull request**
+
+When a pull request is opened against `origin/master`, or a commit is pushed to a branch with an open pull request, our CI pipeline (Buildkite) begins a series of parallelized jobs. One of these jobs is responsible for running our visual snapshot tests. We will call this job **`vrt`** (Visual Regression Tests).
+
+#### **2 - Deploy scenarios**
+
+One of the initial steps in the pipeline is spinning up a simple static server which runs each of our Storybook scenarios on a separate page. This is tested against by **`vrt`** as well as our end-to-end (`e2e`) test job.
+
+#### **3 - Take screenshots of each scenario**
+
+When the Storybook scenario site is built, **`vrt`** initiates a suite of Jest tests focused on capturing visual snapshots. We use `puppeteer` (via `jest-puppeteer`) to visit each scenario page, where we execute a collection of snapshot tests. We take one snapshot of a component at a desktop size, one snapshot for mobile, one for our dark theme, and, if specified through a configuration file, we can run multiple "interactions" on a given scenario before taking snapshots.
+
+#### **4 - Compare screenshots to baseline**
+
+We use `jest-image-snapshot` for comparing a screenshot taken with our `puppeteer` instance against our baseline image snapshot. If a snapshot does not match our baseline, we update the snapshot locally within our Docker instance.
+
+#### **5 - Check for updates**
+
+After all the snapshot tests finish, **`vrt`** checks to see if any snapshots were updated locally. If none were updated, the job passes our **`vrt`** check. If there were updates, **`vrt`** commits those changes to a new branch, pushes the branch to GitHub, and then opens a pull request from the **`vrt`** branch into the original PR branch. The original branch owner is pinged for review and a comment is added to the original PR with information about the new visual snapshot PR. The **`vrt`** step is then failed to indicate that changes are required to the original PR branch before merging into `master`.
+
+#### **6 - Review & merge updates**
+
+The **`vrt`** PR contains updated or new visual snapshot images. These can be easily reviewed in the GitHub interface. If the new snapshots look as expected, the original PR author can squash and merge the **`vrt`** PR into their branch. If the images look off the original author can amend their changes. Any new commit to the original PR branch will trigger a new **`vrt`** build, which if it passes will close any open **`vrt`** PR and delete the appropriate branch. If the new build does not pass, the **`vrt`** branch will be updated accordingly.
 
 ## Implementation
 
 There are a lot of different pieces needed to get the above system to work. Below, we will go over some of the tools and strategies you will need, as well as some of the gotchas you might encounter, when building out a custom visual testing solution.
 
+### Docker
+
+One of the first things you will encounter when adding visual tests to your codebase is that the enviroment of a test run matters. Fonts and colors are not rendered in exactly the same way across all operating systems. The discrepency is enough that a pixel diffing algorithm will consider images generated in each operating system as incompatible, even if they have rendered the exact same UI. The result is that if someone runs the test suite on Mac and checks in the generated snapshots, all of the tests will fail when run on Windows or Linux.
+
+The solution for this is to always run the tests in the same environment, which for most projects means running tests in a Docker container. Our CI pipeline was already configured to use Docker & Linux so this became our "environment of truth". Note that it is also possible to set up your CI pipeline to always run tests on a Mac, Windows, or other environment but Linux is probably the most common choice.
+
 ### Puppeteer
 
-[Puppeteer](https://pptr.dev/) is a library for automating usage of Chrome via the Chrome Devtools Protocol. Puppeteer is what allows us to generate screenshots of our components. If using Jest, you can use [`jest-puppeteer`](https://github.com/smooth-code/jest-puppeteer) to set up a global reference to the Puppeteer Page (`page`) object in your unit tests. In many of the code snippets below you will see references to this global `page` object.
-
-TODO: EXPAND
+An essential tool to acquaint yourself with is [Puppeteer](https://pptr.dev/). This is a library for automating usage of Chrome via the Chrome Devtools Protocol. Puppeteer is what allows us to visit our various scenario pages, take screenshots of our components— it also allows us to script interactions on the page so we can capture states otherwise unreachable. If using Jest, you can use a bridge like [`jest-puppeteer`](https://github.com/smooth-code/jest-puppeteer) to set up a global reference to Puppeteer in your unit tests. In many of the code snippets below you will see references to this global `page` object.
 
 ### A static site
 
-At some point you will need to host a site somewhere which Puppeteer can visit in order to render your UI. As part of our CI pipeline, we build a small static site that renders ever Storybook scenario in our codebase at a unique URL. Once this site is built, we run visual regression tests as well as end-to-end tests against it.
-
-TODO: EXPAND OR REMOVE?
+We need to render our components somewhere so that we can visit them with Puppeteer and generate screenshots. As part of our CI pipeline, we build a small static site that can render every Storybook scenario in our codebase. We use query parameters to find the `name` of the scenario to render as well as which `theme` to use (either light or dark). Once this site is built, we run visual regression tests as well as end-to-end tests against it.
 
 ### Extending Jest
 
@@ -166,9 +184,9 @@ describe('Visual Regression Tests', () => {
 });
 ```
 
-This is a fairly abbreviated version of the real code, but it shows the structure of our test run. One of the key bits here is the `getAllScenarios()` function - this will return every Storybook scenario file in the codebase. The result is that you do not have to add any configuration to add a test- **if there is a Storybook scenario it will automatically become a visual regression test**.
+This is an abbreviated version of the real code, but it shows the structure of our test run. One of the key bits here is the `getAllScenarios()` function— this will return every Storybook scenario file in the codebase. The result is that you do not have to add any configuration to add a test- **if there is a Storybook scenario it will automatically become a visual regression test**.
 
-That said, there _is_ a configuration file for when you need to modify the behavior of a specific snapshot test. This configuration object is a little clunky but it lets you target a specific scenario and do things like skip the scenario or add additional interaction snapshots based on that scenario.
+That said, there _is_ a configuration file for when you need to modify the behavior of a specific snapshot test. The configuration object is a little clunky but it lets you target a specific scenario and do things like skip the scenario or add additional interaction snapshots based on that scenario.
 
 The config object looks something like this:
 
@@ -189,13 +207,15 @@ const config = {
 };
 ```
 
-Each `behavior` for an interaction is a function that takes a [Puppeteer Page](https://pptr.dev/#?product=Puppeteer&version=v2.0.0&show=api-class-page) instance and returns a Promise that when resolved has arranged the UI into a desired state for a snapshot.
+Each scenario can have an array of `interactions` assigned to it. The `behavior` for an interaction is a function that takes a [Puppeteer Page](https://pptr.dev/#?product=Puppeteer&version=v2.0.0&show=api-class-page) instance and returns a Promise that when resolved has arranged the UI into a desired state for a snapshot.
 
 In the above example, we will generate a new snapshot based on the `input-password` scenario. The behavior function will run before a snapshot is saved as `input-password__togglesMask-snap.png`.
 
+Allowing for interactions makes it possible to test specific regressions or otherwise hard to reach states. In some cases adding an interaction to a visual snapshot can replace complicated integration tests.
+
 ### Screenshot dimensions
 
-We went through a few iterations of tinkering with screenshot dimensions. At first we only took a screenshot of the root element on the page. This had the advantage of capturing as small as possible an area- leading to smaller images. We had to change the approach however due to a few edge cases:
+We went through a few iterations of tinkering with screenshot dimensions. At first we only took a screenshot of the root element on the page. This had the advantage of capturing as small as possible an area- leading to smaller images. We had to abandon this approach, however, due to a few edge cases:
 
 For one, any component that uses CSS to absolutely position elements, such as a modal or dropdown, will no longer contribute to the size of the root element. This means that most of the relevant UI will be left out of the final screenshot. This could be solved with some configuration parameters, but we wanted things to work well by default.
 
@@ -220,13 +240,7 @@ const image = await page.screenshot({
 
 The result is that every screenshot has the same dimensions for the given viewport (mobile/desktop) across test runs. This makes comparisons for developers a little bit easier, but it also shows us a more realistic simulation of what an end user might see on their device.
 
-The added size to each screenshot is actually fairly limited. The white/black areas can be compressed fairly effeciently so most of the empty space does not contribute to the size of the file. Even though the overall dimensions of the images increased by about 40% the storage footprint only increased around 10%.
-
-### Docker
-
-One of the first things you will encounter when adding visual tests to your codebase is that the enviroment of a test run matters. Fonts and colors are not rendered in exactly the same way across all operating systems. The discrepency is enough that a pixel diffing algorithm will consider images generated in each operating system as incompatible, even if they have rendered the exact same UI. The result is that if someone runs the test suite on Mac and checks in the generated snapshots, all of the tests will fail when run on Windows or Linux.
-
-The solution for this is to always run the tests in the same environment, which for most projects means running tests in a Docker container. Our CI pipeline was already configured to use Docker & Linux so this became our "environment of truth". Note that it is also possible to set up your CI pipeline to always run tests on a Mac, Windows, or other environment.
+The added size to each screenshot is actually fairly limited. The white/black areas can be compressed fairly effeciently so most of the empty space does not contribute to the size of the file. Even though the overall dimensions of each image increased by about 40% the storage footprint only increased around 10%.
 
 ### Flakiness
 
@@ -252,13 +266,13 @@ If you have any components that make use of transitions or animations you are go
 
 #### **Asynchronicity**
 
-When testing components that require interactions, you often need to wait for the UI to change before you can proceed to the next step in the interaction. It might be tempting to simply pad steps with arbirary wait times, but trust me, you do not want do this.
+When testing components that require interactions, you often need to wait for the UI to change before you can proceed to the next step in the interaction. It might be tempting to simply pad steps with arbirary wait times, but this is a sure way to add flakiness to your test.
 
 ```js
 await page.waitFor(250); // waits for 250ms before proceeding
 ```
 
-This should be a last resort as it will almost certainly flake at some point. The preferable approach is to wait for assertions on the page to pass. Take this example from one of our interaction snapshots:
+This should be a last resort as it will almost certainly flake at some point. When it does someone will probably just increase the wait duration- so over time these paddings accumulate. Thes can add up to make your test run unbearably slow. The preferable approach is to wait for assertions on the page to pass. Take this example from one of our interaction snapshots:
 
 ```js
 'select-search-single': {
@@ -277,13 +291,13 @@ This should be a last resort as it will almost certainly flake at some point. Th
   },
 ```
 
-`page`, an instance of [Page](https://pptr.dev/#?product=Puppeteer&version=v2.0.0&show=api-class-page), has numerous methods for awaiting events or assertions. While it is still possible for an assertion to time out while waiting, this rarely happens in practice.
+[Page](https://pptr.dev/#?product=Puppeteer&version=v2.0.0&show=api-class-page), has numerous methods for awaiting events or assertions. While it is still possible for an assertion to time out while waiting, this rarely happens in practice. This approach takes a little more time to get right, but it guarantees you are not wasting time on your tests and greatly reduces the chances your tests will flake.
 
 ### Developer UX
 
-Having a visual test suite pass or fail as part of CI is a great start, but what do you do when a test fails? If you have access to the CI environment you can read the test run's output, but even knowing which tests failed is not especially useful if you can't _see_ what changed. Consider also that sometimes you need to update snapshots or add new ones. If our CI test run only reports successes and failures we are back to running tests locally in order to update the snapshots.
+Having a visual test suite pass or fail as part of CI is a great start, but what do you do when a test fails? If you have access to the CI environment you can read the test run's output, but even knowing which tests failed is not especially useful if you can't _see_ why. Consider also that sometimes you need to update snapshots or add new ones. If our CI test run only reports successes and failures we are back to running tests locally in order to update the snapshots.
 
-We implemented a [simple Node script](https://github.com/uber/baseweb/blob/master/vrt/ci.js) to make viewing diffs and updating snapshots much more seamless.
+We implemented a [simple Node script](https://github.com/uber/baseweb/blob/master/vrt/ci.js) to improve our workflow for viewing diffs and updating snapshots. The result is a much more seamless deverloper experience.
 
 The script runs our visual snapshot tests with the update flag. If nothing is updated, the job has passed. If any snapshots were created or updated we raise a new pull request into the original branch with those updates. The author of the original pull request can then view new and updated snapshots in an isolated diff.
 
@@ -295,23 +309,23 @@ GitHub makes this process even better due to a few built-in image comparison too
   alt="An example of GitHub's image comparison interface."
 />
 
-Once the snapshot pull request is merged in, any new commits to the original branch will have the updated snapshots. This is actually a useful feature because it allows developers to incrementaly update snapshots as they work on a branch.
+Once the snapshot pull request is merged in, any new commits to the original branch will have the updated snapshots. It might seem a bit strange that tests are not always compared against `master`, but this is actually a useful feature because it allows developers to incrementaly update snapshots as they work on a branch.
 
-When the original pull request is merged into `master` it will contain any updated snapshots as part of its diff. We now have both a changelog of the work and the visual changes it caused- and because the snapshots were in an isolated PR we can also look at visual changes and then easily find the pull request they were associated with.
+When the original pull request is merged into `master` it will contain any updated snapshots as part of its diff. We now have a changelog of the work associated the visual changes that change caused and conversely, because the snapshots were in an isolated PR, we can also look at visual changes and easily find the pull request that they were associated with.
 
-Finally, this workflow is inclusive for external contributors (of which there are over one hundred so far!). In the past we used a paid solution for snapshot testing which required a priviledged account for viewing snapshots. Our main team of contributors would have to log into that service and either relay information or fix it ourselves. Now external contributors can add and update snapshots without depending on anyone else or even having to learn anything new. Afterall, the whole system is built with plain old Git and GitHub. If you can merge in a pull request you can work with snapshots.
+Finally, this workflow is much more inclusive for external contributors (of which there are over one hundred so far!). In the past we used a paid solution for snapshot testing which required a priviledged account for viewing snapshots. Our main team of contributors would have to log into that service and either relay information or fix it ourselves. Now external contributors can add and update snapshots without depending on anyone else or even having to learn anything new. Afterall, the whole system is built with plain old Git and GitHub. If you can merge in a pull request you can work with snapshots.
 
 ## The future
 
-So far we've covered how our current visual testing solution works and gone into some of the implementation details. What we have now is useful and, now that most of the kinks have been worked out, fairly seamless. That said, there is still a lot of room for improvement. Here are some of the things we are considering for the future.
+So far we've covered how our current visual testing solution works and gone into some of the implementation details. What we have now is useful and, after working out most of the kinks, fairly seamless. That said, there is still a lot of room for improvement. Here are some of the things we are considering for the future.
 
 ### Devices
 
-The first and perhaps largest issue with our current solution is that our tests only run within a Chrome browser. While we can modify the viewport size and do some rough simulations of a mobile device with html meta tags, there is no denying we aren't testing the real thing. We have to manually investigate regressions using real devices or a service such as [BrowserStack](https://www.browserstack.com/) and have no automated preventative measures for alternate browsers. At the very least, it would be ideal to have snapshots generated against mobile Safari and Internet Explorer 11 so that every major browser engine is accounted for.
+The first and perhaps largest issue with our current solution is that our tests only run within a Chrome browser. While we can modify the viewport size and do some rough simulations of a mobile device with html meta tags, there is no denying that we aren't testing the real thing. We have to manually investigate regressions using real devices or a service such as [BrowserStack](https://www.browserstack.com/). It would be ideal to have snapshots generated against mobile Safari and Internet Explorer 11 so that every major browser engine is accounted for.
 
 ### Speed
 
-The snapshots tests add 5-8 minutes to our CI pipeline. They are the longest running step in our pipeline. While developers do not need to be attentive during this 8 minutes, it would be ideal to halve or quarter this duration. To do this we would likely need to move tests out of Jest that so we could better parallelize the job. Jest is a convenient test runner, and we already have it set up in our project, but it is not necessarily the best tool for the job of running many side-effect (screenshots, reads/writes) laden tests.
+The snapshot tests are the longest running task in our CI pipeline, adding about 5-8 minutes to the test run. While this is run in parallel with other tasks, it would be ideal to halve or quarter this duration. To do this we would likely need to move tests out of Jest so that we could better parallelize the job. Jest is a convenient test runner, and we already have it set up in our project, but it is not necessarily the best tool for the job of running many side-effect (screenshots, reads/writes) laden tests.
 
 ### Git
 
