@@ -29,7 +29,7 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
   let style = {
     ...typography.font200,
     boxSizing: 'border-box',
-    color: $active ? colors.colorPrimary : colors.tabColor,
+    color: $active ? colors.contentPrimary : colors.tabColor,
     cursor: $disabled ? 'not-allowed' : 'pointer',
     paddingTop: sizing.scale600,
     paddingBottom: sizing.scale600,

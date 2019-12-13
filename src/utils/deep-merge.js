@@ -6,11 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 
 // @flow
-
+/* eslint-disable flowtype/no-weak-types */
 export default function deepMerge(
   target?: ?{},
   ...sources: Array<null | ?{}>
-): {} {
+): any {
   target = target || {};
   const len = sources.length;
   let obj;
@@ -33,6 +33,7 @@ export default function deepMerge(
   }
   return target;
 }
+/* eslint-enable flowtype/no-weak-types */
 
 /* eslint-disable-next-line flowtype/no-weak-types */
 function isCloneable(obj: mixed) {

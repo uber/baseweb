@@ -365,7 +365,7 @@ function Headers(props: {||}) {
                     <p
                       className={css({
                         ...theme.typography.font100,
-                        color: theme.colors.foregroundInv,
+                        color: theme.colors.contentInversePrimary,
                       })}
                     >
                       filter applied to {column.title}
@@ -374,7 +374,7 @@ function Headers(props: {||}) {
                       <p
                         className={css({
                           ...theme.typography.font150,
-                          color: theme.colors.foregroundInv,
+                          color: theme.colors.contentInversePrimary,
                         })}
                       >
                         {activeFilter.description}

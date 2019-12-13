@@ -112,7 +112,7 @@ function getBackgroundColor(props) {
 function getLabelColor(props) {
   const {$disabled, $theme} = props;
   const {colors} = $theme;
-  return $disabled ? colors.foregroundAlt : colors.foreground;
+  return $disabled ? colors.contentSecondary : colors.contentPrimary;
 }
 
 export const Root = styled<SharedStylePropsT>('label', props => {

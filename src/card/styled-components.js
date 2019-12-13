@@ -17,7 +17,7 @@ export const Body = styled<{}>('div', ({$theme}) => {
   const {colors, sizing, typography} = $theme;
   return {
     marginBottom: sizing.scale600,
-    color: colors.foregroundAlt,
+    color: colors.contentPrimary,
     ...typography.font200,
   };
 });
@@ -50,7 +50,7 @@ export const Root = styled<{}>('div', ({$theme}) => {
     borderTopRightRadius: borders.surfaceBorderRadius,
     borderBottomLeftRadius: borders.surfaceBorderRadius,
     borderBottomRightRadius: borders.surfaceBorderRadius,
-    backgroundColor: colors.backgroundAlt,
+    backgroundColor: colors.backgroundPrimary,
   };
 });
 
@@ -76,7 +76,7 @@ export const Title = styled<{}>('h1', ({$theme}) => {
   const {colors, sizing, typography} = $theme;
   return {
     ...typography.font550,
-    color: colors.foreground,
+    color: colors.contentPrimary,
     fontWeight: 500,
     marginLeft: 0,
     marginTop: 0,

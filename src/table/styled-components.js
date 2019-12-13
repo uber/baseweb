@@ -75,7 +75,7 @@ const StyledHeadCellElement = styled<HorizontalStyleProps>(
       borderTop: 'none',
       borderBottom: 'none',
       borderLeft: 'none',
-      color: $theme.colors.colorPrimary,
+      color: $theme.colors.contentPrimary,
       display: 'flex',
       justifyContent: 'space-between',
       paddingTop: $theme.sizing.scale500,
@@ -105,7 +105,7 @@ export const StyledSortableLabel = styled<{}>('button', ({$theme}) => {
     alignItems: 'center',
     backgroundColor: 'transparent',
     border: 'none',
-    color: $theme.colors.colorPrimary,
+    color: $theme.colors.contentPrimary,
     display: 'flex',
     padding: 0,
     ':hover:enabled': {
@@ -155,7 +155,7 @@ const StyledCellElement = styled<CellStyledProps>(
     return {
       ...$theme.typography.font200,
       backgroundColor: $striped ? $theme.colors.tableStripedBackground : null,
-      color: $theme.colors.colorPrimary,
+      color: $theme.colors.contentPrimary,
       display: 'flex',
       flex: 1,
       paddingTop: $theme.sizing.scale300,
