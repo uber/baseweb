@@ -121,7 +121,7 @@ export default () => {
           boxShadow: theme.lighting.shadow400,
           textAlign: 'center',
           padding: theme.sizing.scale400,
-          backgroundColor: theme.colors.background,
+          backgroundColor: theme.colors.backgroundPrimary,
           display: 'none',
           [theme.mediaQuery.medium]: {
             display: 'block',

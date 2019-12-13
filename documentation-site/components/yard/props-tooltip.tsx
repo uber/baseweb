@@ -17,7 +17,7 @@ function PropsTooltip(props: any) {
       content={
         <div
           className={css({
-            backgroundColor: theme.colors.backgroundAlt,
+            backgroundColor: theme.colors.backgroundSecondary,
             maxHeight: '300px',
             maxWidth: '400px',
             overflow: 'auto',

@@ -19,8 +19,8 @@ const SelectConfig: TConfig = {
   },
   theme: [
     'borderFocus',
-    'foreground',
-    'foregroundAlt',
+    'contentPrimary',
+    'contentSecondary',
     'inputFill',
     'inputFillError',
     'inputFillDisabled',

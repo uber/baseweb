@@ -92,7 +92,7 @@ const TableOfContents = props => {
           })}
         >
           <a
-            className={css({color: theme.colors.foregroundAlt})}
+            className={css({color: theme.colors.contentSecondary})}
             href={header.anchor}
           >
             {header.name}

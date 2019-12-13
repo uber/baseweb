@@ -142,8 +142,8 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
               toggleDirection={toggleDirection}
             />
             <Block
-              backgroundColor="background"
-              color="foreground"
+              backgroundColor="backgroundPrimary"
+              color="contentPrimary"
               marginTop="scale300"
               display="flex"
               paddingTop="scale400"

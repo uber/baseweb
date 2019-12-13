@@ -31,7 +31,7 @@ const StyledColorWrapper = themedStyled<{
   };
 });
 
-const StyledColorPreview = themedStyled<{$width: ?string}>(
+const StyledColorPreview = themedStyled<{$width?: string}>(
   'div',
   ({$theme, $width}) => {
     return {
