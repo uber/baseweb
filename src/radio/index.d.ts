@@ -27,7 +27,7 @@ export interface StatefulContainerProps {
   children?: React.ReactNode;
   initialState?: State;
   stateReducer: StateReducer;
-  onChange?: React.FormEventHandler<HTMLInputElement>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
   autoFocus?: boolean;
 }
 
@@ -35,7 +35,7 @@ export class StatefulContainer extends React.Component<
   StatefulContainerProps,
   State
 > {
-  onChange(e: React.FormEventHandler<HTMLInputElement>): void;
+  onChange(e: React.ChangeEventHandler<HTMLInputElement>): void;
   stateReducer(type: string, e: React.SyntheticEvent<HTMLInputElement>): void;
 }
 
@@ -45,7 +45,7 @@ export interface StatefulRadioGroupProps {
   initialState?: State;
   autoFocus?: boolean;
   name?: string;
-  onChange?: React.FormEventHandler<HTMLInputElement>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
   align?: 'horizontal' | 'vertical';
 }
 
@@ -64,7 +64,7 @@ export interface RadioGroupProps {
   align?: 'horizontal' | 'vertical';
   name?: string;
   labelPlacement?: 'top' | 'right' | 'bottom' | 'left';
-  onChange?: React.FormEventHandler<HTMLInputElement>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onMouseEnter?: React.MouseEventHandler<HTMLInputElement>;
   onMouseLeave?: React.MouseEventHandler<HTMLInputElement>;
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
@@ -96,7 +96,7 @@ export interface RadioProps {
   isError?: boolean;
   labelPlacement?: 'top' | 'right' | 'bottom' | 'left';
   name?: string;
-  onChange?: React.FormEventHandler<HTMLInputElement>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onMouseEnter?: React.MouseEventHandler<HTMLInputElement>;
   onMouseLeave?: React.MouseEventHandler<HTMLInputElement>;
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
