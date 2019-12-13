@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import deepMerge from '../utils/deep-merge.js';
 import colorTokens from './light-theme/color-tokens.js';
-import semanticColors from './light-theme/color-semantic-tokens.js';
+import getSemanticColors from './light-theme/color-semantic-tokens.js';
 import getColorComponentTokens from './light-theme/color-component-tokens.js';
 import getDeprecatedSemanticColors from './light-theme/color-deprecated-semantic-tokens.js';
 import getTypography from './shared/typography.js';
@@ -41,7 +41,7 @@ export default function createTheme(
       ...getColorComponentTokens(colorTokensWithOverrides),
       // get deprecated semantic color tokens based on the colors with overrides
       ...getDeprecatedSemanticColors(colorTokensWithOverrides),
-      ...semanticColors,
+      ...getSemanticColors(colorTokensWithOverrides),
     },
     animation,
     breakpoints,

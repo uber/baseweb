@@ -31,15 +31,18 @@ const StyledColorWrapper = themedStyled<{
   };
 });
 
-const StyledColorPreview = themedStyled<{}>('div', ({$theme, $width}) => {
-  return {
-    marginTop: $theme.sizing.scale400,
-    marginRight: $theme.sizing.scale400,
-    marginBottom: $theme.sizing.scale400,
-    marginLeft: $theme.sizing.scale400,
-    width: $width || 'auto',
-  };
-});
+const StyledColorPreview = themedStyled<{$width: ?string}>(
+  'div',
+  ({$theme, $width}) => {
+    return {
+      marginTop: $theme.sizing.scale400,
+      marginRight: $theme.sizing.scale400,
+      marginBottom: $theme.sizing.scale400,
+      marginLeft: $theme.sizing.scale400,
+      width: $width || 'auto',
+    };
+  },
+);
 
 const StyledTextContainer = themedStyled('span', () => {
   return {
