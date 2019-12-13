@@ -13,7 +13,13 @@ export default Layout;
   caption="Similar, yet different."
 />
 
-Today we are going to talk about Visual Snapshot Testing. We will consider why you might need visual snapshot tests, what visual snapshot testing looks like in practice, and how the Base Web team leverages visual snapshot testing in our continuous integration (CI) workflow.
+Today we are going to talk about Visual Regression Testing. We will consider the benefits of visual regression testing, the availability of existing solutions, and, for the more adventurous folks out there, how to set up a visual snapshot testing pipeline for your own project.
+
+## Regressions
+
+The purpose of regression testing is to verify that changes to source code do not have unforeseen consequences. This is a fairly common occurrence in software development: you change one thing and unintentionally break something else in the process.
+
+When we talk about visual regression testing, we are concerned with preventing unintentional changes to our application's visuals. When we change the styles of our `Button`, how can we be sure we haven't messed up the styles of our `ButtonGroup`? The most common strategy for this sort of assertion is known as a **visual snapshot test**.
 
 ## Snapshots
 
