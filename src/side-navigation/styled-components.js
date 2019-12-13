@@ -15,7 +15,7 @@ export const StyledRoot = styled<SharedPropsT>('nav', props => {
   } = props;
   return {
     ...typography.font300,
-    color: colors.foreground,
+    color: colors.contentPrimary,
     listStyleType: 'none',
     marginTop: 0,
     marginBottom: 0,
@@ -43,9 +43,9 @@ export const StyledNavItem = styled<SharedPropsT>('div', props => {
     $theme,
     $theme: {colors, sizing},
   } = props;
-  const bgImgGradient = hexToRgb(colors.background, '0.92') || '';
+  const bgImgGradient = hexToRgb(colors.backgroundPrimary, '0.92') || '';
   return ({
-    backgroundColor: $active ? colors.backgroundInv : 'transparent',
+    backgroundColor: $active ? colors.backgroundInversePrimary : 'transparent',
     backgroundImage: $active
       ? `linear-gradient(0deg, ${bgImgGradient}, ${bgImgGradient})`
       : null,

@@ -104,11 +104,11 @@ export const StyledContent = styled<StylePropsT>('div', ({$theme}) => {
 export const StyledContentTitle = styled<StylePropsT>(
   'div',
   ({$theme, $isActive}) => {
-    let color = $theme.colors.foregroundAlt;
+    let color = $theme.colors.contentSecondary;
     let font = $theme.typography.font300;
 
     if ($isActive) {
-      color = $theme.colors.foreground;
+      color = $theme.colors.contentPrimary;
       font = $theme.typography.font350;
     }
 
@@ -168,7 +168,7 @@ export const StyledNumberIcon = styled<StylePropsT>(
   'div',
   ({$theme, $isActive, $isCompleted, $disabled}) => {
     let backgroundColor = $theme.colors.mono400;
-    let color = $theme.colors.colorSecondary;
+    let color = $theme.colors.contentSecondary;
     let size = $theme.sizing.scale800;
     let marginRight = $theme.sizing.scale300;
     let font = $theme.typography.font250;

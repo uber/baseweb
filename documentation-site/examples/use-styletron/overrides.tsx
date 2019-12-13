@@ -16,7 +16,7 @@ export default () => {
                 background: props.$disabled
                   ? theme.colors.negative400
                   : theme.colors.warning400,
-                color: theme.colors.background,
+                color: theme.colors.backgroundPrimary,
               })}
             >
               {props.children}

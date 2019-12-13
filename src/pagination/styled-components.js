@@ -10,7 +10,7 @@ import {styled} from '../styles/index.js';
 export const StyledRoot = styled<{}>('div', ({$theme}) => ({
   display: 'flex',
   alignItems: 'center',
-  color: $theme.colors.backgroundInv,
+  color: $theme.colors.backgroundInversePrimary,
   ...$theme.typography.font350,
 }));
 

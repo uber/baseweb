@@ -294,7 +294,7 @@ exports[`Select component renders component in search mode and false for multipl
                       "borderTopRightRadius": "$theme.borders.inputBorderRadius",
                       "borderWidth": "2px",
                       "boxSizing": "border-box",
-                      "color": "$theme.colors.foreground",
+                      "color": "$theme.colors.contentPrimary",
                       "cursor": "text",
                       "display": "flex",
                       "justifyContent": "space-between",
@@ -346,7 +346,7 @@ exports[`Select component renders component in search mode and false for multipl
                         test-style={
                           Object {
                             "alignItems": "center",
-                            "color": "$theme.colors.foreground",
+                            "color": "$theme.colors.contentPrimary",
                             "cursor": "pointer",
                             "display": "flex",
                             "fill": "currentColor",
@@ -752,7 +752,7 @@ exports[`Select component renders component in search mode and false for multipl
                               styled-component="true"
                               test-style={
                                 Object {
-                                  "color": "$theme.colors.foregroundAlt",
+                                  "color": "$theme.colors.contentSecondary",
                                   "maxWidth": "100%",
                                   "overflow": "hidden",
                                   "textOverflow": "ellipsis",
@@ -1123,7 +1123,7 @@ exports[`Select component renders component in search mode and true for multiple
                       "borderTopRightRadius": "$theme.borders.inputBorderRadius",
                       "borderWidth": "2px",
                       "boxSizing": "border-box",
-                      "color": "$theme.colors.foreground",
+                      "color": "$theme.colors.contentPrimary",
                       "cursor": "text",
                       "display": "flex",
                       "justifyContent": "space-between",
@@ -1175,7 +1175,7 @@ exports[`Select component renders component in search mode and true for multiple
                         test-style={
                           Object {
                             "alignItems": "center",
-                            "color": "$theme.colors.foreground",
+                            "color": "$theme.colors.contentPrimary",
                             "cursor": "pointer",
                             "display": "flex",
                             "fill": "currentColor",
@@ -1581,7 +1581,7 @@ exports[`Select component renders component in search mode and true for multiple
                               styled-component="true"
                               test-style={
                                 Object {
-                                  "color": "$theme.colors.foregroundAlt",
+                                  "color": "$theme.colors.contentSecondary",
                                   "maxWidth": "100%",
                                   "overflow": "hidden",
                                   "textOverflow": "ellipsis",
@@ -1946,7 +1946,7 @@ exports[`Select component renders component in select mode and false for multipl
                       "borderTopRightRadius": "$theme.borders.inputBorderRadius",
                       "borderWidth": "2px",
                       "boxSizing": "border-box",
-                      "color": "$theme.colors.foreground",
+                      "color": "$theme.colors.contentPrimary",
                       "cursor": "text",
                       "display": "flex",
                       "justifyContent": "space-between",
@@ -2302,7 +2302,7 @@ exports[`Select component renders component in select mode and false for multipl
                               styled-component="true"
                               test-style={
                                 Object {
-                                  "color": "$theme.colors.foregroundAlt",
+                                  "color": "$theme.colors.contentSecondary",
                                   "maxWidth": "100%",
                                   "overflow": "hidden",
                                   "textOverflow": "ellipsis",
@@ -2469,7 +2469,7 @@ exports[`Select component renders component in select mode and false for multipl
                                   styled-component="true"
                                   test-style={
                                     Object {
-                                      "color": "$theme.colors.foreground",
+                                      "color": "$theme.colors.contentPrimary",
                                       "cursor": "pointer",
                                       "display": "inline-block",
                                       "fill": "currentColor",
@@ -2792,7 +2792,7 @@ exports[`Select component renders component in select mode and true for multiple
                       "borderTopRightRadius": "$theme.borders.inputBorderRadius",
                       "borderWidth": "2px",
                       "boxSizing": "border-box",
-                      "color": "$theme.colors.foreground",
+                      "color": "$theme.colors.contentPrimary",
                       "cursor": "text",
                       "display": "flex",
                       "justifyContent": "space-between",
@@ -3148,7 +3148,7 @@ exports[`Select component renders component in select mode and true for multiple
                               styled-component="true"
                               test-style={
                                 Object {
-                                  "color": "$theme.colors.foregroundAlt",
+                                  "color": "$theme.colors.contentSecondary",
                                   "maxWidth": "100%",
                                   "overflow": "hidden",
                                   "textOverflow": "ellipsis",
@@ -3315,7 +3315,7 @@ exports[`Select component renders component in select mode and true for multiple
                                   styled-component="true"
                                   test-style={
                                     Object {
-                                      "color": "$theme.colors.foreground",
+                                      "color": "$theme.colors.contentPrimary",
                                       "cursor": "pointer",
                                       "display": "inline-block",
                                       "fill": "currentColor",

@@ -58,7 +58,7 @@ export const StyledTableHeadCell = styled<{}>('th', ({$theme}) => {
     paddingBottom: $theme.sizing.scale500,
     paddingLeft: $theme.sizing.scale600,
     backgroundColor: $theme.colors.tableHeadBackgroundColor,
-    color: $theme.colors.colorPrimary,
+    color: $theme.colors.contentPrimary,
     textAlign: 'left',
     verticalAlign: 'top',
     whiteSpace: 'nowrap',
@@ -175,7 +175,7 @@ export const StyledTableBodyCell = styled<StyledTableBodyCellPropsT>(
       paddingRight: $theme.sizing.scale600,
       paddingBottom: $theme.sizing.scale300,
       paddingLeft: $theme.sizing.scale600,
-      color: $theme.colors.colorPrimary,
+      color: $theme.colors.contentPrimary,
       textAlign: $isNumeric ? 'right' : null,
       verticalAlign: 'top',
     };
