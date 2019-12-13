@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+import ReactDOM from 'react-dom';
 import {VariableSizeGrid} from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 
@@ -48,6 +49,7 @@ type HeaderContextT = {|
   isSelectedIndeterminate: boolean,
   onMouseEnter: number => void,
   onMouseLeave: () => void,
+  onResize: (columnIndex: number, delta: number) => void,
   onSelectMany: () => void,
   onSelectNone: () => void,
   onSort: number => void,
@@ -198,6 +200,7 @@ const HeaderContext = React.createContext<HeaderContextT>({
   isSelectedIndeterminate: false,
   onMouseEnter: () => {},
   onMouseLeave: () => {},
+  onResize: () => {},
   onSelectMany: () => {},
   onSelectNone: () => {},
   onSort: () => {},
@@ -212,41 +215,144 @@ const HeaderContext = React.createContext<HeaderContextT>({
 });
 HeaderContext.displayName = 'HeaderContext';
 
-// replaces the content of the virtualized window with contents. in this case,
-// we are prepending a table header row before the table rows (children to the fn).
-const InnerTableElement = React.forwardRef<
-  InnerTableElementProps,
-  HTMLDivElement,
->((props, ref) => {
+type HeaderProps = {|
+  index: number,
+  hoverIndex: number,
+  isSortable: boolean,
+  isSelectable: boolean,
+  isSelectedAll: boolean,
+  isSelectedIndeterminate: boolean,
+  onMouseEnter: number => void,
+  onMouseLeave: () => void,
+  onResize: (columnIndex: number, delta: number) => void,
+  onSelectMany: () => void,
+  onSelectNone: () => void,
+  onSort: () => void,
+  sortIndex: number,
+  sortDirection: SortDirectionsT,
+  columnTitle: string,
+|};
+function Header(props: HeaderProps) {
+  const [css, theme] = useStyletron();
+  const [isResizing, setIsResizing] = React.useState(false);
+  const [startResizePos, setStartResizePos] = React.useState(0);
+  const [endResizePos, setEndResizePos] = React.useState(0);
+
+  function getPositionX(el) {
+    const rect = el.getBoundingClientRect();
+    return rect.left + window.scrollX;
+  }
+
+  React.useLayoutEffect(() => {
+    function handleMouseMove(event: MouseEvent) {
+      if (isResizing) {
+        event.preventDefault();
+        setEndResizePos(event.clientX);
+      }
+    }
+
+    function handleMouseUp(event: MouseEvent) {
+      props.onResize(props.index, endResizePos - startResizePos);
+      setIsResizing(false);
+      setStartResizePos(0);
+      setEndResizePos(0);
+    }
+
+    if (isResizing) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+    }
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [
+    isResizing,
+    setEndResizePos,
+    setIsResizing,
+    setStartResizePos,
+    setEndResizePos,
+    props.onResize,
+    props.index,
+    endResizePos,
+    startResizePos,
+  ]);
+
+  // 2 is default to position handle when not resizing
+  const resizeHandleOffset = 2 + endResizePos - startResizePos;
+
+  return (
+    <React.Fragment>
+      <HeaderCell
+        index={props.index}
+        sortable={props.isSortable}
+        isHovered={!isResizing && props.hoverIndex === props.index}
+        isSelectable={props.isSelectable && props.index === 0}
+        isSelectedAll={props.isSelectedAll}
+        isSelectedIndeterminate={props.isSelectedIndeterminate}
+        onMouseEnter={() => props.onMouseEnter(props.index)}
+        onMouseLeave={() => props.onMouseLeave()}
+        onSelectAll={props.onSelectMany}
+        onSelectNone={props.onSelectNone}
+        onSort={props.onSort}
+        sortDirection={
+          props.sortIndex === props.index ? props.sortDirection : null
+        }
+        title={props.columnTitle}
+      />
+      <div
+        className={css({
+          position: 'relative',
+          display: 'flex',
+          alignItems: 'center',
+        })}
+      >
+        <div
+          onMouseDown={event => {
+            setIsResizing(true);
+            const x = getPositionX(event.target);
+            setStartResizePos(x);
+            setEndResizePos(x);
+          }}
+          className={css({
+            position: 'absolute',
+            height: '100%',
+            width: '3px',
+            ':hover': {
+              backgroundColor: theme.colors.primary,
+              cursor: 'ew-resize',
+            },
+          })}
+          style={{right: `${resizeHandleOffset * -1}px`}}
+        />
+      </div>
+    </React.Fragment>
+  );
+}
+
+function Headers(props: {||}) {
   const [css, theme] = useStyletron();
   const ctx = React.useContext(HeaderContext);
 
-  // no need to render the cells until the columns have been measured
-  if (!ctx.widths.filter(Boolean).length) {
-    return null;
-  }
-
   return (
-    <div ref={ref} data-baseweb="data-table" style={props.style}>
-      <div
-        className={css({
-          position: 'sticky',
-          top: 0,
-          left: 0,
-          width: `${ctx.widths.reduce((sum, w) => sum + w, 0)}px`,
-          height: `${HEADER_ROW_HEIGHT}px`,
-          display: 'flex',
-          // this feels bad.. the absolutely positioned children elements
-          // stack on top of this element with the layer component.
-          zIndex: 2,
-        })}
-      >
-        {ctx.columns.map((column, columnIndex) => {
-          const activeFilter = ctx.filters
-            ? ctx.filters.get(column.title)
-            : null;
+    <div
+      className={css({
+        position: 'sticky',
+        top: 0,
+        left: 0,
+        width: `${ctx.widths.reduce((sum, w) => sum + w, 0)}px`,
+        height: `${HEADER_ROW_HEIGHT}px`,
+        display: 'flex',
+        // this feels bad.. the absolutely positioned children elements
+        // stack on top of this element with the layer component.
+        zIndex: 2,
+      })}
+    >
+      {ctx.columns.map((column, columnIndex) => {
+        const activeFilter = ctx.filters ? ctx.filters.get(column.title) : null;
 
-          return (
+        return (
+          <React.Fragment>
             <Tooltip
               key={columnIndex}
               placement={PLACEMENT.bottomLeft}
@@ -285,31 +391,53 @@ const InnerTableElement = React.forwardRef<
                   borderTop: 'none',
                   borderLeft: 'none',
                   boxSizing: 'border-box',
+                  display: 'flex',
                 })}
                 style={{width: ctx.widths[columnIndex]}}
               >
-                <HeaderCell
+                <Header
                   index={columnIndex}
-                  sortable={column.sortable}
-                  isHovered={ctx.columnHoverIndex === columnIndex}
-                  isSelectable={ctx.isSelectable && columnIndex === 0}
+                  hoverIndex={ctx.columnHoverIndex}
+                  isSortable={column.sortable}
+                  isSelectable={ctx.isSelectable}
                   isSelectedAll={ctx.isSelectedAll}
                   isSelectedIndeterminate={ctx.isSelectedIndeterminate}
-                  onMouseEnter={() => ctx.onMouseEnter(columnIndex)}
-                  onMouseLeave={() => ctx.onMouseLeave()}
-                  onSelectAll={ctx.onSelectMany}
+                  onMouseEnter={ctx.onMouseEnter}
+                  onMouseLeave={ctx.onMouseLeave}
+                  onResize={ctx.onResize}
+                  onSelectMany={ctx.onSelectMany}
                   onSelectNone={ctx.onSelectNone}
-                  onSort={ctx.onSort}
-                  sortDirection={
-                    ctx.sortIndex === columnIndex ? ctx.sortDirection : null
-                  }
-                  title={column.title}
+                  onSort={() => ctx.onSort(columnIndex)}
+                  sortIndex={ctx.sortIndex}
+                  sortDirection={ctx.sortDirection}
+                  columnTitle={column.title}
                 />
               </div>
             </Tooltip>
-          );
-        })}
-      </div>
+          </React.Fragment>
+        );
+      })}
+    </div>
+  );
+}
+
+// replaces the content of the virtualized window with contents. in this case,
+// we are prepending a table header row before the table rows (children to the fn).
+const InnerTableElement = React.forwardRef<
+  InnerTableElementProps,
+  HTMLDivElement,
+>((props, ref) => {
+  const [css, theme] = useStyletron();
+  const ctx = React.useContext(HeaderContext);
+
+  // no need to render the cells until the columns have been measured
+  if (!ctx.widths.filter(Boolean).length) {
+    return null;
+  }
+
+  return (
+    <div ref={ref} data-baseweb="data-table" style={props.style}>
+      <Headers />
       {React.Children.toArray(props.children).length <= ctx.columns.length ? (
         <div
           className={css({
@@ -389,6 +517,15 @@ export function Unstable_DataTable(props: DataTablePropsT) {
       }
     },
     [gridRef.current],
+  );
+  // currently it's quite slow between mouseup and repositioned columns
+  // need to also handle min/max column widths
+  const handleColumnResize = React.useCallback(
+    (columnIndex, delta) => {
+      widths[columnIndex] = widths[columnIndex] + delta;
+      handleWidthsChange([...widths]);
+    },
+    [widths, handleWidthsChange],
   );
   const normalizedWidths = React.useMemo(() => {
     const sum = ns => ns.reduce((s, n) => s + n, 0);
@@ -633,6 +770,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
               isSelectedIndeterminate,
               onMouseEnter: handleColumnHeaderMouseEnter,
               onMouseLeave: handleColumnHeaderMouseLeave,
+              onResize: handleColumnResize,
               onSelectMany: handleSelectMany,
               onSelectNone: handleSelectNone,
               onSort: handleSort,
