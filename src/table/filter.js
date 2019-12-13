@@ -51,7 +51,7 @@ export default function Filter(props: FilterProps) {
     }
 
     if (props.active) {
-      return theme.colors.colorPrimary;
+      return theme.colors.contentPrimary;
     }
 
     return theme.colors.tableFilter;
@@ -62,7 +62,7 @@ export default function Filter(props: FilterProps) {
       return null;
     }
 
-    return theme.colors.colorPrimary;
+    return theme.colors.contentPrimary;
   }
 
   return (

@@ -20,7 +20,7 @@ const StyledNavItem = withStyle(NavItem, ({$theme, $active}) => {
 
   if ($theme.name.startsWith('dark')) {
     if ($active) {
-      styleOverride.background = $theme.colors.backgroundAlt;
+      styleOverride.background = $theme.colors.backgroundSecondary;
     }
   }
   return {

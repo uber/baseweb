@@ -145,7 +145,7 @@ function getControlContainerColors(
 
   if ($isFocused || $isPseudoFocused) {
     return {
-      color: colors.foreground,
+      color: colors.contentPrimary,
       borderColor: colors.borderFocus,
       backgroundColor: colors.inputFillActive,
     };
@@ -153,7 +153,7 @@ function getControlContainerColors(
 
   if ($error) {
     return {
-      color: colors.foreground,
+      color: colors.contentPrimary,
       borderColor: colors.inputBorderError,
       backgroundColor: colors.inputFillError,
     };
@@ -161,14 +161,14 @@ function getControlContainerColors(
 
   if ($positive) {
     return {
-      color: colors.foreground,
+      color: colors.contentPrimary,
       borderColor: colors.inputBorderPositive,
       backgroundColor: colors.inputFillPositive,
     };
   }
 
   return {
-    color: colors.foreground,
+    color: colors.contentPrimary,
     borderColor: colors.inputFill,
     backgroundColor: colors.inputFill,
   };
@@ -244,7 +244,7 @@ export const StyledPlaceholder = styled<SharedStylePropsArgT>('div', props => {
     $theme: {colors},
   } = props;
   return {
-    color: $disabled ? colors.inputTextDisabled : colors.foregroundAlt,
+    color: $disabled ? colors.inputTextDisabled : colors.contentSecondary,
     maxWidth: '100%',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
@@ -378,7 +378,7 @@ export const StyledSelectArrow = styled<SharedStylePropsArgT>('svg', props => {
   const {colors} = $theme;
   return {
     ...getSvgStyles({$theme}),
-    color: $disabled ? colors.inputTextDisabled : colors.foreground,
+    color: $disabled ? colors.inputTextDisabled : colors.contentPrimary,
     cursor: $disabled ? 'not-allowed' : 'pointer',
   };
 });
@@ -388,7 +388,7 @@ export const StyledClearIcon = styled<SharedStylePropsArgT>('svg', props => {
   const {colors} = $theme;
   return {
     ...getSvgStyles({$theme}),
-    color: colors.foreground,
+    color: colors.contentPrimary,
     cursor: 'pointer',
   };
 });
@@ -398,7 +398,7 @@ export const getLoadingIconStyles = (props: {$theme: ThemeT}) => {
   const {colors} = $theme;
   return {
     ...getSvgStyles({$theme}),
-    color: colors.foreground,
+    color: colors.contentPrimary,
   };
 };
 
@@ -409,7 +409,7 @@ export const StyledSearchIconContainer = styled<SharedStylePropsArgT>(
     const {colors, sizing} = $theme;
     return {
       ...getSvgStyles(props),
-      color: $disabled ? colors.inputTextDisabled : colors.foreground,
+      color: $disabled ? colors.inputTextDisabled : colors.contentPrimary,
       cursor: $disabled ? 'not-allowed' : 'pointer',
       position: 'absolute',
       top: 0,

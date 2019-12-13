@@ -17,7 +17,7 @@ import type {
 export const StyledRoot = styled<{}>('li', ({$theme}) => {
   return {
     alignItems: 'center',
-    backgroundColor: $theme.colors.backgroundAlt,
+    backgroundColor: $theme.colors.backgroundPrimary,
     display: 'flex',
     listStyleType: 'none',
     width: '100%',
