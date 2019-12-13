@@ -13,13 +13,15 @@ export default Layout;
   caption="Similar, yet different."
 />
 
-Today we are going to talk about Visual Snapshot Tests. We will consider why you might want visual tests, what visual testing looks like in practice, and how the Base Web team leverages visual testing in our continuous integration (CI) workflow.
+Today we are going to talk about Visual Snapshot Testing. We will consider why you might need visual snapshot tests, what visual snapshot testing looks like in practice, and how the Base Web team leverages visual snapshot testing in our continuous integration (CI) workflow.
 
 ## Snapshots
 
-Before we consider _visual_ snapshot testing, let's clarify what snapshot testing is.
+Before we consider _visual_ snapshot testing, let's clarify what plain old snapshot testing is.
 
 A snapshot test runs a process and compares the output of that process to a previous test run's output (the baseline). If the outputs match, the test passes. If the outputs do not match, the test fails and you either need to update your baseline snapshot or fix something in your source code.
+
+TODO: DIAGRAM OF SNAPSHOT TESTING CYCLE
 
 Because snapshot tests are assertions of equality, snapshots need to be serializable, comparable, and deterministic. The format of the snapshot is flexible, it can be inlined into the test as a string or stored as a file— it can be a DOM tree, a JSON blob or even an image.
 
@@ -29,13 +31,15 @@ This is where the _visual_ in Visual Snapshot Testing comes from. We use images 
 
 In Base Web, we render each of our components in a variety of states- we capture an image of each state and save all of these as baseline snapshots. Whenever we make a change to source we can run our visual snapshot tests to ensure that all of our components' visual states look as expected.
 
+TODO: IMAGE OF BUTTONS BEFORE AND AFTER
+
 ## Value Added
 
-As we will see in a bit, introducing a suite of visual snapshots into your project comes with some maintenance burden. Taking deterministic screenshots requires running tests in a consistent environment across test runs. Test runs themselves can add significant time to your CI pipeline. Additionally, keeping hundreds or thousands of images under source control can dramatically increase the storage footprint of your repository.
+As we will see in a bit, introducing a suite of visual snapshots into your project comes with some maintenance burden. Taking deterministic screenshots requires running tests in a consistent environment across test runs. Test runs themselves can add significant time to your CI pipeline. Additionally, keeping hundreds or even thousands of images under source control can dramatically increase the storage footprint of your repository.
 
 If you are familiar with snapshot testing you may also wonder why we need to bother with images at all. Why not simply capture the state of the React tree as with traditional snapshot tests? Are visual snapshots worth all the overhead?
 
-For a UI component library such as Base Web the tradeoff is certainly worth making. Here is a list of reasons why:
+For a UI component library such as Base Web the tradeoff is certainly worth making. Here are some of the reasons why we find them essential to our testing strategy:
 
 - **Catch visual regressions**. This is the first and most obvious reason to use visual snapshot tests. When we make a change to source code we want to be sure we have not broken any styles. For a UI library such as Base Web, styling is immensely important— its one of our main responsibilities. Having coverage over our component visuals means better quality components and better sleep at night for us maintainers.
 - **Test what users see**. Traditional snapshot tests will certainly warn you when something in your code has changed, but the change detected is going to be your React implementation, not the result of that implementation which is what you actually care about.
@@ -62,11 +66,11 @@ A whole host of paid services exist to serve your visual testing needs— too ma
 
 With all of these paid solutions you do not have to worry about storing or comparing images yourself. The service runs a suite of comparison tests and then flags failures for you to review in their UI. Generally these runs are triggered from, and report their status to, your CI pipeline.
 
-If you are maintaining a web based UI component library there is a decent chance you are already using Storybook in your project to develop components in isolation. Most of the services above provide libraries or integrations for using your already existing Storybook scenarios as visual snapshots.
+If you are maintaining a web based UI component library there is a decent chance you are already using [Storybook](https://storybook.js.org/) in your project to develop components in isolation. Most of the above services provide libraries or integrations for using your already existing Storybook scenarios as visual snapshots.
 
-Also of interest, most services allow you to capture images of scenarios in different environments such as IE11 or iOS Safari. This is not a trivial (or free) thing to set up for your own project- so if cross browser coverage is important for you, a paid solution may be an easy decision.
+Also of interest, most services allow you to capture images of scenarios in different environments such as IE11 or iOS Safari. This is not a trivial (or free) thing to set up for your own project- so if cross browser coverage is important for you, choosing a paid solution might be an easy decision to make.
 
-In terms of cost, all of these solutions charge per snapshot. If you have 50 scenarios and test each one in 3 environments (Chrome, IE11, iOS Safari), a single test run will generate 150 snapshots. Ultimately one of the reasons we built our own solution is that we generate over half a million snapshots a month running our visual test suite on every PR commit. This is well above the amounts quoted by these services and becomes quite expensive.
+In terms of cost, all of these solutions charge per snapshot. If you have 50 scenarios and test each one in 3 environments (Chrome, IE11, iOS Safari), a single test run will generate 150 snapshots. Ultimately one of the reasons we built our own solution is that we generate over half a million snapshots a month running our visual test suite on every PR commit. This is well above the amounts quoted by these services and can become quite expensive.
 
 ### Free
 
@@ -80,15 +84,19 @@ All of these tools give you an API for visiting pages, taking screenshots, asser
 
 These three tools in particular were easy to get started with and provide most of the basic functionality you need to get started with visual testing. If you are considering using snapshot tests it makes sense to try one of these out first and see if it works for you.
 
-We tried each of these solutions with Base Web, and while it was simple to get started, we ended up needing more control over the test runs. What's more the ready made containers that came with these projects were proving difficult to integrate with our existing CI pipeline— so some of the out-of-the-box utility was quickly diminished.
+We tried each of these solutions with Base Web, and while it was simple to get started, we ended up needing more control over the test runs. What's more the ready made containers that came with these projects were proving difficult to integrate with our existing CI pipeline— so some of the out-of-the-box utility just wasn't there for us.
 
-Eventually, we decided to roll out our own solution for visual snapshot testing. We already had a CI job set up for running end-to-end tests against our Storybook scenarios, so it seemed a simple task to extend that functionality for generating visual snapshots.
+Looking at all of these solutions so far, you can begin to see that they all attempt to provide an entire workflow or framework for visual testing. This is why there are so many paid services. Visual testing requires pulling together many different solutions. Getting these right is essential for a happy and productive developer workflow.
+
+Just so, we decided to roll out our own solution, tailored for our needs. We already had a CI job set up for running end-to-end tests against our Storybook scenarios, so it didn't seem _that bad_ to extend this functionality for generating visual snapshots.
 
 ## Down to business
 
 Let's go ahead and dive into how our solution works. After a high level overview, we can drill into some of the implementation details, cover the tradeoffs with our approach, and finally we can go over possible improvements we might make in the future.
 
 ### Overview
+
+TODO: DIAGRAM OF WORKFLOW, OVERVIEW, WITH ZOOMED IN PARTS FOR VARIOUS SECTIONS
 
 1. When a pull request is opened against `origin/master`, or a commit is pushed to a branch with an open pull request, our CI pipeline (Buildkite) begins a series of parallelized jobs. One of these jobs is responsible for running our visual snapshot tests. We will call this job `VRT` (Visual Regression Tests).
 2. One of the initial steps in the pipeline is spinning up a server which runs each of our Storybook scenarios on a separate page. This is used by `VRT` as well as our end-to-end test job.
@@ -100,15 +108,19 @@ Let's go ahead and dive into how our solution works. After a high level overview
 
 ## Implementation
 
-There are a lot of different pieces needed to get the above system to work. Below, we will go over some of the tools you will need and some of the gotchas you might encounter while building out a custom visual testing solution.
+There are a lot of different pieces needed to get the above system to work. Below, we will go over some of the tools and strategies you will need, as well as some of the gotchas you might encounter, when building out a custom visual testing solution.
 
 ### Puppeteer
 
-[Puppeteer](https://pptr.dev/) is a library for automating usage of Chrome via the Chrome Devtools Protocol. Puppeteer is what allows us to easily generate screenshots for our snapshot tests. If using Jest, you can use [`jest-puppeteer`](https://github.com/smooth-code/jest-puppeteer) to set up a global reference to the Puppeteer Page (`page`) object in your unit tests. In many of the code snippets below you will see references to this global `page` object.
+[Puppeteer](https://pptr.dev/) is a library for automating usage of Chrome via the Chrome Devtools Protocol. Puppeteer is what allows us to generate screenshots of our components. If using Jest, you can use [`jest-puppeteer`](https://github.com/smooth-code/jest-puppeteer) to set up a global reference to the Puppeteer Page (`page`) object in your unit tests. In many of the code snippets below you will see references to this global `page` object.
+
+TODO: EXPAND
 
 ### A static site
 
 At some point you will need to host a site somewhere which Puppeteer can visit in order to render your UI. As part of our CI pipeline, we build a small static site that renders ever Storybook scenario in our codebase at a unique URL. Once this site is built, we run visual regression tests as well as end-to-end tests against it.
+
+TODO: EXPAND OR REMOVE?
 
 ### Extending Jest
 
@@ -119,7 +131,7 @@ const image = await page.screenshot(); // generate a new image with puppeteer
 expect(image).toMatchImageSnapshot(); // compare to baseline image
 ```
 
-If you already use snapshots in your codebase there is almost nothing new to learn here. The only difference from normal inline snapshots is that you will have image files added to your project which will need to be kept under version control as baselines for future tests.
+If you already use snapshots in your codebase there is almost nothing new to learn here. The only difference from normal inline snapshots is that you will have image files added to your project. These will need to be kept under version control as baselines for future tests.
 
 For a JS/React project this is a very low overhead way to add visual tests to your codebase.
 
@@ -269,7 +281,7 @@ This should be a last resort as it will almost certainly flake at some point. Th
 
 ### Developer UX
 
-Having a visual test suite pass or fail as part of CI/CD is a great start, but what do you do when a test fails? If you have access to the CI environment you can read the test run's output, but even knowing which tests failed is not especially useful if you can't _see_ what changed. Consider also that sometimes you need to update snapshots or add new ones. If our CI/CD test run only reports successes and failures we are back to running tests locally in order to update the snapshots.
+Having a visual test suite pass or fail as part of CI is a great start, but what do you do when a test fails? If you have access to the CI environment you can read the test run's output, but even knowing which tests failed is not especially useful if you can't _see_ what changed. Consider also that sometimes you need to update snapshots or add new ones. If our CI test run only reports successes and failures we are back to running tests locally in order to update the snapshots.
 
 We implemented a [simple Node script](https://github.com/uber/baseweb/blob/master/vrt/ci.js) to make viewing diffs and updating snapshots much more seamless.
 
@@ -313,7 +325,7 @@ Base Web is used by hundreds of internal projects at Uber. When we make a change
 
 Moving images out of Git, speeding up test runs, investing in cross browser testing, allowing other projects to use our tools... all of these point towards a more generalized service for visual snapshot testing. Essentially we want the benefits of one of the paid visual testing services, but scaleable for hundreds of projects and with the option of privacy for internal projects.
 
-This is likely the next step for our visual testing solution: Taking all of the logic spread out across GitHub, CI/CD, Docker, and duck-tape utility scripts and making that easily runnable or accessible for other projects. By getting more projects onboarded we also make the investment in new and improved features more valuable to the company. Ideally the solutions we create can also be leveraged by the community, so stay tuned if you are interested in this space!
+This is likely the next step for our visual testing solution: Taking all of the logic spread out across GitHub, CI, Docker, and duck-tape utility scripts and making that easily runnable or accessible for other projects. By getting more projects onboarded we also make the investment in new and improved features more valuable to the company. Ideally the solutions we create can also be leveraged by the community, so stay tuned if you are interested in this space!
 
 ## Conclusion
 
