@@ -21,7 +21,7 @@ const Image = themedStyled('img', props => ({
 }));
 
 export const Caption = themedStyled('figcaption', ({$theme}) => ({
-  color: $theme.colors.foregroundAlt,
+  color: $theme.colors.contentSecondary,
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale500,
   fontWeight: 300,
@@ -48,22 +48,22 @@ export const Demo = themedStyled('iframe', {
 });
 
 const Tagline = themedStyled('span', ({$theme}) => ({
-  color: $theme.colors.foregroundAlt,
+  color: $theme.colors.contentSecondary,
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale800,
   fontWeight: 300,
 }));
 
 const AuthorLink = themedStyled('a', ({$theme}) => ({
-  color: $theme.colors.foregroundAlt,
+  color: $theme.colors.contentSecondary,
   fontFamily: $theme.typography.font100.fontFamily,
   ':hover': {
-    color: $theme.colors.foreground,
+    color: $theme.colors.contentPrimary,
   },
 }));
 
 const ArticleDate = themedStyled('span', ({$theme}) => ({
-  color: $theme.colors.foregroundAlt,
+  color: $theme.colors.contentSecondary,
 }));
 
 export const Meta = ({
@@ -121,7 +121,7 @@ export const Meta = ({
         overrides={{
           Block: {
             style: ({$theme}) => ({
-              color: $theme.colors.foregroundAlt,
+              color: $theme.colors.contentSecondary,
               fontFamily: $theme.typography.font100.fontFamily,
               margin: `${$theme.sizing.scale400} 0`,
             }),

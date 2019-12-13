@@ -267,7 +267,7 @@ function Thumbnail({children, href}) {
           borderTop: 0,
           borderLeft: 0,
           borderRight: 0,
-          color: `${theme.colors.foregroundAlt}`,
+          color: `${theme.colors.contentSecondary}`,
           paddingTop: theme.sizing.scale300,
           paddingBottom: theme.sizing.scale300,
           paddingLeft: theme.sizing.scale500,

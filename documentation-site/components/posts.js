@@ -15,7 +15,7 @@ import {themedStyled} from '../pages/_app';
 import posts from '../posts';
 
 const MetaData = themedStyled('h2', ({$theme}) => ({
-  color: $theme.colors.foregroundAlt,
+  color: $theme.colors.contentSecondary,
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale500,
   lineHeight: $theme.sizing.scale600,

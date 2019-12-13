@@ -18,10 +18,10 @@ const Inner: React.StatelessFunctionalComponent<{
     <div
       className={css({
         padding: theme.sizing.scale300,
-        color: theme.colors.foreground,
+        color: theme.colors.contentPrimary,
         borderStyle: `solid`,
         borderWidth: `1px`,
-        borderColor: theme.colors.foreground,
+        borderColor: theme.colors.contentPrimary,
         height: h,
       })}
     >

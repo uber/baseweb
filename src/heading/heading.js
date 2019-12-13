@@ -45,7 +45,7 @@ const Heading = ({styleLevel, ...restProps}: HeadingPropsT) => (
           data-baseweb="heading"
           as={`h${level}`}
           font={styleLevel ? FONTS[styleLevel] : FONTS[level]}
-          color="colorPrimary"
+          color="contentPrimary"
           {...restProps}
         />
       );
