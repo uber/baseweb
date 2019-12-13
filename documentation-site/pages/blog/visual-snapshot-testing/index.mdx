@@ -1,7 +1,7 @@
 import metadata from './metadata.json';
 import Layout from '../../../components/layout';
 import {BlogImage, Meta, Caption} from '../../../components/blog';
-import OnionSkinPNG from './onionskin.png';
+import SwipeGIF from './swipe.gif';
 
 export default Layout;
 
@@ -56,15 +56,7 @@ There are a variety of products and libraries out there which will help you with
 
 ### Paid
 
-A whole host of paid services exist to serve your visual testing needs— too many to detail here. The ones that seemed most intriguing to us were the more specialized services that focused solely on visual comparisons. Here is a list of the products we considered (sorted alphabetically):
-
-- [Applitools](https://applitools.com/)
-- [Chromatic](https://www.chromaticqa.com/)
-- [Happo](https://happo.io/)
-- [Percy](https://percy.io/)
-- [Screener](https://screener.io/)
-
-With all of these paid solutions, you do not have to worry about storing or comparing images yourself. The service runs a suite of comparison tests and then flags failures for you to review in their UI. Generally, these runs are triggered from and report their status to, your CI pipeline. As might be expected from a premium service, these all offer entire workflows for managing your project's visual tests.
+A whole host of paid services exist to serve your visual testing needs— too many to detail here. With all of these paid solutions, you do not have to worry about storing or comparing images yourself. The service runs a suite of comparison tests and then flags failures for you to review in their UI. Generally, these runs are triggered from and report their status to, your CI pipeline. As might be expected from a premium service, these all offer entire workflows for managing your project's visual tests.
 
 If you are maintaining even a small component library there is a decent chance that you are already using [Storybook](https://storybook.js.org/) in your project to develop components in isolation. Most of the above services provide libraries or integrations for using your already existing Storybook scenarios for visual snapshots. This is extremely convenient as you receive free test coverage every time you create a new Storybook scenario.
 
@@ -275,20 +267,22 @@ await page.waitFor(250); // waits for 250ms before proceeding
 This should be a last resort as it will almost certainly flake at some point. When it does someone will probably just increase the wait duration- so over time these paddings accumulate. Thes can add up to make your test run unbearably slow. The preferable approach is to wait for assertions on the page to pass. Take this example from one of our interaction snapshots:
 
 ```js
-'select-search-single': {
- interactions: [
- {
- name: 'open',
- behavior: async page => {
- const inputSelector = `[data-baseweb="select"]`;
- const dropdownSelector = `[role="listbox"]`;
- await page.waitForSelector(inputSelector);
- await page.click(inputSelector);
- await page.waitForSelector(dropdownSelector);
- },
- },
- ],
- },
+const config = {
+  'select-search-single': {
+    interactions: [
+      {
+        name: 'open',
+        behavior: async page => {
+          const inputSelector = `[data-baseweb="select"]`;
+          const dropdownSelector = `[role="listbox"]`;
+          await page.waitForSelector(inputSelector);
+          await page.click(inputSelector);
+          await page.waitForSelector(dropdownSelector);
+        },
+      },
+    ],
+  },
+};
 ```
 
 [Page](https://pptr.dev/#?product=Puppeteer&version=v2.0.0&show=api-class-page), has numerous methods for awaiting events or assertions. While it is still possible for an assertion to time out while waiting, this rarely happens in practice. This approach takes a little more time to get right, but it guarantees you are not wasting time on your tests and greatly reduces the chances your tests will flake.
@@ -304,7 +298,7 @@ The script runs our visual snapshot tests with the update flag. If nothing is up
 GitHub makes this process even better due to a few built-in image comparison tools. Not only can you see the images side by side, but you can also use two alternative methods of comparison known as "Swipe" and "Onion Skin".
 
 <BlogImage
-  src={OnionSkinPNG}
+  src={SwipeGIF}
   caption="An example of GitHub's image comparison interface."
   alt="An example of GitHub's image comparison interface."
 />
