@@ -30,3 +30,4 @@ export {default as BaseProvider} from './helpers/base-provider.js';
 export {mergeOverrides} from './helpers/overrides.js';
 export type {PrimitivesT} from './themes/types.js';
 export type {ThemeT} from './styles/types.js';
+export type {UseStyletronFn} from './styles/styled.js';

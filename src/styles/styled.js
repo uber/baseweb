@@ -89,7 +89,7 @@ export function createThemedWithStyle<Theme>(): WithStyleFn<Theme> {
 
 export const withStyle = createThemedWithStyle<ThemeT>();
 
-type UseStyletronFn<Theme> = () => [(StyleObject) => string, Theme];
+export type UseStyletronFn<Theme> = () => [(StyleObject) => string, Theme];
 
 export function createThemedUseStyletron<Theme>(): UseStyletronFn<Theme> {
   return function() {
