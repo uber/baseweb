@@ -49,39 +49,30 @@ const cardOverrides = {
 const Adopters = (props: {logoSrcs: string[]}) => (
   <>
     <H2>Who is using Base Web?</H2>
-    <Block>
-      <FlexGrid
-        flexGridColumnCount={3}
-        backgroundColor="mono100"
-        paddingBottom="scale600"
-      >
-        {props.logoSrcs.map((logoSrc, i) => (
-          <FlexGridItem
-            key={i}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Block width="125px" $as="img" src={logoSrc} />
-          </FlexGridItem>
-        ))}
-      </FlexGrid>
-      <Button
-        $as="a"
-        href="https://github.com/uber/baseweb/issues/1889"
-        size="compact"
-        kind="secondary"
-        overrides={{
-          BaseButton: {
-            style: ({$theme}) => ({
-              marginTop: $theme.sizing.scale800,
-            }),
-          },
-        }}
-      >
-        Please let us know if you are using Base Web!
-      </Button>
-    </Block>
+    <FlexGrid
+      flexGridColumnCount={3}
+      backgroundColor="mono100"
+      marginBottom="scale1000"
+    >
+      {props.logoSrcs.map((logoSrc, i) => (
+        <FlexGridItem
+          key={i}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Block width="125px" as="img" src={logoSrc} />
+        </FlexGridItem>
+      ))}
+    </FlexGrid>
+    <Button
+      $as="a"
+      href="https://github.com/uber/baseweb/issues/1889"
+      size="compact"
+      kind="secondary"
+    >
+      Please let us know if you are using Base Web!
+    </Button>
   </>
 );
 
