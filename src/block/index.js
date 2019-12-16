@@ -8,4 +8,4 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 export {default as Block} from './block.js';
-export * from './types.js';
+export type * from './types.js';

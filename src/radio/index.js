@@ -20,5 +20,5 @@ export {
   RadioGroupRoot as StyledRadioGroupRoot,
 } from './styled-components.js';
 export {default as Radio} from './radio.js';
-export * from './types.js';
+export type * from './types.js';
 export {ALIGN} from './constants.js';

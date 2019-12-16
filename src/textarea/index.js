@@ -11,4 +11,4 @@ export {default as StatefulContainer} from './stateful-container.js';
 // Styled elements
 export {StyledTextareaContainer, StyledTextarea} from './styled-components.js';
 export {STATE_CHANGE_TYPE, SIZE} from './constants.js';
-export * from './types.js';
+export type * from './types.js';

@@ -18,4 +18,4 @@ export {
   Root as StyledRoot,
   Root as StyledWrapper,
 } from './styled-components.js';
-export * from './types.js';
+export type * from './types.js';

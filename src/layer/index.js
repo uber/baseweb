@@ -9,4 +9,4 @@ export {default as LayersManager} from './layers-manager.js';
 export {default as Layer} from './layer.js';
 export {default as TetherBehavior} from './tether.js';
 export {TETHER_PLACEMENT} from './constants.js';
-export * from './types.js';
+export type * from './types.js';

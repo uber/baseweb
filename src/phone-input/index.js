@@ -16,5 +16,5 @@ export {default as CountrySelect} from './country-select.js';
 export {default as CountrySelectDropdown} from './country-select-dropdown.js';
 export {default as Flag, StyledFlag} from './flag.js';
 export * from './constants.js';
-export * from './types.js';
+export type * from './types.js';
 export * from './styled-components.js';
