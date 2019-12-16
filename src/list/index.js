@@ -12,4 +12,4 @@ export {default as MenuAdapter} from './menu-adapter.js';
 
 export {ARTWORK_SIZES} from './constants.js';
 export * from './styled-components.js';
-export * from './types.js';
+export type * from './types.js';

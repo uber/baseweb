@@ -8,4 +8,4 @@ LICENSE file in the root directory of this source tree.
 
 export {default as FlexGrid} from './flex-grid.js';
 export {default as FlexGridItem} from './flex-grid-item.js';
-export * from './types.js';
+export type * from './types.js';
