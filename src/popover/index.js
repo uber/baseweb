@@ -26,4 +26,4 @@ export {
 } from './styled-components.js';
 
 // Flow
-export * from './types.js';
+export type * from './types.js';

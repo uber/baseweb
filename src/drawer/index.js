@@ -8,4 +8,4 @@ LICENSE file in the root directory of this source tree.
 export {default as Drawer} from './drawer.js';
 export {SIZE, SIZE_DIMENSION, ANCHOR, CLOSE_SOURCE} from './constants.js';
 export * from './styled-components.js';
-export * from './types.js';
+export type * from './types.js';

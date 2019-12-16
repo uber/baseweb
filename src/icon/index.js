@@ -8,4 +8,4 @@ LICENSE file in the root directory of this source tree.
 export {default as Icon} from './icon.js';
 export {Svg as StyledSvg} from './styled-components.js';
 export * from './icon-exports.js';
-export * from './types.js';
+export type * from './types.js';

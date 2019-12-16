@@ -13,4 +13,4 @@ export {
   NavigationList as StyledNavigationList,
 } from './styled-components.js';
 export {ALIGN} from './constants.js';
-export * from './types.js';
+export type * from './types.js';
