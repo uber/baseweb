@@ -228,18 +228,22 @@ type HeaderProps = {|
   onMouseEnter: number => void,
   onMouseLeave: () => void,
   onResize: (columnIndex: number, delta: number) => void,
+  onResizeIndexChange: (columnIndex: number) => void,
   onSelectMany: () => void,
   onSelectNone: () => void,
   onSort: () => void,
+  resizeIndex: number,
   sortIndex: number,
   sortDirection: SortDirectionsT,
   columnTitle: string,
 |};
 function Header(props: HeaderProps) {
   const [css, theme] = useStyletron();
-  const [isResizing, setIsResizing] = React.useState(false);
   const [startResizePos, setStartResizePos] = React.useState(0);
   const [endResizePos, setEndResizePos] = React.useState(0);
+
+  const isResizingThisColumn = props.resizeIndex === props.index;
+  const isResizing = props.resizeIndex >= 0;
 
   function getPositionX(el) {
     const rect = el.getBoundingClientRect();
@@ -248,7 +252,7 @@ function Header(props: HeaderProps) {
 
   React.useLayoutEffect(() => {
     function handleMouseMove(event: MouseEvent) {
-      if (isResizing) {
+      if (isResizingThisColumn) {
         event.preventDefault();
         setEndResizePos(event.clientX);
       }
@@ -256,12 +260,13 @@ function Header(props: HeaderProps) {
 
     function handleMouseUp(event: MouseEvent) {
       props.onResize(props.index, endResizePos - startResizePos);
-      setIsResizing(false);
+      props.onResizeIndexChange(-1);
+      // setIsResizing(false);
       setStartResizePos(0);
       setEndResizePos(0);
     }
 
-    if (isResizing) {
+    if (isResizingThisColumn) {
       document.addEventListener('mousemove', handleMouseMove);
       document.addEventListener('mouseup', handleMouseUp);
     }
@@ -270,12 +275,12 @@ function Header(props: HeaderProps) {
       document.removeEventListener('mouseup', handleMouseUp);
     };
   }, [
-    isResizing,
+    isResizingThisColumn,
     setEndResizePos,
-    setIsResizing,
     setStartResizePos,
     setEndResizePos,
     props.onResize,
+    props.onResizeIndexChange,
     props.index,
     endResizePos,
     startResizePos,
@@ -290,8 +295,16 @@ function Header(props: HeaderProps) {
         isSelectable={props.isSelectable && props.index === 0}
         isSelectedAll={props.isSelectedAll}
         isSelectedIndeterminate={props.isSelectedIndeterminate}
-        onMouseEnter={() => props.onMouseEnter(props.index)}
-        onMouseLeave={() => props.onMouseLeave()}
+        onMouseEnter={() => {
+          if (!isResizing) {
+            props.onMouseEnter(props.index);
+          }
+        }}
+        onMouseLeave={() => {
+          if (!isResizing) {
+            props.onMouseLeave();
+          }
+        }}
         onSelectAll={props.onSelectMany}
         onSelectNone={props.onSelectNone}
         onSort={props.onSort}
@@ -309,23 +322,23 @@ function Header(props: HeaderProps) {
       >
         <div
           onMouseDown={event => {
-            setIsResizing(true);
+            props.onResizeIndexChange(props.index);
             const x = getPositionX(event.target);
             setStartResizePos(x);
             setEndResizePos(x);
           }}
           className={css({
+            cursor: 'ew-resize',
             position: 'absolute',
             height: '100%',
             width: '3px',
             ':hover': {
               backgroundColor: theme.colors.primary,
-              cursor: 'ew-resize',
             },
           })}
           style={{right: `${(2 + endResizePos - startResizePos) * -1}px`}}
         >
-          {isResizing && (
+          {isResizingThisColumn && (
             <div
               className={css({
                 backgroundColor: theme.colors.primary,
@@ -345,6 +358,7 @@ function Header(props: HeaderProps) {
 function Headers(props: {||}) {
   const [css, theme] = useStyletron();
   const ctx = React.useContext(HeaderContext);
+  const [resizeIndex, setResizeIndex] = React.useState(-1);
 
   return (
     <div
@@ -418,9 +432,11 @@ function Headers(props: {||}) {
                   onMouseEnter={ctx.onMouseEnter}
                   onMouseLeave={ctx.onMouseLeave}
                   onResize={ctx.onResize}
+                  onResizeIndexChange={setResizeIndex}
                   onSelectMany={ctx.onSelectMany}
                   onSelectNone={ctx.onSelectNone}
                   onSort={() => ctx.onSort(columnIndex)}
+                  resizeIndex={resizeIndex}
                   sortIndex={ctx.sortIndex}
                   sortDirection={ctx.sortDirection}
                   columnTitle={column.title}
