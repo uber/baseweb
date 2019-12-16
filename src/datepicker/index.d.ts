@@ -143,6 +143,7 @@ export type DatepickerProps = CalendarProps & {
   'aria-labelledby'?: string;
   'aria-describedby'?: string;
   disabled?: boolean;
+  clearable?: boolean;
   size?: SIZE[keyof SIZE];
   error?: boolean;
   positive?: boolean;
