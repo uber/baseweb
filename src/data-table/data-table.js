@@ -43,6 +43,7 @@ type HeaderContextT = {|
   columns: ColumnT<>[],
   columnHoverIndex: number,
   filters: $PropertyType<DataTablePropsT, 'filters'>,
+  height: number,
   isScrollingX: boolean,
   isSelectable: boolean,
   isSelectedAll: boolean,
@@ -194,6 +195,7 @@ const HeaderContext = React.createContext<HeaderContextT>({
   columns: [],
   columnHoverIndex: -1,
   filters: new Map(),
+  height: 0,
   isScrollingX: false,
   isSelectable: false,
   isSelectedAll: false,
@@ -218,6 +220,7 @@ HeaderContext.displayName = 'HeaderContext';
 type HeaderProps = {|
   index: number,
   hoverIndex: number,
+  height: number,
   isSortable: boolean,
   isSelectable: boolean,
   isSelectedAll: boolean,
@@ -278,9 +281,6 @@ function Header(props: HeaderProps) {
     startResizePos,
   ]);
 
-  // 2 is default to position handle when not resizing
-  const resizeHandleOffset = 2 + endResizePos - startResizePos;
-
   return (
     <React.Fragment>
       <HeaderCell
@@ -323,8 +323,20 @@ function Header(props: HeaderProps) {
               cursor: 'ew-resize',
             },
           })}
-          style={{right: `${resizeHandleOffset * -1}px`}}
-        />
+          style={{right: `${(2 + endResizePos - startResizePos) * -1}px`}}
+        >
+          {isResizing && (
+            <div
+              className={css({
+                backgroundColor: theme.colors.primary,
+                position: 'absolute',
+                height: `${props.height}px`,
+                right: '1px',
+                width: '1px',
+              })}
+            />
+          )}
+        </div>
       </div>
     </React.Fragment>
   );
@@ -397,6 +409,7 @@ function Headers(props: {||}) {
               >
                 <Header
                   index={columnIndex}
+                  height={ctx.height}
                   hoverIndex={ctx.columnHoverIndex}
                   isSortable={column.sortable}
                   isSelectable={ctx.isSelectable}
@@ -764,6 +777,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
               columns: props.columns,
               columnHoverIndex,
               filters: props.filters,
+              height,
               isScrollingX,
               isSelectable,
               isSelectedAll,
