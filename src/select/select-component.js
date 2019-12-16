@@ -40,9 +40,10 @@ import type {
   ChangeActionT,
 } from './types.js';
 import {
+  expandValue,
+  normalizeOptions,
   shouldShowValue,
   shouldShowPlaceholder,
-  expandValue,
 } from './utils/index.js';
 
 function Noop() {
@@ -74,11 +75,9 @@ export function isInteractive(rootTarget: EventTarget, rootElement: Element) {
   return false;
 }
 
-class Select extends React.Component<
-  // eslint-disable-next-line flowtype/no-weak-types
-  PropsT & {valueComponent: React.ComponentType<any>},
-  SelectStateT,
-> {
+// eslint-disable-next-line flowtype/no-weak-types
+type SelectPropsT = PropsT & {valueComponent: React.ComponentType<any>};
+class Select extends React.Component<SelectPropsT, SelectStateT> {
   static defaultProps = defaultProps;
 
   // anchor is a ref that refers to the outermost element rendered when the dropdown menu is not
@@ -103,6 +102,16 @@ class Select extends React.Component<
   // that sets isOpen to false. That's a faulty logic causing visible problems when
   // closeOnSelect is false. This flag helps to detect that selection was just made.
   justSelected: boolean;
+
+  // the select components can accept an array of options or an object where properties are optgroups
+  // and values are arrays of options. this class property is constructed and updated in a normalized
+  // shape where optgroup titles are stored on the option in the __optgroup field.
+  options: ValueT = [];
+
+  constructor(props: SelectPropsT) {
+    super(props);
+    this.options = normalizeOptions(props.options);
+  }
 
   state = {
     inputValue: '',
@@ -133,6 +142,8 @@ class Select extends React.Component<
         document.addEventListener('click', this.handleClickOutside);
       }
     }
+
+    this.options = normalizeOptions(this.props.options);
   }
 
   componentWillUnmount() {
@@ -760,19 +771,23 @@ class Select extends React.Component<
 
   filterOptions(excludeOptions: ?ValueT) {
     const filterValue = this.state.inputValue;
-    var options = this.props.options || [];
     // apply filter function
     if (this.props.filterOptions) {
-      options = this.props.filterOptions(options, filterValue, excludeOptions, {
-        valueKey: this.props.valueKey,
-        labelKey: this.props.labelKey,
-      });
+      this.options = this.props.filterOptions(
+        this.options,
+        filterValue,
+        excludeOptions,
+        {
+          valueKey: this.props.valueKey,
+          labelKey: this.props.labelKey,
+        },
+      );
     }
     // can user create a new option + there's no exact match already
     if (
       filterValue &&
       this.props.creatable &&
-      options
+      this.options
         .concat(this.props.value)
         .every(
           opt =>
@@ -780,15 +795,15 @@ class Select extends React.Component<
             filterValue.toLowerCase().trim(),
         )
     ) {
-      // $FlowFixMe
-      options.push({
+      // $FlowFixMe - this.options is typed as a read-only array
+      this.options.push({
         id: filterValue,
         [this.props.labelKey]: filterValue,
         [this.props.valueKey]: filterValue,
         isCreatable: true,
       });
     }
-    return options;
+    return this.options;
   }
 
   getSharedProps() {
