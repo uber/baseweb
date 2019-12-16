@@ -21,7 +21,7 @@ export const component = () => (
       flexDirection="column"
       justifyContent="space-between"
     >
-      <Label2>DatePicker</Label2>
+      <Label2>Datepicker</Label2>
       <Datepicker value={DATE} />
       <Datepicker value={DATE} disabled />
       <Datepicker value={DATE} positive />

@@ -16,4 +16,4 @@ export {MODE, STATE_CHANGE_TYPE} from './constants.js';
 export {StyledRoot} from './styled-components.js';
 
 // Types
-export * from './types.js';
+export type * from './types.js';

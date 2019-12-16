@@ -14,4 +14,4 @@ export {
   Text as StyledText,
 } from './styled-components.js';
 export {KIND, VARIANT} from './constants.js';
-export * from './types.js';
+export type * from './types.js';

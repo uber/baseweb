@@ -19,7 +19,7 @@ export default () => {
             marginRight: theme.sizing.scale500,
           })}
         >
-          <FormControl label="DatePicker">
+          <FormControl label="Datepicker">
             <StatefulDatepicker disabled />
           </FormControl>
         </div>
@@ -47,7 +47,7 @@ export default () => {
             marginRight: theme.sizing.scale500,
           })}
         >
-          <FormControl label="DatePicker">
+          <FormControl label="Datepicker">
             <StatefulDatepicker positive />
           </FormControl>
         </div>
@@ -75,7 +75,7 @@ export default () => {
             marginRight: theme.sizing.scale500,
           })}
         >
-          <FormControl label="DatePicker">
+          <FormControl label="Datepicker">
             <StatefulDatepicker error />
           </FormControl>
         </div>
