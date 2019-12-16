@@ -537,31 +537,44 @@ export function Unstable_DataTable(props: DataTablePropsT) {
   const rowHeight = props.rowHeight || 36;
   const gridRef = React.useRef<typeof VariableSizeGrid | null>(null);
   const [widths, setWidths] = React.useState(props.columns.map(() => 0));
-  const handleWidthsChange = React.useCallback(
-    nextWidths => {
-      setWidths(nextWidths);
+  const [resizeDeltas, setResizeDeltas] = React.useState(
+    props.columns.map(() => 0),
+  );
+  const resetAfterColumnIndex = React.useCallback(
+    columnIndex => {
       if (gridRef.current) {
         // $FlowFixMe trigger react-window to layout the elements again
-        gridRef.current.resetAfterColumnIndex(0, true);
+        gridRef.current.resetAfterColumnIndex(columnIndex, true);
       }
     },
     [gridRef.current],
   );
-  // currently it's quite slow between mouseup and repositioned columns
+  const handleWidthsChange = React.useCallback(
+    nextWidths => {
+      setWidths(nextWidths);
+      resetAfterColumnIndex(0);
+    },
+    [setWidths, resetAfterColumnIndex],
+  );
   // need to also handle min/max column widths
   const handleColumnResize = React.useCallback(
     (columnIndex, delta) => {
-      widths[columnIndex] = widths[columnIndex] + delta;
-      handleWidthsChange([...widths]);
+      setResizeDeltas(prev => {
+        prev[columnIndex] = Math.max(prev[columnIndex] + delta, 0);
+        return [...prev];
+      });
+      resetAfterColumnIndex(columnIndex);
     },
-    [widths, handleWidthsChange],
+    [setResizeDeltas, resetAfterColumnIndex],
   );
   const normalizedWidths = React.useMemo(() => {
     const sum = ns => ns.reduce((s, n) => s + n, 0);
+    const resizedWidths = widths.map((w, i) => w + resizeDeltas[i]);
+    let output = resizedWidths;
     if (gridRef.current) {
       // $FlowFixMe
       const domWidth = gridRef.current.props.width;
-      const measuredWidth = sum(widths);
+      const measuredWidth = sum(resizedWidths);
       // $FlowFixMe
       const offsetWidth = gridRef.current._outerRef.offsetWidth;
       // $FlowFixMe
@@ -572,11 +585,12 @@ export function Unstable_DataTable(props: DataTablePropsT) {
       const remainder = domWidth - measuredWidth - scrollbar;
       const padding = remainder / widths.length;
       if (padding > 0) {
-        return widths.map(w => w + padding);
+        output = resizedWidths.map(w => w + padding);
       }
     }
-    return widths;
-  }, [widths]);
+
+    return output;
+  }, [widths, resizeDeltas]);
 
   const [scrollLeft, setScrollLeft] = React.useState(0);
   const [isScrollingX, setIsScrollingX] = React.useState(false);
