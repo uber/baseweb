@@ -19,4 +19,4 @@ export {
   ModalBody,
   ModalFooter,
 } from './styled-components.js';
-export * from './types.js';
+export type * from './types.js';

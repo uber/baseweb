@@ -10,4 +10,4 @@ export {default as NavItem} from './nav-item.js';
 // Styled elements
 export * from './styled-components.js';
 // Types
-export * from './types.js';
+export type * from './types.js';
