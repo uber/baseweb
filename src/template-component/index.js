@@ -13,4 +13,4 @@ export {STATE_CHANGE_TYPE} from './constants.js';
 // Styled elements
 export {Root as StyledRoot} from './styled-components.js';
 // Flow
-export * from './types.js';
+export type * from './types.js';

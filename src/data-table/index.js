@@ -18,4 +18,4 @@ export {default as StringColumn} from './column-string.js';
 
 export {COLUMNS, NUMERICAL_FORMATS, SORT_DIRECTIONS} from './constants.js';
 
-export * from './types.js';
+export type * from './types.js';

@@ -16,4 +16,4 @@ export {
 // Constants
 export {STATE_CHANGE_TYPE} from './constants.js';
 // Flow
-export * from './types.js';
+export type * from './types.js';
