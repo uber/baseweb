@@ -3,6 +3,7 @@ import Layout from '../../../components/layout';
 import {BlogImage, Meta, Caption} from '../../../components/blog';
 import ExampleSnapshotPNG from './examplesnapshot.png';
 import SwipeGIF from './swipe.gif';
+import ComparisonPNG from './comparison.png';
 
 export default Layout;
 
@@ -126,6 +127,12 @@ There are a lot of different pieces needed to get the above system to work. Belo
 ### Docker
 
 One of the first things you will encounter when adding visual tests to your codebase is that the environment of a test run matters. Fonts and colors are not rendered in the same way across all operating systems. The discrepancy is enough that a pixel diffing algorithm will consider images generated in each operating system as incompatible, even if they have rendered the same underlying source code. The result is that if someone runs the test suite on Mac and checks in the generated snapshots, all of the tests will fail when run on Windows or Linux.
+
+<BlogImage
+  src={ComparisonPNG}
+  caption="The same snapshot rendered on both Mac OS and Ubuntu."
+  alt="The same snapshot rendered on both Mac OS and Ubuntu. The text renders quite differently across operating systems."
+/>
 
 The solution for this is to always run the tests in the same environment, which for most projects means running tests in a Docker container. Our CI pipeline was already configured to use Docker & Linux so this became our "environment of truth". Note that it is also possible to set up your CI pipeline to always run tests on a Mac, Windows, or other environment but Linux is probably the most common choice.
 
