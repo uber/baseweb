@@ -11,6 +11,7 @@ import type {IconPropsT} from '../icon/types.js';
 import type {
   ColorTokensT,
   ComponentColorTokensT,
+  SemanticColorTokensT,
   DeprecatedSemanticColorTokensT,
   AnimationT,
   BreakpointsT,
@@ -41,6 +42,7 @@ export type {
 
 export type ColorsT = ColorTokensT &
   ComponentColorTokensT &
+  SemanticColorTokensT &
   DeprecatedSemanticColorTokensT;
 
 export type ThemeT = {|

@@ -259,7 +259,7 @@ const InnerTableElement = React.forwardRef<
                     <p
                       className={css({
                         ...theme.typography.font100,
-                        color: theme.colors.foregroundInv,
+                        color: theme.colors.contentInversePrimary,
                       })}
                     >
                       filter applied to {column.title}
@@ -268,7 +268,7 @@ const InnerTableElement = React.forwardRef<
                       <p
                         className={css({
                           ...theme.typography.font150,
-                          color: theme.colors.foregroundInv,
+                          color: theme.colors.contentInversePrimary,
                         })}
                       >
                         {activeFilter.description}

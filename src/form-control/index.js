@@ -12,4 +12,4 @@ export {
   Caption as StyledCaption,
   ControlContainer as StyledControlContainer,
 } from './styled-components.js';
-export * from './types.js';
+export type * from './types.js';

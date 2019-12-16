@@ -8,4 +8,4 @@ LICENSE file in the root directory of this source tree.
 
 export {default as AspectRatioBox} from './aspect-ratio-box.js';
 export {default as AspectRatioBoxBody} from './aspect-ratio-box-body.js';
-export * from './types.js';
+export type * from './types.js';

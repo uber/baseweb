@@ -18,6 +18,7 @@ export const component = () => (
     initialState={{value: []}}
     range
     highlightedDate={new Date('March 10, 2019')}
+    clearable={true}
     overrides={{
       Day: {
         // eslint-disable-next-line react/display-name

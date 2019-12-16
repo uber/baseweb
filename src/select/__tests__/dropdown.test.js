@@ -54,44 +54,56 @@ describe('SelectDropdown', function() {
     // $FlowFixMe
     const menuProps = StatefulMenu.mock.calls[0][0];
     expect(StatefulMenu).toHaveBeenCalled();
-    expect(menuProps).toMatchObject({
-      onItemSelect: props.onItemSelect,
-      items: props.options,
-      size: props.size,
-    });
-    expect(menuProps.overrides).toMatchSnapshot(
-      'Passes correct overrides to the StatefulMenu',
-    );
-  });
-
-  test('getItemLabel is passed to a menu Option', function() {
-    // $FlowFixMe
-    const menuProps = StatefulMenu.mock.calls[1][0];
-    expect(menuProps.overrides.Option.props.getItemLabel).toEqual(
-      wrapper.instance().getItemLabel,
-    );
-  });
-
-  test('passes correct props to OptionContent', function() {
-    const renderedOption = wrapper.instance().getItemLabel(options[1]);
-    // $FlowFixMe
-    expect(renderedOption.props.$selected).toEqual(false);
-    expect(renderedOption.props).toMatchSnapshot(
-      'OptionContent gets correct props when an option is not selected',
-    );
-  });
-
-  test('passes correct props to OptionContent for a selected item', function() {
-    const renderedOption = wrapper.instance().getItemLabel(options[0]);
-    // $FlowFixMe
-    expect(renderedOption.props.$selected).toEqual(true);
-    expect(renderedOption.props).toMatchSnapshot(
-      'OptionContent gets correct props when an option is selected',
-    );
+    expect(menuProps.items).toMatchInlineSnapshot(`
+Object {
+  "__ungrouped": Array [
+    Object {
+      "id": "1",
+      "label": "label1",
+    },
+    Object {
+      "id": "2",
+      "label": "label2",
+    },
+  ],
+}
+`);
+    expect(menuProps.overrides).toMatchInlineSnapshot(`
+Object {
+  "List": Object {
+    "component": Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "render": [MockFunction],
+    },
+    "props": Object {
+      "$maxHeight": "1000px",
+      "aria-multiselectable": false,
+    },
+    "style": [Function],
+  },
+  "Option": Object {
+    "props": Object {
+      "getItemLabel": [Function],
+      "onMouseDown": [Function],
+      "overrides": Object {
+        "ListItem": Object {
+          "component": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "render": [MockFunction],
+          },
+          "props": Object {
+            "role": "option",
+          },
+          "style": undefined,
+        },
+      },
+    },
+  },
+}
+`);
   });
 
   test('StatefulMenu overrides merge with default overrides', function() {
-    const prevOverrides = {...wrapper.find(StatefulMenu).props().overrides};
     const emptyStateOverrides = {
       EmptyState: {
         style: {
@@ -108,11 +120,35 @@ describe('SelectDropdown', function() {
         },
       },
     });
-    expect(wrapper.find(StatefulMenu).props().overrides.EmptyState).toEqual(
-      emptyStateOverrides.EmptyState,
-    );
-    expect(wrapper.find(StatefulMenu).props().overrides.Option).toEqual(
-      prevOverrides.Option,
-    );
+    expect(wrapper.find(StatefulMenu).props().overrides.EmptyState)
+      .toMatchInlineSnapshot(`
+Object {
+  "style": Object {
+    "backgroundColor": "red",
+  },
+}
+`);
+
+    expect(wrapper.find(StatefulMenu).props().overrides.Option)
+      .toMatchInlineSnapshot(`
+Object {
+  "props": Object {
+    "getItemLabel": [Function],
+    "onMouseDown": [Function],
+    "overrides": Object {
+      "ListItem": Object {
+        "component": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "render": [MockFunction],
+        },
+        "props": Object {
+          "role": "option",
+        },
+        "style": undefined,
+      },
+    },
+  },
+}
+`);
   });
 });

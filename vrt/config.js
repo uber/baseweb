@@ -229,6 +229,20 @@ const config = {
       },
     ],
   },
+  'select-option-group': {
+    interactions: [
+      {
+        name: 'selectGroupDropdownVisible',
+        behavior: async page => {
+          const inputSelector = `[data-baseweb="select"]`;
+          const dropdownSelector = `[role="listbox"]`;
+          await page.waitForSelector(inputSelector);
+          await page.click(inputSelector);
+          await page.waitForSelector(dropdownSelector);
+        },
+      },
+    ],
+  },
   'select-search-single': {
     interactions: [
       {
