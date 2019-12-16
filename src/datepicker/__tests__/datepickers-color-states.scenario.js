@@ -6,18 +6,19 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 
+import {Block} from '../../block/index.js';
 import {Label2} from '../../typography/index.js';
-import {FlexGrid} from '../../flex-grid/index.js';
 import {Datepicker, TimePicker, TimezonePicker} from '../index.js';
 
 const DATE = new Date('2019-07-03T12:00:00Z');
 export const name = 'datepickers-color-states';
 export const component = () => (
-  <FlexGrid flexDirection="row" height="300px">
-    <FlexGrid
+  <Block display="flex" height="300px">
+    <Block
       marginRight="scale700"
+      display="flex"
       flexDirection="column"
       justifyContent="space-between"
     >
@@ -26,10 +27,11 @@ export const component = () => (
       <Datepicker value={DATE} disabled />
       <Datepicker value={DATE} positive />
       <Datepicker value={DATE} error />
-    </FlexGrid>
-    <FlexGrid
+    </Block>
+    <Block
       width="120px"
       marginRight="scale700"
+      display="flex"
       flexDirection="column"
       justifyContent="space-between"
     >
@@ -38,10 +40,11 @@ export const component = () => (
       <TimePicker value={DATE} disabled />
       <TimePicker value={DATE} positive />
       <TimePicker value={DATE} error />
-    </FlexGrid>
-    <FlexGrid
+    </Block>
+    <Block
       width="340px"
       marginRight="scale700"
+      display="flex"
       flexDirection="column"
       justifyContent="space-between"
     >
@@ -50,6 +53,6 @@ export const component = () => (
       <TimezonePicker disabled />
       <TimezonePicker positive />
       <TimezonePicker error />
-    </FlexGrid>
-  </FlexGrid>
+    </Block>
+  </Block>
 );
