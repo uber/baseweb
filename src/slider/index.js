@@ -19,4 +19,4 @@ export {
   TickBar as StyledTickBar,
   ThumbValue as StyledThumbValue,
 } from './styled-components.js';
-export * from './types.js';
+export type * from './types.js';
