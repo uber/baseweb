@@ -5,9 +5,10 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+import * as React from 'react';
 import {styled, hexToRgb} from '../styles/index.js';
-
-import type {SharedPropsT} from './types.js';
+import type {Item, SharedPropsT} from './types.js';
+import type {StyletronComponent} from '../styles/styled.js';
 
 export const StyledRoot = styled<SharedPropsT>('nav', props => {
   const {
@@ -35,7 +36,7 @@ export const StyledNavLink = styled('a', {
   textDecoration: 'none',
 });
 
-export const StyledNavItem = styled<SharedPropsT>('div', props => {
+export const StyledNavItemElement = styled<SharedPropsT>('div', props => {
   const {
     $active,
     $selectable,
@@ -78,6 +79,19 @@ export const StyledNavItem = styled<SharedPropsT>('div', props => {
     },
   }: {});
 });
+
+export const StyledNavItem = ((React.forwardRef<
+  {item: Item, ...$Exact<SharedPropsT>},
+  // eslint-disable-next-line flowtype/no-weak-types
+  any,
+>(
+  ({item, ...restProps}, ref) => (
+    <StyledNavItemElement ref={ref} {...restProps} />
+  ),
+  // eslint-disable-next-line flowtype/no-weak-types
+): any): StyletronComponent<SharedPropsT>);
+StyledNavItem.__STYLETRON__ = StyledNavItemElement.__STYLETRON__;
+StyledNavItem.displayName = 'StyledNavItem';
 
 export const StyledSubNavContainer = styled('ul', {
   listStyleType: 'none',
