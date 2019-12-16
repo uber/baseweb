@@ -23,9 +23,12 @@ export interface Option {
   readonly disabled?: boolean;
   readonly clearableValue?: boolean;
   readonly isCreatable?: boolean;
+  readonly __optgroup?: string;
   [others: string]: any;
 }
 export type Value = ReadonlyArray<Option>;
+export type OptgroupsT = {__ungrouped: Value; [key: string]: Value};
+export type OptionsT = Value | OptgroupsT;
 
 export type ChangeAction = () => any;
 
@@ -114,7 +117,7 @@ export interface SelectProps {
   onOpen?: () => any;
   onClose?: () => any;
   openOnClick?: boolean;
-  options?: Value;
+  options?: OptionsT;
   overrides?: SelectOverrides;
   placeholder?: React.ReactNode;
   required?: boolean;
