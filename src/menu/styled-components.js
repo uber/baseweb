@@ -138,7 +138,7 @@ export const StyledListItemElement = styled<StyledPropsT>('li', props => {
 });
 
 export const StyledListItem = ((React.forwardRef<
-  {item: ItemT} & StyledPropsT,
+  {item: ItemT, ...$Exact<StyledPropsT>},
   // eslint-disable-next-line flowtype/no-weak-types
   any,
 >(

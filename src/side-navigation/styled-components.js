@@ -81,7 +81,7 @@ export const StyledNavItemElement = styled<SharedPropsT>('div', props => {
 });
 
 export const StyledNavItem = ((React.forwardRef<
-  {item: Item} & SharedPropsT,
+  {item: Item, ...$Exact<SharedPropsT>},
   // eslint-disable-next-line flowtype/no-weak-types
   any,
 >(

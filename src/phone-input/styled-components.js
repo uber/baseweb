@@ -86,7 +86,7 @@ export const StyledCountrySelectDropdownListItemElement = withStyle<
 });
 
 export const StyledCountrySelectDropdownListItem = ((React.forwardRef<
-  {item: CountryT} & typeof StyledDropdownListItem,
+  {item: CountryT, ...$Exact<typeof StyledDropdownListItem>},
   // eslint-disable-next-line flowtype/no-weak-types
   any,
 >(
