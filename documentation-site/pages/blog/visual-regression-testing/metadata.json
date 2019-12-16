@@ -7,5 +7,14 @@
   "coverImage": "https://i.imgur.com/X0jy3lO.png",
   "coverImageWidth": 600,
   "coverImageHeight": 383,
-  "keyWords": ["Design System", "Testing", "React", "Jest"]
+  "keyWords": [
+    "Design System",
+    "Testing",
+    "React",
+    "Jest",
+    "Regression Testing",
+    "Snapshot Testing",
+    "Visual Regression Testing",
+    "Visual Snapshot Tetsing"
+  ]
 }
