@@ -69,6 +69,8 @@ export default class Datepicker extends React.Component<
   formatDate(date: ?Date | Array<Date>, formatString: string) {
     if (!date) {
       return '';
+    } else if (Array.isArray(date) && (!date[0] && !date[1])) {
+      return '';
     } else if (Array.isArray(date)) {
       return date
         .map(day => formatDate(day, formatString, this.props.locale))
@@ -118,6 +120,24 @@ export default class Datepicker extends React.Component<
 
   handleInputChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
     const inputValue = event.currentTarget.value;
+    const inputHasNumbers = new RegExp('[1-9]').test(inputValue);
+    const inputHasLetters = new RegExp('[a-z]', 'i').test(inputValue);
+
+    // without letters and numbers, chances are, the user cleared the input
+    // and only the mask is present
+    if (!inputHasNumbers && !inputHasLetters) {
+      if (this.props.range) {
+        this.props.onChange &&
+          this.props.onChange({
+            date: [],
+          });
+      } else {
+        this.props.onChange &&
+          this.props.onChange({
+            date: null,
+          });
+      }
+    }
 
     this.setState({
       inputValue,

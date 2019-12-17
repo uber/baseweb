@@ -50,9 +50,12 @@ const DatepickerConfig: TConfig = {
       propHook: {
         // yikes, onChange can return Date, [Date] or [Date, Date] and we need to handle
         // them all
-        what: `Array.isArray(date) && date.length === 2 ?
-    "[new Date('" + date[0].toISOString() + "'), new Date('" + date[1].toISOString() + "')]"
-  : (Array.isArray(date) ? "[new Date('" + date[0].toISOString() + "')]" : "[new Date('" + date.toISOString() + "')]")`,
+        what: `(Array.isArray(date) && (!date[0] || !date[1])) || !date ?
+          "[new Date()]"
+          :
+            Array.isArray(date) && date.length === 2 ?
+              "[new Date('" + date[0].toISOString() + "'), new Date('" + date[1].toISOString() + "')]"
+            : (Array.isArray(date) ? "[new Date('" + date[0].toISOString() + "')]" : "[new Date('" + date.toISOString() + "')]")`,
         into: 'value',
       },
     },
