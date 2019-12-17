@@ -42,7 +42,7 @@ import {
   getStartOfWeek,
   getEndOfWeek,
 } from './utils/index.js';
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import type {CalendarPropsT, CalendarInternalState} from './types.js';
 import {ORIENTATION} from './constants.js';
 
@@ -461,7 +461,12 @@ export default class Calendar extends React.Component<
       overrides.QuickSelectFormControl,
       FormControl,
     );
-    const [QuickSelect, quickSelectProps] = getOverrides(
+    const [
+      QuickSelect,
+      // $FlowFixMe
+      {overrides: quickSelectOverrides, ...restQuickSelectProps},
+    ] = getOverrides(
+      //
       overrides.QuickSelect,
       Select,
     );
@@ -482,6 +487,7 @@ export default class Calendar extends React.Component<
               {...quickSelectFormControlProps}
             >
               <QuickSelect
+                mountNode={this.state.rootElement}
                 aria-label={locale.datepicker.quickSelectAriaLabel}
                 labelKey="id"
                 onChange={params => {
@@ -533,7 +539,17 @@ export default class Calendar extends React.Component<
                 value={
                   this.state.quickSelectId && [{id: this.state.quickSelectId}]
                 }
-                {...quickSelectProps}
+                overrides={mergeOverrides(
+                  {
+                    Dropdown: {
+                      style: {
+                        textAlign: 'start',
+                      },
+                    },
+                  },
+                  quickSelectOverrides,
+                )}
+                {...restQuickSelectProps}
               />
             </QuickSelectFormControl>
           </QuickSelectContainer>
