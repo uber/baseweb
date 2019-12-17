@@ -53,7 +53,7 @@ export interface CalendarProps {
   autoFocusCalendar?: boolean;
   excludeDates?: Date[];
   quickSelect?: boolean;
-  quickSelectOptions?: Array<{id: string; beginDate: Date}>;
+  quickSelectOptions?: Array<{id: string; beginDate: Date; endDate?: Date}>;
   filterDate?: (day: Date) => boolean;
   highlightedDate?: Date;
   includeDates?: Date[];
