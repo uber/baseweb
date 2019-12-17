@@ -20,7 +20,7 @@ const Image = themedStyled('img', props => ({
   width: props.$full ? '100%' : 'auto',
 }));
 
-export const Caption = themedStyled('figcaption', ({$theme}) => ({
+export const Caption = themedStyled<{}>('figcaption', ({$theme}) => ({
   color: $theme.colors.contentSecondary,
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale500,

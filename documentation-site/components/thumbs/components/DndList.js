@@ -14,8 +14,8 @@ export default function SvgDndList(props) {
         fill={props.colors[0]}
         d="M61 39h110v16H61zM61 70h110v16H61zM61 90h110v16H61z"
       />
-      <path fill="#000" fillOpacity={0.25} d="M75 62h110v16H75z" />
-      <path fill={props.colors[1]} d="M73 60h110v16H73z" />
+      <path fill={props.colors[2]} d="M75 62h110v16H75z" />
+      <path fill={props.colors[0]} d="M73 60h110v16H73z" />
     </svg>
   );
 }
