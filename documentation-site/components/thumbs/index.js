@@ -68,8 +68,11 @@ export {default as SvgTooltip} from './components/Tooltip.js';
 
 // Utility
 export {default as SvgAspectRatioBox} from './components/AspectRatioBox.js';
+export {default as SvgBaseProvider} from './components/BaseProvider.js';
+export {default as SvgBlock} from './components/Block.js';
 export {default as SvgFlexGrid} from './components/FlexGrid.js';
 export {default as SvgLayer} from './components/Layer.js';
-export {default as SvgUnstableA11y} from './components/UnstableA11Y.js';
+export {default as SvgUseStyletron} from './components/UseStyletron.js';
+export {default as SvgStyled} from './components/Styled.js';
 export {default as SvgTokens} from './components/Tokens.js';
-export {default as SvgBlock} from './components/Block.js';
+export {default as SvgUnstableA11y} from './components/UnstableA11Y.js';

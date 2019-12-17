@@ -226,6 +226,10 @@ const COMPONENTS = {
       Component: thumbnails.SvgAspectRatioBox,
     },
     {
+      href: '/components/base-provider',
+      Component: thumbnails.SvgBaseProvider,
+    },
+    {
       href: '/components/block',
       Component: thumbnails.SvgBlock,
     },
@@ -236,6 +240,14 @@ const COMPONENTS = {
     {
       href: '/components/layer',
       Component: thumbnails.SvgLayer,
+    },
+    {
+      href: '/components/use-styletron',
+      Component: thumbnails.SvgUseStyletron,
+    },
+    {
+      href: '/components/styled',
+      Component: thumbnails.SvgStyled,
     },
     {
       href: '/components/tokens',
