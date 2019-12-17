@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 import {VariableSizeGrid} from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 
@@ -245,6 +244,7 @@ function Header(props: HeaderProps) {
   const [css, theme] = useStyletron();
   const [startResizePos, setStartResizePos] = React.useState(0);
   const [endResizePos, setEndResizePos] = React.useState(0);
+  // eslint-disable-next-line flowtype/no-weak-types
   const headerCellRef = React.useRef<any>(null);
 
   const RULER_OFFSET = 2;
@@ -252,8 +252,11 @@ function Header(props: HeaderProps) {
   const isResizing = props.resizeIndex >= 0;
 
   function getPositionX(el) {
-    const rect = el.getBoundingClientRect();
-    return rect.left + window.scrollX;
+    if (__BROWSER__) {
+      const rect = el.getBoundingClientRect();
+      return rect.left + window.scrollX;
+    }
+    return 0;
   }
 
   React.useLayoutEffect(() => {
@@ -291,13 +294,17 @@ function Header(props: HeaderProps) {
       setEndResizePos(0);
     }
 
-    if (isResizingThisColumn) {
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
+    if (__BROWSER__) {
+      if (isResizingThisColumn) {
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
+      }
     }
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
+      if (__BROWSER__) {
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseup', handleMouseUp);
+      }
     };
   }, [
     isResizingThisColumn,
@@ -348,6 +355,7 @@ function Header(props: HeaderProps) {
         })}
       >
         <div
+          role="presentation"
           onMouseDown={event => {
             props.onResizeIndexChange(props.index);
             const x = getPositionX(event.target);
@@ -408,7 +416,7 @@ function Headers(props: {||}) {
         const activeFilter = ctx.filters ? ctx.filters.get(column.title) : null;
 
         return (
-          <React.Fragment>
+          <React.Fragment key={columnIndex}>
             <Tooltip
               key={columnIndex}
               placement={PLACEMENT.bottomLeft}
