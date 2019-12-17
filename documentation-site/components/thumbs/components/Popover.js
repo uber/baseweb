@@ -11,7 +11,7 @@ export default function SvgPopover(props) {
   return (
     <svg width={232} height={145} fill="none" {...props}>
       <path fill={props.colors[1]} d="M80 48h38v16H80z" />
-      <path fill="#000" fillOpacity={0.25} d="M111 58h40v40h-40z" />
+      <path fill={props.colors[2]} d="M111 58h40v40h-40z" />
       <path fill={props.colors[0]} d="M109 56h40v40h-40z" />
     </svg>
   );
