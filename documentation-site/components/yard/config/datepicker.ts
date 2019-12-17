@@ -121,12 +121,6 @@ const DatepickerConfig: TConfig = {
       type: PropTypes.Boolean,
       description: 'Defines if a range of dates can be selected.',
     },
-    clearable: {
-      value: undefined,
-      type: PropTypes.Boolean,
-      description:
-        'Makes the datepicker clearable via a visual icon in the Input component.',
-    },
     positive: inputConfig.props.positive,
     error: inputConfig.props.error,
     size: inputConfig.props.size,
