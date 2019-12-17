@@ -90,15 +90,39 @@ export function Unstable_StatefulContainer(props: StatefulContainerPropsT) {
     handleSelectChange(new Set(selectedRowIds));
   }
 
+  const [columnHighlightIndex, setColumnHighlightIndex] = React.useState(-1);
+  const [rowHighlightIndex, setRowHighlightIndex] = React.useState(-1);
+  const handleRowMouseEnter = React.useCallback(
+    nextIndex => {
+      setColumnHighlightIndex(-1);
+      if (nextIndex !== rowHighlightIndex) {
+        setRowHighlightIndex(nextIndex);
+      }
+    },
+    [rowHighlightIndex],
+  );
+  function handleColumnHeaderMouseEnter(columnIndex) {
+    setColumnHighlightIndex(columnIndex);
+    setRowHighlightIndex(-1);
+  }
+  function handleColumnHeaderMouseLeave() {
+    setColumnHighlightIndex(-1);
+  }
+
   return props.children({
+    columnHighlightIndex,
     filters,
+    onColumnHeaderMouseEnter: handleColumnHeaderMouseEnter,
+    onColumnHeaderMouseLeave: handleColumnHeaderMouseLeave,
     onFilterAdd: handleFilterAdd,
     onFilterRemove: handleFilterRemove,
+    onRowMouseEnter: handleRowMouseEnter,
     onSelectMany: handleSelectMany,
     onSelectNone: handleSelectNone,
     onSelectOne: handleSelectOne,
-    onTextQueryChange: setTextQuery,
     onSort: handleSort,
+    onTextQueryChange: setTextQuery,
+    rowHighlightIndex,
     selectedRowIds,
     sortIndex,
     sortDirection,
