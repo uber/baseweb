@@ -43,11 +43,11 @@ type HeaderContextT = {|
   columns: ColumnT<>[],
   columnHoverIndex: number,
   filters: $PropertyType<DataTablePropsT, 'filters'>,
-  height: number,
   isScrollingX: boolean,
   isSelectable: boolean,
   isSelectedAll: boolean,
   isSelectedIndeterminate: boolean,
+  measuredWidths: number[],
   onMouseEnter: number => void,
   onMouseLeave: () => void,
   onResize: (columnIndex: number, delta: number) => void,
@@ -61,6 +61,7 @@ type HeaderContextT = {|
   scrollLeft: number,
   sortIndex: number,
   sortDirection: SortDirectionsT,
+  tableHeight: number,
   widths: number[],
 |};
 
@@ -195,11 +196,11 @@ const HeaderContext = React.createContext<HeaderContextT>({
   columns: [],
   columnHoverIndex: -1,
   filters: new Map(),
-  height: 0,
   isScrollingX: false,
   isSelectable: false,
   isSelectedAll: false,
   isSelectedIndeterminate: false,
+  measuredWidths: [],
   onMouseEnter: () => {},
   onMouseLeave: () => {},
   onResize: () => {},
@@ -213,14 +214,15 @@ const HeaderContext = React.createContext<HeaderContextT>({
   scrollLeft: 0,
   sortIndex: -1,
   sortDirection: null,
+  tableHeight: 0,
   widths: [],
 });
 HeaderContext.displayName = 'HeaderContext';
 
 type HeaderProps = {|
-  index: number,
+  columnTitle: string,
   hoverIndex: number,
-  height: number,
+  index: number,
   isSortable: boolean,
   isSelectable: boolean,
   isSelectedAll: boolean,
@@ -233,15 +235,19 @@ type HeaderProps = {|
   onSelectNone: () => void,
   onSort: () => void,
   resizeIndex: number,
+  resizeMaxWidth: number,
+  resizeMinWidth: number,
   sortIndex: number,
   sortDirection: SortDirectionsT,
-  columnTitle: string,
+  tableHeight: number,
 |};
 function Header(props: HeaderProps) {
   const [css, theme] = useStyletron();
   const [startResizePos, setStartResizePos] = React.useState(0);
   const [endResizePos, setEndResizePos] = React.useState(0);
+  const headerCellRef = React.useRef<any>(null);
 
+  const RULER_OFFSET = 2;
   const isResizingThisColumn = props.resizeIndex === props.index;
   const isResizing = props.resizeIndex >= 0;
 
@@ -254,14 +260,33 @@ function Header(props: HeaderProps) {
     function handleMouseMove(event: MouseEvent) {
       if (isResizingThisColumn) {
         event.preventDefault();
-        setEndResizePos(event.clientX);
+
+        if (headerCellRef.current) {
+          const left = getPositionX(headerCellRef.current);
+          const width = event.clientX - left - 5;
+          const max = Math.ceil(props.resizeMaxWidth);
+          const min = Math.ceil(props.resizeMinWidth);
+
+          if (min === max) {
+            return;
+          }
+
+          if (width >= min && width <= max) {
+            setEndResizePos(event.clientX - RULER_OFFSET);
+          }
+          if (width < min) {
+            setEndResizePos(left + min - RULER_OFFSET);
+          }
+          if (width > max) {
+            setEndResizePos(max - width - RULER_OFFSET);
+          }
+        }
       }
     }
 
     function handleMouseUp(event: MouseEvent) {
       props.onResize(props.index, endResizePos - startResizePos);
       props.onResizeIndexChange(-1);
-      // setIsResizing(false);
       setStartResizePos(0);
       setEndResizePos(0);
     }
@@ -284,11 +309,13 @@ function Header(props: HeaderProps) {
     props.index,
     endResizePos,
     startResizePos,
+    headerCellRef.current,
   ]);
 
   return (
     <React.Fragment>
       <HeaderCell
+        ref={headerCellRef}
         index={props.index}
         sortable={props.isSortable}
         isHovered={!isResizing && props.hoverIndex === props.index}
@@ -328,6 +355,7 @@ function Header(props: HeaderProps) {
             setEndResizePos(x);
           }}
           className={css({
+            backgroundColor: isResizingThisColumn ? theme.colors.primary : null,
             cursor: 'ew-resize',
             position: 'absolute',
             height: '100%',
@@ -336,14 +364,16 @@ function Header(props: HeaderProps) {
               backgroundColor: theme.colors.primary,
             },
           })}
-          style={{right: `${(2 + endResizePos - startResizePos) * -1}px`}}
+          style={{
+            right: `${(RULER_OFFSET + endResizePos - startResizePos) * -1}px`,
+          }}
         >
           {isResizingThisColumn && (
             <div
               className={css({
                 backgroundColor: theme.colors.primary,
                 position: 'absolute',
-                height: `${props.height}px`,
+                height: `${props.tableHeight}px`,
                 right: '1px',
                 width: '1px',
               })}
@@ -422,9 +452,9 @@ function Headers(props: {||}) {
                 style={{width: ctx.widths[columnIndex]}}
               >
                 <Header
-                  index={columnIndex}
-                  height={ctx.height}
+                  columnTitle={column.title}
                   hoverIndex={ctx.columnHoverIndex}
+                  index={columnIndex}
                   isSortable={column.sortable}
                   isSelectable={ctx.isSelectable}
                   isSelectedAll={ctx.isSelectedAll}
@@ -437,9 +467,11 @@ function Headers(props: {||}) {
                   onSelectNone={ctx.onSelectNone}
                   onSort={() => ctx.onSort(columnIndex)}
                   resizeIndex={resizeIndex}
+                  resizeMinWidth={ctx.measuredWidths[columnIndex]}
+                  resizeMaxWidth={column.maxWidth || Infinity}
                   sortIndex={ctx.sortIndex}
                   sortDirection={ctx.sortDirection}
-                  columnTitle={column.title}
+                  tableHeight={ctx.tableHeight}
                 />
               </div>
             </Tooltip>
@@ -536,7 +568,9 @@ export function Unstable_DataTable(props: DataTablePropsT) {
   const [, theme] = useStyletron();
   const rowHeight = props.rowHeight || 36;
   const gridRef = React.useRef<typeof VariableSizeGrid | null>(null);
-  const [widths, setWidths] = React.useState(props.columns.map(() => 0));
+  const [measuredWidths, setMeasuredWidths] = React.useState(
+    props.columns.map(() => 0),
+  );
   const [resizeDeltas, setResizeDeltas] = React.useState(
     props.columns.map(() => 0),
   );
@@ -551,12 +585,11 @@ export function Unstable_DataTable(props: DataTablePropsT) {
   );
   const handleWidthsChange = React.useCallback(
     nextWidths => {
-      setWidths(nextWidths);
+      setMeasuredWidths(nextWidths);
       resetAfterColumnIndex(0);
     },
-    [setWidths, resetAfterColumnIndex],
+    [setMeasuredWidths, resetAfterColumnIndex],
   );
-  // need to also handle min/max column widths
   const handleColumnResize = React.useCallback(
     (columnIndex, delta) => {
       setResizeDeltas(prev => {
@@ -569,8 +602,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
   );
   const normalizedWidths = React.useMemo(() => {
     const sum = ns => ns.reduce((s, n) => s + n, 0);
-    const resizedWidths = widths.map((w, i) => w + resizeDeltas[i]);
-    let output = resizedWidths;
+    const resizedWidths = measuredWidths.map((w, i) => w + resizeDeltas[i]);
     if (gridRef.current) {
       // $FlowFixMe
       const domWidth = gridRef.current.props.width;
@@ -583,14 +615,14 @@ export function Unstable_DataTable(props: DataTablePropsT) {
       const scrollbar = offsetWidth - clientWidth - 2;
 
       const remainder = domWidth - measuredWidth - scrollbar;
-      const padding = remainder / widths.length;
+      const padding = remainder / measuredWidths.length;
       if (padding > 0) {
-        output = resizedWidths.map(w => w + padding);
+        return resizedWidths.map(w => Math.ceil(w + padding));
       }
     }
 
-    return output;
-  }, [widths, resizeDeltas]);
+    return resizedWidths;
+  }, [measuredWidths, resizeDeltas]);
 
   const [scrollLeft, setScrollLeft] = React.useState(0);
   const [isScrollingX, setIsScrollingX] = React.useState(false);
@@ -796,7 +828,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
       <MeasureColumnWidths
         columns={props.columns}
         rows={props.rows}
-        widths={widths}
+        widths={measuredWidths}
         isSelectable={isSelectable}
         onWidthsChange={handleWidthsChange}
       />
@@ -807,11 +839,11 @@ export function Unstable_DataTable(props: DataTablePropsT) {
               columns: props.columns,
               columnHoverIndex,
               filters: props.filters,
-              height,
               isScrollingX,
               isSelectable,
               isSelectedAll,
               isSelectedIndeterminate,
+              measuredWidths,
               onMouseEnter: handleColumnHeaderMouseEnter,
               onMouseLeave: handleColumnHeaderMouseLeave,
               onResize: handleColumnResize,
@@ -826,6 +858,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
               sortDirection: props.sortDirection || null,
               sortIndex:
                 typeof props.sortIndex === 'number' ? props.sortIndex : -1,
+              tableHeight: height,
               widths: normalizedWidths,
             }}
           >
