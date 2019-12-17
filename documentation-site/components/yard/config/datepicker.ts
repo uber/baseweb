@@ -1,3 +1,9 @@
+/*
+Copyright (c) 2018-2019 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
 import {Datepicker, ORIENTATION} from 'baseui/datepicker';
 import {SIZE} from 'baseui/input';
 import {PropTypes} from 'react-view';
@@ -93,7 +99,7 @@ const DatepickerConfig: TConfig = {
       value: undefined,
       type: PropTypes.Array,
       description:
-        'Array of custom options (Array<{ id: string; beginDate: Date }>) displayed in the quick select. Overrides default options if provided.',
+        'Array of custom options (Array<{ id: string; beginDate: Date; endDate?: Date }>) displayed in the quick select. Overrides default options if provided.',
       hidden: true,
     },
     filterDate: {
