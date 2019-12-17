@@ -39,4 +39,4 @@ export {
 } from './styled-components.js';
 export {default as filterOptions} from './utils/default-filter-options.js';
 export {SIZE, TYPE, STATE_CHANGE_TYPE} from './constants.js';
-export * from './types.js';
+export type * from './types.js';

@@ -7327,6 +7327,11 @@ css-color-keywords@^1.0.0:
   resolved "https://registry.yarnpkg.com/css-color-keywords/-/css-color-keywords-1.0.0.tgz#fea2616dc676b2962686b3af8dbdbe180b244e05"
   integrity sha1-/qJhbcZ2spYmhrOvjb2+GAskTgU=
 
+css-element-queries@^1.0.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/css-element-queries/-/css-element-queries-1.2.2.tgz#e80ce4c523e41079152b1a3a8ec5b7afb0b45c96"
+  integrity sha512-mpzx/1w9qqu5WLrxvX/wRP+ZwU2ZZ0yRiBkQ9jf4QjStaNuiDbejw9KcvfW3me5f4MZRAnAsctGRECrSf1PBYw==
+
 css-in-js-utils@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/css-in-js-utils/-/css-in-js-utils-2.0.1.tgz#3b472b398787291b47cfe3e44fecfdd9e914ba99"
@@ -16319,6 +16324,14 @@ react-codesandboxer@^3.1.1:
   dependencies:
     codesandboxer "^0.7.1"
     react-node-resolver "^1.0.1"
+
+react-compare-image@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/react-compare-image/-/react-compare-image-2.0.3.tgz#652aa8c477fe401720b3e9e8fcd7154c6f341375"
+  integrity sha512-yWrT8yBXtsJ9Yyihxn7J2kR41tpR1OI2hCp2kcLyP6OM2l0bZHnuOW9uCDz62Uwvd/mQFZ9qm/7s5cFt1+Pv7Q==
+  dependencies:
+    css-element-queries "^1.0.2"
+    prop-types "^15.7.2"
 
 react-dev-utils@^9.0.0:
   version "9.1.0"
