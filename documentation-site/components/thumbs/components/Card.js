@@ -11,6 +11,7 @@ export default function SvgCard(props) {
   return (
     <svg width={232} height={145} fill="none" {...props}>
       <path fill={props.colors[0]} d="M81 35h69v74H81z" />
+      <path fill={props.colors[1]} d="M81 35h69v31H81z" />
     </svg>
   );
 }

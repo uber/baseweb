@@ -10,7 +10,7 @@ import React from 'react';
 export default function SvgTooltip(props) {
   return (
     <svg width={232} height={145} fill="none" {...props}>
-      <path fill="#000" fillOpacity={0.25} d="M111 56h51v17h-51z" />
+      <path fill={props.colors[2]} d="M111 56h51v17h-51z" />
       <path fill={props.colors[0]} d="M109 54h51v17h-51z" />
       <path fill={props.colors[1]} d="M71 75h38v16H71z" />
     </svg>
