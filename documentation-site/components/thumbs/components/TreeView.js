@@ -7,15 +7,14 @@ LICENSE file in the root directory of this source tree.
 /* THIS FILE IS AUTO-GENERATED. DO NOT MODIFY. */
 /* eslint-disable flowtype/require-valid-file-annotation */
 import React from 'react';
-export default function SvgToast(props) {
+export default function SvgTreeView(props) {
   return (
     <svg width={232} height={145} fill="none" {...props}>
-      <path fill={props.colors[2]} d="M91 100h123v27H91z" />
-      <path fill={props.colors[0]} d="M89 98h123v27H89z" />
-      <path
-        d="M204.64 106.24l-.88-.88-2.76 2.8-2.76-2.8-.88.88 2.8 2.76-2.8 2.76.88.88 2.76-2.8 2.76 2.8.88-.88-2.8-2.76 2.8-2.76z"
-        fill={props.colors[2]}
-      />
+      <path fill={props.colors[2]} d="M74 34h42v7H74z" />
+      <path fill={props.colors[1]} d="M95 48h42v7H95zM95 62h42v7H95z" />
+      <path fill={props.colors[2]} d="M74 76h42v7H74z" />
+      <path fill={props.colors[1]} d="M95 90h42v7H95z" />
+      <path fill={props.colors[0]} d="M116 104h42v7h-42z" />
     </svg>
   );
 }

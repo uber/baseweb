@@ -24,40 +24,40 @@ const COMPONENTS = {
       Component: thumbnails.SvgButtonGroup,
     },
     {
-      href: '/components/input',
-      Component: thumbnails.SvgInput,
-    },
-    {
       href: '/components/checkbox',
       Component: thumbnails.SvgCheckbox,
-    },
-    {
-      href: '/components/radio',
-      Component: thumbnails.SvgRadio,
-    },
-    {
-      href: '/components/textarea',
-      Component: thumbnails.SvgTextarea,
     },
     {
       href: '/components/form-control',
       Component: thumbnails.SvgFormControl,
     },
     {
-      href: '/components/payment-card',
-      Component: thumbnails.SvgPaymentCard,
+      href: '/components/input',
+      Component: thumbnails.SvgInput,
     },
     {
-      href: '/components/pin-code',
-      Component: thumbnails.SvgPinCode,
+      href: '/components/payment-card',
+      Component: thumbnails.SvgPaymentCard,
     },
     {
       href: '/components/phone-input',
       Component: thumbnails.SvgPhoneInput,
     },
     {
+      href: '/components/pin-code',
+      Component: thumbnails.SvgPinCode,
+    },
+    {
+      href: '/components/radio',
+      Component: thumbnails.SvgRadio,
+    },
+    {
       href: '/components/slider',
       Component: thumbnails.SvgSlider,
+    },
+    {
+      href: '/components/textarea',
+      Component: thumbnails.SvgTextarea,
     },
   ],
   Pickers: [
@@ -132,12 +132,20 @@ const COMPONENTS = {
       Component: thumbnails.SvgDndList,
     },
     {
+      href: '/components/layout-grid',
+      Component: thumbnails.SvgLayoutGrid,
+    },
+    {
       href: '/components/heading',
       Component: thumbnails.SvgHeading,
     },
     {
       href: '/components/icon',
       Component: thumbnails.SvgIcon,
+    },
+    {
+      href: '/components/list',
+      Component: thumbnails.SvgList,
     },
     {
       href: '/components/table',
@@ -149,7 +157,7 @@ const COMPONENTS = {
     },
     {
       href: '/components/table-semantic',
-      Component: thumbnails.SvgTable,
+      Component: thumbnails.SvgTableSemantic,
     },
     {
       href: '/components/unstable-data-table',
@@ -158,6 +166,10 @@ const COMPONENTS = {
     {
       href: '/components/tag',
       Component: thumbnails.SvgTag,
+    },
+    {
+      href: '/components/tree-view',
+      Component: thumbnails.SvgTreeView,
     },
     {
       href: '/components/typography',
@@ -172,6 +184,10 @@ const COMPONENTS = {
     {
       href: '/components/progress-bar',
       Component: thumbnails.SvgProgressBar,
+    },
+    {
+      href: '/components/progress-steps',
+      Component: thumbnails.SvgProgressSteps,
     },
     {
       href: '/components/spinner',
@@ -210,6 +226,14 @@ const COMPONENTS = {
       Component: thumbnails.SvgAspectRatioBox,
     },
     {
+      href: '/components/base-provider',
+      Component: thumbnails.SvgBaseProvider,
+    },
+    {
+      href: '/components/block',
+      Component: thumbnails.SvgBlock,
+    },
+    {
       href: '/components/flex-grid',
       Component: thumbnails.SvgFlexGrid,
     },
@@ -218,16 +242,20 @@ const COMPONENTS = {
       Component: thumbnails.SvgLayer,
     },
     {
-      href: '/components/unstable-a11y',
-      Component: thumbnails.SvgUnstableA11y,
+      href: '/components/use-styletron',
+      Component: thumbnails.SvgUseStyletron,
+    },
+    {
+      href: '/components/styled',
+      Component: thumbnails.SvgStyled,
     },
     {
       href: '/components/tokens',
       Component: thumbnails.SvgTokens,
     },
     {
-      href: '/components/block',
-      Component: thumbnails.SvgBlock,
+      href: '/components/unstable-a11y',
+      Component: thumbnails.SvgUnstableA11y,
     },
   ],
 };

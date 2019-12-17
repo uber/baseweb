@@ -160,6 +160,7 @@
     "raw-loader": "^3.1.0",
     "react": "^16.9.0",
     "react-codesandboxer": "^3.1.1",
+    "react-compare-image": "^2.0.3",
     "react-dom": "^16.9.0",
     "react-icons": "^3.8.0",
     "react-markdown": "^4.0.3",
