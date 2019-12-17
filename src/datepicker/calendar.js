@@ -499,7 +499,10 @@ export default class Calendar extends React.Component<
                     if (this.props.onChange) {
                       if (this.props.range) {
                         this.props.onChange({
-                          date: [params.option.beginDate, NOW],
+                          date: [
+                            params.option.beginDate,
+                            params.option.endDate || NOW,
+                          ],
                         });
                       } else {
                         this.props.onChange({date: params.option.beginDate});
