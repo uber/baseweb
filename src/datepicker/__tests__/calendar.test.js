@@ -16,7 +16,6 @@ import {
   StyledWeek,
   StyledDay,
 } from '../index.js';
-import {Select} from '../../select/index.js';
 
 describe('Component', () => {
   test('basic render', () => {
@@ -39,15 +38,5 @@ describe('Component', () => {
   test('should display quick select if range and quickSelect is true', () => {
     const wrapper = mount(<Calendar range quickSelect />);
     expect(wrapper.find(StyledSelectorContainer).first()).toExist();
-  });
-
-  test('should set quick select mountNode as rootElement', () => {
-    const wrapper = mount(<Calendar range quickSelect />);
-    expect(
-      wrapper
-        .find(Select)
-        .first()
-        .prop('mountNode'),
-    ).toEqual(wrapper.instance().state.rootElement);
   });
 });
