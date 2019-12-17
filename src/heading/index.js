@@ -7,4 +7,4 @@ LICENSE file in the root directory of this source tree.
 // @flow
 export {default as HeadingLevel} from './heading-level.js';
 export {default as Heading} from './heading.js';
-export * from './types.js';
+export type * from './types.js';

@@ -254,6 +254,7 @@ export default class Datepicker extends React.Component<
                   placeholder={placeholder}
                   mask={mask}
                   required={this.props.required}
+                  clearable={this.props.clearable}
                   {...inputProps}
                 />
               </InputWrapper>

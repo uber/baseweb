@@ -22,11 +22,14 @@ export type OptionT = $ReadOnly<{
   disabled?: boolean,
   clearableValue?: boolean,
   isCreatable?: boolean,
+  __optgroup?: string,
   // eslint-disable-next-line flowtype/no-weak-types
   [string]: any,
 }>;
 
 export type ValueT = $ReadOnlyArray<OptionT>;
+export type OptgroupsT = {__ungrouped: ValueT, [string]: ValueT};
+export type OptionsT = ?ValueT | OptgroupsT;
 
 export type OnChangeParamsT = {
   value: ValueT,
@@ -146,7 +149,7 @@ export type PropsT = {
   startOpen: boolean,
   /** Options to be displayed in the dropdown. If an option has a
    * disabled prop value set to true it will be rendered as a disabled option in the dropdown. */
-  options: ?ValueT,
+  options: OptionsT,
   overrides: OverridesT,
   /** Sets the placeholder. */
   placeholder?: React.Node,

@@ -10,7 +10,7 @@ import React from 'react';
 export default function SvgBlock(props) {
   return (
     <svg width={232} height={145} fill="none" {...props}>
-      <path fill="#000" fillOpacity={0.25} d="M92 64h50v39H92z" />
+      <path fill={props.colors[2]} d="M92 64h50v39H92z" />
       <path
         fill={props.colors[0]}
         stroke={props.colors[1]}
