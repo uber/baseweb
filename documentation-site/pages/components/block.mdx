@@ -10,6 +10,9 @@ import {Notification, KIND} from 'baseui/notification';
 import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import * as BlockExports from 'baseui/block';
 
 import Basic from 'examples/block/basic.js';
 import Responsive from 'examples/block/responsive.js';
@@ -86,3 +89,5 @@ margin-top: 10px;
   heading="Block API"
   api={require('!!extract-react-types-loader!../../../src/block/block.js')}
 />
+
+<Exports component={BlockExports} title="Block exports" path="baseui/block" />

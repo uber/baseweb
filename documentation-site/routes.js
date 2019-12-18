@@ -152,7 +152,7 @@ const routes = [
             itemId: '/components/breadcrumbs',
           },
           {
-            title: 'Header navigation',
+            title: 'Header Navigation',
             itemId: '/components/header-navigation',
           },
           {
@@ -164,7 +164,7 @@ const routes = [
             itemId: '/components/pagination',
           },
           {
-            title: 'Side navigation',
+            title: 'Side Navigation',
             itemId: '/components/side-nav',
           },
           {
@@ -242,11 +242,11 @@ const routes = [
             itemId: '/components/notification',
           },
           {
-            title: 'ProgressBar',
+            title: 'Progress Bar',
             itemId: '/components/progress-bar',
           },
           {
-            title: 'Progress steps',
+            title: 'Progress Steps',
             itemId: '/components/progress-steps',
           },
           {

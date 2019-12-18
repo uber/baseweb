@@ -9,7 +9,8 @@ import Example from '../../components/example';
 import Layout from '../../components/layout';
 import BasicExample from 'examples/tokens/basic.js';
 import Exports from '../../components/exports';
-import {colors} from 'baseui/tokens';
+
+import * as TokensExports from 'baseui/tokens';
 
 export default Layout;
 
@@ -126,9 +127,17 @@ For more on `baseui` theming check out [the documentation](/guides/theming).
 ## Primitive Color Tokens
 
 <ColorPreviewContainer>
-  {Object.entries(colors).map(([name, value]) => {
+  {Object.entries(TokensExports.colors).map(([name, value]) => {
     return <ColorPreview name={name} value={value} displayValue={value} />;
   })}
 </ColorPreviewContainer>
 
 Not every color listed here is used in a `baseui` component. This is simply the complete set of official Base Web colors. Ideally these are the only colors you would need to use in a Base Web project.
+
+## API
+
+<Exports
+  component={TokensExports}
+  title="Tokens exports"
+  path="baseui/tokens"
+/>
