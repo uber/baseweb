@@ -37,7 +37,10 @@ export const HeaderImage = styled<{}>('img', ({$theme: {borders}}) => {
     borderTopLeftRadius: borders.surfaceBorderRadius,
     borderTopRightRadius: borders.surfaceBorderRadius,
     objectFit: 'contain',
-    maxWidth: '100%',
+    maxWidth: 'calc(100% + 4px)',
+    marginTop: '-2px',
+    marginRight: '-2px',
+    marginLeft: '-2px',
   };
 });
 
