@@ -43,20 +43,28 @@ const config = {
       {
         name: 'controlledRowHighlightIndex',
         behavior: async page => {
-          await Promise.all(Array.from({length: 4}).map(() => page.type('j')));
+          await Promise.all(
+            Array.from({length: 4}).map(() => page.keyboard.press('j')),
+          );
         },
       },
       {
         name: 'rowHighlightScrollsTableDown',
         behavior: async page => {
-          await Promise.all(Array.from({length: 20}).map(() => page.type('j')));
+          await Promise.all(
+            Array.from({length: 20}).map(() => page.keyboard.press('j')),
+          );
         },
       },
       {
         name: 'rowHighlightScrollsTableUp',
         behavior: async page => {
-          await Promise.all(Array.from({length: 20}).map(() => page.type('j')));
-          await Promise.all(Array.from({length: 15}).map(() => page.type('k')));
+          await Promise.all(
+            Array.from({length: 20}).map(() => page.keyboard.press('j')),
+          );
+          await Promise.all(
+            Array.from({length: 15}).map(() => page.keyboard.press('k')),
+          );
         },
       },
     ],
