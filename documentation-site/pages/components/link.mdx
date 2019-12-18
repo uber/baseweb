@@ -7,11 +7,22 @@ LICENSE file in the root directory of this source tree.
 
 import Yard from '../../components/yard/index';
 import linkConfig from '../../components/yard/config/link';
-
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import * as LinkExports from 'baseui/link';
 
 export default Layout;
 
 # Link
 
 <Yard componentName="StyledLink" placeholderHeight={20} {...linkConfig} />
+
+## API
+
+<Exports
+  component={LinkExports}
+  title="Link exports"
+  path="baseui/link"
+  cheatsheet={false}
+/>

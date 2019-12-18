@@ -7,7 +7,10 @@ LICENSE file in the root directory of this source tree.
 
 import Example from '../../components/example';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 import UnstableWarning from '../../components/unstable-warning';
+
+import * as TableSemanticExports from 'baseui/table-semantic';
 
 import Basic from 'examples/table-semantic/basic.js';
 import Scroll from 'examples/table-semantic/scroll.js';
@@ -67,3 +70,11 @@ you should use the virtualized scrolling features of the div-based
 <Example title="Table custom with merged cells" path="table-semantic/span.js">
   <Span />
 </Example>
+
+## API
+
+<Exports
+  component={TableSemanticExports}
+  title="Table Semantic exports"
+  path="baseui/table-semantic"
+/>
