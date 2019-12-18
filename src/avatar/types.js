@@ -29,6 +29,8 @@ export type StateT = {|
 |};
 
 export type PropsT = {|
+  /** Bypasses initial generation from provided name with this value. */
+  initials?: string,
   /** Defines an alternative text description of the image. */
   name: string,
   overrides?: OverridesT<StylePropsT>,

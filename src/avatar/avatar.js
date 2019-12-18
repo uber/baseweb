@@ -67,7 +67,9 @@ export default class Avatar extends React.Component<PropsT, StateT> {
         {...rootProps}
       >
         {noImageAvailable ? (
-          <Initials {...initialsProps}>{getInitials(name)}</Initials>
+          <Initials {...initialsProps}>
+            {this.props.initials || getInitials(name)}
+          </Initials>
         ) : (
           <Avatar
             alt={name}
