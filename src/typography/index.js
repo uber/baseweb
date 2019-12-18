@@ -15,7 +15,7 @@ export const DisplayLarge = React.forwardRef<BlockPropsT, HTMLElement>(
     <Block
       data-baseweb="typo-displaylarge"
       {...props}
-      font={props.font || 'font1450'}
+      font={props.font || 'DisplayLarge'}
       color={props.color || 'contentPrimary'}
       ref={ref}
     />
@@ -28,7 +28,7 @@ export const DisplayMedium = React.forwardRef<BlockPropsT, HTMLElement>(
     <Block
       data-baseweb="typo-displaymedium"
       {...props}
-      font={props.font || 'font1350'}
+      font={props.font || 'DisplayMedium'}
       color={props.color || 'contentPrimary'}
       ref={ref}
     />
@@ -41,7 +41,7 @@ export const DisplaySmall = React.forwardRef<BlockPropsT, HTMLElement>(
     <Block
       data-baseweb="typo-displaysmall"
       {...props}
-      font={props.font || 'font1250'}
+      font={props.font || 'DisplaySmall'}
       color={props.color || 'contentPrimary'}
       ref={ref}
     />
@@ -54,7 +54,7 @@ export const DisplayXSmall = React.forwardRef<BlockPropsT, HTMLElement>(
     <Block
       data-baseweb="typo-displayxsmall"
       {...props}
-      font={props.font || 'font1150'}
+      font={props.font || 'DisplayXSmall'}
       color={props.color || 'contentPrimary'}
       ref={ref}
     />
@@ -68,7 +68,7 @@ export const HeadingXXLarge = React.forwardRef<BlockPropsT, HTMLElement>(
       data-baseweb="typo-headingxxlarge"
       as={props.as || 'h1'}
       {...props}
-      font={props.font || 'font1050'}
+      font={props.font || 'HeadingXXLarge'}
       color={props.color || 'contentPrimary'}
       ref={ref}
     />
@@ -82,7 +82,7 @@ export const HeadingXLarge = React.forwardRef<BlockPropsT, HTMLElement>(
       data-baseweb="typo-headingxlarge"
       as={props.as || 'h2'}
       {...props}
-      font={props.font || 'font950'}
+      font={props.font || 'HeadingXLarge'}
       color={props.color || 'contentPrimary'}
       ref={ref}
     />
@@ -96,7 +96,7 @@ export const HeadingLarge = React.forwardRef<BlockPropsT, HTMLElement>(
       data-baseweb="typo-headinglarge"
       as={props.as || 'h3'}
       {...props}
-      font={props.font || 'font850'}
+      font={props.font || 'HeadingLarge'}
       color={props.color || 'contentPrimary'}
       ref={ref}
     />
@@ -110,7 +110,7 @@ export const HeadingMedium = React.forwardRef<BlockPropsT, HTMLElement>(
       data-baseweb="typo-headingmedium"
       as={props.as || 'h4'}
       {...props}
-      font={props.font || 'font750'}
+      font={props.font || 'HeadingMedium'}
       color={props.color || 'contentPrimary'}
       ref={ref}
     />
@@ -124,7 +124,7 @@ export const HeadingSmall = React.forwardRef<BlockPropsT, HTMLElement>(
       data-baseweb="typo-headingsmall"
       as={props.as || 'h5'}
       {...props}
-      font={props.font || 'font650'}
+      font={props.font || 'HeadingSmall'}
       color={props.color || 'contentPrimary'}
       ref={ref}
     />
@@ -138,7 +138,7 @@ export const HeadingXSmall = React.forwardRef<BlockPropsT, HTMLElement>(
       data-baseweb="typo-headingxsmall"
       as={props.as || 'h6'}
       {...props}
-      font={props.font || 'font550'}
+      font={props.font || 'HeadingXSmall'}
       color={props.color || 'contentPrimary'}
       ref={ref}
     />
@@ -151,7 +151,7 @@ export const LabelLarge = React.forwardRef<BlockPropsT, HTMLElement>(
     <Block
       data-baseweb="typo-labellarge"
       {...props}
-      font={props.font || 'font450'}
+      font={props.font || 'LabelLarge'}
       color={props.color || 'contentPrimary'}
       ref={ref}
     />
@@ -164,7 +164,7 @@ export const LabelMedium = React.forwardRef<BlockPropsT, HTMLElement>(
     <Block
       data-baseweb="typo-labelmedium"
       {...props}
-      font={props.font || 'font350'}
+      font={props.font || 'LabelMedium'}
       color={props.color || 'contentPrimary'}
       ref={ref}
     />
@@ -177,7 +177,7 @@ export const LabelSmall = React.forwardRef<BlockPropsT, HTMLElement>(
     <Block
       data-baseweb="typo-labelsmall"
       {...props}
-      font={props.font || 'font250'}
+      font={props.font || 'LabelSmall'}
       color={props.color || 'contentPrimary'}
       ref={ref}
     />
@@ -190,7 +190,7 @@ export const LabelXSmall = React.forwardRef<BlockPropsT, HTMLElement>(
     <Block
       data-baseweb="typo-labelxsmall"
       {...props}
-      font={props.font || 'font150'}
+      font={props.font || 'LabelXSmall'}
       color={props.color || 'contentPrimary'}
       ref={ref}
     />
@@ -204,7 +204,7 @@ export const ParagraphLarge = React.forwardRef<BlockPropsT, HTMLElement>(
       data-baseweb="typo-paragraphlarge"
       as={props.as || 'p'}
       {...props}
-      font={props.font || 'font400'}
+      font={props.font || 'ParagraphLarge'}
       color={props.color || 'contentPrimary'}
       ref={ref}
     />
@@ -218,7 +218,7 @@ export const ParagraphMedium = React.forwardRef<BlockPropsT, HTMLElement>(
       data-baseweb="typo-paragraphmedium"
       as={props.as || 'p'}
       {...props}
-      font={props.font || 'font300'}
+      font={props.font || 'ParagraphMedium'}
       color={props.color || 'contentPrimary'}
       ref={ref}
     />
@@ -232,7 +232,7 @@ export const ParagraphSmall = React.forwardRef<BlockPropsT, HTMLElement>(
       data-baseweb="typo-paragraphsmall"
       as={props.as || 'p'}
       {...props}
-      font={props.font || 'font200'}
+      font={props.font || 'ParagraphSmall'}
       color={props.color || 'contentPrimary'}
       ref={ref}
     />
@@ -246,7 +246,7 @@ export const ParagraphXSmall = React.forwardRef<BlockPropsT, HTMLElement>(
       data-baseweb="typo-paragraphxsmall"
       as={props.as || 'p'}
       {...props}
-      font={props.font || 'font100'}
+      font={props.font || 'ParagraphXSmall'}
       color={props.color || 'contentPrimary'}
       ref={ref}
     />
