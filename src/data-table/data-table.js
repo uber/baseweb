@@ -443,31 +443,6 @@ export function Unstable_DataTable(props: DataTablePropsT) {
     [scrollLeft, setScrollLeft, setRecentlyScrolledX],
   );
 
-  const handleRowMouseEnter = React.useCallback(
-    nextIndex => {
-      if (props.onRowMouseEnter && nextIndex !== props.rowHighlightIndex) {
-        props.onRowMouseEnter(nextIndex);
-      }
-    },
-    [props.rowHighlightIndex, props.onRowMouseEnter],
-  );
-  const handleColumnHeaderMouseEnter = React.useCallback(
-    nextIndex => {
-      if (props.onColumnHeaderMouseEnter) {
-        props.onColumnHeaderMouseEnter(nextIndex);
-      }
-    },
-    [props.onColumnHeaderMouseEnter],
-  );
-  const handleColumnHeaderMouseLeave = React.useCallback(() => {
-    if (props.onColumnHeaderMouseLeave) {
-      // $FlowFixMe - unable to get the state type from react-window
-      if (gridRef.current && !gridRef.current.state.isScrolling) {
-        props.onColumnHeaderMouseLeave();
-      }
-    }
-  }, [props.onColumnHeaderMouseLeave]);
-
   const sortedIndices = React.useMemo(() => {
     let toSort = props.rows.map((r, i) => [r, i]);
     const index = props.sortIndex;
@@ -595,7 +570,45 @@ export function Unstable_DataTable(props: DataTablePropsT) {
     [props.onSort],
   );
 
-  const {columnHighlightIndex = -1, rowHighlightIndex = -1} = props;
+  const [columnHighlightIndex, setColumnHighlightIndex] = React.useState(-1);
+  const [rowHighlightIndex, setRowHighlightIndex] = React.useState(-1);
+
+  function handleRowHighlightIndexChange(nextIndex) {
+    setRowHighlightIndex(nextIndex);
+    if (gridRef.current) {
+      if (nextIndex >= 0) {
+        // $FlowFixMe - unable to get react-window types
+        gridRef.current.scrollToItem({rowIndex: nextIndex});
+      }
+      if (props.onRowHighlightChange) {
+        props.onRowHighlightChange(nextIndex, rows[nextIndex - 1]);
+      }
+    }
+  }
+
+  const handleRowMouseEnter = React.useCallback(
+    nextIndex => {
+      setColumnHighlightIndex(-1);
+      if (nextIndex !== rowHighlightIndex) {
+        handleRowHighlightIndexChange(nextIndex);
+      }
+    },
+    [rowHighlightIndex],
+  );
+  function handleColumnHeaderMouseEnter(columnIndex) {
+    setColumnHighlightIndex(columnIndex);
+    handleRowHighlightIndexChange(-1);
+  }
+  function handleColumnHeaderMouseLeave() {
+    setColumnHighlightIndex(-1);
+  }
+
+  React.useEffect(() => {
+    if (typeof props.rowHighlightIndex === 'number') {
+      handleRowHighlightIndexChange(props.rowHighlightIndex);
+    }
+  }, [props.rowHighlightIndex]);
+
   const itemData = React.useMemo(() => {
     return {
       columnHighlightIndex,
@@ -610,10 +623,10 @@ export function Unstable_DataTable(props: DataTablePropsT) {
     };
   }, [
     handleRowMouseEnter,
-    props.columnHighlightIndex,
+    columnHighlightIndex,
     isRowSelected,
     isSelectable,
-    props.rowHighlightIndex,
+    rowHighlightIndex,
     rows,
     props.columns,
     handleSelectOne,

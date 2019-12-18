@@ -37,6 +37,30 @@ const config = {
       },
     ],
   },
+  //
+  'data-table-extracted-highlight': {
+    interactions: [
+      {
+        name: 'controlledRowHighlightIndex',
+        behavior: async page => {
+          await Promise.all(Array.from({length: 4}).map(() => page.type('j')));
+        },
+      },
+      {
+        name: 'rowHighlightScrollsTableDown',
+        behavior: async page => {
+          await Promise.all(Array.from({length: 20}).map(() => page.type('j')));
+        },
+      },
+      {
+        name: 'rowHighlightScrollsTableUp',
+        behavior: async page => {
+          await Promise.all(Array.from({length: 20}).map(() => page.type('j')));
+          await Promise.all(Array.from({length: 15}).map(() => page.type('k')));
+        },
+      },
+    ],
+  },
   datepicker: {
     interactions: [
       {
