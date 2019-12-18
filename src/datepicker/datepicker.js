@@ -214,7 +214,7 @@ export default class Datepicker extends React.Component<
   }
 
   render() {
-    const {overrides = {}, formatString} = this.props;
+    const {overrides = {}} = this.props;
     const [InputComponent, inputProps] = getOverrides(
       overrides.Input,
       MaskedInput,
