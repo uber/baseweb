@@ -58,6 +58,11 @@ export const Thumbnail = styled<{}>('img', ({$theme}) => ({
   height: $theme.sizing.scale2400,
   width: $theme.sizing.scale2400,
   objectFit: 'cover',
+  borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
+  borderTopRightRadius: $theme.borders.surfaceBorderRadius,
+  borderBottomLeftRadius: $theme.borders.surfaceBorderRadius,
+  borderBottomRightRadius: $theme.borders.surfaceBorderRadius,
+  ...$theme.borders.border200,
   margin: `0 0 ${$theme.sizing.scale500} ${$theme.sizing.scale500}`,
 }));
 
