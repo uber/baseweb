@@ -30,10 +30,7 @@ export const HeaderImage = styled<{}>('img', ({$theme}) => ({
   borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
   borderTopRightRadius: $theme.borders.surfaceBorderRadius,
   objectFit: 'contain',
-  maxWidth: 'calc(100% + 4px)',
-  marginTop: '-2px',
-  marginRight: '-2px',
-  marginLeft: '-2px',
+  maxWidth: '100%',
 }));
 
 export const Root = styled<{}>('div', ({$theme}) => ({
