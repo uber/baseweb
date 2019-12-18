@@ -8,8 +8,11 @@ LICENSE file in the root directory of this source tree.
 import {Unstable_Table as Table} from 'baseui/table-semantic';
 import API from '../../components/api';
 import Example from '../../components/example';
+import Exports from '../../components/exports';
 import Layout from '../../components/layout';
 import UnstableWarning from '../../components/unstable-warning';
+
+import * as LayoutGridExports from 'baseui/layout-grid';
 
 import BasicExample from 'examples/layout-grid/basic.js';
 import SpanExample from 'examples/layout-grid/span.js';
@@ -177,4 +180,10 @@ If you want to customize the breakpoints of the grid, you can do so via the `bre
 <API
   heading="Grid and Cell"
   api={require('!!extract-react-types-loader!../../../src/layout-grid/styled-components.js')}
+/>
+
+<Exports
+  component={LayoutGridExports}
+  title="Layout Grid exports"
+  path="baseui/layout-grid"
 />

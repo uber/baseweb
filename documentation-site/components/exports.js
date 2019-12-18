@@ -18,7 +18,7 @@ import {
 import Code from './code';
 
 const Exports = props => {
-  const {component, path, title} = props;
+  const {component, path, title, cheatsheet = true} = props;
   const componentName = path.split('/')[1];
 
   const exportNames = Object.keys(component);
@@ -34,9 +34,13 @@ const Exports = props => {
       <UnorderedList>
         {exportNames.map(name => (
           <ListItem key={name}>
-            <DocLink href={`/cheat-sheet#${componentName.toLowerCase()}`}>
-              {name}
-            </DocLink>
+            {cheatsheet ? (
+              <DocLink href={`/cheat-sheet#${componentName.toLowerCase()}`}>
+                {name}
+              </DocLink>
+            ) : (
+              name
+            )}
           </ListItem>
         ))}
       </UnorderedList>
