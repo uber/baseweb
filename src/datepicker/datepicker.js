@@ -118,14 +118,32 @@ export default class Datepicker extends React.Component<
     }
   };
 
+  getMask = () => {
+    const {formatString} = this.props;
+    let mask = '';
+    if (this.props.mask !== null) {
+      mask =
+        // using the mask provided through the top-level API
+        this.props.mask ||
+        // to make sure it's not a breaking change, we try calculating the input mask
+        // from the formatString, if used by the developer
+
+        // 1. mask generation from the formatstring if it's a range input
+        (formatString && this.props.range
+          ? `${formatString} – ${formatString}`.replace(/[a-z]/gi, '9')
+          : null) ||
+        // 2. mask generation from the formatstring if it is NOT a range input
+        (formatString ? formatString.replace(/[a-z]/gi, '9') : null) ||
+        // falling back to the default masks
+        (this.props.range ? '9999/99/99 – 9999/99/99' : '9999/99/99');
+    }
+    return mask;
+  };
+
   handleInputChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
     const inputValue = event.currentTarget.value;
-    const inputHasNumbers = new RegExp('[1-9]').test(inputValue);
-    const inputHasLetters = new RegExp('[a-z]', 'i').test(inputValue);
 
-    // without letters and numbers, chances are, the user cleared the input
-    // and only the mask is present
-    if (!inputHasNumbers && !inputHasLetters) {
+    if (inputValue === this.getMask().replace(/9/g, ' ')) {
       if (this.props.range) {
         this.props.onChange &&
           this.props.onChange({
@@ -210,24 +228,6 @@ export default class Datepicker extends React.Component<
       StyledInputWrapper,
     );
 
-    let mask = null;
-    if (this.props.mask !== null) {
-      mask =
-        // using the mask provided through the top-level API
-        this.props.mask ||
-        // to make sure it's not a breaking change, we try calculating the input mask
-        // from the formatString, if used by the developer
-
-        // 1. mask generation from the formatstring if it's a range input
-        (formatString && this.props.range
-          ? `${formatString} – ${formatString}`.replace(/[a-z]/gi, '9')
-          : null) ||
-        // 2. mask generation from the formatstring if it is NOT a range input
-        (formatString ? formatString.replace(/[a-z]/gi, '9') : null) ||
-        // falling back to the default masks
-        (this.props.range ? '9999/99/99 – 9999/99/99' : '9999/99/99');
-    }
-
     const placeholder =
       this.props.placeholder ||
       (this.props.range ? 'YYYY/MM/DD – YYYY/MM/DD' : 'YYYY/MM/DD');
@@ -272,7 +272,7 @@ export default class Datepicker extends React.Component<
                   onKeyDown={this.handleKeyDown}
                   onChange={this.handleInputChange}
                   placeholder={placeholder}
-                  mask={mask}
+                  mask={this.getMask()}
                   required={this.props.required}
                   clearable={this.props.clearable}
                   {...inputProps}
