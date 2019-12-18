@@ -32,7 +32,7 @@ const StyledFooter = themedStyled<{}>(
     ...typography.font300,
     position: 'sticky',
     bottom: 0,
-    color: colors.foreground,
+    color: colors.contentPrimary,
     backgroundColor: name.startsWith('light-theme')
       ? colors.mono200
       : colors.headerNavigationFill,
@@ -46,7 +46,7 @@ const StyledFooter = themedStyled<{}>(
 
 const StyledLink = themedStyled('a', ({$theme}) => ({
   textDecoration: 'none',
-  color: $theme.colors.foreground,
+  color: $theme.colors.contentPrimary,
   display: 'inline-block',
   cursor: 'pointer',
   marginLeft: '32px',

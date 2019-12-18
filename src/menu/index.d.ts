@@ -35,6 +35,14 @@ export interface MenuProps {
   };
 }
 
+export type ItemT = any;
+export type ArrayItemsT = ItemT[];
+export type GroupedItemsT = {
+  __ungrouped: ArrayItemsT;
+  [key: string]: ArrayItemsT;
+};
+export type ItemsT = ArrayItemsT | GroupedItemsT;
+
 export type StatefulMenuProps = StatefulContainerProps & MenuProps;
 export class StatefulMenu extends React.PureComponent<StatefulMenuProps> {}
 
@@ -64,12 +72,12 @@ export type GetRequiredItemProps = (
 ) => RenderItemProps;
 
 export type RenderProps = StatefulContainerState & {
-  items: any[];
+  items: ItemsT;
   getRequiredItemProps: GetRequiredItemProps;
 };
 
 export interface StatefulContainerProps {
-  items: any[];
+  items: ItemsT;
   initialState?: StatefulContainerState;
   stateReducer?: StateReducer;
   getRequiredItemProps?: GetRequiredItemProps;
@@ -132,7 +140,7 @@ export interface SharedStatelessProps {
   activedescendantId?: string;
   getRequiredItemProps?: (item: any, index: number) => RenderItemProps;
   highlightedIndex?: number;
-  items: any[];
+  items: ItemsT;
   noResultsMsg?: React.ReactNode;
   onBlur?: (event: React.FocusEvent<HTMLElement>) => any;
   onFocus?: (event: React.FocusEvent<HTMLElement>) => any;

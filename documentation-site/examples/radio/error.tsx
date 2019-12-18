@@ -7,7 +7,7 @@ export default () => {
     <RadioGroup
       isError
       name="radio group"
-      onChange={e => setValue((e.target as HTMLInputElement).value)}
+      onChange={e => setValue(e.target.value)}
       value={value}
     >
       <Radio value="1">First</Radio>

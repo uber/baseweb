@@ -5,6 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+import * as React from 'react';
 import {SIZE} from './constants.js';
 import {styled, withStyle} from '../styles/index.js';
 import {StyledList} from '../menu/index.js';
@@ -13,7 +14,8 @@ import {
   StyledRoot as SelectStyledRoot,
 } from '../select/index.js';
 import defaultProps from '../select/default-props.js';
-import type {SizeT} from './types.js';
+import type {CountryT, SizeT} from './types.js';
+import type {StyletronComponent} from '../styles/styled.js';
 
 type SizeStyleProps = {
   $size?: SizeT,
@@ -71,7 +73,7 @@ export const StyledCountrySelectDropdownContainer = withStyle<
   };
 });
 
-export const StyledCountrySelectDropdownListItem = withStyle<
+export const StyledCountrySelectDropdownListItemElement = withStyle<
   typeof StyledDropdownListItem,
 >(StyledDropdownListItem, {
   paddingTop: 0,
@@ -82,6 +84,21 @@ export const StyledCountrySelectDropdownListItem = withStyle<
   alignItems: 'center',
   height: '42px',
 });
+
+export const StyledCountrySelectDropdownListItem = ((React.forwardRef<
+  {item: CountryT, ...$Exact<typeof StyledDropdownListItem>},
+  // eslint-disable-next-line flowtype/no-weak-types
+  any,
+>(
+  ({item, ...restProps}, ref) => (
+    <StyledCountrySelectDropdownListItemElement ref={ref} {...restProps} />
+  ),
+  // eslint-disable-next-line flowtype/no-weak-types
+): any): StyletronComponent<typeof StyledDropdownListItem>);
+StyledCountrySelectDropdownListItem.__STYLETRON__ =
+  StyledCountrySelectDropdownListItemElement.__STYLETRON__;
+StyledCountrySelectDropdownListItem.displayName =
+  'StyledCountrySelectDropdownListItem';
 
 export const StyledCountrySelectDropdownFlagColumn = styled<{}>(
   'div',

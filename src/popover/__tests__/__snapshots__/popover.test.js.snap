@@ -163,7 +163,7 @@ exports[`Popover component as anchor 1`] = `
             styled-component="true"
             test-style={
               Object {
-                "backgroundColor": "$theme.colors.background",
+                "backgroundColor": "$theme.colors.backgroundPrimary",
                 "borderBottomLeftRadius": "$theme.borders.popoverBorderRadius",
                 "borderBottomRightRadius": "$theme.borders.popoverBorderRadius",
                 "borderTopLeftRadius": "$theme.borders.popoverBorderRadius",
@@ -222,12 +222,12 @@ exports[`Popover component as anchor 1`] = `
                   styled-component="true"
                   test-style={
                     Object {
-                      "backgroundColor": "$theme.colors.backgroundAlt",
+                      "backgroundColor": "$theme.colors.backgroundPrimary",
                       "borderBottomLeftRadius": "$theme.borders.popoverBorderRadius",
                       "borderBottomRightRadius": "$theme.borders.popoverBorderRadius",
                       "borderTopLeftRadius": "$theme.borders.popoverBorderRadius",
                       "borderTopRightRadius": "$theme.borders.popoverBorderRadius",
-                      "color": "$theme.colors.foreground",
+                      "color": "$theme.colors.contentPrimary",
                       "position": "relative",
                     }
                   }

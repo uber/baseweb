@@ -17,4 +17,4 @@ export {
   LoadingSpinnerContainer as StyledLoadingSpinnerContainer,
 } from './styled-components.js';
 // Types
-export * from './types.js';
+export type * from './types.js';

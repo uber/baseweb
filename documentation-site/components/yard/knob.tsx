@@ -43,7 +43,7 @@ const Label: React.FC<{
     <label
       className={css({
         ...theme.typography.font250,
-        color: theme.colors.foreground,
+        color: theme.colors.contentPrimary,
       })}
     >
       <StatefulTooltip accessibilityType="tooltip" content={tooltip}>
@@ -51,7 +51,7 @@ const Label: React.FC<{
           className={css({
             textDecoration: 'underline',
             ':hover': {
-              color: theme.colors.foregroundAlt,
+              color: theme.colors.contentSecondary,
             },
           })}
         >
@@ -137,7 +137,7 @@ const Knob: React.SFC<{
                 className={css({
                   textDecoration: 'underline',
                   ':hover': {
-                    color: theme.colors.foregroundAlt,
+                    color: theme.colors.contentSecondary,
                   },
                 })}
               >

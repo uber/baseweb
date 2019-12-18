@@ -1,3 +1,9 @@
+/*
+Copyright (c) 2018-2019 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
 import {Datepicker, ORIENTATION} from 'baseui/datepicker';
 import {SIZE} from 'baseui/input';
 import {PropTypes} from 'react-view';
@@ -50,9 +56,12 @@ const DatepickerConfig: TConfig = {
       propHook: {
         // yikes, onChange can return Date, [Date] or [Date, Date] and we need to handle
         // them all
-        what: `Array.isArray(date) && date.length === 2 ?
-    "[new Date('" + date[0].toISOString() + "'), new Date('" + date[1].toISOString() + "')]"
-  : (Array.isArray(date) ? "[new Date('" + date[0].toISOString() + "')]" : "[new Date('" + date.toISOString() + "')]")`,
+        what: `(Array.isArray(date) && (!date[0] || !date[1])) || !date ?
+          "[new Date()]"
+          :
+            Array.isArray(date) && date.length === 2 ?
+              "[new Date('" + date[0].toISOString() + "'), new Date('" + date[1].toISOString() + "')]"
+            : (Array.isArray(date) ? "[new Date('" + date[0].toISOString() + "')]" : "[new Date('" + date.toISOString() + "')]")`,
         into: 'value',
       },
     },
@@ -93,7 +102,7 @@ const DatepickerConfig: TConfig = {
       value: undefined,
       type: PropTypes.Array,
       description:
-        'Array of custom options (Array<{ id: string; beginDate: Date }>) displayed in the quick select. Overrides default options if provided.',
+        'Array of custom options (Array<{ id: string; beginDate: Date; endDate?: Date }>) displayed in the quick select. Overrides default options if provided.',
       hidden: true,
     },
     filterDate: {
@@ -120,6 +129,12 @@ const DatepickerConfig: TConfig = {
       value: undefined,
       type: PropTypes.Boolean,
       description: 'Defines if a range of dates can be selected.',
+    },
+    clearable: {
+      value: undefined,
+      type: PropTypes.Boolean,
+      description:
+        'Makes the datepicker clearable via a visual icon in the Input component.',
     },
     positive: inputConfig.props.positive,
     error: inputConfig.props.error,

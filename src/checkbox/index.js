@@ -23,4 +23,4 @@ export {
 export {STATE_TYPE, STYLE_TYPE, LABEL_PLACEMENT} from './constants.js';
 
 // Flow
-export * from './types.js';
+export type * from './types.js';

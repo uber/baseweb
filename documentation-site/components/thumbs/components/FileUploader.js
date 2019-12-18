@@ -13,7 +13,7 @@ export default function SvgFileUploader(props) {
       <path fill={props.colors[0]} d="M48 37h137v72H48z" />
       <path fill={props.colors[2]} d="M96 75h41v11H96z" />
       <path fill={props.colors[1]} d="M83 59h67v8H83z" />
-      <path fill="#000" fillOpacity={0.25} d="M152 94h27v23h-27z" />
+      <path fill={props.colors[2]} d="M152 94h27v23h-27z" />
       <path fill={props.colors[1]} d="M150 92h27v23h-27z" />
     </svg>
   );
