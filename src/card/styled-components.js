@@ -10,7 +10,7 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 
 export const Action = styled<{}>('div', ({$theme: {typography}}) => ({
-  ...typography.font350,
+  ...typography.LabelMedium,
 }));
 
 export const Body = styled<{}>('div', ({$theme}) => {
@@ -18,17 +18,17 @@ export const Body = styled<{}>('div', ({$theme}) => {
   return {
     marginBottom: sizing.scale600,
     color: colors.contentPrimary,
-    ...typography.font200,
+    ...typography.ParagraphMedium,
   };
 });
 
 export const Contents = styled<{}>('div', ({$theme}) => {
   const {sizing} = $theme;
   return {
-    marginLeft: sizing.scale800,
-    marginTop: sizing.scale800,
-    marginRight: sizing.scale800,
-    marginBottom: sizing.scale800,
+    marginLeft: sizing.scale600,
+    marginTop: sizing.scale600,
+    marginRight: sizing.scale600,
+    marginBottom: sizing.scale600,
   };
 });
 
@@ -42,10 +42,20 @@ export const HeaderImage = styled<{}>('img', ({$theme: {borders}}) => {
 });
 
 export const Root = styled<{}>('div', ({$theme}) => {
-  const {borders, lighting, colors} = $theme;
+  const {borders, colors} = $theme;
   return {
-    ...borders.border300,
-    boxShadow: lighting.shadow400,
+    borderTopWidth: '2px',
+    borderRightWidth: '2px',
+    borderBottomWidth: '2px',
+    borderLeftWidth: '2px',
+    borderTopStyle: 'solid',
+    borderRightStyle: 'solid',
+    borderBottomStyle: 'solid',
+    borderLeftStyle: 'solid',
+    borderTopColor: $theme.colors.borderOpaque,
+    borderRightColor: $theme.colors.borderOpaque,
+    borderBottomColor: $theme.colors.borderOpaque,
+    borderLeftColor: $theme.colors.borderOpaque,
     borderTopLeftRadius: borders.surfaceBorderRadius,
     borderTopRightRadius: borders.surfaceBorderRadius,
     borderBottomLeftRadius: borders.surfaceBorderRadius,
@@ -56,18 +66,13 @@ export const Root = styled<{}>('div', ({$theme}) => {
 
 export const Thumbnail = styled<{}>('img', props => {
   const {
-    $theme: {borders, sizing},
+    $theme: {sizing},
   } = props;
   return {
     float: 'right',
     height: sizing.scale2400,
     width: sizing.scale2400,
     objectFit: 'cover',
-    borderTopLeftRadius: borders.surfaceBorderRadius,
-    borderTopRightRadius: borders.surfaceBorderRadius,
-    borderBottomLeftRadius: borders.surfaceBorderRadius,
-    borderBottomRightRadius: borders.surfaceBorderRadius,
-    ...borders.border200,
     margin: `0 0 ${sizing.scale500} ${sizing.scale500}`,
   };
 });
@@ -75,7 +80,7 @@ export const Thumbnail = styled<{}>('img', props => {
 export const Title = styled<{}>('h1', ({$theme}) => {
   const {colors, sizing, typography} = $theme;
   return {
-    ...typography.font550,
+    ...typography.HeadingSmall,
     color: colors.contentPrimary,
     fontWeight: 500,
     marginLeft: 0,
