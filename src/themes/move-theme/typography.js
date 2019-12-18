@@ -28,4 +28,16 @@ export const typography = {
   font1150: {
     fontFamily: secondaryFontFamily,
   },
+  DisplayLarge: {
+    fontFamily: secondaryFontFamily,
+  },
+  DisplayMedium: {
+    fontFamily: secondaryFontFamily,
+  },
+  DisplaySmall: {
+    fontFamily: secondaryFontFamily,
+  },
+  DisplayXSmall: {
+    fontFamily: secondaryFontFamily,
+  },
 };
