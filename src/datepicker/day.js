@@ -135,6 +135,9 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
   // calculated for range case only
   isPseudoSelected() {
     const {date, value} = this.props;
+    if (Array.isArray(value) && !value[0] && !value[1]) {
+      return false;
+    }
     // fix flow by passing a specific arg type and remove 'Array.isArray(value)'
     if (Array.isArray(value) && value.length > 1) {
       return isDayInRange(date, value[0], value[1]);
@@ -144,6 +147,9 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
   // calculated for range case only
   isPseudoHighlighted() {
     const {date, value, highlightedDate} = this.props;
+    if (Array.isArray(value) && !value[0] && !value[1]) {
+      return false;
+    }
     // fix flow by passing a specific arg type and remove 'Array.isArray(value)'
     if (Array.isArray(value) && highlightedDate && value[0] && !value[1]) {
       if (isAfter(highlightedDate, value[0])) {
