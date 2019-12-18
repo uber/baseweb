@@ -7,8 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import type {OptionT, ValueT} from '../types.js';
 
-const trim = str => str.replace(/^\s+|\s+$/g, '');
-
 const escapeRegExp = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 const isValid = value => {
@@ -51,7 +49,7 @@ const filterOptions = (
   }
 
   if (props.trimFilter) {
-    filterValue = trim(filterValue);
+    filterValue = filterValue.trim();
   }
 
   const excludeValues = (excludeOptions || []).reduce((acc, option) => {
