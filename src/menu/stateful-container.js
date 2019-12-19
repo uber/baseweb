@@ -165,7 +165,7 @@ export default class MenuStatefulContainer extends React.Component<
       });
     } else if (event.key === KEY_STRINGS.End) {
       event.preventDefault();
-      nextIndex = this.props.items.length - 1;
+      nextIndex = this.getItems().length - 1;
       this.internalSetState(STATE_CHANGE_TYPES.moveDown, {
         highlightedIndex: nextIndex,
       });
