@@ -90,15 +90,26 @@ export function Unstable_StatefulContainer(props: StatefulContainerPropsT) {
     handleSelectChange(new Set(selectedRowIds));
   }
 
+  const handleRowHighlightChange = React.useCallback(
+    (rowIndex, row) => {
+      if (props.onRowHighlightChange) {
+        props.onRowHighlightChange(rowIndex, row);
+      }
+    },
+    [props.rowHighlightIndex],
+  );
+
   return props.children({
     filters,
     onFilterAdd: handleFilterAdd,
     onFilterRemove: handleFilterRemove,
+    onRowHighlightChange: handleRowHighlightChange,
     onSelectMany: handleSelectMany,
     onSelectNone: handleSelectNone,
     onSelectOne: handleSelectOne,
-    onTextQueryChange: setTextQuery,
     onSort: handleSort,
+    onTextQueryChange: setTextQuery,
+    rowHighlightIndex: props.rowHighlightIndex,
     selectedRowIds,
     sortIndex,
     sortDirection,
