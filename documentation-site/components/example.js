@@ -116,9 +116,10 @@ class Example extends React.Component<PropsT, StateT> {
             style: ({$theme}) => ({
               marginTop: 0,
               marginBottom: 0,
-              boxShadow: 'none',
-              borderWidth: 0,
-              backgroundColor: $theme.colors.backgroundPrimary,
+              borderTopWidth: 0,
+              borderRightWidth: 0,
+              borderBottomWidth: 0,
+              borderLeftWidth: 0,
             }),
           },
           Contents: {
