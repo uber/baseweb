@@ -289,7 +289,7 @@ export default (
 
   // Toggle
   toggleFill: themePrimitives.mono300,
-  toggleFillChecked: themePrimitives.white,
+  toggleFillChecked: themePrimitives.primary,
   toggleFillDisabled: themePrimitives.mono600,
   toggleTrackFill: themePrimitives.mono400,
   toggleTrackFillDisabled: themePrimitives.mono700,
