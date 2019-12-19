@@ -38,6 +38,10 @@ const ButtonGroupConfig: TConfig = {
     'buttonMinimalActive',
     'buttonDisabledFill',
     'buttonDisabledText',
+    'buttonPrimarySelectedFill',
+    'buttonPrimarySelectedText',
+    'buttonSecondarySelectedFill',
+    'buttonSecondarySelectedText',
   ],
   props: {
     children: {
