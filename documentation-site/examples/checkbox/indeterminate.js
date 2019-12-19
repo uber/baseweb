@@ -5,10 +5,7 @@ import {Checkbox} from 'baseui/checkbox';
 
 function GroupList() {
   const [css, theme] = useStyletron();
-  const [checkboxes, setCheckboxes] = React.useState([
-    false,
-    false,
-  ]);
+  const [checkboxes, setCheckboxes] = React.useState([true, false]);
 
   const allChecked = checkboxes.every(Boolean);
   const isIndeterminate = checkboxes.some(Boolean) && !allChecked;
