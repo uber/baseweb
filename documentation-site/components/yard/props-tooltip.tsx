@@ -1,3 +1,9 @@
+/*
+Copyright (c) 2018-2019 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
 import * as React from 'react';
 
 import {useStyletron} from 'baseui';
@@ -6,7 +12,7 @@ import {StatefulPopover, PLACEMENT, TRIGGER_TYPE} from 'baseui/popover';
 //@ts-ignore
 import TypeDefinition from './type-definition';
 
-function PropsTooltip(props: any) {
+function PropsTooltip({className, typeDefinition, style, ...restProps}: any) {
   const [css, theme] = useStyletron();
   return (
     <StatefulPopover
@@ -27,22 +33,19 @@ function PropsTooltip(props: any) {
             paddingLeft: theme.sizing.scale200,
           })}
         >
-          <TypeDefinition type={props.typeDefinition} />
+          <TypeDefinition type={typeDefinition} />
         </div>
       }
     >
       <span
-        {...props}
-        className={
-          `${props.className} ` +
-          css({
-            cursor: 'default',
-            ':hover': {backgroundColor: theme.colors.mono100},
-          })
-        }
+        {...restProps}
+        className={`${className} ${css({
+          cursor: 'default',
+          ':hover': {backgroundColor: theme.colors.mono100},
+        })}`}
         style={{
           pointerEvents: 'auto',
-          ...props.style,
+          ...style,
         }}
       />
     </StatefulPopover>
