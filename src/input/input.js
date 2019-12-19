@@ -51,14 +51,17 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
   };
 
   render() {
-    const {startEnhancer, endEnhancer, overrides, ...restProps} = this.props;
-
     const {
-      Root: RootOverride,
-      StartEnhancer: StartEnhancerOverride,
-      EndEnhancer: EndEnhancerOverride,
-      ...restOverrides
-    } = this.props.overrides;
+      startEnhancer,
+      endEnhancer,
+      overrides: {
+        Root: RootOverride,
+        StartEnhancer: StartEnhancerOverride,
+        EndEnhancer: EndEnhancerOverride,
+        ...restOverrides
+      },
+      ...restProps
+    } = this.props;
 
     const [Root, rootProps] = getOverrides(RootOverride, StyledRoot);
     const [StartEnhancer, startEnhancerProps] = getOverrides(
