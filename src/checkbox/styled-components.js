@@ -73,7 +73,12 @@ function getBackgroundColor(props) {
   const isToggle = $checkmarkType === STYLE_TYPE.toggle;
   const {colors} = $theme;
   if ($disabled) {
-    return isToggle ? colors.sliderTrackFillDisabled : colors.tickFillDisabled;
+    if (isToggle) {
+      return colors.sliderTrackFillDisabled;
+    }
+    if ($checked || $isIndeterminate) {
+      return colors.tickFillDisabled;
+    }
   } else if ($isError && ($isIndeterminate || $checked)) {
     if ($isActive || $isFocused) {
       return colors.tickFillErrorSelectedHoverActive;
