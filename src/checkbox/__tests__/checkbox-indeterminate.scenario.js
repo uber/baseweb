@@ -14,7 +14,7 @@ import {Checkbox} from '../index.js';
 export const name = 'checkbox-indeterminate';
 
 class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
-  state = {checkboxes: [false, false]};
+  state = {checkboxes: [true, false]};
 
   render() {
     const allChecked = this.state.checkboxes.every(Boolean);
