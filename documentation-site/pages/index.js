@@ -25,7 +25,7 @@ import Contributors from '../components/contributors';
 import Markdown from '../components/markdown-elements';
 
 const MinHeightBody = withStyle(StyledBody, {
-  minHeight: '100px',
+  minHeight: '150px',
 });
 
 type Contributor = {

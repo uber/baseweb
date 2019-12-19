@@ -82,8 +82,8 @@ export default (
   calendarDayBackgroundPseudoSelectedHighlighted: themePrimitives.primary200,
   calendarDayForegroundPseudoSelectedHighlighted: themePrimitives.mono1000,
   calendarDayBackgroundSelected: themePrimitives.white,
-  calendarDayForegroundSelected: themePrimitives.black,
-  calendarDayBackgroundSelectedHighlighted: themePrimitives.black,
+  calendarDayForegroundSelected: themePrimitives.primary,
+  calendarDayBackgroundSelectedHighlighted: themePrimitives.primary,
   calendarDayForegroundSelectedHighlighted: themePrimitives.white,
 
   // FileUploader
@@ -114,7 +114,7 @@ export default (
 
   // Toggle
   toggleFill: themePrimitives.white,
-  toggleFillChecked: themePrimitives.black,
+  toggleFillChecked: themePrimitives.primary,
   toggleFillDisabled: themePrimitives.mono600,
   toggleTrackFill: themePrimitives.mono400,
   toggleTrackFillDisabled: themePrimitives.mono300,
@@ -190,9 +190,9 @@ export default (
   menuFontSelected: themePrimitives.mono1000,
 
   // Modal
-  modalCloseColor: themePrimitives.primary,
-  modalCloseColorHover: themePrimitives.primary600,
-  modalCloseColorFocus: themePrimitives.primary600,
+  modalCloseColor: themePrimitives.mono1000,
+  modalCloseColorHover: themePrimitives.mono800,
+  modalCloseColorFocus: themePrimitives.mono800,
 
   // Pagination
   paginationTriangleDown: themePrimitives.mono800,
