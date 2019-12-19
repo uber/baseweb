@@ -21,7 +21,7 @@ function getBorderColor(props) {
   } else if ($isError) {
     return colors.borderError;
   } else {
-    return colors.borderOpaque;
+    return colors.tickBorder;
   }
 }
 
