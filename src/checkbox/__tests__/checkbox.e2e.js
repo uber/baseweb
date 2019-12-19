@@ -10,7 +10,6 @@ LICENSE file in the root directory of this source tree.
 const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const parentCheckbox = '[data-name="parent"] input[type="checkbox"]';
-const childLabel1 = '[data-name="child1"]';
 const childLabel2 = '[data-name="child2"]';
 
 describe('checkbox', () => {
@@ -28,11 +27,8 @@ describe('checkbox', () => {
 
   it('can switch states', async () => {
     await mount(page, 'checkbox-indeterminate');
-    await page.waitFor(childLabel1);
-
-    await page.click(childLabel1);
+    await page.waitFor(childLabel2);
     await page.click(childLabel2);
-
     const checked = await page.$eval(parentCheckbox, input => input.checked);
     expect(checked).toBe(true);
   });
