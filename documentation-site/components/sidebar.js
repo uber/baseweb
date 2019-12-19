@@ -7,50 +7,70 @@ LICENSE file in the root directory of this source tree.
 
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import * as React from 'react';
+import React from 'react';
 import {withStyle} from 'baseui';
-import {Navigation, StyledNavItem} from 'baseui/side-navigation';
+import {Navigation, StyledNavItem as NavItem} from 'baseui/side-navigation';
+import {Label2, Label3} from 'baseui/typography';
+import Link from 'next/link';
 
 import Routes from '../routes';
 
-const CustomStyledNavItem = withStyle(
-  StyledNavItem,
-  ({$theme, $active, $hasItemId, $level}) => ({
+const StyledNavItem = withStyle(NavItem, ({$theme, $active}) => {
+  const styleOverride = {};
+
+  if ($theme.name.startsWith('dark')) {
+    if ($active) {
+      styleOverride.background = $theme.colors.backgroundSecondary;
+    }
+  }
+  return {
     paddingTop: $theme.sizing.scale200,
     paddingBottom: $theme.sizing.scale200,
-    ...($theme.name.startsWith('dark') && $active
-      ? {
-          backgroundColor: $theme.colors.backgroundSecondary,
-        }
-      : {}),
-    ...(!$hasItemId || $level === 1
-      ? {
-          textTransform: 'uppercase',
-          ...($level === 1
-            ? $theme.typography.font350
-            : $theme.typography.font250),
-        }
-      : {}),
-  }),
-);
+    ...styleOverride,
+  };
+});
 
-const removeSlash = path => path && path.replace(/\/$/, '');
+const removeSlash = path => {
+  if (path) {
+    return path.replace(/\/$/, '');
+  }
+  return path;
+};
 
-const CustomNavItem = ({
-  item,
-  onSelect,
-  onClick,
-  onKeyDown,
-  ...sharedProps
-}) => (
-  <CustomStyledNavItem $hasItemId={!!item.itemId} {...sharedProps}>
-    {item.title}
-  </CustomStyledNavItem>
-);
+function CustomNavItem(props) {
+  const {item, onSelect, onClick, onKeyDown, ...sharedProps} = props;
+  const Label = props.$level === 1 ? Label2 : Label3;
 
-const activePredicate = (item, location) =>
-  (location && removeSlash(location) === removeSlash(item.itemId)) ||
-  (!location && item.itemId === '/');
+  const NavLink = ({item}) => (
+    <Link passHref={true} href={item.itemId}>
+      <StyledNavItem {...sharedProps}>{item.title}</StyledNavItem>
+    </Link>
+  );
+
+  if (item.itemId && props.$level === 1)
+    return (
+      <Label overrides={{Block: {style: {textTransform: 'uppercase'}}}}>
+        <NavLink item={item} />
+      </Label>
+    );
+
+  if (item.itemId) {
+    return <NavLink item={item} />;
+  }
+
+  return (
+    <Label overrides={{Block: {style: {textTransform: 'uppercase'}}}}>
+      <StyledNavItem {...sharedProps}>{item.title}</StyledNavItem>
+    </Label>
+  );
+}
+
+function activePredicate(item, location) {
+  return (
+    (location && removeSlash(location) === removeSlash(item.itemId)) ||
+    (!location && item.itemId === '/')
+  );
+}
 
 export default ({path}) => {
   return (
@@ -59,7 +79,9 @@ export default ({path}) => {
       activePredicate={activePredicate}
       items={Routes}
       overrides={{
-        NavItem: CustomNavItem,
+        NavItem: {
+          component: CustomNavItem,
+        },
       }}
     />
   );
