@@ -21,7 +21,7 @@ function getBorderColor(props) {
   } else if ($isError) {
     return colors.borderError;
   } else {
-    return colors.tickBorder;
+    return colors.borderOpaque;
   }
 }
 
@@ -168,9 +168,7 @@ export const Checkmark = styled<SharedStylePropsT>('span', props => {
     </svg>
   `);
 
-  const borderRadius = $theme.borders.useRoundedCorners
-    ? $theme.borders.radius200
-    : null;
+  const borderRadius = $theme.borders.inputBorderRadius;
 
   return ({
     flex: '0 0 auto',
@@ -182,7 +180,7 @@ export const Checkmark = styled<SharedStylePropsT>('span', props => {
     top: '4px',
     boxSizing: 'border-box',
     borderStyle: 'solid',
-    borderWidth: '2px',
+    borderWidth: '3px',
     borderColor: getBorderColor(props),
     borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
