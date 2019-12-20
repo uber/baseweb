@@ -103,21 +103,12 @@ export default function Filter(props: FilterProps) {
         </FocusLock>
       }
     >
-      <MenuButton {...menuButtonProps}>
-        <FilterIcon
-          overrides={{
-            Svg: {
-              style: ({$theme}) => ({
-                color: getIconColor($theme),
-                ':hover': {
-                  color: getIconHoverColor($theme),
-                  cursor: props.disabled ? null : 'pointer',
-                },
-              }),
-            },
-          }}
-          size={18}
-        />
+      <MenuButton
+        $active={props.active}
+        $disabled={props.disabled}
+        {...menuButtonProps}
+      >
+        <FilterIcon size={18} />
       </MenuButton>
     </StatefulPopover>
   );

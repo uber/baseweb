@@ -174,13 +174,43 @@ export const StyledCell = ((React.forwardRef<CellStyledProps, any>(
 StyledCell.__STYLETRON__ = StyledCellElement.__STYLETRON__;
 StyledCell.displayName = 'StyledCell';
 
-export const StyledFilterButton = styled('button', {
-  backgroundColor: 'transparent',
-  border: 'none',
-  paddingTop: 'none',
-  paddingRight: 'none',
-  paddingBottom: 'none',
-  paddingLeft: 'none',
+export const StyledFilterButton = styled<{
+  $disabled?: boolean,
+  $active?: boolean,
+}>('button', props => {
+  function getIconColor() {
+    if (props.$disabled) {
+      return props.$theme.colors.mono500;
+    }
+
+    if (props.$active) {
+      return props.$theme.colors.contentPrimary;
+    }
+
+    return props.$theme.colors.tableFilter;
+  }
+
+  function getIconHoverColor() {
+    if (props.$disabled || props.$active) {
+      return null;
+    }
+
+    return props.$theme.colors.contentPrimary;
+  }
+
+  return {
+    backgroundColor: 'transparent',
+    border: 'none',
+    color: getIconColor(),
+    cursor: props.$disabled ? null : 'pointer',
+    paddingTop: 'none',
+    paddingRight: 'none',
+    paddingBottom: 'none',
+    paddingLeft: 'none',
+    ':hover': {
+      color: getIconHoverColor(),
+    },
+  };
 });
 
 export const StyledFilterContent = styled<{}>('div', ({$theme}) => ({
