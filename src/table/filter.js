@@ -45,26 +45,6 @@ export default function Filter(props: FilterProps) {
     StyledFilterFooter,
   );
 
-  function getIconColor(theme) {
-    if (props.disabled) {
-      return theme.colors.mono500;
-    }
-
-    if (props.active) {
-      return theme.colors.contentPrimary;
-    }
-
-    return theme.colors.tableFilter;
-  }
-
-  function getIconHoverColor(theme) {
-    if (props.disabled || props.active) {
-      return null;
-    }
-
-    return theme.colors.contentPrimary;
-  }
-
   return (
     <StatefulPopover
       placement={PLACEMENT.bottom}
@@ -103,21 +83,12 @@ export default function Filter(props: FilterProps) {
         </FocusLock>
       }
     >
-      <MenuButton {...menuButtonProps}>
-        <FilterIcon
-          overrides={{
-            Svg: {
-              style: ({$theme}) => ({
-                color: getIconColor($theme),
-                ':hover': {
-                  color: getIconHoverColor($theme),
-                  cursor: props.disabled ? null : 'pointer',
-                },
-              }),
-            },
-          }}
-          size={18}
-        />
+      <MenuButton
+        $active={props.active}
+        $disabled={props.disabled}
+        {...menuButtonProps}
+      >
+        <FilterIcon size={18} />
       </MenuButton>
     </StatefulPopover>
   );
