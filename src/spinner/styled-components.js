@@ -53,6 +53,11 @@ export const StyledActivePath = styled<StylePropsT>('path', props => ({
 export const StyledSpinnerNext = styled<{$size?: SizeT}>(
   'div',
   ({$theme, $size = SIZE.medium}) => {
+    // TODO(v10): remove warning when switching default Spinner
+    console.warn(
+      `❖ [baseui] In v10, "StyledSpinnerNext" will become the default "Spinner".` +
+        ` When upgrading to v10 please update your imports accordingly.`,
+    );
     return {
       animationName: spin,
       animationDuration: $theme.animation.timing1000,

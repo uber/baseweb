@@ -28,8 +28,8 @@ class Spinner extends React.Component<SpinnerPropsT> {
   render() {
     // TODO(v10): remove warning when switching default Spinner
     console.warn(
-      `❖ [baseui] Please consider using "SpinnerNext" instead of "Spinner". ` +
-        `In baseui v10, "SpinnerNext" will become the default "Spinner"` +
+      `❖ [baseui] Please consider using "StyledSpinnerNext" instead of "Spinner". ` +
+        `In v10, "StyledSpinnerNext" will become the default "Spinner"` +
         ` and the current SVG based implementation will be deprecated.`,
     );
     const {overrides = {}} = this.props;
