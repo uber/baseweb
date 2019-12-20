@@ -21,6 +21,7 @@ function getState(props): State {
 function getOuterColor(props) {
   const {colors} = props.$theme;
 
+  if (props.$disabled) return colors.tickFillDisabled;
   if (!props.$checked) {
     if (props.$disabled) return colors.tickMarkFillDisabled;
     if (props.$isError) return colors.tickBorderError;
@@ -36,7 +37,6 @@ function getOuterColor(props) {
           return colors.tickFillErrorSelectedHoverActive;
       }
     } else {
-      if (props.$disabled) return colors.tickFillDisabled;
       switch (getState(props)) {
         case DEFAULT:
           return colors.tickFillSelected;
@@ -150,10 +150,10 @@ export const RadioMarkInner = styled<StylePropsT>('div', props => {
     borderTopRightRadius: '50%',
     borderBottomRightRadius: '50%',
     borderBottomLeftRadius: '50%',
-    height: props.$checked ? sizing.scale200 : sizing.scale600,
+    height: props.$checked ? sizing.scale200 : sizing.scale550,
     transitionDuration: animation.timing100,
     transitionTimingFunction: animation.easeOutCurve,
-    width: props.$checked ? sizing.scale200 : sizing.scale600,
+    width: props.$checked ? sizing.scale200 : sizing.scale550,
   };
 });
 
