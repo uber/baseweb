@@ -123,7 +123,7 @@ export type CalendarPropsT = {
   /** Display select for quickly choosing date ranges. `range` must be true as well. */
   quickSelect?: boolean,
   /** Array of custom options displayed in the quick select. Overrides default options if provided. */
-  quickSelectOptions?: Array<{id: string, beginDate: Date}>,
+  quickSelectOptions?: Array<{id: string, beginDate: Date, endDate?: Date}>,
   /** A filter function that is called to check the disabled state of a day. If `false` is returned the day is considered to be disabled. */
   filterDate?: ?(day: Date) => boolean,
   /** Indicates a highlighted date on hover and keyboard navigation */

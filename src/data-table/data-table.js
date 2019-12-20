@@ -40,7 +40,7 @@ type InnerTableElementProps = {|
 
 type HeaderContextT = {|
   columns: ColumnT<>[],
-  columnHoverIndex: number,
+  columnHighlightIndex: number,
   filters: $PropertyType<DataTablePropsT, 'filters'>,
   isScrollingX: boolean,
   isSelectable: boolean,
@@ -55,7 +55,7 @@ type HeaderContextT = {|
   onSort: number => void,
   rowActions: RowActionT[],
   rowHeight: number,
-  rowHoverIndex: number,
+  rowHighlightIndex: number,
   rows: RowT[],
   scrollLeft: number,
   sortIndex: number,
@@ -76,12 +76,12 @@ type CellPlacementPropsT = {
   },
   data: {
     columns: ColumnT<>[],
-    columnHoverIndex: number,
+    columnHighlightIndex: number,
     isSelectable: boolean,
     isRowSelected: (string | number) => boolean,
-    onHoverRow: number => void,
+    onRowMouseEnter: (number, RowT) => void,
     onSelectOne: RowT => void,
-    rowHoverIndex: number,
+    rowHighlightIndex: number,
     rows: RowT[],
     textQuery: string,
   },
@@ -97,11 +97,11 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
 
   let backgroundColor = theme.colors.mono100;
   if (
-    (rowIndex % 2 && columnIndex === data.columnHoverIndex) ||
-    rowIndex === data.rowHoverIndex
+    (rowIndex % 2 && columnIndex === data.columnHighlightIndex) ||
+    rowIndex === data.rowHighlightIndex
   ) {
     backgroundColor = theme.colors.mono300;
-  } else if (rowIndex % 2 || columnIndex === data.columnHoverIndex) {
+  } else if (rowIndex % 2 || columnIndex === data.columnHighlightIndex) {
     backgroundColor = theme.colors.mono200;
   }
 
@@ -121,7 +121,9 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
         boxSizing: 'border-box',
       })}
       style={style}
-      onMouseEnter={() => data.onHoverRow(rowIndex)}
+      onMouseEnter={() =>
+        data.onRowMouseEnter(rowIndex, data.rows[rowIndex - 1])
+      }
     >
       <Cell
         value={value}
@@ -152,21 +154,23 @@ function compareCellPlacement(prevProps, nextProps) {
 
   if (
     prevProps.data.isSelectable === nextProps.data.isSelectable &&
-    prevProps.data.columnHoverIndex === nextProps.data.columnHoverIndex &&
-    prevProps.data.rowHoverIndex === nextProps.data.rowHoverIndex &&
+    prevProps.data.columnHighlightIndex ===
+      nextProps.data.columnHighlightIndex &&
+    prevProps.data.rowHighlightIndex === nextProps.data.rowHighlightIndex &&
     prevProps.data.textQuery === nextProps.data.textQuery &&
     prevProps.data.isRowSelected === nextProps.data.isRowSelected
   ) {
     return true;
   }
 
-  // at this point we know that the rowHoverIndex or the columnHoverIndex has changed.
+  // at this point we know that the rowHighlightIndex or the columnHighlightIndex has changed.
   // row does not need to re-render if not transitioning _from_ or _to_ highlighted
   // also ensures that all cells are invalidated on column-header hover
   if (
-    prevProps.rowIndex !== prevProps.data.rowHoverIndex &&
-    prevProps.rowIndex !== nextProps.data.rowHoverIndex &&
-    prevProps.data.columnHoverIndex === nextProps.data.columnHoverIndex &&
+    prevProps.rowIndex !== prevProps.data.rowHighlightIndex &&
+    prevProps.rowIndex !== nextProps.data.rowHighlightIndex &&
+    prevProps.data.columnHighlightIndex ===
+      nextProps.data.columnHighlightIndex &&
     prevProps.data.isRowSelected === nextProps.data.isRowSelected
   ) {
     return true;
@@ -175,9 +179,9 @@ function compareCellPlacement(prevProps, nextProps) {
   // similar to the row highlight optimization, do not update the cell if not in the previously
   // highlighted column or next highlighted.
   if (
-    prevProps.columnIndex !== prevProps.data.columnHoverIndex &&
-    prevProps.columnIndex !== nextProps.data.columnHoverIndex &&
-    prevProps.data.rowHoverIndex === nextProps.data.rowHoverIndex &&
+    prevProps.columnIndex !== prevProps.data.columnHighlightIndex &&
+    prevProps.columnIndex !== nextProps.data.columnHighlightIndex &&
+    prevProps.data.rowHighlightIndex === nextProps.data.rowHighlightIndex &&
     prevProps.data.isRowSelected === nextProps.data.isRowSelected
   ) {
     return true;
@@ -193,7 +197,7 @@ CellPlacementMemo.displayName = 'CellPlacement';
 
 const HeaderContext = React.createContext<HeaderContextT>({
   columns: [],
-  columnHoverIndex: -1,
+  columnHighlightIndex: -1,
   filters: new Map(),
   isScrollingX: false,
   isSelectable: false,
@@ -208,7 +212,7 @@ const HeaderContext = React.createContext<HeaderContextT>({
   onSort: () => {},
   rowActions: [],
   rowHeight: 0,
-  rowHoverIndex: -1,
+  rowHighlightIndex: -1,
   rows: [],
   scrollLeft: 0,
   sortIndex: -1,
@@ -421,7 +425,8 @@ function Headers(props: {||}) {
               key={columnIndex}
               placement={PLACEMENT.bottomLeft}
               isOpen={
-                ctx.columnHoverIndex === columnIndex && Boolean(activeFilter)
+                ctx.columnHighlightIndex === columnIndex &&
+                Boolean(activeFilter)
               }
               content={() => {
                 return (
@@ -461,7 +466,7 @@ function Headers(props: {||}) {
               >
                 <Header
                   columnTitle={column.title}
-                  hoverIndex={ctx.columnHoverIndex}
+                  hoverIndex={ctx.columnHighlightIndex}
                   index={columnIndex}
                   isSortable={column.sortable}
                   isSelectable={ctx.isSelectable}
@@ -524,7 +529,7 @@ const InnerTableElement = React.forwardRef<
 
       {ctx.rowActions &&
         Boolean(ctx.rowActions.length) &&
-        ctx.rowHoverIndex > 0 &&
+        ctx.rowHighlightIndex > 0 &&
         !ctx.isScrollingX && (
           <div
             style={{
@@ -537,7 +542,8 @@ const InnerTableElement = React.forwardRef<
               paddingRight: theme.sizing.scale300,
               position: 'absolute',
               right: 0 - ctx.scrollLeft,
-              top: (ctx.rowHoverIndex - 1) * ctx.rowHeight + HEADER_ROW_HEIGHT,
+              top:
+                (ctx.rowHighlightIndex - 1) * ctx.rowHeight + HEADER_ROW_HEIGHT,
             }}
           >
             {ctx.rowActions.map(rowAction => {
@@ -549,7 +555,7 @@ const InnerTableElement = React.forwardRef<
                   onClick={event =>
                     rowAction.onClick({
                       event,
-                      row: ctx.rows[ctx.rowHoverIndex - 1],
+                      row: ctx.rows[ctx.rowHighlightIndex - 1],
                     })
                   }
                   size={BUTTON_SIZES.compact}
@@ -656,29 +662,6 @@ export function Unstable_DataTable(props: DataTablePropsT) {
     },
     [scrollLeft, setScrollLeft, setRecentlyScrolledX],
   );
-
-  const [rowHoverIndex, setRowHoverIndex] = React.useState(-1);
-  const handleRowHover = React.useCallback(
-    nextIndex => {
-      setColumnHoverIndex(-1);
-      if (nextIndex !== rowHoverIndex) {
-        setRowHoverIndex(nextIndex);
-      }
-    },
-    [rowHoverIndex],
-  );
-
-  const [columnHoverIndex, setColumnHoverIndex] = React.useState(-1);
-  function handleColumnHeaderMouseEnter(columnIndex) {
-    setColumnHoverIndex(columnIndex);
-    setRowHoverIndex(-1);
-  }
-  function handleColumnHeaderMouseLeave() {
-    // $FlowFixMe - unable to get the state type from react-window
-    if (gridRef.current && !gridRef.current.state.isScrolling) {
-      setColumnHoverIndex(-1);
-    }
-  }
 
   const sortedIndices = React.useMemo(() => {
     let toSort = props.rows.map((r, i) => [r, i]);
@@ -807,24 +790,63 @@ export function Unstable_DataTable(props: DataTablePropsT) {
     [props.onSort],
   );
 
+  const [columnHighlightIndex, setColumnHighlightIndex] = React.useState(-1);
+  const [rowHighlightIndex, setRowHighlightIndex] = React.useState(-1);
+
+  function handleRowHighlightIndexChange(nextIndex) {
+    setRowHighlightIndex(nextIndex);
+    if (gridRef.current) {
+      if (nextIndex >= 0) {
+        // $FlowFixMe - unable to get react-window types
+        gridRef.current.scrollToItem({rowIndex: nextIndex});
+      }
+      if (props.onRowHighlightChange) {
+        props.onRowHighlightChange(nextIndex, rows[nextIndex - 1]);
+      }
+    }
+  }
+
+  const handleRowMouseEnter = React.useCallback(
+    nextIndex => {
+      setColumnHighlightIndex(-1);
+      if (nextIndex !== rowHighlightIndex) {
+        handleRowHighlightIndexChange(nextIndex);
+      }
+    },
+    [rowHighlightIndex],
+  );
+  function handleColumnHeaderMouseEnter(columnIndex) {
+    setColumnHighlightIndex(columnIndex);
+    handleRowHighlightIndexChange(-1);
+  }
+  function handleColumnHeaderMouseLeave() {
+    setColumnHighlightIndex(-1);
+  }
+
+  React.useEffect(() => {
+    if (typeof props.rowHighlightIndex === 'number') {
+      handleRowHighlightIndexChange(props.rowHighlightIndex);
+    }
+  }, [props.rowHighlightIndex]);
+
   const itemData = React.useMemo(() => {
     return {
-      columnHoverIndex,
-      rowHoverIndex,
+      columnHighlightIndex,
+      rowHighlightIndex,
       isRowSelected,
       isSelectable,
-      onHoverRow: handleRowHover,
+      onRowMouseEnter: handleRowMouseEnter,
       onSelectOne: handleSelectOne,
       columns: props.columns,
       rows,
       textQuery,
     };
   }, [
-    handleRowHover,
-    columnHoverIndex,
+    handleRowMouseEnter,
+    columnHighlightIndex,
     isRowSelected,
     isSelectable,
-    rowHoverIndex,
+    rowHighlightIndex,
     rows,
     props.columns,
     handleSelectOne,
@@ -845,7 +867,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
           <HeaderContext.Provider
             value={{
               columns: props.columns,
-              columnHoverIndex,
+              columnHighlightIndex,
               filters: props.filters,
               isScrollingX,
               isSelectable,
@@ -860,7 +882,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
               onSort: handleSort,
               rowActions: props.rowActions || [],
               rowHeight,
-              rowHoverIndex,
+              rowHighlightIndex,
               rows,
               scrollLeft,
               sortDirection: props.sortDirection || null,

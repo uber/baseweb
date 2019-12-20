@@ -9,7 +9,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {withStyle} from 'baseui';
-import {Navigation, StyledNavItem} from 'baseui/side-navigation';
+import {Navigation, StyledNavItem, StyledNavLink} from 'baseui/side-navigation';
+import Link from 'next/link';
 
 import Routes from '../routes';
 
@@ -20,7 +21,7 @@ const CustomStyledNavItem = withStyle(
     paddingBottom: $theme.sizing.scale200,
     ...($theme.name.startsWith('dark') && $active
       ? {
-          backgroundColor: $theme.colors.backgroundSecondary,
+          background: $theme.colors.backgroundSecondary,
         }
       : {}),
     ...(!$hasItemId || $level === 1
@@ -36,16 +37,14 @@ const CustomStyledNavItem = withStyle(
 
 const removeSlash = path => path && path.replace(/\/$/, '');
 
-const CustomNavItem = ({
-  item,
-  onSelect,
-  onClick,
-  onKeyDown,
-  ...sharedProps
-}) => (
-  <CustomStyledNavItem $hasItemId={!!item.itemId} {...sharedProps}>
-    {item.title}
-  </CustomStyledNavItem>
+const CustomNavItem = ({item, onSelect, onClick, onKeyDown, ...restProps}) => (
+  <CustomStyledNavItem $hasItemId={!!item.itemId} {...restProps} />
+);
+
+const CustomNavLink = props => (
+  <Link href={props.href}>
+    <StyledNavLink {...props} />
+  </Link>
 );
 
 const activePredicate = (item, location) =>
@@ -60,6 +59,7 @@ export default ({path}) => {
       items={Routes}
       overrides={{
         NavItem: CustomNavItem,
+        NavLink: CustomNavLink,
       }}
     />
   );
