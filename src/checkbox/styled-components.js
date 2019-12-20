@@ -171,7 +171,7 @@ export const Checkmark = styled<SharedStylePropsT>('span', props => {
     top: '4px',
     boxSizing: 'border-box',
     borderStyle: 'solid',
-    borderWidth: '2px',
+    borderWidth: '3px',
     borderColor: getBorderColor(props),
     borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
