@@ -25,13 +25,16 @@ class Spinner extends React.Component<SpinnerPropsT> {
     overrides: {},
   };
 
-  render() {
+  componentDidMount() {
     // TODO(v10): remove warning when switching default Spinner
     console.warn(
       `❖ [baseui] Please consider using "StyledSpinnerNext" instead of "Spinner". ` +
         `In v10, "StyledSpinnerNext" will become the default "Spinner"` +
         ` and the current SVG based implementation will be deprecated.`,
     );
+  }
+
+  render() {
     const {overrides = {}} = this.props;
     const mergedOverrides = mergeOverrides({Svg: StyledSvg}, overrides);
     const [TrackPath, trackPathProps] = getOverrides(
