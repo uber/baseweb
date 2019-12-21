@@ -85,7 +85,7 @@ const StyledHeadCellElement = styled<HorizontalStyleProps>(
       cursor: $cursor ? $cursor : 'inherit',
       width: '100%',
       ':last-of-type': {
-        borderRight: 'none',
+        [$theme.direction === 'rtl' ? 'borderLeft' : 'borderRight']: 'none',
       },
     };
   },
