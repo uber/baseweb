@@ -262,4 +262,19 @@ describe('select', () => {
     );
     expect(selectedValue).toBe('AliceBlue');
   });
+
+  it('works with async options', async () => {
+    await mount(page, 'select-async-options');
+    await page.focus(selectors.selectInput);
+    await page.keyboard.type('Aqua');
+    const listElements = await page.$$('li');
+    const actual = await Promise.all(
+      listElements.map(listElement => {
+        return page.evaluate(li => li.textContent, listElement);
+      }),
+    );
+    const expected = ['Aqua', 'Aquamarine'];
+
+    expect(matchArrayElements(actual, expected)).toBe(true);
+  });
 });

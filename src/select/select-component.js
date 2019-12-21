@@ -142,8 +142,6 @@ class Select extends React.Component<SelectPropsT, SelectStateT> {
         document.addEventListener('click', this.handleClickOutside);
       }
     }
-
-    this.options = normalizeOptions(this.props.options);
   }
 
   componentWillUnmount() {
@@ -842,6 +840,8 @@ class Select extends React.Component<SelectPropsT, SelectStateT> {
   }
 
   render() {
+    this.options = normalizeOptions(this.props.options);
+
     const {
       overrides = {},
       type,
