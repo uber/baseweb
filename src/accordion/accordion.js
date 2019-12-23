@@ -113,7 +113,7 @@ export default class Accordion extends React.Component<
 
   componentDidMount() {
     // TODO(v10)
-    if (this.props.renderPanelContent) {
+    if (__DEV__ && this.props.renderPanelContent) {
       console.warn(
         'baseui:Accordion The `renderPanelContent` prop is depreacated. Please update your code to use `renderAll`.',
       );
