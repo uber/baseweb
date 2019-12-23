@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {withStyle} from 'baseui';
 import {StyledSpinnerNext} from 'baseui/spinner';
 
