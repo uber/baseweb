@@ -7,6 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import {styled} from '../styles/index.js';
 import {getSvgStyles} from '../icon/styled-components.js';
+import type {SizeT} from './types.js';
+import {SIZE} from './constants.js';
 
 type StylePropsT = {
   $size?: number | string,
@@ -46,3 +48,38 @@ export const StyledTrackPath = styled<StylePropsT>('path', props => ({
 export const StyledActivePath = styled<StylePropsT>('path', props => ({
   fill: props.$color || props.$theme.colors.accent,
 }));
+
+// TODO(v10): Replace Spinner with SpinnerNext
+export const StyledSpinnerNext = styled<{$size?: SizeT}>(
+  'div',
+  ({$theme, $size = SIZE.medium}) => {
+    return {
+      animationName: spin,
+      animationDuration: $theme.animation.timing1000,
+      animationIterationCount: 'infinite',
+      animationTimingFunction: 'linear',
+      borderStyle: 'solid',
+      borderRadius: '50%',
+      borderTopColor: $theme.colors.contentAccent,
+      borderRightColor: $theme.colors.backgroundTertiary,
+      borderBottomColor: $theme.colors.backgroundTertiary,
+      borderLeftColor: $theme.colors.backgroundTertiary,
+      borderWidth: {
+        large: $theme.sizing.scale300,
+        medium: $theme.sizing.scale100,
+        small: $theme.sizing.scale0,
+      }[$size],
+      width: {
+        large: $theme.sizing.scale1000,
+        medium: $theme.sizing.scale900,
+        small: $theme.sizing.scale800,
+      }[$size],
+      height: {
+        large: $theme.sizing.scale1000,
+        medium: $theme.sizing.scale900,
+        small: $theme.sizing.scale800,
+      }[$size],
+      cursor: 'wait',
+    };
+  },
+);
