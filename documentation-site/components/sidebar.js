@@ -41,11 +41,15 @@ const CustomNavItem = ({item, onSelect, onClick, onKeyDown, ...restProps}) => (
   <CustomStyledNavItem $hasItemId={!!item.itemId} {...restProps} />
 );
 
-const CustomNavLink = props => (
-  <Link href={props.href}>
+const CustomNavLink = props => {
+  return props.href ? (
+    <Link href={props.href}>
+      <StyledNavLink {...props} />
+    </Link>
+  ) : (
     <StyledNavLink {...props} />
-  </Link>
-);
+  );
+};
 
 const activePredicate = (item, location) =>
   (location && removeSlash(location) === removeSlash(item.itemId)) ||
