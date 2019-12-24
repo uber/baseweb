@@ -72,7 +72,10 @@ export const StyledTableHeadCell = styled<{}>('th', ({$theme}) => {
       top: '0',
       right: '100%',
       bottom: '0',
-      borderLeft: Object.values($theme.borders.border300).join(' '),
+      borderLeftColor: $theme.borders.border300.borderColor,
+      // $FlowFixMe
+      borderLeftStyle: $theme.borders.border300.borderStyle,
+      borderLeftWidth: $theme.borders.border300.borderWidth,
     },
 
     // We have to use pseudo elements to add the shadow to prevent
