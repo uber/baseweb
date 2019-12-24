@@ -1,0 +1,125 @@
+<!--
+Copyright (c) 2018-2019 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import {LightTheme} from 'baseui';
+
+export default Layout;
+
+# Theming
+
+Motivation
+The theming system that ships with Base Web provides developers with a few useful features:
+
+Centralized Customization
+All of our components use the theme object to assign styling values. The theme object allows you to configure system wide styling values in one place. It removes the need for certain types of styling overrides and frees you from maintaining custom versions of components simply because your interface requires a different color palette or typography scale.
+
+Light and Dark Themes
+Because our theme is provided to components through React’s context system, we can dynamically change the theme at any time. The most common use case is toggling between Base Web’s light and dark themes, but there are many other possibilities. For example, you could introduce controls for modifying layout density or you could let users customize your interface in real time.
+
+Access to Design Tokens
+The theme object is easily accessible when working with Base Web’s various styling utilities (such as useStyletron, styled, withStyle, etc). This makes it easy to use consistent values when extending Base components or styling your own components. Using consistent design tokens results in faster development, smaller bundle sizes, and better looking interfaces.
+
+We encourage you to use the theming system if any of the above features seem useful for your project.
+Setup
+Even if you are not interested in creating a custom theme, we require that you select a theme as part of Base Web’s boilerplate setup. Our components require a theme in order to assign their default styles.
+
+The theme object itself is nothing special. It is just an object with specific properties (a specific “shape”) which can be passed to our ThemeProvider or BaseProvider. Base Web components will then reference this object when assigning stylistic values such as color or font size.
+
+We provide two themes out of the box, LightTheme and DarkTheme, which style components in light & dark variants. If you don’t want to customize Base Web, you can use either of these ready-to-use themes as-is:
+
+BASIC THEME EXAMPLE
+
+If you want to allow for toggling between the two themes at runtime, you need to create some state for determining which theme is passed to our ThemeProvider.
+
+TOGGLE THEME EXAMPLE
+
+While ThemeProvider will provide your theme object to any descendent Base Web components, we recommend using BaseProvider at the root of your application. BaseProvider combines the functionality of the ThemeProvider with our LayersManager utility. You can always use ThemeProvider to “theme” a subtree of your application.
+
+BASE PROVIDER EXAMPLE
+
+This is all the setup required for our default themes. Now let’s look at how you might configure Base Web with a custom theme.
+A Custom Theme
+To get started creating a custom theme, you can certainly start writing an object from scratch. If you use Flow or Typescript, we provide typings so that you don’t miss any required properties.
+
+createTheme
+
+Before you go down this road however, you should know that Base Web exports a handy function called createTheme. As you might expect, createTheme is a factory function for baseui compliant theme objects.
+
+Primitives
+
+Our theme object has a lot of properties. Most of these properties have repetitive assignments or are not particularly interesting so you probably do not want to set them all yourself. For this reason, createTheme’s first and only required parameter is a `primitives` object.
+
+THEME PRIMITIVES EXAMPLE
+
+createTheme will use these primitive values to assign all of the required properties on the theme object. We actually use createTheme to construct our own default light and dark themes. createTheme essentially maps a small set of primitives to a large set of theme properties in a sensible manner.
+
+But what if your theme primitives do not map to your theme properties in the manner that createTheme assigns them?
+
+Overrides
+
+The second parameter for createTheme is an `overrides` object.
+
+THEME OVERRIDES EXAMPLE
+
+`overrides` will be deep-merged with the result of mapping `primitives` to every theme property. Between these two parameters you should be able to quickly construct a Base Web compliant theme object.
+
+Customizing Typography
+
+The `primitives` object has an optional property, `primaryFontFamily`, which allows you to set a custom font family string for typography components. If you want to customize the typography scale further, you would need to use `overrides`.
+
+TYPOGRAPHY EXAMPLE
+
+Customizing Icons
+
+CURRENT ICON STUFF HERE
+
+Customizing Theme Shape
+
+You can add properties to your theme, but you will need to create a custom theme type that extends our built in theme type.
+
+CUSTOM THEME EXAMPLE
+
+You can then create new `styled`, `withStyle`, and `useStyletron` utilities that have use your custom theme type.
+
+CUSTOM STYLE UTILS EXAMPLE
+Using the Theme
+So far we have covered how to setup and customize your Base Web theme. Now we will consider how you might consume the theme object when extending our components or building your own.
+
+Extension
+
+There are two supported methods for styling Base Web components: withStyle and overrides. Both have access to the nearest provider’s theme object.
+
+withStyle
+
+Whenever Base Web exports a Styletron styled component we prefix that component with `Styled`. You can use withStyle to extend a styled component with your custom styles:
+
+withStyle EXAMPLE
+
+Notice how the second parameter is a function that is passed an object with a `$theme` property. This property provides a reference to your theme object.
+
+Overrides
+
+For in depth information on `overrides`, check out the official documentation. As it relates to theming, any `overrides` style function will be passed a reference to the nearest ancestor theme object to make consistent styling easy.
+
+overrides style EXAMPLE
+
+Generating
+
+Theming and extending the built-in Base Web components will get you a long way, but sometimes you need to create something new. This is where out other styling utilities come into play.
+
+useStyletron
+
+useStyletron EXAMPLE
+
+This lets you generate classes to be passed directly to an element’s `classNames` prop. `useStyletron` is a wrapper around the built-in Styletron hook. Our wrapper makes sure you have access to your theme by including it as a second item in the hook’s returned array. This makes it easy to style arbitrary elements without having to create new components or replicate design tokens.
+
+styled
+
+styled EXAMPLE
+
+`styled` creates a new Styletron styled component. We provide a version which wraps Styletron’s default `styled` function so that it passes a reference to your theme (\$theme) on the props object passed to the second argument (if it is a function). We use this `styled` function to create all of our styled components in Base Web.
+Notes
