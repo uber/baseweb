@@ -97,12 +97,10 @@ Neat! If that isn't enough, the spinner also comes in three sizes...
   <SpinnerNextSize />
 </Example>
 
-If you want to customize the spinner's default styling, you can use the [`$style`](https://www.styletron.org/api/#styled) prop, which has access to all of your `baseui` theme properties.
+If you want to customize the default styling of the spinner you can extend it using [`withStyle`](/blog/base-web-v8/#themed-withstyle-function).
 
 <Example title="Customizing" path="spinner/next-custom.js">
   <SpinnerNextCustom />
 </Example>
 
-In this example we modify the size of the spinner with `width`, `height`, and `borderWidth` as well as the highlight color with `borderTopColor`.
-
-You can also use `$style` to add margins to the spinner or align it within another element.
+In this example we modify the size of the spinner (via `width`, `height`, and `borderWidth`) as well as the highlight color (via `borderTopColor`). You could also use `withStyle` to add margins to the spinner or align it within another element.

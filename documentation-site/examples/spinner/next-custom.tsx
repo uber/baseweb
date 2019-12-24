@@ -1,14 +1,11 @@
-import * as React from 'react';
+import {withStyle} from 'baseui';
 import {StyledSpinnerNext} from 'baseui/spinner';
-import {Theme} from 'baseui/theme';
 
-export default () => (
-  <StyledSpinnerNext
-    $style={({$theme}: {$theme: Theme}) => ({
-      width: $theme.sizing.scale2400, // 96px
-      height: $theme.sizing.scale2400, // 96px
-      borderWidth: $theme.sizing.scale500, // 12px
-      borderTopColor: $theme.colors.negative,
-    })}
-  />
-);
+const ExtraLargeSpinner = withStyle(StyledSpinnerNext, {
+  width: '96px',
+  height: '96px',
+  borderWidth: '12px',
+  borderTopColor: 'pink',
+});
+
+export default ExtraLargeSpinner;
