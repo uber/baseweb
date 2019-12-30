@@ -135,14 +135,14 @@ export default (
   tickFillErrorSelectedHover: themePrimitives.negative500,
   tickFillErrorSelectedHoverActive: themePrimitives.negative600,
 
-  tickFillDisabled: themePrimitives.mono300,
+  tickFillDisabled: themePrimitives.mono600,
 
-  tickBorder: themePrimitives.mono700,
+  tickBorder: themePrimitives.mono400,
   tickBorderError: themePrimitives.negative400,
 
   tickMarkFill: themePrimitives.white,
   tickMarkFillError: themePrimitives.white,
-  tickMarkFillDisabled: themePrimitives.mono600,
+  tickMarkFillDisabled: themePrimitives.mono100,
 
   // Slider/Toggle
   sliderTrackFill: themePrimitives.mono400,

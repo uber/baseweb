@@ -6,8 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
+import {SIZE} from './constants.js';
 import type {OverrideT} from '../helpers/overrides.js';
 
+export type SizeT = $Keys<typeof SIZE>;
 export type SpinnerPropsT = {
   /** Size of element, will be passed to the svg width/height style. Can also be a value included in */
   size?: number | string,
