@@ -34,18 +34,9 @@ export const HeaderImage = styled<{}>('img', ({$theme}) => ({
 }));
 
 export const Root = styled<{}>('div', ({$theme}) => ({
-  borderTopWidth: '2px',
-  borderRightWidth: '2px',
-  borderBottomWidth: '2px',
-  borderLeftWidth: '2px',
-  borderTopStyle: 'solid',
-  borderRightStyle: 'solid',
-  borderBottomStyle: 'solid',
-  borderLeftStyle: 'solid',
-  borderTopColor: $theme.colors.borderOpaque,
-  borderRightColor: $theme.colors.borderOpaque,
-  borderBottomColor: $theme.colors.borderOpaque,
-  borderLeftColor: $theme.colors.borderOpaque,
+  borderWidth: '2px',
+  borderStyle: 'solid',
+  borderColor: $theme.colors.borderOpaque,
   borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
   borderTopRightRadius: $theme.borders.surfaceBorderRadius,
   borderBottomLeftRadius: $theme.borders.surfaceBorderRadius,
