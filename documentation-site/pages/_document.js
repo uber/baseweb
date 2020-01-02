@@ -70,7 +70,7 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"
           />
-          <link rel="stylesheet" href="/static/fonts.css" />
+          <link rel="prefetch" as="style" href="/static/fonts.css" />
           <style>{`
             body {
               margin: 0;
