@@ -18,17 +18,19 @@ import type {ThemeT} from '../styles/index.js';
 
 export const flexGridItemMediaQueryStyle = ({
   $theme,
-  flexGridColumnCount,
+  flexGridColumnCount: colCount,
   flexGridColumnGap,
   flexGridRowGap,
+  flexGridItemIndex: itemIndex,
+  flexGridItemCount: itemCount,
 }: {
   $theme: ThemeT,
   flexGridColumnCount: number,
   flexGridColumnGap: ScaleT,
   flexGridRowGap: ScaleT,
+  flexGridItemIndex: number,
+  flexGridItemCount: number,
 }): StyleOverrideT => {
-  const colCount = flexGridColumnCount;
-  const nthChild = colCount === 1 ? 'n' : colCount + 'n';
   // 0px needed for calc() to behave properly
   const colGap = $theme.sizing[flexGridColumnGap] || flexGridColumnGap || '0px';
   const colGapQuantity = parseFloat(colGap);
@@ -43,36 +45,23 @@ export const flexGridItemMediaQueryStyle = ({
     // Subtract .5px to avoid rounding issues on IE/Edge
     // See https://github.com/uber/baseweb/pull/1748
     width: `calc(${widthCalc} - .5px)`,
-    ...[...Array(colCount).keys()].reduce((acc, i) => {
-      const nthChildOffset = i === 0 ? '' : '-' + i;
-      return {
-        // Iterate over each column i for 0 <= i < colCount
-        ...acc,
-        // Duplicate nth-child selector to match specificity of other selectors
-        [`:nth-child(${nthChild}${nthChildOffset}):nth-child(${nthChild}${nthChildOffset})`]: {
-          // Add colGap except at end of row
-          [marginDirection]: i && colGapQuantity && colGap,
-          // Add rowGap below in general
-          marginBottom: rowGapQuantity && rowGap,
-        },
-        [`:nth-child(${nthChild}${nthChildOffset}):last-child`]: {
-          // Add space to make up for missing columns if row ends early
-          [marginDirection]: `calc(${i} * (${colGap} + ${widthCalc}))`,
-        },
-        ...[...Array(i + 1).keys()].reduce(
-          (acc, j) => ({
-            // Iterate over each column j for 0 <= j <= i
-            ...acc,
-            [`:nth-child(${nthChild}${nthChildOffset}):nth-last-child(${j +
-              1})`]: {
-              // Remove rowGap below for last row items
-              marginBottom: 0,
-            },
-          }),
-          {},
-        ),
-      };
-    }, {}),
+    // Add colGap except at end of row
+    [marginDirection]:
+      colGapQuantity && ((itemIndex + 1) % colCount !== 0 ? colGap : 0),
+    // Add rowGap except at end of column
+    marginBottom:
+      rowGapQuantity &&
+      (~~(itemIndex / colCount) !== ~~((itemCount - 1) / colCount)
+        ? rowGap
+        : 0),
+    // Add space to make up for missing columns if last row ends early
+    ...(itemIndex === itemCount - 1 && (itemIndex + 1) % colCount !== 0
+      ? {
+          [marginDirection]: `calc(${colCount -
+            (itemIndex % colCount) -
+            1} * (${colGap} + ${widthCalc}))`,
+        }
+      : {}),
   };
 };
 
@@ -93,11 +82,15 @@ export const flexGridItemStyle = ({
   $flexGridColumnCount,
   $flexGridColumnGap,
   $flexGridRowGap,
+  $flexGridItemIndex,
+  $flexGridItemCount,
   $theme,
 }: {
   $flexGridColumnCount?: ResponsiveT<number>,
   $flexGridColumnGap?: ResponsiveT<ScaleT>,
   $flexGridRowGap?: ResponsiveT<ScaleT>,
+  $flexGridItemIndex?: number,
+  $flexGridItemCount?: number,
   $theme: ThemeT,
 }): StyleOverrideT => {
   const baseFlexGridItemStyle = {flexGrow: 1};
@@ -119,6 +112,8 @@ export const flexGridItemStyle = ({
         flexGridColumnCount: getResponsiveValue($flexGridColumnCount, 0) || 1,
         flexGridColumnGap: getResponsiveValue($flexGridColumnGap, 0) || 0,
         flexGridRowGap: getResponsiveValue($flexGridRowGap, 0) || 0,
+        flexGridItemIndex: $flexGridItemIndex || 0,
+        flexGridItemCount: $flexGridItemCount || 1,
       }),
     };
   }
@@ -148,6 +143,8 @@ export const flexGridItemStyle = ({
         flexGridColumnCount: flexGridColumnCountValue || 1,
         flexGridColumnGap: flexGridColumnGapValue || 0,
         flexGridRowGap: flexGridRowGapValue || 0,
+        flexGridItemIndex: $flexGridItemIndex || 0,
+        flexGridItemCount: $flexGridItemCount || 1,
       });
     }
     return acc;
@@ -161,6 +158,8 @@ const FlexGridItem = ({
   flexGridColumnCount,
   flexGridColumnGap,
   flexGridRowGap,
+  flexGridItemIndex,
+  flexGridItemCount,
   ...restProps
 }: FlexGridItemPropsT): React.Node => {
   const flexGridItemOverrides = {
@@ -178,6 +177,8 @@ const FlexGridItem = ({
       $flexGridColumnCount={flexGridColumnCount}
       $flexGridColumnGap={flexGridColumnGap}
       $flexGridRowGap={flexGridRowGap}
+      $flexGridItemIndex={flexGridItemIndex}
+      $flexGridItemCount={flexGridItemCount}
       data-baseweb="flex-grid-item"
       {...restProps}
     >

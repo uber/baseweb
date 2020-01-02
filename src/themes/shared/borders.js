@@ -42,11 +42,11 @@ const borders: BordersT = {
   radius200: '4px',
   radius300: '8px',
   radius400: '12px',
-  /** Checkbox, Datepicker (Range), Progress Bar, Slider, Tag */
+  /** Datepicker (Range), Progress Bar, Slider, Tag */
   useRoundedCorners: true,
   /** Button, ButtonGroup */
   buttonBorderRadius: '0px',
-  /** Input, Select, Textarea */
+  /** Input, Select, Textarea, Checkbox */
   inputBorderRadius: '0px',
   /** Popover, Menu, Tooltip */
   popoverBorderRadius: '0px',
