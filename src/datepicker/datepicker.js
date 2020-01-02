@@ -143,7 +143,10 @@ export default class Datepicker extends React.Component<
   handleInputChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
     const inputValue = event.currentTarget.value;
 
-    if (inputValue === this.getMask().replace(/9/g, ' ')) {
+    if (
+      inputValue === this.getMask().replace(/9/g, ' ') ||
+      inputValue.length === 0
+    ) {
       if (this.props.range) {
         this.props.onChange &&
           this.props.onChange({
