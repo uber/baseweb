@@ -17,4 +17,9 @@ export type FlexGridPropsT = {
   flexGridRowGap?: ResponsiveT<ScaleT>,
 } & BlockPropsT;
 
-export type FlexGridItemPropsT = FlexGridPropsT;
+export type FlexGridItemPropsT = {
+  /** Index of item in FlexGrid, used to determine gaps **/
+  flexGridItemIndex?: number,
+  /** Total count of items in FlexGrid, used to determine gaps **/
+  flexGridItemCount?: number,
+} & FlexGridPropsT;
