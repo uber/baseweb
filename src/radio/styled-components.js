@@ -21,6 +21,7 @@ function getState(props): State {
 function getOuterColor(props) {
   const {colors} = props.$theme;
 
+  if (props.$disabled) return colors.tickFillDisabled;
   if (!props.$checked) {
     if (props.$disabled) return colors.tickMarkFillDisabled;
     if (props.$isError) return colors.tickBorderError;
@@ -36,7 +37,6 @@ function getOuterColor(props) {
           return colors.tickFillErrorSelectedHoverActive;
       }
     } else {
-      if (props.$disabled) return colors.tickFillDisabled;
       switch (getState(props)) {
         case DEFAULT:
           return colors.tickFillSelected;
@@ -111,7 +111,7 @@ function getLabelPadding(props) {
 function getLabelColor(props) {
   const {$disabled, $theme} = props;
   const {colors} = $theme;
-  return $disabled ? colors.foregroundAlt : colors.foreground;
+  return $disabled ? colors.contentSecondary : colors.contentPrimary;
 }
 
 export const RadioGroupRoot = styled<StylePropsT>('div', props => {
@@ -150,15 +150,15 @@ export const RadioMarkInner = styled<StylePropsT>('div', props => {
     borderTopRightRadius: '50%',
     borderBottomRightRadius: '50%',
     borderBottomLeftRadius: '50%',
-    height: props.$checked ? sizing.scale200 : sizing.scale600,
+    height: props.$checked ? sizing.scale200 : sizing.scale550,
     transitionDuration: animation.timing100,
     transitionTimingFunction: animation.easeOutCurve,
-    width: props.$checked ? sizing.scale200 : sizing.scale600,
+    width: props.$checked ? sizing.scale200 : sizing.scale550,
   };
 });
 
 export const RadioMarkOuter = styled<StylePropsT>('div', props => {
-  const {sizing} = props.$theme;
+  const {animation, sizing} = props.$theme;
 
   return ({
     alignItems: 'center',
@@ -177,6 +177,8 @@ export const RadioMarkOuter = styled<StylePropsT>('div', props => {
     verticalAlign: 'middle',
     width: sizing.scale700,
     flexShrink: 0,
+    transitionDuration: animation.timing100,
+    transitionTimingFunction: animation.easeOutCurve,
   }: {});
 });
 
@@ -205,7 +207,7 @@ export const Input = styled('input', {
 export const Description = styled<StylePropsT>('div', props => {
   return {
     ...props.$theme.typography.font200,
-    color: props.$theme.colors.colorSecondary,
+    color: props.$theme.colors.contentSecondary,
     cursor: 'auto',
     [props.$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: props
       .$theme.sizing.scale900,

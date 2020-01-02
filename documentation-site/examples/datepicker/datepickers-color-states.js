@@ -3,7 +3,6 @@ import React from 'react';
 
 import {useStyletron} from 'baseui';
 import {FormControl} from 'baseui/form-control';
-import {FlexGrid} from 'baseui/flex-grid';
 import {StatefulDatepicker} from 'baseui/datepicker';
 import {TimePicker} from 'baseui/timepicker';
 import {TimezonePicker} from 'baseui/timezonepicker';
@@ -16,7 +15,6 @@ export default () => {
       <div
         className={css({
           display: 'flex',
-          flexDirection: 'row',
         })}
       >
         <div
@@ -25,7 +23,7 @@ export default () => {
             marginRight: theme.sizing.scale500,
           })}
         >
-          <FormControl label="DatePicker">
+          <FormControl label="Datepicker">
             <StatefulDatepicker disabled />
           </FormControl>
         </div>
@@ -49,7 +47,6 @@ export default () => {
       <div
         className={css({
           display: 'flex',
-          flexDirection: 'row',
         })}
       >
         <div
@@ -58,7 +55,7 @@ export default () => {
             marginRight: theme.sizing.scale500,
           })}
         >
-          <FormControl label="DatePicker">
+          <FormControl label="Datepicker">
             <StatefulDatepicker positive />
           </FormControl>
         </div>
@@ -82,7 +79,6 @@ export default () => {
       <div
         className={css({
           display: 'flex',
-          flexDirection: 'row',
         })}
       >
         <div
@@ -91,7 +87,7 @@ export default () => {
             marginRight: theme.sizing.scale500,
           })}
         >
-          <FormControl label="DatePicker">
+          <FormControl label="Datepicker">
             <StatefulDatepicker error />
           </FormControl>
         </div>

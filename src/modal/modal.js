@@ -33,8 +33,8 @@ import type {
 class Modal extends React.Component<ModalPropsT, ModalStateT> {
   static defaultProps: $Shape<ModalPropsT> = {
     animate: true,
-    // remove in a future major version
-    autofocus: false,
+    // TODO(v10): remove
+    autofocus: null,
     autoFocus: true,
     closeable: true,
     isOpen: false,
@@ -118,7 +118,11 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     const mountNode = this.getMountNode();
     const lastStyle = this.lastMountNodeOverflowStyle;
     if (mountNode && lastStyle !== null) {
-      mountNode.style.overflow = lastStyle || '';
+      // If overflow is not 'hidden', something else has changed the
+      // overflow style and we shouldn't try to reset it.
+      if (mountNode.style.overflow === 'hidden') {
+        mountNode.style.overflow = lastStyle || '';
+      }
       this.lastMountNodeOverflowStyle = null;
     }
   }
@@ -285,7 +289,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     const sharedProps = this.getSharedProps();
     const children = this.getChildren();
 
-    if (this.props.autofocus && __DEV__) {
+    if (this.props.autofocus === false && __DEV__) {
       console.warn(
         `The prop "autofocus" is deprecated in favor of "autoFocus" to be consistent across the project.
         The property "autofocus" will be removed in a future major version.`,
@@ -311,7 +315,11 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
           <FocusLock
             returnFocus
             // eslint-disable-next-line jsx-a11y/no-autofocus
-            autoFocus={this.props.autofocus || this.props.autoFocus}
+            autoFocus={
+              this.props.autofocus !== null
+                ? this.props.autofocus
+                : this.props.autoFocus
+            }
           >
             <Root
               data-baseweb="modal"

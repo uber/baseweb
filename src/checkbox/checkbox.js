@@ -52,7 +52,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     }
 
     // TODO(v10)
-    if (this.props.checkmarkType === STYLE_TYPE.toggle) {
+    if (__DEV__ && this.props.checkmarkType === STYLE_TYPE.toggle) {
       console.warn(
         "baseui:Checkbox The STYLE_TYPE.toggle value on the 'checkmarkType' prop does not conform to the current base design specification. " +
           'Please update your code to STYLE_TYPE.toggle_round. This will be updated automatically in a future major version.',
@@ -178,6 +178,8 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
         {(labelPlacement === 'top' || labelPlacement === 'left') && labelComp}
         {this.isToggle() ? (
           <ToggleTrack
+            role="checkbox"
+            aria-checked={checked}
             {...sharedProps}
             {...getOverrideProps(ToggleTrackOverride)}
           >
@@ -190,7 +192,9 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
           </ToggleTrack>
         ) : (
           <Checkmark
+            role="checkbox"
             checked={checked}
+            aria-checked={checked}
             {...sharedProps}
             {...getOverrideProps(CheckmarkOverride)}
           />

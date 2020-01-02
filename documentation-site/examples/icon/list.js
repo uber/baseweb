@@ -19,7 +19,7 @@ function Row(props) {
     <div
       className={css({
         alignItems: 'center',
-        color: theme.colors.foreground,
+        color: theme.colors.contentPrimary,
         display: 'flex',
         paddingBottom: theme.sizing.scale500,
       })}
@@ -27,7 +27,7 @@ function Row(props) {
       <Icon size={24} />
       <div
         className={css({
-          color: theme.colors.foregroundAlt,
+          color: theme.colors.contentSecondary,
           marginLeft: theme.sizing.scale200,
         })}
       >
@@ -35,7 +35,7 @@ function Row(props) {
       </div>
       <div
         className={css({
-          color: theme.colors.foregroundAlt,
+          color: theme.colors.contentSecondary,
           marginLeft: theme.sizing.scale200,
         })}
       >

@@ -43,13 +43,21 @@ const FlexGrid = ({
   return (
     <FlexGrid as={as} {...restProps} {...flexGridProps}>
       {// flatten fragments so FlexGrid correctly iterates over fragments’ children
-      flattenFragments(children).map((child: React.Node) =>
-        // $FlowFixMe https://github.com/facebook/flow/issues/4864
-        React.cloneElement(child, {
-          flexGridColumnCount,
-          flexGridColumnGap,
-          flexGridRowGap,
-        }),
+      flattenFragments(children).map(
+        (
+          child: React.Node,
+          flexGridItemIndex: number,
+          {length: flexGridItemCount}: React.Node[],
+        ) => {
+          // $FlowFixMe https://github.com/facebook/flow/issues/4864
+          return React.cloneElement(child, {
+            flexGridColumnCount,
+            flexGridColumnGap,
+            flexGridRowGap,
+            flexGridItemIndex,
+            flexGridItemCount,
+          });
+        },
       )}
     </FlexGrid>
   );
