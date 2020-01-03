@@ -342,39 +342,92 @@ function Foo() {
 
 ## Using the Theme
 
-So far we have covered how to setup and customize your Base Web theme. Now we will consider how you might consume the theme object when extending our components or building your own.
+The theme object acts as a centralized API for customizing global styling properties, but it also allows developers to use consistent values when extending components or styling new components. Base Web makes access to the theme object a priority across all of our styling utilies and component overrides so that you can always use the right value.
 
-Extension
+Let's look at how you can use the theme object while extending our components and when building out your own interfaces.
 
-There are two supported methods for styling Base Web components: withStyle and overrides. Both have access to the nearest provider’s theme object.
+### Extension
 
-withStyle
+There are two supported methods for styling Base Web components: `withStyle` and `overrides`. Both have access to the nearest ancestor theme object.
 
-Whenever Base Web exports a Styletron styled component we prefix that component with `Styled`. You can use withStyle to extend a styled component with your custom styles:
+#### `withStyle`
 
-withStyle EXAMPLE
+Whenever Base Web exports a Styletron styled component we prefix that component with `Styled`. You can use `withStyle` to extend a styled component with your custom styles:
+
+```js
+import {withStyle} from 'baseui';
+import {StyledBaseButton} from 'baseui/button';
+
+const MyButton = withStyle(StyledBaseButton, ({$theme}) => {
+  return {
+    color: $theme.colors.accent,
+  };
+});
+```
 
 Notice how the second parameter is a function that is passed an object with a `$theme` property. This property provides a reference to your theme object.
 
-Overrides
+#### `overrides`
 
-For in depth information on `overrides`, check out the official documentation. As it relates to theming, any `overrides` style function will be passed a reference to the nearest ancestor theme object to make consistent styling easy.
+For in-depth information on `overrides`, check out the [official documentation](/guides/understanding-overrides). As it relates to theming, any `overrides` style function will be passed a reference to the nearest ancestor theme object to make consistent styling easy.
 
-overrides style EXAMPLE
+```js
+function App() {
+  return (
+    <Button
+      overrides={{
+        Base: {
+          style: ({$theme}) => {
+            return {
+              marginTop: $theme.sizing.scale500,
+            };
+          },
+        },
+      }}
+    />
+  );
+}
+```
 
-Generating
+### Creation
 
 Theming and extending the built-in Base Web components will get you a long way, but sometimes you need to create something new. This is where out other styling utilities come into play.
 
-useStyletron
+#### `useStyletron`
 
-useStyletron EXAMPLE
+```js
+import {useStyletron} from 'baseui';
+
+function App() {
+  const [css, theme] = useStyletron();
+  return (
+    <div
+      className={css({
+        color: $theme.colors.accent,
+      })}
+    >
+      Hello
+    </div>
+  );
+}
+```
 
 This lets you generate classes to be passed directly to an element’s `classNames` prop. `useStyletron` is a wrapper around the built-in Styletron hook. Our wrapper makes sure you have access to your theme by including it as a second item in the hook’s returned array. This makes it easy to style arbitrary elements without having to create new components or replicate design tokens.
 
-styled
+#### `styled`
 
-styled EXAMPLE
+```js
+import {styled} from 'baseui';
 
-`styled` creates a new Styletron styled component. We provide a version which wraps Styletron’s default `styled` function so that it passes a reference to your theme (\$theme) on the props object passed to the second argument (if it is a function). We use this `styled` function to create all of our styled components in Base Web.
-Notes
+const Title = styled('div', ({$theme}) => {
+  return {
+    color: $theme.colors.accent,
+  };
+});
+
+function App() {
+  return <Title>Hello</Title>;
+}
+```
+
+`styled` creates a new Styletron styled component. We provide a version which wraps Styletron’s default `styled` function so that it gets a reference to your theme object. We use this `styled` function to create all of our styled components in Base Web.
