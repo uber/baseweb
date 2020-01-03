@@ -300,7 +300,7 @@ import type {ThemeT} from 'baseui';
 const CustomThemeT = ThemeT & {customColor: string};
 ```
 
-You will notice however, that you can't use `createTheme` with your `CustomThemeT`. If you want to use `createTheme`, we reccommend, that you first create a normal theme with `createTheme` and then _extend_ it with your custom properties.
+You will notice however, that you can't use `createTheme` with your `CustomThemeT`. If you want to use `createTheme`, we reccommend that you first create a normal theme with `createTheme` and then _extend_ it with your custom properties.
 
 ```js
 import {createTheme} from 'baseui';
