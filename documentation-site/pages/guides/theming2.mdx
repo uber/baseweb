@@ -13,13 +13,21 @@ export default Layout;
 
 # Theming
 
-## Motivation
+In this guide, we will cover the basics of theming Base Web components. We'll go over the following topics:
+
+- The benefits of a theme
+- Setting up Base Web with a theme
+- Toggling between light and dark themes
+- Creating your own theme
+- Accessing your theme through styling utilities
+
+## Benefits
 
 The theming system that ships with Base Web provides developers with a few useful features:
 
 ### Centralized Customization
 
-All of our components use the theme object to assign styling values. The theme object allows you to configure system wide styling values in one place. It removes the need for certain types of styling overrides and frees you from maintaining custom versions of components simply because your interface requires a different color palette or typography scale.
+The theme object allows you to configure system wide styling values in one place. All of our components reference the theme object when assigning style values. This removes the need for certain types of styling overrides and frees you from maintaining custom versions of components simply because your interface requires a different color palette or typography scale.
 
 ### Light and Dark Themes
 
@@ -27,29 +35,77 @@ Because our theme is provided to components through React’s context system, we
 
 ### Access to Design Tokens
 
-The theme object is easily accessible when working with Base Web’s various styling utilities (such as `useStyletron`, `styled`, `withStyle`, etc). This makes it easy to use consistent values when extending Base components or styling your own components. Using consistent design tokens results in faster development, smaller bundle sizes, and better looking interfaces.
-
-We encourage you to use the theming system if any of the above features seem useful for your project.
+The theme object is easily accessible when working with Base Web’s various styling utilities (including `useStyletron`, `styled`, `withStyle`, and `Block`). This makes it easy to use consistent values when extending Base components or styling your own components. Using consistent design tokens results in faster development, smaller bundle sizes, and better looking interfaces.
 
 ## Setup
 
-Even if you are not interested in creating a custom theme, we require that you select a theme as part of Base Web’s boilerplate setup. Our components require a theme in order to assign their default styles.
+Even if you are not interested in creating a custom theme, we require that you select a theme as part of Base Web’s boilerplate setup. Our components require a theme in order to assign styles.
 
-The theme object itself is nothing special. It is just an object with specific properties (a specific “shape”) which can be passed to our ThemeProvider or BaseProvider. Base Web components will then reference this object when assigning stylistic values such as color or font size.
+The theme object itself is nothing special. It is just an object with specific properties (a specific “shape”) which can be passed to our `ThemeProvider` or `BaseProvider`. Base Web components will then reference this object when assigning stylistic values such as color or font size.
 
 We provide two themes out of the box, `LightTheme` and `DarkTheme`, which style components in light & dark variants. If you don’t want to customize Base Web, you can use either of these ready-to-use themes as-is:
 
-BASIC THEME EXAMPLE
+```js
+import React from 'react';
+import {LightTheme, ThemeProvider} from 'baseui';
 
-If you want to allow for toggling between the two themes at runtime, you need to allocate some state for determining which theme is passed to our `ThemeProvider`.
+export default function App() {
+  return (
+    <ThemeProvider theme={LightTheme}>
+      <div>I can use themed Base Web components here!<div>
+    </ThemeProvider>
+  )
+}
+```
 
-TOGGLE THEME EXAMPLE
+If you want to allow for toggling between the two themes at runtime, you need to allocate some state for determining which theme is passed to `ThemeProvider`.
 
-While `ThemeProvider` will provide your theme object to any descendent Base Web components, we recommend using `BaseProvider` at the root of your application. `BaseProvider` combines the functionality of the `ThemeProvider` with our `LayersManager` utility. You can always use `ThemeProvider` to “theme” a subtree of your application.
+```js
+import React from 'react';
+import {LightTheme, DarkTheme, ThemeProvider} from 'baseui';
+import {Button} from 'baseui/button';
 
-BASE PROVIDER EXAMPLE
+const THEME = {
+  light: 'light',
+  dark: 'dark',
+};
 
-This is all the setup required for our default themes. Now let’s look at how you might configure Base Web with a custom theme.
+export default function App() {
+  const [theme, setTheme] = React.useState(THEME.light);
+  return (
+    <ThemeProvider theme={theme === THEME.light ? LightTheme : DarkTheme}>
+      <Button
+        onClick={() =>
+          setTheme(theme === THEME.light ? THEME.dark : THEME.light)
+        }
+      >
+        Toggle light/dark theme!
+      </Button>
+    </ThemeProvider>
+  );
+}
+```
+
+While `ThemeProvider` will provide your theme object to any descendent Base Web components, we recommend using `BaseProvider` at the root of your application. `BaseProvider` combines the functionality of the `ThemeProvider` with our `LayersManager` utility. You would then use `ThemeProvider` to “theme” a subtree of your application if needed.
+
+```js
+import React from "react";
+import {BaseProvider, LightTheme} from 'baseui';
+import { Provider as StyletronProvider } from "styletron-react";
+import { Client as Styletron } from "styletron-engine-atomic";
+
+const engine = new Styletron();
+
+export default function App() {
+  <StyletronProvider value={engine}>
+    <BaseProvider theme={LightTheme}>
+      <div>Themed Base Web stuff goes here!<div>
+    </BaseProvider>
+  </StyletronProvider>
+}
+```
+
+This is all the setup required for our default themes (including all of the Styletron boilerplate). Now let’s look at how you might configure Base Web with a custom theme.
 
 ## A Custom Theme
 
