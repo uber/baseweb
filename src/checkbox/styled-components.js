@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -150,13 +150,13 @@ export const Checkmark = styled<SharedStylePropsT>('span', props => {
   const indeterminate = encodeURIComponent(`
     <svg width="14" height="4" viewBox="0 0 14 4" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M14 0.5H0V3.5H14V0.5Z" fill="${tickColor}"/>
-    </svg>  
+    </svg>
   `);
 
   const check = encodeURIComponent(`
     <svg width="17" height="13" viewBox="0 0 17 13" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M6.50002 12.6L0.400024 6.60002L2.60002 4.40002L6.50002 8.40002L13.9 0.900024L16.1 3.10002L6.50002 12.6Z" fill="${tickColor}"/>
-    </svg> 
+    </svg>
   `);
 
   const borderRadius = $theme.borders.inputBorderRadius;
