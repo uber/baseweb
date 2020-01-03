@@ -7,6 +7,8 @@ LICENSE file in the root directory of this source tree.
 
 import {Notification} from 'baseui/notification';
 import Layout from '../../components/layout';
+import Example from '../../components/example';
+import IconOverrides from 'examples/theme/icon-overrides.js';
 
 export default Layout;
 
@@ -211,24 +213,135 @@ Between `parameters` and `overrides` you should have a fair amount of control ov
 
 ### Customizing Typography
 
-The `primitives` object has an optional property, `primaryFontFamily`, which allows you to set a custom font family string for typography components. If you want to customize the typography scale further, you would need to use `overrides`.
+The `primitives` object has an optional property, `primaryFontFamily`, which allows you to set a custom font family string for typography components.
 
-TYPOGRAPHY EXAMPLE
+```js
+import {createTheme, lightThemePrimitives} from 'baseui';
 
-Customizing Icons
+const primitives = {
+  ...lightThemePrimitives,
+  primaryFontFamily: 'Verdana',
+};
 
-CURRENT ICON STUFF HERE
+const theme = createTheme(primitives);
+```
 
-Customizing Theme Shape
+In this example, we assign `primaryFontFamily` to the vastly underrated `Verdana` font family. With this change, all Base Web components will use `Verdana`.
 
-You can add properties to your theme, but you will need to create a custom theme type that extends our built in theme type.
+But what if we wanted to use `Georgia` for Display typography? For this purpose you would need to use `overrides`.
 
-CUSTOM THEME EXAMPLE
+```js
+import {createTheme, lightThemePrimitives} from 'baseui';
 
-You can then create new `styled`, `withStyle`, and `useStyletron` utilities that have use your custom theme type.
+const primitives = {
+  ...lightThemePrimitives,
+  primaryFontFamily: 'Verdana',
+};
 
-CUSTOM STYLE UTILS EXAMPLE
-Using the Theme
+const overrides = {
+  typography: {
+    DisplayLarge: {
+      fontFamily: 'Georgia',
+    },
+    DisplayMedium: {
+      fontFamily: 'Georgia',
+    },
+    DisplaySmall: {
+      fontFamily: 'Georgia',
+    },
+    DisplayXSmall: {
+      fontFamily: 'Georgia',
+    },
+  },
+};
+
+const theme = createTheme(primitives, overrides);
+```
+
+Initially, `Verdana` will be mapped to every typography value as a `primitive`. By using `overrides`, we can easily deep-merge some reassignments over the theme object. In this case, we set our `Display` typography levels to use the `Georgia` font. We use this same `overrides` technique for our own applications.
+
+### Customizing Icons
+
+The theme object is also the source for customizing the icons we use in Base Web components.
+
+You can use any React component as a replacement for an icon, as long as they accept the following properties:
+
+- `size`, to set their width and height
+- `color`, to set their colors
+- `title`, to set the title of the icon for accessibility purposes
+
+You can find more about the [Icon API here](/components/icon/#icon-api) and also refer to this [list of available icons](https://baseweb.design/components/icon/#available-icons).
+
+The example below overrides the `ChevronLeft` icon with the `ArrowLeft` icon, making the pagination appear slightly different.
+
+All the icons that can be found on the Icon component page can be overridden using this technique.
+
+<Example title="Pagination icon overrides" path="theme/icon-overrides.js">
+  <IconOverrides />
+</Example>
+
+### Customizing the Theme Type
+
+There may be a scenario where you want to extend our default theme. We do not reccomended removing theme properties, as this may lead to a run-time error when a component references a missing property. However, _adding_ new properties is perfectly acceptable.
+
+```js
+// @flow
+
+import type {ThemeT} from 'baseui';
+
+const CustomThemeT = ThemeT & {customColor: string};
+```
+
+You will notice however, that you can't use `createTheme` with your `CustomThemeT`. If you want to use `createTheme`, we reccommend, that you first create a normal theme with `createTheme` and then _extend_ it with your custom properties.
+
+```js
+import {createTheme} from 'baseui';
+import type {ThemeT} from 'baseui';
+
+const CustomThemeT = ThemeT & {customColor: string};
+
+const theme = createTheme(/*primtives, overrides*/);
+const customTheme: CustomThemeT = {
+  ...theme,
+  customColor: 'pink',
+};
+
+function App() {
+  return <BaseProvider theme={customTheme}>{/* ... */}</BaseProvider>;
+}
+```
+
+Note, you can use the custom type theme object with our provider so long as it _extends_ the default `ThemeT`. Base Web components will essentially ignore the additional properties, but the theme object will be available in component overrides.
+
+If you want to use that custom theme shape with our various styling utilties, you will want create new `styled`, `withStyle`, and `useStyletron` methods which use your custom theme type. Luckily, we make this pretty easy for you.
+
+```js
+// my-style-utils.js
+
+import {
+  createThemedStyled,
+  createThemedWithStyle,
+  createThemedUseStyletron
+} from 'baseui';
+
+export const themedStyled = createThemedStyled<CustomThemeT>();
+export const themedWithStyle = createThemedWithStyle<CustomThemeT>();
+export const themedUseStyletron = createThemedUseStyletron<CustomThemeT>();
+```
+
+You can import these custom themed utilities wherever you want access to your custom theme.
+
+```js
+import {themedUseStyletron as useStyletron} from 'path/to/my-style-utils.js';
+
+function Foo() {
+  const [css, theme] = useStyletron();
+  return <div className={css({color: theme.customColor})}>Okay</div>;
+}
+```
+
+## Using the Theme
+
 So far we have covered how to setup and customize your Base Web theme. Now we will consider how you might consume the theme object when extending our components or building your own.
 
 Extension
