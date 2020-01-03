@@ -22,6 +22,7 @@ In this guide, we will cover the basics of theming Base Web components. We'll go
 - [Customizing your theme](#a-custom-theme)
 - [Customizing typography](#customizing-typography)
 - [Customizing icons](#customizing-icons)
+- [Extending the theme](#customizing-the-theme-type)
 - [Accessing your theme through styling utilities](#using-the-theme)
 
 ## Benefits
@@ -377,7 +378,7 @@ Notice how the second parameter is a function that is passed an object with a `$
 
 #### `overrides`
 
-For in-depth information on `overrides`, check out the [official documentation](/guides/understanding-overrides). As it relates to theming, any `overrides` style function will be passed a reference to the nearest ancestor theme object to make consistent styling easy.
+For in-depth information on `overrides`, check out the [official documentation](/guides/understanding-overrides). As it relates to theming, any `overrides` `style` function will be passed a reference to the nearest ancestor theme object to make consistent styling easy.
 
 ```js
 function App() {
