@@ -24,6 +24,8 @@ export const KEY_STRINGS = {
   Space: ' ',
   Escape: 'Escape',
   Backspace: 'Backspace',
+  Home: 'Home',
+  End: 'End',
 };
 
 export const OPTION_LIST_SIZE = {
