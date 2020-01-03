@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -85,7 +85,7 @@ const StyledHeadCellElement = styled<HorizontalStyleProps>(
       cursor: $cursor ? $cursor : 'inherit',
       width: '100%',
       ':last-of-type': {
-        borderRight: 'none',
+        [$theme.direction === 'rtl' ? 'borderLeft' : 'borderRight']: 'none',
       },
     };
   },

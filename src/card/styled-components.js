@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -34,18 +34,9 @@ export const HeaderImage = styled<{}>('img', ({$theme}) => ({
 }));
 
 export const Root = styled<{}>('div', ({$theme}) => ({
-  borderTopWidth: '2px',
-  borderRightWidth: '2px',
-  borderBottomWidth: '2px',
-  borderLeftWidth: '2px',
-  borderTopStyle: 'solid',
-  borderRightStyle: 'solid',
-  borderBottomStyle: 'solid',
-  borderLeftStyle: 'solid',
-  borderTopColor: $theme.colors.borderOpaque,
-  borderRightColor: $theme.colors.borderOpaque,
-  borderBottomColor: $theme.colors.borderOpaque,
-  borderLeftColor: $theme.colors.borderOpaque,
+  borderWidth: '2px',
+  borderStyle: 'solid',
+  borderColor: $theme.colors.borderOpaque,
   borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
   borderTopRightRadius: $theme.borders.surfaceBorderRadius,
   borderBottomLeftRadius: $theme.borders.surfaceBorderRadius,

@@ -168,20 +168,28 @@ exports[`FlexGrid passes FlexGrid props to children: FlexGridItem with flexGridC
             >
               <MockFlexGridItem
                 flexGridColumnCount={4}
+                flexGridItemCount={2}
+                flexGridItemIndex={0}
                 key=".0"
               >
                 <div
                   flex-grid-column-count={4}
+                  flex-grid-item-count={2}
+                  flex-grid-item-index={0}
                 >
                   Item 1
                 </div>
               </MockFlexGridItem>
               <MockFlexGridItem
                 flexGridColumnCount={4}
+                flexGridItemCount={2}
+                flexGridItemIndex={1}
                 key=".1"
               >
                 <div
                   flex-grid-column-count={4}
+                  flex-grid-item-count={2}
+                  flex-grid-item-index={1}
                 >
                   Item 2
                 </div>
