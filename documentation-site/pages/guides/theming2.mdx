@@ -291,6 +291,20 @@ All the icons that can be found on the Icon component page can be overridden usi
 
 ### Customizing the Theme Type
 
+<Notification
+  kind="warning"
+  overrides={{
+    Body: {
+      style: {
+        width: '100%',
+      },
+    },
+  }}
+>
+  Extending the theme is an advanced pattern. See if you can configure the
+  default theme first before extending it.
+</Notification>
+
 There may be a scenario where you want to extend our default theme. We do not reccomended removing theme properties, as this may lead to a run-time error when a component references a missing property. However, _adding_ new properties is perfectly acceptable.
 
 ```js
