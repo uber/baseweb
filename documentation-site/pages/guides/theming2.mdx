@@ -16,11 +16,13 @@ export default Layout;
 
 In this guide, we will cover the basics of theming Base Web components. We'll go over the following topics:
 
-- The benefits of a theme
-- Setting up Base Web with a theme
-- Toggling between light and dark themes
-- Creating your own theme
-- Accessing your theme through styling utilities
+- [The benefits of a theme](#benefits)
+- [Setting up Base Web with a theme](#setup)
+- [Toggling between light and dark themes](#toggling-light-and-dark)
+- [Customizing your theme](#a-custom-theme)
+- [Customizing typography](#customizing-typography)
+- [Customizing icons](#customizing-icons)
+- [Accessing your theme through styling utilities](#using-the-theme)
 
 ## Benefits
 
@@ -60,6 +62,8 @@ The theme object itself is nothing special. It is just an object with specific p
   run-time error.
 </Notification>
 
+### Default themes
+
 We provide two themes out of the box, `LightTheme` and `DarkTheme`, which style components in light & dark variants. If you don’t want to customize Base Web, you can use either of these ready-to-use themes as-is:
 
 ```js
@@ -74,6 +78,8 @@ export default function App() {
   )
 }
 ```
+
+### Toggling light and dark
 
 If you want to allow for toggling between the two themes at runtime, you need to allocate some state for determining which theme is passed to `ThemeProvider`.
 
@@ -102,6 +108,8 @@ export default function App() {
   );
 }
 ```
+
+### `BaseProvider`
 
 While `ThemeProvider` will provide your theme object to any descendent Base Web components, we recommend using `BaseProvider` at the root of your application. `BaseProvider` combines the functionality of the `ThemeProvider` with our [`LayersManager`](/components/layer#layersmanager) utility. You should only use `ThemeProvider` directly if you need to provide a separate theme to a subtree of your application.
 
@@ -173,7 +181,7 @@ But what if the default _mapping_ (of primitives to theme properties) is not qui
 
 The second parameter for createTheme is an `overrides` object.
 
-The `overrides` object will be deep-merged with the initial result of mapping `primitives` to all of the theme properties. `overrides` is just a convenient shortcut for deep-merging reassignments onto your theme object.
+The `overrides` object will be deep-merged with the initial result of mapping `primitives` to all of the theme properties. `overrides` is just a convenient shortcut for deep-merging assignments onto your theme object.
 
 ```js
 import {createTheme, lightThemePrimitives} from 'baseui';
@@ -412,7 +420,7 @@ function App() {
 }
 ```
 
-This lets you generate classes to be passed directly to an element’s `classNames` prop. `useStyletron` is a wrapper around the built-in Styletron hook. Our wrapper makes sure you have access to your theme by including it as a second item in the hook’s returned array. This makes it easy to style arbitrary elements without having to create new components or replicate design tokens.
+[`useStyletron`](/components/use-styletron) lets you generate classes to be passed directly to an element’s `classNames` prop. `useStyletron` is a wrapper around the built-in Styletron hook. Our wrapper makes sure you have access to your theme by including it as a second item in the hook’s returned array. This makes it easy to style arbitrary elements without having to create new components or replicate design tokens.
 
 #### `styled`
 
@@ -430,4 +438,16 @@ function App() {
 }
 ```
 
-`styled` creates a new Styletron styled component. We provide a version which wraps Styletron’s default `styled` function so that it gets a reference to your theme object. We use this `styled` function to create all of our styled components in Base Web.
+[`styled`](/components/styled) creates a new Styletron styled component. We provide a version which wraps Styletron’s default `styled` function so that it gets a reference to your theme object. We use this `styled` function to create all of our styled components in Base Web.
+
+#### `Block`
+
+```js
+import {Block} from 'baseui/block';
+
+function App() {
+  <Block color="accent">Hello</Block>;
+}
+```
+
+[`Block`](/components/block) is a unique tool. It allows you to assign common styling attributes using theme tokens, without having to do theme property lookups yourself. The intention is to let you quickly assign design system tokens to common style attributes, such as `font`, `color`, `margin`, etc.
