@@ -14,7 +14,7 @@ const move = {
     width: '0px',
   },
   to: {
-    width: '200px',
+    width: '100%',
   },
 };
 
@@ -29,9 +29,9 @@ export function Timing({duration, easing}: {duration: string, easing: string}) {
     <div className={css({marginBottom: theme.sizing.scale1000})}>
       <div
         className={css({
+          marginBottom: theme.sizing.scale400,
           ...theme.typography.HeadingXSmall,
           ...monospace,
-          marginBottom: theme.sizing.scale400,
         })}
       >
         {duration || easing}
@@ -39,8 +39,8 @@ export function Timing({duration, easing}: {duration: string, easing: string}) {
       <div
         className={css({
           marginBottom: theme.sizing.scale400,
+          ...theme.typography.ParagraphMedium,
           ...monospace,
-          ...theme.typography.font300,
         })}
       >
         {duration ? theme.animation[duration] : null}
@@ -48,7 +48,6 @@ export function Timing({duration, easing}: {duration: string, easing: string}) {
       </div>
       <div
         className={css({
-          width: '200px',
           backgroundColor: theme.colors.contentInverseSecondary,
         })}
       >
@@ -62,8 +61,7 @@ export function Timing({duration, easing}: {duration: string, easing: string}) {
               ? theme.animation[easing]
               : 'linear',
             backgroundColor: theme.colors.contentPrimary,
-            height: '25px',
-            width: '25px',
+            height: theme.sizing.scale200,
           })}
         ></div>
       </div>
