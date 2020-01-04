@@ -11,6 +11,7 @@ import Example from '../../components/example';
 import IconOverrides from 'examples/theme/icon-overrides.js';
 import {Timing} from '../../components/theming/animations.js';
 import {Border, Radius} from '../../components/theming/borders.js';
+import {Breakpoint} from '../../components/theming/breakpoints.js';
 import {Color} from '../../components/theming/colors.js';
 import {Lighting} from '../../components/theming/lighting.js';
 import {Sizing} from '../../components/theming/sizing.js';
@@ -475,14 +476,20 @@ function App() {
 
 ## Theme Values
 
-The theme object organizes its various properties according to their respective concerns. The rest of the page will go through the various types of tokens you might need to use when extending Base Web:
+The theme object organizes its various properties according to their respective concerns.
 
-- `animation`
-- `borders`
-- `colors`
-- `lighting`
-- `sizing`
-- `typography`
+- [`animation`](#animation)
+- [`borders`](#borders)
+- [`breakpoints`](#breakpoints)
+- [`colors`](#colors)
+- [`direction`](#direction)
+- [`grid`](#grid)
+- [`lighting`](#lighting)
+- [`mediaQuery`](#media-query)
+- [`name`](#name)
+- [`sizing`](#sizing)
+- [`typography`](#typography)
+- [`zIndex`](#z-index)
 
 ### Animation
 
@@ -511,6 +518,14 @@ Control border and border radius styles.
 <Radius value="radius200" />
 <Radius value="radius300" />
 <Radius value="radius400" />
+
+### Breakpoints
+
+Control the media query widths used to establish responsive breakpoints.
+
+<Breakpoint value="small" />
+<Breakpoint value="medium" />
+<Breakpoint value="large" />
 
 ### Colors
 
@@ -569,6 +584,14 @@ Control literal and semantic color values.
 <Color value="borderWarning" />
 <Color value="borderPositive" />
 
+### Direction
+
+Control the [`dir`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir) for components. Can be `auto`, `rtl`, or `ltr`.
+
+### Grid
+
+Control the columns and gutters for [`LayoutGrid`](/components/layout-grid).
+
 ### Lighting
 
 Control shadows.
@@ -577,6 +600,14 @@ Control shadows.
 <Lighting value="shadow500" />
 <Lighting value="shadow600" />
 <Lighting value="shadow700" />
+
+### Media Query
+
+Control media queries added to the theme for convenience.
+
+### Name
+
+Control the name of your theme. For example, `light-theme`.
 
 ### Sizing
 
@@ -628,3 +659,7 @@ Control type family, size, weight and height.
 <Type value="DisplaySmall" />
 <Type value="DisplayMedium" />
 <Type value="DisplayLarge" />
+
+### Z-Index
+
+Control the base `z-index` for the theme. This should not be used and will be removed in v10 of Base Web.
