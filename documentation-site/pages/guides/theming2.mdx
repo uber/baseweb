@@ -9,6 +9,7 @@ import {Notification} from 'baseui/notification';
 import Layout from '../../components/layout';
 import Example from '../../components/example';
 import IconOverrides from 'examples/theme/icon-overrides.js';
+import {Timing, Easing} from '../../components/theming/timing.js';
 
 export default Layout;
 
@@ -466,3 +467,47 @@ function App() {
 ```
 
 [`Block`](/components/block) is a unique tool. It allows you to assign common styling attributes using theme tokens, without having to do theme property lookups yourself. The intention is to let you quickly assign design system tokens to common style attributes, such as `font`, `color`, `margin`, etc.
+
+## Theme Values
+
+The theme object organizes its various properties according to their respective concerns:
+
+- `animation`
+- `borders`
+- `breakpoints`
+- `colors`
+- `direction`
+- `grid`
+- `lighting`
+- `sizing`
+- `typography`
+
+Below we will go through the groupings that organize these concerns.
+
+### Animation
+
+Control animation durations and easing functions.
+
+<Timing duration="timing100" />
+<Timing duration="timing400" />
+<Timing duration="timing700" />
+<Timing duration="timing1000" />
+<Timing easing="easeOutCurve" />
+<Timing easing="easeInCurve" />
+<Timing easing="easeInOutCurve" />
+
+### Borders
+
+### Breakpoints
+
+### Colors
+
+### Direction
+
+### Grid
+
+### Lighting
+
+### Sizing
+
+### Typography
