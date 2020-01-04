@@ -74,10 +74,11 @@ export function Radius({value}: {value: string}) {
       </div>
       <div
         className={css({
-          ...theme.borders.border600,
+          backgroundColor: theme.colors.contentPrimary,
           borderRadius: theme.borders[value],
           marginBottom: theme.sizing.scale400,
-          height: theme.sizing.scale400,
+          height: theme.sizing.scale1200,
+          width: theme.sizing.scale1200,
         })}
       ></div>
     </div>
