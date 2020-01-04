@@ -14,7 +14,13 @@ const monospace = {
     'SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace',
 };
 
-export function Breakpoint({value}: {value: string}) {
+export function Breakpoint({
+  value,
+  media = false,
+}: {
+  value: string,
+  media: boolean,
+}) {
   const [css, theme] = useStyletron();
   return (
     <div className={css({marginBottom: theme.sizing.scale1000})}>
@@ -33,7 +39,7 @@ export function Breakpoint({value}: {value: string}) {
           ...monospace,
         })}
       >
-        <div>{LightTheme.breakpoints[value]}px</div>
+        <div>{LightTheme[media ? 'mediaQuery' : 'breakpoints'][value]}px</div>
       </div>
     </div>
   );
