@@ -17,19 +17,19 @@ import {useStyletron, styled} from 'baseui';
 const monospaceFontFamily =
   'SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace';
 
-const Title = styled('div', ({$theme}) => {
+export const Title = styled<{}>('div', ({$theme}) => {
   return {
     ...$theme.typography.HeadingXSmall,
     fontFamily: monospaceFontFamily,
-    marginBottom: $theme.sizing.scale400,
+    marginBottom: $theme.sizing.scale300,
   };
 });
 
-const Value = styled('div', ({$theme}) => {
+export const Value = styled<{}>('div', ({$theme}) => {
   return {
     ...$theme.typography.ParagraphMedium,
     fontFamily: monospaceFontFamily,
-    marginBottom: $theme.sizing.scale400,
+    marginBottom: $theme.sizing.scale300,
   };
 });
 
@@ -44,13 +44,11 @@ export function Property({
 }) {
   const [css, theme] = useStyletron();
   return (
-    <div className={css({marginBottom: theme.sizing.scale400})}>
+    <div className={css({marginBottom: theme.sizing.scale600})}>
       <Title>{title}</Title>
-      {Array.isArray(value) ? (
-        value.map(v => <Value key={v}>{v}</Value>)
-      ) : (
-        <Value>{value}</Value>
-      )}
+      <Value>
+        {Array.isArray(value) ? value.map(v => <div key={v}>{v}</div>) : value}
+      </Value>
       {children && (
         <div
           className={css({

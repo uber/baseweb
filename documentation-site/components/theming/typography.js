@@ -8,36 +8,18 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-
-const monospace = {
-  fontFamily:
-    'SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace',
-};
+import {Title, Value} from './common.js';
 
 export function Type({value}: {value: string}) {
   const [css, theme] = useStyletron();
   return (
-    <div className={css({marginBottom: theme.sizing.scale1000})}>
-      <div
-        className={css({
-          ...theme.typography[value],
-          ...monospace,
-          marginBottom: theme.sizing.scale400,
-        })}
-      >
-        {value}
-      </div>
-      <div
-        className={css({
-          ...theme.typography.ParagraphMedium,
-          ...monospace,
-          marginBottom: theme.sizing.scale400,
-        })}
-      >
+    <div className={css({marginBottom: theme.sizing.scale600})}>
+      <Title $style={{...theme.typography[value]}}>{value}</Title>
+      <Value>
         <div>{theme.typography[value].fontSize}</div>
         <div>{theme.typography[value].fontWeight}</div>
         <div>{theme.typography[value].lineHeight}</div>
-      </div>
+      </Value>
     </div>
   );
 }

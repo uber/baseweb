@@ -8,11 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-
-const monospace = {
-  fontFamily:
-    'SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace',
-};
+import {Title, Value} from './common.js';
 
 export function Color({value}: {value: string}) {
   const [css, theme] = useStyletron();
@@ -20,34 +16,22 @@ export function Color({value}: {value: string}) {
     <div
       className={css({
         display: 'flex',
-        marginBottom: theme.sizing.scale400,
         justifyContent: 'space-between',
+        borderBottomColor: theme.colors[value],
+        borderBottomWidth: '2px',
+        borderBottomStyle: 'solid',
+        marginBottom: theme.sizing.scale600,
       })}
     >
-      <div
-        className={css({
-          ...theme.typography.HeadingXSmall,
-          ...monospace,
-          marginBottom: theme.sizing.scale400,
-        })}
-      >
-        {value}
-        <div
-          className={css({
-            ...theme.typography.ParagraphMedium,
-            ...monospace,
-            marginBottom: theme.sizing.scale400,
-          })}
-        >
-          <div>{theme.colors[value]}</div>
-        </div>
+      <div>
+        <Title>{value}</Title>
+        <Value>{theme.colors[value]}</Value>
       </div>
       <div
         className={css({
-          height: theme.sizing.scale1000,
+          boxSizing: 'border-box',
           width: theme.sizing.scale2400,
           backgroundColor: theme.colors[value],
-          ...theme.borders.border100,
         })}
       ></div>
     </div>

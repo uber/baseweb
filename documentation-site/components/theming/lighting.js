@@ -8,34 +8,12 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-
-const monospace = {
-  fontFamily:
-    'SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace',
-};
+import {Property} from './common.js';
 
 export function Lighting({value}: {value: string}) {
   const [css, theme] = useStyletron();
   return (
-    <div className={css({marginBottom: theme.sizing.scale1000})}>
-      <div
-        className={css({
-          ...theme.typography.HeadingXSmall,
-          ...monospace,
-          marginBottom: theme.sizing.scale400,
-        })}
-      >
-        {value}
-      </div>
-      <div
-        className={css({
-          ...theme.typography.ParagraphMedium,
-          ...monospace,
-          marginBottom: theme.sizing.scale400,
-        })}
-      >
-        <div>{theme.lighting[value]}</div>
-      </div>
+    <Property title={value} value={theme.lighting[value]}>
       <div
         className={css({
           backgroundColor: theme.colors.contentInversePrimary,
@@ -43,6 +21,6 @@ export function Lighting({value}: {value: string}) {
           boxShadow: theme.lighting[value],
         })}
       ></div>
-    </div>
+    </Property>
   );
 }
