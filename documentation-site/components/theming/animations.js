@@ -19,6 +19,31 @@ const move = {
   },
 };
 
+// adds delays so that bars are in sync
+const animations = {
+  timing100: {
+    ...move,
+    ['25%']: {
+      width: '100%',
+    },
+  },
+  timing400: {
+    ...move,
+    ['40%']: {
+      width: '100%',
+    },
+  },
+  timing700: {
+    ...move,
+    ['60%']: {
+      width: '100%',
+    },
+  },
+  timing1000: {
+    ...move,
+  },
+};
+
 export function Timing({duration}: {duration: string}) {
   const [css, theme] = useStyletron();
   return (
@@ -30,12 +55,12 @@ export function Timing({duration}: {duration: string}) {
       >
         <div
           className={css({
-            animationName: move,
-            animationDuration: theme.animation[duration],
+            animationName: animations[duration],
+            animationDuration: '1s',
             animationDirection: 'alternate',
             animationIterationCount: 'infinite',
             animationTimingFunction: 'linear',
-            height: theme.sizing.scale200,
+            height: theme.sizing.scale100,
             backgroundColor: theme.colors.contentPrimary,
           })}
         ></div>
@@ -60,7 +85,7 @@ export function Easing({easing}: {easing: string}) {
             animationDirection: 'alternate',
             animationIterationCount: 'infinite',
             animationTimingFunction: theme.animation[easing],
-            height: theme.sizing.scale200,
+            height: theme.sizing.scale100,
             backgroundColor: theme.colors.contentPrimary,
           })}
         ></div>
