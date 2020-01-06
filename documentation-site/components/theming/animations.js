@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {useStyletron} from 'baseui';
+import {Property} from './common.js';
 
 const move = {
   from: {
@@ -18,34 +19,10 @@ const move = {
   },
 };
 
-const monospace = {
-  fontFamily:
-    'SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace',
-};
-
-export function Timing({duration, easing}: {duration: string, easing: string}) {
+export function Timing({duration}: {duration: string}) {
   const [css, theme] = useStyletron();
   return (
-    <div className={css({marginBottom: theme.sizing.scale1000})}>
-      <div
-        className={css({
-          marginBottom: theme.sizing.scale400,
-          ...theme.typography.HeadingXSmall,
-          ...monospace,
-        })}
-      >
-        {duration || easing}
-      </div>
-      <div
-        className={css({
-          marginBottom: theme.sizing.scale400,
-          ...theme.typography.ParagraphMedium,
-          ...monospace,
-        })}
-      >
-        {duration ? theme.animation[duration] : null}
-        {easing ? theme.animation[easing] : null}
-      </div>
+    <Property title={duration} value={theme.animation[duration]}>
       <div
         className={css({
           backgroundColor: theme.colors.contentInverseSecondary,
@@ -54,17 +31,40 @@ export function Timing({duration, easing}: {duration: string, easing: string}) {
         <div
           className={css({
             animationName: move,
-            animationDuration: duration ? theme.animation[duration] : '1s',
+            animationDuration: theme.animation[duration],
             animationDirection: 'alternate',
             animationIterationCount: 'infinite',
-            animationTimingFunction: easing
-              ? theme.animation[easing]
-              : 'linear',
-            backgroundColor: theme.colors.contentPrimary,
+            animationTimingFunction: 'linear',
             height: theme.sizing.scale200,
+            backgroundColor: theme.colors.contentPrimary,
           })}
         ></div>
       </div>
-    </div>
+    </Property>
+  );
+}
+
+export function Easing({easing}: {easing: string}) {
+  const [css, theme] = useStyletron();
+  return (
+    <Property title={easing} value={theme.animation[easing]}>
+      <div
+        className={css({
+          backgroundColor: theme.colors.contentInverseSecondary,
+        })}
+      >
+        <div
+          className={css({
+            animationName: move,
+            animationDuration: '1s',
+            animationDirection: 'alternate',
+            animationIterationCount: 'infinite',
+            animationTimingFunction: theme.animation[easing],
+            height: theme.sizing.scale200,
+            backgroundColor: theme.colors.contentPrimary,
+          })}
+        ></div>
+      </div>
+    </Property>
   );
 }
