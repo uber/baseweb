@@ -39,14 +39,18 @@ export function Property({
   children,
 }: {
   title: string,
-  value: string,
+  value: string | string[],
   children?: React.Node,
 }) {
   const [css, theme] = useStyletron();
   return (
     <div className={css({marginBottom: theme.sizing.scale400})}>
       <Title>{title}</Title>
-      <Value>{value}</Value>
+      {Array.isArray(value) ? (
+        value.map(v => <Value key={v}>{v}</Value>)
+      ) : (
+        <Value>{value}</Value>
+      )}
       {children && (
         <div
           className={css({

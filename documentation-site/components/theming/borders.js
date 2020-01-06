@@ -8,79 +8,42 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-
-const monospace = {
-  fontFamily:
-    'SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace',
-};
+import {Property} from './common.js';
 
 export function Border({value}: {value: string}) {
   const [css, theme] = useStyletron();
   return (
-    <div className={css({marginBottom: theme.sizing.scale1000})}>
+    <Property
+      title={value}
+      value={[
+        theme.borders[value].borderStyle,
+        theme.borders[value].borderWidth,
+        theme.borders[value].borderColor,
+      ]}
+    >
       <div
         className={css({
-          ...theme.typography.HeadingXSmall,
-          ...monospace,
-          marginBottom: theme.sizing.scale400,
-        })}
-      >
-        {value}
-      </div>
-      <div
-        className={css({
-          ...theme.typography.ParagraphMedium,
-          ...monospace,
-          marginBottom: theme.sizing.scale400,
-        })}
-      >
-        <div>{theme.borders[value].borderWidth}</div>
-        <div>{theme.borders[value].borderStyle}</div>
-        <div>{theme.borders[value].borderColor}</div>
-      </div>
-      <div
-        className={css({
-          borderTopColor: theme.borders[value].borderColor,
           borderTopStyle: theme.borders[value].borderStyle,
           borderTopWidth: theme.borders[value].borderWidth,
-          marginBottom: theme.sizing.scale400,
+          borderTopColor: theme.borders[value].borderColor,
         })}
       ></div>
-    </div>
+    </Property>
   );
 }
 
 export function Radius({value}: {value: string}) {
   const [css, theme] = useStyletron();
   return (
-    <div className={css({marginBottom: theme.sizing.scale1000})}>
-      <div
-        className={css({
-          ...theme.typography.HeadingXSmall,
-          ...monospace,
-          marginBottom: theme.sizing.scale400,
-        })}
-      >
-        {value}
-      </div>
-      <div
-        className={css({
-          ...theme.typography.ParagraphMedium,
-          ...monospace,
-          marginBottom: theme.sizing.scale400,
-        })}
-      >
-        <div>{theme.borders[value]}</div>
-      </div>
+    <Property title={value} value={theme.borders[value]}>
       <div
         className={css({
           backgroundColor: theme.colors.contentPrimary,
           borderRadius: theme.borders[value],
-          marginBottom: theme.sizing.scale400,
           height: theme.sizing.scale1200,
           width: theme.sizing.scale1200,
         })}
       ></div>
-    </div>
+    </Property>
   );
 }
