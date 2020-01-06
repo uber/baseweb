@@ -2,6 +2,6 @@
 
 set -e
 
-yarn install --ignore-engines
+yarn install
 mkdir public
 yarn documentation:build
