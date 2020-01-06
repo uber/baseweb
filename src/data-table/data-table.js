@@ -46,8 +46,10 @@ type HeaderContextT = {|
   isSelectable: boolean,
   isSelectedAll: boolean,
   isSelectedIndeterminate: boolean,
+  measuredWidths: number[],
   onMouseEnter: number => void,
   onMouseLeave: () => void,
+  onResize: (columnIndex: number, delta: number) => void,
   onSelectMany: () => void,
   onSelectNone: () => void,
   onSort: number => void,
@@ -58,6 +60,7 @@ type HeaderContextT = {|
   scrollLeft: number,
   sortIndex: number,
   sortDirection: SortDirectionsT,
+  tableHeight: number,
   widths: number[],
 |};
 
@@ -200,8 +203,10 @@ const HeaderContext = React.createContext<HeaderContextT>({
   isSelectable: false,
   isSelectedAll: false,
   isSelectedIndeterminate: false,
+  measuredWidths: [],
   onMouseEnter: () => {},
   onMouseLeave: () => {},
+  onResize: () => {},
   onSelectMany: () => {},
   onSelectNone: () => {},
   onSort: () => {},
@@ -212,45 +217,210 @@ const HeaderContext = React.createContext<HeaderContextT>({
   scrollLeft: 0,
   sortIndex: -1,
   sortDirection: null,
+  tableHeight: 0,
   widths: [],
 });
 HeaderContext.displayName = 'HeaderContext';
 
-// replaces the content of the virtualized window with contents. in this case,
-// we are prepending a table header row before the table rows (children to the fn).
-const InnerTableElement = React.forwardRef<
-  InnerTableElementProps,
-  HTMLDivElement,
->((props, ref) => {
+type HeaderProps = {|
+  columnTitle: string,
+  hoverIndex: number,
+  index: number,
+  isSortable: boolean,
+  isSelectable: boolean,
+  isSelectedAll: boolean,
+  isSelectedIndeterminate: boolean,
+  onMouseEnter: number => void,
+  onMouseLeave: () => void,
+  onResize: (columnIndex: number, delta: number) => void,
+  onResizeIndexChange: (columnIndex: number) => void,
+  onSelectMany: () => void,
+  onSelectNone: () => void,
+  onSort: () => void,
+  resizeIndex: number,
+  resizeMaxWidth: number,
+  resizeMinWidth: number,
+  sortIndex: number,
+  sortDirection: SortDirectionsT,
+  tableHeight: number,
+|};
+function Header(props: HeaderProps) {
   const [css, theme] = useStyletron();
-  const ctx = React.useContext(HeaderContext);
+  const [startResizePos, setStartResizePos] = React.useState(0);
+  const [endResizePos, setEndResizePos] = React.useState(0);
+  // eslint-disable-next-line flowtype/no-weak-types
+  const headerCellRef = React.useRef<any>(null);
 
-  // no need to render the cells until the columns have been measured
-  if (!ctx.widths.filter(Boolean).length) {
-    return null;
+  const RULER_OFFSET = 2;
+  const isResizingThisColumn = props.resizeIndex === props.index;
+  const isResizing = props.resizeIndex >= 0;
+
+  function getPositionX(el) {
+    if (__BROWSER__) {
+      const rect = el.getBoundingClientRect();
+      return rect.left + window.scrollX;
+    }
+    return 0;
   }
 
+  React.useLayoutEffect(() => {
+    function handleMouseMove(event: MouseEvent) {
+      if (isResizingThisColumn) {
+        event.preventDefault();
+
+        if (headerCellRef.current) {
+          const left = getPositionX(headerCellRef.current);
+          const width = event.clientX - left - 5;
+          const max = Math.ceil(props.resizeMaxWidth);
+          const min = Math.ceil(props.resizeMinWidth);
+
+          if (min === max) {
+            return;
+          }
+
+          if (width >= min && width <= max) {
+            setEndResizePos(event.clientX - RULER_OFFSET);
+          }
+          if (width < min) {
+            setEndResizePos(left + min - RULER_OFFSET);
+          }
+          if (width > max) {
+            setEndResizePos(max - width - RULER_OFFSET);
+          }
+        }
+      }
+    }
+
+    function handleMouseUp(event: MouseEvent) {
+      props.onResize(props.index, endResizePos - startResizePos);
+      props.onResizeIndexChange(-1);
+      setStartResizePos(0);
+      setEndResizePos(0);
+    }
+
+    if (__BROWSER__) {
+      if (isResizingThisColumn) {
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
+      }
+    }
+    return () => {
+      if (__BROWSER__) {
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseup', handleMouseUp);
+      }
+    };
+  }, [
+    isResizingThisColumn,
+    setEndResizePos,
+    setStartResizePos,
+    setEndResizePos,
+    props.onResize,
+    props.onResizeIndexChange,
+    props.index,
+    endResizePos,
+    startResizePos,
+    headerCellRef.current,
+  ]);
+
   return (
-    <div ref={ref} data-baseweb="data-table" style={props.style}>
+    <React.Fragment>
+      <HeaderCell
+        ref={headerCellRef}
+        index={props.index}
+        sortable={props.isSortable}
+        isHovered={!isResizing && props.hoverIndex === props.index}
+        isSelectable={props.isSelectable && props.index === 0}
+        isSelectedAll={props.isSelectedAll}
+        isSelectedIndeterminate={props.isSelectedIndeterminate}
+        onMouseEnter={() => {
+          if (!isResizing) {
+            props.onMouseEnter(props.index);
+          }
+        }}
+        onMouseLeave={() => {
+          if (!isResizing) {
+            props.onMouseLeave();
+          }
+        }}
+        onSelectAll={props.onSelectMany}
+        onSelectNone={props.onSelectNone}
+        onSort={props.onSort}
+        sortDirection={
+          props.sortIndex === props.index ? props.sortDirection : null
+        }
+        title={props.columnTitle}
+      />
       <div
         className={css({
-          position: 'sticky',
-          top: 0,
-          left: 0,
-          width: `${ctx.widths.reduce((sum, w) => sum + w, 0)}px`,
-          height: `${HEADER_ROW_HEIGHT}px`,
+          position: 'relative',
           display: 'flex',
-          // this feels bad.. the absolutely positioned children elements
-          // stack on top of this element with the layer component.
-          zIndex: 2,
+          alignItems: 'center',
         })}
       >
-        {ctx.columns.map((column, columnIndex) => {
-          const activeFilter = ctx.filters
-            ? ctx.filters.get(column.title)
-            : null;
+        <div
+          role="presentation"
+          onMouseDown={event => {
+            props.onResizeIndexChange(props.index);
+            const x = getPositionX(event.target);
+            setStartResizePos(x);
+            setEndResizePos(x);
+          }}
+          className={css({
+            backgroundColor: isResizingThisColumn ? theme.colors.primary : null,
+            cursor: 'ew-resize',
+            position: 'absolute',
+            height: '100%',
+            width: '3px',
+            ':hover': {
+              backgroundColor: theme.colors.primary,
+            },
+          })}
+          style={{
+            right: `${(RULER_OFFSET + endResizePos - startResizePos) * -1}px`,
+          }}
+        >
+          {isResizingThisColumn && (
+            <div
+              className={css({
+                backgroundColor: theme.colors.primary,
+                position: 'absolute',
+                height: `${props.tableHeight}px`,
+                right: '1px',
+                width: '1px',
+              })}
+            />
+          )}
+        </div>
+      </div>
+    </React.Fragment>
+  );
+}
 
-          return (
+function Headers(props: {||}) {
+  const [css, theme] = useStyletron();
+  const ctx = React.useContext(HeaderContext);
+  const [resizeIndex, setResizeIndex] = React.useState(-1);
+
+  return (
+    <div
+      className={css({
+        position: 'sticky',
+        top: 0,
+        left: 0,
+        width: `${ctx.widths.reduce((sum, w) => sum + w, 0)}px`,
+        height: `${HEADER_ROW_HEIGHT}px`,
+        display: 'flex',
+        // this feels bad.. the absolutely positioned children elements
+        // stack on top of this element with the layer component.
+        zIndex: 2,
+      })}
+    >
+      {ctx.columns.map((column, columnIndex) => {
+        const activeFilter = ctx.filters ? ctx.filters.get(column.title) : null;
+
+        return (
+          <React.Fragment key={columnIndex}>
             <Tooltip
               key={columnIndex}
               placement={PLACEMENT.bottomLeft}
@@ -290,31 +460,58 @@ const InnerTableElement = React.forwardRef<
                   borderTop: 'none',
                   borderLeft: 'none',
                   boxSizing: 'border-box',
+                  display: 'flex',
                 })}
                 style={{width: ctx.widths[columnIndex]}}
               >
-                <HeaderCell
+                <Header
+                  columnTitle={column.title}
+                  hoverIndex={ctx.columnHighlightIndex}
                   index={columnIndex}
-                  sortable={column.sortable}
-                  isHovered={ctx.columnHighlightIndex === columnIndex}
-                  isSelectable={ctx.isSelectable && columnIndex === 0}
+                  isSortable={column.sortable}
+                  isSelectable={ctx.isSelectable}
                   isSelectedAll={ctx.isSelectedAll}
                   isSelectedIndeterminate={ctx.isSelectedIndeterminate}
-                  onMouseEnter={() => ctx.onMouseEnter(columnIndex)}
-                  onMouseLeave={() => ctx.onMouseLeave()}
-                  onSelectAll={ctx.onSelectMany}
+                  onMouseEnter={ctx.onMouseEnter}
+                  onMouseLeave={ctx.onMouseLeave}
+                  onResize={ctx.onResize}
+                  onResizeIndexChange={setResizeIndex}
+                  onSelectMany={ctx.onSelectMany}
                   onSelectNone={ctx.onSelectNone}
-                  onSort={ctx.onSort}
-                  sortDirection={
-                    ctx.sortIndex === columnIndex ? ctx.sortDirection : null
-                  }
-                  title={column.title}
+                  onSort={() => ctx.onSort(columnIndex)}
+                  resizeIndex={resizeIndex}
+                  resizeMinWidth={ctx.measuredWidths[columnIndex]}
+                  resizeMaxWidth={column.maxWidth || Infinity}
+                  sortIndex={ctx.sortIndex}
+                  sortDirection={ctx.sortDirection}
+                  tableHeight={ctx.tableHeight}
                 />
               </div>
             </Tooltip>
-          );
-        })}
-      </div>
+          </React.Fragment>
+        );
+      })}
+    </div>
+  );
+}
+
+// replaces the content of the virtualized window with contents. in this case,
+// we are prepending a table header row before the table rows (children to the fn).
+const InnerTableElement = React.forwardRef<
+  InnerTableElementProps,
+  HTMLDivElement,
+>((props, ref) => {
+  const [css, theme] = useStyletron();
+  const ctx = React.useContext(HeaderContext);
+
+  // no need to render the cells until the columns have been measured
+  if (!ctx.widths.filter(Boolean).length) {
+    return null;
+  }
+
+  return (
+    <div ref={ref} data-baseweb="data-table" style={props.style}>
+      <Headers />
       {React.Children.toArray(props.children).length <= ctx.columns.length ? (
         <div
           className={css({
@@ -385,23 +582,45 @@ export function Unstable_DataTable(props: DataTablePropsT) {
   const [, theme] = useStyletron();
   const rowHeight = props.rowHeight || 36;
   const gridRef = React.useRef<typeof VariableSizeGrid | null>(null);
-  const [widths, setWidths] = React.useState(props.columns.map(() => 0));
-  const handleWidthsChange = React.useCallback(
-    nextWidths => {
-      setWidths(nextWidths);
+  const [measuredWidths, setMeasuredWidths] = React.useState(
+    props.columns.map(() => 0),
+  );
+  const [resizeDeltas, setResizeDeltas] = React.useState(
+    props.columns.map(() => 0),
+  );
+  const resetAfterColumnIndex = React.useCallback(
+    columnIndex => {
       if (gridRef.current) {
         // $FlowFixMe trigger react-window to layout the elements again
-        gridRef.current.resetAfterColumnIndex(0, true);
+        gridRef.current.resetAfterColumnIndex(columnIndex, true);
       }
     },
     [gridRef.current],
   );
+  const handleWidthsChange = React.useCallback(
+    nextWidths => {
+      setMeasuredWidths(nextWidths);
+      resetAfterColumnIndex(0);
+    },
+    [setMeasuredWidths, resetAfterColumnIndex],
+  );
+  const handleColumnResize = React.useCallback(
+    (columnIndex, delta) => {
+      setResizeDeltas(prev => {
+        prev[columnIndex] = Math.max(prev[columnIndex] + delta, 0);
+        return [...prev];
+      });
+      resetAfterColumnIndex(columnIndex);
+    },
+    [setResizeDeltas, resetAfterColumnIndex],
+  );
   const normalizedWidths = React.useMemo(() => {
     const sum = ns => ns.reduce((s, n) => s + n, 0);
+    const resizedWidths = measuredWidths.map((w, i) => w + resizeDeltas[i]);
     if (gridRef.current) {
       // $FlowFixMe
       const domWidth = gridRef.current.props.width;
-      const measuredWidth = sum(widths);
+      const measuredWidth = sum(resizedWidths);
       // $FlowFixMe
       const offsetWidth = gridRef.current._outerRef.offsetWidth;
       // $FlowFixMe
@@ -410,13 +629,14 @@ export function Unstable_DataTable(props: DataTablePropsT) {
       const scrollbar = offsetWidth - clientWidth - 2;
 
       const remainder = domWidth - measuredWidth - scrollbar;
-      const padding = remainder / widths.length;
+      const padding = remainder / measuredWidths.length;
       if (padding > 0) {
-        return widths.map(w => w + padding);
+        return resizedWidths.map(w => Math.ceil(w + padding));
       }
     }
-    return widths;
-  }, [widths]);
+
+    return resizedWidths;
+  }, [measuredWidths, resizeDeltas]);
 
   const [scrollLeft, setScrollLeft] = React.useState(0);
   const [isScrollingX, setIsScrollingX] = React.useState(false);
@@ -638,7 +858,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
       <MeasureColumnWidths
         columns={props.columns}
         rows={props.rows}
-        widths={widths}
+        widths={measuredWidths}
         isSelectable={isSelectable}
         onWidthsChange={handleWidthsChange}
       />
@@ -653,8 +873,10 @@ export function Unstable_DataTable(props: DataTablePropsT) {
               isSelectable,
               isSelectedAll,
               isSelectedIndeterminate,
+              measuredWidths,
               onMouseEnter: handleColumnHeaderMouseEnter,
               onMouseLeave: handleColumnHeaderMouseLeave,
+              onResize: handleColumnResize,
               onSelectMany: handleSelectMany,
               onSelectNone: handleSelectNone,
               onSort: handleSort,
@@ -666,6 +888,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
               sortDirection: props.sortDirection || null,
               sortIndex:
                 typeof props.sortIndex === 'number' ? props.sortIndex : -1,
+              tableHeight: height,
               widths: normalizedWidths,
             }}
           >
