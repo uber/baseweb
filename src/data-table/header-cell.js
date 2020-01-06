@@ -53,6 +53,7 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
           boxSizing: 'border-box',
           cursor: props.sortable ? 'pointer' : null,
           display: props.isMeasured ? 'inline-flex' : 'flex',
+          flexGrow: 1,
           height: '100%',
           paddingLeft: theme.sizing.scale500,
           paddingRight: theme.sizing.scale500,
