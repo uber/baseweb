@@ -345,7 +345,7 @@ function App() {
 
 Note, you can use the custom type theme object with our provider so long as it _extends_ the default `ThemeT`. Base Web components will essentially ignore the additional properties, but the theme object will be available in component overrides.
 
-If you want to use that custom theme shape with our various styling utilties, you will want create new `styled`, `withStyle`, and `useStyletron` methods which use your custom theme type. Luckily, we make this pretty easy for you.
+If you are using Flow and want to use a custom theme shape with our various styling utilties, you can create new `styled`, `withStyle`, and `useStyletron` methods which respect your custom theme type.
 
 ```js
 // my-style-utils.js
@@ -384,7 +384,7 @@ There are two supported methods for styling Base Web components: `withStyle` and
 
 #### `withStyle`
 
-Whenever Base Web exports a Styletron styled component we prefix that component with `Styled`. You can use `withStyle` to extend a styled component with your custom styles:
+Whenever Base Web exports a [Styletron](https://www.styletron.org/) styled component we prefix that component with `Styled`. You can use `withStyle` to extend a styled component with your custom styles:
 
 ```js
 import {withStyle} from 'baseui';
@@ -444,7 +444,7 @@ function App() {
 }
 ```
 
-[`useStyletron`](/components/use-styletron) lets you generate classes to be passed directly to an element’s `classNames` prop. `useStyletron` is a wrapper around the built-in Styletron hook. Our wrapper makes sure you have access to your theme by including it as a second item in the hook’s returned array. This makes it easy to style arbitrary elements without having to create new components or replicate design tokens.
+[`useStyletron`](/components/use-styletron) lets you generate class names to be passed directly to an element’s `classNames` prop. `useStyletron` is a wrapper around the built-in [Styletron](https://www.styletron.org/) hook. Our wrapper makes sure you have access to your theme by including it as a second item in the hook’s returned array. This makes it easy to style arbitrary elements without having to create new components or replicate design tokens.
 
 #### `styled`
 
@@ -462,7 +462,7 @@ function App() {
 }
 ```
 
-[`styled`](/components/styled) creates a new Styletron styled component. We provide a version which wraps Styletron’s default `styled` function so that it gets a reference to your theme object. We use this `styled` function to create all of our styled components in Base Web.
+[`styled`](/components/styled) creates a new [Styletron](https://www.styletron.org/) styled component. We provide a version which wraps Styletron’s default `styled` function so that it gets a reference to your theme object. We use this `styled` function to create all of our styled components in Base Web.
 
 #### `Block`
 
@@ -531,7 +531,7 @@ Control the media query widths used to establish responsive breakpoints.
 
 ### Colors
 
-Control literal and semantic color values.
+Control literal and semantic color values. These differ between light and dark themes.
 
 <Color value="primaryA" />
 <Color value="primaryB" />
