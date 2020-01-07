@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {Option} from '../select';
+import {SIZE} from '../input';
 import {Override} from '../overrides';
 
 export interface TimePickerProps {
@@ -16,6 +17,7 @@ export interface TimePickerProps {
   placeholder?: string;
   step?: number;
   value?: Date | null;
+  size?: SIZE[keyof SIZE];
 }
 export interface TimePickerState {
   steps: number[];

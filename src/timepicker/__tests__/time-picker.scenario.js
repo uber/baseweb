@@ -11,6 +11,7 @@ import React, {useState} from 'react';
 import startOfDay from 'date-fns/startOfDay';
 
 import {TimePicker} from '../index.js';
+import {SIZE} from '../../input/index.js';
 
 export const name = 'time-picker';
 
@@ -22,7 +23,13 @@ const overrides = {
   },
 };
 
-const Controlled = ({format, step, initialDate, creatable = false}) => {
+const Controlled = ({
+  format,
+  step,
+  size = 'default',
+  initialDate,
+  creatable = false,
+}) => {
   const [time, setTime] = useState(initialDate);
   return (
     <React.Fragment>
@@ -33,6 +40,7 @@ const Controlled = ({format, step, initialDate, creatable = false}) => {
         onChange={setTime}
         overrides={overrides}
         creatable={creatable}
+        size={size}
       />
       <p data-e2e="hours">hour: {time.getHours()}</p>
       <p data-e2e="minutes">minute: {time.getMinutes()}</p>
@@ -69,6 +77,7 @@ export const component = () => {
           step={900}
           initialDate={OFF_STEP_TIME}
           creatable
+          size={SIZE.compact}
         />
       </div>
       <div data-e2e="24-hour-creatable">
@@ -78,6 +87,7 @@ export const component = () => {
           step={900}
           initialDate={OFF_STEP_TIME}
           creatable
+          size={SIZE.large}
         />
       </div>
       <div data-e2e="12-hour">

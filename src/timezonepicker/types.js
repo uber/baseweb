@@ -10,6 +10,7 @@ import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 
 import type {OptionT} from '../select/index.js';
+import type {SizeT} from '../input/types.js';
 
 export type TimezonePickerStateT = {
   /** List of timezones from the IANA database. */
@@ -42,4 +43,5 @@ export type TimezonePickerPropsT = {
   disabled?: boolean,
   error?: boolean,
   positive?: boolean,
+  size?: SizeT,
 };
