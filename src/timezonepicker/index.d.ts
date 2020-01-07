@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {Option} from '../select';
+import {SIZE} from '../input';
 import {Override} from '../overrides';
 
 export interface Timezone {
@@ -17,6 +18,7 @@ export interface TimezonePickerProps {
   onChange?: (value: Timezone) => any;
   overrides?: {Select?: Override<any>};
   value?: string;
+  size?: SIZE[keyof SIZE];
 }
 export interface TimezonePickerState {
   timezones: Option[];

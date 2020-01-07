@@ -1,4 +1,5 @@
 import {TimezonePicker} from 'baseui/timezonepicker';
+import {SIZE} from 'baseui/input';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 import inputConfig from './input';
@@ -12,6 +13,7 @@ const TimezonepickerConfig: TConfig = {
   },
   scope: {
     TimezonePicker,
+    SIZE,
   },
   theme: selectConfig.theme,
   props: {
@@ -33,6 +35,7 @@ const TimezonepickerConfig: TConfig = {
     },
     positive: inputConfig.props.positive,
     error: inputConfig.props.error,
+    size: inputConfig.props.size,
     date: {
       value: new Date().toISOString(),
       type: PropTypes.Date,
