@@ -1,4 +1,5 @@
 import {TimePicker} from 'baseui/timepicker';
+import {SIZE} from 'baseui/input';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 import inputConfig from './input';
@@ -12,6 +13,7 @@ const TimepickerConfig: TConfig = {
   },
   scope: {
     TimePicker,
+    SIZE,
   },
   theme: selectConfig.theme,
   props: {
@@ -31,6 +33,7 @@ const TimepickerConfig: TConfig = {
         into: 'value',
       },
     },
+    size: inputConfig.props.size,
     creatable: {
       value: undefined,
       type: PropTypes.Boolean,

@@ -10,12 +10,19 @@ import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 
 import type {OptionT} from '../select/index.js';
+import type {SizeT} from '../input/types.js';
 
 export type TimezonePickerStateT = {
   /** List of timezones from the IANA database. */
   timezones: OptionT[],
   /** Value provided to the select component. */
   value: ?string,
+};
+
+export type TimezoneT = {
+  id: string,
+  label: string,
+  offset: number,
 };
 export type TimezonePickerPropsT = {
   /**
@@ -32,7 +39,7 @@ export type TimezonePickerPropsT = {
    */
   mapLabels?: OptionT => React.Node,
   /** Callback for when the timezone selection changes. */
-  onChange?: (value: ?{id: string, label: string, offset: number}) => mixed,
+  onChange?: (value: ?TimezoneT) => mixed,
   overrides?: {Select?: OverrideT<*>},
   /**
    * Optional value that can be provided to fully control the component. If not provided,
@@ -42,4 +49,5 @@ export type TimezonePickerPropsT = {
   disabled?: boolean,
   error?: boolean,
   positive?: boolean,
+  size?: SizeT,
 };

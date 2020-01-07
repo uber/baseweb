@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/generic-spacing */
 import type {OverrideT} from '../helpers/overrides.js';
 import type {OptionT} from '../select/index.js';
+import type {SizeT} from '../input/types.js';
 
 export type TimePickerPropsT = {
   /** Render options in AM/PM format or 24 hour format. Defaults to 12 hour. */
@@ -31,6 +32,7 @@ export type TimePickerPropsT = {
   positive?: boolean,
   nullable?: boolean,
   placeholder?: string,
+  size?: SizeT,
 };
 export type TimePickerStateT = {
   /** List of times (in seconds) displayed in the dropdown menu. */
