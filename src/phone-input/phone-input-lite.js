@@ -72,7 +72,7 @@ export default function PhoneInputLite(props: LitePropsT) {
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledBy}
       aria-describedby={ariaDescribedBy}
-      autoComplete="tel"
+      autoComplete="tel-national"
       data-baseweb="phone-input"
       disabled={disabled}
       error={error}
