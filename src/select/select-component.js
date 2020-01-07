@@ -76,8 +76,7 @@ export function isInteractive(rootTarget: EventTarget, rootElement: Element) {
 }
 
 // eslint-disable-next-line flowtype/no-weak-types
-type SelectPropsT = PropsT & {valueComponent: React.ComponentType<any>};
-class Select extends React.Component<SelectPropsT, SelectStateT> {
+class Select extends React.Component<PropsT, SelectStateT> {
   static defaultProps = defaultProps;
 
   // anchor is a ref that refers to the outermost element rendered when the dropdown menu is not
@@ -108,7 +107,7 @@ class Select extends React.Component<SelectPropsT, SelectStateT> {
   // shape where optgroup titles are stored on the option in the __optgroup field.
   options: ValueT = [];
 
-  constructor(props: SelectPropsT) {
+  constructor(props: PropsT) {
     super(props);
     this.options = normalizeOptions(props.options);
   }
@@ -577,10 +576,10 @@ class Select extends React.Component<SelectPropsT, SelectStateT> {
     isOpen: boolean,
     locale: LocaleT,
   ): ?React.Node | Array<?React.Node> {
-    const {overrides = {}, valueComponent} = this.props;
+    const {overrides = {}} = this.props;
     const sharedProps = this.getSharedProps();
     const renderLabel = this.props.getValueLabel || this.getValueLabel;
-    const Value = valueComponent || Noop;
+    const Value = this.props.valueComponent || Noop;
     if (!valueArray.length) {
       return null;
     }

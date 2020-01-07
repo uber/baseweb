@@ -23,6 +23,7 @@ import {Table} from 'baseui/table';
 
 import Yard from '../../components/yard/index';
 import paymentCardYardConfig from '../../components/yard/config/payment-card';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -82,6 +83,12 @@ package that Base Web uses under the hood too.
 As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulPaymentCard`, which manages its own state.
 
 ## API
+
+<ApiTable
+  title="Payment Card props"
+  config={paymentCardYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/payment-card/payment-card.js')}
+/>
 
 <Exports
   component={PaymentCardExports}

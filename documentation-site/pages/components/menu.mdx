@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
@@ -26,6 +25,7 @@ import Code from '../../components/code';
 
 import Yard from '../../components/yard/index';
 import menuYardConfig from '../../components/yard/config/menu';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -189,29 +189,10 @@ The provided id will be set as a value for the item container's `id` attribute t
 
 ## API
 
-<API
-  heading="Menu API"
-  api={require('!!extract-react-types-loader!../../../src/menu/menu.js')}
-/>
-
-<API
-  heading="Stateful Menu API"
-  api={require('!!extract-react-types-loader!../../../src/menu/stateful-menu.js')}
-/>
-
-<API
-  heading="Stateful Container API"
-  api={require('!!extract-react-types-loader!../../../src/menu/stateful-container.js')}
-/>
-
-<API
-  heading="Menu Item Api"
-  api={require('!!extract-react-types-loader!../../../src/menu/option-list.js')}
-/>
-
-<API
-  heading="Profile Menu Item Api"
-  api={require('!!extract-react-types-loader!../../../src/menu/option-profile.js')}
+<ApiTable
+  title="Menu props"
+  config={menuYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/menu/menu.js')}
 />
 
 <Exports component={MenuExports} title="Menu exports" path="baseui/menu" />
