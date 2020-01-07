@@ -30,6 +30,8 @@ export const Bar = styled<StylePropsT>('div', props => {
     borderBottomLeftRadius: borderRadius,
     backgroundColor: hexToRgb(colors.progressbarTrackFill, '0.16'),
     height: '4px',
+    position: 'relative',
+    overflow: 'hidden',
   }: {});
 });
 
@@ -47,6 +49,40 @@ export const BarProgress = styled<StylePropsT>('div', props => {
     width: width,
     transition: 'width 0.5s',
     height: '100%',
+  };
+});
+
+export const InfiniteBarProgress = styled<StylePropsT>('div', props => {
+  const {$theme} = props;
+  const {colors, sizing, borders} = $theme;
+  const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
+  return {
+    borderTopLeftRadius: borderRadius,
+    borderTopRightRadius: borderRadius,
+    borderBottomRightRadius: borderRadius,
+    borderBottomLeftRadius: borderRadius,
+    backgroundColor: colors.accent,
+    transition: 'width 0.5s',
+    height: '100%',
+    width: '100%',
+    position: 'absolute',
+    animationDuration: '2.1s',
+    animationIterationCount: 'infinite',
+    animationTimingFunction: 'cubic-bezier(0.65, 0.815, 0.735, 0.395)',
+    animationName: {
+      '0%': {
+        left: '-200%',
+        right: '100%',
+      },
+      '60%': {
+        left: '107%',
+        right: '-8%',
+      },
+      '100%': {
+        left: '107%',
+        right: '-8%',
+      },
+    },
   };
 });
 

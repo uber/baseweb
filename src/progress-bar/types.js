@@ -12,6 +12,7 @@ export type OverridesT = {
   Root?: OverrideT<*>,
   Bar?: OverrideT<*>,
   BarProgress?: OverrideT<*>,
+  InfiniteBarProgress?: OverrideT<*>,
   Label?: OverrideT<*>,
 };
 
@@ -25,6 +26,8 @@ export type ProgressBarPropsT = {
   successValue: number,
   /** If set to false, label is hidden and `getProgressLabel` is ignored. */
   showLabel: boolean,
+  /** May be renamed to variant: string */
+  infinite: boolean,
   overrides?: OverridesT,
 };
 

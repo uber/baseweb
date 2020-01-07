@@ -14,6 +14,7 @@ export interface ProgressBarProps {
   value?: number;
   successValue?: number;
   showLabel?: boolean;
+  infinite?: boolean;
   overrides?: ProgressBarOverrides;
 }
 export class ProgressBar extends React.Component<ProgressBarProps> {}

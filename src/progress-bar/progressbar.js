@@ -12,6 +12,7 @@ import {
   Bar as StyledBar,
   Label as StyledLabel,
   BarProgress as StyledBarProgress,
+  InfiniteBarProgress as StyledInfiniteBarProgress,
 } from './styled-components.js';
 
 import type {ProgressBarPropsT} from './types.js';
@@ -24,6 +25,7 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
     value: 0,
     overrides: {},
     showLabel: false,
+    infinite: false,
   };
 
   render() {
@@ -33,12 +35,17 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
       value,
       successValue,
       showLabel,
+      infinite,
     } = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [Bar, barProps] = getOverrides(overrides.Bar, StyledBar);
     const [BarProgress, barProgressProps] = getOverrides(
       overrides.BarProgress,
       StyledBarProgress,
+    );
+    const [InfiniteBarProgress, infiniteBarProgressProps] = getOverrides(
+      overrides.InfiniteBarProgress,
+      StyledInfiniteBarProgress,
     );
     const [Label, labelProps] = getOverrides(overrides.Label, StyledLabel);
     const sharedProps = {
@@ -53,9 +60,16 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
         {...rootProps}
       >
         <Bar {...sharedProps} {...barProps}>
-          <BarProgress {...sharedProps} {...barProgressProps} />
+          {infinite ? (
+            <InfiniteBarProgress
+              {...sharedProps}
+              {...infiniteBarProgressProps}
+            />
+          ) : (
+            <BarProgress {...sharedProps} {...barProgressProps} />
+          )}
         </Bar>
-        {showLabel && (
+        {showLabel && !infinite && (
           <Label {...sharedProps} {...labelProps}>
             {getProgressLabel(value, successValue)}
           </Label>
