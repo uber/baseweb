@@ -117,6 +117,7 @@ class TimezonePicker extends React.Component<
             disabled={this.props.disabled}
             error={this.props.error}
             positive={this.props.positive}
+            size={this.props.size}
             onChange={params => {
               if (params.type === 'clear') {
                 this.setState({value: ''});
