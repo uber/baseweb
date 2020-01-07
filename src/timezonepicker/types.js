@@ -18,6 +18,12 @@ export type TimezonePickerStateT = {
   /** Value provided to the select component. */
   value: ?string,
 };
+
+export type TimezoneT = {
+  id: string,
+  label: string,
+  offset: number,
+};
 export type TimezonePickerPropsT = {
   /**
    * If not provided, defaults to new Date(). Important to note that the timezone picker only
@@ -33,7 +39,7 @@ export type TimezonePickerPropsT = {
    */
   mapLabels?: OptionT => React.Node,
   /** Callback for when the timezone selection changes. */
-  onChange?: (value: ?{id: string, label: string, offset: number}) => mixed,
+  onChange?: (value: ?TimezoneT) => mixed,
   overrides?: {Select?: OverrideT<*>},
   /**
    * Optional value that can be provided to fully control the component. If not provided,
