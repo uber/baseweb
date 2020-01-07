@@ -19,7 +19,7 @@ export type TimezonePickerStateT = {
   value: ?string,
 };
 
-export type Timezone = {
+export type TimezoneT = {
   id: string,
   label: string,
   offset: number,
