@@ -78,14 +78,14 @@ We provide two themes out of the box, `LightTheme` and `DarkTheme`, which style 
 
 ```js
 import React from 'react';
-import {LightTheme, ThemeProvider} from 'baseui';
+import {LightTheme} from 'baseui';
 
 export default function App() {
- return (
- <ThemeProvider theme={LightTheme}>
- <div>I can use themed Base Web components here!<div>
- </ThemeProvider>
- )
+  return (
+    <ThemeProvider theme={LightTheme}>
+      I can use themed Base Web components here!
+    </ThemeProvider>
+  );
 }
 ```
 
@@ -124,19 +124,21 @@ export default function App() {
 While `ThemeProvider` will provide your theme object to any descendent Base Web components, we recommend using `BaseProvider` at the root of your application. `BaseProvider` combines the functionality of the `ThemeProvider` with our [`LayersManager`](/components/layer#layersmanager) utility. You should only use `ThemeProvider` directly if you need to provide a separate theme to a subtree of your application.
 
 ```js
-import React from "react";
+import React from 'react';
 import {BaseProvider, LightTheme} from 'baseui';
-import {Provider as StyletronProvider} from "styletron-react";
-import {Client as Styletron} from "styletron-engine-atomic";
+import {Provider as StyletronProvider} from 'styletron-react';
+import {Client as Styletron} from 'styletron-engine-atomic';
 
 const engine = new Styletron();
 
 export default function App() {
- <StyletronProvider value={engine}>
- <BaseProvider theme={LightTheme}>
- <div>Themed Base Web stuff goes here!<div>
- </BaseProvider>
- </StyletronProvider>
+  return (
+    <StyletronProvider value={engine}>
+      <BaseProvider theme={LightTheme}>
+        I can use themed Base Web stuff here!
+      </BaseProvider>
+    </StyletronProvider>
+  );
 }
 ```
 
@@ -168,16 +170,16 @@ These are passed as the first (and only required) argument for `createTheme`.
 import {createTheme, lightThemePrimitives} from 'baseui';
 
 const primitives = {
- ...lightThemePrimitives,
- accent: "#F127E4"; // hot pink
- accent50: "#FDEDFC";
- accent100: "#FCD3F9";
- accent200: "#F89FF3";
- accent300: "#F45AEA";
- accent400: "#F127E4";
- accent500: "#B71DAD";
- accent600: "#901788";
- accent700: "#600F5B";
+  ...lightThemePrimitives,
+  accent: "#F127E4"; // hot pink
+  accent50: "#FDEDFC";
+  accent100: "#FCD3F9";
+  accent200: "#F89FF3";
+  accent300: "#F45AEA";
+  accent400: "#F127E4";
+  accent500: "#B71DAD";
+  accent600: "#901788";
+  accent700: "#600F5B";
 };
 
 const theme = createTheme(primitives);
@@ -197,29 +199,29 @@ The `overrides` object will be deep-merged with the initial result of mapping `p
 import {createTheme, lightThemePrimitives} from 'baseui';
 
 const primitives = {
- ...lightThemePrimitives,
- accent: "#F127E4"; // hot pink
- accent50: "#FDEDFC";
- accent100: "#FCD3F9";
- accent200: "#F89FF3";
- accent300: "#F45AEA";
- accent400: "#F127E4";
- accent500: "#B71DAD";
- accent600: "#901788";
- accent700: "#600F5B";
+  ...lightThemePrimitives,
+  accent: "#F127E4"; // hot pink
+  accent50: "#FDEDFC";
+  accent100: "#FCD3F9";
+  accent200: "#F89FF3";
+  accent300: "#F45AEA";
+  accent400: "#F127E4";
+  accent500: "#B71DAD";
+  accent600: "#901788";
+  accent700: "#600F5B";
 };
 
 const overrides = {
- colors: {
- buttonSecondaryFill: primitives.accent100,
- buttonSecondaryText: primitives.accent,
- buttonSecondaryHover: primitives.accent200,
- buttonSecondaryActive: primitives.accent300,
- buttonSecondarySelectedFill: primitives.accent200,
- buttonSecondarySelectedText: primitives.accent,
- buttonSecondarySpinnerForeground: primitives.accent700,
- buttonSecondarySpinnerBackground: primitives.accent300,
- },
+  colors: {
+    buttonSecondaryFill: primitives.accent100,
+    buttonSecondaryText: primitives.accent,
+    buttonSecondaryHover: primitives.accent200,
+    buttonSecondaryActive: primitives.accent300,
+    buttonSecondarySelectedFill: primitives.accent200,
+    buttonSecondarySelectedText: primitives.accent,
+    buttonSecondarySpinnerForeground: primitives.accent700,
+    buttonSecondarySpinnerBackground: primitives.accent300,
+  },
 };
 
 const theme = createTheme(lightThemePrimitives, overrides);
@@ -404,6 +406,8 @@ Notice how the second parameter is a function that is passed an object with a `$
 For in-depth information on `overrides`, check out the [official documentation](/guides/understanding-overrides). As it relates to theming, any `overrides` `style` function will be passed a reference to the nearest ancestor theme object to make consistent styling easy.
 
 ```js
+import {Button} from 'baseui/button';
+
 function App() {
   return (
     <Button
@@ -435,7 +439,7 @@ function App() {
   return (
     <div
       className={css({
-        color: $theme.colors.accent,
+        color: theme.colors.accent,
       })}
     >
       Hello
@@ -470,7 +474,7 @@ function App() {
 import {Block} from 'baseui/block';
 
 function App() {
-  <Block color="accent">Hello</Block>;
+  return <Block color="accent" />;
 }
 ```
 
