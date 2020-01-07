@@ -38,7 +38,7 @@ const TableOfContents = props => {
         });
       }
 
-      if (element.props.path && element.props.title) {
+      if (element.props.title) {
         TOC.push({
           name: element.props.title,
           anchor: `#${element.props.title.toLowerCase().replace(/\s+/g, '-')}`,

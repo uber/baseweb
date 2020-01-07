@@ -323,7 +323,7 @@ const converters = {
   tuple: type => `[${mapConvertAndJoin(type.types)}]`,
 };
 
-function convert(type, expandType) {
+export function convert(type, expandType) {
   if (!type) {
     console.error('No type argument has been passed in');
     return '';
