@@ -720,7 +720,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
           return column
             .mapDataToValue(props.rows[idx].data)
             .toLowerCase()
-            .includes(textQuery);
+            .includes(textQuery.toLowerCase());
         });
 
         if (!matches) {
