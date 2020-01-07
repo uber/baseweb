@@ -78,6 +78,8 @@ function getBackgroundColor(props) {
     }
     if ($checked || $isIndeterminate) {
       return colors.tickFillDisabled;
+    } else {
+      return colors.tickFill;
     }
   } else if ($isError && ($isIndeterminate || $checked)) {
     if ($isActive || $isFocused) {
