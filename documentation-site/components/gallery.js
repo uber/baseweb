@@ -148,22 +148,6 @@ const COMPONENTS = {
       Component: thumbnails.SvgList,
     },
     {
-      href: '/components/table',
-      Component: thumbnails.SvgTable,
-    },
-    {
-      href: '/components/table-grid',
-      Component: thumbnails.SvgTableGrid,
-    },
-    {
-      href: '/components/table-semantic',
-      Component: thumbnails.SvgTableSemantic,
-    },
-    {
-      href: '/components/unstable-data-table',
-      Component: thumbnails.SvgDataTable,
-    },
-    {
       href: '/components/tag',
       Component: thumbnails.SvgTag,
     },
@@ -174,6 +158,24 @@ const COMPONENTS = {
     {
       href: '/components/typography',
       Component: thumbnails.SvgTypography,
+    },
+  ],
+  Tables: [
+    {
+      href: '/components/table',
+      Component: thumbnails.SvgTable,
+    },
+    {
+      href: '/components/unstable-data-table',
+      Component: thumbnails.SvgDataTable,
+    },
+    {
+      href: '/components/table-grid',
+      Component: thumbnails.SvgTableGrid,
+    },
+    {
+      href: '/components/table-semantic',
+      Component: thumbnails.SvgTableSemantic,
     },
   ],
   Feedback: [
