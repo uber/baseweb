@@ -17,52 +17,70 @@ const ApiTable = props => {
   const {heading, config, types} = props;
   const [css, theme] = useStyletron();
   const flowTypes = {};
-  types.component.value.members.forEach(member => {
-    flowTypes[member.key.name] = convert(member, true);
-  });
-  const data = Object.keys(config.props).map(prop => {
-    return [
-      prop,
-      <StatefulPopover
-        key={prop}
-        accessibilityType={'tooltip'}
-        triggerType={TRIGGER_TYPE.hover}
-        onMouseEnterDelay={500}
-        placement={PLACEMENT.topLeft}
-        content={
+  try {
+    types.component.value.members.forEach(member => {
+      flowTypes[member.key.name] = convert(member, true);
+    });
+    // eslint-disable-next-line no-empty
+  } catch (e) {}
+  const data = Object.keys(config.props)
+    .sort()
+    .map(prop => {
+      return [
+        <div
+          key={prop}
+          className={css({
+            fontFamily:
+              'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace',
+          })}
+        >
+          {prop}
+        </div>,
+        <StatefulPopover
+          key={prop}
+          accessibilityType={'tooltip'}
+          triggerType={TRIGGER_TYPE.hover}
+          onMouseEnterDelay={500}
+          placement={PLACEMENT.topLeft}
+          content={
+            <div
+              className={css({
+                backgroundColor: theme.colors.backgroundSecondary,
+                maxHeight: '300px',
+                maxWidth: '400px',
+                overflow: 'auto',
+                paddingTop: theme.sizing.scale100,
+                paddingRight: theme.sizing.scale200,
+                paddingBottom: theme.sizing.scale100,
+                paddingLeft: theme.sizing.scale200,
+                whiteSpace: 'pre',
+                fontFamily:
+                  'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace',
+                fontSize: theme.sizing.scale500,
+              })}
+            >
+              {flowTypes[prop]}
+            </div>
+          }
+        >
           <div
+            key={prop}
             className={css({
-              backgroundColor: theme.colors.backgroundSecondary,
-              maxHeight: '300px',
-              maxWidth: '400px',
-              overflow: 'auto',
-              paddingTop: theme.sizing.scale100,
-              paddingRight: theme.sizing.scale200,
-              paddingBottom: theme.sizing.scale100,
-              paddingLeft: theme.sizing.scale200,
-              whiteSpace: 'pre',
               fontFamily:
                 'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace',
-              fontSize: theme.sizing.scale500,
+              whiteSpace: 'nowrap',
             })}
           >
-            {flowTypes[prop]}
+            <u>{config.props[prop].type}</u>
           </div>
-        }
-      >
-        <u>{config.props[prop].type}</u>
-      </StatefulPopover>,
-      config.props[prop].description,
-      config.props[prop].defaultValue || config.props[prop].value,
-    ];
-  });
+        </StatefulPopover>,
+        config.props[prop].description,
+      ];
+    });
   return (
     <React.Fragment>
       <H3>{heading}</H3>
-      <Unstable_Table
-        columns={['Name', 'Type', 'Description', 'Value']}
-        data={data}
-      />
+      <Unstable_Table columns={['Name', 'Type', 'Description']} data={data} />
     </React.Fragment>
   );
 };
