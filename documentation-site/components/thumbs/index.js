@@ -44,13 +44,15 @@ export {default as SvgLayoutGrid} from './components/LayoutGrid.js';
 export {default as SvgHeading} from './components/Heading.js';
 export {default as SvgIcon} from './components/Icon.js';
 export {default as SvgList} from './components/List.js';
-export {default as SvgTable} from './components/Table.js';
-export {default as SvgTableGrid} from './components/TableGrid.js';
-export {default as SvgTableSemantic} from './components/TableSemantic.js';
-export {default as SvgDataTable} from './components/DataTable.js';
 export {default as SvgTag} from './components/Tag.js';
 export {default as SvgTreeView} from './components/TreeView.js';
 export {default as SvgTypography} from './components/Typography.js';
+
+// Tables
+export {default as SvgTable} from './components/Table.js';
+export {default as SvgDataTable} from './components/DataTable.js';
+export {default as SvgTableGrid} from './components/TableGrid.js';
+export {default as SvgTableSemantic} from './components/TableSemantic.js';
 
 // Feedback
 export {default as SvgNotification} from './components/Notification.js';
