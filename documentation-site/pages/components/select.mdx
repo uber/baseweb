@@ -30,6 +30,7 @@ import {Block} from 'baseui/block';
 
 import Yard from '../../components/yard/index';
 import selectYardConfig from '../../components/yard/config/select';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -124,6 +125,12 @@ existing options.
 To override the `Popover` that's being used by the Dropdown subcomponent, you have to use a [nested override](/guides/understanding-overrides/#override-nested-components).
 
 ## API
+
+<ApiTable
+  title="Select props"
+  config={selectYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/select/select-component.js')}
+/>
 
 <Exports
   component={SelectExports}

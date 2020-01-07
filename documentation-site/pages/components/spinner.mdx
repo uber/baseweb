@@ -26,6 +26,7 @@ import * as SpinnerExports from 'baseui/spinner';
 
 import Yard from '../../components/yard/index';
 import spinnerYardConfig from '../../components/yard/config/spinner';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -64,6 +65,12 @@ Spinners provide a visual cue that an action is processing awaiting a course of 
 </Example>
 
 ## API
+
+<ApiTable
+  title="Spinner props"
+  config={spinnerYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/spinner/spinner.js')}
+/>
 
 <Exports
   component={SpinnerExports}

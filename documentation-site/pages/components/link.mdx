@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 import Yard from '../../components/yard/index';
 import linkConfig from '../../components/yard/config/link';
+import ApiTable from '../../components/api-table';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
@@ -19,6 +20,8 @@ export default Layout;
 <Yard componentName="StyledLink" placeholderHeight={20} {...linkConfig} />
 
 ## API
+
+<ApiTable title="Link props" config={linkConfig} />
 
 <Exports
   component={LinkExports}
