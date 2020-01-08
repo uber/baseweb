@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {Card, type ImagePropsT, StyledBody} from '../index.js';
+import {header as headerImg, thumbnail as thumbnailImg} from '../images.js';
 import {styled} from '../../styles/index.js';
 
 export const name = 'card-image-object';
@@ -16,9 +17,8 @@ export const name = 'card-image-object';
 const Container = styled('div', {width: '328px'});
 
 const headerImage: ImagePropsT = {
-  src: 'https://source.unsplash.com/user/erondu',
-  srcSet:
-    'https://source.unsplash.com/user/erondu/500x200, https://source.unsplash.com/user/erondu/600x300 1.5x',
+  src: headerImg,
+  srcSet: `${thumbnailImg}, ${headerImg} 1.5x`,
   alt: 'Card Alt Entry',
 };
 

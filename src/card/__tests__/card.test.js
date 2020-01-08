@@ -26,8 +26,7 @@ test('Card - basic functionality', () => {
 
 test('Card - header image object', () => {
   const alt = 'Card Alt Desc';
-  const srcSet =
-    'https://source.unsplash.com/user/erondu/500x200, https://source.unsplash.com/user/erondu/600x300 1.5x';
+  const srcSet = `${thumbnailImg}, ${headerImg} 1.5x`;
   const props = {
     headerImage: {src: headerImg, srcSet, alt},
     title: 'Card title',
