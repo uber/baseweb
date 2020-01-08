@@ -23,6 +23,7 @@ import * as FormControlExports from 'baseui/form-control';
 
 import Yard from '../../components/yard/index';
 import formControlYardConfig from '../../components/yard/config/form-control';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -85,6 +86,12 @@ If you pass a `string`, it will be used as the `caption` of the form control, ov
 The example above showcases this behavior.
 
 ## API
+
+<ApiTable
+  title="Form Control props"
+  config={formControlYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/form-control/form-control.js')}
+/>
 
 <Exports
   component={FormControlExports}
