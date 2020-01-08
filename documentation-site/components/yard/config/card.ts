@@ -47,7 +47,8 @@ const CardConfig: TConfig = {
       value: undefined,
       placeholder: 'https://source.unsplash.com/user/erondu/700x400',
       type: PropTypes.String,
-      description: 'Image to be displayed in the card.',
+      description:
+        'Image to be displayed in the card. Can also be an object with img attributes.',
     },
     overrides: {
       value: undefined,
