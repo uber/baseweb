@@ -93,8 +93,8 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
     );
   };
 
-  onMouseDown = (e: Event) => {
-    e.preventDefault();
+  onMouseDown = (e: SyntheticEvent<>) => {
+    e.nativeEvent.stopImmediatePropagation();
   };
 
   getHighlightedIndex = () => {
