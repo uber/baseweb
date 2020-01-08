@@ -18,6 +18,23 @@ export type CardComponentsT = {
   Title?: OverrideT<?{}>,
 };
 
+export type ImagePropsT = {
+  alt?: string,
+  complete?: boolean,
+  crossOrigin?: string,
+  currentSrc?: string,
+  height?: number,
+  decode?: Promise<void>,
+  isMap?: boolean,
+  naturalHeight?: number,
+  naturalWidth?: number,
+  sizes?: string,
+  src?: string,
+  srcset?: string,
+  useMap?: string,
+  width?: number,
+};
+
 export type CardsPropsT = {
   /** Contents to be rendered at the bottom of the Card. Used to organize UI which enables user action. */
   +action?: Node,
@@ -26,8 +43,7 @@ export type CardsPropsT = {
   /** Function that takes Card props and returns a boolean that represents if a thumbnail will be rendered. */
   +hasThumbnail: ({+thumbnail?: string}) => boolean,
   /** Image to be positioned at the top of the Card. Can be a string representing the img src or an object with img attrs */
-  // eslint-disable-next-line flowtype/no-weak-types
-  +headerImage?: string | any,
+  +headerImage?: string | ImagePropsT,
   +overrides: CardComponentsT,
   /** Image src that by default is rendered to the side of children content. */
   +thumbnail?: string,
