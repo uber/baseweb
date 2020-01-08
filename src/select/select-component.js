@@ -849,6 +849,15 @@ class Select extends React.Component<PropsT, SelectStateT> {
       value,
       filterOutSelected,
     } = this.props;
+
+    if (__DEV__) {
+      if (!Array.isArray(value)) {
+        console.warn(
+          'The Select component expects an array as the value prop. For more information, please visit the docs at https://baseweb.design/components/select/',
+        );
+      }
+    }
+
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [ControlContainer, controlContainerProps] = getOverrides(
       overrides.ControlContainer,
