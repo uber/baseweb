@@ -93,7 +93,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
     );
   };
 
-  onMouseDown = (e: SyntheticEvent<any>) => {
+  onMouseDown = (e: SyntheticEvent<>) => {
     e.nativeEvent.stopImmediatePropagation();
   };
 
