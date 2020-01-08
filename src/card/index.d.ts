@@ -15,7 +15,7 @@ export interface CardProps {
   readonly action?: React.ReactNode;
   readonly children?: React.ReactNode;
   readonly hasThumbnail?: (props: {readonly thumbnail?: string}) => boolean;
-  readonly headerImage?: string;
+  readonly headerImage?: string | any;
   readonly overrides?: CardOverrides;
   readonly thumbnail?: string;
   readonly title?: React.ReactNode;

@@ -25,8 +25,9 @@ export type CardsPropsT = {
   +children?: Node,
   /** Function that takes Card props and returns a boolean that represents if a thumbnail will be rendered. */
   +hasThumbnail: ({+thumbnail?: string}) => boolean,
-  /** Image src to be positioned at the top of the Card. */
-  +headerImage?: string,
+  /** Image to be positioned at the top of the Card. Can be a string representing the img src or an object with img attrs */
+  // eslint-disable-next-line flowtype/no-weak-types
+  +headerImage?: string | any,
   +overrides: CardComponentsT,
   /** Image src that by default is rendered to the side of children content. */
   +thumbnail?: string,
