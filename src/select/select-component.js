@@ -86,14 +86,14 @@ class Select extends React.Component<PropsT, SelectStateT> {
   // clicks are on/off the dropdown element.
   dropdown: {current: HTMLElement | null} = React.createRef();
   input: React.ElementRef<*>;
-  // dragging is a flag to track whether a mobile device in currently scrolling versus clicking.
+  // dragging is a flag to track whether a mobile device is currently scrolling versus clicking.
   dragging: boolean;
   // focusAfterClear is a flag to indicate that the dropdowm menu should open after a selected
   // option has been cleared.
   focusAfterClear: boolean;
   // openAfterFocus is a flag to indicate that the dropdown menu should open when the component is
   // focused. Developers have the option to disable initial clicks opening the dropdown menu. If not
-  // disabled, clicks will set this flag true. Upon focusing, look to this to see if the menu should
+  // disabled, clicks will set this flag to true. Upon focusing, look to this to see if the menu should
   // be opened, or only focus.
   openAfterFocus: boolean;
   // When an item is selected, it also triggers handleClickOutside and since the selected item is
