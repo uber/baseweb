@@ -55,7 +55,7 @@ describe('popover', () => {
     await page.waitFor(selectors.selectInput);
     await page.click(selectors.selectInput);
     await page.waitFor(selectors.selectDropDown);
-    await page.click(optionAtPosition(1));
+    await page.$eval(optionAtPosition(1), elem => elem.click());
     await page.waitFor(selectors.selectDropDown, {
       hidden: true,
     });
