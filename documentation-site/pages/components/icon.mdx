@@ -18,6 +18,7 @@ import * as IconExports from 'baseui/icon';
 
 import Yard from '../../components/yard/index';
 import iconConfig from '../../components/yard/config/icon';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -49,5 +50,11 @@ _If you are an Uber employee, you can access the full list of icons [here](http:
 </Example>
 
 ## API
+
+<ApiTable
+  title="Icon props"
+  config={iconConfig}
+  types={require('!!extract-react-types-loader!../../../src/icon/icon.js')}
+/>
 
 <Exports component={IconExports} title="Icon exports" path="baseui/icon" />

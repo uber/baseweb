@@ -229,6 +229,7 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
             disabled={this.props.disabled}
             error={this.props.error}
             positive={this.props.positive}
+            size={this.props.size}
             placeholder={this.props.placeholder || 'HH:mm'}
             options={this.state.steps.map(n => ({
               id: n,

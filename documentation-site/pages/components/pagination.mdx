@@ -19,6 +19,7 @@ import * as PaginationExports from 'baseui/pagination';
 
 import Yard from '../../components/yard/index';
 import paginationYardConfig from '../../components/yard/config/pagination';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -65,6 +66,12 @@ Divide content into separate pages.
 </Example>
 
 ## API
+
+<ApiTable
+  title="Pagination props"
+  config={paginationYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/pagination/pagination.js')}
+/>
 
 <Exports
   component={PaginationExports}
