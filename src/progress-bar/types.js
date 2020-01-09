@@ -12,7 +12,6 @@ export type OverridesT = {
   Root?: OverrideT<*>,
   Bar?: OverrideT<*>,
   BarProgress?: OverrideT<*>,
-  InfiniteBarProgress?: OverrideT<*>,
   Label?: OverrideT<*>,
 };
 
