@@ -83,7 +83,7 @@ export default function PhoneInputLite(props: LitePropsT) {
       positive={positive}
       placeholder={placeholder}
       size={size}
-      type="tel"
+      type="text"
       value={text}
       {...restProps}
       {...inputProps}
