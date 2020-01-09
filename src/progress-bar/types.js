@@ -33,4 +33,5 @@ export type ProgressBarPropsT = {
 export type StylePropsT = {
   $successValue: number,
   $value: number,
+  $infinite: boolean,
 };
