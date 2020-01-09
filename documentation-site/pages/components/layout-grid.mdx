@@ -81,7 +81,7 @@ Sometimes this wrapping behavior is desireable, but sometimes you want to adapt 
   <ResponsiveExample />
 </Example>
 
-`span` is a "responsive" prop. It accepts both a single value or an array of values. Each value in the array corresponds to each [breakpoint in our theme](https://baseweb.design/guides/theming/#the-shape-of-the-theme-file).
+`span` is a "responsive" prop. It accepts both a single value or an array of values. Each value in the array corresponds to each [breakpoint in our theme](https://baseweb.design/guides/theming/#theme-properties).
 
 When you specify the first value in the array, you are specifying the value for any viewport larger than or equal to the first (`small`) breakpoint in your theme. The second value applies to viewports greater than or equal to the `medium` breakpoint, and the third value applies to viewports greater than or equal to the `large` breakpoint.
 
@@ -157,7 +157,7 @@ You can customize pretty much any part of the grid while maintaining the core re
 - `gridMargins`
 - `gridMaxWidth` (Not responsive)
 
-The grid will use whatever values are on your theme `grid` property as the default values for these props. This way you do not have to create a "wrapper" grid if yours differs from the default Base grid. [Click here for the full theme shape](https://baseweb.design/guides/theming/#the-shape-of-the-theme-file)or see below for the grid relevant section of the theme:
+The grid will use whatever values are on your theme `grid` property as the default values for these props. This way you do not have to create a "wrapper" grid if yours differs from the default Base grid. [Click here for the full theme shape](https://baseweb.design/guides/theming/#theme-properties)or see below for the grid relevant section of the theme:
 
 ```js
 const theme = {
