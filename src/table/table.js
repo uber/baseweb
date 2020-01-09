@@ -18,19 +18,8 @@ import {
 } from './styled-components.js';
 
 import {ProgressBar} from '../progress-bar/index.js';
-import {styled} from '../styles/index.js';
 
 import type {TablePropsT} from './types.js';
-
-const EmptyWrapper = styled('div', props => {
-  const {$theme} = props;
-  return {
-    ...$theme.typography.font100,
-    marginTop: $theme.sizing.scale600,
-    marginBottom: $theme.sizing.scale600,
-    textAlign: 'center',
-  };
-});
 
 export default class Table extends React.Component<TablePropsT> {
   static defaultProps = {
@@ -40,14 +29,13 @@ export default class Table extends React.Component<TablePropsT> {
   };
 
   render() {
-    const {isLoading, columns, data, horizontalScrollWidth} = this.props;
     return (
       <StyledTable
         data-baseweb="table"
-        aria-colcount={columns.length}
-        aria-rowcount={data.length}
+        aria-colcount={this.props.columns.length}
+        aria-rowcount={this.props.data.length}
       >
-        {isLoading && (
+        {this.props.isLoading && (
           <ProgressBar
             infinite
             overrides={{
@@ -62,23 +50,19 @@ export default class Table extends React.Component<TablePropsT> {
             }}
           />
         )}
-        <StyledHead $width={horizontalScrollWidth}>
-          {columns.map((column, index) => (
+        <StyledHead $width={this.props.horizontalScrollWidth}>
+          {this.props.columns.map((column, index) => (
             <StyledHeadCell key={index}>{column}</StyledHeadCell>
           ))}
         </StyledHead>
-        <StyledBody $width={horizontalScrollWidth}>
-          {data.length > 0 ? (
-            data.map((row, index) => (
-              <StyledRow key={index}>
-                {row.map((cell, cellIndex) => (
-                  <StyledCell key={cellIndex}>{cell}</StyledCell>
-                ))}
-              </StyledRow>
-            ))
-          ) : (
-            <EmptyWrapper>{isLoading ? 'Loading...' : 'No data'}</EmptyWrapper>
-          )}
+        <StyledBody $width={this.props.horizontalScrollWidth}>
+          {this.props.data.map((row, index) => (
+            <StyledRow key={index}>
+              {row.map((cell, cellIndex) => (
+                <StyledCell key={cellIndex}>{cell}</StyledCell>
+              ))}
+            </StyledRow>
+          ))}
         </StyledBody>
       </StyledTable>
     );
