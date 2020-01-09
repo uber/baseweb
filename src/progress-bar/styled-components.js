@@ -41,7 +41,7 @@ export const BarProgress = styled<StylePropsT>('div', props => {
   const width = `${($value / $successValue) * 100}%`;
   const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
 
-  const animationProps = $infinite
+  const animationStyles = $infinite
     ? {
         width: '100%',
         position: 'absolute',
@@ -75,7 +75,7 @@ export const BarProgress = styled<StylePropsT>('div', props => {
     borderBottomLeftRadius: borderRadius,
     backgroundColor: colors.accent,
     height: '100%',
-    ...animationProps,
+    ...animationStyles,
   };
 });
 
