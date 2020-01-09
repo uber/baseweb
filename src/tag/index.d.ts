@@ -33,6 +33,7 @@ export interface TagProps {
   kind?: KIND[keyof KIND];
   variant?: VARIANT[keyof VARIANT];
   children?: React.ReactNode;
+  title?: string;
   color?: string;
   onActionClick?: (e: Event, children?: React.ReactNode) => any;
   onActionKeyDown?: (e: Event, children?: React.ReactNode) => any;
