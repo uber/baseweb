@@ -77,6 +77,7 @@ export default function PhoneInputLite(props: LitePropsT) {
       disabled={disabled}
       error={error}
       id={id}
+      inputMode="tel"
       inputRef={inputRef}
       name={name}
       onChange={onTextChange}
