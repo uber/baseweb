@@ -172,10 +172,10 @@ function getPaddingStyles({$theme, $size, $shape}) {
         paddingTop: $theme.sizing.scale400,
         paddingBottom: $theme.sizing.scale400,
         paddingLeft: iconShape
-          ? $theme.sizing.scale200
+          ? $theme.sizing.scale400
           : $theme.sizing.scale500,
         paddingRight: iconShape
-          ? $theme.sizing.scale200
+          ? $theme.sizing.scale400
           : $theme.sizing.scale500,
       };
     case SIZE.large:
@@ -183,10 +183,10 @@ function getPaddingStyles({$theme, $size, $shape}) {
         paddingTop: $theme.sizing.scale600,
         paddingBottom: $theme.sizing.scale600,
         paddingLeft: iconShape
-          ? $theme.sizing.scale550
+          ? $theme.sizing.scale600
           : $theme.sizing.scale700,
         paddingRight: iconShape
-          ? $theme.sizing.scale550
+          ? $theme.sizing.scale600
           : $theme.sizing.scale700,
       };
     default:
@@ -194,10 +194,10 @@ function getPaddingStyles({$theme, $size, $shape}) {
         paddingTop: $theme.sizing.scale550,
         paddingBottom: $theme.sizing.scale550,
         paddingLeft: iconShape
-          ? $theme.sizing.scale500
+          ? $theme.sizing.scale550
           : $theme.sizing.scale600,
         paddingRight: iconShape
-          ? $theme.sizing.scale500
+          ? $theme.sizing.scale550
           : $theme.sizing.scale600,
       };
   }
