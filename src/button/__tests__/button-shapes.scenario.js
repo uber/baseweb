@@ -60,16 +60,29 @@ export const component = () => (
     <br />
 
     <Button shape={SHAPE.round} size={SIZE.large}>
-      <Upload />
+      <Upload size={24} />
     </Button>
     <br />
     <Button shape={SHAPE.round}>
-      <Upload />
+      <Upload size={20} />
     </Button>
     <br />
     <Button shape={SHAPE.round} size={SIZE.compact}>
       <Upload />
     </Button>
     <br />
+    <br />
+
+    <Button shape={SHAPE.square} size={SIZE.large}>
+      <Upload size={24} />
+    </Button>
+    <br />
+    <Button shape={SHAPE.square}>
+      <Upload size={20} />
+    </Button>
+    <br />
+    <Button shape={SHAPE.square} size={SIZE.compact}>
+      <Upload />
+    </Button>
   </React.Fragment>
 );
