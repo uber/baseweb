@@ -117,7 +117,7 @@ export type TetherPropsT = {
   /** Recommended placement of the popper. */
   placement: TetherPlacementT,
   /** Options to be passes to the Popper on its initialization.
-   Refer to the [Popper documentation](https://popper.js.org/popper-documentation.html)
+   Refer to the [Popper documentation](https://github.com/popperjs/popper.js/blob/v1.x/docs/_includes/popper-documentation.md)
    for the full list of available options. */
   // eslint-disable-next-line flowtype/no-weak-types
   popperOptions: any,
