@@ -33,6 +33,6 @@ export type * from './types.js';
 
 if (__DEV__) {
   console.warn(
-    'We have stabized the Semantic Table component, so you can drop the Unstable_ imports. We will remove the Unstable_ exports soon, so please make these changes as soon as possible!',
+    'We have stabilized the Semantic Table component, so you can drop the "Unstable_" prefix from your imports. We will remove the "Unstable_" exports soon, so please make these changes as soon as possible!',
   );
 }
