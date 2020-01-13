@@ -83,7 +83,7 @@ export type BasePopoverPropsT = {
   /** How long should be fade out animation in ms, default 0ms */
   animateOutTime?: number,
   /** Popper options override
-   * https://popper.js.org/popper-documentation.html#Popper.Defaults
+   * https://github.com/popperjs/popper.js/blob/v1.x/docs/_includes/popper-documentation.md
    */
   // eslint-disable-next-line flowtype/no-weak-types
   popperOptions?: any,
