@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React, {useState, useMemo} from 'react';
-import {Unstable_TableBuilder, Unstable_TableBuilderColumn} from '../index.js';
+import {TableBuilder, TableBuilderColumn} from '../index.js';
 
 export const name = 'table-semantic-builder';
 
@@ -59,18 +59,18 @@ export function component() {
   }
 
   return (
-    <Unstable_TableBuilder
+    <TableBuilder
       data={sortedData}
       sortColumn={sortColumn}
       sortOrder={sortAsc ? 'ASC' : 'DESC'}
       onSort={handleSort}
     >
-      <Unstable_TableBuilderColumn id="bar" header="Produce" sortable>
+      <TableBuilderColumn id="bar" header="Produce" sortable>
         {row => <a href={row.url}>{row.bar}</a>}
-      </Unstable_TableBuilderColumn>
-      <Unstable_TableBuilderColumn id="foo" header="Quantity" numeric sortable>
+      </TableBuilderColumn>
+      <TableBuilderColumn id="foo" header="Quantity" numeric sortable>
         {row => row.foo}
-      </Unstable_TableBuilderColumn>
-    </Unstable_TableBuilder>
+      </TableBuilderColumn>
+    </TableBuilder>
   );
 }

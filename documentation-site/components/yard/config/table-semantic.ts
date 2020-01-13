@@ -1,14 +1,14 @@
-import {Unstable_Table} from 'baseui/table-semantic';
+import {Table} from 'baseui/table-semantic';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
 const TableSemanticConfig: TConfig = {
   imports: {
     'baseui/table-semantic': {
-      named: ['Unstable_Table'],
+      named: ['Table'],
     },
   },
-  scope: {Unstable_Table},
+  scope: {Table},
   theme: [
     'tableHeadBackgroundColor',
     'tableBackground',
