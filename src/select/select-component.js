@@ -700,8 +700,18 @@ class Select extends React.Component<PropsT, SelectStateT> {
         onTouchEnd={this.handleTouchEndClearValue}
         onTouchMove={this.handleTouchMove}
         onTouchStart={this.handleTouchStart}
-        overrides={{Svg: StyledClearIcon}}
         role="button"
+        overrides={{
+          Svg: {
+            component: StyledClearIcon,
+            ...(overrides.ClearIcon && overrides.ClearIcon.props
+              ? {props: overrides.ClearIcon.props}
+              : {}),
+            ...(overrides.ClearIcon && overrides.ClearIcon.style
+              ? {style: overrides.ClearIcon.style}
+              : {}),
+          },
+        }}
         {...sharedProps}
         {...clearIconProps}
       />
