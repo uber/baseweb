@@ -76,8 +76,7 @@ export function isInteractive(rootTarget: EventTarget, rootElement: Element) {
 }
 
 // eslint-disable-next-line flowtype/no-weak-types
-type SelectPropsT = PropsT & {valueComponent: React.ComponentType<any>};
-class Select extends React.Component<SelectPropsT, SelectStateT> {
+class Select extends React.Component<PropsT, SelectStateT> {
   static defaultProps = defaultProps;
 
   // anchor is a ref that refers to the outermost element rendered when the dropdown menu is not
@@ -87,14 +86,14 @@ class Select extends React.Component<SelectPropsT, SelectStateT> {
   // clicks are on/off the dropdown element.
   dropdown: {current: HTMLElement | null} = React.createRef();
   input: React.ElementRef<*>;
-  // dragging is a flag to track whether a mobile device in currently scrolling versus clicking.
+  // dragging is a flag to track whether a mobile device is currently scrolling versus clicking.
   dragging: boolean;
   // focusAfterClear is a flag to indicate that the dropdowm menu should open after a selected
   // option has been cleared.
   focusAfterClear: boolean;
   // openAfterFocus is a flag to indicate that the dropdown menu should open when the component is
   // focused. Developers have the option to disable initial clicks opening the dropdown menu. If not
-  // disabled, clicks will set this flag true. Upon focusing, look to this to see if the menu should
+  // disabled, clicks will set this flag to true. Upon focusing, look to this to see if the menu should
   // be opened, or only focus.
   openAfterFocus: boolean;
   // When an item is selected, it also triggers handleClickOutside and since the selected item is
@@ -108,7 +107,7 @@ class Select extends React.Component<SelectPropsT, SelectStateT> {
   // shape where optgroup titles are stored on the option in the __optgroup field.
   options: ValueT = [];
 
-  constructor(props: SelectPropsT) {
+  constructor(props: PropsT) {
     super(props);
     this.options = normalizeOptions(props.options);
   }
@@ -577,10 +576,10 @@ class Select extends React.Component<SelectPropsT, SelectStateT> {
     isOpen: boolean,
     locale: LocaleT,
   ): ?React.Node | Array<?React.Node> {
-    const {overrides = {}, valueComponent} = this.props;
+    const {overrides = {}} = this.props;
     const sharedProps = this.getSharedProps();
     const renderLabel = this.props.getValueLabel || this.getValueLabel;
-    const Value = valueComponent || Noop;
+    const Value = this.props.valueComponent || Noop;
     if (!valueArray.length) {
       return null;
     }
@@ -701,8 +700,18 @@ class Select extends React.Component<SelectPropsT, SelectStateT> {
         onTouchEnd={this.handleTouchEndClearValue}
         onTouchMove={this.handleTouchMove}
         onTouchStart={this.handleTouchStart}
-        overrides={{Svg: StyledClearIcon}}
         role="button"
+        overrides={{
+          Svg: {
+            component: StyledClearIcon,
+            ...(overrides.ClearIcon && overrides.ClearIcon.props
+              ? {props: overrides.ClearIcon.props}
+              : {}),
+            ...(overrides.ClearIcon && overrides.ClearIcon.style
+              ? {style: overrides.ClearIcon.style}
+              : {}),
+          },
+        }}
         {...sharedProps}
         {...clearIconProps}
       />
@@ -850,6 +859,15 @@ class Select extends React.Component<SelectPropsT, SelectStateT> {
       value,
       filterOutSelected,
     } = this.props;
+
+    if (__DEV__) {
+      if (!Array.isArray(value)) {
+        console.warn(
+          'The Select component expects an array as the value prop. For more information, please visit the docs at https://baseweb.design/components/select/',
+        );
+      }
+    }
+
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [ControlContainer, controlContainerProps] = getOverrides(
       overrides.ControlContainer,

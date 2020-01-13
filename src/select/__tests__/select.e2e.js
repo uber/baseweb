@@ -169,7 +169,7 @@ describe('select', () => {
 
     // add "Paris"
     await page.keyboard.type('Paris');
-    await page.click(optionAtPosition(1));
+    await page.$eval(optionAtPosition(1), elem => elem.click());
     const inputValue = await page.$eval(
       selectors.selectedList,
       select => select.innerText,
