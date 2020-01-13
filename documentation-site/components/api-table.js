@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import * as React from 'react';
-import {Unstable_Table} from 'baseui/table-semantic';
+import {Table} from 'baseui/table-semantic';
 import {useStyletron} from 'baseui';
 import {StatefulPopover, PLACEMENT, TRIGGER_TYPE} from 'baseui/popover';
 import {H3} from './markdown-elements';
@@ -95,7 +95,7 @@ const ApiTable = props => {
   return (
     <React.Fragment>
       <H3>{title}</H3>
-      <Unstable_Table columns={['Name', 'Type', 'Description']} data={data} />
+      <Table columns={['Name', 'Type', 'Description']} data={data} />
     </React.Fragment>
   );
 };

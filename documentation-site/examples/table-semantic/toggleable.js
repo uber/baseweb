@@ -3,8 +3,8 @@ import React, {useState} from 'react';
 import {Checkbox} from 'baseui/checkbox';
 import {StyledLink as Link} from 'baseui/link';
 import {
-  Unstable_TableBuilder,
-  Unstable_TableBuilderColumn,
+  TableBuilder,
+  TableBuilderColumn,
 } from 'baseui/table-semantic';
 
 export default () => {
@@ -54,8 +54,8 @@ export default () => {
   }
 
   return (
-    <Unstable_TableBuilder data={data}>
-      <Unstable_TableBuilderColumn
+    <TableBuilder data={data}>
+      <TableBuilderColumn
         overrides={{
           TableHeadCell: {style: {width: '1%'}},
           TableBodyCell: {style: {width: '1%'}},
@@ -75,13 +75,13 @@ export default () => {
             onChange={toggle}
           />
         )}
-      </Unstable_TableBuilderColumn>
-      <Unstable_TableBuilderColumn header="Produce">
+      </TableBuilderColumn>
+      <TableBuilderColumn header="Produce">
         {row => <Link href={row.url}>{row.bar}</Link>}
-      </Unstable_TableBuilderColumn>
-      <Unstable_TableBuilderColumn header="Quantity" numeric>
+      </TableBuilderColumn>
+      <TableBuilderColumn header="Quantity" numeric>
         {row => row.foo}
-      </Unstable_TableBuilderColumn>
-    </Unstable_TableBuilder>
+      </TableBuilderColumn>
+    </TableBuilder>
   );
 };
