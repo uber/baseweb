@@ -35,6 +35,8 @@ const TooltipConfig: TConfig = {
     },
     triggerType: {
       ...PopoverConfig.props.triggerType,
+      value: 'TRIGGER_TYPE.hover',
+      defaultValue: 'TRIGGER_TYPE.hover',
       imports: {
         'baseui/tooltip': {
           named: ['TRIGGER_TYPE'],
