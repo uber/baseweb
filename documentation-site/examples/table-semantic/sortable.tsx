@@ -1,8 +1,8 @@
 import React, {useState, useMemo} from 'react';
 import {StyledLink as Link} from 'baseui/link';
 import {
-  Unstable_TableBuilder,
-  Unstable_TableBuilderColumn,
+  TableBuilder,
+  TableBuilderColumn,
 } from 'baseui/table-semantic';
 
 export default () => {
@@ -50,27 +50,23 @@ export default () => {
   }
 
   return (
-    <Unstable_TableBuilder
+    <TableBuilder
       data={sortedData}
       sortColumn={sortColumn}
       sortOrder={sortAsc ? 'ASC' : 'DESC'}
       onSort={handleSort}
     >
-      <Unstable_TableBuilderColumn
-        id="bar"
-        header="Produce"
-        sortable
-      >
+      <TableBuilderColumn id="bar" header="Produce" sortable>
         {row => <Link href={row.url}>{row.bar}</Link>}
-      </Unstable_TableBuilderColumn>
-      <Unstable_TableBuilderColumn
+      </TableBuilderColumn>
+      <TableBuilderColumn
         id="foo"
         header="Quantity"
         numeric
         sortable
       >
         {row => row.foo}
-      </Unstable_TableBuilderColumn>
-    </Unstable_TableBuilder>
+      </TableBuilderColumn>
+    </TableBuilder>
   );
 };

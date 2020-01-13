@@ -10,8 +10,8 @@ import * as React from 'react';
 import {mount} from 'enzyme';
 
 import {
-  Unstable_TableBuilder,
-  Unstable_TableBuilderColumn,
+  TableBuilder,
+  TableBuilderColumn,
   StyledTableHeadCellSortable,
   StyledTableBodyRow,
   StyledTableBodyCell,
@@ -41,17 +41,13 @@ const DATA = [
 describe('Table Semantic Builder', () => {
   it('renders expected number of rows', () => {
     const wrapper = mount(
-      <Unstable_TableBuilder data={DATA}>
-        <Unstable_TableBuilderColumn header="Foo">
-          {row => row.foo}
-        </Unstable_TableBuilderColumn>
-        <Unstable_TableBuilderColumn header="Bar">
+      <TableBuilder data={DATA}>
+        <TableBuilderColumn header="Foo">{row => row.foo}</TableBuilderColumn>
+        <TableBuilderColumn header="Bar">
           {row => <a href={row.url}>{row.bar}</a>}
-        </Unstable_TableBuilderColumn>
-        <Unstable_TableBuilderColumn>
-          {row => 'Hey'}
-        </Unstable_TableBuilderColumn>
-      </Unstable_TableBuilder>,
+        </TableBuilderColumn>
+        <TableBuilderColumn>{row => 'Hey'}</TableBuilderColumn>
+      </TableBuilder>,
     );
 
     expect(wrapper.find(StyledTableBodyRow)).toHaveLength(DATA.length);
@@ -59,17 +55,13 @@ describe('Table Semantic Builder', () => {
 
   it('renders expected number of columns', () => {
     const wrapper = mount(
-      <Unstable_TableBuilder data={DATA}>
-        <Unstable_TableBuilderColumn header="Foo">
-          {row => row.foo}
-        </Unstable_TableBuilderColumn>
-        <Unstable_TableBuilderColumn header="Bar">
+      <TableBuilder data={DATA}>
+        <TableBuilderColumn header="Foo">{row => row.foo}</TableBuilderColumn>
+        <TableBuilderColumn header="Bar">
           {row => <a href={row.url}>{row.bar}</a>}
-        </Unstable_TableBuilderColumn>
-        <Unstable_TableBuilderColumn>
-          {row => 'Hey'}
-        </Unstable_TableBuilderColumn>
-      </Unstable_TableBuilder>,
+        </TableBuilderColumn>
+        <TableBuilderColumn>{row => 'Hey'}</TableBuilderColumn>
+      </TableBuilder>,
     );
 
     const cells = wrapper
@@ -82,17 +74,13 @@ describe('Table Semantic Builder', () => {
 
   it('renders expected number of anchors', () => {
     const wrapper = mount(
-      <Unstable_TableBuilder data={DATA}>
-        <Unstable_TableBuilderColumn header="Foo">
-          {row => row.foo}
-        </Unstable_TableBuilderColumn>
-        <Unstable_TableBuilderColumn header="Bar">
+      <TableBuilder data={DATA}>
+        <TableBuilderColumn header="Foo">{row => row.foo}</TableBuilderColumn>
+        <TableBuilderColumn header="Bar">
           {row => <a href={row.url}>{row.bar}</a>}
-        </Unstable_TableBuilderColumn>
-        <Unstable_TableBuilderColumn>
-          {row => 'Hey'}
-        </Unstable_TableBuilderColumn>
-      </Unstable_TableBuilder>,
+        </TableBuilderColumn>
+        <TableBuilderColumn>{row => 'Hey'}</TableBuilderColumn>
+      </TableBuilder>,
     );
 
     const anchors = wrapper.find('a');
@@ -104,14 +92,14 @@ describe('Table Semantic Builder', () => {
 
   it('renders sorted results', () => {
     const asc = mount(
-      <Unstable_TableBuilder data={DATA} sortColumn={'foo'} sortOrder={'ASC'}>
-        <Unstable_TableBuilderColumn header="Foo" id="foo" numeric sortable>
+      <TableBuilder data={DATA} sortColumn={'foo'} sortOrder={'ASC'}>
+        <TableBuilderColumn header="Foo" id="foo" numeric sortable>
           {row => row.foo}
-        </Unstable_TableBuilderColumn>
-        <Unstable_TableBuilderColumn header="Bar" id="bar" sortable>
+        </TableBuilderColumn>
+        <TableBuilderColumn header="Bar" id="bar" sortable>
           {row => <a href={row.url}>{row.bar}</a>}
-        </Unstable_TableBuilderColumn>
-      </Unstable_TableBuilder>,
+        </TableBuilderColumn>
+      </TableBuilder>,
     );
 
     expect(asc.find(StyledSortAscIcon)).toHaveLength(1);
@@ -119,14 +107,14 @@ describe('Table Semantic Builder', () => {
     expect(asc.find(StyledSortNoneIcon)).toHaveLength(1);
 
     const desc = mount(
-      <Unstable_TableBuilder data={DATA} sortColumn={'bar'} sortOrder={'DESC'}>
-        <Unstable_TableBuilderColumn header="Foo" id="foo" numeric sortable>
+      <TableBuilder data={DATA} sortColumn={'bar'} sortOrder={'DESC'}>
+        <TableBuilderColumn header="Foo" id="foo" numeric sortable>
           {row => row.foo}
-        </Unstable_TableBuilderColumn>
-        <Unstable_TableBuilderColumn header="Bar" id="bar" sortable>
+        </TableBuilderColumn>
+        <TableBuilderColumn header="Bar" id="bar" sortable>
           {row => <a href={row.url}>{row.bar}</a>}
-        </Unstable_TableBuilderColumn>
-      </Unstable_TableBuilder>,
+        </TableBuilderColumn>
+      </TableBuilder>,
     );
 
     expect(desc.find(StyledSortAscIcon)).toHaveLength(0);
@@ -134,14 +122,14 @@ describe('Table Semantic Builder', () => {
     expect(desc.find(StyledSortNoneIcon)).toHaveLength(1);
 
     const none = mount(
-      <Unstable_TableBuilder data={DATA}>
-        <Unstable_TableBuilderColumn header="Foo" id="foo" numeric sortable>
+      <TableBuilder data={DATA}>
+        <TableBuilderColumn header="Foo" id="foo" numeric sortable>
           {row => row.foo}
-        </Unstable_TableBuilderColumn>
-        <Unstable_TableBuilderColumn header="Bar" id="bar" sortable>
+        </TableBuilderColumn>
+        <TableBuilderColumn header="Bar" id="bar" sortable>
           {row => <a href={row.url}>{row.bar}</a>}
-        </Unstable_TableBuilderColumn>
-      </Unstable_TableBuilder>,
+        </TableBuilderColumn>
+      </TableBuilder>,
     );
 
     expect(none.find(StyledSortAscIcon)).toHaveLength(0);
@@ -153,14 +141,14 @@ describe('Table Semantic Builder', () => {
     const mockOnSort = jest.fn();
 
     const wrapper = mount(
-      <Unstable_TableBuilder data={DATA} onSort={mockOnSort}>
-        <Unstable_TableBuilderColumn header="Foo" id="foo" sortable>
+      <TableBuilder data={DATA} onSort={mockOnSort}>
+        <TableBuilderColumn header="Foo" id="foo" sortable>
           {row => row.foo}
-        </Unstable_TableBuilderColumn>
-        <Unstable_TableBuilderColumn header="Bar" id="bar" sortable>
+        </TableBuilderColumn>
+        <TableBuilderColumn header="Bar" id="bar" sortable>
           {row => <a href={row.url}>{row.bar}</a>}
-        </Unstable_TableBuilderColumn>
-      </Unstable_TableBuilder>,
+        </TableBuilderColumn>
+      </TableBuilder>,
     );
 
     wrapper
