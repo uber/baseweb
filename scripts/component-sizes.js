@@ -56,7 +56,7 @@ async function main() {
     slider: 'Slider',
     spinner: 'Spinner',
     'table-grid': ['StyledTable', 'StyledHeadCell', 'StyledBodyCell'],
-    'table-semantic': 'Unstable_Table',
+    'table-semantic': 'Table',
     table: 'Table',
     tabs: ['Tabs', 'Tab'],
     tag: 'Tag',

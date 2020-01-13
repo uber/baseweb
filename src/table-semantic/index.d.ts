@@ -18,7 +18,7 @@ export interface TableProps {
   data: React.ReactNode[][];
   horizontalScrollWidth?: string;
 }
-export class Unstable_Table extends React.Component<TableProps> {}
+export class Table extends React.Component<TableProps> {}
 
 export interface BuilderOverrides extends Overrides {
   TableHeadCellSortable?: Override<any>;
@@ -35,7 +35,7 @@ export interface TableBuilderProps<RowT> {
   sortOrder?: 'ASC' | 'DESC' | null;
   onSort?: (columnId: string) => void;
 }
-export class Unstable_TableBuilder<RowT> extends React.Component<
+export class TableBuilder<RowT> extends React.Component<
   TableBuilderProps<RowT>
 > {}
 
@@ -55,7 +55,7 @@ export interface TableBuilderColumnProps<RowT> {
   numeric?: boolean;
   sortable?: boolean;
 }
-export class Unstable_TableBuilderColumn<RowT> extends React.Component<
+export class TableBuilderColumn<RowT> extends React.Component<
   TableBuilderColumnProps<RowT>
 > {}
 

@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
-import UnstableWarning from '../../components/unstable-warning';
 
 import * as TableSemanticExports from 'baseui/table-semantic';
 
@@ -27,13 +26,7 @@ export default Layout;
 
 # Table Semantic
 
-<UnstableWarning />
-
-<Yard
-  componentName="Unstable_Table"
-  placeholderHeight={202}
-  {...tableYardConfig}
-/>
+<Yard componentName="Table" placeholderHeight={202} {...tableYardConfig} />
 
 Display tabular data using semantic markup. This component is best suited for
 smaller amounts of data that can be rendered all at once. Gives you access to
