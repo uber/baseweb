@@ -16,7 +16,7 @@ module.exports = {
           context.report({
             node,
             message:
-              ' Please limit imports to "baseui" or one level deep modules such as "baseui/button".' +
+              'Please limit imports to "baseui" or one level deep modules such as "baseui/button".' +
               ' Importing more than one level deep is dangerous as source code may change in breaking ways without notice.',
           });
         }
