@@ -16,7 +16,8 @@ module.exports = {
           context.report({
             node,
             message:
-              "Import only from baseui's public API. Source code may change in breaking ways without notice.",
+              ' Please limit imports to "baseui" or one level deep modules such as "baseui/button".' +
+              ' Importing more than one level deep is dangerous as source code may change in breaking ways without notice.',
           });
         }
       },
