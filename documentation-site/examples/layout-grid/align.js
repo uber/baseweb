@@ -2,11 +2,7 @@
 
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {
-  Unstable_Grid as Grid,
-  Unstable_Cell as Cell,
-  ALIGNMENT,
-} from 'baseui/layout-grid';
+import {Grid, Cell, ALIGNMENT} from 'baseui/layout-grid';
 
 export default () => (
   <Outer>
