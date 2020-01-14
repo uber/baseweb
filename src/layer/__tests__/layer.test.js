@@ -93,4 +93,60 @@ describe('Layer', () => {
     // onMount should be called
     expect(props.onMount).toHaveBeenCalled();
   });
+
+  test('Layers rendering', () => {
+    const content = 'Hello layer';
+    const props = {
+      onMount: jest.fn(),
+    };
+    function App() {
+      return (
+        <div data-test="layers">
+          <strong>Hello world</strong>
+          <Layer {...props}>{content} 1</Layer>
+          <Layer {...props}>{content} 2</Layer>
+        </div>
+      );
+    }
+    wrapper = mount(
+      <LayersManager>
+        <App />
+      </LayersManager>,
+    );
+    // Should have the later rendered layer prepended at the index 0
+    // in a layers container (hostNode)
+    const hostNode = wrapper.childAt(1).getDOMNode();
+    expect(hostNode.children.length).toEqual(2);
+    expect(hostNode.children[0].textContent).toEqual(`${content} 1`);
+    expect(hostNode.children[1].textContent).toEqual(`${content} 2`);
+  });
+
+  test('Layers rendering order when index is passed in', () => {
+    const content = 'Hello layer';
+    const props = {
+      onMount: jest.fn(),
+    };
+    function App() {
+      return (
+        <div data-test="layers">
+          <strong>Hello world</strong>
+          <Layer {...props}>{content} 1</Layer>
+          <Layer {...props} index={0}>
+            {content} 2
+          </Layer>
+        </div>
+      );
+    }
+    wrapper = mount(
+      <LayersManager>
+        <App />
+      </LayersManager>,
+    );
+    // Should have the later rendered layer prepended at the index 0
+    // in a layers container (hostNode)
+    const hostNode = wrapper.childAt(1).getDOMNode();
+    expect(hostNode.children.length).toEqual(2);
+    expect(hostNode.children[0].textContent).toEqual(`${content} 2`);
+    expect(hostNode.children[1].textContent).toEqual(`${content} 1`);
+  });
 });
