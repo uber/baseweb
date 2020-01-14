@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 'use strict';
 
+const Theme = require('./theme.js');
 const DeprecatedThemeAPI = require('./deprecated-theme-api.js');
 const DeprecatedComponentAPI = require('./deprecated-component-api.js');
 const NoDeepImports = require('./no-deep-imports.js');
@@ -16,5 +17,6 @@ module.exports = {
     'deprecated-theme-api': DeprecatedThemeAPI,
     'deprecated-component-api': DeprecatedComponentAPI,
     'no-deep-imports': NoDeepImports,
+    theme: Theme,
   },
 };

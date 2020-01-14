@@ -21,6 +21,7 @@ RuleTester.setDefaultConfig({
 
 const tests = {
   valid: [
+    // Valid deprecated property used as object property in styled object
     {
       code: `
         const Foo = styled("div", {
@@ -28,6 +29,17 @@ const tests = {
         });
       `,
     },
+
+    // Valid deprecated property as object property in styled function
+    {
+      code: `
+        const Foo = styled("div", ({$theme}) => ({
+          background: $theme.colors.white,
+        }));
+      `,
+    },
+
+    // Valid deprecated property used from local variable
     {
       code: `
         const foreground = "black";
@@ -36,11 +48,35 @@ const tests = {
         });
       `,
     },
+
+    // Valid setting deprecated property in createTheme
+    // createTheme is not imported from baseui
     {
+      skip: true,
       code: `
-        const Foo = styled("div", ({$theme}) => ({
-          background: $theme.colors.white,
-        }));
+        function createTheme() {}
+        const theme = createTheme(
+          {},
+          {
+            colors: {
+              shadowFocus: "pink"
+            }
+          }
+        );      
+      `,
+    },
+
+    // Valid use of deprecated property in a function that destructures $theme
+    {
+      skip: true,
+      code: `
+        function foo({$theme}) {
+          const background = "pink";
+          return {
+            color: $theme.colors.contentPrimary,
+            backgroundColor: background
+          };
+        }
       `,
     },
   ],
@@ -221,6 +257,23 @@ const tests = {
         );      
       `,
       errors: [{messageId: MESSAGES.deprecateThemeProperty.id}],
+    },
+
+    // Invalid within class component method
+    {
+      code: `
+        class Foo extends React.Component {
+          render() {
+            const Boo = styled('div', ({$theme}) => {
+              return {
+                backgroundColor: $theme.colors.background
+              }
+            });
+            return <Boo />;
+          }
+        }
+      `,
+      errors: [{messageId: MESSAGES.replaceThemeProperty.id}],
     },
   ],
 };
