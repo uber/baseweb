@@ -77,8 +77,16 @@ class TimezonePicker extends React.Component<
         }
         return option;
       })
-      // Removes 'noisy' timezones without a letter acronym.
-      .filter(option => option.label[0] !== '-' && option.label[0] !== '+')
+      // Formats 'noisy' timezones without a letter acronym.
+      .map(option => {
+        const rgx = /(^(\+|-)\d+\s- )/;
+        const matches = option.label.match(rgx);
+        if (matches) {
+          const prefix = matches[0];
+          option.label = option.label.split(prefix)[1];
+        }
+        return option;
+      })
       // Sorts W -> E, prioritizes america. could be more nuanced based on system tz but simple for now
       .sort((a, b) => {
         const offsetDelta = b.offset - a.offset;

@@ -119,10 +119,13 @@ class Select extends React.Component<PropsT, SelectStateT> {
     isPseudoFocused: false,
   };
 
+  isMounted: boolean = false;
+
   componentDidMount() {
     if (this.props.autoFocus) {
       this.focus();
     }
+    this.isMounted = true;
   }
 
   componentDidUpdate(prevProps: PropsT, prevState: SelectStateT) {
@@ -147,6 +150,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     if (__BROWSER__) {
       document.removeEventListener('touchstart', this.handleTouchOutside);
     }
+    this.isMounted = false;
   }
 
   focus() {
@@ -296,7 +300,9 @@ class Select extends React.Component<PropsT, SelectStateT> {
       onBlurredState.inputValue = '';
     }
 
-    this.setState(onBlurredState);
+    if (this.isMounted) {
+      this.setState(onBlurredState);
+    }
 
     if (__BROWSER__) {
       document.removeEventListener('click', this.handleClickOutside);
@@ -700,8 +706,18 @@ class Select extends React.Component<PropsT, SelectStateT> {
         onTouchEnd={this.handleTouchEndClearValue}
         onTouchMove={this.handleTouchMove}
         onTouchStart={this.handleTouchStart}
-        overrides={{Svg: StyledClearIcon}}
         role="button"
+        overrides={{
+          Svg: {
+            component: StyledClearIcon,
+            ...(overrides.ClearIcon && overrides.ClearIcon.props
+              ? {props: overrides.ClearIcon.props}
+              : {}),
+            ...(overrides.ClearIcon && overrides.ClearIcon.style
+              ? {style: overrides.ClearIcon.style}
+              : {}),
+          },
+        }}
         {...sharedProps}
         {...clearIconProps}
       />

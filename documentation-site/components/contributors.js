@@ -25,11 +25,13 @@ function Contributors(props: {contributors: Contributor[]}) {
     return null;
   }
 
+  const users = props.contributors.filter(isUser);
+
   return (
     <React.Fragment>
-      <H2>Thanks to our contributors</H2>
+      <H2>Thanks to our {users.length} contributors</H2>
       <Block display="flex" flexWrap>
-        {props.contributors.filter(isUser).map(contributor => (
+        {users.map(contributor => (
           <Block
             as="a"
             href={contributor.html_url}
@@ -40,7 +42,9 @@ function Contributors(props: {contributors: Contributor[]}) {
           >
             <Avatar
               name={contributor.login}
-              src={contributor.avatar_url}
+              // GH supports downloading smaller images using the s query string
+              // https://styleguide.github.com/primer/components/avatars/#small-avatars
+              src={`${contributor.avatar_url}&s=64`}
               overrides={{
                 Root: {
                   style: ({$theme}) => ({

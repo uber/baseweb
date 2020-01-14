@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {Unstable_Table} from '../index.js';
+import {Table} from '../index.js';
 
 export const name = 'table-semantic';
 
@@ -20,5 +20,5 @@ const DATA = [
 ];
 
 export function component() {
-  return <Unstable_Table columns={COLUMNS} data={DATA} />;
+  return <Table columns={COLUMNS} data={DATA} />;
 }
