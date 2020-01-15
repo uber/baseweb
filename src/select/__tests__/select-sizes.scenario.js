@@ -26,6 +26,21 @@ export const component = () => (
       ]}
       labelKey="id"
       valueKey="color"
+      size="mini"
+    />
+    <br />
+    <StatefulSelect
+      aria-label="Select a color"
+      options={[
+        {id: 'AliceBlue', color: '#F0F8FF'},
+        {id: 'AntiqueWhite', color: '#FAEBD7'},
+        {id: 'Aqua', color: '#00FFFF'},
+        {id: 'Aquamarine', color: '#7FFFD4'},
+        {id: 'Azure', color: '#F0FFFF'},
+        {id: 'Beige', color: '#F5F5DC'},
+      ]}
+      labelKey="id"
+      valueKey="color"
       size="compact"
     />
     <br />

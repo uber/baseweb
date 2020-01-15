@@ -31,6 +31,12 @@ export const StyledClearIcon = styled<typeof DeleteAlt, {}>(DeleteAlt, {
 
 function getInputPadding(size, sizing) {
   return {
+    [SIZE.mini]: {
+      paddingTop: sizing.scale100,
+      paddingBottom: sizing.scale100,
+      paddingLeft: sizing.scale200,
+      paddingRight: sizing.scale200,
+    },
     [SIZE.compact]: {
       paddingTop: sizing.scale200,
       paddingBottom: sizing.scale200,
@@ -54,6 +60,7 @@ function getInputPadding(size, sizing) {
 
 function getFont(size, typography) {
   return {
+    [SIZE.mini]: typography.font100,
     [SIZE.compact]: typography.font200,
     [SIZE.default]: typography.font300,
     [SIZE.large]: typography.font400,
@@ -94,6 +101,10 @@ function getInputEnhancerBorderRadius(position, radius) {
 
 function getInputEnhancerPadding($size, sizing) {
   return {
+    [SIZE.mini]: {
+      paddingRight: sizing.scale200,
+      paddingLeft: sizing.scale200,
+    },
     [SIZE.compact]: {
       paddingRight: sizing.scale400,
       paddingLeft: sizing.scale400,
