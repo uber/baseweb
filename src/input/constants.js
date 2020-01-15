@@ -21,6 +21,7 @@ export const ADJOINED = {
 };
 
 export const SIZE = {
+  mini: 'mini',
   default: 'default',
   compact: 'compact',
   large: 'large',
