@@ -26,6 +26,7 @@ export const StyledFlagContainer = styled<SizeStyleProps>(
   'span',
   ({$size = SIZE.default, $theme: {sizing}}) => {
     const sizeToFont = {
+      [SIZE.mini]: sizing.scale700,
       [SIZE.compact]: sizing.scale800,
       [SIZE.default]: sizing.scale900,
       [SIZE.large]: sizing.scale1000,
@@ -41,6 +42,7 @@ export const StyledRoot = withStyle<typeof SelectStyledRoot, SizeStyleProps>(
   props => {
     // hard coded widths for the flag dropdown anchor
     const sizeToWidth = {
+      [SIZE.mini]: '50px',
       [SIZE.compact]: '60px',
       [SIZE.default]: '70px',
       [SIZE.large]: '80px',

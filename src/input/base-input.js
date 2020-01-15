@@ -173,6 +173,7 @@ class BaseInput<T: EventTarget> extends React.Component<
       ? 'Show password text'
       : 'Hide password text';
     const iconSize = {
+      [SIZE.mini]: '12px',
       [SIZE.compact]: '16px',
       [SIZE.default]: '20px',
       [SIZE.large]: '24px',
