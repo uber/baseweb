@@ -48,37 +48,6 @@ const tests = {
         });
       `,
     },
-
-    // Valid setting deprecated property in createTheme
-    // createTheme is not imported from baseui
-    {
-      skip: true,
-      code: `
-        function createTheme() {}
-        const theme = createTheme(
-          {},
-          {
-            colors: {
-              shadowFocus: "pink"
-            }
-          }
-        );      
-      `,
-    },
-
-    // Valid use of deprecated property in a function that destructures $theme
-    {
-      skip: true,
-      code: `
-        function foo({$theme}) {
-          const background = "pink";
-          return {
-            color: $theme.colors.contentPrimary,
-            backgroundColor: background
-          };
-        }
-      `,
-    },
   ],
   invalid: [
     // Invalid use of a deprecated theme property via styled

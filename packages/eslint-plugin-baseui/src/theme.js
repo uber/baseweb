@@ -263,12 +263,6 @@ const deprecatedThemeProperties = {
   },
 };
 
-function log(msg) {
-  if (process.env.NODE_ENV === 'test') {
-    console.log(msg);
-  }
-}
-
 module.exports = {
   meta: {
     fixable: 'code',
@@ -333,12 +327,14 @@ module.exports = {
             // We have confirmed that our identifier is used in a
             // function passed as the second argument to styled or withStyle.
             // Now we need to analyze the params of the style function argument.
-            // There are multiple levels of de-structuring possible.
+
+            // Only one argument should be passed to style or withStyle
+            // so we will only consider the first argument.
+            const param = styledFunctionArgument.params[0];
 
             // Option 2-1. No destructuring.
-            // Ex: styled('div', function(props) { return { color: props.$theme.colors.foreground } })
-            if (styledFunctionArgument.params[0].type === 'Identifier') {
-              const paramName = styledFunctionArgument.params[0].name;
+            // Ex: styled('div', function(props) { ... })
+            if (param.type === 'Identifier') {
               if (
                 node.parent.type === 'MemberExpression' &&
                 node.parent.object.type === 'MemberExpression' &&
@@ -346,7 +342,7 @@ module.exports = {
                 node.parent.object.object.type === 'MemberExpression' &&
                 node.parent.object.object.property.name === '$theme' &&
                 node.parent.object.object.object.type === 'Identifier' &&
-                node.parent.object.object.object.name === paramName
+                node.parent.object.object.object.name === param.name
               ) {
                 // We have verified that the identifier accesses the theme.
                 // Ex: props.$theme.colors.foreground
@@ -355,14 +351,86 @@ module.exports = {
               }
             }
 
-            // Option 2-2.
-            // styled('div', function({$theme}) { ... })
+            if (param.type === 'ObjectPattern') {
+              // Our param is being destructured.
+              const $themeProperty = param.properties.find(
+                property => property.key.name === '$theme',
+              );
 
-            // Option 2-3.
-            // styled('div', function({$theme: {colors}}) { ... })
+              // Option 2-2. Destructuring $theme in params.
+              // styled('div', function({$theme}) { ... })
+              if (
+                $themeProperty.value.type === 'Identifier' &&
+                $themeProperty.value.name === '$theme'
+              ) {
+                if (
+                  node.parent.type === 'MemberExpression' &&
+                  node.parent.object.type === 'MemberExpression' &&
+                  node.parent.object.property.name === themeProperty.concern &&
+                  node.parent.object.object.type === 'Identifier' &&
+                  node.parent.object.object.name === '$theme'
+                ) {
+                  // We have verified that the identifier accesses $theme.
+                  // Ex: $theme.colors.foreground
+                  context.report(reportOptions);
+                  return;
+                }
+              }
 
-            // Option 2-4.
-            // styled('div', function({$theme: {colors: {background}}}) { ... })
+              // Account for nested destructuring.
+              if ($themeProperty.value.type === 'ObjectPattern') {
+                const concernProperty = $themeProperty.value.properties.find(
+                  property => property.key.name === themeProperty.concern,
+                );
+
+                // Option 2-3. Nested destructuring of a "concern" in params.
+                // styled('div', function({$theme: {colors}}) { ... })
+                if (
+                  concernProperty &&
+                  concernProperty.value.type === 'Identifier' &&
+                  node.parent.type === 'MemberExpression' &&
+                  node.parent.object.type === 'Identifier' &&
+                  node.parent.object.name === themeProperty.concern
+                ) {
+                  // We have verified that the identifier accesses the "concern".
+                  // Ex: colors.foreground
+                  context.report(reportOptions);
+                  return;
+                }
+
+                // Option 2-4. Nested destructuring of the deprecated theme property.
+                // styled('div', function({$theme: {colors: {foreground}}}) { ... })
+                if (
+                  concernProperty &&
+                  concernProperty.value.type === 'ObjectPattern'
+                ) {
+                  const deprecatedProperty = concernProperty.value.properties.find(
+                    property => property.key.name === identifier,
+                  );
+                  if (deprecatedProperty) {
+                    // We have verified that the identifier is fully destructured in
+                    // the params of this function.
+
+                    // There are a couple extra criteria before we flag this node:
+                    // 1. Verify the identifier is not a property on an object.
+                    //     - Ex: foo.foreground
+                    // 2. Verify the identifier is not the "value" in a shorthand object destructuring.
+                    //     - Ex: ({$theme: {colors: {foreground}}})
+                    //                               ^^^^^^^^^^
+                    //                               👆Both ObjectPropty key and value
+                    //     - This would result in a duplicate lint warning.
+                    if (
+                      node.parent.type !== 'MemberExpression' &&
+                      deprecatedProperty.shorthand &&
+                      deprecatedProperty.value !== node
+                    ) {
+                      context.report(reportOptions);
+                      return;
+                    }
+                  }
+                }
+              }
+            }
           }
 
           // Option 3. Is this node used in an override style function?
