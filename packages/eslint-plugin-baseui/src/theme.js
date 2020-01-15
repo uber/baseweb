@@ -408,21 +408,24 @@ module.exports = {
                     property => property.key.name === identifier,
                   );
                   if (deprecatedProperty) {
-                    // We have verified that the identifier is fully destructured in
+                    // We have verified that the identifier is destructured in
                     // the params of this function.
 
-                    // There are a couple extra criteria before we flag this node:
-                    // 1. Verify the identifier is not a property on an object.
-                    //     - Ex: foo.foreground
-                    // 2. Verify the identifier is not the "value" in a shorthand object destructuring.
-                    //     - Ex: ({$theme: {colors: {foreground}}})
-                    //                               ^^^^^^^^^^
-                    //                               👆Both ObjectPropty key and value
-                    //     - This would result in a duplicate lint warning.
+                    // Here is a map of the possible destructuring:
+                    // ({$theme: {colors: {foreground: foreground}}}) => ({ color: foreground })
+                    //                     ^^^^^^^^^^  ^^^^^^^^^^                  ^^^^^^^^^^
+                    //                     key         value                       reference
+
+                    // Given the above map, here is the final criteria to consider before we flag the node:
+                    //   - If the current node is the key, we want to flag it.
+                    //   - If the current node is the value, we ignore it.
+                    //   - Reaching here means the node is a reference.
+                    //   - If the current node is part of a member expression, we ignore it. (foo.foreground)
+                    //   - Finally! We can flag this node.
                     if (
-                      node.parent.type !== 'MemberExpression' &&
-                      deprecatedProperty.shorthand &&
-                      deprecatedProperty.value !== node
+                      node === deprecatedProperty.key ||
+                      (node !== deprecatedProperty.value &&
+                        node.parent.type !== 'MemberExpression')
                     ) {
                       context.report(reportOptions);
                       return;

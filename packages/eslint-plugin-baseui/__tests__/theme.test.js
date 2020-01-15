@@ -20,7 +20,18 @@ RuleTester.setDefaultConfig({
 });
 
 const tests = {
-  valid: [],
+  valid: [
+    {
+      code: `
+        // styled - renaming a valid property to one of our deprecated properties
+        styled('div', ({$theme: {colors: {foo: foreground}}}) => {
+          return {
+            color: foreground,
+          };
+        });
+      `,
+    },
+  ],
   invalid: [
     {
       code: `
@@ -49,7 +60,6 @@ const tests = {
         },
       ],
     },
-
     {
       code: `
         // withStyle - no destructuring
@@ -77,7 +87,6 @@ const tests = {
         },
       ],
     },
-
     {
       code: `
         // styled - $theme destructured
@@ -105,7 +114,6 @@ const tests = {
         },
       ],
     },
-
     {
       code: `
         // withStyle - $theme destructured
@@ -133,7 +141,6 @@ const tests = {
         },
       ],
     },
-
     {
       code: `
         // styled - nested destructuring for "concern"
@@ -161,7 +168,6 @@ const tests = {
         },
       ],
     },
-
     {
       code: `
         // withStyle - nested destructuring for "concern"
@@ -189,7 +195,6 @@ const tests = {
         },
       ],
     },
-
     {
       code: `
         // styled - nested destructuring of the deprecated theme property
@@ -249,6 +254,33 @@ const tests = {
             new: 'contentPrimary',
           },
         },
+        {
+          messageId: MESSAGES.replaceThemeProperty.id,
+          data: {
+            old: 'foreground',
+            new: 'contentPrimary',
+          },
+        },
+      ],
+    },
+    {
+      code: `
+        // styled - renaming a nested & destructured & deprecated theme property
+        styled('div', ({$theme: {colors: {foreground: foo}}}) => {
+          return {
+            color: foo,
+          };
+        });
+      `,
+      output: `
+        // styled - renaming a nested & destructured & deprecated theme property
+        styled('div', ({$theme: {colors: {contentPrimary: foo}}}) => {
+          return {
+            color: foo,
+          };
+        });
+      `,
+      errors: [
         {
           messageId: MESSAGES.replaceThemeProperty.id,
           data: {
