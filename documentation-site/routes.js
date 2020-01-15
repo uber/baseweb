@@ -205,22 +205,6 @@ const routes = [
             itemId: '/components/list',
           },
           {
-            title: 'Table',
-            itemId: '/components/table',
-          },
-          {
-            title: 'Table Grid',
-            itemId: '/components/table-grid',
-          },
-          {
-            title: 'Table Semantic',
-            itemId: '/components/table-semantic',
-          },
-          {
-            title: 'Data Table',
-            itemId: '/components/unstable-data-table',
-          },
-          {
             title: 'Tag',
             itemId: '/components/tag',
           },
@@ -231,6 +215,27 @@ const routes = [
           {
             title: 'Typography',
             itemId: '/components/typography',
+          },
+        ],
+      },
+      {
+        title: 'Tables',
+        subNav: [
+          {
+            title: 'Table',
+            itemId: '/components/table',
+          },
+          {
+            title: 'Data Table',
+            itemId: '/components/unstable-data-table',
+          },
+          {
+            title: 'Grid Table',
+            itemId: '/components/table-grid',
+          },
+          {
+            title: 'Semantic Table',
+            itemId: '/components/table-semantic',
           },
         ],
       },

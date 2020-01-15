@@ -5,12 +5,11 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import {Unstable_Table as Table} from 'baseui/table-semantic';
+import {Table} from 'baseui/table-semantic';
 import API from '../../components/api';
 import Example from '../../components/example';
 import Exports from '../../components/exports';
 import Layout from '../../components/layout';
-import UnstableWarning from '../../components/unstable-warning';
 
 import * as LayoutGridExports from 'baseui/layout-grid';
 
@@ -28,8 +27,6 @@ import CustomExample from 'examples/layout-grid/custom.js';
 export default Layout;
 
 # Layout Grid
-
-<UnstableWarning />
 
 The `Grid` and `Cell` components can be used to create consistent & responsive layouts across your Base Web application. Within a `Grid` container, `Cell`s can be placed and aligned along a series of columns via the `span` and `skip` props.
 
@@ -81,7 +78,7 @@ Sometimes this wrapping behavior is desireable, but sometimes you want to adapt 
   <ResponsiveExample />
 </Example>
 
-`span` is a "responsive" prop. It accepts both a single value or an array of values. Each value in the array corresponds to each [breakpoint in our theme](https://baseweb.design/guides/theming/#the-shape-of-the-theme-file).
+`span` is a "responsive" prop. It accepts both a single value or an array of values. Each value in the array corresponds to each [breakpoint in our theme](https://baseweb.design/guides/theming/#theme-properties).
 
 When you specify the first value in the array, you are specifying the value for any viewport larger than or equal to the first (`small`) breakpoint in your theme. The second value applies to viewports greater than or equal to the `medium` breakpoint, and the third value applies to viewports greater than or equal to the `large` breakpoint.
 
@@ -157,7 +154,7 @@ You can customize pretty much any part of the grid while maintaining the core re
 - `gridMargins`
 - `gridMaxWidth` (Not responsive)
 
-The grid will use whatever values are on your theme `grid` property as the default values for these props. This way you do not have to create a "wrapper" grid if yours differs from the default Base grid. [Click here for the full theme shape](https://baseweb.design/guides/theming/#the-shape-of-the-theme-file)or see below for the grid relevant section of the theme:
+The grid will use whatever values are on your theme `grid` property as the default values for these props. This way you do not have to create a "wrapper" grid if yours differs from the default Base grid. [Click here for the full theme shape](https://baseweb.design/guides/theming/#theme-properties)or see below for the grid relevant section of the theme:
 
 ```js
 const theme = {

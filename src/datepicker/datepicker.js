@@ -166,7 +166,7 @@ export default class Datepicker extends React.Component<
     });
 
     if (this.props.range) {
-      const dates = inputValue.split(' – ');
+      const dates = this.normalizeDashes(inputValue).split(' – ');
       const startDate = new Date(dates[0]);
       const endDate = new Date(dates[1]);
       isValid(startDate) &&
@@ -206,6 +206,11 @@ export default class Datepicker extends React.Component<
         lastActiveElm,
       });
     }
+  };
+
+  normalizeDashes = (inputValue: string) => {
+    // replacing both hyphens and em-dashes with en-dashs
+    return inputValue.replace(/-/g, '–').replace(/—/g, '–');
   };
 
   componentDidUpdate(prevProps: DatepickerPropsT) {

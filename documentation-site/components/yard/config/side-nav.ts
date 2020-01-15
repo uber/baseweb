@@ -56,6 +56,17 @@ const SideNavigationConfig: TConfig = {
         into: 'activeItemId',
       },
     },
+    activePredicate: {
+      value: undefined,
+      type: PropTypes.Function,
+      description:
+        'Is called on the nav item render to test if the item is currently selected. If returns true, the item will be rendered as an active.',
+    },
+    mapItem: {
+      value: undefined,
+      type: PropTypes.Function,
+      description: 'Optional transform function that is called for each Item.',
+    },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,

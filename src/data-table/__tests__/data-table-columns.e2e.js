@@ -124,12 +124,14 @@ describe('data table columns', () => {
     );
 
     await sortColumnAtIndex(page, index);
+    await page.waitFor(150);
     const desc = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(desc, ['four', 'one', 'three', 'two'])).toBe(
       true,
     );
 
     await sortColumnAtIndex(page, index);
+    await page.waitFor(150);
     const asc = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(asc, ['two', 'three', 'one', 'four'])).toBe(true);
 

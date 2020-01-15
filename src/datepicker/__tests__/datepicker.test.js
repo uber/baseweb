@@ -156,6 +156,32 @@ describe('Datepicker', () => {
     expect(renderedInput.props().value).toEqual('2019/01/01 – 2019/01/04');
   });
 
+  test('converts hyphen to en dashes', () => {
+    const onChange = jest.fn();
+    const date = new Date('2019 01 01');
+    const mask = '9999/99/99 - 9999/99/99';
+    const value = [date, addDays(date, 3)];
+    const component = mount(
+      <Datepicker mask={mask} onChange={onChange} value={value} />,
+    );
+    const renderedInput = component.find(Input).first();
+
+    expect(renderedInput.props().value).toEqual('2019/01/01 – 2019/01/04');
+  });
+
+  test('converts emdash to en dashes', () => {
+    const onChange = jest.fn();
+    const date = new Date('2019 01 01');
+    const mask = '9999/99/99 — 9999/99/99';
+    const value = [date, addDays(date, 3)];
+    const component = mount(
+      <Datepicker mask={mask} onChange={onChange} value={value} />,
+    );
+    const renderedInput = component.find(Input).first();
+
+    expect(renderedInput.props().value).toEqual('2019/01/01 – 2019/01/04');
+  });
+
   test('returns a single date object on input change', () => {
     const onChange = jest.fn();
     const date = new Date('2019 01 01');

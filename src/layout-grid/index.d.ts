@@ -51,7 +51,7 @@ export type StyledCellProps = {
   $span?: Responsive<number>;
 };
 
-export const Unstable_Grid: React.FunctionComponent<GridProps>;
-export const Unstable_Cell: React.FunctionComponent<CellProps>;
-export const Unstable_StyledGrid: StyletronComponent<StyledGridProps>;
-export const Unstable_StyledCell: StyletronComponent<StyledCellProps>;
+export const Grid: React.FunctionComponent<GridProps>;
+export const Cell: React.FunctionComponent<CellProps>;
+export const StyledGrid: StyletronComponent<StyledGridProps>;
+export const StyledCell: StyletronComponent<StyledCellProps>;

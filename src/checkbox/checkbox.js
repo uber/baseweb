@@ -157,6 +157,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       $value: value,
       $checkmarkType: checkmarkType,
     };
+    // TODO(v10) - add check for children (#2172)
     const labelComp = (
       <Label
         $labelPlacement={labelPlacement}

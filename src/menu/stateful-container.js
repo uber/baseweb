@@ -124,6 +124,8 @@ export default class MenuStatefulContainer extends React.Component<
       case KEY_STRINGS.ArrowDown:
       case KEY_STRINGS.ArrowLeft:
       case KEY_STRINGS.ArrowRight:
+      case KEY_STRINGS.Home:
+      case KEY_STRINGS.End:
         this.handleArrowKey(event);
         break;
       case KEY_STRINGS.Enter:
@@ -152,6 +154,18 @@ export default class MenuStatefulContainer extends React.Component<
     } else if (event.key === KEY_STRINGS.ArrowDown) {
       event.preventDefault();
       nextIndex = Math.min(prevIndex + 1, this.getItems().length - 1);
+      this.internalSetState(STATE_CHANGE_TYPES.moveDown, {
+        highlightedIndex: nextIndex,
+      });
+    } else if (event.key === KEY_STRINGS.Home) {
+      event.preventDefault();
+      nextIndex = 0;
+      this.internalSetState(STATE_CHANGE_TYPES.moveUp, {
+        highlightedIndex: nextIndex,
+      });
+    } else if (event.key === KEY_STRINGS.End) {
+      event.preventDefault();
+      nextIndex = this.getItems().length - 1;
       this.internalSetState(STATE_CHANGE_TYPES.moveDown, {
         highlightedIndex: nextIndex,
       });

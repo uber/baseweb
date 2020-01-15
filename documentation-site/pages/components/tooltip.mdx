@@ -18,6 +18,7 @@ import {styled} from 'baseui';
 
 import Yard from '../../components/yard/index';
 import tooltipYardConfig from '../../components/yard/config/tooltip';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -48,6 +49,12 @@ Motion helps to reinforce its origin position.
 </Example>
 
 ## API
+
+<ApiTable
+  title="Tooltip props"
+  config={tooltipYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/tooltip/tooltip.js')}
+/>
 
 <Exports
   component={TooltipExports}

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Unstable_Table} from 'baseui/table-semantic';
+import {Table} from 'baseui/table-semantic';
 
 const SIZER = Array(100).fill(null);
 
@@ -22,9 +22,5 @@ const overrides = {
 };
 
 export default () => (
-  <Unstable_Table
-    overrides={overrides}
-    columns={COLUMNS}
-    data={DATA}
-  />
+  <Table overrides={overrides} columns={COLUMNS} data={DATA} />
 );

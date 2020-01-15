@@ -137,7 +137,7 @@ export default (
 
   tickFillDisabled: themePrimitives.mono600,
 
-  tickBorder: themePrimitives.mono400,
+  tickBorder: themePrimitives.mono700,
   tickBorderError: themePrimitives.negative400,
 
   tickMarkFill: themePrimitives.white,
