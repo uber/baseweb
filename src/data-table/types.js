@@ -81,6 +81,7 @@ export type StatefulDataTablePropsT = {|
   rowActions?: RowActionT[],
   rowHeight?: number,
   rowHighlightIndex?: number,
+  overrides?: OverridesT,
 |};
 
 export type OverridesT = {
@@ -100,7 +101,6 @@ export type DataTablePropsT = {|
   sortIndex?: number,
   sortDirection?: SortDirectionsT,
   textQuery?: string,
-  overrides?: OverridesT,
 |};
 
 export type StatefulContainerPropsT = {|

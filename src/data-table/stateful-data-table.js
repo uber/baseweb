@@ -280,6 +280,7 @@ export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
               onSelectNone={onSelectNone}
               onSelectOne={onSelectOne}
               onSort={onSort}
+              overrides={props.overrides}
               rowHighlightIndex={rowHighlightIndex}
               rows={props.rows}
               rowActions={props.rowActions}

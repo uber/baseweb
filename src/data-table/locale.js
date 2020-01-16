@@ -7,11 +7,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 export type DataTableLocaleT = {|
-  noRows: string,
+  emptyState: string,
 |};
 
 const locale = {
-  noRows:
+  emptyState:
     'No rows match the filter criteria defined. Please remove one or more filters to view more data.',
 };
 

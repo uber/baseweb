@@ -515,6 +515,7 @@ const InnerTableElement = React.forwardRef<
     EmptyStateOverride,
     StyledEmptyState,
   );
+
   const [, theme] = useStyletron();
   const ctx = React.useContext(HeaderContext);
 
@@ -531,7 +532,7 @@ const InnerTableElement = React.forwardRef<
           {React.Children.toArray(props.children).length <=
           ctx.columns.length ? (
             <EmptyState {...EmptyStateProps}>
-              {locale.datatable.noRows}
+              {locale.datatable.emptyState}
             </EmptyState>
           ) : (
             props.children
