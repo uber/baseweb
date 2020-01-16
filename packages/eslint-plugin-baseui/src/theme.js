@@ -395,6 +395,78 @@ function lintStyleFunction(context, node) {
   return false;
 }
 
+function lintUseStyletron(context, node) {
+  // Is there a useStyletron call in our current scope?
+  // Is the theme value returned from the call? Ex: const [css, theme] = useStyletron();
+  //   - Is the theme value renamed? Ex: const [css, foo] = useStyletron();
+  //   - Is the theme destructured? Ex: const [css, {colors}] = useStyletron();
+  // Is the current node invoked in a way that uses the theme in scope?
+  //   - Ex: Full destructuring: foreground
+  //   - Ex: Concern destructuring: colors.foreground
+
+  // const ancestors = context.getAncestors();
+  const scope = context.getScope();
+  const themeProperty = deprecatedThemeProperties[node.name];
+
+  if (scope.type === 'function') {
+    // Find all the variable declarations in the function body.
+    const declarations = scope.block.body.body.filter(
+      statement => statement.type === 'VariableDeclaration',
+    );
+
+    // Map of variable declaration types and properties:
+    // const [css, theme] = useStyletron()
+    //       ^..........^                  .id (ArrayPattern)
+    //                      ^............^ .init (CallExpression)
+    //       ^...........................^ VariableDeclarator
+    // ^.................................^ VariableDeclaration
+
+    // Search each declaration for a declarator that invokes
+    // useStyletron as the initial value. This declarator
+    // will have all the information we need.
+    let declarator;
+    declarations.forEach(declaration => {
+      declarator = declaration.declarations.find(
+        declarator =>
+          declarator.type === 'VariableDeclarator' &&
+          declarator.init.type === 'CallExpression' &&
+          declarator.init.callee.name === 'useStyletron',
+      );
+    });
+
+    if (!declarator) {
+      return false;
+    }
+
+    if (
+      declarator.id.type === 'ArrayPattern' &&
+      declarator.id.elements.length === 2
+    ) {
+      // Confirm we are accessing the theme index in the returned array.
+      // Ex: const [css, theme] = useStyletron();
+      // Ex: const [css, {colors}] = useStyletron();
+      const themeIndexNode = declarator.id.elements[1];
+
+      if (themeIndexNode.type === 'Identifier') {
+        const localThemeObjectName = themeIndexNode.name;
+        if (
+          node.parent.type === 'MemberExpression' &&
+          node.parent.object.type === 'MemberExpression' &&
+          node.parent.object.property.name === themeProperty.concern &&
+          node.parent.object.object.type === 'Identifier' &&
+          node.parent.object.object.name === localThemeObjectName
+        ) {
+          // We have verified that the identifier accesses the theme.
+          // Ex: theme.colors.foreground
+          return true;
+        }
+      }
+    }
+  }
+
+  return false;
+}
+
 module.exports = {
   meta: {
     fixable: 'code',
@@ -445,6 +517,10 @@ module.exports = {
           }
 
           // Option 3. Is this node used in tandem with useStyletron?
+          if (lintUseStyletron(context, node)) {
+            context.report(reportOptions);
+            return;
+          }
         }
       },
     };

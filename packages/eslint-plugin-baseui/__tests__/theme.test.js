@@ -512,6 +512,7 @@ const tests = {
       ],
     },
     {
+      only: true,
       code: `
         // useStyletron - basic
         function Foo({ children }) {
