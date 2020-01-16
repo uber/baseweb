@@ -624,8 +624,8 @@ export function Unstable_DataTable(props: DataTablePropsT) {
       (w, i) => Math.floor(w) + Math.floor(resizeDeltas[i]),
     );
     if (gridRef.current) {
-      // $FlowFixMe
       // minus 2 to account for the border stroke width
+      // $FlowFixMe
       const domWidth = gridRef.current.props.width - 2;
       const measuredWidth = sum(resizedWidths);
       // $FlowFixMe
