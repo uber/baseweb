@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -38,7 +38,7 @@ const TableOfContents = props => {
         });
       }
 
-      if (element.props.path && element.props.title) {
+      if (element.props.title) {
         TOC.push({
           name: element.props.title,
           anchor: `#${element.props.title.toLowerCase().replace(/\s+/g, '-')}`,
@@ -92,7 +92,7 @@ const TableOfContents = props => {
           })}
         >
           <a
-            className={css({color: theme.colors.foregroundAlt})}
+            className={css({color: theme.colors.contentSecondary})}
             href={header.anchor}
           >
             {header.name}

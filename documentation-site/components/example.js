@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -116,9 +116,10 @@ class Example extends React.Component<PropsT, StateT> {
             style: ({$theme}) => ({
               marginTop: 0,
               marginBottom: 0,
-              boxShadow: 'none',
-              borderWidth: 0,
-              backgroundColor: $theme.colors.background,
+              borderTopWidth: 0,
+              borderRightWidth: 0,
+              borderBottomWidth: 0,
+              borderLeftWidth: 0,
             }),
           },
           Contents: {

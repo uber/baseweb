@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -25,7 +25,7 @@ import Contributors from '../components/contributors';
 import Markdown from '../components/markdown-elements';
 
 const MinHeightBody = withStyle(StyledBody, {
-  minHeight: '100px',
+  minHeight: '150px',
 });
 
 type Contributor = {
@@ -49,39 +49,30 @@ const cardOverrides = {
 const Adopters = (props: {logoSrcs: string[]}) => (
   <>
     <H2>Who is using Base Web?</H2>
-    <Block>
-      <FlexGrid
-        flexGridColumnCount={3}
-        backgroundColor="mono100"
-        paddingBottom="scale600"
-      >
-        {props.logoSrcs.map((logoSrc, i) => (
-          <FlexGridItem
-            key={i}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Block width="125px" $as="img" src={logoSrc} />
-          </FlexGridItem>
-        ))}
-      </FlexGrid>
-      <Button
-        $as="a"
-        href="https://github.com/uber/baseweb/issues/1889"
-        size="compact"
-        kind="secondary"
-        overrides={{
-          BaseButton: {
-            style: ({$theme}) => ({
-              marginTop: $theme.sizing.scale800,
-            }),
-          },
-        }}
-      >
-        Please let us know if you are using Base Web!
-      </Button>
-    </Block>
+    <FlexGrid
+      flexGridColumnCount={[2, 3]}
+      backgroundColor="mono100"
+      marginBottom="scale1000"
+    >
+      {props.logoSrcs.map((logoSrc, i) => (
+        <FlexGridItem
+          key={i}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Block width="125px" as="img" src={logoSrc} />
+        </FlexGridItem>
+      ))}
+    </FlexGrid>
+    <Button
+      $as="a"
+      href="https://github.com/uber/baseweb/issues/1889"
+      size="compact"
+      kind="secondary"
+    >
+      Please let us know if you are using Base Web!
+    </Button>
   </>
 );
 
@@ -110,7 +101,7 @@ const Index = (props: {
       <Tag kind="positive" closeable={false}>
         New
       </Tag>
-      <Block color="foreground" display="inline-block" font="font250">
+      <Block color="contentPrimary" display="inline-block" font="font250">
         {BlogPosts[0].title}
       </Block>
     </Block>
@@ -217,6 +208,7 @@ const Index = (props: {
         '/static/images/broadcom-logo.png',
         '/static/images/extensis-logo.png',
         '/static/images/uptime-logo.png',
+        '/static/images/streamlit-logo.png',
       ]}
     />
     <Contributors contributors={props.contributors} />

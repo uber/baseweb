@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,7 +8,11 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {LocaleContext} from '../locale/index.js';
 // Components
-import {StyledList, StyledEmptyState} from './styled-components.js';
+import {
+  StyledList,
+  StyledEmptyState,
+  StyledOptgroupHeader,
+} from './styled-components.js';
 import OptionList from './option-list.js';
 import {getOverrides} from '../helpers/overrides.js';
 // Types
@@ -17,10 +21,6 @@ import type {LocaleT} from '../locale/types.js';
 
 export default function Menu(props: StatelessMenuPropsT) {
   const {
-    activedescendantId,
-    getRequiredItemProps = (item, index) => ({}),
-    items,
-    noResultsMsg,
     overrides = {},
     rootRef = React.createRef(),
     focusMenu = () => {},
@@ -33,11 +33,64 @@ export default function Menu(props: StatelessMenuPropsT) {
     overrides.EmptyState,
     StyledEmptyState,
   );
+  const [OptgroupHeader, optgroupHeaderProps] = getOverrides(
+    overrides.OptgroupHeader,
+    StyledOptgroupHeader,
+  );
+
+  const groupedItems = Array.isArray(props.items)
+    ? {__ungrouped: props.items}
+    : props.items;
+  const optgroups = Object.keys(groupedItems);
+  const [elements] = optgroups.reduce(
+    ([els, itemIndex], optgroup) => {
+      if (optgroup !== '__ungrouped') {
+        els.push(
+          <OptgroupHeader key={optgroup} {...optgroupHeaderProps}>
+            {optgroup}
+          </OptgroupHeader>,
+        );
+      }
+      const groupItems = groupedItems[optgroup].map((item, index) => {
+        itemIndex = itemIndex + 1;
+        const {getRequiredItemProps = (item, index) => ({})} = props;
+
+        const {
+          disabled,
+          isFocused,
+          isHighlighted,
+          resetMenu = () => {},
+          ...restProps
+        } = getRequiredItemProps(item, itemIndex);
+
+        return (
+          <Option
+            key={itemIndex}
+            item={item}
+            overrides={props.overrides}
+            resetMenu={resetMenu}
+            role="option"
+            $disabled={disabled}
+            $isFocused={isFocused}
+            $isHighlighted={isHighlighted}
+            aria-selected={isHighlighted && isFocused}
+            {...restProps}
+            {...optionProps}
+          />
+        );
+      });
+      return [els.concat(groupItems), itemIndex];
+    },
+    [[], -1],
+  );
+
+  const isEmpty = optgroups.every(optgroup => !groupedItems[optgroup].length);
+
   return (
     <LocaleContext.Consumer>
       {(locale: LocaleT) => (
         <List
-          aria-activedescendant={activedescendantId || null}
+          aria-activedescendant={props.activedescendantId || null}
           role="listbox"
           ref={rootRef}
           onMouseEnter={focusMenu}
@@ -48,38 +101,12 @@ export default function Menu(props: StatelessMenuPropsT) {
           data-baseweb="menu"
           {...listProps}
         >
-          {!items || !items.length ? (
+          {isEmpty ? (
             <EmptyState {...emptyStateProps}>
-              {noResultsMsg || locale.menu.noResultsMsg}
+              {props.noResultsMsg || locale.menu.noResultsMsg}
             </EmptyState>
           ) : (
-            items.map((item, index) => {
-              const {
-                disabled,
-                isFocused,
-                isHighlighted,
-                ref,
-                resetMenu = () => {},
-                ...restProps
-              } = getRequiredItemProps(item, index);
-
-              return (
-                <Option
-                  key={index}
-                  item={item}
-                  overrides={overrides}
-                  resetMenu={resetMenu}
-                  role="option"
-                  $disabled={disabled}
-                  ref={ref}
-                  $isFocused={isFocused}
-                  $isHighlighted={isHighlighted}
-                  aria-selected={isHighlighted && isFocused}
-                  {...restProps}
-                  {...optionProps}
-                />
-              );
-            })
+            elements
           )}
         </List>
       )}

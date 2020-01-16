@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -52,13 +52,13 @@ export const Item = styled<SharedStylePropsArgT>(
       paddingBottom: $theme.sizing.scale600,
       paddingLeft: $theme.sizing.scale600,
       paddingRight: $theme.sizing.scale600,
-      color: $theme.colors.colorPrimary,
+      color: $theme.colors.contentPrimary,
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
       listStyle: 'none',
       cursor: $isDragged ? 'grabbing' : 'grab',
-      backgroundColor: $theme.colors.backgroundAlt,
+      backgroundColor: $theme.colors.backgroundPrimary,
       boxShadow: $isDragged ? '0 2px 6px rgba(0, 0, 0, 0.32)' : null,
       borderTopWidth: '2px',
       borderBottomWidth: '2px',

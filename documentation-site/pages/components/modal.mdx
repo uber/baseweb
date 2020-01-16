@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -18,6 +18,7 @@ import * as ModalExports from 'baseui/modal';
 
 import Yard from '../../components/yard/index';
 import modalYardConfig from '../../components/yard/config/modal';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -100,5 +101,11 @@ scrolling restored in an expected way. See how the initial modal's `close` funct
 passed as a callback to the modal that is stacked on top of it `toggleConfirm(false, close)`.
 
 ## API
+
+<ApiTable
+  title="Modal props"
+  config={modalYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/modal/modal.js')}
+/>
 
 <Exports component={ModalExports} title="Modal exports" path="baseui/modal" />

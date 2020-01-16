@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -211,7 +211,9 @@ function FilterMenu(props: PropsT) {
   const activeColumnData = React.useMemo(() => {
     const columnIndex = props.columns.findIndex(c => c === activeColumn);
     if (columnIndex < 0) return [];
-    return props.rows.map(row => row.data[columnIndex]);
+    return props.rows.map(row =>
+      props.columns[columnIndex].mapDataToValue(row.data),
+    );
   }, [props.columns, props.rows, activeColumn]);
 
   function handleKeyDown(event) {

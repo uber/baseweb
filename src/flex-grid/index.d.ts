@@ -9,6 +9,9 @@ export interface FlexGridProps extends BlockProps {
 
 export const FlexGrid: React.FC<FlexGridProps>;
 
-export type FlexGridItemProps = FlexGridProps;
+export interface FlexGridItemProps extends FlexGridProps {
+  flexGridItemIndex?: number;
+  flexGridItemCount?: number;
+}
 
-export const FlexGridItem: React.FC<FlexGridProps>;
+export const FlexGridItem: React.FC<FlexGridItemProps>;

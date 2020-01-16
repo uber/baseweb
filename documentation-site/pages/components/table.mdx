@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,6 +7,9 @@ LICENSE file in the root directory of this source tree.
 
 import Example from '../../components/example';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import * as TableExports from 'baseui/table';
 
 import Basic from 'examples/table/basic.js';
 import Cells from 'examples/table/cells.js';
@@ -22,6 +25,7 @@ import VirtualHorizontal from 'examples/table/virtual-horizontal-scroll.js';
 
 import Yard from '../../components/yard/index';
 import tableYardConfig from '../../components/yard/config/table';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -101,3 +105,13 @@ contain `react-virtualized` internally. You will need to install it yourself.
 >
   <VirtualHorizontal />
 </Example>
+
+## API
+
+<ApiTable
+  title="Table props"
+  config={tableYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/table/table.js')}
+/>
+
+<Exports component={TableExports} title="Table exports" path="baseui/table" />

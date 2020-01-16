@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -53,6 +53,7 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
           boxSizing: 'border-box',
           cursor: props.sortable ? 'pointer' : null,
           display: props.isMeasured ? 'inline-flex' : 'flex',
+          flexGrow: 1,
           height: '100%',
           paddingLeft: theme.sizing.scale500,
           paddingRight: theme.sizing.scale500,

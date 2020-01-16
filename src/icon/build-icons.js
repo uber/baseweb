@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -104,7 +104,7 @@ async function generateNewIcons() {
 
   fs.writeFileSync(
     path.resolve(__dirname, `./icon-exports.js`),
-    `/*\nCopyright (c) 2018-2019 Uber Technologies, Inc.\n\nThis source code is licensed under the MIT license found in the\nLICENSE file in the root directory of this source tree.\n*/\n// @flow\n${iconExports.join(
+    `/*\nCopyright (c) 2018-2020 Uber Technologies, Inc.\n\nThis source code is licensed under the MIT license found in the\nLICENSE file in the root directory of this source tree.\n*/\n// @flow\n${iconExports.join(
       '\n',
     )}\n`,
   );

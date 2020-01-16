@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,7 +7,9 @@ LICENSE file in the root directory of this source tree.
 
 import Example from '../../components/example';
 import Layout from '../../components/layout';
-import UnstableWarning from '../../components/unstable-warning';
+import Exports from '../../components/exports';
+
+import * as TableSemanticExports from 'baseui/table-semantic';
 
 import Basic from 'examples/table-semantic/basic.js';
 import Scroll from 'examples/table-semantic/scroll.js';
@@ -18,18 +20,13 @@ import Span from 'examples/table-semantic/span.js';
 
 import Yard from '../../components/yard/index';
 import tableYardConfig from '../../components/yard/config/table-semantic';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
 # Table Semantic
 
-<UnstableWarning />
-
-<Yard
-  componentName="Unstable_Table"
-  placeholderHeight={202}
-  {...tableYardConfig}
-/>
+<Yard componentName="Table" placeholderHeight={202} {...tableYardConfig} />
 
 Display tabular data using semantic markup. This component is best suited for
 smaller amounts of data that can be rendered all at once. Gives you access to
@@ -67,3 +64,17 @@ you should use the virtualized scrolling features of the div-based
 <Example title="Table custom with merged cells" path="table-semantic/span.js">
   <Span />
 </Example>
+
+## API
+
+<ApiTable
+  title="Table Semantic props"
+  config={tableYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/table-semantic/table.js')}
+/>
+
+<Exports
+  component={TableSemanticExports}
+  title="Table Semantic exports"
+  path="baseui/table-semantic"
+/>

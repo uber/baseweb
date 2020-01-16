@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -18,10 +18,10 @@ const Inner: React.StatelessFunctionalComponent<{
     <div
       className={css({
         padding: theme.sizing.scale300,
-        color: theme.colors.foreground,
+        color: theme.colors.contentPrimary,
         borderStyle: `solid`,
         borderWidth: `1px`,
-        borderColor: theme.colors.foreground,
+        borderColor: theme.colors.contentPrimary,
         height: h,
       })}
     >

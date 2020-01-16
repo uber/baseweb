@@ -1,12 +1,11 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
@@ -17,6 +16,7 @@ import {Toast} from 'baseui/toast';
 import * as ToastExports from 'baseui/toast';
 import Yard from '../../components/yard/index';
 import toastYardConfig from '../../components/yard/config/toast';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -50,9 +50,10 @@ it’s status type of neutral, positive, warning and alert.
 
 ## API
 
-<API	
-  heading="Toast API"	
-  api={require('!!extract-react-types-loader!../../../src/toast/toast.js')}	
+<ApiTable
+  title="Toast props"
+  config={toastYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/toast/toast.js')}
 />
 
 <Exports component={ToastExports} title="Toast exports" path="baseui/toast" />

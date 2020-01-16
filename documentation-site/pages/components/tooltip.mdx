@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -18,6 +18,7 @@ import {styled} from 'baseui';
 
 import Yard from '../../components/yard/index';
 import tooltipYardConfig from '../../components/yard/config/tooltip';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -49,8 +50,15 @@ Motion helps to reinforce its origin position.
 
 ## API
 
+<ApiTable
+  title="Tooltip props"
+  config={tooltipYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/tooltip/tooltip.js')}
+/>
+
 <Exports
   component={TooltipExports}
   title="Tooltip exports"
   path="baseui/tooltip"
+  cheatsheet={false}
 />

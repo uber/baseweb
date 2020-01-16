@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -34,7 +34,7 @@ export const Header = styled<SharedStylePropsArgT>('div', props => {
   } = props;
   return {
     ...typography.font350,
-    color: colors.colorPrimary,
+    color: colors.contentPrimary,
     cursor: $disabled ? 'not-allowed' : 'pointer',
     backgroundColor: colors.listHeaderFill,
     paddingTop: sizing.scale600,
@@ -59,7 +59,7 @@ export const ToggleIcon = styled<SharedStylePropsArgT>('svg', props => {
   const {$theme, $disabled, $color} = props;
   return {
     ...getSvgStyles(props),
-    color: $color || $theme.colors.foreground,
+    color: $color || $theme.colors.contentPrimary,
     cursor: $disabled ? 'not-allowed' : 'pointer',
   };
 });
@@ -72,7 +72,7 @@ export const Content = styled<SharedStylePropsArgT>('div', props => {
   return {
     ...typography.font200,
     backgroundColor: colors.listBodyFill,
-    color: colors.foreground,
+    color: colors.contentPrimary,
     paddingTop: $expanded ? sizing.scale800 : 0,
     paddingBottom: $expanded ? sizing.scale1000 : 0,
     paddingLeft: sizing.scale800,

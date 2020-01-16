@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -18,7 +18,7 @@ export const Label = styled<StylePropsT>('label', props => {
     ...typography.font250,
     fontWeight: 500,
     width: '100%',
-    color: $disabled ? colors.foregroundAlt : colors.foreground,
+    color: $disabled ? colors.contentSecondary : colors.contentPrimary,
     display: 'block',
     paddingTop: 0,
     paddingRight: 0,
@@ -38,7 +38,7 @@ export const Caption = styled<StylePropsT>('div', props => {
     $theme: {colors, sizing, typography},
   } = props;
 
-  let fontColor = colors.foregroundAlt;
+  let fontColor = colors.contentSecondary;
   if ($error) {
     fontColor = colors.negative400;
   } else if ($positive) {

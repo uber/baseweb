@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -27,6 +27,7 @@ import {StatefulPinCode} from 'baseui/pin-code/index.js';
 
 import Yard from '../../components/yard/index';
 import pinYardConfig from '../../components/yard/config/pin-code';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -149,6 +150,12 @@ If things seem promising, `PinCode` will call `onChange` will all of the values 
 As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulPinCode`, which manages its own state. The default code length for this component is four, but you can change that by passing in an array of a different length to `initialState`.
 
 ## API
+
+<ApiTable
+  title="Pin Code props"
+  config={pinYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/pin-code/pin-code.js')}
+/>
 
 <Exports
   component={PinCodeExports}

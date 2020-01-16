@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -14,11 +14,13 @@ const OFFSET = 127397;
 export function iso2FlagEmoji(iso: string) {
   if (!ISO_REGEX.test(iso)) {
     const type = typeof iso;
-    console.warn(
-      `iso argument must be an ISO 3166-1 alpha-2 string, but got '${
-        type === 'string' ? iso : type
-      }' instead.`,
-    );
+    if (__DEV__) {
+      console.warn(
+        `iso argument must be an ISO 3166-1 alpha-2 string, but got '${
+          type === 'string' ? iso : type
+        }' instead.`,
+      );
+    }
     return;
   }
   const chars = Array.from(iso.toUpperCase()).map(

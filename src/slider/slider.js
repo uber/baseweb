@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -35,7 +35,8 @@ const limitValue = (value: number[]) => {
 };
 
 const ThumbLabel = ({index, values, rangeRef, Component, ...props}) => {
-  const [labelValue, style] = useThumbOverlap(rangeRef, values, index);
+  const {$step: step} = props;
+  const [labelValue, style] = useThumbOverlap(rangeRef, values, index, step);
   return (
     <Component {...props} style={style}>
       {labelValue}

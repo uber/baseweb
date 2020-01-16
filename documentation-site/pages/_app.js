@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -67,7 +67,7 @@ const DARK_MEDIA_QUERY = '(prefers-color-scheme: dark)';
 const LIGHT_MEDIA_QUERY = '(prefers-color-scheme: light)';
 
 const blockProps = {
-  backgroundColor: 'background',
+  backgroundColor: 'backgroundPrimary',
   maxWidth: '100vw',
   overflow: 'hidden',
 };

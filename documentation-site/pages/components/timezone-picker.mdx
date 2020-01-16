@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -15,6 +15,7 @@ import * as TimezonepickerExports from 'baseui/timezonepicker';
 
 import Yard from '../../components/yard/index';
 import timezonepickerConfig from '../../components/yard/config/timezonepicker';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -33,6 +34,12 @@ export default Layout;
 </Example>
 
 ## API
+
+<ApiTable
+  title="Timezone Picker props"
+  config={timezonepickerConfig}
+  types={require('!!extract-react-types-loader!../../../src/timezonepicker/timezone-picker.js')}
+/>
 
 <Exports
   component={TimezonepickerExports}

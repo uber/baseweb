@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -42,7 +42,7 @@ import {
   getStartOfWeek,
   getEndOfWeek,
 } from './utils/index.js';
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import type {CalendarPropsT, CalendarInternalState} from './types.js';
 import {ORIENTATION} from './constants.js';
 
@@ -81,7 +81,6 @@ export default class Calendar extends React.Component<
     trapTabbing: false,
   };
 
-  root: React.ElementRef<*>;
   calendar: React.ElementRef<*>;
 
   constructor(props: CalendarPropsT) {
@@ -94,6 +93,7 @@ export default class Calendar extends React.Component<
       focused: false,
       date: this.getDateInView(),
       quickSelectId: null,
+      rootElement: null,
     };
   }
 
@@ -183,6 +183,7 @@ export default class Calendar extends React.Component<
         order={order}
         onMonthChange={this.changeMonth}
         onYearChange={this.changeYear}
+        popoverMountNode={this.state.rootElement}
       />
     );
   };
@@ -287,8 +288,8 @@ export default class Calendar extends React.Component<
         const activeElm = document.activeElement;
         // need to look for any tabindex >= 0 and ideally for not disabled
         // focusable by default elements like input, button, etc.
-        const focusable = this.root
-          ? this.root.querySelectorAll('[tabindex="0"]')
+        const focusable = this.state.rootElement
+          ? this.state.rootElement.querySelectorAll('[tabindex="0"]')
           : null;
         const length = focusable ? focusable.length : 0;
         if (event.shiftKey) {
@@ -460,7 +461,12 @@ export default class Calendar extends React.Component<
       overrides.QuickSelectFormControl,
       FormControl,
     );
-    const [QuickSelect, quickSelectProps] = getOverrides(
+    const [
+      QuickSelect,
+      // $FlowFixMe
+      {overrides: quickSelectOverrides, ...restQuickSelectProps},
+    ] = getOverrides(
+      //
       overrides.QuickSelect,
       Select,
     );
@@ -481,6 +487,7 @@ export default class Calendar extends React.Component<
               {...quickSelectFormControlProps}
             >
               <QuickSelect
+                mountNode={this.state.rootElement}
                 aria-label={locale.datepicker.quickSelectAriaLabel}
                 labelKey="id"
                 onChange={params => {
@@ -492,7 +499,10 @@ export default class Calendar extends React.Component<
                     if (this.props.onChange) {
                       if (this.props.range) {
                         this.props.onChange({
-                          date: [params.option.beginDate, NOW],
+                          date: [
+                            params.option.beginDate,
+                            params.option.endDate || NOW,
+                          ],
                         });
                       } else {
                         this.props.onChange({date: params.option.beginDate});
@@ -532,7 +542,17 @@ export default class Calendar extends React.Component<
                 value={
                   this.state.quickSelectId && [{id: this.state.quickSelectId}]
                 }
-                {...quickSelectProps}
+                overrides={mergeOverrides(
+                  {
+                    Dropdown: {
+                      style: {
+                        textAlign: 'start',
+                      },
+                    },
+                  },
+                  quickSelectOverrides,
+                )}
+                {...restQuickSelectProps}
               />
             </QuickSelectFormControl>
           </QuickSelectContainer>
@@ -552,7 +572,13 @@ export default class Calendar extends React.Component<
           <Root
             data-baseweb="calendar"
             ref={root => {
-              this.root = root;
+              if (
+                root &&
+                root instanceof HTMLElement &&
+                !this.state.rootElement
+              ) {
+                this.setState({rootElement: (root: HTMLElement)});
+              }
             }}
             aria-label="calendar"
             onKeyDown={this.props.trapTabbing ? this.handleTabbing : null}

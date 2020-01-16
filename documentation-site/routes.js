@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -152,7 +152,7 @@ const routes = [
             itemId: '/components/breadcrumbs',
           },
           {
-            title: 'Header navigation',
+            title: 'Header Navigation',
             itemId: '/components/header-navigation',
           },
           {
@@ -164,7 +164,7 @@ const routes = [
             itemId: '/components/pagination',
           },
           {
-            title: 'Side navigation',
+            title: 'Side Navigation',
             itemId: '/components/side-nav',
           },
           {
@@ -205,22 +205,6 @@ const routes = [
             itemId: '/components/list',
           },
           {
-            title: 'Table',
-            itemId: '/components/table',
-          },
-          {
-            title: 'Table Grid',
-            itemId: '/components/table-grid',
-          },
-          {
-            title: 'Table Semantic',
-            itemId: '/components/table-semantic',
-          },
-          {
-            title: 'Data Table',
-            itemId: '/components/unstable-data-table',
-          },
-          {
             title: 'Tag',
             itemId: '/components/tag',
           },
@@ -235,6 +219,27 @@ const routes = [
         ],
       },
       {
+        title: 'Tables',
+        subNav: [
+          {
+            title: 'Table',
+            itemId: '/components/table',
+          },
+          {
+            title: 'Data Table',
+            itemId: '/components/unstable-data-table',
+          },
+          {
+            title: 'Grid Table',
+            itemId: '/components/table-grid',
+          },
+          {
+            title: 'Semantic Table',
+            itemId: '/components/table-semantic',
+          },
+        ],
+      },
+      {
         title: 'Progress & Validation',
         subNav: [
           {
@@ -242,11 +247,11 @@ const routes = [
             itemId: '/components/notification',
           },
           {
-            title: 'ProgressBar',
+            title: 'Progress Bar',
             itemId: '/components/progress-bar',
           },
           {
-            title: 'Progress steps',
+            title: 'Progress Steps',
             itemId: '/components/progress-steps',
           },
           {

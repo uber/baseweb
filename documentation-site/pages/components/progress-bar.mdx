@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -21,10 +21,11 @@ import * as ProgressBarExports from 'baseui/progress-bar';
 
 import Yard from '../../components/yard/index';
 import progressBarYardConfig from '../../components/yard/config/progress-bar';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
-# ProgressBar
+# Progress Bar
 
 <Yard
   componentName="ProgressBar"
@@ -77,6 +78,12 @@ Indicates a wait time for deterministic actions- either within an experience flo
 </Example>
 
 ## API
+
+<ApiTable
+  title="Progress Bar props"
+  config={progressBarYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/progress-bar/progressbar.js')}
+/>
 
 <Exports
   component={ProgressBarExports}

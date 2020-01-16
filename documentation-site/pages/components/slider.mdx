@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -22,6 +22,7 @@ import * as SliderExports from 'baseui/slider';
 
 import Yard from '../../components/yard/index';
 import sliderYardConfig from '../../components/yard/config/slider';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -86,6 +87,12 @@ The component is also **optimized for iOS and Android devices**.
 As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulSlider`, which manages its own state.
 
 ## API
+
+<ApiTable
+  title="Slider props"
+  config={sliderYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/slider/slider.js')}
+/>
 
 <Exports
   component={SliderExports}

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -117,7 +117,7 @@ export type TetherPropsT = {
   /** Recommended placement of the popper. */
   placement: TetherPlacementT,
   /** Options to be passes to the Popper on its initialization.
-   Refer to the [Popper documentation](https://popper.js.org/popper-documentation.html)
+   Refer to the [Popper documentation](https://github.com/popperjs/popper.js/blob/v1.x/docs/_includes/popper-documentation.md)
    for the full list of available options. */
   // eslint-disable-next-line flowtype/no-weak-types
   popperOptions: any,

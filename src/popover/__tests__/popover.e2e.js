@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -11,7 +11,14 @@ const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const selectors = {
   tooltip: '[role="tooltip"]',
+  selectInput: 'input[role="combobox"]',
+  selectDropDown: '[role="listbox"]',
+  selectedList: '[data-id="selected"]',
+  dropDownOption: '[role="option"]',
 };
+
+const optionAtPosition = position =>
+  `${selectors.selectDropDown} ${selectors.dropDownOption}:nth-child(${position})`;
 
 describe('popover', () => {
   it('passes basic a11y tests', async () => {
@@ -37,5 +44,26 @@ describe('popover', () => {
     await page.waitFor(selectors.tooltip);
     await page.keyboard.press('Escape');
     await page.waitFor(selectors.tooltip, {hidden: true});
+  });
+
+  // This is a regression test to verify that elements in a popover will still work.
+  it('allows interaction with select', async () => {
+    await mount(page, 'popover-select');
+    await page.waitFor('button');
+    await page.click('button');
+    await page.waitFor(selectors.tooltip);
+    await page.waitFor(selectors.selectInput);
+    await page.click(selectors.selectInput);
+    await page.waitFor(selectors.selectDropDown);
+    await page.$eval(optionAtPosition(1), elem => elem.click());
+    await page.waitFor(selectors.selectDropDown, {
+      hidden: true,
+    });
+
+    const selectedValue = await page.$eval(
+      selectors.selectedList,
+      select => select.textContent,
+    );
+    expect(selectedValue).toBe('AliceBlue');
   });
 });

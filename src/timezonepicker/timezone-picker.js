@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -77,8 +77,16 @@ class TimezonePicker extends React.Component<
         }
         return option;
       })
-      // Removes 'noisy' timezones without a letter acronym.
-      .filter(option => option.label[0] !== '-' && option.label[0] !== '+')
+      // Formats 'noisy' timezones without a letter acronym.
+      .map(option => {
+        const rgx = /(^(\+|-)\d+\s- )/;
+        const matches = option.label.match(rgx);
+        if (matches) {
+          const prefix = matches[0];
+          option.label = option.label.split(prefix)[1];
+        }
+        return option;
+      })
       // Sorts W -> E, prioritizes america. could be more nuanced based on system tz but simple for now
       .sort((a, b) => {
         const offsetDelta = b.offset - a.offset;
@@ -117,6 +125,7 @@ class TimezonePicker extends React.Component<
             disabled={this.props.disabled}
             error={this.props.error}
             positive={this.props.positive}
+            size={this.props.size}
             onChange={params => {
               if (params.type === 'clear') {
                 this.setState({value: ''});

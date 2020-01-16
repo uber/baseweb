@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -21,7 +21,17 @@ import {
 export const name = 'modal';
 
 export const component = () => {
-  const [isOpen, setIsOpen] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  // adding mountNode so that rtl vrts work render properly. this is because the portal
+  // is not wrapped in a dir="rtl" attribute at storybook root. ensure that the modal
+  // mounts into the scenario react tree where we control the dir attr.
+  React.useEffect(() => {
+    setIsOpen(true);
+  }, []);
+  // eslint-disable-next-line flowtype/no-weak-types
+  const modalRoot = React.useRef<any>(null);
+
   return (
     <React.Fragment>
       <Button onClick={() => setIsOpen(true)} className="open-modal-button">
@@ -31,6 +41,7 @@ export const component = () => {
         onClose={() => setIsOpen(false)}
         isOpen={isOpen}
         size={SIZE.default}
+        mountNode={modalRoot.current}
       >
         <ModalHeader>Hello world</ModalHeader>
         <ModalBody>
@@ -47,6 +58,7 @@ export const component = () => {
           <ModalButton onClick={() => setIsOpen(false)}>Okay</ModalButton>
         </ModalFooter>
       </Modal>
+      <div ref={modalRoot} />
     </React.Fragment>
   );
 };

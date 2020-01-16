@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -25,12 +25,9 @@ information about how this is used.
 
 ## Examples
 
-This modified version has access to [theme variables](/guides/theming/#theming-values):
+This modified version has access to [theme variables](/guides/theming/#theme-properties):
 
-<Example
-  title="UseStyletron reading from Theme values"
-  path="use-styletron/basic.js"
->
+<Example title="Using theme values" path="use-styletron/basic.js">
   <UseStyletronBasic />
 </Example>
 
@@ -63,7 +60,7 @@ To understand overrides better, go [here](/guides/understanding-overrides/).
 ## Custom themes and Flow type
 
 The `styled` and `withStyle` functions imported from `baseui` provide flow type support for the
-default [theme shape](/guides/theming/#theming-values). However, if you create a custom theme with additional fields,
+default [theme shape](/guides/theming/#theme-properties). However, if you create a custom theme with additional fields,
 flow will show an error. To help, baseui exports two utility functions `createThemedStyled` and
 `createThemedWithStyle`. These will return their respective functions with a provided theme type.
 Doing so saves from needing to import the custom theme type around. See below for an example.

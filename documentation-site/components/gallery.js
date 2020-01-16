@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -24,40 +24,40 @@ const COMPONENTS = {
       Component: thumbnails.SvgButtonGroup,
     },
     {
-      href: '/components/input',
-      Component: thumbnails.SvgInput,
-    },
-    {
       href: '/components/checkbox',
       Component: thumbnails.SvgCheckbox,
-    },
-    {
-      href: '/components/radio',
-      Component: thumbnails.SvgRadio,
-    },
-    {
-      href: '/components/textarea',
-      Component: thumbnails.SvgTextarea,
     },
     {
       href: '/components/form-control',
       Component: thumbnails.SvgFormControl,
     },
     {
-      href: '/components/payment-card',
-      Component: thumbnails.SvgPaymentCard,
+      href: '/components/input',
+      Component: thumbnails.SvgInput,
     },
     {
-      href: '/components/pin-code',
-      Component: thumbnails.SvgPinCode,
+      href: '/components/payment-card',
+      Component: thumbnails.SvgPaymentCard,
     },
     {
       href: '/components/phone-input',
       Component: thumbnails.SvgPhoneInput,
     },
     {
+      href: '/components/pin-code',
+      Component: thumbnails.SvgPinCode,
+    },
+    {
+      href: '/components/radio',
+      Component: thumbnails.SvgRadio,
+    },
+    {
       href: '/components/slider',
       Component: thumbnails.SvgSlider,
+    },
+    {
+      href: '/components/textarea',
+      Component: thumbnails.SvgTextarea,
     },
   ],
   Pickers: [
@@ -132,6 +132,10 @@ const COMPONENTS = {
       Component: thumbnails.SvgDndList,
     },
     {
+      href: '/components/layout-grid',
+      Component: thumbnails.SvgLayoutGrid,
+    },
+    {
       href: '/components/heading',
       Component: thumbnails.SvgHeading,
     },
@@ -140,15 +144,25 @@ const COMPONENTS = {
       Component: thumbnails.SvgIcon,
     },
     {
+      href: '/components/list',
+      Component: thumbnails.SvgList,
+    },
+    {
+      href: '/components/tag',
+      Component: thumbnails.SvgTag,
+    },
+    {
+      href: '/components/tree-view',
+      Component: thumbnails.SvgTreeView,
+    },
+    {
+      href: '/components/typography',
+      Component: thumbnails.SvgTypography,
+    },
+  ],
+  Tables: [
+    {
       href: '/components/table',
-      Component: thumbnails.SvgTable,
-    },
-    {
-      href: '/components/table-grid',
-      Component: thumbnails.SvgTableGrid,
-    },
-    {
-      href: '/components/table-semantic',
       Component: thumbnails.SvgTable,
     },
     {
@@ -156,12 +170,12 @@ const COMPONENTS = {
       Component: thumbnails.SvgDataTable,
     },
     {
-      href: '/components/tag',
-      Component: thumbnails.SvgTag,
+      href: '/components/table-grid',
+      Component: thumbnails.SvgTableGrid,
     },
     {
-      href: '/components/typography',
-      Component: thumbnails.SvgTypography,
+      href: '/components/table-semantic',
+      Component: thumbnails.SvgTableSemantic,
     },
   ],
   Feedback: [
@@ -172,6 +186,10 @@ const COMPONENTS = {
     {
       href: '/components/progress-bar',
       Component: thumbnails.SvgProgressBar,
+    },
+    {
+      href: '/components/progress-steps',
+      Component: thumbnails.SvgProgressSteps,
     },
     {
       href: '/components/spinner',
@@ -210,6 +228,14 @@ const COMPONENTS = {
       Component: thumbnails.SvgAspectRatioBox,
     },
     {
+      href: '/components/base-provider',
+      Component: thumbnails.SvgBaseProvider,
+    },
+    {
+      href: '/components/block',
+      Component: thumbnails.SvgBlock,
+    },
+    {
       href: '/components/flex-grid',
       Component: thumbnails.SvgFlexGrid,
     },
@@ -218,16 +244,20 @@ const COMPONENTS = {
       Component: thumbnails.SvgLayer,
     },
     {
-      href: '/components/unstable-a11y',
-      Component: thumbnails.SvgUnstableA11y,
+      href: '/components/use-styletron',
+      Component: thumbnails.SvgUseStyletron,
+    },
+    {
+      href: '/components/styled',
+      Component: thumbnails.SvgStyled,
     },
     {
       href: '/components/tokens',
       Component: thumbnails.SvgTokens,
     },
     {
-      href: '/components/block',
-      Component: thumbnails.SvgBlock,
+      href: '/components/unstable-a11y',
+      Component: thumbnails.SvgUnstableA11y,
     },
   ],
 };
@@ -267,7 +297,7 @@ function Thumbnail({children, href}) {
           borderTop: 0,
           borderLeft: 0,
           borderRight: 0,
-          color: `${theme.colors.foregroundAlt}`,
+          color: `${theme.colors.contentSecondary}`,
           paddingTop: theme.sizing.scale300,
           paddingBottom: theme.sizing.scale300,
           paddingLeft: theme.sizing.scale500,

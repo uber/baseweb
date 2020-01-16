@@ -1,13 +1,16 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
+import Exports from '../../components/exports';
 import API from '../../components/api';
 import Layout from '../../components/layout';
+
+import * as HeadingExports from 'baseui/heading';
 
 import Basic from 'examples/heading/basic.js';
 import DecoupleStyles from 'examples/heading/decouple-styles.js';
@@ -51,4 +54,10 @@ Ideally, the user will use the default styles but sometimes it might make sense 
 <API
   heading="Heading API"
   api={require('!!extract-react-types-loader!../../../src/heading/heading.js')}
+/>
+
+<Exports
+  component={HeadingExports}
+  title="Heading exports"
+  path="baseui/heading"
 />

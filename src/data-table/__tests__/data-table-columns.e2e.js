@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -124,12 +124,14 @@ describe('data table columns', () => {
     );
 
     await sortColumnAtIndex(page, index);
+    await page.waitFor(150);
     const desc = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(desc, ['four', 'one', 'three', 'two'])).toBe(
       true,
     );
 
     await sortColumnAtIndex(page, index);
+    await page.waitFor(150);
     const asc = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(matchArrayElements(asc, ['two', 'three', 'one', 'four'])).toBe(true);
 

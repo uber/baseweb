@@ -1,12 +1,11 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
@@ -21,6 +20,7 @@ import {StatefulList} from 'baseui/dnd-list';
 import * as ListExports from 'baseui/dnd-list';
 import Yard from '../../components/yard/index';
 import dndListYardConfig from '../../components/yard/config/dnd-list';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -84,9 +84,14 @@ This component also supports iOS and Android browsers and screen readers.
 
 ## API
 
-<API
-  heading="Stateful List API"
-  api={require('!!extract-react-types-loader!../../../src/dnd-list/stateful-list.js')}
+<ApiTable
+  title="Dnd List props"
+  config={dndListYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/dnd-list/list.js')}
 />
 
-<Exports component={ListExports} title="DnD exports" path="baseui/dnd-list" />
+<Exports
+  component={ListExports}
+  title="Dnd List exports"
+  path="baseui/dnd-list"
+/>

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -18,6 +18,24 @@ import {Button, KIND} from 'baseui/button';
 
 import {version} from '../../package.json';
 import versions from '../../versions.json';
+
+// list of version for which we don't have a deployed documentation site
+// for some reason
+const disabledVersions = [
+  'v9.38.0',
+  'v9.37.2',
+  'v9.37.1',
+  'v9.37.0',
+  'v9.29.0',
+  'v9.28.1',
+  'v9.28.0',
+  'v9.27.0',
+  'v9.26.0',
+  'v9.25.0',
+  'v9.24.0',
+  'v9.23.1',
+  'v9.23.0',
+];
 
 const majorVersions = Array.from(
   versions.reduce((set, version) => {
@@ -52,6 +70,7 @@ const versionsToShowPerMajor = versions
 
     acc[key].push({
       label: version.tag_name,
+      disabled: disabledVersions.includes(version.tag_name),
     });
 
     return acc;

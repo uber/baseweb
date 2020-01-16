@@ -56,7 +56,7 @@ const ColorInput: React.FC<{
         title={themeKey}
         className={css({
           ...($theme.typography.font100 as any),
-          color: $theme.colors.foreground,
+          color: $theme.colors.contentPrimary,
           marginLeft: $theme.sizing.scale300,
           maxWidth: '150px',
           whiteSpace: 'nowrap',
@@ -128,8 +128,8 @@ const ThemeEditor: React.FC<ThemeEditorProps> = ({
       >
         Do you want to change {componentName} colors globally? You can customize
         the theme through ThemeProvider and set your own colors.{' '}
-        <Link href="/guides/theming#creating-a-custom-theme">
-          <StyledLink href="/guides/theming#creating-a-custom-theme">
+        <Link href="/guides/theming/#a-custom-theme">
+          <StyledLink href="/guides/theming/#a-custom-theme">
             Learn more
           </StyledLink>
         </Link>

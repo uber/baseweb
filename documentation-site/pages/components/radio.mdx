@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -21,6 +21,7 @@ import * as RadioExports from 'baseui/radio';
 
 import Yard from '../../components/yard/index';
 import radioYardConfig from '../../components/yard/config/radio';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -61,5 +62,13 @@ Radios are used when only one choice may be selected in a series of options.
 </Example>
 
 As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulRadioGroup`, which manages its own state.
+
+## API
+
+<ApiTable
+  title="Radio props"
+  config={radioYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/radio/radio.js')}
+/>
 
 <Exports component={RadioExports} title="Radio exports" path="baseui/radio" />

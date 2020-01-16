@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -17,7 +17,7 @@ import type {
 export const StyledRoot = styled<{}>('li', ({$theme}) => {
   return {
     alignItems: 'center',
-    backgroundColor: $theme.colors.backgroundAlt,
+    backgroundColor: $theme.colors.backgroundPrimary,
     display: 'flex',
     listStyleType: 'none',
     width: '100%',

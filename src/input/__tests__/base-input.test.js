@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -123,4 +123,20 @@ test('BaseInput - inputRef from props', () => {
   expect(wrapper.find('input').getDOMNode() === document.activeElement).toBe(
     true,
   );
+});
+
+test('BaseInput - Password autocomplete', () => {
+  // $FlowFixMe
+  const wrapper = mount(<BaseInput type="password" />);
+  const renderedInput = wrapper.find('input').first();
+  expect(renderedInput.props().autoComplete).toBe('new-password');
+});
+
+test('BaseInput - Password autocomplete with override', () => {
+  const wrapper = mount(
+    // $FlowFixMe
+    <BaseInput autoComplete="current-password" type="password" />,
+  );
+  const renderedInput = wrapper.find('input').first();
+  expect(renderedInput.props().autoComplete).toBe('current-password');
 });

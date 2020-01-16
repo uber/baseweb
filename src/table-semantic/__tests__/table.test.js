@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -9,11 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {shallow} from 'enzyme';
 
-import {
-  Unstable_Table,
-  StyledTableBodyRow,
-  StyledTableBodyCell,
-} from '../index.js';
+import {Table, StyledTableBodyRow, StyledTableBodyCell} from '../index.js';
 
 const COLUMNS = ['ID', 'First Name', 'Last Name', 'Age', 'Address'];
 
@@ -25,13 +21,13 @@ const DATA = [
 
 describe('Table Semantic', () => {
   it('renders expected number of rows', () => {
-    const wrapper = shallow(<Unstable_Table columns={COLUMNS} data={DATA} />);
+    const wrapper = shallow(<Table columns={COLUMNS} data={DATA} />);
 
     expect(wrapper.find(StyledTableBodyRow)).toHaveLength(DATA.length);
   });
 
   it('renders expected number of columns', () => {
-    const wrapper = shallow(<Unstable_Table columns={COLUMNS} data={DATA} />);
+    const wrapper = shallow(<Table columns={COLUMNS} data={DATA} />);
     const cells = wrapper
       .find(StyledTableBodyRow)
       .first()

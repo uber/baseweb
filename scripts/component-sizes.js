@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -56,7 +56,7 @@ async function main() {
     slider: 'Slider',
     spinner: 'Spinner',
     'table-grid': ['StyledTable', 'StyledHeadCell', 'StyledBodyCell'],
-    'table-semantic': 'Unstable_Table',
+    'table-semantic': 'Table',
     table: 'Table',
     tabs: ['Tabs', 'Tab'],
     tag: 'Tag',

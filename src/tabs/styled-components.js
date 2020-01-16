@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -29,7 +29,7 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
   let style = {
     ...typography.font200,
     boxSizing: 'border-box',
-    color: $active ? colors.colorPrimary : colors.tabColor,
+    color: $active ? colors.contentPrimary : colors.tabColor,
     cursor: $disabled ? 'not-allowed' : 'pointer',
     paddingTop: sizing.scale600,
     paddingBottom: sizing.scale600,

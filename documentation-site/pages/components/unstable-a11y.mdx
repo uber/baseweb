@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,6 +7,9 @@ LICENSE file in the root directory of this source tree.
 
 import Example from '../../components/example';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import * as A11yExports from 'baseui/a11y';
 
 import Wrapper from 'examples/unstable-a11y/wrapper.js';
 
@@ -29,3 +32,7 @@ suggestions for how to improve.
 <Example title="A11y wrapper example" path="unstable-a11y/wrapper.js">
   <Wrapper />
 </Example>
+
+## API
+
+<Exports component={A11yExports} title="A11y exports" path="baseui/a11y" />

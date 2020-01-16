@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -23,6 +23,7 @@ import WithNestedOverrides from 'examples/phone-input/nested-overrides.js';
 
 import Yard from '../../components/yard/index';
 import phoneInputYardConfig from '../../components/yard/config/phone-input';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -91,6 +92,12 @@ COUNTRIES: {
 </Block>
 
 ## API
+
+<ApiTable
+  title="Phone Input props"
+  config={phoneInputYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/phone-input/phone-input.js')}
+/>
 
 <Exports
   component={PhoneInputExports}

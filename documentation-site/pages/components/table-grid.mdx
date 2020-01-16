@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,6 +8,9 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import * as TableGridExports from 'baseui/table-grid';
 
 import Basic from 'examples/table-grid/basic.js';
 import Nested from 'examples/table-grid/nested.js';
@@ -37,3 +40,11 @@ with [flex-box](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Bo
 <Example title="Cell spanning" path="table-grid/cell-span.js">
   <CellSpan />
 </Example>
+
+## API
+
+<Exports
+  component={TableGridExports}
+  title="Table-Grid exports"
+  path="baseui/table-grid"
+/>

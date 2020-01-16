@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -69,5 +69,21 @@ describe('TimezonePicker', () => {
       select => select.textContent,
     );
     expect(labelToShortCode(initial)).toBe('JST');
+  });
+
+  it('provides appropriate zone options if no acronym exists', async () => {
+    await mount(page, 'timezone-picker');
+    await page.waitFor(selectors.daylight);
+    await page.click(`${selectors.daylight} ${selectors.input}`);
+    await page.waitFor(selectors.dropdown);
+    await page.keyboard.type('minsk');
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('Enter');
+    const value = await page.$eval(
+      `${selectors.daylight} ${selectors.value}`,
+      select => select.textContent,
+    );
+
+    expect(labelToShortCode(value)).toBe('Europe/Minsk');
   });
 });

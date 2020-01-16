@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -20,6 +20,7 @@ import {Notification} from 'baseui/notification';
 import * as NotificationExports from 'baseui/notification';
 import Yard from '../../components/yard/index';
 import notificationYardConfig from '../../components/yard/config/notification';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -75,8 +76,17 @@ notifications do not self-dismiss and have the option to include a close “X”
   <CustomDismiss />
 </Example>
 
+## API
+
+<ApiTable
+  title="Notification props"
+  config={notificationYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/notification/notification.js')}
+/>
+
 <Exports
   component={NotificationExports}
   title="Notification exports"
   path="baseui/notification"
+  cheatsheet={false}
 />

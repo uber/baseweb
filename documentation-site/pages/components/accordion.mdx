@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -19,6 +19,7 @@ import {Accordion, Panel, StatefulPanel} from 'baseui/accordion';
 
 import Yard from '../../components/yard/index';
 import accordionYardConfig from '../../components/yard/config/accordion';
+import ApiTable from '../../components/api-table';
 
 <SEO
   description="Accordions display a list of high-level options that can expand/contract to reveal more detailed information."
@@ -60,6 +61,12 @@ Accordions display a list of high-level options that can expand/contract to reve
 **Note:** the `Panel` has the same overrides, with the exception of the `Root` subcomponent.
 
 ## API
+
+<ApiTable
+  title="Accordion props"
+  config={accordionYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/accordion/accordion.js')}
+/>
 
 <Exports
   component={AccordionExports}

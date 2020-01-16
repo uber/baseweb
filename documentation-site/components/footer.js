@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -32,7 +32,7 @@ const StyledFooter = themedStyled<{}>(
     ...typography.font300,
     position: 'sticky',
     bottom: 0,
-    color: colors.foreground,
+    color: colors.contentPrimary,
     backgroundColor: name.startsWith('light-theme')
       ? colors.mono200
       : colors.headerNavigationFill,
@@ -46,7 +46,7 @@ const StyledFooter = themedStyled<{}>(
 
 const StyledLink = themedStyled('a', ({$theme}) => ({
   textDecoration: 'none',
-  color: $theme.colors.foreground,
+  color: $theme.colors.contentPrimary,
   display: 'inline-block',
   cursor: 'pointer',
   marginLeft: '32px',

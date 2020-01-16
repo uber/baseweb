@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -24,8 +24,8 @@ yarn add baseui styletron-engine-atomic styletron-react
 npm install baseui styletron-engine-atomic styletron-react
 ```
 
-Base Web comes with both Flow and TypeScript. Styletron only with Flow. If you use
-TypeScript there are an external declarations:
+Base Web comes with both Flow and TypeScript. Styletron comes only with Flow. However, if you use
+TypeScript there are external TypeScript declarations:
 
 ```bash
 yarn add @types/styletron-standard @types/styletron-react @types/styletron-engine-atomic
@@ -36,6 +36,50 @@ Our React components don't use [PropTypes](https://reactjs.org/docs/typechecking
 [Styletron](https://www.styletron.org/) is a toolkit for component-oriented styling, part of the
 CSS in JS family. Base Web uses Styletron as a peer dependency to style all the elements, so you
 need to add them as dependencies too.
+
+### `eslint-plugin-baseui`
+
+Base Web also has a plugin for [ESLint](https://eslint.org/) that will warn you if you are using a deprecated component or API. It also flags certain common mistakes developers make when using `baeui`. In some cases it can also auto-fix issues for you!
+
+Assuming you already have ESLint installed, run:
+
+```sh
+# npm
+npm install eslint-plugin-baseui --save-dev
+
+# yarn
+yarn add eslint-plugin-baseui --dev
+```
+
+Then add it to your ESLint configuration:
+
+```js
+{
+  "plugins": [
+    // ...
+    "baseui",
+  ],
+  "rules": {
+    // ...
+    'baseui/deprecated-theme-api': "warn",
+    'baseui/deprecated-component-api': "warn",
+    'baseui/no-deep-imports': "warn",
+  }
+}
+```
+
+`baseui` and `eslint-plugin-baseui` have their versions synced, so you should generally bump them together and always keep them on the same version:
+
+```json
+{
+  "dependencies": {
+    "baseui": "10.0.0"
+  },
+  "devDependencies": {
+    "eslint-plugin-baseui": "10.0.0"
+  }
+}
+```
 
 ## Adding Base Web to Your Application
 

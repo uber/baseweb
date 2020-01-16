@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -74,19 +74,23 @@ export type RowActionT = {|
 export type StatefulDataTablePropsT = {|
   batchActions?: BatchActionT[],
   columns: ColumnT<>[],
+  onRowHighlightChange?: (rowIndex: number, row: RowT) => void,
   onSelectionChange?: (RowT[]) => mixed,
   rows: RowT[],
   rowActions?: RowActionT[],
   rowHeight?: number,
+  rowHighlightIndex?: number,
 |};
 
 export type DataTablePropsT = {|
   ...StatefulDataTablePropsT,
   filters?: Map<string, {description: string}>,
+  onRowHighlightChange?: (rowIndex: number, row: RowT) => void,
   onSelectMany?: (rows: RowT[]) => void,
   onSelectNone?: () => void,
   onSelectOne?: (row: RowT) => void,
   onSort?: (columnIndex: number) => void,
+  rowHighlightIndex?: number,
   selectedRowIds?: Set<string | number>,
   sortIndex?: number,
   sortDirection?: SortDirectionsT,
@@ -99,11 +103,13 @@ export type StatefulContainerPropsT = {|
     filters: Map<string, {description: string}>,
     onFilterAdd: (filterParams: {description: string}, title: string) => void,
     onFilterRemove: (title: string) => void,
+    onRowHighlightChange: (rowIndex: number, row: RowT) => void,
     onSelectMany: (rows: RowT[]) => void,
     onSelectNone: () => void,
     onSelectOne: (row: RowT) => void,
     onSort: (columnIndex: number) => void,
     onTextQueryChange: (query: string) => void,
+    rowHighlightIndex?: number,
     selectedRowIds: Set<string | number>,
     sortIndex: number,
     sortDirection: SortDirectionsT,

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -118,7 +118,7 @@ export const Dialog = styled<SharedStylePropsArgT>('div', props => {
   const {$animate, $isOpen, $isVisible, $size, $theme} = props;
   return ({
     position: 'relative',
-    backgroundColor: $theme.colors.backgroundAlt,
+    backgroundColor: $theme.colors.backgroundPrimary,
     borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
     borderTopRightRadius: $theme.borders.surfaceBorderRadius,
     borderBottomRightRadius: $theme.borders.surfaceBorderRadius,
@@ -191,7 +191,7 @@ export const Close = styled<SharedStylePropsArgT>('button', props => {
 
 export const ModalHeader = styled<{}>('div', ({$theme}) => ({
   ...$theme.typography.font550,
-  color: $theme.colors.foreground,
+  color: $theme.colors.contentPrimary,
   marginTop: $theme.sizing.scale900,
   marginBottom: $theme.sizing.scale600,
   [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: $theme.sizing
@@ -203,7 +203,7 @@ export const ModalHeader = styled<{}>('div', ({$theme}) => ({
 
 export const ModalBody = styled<{}>('div', ({$theme}) => ({
   ...$theme.typography.font200,
-  color: $theme.colors.foregroundAlt,
+  color: $theme.colors.contentSecondary,
   marginTop: $theme.sizing.scale600,
   marginLeft: $theme.sizing.scale800,
   marginRight: $theme.sizing.scale800,

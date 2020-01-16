@@ -1,12 +1,11 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
@@ -15,6 +14,7 @@ import Compact from 'examples/menu/compact.js';
 import Profile from 'examples/menu/profile.js';
 import Stateless from 'examples/menu/stateless.js';
 import Child from 'examples/menu/child.js';
+import Grouped from 'examples/menu/grouped.js';
 import VirtualList from 'examples/menu/virtual-list.js';
 
 import Overrides from '../../components/overrides';
@@ -25,6 +25,7 @@ import Code from '../../components/code';
 
 import Yard from '../../components/yard/index';
 import menuYardConfig from '../../components/yard/config/menu';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -72,6 +73,10 @@ The provided id will be set as a value for the item container's `id` attribute t
 
 <Example title="Menu with Child Menu" path="menu/child.js">
   <Child />
+</Example>
+
+<Example title="Menu with Grouped Items" path="menu/grouped.js">
+  <Grouped />
 </Example>
 
 <Example
@@ -184,29 +189,10 @@ The provided id will be set as a value for the item container's `id` attribute t
 
 ## API
 
-<API
-  heading="Menu API"
-  api={require('!!extract-react-types-loader!../../../src/menu/menu.js')}
-/>
-
-<API
-  heading="Stateful Menu API"
-  api={require('!!extract-react-types-loader!../../../src/menu/stateful-menu.js')}
-/>
-
-<API
-  heading="Stateful Container API"
-  api={require('!!extract-react-types-loader!../../../src/menu/stateful-container.js')}
-/>
-
-<API
-  heading="Menu Item Api"
-  api={require('!!extract-react-types-loader!../../../src/menu/option-list.js')}
-/>
-
-<API
-  heading="Profile Menu Item Api"
-  api={require('!!extract-react-types-loader!../../../src/menu/option-profile.js')}
+<ApiTable
+  title="Menu props"
+  config={menuYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/menu/menu.js')}
 />
 
 <Exports component={MenuExports} title="Menu exports" path="baseui/menu" />

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -22,7 +22,6 @@ import Routes from '../routes';
 import DirectionContext from '../components/direction-context';
 import ComponentSizes from '../../component-sizes.json';
 import Help from './help';
-import Walkthrough from './walkthrough';
 
 const GH_URL =
   'https://github.com/uber/baseweb/edit/master/documentation-site/pages';
@@ -142,8 +141,8 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
               toggleDirection={toggleDirection}
             />
             <Block
-              backgroundColor="background"
-              color="foreground"
+              backgroundColor="backgroundPrimary"
+              color="contentPrimary"
               marginTop="scale300"
               display="flex"
               paddingTop="scale400"
@@ -206,7 +205,6 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
               </TOCWrapper>
             </Block>
             <Footer />
-            <Walkthrough />
             <Help />
           </React.Fragment>
         )}

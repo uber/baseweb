@@ -1,10 +1,11 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+import * as React from 'react';
 import {SIZE} from './constants.js';
 import {styled, withStyle} from '../styles/index.js';
 import {StyledList} from '../menu/index.js';
@@ -13,7 +14,8 @@ import {
   StyledRoot as SelectStyledRoot,
 } from '../select/index.js';
 import defaultProps from '../select/default-props.js';
-import type {SizeT} from './types.js';
+import type {CountryT, SizeT} from './types.js';
+import type {StyletronComponent} from '../styles/styled.js';
 
 type SizeStyleProps = {
   $size?: SizeT,
@@ -24,6 +26,7 @@ export const StyledFlagContainer = styled<SizeStyleProps>(
   'span',
   ({$size = SIZE.default, $theme: {sizing}}) => {
     const sizeToFont = {
+      [SIZE.mini]: sizing.scale700,
       [SIZE.compact]: sizing.scale800,
       [SIZE.default]: sizing.scale900,
       [SIZE.large]: sizing.scale1000,
@@ -39,6 +42,7 @@ export const StyledRoot = withStyle<typeof SelectStyledRoot, SizeStyleProps>(
   props => {
     // hard coded widths for the flag dropdown anchor
     const sizeToWidth = {
+      [SIZE.mini]: '50px',
       [SIZE.compact]: '60px',
       [SIZE.default]: '70px',
       [SIZE.large]: '80px',
@@ -71,7 +75,7 @@ export const StyledCountrySelectDropdownContainer = withStyle<
   };
 });
 
-export const StyledCountrySelectDropdownListItem = withStyle<
+export const StyledCountrySelectDropdownListItemElement = withStyle<
   typeof StyledDropdownListItem,
 >(StyledDropdownListItem, {
   paddingTop: 0,
@@ -82,6 +86,21 @@ export const StyledCountrySelectDropdownListItem = withStyle<
   alignItems: 'center',
   height: '42px',
 });
+
+export const StyledCountrySelectDropdownListItem = ((React.forwardRef<
+  {item: CountryT, ...$Exact<typeof StyledDropdownListItem>},
+  // eslint-disable-next-line flowtype/no-weak-types
+  any,
+>(
+  ({item, ...restProps}, ref) => (
+    <StyledCountrySelectDropdownListItemElement ref={ref} {...restProps} />
+  ),
+  // eslint-disable-next-line flowtype/no-weak-types
+): any): StyletronComponent<typeof StyledDropdownListItem>);
+StyledCountrySelectDropdownListItem.__STYLETRON__ =
+  StyledCountrySelectDropdownListItemElement.__STYLETRON__;
+StyledCountrySelectDropdownListItem.displayName =
+  'StyledCountrySelectDropdownListItem';
 
 export const StyledCountrySelectDropdownFlagColumn = styled<{}>(
   'div',

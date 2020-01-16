@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -18,7 +18,7 @@ import {
 import Code from './code';
 
 const Exports = props => {
-  const {component, path, title} = props;
+  const {component, path, title, cheatsheet = true} = props;
   const componentName = path.split('/')[1];
 
   const exportNames = Object.keys(component);
@@ -34,9 +34,13 @@ const Exports = props => {
       <UnorderedList>
         {exportNames.map(name => (
           <ListItem key={name}>
-            <DocLink href={`/cheat-sheet#${componentName.toLowerCase()}`}>
-              {name}
-            </DocLink>
+            {cheatsheet ? (
+              <DocLink href={`/cheat-sheet#${componentName.toLowerCase()}`}>
+                {name}
+              </DocLink>
+            ) : (
+              name
+            )}
           </ListItem>
         ))}
       </UnorderedList>

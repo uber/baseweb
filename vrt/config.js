@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -33,6 +33,38 @@ const config = {
           await page.waitForSelector(selectSelector);
           await page.click(selectSelector);
           await page.waitForSelector(dropdownSelector);
+        },
+      },
+    ],
+  },
+  //
+  'data-table-extracted-highlight': {
+    interactions: [
+      {
+        name: 'controlledRowHighlightIndex',
+        behavior: async page => {
+          await Promise.all(
+            Array.from({length: 4}).map(() => page.keyboard.press('j')),
+          );
+        },
+      },
+      {
+        name: 'rowHighlightScrollsTableDown',
+        behavior: async page => {
+          await Promise.all(
+            Array.from({length: 20}).map(() => page.keyboard.press('j')),
+          );
+        },
+      },
+      {
+        name: 'rowHighlightScrollsTableUp',
+        behavior: async page => {
+          await Promise.all(
+            Array.from({length: 20}).map(() => page.keyboard.press('j')),
+          );
+          await Promise.all(
+            Array.from({length: 15}).map(() => page.keyboard.press('k')),
+          );
         },
       },
     ],
@@ -229,6 +261,20 @@ const config = {
       },
     ],
   },
+  'select-option-group': {
+    interactions: [
+      {
+        name: 'selectGroupDropdownVisible',
+        behavior: async page => {
+          const inputSelector = `[data-baseweb="select"]`;
+          const dropdownSelector = `[role="listbox"]`;
+          await page.waitForSelector(inputSelector);
+          await page.click(inputSelector);
+          await page.waitForSelector(dropdownSelector);
+        },
+      },
+    ],
+  },
   'select-search-single': {
     interactions: [
       {
@@ -239,6 +285,22 @@ const config = {
           await page.waitForSelector(inputSelector);
           await page.click(inputSelector);
           await page.waitForSelector(dropdownSelector);
+        },
+      },
+    ],
+  },
+  'select-search-single-fontsize': {
+    interactions: [
+      {
+        name: 'showsAllText',
+        behavior: async page => {
+          const inputSelector = `[data-baseweb="select"]`;
+          const selectInputSelector = `input[role="combobox"]`;
+          const dropdownSelector = `[role="listbox"]`;
+          await page.waitForSelector(inputSelector);
+          await page.click(inputSelector);
+          await page.waitForSelector(dropdownSelector);
+          await page.type(selectInputSelector, 'zzz');
         },
       },
     ],

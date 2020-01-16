@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -60,16 +60,29 @@ export const component = () => (
     <br />
 
     <Button shape={SHAPE.round} size={SIZE.large}>
-      <Upload />
+      <Upload size={24} />
     </Button>
     <br />
     <Button shape={SHAPE.round}>
-      <Upload />
+      <Upload size={20} />
     </Button>
     <br />
     <Button shape={SHAPE.round} size={SIZE.compact}>
       <Upload />
     </Button>
     <br />
+    <br />
+
+    <Button shape={SHAPE.square} size={SIZE.large}>
+      <Upload size={24} />
+    </Button>
+    <br />
+    <Button shape={SHAPE.square}>
+      <Upload size={20} />
+    </Button>
+    <br />
+    <Button shape={SHAPE.square} size={SIZE.compact}>
+      <Upload />
+    </Button>
   </React.Fragment>
 );

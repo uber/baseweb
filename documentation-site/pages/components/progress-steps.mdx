@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -19,6 +19,7 @@ import {Block} from 'baseui/block';
 import Yard from '../../components/yard/index';
 import progressStepsYardConfig from '../../components/yard/config/progress-steps';
 import progressStepsNumberedYardConfig from '../../components/yard/config/progress-steps-numbered';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -56,6 +57,12 @@ list type provides the user with a sense of awareness around progress and the st
 </Example>
 
 ## API
+
+<ApiTable
+  title="Progress Steps props"
+  config={progressStepsYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/progress-steps/progress-steps.js')}
+/>
 
 <Exports
   component={ProgressStepsExports}

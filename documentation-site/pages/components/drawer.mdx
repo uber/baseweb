@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -15,6 +15,7 @@ import Sizes from 'examples/drawer/sizes.js';
 
 import Yard from '../../components/yard/index';
 import drawerYardConfig from '../../components/yard/config/drawer';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -42,6 +43,12 @@ We have built in functionality based on the recommendations for dialogs and draw
 - Upon closing, focus should return to element that triggered drawer.
 
 ## API
+
+<ApiTable
+  title="Drawer props"
+  config={drawerYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/drawer/drawer.js')}
+/>
 
 <Exports
   component={DrawerExports}

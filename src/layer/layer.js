@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -69,10 +69,8 @@ class LayerComponent extends React.Component<
     }
     if (host) {
       const container = host.ownerDocument.createElement('div');
-      const sibling =
-        typeof index === 'number'
-          ? React.Children.toArray(host.children)[index]
-          : null;
+      // `host` is an DOM node, but not a React component
+      const sibling = typeof index === 'number' ? host.children[index] : null;
       sibling
         ? host.insertBefore(container, sibling)
         : host.appendChild(container);

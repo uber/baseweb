@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -37,7 +37,7 @@ export type ModalPropsT = {
    * If false, the modal container itself will receive focus.
    * Moving focus into a newly opened modal is important for accessibility purposes, so please be careful!
    */
-  autofocus: boolean,
+  autofocus: boolean | null,
   autoFocus: boolean,
   /** Modal content. The children-as-function API may be preferable
    * for performance reasons (wont render until opened) */

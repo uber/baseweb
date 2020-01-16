@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -113,7 +113,7 @@ export default class Accordion extends React.Component<
 
   componentDidMount() {
     // TODO(v10)
-    if (this.props.renderPanelContent) {
+    if (__DEV__ && this.props.renderPanelContent) {
       console.warn(
         'baseui:Accordion The `renderPanelContent` prop is depreacated. Please update your code to use `renderAll`.',
       );

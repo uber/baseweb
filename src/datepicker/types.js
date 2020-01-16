@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -112,6 +112,7 @@ export type CalendarInternalState = {
   focused: boolean,
   date: Date,
   quickSelectId: ?string,
+  rootElement: ?HTMLElement,
 };
 
 export type CalendarPropsT = {
@@ -122,7 +123,7 @@ export type CalendarPropsT = {
   /** Display select for quickly choosing date ranges. `range` must be true as well. */
   quickSelect?: boolean,
   /** Array of custom options displayed in the quick select. Overrides default options if provided. */
-  quickSelectOptions?: Array<{id: string, beginDate: Date}>,
+  quickSelectOptions?: Array<{id: string, beginDate: Date, endDate?: Date}>,
   /** A filter function that is called to check the disabled state of a day. If `false` is returned the day is considered to be disabled. */
   filterDate?: ?(day: Date) => boolean,
   /** Indicates a highlighted date on hover and keyboard navigation */
@@ -169,6 +170,7 @@ export type CalendarPropsT = {
 export type HeaderPropsT = CalendarPropsT & {
   date: Date,
   order: number,
+  popoverMountNode: ?HTMLElement,
 };
 
 export type DatepickerPropsT = CalendarPropsT & {
@@ -182,6 +184,7 @@ export type DatepickerPropsT = CalendarPropsT & {
   positive?: boolean,
   placeholder?: string,
   required?: boolean,
+  clearable?: boolean,
   formatDisplayValue?: (
     date: ?Date | Array<Date>,
     formatString: string,

@@ -93,6 +93,7 @@ export interface ToastPrivateState {
 export interface ToastOverrides {
   Body?: Override<SharedStylePropsArg>;
   CloseIcon?: Override<SharedStylePropsArg>;
+  InnerContainer?: Override<SharedStylePropsArg>;
 }
 export interface ToastProps {
   autoHideDuration?: number;

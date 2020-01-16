@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -90,15 +90,26 @@ export function Unstable_StatefulContainer(props: StatefulContainerPropsT) {
     handleSelectChange(new Set(selectedRowIds));
   }
 
+  const handleRowHighlightChange = React.useCallback(
+    (rowIndex, row) => {
+      if (props.onRowHighlightChange) {
+        props.onRowHighlightChange(rowIndex, row);
+      }
+    },
+    [props.rowHighlightIndex],
+  );
+
   return props.children({
     filters,
     onFilterAdd: handleFilterAdd,
     onFilterRemove: handleFilterRemove,
+    onRowHighlightChange: handleRowHighlightChange,
     onSelectMany: handleSelectMany,
     onSelectNone: handleSelectNone,
     onSelectOne: handleSelectOne,
-    onTextQueryChange: setTextQuery,
     onSort: handleSort,
+    onTextQueryChange: setTextQuery,
+    rowHighlightIndex: props.rowHighlightIndex,
     selectedRowIds,
     sortIndex,
     sortDirection,

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -323,7 +323,7 @@ const converters = {
   tuple: type => `[${mapConvertAndJoin(type.types)}]`,
 };
 
-function convert(type, expandType) {
+export function convert(type, expandType) {
   if (!type) {
     console.error('No type argument has been passed in');
     return '';

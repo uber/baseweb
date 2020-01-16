@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -13,8 +13,25 @@ import {
   StyledOptionContent,
 } from './styled-components.js';
 import {StatefulMenu} from '../menu/index.js';
-import type {DropdownPropsT, OptionT} from './types.js';
+import type {DropdownPropsT, OptionT, ValueT} from './types.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+
+function groupOptions(options: ValueT) {
+  return options.reduce(
+    (groups, option) => {
+      if (option.__optgroup) {
+        if (!groups[option.__optgroup]) {
+          groups[option.__optgroup] = [];
+        }
+        groups[option.__optgroup].push(option);
+      } else {
+        groups.__ungrouped.push(option);
+      }
+      return groups;
+    },
+    {__ungrouped: []},
+  );
+}
 
 export default class SelectDropdown extends React.Component<DropdownPropsT> {
   getSharedProps() {
@@ -76,8 +93,8 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
     );
   };
 
-  onMouseDown = (e: Event) => {
-    e.preventDefault();
+  onMouseDown = (e: SyntheticEvent<>) => {
+    e.nativeEvent.stopImmediatePropagation();
   };
 
   getHighlightedIndex = () => {
@@ -119,11 +136,13 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
       overrides.DropdownListItem,
       StyledDropdownListItem,
     );
-    const [OverriddenStatefulMenu, statefulMenuProps] = getOverrides(
-      overrides.StatefulMenu,
-      StatefulMenu,
-    );
+    const [
+      OverriddenStatefulMenu,
+      // $FlowFixMe
+      {overrides: statefulMenuOverrides = {}, ...restStatefulMenuProps},
+    ] = getOverrides(overrides.StatefulMenu, StatefulMenu);
     const highlightedIndex = this.getHighlightedIndex();
+    const groupedOptions = groupOptions(options);
     return (
       <DropdownContainer
         ref={this.props.innerRef}
@@ -134,7 +153,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
         <OverriddenStatefulMenu
           noResultsMsg={noResultsMsg}
           onItemSelect={onItemSelect}
-          items={options}
+          items={groupedOptions}
           size={size}
           initialState={{
             isFocused: true,
@@ -174,9 +193,10 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
             {
               List: overrides.Dropdown || {},
               Option: overrides.DropdownOption || {},
+              ...statefulMenuOverrides,
             },
           )}
-          {...statefulMenuProps}
+          {...restStatefulMenuProps}
         />
       </DropdownContainer>
     );

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -51,14 +51,17 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
   };
 
   render() {
-    const {startEnhancer, endEnhancer, overrides, ...restProps} = this.props;
-
     const {
-      Root: RootOverride,
-      StartEnhancer: StartEnhancerOverride,
-      EndEnhancer: EndEnhancerOverride,
-      ...restOverrides
-    } = this.props.overrides;
+      startEnhancer,
+      endEnhancer,
+      overrides: {
+        Root: RootOverride,
+        StartEnhancer: StartEnhancerOverride,
+        EndEnhancer: EndEnhancerOverride,
+        ...restOverrides
+      },
+      ...restProps
+    } = this.props;
 
     const [Root, rootProps] = getOverrides(RootOverride, StyledRoot);
     const [StartEnhancer, startEnhancerProps] = getOverrides(

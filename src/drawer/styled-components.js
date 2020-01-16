@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -133,7 +133,7 @@ export const StyledDrawerContainer = styled<SharedStylePropsArgT>(
   props => {
     const {$animating, $isOpen, $isVisible, $theme} = props;
     return {
-      backgroundColor: $theme.colors.backgroundAlt,
+      backgroundColor: $theme.colors.backgroundPrimary,
       borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
       borderTopRightRadius: $theme.borders.surfaceBorderRadius,
       borderBottomRightRadius: $theme.borders.surfaceBorderRadius,
@@ -159,7 +159,7 @@ export const StyledDrawerBody = styled<SharedStylePropsArgT>('div', props => {
   const {$theme} = props;
   return {
     ...$theme.typography.font200,
-    color: $theme.colors.foreground,
+    color: $theme.colors.contentPrimary,
     marginTop: $theme.sizing.scale900,
     marginBottom: $theme.sizing.scale900,
     marginLeft: $theme.sizing.scale900,

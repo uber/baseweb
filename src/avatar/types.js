@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -29,6 +29,8 @@ export type StateT = {|
 |};
 
 export type PropsT = {|
+  /** Bypasses initial generation from provided name with this value. */
+  initials?: string,
   /** Defines an alternative text description of the image. */
   name: string,
   overrides?: OverridesT<StylePropsT>,

@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -27,6 +27,7 @@ import * as CheckboxExports from 'baseui/checkbox';
 
 import Yard from '../../components/yard/index';
 import checkboxYardConfig from '../../components/yard/config/checkbox';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -99,6 +100,14 @@ options. When engaged (on), Base Web toggles are colored and when disengaged (of
 </Example>
 
 As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulCheckbox`, which manages its own state.
+
+## API
+
+<ApiTable
+  title="Checkbox props"
+  config={checkboxYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/checkbox/checkbox.js')}
+/>
 
 <Exports
   component={CheckboxExports}

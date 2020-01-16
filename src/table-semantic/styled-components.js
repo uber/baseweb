@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -58,7 +58,7 @@ export const StyledTableHeadCell = styled<{}>('th', ({$theme}) => {
     paddingBottom: $theme.sizing.scale500,
     paddingLeft: $theme.sizing.scale600,
     backgroundColor: $theme.colors.tableHeadBackgroundColor,
-    color: $theme.colors.colorPrimary,
+    color: $theme.colors.contentPrimary,
     textAlign: 'left',
     verticalAlign: 'top',
     whiteSpace: 'nowrap',
@@ -72,7 +72,10 @@ export const StyledTableHeadCell = styled<{}>('th', ({$theme}) => {
       top: '0',
       right: '100%',
       bottom: '0',
-      borderLeft: Object.values($theme.borders.border300).join(' '),
+      borderLeftColor: $theme.borders.border300.borderColor,
+      // $FlowFixMe
+      borderLeftStyle: $theme.borders.border300.borderStyle,
+      borderLeftWidth: $theme.borders.border300.borderWidth,
     },
 
     // We have to use pseudo elements to add the shadow to prevent
@@ -175,7 +178,7 @@ export const StyledTableBodyCell = styled<StyledTableBodyCellPropsT>(
       paddingRight: $theme.sizing.scale600,
       paddingBottom: $theme.sizing.scale300,
       paddingLeft: $theme.sizing.scale600,
-      color: $theme.colors.colorPrimary,
+      color: $theme.colors.contentPrimary,
       textAlign: $isNumeric ? 'right' : null,
       verticalAlign: 'top',
     };

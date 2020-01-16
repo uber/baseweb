@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -27,6 +27,7 @@ import {Paragraph3, Label3} from 'baseui/typography';
 
 import Yard from '../../components/yard/index';
 import popoverYardConfig from '../../components/yard/config/popover';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -103,6 +104,12 @@ structured content and imagery/illustration. It’s usage depends on the context
 </Example>
 
 ## API
+
+<ApiTable
+  title="Popover props"
+  config={popoverYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/popover/popover.js')}
+/>
 
 <Exports
   component={PopoverExports}

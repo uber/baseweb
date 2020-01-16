@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -20,7 +20,7 @@ const Help = () => {
         right: theme.sizing.scale2400,
         boxShadow: theme.lighting.shadow400,
         padding: theme.sizing.scale400,
-        backgroundColor: theme.colors.background,
+        backgroundColor: theme.colors.backgroundPrimary,
         display: 'none',
         [theme.mediaQuery.medium]: {
           display: 'block',

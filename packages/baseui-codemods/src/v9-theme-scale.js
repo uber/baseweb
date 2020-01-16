@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -38,9 +38,9 @@ const COMPONENT_TYPOGRAPHY_MAP = {
 
 const CAPTIONS = ['Caption1', 'Caption2'];
 
-// Captions set the `color` prop on the underlying `Block` (`color="colorSecondary"`).
+// Captions set the `color` prop on the underlying `Block` (`color="contentSecondary"`).
 // We will try to update the `color` prop so that when the component is updated
-// the "colorSecondary" color will still be applied.
+// the "contentSecondary" color will still be applied.
 function updateCaptionColorAttributes(path, localAlias = null) {
   path.traverse({
     JSXOpeningElement(path) {
@@ -61,7 +61,7 @@ function updateCaptionColorAttributes(path, localAlias = null) {
           // Create a new JSX attribute...
           const colorAttribute = t.jsxAttribute(
             t.jsxIdentifier('color'),
-            t.StringLiteral('colorSecondary'),
+            t.StringLiteral('contentSecondary'),
           );
           // Add it to the opening element.
           path.node.attributes.push(colorAttribute);

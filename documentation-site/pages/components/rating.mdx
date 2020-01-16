@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -17,6 +17,7 @@ import {Block} from 'baseui/block';
 import * as RatingExports from 'baseui/rating';
 import Yard from '../../components/yard/index';
 import ratingYardConfig from '../../components/yard/config/rating';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -49,6 +50,14 @@ This component uses the `[role="radiogroup"]` attribute with the following attri
 <Example title="Rating with emoticons" path="rating/emoticon.js">
   <Emoticon />
 </Example>
+
+## API
+
+<ApiTable
+  title="Rating props"
+  config={ratingYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/rating/star-rating.js')}
+/>
 
 <Exports
   component={RatingExports}
