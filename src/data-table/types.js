@@ -22,6 +22,8 @@ export type ColumnsT =
   | typeof COLUMNS.NUMERICAL
   | typeof COLUMNS.STRING;
 
+export type RenderPropT = () => React.Node;
+
 // eslint-disable-next-line flowtype/no-weak-types
 export type ColumnT<ValueT = any, FilterParamsT = any> = {|
   kind: ColumnsT,
@@ -80,6 +82,7 @@ export type StatefulDataTablePropsT = {|
   rowActions?: RowActionT[],
   rowHeight?: number,
   rowHighlightIndex?: number,
+  emptyMessage?: React.Node | RenderPropT,
 |};
 
 export type DataTablePropsT = {|
