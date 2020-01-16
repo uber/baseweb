@@ -340,15 +340,15 @@ function lintStyleFunction(context, node) {
 
     // Account for nested destructuring.
     if ($themeProperty.value.type === 'ObjectPattern') {
-      const concernProperty = $themeProperty.value.properties.find(
+      const concernPropertyNode = $themeProperty.value.properties.find(
         property => property.key.name === themeProperty.concern,
       );
 
       // Option 3. Nested destructuring of a "concern" in parameters.
       // ({$theme: {colors}}) => ({ color: colors.foreground })
       if (
-        concernProperty &&
-        concernProperty.value.type === 'Identifier' &&
+        concernPropertyNode &&
+        concernPropertyNode.value.type === 'Identifier' &&
         node.parent.type === 'MemberExpression' &&
         node.parent.object.type === 'Identifier' &&
         node.parent.object.name === themeProperty.concern
@@ -360,8 +360,11 @@ function lintStyleFunction(context, node) {
 
       // Option 4. Nested destructuring of the deprecated theme property.
       // ({$theme: {colors: {foreground}}}) => ({ color: foreground })
-      if (concernProperty && concernProperty.value.type === 'ObjectPattern') {
-        const deprecatedProperty = concernProperty.value.properties.find(
+      if (
+        concernPropertyNode &&
+        concernPropertyNode.value.type === 'ObjectPattern'
+      ) {
+        const deprecatedProperty = concernPropertyNode.value.properties.find(
           property => property.key.name === node.name,
         );
         if (deprecatedProperty) {
@@ -408,7 +411,7 @@ function lintUseStyletron(context, node) {
   const scope = context.getScope();
   const themeProperty = deprecatedThemeProperties[node.name];
 
-  if (scope.type === 'function') {
+  if (scope.type === 'function' && scope.block.body.body) {
     // Find all the variable declarations in the function body.
     const declarations = scope.block.body.body.filter(
       statement => statement.type === 'VariableDeclaration',
@@ -448,6 +451,7 @@ function lintUseStyletron(context, node) {
       const themeIndexNode = declarator.id.elements[1];
 
       if (themeIndexNode.type === 'Identifier') {
+        // This implies we are not destructuring the theme object (here at least).
         const localThemeObjectName = themeIndexNode.name;
         if (
           node.parent.type === 'MemberExpression' &&
@@ -461,9 +465,63 @@ function lintUseStyletron(context, node) {
           return true;
         }
       }
+
+      if (themeIndexNode.type === 'ObjectPattern') {
+        // Our theme object is being destructured.
+
+        // Check if we are destructuring the theme concern.
+        // Ex: const [css, {colors}] = useStyletron();
+        // Ex: const [css, {colors: foo}] = useStyletron();
+        const concernPropertyNode = themeIndexNode.properties.find(
+          property => property.key.name === themeProperty.concern,
+        );
+
+        // TODO(refactor): check if lintStyleFunction can also use this:
+        // > node.parent.object.name === concernPropertyNode.value.name
+
+        if (
+          concernPropertyNode &&
+          // Ensure we are not destructuring further
+          concernPropertyNode.value.type === 'Identifier' &&
+          node.parent.type === 'MemberExpression' &&
+          node.parent.object.type === 'Identifier' &&
+          node.parent.object.name === concernPropertyNode.value.name
+        ) {
+          // We have verified that the identifier accesses the "concern".
+          // Ex: colors.foreground
+          return true;
+        }
+
+        if (
+          concernPropertyNode &&
+          concernPropertyNode.value.type === 'ObjectPattern'
+        ) {
+          // We are destructuring even further!
+
+          // Check if we are destructuring the deprecated property in question.
+          // Ex: const [css, {colors: {foreground}}] = useStyletron();
+          // Ex: const [css, {colors: {foreground: foo}}] = useStyletron();
+          const deprecatedProperty = concernPropertyNode.value.properties.find(
+            property => property.key.name === node.name,
+          );
+
+          // TODO(refactor): The conditional below is pretty confusing.
+          // We should break it up a bit. Also it is exactly the same as
+          // the final destructuring logic in lintStyleFunction...
+          if (
+            deprecatedProperty &&
+            (node === deprecatedProperty.key ||
+              (node !== deprecatedProperty.value &&
+                node.parent.type !== 'MemberExpression'))
+          ) {
+            return true;
+          }
+        }
+      }
     }
   }
 
+  // If we've reached here then we can't flag anything.
   return false;
 }
 

@@ -512,7 +512,6 @@ const tests = {
       ],
     },
     {
-      only: true,
       code: `
         // useStyletron - basic
         function Foo({ children }) {
@@ -586,6 +585,35 @@ const tests = {
           const [css, {colors}] = useStyletron()
           return (
             <div className={css({ color: colors.contentPrimary })}>{children}</div>
+          )
+        }
+      `,
+      errors: [
+        {
+          messageId: MESSAGES.replaceThemeProperty.id,
+          data: {
+            old: 'foreground',
+            new: 'contentPrimary',
+          },
+        },
+      ],
+    },
+    {
+      code: `
+        // useStyletron - destructure "concern" and rename
+        function Foo({ children }) {
+          const [css, {colors: foo}] = useStyletron()
+          return (
+            <div className={css({ color: foo.foreground })}>{children}</div>
+          )
+        }
+      `,
+      output: `
+        // useStyletron - destructure "concern" and rename
+        function Foo({ children }) {
+          const [css, {colors: foo}] = useStyletron()
+          return (
+            <div className={css({ color: foo.contentPrimary })}>{children}</div>
           )
         }
       `,
