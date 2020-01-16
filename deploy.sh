@@ -43,6 +43,11 @@ if [ "$this_commit" = "$latest_tagged_commit" ]; then
      -H "Content-Type: application/json" \
      --data "{\"type\":\"CNAME\",\"name\":\"$cname.baseweb.design\",\"content\":\"alias.zeit.co\",\"ttl\":1,\"priority\":10,\"proxied\":false}"
   now --scope=uber-ui-platform --token=$ZEIT_NOW_TOKEN alias $deployment "$cname.baseweb.design"
+
+  # publish eslint-plugin-baseui
+  cd packages/eslint-plugin-baseui
+  yarn bump
+  npm publish
 else
   echo current commit does not match latest tagged commit
   echo exited without deploying to now

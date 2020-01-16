@@ -1,0 +1,20 @@
+{
+  "name": "eslint-plugin-baseui",
+  "version": "0.0.0",
+  "description": "ESLint rules for Base Web",
+  "main": "index.js",
+  "scripts": {
+    "test": "yarn jest",
+    "bump": "node ./bump.js"
+  },
+  "license": "MIT",
+  "author": "Graham Murdoch <murdoch@uber.com>",
+  "peerDependencies": {
+    "eslint": "^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.8.0",
+    "jest": "^24.9.0"
+  }
+}
