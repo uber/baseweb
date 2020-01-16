@@ -35,7 +35,8 @@ const limitValue = (value: number[]) => {
 };
 
 const ThumbLabel = ({index, values, rangeRef, Component, ...props}) => {
-  const [labelValue, style] = useThumbOverlap(rangeRef, values, index);
+  const {$step: step} = props;
+  const [labelValue, style] = useThumbOverlap(rangeRef, values, index, step);
   return (
     <Component {...props} style={style}>
       {labelValue}

@@ -155,6 +155,8 @@ function getBorderRadiiStyles({$theme, $size, $shape}) {
 
 function getFontStyles({$theme, $size}) {
   switch ($size) {
+    case SIZE.mini:
+      return $theme.typography.font150;
     case SIZE.compact:
       return $theme.typography.font250;
     case SIZE.large:
@@ -167,6 +169,17 @@ function getFontStyles({$theme, $size}) {
 function getPaddingStyles({$theme, $size, $shape}) {
   const iconShape = $shape === SHAPE.square || $shape === SHAPE.round;
   switch ($size) {
+    case SIZE.mini:
+      return {
+        paddingTop: $theme.sizing.scale200,
+        paddingBottom: $theme.sizing.scale200,
+        paddingLeft: iconShape
+          ? $theme.sizing.scale200
+          : $theme.sizing.scale300,
+        paddingRight: iconShape
+          ? $theme.sizing.scale200
+          : $theme.sizing.scale300,
+      };
     case SIZE.compact:
       return {
         paddingTop: $theme.sizing.scale400,

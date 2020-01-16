@@ -11,6 +11,7 @@ import {SIZE} from '../input/index.js';
 export const IconWrapper = styled<{$size: typeof SIZE}>('div', props => {
   const {$size, $theme} = props;
   const margin = {
+    [SIZE.mini]: $theme.sizing.scale300,
     [SIZE.compact]: $theme.sizing.scale500,
     [SIZE.default]: $theme.sizing.scale600,
     [SIZE.large]: $theme.sizing.scale700,
