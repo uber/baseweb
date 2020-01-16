@@ -64,7 +64,7 @@ const tests = {
         function Foo({ children }) {
           const boo = useStyletron()
           return (
-            <div className={css({ color: boo[0].colors.foreground })}>{children}</div>
+            <div className={boo[0]({ color: boo[1].colors.foreground })}>{children}</div>
           )
         }
       `,
