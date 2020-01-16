@@ -66,6 +66,18 @@ const tests = {
         export default () => <Foo overrides={fooOverrides} />;
       `,
     },
+    {
+      code: `
+        // TODO(should-fail)
+        // useStyletron - direct array access, who would do this though?
+        function Foo({ children }) {
+          const boo = useStyletron()
+          return (
+            <div className={css({ color: boo[0].colors.contentPrimary })}>{children}</div>
+          )
+        }
+      `,
+    },
   ],
   invalid: [
     {
