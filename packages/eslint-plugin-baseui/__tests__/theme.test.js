@@ -23,12 +23,36 @@ const tests = {
   valid: [
     {
       code: `
-        // styled - renaming a valid property to one of our deprecated properties
+        // style function - renaming a valid property to one of our deprecated properties
         styled('div', ({$theme: {colors: {foo: foreground}}}) => {
           return {
             color: foreground,
           };
         });
+      `,
+    },
+    {
+      code: `
+        // TODO(should-fail)
+        // style function - using deprecated property in a nested function
+        styled('div', props => {
+          const foo = () => props.$theme.colors.foreground;
+          return {
+            color: foo(),
+          };
+        });
+      `,
+    },
+    {
+      code: `
+        // TODO(should-fail)
+        // overrides - object defined elsewhere
+        const fooOverrides = {
+          Root: {
+            style: ({$theme}) => ({ color: $theme.colors.foreground }),
+          },
+        };
+        export default () => <Foo overrides={fooOverrides} />;
       `,
     },
   ],
@@ -279,6 +303,192 @@ const tests = {
             color: foo,
           };
         });
+      `,
+      errors: [
+        {
+          messageId: MESSAGES.replaceThemeProperty.id,
+          data: {
+            old: 'foreground',
+            new: 'contentPrimary',
+          },
+        },
+      ],
+    },
+    {
+      code: `
+        // overrides - no destructuring
+        export default () => (
+          <Foo
+            overrides={{
+              Root: { style: props => ({ color: props.$theme.colors.foreground }) }
+            }}
+          />
+        )
+      `,
+      output: `
+        // overrides - no destructuring
+        export default () => (
+          <Foo
+            overrides={{
+              Root: { style: props => ({ color: props.$theme.colors.contentPrimary }) }
+            }}
+          />
+        )
+      `,
+      errors: [
+        {
+          messageId: MESSAGES.replaceThemeProperty.id,
+          data: {
+            old: 'foreground',
+            new: 'contentPrimary',
+          },
+        },
+      ],
+    },
+    {
+      code: `
+        // overrides - $theme destructured
+        export default () => (
+          <Foo
+            overrides={{
+              Root: { style: ({$theme}) => ({ color: $theme.colors.foreground }) }
+            }}
+          />
+        )
+      `,
+      output: `
+        // overrides - $theme destructured
+        export default () => (
+          <Foo
+            overrides={{
+              Root: { style: ({$theme}) => ({ color: $theme.colors.contentPrimary }) }
+            }}
+          />
+        )
+      `,
+      errors: [
+        {
+          messageId: MESSAGES.replaceThemeProperty.id,
+          data: {
+            old: 'foreground',
+            new: 'contentPrimary',
+          },
+        },
+      ],
+    },
+    {
+      code: `
+        // overrides - "concern" destructured
+        export default () => (
+          <Foo
+            overrides={{
+              Root: { style: ({$theme: {colors}}) => ({ color: colors.foreground }) }
+            }}
+          />
+        )
+      `,
+      output: `
+        // overrides - "concern" destructured
+        export default () => (
+          <Foo
+            overrides={{
+              Root: { style: ({$theme: {colors}}) => ({ color: colors.contentPrimary }) }
+            }}
+          />
+        )
+      `,
+      errors: [
+        {
+          messageId: MESSAGES.replaceThemeProperty.id,
+          data: {
+            old: 'foreground',
+            new: 'contentPrimary',
+          },
+        },
+      ],
+    },
+    {
+      code: `
+        // overrides - deprecated property destructured
+        export default () => (
+          <Foo
+            overrides={{
+              Root: {
+                style: ({
+                  $theme: {
+                    colors: { foreground }
+                  }
+                }) => ({ color: foreground })
+              }
+            }}
+          />
+        )
+      `,
+      output: `
+        // overrides - deprecated property destructured
+        export default () => (
+          <Foo
+            overrides={{
+              Root: {
+                style: ({
+                  $theme: {
+                    colors: { contentPrimary }
+                  }
+                }) => ({ color: contentPrimary })
+              }
+            }}
+          />
+        )
+      `,
+      errors: [
+        {
+          messageId: MESSAGES.replaceThemeProperty.id,
+          data: {
+            old: 'foreground',
+            new: 'contentPrimary',
+          },
+        },
+        {
+          messageId: MESSAGES.replaceThemeProperty.id,
+          data: {
+            old: 'foreground',
+            new: 'contentPrimary',
+          },
+        },
+      ],
+    },
+    {
+      code: `
+        // overrides - deprecated property destructured and renamed
+        export default () => (
+          <Foo
+            overrides={{
+              Root: {
+                style: ({
+                  $theme: {
+                    colors: { foreground: foo }
+                  }
+                }) => ({ color: foo })
+              }
+            }}
+          />
+        )
+      `,
+      output: `
+        // overrides - deprecated property destructured and renamed
+        export default () => (
+          <Foo
+            overrides={{
+              Root: {
+                style: ({
+                  $theme: {
+                    colors: { contentPrimary: foo }
+                  }
+                }) => ({ color: foo })
+              }
+            }}
+          />
+        )
       `,
       errors: [
         {

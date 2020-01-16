@@ -263,6 +263,138 @@ const deprecatedThemeProperties = {
   },
 };
 
+// This should handle the shared logic for validating a "style function"
+// passed to styled, withStyle, or an overrides style property.
+//   - Ex: styled('div', () => {})
+//   - Ex: withStyle(<Foo />, () => {})
+//   - Ex: <Foo overrides={{ Root: { style: () => {} }}} />
+// Return true if current node should be flagged, false otherwise.
+function lintStyleFunction(context, node) {
+  const ancestors = context.getAncestors();
+  const scope = context.getScope();
+  const themeProperty = deprecatedThemeProperties[node.name];
+
+  const passedToStyledOrWithStyle =
+    scope.type === 'function' &&
+    scope.block.parent.type === 'CallExpression' &&
+    ['styled', 'withStyle'].includes(scope.block.parent.callee.name) &&
+    scope.block.parent.arguments[1] === scope.block;
+
+  const passedToOverrides =
+    scope.type === 'function' &&
+    scope.block.parent.type === 'Property' &&
+    scope.block.parent.key.name === 'style' &&
+    ancestors.some(
+      node => node.type === 'JSXAttribute' && node.name.name === 'overrides',
+    );
+
+  if (!passedToStyledOrWithStyle && !passedToOverrides) {
+    return false;
+  }
+
+  // Only one parameter should be passed to a style function.
+  const parameter = scope.block.params[0];
+
+  // Option 1. No destructuring.
+  // Ex: props => ({ color: props.$theme.colors.foreground })
+  if (parameter.type === 'Identifier') {
+    if (
+      node.parent.type === 'MemberExpression' &&
+      node.parent.object.type === 'MemberExpression' &&
+      node.parent.object.property.name === themeProperty.concern &&
+      node.parent.object.object.type === 'MemberExpression' &&
+      node.parent.object.object.property.name === '$theme' &&
+      node.parent.object.object.object.type === 'Identifier' &&
+      node.parent.object.object.object.name === parameter.name
+    ) {
+      // We have verified that the identifier accesses the theme.
+      // Ex: props.$theme.colors.foreground
+      return true;
+    }
+  }
+
+  if (parameter.type === 'ObjectPattern') {
+    // Our parameter is being destructured.
+    const $themeProperty = parameter.properties.find(
+      property => property.key.name === '$theme',
+    );
+
+    // Option 2. Destructuring $theme in parameters.
+    // ({$theme}) => ({ color: $theme.colors.foreground })
+    if (
+      $themeProperty.value.type === 'Identifier' &&
+      $themeProperty.value.name === '$theme'
+    ) {
+      if (
+        node.parent.type === 'MemberExpression' &&
+        node.parent.object.type === 'MemberExpression' &&
+        node.parent.object.property.name === themeProperty.concern &&
+        node.parent.object.object.type === 'Identifier' &&
+        node.parent.object.object.name === '$theme'
+      ) {
+        // We have verified that the identifier accesses $theme.
+        // Ex: $theme.colors.foreground
+        return true;
+      }
+    }
+
+    // Account for nested destructuring.
+    if ($themeProperty.value.type === 'ObjectPattern') {
+      const concernProperty = $themeProperty.value.properties.find(
+        property => property.key.name === themeProperty.concern,
+      );
+
+      // Option 3. Nested destructuring of a "concern" in parameters.
+      // ({$theme: {colors}}) => ({ color: colors.foreground })
+      if (
+        concernProperty &&
+        concernProperty.value.type === 'Identifier' &&
+        node.parent.type === 'MemberExpression' &&
+        node.parent.object.type === 'Identifier' &&
+        node.parent.object.name === themeProperty.concern
+      ) {
+        // We have verified that the identifier accesses the "concern".
+        // Ex: colors.foreground
+        return true;
+      }
+
+      // Option 4. Nested destructuring of the deprecated theme property.
+      // ({$theme: {colors: {foreground}}}) => ({ color: foreground })
+      if (concernProperty && concernProperty.value.type === 'ObjectPattern') {
+        const deprecatedProperty = concernProperty.value.properties.find(
+          property => property.key.name === node.name,
+        );
+        if (deprecatedProperty) {
+          // We have verified that the identifier is destructured in
+          // the parameters of this function.
+
+          // Here is a map of the possible destructuring:
+          // ({$theme: {colors: {foreground: foreground}}}) => ({ color: foreground })
+          //                     ^^^^^^^^^^  ^^^^^^^^^^                  ^^^^^^^^^^
+          //                     key         value                       reference
+
+          // Given the above map, here is the final criteria to consider before we flag the node:
+          //   - If the current node is the key, we want to flag it.
+          //   - If the current node is the value, we ignore it.
+          //   - Reaching here means the node is a reference.
+          //   - If the current node is part of a member expression, we ignore it. (foo.foreground)
+          //   - Finally! We can flag this node.
+          if (
+            node === deprecatedProperty.key ||
+            (node !== deprecatedProperty.value &&
+              node.parent.type !== 'MemberExpression')
+          ) {
+            return true;
+          }
+        }
+      }
+    }
+  }
+
+  // If we've reached here then we can't flag anything.
+  return false;
+}
+
 module.exports = {
   meta: {
     fixable: 'code',
@@ -275,165 +407,41 @@ module.exports = {
   create(context) {
     return {
       Identifier(node) {
-        const identifier = node.name;
-        const ancestors = context.getAncestors();
-        // const sourceCode = context.getSourceCode();
-        // const scope = context.getScope();
-
         if (
           Object.prototype.hasOwnProperty.call(
             deprecatedThemeProperties,
-            identifier,
+            node.name,
           )
         ) {
           // We have matched a possible deprecated theme property.
-          // Now we need to check how it is used.
-          const themeProperty = deprecatedThemeProperties[identifier];
+          const deprecatedThemeProperty = deprecatedThemeProperties[node.name];
+
+          // Configure default report options
           const reportOptions = {
             node,
             messageId: MESSAGES.deprecateThemeProperty.id,
-            data: {old: identifier},
+            data: {old: node.name},
             fix: null,
           };
 
-          // Update report options if there is a possible replacement for this property.
-          if (themeProperty.replacement) {
+          // Update report options if there the property can be replaced.
+          if (deprecatedThemeProperty.replacement) {
             reportOptions.messageId = MESSAGES.replaceThemeProperty.id;
-            reportOptions.data.new = themeProperty.replacement;
+            reportOptions.data.new = deprecatedThemeProperty.replacement;
             reportOptions.fix = function(fixer) {
-              return fixer.replaceText(node, themeProperty.replacement);
+              return fixer.replaceText(
+                node,
+                deprecatedThemeProperty.replacement,
+              );
             };
           }
 
           // Option 1. Is this node used in the overrides argument for createTheme?
 
-          // Option 2. Is this node used in a function passed to styled or withStyle?
-          const styledFunctionCall = ancestors.find(
-            node =>
-              (node.type === 'CallExpression' &&
-                node.callee.name === 'styled') ||
-              (node.type === 'CallExpression' &&
-                node.callee.name === 'withStyle'),
-          );
-          const styledFunctionArgument = ancestors.find(node =>
-            ['ArrowFunctionExpression', 'FunctionExpression'].includes(
-              node.type,
-            ),
-          );
-          if (
-            styledFunctionCall &&
-            styledFunctionCall.arguments[1] === styledFunctionArgument
-          ) {
-            // We have confirmed that our identifier is used in a
-            // function passed as the second argument to styled or withStyle.
-            // Now we need to analyze the params of the style function argument.
-
-            // Only one argument should be passed to style or withStyle
-            // so we will only consider the first argument.
-            const param = styledFunctionArgument.params[0];
-
-            // Option 2-1. No destructuring.
-            // Ex: styled('div', function(props) { ... })
-            if (param.type === 'Identifier') {
-              if (
-                node.parent.type === 'MemberExpression' &&
-                node.parent.object.type === 'MemberExpression' &&
-                node.parent.object.property.name === themeProperty.concern &&
-                node.parent.object.object.type === 'MemberExpression' &&
-                node.parent.object.object.property.name === '$theme' &&
-                node.parent.object.object.object.type === 'Identifier' &&
-                node.parent.object.object.object.name === param.name
-              ) {
-                // We have verified that the identifier accesses the theme.
-                // Ex: props.$theme.colors.foreground
-                context.report(reportOptions);
-                return;
-              }
-            }
-
-            if (param.type === 'ObjectPattern') {
-              // Our param is being destructured.
-              const $themeProperty = param.properties.find(
-                property => property.key.name === '$theme',
-              );
-
-              // Option 2-2. Destructuring $theme in params.
-              // styled('div', function({$theme}) { ... })
-              if (
-                $themeProperty.value.type === 'Identifier' &&
-                $themeProperty.value.name === '$theme'
-              ) {
-                if (
-                  node.parent.type === 'MemberExpression' &&
-                  node.parent.object.type === 'MemberExpression' &&
-                  node.parent.object.property.name === themeProperty.concern &&
-                  node.parent.object.object.type === 'Identifier' &&
-                  node.parent.object.object.name === '$theme'
-                ) {
-                  // We have verified that the identifier accesses $theme.
-                  // Ex: $theme.colors.foreground
-                  context.report(reportOptions);
-                  return;
-                }
-              }
-
-              // Account for nested destructuring.
-              if ($themeProperty.value.type === 'ObjectPattern') {
-                const concernProperty = $themeProperty.value.properties.find(
-                  property => property.key.name === themeProperty.concern,
-                );
-
-                // Option 2-3. Nested destructuring of a "concern" in params.
-                // styled('div', function({$theme: {colors}}) { ... })
-                if (
-                  concernProperty &&
-                  concernProperty.value.type === 'Identifier' &&
-                  node.parent.type === 'MemberExpression' &&
-                  node.parent.object.type === 'Identifier' &&
-                  node.parent.object.name === themeProperty.concern
-                ) {
-                  // We have verified that the identifier accesses the "concern".
-                  // Ex: colors.foreground
-                  context.report(reportOptions);
-                  return;
-                }
-
-                // Option 2-4. Nested destructuring of the deprecated theme property.
-                // styled('div', function({$theme: {colors: {foreground}}}) { ... })
-                if (
-                  concernProperty &&
-                  concernProperty.value.type === 'ObjectPattern'
-                ) {
-                  const deprecatedProperty = concernProperty.value.properties.find(
-                    property => property.key.name === identifier,
-                  );
-                  if (deprecatedProperty) {
-                    // We have verified that the identifier is destructured in
-                    // the params of this function.
-
-                    // Here is a map of the possible destructuring:
-                    // ({$theme: {colors: {foreground: foreground}}}) => ({ color: foreground })
-                    //                     ^^^^^^^^^^  ^^^^^^^^^^                  ^^^^^^^^^^
-                    //                     key         value                       reference
-
-                    // Given the above map, here is the final criteria to consider before we flag the node:
-                    //   - If the current node is the key, we want to flag it.
-                    //   - If the current node is the value, we ignore it.
-                    //   - Reaching here means the node is a reference.
-                    //   - If the current node is part of a member expression, we ignore it. (foo.foreground)
-                    //   - Finally! We can flag this node.
-                    if (
-                      node === deprecatedProperty.key ||
-                      (node !== deprecatedProperty.value &&
-                        node.parent.type !== 'MemberExpression')
-                    ) {
-                      context.report(reportOptions);
-                      return;
-                    }
-                  }
-                }
-              }
-            }
+          // Option 2. Is this node used in a "style function" passed to a style utility?
+          if (lintStyleFunction(context, node)) {
+            context.report(reportOptions);
+            return;
           }
 
           // Option 3. Is this node used in an override style function?
