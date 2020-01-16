@@ -12,5 +12,8 @@ LICENSE file in the root directory of this source tree.
 const fs = require('fs');
 const baseuiVersion = require('../../package.json').version;
 const packageJSON = fs.readFileSync('package.json', 'utf-8');
-const packageJSONBumped = packageJSON.replace('0.0.0', baseuiVersion);
+const packageJSONBumped = packageJSON.replace(
+  '"version": "0.0.0"',
+  `"version": "${baseuiVersion}"`,
+);
 fs.writeFileSync('package.json', packageJSONBumped, 'utf-8');
