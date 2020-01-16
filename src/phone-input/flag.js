@@ -33,6 +33,7 @@ export const StyledFlag = styled<typeof Flag, SizeStyleProps>(
   Flag,
   ({$size = SIZE.default, $theme: {sizing}}) => {
     const sizeToWidth = {
+      [SIZE.mini]: sizing.scale700,
       [SIZE.compact]: sizing.scale800,
       [SIZE.default]: sizing.scale900,
       [SIZE.large]: sizing.scale1000,
