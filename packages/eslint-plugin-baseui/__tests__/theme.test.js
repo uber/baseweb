@@ -33,6 +33,17 @@ const tests = {
     },
     {
       code: `
+        // style function - using deprecated property on another object
+        styled('div', props => {
+          const foo = something.foreground;
+          return {
+            color: props.$theme.colors.primary,
+          };
+        });
+      `,
+    },
+    {
+      code: `
         // TODO(should-fail)
         // style function - using deprecated property in a nested function
         styled('div', props => {
@@ -489,6 +500,158 @@ const tests = {
             }}
           />
         )
+      `,
+      errors: [
+        {
+          messageId: MESSAGES.replaceThemeProperty.id,
+          data: {
+            old: 'foreground',
+            new: 'contentPrimary',
+          },
+        },
+      ],
+    },
+    {
+      code: `
+        // useStyletron - basic
+        function Foo({ children }) {
+          const [css, theme] = useStyletron()
+          return (
+            <div className={css({ color: theme.colors.foreground })}>{children}</div>
+          )
+        }
+      `,
+      output: `
+        // useStyletron - basic
+        function Foo({ children }) {
+          const [css, theme] = useStyletron()
+          return (
+            <div className={css({ color: theme.colors.contentPrimary })}>{children}</div>
+          )
+        }
+      `,
+      errors: [
+        {
+          messageId: MESSAGES.replaceThemeProperty.id,
+          data: {
+            old: 'foreground',
+            new: 'contentPrimary',
+          },
+        },
+      ],
+    },
+    {
+      code: `
+        // useStyletron - alternate name for theme
+        function Foo({ children }) {
+          const [css, foo] = useStyletron()
+          return (
+            <div className={css({ color: foo.colors.foreground })}>{children}</div>
+          )
+        }
+      `,
+      output: `
+        // useStyletron - alternate name for theme
+        function Foo({ children }) {
+          const [css, foo] = useStyletron()
+          return (
+            <div className={css({ color: foo.colors.contentPrimary })}>{children}</div>
+          )
+        }
+      `,
+      errors: [
+        {
+          messageId: MESSAGES.replaceThemeProperty.id,
+          data: {
+            old: 'foreground',
+            new: 'contentPrimary',
+          },
+        },
+      ],
+    },
+    {
+      code: `
+        // useStyletron - destructure "concern"
+        function Foo({ children }) {
+          const [css, {colors}] = useStyletron()
+          return (
+            <div className={css({ color: colors.foreground })}>{children}</div>
+          )
+        }
+      `,
+      output: `
+        // useStyletron - destructure "concern"
+        function Foo({ children }) {
+          const [css, {colors}] = useStyletron()
+          return (
+            <div className={css({ color: colors.contentPrimary })}>{children}</div>
+          )
+        }
+      `,
+      errors: [
+        {
+          messageId: MESSAGES.replaceThemeProperty.id,
+          data: {
+            old: 'foreground',
+            new: 'contentPrimary',
+          },
+        },
+      ],
+    },
+    {
+      code: `
+        // useStyletron - destructure deprecated property
+        function Foo({ children }) {
+          const [css, {colors: {foreground}}] = useStyletron()
+          return (
+            <div className={css({ color: foreground })}>{children}</div>
+          )
+        }
+      `,
+      output: `
+        // useStyletron - destructure deprecated property
+        function Foo({ children }) {
+          const [css, {colors: {contentPrimary}}] = useStyletron()
+          return (
+            <div className={css({ color: contentPrimary })}>{children}</div>
+          )
+        }
+      `,
+      errors: [
+        {
+          messageId: MESSAGES.replaceThemeProperty.id,
+          data: {
+            old: 'foreground',
+            new: 'contentPrimary',
+          },
+        },
+        {
+          messageId: MESSAGES.replaceThemeProperty.id,
+          data: {
+            old: 'foreground',
+            new: 'contentPrimary',
+          },
+        },
+      ],
+    },
+    {
+      code: `
+        // useStyletron - destructure deprecated property with renaming
+        function Foo({ children }) {
+          const [css, {colors: {foreground: foo}}] = useStyletron()
+          return (
+            <div className={css({ color: foo })}>{children}</div>
+          )
+        }
+      `,
+      output: `
+        // useStyletron - destructure deprecated property with renaming
+        function Foo({ children }) {
+          const [css, {colors: {contentPrimary: foo}}] = useStyletron()
+          return (
+            <div className={css({ color: foo })}>{children}</div>
+          )
+        }
       `,
       errors: [
         {

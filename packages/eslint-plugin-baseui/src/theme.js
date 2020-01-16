@@ -444,9 +444,7 @@ module.exports = {
             return;
           }
 
-          // Option 3. Is this node used in an override style function?
-
-          // Option 4. Is this node used in tandem with useStyletron?
+          // Option 3. Is this node used in tandem with useStyletron?
         }
       },
     };
