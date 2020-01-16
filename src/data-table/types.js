@@ -16,6 +16,7 @@ export type SortDirectionsT =
   | null;
 
 export type ColumnsT =
+  | typeof COLUMNS.ANCHOR
   | typeof COLUMNS.BOOLEAN
   | typeof COLUMNS.CATEGORICAL
   | typeof COLUMNS.CUSTOM
