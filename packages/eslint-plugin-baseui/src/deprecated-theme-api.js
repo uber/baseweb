@@ -263,6 +263,306 @@ const deprecatedThemeProperties = {
   },
 };
 
+function lintCreateTheme(context, node) {
+  // Is createTheme being imported from "baseui"?
+  let importSpecifier;
+
+  const program = context
+    .getAncestors(node)
+    .find(node => node.type === 'Program');
+  const importDeclaration = program.body.find(
+    node => node.type === 'ImportDeclaration' && node.source.value === 'baseui',
+  );
+
+  if (importDeclaration && importDeclaration.specifiers) {
+    importSpecifier = importDeclaration.specifiers.find(
+      specifier => specifier.imported.name === 'createTheme',
+    );
+  }
+
+  if (importSpecifier) {
+    // Is our current node an object property in an object
+    // passed as the second argument to createTheme?
+    if (
+      node.parent.type === 'Property' &&
+      node.parent.parent.type === 'ObjectExpression' &&
+      node.parent.parent.parent.type === 'CallExpression' &&
+      node.parent.parent.parent.arguments[1] &&
+      node.parent.parent.parent.arguments[1] === node.parent.parent &&
+      node.parent.parent.parent.callee.name === 'createTheme'
+    ) {
+      // Yes it is.
+      return true;
+    }
+  }
+
+  // If we've reached here then we can't flag anything.
+  return false;
+}
+
+function lintStyleFunction(context, node) {
+  // This should handle the shared logic for validating a "style function"
+  // passed to styled, withStyle, or an overrides style property.
+  //   - Ex: styled('div', () => {})
+  //   - Ex: withStyle(<Foo />, () => {})
+  //   - Ex: <Foo overrides={{ Root: { style: () => {} }}} />
+  // Return true if current node should be flagged, false otherwise.
+
+  const ancestors = context.getAncestors();
+  const scope = context.getScope();
+  const themeProperty = deprecatedThemeProperties[node.name];
+
+  const passedToStyledOrWithStyle =
+    scope.type === 'function' &&
+    scope.block.parent.type === 'CallExpression' &&
+    ['styled', 'withStyle'].includes(scope.block.parent.callee.name) &&
+    scope.block.parent.arguments[1] === scope.block;
+
+  const passedToOverrides =
+    scope.type === 'function' &&
+    scope.block.parent.type === 'Property' &&
+    scope.block.parent.key.name === 'style' &&
+    ancestors.some(
+      node => node.type === 'JSXAttribute' && node.name.name === 'overrides',
+    );
+
+  if (!passedToStyledOrWithStyle && !passedToOverrides) {
+    return false;
+  }
+
+  // Only one parameter should be passed to a style function.
+  const parameter = scope.block.params[0];
+
+  // Option 1. No destructuring.
+  // Ex: props => ({ color: props.$theme.colors.foreground })
+  if (parameter.type === 'Identifier') {
+    if (
+      node.parent.type === 'MemberExpression' &&
+      node.parent.object.type === 'MemberExpression' &&
+      node.parent.object.property.name === themeProperty.concern &&
+      node.parent.object.object.type === 'MemberExpression' &&
+      node.parent.object.object.property.name === '$theme' &&
+      node.parent.object.object.object.type === 'Identifier' &&
+      node.parent.object.object.object.name === parameter.name
+    ) {
+      // We have verified that the identifier accesses the theme.
+      // Ex: props.$theme.colors.foreground
+      return true;
+    }
+  }
+
+  if (parameter.type === 'ObjectPattern') {
+    // Our parameter is being destructured.
+    const $themeProperty = parameter.properties.find(
+      property => property.key.name === '$theme',
+    );
+
+    // Option 2. Destructuring $theme in parameters.
+    // ({$theme}) => ({ color: $theme.colors.foreground })
+    if (
+      $themeProperty.value.type === 'Identifier' &&
+      $themeProperty.value.name === '$theme'
+    ) {
+      if (
+        node.parent.type === 'MemberExpression' &&
+        node.parent.object.type === 'MemberExpression' &&
+        node.parent.object.property.name === themeProperty.concern &&
+        node.parent.object.object.type === 'Identifier' &&
+        node.parent.object.object.name === '$theme'
+      ) {
+        // We have verified that the identifier accesses $theme.
+        // Ex: $theme.colors.foreground
+        return true;
+      }
+    }
+
+    // Account for nested destructuring.
+    if ($themeProperty.value.type === 'ObjectPattern') {
+      const concernPropertyNode = $themeProperty.value.properties.find(
+        property => property.key.name === themeProperty.concern,
+      );
+
+      // Option 3. Nested destructuring of a "concern" in parameters.
+      // ({$theme: {colors}}) => ({ color: colors.foreground })
+      if (
+        concernPropertyNode &&
+        concernPropertyNode.value.type === 'Identifier' &&
+        node.parent.type === 'MemberExpression' &&
+        node.parent.object.type === 'Identifier' &&
+        node.parent.object.name === themeProperty.concern
+      ) {
+        // We have verified that the identifier accesses the "concern".
+        // Ex: colors.foreground
+        return true;
+      }
+
+      // Option 4. Nested destructuring of the deprecated theme property.
+      // ({$theme: {colors: {foreground}}}) => ({ color: foreground })
+      if (
+        concernPropertyNode &&
+        concernPropertyNode.value.type === 'ObjectPattern'
+      ) {
+        const deprecatedProperty = concernPropertyNode.value.properties.find(
+          property => property.key.name === node.name,
+        );
+        if (deprecatedProperty) {
+          // We have verified that the identifier is destructured in
+          // the parameters of this function.
+
+          // Here is a map of the possible destructuring:
+          // ({$theme: {colors: {foreground: foreground}}}) => ({ color: foreground })
+          //                     ^^^^^^^^^^  ^^^^^^^^^^                  ^^^^^^^^^^
+          //                     key         value                       reference
+
+          // Given the above map, here is the final criteria to consider before we flag the node:
+          //   - If the current node is the key, we want to flag it.
+          //   - If the current node is the value, we ignore it.
+          //   - Reaching here means the node is a reference.
+          //   - If the current node is part of a member expression, we ignore it. (foo.foreground)
+          //   - Finally! We can flag this node.
+          if (
+            node === deprecatedProperty.key ||
+            (node !== deprecatedProperty.value &&
+              node.parent.type !== 'MemberExpression')
+          ) {
+            return true;
+          }
+        }
+      }
+    }
+  }
+
+  // If we've reached here then we can't flag anything.
+  return false;
+}
+
+function lintUseStyletron(context, node) {
+  // Is there a useStyletron call in our current scope?
+  // Is the theme value captured from the call? Ex: const [css, theme] = useStyletron();
+  //   - Is the theme value renamed? Ex: const [css, foo] = useStyletron();
+  //   - Is the theme destructured? Ex: const [css, {colors}] = useStyletron();
+  // Is the current node invoked in a way that uses the theme in scope?
+  //   - Ex: Full destructuring: foreground
+  //   - Ex: Concern destructuring: colors.foreground
+
+  // const ancestors = context.getAncestors();
+  const scope = context.getScope();
+  const themeProperty = deprecatedThemeProperties[node.name];
+
+  if (scope.type === 'function' && scope.block.body.body) {
+    // Find all the variable declarations in the function body.
+    const declarations = scope.block.body.body.filter(
+      statement => statement.type === 'VariableDeclaration',
+    );
+
+    // Map of variable declaration types and properties:
+    // const [css, theme] = useStyletron()
+    //       ^..........^                  .id (ArrayPattern)
+    //                      ^............^ .init (CallExpression)
+    //       ^...........................^ VariableDeclarator
+    // ^.................................^ VariableDeclaration
+
+    // Search each declaration for a declarator that invokes
+    // useStyletron as the initial value. This declarator
+    // will have all the information we need.
+    let declarator;
+    declarations.forEach(declaration => {
+      declarator = declaration.declarations.find(
+        declarator =>
+          declarator.type === 'VariableDeclarator' &&
+          declarator.init.type === 'CallExpression' &&
+          declarator.init.callee.name === 'useStyletron',
+      );
+    });
+
+    if (!declarator) {
+      return false;
+    }
+
+    if (
+      declarator.id.type === 'ArrayPattern' &&
+      declarator.id.elements.length === 2
+    ) {
+      // Confirm we are accessing the theme index in the returned array.
+      // Ex: const [css, theme] = useStyletron();
+      // Ex: const [css, {colors}] = useStyletron();
+      const themeIndexNode = declarator.id.elements[1];
+
+      if (themeIndexNode.type === 'Identifier') {
+        // This implies we are not destructuring the theme object (here at least).
+        const localThemeObjectName = themeIndexNode.name;
+        if (
+          node.parent.type === 'MemberExpression' &&
+          node.parent.object.type === 'MemberExpression' &&
+          node.parent.object.property.name === themeProperty.concern &&
+          node.parent.object.object.type === 'Identifier' &&
+          node.parent.object.object.name === localThemeObjectName
+        ) {
+          // We have verified that the identifier accesses the theme.
+          // Ex: theme.colors.foreground
+          return true;
+        }
+      }
+
+      if (themeIndexNode.type === 'ObjectPattern') {
+        // Our theme object is being destructured.
+
+        // Check if we are destructuring the theme concern.
+        // Ex: const [css, {colors}] = useStyletron();
+        // Ex: const [css, {colors: foo}] = useStyletron();
+        const concernPropertyNode = themeIndexNode.properties.find(
+          property => property.key.name === themeProperty.concern,
+        );
+
+        // TODO(refactor): check if lintStyleFunction can also use this:
+        // > node.parent.object.name === concernPropertyNode.value.name
+
+        if (
+          concernPropertyNode &&
+          // Ensure we are not destructuring further
+          concernPropertyNode.value.type === 'Identifier' &&
+          node.parent.type === 'MemberExpression' &&
+          node.parent.object.type === 'Identifier' &&
+          node.parent.object.name === concernPropertyNode.value.name
+        ) {
+          // We have verified that the identifier accesses the "concern".
+          // Ex: colors.foreground
+          return true;
+        }
+
+        if (
+          concernPropertyNode &&
+          concernPropertyNode.value.type === 'ObjectPattern'
+        ) {
+          // We are destructuring even further!
+
+          // Check if we are destructuring the deprecated property in question.
+          // Ex: const [css, {colors: {foreground}}] = useStyletron();
+          // Ex: const [css, {colors: {foreground: foo}}] = useStyletron();
+          const deprecatedProperty = concernPropertyNode.value.properties.find(
+            property => property.key.name === node.name,
+          );
+
+          // TODO(refactor): The conditional below is pretty confusing.
+          // We should break it up a bit. Also it is exactly the same as
+          // the final destructuring logic in lintStyleFunction...
+          if (
+            deprecatedProperty &&
+            (node === deprecatedProperty.key ||
+              (node !== deprecatedProperty.value &&
+                node.parent.type !== 'MemberExpression'))
+          ) {
+            return true;
+          }
+        }
+      }
+    }
+  }
+
+  // If we've reached here then we can't flag anything.
+  return false;
+}
+
 module.exports = {
   meta: {
     fixable: 'code',
@@ -275,157 +575,51 @@ module.exports = {
   create(context) {
     return {
       Identifier(node) {
-        const identifier = node.name;
-
-        // We use `hasOwnProperty`, otherwise we might get false positives on the prototype chain.
         if (
           Object.prototype.hasOwnProperty.call(
             deprecatedThemeProperties,
-            identifier,
+            node.name,
           )
         ) {
-          // We have found an identifier that matches one of our deprecated theme properties.
-          const sourceCode = context.getSourceCode();
-          const scope = context.getScope(node);
-          const data = {
-            old: identifier,
-          };
-          let fix = null;
-          let messageId = MESSAGES.deprecateThemeProperty.id;
+          // We have matched a possible deprecated theme property.
+          const deprecatedThemeProperty = deprecatedThemeProperties[node.name];
 
-          // If there is a possible replacement for this deprecated property,
-          // add a fix to replace with a new semantic property.
-          // TODO: use `suggest` instead, currently not supported in VSCode extension:
-          // https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions
-          // https://github.com/microsoft/vscode-eslint/issues/806
-          if (deprecatedThemeProperties[identifier].replacement) {
-            messageId = MESSAGES.replaceThemeProperty.id;
-            data.new = deprecatedThemeProperties[identifier].replacement;
-            fix = function(fixer) {
+          // Configure default report options
+          const reportOptions = {
+            node,
+            messageId: MESSAGES.deprecateThemeProperty.id,
+            data: {old: node.name},
+            fix: null,
+          };
+
+          // Update report options if there the property can be replaced.
+          if (deprecatedThemeProperty.replacement) {
+            reportOptions.messageId = MESSAGES.replaceThemeProperty.id;
+            reportOptions.data.new = deprecatedThemeProperty.replacement;
+            reportOptions.fix = function(fixer) {
               return fixer.replaceText(
                 node,
-                deprecatedThemeProperties[identifier].replacement,
+                deprecatedThemeProperty.replacement,
               );
             };
           }
 
-          // Check if we are setting a property in createTheme:overrides
-          // Ex: createTheme({}, {datepickerBackground: "pink"});
-          if (
-            context
-              .getAncestors()
-              .some(
-                node =>
-                  node.type === 'CallExpression' &&
-                  node.callee.name === 'createTheme',
-              ) &&
-            node.parent.type === 'Property' &&
-            node === node.parent.key
-          ) {
-            // A deprecated property is being set in createTheme.
-            // Assuming a violation.
-            context.report({
-              node,
-              messageId,
-              data,
-              fix,
-            });
+          // Option 1. Is this node used in the overrides argument for createTheme?
+          if (lintCreateTheme(context, node)) {
+            context.report(reportOptions);
             return;
           }
 
-          // Exit early if we are not in a function.
-          // We don't have access to the theme outside of functions.
-          // Ex: styled, withStyle, overrides, function component (useStyletron)
-          if (scope.type !== 'function') {
+          // Option 2. Is this node used in a "style function" passed to a style utility?
+          if (lintStyleFunction(context, node)) {
+            context.report(reportOptions);
             return;
           }
 
-          // Exit early if the identifier is a key in an object expression
-          // Ex: { background: $theme.colors.white }
-          if (
-            node.parent.type === 'Property' &&
-            node.parent.parent.type === 'ObjectExpression' &&
-            node === node.parent.key
-          ) {
+          // Option 3. Is this node used in tandem with useStyletron?
+          if (lintUseStyletron(context, node)) {
+            context.report(reportOptions);
             return;
-          }
-
-          // Exit early if identifier is a value in an object destructuing pattern
-          // Ex: ({$theme: {colors: {background}}}) => {}
-          //  - background will match twice, as both a key and as a value, so we skip the value match
-          if (
-            node.parent.type === 'Property' &&
-            node.parent.parent.type === 'ObjectPattern' &&
-            node === node.parent.value
-          ) {
-            return;
-          }
-
-          // Check if our identifier is accessing properties on a theme, $theme, or its theme concern.
-          // Ex: theme.colors.foreground
-          // Ex: props.$theme.colors.foreground
-          // Ex: colors.foreground
-          if (node.parent.type === 'MemberExpression') {
-            const expressionText = sourceCode.getText(node.parent);
-            if (
-              expressionText.search('theme.') ||
-              expressionText.search(
-                deprecatedThemeProperties[identifier].concern,
-              )
-            ) {
-              // Expression accesses properties on a theme, $theme, or colors object.
-              // Assuming a violation.
-              context.report({
-                node,
-                messageId,
-                data,
-                fix,
-              });
-              return;
-            }
-          }
-
-          // Check if our identifier was fully destructured from a $theme object.
-          // Ex: styled('div', ({$theme: {colors: {background}}}) => {})
-          scope.block.params.forEach(param => {
-            if (
-              param.type === 'ObjectPattern' &&
-              param.properties.some(property => property.key.name === '$theme')
-            ) {
-              // The object destructuring includes a $theme key.
-              // Assuming a violation.
-              context.report({
-                node,
-                messageId,
-                data,
-                fix,
-              });
-              return;
-            }
-          });
-
-          // Check if our identifier was fully destructured from a useStyletron call.
-          // Ex: const [css, {colors: {background}}] = useStyletron();
-          if (scope.block.body.body) {
-            scope.block.body.body.forEach(b => {
-              if (b.type === 'VariableDeclaration') {
-                const declarationText = sourceCode.getText(b);
-                if (
-                  declarationText.search('useStyletron()') &&
-                  declarationText.search(identifier)
-                ) {
-                  // We've found a declaration that includes our identifier and a useStyletron call.
-                  // Assuming a violation.
-                  context.report({
-                    node,
-                    messageId,
-                    data,
-                    fix,
-                  });
-                  return;
-                }
-              }
-            });
           }
         }
       },
