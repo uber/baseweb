@@ -7,7 +7,6 @@ import {
   CustomColumn,
   NumericalColumn,
   StringColumn,
-  COLUMNS,
   NUMERICAL_FORMATS,
 } from 'baseui/data-table';
 
@@ -84,21 +83,21 @@ const columns = [
 export default () => {
   const [css] = useStyletron();
   return (
-    <div className={css({height: '800px'})}>
-      <Unstable_StatefulDataTable
-        columns={columns}
-        rows={[]}
-        overrides={{
-          EmptyState: {
-            style: ({$theme}) => {
-              return {
-                outline: `${$theme.colors.warning600} dotted`,
-                backgroundColor: $theme.colors.warning600,
-              };
-            },
-          },
-        }}
-      />
-    </div>
+    <React.Fragment>
+      <div className={css({height: '400px'})}>
+        <Unstable_StatefulDataTable
+          columns={columns}
+          rows={[]}
+          emptyMessage="custom empty message"
+        />
+      </div>
+      <div className={css({height: '400px'})}>
+        <Unstable_StatefulDataTable
+          columns={columns}
+          rows={[]}
+          emptyMessage={() => <h1>custom empty component</h1>}
+        />
+      </div>
+    </React.Fragment>
   );
 };

@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import type {OverrideT} from '../helpers/overrides.js';
 import {COLUMNS, SORT_DIRECTIONS} from './constants.js';
 
 export type SortDirectionsT =
@@ -22,6 +21,8 @@ export type ColumnsT =
   | typeof COLUMNS.CUSTOM
   | typeof COLUMNS.NUMERICAL
   | typeof COLUMNS.STRING;
+
+export type RenderPropT = () => React.Node;
 
 // eslint-disable-next-line flowtype/no-weak-types
 export type ColumnT<ValueT = any, FilterParamsT = any> = {|
@@ -81,12 +82,8 @@ export type StatefulDataTablePropsT = {|
   rowActions?: RowActionT[],
   rowHeight?: number,
   rowHighlightIndex?: number,
-  overrides?: OverridesT,
+  emptyMessage?: React.Node | RenderPropT,
 |};
-
-export type OverridesT = {
-  EmptyState?: OverrideT<{}>,
-};
 
 export type DataTablePropsT = {|
   ...StatefulDataTablePropsT,

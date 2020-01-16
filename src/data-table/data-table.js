@@ -19,8 +19,7 @@ import {
 import {useStyletron} from '../styles/index.js';
 import {Tooltip, PLACEMENT} from '../tooltip/index.js';
 
-import {getOverrides} from '../helpers/overrides.js';
-import {EmptyState as StyledEmptyState} from './styled-components.js';
+import {EmptyState} from './styled-components.js';
 
 import {COLUMNS, SORT_DIRECTIONS} from './constants.js';
 import HeaderCell from './header-cell.js';
@@ -31,7 +30,7 @@ import type {
   RowT,
   SortDirectionsT,
   RowActionT,
-  OverridesT,
+  RenderPropT,
 } from './types.js';
 import {LocaleContext} from '../locale/index.js';
 import type {LocaleT} from '../locale/types.js';
@@ -40,9 +39,9 @@ import type {LocaleT} from '../locale/types.js';
 const HEADER_ROW_HEIGHT = 48;
 
 type InnerTableElementProps = {|
+  emptyMessage?: React.Node | RenderPropT,
   children: React.Node,
   style: {[string]: mixed},
-  overrides?: OverridesT,
 |};
 
 type HeaderContextT = {|
@@ -508,13 +507,7 @@ const InnerTableElement = React.forwardRef<
   InnerTableElementProps,
   HTMLDivElement,
 >((props, ref) => {
-  const {overrides = {}} = props;
-
-  const {EmptyState: EmptyStateOverride} = overrides;
-  const [EmptyState, EmptyStateProps] = getOverrides(
-    EmptyStateOverride,
-    StyledEmptyState,
-  );
+  const {emptyMessage} = props;
 
   const [, theme] = useStyletron();
   const ctx = React.useContext(HeaderContext);
@@ -526,67 +519,72 @@ const InnerTableElement = React.forwardRef<
 
   return (
     <LocaleContext.Consumer>
-      {(locale: LocaleT) => (
-        <div ref={ref} data-baseweb="data-table" style={props.style}>
-          <Headers />
-          {React.Children.toArray(props.children).length <=
-          ctx.columns.length ? (
-            <EmptyState {...EmptyStateProps}>
-              {locale.datatable.emptyState}
-            </EmptyState>
+      {(locale: LocaleT) => {
+        const emptyMessageComponent: React.Node =
+          emptyMessage && typeof emptyMessage === 'function' ? (
+            emptyMessage()
           ) : (
-            props.children
-          )}
+            <EmptyState>
+              {emptyMessage || locale.datatable.emptyState}
+            </EmptyState>
+          );
+        return (
+          <div ref={ref} data-baseweb="data-table" style={props.style}>
+            <Headers />
+            {React.Children.toArray(props.children).length <= ctx.columns.length
+              ? emptyMessageComponent
+              : props.children}
 
-          {ctx.rowActions &&
-            Boolean(ctx.rowActions.length) &&
-            ctx.rowHighlightIndex > 0 &&
-            !ctx.isScrollingX && (
-              <div
-                style={{
-                  alignItems: 'center',
-                  backgroundColor: 'rgba(238, 238, 238, 0.99)',
-                  display: 'flex',
-                  height: `${ctx.rowHeight}px`,
-                  padding: '0 16px',
-                  paddingLeft: theme.sizing.scale300,
-                  paddingRight: theme.sizing.scale300,
-                  position: 'absolute',
-                  right: 0 - ctx.scrollLeft,
-                  top:
-                    (ctx.rowHighlightIndex - 1) * ctx.rowHeight +
-                    HEADER_ROW_HEIGHT,
-                }}
-              >
-                {ctx.rowActions.map(rowAction => {
-                  const RowActionIcon = rowAction.renderIcon;
-                  return (
-                    <Button
-                      alt={rowAction.label}
-                      key={rowAction.label}
-                      onClick={event =>
-                        rowAction.onClick({
-                          event,
-                          row: ctx.rows[ctx.rowHighlightIndex - 1],
-                        })
-                      }
-                      size={BUTTON_SIZES.compact}
-                      kind={BUTTON_KINDS.minimal}
-                      shape={BUTTON_SHAPES.round}
-                      overrides={{
-                        BaseButton: {
-                          style: {marginLeft: theme.sizing.scale300},
-                        },
-                      }}
-                    >
-                      <RowActionIcon size={24} />
-                    </Button>
-                  );
-                })}
-              </div>
-            )}
-        </div>
-      )}
+            {ctx.rowActions &&
+              Boolean(ctx.rowActions.length) &&
+              ctx.rowHighlightIndex > 0 &&
+              !ctx.isScrollingX && (
+                <div
+                  style={{
+                    alignItems: 'center',
+                    backgroundColor: 'rgba(238, 238, 238, 0.99)',
+                    display: 'flex',
+                    height: `${ctx.rowHeight}px`,
+                    padding: '0 16px',
+                    paddingLeft: theme.sizing.scale300,
+                    paddingRight: theme.sizing.scale300,
+                    position: 'absolute',
+                    right: 0 - ctx.scrollLeft,
+                    top:
+                      (ctx.rowHighlightIndex - 1) * ctx.rowHeight +
+                      HEADER_ROW_HEIGHT,
+                  }}
+                >
+                  {ctx.rowActions.map(rowAction => {
+                    const RowActionIcon = rowAction.renderIcon;
+                    return (
+                      <Button
+                        alt={rowAction.label}
+                        key={rowAction.label}
+                        onClick={event =>
+                          rowAction.onClick({
+                            event,
+                            row: ctx.rows[ctx.rowHighlightIndex - 1],
+                          })
+                        }
+                        size={BUTTON_SIZES.compact}
+                        kind={BUTTON_KINDS.minimal}
+                        shape={BUTTON_SHAPES.round}
+                        overrides={{
+                          BaseButton: {
+                            style: {marginLeft: theme.sizing.scale300},
+                          },
+                        }}
+                      >
+                        <RowActionIcon size={24} />
+                      </Button>
+                    );
+                  })}
+                </div>
+              )}
+          </div>
+        );
+      }}
     </LocaleContext.Consumer>
   );
 });
@@ -870,11 +868,11 @@ export function Unstable_DataTable(props: DataTablePropsT) {
   const WrappedInnerTableElement = React.useCallback(
     innerTableElementProps => (
       <InnerTableElement
-        overrides={props.overrides}
+        emptyMessage={props.emptyMessage}
         {...innerTableElementProps}
       />
     ),
-    [props.overrides],
+    [props.emptyMessage],
   );
 
   return (
