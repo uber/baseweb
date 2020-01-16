@@ -50,7 +50,9 @@ To get linting specific to your version of `baseui`, simply install the matching
 }
 ```
 
-We sync the the versions for each package so you shouldn't have to worry about it. 
+We sync the the versions for each package so you shouldn't have to worry about it.
+
+**ℹ️ Note that the first available version of this package is `9.41.0`.**
 
 ## Rules
 
