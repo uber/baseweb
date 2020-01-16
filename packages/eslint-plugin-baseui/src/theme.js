@@ -264,6 +264,38 @@ const deprecatedThemeProperties = {
 };
 
 function lintCreateTheme(context, node) {
+  // Is createTheme being imported from "baseui"?
+  let importSpecifier;
+
+  const program = context
+    .getAncestors(node)
+    .find(node => node.type === 'Program');
+  const importDeclaration = program.body.find(
+    node => node.type === 'ImportDeclaration' && node.source.value === 'baseui',
+  );
+
+  if (importDeclaration && importDeclaration.specifiers) {
+    importSpecifier = importDeclaration.specifiers.find(
+      specifier => specifier.imported.name === 'createTheme',
+    );
+  }
+
+  if (importSpecifier) {
+    // Is our current node an object property in an object
+    // passed as the second argument to createTheme?
+    if (
+      node.parent.type === 'Property' &&
+      node.parent.parent.type === 'ObjectExpression' &&
+      node.parent.parent.parent.type === 'CallExpression' &&
+      node.parent.parent.parent.arguments[1] &&
+      node.parent.parent.parent.arguments[1] === node.parent.parent &&
+      node.parent.parent.parent.callee.name === 'createTheme'
+    ) {
+      // Yes it is.
+      return true;
+    }
+  }
+
   // If we've reached here then we can't flag anything.
   return false;
 }

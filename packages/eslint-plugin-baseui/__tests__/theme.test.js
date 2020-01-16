@@ -78,6 +78,29 @@ const tests = {
         }
       `,
     },
+    {
+      code: `
+        // createTheme - not imported from baseui
+        function createTheme() {}
+        const theme = createTheme({}, { foreground: "#000" });
+      `,
+    },
+    {
+      code: `
+        // createTheme - not passing an object literal
+        import {createTheme} from "baseui"
+        const primitives = {};
+        const overrides = { foreground: "#000" };
+        const theme = createTheme(primitives, overrides);
+      `,
+    },
+    {
+      code: `
+        // createTheme - no overrides at all
+        import {createTheme} from "baseui"
+        const theme = createTheme(primitives);
+      `,
+    },
   ],
   invalid: [
     {
@@ -693,6 +716,27 @@ const tests = {
             <div className={css({ color: foo })}>{children}</div>
           )
         }
+      `,
+      errors: [
+        {
+          messageId: MESSAGES.replaceThemeProperty.id,
+          data: {
+            old: 'foreground',
+            new: 'contentPrimary',
+          },
+        },
+      ],
+    },
+    {
+      code: `
+        // createTheme - setting a deprecated property
+        import {createTheme} from "baseui";
+        const theme = createTheme({}, { foreground: "#000" });
+      `,
+      output: `
+        // createTheme - setting a deprecated property
+        import {createTheme} from "baseui";
+        const theme = createTheme({}, { contentPrimary: "#000" });
       `,
       errors: [
         {
