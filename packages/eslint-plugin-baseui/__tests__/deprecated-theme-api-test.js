@@ -774,6 +774,23 @@ const tests = {
         },
       ],
     },
+    {
+      code: `
+        // styled - property that does not have a replacement
+        styled('div', (props) => ({
+          color: props.$theme.colors.datepickerBackground,
+        }));
+      `,
+      output: null,
+      errors: [
+        {
+          messageId: MESSAGES.deprecateThemeProperty.id,
+          data: {
+            old: 'datepickerBackground',
+          },
+        },
+      ],
+    },
   ],
 };
 
