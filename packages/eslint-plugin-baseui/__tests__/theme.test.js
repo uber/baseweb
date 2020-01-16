@@ -23,21 +23,12 @@ const tests = {
   valid: [
     {
       code: `
-        // style function - renaming a valid property to one of our deprecated properties
-        styled('div', ({$theme: {colors: {foo: foreground}}}) => {
+        // TODO(should-fail)
+        // style function - destructure elsewhere in function
+        styled('div', ({$theme}) => {
+          const {colors} = $theme;
           return {
-            color: foreground,
-          };
-        });
-      `,
-    },
-    {
-      code: `
-        // style function - using deprecated property on another object
-        styled('div', props => {
-          const foo = something.foreground;
-          return {
-            color: props.$theme.colors.primary,
+            color: colors.foreground,
           };
         });
       `,
@@ -73,9 +64,53 @@ const tests = {
         function Foo({ children }) {
           const boo = useStyletron()
           return (
-            <div className={css({ color: boo[0].colors.contentPrimary })}>{children}</div>
+            <div className={css({ color: boo[0].colors.foreground })}>{children}</div>
           )
         }
+      `,
+    },
+    {
+      code: `
+        // TODO(should-fail)
+        // useStyletron - destructure elsewhere in function
+        function Foo({ children }) {
+          const [css, theme] = useStyletron()
+          const {colors} = theme;
+          return (
+            <div className={css({ color: colors.foreground })}>{children}</div>
+          )
+        }
+      `,
+    },
+    {
+      code: `
+        // TODO(should-fail)
+        // createTheme - not passing an object literal
+        import {createTheme} from "baseui"
+        const primitives = {};
+        const overrides = { foreground: "#000" };
+        const theme = createTheme(primitives, overrides);
+      `,
+    },
+    {
+      code: `
+        // style function - using deprecated property on another object
+        styled('div', props => {
+          const foo = something.foreground;
+          return {
+            color: props.$theme.colors.primary,
+          };
+        });
+      `,
+    },
+    {
+      code: `
+        // style function - renaming a valid property to one of our deprecated properties
+        styled('div', ({$theme: {colors: {foo: foreground}}}) => {
+          return {
+            color: foreground,
+          };
+        });
       `,
     },
     {
@@ -87,18 +122,9 @@ const tests = {
     },
     {
       code: `
-        // createTheme - not passing an object literal
-        import {createTheme} from "baseui"
-        const primitives = {};
-        const overrides = { foreground: "#000" };
-        const theme = createTheme(primitives, overrides);
-      `,
-    },
-    {
-      code: `
         // createTheme - no overrides at all
         import {createTheme} from "baseui"
-        const theme = createTheme(primitives);
+        const theme = createTheme();
       `,
     },
   ],
