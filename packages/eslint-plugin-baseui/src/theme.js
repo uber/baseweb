@@ -263,13 +263,19 @@ const deprecatedThemeProperties = {
   },
 };
 
-// This should handle the shared logic for validating a "style function"
-// passed to styled, withStyle, or an overrides style property.
-//   - Ex: styled('div', () => {})
-//   - Ex: withStyle(<Foo />, () => {})
-//   - Ex: <Foo overrides={{ Root: { style: () => {} }}} />
-// Return true if current node should be flagged, false otherwise.
+function lintCreateTheme(context, node) {
+  // If we've reached here then we can't flag anything.
+  return false;
+}
+
 function lintStyleFunction(context, node) {
+  // This should handle the shared logic for validating a "style function"
+  // passed to styled, withStyle, or an overrides style property.
+  //   - Ex: styled('div', () => {})
+  //   - Ex: withStyle(<Foo />, () => {})
+  //   - Ex: <Foo overrides={{ Root: { style: () => {} }}} />
+  // Return true if current node should be flagged, false otherwise.
+
   const ancestors = context.getAncestors();
   const scope = context.getScope();
   const themeProperty = deprecatedThemeProperties[node.name];
@@ -400,7 +406,7 @@ function lintStyleFunction(context, node) {
 
 function lintUseStyletron(context, node) {
   // Is there a useStyletron call in our current scope?
-  // Is the theme value returned from the call? Ex: const [css, theme] = useStyletron();
+  // Is the theme value captured from the call? Ex: const [css, theme] = useStyletron();
   //   - Is the theme value renamed? Ex: const [css, foo] = useStyletron();
   //   - Is the theme destructured? Ex: const [css, {colors}] = useStyletron();
   // Is the current node invoked in a way that uses the theme in scope?
@@ -567,6 +573,10 @@ module.exports = {
           }
 
           // Option 1. Is this node used in the overrides argument for createTheme?
+          if (lintCreateTheme(context, node)) {
+            context.report(reportOptions);
+            return;
+          }
 
           // Option 2. Is this node used in a "style function" passed to a style utility?
           if (lintStyleFunction(context, node)) {
