@@ -911,13 +911,13 @@ export function Unstable_DataTable(props: DataTablePropsT) {
               innerElementType={InnerTableElement}
               columnCount={props.columns.length}
               columnWidth={columnIndex => normalizedWidths[columnIndex]}
-              height={height}
+              height={height - 2}
               // plus one to account for additional header row
               rowCount={rows.length + 1}
               rowHeight={rowIndex =>
                 rowIndex === 0 ? HEADER_ROW_HEIGHT : rowHeight
               }
-              width={width}
+              width={width - 2}
               itemData={itemData}
               onScroll={handleScroll}
               style={{
