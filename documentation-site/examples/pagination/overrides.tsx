@@ -17,12 +17,12 @@ export default () => (
         }),
       },
       PrevButton: {
-        component: ({onClick}) => (
+        component: ({onClick}: any) => (
           <Button onClick={onClick}>Left</Button>
         ),
       },
       NextButton: {
-        component: ({onClick}) => (
+        component: ({onClick}: any) => (
           <Button onClick={onClick}>Right</Button>
         ),
       },
