@@ -38,17 +38,6 @@ export const component = () => {
     {id: 3, data: [3, false]},
     {id: 4, data: [4, false]},
     {id: 5, data: [5, false]},
-    {id: 6, data: [6, false]},
-    {id: 7, data: [7, false]},
-    {id: 8, data: [8, false]},
-    {id: 9, data: [9, false]},
-    {id: 10, data: [10, false]},
-    {id: 11, data: [11, false]},
-    {id: 12, data: [12, false]},
-    {id: 13, data: [13, false]},
-    {id: 14, data: [14, false]},
-    {id: 15, data: [15, false]},
-    {id: 16, data: [16, false]},
   ]);
 
   function flagRows(ids) {
