@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
+import type {OverrideT} from '../helpers/overrides.js';
 import {COLUMNS, SORT_DIRECTIONS} from './constants.js';
 
 export type SortDirectionsT =
@@ -82,6 +83,10 @@ export type StatefulDataTablePropsT = {|
   rowHighlightIndex?: number,
 |};
 
+export type OverridesT = {
+  EmptyState?: OverrideT<{}>,
+};
+
 export type DataTablePropsT = {|
   ...StatefulDataTablePropsT,
   filters?: Map<string, {description: string}>,
@@ -95,6 +100,7 @@ export type DataTablePropsT = {|
   sortIndex?: number,
   sortDirection?: SortDirectionsT,
   textQuery?: string,
+  overrides?: OverridesT,
 |};
 
 export type StatefulContainerPropsT = {|
