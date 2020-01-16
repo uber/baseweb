@@ -118,6 +118,8 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
         borderTop: 'none',
         borderBottom: 'none',
         borderLeft: 'none',
+        // do not render a border on cells in the right-most column
+        borderRight: columnIndex === data.columns.length - 1 ? 'none' : null,
         boxSizing: 'border-box',
       })}
       style={style}
@@ -459,6 +461,8 @@ function Headers(props: {||}) {
                   backgroundColor: theme.colors.mono100,
                   borderTop: 'none',
                   borderLeft: 'none',
+                  borderRight:
+                    columnIndex === ctx.columns.length - 1 ? 'none' : null,
                   boxSizing: 'border-box',
                   display: 'flex',
                 })}
@@ -616,10 +620,12 @@ export function Unstable_DataTable(props: DataTablePropsT) {
   );
   const normalizedWidths = React.useMemo(() => {
     const sum = ns => ns.reduce((s, n) => s + n, 0);
-    const resizedWidths = measuredWidths.map((w, i) => w + resizeDeltas[i]);
+    const resizedWidths = measuredWidths.map(
+      (w, i) => Math.floor(w) + Math.floor(resizeDeltas[i]),
+    );
     if (gridRef.current) {
       // $FlowFixMe
-      const domWidth = gridRef.current.props.width;
+      const domWidth = gridRef.current.props.width - 2;
       const measuredWidth = sum(resizedWidths);
       // $FlowFixMe
       const offsetWidth = gridRef.current._outerRef.offsetWidth;
@@ -629,9 +635,15 @@ export function Unstable_DataTable(props: DataTablePropsT) {
       const scrollbar = offsetWidth - clientWidth - 2;
 
       const remainder = domWidth - measuredWidth - scrollbar;
-      const padding = remainder / measuredWidths.length;
+      const padding = Math.floor(remainder / measuredWidths.length);
       if (padding > 0) {
-        return resizedWidths.map(w => Math.ceil(w + padding));
+        const result = [];
+        // -1 so that we loop over all but the last item
+        for (let i = 0; i < resizedWidths.length - 1; i++) {
+          result.push(resizedWidths[i] + padding);
+        }
+        result.push(domWidth - sum(result));
+        return result;
       }
     }
 
