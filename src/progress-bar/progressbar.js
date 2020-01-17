@@ -58,7 +58,7 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
         <Bar {...sharedProps} {...barProps}>
           <BarProgress {...sharedProps} {...barProgressProps} />
         </Bar>
-        {showLabel && !infinite && (
+        {showLabel && (
           <Label {...sharedProps} {...labelProps}>
             {getProgressLabel(value, successValue)}
           </Label>
