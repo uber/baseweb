@@ -6,6 +6,8 @@ import {
 } from 'baseui/tooltip';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
+import {Button} from 'baseui/button';
+import {Input} from 'baseui/input';
 
 const tooltipProps = require('!!extract-react-types-loader!../../../../src/popover/stateful-popover.js');
 
@@ -17,6 +19,8 @@ const TooltipConfig: TConfig = {
     'baseui/tooltip': {named: ['StatefulTooltip']},
   },
   scope: {
+    Button,
+    Input,
     StatefulTooltip,
     ACCESSIBILITY_TYPE,
     PLACEMENT,
