@@ -114,6 +114,15 @@ describe('menu-child', () => {
     await page.waitFor(childSelector);
   });
 
+  it('allows child menu to release focus and closes menu when different menu item selected', async () => {
+    await mount(page, 'menu-child');
+    await hoverItem(page, 0, 5);
+    await page.waitFor(childSelector);
+    await page.keyboard.press('ArrowLeft');
+    await page.keyboard.press('ArrowDown');
+    await page.waitFor(childSelector, {hidden: true});
+  });
+
   it('highlights child menu item on hover', async () => {
     await mount(page, 'menu-child');
     await hoverItem(page, 0, 5);

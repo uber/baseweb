@@ -156,6 +156,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     },
     Popover: {
       props: {
+        focusLock: false,
         placement: PLACEMENT.bottomLeft,
       },
     },

@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* global document */
 /* eslint-disable react/no-find-dom-node */
 import * as React from 'react';
+import FocusLock from 'react-focus-lock';
 
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 import getBuiId from '../utils/get-bui-id.js';
@@ -458,7 +459,17 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
               onPopperUpdate={this.onPopperUpdate}
               placement={this.state.placement}
             >
-              {this.renderPopover()}
+              {this.props.focusLock ? (
+                <FocusLock
+                  noFocusGuards={true}
+                  returnFocus={this.props.returnFocus}
+                  autoFocus={this.props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
+                >
+                  {this.renderPopover()}
+                </FocusLock>
+              ) : (
+                this.renderPopover()
+              )}
             </TetherBehavior>
           </Layer>,
         );
