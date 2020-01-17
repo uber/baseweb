@@ -8,11 +8,12 @@ LICENSE file in the root directory of this source tree.
 
 export const COLUMNS = Object.freeze({
   ANCHOR: 'ANCHOR',
-  CATEGORICAL: 'CATEGORICAL',
-  NUMERICAL: 'NUMERICAL',
   BOOLEAN: 'BOOLEAN',
-  STRING: 'STRING',
+  CATEGORICAL: 'CATEGORICAL',
   CUSTOM: 'CUSTOM',
+  DATETIME: 'DATETIME',
+  NUMERICAL: 'NUMERICAL',
+  STRING: 'STRING',
 });
 
 export const NUMERICAL_FORMATS = Object.freeze({

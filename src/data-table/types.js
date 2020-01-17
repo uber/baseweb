@@ -20,6 +20,7 @@ export type ColumnsT =
   | typeof COLUMNS.BOOLEAN
   | typeof COLUMNS.CATEGORICAL
   | typeof COLUMNS.CUSTOM
+  | typeof COLUMNS.DATETIME
   | typeof COLUMNS.NUMERICAL
   | typeof COLUMNS.STRING;
 
