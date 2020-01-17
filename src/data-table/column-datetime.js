@@ -135,7 +135,7 @@ function DatetimeColumn(options: OptionsT): DatetimeColumnT {
   };
 
   return {
-    kind: COLUMNS.NUMERICAL,
+    kind: COLUMNS.DATETIME,
     buildFilter: function(params) {
       return function(data) {
         const included = true;
