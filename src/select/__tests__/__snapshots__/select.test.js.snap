@@ -88,6 +88,7 @@ exports[`Select component renders component in search mode and false for multipl
       accessibilityType="menu"
       autoFocus={true}
       content={[Function]}
+      focusLock={false}
       ignoreBoundary={false}
       isOpen={false}
       onMouseEnterDelay={200}
@@ -919,6 +920,7 @@ exports[`Select component renders component in search mode and true for multiple
       accessibilityType="menu"
       autoFocus={true}
       content={[Function]}
+      focusLock={false}
       ignoreBoundary={false}
       isOpen={false}
       onMouseEnterDelay={200}
@@ -1750,6 +1752,7 @@ exports[`Select component renders component in select mode and false for multipl
       accessibilityType="menu"
       autoFocus={true}
       content={[Function]}
+      focusLock={false}
       ignoreBoundary={false}
       isOpen={false}
       onMouseEnterDelay={200}
@@ -2598,6 +2601,7 @@ exports[`Select component renders component in select mode and true for multiple
       accessibilityType="menu"
       autoFocus={true}
       content={[Function]}
+      focusLock={false}
       ignoreBoundary={false}
       isOpen={false}
       onMouseEnterDelay={200}

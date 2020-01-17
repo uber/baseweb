@@ -61,6 +61,9 @@ export type BasePopoverPropsT = {
    * See the A11Y section at the bottom of this document for more details.
    */
   accessibilityType?: AccessibilityTypeT,
+  /** If true, focus will be locked to elements within the popover.
+   */
+  focusLock?: boolean,
   /** If true, focus will shift to the first interactive element within the popover.
    * If false, the popover container itself will receive focus.
    * Moving focus into a newly opened popover is important for accessibility purposes, so please be careful!

@@ -459,13 +459,17 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
               onPopperUpdate={this.onPopperUpdate}
               placement={this.state.placement}
             >
-              <FocusLock
-                noFocusGuards={true}
-                returnFocus={this.props.returnFocus}
-                autoFocus={this.props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
-              >
-                {this.renderPopover()}
-              </FocusLock>
+              {this.props.focusLock ? (
+                <FocusLock
+                  noFocusGuards={true}
+                  returnFocus={this.props.returnFocus}
+                  autoFocus={this.props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
+                >
+                  {this.renderPopover()}
+                </FocusLock>
+              ) : (
+                this.renderPopover()
+              )}
             </TetherBehavior>
           </Layer>,
         );

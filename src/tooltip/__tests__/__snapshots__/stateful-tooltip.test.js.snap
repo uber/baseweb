@@ -5,6 +5,7 @@ exports[`StatefulTooltip basic render: renders <StatefulContainer/> 1`] = `
   accessibilityType="tooltip"
   autoFocus={true}
   content={[MockFunction]}
+  focusLock={true}
   initialState={
     Object {
       "isOpen": true,
@@ -35,6 +36,7 @@ exports[`StatefulTooltip basic render: renders <Tooltip/> 1`] = `
   accessibilityType="tooltip"
   autoFocus={true}
   content={[Function]}
+  focusLock={true}
   ignoreBoundary={false}
   isOpen={true}
   onBlur={[Function]}

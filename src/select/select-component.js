@@ -930,6 +930,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
               if (!ref) return;
               this.anchor = ref.anchorRef;
             }}
+            focusLock={false}
             mountNode={this.props.mountNode}
             isOpen={isOpen}
             content={() => {

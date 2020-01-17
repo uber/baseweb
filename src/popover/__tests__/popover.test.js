@@ -199,7 +199,7 @@ describe('Popover', () => {
     // Show the popover
     wrapper.setProps({isOpen: true});
 
-    let popoverBody = wrapper.find('Body[data-baseweb="popover"]');
+    let popoverBody = wrapper.find('[data-baseweb="popover"]').first();
     popoverBody.simulate('mouseleave');
     expect(onMouseLeave).not.toBeCalled();
     jest.runAllTimers();

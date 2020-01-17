@@ -86,6 +86,11 @@ const PopoverConfig: TConfig = {
       description:
         'If true, an arrow will be shown pointing from the popover to the trigger element.',
     },
+    focusLock: {
+      value: true,
+      type: PropTypes.Boolean,
+      description: 'If true, focus will be locked to the popover contents.',
+    },
     returnFocus: {
       value: true,
       type: PropTypes.Boolean,

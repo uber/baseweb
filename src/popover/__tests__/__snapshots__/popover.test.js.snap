@@ -9,6 +9,7 @@ exports[`Popover component as anchor 1`] = `
       Hello world
     </strong>
   }
+  focusLock={true}
   ignoreBoundary={false}
   isOpen={true}
   onClick={[MockFunction]}
@@ -206,7 +207,7 @@ exports[`Popover component as anchor 1`] = `
             onBlur={[Function]}
             onFocus={[Function]}
           >
-            <Body
+            <ForwardRef
               $arrowOffset={
                 Object {
                   "left": 0,
@@ -289,7 +290,7 @@ exports[`Popover component as anchor 1`] = `
                     }
                   }
                 >
-                  <Inner
+                  <ForwardRef
                     $arrowOffset={
                       Object {
                         "left": 0,
@@ -346,10 +347,10 @@ exports[`Popover component as anchor 1`] = `
                         </strong>
                       </div>
                     </MockStyledComponent>
-                  </Inner>
+                  </ForwardRef>
                 </div>
               </MockStyledComponent>
-            </Body>
+            </ForwardRef>
           </div>
         </ForwardRef>
       </ForwardRef>
