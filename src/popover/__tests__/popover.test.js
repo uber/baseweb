@@ -176,6 +176,7 @@ describe('Popover', () => {
     wrapper = mount(
       <Popover
         content={content}
+        returnFocus={false}
         isOpen={false}
         triggerType="hover"
         onClick={onClickPopover}
@@ -199,7 +200,11 @@ describe('Popover', () => {
     wrapper.setProps({isOpen: true});
 
     // Portal should have the popover body and content
-    let popoverBody = wrapper.childAt(1).childAt(0);
+    let popoverBody = wrapper
+      .childAt(1)
+      .childAt(0)
+      .childAt(1)
+      .childAt(0);
     popoverBody.simulate('mouseleave');
     expect(onMouseLeave).not.toBeCalled();
     jest.runAllTimers();
@@ -224,10 +229,12 @@ describe('Popover', () => {
 
     const calls = document.addEventListener.mock.calls;
     expect(document.addEventListener).toBeCalled();
-    expect(calls[0][0]).toBe('mousedown');
-    expect(calls[1][0]).toBe('keyup');
+    expect(calls[0][0]).toBe('focusin');
+    expect(calls[1][0]).toBe('focusout');
+    expect(calls[2][0]).toBe('mousedown');
+    expect(calls[3][0]).toBe('keyup');
 
-    calls[1][1]({
+    calls[3][1]({
       key: 'Escape',
       code: 27,
       keyCode: 27,

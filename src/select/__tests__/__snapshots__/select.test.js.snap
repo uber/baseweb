@@ -86,6 +86,7 @@ exports[`Select component renders component in search mode and false for multipl
   >
     <Popover
       accessibilityType="menu"
+      autoFocus={true}
       content={[Function]}
       ignoreBoundary={false}
       isOpen={false}
@@ -93,6 +94,7 @@ exports[`Select component renders component in search mode and false for multipl
       onMouseLeaveDelay={200}
       overrides={Object {}}
       placement="bottom"
+      returnFocus={true}
       showArrow={false}
       triggerType="click"
     >
@@ -915,6 +917,7 @@ exports[`Select component renders component in search mode and true for multiple
   >
     <Popover
       accessibilityType="menu"
+      autoFocus={true}
       content={[Function]}
       ignoreBoundary={false}
       isOpen={false}
@@ -922,6 +925,7 @@ exports[`Select component renders component in search mode and true for multiple
       onMouseLeaveDelay={200}
       overrides={Object {}}
       placement="bottom"
+      returnFocus={true}
       showArrow={false}
       triggerType="click"
     >
@@ -1744,6 +1748,7 @@ exports[`Select component renders component in select mode and false for multipl
   >
     <Popover
       accessibilityType="menu"
+      autoFocus={true}
       content={[Function]}
       ignoreBoundary={false}
       isOpen={false}
@@ -1751,6 +1756,7 @@ exports[`Select component renders component in select mode and false for multipl
       onMouseLeaveDelay={200}
       overrides={Object {}}
       placement="bottom"
+      returnFocus={true}
       showArrow={false}
       triggerType="click"
     >
@@ -2590,6 +2596,7 @@ exports[`Select component renders component in select mode and true for multiple
   >
     <Popover
       accessibilityType="menu"
+      autoFocus={true}
       content={[Function]}
       ignoreBoundary={false}
       isOpen={false}
@@ -2597,6 +2604,7 @@ exports[`Select component renders component in select mode and true for multiple
       onMouseLeaveDelay={200}
       overrides={Object {}}
       placement="bottom"
+      returnFocus={true}
       showArrow={false}
       triggerType="click"
     >

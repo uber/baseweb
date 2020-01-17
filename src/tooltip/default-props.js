@@ -10,6 +10,8 @@ import type {BaseTooltipPropsT} from './types.js';
 
 const baseDefaultProps: $Shape<BaseTooltipPropsT> = {
   accessibilityType: ACCESSIBILITY_TYPE.tooltip,
+  autoFocus: true,
+  returnFocus: true,
   onMouseEnterDelay: 200,
   onMouseLeaveDelay: 200,
   overrides: {},
