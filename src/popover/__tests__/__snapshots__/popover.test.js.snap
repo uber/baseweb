@@ -54,159 +54,159 @@ exports[`Popover component as anchor 1`] = `
       />
     </MockStyledComponent>
   </CustomComponent>
-  <ForwardRef
-    autoFocus={true}
-    noFocusGuards={true}
-    returnFocus={true}
+  <mockConstructor
+    key="new-layer"
+    onMount={[Function]}
+    onUnmount={[Function]}
   >
-    <ForwardRef
-      as="div"
-      autoFocus={true}
-      disabled={false}
-      lockProps={Object {}}
-      noFocusGuards={true}
-      persistentFocus={false}
-      returnFocus={true}
-      sideCar={[Function]}
-    >
-      <SideEffect(FocusWatcher)
-        autoFocus={true}
-        disabled={false}
-        id={Object {}}
-        observed={
-          <div
-            data-focus-lock-disabled="false"
-          >
-            <div
-              data-baseweb="popover"
-              id="bui-mock-id"
-              styled-component="true"
-              test-style="[object Object]"
-            >
-              <div
-                styled-component="true"
-                test-style="[object Object]"
-              >
-                <strong>
-                  Hello world
-                </strong>
-              </div>
-            </div>
-          </div>
-        }
-        onActivation={[Function]}
-        onDeactivation={[Function]}
-        persistentFocus={false}
-        returnFocus={[Function]}
-        shards={Array []}
-        sideCar={
-          Object {
-            "assignMedium": [Function],
-            "assignSyncMedium": [Function],
-            "options": Object {
-              "async": true,
-              "ssr": false,
+    <mockConstructor
+      anchorRef={
+        <span
+          aria-controls="bui-mock-id"
+          aria-expanded="true"
+          aria-haspopup="true"
+          styled-component="true"
+          test-style="[object Object]"
+        />
+      }
+      arrowRef={null}
+      onPopperUpdate={[Function]}
+      placement="auto"
+      popperOptions={
+        Object {
+          "modifiers": Object {
+            "preventOverflow": Object {
+              "enabled": true,
             },
-            "read": [Function],
-            "useMedium": [Function],
-          }
+          },
         }
+      }
+      popperRef={
+        <div
+          data-baseweb="popover"
+          id="bui-mock-id"
+          styled-component="true"
+          test-style="[object Object]"
+        >
+          <div
+            styled-component="true"
+            test-style="[object Object]"
+          >
+            <strong>
+              Hello world
+            </strong>
+          </div>
+        </div>
+      }
+    >
+      <ForwardRef
+        autoFocus={true}
+        noFocusGuards={true}
+        returnFocus={true}
       >
-        <FocusWatcher
+        <ForwardRef
+          as="div"
           autoFocus={true}
           disabled={false}
-          id={Object {}}
-          observed={
-            <div
-              data-focus-lock-disabled="false"
-            >
+          lockProps={Object {}}
+          noFocusGuards={true}
+          persistentFocus={false}
+          returnFocus={true}
+          sideCar={[Function]}
+        >
+          <SideEffect(FocusWatcher)
+            autoFocus={true}
+            disabled={false}
+            id={Object {}}
+            observed={
               <div
-                data-baseweb="popover"
-                id="bui-mock-id"
-                styled-component="true"
-                test-style="[object Object]"
+                data-focus-lock-disabled="false"
               >
                 <div
+                  data-baseweb="popover"
+                  id="bui-mock-id"
                   styled-component="true"
                   test-style="[object Object]"
                 >
-                  <strong>
-                    Hello world
-                  </strong>
+                  <div
+                    styled-component="true"
+                    test-style="[object Object]"
+                  >
+                    <strong>
+                      Hello world
+                    </strong>
+                  </div>
                 </div>
               </div>
-            </div>
-          }
-          onActivation={[Function]}
-          onDeactivation={[Function]}
-          persistentFocus={false}
-          returnFocus={[Function]}
-          shards={Array []}
-          sideCar={
-            Object {
-              "assignMedium": [Function],
-              "assignSyncMedium": [Function],
-              "options": Object {
-                "async": true,
-                "ssr": false,
-              },
-              "read": [Function],
-              "useMedium": [Function],
             }
-          }
-        />
-      </SideEffect(FocusWatcher)>
-      <div
-        data-focus-lock-disabled={false}
-        onBlur={[Function]}
-        onFocus={[Function]}
-      >
-        <mockConstructor
-          key="new-layer"
-          onMount={[Function]}
-          onUnmount={[Function]}
-        >
-          <mockConstructor
-            anchorRef={
-              <span
-                aria-controls="bui-mock-id"
-                aria-expanded="true"
-                aria-haspopup="true"
-                styled-component="true"
-                test-style="[object Object]"
-              />
-            }
-            arrowRef={null}
-            onPopperUpdate={[Function]}
-            placement="auto"
-            popperOptions={
+            onActivation={[Function]}
+            onDeactivation={[Function]}
+            persistentFocus={false}
+            returnFocus={[Function]}
+            shards={Array []}
+            sideCar={
               Object {
-                "modifiers": Object {
-                  "preventOverflow": Object {
-                    "enabled": true,
-                  },
+                "assignMedium": [Function],
+                "assignSyncMedium": [Function],
+                "options": Object {
+                  "async": true,
+                  "ssr": false,
                 },
+                "read": [Function],
+                "useMedium": [Function],
               }
             }
-            popperRef={
-              <div
-                data-baseweb="popover"
-                id="bui-mock-id"
-                styled-component="true"
-                test-style="[object Object]"
-              >
-                <div
-                  styled-component="true"
-                  test-style="[object Object]"
-                >
-                  <strong>
-                    Hello world
-                  </strong>
-                </div>
-              </div>
-            }
           >
-            <ForwardRef
+            <FocusWatcher
+              autoFocus={true}
+              disabled={false}
+              id={Object {}}
+              observed={
+                <div
+                  data-focus-lock-disabled="false"
+                >
+                  <div
+                    data-baseweb="popover"
+                    id="bui-mock-id"
+                    styled-component="true"
+                    test-style="[object Object]"
+                  >
+                    <div
+                      styled-component="true"
+                      test-style="[object Object]"
+                    >
+                      <strong>
+                        Hello world
+                      </strong>
+                    </div>
+                  </div>
+                </div>
+              }
+              onActivation={[Function]}
+              onDeactivation={[Function]}
+              persistentFocus={false}
+              returnFocus={[Function]}
+              shards={Array []}
+              sideCar={
+                Object {
+                  "assignMedium": [Function],
+                  "assignSyncMedium": [Function],
+                  "options": Object {
+                    "async": true,
+                    "ssr": false,
+                  },
+                  "read": [Function],
+                  "useMedium": [Function],
+                }
+              }
+            />
+          </SideEffect(FocusWatcher)>
+          <div
+            data-focus-lock-disabled={false}
+            onBlur={[Function]}
+            onFocus={[Function]}
+          >
+            <Body
               $arrowOffset={
                 Object {
                   "left": 0,
@@ -289,7 +289,7 @@ exports[`Popover component as anchor 1`] = `
                     }
                   }
                 >
-                  <ForwardRef
+                  <Inner
                     $arrowOffset={
                       Object {
                         "left": 0,
@@ -346,15 +346,15 @@ exports[`Popover component as anchor 1`] = `
                         </strong>
                       </div>
                     </MockStyledComponent>
-                  </ForwardRef>
+                  </Inner>
                 </div>
               </MockStyledComponent>
-            </ForwardRef>
-          </mockConstructor>
-        </mockConstructor>
-      </div>
-    </ForwardRef>
-  </ForwardRef>
+            </Body>
+          </div>
+        </ForwardRef>
+      </ForwardRef>
+    </mockConstructor>
+  </mockConstructor>
 </Popover>
 `;
 

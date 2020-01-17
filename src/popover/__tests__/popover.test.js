@@ -199,12 +199,7 @@ describe('Popover', () => {
     // Show the popover
     wrapper.setProps({isOpen: true});
 
-    // Portal should have the popover body and content
-    let popoverBody = wrapper
-      .childAt(1)
-      .childAt(0)
-      .childAt(1)
-      .childAt(0);
+    let popoverBody = wrapper.find('Body[data-baseweb="popover"]');
     popoverBody.simulate('mouseleave');
     expect(onMouseLeave).not.toBeCalled();
     jest.runAllTimers();

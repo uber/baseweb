@@ -440,34 +440,34 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     if (__BROWSER__) {
       if (this.state.isMounted && this.props.isOpen) {
         rendered.push(
-          <FocusLock
-            noFocusGuards={true}
-            returnFocus={this.props.returnFocus}
-            autoFocus={this.props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
+          <Layer
+            key={'new-layer'}
+            mountNode={this.props.mountNode}
+            onMount={() => this.setState({isLayerMounted: true})}
+            onUnmount={() => this.setState({isLayerMounted: false})}
           >
-            <Layer
-              key={'new-layer'}
-              mountNode={this.props.mountNode}
-              onMount={() => this.setState({isLayerMounted: true})}
-              onUnmount={() => this.setState({isLayerMounted: false})}
+            <TetherBehavior
+              anchorRef={this.anchorRef.current}
+              arrowRef={this.arrowRef.current}
+              popperRef={this.popperRef.current}
+              // Remove the `ignoreBoundary` prop in the next major version
+              // and have it replaced with the TetherBehavior props overrides
+              popperOptions={{
+                ...defaultPopperOptions,
+                ...this.props.popperOptions,
+              }}
+              onPopperUpdate={this.onPopperUpdate}
+              placement={this.state.placement}
             >
-              <TetherBehavior
-                anchorRef={this.anchorRef.current}
-                arrowRef={this.arrowRef.current}
-                popperRef={this.popperRef.current}
-                // Remove the `ignoreBoundary` prop in the next major version
-                // and have it replaced with the TetherBehavior props overrides
-                popperOptions={{
-                  ...defaultPopperOptions,
-                  ...this.props.popperOptions,
-                }}
-                onPopperUpdate={this.onPopperUpdate}
-                placement={this.state.placement}
+              <FocusLock
+                noFocusGuards={true}
+                returnFocus={this.props.returnFocus}
+                autoFocus={this.props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
               >
                 {this.renderPopover()}
-              </TetherBehavior>
-            </Layer>
-          </FocusLock>,
+              </FocusLock>
+            </TetherBehavior>
+          </Layer>,
         );
       }
     }

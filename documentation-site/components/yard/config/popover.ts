@@ -29,10 +29,11 @@ const PopoverConfig: TConfig = {
   theme: [],
   props: {
     content: {
-      value: `
-        () => <div>Hello, there! 👋
-          <Input placeholder="Focusable Element" />
-        </div>
+      value: `() => (
+  <div>Hello, there! 👋
+    <Input placeholder="Focusable Element" />
+  </div>
+)
       `,
       type: PropTypes.Function,
       description: `The content of the popover.`,
