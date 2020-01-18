@@ -118,6 +118,8 @@ export type CalendarInternalState = {
 export type CalendarPropsT = {
   /** Defines if the calendar is set to be focused on an initial render. */
   autoFocusCalendar?: boolean,
+  /** Should we update the "display from here" date of the calendar when date selected? For multiple month calendar views, having this set to true will adjust the calendar so that the selected date will be the first month rendered */
+  autoAdvanceCalendar?: boolean,
   /** A list of dates to disable. */
   excludeDates?: ?Array<Date>,
   /** Display select for quickly choosing date ranges. `range` must be true as well. */

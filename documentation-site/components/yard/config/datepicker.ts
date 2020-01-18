@@ -66,10 +66,17 @@ const DatepickerConfig: TConfig = {
       },
     },
     autoFocusCalendar: {
-      value: undefined,
-      type: PropTypes.Function,
+      value: false,
+      type: PropTypes.Boolean,
       description:
         'Defines if the calendar is set to be focused on an initial render.',
+      hidden: true,
+    },
+    autoAdvanceCalendar: {
+      value: true,
+      type: PropTypes.Boolean,
+      description:
+        'Defines if a multi-month calendar should shift so that the first selected date appears in the first month',
       hidden: true,
     },
     excludeDates: {

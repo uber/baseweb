@@ -60,6 +60,7 @@ export default class Calendar extends React.Component<
 > {
   static defaultProps = {
     autoFocusCalendar: false,
+    autoAdvanceCalendar: true,
     excludeDates: null,
     filterDate: null,
     highlightedDate: null,
@@ -119,10 +120,12 @@ export default class Calendar extends React.Component<
       this.focusCalendar();
     }
 
-    if (prevProps.value !== this.props.value) {
-      this.setState({
-        date: this.getDateInView(),
-      });
+    if (this.props.autoAdvanceCalendar) {
+      if (prevProps.value !== this.props.value) {
+        this.setState({
+          date: this.getDateInView(),
+        });
+      }
     }
   }
 
