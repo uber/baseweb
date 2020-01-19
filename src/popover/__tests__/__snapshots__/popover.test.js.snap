@@ -3,11 +3,13 @@
 exports[`Popover component as anchor 1`] = `
 <Popover
   accessibilityType="menu"
+  autoFocus={true}
   content={
     <strong>
       Hello world
     </strong>
   }
+  focusLock={true}
   ignoreBoundary={false}
   isOpen={true}
   onClick={[MockFunction]}
@@ -15,6 +17,7 @@ exports[`Popover component as anchor 1`] = `
   onMouseLeaveDelay={200}
   overrides={Object {}}
   placement="auto"
+  returnFocus={true}
   showArrow={false}
   triggerType="click"
 >
@@ -98,87 +101,111 @@ exports[`Popover component as anchor 1`] = `
       }
     >
       <ForwardRef
-        $arrowOffset={
-          Object {
-            "left": 0,
-            "top": 0,
-          }
-        }
-        $isAnimating={false}
-        $isOpen={true}
-        $placement="auto"
-        $popoverOffset={
-          Object {
-            "left": 0,
-            "top": 0,
-          }
-        }
-        $showArrow={false}
-        data-baseweb="popover"
-        id="bui-mock-id"
-        key="popover-body"
+        autoFocus={true}
+        noFocusGuards={true}
+        returnFocus={true}
       >
-        <MockStyledComponent
-          $arrowOffset={
-            Object {
-              "left": 0,
-              "top": 0,
-            }
-          }
-          $isAnimating={false}
-          $isOpen={true}
-          $placement="auto"
-          $popoverOffset={
-            Object {
-              "left": 0,
-              "top": 0,
-            }
-          }
-          $showArrow={false}
-          data-baseweb="popover"
-          forwardedRef={
-            Object {
-              "current": <div
-                data-baseweb="popover"
-                id="bui-mock-id"
-                styled-component="true"
-                test-style="[object Object]"
+        <ForwardRef
+          as="div"
+          autoFocus={true}
+          disabled={false}
+          lockProps={Object {}}
+          noFocusGuards={true}
+          persistentFocus={false}
+          returnFocus={true}
+          sideCar={[Function]}
+        >
+          <SideEffect(FocusWatcher)
+            autoFocus={true}
+            disabled={false}
+            id={Object {}}
+            observed={
+              <div
+                data-focus-lock-disabled="false"
               >
                 <div
+                  data-baseweb="popover"
+                  id="bui-mock-id"
                   styled-component="true"
                   test-style="[object Object]"
                 >
-                  <strong>
-                    Hello world
-                  </strong>
+                  <div
+                    styled-component="true"
+                    test-style="[object Object]"
+                  >
+                    <strong>
+                      Hello world
+                    </strong>
+                  </div>
                 </div>
-              </div>,
+              </div>
             }
-          }
-          id="bui-mock-id"
-        >
-          <div
-            data-baseweb="popover"
-            id="bui-mock-id"
-            styled-component="true"
-            test-style={
+            onActivation={[Function]}
+            onDeactivation={[Function]}
+            persistentFocus={false}
+            returnFocus={[Function]}
+            shards={Array []}
+            sideCar={
               Object {
-                "backgroundColor": "$theme.colors.backgroundPrimary",
-                "borderBottomLeftRadius": "$theme.borders.popoverBorderRadius",
-                "borderBottomRightRadius": "$theme.borders.popoverBorderRadius",
-                "borderTopLeftRadius": "$theme.borders.popoverBorderRadius",
-                "borderTopRightRadius": "$theme.borders.popoverBorderRadius",
-                "boxShadow": "$theme.lighting.shadow600",
-                "left": 0,
-                "opacity": 0,
-                "position": "absolute",
-                "top": 0,
-                "transform": "translate3d(-16px, 0px, 0)",
-                "transitionDuration": "0s",
-                "transitionProperty": "opacity,transform",
-                "transitionTimingFunction": "$theme.animation.easeOutCurve",
+                "assignMedium": [Function],
+                "assignSyncMedium": [Function],
+                "options": Object {
+                  "async": true,
+                  "ssr": false,
+                },
+                "read": [Function],
+                "useMedium": [Function],
               }
             }
+          >
+            <FocusWatcher
+              autoFocus={true}
+              disabled={false}
+              id={Object {}}
+              observed={
+                <div
+                  data-focus-lock-disabled="false"
+                >
+                  <div
+                    data-baseweb="popover"
+                    id="bui-mock-id"
+                    styled-component="true"
+                    test-style="[object Object]"
+                  >
+                    <div
+                      styled-component="true"
+                      test-style="[object Object]"
+                    >
+                      <strong>
+                        Hello world
+                      </strong>
+                    </div>
+                  </div>
+                </div>
+              }
+              onActivation={[Function]}
+              onDeactivation={[Function]}
+              persistentFocus={false}
+              returnFocus={[Function]}
+              shards={Array []}
+              sideCar={
+                Object {
+                  "assignMedium": [Function],
+                  "assignSyncMedium": [Function],
+                  "options": Object {
+                    "async": true,
+                    "ssr": false,
+                  },
+                  "read": [Function],
+                  "useMedium": [Function],
+                }
+              }
+            />
+          </SideEffect(FocusWatcher)>
+          <div
+            data-focus-lock-disabled={false}
+            onBlur={[Function]}
+            onFocus={[Function]}
           >
             <ForwardRef
               $arrowOffset={
@@ -197,7 +224,9 @@ exports[`Popover component as anchor 1`] = `
                 }
               }
               $showArrow={false}
-              key="popover-inner"
+              data-baseweb="popover"
+              id="bui-mock-id"
+              key="popover-body"
             >
               <MockStyledComponent
                 $arrowOffset={
@@ -216,9 +245,31 @@ exports[`Popover component as anchor 1`] = `
                   }
                 }
                 $showArrow={false}
-                forwardedRef={null}
+                data-baseweb="popover"
+                forwardedRef={
+                  Object {
+                    "current": <div
+                      data-baseweb="popover"
+                      id="bui-mock-id"
+                      styled-component="true"
+                      test-style="[object Object]"
+                    >
+                      <div
+                        styled-component="true"
+                        test-style="[object Object]"
+                      >
+                        <strong>
+                          Hello world
+                        </strong>
+                      </div>
+                    </div>,
+                  }
+                }
+                id="bui-mock-id"
               >
                 <div
+                  data-baseweb="popover"
+                  id="bui-mock-id"
                   styled-component="true"
                   test-style={
                     Object {
@@ -227,19 +278,81 @@ exports[`Popover component as anchor 1`] = `
                       "borderBottomRightRadius": "$theme.borders.popoverBorderRadius",
                       "borderTopLeftRadius": "$theme.borders.popoverBorderRadius",
                       "borderTopRightRadius": "$theme.borders.popoverBorderRadius",
-                      "color": "$theme.colors.contentPrimary",
-                      "position": "relative",
+                      "boxShadow": "$theme.lighting.shadow600",
+                      "left": 0,
+                      "opacity": 0,
+                      "position": "absolute",
+                      "top": 0,
+                      "transform": "translate3d(-16px, 0px, 0)",
+                      "transitionDuration": "0s",
+                      "transitionProperty": "opacity,transform",
+                      "transitionTimingFunction": "$theme.animation.easeOutCurve",
                     }
                   }
                 >
-                  <strong>
-                    Hello world
-                  </strong>
+                  <ForwardRef
+                    $arrowOffset={
+                      Object {
+                        "left": 0,
+                        "top": 0,
+                      }
+                    }
+                    $isAnimating={false}
+                    $isOpen={true}
+                    $placement="auto"
+                    $popoverOffset={
+                      Object {
+                        "left": 0,
+                        "top": 0,
+                      }
+                    }
+                    $showArrow={false}
+                    key="popover-inner"
+                  >
+                    <MockStyledComponent
+                      $arrowOffset={
+                        Object {
+                          "left": 0,
+                          "top": 0,
+                        }
+                      }
+                      $isAnimating={false}
+                      $isOpen={true}
+                      $placement="auto"
+                      $popoverOffset={
+                        Object {
+                          "left": 0,
+                          "top": 0,
+                        }
+                      }
+                      $showArrow={false}
+                      forwardedRef={null}
+                    >
+                      <div
+                        styled-component="true"
+                        test-style={
+                          Object {
+                            "backgroundColor": "$theme.colors.backgroundPrimary",
+                            "borderBottomLeftRadius": "$theme.borders.popoverBorderRadius",
+                            "borderBottomRightRadius": "$theme.borders.popoverBorderRadius",
+                            "borderTopLeftRadius": "$theme.borders.popoverBorderRadius",
+                            "borderTopRightRadius": "$theme.borders.popoverBorderRadius",
+                            "color": "$theme.colors.contentPrimary",
+                            "position": "relative",
+                          }
+                        }
+                      >
+                        <strong>
+                          Hello world
+                        </strong>
+                      </div>
+                    </MockStyledComponent>
+                  </ForwardRef>
                 </div>
               </MockStyledComponent>
             </ForwardRef>
           </div>
-        </MockStyledComponent>
+        </ForwardRef>
       </ForwardRef>
     </mockConstructor>
   </mockConstructor>

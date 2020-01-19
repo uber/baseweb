@@ -82,7 +82,7 @@ export const component = () => {
 
   return (
     <div>
-      <div style={{height: '800px', width: '900px'}}>
+      <div style={{height: '400px', width: '900px'}}>
         <Unstable_StatefulDataTable
           batchActions={actions}
           columns={columns}

@@ -5,6 +5,8 @@ import {
   PLACEMENT,
   TRIGGER_TYPE,
 } from 'baseui/popover';
+import {Button} from 'baseui/button';
+import {Input} from 'baseui/input';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
@@ -17,6 +19,8 @@ const PopoverConfig: TConfig = {
     'baseui/popover': {named: ['StatefulPopover']},
   },
   scope: {
+    Button,
+    Input,
     StatefulPopover,
     ACCESSIBILITY_TYPE,
     PLACEMENT,
@@ -25,14 +29,29 @@ const PopoverConfig: TConfig = {
   theme: [],
   props: {
     content: {
-      value: `() => 'Hello, there! 👋'`,
+      value: `() => (
+  <div>Hello, there! 👋
+    <Input placeholder="Focusable Element" />
+  </div>
+)
+      `,
       type: PropTypes.Function,
       description: `The content of the popover.`,
+      imports: {
+        'baseui/input': {
+          named: ['Input'],
+        },
+      },
     },
     children: {
-      value: `Click me`,
+      value: `<Button>Click me</Button>`,
       type: PropTypes.ReactNode,
       description: `The content that will trigger the popover.`,
+      imports: {
+        'baseui/button': {
+          named: ['Button'],
+        },
+      },
     },
     placement: {
       value: 'PLACEMENT.auto',
@@ -66,6 +85,24 @@ const PopoverConfig: TConfig = {
       type: PropTypes.Boolean,
       description:
         'If true, an arrow will be shown pointing from the popover to the trigger element.',
+    },
+    focusLock: {
+      value: true,
+      type: PropTypes.Boolean,
+      description: 'If true, focus will be locked to the popover contents.',
+    },
+    returnFocus: {
+      value: true,
+      type: PropTypes.Boolean,
+      description:
+        'If true, focus will shift back to the original element after popover closes. Set this to false if focusing the original element triggers the popover.',
+    },
+    autoFocus: {
+      value: true,
+      type: PropTypes.Boolean,
+      description:
+        'If true, focus will shift to the first interactive element within the popover.',
+      hidden: true,
     },
     accessibilityType: {
       value: 'ACCESSIBILITY_TYPE.menu',

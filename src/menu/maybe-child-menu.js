@@ -31,6 +31,7 @@ export default function MaybeChildMenu(props: PropsT) {
 
   return (
     <Popover
+      focusLock={false}
       isOpen={props.isOpen}
       content={ChildMenu}
       ignoreBoundary
