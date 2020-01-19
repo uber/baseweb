@@ -36,6 +36,8 @@ export type GridPropsT = {
   gridMargins?: ResponsiveT<number>,
   /** Maximum width of the grid container. Does not include Margins. Only applies when `behavior` is `fluid`. */
   gridMaxWidth?: number,
+  /** alternative css units support*/
+  unit?: string,
 };
 
 export type StyledGridPropsT = {
@@ -49,6 +51,8 @@ export type StyledGridPropsT = {
   $gridMargins?: ResponsiveT<number>,
   /** Maximum width of the grid container. Does not include Margins. Only applies when `behavior` is `fluid`. */
   $gridMaxWidth?: number,
+  /** Alternate css units for grid layout, by default it px */
+  $unit?: string,
 };
 
 export type CellPropsT = {
@@ -79,4 +83,5 @@ export type StyledCellPropsT = {
   $skip?: ResponsiveT<number>,
   /** Control number of columns the cell should span. */
   $span?: ResponsiveT<number>,
+  $unit?: string,
 };

@@ -19,6 +19,7 @@ export default function Grid({
   gridGutters,
   gridMargins,
   gridMaxWidth,
+  unit,
 }: GridPropsT) {
   return (
     <StyledGrid
@@ -27,6 +28,7 @@ export default function Grid({
       $gridGutters={gridGutters}
       $gridMaxWidth={gridMaxWidth}
       $align={align}
+      $unit={unit}
     >
       {React.Children.map(children, child => (
         <StyledCell

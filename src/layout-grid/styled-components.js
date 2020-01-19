@@ -14,28 +14,32 @@ import type {ResponsiveT, StyledGridPropsT, StyledCellPropsT} from './types.js';
 export const StyledGrid = styled<StyledGridPropsT>(
   'div',
   ({
+    $theme,
     $align = null,
     $behavior = BEHAVIOR.fixed,
-    $gridGutters = null,
-    $gridMargins = null,
-    $gridMaxWidth = null,
-    $theme,
+    $gridGutters = $theme.grid.gutters,
+    $gridMargins = $theme.grid.margins,
+    $gridMaxWidth = $theme.grid.maxWidth,
+    $unit = $theme.grid.unit,
   }) => {
     const mediaQueries = getMediaQueries($theme.breakpoints);
-    const gridGutters = $gridGutters || $theme.grid.gutters;
-    const gridMargins = $gridMargins || $theme.grid.margins;
-    const gridMaxWidth = $gridMaxWidth || $theme.grid.maxWidth;
+    const gridGutters = $gridGutters;
+    const gridMargins = $gridMargins;
+    const unit = $unit;
+    const gridMaxWidth = $gridMaxWidth;
     const gridStyles = mediaQueries.reduce(
       (acc, cur, idx) => {
+        console.log('grid Margins=>', gridMargins);
+        console.log('grid Gutters=>', gridGutters);
         return {
           ...acc,
           [cur]: {
             paddingLeft: `${getResponsiveNumber(gridMargins, idx) -
               getResponsiveNumber(gridGutters, idx) / 2 -
-              0.5}px`,
+              0.5}${unit}`,
             paddingRight: `${getResponsiveNumber(gridMargins, idx) -
               getResponsiveNumber(gridGutters, idx) / 2 -
-              0.5}px`,
+              0.5}${unit}`,
             alignItems: getResponsiveValue($align, idx),
           },
         };
@@ -43,10 +47,10 @@ export const StyledGrid = styled<StyledGridPropsT>(
       {
         paddingLeft: `${getResponsiveNumber(gridMargins, 0) -
           getResponsiveNumber(gridGutters, 0) / 2 -
-          0.5}px`,
+          0.5}${unit}`,
         paddingRight: `${getResponsiveNumber(gridMargins, 0) -
           getResponsiveNumber(gridGutters, 0) / 2 -
-          0.5}px`,
+          0.5}${unit}`,
         alignItems: getResponsiveValue($align, 0),
       },
     );
@@ -60,7 +64,7 @@ export const StyledGrid = styled<StyledGridPropsT>(
         $behavior === BEHAVIOR.fixed
           ? `${gridMaxWidth +
               2 * getResponsiveNumber(gridMargins, Infinity) -
-              1}px`
+              1}${unit}`
           : null,
       ...gridStyles,
     };
@@ -83,6 +87,7 @@ export const StyledCell = styled<StyledCellPropsT>(
     const gridColumns = $gridColumns || $theme.grid.columns;
     const gridGaps = $gridGaps || $theme.grid.gaps;
     const gridGutters = $gridGutters || $theme.grid.gutters;
+    const unit = $theme.grid.unit;
     const cellStyles = mediaQueries.reduce(
       (acc, cur, idx) => {
         if (getResponsiveNumber($span, idx) === 0) {
@@ -112,9 +117,9 @@ export const StyledCell = styled<StyledCellPropsT>(
                 getResponsiveNumber($skip, idx),
                 getResponsiveNumber(gridColumns, idx) - 1,
               )}%`,
-            paddingLeft: getResponsiveNumber(gridGutters, idx) / 2 + 'px',
-            paddingRight: getResponsiveNumber(gridGutters, idx) / 2 + 'px',
-            marginBottom: getResponsiveNumber(gridGaps, idx) + 'px',
+            paddingLeft: `${getResponsiveNumber(gridGutters, idx) / 2}${unit}`,
+            paddingRight: `${getResponsiveNumber(gridGutters, idx) / 2}${unit}`,
+            marginBottom: `${getResponsiveNumber(gridGaps, idx)}${unit}`,
             alignSelf: getResponsiveValue($align, idx),
             order: getResponsiveNumber($order, idx),
           },
@@ -122,9 +127,9 @@ export const StyledCell = styled<StyledCellPropsT>(
       },
       {
         width: '100%',
-        paddingLeft: getResponsiveNumber(gridGutters, 0) / 2 + 'px',
-        paddingRight: getResponsiveNumber(gridGutters, 0) / 2 + 'px',
-        marginBottom: getResponsiveNumber(gridGaps, 0) + 'px',
+        paddingLeft: `${getResponsiveNumber(gridGutters, 0) / 2}${unit}`,
+        paddingRight: `${getResponsiveNumber(gridGutters, 0) / 2}${unit}`,
+        marginBottom: `${getResponsiveNumber(gridGaps, 0)}${unit}`,
         alignSelf: getResponsiveValue($align, 0),
         order: getResponsiveNumber($order, 0),
       },
