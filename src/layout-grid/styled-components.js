@@ -29,8 +29,6 @@ export const StyledGrid = styled<StyledGridPropsT>(
     const gridMaxWidth = $gridMaxWidth;
     const gridStyles = mediaQueries.reduce(
       (acc, cur, idx) => {
-        console.log('grid Margins=>', gridMargins);
-        console.log('grid Gutters=>', gridGutters);
         return {
           ...acc,
           [cur]: {
