@@ -33,6 +33,11 @@ top/left, bottom/right, bottom/center, bottom/left. Toasts are intended to provi
 and self-dismiss after a short time with an option to self-dismiss. Each toast can be colored to fit
 it’s status type of neutral, positive, warning and alert.
 
+**Using the `toaster` utility:**
+
+Toasts can be created easily with some of the helper functions on `toaster`, as seen in the code sample above. If a key isn't provided, it will auto-generate a unique key for you which will be returned in the instantiation functions (`info, positive, warning, negative`).
+If a toast with an identical key already exists, that toast's contents will be updated instead of a new toast being created. The autoHide timeout will only reset if `autoHideDuration` value has changed.
+
 ## Accessibility
 
 - Toast notification container element has `role="alert"` set on it.

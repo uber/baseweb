@@ -54,12 +54,21 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     this.startTimeout();
   }
 
+  componentDidUpdate(prevProps: ToastPropsT) {
+    if (this.props.autoHideDuration !== prevProps.autoHideDuration) {
+      this.startTimeout();
+    }
+  }
+
   componentWillUnmount() {
     this.clearTimeout();
   }
 
   startTimeout() {
     if (this.props.autoHideDuration) {
+      if (this.autoHideTimeout) {
+        clearTimeout(this.autoHideTimeout);
+      }
       this.autoHideTimeout = setTimeout(
         this.dismiss,
         this.props.autoHideDuration,

@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import {KIND, PLACEMENT} from './constants.js';
 import {
@@ -17,6 +16,7 @@ import {
   InnerContainer as StyledInnerContainer,
 } from './styled-components.js';
 import Toast from './toast.js';
+import {Layer} from '../layer/index.js';
 import type {
   ToasterPropsT,
   ToastPropsShapeT,
@@ -56,17 +56,39 @@ export class ToasterContainer extends React.Component<
     this.setState({isMounted: true});
   }
 
-  getToastProps = (props: ToastPropsT): ToastPropsShapeT & {key: React.Key} => {
+  updateToastsMutationWithCount = (
+    toasts: Array<ToastPropsT>,
+    key: React.Key,
+    props: ToastPropsT & {key: React.Key},
+  ): number => {
+    if (!key) return 0;
+    let updated = 0;
+    toasts.forEach((t, index, arr) => {
+      if (t.key === key) {
+        arr[index] = {...t, ...this.getToastProps(props), key};
+        updated += 1;
+      }
+    });
+    return updated;
+  };
+
+  getToastProps = (props: ToastPropsT): ToastPropsT & {key: React.Key} => {
     const {autoHideDuration} = this.props;
     const key: React.Key = props.key || `toast-${this.toastId++}`;
-    // $FlowFixMe
     return {autoHideDuration, ...props, key};
   };
 
   show = (props: ToastPropsT = {}): React.Key => {
     const toastProps = this.getToastProps(props);
     this.setState(({toasts}) => {
-      toasts.push(toastProps);
+      const toastsUpdated = this.updateToastsMutationWithCount(
+        toasts,
+        toastProps.key,
+        toastProps,
+      );
+      if (!toastsUpdated) {
+        toasts.push(toastProps);
+      }
       return {toasts};
     });
     return toastProps.key;
@@ -74,11 +96,7 @@ export class ToasterContainer extends React.Component<
 
   update = (key: React.Key, props: ToastPropsT): void => {
     this.setState(({toasts}) => {
-      toasts.forEach((t, index, arr) => {
-        if (t.key === key) {
-          arr[index] = {...t, ...this.getToastProps(props), key};
-        }
-      });
+      this.updateToastsMutationWithCount(toasts, key, props);
       return {
         toasts,
       };
@@ -178,7 +196,6 @@ export class ToasterContainer extends React.Component<
     // to the oldest at the end
     // eslint-disable-next-line for-direction
     for (let i = toastsLength - 1; i >= 0; i--) {
-      // $FlowFixMe
       toastsToRender.push(this.renderToast(this.state.toasts[i]));
     }
 
@@ -193,12 +210,7 @@ export class ToasterContainer extends React.Component<
         if (__BROWSER__) {
           return (
             <>
-              {ReactDOM.createPortal(
-                root,
-                // $FlowFixMe
-                document.body,
-              )}
-              {this.props.children}
+              <Layer key={'toast-layer'}>{root}</Layer>,{this.props.children}
             </>
           );
         }

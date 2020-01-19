@@ -91,5 +91,5 @@ export type ToasterPropsT = {
 };
 export type ToasterContainerStateT = {
   isMounted: boolean,
-  toasts: Array<ToastPropsShapeT>,
+  toasts: Array<ToastPropsT>,
 };
