@@ -32,17 +32,21 @@ function OptionList(props: OptionListPropsT, ref: React.ElementRef<*>) {
     overrides.ListItem,
     StyledListItem,
   );
+  const [ListItemAnchor, listItemAnchorProps] = getOverrides(
+    overrides.ListItemAnchor,
+    StyledListItemAnchor,
+  );
+
   const getItem = item => {
-    return (
-      <>
-        {!item.href && getItemLabel(item)}
-        {item.href && (
-          <StyledListItemAnchor href={item.href} target="_blank">
-            {getItemLabel(item)}
-          </StyledListItemAnchor>
-        )}
-      </>
-    );
+    if (item.href) {
+      return (
+        <ListItemAnchor href={item.href} {...listItemAnchorProps}>
+          {getItemLabel(item)}
+        </ListItemAnchor>
+      );
+    } else {
+      return <>{getItemLabel(item)}</>;
+    }
   };
 
   return (
