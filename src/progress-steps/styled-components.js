@@ -132,17 +132,12 @@ export const StyledContentTail = styled<StylePropsT>(
       position: 'absolute',
       [$theme.direction === 'rtl' ? 'right' : 'left']: '7px',
       top: 0,
-      height: '100%',
-      paddingBottom: 0,
+      height: `calc(100% + ${$theme.sizing.scale500})`,
+      marginBottom: 0,
       width: $theme.sizing.scale0,
-      paddingTop: $isActive ? $theme.sizing.scale700 : $theme.sizing.scale600,
-      ':after': {
-        content: '""',
-        display: 'inline-block',
-        height: `calc(100% + ${$theme.sizing.scale500})`,
-        width: '100%',
-        backgroundColor: currentColor,
-      },
+      marginTop: $isActive ? $theme.sizing.scale700 : $theme.sizing.scale600,
+      display: 'inline-block',
+      backgroundColor: currentColor,
     };
   },
 );
