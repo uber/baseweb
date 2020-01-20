@@ -176,6 +176,7 @@ describe('Popover', () => {
     wrapper = mount(
       <Popover
         content={content}
+        returnFocus={false}
         isOpen={false}
         triggerType="hover"
         onClick={onClickPopover}
@@ -198,8 +199,7 @@ describe('Popover', () => {
     // Show the popover
     wrapper.setProps({isOpen: true});
 
-    // Portal should have the popover body and content
-    let popoverBody = wrapper.childAt(1).childAt(0);
+    let popoverBody = wrapper.find('[data-baseweb="popover"]').first();
     popoverBody.simulate('mouseleave');
     expect(onMouseLeave).not.toBeCalled();
     jest.runAllTimers();
@@ -209,6 +209,47 @@ describe('Popover', () => {
     renderedButton.simulate('click');
     expect(onClickButton).toBeCalled();
     expect(onClickPopover).not.toBeCalled();
+  });
+
+  test('autoFocus and returnFocus', () => {
+    const buttonId = 'foo';
+    const firstInputId = 'bar';
+    const FocusMe = React.forwardRef(() => {
+      const el = React.useRef(null);
+      React.useEffect(() => {
+        el.current && el.current.focus();
+      });
+      return (
+        <button id={buttonId} ref={el} type="button">
+          Click me
+        </button>
+      );
+    });
+    const content = (
+      <div>
+        <input id={firstInputId} />
+        <input id="baz" />
+      </div>
+    );
+    wrapper = mount(
+      <Popover content={content} isOpen={false}>
+        <FocusMe />
+      </Popover>,
+    );
+
+    // Show the popover
+    wrapper.simulate('click');
+    wrapper.setProps({isOpen: true});
+
+    // focused element (document.activeElement) should be the first input
+    expect(document.activeElement).not.toBeNull();
+    expect((document.activeElement: any).id).toEqual(firstInputId);
+
+    wrapper.setProps({isOpen: false});
+
+    // focused element (document.activeElement) should return to button
+    expect(document.activeElement).not.toBeNull();
+    expect((document.activeElement: any).id).toEqual(buttonId);
   });
 
   test('dismissOnEsc', () => {
@@ -224,10 +265,12 @@ describe('Popover', () => {
 
     const calls = document.addEventListener.mock.calls;
     expect(document.addEventListener).toBeCalled();
-    expect(calls[0][0]).toBe('mousedown');
-    expect(calls[1][0]).toBe('keyup');
+    expect(calls[0][0]).toBe('focusin');
+    expect(calls[1][0]).toBe('focusout');
+    expect(calls[2][0]).toBe('mousedown');
+    expect(calls[3][0]).toBe('keyup');
 
-    calls[1][1]({
+    calls[3][1]({
       key: 'Escape',
       code: 27,
       keyCode: 27,
