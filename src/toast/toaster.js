@@ -36,6 +36,7 @@ export class ToasterContainer extends React.Component<
     usePortal: true,
     overrides: {},
     autoHideDuration: 0,
+    resetAutoHideTimerOnUpdate: true,
   };
 
   constructor(props: ToasterPropsT) {
@@ -56,22 +57,6 @@ export class ToasterContainer extends React.Component<
     this.setState({isMounted: true});
   }
 
-  updateToastsMutationWithCount = (
-    toasts: Array<ToastPropsT>,
-    key: React.Key,
-    props: ToastPropsT & {key: React.Key},
-  ): number => {
-    if (!key) return 0;
-    let updated = 0;
-    toasts.forEach((t, index, arr) => {
-      if (t.key === key) {
-        arr[index] = {...t, ...this.getToastProps(props), key};
-        updated += 1;
-      }
-    });
-    return updated;
-  };
-
   getToastProps = (props: ToastPropsT): ToastPropsT & {key: React.Key} => {
     const {autoHideDuration} = this.props;
     const key: React.Key = props.key || `toast-${this.toastId++}`;
@@ -79,26 +64,35 @@ export class ToasterContainer extends React.Component<
   };
 
   show = (props: ToastPropsT = {}): React.Key => {
+    if (this.state.toasts.map(t => t.key).includes(props.key)) {
+      this.update(props.key, props);
+      return props.key;
+    }
     const toastProps = this.getToastProps(props);
     this.setState(({toasts}) => {
-      const toastsUpdated = this.updateToastsMutationWithCount(
-        toasts,
-        toastProps.key,
-        toastProps,
-      );
-      if (!toastsUpdated) {
-        toasts.push(toastProps);
-      }
-      return {toasts};
+      return {toasts: [...toasts, toastProps]};
     });
     return toastProps.key;
   };
 
   update = (key: React.Key, props: ToastPropsT): void => {
     this.setState(({toasts}) => {
-      this.updateToastsMutationWithCount(toasts, key, props);
+      const updatedToasts = toasts.map(toast => {
+        if (toast.key === key) {
+          const updatedToastProps = {
+            ...toast,
+            ...this.getToastProps(props),
+            key,
+            ...(this.props.resetAutoHideTimerOnUpdate
+              ? {__updated: (parseInt(toast.__updated) || 0) + 1}
+              : {}),
+          };
+          return updatedToastProps;
+        }
+        return toast;
+      });
       return {
-        toasts,
+        toasts: updatedToasts,
       };
     });
   };
@@ -210,7 +204,8 @@ export class ToasterContainer extends React.Component<
         if (__BROWSER__) {
           return (
             <>
-              <Layer key={'toast-layer'}>{root}</Layer>,{this.props.children}
+              <Layer key={'toast-layer'}>{root}</Layer>
+              {this.props.children}
             </>
           );
         }

@@ -1,5 +1,5 @@
 import {toaster, ToasterContainer, PLACEMENT} from 'baseui/toast';
-import {Button, SIZE, KIND} from 'baseui/button';
+import {Button, SIZE} from 'baseui/button';
 import {Block} from 'baseui/block';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
@@ -14,7 +14,7 @@ const toastConfig: TConfig = {
       named: ['toaster', 'ToasterContainer'],
     },
     'baseui/button': {
-      named: ['Button', 'SIZE', 'KIND'],
+      named: ['Button', 'SIZE'],
     },
     'baseui/block': {
       named: ['Block'],
@@ -26,7 +26,6 @@ const toastConfig: TConfig = {
     PLACEMENT,
     Button,
     SIZE,
-    KIND,
     Block,
   },
   theme: [
@@ -50,53 +49,28 @@ const toastConfig: TConfig = {
       },
     },
     children: {
-      value: `<>
-          <Button onClick={()=>{
-            let toastKey;
-            const msg = 'Use toaster.info(), toaster.positive(), toaster.warning(), or toaster.negative()';
-            const ok = (
-              <Block marginTop="15px" display="flex" justifyContent="center">
-                <Button size={SIZE.compact} onClick={()=>toaster.clear(toastKey)}>Ok</Button>
-              </Block>
-            );
-            const showMore = (<Block marginTop="15px" display="flex" justifyContent="center">
-              <Button size={SIZE.compact} onClick={()=>toaster.update(
-                toastKey,
-                {children: (<>{msg} to show different notification type. {ok}</>)}
-              )}>Show more</Button>
-            </Block>);
-            toastKey = toaster.info((<>{msg}{showMore}</>), {
-              onClose: ()=>console.log('Toast closed.'),
-              overrides: {InnerContainer: {style: {width: '100%'}}}});
-          }}
-          >
-            Show notification
-          </Button>
-          <Button
-            kind={KIND.secondary}
-            onClick={()=>{
-              let toastKey;
-              const msg = 'Use toaster.info(), toaster.positive(), toaster.warning(), or toaster.negative()';
-              const ok = (
-                <Block marginTop="15px" display="flex" justifyContent="center">
-                  <Button size={SIZE.compact} onClick={()=>toaster.clear(toastKey)}>Ok</Button>
-                </Block>
-              );
-              const showMore = (<Block marginTop="15px" display="flex" justifyContent="center">
-                <Button size={SIZE.compact} onClick={()=>toaster.update(
-                  toastKey,
-                  {children: (<>{msg} to show different notification type. {ok}</>)}
-                )}>Show more</Button>
-              </Block>);
-              toastKey = toaster.info((<>{msg}{showMore}</>), {
-                key: 'same-key',
-                onClose: ()=>console.log('Toast closed.'),
-                overrides: {InnerContainer: {style: {width: '100%'}}}});
-            }}
-          >
-            Show same-key notification
-          </Button>
-        </>
+      value: `
+        <Button onClick={()=>{
+          let toastKey;
+          const msg = 'Use toaster.info(), toaster.positive(), toaster.warning(), or toaster.negative()';
+          const ok = (
+            <Block marginTop="15px" display="flex" justifyContent="center">
+              <Button size={SIZE.compact} onClick={()=>toaster.clear(toastKey)}>Ok</Button>
+            </Block>
+          );
+          const showMore = (<Block marginTop="15px" display="flex" justifyContent="center">
+            <Button size={SIZE.compact} onClick={()=>toaster.update(
+              toastKey,
+              {children: (<>{msg} to show different notification type. {ok}</>)}
+            )}>Show more</Button>
+          </Block>);
+          toastKey = toaster.info((<>{msg}{showMore}</>), {
+            onClose: ()=>console.log('Toast closed.'),
+            overrides: {InnerContainer: {style: {width: '100%'}}}});
+        }}
+        >
+          Show notification
+        </Button>
       `,
       type: PropTypes.ReactNode,
       description: `Additional elements to render in the place where the ToasterContainer is added.
@@ -109,6 +83,13 @@ const toastConfig: TConfig = {
       type: PropTypes.Number,
       description: `The number of milliseconds to wait before automatically dismissing a
         notification. This behavior is disabled when the value is set to 0.`,
+    },
+    resetAutoHideTimerOnUpdate: {
+      value: true,
+      defaultValue: true,
+      type: PropTypes.Boolean,
+      description: `If true, the autohide timer on a toast will reset when updated by triggering a toast with the same key`,
+      hidden: true,
     },
     usePortal: {
       value: true,

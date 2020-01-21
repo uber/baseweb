@@ -45,6 +45,11 @@ export type ToastPrivateStateT = {
 };
 
 export type ToastPropsT = {
+  /** This is a private property to detect manual changes to a toast
+   *  i.e. calling toaster.info() with the same key twice
+   *  currently the change detection is used to reset the autohide timer
+   */
+  __updated?: number,
   /** The number of milliseconds to wait before automatically dismissing a
    * notification. This behavior is disabled when the value is set to 0.*/
   autoHideDuration: number,
@@ -88,6 +93,8 @@ export type ToasterPropsT = {
   /** The number of milliseconds to wait before automatically dismissing a
    * notification. This behavior is disabled when the value is set to 0.*/
   autoHideDuration: number,
+  /** When updating a toast, should we reset the autohide timer */
+  resetAutoHideTimerOnUpdate?: boolean,
 };
 export type ToasterContainerStateT = {
   isMounted: boolean,
