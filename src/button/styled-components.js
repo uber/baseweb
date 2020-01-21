@@ -155,6 +155,8 @@ function getBorderRadiiStyles({$theme, $size, $shape}) {
 
 function getFontStyles({$theme, $size}) {
   switch ($size) {
+    case SIZE.mini:
+      return $theme.typography.font150;
     case SIZE.compact:
       return $theme.typography.font250;
     case SIZE.large:
@@ -167,37 +169,48 @@ function getFontStyles({$theme, $size}) {
 function getPaddingStyles({$theme, $size, $shape}) {
   const iconShape = $shape === SHAPE.square || $shape === SHAPE.round;
   switch ($size) {
-    case SIZE.compact:
+    case SIZE.mini:
       return {
-        paddingTop: $theme.sizing.scale300,
-        paddingBottom: $theme.sizing.scale300,
+        paddingTop: $theme.sizing.scale200,
+        paddingBottom: $theme.sizing.scale200,
         paddingLeft: iconShape
           ? $theme.sizing.scale200
-          : $theme.sizing.scale500,
+          : $theme.sizing.scale300,
         paddingRight: iconShape
           ? $theme.sizing.scale200
+          : $theme.sizing.scale300,
+      };
+    case SIZE.compact:
+      return {
+        paddingTop: $theme.sizing.scale400,
+        paddingBottom: $theme.sizing.scale400,
+        paddingLeft: iconShape
+          ? $theme.sizing.scale400
+          : $theme.sizing.scale500,
+        paddingRight: iconShape
+          ? $theme.sizing.scale400
           : $theme.sizing.scale500,
       };
     case SIZE.large:
+      return {
+        paddingTop: $theme.sizing.scale600,
+        paddingBottom: $theme.sizing.scale600,
+        paddingLeft: iconShape
+          ? $theme.sizing.scale600
+          : $theme.sizing.scale700,
+        paddingRight: iconShape
+          ? $theme.sizing.scale600
+          : $theme.sizing.scale700,
+      };
+    default:
       return {
         paddingTop: $theme.sizing.scale550,
         paddingBottom: $theme.sizing.scale550,
         paddingLeft: iconShape
           ? $theme.sizing.scale550
-          : $theme.sizing.scale700,
-        paddingRight: iconShape
-          ? $theme.sizing.scale550
-          : $theme.sizing.scale700,
-      };
-    default:
-      return {
-        paddingTop: $theme.sizing.scale500,
-        paddingBottom: $theme.sizing.scale500,
-        paddingLeft: iconShape
-          ? $theme.sizing.scale500
           : $theme.sizing.scale600,
         paddingRight: iconShape
-          ? $theme.sizing.scale500
+          ? $theme.sizing.scale550
           : $theme.sizing.scale600,
       };
   }

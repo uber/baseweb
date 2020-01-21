@@ -55,6 +55,9 @@ function Card(props: CardsPropsT) {
   const Thumbnail = getOverride(ThumbnailOverride) || StyledThumbnail;
   const Title = getOverride(TitleOverride) || StyledTitle;
 
+  const headerImageProps =
+    typeof headerImage === 'string' ? {src: headerImage} : headerImage;
+
   const $hasThumbnail = hasThumbnail(props);
   return (
     <Root
@@ -64,7 +67,7 @@ function Card(props: CardsPropsT) {
     >
       {headerImage && (
         <HeaderImage
-          src={headerImage}
+          {...headerImageProps}
           {...getOverrideProps(HeaderImageOverride)}
         />
       )}

@@ -24,6 +24,7 @@ export const StyledInputOverrideRoot = withStyle<
   {$size: SizeT},
 >(StyledInputRoot, ({$size = SIZE.default}) => {
   const width = {
+    [SIZE.mini]: '32px',
     [SIZE.compact]: '36px',
     [SIZE.default]: '48px',
     [SIZE.large]: '56px',

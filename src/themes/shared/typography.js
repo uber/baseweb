@@ -24,7 +24,7 @@ export default (themePrimitives: FontTokensT = fontTokens): TypographyT => {
     fontFamily: themePrimitives.primaryFontFamily,
     fontSize: '12px',
     fontWeight: 500,
-    lineHeight: '20px',
+    lineHeight: '16px',
   };
   const font200 = {
     fontFamily: themePrimitives.primaryFontFamily,
@@ -36,7 +36,7 @@ export default (themePrimitives: FontTokensT = fontTokens): TypographyT => {
     fontFamily: themePrimitives.primaryFontFamily,
     fontSize: '14px',
     fontWeight: 500,
-    lineHeight: '20px',
+    lineHeight: '16px',
   };
   const font300 = {
     fontFamily: themePrimitives.primaryFontFamily,
@@ -48,7 +48,7 @@ export default (themePrimitives: FontTokensT = fontTokens): TypographyT => {
     fontFamily: themePrimitives.primaryFontFamily,
     fontSize: '16px',
     fontWeight: 500,
-    lineHeight: '24px',
+    lineHeight: '20px',
   };
   const font400 = {
     fontFamily: themePrimitives.primaryFontFamily,
@@ -60,7 +60,7 @@ export default (themePrimitives: FontTokensT = fontTokens): TypographyT => {
     fontFamily: themePrimitives.primaryFontFamily,
     fontSize: '18px',
     fontWeight: 500,
-    lineHeight: '28px',
+    lineHeight: '24px',
   };
   const font550 = {
     fontFamily: themePrimitives.primaryFontFamily,

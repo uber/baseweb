@@ -11,7 +11,7 @@ page: Contributing
 
 ```bash
 git clone git@github.com:uber/baseweb.git
-cd baseui
+cd baseweb
 yarn
 ```
 

@@ -15,6 +15,12 @@ export const name = 'input-sizes';
 export const component = () => (
   <>
     <StatefulInput
+      size={SIZE.mini}
+      initialState={{value: 'Mini'}}
+      endEnhancer=".com"
+    />
+    <br />
+    <StatefulInput
       size={SIZE.compact}
       initialState={{value: 'Compact'}}
       endEnhancer=".com"

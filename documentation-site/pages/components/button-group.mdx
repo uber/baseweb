@@ -27,6 +27,7 @@ import * as ButtonGroupExports from 'baseui/button-group';
 
 import Yard from '../../components/yard/index';
 import buttonGroupYardConfig from '../../components/yard/config/button-group';
+import ApiTable from '../../components/api-table';
 
 <SEO
   description="The Button Group component groups a collection of similar actions together."
@@ -107,6 +108,12 @@ As with many of our components, there is also an [uncontrolled](https://reactjs.
 </Example>
 
 ## API
+
+<ApiTable
+  title="ButtonGroup props"
+  config={buttonGroupYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/button-group/button-group.js')}
+/>
 
 <Exports
   component={ButtonGroupExports}

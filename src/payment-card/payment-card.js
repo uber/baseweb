@@ -91,6 +91,7 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
 
     const getBeforeComponent = theme => {
       const iconSize = {
+        [SIZE.mini]: theme.sizing.scale600,
         [SIZE.compact]: theme.sizing.scale800,
         [SIZE.default]: theme.sizing.scale900,
         [SIZE.large]: theme.sizing.scale1000,
