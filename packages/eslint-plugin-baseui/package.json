@@ -4,8 +4,7 @@
   "description": "ESLint rules for Base Web",
   "main": "index.js",
   "scripts": {
-    "test": "yarn jest",
-    "bump": "node ./bump.js"
+    "test": "yarn jest"
   },
   "license": "MIT",
   "author": "Graham Murdoch <murdoch@uber.com>",

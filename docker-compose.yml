@@ -77,3 +77,4 @@ services:
       - NPM_TOKEN
       - NETLIFY_AUTH_TOKEN
       - NETLIFY_SITE_ID
+      - AZURE_TOKEN
