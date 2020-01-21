@@ -427,14 +427,8 @@ describe('toaster', () => {
     });
 
     test('toasts with the same key should extend autohide duration from ToastContainer', () => {
-      // The testing strategy is to instantiate ToasterContainer with autoHideDuration=100
-      // Then call the 4 different toaster regularly
-      // Then call 1 toaster.negative with an overriding autoHideDuration=3500
+      // open two toasts with the samae key, but different children
       //
-      // Expected outcome:
-      // Initially, there should be a total of 5 Toasts
-      // After jest timers get advanced by 1000, there should be 1 Toast remaining
-      // After jest timers get advanced by 3000, there should be 0 Toast remaining
       const toastSameKey = 'same-key';
 
       toaster.info('toast', {
@@ -445,7 +439,7 @@ describe('toaster', () => {
       });
 
       // verify all toasts rendered
-      jest.advanceTimersByTime(500);
+      jest.advanceTimersByTime(100);
       wrapper.update();
       expect(wrapper.find(Toast).length).toEqual(1);
       // verify oldest toasts are rendered last in the tree
@@ -454,20 +448,21 @@ describe('toaster', () => {
           .find(Toast)
           .last()
           .render()
-          .innerText(),
-      ).toBe('toast2');
+          .text(),
+      ).toEqual(expect.stringContaining('toast2'));
+      jest.advanceTimersByTime(75);
 
       // this should reset the auto hide timer
       toaster.info('toast3', {
         key: toastSameKey,
       });
 
-      jest.advanceTimersByTime(500);
+      jest.advanceTimersByTime(75);
 
       // verify there's one remaining toast rendered
       wrapper.update();
       expect(wrapper.find(Toast).length).toEqual(1);
-      jest.advanceTimersByTime(500);
+      jest.advanceTimersByTime(1000);
 
       wrapper.update();
       expect(wrapper.find(Toast).length).toEqual(0);

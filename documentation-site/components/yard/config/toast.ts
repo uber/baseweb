@@ -49,8 +49,7 @@ const toastConfig: TConfig = {
       },
     },
     children: {
-      value: `
-        <Button onClick={()=>{
+      value: `<Button onClick={()=>{
           let toastKey;
           const msg = 'Use toaster.info(), toaster.positive(), toaster.warning(), or toaster.negative()';
           const ok = (
