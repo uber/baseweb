@@ -1,6 +1,6 @@
 {
   "name": "baseui",
-  "version": "9.37.1",
+  "version": "9.44.0",
   "description": "A React Component library implementing the Base design language",
   "keywords": [
     "react",
@@ -178,6 +178,7 @@
     "tar": "^5.0.0",
     "typescript": "^3.5.3",
     "universal-cookie": "^4.0.2",
+    "vsce": "^1.71.0",
     "webpack": "^4.17.1",
     "webpack-bundle-analyzer": "^3.5.0",
     "webpack-cli": "^3.1.0"
@@ -195,7 +196,7 @@
     "react-is": "^16.8.6",
     "react-movable": "^2.4.0",
     "react-multi-ref": "^1.0.0",
-    "react-range": "^1.4.4",
+    "react-range": "^1.4.8",
     "react-virtualized": "^9.21.1",
     "react-virtualized-auto-sizer": "^1.0.2",
     "react-window": "^1.8.5",

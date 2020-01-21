@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 import accordion from '../accordion/locale.js';
 import breadcrumbs from '../breadcrumbs/locale.js';
 import datepicker from '../datepicker/locale.js';
+import datatable from '../data-table/locale.js';
 import buttongroup from '../button-group/locale.js';
 import fileuploader from '../file-uploader/locale.js';
 import menu from '../menu/locale.js';
@@ -22,6 +23,7 @@ const en_US = {
   accordion,
   breadcrumbs,
   datepicker,
+  datatable,
   buttongroup,
   fileuploader,
   menu,

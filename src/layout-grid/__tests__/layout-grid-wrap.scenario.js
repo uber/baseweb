@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {Unstable_Grid as Grid, Unstable_Cell as Cell} from '../index.js';
+import {Grid, Cell} from '../index.js';
 import Inner from './inner.js';
 
 export const name = 'layout-grid-wrap';

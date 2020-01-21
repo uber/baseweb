@@ -15,6 +15,7 @@ export const name = 'button-sizes';
 
 export const component = () => (
   <React.Fragment>
+    <Button size={SIZE.mini}>Primary</Button>
     <Button size={SIZE.compact}>Primary</Button>
     <Button size={SIZE.default}>Primary</Button>
     <Button size={SIZE.large}>Primary</Button>

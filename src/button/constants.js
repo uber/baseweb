@@ -21,6 +21,7 @@ export const SHAPE = {
 };
 
 export const SIZE = {
+  mini: 'mini',
   default: 'default',
   compact: 'compact',
   large: 'large',

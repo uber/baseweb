@@ -332,10 +332,26 @@ export const StyledBlock = styled<StyledBlockPropsT>('div', props => {
     transform: () => 'wrap',
   });
 
-  styles.apply({property: 'top', value: get(props, '$top')});
-  styles.apply({property: 'right', value: get(props, '$right')});
-  styles.apply({property: 'left', value: get(props, '$left')});
-  styles.apply({property: 'bottom', value: get(props, '$bottom')});
+  styles.apply({
+    property: 'top',
+    value: get(props, '$top'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'right',
+    value: get(props, '$right'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'left',
+    value: get(props, '$left'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'bottom',
+    value: get(props, '$bottom'),
+    transform: getScale,
+  });
 
   styles.apply({property: 'textOverflow', value: get(props, '$textOverflow')});
   styles.apply({property: 'whiteSpace', value: get(props, '$whiteSpace')});

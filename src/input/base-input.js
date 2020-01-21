@@ -64,6 +64,7 @@ class BaseInput<T: EventTarget> extends React.Component<
   state = {
     isFocused: this.props.autoFocus || false,
     isMasked: this.props.type === 'password',
+    initialType: this.props.type,
   };
 
   componentDidMount() {
@@ -173,6 +174,7 @@ class BaseInput<T: EventTarget> extends React.Component<
       ? 'Show password text'
       : 'Hide password text';
     const iconSize = {
+      [SIZE.mini]: '12px',
       [SIZE.compact]: '16px',
       [SIZE.default]: '20px',
       [SIZE.large]: '24px',
@@ -250,6 +252,13 @@ class BaseInput<T: EventTarget> extends React.Component<
       },
     } = this.props;
 
+    // more here https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion#Preventing_autofilling_with_autocompletenew-password
+    const autoComplete =
+      this.state.initialType === 'password' &&
+      this.props.autoComplete === BaseInput.defaultProps.autoComplete
+        ? 'new-password'
+        : this.props.autoComplete;
+
     const sharedProps = getSharedProps(this.props, this.state);
 
     const [InputContainer, inputContainerProps] = getOverrides(
@@ -273,7 +282,7 @@ class BaseInput<T: EventTarget> extends React.Component<
           aria-describedby={this.props['aria-describedby']}
           aria-invalid={this.props.error}
           aria-required={this.props.required}
-          autoComplete={this.props.autoComplete}
+          autoComplete={autoComplete}
           disabled={this.props.disabled}
           id={this.props.id}
           inputMode={this.props.inputMode}

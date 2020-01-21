@@ -124,3 +124,19 @@ test('BaseInput - inputRef from props', () => {
     true,
   );
 });
+
+test('BaseInput - Password autocomplete', () => {
+  // $FlowFixMe
+  const wrapper = mount(<BaseInput type="password" />);
+  const renderedInput = wrapper.find('input').first();
+  expect(renderedInput.props().autoComplete).toBe('new-password');
+});
+
+test('BaseInput - Password autocomplete with override', () => {
+  const wrapper = mount(
+    // $FlowFixMe
+    <BaseInput autoComplete="current-password" type="password" />,
+  );
+  const renderedInput = wrapper.find('input').first();
+  expect(renderedInput.props().autoComplete).toBe('current-password');
+});
