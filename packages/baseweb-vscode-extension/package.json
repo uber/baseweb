@@ -1,6 +1,7 @@
 {
   "name": "baseweb",
   "displayName": "baseweb",
+  "publisher": "BaseWeb",
   "description": "Base Web is a foundation for initiating, evolving, and unifying web products.",
   "version": "0.0.0",
   "engines": {
