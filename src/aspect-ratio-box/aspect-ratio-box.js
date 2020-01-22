@@ -30,11 +30,12 @@ const aspectRatioBoxStyle = ({$aspectRatio}) => ({
   },
 });
 
-export const AspectRatioBox = ({
-  aspectRatio,
-  overrides,
+const AspectRatioBox = ({
+  forwardedRef,
+  aspectRatio = 1,
+  overrides = {},
   ...restProps
-}: AspectRatioBoxPropsT): React.Node => {
+}): React.Node => {
   const aspectRatioBoxOverrides = {
     Block: {
       style: aspectRatioBoxStyle,
@@ -43,6 +44,10 @@ export const AspectRatioBox = ({
   const blockOverrides = mergeOverrides(aspectRatioBoxOverrides, overrides);
   return (
     <Block
+      // coerced to any because because of how react components are typed.
+      // cannot guarantee an html element
+      // eslint-disable-next-line flowtype/no-weak-types
+      ref={(forwardedRef: any)}
       overrides={blockOverrides}
       $aspectRatio={aspectRatio}
       data-baseweb="aspect-ratio-box"
@@ -51,9 +56,11 @@ export const AspectRatioBox = ({
   );
 };
 
-AspectRatioBox.defaultProps = {
-  aspectRatio: 1,
-  overrides: {},
-};
-
-export default AspectRatioBox;
+const AspectRatioBoxComponent = React.forwardRef<
+  AspectRatioBoxPropsT,
+  HTMLElement,
+>((props: AspectRatioBoxPropsT, ref) => (
+  <AspectRatioBox {...props} forwardedRef={ref} />
+));
+AspectRatioBoxComponent.displayName = 'AspectRatioBox';
+export default AspectRatioBoxComponent;
