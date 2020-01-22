@@ -242,7 +242,11 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     const sharedProps = this.getSharedProps();
     const [Day, dayProps] = getOverrides(overrides.Day, StyledDay);
     return !peekNextMonth && sharedProps.$outsideMonth ? (
-      <Day data-state-code={getDayStateCode(sharedProps)} />
+      <Day
+        data-state-code={getDayStateCode(sharedProps)}
+        {...sharedProps}
+        {...dayProps}
+      />
     ) : (
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
 
