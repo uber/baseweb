@@ -14,20 +14,20 @@ import {getOverrides} from '../helpers/overrides.js';
 import type {BlockPropsT} from '../block/types.js';
 import type {FlexGridPropsT} from './types.js';
 
-export const BaseFlexGrid = ({
-  display,
-  flexWrap,
-  ...restProps
-}: BlockPropsT) => (
-  <Block
-    display={display || 'flex'}
-    flexWrap={flexWrap || flexWrap === false ? flexWrap : true}
-    data-baseweb="flex-grid"
-    {...restProps}
-  />
+export const BaseFlexGrid = React.forwardRef<BlockPropsT, HTMLElement>(
+  ({display, flexWrap, ...restProps}, ref) => (
+    <Block
+      display={display || 'flex'}
+      flexWrap={flexWrap || flexWrap === false ? flexWrap : true}
+      data-baseweb="flex-grid"
+      {...restProps}
+      ref={ref}
+    />
+  ),
 );
 
 const FlexGrid = ({
+  forwardedRef,
   children,
   as,
   overrides,
@@ -35,13 +35,21 @@ const FlexGrid = ({
   flexGridColumnGap,
   flexGridRowGap,
   ...restProps
-}: FlexGridPropsT) => {
+}): React.Node => {
   const [FlexGrid, flexGridProps] = getOverrides(
     overrides && overrides.Block,
     BaseFlexGrid,
   );
   return (
-    <FlexGrid as={as} {...restProps} {...flexGridProps}>
+    <FlexGrid
+      // coerced to any because because of how react components are typed.
+      // cannot guarantee an html element
+      // eslint-disable-next-line flowtype/no-weak-types
+      ref={(forwardedRef: any)}
+      as={as}
+      {...restProps}
+      {...flexGridProps}
+    >
       {// flatten fragments so FlexGrid correctly iterates over fragments’ children
       flattenFragments(children).map(
         (
@@ -63,4 +71,8 @@ const FlexGrid = ({
   );
 };
 
-export default FlexGrid;
+const FlexGridComponent = React.forwardRef<FlexGridPropsT, HTMLElement>(
+  (props: FlexGridPropsT, ref) => <FlexGrid {...props} forwardedRef={ref} />,
+);
+FlexGridComponent.displayName = 'FlexGrid';
+export default FlexGridComponent;

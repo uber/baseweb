@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BaseFlexGrid renders: with default styles 1`] = `
-<BaseFlexGrid>
+<ForwardRef>
   <Block
     data-baseweb="flex-grid"
     display="flex"
@@ -40,11 +40,11 @@ exports[`BaseFlexGrid renders: with default styles 1`] = `
       </ForwardRef>
     </Block>
   </Block>
-</BaseFlexGrid>
+</ForwardRef>
 `;
 
 exports[`BaseFlexGrid renders: with overridden styles 1`] = `
-<BaseFlexGrid
+<ForwardRef
   display="none"
   flexWrap={false}
   overrides={
@@ -124,127 +124,136 @@ exports[`BaseFlexGrid renders: with overridden styles 1`] = `
       </ForwardRef>
     </Block>
   </Block>
-</BaseFlexGrid>
+</ForwardRef>
 `;
 
 exports[`FlexGrid passes FlexGrid props to children: FlexGridItem with flexGridColumnCount 1`] = `
 <FlexGrid
   flexGridColumnCount={4}
 >
-  <BaseFlexGrid>
-    <Block
-      data-baseweb="flex-grid"
-      display="flex"
-      flexWrap={true}
-    >
+  <FlexGrid
+    flexGridColumnCount={4}
+    forwardedRef={null}
+  >
+    <ForwardRef>
       <Block
         data-baseweb="flex-grid"
         display="flex"
         flexWrap={true}
-        forwardedRef={null}
       >
-        <ForwardRef
-          $as="div"
-          $display="flex"
-          $flexWrap={true}
+        <Block
           data-baseweb="flex-grid"
+          display="flex"
+          flexWrap={true}
+          forwardedRef={null}
         >
-          <MockStyledComponent
+          <ForwardRef
             $as="div"
             $display="flex"
             $flexWrap={true}
             data-baseweb="flex-grid"
-            forwardedRef={null}
           >
-            <div
+            <MockStyledComponent
+              $as="div"
+              $display="flex"
+              $flexWrap={true}
               data-baseweb="flex-grid"
-              styled-component="true"
-              test-style={
-                Object {
-                  "display": "flex",
-                  "flexWrap": "wrap",
-                }
-              }
+              forwardedRef={null}
             >
-              <MockFlexGridItem
-                flexGridColumnCount={4}
-                flexGridItemCount={2}
-                flexGridItemIndex={0}
-                key=".0"
+              <div
+                data-baseweb="flex-grid"
+                styled-component="true"
+                test-style={
+                  Object {
+                    "display": "flex",
+                    "flexWrap": "wrap",
+                  }
+                }
               >
-                <div
-                  flex-grid-column-count={4}
-                  flex-grid-item-count={2}
-                  flex-grid-item-index={0}
+                <MockFlexGridItem
+                  flexGridColumnCount={4}
+                  flexGridItemCount={2}
+                  flexGridItemIndex={0}
+                  key=".0"
                 >
-                  Item 1
-                </div>
-              </MockFlexGridItem>
-              <MockFlexGridItem
-                flexGridColumnCount={4}
-                flexGridItemCount={2}
-                flexGridItemIndex={1}
-                key=".1"
-              >
-                <div
-                  flex-grid-column-count={4}
-                  flex-grid-item-count={2}
-                  flex-grid-item-index={1}
+                  <div
+                    flex-grid-column-count={4}
+                    flex-grid-item-count={2}
+                    flex-grid-item-index={0}
+                  >
+                    Item 1
+                  </div>
+                </MockFlexGridItem>
+                <MockFlexGridItem
+                  flexGridColumnCount={4}
+                  flexGridItemCount={2}
+                  flexGridItemIndex={1}
+                  key=".1"
                 >
-                  Item 2
-                </div>
-              </MockFlexGridItem>
-            </div>
-          </MockStyledComponent>
-        </ForwardRef>
+                  <div
+                    flex-grid-column-count={4}
+                    flex-grid-item-count={2}
+                    flex-grid-item-index={1}
+                  >
+                    Item 2
+                  </div>
+                </MockFlexGridItem>
+              </div>
+            </MockStyledComponent>
+          </ForwardRef>
+        </Block>
       </Block>
-    </Block>
-  </BaseFlexGrid>
+    </ForwardRef>
+  </FlexGrid>
 </FlexGrid>
 `;
 
 exports[`FlexGrid renders: with default styles 1`] = `
 <FlexGrid>
-  <BaseFlexGrid>
-    <Block
-      data-baseweb="flex-grid"
-      display="flex"
-      flexWrap={true}
-    >
+  <FlexGrid
+    forwardedRef={null}
+  >
+    <ForwardRef>
       <Block
         data-baseweb="flex-grid"
         display="flex"
         flexWrap={true}
-        forwardedRef={null}
       >
-        <ForwardRef
-          $as="div"
-          $display="flex"
-          $flexWrap={true}
+        <Block
           data-baseweb="flex-grid"
+          display="flex"
+          flexWrap={true}
+          forwardedRef={null}
         >
-          <MockStyledComponent
+          <ForwardRef
             $as="div"
             $display="flex"
             $flexWrap={true}
             data-baseweb="flex-grid"
-            forwardedRef={null}
           >
-            <div
+            <MockStyledComponent
+              $as="div"
+              $display="flex"
+              $flexWrap={true}
               data-baseweb="flex-grid"
-              styled-component="true"
-              test-style={
-                Object {
-                  "display": "flex",
-                  "flexWrap": "wrap",
+              forwardedRef={null}
+            >
+              <div
+                data-baseweb="flex-grid"
+                styled-component="true"
+                test-style={
+                  Object {
+                    "display": "flex",
+                    "flexWrap": "wrap",
+                  }
                 }
-              }
-            />
-          </MockStyledComponent>
-        </ForwardRef>
+              />
+            </MockStyledComponent>
+          </ForwardRef>
+        </Block>
       </Block>
-    </Block>
-  </BaseFlexGrid>
+    </ForwardRef>
+  </FlexGrid>
 </FlexGrid>
 `;
 
@@ -260,22 +269,24 @@ exports[`FlexGrid renders: with overridden styles 1`] = `
     }
   }
 >
-  <BaseFlexGrid
-    $style={
+  <FlexGrid
+    forwardedRef={null}
+    overrides={
       Object {
-        "color": "red",
+        "Block": Object {
+          "style": Object {
+            "color": "red",
+          },
+        },
       }
     }
   >
-    <Block
+    <ForwardRef
       $style={
         Object {
           "color": "red",
         }
       }
-      data-baseweb="flex-grid"
-      display="flex"
-      flexWrap={true}
     >
       <Block
         $style={
@@ -286,20 +297,19 @@ exports[`FlexGrid renders: with overridden styles 1`] = `
         data-baseweb="flex-grid"
         display="flex"
         flexWrap={true}
-        forwardedRef={null}
       >
-        <ForwardRef
-          $as="div"
-          $display="flex"
-          $flexWrap={true}
+        <Block
           $style={
             Object {
               "color": "red",
             }
           }
           data-baseweb="flex-grid"
+          display="flex"
+          flexWrap={true}
+          forwardedRef={null}
         >
-          <MockStyledComponent
+          <ForwardRef
             $as="div"
             $display="flex"
             $flexWrap={true}
@@ -309,23 +319,35 @@ exports[`FlexGrid renders: with overridden styles 1`] = `
               }
             }
             data-baseweb="flex-grid"
-            forwardedRef={null}
           >
-            <div
-              data-baseweb="flex-grid"
-              styled-component="true"
-              test-style={
+            <MockStyledComponent
+              $as="div"
+              $display="flex"
+              $flexWrap={true}
+              $style={
                 Object {
                   "color": "red",
-                  "display": "flex",
-                  "flexWrap": "wrap",
                 }
               }
-            />
-          </MockStyledComponent>
-        </ForwardRef>
+              data-baseweb="flex-grid"
+              forwardedRef={null}
+            >
+              <div
+                data-baseweb="flex-grid"
+                styled-component="true"
+                test-style={
+                  Object {
+                    "color": "red",
+                    "display": "flex",
+                    "flexWrap": "wrap",
+                  }
+                }
+              />
+            </MockStyledComponent>
+          </ForwardRef>
+        </Block>
       </Block>
-    </Block>
-  </BaseFlexGrid>
+    </ForwardRef>
+  </FlexGrid>
 </FlexGrid>
 `;
