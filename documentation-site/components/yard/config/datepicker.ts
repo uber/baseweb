@@ -66,8 +66,8 @@ const DatepickerConfig: TConfig = {
       },
     },
     autoFocusCalendar: {
-      value: undefined,
-      type: PropTypes.Function,
+      value: false,
+      type: PropTypes.Boolean,
       description:
         'Defines if the calendar is set to be focused on an initial render.',
       hidden: true,
