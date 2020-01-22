@@ -152,6 +152,7 @@ export const flexGridItemStyle = ({
 };
 
 const FlexGridItem = ({
+  forwardedRef,
   children,
   as,
   overrides,
@@ -161,7 +162,7 @@ const FlexGridItem = ({
   flexGridItemIndex,
   flexGridItemCount,
   ...restProps
-}: FlexGridItemPropsT): React.Node => {
+}): React.Node => {
   const flexGridItemOverrides = {
     Block: {
       style: flexGridItemStyle,
@@ -172,6 +173,10 @@ const FlexGridItem = ({
     : flexGridItemOverrides;
   return (
     <Block
+      // coerced to any because because of how react components are typed.
+      // cannot guarantee an html element
+      // eslint-disable-next-line flowtype/no-weak-types
+      ref={(forwardedRef: any)}
       as={as}
       overrides={blockOverrides}
       $flexGridColumnCount={flexGridColumnCount}
@@ -187,4 +192,10 @@ const FlexGridItem = ({
   );
 };
 
-export default FlexGridItem;
+const FlexGridItemComponent = React.forwardRef<FlexGridItemPropsT, HTMLElement>(
+  (props: FlexGridItemPropsT, ref) => (
+    <FlexGridItem {...props} forwardedRef={ref} />
+  ),
+);
+FlexGridItemComponent.displayName = 'FlexGridItem';
+export default FlexGridItemComponent;
