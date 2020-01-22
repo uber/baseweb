@@ -7,10 +7,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {format} from 'date-fns';
+import {format, getYear} from 'date-fns';
 
 import {Button, SIZE} from '../button/index.js';
 import {ButtonGroup, MODE} from '../button-group/index.js';
+import {Checkbox} from '../checkbox/index.js';
 import {Datepicker, formatDate} from '../datepicker/index.js';
 import {TimePicker} from '../timepicker/index.js';
 import {FormControl} from '../form-control/index.js';
@@ -45,7 +46,7 @@ type DatetimeOperationsT =
 
 type FilterParametersT = {|
   operation: DatetimeOperationsT,
-  dateRange?: [Date, Date],
+  selection: [Date, Date] | number[],
   description: string,
   exclude: boolean,
 |};
@@ -63,11 +64,77 @@ function formatDateAtIndex(dates, index) {
   return formatDate(date, 'MM-dd-yyyy');
 }
 
-const rangeOperators = [
+const RANGE_OPERATIONS = [
   {label: 'Date, Time', id: DATETIME_OPERATIONS.RANGE_DATETIME},
   {label: 'Date', id: DATETIME_OPERATIONS.RANGE_DATE},
   {label: 'Time', id: DATETIME_OPERATIONS.RANGE_TIME},
 ];
+
+const CATEGORICAL_OPERATIONS = [
+  {label: 'Weekday', id: DATETIME_OPERATIONS.WEEKDAY},
+  {label: 'Month', id: DATETIME_OPERATIONS.MONTH},
+  {label: 'Quarter', id: DATETIME_OPERATIONS.QUARTER},
+  {label: 'Half', id: DATETIME_OPERATIONS.HALF},
+  {label: 'Year', id: DATETIME_OPERATIONS.YEAR},
+];
+
+const WEEKDAYS = [
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+];
+
+const MONTHS = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+
+const QUARTERS = ['Q1', 'Q2', 'Q3', 'Q4'];
+const HALVES = ['H1', 'H2'];
+
+function Checks(props) {
+  const [css, theme] = useStyletron();
+  return (
+    <div className={css({maxHeight: '256px', overflowY: 'auto'})}>
+      {props.options.map(item => {
+        const checked = props.value.includes(item.id);
+        return (
+          <div
+            key={item.id}
+            className={css({marginBottom: theme.sizing.scale200})}
+          >
+            <Checkbox
+              checked={checked}
+              onChange={() => {
+                if (checked) {
+                  props.setValue(prev => prev.filter(i => i !== item.id));
+                } else {
+                  props.setValue(prev => [...prev, item.id]);
+                }
+              }}
+            >
+              {item.label}
+            </Checkbox>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
 
 function DatetimeFilter(props) {
   const [css, theme] = useStyletron();
@@ -75,16 +142,33 @@ function DatetimeFilter(props) {
   const datesSorted = React.useMemo(() => {
     return props.data.sort(sortDates);
   }, [props.data]);
+  const presentYears = React.useMemo(() => {
+    const dict = {};
+    props.data.forEach(date => {
+      dict[getYear(date)] = true;
+    });
+    return Object.keys(dict).map(n => parseInt(n));
+  }, [props.data]);
 
   const [exclude, setExclude] = React.useState(false);
   const [comparatorIndex, setComparatorIndex] = React.useState(0);
   const [rangeOperator, setRangeOperator] = React.useState<ValueT>([
-    rangeOperators[0],
+    RANGE_OPERATIONS[0],
   ]);
+  const [categoricalOperator, setCategoricalOperator] = React.useState<ValueT>([
+    CATEGORICAL_OPERATIONS[0],
+  ]);
+  // eslint-disable-next-line flowtype/no-weak-types
   const [rangeDates, setRangeDates] = React.useState<any>([
     datesSorted[0],
     datesSorted[datesSorted.length - 1],
   ]);
+
+  const [years, setYears] = React.useState<number[]>([]);
+  const [halves, setHalves] = React.useState<number[]>([]);
+  const [quarters, setQuarters] = React.useState<number[]>([]);
+  const [months, setMonths] = React.useState<number[]>([]);
+  const [weekdays, setWeekdays] = React.useState<number[]>([]);
 
   const isRange = comparatorIndex === 0;
   const isCategorical = comparatorIndex === 1;
@@ -95,14 +179,40 @@ function DatetimeFilter(props) {
       onExcludeChange={() => setExclude(!exclude)}
       onApply={() => {
         if (isRange) {
-          const operation: DatetimeOperationsT = (rangeOperator[0].id: any);
+          // eslint-disable-next-line flowtype/no-weak-types
+          const op: DatetimeOperationsT = (rangeOperator[0].id: any);
           props.setFilter({
-            operation,
-            dateRange: rangeDates,
+            operation: op,
+            selection: rangeDates,
             description: 'CHANGE THIS',
             exclude,
           });
         }
+
+        if (isCategorical) {
+          // eslint-disable-next-line flowtype/no-weak-types
+          const op: DatetimeOperationsT = (categoricalOperator[0].id: any);
+          let selection: number[] = [];
+          if (op === DATETIME_OPERATIONS.WEEKDAY) {
+            selection = weekdays;
+          } else if (op === DATETIME_OPERATIONS.MONTH) {
+            selection = months;
+          } else if (op === DATETIME_OPERATIONS.QUARTER) {
+            selection = quarters;
+          } else if (op === DATETIME_OPERATIONS.HALF) {
+            selection = halves;
+          } else if (op === DATETIME_OPERATIONS.YEAR) {
+            selection = years;
+          }
+
+          props.setFilter({
+            operation: op,
+            selection,
+            description: 'CHANGE THIS',
+            exclude,
+          });
+        }
+
         props.close();
       }}
     >
@@ -136,7 +246,7 @@ function DatetimeFilter(props) {
           <Select
             value={rangeOperator}
             onChange={params => setRangeOperator(params.value)}
-            options={rangeOperators}
+            options={RANGE_OPERATIONS}
             size="compact"
             clearable={false}
           />
@@ -231,7 +341,60 @@ function DatetimeFilter(props) {
 
       {isCategorical && (
         <div>
-          <p>categorical</p>
+          <Select
+            value={categoricalOperator}
+            onChange={params => setCategoricalOperator(params.value)}
+            options={CATEGORICAL_OPERATIONS}
+            size="compact"
+            clearable={false}
+          />
+
+          <div
+            className={css({
+              paddingLeft: theme.sizing.scale300,
+              paddingTop: theme.sizing.scale500,
+            })}
+          >
+            {categoricalOperator[0].id === DATETIME_OPERATIONS.WEEKDAY && (
+              <Checks
+                value={weekdays}
+                setValue={setWeekdays}
+                options={WEEKDAYS.map((w, i) => ({label: w, id: i}))}
+              />
+            )}
+
+            {categoricalOperator[0].id === DATETIME_OPERATIONS.MONTH && (
+              <Checks
+                value={months}
+                setValue={setMonths}
+                options={MONTHS.map((m, i) => ({label: m, id: i}))}
+              />
+            )}
+
+            {categoricalOperator[0].id === DATETIME_OPERATIONS.QUARTER && (
+              <Checks
+                value={quarters}
+                setValue={setQuarters}
+                options={QUARTERS.map((q, i) => ({label: q, id: i}))}
+              />
+            )}
+
+            {categoricalOperator[0].id === DATETIME_OPERATIONS.HALF && (
+              <Checks
+                value={halves}
+                setValue={setHalves}
+                options={HALVES.map((h, i) => ({label: h, id: i}))}
+              />
+            )}
+
+            {categoricalOperator[0].id === DATETIME_OPERATIONS.YEAR && (
+              <Checks
+                value={years}
+                setValue={setYears}
+                options={presentYears.map(year => ({label: year, id: year}))}
+              />
+            )}
+          </div>
         </div>
       )}
     </FilterShell>
@@ -302,7 +465,6 @@ function DatetimeColumn(options: OptionsT): DatetimeColumnT {
     }),
     renderFilter: DatetimeFilter,
     sortable: normalizedOptions.sortable,
-    // initial sort should display largest values first
     sortFn: sortDates,
 
     title: options.title,

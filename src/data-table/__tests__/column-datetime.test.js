@@ -84,12 +84,9 @@ describe('datetime column', () => {
     expect(mockSetFilter.mock.calls.length).toBe(1);
     const [filterParams] = mockSetFilter.mock.calls[0];
     expect(filterParams.operation).toBe(DATETIME_OPERATIONS.RANGE_DATETIME);
-    expect(Array.isArray(filterParams.dateRange)).toBe(true);
-    if (Array.isArray(filterParams.dateRange)) {
-      const [left, right] = filterParams.dateRange;
-      expect(isEqual(left, data[0])).toBe(true);
-      expect(isEqual(right, data[data.length - 1])).toBe(true);
-    }
+    const [left, right] = filterParams.selection;
+    expect(isEqual(left, data[0])).toBe(true);
+    expect(isEqual(right, data[data.length - 1])).toBe(true);
   });
 
   it('sets filter params for range of dates', () => {
@@ -117,12 +114,9 @@ describe('datetime column', () => {
     expect(mockSetFilter.mock.calls.length).toBe(1);
     const [filterParams] = mockSetFilter.mock.calls[0];
     expect(filterParams.operation).toBe(DATETIME_OPERATIONS.RANGE_DATE);
-    expect(Array.isArray(filterParams.dateRange)).toBe(true);
-    if (Array.isArray(filterParams.dateRange)) {
-      const [left, right] = filterParams.dateRange;
-      expect(isSameDay(left, data[0])).toBe(true);
-      expect(isSameDay(right, data[data.length - 1])).toBe(true);
-    }
+    const [left, right] = filterParams.selection;
+    expect(isSameDay(left, data[0])).toBe(true);
+    expect(isSameDay(right, data[data.length - 1])).toBe(true);
   });
 
   it('sets filter params for range of times', () => {
@@ -150,13 +144,188 @@ describe('datetime column', () => {
     expect(mockSetFilter.mock.calls.length).toBe(1);
     const [filterParams] = mockSetFilter.mock.calls[0];
     expect(filterParams.operation).toBe(DATETIME_OPERATIONS.RANGE_TIME);
-    expect(Array.isArray(filterParams.dateRange)).toBe(true);
-    if (Array.isArray(filterParams.dateRange)) {
-      const [left, right] = filterParams.dateRange;
-      expect(isSameHour(left, data[0])).toBe(true);
-      expect(isSameHour(right, data[data.length - 1])).toBe(true);
-      expect(isSameMinute(left, data[0])).toBe(true);
-      expect(isSameMinute(right, data[data.length - 1])).toBe(true);
-    }
+    const [left, right] = filterParams.selection;
+    expect(isSameHour(left, data[0])).toBe(true);
+    expect(isSameHour(right, data[data.length - 1])).toBe(true);
+    expect(isSameMinute(left, data[0])).toBe(true);
+    expect(isSameMinute(right, data[data.length - 1])).toBe(true);
+  });
+
+  it('sets filter params for selected weekdays', () => {
+    const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => {
+      return new Date(`2011-04-${padZero(i)}T10:${10 + i}:30Z`);
+    });
+    const column = DatetimeColumn({
+      title: 'column',
+      mapDataToValue: () => new Date(),
+      formatString: 'MM/dd/yyyy',
+    });
+    const mockSetFilter = jest.fn();
+    const Filter = column.renderFilter;
+    const {container, getByText} = render(
+      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
+      {container: document.body},
+    );
+
+    fireEvent.click(getByText('Categorical'));
+
+    const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+    fireEvent.click(checkboxes[2]);
+
+    fireEvent.click(getByText('Apply'));
+
+    expect(mockSetFilter.mock.calls.length).toBe(1);
+    const [filterParams] = mockSetFilter.mock.calls[0];
+    expect(filterParams.operation).toBe(DATETIME_OPERATIONS.WEEKDAY);
+    expect(filterParams.selection.length).toBe(1);
+    expect(filterParams.selection[0]).toBe(2);
+  });
+
+  it('sets filter params for selected months', () => {
+    const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => {
+      return new Date(`2011-04-${padZero(i)}T10:${10 + i}:30Z`);
+    });
+    const column = DatetimeColumn({
+      title: 'column',
+      mapDataToValue: () => new Date(),
+      formatString: 'MM/dd/yyyy',
+    });
+    const mockSetFilter = jest.fn();
+    const Filter = column.renderFilter;
+    const {container, getByText} = render(
+      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
+      {container: document.body},
+    );
+
+    fireEvent.click(getByText('Categorical'));
+
+    const select = container.querySelector("[data-baseweb='select'] div div");
+    fireEvent.click(select);
+    const options = container.querySelectorAll('li');
+    fireEvent.click(options[1]);
+
+    const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+    fireEvent.click(checkboxes[2]);
+    fireEvent.click(checkboxes[3]);
+
+    fireEvent.click(getByText('Apply'));
+
+    expect(mockSetFilter.mock.calls.length).toBe(1);
+    const [filterParams] = mockSetFilter.mock.calls[0];
+    expect(filterParams.operation).toBe(DATETIME_OPERATIONS.MONTH);
+    expect(filterParams.selection.length).toBe(2);
+    expect(filterParams.selection[0]).toBe(2);
+    expect(filterParams.selection[1]).toBe(3);
+  });
+
+  it('sets filter params for selected quarters', () => {
+    const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => {
+      return new Date(`2011-04-${padZero(i)}T10:${10 + i}:30Z`);
+    });
+    const column = DatetimeColumn({
+      title: 'column',
+      mapDataToValue: () => new Date(),
+      formatString: 'MM/dd/yyyy',
+    });
+    const mockSetFilter = jest.fn();
+    const Filter = column.renderFilter;
+    const {container, getByText} = render(
+      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
+      {container: document.body},
+    );
+
+    fireEvent.click(getByText('Categorical'));
+
+    const select = container.querySelector("[data-baseweb='select'] div div");
+    fireEvent.click(select);
+    const options = container.querySelectorAll('li');
+    fireEvent.click(options[2]);
+
+    const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+    fireEvent.click(checkboxes[0]);
+    fireEvent.click(checkboxes[1]);
+
+    fireEvent.click(getByText('Apply'));
+
+    expect(mockSetFilter.mock.calls.length).toBe(1);
+    const [filterParams] = mockSetFilter.mock.calls[0];
+    expect(filterParams.operation).toBe(DATETIME_OPERATIONS.QUARTER);
+    expect(filterParams.selection.length).toBe(2);
+    expect(filterParams.selection[0]).toBe(0);
+    expect(filterParams.selection[1]).toBe(1);
+  });
+
+  it('sets filter params for selected halves', () => {
+    const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => {
+      return new Date(`2011-04-${padZero(i)}T10:${10 + i}:30Z`);
+    });
+    const column = DatetimeColumn({
+      title: 'column',
+      mapDataToValue: () => new Date(),
+      formatString: 'MM/dd/yyyy',
+    });
+    const mockSetFilter = jest.fn();
+    const Filter = column.renderFilter;
+    const {container, getByText} = render(
+      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
+      {container: document.body},
+    );
+
+    fireEvent.click(getByText('Categorical'));
+
+    const select = container.querySelector("[data-baseweb='select'] div div");
+    fireEvent.click(select);
+    const options = container.querySelectorAll('li');
+    fireEvent.click(options[3]);
+
+    const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+    fireEvent.click(checkboxes[1]);
+
+    fireEvent.click(getByText('Apply'));
+
+    expect(mockSetFilter.mock.calls.length).toBe(1);
+    const [filterParams] = mockSetFilter.mock.calls[0];
+    expect(filterParams.operation).toBe(DATETIME_OPERATIONS.HALF);
+    expect(filterParams.selection.length).toBe(1);
+    expect(filterParams.selection[0]).toBe(1);
+  });
+
+  it('sets filter params for selected years', () => {
+    const data = [1, 2, 3, 4, 5, 6, 6, 7, 7, 8, 8, 9].map(i => {
+      return new Date(`200${i}-04-10T10:${10 + i}:30Z`);
+    });
+    const column = DatetimeColumn({
+      title: 'column',
+      mapDataToValue: () => new Date(),
+      formatString: 'MM/dd/yyyy',
+    });
+    const mockSetFilter = jest.fn();
+    const Filter = column.renderFilter;
+    const {container, getByText} = render(
+      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
+      {container: document.body},
+    );
+
+    fireEvent.click(getByText('Categorical'));
+
+    const select = container.querySelector("[data-baseweb='select'] div div");
+    fireEvent.click(select);
+    const options = container.querySelectorAll('li');
+    fireEvent.click(options[4]);
+
+    const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+    // 9 years, plus the exclude toggle
+    expect(checkboxes.length).toBe(10);
+    fireEvent.click(checkboxes[2]);
+    fireEvent.click(checkboxes[6]);
+
+    fireEvent.click(getByText('Apply'));
+
+    expect(mockSetFilter.mock.calls.length).toBe(1);
+    const [filterParams] = mockSetFilter.mock.calls[0];
+    expect(filterParams.operation).toBe(DATETIME_OPERATIONS.YEAR);
+    expect(filterParams.selection.length).toBe(2);
+    expect(filterParams.selection[0]).toBe(2003);
+    expect(filterParams.selection[1]).toBe(2007);
   });
 });
