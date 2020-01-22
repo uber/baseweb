@@ -81,7 +81,10 @@ export class ToasterContainer extends React.Component<
         if (toast.key === key) {
           const updatedToastProps = {
             ...toast,
-            ...this.getToastProps(props),
+            ...this.getToastProps({
+              autoHideDuration: toast.autoHideDuration,
+              ...props,
+            }),
             key,
             ...(this.props.resetAutoHideTimerOnUpdate
               ? {__updated: (parseInt(toast.__updated) || 0) + 1}
