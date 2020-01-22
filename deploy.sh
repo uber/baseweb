@@ -54,9 +54,9 @@ if [ "$this_commit" = "$latest_tagged_commit" ]; then
   # publish the vscode extension
   cd $BASEDIR
   cd packages/baseweb-vscode-extension
-  yarn
   node "$BASEDIR/scripts/sync-package-versions.js" package.json
-  yarn deploy -p $(AZURE_TOKEN)
+  yarn
+  yarn deploy -p $AZURE_TOKEN
 else
   echo current commit does not match latest tagged commit
   echo exited without deploying to now
