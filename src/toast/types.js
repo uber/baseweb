@@ -93,7 +93,7 @@ export type ToasterPropsT = {
   /** The number of milliseconds to wait before automatically dismissing a
    * notification. This behavior is disabled when the value is set to 0.*/
   autoHideDuration: number,
-  /** When updating a toast, should we reset the autohide timer */
+  /** Defines if updating a toast resets the autohide timer */
   resetAutoHideTimerOnUpdate?: boolean,
 };
 export type ToasterContainerStateT = {

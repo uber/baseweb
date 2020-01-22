@@ -37,7 +37,7 @@ it’s status type of neutral, positive, warning and alert.
 **Using the `toaster` utility:**
 
 Toasts can be created easily with some of the helper functions on `toaster`, as seen in the code sample above. If a key isn't provided, it will auto-generate a unique key for you which will be returned in the instantiation functions (`info, positive, warning, negative`).
-If a toast with an identical key already exists, that toast's contents will be updated instead of a new toast being created. The autoHide timeout will reset if the `resetAutoHideTimerOnUpdate` prop is set to true on the toaster.
+If a toast with an identical key already exists, that toast's contents will be updated instead of a new toast being created. The autoHide timeout will reset unless the `resetAutoHideTimerOnUpdate` prop is set to false on the toaster.
 
 ## Accessibility
 

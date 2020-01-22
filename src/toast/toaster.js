@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 import * as React from 'react';
+import ReactDOM from 'react-dom';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import {KIND, PLACEMENT} from './constants.js';
 import {
@@ -16,7 +17,6 @@ import {
   InnerContainer as StyledInnerContainer,
 } from './styled-components.js';
 import Toast from './toast.js';
-import {Layer} from '../layer/index.js';
 import type {
   ToasterPropsT,
   ToastPropsShapeT,
@@ -204,7 +204,11 @@ export class ToasterContainer extends React.Component<
         if (__BROWSER__) {
           return (
             <>
-              <Layer key={'toast-layer'}>{root}</Layer>
+              {ReactDOM.createPortal(
+                root,
+                // $FlowFixMe
+                document.body,
+              )}
               {this.props.children}
             </>
           );

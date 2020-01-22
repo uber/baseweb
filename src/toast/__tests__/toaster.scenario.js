@@ -21,6 +21,7 @@ export const component = () => {
         placement={PLACEMENT.bottomRight}
         autoHideDuration={500}
       />
+
       <Button
         id="default"
         onClick={() => {
@@ -29,6 +30,7 @@ export const component = () => {
       >
         Info toast
       </Button>
+
       <Button
         id="same-key"
         onClick={() => {
