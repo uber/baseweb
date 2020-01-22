@@ -1,25 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AspectRatioBox renders: for aspectRatio={1} 1`] = `
-<AspectRatioBox
-  aspectRatio={1}
-  overrides={Object {}}
->
-  <Block
-    $aspectRatio={1}
-    data-baseweb="aspect-ratio-box"
-    overrides={
-      Object {
-        "Block": Object {
-          "style": [Function],
-        },
-      }
-    }
+<AspectRatioBox>
+  <AspectRatioBox
+    forwardedRef={null}
   >
     <Block
       $aspectRatio={1}
       data-baseweb="aspect-ratio-box"
-      forwardedRef={null}
       overrides={
         Object {
           "Block": Object {
@@ -28,69 +16,73 @@ exports[`AspectRatioBox renders: for aspectRatio={1} 1`] = `
         }
       }
     >
-      <ForwardRef
-        $as="div"
+      <Block
         $aspectRatio={1}
-        $style={[Function]}
         data-baseweb="aspect-ratio-box"
+        forwardedRef={null}
+        overrides={
+          Object {
+            "Block": Object {
+              "style": [Function],
+            },
+          }
+        }
       >
-        <MockStyledComponent
+        <ForwardRef
           $as="div"
           $aspectRatio={1}
           $style={[Function]}
           data-baseweb="aspect-ratio-box"
-          forwardedRef={null}
         >
-          <div
+          <MockStyledComponent
+            $as="div"
+            $aspectRatio={1}
+            $style={[Function]}
             data-baseweb="aspect-ratio-box"
-            styled-component="true"
-            test-style={
-              Object {
-                "::after": Object {
-                  "clear": "both",
-                  "content": "\\"\\"",
-                  "display": "table",
-                },
-                "::before": Object {
-                  "content": "\\"\\"",
-                  "float": "left",
-                  "height": 0,
-                  "marginLeft": "-1px",
-                  "paddingTop": "100%",
-                  "pointerEvents": "none",
-                  "width": "1px",
-                },
-                "position": "relative",
+            forwardedRef={null}
+          >
+            <div
+              data-baseweb="aspect-ratio-box"
+              styled-component="true"
+              test-style={
+                Object {
+                  "::after": Object {
+                    "clear": "both",
+                    "content": "\\"\\"",
+                    "display": "table",
+                  },
+                  "::before": Object {
+                    "content": "\\"\\"",
+                    "float": "left",
+                    "height": 0,
+                    "marginLeft": "-1px",
+                    "paddingTop": "100%",
+                    "pointerEvents": "none",
+                    "width": "1px",
+                  },
+                  "position": "relative",
+                }
               }
-            }
-          />
-        </MockStyledComponent>
-      </ForwardRef>
+            />
+          </MockStyledComponent>
+        </ForwardRef>
+      </Block>
     </Block>
-  </Block>
+  </AspectRatioBox>
 </AspectRatioBox>
 `;
 
 exports[`AspectRatioBox renders: for aspectRatio={16 / 9} 1`] = `
 <AspectRatioBox
   aspectRatio={1.7777777777777777}
-  overrides={Object {}}
 >
-  <Block
-    $aspectRatio={1.7777777777777777}
-    data-baseweb="aspect-ratio-box"
-    overrides={
-      Object {
-        "Block": Object {
-          "style": [Function],
-        },
-      }
-    }
+  <AspectRatioBox
+    aspectRatio={1.7777777777777777}
+    forwardedRef={null}
   >
     <Block
       $aspectRatio={1.7777777777777777}
       data-baseweb="aspect-ratio-box"
-      forwardedRef={null}
       overrides={
         Object {
           "Block": Object {
@@ -99,46 +91,59 @@ exports[`AspectRatioBox renders: for aspectRatio={16 / 9} 1`] = `
         }
       }
     >
-      <ForwardRef
-        $as="div"
+      <Block
         $aspectRatio={1.7777777777777777}
-        $style={[Function]}
         data-baseweb="aspect-ratio-box"
+        forwardedRef={null}
+        overrides={
+          Object {
+            "Block": Object {
+              "style": [Function],
+            },
+          }
+        }
       >
-        <MockStyledComponent
+        <ForwardRef
           $as="div"
           $aspectRatio={1.7777777777777777}
           $style={[Function]}
           data-baseweb="aspect-ratio-box"
-          forwardedRef={null}
         >
-          <div
+          <MockStyledComponent
+            $as="div"
+            $aspectRatio={1.7777777777777777}
+            $style={[Function]}
             data-baseweb="aspect-ratio-box"
-            styled-component="true"
-            test-style={
-              Object {
-                "::after": Object {
-                  "clear": "both",
-                  "content": "\\"\\"",
-                  "display": "table",
-                },
-                "::before": Object {
-                  "content": "\\"\\"",
-                  "float": "left",
-                  "height": 0,
-                  "marginLeft": "-1px",
-                  "paddingTop": "56.25%",
-                  "pointerEvents": "none",
-                  "width": "1px",
-                },
-                "position": "relative",
+            forwardedRef={null}
+          >
+            <div
+              data-baseweb="aspect-ratio-box"
+              styled-component="true"
+              test-style={
+                Object {
+                  "::after": Object {
+                    "clear": "both",
+                    "content": "\\"\\"",
+                    "display": "table",
+                  },
+                  "::before": Object {
+                    "content": "\\"\\"",
+                    "float": "left",
+                    "height": 0,
+                    "marginLeft": "-1px",
+                    "paddingTop": "56.25%",
+                    "pointerEvents": "none",
+                    "width": "1px",
+                  },
+                  "position": "relative",
+                }
               }
-            }
-          />
-        </MockStyledComponent>
-      </ForwardRef>
+            />
+          </MockStyledComponent>
+        </ForwardRef>
+      </Block>
     </Block>
-  </Block>
+  </AspectRatioBox>
 </AspectRatioBox>
 `;
 
@@ -155,13 +160,15 @@ exports[`AspectRatioBox renders: with overridden styles 1`] = `
     }
   }
 >
-  <Block
-    $aspectRatio={1.7777777777777777}
-    data-baseweb="aspect-ratio-box"
+  <AspectRatioBox
+    aspectRatio={1.7777777777777777}
+    forwardedRef={null}
     overrides={
       Object {
         "Block": Object {
-          "style": [Function],
+          "style": Object {
+            "marginBottom": "10px",
+          },
         },
       }
     }
@@ -169,7 +176,6 @@ exports[`AspectRatioBox renders: with overridden styles 1`] = `
     <Block
       $aspectRatio={1.7777777777777777}
       data-baseweb="aspect-ratio-box"
-      forwardedRef={null}
       overrides={
         Object {
           "Block": Object {
@@ -178,46 +184,59 @@ exports[`AspectRatioBox renders: with overridden styles 1`] = `
         }
       }
     >
-      <ForwardRef
-        $as="div"
+      <Block
         $aspectRatio={1.7777777777777777}
-        $style={[Function]}
         data-baseweb="aspect-ratio-box"
+        forwardedRef={null}
+        overrides={
+          Object {
+            "Block": Object {
+              "style": [Function],
+            },
+          }
+        }
       >
-        <MockStyledComponent
+        <ForwardRef
           $as="div"
           $aspectRatio={1.7777777777777777}
           $style={[Function]}
           data-baseweb="aspect-ratio-box"
-          forwardedRef={null}
         >
-          <div
+          <MockStyledComponent
+            $as="div"
+            $aspectRatio={1.7777777777777777}
+            $style={[Function]}
             data-baseweb="aspect-ratio-box"
-            styled-component="true"
-            test-style={
-              Object {
-                "::after": Object {
-                  "clear": "both",
-                  "content": "\\"\\"",
-                  "display": "table",
-                },
-                "::before": Object {
-                  "content": "\\"\\"",
-                  "float": "left",
-                  "height": 0,
-                  "marginLeft": "-1px",
-                  "paddingTop": "56.25%",
-                  "pointerEvents": "none",
-                  "width": "1px",
-                },
-                "marginBottom": "10px",
-                "position": "relative",
+            forwardedRef={null}
+          >
+            <div
+              data-baseweb="aspect-ratio-box"
+              styled-component="true"
+              test-style={
+                Object {
+                  "::after": Object {
+                    "clear": "both",
+                    "content": "\\"\\"",
+                    "display": "table",
+                  },
+                  "::before": Object {
+                    "content": "\\"\\"",
+                    "float": "left",
+                    "height": 0,
+                    "marginLeft": "-1px",
+                    "paddingTop": "56.25%",
+                    "pointerEvents": "none",
+                    "width": "1px",
+                  },
+                  "marginBottom": "10px",
+                  "position": "relative",
+                }
               }
-            }
-          />
-        </MockStyledComponent>
-      </ForwardRef>
+            />
+          </MockStyledComponent>
+        </ForwardRef>
+      </Block>
     </Block>
-  </Block>
+  </AspectRatioBox>
 </AspectRatioBox>
 `;

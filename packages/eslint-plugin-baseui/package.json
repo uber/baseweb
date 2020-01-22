@@ -23,7 +23,11 @@
     "react",
     "baseui"
   ],
-  "repository": "github:uber/baseweb",
+  "repository": {
+    "directory": "packages/eslint-plugin-baseui",
+    "type": "git",
+    "url": "https://github.com/uber/baseweb"
+  },
   "bugs": {
     "url": "https://github.com/uber/baseweb/issues"
   }
