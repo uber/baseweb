@@ -11,12 +11,14 @@ import {format} from 'date-fns';
 
 import {Button, SIZE} from '../button/index.js';
 import {ButtonGroup, MODE} from '../button-group/index.js';
-import {Input, SIZE as INPUT_SIZE} from '../input/index.js';
+import {Datepicker, formatDate} from '../datepicker/index.js';
+import {TimePicker} from '../timepicker/index.js';
+import {FormControl} from '../form-control/index.js';
 import {useStyletron} from '../styles/index.js';
-import {Paragraph4} from '../typography/index.js';
+import {Select, type ValueT} from '../select/index.js';
 
 import CellShell from './cell-shell.js';
-import {COLUMNS} from './constants.js';
+import {COLUMNS, DATETIME_OPERATIONS} from './constants.js';
 import FilterShell from './filter-shell.js';
 import type {ColumnT} from './types.js';
 
@@ -31,30 +33,76 @@ type OptionsT = {|
   title: string,
 |};
 
+type DatetimeOperationsT =
+  | typeof DATETIME_OPERATIONS.RANGE_DATETIME
+  | typeof DATETIME_OPERATIONS.RANGE_DATE
+  | typeof DATETIME_OPERATIONS.RANGE_TIME
+  | typeof DATETIME_OPERATIONS.WEEKDAY
+  | typeof DATETIME_OPERATIONS.MONTH
+  | typeof DATETIME_OPERATIONS.QUARTER
+  | typeof DATETIME_OPERATIONS.HALF
+  | typeof DATETIME_OPERATIONS.YEAR;
+
 type FilterParametersT = {|
-  // comparisons: Array<{|
-  //   value: number,
-  //   operation: NumericalOperations,
-  // |}>,
+  operation: DatetimeOperationsT,
+  dateRange?: [Date, Date],
   description: string,
   exclude: boolean,
 |};
 
 type DatetimeColumnT = ColumnT<Date, FilterParametersT>;
 
+function sortDates(a, b) {
+  return a - b;
+}
+
+function formatDateAtIndex(dates, index) {
+  if (!dates || !Array.isArray(dates)) return '';
+  const date = dates[index];
+  if (!date) return '';
+  return formatDate(date, 'MM-dd-yyyy');
+}
+
+const rangeOperators = [
+  {label: 'Date, Time', id: DATETIME_OPERATIONS.RANGE_DATETIME},
+  {label: 'Date', id: DATETIME_OPERATIONS.RANGE_DATE},
+  {label: 'Time', id: DATETIME_OPERATIONS.RANGE_TIME},
+];
+
 function DatetimeFilter(props) {
   const [css, theme] = useStyletron();
-  const [exclude, setExclude] = React.useState(props.filterParams.exclude);
+
+  const datesSorted = React.useMemo(() => {
+    return props.data.sort(sortDates);
+  }, [props.data]);
+
+  const [exclude, setExclude] = React.useState(false);
   const [comparatorIndex, setComparatorIndex] = React.useState(0);
+  const [rangeOperator, setRangeOperator] = React.useState<ValueT>([
+    rangeOperators[0],
+  ]);
+  const [rangeDates, setRangeDates] = React.useState<any>([
+    datesSorted[0],
+    datesSorted[datesSorted.length - 1],
+  ]);
 
   const isRange = comparatorIndex === 0;
+  const isCategorical = comparatorIndex === 1;
 
   return (
     <FilterShell
       exclude={exclude}
       onExcludeChange={() => setExclude(!exclude)}
       onApply={() => {
-        // setFilter({});
+        if (isRange) {
+          const operation: DatetimeOperationsT = (rangeOperator[0].id: any);
+          props.setFilter({
+            operation,
+            dateRange: rangeDates,
+            description: 'CHANGE THIS',
+            exclude,
+          });
+        }
         props.close();
       }}
     >
@@ -62,7 +110,7 @@ function DatetimeFilter(props) {
         size={SIZE.compact}
         mode={MODE.radio}
         selected={comparatorIndex}
-        onClick={(_, index) => console.log(index)}
+        onClick={(_, index) => setComparatorIndex(index)}
         overrides={{
           Root: {
             style: ({$theme}) => ({marginBottom: $theme.sizing.scale300}),
@@ -83,11 +131,105 @@ function DatetimeFilter(props) {
         </Button>
       </ButtonGroup>
 
-      {isRange ? (
+      {isRange && (
         <div>
-          <p>range</p>
+          <Select
+            value={rangeOperator}
+            onChange={params => setRangeOperator(params.value)}
+            options={rangeOperators}
+            size="compact"
+            clearable={false}
+          />
+          <div className={css({display: 'flex', alignItems: 'center'})}>
+            <div
+              className={css({
+                width: '100%',
+                marginRight: theme.sizing.scale300,
+              })}
+            >
+              <FormControl label="Start">
+                <div>
+                  {(rangeOperator[0].id ===
+                    DATETIME_OPERATIONS.RANGE_DATETIME ||
+                    rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATE) && (
+                    <Datepicker
+                      value={rangeDates}
+                      onChange={({date}) => setRangeDates(date)}
+                      formatDisplayValue={date => formatDateAtIndex(date, 0)}
+                      minDate={datesSorted[0]}
+                      maxDate={datesSorted[datesSorted.length - 1]}
+                      timeSelectStart={
+                        rangeOperator[0].id ===
+                        DATETIME_OPERATIONS.RANGE_DATETIME
+                      }
+                      range
+                      mask="99-99-9999"
+                      size="compact"
+                    />
+                  )}
+                  {(rangeOperator[0].id ===
+                    DATETIME_OPERATIONS.RANGE_DATETIME ||
+                    rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_TIME) && (
+                    <TimePicker
+                      value={rangeDates[0]}
+                      onChange={time => setRangeDates([time, rangeDates[1]])}
+                      creatable
+                      size="compact"
+                    />
+                  )}
+                </div>
+              </FormControl>
+            </div>
+
+            <div
+              className={css({
+                width: '100%',
+                marginRight: theme.sizing.scale300,
+              })}
+            >
+              <FormControl label="End">
+                <div>
+                  {(rangeOperator[0].id ===
+                    DATETIME_OPERATIONS.RANGE_DATETIME ||
+                    rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATE) && (
+                    <Datepicker
+                      value={rangeDates}
+                      onChange={({date}) => setRangeDates(date)}
+                      formatDisplayValue={date => formatDateAtIndex(date, 1)}
+                      minDate={datesSorted[0]}
+                      maxDate={datesSorted[datesSorted.length - 1]}
+                      timeSelectEnd={
+                        rangeOperator[0].id ===
+                        DATETIME_OPERATIONS.RANGE_DATETIME
+                      }
+                      overrides={{
+                        TimeSelectFormControl: {
+                          props: {label: 'End time'},
+                        },
+                      }}
+                      range
+                      mask="99-99-9999"
+                      size="compact"
+                    />
+                  )}
+                  {(rangeOperator[0].id ===
+                    DATETIME_OPERATIONS.RANGE_DATETIME ||
+                    rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_TIME) && (
+                    <TimePicker
+                      value={rangeDates[1]}
+                      onChange={time => setRangeDates([rangeDates[0], time])}
+                      creatable
+                      size="compact"
+                    />
+                  )}
+                </div>
+              </FormControl>
+            </div>
+          </div>
         </div>
-      ) : (
+      )}
+
+      {isCategorical && (
         <div>
           <p>categorical</p>
         </div>
@@ -125,7 +267,7 @@ const defaultOptions = {
   title: '',
   sortable: true,
   filterable: true,
-  formatString: 'LL-MM-yyyy HH:mm ss:SS',
+  formatString: 'dd-MM-yyyy HH:mm ss:SS',
 };
 
 function DatetimeColumn(options: OptionsT): DatetimeColumnT {
@@ -158,14 +300,11 @@ function DatetimeColumn(options: OptionsT): DatetimeColumnT {
         />
       );
     }),
-    renderFilter: function RenderDatetimeFilter(props) {
-      return <DatetimeFilter {...props} options={normalizedOptions} />;
-    },
+    renderFilter: DatetimeFilter,
     sortable: normalizedOptions.sortable,
     // initial sort should display largest values first
-    sortFn: function(a, b) {
-      return b - a;
-    },
+    sortFn: sortDates,
+
     title: options.title,
   };
 }

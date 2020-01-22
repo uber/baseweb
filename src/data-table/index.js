@@ -17,6 +17,11 @@ export {default as DatetimeColumn} from './column-datetime.js';
 export {default as NumericalColumn} from './column-numerical.js';
 export {default as StringColumn} from './column-string.js';
 
-export {COLUMNS, NUMERICAL_FORMATS, SORT_DIRECTIONS} from './constants.js';
+export {
+  COLUMNS,
+  DATETIME_OPERATIONS,
+  NUMERICAL_FORMATS,
+  SORT_DIRECTIONS,
+} from './constants.js';
 
 export type * from './types.js';

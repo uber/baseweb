@@ -30,6 +30,17 @@ export const NUMERICAL_OPERATIONS = Object.freeze({
   LTE: 'LTE',
 });
 
+export const DATETIME_OPERATIONS = Object.freeze({
+  RANGE_DATETIME: 'RANGE_DATETIME',
+  RANGE_DATE: 'RANGE_DATE',
+  RANGE_TIME: 'RANGE_TIME',
+  WEEKDAY: 'WEEKDAY',
+  MONTH: 'MONTH',
+  QUARTER: 'QUARTER',
+  HALF: 'HALF',
+  YEAR: 'YEAR',
+});
+
 export const SORT_DIRECTIONS = Object.freeze({
   ASC: 'ASC',
   DESC: 'DESC',
