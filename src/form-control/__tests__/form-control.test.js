@@ -44,6 +44,7 @@ Object {
   "$error": false,
   "$positive": false,
   "children": "Caption test",
+  "data-baseweb": "form-control-caption",
 }
 `);
 
@@ -58,6 +59,7 @@ Object {
   "$error": true,
   "$positive": false,
   "children": "Error test",
+  "data-baseweb": "form-control-caption",
 }
 `);
   });
@@ -177,6 +179,7 @@ Object {
   "$error": false,
   "$positive": false,
   "children": "Caption test",
+  "data-baseweb": "form-control-caption",
 }
 `);
   });
@@ -205,6 +208,7 @@ Object {
   "$error": false,
   "$positive": false,
   "children": "Caption test",
+  "data-baseweb": "form-control-caption",
 }
 `);
     rendered.setProps({
@@ -226,6 +230,7 @@ Object {
   "$error": false,
   "$positive": false,
   "children": "Caption test",
+  "data-baseweb": "form-control-caption",
 }
 `);
     expect(caption).toHaveText('Error test');
@@ -257,6 +262,7 @@ Object {
   "$error": false,
   "$positive": false,
   "children": "Caption test",
+  "data-baseweb": "form-control-caption",
 }
 `);
   });
@@ -288,6 +294,7 @@ Object {
   "$error": false,
   "$positive": false,
   "children": "Caption test",
+  "data-baseweb": "form-control-caption",
 }
 `);
 });
@@ -322,6 +329,7 @@ Object {
   "$error": false,
   "$positive": false,
   "children": "Caption test",
+  "data-baseweb": "form-control-caption",
 }
 `);
 });
