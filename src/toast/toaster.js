@@ -41,6 +41,15 @@ export class ToasterContainer extends React.Component<
 
   constructor(props: ToasterPropsT) {
     super(props);
+
+    if (__DEV__) {
+      if (toasterRef !== undefined) {
+        // eslint-disable-next-line no-console
+        console.warn(
+          'A ToasterContainer already exists in your application. It is not recommended to have more than one ToasterContainer in an application.',
+        );
+      }
+    }
     toasterRef = this;
   }
 
