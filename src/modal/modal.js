@@ -72,6 +72,12 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
         Then pass backdrop overrides to DialogContainer instead. Tha will help you with
         the next major version upgrade.`);
       }
+      // $FlowFixMe: flow complains that this prop doesn't exist
+      if (this.props.closable) {
+        console.warn(
+          'The property `closable` is not supported on the Modal. Did you mean `closeable`?',
+        );
+      }
     }
   }
 
@@ -264,6 +270,8 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       closeable,
       role,
       unstable_ModalBackdropScroll,
+      autofocus,
+      autoFocus,
     } = this.props;
 
     const {
@@ -289,7 +297,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     const sharedProps = this.getSharedProps();
     const children = this.getChildren();
 
-    if (this.props.autofocus === false && __DEV__) {
+    if (autofocus === false && __DEV__) {
       console.warn(
         `The prop "autofocus" is deprecated in favor of "autoFocus" to be consistent across the project.
         The property "autofocus" will be removed in a future major version.`,
@@ -315,11 +323,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
           <FocusLock
             returnFocus
             // eslint-disable-next-line jsx-a11y/no-autofocus
-            autoFocus={
-              this.props.autofocus !== null
-                ? this.props.autofocus
-                : this.props.autoFocus
-            }
+            autoFocus={autofocus !== null ? autofocus : autoFocus}
           >
             <Root
               data-baseweb="modal"
