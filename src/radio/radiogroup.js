@@ -65,6 +65,7 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
           }
 
           return React.cloneElement(child, {
+            align: this.props.align,
             autoFocus: this.props.autoFocus,
             checked: this.props.value === child.props.value,
             disabled: this.props.disabled || child.props.disabled,
