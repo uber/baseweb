@@ -30,6 +30,7 @@ export const component = () => {
         aria-label="Select a date"
         highlightedDate={new Date('March 10, 2019')}
         value={date}
+        onChange={({date}) => setDate(date)}
         overrides={{
           MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
           MonthYearSelectStatefulMenu: {
