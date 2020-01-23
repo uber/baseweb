@@ -16592,10 +16592,10 @@ react-proptype-conditional-require@^1.0.4:
   resolved "https://registry.yarnpkg.com/react-proptype-conditional-require/-/react-proptype-conditional-require-1.0.4.tgz#69c2d5741e6df5e08f230f36bbc2944ee1222555"
   integrity sha1-acLVdB5t9eCPIw82u8KUTuEiJVU=
 
-react-range@^1.4.8:
-  version "1.4.8"
-  resolved "https://registry.yarnpkg.com/react-range/-/react-range-1.4.8.tgz#a22f04fa347b76d3a4af41a8773b7fb8a1c69ac0"
-  integrity sha512-1q7tnnag5ANlbeiohR+CH0daVanQRd9lCukYYMyEGP2+Vunl9hZcFH2kRuo+iBJpaQZfOruGicTeTi0Ba1NlCg==
+react-range@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/react-range/-/react-range-1.5.1.tgz#161075cbfd37186f8336ab37a0ed0d7cf72dd1c6"
+  integrity sha512-9ppaYXy4oD8DgofmfLIPFU3vCArVFq82RNGQJCS8WJkxQBHt0/nolNhWWV51IHfJg/H41nKe11CvZA9Ez/sHag==
 
 react-simple-code-editor@^0.10.0:
   version "0.10.0"
@@ -16651,10 +16651,10 @@ react-twitter-embed@^2.0.8:
     react-proptype-conditional-require "^1.0.4"
     scriptjs "^2.5.9"
 
-react-view@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/react-view/-/react-view-2.0.1.tgz#c9ac543820f17a79b7588d6b76e3d3f87f557036"
-  integrity sha512-YAhmwuF3R8+IUKiCUqOw/p32L1UaY00W26ZrkGo2s7wV2dEGEcfOLl2Vs16QSiF8UDm/zGO140v2MLs4tquM/Q==
+react-view@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/react-view/-/react-view-2.1.2.tgz#8964b9d91d4826a2d6ebd7610bd103c1a5c931e6"
+  integrity sha512-QxpYZkfylk5EfYIoyassfktQtKq1IaFM+Ft7W7TY6NT2uY+gV1yXhE4hvdMWU6YuF5G9TyLAVT16HoQxKmKyJg==
   dependencies:
     "@babel/code-frame" "^7.5.5"
     "@babel/core" "^7.7.0"
