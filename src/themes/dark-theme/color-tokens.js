@@ -33,7 +33,7 @@ export const darkColorTokens: ColorTokensT = {
   accent600: colors.blue600,
   accent700: colors.blue700,
   // Negative Palette
-  negative: colors.red400,
+  negative: colors.red500,
   negative50: colors.red50,
   negative100: colors.red100,
   negative200: colors.red200,
