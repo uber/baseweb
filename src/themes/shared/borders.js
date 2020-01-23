@@ -7,6 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import type {BordersT} from '../types.js';
 
+// borderColor is defaulted to the light theme values.
+// Dark theme overrides the border colors.
 const borders: BordersT = {
   border100: {
     borderColor: 'hsla(0, 0%, 0%, 0.04)',
