@@ -17,9 +17,10 @@ export function Color({value}: {value: string}) {
       className={css({
         display: 'flex',
         justifyContent: 'space-between',
-        borderBottomColor: theme.colors[value],
-        borderBottomWidth: '2px',
+        borderBottomColor: theme.colors.borderOpaque,
+        borderBottomWidth: '1px',
         borderBottomStyle: 'solid',
+        paddingTop: theme.sizing.scale600,
         marginBottom: theme.sizing.scale600,
       })}
     >
@@ -32,6 +33,15 @@ export function Color({value}: {value: string}) {
           boxSizing: 'border-box',
           width: theme.sizing.scale2400,
           backgroundColor: theme.colors[value],
+          borderTopColor: theme.colors.borderOpaque,
+          borderTopWidth: '1px',
+          borderTopStyle: 'solid',
+          borderLeftColor: theme.colors.borderOpaque,
+          borderLeftWidth: '1px',
+          borderLeftStyle: 'solid',
+          borderRightColor: theme.colors.borderOpaque,
+          borderRightWidth: '1px',
+          borderRightStyle: 'solid',
         })}
       ></div>
     </div>
