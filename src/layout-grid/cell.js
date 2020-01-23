@@ -12,9 +12,22 @@ import type {CellPropsT} from './types.js';
 
 // When used with Grid, Cell does not actually return anything.
 // All of the props are forwarded to a StyledCell inside of Grid.
-export default function Cell({align, children, order, skip, span}: CellPropsT) {
+export default function Cell({
+  align,
+  children,
+  order,
+  skip,
+  span,
+  gridUnit,
+}: CellPropsT) {
   return (
-    <StyledCell $align={align} $order={order} $skip={skip} $span={span}>
+    <StyledCell
+      $align={align}
+      $order={order}
+      $skip={skip}
+      $span={span}
+      $gridUnit={gridUnit}
+    >
       {children}
     </StyledCell>
   );

@@ -31,7 +31,7 @@ export interface StyledGridProps {
   $gridGutters?: Responsive<number>;
   $gridMargins?: Responsive<number>;
   $gridMaxWidth?: number;
-  $unit?: string;
+  $gridUnit?: string;
 }
 
 export interface CellProps {

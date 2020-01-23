@@ -20,12 +20,12 @@ export const StyledGrid = styled<StyledGridPropsT>(
     $gridGutters = $theme.grid.gutters,
     $gridMargins = $theme.grid.margins,
     $gridMaxWidth = $theme.grid.maxWidth,
-    $unit = $theme.grid.unit,
+    $gridUnit = $theme.grid.unit,
   }) => {
     const mediaQueries = getMediaQueries($theme.breakpoints);
     const gridGutters = $gridGutters;
     const gridMargins = $gridMargins;
-    const unit = $unit;
+    const unit = $gridUnit;
     const gridMaxWidth = $gridMaxWidth;
     const gridStyles = mediaQueries.reduce(
       (acc, cur, idx) => {
@@ -72,20 +72,21 @@ export const StyledGrid = styled<StyledGridPropsT>(
 export const StyledCell = styled<StyledCellPropsT>(
   'div',
   ({
+    $theme,
     $align = null,
     $gridColumns = null,
     $gridGaps = 0,
     $gridGutters = null,
+    $gridUnit = $theme.grid.unit,
     $order = null,
     $skip = [0, 0, 0],
     $span = [1, 1, 1],
-    $theme,
   }) => {
     const mediaQueries = getMediaQueries($theme.breakpoints);
     const gridColumns = $gridColumns || $theme.grid.columns;
     const gridGaps = $gridGaps || $theme.grid.gaps;
     const gridGutters = $gridGutters || $theme.grid.gutters;
-    const unit = $theme.grid.unit;
+    const unit = $gridUnit;
     const cellStyles = mediaQueries.reduce(
       (acc, cur, idx) => {
         if (getResponsiveNumber($span, idx) === 0) {

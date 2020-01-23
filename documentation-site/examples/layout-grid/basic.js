@@ -6,7 +6,7 @@ import {Grid, Cell} from 'baseui/layout-grid';
 
 export default () => (
   <Outer>
-    <Grid unit="em">
+    <Grid>
       <Cell>
         <Inner>1</Inner>
       </Cell>
