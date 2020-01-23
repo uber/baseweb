@@ -120,10 +120,28 @@ export default class Calendar extends React.Component<
     }
 
     if (prevProps.value !== this.props.value) {
-      this.setState({
-        date: this.getDateInView(),
-      });
+      const nextDate = this.getDateInView();
+      if (!this.isInView(nextDate)) {
+        this.setState({
+          date: nextDate,
+        });
+      }
     }
+  }
+
+  isInView(date: Date): boolean {
+    // we calculate the month delta between the date arg and the date in the state.
+    const currentDate = this.state.date;
+
+    // First we get the year delta
+    const yearDelta = date.getFullYear() - currentDate.getFullYear();
+
+    // then we convert it to months. Then we simply add the date-without-year month delta back in.
+    const monthDelta =
+      yearDelta * 12 + date.getMonth() - currentDate.getMonth();
+
+    // we just check that the delta is between the range given by "this month" (i.e. 0) and "the last month" (i.e. monthsShown)
+    return monthDelta >= 0 && monthDelta < (this.props.monthsShown || 1);
   }
 
   getSingleDate(value: ?Date | Array<Date>): ?Date {

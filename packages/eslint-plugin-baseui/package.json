@@ -4,8 +4,7 @@
   "description": "ESLint rules for Base Web",
   "main": "index.js",
   "scripts": {
-    "test": "yarn jest",
-    "bump": "node ./bump.js"
+    "test": "yarn jest"
   },
   "license": "MIT",
   "author": "Graham Murdoch <murdoch@uber.com>",
@@ -24,7 +23,11 @@
     "react",
     "baseui"
   ],
-  "repository": "github:uber/baseweb",
+  "repository": {
+    "directory": "packages/eslint-plugin-baseui",
+    "type": "git",
+    "url": "https://github.com/uber/baseweb"
+  },
   "bugs": {
     "url": "https://github.com/uber/baseweb/issues"
   }

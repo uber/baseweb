@@ -511,13 +511,15 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
     $pseudoSelected,
     $range,
     $selected,
+    $outsideMonth,
     $theme: {colors, sizing},
   } = props;
   const code = getDayStateCode(props);
   return ({
     boxSizing: 'border-box',
     position: 'relative',
-    cursor: $disabled ? 'default' : 'pointer',
+    cursor:
+      $disabled || (!$peekNextMonth && $outsideMonth) ? 'default' : 'pointer',
     color: colors.calendarForeground,
     display: 'inline-block',
     width: sizing.scale1000,
@@ -627,6 +629,18 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
           }
         : {}),
     },
+    ...(!$peekNextMonth && $outsideMonth
+      ? {
+          ':before': {content: null},
+          ':after': {content: null},
+          ':first-child': {
+            ':before': {content: null},
+          },
+          ':last-child': {
+            ':before': {content: null},
+          },
+        }
+      : {}),
   }: {});
 });
 

@@ -83,6 +83,13 @@ const toastConfig: TConfig = {
       description: `The number of milliseconds to wait before automatically dismissing a
         notification. This behavior is disabled when the value is set to 0.`,
     },
+    resetAutoHideTimerOnUpdate: {
+      value: true,
+      defaultValue: true,
+      type: PropTypes.Boolean,
+      description: `If true, the autohide timer on a toast will reset when updated by triggering a toast with the same key`,
+      hidden: true,
+    },
     usePortal: {
       value: true,
       defaultValue: true,
