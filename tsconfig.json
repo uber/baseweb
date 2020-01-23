@@ -4,6 +4,8 @@
     "checkJs": false /* Allow javascript files to be compiled. */,
     "noEmit": true /* Do not emit outputs. */,
     "jsx": "preserve",
+    "module": "commonjs",
+    "allowJs": true,
 
     /* Strict Type-Checking Options */
     "strict": true /* Enable all strict type-checking options. */,
