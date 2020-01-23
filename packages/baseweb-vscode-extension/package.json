@@ -1,11 +1,16 @@
 {
   "name": "baseweb",
-  "displayName": "baseweb",
-  "publisher": "BaseWeb",
+  "displayName": "BaseWeb",
+  "publisher": "Uber",
   "description": "Base Web is a foundation for initiating, evolving, and unifying web products.",
   "version": "0.0.0",
   "engines": {
     "vscode": "^1.41.0"
+  },
+  "repository": {
+    "directory": "packages/baseweb-vscode-extension",
+    "type": "git",
+    "url": "https://github.com/uber/baseweb"
   },
   "categories": [
     "Other"
