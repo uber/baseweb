@@ -38,6 +38,12 @@ const ProgressBarConfig: TConfig = {
       type: PropTypes.Boolean,
       description: 'Can be used to show the progress bar label.',
     },
+    infinite: {
+      value: undefined,
+      placeholder: 'false',
+      type: PropTypes.Boolean,
+      description: 'Can be used to show the infinite progress bar.',
+    },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
