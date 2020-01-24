@@ -78,3 +78,4 @@ services:
       - NETLIFY_AUTH_TOKEN
       - NETLIFY_SITE_ID
       - AZURE_TOKEN
+      - WEBSITE_ENV
