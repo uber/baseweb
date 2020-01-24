@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import isValid from 'date-fns/isValid/index.js';
 import isAfter from 'date-fns/isAfter/index.js';
+import parse from 'date-fns/parse/index.js';
 
 import {MaskedInput} from '../input/index.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
@@ -193,8 +194,23 @@ export default class Datepicker extends React.Component<
 
     if (this.props.range) {
       const dates = this.normalizeDashes(inputValue).split(' – ');
-      const startDate = new Date(dates[0]);
-      const endDate = new Date(dates[1]);
+      let startDate = new Date(dates[0]);
+      let endDate = new Date(dates[1]);
+
+      const formatString = this.props.formatString;
+      if (formatString) {
+        startDate = parse(
+          dates[0],
+          this.normalizeDashes(formatString),
+          new Date(),
+        );
+        endDate = parse(
+          dates[1],
+          this.normalizeDashes(formatString),
+          new Date(),
+        );
+      }
+
       isValid(startDate) &&
         isValid(endDate) &&
         isAfter(endDate, startDate) &&
