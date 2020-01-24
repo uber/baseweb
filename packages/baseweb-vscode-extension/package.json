@@ -4,6 +4,7 @@
   "publisher": "Uber",
   "description": "Base Web is a foundation for initiating, evolving, and unifying web products.",
   "version": "0.0.0",
+  "license": "MIT",
   "engines": {
     "vscode": "^1.41.0"
   },
@@ -28,7 +29,6 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "yarn run compile",
     "deploy": "vsce publish --yarn",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
