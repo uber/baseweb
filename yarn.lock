@@ -9261,17 +9261,17 @@ extglob@^2.0.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-extract-react-types-loader@^0.3.9:
-  version "0.3.9"
-  resolved "https://registry.yarnpkg.com/extract-react-types-loader/-/extract-react-types-loader-0.3.9.tgz#d0d26f5215c2197e752a46d654c5a17791af19c5"
-  integrity sha512-zOyv/VRa/tpsUyl1Pdyj/+wUg74dW0YH57r5C5FY2DDbAt3Go8LjUkI5i+Lw3S84KjbOXP6ByxO9K7XT7Kby9A==
+extract-react-types-loader@^0.3.10:
+  version "0.3.10"
+  resolved "https://registry.yarnpkg.com/extract-react-types-loader/-/extract-react-types-loader-0.3.10.tgz#c22fd105378004e6f89fc6f266b756c9ef0534ac"
+  integrity sha512-a4JeYAUlr0FjygIk0Uo1BxPNido8bx9Gr1wKxN/MT/nO5h4XZgm3xIQtDYnvilrPSH/tXHC/CatIbf2B0sBrQg==
   dependencies:
-    extract-react-types "^0.22.0"
+    extract-react-types "^0.23.0"
 
-extract-react-types@^0.22.0, extract-react-types@^0.22.1:
-  version "0.22.1"
-  resolved "https://registry.yarnpkg.com/extract-react-types/-/extract-react-types-0.22.1.tgz#09beb26850214f1e5ed653296f41077eeb3927da"
-  integrity sha512-FuraEeFpL28GPoZAl7PClEBvtssd4owuCqpwjTI9TnlqueElXU/a+Qwtyt8WjwZ7f29d/zfznF6K4vUQNOF1jQ==
+extract-react-types@^0.23.0:
+  version "0.23.0"
+  resolved "https://registry.yarnpkg.com/extract-react-types/-/extract-react-types-0.23.0.tgz#54c6e7657c61a40f713e2e563222767fee3f21e2"
+  integrity sha512-GxlI5hRDEmVFQU5XBUl4DrXmXDt+WkTC921tIBwmOZqGdRsz1ZiNPeD5xHyt/hJqS0Fpxj4ltPP7g8mYvMypeg==
   dependencies:
     "@aparna036/babel-explode-module" "^2.0.1"
     "@babel/core" "^7.4.4"
@@ -12800,10 +12800,10 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
   integrity sha512-s5kLOcnH0XqDO+FvuaLX8DDjZ18CGFk7VygH40QoKPUQhW4e2rvM0rwUq0t8IQDOwYSeLK01U90OjzBTme2QqA==
 
-kind2string@^0.6.3:
-  version "0.6.3"
-  resolved "https://registry.yarnpkg.com/kind2string/-/kind2string-0.6.3.tgz#2c558de972d2e2bb09ec14dcbcfda289e8328a85"
-  integrity sha512-CK4gfO7SKrePux9UUUsmLNFH0ADTtAmC1CQJCcCmzV7xkZcXJoJDrd+pQkYhcfWCqzTJ4XFqTWTiASNIHn/79A==
+kind2string@^0.7.2:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/kind2string/-/kind2string-0.7.2.tgz#10d58aa3c797bed521c8a3256e551a0ad3189e51"
+  integrity sha512-AwSL6OpnM7bo82x7ENDdmbSb3BsM4uRfXK2ezIm4cnkLa+jFpFW/mEGReD00g3kmc94A8SNIrK9F9ph4+EpqVQ==
   dependencies:
     "@babel/runtime" "^7.4.4"
 
@@ -15849,14 +15849,14 @@ pretty-hrtime@^1.0.3:
   resolved "https://registry.yarnpkg.com/pretty-hrtime/-/pretty-hrtime-1.0.3.tgz#b7e3ea42435a4c9b2759d99e0f201eb195802ee1"
   integrity sha1-t+PqQkNaTJsnWdmeDyAesZWALuE=
 
-pretty-proptypes@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/pretty-proptypes/-/pretty-proptypes-1.0.0.tgz#3849924d27e0ca9aeed43d5820eccd3539488efe"
-  integrity sha512-CJC6tcZ48pDg2QNd42x+QcBgINb//Ega5J0EPvXKGsFrTR7WO9faAVO8FYQcEQKQ53cyZwATxqOAOE83nFd1HA==
+pretty-proptypes@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/pretty-proptypes/-/pretty-proptypes-1.0.5.tgz#ff3b41b0bd47c7e18e9696d11166cb40e6d085ab"
+  integrity sha512-oNHi2MfYVi6x4tqHC50VhuG3KeUjHBZKq9g9d/2Rej26hhfZDP7NXFWaOzL93u5yrZ0W7xaJ7jD39B7HUpTAYA==
   dependencies:
     "@babel/runtime" "^7.4.4"
     "@emotion/core" "^10.0.14"
-    kind2string "^0.6.3"
+    kind2string "^0.7.2"
     react-markings "^1.2.0"
 
 pretty-quick@^1.4.1:
