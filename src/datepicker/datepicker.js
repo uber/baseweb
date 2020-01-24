@@ -12,7 +12,7 @@ import isAfter from 'date-fns/isAfter/index.js';
 import {MaskedInput} from '../input/index.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
 import Calendar from './calendar.js';
-import {formatDate} from './utils/index.js';
+import {formatDate, getHours, getMinutes} from './utils/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {LocaleContext} from '../locale/index.js';
 import {StyledInputWrapper} from './styled-components.js';
@@ -57,6 +57,32 @@ export default class Datepicker extends React.Component<
     } else if (this.state.lastActiveElm) {
       this.state.lastActiveElm.focus();
     }
+
+    // Time selectors previously caused the calendar popover to close.
+    // The check below refrains from closing the popover if only times changed.
+    const onlyTimeChanged = (prev: ?Date, next: ?Date) => {
+      if (!prev || !next) return false;
+      const p = formatDate(prev, 'dd-MM-yyyy');
+      const n = formatDate(next, 'dd-MM-yyyy');
+      if (p === n) {
+        return (
+          getHours(prev) !== getHours(next) ||
+          getMinutes(prev) !== getMinutes(next)
+        );
+      }
+      return false;
+    };
+    const prevValue = this.props.value;
+    if (Array.isArray(date) && Array.isArray(prevValue)) {
+      if (date.some((d, i) => onlyTimeChanged(prevValue[i], d))) {
+        isOpen = true;
+      }
+    } else if (!Array.isArray(date) && !Array.isArray(prevValue)) {
+      if (onlyTimeChanged(prevValue, date)) {
+        isOpen = true;
+      }
+    }
+
     this.setState({
       isOpen,
       isPseudoFocused,
