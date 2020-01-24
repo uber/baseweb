@@ -71,13 +71,16 @@ export default function MaskedInput({
         maskChar,
         ...(inputOverride.props || {}),
       },
-      style: {
-        ...(inputOverride.style || {}),
-      },
+      style:
+        typeof inputOverride.style === 'function'
+          ? inputOverride.style
+          : {
+              ...(inputOverride.style || {}),
+            },
     },
     ...restOverrides,
   };
-
+  // $FlowFixMe
   return <Input {...restProps} overrides={nextOverrides} />;
 }
 
