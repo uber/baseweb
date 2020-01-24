@@ -39,6 +39,11 @@ const TableConfig: TConfig = {
       type: PropTypes.String,
       description: 'Table width fills this provided value.',
     },
+    isLoading: {
+      value: false,
+      type: PropTypes.Boolean,
+      description: 'Lets you specify loading state.',
+    },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,

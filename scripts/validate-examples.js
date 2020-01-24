@@ -17,7 +17,7 @@ const files = globby.sync(['documentation-site/examples/**/*.js']);
 files.forEach(file => {
   const from = path.join(__dirname, '../', file);
   const data = fs.readFileSync(from, 'utf-8');
-  const lines = data.split('\n');
+  const lines = data.split(/\r?\n/g);
   if (lines[0] !== '// @flow') {
     throw new Error(`File ${file} is missing '// @flow' header comment.`);
   }
