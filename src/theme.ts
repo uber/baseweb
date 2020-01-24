@@ -137,6 +137,7 @@ interface Colors {
   backgroundLightNegative: string;
   backgroundLightWarning: string;
   backgroundAlwaysDark: string;
+  backgroundAlwaysLight: string;
 
   // Content
   contentStateDisabled: string;
