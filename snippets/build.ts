@@ -1,4 +1,4 @@
-import {TProp, TImportsConfig} from 'react-view';
+import {TProp, TImportsConfig, PropTypes} from 'react-view';
 import buttonConfig from '../documentation-site/components/yard/config/button';
 
 // vendored code from react-view
@@ -74,13 +74,37 @@ const buildSnippet = (
     }
   }
 
+  let ctr2 = 1;
+  const componentBody = [`<${componentName}`];
+  for (const propName in props) {
+    if (props[propName].hidden) continue;
+    if (propName === 'children') continue;
+    if (props[propName].type === PropTypes.Boolean) {
+      let row = `  \${${ctr2++}:${propName}}`;
+      componentBody.push(row);
+    } else {
+      let row = `  \${${ctr2++}:${propName}={\${${ctr2++}:${props[propName]
+        .defaultValue || props[propName].value}}\\}}`;
+      componentBody.push(row);
+    }
+  }
+  if (props['children'] && !props['children'].hidden) {
+    componentBody.push('>');
+    componentBody.push(`  \${${ctr2++}:${props['children'].value}}`);
+    componentBody.push(`</${componentName}>`);
+  } else {
+    componentBody.push(`/>`);
+  }
+
   // const importSnippet = {
   //   prefix: [`${componentName} import`],
   //   description: `Base ${componentName} import.`,
   // };
 
   //console.log(componentName, imports, props);
-  console.log(importList, importBody);
+
+  console.log(importBody, componentBody);
+  console.log(JSON.stringify(componentBody));
   return componentName;
 };
 
