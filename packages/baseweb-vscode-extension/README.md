@@ -1,4 +1,3 @@
-# baseweb README
+# Base Web VS Code Extension
 
-TODO
-
+This is a work in progress.

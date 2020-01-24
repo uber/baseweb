@@ -14,7 +14,8 @@
     "url": "https://github.com/uber/baseweb"
   },
   "categories": [
-    "Other"
+    "Extension Packs",
+    "Snippets"
   ],
   "activationEvents": [
     "onCommand:extension.helloWorld"
@@ -35,6 +36,7 @@
     "pretest": "yarn run compile",
     "test": "node ./out/test/runTest.js"
   },
+  "icon": "images/icon.png",
   "devDependencies": {
     "@types/glob": "^7.1.1",
     "@types/mocha": "^5.2.7",
