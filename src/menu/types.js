@@ -131,7 +131,11 @@ export type StatefulContainerPropsT = {
   },
 };
 
-export type MenuPropsT = {
+export type BaseMenuPropsT = {
+  /** Renders all menu content for SEO purposes regardless of menu  state */
+  renderAll?: boolean,
+};
+export type MenuPropsT = BaseMenuPropsT & {
   overrides?: {
     EmptyState?: OverrideT<*>,
     List?: OverrideT<*>,
@@ -206,7 +210,7 @@ export type StatelessMenuPropsT = SharedStatelessPropsT & MenuPropsT;
 export type StatelessMenuProfilePropsT = SharedStatelessPropsT &
   MenuProfilePropsT;
 
-export type OptionListPropsT = {
+export type OptionListPropsT = BaseMenuPropsT & {
   /** Item to parse and render. */
   item: ItemT,
   /** Function used to get the string label for each item. */
@@ -229,7 +233,7 @@ export type OptionListPropsT = {
   $isFocused?: boolean,
 };
 
-export type OptionProfilePropsT = {
+export type OptionProfilePropsT = BaseMenuPropsT & {
   /** Item to parse and render. */
   item: ItemT,
   /** Used to render a sub menu at this menu item. You'll often render another menu from this function. */

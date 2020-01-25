@@ -447,7 +447,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
         this.popoverRef.current ? (
           ReactDOM.createPortal(renderedContent, this.popoverRef.current)
         ) : (
-          <Hidden>{renderedContent}</Hidden>
+          <Hidden key="hidden-layer">{renderedContent}</Hidden>
         ),
       );
     const defaultPopperOptions = {
@@ -460,7 +460,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       if (mountedAndOpen) {
         rendered.push(
           <Layer
-            key={'new-layer'}
+            key="new-layer"
             mountNode={this.props.mountNode}
             onMount={() => this.setState({isLayerMounted: true})}
             onUnmount={() => this.setState({isLayerMounted: false})}

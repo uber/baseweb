@@ -10,8 +10,9 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {Popover} from '../popover/index.js';
+import type {BaseMenuPropsT} from './types.js';
 
-type PropsT = {
+type PropsT = BaseMenuPropsT & {
   children: React.Node,
   getChildMenu: ?(item: *) => React.Node,
   isOpen: boolean,
@@ -33,6 +34,7 @@ export default function MaybeChildMenu(props: PropsT) {
     <Popover
       focusLock={false}
       isOpen={props.isOpen}
+      renderAll={props.renderAll}
       content={ChildMenu}
       ignoreBoundary
       onMouseEnterDelay={30}

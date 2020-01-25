@@ -68,7 +68,7 @@ describe('popover', () => {
     expect(selectedValue).toBe('AliceBlue');
   });
 
-  it('renders content even when hidden: renderAll prop', async () => {
+  it('renders content even when hidden: with renderAll prop', async () => {
     await mount(page, 'popover-render-all');
     await page.waitFor('button');
     await page.waitFor(selectors.content);
