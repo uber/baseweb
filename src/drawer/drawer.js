@@ -56,7 +56,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
   };
 
   componentDidMount() {
-    this.setState({mounted: true, isVisible: this.props.isOpen});
+    this.setState({mounted: true});
   }
 
   componentWillUnmount() {
@@ -314,7 +314,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
 
   render() {
     const mountedAndOpen =
-      this.state.mounted && this.props.isOpen && this.state.isVisible;
+      this.state.mounted && (this.props.isOpen || this.state.isVisible);
 
     const renderedContent =
       mountedAndOpen || this.props.renderAll ? this.renderContent() : null;
