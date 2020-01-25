@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* global document */
 /* eslint-disable react/no-find-dom-node */
 import * as React from 'react';
+import ReactDOM from 'react-dom';
 import FocusLock from 'react-focus-lock';
 
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
@@ -24,6 +25,7 @@ import {
   Arrow as StyledArrow,
   Body as StyledBody,
   Inner as StyledInner,
+  Hidden,
 } from './styled-components.js';
 import {fromPopperPlacement} from './utils.js';
 import defaultProps from './default-props.js';
@@ -49,6 +51,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   anchorRef = (React.createRef(): {current: *});
   popperRef = (React.createRef(): {current: *});
   arrowRef = (React.createRef(): {current: *});
+  popoverRef = React.createRef<HTMLElement>();
   /* eslint-enable react/sort-comp */
 
   /**
@@ -386,7 +389,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   }
 
   renderPopover() {
-    const {showArrow, overrides = {}, content} = this.props;
+    const {showArrow, overrides = {}} = this.props;
 
     const {
       Arrow: ArrowOverride,
@@ -420,17 +423,33 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
         ) : null}
         <Inner
           key="popover-inner"
+          ref={this.popoverRef}
           {...sharedProps}
           {...getOverrideProps(InnerOverride)}
-        >
-          {typeof content === 'function' ? content() : content}
-        </Inner>
+        />
       </Body>
     );
   }
 
+  renderContent() {
+    const {content} = this.props;
+    return typeof content === 'function' ? content() : content;
+  }
+
   render() {
+    const mountedAndOpen = this.state.isMounted && this.props.isOpen;
     const rendered = [this.renderAnchor()];
+    const renderedContent =
+      mountedAndOpen || this.props.renderAll ? this.renderContent() : null;
+
+    renderedContent &&
+      rendered.push(
+        this.popoverRef.current ? (
+          ReactDOM.createPortal(renderedContent, this.popoverRef.current)
+        ) : (
+          <Hidden>{renderedContent}</Hidden>
+        ),
+      );
     const defaultPopperOptions = {
       modifiers: {
         preventOverflow: {enabled: !this.props.ignoreBoundary},
@@ -438,7 +457,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     };
     // Only render popover on the browser (portals aren't supported server-side)
     if (__BROWSER__) {
-      if (this.state.isMounted && this.props.isOpen) {
+      if (mountedAndOpen) {
         rendered.push(
           <Layer
             key={'new-layer'}

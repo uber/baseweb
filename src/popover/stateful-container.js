@@ -144,6 +144,7 @@ class StatefulContainer extends React.Component<
       showArrow,
       triggerType,
       mountNode,
+      renderAll,
     } = this.props;
 
     const popoverProps: PopoverPropsWithoutChildrenT = {
@@ -159,6 +160,7 @@ class StatefulContainer extends React.Component<
       showArrow,
       triggerType,
       mountNode,
+      renderAll,
     };
 
     if (dismissOnClickOutside) {

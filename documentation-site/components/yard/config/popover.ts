@@ -97,6 +97,12 @@ const PopoverConfig: TConfig = {
       description:
         'If true, focus will shift back to the original element after popover closes. Set this to false if focusing the original element triggers the popover.',
     },
+    renderAll: {
+      value: false,
+      type: PropTypes.Boolean,
+      description:
+        'Renders all popover content for SEO purposes regardless of popover isOpen state.',
+    },
     autoFocus: {
       value: true,
       type: PropTypes.Boolean,

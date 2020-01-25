@@ -100,8 +100,8 @@ describe('Popover', () => {
     // Show the popover
     wrapper.setProps({isOpen: true});
 
-    // Should now have the Layer as the second child
-    expect(wrapper.children().length).toBe(2);
+    // Should now have the Portal as the second child and Layer as the third child
+    expect(wrapper.children().length).toBe(3);
 
     wrapper.update();
     // Portal should have the popover body and content
@@ -115,7 +115,7 @@ describe('Popover', () => {
       $isAnimating: false,
       $isOpen: true,
     });
-    const renderedContent = popoverBody.find('strong');
+    const renderedContent = wrapper.find('strong');
     expect(renderedContent).toExist();
     expect(popoverBody).toHaveText('Hello world');
 

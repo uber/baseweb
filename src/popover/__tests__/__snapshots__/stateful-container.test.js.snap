@@ -21,6 +21,7 @@ Array [
     },
     "placement": "topLeft",
     "popperOptions": Object {},
+    "renderAll": undefined,
     "showArrow": true,
     "triggerType": "hover",
   },
