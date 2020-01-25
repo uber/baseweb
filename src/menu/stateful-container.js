@@ -179,11 +179,6 @@ export default class MenuStatefulContainer extends React.Component<
     } else if (event.key === KEY_STRINGS.ArrowRight) {
       if (this.props.getChildMenu) {
         const child = this.props.getChildMenu(rootRef);
-        console.error('child', {
-          child,
-          rootRef,
-          getChild: this.props.getChildMenu,
-        });
         if (child && child.current) {
           child.current.focus();
         }

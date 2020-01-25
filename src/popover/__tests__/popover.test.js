@@ -100,8 +100,8 @@ describe('Popover', () => {
     // Show the popover
     wrapper.setProps({isOpen: true});
 
-    // Should now have the Portal as the second child and Layer as the third child
-    expect(wrapper.children().length).toBe(3);
+    // Should now have the Layer as the second child
+    expect(wrapper.children().length).toBe(2);
 
     wrapper.update();
     // Portal should have the popover body and content
@@ -115,7 +115,7 @@ describe('Popover', () => {
       $isAnimating: false,
       $isOpen: true,
     });
-    const renderedContent = wrapper.find('strong');
+    const renderedContent = popoverBody.find('strong');
     expect(renderedContent).toExist();
     expect(popoverBody).toHaveText('Hello world');
 
@@ -330,6 +330,7 @@ describe('Popover', () => {
     wrapper = mount(
       <Popover
         isOpen
+        content="content"
         overrides={overrides}
         showArrow
         triggerType={TRIGGER_TYPE.hover}

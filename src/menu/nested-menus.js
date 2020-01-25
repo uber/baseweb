@@ -42,7 +42,9 @@ export default class NestedMenus extends React.Component<PropsT, StateT> {
   state = {menus: []};
 
   addMenuToNesting = (ref: Ref) => {
-    this.setState({menus: [...this.state.menus, ref]});
+    if (ref.current && ref.current.offsetHeight) {
+      this.setState({menus: [...this.state.menus, ref]});
+    }
   };
 
   removeMenuFromNesting = (ref: Ref) => {

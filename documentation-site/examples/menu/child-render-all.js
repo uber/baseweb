@@ -4,7 +4,12 @@ import {StatefulMenu, NestedMenus} from 'baseui/menu';
 
 const SSR = 'Rendered ->';
 const SERVER = 'Server ->';
-const FILE = [{label: SERVER}, {label: 'Side'}, {label: SSR}];
+const FILE = [
+  {label: SERVER},
+  {label: 'Side'},
+  {label: 'Up'},
+  {label: SSR},
+];
 
 const SERVER_SUB_MENU = [
   {label: 'DKR130'},

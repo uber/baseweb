@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 /* global document */
 /* eslint-disable react/no-find-dom-node */
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 import FocusLock from 'react-focus-lock';
 
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
@@ -51,7 +50,6 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   anchorRef = (React.createRef(): {current: *});
   popperRef = (React.createRef(): {current: *});
   arrowRef = (React.createRef(): {current: *});
-  popoverRef = React.createRef<HTMLElement>();
   /* eslint-enable react/sort-comp */
 
   /**
@@ -388,7 +386,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     return <span {...anchorProps}>{anchor}</span>;
   }
 
-  renderPopover() {
+  renderPopover(renderedContent: React.Node) {
     const {showArrow, overrides = {}} = this.props;
 
     const {
@@ -421,12 +419,9 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
             {...getOverrideProps(ArrowOverride)}
           />
         ) : null}
-        <Inner
-          key="popover-inner"
-          ref={this.popoverRef}
-          {...sharedProps}
-          {...getOverrideProps(InnerOverride)}
-        />
+        <Inner {...sharedProps} {...getOverrideProps(InnerOverride)}>
+          {renderedContent}
+        </Inner>
       </Body>
     );
   }
@@ -442,22 +437,14 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     const renderedContent =
       mountedAndOpen || this.props.renderAll ? this.renderContent() : null;
 
-    renderedContent &&
-      rendered.push(
-        this.popoverRef.current ? (
-          ReactDOM.createPortal(renderedContent, this.popoverRef.current)
-        ) : (
-          <Hidden key="hidden-layer">{renderedContent}</Hidden>
-        ),
-      );
     const defaultPopperOptions = {
       modifiers: {
         preventOverflow: {enabled: !this.props.ignoreBoundary},
       },
     };
     // Only render popover on the browser (portals aren't supported server-side)
-    if (__BROWSER__) {
-      if (mountedAndOpen) {
+    if (renderedContent) {
+      if (__BROWSER__ && mountedAndOpen) {
         rendered.push(
           <Layer
             key="new-layer"
@@ -484,14 +471,16 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
                   returnFocus={this.props.returnFocus}
                   autoFocus={this.props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
                 >
-                  {this.renderPopover()}
+                  {this.renderPopover(renderedContent)}
                 </FocusLock>
               ) : (
-                this.renderPopover()
+                this.renderPopover(renderedContent)
               )}
             </TetherBehavior>
           </Layer>,
         );
+      } else {
+        rendered.push(<Hidden key="hidden-layer">{renderedContent}</Hidden>);
       }
     }
     return rendered;
