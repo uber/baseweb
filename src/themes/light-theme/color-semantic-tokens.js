@@ -58,6 +58,7 @@ export default (
     backgroundLightWarning: colors.yellow50,
     backgroundLightPositive: colors.green50,
     backgroundAlwaysDark: colors.black,
+    backgroundAlwaysLight: colors.white,
 
     // Content
     contentStateDisabled: colors.gray400,

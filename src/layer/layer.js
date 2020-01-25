@@ -27,15 +27,23 @@ class LayerComponent extends React.Component<
   state = {container: null};
 
   componentDidMount() {
-    const {onMount, mountNode} = this.props;
+    const {onMount, mountNode, host: layersManagerHost} = this.props;
     if (mountNode) {
       onMount && onMount();
       return;
     }
+
     // There was no LayersManager added if this.props.host === undefined.
     // Use document.body is the case no LayersManager is used.
-    const host =
-      this.props.host !== undefined ? this.props.host : document.body;
+    const hasLayersManager = layersManagerHost !== undefined;
+    if (__DEV__) {
+      if (!hasLayersManager) {
+        console.warn(
+          '`LayersManager` was not found. This occurs if you are attempting to use a component requiring `Layer` without using the `BaseProvider` at the root of your app. Please visit https://baseweb.design/components/base-provider/ for more information',
+        );
+      }
+    }
+    const host = hasLayersManager ? layersManagerHost : document.body;
     if (host) {
       this.addContainer(host);
     }

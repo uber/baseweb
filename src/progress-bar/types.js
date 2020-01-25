@@ -25,10 +25,13 @@ export type ProgressBarPropsT = {
   successValue: number,
   /** If set to false, label is hidden and `getProgressLabel` is ignored. */
   showLabel: boolean,
+  /** If set to true, theres and infinite loading animation. */
+  infinite: boolean,
   overrides?: OverridesT,
 };
 
 export type StylePropsT = {
   $successValue: number,
   $value: number,
+  $infinite: boolean,
 };

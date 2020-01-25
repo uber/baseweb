@@ -117,7 +117,11 @@ export default class FormControl extends React.Component<FormControlPropsT> {
             });
           })}
           {(caption || error || positive) && (
-            <Caption {...sharedProps} {...getOverrideProps(CaptionOverride)}>
+            <Caption
+              data-baseweb="form-control-caption"
+              {...sharedProps}
+              {...getOverrideProps(CaptionOverride)}
+            >
               {hint}
             </Caption>
           )}

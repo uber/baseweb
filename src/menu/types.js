@@ -219,6 +219,7 @@ export type OptionListPropsT = {
   size?: $Keys<typeof OPTION_LIST_SIZE>,
   overrides?: {
     ListItem?: OverrideT<*>,
+    ListItemAnchor?: OverrideT<*>,
   },
   /** Utility to reset menu to default state. Useful for rendering child menus. */
   resetMenu?: () => void,

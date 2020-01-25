@@ -91,6 +91,8 @@ export type StateT = {
 export type RadioPropsT = {
   /** Focus the radio on initial render. */
   autoFocus?: boolean,
+  /** How the radio will be displayed along with its description. Controls spacing */
+  align?: AlignT,
   /** Check or uncheck the control. */
   checked?: boolean,
   /** Label of radio. */

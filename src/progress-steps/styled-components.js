@@ -123,26 +123,29 @@ export const StyledContentTail = styled<StylePropsT>(
   'div',
   ({$theme, $isCompleted, $isActive}) => {
     let currentColor = $theme.colors.mono400;
+    let size = $theme.sizing.scale300;
+    let font = $theme.typography.font300;
+
+    if ($isActive) {
+      size = $theme.sizing.scale600;
+    }
 
     if ($isCompleted) {
       currentColor = $theme.colors.primary;
+    } else if (!$isCompleted && $isActive) {
+      font = $theme.typography.font350;
     }
 
     return {
       position: 'absolute',
       [$theme.direction === 'rtl' ? 'right' : 'left']: '7px',
       top: 0,
-      height: '100%',
-      paddingBottom: 0,
+      height: `calc(100% + ${$theme.sizing.scale500})`,
+      marginBottom: 0,
       width: $theme.sizing.scale0,
-      paddingTop: $isActive ? $theme.sizing.scale700 : $theme.sizing.scale600,
-      ':after': {
-        content: '""',
-        display: 'inline-block',
-        height: `calc(100% + ${$theme.sizing.scale500})`,
-        width: '100%',
-        backgroundColor: currentColor,
-      },
+      marginTop: `calc(${size} + (${font.lineHeight} - ${size}) / 2)`,
+      display: 'inline-block',
+      backgroundColor: currentColor,
     };
   },
 );
@@ -210,26 +213,26 @@ export const StyledNumberContentTail = styled<StylePropsT>(
   'div',
   ({$theme, $isActive, $isCompleted, $disabled}) => {
     let currentColor = $theme.colors.mono300;
-
+    let size = $theme.sizing.scale800;
+    let titleFont = $theme.typography.font300;
     if ($isCompleted) {
       currentColor = $theme.colors.primary;
+    } else if ($isActive) {
+      titleFont = $theme.typography.font350;
     }
+    const marginTop = `calc(${size} + (${titleFont.lineHeight} - ${size}) / 2)`;
 
     return {
       position: 'absolute',
       left: '11px',
       top: 0,
-      height: '100%',
+      height: `calc(100% - ${size})`,
       paddingBottom: 0,
+      marginTop,
       width: $theme.sizing.scale0,
       paddingTop: $theme.sizing.scale800,
-      ':after': {
-        content: '""',
-        display: 'inline-block',
-        height: '100%',
-        width: '100%',
-        backgroundColor: currentColor,
-      },
+      backgroundColor: currentColor,
+      display: 'inline-block',
     };
   },
 );
