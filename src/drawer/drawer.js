@@ -232,7 +232,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     return this._refs[component];
   }
 
-  renderDrawer() {
+  renderDrawer(renderedContent: React.Node) {
     const {overrides = {}, closeable, showBackdrop, autoFocus} = this.props;
 
     const {
@@ -259,7 +259,6 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     const [Close, closeProps] = getOverrides(CloseOverride, StyledClose);
 
     const sharedProps = this.getSharedProps();
-    const children = this.getChildren();
 
     return (
       <LocaleContext.Consumer>
@@ -286,7 +285,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
                   {...drawerContainerProps}
                 >
                   <DrawerBody {...sharedProps} {...drawerBodyProps}>
-                    {children}
+                    {renderedContent}
                   </DrawerBody>
                   {closeable ? (
                     <Close
@@ -307,22 +306,19 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     );
   }
 
-  renderContent() {
-    const {children} = this.props;
-    return children;
-  }
-
   render() {
     const mountedAndOpen =
       this.state.mounted && (this.props.isOpen || this.state.isVisible);
 
     const renderedContent =
-      mountedAndOpen || this.props.renderAll ? this.renderContent() : null;
+      mountedAndOpen || this.props.renderAll ? this.getChildren() : null;
 
     if (renderedContent) {
       if (mountedAndOpen) {
         return (
-          <Layer mountNode={this.props.mountNode}>{this.renderDrawer()}</Layer>
+          <Layer mountNode={this.props.mountNode}>
+            {this.renderDrawer(renderedContent)}
+          </Layer>
         );
       } else {
         return <Hidden key="hidden-layer">{renderedContent}</Hidden>;
