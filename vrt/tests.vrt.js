@@ -122,7 +122,6 @@ function configureJest() {
     diffDirection: 'vertical',
   });
   expect.extend({toMatchImageSnapshot});
-  jest.retryTimes(3);
 }
 
 function getAllScenarioNames() {
