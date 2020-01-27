@@ -23,6 +23,7 @@ Array [
     },
     "placement": "topLeft",
     "popperOptions": Object {},
+    "renderAll": undefined,
     "returnFocus": undefined,
     "showArrow": true,
     "triggerType": "hover",
