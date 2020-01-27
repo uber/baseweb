@@ -13,6 +13,7 @@ type CustomNodePropsT = {
 };
 
 const CustomLabel = (node: TreeNodeT) => {
+  const {label} = node;
   const Tag = (depth => {
     switch (depth) {
       case 1:
@@ -24,8 +25,9 @@ const CustomLabel = (node: TreeNodeT) => {
         return 'h3';
     }
   })(node.depth);
-  // $FlowFixMe
-  return <Tag>{node.label}</Tag>;
+  return (
+    <Tag>{typeof label === 'function' ? label(node) : label}</Tag>
+  );
 };
 
 const CustomTreeLabel = props => {
