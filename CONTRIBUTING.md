@@ -30,7 +30,7 @@ Usually, we reject contributions if they meet any of the following requirements:
 - Introduces a utility function/component, that's not used by Base Web itself.
 - New components that were not approved before sending the pull request. To make sure you don't run into any issues landing your new component to the library, please open a GitHub issue first to discuss the new addition.
 - Slight alterations of existing components - like introducing a new component called "Fancy Button".
-- Breaking changes - even if your changeset introduces API changes, please make sure to do them in a backward-compatible way.
+- Breaking changes - if your changeset introduces API changes, please make sure to do them in a backward-compatible way.
 - The PR includes opinionated changes that are not necessary - examples for this include introducing destructuring or moving files around based on personal preference.
 - Most examples for the documentation site that shows integration with a third-party library or service - we welcome these guides as blogposts. If you are interested in contributing one, please open a GitHub issue with the proposal!
 
