@@ -4,6 +4,7 @@ Copyright (c) 2018-2020 Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
+/* global document */
 // @flow
 
 import React from 'react';
@@ -49,7 +50,7 @@ describe('datetime column', () => {
     const Cell = column.renderCell;
     const {container} = render(<Cell value={date} />);
     const cell = container.querySelector('div');
-    expect(cell.textContent).toBe('11-04-2011 03:20 30:00');
+    expect(cell.textContent).toBe('04-11-2011 03:20 30:00');
   });
 
   it('cell renders provided value based on formatString', () => {
@@ -57,12 +58,12 @@ describe('datetime column', () => {
     const column = DatetimeColumn({
       title: 'column',
       mapDataToValue: () => date,
-      formatString: 'MM/dd/yyyy',
+      formatString: 'dd/MM/yyyy',
     });
     const Cell = column.renderCell;
     const {container} = render(<Cell value={date} />);
     const cell = container.querySelector('div');
-    expect(cell.textContent).toBe('04/11/2011');
+    expect(cell.textContent).toBe('11/04/2011');
   });
 
   it('sets filter params for range of datetimes', () => {
@@ -72,7 +73,6 @@ describe('datetime column', () => {
     const column = DatetimeColumn({
       title: 'column',
       mapDataToValue: () => new Date(),
-      formatString: 'MM/dd/yyyy',
     });
     const mockSetFilter = jest.fn();
     const Filter = column.renderFilter;
@@ -96,7 +96,6 @@ describe('datetime column', () => {
     const column = DatetimeColumn({
       title: 'column',
       mapDataToValue: () => new Date(),
-      formatString: 'MM/dd/yyyy',
     });
     const mockSetFilter = jest.fn();
     const Filter = column.renderFilter;
@@ -126,7 +125,6 @@ describe('datetime column', () => {
     const column = DatetimeColumn({
       title: 'column',
       mapDataToValue: () => new Date(),
-      formatString: 'MM/dd/yyyy',
     });
     const mockSetFilter = jest.fn();
     const Filter = column.renderFilter;
@@ -158,7 +156,6 @@ describe('datetime column', () => {
     const column = DatetimeColumn({
       title: 'column',
       mapDataToValue: () => new Date(),
-      formatString: 'MM/dd/yyyy',
     });
     const mockSetFilter = jest.fn();
     const Filter = column.renderFilter;
@@ -188,7 +185,6 @@ describe('datetime column', () => {
     const column = DatetimeColumn({
       title: 'column',
       mapDataToValue: () => new Date(),
-      formatString: 'MM/dd/yyyy',
     });
     const mockSetFilter = jest.fn();
     const Filter = column.renderFilter;
@@ -225,7 +221,6 @@ describe('datetime column', () => {
     const column = DatetimeColumn({
       title: 'column',
       mapDataToValue: () => new Date(),
-      formatString: 'MM/dd/yyyy',
     });
     const mockSetFilter = jest.fn();
     const Filter = column.renderFilter;
@@ -262,7 +257,6 @@ describe('datetime column', () => {
     const column = DatetimeColumn({
       title: 'column',
       mapDataToValue: () => new Date(),
-      formatString: 'MM/dd/yyyy',
     });
     const mockSetFilter = jest.fn();
     const Filter = column.renderFilter;
@@ -297,7 +291,6 @@ describe('datetime column', () => {
     const column = DatetimeColumn({
       title: 'column',
       mapDataToValue: () => new Date(),
-      formatString: 'MM/dd/yyyy',
     });
     const mockSetFilter = jest.fn();
     const Filter = column.renderFilter;
