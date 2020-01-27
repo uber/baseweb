@@ -1,12 +1,11 @@
 import * as vscode from 'vscode';
 
 // @ts-ignore
-import {components} from './components';
+import {components} from './components.json';
 
 export function activate(context: vscode.ExtensionContext) {
   // @ts-ignore
   components.forEach((component: string) => {
-    console.log(`extension.baseweb.docs.${component}`);
     let disposable = vscode.commands.registerCommand(
       `extension.baseweb.docs.${component}`,
       () => {
