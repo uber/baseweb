@@ -491,6 +491,51 @@ describe('data table columns', () => {
     expect(matchArrayElements(filtered, ['07-13-2014 05:22 32:00'])).toBe(true);
   });
 
+  it('filters datetime column - date range - default', async () => {
+    const index = 4;
+    await mount(page, 'data-table-columns');
+    await page.waitFor(TABLE_ROOT);
+    const initial = await getCellContentsAtColumnIndex(
+      page,
+      COLUMN_COUNT,
+      index,
+    );
+    expect(
+      matchArrayElements(initial, [
+        '05-11-2012 03:20 30:00',
+        '04-12-2011 04:21 31:00',
+        '07-13-2014 05:22 32:00',
+        '06-14-2013 06:23 33:00',
+      ]),
+    ).toBe(true);
+
+    const popover = await openFilterAtIndex(page, 3);
+
+    const [select] = await page.$$('div[data-baseweb="popover"] input');
+    await select.click();
+    const [, dateop] = await page.$$('li');
+    await dateop.click();
+
+    await popover.$$eval('button', items => {
+      const button = items.find(item => item.textContent === 'Apply');
+      return button.click();
+    });
+
+    const filtered = await getCellContentsAtColumnIndex(
+      page,
+      COLUMN_COUNT,
+      index,
+    );
+    expect(
+      matchArrayElements(filtered, [
+        '05-11-2012 03:20 30:00',
+        '04-12-2011 04:21 31:00',
+        '07-13-2014 05:22 32:00',
+        '06-14-2013 06:23 33:00',
+      ]),
+    ).toBe(true);
+  });
+
   it('filters datetime column - time range', async () => {
     const index = 4;
     await mount(page, 'data-table-columns');

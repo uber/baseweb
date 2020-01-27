@@ -556,7 +556,7 @@ function DatetimeColumn(options: OptionsT): DatetimeColumnT {
 
             if (params.operation === DATETIME_OPERATIONS.RANGE_DATE) {
               left = set(left, {hours: 0, minutes: 0, seconds: 0});
-              right = set(left, {hours: 0, minutes: 0, seconds: 0});
+              right = set(right, {hours: 0, minutes: 0, seconds: 0});
               data = set(data, {hours: 0, minutes: 0, seconds: 0});
             }
 
