@@ -444,7 +444,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     };
     // Only render popover on the browser (portals aren't supported server-side)
     if (renderedContent) {
-      if (__BROWSER__ && mountedAndOpen) {
+      if (mountedAndOpen) {
         rendered.push(
           <Layer
             key="new-layer"

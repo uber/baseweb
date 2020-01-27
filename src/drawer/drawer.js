@@ -321,7 +321,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
           </Layer>
         );
       } else {
-        return <Hidden key="hidden-layer">{renderedContent}</Hidden>;
+        return <Hidden>{renderedContent}</Hidden>;
       }
     }
     return null;
