@@ -78,9 +78,21 @@ const buildSnippet = (
   const componentBody = [`<${componentName}`];
   for (const propName in props) {
     if (props[propName].hidden) continue;
-    if (propName === 'children') continue;
+    if (propName === 'children' || propName === 'overrides') continue;
     if (props[propName].type === PropTypes.Boolean) {
       let row = `  \${${ctr2++}:${propName}}`;
+      componentBody.push(row);
+    } else if (props[propName].type === PropTypes.Enum) {
+      const enumName = props[propName].enumName || propName.toUpperCase();
+      const opts = Object.values(props[propName].options)
+        .map((opt: any) => `${enumName}.${opt}`)
+        .filter(opt => opt !== props[propName].defaultValue);
+      if (props[propName].defaultValue) {
+        opts.unshift(props[propName].defaultValue as string);
+      }
+      let row = `  \${${ctr2++}:${propName}={\${${ctr2++}|${opts.join(
+        ',',
+      )}|}\\}}`;
       componentBody.push(row);
     } else {
       let row = `  \${${ctr2++}:${propName}={\${${ctr2++}:${props[propName]
@@ -96,17 +108,26 @@ const buildSnippet = (
     componentBody.push(`/>`);
   }
 
-  // const importSnippet = {
-  //   prefix: [`${componentName} import`],
-  //   description: `Base ${componentName} import.`,
-  // };
-
-  //console.log(componentName, imports, props);
-
-  console.log(importBody, componentBody);
-  console.log(JSON.stringify(componentBody));
-  return componentName;
+  return {
+    [`${componentName} import`]: {
+      scope: 'javascript,javascriptreact,typescript,typescriptreact',
+      prefix: [`${componentName} import`],
+      description: `Base ${componentName} import.`,
+      body: importBody,
+    },
+    [`${componentName}`]: {
+      scope: 'javascript,javascriptreact,typescript,typescriptreact',
+      prefix: [`${componentName}`],
+      description: `Base ${componentName} component.`,
+      body: componentBody,
+    },
+  };
 };
 
-buildSnippet('Button', buttonConfig.imports, buttonConfig.props);
-//export default generateSnippet;
+const snippet = buildSnippet(
+  'Button',
+  buttonConfig.imports,
+  buttonConfig.props,
+);
+
+console.log(JSON.stringify(snippet, undefined, ' '));
