@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import isValid from 'date-fns/isValid/index.js';
 import isAfter from 'date-fns/isAfter/index.js';
+import isEqual from 'date-fns/isEqual/index.js';
 import parse from 'date-fns/parse/index.js';
 
 import {MaskedInput} from '../input/index.js';
@@ -193,31 +194,28 @@ export default class Datepicker extends React.Component<
     });
 
     if (this.props.range) {
-      const dates = this.normalizeDashes(inputValue).split(' – ');
-      let startDate = new Date(dates[0]);
-      let endDate = new Date(dates[1]);
+      const [left, right] = this.normalizeDashes(inputValue).split(' – ');
+      let startDate = new Date(left);
+      let endDate = new Date(right);
 
       const formatString = this.props.formatString;
       if (formatString) {
-        startDate = parse(
-          dates[0],
-          this.normalizeDashes(formatString),
-          new Date(),
-        );
-        endDate = parse(
-          dates[1],
-          this.normalizeDashes(formatString),
-          new Date(),
-        );
+        startDate = parse(left, this.normalizeDashes(formatString), new Date());
+        endDate = parse(right, this.normalizeDashes(formatString), new Date());
       }
 
-      isValid(startDate) &&
-        isValid(endDate) &&
-        isAfter(endDate, startDate) &&
-        this.props.onChange &&
-        this.props.onChange({
-          date: [startDate, endDate],
-        });
+      const onChange = this.props.onChange;
+      if (onChange) {
+        const datesValid = isValid(startDate) && isValid(endDate);
+
+        // added equal case so that times within the same day can be expressed
+        const rangeValid =
+          isAfter(endDate, startDate) || isEqual(startDate, endDate);
+
+        if (datesValid && rangeValid) {
+          onChange({date: [startDate, endDate]});
+        }
+      }
     } else {
       const date = new Date(inputValue);
       isValid(date) &&
