@@ -63,6 +63,10 @@ type FilterParametersT = {|
 
 type DatetimeColumnT = ColumnT<Date, FilterParametersT>;
 
+const DATE_FORMAT = 'MM-dd-yyyy';
+const TIME_FORMAT = 'HH:mm ss:SS';
+const FORMAT_STRING = `${DATE_FORMAT} ${TIME_FORMAT}`;
+
 function sortDates(a, b) {
   return a - b;
 }
@@ -185,6 +189,22 @@ function DatetimeFilter(props) {
         if (isRange) {
           // eslint-disable-next-line flowtype/no-weak-types
           const op: DatetimeOperationsT = (rangeOperator[0].id: any);
+
+          let description = '';
+          if (op === DATETIME_OPERATIONS.RANGE_DATETIME) {
+            const left = format(rangeDates[0], FORMAT_STRING);
+            const right = format(rangeDates[1], FORMAT_STRING);
+            description = `${left} - ${right}`;
+          } else if (op === DATETIME_OPERATIONS.RANGE_DATE) {
+            const left = format(rangeDates[0], DATE_FORMAT);
+            const right = format(rangeDates[1], DATE_FORMAT);
+            description = `${left} - ${right}`;
+          } else if (op === DATETIME_OPERATIONS.RANGE_TIME) {
+            const left = format(rangeDates[0], TIME_FORMAT);
+            const right = format(rangeDates[1], TIME_FORMAT);
+            description = `${left} - ${right}`;
+          }
+
           props.setFilter({
             operation: op,
             selection: rangeDates,
@@ -212,7 +232,7 @@ function DatetimeFilter(props) {
           props.setFilter({
             operation: op,
             selection,
-            description: 'CHANGE THIS',
+            description: `${op} - ${selection.join(', ')}`,
             exclude,
           });
         }
@@ -271,7 +291,7 @@ function DatetimeFilter(props) {
                     setRangeDates(nextDates);
                   }
                 }}
-                formatString="MM-dd-yyyy"
+                formatString={DATE_FORMAT}
                 placeholder="MM-DD-YYYY - MM-DD-YYYY"
                 minDate={datesSorted[0]}
                 maxDate={datesSorted[datesSorted.length - 1]}
@@ -428,7 +448,7 @@ const defaultOptions = {
   title: '',
   sortable: true,
   filterable: true,
-  formatString: 'MM-dd-yyyy HH:mm ss:SS',
+  formatString: FORMAT_STRING,
 };
 
 function DatetimeColumn(options: OptionsT): DatetimeColumnT {
