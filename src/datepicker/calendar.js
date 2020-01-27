@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {set} from 'date-fns';
 import {FormControl} from '../form-control/index.js';
 import {LocaleContext} from '../locale/index.js';
 import {Select} from '../select/index.js';
@@ -20,6 +19,8 @@ import {
   StyledSelectorContainer,
 } from './styled-components.js';
 import {
+  applyDateToTime,
+  applyTimeToDate,
   addDays,
   addMonths,
   addWeeks,
@@ -34,38 +35,13 @@ import {
   subWeeks,
   subMonths,
   subYears,
-  setHours,
-  setMinutes,
-  setSeconds,
-  getYear,
   getMonth,
-  getDate,
-  getHours,
-  getMinutes,
   getStartOfWeek,
   getEndOfWeek,
 } from './utils/index.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import type {CalendarPropsT, CalendarInternalState} from './types.js';
 import {ORIENTATION} from './constants.js';
-
-function applyTimeToDate(date: ?Date, time: Date) {
-  if (!date) return time;
-  return set(date, {
-    hours: getHours(time),
-    minutes: getMinutes(time),
-    seconds: 0,
-  });
-}
-
-function applyDateToTime(time: ?Date, date: Date) {
-  if (!time) return date;
-  return set(time, {
-    years: getYear(date),
-    months: getMonth(date),
-    date: getDate(date),
-  });
-}
 
 export default class Calendar extends React.Component<
   CalendarPropsT,
