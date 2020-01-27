@@ -86,9 +86,9 @@ export interface StyledFn<T> extends StyletronStyledFn {
 export function createThemedStyled<Theme>(): StyledFn<Theme>;
 
 export interface WithStyleFn<T = Theme> extends StyletronWithStyleFn {
-  <C extends StyletronComponent<any>, P extends object>(
+  <C extends StyletronComponent<any>, P extends object, T1 = T>(
     component: C,
-    style: (props: P & {$theme: T}) => StyleObject,
+    style: (props: P & {$theme: T1}) => StyleObject,
   ): StyletronComponent<React.ComponentProps<C> & P>;
 }
 
