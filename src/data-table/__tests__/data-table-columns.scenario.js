@@ -46,10 +46,10 @@ export const component = () => {
   ];
 
   const rows = [
-    {id: 1, data: [true, 'A', 2, 'one', new Date('2011-04-11T10:20:30Z')]},
-    {id: 2, data: [false, 'B', 1, 'two', new Date('2012-05-12T11:21:31Z')]},
-    {id: 3, data: [true, 'A', 4, 'three', new Date('2013-06-13T12:22:32Z')]},
-    {id: 4, data: [false, 'A', 3, 'four', new Date('2014-07-14T13:23:33Z')]},
+    {id: 1, data: [true, 'A', 2, 'one', new Date('2012-05-11T10:20:30Z')]},
+    {id: 2, data: [false, 'B', 1, 'two', new Date('2011-04-12T11:21:31Z')]},
+    {id: 3, data: [true, 'A', 4, 'three', new Date('2014-07-13T12:22:32Z')]},
+    {id: 4, data: [false, 'A', 3, 'four', new Date('2013-06-14T13:23:33Z')]},
   ];
 
   return (

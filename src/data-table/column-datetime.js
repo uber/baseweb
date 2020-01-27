@@ -7,14 +7,24 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {format, getYear} from 'date-fns';
+import {
+  format,
+  getYear,
+  getMonth,
+  getQuarter,
+  getDay,
+  isAfter,
+  isBefore,
+  isEqual,
+  set,
+} from 'date-fns';
 
 import {Button, SIZE} from '../button/index.js';
 import {ButtonGroup, MODE} from '../button-group/index.js';
 import {Checkbox} from '../checkbox/index.js';
-import {Datepicker, formatDate} from '../datepicker/index.js';
+import {applyDateToTime, applyTimeToDate} from '../datepicker/utils/index.js';
+import {Datepicker} from '../datepicker/index.js';
 import {TimePicker} from '../timepicker/index.js';
-import {FormControl} from '../form-control/index.js';
 import {useStyletron} from '../styles/index.js';
 import {Select, type ValueT} from '../select/index.js';
 
@@ -55,13 +65,6 @@ type DatetimeColumnT = ColumnT<Date, FilterParametersT>;
 
 function sortDates(a, b) {
   return a - b;
-}
-
-function formatDateAtIndex(dates, index) {
-  if (!dates || !Array.isArray(dates)) return '';
-  const date = dates[index];
-  if (!date) return '';
-  return formatDate(date, 'MM-dd-yyyy');
 }
 
 const RANGE_OPERATIONS = [
@@ -138,6 +141,7 @@ function Checks(props) {
 
 function DatetimeFilter(props) {
   const [css, theme] = useStyletron();
+  const mountNode = React.useRef();
 
   const datesSorted = React.useMemo(() => {
     return props.data.sort(sortDates);
@@ -160,8 +164,8 @@ function DatetimeFilter(props) {
   ]);
   // eslint-disable-next-line flowtype/no-weak-types
   const [rangeDates, setRangeDates] = React.useState<any>([
-    datesSorted[0],
-    datesSorted[datesSorted.length - 1],
+    new Date(datesSorted[0]),
+    new Date(datesSorted[datesSorted.length - 1]),
   ]);
 
   const [years, setYears] = React.useState<number[]>([]);
@@ -242,7 +246,7 @@ function DatetimeFilter(props) {
       </ButtonGroup>
 
       {isRange && (
-        <div>
+        <div ref={mountNode}>
           <Select
             value={rangeOperator}
             onChange={params => setRangeOperator(params.value)}
@@ -250,92 +254,86 @@ function DatetimeFilter(props) {
             size="compact"
             clearable={false}
           />
-          <div className={css({display: 'flex', alignItems: 'center'})}>
-            <div
-              className={css({
-                width: '100%',
-                marginRight: theme.sizing.scale300,
-              })}
-            >
-              <FormControl label="Start">
-                <div>
-                  {(rangeOperator[0].id ===
-                    DATETIME_OPERATIONS.RANGE_DATETIME ||
-                    rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATE) && (
-                    <Datepicker
-                      value={rangeDates}
-                      onChange={({date}) => setRangeDates(date)}
-                      formatDisplayValue={date => formatDateAtIndex(date, 0)}
-                      minDate={datesSorted[0]}
-                      maxDate={datesSorted[datesSorted.length - 1]}
-                      timeSelectStart={
-                        rangeOperator[0].id ===
-                        DATETIME_OPERATIONS.RANGE_DATETIME
-                      }
-                      range
-                      mask="99-99-9999"
-                      size="compact"
-                    />
-                  )}
-                  {(rangeOperator[0].id ===
-                    DATETIME_OPERATIONS.RANGE_DATETIME ||
-                    rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_TIME) && (
-                    <TimePicker
-                      value={rangeDates[0]}
-                      onChange={time => setRangeDates([time, rangeDates[1]])}
-                      creatable
-                      size="compact"
-                    />
-                  )}
-                </div>
-              </FormControl>
-            </div>
 
+          <div className={css({paddingTop: theme.sizing.scale600})}>
+            {(rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATETIME ||
+              rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATE) && (
+              <Datepicker
+                // eslint-disable-next-line flowtype/no-weak-types
+                mountNode={(mountNode.current: any)}
+                value={rangeDates}
+                onChange={({date}) => {
+                  if (Array.isArray(date)) {
+                    if (!date.length) return;
+                    const nextDates = date.map((d, i) =>
+                      applyDateToTime(rangeDates[i], d),
+                    );
+                    setRangeDates(nextDates);
+                  }
+                }}
+                formatString="MM-dd-yyyy"
+                placeholder="MM-DD-YYYY - MM-DD-YYYY"
+                minDate={datesSorted[0]}
+                maxDate={datesSorted[datesSorted.length - 1]}
+                timeSelectStart={
+                  rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATETIME
+                }
+                timeSelectEnd={
+                  rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATETIME
+                }
+                overrides={{TimeSelect: {props: {size: 'compact'}}}}
+                range
+                size="compact"
+              />
+            )}
+          </div>
+
+          {(rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATETIME ||
+            rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_TIME) && (
             <div
               className={css({
-                width: '100%',
-                marginRight: theme.sizing.scale300,
+                display: 'flex',
+                paddingTop: theme.sizing.scale100,
               })}
             >
-              <FormControl label="End">
-                <div>
-                  {(rangeOperator[0].id ===
-                    DATETIME_OPERATIONS.RANGE_DATETIME ||
-                    rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATE) && (
-                    <Datepicker
-                      value={rangeDates}
-                      onChange={({date}) => setRangeDates(date)}
-                      formatDisplayValue={date => formatDateAtIndex(date, 1)}
-                      minDate={datesSorted[0]}
-                      maxDate={datesSorted[datesSorted.length - 1]}
-                      timeSelectEnd={
-                        rangeOperator[0].id ===
-                        DATETIME_OPERATIONS.RANGE_DATETIME
-                      }
-                      overrides={{
-                        TimeSelectFormControl: {
-                          props: {label: 'End time'},
-                        },
-                      }}
-                      range
-                      mask="99-99-9999"
-                      size="compact"
-                    />
-                  )}
-                  {(rangeOperator[0].id ===
-                    DATETIME_OPERATIONS.RANGE_DATETIME ||
-                    rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_TIME) && (
-                    <TimePicker
-                      value={rangeDates[1]}
-                      onChange={time => setRangeDates([rangeDates[0], time])}
-                      creatable
-                      size="compact"
-                    />
-                  )}
-                </div>
-              </FormControl>
+              <div
+                className={css({
+                  width: '100%',
+                  marginRight: theme.sizing.scale300,
+                })}
+              >
+                <TimePicker
+                  value={rangeDates[0]}
+                  onChange={time =>
+                    setRangeDates([
+                      applyTimeToDate(rangeDates[0], time),
+                      rangeDates[1],
+                    ])
+                  }
+                  creatable
+                  size="compact"
+                />
+              </div>
+
+              <div
+                className={css({
+                  width: '100%',
+                })}
+              >
+                <TimePicker
+                  value={rangeDates[1]}
+                  onChange={time =>
+                    setRangeDates([
+                      rangeDates[0],
+                      applyTimeToDate(rangeDates[1], time),
+                    ])
+                  }
+                  creatable
+                  size="compact"
+                />
+              </div>
             </div>
-          </div>
+          )}
         </div>
       )}
 
@@ -402,7 +400,7 @@ function DatetimeFilter(props) {
 }
 
 const DatetimeCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
-  const [css, theme] = useStyletron();
+  const [css] = useStyletron();
 
   return (
     <CellShell
@@ -430,7 +428,7 @@ const defaultOptions = {
   title: '',
   sortable: true,
   filterable: true,
-  formatString: 'dd-MM-yyyy HH:mm ss:SS',
+  formatString: 'MM-dd-yyyy HH:mm ss:SS',
 };
 
 function DatetimeColumn(options: OptionsT): DatetimeColumnT {
@@ -443,7 +441,44 @@ function DatetimeColumn(options: OptionsT): DatetimeColumnT {
     kind: COLUMNS.DATETIME,
     buildFilter: function(params) {
       return function(data) {
-        const included = true;
+        let included = true;
+        if (params.operation === DATETIME_OPERATIONS.YEAR) {
+          included = params.selection.includes(getYear(data));
+        } else if (params.operation === DATETIME_OPERATIONS.HALF) {
+          const month = getMonth(data);
+          const half = month < 6 ? 0 : 1;
+          included = params.selection.includes(half);
+        } else if (params.operation === DATETIME_OPERATIONS.QUARTER) {
+          // date-fns quarters are 1 indexed
+          const quarter = getQuarter(data) - 1;
+          included = params.selection.includes(quarter);
+        } else if (params.operation === DATETIME_OPERATIONS.MONTH) {
+          included = params.selection.includes(getMonth(data));
+        } else if (params.operation === DATETIME_OPERATIONS.WEEKDAY) {
+          included = params.selection.includes(getDay(data));
+        } else if (
+          params.operation === DATETIME_OPERATIONS.RANGE_DATE ||
+          params.operation === DATETIME_OPERATIONS.RANGE_TIME ||
+          params.operation === DATETIME_OPERATIONS.RANGE_DATETIME
+        ) {
+          let [left, right] = params.selection;
+
+          if (params.operation === DATETIME_OPERATIONS.RANGE_DATE) {
+            left = set(left, {hours: 0, minutes: 0, seconds: 0});
+            right = set(left, {hours: 0, minutes: 0, seconds: 0});
+            data = set(data, {hours: 0, minutes: 0, seconds: 0});
+          }
+
+          if (params.operation === DATETIME_OPERATIONS.RANGE_TIME) {
+            left = set(left, {year: 2000, month: 1, date: 1});
+            right = set(right, {year: 2000, month: 1, date: 1});
+            data = set(data, {year: 2000, month: 1, date: 1});
+          }
+
+          const after = isAfter(data, left) || isEqual(data, left);
+          const before = isBefore(data, right) || isEqual(data, right);
+          included = after && before;
+        }
         return params.exclude ? !included : included;
       };
     },
