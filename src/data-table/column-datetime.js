@@ -56,7 +56,8 @@ type DatetimeOperationsT =
 
 type FilterParametersT = {|
   operation: DatetimeOperationsT,
-  selection: [Date, Date] | number[],
+  range?: Date[],
+  selection?: number[],
   description: string,
   exclude: boolean,
 |};
@@ -143,9 +144,65 @@ function Checks(props) {
   );
 }
 
+function filterParamsToInitialState(input) {
+  const output = {
+    exclude: false,
+    comparatorIndex: 0,
+    rangeOperator: RANGE_OPERATIONS[0],
+    categoricalOperator: CATEGORICAL_OPERATIONS[0],
+    rangeDates: [],
+    years: [],
+    halves: [],
+    quarters: [],
+    months: [],
+    weekdays: [],
+  };
+
+  if (input) {
+    const op = input.operation;
+    if (input.range) {
+      if (op === DATETIME_OPERATIONS.RANGE_DATETIME) {
+        output.rangeDates = input.range;
+        output.rangeOperator = RANGE_OPERATIONS[0];
+      } else if (op === DATETIME_OPERATIONS.RANGE_DATE) {
+        output.rangeDates = input.range;
+        output.rangeOperator = RANGE_OPERATIONS[1];
+      } else if (op === DATETIME_OPERATIONS.RANGE_TIME) {
+        output.rangeDates = input.range;
+        output.rangeOperator = RANGE_OPERATIONS[2];
+      }
+    } else if (input.selection) {
+      output.comparatorIndex = 1;
+      if (op === DATETIME_OPERATIONS.YEAR) {
+        output.years = input.selection;
+        output.categoricalOperator = CATEGORICAL_OPERATIONS[4];
+      } else if (op === DATETIME_OPERATIONS.HALF) {
+        output.halves = input.selection;
+        output.categoricalOperator = CATEGORICAL_OPERATIONS[3];
+      } else if (op === DATETIME_OPERATIONS.QUARTER) {
+        output.quarters = input.selection;
+        output.categoricalOperator = CATEGORICAL_OPERATIONS[2];
+      } else if (op === DATETIME_OPERATIONS.MONTH) {
+        output.months = input.selection;
+        output.categoricalOperator = CATEGORICAL_OPERATIONS[1];
+      } else if (op === DATETIME_OPERATIONS.WEEKDAY) {
+        output.weekdays = input.selection;
+        output.categoricalOperator = CATEGORICAL_OPERATIONS[0];
+      }
+    }
+
+    if (input.exclude) {
+      output.exclude = input.exclude;
+    }
+  }
+
+  return output;
+}
+
 function DatetimeFilter(props) {
   const [css, theme] = useStyletron();
   const mountNode = React.useRef();
+  const initialState = filterParamsToInitialState(props.filterParams);
 
   const datesSorted = React.useMemo(() => {
     return props.data.sort(sortDates);
@@ -158,25 +215,35 @@ function DatetimeFilter(props) {
     return Object.keys(dict).map(n => parseInt(n));
   }, [props.data]);
 
-  const [exclude, setExclude] = React.useState(false);
-  const [comparatorIndex, setComparatorIndex] = React.useState(0);
+  const [exclude, setExclude] = React.useState(initialState.exclude);
+  const [comparatorIndex, setComparatorIndex] = React.useState(
+    initialState.comparatorIndex,
+  );
   const [rangeOperator, setRangeOperator] = React.useState<ValueT>([
-    RANGE_OPERATIONS[0],
+    initialState.rangeOperator,
   ]);
   const [categoricalOperator, setCategoricalOperator] = React.useState<ValueT>([
-    CATEGORICAL_OPERATIONS[0],
+    initialState.categoricalOperator,
   ]);
   // eslint-disable-next-line flowtype/no-weak-types
-  const [rangeDates, setRangeDates] = React.useState<any>([
-    new Date(datesSorted[0]),
-    new Date(datesSorted[datesSorted.length - 1]),
-  ]);
+  const [rangeDates, setRangeDates] = React.useState<any>(
+    initialState.rangeDates.length
+      ? initialState.rangeDates
+      : [
+          new Date(datesSorted[0]),
+          new Date(datesSorted[datesSorted.length - 1]),
+        ],
+  );
 
-  const [years, setYears] = React.useState<number[]>([]);
-  const [halves, setHalves] = React.useState<number[]>([]);
-  const [quarters, setQuarters] = React.useState<number[]>([]);
-  const [months, setMonths] = React.useState<number[]>([]);
-  const [weekdays, setWeekdays] = React.useState<number[]>([]);
+  const [years, setYears] = React.useState<number[]>(initialState.years);
+  const [halves, setHalves] = React.useState<number[]>(initialState.halves);
+  const [quarters, setQuarters] = React.useState<number[]>(
+    initialState.quarters,
+  );
+  const [months, setMonths] = React.useState<number[]>(initialState.months);
+  const [weekdays, setWeekdays] = React.useState<number[]>(
+    initialState.weekdays,
+  );
 
   const isRange = comparatorIndex === 0;
   const isCategorical = comparatorIndex === 1;
@@ -207,8 +274,8 @@ function DatetimeFilter(props) {
 
           props.setFilter({
             operation: op,
-            selection: rangeDates,
-            description: 'CHANGE THIS',
+            range: rangeDates,
+            description: description,
             exclude,
           });
         }
@@ -462,43 +529,49 @@ function DatetimeColumn(options: OptionsT): DatetimeColumnT {
     buildFilter: function(params) {
       return function(data) {
         let included = true;
-        if (params.operation === DATETIME_OPERATIONS.YEAR) {
-          included = params.selection.includes(getYear(data));
-        } else if (params.operation === DATETIME_OPERATIONS.HALF) {
-          const month = getMonth(data);
-          const half = month < 6 ? 0 : 1;
-          included = params.selection.includes(half);
-        } else if (params.operation === DATETIME_OPERATIONS.QUARTER) {
-          // date-fns quarters are 1 indexed
-          const quarter = getQuarter(data) - 1;
-          included = params.selection.includes(quarter);
-        } else if (params.operation === DATETIME_OPERATIONS.MONTH) {
-          included = params.selection.includes(getMonth(data));
-        } else if (params.operation === DATETIME_OPERATIONS.WEEKDAY) {
-          included = params.selection.includes(getDay(data));
-        } else if (
-          params.operation === DATETIME_OPERATIONS.RANGE_DATE ||
-          params.operation === DATETIME_OPERATIONS.RANGE_TIME ||
-          params.operation === DATETIME_OPERATIONS.RANGE_DATETIME
-        ) {
-          let [left, right] = params.selection;
-
-          if (params.operation === DATETIME_OPERATIONS.RANGE_DATE) {
-            left = set(left, {hours: 0, minutes: 0, seconds: 0});
-            right = set(left, {hours: 0, minutes: 0, seconds: 0});
-            data = set(data, {hours: 0, minutes: 0, seconds: 0});
+        const selection = params.selection;
+        if (selection) {
+          if (params.operation === DATETIME_OPERATIONS.YEAR) {
+            included = selection.includes(getYear(data));
+          } else if (params.operation === DATETIME_OPERATIONS.HALF) {
+            const month = getMonth(data);
+            const half = month < 6 ? 0 : 1;
+            included = selection.includes(half);
+          } else if (params.operation === DATETIME_OPERATIONS.QUARTER) {
+            // date-fns quarters are 1 indexed
+            const quarter = getQuarter(data) - 1;
+            included = selection.includes(quarter);
+          } else if (params.operation === DATETIME_OPERATIONS.MONTH) {
+            included = selection.includes(getMonth(data));
+          } else if (params.operation === DATETIME_OPERATIONS.WEEKDAY) {
+            included = selection.includes(getDay(data));
           }
+        } else if (params.range) {
+          if (
+            params.operation === DATETIME_OPERATIONS.RANGE_DATE ||
+            params.operation === DATETIME_OPERATIONS.RANGE_TIME ||
+            params.operation === DATETIME_OPERATIONS.RANGE_DATETIME
+          ) {
+            let [left, right] = params.range;
 
-          if (params.operation === DATETIME_OPERATIONS.RANGE_TIME) {
-            left = set(left, {year: 2000, month: 1, date: 1});
-            right = set(right, {year: 2000, month: 1, date: 1});
-            data = set(data, {year: 2000, month: 1, date: 1});
+            if (params.operation === DATETIME_OPERATIONS.RANGE_DATE) {
+              left = set(left, {hours: 0, minutes: 0, seconds: 0});
+              right = set(left, {hours: 0, minutes: 0, seconds: 0});
+              data = set(data, {hours: 0, minutes: 0, seconds: 0});
+            }
+
+            if (params.operation === DATETIME_OPERATIONS.RANGE_TIME) {
+              left = set(left, {year: 2000, month: 1, date: 1});
+              right = set(right, {year: 2000, month: 1, date: 1});
+              data = set(data, {year: 2000, month: 1, date: 1});
+            }
+
+            const after = isAfter(data, left) || isEqual(data, left);
+            const before = isBefore(data, right) || isEqual(data, right);
+            included = after && before;
           }
-
-          const after = isAfter(data, left) || isEqual(data, left);
-          const before = isBefore(data, right) || isEqual(data, right);
-          included = after && before;
         }
+
         return params.exclude ? !included : included;
       };
     },
