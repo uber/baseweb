@@ -1,18 +1,23 @@
 import * as vscode from 'vscode';
 
+// @ts-ignore
+import {components} from './components';
+
 export function activate(context: vscode.ExtensionContext) {
-  let disposable = vscode.commands.registerCommand(
-    'extension.baseweb.docs.select',
-    comnponentName => {
-      // The code you place here will be executed every time your command is executed
+  // @ts-ignore
+  components.forEach((component: string) => {
+    console.log(`extension.baseweb.docs.${component}`);
+    let disposable = vscode.commands.registerCommand(
+      `extension.baseweb.docs.${component}`,
+      () => {
+        vscode.env.openExternal(
+          vscode.Uri.parse(`https://baseweb.design/components/${component}`),
+        );
+      },
+    );
 
-      vscode.env.openExternal(
-        vscode.Uri.parse('https://baseweb.design/components/select'),
-      );
-    },
-  );
-
-  context.subscriptions.push(disposable);
+    context.subscriptions.push(disposable);
+  });
 }
 
 // this method is called when your extension is deactivated
