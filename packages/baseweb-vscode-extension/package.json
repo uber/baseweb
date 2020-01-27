@@ -18,14 +18,15 @@
     "Snippets"
   ],
   "activationEvents": [
-    "onCommand:extension.helloWorld"
+    "onCommand:extension.baseweb.docs.select"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "extension.helloWorld",
-        "title": "Hello World"
+        "command": "extension.baseweb.docs.select",
+        "title": "Open the docs for select",
+        "category": "Base Web"
       }
     ]
   },
