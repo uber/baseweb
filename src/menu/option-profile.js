@@ -32,6 +32,7 @@ export default function OptionProfile(props: OptionProfilePropsT) {
     overrides = {},
     resetMenu = () => {},
     $isHighlighted,
+    renderAll,
     ...restProps
   } = props;
 
@@ -73,6 +74,7 @@ export default function OptionProfile(props: OptionProfilePropsT) {
       isOpen={!!$isHighlighted}
       item={item}
       resetParentMenu={resetMenu}
+      renderAll={renderAll}
     >
       <ListItemProfile {...restProps} {...listItemProfileProps}>
         <ProfileImgContainer {...profileImgContainerProps}>

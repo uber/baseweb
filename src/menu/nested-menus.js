@@ -42,7 +42,12 @@ export default class NestedMenus extends React.Component<PropsT, StateT> {
   state = {menus: []};
 
   addMenuToNesting = (ref: Ref) => {
-    this.setState({menus: [...this.state.menus, ref]});
+    // check offsetHeight to determine if component is visible in the dom (0 means hidden)
+    // we need to do this so that when we renderAll, the hidden seo-only child-menus don't
+    // register themselves which would break the nesting logic
+    if (ref.current && ref.current.offsetHeight) {
+      this.setState({menus: [...this.state.menus, ref]});
+    }
   };
 
   removeMenuFromNesting = (ref: Ref) => {

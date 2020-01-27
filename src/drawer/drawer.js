@@ -19,6 +19,7 @@ import {
   StyledDrawerContainer,
   StyledDrawerBody,
   StyledClose,
+  Hidden,
 } from './styled-components.js';
 import {CloseIcon} from './close-icon.js';
 
@@ -40,6 +41,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     anchor: ANCHOR.right,
     showBackdrop: true,
     autoFocus: true,
+    renderAll: false,
   };
 
   animateOutTimer: ?TimeoutID;
@@ -230,7 +232,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     return this._refs[component];
   }
 
-  renderDrawer() {
+  renderDrawer(renderedContent: React.Node) {
     const {overrides = {}, closeable, showBackdrop, autoFocus} = this.props;
 
     const {
@@ -257,7 +259,6 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     const [Close, closeProps] = getOverrides(CloseOverride, StyledClose);
 
     const sharedProps = this.getSharedProps();
-    const children = this.getChildren();
 
     return (
       <LocaleContext.Consumer>
@@ -284,7 +285,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
                   {...drawerContainerProps}
                 >
                   <DrawerBody {...sharedProps} {...drawerBodyProps}>
-                    {children}
+                    {renderedContent}
                   </DrawerBody>
                   {closeable ? (
                     <Close
@@ -306,17 +307,24 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
   }
 
   render() {
-    // Only render drawer on the browser (portals aren't supported server-side)
-    if (!this.state.mounted) {
-      return null;
+    const mountedAndOpen =
+      this.state.mounted && (this.props.isOpen || this.state.isVisible);
+
+    const renderedContent =
+      mountedAndOpen || this.props.renderAll ? this.getChildren() : null;
+
+    if (renderedContent) {
+      if (mountedAndOpen) {
+        return (
+          <Layer mountNode={this.props.mountNode}>
+            {this.renderDrawer(renderedContent)}
+          </Layer>
+        );
+      } else {
+        return <Hidden>{renderedContent}</Hidden>;
+      }
     }
-    // Only render the drawer if its isOpen is passed, or isVisible is true (still animating)
-    if (!this.props.isOpen && !this.state.isVisible) {
-      return null;
-    }
-    return (
-      <Layer mountNode={this.props.mountNode}>{this.renderDrawer()}</Layer>
-    );
+    return null;
   }
 }
 
