@@ -100,19 +100,11 @@ Object {
 
 exports[`FlexGridItem renders: with default styles 1`] = `
 <FlexGridItem>
-  <Block
-    data-baseweb="flex-grid-item"
-    overrides={
-      Object {
-        "Block": Object {
-          "style": [Function],
-        },
-      }
-    }
+  <FlexGridItem
+    forwardedRef={null}
   >
     <Block
       data-baseweb="flex-grid-item"
-      forwardedRef={null}
       overrides={
         Object {
           "Block": Object {
@@ -121,33 +113,45 @@ exports[`FlexGridItem renders: with default styles 1`] = `
         }
       }
     >
-      <ForwardRef
-        $as="div"
-        $style={[Function]}
+      <Block
         data-baseweb="flex-grid-item"
+        forwardedRef={null}
+        overrides={
+          Object {
+            "Block": Object {
+              "style": [Function],
+            },
+          }
+        }
       >
-        <MockStyledComponent
+        <ForwardRef
           $as="div"
           $style={[Function]}
           data-baseweb="flex-grid-item"
-          forwardedRef={null}
         >
-          <div
+          <MockStyledComponent
+            $as="div"
+            $style={[Function]}
             data-baseweb="flex-grid-item"
-            styled-component="true"
-            test-style={
-              Object {
-                "flexGrow": 1,
-                "marginBottom": 0,
-                "marginRight": 0,
-                "width": "calc((100% - 0px) / 1 - .5px)",
+            forwardedRef={null}
+          >
+            <div
+              data-baseweb="flex-grid-item"
+              styled-component="true"
+              test-style={
+                Object {
+                  "flexGrow": 1,
+                  "marginBottom": 0,
+                  "marginRight": 0,
+                  "width": "calc((100% - 0px) / 1 - .5px)",
+                }
               }
-            }
-          />
-        </MockStyledComponent>
-      </ForwardRef>
+            />
+          </MockStyledComponent>
+        </ForwardRef>
+      </Block>
     </Block>
-  </Block>
+  </FlexGridItem>
 </FlexGridItem>
 `;
 
@@ -163,19 +167,20 @@ exports[`FlexGridItem renders: with overridden styles 1`] = `
     }
   }
 >
-  <Block
-    data-baseweb="flex-grid-item"
+  <FlexGridItem
+    forwardedRef={null}
     overrides={
       Object {
         "Block": Object {
-          "style": [Function],
+          "style": Object {
+            "color": "red",
+          },
         },
       }
     }
   >
     <Block
       data-baseweb="flex-grid-item"
-      forwardedRef={null}
       overrides={
         Object {
           "Block": Object {
@@ -184,33 +189,45 @@ exports[`FlexGridItem renders: with overridden styles 1`] = `
         }
       }
     >
-      <ForwardRef
-        $as="div"
-        $style={[Function]}
+      <Block
         data-baseweb="flex-grid-item"
+        forwardedRef={null}
+        overrides={
+          Object {
+            "Block": Object {
+              "style": [Function],
+            },
+          }
+        }
       >
-        <MockStyledComponent
+        <ForwardRef
           $as="div"
           $style={[Function]}
           data-baseweb="flex-grid-item"
-          forwardedRef={null}
         >
-          <div
+          <MockStyledComponent
+            $as="div"
+            $style={[Function]}
             data-baseweb="flex-grid-item"
-            styled-component="true"
-            test-style={
-              Object {
-                "color": "red",
-                "flexGrow": 1,
-                "marginBottom": 0,
-                "marginRight": 0,
-                "width": "calc((100% - 0px) / 1 - .5px)",
+            forwardedRef={null}
+          >
+            <div
+              data-baseweb="flex-grid-item"
+              styled-component="true"
+              test-style={
+                Object {
+                  "color": "red",
+                  "flexGrow": 1,
+                  "marginBottom": 0,
+                  "marginRight": 0,
+                  "width": "calc((100% - 0px) / 1 - .5px)",
+                }
               }
-            }
-          />
-        </MockStyledComponent>
-      </ForwardRef>
+            />
+          </MockStyledComponent>
+        </ForwardRef>
+      </Block>
     </Block>
-  </Block>
+  </FlexGridItem>
 </FlexGridItem>
 `;

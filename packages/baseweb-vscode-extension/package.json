@@ -1,0 +1,52 @@
+{
+  "name": "baseweb",
+  "displayName": "BaseWeb",
+  "publisher": "Uber",
+  "description": "Base Web is a foundation for initiating, evolving, and unifying web products.",
+  "version": "0.0.0",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.41.0"
+  },
+  "repository": {
+    "directory": "packages/baseweb-vscode-extension",
+    "type": "git",
+    "url": "https://github.com/uber/baseweb"
+  },
+  "categories": [
+    "Extension Packs",
+    "Snippets"
+  ],
+  "activationEvents": [
+    "onCommand:extension.helloWorld"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.helloWorld",
+        "title": "Hello World"
+      }
+    ]
+  },
+  "scripts": {
+    "deploy": "vsce publish --yarn",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "yarn run compile",
+    "test": "node ./out/test/runTest.js"
+  },
+  "icon": "images/icon.png",
+  "devDependencies": {
+    "@types/glob": "^7.1.1",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.11.7",
+    "@types/vscode": "^1.41.0",
+    "glob": "^7.1.5",
+    "mocha": "^6.2.2",
+    "tslint": "^5.20.0",
+    "typescript": "^3.6.4",
+    "vsce": "^1.71.0",
+    "vscode-test": "^1.2.2"
+  }
+}

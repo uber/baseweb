@@ -13,18 +13,33 @@ import {toaster, ToasterContainer, PLACEMENT} from '../index.js';
 
 export const name = 'toaster';
 
-export const component = () => (
-  <React.Fragment>
-    <ToasterContainer
-      placement={PLACEMENT.bottomRight}
-      autoHideDuration={500}
-    />
-    <Button
-      onClick={() => {
-        toaster.info('hi');
-      }}
-    >
-      Info toast
-    </Button>
-  </React.Fragment>
-);
+export const component = () => {
+  const [text, setText] = React.useState('not updated');
+  return (
+    <React.Fragment>
+      <ToasterContainer
+        placement={PLACEMENT.bottomRight}
+        autoHideDuration={500}
+      />
+
+      <Button
+        id="default"
+        onClick={() => {
+          toaster.info('hi');
+        }}
+      >
+        Info toast
+      </Button>
+
+      <Button
+        id="same-key"
+        onClick={() => {
+          toaster.info(text, {key: 'same-key'});
+          setText('updated');
+        }}
+      >
+        Info toast
+      </Button>
+    </React.Fragment>
+  );
+};

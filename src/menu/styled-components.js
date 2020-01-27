@@ -99,7 +99,12 @@ export const StyledOptgroupHeader = styled<{}>('li', props => {
     paddingLeft: paddingX,
   };
 });
-
+export const StyledListItemAnchor = styled<StyledPropsT>('a', props => {
+  return {
+    display: 'block',
+    color: getFontColor(props),
+  };
+});
 export const StyledListItemElement = styled<StyledPropsT>('li', props => {
   const {$disabled, $theme, $size} = props;
   return {

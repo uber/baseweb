@@ -42,15 +42,17 @@ To get linting specific to your version of `baseui`, simply install the matching
 ```json
 {
   "dependencies": {
-    "baseui": "10.0.0",
+    "baseui": "9.41.0",
   },
   "devDependencies": {
-    "eslint-plugin-baseui": "10.0.0",
+    "eslint-plugin-baseui": "9.41.0",
   }
 }
 ```
 
-We sync the the versions for each package so you shouldn't have to worry about it. 
+We sync the the versions for each package so you shouldn't have to worry about it.
+
+**ℹ️ Note that the first available version of this package is `9.41.0`.**
 
 ## Rules
 
