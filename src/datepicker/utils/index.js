@@ -250,8 +250,8 @@ export function applyTimeToDate(date: ?Date, time: Date) {
 export function applyDateToTime(time: ?Date, date: Date) {
   if (!time) return date;
   return set(time, {
-    years: getYear(date),
-    months: getMonth(date),
+    year: getYear(date),
+    month: getMonth(date),
     date: getDate(date),
   });
 }
