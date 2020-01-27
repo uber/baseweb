@@ -145,6 +145,9 @@ class StatefulContainer extends React.Component<
       triggerType,
       mountNode,
       renderAll,
+      autoFocus,
+      returnFocus,
+      focusLock,
     } = this.props;
 
     const popoverProps: PopoverPropsWithoutChildrenT = {
@@ -161,6 +164,9 @@ class StatefulContainer extends React.Component<
       triggerType,
       mountNode,
       renderAll,
+      autoFocus,
+      returnFocus,
+      focusLock,
     };
 
     if (dismissOnClickOutside) {
