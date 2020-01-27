@@ -307,7 +307,6 @@
     ]
   },
   "scripts": {
-    "predeploy": "node scripts/update-package.js",
     "deploy": "vsce publish --yarn",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
