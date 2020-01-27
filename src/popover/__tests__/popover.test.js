@@ -330,6 +330,7 @@ describe('Popover', () => {
     wrapper = mount(
       <Popover
         isOpen
+        content="content"
         overrides={overrides}
         showArrow
         triggerType={TRIGGER_TYPE.hover}

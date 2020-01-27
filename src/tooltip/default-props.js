@@ -19,6 +19,7 @@ const baseDefaultProps: $Shape<BaseTooltipPropsT> = {
   placement: PLACEMENT.auto,
   showArrow: false,
   triggerType: TRIGGER_TYPE.hover,
+  renderAll: false,
 };
 
 export default baseDefaultProps;

@@ -99,6 +99,8 @@ export type BasePopoverPropsT = {
    */
   // eslint-disable-next-line flowtype/no-weak-types
   popperOptions?: any,
+  /** Renders all popover content for SEO purposes regardless of popover isOpen state */
+  renderAll?: boolean,
 };
 
 // Props for stateless render logic

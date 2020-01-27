@@ -17,6 +17,7 @@ type PropsT = {
   isOpen: boolean,
   item: *,
   resetParentMenu: () => void,
+  renderAll?: boolean,
 };
 
 export default function MaybeChildMenu(props: PropsT) {
@@ -33,6 +34,7 @@ export default function MaybeChildMenu(props: PropsT) {
     <Popover
       focusLock={false}
       isOpen={props.isOpen}
+      renderAll={props.renderAll}
       content={ChildMenu}
       ignoreBoundary
       onMouseEnterDelay={30}
