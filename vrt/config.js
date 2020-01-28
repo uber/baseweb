@@ -19,6 +19,8 @@ const config = {
           await page.waitForSelector(selectSelector);
           await page.click(selectSelector);
           await page.waitForSelector(dropdownSelector);
+          const flagOptionSelector = `li[role="option"] [data-iso="US"]`;
+          await page.waitForSelector(flagOptionSelector);
         },
       },
     ],
