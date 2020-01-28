@@ -32,21 +32,21 @@ export type ElementRefT = {current: React.ElementRef<any> | null};
 // Props shared by all flavors of modal
 export type ModalPropsT = {
   /** Sets whether the Modal should be displayed by easing in and out */
-  animate: boolean,
+  animate?: boolean,
   /** If true, focus will shift to the first interactive element within the modal.
    * If false, the modal container itself will receive focus.
    * Moving focus into a newly opened modal is important for accessibility purposes, so please be careful!
    */
-  autofocus: boolean | null,
-  autoFocus: boolean,
+  autofocus?: boolean | null,
+  autoFocus?: boolean,
   /** Modal content. The children-as-function API may be preferable
    * for performance reasons (wont render until opened) */
   children?: React.Node | (() => React.Node),
   /** Whether the modal should be closeable by the user
    *  (either via escape, backdrop click, etc). You can set this to
    * false if your modal has an action that the user must take before closing.*/
-  closeable: boolean,
-  isOpen: boolean,
+  closeable?: boolean,
+  isOpen?: boolean,
   /** Where to mount the modal */
   mountNode?: HTMLElement,
   /** A callback that is invoked when the modal will close.
@@ -54,12 +54,12 @@ export type ModalPropsT = {
   onClose?: ({
     closeSource?: CloseSourceT,
   }) => mixed,
-  overrides: OverridesT,
+  overrides?: OverridesT,
   /** Which accessibility role this modal should have. */
-  role: RolePropT,
+  role?: RolePropT,
   /** Controls the size of the modal (primarily width).
    * Can be a SIZE constant or css width property value. */
-  size: SizePropT,
+  size?: SizePropT,
   /** Make modal scrollable while cursor is over the modal's backdrop.
    * Will be removed and implemented as the default behavior in the next major version */
   unstable_ModalBackdropScroll?: boolean,
