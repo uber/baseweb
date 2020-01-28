@@ -155,10 +155,10 @@ describe('data table columns', () => {
     );
     expect(
       matchArrayElements(initial, [
-        '05-11-2012 03:20 30:00',
-        '04-12-2011 04:21 31:00',
-        '07-13-2014 05:22 32:00',
-        '06-14-2013 06:23 33:00',
+        '05-11-2012 10:20 30:00',
+        '04-12-2011 11:21 31:00',
+        '07-13-2014 12:22 32:00',
+        '06-14-2013 13:23 33:00',
       ]),
     ).toBe(true);
 
@@ -167,10 +167,10 @@ describe('data table columns', () => {
     const desc = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(
       matchArrayElements(desc, [
-        '04-12-2011 04:21 31:00',
-        '05-11-2012 03:20 30:00',
-        '06-14-2013 06:23 33:00',
-        '07-13-2014 05:22 32:00',
+        '04-12-2011 11:21 31:00',
+        '05-11-2012 10:20 30:00',
+        '06-14-2013 13:23 33:00',
+        '07-13-2014 12:22 32:00',
       ]),
     ).toBe(true);
 
@@ -179,10 +179,10 @@ describe('data table columns', () => {
     const asc = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
     expect(
       matchArrayElements(asc, [
-        '07-13-2014 05:22 32:00',
-        '06-14-2013 06:23 33:00',
-        '05-11-2012 03:20 30:00',
-        '04-12-2011 04:21 31:00',
+        '07-13-2014 12:22 32:00',
+        '06-14-2013 13:23 33:00',
+        '05-11-2012 10:20 30:00',
+        '04-12-2011 11:21 31:00',
       ]),
     ).toBe(true);
 
@@ -404,10 +404,10 @@ describe('data table columns', () => {
     );
     expect(
       matchArrayElements(initial, [
-        '05-11-2012 03:20 30:00',
-        '04-12-2011 04:21 31:00',
-        '07-13-2014 05:22 32:00',
-        '06-14-2013 06:23 33:00',
+        '05-11-2012 10:20 30:00',
+        '04-12-2011 11:21 31:00',
+        '07-13-2014 12:22 32:00',
+        '06-14-2013 13:23 33:00',
       ]),
     ).toBe(true);
 
@@ -423,12 +423,12 @@ describe('data table columns', () => {
     await datepicker.type('04122011');
 
     await starttimepicker.click();
-    await starttimepicker.type('4:00 am');
+    await starttimepicker.type('11:00');
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
 
     await endtimepicker.click();
-    await endtimepicker.type('4:30 am');
+    await endtimepicker.type('11:30');
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
 
@@ -442,7 +442,7 @@ describe('data table columns', () => {
       COLUMN_COUNT,
       index,
     );
-    expect(matchArrayElements(filtered, ['04-12-2011 04:21 31:00'])).toBe(true);
+    expect(matchArrayElements(filtered, ['04-12-2011 11:21 31:00'])).toBe(true);
   });
 
   it('filters datetime column - date range', async () => {
@@ -456,10 +456,10 @@ describe('data table columns', () => {
     );
     expect(
       matchArrayElements(initial, [
-        '05-11-2012 03:20 30:00',
-        '04-12-2011 04:21 31:00',
-        '07-13-2014 05:22 32:00',
-        '06-14-2013 06:23 33:00',
+        '05-11-2012 10:20 30:00',
+        '04-12-2011 11:21 31:00',
+        '07-13-2014 12:22 32:00',
+        '06-14-2013 13:23 33:00',
       ]),
     ).toBe(true);
 
@@ -488,7 +488,7 @@ describe('data table columns', () => {
       COLUMN_COUNT,
       index,
     );
-    expect(matchArrayElements(filtered, ['07-13-2014 05:22 32:00'])).toBe(true);
+    expect(matchArrayElements(filtered, ['07-13-2014 12:22 32:00'])).toBe(true);
   });
 
   it('filters datetime column - date range - default', async () => {
@@ -502,10 +502,10 @@ describe('data table columns', () => {
     );
     expect(
       matchArrayElements(initial, [
-        '05-11-2012 03:20 30:00',
-        '04-12-2011 04:21 31:00',
-        '07-13-2014 05:22 32:00',
-        '06-14-2013 06:23 33:00',
+        '05-11-2012 10:20 30:00',
+        '04-12-2011 11:21 31:00',
+        '07-13-2014 12:22 32:00',
+        '06-14-2013 13:23 33:00',
       ]),
     ).toBe(true);
 
@@ -528,10 +528,10 @@ describe('data table columns', () => {
     );
     expect(
       matchArrayElements(filtered, [
-        '05-11-2012 03:20 30:00',
-        '04-12-2011 04:21 31:00',
-        '07-13-2014 05:22 32:00',
-        '06-14-2013 06:23 33:00',
+        '05-11-2012 10:20 30:00',
+        '04-12-2011 11:21 31:00',
+        '07-13-2014 12:22 32:00',
+        '06-14-2013 13:23 33:00',
       ]),
     ).toBe(true);
   });
@@ -547,10 +547,10 @@ describe('data table columns', () => {
     );
     expect(
       matchArrayElements(initial, [
-        '05-11-2012 03:20 30:00',
-        '04-12-2011 04:21 31:00',
-        '07-13-2014 05:22 32:00',
-        '06-14-2013 06:23 33:00',
+        '05-11-2012 10:20 30:00',
+        '04-12-2011 11:21 31:00',
+        '07-13-2014 12:22 32:00',
+        '06-14-2013 13:23 33:00',
       ]),
     ).toBe(true);
 
@@ -565,12 +565,12 @@ describe('data table columns', () => {
     await timeop.click();
 
     await starttimepicker.click();
-    await starttimepicker.type('6:00 am');
+    await starttimepicker.type('13:00');
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
 
     await endtimepicker.click();
-    await endtimepicker.type('6:30 am');
+    await endtimepicker.type('13:30');
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
 
@@ -584,7 +584,7 @@ describe('data table columns', () => {
       COLUMN_COUNT,
       index,
     );
-    expect(matchArrayElements(filtered, ['06-14-2013 06:23 33:00'])).toBe(true);
+    expect(matchArrayElements(filtered, ['06-14-2013 13:23 33:00'])).toBe(true);
   });
 
   it('filters datetime column - weekday categorical', async () => {
@@ -598,10 +598,10 @@ describe('data table columns', () => {
     );
     expect(
       matchArrayElements(initial, [
-        '05-11-2012 03:20 30:00',
-        '04-12-2011 04:21 31:00',
-        '07-13-2014 05:22 32:00',
-        '06-14-2013 06:23 33:00',
+        '05-11-2012 10:20 30:00',
+        '04-12-2011 11:21 31:00',
+        '07-13-2014 12:22 32:00',
+        '06-14-2013 13:23 33:00',
       ]),
     ).toBe(true);
 
@@ -623,7 +623,7 @@ describe('data table columns', () => {
       COLUMN_COUNT,
       index,
     );
-    expect(matchArrayElements(filtered, ['07-13-2014 05:22 32:00'])).toBe(true);
+    expect(matchArrayElements(filtered, ['07-13-2014 12:22 32:00'])).toBe(true);
   });
 
   it('filters datetime column - month categorical', async () => {
@@ -637,10 +637,10 @@ describe('data table columns', () => {
     );
     expect(
       matchArrayElements(initial, [
-        '05-11-2012 03:20 30:00',
-        '04-12-2011 04:21 31:00',
-        '07-13-2014 05:22 32:00',
-        '06-14-2013 06:23 33:00',
+        '05-11-2012 10:20 30:00',
+        '04-12-2011 11:21 31:00',
+        '07-13-2014 12:22 32:00',
+        '06-14-2013 13:23 33:00',
       ]),
     ).toBe(true);
 
@@ -669,7 +669,7 @@ describe('data table columns', () => {
       COLUMN_COUNT,
       index,
     );
-    expect(matchArrayElements(filtered, ['05-11-2012 03:20 30:00'])).toBe(true);
+    expect(matchArrayElements(filtered, ['05-11-2012 10:20 30:00'])).toBe(true);
   });
 
   it('filters datetime column - quarter categorical', async () => {
@@ -683,10 +683,10 @@ describe('data table columns', () => {
     );
     expect(
       matchArrayElements(initial, [
-        '05-11-2012 03:20 30:00',
-        '04-12-2011 04:21 31:00',
-        '07-13-2014 05:22 32:00',
-        '06-14-2013 06:23 33:00',
+        '05-11-2012 10:20 30:00',
+        '04-12-2011 11:21 31:00',
+        '07-13-2014 12:22 32:00',
+        '06-14-2013 13:23 33:00',
       ]),
     ).toBe(true);
 
@@ -715,7 +715,7 @@ describe('data table columns', () => {
       COLUMN_COUNT,
       index,
     );
-    expect(matchArrayElements(filtered, ['07-13-2014 05:22 32:00'])).toBe(true);
+    expect(matchArrayElements(filtered, ['07-13-2014 12:22 32:00'])).toBe(true);
   });
 
   it('filters datetime column - half categorical', async () => {
@@ -729,10 +729,10 @@ describe('data table columns', () => {
     );
     expect(
       matchArrayElements(initial, [
-        '05-11-2012 03:20 30:00',
-        '04-12-2011 04:21 31:00',
-        '07-13-2014 05:22 32:00',
-        '06-14-2013 06:23 33:00',
+        '05-11-2012 10:20 30:00',
+        '04-12-2011 11:21 31:00',
+        '07-13-2014 12:22 32:00',
+        '06-14-2013 13:23 33:00',
       ]),
     ).toBe(true);
 
@@ -761,7 +761,7 @@ describe('data table columns', () => {
       COLUMN_COUNT,
       index,
     );
-    expect(matchArrayElements(filtered, ['07-13-2014 05:22 32:00'])).toBe(true);
+    expect(matchArrayElements(filtered, ['07-13-2014 12:22 32:00'])).toBe(true);
   });
 
   it('filters datetime column - year categorical', async () => {
@@ -775,10 +775,10 @@ describe('data table columns', () => {
     );
     expect(
       matchArrayElements(initial, [
-        '05-11-2012 03:20 30:00',
-        '04-12-2011 04:21 31:00',
-        '07-13-2014 05:22 32:00',
-        '06-14-2013 06:23 33:00',
+        '05-11-2012 10:20 30:00',
+        '04-12-2011 11:21 31:00',
+        '07-13-2014 12:22 32:00',
+        '06-14-2013 13:23 33:00',
       ]),
     ).toBe(true);
 
@@ -807,6 +807,6 @@ describe('data table columns', () => {
       COLUMN_COUNT,
       index,
     );
-    expect(matchArrayElements(filtered, ['05-11-2012 03:20 30:00'])).toBe(true);
+    expect(matchArrayElements(filtered, ['05-11-2012 10:20 30:00'])).toBe(true);
   });
 });

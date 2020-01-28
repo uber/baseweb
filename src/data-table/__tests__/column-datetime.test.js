@@ -84,7 +84,7 @@ describe('datetime column', () => {
     expect(mockSetFilter.mock.calls.length).toBe(1);
     const [filterParams] = mockSetFilter.mock.calls[0];
     expect(filterParams.operation).toBe(DATETIME_OPERATIONS.RANGE_DATETIME);
-    const [left, right] = filterParams.selection;
+    const [left, right] = filterParams.range;
     expect(isEqual(left, data[0])).toBe(true);
     expect(isEqual(right, data[data.length - 1])).toBe(true);
   });
@@ -113,7 +113,7 @@ describe('datetime column', () => {
     expect(mockSetFilter.mock.calls.length).toBe(1);
     const [filterParams] = mockSetFilter.mock.calls[0];
     expect(filterParams.operation).toBe(DATETIME_OPERATIONS.RANGE_DATE);
-    const [left, right] = filterParams.selection;
+    const [left, right] = filterParams.range;
     expect(isSameDay(left, data[0])).toBe(true);
     expect(isSameDay(right, data[data.length - 1])).toBe(true);
   });
@@ -142,7 +142,7 @@ describe('datetime column', () => {
     expect(mockSetFilter.mock.calls.length).toBe(1);
     const [filterParams] = mockSetFilter.mock.calls[0];
     expect(filterParams.operation).toBe(DATETIME_OPERATIONS.RANGE_TIME);
-    const [left, right] = filterParams.selection;
+    const [left, right] = filterParams.range;
     expect(isSameHour(left, data[0])).toBe(true);
     expect(isSameHour(right, data[data.length - 1])).toBe(true);
     expect(isSameMinute(left, data[0])).toBe(true);

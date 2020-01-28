@@ -56,8 +56,8 @@ type DatetimeOperationsT =
 
 type FilterParametersT = {|
   operation: DatetimeOperationsT,
-  range?: Date[],
-  selection?: number[],
+  range: Date[],
+  selection: number[],
   description: string,
   exclude: boolean,
 |};
@@ -275,6 +275,7 @@ function DatetimeFilter(props) {
           props.setFilter({
             operation: op,
             range: rangeDates,
+            selection: [],
             description: description,
             exclude,
           });
@@ -298,6 +299,7 @@ function DatetimeFilter(props) {
 
           props.setFilter({
             operation: op,
+            range: [],
             selection,
             description: `${op} - ${selection.join(', ')}`,
             exclude,
@@ -390,6 +392,7 @@ function DatetimeFilter(props) {
                 })}
               >
                 <TimePicker
+                  format="24"
                   value={rangeDates[0]}
                   onChange={time =>
                     setRangeDates([
@@ -408,6 +411,7 @@ function DatetimeFilter(props) {
                 })}
               >
                 <TimePicker
+                  format="24"
                   value={rangeDates[1]}
                   onChange={time =>
                     setRangeDates([
@@ -529,47 +533,44 @@ function DatetimeColumn(options: OptionsT): DatetimeColumnT {
     buildFilter: function(params) {
       return function(data) {
         let included = true;
-        const selection = params.selection;
-        if (selection) {
-          if (params.operation === DATETIME_OPERATIONS.YEAR) {
-            included = selection.includes(getYear(data));
-          } else if (params.operation === DATETIME_OPERATIONS.HALF) {
-            const month = getMonth(data);
-            const half = month < 6 ? 0 : 1;
-            included = selection.includes(half);
-          } else if (params.operation === DATETIME_OPERATIONS.QUARTER) {
-            // date-fns quarters are 1 indexed
-            const quarter = getQuarter(data) - 1;
-            included = selection.includes(quarter);
-          } else if (params.operation === DATETIME_OPERATIONS.MONTH) {
-            included = selection.includes(getMonth(data));
-          } else if (params.operation === DATETIME_OPERATIONS.WEEKDAY) {
-            included = selection.includes(getDay(data));
+        if (params.operation === DATETIME_OPERATIONS.YEAR) {
+          included = params.selection.includes(getYear(data));
+        } else if (params.operation === DATETIME_OPERATIONS.HALF) {
+          const month = getMonth(data);
+          const half = month < 6 ? 0 : 1;
+          included = params.selection.includes(half);
+        } else if (params.operation === DATETIME_OPERATIONS.QUARTER) {
+          // date-fns quarters are 1 indexed
+          const quarter = getQuarter(data) - 1;
+          included = params.selection.includes(quarter);
+        } else if (params.operation === DATETIME_OPERATIONS.MONTH) {
+          included = params.selection.includes(getMonth(data));
+        } else if (params.operation === DATETIME_OPERATIONS.WEEKDAY) {
+          included = params.selection.includes(getDay(data));
+        }
+
+        if (
+          params.operation === DATETIME_OPERATIONS.RANGE_DATE ||
+          params.operation === DATETIME_OPERATIONS.RANGE_TIME ||
+          params.operation === DATETIME_OPERATIONS.RANGE_DATETIME
+        ) {
+          let [left, right] = params.range;
+
+          if (params.operation === DATETIME_OPERATIONS.RANGE_DATE) {
+            left = set(left, {hours: 0, minutes: 0, seconds: 0});
+            right = set(right, {hours: 0, minutes: 0, seconds: 0});
+            data = set(data, {hours: 0, minutes: 0, seconds: 0});
           }
-        } else if (params.range) {
-          if (
-            params.operation === DATETIME_OPERATIONS.RANGE_DATE ||
-            params.operation === DATETIME_OPERATIONS.RANGE_TIME ||
-            params.operation === DATETIME_OPERATIONS.RANGE_DATETIME
-          ) {
-            let [left, right] = params.range;
 
-            if (params.operation === DATETIME_OPERATIONS.RANGE_DATE) {
-              left = set(left, {hours: 0, minutes: 0, seconds: 0});
-              right = set(right, {hours: 0, minutes: 0, seconds: 0});
-              data = set(data, {hours: 0, minutes: 0, seconds: 0});
-            }
-
-            if (params.operation === DATETIME_OPERATIONS.RANGE_TIME) {
-              left = set(left, {year: 2000, month: 1, date: 1});
-              right = set(right, {year: 2000, month: 1, date: 1});
-              data = set(data, {year: 2000, month: 1, date: 1});
-            }
-
-            const after = isAfter(data, left) || isEqual(data, left);
-            const before = isBefore(data, right) || isEqual(data, right);
-            included = after && before;
+          if (params.operation === DATETIME_OPERATIONS.RANGE_TIME) {
+            left = set(left, {year: 2000, month: 1, date: 1});
+            right = set(right, {year: 2000, month: 1, date: 1});
+            data = set(data, {year: 2000, month: 1, date: 1});
           }
+
+          const after = isAfter(data, left) || isEqual(data, left);
+          const before = isBefore(data, right) || isEqual(data, right);
+          included = after && before;
         }
 
         return params.exclude ? !included : included;
