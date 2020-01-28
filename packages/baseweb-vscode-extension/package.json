@@ -13,6 +13,26 @@
     "type": "git",
     "url": "https://github.com/uber/baseweb"
   },
+  "scripts": {
+    "deploy": "vsce publish --yarn",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "yarn run compile",
+    "test": "node ./out/test/runTest.js"
+  },
+  "icon": "images/icon.png",
+  "devDependencies": {
+    "@types/glob": "^7.1.1",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.11.7",
+    "@types/vscode": "^1.41.0",
+    "glob": "^7.1.5",
+    "mocha": "^6.2.2",
+    "tslint": "^5.20.0",
+    "typescript": "^3.6.4",
+    "vsce": "^1.71.0",
+    "vscode-test": "^1.2.2"
+  },
   "categories": [
     "Extension Packs",
     "Snippets"
@@ -305,25 +325,5 @@
         "category": "Base Web"
       }
     ]
-  },
-  "scripts": {
-    "deploy": "vsce publish --yarn",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "yarn run compile",
-    "test": "node ./out/test/runTest.js"
-  },
-  "icon": "images/icon.png",
-  "devDependencies": {
-    "@types/glob": "^7.1.1",
-    "@types/mocha": "^5.2.7",
-    "@types/node": "^12.11.7",
-    "@types/vscode": "^1.41.0",
-    "glob": "^7.1.5",
-    "mocha": "^6.2.2",
-    "tslint": "^5.20.0",
-    "typescript": "^3.6.4",
-    "vsce": "^1.71.0",
-    "vscode-test": "^1.2.2"
   }
 }
