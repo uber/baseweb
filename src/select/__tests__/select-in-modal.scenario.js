@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -17,27 +17,9 @@ import {
   ModalButton,
 } from '../../modal/index.js';
 
-// eslint-disable-next-line import/extensions
-import Screener, {Steps} from 'screener-storybook/src/screener';
 export const name = 'select-in-modal';
 
-export const component = () => {
-  const buttonSelector = '[data-baseweb="button"]';
-  const selectSelector = '[data-baseweb="select"] input';
-  return (
-    <Screener
-      steps={new Steps()
-        .wait(buttonSelector)
-        .click(buttonSelector)
-        .wait(selectSelector)
-        .click(selectSelector)
-        .snapshot('Select in a modal dialog')
-        .end()}
-    >
-      <SelectInModal />
-    </Screener>
-  );
-};
+export const component = () => <SelectInModal />;
 
 function SelectInModal() {
   const [isOpen, setIsOpen] = useState(false);

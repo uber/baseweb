@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -47,7 +47,16 @@ export const Root = styled<SharedStylePropsArgT>('div', props => {
 });
 
 export const Backdrop = styled<SharedStylePropsArgT>('div', props => {
-  const {$animate, $isOpen, $isVisible, $theme} = props;
+  const {
+    $animate,
+    $isOpen,
+    $isVisible,
+    $theme,
+    $unstable_ModalBackdropScroll,
+  } = props;
+  if ($unstable_ModalBackdropScroll) {
+    return {};
+  }
   return {
     position: 'fixed',
     right: 0,
@@ -71,6 +80,13 @@ export const Backdrop = styled<SharedStylePropsArgT>('div', props => {
 });
 
 export const DialogContainer = styled<SharedStylePropsArgT>('div', props => {
+  const {
+    $animate,
+    $isOpen,
+    $isVisible,
+    $theme,
+    $unstable_ModalBackdropScroll,
+  } = props;
   return {
     display: 'flex',
     alignItems: 'center',
@@ -79,6 +95,22 @@ export const DialogContainer = styled<SharedStylePropsArgT>('div', props => {
     minHeight: '100%',
     pointerEvents: 'none',
     userSelect: 'none',
+    ...($unstable_ModalBackdropScroll
+      ? {
+          pointerEvents: 'auto',
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          // Remove grey highlight
+          WebkitTapHighlightColor: 'transparent',
+          opacity: $isVisible && $isOpen ? 1 : 0,
+          ...($animate
+            ? {
+                transitionProperty: 'opacity',
+                transitionDuration: $theme.animation.timing400,
+                transitionTimingFunction: $theme.animation.easeOutCurve,
+              }
+            : null),
+        }
+      : {}),
   };
 });
 
@@ -86,7 +118,7 @@ export const Dialog = styled<SharedStylePropsArgT>('div', props => {
   const {$animate, $isOpen, $isVisible, $size, $theme} = props;
   return ({
     position: 'relative',
-    backgroundColor: $theme.colors.backgroundAlt,
+    backgroundColor: $theme.colors.backgroundPrimary,
     borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
     borderTopRightRadius: $theme.borders.surfaceBorderRadius,
     borderBottomRightRadius: $theme.borders.surfaceBorderRadius,
@@ -159,7 +191,7 @@ export const Close = styled<SharedStylePropsArgT>('button', props => {
 
 export const ModalHeader = styled<{}>('div', ({$theme}) => ({
   ...$theme.typography.font550,
-  color: $theme.colors.foreground,
+  color: $theme.colors.contentPrimary,
   marginTop: $theme.sizing.scale900,
   marginBottom: $theme.sizing.scale600,
   [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: $theme.sizing
@@ -171,7 +203,7 @@ export const ModalHeader = styled<{}>('div', ({$theme}) => ({
 
 export const ModalBody = styled<{}>('div', ({$theme}) => ({
   ...$theme.typography.font200,
-  color: $theme.colors.foregroundAlt,
+  color: $theme.colors.contentSecondary,
   marginTop: $theme.sizing.scale600,
   marginLeft: $theme.sizing.scale800,
   marginRight: $theme.sizing.scale800,

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -20,10 +20,10 @@ type PropsT = {
 };
 
 function FilterShell(props: PropsT) {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   return (
     <form
-      className={useCss({
+      className={css({
         backgroundColor: theme.colors.white,
         paddingTop: theme.sizing.scale600,
         paddingRight: theme.sizing.scale600,
@@ -38,7 +38,7 @@ function FilterShell(props: PropsT) {
     >
       {props.children}
       <div
-        className={useCss({
+        className={css({
           alignItems: 'center',
           display: 'flex',
           justifyContent: 'space-between',
@@ -48,7 +48,7 @@ function FilterShell(props: PropsT) {
         <Checkbox
           checked={props.exclude}
           onChange={props.onExcludeChange}
-          checkmarkType={STYLE_TYPE.toggle}
+          checkmarkType={STYLE_TYPE.toggle_round}
           labelPlacement="right"
         >
           Exclude

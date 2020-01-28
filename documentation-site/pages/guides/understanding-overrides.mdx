@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -65,7 +65,7 @@ But as you might guess, there are multiple React components under the hood, comp
 
 ## Introducing Overrides
 
-**Overrides** gives you a full access to all those subcomponents and lets you to override:
+**Overrides** gives you full access to all those subcomponents and lets you to override:
 
 - styles of the subcomponent
 - props of the subcomponent
@@ -101,7 +101,7 @@ The `overrides.Label.style` property accepts a [style object](https://www.stylet
 
 ## `$theme`
 
-If you opt-in for the [style function](https://www.styletron.org/concepts/#style-function), `overrides` provides a special prop called **`$theme`** that you can use. The `$theme` prop includes all Base Web [design constants](/guides/theming/#theming-values). So instead of the hard-coded value `#892C21`, you can use the theme:
+If you opt-in for the [style function](https://www.styletron.org/concepts/#style-function), `overrides` provides a special prop called **`$theme`** that you can use. The `$theme` prop includes all Base Web [design constants](/guides/theming/#theme-properties). So instead of the hard-coded value `#892C21`, you can use the theme:
 
 ```jsx
 <StatefulList
@@ -138,7 +138,7 @@ Let's use `$isDragged` to change the Label color when dragged:
   overrides={{
     Label: {
       style: ({$theme, $isDragged}) => ({
-        color: $isDragged ? $theme.colors.primary : $theme.colors.negative600,
+        color: $isDragged ? $theme.colors.primary : $theme.colors.accent400,
       }),
     },
   }}
@@ -149,23 +149,13 @@ The result is that the Label turns blue when it's dragged:
 
 <DndListExampleStateProps />
 
-## Overrides Inspector
+## Exploring Overrides
 
-Almost every Base Web component has multiple overrides. **How can you learn what's available to you?** Every component page has the `Overrides` section at the bottom. It lists all overridable subcomponents and highlights each one of them. This section is taken straight from the [dnd-list page](/components/dnd-list/#overrides):
+Almost every Base Web component has multiple overrides. **How can you learn what's available to you?** Every component page has the `Style Overrides` section at the top of the page. It lists all overridable subcomponents and highlights each one of them once activated. Using this editor, you can also change the style properties of each override, so you can see instantly how the modified components would look like.
 
-<Overrides
-  name="Drag and Drop List"
-  component={ListExports}
-  renderExample={props => (
-    <StatefulList
-      removable
-      initialState={{items: ['Item 1', 'Item 2', 'Item 3', 'Item 4']}}
-      overrides={props.overrides}
-    />
-  )}
-/>
+If you are interested in **which state props your style functions can use**, you'll find the list of them by clicking the "Toggle shared props" button in the overrides:
 
-If you are interested in **which state props your style functions can use**, you'll find the list of them at the bottom of every component page. Scroll down to the API section and click on the `Expand Prop Shape` button for the `overrides` property.
+<img src="/static/images/react-view-overrides.png" width="100%" />
 
 ## Override Nested Components
 
@@ -320,12 +310,12 @@ The named import always matches the override key with an addition of `Styled` pr
 
 ```jsx
 <StatefulList
-  initialState={{items: ['A', 'B', 'C']}}
-  overrides={{Label: StyledLabel}}
+ initialState={{items: ['A', 'B', 'C']}}
+ overrides={{Label: StyledLabel}}
 />
 
 <StatefulList
-  initialState={{items: ['A', 'B', 'C']}}
+ initialState={{items: ['A', 'B', 'C']}}
 />
 ```
 

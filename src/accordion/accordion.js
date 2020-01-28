@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -27,6 +27,7 @@ export default class Accordion extends React.Component<
       expanded: [],
     },
     renderPanelContent: false,
+    renderAll: false,
     onChange: () => {},
     overrides: {},
     stateReducer: (type, newState) => newState,
@@ -72,6 +73,7 @@ export default class Accordion extends React.Component<
       disabled,
       children,
       renderPanelContent,
+      renderAll,
       overrides,
     } = this.props;
     // eslint-disable-next-line flowtype/no-weak-types
@@ -91,6 +93,7 @@ export default class Accordion extends React.Component<
         expanded: isExpanded || child.props.expanded,
         accordion,
         renderPanelContent,
+        renderAll,
         overrides: child.props.overrides || overrides,
         disabled: child.props.disabled || disabled,
         onChange: (...args) =>
@@ -106,6 +109,15 @@ export default class Accordion extends React.Component<
     return {
       $disabled: disabled,
     };
+  }
+
+  componentDidMount() {
+    // TODO(v10)
+    if (__DEV__ && this.props.renderPanelContent) {
+      console.warn(
+        'baseui:Accordion The `renderPanelContent` prop is depreacated. Please update your code to use `renderAll`.',
+      );
+    }
   }
 
   render() {

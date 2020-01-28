@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -37,7 +37,7 @@ export type StateReducerT = (
   currentState: StateT,
 ) => StateT;
 
-export type SharedPropsT = {
+export type SharedPropsT = {|
   /** Renders UI in 'focus' state */
   $isFocused: boolean,
   /** Renders UI in 'disabled' state */
@@ -53,11 +53,11 @@ export type SharedPropsT = {
   /** Renders UI in 'required' state */
   $required: boolean,
   $position: $Keys<typeof ENHANCER_POSITION>,
-};
+|};
 
 export type PropsT = *;
 
-export type BaseInputComponentsT = {
+export type BaseInputComponentsT = {|
   InputContainer?: OverrideT<*>,
   Input?: OverrideT<*>,
   Before?: OverrideT<*>,
@@ -67,26 +67,26 @@ export type BaseInputComponentsT = {
   MaskToggleButton?: OverrideT<*>,
   MaskToggleShowIcon?: OverrideT<*>,
   MaskToggleHideIcon?: OverrideT<*>,
-};
+|};
 
-export type InputComponentsT = {
+export type InputComponentsT = {|
   ...BaseInputComponentsT,
   Root?: OverrideT<*>,
   StartEnhancer?: OverrideT<*>,
   EndEnhancer?: OverrideT<*>,
-};
+|};
 
-export type BaseInputPropsT<T> = {
+export type BaseInputPropsT<T> = {|
   /** Sets aria-label attribute. */
-  'aria-label': ?string,
+  'aria-label'?: string,
   /** Sets aria-labelledby attribute. */
-  'aria-labelledby': ?string,
+  'aria-labelledby'?: string,
   /** Sets aria-describedby attribute. */
-  'aria-describedby': ?string,
+  'aria-describedby'?: string,
   /** Defines styles for inputs that are grouped with other controls. */
-  adjoined: AdjoinedT,
+  adjoined?: AdjoinedT,
   /** Determines if browser should provide value suggestions. */
-  autoComplete: string,
+  autoComplete?: string,
   /** If true the input will be focused on the first mount. */
   autoFocus: boolean,
   /** Renders component in 'disabled' state. */
@@ -96,12 +96,12 @@ export type BaseInputPropsT<T> = {
   /** Renders component in 'positive' state. */
   positive?: boolean,
   /** A regex that is used to validate the value of the input on form submission. */
-  pattern: ?string,
+  pattern?: string,
   /** Id attribute value to be added to the input element and as a label's for attribute value. */
-  id: string,
+  id?: string,
   'data-baseweb'?: string,
   /** A  hint as to the type of data that might be entered by the user while editing the element or its contents. */
-  inputMode: string,
+  inputMode?: string,
   /** A ref to access an input element. */
   inputRef?: React.ElementRef<*>,
   name: string,
@@ -112,21 +112,26 @@ export type BaseInputPropsT<T> = {
   onKeyUp?: (e: SyntheticKeyboardEvent<T>) => mixed,
   onFocus: (e: SyntheticFocusEvent<T>) => mixed,
   /** If true, adds a clear value icon button to the end of the input container. */
-  clearable: boolean,
+  clearable?: boolean,
+  onClear?: (e: SyntheticEvent<T>) => mixed,
   overrides: BaseInputComponentsT,
-  placeholder: string,
+  placeholder?: string,
   /** Renders component in 'required' state. */
   required: boolean,
   /** Renders component in provided size. */
   size: SizeT,
   /** Input type attribute. */
-  type: string,
+  type?: string,
   /** Input value attribute. */
   value?: string,
   rows?: number,
-};
+  /** min value when used as input type=number */
+  min?: number,
+  /** max value when used as input type=number */
+  max?: number,
+|};
 
-export type InputPropsT = {
+export type InputPropsT = {|
   ...BaseInputPropsT<HTMLInputElement>,
   overrides: InputComponentsT,
   /** An input helper rendered before and attached to the input field. */
@@ -137,17 +142,17 @@ export type InputPropsT = {
   onFocus: (e: SyntheticFocusEvent<HTMLInputElement>) => mixed,
   /** Handler for the `blur` event. */
   onBlur: (e: SyntheticFocusEvent<HTMLInputElement>) => mixed,
-};
+|};
 
-export type MaskedInputPropsT = {
+export type MaskedInputPropsT = $Shape<{|
   /** See pattern examples here: https://github.com/sanniassin/react-input-mask */
   mask?: string,
   /** Character to render for unfilled mask element. */
   maskChar?: string,
   ...InputPropsT,
-};
+|}>;
 
-export type StatefulContainerPropsT<T> = {
+export type StatefulContainerPropsT<T> = {|
   children: (props: PropsT) => React.Node,
   /** Initial state of an uncontrolled input component. */
   initialState?: StateT,
@@ -156,7 +161,8 @@ export type StatefulContainerPropsT<T> = {
   onChange: (e: SyntheticInputEvent<T>) => mixed,
   /** If true, adds a clear value icon button to the end of the input container. */
   clearable?: boolean,
-};
+  ...StatefulInputPropsT,
+|};
 
 type OmitPropsT = {
   overrides: InputComponentsT,

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -10,247 +10,285 @@ import * as React from 'react';
 import Block from '../block/block.js';
 import type {BlockPropsT} from '../block/types.js';
 
-export const Display1 = React.forwardRef<BlockPropsT, HTMLElement>(
+export const DisplayLarge = React.forwardRef<BlockPropsT, HTMLElement>(
   (props, ref) => (
     <Block
-      data-baseweb="typo-display1"
+      data-baseweb="typo-displaylarge"
       {...props}
-      font={props.font || 'font1450'}
-      color={props.color || 'colorPrimary'}
+      font={props.font || 'DisplayLarge'}
+      color={props.color || 'contentPrimary'}
       ref={ref}
     />
   ),
 );
-Display1.displayName = 'Display1';
+DisplayLarge.displayName = 'DisplayLarge';
 
-export const Display2 = React.forwardRef<BlockPropsT, HTMLElement>(
+export const DisplayMedium = React.forwardRef<BlockPropsT, HTMLElement>(
   (props, ref) => (
     <Block
-      data-baseweb="typo-display2"
+      data-baseweb="typo-displaymedium"
       {...props}
-      font={props.font || 'font1350'}
-      color={props.color || 'colorPrimary'}
+      font={props.font || 'DisplayMedium'}
+      color={props.color || 'contentPrimary'}
       ref={ref}
     />
   ),
 );
-Display2.displayName = 'Display2';
+DisplayMedium.displayName = 'DisplayMedium';
 
-export const Display3 = React.forwardRef<BlockPropsT, HTMLElement>(
+export const DisplaySmall = React.forwardRef<BlockPropsT, HTMLElement>(
   (props, ref) => (
     <Block
-      data-baseweb="typo-display3"
+      data-baseweb="typo-displaysmall"
       {...props}
-      font={props.font || 'font1250'}
-      color={props.color || 'colorPrimary'}
+      font={props.font || 'DisplaySmall'}
+      color={props.color || 'contentPrimary'}
       ref={ref}
     />
   ),
 );
-Display3.displayName = 'Display3';
+DisplaySmall.displayName = 'DisplaySmall';
 
-export const Display4 = React.forwardRef<BlockPropsT, HTMLElement>(
+export const DisplayXSmall = React.forwardRef<BlockPropsT, HTMLElement>(
   (props, ref) => (
     <Block
-      data-baseweb="typo-display4"
+      data-baseweb="typo-displayxsmall"
       {...props}
-      font={props.font || 'font1150'}
-      color={props.color || 'colorPrimary'}
+      font={props.font || 'DisplayXSmall'}
+      color={props.color || 'contentPrimary'}
       ref={ref}
     />
   ),
 );
-Display4.displayName = 'Display4';
+DisplayXSmall.displayName = 'DisplayXSmall';
 
-export const H1 = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
-  <Block
-    data-baseweb="typo-h1"
-    as={props.as || 'h1'}
-    {...props}
-    font={props.font || 'font1050'}
-    color={props.color || 'colorPrimary'}
-    ref={ref}
-  />
-));
-H1.displayName = 'H1';
-
-export const H2 = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
-  <Block
-    data-baseweb="typo-h2"
-    as={props.as || 'h2'}
-    {...props}
-    font={props.font || 'font950'}
-    color={props.color || 'colorPrimary'}
-    ref={ref}
-  />
-));
-H2.displayName = 'H2';
-
-export const H3 = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
-  <Block
-    data-baseweb="typo-h3"
-    as={props.as || 'h3'}
-    {...props}
-    font={props.font || 'font850'}
-    color={props.color || 'colorPrimary'}
-    ref={ref}
-  />
-));
-H3.displayName = 'H3';
-
-export const H4 = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
-  <Block
-    data-baseweb="typo-h4"
-    as={props.as || 'h4'}
-    {...props}
-    font={props.font || 'font750'}
-    color={props.color || 'colorPrimary'}
-    ref={ref}
-  />
-));
-H4.displayName = 'H4';
-
-export const H5 = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
-  <Block
-    data-baseweb="typo-h5"
-    as={props.as || 'h5'}
-    {...props}
-    font={props.font || 'font650'}
-    color={props.color || 'colorPrimary'}
-    ref={ref}
-  />
-));
-H5.displayName = 'H5';
-
-export const H6 = React.forwardRef<BlockPropsT, HTMLElement>((props, ref) => (
-  <Block
-    data-baseweb="typo-h6"
-    as={props.as || 'h6'}
-    {...props}
-    font={props.font || 'font550'}
-    color={props.color || 'colorPrimary'}
-    ref={ref}
-  />
-));
-H6.displayName = 'H6';
-
-export const Label1 = React.forwardRef<BlockPropsT, HTMLElement>(
+export const HeadingXXLarge = React.forwardRef<BlockPropsT, HTMLElement>(
   (props, ref) => (
     <Block
-      data-baseweb="typo-label1"
+      data-baseweb="typo-headingxxlarge"
+      as={props.as || 'h1'}
       {...props}
-      font={props.font || 'font450'}
-      color={props.color || 'colorPrimary'}
+      font={props.font || 'HeadingXXLarge'}
+      color={props.color || 'contentPrimary'}
       ref={ref}
     />
   ),
 );
-Label1.displayName = 'Label1';
+HeadingXXLarge.displayName = 'HeadingXXLarge';
 
-export const Label2 = React.forwardRef<BlockPropsT, HTMLElement>(
+export const HeadingXLarge = React.forwardRef<BlockPropsT, HTMLElement>(
   (props, ref) => (
     <Block
-      data-baseweb="typo-label2"
+      data-baseweb="typo-headingxlarge"
+      as={props.as || 'h2'}
       {...props}
-      font={props.font || 'font350'}
-      color={props.color || 'colorPrimary'}
+      font={props.font || 'HeadingXLarge'}
+      color={props.color || 'contentPrimary'}
       ref={ref}
     />
   ),
 );
-Label2.displayName = 'Label2';
+HeadingXLarge.displayName = 'HeadingXLarge';
 
-export const Label3 = React.forwardRef<BlockPropsT, HTMLElement>(
+export const HeadingLarge = React.forwardRef<BlockPropsT, HTMLElement>(
   (props, ref) => (
     <Block
-      data-baseweb="typo-label3"
+      data-baseweb="typo-headinglarge"
+      as={props.as || 'h3'}
       {...props}
-      font={props.font || 'font250'}
-      color={props.color || 'colorPrimary'}
+      font={props.font || 'HeadingLarge'}
+      color={props.color || 'contentPrimary'}
       ref={ref}
     />
   ),
 );
-Label3.displayName = 'Label3';
+HeadingLarge.displayName = 'HeadingLarge';
 
-export const Label4 = React.forwardRef<BlockPropsT, HTMLElement>(
+export const HeadingMedium = React.forwardRef<BlockPropsT, HTMLElement>(
   (props, ref) => (
     <Block
-      data-baseweb="typo-label4"
+      data-baseweb="typo-headingmedium"
+      as={props.as || 'h4'}
       {...props}
-      font={props.font || 'font150'}
-      color={props.color || 'colorPrimary'}
+      font={props.font || 'HeadingMedium'}
+      color={props.color || 'contentPrimary'}
       ref={ref}
     />
   ),
 );
-Label4.displayName = 'Label4';
+HeadingMedium.displayName = 'HeadingMedium';
 
-export const Paragraph1 = React.forwardRef<BlockPropsT, HTMLElement>(
+export const HeadingSmall = React.forwardRef<BlockPropsT, HTMLElement>(
   (props, ref) => (
     <Block
-      data-baseweb="typo-p1"
+      data-baseweb="typo-headingsmall"
+      as={props.as || 'h5'}
+      {...props}
+      font={props.font || 'HeadingSmall'}
+      color={props.color || 'contentPrimary'}
+      ref={ref}
+    />
+  ),
+);
+HeadingSmall.displayName = 'HeadingSmall';
+
+export const HeadingXSmall = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props, ref) => (
+    <Block
+      data-baseweb="typo-headingxsmall"
+      as={props.as || 'h6'}
+      {...props}
+      font={props.font || 'HeadingXSmall'}
+      color={props.color || 'contentPrimary'}
+      ref={ref}
+    />
+  ),
+);
+HeadingXSmall.displayName = 'HeadingXSmall';
+
+export const LabelLarge = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props, ref) => (
+    <Block
+      data-baseweb="typo-labellarge"
+      {...props}
+      font={props.font || 'LabelLarge'}
+      color={props.color || 'contentPrimary'}
+      ref={ref}
+    />
+  ),
+);
+LabelLarge.displayName = 'LabelLarge';
+
+export const LabelMedium = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props, ref) => (
+    <Block
+      data-baseweb="typo-labelmedium"
+      {...props}
+      font={props.font || 'LabelMedium'}
+      color={props.color || 'contentPrimary'}
+      ref={ref}
+    />
+  ),
+);
+LabelMedium.displayName = 'LabelMedium';
+
+export const LabelSmall = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props, ref) => (
+    <Block
+      data-baseweb="typo-labelsmall"
+      {...props}
+      font={props.font || 'LabelSmall'}
+      color={props.color || 'contentPrimary'}
+      ref={ref}
+    />
+  ),
+);
+LabelSmall.displayName = 'LabelSmall';
+
+export const LabelXSmall = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props, ref) => (
+    <Block
+      data-baseweb="typo-labelxsmall"
+      {...props}
+      font={props.font || 'LabelXSmall'}
+      color={props.color || 'contentPrimary'}
+      ref={ref}
+    />
+  ),
+);
+LabelXSmall.displayName = 'LabelXSmall';
+
+export const ParagraphLarge = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props, ref) => (
+    <Block
+      data-baseweb="typo-paragraphlarge"
       as={props.as || 'p'}
       {...props}
-      font={props.font || 'font400'}
-      color={props.color || 'colorPrimary'}
+      font={props.font || 'ParagraphLarge'}
+      color={props.color || 'contentPrimary'}
       ref={ref}
     />
   ),
 );
-Paragraph1.displayName = 'Paragraph1';
+ParagraphLarge.displayName = 'ParagraphLarge';
 
-export const Paragraph2 = React.forwardRef<BlockPropsT, HTMLElement>(
+export const ParagraphMedium = React.forwardRef<BlockPropsT, HTMLElement>(
   (props, ref) => (
     <Block
-      data-baseweb="typo-p2"
+      data-baseweb="typo-paragraphmedium"
       as={props.as || 'p'}
       {...props}
-      font={props.font || 'font300'}
-      color={props.color || 'colorPrimary'}
+      font={props.font || 'ParagraphMedium'}
+      color={props.color || 'contentPrimary'}
       ref={ref}
     />
   ),
 );
-Paragraph2.displayName = 'Paragraph2';
+ParagraphMedium.displayName = 'ParagraphMedium';
 
-export const Paragraph3 = React.forwardRef<BlockPropsT, HTMLElement>(
+export const ParagraphSmall = React.forwardRef<BlockPropsT, HTMLElement>(
   (props, ref) => (
     <Block
-      data-baseweb="typo-p3"
+      data-baseweb="typo-paragraphsmall"
       as={props.as || 'p'}
       {...props}
-      font={props.font || 'font200'}
-      color={props.color || 'colorPrimary'}
+      font={props.font || 'ParagraphSmall'}
+      color={props.color || 'contentPrimary'}
       ref={ref}
     />
   ),
 );
-Paragraph3.displayName = 'Paragraph3';
+ParagraphSmall.displayName = 'ParagraphSmall';
 
-export const Paragraph4 = React.forwardRef<BlockPropsT, HTMLElement>(
+export const ParagraphXSmall = React.forwardRef<BlockPropsT, HTMLElement>(
   (props, ref) => (
     <Block
-      data-baseweb="typo-p4"
+      data-baseweb="typo-paragraphxsmall"
       as={props.as || 'p'}
       {...props}
-      font={props.font || 'font100'}
-      color={props.color || 'colorPrimary'}
+      font={props.font || 'ParagraphXSmall'}
+      color={props.color || 'contentPrimary'}
       ref={ref}
     />
   ),
 );
-Paragraph4.displayName = 'Paragraph4';
+ParagraphXSmall.displayName = 'ParagraphXSmall';
 
+// TODO(v10): remove
 // Aliases for backwards compatability
-export const Display = Display1;
+export const Display = DisplayLarge;
+export const Display1 = DisplayLarge;
+export const Display2 = DisplayMedium;
+export const Display3 = DisplaySmall;
+export const Display4 = DisplayXSmall;
+export const H1 = HeadingXXLarge;
+export const H2 = HeadingXLarge;
+export const H3 = HeadingLarge;
+export const H4 = HeadingMedium;
+export const H5 = HeadingSmall;
+export const H6 = HeadingXSmall;
+export const Paragraph1 = ParagraphLarge;
+export const Paragraph2 = ParagraphMedium;
+export const Paragraph3 = ParagraphSmall;
+export const Paragraph4 = ParagraphXSmall;
+export const Label1 = LabelLarge;
+export const Label2 = LabelMedium;
+export const Label3 = LabelSmall;
+export const Label4 = LabelXSmall;
+
 export const Caption1 = React.forwardRef<BlockPropsT, HTMLElement>(
   (props, ref) => (
-    <Paragraph4 {...props} color={props.color || 'colorSecondary'} ref={ref} />
+    <Paragraph4
+      {...props}
+      color={props.color || 'contentSecondary'}
+      ref={ref}
+    />
   ),
 );
 Caption1.displayName = 'Caption1';
 export const Caption2 = React.forwardRef<BlockPropsT, HTMLElement>(
-  (props, ref) => <Label4 {...props} color={props.color || 'colorSecondary'} />,
+  (props, ref) => (
+    <Label4 {...props} color={props.color || 'contentSecondary'} />
+  ),
 );
 Caption2.displayName = 'Caption2';

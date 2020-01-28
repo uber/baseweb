@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -75,6 +75,11 @@ export type AccordionPropsT = {
    * for SEO purposed
    */
   renderPanelContent?: boolean,
+  /**
+   * Allows users to render all child content whether a panel is expanded or not
+   * for SEO purposed
+   */
+  renderAll?: boolean,
 };
 
 type SharedPanelPropsT = {
@@ -103,6 +108,11 @@ type SharedPanelPropsT = {
    * for SEO purposed
    */
   renderPanelContent?: boolean,
+  /**
+   * Allows users to render all child content whether a panel is expanded or not
+   * for SEO purposed
+   */
+  renderAll?: boolean,
 };
 
 export type PanelPropsT = SharedPanelPropsT & {

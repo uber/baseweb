@@ -61,6 +61,8 @@ export interface BaseInputProps<T> {
   type?: string;
   value?: string;
   rows?: number;
+  min?: number;
+  max?: number;
 }
 
 export interface State {
@@ -71,6 +73,11 @@ export type InputOverrides = BaseInputOverrides<SharedProps> & {
   Root?: Override<SharedProps>;
   StartEnhancer?: Override<SharedProps>;
   EndEnhancer?: Override<SharedProps>;
+  ClearIcon?: Override<SharedProps>;
+  ClearIconContainer?: Override<SharedProps>;
+  MaskToggleButton?: Override<SharedProps>;
+  MaskToggleHideIcon?: Override<SharedProps>;
+  MaskToggleShowIcon?: Override<SharedProps>;
 };
 
 export type SharedProps = {

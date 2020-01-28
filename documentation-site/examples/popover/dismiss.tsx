@@ -5,8 +5,8 @@ import {StatefulPopover} from 'baseui/popover';
 import {Paragraph3} from 'baseui/typography';
 
 export default () => {
-  const [useCss, theme] = useStyletron();
-  const contentCx = useCss({
+  const [css, theme] = useStyletron();
+  const contentCx = css({
     padding: theme.sizing.scale500,
     maxWidth: '300px',
   });

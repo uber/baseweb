@@ -4,8 +4,12 @@ import {
   PLACEMENT,
   TRIGGER_TYPE,
 } from 'baseui/tooltip';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
+import {Button} from 'baseui/button';
+import {Input} from 'baseui/input';
+
+const tooltipProps = require('!!extract-react-types-loader!../../../../src/popover/stateful-popover.js');
 
 import PopoverConfig from './popover';
 
@@ -15,6 +19,8 @@ const TooltipConfig: TConfig = {
     'baseui/tooltip': {named: ['StatefulTooltip']},
   },
   scope: {
+    Button,
+    Input,
     StatefulTooltip,
     ACCESSIBILITY_TYPE,
     PLACEMENT,
@@ -33,6 +39,8 @@ const TooltipConfig: TConfig = {
     },
     triggerType: {
       ...PopoverConfig.props.triggerType,
+      value: 'TRIGGER_TYPE.hover',
+      defaultValue: 'TRIGGER_TYPE.hover',
       imports: {
         'baseui/tooltip': {
           named: ['TRIGGER_TYPE'],
@@ -52,6 +60,9 @@ const TooltipConfig: TConfig = {
       type: PropTypes.ReactNode,
       description: `The content that will trigger the popover.`,
     },
+  },
+  mapTokensToProps: {
+    StatefulTooltip: tooltipProps,
   },
 };
 

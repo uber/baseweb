@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -51,6 +51,17 @@ export default class MenuStatefulContainer extends React.Component<
   // to correctly facilitate keyboard scrolling behavior
   rootRef = (React.createRef(): {current: HTMLElement | null});
 
+  getItems() {
+    if (Array.isArray(this.props.items)) {
+      return this.props.items;
+    }
+    const optgroups = Object.keys(this.props.items);
+    return optgroups.reduce((output, optgroup) => {
+      // $FlowFixMe already checked above that items is grouped shape
+      return output.concat(this.props.items[optgroup]);
+    }, []);
+  }
+
   componentDidMount() {
     const rootRef = this.props.rootRef ? this.props.rootRef : this.rootRef;
     if (__BROWSER__) {
@@ -63,7 +74,7 @@ export default class MenuStatefulContainer extends React.Component<
           this.refList[this.state.highlightedIndex].current,
           rootRef.current,
           this.state.highlightedIndex === 0,
-          this.state.highlightedIndex === this.props.items.length - 1,
+          this.state.highlightedIndex === this.getItems().length - 1,
           'center',
         );
       }
@@ -113,9 +124,16 @@ export default class MenuStatefulContainer extends React.Component<
       case KEY_STRINGS.ArrowDown:
       case KEY_STRINGS.ArrowLeft:
       case KEY_STRINGS.ArrowRight:
+      case KEY_STRINGS.Home:
+      case KEY_STRINGS.End:
         this.handleArrowKey(event);
         break;
       case KEY_STRINGS.Enter:
+        if (event.keyCode === 229) {
+          // ref.
+          // https://github.com/JedWatson/react-select/blob/e12b42b0e7598ec4a96a1a6480e0b2b4c7dc03e3/packages/react-select/src/Select.js#L1209
+          break;
+        }
         this.handleEnterKey(event);
         break;
     }
@@ -135,7 +153,19 @@ export default class MenuStatefulContainer extends React.Component<
       });
     } else if (event.key === KEY_STRINGS.ArrowDown) {
       event.preventDefault();
-      nextIndex = Math.min(prevIndex + 1, this.props.items.length - 1);
+      nextIndex = Math.min(prevIndex + 1, this.getItems().length - 1);
+      this.internalSetState(STATE_CHANGE_TYPES.moveDown, {
+        highlightedIndex: nextIndex,
+      });
+    } else if (event.key === KEY_STRINGS.Home) {
+      event.preventDefault();
+      nextIndex = 0;
+      this.internalSetState(STATE_CHANGE_TYPES.moveUp, {
+        highlightedIndex: nextIndex,
+      });
+    } else if (event.key === KEY_STRINGS.End) {
+      event.preventDefault();
+      nextIndex = this.getItems().length - 1;
       this.internalSetState(STATE_CHANGE_TYPES.moveDown, {
         highlightedIndex: nextIndex,
       });
@@ -160,15 +190,16 @@ export default class MenuStatefulContainer extends React.Component<
         // $FlowFixMe
         rootRef.current,
         nextIndex === 0,
-        nextIndex === this.props.items.length - 1,
+        nextIndex === this.getItems().length - 1,
       );
     }
   };
 
   // Handler for enter key
   handleEnterKey = (event: KeyboardEvent) => {
-    const {items, onItemSelect} = this.props;
+    const {onItemSelect} = this.props;
     const {highlightedIndex} = this.state;
+    const items = this.getItems();
     if (
       items[highlightedIndex] &&
       onItemSelect &&

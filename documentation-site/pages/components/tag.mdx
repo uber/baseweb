@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -24,6 +24,7 @@ import * as TagExports from 'baseui/tag';
 
 import Yard from '../../components/yard/index';
 import tagYardConfig from '../../components/yard/config/tag';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -79,5 +80,11 @@ Compact UI to display a collection of concise information.
 </Example>
 
 ## API
+
+<ApiTable
+  title="Tag props"
+  config={tagYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/tag/tag.js')}
+/>
 
 <Exports component={TagExports} title="Tag exports" path="baseui/tag" />

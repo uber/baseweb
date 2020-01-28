@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -21,6 +21,7 @@ function getState(props): State {
 function getOuterColor(props) {
   const {colors} = props.$theme;
 
+  if (props.$disabled) return colors.tickFillDisabled;
   if (!props.$checked) {
     if (props.$disabled) return colors.tickMarkFillDisabled;
     if (props.$isError) return colors.tickBorderError;
@@ -36,7 +37,6 @@ function getOuterColor(props) {
           return colors.tickFillErrorSelectedHoverActive;
       }
     } else {
-      if (props.$disabled) return colors.tickFillDisabled;
       switch (getState(props)) {
         case DEFAULT:
           return colors.tickFillSelected;
@@ -111,22 +111,26 @@ function getLabelPadding(props) {
 function getLabelColor(props) {
   const {$disabled, $theme} = props;
   const {colors} = $theme;
-  return $disabled ? colors.foregroundAlt : colors.foreground;
+  return $disabled ? colors.contentSecondary : colors.contentPrimary;
 }
 
 export const RadioGroupRoot = styled<StylePropsT>('div', props => {
   const {$disabled, $align} = props;
   return {
-    flexDirection: $align === 'horizontal' ? 'row' : 'column',
     display: 'flex',
+    flexWrap: 'wrap',
+    flexDirection: $align === 'horizontal' ? 'row' : 'column',
     alignItems: $align === 'horizontal' ? 'center' : 'flex-start',
     cursor: $disabled ? 'not-allowed' : 'pointer',
   };
 });
 
 export const Root = styled<StylePropsT>('label', props => {
-  const {$disabled, $hasDescription, $labelPlacement, $theme} = props;
+  const {$disabled, $hasDescription, $labelPlacement, $theme, $align} = props;
   const {sizing} = $theme;
+  const isHorizontal = $align === 'horizontal';
+
+  const marginAfter = $theme.direction === 'rtl' ? 'Left' : 'Right';
   return ({
     flexDirection:
       $labelPlacement === 'top' || $labelPlacement === 'bottom'
@@ -136,7 +140,8 @@ export const Root = styled<StylePropsT>('label', props => {
     alignItems: 'center',
     cursor: $disabled ? 'not-allowed' : 'pointer',
     marginTop: sizing.scale200,
-    marginBottom: $hasDescription ? null : sizing.scale200,
+    [`margin${marginAfter}`]: isHorizontal ? sizing.scale200 : null,
+    marginBottom: $hasDescription && !isHorizontal ? null : sizing.scale200,
   }: {});
 });
 
@@ -149,15 +154,15 @@ export const RadioMarkInner = styled<StylePropsT>('div', props => {
     borderTopRightRadius: '50%',
     borderBottomRightRadius: '50%',
     borderBottomLeftRadius: '50%',
-    height: props.$checked ? sizing.scale200 : sizing.scale600,
+    height: props.$checked ? sizing.scale200 : sizing.scale550,
     transitionDuration: animation.timing100,
     transitionTimingFunction: animation.easeOutCurve,
-    width: props.$checked ? sizing.scale200 : sizing.scale600,
+    width: props.$checked ? sizing.scale200 : sizing.scale550,
   };
 });
 
 export const RadioMarkOuter = styled<StylePropsT>('div', props => {
-  const {sizing} = props.$theme;
+  const {animation, sizing} = props.$theme;
 
   return ({
     alignItems: 'center',
@@ -176,6 +181,8 @@ export const RadioMarkOuter = styled<StylePropsT>('div', props => {
     verticalAlign: 'middle',
     width: sizing.scale700,
     flexShrink: 0,
+    transitionDuration: animation.timing100,
+    transitionTimingFunction: animation.easeOutCurve,
   }: {});
 });
 
@@ -202,12 +209,17 @@ export const Input = styled('input', {
 });
 
 export const Description = styled<StylePropsT>('div', props => {
+  const {$theme, $align} = props;
+  const isHorizontal = $align === 'horizontal';
+  const marginBefore = $theme.direction === 'rtl' ? 'Right' : 'Left';
+  const marginAfter = $theme.direction === 'rtl' ? 'Left' : 'Right';
   return {
-    ...props.$theme.typography.font200,
-    color: props.$theme.colors.colorSecondary,
+    ...$theme.typography.font200,
+    color: $theme.colors.contentSecondary,
     cursor: 'auto',
-    [props.$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: props
-      .$theme.sizing.scale900,
+    [`margin${marginBefore}`]:
+      $align === 'horizontal' ? null : $theme.sizing.scale900,
+    [`margin${marginAfter}`]: isHorizontal ? $theme.sizing.scale200 : null,
     maxWidth: '240px',
   };
 });

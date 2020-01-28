@@ -1,6 +1,8 @@
 import {Pagination} from 'baseui/pagination';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
+
+const paginationProps = require('!!extract-react-types-loader!../../../../src/pagination/pagination.js');
 
 const PaginationConfig: TConfig = {
   imports: {
@@ -40,11 +42,23 @@ const PaginationConfig: TConfig = {
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: ['Root', 'MaxLabel', 'DropdownContainer', 'Select'],
-      sharedProps: {},
+      custom: {
+        names: [
+          'Root',
+          'MaxLabel',
+          'DropdownContainer',
+          'Select',
+          'NextButton',
+          'PrevButton',
+        ],
+        sharedProps: {},
+      },
     },
+  },
+  mapTokensToProps: {
+    Pagination: paginationProps,
   },
 };
 

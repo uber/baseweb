@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,26 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import Screener, {Steps} from 'screener-storybook/src/screener.js';
 
 import {StatefulSelect, TYPE} from '../index.js';
 
 export const name = 'select-search-single';
 
-export const component = () => {
-  const selector = '[data-baseweb="select"] input';
-  return (
-    <Screener
-      steps={new Steps()
-        .wait(selector)
-        .click(selector)
-        .snapshot('select: open state')
-        .end()}
-    >
-      <SelectComponent />
-    </Screener>
-  );
-};
+export const component = () => <SelectComponent />;
 
 function SelectComponent() {
   return (

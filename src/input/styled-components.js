@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -21,7 +21,7 @@ export const StyledClearIconContainer = styled<{
     [$theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight']: $theme.sizing
       .scale500,
     paddingTop: $alignTop ? $theme.sizing.scale500 : '0px',
-    color: $theme.colors.foreground,
+    color: $theme.colors.contentPrimary,
   };
 });
 
@@ -31,6 +31,12 @@ export const StyledClearIcon = styled<typeof DeleteAlt, {}>(DeleteAlt, {
 
 function getInputPadding(size, sizing) {
   return {
+    [SIZE.mini]: {
+      paddingTop: sizing.scale100,
+      paddingBottom: sizing.scale100,
+      paddingLeft: sizing.scale200,
+      paddingRight: sizing.scale200,
+    },
     [SIZE.compact]: {
       paddingTop: sizing.scale200,
       paddingBottom: sizing.scale200,
@@ -54,6 +60,7 @@ function getInputPadding(size, sizing) {
 
 function getFont(size, typography) {
   return {
+    [SIZE.mini]: typography.font100,
     [SIZE.compact]: typography.font200,
     [SIZE.default]: typography.font300,
     [SIZE.large]: typography.font400,
@@ -67,7 +74,7 @@ export const Root = styled<SharedPropsT>('div', props => {
   } = props;
   return {
     ...getFont($size, typography),
-    color: colors.foreground,
+    color: colors.contentPrimary,
     display: 'flex',
     width: '100%',
   };
@@ -94,6 +101,10 @@ function getInputEnhancerBorderRadius(position, radius) {
 
 function getInputEnhancerPadding($size, sizing) {
   return {
+    [SIZE.mini]: {
+      paddingRight: sizing.scale200,
+      paddingLeft: sizing.scale200,
+    },
     [SIZE.compact]: {
       paddingRight: sizing.scale400,
       paddingLeft: sizing.scale400,
@@ -125,27 +136,27 @@ function getInputEnhancerColors(
 
   if ($isFocused) {
     return {
-      color: colors.foregroundInv,
+      color: colors.contentInversePrimary,
       backgroundColor: colors.borderFocus,
     };
   }
 
   if ($error) {
     return {
-      color: colors.foreground,
+      color: colors.contentPrimary,
       backgroundColor: colors.inputBorderError,
     };
   }
 
   if ($positive) {
     return {
-      color: colors.foreground,
+      color: colors.contentPrimary,
       backgroundColor: colors.inputBorderPositive,
     };
   }
 
   return {
-    color: colors.foreground,
+    color: colors.contentPrimary,
     backgroundColor: colors.inputEnhancerFill,
   };
 }
@@ -222,7 +233,7 @@ function getInputContainerColors(
 
   if ($isFocused) {
     return {
-      color: colors.foreground,
+      color: colors.contentPrimary,
       borderColor: colors.borderFocus,
       backgroundColor: colors.inputFillActive,
     };
@@ -230,7 +241,7 @@ function getInputContainerColors(
 
   if ($error) {
     return {
-      color: colors.foreground,
+      color: colors.contentPrimary,
       borderColor: colors.inputBorderError,
       backgroundColor: colors.inputFillError,
     };
@@ -238,14 +249,14 @@ function getInputContainerColors(
 
   if ($positive) {
     return {
-      color: colors.foreground,
+      color: colors.contentPrimary,
       borderColor: colors.inputBorderPositive,
       backgroundColor: colors.inputFillPositive,
     };
   }
 
   return {
-    color: colors.foreground,
+    color: colors.contentPrimary,
     borderColor: colors.inputFill,
     backgroundColor: colors.inputFill,
   };
@@ -298,8 +309,8 @@ export const InputContainer = styled<SharedPropsT>(
 function getInputColors($disabled, $isFocused, $error, colors) {
   if ($disabled) {
     return {
-      color: colors.foregroundAlt,
-      caretColor: colors.foreground,
+      color: colors.contentSecondary,
+      caretColor: colors.contentPrimary,
       '::placeholder': {
         color: colors.inputTextDisabled,
       },
@@ -307,10 +318,10 @@ function getInputColors($disabled, $isFocused, $error, colors) {
   }
 
   return {
-    color: colors.foreground,
-    caretColor: colors.foreground,
+    color: colors.contentPrimary,
+    caretColor: colors.contentPrimary,
     '::placeholder': {
-      color: colors.foregroundAlt,
+      color: colors.contentSecondary,
     },
   };
 }

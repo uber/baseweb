@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -93,7 +93,7 @@ export default class CalendarMonth extends React.Component<MonthPropsT> {
     const {overrides = {}} = this.props;
     const [Month, monthProps] = getOverrides(overrides.Month, StyledMonth);
     return (
-      <Month aria-multiselectable={this.props.range || null} {...monthProps}>
+      <Month role="rowgroup" {...monthProps}>
         {this.renderWeeks()}
       </Month>
     );

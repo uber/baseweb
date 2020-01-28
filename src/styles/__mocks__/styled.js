@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -27,14 +27,14 @@ const IDENTITY = x => x;
 
 export function useStyletron() {
   // eslint-disable-next-line flowtype/no-weak-types
-  function useCss(styles: Object) {
+  function css(styles: Object) {
     return {
       label: 'useStyletron mock describes the applied css properties',
       ...styles,
     };
   }
 
-  return [useCss, MOCK_THEME];
+  return [css, MOCK_THEME];
 }
 
 export function styled(

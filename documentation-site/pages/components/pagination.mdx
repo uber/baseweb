@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -19,6 +19,7 @@ import * as PaginationExports from 'baseui/pagination';
 
 import Yard from '../../components/yard/index';
 import paginationYardConfig from '../../components/yard/config/pagination';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -63,6 +64,14 @@ Divide content into separate pages.
 <Example title="Pagination with Overrides" path="pagination/overrides.js">
   <Customization />
 </Example>
+
+## API
+
+<ApiTable
+  title="Pagination props"
+  config={paginationYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/pagination/pagination.js')}
+/>
 
 <Exports
   component={PaginationExports}

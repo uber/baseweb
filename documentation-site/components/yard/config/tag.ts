@@ -1,6 +1,8 @@
 import {Tag, KIND, VARIANT} from 'baseui/tag';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
+
+const tagProps = require('!!extract-react-types-loader!../../../../src/tag/tag.js');
 
 const TagConfig: TConfig = {
   imports: {
@@ -242,22 +244,27 @@ const TagConfig: TConfig = {
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: ['Root', 'Action', 'ActionIcon', 'Text'],
-      sharedProps: {
-        $kind: 'kind',
-        $variant: 'variant',
-        $closeable: 'closeable',
-        $isActive: {
-          type: PropTypes.Boolean,
-          description: 'Is tag active.',
+      custom: {
+        names: ['Root', 'Action', 'ActionIcon', 'Text'],
+        sharedProps: {
+          $kind: 'kind',
+          $variant: 'variant',
+          $closeable: 'closeable',
+          $isActive: {
+            type: PropTypes.Boolean,
+            description: 'Is tag active.',
+          },
+          $disabled: 'disabled',
+          $isHovered: 'isHovered',
+          $isFocused: 'isFocused',
         },
-        $disabled: 'disabled',
-        $isHovered: 'isHovered',
-        $isFocused: 'isFocused',
       },
     },
+  },
+  mapTokensToProps: {
+    Tag: tagProps,
   },
 };
 

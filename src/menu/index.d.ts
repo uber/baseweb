@@ -26,7 +26,11 @@ export interface OPTION_LIST_SIZE {
   compact: 'compact';
 }
 
-export interface MenuProps {
+export type BaseMenuPropsT = {
+  renderAll?: boolean;
+};
+
+export interface MenuProps extends BaseMenuPropsT {
   size?: keyof OPTION_LIST_SIZE;
   overrides?: {
     EmptyState?: Override<any>;
@@ -34,6 +38,14 @@ export interface MenuProps {
     Option?: Override<any>;
   };
 }
+
+export type ItemT = any;
+export type ArrayItemsT = ItemT[];
+export type GroupedItemsT = {
+  __ungrouped: ArrayItemsT;
+  [key: string]: ArrayItemsT;
+};
+export type ItemsT = ArrayItemsT | GroupedItemsT;
 
 export type StatefulMenuProps = StatefulContainerProps & MenuProps;
 export class StatefulMenu extends React.PureComponent<StatefulMenuProps> {}
@@ -64,12 +76,12 @@ export type GetRequiredItemProps = (
 ) => RenderItemProps;
 
 export type RenderProps = StatefulContainerState & {
-  items: any[];
+  items: ItemsT;
   getRequiredItemProps: GetRequiredItemProps;
 };
 
 export interface StatefulContainerProps {
-  items: any[];
+  items: ItemsT;
   initialState?: StatefulContainerState;
   stateReducer?: StateReducer;
   getRequiredItemProps?: GetRequiredItemProps;
@@ -91,7 +103,7 @@ export class StatefulContainer extends React.Component<
   StatefulContainerState
 > {}
 
-export interface OptionListProps {
+export interface OptionListProps extends BaseMenuPropsT {
   item: any;
   getItemLabel: (item: any) => React.ReactNode;
   getChildMenu?: (item: any) => React.ReactNode;
@@ -106,7 +118,7 @@ export interface OptionListProps {
 }
 export const OptionList: React.FC<OptionListProps>;
 
-export interface OptionProfileProps {
+export interface OptionProfileProps extends BaseMenuPropsT {
   item: any;
   getChildMenu?: (item: any) => React.ReactNode;
   getProfileItemLabels: (
@@ -132,7 +144,7 @@ export interface SharedStatelessProps {
   activedescendantId?: string;
   getRequiredItemProps?: (item: any, index: number) => RenderItemProps;
   highlightedIndex?: number;
-  items: any[];
+  items: ItemsT;
   noResultsMsg?: React.ReactNode;
   onBlur?: (event: React.FocusEvent<HTMLElement>) => any;
   onFocus?: (event: React.FocusEvent<HTMLElement>) => any;

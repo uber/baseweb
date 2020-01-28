@@ -1,8 +1,10 @@
 import pick from 'just-pick';
 import {Checkbox, STYLE_TYPE, LABEL_PLACEMENT} from 'baseui/checkbox';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 import {changeHandlers} from './common';
+
+const checkboxProps = require('!!extract-react-types-loader!../../../../src/checkbox/checkbox.js');
 
 const CheckboxConfig: TConfig = {
   imports: {
@@ -87,7 +89,6 @@ const CheckboxConfig: TConfig = {
     },
     labelPlacement: {
       value: 'LABEL_PLACEMENT.right',
-      defaultValue: 'LABEL_PLACEMENT.right',
       options: LABEL_PLACEMENT,
       type: PropTypes.Enum,
       enumName: 'LABEL_PLACEMENT',
@@ -123,6 +124,12 @@ const CheckboxConfig: TConfig = {
       description: 'Name attribute.',
       hidden: true,
     },
+    title: {
+      value: undefined,
+      type: PropTypes.String,
+      description: 'Title attribute.',
+      hidden: true,
+    },
     ...pick(changeHandlers, [
       'onBlur',
       'onFocus',
@@ -132,38 +139,43 @@ const CheckboxConfig: TConfig = {
     ]),
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: [
-        'Root',
-        'Checkmark',
-        'Label',
-        'Toggle',
-        'ToggleInner',
-        'ToggleTrack',
-      ],
-      sharedProps: {
-        $isFocused: {
-          type: PropTypes.Boolean,
-          description: 'True when the component is focused.',
+      custom: {
+        names: [
+          'Root',
+          'Checkmark',
+          'Label',
+          'Toggle',
+          'ToggleInner',
+          'ToggleTrack',
+        ],
+        sharedProps: {
+          $isFocused: {
+            type: PropTypes.Boolean,
+            description: 'True when the component is focused.',
+          },
+          $isHovered: {
+            type: PropTypes.Boolean,
+            description: 'True when the component is hovered.',
+          },
+          $isActive: {
+            type: PropTypes.Boolean,
+            description: 'True when the component is active.',
+          },
+          $isError: 'isError',
+          $checked: 'checked',
+          $isIndeterminate: 'isIndeterminate',
+          $required: 'required',
+          $disabled: 'disabled',
+          $checkmarkType: 'checkmarkType',
+          $labelPlacement: 'labelPlacement',
         },
-        $isHovered: {
-          type: PropTypes.Boolean,
-          description: 'True when the component is hovered.',
-        },
-        $isActive: {
-          type: PropTypes.Boolean,
-          description: 'True when the component is active.',
-        },
-        $isError: 'isError',
-        $checked: 'checked',
-        $isIndeterminate: 'isIndeterminate',
-        $required: 'required',
-        $disabled: 'disabled',
-        $checkmarkType: 'checkmarkType',
-        $labelPlacement: 'labelPlacement',
       },
     },
+  },
+  mapTokensToProps: {
+    Checkbox: checkboxProps,
   },
 };
 

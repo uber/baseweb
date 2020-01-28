@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,35 +8,118 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env node */
 
-module.exports = {
+const config = {
   'country-select-dropdown': {
-    fullPage: true,
     interactions: [
       {
         name: 'expanded',
         behavior: async page => {
           const selectSelector = `[data-baseweb="select"]`;
           const dropdownSelector = `[data-baseweb="menu"]`;
-          page.waitForSelector(selectSelector);
-          page.click(selectSelector);
-          page.waitForSelector(dropdownSelector);
-          await page.waitFor(1000);
+          await page.waitForSelector(selectSelector);
+          await page.click(selectSelector);
+          await page.waitForSelector(dropdownSelector);
         },
       },
     ],
   },
   'country-select-small-dropdown': {
-    fullPage: true,
     interactions: [
       {
         name: 'expanded',
         behavior: async page => {
           const selectSelector = `[data-baseweb="select"]`;
           const dropdownSelector = `[data-baseweb="menu"]`;
-          page.waitForSelector(selectSelector);
-          page.click(selectSelector);
-          page.waitForSelector(dropdownSelector);
-          await page.waitFor(1000);
+          await page.waitForSelector(selectSelector);
+          await page.click(selectSelector);
+          await page.waitForSelector(dropdownSelector);
+        },
+      },
+    ],
+  },
+  //
+  'data-table-extracted-highlight': {
+    interactions: [
+      {
+        name: 'controlledRowHighlightIndex',
+        behavior: async page => {
+          await Promise.all(
+            Array.from({length: 4}).map(() => page.keyboard.press('j')),
+          );
+        },
+      },
+      {
+        name: 'rowHighlightScrollsTableDown',
+        behavior: async page => {
+          await Promise.all(
+            Array.from({length: 20}).map(() => page.keyboard.press('j')),
+          );
+        },
+      },
+      {
+        name: 'rowHighlightScrollsTableUp',
+        behavior: async page => {
+          await Promise.all(
+            Array.from({length: 20}).map(() => page.keyboard.press('j')),
+          );
+          await Promise.all(
+            Array.from({length: 15}).map(() => page.keyboard.press('k')),
+          );
+        },
+      },
+    ],
+  },
+  datepicker: {
+    interactions: [
+      {
+        name: 'setDateHighlighted',
+        behavior: async page => {
+          const button = '[data-baseweb="button"]';
+          const input = 'input';
+          const calendar = '[data-baseweb="calendar"]';
+          await page.waitForSelector(button);
+          await page.click(button);
+          await page.waitForSelector(input);
+          await page.click(input);
+          await page.waitForSelector(calendar);
+        },
+      },
+    ],
+  },
+  'datepicker-rtl': {
+    interactions: [
+      {
+        name: 'calendarOpened',
+        behavior: async page => {
+          const input = 'input';
+          const calendar = '[data-baseweb="calendar"]';
+          await page.waitForSelector(input);
+          await page.click(input);
+          await page.waitForSelector(calendar);
+        },
+      },
+    ],
+  },
+  'datepicker-range': {
+    interactions: [
+      {
+        name: 'selectedRangeHighlighted',
+        behavior: async page => {
+          const input = 'input';
+          const calendar = '[data-baseweb="calendar"]';
+          const startDay =
+            '[aria-label="Choose Sunday, March 10th 2019. It\'s available."]';
+          const endDay =
+            '[aria-label="Choose Wednesday, March 20th 2019. It\'s available."]';
+          await page.waitForSelector(input);
+          await page.click(input);
+          await page.waitForSelector(calendar);
+          await page.click(startDay);
+          await page.click(endDay);
+          await page.waitForSelector(calendar, {hidden: true});
+          await page.waitForSelector(input);
+          await page.click(input);
+          await page.waitForSelector(calendar);
         },
       },
     ],
@@ -47,24 +130,18 @@ module.exports = {
         name: 'noHighlight',
         behavior: async page => {
           const input = `input`;
-          const calendar = `[role="application"]`;
+          const calendar = '[data-baseweb="calendar"]';
           const rightArrow = `[aria-label="Next month"]`;
           await page.waitForSelector(input);
           await page.click(input);
           await page.waitForSelector(calendar);
           await page.click(rightArrow);
+          await page.waitForFunction(
+            `document.querySelector("button[aria-haspopup]").innerText === 'April 2019'`,
+          );
         },
       },
     ],
-  },
-  drawer: {
-    fullPage: true,
-  },
-  'drawer-select': {
-    fullPage: true,
-  },
-  'drawer-rtl': {
-    fullPage: true,
   },
   'input-password': {
     interactions: [
@@ -72,6 +149,18 @@ module.exports = {
         name: 'togglesMask',
         behavior: async page => {
           const toggleSelector = `[data-e2e="mask-toggle"]`;
+          await page.$(toggleSelector);
+          await page.click(toggleSelector);
+        },
+      },
+    ],
+  },
+  'input-number': {
+    interactions: [
+      {
+        name: 'numberInput',
+        behavior: async page => {
+          const toggleSelector = `input`;
           await page.$(toggleSelector);
           await page.click(toggleSelector);
         },
@@ -96,26 +185,24 @@ module.exports = {
       },
     ],
   },
-  modal: {
-    fullPage: true,
-  },
-  'modal-select': {
-    fullPage: true,
-  },
-  'modal-rtl': {
-    fullPage: true,
-  },
   'nav-long': {
     skip: true,
   },
-  popover: {
-    fullPage: true,
-  },
-  'popover-click': {
-    fullPage: true,
-  },
-  'popover-hover': {
-    fullPage: true,
+  'phone-input-custom-flags': {
+    interactions: [
+      {
+        name: 'expandedAndFiltered',
+        behavior: async page => {
+          const selectSelector = `[data-baseweb="select"]`;
+          const selectInputSelector = `input[role="combobox"]`;
+          const dropdownSelector = `[role="listbox"]`;
+          await page.waitForSelector(selectSelector);
+          await page.click(selectSelector);
+          await page.waitForSelector(dropdownSelector);
+          await page.type(selectInputSelector, 'zzz');
+        },
+      },
+    ],
   },
   'progress-steps': {
     interactions: [
@@ -141,17 +228,13 @@ module.exports = {
       },
     ],
   },
-  'select-in-modal': {
-    fullPage: true,
+  'drawer-select': {
     interactions: [
       {
-        name: 'opens',
+        name: 'selectDropdownVisible',
         behavior: async page => {
-          const buttonSelector = `[data-baseweb="button"]`;
           const selectSelector = `[data-baseweb="select"] input`;
           const dropdownSelector = `[role="listbox"]`;
-          await page.waitForSelector(buttonSelector);
-          await page.click(buttonSelector);
           await page.waitForSelector(selectSelector);
           await page.click(selectSelector);
           await page.waitForSelector(dropdownSelector);
@@ -159,26 +242,106 @@ module.exports = {
       },
     ],
   },
-  toaster: {
-    fullPage: true,
+  'select-in-modal': {
+    interactions: [
+      {
+        name: 'selectDropdownVisible',
+        behavior: async page => {
+          const buttonSelector = `[data-baseweb="button"]`;
+          const selectSelector = `[data-baseweb="select"] input`;
+          const dropdownSelector = `[role="listbox"]`;
+          await page.waitForSelector(buttonSelector);
+          // open modal
+          await page.click(buttonSelector);
+          await page.waitForSelector(selectSelector);
+          // open select dropdown
+          await page.click(selectSelector);
+          await page.waitForSelector(dropdownSelector);
+        },
+      },
+    ],
   },
-  tooltip: {
-    fullPage: true,
+  'select-option-group': {
+    interactions: [
+      {
+        name: 'selectGroupDropdownVisible',
+        behavior: async page => {
+          const inputSelector = `[data-baseweb="select"]`;
+          const dropdownSelector = `[role="listbox"]`;
+          await page.waitForSelector(inputSelector);
+          await page.click(inputSelector);
+          await page.waitForSelector(dropdownSelector);
+        },
+      },
+    ],
   },
   'select-search-single': {
     interactions: [
       {
         name: 'open',
-        fullPage: true,
         behavior: async page => {
           const inputSelector = `[data-baseweb="select"]`;
           const dropdownSelector = `[role="listbox"]`;
-          page.waitForSelector(inputSelector);
-          page.click(inputSelector);
-          page.waitForSelector(dropdownSelector);
-          await page.waitFor(2000);
+          await page.waitForSelector(inputSelector);
+          await page.click(inputSelector);
+          await page.waitForSelector(dropdownSelector);
         },
       },
     ],
   },
+  'select-search-single-fontsize': {
+    interactions: [
+      {
+        name: 'showsAllText',
+        behavior: async page => {
+          const inputSelector = `[data-baseweb="select"]`;
+          const selectInputSelector = `input[role="combobox"]`;
+          const dropdownSelector = `[role="listbox"]`;
+          await page.waitForSelector(inputSelector);
+          await page.click(inputSelector);
+          await page.waitForSelector(dropdownSelector);
+          await page.type(selectInputSelector, 'zzz');
+        },
+      },
+    ],
+  },
+  'modal-select': {
+    interactions: [
+      {
+        name: 'selectOption',
+        behavior: async page => {
+          const selectSelector = '[data-baseweb="select"] input';
+          const dropdownSelector = '[role="listbox"]';
+          const dropdownOptionSeletor = '[role="option"]';
+          const firstOption = `${dropdownSelector} ${dropdownOptionSeletor}:nth-child(1)`;
+          await page.waitForSelector(selectSelector);
+          await page.click(selectSelector);
+          await page.waitForSelector(dropdownSelector);
+          await page.click(firstOption);
+          await page.waitFor(dropdownSelector, {hidden: true});
+        },
+      },
+    ],
+  },
+};
+
+function getSnapshotConfig(scenarioName) {
+  const defaultConfig = {
+    skip: false,
+    interactions: [],
+  };
+  const snapshotConfig = config[scenarioName];
+  if (!snapshotConfig) {
+    return defaultConfig;
+  } else {
+    return {
+      ...defaultConfig,
+      ...snapshotConfig,
+    };
+  }
+}
+
+module.exports = {
+  config,
+  getSnapshotConfig,
 };

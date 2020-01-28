@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -24,6 +24,12 @@ export type DatepickerLocaleT = {|
   timeSelectStartLabel: string,
   timePickerAriaLabel: string,
   timezonePickerAriaLabel: string,
+  selectedStartDateLabel: string,
+  selectedEndDateLabel: string,
+  dateNotAvailableLabel: string,
+  dateAvailableLabel: string,
+  selectedLabel: string,
+  chooseLabel: string,
 |};
 
 const locale = {
@@ -45,6 +51,12 @@ const locale = {
   timeSelectStartLabel: 'Start time',
   timePickerAriaLabel: 'Select a time',
   timezonePickerAriaLabel: 'Select a timezone',
+  selectedStartDateLabel: 'Selected start date.',
+  selectedEndDateLabel: 'Selected end date.',
+  dateNotAvailableLabel: 'Not available.',
+  dateAvailableLabel: "It's available.",
+  selectedLabel: 'Selected.',
+  chooseLabel: 'Choose',
 };
 
 export default locale;

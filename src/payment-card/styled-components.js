@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -11,6 +11,7 @@ import {SIZE} from '../input/index.js';
 export const IconWrapper = styled<{$size: typeof SIZE}>('div', props => {
   const {$size, $theme} = props;
   const margin = {
+    [SIZE.mini]: $theme.sizing.scale300,
     [SIZE.compact]: $theme.sizing.scale500,
     [SIZE.default]: $theme.sizing.scale600,
     [SIZE.large]: $theme.sizing.scale700,

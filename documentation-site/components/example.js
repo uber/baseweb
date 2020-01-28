@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -22,34 +22,8 @@ import CodeIcon from './code-icon';
 import {trackEvent} from '../helpers/ga';
 import {H3} from './markdown-elements';
 
+import {codesandboxIndexCode} from './const';
 const Link = withStyle(StyledLink, {cursor: 'pointer'});
-
-const index = `
-import React from "react";
-import ReactDOM from "react-dom";
-
-import {BaseProvider, LightTheme} from 'baseui';
-import { Provider as StyletronProvider } from "styletron-react";
-import { Client as Styletron } from "styletron-engine-atomic";
-
-import Example from "./example";
-
-const engine = new Styletron();
-
-function App() {
-  return <Example />;
-}
-
-const rootElement = document.getElementById("root");
-ReactDOM.render(
-  <StyletronProvider value={engine}>
-    <BaseProvider theme={LightTheme}>
-      <App />
-    </BaseProvider>
-  </StyletronProvider>,
-  rootElement
-);
-`;
 
 function Source(props: {children: ?React.Node}) {
   if (!props.children || typeof props.children !== 'string') return null;
@@ -142,9 +116,10 @@ class Example extends React.Component<PropsT, StateT> {
             style: ({$theme}) => ({
               marginTop: 0,
               marginBottom: 0,
-              boxShadow: 'none',
-              borderWidth: 0,
-              backgroundColor: $theme.colors.background,
+              borderTopWidth: 0,
+              borderRightWidth: 0,
+              borderBottomWidth: 0,
+              borderLeftWidth: 0,
             }),
           },
           Contents: {
@@ -224,7 +199,7 @@ class Example extends React.Component<PropsT, StateT> {
                 example={this.state.sourceTs}
                 providedFiles={{
                   'index.tsx': {
-                    content: index,
+                    content: codesandboxIndexCode,
                   },
                 }}
                 template="create-react-app-typescript"
@@ -243,7 +218,7 @@ class Example extends React.Component<PropsT, StateT> {
                 example={this.state.source}
                 providedFiles={{
                   'index.js': {
-                    content: index,
+                    content: codesandboxIndexCode,
                   },
                 }}
                 template="create-react-app"

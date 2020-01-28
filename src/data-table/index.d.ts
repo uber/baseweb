@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-export class Unstable_DataTable extends React.Component<any, any> {}
+export class Unstable_StatefulDataTable extends React.Component<any, any> {}
 
 export function BooleanColumn(options: any): any;
 export function CategoricalColumn(options: any): any;
-export function CustomColumn(options: any): any;
+export function CustomColumn<ValueT, FilterParamsT>(options: any): any;
 export function NumericalColumn(options: any): any;
 export function StringColumn(options: any): any;
 
@@ -37,7 +37,7 @@ export type SortDirectionsT =
 export type ColumnT = any;
 export type RowT = {
   id: number | string;
-  data: any[];
+  data: any;
 };
 
 export type BatchActionT = {
@@ -50,8 +50,18 @@ export type BatchActionT = {
   renderIcon?: any;
 };
 
+export type RowActionT = {
+  label: string;
+  onClick: (params: {
+    event: React.MouseEvent<HTMLButtonElement>;
+    row: RowT;
+  }) => any;
+  renderIcon: any;
+};
+
 export type Props = {
   batchActions?: BatchActionT[];
+  rowActions?: RowActionT[];
   columns: ColumnT[];
   onSelectionChange?: (rows: RowT[]) => any;
   rows: RowT[];

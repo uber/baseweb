@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -25,7 +25,7 @@ export const Root = styled<{}>('nav', props => {
   };
 });
 
-export const NavigationItem = styled<{}>('div', props => {
+export const NavigationItem = styled<{}>('li', props => {
   const {$theme} = props;
   const {
     sizing: {scale800},
@@ -37,7 +37,7 @@ export const NavigationItem = styled<{}>('div', props => {
 });
 
 export const NavigationList = styled<{$align: $Values<typeof ALIGN>}>(
-  'div',
+  'ul',
   props => {
     const {$align, $theme} = props;
     const {
@@ -56,6 +56,11 @@ export const NavigationList = styled<{$align: $Values<typeof ALIGN>}>(
       paddingRight: scale800,
       justifySelf: $align,
       justifyContent: $align,
+      listStyle: 'none',
+      marginBottom: 0,
+      marginTop: 0,
+      marginLeft: 0,
+      marginRight: 0,
     };
   },
 );

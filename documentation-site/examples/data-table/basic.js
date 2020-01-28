@@ -3,7 +3,7 @@
 import React from 'react';
 import {useStyletron} from 'baseui';
 import {
-  Unstable_DataTable,
+  Unstable_StatefulDataTable,
   BooleanColumn,
   CategoricalColumn,
   CustomColumn,
@@ -88,29 +88,55 @@ function makeRowsFromColumns(columns, rowCount) {
   return rows;
 }
 
+type RowDataT = [
+  string,
+  string,
+  number,
+  number,
+  number,
+  {color: string},
+  boolean,
+  string,
+];
+
 const columns = [
-  CategoricalColumn({title: 'categorical'}),
-  StringColumn({title: 'string'}),
-  NumericalColumn({title: 'three'}),
-  NumericalColumn({title: 'neg std', highlight: n => n < 0}),
+  CategoricalColumn({
+    title: 'categorical',
+    mapDataToValue: (data: RowDataT) => data[0],
+  }),
+  StringColumn({
+    title: 'string',
+    mapDataToValue: (data: RowDataT) => data[1],
+  }),
+  NumericalColumn({
+    title: 'three',
+    mapDataToValue: (data: RowDataT) => data[2],
+  }),
+  NumericalColumn({
+    title: 'neg std',
+    highlight: n => n < 0,
+    mapDataToValue: (data: RowDataT) => data[3],
+  }),
   NumericalColumn({
     title: 'accounting',
     format: NUMERICAL_FORMATS.ACCOUNTING,
+    mapDataToValue: (data: RowDataT) => data[4],
   }),
   CustomColumn<{color: string}, {}>({
     title: 'custom color',
+    mapDataToValue: (data: RowDataT) => data[5],
     renderCell: function Cell(props) {
-      const [useCss] = useStyletron();
+      const [css] = useStyletron();
       return (
         <div
-          className={useCss({
+          className={css({
             alignItems: 'center',
             fontFamily: '"Comic Sans MS", cursive, sans-serif',
             display: 'flex',
           })}
         >
           <div
-            className={useCss({
+            className={css({
               backgroundColor: props.value.color,
               height: '12px',
               marginRight: '24px',
@@ -122,17 +148,23 @@ const columns = [
       );
     },
   }),
-  BooleanColumn({title: 'boolean'}),
-  CategoricalColumn({title: 'second category'}),
+  BooleanColumn({
+    title: 'boolean',
+    mapDataToValue: (data: RowDataT) => data[6],
+  }),
+  CategoricalColumn({
+    title: 'second category',
+    mapDataToValue: (data: RowDataT) => data[7],
+  }),
 ];
 
 const rows = makeRowsFromColumns(columns, 2000);
 
 export default () => {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   return (
-    <div className={useCss({height: '800px'})}>
-      <Unstable_DataTable columns={columns} rows={rows} />
+    <div className={css({height: '800px'})}>
+      <Unstable_StatefulDataTable columns={columns} rows={rows} />
     </div>
   );
 };

@@ -1,10 +1,13 @@
 import pick from 'just-pick';
 
-import {Radio, RadioGroup} from 'baseui/radio';
-import {PropTypes} from '../const';
+import {Radio, RadioGroup, ALIGN} from 'baseui/radio';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
 import {changeHandlers} from './common';
+
+const radioProps = require('!!extract-react-types-loader!../../../../src/radio/radio.js');
+const radioGroupProps = require('!!extract-react-types-loader!../../../../src/radio/radiogroup.js');
 
 const RadioGroupConfig: TConfig = {
   imports: {
@@ -13,6 +16,7 @@ const RadioGroupConfig: TConfig = {
   scope: {
     Radio,
     RadioGroup,
+    ALIGN,
   },
   theme: [
     'tickFill',
@@ -68,10 +72,15 @@ const RadioGroupConfig: TConfig = {
       },
     },
     align: {
-      value: undefined,
-      type: PropTypes.String,
-      placeholder: 'vertical',
+      value: 'ALIGN.vertical',
+      type: PropTypes.Enum,
+      options: ALIGN,
       description: 'How to position radio buttons in the group.',
+      imports: {
+        'baseui/radio': {
+          named: ['ALIGN'],
+        },
+      },
     },
     disabled: {
       value: false,
@@ -123,38 +132,44 @@ const RadioGroupConfig: TConfig = {
     ]),
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: [
-        'Root',
-        'Input',
-        'Label',
-        'RadioGroupRoot',
-        'RadioMarkInner',
-        'RadioMarkOuter',
-      ],
-      sharedProps: {
-        $isFocused: {
-          type: PropTypes.Boolean,
-          description: 'True when the component is focused.',
+      custom: {
+        names: [
+          'Root',
+          'Input',
+          'Label',
+          'RadioGroupRoot',
+          'RadioMarkInner',
+          'RadioMarkOuter',
+        ],
+        sharedProps: {
+          $isFocused: {
+            type: PropTypes.Boolean,
+            description: 'True when the component is focused.',
+          },
+          $isHovered: {
+            type: PropTypes.Boolean,
+            description: 'True when the component is hovered.',
+          },
+          $isActive: {
+            type: PropTypes.Boolean,
+            description: 'True when the component is active.',
+          },
+          $isError: 'isError',
+          $checked: {
+            type: PropTypes.Boolean,
+            description: 'True when the component is active.',
+          },
+          $required: 'required',
+          $disabled: 'disabled',
         },
-        $isHovered: {
-          type: PropTypes.Boolean,
-          description: 'True when the component is hovered.',
-        },
-        $isActive: {
-          type: PropTypes.Boolean,
-          description: 'True when the component is active.',
-        },
-        $isError: 'isError',
-        $checked: {
-          type: PropTypes.Boolean,
-          description: 'True when the component is active.',
-        },
-        $required: 'required',
-        $disabled: 'disabled',
       },
     },
+  },
+  mapTokensToProps: {
+    Radio: radioProps,
+    RadioGroup: radioGroupProps,
   },
 };
 

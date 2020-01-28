@@ -1,9 +1,12 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
+
+import {Notification, KIND} from 'baseui/notification';
+import {StyledLink} from 'baseui/link';
 
 import Example from '../../components/example';
 import Layout from '../../components/layout';
@@ -14,13 +17,24 @@ import SpinnerNegative from 'examples/spinner/negative.js';
 import SpinnerWithSize from 'examples/spinner/with-size.js';
 import SpinnerWithOverrides from 'examples/spinner/with-overrides.js';
 
+import SpinnerNextBasic from 'examples/spinner/next-basic.js';
+import SpinnerNextSize from 'examples/spinner/next-size.js';
+import SpinnerNextCustom from 'examples/spinner/next-custom.js';
+
 import {Spinner} from 'baseui/spinner';
 import * as SpinnerExports from 'baseui/spinner';
 
 import Yard from '../../components/yard/index';
 import spinnerYardConfig from '../../components/yard/config/spinner';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
+
+<Notification overrides={{Body: {style: {width: 'auto'}}}} kind={KIND.info}>
+  We have a new, simplified Spinner coming out in v10. You can try it out today
+  by importing StyledSpinnerNext!{' '}
+  <StyledLink href="#spinner-next">Click here to read more</StyledLink>.
+</Notification>
 
 # Spinner
 
@@ -52,8 +66,48 @@ Spinners provide a visual cue that an action is processing awaiting a course of 
 
 ## API
 
+<ApiTable
+  title="Spinner props"
+  config={spinnerYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/spinner/spinner.js')}
+/>
+
 <Exports
   component={SpinnerExports}
   title="Spinner exports"
   path="baseui/spinner"
 />
+
+## Spinner Next
+
+`StyledSpinnerNext` will replace our current `Spinner` in v10 of `baseui`.
+
+What's the difference?
+
+The new spinner uses a single `div` instead of an `svg`, which fixes a wobbling issue we found on Safari. The flattened structure also makes the new spinner a bit easier to customize since there are no more `overrides` to worry about.
+
+You can use the new spinner prior to v10 like so:
+
+```js
+import {StyledSpinnerNext} from 'baseui/spinner';
+```
+
+Let's look at a few examples!
+
+<Example title="Basic" path="spinner/next-basic.js">
+  <SpinnerNextBasic />
+</Example>
+
+Neat! If that isn't enough, the spinner also comes in three sizes...
+
+<Example title="Sizes" path="spinner/next-size.js">
+  <SpinnerNextSize />
+</Example>
+
+If you want to customize the default styling of the spinner you can extend it using [`withStyle`](/blog/base-web-v8/#themed-withstyle-function).
+
+<Example title="Customizing" path="spinner/next-custom.js">
+  <SpinnerNextCustom />
+</Example>
+
+In this example we modify the size of the spinner (via `width`, `height`, and `borderWidth`) as well as the highlight color (via `borderTopColor`). You could also use `withStyle` to add margins to the spinner or align it within another element.

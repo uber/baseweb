@@ -13,29 +13,29 @@ function makeImportStatement(key: string) {
 }
 
 function Row(props: any) {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   const Icon = props.icon;
   return (
     <div
-      className={useCss({
+      className={css({
         alignItems: 'center',
-        color: theme.colors.foreground,
+        color: theme.colors.contentPrimary,
         display: 'flex',
         paddingBottom: theme.sizing.scale500,
       })}
     >
       <Icon size={24} />
       <div
-        className={useCss({
-          color: theme.colors.foregroundAlt,
+        className={css({
+          color: theme.colors.contentSecondary,
           marginLeft: theme.sizing.scale200,
         })}
       >
         {props.title}
       </div>
       <div
-        className={useCss({
-          color: theme.colors.foregroundAlt,
+        className={css({
+          color: theme.colors.contentSecondary,
           marginLeft: theme.sizing.scale200,
         })}
       >

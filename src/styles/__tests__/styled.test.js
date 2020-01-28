@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -262,18 +262,18 @@ describe('themedWithStyle flow', () => {
 describe('useStyletron flow', () => {
   test('it provides flow error if argument is not a StyleObject', () => {
     function A() {
-      const [useCss] = useStyletron();
+      const [css] = useStyletron();
       // $FlowFixMe
-      return <div className={useCss(false)}>hello</div>;
+      return <div className={css(false)}>hello</div>;
     }
   });
 
   test('it provides flow error if accessing property not defined in default theme type', () => {
     function A() {
-      const [useCss, theme] = useStyletron();
+      const [css, theme] = useStyletron();
       return (
         <div
-          className={useCss({
+          className={css({
             color: theme.colors.primary400,
             // $FlowFixMe
             backgroundColor: theme.colors.primary9000,
@@ -292,9 +292,9 @@ describe('themedUseStyletron flow', () => {
     const themedUseStyletron = createThemedUseStyletron<T>();
 
     function A() {
-      const [useCss] = themedUseStyletron();
+      const [css] = themedUseStyletron();
       // $FlowFixMe
-      return <div className={useCss(false)}>hello</div>;
+      return <div className={css(false)}>hello</div>;
     }
   });
 
@@ -303,10 +303,10 @@ describe('themedUseStyletron flow', () => {
       type T = {colors: {custom400: string}};
       const themedUseStyletron = createThemedUseStyletron<T>();
 
-      const [useCss, theme] = themedUseStyletron();
+      const [css, theme] = themedUseStyletron();
       return (
         <div
-          className={useCss({
+          className={css({
             color: theme.colors.custom400,
             // $FlowFixMe
             backgroundColor: theme.colors.custom9000,

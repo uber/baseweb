@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {
-  Unstable_DataTable,
+  Unstable_StatefulDataTable,
   BooleanColumn,
   CategoricalColumn,
   NumericalColumn,
@@ -18,12 +18,26 @@ import {
 
 export const name = 'data-table-columns';
 
+type RowDataT = [boolean, string, number, string];
+
 export const component = () => {
   const columns = [
-    BooleanColumn({title: 'boolean-column'}),
-    CategoricalColumn({title: 'categorical-column'}),
-    NumericalColumn({title: 'numerical-column'}),
-    StringColumn({title: 'string-column'}),
+    BooleanColumn({
+      title: 'boolean-column',
+      mapDataToValue: (data: RowDataT) => data[0],
+    }),
+    CategoricalColumn({
+      title: 'categorical-column',
+      mapDataToValue: (data: RowDataT) => data[1],
+    }),
+    NumericalColumn({
+      title: 'numerical-column',
+      mapDataToValue: (data: RowDataT) => data[2],
+    }),
+    StringColumn({
+      title: 'string-column',
+      mapDataToValue: (data: RowDataT) => data[3],
+    }),
   ];
 
   const rows = [
@@ -36,7 +50,7 @@ export const component = () => {
   return (
     <React.Fragment>
       <div style={{height: '600px', width: '1000px', marginBottom: '100px'}}>
-        <Unstable_DataTable columns={columns} rows={rows} />
+        <Unstable_StatefulDataTable columns={columns} rows={rows} />
       </div>
     </React.Fragment>
   );

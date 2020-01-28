@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 import type {AccordionLocaleT} from '../accordion/locale.js';
 import type {BreadcrumbLocaleT} from '../breadcrumbs/locale.js';
 import type {DatepickerLocaleT} from '../datepicker/locale.js';
+import type {DataTableLocaleT} from '../data-table/locale.js';
 import type {ButtonGroupLocaleT} from '../button-group/locale.js';
 import type {FileUploaderLocaleT} from '../file-uploader/locale.js';
 import type {MenuLocaleT} from '../menu/locale.js';
@@ -22,6 +23,7 @@ export type LocaleT = {|
   accordion: AccordionLocaleT,
   breadcrumbs: BreadcrumbLocaleT,
   datepicker: DatepickerLocaleT,
+  datatable: DataTableLocaleT,
   buttongroup: ButtonGroupLocaleT,
   fileuploader: FileUploaderLocaleT,
   menu: MenuLocaleT,

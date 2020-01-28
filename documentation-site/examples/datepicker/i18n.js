@@ -1,11 +1,13 @@
 // @flow
 import * as React from 'react';
-import {StatefulCalendar} from 'baseui/datepicker';
-import ja from 'date-fns/locale/ja';
+import {StatefulDatepicker} from 'baseui/datepicker';
+import hu from 'date-fns/locale/hu';
 
 export default () => (
-  <StatefulCalendar
-    locale={ja}
+  <StatefulDatepicker
+    locale={hu}
     onChange={({date}) => console.log(date)}
+    formatString="yyyy MMMM d"
+    mask={null}
   />
 );

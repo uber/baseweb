@@ -24,10 +24,10 @@ const CheckboxWithRef = React.forwardRef((props: any, ref) => {
 });
 
 export default () => {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   return (
     <div
-      className={useCss({
+      className={css({
         paddingTop: '24px',
         paddingBottom: '24px',
       })}

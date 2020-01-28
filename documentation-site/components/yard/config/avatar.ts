@@ -1,6 +1,8 @@
 import {Avatar} from 'baseui/avatar';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
+
+const avatarProps = require('!!extract-react-types-loader!../../../../src/avatar/avatar.js');
 
 const AvatarConfig: TConfig = {
   imports: {
@@ -29,17 +31,22 @@ const AvatarConfig: TConfig = {
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: ['Root', 'Avatar', 'Initials'],
-      sharedProps: {
-        $size: 'size',
-        $disImageFailToLoad: {
-          type: PropTypes.Boolean,
-          description: 'True when the src does not resolve to a valid image.',
+      custom: {
+        names: ['Root', 'Avatar', 'Initials'],
+        sharedProps: {
+          $size: 'size',
+          $didImageFailToLoad: {
+            type: PropTypes.Boolean,
+            description: 'True when the src does not resolve to a valid image.',
+          },
         },
       },
     },
+  },
+  mapTokensToProps: {
+    Avatar: avatarProps,
   },
 };
 

@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -22,6 +22,7 @@ import * as HeaderNavigationExports from 'baseui/header-navigation';
 
 import Yard from '../../components/yard/index';
 import headerNavigationYardConfig from '../../components/yard/config/header-navigation';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -50,6 +51,12 @@ export default Layout;
 </Example>
 
 ## API
+
+<ApiTable
+  title="Header Navigation props"
+  config={headerNavigationYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/header-navigation/header-navigation.js')}
+/>
 
 <Exports
   component={HeaderNavigationExports}

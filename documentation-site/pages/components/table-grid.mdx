@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,7 +8,9 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
-import UnstableWarning from '../../components/unstable-warning';
+import Exports from '../../components/exports';
+
+import * as TableGridExports from 'baseui/table-grid';
 
 import Basic from 'examples/table-grid/basic.js';
 import Nested from 'examples/table-grid/nested.js';
@@ -17,8 +19,6 @@ import CellSpan from 'examples/table-grid/cell-span.js';
 export default Layout;
 
 # Table-Grid
-
-<UnstableWarning />
 
 Display larger amounts of information in a scannable UI. This component is best suited for
 applications that _do not_ need to support older browsers like Internet Explorer. It is implemented with
@@ -40,3 +40,11 @@ with [flex-box](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Bo
 <Example title="Cell spanning" path="table-grid/cell-span.js">
   <CellSpan />
 </Example>
+
+## API
+
+<Exports
+  component={TableGridExports}
+  title="Table-Grid exports"
+  path="baseui/table-grid"
+/>

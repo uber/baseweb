@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -30,7 +30,7 @@ import {
   StyledSelectArrow,
   StyledClearIcon,
   getLoadingIconStyles,
-  StyledSearchIcon,
+  StyledSearchIconContainer,
 } from './styled-components.js';
 import type {
   PropsT,
@@ -40,9 +40,10 @@ import type {
   ChangeActionT,
 } from './types.js';
 import {
+  expandValue,
+  normalizeOptions,
   shouldShowValue,
   shouldShowPlaceholder,
-  expandValue,
 } from './utils/index.js';
 
 function Noop() {
@@ -74,11 +75,8 @@ export function isInteractive(rootTarget: EventTarget, rootElement: Element) {
   return false;
 }
 
-class Select extends React.Component<
-  // eslint-disable-next-line flowtype/no-weak-types
-  PropsT & {valueComponent: React.ComponentType<any>},
-  SelectStateT,
-> {
+// eslint-disable-next-line flowtype/no-weak-types
+class Select extends React.Component<PropsT, SelectStateT> {
   static defaultProps = defaultProps;
 
   // anchor is a ref that refers to the outermost element rendered when the dropdown menu is not
@@ -88,14 +86,14 @@ class Select extends React.Component<
   // clicks are on/off the dropdown element.
   dropdown: {current: HTMLElement | null} = React.createRef();
   input: React.ElementRef<*>;
-  // dragging is a flag to track whether a mobile device in currently scrolling versus clicking.
+  // dragging is a flag to track whether a mobile device is currently scrolling versus clicking.
   dragging: boolean;
   // focusAfterClear is a flag to indicate that the dropdowm menu should open after a selected
   // option has been cleared.
   focusAfterClear: boolean;
   // openAfterFocus is a flag to indicate that the dropdown menu should open when the component is
   // focused. Developers have the option to disable initial clicks opening the dropdown menu. If not
-  // disabled, clicks will set this flag true. Upon focusing, look to this to see if the menu should
+  // disabled, clicks will set this flag to true. Upon focusing, look to this to see if the menu should
   // be opened, or only focus.
   openAfterFocus: boolean;
   // When an item is selected, it also triggers handleClickOutside and since the selected item is
@@ -104,6 +102,16 @@ class Select extends React.Component<
   // closeOnSelect is false. This flag helps to detect that selection was just made.
   justSelected: boolean;
 
+  // the select components can accept an array of options or an object where properties are optgroups
+  // and values are arrays of options. this class property is constructed and updated in a normalized
+  // shape where optgroup titles are stored on the option in the __optgroup field.
+  options: ValueT = [];
+
+  constructor(props: PropsT) {
+    super(props);
+    this.options = normalizeOptions(props.options);
+  }
+
   state = {
     inputValue: '',
     isFocused: false,
@@ -111,10 +119,13 @@ class Select extends React.Component<
     isPseudoFocused: false,
   };
 
+  isMounted: boolean = false;
+
   componentDidMount() {
     if (this.props.autoFocus) {
       this.focus();
     }
+    this.isMounted = true;
   }
 
   componentDidUpdate(prevProps: PropsT, prevState: SelectStateT) {
@@ -139,6 +150,7 @@ class Select extends React.Component<
     if (__BROWSER__) {
       document.removeEventListener('touchstart', this.handleTouchOutside);
     }
+    this.isMounted = false;
   }
 
   focus() {
@@ -288,7 +300,9 @@ class Select extends React.Component<
       onBlurredState.inputValue = '';
     }
 
-    this.setState(onBlurredState);
+    if (this.isMounted) {
+      this.setState(onBlurredState);
+    }
 
     if (__BROWSER__) {
       document.removeEventListener('click', this.handleClickOutside);
@@ -427,14 +441,10 @@ class Select extends React.Component<
         $isHighlighted: boolean,
       },
     },
-  ): React.Node => {
-    if (option.isCreatable) {
-      return (
-        locale.select.create + ' ' + '"' + option[this.props.labelKey] + '"'
-      );
-    }
-    return option[this.props.labelKey];
-  };
+  ): React.Node =>
+    option.isCreatable
+      ? `${locale.select.create} “${option[this.props.labelKey]}”`
+      : option[this.props.labelKey];
 
   getValueLabel = ({option}: {option: OptionT}): React.Node => {
     return option[this.props.labelKey];
@@ -572,27 +582,12 @@ class Select extends React.Component<
     isOpen: boolean,
     locale: LocaleT,
   ): ?React.Node | Array<?React.Node> {
-    const {overrides = {}, valueComponent} = this.props;
+    const {overrides = {}} = this.props;
     const sharedProps = this.getSharedProps();
     const renderLabel = this.props.getValueLabel || this.getValueLabel;
-    const Value = valueComponent || Noop;
-    const [Placeholder, placeholderProps] = getOverrides(
-      overrides.Placeholder,
-      StyledPlaceholder,
-    );
+    const Value = this.props.valueComponent || Noop;
     if (!valueArray.length) {
-      const showPlaceholder = shouldShowPlaceholder(
-        this.state,
-        this.props,
-        isOpen,
-      );
-      return showPlaceholder ? (
-        <Placeholder {...sharedProps} {...placeholderProps}>
-          {typeof this.props.placeholder !== 'undefined'
-            ? this.props.placeholder
-            : locale.select.placeholder}
-        </Placeholder>
-      ) : null;
+      return null;
     }
     if (this.props.multi) {
       return valueArray.map((value, i) => {
@@ -711,8 +706,18 @@ class Select extends React.Component<
         onTouchEnd={this.handleTouchEndClearValue}
         onTouchMove={this.handleTouchMove}
         onTouchStart={this.handleTouchStart}
-        overrides={{Svg: StyledClearIcon}}
         role="button"
+        overrides={{
+          Svg: {
+            component: StyledClearIcon,
+            ...(overrides.ClearIcon && overrides.ClearIcon.props
+              ? {props: overrides.ClearIcon.props}
+              : {}),
+            ...(overrides.ClearIcon && overrides.ClearIcon.style
+              ? {style: overrides.ClearIcon.style}
+              : {}),
+          },
+        }}
         {...sharedProps}
         {...clearIconProps}
       />
@@ -733,7 +738,17 @@ class Select extends React.Component<
       <SelectArrow
         size={16}
         title={'open'}
-        overrides={{Svg: StyledSelectArrow}}
+        overrides={{
+          Svg: {
+            component: StyledSelectArrow,
+            ...(overrides.SelectArrow && overrides.SelectArrow.props
+              ? {props: overrides.SelectArrow.props}
+              : {}),
+            ...(overrides.SelectArrow && overrides.SelectArrow.style
+              ? {style: overrides.SelectArrow.style}
+              : {}),
+          },
+        }}
         {...sharedProps}
         {...selectArrowProps}
       />
@@ -745,6 +760,10 @@ class Select extends React.Component<
       return null;
     }
     const {overrides = {}} = this.props;
+    const [SearchIconContainer, searchIconContainerProps] = getOverrides(
+      overrides.SearchIconContainer,
+      StyledSearchIconContainer,
+    );
     const [SearchIcon, searchIconProps] = getOverrides(
       overrides.SearchIcon,
       SearchIconComponent,
@@ -752,27 +771,36 @@ class Select extends React.Component<
     const sharedProps = this.getSharedProps();
 
     return (
-      <StyledSearchIcon {...sharedProps} {...searchIconProps}>
-        <SearchIcon size={16} title={'search'} />
-      </StyledSearchIcon>
+      // TODO(v10): remove searchIconProps from SearchIconContainer
+      <SearchIconContainer
+        {...sharedProps}
+        {...searchIconProps}
+        {...searchIconContainerProps}
+      >
+        <SearchIcon size={16} title={'search'} {...searchIconProps} />
+      </SearchIconContainer>
     );
   }
 
   filterOptions(excludeOptions: ?ValueT) {
     const filterValue = this.state.inputValue;
-    var options = this.props.options || [];
     // apply filter function
     if (this.props.filterOptions) {
-      options = this.props.filterOptions(options, filterValue, excludeOptions, {
-        valueKey: this.props.valueKey,
-        labelKey: this.props.labelKey,
-      });
+      this.options = this.props.filterOptions(
+        this.options,
+        filterValue,
+        excludeOptions,
+        {
+          valueKey: this.props.valueKey,
+          labelKey: this.props.labelKey,
+        },
+      );
     }
     // can user create a new option + there's no exact match already
     if (
       filterValue &&
       this.props.creatable &&
-      options
+      this.options
         .concat(this.props.value)
         .every(
           opt =>
@@ -780,15 +808,15 @@ class Select extends React.Component<
             filterValue.toLowerCase().trim(),
         )
     ) {
-      // $FlowFixMe
-      options.push({
+      // $FlowFixMe - this.options is typed as a read-only array
+      this.options.push({
         id: filterValue,
         [this.props.labelKey]: filterValue,
         [this.props.valueKey]: filterValue,
         isCreatable: true,
       });
     }
-    return options;
+    return this.options;
   }
 
   getSharedProps() {
@@ -804,6 +832,7 @@ class Select extends React.Component<
       size,
       searchable,
       type,
+      value,
     } = this.props;
     const {isOpen, isFocused, isPseudoFocused} = this.state;
     return {
@@ -821,10 +850,13 @@ class Select extends React.Component<
       $searchable: searchable,
       $size: size,
       $type: type,
+      $isEmpty: !this.getValueArray(value).length,
     };
   }
 
   render() {
+    this.options = normalizeOptions(this.props.options);
+
     const {
       overrides = {},
       type,
@@ -833,6 +865,15 @@ class Select extends React.Component<
       value,
       filterOutSelected,
     } = this.props;
+
+    if (__DEV__) {
+      if (!Array.isArray(value)) {
+        console.warn(
+          'The Select component expects an array as the value prop. For more information, please visit the docs at https://baseweb.design/components/select/',
+        );
+      }
+    }
+
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [ControlContainer, controlContainerProps] = getOverrides(
       overrides.ControlContainer,
@@ -850,21 +891,17 @@ class Select extends React.Component<
       overrides.Popover,
       Popover,
     );
+    const [Placeholder, placeholderProps] = getOverrides(
+      overrides.Placeholder,
+      StyledPlaceholder,
+    );
     const sharedProps = this.getSharedProps();
 
     const valueArray = this.getValueArray(value);
     const options = this.filterOptions(
       multi && filterOutSelected ? valueArray : null,
     );
-    let isOpen = this.state.isOpen;
-    if (
-      multi &&
-      !options.length &&
-      valueArray.length &&
-      !this.state.inputValue
-    ) {
-      isOpen = false;
-    }
+    const isOpen = this.state.isOpen;
     sharedProps.$isOpen = isOpen;
 
     if (__DEV__) {
@@ -875,6 +912,10 @@ class Select extends React.Component<
         );
       }
     }
+
+    const showPlaceholder =
+      !valueArray.length &&
+      shouldShowPlaceholder(this.state, this.props, isOpen);
 
     return (
       <LocaleContext.Consumer>
@@ -889,6 +930,7 @@ class Select extends React.Component<
               if (!ref) return;
               this.anchor = ref.anchorRef;
             }}
+            focusLock={false}
             mountNode={this.props.mountNode}
             isOpen={isOpen}
             content={() => {
@@ -938,6 +980,13 @@ class Select extends React.Component<
                 <ValueContainer {...sharedProps} {...valueContainerProps}>
                   {this.renderValue(valueArray, isOpen, locale)}
                   {this.renderInput()}
+                  {showPlaceholder ? (
+                    <Placeholder {...sharedProps} {...placeholderProps}>
+                      {typeof this.props.placeholder !== 'undefined'
+                        ? this.props.placeholder
+                        : locale.select.placeholder}
+                    </Placeholder>
+                  ) : null}
                 </ValueContainer>
                 <IconsContainer {...sharedProps} {...iconsContainerProps}>
                   {this.renderLoading()}

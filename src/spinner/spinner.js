@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -24,6 +24,17 @@ class Spinner extends React.Component<SpinnerPropsT> {
     title: 'Loading',
     overrides: {},
   };
+
+  componentDidMount() {
+    // TODO(v10): remove warning when switching default Spinner
+    if (__DEV__) {
+      console.warn(
+        `❖ [baseui] Please consider using "StyledSpinnerNext" instead of "Spinner". ` +
+          `In v10, "StyledSpinnerNext" will become the default "Spinner"` +
+          ` and the current SVG based implementation will be deprecated.`,
+      );
+    }
+  }
 
   render() {
     const {overrides = {}} = this.props;

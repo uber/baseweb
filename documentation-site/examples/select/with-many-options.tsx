@@ -1,9 +1,17 @@
-import React from 'react';
+import * as React from 'react';
 import {withStyle} from 'baseui';
 import {Select, StyledDropdownListItem, Value} from 'baseui/select';
-import {StyledList, StyledEmptyState} from 'baseui/menu';
+import {
+  StyledList,
+  StyledEmptyState,
+  OptionListProps,
+} from 'baseui/menu';
 
-import {List, AutoSizer} from 'react-virtualized';
+import {FixedSizeList} from 'react-window';
+
+const LIST_ITEM_HEIGHT = 36;
+const EMPTY_LIST_HEIGHT = 72;
+const MAX_LIST_HEIGHT = 500;
 
 const ListItem = withStyle(StyledDropdownListItem, {
   paddingTop: 0,
@@ -12,49 +20,65 @@ const ListItem = withStyle(StyledDropdownListItem, {
   alignItems: 'center',
 });
 
-const Container = withStyle(
-  StyledList,
-  (props: {$height: string}) => ({
-    height: props.$height,
-  }),
-);
+const FixedSizeListItem = ({
+  data,
+  index,
+  style,
+}: {
+  data: {props: OptionListProps}[];
+  index: number;
+  style: React.CSSProperties;
+}) => {
+  const {item, overrides, ...restChildProps} = data[index].props;
+  return (
+    <ListItem
+      key={item.id}
+      style={{
+        boxSizing: 'border-box',
+        ...style,
+      }}
+      {...restChildProps}
+    >
+      {item.id}
+    </ListItem>
+  );
+};
 
-const VirtualList = React.forwardRef((props: any, ref) => {
+const VirtualDropdown = React.forwardRef((props: any, ref) => {
   const children = React.Children.toArray(props.children);
 
   if (!children[0] || !children[0].props.item) {
     return (
-      <Container $height="72px" ref={ref}>
+      <StyledList
+        $style={{height: EMPTY_LIST_HEIGHT + 'px'}}
+        ref={ref}
+      >
         <StyledEmptyState {...children[0].props} />
-      </Container>
+      </StyledList>
     );
   }
 
+  const height = Math.min(
+    MAX_LIST_HEIGHT,
+    children.length * LIST_ITEM_HEIGHT,
+  );
+
   return (
-    <Container $height="500px" ref={ref}>
-      <AutoSizer>
-        {({width}) => (
-          <List
-            role={props.role}
-            height={500}
-            width={width}
-            rowCount={children.length}
-            rowHeight={36}
-            rowRenderer={({index, key, style}) => {
-              return (
-                <ListItem
-                  key={key}
-                  style={style}
-                  {...children[index].props}
-                >
-                  {children[index].props.item.id}
-                </ListItem>
-              );
-            }}
-          />
-        )}
-      </AutoSizer>
-    </Container>
+    <StyledList $style={{height: height + 'px'}} ref={ref}>
+      <FixedSizeList
+        width="100%"
+        height={height}
+        itemCount={children.length}
+        itemData={children}
+        itemKey={(
+          index: number,
+          data: {props: OptionListProps}[],
+        ) => data[index].props.item.id}
+        itemSize={LIST_ITEM_HEIGHT}
+      >
+        {FixedSizeListItem}
+      </FixedSizeList>
+    </StyledList>
   );
 });
 
@@ -74,7 +98,7 @@ export default () => {
       options={options}
       labelKey="id"
       valueKey="label"
-      overrides={{Dropdown: {component: VirtualList}}}
+      overrides={{Dropdown: {component: VirtualDropdown}}}
       onChange={({value}) => setValue(value)}
       value={value}
     />

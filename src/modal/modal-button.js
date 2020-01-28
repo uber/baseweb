@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -14,9 +14,15 @@ import {mergeOverrides} from '../helpers/overrides.js';
 // ModalButtons should have some margin pre-applied
 const overrides = {
   BaseButton: {
-    style: ({$theme}) => ({
-      marginLeft: $theme.sizing.scale500,
-    }),
+    style: ({$theme}) => {
+      const marginInlineEnd =
+        $theme.direction !== 'rtl' ? 'marginRight' : 'marginLeft';
+      return {
+        ':nth-last-child(n+2)': {
+          [marginInlineEnd]: $theme.sizing.scale500,
+        },
+      };
+    },
   },
 };
 

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -68,6 +68,8 @@ export type PropsT = {
   labelPlacement?: LabelPlacementT,
   /** Renders UI as checkmark or toggle switch. */
   checkmarkType: StyleTypeT,
+  /** Text to display in native OS tooltip on long hover. */
+  title?: ?string,
   /** Handler for change events on trigger element. */
   onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for mouseenter events on trigger element. */

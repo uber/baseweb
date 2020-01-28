@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -19,6 +19,7 @@ import * as CardExports from 'baseui/card';
 
 import Yard from '../../components/yard/index';
 import cardYardConfig from '../../components/yard/config/card';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -49,5 +50,11 @@ The entire card can become an active click-target.
 </Example>
 
 ## API
+
+<ApiTable
+  title="Card props"
+  config={cardYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/card/card.js')}
+/>
 
 <Exports component={CardExports} title="Card exports" path="baseui/card" />

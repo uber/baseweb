@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -12,9 +12,9 @@ const {mount} = require('../../../e2e/helpers');
 
 const selectors = {
   input: 'input',
-  calendar: '[role="application"]',
-  day: '[aria-label="Choose Sunday, March 10th 2019. It\'s available."]',
-  day2: '[aria-label="Choose Thursday, March 28th 2019. It\'s available."]',
+  calendar: '[data-baseweb="calendar"]',
+  day: '[aria-label="Choose vasárnap, március 10. 2019. It\'s available."]',
+  day2: '[aria-label="Choose csütörtök, március 28. 2019. It\'s available."]',
   monthYearSelectButton: '[data-id="monthYearSelectButton"]',
   monthYearSelectMenu: '[data-id="monthYearSelectMenu"]',
 };
@@ -31,8 +31,7 @@ describe('Datepicker, Int', () => {
       selectors.input,
       input => input.value,
     );
-    expect(selectedValue1).toBe('10.03.2019 -   .  .    ');
-
+    expect(selectedValue1).toBe('2019 vasárnap 10');
     await page.click(selectors.day2);
     await page.waitFor(selectors.calendar, {
       hidden: true,
@@ -41,6 +40,6 @@ describe('Datepicker, Int', () => {
       selectors.input,
       input => input.value,
     );
-    expect(selectedValue2).toBe('10.03.2019 - 28.03.2019');
+    expect(selectedValue2).toBe('2019 vasárnap 10 – 2019 csütörtök 28');
   });
 });

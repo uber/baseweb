@@ -1,3 +1,4 @@
 # Learn how to add code owners here:
 # https://help.github.com/en/articles/about-code-owners
-*                 @gergelyke @chasestarr @nadiia @tajo @sandgraham
+* @gergelyke @chasestarr @nadiia @tajo @sandgraham
+/vrt/__image_snapshots__/ @ghost

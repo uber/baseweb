@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -40,6 +40,7 @@ class TabComponent extends React.Component<TabPropsT> {
     // toggle on Enter or Space button pressed
     if (e.key === 'Enter' || e.which === 32) {
       typeof onSelect === 'function' && onSelect();
+      e.which === 32 && e.preventDefault(); // prevent jumping scroll when using Space
     }
     return;
   };

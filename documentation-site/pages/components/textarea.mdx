@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -21,6 +21,7 @@ import * as TextareaExports from 'baseui/textarea';
 
 import Yard from '../../components/yard/index';
 import textareaYardConfig from '../../components/yard/config/textarea';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -59,6 +60,12 @@ By default, `Textarea` is not resizeable. However, you can use `overrides` as in
 As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulTextarea`, which manages its own state.
 
 ## API
+
+<ApiTable
+  title="Textarea props"
+  config={textareaYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/textarea/textarea.js')}
+/>
 
 <Exports
   component={TextareaExports}

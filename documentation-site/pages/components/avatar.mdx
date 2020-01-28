@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import Exports from '../../components/exports';
 import Layout from '../../components/layout';
+import SEO from '../../components/meta-seo';
 
 import Sizes from 'examples/avatar/sizes.js';
 import Error from 'examples/avatar/error.js';
@@ -20,6 +21,12 @@ import {Block} from 'baseui/block';
 
 import Yard from '../../components/yard/index';
 import avatarYardConfig from '../../components/yard/config/avatar';
+import ApiTable from '../../components/api-table';
+
+<SEO
+  description="The Avatar component adds additional visual information about a user."
+  keywords="avatar, react avatar, react user info"
+/>
 
 export default Layout;
 
@@ -27,7 +34,7 @@ export default Layout;
 
 <Yard componentName="Avatar" placeholderHeight={52} {...avatarYardConfig} />
 
-Adds additional visual information about a user.
+The Avatar component adds additional visual information about a user.
 
 ## When to use
 
@@ -58,6 +65,12 @@ Adds additional visual information about a user.
 </Example>
 
 ## API
+
+<ApiTable
+  title="Avatar props"
+  config={avatarYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/avatar/avatar.js')}
+/>
 
 <Exports
   component={AvatarExports}

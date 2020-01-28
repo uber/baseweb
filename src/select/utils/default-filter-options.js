@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import type {OptionT, ValueT} from '../types.js';
 
-const trim = str => str.replace(/^\s+|\s+$/g, '');
+const escapeRegExp = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 const isValid = value => {
   return typeof value !== 'undefined' && value !== null && value !== '';
@@ -39,8 +39,6 @@ const filterOptions = (
   excludeOptions: ?ValueT,
   newProps: ?$Shape<defaultPropsT>,
 ) => {
-  let internalExcludeOptions = excludeOptions;
-
   const props = {
     ...defaultProps,
     ...newProps,
@@ -51,19 +49,22 @@ const filterOptions = (
   }
 
   if (props.trimFilter) {
-    filterValue = trim(filterValue);
+    filterValue = filterValue.trim();
   }
 
-  if (excludeOptions)
-    internalExcludeOptions = excludeOptions.map(i => i[props.valueKey]);
+  const excludeValues = (excludeOptions || []).reduce((acc, option) => {
+    acc.add(option[props.valueKey]);
+    return acc;
+  }, new Set());
+
+  const re = new RegExp(
+    `${props.matchPos === 'start' ? '$' : ''}${escapeRegExp(filterValue)}`,
+    props.ignoreCase ? 'i' : '',
+  );
 
   // $FlowFixMe
   return options.filter(option => {
-    if (
-      internalExcludeOptions &&
-      internalExcludeOptions.indexOf(option[props.valueKey]) > -1
-    )
-      return false;
+    if (excludeValues.has(option[props.valueKey])) return false;
     if (props.filterOption)
       return props.filterOption.call(undefined, option, filterValue);
     if (!filterValue) return true;
@@ -77,27 +78,13 @@ const filterOptions = (
       return false;
     }
 
-    let valueTest = hasValue ? String(value) : null;
-    let labelTest = hasLabel ? String(label) : null;
+    const valueTest = hasValue ? String(value) : null;
+    const labelTest = hasLabel ? String(label) : null;
 
-    if (props.ignoreCase) {
-      valueTest = valueTest ? valueTest.toLowerCase() : valueTest;
-      labelTest = labelTest ? labelTest.toLowerCase() : labelTest;
-    }
-
-    return props.matchPos === 'start'
-      ? (valueTest &&
-          props.matchProp !== 'label' &&
-          valueTest.substr(0, filterValue.length) === filterValue) ||
-          (labelTest &&
-            props.matchProp !== 'value' &&
-            labelTest.substr(0, filterValue.length) === filterValue)
-      : (valueTest &&
-          props.matchProp !== 'label' &&
-          valueTest.indexOf(filterValue) >= 0) ||
-          (labelTest &&
-            props.matchProp !== 'value' &&
-            labelTest.indexOf(filterValue) >= 0);
+    return (
+      (valueTest && props.matchProp !== 'label' && re.test(valueTest)) ||
+      (labelTest && props.matchProp !== 'value' && re.test(labelTest))
+    );
   });
 };
 

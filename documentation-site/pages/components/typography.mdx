@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -21,7 +21,7 @@ export default Layout;
 
 A set of text block components for an out-of-the-box path to the BaseUI font standard.
 
-You can find the font definitions in the [Theming values](/guides/theming/#theming-values) page.
+You can find the font definitions in the [Theming values](/guides/theming/#typography) page.
 
 ## When to use
 
@@ -43,17 +43,16 @@ At Uber, we use Display components with an alternate font family to create typog
   <Text />
 </Example>
 
-## Exports
-
-<Exports
-  component={TypographyExports}
-  title="Typography exports"
-  path="baseui/typography"
-/>
-
 ## API
 
 <API
   heading="Typography API"
   api={require('!!extract-react-types-loader!../../../src/block/block.js')}
+/>
+
+<Exports
+  component={TypographyExports}
+  title="Typography exports"
+  path="baseui/typography"
+  cheatsheet={false}
 />

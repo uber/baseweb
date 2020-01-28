@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -22,6 +22,7 @@ describe('Textarea', () => {
     };
 
     const wrapper = mount(<Textarea {...props} />);
+    //$FlowFixMe
     const baseInput = wrapper.find(BaseInput);
     expect(baseInput).toExist();
     expect(baseInput.instance().state.isFocused).toEqual(false);
@@ -67,6 +68,7 @@ describe('Textarea', () => {
     };
 
     const wrapper = mount(<Textarea {...props} />);
+    //$FlowFixMe
     const baseInput = wrapper.find(BaseInput);
     // Is focused when mount
     expect(baseInput.instance().state.isFocused).toEqual(true);
@@ -97,7 +99,7 @@ describe('Textarea', () => {
     };
 
     const wrapper = mount(<Textarea {...props} />);
-
+    //$FlowFixMe
     const baseInput = wrapper.find(BaseInput);
     expect(baseInput.props()).toMatchSnapshot(
       'components overrides get passed to the BaseInput',

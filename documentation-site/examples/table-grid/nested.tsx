@@ -8,9 +8,9 @@ import {StatefulMenu} from 'baseui/menu';
 import {StatefulPopover, PLACEMENT} from 'baseui/popover';
 import {withStyle, useStyletron} from 'baseui';
 import {
-  Unstable_StyledTable as StyledTable,
-  Unstable_StyledHeadCell as StyledHeadCell,
-  Unstable_StyledBodyCell as StyledBodyCell,
+  StyledTable,
+  StyledHeadCell,
+  StyledBodyCell,
 } from 'baseui/table-grid';
 import {Tag} from 'baseui/tag';
 
@@ -79,13 +79,6 @@ function buildRow(status: string) {
         'Passed (1 minute, 33 seconds)',
         'https://buildkite.com/uberopensource/baseui/builds/7728',
       ],
-      [
-        'buildkite/baseui/screener',
-        'running',
-        new Date(2019, 6, 22),
-        'Passed (1 minute, 33 seconds)',
-        'https://buildkite.com/uberopensource/baseui/builds/7728',
-      ],
     ],
   ];
 }
@@ -126,10 +119,10 @@ function statusToTagKind(status: string) {
 }
 
 function Tasks(props: {tasks: any[]}) {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   return (
     <div
-      className={useCss({
+      className={css({
         gridColumn: 'span 5',
         padding: '32px 24px',
       })}
@@ -172,7 +165,7 @@ const CenteredBodyCell = withStyle(StyledBodyCell, {
 });
 
 function Row({striped, row}: any) {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   const [expanded, setExpanded] = React.useState(false);
   return (
     <React.Fragment>
@@ -208,7 +201,7 @@ function Row({striped, row}: any) {
       </CenteredBodyCell>
       <CenteredBodyCell $striped={striped}>
         <div
-          className={useCss({
+          className={css({
             textOverflow: 'ellipsis',
             maxWidth: '200px',
             overflow: 'hidden',
@@ -245,9 +238,9 @@ function Row({striped, row}: any) {
 }
 
 export default function() {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   return (
-    <div className={useCss({height: '600px'})}>
+    <div className={css({height: '600px'})}>
       <StyledTable $gridTemplateColumns="max-content min-content minmax(300px, max-content) max-content auto">
         <StyledHeadCell>Job Name</StyledHeadCell>
         <StyledHeadCell>Status</StyledHeadCell>

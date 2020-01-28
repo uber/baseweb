@@ -4,9 +4,9 @@ import {StyledLink} from 'baseui/link';
 import {useStyletron} from 'baseui';
 
 import {
-  Unstable_StyledTable as StyledTable,
-  Unstable_StyledHeadCell as StyledHeadCell,
-  Unstable_StyledBodyCell as StyledBodyCell,
+  StyledTable,
+  StyledHeadCell,
+  StyledBodyCell,
 } from 'baseui/table-grid';
 
 const row = [
@@ -30,9 +30,9 @@ const row = [
 const data = [row, row, row];
 
 export default function() {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   return (
-    <div className={useCss({height: '600px'})}>
+    <div className={css({height: '600px'})}>
       <StyledTable $gridTemplateColumns="minmax(300px, 500px) repeat(2, max-content)">
         <StyledHeadCell>Name</StyledHeadCell>
         <StyledHeadCell>Date</StyledHeadCell>

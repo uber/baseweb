@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -33,7 +33,9 @@ describe('ModalButton', () => {
     const result = mergedOverrides.BaseButton.style({$theme: mockTheme});
     expect(result).toEqual({
       color: 'red',
-      marginLeft: '$theme.sizing.scale500',
+      ':nth-last-child(n+2)': {
+        marginRight: '$theme.sizing.scale500',
+      },
     });
   });
 });

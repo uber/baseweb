@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -153,7 +153,33 @@ describe('Datepicker', () => {
     const component = mount(<Datepicker onChange={onChange} value={value} />);
     const renderedInput = component.find(Input).first();
 
-    expect(renderedInput.props().value).toEqual('2019/01/01 - 2019/01/04');
+    expect(renderedInput.props().value).toEqual('2019/01/01 – 2019/01/04');
+  });
+
+  test('converts hyphen to en dashes', () => {
+    const onChange = jest.fn();
+    const date = new Date('2019 01 01');
+    const mask = '9999/99/99 - 9999/99/99';
+    const value = [date, addDays(date, 3)];
+    const component = mount(
+      <Datepicker mask={mask} onChange={onChange} value={value} />,
+    );
+    const renderedInput = component.find(Input).first();
+
+    expect(renderedInput.props().value).toEqual('2019/01/01 – 2019/01/04');
+  });
+
+  test('converts emdash to en dashes', () => {
+    const onChange = jest.fn();
+    const date = new Date('2019 01 01');
+    const mask = '9999/99/99 — 9999/99/99';
+    const value = [date, addDays(date, 3)];
+    const component = mount(
+      <Datepicker mask={mask} onChange={onChange} value={value} />,
+    );
+    const renderedInput = component.find(Input).first();
+
+    expect(renderedInput.props().value).toEqual('2019/01/01 – 2019/01/04');
   });
 
   test('returns a single date object on input change', () => {
@@ -172,6 +198,7 @@ describe('Datepicker', () => {
     expect(onChange.mock.calls[0][0]).toEqual({
       date: new Date(newDate),
     });
+    expect(onChange.mock.calls).toHaveLength(1);
   });
 
   test('returns an array of date objects on input change', () => {
@@ -185,13 +212,53 @@ describe('Datepicker', () => {
     // $FlowFixMe
     component.instance().handleInputChange({
       currentTarget: {
-        value: '2019/10/10 - 2019/10/12',
+        value: '2019/10/10 – 2019/10/12',
       },
     });
 
     expect(onChange.mock.calls[0][0]).toEqual({
       date: [new Date('2019/10/10'), new Date('2019/10/12')],
     });
+    expect(onChange.mock.calls).toHaveLength(1);
+  });
+
+  test('returns a null date on input clear', () => {
+    const onChange = jest.fn();
+    const date = new Date('2019 01 01');
+    const component = mount(<Datepicker onChange={onChange} value={date} />);
+
+    // $FlowFixMe
+    component.instance().handleInputChange({
+      currentTarget: {
+        value: '',
+      },
+    });
+
+    expect(onChange.mock.calls[0][0]).toEqual({
+      date: null,
+    });
+    expect(onChange.mock.calls).toHaveLength(1);
+  });
+
+  test('returns an empty array on input clear', () => {
+    const onChange = jest.fn();
+    const date = new Date('2019 01 01');
+    const value = [date, addDays(date, 3)];
+    const component = mount(
+      <Datepicker range onChange={onChange} value={value} />,
+    );
+
+    // $FlowFixMe
+    component.instance().handleInputChange({
+      currentTarget: {
+        value: '',
+      },
+    });
+
+    expect(onChange.mock.calls[0][0]).toEqual({
+      date: [],
+    });
+    expect(onChange.mock.calls).toHaveLength(1);
   });
 
   test('calendar popover renders multiple months', () => {

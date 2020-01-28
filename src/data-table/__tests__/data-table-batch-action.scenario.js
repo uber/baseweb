@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -13,13 +13,21 @@ import Check from '../../icon/check.js';
 
 import BooleanColumn from '../column-boolean.js';
 import NumericalColumn from '../column-numerical.js';
-import {Unstable_DataTable} from '../data-table.js';
+import {Unstable_StatefulDataTable} from '../stateful-data-table.js';
 
 export const name = 'data-table-batch-action';
 
+type RowDataT = [number, boolean];
+
 const columns = [
-  NumericalColumn({title: 'row-id'}),
-  BooleanColumn({title: 'is-it-flagged'}),
+  NumericalColumn({
+    title: 'row-id',
+    mapDataToValue: (data: RowDataT) => data[0],
+  }),
+  BooleanColumn({
+    title: 'is-it-flagged',
+    mapDataToValue: (data: RowDataT) => data[1],
+  }),
 ];
 
 export const component = () => {
@@ -74,8 +82,8 @@ export const component = () => {
 
   return (
     <div>
-      <div style={{height: '800px', width: '900px'}}>
-        <Unstable_DataTable
+      <div style={{height: '400px', width: '900px'}}>
+        <Unstable_StatefulDataTable
           batchActions={actions}
           columns={columns}
           onSelectionChange={() => setCount(count + 1)}

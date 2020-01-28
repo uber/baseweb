@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -24,6 +24,7 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
     value: 0,
     overrides: {},
     showLabel: false,
+    infinite: false,
   };
 
   render() {
@@ -33,6 +34,7 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
       value,
       successValue,
       showLabel,
+      infinite,
     } = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [Bar, barProps] = getOverrides(overrides.Bar, StyledBar);
@@ -44,6 +46,7 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
     const sharedProps = {
       $value: value,
       $successValue: successValue,
+      $infinite: infinite,
     };
     return (
       <Root

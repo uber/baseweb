@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -18,8 +18,8 @@ import DatepickerI18n from 'examples/datepicker/i18n.js';
 import DatepickerWithOverrides from 'examples/datepicker/with-overrides.js';
 import ComposedRangePickers from 'examples/datepicker/composed-range-pickers.js';
 import ComposedSinglePickers from 'examples/datepicker/composed-single-pickers.js';
-import DatePickersColorStates from 'examples/datepicker/datepickers-color-states.js';
-import DatePickerTimezone from 'examples/datepicker/datepicker-with-timezone.js';
+import DatepickersColorStates from 'examples/datepicker/datepickers-color-states.js';
+import DatepickerTimezone from 'examples/datepicker/datepicker-with-timezone.js';
 import NestedOverride from 'examples/datepicker/nested-override.js';
 
 import {StatefulCalendar} from 'baseui/datepicker';
@@ -27,6 +27,7 @@ import * as DatepickerExports from 'baseui/datepicker';
 
 import Yard from '../../components/yard/index';
 import datepickerConfig from '../../components/yard/config/datepicker';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -46,7 +47,7 @@ A simple and reusable component to work with or select a date or a range of date
 
 ## Examples
 
-<Example title="Datepicker" path="datepicker/basic.js">
+<Example title="Datepicker basic usage" path="datepicker/basic.js">
   <DatepickerBasic />
 </Example>
 
@@ -64,6 +65,9 @@ A simple and reusable component to work with or select a date or a range of date
 <Example title="Datepicker with localization" path="datepicker/i18n.js">
   <DatepickerI18n />
 </Example>
+
+The `formatString` property supports all the patterns supported by [date-fns' format method](https://date-fns.org/v2.8.1/docs/format).
+Please note, that some of the options require you to pass in the `locale` object too, just as shown in this example.
 
 <Example title="Datepicker with overrides" path="datepicker/with-overrides.js">
   <DatepickerWithOverrides />
@@ -101,17 +105,17 @@ A simple and reusable component to work with or select a date or a range of date
   title="Datepicker states"
   path="datepicker/datepickers-color-states.js"
 >
-  <DatePickersColorStates />
+  <DatepickersColorStates />
 </Example>
 
 <Example
   title="Datepicker with timezone selection"
   path="datepicker/datepicker-with-timezone.js"
 >
-  This example works for most use-cases, however certian edge-cases are not
+  This example works for most use-cases, however certain edge-cases are not
   handled here. If this data is mission critical for your systems, consider
   using Moment.js, and pass the date object from Moment.js to the datepicker.
-  <DatePickerTimezone />
+  <DatepickerTimezone />
 </Example>
 
 <Example
@@ -122,6 +126,14 @@ A simple and reusable component to work with or select a date or a range of date
 </Example>
 
 In this example we use a [nested override](/guides/understanding-overrides/#override-nested-components) to customize the `ListItem` within the month/year dropdown (`MonthYearSelectStatefulMenu`).
+
+## API
+
+<ApiTable
+  title="Datepicker props"
+  config={datepickerConfig}
+  types={require('!!extract-react-types-loader!../../../src/datepicker/calendar.js')}
+/>
 
 <Exports
   component={DatepickerExports}

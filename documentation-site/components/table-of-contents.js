@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -17,7 +17,7 @@ function getPadding(componentType) {
 }
 
 const TableOfContents = props => {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   const TOC = [];
   const content = props.content[0].props.children;
   content &&
@@ -38,7 +38,7 @@ const TableOfContents = props => {
         });
       }
 
-      if (element.props.path && element.props.title) {
+      if (element.props.title) {
         TOC.push({
           name: element.props.title,
           anchor: `#${element.props.title.toLowerCase().replace(/\s+/g, '-')}`,
@@ -63,7 +63,7 @@ const TableOfContents = props => {
 
   return (
     <ul
-      className={useCss({
+      className={css({
         [theme.direction === 'rtl'
           ? 'borderRight'
           : 'borderLeft']: `1px solid ${theme.colors.mono400}`,
@@ -84,7 +84,7 @@ const TableOfContents = props => {
       {TOC.map(header => (
         <li
           key={header.name}
-          className={useCss({
+          className={css({
             ...theme.typography.font100,
             [theme.direction === 'rtl'
               ? 'paddingRight'
@@ -92,7 +92,7 @@ const TableOfContents = props => {
           })}
         >
           <a
-            className={useCss({color: theme.colors.foregroundAlt})}
+            className={css({color: theme.colors.contentSecondary})}
             href={header.anchor}
           >
             {header.name}

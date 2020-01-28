@@ -2,9 +2,9 @@
 import React from 'react';
 import {useStyletron} from 'baseui';
 import {
-  Unstable_StyledTable as StyledTable,
-  Unstable_StyledHeadCell as StyledHeadCell,
-  Unstable_StyledBodyCell as StyledBodyCell,
+  StyledTable,
+  StyledHeadCell,
+  StyledBodyCell,
 } from 'baseui/table-grid';
 
 const data = Array(100)
@@ -17,9 +17,9 @@ const data = Array(100)
   ]);
 
 export default function() {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   return (
-    <div className={useCss({height: '750px'})}>
+    <div className={css({height: '750px'})}>
       <StyledTable $gridTemplateColumns="minmax(400px, max-content) 200px 200px">
         <StyledHeadCell>Column 1</StyledHeadCell>
         <StyledHeadCell>Column 2</StyledHeadCell>

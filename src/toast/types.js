@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -16,8 +16,6 @@ export type NotificationTypeT = $Values<typeof TYPE>;
 export type PlacementTypeT = $Values<typeof PLACEMENT>;
 
 export type SharedStylePropsArgT = {
-  $color?: string,
-  $size?: number | string,
   $kind: KindTypeT,
   $type: NotificationTypeT,
   $closeable: boolean,
@@ -47,6 +45,11 @@ export type ToastPrivateStateT = {
 };
 
 export type ToastPropsT = {
+  /** This is a private property to detect manual changes to a toast
+   *  i.e. calling toaster.info() with the same key twice
+   *  currently the change detection is used to reset the autohide timer
+   */
+  __updated?: number,
   /** The number of milliseconds to wait before automatically dismissing a
    * notification. This behavior is disabled when the value is set to 0.*/
   autoHideDuration: number,
@@ -79,17 +82,21 @@ export type ToasterOverridesT = {
   Root?: OverrideT<ToasterSharedStylePropsArgT>,
   ToastBody?: OverrideT<SharedStylePropsArgT>,
   ToastCloseIcon?: OverrideT<SharedStylePropsArgT>,
+  ToastInnerContainer?: OverrideT<SharedStylePropsArgT>,
 };
 
 export type ToasterPropsT = {
+  children: React.Node,
   overrides: ToasterOverridesT,
   placement: PlacementTypeT,
   usePortal: boolean,
   /** The number of milliseconds to wait before automatically dismissing a
    * notification. This behavior is disabled when the value is set to 0.*/
   autoHideDuration: number,
+  /** Defines if updating a toast resets the autohide timer */
+  resetAutoHideTimerOnUpdate?: boolean,
 };
 export type ToasterContainerStateT = {
   isMounted: boolean,
-  toasts: Array<ToastPropsShapeT>,
+  toasts: Array<ToastPropsT>,
 };

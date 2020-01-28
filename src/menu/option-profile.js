@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -32,6 +32,7 @@ export default function OptionProfile(props: OptionProfilePropsT) {
     overrides = {},
     resetMenu = () => {},
     $isHighlighted,
+    renderAll,
     ...restProps
   } = props;
 
@@ -73,6 +74,7 @@ export default function OptionProfile(props: OptionProfilePropsT) {
       isOpen={!!$isHighlighted}
       item={item}
       resetParentMenu={resetMenu}
+      renderAll={renderAll}
     >
       <ListItemProfile {...restProps} {...listItemProfileProps}>
         <ProfileImgContainer {...profileImgContainerProps}>

@@ -1,6 +1,9 @@
 import {Tabs, Tab, ORIENTATION} from 'baseui/tabs';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
+
+const tabsProps = require('!!extract-react-types-loader!../../../../src/tabs/tabs.js');
+const tabProps = require('!!extract-react-types-loader!../../../../src/tabs/tab.js');
 
 const TabsConfig: TConfig = {
   imports: {
@@ -67,18 +70,24 @@ const TabsConfig: TConfig = {
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: ['Root', 'Tab', 'TabBar', 'TabContent'],
-      sharedProps: {
-        $disabled: 'disabled',
-        $active: {
-          type: PropTypes.Boolean,
-          description: 'True when the tab is active.',
+      custom: {
+        names: ['Root', 'Tab', 'TabBar', 'TabContent'],
+        sharedProps: {
+          $disabled: 'disabled',
+          $active: {
+            type: PropTypes.Boolean,
+            description: 'True when the tab is active.',
+          },
+          $orientation: 'orientation',
         },
-        $orientation: 'orientation',
       },
     },
+  },
+  mapTokensToProps: {
+    Tabs: tabsProps,
+    Tab: tabProps,
   },
 };
 

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -89,7 +89,11 @@ class Tag extends React.Component<PropsT, {}> {
     const actionHandlers = disabled
       ? {}
       : {
-          onClick: onActionClick,
+          onClick: event => {
+            // we don't want onClick to be called when the close icon is clicked
+            event.stopPropagation();
+            onActionClick(event);
+          },
           onKeyDown: this.handleActionKeyDown,
         };
     const sharedProps: SharedPropsArgT = {

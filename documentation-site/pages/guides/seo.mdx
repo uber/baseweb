@@ -1,0 +1,150 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Layout from '../../components/layout';
+
+export default Layout;
+
+# SEO - the WHYs
+
+If you need to build and ship front end components that are highly optimized for search engine optimization and crawlability, you can:
+
+- avoid the rendering of content based on JavaScript interactions in favor of using CSS, and
+- being thoughtful about how components function with JavaScript turned off.
+
+## Content Crawlability Constraints
+
+While Google has been able to crawl JavaScript for several years, there are common cases where client-side rendered content is either not accessible or not interpreted desirably.
+
+_Note: While we say Google and Googlebot, many of these concepts also apply to Microsoft’s Bing and Bingbot._
+
+### User Events
+
+Googlebot doesn’t take user actions (i.e. click, hover, or scroll). If content or elements are rendered based on user events, the search engine crawler likely won’t see it. This especially includes content fetched via XHR.
+
+### Viewport
+
+Since Googlebot doesn’t scroll, it will utilize a tall viewport. Google hasn’t officially said how tall, but from experimentation, a height of [12,140px has been observed](https://www.seroundtable.com/googlebot-taller-pixels-25098.html). Additionally, it now supports the Intersection Observer API, which should be the preferred way to trigger images and content assets.
+
+### Time to Index
+
+Googlebot’s primary crawl and indexing process are based on SSR HTML. When Googlebot detects a JS Framework or possible JS content, it will queue the URL to be re-crawled with a headless browser. This queue can be delayed several days which can hurt content that needs to be discoverable in search engines within a timely manner (i.e. new services, regulatory information, changes to the policy, etc.)
+
+# For Components
+
+## Tab
+
+Tabs are a great design pattern to condense or cluster information in intuitive user experience. Given the content behind inactive tabs is not displayed to the user, it makes the most sense to defer rendering that content until a user takes action.
+
+However, since search engines do not take user actions like clicking or hovering, they will not see the deferred content. Therefore, all tab panels should be SSR and CSR fully to make it fully SEO crawlable.
+
+To enable this functionality in Base Web, you can add the `renderAll` property to the `Tab` component. Additionally, the text should always be wrapped in a paragraph.
+
+```js
+import * as React from 'react';
+import {StatefulTabs, Tab} from 'baseui/tabs';
+export default () => (
+  <StatefulTabs initialState={{activeKey: '0'}} renderAll>
+    <Tab title="Tab Link 1">
+      <p>Tab 1 content</p>
+    </Tab>
+    <Tab title="Tab Link 2">
+      <p>Tab 2 content</p>
+    </Tab>
+    <Tab title="Tab Link 3">
+      <p>Tab 3 content</p>
+    </Tab>
+  </StatefulTabs>
+);
+```
+
+## Accordion
+
+The `Accordion` component follows the same principles as the `Tab` component - to make it SEO-friendly, please take the following approach:
+
+```js
+import * as React from 'react';
+import {Accordion, Panel} from 'baseui/accordion';
+const content =
+  'Praesent condimentum ante ac ipsum aliquam, ac scelerisque velit sagittis. Ut sit amet libero scelerisque, accumsan ante vitae, hendrerit tellus. Nullam metus est, vehicula a aliquet id, lobortis in mauris.';
+export default () => (
+  <Accordion renderAll>
+    <Panel title="Accordion panel 1">
+      <p>{content}</p>
+    </Panel>
+    <Panel title="Accordion panel 2">
+      <p>{content}</p>
+    </Panel>
+    <Panel title="Accordion panel 3">
+      <p>{content}</p>
+    </Panel>
+  </Accordion>
+);
+```
+
+## Table
+
+Use the [semantic table](/components/table-semantic/) implementation to best optimize for SEO.
+
+## Card
+
+Cards can contain a rich amount of text, images _(if you use them, do not forget the `alt` tag!)_, and links. We want to make sure the search engines process them appropriately.
+
+To best comply with SEO best practices, wrap the text within the `Card` component in a paragraph. Because `StyledBody` is a Styletron component, you can leverage the `$as` property to change it to a paragraph:
+
+```js
+import * as React from 'react';
+import {Card, StyledBody} from 'baseui/card';
+export default () => (
+  <Card overrides={{Root: {style: {width: '328px'}}}}>
+    <StyledBody $as="p">
+      Proin ut dui sed metus pharetra hend rerit vel non mi. Nulla ornare
+      faucibus ex, non facilisis nisl.
+    </StyledBody>
+  </Card>
+);
+```
+
+[Learn more about the `$as` property here.](https://www.styletron.org/react/#as-prop)
+
+## Modal
+
+Similarily to the Card component, text in the Modal should we wrapped in paragraphs too:
+
+```js
+import * as React from 'react';
+import {Button} from 'baseui/button';
+import {
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  ModalButton,
+} from 'baseui/modal';
+export default () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  function close() {
+    setIsOpen(false);
+  }
+  return (
+    <React.Fragment>
+      <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
+      <Modal onClose={close} isOpen={isOpen}>
+        <ModalHeader>Hello world</ModalHeader>
+        <ModalBody $as="p">
+          Proin ut dui sed metus pharetra hend rerit vel non mi. Nulla ornare
+          faucibus ex, non facilisis nisl. Maecenas aliquet mauris ut tempus.
+        </ModalBody>
+        <ModalFooter>
+          <ModalButton onClick={close}>Cancel</ModalButton>
+          <ModalButton onClick={close}>Okay</ModalButton>
+        </ModalFooter>
+      </Modal>
+    </React.Fragment>
+  );
+};
+```

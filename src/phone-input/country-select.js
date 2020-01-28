@@ -1,12 +1,12 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
+import React, {useState} from 'react';
 
 import {
   StyledRoot,
@@ -63,6 +63,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     required,
     size,
   } = props;
+  const [resetScrollIndex, setResetScrollIndex] = useState(false);
   const sharedProps = {
     $disabled: disabled,
     $error: error,
@@ -76,6 +77,14 @@ export default function CountrySelect(props: CountrySelectPropsT) {
   const baseOverrides = {
     Root: {
       component: StyledRoot,
+    },
+    Input: {
+      style: {
+        width: 0,
+      },
+      props: {
+        'aria-label': 'Select country',
+      },
     },
     ControlContainer: {
       style: props => {
@@ -100,6 +109,14 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     },
     StatefulMenu: {
       props: {
+        stateReducer: (type, nextState) => {
+          const next = {
+            ...nextState,
+            highlightedIndex: resetScrollIndex ? 0 : nextState.highlightedIndex,
+          };
+          setResetScrollIndex(false);
+          return next;
+        },
         initialState: {
           isFocused: true,
           highlightedIndex: scrollIndex,
@@ -139,6 +156,7 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     },
     Popover: {
       props: {
+        focusLock: false,
         placement: PLACEMENT.bottomLeft,
       },
     },
@@ -235,9 +253,11 @@ export default function CountrySelect(props: CountrySelectPropsT) {
         options={options}
         positive={positive}
         required={required}
-        searchable={false}
         size={size}
         value={[country]}
+        onInputChange={() => {
+          setResetScrollIndex(true);
+        }}
         {...selectProps}
       />
       <DialCode {...sharedProps} {...dialCodeProps}>

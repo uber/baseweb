@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -21,7 +21,7 @@ const StyledTableElement = styled<{}>('div', ({$theme}) => {
     display: 'flex',
     flexDirection: 'column',
     height: '100%',
-    overflowX: 'scroll',
+    overflowX: 'auto',
   };
 });
 
@@ -75,7 +75,7 @@ const StyledHeadCellElement = styled<HorizontalStyleProps>(
       borderTop: 'none',
       borderBottom: 'none',
       borderLeft: 'none',
-      color: $theme.colors.colorPrimary,
+      color: $theme.colors.contentPrimary,
       display: 'flex',
       justifyContent: 'space-between',
       paddingTop: $theme.sizing.scale500,
@@ -85,7 +85,7 @@ const StyledHeadCellElement = styled<HorizontalStyleProps>(
       cursor: $cursor ? $cursor : 'inherit',
       width: '100%',
       ':last-of-type': {
-        borderRight: 'none',
+        [$theme.direction === 'rtl' ? 'borderLeft' : 'borderRight']: 'none',
       },
     };
   },
@@ -105,7 +105,7 @@ export const StyledSortableLabel = styled<{}>('button', ({$theme}) => {
     alignItems: 'center',
     backgroundColor: 'transparent',
     border: 'none',
-    color: $theme.colors.colorPrimary,
+    color: $theme.colors.contentPrimary,
     display: 'flex',
     padding: 0,
     ':hover:enabled': {
@@ -155,7 +155,7 @@ const StyledCellElement = styled<CellStyledProps>(
     return {
       ...$theme.typography.font200,
       backgroundColor: $striped ? $theme.colors.tableStripedBackground : null,
-      color: $theme.colors.colorPrimary,
+      color: $theme.colors.contentPrimary,
       display: 'flex',
       flex: 1,
       paddingTop: $theme.sizing.scale300,
@@ -174,13 +174,43 @@ export const StyledCell = ((React.forwardRef<CellStyledProps, any>(
 StyledCell.__STYLETRON__ = StyledCellElement.__STYLETRON__;
 StyledCell.displayName = 'StyledCell';
 
-export const StyledFilterButton = styled('button', {
-  backgroundColor: 'transparent',
-  border: 'none',
-  paddingTop: 'none',
-  paddingRight: 'none',
-  paddingBottom: 'none',
-  paddingLeft: 'none',
+export const StyledFilterButton = styled<{
+  $disabled?: boolean,
+  $active?: boolean,
+}>('button', props => {
+  function getIconColor() {
+    if (props.$disabled) {
+      return props.$theme.colors.mono500;
+    }
+
+    if (props.$active) {
+      return props.$theme.colors.contentPrimary;
+    }
+
+    return props.$theme.colors.tableFilter;
+  }
+
+  function getIconHoverColor() {
+    if (props.$disabled || props.$active) {
+      return null;
+    }
+
+    return props.$theme.colors.contentPrimary;
+  }
+
+  return {
+    backgroundColor: 'transparent',
+    border: 'none',
+    color: getIconColor(),
+    cursor: props.$disabled ? null : 'pointer',
+    paddingTop: 'none',
+    paddingRight: 'none',
+    paddingBottom: 'none',
+    paddingLeft: 'none',
+    ':hover': {
+      color: getIconHoverColor(),
+    },
+  };
 });
 
 export const StyledFilterContent = styled<{}>('div', ({$theme}) => ({

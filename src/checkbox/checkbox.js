@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -50,6 +50,14 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     if (autoFocus && inputRef.current) {
       inputRef.current.focus();
     }
+
+    // TODO(v10)
+    if (__DEV__ && this.props.checkmarkType === STYLE_TYPE.toggle) {
+      console.warn(
+        "baseui:Checkbox The STYLE_TYPE.toggle value on the 'checkmarkType' prop does not conform to the current base design specification. " +
+          'Please update your code to STYLE_TYPE.toggle_round. This will be updated automatically in a future major version.',
+      );
+    }
   }
 
   onMouseEnter = (e: SyntheticInputEvent<HTMLInputElement>) => {
@@ -82,12 +90,19 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     this.props.onBlur(e);
   };
 
+  isToggle = () => {
+    return (
+      this.props.checkmarkType === STYLE_TYPE.toggle ||
+      this.props.checkmarkType === STYLE_TYPE.toggle_round
+    );
+  };
+
   render() {
     const {checkmarkType} = this.props;
     const {
       overrides = {},
       onChange,
-      labelPlacement = checkmarkType === STYLE_TYPE.toggle ? 'left' : 'right',
+      labelPlacement = this.isToggle() ? 'left' : 'right',
       inputRef,
       isIndeterminate,
       isError,
@@ -98,6 +113,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       checked,
       children,
       required,
+      title,
     } = this.props;
 
     const {
@@ -141,6 +157,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       $value: value,
       $checkmarkType: checkmarkType,
     };
+    // TODO(v10) - add check for children (#2172)
     const labelComp = (
       <Label
         $labelPlacement={labelPlacement}
@@ -153,14 +170,17 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     return (
       <Root
         data-baseweb="checkbox"
+        title={title || null}
         $labelPlacement={labelPlacement}
         {...sharedProps}
         {...mouseEvents}
         {...getOverrideProps(RootOverride)}
       >
         {(labelPlacement === 'top' || labelPlacement === 'left') && labelComp}
-        {checkmarkType === STYLE_TYPE.toggle ? (
+        {this.isToggle() ? (
           <ToggleTrack
+            role="checkbox"
+            aria-checked={checked}
             {...sharedProps}
             {...getOverrideProps(ToggleTrackOverride)}
           >
@@ -173,7 +193,9 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
           </ToggleTrack>
         ) : (
           <Checkmark
+            role="checkbox"
             checked={checked}
+            aria-checked={checked}
             {...sharedProps}
             {...getOverrideProps(CheckmarkOverride)}
           />

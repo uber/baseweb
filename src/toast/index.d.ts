@@ -78,8 +78,6 @@ export class ToasterContainer extends React.Component<
 }
 
 export interface SharedStylePropsArg {
-  $color?: string;
-  $size?: number | string;
   $kind?: KIND[keyof KIND];
   $type?: TYPE[keyof TYPE];
   $closeable?: boolean;
@@ -95,6 +93,7 @@ export interface ToastPrivateState {
 export interface ToastOverrides {
   Body?: Override<SharedStylePropsArg>;
   CloseIcon?: Override<SharedStylePropsArg>;
+  InnerContainer?: Override<SharedStylePropsArg>;
 }
 export interface ToastProps {
   autoHideDuration?: number;

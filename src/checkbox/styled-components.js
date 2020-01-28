@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -73,7 +73,14 @@ function getBackgroundColor(props) {
   const isToggle = $checkmarkType === STYLE_TYPE.toggle;
   const {colors} = $theme;
   if ($disabled) {
-    return isToggle ? colors.sliderTrackFillDisabled : colors.tickFillDisabled;
+    if (isToggle) {
+      return colors.sliderTrackFillDisabled;
+    }
+    if ($checked || $isIndeterminate) {
+      return colors.tickFillDisabled;
+    } else {
+      return colors.tickFill;
+    }
   } else if ($isError && ($isIndeterminate || $checked)) {
     if ($isActive || $isFocused) {
       return colors.tickFillErrorSelectedHoverActive;
@@ -112,7 +119,7 @@ function getBackgroundColor(props) {
 function getLabelColor(props) {
   const {$disabled, $theme} = props;
   const {colors} = $theme;
-  return $disabled ? colors.foregroundAlt : colors.foreground;
+  return $disabled ? colors.contentSecondary : colors.contentPrimary;
 }
 
 export const Root = styled<SharedStylePropsT>('label', props => {
@@ -143,34 +150,18 @@ export const Checkmark = styled<SharedStylePropsT>('span', props => {
     : $theme.colors.tickMarkFill;
 
   const indeterminate = encodeURIComponent(`
-    <svg width="12" height="2" viewBox="0 0 12 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <line
-      x1="1"
-      y1="-1"
-      x2="11"
-      y2="-1"
-      transform="translate(0 2)"
-      stroke="${tickColor}"
-      stroke-width="2"
-      stroke-linecap="round"
-    />
+    <svg width="14" height="4" viewBox="0 0 14 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14 0.5H0V3.5H14V0.5Z" fill="${tickColor}"/>
     </svg>
   `);
 
   const check = encodeURIComponent(`
-    <svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M10.6 0.200059C11.0418 0.53143 11.1314 1.15823 10.8 1.60006L4.8 9.60006C4.62607 9.83197 4.36005 9.97699 4.07089 9.99754C3.78173 10.0181 3.49788 9.91215 3.29289 9.70717L0.292893 6.70717C-0.0976311 6.31664 -0.0976311 5.68348 0.292893 5.29295C0.683417 4.90243 1.31658 4.90243 1.70711 5.29295L3.89181 7.47765L9.2 0.400059C9.53137 -0.0417689 10.1582 -0.131312 10.6 0.200059Z"
-        fill="${tickColor}"
-      />
+    <svg width="17" height="13" viewBox="0 0 17 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6.50002 12.6L0.400024 6.60002L2.60002 4.40002L6.50002 8.40002L13.9 0.900024L16.1 3.10002L6.50002 12.6Z" fill="${tickColor}"/>
     </svg>
   `);
 
-  const borderRadius = $theme.borders.useRoundedCorners
-    ? $theme.borders.radius200
-    : null;
+  const borderRadius = $theme.borders.inputBorderRadius;
 
   return ({
     flex: '0 0 auto',
@@ -182,7 +173,7 @@ export const Checkmark = styled<SharedStylePropsT>('span', props => {
     top: '4px',
     boxSizing: 'border-box',
     borderStyle: 'solid',
-    borderWidth: '2px',
+    borderWidth: '3px',
     borderColor: getBorderColor(props),
     borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
@@ -198,6 +189,7 @@ export const Checkmark = styled<SharedStylePropsT>('span', props => {
     backgroundColor: getBackgroundColor(props),
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
+    backgroundSize: 'contain',
     marginTop: $theme.sizing.scale0,
     marginBottom: $theme.sizing.scale0,
     marginLeft: $theme.sizing.scale0,
@@ -229,72 +221,140 @@ export const Input = styled('input', {
   position: 'absolute',
 });
 
-export const Toggle = styled<SharedStylePropsT>('div', ({$theme}) => {
-  const borderRadius = $theme.borders.useRoundedCorners
-    ? $theme.borders.radius200
-    : null;
-  return ({
-    ...$theme.borders.border300,
-    alignItems: 'center',
-    backgroundColor: $theme.colors.mono100,
-    borderTopLeftRadius: borderRadius,
-    borderTopRightRadius: borderRadius,
-    borderBottomRightRadius: borderRadius,
-    borderBottomLeftRadius: borderRadius,
-    boxShadow: $theme.lighting.shadow400,
-    display: 'flex',
-    justifyContent: 'center',
-    height: $theme.sizing.scale800,
-    width: $theme.sizing.scale800,
-  }: {});
+export const Toggle = styled<SharedStylePropsT>('div', props => {
+  if (props.$checkmarkType === STYLE_TYPE.toggle) {
+    const borderRadius = props.$theme.borders.useRoundedCorners
+      ? props.$theme.borders.radius200
+      : null;
+    return ({
+      ...props.$theme.borders.border300,
+      alignItems: 'center',
+      backgroundColor: props.$theme.colors.mono100,
+      borderTopLeftRadius: borderRadius,
+      borderTopRightRadius: borderRadius,
+      borderBottomRightRadius: borderRadius,
+      borderBottomLeftRadius: borderRadius,
+      boxShadow: props.$theme.lighting.shadow400,
+      display: 'flex',
+      justifyContent: 'center',
+      height: props.$theme.sizing.scale800,
+      width: props.$theme.sizing.scale800,
+    }: {});
+  }
+
+  if (props.$checkmarkType === STYLE_TYPE.toggle_round) {
+    let backgroundColor = props.$theme.colors.toggleFill;
+    if (props.$disabled) {
+      backgroundColor = props.$theme.colors.toggleFillDisabled;
+    } else if (props.$checked && props.$isError) {
+      backgroundColor = props.$theme.colors.borderError;
+    } else if (props.$checked) {
+      backgroundColor = props.$theme.colors.toggleFillChecked;
+    }
+    return {
+      backgroundColor,
+      borderTopLeftRadius: '50%',
+      borderTopRightRadius: '50%',
+      borderBottomRightRadius: '50%',
+      borderBottomLeftRadius: '50%',
+      boxShadow:
+        (props.$isFocused || props.$isHovered) && !props.$disabled
+          ? props.$theme.lighting.shadow500
+          : props.$theme.lighting.shadow400,
+      height: props.$theme.sizing.scale700,
+      width: props.$theme.sizing.scale700,
+      transform: props.$checked
+        ? `translateX(${props.$theme.direction === 'rtl' ? '-100%' : '100%'})`
+        : null,
+      transition: `transform ${props.$theme.animation.timing100}`,
+    };
+  }
+
+  return {};
 });
 
 export const ToggleInner = styled<SharedStylePropsT>('div', props => {
-  function backgroundColor() {
-    if (props.$disabled) {
-      return props.$theme.colors.sliderHandleInnerFillDisabled;
-    }
+  if (props.$checkmarkType === STYLE_TYPE.toggle) {
+    // eslint-disable-next-line no-inner-declarations
+    function backgroundColor() {
+      if (props.$disabled) {
+        return props.$theme.colors.sliderHandleInnerFillDisabled;
+      }
 
-    if (props.$isActive && props.$checked) {
-      return props.$theme.colors.sliderHandleInnerFillSelectedActive;
-    }
+      if (props.$isActive && props.$checked) {
+        return props.$theme.colors.sliderHandleInnerFillSelectedActive;
+      }
 
-    if (props.$isHovered && props.$checked) {
-      return props.$theme.colors.sliderHandleInnerFillSelectedHover;
-    }
+      if (props.$isHovered && props.$checked) {
+        return props.$theme.colors.sliderHandleInnerFillSelectedHover;
+      }
 
-    return props.$theme.colors.sliderHandleInnerFill;
+      return props.$theme.colors.sliderHandleInnerFill;
+    }
+    return {
+      height: props.$theme.sizing.scale300,
+      width: props.$theme.sizing.scale0,
+      borderTopLeftRadius: props.$theme.borders.radius100,
+      borderTopRightRadius: props.$theme.borders.radius100,
+      borderBottomRightRadius: props.$theme.borders.radius100,
+      borderBottomLeftRadius: props.$theme.borders.radius100,
+      backgroundColor: backgroundColor(),
+    };
   }
 
-  return {
-    height: props.$theme.sizing.scale300,
-    width: props.$theme.sizing.scale0,
-    borderTopLeftRadius: props.$theme.borders.radius100,
-    borderTopRightRadius: props.$theme.borders.radius100,
-    borderBottomRightRadius: props.$theme.borders.radius100,
-    borderBottomLeftRadius: props.$theme.borders.radius100,
-    backgroundColor: backgroundColor(),
-  };
+  if (props.$checkmarkType === STYLE_TYPE.toggle_round) {
+    return {};
+  }
+
+  return {};
 });
 
 export const ToggleTrack = styled<SharedStylePropsT>('div', props => {
-  const borderRadius = props.$theme.borders.useRoundedCorners
-    ? props.$theme.borders.radius200
-    : null;
-  return ({
-    alignItems: 'center',
-    backgroundColor: getBackgroundColor(props),
-    borderTopLeftRadius: borderRadius,
-    borderTopRightRadius: borderRadius,
-    borderBottomRightRadius: borderRadius,
-    borderBottomLeftRadius: borderRadius,
-    display: 'flex',
-    height: props.$theme.sizing.scale600,
-    justifyContent: props.$checked ? 'flex-end' : 'flex-start',
-    marginTop: props.$theme.sizing.scale100,
-    marginBottom: props.$theme.sizing.scale100,
-    marginLeft: props.$theme.sizing.scale100,
-    marginRight: props.$theme.sizing.scale100,
-    width: props.$theme.sizing.scale1000,
-  }: {});
+  if (props.$checkmarkType === STYLE_TYPE.toggle) {
+    const borderRadius = props.$theme.borders.useRoundedCorners
+      ? props.$theme.borders.radius200
+      : null;
+    return ({
+      alignItems: 'center',
+      backgroundColor: getBackgroundColor(props),
+      borderTopLeftRadius: borderRadius,
+      borderTopRightRadius: borderRadius,
+      borderBottomRightRadius: borderRadius,
+      borderBottomLeftRadius: borderRadius,
+      display: 'flex',
+      height: props.$theme.sizing.scale600,
+      justifyContent: props.$checked ? 'flex-end' : 'flex-start',
+      marginTop: props.$theme.sizing.scale100,
+      marginBottom: props.$theme.sizing.scale100,
+      marginLeft: props.$theme.sizing.scale100,
+      marginRight: props.$theme.sizing.scale100,
+      width: props.$theme.sizing.scale1000,
+    }: {});
+  }
+
+  if (props.$checkmarkType === STYLE_TYPE.toggle_round) {
+    let backgroundColor = props.$theme.colors.toggleTrackFill;
+    if (props.$disabled) {
+      backgroundColor = props.$theme.colors.toggleTrackFillDisabled;
+    } else if (props.$isError && props.$checked) {
+      backgroundColor = props.$theme.colors.tickFillError;
+    }
+    return {
+      alignItems: 'center',
+      backgroundColor,
+      borderTopLeftRadius: '7px',
+      borderTopRightRadius: '7px',
+      borderBottomRightRadius: '7px',
+      borderBottomLeftRadius: '7px',
+      display: 'flex',
+      height: props.$theme.sizing.scale550,
+      marginTop: props.$theme.sizing.scale200,
+      marginBottom: props.$theme.sizing.scale100,
+      marginLeft: props.$theme.sizing.scale200,
+      marginRight: props.$theme.sizing.scale100,
+      width: props.$theme.sizing.scale1000,
+    };
+  }
+
+  return {};
 });

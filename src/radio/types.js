@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -9,8 +9,10 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import type {OverrideT} from '../helpers/overrides.js';
+import {ALIGN} from './constants.js';
 
 export type LabelPlacementT = 'top' | 'right' | 'bottom' | 'left';
+export type AlignT = $Keys<typeof ALIGN>;
 
 export type RadioOverridesT = {
   RadioMarkInner?: OverrideT<*>,
@@ -26,8 +28,8 @@ export type RadioGroupOverridesT = {
 };
 
 export type OverridesT = {
-  ...RadioOverridesT,
-  ...RadioGroupOverridesT,
+  ...$Exact<RadioOverridesT>,
+  ...$Exact<RadioGroupOverridesT>,
 };
 
 export type DefaultPropsT = {
@@ -65,7 +67,7 @@ export type PropsT = {
   /** Set to be focused (active) on selected\checked radio. */
   autoFocus?: boolean,
   /** How to position radio buttons in the group. */
-  align?: string,
+  align?: AlignT,
   /** String value for the name of RadioGroup, it is used to group buttons. If missed default is random ID string. */
   name?: string,
   /** How to position the label relative to the radio itself. */
@@ -89,6 +91,8 @@ export type StateT = {
 export type RadioPropsT = {
   /** Focus the radio on initial render. */
   autoFocus?: boolean,
+  /** How the radio will be displayed along with its description. Controls spacing */
+  align?: AlignT,
   /** Check or uncheck the control. */
   checked?: boolean,
   /** Label of radio. */

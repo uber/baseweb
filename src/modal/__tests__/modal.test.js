@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -147,6 +147,53 @@ describe('Modal', () => {
     expect(body.style.overflow).toBe('hidden');
     wrapper.setProps({isOpen: false});
     expect(body.style.overflow).toBe('');
+  });
+
+  describe('nested modals', () => {
+    const TwoModals = ({isOpen1 = false, isOpen2 = false}) => (
+      <>
+        <Modal isOpen={isOpen1}>Modal 1</Modal>
+        <Modal isOpen={isOpen2}>Modal 2</Modal>,
+      </>
+    );
+
+    test('resets body scroll when top closes first', () => {
+      wrapper = mount(<TwoModals />);
+
+      const body = ((document.body: any): HTMLBodyElement);
+      expect(body.style.overflow).toBe('');
+
+      wrapper.setProps({isOpen1: true, isOpen2: false});
+      expect(body.style.overflow).toBe('hidden');
+
+      wrapper.setProps({isOpen1: true, isOpen2: true});
+      expect(body.style.overflow).toBe('hidden');
+
+      wrapper.setProps({isOpen1: true, isOpen2: false});
+      expect(body.style.overflow).toBe('hidden');
+
+      wrapper.setProps({isOpen1: false, isOpen2: false});
+      expect(body.style.overflow).toBe('');
+    });
+
+    test('resets body scroll when bottom closes first', () => {
+      wrapper = mount(<TwoModals />);
+
+      const body = ((document.body: any): HTMLBodyElement);
+      expect(body.style.overflow).toBe('');
+
+      wrapper.setProps({isOpen1: true, isOpen2: false});
+      expect(body.style.overflow).toBe('hidden');
+
+      wrapper.setProps({isOpen1: true, isOpen2: true});
+      expect(body.style.overflow).toBe('hidden');
+
+      wrapper.setProps({isOpen1: false, isOpen2: true});
+      expect(body.style.overflow).toBe('');
+
+      wrapper.setProps({isOpen1: false, isOpen2: false});
+      expect(body.style.overflow).toBe('');
+    });
   });
 
   test('override components', () => {

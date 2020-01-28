@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -20,6 +20,7 @@ import * as FileUploaderExports from 'baseui/file-uploader';
 
 import Yard from '../../components/yard/index';
 import fileUploaderYardConfig from '../../components/yard/config/file-uploader';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -40,6 +41,12 @@ Creates a dropzone for file uploads.
 ## When to use
 
 - Enable file(s) upload through drag and drop or the system _Browse files_ dialog.
+
+## Security considerations
+
+By default, the file uploader does not concern itself with validating and discarding potentially malicious files, as Base Web never runs any of the uploaded files. **It's the responsibility of the consuming application to do so.** To help with that, this component supports the `accept` property, which can limit the acceptable file extensions.
+
+To learn more, read the corresponding [OWASP article on file uploads](https://www.owasp.org/index.php/Unrestricted_File_Upload).
 
 ## Examples
 
@@ -70,6 +77,12 @@ Creates a dropzone for file uploads.
 </Example>
 
 ## API
+
+<ApiTable
+  title="File uploader props"
+  config={fileUploaderYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/file-uploader/file-uploader.js')}
+/>
 
 <Exports
   component={FileUploaderExports}

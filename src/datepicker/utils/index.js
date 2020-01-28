@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -35,6 +35,7 @@ import setMonth from 'date-fns/setMonth';
 import setYear from 'date-fns/setYear';
 import startOfMonth from 'date-fns/startOfMonth';
 import startOfWeek from 'date-fns/startOfWeek';
+import endOfWeek from 'date-fns/endOfWeek';
 import subDays from 'date-fns/subDays';
 import subMonths from 'date-fns/subMonths';
 import subWeeks from 'date-fns/subWeeks';
@@ -65,7 +66,9 @@ export {getMinutes, getHours, getMonth, getYear, getDay, getDate};
 export function getStartOfWeek(date: Date, locale: any) {
   return startOfWeek(date, {locale});
 }
-
+export function getEndOfWeek(date: Date) {
+  return endOfWeek(date);
+}
 export function getStartOfMonth(date: Date) {
   return startOfMonth(date);
 }

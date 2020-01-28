@@ -1,30 +1,43 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
 import ToastBasic from 'examples/toast/basic.js';
 import ToastNotification from 'examples/toast/toast-notification.js';
+import ToastSameKeyNotification from 'examples/toast/toast-same-key-notification.js';
 
-import Overrides from '../../components/overrides';
 import {Toast} from 'baseui/toast';
 import * as ToastExports from 'baseui/toast';
+import Yard from '../../components/yard/index';
+import toastYardConfig from '../../components/yard/config/toast';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
 # Toast
 
+<Yard
+  componentName="ToasterContainer"
+  placeholderHeight={52}
+  {...toastYardConfig}
+/>
+
 Toasts can be dismissed and sit on top of a view in various position options - top/right, top/center,
 top/left, bottom/right, bottom/center, bottom/left. Toasts are intended to provide feedback to a user
 and self-dismiss after a short time with an option to self-dismiss. Each toast can be colored to fit
 it’s status type of neutral, positive, warning and alert.
+
+**Using the `toaster` utility:**
+
+Toasts can be created easily with some of the helper functions on `toaster`, as seen in the code sample above. If a key isn't provided, it will auto-generate a unique key for you which will be returned in the instantiation functions (`info, positive, warning, negative`).
+If a toast with an identical key already exists, that toast's contents will be updated instead of a new toast being created. The autoHide timeout will reset unless the `resetAutoHideTimerOnUpdate` prop is set to false on the toaster.
 
 ## Accessibility
 
@@ -34,10 +47,6 @@ it’s status type of neutral, positive, warning and alert.
 
 ## Examples
 
-<Example title="Toaster Basic Usage" path="toast/basic.js">
-  <ToastBasic />
-</Example>
-
 <Example
   title="Toast Notification Basic Usage"
   path="toast/toast-notification.js"
@@ -45,24 +54,19 @@ it’s status type of neutral, positive, warning and alert.
   <ToastNotification />
 </Example>
 
-## Overrides
-
-<Overrides
-  name="Toast"
-  component={ToastExports}
-  renderExample={props => <Toast overrides={props.overrides}>Toast</Toast>}
-/>
+<Example
+  title="Toaster Using Key To Update Open Toasts"
+  path="toast/toast-same-key-notification.js"
+>
+  <ToastSameKeyNotification />
+</Example>
 
 ## API
 
-<API
-  heading="Toaster API"
-  api={require('!!extract-react-types-loader!../../../src/toast/toaster.js')}
-/>
-
-<API
-  heading="Toast API"
-  api={require('!!extract-react-types-loader!../../../src/toast/toast.js')}
+<ApiTable
+  title="Toast props"
+  config={toastYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/toast/toast.js')}
 />
 
 <Exports component={ToastExports} title="Toast exports" path="baseui/toast" />

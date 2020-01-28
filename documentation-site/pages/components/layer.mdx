@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,6 +8,9 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import * as LayerExports from 'baseui/layer';
 
 import LayerBasic from 'examples/layer/basic.js';
 import LayerZIndex from 'examples/layer/layer-z-index.js';
@@ -32,7 +35,9 @@ It needs to be added at the root of the application. It will add the `LayersMana
 Make sure you add the `BaseProvider` at the root of your application.
 
 `LayersManager` creates two adjacent divs. Your application will be mounted into
-the first div. The second div is used to host rendered layers.
+the first div. The second div is used to host rendered layers. If the generated wrapper div
+around your application conflicts with the layout styles, then use overrides to fix the issue.
+For example, `overrides={{ AppContainer: { style: { height: '100%'} }}}`.
 
 **Please note:** If you don't wrap the application in a `BaseProvider` all layers will be added
 directly to the `body` element and may create conflicts with other libraries that may add
@@ -105,3 +110,5 @@ greated than the highest `z-index` value of all top level stacking contexts in y
   heading="Tether API"
   api={require('!!extract-react-types-loader!../../../src/layer/tether.js')}
 />
+
+<Exports component={LayerExports} title="Layer exports" path="baseui/layer" />

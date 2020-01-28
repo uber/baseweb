@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -22,11 +22,14 @@ export type OptionT = $ReadOnly<{
   disabled?: boolean,
   clearableValue?: boolean,
   isCreatable?: boolean,
+  __optgroup?: string,
   // eslint-disable-next-line flowtype/no-weak-types
   [string]: any,
 }>;
 
 export type ValueT = $ReadOnlyArray<OptionT>;
+export type OptgroupsT = {__ungrouped: ValueT, [string]: ValueT};
+export type OptionsT = ?ValueT | OptgroupsT;
 
 export type OnChangeParamsT = {
   value: ValueT,
@@ -47,6 +50,7 @@ export type OverridesT = {
   SelectArrow?: OverrideT<*>,
   ClearIcon?: OverrideT<*>,
   LoadingIndicator?: OverrideT<*>,
+  SearchIconContainer?: OverrideT<*>,
   SearchIcon?: OverrideT<*>,
   Popover?: OverrideT<*>,
   DropdownContainer?: OverrideT<*>,
@@ -145,7 +149,7 @@ export type PropsT = {
   startOpen: boolean,
   /** Options to be displayed in the dropdown. If an option has a
    * disabled prop value set to true it will be rendered as a disabled option in the dropdown. */
-  options: ?ValueT,
+  options: OptionsT,
   overrides: OverridesT,
   /** Sets the placeholder. */
   placeholder?: React.Node,
@@ -162,6 +166,8 @@ export type PropsT = {
   /** A current selected value(s). If a selected value has a clearableValue
    * prop set to true it will be rendered as a disabled selected option that can't be cleared. */
   value: ValueT,
+  // eslint-disable-next-line flowtype/no-weak-types
+  valueComponent?: React.ComponentType<any>,
   /** Defines a key name for an option's unique identifier value.
    * The value of the `valueKey` prop is used to identify what options are selected
    * or removed from the selection, it also used for default filtering out the
@@ -266,4 +272,5 @@ export type SharedStylePropsArgT = {
   $maxHeight?: string,
   $isHighlighted?: boolean,
   $selected?: boolean,
+  $isEmpty?: boolean,
 };

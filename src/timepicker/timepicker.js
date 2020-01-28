@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -130,7 +130,9 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
       });
       this.setState({
         steps: steps,
-        value: {id: closestStep, label: secondsToLabel(closestStep)},
+        value: this.props.nullable
+          ? undefined
+          : {id: closestStep, label: secondsToLabel(closestStep)},
       });
       this.handleChange(closestStep);
     }
@@ -146,7 +148,10 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
   }
 
   handleChange = (seconds: number) => {
-    const date = this.props.value ? new Date(this.props.value) : new Date();
+    if (!this.props.value) {
+      return;
+    }
+    const date = new Date(this.props.value);
     const [hours, minutes] = secondsToHourMinute(seconds);
     date.setHours(hours, minutes, 0);
     this.props.onChange && this.props.onChange(date);
@@ -224,6 +229,8 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
             disabled={this.props.disabled}
             error={this.props.error}
             positive={this.props.positive}
+            size={this.props.size}
+            placeholder={this.props.placeholder || 'HH:mm'}
             options={this.state.steps.map(n => ({
               id: n,
               label: secondsToLabel(n, this.props.format),

@@ -1,16 +1,20 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {StyledLink} from 'baseui/link';
-import {assertUnreachable, useValueDebounce} from './utils';
-import {PropTypes} from './const';
 import {Input} from 'baseui/input';
 import {Radio, RadioGroup} from 'baseui/radio';
 import {Checkbox} from 'baseui/checkbox';
 import {Select, SIZE} from 'baseui/select';
 import {StatefulTooltip} from 'baseui/tooltip';
-import PopupError from './popup-error';
+
 import Editor from './editor';
-import {TPropValue} from './types';
+import {
+  assertUnreachable,
+  useValueDebounce,
+  PropTypes,
+  Error,
+  TPropValue,
+} from 'react-view';
 
 const getTooltip = (description: string, type: string, name: string) => (
   <span>
@@ -22,9 +26,9 @@ const getTooltip = (description: string, type: string, name: string) => (
 );
 
 const Spacing: React.FC<{children: React.ReactNode}> = ({children}) => {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   return (
-    <div className={useCss({margin: `${theme.sizing.scale400} 0`})}>
+    <div className={css({margin: `${theme.sizing.scale400} 0`})}>
       {children}
     </div>
   );
@@ -34,16 +38,25 @@ const Label: React.FC<{
   children: React.ReactNode;
   tooltip: React.ReactNode;
 }> = ({children, tooltip}) => {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   return (
     <label
-      className={useCss({
+      className={css({
         ...theme.typography.font250,
-        color: theme.colors.foreground,
+        color: theme.colors.contentPrimary,
       })}
     >
       <StatefulTooltip accessibilityType="tooltip" content={tooltip}>
-        {children}
+        <span
+          className={css({
+            textDecoration: 'underline',
+            ':hover': {
+              color: theme.colors.contentSecondary,
+            },
+          })}
+        >
+          {children}
+        </span>
       </StatefulTooltip>
     </label>
   );
@@ -71,6 +84,7 @@ const Knob: React.SFC<{
   enumName,
 }) => {
   const [val, set] = useValueDebounce<TPropValue>(globalVal, globalSet);
+  const [css, theme] = useStyletron();
   switch (type) {
     case PropTypes.Ref:
       return (
@@ -86,7 +100,7 @@ const Knob: React.SFC<{
           >
             React Ref documentation
           </StyledLink>
-          <PopupError error={error} />
+          <Error msg={error} isPopup />
         </Spacing>
       );
     case PropTypes.String:
@@ -96,14 +110,13 @@ const Knob: React.SFC<{
         <Spacing>
           <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
           <Input
-            //@ts-ignore
             error={Boolean(error)}
-            onChange={event => set((event.target as any).value)}
+            onChange={event => set((event.target as HTMLInputElement).value)}
             placeholder={placeholder}
             size="compact"
             value={val ? String(val) : undefined}
           />
-          <PopupError error={error} />
+          <Error msg={error} isPopup />
         </Spacing>
       );
     case PropTypes.Boolean:
@@ -120,10 +133,19 @@ const Knob: React.SFC<{
               content={getTooltip(description, type, name)}
               placement="right"
             >
-              {name}
+              <span
+                className={css({
+                  textDecoration: 'underline',
+                  ':hover': {
+                    color: theme.colors.contentSecondary,
+                  },
+                })}
+              >
+                {name}
+              </span>
             </StatefulTooltip>
           </Checkbox>
-          <PopupError error={error} />
+          <Error msg={error} isPopup />
         </Spacing>
       );
     case PropTypes.Enum:
@@ -151,7 +173,7 @@ const Knob: React.SFC<{
                 },
               }}
               onChange={e => {
-                globalSet((e.target as any).value);
+                globalSet((e.target as HTMLInputElement).value);
               }}
               value={String(val)}
             >
@@ -189,8 +211,7 @@ const Knob: React.SFC<{
               }}
             />
           )}
-
-          <PopupError error={error} />
+          <Error msg={error} isPopup />
         </Spacing>
       );
     case PropTypes.ReactNode:
@@ -208,10 +229,10 @@ const Knob: React.SFC<{
             placeholder={placeholder}
             small
           />
-          <PopupError error={error} />
+          <Error msg={error} isPopup />
         </Spacing>
       );
-    case PropTypes.Overrides:
+    case PropTypes.Custom:
       return null;
     default:
       return assertUnreachable();

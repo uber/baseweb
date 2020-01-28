@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -14,7 +14,7 @@ import {Checkbox} from '../index.js';
 export const name = 'checkbox-indeterminate';
 
 class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
-  state = {checkboxes: [false, false]};
+  state = {checkboxes: [true, false]};
 
   render() {
     const allChecked = this.state.checkboxes.every(Boolean);

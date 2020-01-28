@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -63,7 +63,7 @@ describe('menu-child', () => {
     expect(isEqual).toBe(true);
   });
 
-  it('up/down arrows change highlighted item', async () => {
+  it('up and down arrows change highlighted item', async () => {
     await mount(page, 'menu-child');
     await hoverItem(page, 0, 0);
     await page.keyboard.press('ArrowDown');
@@ -74,7 +74,7 @@ describe('menu-child', () => {
     expect(text).toBe('New Window');
   });
 
-  it('left/right arrows change focused menu', async () => {
+  it('left and right arrows change focused menu', async () => {
     await mount(page, 'menu-child');
     await hoverItem(page, 0, 0);
 
@@ -114,6 +114,15 @@ describe('menu-child', () => {
     await page.waitFor(childSelector);
   });
 
+  it('allows child menu to release focus and closes menu when different menu item selected', async () => {
+    await mount(page, 'menu-child');
+    await hoverItem(page, 0, 5);
+    await page.waitFor(childSelector);
+    await page.keyboard.press('ArrowLeft');
+    await page.keyboard.press('ArrowDown');
+    await page.waitFor(childSelector, {hidden: true});
+  });
+
   it('highlights child menu item on hover', async () => {
     await mount(page, 'menu-child');
     await hoverItem(page, 0, 5);
@@ -122,5 +131,18 @@ describe('menu-child', () => {
     await hoverItem(page, 1, 5);
     const text = await findHighlightedLabel(page);
     expect(text).toBe('Reopen Closed Editor');
+  });
+
+  it('renders content even when hidden: with renderAll prop', async () => {
+    await mount(page, 'menu-child-render-all');
+    await page.waitFor(parentSelector);
+    await page.waitFor(childSelector);
+    await hoverItem(page, 0, 0);
+
+    const parent = await page.$(parentSelector);
+    const activeElement = await findActiveElement(page);
+    const isEqual = await compareElements(page, parent, activeElement);
+    expect(isEqual).toBe(true);
+    await page.waitFor(childSelector);
   });
 });

@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Accordion basic render w/ SEO: Accordion renders all panel content with renderPanelContent 1`] = `
+exports[`Accordion basic render w/ SEO: Accordion renders all panel content with renderAll 1`] = `
 <Component
-  renderPanelContent={true}
+  renderAll={true}
 >
   <Accordion
     accordion={true}
@@ -14,7 +14,8 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
     }
     onChange={[Function]}
     overrides={Object {}}
-    renderPanelContent={true}
+    renderAll={true}
+    renderPanelContent={false}
     stateReducer={[Function]}
   >
     <ForwardRef
@@ -49,7 +50,8 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
             onClick={[Function]}
             onKeyDown={[Function]}
             overrides={Object {}}
-            renderPanelContent={true}
+            renderAll={true}
+            renderPanelContent={false}
             title="Accordion panel 1"
           >
             <ForwardRef
@@ -107,7 +109,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                             "alignItems": "center",
                             "backgroundColor": "$theme.colors.listHeaderFill",
                             "borderBottom": "1px solid $theme.colors.mono400",
-                            "color": "$theme.colors.colorPrimary",
+                            "color": "$theme.colors.contentPrimary",
                             "cursor": "pointer",
                             "display": "flex",
                             "fontFamily": "$theme.typography.font350.fontFamily",
@@ -180,7 +182,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                                   styled-component="true"
                                   test-style={
                                     Object {
-                                      "color": "$theme.colors.foreground",
+                                      "color": "$theme.colors.contentPrimary",
                                       "cursor": "pointer",
                                       "display": "inline-block",
                                       "fill": "currentColor",
@@ -222,7 +224,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                             "backgroundColor": "$theme.colors.listBodyFill",
                             "borderBottom": "none",
                             "boxSizing": "border-box",
-                            "color": "$theme.colors.foreground",
+                            "color": "$theme.colors.contentPrimary",
                             "fontFamily": "$theme.typography.font200.fontFamily",
                             "fontSize": "$theme.typography.font200.fontSize",
                             "fontWeight": "$theme.typography.font200.fontWeight",
@@ -261,7 +263,8 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
             onClick={[Function]}
             onKeyDown={[Function]}
             overrides={Object {}}
-            renderPanelContent={true}
+            renderAll={true}
+            renderPanelContent={false}
             title="Accordion panel 2"
           >
             <ForwardRef
@@ -319,7 +322,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                             "alignItems": "center",
                             "backgroundColor": "$theme.colors.listHeaderFill",
                             "borderBottom": "1px solid $theme.colors.mono400",
-                            "color": "$theme.colors.colorPrimary",
+                            "color": "$theme.colors.contentPrimary",
                             "cursor": "pointer",
                             "display": "flex",
                             "fontFamily": "$theme.typography.font350.fontFamily",
@@ -392,7 +395,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                                   styled-component="true"
                                   test-style={
                                     Object {
-                                      "color": "$theme.colors.foreground",
+                                      "color": "$theme.colors.contentPrimary",
                                       "cursor": "pointer",
                                       "display": "inline-block",
                                       "fill": "currentColor",
@@ -434,7 +437,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                             "backgroundColor": "$theme.colors.listBodyFill",
                             "borderBottom": "none",
                             "boxSizing": "border-box",
-                            "color": "$theme.colors.foreground",
+                            "color": "$theme.colors.contentPrimary",
                             "fontFamily": "$theme.typography.font200.fontFamily",
                             "fontSize": "$theme.typography.font200.fontSize",
                             "fontWeight": "$theme.typography.font200.fontWeight",
@@ -473,7 +476,8 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
             onClick={[Function]}
             onKeyDown={[Function]}
             overrides={Object {}}
-            renderPanelContent={true}
+            renderAll={true}
+            renderPanelContent={false}
             title="Accordion panel 3"
           >
             <ForwardRef
@@ -531,7 +535,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                             "alignItems": "center",
                             "backgroundColor": "$theme.colors.listHeaderFill",
                             "borderBottom": "1px solid $theme.colors.mono400",
-                            "color": "$theme.colors.colorPrimary",
+                            "color": "$theme.colors.contentPrimary",
                             "cursor": "pointer",
                             "display": "flex",
                             "fontFamily": "$theme.typography.font350.fontFamily",
@@ -604,7 +608,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                                   styled-component="true"
                                   test-style={
                                     Object {
-                                      "color": "$theme.colors.foreground",
+                                      "color": "$theme.colors.contentPrimary",
                                       "cursor": "pointer",
                                       "display": "inline-block",
                                       "fill": "currentColor",
@@ -646,7 +650,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                             "backgroundColor": "$theme.colors.listBodyFill",
                             "borderBottom": "none",
                             "boxSizing": "border-box",
-                            "color": "$theme.colors.foreground",
+                            "color": "$theme.colors.contentPrimary",
                             "fontFamily": "$theme.typography.font200.fontFamily",
                             "fontSize": "$theme.typography.font200.fontSize",
                             "fontWeight": "$theme.typography.font200.fontWeight",
@@ -695,6 +699,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
     }
     onChange={[Function]}
     overrides={Object {}}
+    renderAll={false}
     renderPanelContent={false}
     stateReducer={[Function]}
   >
@@ -730,6 +735,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
             onClick={[Function]}
             onKeyDown={[Function]}
             overrides={Object {}}
+            renderAll={false}
             renderPanelContent={false}
             title="Accordion panel 1"
           >
@@ -788,7 +794,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                             "alignItems": "center",
                             "backgroundColor": "$theme.colors.listHeaderFill",
                             "borderBottom": "1px solid $theme.colors.mono400",
-                            "color": "$theme.colors.colorPrimary",
+                            "color": "$theme.colors.contentPrimary",
                             "cursor": "pointer",
                             "display": "flex",
                             "fontFamily": "$theme.typography.font350.fontFamily",
@@ -861,7 +867,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                                   styled-component="true"
                                   test-style={
                                     Object {
-                                      "color": "$theme.colors.foreground",
+                                      "color": "$theme.colors.contentPrimary",
                                       "cursor": "pointer",
                                       "display": "inline-block",
                                       "fill": "currentColor",
@@ -903,7 +909,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                             "backgroundColor": "$theme.colors.listBodyFill",
                             "borderBottom": "none",
                             "boxSizing": "border-box",
-                            "color": "$theme.colors.foreground",
+                            "color": "$theme.colors.contentPrimary",
                             "fontFamily": "$theme.typography.font200.fontFamily",
                             "fontSize": "$theme.typography.font200.fontSize",
                             "fontWeight": "$theme.typography.font200.fontWeight",
@@ -940,6 +946,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
             onClick={[Function]}
             onKeyDown={[Function]}
             overrides={Object {}}
+            renderAll={false}
             renderPanelContent={false}
             title="Accordion panel 2"
           >
@@ -998,7 +1005,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                             "alignItems": "center",
                             "backgroundColor": "$theme.colors.listHeaderFill",
                             "borderBottom": "1px solid $theme.colors.mono400",
-                            "color": "$theme.colors.colorPrimary",
+                            "color": "$theme.colors.contentPrimary",
                             "cursor": "pointer",
                             "display": "flex",
                             "fontFamily": "$theme.typography.font350.fontFamily",
@@ -1071,7 +1078,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                                   styled-component="true"
                                   test-style={
                                     Object {
-                                      "color": "$theme.colors.foreground",
+                                      "color": "$theme.colors.contentPrimary",
                                       "cursor": "pointer",
                                       "display": "inline-block",
                                       "fill": "currentColor",
@@ -1113,7 +1120,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                             "backgroundColor": "$theme.colors.listBodyFill",
                             "borderBottom": "none",
                             "boxSizing": "border-box",
-                            "color": "$theme.colors.foreground",
+                            "color": "$theme.colors.contentPrimary",
                             "fontFamily": "$theme.typography.font200.fontFamily",
                             "fontSize": "$theme.typography.font200.fontSize",
                             "fontWeight": "$theme.typography.font200.fontWeight",
@@ -1150,6 +1157,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
             onClick={[Function]}
             onKeyDown={[Function]}
             overrides={Object {}}
+            renderAll={false}
             renderPanelContent={false}
             title="Accordion panel 3"
           >
@@ -1208,7 +1216,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                             "alignItems": "center",
                             "backgroundColor": "$theme.colors.listHeaderFill",
                             "borderBottom": "1px solid $theme.colors.mono400",
-                            "color": "$theme.colors.colorPrimary",
+                            "color": "$theme.colors.contentPrimary",
                             "cursor": "pointer",
                             "display": "flex",
                             "fontFamily": "$theme.typography.font350.fontFamily",
@@ -1281,7 +1289,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                                   styled-component="true"
                                   test-style={
                                     Object {
-                                      "color": "$theme.colors.foreground",
+                                      "color": "$theme.colors.contentPrimary",
                                       "cursor": "pointer",
                                       "display": "inline-block",
                                       "fill": "currentColor",
@@ -1323,7 +1331,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                             "backgroundColor": "$theme.colors.listBodyFill",
                             "borderBottom": "none",
                             "boxSizing": "border-box",
-                            "color": "$theme.colors.foreground",
+                            "color": "$theme.colors.contentPrimary",
                             "fontFamily": "$theme.typography.font200.fontFamily",
                             "fontSize": "$theme.typography.font200.fontSize",
                             "fontWeight": "$theme.typography.font200.fontWeight",

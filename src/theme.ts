@@ -4,58 +4,75 @@ interface Breakpoints {
   large: number;
 }
 
+interface MediaQuery {
+  small: string;
+  medium: string;
+  large: string;
+}
+
+type Responsive<T> = T | T[];
+interface Grid {
+  columns: Responsive<number>;
+  gutters: Responsive<number>;
+  margins: Responsive<number>;
+  gaps: Responsive<number>;
+  maxWidth: number;
+}
+
 interface Colors {
   // Primary Palette
+  primaryA: string;
+  primaryB: string;
+  primary: string;
   primary50: string;
   primary100: string;
   primary200: string;
   primary300: string;
   primary400: string;
-  primary: string;
   primary500: string;
   primary600: string;
   primary700: string;
 
   // Accent Palette
+  accent: string;
   accent50: string;
   accent100: string;
   accent200: string;
   accent300: string;
   accent400: string;
-  accent: string;
   accent500: string;
   accent600: string;
   accent700: string;
 
   // Alert Palette
+  negative: string;
   negative50: string;
   negative100: string;
   negative200: string;
   negative300: string;
   negative400: string;
-  negative: string;
   negative500: string;
   negative600: string;
   negative700: string;
 
   // Warning Palette
+  warning: string;
   warning50: string;
   warning100: string;
   warning200: string;
   warning300: string;
   warning400: string;
-  warning: string;
   warning500: string;
   warning600: string;
   warning700: string;
 
   // Success Palette
+  positive: string;
   positive50: string;
   positive100: string;
   positive200: string;
   positive300: string;
   positive400: string;
-  positive: string;
   positive500: string;
   positive600: string;
   positive700: string;
@@ -78,7 +95,68 @@ interface Colors {
   rating200: string;
   rating400: string;
 
-  // Semantic Colors
+  /* ---- Semantic Colors ---- */
+
+  /* CoreSemanticColorTokensT */
+
+  // Background
+  backgroundPrimary: string;
+  backgroundSecondary: string;
+  backgroundTertiary: string;
+  backgroundInversePrimary: string;
+  backgroundInverseSecondary: string;
+
+  // Content
+  contentPrimary: string;
+  contentSecondary: string;
+  contentTertiary: string;
+  contentInversePrimary: string;
+  contentInverseSecondary: string;
+  contentInverseTertiary: string;
+
+  // Border
+  borderOpaque: string;
+  borderTransparent: string;
+  borderSelected: string;
+  borderInverseOpaque: string;
+  borderInverseTransparent: string;
+  borderInverseSelected: string;
+
+  /* CoreExtensionSemanticColorTokensT */
+
+  // Backgrounds
+  backgroundStateDisabled: string;
+  backgroundOverlayDark: string;
+  backgroundOverlayLight: string;
+  backgroundAccent: string;
+  backgroundNegative: string;
+  backgroundWarning: string;
+  backgroundPositive: string;
+  backgroundLightAccent: string;
+  backgroundLightPositive: string;
+  backgroundLightNegative: string;
+  backgroundLightWarning: string;
+  backgroundAlwaysDark: string;
+  backgroundAlwaysLight: string;
+
+  // Content
+  contentStateDisabled: string;
+  contentAccent: string;
+  contentOnColor: string;
+  contentNegative: string;
+  contentWarning: string;
+  contentPositive: string;
+
+  // Border
+  borderStateDisabled: string;
+  borderAccent: string;
+  borderNegative: string;
+  borderWarning: string;
+  borderPositive: string;
+
+  /* ---- End of Semantic Colors ---- */
+
+  /* ---- Deprecated Semantic Colors ---- */
 
   // Font Color
   colorPrimary: string;
@@ -99,6 +177,10 @@ interface Colors {
   borderAlt: string;
   borderFocus: string;
   borderError: string;
+
+  /* ---- End of Deprecated Semantic Colors ---- */
+
+  /* ---- Component Specific Colors ---- */
 
   // Buttons
   buttonPrimaryFill: string;
@@ -458,6 +540,8 @@ interface Colors {
   // Tooltip
   tooltipBackground: string;
   tooltipText: string;
+
+  /* ---- End of Component Specific Colors ---- */
 }
 
 interface Font {
@@ -538,6 +622,7 @@ interface Animation {
   timing100: string;
   timing400: string;
   timing700: string;
+  timing1000: string;
   easeOutCurve: string;
   easeInCurve: string;
   easeInOutCurve: string;
@@ -570,6 +655,8 @@ export interface Theme {
   name: string;
   direction: 'auto' | 'rtl' | 'ltr';
   breakpoints: Breakpoints;
+  mediaQuery: MediaQuery;
+  grid: Grid;
   colors: Colors;
   typography: Typography;
   sizing: Sizing;
@@ -581,6 +668,8 @@ export interface Theme {
 
 export interface ThemePrimitives {
   // Primary Palette
+  primaryA: string;
+  primaryB: string;
   primary: string;
   primary50: string;
   primary100: string;

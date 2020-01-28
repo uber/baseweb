@@ -1,7 +1,16 @@
+/*
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
 import {Datepicker, ORIENTATION} from 'baseui/datepicker';
-import {PropTypes} from '../const';
+import {SIZE} from 'baseui/input';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 import inputConfig from './input';
+
+const datepickerProps = require('!!extract-react-types-loader!../../../../src/datepicker/datepicker.js');
 
 const DatepickerConfig: TConfig = {
   imports: {
@@ -9,7 +18,7 @@ const DatepickerConfig: TConfig = {
       named: ['Datepicker'],
     },
   },
-  scope: {Datepicker, ORIENTATION},
+  scope: {Datepicker, ORIENTATION, SIZE},
   theme: [
     'datepickerBackground',
     'datepickerDayFont',
@@ -47,15 +56,18 @@ const DatepickerConfig: TConfig = {
       propHook: {
         // yikes, onChange can return Date, [Date] or [Date, Date] and we need to handle
         // them all
-        what: `Array.isArray(date) && date.length === 2 ? 
-    "[new Date('" + date[0].toISOString() + "'), new Date('" + date[1].toISOString() + "')]"
-  : (Array.isArray(date) ? "[new Date('" + date[0].toISOString() + "')]" : "[new Date('" + date.toISOString() + "')]")`,
+        what: `(Array.isArray(date) && (!date[0] || !date[1])) || !date ?
+          "[new Date()]"
+          :
+            Array.isArray(date) && date.length === 2 ?
+              "[new Date('" + date[0].toISOString() + "'), new Date('" + date[1].toISOString() + "')]"
+            : (Array.isArray(date) ? "[new Date('" + date[0].toISOString() + "')]" : "[new Date('" + date.toISOString() + "')]")`,
         into: 'value',
       },
     },
     autoFocusCalendar: {
-      value: undefined,
-      type: PropTypes.Function,
+      value: false,
+      type: PropTypes.Boolean,
       description:
         'Defines if the calendar is set to be focused on an initial render.',
       hidden: true,
@@ -72,11 +84,25 @@ const DatepickerConfig: TConfig = {
       description:
         'Display select for quickly choosing date ranges. range must be true as well.',
     },
+    formatString: {
+      value: undefined,
+      type: PropTypes.String,
+      description: 'String format passed to date-fns.',
+      placeholder: 'yyyy/MM/dd',
+      hidden: true,
+    },
+    mask: {
+      value: undefined,
+      type: PropTypes.String,
+      description: 'Mask used for the text input. Passed to react-input-mask.',
+      placeholder: '9999/99/99',
+      hidden: true,
+    },
     quickSelectOptions: {
       value: undefined,
       type: PropTypes.Array,
       description:
-        'Array of custom options (Array<{ id: string; beginDate: Date }>) displayed in the quick select. Overrides default options if provided.',
+        'Array of custom options (Array<{ id: string; beginDate: Date; endDate?: Date }>) displayed in the quick select. Overrides default options if provided.',
       hidden: true,
     },
     filterDate: {
@@ -104,8 +130,15 @@ const DatepickerConfig: TConfig = {
       type: PropTypes.Boolean,
       description: 'Defines if a range of dates can be selected.',
     },
+    clearable: {
+      value: undefined,
+      type: PropTypes.Boolean,
+      description:
+        'Makes the datepicker clearable via a visual icon in the Input component.',
+    },
     positive: inputConfig.props.positive,
     error: inputConfig.props.error,
+    size: inputConfig.props.size,
     locale: {
       value: undefined,
       type: PropTypes.Object,
@@ -210,86 +243,91 @@ const DatepickerConfig: TConfig = {
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: [
-        'Root',
-        'CalendarContainer',
-        'CalendarHeader',
-        'Day',
-        'Month',
-        'MonthContainer',
-        'MonthHeader',
-        'MonthYearSelectButton',
-        'MonthYearSelectIconContainer',
-        'NextButton',
-        'PrevButton',
-        'Week',
-        'WeekdayHeader',
-        'InputWrapper',
-      ],
-      sharedProps: {
-        $date: 'value',
-        $disabled: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
-        $endDate: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
-        $endOfMonth: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
-        $isHighlighted: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
-        $isHovered: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
-        $outsideMonth: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
-        $peekNextMonth: 'peekNextMonth',
-        $pseudoHighlighted: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
-        $pseudoSelected: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
-        $selected: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
-        $startDate: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
-        $startOfMonth: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
-        $range: 'range',
-        $hasRangeHighlighted: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
-        $hasRangeOnRight: {
-          type: PropTypes.Boolean,
-          description: '',
-        },
-        $hasRangeSelected: {
-          type: PropTypes.Boolean,
-          description: '',
+      custom: {
+        names: [
+          'Root',
+          'CalendarContainer',
+          'CalendarHeader',
+          'Day',
+          'Month',
+          'MonthContainer',
+          'MonthHeader',
+          'MonthYearSelectButton',
+          'MonthYearSelectIconContainer',
+          'NextButton',
+          'PrevButton',
+          'Week',
+          'WeekdayHeader',
+          'InputWrapper',
+        ],
+        sharedProps: {
+          $date: 'value',
+          $disabled: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
+          $endDate: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
+          $endOfMonth: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
+          $isHighlighted: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
+          $isHovered: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
+          $outsideMonth: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
+          $peekNextMonth: 'peekNextMonth',
+          $pseudoHighlighted: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
+          $pseudoSelected: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
+          $selected: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
+          $startDate: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
+          $startOfMonth: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
+          $range: 'range',
+          $hasRangeHighlighted: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
+          $hasRangeOnRight: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
+          $hasRangeSelected: {
+            type: PropTypes.Boolean,
+            description: '',
+          },
         },
       },
     },
+  },
+  mapTokensToProps: {
+    Datepicker: datepickerProps,
   },
 };
 

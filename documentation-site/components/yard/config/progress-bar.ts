@@ -1,6 +1,8 @@
 import {ProgressBar} from 'baseui/progress-bar';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
+
+const progressBarProps = require('!!extract-react-types-loader!../../../../src/progress-bar/progressbar.js');
 
 const ProgressBarConfig: TConfig = {
   imports: {
@@ -36,16 +38,27 @@ const ProgressBarConfig: TConfig = {
       type: PropTypes.Boolean,
       description: 'Can be used to show the progress bar label.',
     },
+    infinite: {
+      value: undefined,
+      placeholder: 'false',
+      type: PropTypes.Boolean,
+      description: 'Can be used to show the infinite progress bar.',
+    },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: ['Bar', 'BarProgress', 'Label', 'Root'],
-      sharedProps: {
-        $successValue: 'successValue',
-        $value: 'value',
+      custom: {
+        names: ['Bar', 'BarProgress', 'Label', 'Root'],
+        sharedProps: {
+          $successValue: 'successValue',
+          $value: 'value',
+        },
       },
     },
+  },
+  mapTokensToProps: {
+    ProgressBar: progressBarProps,
   },
 };
 

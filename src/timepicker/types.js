@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/generic-spacing */
 import type {OverrideT} from '../helpers/overrides.js';
 import type {OptionT} from '../select/index.js';
+import type {SizeT} from '../input/types.js';
 
 export type TimePickerPropsT = {
   /** Render options in AM/PM format or 24 hour format. Defaults to 12 hour. */
@@ -29,6 +30,9 @@ export type TimePickerPropsT = {
   disabled?: boolean,
   error?: boolean,
   positive?: boolean,
+  nullable?: boolean,
+  placeholder?: string,
+  size?: SizeT,
 };
 export type TimePickerStateT = {
   /** List of times (in seconds) displayed in the dropdown menu. */

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -11,7 +11,7 @@ export default function SvgUnstableA11Y(props) {
   return (
     <svg width={232} height={145} fill="none" {...props}>
       <path fill={props.colors[1]} d="M79 72h50v18H79z" />
-      <path fill="#000" fillOpacity={0.25} d="M105 58h50v24h-50z" />
+      <path fill={props.colors[2]} d="M105 72h24v10h-24z" />
       <path fill={props.colors[0]} d="M103 56h50v24h-50z" />
       <g clipPath="url(#unstable-a11y_svg__clip0)">
         <path
@@ -21,7 +21,7 @@ export default function SvgUnstableA11Y(props) {
       </g>
       <defs>
         <clipPath id="unstable-a11y_svg__clip0">
-          <path fill="#fff" transform="translate(122 61)" d="M0 0h12v11H0z" />
+          <path fill="#fff" d="M122 61h12v11h-12z" />
         </clipPath>
       </defs>
     </svg>

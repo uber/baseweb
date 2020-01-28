@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -62,10 +62,33 @@ type MeasureColumnWidthsPropsT = {
 };
 
 // sample size could likely be generated based on row count, to have higher confidence
-const MAX_SAMPLE_SIZE = 10;
+const MAX_SAMPLE_SIZE = 50;
+
+function generateSampleIndices(inputMin, inputMax, maxSamples) {
+  const indices = [];
+  const queue = [[inputMin, inputMax]];
+
+  while (queue.length > 0) {
+    const [min, max] = queue.shift();
+    if (indices.length < maxSamples) {
+      const pivot = Math.floor((min + max) / 2);
+      indices.push(pivot);
+      const left = pivot - 1;
+      const right = pivot + 1;
+      if (left >= min) {
+        queue.push([min, left]);
+      }
+      if (right <= max) {
+        queue.push([right, max]);
+      }
+    }
+  }
+
+  return indices;
+}
 
 export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
 
   const measurementCount = React.useRef(0);
   const sampleSize = React.useMemo(() => {
@@ -84,17 +107,8 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
     measurementCount.current = 0;
     dimensionsCache.current = props.widths;
 
-    return props.columns.map(() => {
-      if (props.rows.length <= sampleSize) {
-        return props.rows.map((_, i) => i);
-      }
-
-      const indices = [];
-      for (let i = 0; i < sampleSize; i++) {
-        indices.push(Math.floor(Math.random() * props.rows.length));
-      }
-      return indices;
-    });
+    const indices = generateSampleIndices(0, props.rows.length - 1, sampleSize);
+    return props.columns.map(() => indices);
   }, [props.columns, props.rows, props.widths, sampleSize]);
 
   function handleDimensionsChange(columnIndex, rowIndex, dimensions) {
@@ -102,9 +116,13 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
 
     measurementCount.current += 1;
 
-    const nextWidth = Math.max(
-      dimensionsCache.current[columnIndex],
-      dimensions.width,
+    const nextWidth = Math.min(
+      Math.max(
+        props.columns[columnIndex].minWidth || 0,
+        dimensionsCache.current[columnIndex],
+        dimensions.width + 1,
+      ),
+      props.columns[columnIndex].maxWidth || Infinity,
     );
 
     if (nextWidth !== dimensionsCache.current[columnIndex]) {
@@ -118,13 +136,24 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
     }
   }
 
-  const hiddenStyle = useCss({
+  const hiddenStyle = css({
     position: 'absolute',
     overflow: 'hidden',
     height: 0,
   });
 
-  if (measurementCount === finishedMeasurementCount) {
+  const [shouldMeasure, setShouldMeasure] = React.useState(true);
+  React.useEffect(() => {
+    if (measurementCount.current >= finishedMeasurementCount) {
+      setShouldMeasure(false);
+    } else {
+      if (!shouldMeasure) {
+        setShouldMeasure(true);
+      }
+    }
+  }, [measurementCount.current, finishedMeasurementCount]);
+
+  if (!shouldMeasure) {
     return null;
   }
 
@@ -140,7 +169,9 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
             }
             item={
               <Cell
-                value={props.rows[rowIndex].data[columnIndex]}
+                value={props.columns[columnIndex].mapDataToValue(
+                  props.rows[rowIndex].data,
+                )}
                 isMeasured
                 onSelect={
                   props.isSelectable && columnIndex === 0 ? () => {} : undefined
@@ -158,17 +189,12 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
           }
           item={
             <HeaderCell
-              filterable={column.filterable}
-              filter={p => null}
               index={columnIndex}
-              isFilterOpen={false}
               isHovered
               isMeasured
               isSelectable={props.isSelectable && columnIndex === 0}
               isSelectedAll={false}
               isSelectedIndeterminate={false}
-              onFilterOpen={() => {}}
-              onFilterClose={() => {}}
               onMouseEnter={() => {}}
               onMouseLeave={() => {}}
               onSelectAll={() => {}}

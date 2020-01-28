@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -20,11 +20,7 @@ import {StatefulPopover, PLACEMENT} from '../../popover/index.js';
 import {styled, withStyle, useStyletron} from '../../styles/index.js';
 import {Tag} from '../../tag/index.js';
 
-import {
-  Unstable_StyledTable as StyledTable,
-  Unstable_StyledHeadCell as StyledHeadCell,
-  Unstable_StyledBodyCell as StyledBodyCell,
-} from '../index.js';
+import {StyledTable, StyledHeadCell, StyledBodyCell} from '../index.js';
 
 export const name = 'table-grid-jobs';
 
@@ -96,13 +92,6 @@ function buildRow(status: StatusT): RowT {
         'Passed (1 minute, 33 seconds)',
         'https://buildkite.com/uberopensource/baseui/builds/7728',
       ],
-      [
-        'buildkite/baseui/screener',
-        'running',
-        new Date(2019, 6, 22),
-        'Passed (1 minute, 33 seconds)',
-        'https://buildkite.com/uberopensource/baseui/builds/7728',
-      ],
     ],
   ];
 }
@@ -143,10 +132,10 @@ function statusToTagKind(status: StatusT) {
 }
 
 function Tasks(props: {tasks: TaskT[]}) {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   return (
     <div
-      className={useCss({
+      className={css({
         gridColumn: 'span 5',
         padding: '32px 24px',
       })}
@@ -253,12 +242,12 @@ function Row({striped, row}: {striped: boolean, row: RowT}) {
 }
 
 export function component() {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   return (
-    <div className={useCss({height: '600px'})}>
+    <div className={css({height: '600px'})}>
       <HeadingLevel>
         <div
-          className={useCss({
+          className={css({
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',

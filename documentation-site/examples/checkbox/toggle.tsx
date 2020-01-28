@@ -15,7 +15,7 @@ export default () => {
           nextCheckboxes[0] = e.currentTarget.checked;
           setCheckboxes(nextCheckboxes);
         }}
-        checkmarkType={STYLE_TYPE.toggle}
+        checkmarkType={STYLE_TYPE.toggle_round}
       >
         toggle me
       </Checkbox>
@@ -28,7 +28,7 @@ export default () => {
           nextCheckboxes[1] = e.currentTarget.checked;
           setCheckboxes(nextCheckboxes);
         }}
-        checkmarkType={STYLE_TYPE.toggle}
+        checkmarkType={STYLE_TYPE.toggle_round}
       >
         disabled toggle
       </Checkbox>

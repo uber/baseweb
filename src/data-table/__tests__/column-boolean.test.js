@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -13,27 +13,44 @@ import {BooleanColumn} from '../index.js';
 
 describe('boolean column', () => {
   it('is sortable by default', () => {
-    const column = BooleanColumn({title: 'column'});
+    const column = BooleanColumn({
+      title: 'column',
+      mapDataToValue: () => false,
+    });
     expect(column.sortable).toBe(true);
   });
 
   it('is filterable by default', () => {
-    const column = BooleanColumn({title: 'column'});
+    const column = BooleanColumn({
+      title: 'column',
+      mapDataToValue: () => false,
+    });
     expect(column.filterable).toBe(true);
   });
 
   it('applies provided sortable value', () => {
-    const column = BooleanColumn({title: 'column', sortable: false});
+    const column = BooleanColumn({
+      title: 'column',
+      sortable: false,
+      mapDataToValue: () => false,
+    });
     expect(column.sortable).toBe(false);
   });
 
   it('applies provided filterable value', () => {
-    const column = BooleanColumn({title: 'column', filterable: false});
+    const column = BooleanColumn({
+      title: 'column',
+      filterable: false,
+      mapDataToValue: () => false,
+    });
     expect(column.filterable).toBe(false);
   });
 
   it('cell renders T if true value provided', () => {
-    const column = BooleanColumn({title: 'column'});
+    const column = BooleanColumn({
+      title: 'column',
+      mapDataToValue: () => false,
+    });
     const Cell = column.renderCell;
 
     const {container} = render(<Cell value={true} />);
@@ -42,7 +59,10 @@ describe('boolean column', () => {
   });
 
   it('cell renders F if false value provided', () => {
-    const column = BooleanColumn({title: 'column'});
+    const column = BooleanColumn({
+      title: 'column',
+      mapDataToValue: () => false,
+    });
     const Cell = column.renderCell;
 
     const {container} = render(<Cell value={false} />);
@@ -51,7 +71,10 @@ describe('boolean column', () => {
   });
 
   it('applies filter with expected selection', () => {
-    const column = BooleanColumn({title: 'column'});
+    const column = BooleanColumn({
+      title: 'column',
+      mapDataToValue: () => false,
+    });
     const Filter = column.renderFilter;
 
     const mockSetFilter = jest.fn();
@@ -67,32 +90,40 @@ describe('boolean column', () => {
     fireEvent.click(getByText('Apply'));
 
     expect(mockSetFilter.mock.calls.length).toBe(1);
-    const [filterParams, description] = mockSetFilter.mock.calls[0];
+    const [filterParams] = mockSetFilter.mock.calls[0];
     expect(filterParams.selection.has(true)).toBe(true);
     expect(filterParams.selection.has(false)).toBe(false);
     expect(filterParams.exclude).toBe(false);
-    expect(description).toBe('true');
+    expect(filterParams.description).toBe('true');
   });
 
   it('builds expected filter function', () => {
-    const column = BooleanColumn({title: 'column'});
+    const column = BooleanColumn({
+      title: 'column',
+      mapDataToValue: () => false,
+    });
     const simple = column.buildFilter({
-      selection: new Set([true]),
+      description: '',
       exclude: false,
+      selection: new Set([true]),
     });
     expect(simple(true)).toBe(true);
     expect(simple(false)).toBe(false);
 
     const exclude = column.buildFilter({
-      selection: new Set([true]),
+      description: '',
       exclude: true,
+      selection: new Set([true]),
     });
     expect(exclude(true)).toBe(false);
     expect(exclude(false)).toBe(true);
   });
 
   it('builds expected sort function', () => {
-    const column = BooleanColumn({title: 'column'});
+    const column = BooleanColumn({
+      title: 'column',
+      mapDataToValue: () => false,
+    });
     const input = [true, false, true, false, false, true, true, false];
     input.sort(column.sortFn);
 

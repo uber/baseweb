@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -25,10 +25,13 @@ export type ProgressBarPropsT = {
   successValue: number,
   /** If set to false, label is hidden and `getProgressLabel` is ignored. */
   showLabel: boolean,
+  /** If set to true, theres and infinite loading animation. */
+  infinite: boolean,
   overrides?: OverridesT,
 };
 
 export type StylePropsT = {
   $successValue: number,
   $value: number,
+  $infinite: boolean,
 };

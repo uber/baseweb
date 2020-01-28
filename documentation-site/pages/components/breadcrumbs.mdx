@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import Exports from '../../components/exports';
 import Layout from '../../components/layout';
+import SEO from '../../components/meta-seo';
 
 import BasicBreadcrumbs from 'examples/breadcrumbs/basic.js';
 import PseudoBreadcrumbs from 'examples/breadcrumbs/pseudo.js';
@@ -18,6 +19,12 @@ import {StyledLink as Link} from 'baseui/link';
 
 import Yard from '../../components/yard/index';
 import breadcrumbsYardConfig from '../../components/yard/config/breadcrumbs';
+import ApiTable from '../../components/api-table';
+
+<SEO
+  description="The Breadcrumbs component is a secondary navigation scheme that reveals the user’s location in an application."
+  keywords="breadcrumbs, react breadcrumbs"
+/>
 
 export default Layout;
 
@@ -48,6 +55,12 @@ the user’s location in an application.
 This is the recommended approach where SEO/Accessibility is important.
 
 ## API
+
+<ApiTable
+  title="Breadcrumbs props"
+  config={breadcrumbsYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/breadcrumbs/breadcrumbs.js')}
+/>
 
 <Exports
   component={BreadcrumbsExports}

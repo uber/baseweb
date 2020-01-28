@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -19,6 +19,7 @@ import Dismiss from 'examples/popover/dismiss.js';
 import Clipping from 'examples/popover/clipping.js';
 import Customization from 'examples/popover/overrides.js';
 import AnchorRefHandling from 'examples/popover/ref-handling.js';
+import SSRRenderAll from 'examples/popover/ssr-render-all.js';
 
 import {Popover, PLACEMENT} from 'baseui/popover';
 import * as PopoverExports from 'baseui/popover';
@@ -27,6 +28,7 @@ import {Paragraph3, Label3} from 'baseui/typography';
 
 import Yard from '../../components/yard/index';
 import popoverYardConfig from '../../components/yard/config/popover';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -51,6 +53,7 @@ structured content and imagery/illustration. It’s usage depends on the context
 
 ## Accessibility
 
+- Upon opening, focus will be transferred to the first interactive element (unless `autofocus` is set to false)
 - The anchor will be focusable and user can tab to it using their keyboard.
 - When triggerType="hover" focusing on the anchor will open the tooltip automatically
 - When triggerType="click" a focused tooltip can be triggered via spacebar (assuming the anchor is a button)
@@ -102,7 +105,17 @@ structured content and imagery/illustration. It’s usage depends on the context
   <Customization />
 </Example>
 
+<Example title="SSR Popover" path="popover/ssr-render-all.js">
+  <SSRRenderAll />
+</Example>
+
 ## API
+
+<ApiTable
+  title="Popover props"
+  config={popoverYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/popover/popover.js')}
+/>
 
 <Exports
   component={PopoverExports}

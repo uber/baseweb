@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -40,6 +40,10 @@ export type PropsT = {
   onChange: ({
     ...ParamsT,
   }) => mixed,
+  /** Handler for events on trigger element, each time thumbs finish changing selection, which is passed in `value`. */
+  onFinalChange: ({
+    ...ParamsT,
+  }) => mixed,
 };
 
 export type StateT = {
@@ -64,6 +68,8 @@ export type StatefulContainerPropsT = {
   stateReducer: StateReducerT,
   /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
   onChange: ({...ParamsT}) => mixed,
+  /** Handler for events on trigger element, each time thumbs finish changing selection, which is passed in `value`. */
+  onFinalChange: ({...ParamsT}) => mixed,
 };
 
 export type StatefulSliderPropsT = {
@@ -75,6 +81,8 @@ export type StatefulSliderPropsT = {
   step?: number,
   /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
   onChange?: ({...ParamsT}) => mixed,
+  /** Handler for events on trigger element, each time thumbs finish changing selection, which is passed in `value`. */
+  onFinalChange?: ({...ParamsT}) => mixed,
 };
 
 export type StylePropsT = {

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -11,7 +11,9 @@ import type {OverrideT} from '../helpers/overrides.js';
 import {STATE_CHANGE_TYPES, OPTION_LIST_SIZE} from './constants.js';
 
 export type ItemT = *;
-export type ItemsT = $ReadOnlyArray<ItemT>;
+export type ArrayItemsT = $ReadOnlyArray<ItemT>;
+export type GroupedItemsT = {__ungrouped: ArrayItemsT, [string]: ArrayItemsT};
+export type ItemsT = ArrayItemsT | GroupedItemsT;
 
 export type GetItemLabelFnT = (item: ItemT) => React.Node;
 
@@ -134,7 +136,10 @@ export type MenuPropsT = {
     EmptyState?: OverrideT<*>,
     List?: OverrideT<*>,
     Option?: OverrideT<*>,
+    OptgroupHeader?: OverrideT<*>,
   },
+  /** Renders all menu content for SEO purposes regardless of menu  state */
+  renderAll?: boolean,
 };
 
 export type MenuProfilePropsT = {
@@ -216,6 +221,7 @@ export type OptionListPropsT = {
   size?: $Keys<typeof OPTION_LIST_SIZE>,
   overrides?: {
     ListItem?: OverrideT<*>,
+    ListItemAnchor?: OverrideT<*>,
   },
   /** Utility to reset menu to default state. Useful for rendering child menus. */
   resetMenu?: () => void,
@@ -223,6 +229,8 @@ export type OptionListPropsT = {
   $isHighlighted?: boolean,
   /** Is the parent menu focused. determines if highlighted item should be blue or black */
   $isFocused?: boolean,
+  /** Renders all menu content for SEO purposes regardless of menu  state */
+  renderAll?: boolean,
 };
 
 export type OptionProfilePropsT = {
@@ -249,4 +257,6 @@ export type OptionProfilePropsT = {
   resetMenu?: () => void,
   /** Renders UI in 'highlighted' state. */
   $isHighlighted?: boolean,
+  /** Renders all menu content for SEO purposes regardless of menu  state */
+  renderAll?: boolean,
 };

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -33,9 +33,9 @@ const Hamburger = themedStyled<{}>('div', ({$theme}) => ({
   display: 'block',
   userSelect: 'none',
   height: '32px',
-  paddingLeft: $theme.sizing.scale600,
+  marginLeft: $theme.sizing.scale600,
   cursor: 'pointer',
-  [$theme.media.medium]: {
+  [$theme.mediaQuery.medium]: {
     display: 'none',
   },
 }));
@@ -47,7 +47,7 @@ const LogoSegment = themedStyled<{$searchInputOpen: boolean}>(
     justifySelf: 'flex-start',
     justifyContent: 'flex-start',
     flex: 'none',
-    [$theme.media.small]: {
+    [$theme.mediaQuery.small]: {
       display: 'flex',
     },
   }),
@@ -148,7 +148,7 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                     style: ({$theme}) => ({
                       display: 'none',
                       height: $theme.sizing.scale800,
-                      [$theme.media.small]: {
+                      [$theme.mediaQuery.small]: {
                         display: 'block',
                       },
                     }),
@@ -160,7 +160,7 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                 $style={{textDecoration: 'none'}}
                 target="_blank"
               >
-                <SlackLogo size={24} color={theme.colors.foreground} />
+                <SlackLogo size={24} color={theme.colors.contentPrimary} />
               </Block>
               <Block
                 $as="a"
@@ -169,7 +169,7 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                     style: ({$theme}) => ({
                       display: 'none',
                       height: $theme.sizing.scale800,
-                      [$theme.media.small]: {
+                      [$theme.mediaQuery.small]: {
                         display: 'block',
                       },
                     }),
@@ -180,7 +180,7 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                 $style={{textDecoration: 'none'}}
                 target="_blank"
               >
-                <GithubLogo size={24} color={theme.colors.foreground} />
+                <GithubLogo size={24} color={theme.colors.contentPrimary} />
               </Block>
               <Block
                 as="span"
@@ -194,7 +194,7 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                       cursor: 'pointer',
                       display: 'none',
                       height: $theme.sizing.scale800,
-                      [$theme.media.small]: {
+                      [$theme.mediaQuery.small]: {
                         display: 'block',
                       },
                     }),
@@ -202,9 +202,15 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                 }}
               >
                 {theme.direction === 'rtl' ? (
-                  <AlignLeftIcon size={24} color={theme.colors.foreground} />
+                  <AlignLeftIcon
+                    size={24}
+                    color={theme.colors.contentPrimary}
+                  />
                 ) : (
-                  <AlignRightIcon size={24} color={theme.colors.foreground} />
+                  <AlignRightIcon
+                    size={24}
+                    color={theme.colors.contentPrimary}
+                  />
                 )}
               </Block>
               <Block
@@ -213,7 +219,7 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                   Block: {
                     style: ({$theme}) => ({
                       height: $theme.sizing.scale800,
-                      [$theme.media.small]: {
+                      [$theme.mediaQuery.small]: {
                         display: 'block',
                       },
                     }),
@@ -228,12 +234,12 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                   accessibilityType={'tooltip'}
                 >
                   <Block as="span" font="font300">
-                    <Bulb size={24} color={theme.colors.foreground} />
+                    <Bulb size={24} color={theme.colors.contentPrimary} />
                   </Block>
                 </StatefulTooltip>
               </Block>
               <Hamburger role="button" onClick={toggleSidebar}>
-                <Menu size={32} color={theme.colors.foregroundAlt} />
+                <Menu size={32} color={theme.colors.contentSecondary} />
               </Hamburger>
             </Block>
           </NavigationList>

@@ -12,11 +12,11 @@ import {Button} from 'baseui/button';
 const layerRef = React.createRef();
 
 function Wrapper(props) {
-  const [useCss] = useStyletron();
+  const [css] = useStyletron();
   const {offset, color, children, forwardedRef} = props;
   return (
     <div
-      className={useCss({
+      className={css({
         position: 'absolute',
         top: `${offset.top}px` || 0,
         left: `${offset.left}px` || 0,

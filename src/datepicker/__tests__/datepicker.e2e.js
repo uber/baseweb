@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -12,7 +12,7 @@ const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const selectors = {
   input: 'input',
-  calendar: '[role="application"]',
+  calendar: '[data-baseweb="calendar"]',
   day: '[aria-label="Choose Sunday, March 10th 2019. It\'s available."]',
   day2: '[aria-label="Choose Thursday, March 28th 2019. It\'s available."]',
   day3: '[aria-label="Choose Thursday, February 14th 2019. It\'s available."]',
@@ -101,7 +101,26 @@ describe('Datepicker', () => {
       selectors.input,
       input => input.value,
     );
-    expect(selectedValue).toBe('2019/03/18');
+    expect(selectedValue).toBe('2019/07/01');
+  });
+
+  it('input causes calendar to switch to appropriate month', async () => {
+    await mount(page, 'datepicker');
+    await page.waitFor(selectors.input);
+    await page.click(selectors.input);
+    await page.waitFor(selectors.calendar);
+    // march should be visible
+    await page.waitFor(selectors.day);
+
+    // we want to enter entire date but the onChange functionality only fires on key press so...
+    await page.$eval(selectors.input, el => (el.value = '2019/07/0'));
+    // also make sure the selected date isn't the date we're testing - selected/non-selected dates have different aria-labels
+    await page.keyboard.press('2');
+
+    // make sure march is gone
+    await page.waitFor(selectors.day, {hidden: true});
+    // and make sure july is now visible
+    await page.waitFor(selectors.day6);
   });
 
   it('month year dropdown opens on arrow down', async () => {

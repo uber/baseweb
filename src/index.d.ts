@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {StyleObject, StyletronComponent} from 'styletron-react';
-import {Overrides} from './overrides';
+import {Override, Overrides} from './overrides';
 import {Locale} from './locale';
 import {Theme, ThemePrimitives} from './theme';
 
@@ -12,10 +12,6 @@ export function createTheme<P extends object>(
   primitives: ThemePrimitives,
   overrides?: P,
 ): Theme & P;
-export function withProps(
-  Component: React.ComponentType,
-  customProps?: object,
-): (props: object) => any;
 export function mergeOverrides<T>(
   target?: Overrides<T>,
   source?: Overrides<T>,
@@ -42,9 +38,15 @@ export const DarkTheme: Theme;
 export const DarkThemeMove: Theme;
 export const darkThemePrimitives: ThemePrimitives;
 
+export interface BaseProviderOverrides {
+  AppContainer?: Override<any>;
+  LayersContainer?: Override<any>;
+}
+
 export interface BaseProviderProps {
   children: React.ReactNode;
   theme: Theme;
+  overrides?: BaseProviderOverrides;
 }
 export const BaseProvider: React.FC<BaseProviderProps>;
 

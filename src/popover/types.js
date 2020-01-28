@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -61,6 +61,18 @@ export type BasePopoverPropsT = {
    * See the A11Y section at the bottom of this document for more details.
    */
   accessibilityType?: AccessibilityTypeT,
+  /** If true, focus will be locked to elements within the popover.
+   */
+  focusLock?: boolean,
+  /** If true, focus will shift to the first interactive element within the popover.
+   * If false, the popover container itself will receive focus.
+   * Moving focus into a newly opened popover is important for accessibility purposes, so please be careful!
+   */
+  autoFocus?: boolean,
+  /** If true, focus will shift back to the original element that triggered the popover
+   * Becareful with elements that open the popover on focus (e.g. input) this will cause the popover to reopen on close!
+   */
+  returnFocus?: boolean,
   'data-baseweb'?: string,
   id?: string,
   /** If true, popover element will not avoid element boundaries. */
@@ -83,10 +95,12 @@ export type BasePopoverPropsT = {
   /** How long should be fade out animation in ms, default 0ms */
   animateOutTime?: number,
   /** Popper options override
-   * https://popper.js.org/popper-documentation.html#Popper.Defaults
+   * https://github.com/popperjs/popper.js/blob/v1.x/docs/_includes/popper-documentation.md
    */
   // eslint-disable-next-line flowtype/no-weak-types
   popperOptions?: any,
+  /** Renders all popover content for SEO purposes regardless of popover isOpen state */
+  renderAll?: boolean,
 };
 
 // Props for stateless render logic

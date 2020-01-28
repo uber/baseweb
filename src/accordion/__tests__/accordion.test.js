@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -24,7 +24,7 @@ describe('Accordion', () => {
   });
 
   test('basic render w/ SEO', () => {
-    const component = mount(<Component renderPanelContent />);
+    const component = mount(<Component renderAll />);
     const Panel1Content = component
       .find(Panel)
       .at(0)
@@ -41,7 +41,7 @@ describe('Accordion', () => {
       .text();
     expect(Panel3Content).not.toBe(null);
     expect(component).toMatchSnapshot(
-      'Accordion renders all panel content with renderPanelContent',
+      'Accordion renders all panel content with renderAll',
     );
   });
 });

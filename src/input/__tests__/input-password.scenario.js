@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,20 +8,18 @@ LICENSE file in the root directory of this source tree.
 /* global window */
 
 import React from 'react';
-// eslint-disable-next-line import/extensions
-import Screener, {Steps} from 'screener-storybook/src/screener';
-import {StatefulInput} from '../index.js';
+import {StatefulInput, SIZE} from '../index.js';
 
 export const name = 'input-password';
 
-export const component = () => {
-  const toggleSelector = `[data-e2e="mask-toggle"]`;
-  const steps = new Steps()
-    .wait(toggleSelector)
-    .click(toggleSelector)
-    .snapshot('Input with password masking toggle')
-    .end();
-  return (
+export const component = () => (
+  <React.Fragment>
+    <StatefulInput
+      size={SIZE.compact}
+      type="password"
+      initialState={{value: '1234'}}
+    />
+    <br />
     <form
       onSubmit={event => {
         event.preventDefault();
@@ -29,24 +27,28 @@ export const component = () => {
         return false;
       }}
     >
-      <Screener steps={steps}>
-        <StatefulInput
-          type="password"
-          initialState={{value: '1234'}}
-          overrides={{
-            Input: {
-              props: {
-                'data-e2e': 'input',
-              },
+      <StatefulInput
+        type="password"
+        initialState={{value: '1234'}}
+        overrides={{
+          Input: {
+            props: {
+              'data-e2e': 'input',
             },
-            MaskToggleButton: {
-              props: {
-                'data-e2e': 'mask-toggle',
-              },
+          },
+          MaskToggleButton: {
+            props: {
+              'data-e2e': 'mask-toggle',
             },
-          }}
-        />
-      </Screener>
+          },
+        }}
+      />
     </form>
-  );
-};
+    <br />
+    <StatefulInput
+      size={SIZE.large}
+      type="password"
+      initialState={{value: '1234'}}
+    />
+  </React.Fragment>
+);

@@ -8,6 +8,7 @@ export interface STATE_TYPE {
 export interface STYLE_TYPE {
   default: 'default';
   toggle: 'toggle';
+  toggle_round: 'toggle_round';
 }
 
 export interface LABEL_PLACEMENT {
@@ -97,6 +98,7 @@ export interface CheckboxProps {
   isIndeterminate?: boolean;
   labelPlacement?: 'top' | 'right' | 'bottom' | 'left';
   checkmarkType?: STYLE_TYPE[keyof STYLE_TYPE];
+  title?: string;
   onChange?: React.FormEventHandler<HTMLInputElement>;
   onMouseEnter?: React.MouseEventHandler<HTMLInputElement>;
   onMouseLeave?: React.MouseEventHandler<HTMLInputElement>;

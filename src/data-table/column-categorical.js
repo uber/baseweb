@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -18,25 +18,31 @@ import CellShell from './cell-shell.js';
 import {COLUMNS} from './constants.js';
 import type {ColumnT} from './types.js';
 import FilterShell from './filter-shell.js';
+import {matchesQuery, splitByQuery, HighlightCellText} from './text-search.js';
 
 type OptionsT = {|
-  title: string,
-  sortable?: boolean,
   filterable?: boolean,
+  // eslint-disable-next-line flowtype/no-weak-types
+  mapDataToValue: (data: any) => string,
+  maxWidth?: number,
+  minWidth?: number,
+  sortable?: boolean,
+  title: string,
 |};
 
 type FilterParametersT = {|
-  selection: Set<string>,
+  description: string,
   exclude: boolean,
+  selection: Set<string>,
 |};
 
 type CategoricalColumnT = ColumnT<string, FilterParametersT>;
 
 function InputBefore() {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   return (
     <div
-      className={useCss({
+      className={css({
         display: 'flex',
         alignItems: 'center',
         paddingLeft: theme.sizing.scale500,
@@ -51,12 +57,12 @@ function FilterQuickControls(props: {
   onSelectAll: () => void,
   onClearSelection: () => void,
 }) {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   return (
     <React.Fragment>
       <button
         type="button"
-        className={useCss({
+        className={css({
           ...theme.typography.font100,
           borderTop: 0,
           borderRight: 0,
@@ -68,10 +74,10 @@ function FilterQuickControls(props: {
       >
         Select All
       </button>
-      <span className={useCss({...theme.typography.font100})}> | </span>
+      <span className={css({...theme.typography.font100})}> | </span>
       <button
         type="button"
-        className={useCss({
+        className={css({
           ...theme.typography.font100,
           borderTop: 0,
           borderRight: 0,
@@ -103,10 +109,6 @@ const StyledHighlightLabel = withStyle(StyledLabel, props => {
   return style;
 });
 
-function matchesQuery(category, query) {
-  return category.toLowerCase().includes(query.toLowerCase());
-}
-
 function HighlightCheckboxLabel(props) {
   const {children, ...restProps} = props;
 
@@ -114,7 +116,7 @@ function HighlightCheckboxLabel(props) {
     return <StyledLabel {...restProps}>{children}</StyledLabel>;
   }
 
-  return children.split(new RegExp(`(${props.query})`, 'i')).map((el, i) => {
+  return splitByQuery(children, props.query).map((el, i) => {
     if (matchesQuery(el, props.query)) {
       return (
         <StyledHighlightLabel {...restProps} key={i} $isFirst={!i} $isActive>
@@ -133,19 +135,24 @@ function HighlightCheckboxLabel(props) {
 type CategoricalFilterProps = {
   data: string[],
   close: () => void,
-  setFilter: (FilterParametersT, string) => void,
+  setFilter: FilterParametersT => void,
+  filterParams?: FilterParametersT,
 };
 
 export function CategoricalFilter(props: CategoricalFilterProps) {
-  const [useCss, theme] = useStyletron();
-  const [selection, setSelection] = React.useState<Set<string>>(new Set());
-  const [exclude, setExclude] = React.useState(false);
+  const [css, theme] = useStyletron();
+  const [selection, setSelection] = React.useState<Set<string>>(
+    props.filterParams ? props.filterParams.selection : new Set(),
+  );
+  const [exclude, setExclude] = React.useState(
+    props.filterParams ? props.filterParams.exclude : false,
+  );
   const [query, setQuery] = React.useState('');
   const categories = React.useMemo(() => {
     return props.data.reduce((set, category) => set.add(category), new Set());
   }, [props.data]);
 
-  const checkboxStyles = useCss({marginBottom: theme.sizing.scale200});
+  const checkboxStyles = css({marginBottom: theme.sizing.scale200});
 
   const showQuery = Boolean(categories.size >= 10);
   const filteredCategories = Array.from(categories, c => c).filter(c =>
@@ -157,7 +164,11 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
       exclude={exclude}
       onExcludeChange={() => setExclude(!exclude)}
       onApply={() => {
-        props.setFilter({selection, exclude}, Array.from(selection).join(', '));
+        props.setFilter({
+          description: Array.from(selection).join(', '),
+          exclude,
+          selection,
+        });
         props.close();
       }}
     >
@@ -190,7 +201,7 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
       )}
 
       <div
-        className={useCss({
+        className={css({
           maxHeight: '256px',
           overflowY: 'auto',
           marginTop: theme.sizing.scale600,
@@ -225,6 +236,7 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
 }
 
 const CategoricalCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
+  const [css] = useStyletron();
   return (
     <CellShell
       ref={ref}
@@ -232,7 +244,20 @@ const CategoricalCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
       isSelected={props.isSelected}
       onSelect={props.onSelect}
     >
-      {props.value}
+      <div
+        className={css({
+          display: '-webkit-box',
+          WebkitLineClamp: 1,
+          WebkitBoxOrient: 'vertical',
+          overflow: 'hidden',
+        })}
+      >
+        {props.textQuery ? (
+          <HighlightCellText text={props.value} query={props.textQuery} />
+        ) : (
+          props.value
+        )}
+      </div>
     </CellShell>
   );
 });
@@ -241,20 +266,23 @@ CategoricalCell.displayName = 'CategoricalCell';
 function CategoricalColumn(options: OptionsT): CategoricalColumnT {
   return {
     kind: COLUMNS.CATEGORICAL,
-    title: options.title,
-    sortable: options.sortable === undefined ? true : options.sortable,
-    filterable: options.filterable === undefined ? true : options.filterable,
-    renderCell: CategoricalCell,
-    renderFilter: CategoricalFilter,
     buildFilter: function(params) {
       return function(data) {
         const included = params.selection.has(data);
         return params.exclude ? !included : included;
       };
     },
+    filterable: options.filterable === undefined ? true : options.filterable,
+    mapDataToValue: options.mapDataToValue,
+    maxWidth: options.maxWidth,
+    minWidth: options.minWidth,
+    renderCell: CategoricalCell,
+    renderFilter: CategoricalFilter,
+    sortable: options.sortable === undefined ? true : options.sortable,
     sortFn: function(a, b) {
       return a.localeCompare(b);
     },
+    title: options.title,
   };
 }
 

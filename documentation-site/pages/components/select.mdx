@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -22,6 +22,7 @@ import SelectWithManyOptions from 'examples/select/with-many-options.js';
 import SelectCreatable from 'examples/select/creatable.js';
 import SelectCreatableMulti from 'examples/select/creatable-multi.js';
 import SelectOverriddenDropdown from 'examples/select/overridden-dropdown.js';
+import SelectGrouped from 'examples/select/grouped.js';
 
 import {StatefulSelect, TYPE} from 'baseui/select';
 import * as SelectExports from 'baseui/select';
@@ -29,6 +30,7 @@ import {Block} from 'baseui/block';
 
 import Yard from '../../components/yard/index';
 import selectYardConfig from '../../components/yard/config/select';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -41,6 +43,8 @@ The select and search controls allow the user to select an option or options.
 Select menus in Base hover atop of a selection menu while providing a simple list of options.
 Proper spacing, color, and a check-mark are clear indicators of a selection. Each menu is
 scrollable, if applicable.
+
+Note: by default, `id` and `label` are default properties that Select components look for in options array objects. To adapt to custom properties, use the `labelKey` and `valueKey` to override the defaults.
 
 ## Examples
 
@@ -86,6 +90,10 @@ existing options.
   <SelectSizes />
 </Example>
 
+<Example title="Select with grouped options" path="select/grouped.js">
+  <SelectGrouped />
+</Example>
+
 <Example title="Select similar to native select" path="select/native.js">
   <SelectNative />
 </Example>
@@ -97,7 +105,7 @@ existing options.
 <Example
   title="Select with many options"
   path="select/with-many-options.js"
-  additionalPackages={{'react-virtualized': '^9.21.0'}}
+  additionalPackages={{'react-window': '^1.8.5'}}
 >
   <SelectWithManyOptions />
 </Example>
@@ -115,6 +123,14 @@ existing options.
 </Example>
 
 To override the `Popover` that's being used by the Dropdown subcomponent, you have to use a [nested override](/guides/understanding-overrides/#override-nested-components).
+
+## API
+
+<ApiTable
+  title="Select props"
+  config={selectYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/select/select-component.js')}
+/>
 
 <Exports
   component={SelectExports}

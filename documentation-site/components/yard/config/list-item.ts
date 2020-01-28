@@ -1,7 +1,10 @@
 import {ListItem, ListItemLabel, ARTWORK_SIZES} from 'baseui/list';
 import {Check} from 'baseui/icon';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
+
+const listItemProps = require('!!extract-react-types-loader!../../../../src/list/list-item.js');
+const listItemLabelProps = require('!!extract-react-types-loader!../../../../src/list/list-item-label.js');
 
 const ListItemConfig: TConfig = {
   imports: {
@@ -54,18 +57,24 @@ const ListItemConfig: TConfig = {
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: ['Root', 'ArtworkContainer', 'Content', 'EndEnhancerContainer'],
-      sharedProps: {
-        $artworkSize: 'artworkSize',
-        $mLeft: {
-          type: PropTypes.Boolean,
-          description: 'True when an artwork is present.',
+      custom: {
+        names: ['Root', 'ArtworkContainer', 'Content', 'EndEnhancerContainer'],
+        sharedProps: {
+          $artworkSize: 'artworkSize',
+          $mLeft: {
+            type: PropTypes.Boolean,
+            description: 'True when an artwork is present.',
+          },
+          $sublist: 'sublist',
         },
-        $sublist: 'sublist',
       },
     },
+  },
+  mapTokensToProps: {
+    ListItem: listItemProps,
+    ListItemLabel: listItemLabelProps,
   },
 };
 

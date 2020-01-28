@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -42,7 +42,12 @@ export default class NestedMenus extends React.Component<PropsT, StateT> {
   state = {menus: []};
 
   addMenuToNesting = (ref: Ref) => {
-    this.setState({menus: [...this.state.menus, ref]});
+    // check offsetHeight to determine if component is visible in the dom (0 means hidden)
+    // we need to do this so that when we renderAll, the hidden seo-only child-menus don't
+    // register themselves which would break the nesting logic
+    if (ref.current && ref.current.offsetHeight) {
+      this.setState({menus: [...this.state.menus, ref]});
+    }
   };
 
   removeMenuFromNesting = (ref: Ref) => {

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -48,6 +48,7 @@ describe('TetherBehavior', () => {
     // Popper library should have been initialized
     expect(Popper).toHaveBeenCalled();
     const tethered = wrapper.childAt(1);
+    // $FlowFixMe
     const calls = Popper.mock.calls;
 
     expect(tethered).toHaveText('This is popper');

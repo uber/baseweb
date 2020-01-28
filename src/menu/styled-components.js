@@ -1,12 +1,15 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+import * as React from 'react';
 import {styled} from '../styles/index.js';
 import {OPTION_LIST_SIZE} from './constants.js';
+import type {ItemT} from './types.js';
+import type {StyletronComponent} from '../styles/styled.js';
 
 type StyledPropsT = {
   $disabled?: boolean,
@@ -74,7 +77,6 @@ export const StyledEmptyState = styled<StyledPropsT>('li', props => {
     display: 'block',
     color: $theme.colors.menuFontDisabled,
     textAlign: 'center',
-    textTransform: 'capitalize',
     cursor: 'not-allowed',
     backgroundColor: 'transparent',
     marginBottom: 0,
@@ -85,7 +87,25 @@ export const StyledEmptyState = styled<StyledPropsT>('li', props => {
   };
 });
 
-export const StyledListItem = styled<StyledPropsT>('li', props => {
+export const StyledOptgroupHeader = styled<{}>('li', props => {
+  const paddingX = props.$theme.sizing.scale300;
+  const paddingY = props.$theme.sizing.scale200;
+  return {
+    ...props.$theme.typography.font250,
+    color: props.$theme.colors.colorPrimary,
+    paddingTop: paddingY,
+    paddingBottom: paddingY,
+    paddingRight: paddingX,
+    paddingLeft: paddingX,
+  };
+});
+export const StyledListItemAnchor = styled<StyledPropsT>('a', props => {
+  return {
+    display: 'block',
+    color: getFontColor(props),
+  };
+});
+export const StyledListItemElement = styled<StyledPropsT>('li', props => {
   const {$disabled, $theme, $size} = props;
   return {
     ...($size === OPTION_LIST_SIZE.compact
@@ -121,6 +141,19 @@ export const StyledListItem = styled<StyledPropsT>('li', props => {
     },
   };
 });
+
+export const StyledListItem = ((React.forwardRef<
+  {item: ItemT, ...$Exact<StyledPropsT>},
+  // eslint-disable-next-line flowtype/no-weak-types
+  any,
+>(
+  ({item, ...restProps}, ref) => (
+    <StyledListItemElement ref={ref} {...restProps} />
+  ),
+  // eslint-disable-next-line flowtype/no-weak-types
+): any): StyletronComponent<StyledPropsT>);
+StyledListItem.__STYLETRON__ = StyledListItemElement.__STYLETRON__;
+StyledListItem.displayName = 'StyledListItem';
 
 export const StyledListItemProfile = styled<StyledPropsT>('li', ({$theme}) => ({
   position: 'relative',
@@ -168,7 +201,7 @@ export const StyledProfileLabelsContainer = styled<StyledPropsT>(
 
 export const StyledProfileTitle = styled<StyledPropsT>('h6', ({$theme}) => ({
   ...$theme.typography.font350,
-  color: $theme.colors.foreground,
+  color: $theme.colors.contentPrimary,
   marginTop: 0,
   marginBottom: 0,
   marginLeft: 0,
@@ -177,7 +210,7 @@ export const StyledProfileTitle = styled<StyledPropsT>('h6', ({$theme}) => ({
 
 export const StyledProfileSubtitle = styled<StyledPropsT>('p', ({$theme}) => ({
   ...$theme.typography.font200,
-  color: $theme.colors.foreground,
+  color: $theme.colors.contentPrimary,
   marginTop: 0,
   marginBottom: 0,
   marginLeft: 0,
@@ -186,7 +219,7 @@ export const StyledProfileSubtitle = styled<StyledPropsT>('p', ({$theme}) => ({
 
 export const StyledProfileBody = styled<StyledPropsT>('p', ({$theme}) => ({
   ...$theme.typography.font100,
-  color: $theme.colors.foreground,
+  color: $theme.colors.contentPrimary,
   marginTop: 0,
   marginBottom: 0,
   marginLeft: 0,

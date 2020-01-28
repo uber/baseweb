@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -17,7 +17,7 @@ const files = globby.sync(['documentation-site/examples/**/*.js']);
 files.forEach(file => {
   const from = path.join(__dirname, '../', file);
   const data = fs.readFileSync(from, 'utf-8');
-  const lines = data.split('\n');
+  const lines = data.split(/\r?\n/g);
   if (lines[0] !== '// @flow') {
     throw new Error(`File ${file} is missing '// @flow' header comment.`);
   }

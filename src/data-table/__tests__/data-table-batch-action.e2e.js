@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -9,9 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
-function getTable(page) {
-  return page.$('div[data-baseweb="data-table"]');
-}
+const {getTable} = require('./utilities.js');
 
 function getCheckboxes(parent) {
   return parent.$$('label[data-baseweb="checkbox"]');
@@ -22,7 +20,12 @@ async function clickCheckboxAtRowIndex(parent, index) {
   await checkboxes[index].click();
 }
 
-function getCheckboxValues(element) {
+function wait(ms) {
+  return new Promise(res => setTimeout(res, ms));
+}
+
+async function getCheckboxValues(element) {
+  await wait(50); // breifly wait to give table state chance to update
   return element.$$eval('label[data-baseweb="checkbox"] input', elements =>
     elements.map(el => el.checked),
   );
@@ -128,9 +131,6 @@ describe('data-table batch-actions', () => {
     await mount(page, 'data-table-batch-action');
     const table = await getTable(page);
     await clickCheckboxAtRowIndex(table, 1);
-
-    const buttons = await page.$$('button');
-    await buttons[1].click();
 
     const button = await page.$('button[aria-label="Approve"]');
     await button.click();

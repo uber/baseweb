@@ -3,11 +3,8 @@ import {useStyletron} from 'baseui';
 import {Checkbox} from 'baseui/checkbox';
 
 function GroupList() {
-  const [useCss, theme] = useStyletron();
-  const [checkboxes, setCheckboxes] = React.useState([
-    false,
-    false,
-  ]);
+  const [css, theme] = useStyletron();
+  const [checkboxes, setCheckboxes] = React.useState([true, false]);
 
   const allChecked = checkboxes.every(Boolean);
   const isIndeterminate = checkboxes.some(Boolean) && !allChecked;
@@ -24,7 +21,7 @@ function GroupList() {
       >
         Indeterminate checkbox if not all subcheckboxes are checked
       </Checkbox>
-      <div className={useCss({padding: theme.sizing.scale400})}>
+      <div className={css({padding: theme.sizing.scale400})}>
         <Checkbox
           checked={checkboxes[0]}
           onChange={e => {

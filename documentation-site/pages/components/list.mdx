@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -22,6 +22,7 @@ import * as ListExports from 'baseui/list';
 
 import Yard from '../../components/yard/index';
 import listItemYardConfig from '../../components/yard/config/list-item';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -54,5 +55,11 @@ List items best used in mobile applications.
 </Example>
 
 ## API
+
+<ApiTable
+  title="List props"
+  config={listItemYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/list/list-item.js')}
+/>
 
 <Exports component={ListExports} title="List exports" path="baseui/list" />

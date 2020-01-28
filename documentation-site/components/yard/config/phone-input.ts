@@ -1,8 +1,10 @@
 import {PhoneInput, COUNTRIES, SIZE} from 'baseui/phone-input';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
 import {theme} from './input';
+
+const phoneInputProps = require('!!extract-react-types-loader!../../../../src/phone-input/phone-input.js');
 
 const countriesEnum: {[key: string]: string} = {};
 Object.values(COUNTRIES).forEach(country => {
@@ -118,20 +120,25 @@ const PhoneInputConfig: TConfig = {
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: [
-        'CountrySelect',
-        'CountrySelectDropdown',
-        'CountrySelectDropdownDialcodeColumn',
-        'CountrySelectDropdownFlagColumn',
-        'CountrySelectDropdownListItem',
-        'CountrySelectDropdownNameColumn',
-        'DialCode',
-        'Input',
-      ],
-      sharedProps: {},
+      custom: {
+        names: [
+          'CountrySelect',
+          'CountrySelectDropdown',
+          'CountrySelectDropdownDialcodeColumn',
+          'CountrySelectDropdownFlagColumn',
+          'CountrySelectDropdownListItem',
+          'CountrySelectDropdownNameColumn',
+          'DialCode',
+          'Input',
+        ],
+        sharedProps: {},
+      },
     },
+  },
+  mapTokensToProps: {
+    PhoneInput: phoneInputProps,
   },
 };
 

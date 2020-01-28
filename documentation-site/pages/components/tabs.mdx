@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -20,6 +20,7 @@ import * as TabsExports from 'baseui/tabs';
 
 import Yard from '../../components/yard/index';
 import tabsYardConfig from '../../components/yard/config/tabs';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
@@ -57,5 +58,13 @@ The Tabs component is used for navigating frequently accesssed, but distinct cat
 <Example title="Tabs Overrides" path="tabs/overrides.js">
   <TabsOverrides />
 </Example>
+
+## API
+
+<ApiTable
+  title="Tabs props"
+  config={tabsYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/tabs/tabs.js')}
+/>
 
 <Exports component={TabsExports} title="Tabs exports" path="baseui/tabs" />

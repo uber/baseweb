@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -17,10 +17,13 @@ import {
   StyledCountrySelectDropdownNameColumn as DefaultNameColumn,
   StyledCountrySelectDropdownDialcodeColumn as DefaultDialcodeColumn,
 } from './styled-components.js';
+import {LocaleContext} from '../locale/index.js';
+import {StyledEmptyState} from '../menu/styled-components.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {iso2FlagEmoji} from './utils.js';
 
 import type {CountrySelectDropdownPropsT} from './types.js';
+import type {LocaleT} from '../locale/types.js';
 
 CountrySelectDropdown.defaultProps = {
   maxDropdownHeight: defaultProps.maxDropdownHeight,
@@ -35,10 +38,9 @@ function CountrySelectDropdown(
     $forwardedRef: forwardedRef,
     $maxDropdownHeight: maxDropdownHeight,
     $mapIsoToLabel: mapIsoToLabel,
+    $noResultsMsg: noResultsMsg,
     $overrides: overrides,
   } = props;
-
-  const children = React.Children.toArray(props.children);
 
   const [Container, containerProps] = getOverrides(
     overrides.CountrySelectDropdown,
@@ -64,6 +66,25 @@ function CountrySelectDropdown(
     overrides.CountrySelectDropdownDialcodeColumn,
     DefaultDialcodeColumn,
   );
+  const [EmptyState, emptyStateProps] = getOverrides(
+    overrides.EmptyState,
+    StyledEmptyState,
+  );
+
+  // Handle no results, likely from filtering
+  if (!props.children.length) {
+    return (
+      <LocaleContext.Consumer>
+        {(locale: LocaleT) => (
+          <EmptyState {...emptyStateProps}>
+            {noResultsMsg || locale.menu.noResultsMsg}
+          </EmptyState>
+        )}
+      </LocaleContext.Consumer>
+    );
+  }
+
+  const children = React.Children.toArray(props.children);
   const scrollIndex = Math.min(
     children.findIndex(opt => opt.props.item.id === country.id) + 5,
     children.length - 1,
@@ -86,14 +107,15 @@ function CountrySelectDropdown(
               scrollToIndex={scrollIndex}
               rowRenderer={({index, key, style}) => {
                 // resetMenu and getItemLabel should not end up on native html elements
-                const {resetMenu, getItemLabel, ...rest} = children[
+                const {item, resetMenu, getItemLabel, ...rest} = children[
                   index
                 ].props;
-                const iso = children[index].props.item.id;
+                const {id: iso, label, dialCode} = item;
                 return (
                   <ListItem
                     key={key}
                     style={style}
+                    item={item}
                     {...rest}
                     {...listItemProps}
                     data-iso={iso}
@@ -104,17 +126,13 @@ function CountrySelectDropdown(
                         data-iso={iso}
                         {...flagContainerProps}
                       >
-                        ABC {iso2FlagEmoji(iso)}
+                        {iso2FlagEmoji(iso)}
                       </FlagContainer>
                     </FlagColumn>
                     <NameColumn {...nameColumnProps}>
-                      {mapIsoToLabel
-                        ? mapIsoToLabel(iso)
-                        : children[index].props.item.label}
+                      {mapIsoToLabel ? mapIsoToLabel(iso) : label}
                     </NameColumn>
-                    <Dialcode {...dialcodeProps}>
-                      {children[index].props.item.dialCode}
-                    </Dialcode>
+                    <Dialcode {...dialcodeProps}>{dialCode}</Dialcode>
                   </ListItem>
                 );
               }}

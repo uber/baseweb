@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,6 +8,9 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import * as FlexGridExports from 'baseui/flex-grid';
 
 import Basic from 'examples/flex-grid/basic.js';
 import UnequalNarrow from 'examples/flex-grid/unequal-narrow.js';
@@ -73,4 +76,10 @@ Also, keep in mind that the margins won’t be set properly unless you have the 
 <API
   heading="FlexGridItem API"
   api={require('!!extract-react-types-loader!../../../src/flex-grid/flex-grid-item.js')}
+/>
+
+<Exports
+  component={FlexGridExports}
+  title="FlexGrid exports"
+  path="baseui/flex-grid"
 />

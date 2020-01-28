@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -38,8 +38,8 @@ export default class Avatar extends React.Component<PropsT, StateT> {
   }
 
   componentDidUpdate(prevProps: PropsT, prevState: StateT) {
-    if (prevProps.src !== this.props.src && prevState.noImageAvailable) {
-      this.setState({noImageAvailable: false});
+    if (prevProps.src !== this.props.src) {
+      this.setState({noImageAvailable: !this.props.src});
     }
   }
 
@@ -67,7 +67,9 @@ export default class Avatar extends React.Component<PropsT, StateT> {
         {...rootProps}
       >
         {noImageAvailable ? (
-          <Initials {...initialsProps}>{getInitials(name)}</Initials>
+          <Initials {...initialsProps}>
+            {this.props.initials || getInitials(name)}
+          </Initials>
         ) : (
           <Avatar
             alt={name}

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -19,22 +19,36 @@ type PropsT = {|
 |};
 
 const CellShell = React.forwardRef<PropsT, HTMLDivElement>((props, ref) => {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
 
   return (
     <div
       ref={ref}
-      className={useCss({
-        ...theme.typography.font200,
+      className={css({
+        ...theme.typography.font100,
+        boxSizing: 'border-box',
         display: props.isMeasured ? 'inline-block' : null,
-        paddingLeft: theme.sizing.scale600,
-        paddingRight: theme.sizing.scale600,
+        paddingTop: theme.sizing.scale300,
+        paddingLeft: theme.sizing.scale500,
+        paddingBottom: theme.sizing.scale300,
+        paddingRight: theme.sizing.scale500,
         width: props.isMeasured ? null : '100%',
       })}
     >
-      <div className={useCss({display: 'flex', alignItems: 'center'})}>
+      <div
+        className={css({
+          display: 'flex',
+          alignItems: 'center',
+        })}
+      >
         {Boolean(props.onSelect) && (
-          <Checkbox onChange={props.onSelect} checked={props.isSelected} />
+          <Checkbox
+            onChange={props.onSelect}
+            checked={props.isSelected}
+            overrides={{
+              Checkmark: {style: {marginTop: null, marginBottom: null}},
+            }}
+          />
         )}
         {props.children}
       </div>

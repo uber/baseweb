@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -20,8 +20,8 @@ const appDirectory = realpathSync(process.cwd());
 
 const resolvePath = relativePath => resolve(appDirectory, relativePath);
 
-function getUrl({launchUrl, name}) {
-  const query = [[name, 'name']]
+function getUrl({launchUrl, name, theme}) {
+  const query = [[name, 'name'], [theme, 'theme']]
     .filter(([value]) => Boolean(value))
     .map(([value, key]) => `${key}=${encodeURIComponent(value)}`)
     .join('&');
@@ -29,23 +29,25 @@ function getUrl({launchUrl, name}) {
   return `${launchUrl}?${query}`;
 }
 
-function getPuppeteerUrl(name) {
+function getPuppeteerUrl(name, theme) {
   return getUrl({
     launchUrl: config.tests.url,
     name,
+    theme,
   });
 }
 
-async function mount(page, scenarioName) {
+async function mount(page, scenarioName, theme) {
   // replicate console events into terminal
   page.on('console', msg => {
+    if (msg.type() === 'warning') return;
     for (let i = 0; i < msg.args().length; ++i) {
       // eslint-disable-next-line no-console
       console.log(`${msg.args()[i]}`);
     }
   });
 
-  await page.goto(getPuppeteerUrl(scenarioName));
+  await page.goto(getPuppeteerUrl(scenarioName, theme));
 }
 
 async function analyzeAccessibility(page, options = {rules: []}) {

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -39,8 +39,10 @@ import {
   setSeconds,
   getHours,
   getMinutes,
+  getStartOfWeek,
+  getEndOfWeek,
 } from './utils/index.js';
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import type {CalendarPropsT, CalendarInternalState} from './types.js';
 import {ORIENTATION} from './constants.js';
 
@@ -79,7 +81,6 @@ export default class Calendar extends React.Component<
     trapTabbing: false,
   };
 
-  root: React.ElementRef<*>;
   calendar: React.ElementRef<*>;
 
   constructor(props: CalendarPropsT) {
@@ -92,6 +93,7 @@ export default class Calendar extends React.Component<
       focused: false,
       date: this.getDateInView(),
       quickSelectId: null,
+      rootElement: null,
     };
   }
 
@@ -118,10 +120,28 @@ export default class Calendar extends React.Component<
     }
 
     if (prevProps.value !== this.props.value) {
-      this.setState({
-        date: this.getDateInView(),
-      });
+      const nextDate = this.getDateInView();
+      if (!this.isInView(nextDate)) {
+        this.setState({
+          date: nextDate,
+        });
+      }
     }
+  }
+
+  isInView(date: Date): boolean {
+    // we calculate the month delta between the date arg and the date in the state.
+    const currentDate = this.state.date;
+
+    // First we get the year delta
+    const yearDelta = date.getFullYear() - currentDate.getFullYear();
+
+    // then we convert it to months. Then we simply add the date-without-year month delta back in.
+    const monthDelta =
+      yearDelta * 12 + date.getMonth() - currentDate.getMonth();
+
+    // we just check that the delta is between the range given by "this month" (i.e. 0) and "the last month" (i.e. monthsShown)
+    return monthDelta >= 0 && monthDelta < (this.props.monthsShown || 1);
   }
 
   getSingleDate(value: ?Date | Array<Date>): ?Date {
@@ -181,6 +201,7 @@ export default class Calendar extends React.Component<
         order={order}
         onMonthChange={this.changeMonth}
         onYearChange={this.changeYear}
+        popoverMountNode={this.state.rootElement}
       />
     );
   };
@@ -191,6 +212,10 @@ export default class Calendar extends React.Component<
       case 'ArrowDown':
       case 'ArrowLeft':
       case 'ArrowRight':
+      case 'Home':
+      case 'End':
+      case 'PageUp':
+      case 'PageDown':
         this.handleArrowKey(event.key);
         event.preventDefault();
         event.stopPropagation();
@@ -230,6 +255,32 @@ export default class Calendar extends React.Component<
           1,
         );
         break;
+      case 'Home':
+        highlightedDate = getStartOfWeek(
+          // adding `new Date()` as the last option to satisfy Flow
+          highlightedDate ? highlightedDate : new Date(),
+        );
+        break;
+      case 'End':
+        highlightedDate = getEndOfWeek(
+          // adding `new Date()` as the last option to satisfy Flow
+          highlightedDate ? highlightedDate : new Date(),
+        );
+        break;
+      case 'PageUp':
+        highlightedDate = subMonths(
+          // adding `new Date()` as the last option to satisfy Flow
+          highlightedDate ? highlightedDate : new Date(),
+          1,
+        );
+        break;
+      case 'PageDown':
+        highlightedDate = addMonths(
+          // adding `new Date()` as the last option to satisfy Flow
+          highlightedDate ? highlightedDate : new Date(),
+          1,
+        );
+        break;
     }
     this.setState({highlightedDate, date: highlightedDate});
   };
@@ -255,8 +306,8 @@ export default class Calendar extends React.Component<
         const activeElm = document.activeElement;
         // need to look for any tabindex >= 0 and ideally for not disabled
         // focusable by default elements like input, button, etc.
-        const focusable = this.root
-          ? this.root.querySelectorAll('[tabindex="0"]')
+        const focusable = this.state.rootElement
+          ? this.state.rootElement.querySelectorAll('[tabindex="0"]')
           : null;
         const length = focusable ? focusable.length : 0;
         if (event.shiftKey) {
@@ -355,6 +406,8 @@ export default class Calendar extends React.Component<
           ref={calendar => {
             this.calendar = calendar;
           }}
+          role="grid"
+          aria-multiselectable={this.props.range || null}
           onKeyDown={this.onKeyDown}
           {...calendarContainerProps}
         >
@@ -426,7 +479,12 @@ export default class Calendar extends React.Component<
       overrides.QuickSelectFormControl,
       FormControl,
     );
-    const [QuickSelect, quickSelectProps] = getOverrides(
+    const [
+      QuickSelect,
+      // $FlowFixMe
+      {overrides: quickSelectOverrides, ...restQuickSelectProps},
+    ] = getOverrides(
+      //
       overrides.QuickSelect,
       Select,
     );
@@ -447,6 +505,7 @@ export default class Calendar extends React.Component<
               {...quickSelectFormControlProps}
             >
               <QuickSelect
+                mountNode={this.state.rootElement}
                 aria-label={locale.datepicker.quickSelectAriaLabel}
                 labelKey="id"
                 onChange={params => {
@@ -458,7 +517,10 @@ export default class Calendar extends React.Component<
                     if (this.props.onChange) {
                       if (this.props.range) {
                         this.props.onChange({
-                          date: [params.option.beginDate, NOW],
+                          date: [
+                            params.option.beginDate,
+                            params.option.endDate || NOW,
+                          ],
                         });
                       } else {
                         this.props.onChange({date: params.option.beginDate});
@@ -498,7 +560,17 @@ export default class Calendar extends React.Component<
                 value={
                   this.state.quickSelectId && [{id: this.state.quickSelectId}]
                 }
-                {...quickSelectProps}
+                overrides={mergeOverrides(
+                  {
+                    Dropdown: {
+                      style: {
+                        textAlign: 'start',
+                      },
+                    },
+                  },
+                  quickSelectOverrides,
+                )}
+                {...restQuickSelectProps}
               />
             </QuickSelectFormControl>
           </QuickSelectContainer>
@@ -518,9 +590,14 @@ export default class Calendar extends React.Component<
           <Root
             data-baseweb="calendar"
             ref={root => {
-              this.root = root;
+              if (
+                root &&
+                root instanceof HTMLElement &&
+                !this.state.rootElement
+              ) {
+                this.setState({rootElement: (root: HTMLElement)});
+              }
             }}
-            role="application"
             aria-label="calendar"
             onKeyDown={this.props.trapTabbing ? this.handleTabbing : null}
             {...rootProps}

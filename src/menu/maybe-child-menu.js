@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -17,6 +17,7 @@ type PropsT = {
   isOpen: boolean,
   item: *,
   resetParentMenu: () => void,
+  renderAll?: boolean,
 };
 
 export default function MaybeChildMenu(props: PropsT) {
@@ -31,7 +32,9 @@ export default function MaybeChildMenu(props: PropsT) {
 
   return (
     <Popover
+      focusLock={false}
       isOpen={props.isOpen}
+      renderAll={props.renderAll}
       content={ChildMenu}
       ignoreBoundary
       onMouseEnterDelay={30}

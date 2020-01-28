@@ -50,6 +50,7 @@ export interface DrawerProps {
   children?: React.ReactNode;
   closeable?: boolean;
   autoFocus?: boolean;
+  renderAll?: boolean;
   isOpen?: boolean;
   mountNode?: HTMLElement;
   onClose?: (args: {closeSource?: CLOSE_SOURCE[keyof CLOSE_SOURCE]}) => any;

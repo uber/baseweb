@@ -4,7 +4,7 @@ import {useStyletron} from 'baseui';
 import {Button} from 'baseui/button';
 
 export default () => {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   return (
     <Button
       disabled
@@ -13,11 +13,11 @@ export default () => {
           return (
             <button
               disabled={props.disabled}
-              className={useCss({
+              className={css({
                 background: props.$disabled
                   ? theme.colors.negative400
                   : theme.colors.warning400,
-                color: theme.colors.background,
+                color: theme.colors.backgroundPrimary,
               })}
             >
               {props.children}

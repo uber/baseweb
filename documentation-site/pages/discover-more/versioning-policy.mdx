@@ -1,32 +1,56 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Layout from '../../components/layout';
+import {Notification} from 'baseui/notification';
 
 export default Layout;
 
 # Base Web Versioning Policy
 
-We recognize that you need stability from Base Web.
+**We recognize that you need stability from Base Web.**
 
-This document describes the practices that we follow to provide you the Base Web library.
-We want everyone who depends on Base Web to know when and how new features are added,
-and to be well-prepared when obsolete ones are removed.
+This document describes the practices that we follow to provide you the Base Web library. We want everyone who depends on Base Web to know when and how new features are added and to be well-prepared when obsolete ones are removed.
 
-[Please visit the release history](https://github.com/uber/baseweb/releases). This log
-includes a list of bug fixes and new features, as well as breaking changes and migration guides.
+[Please visit the release history](https://github.com/uber/baseweb/releases) for previous releases. This log includes a list of bug fixes and new features, as well as breaking changes and migration guides.
 
-The project follows [SemVer](https://semver.org), with a few flavours. We do not
+## SemVer, with a Few Flavours
+
+The project follows [SemVer](https://semver.org), with a few flavors. We do not
 bump major versions for the following changes:
 
 - Any component or function that's prefixed with `Unstable_` / `unstable_` may change or be removed without notice.
 - Visual changes, like colors. Under special circumstances, like sweeping visual changes, we may release a major version.
 - Change in undocumented APIs and internal data structures.
 
+## Gradual Upgrades via Warnings
+
 _Development builds of Base Web include many helpful warnings._
 
-In the event of a future breaking change, we will add warnings which indicate the feature is scheduled for deprecation and will provide migration instructions. Deprecation warnings may be added in a minor version. Following major versions will remove the deprecated feature.
+In the event of a future breaking change, we will add warnings that indicate the feature is scheduled for deprecation and will provide migration instructions. Deprecation warnings may be added in a minor version. The following major versions will remove the deprecated feature.
+
+## Release schedule
+
+<Notification
+  overrides={{
+    Body: {style: {width: 'auto'}},
+  }}
+>
+  The release schedule is offered as general guidance and may be adjusted by us
+  when necessary.
+</Notification>
+
+Breaking changes are inconvenient for everyone, so we strive to **limit the number of breaking changes by releasing only one major version a year, around September.** To help with the migration, we provide codemods for every major release.
+
+**In general, you can expect the following release cycle:**
+
+- one major every year,
+- multiple minor / patch releases a week, on demand.
+
+## Support policy
+
+We only support the latest version of Base Web, and do not backport any changes to older versions.

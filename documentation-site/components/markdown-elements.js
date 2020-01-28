@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -55,7 +55,7 @@ export const Heading = ({
       font={fontType}
       ref={hoverRef}
       id={slug}
-      color="foreground"
+      color="contentPrimary"
     >
       <React.Fragment>
         {children}{' '}
@@ -112,12 +112,17 @@ export const DocLink = ({children, href}: {children: string, href: string}) => {
   const parts = href.split('#');
   const internal =
     (parts[0] === '' && parts[1] !== '') || !href.includes('http');
+  if (internal) {
+    return (
+      <Link href={href}>
+        <StyledLink href={href}>{children}</StyledLink>
+      </Link>
+    );
+  }
   return (
-    <Link href={href}>
-      <StyledLink href={href} {...(internal ? {} : {target: '_blank'})}>
-        {children}
-      </StyledLink>
-    </Link>
+    <StyledLink href={href} target="_blank">
+      {children}
+    </StyledLink>
   );
 };
 
@@ -147,26 +152,32 @@ export const H3 = ({children}: {children: React.Node}) => (
   </Heading>
 );
 
+export const H4 = ({children}: {children: React.Node}) => (
+  <Heading element="h4" fontType="font400">
+    {children}
+  </Heading>
+);
+
+export const H5 = ({children}: {children: React.Node}) => (
+  <Heading element="h5" fontType="font350">
+    {children}
+  </Heading>
+);
+
+export const H6 = ({children}: {children: React.Node}) => (
+  <Heading element="h6" fontType="font250">
+    {children}
+  </Heading>
+);
+
 export default {
   code: Code,
   h1: H1,
   h2: H2,
   h3: H3,
-  h4: ({children}: {children: React.Node}) => (
-    <Heading element="h4" fontType="font300">
-      {children}
-    </Heading>
-  ),
-  h5: ({children}: {children: React.Node}) => (
-    <Heading element="h5" fontType="font300">
-      {children}
-    </Heading>
-  ),
-  h6: ({children}: {children: React.Node}) => (
-    <Heading element="h6" fontType="font200">
-      {children}
-    </Heading>
-  ),
+  h4: H4,
+  h5: H5,
+  h6: H6,
   li: ListItem,
   p: Paragraph,
   ul: UnorderedList,

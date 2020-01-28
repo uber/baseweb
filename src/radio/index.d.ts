@@ -6,6 +6,11 @@ export interface STATE_TYPE {
   change: 'CHANGE';
 }
 
+export interface ALIGN {
+  vertical: 'vertical';
+  horizontal: 'horizontal';
+}
+
 export type StateReducer = (
   stateType: string,
   nextState: State,
@@ -22,7 +27,7 @@ export interface StatefulContainerProps {
   children?: React.ReactNode;
   initialState?: State;
   stateReducer: StateReducer;
-  onChange?: React.FormEventHandler<HTMLInputElement>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
   autoFocus?: boolean;
 }
 
@@ -30,7 +35,7 @@ export class StatefulContainer extends React.Component<
   StatefulContainerProps,
   State
 > {
-  onChange(e: React.FormEventHandler<HTMLInputElement>): void;
+  onChange(e: React.ChangeEventHandler<HTMLInputElement>): void;
   stateReducer(type: string, e: React.SyntheticEvent<HTMLInputElement>): void;
 }
 
@@ -40,7 +45,8 @@ export interface StatefulRadioGroupProps {
   initialState?: State;
   autoFocus?: boolean;
   name?: string;
-  onChange?: React.FormEventHandler<HTMLInputElement>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  align?: 'horizontal' | 'vertical';
 }
 
 export const StatefulRadioGroup: React.FC<StatefulRadioGroupProps>;
@@ -55,10 +61,10 @@ export interface RadioGroupProps {
   required?: boolean;
   isError?: boolean;
   autoFocus?: boolean;
-  align?: string;
+  align?: 'horizontal' | 'vertical';
   name?: string;
   labelPlacement?: 'top' | 'right' | 'bottom' | 'left';
-  onChange?: React.FormEventHandler<HTMLInputElement>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onMouseEnter?: React.MouseEventHandler<HTMLInputElement>;
   onMouseLeave?: React.MouseEventHandler<HTMLInputElement>;
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
@@ -90,7 +96,7 @@ export interface RadioProps {
   isError?: boolean;
   labelPlacement?: 'top' | 'right' | 'bottom' | 'left';
   name?: string;
-  onChange?: React.FormEventHandler<HTMLInputElement>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onMouseEnter?: React.MouseEventHandler<HTMLInputElement>;
   onMouseLeave?: React.MouseEventHandler<HTMLInputElement>;
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
@@ -126,3 +132,4 @@ export const StyledRadioMarkOuter: StyletronComponent<any>;
 export const StyledRadioGroupRoot: StyletronComponent<any>;
 
 export const STATE_TYPE: STATE_TYPE;
+export const ALIGN: ALIGN;

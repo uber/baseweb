@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -20,7 +20,7 @@ export const component = () => {
     <React.Fragment>
       <Button
         onClick={() => {
-          setDate(new Date('2019/03/18'));
+          setDate(new Date('2019/07/01'));
         }}
         size="compact"
       >
@@ -30,6 +30,37 @@ export const component = () => {
         aria-label="Select a date"
         highlightedDate={new Date('March 10, 2019')}
         value={date}
+        onChange={({date}) => setDate(date)}
+        overrides={{
+          MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
+          MonthYearSelectStatefulMenu: {
+            props: {
+              overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}},
+            },
+          },
+        }}
+      />
+      <span>Large</span>
+      <Datepicker
+        aria-label="Select a date"
+        aria-describedby="large-datepicker"
+        highlightedDate={new Date('March 10, 2019')}
+        size="large"
+        overrides={{
+          MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
+          MonthYearSelectStatefulMenu: {
+            props: {
+              overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}},
+            },
+          },
+        }}
+      />
+      <span>Compact</span>
+      <Datepicker
+        aria-label="Select a date"
+        aria-describedby="compact-datepicker"
+        highlightedDate={new Date('March 10, 2019')}
+        size="compact"
         overrides={{
           MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
           MonthYearSelectStatefulMenu: {

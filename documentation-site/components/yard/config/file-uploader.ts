@@ -1,6 +1,8 @@
 import {FileUploader} from 'baseui/file-uploader';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
+
+const fileUploaderProps = require('!!extract-react-types-loader!../../../../src/file-uploader/file-uploader.js');
 
 const changeHandlers = [
   'onClick',
@@ -85,17 +87,22 @@ const FileUploaderConfig: TConfig = {
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: [
-        'Root',
-        'ContentMessage',
-        'ErrorMessage',
-        'FileDragAndDrop',
-        'HiddenInput',
-      ],
-      sharedProps: {},
+      custom: {
+        names: [
+          'Root',
+          'ContentMessage',
+          'ErrorMessage',
+          'FileDragAndDrop',
+          'HiddenInput',
+        ],
+        sharedProps: {},
+      },
     },
+  },
+  mapTokensToProps: {
+    FileUploader: fileUploaderProps,
   },
 };
 

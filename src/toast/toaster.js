@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -14,6 +14,7 @@ import {
   Root as StyledRoot,
   Body as StyledBody,
   CloseIconSvg as StyledCloseIcon,
+  InnerContainer as StyledInnerContainer,
 } from './styled-components.js';
 import Toast from './toast.js';
 import type {
@@ -30,14 +31,17 @@ export class ToasterContainer extends React.Component<
   ToasterContainerStateT,
 > {
   static defaultProps: ToasterPropsT = {
+    children: null,
     placement: PLACEMENT.top,
     usePortal: true,
     overrides: {},
     autoHideDuration: 0,
+    resetAutoHideTimerOnUpdate: true,
   };
 
   constructor(props: ToasterPropsT) {
     super(props);
+
     toasterRef = this;
   }
 
@@ -54,31 +58,45 @@ export class ToasterContainer extends React.Component<
     this.setState({isMounted: true});
   }
 
-  getToastProps = (props: ToastPropsT): ToastPropsShapeT & {key: React.Key} => {
+  getToastProps = (props: ToastPropsT): ToastPropsT & {key: React.Key} => {
     const {autoHideDuration} = this.props;
     const key: React.Key = props.key || `toast-${this.toastId++}`;
-    // $FlowFixMe
     return {autoHideDuration, ...props, key};
   };
 
   show = (props: ToastPropsT = {}): React.Key => {
+    if (this.state.toasts.map(t => t.key).includes(props.key)) {
+      this.update(props.key, props);
+      return props.key;
+    }
     const toastProps = this.getToastProps(props);
     this.setState(({toasts}) => {
-      toasts.push(toastProps);
-      return {toasts};
+      return {toasts: [...toasts, toastProps]};
     });
     return toastProps.key;
   };
 
   update = (key: React.Key, props: ToastPropsT): void => {
     this.setState(({toasts}) => {
-      toasts.forEach((t, index, arr) => {
-        if (t.key === key) {
-          arr[index] = {...t, ...this.getToastProps(props), key};
+      const updatedToasts = toasts.map(toast => {
+        if (toast.key === key) {
+          const updatedToastProps = {
+            ...toast,
+            ...this.getToastProps({
+              autoHideDuration: toast.autoHideDuration,
+              ...props,
+            }),
+            key,
+            ...(this.props.resetAutoHideTimerOnUpdate
+              ? {__updated: (parseInt(toast.__updated) || 0) + 1}
+              : {}),
+          };
+          return updatedToastProps;
         }
+        return toast;
       });
       return {
-        toasts,
+        toasts: updatedToasts,
       };
     });
   };
@@ -121,11 +139,20 @@ export class ToasterContainer extends React.Component<
     const {
       ToastBody: BodyOverride,
       ToastCloseIcon: CloseIconOverride,
+      ToastInnerContainer: InnerContainerOverride,
     } = this.props.overrides;
     const globalToastOverrides = mergeOverrides(
-      {Body: StyledBody, CloseIcon: StyledCloseIcon},
+      {
+        Body: StyledBody,
+        CloseIcon: StyledCloseIcon,
+        InnerContainer: StyledInnerContainer,
+      },
       // $FlowFixMe
-      {Body: BodyOverride, CloseIcon: CloseIconOverride},
+      {
+        Body: BodyOverride,
+        CloseIcon: CloseIconOverride,
+        InnerContainer: InnerContainerOverride,
+      },
     );
     const toastOverrides = mergeOverrides(
       globalToastOverrides,
@@ -167,7 +194,6 @@ export class ToasterContainer extends React.Component<
     // to the oldest at the end
     // eslint-disable-next-line for-direction
     for (let i = toastsLength - 1; i >= 0; i--) {
-      // $FlowFixMe
       toastsToRender.push(this.renderToast(this.state.toasts[i]));
     }
 
@@ -180,14 +206,24 @@ export class ToasterContainer extends React.Component<
       // Only render on the browser (portals aren't supported server-side)
       if (this.props.usePortal) {
         if (__BROWSER__) {
-          return ReactDOM.createPortal(
-            root,
-            // $FlowFixMe
-            document.body,
+          return (
+            <>
+              {ReactDOM.createPortal(
+                root,
+                // $FlowFixMe
+                document.body,
+              )}
+              {this.props.children}
+            </>
           );
         }
       } else {
-        return root;
+        return (
+          <>
+            {root}
+            {this.props.children}
+          </>
+        );
       }
     }
     return null;

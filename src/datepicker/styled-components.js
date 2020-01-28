@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -83,6 +83,8 @@ export const StyledCalendarHeader = styled<SharedStylePropsT>('div', props => {
     borderTopRightRadius: borders.surfaceBorderRadius,
     borderBottomRightRadius: 0,
     borderBottomLeftRadius: 0,
+    // account for the left/right arrow heights
+    minHeight: `calc(${sizing.scale800} + ${sizing.scale0})`,
   };
 });
 
@@ -133,6 +135,8 @@ function getArrowBtnStyle({$theme, $disabled}) {
     paddingRight: '0',
     marginLeft: '6px',
     marginRight: '6px',
+    marginBottom: 0,
+    marginTop: 0,
     outline: 'none',
     ':focus': $disabled
       ? {}
@@ -507,13 +511,15 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
     $pseudoSelected,
     $range,
     $selected,
+    $outsideMonth,
     $theme: {colors, sizing},
   } = props;
   const code = getDayStateCode(props);
   return ({
     boxSizing: 'border-box',
     position: 'relative',
-    cursor: $disabled ? 'default' : 'pointer',
+    cursor:
+      $disabled || (!$peekNextMonth && $outsideMonth) ? 'default' : 'pointer',
     color: colors.calendarForeground,
     display: 'inline-block',
     width: sizing.scale1000,
@@ -623,6 +629,18 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
           }
         : {}),
     },
+    ...(!$peekNextMonth && $outsideMonth
+      ? {
+          ':before': {content: null},
+          ':after': {content: null},
+          ':first-child': {
+            ':before': {content: null},
+          },
+          ':last-child': {
+            ':before': {content: null},
+          },
+        }
+      : {}),
   }: {});
 });
 

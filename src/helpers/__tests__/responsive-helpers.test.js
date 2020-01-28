@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -10,18 +10,9 @@ import {getMediaQueries, getMediaQuery} from '../responsive-helpers.js';
 
 describe('Helpers - ResponsiveHelpers', () => {
   test('getMediaQuery', () => {
-    expect(getMediaQuery({'max-width': '1280px'})).toEqual(
-      '@media screen and (max-width: 1280px)',
+    expect(getMediaQuery(1280)).toEqual(
+      '@media screen and (min-width: 1280px)',
     );
-    expect(
-      getMediaQuery(
-        {
-          'max-width': '1280px',
-          'min-height': '720px',
-        },
-        'AND',
-      ),
-    ).toEqual('@media screen and (max-width: 1280px) and (min-height: 720px)');
   });
 
   test('getMediaQueries', () => {

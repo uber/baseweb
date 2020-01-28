@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -69,15 +69,20 @@ export default class Datepicker extends React.Component<
   formatDate(date: ?Date | Array<Date>, formatString: string) {
     if (!date) {
       return '';
+    } else if (Array.isArray(date) && (!date[0] && !date[1])) {
+      return '';
     } else if (Array.isArray(date)) {
-      return date.map(day => formatDate(day, formatString)).join(' - ');
+      return date
+        .map(day => formatDate(day, formatString, this.props.locale))
+        .join(' – ');
     } else {
-      return formatDate(date, formatString);
+      return formatDate(date, formatString, this.props.locale);
     }
   }
 
   formatDisplayValue(date: ?Date | Array<Date>) {
-    const formatDisplayValue = this.props.formatDisplayValue || this.formatDate;
+    let formatDisplayValue = this.props.formatDisplayValue || this.formatDate;
+    formatDisplayValue = formatDisplayValue.bind(this);
     return formatDisplayValue(date, this.props.formatString || 'yyyy/MM/dd');
   }
 
@@ -113,8 +118,47 @@ export default class Datepicker extends React.Component<
     }
   };
 
+  getMask = () => {
+    const {formatString} = this.props;
+    let mask = '';
+    if (this.props.mask !== null) {
+      mask =
+        // using the mask provided through the top-level API
+        this.props.mask ||
+        // to make sure it's not a breaking change, we try calculating the input mask
+        // from the formatString, if used by the developer
+
+        // 1. mask generation from the formatstring if it's a range input
+        (formatString && this.props.range
+          ? `${formatString} – ${formatString}`.replace(/[a-z]/gi, '9')
+          : null) ||
+        // 2. mask generation from the formatstring if it is NOT a range input
+        (formatString ? formatString.replace(/[a-z]/gi, '9') : null) ||
+        // falling back to the default masks
+        (this.props.range ? '9999/99/99 – 9999/99/99' : '9999/99/99');
+    }
+    return mask;
+  };
+
   handleInputChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
     const inputValue = event.currentTarget.value;
+
+    if (
+      inputValue === this.getMask().replace(/9/g, ' ') ||
+      inputValue.length === 0
+    ) {
+      if (this.props.range) {
+        this.props.onChange &&
+          this.props.onChange({
+            date: [],
+          });
+      } else {
+        this.props.onChange &&
+          this.props.onChange({
+            date: null,
+          });
+      }
+    }
 
     this.setState({
       inputValue,
@@ -122,7 +166,7 @@ export default class Datepicker extends React.Component<
     });
 
     if (this.props.range) {
-      const dates = inputValue.split(' - ');
+      const dates = this.normalizeDashes(inputValue).split(' – ');
       const startDate = new Date(dates[0]);
       const endDate = new Date(dates[1]);
       isValid(startDate) &&
@@ -164,6 +208,11 @@ export default class Datepicker extends React.Component<
     }
   };
 
+  normalizeDashes = (inputValue: string) => {
+    // replacing both hyphens and em-dashes with en-dashs
+    return inputValue.replace(/-/g, '–').replace(/—/g, '–');
+  };
+
   componentDidUpdate(prevProps: DatepickerPropsT) {
     if (prevProps.value !== this.props.value) {
       this.setState({
@@ -173,7 +222,7 @@ export default class Datepicker extends React.Component<
   }
 
   render() {
-    const {overrides = {}, formatString} = this.props;
+    const {overrides = {}} = this.props;
     const [InputComponent, inputProps] = getOverrides(
       overrides.Input,
       MaskedInput,
@@ -186,52 +235,21 @@ export default class Datepicker extends React.Component<
       overrides.InputWrapper,
       StyledInputWrapper,
     );
-    const mask =
-      // using the mask provided through the top-level API
-      this.props.mask ||
-      // to make sure it's not a breaking change, we try calculating the input mask
-      // from the formatString, if used by the developer
-
-      // 1. mask generation from the formatstring if it's a range input
-      (formatString && this.props.range
-        ? `${formatString} - ${formatString}`.replace(/[a-z]/gi, '9')
-        : null) ||
-      // 2. mask generation from the formatstring if it is NOT a range input
-      (formatString ? formatString.replace(/[a-z]/gi, '9') : null) ||
-      // falling back to the default masks
-      (this.props.range ? '9999/99/99 - 9999/99/99' : '9999/99/99');
 
     const placeholder =
       this.props.placeholder ||
-      (this.props.range ? 'YYYY/MM/DD - YYYY/MM/DD' : 'YYYY/MM/DD');
+      (this.props.range ? 'YYYY/MM/DD – YYYY/MM/DD' : 'YYYY/MM/DD');
 
     return (
       <LocaleContext.Consumer>
         {locale => (
           <React.Fragment>
             <PopoverComponent
+              focusLock={false}
               mountNode={this.props.mountNode}
               placement={PLACEMENT.bottom}
               isOpen={this.state.isOpen}
-              onClickOutside={event => {
-                // Required to check that items rendered in a sub-popover does not trigger close.
-                // For example, upon selecting an option from the month dropdown it would cause
-                // this code to run since the two popovers are DOM siblings rather than parent/child.
-                // There's likely a more robust way to check this, but ignores clicks from elements
-                // that are select options for now.
-                function isOption(element) {
-                  if (!element) return false;
-                  return element.getAttribute('role') === 'option';
-                }
-                if (
-                  isOption(event.target) ||
-                  isOption(event.target.parentElement)
-                ) {
-                  return;
-                }
-
-                this.close();
-              }}
+              onClickOutside={this.close}
               onEsc={this.handleEsc}
               content={
                 <Calendar
@@ -256,22 +274,24 @@ export default class Datepicker extends React.Component<
                   aria-describedby={this.props['aria-describedby']}
                   aria-required={this.props.required || null}
                   disabled={this.props.disabled}
+                  size={this.props.size}
                   value={this.state.inputValue}
                   onFocus={this.open}
                   onBlur={this.handleInputBlur}
                   onKeyDown={this.handleKeyDown}
                   onChange={this.handleInputChange}
                   placeholder={placeholder}
-                  mask={mask}
+                  mask={this.getMask()}
                   required={this.props.required}
+                  clearable={this.props.clearable}
                   {...inputProps}
                 />
               </InputWrapper>
             </PopoverComponent>
             <p
-              id="datepicker--screenreader--message--input"
+              id={this.props['aria-describedby']}
               style={{
-                position: 'absolute',
+                position: 'fixed',
                 width: '1px',
                 height: '1px',
                 margin: '-1px',

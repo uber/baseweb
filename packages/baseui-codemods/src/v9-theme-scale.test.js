@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -197,9 +197,9 @@ export default Foo;`;
 const Foo = () => {
   return (
     <div>
-      <Paragraph4 color=\\"colorSecondary\\">Hello there!</Paragraph4>
+      <Paragraph4 color=\\"contentSecondary\\">Hello there!</Paragraph4>
       <Paragraph4 color=\\"primary\\">Hello there!</Paragraph4>
-      <Label4 color=\\"colorSecondary\\">Hello there!</Label4>
+      <Label4 color=\\"contentSecondary\\">Hello there!</Label4>
     </div>
   );
 }
@@ -246,7 +246,7 @@ export default Foo;`;
 const Foo = () => {
   return (
     <div>
-      <Caption color=\\"colorSecondary\\">Hello there!</Caption>
+      <Caption color=\\"contentSecondary\\">Hello there!</Caption>
       <Caption color=\\"primary\\">Hello there!</Caption>
     </div>
   );

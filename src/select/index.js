@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -29,7 +29,9 @@ export {
   StyledIconsContainer,
   StyledSelectArrow,
   StyledClearIcon,
-  StyledSearchIcon,
+  // TODO(v10): remove StyledSearchIconContainer as StyledSearchIcon
+  StyledSearchIconContainer as StyledSearchIcon,
+  StyledSearchIconContainer,
   StyledDropdownContainer,
   StyledDropdown,
   StyledDropdownListItem,
@@ -37,4 +39,4 @@ export {
 } from './styled-components.js';
 export {default as filterOptions} from './utils/default-filter-options.js';
 export {SIZE, TYPE, STATE_CHANGE_TYPE} from './constants.js';
-export * from './types.js';
+export type * from './types.js';

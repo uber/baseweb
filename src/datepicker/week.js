@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -72,6 +72,10 @@ export default class Week extends React.Component<WeekPropsT> {
   render() {
     const {overrides = {}} = this.props;
     const [Week, weekProps] = getOverrides(overrides.Week, StyledWeek);
-    return <Week {...weekProps}>{this.renderDays()}</Week>;
+    return (
+      <Week role="row" {...weekProps}>
+        {this.renderDays()}
+      </Week>
+    );
   }
 }

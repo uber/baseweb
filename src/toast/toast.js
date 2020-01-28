@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -54,12 +54,24 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     this.startTimeout();
   }
 
+  componentDidUpdate(prevProps: ToastPropsT) {
+    if (
+      this.props.autoHideDuration !== prevProps.autoHideDuration ||
+      this.props.__updated !== prevProps.__updated
+    ) {
+      this.startTimeout();
+    }
+  }
+
   componentWillUnmount() {
     this.clearTimeout();
   }
 
   startTimeout() {
     if (this.props.autoHideDuration) {
+      if (this.autoHideTimeout) {
+        clearTimeout(this.autoHideTimeout);
+      }
       this.autoHideTimeout = setTimeout(
         this.dismiss,
         this.props.autoHideDuration,

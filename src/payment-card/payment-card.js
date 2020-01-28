@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -91,6 +91,7 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
 
     const getBeforeComponent = theme => {
       const iconSize = {
+        [SIZE.mini]: theme.sizing.scale600,
         [SIZE.compact]: theme.sizing.scale800,
         [SIZE.default]: theme.sizing.scale900,
         [SIZE.large]: theme.sizing.scale1000,

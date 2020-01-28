@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -47,6 +47,7 @@ class Panel extends React.Component<PanelPropsT> {
     // toggle on Enter or Space button pressed
     if (e.key === 'Enter' || e.which === 32) {
       typeof onChange === 'function' && onChange({expanded: !expanded});
+      e.which === 32 && e.preventDefault(); // prevent jumping scroll when using Space
     }
     typeof onKeyDown === 'function' && onKeyDown(e);
     return;
@@ -69,6 +70,7 @@ class Panel extends React.Component<PanelPropsT> {
       'aria-controls': ariaControls,
       title,
       renderPanelContent,
+      renderAll,
     } = this.props;
 
     const sharedProps = this.getSharedProps();
@@ -78,6 +80,11 @@ class Panel extends React.Component<PanelPropsT> {
       Content: ContentOverride,
       ToggleIcon: ToggleIconOverride,
     } = overrides;
+
+    const isIconOverriden =
+      ToggleIconOverride &&
+      (typeof ToggleIconOverride === 'function' ||
+        typeof ToggleIconOverride.component === 'function');
 
     const [PanelContainer, panelContainerProps] = getOverrides(
       PanelContainerOverride,
@@ -99,7 +106,14 @@ class Panel extends React.Component<PanelPropsT> {
       {Svg: ToggleIconOverride},
     );
 
-    const ToggleIconComponent = expanded ? CheckIndeterminateIcon : PlusIcon;
+    // it's a bit tricky ¯\_(ツ)_/¯
+    // we only want to use the theme overrides, if it was not override locally
+    const ToggleIconComponent = isIconOverriden
+      ? ToggleIcon
+      : expanded
+      ? CheckIndeterminateIcon
+      : PlusIcon;
+
     return (
       <LocaleContext.Consumer>
         {locale => (
@@ -131,7 +145,7 @@ class Panel extends React.Component<PanelPropsT> {
               {...contentProps}
               {...(ariaControls ? {id: ariaControls} : {})}
             >
-              {expanded || renderPanelContent ? children : null}
+              {expanded || renderPanelContent || renderAll ? children : null}
             </Content>
           </PanelContainer>
         )}

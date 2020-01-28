@@ -1,7 +1,10 @@
 import {ButtonGroup, MODE} from 'baseui/button-group';
 import {Button} from 'baseui/button';
-import {PropTypes} from '../const';
+import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
+
+const buttonGroupProps = require('!!extract-react-types-loader!../../../../src/button-group/button-group.js');
+const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button.js');
 
 const ButtonGroupConfig: TConfig = {
   imports: {
@@ -35,6 +38,10 @@ const ButtonGroupConfig: TConfig = {
     'buttonMinimalActive',
     'buttonDisabledFill',
     'buttonDisabledText',
+    'buttonPrimarySelectedFill',
+    'buttonPrimarySelectedText',
+    'buttonSecondarySelectedFill',
+    'buttonSecondarySelectedText',
   ],
   props: {
     children: {
@@ -70,11 +77,17 @@ const ButtonGroupConfig: TConfig = {
     },
     overrides: {
       value: undefined,
-      type: PropTypes.Overrides,
+      type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      names: ['Root'],
-      sharedProps: {},
+      custom: {
+        names: ['Root'],
+        sharedProps: {},
+      },
     },
+  },
+  mapTokensToProps: {
+    ButtonGroup: buttonGroupProps,
+    Button: buttonProps,
   },
 };
 

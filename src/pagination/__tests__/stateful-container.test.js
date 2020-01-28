@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -15,7 +15,7 @@ const mockChildrenFn = jest.fn().mockImplementation(() => <div />);
 const mockOnPageChangeFn = jest.fn();
 const mockStateReducerFn = jest
   .fn()
-  .mockImplementation((changeType, changes) => changes);
+  .mockImplementation((changeType, changes) => (changes: any));
 
 function getSharedProps() {
   return {

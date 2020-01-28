@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import Exports from '../../components/exports';
 import Layout from '../../components/layout';
+import SEO from '../../components/meta-seo';
 
 import BasicButton from 'examples/button/basic.js';
 import Kinds from 'examples/button/kinds.js';
@@ -25,6 +26,12 @@ import ArrowRight from 'baseui/icon/arrow-right';
 
 import Yard from '../../components/yard/index';
 import buttonYardConfig from '../../components/yard/config/button';
+import ApiTable from '../../components/api-table';
+
+<SEO
+  description="Buttons provide cues for actions and events. These fundamental components allow users to process actions or navigate an experience."
+  keywords="button, react button, react cta, react call to action"
+/>
 
 export default Layout;
 
@@ -88,6 +95,12 @@ primary button action. As the name implies, it’s offered to supplement to crea
 </Example>
 
 ## API
+
+<ApiTable
+  title="Button props"
+  config={buttonYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/button/button.js')}
+/>
 
 <Exports
   component={ButtonExports}

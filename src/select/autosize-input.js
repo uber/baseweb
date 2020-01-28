@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -76,7 +76,12 @@ export default class AutosizeInput extends React.Component<
       <React.Fragment>
         <Input {...componentInputProps} ref={inputRef} {...inputProps} />
         {/* a hidden helper element to calculate the size of the input */}
-        <StyledInputSizer $size={this.props.$size} ref={this.sizerRef}>
+        <StyledInputSizer
+          $size={this.props.$size}
+          ref={this.sizerRef}
+          // $FlowFixMe checking for $style before use
+          $style={inputProps.$style ? inputProps.$style : null}
+        >
           {sizerValue}
         </StyledInputSizer>
       </React.Fragment>

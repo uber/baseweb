@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -43,6 +43,31 @@ describe('ProgressSteps', () => {
     example.children().forEach((element, index) => {
       const isActive = index === 3;
       expect(element).toHaveProp('isActive', isActive);
+    });
+  });
+
+  it('passes down overrides to the Step component', () => {
+    const steps = [];
+    const overrides = {
+      Icon: {
+        style: {
+          backgroundColor: 'pink',
+        },
+      },
+    };
+
+    for (let x = 0; x < 5; x++) {
+      steps.push(<Step key={x}>Step {x}</Step>);
+    }
+
+    const component = shallow(
+      <ProgressSteps overrides={overrides} current={3}>
+        {steps}
+      </ProgressSteps>,
+    );
+
+    component.children().forEach((element, index) => {
+      expect(element).toHaveProp('overrides', overrides);
     });
   });
 

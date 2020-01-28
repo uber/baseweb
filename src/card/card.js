@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -55,6 +55,9 @@ function Card(props: CardsPropsT) {
   const Thumbnail = getOverride(ThumbnailOverride) || StyledThumbnail;
   const Title = getOverride(TitleOverride) || StyledTitle;
 
+  const headerImageProps =
+    typeof headerImage === 'string' ? {src: headerImage} : headerImage;
+
   const $hasThumbnail = hasThumbnail(props);
   return (
     <Root
@@ -64,7 +67,7 @@ function Card(props: CardsPropsT) {
     >
       {headerImage && (
         <HeaderImage
-          src={headerImage}
+          {...headerImageProps}
           {...getOverrideProps(HeaderImageOverride)}
         />
       )}

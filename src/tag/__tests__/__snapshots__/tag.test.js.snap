@@ -120,7 +120,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
           $kind="primary"
           $variant="light"
           aria-label="close button"
-          onClick={[MockFunction]}
+          onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
           tabIndex={0}
@@ -135,14 +135,14 @@ exports[`Stateless tag should render component: Component has correct render 1`]
             $variant="light"
             aria-label="close button"
             forwardedRef={null}
-            onClick={[MockFunction]}
+            onClick={[Function]}
             onKeyDown={[Function]}
             role="button"
             tabIndex={0}
           >
             <span
               aria-label="close button"
-              onClick={[MockFunction]}
+              onClick={[Function]}
               onKeyDown={[Function]}
               role="button"
               styled-component="true"

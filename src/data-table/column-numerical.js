@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2019 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Button} from '../button/index.js';
+import {Button, SIZE} from '../button/index.js';
 import {ButtonGroup, MODE} from '../button-group/index.js';
-import {Input} from '../input/index.js';
+import {Input, SIZE as INPUT_SIZE} from '../input/index.js';
 import {useStyletron} from '../styles/index.js';
 import {Paragraph4} from '../typography/index.js';
 
@@ -32,17 +32,24 @@ type NumericalOperations =
   | typeof NUMERICAL_OPERATIONS.LTE;
 
 type OptionsT = {|
-  title: string,
-  sortable?: boolean,
   filterable?: boolean,
   format?: NumericalFormats,
   highlight?: number => boolean,
+  // eslint-disable-next-line flowtype/no-weak-types
+  mapDataToValue: (data: any) => number,
+  maxWidth?: number,
+  minWidth?: number,
   precision?: number,
+  sortable?: boolean,
+  title: string,
 |};
 
 type FilterParametersT = {|
-  value: number,
-  operation: NumericalOperations,
+  comparisons: Array<{|
+    value: number,
+    operation: NumericalOperations,
+  |}>,
+  description: string,
   exclude: boolean,
 |};
 
@@ -81,60 +88,237 @@ function validateInput(input) {
   return Boolean(parseFloat(input)) || input === '' || input === '-';
 }
 
-function NumericalFilter(props) {
-  const [useCss, theme] = useStyletron();
-  const [exclude, setExclude] = React.useState(false);
-  const [comparator, setComparator] = React.useState(0);
-  const [operator, setOperator] = React.useState(0);
-  const [value, setValue] = React.useState('');
+function filterParamsToInitialState(filterParams) {
+  if (filterParams) {
+    if (filterParams.comparisons.length > 1) {
+      if (
+        filterParams.comparisons[0].operation === NUMERICAL_OPERATIONS.LT &&
+        filterParams.comparisons[1].operation === NUMERICAL_OPERATIONS.GT
+      ) {
+        return {
+          exclude: !filterParams.exclude,
+          comparatorIndex: 0,
+          operatorIndex: 4,
+          right: filterParams.comparisons[1].value.toString(),
+          left: filterParams.comparisons[0].value.toString(),
+        };
+      }
+    } else {
+      const comparison = filterParams.comparisons[0];
+      if (comparison.operation === NUMERICAL_OPERATIONS.LT) {
+        return {
+          exclude: filterParams.exclude,
+          comparatorIndex: 0,
+          operatorIndex: 0,
+          left: '',
+          right: comparison.value.toString(),
+        };
+      } else if (comparison.operation === NUMERICAL_OPERATIONS.GT) {
+        return {
+          exclude: filterParams.exclude,
+          comparatorIndex: 0,
+          operatorIndex: 1,
+          left: comparison.value.toString(),
+          right: '',
+        };
+      } else if (comparison.operation === NUMERICAL_OPERATIONS.LTE) {
+        return {
+          exclude: filterParams.exclude,
+          comparatorIndex: 0,
+          operatorIndex: 2,
+          left: '',
+          right: comparison.value.toString(),
+        };
+      } else if (comparison.operation === NUMERICAL_OPERATIONS.GTE) {
+        return {
+          exclude: filterParams.exclude,
+          comparatorIndex: 0,
+          operatorIndex: 3,
+          left: comparison.value.toString(),
+          right: '',
+        };
+      } else if (comparison.operation === NUMERICAL_OPERATIONS.EQ) {
+        return {
+          exclude: filterParams.exclude,
+          comparatorIndex: 1,
+          operatorIndex: 0,
+          left: comparison.value.toString(),
+          right: '',
+        };
+      }
+    }
+  }
 
-  const isRange = comparator === 0;
+  return {
+    exclude: false,
+    comparatorIndex: 0,
+    operatorIndex: 0,
+    left: '',
+    right: '',
+  };
+}
+
+function NumericalFilter(props) {
+  const [css, theme] = useStyletron();
+
+  const initialState = filterParamsToInitialState(props.filterParams);
+  const [exclude, setExclude] = React.useState(initialState.exclude);
+  const [comparatorIndex, setComparatorIndex] = React.useState(
+    initialState.comparatorIndex,
+  );
+  const [operatorIndex, setOperatorIndex] = React.useState(
+    initialState.operatorIndex,
+  );
+  const [left, setLeft] = React.useState(initialState.left);
+  const [right, setRight] = React.useState(initialState.right);
+
+  const isRange = comparatorIndex === 0;
   const min = React.useMemo(() => Math.min(...props.data), [props.data]);
   const max = React.useMemo(() => Math.max(...props.data), [props.data]);
+
+  React.useEffect(() => {
+    if (!left) {
+      setLeft(min.toString());
+    }
+    if (!right) {
+      setRight(max.toString());
+    }
+  }, []);
+
+  const [leftDisabled, rightDisabled] = React.useMemo(() => {
+    if (!isRange) return [false, false];
+    switch (operatorIndex) {
+      case 4:
+        return [false, false];
+      case 0:
+      case 2:
+        return [true, false];
+      case 1:
+      case 3:
+        return [false, true];
+      default:
+        return [true, true];
+    }
+  }, [operatorIndex, isRange]);
+
+  const leftInputRef = React.useRef(null);
+  const rightInputRef = React.useRef(null);
+  React.useEffect(() => {
+    if (!leftDisabled && leftInputRef.current) {
+      leftInputRef.current.focus({preventScroll: true});
+    } else if (!rightDisabled && rightInputRef.current) {
+      rightInputRef.current.focus({preventScroll: true});
+    }
+  }, [leftDisabled, rightDisabled, comparatorIndex]);
+
+  React.useEffect(() => {
+    switch (operatorIndex) {
+      case 4:
+      default:
+        break;
+      case 1:
+      case 3:
+        setRight(max.toString());
+        break;
+      case 0:
+      case 2:
+        setLeft(min.toString());
+        break;
+    }
+  }, [operatorIndex]);
 
   return (
     <FilterShell
       exclude={exclude}
       onExcludeChange={() => setExclude(!exclude)}
       onApply={() => {
-        let operation = NUMERICAL_OPERATIONS.EQ;
         if (isRange) {
-          switch (operator) {
-            case 3:
-              operation = NUMERICAL_OPERATIONS.GTE;
+          switch (operatorIndex) {
+            case 0: {
+              const value = parseFloat(right);
+              const operation = NUMERICAL_OPERATIONS.LT;
+              props.setFilter({
+                comparisons: [{value, operation}],
+                description: `${operation} ${value}`,
+                exclude,
+              });
               break;
-            case 2:
-              operation = NUMERICAL_OPERATIONS.LTE;
+            }
+            case 1: {
+              const value = parseFloat(left);
+              const operation = NUMERICAL_OPERATIONS.GT;
+              props.setFilter({
+                comparisons: [{value, operation}],
+                description: `${operation} ${value}`,
+                exclude,
+              });
               break;
-            case 1:
-              operation = NUMERICAL_OPERATIONS.GT;
+            }
+            case 2: {
+              const value = parseFloat(right);
+              const operation = NUMERICAL_OPERATIONS.LTE;
+              props.setFilter({
+                comparisons: [{value, operation}],
+                description: `${operation} ${value}`,
+                exclude,
+              });
               break;
-            case 0:
+            }
+            case 3: {
+              const value = parseFloat(left);
+              const operation = NUMERICAL_OPERATIONS.GTE;
+              props.setFilter({
+                comparisons: [{value, operation}],
+                description: `${operation} ${value}`,
+                exclude,
+              });
+              break;
+            }
+            case 4: {
+              // 'between' case is interesting since if we want less than 10 plus greater than 5
+              // comparators, the filter will include _all_ numbers.
+              const leftValue = parseFloat(left);
+              const rightValue = parseFloat(right);
+              props.setFilter({
+                comparisons: [
+                  {
+                    value: leftValue,
+                    operation: NUMERICAL_OPERATIONS.LT,
+                  },
+                  {
+                    value: rightValue,
+                    operation: NUMERICAL_OPERATIONS.GT,
+                  },
+                ],
+                description: `${NUMERICAL_OPERATIONS.GTE} ${leftValue} & ${NUMERICAL_OPERATIONS.LTE} ${rightValue}`,
+                exclude: !exclude,
+              });
+              break;
+            }
             default:
-              operation = NUMERICAL_OPERATIONS.LT;
               break;
           }
+        } else {
+          const value = parseFloat(left);
+          const operation = NUMERICAL_OPERATIONS.EQ;
+          props.setFilter({
+            comparisons: [{value, operation}],
+            description: `${operation} ${value}`,
+            exclude,
+          });
         }
 
-        const parsed = parseFloat(value);
-        props.setFilter(
-          {
-            value: parsed,
-            operation,
-            exclude,
-          },
-          `${operation} ${parsed}`,
-        );
         props.close();
       }}
     >
       <ButtonGroup
+        size={SIZE.compact}
         mode={MODE.radio}
-        selected={comparator}
-        onClick={(_, index) => setComparator(index)}
+        selected={comparatorIndex}
+        onClick={(_, index) => setComparatorIndex(index)}
         overrides={{
           Root: {
-            style: ({$theme}) => ({marginBottom: $theme.sizing.scale500}),
+            style: ({$theme}) => ({marginBottom: $theme.sizing.scale300}),
           },
         }}
       >
@@ -154,9 +338,10 @@ function NumericalFilter(props) {
 
       {isRange && (
         <ButtonGroup
+          size={SIZE.compact}
           mode={MODE.radio}
-          selected={operator}
-          onClick={(_, index) => setOperator(index)}
+          selected={operatorIndex}
+          onClick={(_, index) => setOperatorIndex(index)}
           overrides={{
             Root: {
               style: ({$theme}) => ({marginBottom: $theme.sizing.scale500}),
@@ -187,11 +372,17 @@ function NumericalFilter(props) {
           >
             &#8805;
           </Button>
+          <Button
+            type="button"
+            overrides={{BaseButton: {style: {width: '100%'}}}}
+          >
+            &#61;
+          </Button>
         </ButtonGroup>
       )}
 
       <div
-        className={useCss({
+        className={css({
           display: 'flex',
           justifyContent: 'space-between',
           marginLeft: theme.sizing.scale300,
@@ -202,25 +393,41 @@ function NumericalFilter(props) {
         <Paragraph4>{format(max, props.options)}</Paragraph4>
       </div>
 
-      <div
-        className={useCss({display: 'flex', justifyContent: 'space-between'})}
-      >
+      <div className={css({display: 'flex', justifyContent: 'space-between'})}>
         <Input
-          overrides={{Root: {style: {width: '152px'}}}}
-          value={value}
+          size={INPUT_SIZE.compact}
+          overrides={{Root: {style: {width: isRange ? '152px' : '100%'}}}}
+          disabled={leftDisabled}
+          inputRef={leftInputRef}
+          value={left}
           onChange={event => {
             if (validateInput(event.target.value)) {
-              setValue(event.target.value);
+              setLeft(event.target.value);
             }
           }}
         />
+
+        {isRange && (
+          <Input
+            size={INPUT_SIZE.compact}
+            overrides={{Root: {style: {width: '152px'}}}}
+            disabled={rightDisabled}
+            inputRef={rightInputRef}
+            value={right}
+            onChange={event => {
+              if (validateInput(event.target.value)) {
+                setRight(event.target.value);
+              }
+            }}
+          />
+        )}
       </div>
     </FilterShell>
   );
 }
 
 const NumericalCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
-  const [useCss, theme] = useStyletron();
+  const [css, theme] = useStyletron();
 
   return (
     <CellShell
@@ -230,7 +437,7 @@ const NumericalCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
       onSelect={props.onSelect}
     >
       <div
-        className={useCss({
+        className={css({
           display: 'flex',
           justifyContent: 'flex-end',
           color: props.highlight(props.value) ? theme.colors.negative : null,
@@ -279,9 +486,33 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
 
   return {
     kind: COLUMNS.NUMERICAL,
-    title: normalizedOptions.title,
-    sortable: normalizedOptions.sortable,
+    buildFilter: function(params) {
+      return function(data) {
+        const included = params.comparisons.some(c => {
+          const left = roundToFixed(data, normalizedOptions.precision);
+          const right = roundToFixed(c.value, normalizedOptions.precision);
+          switch (c.operation) {
+            case NUMERICAL_OPERATIONS.EQ:
+              return left === right;
+            case NUMERICAL_OPERATIONS.GT:
+              return left > right;
+            case NUMERICAL_OPERATIONS.GTE:
+              return left >= right;
+            case NUMERICAL_OPERATIONS.LT:
+              return left < right;
+            case NUMERICAL_OPERATIONS.LTE:
+              return left <= right;
+            default:
+              return true;
+          }
+        });
+        return params.exclude ? !included : included;
+      };
+    },
     filterable: normalizedOptions.filterable,
+    mapDataToValue: options.mapDataToValue,
+    maxWidth: options.maxWidth,
+    minWidth: options.minWidth,
     renderCell: React.forwardRef((props, ref) => {
       return (
         <NumericalCell
@@ -299,37 +530,12 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
     renderFilter: function RenderNumericalFilter(props) {
       return <NumericalFilter {...props} options={normalizedOptions} />;
     },
-    buildFilter: function(params) {
-      return function(data) {
-        let included = true;
-        const left = roundToFixed(data, normalizedOptions.precision);
-        const right = roundToFixed(params.value, normalizedOptions.precision);
-        switch (params.operation) {
-          case NUMERICAL_OPERATIONS.EQ:
-            included = left === right;
-            break;
-          case NUMERICAL_OPERATIONS.GT:
-            included = left > right;
-            break;
-          case NUMERICAL_OPERATIONS.GTE:
-            included = left >= right;
-            break;
-          case NUMERICAL_OPERATIONS.LT:
-            included = left < right;
-            break;
-          case NUMERICAL_OPERATIONS.LTE:
-            included = left <= right;
-            break;
-          default:
-            break;
-        }
-        return params.exclude ? !included : included;
-      };
-    },
+    sortable: normalizedOptions.sortable,
     // initial sort should display largest values first
     sortFn: function(a, b) {
       return b - a;
     },
+    title: normalizedOptions.title,
   };
 }
 
