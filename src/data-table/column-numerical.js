@@ -33,7 +33,7 @@ type NumericalOperations =
 
 type OptionsT = {|
   filterable?: boolean,
-  format?: NumericalFormats,
+  format?: NumericalFormats | ((value: number) => string | number),
   highlight?: number => boolean,
   // eslint-disable-next-line flowtype/no-weak-types
   mapDataToValue: (data: any) => number,
@@ -428,7 +428,13 @@ function NumericalFilter(props) {
 
 const NumericalCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
   const [css, theme] = useStyletron();
-
+  const formattedValue =
+    typeof props.format === 'function'
+      ? props.format(props.value)
+      : format(props.value, {
+          format: props.format,
+          precision: props.precision,
+        });
   return (
     <CellShell
       ref={ref}
@@ -445,10 +451,7 @@ const NumericalCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
           width: '100%',
         })}
       >
-        {format(props.value, {
-          format: props.format,
-          precision: props.precision,
-        })}
+        {formattedValue}
       </div>
     </CellShell>
   );
