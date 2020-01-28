@@ -5,6 +5,7 @@ import {TConfig} from '../types';
 const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button.js');
 
 const ButtonConfig: TConfig = {
+  componentName: 'Button',
   imports: {
     'baseui/button': {
       named: ['Button'],

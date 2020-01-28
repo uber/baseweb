@@ -15,6 +15,7 @@ import PopoverConfig from './popover';
 
 const TooltipConfig: TConfig = {
   ...PopoverConfig,
+  componentName: 'StatefulTooltip',
   imports: {
     'baseui/tooltip': {named: ['StatefulTooltip']},
   },

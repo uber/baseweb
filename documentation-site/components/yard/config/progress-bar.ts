@@ -5,6 +5,7 @@ import {TConfig} from '../types';
 const progressBarProps = require('!!extract-react-types-loader!../../../../src/progress-bar/progressbar.js');
 
 const ProgressBarConfig: TConfig = {
+  componentName: 'ProgressBar',
   imports: {
     'baseui/progress-bar': {named: ['ProgressBar']},
   },
