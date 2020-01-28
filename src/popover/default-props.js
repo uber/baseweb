@@ -22,6 +22,7 @@ const baseDefaultProps: $Shape<BasePopoverPropsT> = {
   placement: PLACEMENT.auto,
   showArrow: false,
   triggerType: TRIGGER_TYPE.click,
+  renderAll: false,
 };
 
 export default baseDefaultProps;

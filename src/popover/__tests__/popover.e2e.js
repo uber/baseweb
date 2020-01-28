@@ -15,6 +15,7 @@ const selectors = {
   selectDropDown: '[role="listbox"]',
   selectedList: '[data-id="selected"]',
   dropDownOption: '[role="option"]',
+  content: '#content',
 };
 
 const optionAtPosition = position =>
@@ -65,5 +66,17 @@ describe('popover', () => {
       select => select.textContent,
     );
     expect(selectedValue).toBe('AliceBlue');
+  });
+
+  it('renders content even when hidden: with renderAll prop', async () => {
+    await mount(page, 'popover-render-all');
+    await page.waitFor('button');
+    await page.waitFor(selectors.content);
+    await page.click('button');
+    await page.waitFor(selectors.tooltip);
+    await page.waitFor(selectors.content);
+    await page.keyboard.press('Escape');
+    await page.waitFor(selectors.tooltip, {hidden: true});
+    await page.waitFor(selectors.content);
   });
 });

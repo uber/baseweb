@@ -207,3 +207,7 @@ export const StyledClose = styled<SharedStylePropsArgT>('button', props => {
     cursor: 'pointer',
   };
 });
+
+export const Hidden = styled('div', {
+  display: 'none',
+});

@@ -63,7 +63,7 @@ describe('menu-child', () => {
     expect(isEqual).toBe(true);
   });
 
-  it('up/down arrows change highlighted item', async () => {
+  it('up and down arrows change highlighted item', async () => {
     await mount(page, 'menu-child');
     await hoverItem(page, 0, 0);
     await page.keyboard.press('ArrowDown');
@@ -74,7 +74,7 @@ describe('menu-child', () => {
     expect(text).toBe('New Window');
   });
 
-  it('left/right arrows change focused menu', async () => {
+  it('left and right arrows change focused menu', async () => {
     await mount(page, 'menu-child');
     await hoverItem(page, 0, 0);
 
@@ -131,5 +131,18 @@ describe('menu-child', () => {
     await hoverItem(page, 1, 5);
     const text = await findHighlightedLabel(page);
     expect(text).toBe('Reopen Closed Editor');
+  });
+
+  it('renders content even when hidden: with renderAll prop', async () => {
+    await mount(page, 'menu-child-render-all');
+    await page.waitFor(parentSelector);
+    await page.waitFor(childSelector);
+    await hoverItem(page, 0, 0);
+
+    const parent = await page.$(parentSelector);
+    const activeElement = await findActiveElement(page);
+    const isEqual = await compareElements(page, parent, activeElement);
+    expect(isEqual).toBe(true);
+    await page.waitFor(childSelector);
   });
 });
