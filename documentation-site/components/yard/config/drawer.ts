@@ -34,6 +34,12 @@ const DrawerConfig: TConfig = {
         'If true, focus will shift to the first interactive element within the drawer.',
       hidden: true,
     },
+    renderAll: {
+      value: false,
+      type: PropTypes.Boolean,
+      description:
+        'Renders all drawer content for SEO purposes regardless of drawer isOpen state.',
+    },
     children: {
       value: '<div>drawer content</div>',
       type: PropTypes.ReactNode,

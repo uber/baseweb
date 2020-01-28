@@ -8,6 +8,7 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
   closeable={true}
   isOpen={true}
   overrides={Object {}}
+  renderAll={false}
   showBackdrop={true}
   size="default"
 >

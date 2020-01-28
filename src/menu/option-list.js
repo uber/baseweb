@@ -25,6 +25,7 @@ function OptionList(props: OptionListPropsT, ref: React.ElementRef<*>) {
     resetMenu = () => {},
     size = OPTION_LIST_SIZE.default,
     $isHighlighted,
+    renderAll,
     ...restProps
   } = props;
 
@@ -55,6 +56,7 @@ function OptionList(props: OptionListPropsT, ref: React.ElementRef<*>) {
       isOpen={!!$isHighlighted}
       item={item}
       resetParentMenu={resetMenu}
+      renderAll={renderAll}
     >
       <ListItem
         ref={ref}
