@@ -1,6 +1,5 @@
 /*
 Copyright (c) 2018-2020 Uber Technologies, Inc.
-
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
@@ -13,8 +12,8 @@ import {useStyletron} from '../../styles/index.js';
 
 export const name = 'progress-step-overrides';
 
-export function component() {
-  const [current] = React.useState(0);
+function ProgressStepsContainer() {
+  const [current, setCurrent] = React.useState(0);
   const [useCss, theme] = useStyletron();
   return (
     <ProgressSteps current={current}>
@@ -35,3 +34,5 @@ export function component() {
     </ProgressSteps>
   );
 }
+
+export const component = () => <ProgressStepsContainer />;
