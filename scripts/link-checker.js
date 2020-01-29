@@ -35,7 +35,7 @@ async function main() {
   console.log(`Resolved URL to [${url}]`);
 
   let attemptCounter = 0;
-  let maxAttempts = 5;
+  let maxAttempts = 35;
   let urlExists = false;
 
   process.stdout.write('Pinging URL...');
@@ -46,7 +46,7 @@ async function main() {
       urlExists = true;
     } catch (er) {
       process.stdout.write('.');
-      await sleep(1000);
+      await sleep(30000);
     }
   } while (!urlExists && attemptCounter < maxAttempts);
 
