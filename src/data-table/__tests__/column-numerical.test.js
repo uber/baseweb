@@ -91,6 +91,20 @@ describe('numerical column', () => {
     expect(cell.textContent).toBe('1999.89%');
   });
 
+  it('cell renders value formatted by passed format function', () => {
+    const value = 1999.888;
+    const column = NumericalColumn({
+      title: 'column',
+      format: value => `EUR ${value}`,
+      mapDataToValue: () => value,
+    });
+    const Cell = column.renderCell;
+
+    const {container} = render(<Cell value={value} />);
+    const cell = container.querySelector('div');
+    expect(cell.textContent).toBe('EUR 1999.888');
+  });
+
   it('cell renders value according to provided precision', () => {
     const value = 1999.888;
     const column = NumericalColumn({
