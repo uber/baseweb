@@ -78,7 +78,7 @@ steps:
     agents:
       queue: workers
   - name: ':documentation-site-link-checker:'
-    command: ./scripts/link-checker.sh
+    command: ./scripts/link-checker.js
     plugins:
       'docker-compose#v3.0.3':
         run: baseui
