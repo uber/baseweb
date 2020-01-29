@@ -13,6 +13,7 @@ const headerNavigationProps = require('!!extract-react-types-loader!../../../../
 const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button.js');
 
 const HeaderNavigationConfig: TConfig = {
+  componentName: 'HeaderNavigation',
   imports: {
     'baseui/header-navigation': {
       named: [
