@@ -9,6 +9,7 @@ import * as React from 'react';
 import {mount} from 'enzyme';
 import {StyledTreeItem, StyledItemContent} from '../styled-components.js';
 import TreeView from '../tree-view.js';
+import CheckIndeterminate from '../../icon/check-indeterminate.js';
 
 const mockData = [
   {
@@ -41,6 +42,19 @@ const mockData = [
       },
     ],
   },
+  {
+    label: 'Node 3',
+    children: [
+      {
+        label: 'Child 3',
+        children: [
+          {
+            label: 'Grandchild 3',
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 function getSharedProps() {
@@ -66,5 +80,35 @@ describe('TreeView Component', () => {
       .first()
       .simulate('click');
     expect(props.onToggle).toHaveBeenCalled();
+    expect(component.find(CheckIndeterminate)).toExist();
+  });
+
+  test('TreeLabel override should override default icons as well', () => {
+    const CustomTreeLabel = ({
+      hasChildren,
+      isExpanded,
+      label,
+      overrides,
+      node,
+      ...props
+    }) => {
+      return (
+        <div {...props}>
+          {hasChildren && <div>{!isExpanded ? '+' : '-'}</div>}
+          {typeof label === 'function' ? label(node) : label}
+        </div>
+      );
+    };
+    const props = {
+      ...getSharedProps(),
+      overrides: {
+        TreeLabel: {
+          component: CustomTreeLabel,
+        },
+      },
+    };
+    const component = mount(<TreeView {...props} />);
+    expect(component.find(CustomTreeLabel)).toExist();
+    expect(component.find(CheckIndeterminate)).not.toExist();
   });
 });
