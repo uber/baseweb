@@ -13,7 +13,7 @@ import {useStyletron} from '../../styles/index.js';
 
 export const name = 'progress-step-overrides';
 
-function component() {
+export function component() {
   const [current] = React.useState(0);
   const [useCss, theme] = useStyletron();
   return (
@@ -21,7 +21,11 @@ function component() {
       <Step
         title="Create Account"
         overrides={{
-          Title: {component: () => <div>TITLE OVERRIDE</div>},
+          Title: {
+            component: function TitleOverride() {
+              return <div>TITLE OVERRIDE</div>;
+            },
+          },
         }}
       >
         <div className={useCss({...theme.typography.font400})}>
@@ -31,5 +35,3 @@ function component() {
     </ProgressSteps>
   );
 }
-
-export default component;
