@@ -10,9 +10,11 @@ import * as React from 'react';
 import {mount} from 'enzyme';
 import {Toast, StyledBody, StyledCloseIcon, KIND} from '../index.js';
 
-jest.useFakeTimers();
-
 describe('Toast', () => {
+  beforeEach(async () => {
+    jest.useFakeTimers();
+  });
+
   test('basic toast functionality', () => {
     const wrapper = mount(<Toast>Notification</Toast>);
 
@@ -156,6 +158,25 @@ describe('Toast', () => {
     // $FlowFixMe
     toastOnFocusHandler({});
     expect(props.onFocus).toHaveBeenCalled();
+  });
+
+  test('onFocus clears autoHideTimeout and animateOutCompleteTimer timers only', () => {
+    const wrapper = mount(<Toast>Notification</Toast>);
+    const renderedRoot = wrapper.find(StyledBody).first();
+    const toastOnFocusHandler = wrapper.instance().onFocus;
+    expect(renderedRoot.props().onFocus).toBe(toastOnFocusHandler);
+    jest.runAllTimers();
+    // $FlowFixMe
+    toastOnFocusHandler({});
+    expect(clearTimeout).toHaveBeenCalledTimes(2);
+    // $FlowFixMe
+    expect(clearTimeout.mock.calls[0][0]).toEqual(
+      wrapper.instance().autoHideTimeout,
+    );
+    // $FlowFixMe
+    expect(clearTimeout.mock.calls[1][0]).toEqual(
+      wrapper.instance().animateOutCompleteTimer,
+    );
   });
 
   test('onBlur handler', () => {
