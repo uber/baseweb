@@ -120,6 +120,7 @@ function configureJest() {
     diffDirection: 'vertical',
   });
   expect.extend({toMatchImageSnapshot});
+  page.setDefaultTimeout(1000);
 }
 
 function getAllScenarioNames() {
