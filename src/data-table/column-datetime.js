@@ -7,17 +7,15 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {
-  format,
-  getYear,
-  getMonth,
-  getQuarter,
-  getDay,
-  isAfter,
-  isBefore,
-  isEqual,
-  set,
-} from 'date-fns';
+import format from 'date-fns/format/index.js';
+import getYear from 'date-fns/getYear/index.js';
+import getMonth from 'date-fns/getMonth/index.js';
+import getQuarter from 'date-fns/getQuarter/index.js';
+import getDay from 'date-fns/getDay/index.js';
+import isAfter from 'date-fns/isAfter/index.js';
+import isBefore from 'date-fns/isBefore/index.js';
+import isEqual from 'date-fns/isEqual/index.js';
+import set from 'date-fns/set/index.js';
 
 import {Button, SIZE} from '../button/index.js';
 import {ButtonGroup, MODE} from '../button-group/index.js';

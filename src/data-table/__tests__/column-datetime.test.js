@@ -9,7 +9,10 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import {render, fireEvent} from '@testing-library/react';
-import {isEqual, isSameDay, isSameHour, isSameMinute} from 'date-fns';
+import isEqual from 'date-fns/isEqual/index.js';
+import isSameDay from 'date-fns/isSameDay/index.js';
+import isSameHour from 'date-fns/isSameHour/index.js';
+import isSameMinute from 'date-fns/isSameMinute/index.js';
 
 import {DatetimeColumn, DATETIME_OPERATIONS} from '../index.js';
 
