@@ -333,6 +333,11 @@ function lintStyleFunction(context, node) {
   // Only one parameter should be passed to a style function.
   const parameter = scope.block.params[0];
 
+  // nothing is passed to the `styled` function
+  if (!parameter) {
+    return false;
+  }
+
   // Option 1. No destructuring.
   // Ex: props => ({ color: props.$theme.colors.foreground })
   if (parameter.type === 'Identifier') {

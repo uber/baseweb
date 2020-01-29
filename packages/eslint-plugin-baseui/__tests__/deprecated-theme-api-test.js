@@ -134,6 +134,21 @@ const tests = {
         }));
       `,
     },
+    {
+      code: `
+        <Slider
+          overrides={{
+            InnerTrack: {
+              style: () => {
+                return {
+                  background: red,
+                };
+              },
+            },
+          }}
+        />
+      `,
+    },
   ],
   invalid: [
     {
