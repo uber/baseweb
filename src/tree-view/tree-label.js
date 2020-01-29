@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-import type {TreeLabelT} from './types.js';
+import type {TreeLabelT, SharedStylePropsT} from './types.js';
 import {StyledIconContainer, StyledItemContent} from './styled-components.js';
 import CheckIndeterminateIcon from '../icon/check-indeterminate.js';
 import PlusIcon from '../icon/plus.js';
@@ -20,6 +20,10 @@ const TreeLabel: React$ComponentType<TreeLabelT> = ({
   node,
   ...props
 }) => {
+  const sharedProps: SharedStylePropsT = {
+    $isExpanded: !!isExpanded,
+    $hasChildren: !!hasChildren,
+  };
   const {
     IconContainer: IconContainerOverride,
     ExpandIcon: ExapandIconOverride,
@@ -34,13 +38,22 @@ const TreeLabel: React$ComponentType<TreeLabelT> = ({
   const TreeItemContent =
     getOverride(TreeItemContentOverride) || StyledItemContent;
   return (
-    <TreeItemContent {...props}>
+    <TreeItemContent {...sharedProps} {...props}>
       {hasChildren && (
-        <IconContainer {...getOverrideProps(IconContainerOverride)}>
+        <IconContainer
+          {...sharedProps}
+          {...getOverrideProps(IconContainerOverride)}
+        >
           {!isExpanded ? (
-            <ExpandIcon {...getOverrideProps(ExapandIconOverride)} />
+            <ExpandIcon
+              {...sharedProps}
+              {...getOverrideProps(ExapandIconOverride)}
+            />
           ) : (
-            <CollapseIcon {...getOverrideProps(CollapseIconOverride)} />
+            <CollapseIcon
+              {...sharedProps}
+              {...getOverrideProps(CollapseIconOverride)}
+            />
           )}
         </IconContainer>
       )}
