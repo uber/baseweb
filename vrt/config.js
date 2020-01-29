@@ -146,7 +146,9 @@ const config = {
           const rightArrow = `[aria-label="Next month"]`;
           await page.waitForSelector(input);
           await page.click(input);
-          await page.waitForSelector(calendar);
+          await page.waitForSelector(calendar, {
+            visible: true,
+          });
           await page.click(rightArrow);
           await page.waitForFunction(
             `document.querySelector("button[aria-haspopup]").innerText === 'April 2019'`,
