@@ -118,3 +118,7 @@ function getBranchForURL() {
 function sleep(n) {
   return new Promise(r => setTimeout(r, n));
 }
+
+module.exports = {
+  getDeploymentURL,
+};
