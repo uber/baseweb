@@ -8,6 +8,7 @@ const stepProps = require('!!extract-react-types-loader!../../../../src/progress
 const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button.js');
 
 const ProgressStepsConfig: TConfig = {
+  componentName: 'ProgressSteps',
   imports: {
     'baseui/progress-steps': {named: ['ProgressSteps']},
   },

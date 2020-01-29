@@ -88,6 +88,11 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "snippets": [
+      {
+        "path": "./snippets/baseweb.code-snippets"
+      }
+    ],
     "commands": [
       {
         "command": "extension.baseweb.docs.select",
