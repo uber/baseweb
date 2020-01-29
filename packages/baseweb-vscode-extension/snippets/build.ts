@@ -26,7 +26,7 @@ let snippets = {
     prefix: ['React component'],
     description: 'React import.',
     body: [
-      'const ${1} : React.FC<{${2}}> = (${3}) => {',
+      'const ${1}: React.FC<{${2}}> = (${3}) => {',
       '  return ${0};',
       '};',
       '',
