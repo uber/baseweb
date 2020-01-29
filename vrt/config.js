@@ -16,11 +16,15 @@ const config = {
         behavior: async page => {
           const selectSelector = `[data-baseweb="select"]`;
           const dropdownSelector = `[data-baseweb="menu"]`;
+          const flagOptionSelector = `li[role="option"] [data-iso="US"]`;
           await page.waitForSelector(selectSelector);
           await page.click(selectSelector);
-          await page.waitForSelector(dropdownSelector);
-          const flagOptionSelector = `li[role="option"] [data-iso="US"]`;
-          await page.waitForSelector(flagOptionSelector);
+          await page.waitForSelector(dropdownSelector, {
+            visible: true,
+          });
+          await page.waitForSelector(flagOptionSelector, {
+            visible: true,
+          });
         },
       },
     ],
@@ -35,8 +39,12 @@ const config = {
           const flagOptionSelector = `li[role="option"] [data-iso="US"]`;
           await page.waitForSelector(selectSelector);
           await page.click(selectSelector);
-          await page.waitForSelector(dropdownSelector);
-          await page.waitForSelector(flagOptionSelector);
+          await page.waitForSelector(dropdownSelector, {
+            visible: true,
+          });
+          await page.waitForSelector(flagOptionSelector, {
+            visible: true,
+          });
         },
       },
     ],
