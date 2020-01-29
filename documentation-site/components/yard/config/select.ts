@@ -1,12 +1,13 @@
 import pick from 'just-pick';
 import {Select, SIZE, TYPE} from 'baseui/select';
 import {PropTypes} from 'react-view';
-import {changeHandlers} from './common';
+import {changeHandlers} from './common/common';
 import {TConfig} from '../types';
 
 const selectProps = require('!!extract-react-types-loader!../../../../src/select/select.js');
 
 const SelectConfig: TConfig = {
+  componentName: 'Select',
   imports: {
     'baseui/select': {
       named: ['Select'],

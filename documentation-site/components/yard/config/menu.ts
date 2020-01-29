@@ -12,6 +12,7 @@ const items = `[
 ]`;
 
 const MenuConfig: TConfig = {
+  componentName: 'StatefulMenu',
   imports: {
     'baseui/menu': {
       named: ['StatefulMenu'],

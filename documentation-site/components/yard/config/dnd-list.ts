@@ -5,6 +5,7 @@ import {TConfig} from '../types';
 const listProps = require('!!extract-react-types-loader!../../../../src/dnd-list/list.js');
 
 const dndListConfig: TConfig = {
+  componentName: 'List',
   imports: {
     'baseui/dnd-list': {
       named: ['List', 'arrayMove', 'arrayRemove'],
