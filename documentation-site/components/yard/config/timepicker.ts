@@ -8,6 +8,7 @@ import selectConfig from './select';
 const timepickerProps = require('!!extract-react-types-loader!../../../../src/timepicker/timepicker.js');
 
 const TimepickerConfig: TConfig = {
+  componentName: 'TimePicker',
   imports: {
     'baseui/timepicker': {named: ['TimePicker']},
   },

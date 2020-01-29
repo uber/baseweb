@@ -3,6 +3,7 @@ import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
 const LinkConfig: TConfig = {
+  componentName: 'StyledLink',
   imports: {
     'baseui/link': {
       named: ['StyledLink'],
