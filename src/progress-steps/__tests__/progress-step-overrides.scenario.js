@@ -13,7 +13,7 @@ import {useStyletron} from '../../styles/index.js';
 
 export const name = 'progress-step-overrides';
 
-export const component = () => {
+function component() {
   const [current] = React.useState(0);
   const [useCss, theme] = useStyletron();
   return (
@@ -30,4 +30,6 @@ export const component = () => {
       </Step>
     </ProgressSteps>
   );
-};
+}
+
+export default component;
