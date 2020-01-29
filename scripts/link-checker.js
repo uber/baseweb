@@ -80,12 +80,13 @@ async function getDeploymentURL() {
       },
     );
     const {deployments} = await getDeployments.json();
-    if (deployments.length === 0) {
+    if (deployments && deployments.length) {
+      return `https://${deployments[0].url}`;
+    } else {
       throw new Error(
         `No deployments found with commit sha: ${BUILDKITE_COMMIT}`,
       );
     }
-    return `https://${deployments[0].url}`;
   } catch (er) {
     console.error(er);
 
