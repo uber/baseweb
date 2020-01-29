@@ -357,6 +357,11 @@ function lintStyleFunction(context, node) {
       property => property.key.name === '$theme',
     );
 
+    // the styled function is not using the theme
+    if (!$themeProperty) {
+      return false;
+    }
+
     // Option 2. Destructuring $theme in parameters.
     // ({$theme}) => ({ color: $theme.colors.foreground })
     if (
