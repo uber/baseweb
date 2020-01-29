@@ -5,6 +5,7 @@ import {TConfig} from '../types';
 const avatarProps = require('!!extract-react-types-loader!../../../../src/avatar/avatar.js');
 
 const AvatarConfig: TConfig = {
+  componentName: 'Avatar',
   imports: {
     'baseui/avatar': {
       named: ['Avatar'],

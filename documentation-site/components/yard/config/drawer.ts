@@ -5,6 +5,7 @@ import {TConfig} from '../types';
 const drawerProps = require('!!extract-react-types-loader!../../../../src/drawer/drawer.js');
 
 const DrawerConfig: TConfig = {
+  componentName: 'Drawer',
   imports: {
     'baseui/drawer': {
       named: ['Drawer'],

@@ -5,6 +5,7 @@ import {TConfig} from '../types';
 const spinnerProps = require('!!extract-react-types-loader!../../../../src/spinner/spinner.js');
 
 const SpinnerConfig: TConfig = {
+  componentName: 'Spinner',
   imports: {
     'baseui/spinner': {
       named: ['Spinner'],

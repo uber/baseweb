@@ -7,6 +7,7 @@ const listItemProps = require('!!extract-react-types-loader!../../../../src/list
 const listItemLabelProps = require('!!extract-react-types-loader!../../../../src/list/list-item-label.js');
 
 const ListItemConfig: TConfig = {
+  componentName: 'ListItem',
   imports: {
     'baseui/list': {
       named: ['ListItem'],
