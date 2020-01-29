@@ -41,6 +41,11 @@ export type TreeLabelT = {
   node: TreeNodeT,
 };
 
+export type SharedStylePropsT = {
+  $hasChildren: boolean,
+  $isExpanded: boolean,
+};
+
 export type TreeNodePropsT = {
   node: TreeNodeT,
   onToggle?: (node: TreeNodeT) => void,
