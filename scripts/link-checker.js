@@ -112,7 +112,7 @@ function getRepositoryOwnerFromURL() {
   return owner;
 }
 
-// Best guess of how ZEIT santizes branch names
+// Best guess of how ZEIT sanitizes branch names
 function sanitizeBranch() {
   return BUILDKITE_BRANCH.replace(/\//g, '')
     .replace(/_/g, '')
