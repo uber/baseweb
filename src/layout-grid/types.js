@@ -18,6 +18,24 @@ export type AlignmentT =
   | typeof ALIGNMENT.end;
 
 export type BehaviorT = typeof BEHAVIOR.fixed | typeof BEHAVIOR.fluid;
+export type CSSLengthUnitT =
+  | 'cm'
+  | 'mm'
+  | 'Q'
+  | 'in'
+  | 'pc'
+  | 'px'
+  | 'pt'
+  | 'em'
+  | 'ex'
+  | 'ch'
+  | 'rem'
+  | 'lh'
+  | 'vw'
+  | 'vh'
+  | 'vmin'
+  | 'vmax'
+  | '%';
 
 export type GridPropsT = {
   /** Control vertical alignment of cells at each breakpoint. */
@@ -37,7 +55,7 @@ export type GridPropsT = {
   /** Maximum width of the grid container. Does not include Margins. Only applies when `behavior` is `fluid`. */
   gridMaxWidth?: number,
   /** alternative css units support*/
-  gridUnit?: string,
+  gridUnit?: CSSLengthUnitT,
 };
 
 export type StyledGridPropsT = {
@@ -52,7 +70,7 @@ export type StyledGridPropsT = {
   /** Maximum width of the grid container. Does not include Margins. Only applies when `behavior` is `fluid`. */
   $gridMaxWidth?: number,
   /** Alternate css units for grid layout, by default it px */
-  $gridUnit?: string,
+  $gridUnit?: CSSLengthUnitT,
 };
 
 export type CellPropsT = {
@@ -66,8 +84,6 @@ export type CellPropsT = {
   skip?: ResponsiveT<number>,
   /** Control number of columns the cell should span. */
   span?: ResponsiveT<number>,
-  /** COntrol CSS units */
-  gridUnit?: string,
 };
 
 export type StyledCellPropsT = {
@@ -86,5 +102,5 @@ export type StyledCellPropsT = {
   /** Control number of columns the cell should span. */
   $span?: ResponsiveT<number>,
   /** Control CSS length units*/
-  $gridUnit?: string,
+  $gridUnit?: CSSLengthUnitT,
 };
