@@ -247,7 +247,8 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
               date.setHours(hours, minutes, 0);
               this.handleChange(params.value[0].id);
             }}
-            value={value}
+            // if value is defined, it should be an array type
+            value={value ? [value] : value}
             clearable={false}
             {...selectProps}
           />

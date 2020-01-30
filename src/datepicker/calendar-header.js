@@ -175,6 +175,7 @@ export default class CalendarHeader extends React.Component<
         tabIndex={0}
         onClick={clickHandler}
         disabled={isDisabled}
+        type="button"
         $disabled={isDisabled}
         {...prevButtonProps}
       >
@@ -239,6 +240,7 @@ export default class CalendarHeader extends React.Component<
         tabIndex={0}
         onClick={clickHandler}
         disabled={isDisabled}
+        type="button"
         $disabled={isDisabled}
         {...nextButtonProps}
       >
@@ -367,6 +369,7 @@ export default class CalendarHeader extends React.Component<
         {...popoverProps}
       >
         <MonthYearSelectButton
+          type="button"
           onKeyUp={event => {
             if (this.canArrowsOpenDropdown(event)) {
               this.setState({isMonthYearDropdownOpen: true});
