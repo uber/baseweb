@@ -84,18 +84,19 @@ describe('visual snapshot tests', () => {
 async function snapshot(identifier, viewport = VIEWPORT.desktop) {
   // Snapshots should have fixed widths but allow for scrolling in the y dimension.
   // We use the raw Chrome Devtools Protocol to get scroll height of page.
-  const client = await page.target().createCDPSession();
-  const metrics = await client.send('Page.getLayoutMetrics');
-  const height = Math.ceil(metrics.contentSize.height);
+  // const client = await page.target().createCDPSession();
+  // const metrics = await client.send('Page.getLayoutMetrics');
+  // const height = Math.ceil(metrics.contentSize.height);
 
-  const image = await page.screenshot({
-    clip: {
-      x: 0,
-      y: 0,
-      width: VIEWPORT_WIDTH[viewport], // Clamp width to either mobile or desktop.
-      height: height,
-    },
-  });
+  // const image = await page.screenshot({
+  //   clip: {
+  //     x: 0,
+  //     y: 0,
+  //     width: VIEWPORT_WIDTH[viewport], // Clamp width to either mobile or desktop.
+  //     height: height,
+  //   },
+  // });
+  const image = await page.screenshot();
 
   expect(image).toMatchImageSnapshot({
     customSnapshotIdentifier: identifier,
@@ -107,11 +108,27 @@ async function preparePageForSnapshot(
   theme = THEME.light,
   viewport = VIEWPORT.desktop,
 ) {
+  // Set initial viewport size.
   await page.setViewport({
     width: VIEWPORT_WIDTH[viewport],
     height: 800,
   });
+
   await mount(page, scenarioName, theme);
+
+  // Set the viewport to fit the mounted scenario.
+  // This is so that when we take a screenshot we do not have resizing.
+  // Resizing right before a screenshot can lead to flakiness.
+
+  // Snapshots should have fixed widths but allow for scrolling in the y dimension.
+  // We use the raw Chrome Devtools Protocol to get scroll height of page.
+  const client = await page.target().createCDPSession();
+  const metrics = await client.send('Page.getLayoutMetrics');
+  const height = Math.ceil(metrics.contentSize.height);
+  await page.setViewport({
+    width: VIEWPORT_WIDTH[viewport],
+    height: height,
+  });
 }
 
 function configureJest() {
