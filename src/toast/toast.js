@@ -112,12 +112,14 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   };
 
   onFocus = (e: Event) => {
-    this.clearTimeout();
+    clearTimeout(this.autoHideTimeout);
+    clearTimeout(this.animateOutCompleteTimer);
     typeof this.props.onFocus === 'function' && this.props.onFocus(e);
   };
 
   onMouseEnter = (e: Event) => {
-    this.clearTimeout();
+    clearTimeout(this.autoHideTimeout);
+    clearTimeout(this.animateOutCompleteTimer);
     typeof this.props.onMouseEnter === 'function' && this.props.onMouseEnter(e);
   };
 
