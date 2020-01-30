@@ -64,7 +64,12 @@ describe('visual snapshot tests', () => {
           THEME.light,
           VIEWPORT.desktop,
         );
+
         await interaction.behavior(page);
+
+        // Bad, but lets let things settle down after the interaction.
+        await page.waitFor(250);
+
         await snapshot(`${scenarioName}__${interaction.name}`);
       });
     });
@@ -127,6 +132,6 @@ function configureJest() {
 
 function getAllScenarioNames() {
   return globby
-    .sync('src/**/*.scenario.js')
+    .sync('src/phone-input/**/*.scenario.js')
     .map(filePath => filePath.match(/__tests__\/(.*).scenario/)[1]);
 }
