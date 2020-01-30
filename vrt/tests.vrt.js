@@ -36,46 +36,36 @@ describe('visual snapshot tests', () => {
 
     if (snapshotConfig.skip) return;
 
-    describe(scenarioName, () => {
-      it(`desktop`, async () => {
+    it(`${scenarioName}__desktop`, async () => {
+      await preparePageForSnapshot(scenarioName, THEME.light, VIEWPORT.desktop);
+      await snapshot(`${scenarioName}__desktop`);
+    });
+
+    it(`${scenarioName}__mobile`, async () => {
+      await preparePageForSnapshot(scenarioName, THEME.light, VIEWPORT.mobile);
+      await snapshot(`${scenarioName}__mobile`, VIEWPORT.mobile);
+    });
+
+    if (!scenarioName.includes('rtl')) {
+      it(`${scenarioName}__dark`, async () => {
+        await preparePageForSnapshot(
+          scenarioName,
+          THEME.dark,
+          VIEWPORT.desktop,
+        );
+        await snapshot(`${scenarioName}__dark`);
+      });
+    }
+
+    snapshotConfig.interactions.forEach(interaction => {
+      it(`${scenarioName}__${interaction.name}`, async () => {
         await preparePageForSnapshot(
           scenarioName,
           THEME.light,
           VIEWPORT.desktop,
         );
-        await snapshot(`${scenarioName}__desktop`);
-      });
-
-      it(`mobile`, async () => {
-        await preparePageForSnapshot(
-          scenarioName,
-          THEME.light,
-          VIEWPORT.mobile,
-        );
-        await snapshot(`${scenarioName}__mobile`, VIEWPORT.mobile);
-      });
-
-      if (!scenarioName.includes('rtl')) {
-        it(`dark`, async () => {
-          await preparePageForSnapshot(
-            scenarioName,
-            THEME.dark,
-            VIEWPORT.desktop,
-          );
-          await snapshot(`${scenarioName}__dark`);
-        });
-      }
-
-      snapshotConfig.interactions.forEach(interaction => {
-        it(interaction.name, async () => {
-          await preparePageForSnapshot(
-            scenarioName,
-            THEME.light,
-            VIEWPORT.desktop,
-          );
-          await interaction.behavior(page);
-          await snapshot(`${scenarioName}__${interaction.name}`);
-        });
+        await interaction.behavior(page);
+        await snapshot(`${scenarioName}__${interaction.name}`);
       });
     });
   });
