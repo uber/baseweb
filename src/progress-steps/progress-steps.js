@@ -22,6 +22,7 @@ function ProgressSteps({
   const modifiedChildren = React.Children.map(children, (child, index) => {
     if (!child) return;
 
+    const childOverrides = child.props.overrides || {};
     return React.cloneElement(
       child,
       ({
@@ -32,6 +33,7 @@ function ProgressSteps({
         overrides: {
           ...overrides,
           Root: overrides.StepRoot,
+          ...childOverrides,
         },
       }: StepPropsT),
     );

@@ -13,6 +13,7 @@ const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 const selectors = {
   closeButton: 'button[aria-label="Close"]',
   openDrawer: '[data-e2e="open-drawer-button"]',
+  drawerContent: '[data-e2e="drawer-content"]',
   selectInput: 'input[role="combobox"]',
   drawer: 'div[aria-label="drawer"]',
   selectDropDown: '[role="listbox"]',
@@ -84,5 +85,24 @@ describe('drawer', () => {
       select => select.textContent,
     );
     expect(selectedValue).toBe('AliceBlue');
+  });
+
+  it('renders content even when hidden: with renderAll prop', async () => {
+    await mount(page, 'drawer-render-all');
+    // check for content while drawer is closed, then open
+    await page.waitFor(selectors.drawerContent);
+    await page.click(selectors.openDrawer);
+    await page.waitFor(selectors.drawer);
+
+    // check for content while drawer is open, then close
+    await page.waitFor(selectors.drawerContent);
+    await page.waitFor(selectors.closeButton);
+    await page.click(selectors.closeButton);
+    await page.waitFor(selectors.closeButton, {
+      hidden: true,
+    });
+
+    // check for content again
+    await page.waitFor(selectors.drawerContent);
   });
 });

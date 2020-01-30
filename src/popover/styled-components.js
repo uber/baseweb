@@ -108,3 +108,7 @@ export const Padding = styled('div', {
   paddingRight: '12px',
   paddingBottom: '12px',
 });
+
+export const Hidden = styled('div', {
+  display: 'none',
+});

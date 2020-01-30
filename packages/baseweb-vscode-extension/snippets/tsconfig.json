@@ -1,0 +1,23 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "paths": {
+      "baseui/*": ["./dist/*"],
+      "!!extract-react-types-loader*": [
+        "./packages/baseweb-vscode-extension/snippets/mock"
+      ],
+      "just-omit": ["./documentation-site/@types/just-omit"]
+    }
+  },
+  "exclude": ["documentation-site/components/yard/config/icon.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+}

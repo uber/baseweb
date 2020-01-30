@@ -127,6 +127,28 @@ const tests = {
         const theme = createTheme();
       `,
     },
+    {
+      code: `
+        const ExploreAdvancedSidebar = styled('div', ({$isShowingTopNav, $isVisible}) => ({
+          background: 'white',
+        }));
+      `,
+    },
+    {
+      code: `
+        <Slider
+          overrides={{
+            InnerTrack: {
+              style: () => {
+                return {
+                  background: red,
+                };
+              },
+            },
+          }}
+        />
+      `,
+    },
   ],
   invalid: [
     {

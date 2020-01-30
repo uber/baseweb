@@ -18,6 +18,12 @@ const initialData = [
         children: [
           {
             label: 'Grandchild 1',
+            children: [
+              {
+                label:
+                  'Should be rendered SSR / even when closed (check source!)',
+              },
+            ],
           },
         ],
       },
@@ -33,6 +39,12 @@ const initialData = [
         children: [
           {
             label: 'Grandchild 2',
+            children: [
+              {
+                label:
+                  'Should be rendered SSR / even when closed (check source!)',
+              },
+            ],
           },
         ],
       },
@@ -44,6 +56,7 @@ export default function TreeViewOverrides() {
   return (
     <StatefulTreeView
       data={initialData}
+      renderAll={true}
       overrides={{
         IconContainer: {
           style: {
