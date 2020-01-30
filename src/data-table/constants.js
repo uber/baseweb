@@ -8,11 +8,12 @@ LICENSE file in the root directory of this source tree.
 
 export const COLUMNS = Object.freeze({
   ANCHOR: 'ANCHOR',
-  CATEGORICAL: 'CATEGORICAL',
-  NUMERICAL: 'NUMERICAL',
   BOOLEAN: 'BOOLEAN',
-  STRING: 'STRING',
+  CATEGORICAL: 'CATEGORICAL',
   CUSTOM: 'CUSTOM',
+  DATETIME: 'DATETIME',
+  NUMERICAL: 'NUMERICAL',
+  STRING: 'STRING',
 });
 
 export const NUMERICAL_FORMATS = Object.freeze({
@@ -27,6 +28,17 @@ export const NUMERICAL_OPERATIONS = Object.freeze({
   GTE: 'GTE',
   LT: 'LT',
   LTE: 'LTE',
+});
+
+export const DATETIME_OPERATIONS = Object.freeze({
+  RANGE_DATETIME: 'RANGE_DATETIME',
+  RANGE_DATE: 'RANGE_DATE',
+  RANGE_TIME: 'RANGE_TIME',
+  WEEKDAY: 'WEEKDAY',
+  MONTH: 'MONTH',
+  QUARTER: 'QUARTER',
+  HALF: 'HALF',
+  YEAR: 'YEAR',
 });
 
 export const SORT_DIRECTIONS = Object.freeze({
