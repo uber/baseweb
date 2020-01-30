@@ -66,7 +66,7 @@ async function main() {
 async function getDeploymentURL() {
   // Don't bother with Zeit API for master, it should always be the same.
   if (BUILDKITE_BRANCH === 'master') {
-    return 'https://baseweb-git-fork-master.uber-ui-platform.now.sh';
+    return 'https://baseweb-git-master.uber-ui-platform.now.sh';
   }
 
   // Find deployment with matching commit sha
