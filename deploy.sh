@@ -57,7 +57,7 @@ if [ "$this_commit" = "$latest_tagged_commit" ]; then
   cd packages/baseweb-vscode-extension
   node "$BASEDIR/scripts/sync-package-versions.js" package.json
   yarn
-  yarn compile
+  yarn build
   ./node_modules/.bin/vsce publish --yarn -p $AZURE_TOKEN
 else
   echo current commit does not match latest tagged commit

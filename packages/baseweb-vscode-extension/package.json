@@ -44,7 +44,7 @@
     "Snippets"
   ],
   "activationEvents": [
-    "onCommand:extension.baseweb.theme.colors",
+    "onCommand:extension.baseweb.theme",
     "onCommand:extension.baseweb.docs.select",
     "onCommand:extension.baseweb.docs.input",
     "onCommand:extension.baseweb.docs.button",
@@ -108,8 +108,8 @@
     ],
     "commands": [
       {
-        "command": "extension.baseweb.theme.colors",
-        "title": "Open theme colors (light)",
+        "command": "extension.baseweb.theme",
+        "title": "Open theme cheat sheet",
         "category": "Base Web"
       },
       {

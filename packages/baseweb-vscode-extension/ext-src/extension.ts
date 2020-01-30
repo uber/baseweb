@@ -20,7 +20,7 @@ export function activate(context: vscode.ExtensionContext) {
   });
 
   context.subscriptions.push(
-    vscode.commands.registerCommand('extension.baseweb.theme.colors', () => {
+    vscode.commands.registerCommand('extension.baseweb.theme', () => {
       ReactPanel.createOrShow(context.extensionPath);
     }),
   );
@@ -67,7 +67,7 @@ class ReactPanel {
     // Create and show a new webview panel
     this._panel = vscode.window.createWebviewPanel(
       ReactPanel.viewType,
-      'React',
+      'Theme cheat sheet',
       column,
       {
         // Enable javascript in the webview
