@@ -14,20 +14,26 @@
     "url": "https://github.com/uber/baseweb"
   },
   "scripts": {
+    "build": "cp -r ../../dist/es src/baseui && npm run build-theme && npm run compile",
+    "build-theme": "./scripts/build-non-split.js",
     "deploy": "vsce publish --yarn",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
+    "compile": "tsc -p tsconfig.extension.json",
+    "watch": "tsc -watch -p tsconfig.extension.json",
     "pretest": "yarn run compile",
-    "test": "node ./out/test/runTest.js"
+    "test": "node ./build/test/runTest.js"
   },
   "icon": "images/icon.png",
   "devDependencies": {
     "@types/glob": "^7.1.1",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.11.7",
+    "@types/react": "^16.3.14",
+    "@types/react-dom": "^16.0.5",
     "@types/vscode": "^1.41.0",
     "glob": "^7.1.5",
     "mocha": "^6.2.2",
+    "react-scripts": "^2.1.3",
+    "rewire": "^4.0.1",
     "tslint": "^5.20.0",
     "typescript": "^3.6.4",
     "vsce": "^1.71.0",
@@ -38,6 +44,7 @@
     "Snippets"
   ],
   "activationEvents": [
+    "onCommand:extension.baseweb.theme",
     "onCommand:extension.baseweb.docs.select",
     "onCommand:extension.baseweb.docs.input",
     "onCommand:extension.baseweb.docs.button",
@@ -86,7 +93,13 @@
     "onCommand:extension.baseweb.docs.table-grid",
     "onCommand:extension.baseweb.docs.layout-grid"
   ],
-  "main": "./out/extension.js",
+  "main": "./build/extension.js",
+  "eslintConfig": {
+    "extends": "react-app",
+    "rules": {
+      "import/first": "off"
+    }
+  },
   "contributes": {
     "snippets": [
       {
@@ -94,6 +107,11 @@
       }
     ],
     "commands": [
+      {
+        "command": "extension.baseweb.theme",
+        "title": "Open theme cheat sheet",
+        "category": "Base Web"
+      },
       {
         "command": "extension.baseweb.docs.select",
         "title": "Open the docs for select",
@@ -330,5 +348,11 @@
         "category": "Base Web"
       }
     ]
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
