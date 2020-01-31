@@ -15,4 +15,5 @@ module.exports = {
   testRunner: 'jest-circus/runner',
   testRegex: 'vrt.js$',
   transformIgnorePatterns: ['./babel/cup.js'],
+  setupFilesAfterEnv: ['<rootDir>/jest.e2e.setup.js'],
 };
