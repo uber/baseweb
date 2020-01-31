@@ -17,7 +17,7 @@ import {
   StringColumn,
 } from '../index.js';
 
-type RowDataT = [boolean, string, number, string];
+type RowDataT = [boolean, string, number, string, Date];
 
 export default function Scenario() {
   const columns = [
