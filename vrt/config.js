@@ -80,9 +80,6 @@ const config = {
       },
     ],
   },
-  'data-table-full-height': {
-    skipScreenshotResize: true,
-  },
   datepicker: {
     interactions: [
       {

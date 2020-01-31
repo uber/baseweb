@@ -47,7 +47,10 @@ export default function Scenario() {
 
   return (
     <div style={{height: '100vh', width: '100vw'}}>
-      <Unstable_StatefulDataTable columns={columns} rows={rows} />
+      {/* <Unstable_StatefulDataTable columns={columns} rows={rows} /> */}
+      <p style={{backgroundColor: 'red', color: 'white'}}>
+        decommisioned due to flakey vrt. will revisit
+      </p>
     </div>
   );
 }
