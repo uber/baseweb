@@ -28,6 +28,10 @@ function ColumnIcon(props: {column: ColumnT<>}) {
     return 'abc';
   }
 
+  if (props.column.kind === COLUMNS.DATETIME) {
+    return 'dt';
+  }
+
   if (props.column.kind === COLUMNS.NUMERICAL) {
     return '#';
   }
