@@ -69,7 +69,7 @@ export type StyledGridPropsT = {
   $gridMargins?: ResponsiveT<number>,
   /** Maximum width of the grid container. Does not include Margins. Only applies when `behavior` is `fluid`. */
   $gridMaxWidth?: number,
-  /** Alternate css units for grid layout, by default it px */
+  /** Modify the CSS length unit used to measure columns and rows. Defaults to theme value. */
   $gridUnit?: CSSLengthUnitT,
 };
 
