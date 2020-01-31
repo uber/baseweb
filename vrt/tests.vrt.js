@@ -96,14 +96,18 @@ async function preparePageForSnapshot(
 
   await mount(page, scenarioName, theme);
 
-  // Set the viewport to our final screenshot dimensions.
-  // When we take a screenshot we do not want any resizing, which can cause flakiness.
-  // We will set the viewport now and take a straight-up screenshot later.
-  // The screenshot dimensions will use the scroll height of the page but clamp the width.
-  await page.setViewport({
-    width: VIEWPORT_WIDTH[viewport],
-    height: await getPageScrollHeight(),
-  });
+  // Some scenarios depend on 100vh to test full-window functionality. Allow resize opt-out.
+  const snapshotConfig = getSnapshotConfig(scenarioName);
+  if (!snapshotConfig.skipScreenshotResize) {
+    // Set the viewport to our final screenshot dimensions.
+    // When we take a screenshot we do not want any resizing, which can cause flakiness.
+    // We will set the viewport now and take a straight-up screenshot later.
+    // The screenshot dimensions will use the scroll height of the page but clamp the width.
+    await page.setViewport({
+      width: VIEWPORT_WIDTH[viewport],
+      height: await getPageScrollHeight(),
+    });
+  }
 
   // Bad, but lets let things settle down after resizing.
   await page.waitFor(250);

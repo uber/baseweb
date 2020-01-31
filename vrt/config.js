@@ -49,7 +49,6 @@ const config = {
       },
     ],
   },
-  //
   'data-table-extracted-highlight': {
     interactions: [
       {
@@ -80,6 +79,9 @@ const config = {
         },
       },
     ],
+  },
+  'data-table-full-height': {
+    skipScreenshotResize: true,
   },
   datepicker: {
     interactions: [
