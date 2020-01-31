@@ -20,7 +20,7 @@ const headerImage: ImagePropsT = {
   alt: 'Card Alt Entry',
 };
 
-export default function() {
+export default function Scenario() {
   return (
     <Container>
       <Card headerImage={headerImage} title="Card Title Entry">

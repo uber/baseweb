@@ -12,7 +12,7 @@ import {Button, SHAPE, SIZE} from '../index.js';
 import Upload from '../../icon/upload.js';
 import ChevronRight from '../../icon/chevron-right.js';
 
-export default function() {
+export default function Scenario() {
   return (
     <React.Fragment>
       <Button size={SIZE.large}>Default</Button>

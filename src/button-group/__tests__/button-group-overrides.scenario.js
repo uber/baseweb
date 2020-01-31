@@ -22,7 +22,7 @@ const buttonOverrides = {
   },
 };
 
-export default function() {
+export default function Scenario() {
   return (
     <StatefulButtonGroup mode={MODE.checkbox} initialState={{selected: [0, 1]}}>
       <Button overrides={buttonOverrides}>Label</Button>

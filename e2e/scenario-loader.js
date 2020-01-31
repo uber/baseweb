@@ -1,12 +1,19 @@
+/*
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+/* global module */
+
+// @flow
 const path = require('path');
 const glob = require('glob');
 
 // from https://github.com/terpiljenya/import-glob/blob/master/index.js
-function scenarioloader(source) {
+function scenarioloader(source: string) {
   this.cacheable();
-  var regex = /.?import + ?((\w+) +from )?([\'\"])(.*?)\3/gm;
-  var importModules = /import +(\w+) +from +([\'\"])(.*?)\2/gm;
-  var importFiles = /import +([\'\"])(.*?)\1/gm;
+  var regex = /.?import + ?((\w+) +from )?(['"])(.*?)\3/gm;
   var resourceDir = path.dirname(this.resourcePath);
   function replacer(match, fromStatement, obj, quote, filename) {
     if (!glob.hasMagic(filename)) return match;

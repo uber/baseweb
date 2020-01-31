@@ -22,7 +22,7 @@ import {thumbnail} from '../images.js';
 
 const Container = styled('div', {width: '328px'});
 
-export default function() {
+export default function Scenario() {
   return (
     <Container>
       <Card>

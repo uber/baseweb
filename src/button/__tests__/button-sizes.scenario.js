@@ -11,7 +11,7 @@ import React from 'react';
 import {Button} from '../index.js';
 import {SIZE} from '../constants.js';
 
-export default function() {
+export default function Scenario() {
   return (
     <React.Fragment>
       <Button size={SIZE.mini}>Primary</Button>

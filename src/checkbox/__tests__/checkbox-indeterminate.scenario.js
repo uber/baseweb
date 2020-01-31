@@ -61,6 +61,6 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
   }
 }
 
-export default function() {
+export default function Scenario() {
   return <GroupList />;
 }

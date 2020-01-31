@@ -11,7 +11,7 @@ import * as React from 'react';
 import ButtonScenario from './button.scenario.js';
 import {ThemeProvider, LightTheme} from '../../index.js';
 
-export default function() {
+export default function Scenario() {
   return (
     <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
       <div dir="rtl">

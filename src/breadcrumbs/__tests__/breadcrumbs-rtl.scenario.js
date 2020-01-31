@@ -10,7 +10,7 @@ import * as React from 'react';
 import {ThemeProvider, LightTheme} from '../../index.js';
 import BreadcrumbsScenario from './breadcrumbs.scenario.js';
 
-export default function() {
+export default function Scenario() {
   return (
     <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
       <div dir="rtl">

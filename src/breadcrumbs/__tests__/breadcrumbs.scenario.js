@@ -11,7 +11,7 @@ import * as React from 'react';
 import {StyledLink} from '../../link/index.js';
 import {Breadcrumbs} from '../index.js';
 
-export default function() {
+export default function Scenario() {
   return (
     <Breadcrumbs>
       <StyledLink href="#">Parent Page</StyledLink>
