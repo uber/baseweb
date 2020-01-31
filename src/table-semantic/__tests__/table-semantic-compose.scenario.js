@@ -16,8 +16,6 @@ import {
   StyledTableBodyCell,
 } from '../index.js';
 
-export const name = 'table-semantic-compose';
-
 export function component() {
   return (
     <StyledRoot>

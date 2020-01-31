@@ -10,6 +10,4 @@ import React from 'react';
 
 import {StatefulPaymentCard} from '../index.js';
 
-export const name = 'stateful-payment-card';
-
-export const component = () => <StatefulPaymentCard />;
+export default StatefulPaymentCard;

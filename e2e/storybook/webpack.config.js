@@ -8,10 +8,10 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        // only applies to the storybook file
+        test: /storybook\/load-stories\.js$/,
         enforce: 'pre',
-        loader: 'import-glob',
-        include: [path.resolve(__dirname)],
+        loader: path.resolve(__dirname, '../scenario-loader.js'),
       },
       {
         test: /\.(png|jpe?g|gif)$/,

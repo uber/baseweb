@@ -10,17 +10,19 @@ import * as React from 'react';
 
 import {StatefulDatepicker} from '../index.js';
 
-export const name = 'stateful-datepicker-min-max-date';
-
-export const component = () => (
-  <StatefulDatepicker
-    minDate={new Date(2019, 1, 15)}
-    maxDate={new Date(2019, 2, 15)}
-    overrides={{
-      MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
-      MonthYearSelectStatefulMenu: {
-        props: {overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}}},
-      },
-    }}
-  />
-);
+export default function Scenario() {
+  return (
+    <StatefulDatepicker
+      minDate={new Date(2019, 1, 15)}
+      maxDate={new Date(2019, 2, 15)}
+      overrides={{
+        MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
+        MonthYearSelectStatefulMenu: {
+          props: {
+            overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}},
+          },
+        },
+      }}
+    />
+  );
+}

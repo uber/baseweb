@@ -16,11 +16,9 @@ import {
   StringColumn,
 } from '../index.js';
 
-export const name = 'data-table-full-window';
-
 type RowDataT = [boolean, string, number, string];
 
-export const component = () => {
+export default function Scenario() {
   const columns = [
     BooleanColumn({
       title: 'boolean-column',
@@ -52,4 +50,4 @@ export const component = () => {
       <Unstable_StatefulDataTable columns={columns} rows={rows} />
     </div>
   );
-};
+}

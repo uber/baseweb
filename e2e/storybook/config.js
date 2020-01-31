@@ -5,8 +5,8 @@ import {initializeRTL} from 'storybook-addon-rtl';
 import {Provider as StyletronProvider} from 'styletron-react';
 import {Client as Styletron} from 'styletron-engine-atomic';
 
-import {BaseProvider} from '../src/index';
-import {LightThemeMove, DarkThemeMove} from '../src/themes';
+import {BaseProvider} from '../../src/index';
+import {LightThemeMove, DarkThemeMove} from '../../src/themes';
 
 initializeRTL();
 

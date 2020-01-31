@@ -10,8 +10,6 @@ import * as React from 'react';
 
 import {Navigation} from '../index.js';
 
-export const name = 'nav-long';
-
 function createItems(floor) {
   const nav = [];
   for (let i = 0; i < 300; i++) {
@@ -46,7 +44,7 @@ function pragmaticCompare(prevProps, nextProps) {
   );
 }
 
-export const component = () => {
+export default function Scenario() {
   const [location, setLocation] = React.useState('0');
   const [floor, setFloor] = React.useState(0);
   const [items, setItems] = React.useState([]);
@@ -83,4 +81,4 @@ export const component = () => {
       />
     </div>
   );
-};
+}

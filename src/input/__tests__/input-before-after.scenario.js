@@ -12,33 +12,33 @@ import {StatefulInput} from '../index.js';
 import {Block} from '../../block/index.js';
 import Search from '../../icon/search.js';
 
-export const name = 'input-before-after';
+export default function Scenario() {
+  return (
+    <React.Fragment>
+      <StatefulInput
+        overrides={{
+          // eslint-disable-next-line react/display-name
+          Before: () => (
+            <Block display="flex" alignItems="center" paddingLeft="scale500">
+              <Search size="16px" />
+            </Block>
+          ),
+        }}
+        placeholder="Input with a Before component"
+      />
 
-export const component = () => (
-  <React.Fragment>
-    <StatefulInput
-      overrides={{
-        // eslint-disable-next-line react/display-name
-        Before: () => (
-          <Block display="flex" alignItems="center" paddingLeft="scale500">
-            <Search size="16px" />
-          </Block>
-        ),
-      }}
-      placeholder="Input with a Before component"
-    />
-
-    <br />
-    <StatefulInput
-      overrides={{
-        // eslint-disable-next-line react/display-name
-        After: () => (
-          <Block display="flex" alignItems="center" paddingRight="scale500">
-            <Search size="16px" />
-          </Block>
-        ),
-      }}
-      placeholder="Input with an After component"
-    />
-  </React.Fragment>
-);
+      <br />
+      <StatefulInput
+        overrides={{
+          // eslint-disable-next-line react/display-name
+          After: () => (
+            <Block display="flex" alignItems="center" paddingRight="scale500">
+              <Search size="16px" />
+            </Block>
+          ),
+        }}
+        placeholder="Input with an After component"
+      />
+    </React.Fragment>
+  );
+}

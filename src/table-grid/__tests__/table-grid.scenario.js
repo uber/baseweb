@@ -12,8 +12,6 @@ import {useStyletron} from '../../styles/index.js';
 
 import {StyledTable, StyledHeadCell, StyledBodyCell} from '../index.js';
 
-export const name = 'table-grid';
-
 const data = Array(100)
   .fill(2)
   .map(() => [

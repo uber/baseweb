@@ -10,8 +10,6 @@ import React from 'react';
 import {Grid, Cell} from '../index.js';
 import Inner from './inner.js';
 
-export const name = 'layout-grid';
-
 export function component() {
   return (
     <>

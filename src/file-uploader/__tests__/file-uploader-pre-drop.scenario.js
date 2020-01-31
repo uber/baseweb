@@ -10,11 +10,11 @@ import * as React from 'react';
 
 import {FileUploader} from '../index.js';
 
-export const name = 'file-uploader-pre-drop';
-
-export const component = () => (
-  <React.Fragment>
-    <p id="fileupload">upload</p>
-    <FileUploader />
-  </React.Fragment>
-);
+export default function Scenario() {
+  return (
+    <React.Fragment>
+      <p id="fileupload">upload</p>
+      <FileUploader />
+    </React.Fragment>
+  );
+}

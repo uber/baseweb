@@ -16,11 +16,9 @@ import {
   StringColumn,
 } from '../index.js';
 
-export const name = 'data-table-columns';
-
 type RowDataT = [boolean, string, number, string];
 
-export const component = () => {
+export default function Scenario() {
   const columns = [
     BooleanColumn({
       title: 'boolean-column',
@@ -54,4 +52,4 @@ export const component = () => {
       </div>
     </React.Fragment>
   );
-};
+}

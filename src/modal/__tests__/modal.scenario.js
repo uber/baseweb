@@ -18,10 +18,8 @@ import {
   SIZE,
 } from '../index.js';
 
-export const name = 'modal';
-
 // $FlowFixMe
-export const component = ({closeable = true}) => {
+export default ({closeable = true}) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   // adding mountNode so that rtl vrts work render properly. this is because the portal

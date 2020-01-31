@@ -22,8 +22,6 @@ import {Tag} from '../../tag/index.js';
 
 import {StyledTable, StyledHeadCell, StyledBodyCell} from '../index.js';
 
-export const name = 'table-grid-jobs';
-
 type StatusT = 'running' | 'passed' | 'failed';
 type RowT = [string, StatusT, Date, string, string, string, TaskT[]];
 type TaskT = [string, StatusT, Date, string, string];

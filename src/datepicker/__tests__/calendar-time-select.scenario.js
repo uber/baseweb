@@ -10,8 +10,6 @@ import * as React from 'react';
 
 import {Calendar} from '../index.js';
 
-export const name = 'calendar-time-select';
-
 const DATE = new Date('2019-02-22T10:00:00Z');
 const TIME = new Date(DATE);
 TIME.setHours(12, 0, 0);
@@ -43,4 +41,4 @@ class Controlled extends React.Component<any, any> {
   }
 }
 
-export const component = () => <Controlled />;
+export default Controlled;

@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {storiesOf} from '@storybook/react';
 
-import scenarios from '../src/**/*.scenario.js';
+import scenarios from '../../src/**/*.scenario.js';
 
 const light = storiesOf('baseui', module);
 const dark = storiesOf('baseui-dark', module).addDecorator(storyFn => (
@@ -28,7 +28,10 @@ const dark = storiesOf('baseui-dark', module).addDecorator(storyFn => (
 ));
 
 scenarios.forEach(scenario => {
-  const Component = scenario.component;
-  light.add(scenario.name, () => <Component />);
-  dark.add(scenario.name, () => <Component />);
+  const Component = scenario.result.default;
+  const fileName = scenario.fileName.split('/').pop();
+  const [scenarioName] = fileName.split('.scenario.js');
+
+  light.add(scenarioName, () => <Component />);
+  dark.add(scenarioName, () => <Component />);
 });

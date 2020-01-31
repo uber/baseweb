@@ -10,8 +10,6 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {MaskedInput} from '../index.js';
 
-export const name = 'input-mask';
-
 export function component() {
   const [value, setValue] = React.useState('20000101');
   return (
