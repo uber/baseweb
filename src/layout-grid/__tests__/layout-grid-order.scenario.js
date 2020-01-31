@@ -10,7 +10,7 @@ import React from 'react';
 import {Grid, Cell} from '../index.js';
 import Inner from './inner.js';
 
-export function component() {
+export default function Scenario() {
   return (
     <>
       {/* Make a cell appear first. */}

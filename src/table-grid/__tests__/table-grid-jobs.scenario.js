@@ -239,7 +239,7 @@ function Row({striped, row}: {striped: boolean, row: RowT}) {
   );
 }
 
-export function component() {
+export default function Scenario() {
   const [css] = useStyletron();
   return (
     <div className={css({height: '600px'})}>

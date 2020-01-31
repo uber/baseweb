@@ -41,7 +41,7 @@ const row = [
 
 const data: RowT[] = [row, row, row, row, row, row, row];
 
-export function component() {
+export default function Scenario() {
   const [css] = useStyletron();
   return (
     <div className={css({height: '600px'})}>

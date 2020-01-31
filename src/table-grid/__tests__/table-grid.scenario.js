@@ -24,7 +24,7 @@ const data = Array(100)
     'Cell six',
   ]);
 
-export function component() {
+export default function Scenario() {
   const [css] = useStyletron();
   return (
     <div className={css({height: '750px', width: '900px'})}>
