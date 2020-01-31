@@ -16,7 +16,12 @@ export function component() {
   return (
     <>
       {/* A compact twelve column grid. */}
-      <Grid gridUnit="em" gridGutters={[1, 2, 2]} gridMargins={[1, 2, 4]}>
+      <Grid
+        gridUnit="em"
+        gridGutters={[1, 2, 2]}
+        gridMargins={[1, 2, 4]}
+        gridMaxWidth={40}
+      >
         <Cell>
           <Inner>1</Inner>
         </Cell>

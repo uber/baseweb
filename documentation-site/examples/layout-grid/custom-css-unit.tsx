@@ -15,6 +15,7 @@ const themeWithCustomCSSUnits = createTheme(
       unit: 'em',
       gutters: [1, 2, 2],
       margins: [1, 2, 4],
+      gridMaxWidth: 40,
     },
   },
 );
