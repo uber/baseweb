@@ -19,7 +19,7 @@ import {
 } from '../index.js';
 
 // $FlowFixMe
-export default ({closeable = true}) => {
+export default function Scenario({closeable = true}) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   // adding mountNode so that rtl vrts work render properly. this is because the portal
@@ -61,4 +61,4 @@ export default ({closeable = true}) => {
       <div ref={modalRoot} />
     </React.Fragment>
   );
-};
+}

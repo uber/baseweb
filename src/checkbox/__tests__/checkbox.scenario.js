@@ -10,6 +10,6 @@ import * as React from 'react';
 
 import {StatefulCheckbox} from '../index.js';
 
-export default function() {
+export default function Scenario() {
   return <StatefulCheckbox>click me</StatefulCheckbox>;
 }
