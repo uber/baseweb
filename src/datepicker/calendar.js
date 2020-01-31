@@ -19,9 +19,10 @@ import {
   StyledSelectorContainer,
 } from './styled-components.js';
 import {
+  applyDateToTime,
+  applyTimeToDate,
   addDays,
   addMonths,
-  getMonth,
   addWeeks,
   getEffectiveMinDate,
   getEffectiveMaxDate,
@@ -34,25 +35,13 @@ import {
   subWeeks,
   subMonths,
   subYears,
-  setHours,
-  setMinutes,
-  setSeconds,
-  getHours,
-  getMinutes,
+  getMonth,
   getStartOfWeek,
   getEndOfWeek,
 } from './utils/index.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import type {CalendarPropsT, CalendarInternalState} from './types.js';
 import {ORIENTATION} from './constants.js';
-
-function applyTime(prev: ?Date, next: Date) {
-  if (!prev) return next;
-  const hours = setHours(next, getHours(prev));
-  const minutes = setMinutes(hours, getMinutes(prev));
-  const seconds = setSeconds(minutes, 0);
-  return seconds;
-}
 
 export default class Calendar extends React.Component<
   CalendarPropsT,
@@ -342,11 +331,11 @@ export default class Calendar extends React.Component<
     if (Array.isArray(data.date)) {
       const dates = data.date.map((date, index) => {
         const values = [].concat(this.props.value);
-        return applyTime(values[index], date);
+        return applyDateToTime(values[index], date);
       });
       onChange({date: dates});
     } else if (!Array.isArray(this.props.value) && data.date) {
-      const nextDate = applyTime(this.props.value, data.date);
+      const nextDate = applyDateToTime(this.props.value, data.date);
       onChange({date: nextDate});
     } else {
       onChange({date: data.date});
@@ -358,13 +347,13 @@ export default class Calendar extends React.Component<
     if (Array.isArray(this.props.value)) {
       const dates = this.props.value.map((date, i) => {
         if (index === i) {
-          return applyTime(date, time);
+          return applyTimeToDate(date, time);
         }
         return date;
       });
       onChange({date: dates});
     } else {
-      const date = applyTime(this.props.value, time);
+      const date = applyTimeToDate(this.props.value, time);
       onChange({date});
     }
   };
@@ -463,7 +452,11 @@ export default class Calendar extends React.Component<
     return (
       <TimeSelectContainer {...timeSelectContainerProps}>
         <TimeSelectFormControl label={label} {...timeSelectFormControlProps}>
-          <TimeSelect value={value} onChange={onChange} {...timeSelectProps} />
+          <TimeSelect
+            value={value ? new Date(value) : value}
+            onChange={onChange}
+            {...timeSelectProps}
+          />
         </TimeSelectFormControl>
       </TimeSelectContainer>
     );

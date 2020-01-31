@@ -36,6 +36,7 @@ import setYear from 'date-fns/setYear';
 import startOfMonth from 'date-fns/startOfMonth';
 import startOfWeek from 'date-fns/startOfWeek';
 import endOfWeek from 'date-fns/endOfWeek';
+import set from 'date-fns/set';
 import subDays from 'date-fns/subDays';
 import subMonths from 'date-fns/subMonths';
 import subWeeks from 'date-fns/subWeeks';
@@ -235,4 +236,22 @@ export function getEffectiveMaxDate({maxDate, includeDates}: CalendarPropsT) {
   } else {
     return maxDate;
   }
+}
+
+export function applyTimeToDate(date: ?Date, time: Date) {
+  if (!date) return time;
+  return set(date, {
+    hours: getHours(time),
+    minutes: getMinutes(time),
+    seconds: 0,
+  });
+}
+
+export function applyDateToTime(time: ?Date, date: Date) {
+  if (!time) return date;
+  return set(time, {
+    year: getYear(date),
+    month: getMonth(date),
+    date: getDate(date),
+  });
 }

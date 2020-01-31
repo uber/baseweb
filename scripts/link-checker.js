@@ -98,9 +98,9 @@ async function getDeploymentURL() {
       BUILDKITE_PULL_REQUEST_REPO === '' ||
       BUILDKITE_PULL_REQUEST_REPO.includes('uber/baseweb')
     ) {
-      return `https://baseweb-git-${getBranchForURL()}.uber-ui-platform.now.sh/`;
+      return `https://baseweb-git-${sanitizeBranch()}.uber-ui-platform.now.sh/`;
     } else {
-      return `https://baseweb-git-fork-${getRepositoryOwnerFromURL()}-${getBranchForURL()}.uber-ui-platform.now.sh/`;
+      return `https://baseweb-git-fork-${getRepositoryOwnerFromURL()}-${sanitizeBranch()}.uber-ui-platform.now.sh/`;
     }
   }
 }
@@ -112,8 +112,12 @@ function getRepositoryOwnerFromURL() {
   return owner;
 }
 
-function getBranchForURL() {
-  return BUILDKITE_BRANCH.replace('/', '-').replace('_', '');
+// Best guess of how ZEIT sanitizes branch names
+function sanitizeBranch() {
+  return BUILDKITE_BRANCH.replace(/\//g, '')
+    .replace(/_/g, '')
+    .replace(/#/g, '-')
+    .toLowerCase();
 }
 
 function sleep(n) {

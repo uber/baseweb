@@ -32,12 +32,12 @@
     "gzip": 16001
   },
   "data-table": {
-    "parsed": 427352,
-    "gzip": 85914
+    "parsed": 902997,
+    "gzip": 167426
   },
   "datepicker": {
-    "parsed": 649120,
-    "gzip": 110888
+    "parsed": 696357,
+    "gzip": 127350
   },
   "dnd-list": {
     "parsed": 91905,
