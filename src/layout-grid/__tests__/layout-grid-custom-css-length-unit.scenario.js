@@ -20,7 +20,7 @@ export function component() {
         gridUnit="em"
         gridGutters={[1, 2, 2]}
         gridMargins={[1, 2, 4]}
-        gridMaxWidth={40}
+        gridMaxWidth={75}
       >
         <Cell>
           <Inner>1</Inner>

@@ -30,6 +30,7 @@ In this guide, we will cover the basics of theming Base Web components. We'll go
 - [Customizing your theme](#a-custom-theme)
 - [Customizing typography](#customizing-typography)
 - [Customizing icons](#customizing-icons)
+- [Customizing grid-layout](#customizing-grid-layout)
 - [Extending the theme](#customizing-the-theme-type)
 - [Accessing your theme through styling utilities](#using-the-theme)
 - [Theme properties](#theme-properties)
@@ -171,15 +172,15 @@ import {createTheme, lightThemePrimitives} from 'baseui';
 
 const primitives = {
   ...lightThemePrimitives,
-  accent: "#F127E4", // hot pink
-  accent50: "#FDEDFC",
-  accent100: "#FCD3F9",
-  accent200: "#F89FF3",
-  accent300: "#F45AEA",
-  accent400: "#F127E4",
-  accent500: "#B71DAD",
-  accent600: "#901788",
-  accent700: "#600F5B"
+  accent: '#F127E4', // hot pink
+  accent50: '#FDEDFC',
+  accent100: '#FCD3F9',
+  accent200: '#F89FF3',
+  accent300: '#F45AEA',
+  accent400: '#F127E4',
+  accent500: '#B71DAD',
+  accent600: '#901788',
+  accent700: '#600F5B',
 };
 
 const theme = createTheme(primitives);
@@ -200,15 +201,15 @@ import {createTheme, lightThemePrimitives} from 'baseui';
 
 const primitives = {
   ...lightThemePrimitives,
-  accent: "#F127E4", // hot pink
-  accent50: "#FDEDFC",
-  accent100: "#FCD3F9",
-  accent200: "#F89FF3",
-  accent300: "#F45AEA",
-  accent400: "#F127E4",
-  accent500: "#B71DAD",
-  accent600: "#901788",
-  accent700: "#600F5B"
+  accent: '#F127E4', // hot pink
+  accent50: '#FDEDFC',
+  accent100: '#FCD3F9',
+  accent200: '#F89FF3',
+  accent300: '#F45AEA',
+  accent400: '#F127E4',
+  accent500: '#B71DAD',
+  accent600: '#901788',
+  accent700: '#600F5B',
 };
 
 const overrides = {
@@ -299,6 +300,45 @@ All the icons that can be found on the Icon component page can be overridden usi
 <Example title="Pagination icon overrides" path="theme/icon-overrides.js">
   <IconOverrides />
 </Example>
+
+### Customizing grid-layout
+
+Grid layout uses `px` as a default css unit, you can change that by customizing theme.
+
+Please make sure if you are using different css unit than pixle, you would also have to add `gutters` and `margins` in same css unit.
+
+For example if you are using `em` as a css unit `gutters` and `margins` should have value like below:
+
+```js
+const theme = {
+  grid: {
+    unit: 'em',
+    gutters: [1, 2, 2],
+    margins: [1, 2, 4],
+    maxWidth: 40,
+  },
+};
+```
+
+Following are the CSS Length unit supported:
+
+- `cm`
+- `mm`
+- `Q`
+- `in`
+- `pc`
+- `px`
+- `pt`
+- `em`
+- `ex`
+- `ch`
+- `rem`
+- `lh`
+- `vw`
+- `vh`
+- `vmin`
+- `vmax`
+- `%`
 
 ### Customizing the Theme Type
 
