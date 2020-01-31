@@ -13,6 +13,7 @@ import inputConfig from './input';
 const datepickerProps = require('!!extract-react-types-loader!../../../../src/datepicker/datepicker.js');
 
 const DatepickerConfig: TConfig = {
+  componentName: 'Datepicker',
   imports: {
     'baseui/datepicker': {
       named: ['Datepicker'],
@@ -201,8 +202,8 @@ const DatepickerConfig: TConfig = {
       hidden: true,
     },
     orientation: {
-      value: ORIENTATION.vertical,
-      defaultValue: ORIENTATION.vertical,
+      value: 'ORIENTATION.vertical',
+      defaultValue: 'ORIENTATION.vertical',
       type: PropTypes.Enum,
       options: ORIENTATION,
       description:

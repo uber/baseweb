@@ -12,6 +12,7 @@ Object.values(COUNTRIES).forEach(country => {
 });
 
 const PhoneInputConfig: TConfig = {
+  componentName: 'PhoneInput',
   imports: {
     'baseui/phone-input': {
       named: ['PhoneInput'],

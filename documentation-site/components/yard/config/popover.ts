@@ -10,11 +10,12 @@ import {Input} from 'baseui/input';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
-import {changeHandlers} from './common';
+import {changeHandlers} from './common/common';
 
 const popoverProps = require('!!extract-react-types-loader!../../../../src/popover/stateful-popover.js');
 
 const PopoverConfig: TConfig = {
+  componentName: 'StatefulPopover',
   imports: {
     'baseui/popover': {named: ['StatefulPopover']},
   },
