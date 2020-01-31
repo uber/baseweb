@@ -101,6 +101,6 @@ export type StyledCellPropsT = {
   $skip?: ResponsiveT<number>,
   /** Control number of columns the cell should span. */
   $span?: ResponsiveT<number>,
-  /** Control CSS length units*/
+  /** Modify the CSS length unit used to measure columns and rows. Defaults to theme value. */
   $gridUnit?: CSSLengthUnitT,
 };
