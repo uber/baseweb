@@ -13,7 +13,6 @@ export default function Scenario() {
   return (
     <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
       <div dir="rtl">
-        {/* $FlowFixMe */}
         <DrawerScenario />
       </div>
     </ThemeProvider>

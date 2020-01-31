@@ -39,6 +39,4 @@ function Example() {
   );
 }
 
-export default function Scenario() {
-  return <Example />;
-}
+export default Example;
