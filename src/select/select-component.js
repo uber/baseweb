@@ -867,7 +867,8 @@ class Select extends React.Component<PropsT, SelectStateT> {
     } = this.props;
 
     if (__DEV__) {
-      if (!Array.isArray(value)) {
+      // value may be nullish, only warn if value is defined
+      if (value && !Array.isArray(value)) {
         console.warn(
           'The Select component expects an array as the value prop. For more information, please visit the docs at https://baseweb.design/components/select/',
         );

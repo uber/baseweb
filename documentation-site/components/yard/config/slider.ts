@@ -5,6 +5,7 @@ import {TConfig} from '../types';
 const sliderProps = require('!!extract-react-types-loader!../../../../src/slider/slider.js');
 
 const SliderConfig: TConfig = {
+  componentName: 'Slider',
   imports: {
     'baseui/slider': {named: ['Slider']},
   },

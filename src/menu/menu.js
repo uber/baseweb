@@ -25,6 +25,7 @@ export default function Menu(props: StatelessMenuPropsT) {
     rootRef = React.createRef(),
     focusMenu = () => {},
     unfocusMenu = () => {},
+    renderAll = false,
   } = props;
 
   const [List, listProps] = getOverrides(overrides.List, StyledList);
@@ -65,6 +66,7 @@ export default function Menu(props: StatelessMenuPropsT) {
 
         return (
           <Option
+            renderAll={renderAll}
             key={itemIndex}
             item={item}
             overrides={props.overrides}

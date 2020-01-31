@@ -23,6 +23,7 @@ exports[`StatefulPopover basic render: renders <Popover/> as child to container 
   }
   placement="topLeft"
   popperOptions={Object {}}
+  renderAll={false}
   returnFocus={true}
   showArrow={true}
   triggerType="hover"

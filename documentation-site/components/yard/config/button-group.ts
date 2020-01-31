@@ -7,6 +7,7 @@ const buttonGroupProps = require('!!extract-react-types-loader!../../../../src/b
 const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button.js');
 
 const ButtonGroupConfig: TConfig = {
+  componentName: 'ButtonGroup',
   imports: {
     'baseui/button-group': {
       named: ['ButtonGroup'],

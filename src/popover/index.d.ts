@@ -93,6 +93,9 @@ export interface Overrides {
 }
 export interface BasePopoverProps {
   accessibilityType?: ACCESSIBILITY_TYPE[keyof ACCESSIBILITY_TYPE];
+  focusLock?: boolean;
+  autoFocus?: boolean;
+  returnFocus?: boolean;
   'data-baseweb'?: string;
   id?: string;
   ignoreBoundary?: boolean;
@@ -105,6 +108,7 @@ export interface BasePopoverProps {
   mountNode?: HTMLElement;
   animateOutTime?: number;
   popperOptions?: any;
+  renderAll?: boolean;
 }
 export type PopoverProps = BasePopoverProps & {
   children: React.ReactNode;

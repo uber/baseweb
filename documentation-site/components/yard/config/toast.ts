@@ -9,6 +9,7 @@ const buttonProps = require('!!extract-react-types-loader!../../../../src/button
 const blockProps = require('!!extract-react-types-loader!../../../../src/block/block.js');
 
 const toastConfig: TConfig = {
+  componentName: 'ToasterContainer',
   imports: {
     'baseui/toast': {
       named: ['toaster', 'ToasterContainer'],
