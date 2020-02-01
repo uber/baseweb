@@ -17,6 +17,7 @@ export interface SIZE {
   compact: 'compact';
   default: 'default';
   large: 'large';
+  mini: 'mini';
 }
 
 export interface SHAPE {
