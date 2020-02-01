@@ -14,7 +14,9 @@
     "url": "https://github.com/uber/baseweb"
   },
   "scripts": {
-    "build": "cp -r ../../dist/es src/baseui && npm run build-theme && npm run compile",
+    "build": "npm run build:code-snippets && npm run build:copy-baseui && npm run build-theme && npm run compile",
+    "build:copy-baseui": "cp -r ../../dist/es src/baseui",
+    "build:code-snippets": "ts-node -r tsconfig-paths/register --project ./snippets/tsconfig.json ./snippets/build.ts",
     "build-theme": "./scripts/build-non-split.js",
     "deploy": "vsce publish --yarn",
     "compile": "tsc -p tsconfig.extension.json",
@@ -34,6 +36,7 @@
     "mocha": "^6.2.2",
     "react-scripts": "^2.1.3",
     "rewire": "^4.0.1",
+    "ts-node": "^8.6.2",
     "tslint": "^5.20.0",
     "typescript": "^3.6.4",
     "vsce": "^1.71.0",
@@ -94,12 +97,6 @@
     "onCommand:extension.baseweb.docs.layout-grid"
   ],
   "main": "./build/extension.js",
-  "eslintConfig": {
-    "extends": "react-app",
-    "rules": {
-      "import/first": "off"
-    }
-  },
   "contributes": {
     "snippets": [
       {
