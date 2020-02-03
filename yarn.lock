@@ -18574,10 +18574,10 @@ styletron-engine-atomic@^1.4.3:
     inline-style-prefixer "^5.1.0"
     styletron-standard "^3.0.4"
 
-styletron-engine-monolithic@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/styletron-engine-monolithic/-/styletron-engine-monolithic-0.0.1.tgz#46eb7a1fe7c74505a84f7a80c27fc47f6506609f"
-  integrity sha512-YPH3+mTOaHQsT/SdrvkqiSpHCl/EgknzfZ4tJqgAefAN81U250FhMYfDk6tJoAsSGbZldIDu7T+sQGqpuO5aqg==
+styletron-engine-monolithic@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/styletron-engine-monolithic/-/styletron-engine-monolithic-0.0.2.tgz#3fa6fc751d4cdb93372d6cfac2647a99a11ab412"
+  integrity sha512-6q7SjKKJYHv3Co44/pvB7CLUdatI7HXh5AU1i+KeNU7/R1ivwxlxIfbjPynlQxX0rC1bz+soHgzEGfDiWdur2A==
   dependencies:
     "@emotion/hash" "^0.7.4"
     inline-style-prefixer "^5.1.0"
