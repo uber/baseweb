@@ -23,7 +23,7 @@ export interface GridProps {
   gridGutters?: Responsive<number>;
   gridMargins?: Responsive<number>;
   gridMaxWidth?: number;
-  $gridUnit?: CSSLengthUnitT;
+  gridUnit?: CSSLengthUnitT;
 }
 
 export interface StyledGridProps {
