@@ -10,22 +10,22 @@ import * as React from 'react';
 
 import {StatefulSelect} from '../index.js';
 
-export const name = 'select-creatable';
-
-export const component = () => (
-  <StatefulSelect
-    creatable
-    options={[
-      {id: 'Portland', label: 'Portland'},
-      {id: 'NYC', label: 'New York City'},
-      {id: 'LosAngeles', label: 'Los Angeles'},
-      {id: 'Boston', label: 'Boston'},
-      {id: 'Atlanta', label: 'Atlanta'},
-      {id: 'SanFrancisco', label: 'San Francisco'},
-    ]}
-    closeOnSelect={false}
-    labelKey="label"
-    valueKey="id"
-    overrides={{ValueContainer: {props: {'data-id': 'selected'}}}}
-  />
-);
+export default function Scenario() {
+  return (
+    <StatefulSelect
+      creatable
+      options={[
+        {id: 'Portland', label: 'Portland'},
+        {id: 'NYC', label: 'New York City'},
+        {id: 'LosAngeles', label: 'Los Angeles'},
+        {id: 'Boston', label: 'Boston'},
+        {id: 'Atlanta', label: 'Atlanta'},
+        {id: 'SanFrancisco', label: 'San Francisco'},
+      ]}
+      closeOnSelect={false}
+      labelKey="label"
+      valueKey="id"
+      overrides={{ValueContainer: {props: {'data-id': 'selected'}}}}
+    />
+  );
+}

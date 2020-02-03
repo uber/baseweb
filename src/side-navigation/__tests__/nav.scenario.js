@@ -10,8 +10,6 @@ import * as React from 'react';
 
 import {Navigation} from '../index.js';
 
-export const name = 'nav';
-
 const nav = [
   {
     title: 'Colors',
@@ -38,6 +36,8 @@ const nav = [
   },
 ];
 
-export const component = () => (
-  <Navigation items={nav} overrides={{Root: {props: {'data-test': 'e2e'}}}} />
-);
+export default function Scenario() {
+  return (
+    <Navigation items={nav} overrides={{Root: {props: {'data-test': 'e2e'}}}} />
+  );
+}

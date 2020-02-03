@@ -6,10 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
-
 import {StatefulDatepicker} from '../index.js';
 
-export const name = 'stateful-datepicker';
-
-export const component = () => <StatefulDatepicker />;
+export default StatefulDatepicker;

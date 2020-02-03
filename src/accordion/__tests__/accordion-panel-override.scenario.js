@@ -27,25 +27,25 @@ const themeWithIcons = createTheme(
   },
 );
 
-export const name = 'accordion-panel-override';
-
-export const component = () => (
-  <ThemeProvider theme={themeWithIcons}>
-    <Accordion>
-      <Panel
-        title="hello"
-        overrides={{
-          // eslint-disable-next-line
-          ToggleIcon: function(props) {
-            if (props.$expanded) {
-              return <div>collapse(override)</div>;
-            }
-            return <div>expand(override)</div>;
-          },
-        }}
-      >
-        hello puppeteer!
-      </Panel>
-    </Accordion>
-  </ThemeProvider>
-);
+export default function Scenario() {
+  return (
+    <ThemeProvider theme={themeWithIcons}>
+      <Accordion>
+        <Panel
+          title="hello"
+          overrides={{
+            // eslint-disable-next-line
+            ToggleIcon: function(props) {
+              if (props.$expanded) {
+                return <div>collapse(override)</div>;
+              }
+              return <div>expand(override)</div>;
+            },
+          }}
+        >
+          hello puppeteer!
+        </Panel>
+      </Accordion>
+    </ThemeProvider>
+  );
+}

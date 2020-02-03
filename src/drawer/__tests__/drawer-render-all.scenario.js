@@ -9,8 +9,6 @@ import * as React from 'react';
 import {Button} from '../../button/index.js';
 import {Drawer, SIZE, ANCHOR} from '../index.js';
 
-export const name = 'drawer-render-all';
-
 function Example() {
   const [isOpen, setIsOpen] = React.useState(false);
   return (
@@ -44,4 +42,4 @@ function Example() {
   );
 }
 
-export const component = () => <Example />;
+export default Example;

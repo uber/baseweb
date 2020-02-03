@@ -10,8 +10,6 @@ import * as React from 'react';
 
 import {Tabs, Tab} from '../index.js';
 
-export const name = 'tabs-controlled';
-
 type StateT = {
   activeKey: string,
 };
@@ -45,4 +43,4 @@ class Example extends React.Component<{}, StateT> {
   }
 }
 
-export const component = () => <Example />;
+export default Example;

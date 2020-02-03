@@ -14,9 +14,7 @@ import ChevronRight from '../../icon/chevron-right.js';
 import Search from '../../icon/search.js';
 import {ListItem, ListItemLabel, ARTWORK_SIZES} from '../index.js';
 
-export const name = 'list-item';
-
-export const component = () => {
+export default function Scenario() {
   return (
     <div
       style={{
@@ -460,4 +458,4 @@ export const component = () => {
       </ListItem>
     </div>
   );
-};
+}

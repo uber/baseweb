@@ -10,17 +10,17 @@ import * as React from 'react';
 
 import {StatefulTextarea} from '../index.js';
 
-export const name = 'textarea';
-
-export const component = () => (
-  <StatefulTextarea
-    clearable
-    placeholder="Uncontrolled textarea"
-    initialState={{value: 'initial value'}}
-    overrides={{
-      ClearIcon: {
-        props: {'data-e2e': 'clear-icon'},
-      },
-    }}
-  />
-);
+export default function Scenario() {
+  return (
+    <StatefulTextarea
+      clearable
+      placeholder="Uncontrolled textarea"
+      initialState={{value: 'initial value'}}
+      overrides={{
+        ClearIcon: {
+          props: {'data-e2e': 'clear-icon'},
+        },
+      }}
+    />
+  );
+}

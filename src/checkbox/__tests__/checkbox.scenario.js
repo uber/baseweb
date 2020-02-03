@@ -10,6 +10,6 @@ import * as React from 'react';
 
 import {StatefulCheckbox} from '../index.js';
 
-export const name = 'checkbox';
-
-export const component = () => <StatefulCheckbox>click me</StatefulCheckbox>;
+export default function Scenario() {
+  return <StatefulCheckbox>click me</StatefulCheckbox>;
+}

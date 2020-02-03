@@ -9,14 +9,14 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {StatefulPhoneInput, SIZE} from '../index.js';
 
-export const name = 'country-select-dropdown';
-
-export const component = () => (
-  <React.Fragment>
-    <StatefulPhoneInput size={SIZE.compact} />
-    <br />
-    <StatefulPhoneInput />
-    <br />
-    <StatefulPhoneInput size={SIZE.large} />
-  </React.Fragment>
-);
+export default function Scenario() {
+  return (
+    <React.Fragment>
+      <StatefulPhoneInput size={SIZE.compact} />
+      <br />
+      <StatefulPhoneInput />
+      <br />
+      <StatefulPhoneInput size={SIZE.large} />
+    </React.Fragment>
+  );
+}

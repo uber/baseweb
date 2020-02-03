@@ -10,12 +10,12 @@ import * as React from 'react';
 
 import {StatefulCalendar} from '../index.js';
 
-export const name = 'stateful-range-quick-select';
-
-export const component = () => (
-  <StatefulCalendar
-    range
-    quickSelect
-    highlightedDate={new Date('2019-02-14T10:00:00Z')}
-  />
-);
+export default function Scenario() {
+  return (
+    <StatefulCalendar
+      range
+      quickSelect
+      highlightedDate={new Date('2019-02-14T10:00:00Z')}
+    />
+  );
+}
