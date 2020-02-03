@@ -10,8 +10,6 @@ import * as React from 'react';
 
 import {Unstable_StatefulTreeView as StatefulTreeView} from '../index.js';
 
-export const name = 'tree-view-single-expanded';
-
 const initialData = [
   {
     label: 'Node 1',
@@ -216,6 +214,6 @@ const initialData = [
   },
 ];
 
-export const component = () => (
-  <StatefulTreeView singleExpanded={true} data={initialData} />
-);
+export default function Scenario() {
+  return <StatefulTreeView singleExpanded={true} data={initialData} />;
+}

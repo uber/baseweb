@@ -10,6 +10,6 @@ import * as React from 'react';
 
 import {ProgressBar} from '../index.js';
 
-export const name = 'progressbar';
-
-export const component = () => <ProgressBar value={20} />;
+export default function Scenario() {
+  return <ProgressBar value={20} />;
+}

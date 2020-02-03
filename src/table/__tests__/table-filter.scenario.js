@@ -109,13 +109,11 @@ const Container = styled('div', {
   height: '500px',
 });
 
-export const name = 'table-filter';
-
-export const component = () => {
+export default function Scenario() {
   const FILTER_DATA = [...new Array(100)].map((_, i) => [i, 'row title']);
   return (
     <Container>
       <FilterTable data={FILTER_DATA} />
     </Container>
   );
-};
+}

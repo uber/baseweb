@@ -13,8 +13,6 @@ import startOfDay from 'date-fns/startOfDay';
 import {TimePicker} from '../index.js';
 import {SIZE} from '../../input/index.js';
 
-export const name = 'time-picker';
-
 const MIDNIGHT = startOfDay(new Date(2019, 3, 19));
 const OFF_STEP_TIME = new Date(2019, 3, 19, 1, 11);
 const overrides = {
@@ -48,7 +46,7 @@ const Controlled = ({
   );
 };
 
-export const component = () => {
+export default function Scenario() {
   const [value, setValue] = React.useState(null);
   return (
     <div style={{width: '130px'}}>
@@ -101,4 +99,4 @@ export const component = () => {
       </div>
     </div>
   );
-};
+}

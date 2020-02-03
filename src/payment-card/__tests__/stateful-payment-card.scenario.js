@@ -6,10 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
-
 import {StatefulPaymentCard} from '../index.js';
 
-export const name = 'stateful-payment-card';
-
-export const component = () => <StatefulPaymentCard />;
+export default StatefulPaymentCard;

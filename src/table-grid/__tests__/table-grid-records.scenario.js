@@ -14,8 +14,6 @@ import {useStyletron} from '../../styles/index.js';
 
 import {StyledTable, StyledHeadCell, StyledBodyCell} from '../index.js';
 
-export const name = 'table-grid-records';
-
 // [date, event description]
 type EventT = [Date, string];
 
@@ -43,7 +41,7 @@ const row = [
 
 const data: RowT[] = [row, row, row, row, row, row, row];
 
-export function component() {
+export default function Scenario() {
   const [css] = useStyletron();
   return (
     <div className={css({height: '600px'})}>

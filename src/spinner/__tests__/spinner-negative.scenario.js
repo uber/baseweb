@@ -10,12 +10,12 @@ import * as React from 'react';
 
 import {Spinner} from '../index.js';
 
-export const name = 'spinner-negative';
-
-export const component = () => (
-  <Spinner
-    overrides={{
-      ActivePath: {style: ({$theme}) => ({fill: $theme.colors.negative})},
-    }}
-  />
-);
+export default function Scenario() {
+  return (
+    <Spinner
+      overrides={{
+        ActivePath: {style: ({$theme}) => ({fill: $theme.colors.negative})},
+      }}
+    />
+  );
+}

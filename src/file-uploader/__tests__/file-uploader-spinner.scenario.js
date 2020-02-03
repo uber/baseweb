@@ -10,8 +10,6 @@ import * as React from 'react';
 
 import {FileUploader} from '../index.js';
 
-export const name = 'file-uploader-spinner';
-
-export const component = () => (
-  <FileUploader progressMessage="Uploading... hang tight." />
-);
+export default function Scenario() {
+  return <FileUploader progressMessage="Uploading... hang tight." />;
+}

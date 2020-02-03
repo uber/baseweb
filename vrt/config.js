@@ -49,7 +49,6 @@ const config = {
       },
     ],
   },
-  //
   'data-table-extracted-highlight': {
     interactions: [
       {

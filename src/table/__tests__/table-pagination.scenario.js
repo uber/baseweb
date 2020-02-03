@@ -17,8 +17,6 @@ import {StatefulPopover, PLACEMENT} from '../../popover/index.js';
 
 import {Table} from '../index.js';
 
-export const name = 'table-pagination';
-
 const COLUMNS = [...new Array(5)].map(() => 'Label');
 const DATA = [...new Array(45)].map((_, i) =>
   [...new Array(5)].map(() => `row: ${i + 1}`),
@@ -108,4 +106,6 @@ class PaginatedTable extends React.Component<any, any> {
   }
 }
 
-export const component = () => <PaginatedTable columns={COLUMNS} data={DATA} />;
+export default function Scenario() {
+  return <PaginatedTable columns={COLUMNS} data={DATA} />;
+}

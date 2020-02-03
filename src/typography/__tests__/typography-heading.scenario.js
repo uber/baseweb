@@ -11,17 +11,17 @@ import * as React from 'react';
 
 import {H6, H5, H4, H3, H2, H1} from '../index.js';
 
-export const name = 'typography-heading';
-
 const textString = 'We ignite opportunity by setting the world in motion.';
 
-export const component = () => (
-  <React.Fragment>
-    <H6>{`H6 - ${textString}`}</H6>
-    <H5>{`H5 - ${textString}`}</H5>
-    <H4>{`H4 - ${textString}`}</H4>
-    <H3>{`H3 - ${textString}`}</H3>
-    <H2>{`H2 - ${textString}`}</H2>
-    <H1>{`H1 - ${textString}`}</H1>
-  </React.Fragment>
-);
+export default function Scenario() {
+  return (
+    <React.Fragment>
+      <H6>{`H6 - ${textString}`}</H6>
+      <H5>{`H5 - ${textString}`}</H5>
+      <H4>{`H4 - ${textString}`}</H4>
+      <H3>{`H3 - ${textString}`}</H3>
+      <H2>{`H2 - ${textString}`}</H2>
+      <H1>{`H1 - ${textString}`}</H1>
+    </React.Fragment>
+  );
+}

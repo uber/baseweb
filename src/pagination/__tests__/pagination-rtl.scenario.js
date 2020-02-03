@@ -8,14 +8,14 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {ThemeProvider, LightTheme} from '../../index.js';
-import {component as PaginationScenario} from './pagination.scenario.js';
+import PaginationScenario from './pagination.scenario.js';
 
-export const name = 'pagination-rtl';
-
-export const component = () => (
-  <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
-    <div dir="rtl">
-      <PaginationScenario />
-    </div>
-  </ThemeProvider>
-);
+export default function Scenario() {
+  return (
+    <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
+      <div dir="rtl">
+        <PaginationScenario />
+      </div>
+    </ThemeProvider>
+  );
+}

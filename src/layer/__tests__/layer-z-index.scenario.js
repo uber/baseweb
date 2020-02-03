@@ -16,8 +16,6 @@ import {Block} from '../../block/index.js';
 import {Button} from '../../button/index.js';
 import type {NormalizedOffsetsT} from '../../layer/types.js';
 
-export const name = 'layer-z-index';
-
 function BlockComponent(props) {
   const {children, forwardedRef, offset, color, ...restProps} = props;
   return (
@@ -186,4 +184,4 @@ class Example extends React.Component<
   }
 }
 
-export const component = () => <Example />;
+export default Example;

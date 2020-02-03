@@ -10,6 +10,6 @@ import * as React from 'react';
 
 import {FileUploader} from '../index.js';
 
-export const name = 'file-uploader-disabled';
-
-export const component = () => <FileUploader disabled />;
+export default function Scenario() {
+  return <FileUploader disabled />;
+}

@@ -10,10 +10,6 @@ import * as React from 'react';
 
 import {StarRating} from '../index.js';
 
-export const name = 'rating-star';
-
-export const component = () => <StarRatingContainer />;
-
 class StarRatingContainer extends React.Component<{}, {value: number}> {
   state = {
     value: 3,
@@ -28,3 +24,5 @@ class StarRatingContainer extends React.Component<{}, {value: number}> {
     );
   }
 }
+
+export default StarRatingContainer;

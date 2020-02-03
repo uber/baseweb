@@ -10,8 +10,6 @@ import * as React from 'react';
 
 import {StatefulMenu, NestedMenus} from '../index.js';
 
-export const name = 'menu-child-render-all';
-
 const SSR = 'Rendered ->';
 const FILE = [{label: 'Server'}, {label: 'Side'}, {label: SSR}];
 
@@ -42,27 +40,29 @@ const childMenu = items => (
   />
 );
 
-export const component = () => (
-  <NestedMenus>
-    <StatefulMenu
-      renderAll
-      items={FILE}
-      overrides={{
-        List: {
-          style: {width: '300px', overflow: 'auto'},
-          props: {'data-e2e': 'parent-menu'},
-        },
-        Option: {
-          props: {
-            size: 'compact',
-            getChildMenu: item => {
-              if (item.label === SSR) {
-                return childMenu(SSR_SUB_MENU);
-              }
+export default function Scenario() {
+  return (
+    <NestedMenus>
+      <StatefulMenu
+        renderAll
+        items={FILE}
+        overrides={{
+          List: {
+            style: {width: '300px', overflow: 'auto'},
+            props: {'data-e2e': 'parent-menu'},
+          },
+          Option: {
+            props: {
+              size: 'compact',
+              getChildMenu: item => {
+                if (item.label === SSR) {
+                  return childMenu(SSR_SUB_MENU);
+                }
+              },
             },
           },
-        },
-      }}
-    />
-  </NestedMenus>
-);
+        }}
+      />
+    </NestedMenus>
+  );
+}

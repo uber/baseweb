@@ -8,14 +8,14 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {ThemeProvider, LightTheme} from '../../index.js';
-import {component as RadioScenario} from './radio.scenario.js';
+import RadioScenario from './radio.scenario.js';
 
-export const name = 'radio-rtl';
-
-export const component = () => (
-  <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
-    <div dir="rtl">
-      <RadioScenario />
-    </div>
-  </ThemeProvider>
-);
+export default function Scenario() {
+  return (
+    <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
+      <div dir="rtl">
+        <RadioScenario />
+      </div>
+    </ThemeProvider>
+  );
+}
