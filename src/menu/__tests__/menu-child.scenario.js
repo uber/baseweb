@@ -10,8 +10,6 @@ import * as React from 'react';
 
 import {StatefulMenu, NestedMenus} from '../index.js';
 
-export const name = 'menu-child';
-
 const OPEN_RECENT = 'Open Recent ->';
 const NEW_BREAKPOINT = 'New Breakpoint ->';
 const FILE = [
@@ -62,30 +60,32 @@ const childMenu = items => (
   />
 );
 
-export const component = () => (
-  <NestedMenus>
-    <StatefulMenu
-      items={FILE}
-      overrides={{
-        List: {
-          style: {width: '300px', overflow: 'auto'},
-          props: {'data-e2e': 'parent-menu'},
-        },
-        Option: {
-          props: {
-            size: 'compact',
-            getChildMenu: item => {
-              if (item.label === OPEN_RECENT) {
-                return childMenu(RECENT_FILES);
-              }
+export default function Scenario() {
+  return (
+    <NestedMenus>
+      <StatefulMenu
+        items={FILE}
+        overrides={{
+          List: {
+            style: {width: '300px', overflow: 'auto'},
+            props: {'data-e2e': 'parent-menu'},
+          },
+          Option: {
+            props: {
+              size: 'compact',
+              getChildMenu: item => {
+                if (item.label === OPEN_RECENT) {
+                  return childMenu(RECENT_FILES);
+                }
 
-              if (item.label === NEW_BREAKPOINT) {
-                return childMenu(BREAKPOINTS);
-              }
+                if (item.label === NEW_BREAKPOINT) {
+                  return childMenu(BREAKPOINTS);
+                }
+              },
             },
           },
-        },
-      }}
-    />
-  </NestedMenus>
-);
+        }}
+      />
+    </NestedMenus>
+  );
+}

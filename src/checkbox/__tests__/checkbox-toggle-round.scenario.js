@@ -10,29 +10,29 @@ import * as React from 'react';
 
 import {Checkbox, STYLE_TYPE} from '../index.js';
 
-export const name = 'checkbox-toggle-round';
+export default function Scenario() {
+  return (
+    <div style={{width: '200px'}}>
+      <Checkbox checkmarkType={STYLE_TYPE.toggle_round}>
+        default unchecked
+      </Checkbox>
+      <Checkbox checkmarkType={STYLE_TYPE.toggle_round} checked>
+        default checked
+      </Checkbox>
 
-export const component = () => (
-  <div style={{width: '200px'}}>
-    <Checkbox checkmarkType={STYLE_TYPE.toggle_round}>
-      default unchecked
-    </Checkbox>
-    <Checkbox checkmarkType={STYLE_TYPE.toggle_round} checked>
-      default checked
-    </Checkbox>
+      <Checkbox checkmarkType={STYLE_TYPE.toggle_round} disabled>
+        disabled unchecked
+      </Checkbox>
+      <Checkbox checkmarkType={STYLE_TYPE.toggle_round} checked disabled>
+        disabled checked
+      </Checkbox>
 
-    <Checkbox checkmarkType={STYLE_TYPE.toggle_round} disabled>
-      disabled unchecked
-    </Checkbox>
-    <Checkbox checkmarkType={STYLE_TYPE.toggle_round} checked disabled>
-      disabled checked
-    </Checkbox>
-
-    <Checkbox checkmarkType={STYLE_TYPE.toggle_round} isError>
-      error unchecked
-    </Checkbox>
-    <Checkbox checkmarkType={STYLE_TYPE.toggle_round} checked isError>
-      error checked
-    </Checkbox>
-  </div>
-);
+      <Checkbox checkmarkType={STYLE_TYPE.toggle_round} isError>
+        error unchecked
+      </Checkbox>
+      <Checkbox checkmarkType={STYLE_TYPE.toggle_round} checked isError>
+        error checked
+      </Checkbox>
+    </div>
+  );
+}

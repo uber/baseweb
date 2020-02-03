@@ -10,9 +10,7 @@ import * as React from 'react';
 
 import {Button, KIND} from '../index.js';
 
-export const name = 'button';
-
-export const component = () => {
+export default function Scenario() {
   return (
     <table>
       <tbody>
@@ -48,4 +46,4 @@ export const component = () => {
       </tbody>
     </table>
   );
-};
+}

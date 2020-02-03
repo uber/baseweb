@@ -10,6 +10,6 @@ import * as React from 'react';
 
 import {EmoticonRating} from '../index.js';
 
-export const name = 'rating-emoticon';
-
-export const component = () => <EmoticonRating value={3} />;
+export default function Scenario() {
+  return <EmoticonRating value={3} />;
+}

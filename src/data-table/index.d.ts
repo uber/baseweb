@@ -2,14 +2,18 @@ import * as React from 'react';
 
 export class Unstable_StatefulDataTable extends React.Component<any, any> {}
 
+export function AnchorColumn(options: any): any;
 export function BooleanColumn(options: any): any;
 export function CategoricalColumn(options: any): any;
+export function DatetimeColumn(options: any): any;
 export function CustomColumn<ValueT, FilterParamsT>(options: any): any;
 export function NumericalColumn(options: any): any;
 export function StringColumn(options: any): any;
 
 export interface COLUMNS {
+  ANCHOR: 'ANCHOR';
   CATEGORICAL: 'CATEGORICAL';
+  DATETIME: 'DATETIME';
   NUMERICAL: 'NUMERICAL';
   BOOLEAN: 'BOOLEAN';
   STRING: 'STRING';

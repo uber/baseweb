@@ -14,8 +14,6 @@ import {Unstable_StatefulDataTable} from '../stateful-data-table.js';
 
 import AnimalData from './animal-data.js';
 
-export const name = 'data-table-text-search';
-
 type RowDataT = {
   Name: string,
   Kingdom: string,
@@ -62,10 +60,10 @@ const rows = AnimalData.map(row => {
   };
 });
 
-export const component = () => {
+export default function Scenario() {
   return (
     <div style={{height: '600px', width: '700px'}}>
       <Unstable_StatefulDataTable columns={columns} rows={rows} />
     </div>
   );
-};
+}

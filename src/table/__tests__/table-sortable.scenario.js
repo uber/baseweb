@@ -18,8 +18,6 @@ import {
   SORT_DIRECTION,
 } from '../index.js';
 
-export const name = 'table-sortable';
-
 const DATA = [
   ['Marlyn', 10],
   ['Luther', 15],
@@ -130,4 +128,4 @@ class SortableTable extends React.Component<any, any> {
   }
 }
 
-export const component = () => <SortableTable />;
+export default SortableTable;

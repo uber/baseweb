@@ -11,8 +11,6 @@ import * as React from 'react';
 import {Button} from '../../button/index.js';
 import {StatefulButtonGroup, MODE} from '../index.js';
 
-export const name = 'button-group-overrides';
-
 const buttonOverrides = {
   BaseButton: {
     style: ({$isSelected}) => {
@@ -24,10 +22,12 @@ const buttonOverrides = {
   },
 };
 
-export const component = () => (
-  <StatefulButtonGroup mode={MODE.checkbox} initialState={{selected: [0, 1]}}>
-    <Button overrides={buttonOverrides}>Label</Button>
-    <Button overrides={buttonOverrides}>Label</Button>
-    <Button overrides={buttonOverrides}>Label</Button>
-  </StatefulButtonGroup>
-);
+export default function Scenario() {
+  return (
+    <StatefulButtonGroup mode={MODE.checkbox} initialState={{selected: [0, 1]}}>
+      <Button overrides={buttonOverrides}>Label</Button>
+      <Button overrides={buttonOverrides}>Label</Button>
+      <Button overrides={buttonOverrides}>Label</Button>
+    </StatefulButtonGroup>
+  );
+}

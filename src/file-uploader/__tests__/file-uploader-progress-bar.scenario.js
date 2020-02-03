@@ -10,11 +10,11 @@ import * as React from 'react';
 
 import {FileUploader} from '../index.js';
 
-export const name = 'file-uploader-progress-bar';
-
-export const component = () => (
-  <FileUploader
-    progressAmount={40}
-    progressMessage="Uploading... 8.24 of 45.08MB"
-  />
-);
+export default function Scenario() {
+  return (
+    <FileUploader
+      progressAmount={40}
+      progressMessage="Uploading... 8.24 of 45.08MB"
+    />
+  );
+}

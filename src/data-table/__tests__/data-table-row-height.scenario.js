@@ -13,8 +13,6 @@ import {Unstable_StatefulDataTable} from '../stateful-data-table.js';
 
 import AnimalData from './animal-data.js';
 
-export const name = 'data-table-row-height';
-
 type RowDataT = {
   Name: string,
   loremIpsum: string,
@@ -50,7 +48,7 @@ const actions = [
   },
 ];
 
-export const component = () => {
+export default function Scenario() {
   return (
     <div style={{height: '600px', width: '700px'}}>
       <Unstable_StatefulDataTable
@@ -61,4 +59,4 @@ export const component = () => {
       />
     </div>
   );
-};
+}

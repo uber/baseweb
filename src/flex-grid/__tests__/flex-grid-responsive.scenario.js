@@ -10,8 +10,6 @@ import React from 'react';
 
 import {FlexGrid, FlexGridItem} from '../index.js';
 
-export const name = 'flex-grid-responsive';
-
 const itemProps = {
   backgroundColor: 'mono300',
   height: 'scale1000',
@@ -20,18 +18,20 @@ const itemProps = {
   justifyContent: 'center',
 };
 
-export const component = () => (
-  <FlexGrid
-    flexGridColumnCount={[3, 2, 1]}
-    flexGridColumnGap="scale400"
-    flexGridRowGap="scale400"
-    width="scale4800"
-  >
-    <FlexGridItem {...itemProps}>1</FlexGridItem>
-    <FlexGridItem {...itemProps}>2</FlexGridItem>
-    <FlexGridItem {...itemProps}>3</FlexGridItem>
-    <FlexGridItem {...itemProps}>4</FlexGridItem>
-    <FlexGridItem {...itemProps}>5</FlexGridItem>
-    <FlexGridItem {...itemProps}>6</FlexGridItem>
-  </FlexGrid>
-);
+export default function Scenario() {
+  return (
+    <FlexGrid
+      flexGridColumnCount={[3, 2, 1]}
+      flexGridColumnGap="scale400"
+      flexGridRowGap="scale400"
+      width="scale4800"
+    >
+      <FlexGridItem {...itemProps}>1</FlexGridItem>
+      <FlexGridItem {...itemProps}>2</FlexGridItem>
+      <FlexGridItem {...itemProps}>3</FlexGridItem>
+      <FlexGridItem {...itemProps}>4</FlexGridItem>
+      <FlexGridItem {...itemProps}>5</FlexGridItem>
+      <FlexGridItem {...itemProps}>6</FlexGridItem>
+    </FlexGrid>
+  );
+}

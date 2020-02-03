@@ -6,10 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
-
 import {Spinner} from '../index.js';
 
-export const name = 'spinner';
-
-export const component = () => <Spinner />;
+export default Spinner;

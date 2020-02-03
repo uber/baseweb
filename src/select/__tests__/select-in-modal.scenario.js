@@ -17,11 +17,7 @@ import {
   ModalButton,
 } from '../../modal/index.js';
 
-export const name = 'select-in-modal';
-
-export const component = () => <SelectInModal />;
-
-function SelectInModal() {
+export default function SelectInModal() {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>

@@ -28,8 +28,6 @@ import {
   StyledAction,
 } from '../index.js';
 
-export const name = 'table-cells';
-
 const StyledHeadingCell = withStyle(StyledCell, {
   paddingTop: 0,
   paddingBottom: 0,
@@ -273,73 +271,75 @@ const DATA = [
   ],
 ];
 
-export const component = () => (
-  <div style={{height: '500px', width: '900px'}}>
-    <StyledTable>
-      <StyledHead>
-        <StyledHeadCell>Name</StyledHeadCell>
-        <StyledHeadCell>Role</StyledHeadCell>
-        <StyledHeadCell>Delta</StyledHeadCell>
-        <StyledHeadCell>Amount</StyledHeadCell>
-        <ExpandableCellHead>
-          <StyledHeadCell>Expandable</StyledHeadCell>
-        </ExpandableCellHead>
-        <StyledHeadCell>Actions</StyledHeadCell>
-      </StyledHead>
-      <StyledBody>
-        {DATA.map((row, index) => (
-          <StyledRow key={index}>
-            <StyledCell>{row[0]}</StyledCell>
+export default function Scenario() {
+  return (
+    <div style={{height: '500px', width: '900px'}}>
+      <StyledTable>
+        <StyledHead>
+          <StyledHeadCell>Name</StyledHeadCell>
+          <StyledHeadCell>Role</StyledHeadCell>
+          <StyledHeadCell>Delta</StyledHeadCell>
+          <StyledHeadCell>Amount</StyledHeadCell>
+          <ExpandableCellHead>
+            <StyledHeadCell>Expandable</StyledHeadCell>
+          </ExpandableCellHead>
+          <StyledHeadCell>Actions</StyledHeadCell>
+        </StyledHead>
+        <StyledBody>
+          {DATA.map((row, index) => (
+            <StyledRow key={index}>
+              <StyledCell>{row[0]}</StyledCell>
 
-            <StyledHeadingCell>
-              <Block>
-                <Block font="font200" color="mono600">
-                  {row[2]}
+              <StyledHeadingCell>
+                <Block>
+                  <Block font="font200" color="mono600">
+                    {row[2]}
+                  </Block>
+                  <Block font="font300">{row[1]}</Block>
                 </Block>
-                <Block font="font300">{row[1]}</Block>
-              </Block>
-            </StyledHeadingCell>
+              </StyledHeadingCell>
 
-            <StyledDeltaCell $isNegative={row[3] < 0}>
-              <>
-                {row[3] < 0 ? <ArrowDown size={24} /> : <ArrowUp size={24} />}
-                {row[3]}%
-              </>
-            </StyledDeltaCell>
+              <StyledDeltaCell $isNegative={row[3] < 0}>
+                <>
+                  {row[3] < 0 ? <ArrowDown size={24} /> : <ArrowUp size={24} />}
+                  {row[3]}%
+                </>
+              </StyledDeltaCell>
 
-            <StyledLargeText>
-              <Block font="font500">{row[4]}</Block>
-              <Block color="mono700" font="font250" paddingLeft="scale200">
-                +1000%
-              </Block>
-            </StyledLargeText>
+              <StyledLargeText>
+                <Block font="font500">{row[4]}</Block>
+                <Block color="mono700" font="font250" paddingLeft="scale200">
+                  +1000%
+                </Block>
+              </StyledLargeText>
 
-            <ExpandableCell>
-              <StatefulPanel title={row[5].title} overrides={panelOverrides}>
-                {row[5].data}
-              </StatefulPanel>
-            </ExpandableCell>
+              <ExpandableCell>
+                <StatefulPanel title={row[5].title} overrides={panelOverrides}>
+                  {row[5].data}
+                </StatefulPanel>
+              </ExpandableCell>
 
-            <StyledCell>
-              <StyledAction>
-                <Search />
-              </StyledAction>
+              <StyledCell>
+                <StyledAction>
+                  <Search />
+                </StyledAction>
 
-              <StyledAction>
-                <Plus />
-              </StyledAction>
+                <StyledAction>
+                  <Plus />
+                </StyledAction>
 
-              <StyledAction>
-                <Delete />
-              </StyledAction>
+                <StyledAction>
+                  <Delete />
+                </StyledAction>
 
-              <StyledAction>
-                <Overflow />
-              </StyledAction>
-            </StyledCell>
-          </StyledRow>
-        ))}
-      </StyledBody>
-    </StyledTable>
-  </div>
-);
+                <StyledAction>
+                  <Overflow />
+                </StyledAction>
+              </StyledCell>
+            </StyledRow>
+          ))}
+        </StyledBody>
+      </StyledTable>
+    </div>
+  );
+}
