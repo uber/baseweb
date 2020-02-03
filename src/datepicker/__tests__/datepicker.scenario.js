@@ -11,9 +11,7 @@ import * as React from 'react';
 import {Datepicker} from '../index.js';
 import {Button} from '../../button/index.js';
 
-export const name = 'datepicker';
-
-export const component = () => {
+export default function Scenario() {
   const [date, setDate] = React.useState(null);
 
   return (
@@ -72,4 +70,4 @@ export const component = () => {
       />
     </React.Fragment>
   );
-};
+}

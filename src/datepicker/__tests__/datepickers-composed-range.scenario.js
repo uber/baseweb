@@ -13,8 +13,6 @@ import {FormControl} from '../../form-control/index.js';
 import ArrowRight from '../../icon/arrow-right.js';
 import {Datepicker, TimePicker, formatDate} from '../index.js';
 
-export const name = 'datepickers-composed-range';
-
 const START_DATE = new Date(2019, 3, 1, 12, 0, 0);
 const END_DATE = new Date(2019, 3, 10, 16, 0, 0);
 
@@ -106,4 +104,4 @@ class Controlled extends React.Component<any, any> {
   }
 }
 
-export const component = () => <Controlled />;
+export default Controlled;

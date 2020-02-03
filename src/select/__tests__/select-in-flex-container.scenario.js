@@ -11,8 +11,6 @@ import {styled} from '../../styles/index.js';
 import {Block} from '../../block/index.js';
 import {StatefulSelect, SingleSelect, MultiSelect} from '../index.js';
 
-export const name = 'select-in-flex-container';
-
 const options = [
   {id: 'AliceBlue', color: '#F0F8FF'},
   {id: 'AntiqueWhite', color: '#FAEBD7'},
@@ -22,7 +20,7 @@ const options = [
   {id: 'Beige', color: '#F5F5DC'},
 ];
 
-export const component = () => {
+export default function Scenario() {
   const Inner = styled('div', () => ({
     display: 'flex',
     alignItems: 'center',
@@ -59,4 +57,4 @@ export const component = () => {
       </Inner>
     </Block>
   );
-};
+}

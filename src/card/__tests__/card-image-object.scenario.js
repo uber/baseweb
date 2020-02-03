@@ -12,8 +12,6 @@ import {Card, type ImagePropsT, StyledBody} from '../index.js';
 import {header as headerImg, thumbnail as thumbnailImg} from '../images.js';
 import {styled} from '../../styles/index.js';
 
-export const name = 'card-image-object';
-
 const Container = styled('div', {width: '328px'});
 
 const headerImage: ImagePropsT = {
@@ -22,14 +20,16 @@ const headerImage: ImagePropsT = {
   alt: 'Card Alt Entry',
 };
 
-export const component = () => (
-  <Container>
-    <Card headerImage={headerImage} title="Card Title Entry">
-      <StyledBody>
-        Proin ut dui sed metus pharetra hend rerit vel non mi. Nulla ornare
-        faucibus ex, non facilisis nisl. Maecenas aliquet mauris ut tempus
-        cursus. Etiam semper luctus sem ac blandit.
-      </StyledBody>
-    </Card>
-  </Container>
-);
+export default function Scenario() {
+  return (
+    <Container>
+      <Card headerImage={headerImage} title="Card Title Entry">
+        <StyledBody>
+          Proin ut dui sed metus pharetra hend rerit vel non mi. Nulla ornare
+          faucibus ex, non facilisis nisl. Maecenas aliquet mauris ut tempus
+          cursus. Etiam semper luctus sem ac blandit.
+        </StyledBody>
+      </Card>
+    </Container>
+  );
+}

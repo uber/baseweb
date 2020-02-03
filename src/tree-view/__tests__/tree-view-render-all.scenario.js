@@ -10,8 +10,6 @@ import * as React from 'react';
 
 import {Unstable_StatefulTreeView as StatefulTreeView} from '../index.js';
 
-export const name = 'tree-view-render-all';
-
 const initialData = [
   {
     label: 'Node 1',
@@ -48,6 +46,6 @@ const initialData = [
   },
 ];
 
-export const component = () => (
-  <StatefulTreeView renderAll={true} data={initialData} />
-);
+export default function Scenario() {
+  return <StatefulTreeView renderAll={true} data={initialData} />;
+}

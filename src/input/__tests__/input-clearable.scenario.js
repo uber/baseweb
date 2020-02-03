@@ -10,34 +10,34 @@ import React from 'react';
 
 import {StatefulInput} from '../index.js';
 
-export const name = 'input-clearable';
-
-export const component = () => (
-  <>
-    <StatefulInput clearable initialState={{value: 'Some'}} size="compact" />
-    <br />
-    <StatefulInput
-      clearable
-      initialState={{value: 'Thing'}}
-      overrides={{
-        Input: {
-          props: {'data-e2e': 'input'},
-        },
-        ClearIcon: {
-          props: {'data-e2e': 'clear-icon'},
-        },
-      }}
-    />
-    <br />
-    <StatefulInput
-      clearable
-      initialState={{value: 'Or other'}}
-      overrides={{
-        Input: {
-          props: {'data-e2e': 'last-input'},
-        },
-      }}
-      size="large"
-    />
-  </>
-);
+export default function Scenario() {
+  return (
+    <>
+      <StatefulInput clearable initialState={{value: 'Some'}} size="compact" />
+      <br />
+      <StatefulInput
+        clearable
+        initialState={{value: 'Thing'}}
+        overrides={{
+          Input: {
+            props: {'data-e2e': 'input'},
+          },
+          ClearIcon: {
+            props: {'data-e2e': 'clear-icon'},
+          },
+        }}
+      />
+      <br />
+      <StatefulInput
+        clearable
+        initialState={{value: 'Or other'}}
+        overrides={{
+          Input: {
+            props: {'data-e2e': 'last-input'},
+          },
+        }}
+        size="large"
+      />
+    </>
+  );
+}

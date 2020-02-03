@@ -22,8 +22,6 @@ const BorderlessTable = withStyle(StyledTable, {
   border: 0,
 });
 
-export const name = 'table-borderless';
-
 const DATA = [
   ['Marlyn', 10],
   ['Luther', 15],
@@ -72,4 +70,4 @@ class SortableTable extends React.Component<any, any> {
   }
 }
 
-export const component = () => <SortableTable />;
+export default SortableTable;

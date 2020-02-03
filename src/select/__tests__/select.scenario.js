@@ -10,8 +10,6 @@ import * as React from 'react';
 
 import {StatefulSelect, SingleSelect, MultiSelect} from '../index.js';
 
-export const name = 'select';
-
 const options = [
   {id: 'AliceBlue', color: '#F0F8FF'},
   {id: 'AntiqueWhite', color: '#FAEBD7'},
@@ -21,30 +19,32 @@ const options = [
   {id: 'Beige', color: '#F5F5DC'},
 ];
 
-export const component = () => (
-  <>
-    <StatefulSelect
-      aria-label="Select a color"
-      options={options}
-      overrides={{ValueContainer: {props: {'data-id': 'selected'}}}}
-      labelKey="id"
-      valueKey="color"
-    />
-    <br />
-    <SingleSelect
-      aria-label="Select a color"
-      options={options}
-      labelKey="id"
-      valueKey="color"
-      value={[{color: '#00FFFF'}]}
-    />
-    <br />
-    <MultiSelect
-      aria-label="Select a color"
-      options={options}
-      labelKey="id"
-      valueKey="color"
-      value={[{color: '#00FFFF'}]}
-    />
-  </>
-);
+export default function Scenario() {
+  return (
+    <>
+      <StatefulSelect
+        aria-label="Select a color"
+        options={options}
+        overrides={{ValueContainer: {props: {'data-id': 'selected'}}}}
+        labelKey="id"
+        valueKey="color"
+      />
+      <br />
+      <SingleSelect
+        aria-label="Select a color"
+        options={options}
+        labelKey="id"
+        valueKey="color"
+        value={[{color: '#00FFFF'}]}
+      />
+      <br />
+      <MultiSelect
+        aria-label="Select a color"
+        options={options}
+        labelKey="id"
+        valueKey="color"
+        value={[{color: '#00FFFF'}]}
+      />
+    </>
+  );
+}

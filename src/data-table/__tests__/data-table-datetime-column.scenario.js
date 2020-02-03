@@ -17,14 +17,12 @@ const Column = DatetimeColumn({
 
 const Filter = Column.renderFilter;
 
-export const name = 'data-table-datetime-column';
-
 const padZero = n => (n < 10 ? `0${n}` : n);
 const data = [1, 2, 3, 4, 5, 6, 7, 7, 8, 8, 9].map(i => {
   return new Date(`201${i}-04-${padZero(i)}T10:${10 + i}:30Z`);
 });
 
-export const component = () => {
+export default function Scenario() {
   return (
     <div style={{backgroundColor: '#FFD700', padding: '24px'}}>
       <div>
@@ -32,4 +30,4 @@ export const component = () => {
       </div>
     </div>
   );
-};
+}

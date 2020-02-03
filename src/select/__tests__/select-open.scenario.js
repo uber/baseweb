@@ -10,15 +10,15 @@ import React from 'react';
 
 import {StatefulSelect} from '../index.js';
 
-export const name = 'select-open';
-
-export const component = () => (
-  <StatefulSelect
-    startOpen
-    options={[
-      {id: 'a', label: 'hey!'},
-      {id: 'b', label: 'are you listening?'},
-      {id: 'c', label: 'look at me!'},
-    ]}
-  />
-);
+export default function Scenario() {
+  return (
+    <StatefulSelect
+      startOpen
+      options={[
+        {id: 'a', label: 'hey!'},
+        {id: 'b', label: 'are you listening?'},
+        {id: 'c', label: 'look at me!'},
+      ]}
+    />
+  );
+}

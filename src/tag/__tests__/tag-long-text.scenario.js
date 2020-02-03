@@ -10,6 +10,6 @@ import * as React from 'react';
 
 import {Tag} from '../index.js';
 
-export const name = 'tag-long-text';
-
-export const component = () => <Tag>Default Color with long text</Tag>;
+export default function Scenario() {
+  return <Tag>Default Color with long text</Tag>;
+}

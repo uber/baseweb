@@ -11,16 +11,16 @@ import * as React from 'react';
 import {StatefulDatepicker} from '../index.js';
 import {addDays} from '../utils/index.js';
 
-export const name = 'stateful-datepicker-quick-select';
-
 const now = new Date('2019-02-14T10:00:00Z');
 
-export const component = () => (
-  <StatefulDatepicker
-    range
-    initialState={{
-      value: [now, addDays(now, 3)],
-    }}
-    quickSelect
-  />
-);
+export default function Scenario() {
+  return (
+    <StatefulDatepicker
+      range
+      initialState={{
+        value: [now, addDays(now, 3)],
+      }}
+      quickSelect
+    />
+  );
+}

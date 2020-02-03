@@ -10,14 +10,14 @@ import * as React from 'react';
 
 import {Avatar} from '../index.js';
 
-export const name = 'avatar-no-src';
-
-export const component = () => (
-  <React.Fragment>
-    {['scale800', 'scale1000', 'scale1200', 'scale1400', '64px'].map(
-      (size, index) => (
-        <Avatar name={`username`} size={size} key={size} />
-      ),
-    )}
-  </React.Fragment>
-);
+export default function Scenario() {
+  return (
+    <React.Fragment>
+      {['scale800', 'scale1000', 'scale1200', 'scale1400', '64px'].map(
+        (size, index) => (
+          <Avatar name={`username`} size={size} key={size} />
+        ),
+      )}
+    </React.Fragment>
+  );
+}

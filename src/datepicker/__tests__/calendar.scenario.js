@@ -10,8 +10,6 @@ import * as React from 'react';
 
 import {Calendar} from '../index.js';
 
-export const name = 'calendar';
-
-export const component = () => (
-  <Calendar highlightedDate={new Date('2019-02-22T10:00:00Z')} />
-);
+export default function Scenario() {
+  return <Calendar highlightedDate={new Date('2019-02-22T10:00:00Z')} />;
+}

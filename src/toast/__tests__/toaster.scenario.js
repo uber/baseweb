@@ -11,9 +11,7 @@ import * as React from 'react';
 import {Button} from '../../button/index.js';
 import {toaster, ToasterContainer, PLACEMENT} from '../index.js';
 
-export const name = 'toaster';
-
-export const component = () => {
+export default function Scenario() {
   const [text, setText] = React.useState('not updated');
   return (
     <React.Fragment>
@@ -42,4 +40,4 @@ export const component = () => {
       </Button>
     </React.Fragment>
   );
-};
+}
