@@ -18,6 +18,7 @@ export function Sizing({value}: {value: string}) {
         className={css({
           backgroundColor: theme.colors.contentPrimary,
           height: theme.sizing[value],
+          width: theme.sizing[value],
         })}
       ></div>
     </Property>
