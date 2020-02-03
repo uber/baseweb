@@ -10,8 +10,6 @@ import React from 'react';
 
 import {FlexGrid, FlexGridItem} from '../index.js';
 
-export const name = 'flex-grid-unequal-narrow';
-
 const itemProps = {
   backgroundColor: 'mono300',
   height: 'scale1000',
@@ -32,17 +30,19 @@ const narrowItemProps = {
   },
 };
 
-export const component = () => (
-  <FlexGrid
-    flexGridColumnCount={3}
-    flexGridColumnGap="scale800"
-    flexGridRowGap="scale800"
-  >
-    <FlexGridItem {...itemProps}>Item</FlexGridItem>
-    <FlexGridItem {...narrowItemProps}>Narrow</FlexGridItem>
-    <FlexGridItem {...itemProps}>Item</FlexGridItem>
-    <FlexGridItem {...itemProps}>Item</FlexGridItem>
-    <FlexGridItem {...narrowItemProps}>Narrow</FlexGridItem>
-    <FlexGridItem {...itemProps}>Item</FlexGridItem>
-  </FlexGrid>
-);
+export default function Scenario() {
+  return (
+    <FlexGrid
+      flexGridColumnCount={3}
+      flexGridColumnGap="scale800"
+      flexGridRowGap="scale800"
+    >
+      <FlexGridItem {...itemProps}>Item</FlexGridItem>
+      <FlexGridItem {...narrowItemProps}>Narrow</FlexGridItem>
+      <FlexGridItem {...itemProps}>Item</FlexGridItem>
+      <FlexGridItem {...itemProps}>Item</FlexGridItem>
+      <FlexGridItem {...narrowItemProps}>Narrow</FlexGridItem>
+      <FlexGridItem {...itemProps}>Item</FlexGridItem>
+    </FlexGrid>
+  );
+}

@@ -10,8 +10,6 @@ import * as React from 'react';
 
 import {StatefulMenu} from '../index.js';
 
-export const name = 'menu-stateful';
-
 const ITEMS = [
   {label: 'Item One'},
   {label: 'Item Two'},
@@ -27,24 +25,26 @@ const ITEMS = [
   {label: 'Item Twelve'},
 ];
 
-export const component = () => (
-  <StatefulMenu
-    initialState={{
-      highlightedIndex: 5,
-    }}
-    items={ITEMS}
-    overrides={{
-      List: {
-        style: {
-          height: '300px',
-          width: '350px',
+export default function Scenario() {
+  return (
+    <StatefulMenu
+      initialState={{
+        highlightedIndex: 5,
+      }}
+      items={ITEMS}
+      overrides={{
+        List: {
+          style: {
+            height: '300px',
+            width: '350px',
+          },
         },
-      },
-      Option: {
-        props: {
-          getItemLabel: item => item.label,
+        Option: {
+          props: {
+            getItemLabel: item => item.label,
+          },
         },
-      },
-    }}
-  />
-);
+      }}
+    />
+  );
+}

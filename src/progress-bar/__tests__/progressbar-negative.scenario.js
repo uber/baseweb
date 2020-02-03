@@ -10,15 +10,15 @@ import * as React from 'react';
 
 import {ProgressBar} from '../index.js';
 
-export const name = 'progressbar-negative';
-
-export const component = () => (
-  <ProgressBar
-    value={20}
-    overrides={{
-      BarProgress: {
-        style: ({$theme}) => ({backgroundColor: $theme.colors.negative}),
-      },
-    }}
-  />
-);
+export default function Scenario() {
+  return (
+    <ProgressBar
+      value={20}
+      overrides={{
+        BarProgress: {
+          style: ({$theme}) => ({backgroundColor: $theme.colors.negative}),
+        },
+      }}
+    />
+  );
+}

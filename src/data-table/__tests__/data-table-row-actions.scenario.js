@@ -16,8 +16,6 @@ import {Unstable_StatefulDataTable} from '../stateful-data-table.js';
 
 import {ArrowUp} from '../../icon/index.js';
 
-export const name = 'data-table-row-actions';
-
 type RowDataT = [string, string, number, number, number, number];
 
 const columns = [
@@ -83,7 +81,7 @@ const rows = [
   ['Zookeeper', 'Romantic Comedy', 80, 170, 2.1, 5.0],
 ].map(r => ({id: r[0], data: r}));
 
-export const component = () => {
+export default function Scenario() {
   const [selected, setSelected] = React.useState([]);
 
   const rowActions = [
@@ -119,4 +117,4 @@ export const component = () => {
       </ul>
     </div>
   );
-};
+}

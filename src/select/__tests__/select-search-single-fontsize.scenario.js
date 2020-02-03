@@ -12,11 +12,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {StatefulSelect} from '../index.js';
 
-export const name = 'select-search-single-fontsize';
-
-export const component = () => <SelectComponent />;
-
-function SelectComponent() {
+export default function SelectComponent() {
   return (
     <StatefulSelect
       clearable={false}

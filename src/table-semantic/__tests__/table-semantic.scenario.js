@@ -9,8 +9,6 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {Table} from '../index.js';
 
-export const name = 'table-semantic';
-
 const COLUMNS = ['Name', 'Age', 'Address'];
 
 const DATA = [
@@ -19,6 +17,6 @@ const DATA = [
   ['Joe Black', 33, '100 Macquarie St., Sydney, Australia'],
 ];
 
-export function component() {
+export default function Scenario() {
   return <Table columns={COLUMNS} data={DATA} />;
 }

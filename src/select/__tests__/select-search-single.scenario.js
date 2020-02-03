@@ -10,11 +10,7 @@ import * as React from 'react';
 
 import {StatefulSelect, TYPE} from '../index.js';
 
-export const name = 'select-search-single';
-
-export const component = () => <SelectComponent />;
-
-function SelectComponent() {
+export default function SelectComponent() {
   return (
     <StatefulSelect
       options={[

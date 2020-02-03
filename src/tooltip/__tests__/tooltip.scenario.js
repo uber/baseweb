@@ -10,13 +10,13 @@ import * as React from 'react';
 
 import {StatefulTooltip} from '../index.js';
 
-export const name = 'tooltip';
-
-export const component = () => (
-  <StatefulTooltip
-    accessibilityType={'tooltip'}
-    content="Tooltips display short messages."
-  >
-    <span>such as this</span>
-  </StatefulTooltip>
-);
+export default function Scenario() {
+  return (
+    <StatefulTooltip
+      accessibilityType={'tooltip'}
+      content="Tooltips display short messages."
+    >
+      <span>such as this</span>
+    </StatefulTooltip>
+  );
+}

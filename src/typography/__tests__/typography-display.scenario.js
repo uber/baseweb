@@ -11,8 +11,8 @@ import * as React from 'react';
 
 import {Display} from '../index.js';
 
-export const name = 'typography-display';
-
-export const component = () => (
-  <Display>We ignite opportunity by setting the world in motion.</Display>
-);
+export default function Scenario() {
+  return (
+    <Display>We ignite opportunity by setting the world in motion.</Display>
+  );
+}

@@ -11,14 +11,14 @@ import * as React from 'react';
 
 import {StatefulSlider} from '../index.js';
 
-export const name = 'slider-range';
-
-export const component = () => (
-  <div
-    style={{
-      maxWidth: '500px',
-    }}
-  >
-    <StatefulSlider initialState={{value: [25, 60]}} />
-  </div>
-);
+export default function Scenario() {
+  return (
+    <div
+      style={{
+        maxWidth: '500px',
+      }}
+    >
+      <StatefulSlider initialState={{value: [25, 60]}} />
+    </div>
+  );
+}

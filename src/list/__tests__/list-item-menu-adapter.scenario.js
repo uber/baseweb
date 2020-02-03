@@ -13,15 +13,13 @@ import Search from '../../icon/search.js';
 import {StatefulMenu} from '../../menu/index.js';
 import {ListItemLabel, MenuAdapter, ARTWORK_SIZES} from '../index.js';
 
-export const name = 'list-item-menu-adapter';
-
 const ITEMS = [...new Array(10)].map(() => ({
   title: 'Jane Smith',
   subtitle: 'Senior Engineering Manager',
   icon: Search,
 }));
 
-export const component = () => {
+export default function Scenario() {
   return (
     <StatefulMenu
       items={ITEMS}
@@ -57,4 +55,4 @@ export const component = () => {
       }}
     />
   );
-};
+}

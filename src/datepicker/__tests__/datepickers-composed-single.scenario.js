@@ -12,8 +12,6 @@ import {Block} from '../../block/index.js';
 import {FormControl} from '../../form-control/index.js';
 import {Datepicker, TimePicker, TimezonePicker} from '../index.js';
 
-export const name = 'datepickers-composed-single';
-
 const DATE = new Date(2019, 3, 1);
 
 // eslint-disable-next-line flowtype/no-weak-types
@@ -59,4 +57,4 @@ class Controlled extends React.Component<any, any> {
   }
 }
 
-export const component = () => <Controlled />;
+export default Controlled;
