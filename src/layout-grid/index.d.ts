@@ -48,6 +48,7 @@ export type StyledCellProps = {
   $gridColumns?: Responsive<number>;
   $gridGaps?: Responsive<number>;
   $gridGutters?: Responsive<number>;
+  $gridUnit?: CSSLengthUnitT;
   $order?: Responsive<number>;
   $skip?: Responsive<number>;
   $span?: Responsive<number>;
