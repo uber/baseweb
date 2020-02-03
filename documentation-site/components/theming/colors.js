@@ -65,6 +65,18 @@ function Swatch({mode, value}) {
             borderTopRightRadius: '100%',
             borderBottomLeftRadius: '100%',
             borderBottomRightRadius: '100%',
+            borderTopStyle: 'solid',
+            borderRightStyle: 'solid',
+            borderBottomStyle: 'solid',
+            borderLeftStyle: 'solid',
+            borderTopWidth: '1px',
+            borderRightWidth: '1px',
+            borderBottomWidth: '1px',
+            borderLeftWidth: '1px',
+            borderTopColor: mode.colors.borderOpaque,
+            borderRightColor: mode.colors.borderOpaque,
+            borderBottomColor: mode.colors.borderOpaque,
+            borderLeftColor: mode.colors.borderOpaque,
             backgroundColor: mode.colors[value],
           })}
         ></div>
