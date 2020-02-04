@@ -177,7 +177,7 @@ If you want to customize the breakpoints of the grid, you can do so via the `bre
   <CustomCssUnitExample />
 </Example>
 
-Layout grid uses `px` as a default css unit, If you are using different css unit than pixle, you would also have to add `gridMaxWidth`, `gutters` and `margins` in same css unit. For example if you are using `em` as a css unit `gridMaxWidth`, `gutters` and `margins` might have value like below:
+The grid uses `px` as its default CSS length unit for measuring layout. You can change this, either globally in your theme, or locally via the `unit` prop on `Grid`. If you change the unit, you probably want to update `gridMaxWidth`, `gutters` and `margins` accordingly, as these will pull from your custom unit. For example, when using `em` as your CSS unit, you might update the other values like so:
 
 ```js
 const theme = {
