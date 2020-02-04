@@ -45,7 +45,7 @@ function Swatch({value, mode, left = false}) {
         ></div>
       </div>
       <Value $style={{fontSize: '13px', letterSpacing: '-0.1px'}}>
-        ↪ {mode.lighting[value]}
+        {mode.lighting[value]}
       </Value>
     </div>
   );
