@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {Title, Value} from './common.js';
+import {Title, Value, ThemeComparison} from './common.js';
 import {LightTheme, DarkTheme} from 'baseui/themes';
 
 function Swatch({value, mode, left = false}) {
@@ -52,14 +52,19 @@ function Swatch({value, mode, left = false}) {
 }
 
 export function Lighting({value}: {value: string}) {
-  const [css, theme] = useStyletron();
+  const [css] = useStyletron();
   return (
-    <div className={css({marginBottom: theme.sizing.scale600})}>
-      <Title>{value}</Title>
-      <div className={css({display: 'flex'})}>
-        <Swatch mode={LightTheme} value={value} left />
-        <Swatch mode={DarkTheme} value={value} />
-      </div>
-    </div>
+    <ThemeComparison
+      value={value}
+      renderSwatch={({mode, commonStyles}) => (
+        <div
+          className={css({
+            ...commonStyles,
+            boxShadow: mode.lighting[value],
+          })}
+        ></div>
+      )}
+      renderValues={({mode}) => mode.lighting[value]}
+    />
   );
 }
