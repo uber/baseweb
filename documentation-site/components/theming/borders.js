@@ -8,12 +8,12 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {Property, ThemeComparison} from './common.js';
+import {Property, PropertyCompareTheme} from './common.js';
 
 export function Border({value}: {value: string}) {
   const [css] = useStyletron();
   return (
-    <ThemeComparison
+    <PropertyCompareTheme
       value={value}
       concern="borders"
       renderBox={({mode, commonStyles}) => (

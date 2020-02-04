@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {colors} from 'baseui/tokens';
-import {ThemeComparison} from './common.js';
+import {PropertyCompareTheme} from './common.js';
 
 function getTokenFromCode(code) {
   let res = '';
@@ -22,7 +22,7 @@ function getTokenFromCode(code) {
 export function Color({value}: {value: string}) {
   const [css] = useStyletron();
   return (
-    <ThemeComparison
+    <PropertyCompareTheme
       value={value}
       concern="colors"
       renderBox={({mode, commonStyles}) => (

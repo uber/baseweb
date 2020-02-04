@@ -80,40 +80,8 @@ export function Property2({value, concern, renderPreview, renderValue}) {
   );
 }
 
-function Swatch({renderBox, mode, left = false}) {
-  const [css, theme] = useStyletron();
-  return (
-    <div
-      className={css({
-        backgroundColor: mode.colors.backgroundPrimary,
-        paddingTop: theme.sizing.scale800,
-        paddingBottom: theme.sizing.scale800,
-        display: 'flex',
-        justifyContent: 'center',
-        borderTopStyle: 'solid',
-        borderBottomStyle: 'solid',
-        borderRightStyle: left ? null : 'solid',
-        borderLeftStyle: left ? 'solid' : null,
-        borderRightWidth: left ? null : '1px',
-        borderLeftWidth: left ? '1px' : null,
-        borderTopWidth: '1px',
-        borderBottomWidth: '1px',
-        borderTopColor: theme.colors.borderOpaque,
-        borderBottomColor: theme.colors.borderOpaque,
-        borderRightColor: theme.colors.borderOpaque,
-        borderLeftColor: theme.colors.borderOpaque,
-      })}
-    >
-      {renderBox({
-        mode,
-        commonStyles: {height: '50px', width: '50px'},
-      })}
-    </div>
-  );
-}
-
 // $FlowFixMe
-export function ThemeComparison({value, concern, renderBox, renderValue}) {
+export function PropertyCompareTheme({value, concern, renderBox, renderValue}) {
   const [css] = useStyletron();
   return (
     <Property2
@@ -144,5 +112,37 @@ export function ThemeComparison({value, concern, renderBox, renderValue}) {
         );
       }}
     />
+  );
+}
+
+function Swatch({renderBox, mode, left = false}) {
+  const [css, theme] = useStyletron();
+  return (
+    <div
+      className={css({
+        backgroundColor: mode.colors.backgroundPrimary,
+        paddingTop: theme.sizing.scale800,
+        paddingBottom: theme.sizing.scale800,
+        display: 'flex',
+        justifyContent: 'center',
+        borderTopStyle: 'solid',
+        borderBottomStyle: 'solid',
+        borderRightStyle: left ? null : 'solid',
+        borderLeftStyle: left ? 'solid' : null,
+        borderRightWidth: left ? null : '1px',
+        borderLeftWidth: left ? '1px' : null,
+        borderTopWidth: '1px',
+        borderBottomWidth: '1px',
+        borderTopColor: theme.colors.borderOpaque,
+        borderBottomColor: theme.colors.borderOpaque,
+        borderRightColor: theme.colors.borderOpaque,
+        borderLeftColor: theme.colors.borderOpaque,
+      })}
+    >
+      {renderBox({
+        mode,
+        commonStyles: {height: '50px', width: '50px'},
+      })}
+    </div>
   );
 }
