@@ -112,7 +112,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
       const a = options.findIndex(
         option => option && option[valueKey] === firstValue[valueKey],
       );
-      return a || 0;
+      return a === -1 ? 0 : a;
     }
     return 0;
   };
@@ -141,6 +141,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
       // $FlowFixMe
       {overrides: statefulMenuOverrides = {}, ...restStatefulMenuProps},
     ] = getOverrides(overrides.StatefulMenu, StatefulMenu);
+    console.log(' calling getHighlightedIndex');
     const highlightedIndex = this.getHighlightedIndex();
     const groupedOptions = groupOptions(options);
     return (
