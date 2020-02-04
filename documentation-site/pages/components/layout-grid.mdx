@@ -190,7 +190,7 @@ const theme = {
 };
 ```
 
-Grid component also accepts unit as a prop. By using this prop you can override theme's CSS length unit for grid.
+The above change will apply to every grid within the theme's subtree. If you want to override the unit for a single `Grid` instance, you can pass an alternative unit via the `unit` prop:
 
 ```
 <Grid gridUnit="em" gridMargins={[1, 2, 3]} gridMaxWidth={40}>{/* ... */}</Grid>
