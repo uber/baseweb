@@ -6,10 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
-
 import {FileUploader} from '../index.js';
 
-export const name = 'file-uploader';
-
-export const component = () => <FileUploader />;
+export default FileUploader;

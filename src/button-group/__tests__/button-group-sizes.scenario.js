@@ -12,24 +12,24 @@ import {Button} from '../../button/index.js';
 import {StatefulButtonGroup, MODE} from '../index.js';
 import {SIZE} from '../../button/index.js';
 
-export const name = 'button-group-sizes';
-
-export const component = () => (
-  <React.Fragment>
-    <StatefulButtonGroup mode={MODE.radio} size={SIZE.compact}>
-      <Button>Label</Button>
-      <Button>Label</Button>
-      <Button>Label</Button>
-    </StatefulButtonGroup>
-    <StatefulButtonGroup mode={MODE.radio} size={SIZE.default}>
-      <Button>Label</Button>
-      <Button>Label</Button>
-      <Button>Label</Button>
-    </StatefulButtonGroup>
-    <StatefulButtonGroup mode={MODE.radio} size={SIZE.large}>
-      <Button>Label</Button>
-      <Button>Label</Button>
-      <Button>Label</Button>
-    </StatefulButtonGroup>
-  </React.Fragment>
-);
+export default function Scenario() {
+  return (
+    <React.Fragment>
+      <StatefulButtonGroup mode={MODE.radio} size={SIZE.compact}>
+        <Button>Label</Button>
+        <Button>Label</Button>
+        <Button>Label</Button>
+      </StatefulButtonGroup>
+      <StatefulButtonGroup mode={MODE.radio} size={SIZE.default}>
+        <Button>Label</Button>
+        <Button>Label</Button>
+        <Button>Label</Button>
+      </StatefulButtonGroup>
+      <StatefulButtonGroup mode={MODE.radio} size={SIZE.large}>
+        <Button>Label</Button>
+        <Button>Label</Button>
+        <Button>Label</Button>
+      </StatefulButtonGroup>
+    </React.Fragment>
+  );
+}

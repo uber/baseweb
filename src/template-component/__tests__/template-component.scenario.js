@@ -10,6 +10,6 @@ import * as React from 'react';
 
 import {Component} from '../index.js';
 
-export const name = 'template-component';
-
-export const component = () => <Component>Component</Component>;
+export default function Scenario() {
+  return <Component>Component</Component>;
+}

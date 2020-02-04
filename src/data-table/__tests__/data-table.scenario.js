@@ -23,8 +23,6 @@ import {
   Unstable_StatefulDataTable,
 } from '../index.js';
 
-export const name = 'data-table';
-
 type RowDataT = [
   string,
   number,
@@ -241,10 +239,10 @@ const columns = [
 
 const rows = makeRowsFromColumns(columns, 2000);
 
-export const component = () => {
+export default function Scenario() {
   return (
     <div style={{height: '800px', width: '900px'}}>
       <Unstable_StatefulDataTable columns={columns} rows={rows} />
     </div>
   );
-};
+}

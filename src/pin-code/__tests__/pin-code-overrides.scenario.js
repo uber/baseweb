@@ -10,35 +10,35 @@ import React from 'react';
 
 import {StatefulPinCode} from '../index.js';
 
-export const name = 'pin-code-overrides';
-
-export const component = () => (
-  <>
-    <StatefulPinCode
-      overrides={{
-        Root: {
-          style: {
-            display: 'flex',
-            backgroundColor: 'orange',
+export default function Scenario() {
+  return (
+    <>
+      <StatefulPinCode
+        overrides={{
+          Root: {
+            style: {
+              display: 'flex',
+              backgroundColor: 'orange',
+            },
           },
-        },
-        Input: {
-          props: {
-            overrides: {
-              InputContainer: {
-                style: {
-                  borderColor: 'turquoise',
+          Input: {
+            props: {
+              overrides: {
+                InputContainer: {
+                  style: {
+                    borderColor: 'turquoise',
+                  },
                 },
-              },
-              Input: {
-                style: {
-                  backgroundColor: 'pink',
+                Input: {
+                  style: {
+                    backgroundColor: 'pink',
+                  },
                 },
               },
             },
           },
-        },
-      }}
-    />
-  </>
-);
+        }}
+      />
+    </>
+  );
+}

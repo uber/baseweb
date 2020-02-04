@@ -9,17 +9,17 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {Menu} from '../index.js';
 
-export const name = 'menu-empty';
-
-export const component = () => (
-  <Menu
-    items={[]}
-    overrides={{
-      List: {
-        style: {
-          width: '270px',
+export default function Scenario() {
+  return (
+    <Menu
+      items={[]}
+      overrides={{
+        List: {
+          style: {
+            width: '270px',
+          },
         },
-      },
-    }}
-  />
-);
+      }}
+    />
+  );
+}

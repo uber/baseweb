@@ -10,6 +10,6 @@ import * as React from 'react';
 
 import {StatefulCheckbox} from '../index.js';
 
-export const name = 'checkbox-unlabeled';
-
-export const component = () => <StatefulCheckbox title="buy milk" />;
+export default function Scenario() {
+  return <StatefulCheckbox title="buy milk" />;
+}

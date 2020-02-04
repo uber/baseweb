@@ -12,33 +12,33 @@ import {StatefulInput, SIZE} from '../index.js';
 import {Block} from '../../block/index.js';
 import {Button} from '../../button/index.js';
 
-export const name = 'input-with-button';
-
-export const component = () => (
-  <>
-    <Block display="flex" marginBottom="8px">
-      <StatefulInput
-        initialState={{value: 'Move the world'}}
-        size={SIZE.compact}
-        overrides={{Root: {style: {marginRight: '8px'}}}}
-      />
-      <Button size={SIZE.compact}>Move</Button>
-    </Block>
-    <Block display="flex" marginBottom="8px">
-      <StatefulInput
-        initialState={{value: 'Move the world'}}
-        size={SIZE.default}
-        overrides={{Root: {style: {marginRight: '8px'}}}}
-      />
-      <Button size={SIZE.default}>Move</Button>
-    </Block>
-    <Block display="flex" marginBottom="8px">
-      <StatefulInput
-        initialState={{value: 'Move the world'}}
-        size={SIZE.large}
-        overrides={{Root: {style: {marginRight: '8px'}}}}
-      />
-      <Button size={SIZE.large}>Move</Button>
-    </Block>
-  </>
-);
+export default function Scenario() {
+  return (
+    <React.Fragment>
+      <Block display="flex" marginBottom="8px">
+        <StatefulInput
+          initialState={{value: 'Move the world'}}
+          size={SIZE.compact}
+          overrides={{Root: {style: {marginRight: '8px'}}}}
+        />
+        <Button size={SIZE.compact}>Move</Button>
+      </Block>
+      <Block display="flex" marginBottom="8px">
+        <StatefulInput
+          initialState={{value: 'Move the world'}}
+          size={SIZE.default}
+          overrides={{Root: {style: {marginRight: '8px'}}}}
+        />
+        <Button size={SIZE.default}>Move</Button>
+      </Block>
+      <Block display="flex" marginBottom="8px">
+        <StatefulInput
+          initialState={{value: 'Move the world'}}
+          size={SIZE.large}
+          overrides={{Root: {style: {marginRight: '8px'}}}}
+        />
+        <Button size={SIZE.large}>Move</Button>
+      </Block>
+    </React.Fragment>
+  );
+}

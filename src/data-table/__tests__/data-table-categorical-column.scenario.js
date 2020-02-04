@@ -17,8 +17,6 @@ const Column = CategoricalColumn({
 
 const Filter = Column.renderFilter;
 
-export const name = 'data-table-categorical-column';
-
 const dataLong = [
   'Bike',
   'Scooter',
@@ -47,7 +45,7 @@ const dataShort = [
   'UberX',
 ];
 
-export const component = () => {
+export default function Scenario() {
   return (
     <div style={{backgroundColor: 'lightgreen', padding: '24px'}}>
       <div id="many-categories">
@@ -59,4 +57,4 @@ export const component = () => {
       </div>
     </div>
   );
-};
+}

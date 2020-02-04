@@ -10,11 +10,11 @@ import * as React from 'react';
 
 import {Accordion, Panel} from '../index.js';
 
-export const name = 'accordion-disabled';
-
-export const component = () => (
-  <Accordion disabled>
-    <Panel title="Default panel">stateless panel</Panel>
-    <Panel title="Expanded provided as prop">stateless panel</Panel>
-  </Accordion>
-);
+export default function Scenario() {
+  return (
+    <Accordion disabled>
+      <Panel title="Default panel">stateless panel</Panel>
+      <Panel title="Expanded provided as prop">stateless panel</Panel>
+    </Accordion>
+  );
+}

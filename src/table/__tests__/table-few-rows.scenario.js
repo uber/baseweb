@@ -10,15 +10,15 @@ import * as React from 'react';
 
 import {Table} from '../index.js';
 
-export const name = 'table-few-rows';
-
-export const component = () => (
-  <div style={{height: '400px', width: '800px'}}>
-    <Table
-      columns={[...new Array(3)].map(() => 'Column Name')}
-      data={[...new Array(4)].map(() =>
-        [...new Array(3)].map(() => 'Cell Data'),
-      )}
-    />
-  </div>
-);
+export default function Scenario() {
+  return (
+    <div style={{height: '400px', width: '800px'}}>
+      <Table
+        columns={[...new Array(3)].map(() => 'Column Name')}
+        data={[...new Array(4)].map(() =>
+          [...new Array(3)].map(() => 'Cell Data'),
+        )}
+      />
+    </div>
+  );
+}

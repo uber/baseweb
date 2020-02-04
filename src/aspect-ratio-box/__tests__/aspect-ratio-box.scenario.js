@@ -10,8 +10,6 @@ import React from 'react';
 
 import {AspectRatioBox, AspectRatioBoxBody} from '../index.js';
 
-export const name = 'aspect-ratio-box';
-
 const bodyProps = {
   display: 'flex',
   alignItems: 'center',
@@ -25,13 +23,19 @@ const bodyProps = {
   },
 };
 
-export const component = () => (
-  <React.Fragment>
-    <AspectRatioBox>
-      <AspectRatioBoxBody {...bodyProps}>Square by default</AspectRatioBoxBody>
-    </AspectRatioBox>
-    <AspectRatioBox aspectRatio={16 / 9}>
-      <AspectRatioBoxBody {...bodyProps}>16:9 aspect ratio</AspectRatioBoxBody>
-    </AspectRatioBox>
-  </React.Fragment>
-);
+export default function Scenario() {
+  return (
+    <React.Fragment>
+      <AspectRatioBox>
+        <AspectRatioBoxBody {...bodyProps}>
+          Square by default
+        </AspectRatioBoxBody>
+      </AspectRatioBox>
+      <AspectRatioBox aspectRatio={16 / 9}>
+        <AspectRatioBoxBody {...bodyProps}>
+          16:9 aspect ratio
+        </AspectRatioBoxBody>
+      </AspectRatioBox>
+    </React.Fragment>
+  );
+}

@@ -10,12 +10,12 @@ import * as React from 'react';
 
 import {FileUploader} from '../index.js';
 
-export const name = 'file-uploader-error';
-
-export const component = () => (
-  <FileUploader
-    progressAmount={40}
-    progressMessage="Uploading... 8.24 of 45.08MB"
-    errorMessage="Upload failed... connection was lost."
-  />
-);
+export default function Scenario() {
+  return (
+    <FileUploader
+      progressAmount={40}
+      progressMessage="Uploading... 8.24 of 45.08MB"
+      errorMessage="Upload failed... connection was lost."
+    />
+  );
+}

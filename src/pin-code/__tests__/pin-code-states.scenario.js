@@ -10,15 +10,15 @@ import React from 'react';
 
 import {StatefulPinCode} from '../index.js';
 
-export const name = 'pin-code-states';
-
-export const component = () => (
-  <>
-    <StatefulPinCode disabled />
-    <br />
-    <StatefulPinCode error />
-    <br />
-    <StatefulPinCode positive />
-    <br />
-  </>
-);
+export default function Scenario() {
+  return (
+    <>
+      <StatefulPinCode disabled />
+      <br />
+      <StatefulPinCode error />
+      <br />
+      <StatefulPinCode positive />
+      <br />
+    </>
+  );
+}

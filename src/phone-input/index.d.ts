@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
-import {SIZE} from '../input';
+import {SIZE, InputProps} from '../input';
 import {OnChangeParams} from '../select';
 import {Override} from '../overrides';
 
@@ -322,7 +322,7 @@ export interface PhoneInputOverrides {
   CountrySelectDropdownDialcodeColumn?: Override<any>;
   FlagContainer?: Override<any>;
 }
-export interface PhoneInputProps {
+export interface PhoneInputProps extends InputProps {
   'aria-label'?: string;
   text?: string;
   country?: Country;

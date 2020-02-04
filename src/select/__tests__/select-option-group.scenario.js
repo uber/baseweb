@@ -10,8 +10,6 @@ import * as React from 'react';
 
 import {StatefulSelect} from '../index.js';
 
-export const name = 'select-option-group';
-
 const options = {
   __ungrouped: [{id: 'Black', color: '#000000'}],
   Blueish: [
@@ -26,12 +24,14 @@ const options = {
   ],
 };
 
-export const component = () => (
-  <StatefulSelect
-    aria-label="Select a color"
-    options={options}
-    labelKey="id"
-    valueKey="color"
-    overrides={{ValueContainer: {props: {'data-id': 'selected'}}}}
-  />
-);
+export default function Scenario() {
+  return (
+    <StatefulSelect
+      aria-label="Select a color"
+      options={options}
+      labelKey="id"
+      valueKey="color"
+      overrides={{ValueContainer: {props: {'data-id': 'selected'}}}}
+    />
+  );
+}

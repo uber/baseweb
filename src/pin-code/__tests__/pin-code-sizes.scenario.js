@@ -10,14 +10,14 @@ import React from 'react';
 
 import {StatefulPinCode} from '../index.js';
 
-export const name = 'pin-code-sizes';
-
-export const component = () => (
-  <>
-    <StatefulPinCode size="compact" />
-    <br />
-    <StatefulPinCode />
-    <br />
-    <StatefulPinCode size="large" />
-  </>
-);
+export default function Scenario() {
+  return (
+    <>
+      <StatefulPinCode size="compact" />
+      <br />
+      <StatefulPinCode />
+      <br />
+      <StatefulPinCode size="large" />
+    </>
+  );
+}

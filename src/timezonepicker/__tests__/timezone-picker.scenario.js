@@ -11,8 +11,6 @@ import * as React from 'react';
 import {Block} from '../../block/index.js';
 import {TimezonePicker} from '../index.js';
 
-export const name = 'timezone-picker';
-
 const daylight = new Date(2019, 3, 1);
 const standard = new Date(2019, 2, 1);
 const overrides = {
@@ -47,18 +45,20 @@ class Controlled extends React.Component<any, any> {
   }
 }
 
-export const component = () => (
-  <Block width="400px">
-    <div data-e2e="daylight">
-      daylight savings time:
-      <TimezonePicker date={daylight} overrides={overrides} />
-    </div>
+export default function Scenario() {
+  return (
+    <Block width="400px">
+      <div data-e2e="daylight">
+        daylight savings time:
+        <TimezonePicker date={daylight} overrides={overrides} />
+      </div>
 
-    <div data-e2e="standard">
-      standard time:
-      <TimezonePicker date={standard} overrides={overrides} />
-    </div>
+      <div data-e2e="standard">
+        standard time:
+        <TimezonePicker date={standard} overrides={overrides} />
+      </div>
 
-    <Controlled />
-  </Block>
-);
+      <Controlled />
+    </Block>
+  );
+}

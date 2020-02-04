@@ -10,15 +10,15 @@ import * as React from 'react';
 
 import {StatefulCalendar, ORIENTATION} from '../index.js';
 
-export const name = 'calendar-multi-month';
-
-export const component = () => (
-  <StatefulCalendar
-    onChange={({date}) => console.log(date)}
-    orientation={ORIENTATION.horizontal}
-    highlightedDate={new Date('March 10, 2019')}
-    monthsShown={3}
-    range
-    quickSelect
-  />
-);
+export default function Scenario() {
+  return (
+    <StatefulCalendar
+      onChange={({date}) => console.log(date)}
+      orientation={ORIENTATION.horizontal}
+      highlightedDate={new Date('March 10, 2019')}
+      monthsShown={3}
+      range
+      quickSelect
+    />
+  );
+}

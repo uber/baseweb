@@ -16,14 +16,12 @@ import {
 } from '../../phone-input/index.js';
 import type {CountryIsoT} from '../../phone-input/index.js';
 
-export const name = 'phone-input-custom-flags';
-
 function CustomFlag(props: {children: React.Node, $iso: CountryIsoT}) {
   const {children, ...rest} = props;
   return <StyledFlag iso={props.$iso} {...rest} />;
 }
 
-export const component = () => {
+export default function Scenario() {
   const [text, setText] = React.useState('');
   const [country, setCountry] = React.useState(COUNTRIES.US);
   return (
@@ -53,4 +51,4 @@ export const component = () => {
       }}
     />
   );
-};
+}

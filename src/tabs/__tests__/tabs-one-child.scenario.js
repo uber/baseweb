@@ -10,10 +10,10 @@ import React from 'react';
 
 import {StatefulTabs, Tab} from '../index.js';
 
-export const name = 'tabs-one-child';
-
-export const component = () => (
-  <StatefulTabs>
-    <Tab title="Tab Link 1">Tab 1 content</Tab>
-  </StatefulTabs>
-);
+export default function Scenario() {
+  return (
+    <StatefulTabs>
+      <Tab title="Tab Link 1">Tab 1 content</Tab>
+    </StatefulTabs>
+  );
+}

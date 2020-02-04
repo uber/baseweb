@@ -10,8 +10,6 @@ import React from 'react';
 
 import {FlexGrid, FlexGridItem} from '../index.js';
 
-export const name = 'flex-grid-unequal-wide';
-
 const itemProps = {
   backgroundColor: 'mono300',
   height: 'scale1000',
@@ -31,19 +29,21 @@ const wideItemProps = {
   },
 };
 
-export const component = () => (
-  <FlexGrid
-    flexGridColumnCount={3}
-    flexGridColumnGap="scale800"
-    flexGridRowGap="scale800"
-  >
-    <FlexGridItem {...wideItemProps}>Wide item</FlexGridItem>
-    <FlexGridItem display="none">
-      This invisible one is needed so the margins line up
-    </FlexGridItem>
-    <FlexGridItem {...itemProps}>Item</FlexGridItem>
-    <FlexGridItem {...itemProps}>Item</FlexGridItem>
-    <FlexGridItem {...itemProps}>Item</FlexGridItem>
-    <FlexGridItem {...itemProps}>Item</FlexGridItem>
-  </FlexGrid>
-);
+export default function Scenario() {
+  return (
+    <FlexGrid
+      flexGridColumnCount={3}
+      flexGridColumnGap="scale800"
+      flexGridRowGap="scale800"
+    >
+      <FlexGridItem {...wideItemProps}>Wide item</FlexGridItem>
+      <FlexGridItem display="none">
+        This invisible one is needed so the margins line up
+      </FlexGridItem>
+      <FlexGridItem {...itemProps}>Item</FlexGridItem>
+      <FlexGridItem {...itemProps}>Item</FlexGridItem>
+      <FlexGridItem {...itemProps}>Item</FlexGridItem>
+      <FlexGridItem {...itemProps}>Item</FlexGridItem>
+    </FlexGrid>
+  );
+}

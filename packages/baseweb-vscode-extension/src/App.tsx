@@ -72,6 +72,7 @@ const COLORS = [
   'contentOnColor',
   'borderStateDisabled',
   'borderAccent',
+  'borderAccentLight',
   'borderNegative',
   'borderWarning',
   'borderPositive',
