@@ -18,6 +18,15 @@ import {LightTheme, DarkTheme} from 'baseui/themes';
 const monospaceFontFamily =
   'SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace';
 
+const SubTitle = styled<{}>('span', ({$theme}) => {
+  return {
+    ...$theme.typography.LabelXSmall,
+    fontFamily: monospaceFontFamily,
+    fontStyle: 'italic',
+    color: $theme.colors.contentSecondary,
+  };
+});
+
 export const Title = styled<{}>('div', ({$theme}) => {
   return {
     ...$theme.typography.ParagraphLarge,
@@ -52,51 +61,88 @@ export function Property({
   );
 }
 
-function Swatch({value, renderSwatch, renderValues, mode, left = false}) {
+// $FlowFixMe
+export function Property2({value, concern, renderPreview, renderValue}) {
   const [css, theme] = useStyletron();
   return (
-    <div className={css({flexBasis: '50%', flexGrow: 1})}>
-      <div
-        className={css({
-          backgroundColor: mode.colors.backgroundPrimary,
-          paddingTop: theme.sizing.scale800,
-          paddingBottom: theme.sizing.scale800,
-          display: 'flex',
-          justifyContent: 'center',
-          borderTopStyle: 'solid',
-          borderBottomStyle: 'solid',
-          borderRightStyle: left ? null : 'solid',
-          borderLeftStyle: left ? 'solid' : null,
-          borderRightWidth: left ? null : '1px',
-          borderLeftWidth: left ? '1px' : null,
-          borderTopWidth: '1px',
-          borderBottomWidth: '1px',
-          borderTopColor: theme.colors.borderOpaque,
-          borderBottomColor: theme.colors.borderOpaque,
-          borderRightColor: theme.colors.borderOpaque,
-          borderLeftColor: theme.colors.borderOpaque,
-        })}
-      >
-        {renderSwatch({
-          mode,
-          commonStyles: {height: '50px', width: '50px'},
-        })}
-      </div>
-      <Value>{renderValues({mode})}</Value>
+    <div className={css({marginBottom: theme.sizing.scale800})}>
+      <Title $style={{marginBottom: theme.sizing.scale200}}>
+        <SubTitle>theme.{concern}.</SubTitle>
+        {value}
+      </Title>
+      {renderPreview && (
+        <div className={css({marginBottom: theme.sizing.scale200})}>
+          {renderPreview()}
+        </div>
+      )}
+      {renderValue && renderValue()}
     </div>
   );
 }
 
-// eslint-disable-next-line flowtype/no-weak-types
-export function ThemeComparison(props: any) {
+function Swatch({renderBox, mode, left = false}) {
+  const [css, theme] = useStyletron();
+  return (
+    <div
+      className={css({
+        backgroundColor: mode.colors.backgroundPrimary,
+        paddingTop: theme.sizing.scale800,
+        paddingBottom: theme.sizing.scale800,
+        display: 'flex',
+        justifyContent: 'center',
+        borderTopStyle: 'solid',
+        borderBottomStyle: 'solid',
+        borderRightStyle: left ? null : 'solid',
+        borderLeftStyle: left ? 'solid' : null,
+        borderRightWidth: left ? null : '1px',
+        borderLeftWidth: left ? '1px' : null,
+        borderTopWidth: '1px',
+        borderBottomWidth: '1px',
+        borderTopColor: theme.colors.borderOpaque,
+        borderBottomColor: theme.colors.borderOpaque,
+        borderRightColor: theme.colors.borderOpaque,
+        borderLeftColor: theme.colors.borderOpaque,
+      })}
+    >
+      {renderBox({
+        mode,
+        commonStyles: {height: '50px', width: '50px'},
+      })}
+    </div>
+  );
+}
+
+// $FlowFixMe
+export function ThemeComparison({value, concern, renderBox, renderValue}) {
   const [css] = useStyletron();
   return (
-    <div>
-      <Title>{props.value}</Title>
-      <div className={css({display: 'flex'})}>
-        <Swatch {...props} mode={LightTheme} left />
-        <Swatch {...props} mode={DarkTheme} />
-      </div>
-    </div>
+    <Property2
+      value={value}
+      concern={concern}
+      renderPreview={() => {
+        return (
+          <div className={css({display: 'flex'})}>
+            <div className={css({flexBasis: '50%'})}>
+              <Swatch renderBox={renderBox} mode={LightTheme} left />
+            </div>
+            <div className={css({flexBasis: '50%'})}>
+              <Swatch renderBox={renderBox} mode={DarkTheme} />
+            </div>
+          </div>
+        );
+      }}
+      renderValue={() => {
+        return (
+          <div className={css({display: 'flex'})}>
+            <div className={css({flexBasis: '50%'})}>
+              <Value>{renderValue({mode: LightTheme})}</Value>
+            </div>
+            <div className={css({flexBasis: '50%'})}>
+              <Value>{renderValue({mode: DarkTheme})}</Value>
+            </div>
+          </div>
+        );
+      }}
+    />
   );
 }

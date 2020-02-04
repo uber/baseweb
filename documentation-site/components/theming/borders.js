@@ -15,7 +15,8 @@ export function Border({value}: {value: string}) {
   return (
     <ThemeComparison
       value={value}
-      renderSwatch={({mode, commonStyles}) => (
+      concern="borders"
+      renderBox={({mode, commonStyles}) => (
         <div
           className={css({
             ...commonStyles,
@@ -23,7 +24,7 @@ export function Border({value}: {value: string}) {
           })}
         ></div>
       )}
-      renderValues={({mode}) => (
+      renderValue={({mode}) => (
         <React.Fragment>
           <div>{mode.borders[value].borderStyle}</div>
           <div>{mode.borders[value].borderWidth}</div>

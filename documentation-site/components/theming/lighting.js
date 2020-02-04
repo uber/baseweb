@@ -15,7 +15,8 @@ export function Lighting({value}: {value: string}) {
   return (
     <ThemeComparison
       value={value}
-      renderSwatch={({mode, commonStyles}) => (
+      concern="lighting"
+      renderBox={({mode, commonStyles}) => (
         <div
           className={css({
             ...commonStyles,
@@ -23,7 +24,7 @@ export function Lighting({value}: {value: string}) {
           })}
         ></div>
       )}
-      renderValues={({mode}) => mode.lighting[value]}
+      renderValue={({mode}) => mode.lighting[value]}
     />
   );
 }

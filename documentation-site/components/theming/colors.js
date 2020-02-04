@@ -24,7 +24,8 @@ export function Color({value}: {value: string}) {
   return (
     <ThemeComparison
       value={value}
-      renderSwatch={({mode, commonStyles}) => (
+      concern="colors"
+      renderBox={({mode, commonStyles}) => (
         <div
           className={css({
             ...commonStyles,
@@ -33,7 +34,7 @@ export function Color({value}: {value: string}) {
           })}
         ></div>
       )}
-      renderValues={({mode}) => (
+      renderValue={({mode}) => (
         <React.Fragment>
           <div>{mode.colors[value]}</div>
           <div>{getTokenFromCode(mode.colors[value])}</div>
