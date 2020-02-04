@@ -141,7 +141,6 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
       // $FlowFixMe
       {overrides: statefulMenuOverrides = {}, ...restStatefulMenuProps},
     ] = getOverrides(overrides.StatefulMenu, StatefulMenu);
-    console.log(' calling getHighlightedIndex');
     const highlightedIndex = this.getHighlightedIndex();
     const groupedOptions = groupOptions(options);
     return (
