@@ -20,51 +20,36 @@ function getTokenFromCode(code) {
   return res;
 }
 
-function Swatch({mode, value}) {
+function Swatch({value, mode, left = false}) {
   const [css, theme] = useStyletron();
   return (
-    <div
-      className={css({
-        display: 'flex',
-        alignItems: 'center',
-        flexGrow: 1,
-        flexBasis: '50%',
-      })}
-    >
+    <div className={css({flexBasis: '50%', flexGrow: 1})}>
       <div
         className={css({
           backgroundColor: mode.colors.backgroundPrimary,
-          marginRight: theme.sizing.scale600,
-          paddingTop: theme.sizing.scale400,
-          paddingLeft: theme.sizing.scale400,
-          paddingRight: theme.sizing.scale400,
-          paddingBottom: theme.sizing.scale400,
+          paddingTop: theme.sizing.scale800,
+          paddingBottom: theme.sizing.scale800,
+          display: 'flex',
+          justifyContent: 'center',
           borderTopStyle: 'solid',
-          borderRightStyle: 'solid',
+          borderRightStyle: left ? null : 'solid',
           borderBottomStyle: 'solid',
-          borderLeftStyle: 'solid',
+          borderLeftStyle: left ? 'solid' : null,
           borderTopWidth: '1px',
-          borderRightWidth: '1px',
           borderBottomWidth: '1px',
-          borderLeftWidth: '1px',
+          borderRightWidth: left ? null : '1px',
+          borderLeftWidth: left ? '1px' : null,
           borderTopColor: theme.colors.borderOpaque,
-          borderRightColor: theme.colors.borderOpaque,
           borderBottomColor: theme.colors.borderOpaque,
+          borderRightColor: theme.colors.borderOpaque,
           borderLeftColor: theme.colors.borderOpaque,
-          borderTopLeftRadius: theme.borders.radius300,
-          borderTopRightRadius: theme.borders.radius300,
-          borderBottomLeftRadius: theme.borders.radius300,
-          borderBottomRightRadius: theme.borders.radius300,
         })}
       >
         <div
           className={css({
             height: '40px',
             width: '40px',
-            borderTopLeftRadius: '100%',
-            borderTopRightRadius: '100%',
-            borderBottomLeftRadius: '100%',
-            borderBottomRightRadius: '100%',
+            backgroundColor: mode.colors[value],
             borderTopStyle: 'solid',
             borderRightStyle: 'solid',
             borderBottomStyle: 'solid',
@@ -77,18 +62,15 @@ function Swatch({mode, value}) {
             borderRightColor: mode.colors.borderOpaque,
             borderBottomColor: mode.colors.borderOpaque,
             borderLeftColor: mode.colors.borderOpaque,
-            backgroundColor: mode.colors[value],
           })}
         ></div>
       </div>
-      <div>
-        <Value $style={{marginBottom: 0, fontSize: '13px'}}>
-          {mode.colors[value]}
-        </Value>
-        <Value $style={{marginBottom: 0, fontSize: '13px'}}>
-          {getTokenFromCode(mode.colors[value])}
-        </Value>
-      </div>
+      <Value $style={{marginBottom: 0, fontSize: '13px'}}>
+        {mode.colors[value]}
+      </Value>
+      <Value $style={{marginBottom: 0, fontSize: '13px'}}>
+        {getTokenFromCode(mode.colors[value])}
+      </Value>
     </div>
   );
 }
@@ -96,17 +78,11 @@ function Swatch({mode, value}) {
 export function Color({value}: {value: string}) {
   const [css, theme] = useStyletron();
   return (
-    <div className={css({marginBottom: theme.sizing.scale800})}>
+    <div className={css({marginBottom: theme.sizing.scale400})}>
       <Title>{value}</Title>
-      <div
-        className={css({
-          display: 'flex',
-          alignItems: 'center',
-          marginBottom: theme.sizing.scale300,
-        })}
-      >
-        <Swatch value={value} mode={LightTheme} />
-        <Swatch value={value} mode={DarkTheme} />
+      <div className={css({display: 'flex'})}>
+        <Swatch mode={LightTheme} value={value} left />
+        <Swatch mode={DarkTheme} value={value} />
       </div>
     </div>
   );
