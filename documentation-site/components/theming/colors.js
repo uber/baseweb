@@ -19,25 +19,25 @@ function getTokenFromCode(code) {
   return res;
 }
 
-export function Color({value}: {value: string}) {
+export function Color({name}: {name: string}) {
   const [css] = useStyletron();
   return (
     <PropertyCompareTheme
-      value={value}
+      name={name}
       concern="colors"
       renderBox={({mode, commonStyles}) => (
         <div
           className={css({
             ...commonStyles,
             ...mode.borders.border600,
-            backgroundColor: mode.colors[value],
+            backgroundColor: mode.colors[name],
           })}
         ></div>
       )}
       renderValue={({mode}) => (
         <React.Fragment>
-          <div>{mode.colors[value]}</div>
-          <div>{getTokenFromCode(mode.colors[value])}</div>
+          <div>{mode.colors[name]}</div>
+          <div>{getTokenFromCode(mode.colors[name])}</div>
         </React.Fragment>
       )}
     />

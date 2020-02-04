@@ -10,43 +10,48 @@ import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {Property, PropertyCompareTheme} from './common.js';
 
-export function Border({value}: {value: string}) {
+export function Border({name}: {name: string}) {
   const [css] = useStyletron();
   return (
     <PropertyCompareTheme
-      value={value}
+      name={name}
       concern="borders"
       renderBox={({mode, commonStyles}) => (
         <div
           className={css({
             ...commonStyles,
-            ...mode.borders[value],
+            ...mode.borders[name],
           })}
         ></div>
       )}
       renderValue={({mode}) => (
         <React.Fragment>
-          <div>{mode.borders[value].borderStyle}</div>
-          <div>{mode.borders[value].borderWidth}</div>
-          <div>{mode.borders[value].borderColor}</div>
+          <div>{mode.borders[name].borderStyle}</div>
+          <div>{mode.borders[name].borderWidth}</div>
+          <div>{mode.borders[name].borderColor}</div>
         </React.Fragment>
       )}
     />
   );
 }
 
-export function Radius({value}: {value: string}) {
+export function Radius({name}: {name: string}) {
   const [css, theme] = useStyletron();
   return (
-    <Property title={value} value={theme.borders[value]}>
-      <div
-        className={css({
-          backgroundColor: theme.colors.contentPrimary,
-          borderRadius: theme.borders[value],
-          height: theme.sizing.scale1200,
-          width: theme.sizing.scale1200,
-        })}
-      ></div>
-    </Property>
+    <Property
+      name={name}
+      concern="borders"
+      renderPreview={() => (
+        <div
+          className={css({
+            backgroundColor: theme.colors.contentPrimary,
+            borderRadius: theme.borders[name],
+            height: '50px',
+            width: '50px',
+          })}
+        ></div>
+      )}
+      renderValue={() => theme.borders[name]}
+    />
   );
 }

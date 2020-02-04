@@ -10,21 +10,21 @@ import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {PropertyCompareTheme} from './common.js';
 
-export function Lighting({value}: {value: string}) {
+export function Lighting({name}: {name: string}) {
   const [css] = useStyletron();
   return (
     <PropertyCompareTheme
-      value={value}
+      name={name}
       concern="lighting"
       renderBox={({mode, commonStyles}) => (
         <div
           className={css({
             ...commonStyles,
-            boxShadow: mode.lighting[value],
+            boxShadow: mode.lighting[name],
           })}
         ></div>
       )}
-      renderValue={({mode}) => mode.lighting[value]}
+      renderValue={({mode}) => mode.lighting[name]}
     />
   );
 }

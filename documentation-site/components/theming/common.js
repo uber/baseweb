@@ -41,51 +41,31 @@ export const Value = styled<{}>('div', ({$theme}) => {
   };
 });
 
-export function Property({
-  title,
-  value,
-  children,
-}: {
-  title: string,
-  value: string | string[],
-  children?: React.Node,
-}) {
-  return (
-    <div>
-      <Title>{title}</Title>
-      {children && <div>{children}</div>}
-      <Value>
-        {Array.isArray(value) ? value.map(v => <div key={v}>{v}</div>) : value}
-      </Value>
-    </div>
-  );
-}
-
 // $FlowFixMe
-export function Property2({value, concern, renderPreview, renderValue}) {
+export function Property({name, concern, renderPreview, renderValue}) {
   const [css, theme] = useStyletron();
   return (
     <div className={css({marginBottom: theme.sizing.scale800})}>
       <Title $style={{marginBottom: theme.sizing.scale200}}>
         <SubTitle>theme.{concern}.</SubTitle>
-        {value}
+        {name}
       </Title>
       {renderPreview && (
-        <div className={css({marginBottom: theme.sizing.scale200})}>
+        <div className={css({marginBottom: theme.sizing.scale300})}>
           {renderPreview()}
         </div>
       )}
-      {renderValue && renderValue()}
+      <Value>{renderValue && renderValue()}</Value>
     </div>
   );
 }
 
 // $FlowFixMe
-export function PropertyCompareTheme({value, concern, renderBox, renderValue}) {
+export function PropertyCompareTheme({name, concern, renderBox, renderValue}) {
   const [css] = useStyletron();
   return (
-    <Property2
-      value={value}
+    <Property
+      name={name}
       concern={concern}
       renderPreview={() => {
         return (
