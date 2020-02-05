@@ -217,8 +217,12 @@ const Index = (props: {
 
 async function fetchContributorsByPage(page = 1) {
   const res = await fetch(
-    `https://api.github.com/repos/uber/baseweb/contributors?access_token=${process
-      .env.GITHUB_AUTH_TOKEN || ''}&page=${page}`,
+    `https://api.github.com/repos/uber/baseweb/contributors?&page=${page}`,
+    {
+      headers: {
+        Authorization: process.env.GITHUB_AUTH_TOKEN || '',
+      },
+    },
   );
   return res.json();
 }
