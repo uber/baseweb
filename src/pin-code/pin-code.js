@@ -57,7 +57,7 @@ export default class PinCode extends React.Component<PropsT, StateT> {
               aria-label={this.props['aria-label']}
               aria-labelledby={this.props['aria-labelledby']}
               aria-describedby={this.props['aria-describedby']}
-              autoComplete="one-time-code"
+              autoComplete={this.props.autoComplete}
               disabled={this.props.disabled}
               error={this.props.error}
               id={this.props.id ? this.props.id + '-' + i : null}

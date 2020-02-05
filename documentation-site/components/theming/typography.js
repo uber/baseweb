@@ -8,18 +8,24 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {Title, Value} from './common.js';
+import {Property} from './common.js';
 
-export function Type({value}: {value: string}) {
+export function Type({name}: {name: string}) {
   const [css, theme] = useStyletron();
   return (
-    <div className={css({marginBottom: theme.sizing.scale600})}>
-      <Title $style={{...theme.typography[value]}}>{value}</Title>
-      <Value>
-        <div>{theme.typography[value].fontSize}</div>
-        <div>{theme.typography[value].fontWeight}</div>
-        <div>{theme.typography[value].lineHeight}</div>
-      </Value>
-    </div>
+    <Property
+      name={name}
+      concern="typography"
+      renderPreview={() => (
+        <div className={css({...theme.typography[name]})}>Example</div>
+      )}
+      renderValue={() => (
+        <React.Fragment>
+          <div>{theme.typography[name].fontSize}</div>
+          <div>{theme.typography[name].fontWeight}</div>
+          <div>{theme.typography[name].lineHeight}</div>
+        </React.Fragment>
+      )}
+    />
   );
 }

@@ -8,19 +8,23 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {Property} from './common.js';
+import {PropertyCompareTheme} from './common.js';
 
-export function Lighting({value}: {value: string}) {
-  const [css, theme] = useStyletron();
+export function Lighting({name}: {name: string}) {
+  const [css] = useStyletron();
   return (
-    <Property title={value} value={theme.lighting[value]}>
-      <div
-        className={css({
-          backgroundColor: theme.colors.contentInversePrimary,
-          height: theme.sizing.scale1200,
-          boxShadow: theme.lighting[value],
-        })}
-      ></div>
-    </Property>
+    <PropertyCompareTheme
+      name={name}
+      concern="lighting"
+      renderBox={({previewTheme, commonStyles}) => (
+        <div
+          className={css({
+            ...commonStyles,
+            boxShadow: previewTheme.lighting[name],
+          })}
+        ></div>
+      )}
+      renderValue={({previewTheme}) => previewTheme.lighting[name]}
+    />
   );
 }
