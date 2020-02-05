@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
-
+import {CSSLengthUnitT} from '../theme';
 export enum ALIGNMENT {
   start = 'start',
   center = 'center',
@@ -23,6 +23,7 @@ export interface GridProps {
   gridGutters?: Responsive<number>;
   gridMargins?: Responsive<number>;
   gridMaxWidth?: number;
+  gridUnit?: CSSLengthUnitT;
 }
 
 export interface StyledGridProps {
@@ -31,6 +32,7 @@ export interface StyledGridProps {
   $gridGutters?: Responsive<number>;
   $gridMargins?: Responsive<number>;
   $gridMaxWidth?: number;
+  $gridUnit?: CSSLengthUnitT;
 }
 
 export interface CellProps {
@@ -46,6 +48,7 @@ export type StyledCellProps = {
   $gridColumns?: Responsive<number>;
   $gridGaps?: Responsive<number>;
   $gridGutters?: Responsive<number>;
+  $gridUnit?: CSSLengthUnitT;
   $order?: Responsive<number>;
   $skip?: Responsive<number>;
   $span?: Responsive<number>;
