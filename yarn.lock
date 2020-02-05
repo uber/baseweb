@@ -16638,10 +16638,10 @@ react-twitter-embed@^2.0.8:
     react-proptype-conditional-require "^1.0.4"
     scriptjs "^2.5.9"
 
-react-view@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/react-view/-/react-view-2.2.1.tgz#849188b533f30173cd5684a2a84c57863abcac89"
-  integrity sha512-o/MgLh3Wr0NeLJIlczwcqdvduy8LAbSQFR8DutDCXJoOVObe0oG7C281r3Mp7OFqZu4OW/1k7PYLJHeIL4/wqQ==
+react-view@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/react-view/-/react-view-2.2.2.tgz#050c8911c3711eb36e63f1b2cadb0b19988e4f4a"
+  integrity sha512-oBb11/3g64m5K2K4gqq6SMw/JeSq30whb+NbV2VemQWSaApJNft+QnEr6VSOsHyIb3TGsYxzt06X5rRkNFicZQ==
   dependencies:
     "@babel/code-frame" "^7.5.5"
     "@babel/core" "^7.7.0"
