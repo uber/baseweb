@@ -25,19 +25,19 @@ export function Color({name}: {name: string}) {
     <PropertyCompareTheme
       name={name}
       concern="colors"
-      renderBox={({mode, commonStyles}) => (
+      renderBox={({previewTheme, commonStyles}) => (
         <div
           className={css({
             ...commonStyles,
-            ...mode.borders.border600,
-            backgroundColor: mode.colors[name],
+            ...previewTheme.borders.border600,
+            backgroundColor: previewTheme.colors[name],
           })}
         ></div>
       )}
-      renderValue={({mode}) => (
+      renderValue={({previewTheme}) => (
         <React.Fragment>
-          <div>{mode.colors[name]}</div>
-          <div>{getTokenFromCode(mode.colors[name])}</div>
+          <div>{previewTheme.colors[name]}</div>
+          <div>{getTokenFromCode(previewTheme.colors[name])}</div>
         </React.Fragment>
       )}
     />

@@ -16,19 +16,19 @@ export function Border({name}: {name: string}) {
     <PropertyCompareTheme
       name={name}
       concern="borders"
-      renderBox={({mode, commonStyles}) => (
+      renderBox={({previewTheme, commonStyles}) => (
         <div
           className={css({
             ...commonStyles,
-            ...mode.borders[name],
+            ...previewTheme.borders[name],
           })}
         ></div>
       )}
-      renderValue={({mode}) => (
+      renderValue={({previewTheme}) => (
         <React.Fragment>
-          <div>{mode.borders[name].borderStyle}</div>
-          <div>{mode.borders[name].borderWidth}</div>
-          <div>{mode.borders[name].borderColor}</div>
+          <div>{previewTheme.borders[name].borderStyle}</div>
+          <div>{previewTheme.borders[name].borderWidth}</div>
+          <div>{previewTheme.borders[name].borderColor}</div>
         </React.Fragment>
       )}
     />

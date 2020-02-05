@@ -71,10 +71,10 @@ export function PropertyCompareTheme({name, concern, renderBox, renderValue}) {
         return (
           <div className={css({display: 'flex'})}>
             <div className={css({flexBasis: '50%'})}>
-              <Swatch renderBox={renderBox} mode={LightTheme} left />
+              <Swatch renderBox={renderBox} previewTheme={LightTheme} left />
             </div>
             <div className={css({flexBasis: '50%'})}>
-              <Swatch renderBox={renderBox} mode={DarkTheme} />
+              <Swatch renderBox={renderBox} previewTheme={DarkTheme} />
             </div>
           </div>
         );
@@ -83,10 +83,10 @@ export function PropertyCompareTheme({name, concern, renderBox, renderValue}) {
         return (
           <div className={css({display: 'flex'})}>
             <div className={css({flexBasis: '50%'})}>
-              <Value>{renderValue({mode: LightTheme})}</Value>
+              <Value>{renderValue({previewTheme: LightTheme})}</Value>
             </div>
             <div className={css({flexBasis: '50%'})}>
-              <Value>{renderValue({mode: DarkTheme})}</Value>
+              <Value>{renderValue({previewTheme: DarkTheme})}</Value>
             </div>
           </div>
         );
@@ -95,12 +95,12 @@ export function PropertyCompareTheme({name, concern, renderBox, renderValue}) {
   );
 }
 
-function Swatch({renderBox, mode, left = false}) {
+function Swatch({renderBox, previewTheme, left = false}) {
   const [css, theme] = useStyletron();
   return (
     <div
       className={css({
-        backgroundColor: mode.colors.backgroundPrimary,
+        backgroundColor: previewTheme.colors.backgroundPrimary,
         paddingTop: theme.sizing.scale800,
         paddingBottom: theme.sizing.scale800,
         display: 'flex',
@@ -120,7 +120,7 @@ function Swatch({renderBox, mode, left = false}) {
       })}
     >
       {renderBox({
-        mode,
+        previewTheme,
         commonStyles: {height: '50px', width: '50px'},
       })}
     </div>

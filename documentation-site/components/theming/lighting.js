@@ -16,15 +16,15 @@ export function Lighting({name}: {name: string}) {
     <PropertyCompareTheme
       name={name}
       concern="lighting"
-      renderBox={({mode, commonStyles}) => (
+      renderBox={({previewTheme, commonStyles}) => (
         <div
           className={css({
             ...commonStyles,
-            boxShadow: mode.lighting[name],
+            boxShadow: previewTheme.lighting[name],
           })}
         ></div>
       )}
-      renderValue={({mode}) => mode.lighting[name]}
+      renderValue={({previewTheme}) => previewTheme.lighting[name]}
     />
   );
 }
