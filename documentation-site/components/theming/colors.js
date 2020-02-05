@@ -8,42 +8,38 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {Title, Value} from './common.js';
+import {colors} from 'baseui/tokens';
+import {PropertyCompareTheme} from './common.js';
 
-export function Color({value}: {value: string}) {
-  const [css, theme] = useStyletron();
+function getTokenFromCode(code) {
+  let res = '';
+  Object.entries(colors).forEach(([name, value]) => {
+    if (value === code) res = name;
+  });
+  return res;
+}
+
+export function Color({name}: {name: string}) {
+  const [css] = useStyletron();
   return (
-    <div
-      className={css({
-        display: 'flex',
-        justifyContent: 'space-between',
-        borderBottomColor: theme.colors.borderOpaque,
-        borderBottomWidth: '1px',
-        borderBottomStyle: 'solid',
-        paddingTop: theme.sizing.scale600,
-        marginBottom: theme.sizing.scale600,
-      })}
-    >
-      <div>
-        <Title>{value}</Title>
-        <Value>{theme.colors[value]}</Value>
-      </div>
-      <div
-        className={css({
-          boxSizing: 'border-box',
-          width: theme.sizing.scale2400,
-          backgroundColor: theme.colors[value],
-          borderTopColor: theme.colors.borderOpaque,
-          borderTopWidth: '1px',
-          borderTopStyle: 'solid',
-          borderLeftColor: theme.colors.borderOpaque,
-          borderLeftWidth: '1px',
-          borderLeftStyle: 'solid',
-          borderRightColor: theme.colors.borderOpaque,
-          borderRightWidth: '1px',
-          borderRightStyle: 'solid',
-        })}
-      ></div>
-    </div>
+    <PropertyCompareTheme
+      name={name}
+      concern="colors"
+      renderBox={({previewTheme, commonStyles}) => (
+        <div
+          className={css({
+            ...commonStyles,
+            ...previewTheme.borders.border600,
+            backgroundColor: previewTheme.colors[name],
+          })}
+        ></div>
+      )}
+      renderValue={({previewTheme}) => (
+        <React.Fragment>
+          <div>{previewTheme.colors[name]}</div>
+          <div>{getTokenFromCode(previewTheme.colors[name])}</div>
+        </React.Fragment>
+      )}
+    />
   );
 }

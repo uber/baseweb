@@ -8,42 +8,50 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {Property} from './common.js';
+import {Property, PropertyCompareTheme} from './common.js';
 
-export function Border({value}: {value: string}) {
-  const [css, theme] = useStyletron();
+export function Border({name}: {name: string}) {
+  const [css] = useStyletron();
   return (
-    <Property
-      title={value}
-      value={[
-        theme.borders[value].borderStyle,
-        theme.borders[value].borderWidth,
-        theme.borders[value].borderColor,
-      ]}
-    >
-      <div
-        className={css({
-          borderTopStyle: theme.borders[value].borderStyle,
-          borderTopWidth: theme.borders[value].borderWidth,
-          borderTopColor: theme.borders[value].borderColor,
-        })}
-      ></div>
-    </Property>
+    <PropertyCompareTheme
+      name={name}
+      concern="borders"
+      renderBox={({previewTheme, commonStyles}) => (
+        <div
+          className={css({
+            ...commonStyles,
+            ...previewTheme.borders[name],
+          })}
+        ></div>
+      )}
+      renderValue={({previewTheme}) => (
+        <React.Fragment>
+          <div>{previewTheme.borders[name].borderStyle}</div>
+          <div>{previewTheme.borders[name].borderWidth}</div>
+          <div>{previewTheme.borders[name].borderColor}</div>
+        </React.Fragment>
+      )}
+    />
   );
 }
 
-export function Radius({value}: {value: string}) {
+export function Radius({name}: {name: string}) {
   const [css, theme] = useStyletron();
   return (
-    <Property title={value} value={theme.borders[value]}>
-      <div
-        className={css({
-          backgroundColor: theme.colors.contentPrimary,
-          borderRadius: theme.borders[value],
-          height: theme.sizing.scale1200,
-          width: theme.sizing.scale1200,
-        })}
-      ></div>
-    </Property>
+    <Property
+      name={name}
+      concern="borders"
+      renderPreview={() => (
+        <div
+          className={css({
+            backgroundColor: theme.colors.contentPrimary,
+            borderRadius: theme.borders[name],
+            height: '50px',
+            width: '50px',
+          })}
+        ></div>
+      )}
+      renderValue={() => theme.borders[name]}
+    />
   );
 }
