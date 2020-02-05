@@ -10,7 +10,6 @@ LICENSE file in the root directory of this source tree.
 const {mount} = require('../../../e2e/helpers');
 
 describe('popover', () => {
-  jest.setTimeout(20 * 1000);
   it('hover trigger does not cause loop on click', async () => {
     await mount(page, 'popover-focus-loop');
     await page.waitFor('button');
