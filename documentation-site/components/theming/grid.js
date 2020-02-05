@@ -12,11 +12,19 @@ import {Property} from './common.js';
 export function Grid() {
   return (
     <React.Fragment>
-      <Property title="columns" value="4, 8, 12"></Property>
-      <Property title="gutters" value="16px, 36px, 36px"></Property>
-      <Property title="margins" value="16px, 36px, 64px"></Property>
-      <Property title="gaps" value="0"></Property>
-      <Property title="maxWidth" value="1280px"></Property>
+      <Property name="columns" concern="grid" renderValue={() => '4, 8, 12'} />
+      <Property
+        name="gutters"
+        concern="grid"
+        renderValue={() => '16px, 36px, 36px'}
+      />
+      <Property
+        name="margins"
+        concern="grid"
+        renderValue={() => '16px, 36px, 64px'}
+      />
+      <Property name="gaps" concern="grid" renderValue={() => '0'} />
+      <Property name="maxWidth" concern="grid" renderValue={() => '1280px'} />
     </React.Fragment>
   );
 }
