@@ -14,7 +14,6 @@ import {
   SortableHeadCell,
   SORT_DIRECTION,
 } from '../index.js';
-
 const DATA = [
   ['Marlyn', 10],
   ['Luther', 15],
