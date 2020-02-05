@@ -20,7 +20,7 @@ const monospaceFontFamily =
 
 const SubTitle = styled<{}>('span', ({$theme}) => {
   return {
-    ...$theme.typography.LabelXSmall,
+    ...$theme.typography.LabelSmall,
     fontFamily: monospaceFontFamily,
     fontStyle: 'italic',
     color: $theme.colors.contentSecondary,
@@ -29,7 +29,7 @@ const SubTitle = styled<{}>('span', ({$theme}) => {
 
 export const Title = styled<{}>('div', ({$theme}) => {
   return {
-    ...$theme.typography.ParagraphLarge,
+    ...$theme.typography.HeadingXSmall,
     fontFamily: monospaceFontFamily,
   };
 });
