@@ -6,6 +6,7 @@ import {
   TRIGGER_TYPE,
 } from 'baseui/popover';
 import {Button} from 'baseui/button';
+import {Block} from 'baseui/block';
 import {Input} from 'baseui/input';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
@@ -21,6 +22,7 @@ const PopoverConfig: TConfig = {
   },
   scope: {
     Button,
+    Block,
     Input,
     StatefulPopover,
     ACCESSIBILITY_TYPE,
@@ -31,9 +33,9 @@ const PopoverConfig: TConfig = {
   props: {
     content: {
       value: `() => (
-  <div>Hello, there! 👋
+  <Block padding={'20px'}>Hello, there! 👋
     <Input placeholder="Focusable Element" />
-  </div>
+  </Block>
 )
       `,
       type: PropTypes.Function,
