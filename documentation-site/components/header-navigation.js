@@ -22,7 +22,7 @@ import GithubLogo from './github-logo';
 import SlackLogo from './slack-logo';
 import AlignLeftIcon from './align-left-icon';
 import AlignRightIcon from './align-right-icon';
-import VersionSelector from './version-selector.js';
+// import VersionSelector from './version-selector.js';
 import Search from './search';
 import {ThemeContext} from 'spaceweb/styles/theme-provider.js';
 import Bulb from './bulb';
@@ -90,7 +90,7 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                 />
               </Link>
               <Block marginLeft="scale300">
-                <VersionSelector />
+                {/*<VersionSelector />*/}
                 <Link href="/blog/base-web-v9">
                   <Button
                     size={SIZE.compact}

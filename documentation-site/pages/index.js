@@ -18,7 +18,7 @@ import {Tag} from 'spaceweb/tag';
 import fetch from 'isomorphic-fetch';
 import {withStyle} from 'spaceweb';
 
-import BlogPosts from '../posts.js';
+// import BlogPosts from '../posts.js';
 
 import Layout from '../components/layout';
 import Contributors from '../components/contributors';
@@ -85,7 +85,7 @@ const Index = (props: {
     toggleDirection={props.toggleDirection}
     toggleTheme={props.toggleTheme}
   >
-    <Block
+    {/*<Block
       marginTop={['scale100', 'scale400', 'scale800']}
       display="block"
       $as="a"
@@ -104,7 +104,7 @@ const Index = (props: {
       <Block color="contentPrimary" display="inline-block" font="font250">
         {BlogPosts[0].title}
       </Block>
-    </Block>
+    </Block>*/}
     <H1>Base Web React UI Framework</H1>
     <Markdown.p>
       Base Web is a foundation for initiating, evolving, and unifying web
