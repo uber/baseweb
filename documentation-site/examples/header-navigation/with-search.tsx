@@ -4,9 +4,9 @@ import {
   ALIGN,
   StyledNavigationItem as NavigationItem,
   StyledNavigationList as NavigationList,
-} from 'baseui/header-navigation';
-import {StyledLink as Link} from 'baseui/link';
-import {StatefulSelect as Search, TYPE} from 'baseui/select';
+} from 'spaceweb/header-navigation';
+import {StyledLink as Link} from 'spaceweb/link';
+import {StatefulSelect as Search, TYPE} from 'spaceweb/select';
 
 const options = {
   options: [

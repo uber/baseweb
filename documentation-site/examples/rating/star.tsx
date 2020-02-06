@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StarRating} from 'baseui/rating';
+import {StarRating} from 'spaceweb/rating';
 
 export default () => {
   const [value, setValue] = React.useState(1);

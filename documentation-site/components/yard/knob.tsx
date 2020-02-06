@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {StyledLink} from 'baseui/link';
-import {Input} from 'baseui/input';
-import {Radio, RadioGroup} from 'baseui/radio';
-import {Checkbox} from 'baseui/checkbox';
-import {Select, SIZE} from 'baseui/select';
-import {StatefulTooltip} from 'baseui/tooltip';
+import {StyledLink} from 'spaceweb/link';
+import {Input} from 'spaceweb/input';
+import {Radio, RadioGroup} from 'spaceweb/radio';
+import {Checkbox} from 'spaceweb/checkbox';
+import {Select, SIZE} from 'spaceweb/select';
+import {StatefulTooltip} from 'spaceweb/tooltip';
 
 import Editor from './editor';
 import {

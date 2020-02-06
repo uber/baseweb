@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {Unstable_StatefulTreeView as StatefulTreeView} from 'baseui/tree-view';
-import {ChevronRight} from 'baseui/icon';
-import {ChevronDown} from 'baseui/icon';
+import {Unstable_StatefulTreeView as StatefulTreeView} from 'spaceweb/tree-view';
+import {ChevronRight} from 'spaceweb/icon';
+import {ChevronDown} from 'spaceweb/icon';
 
 function CollapseIconOverride() {
   return <ChevronDown />;

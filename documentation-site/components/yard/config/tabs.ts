@@ -1,4 +1,4 @@
-import {Tabs, Tab, ORIENTATION} from 'baseui/tabs';
+import {Tabs, Tab, ORIENTATION} from 'spaceweb/tabs';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

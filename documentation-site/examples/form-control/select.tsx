@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {FormControl} from 'baseui/form-control';
-import {Select} from 'baseui/select';
+import {FormControl} from 'spaceweb/form-control';
+import {Select} from 'spaceweb/select';
 
 export default () => {
   const [value, setValue] = React.useState([]);

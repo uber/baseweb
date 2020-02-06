@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import * as React from 'react';
-import {Table} from 'baseui/table-semantic';
+import {Table} from 'spaceweb/table-semantic';
 import {useStyletron} from 'baseui';
-import {StatefulPopover, PLACEMENT, TRIGGER_TYPE} from 'baseui/popover';
+import {StatefulPopover, PLACEMENT, TRIGGER_TYPE} from 'spaceweb/popover';
 import {H3} from './markdown-elements';
 import {convert} from './yard/type-definition';
 

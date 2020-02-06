@@ -1,4 +1,4 @@
-import {ProgressBar} from 'baseui/progress-bar';
+import {ProgressBar} from 'spaceweb/progress-bar';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

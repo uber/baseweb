@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Button} from 'baseui/button';
-import {ButtonGroup, MODE} from 'baseui/button-group';
+import {Button} from 'spaceweb/button';
+import {ButtonGroup, MODE} from 'spaceweb/button-group';
 
 export default () => {
   const [selected, setSelected] = React.useState();

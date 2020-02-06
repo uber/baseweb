@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {toaster, ToasterContainer, PLACEMENT} from 'baseui/toast';
-import {Button} from 'baseui/button';
+import {toaster, ToasterContainer, PLACEMENT} from 'spaceweb/toast';
+import {Button} from 'spaceweb/button';
 
 class ToasterExample extends React.Component {
   add = () => {

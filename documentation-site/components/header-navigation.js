@@ -8,14 +8,14 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import Link from 'next/link';
-import {Block} from 'baseui/block';
+import {Block} from 'spaceweb/block';
 import {
   HeaderNavigation,
   StyledNavigationList as NavigationList,
   ALIGN,
-} from 'baseui/header-navigation';
+} from 'spaceweb/header-navigation';
 import {themedStyled} from '../pages/_app';
-import Menu from 'baseui/icon/menu';
+import Menu from 'spaceweb/icon/menu';
 import Logo from '../images/base-web.svg';
 import LogoWhite from '../images/base-web-white.svg';
 import GithubLogo from './github-logo';
@@ -24,10 +24,10 @@ import AlignLeftIcon from './align-left-icon';
 import AlignRightIcon from './align-right-icon';
 import VersionSelector from './version-selector.js';
 import Search from './search';
-import {ThemeContext} from 'baseui/styles/theme-provider.js';
+import {ThemeContext} from 'spaceweb/styles/theme-provider.js';
 import Bulb from './bulb';
-import {StatefulTooltip} from 'baseui/tooltip';
-import {Button, KIND, SIZE} from 'baseui/button';
+import {StatefulTooltip} from 'spaceweb/tooltip';
+import {Button, KIND, SIZE} from 'spaceweb/button';
 
 const Hamburger = themedStyled<{}>('div', ({$theme}) => ({
   display: 'block',

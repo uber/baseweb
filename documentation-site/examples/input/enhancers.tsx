@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {Block} from 'baseui/block';
-import {Search} from 'baseui/icon';
-import {Input} from 'baseui/input';
+import {Block} from 'spaceweb/block';
+import {Search} from 'spaceweb/icon';
+import {Input} from 'spaceweb/input';
 
 export default () => (
   <React.Fragment>

@@ -12,7 +12,7 @@ LICENSE file in the root directory of this source tree.
  */
 
 import * as React from 'react';
-import {useStyletron, styled} from 'baseui';
+import {useStyletron, styled} from 'spaceweb';
 
 const monospaceFontFamily =
   'SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace';

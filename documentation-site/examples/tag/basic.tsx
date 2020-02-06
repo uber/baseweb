@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Tag} from 'baseui/tag';
+import {Tag} from 'spaceweb/tag';
 
 export default () => (
   <React.Fragment>

@@ -8,15 +8,15 @@ LICENSE file in the root directory of this source tree.
 /* global process */
 
 import * as React from 'react';
-import {Block} from 'baseui/block';
-import {Button} from 'baseui/button';
-import {FlexGrid, FlexGridItem} from 'baseui/flex-grid';
-import {StyledLink as Link} from 'baseui/link';
+import {Block} from 'spaceweb/block';
+import {Button} from 'spaceweb/button';
+import {FlexGrid, FlexGridItem} from 'spaceweb/flex-grid';
+import {StyledLink as Link} from 'spaceweb/link';
 import {H1, H2} from '../components/markdown-elements';
-import {Card, StyledBody} from 'baseui/card';
-import {Tag} from 'baseui/tag';
+import {Card, StyledBody} from 'spaceweb/card';
+import {Tag} from 'spaceweb/tag';
 import fetch from 'isomorphic-fetch';
-import {withStyle} from 'baseui';
+import {withStyle} from 'spaceweb';
 
 import BlogPosts from '../posts.js';
 

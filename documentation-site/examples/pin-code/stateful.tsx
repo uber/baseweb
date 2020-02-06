@@ -1,5 +1,5 @@
 import React from 'react';
-import {StatefulPinCode} from 'baseui/pin-code';
+import {StatefulPinCode} from 'spaceweb/pin-code';
 
 export default () => {
   return (

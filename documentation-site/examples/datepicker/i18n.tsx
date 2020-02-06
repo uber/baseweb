@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StatefulDatepicker} from 'baseui/datepicker';
+import {StatefulDatepicker} from 'spaceweb/datepicker';
 import hu from 'date-fns/locale/hu';
 
 export default () => (

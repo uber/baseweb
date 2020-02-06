@@ -1,4 +1,4 @@
-import {StyledLink} from 'baseui/link';
+import {StyledLink} from 'spaceweb/link';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

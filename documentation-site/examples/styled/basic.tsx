@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {styled} from 'baseui';
-import {Theme} from 'baseui/theme';
+import {styled} from 'spaceweb';
+import {Theme} from 'spaceweb/theme';
 
 type CustomTheme = Theme & {extraProp: string};
 

@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import {H2} from '../components/markdown-elements';
-import {useStyletron} from 'baseui/styles';
+import {useStyletron} from 'spaceweb/styles';
 
 import * as thumbnails from '../components/thumbs';
 

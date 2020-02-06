@@ -14,9 +14,9 @@ import {
   lightThemePrimitives,
   darkThemePrimitives,
   ThemeProvider,
-} from 'baseui';
-import {Card} from 'baseui/card';
-import {Spinner} from 'baseui/spinner';
+} from 'spaceweb';
+import {Card} from 'spaceweb/card';
+import {Spinner} from 'spaceweb/spinner';
 import {useRouter} from 'next/router';
 
 import {useView, Compiler, Error} from 'react-view';

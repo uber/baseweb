@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Breadcrumbs} from 'baseui/breadcrumbs';
-import {StyledLink as Link} from 'baseui/link';
+import {Breadcrumbs} from 'spaceweb/breadcrumbs';
+import {StyledLink as Link} from 'spaceweb/link';
 
 export default () => (
   <Breadcrumbs>

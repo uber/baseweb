@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Textarea} from 'baseui/textarea';
-import {SIZE} from 'baseui/input';
+import {Textarea} from 'spaceweb/textarea';
+import {SIZE} from 'spaceweb/input';
 
 export default () => {
   const [valueA, setValueA] = React.useState('Compact size...');

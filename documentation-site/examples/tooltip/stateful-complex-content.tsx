@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StatefulTooltip} from 'baseui/tooltip';
+import {StatefulTooltip} from 'spaceweb/tooltip';
 import {useStyletron} from 'baseui';
 
 export default () => {

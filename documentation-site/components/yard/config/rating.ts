@@ -1,4 +1,4 @@
-import {StarRating} from 'baseui/rating';
+import {StarRating} from 'spaceweb/rating';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

@@ -1,8 +1,8 @@
 // @flow
 import * as React from 'react';
-import {Button} from 'baseui/button';
-import {Check, ChevronRight} from 'baseui/icon';
-import {ListItem, ListItemLabel} from 'baseui/list';
+import {Button} from 'spaceweb/button';
+import {Check, ChevronRight} from 'spaceweb/icon';
+import {ListItem, ListItemLabel} from 'spaceweb/list';
 import {useStyletron} from 'baseui';
 
 export default () => {

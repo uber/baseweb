@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {MDXProvider} from '@mdx-js/tag';
-import {Block} from 'baseui/block';
-import {Button, KIND, SIZE} from 'baseui/button';
+import {Block} from 'spaceweb/block';
+import {Button, KIND, SIZE} from 'spaceweb/button';
 
 import TableOfContents from './table-of-contents';
 import {themedStyled} from '../pages/_app';

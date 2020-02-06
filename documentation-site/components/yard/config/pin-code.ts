@@ -1,5 +1,5 @@
 import omit from 'just-omit';
-import {PinCode, SIZE} from 'baseui/pin-code';
+import {PinCode, SIZE} from 'spaceweb/pin-code';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 import {theme, inputProps} from './input';

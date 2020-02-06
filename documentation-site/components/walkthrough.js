@@ -17,13 +17,13 @@ import {
   ModalButton,
   SIZE,
   ROLE,
-} from 'baseui/modal';
-import {StatefulTabs, Tab} from 'baseui/tabs';
-import {withStyle, useStyletron} from 'baseui';
-import {Button} from 'baseui/button';
+} from 'spaceweb/modal';
+import {StatefulTabs, Tab} from 'spaceweb/tabs';
+import {withStyle, useStyletron} from 'spaceweb';
+import {Button} from 'spaceweb/button';
 
-import {Label3, Label4, Paragraph3} from 'baseui/typography';
-import {StatefulTooltip} from 'baseui/tooltip';
+import {Label3, Label4, Paragraph3} from 'spaceweb/typography';
+import {StatefulTooltip} from 'spaceweb/tooltip';
 
 import CookiesConstructor from 'universal-cookie';
 const Cookies = new CookiesConstructor();

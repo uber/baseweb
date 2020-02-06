@@ -1,19 +1,17 @@
 {
-  "name": "baseui",
-  "version": "9.39.1",
-  "description": "A React Component library implementing the Base design language",
+  "name": "spaceweb",
+  "version": "0.0.1",
+  "description": "A React Component library implementing the Space design language",
   "keywords": [
     "react",
-    "uber",
-    "baseui",
-    "baseweb"
+    "sprinklr"
   ],
   "license": "MIT",
   "main": "index.js",
   "types": "index.d.ts",
   "sideEffects": false,
   "module": "./esm/index.js",
-  "repository": "uber/baseweb",
+  "repository": "TODO",
   "scripts": {
     "lint:code": "eslint ./",
     "lint:markdown": "markdownlint -c ./.markdownlint.json proposals",
@@ -30,7 +28,8 @@
     "build:cjs": "cross-env NODE_ENV=production BABEL_ENV=cjs babel ./src --out-dir ./dist --ignore **.test.js,**/__tests__/**,**/e2e.js,**/template-component/**,**/test/**",
     "build:esm": "cross-env NODE_ENV=production BABEL_ENV=esm babel ./src --out-dir ./dist/esm --ignore **.test.js,**/__tests__/**,**/e2e.js,**/template-component/**,**/test/**",
     "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel ./src --out-dir ./dist/es --ignore **.test.js,**/__tests__/**,**/e2e.js,**/template-component/**,**/test/**",
-    "build": "yarn build:cjs && yarn build:esm && yarn build:es && yarn build:copy-files && yarn build:copy-flow-files && yarn build:copy-ts-files && yarn build:package-json",
+    "build-deprecated": "yarn build:cjs && yarn build:esm && yarn build:es && yarn build:copy-files && yarn build:copy-flow-files && yarn build:copy-ts-files && yarn build:package-json",
+    "build": "yarn build:cjs && yarn build:esm && yarn build:copy-files && yarn build:copy-ts-files && yarn build:package-json",
     "build:documentation-site-files": "node ./scripts/build-documentation-site-files.js",
     "unit-test": "yarn jest --coverage",
     "e2e:build": "webpack --config webpack.e2e.config.js --mode=production",
@@ -183,6 +182,7 @@
     "webpack-cli": "^3.1.0"
   },
   "dependencies": {
+    "baseui": "^9.42.0",
     "card-validator": "^6.2.0",
     "date-fns": "^2.6.0",
     "just-extend": "^4.0.2",

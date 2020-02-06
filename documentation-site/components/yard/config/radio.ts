@@ -1,6 +1,6 @@
 import pick from 'just-pick';
 
-import {Radio, RadioGroup, ALIGN} from 'baseui/radio';
+import {Radio, RadioGroup, ALIGN} from 'spaceweb/radio';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

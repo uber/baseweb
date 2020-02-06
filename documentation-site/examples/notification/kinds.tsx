@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Notification, KIND} from 'baseui/notification';
+import {Notification, KIND} from 'spaceweb/notification';
 
 export default () => (
   <React.Fragment>

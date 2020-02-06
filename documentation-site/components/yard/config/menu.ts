@@ -1,4 +1,4 @@
-import {StatefulMenu} from 'baseui/menu';
+import {StatefulMenu} from 'spaceweb/menu';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

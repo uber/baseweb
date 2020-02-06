@@ -1,5 +1,5 @@
 import React from 'react';
-import {withStyle, useStyletron} from 'baseui';
+import {withStyle, useStyletron} from 'spaceweb';
 import {
   StyledTable,
   StyledHead,
@@ -7,7 +7,7 @@ import {
   StyledBody,
   StyledRow,
   StyledCell,
-} from 'baseui/table';
+} from 'spaceweb/table';
 
 const DATA = [
   [

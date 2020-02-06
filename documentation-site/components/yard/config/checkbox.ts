@@ -1,5 +1,5 @@
 import pick from 'just-pick';
-import {Checkbox, STYLE_TYPE, LABEL_PLACEMENT} from 'baseui/checkbox';
+import {Checkbox, STYLE_TYPE, LABEL_PLACEMENT} from 'spaceweb/checkbox';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 import {changeHandlers} from './common';

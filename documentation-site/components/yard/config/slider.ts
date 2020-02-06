@@ -1,4 +1,4 @@
-import {Slider} from 'baseui/slider';
+import {Slider} from 'spaceweb/slider';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

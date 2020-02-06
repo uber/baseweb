@@ -1,5 +1,5 @@
 import pick from 'just-pick';
-import {Select, SIZE, TYPE} from 'baseui/select';
+import {Select, SIZE, TYPE} from 'spaceweb/select';
 import {PropTypes} from 'react-view';
 import {changeHandlers} from './common';
 import {TConfig} from '../types';

@@ -4,7 +4,7 @@ import {
   COUNTRIES,
   CountrySelectDropdown,
   StyledFlag,
-} from 'baseui/phone-input';
+} from 'spaceweb/phone-input';
 
 function CustomFlag(props: any) {
   const {children, ...rest} = props;

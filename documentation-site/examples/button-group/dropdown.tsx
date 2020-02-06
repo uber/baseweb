@@ -1,9 +1,9 @@
 import * as React from 'react';
-import {Button} from 'baseui/button';
-import {ButtonGroup} from 'baseui/button-group';
-import {TriangleDown} from 'baseui/icon';
-import {Popover} from 'baseui/popover';
-import {StatefulMenu} from 'baseui/menu';
+import {Button} from 'spaceweb/button';
+import {ButtonGroup} from 'spaceweb/button-group';
+import {TriangleDown} from 'spaceweb/icon';
+import {Popover} from 'spaceweb/popover';
+import {StatefulMenu} from 'spaceweb/menu';
 
 const items = [
   {label: 'deploy'},

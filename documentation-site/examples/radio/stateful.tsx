@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Radio, StatefulRadioGroup} from 'baseui/radio';
+import {Radio, StatefulRadioGroup} from 'spaceweb/radio';
 
 export default () => (
   <StatefulRadioGroup

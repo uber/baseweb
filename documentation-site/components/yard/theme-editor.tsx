@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {useValueDebounce} from 'react-view';
-import {Input, SIZE} from 'baseui/input';
+import {Input, SIZE} from 'spaceweb/input';
 import {useStyletron} from 'baseui';
 import Link from 'next/link';
-import {StyledLink} from 'baseui/link';
-import {Caption1} from 'baseui/typography';
+import {StyledLink} from 'spaceweb/link';
+import {Caption1} from 'spaceweb/typography';
 import {getActiveTheme, getThemeDiff} from './provider';
 
 type ThemeEditorProps = {

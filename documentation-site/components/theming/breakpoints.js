@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {LightTheme} from 'baseui';
+import {LightTheme} from 'spaceweb';
 import {Property} from './common.js';
 
 export function Breakpoint({

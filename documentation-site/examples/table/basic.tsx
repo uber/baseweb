@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Table} from 'baseui/table';
+import {Table} from 'spaceweb/table';
 
 const DATA = [
   ['Sarah Brown', 31, '100 Broadway st. New York City, New York'],

@@ -11,10 +11,10 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import semver from 'semver';
 
-import ChevronDown from 'baseui/icon/chevron-down';
-import {StatefulPopover, PLACEMENT as PopoverPlacement} from 'baseui/popover';
-import {StatefulMenu, NestedMenus} from 'baseui/menu';
-import {Button, KIND} from 'baseui/button';
+import ChevronDown from 'spaceweb/icon/chevron-down';
+import {StatefulPopover, PLACEMENT as PopoverPlacement} from 'spaceweb/popover';
+import {StatefulMenu, NestedMenus} from 'spaceweb/menu';
+import {Button, KIND} from 'spaceweb/button';
 
 import {version} from '../../package.json';
 import versions from '../../versions.json';

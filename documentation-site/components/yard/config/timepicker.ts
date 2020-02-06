@@ -1,5 +1,5 @@
-import {TimePicker} from 'baseui/timepicker';
-import {SIZE} from 'baseui/input';
+import {TimePicker} from 'spaceweb/timepicker';
+import {SIZE} from 'spaceweb/input';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 import inputConfig from './input';

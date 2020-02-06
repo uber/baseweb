@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {FileUploader} from 'baseui/file-uploader';
+import {FileUploader} from 'spaceweb/file-uploader';
 
 // https://overreacted.io/making-setinterval-declarative-with-react-hooks/
 function useInterval(callback: () => void, delay: number | null) {

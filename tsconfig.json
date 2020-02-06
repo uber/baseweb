@@ -27,8 +27,8 @@
     "allowSyntheticDefaultImports": true /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */,
     "baseUrl": "./",
     "paths": {
-      "baseui": ["./src"],
-      "baseui/*": ["./src/*"]
+      "spaceweb": ["./src"],
+      "spaceweb/*": ["./src/*"]
     }
   },
   "exclude": [

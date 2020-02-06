@@ -1,5 +1,5 @@
 import React from 'react';
-import {Input} from 'baseui/input';
+import {Input} from 'spaceweb/input';
 
 export default () => (
   <Input

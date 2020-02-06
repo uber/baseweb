@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {Alert, Check, Search} from 'baseui/icon';
-import {Input} from 'baseui/input';
+import {Alert, Check, Search} from 'spaceweb/icon';
+import {Input} from 'spaceweb/input';
 
 function Before() {
   const [css, theme] = useStyletron();

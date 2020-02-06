@@ -1,5 +1,5 @@
-import {FormControl} from 'baseui/form-control';
-import {Input} from 'baseui/input';
+import {FormControl} from 'spaceweb/form-control';
+import {Input} from 'spaceweb/input';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

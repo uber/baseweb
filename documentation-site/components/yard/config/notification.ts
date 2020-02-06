@@ -1,5 +1,5 @@
 import pick from 'just-pick';
-import {Notification, KIND} from 'baseui/notification';
+import {Notification, KIND} from 'spaceweb/notification';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 import {changeHandlers} from './common';

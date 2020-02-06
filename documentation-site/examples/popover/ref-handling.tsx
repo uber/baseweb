@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {Label3} from 'baseui/typography';
-import {StatefulCheckbox} from 'baseui/checkbox';
+import {Label3} from 'spaceweb/typography';
+import {StatefulCheckbox} from 'spaceweb/checkbox';
 import {
   StatefulPopover,
   PLACEMENT,
   TRIGGER_TYPE,
-} from 'baseui/popover';
+} from 'spaceweb/popover';
 
 const CheckboxWithRef = React.forwardRef((props: any, ref) => {
   const {children, ...restProps} = props;

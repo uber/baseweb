@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Slider} from 'baseui/slider';
+import {Slider} from 'spaceweb/slider';
 import {useStyletron} from 'baseui';
 
 const mToKm = (value: number) => `${(value / 1000).toFixed(1)}km`;

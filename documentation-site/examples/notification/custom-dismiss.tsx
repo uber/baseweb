@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Button, SIZE} from 'baseui/button';
-import {Notification} from 'baseui/notification';
+import {Button, SIZE} from 'spaceweb/button';
+import {Notification} from 'spaceweb/notification';
 
 export default () => (
   <Notification>

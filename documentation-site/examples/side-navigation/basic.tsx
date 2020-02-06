@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Navigation} from 'baseui/side-navigation';
+import {Navigation} from 'spaceweb/side-navigation';
 
 const nav = [
   {

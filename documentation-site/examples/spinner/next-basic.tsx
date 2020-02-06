@@ -1,4 +1,4 @@
 import * as React from 'react';
-import {StyledSpinnerNext} from 'baseui/spinner';
+import {StyledSpinnerNext} from 'spaceweb/spinner';
 
 export default () => <StyledSpinnerNext />;

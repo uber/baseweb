@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Tag, VARIANT} from 'baseui/tag';
+import {Tag, VARIANT} from 'spaceweb/tag';
 
 const variants = Object.keys(VARIANT) as (keyof VARIANT)[];
 

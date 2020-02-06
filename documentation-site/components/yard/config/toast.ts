@@ -1,6 +1,6 @@
-import {toaster, ToasterContainer, PLACEMENT} from 'baseui/toast';
-import {Button, SIZE} from 'baseui/button';
-import {Block} from 'baseui/block';
+import {toaster, ToasterContainer, PLACEMENT} from 'spaceweb/toast';
+import {Button, SIZE} from 'spaceweb/button';
+import {Block} from 'spaceweb/block';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

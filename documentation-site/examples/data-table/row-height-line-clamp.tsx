@@ -8,7 +8,7 @@ import {
   NumericalColumn,
   StringColumn,
   NUMERICAL_FORMATS,
-} from 'baseui/data-table';
+} from 'spaceweb/data-table';
 
 type RowDataT = {
   title: string;

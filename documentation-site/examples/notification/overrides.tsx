@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Notification} from 'baseui/notification';
-import {DeleteAlt} from 'baseui/icon';
+import {Notification} from 'spaceweb/notification';
+import {DeleteAlt} from 'spaceweb/icon';
 
 export default () => (
   <Notification

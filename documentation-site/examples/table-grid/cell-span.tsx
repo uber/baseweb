@@ -1,13 +1,13 @@
 import React from 'react';
 import {format} from 'date-fns';
-import {StyledLink} from 'baseui/link';
+import {StyledLink} from 'spaceweb/link';
 import {useStyletron} from 'baseui';
 
 import {
   StyledTable,
   StyledHeadCell,
   StyledBodyCell,
-} from 'baseui/table-grid';
+} from 'spaceweb/table-grid';
 
 const row = [
   'feat(docs-site): theme editor POC',

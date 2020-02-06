@@ -1,6 +1,10 @@
 import * as React from 'react';
-import {ChevronRight, Search} from 'baseui/icon';
-import {ListItem, ListItemLabel, ARTWORK_SIZES} from 'baseui/list';
+import {ChevronRight, Search} from 'spaceweb/icon';
+import {
+  ListItem,
+  ListItemLabel,
+  ARTWORK_SIZES,
+} from 'spaceweb/list';
 import {useStyletron} from 'baseui';
 
 export default () => {

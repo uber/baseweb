@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {Notification, KIND} from 'baseui/notification';
+import {Notification, KIND} from 'spaceweb/notification';
 
 export default function UnstableWarning() {
   return (

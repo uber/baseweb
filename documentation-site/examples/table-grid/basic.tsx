@@ -4,7 +4,7 @@ import {
   StyledTable,
   StyledHeadCell,
   StyledBodyCell,
-} from 'baseui/table-grid';
+} from 'spaceweb/table-grid';
 
 const data = Array(100)
   .fill(2)

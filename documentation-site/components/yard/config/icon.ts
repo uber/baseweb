@@ -1,4 +1,4 @@
-import {ArrowUp} from 'baseui/icon';
+import {ArrowUp} from 'spaceweb/icon';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

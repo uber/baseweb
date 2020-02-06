@@ -1,6 +1,6 @@
 import React from 'react';
 import {useStyletron} from 'baseui';
-import {Grid, Cell, BEHAVIOR} from 'baseui/layout-grid';
+import {Grid, Cell, BEHAVIOR} from 'spaceweb/layout-grid';
 
 export default () => (
   <Outer>

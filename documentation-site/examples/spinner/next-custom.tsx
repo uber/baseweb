@@ -1,5 +1,5 @@
-import {withStyle} from 'baseui';
-import {StyledSpinnerNext} from 'baseui/spinner';
+import {withStyle} from 'spaceweb';
+import {StyledSpinnerNext} from 'spaceweb/spinner';
 
 const ExtraLargeSpinner = withStyle(StyledSpinnerNext, {
   width: '96px',

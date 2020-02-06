@@ -3,9 +3,9 @@ import {
   Layer,
   TetherBehavior,
   TETHER_PLACEMENT,
-} from 'baseui/layer';
+} from 'spaceweb/layer';
 import {useStyletron} from 'baseui';
-import {Button} from 'baseui/button';
+import {Button} from 'spaceweb/button';
 
 function Wrapper(props: any) {
   const [css] = useStyletron();

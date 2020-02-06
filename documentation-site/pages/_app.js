@@ -18,12 +18,12 @@ import {
   DarkThemeMove,
   LightTheme,
   LightThemeMove,
-} from 'baseui';
-import type {BreakpointsT, ThemeT} from 'baseui/styles/types';
+} from 'spaceweb';
+import type {BreakpointsT, ThemeT} from 'spaceweb/styles/types';
 
 import App from 'next/app';
 import {Provider as StyletronProvider} from 'styletron-react';
-import {Block} from 'baseui/block';
+import {Block} from 'spaceweb/block';
 import Router from 'next/router';
 import type {AppProps} from 'next/app';
 import type {NextPage, NextPageContext} from 'next';

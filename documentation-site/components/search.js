@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 //@flow
 import * as React from 'react';
-import {default as SearchIcon} from 'baseui/icon/search';
+import {default as SearchIcon} from 'spaceweb/icon/search';
 import {themedStyled} from '../pages/_app';
 //$FlowFixMe
 import {trackEvent} from '../helpers/ga';

@@ -29,7 +29,7 @@ callback. Take a look at the example below.
 
 ```js
 // @flow
-import {styled, createThemedStyled} from 'baseui';
+import {styled, createThemedStyled} from 'spaceweb';
 
 type PropsT = {};
 
@@ -59,7 +59,7 @@ on the task at hand with all of the added benefits to type checking.
 
 ```js
 // @flow
-import {styled, withStyle} from 'baseui';
+import {styled, withStyle} from 'spaceweb';
 
 type PropsT = {};
 
@@ -81,7 +81,7 @@ Similar to how `styled` has a related `createThemedStyled` function, `withStyle`
 
 ```js
 // @flow
-import {createThemedStyled, createThemedWithStyle} from 'baseui';
+import {createThemedStyled, createThemedWithStyle} from 'spaceweb';
 
 type CustomTheme = {customColor: string};
 const themedStyled = createThemedStyled<CustomTheme>();
@@ -110,7 +110,7 @@ themed-styled.js
 
 ```js
 // @flow
-import {createThemedStyled, createThemedWithStyle} from 'baseui';
+import {createThemedStyled, createThemedWithStyle} from 'spaceweb';
 
 type CustomTheme = {customColor: string};
 export const styled = createThemedStyled<CustomTheme>();
@@ -160,7 +160,7 @@ As we've seen before, `useStyletron` also has a related `createThemedUseStyletro
 
 ```js
 // @flow
-import {createThemedUseStyletron} from 'baseui';
+import {createThemedUseStyletron} from 'spaceweb';
 
 type CustomTheme = {customColor: string};
 
@@ -179,8 +179,8 @@ See below for an example of how v7 patterns map to v8.
 A simple scenario:
 
 ```diff
--import {styled} from 'baseui';
-+import {createThemedStyled} from 'baseui';
+-import {styled} from 'spaceweb';
++import {createThemedStyled} from 'spaceweb';
 
 type CustomTheme = {customColor: string};
 type PropsT = {};
@@ -196,8 +196,8 @@ type PropsT = {};
 A more complex scenario:
 
 ```diff
--import {styled} from 'baseui';
-+import {createThemedStyled} from 'baseui';
+-import {styled} from 'spaceweb';
++import {createThemedStyled} from 'spaceweb';
 
 type CustomTheme = {customColor: string};
 type PropsT = {};

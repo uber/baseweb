@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Tabs, Tab} from 'baseui/tabs';
+import {Tabs, Tab} from 'spaceweb/tabs';
 
 const content = ['Tab Content 1', 'Tab Content 2', 'Tab Content 3'];
 

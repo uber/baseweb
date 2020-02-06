@@ -8,7 +8,7 @@ import {
   StyledCell,
   SortableHeadCell,
   SORT_DIRECTION,
-} from 'baseui/table';
+} from 'spaceweb/table';
 
 const DATA = [
   ['Marlyn', 10],

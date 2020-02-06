@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyledSpinnerNext, SIZE} from 'baseui/spinner';
+import {StyledSpinnerNext, SIZE} from 'spaceweb/spinner';
 
 export default () => (
   <React.Fragment>

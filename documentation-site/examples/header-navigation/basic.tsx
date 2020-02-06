@@ -4,9 +4,9 @@ import {
   ALIGN,
   StyledNavigationItem as NavigationItem,
   StyledNavigationList as NavigationList,
-} from 'baseui/header-navigation';
-import {StyledLink as Link} from 'baseui/link';
-import {Button} from 'baseui/button';
+} from 'spaceweb/header-navigation';
+import {StyledLink as Link} from 'spaceweb/link';
+import {Button} from 'spaceweb/button';
 
 export default () => (
   <HeaderNavigation>

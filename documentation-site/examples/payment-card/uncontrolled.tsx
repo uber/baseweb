@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StatefulPaymentCard} from 'baseui/payment-card';
+import {StatefulPaymentCard} from 'spaceweb/payment-card';
 
 export default () => (
   <StatefulPaymentCard

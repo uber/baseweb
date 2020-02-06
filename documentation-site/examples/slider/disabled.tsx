@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Slider} from 'baseui/slider';
+import {Slider} from 'spaceweb/slider';
 
 export default () => {
   const [value, setValue] = React.useState([40]);

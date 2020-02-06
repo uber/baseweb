@@ -1,4 +1,4 @@
-import {Button, KIND, SIZE, SHAPE} from 'baseui/button';
+import {Button, KIND, SIZE, SHAPE} from 'spaceweb/button';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

@@ -8,7 +8,7 @@ import {
   Paragraph2,
   Paragraph3,
   Paragraph4,
-} from 'baseui/typography';
+} from 'spaceweb/typography';
 
 const textString =
   'We ignite opportunity by setting the world in motion.';

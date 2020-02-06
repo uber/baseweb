@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Checkbox} from 'baseui/checkbox';
+import {Checkbox} from 'spaceweb/checkbox';
 
 export default () => {
   const [checkboxes, setCheckboxes] = React.useState([

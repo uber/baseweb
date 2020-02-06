@@ -1,7 +1,7 @@
 import React from 'react';
-import {withStyle, useStyletron} from 'baseui';
+import {withStyle, useStyletron} from 'spaceweb';
 
-import {Block} from 'baseui/block';
+import {Block} from 'spaceweb/block';
 import {
   ArrowUp,
   ArrowDown,
@@ -9,7 +9,7 @@ import {
   Plus,
   Delete,
   Overflow,
-} from 'baseui/icon';
+} from 'spaceweb/icon';
 import {
   StyledTable,
   StyledHead,
@@ -18,9 +18,9 @@ import {
   StyledRow,
   StyledCell,
   StyledAction,
-} from 'baseui/table';
-import {Caption1, Caption2, Paragraph3} from 'baseui/typography';
-import {Theme} from 'baseui/theme';
+} from 'spaceweb/table';
+import {Caption1, Caption2, Paragraph3} from 'spaceweb/typography';
+import {Theme} from 'spaceweb/theme';
 
 const StyledHeadingCell = withStyle(StyledCell, {
   paddingTop: 0,

@@ -1,10 +1,10 @@
 import React from 'react';
 
 import {useStyletron} from 'baseui';
-import {Unstable_A11y as A11y} from 'baseui/a11y';
-import {Button} from 'baseui/button';
-import {FormControl} from 'baseui/form-control';
-import {StatefulInput} from 'baseui/input';
+import {Unstable_A11y as A11y} from 'spaceweb/a11y';
+import {Button} from 'spaceweb/button';
+import {FormControl} from 'spaceweb/form-control';
+import {StatefulInput} from 'spaceweb/input';
 
 export default () => {
   const [inputs, setInputs] = React.useState(['']);

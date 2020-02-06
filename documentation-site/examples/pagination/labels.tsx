@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StatefulPagination} from 'baseui/pagination';
+import {StatefulPagination} from 'spaceweb/pagination';
 
 export default () => (
   <StatefulPagination

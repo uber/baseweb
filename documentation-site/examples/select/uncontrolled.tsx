@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StatefulSelect} from 'baseui/select';
+import {StatefulSelect} from 'spaceweb/select';
 
 export default () => (
   <StatefulSelect

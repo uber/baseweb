@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {FormControl} from 'baseui/form-control';
-import {RadioGroup, Radio} from 'baseui/radio';
+import {FormControl} from 'spaceweb/form-control';
+import {RadioGroup, Radio} from 'spaceweb/radio';
 
 export default () => {
   const [value, setValue] = React.useState('');

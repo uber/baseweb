@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Radio, RadioGroup} from 'baseui/radio';
+import {Radio, RadioGroup} from 'spaceweb/radio';
 
 export default () => (
   <RadioGroup disabled name="radio group" value="1">

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Button} from 'baseui/button';
-import {StatefulButtonGroup, MODE} from 'baseui/button-group';
+import {Button} from 'spaceweb/button';
+import {StatefulButtonGroup, MODE} from 'spaceweb/button-group';
 
 export default () => (
   <StatefulButtonGroup

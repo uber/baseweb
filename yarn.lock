@@ -5476,6 +5476,29 @@ base@^0.11.1:
     mixin-deep "^1.2.0"
     pascalcase "^0.1.1"
 
+baseui@^9.42.0:
+  version "9.42.0"
+  resolved "https://registry.yarnpkg.com/baseui/-/baseui-9.42.0.tgz#0f0c696f141ba4294d9563510f2edc4dd70e2fdf"
+  integrity sha512-WKNWr8HgQNPkO2qN1dyjgLzJHOAtJYq8jz/72QMHnyBZZgD39t4suHE9o0N87UEqjaO3AkRtrbU5KzzGqm3Iag==
+  dependencies:
+    card-validator "^6.2.0"
+    date-fns "^2.6.0"
+    just-extend "^4.0.2"
+    memoize-one "^5.1.1"
+    polished "^3.2.0"
+    popper.js "^1.16.0"
+    react-dropzone "^9.0.0"
+    react-focus-lock "^2.2.1"
+    react-input-mask "^2.0.4"
+    react-is "^16.8.6"
+    react-movable "^2.4.0"
+    react-multi-ref "^1.0.0"
+    react-range "^1.4.8"
+    react-virtualized "^9.21.1"
+    react-virtualized-auto-sizer "^1.0.2"
+    react-window "^1.8.5"
+    timezone-support "^2.0.2"
+
 batch-processor@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/batch-processor/-/batch-processor-1.0.0.tgz#75c95c32b748e0850d10c2b168f6bdbe9891ace8"

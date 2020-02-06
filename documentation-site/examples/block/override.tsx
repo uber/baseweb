@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Block} from 'baseui/block';
+import {Block} from 'spaceweb/block';
 
 export default () => {
   return (

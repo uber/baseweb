@@ -1,8 +1,8 @@
 /* global document */
 import * as React from 'react';
-import {Layer} from 'baseui/layer';
+import {Layer} from 'spaceweb/layer';
 import {useStyletron} from 'baseui';
-import {Button} from 'baseui/button';
+import {Button} from 'spaceweb/button';
 
 function Wrapper(props: any) {
   const [css] = useStyletron();

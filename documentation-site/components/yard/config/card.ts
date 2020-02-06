@@ -1,5 +1,5 @@
-import {Card, StyledBody, StyledAction} from 'baseui/card';
-import {Button} from 'baseui/button';
+import {Card, StyledBody, StyledAction} from 'spaceweb/card';
+import {Button} from 'spaceweb/button';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

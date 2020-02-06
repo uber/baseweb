@@ -1,5 +1,5 @@
-import {TimezonePicker} from 'baseui/timezonepicker';
-import {SIZE} from 'baseui/input';
+import {TimezonePicker} from 'spaceweb/timezonepicker';
+import {SIZE} from 'spaceweb/input';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 import inputConfig from './input';

@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import {Checkbox} from 'baseui/checkbox';
-import {StyledLink as Link} from 'baseui/link';
+import {Checkbox} from 'spaceweb/checkbox';
+import {StyledLink as Link} from 'spaceweb/link';
 import {
   TableBuilder,
   TableBuilderColumn,
-} from 'baseui/table-semantic';
+} from 'spaceweb/table-semantic';
 
 export default () => {
   const [data, setData] = useState([

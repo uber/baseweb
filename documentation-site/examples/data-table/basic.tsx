@@ -9,7 +9,7 @@ import {
   StringColumn,
   COLUMNS,
   NUMERICAL_FORMATS,
-} from 'baseui/data-table';
+} from 'spaceweb/data-table';
 
 // https://gist.github.com/6174/6062387
 function pseudoRandomString(rowIdx: any, columnIdx: any) {

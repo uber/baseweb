@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import {Notification} from 'baseui/notification';
+import {Notification} from 'spaceweb/notification';
 import Layout from '../../components/layout';
 import Example from '../../components/example';
 import IconOverrides from 'examples/theme/icon-overrides.js';
@@ -78,7 +78,7 @@ We provide two themes out of the box, `LightTheme` and `DarkTheme`, which style 
 
 ```js
 import React from 'react';
-import {LightTheme} from 'baseui';
+import {LightTheme} from 'spaceweb';
 
 export default function App() {
   return (
@@ -95,8 +95,8 @@ If you want to allow for toggling between the two themes at runtime, you need to
 
 ```js
 import React from 'react';
-import {LightTheme, DarkTheme, ThemeProvider} from 'baseui';
-import {Button} from 'baseui/button';
+import {LightTheme, DarkTheme, ThemeProvider} from 'spaceweb';
+import {Button} from 'spaceweb/button';
 
 const THEME = {
   light: 'light',
@@ -125,7 +125,7 @@ While `ThemeProvider` will provide your theme object to any descendent Base Web 
 
 ```js
 import React from 'react';
-import {BaseProvider, LightTheme} from 'baseui';
+import {BaseProvider, LightTheme} from 'spaceweb';
 import {Provider as StyletronProvider} from 'styletron-react';
 import {Client as Styletron} from 'styletron-engine-atomic';
 
@@ -155,7 +155,7 @@ However, before you go down either of these roads, you should know that Base Web
 As you might expect, `createTheme` is a factory function for Base Web compliant theme objects. We use `createTheme` to construct our default light and dark themes.
 
 ```js
-import {createTheme} from 'baseui';
+import {createTheme} from 'spaceweb';
 
 const theme = createTheme(/* primitives */, /* overrides */);
 ```
@@ -167,7 +167,7 @@ Our theme object has a lot of properties. Most of these properties are assigned 
 These are passed as the first (and only required) argument for `createTheme`.
 
 ```js
-import {createTheme, lightThemePrimitives} from 'baseui';
+import {createTheme, lightThemePrimitives} from 'spaceweb';
 
 const primitives = {
   ...lightThemePrimitives,
@@ -196,7 +196,7 @@ The second parameter for createTheme is an `overrides` object.
 The `overrides` object will be deep-merged with the initial result of mapping `primitives` to all of the theme properties. `overrides` is just a convenient shortcut for deep-merging assignments onto your theme object.
 
 ```js
-import {createTheme, lightThemePrimitives} from 'baseui';
+import {createTheme, lightThemePrimitives} from 'spaceweb';
 
 const primitives = {
   ...lightThemePrimitives,
@@ -236,7 +236,7 @@ Between `parameters` and `overrides`, you should have a fair amount of control o
 The `primitives` object has an optional property, `primaryFontFamily`, which allows you to set a custom font family string for typography components.
 
 ```js
-import {createTheme, lightThemePrimitives} from 'baseui';
+import {createTheme, lightThemePrimitives} from 'spaceweb';
 
 const primitives = {
   ...lightThemePrimitives,
@@ -251,7 +251,7 @@ In this example, we assign `primaryFontFamily` to the vastly underrated `Verdana
 But what if we wanted to use `Georgia` for Display typography? For this purpose, you would need to use `overrides`.
 
 ```js
-import {createTheme, lightThemePrimitives} from 'baseui';
+import {createTheme, lightThemePrimitives} from 'spaceweb';
 
 const primitives = {
   ...lightThemePrimitives,
@@ -321,7 +321,7 @@ There may be a scenario where you want to extend our default theme. We do not re
 ```js
 // @flow
 
-import type {ThemeT} from 'baseui';
+import type {ThemeT} from 'spaceweb';
 
 const CustomThemeT = ThemeT & {customColor: string};
 ```
@@ -329,8 +329,8 @@ const CustomThemeT = ThemeT & {customColor: string};
 You will notice, however, that you can't use `createTheme` with your `CustomThemeT`. If you want to use `createTheme`, we recommend that you first create a normal theme with `createTheme` and then _extend_ it with your custom properties.
 
 ```js
-import {createTheme} from 'baseui';
-import type {ThemeT} from 'baseui';
+import {createTheme} from 'spaceweb';
+import type {ThemeT} from 'spaceweb';
 
 const CustomThemeT = ThemeT & {customColor: string};
 
@@ -356,7 +356,7 @@ import {
  createThemedStyled,
  createThemedWithStyle,
  createThemedUseStyletron
-} from 'baseui';
+} from 'spaceweb';
 
 export const themedStyled = createThemedStyled<CustomThemeT>();
 export const themedWithStyle = createThemedWithStyle<CustomThemeT>();
@@ -389,8 +389,8 @@ There are two supported methods for styling Base Web components: `withStyle` and
 Whenever Base Web exports a [Styletron](https://www.styletron.org/) styled component we prefix that component with `Styled`. You can use `withStyle` to extend a styled component with your custom styles:
 
 ```js
-import {withStyle} from 'baseui';
-import {StyledBaseButton} from 'baseui/button';
+import {withStyle} from 'spaceweb';
+import {StyledBaseButton} from 'spaceweb/button';
 
 const MyButton = withStyle(StyledBaseButton, ({$theme}) => {
   return {
@@ -406,7 +406,7 @@ Notice how the second parameter is a function that is passed an object with a `$
 For in-depth information on `overrides`, check out the [official documentation](/guides/understanding-overrides). As it relates to theming, any `overrides` `style` function will be passed a reference to the nearest ancestor theme object to make consistent styling easy.
 
 ```js
-import {Button} from 'baseui/button';
+import {Button} from 'spaceweb/button';
 
 function App() {
   return (
@@ -453,7 +453,7 @@ function App() {
 #### `styled`
 
 ```js
-import {styled} from 'baseui';
+import {styled} from 'spaceweb';
 
 const Title = styled('div', ({$theme}) => {
   return {
@@ -471,7 +471,7 @@ function App() {
 #### `Block`
 
 ```js
-import {Block} from 'baseui/block';
+import {Block} from 'spaceweb/block';
 
 function App() {
   return <Block color="accent" />;

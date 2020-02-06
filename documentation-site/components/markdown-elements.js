@@ -10,8 +10,8 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import Head from 'next/head';
-import {Block} from 'baseui/block';
-import {StyledLink} from 'baseui/link';
+import {Block} from 'spaceweb/block';
+import {StyledLink} from 'spaceweb/link';
 import Code from './code';
 import {themedStyled} from '../pages/_app';
 import Link from 'next/link';

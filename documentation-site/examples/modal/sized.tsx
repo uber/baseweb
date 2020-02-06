@@ -1,12 +1,12 @@
 import * as React from 'react';
-import {Button} from 'baseui/button';
+import {Button} from 'spaceweb/button';
 import {
   Modal,
   ModalHeader,
   ModalBody,
   ModalFooter,
   ModalButton,
-} from 'baseui/modal';
+} from 'spaceweb/modal';
 
 export default () => {
   const [isOpen, setIsOpen] = React.useState(false);

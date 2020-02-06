@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {TimezonePicker} from 'baseui/timezonepicker';
-import {FormControl} from 'baseui/form-control';
+import {TimezonePicker} from 'spaceweb/timezonepicker';
+import {FormControl} from 'spaceweb/form-control';
 
 export default () => {
   const [css] = useStyletron();

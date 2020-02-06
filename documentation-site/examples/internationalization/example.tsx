@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {LocaleProvider} from 'baseui';
-import {StatefulPagination} from 'baseui/pagination';
+import {LocaleProvider} from 'spaceweb';
+import {StatefulPagination} from 'spaceweb/pagination';
 
 const localeOverrideHu = {
   pagination: {

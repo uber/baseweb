@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {List, arrayMove} from 'baseui/dnd-list';
+import {List, arrayMove} from 'spaceweb/dnd-list';
 
 export default class Example extends React.Component<
   {},

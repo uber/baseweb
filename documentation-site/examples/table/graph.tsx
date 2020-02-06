@@ -7,7 +7,7 @@ import {
   StyledBody,
   StyledRow,
   StyledCell,
-} from 'baseui/table';
+} from 'spaceweb/table';
 import {
   AreaSeries,
   VerticalBarSeries,

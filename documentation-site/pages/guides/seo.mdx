@@ -46,7 +46,7 @@ To enable this functionality in Base Web, you can add the `renderAll` property t
 
 ```js
 import * as React from 'react';
-import {StatefulTabs, Tab} from 'baseui/tabs';
+import {StatefulTabs, Tab} from 'spaceweb/tabs';
 export default () => (
   <StatefulTabs initialState={{activeKey: '0'}} renderAll>
     <Tab title="Tab Link 1">
@@ -68,7 +68,7 @@ The `Accordion` component follows the same principles as the `Tab` component - t
 
 ```js
 import * as React from 'react';
-import {Accordion, Panel} from 'baseui/accordion';
+import {Accordion, Panel} from 'spaceweb/accordion';
 const content =
   'Praesent condimentum ante ac ipsum aliquam, ac scelerisque velit sagittis. Ut sit amet libero scelerisque, accumsan ante vitae, hendrerit tellus. Nullam metus est, vehicula a aliquet id, lobortis in mauris.';
 export default () => (
@@ -98,7 +98,7 @@ To best comply with SEO best practices, wrap the text within the `Card` componen
 
 ```js
 import * as React from 'react';
-import {Card, StyledBody} from 'baseui/card';
+import {Card, StyledBody} from 'spaceweb/card';
 export default () => (
   <Card overrides={{Root: {style: {width: '328px'}}}}>
     <StyledBody $as="p">
@@ -117,14 +117,14 @@ Similarily to the Card component, text in the Modal should we wrapped in paragra
 
 ```js
 import * as React from 'react';
-import {Button} from 'baseui/button';
+import {Button} from 'spaceweb/button';
 import {
   Modal,
   ModalHeader,
   ModalBody,
   ModalFooter,
   ModalButton,
-} from 'baseui/modal';
+} from 'spaceweb/modal';
 export default () => {
   const [isOpen, setIsOpen] = React.useState(false);
   function close() {

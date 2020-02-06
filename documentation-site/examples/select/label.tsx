@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {styled} from 'baseui';
-import {Select, Value} from 'baseui/select';
+import {styled} from 'spaceweb';
+import {Select, Value} from 'spaceweb/select';
 
 const ColorSwatch = styled('div', (props: any) => {
   return {

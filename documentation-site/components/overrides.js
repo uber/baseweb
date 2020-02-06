@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import * as React from 'react';
-import {Block} from 'baseui/block';
-import {Radio, RadioGroup} from 'baseui/radio';
+import {Block} from 'spaceweb/block';
+import {Radio, RadioGroup} from 'spaceweb/radio';
 import {DocLink} from './markdown-elements';
 import {trackEvent} from '../helpers/ga';
 

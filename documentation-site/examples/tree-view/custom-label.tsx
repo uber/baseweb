@@ -2,8 +2,8 @@ import * as React from 'react';
 import {
   Unstable_StatefulTreeView as StatefulTreeView,
   TreeNode,
-} from 'baseui/tree-view';
-import {styled} from 'baseui';
+} from 'spaceweb/tree-view';
+import {styled} from 'spaceweb';
 
 const Label = styled('div', {
   display: 'flex',

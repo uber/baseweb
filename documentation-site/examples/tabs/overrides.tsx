@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {StatefulTabs, Tab, StyledTab} from 'baseui/tabs';
-import {Label2} from 'baseui/typography';
+import {StatefulTabs, Tab, StyledTab} from 'spaceweb/tabs';
+import {Label2} from 'spaceweb/typography';
 
 function TabOverride({children, ...rest}: any) {
   return (

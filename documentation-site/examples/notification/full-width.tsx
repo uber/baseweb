@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Notification} from 'baseui/notification';
+import {Notification} from 'spaceweb/notification';
 
 export default () => (
   <Notification

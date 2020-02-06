@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Button} from 'baseui/button';
-import {Drawer, SIZE} from 'baseui/drawer';
+import {Button} from 'spaceweb/button';
+import {Drawer, SIZE} from 'spaceweb/drawer';
 
 export default () => {
   let initialState: {[key: string]: boolean} = {};

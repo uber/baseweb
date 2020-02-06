@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {PhoneInput, COUNTRIES} from 'baseui/phone-input';
+import {PhoneInput, COUNTRIES} from 'spaceweb/phone-input';
 
 export default () => {
   const [text, setText] = useState('');

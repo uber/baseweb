@@ -5,7 +5,7 @@ import {
   ArrowRight,
   ArrowDown,
   ArrowLeft,
-} from 'baseui/icon';
+} from 'spaceweb/icon';
 
 export default () => {
   const [css, theme] = useStyletron();

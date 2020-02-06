@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Heading, HeadingLevel} from 'baseui/heading';
-import {Paragraph3} from 'baseui/typography';
+import {Heading, HeadingLevel} from 'spaceweb/heading';
+import {Paragraph3} from 'spaceweb/typography';
 
 export default () => (
   <HeadingLevel>

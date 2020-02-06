@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {EmoticonRating} from 'baseui/rating';
+import {EmoticonRating} from 'spaceweb/rating';
 
 export default () => {
   const [value, setValue] = React.useState(1);

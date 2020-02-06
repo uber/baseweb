@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StatefulInput} from 'baseui/input';
+import {StatefulInput} from 'spaceweb/input';
 
 export default () => (
   <StatefulInput

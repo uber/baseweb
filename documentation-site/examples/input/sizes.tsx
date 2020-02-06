@@ -1,5 +1,5 @@
 import React from 'react';
-import {Input, SIZE} from 'baseui/input';
+import {Input, SIZE} from 'spaceweb/input';
 
 export default () => (
   <React.Fragment>

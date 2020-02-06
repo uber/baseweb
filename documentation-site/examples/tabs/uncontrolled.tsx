@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StatefulTabs, Tab} from 'baseui/tabs';
+import {StatefulTabs, Tab} from 'spaceweb/tabs';
 
 export default () => (
   <StatefulTabs initialState={{activeKey: '0'}}>

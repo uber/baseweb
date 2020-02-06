@@ -1,4 +1,4 @@
-import {FileUploader} from 'baseui/file-uploader';
+import {FileUploader} from 'spaceweb/file-uploader';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {StatefulTabs, Tab} from 'baseui/tabs';
+import {StatefulTabs, Tab} from 'spaceweb/tabs';
 
 export const YardTabs: React.FC<{children: React.ReactNode}> = ({children}) => {
   const [, theme] = useStyletron();

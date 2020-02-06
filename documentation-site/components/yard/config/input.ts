@@ -1,6 +1,6 @@
 import pick from 'just-pick';
 
-import {Input, ADJOINED, SIZE} from 'baseui/input';
+import {Input, ADJOINED, SIZE} from 'spaceweb/input';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

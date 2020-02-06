@@ -6,7 +6,7 @@ import {
   ModalButton,
   SIZE,
   ROLE,
-} from 'baseui/modal';
+} from 'spaceweb/modal';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

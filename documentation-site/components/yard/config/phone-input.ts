@@ -1,4 +1,4 @@
-import {PhoneInput, COUNTRIES, SIZE} from 'baseui/phone-input';
+import {PhoneInput, COUNTRIES, SIZE} from 'spaceweb/phone-input';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

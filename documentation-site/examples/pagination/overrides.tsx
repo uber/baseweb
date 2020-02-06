@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Button} from 'baseui/button';
-import {StatefulPagination} from 'baseui/pagination';
+import {Button} from 'spaceweb/button';
+import {StatefulPagination} from 'spaceweb/pagination';
 
 export default () => (
   <StatefulPagination

@@ -2,8 +2,8 @@ import * as React from 'react';
 import {
   AspectRatioBox,
   AspectRatioBoxBody,
-} from 'baseui/aspect-ratio-box';
-import {Button, KIND} from 'baseui/button';
+} from 'spaceweb/aspect-ratio-box';
+import {Button, KIND} from 'spaceweb/button';
 import {useStyletron} from 'baseui';
 
 const CalendarButton = (props: {children: React.ReactNode}) => (

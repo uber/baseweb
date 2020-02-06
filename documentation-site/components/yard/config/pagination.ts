@@ -1,4 +1,4 @@
-import {Pagination} from 'baseui/pagination';
+import {Pagination} from 'spaceweb/pagination';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

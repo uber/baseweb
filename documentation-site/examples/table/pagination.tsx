@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {Button, KIND} from 'baseui/button';
-import {TriangleDown} from 'baseui/icon';
-import {StatefulMenu} from 'baseui/menu';
-import {Pagination} from 'baseui/pagination';
-import {StatefulPopover, PLACEMENT} from 'baseui/popover';
-import {Table} from 'baseui/table';
+import {Button, KIND} from 'spaceweb/button';
+import {TriangleDown} from 'spaceweb/icon';
+import {StatefulMenu} from 'spaceweb/menu';
+import {Pagination} from 'spaceweb/pagination';
+import {StatefulPopover, PLACEMENT} from 'spaceweb/popover';
+import {Table} from 'spaceweb/table';
 
 function PaginatedTable(props: {data: any[]; columns: any[]}) {
   const [css, theme] = useStyletron();

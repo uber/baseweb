@@ -3,7 +3,7 @@ import {
   ACCESSIBILITY_TYPE,
   PLACEMENT,
   TRIGGER_TYPE,
-} from 'baseui/tooltip';
+} from 'spaceweb/tooltip';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {FileUploader} from 'baseui/file-uploader';
+import {FileUploader} from 'spaceweb/file-uploader';
 
 export default function() {
   const [isUploading, setIsUploading] = React.useState(false);

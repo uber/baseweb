@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StatefulTabs, Tab, ORIENTATION} from 'baseui/tabs';
+import {StatefulTabs, Tab, ORIENTATION} from 'spaceweb/tabs';
 
 export default () => (
   <StatefulTabs

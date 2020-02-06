@@ -1,5 +1,5 @@
 import omit from 'just-omit';
-import {Textarea, SIZE, ADJOINED} from 'baseui/textarea';
+import {Textarea, SIZE, ADJOINED} from 'spaceweb/textarea';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 import {theme, inputProps} from './input';

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {Button} from 'baseui/button';
-import {StatefulPopover} from 'baseui/popover';
-import {Paragraph3} from 'baseui/typography';
+import {Button} from 'spaceweb/button';
+import {StatefulPopover} from 'spaceweb/popover';
+import {Paragraph3} from 'spaceweb/typography';
 
 export default () => (
   <StatefulPopover

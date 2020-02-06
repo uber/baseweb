@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {Button} from 'baseui/button';
-import {ButtonGroup} from 'baseui/button-group';
+import {Button} from 'spaceweb/button';
+import {ButtonGroup} from 'spaceweb/button-group';
 
 function ControlledButtonGroup() {
   const [css, theme] = useStyletron();

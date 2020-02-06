@@ -1,5 +1,5 @@
 import Layout from '../../../components/layout';
-import {Table} from 'baseui/table';
+import {Table} from 'spaceweb/table';
 import {BlogImage, Demo, Meta} from '../../../components/blog';
 import metadata from './metadata.json';
 
@@ -26,7 +26,7 @@ Theme no longer needs to be explictly typed in props. The `styled` function prov
 ### Props type pass as generic rather than to callback function
 
 ```diff
-import {styled} from 'baseui';
+import {styled} from 'spaceweb';
 
 - type PropsT = {$active: boolean, $theme: ThemeT};
 - const MyStyledComponent = styled('div', (props: PropsT) => {
@@ -49,7 +49,7 @@ If your application has a custom theme, to properly type check in styled functio
 your theme type as a generic.
 
 ```diff
-import {styled} from 'baseui';
+import {styled} from 'spaceweb';
 
 type PropsT = {$active: boolean};
 - const MyStyledComponent = styled<PropsT>('div', props => {
@@ -100,7 +100,7 @@ warning in the console describing the change. This change follows styletron's su
 in its latest release.
 
 ```diff
-import {styled} from 'baseui';
+import {styled} from 'spaceweb';
 const MyStyledComponent = styled('div', {color: 'red'});
 
 - <MyStyledComponent $ref={myRef} />
@@ -117,7 +117,7 @@ difference now is that `$theme` is injected. See an example below for how you ma
 code. It's a contrived example, but should illustrate how some styletron-components can 'extend' others.
 
 ```diff
-import {styled} from 'baseui';
+import {styled} from 'spaceweb';
 +import {withStyle} from 'styletron-react';
 
 const InitialComponent = styled('div', props => {
@@ -220,8 +220,8 @@ The Pagination component was refactored to reuse the `Select` component for its 
   - `Select` override was added. Please note that `Select` identifier in the pagination overrides object is for a component and not a styled element. Refer to the API of the [`Select` component](https://baseweb.design/components/select/) for the full list of its props.
 
 ```diff
-- import {StyledDropdownMenu} from 'baseui/select';
-- import {StyledDropdownButton} from 'baseui/select';
+- import {StyledDropdownMenu} from 'spaceweb/select';
+- import {StyledDropdownButton} from 'spaceweb/select';
 
   <StatefulPagination
     numPages={10}

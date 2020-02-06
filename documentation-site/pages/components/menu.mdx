@@ -18,9 +18,9 @@ import Grouped from 'examples/menu/grouped.js';
 import VirtualList from 'examples/menu/virtual-list.js';
 
 import Overrides from '../../components/overrides';
-import {StatefulMenu, OptionProfile} from 'baseui/menu';
-import * as MenuExports from 'baseui/menu';
-import {Block} from 'baseui/block';
+import {StatefulMenu, OptionProfile} from 'spaceweb/menu';
+import * as MenuExports from 'spaceweb/menu';
+import {Block} from 'spaceweb/block';
 import Code from '../../components/code';
 
 import Yard from '../../components/yard/index';
@@ -146,7 +146,7 @@ The provided id will be set as a value for the item container's `id` attribute t
         demonstrate their placement)
       </Block>
       <Code>
-        {`import {StatefulMenu, OptionProfile} from 'baseui/menu';
+        {`import {StatefulMenu, OptionProfile} from 'spaceweb/menu';
           export default () => (
             <StatefulMenu
               items={[...new Array(4)].map(() => ({

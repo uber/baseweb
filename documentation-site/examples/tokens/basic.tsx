@@ -1,6 +1,6 @@
 import React from 'react';
 import {useStyletron} from 'baseui';
-import {colors} from 'baseui/tokens';
+import {colors} from 'spaceweb/tokens';
 
 export default () => {
   const [css] = useStyletron();

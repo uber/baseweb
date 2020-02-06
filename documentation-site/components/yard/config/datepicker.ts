@@ -4,8 +4,8 @@ Copyright (c) 2018-2020 Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import {Datepicker, ORIENTATION} from 'baseui/datepicker';
-import {SIZE} from 'baseui/input';
+import {Datepicker, ORIENTATION} from 'spaceweb/datepicker';
+import {SIZE} from 'spaceweb/input';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 import inputConfig from './input';

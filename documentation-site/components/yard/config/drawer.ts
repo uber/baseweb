@@ -1,4 +1,4 @@
-import {Drawer, ANCHOR, SIZE} from 'baseui/drawer';
+import {Drawer, ANCHOR, SIZE} from 'spaceweb/drawer';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

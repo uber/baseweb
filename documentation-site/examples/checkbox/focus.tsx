@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Button, SIZE} from 'baseui/button';
-import {Checkbox} from 'baseui/checkbox';
+import {Button, SIZE} from 'spaceweb/button';
+import {Checkbox} from 'spaceweb/checkbox';
 
 export default () => {
   const [checked, setChecked] = React.useState(true);

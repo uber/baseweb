@@ -1,6 +1,6 @@
 import React from 'react';
-import {withStyle} from 'baseui';
-import {StatefulMenu, OptionList, StyledList} from 'baseui/menu';
+import {withStyle} from 'spaceweb';
+import {StatefulMenu, OptionList, StyledList} from 'spaceweb/menu';
 import {List, AutoSizer} from 'react-virtualized';
 
 const ITEMS = [...new Array(1500)].map((_, index) => ({

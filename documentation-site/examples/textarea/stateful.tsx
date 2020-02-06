@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StatefulTextarea} from 'baseui/textarea';
+import {StatefulTextarea} from 'spaceweb/textarea';
 
 export default () => {
   return (

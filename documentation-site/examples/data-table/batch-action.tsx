@@ -1,5 +1,5 @@
 import React from 'react';
-import {Alert, Check} from 'baseui/icon';
+import {Alert, Check} from 'spaceweb/icon';
 
 import {
   Unstable_StatefulDataTable,
@@ -10,7 +10,7 @@ import {
   NUMERICAL_FORMATS,
   BatchActionT,
   RowActionT,
-} from 'baseui/data-table';
+} from 'spaceweb/data-table';
 
 type RowDataT = [
   string,

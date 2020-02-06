@@ -1,4 +1,4 @@
-import {Navigation} from 'baseui/side-navigation';
+import {Navigation} from 'spaceweb/side-navigation';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

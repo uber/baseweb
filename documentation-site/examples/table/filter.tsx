@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {Checkbox} from 'baseui/checkbox';
+import {Checkbox} from 'spaceweb/checkbox';
 import {
   Filter,
   StyledTable,
@@ -9,7 +9,7 @@ import {
   StyledBody,
   StyledRow,
   StyledCell,
-} from 'baseui/table';
+} from 'spaceweb/table';
 
 const FilterCheckbox = (props: any) => (
   <Checkbox

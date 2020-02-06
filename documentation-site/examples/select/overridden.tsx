@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import {Select, Value} from 'baseui/select';
+import {Select, Value} from 'spaceweb/select';
 
 export default () => {
   const [value, setValue] = React.useState<Value>([]);

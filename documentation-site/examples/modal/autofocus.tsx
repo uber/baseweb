@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Button} from 'baseui/button';
+import {Button} from 'spaceweb/button';
 import {
   Modal,
   ModalHeader,
@@ -7,7 +7,7 @@ import {
   ModalFooter,
   ModalButton,
   FocusOnce,
-} from 'baseui/modal';
+} from 'spaceweb/modal';
 
 export default function() {
   const [isOpen, setOpen] = React.useState(false);

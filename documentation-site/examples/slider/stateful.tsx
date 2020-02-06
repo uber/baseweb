@@ -1,4 +1,4 @@
 import * as React from 'react';
-import {StatefulSlider} from 'baseui/slider';
+import {StatefulSlider} from 'spaceweb/slider';
 
 export default () => <StatefulSlider />;

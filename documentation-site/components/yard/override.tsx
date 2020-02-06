@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {StatefulTooltip} from 'baseui/tooltip';
-import {Button, KIND, SIZE} from 'baseui/button';
-import {ButtonGroup} from 'baseui/button-group';
+import {StatefulTooltip} from 'spaceweb/tooltip';
+import {Button, KIND, SIZE} from 'spaceweb/button';
+import {ButtonGroup} from 'spaceweb/button-group';
 import Editor from './editor';
 import {toggleOverrideSharedProps} from './ast';
 

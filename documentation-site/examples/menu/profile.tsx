@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StatefulMenu, OptionProfile} from 'baseui/menu';
+import {StatefulMenu, OptionProfile} from 'spaceweb/menu';
 
 interface IItem {
   title: string;

@@ -1,6 +1,6 @@
 import React from 'react';
-import {PinCode} from 'baseui/pin-code';
-import {SIZE} from 'baseui/input';
+import {PinCode} from 'spaceweb/pin-code';
+import {SIZE} from 'spaceweb/input';
 
 export default () => {
   const [valuesA, setValuesA] = React.useState(['', '', '', '']);

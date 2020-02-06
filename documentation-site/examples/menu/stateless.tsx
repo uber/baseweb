@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Menu} from 'baseui/menu';
+import {Menu} from 'spaceweb/menu';
 
 const ITEMS = [
   {label: 'Item One'},

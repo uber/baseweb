@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {Button} from 'baseui/button';
-import {ButtonGroup} from 'baseui/button-group';
-import {Upload} from 'baseui/icon';
+import {Button} from 'spaceweb/button';
+import {ButtonGroup} from 'spaceweb/button-group';
+import {Upload} from 'spaceweb/icon';
 
 export default () => (
   <ButtonGroup>

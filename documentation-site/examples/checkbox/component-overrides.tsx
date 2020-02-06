@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {StatefulCheckbox} from 'baseui/checkbox';
-import {Alert} from 'baseui/icon';
+import {StatefulCheckbox} from 'spaceweb/checkbox';
+import {Alert} from 'spaceweb/icon';
 
 export default () => {
   const [css, theme] = useStyletron();

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {ProgressBar} from 'baseui/progress-bar';
+import {ProgressBar} from 'spaceweb/progress-bar';
 
 const SUCCESS_VALUE = 100;
 

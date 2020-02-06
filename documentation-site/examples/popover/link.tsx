@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {StatefulPopover} from 'baseui/popover';
-import {StyledLink} from 'baseui/link';
-import {Paragraph3} from 'baseui/typography';
+import {StatefulPopover} from 'spaceweb/popover';
+import {StyledLink} from 'spaceweb/link';
+import {Paragraph3} from 'spaceweb/typography';
 
 export default () => (
   <StatefulPopover

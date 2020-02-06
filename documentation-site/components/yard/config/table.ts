@@ -1,4 +1,4 @@
-import {Table} from 'baseui/table';
+import {Table} from 'spaceweb/table';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

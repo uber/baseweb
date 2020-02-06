@@ -1,5 +1,5 @@
-import {Breadcrumbs} from 'baseui/breadcrumbs';
-import {StyledLink} from 'baseui/link';
+import {Breadcrumbs} from 'spaceweb/breadcrumbs';
+import {StyledLink} from 'spaceweb/link';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

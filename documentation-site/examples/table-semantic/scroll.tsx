@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Table} from 'baseui/table-semantic';
+import {Table} from 'spaceweb/table-semantic';
 
 const SIZER = Array(100).fill(null);
 

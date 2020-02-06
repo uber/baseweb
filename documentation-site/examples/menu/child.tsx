@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StatefulMenu, NestedMenus} from 'baseui/menu';
+import {StatefulMenu, NestedMenus} from 'spaceweb/menu';
 
 const OPEN_RECENT = 'Open Recent ->';
 const NEW_BREAKPOINT = 'New Breakpoint ->';

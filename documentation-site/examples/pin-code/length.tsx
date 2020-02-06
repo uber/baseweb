@@ -1,5 +1,5 @@
 import React from 'react';
-import {PinCode} from 'baseui/pin-code';
+import {PinCode} from 'spaceweb/pin-code';
 
 export default () => {
   const [values, setValues] = React.useState(Array(10).fill(''));

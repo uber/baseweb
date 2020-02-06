@@ -1,4 +1,4 @@
-import {Accordion, Panel} from 'baseui/accordion';
+import {Accordion, Panel} from 'spaceweb/accordion';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

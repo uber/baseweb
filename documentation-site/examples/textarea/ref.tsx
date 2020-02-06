@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Textarea} from 'baseui/textarea';
-import {Button} from 'baseui/button';
+import {Textarea} from 'spaceweb/textarea';
+import {Button} from 'spaceweb/button';
 
 export default () => {
   const [value, setValue] = React.useState('');

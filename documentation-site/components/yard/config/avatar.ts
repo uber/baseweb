@@ -1,4 +1,4 @@
-import {Avatar} from 'baseui/avatar';
+import {Avatar} from 'spaceweb/avatar';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

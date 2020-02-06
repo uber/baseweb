@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
 //@ts-ignore
-import * as Icons from 'baseui/icon/icon-exports';
+import * as Icons from 'spaceweb/icon/icon-exports';
 
 function makeImportStatement(key: string) {
   const path = key
@@ -9,7 +9,7 @@ function makeImportStatement(key: string) {
     .map(word => word.toLowerCase())
     .join('-');
 
-  return `import ${key} from 'baseui/icon/${path}'`;
+  return `import ${key} from 'spaceweb/icon/${path}'`;
 }
 
 function Row(props: any) {

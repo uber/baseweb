@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
   AspectRatioBox,
   AspectRatioBoxBody,
-} from 'baseui/aspect-ratio-box';
+} from 'spaceweb/aspect-ratio-box';
 
 export default () => (
   <AspectRatioBox width="scale1400">

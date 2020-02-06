@@ -9,11 +9,11 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import CodeSandboxer from 'react-codesandboxer';
 import {withStyle} from 'styletron-react';
-import {Button, KIND, SIZE} from 'baseui/button';
-import {ButtonGroup} from 'baseui/button-group';
-import {Card} from 'baseui/card';
-import {Block} from 'baseui/block';
-import {StyledLink} from 'baseui/link';
+import {Button, KIND, SIZE} from 'spaceweb/button';
+import {ButtonGroup} from 'spaceweb/button-group';
+import {Card} from 'spaceweb/card';
+import {Block} from 'spaceweb/block';
+import {StyledLink} from 'spaceweb/link';
 
 import {version} from '../../package.json';
 import Code from './code';

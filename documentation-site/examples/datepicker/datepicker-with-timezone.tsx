@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {Datepicker} from 'baseui/datepicker';
-import {TimezonePicker} from 'baseui/timezonepicker';
-import {FormControl} from 'baseui/form-control';
+import {Datepicker} from 'spaceweb/datepicker';
+import {TimezonePicker} from 'spaceweb/timezonepicker';
+import {FormControl} from 'spaceweb/form-control';
 
 export default () => {
   const [date, setDate] = useState(new Date());

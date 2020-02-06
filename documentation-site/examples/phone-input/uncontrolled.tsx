@@ -1,4 +1,4 @@
 import React from 'react';
-import {StatefulPhoneInput} from 'baseui/phone-input';
+import {StatefulPhoneInput} from 'spaceweb/phone-input';
 
 export default () => <StatefulPhoneInput />;

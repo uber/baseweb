@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {Accordion, Panel} from 'baseui/accordion';
-import {Caption1} from 'baseui/typography';
+import {Accordion, Panel} from 'spaceweb/accordion';
+import {Caption1} from 'spaceweb/typography';
 import Link from 'next/link';
-import {StyledLink} from 'baseui/link';
+import {StyledLink} from 'spaceweb/link';
 import {useStyletron} from 'baseui';
 
 import Override, {getHighlightStyles} from './override';

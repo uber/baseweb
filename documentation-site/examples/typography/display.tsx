@@ -4,7 +4,7 @@ import {
   Display2,
   Display3,
   Display4,
-} from 'baseui/typography';
+} from 'spaceweb/typography';
 
 const textString =
   'We ignite opportunity by setting the world in motion.';

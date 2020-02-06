@@ -24,7 +24,7 @@ module.exports = {
   ],
   rules: {
     // Enforce flow file declarations
-    'flowtype/require-valid-file-annotation': ['error', 'always'],
+    // 'flowtype/require-valid-file-annotation': ['error', 'always'],
     'flowtype/no-weak-types': ['error'],
     'flowtype/space-after-type-colon': 'off',
     'react/jsx-filename-extension': 0,
@@ -34,7 +34,7 @@ module.exports = {
       'error',
       {optionalDependencies: false, devDependencies: true},
     ],
-    'import/extensions': ['error', 'always', {ignorePackages: true}],
+    // 'import/extensions': ['error', 'always', {ignorePackages: true}],
     'prettier/prettier': [
       'error',
       {
@@ -44,7 +44,7 @@ module.exports = {
       },
     ],
     'import/prefer-default-export': ['off'],
-    'header/header': [2, 'LICENSE-HEAD'],
+    // 'header/header': [2, 'LICENSE-HEAD'],
   },
   overrides: [
     {

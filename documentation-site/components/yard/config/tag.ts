@@ -1,4 +1,4 @@
-import {Tag, KIND, VARIANT} from 'baseui/tag';
+import {Tag, KIND, VARIANT} from 'spaceweb/tag';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

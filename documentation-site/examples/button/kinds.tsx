@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Block} from 'baseui/block';
-import {Button, KIND} from 'baseui/button';
+import {Block} from 'spaceweb/block';
+import {Button, KIND} from 'spaceweb/button';
 
 export default () => (
   <React.Fragment>

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Paragraph3} from 'baseui/typography';
-import {Radio, RadioGroup} from 'baseui/radio';
+import {Paragraph3} from 'spaceweb/typography';
+import {Radio, RadioGroup} from 'spaceweb/radio';
 
 export default () => {
   const [value, setValue] = React.useState('1');

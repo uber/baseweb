@@ -4,8 +4,8 @@ import {
   StyledBody,
   StyledAction,
   StyledThumbnail,
-} from 'baseui/card';
-import {Button} from 'baseui/button';
+} from 'spaceweb/card';
+import {Button} from 'spaceweb/button';
 
 export default () => (
   <Card

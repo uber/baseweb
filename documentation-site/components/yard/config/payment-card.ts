@@ -1,6 +1,6 @@
 import omit from 'just-omit';
-import {PaymentCard} from 'baseui/payment-card';
-import {ADJOINED, SIZE} from 'baseui/input';
+import {PaymentCard} from 'spaceweb/payment-card';
+import {ADJOINED, SIZE} from 'spaceweb/input';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 import {theme, inputProps} from './input';

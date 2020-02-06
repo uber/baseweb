@@ -1,5 +1,5 @@
-import {ProgressSteps, Step} from 'baseui/progress-steps';
-import {Button} from 'baseui/button';
+import {ProgressSteps, Step} from 'spaceweb/progress-steps';
+import {Button} from 'spaceweb/button';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

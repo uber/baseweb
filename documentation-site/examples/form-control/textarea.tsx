@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {FormControl} from 'baseui/form-control';
-import {Textarea} from 'baseui/textarea';
+import {FormControl} from 'spaceweb/form-control';
+import {Textarea} from 'spaceweb/textarea';
 
 export default () => {
   const [value, setValue] = React.useState('');

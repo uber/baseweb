@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Avatar} from 'baseui/avatar';
+import {Avatar} from 'spaceweb/avatar';
 import {useStyletron} from 'baseui';
 
 export default () => {

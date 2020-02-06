@@ -3,9 +3,9 @@ import {
   ALIGN,
   StyledNavigationItem,
   StyledNavigationList,
-} from 'baseui/header-navigation';
-import {StyledLink} from 'baseui/link';
-import {Button} from 'baseui/button';
+} from 'spaceweb/header-navigation';
+import {StyledLink} from 'spaceweb/link';
+import {Button} from 'spaceweb/button';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {Button, KIND, SIZE} from 'baseui/button';
+import {Button, KIND, SIZE} from 'spaceweb/button';
 
 import {TPropValue, TKnobsProps, PropTypes} from 'react-view';
 import Knob from './knob';

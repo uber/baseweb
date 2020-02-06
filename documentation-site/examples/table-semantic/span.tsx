@@ -6,7 +6,7 @@ import {
   StyledTableHeadCell,
   StyledTableBodyRow,
   StyledTableBodyCell,
-} from 'baseui/table-semantic';
+} from 'spaceweb/table-semantic';
 
 export default () => (
   <StyledRoot>

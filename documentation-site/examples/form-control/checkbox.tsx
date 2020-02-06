@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {FormControl} from 'baseui/form-control';
-import {Checkbox} from 'baseui/checkbox';
+import {FormControl} from 'spaceweb/form-control';
+import {Checkbox} from 'spaceweb/checkbox';
 
 export default () => {
   const [checked, setChecked] = React.useState(false);

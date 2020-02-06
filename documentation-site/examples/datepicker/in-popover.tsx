@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Datepicker} from 'baseui/datepicker';
+import {Datepicker} from 'spaceweb/datepicker';
 import {addDays} from 'date-fns';
 
 export default () => {

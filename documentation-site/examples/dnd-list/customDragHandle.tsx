@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {StatefulList} from 'baseui/dnd-list';
+import {StatefulList} from 'spaceweb/dnd-list';
 import {useStyletron} from 'baseui';
-import {ArrowRight} from 'baseui/icon';
+import {ArrowRight} from 'spaceweb/icon';
 
 const CustomDragHandle = () => {
   const [css] = useStyletron();

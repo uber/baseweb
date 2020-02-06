@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {StatefulPopover, TRIGGER_TYPE} from 'baseui/popover';
-import {Paragraph3} from 'baseui/typography';
+import {StatefulPopover, TRIGGER_TYPE} from 'spaceweb/popover';
+import {Paragraph3} from 'spaceweb/typography';
 
 export default () => {
   const [css, theme] = useStyletron();

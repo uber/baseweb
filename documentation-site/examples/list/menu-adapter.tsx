@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-import {ChevronRight, Search} from 'baseui/icon';
-import {StatefulMenu} from 'baseui/menu';
+import {ChevronRight, Search} from 'spaceweb/icon';
+import {StatefulMenu} from 'spaceweb/menu';
 import {
   ListItemLabel,
   MenuAdapter,
   ARTWORK_SIZES,
-} from 'baseui/list';
+} from 'spaceweb/list';
 
 const ITEMS = [...new Array(10)].map(() => ({
   title: 'Jane Smith',

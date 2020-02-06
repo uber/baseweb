@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {StatefulMenu} from 'baseui/menu';
+import {StatefulMenu} from 'spaceweb/menu';
 
 const ITEMS = {
   __ungrouped: [{id: 'Black', color: '#000000'}],

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Select} from 'baseui/select';
+import {Select} from 'spaceweb/select';
 
 const OPTIONS = [
   {id: 'AliceBlue', color: '#F0F8FF'},

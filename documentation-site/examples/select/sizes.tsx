@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {StatefulSelect} from 'baseui/select';
-import {SIZE} from 'baseui/input';
+import {StatefulSelect} from 'spaceweb/select';
+import {SIZE} from 'spaceweb/input';
 
 export default () => (
   <React.Fragment>

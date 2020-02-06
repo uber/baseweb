@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import * as React from 'react';
-import {Block} from 'baseui/block';
+import {Block} from 'spaceweb/block';
 import Head from 'next/head';
 import {H1} from './markdown-elements';
 import {themedStyled} from '../pages/_app';

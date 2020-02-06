@@ -1,9 +1,9 @@
 import * as React from 'react';
-import {StyledLink as Link} from 'baseui/link';
+import {StyledLink as Link} from 'spaceweb/link';
 import {
   TableBuilder,
   TableBuilderColumn,
-} from 'baseui/table-semantic';
+} from 'spaceweb/table-semantic';
 
 const DATA = [
   {

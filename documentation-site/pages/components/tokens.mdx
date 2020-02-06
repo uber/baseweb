@@ -10,7 +10,7 @@ import Layout from '../../components/layout';
 import BasicExample from 'examples/tokens/basic.js';
 import Exports from '../../components/exports';
 
-import * as TokensExports from 'baseui/tokens';
+import * as TokensExports from 'spaceweb/tokens';
 
 export default Layout;
 
@@ -75,8 +75,8 @@ You can create a custom theme with your choice of color tokens. Here is what tha
 ```js
 // myTheme.js
 
-import {createTheme, lightThemePrimitives} from 'baseui';
-import {colors} from 'baseui/tokens';
+import {createTheme, lightThemePrimitives} from 'spaceweb';
+import {colors} from 'spaceweb/tokens';
 
 const myThemePrimitives = {
   ...lightThemePrimitives,
@@ -102,8 +102,8 @@ Sometimes our default mapping of theme's building primitives to theme properties
 ```js
 // myTheme.js
 
-import {createTheme, lightThemePrimitives} from 'baseui';
-import {colors} from 'baseui/tokens';
+import {createTheme, lightThemePrimitives} from 'spaceweb';
+import {colors} from 'spaceweb/tokens';
 
 const myThemeOverrides = {
   colors: {

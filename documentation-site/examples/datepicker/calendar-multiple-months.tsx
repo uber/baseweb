@@ -1,5 +1,5 @@
 import React from 'react';
-import {ORIENTATION, StatefulCalendar} from 'baseui/datepicker';
+import {ORIENTATION, StatefulCalendar} from 'spaceweb/datepicker';
 
 export default () => (
   <StatefulCalendar

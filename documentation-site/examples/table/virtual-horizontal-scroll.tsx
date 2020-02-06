@@ -6,7 +6,7 @@ import {
   StyledHeadCell,
   StyledRow,
   StyledCell,
-} from 'baseui/table';
+} from 'spaceweb/table';
 
 import {List, AutoSizer} from 'react-virtualized';
 import {

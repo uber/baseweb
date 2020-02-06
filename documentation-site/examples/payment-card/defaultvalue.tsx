@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {PaymentCard} from 'baseui/payment-card';
+import {PaymentCard} from 'spaceweb/payment-card';
 
 export default () => {
   const [value, setValue] = React.useState('4111111111111111');

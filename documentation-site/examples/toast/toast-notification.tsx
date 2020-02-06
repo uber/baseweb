@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Toast, KIND} from 'baseui/toast';
+import {Toast, KIND} from 'spaceweb/toast';
 
 export default () => (
   <React.Fragment>

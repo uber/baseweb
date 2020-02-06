@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {FormControl} from 'baseui/form-control';
-import {Input} from 'baseui/input';
+import {FormControl} from 'spaceweb/form-control';
+import {Input} from 'spaceweb/input';
 import {useStyletron} from 'baseui';
-import {Alert} from 'baseui/icon';
+import {Alert} from 'spaceweb/icon';
 import {validate as validateEmail} from 'email-validator'; // add this package to your repo: `$ yarn add email-validator`
 
 function Negative() {

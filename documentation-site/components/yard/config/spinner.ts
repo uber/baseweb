@@ -1,4 +1,4 @@
-import {Spinner} from 'baseui/spinner';
+import {Spinner} from 'spaceweb/spinner';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

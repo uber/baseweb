@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Textarea} from 'baseui/textarea';
+import {Textarea} from 'spaceweb/textarea';
 
 export default () => {
   const [valueA, setValueA] = React.useState('Positive state...');

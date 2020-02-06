@@ -1,11 +1,15 @@
 import * as React from 'react';
-import {withStyle} from 'baseui';
-import {Select, StyledDropdownListItem, Value} from 'baseui/select';
+import {withStyle} from 'spaceweb';
+import {
+  Select,
+  StyledDropdownListItem,
+  Value,
+} from 'spaceweb/select';
 import {
   StyledList,
   StyledEmptyState,
   OptionListProps,
-} from 'baseui/menu';
+} from 'spaceweb/menu';
 
 import {FixedSizeList} from 'react-window';
 

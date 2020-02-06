@@ -4,7 +4,7 @@ import {
   ACCESSIBILITY_TYPE,
   PLACEMENT,
   TRIGGER_TYPE,
-} from 'baseui/popover';
+} from 'spaceweb/popover';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

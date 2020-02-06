@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React, {useState} from 'react';
 import {useStyletron} from 'baseui';
-import {Label3, Paragraph3} from 'baseui/typography';
+import {Label3, Paragraph3} from 'spaceweb/typography';
 
 const Help = () => {
   const [css, theme] = useStyletron();

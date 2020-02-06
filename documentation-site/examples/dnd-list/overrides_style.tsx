@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StatefulList} from 'baseui/dnd-list';
+import {StatefulList} from 'spaceweb/dnd-list';
 
 export default () => (
   <StatefulList

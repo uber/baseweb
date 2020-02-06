@@ -9,10 +9,10 @@ import Layout from '../../components/layout';
 
 import Example from '../../components/example';
 import Overrides from '../../components/overrides';
-import {StatefulSelect, TYPE} from 'baseui/select';
-import {StatefulList} from 'baseui/dnd-list';
-import * as ListExports from 'baseui/dnd-list';
-import {Notification} from 'baseui/notification';
+import {StatefulSelect, TYPE} from 'spaceweb/select';
+import {StatefulList} from 'spaceweb/dnd-list';
+import * as ListExports from 'spaceweb/dnd-list';
+import {Notification} from 'spaceweb/notification';
 
 import DndListExample from 'examples/dnd-list/overrides_short.js';
 import DndListExampleStyle from 'examples/dnd-list/overrides_style.js';
@@ -50,7 +50,7 @@ Base Web components typically consist of many **subcomponents**. Let's use `base
 This component is very self-contained and you can load it through a single import:
 
 ```jsx
-import {StatefulList} from 'baseui/dnd-list';
+import {StatefulList} from 'spaceweb/dnd-list';
 
 export default () => (
   <StatefulList
@@ -257,7 +257,7 @@ So far we demonstrated how to **override styles or add additional props** but yo
 
 ```jsx
 import * as React from 'react';
-import {List, arrayMove} from 'baseui/dnd-list';
+import {List, arrayMove} from 'spaceweb/dnd-list';
 
 export default class Example extends React.Component {
   state = {
@@ -303,7 +303,7 @@ The result:
 Note that **we lost the original Label styling** since we replaced the whole Label subcomponent. If you still want to reuse or compose the original subcomponent you can import it:
 
 ```js
-import {StyledLabel} from 'baseui/dnd-list';
+import {StyledLabel} from 'spaceweb/dnd-list';
 ```
 
 The named import always matches the override key with an addition of `Styled` prefix. Following two examples yield the exactly same result since this is how Base Web components are implemented underneath:

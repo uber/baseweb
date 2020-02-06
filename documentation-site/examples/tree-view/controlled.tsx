@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
   Unstable_TreeView as TreeView,
   TreeNode,
-} from 'baseui/tree-view';
+} from 'spaceweb/tree-view';
 
 const initialData = [
   {

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {PaymentCard, valid} from 'baseui/payment-card';
-import {MaskedInput} from 'baseui/input';
-import {FormControl} from 'baseui/form-control';
+import {PaymentCard, valid} from 'spaceweb/payment-card';
+import {MaskedInput} from 'spaceweb/input';
+import {FormControl} from 'spaceweb/form-control';
 import {useStyletron} from 'baseui';
 
 function getFormOverrides(width: string) {

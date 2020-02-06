@@ -1,5 +1,5 @@
-import {ButtonGroup, MODE} from 'baseui/button-group';
-import {Button} from 'baseui/button';
+import {ButtonGroup, MODE} from 'spaceweb/button-group';
+import {Button} from 'spaceweb/button';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

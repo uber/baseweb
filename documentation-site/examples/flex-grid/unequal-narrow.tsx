@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {FlexGrid, FlexGridItem} from 'baseui/flex-grid';
-import {BlockProps} from 'baseui/block';
-import {LightTheme} from 'baseui';
+import {FlexGrid, FlexGridItem} from 'spaceweb/flex-grid';
+import {BlockProps} from 'spaceweb/block';
+import {LightTheme} from 'spaceweb';
 
 const itemProps: BlockProps = {
   backgroundColor: 'mono300',

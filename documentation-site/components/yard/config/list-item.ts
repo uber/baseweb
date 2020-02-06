@@ -1,5 +1,5 @@
-import {ListItem, ListItemLabel, ARTWORK_SIZES} from 'baseui/list';
-import {Check} from 'baseui/icon';
+import {ListItem, ListItemLabel, ARTWORK_SIZES} from 'spaceweb/list';
+import {Check} from 'spaceweb/icon';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

@@ -9,9 +9,9 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import Props from 'pretty-proptypes';
 
-import {Block} from 'baseui/block';
-import {Button, SIZE as ButtonSize, KIND as ButtonKind} from 'baseui/button';
-import {Paragraph3} from 'baseui/typography';
+import {Block} from 'spaceweb/block';
+import {Button, SIZE as ButtonSize, KIND as ButtonKind} from 'spaceweb/button';
+import {Paragraph3} from 'spaceweb/typography';
 import {H3} from './markdown-elements';
 
 const API = props => {

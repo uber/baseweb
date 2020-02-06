@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Pagination} from 'baseui/pagination';
+import {Pagination} from 'spaceweb/pagination';
 
 export default function Basic() {
   const [currentPage, setCurrentPage] = React.useState(1);

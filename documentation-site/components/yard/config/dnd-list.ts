@@ -1,4 +1,4 @@
-import {List, arrayMove, arrayRemove} from 'baseui/dnd-list';
+import {List, arrayMove, arrayRemove} from 'spaceweb/dnd-list';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 

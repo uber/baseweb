@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {Block} from 'baseui/block';
+import {Block} from 'spaceweb/block';
 import Link from 'next/link';
 import {themedStyled} from '../pages/_app';
 

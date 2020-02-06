@@ -1,7 +1,7 @@
 import React from 'react';
 import {useStyletron} from 'baseui';
-import {Button} from 'baseui/button';
-import {PinCode} from 'baseui/pin-code';
+import {Button} from 'spaceweb/button';
+import {PinCode} from 'spaceweb/pin-code';
 
 export default function() {
   const [css] = useStyletron();
