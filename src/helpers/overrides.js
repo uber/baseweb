@@ -104,7 +104,8 @@ export function getOverrides(
     typeof override.props === 'function'
   ) {
     const DynamicOverride = React.forwardRef((props, ref) => {
-      const nextProps = override.props(props);
+      const mappedProps = override.props(props);
+      const nextProps = getOverrideProps({...override, props: mappedProps});
       return <Component ref={ref} {...nextProps} />;
     });
     DynamicOverride.displayName = Component.displayName;

@@ -248,7 +248,7 @@ describe('Helpers - Overrides', () => {
     expect(element.textContent).toBe('default 2');
   });
 
-  test('dynamic prop with custom component overrides', () => {
+  test('dynamic prop with component overrides', () => {
     function DefaultComponent(props) {
       return <div>default {props.count}</div>;
     }
@@ -268,6 +268,38 @@ describe('Helpers - Overrides', () => {
 
     const {container} = render(<Component count={1} {...componentProps} />);
     const element = container.querySelector('div');
+    expect(element.textContent).toBe('custom 3');
+  });
+
+  test('dynamic prop with style overrides', () => {
+    function DefaultComponent(props) {
+      return (
+        <div style={{backgroundColor: 'red', ...props.$style}}>
+          default {props.count}
+        </div>
+      );
+    }
+
+    function CustomComponent(props) {
+      return <div style={props.$style}>custom {props.count + 1}</div>;
+    }
+
+    function dynamicProps(props) {
+      return {count: props.count + 1};
+    }
+
+    const [Component, componentProps] = getOverrides(
+      {
+        component: CustomComponent,
+        props: dynamicProps,
+        style: {backgroundColor: 'blue'},
+      },
+      DefaultComponent,
+    );
+
+    const {container} = render(<Component count={1} {...componentProps} />);
+    const element = container.querySelector('div');
+    expect(element.getAttribute('style')).toBe('background-color: blue;');
     expect(element.textContent).toBe('custom 3');
   });
 });
