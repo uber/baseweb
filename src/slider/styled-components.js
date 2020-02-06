@@ -102,6 +102,9 @@ export const Thumb = styled<StylePropsT>('div', props => {
     borderBottomRightRadius: isLeft ? '1px' : '4px',
     backgroundColor: $theme.colors.mono100,
     display: 'flex',
+    outline: props.$isFocusVisible
+      ? `2px solid ${$theme.colors.borderFocus}`
+      : 'none',
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: '1px',
