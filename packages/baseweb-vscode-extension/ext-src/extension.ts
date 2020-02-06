@@ -1,5 +1,6 @@
 import * as path from 'path';
 import * as vscode from 'vscode';
+import showColorSamples from './coloring';
 
 // @ts-ignore
 import {components} from './components.json';
@@ -24,6 +25,8 @@ export function activate(context: vscode.ExtensionContext) {
       ReactPanel.createOrShow(context.extensionPath);
     }),
   );
+
+  showColorSamples(context);
 }
 
 // this method is called when your extension is deactivated
