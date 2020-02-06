@@ -26,42 +26,47 @@ function SortDirectionIcon({direction}: {direction: SortDirectionT}) {
       return null;
   }
 }
+export const SortableHeadCellFactory = (
+  CustomHeadCell: React.ComponentType<HeadCellPropsT> = StyledHeadCell,
+) => {
+  return function SortableHeadCell(props: HeadCellPropsT) {
+    const {overrides = {}, fillClickTarget, disabled} = props;
 
-export default function SortableHeadCell(props: HeadCellPropsT) {
-  const {overrides = {}, fillClickTarget, disabled} = props;
+    const [HeadCell, headCellProps] = getOverrides(
+      overrides.HeadCell,
+      CustomHeadCell,
+    );
 
-  const [HeadCell, headCellProps] = getOverrides(
-    overrides.HeadCell,
-    StyledHeadCell,
-  );
+    const [SortableLabel, sortableLabelProps] = getOverrides(
+      overrides.SortableLabel,
+      StyledSortableLabel,
+    );
 
-  const [SortableLabel, sortableLabelProps] = getOverrides(
-    overrides.SortableLabel,
-    StyledSortableLabel,
-  );
+    const onClick = () => {
+      props.onSort && props.onSort();
+    };
+    const enableHeadClick = fillClickTarget && !disabled;
 
-  const onClick = () => {
-    props.onSort && props.onSort();
-  };
-  const enableHeadClick = fillClickTarget && !disabled;
-
-  return (
-    <HeadCell
-      role="columnheader"
-      {...headCellProps}
-      $cursor={enableHeadClick ? 'pointer' : undefined}
-      onClick={enableHeadClick ? onClick : undefined}
-    >
-      <SortableLabel
-        aria-label={`sorts table by ${props.title} column`}
-        disabled={disabled}
-        onClick={!fillClickTarget ? onClick : undefined}
-        {...sortableLabelProps}
+    return (
+      <HeadCell
+        role="columnheader"
+        {...headCellProps}
+        $cursor={enableHeadClick ? 'pointer' : undefined}
+        onClick={enableHeadClick ? onClick : undefined}
       >
-        <SortDirectionIcon direction={props.direction} />
-        {props.title}
-      </SortableLabel>
-      {props.children}
-    </HeadCell>
-  );
-}
+        <SortableLabel
+          aria-label={`sorts table by ${props.title} column`}
+          disabled={disabled}
+          onClick={!fillClickTarget ? onClick : undefined}
+          {...sortableLabelProps}
+        >
+          <SortDirectionIcon direction={props.direction} />
+          {props.title}
+        </SortableLabel>
+        {props.children}
+      </HeadCell>
+    );
+  };
+};
+
+export default SortableHeadCellFactory();
