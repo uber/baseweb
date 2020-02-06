@@ -1,3 +1,11 @@
+/*
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
+
 import * as React from 'react';
 import {StatefulPopover} from '../index.js';
 
@@ -8,12 +16,13 @@ import {StatefulPopover} from '../index.js';
 // anchor click focuses it, thus opening the popover and focusing popover content
 // content focus causes the anchor to blur, which causes the popover to close
 // because of how the focus lock was configured it refocused the anchor which restarts the loop
-export default () => {
+export default function Scenario() {
   return (
     <StatefulPopover
       triggerType="hover"
       content={() => (
-        <div data-e2e="content" tabIndex={1}>
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+        <div data-e2e="content" tabIndex={0}>
           hello
         </div>
       )}
@@ -21,4 +30,4 @@ export default () => {
       <button>click</button>
     </StatefulPopover>
   );
-};
+}
