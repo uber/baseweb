@@ -468,7 +468,8 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
               {this.props.focusLock ? (
                 <FocusLock
                   noFocusGuards={true}
-                  returnFocus={this.props.returnFocus}
+                  // see popover-focus-loop.scenario.js for why hover cannot return focus
+                  returnFocus={this.props.returnFocus && !this.isHoverTrigger()}
                   autoFocus={this.props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
                 >
                   {this.renderPopover(renderedContent)}
