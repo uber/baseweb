@@ -11,7 +11,7 @@ import colorTokens from './light-theme/color-tokens.js';
 import getSemanticColors from './light-theme/color-semantic-tokens.js';
 import getColorComponentTokens from './light-theme/color-component-tokens.js';
 import getDeprecatedSemanticColors from './light-theme/color-deprecated-semantic-tokens.js';
-import lighting from './light-theme/lighting.js';
+import lighting from './shared/lighting.js';
 import borders from './shared/borders.js';
 import getTypography from './shared/typography.js';
 import animation from './shared/animation.js';
