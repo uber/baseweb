@@ -46,6 +46,8 @@ export const StyledContentMessage = styled<StylePropsT>(
     }: {}),
 );
 
+export const StyledContentSeparator = StyledContentMessage;
+
 export const StyledErrorMessage = styled<StylePropsT>(
   'div',
   props =>
