@@ -20,6 +20,7 @@ import {
   StyledRoot,
   StyledFileDragAndDrop,
   StyledContentMessage,
+  StyledContentSeparator,
   StyledErrorMessage,
   StyledHiddenInput,
 } from './styled-components.js';
@@ -43,6 +44,11 @@ function FileUploader(props: PropsT) {
   const [ContentMessage, contentMessageProps] = getOverrides(
     overrides.ContentMessage,
     StyledContentMessage,
+  );
+
+  const [ContentSeparator, contentSeparatorProps] = getOverrides(
+    overrides.ContentSeparator,
+    StyledContentSeparator,
   );
   const [ErrorMessage, errorMessageProps] = getOverrides(
     overrides.ErrorMessage,
@@ -101,13 +107,12 @@ function FileUploader(props: PropsT) {
                       >
                         {locale.fileuploader.dropFilesToUpload}
                       </ContentMessage>
-                      <ContentMessage
+                      <ContentSeparator
                         {...prefixedStyledProps}
-                        {...contentMessageProps}
+                        {...contentSeparatorProps}
                       >
                         {locale.fileuploader.or}
-                      </ContentMessage>
-
+                      </ContentSeparator>
                       <ButtonComponent
                         aria-controls="fileupload"
                         disabled={props.disabled}

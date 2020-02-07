@@ -145,4 +145,16 @@ describe('menu-child', () => {
     expect(isEqual).toBe(true);
     await page.waitFor(childSelector);
   });
+
+  it('child menu clicks do not close if inside popover content', async () => {
+    await mount(page, 'menu-child-in-popover');
+    await page.click('button');
+    await page.waitFor(parentSelector);
+    await page.mouse.move(150, 159);
+    await page.waitFor(childSelector);
+    await page.mouse.click(450, 159);
+    await page.waitFor(childSelector);
+    await page.click('button');
+    await page.waitFor(childSelector, {hidden: true});
+  });
 });
