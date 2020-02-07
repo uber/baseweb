@@ -12,18 +12,18 @@ LICENSE file in the root directory of this source tree.
 const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 describe('menu', () => {
-  // it('passes basic a11y tests', async () => {
-  //   await mount(page, 'menu');
-  //   const accessibilityReport = await analyzeAccessibility(page);
-  //   expect(accessibilityReport).toHaveNoAccessibilityIssues();
-  // });
+  it('passes basic a11y tests', async () => {
+    await mount(page, 'menu');
+    const accessibilityReport = await analyzeAccessibility(page);
+    expect(accessibilityReport).toHaveNoAccessibilityIssues();
+  });
 });
 
 const parentSelector = '[data-e2e="parent-menu"]';
 const childSelector = '[data-e2e="child-menu"]';
 const highlightedSelector = '[aria-selected="true"]';
 
-function coordsToPosition(x, y) {
+function hoverItem(page, x, y) {
   const MENU_MARGIN_TOP = 16;
   const MENU_ITEM_HEIGHT = 26;
 
@@ -33,17 +33,7 @@ function coordsToPosition(x, y) {
   const xPos = MENU_WIDTH_OFFSET + MENU_WIDTH * x;
   const yPos = MENU_MARGIN_TOP + MENU_ITEM_HEIGHT * y;
 
-  return [xPos, yPos];
-}
-
-function hoverItem(page, x, y) {
-  const [xPos, yPos] = coordsToPosition(x, y);
   return page.mouse.move(xPos, yPos);
-}
-
-function clickItem(page, x, y) {
-  const [xPos, yPos] = coordsToPosition(x, y);
-  return page.mouse.click(xPos, yPos);
 }
 
 function findActiveElement(page) {
