@@ -41,7 +41,7 @@ function OptionList(props: OptionListPropsT, ref: React.ElementRef<*>) {
   const getItem = item => {
     if (item.href) {
       return (
-        <ListItemAnchor href={item.href} {...listItemAnchorProps}>
+        <ListItemAnchor $item={item} href={item.href} {...listItemAnchorProps}>
           {getItemLabel(item)}
         </ListItemAnchor>
       );
