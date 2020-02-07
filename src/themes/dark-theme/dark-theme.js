@@ -10,7 +10,7 @@ import getSemanticColors from './color-semantic-tokens.js';
 import getColorComponentTokens from './color-component-tokens.js';
 import getDeprecatedSemanticColors from './color-deprecated-semantic-tokens.js';
 import borders from './borders.js';
-import lighting from './lighting.js';
+import lighting from '../shared/lighting.js';
 import getTypography from '../shared/typography.js';
 import animation from '../shared/animation.js';
 import breakpoints from '../shared/breakpoints.js';
