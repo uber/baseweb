@@ -501,11 +501,12 @@ class Select extends React.Component<PropsT, SelectStateT> {
         },
       );
     } else {
+      this.focus();
       this.setState(
         {
           inputValue: updatedValue,
           isOpen: !this.props.closeOnSelect,
-          isFocused: false,
+          isFocused: true,
           isPseudoFocused: false,
         },
         () => {
