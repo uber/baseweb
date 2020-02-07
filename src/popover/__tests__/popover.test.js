@@ -232,7 +232,7 @@ describe('Popover', () => {
       </div>
     );
     wrapper = mount(
-      <Popover content={content} isOpen={false}>
+      <Popover content={content} isOpen={false} focusLock>
         <FocusMe />
       </Popover>,
     );
@@ -265,12 +265,10 @@ describe('Popover', () => {
 
     const calls = document.addEventListener.mock.calls;
     expect(document.addEventListener).toBeCalled();
-    expect(calls[0][0]).toBe('focusin');
-    expect(calls[1][0]).toBe('focusout');
-    expect(calls[2][0]).toBe('mousedown');
-    expect(calls[3][0]).toBe('keyup');
+    expect(calls[0][0]).toBe('mousedown');
+    expect(calls[1][0]).toBe('keyup');
 
-    calls[3][1]({
+    calls[1][1]({
       key: 'Escape',
       code: 27,
       keyCode: 27,
