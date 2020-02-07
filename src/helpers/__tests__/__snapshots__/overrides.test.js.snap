@@ -9,23 +9,6 @@ Object {
 }
 `;
 
-exports[`Helpers - Overrides getOverrideProps: returns correct object when props is a function and styles in override is not present 1`] = `
-Object {
-  "$style": undefined,
-  "propName": "propValue",
-}
-`;
-
-exports[`Helpers - Overrides getOverrideProps: returns correct object when props is a function and styles in override is present 1`] = `
-Object {
-  "$style": Object {
-    "color": "red",
-  },
-  "className": "someCSSClass",
-  "propName": "propValue",
-}
-`;
-
 exports[`Helpers - Overrides getOverrideProps: returns correct object when props is a function which return null 1`] = `
 Object {
   "$style": undefined,
