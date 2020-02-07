@@ -45,6 +45,23 @@ const BREAKPOINTS = [
   {label: 'Logpoint...'},
 ];
 
+const Overlay = () => {
+  return (
+    <div
+      style={{
+        backgroundColor: 'lightgreen',
+        position: 'absolute',
+        zIndex: 1,
+        height: '400px',
+        width: '100%',
+        top: '100px',
+      }}
+    >
+      overlay
+    </div>
+  );
+};
+
 const childMenu = items => (
   <StatefulMenu
     items={items}
@@ -64,36 +81,44 @@ const childMenu = items => (
 
 export default function Scenario() {
   return (
-    <StatefulPopover
-      content={() => (
-        <NestedMenus>
-          <StatefulMenu
-            items={FILE}
-            overrides={{
-              List: {
-                style: {width: '300px', overflow: 'auto'},
-                props: {'data-e2e': 'parent-menu'},
-              },
-              Option: {
-                props: {
-                  size: 'compact',
-                  getChildMenu: item => {
-                    if (item.label === OPEN_RECENT) {
-                      return childMenu(RECENT_FILES);
-                    }
+    <React.Fragment>
+      <StatefulPopover
+        overrides={{
+          Body: {
+            style: {zIndex: 3},
+          },
+        }}
+        content={() => (
+          <NestedMenus>
+            <StatefulMenu
+              items={FILE}
+              overrides={{
+                List: {
+                  style: {width: '300px', overflow: 'auto'},
+                  props: {'data-e2e': 'parent-menu'},
+                },
+                Option: {
+                  props: {
+                    size: 'compact',
+                    getChildMenu: item => {
+                      if (item.label === OPEN_RECENT) {
+                        return childMenu(RECENT_FILES);
+                      }
 
-                    if (item.label === NEW_BREAKPOINT) {
-                      return childMenu(BREAKPOINTS);
-                    }
+                      if (item.label === NEW_BREAKPOINT) {
+                        return childMenu(BREAKPOINTS);
+                      }
+                    },
                   },
                 },
-              },
-            }}
-          />
-        </NestedMenus>
-      )}
-    >
-      <button>click</button>
-    </StatefulPopover>
+              }}
+            />
+          </NestedMenus>
+        )}
+      >
+        <button>click</button>
+      </StatefulPopover>
+      <Overlay />
+    </React.Fragment>
   );
 }
