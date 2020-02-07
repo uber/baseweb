@@ -19,6 +19,7 @@ import {StatefulPopover} from '../index.js';
 export default function Scenario() {
   return (
     <StatefulPopover
+      focusLock
       triggerType="hover"
       content={() => (
         // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
