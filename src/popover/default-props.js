@@ -10,7 +10,7 @@ import type {BasePopoverPropsT} from './types.js';
 
 const baseDefaultProps: $Shape<BasePopoverPropsT> = {
   accessibilityType: ACCESSIBILITY_TYPE.menu,
-  focusLock: true,
+  focusLock: false,
   autoFocus: true,
   returnFocus: true,
   // Remove the `ignoreBoundary` prop in the next major version
