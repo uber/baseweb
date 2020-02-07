@@ -13,6 +13,8 @@ export const BaseButton = styled<SharedStylePropsT>(
   'button',
   ({$theme, $size, $kind, $shape, $isLoading, $isSelected, $disabled}) => ({
     display: 'inline-flex',
+    // needed to contain the absolute-positioned spinner if nested in a scrollable div
+    position: 'relative',
     alignItems: 'center',
     justifyContent: 'center',
     borderLeftWidth: 0,
