@@ -25,7 +25,10 @@ export default class LayersManager extends React.Component<LayersManagerPropsT> 
     current: React.ElementRef<any> | null,
   } = React.createRef();
 
-  containerRef = React.createRef();
+  containerRef: {
+    // eslint-disable-next-line flowtype/no-weak-types
+    current: React.ElementRef<any> | null,
+  } = React.createRef();
 
   componentDidMount() {
     this.forceUpdate();

@@ -45,7 +45,10 @@ const ThumbLabel = ({index, values, rangeRef, Component, ...props}) => {
   );
 };
 
-class Slider extends React.Component<PropsT> {
+class Slider extends React.Component<
+  PropsT,
+  {focusVisible: boolean, focusedThumbIndex: number},
+> {
   static defaultProps = {
     overrides: {},
     disabled: false,
@@ -65,6 +68,7 @@ class Slider extends React.Component<PropsT> {
       $min: min,
       $max: max,
       $value: limitValue(value),
+      $isFocusVisible: this.state.focusVisible,
     };
   }
 
@@ -158,15 +162,15 @@ class Slider extends React.Component<PropsT> {
                   {...props}
                   $thumbIndex={index}
                   $isDragged={isDragged}
-                  $isFocusVisible={
-                    this.state.focusVisible &&
-                    this.state.focusedThumbIndex === index
-                  }
                   style={{
                     ...props.style,
                   }}
                   {...sharedProps}
                   {...thumbProps}
+                  $isFocusVisible={
+                    this.state.focusVisible &&
+                    this.state.focusedThumbIndex === index
+                  }
                 >
                   <ThumbLabel
                     Component={ThumbValue}
