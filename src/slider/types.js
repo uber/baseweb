@@ -92,4 +92,5 @@ export type StylePropsT = {
   $min?: number,
   $thumbIndex?: number,
   $value?: Array<number>,
+  $isFocusVisible?: boolean,
 };
