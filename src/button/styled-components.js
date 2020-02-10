@@ -13,8 +13,8 @@ export const BaseButton = styled<SharedStylePropsT>(
   'button',
   ({$theme, $size, $kind, $shape, $isLoading, $isSelected, $disabled}) => ({
     display: 'inline-flex',
-    // needed to contain the absolute-positioned spinner if nested in a scrollable div
-    position: 'relative',
+    // need to maintain button width while showing loading spinner
+    flexDirection: $isLoading ? 'column' : 'row',
     alignItems: 'center',
     justifyContent: 'center',
     borderLeftWidth: 0,
@@ -62,8 +62,7 @@ export const StartEnhancer = styled<SharedStylePropsT>('div', ({$theme}) => ({
 }));
 
 export const LoadingSpinnerContainer = styled('div', {
-  // To center within parent
-  position: 'absolute',
+  position: 'static',
 });
 
 export const LoadingSpinner = styled<SharedStylePropsT>(
