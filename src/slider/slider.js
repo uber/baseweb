@@ -72,6 +72,23 @@ class Slider extends React.Component<
     };
   }
 
+  handleFocus = (event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      this.setState({focusVisible: true});
+    }
+    const index =
+      // eslint-disable-next-line flowtype/no-weak-types
+      (event.target: any).parentNode.firstChild === event.target ? 0 : 1;
+    this.setState({focusedThumbIndex: index});
+  };
+
+  handleBlur = (event: SyntheticEvent<>) => {
+    if (this.state.focusVisible !== false) {
+      this.setState({focusVisible: false});
+    }
+    this.setState({focusedThumbIndex: -1});
+  };
+
   render() {
     const {
       overrides = {},
@@ -105,22 +122,6 @@ class Slider extends React.Component<
     );
     const sharedProps = this.getSharedProps();
 
-    const handleFocus = event => {
-      if (isFocusVisible(event)) {
-        this.setState({focusVisible: true});
-      }
-      const index =
-        // eslint-disable-next-line flowtype/no-weak-types
-        (event.target: any).parentNode.firstChild === event.target ? 0 : 1;
-      this.setState({focusedThumbIndex: index});
-    };
-
-    const handleBlur = event => {
-      if (this.state.focusVisible !== false) {
-        this.setState({focusVisible: false});
-      }
-      this.setState({focusedThumbIndex: -1});
-    };
     return (
       <ThemeContext.Consumer>
         {theme => (
@@ -128,8 +129,8 @@ class Slider extends React.Component<
             data-baseweb="slider"
             {...sharedProps}
             {...rootProps}
-            onFocus={forkFocus(rootProps, handleFocus)}
-            onBlur={forkBlur(rootProps, handleBlur)}
+            onFocus={forkFocus(rootProps, this.handleFocus)}
+            onBlur={forkBlur(rootProps, this.handleBlur)}
           >
             <Range
               step={step}
