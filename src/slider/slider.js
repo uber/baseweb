@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {Range, useThumbOverlap} from 'react-range';
 import type {PropsT} from './types.js';
-import {isFocusVisible} from '../utils/focusVisible.js';
+import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 import {
   Root as StyledRoot,
   Track as StyledTrack,
@@ -109,7 +109,9 @@ class Slider extends React.Component<
       if (isFocusVisible(event)) {
         this.setState({focusVisible: true});
       }
-      const index = event.target.parentNode.firstChild === event.target ? 0 : 1;
+      const index =
+        // eslint-disable-next-line flowtype/no-weak-types
+        (event.target: any).parentNode.firstChild === event.target ? 0 : 1;
       this.setState({focusedThumbIndex: index});
     };
 
@@ -126,8 +128,8 @@ class Slider extends React.Component<
             data-baseweb="slider"
             {...sharedProps}
             {...rootProps}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
+            onFocus={forkFocus(rootProps, handleFocus)}
+            onBlur={forkBlur(rootProps, handleBlur)}
           >
             <Range
               step={step}

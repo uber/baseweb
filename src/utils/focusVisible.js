@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 
 // @flow
-/* global window */
 // based on:
 // - https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/utils/focusVisible.js
 // - https://github.com/WICG/focus-visible/blob/v4.1.5/src/focus-visible.js
@@ -137,10 +136,12 @@ export function handleBlurVisible() {
   // If we don't see a visibility change within 100ms, it's probably a
   // regular focus change.
   hadFocusVisibleRecently = true;
-  window.clearTimeout(hadFocusVisibleRecentlyTimeout);
-  hadFocusVisibleRecentlyTimeout = window.setTimeout(() => {
-    hadFocusVisibleRecently = false;
-  }, 100);
+  if (__BROWSER__) {
+    window.clearTimeout(hadFocusVisibleRecentlyTimeout);
+    hadFocusVisibleRecentlyTimeout = window.setTimeout(() => {
+      hadFocusVisibleRecently = false;
+    }, 100);
+  }
 }
 
 //$FlowFixMe
@@ -150,3 +151,25 @@ export function initFocusVisible(node) {
     prepare(node.ownerDocument);
   }
 }
+
+export const forkFocus = (
+  // eslint-disable-next-line flowtype/no-weak-types
+  rootProps: any,
+  handler: (e: SyntheticEvent<>) => void,
+) => (e: SyntheticEvent<>) => {
+  if (typeof rootProps.onFocus === 'function') {
+    rootProps.onFocus(e);
+  }
+  handler(e);
+};
+
+export const forkBlur = (
+  // eslint-disable-next-line flowtype/no-weak-types
+  rootProps: any,
+  handler: (e: SyntheticEvent<>) => void,
+) => (e: SyntheticEvent<>) => {
+  if (typeof rootProps.onBlur === 'function') {
+    rootProps.onBlur(e);
+  }
+  handler(e);
+};
