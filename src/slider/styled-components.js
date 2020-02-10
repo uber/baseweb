@@ -102,12 +102,15 @@ export const Thumb = styled<StylePropsT>('div', props => {
     borderBottomRightRadius: isLeft ? '1px' : '4px',
     backgroundColor: $theme.colors.mono100,
     display: 'flex',
+    outline: 'none',
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: $theme.colors.mono400,
-    boxShadow: '0 1px 4px rgba(0, 0, 0, 0.12)',
+    boxShadow: props.$isFocusVisible
+      ? `0 0 0 3px ${$theme.colors.accent}`
+      : '0 1px 4px rgba(0, 0, 0, 0.12)',
     cursor: $disabled ? 'not-allowed' : 'inherit',
   };
 });
