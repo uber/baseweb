@@ -5,7 +5,7 @@ exports[`StatefulPopover basic render: renders <Popover/> as child to container 
   accessibilityType="menu"
   autoFocus={true}
   content={[Function]}
-  focusLock={true}
+  focusLock={false}
   ignoreBoundary={false}
   isOpen={true}
   onBlur={[Function]}
