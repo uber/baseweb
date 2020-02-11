@@ -57,6 +57,7 @@ type HeaderContextT = {|
   onSelectMany: () => void,
   onSelectNone: () => void,
   onSort: number => void,
+  resizableColumnWidths: boolean,
   rowActions: RowActionT[],
   rowHeight: number,
   rowHighlightIndex: number,
@@ -216,6 +217,7 @@ const HeaderContext = React.createContext<HeaderContextT>({
   onSelectMany: () => {},
   onSelectNone: () => {},
   onSort: () => {},
+  resizableColumnWidths: false,
   rowActions: [],
   rowHeight: 0,
   rowHighlightIndex: -1,
@@ -243,6 +245,7 @@ type HeaderProps = {|
   onSelectMany: () => void,
   onSelectNone: () => void,
   onSort: () => void,
+  resizableColumnWidths: boolean,
   resizeIndex: number,
   resizeMaxWidth: number,
   resizeMinWidth: number,
@@ -357,50 +360,52 @@ function Header(props: HeaderProps) {
         }
         title={props.columnTitle}
       />
-      <div
-        className={css({
-          position: 'relative',
-          display: 'flex',
-          alignItems: 'center',
-        })}
-      >
+      {props.resizableColumnWidths && (
         <div
-          role="presentation"
-          onMouseDown={event => {
-            props.onResizeIndexChange(props.index);
-            const x = getPositionX(event.target);
-            setStartResizePos(x);
-            setEndResizePos(x);
-          }}
           className={css({
-            backgroundColor: isResizingThisColumn
-              ? theme.colors.contentPrimary
-              : null,
-            cursor: 'ew-resize',
-            position: 'absolute',
-            height: '100%',
-            width: '3px',
-            ':hover': {
-              backgroundColor: theme.colors.contentPrimary,
-            },
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
           })}
-          style={{
-            right: `${(RULER_OFFSET + endResizePos - startResizePos) * -1}px`,
-          }}
         >
-          {isResizingThisColumn && (
-            <div
-              className={css({
+          <div
+            role="presentation"
+            onMouseDown={event => {
+              props.onResizeIndexChange(props.index);
+              const x = getPositionX(event.target);
+              setStartResizePos(x);
+              setEndResizePos(x);
+            }}
+            className={css({
+              backgroundColor: isResizingThisColumn
+                ? theme.colors.contentPrimary
+                : null,
+              cursor: 'ew-resize',
+              position: 'absolute',
+              height: '100%',
+              width: '3px',
+              ':hover': {
                 backgroundColor: theme.colors.contentPrimary,
-                position: 'absolute',
-                height: `${props.tableHeight}px`,
-                right: '1px',
-                width: '1px',
-              })}
-            />
-          )}
+              },
+            })}
+            style={{
+              right: `${(RULER_OFFSET + endResizePos - startResizePos) * -1}px`,
+            }}
+          >
+            {isResizingThisColumn && (
+              <div
+                className={css({
+                  backgroundColor: theme.colors.contentPrimary,
+                  position: 'absolute',
+                  height: `${props.tableHeight}px`,
+                  right: '1px',
+                  width: '1px',
+                })}
+              />
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </React.Fragment>
   );
 }
@@ -489,6 +494,7 @@ function Headers(props: {||}) {
                   onSelectMany={ctx.onSelectMany}
                   onSelectNone={ctx.onSelectNone}
                   onSort={() => ctx.onSort(columnIndex)}
+                  resizableColumnWidths={ctx.resizableColumnWidths}
                   resizeIndex={resizeIndex}
                   resizeMinWidth={ctx.measuredWidths[columnIndex]}
                   resizeMaxWidth={column.maxWidth || Infinity}
@@ -921,6 +927,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
               onSelectMany: handleSelectMany,
               onSelectNone: handleSelectNone,
               onSort: handleSort,
+              resizableColumnWidths: Boolean(props.resizableColumnWidths),
               rowActions: props.rowActions || [],
               rowHeight,
               rowHighlightIndex,

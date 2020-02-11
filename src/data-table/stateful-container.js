@@ -109,6 +109,7 @@ export function Unstable_StatefulContainer(props: StatefulContainerPropsT) {
     onSelectOne: handleSelectOne,
     onSort: handleSort,
     onTextQueryChange: setTextQuery,
+    resizableColumnWidths: Boolean(props.resizableColumnWidths),
     rowHighlightIndex: props.rowHighlightIndex,
     selectedRowIds,
     sortIndex,
