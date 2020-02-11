@@ -154,7 +154,7 @@ const tests = {
       `,
       errors: [
         {
-          message: `The "Spinner" component has been deprecated in favor of "SpinnerNext". In v10 of baseui, "Spinner" will be removed and "SpinnerNext" will be renamed to "Spinner".`,
+          message: `The "Spinner" component has been deprecated in favor of "StyledSpinnerNext". In v10 of baseui, "Spinner" will be removed and "StyledSpinnerNext" will be renamed to "Spinner".`,
         },
       ],
     },
