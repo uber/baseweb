@@ -75,7 +75,7 @@ class Button extends React.Component<ButtonPropsT & {forwardedRef: any}> {
         {isLoading ? (
           <React.Fragment>
             {/* This is not meant to be overridable by users */}
-            <div style={{opacity: 0, display: 'flex'}}>
+            <div style={{opacity: 0, display: 'flex', height: '0px'}}>
               <ButtonInternals {...this.props} />
             </div>
             <LoadingSpinnerContainer {...loadingSpinnerContainerProps}>
