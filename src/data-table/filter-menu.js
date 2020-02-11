@@ -135,7 +135,9 @@ function Options(props: OptionsPropsT) {
               className={css({
                 ...theme.typography.font100,
                 alignItems: 'center',
-                backgroundColor: isHighlighted ? theme.colors.mono200 : null,
+                backgroundColor: isHighlighted
+                  ? theme.colors.backgroundSecondary
+                  : null,
                 cursor: 'pointer',
                 display: 'flex',
                 paddingTop: theme.sizing.scale100,
@@ -149,7 +151,7 @@ function Options(props: OptionsPropsT) {
                   ...theme.typography.font150,
                   fontSize: '8px',
                   alignItems: 'center',
-                  backgroundColor: theme.colors.mono300,
+                  backgroundColor: theme.colors.backgroundTertiary,
                   borderRadius: theme.borders.radius200,
                   display: 'flex',
                   height: theme.sizing.scale800,

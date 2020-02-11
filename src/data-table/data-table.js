@@ -19,8 +19,6 @@ import {
 import {useStyletron} from '../styles/index.js';
 import {Tooltip, PLACEMENT} from '../tooltip/index.js';
 
-import {EmptyState} from './styled-components.js';
-
 import {COLUMNS, SORT_DIRECTIONS} from './constants.js';
 import HeaderCell from './header-cell.js';
 import MeasureColumnWidths from './measure-column-widths.js';
@@ -101,14 +99,14 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
     return null;
   }
 
-  let backgroundColor = theme.colors.mono100;
+  let backgroundColor = theme.colors.backgroundPrimary;
   if (
     (rowIndex % 2 && columnIndex === data.columnHighlightIndex) ||
     rowIndex === data.rowHighlightIndex
   ) {
-    backgroundColor = theme.colors.mono300;
+    backgroundColor = theme.colors.backgroundTertiary;
   } else if (rowIndex % 2 || columnIndex === data.columnHighlightIndex) {
-    backgroundColor = theme.colors.mono200;
+    backgroundColor = theme.colors.backgroundSecondary;
   }
 
   const Cell = data.columns[columnIndex].renderCell;
@@ -375,13 +373,15 @@ function Header(props: HeaderProps) {
             setEndResizePos(x);
           }}
           className={css({
-            backgroundColor: isResizingThisColumn ? theme.colors.primary : null,
+            backgroundColor: isResizingThisColumn
+              ? theme.colors.contentPrimary
+              : null,
             cursor: 'ew-resize',
             position: 'absolute',
             height: '100%',
             width: '3px',
             ':hover': {
-              backgroundColor: theme.colors.primary,
+              backgroundColor: theme.colors.contentPrimary,
             },
           })}
           style={{
@@ -391,7 +391,7 @@ function Header(props: HeaderProps) {
           {isResizingThisColumn && (
             <div
               className={css({
-                backgroundColor: theme.colors.primary,
+                backgroundColor: theme.colors.contentPrimary,
                 position: 'absolute',
                 height: `${props.tableHeight}px`,
                 right: '1px',
@@ -464,7 +464,7 @@ function Headers(props: {||}) {
               <div
                 className={css({
                   ...theme.borders.border200,
-                  backgroundColor: theme.colors.mono100,
+                  backgroundColor: theme.colors.backgroundPrimary,
                   borderTop: 'none',
                   borderLeft: 'none',
                   borderRight:
@@ -528,9 +528,15 @@ const InnerTableElement = React.forwardRef<
           emptyMessage && typeof emptyMessage === 'function' ? (
             emptyMessage()
           ) : (
-            <EmptyState>
+            <div
+              className={{
+                ...theme.typography.font100,
+                marginTop: theme.sizing.scale600,
+                marginLeft: theme.sizing.scale600,
+              }}
+            >
               {emptyMessage || locale.datatable.emptyState}
-            </EmptyState>
+            </div>
           );
         return (
           <div ref={ref} data-baseweb="data-table" style={props.style}>
@@ -546,7 +552,7 @@ const InnerTableElement = React.forwardRef<
                 <div
                   style={{
                     alignItems: 'center',
-                    backgroundColor: 'rgba(238, 238, 238, 0.99)',
+                    backgroundColor: theme.colors.backgroundTertiary,
                     display: 'flex',
                     height: `${ctx.rowHeight}px`,
                     padding: '0 16px',
@@ -945,7 +951,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
               onScroll={handleScroll}
               style={{
                 ...theme.borders.border200,
-                borderColor: theme.colors.mono500,
+                borderColor: theme.colors.borderOpaque,
               }}
             >
               {CellPlacementMemo}

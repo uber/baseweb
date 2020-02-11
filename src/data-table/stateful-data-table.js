@@ -133,7 +133,7 @@ function FilterTag(props) {
           <span
             className={css({
               ...theme.typography.font150,
-              color: theme.colors.mono1000,
+              color: theme.colors.contentPrimary,
             })}
           >
             {props.title}
