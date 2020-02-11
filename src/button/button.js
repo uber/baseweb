@@ -22,10 +22,10 @@ import type {ButtonPropsT} from './types.js';
 class Button extends React.Component<
   // eslint-disable-next-line flowtype/no-weak-types
   ButtonPropsT & {forwardedRef: any},
-  {focusVisible: boolean},
+  {isFocusVisible: boolean},
 > {
   static defaultProps = defaultProps;
-  state = {focusVisible: false};
+  state = {isFocusVisible: false};
 
   internalOnClick = (...args: *) => {
     const {isLoading, onClick} = this.props;
@@ -37,13 +37,13 @@ class Button extends React.Component<
 
   handleFocus = (event: SyntheticEvent<>) => {
     if (isFocusVisible(event)) {
-      this.setState({focusVisible: true});
+      this.setState({isFocusVisible: true});
     }
   };
 
   handleBlur = (event: SyntheticEvent<>) => {
-    if (this.state.focusVisible !== false) {
-      this.setState({focusVisible: false});
+    if (this.state.isFocusVisible !== false) {
+      this.setState({isFocusVisible: false});
     }
   };
 
@@ -80,7 +80,7 @@ class Button extends React.Component<
     );
     const sharedProps = {
       ...getSharedProps(this.props),
-      $isFocusVisible: this.state.focusVisible,
+      $isFocusVisible: this.state.isFocusVisible,
     };
     return (
       <BaseButton

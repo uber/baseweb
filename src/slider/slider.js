@@ -47,7 +47,7 @@ const ThumbLabel = ({index, values, rangeRef, Component, ...props}) => {
 
 class Slider extends React.Component<
   PropsT,
-  {focusVisible: boolean, focusedThumbIndex: number},
+  {isFocusVisible: boolean, focusedThumbIndex: number},
 > {
   static defaultProps = {
     overrides: {},
@@ -58,7 +58,7 @@ class Slider extends React.Component<
     max: 100,
     step: 1,
   };
-  state = {focusVisible: false, focusedThumbIndex: -1};
+  state = {isFocusVisible: false, focusedThumbIndex: -1};
   rangeRef = React.createRef<Range>();
   getSharedProps() {
     const {disabled, step, min, max, value}: PropsT = this.props;
@@ -68,13 +68,13 @@ class Slider extends React.Component<
       $min: min,
       $max: max,
       $value: limitValue(value),
-      $isFocusVisible: this.state.focusVisible,
+      $isFocusVisible: this.state.isFocusVisible,
     };
   }
 
   handleFocus = (event: SyntheticEvent<>) => {
     if (isFocusVisible(event)) {
-      this.setState({focusVisible: true});
+      this.setState({isFocusVisible: true});
     }
     const index =
       // eslint-disable-next-line flowtype/no-weak-types
@@ -83,8 +83,8 @@ class Slider extends React.Component<
   };
 
   handleBlur = (event: SyntheticEvent<>) => {
-    if (this.state.focusVisible !== false) {
-      this.setState({focusVisible: false});
+    if (this.state.isFocusVisible !== false) {
+      this.setState({isFocusVisible: false});
     }
     this.setState({focusedThumbIndex: -1});
   };
@@ -171,7 +171,7 @@ class Slider extends React.Component<
                   {...sharedProps}
                   {...thumbProps}
                   $isFocusVisible={
-                    this.state.focusVisible &&
+                    this.state.isFocusVisible &&
                     this.state.focusedThumbIndex === index
                   }
                 >
