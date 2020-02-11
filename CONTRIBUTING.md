@@ -48,6 +48,10 @@ Usually, we reject contributions if they meet any of the following requirements:
   - TypeScript coverage for the API
 - Documentation added to the docs site. You start the doc site using `yarn documentation:dev:watch`.
 
+## Git Commit Formatting
+
+Commit messages should be formatted according to [commitlint](https://commitlint.js.org/#/concepts-commit-conventions) specifications. Doing so allows us to better document the baseweb changelog.
+
 ## Sending Pull Requests
 
 When send a pull request, please make sure that you have one of the [following labels](https://github.com/uber-workflow/probot-app-pr-label/blob/master/index.js#L20) set:
