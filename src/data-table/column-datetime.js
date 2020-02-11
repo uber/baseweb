@@ -504,6 +504,7 @@ const DatetimeCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
           justifyContent: 'flex-end',
           fontFamily: `"Lucida Console", Monaco, monospace`,
           width: '100%',
+          whiteSpace: 'nowrap',
         })}
       >
         {format(props.value, props.formatString)}
