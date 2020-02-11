@@ -64,6 +64,7 @@ function Options(props: OptionsPropsT) {
       tabIndex="0"
       role="listbox"
       className={css({
+        backgroundColor: theme.colors.backgroundPrimary,
         minWidth: '320px',
         paddingTop: theme.sizing.scale600,
         paddingBottom: theme.sizing.scale600,
