@@ -254,7 +254,10 @@ export const Toggle = styled<SharedStylePropsT>('div', props => {
       borderTopRightRadius: borderRadius,
       borderBottomRightRadius: borderRadius,
       borderBottomLeftRadius: borderRadius,
-      boxShadow: props.$theme.lighting.shadow400,
+      boxShadow: props.$isFocusVisible
+        ? `0 0 0 3px ${props.$theme.colors.accent}`
+        : props.$theme.lighting.shadow400,
+      outline: 'none',
       display: 'flex',
       justifyContent: 'center',
       height: props.$theme.sizing.scale800,
@@ -277,10 +280,12 @@ export const Toggle = styled<SharedStylePropsT>('div', props => {
       borderTopRightRadius: '50%',
       borderBottomRightRadius: '50%',
       borderBottomLeftRadius: '50%',
-      boxShadow:
-        props.$isHovered && !props.$disabled
-          ? props.$theme.lighting.shadow500
-          : props.$theme.lighting.shadow400,
+      boxShadow: props.$isFocusVisible
+        ? `0 0 0 3px ${props.$theme.colors.accent}`
+        : props.$isHovered && !props.$disabled
+        ? props.$theme.lighting.shadow500
+        : props.$theme.lighting.shadow400,
+      outline: 'none',
       height: props.$theme.sizing.scale700,
       width: props.$theme.sizing.scale700,
       transform: props.$checked
