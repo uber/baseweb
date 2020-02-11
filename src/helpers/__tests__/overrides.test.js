@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+import {render} from '@testing-library/react';
 import {
   getOverride,
   getOverrideProps,
@@ -35,15 +36,6 @@ describe('Helpers - Overrides', () => {
       props: {propName: 'propsValue'},
       style: {color: 'blue'},
     };
-    const propsAsFunction = override => {
-      const props: {propName: string, className?: string} = {
-        propName: 'propValue',
-      };
-      if (override.style) {
-        props.className = 'someCSSClass';
-      }
-      return props;
-    };
     expect(getOverrideProps(null)).toMatchSnapshot(
       'returns empty object when no overrides',
     );
@@ -52,17 +44,6 @@ describe('Helpers - Overrides', () => {
     );
     expect(getOverrideProps(override)).toMatchSnapshot(
       'returns correct object when override has props and styles',
-    );
-    expect(getOverrideProps({props: propsAsFunction})).toMatchSnapshot(
-      'returns correct object when props is a function and styles in override is not present',
-    );
-    expect(
-      getOverrideProps({
-        props: propsAsFunction,
-        style: {color: 'red'},
-      }),
-    ).toMatchSnapshot(
-      'returns correct object when props is a function and styles in override is present',
     );
     expect(
       getOverrideProps({
@@ -222,64 +203,103 @@ describe('Helpers - Overrides', () => {
     expect(result4()).toEqual(expectedResult);
   });
 
-  test('getOverrides', () => {
+  test('static getOverrides', () => {
     const DefaultComponent = getMockComponent();
     const OverrideComponent = getMockComponent();
-    const propsAsFunction = props => ({key1: 'value1', key2: 'value2'});
 
-    expect(getOverrides(null, DefaultComponent)).toEqual([
+    const notSpecified = getOverrides(null, DefaultComponent);
+    expect(notSpecified).toEqual([DefaultComponent, {}]);
+
+    const customComponent = getOverrides(OverrideComponent, DefaultComponent);
+    expect(customComponent).toEqual([OverrideComponent, {}]);
+
+    const staticProps = {custom: 'prop'};
+    const staticStyles = {cursor: 'pointer'};
+    const staticOverrides = getOverrides(
+      {
+        component: OverrideComponent,
+        props: staticProps,
+        style: staticStyles,
+      },
       DefaultComponent,
-      {},
-    ]);
-
-    expect(getOverrides(OverrideComponent, DefaultComponent)).toEqual([
+    );
+    expect(staticOverrides).toEqual([
       OverrideComponent,
-      {},
+      {...staticProps, $style: staticStyles},
     ]);
+  });
 
-    expect(
-      getOverrides(
-        {
-          component: OverrideComponent,
-          props: {
-            custom: 'prop',
-          },
-          style: {
-            cursor: 'pointer',
-          },
-        },
-        DefaultComponent,
-      ),
-    ).toEqual([
-      OverrideComponent,
+  test('dynamic prop overrides', () => {
+    function DefaultComponent(props) {
+      return <div>default {props.count}</div>;
+    }
+
+    function dynamicProps(props) {
+      return {count: props.count + 1};
+    }
+
+    const [Component, componentProps] = getOverrides(
+      {props: dynamicProps},
+      DefaultComponent,
+    );
+
+    const {container} = render(<Component count={1} {...componentProps} />);
+    const element = container.querySelector('div');
+    expect(element.textContent).toBe('default 2');
+  });
+
+  test('dynamic prop with component overrides', () => {
+    function DefaultComponent(props) {
+      return <div>default {props.count}</div>;
+    }
+
+    function CustomComponent(props) {
+      return <div>custom {props.count + 1}</div>;
+    }
+
+    function dynamicProps(props) {
+      return {count: props.count + 1};
+    }
+
+    const [Component, componentProps] = getOverrides(
+      {component: CustomComponent, props: dynamicProps},
+      DefaultComponent,
+    );
+
+    const {container} = render(<Component count={1} {...componentProps} />);
+    const element = container.querySelector('div');
+    expect(element.textContent).toBe('custom 3');
+  });
+
+  test('dynamic prop with style overrides', () => {
+    function DefaultComponent(props) {
+      return (
+        <div style={{backgroundColor: 'red', ...props.$style}}>
+          default {props.count}
+        </div>
+      );
+    }
+
+    function CustomComponent(props) {
+      return <div style={props.$style}>custom {props.count + 1}</div>;
+    }
+
+    function dynamicProps(props) {
+      return {count: props.count + 1};
+    }
+
+    const [Component, componentProps] = getOverrides(
       {
-        custom: 'prop',
-        $style: {
-          cursor: 'pointer',
-        },
+        component: CustomComponent,
+        props: dynamicProps,
+        style: {backgroundColor: 'blue'},
       },
-    ]);
+      DefaultComponent,
+    );
 
-    expect(
-      getOverrides(
-        {
-          component: OverrideComponent,
-          props: propsAsFunction,
-          style: {
-            cursor: 'pointer',
-          },
-        },
-        DefaultComponent,
-      ),
-    ).toEqual([
-      OverrideComponent,
-      {
-        key1: 'value1',
-        key2: 'value2',
-        $style: {
-          cursor: 'pointer',
-        },
-      },
-    ]);
+    const {container} = render(<Component count={1} {...componentProps} />);
+    const element = container.querySelector('div');
+    expect(element.getAttribute('style')).toBe('background-color: blue;');
+    expect(element.textContent).toBe('custom 3');
   });
 });

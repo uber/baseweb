@@ -59,12 +59,8 @@ export function getOverride(override: any): any {
  */
 export function getOverrideProps<T>(override: ?OverrideT<T>) {
   if (override && typeof override === 'object') {
-    const props =
-      typeof override.props === 'function'
-        ? override.props(override)
-        : override.props;
     return {
-      ...props,
+      ...override.props,
       $style: override.style,
     };
   }
@@ -100,9 +96,24 @@ export function getOverrides(
   override: any,
   defaultComponent: React.ComponentType<any>,
 ): [React.ComponentType<any>, {}] {
-  const component = getOverride(override) || defaultComponent;
+  const Component = getOverride(override) || defaultComponent;
+
+  if (
+    override &&
+    typeof override === 'object' &&
+    typeof override.props === 'function'
+  ) {
+    const DynamicOverride = React.forwardRef((props, ref) => {
+      const mappedProps = override.props(props);
+      const nextProps = getOverrideProps({...override, props: mappedProps});
+      return <Component ref={ref} {...nextProps} />;
+    });
+    DynamicOverride.displayName = Component.displayName;
+    return [DynamicOverride, {}];
+  }
+
   const props = getOverrideProps(override);
-  return [component, props];
+  return [Component, props];
 }
 /* eslint-enable flowtype/no-weak-types */
 

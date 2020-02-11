@@ -9,6 +9,7 @@ import * as React from 'react';
 import {styled} from '../styles/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import type {LayersManagerPropsT, LayersContextT} from './types.js';
+import {initFocusVisible} from '../utils/focusVisible.js';
 
 const StyledAppContainer = styled('div', {});
 const StyledLayersContainer = styled('div', {});
@@ -24,8 +25,14 @@ export default class LayersManager extends React.Component<LayersManagerPropsT> 
     current: React.ElementRef<any> | null,
   } = React.createRef();
 
+  containerRef: {
+    // eslint-disable-next-line flowtype/no-weak-types
+    current: React.ElementRef<any> | null,
+  } = React.createRef();
+
   componentDidMount() {
     this.forceUpdate();
+    initFocusVisible(this.containerRef.current);
   }
 
   render() {
@@ -56,7 +63,7 @@ export default class LayersManager extends React.Component<LayersManagerPropsT> 
                 zIndex: this.props.zIndex,
               }}
             >
-              <AppContainer {...appContainerProps}>
+              <AppContainer {...appContainerProps} ref={this.containerRef}>
                 {this.props.children}
               </AppContainer>
               <LayersContainer {...layersContainerProps} ref={this.host} />
