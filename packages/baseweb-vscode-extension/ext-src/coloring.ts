@@ -5,9 +5,11 @@ export default (context: vscode.ExtensionContext) => {
   let timeout: NodeJS.Timer | undefined = undefined;
   let activeEditor = vscode.window.activeTextEditor;
 
-  // create a decorator type that we use to decorate small numbers
-  const getColorDecorationType = (coloringStyle: string, colorVal: string) =>
-    vscode.window.createTextEditorDecorationType({
+  const decorationTypeMap: any = {};
+
+  // Create a decorator type that we use to decorate theme colors
+  function getColorDecorationType(coloringStyle: string, colorVal: string) {
+    const decorationType = vscode.window.createTextEditorDecorationType({
       borderWidth:
         coloringStyle === 'border'
           ? '2px'
@@ -18,42 +20,129 @@ export default (context: vscode.ExtensionContext) => {
       borderColor: colorVal,
       backgroundColor:
         coloringStyle === 'background' ? colorVal : 'transparent',
-      opacity: 0.5,
     });
+    return decorationType;
+  }
+
+  // Memoize decorator types per color value and current coloringStyle setting
+  function getMemoizedDecorationType(coloringStyle: string, colorVal: string) {
+    if (!decorationTypeMap[colorVal]) {
+      decorationTypeMap[colorVal] = {};
+      decorationTypeMap[colorVal].style = coloringStyle;
+      decorationTypeMap[colorVal].type = getColorDecorationType(
+        coloringStyle,
+        colorVal,
+      );
+      decorationTypeMap[colorVal].decorations = [];
+    } else if (decorationTypeMap[colorVal].style !== coloringStyle) {
+      decorationTypeMap[colorVal].style = coloringStyle;
+      decorationTypeMap[colorVal].type = getColorDecorationType(
+        coloringStyle,
+        colorVal,
+      );
+    }
+    return decorationTypeMap[colorVal];
+  }
+
+  // Set decorations
+  function decorate(activeEditor: vscode.TextEditor) {
+    const keys = [];
+    for (const prop in decorationTypeMap) {
+      if (decorationTypeMap.hasOwnProperty(prop)) {
+        keys.push(prop);
+      }
+    }
+    keys.forEach(key => {
+      activeEditor.setDecorations(
+        decorationTypeMap[key].type,
+        decorationTypeMap[key].decorations,
+      );
+    });
+  }
+
+  // Unset decorations
+  function undecorate(activeEditor: vscode.TextEditor) {
+    const keys = [];
+    for (const prop in decorationTypeMap) {
+      if (decorationTypeMap.hasOwnProperty(prop)) {
+        keys.push(prop);
+      }
+    }
+    keys.forEach(key => {
+      decorationTypeMap[key].decorations = [];
+      activeEditor.setDecorations(
+        decorationTypeMap[key].type,
+        decorationTypeMap[key].decorations,
+      );
+    });
+  }
 
   function updateDecorations() {
     if (!activeEditor) {
       return;
     }
+    // Unset all memoized decorations
+    // and clear the lists of decorations for every decoration type
+    undecorate(activeEditor);
 
     const workspaceConfig = vscode.workspace.getConfiguration('baseweb');
+    // Get the coloring enabled/disabled setting
     const isColoringOn = workspaceConfig.get('theme.coloring.enabled');
+
+    // If the coloring feature is set to false exit
     if (!isColoringOn) {
       return;
     }
-    const themeMode = workspaceConfig.get('theme.coloring.source');
-    const theme = themeMode === 'Light' ? LightTheme : DarkTheme;
-    const coloringStyle = workspaceConfig.get('theme.coloring.style');
 
-    const regEx = /colors\.\w+/g;
+    // Get the Theme choice setting
+    const themeMode = workspaceConfig.get('theme.coloring.source');
+    // Use the theme according to the current setting
+    const theme = themeMode === 'Light' ? LightTheme : DarkTheme;
+    // Get the coloring style setting
+    const coloringStyle: string =
+      workspaceConfig.get('theme.coloring.style') || '';
+
+    // RegExp for finding `colors.[THEME_PROP]`
+    const regEx = /(^|\W)(colors\.\w+)/gm;
+    // Get the current active document's text
     const text = activeEditor.document.getText();
     let match;
+    // Find matches to decorate accordingly
     while ((match = regEx.exec(text))) {
-      // exclude the `colors.` part
-      const startPos = activeEditor.document.positionAt(match.index + 7);
-      const endPos = activeEditor.document.positionAt(
-        match.index + match[0].length,
+      // @ts-ignore
+      const themeColorVal: string | undefined = theme.colors[match[2].slice(7)];
+      // Do not decorate if the found color key is not present in the theme object
+      if (!themeColorVal) {
+        continue;
+      }
+      // It should never get to here if `!themeColorVal`
+      // but adding a default `transparent` to satisfy types
+      const colorVal: string = themeColorVal || 'transparent';
+      // Start position excluding the `colors.` part
+      const startPos = activeEditor.document.positionAt(
+        match.index + match[1].length + 7,
       );
-      const colorVal = theme.colors[match[0].slice(7)] || 'transparent';
+      // End position of the match
+      const endPos = activeEditor.document.positionAt(
+        match.index + match[1].length + match[2].length,
+      );
+      // Create decoration for the current match position
       const decoration = {
         range: new vscode.Range(startPos, endPos),
         hoverMessage: `${colorVal} | ${themeMode}Theme`,
       };
-      activeEditor.setDecorations(
-        getColorDecorationType(coloringStyle, colorVal),
-        [decoration],
+      // Create and memoize a decoration type for the found color value
+      // or pull a memoized decoration type if not the first match
+      // for the color value and current coloring style setting
+      const memoizedDecorationType = getMemoizedDecorationType(
+        coloringStyle,
+        colorVal,
       );
+      // Add the decoration for the current match to the list
+      memoizedDecorationType.decorations.push(decoration);
     }
+    // Apply all memoized decorations
+    decorate(activeEditor);
   }
 
   function triggerUpdateDecorations() {
@@ -61,13 +150,14 @@ export default (context: vscode.ExtensionContext) => {
       clearTimeout(timeout);
       timeout = undefined;
     }
-    timeout = setTimeout(updateDecorations, 500);
+    timeout = setTimeout(updateDecorations, 200);
   }
 
   if (activeEditor) {
     triggerUpdateDecorations();
   }
 
+  // Subscribe for the settings change events
   vscode.workspace.onDidChangeConfiguration(event => {
     if (
       event.affectsConfiguration('baseweb.theme.coloring.enabled') ||
@@ -77,6 +167,7 @@ export default (context: vscode.ExtensionContext) => {
       triggerUpdateDecorations();
     }
   }),
+    // Subscribe for active editor change events
     vscode.window.onDidChangeActiveTextEditor(
       editor => {
         activeEditor = editor;
@@ -87,7 +178,7 @@ export default (context: vscode.ExtensionContext) => {
       null,
       context.subscriptions,
     );
-
+  // Subscribe for document change events
   vscode.workspace.onDidChangeTextDocument(
     event => {
       if (activeEditor && event.document === activeEditor.document) {
