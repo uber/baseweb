@@ -501,11 +501,12 @@ class Select extends React.Component<PropsT, SelectStateT> {
         },
       );
     } else {
+      this.focus();
       this.setState(
         {
           inputValue: updatedValue,
           isOpen: !this.props.closeOnSelect,
-          isFocused: false,
+          isFocused: true,
           isPseudoFocused: false,
         },
         () => {
@@ -867,7 +868,8 @@ class Select extends React.Component<PropsT, SelectStateT> {
     } = this.props;
 
     if (__DEV__) {
-      if (!Array.isArray(value)) {
+      // value may be nullish, only warn if value is defined
+      if (value && !Array.isArray(value)) {
         console.warn(
           'The Select component expects an array as the value prop. For more information, please visit the docs at https://baseweb.design/components/select/',
         );
@@ -930,6 +932,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
               if (!ref) return;
               this.anchor = ref.anchorRef;
             }}
+            focusLock={false}
             mountNode={this.props.mountNode}
             isOpen={isOpen}
             content={() => {

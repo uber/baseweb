@@ -15,8 +15,6 @@ import BooleanColumn from '../column-boolean.js';
 import NumericalColumn from '../column-numerical.js';
 import {Unstable_StatefulDataTable} from '../stateful-data-table.js';
 
-export const name = 'data-table-batch-action';
-
 type RowDataT = [number, boolean];
 
 const columns = [
@@ -30,7 +28,7 @@ const columns = [
   }),
 ];
 
-export const component = () => {
+export default function Scenario() {
   const [count, setCount] = React.useState(0);
   const [rows, setRows] = React.useState([
     {id: 1, data: [1, false]},
@@ -82,7 +80,7 @@ export const component = () => {
 
   return (
     <div>
-      <div style={{height: '800px', width: '900px'}}>
+      <div style={{height: '400px', width: '900px'}}>
         <Unstable_StatefulDataTable
           batchActions={actions}
           columns={columns}
@@ -93,4 +91,4 @@ export const component = () => {
       <p id="selection-change-count">selection change count: {count}</p>
     </div>
   );
-};
+}

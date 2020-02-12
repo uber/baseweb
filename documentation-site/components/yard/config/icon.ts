@@ -5,6 +5,7 @@ import {TConfig} from '../types';
 const iconProps = require('!!extract-react-types-loader!../../../../src/icon/icon.js');
 
 const IconConfig: TConfig = {
+  componentName: 'ArrowUp',
   imports: {
     'baseui/icon': {
       named: ['ArrowUp'],

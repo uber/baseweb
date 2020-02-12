@@ -16,7 +16,7 @@ import type {TreeViewPropsT} from './types.js';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 
 export default function TreeView(props: TreeViewPropsT) {
-  const {data, onToggle, overrides = {}} = props;
+  const {data, onToggle, overrides = {}, renderAll} = props;
   const {Root: RootOverride} = overrides;
 
   const Root = getOverride(RootOverride) || StyledTreeItemList;
@@ -30,6 +30,7 @@ export default function TreeView(props: TreeViewPropsT) {
             node={node}
             onToggle={onToggle}
             overrides={overrides}
+            renderAll={renderAll}
           />
         ))}
     </Root>

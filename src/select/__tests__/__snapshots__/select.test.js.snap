@@ -86,13 +86,17 @@ exports[`Select component renders component in search mode and false for multipl
   >
     <Popover
       accessibilityType="menu"
+      autoFocus={true}
       content={[Function]}
+      focusLock={false}
       ignoreBoundary={false}
       isOpen={false}
       onMouseEnterDelay={200}
       onMouseLeaveDelay={200}
       overrides={Object {}}
       placement="bottom"
+      renderAll={false}
+      returnFocus={true}
       showArrow={false}
       triggerType="click"
     >
@@ -915,13 +919,17 @@ exports[`Select component renders component in search mode and true for multiple
   >
     <Popover
       accessibilityType="menu"
+      autoFocus={true}
       content={[Function]}
+      focusLock={false}
       ignoreBoundary={false}
       isOpen={false}
       onMouseEnterDelay={200}
       onMouseLeaveDelay={200}
       overrides={Object {}}
       placement="bottom"
+      renderAll={false}
+      returnFocus={true}
       showArrow={false}
       triggerType="click"
     >
@@ -1744,13 +1752,17 @@ exports[`Select component renders component in select mode and false for multipl
   >
     <Popover
       accessibilityType="menu"
+      autoFocus={true}
       content={[Function]}
+      focusLock={false}
       ignoreBoundary={false}
       isOpen={false}
       onMouseEnterDelay={200}
       onMouseLeaveDelay={200}
       overrides={Object {}}
       placement="bottom"
+      renderAll={false}
+      returnFocus={true}
       showArrow={false}
       triggerType="click"
     >
@@ -2590,13 +2602,17 @@ exports[`Select component renders component in select mode and true for multiple
   >
     <Popover
       accessibilityType="menu"
+      autoFocus={true}
       content={[Function]}
+      focusLock={false}
       ignoreBoundary={false}
       isOpen={false}
       onMouseEnterDelay={200}
       onMouseLeaveDelay={200}
       overrides={Object {}}
       placement="bottom"
+      renderAll={false}
+      returnFocus={true}
       showArrow={false}
       triggerType="click"
     >

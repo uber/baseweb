@@ -19,7 +19,7 @@ export default class Example extends React.Component<
         }
         overrides={{
           Label: {
-            component: ({$value}) => (
+            component: ({$value}: any) => (
               <div style={{flexGrow: 1}}>
                 {$value}{' '}
                 <button

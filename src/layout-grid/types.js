@@ -18,6 +18,24 @@ export type AlignmentT =
   | typeof ALIGNMENT.end;
 
 export type BehaviorT = typeof BEHAVIOR.fixed | typeof BEHAVIOR.fluid;
+export type CSSLengthUnitT =
+  | 'cm'
+  | 'mm'
+  | 'Q'
+  | 'in'
+  | 'pc'
+  | 'px'
+  | 'pt'
+  | 'em'
+  | 'ex'
+  | 'ch'
+  | 'rem'
+  | 'lh'
+  | 'vw'
+  | 'vh'
+  | 'vmin'
+  | 'vmax'
+  | '%';
 
 export type GridPropsT = {
   /** Control vertical alignment of cells at each breakpoint. */
@@ -36,6 +54,8 @@ export type GridPropsT = {
   gridMargins?: ResponsiveT<number>,
   /** Maximum width of the grid container. Does not include Margins. Only applies when `behavior` is `fluid`. */
   gridMaxWidth?: number,
+  /** Modify the CSS length unit used to measure columns and rows. Defaults to theme value. */
+  gridUnit?: CSSLengthUnitT,
 };
 
 export type StyledGridPropsT = {
@@ -49,6 +69,8 @@ export type StyledGridPropsT = {
   $gridMargins?: ResponsiveT<number>,
   /** Maximum width of the grid container. Does not include Margins. Only applies when `behavior` is `fluid`. */
   $gridMaxWidth?: number,
+  /** Modify the CSS length unit used to measure columns and rows. Defaults to theme value. */
+  $gridUnit?: CSSLengthUnitT,
 };
 
 export type CellPropsT = {
@@ -79,4 +101,6 @@ export type StyledCellPropsT = {
   $skip?: ResponsiveT<number>,
   /** Control number of columns the cell should span. */
   $span?: ResponsiveT<number>,
+  /** Modify the CSS length unit used to measure columns and rows. Defaults to theme value. */
+  $gridUnit?: CSSLengthUnitT,
 };

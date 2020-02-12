@@ -5,6 +5,7 @@ import {TConfig} from '../types';
 const tagProps = require('!!extract-react-types-loader!../../../../src/tag/tag.js');
 
 const TagConfig: TConfig = {
+  componentName: 'Tag',
   imports: {
     'baseui/tag': {
       named: ['Tag'],

@@ -11,16 +11,21 @@ import {LightTheme} from 'spaceweb';
 import {Property} from './common.js';
 
 export function Breakpoint({
-  value,
+  name,
   media = false,
 }: {
-  value: string,
+  name: string,
   media: boolean,
 }) {
   return (
     <Property
-      title={value}
-      value={LightTheme[media ? 'mediaQuery' : 'breakpoints'][value] + 'px'}
-    ></Property>
+      name={name}
+      concern="breakpoints"
+      renderValue={() =>
+        media
+          ? LightTheme.mediaQuery[name]
+          : LightTheme.breakpoints[name] + 'px'
+      }
+    />
   );
 }

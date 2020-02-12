@@ -14,21 +14,21 @@ import {styled} from '../../styles/index.js';
 
 import {header} from '../images.js';
 
-export const name = 'card-image-link';
-
 const Container = styled('div', {width: '328px'});
 
-export const component = () => (
-  <Container>
-    <Card headerImage={header} title="Card Title Entry">
-      <StyledBody>
-        Proin ut dui sed metus pharetra hend rerit vel non mi. Nulla ornare
-        faucibus ex, non facilisis nisl. Maecenas aliquet mauris ut tempus
-        cursus. Etiam semper luctus sem ac blandit.
-      </StyledBody>
-      <StyledAction>
-        <StyledLink href="#">Link to a Place</StyledLink>
-      </StyledAction>
-    </Card>
-  </Container>
-);
+export default function Scenario() {
+  return (
+    <Container>
+      <Card headerImage={header} title="Card Title Entry">
+        <StyledBody>
+          Proin ut dui sed metus pharetra hend rerit vel non mi. Nulla ornare
+          faucibus ex, non facilisis nisl. Maecenas aliquet mauris ut tempus
+          cursus. Etiam semper luctus sem ac blandit.
+        </StyledBody>
+        <StyledAction>
+          <StyledLink href="#">Link to a Place</StyledLink>
+        </StyledAction>
+      </Card>
+    </Container>
+  );
+}

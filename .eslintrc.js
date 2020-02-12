@@ -60,5 +60,14 @@ module.exports = {
         'react/display-name': 'off',
       },
     },
+    {
+      files: [
+        'packages/eslint-plugin-baseui/**/*.js',
+        'packages/baseweb-vscode-extension/**/*.js',
+      ],
+      rules: {
+        'flowtype/require-valid-file-annotation': 'off',
+      },
+    },
   ],
 };

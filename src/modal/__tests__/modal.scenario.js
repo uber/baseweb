@@ -18,9 +18,8 @@ import {
   SIZE,
 } from '../index.js';
 
-export const name = 'modal';
-
-export const component = () => {
+// $FlowFixMe
+export default function Scenario({closeable = true}) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   // adding mountNode so that rtl vrts work render properly. this is because the portal
@@ -42,6 +41,7 @@ export const component = () => {
         isOpen={isOpen}
         size={SIZE.default}
         mountNode={modalRoot.current}
+        closeable={closeable}
       >
         <ModalHeader>Hello world</ModalHeader>
         <ModalBody>
@@ -61,4 +61,4 @@ export const component = () => {
       <div ref={modalRoot} />
     </React.Fragment>
   );
-};
+}

@@ -48,6 +48,7 @@ export default function TreeViewOverrides() {
   return (
     <StatefulTreeView
       data={initialData}
+      renderAll={true}
       overrides={{
         IconContainer: {
           style: {

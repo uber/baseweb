@@ -33,7 +33,7 @@ const Hamburger = themedStyled<{}>('div', ({$theme}) => ({
   display: 'block',
   userSelect: 'none',
   height: '32px',
-  paddingLeft: $theme.sizing.scale600,
+  marginLeft: $theme.sizing.scale600,
   cursor: 'pointer',
   [$theme.mediaQuery.medium]: {
     display: 'none',

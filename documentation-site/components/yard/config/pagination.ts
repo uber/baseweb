@@ -5,6 +5,7 @@ import {TConfig} from '../types';
 const paginationProps = require('!!extract-react-types-loader!../../../../src/pagination/pagination.js');
 
 const PaginationConfig: TConfig = {
+  componentName: 'Pagination',
   imports: {
     'baseui/pagination': {
       named: ['Pagination'],

@@ -44,52 +44,62 @@ const animations = {
   },
 };
 
-export function Timing({duration}: {duration: string}) {
+export function Timing({name}: {name: string}) {
   const [css, theme] = useStyletron();
   return (
-    <Property title={duration} value={theme.animation[duration]}>
-      <div
-        className={css({
-          backgroundColor: theme.colors.contentInverseSecondary,
-        })}
-      >
+    <Property
+      name={name}
+      concern="animation"
+      renderPreview={() => (
         <div
           className={css({
-            animationName: animations[duration],
-            animationDuration: '1s',
-            animationDirection: 'alternate',
-            animationIterationCount: 'infinite',
-            animationTimingFunction: 'linear',
-            height: theme.sizing.scale100,
-            backgroundColor: theme.colors.contentPrimary,
+            backgroundColor: theme.colors.contentInverseSecondary,
           })}
-        ></div>
-      </div>
-    </Property>
+        >
+          <div
+            className={css({
+              animationName: animations[name],
+              animationDuration: '1s',
+              animationDirection: 'alternate',
+              animationIterationCount: 'infinite',
+              animationTimingFunction: 'linear',
+              height: theme.sizing.scale100,
+              backgroundColor: theme.colors.contentPrimary,
+            })}
+          ></div>
+        </div>
+      )}
+      renderValue={() => theme.animation[name]}
+    />
   );
 }
 
-export function Easing({easing}: {easing: string}) {
+export function Easing({name}: {name: string}) {
   const [css, theme] = useStyletron();
   return (
-    <Property title={easing} value={theme.animation[easing]}>
-      <div
-        className={css({
-          backgroundColor: theme.colors.contentInverseSecondary,
-        })}
-      >
+    <Property
+      name={name}
+      concern="animation"
+      renderValue={() => theme.animation[name]}
+      renderPreview={() => (
         <div
           className={css({
-            animationName: move,
-            animationDuration: '1s',
-            animationDirection: 'alternate',
-            animationIterationCount: 'infinite',
-            animationTimingFunction: theme.animation[easing],
-            height: theme.sizing.scale100,
-            backgroundColor: theme.colors.contentPrimary,
+            backgroundColor: theme.colors.contentInverseSecondary,
           })}
-        ></div>
-      </div>
-    </Property>
+        >
+          <div
+            className={css({
+              animationName: move,
+              animationDuration: '1s',
+              animationDirection: 'alternate',
+              animationIterationCount: 'infinite',
+              animationTimingFunction: theme.animation[name],
+              height: theme.sizing.scale100,
+              backgroundColor: theme.colors.contentPrimary,
+            })}
+          ></div>
+        </div>
+      )}
+    />
   );
 }

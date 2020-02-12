@@ -6,10 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
-
 import {StatefulPinCode} from '../index.js';
 
-export const name = 'pin-code';
-
-export const component = () => <StatefulPinCode />;
+export default StatefulPinCode;

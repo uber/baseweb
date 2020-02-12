@@ -10,4 +10,6 @@ export {
   StyledTable,
   StyledHeadCell,
   StyledBodyCell,
+  SortableHeadCell,
+  SORT_DIRECTION,
 } from './styled-components.js';

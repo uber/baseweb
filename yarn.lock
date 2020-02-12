@@ -2963,6 +2963,11 @@
   dependencies:
     "@types/jest-diff" "*"
 
+"@types/json5@^0.0.29":
+  version "0.0.29"
+  resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
+  integrity sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
+
 "@types/just-pick@^2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@types/just-pick/-/just-pick-2.1.0.tgz#6047b6e2dae44c13d4a52dfe66815f286f6cf0d1"
@@ -9284,17 +9289,17 @@ extglob@^2.0.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-extract-react-types-loader@^0.3.9:
-  version "0.3.9"
-  resolved "https://registry.yarnpkg.com/extract-react-types-loader/-/extract-react-types-loader-0.3.9.tgz#d0d26f5215c2197e752a46d654c5a17791af19c5"
-  integrity sha512-zOyv/VRa/tpsUyl1Pdyj/+wUg74dW0YH57r5C5FY2DDbAt3Go8LjUkI5i+Lw3S84KjbOXP6ByxO9K7XT7Kby9A==
+extract-react-types-loader@^0.3.10:
+  version "0.3.10"
+  resolved "https://registry.yarnpkg.com/extract-react-types-loader/-/extract-react-types-loader-0.3.10.tgz#c22fd105378004e6f89fc6f266b756c9ef0534ac"
+  integrity sha512-a4JeYAUlr0FjygIk0Uo1BxPNido8bx9Gr1wKxN/MT/nO5h4XZgm3xIQtDYnvilrPSH/tXHC/CatIbf2B0sBrQg==
   dependencies:
-    extract-react-types "^0.22.0"
+    extract-react-types "^0.23.0"
 
-extract-react-types@^0.22.0, extract-react-types@^0.22.1:
-  version "0.22.1"
-  resolved "https://registry.yarnpkg.com/extract-react-types/-/extract-react-types-0.22.1.tgz#09beb26850214f1e5ed653296f41077eeb3927da"
-  integrity sha512-FuraEeFpL28GPoZAl7PClEBvtssd4owuCqpwjTI9TnlqueElXU/a+Qwtyt8WjwZ7f29d/zfznF6K4vUQNOF1jQ==
+extract-react-types@^0.23.0:
+  version "0.23.0"
+  resolved "https://registry.yarnpkg.com/extract-react-types/-/extract-react-types-0.23.0.tgz#54c6e7657c61a40f713e2e563222767fee3f21e2"
+  integrity sha512-GxlI5hRDEmVFQU5XBUl4DrXmXDt+WkTC921tIBwmOZqGdRsz1ZiNPeD5xHyt/hJqS0Fpxj4ltPP7g8mYvMypeg==
   dependencies:
     "@aparna036/babel-explode-module" "^2.0.1"
     "@babel/core" "^7.4.4"
@@ -10265,18 +10270,7 @@ glob-to-regexp@^0.4.1:
   resolved "https://registry.yarnpkg.com/glob-to-regexp/-/glob-to-regexp-0.4.1.tgz#c75297087c851b9a578bd217dd59a92f59fe546e"
   integrity sha512-lkX1HJXwyMcprw/5YUZc2s7DrpAiHB21/V+E1rHUrVNokkvB6bqMzT0VfV6/86ZNabt1k14YOIaT7nDvOX3Iiw==
 
-glob@^5.0.13:
-  version "5.0.15"
-  resolved "https://registry.yarnpkg.com/glob/-/glob-5.0.15.tgz#1bc936b9e02f4a603fcc222ecf7633d30b8b93b1"
-  integrity sha1-G8k2ueAvSmA/zCIuz3Yz0wuLk7E=
-  dependencies:
-    inflight "^1.0.4"
-    inherits "2"
-    minimatch "2 || 3"
-    once "^1.3.0"
-    path-is-absolute "^1.0.0"
-
-glob@^7.0.0, glob@^7.0.5:
+glob@^7.0.0, glob@^7.0.5, glob@^7.1.6:
   version "7.1.6"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.6.tgz#141f33b81a7c2492e125594307480c46679278a6"
   integrity sha512-LwaxwyZ72Lk7vZINtNNrywX0ZuLyStrdDtabefZKAY5ZGJhVtgdznluResxNmPitE0SAO+O26sWTHeKSI2wMBA==
@@ -11110,13 +11104,6 @@ import-from@^2.1.0:
   integrity sha1-M1238qev/VOqpHHUuAId7ja387E=
   dependencies:
     resolve-from "^3.0.0"
-
-import-glob@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/import-glob/-/import-glob-1.5.0.tgz#5b8dc497c7b1ae2406da41ca687bb3b34227a659"
-  integrity sha1-W43El8exriQG2kHKaHuzs0Inplk=
-  dependencies:
-    glob "^5.0.13"
 
 import-lazy@^2.1.0:
   version "2.1.0"
@@ -12823,10 +12810,10 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
   integrity sha512-s5kLOcnH0XqDO+FvuaLX8DDjZ18CGFk7VygH40QoKPUQhW4e2rvM0rwUq0t8IQDOwYSeLK01U90OjzBTme2QqA==
 
-kind2string@^0.6.3:
-  version "0.6.3"
-  resolved "https://registry.yarnpkg.com/kind2string/-/kind2string-0.6.3.tgz#2c558de972d2e2bb09ec14dcbcfda289e8328a85"
-  integrity sha512-CK4gfO7SKrePux9UUUsmLNFH0ADTtAmC1CQJCcCmzV7xkZcXJoJDrd+pQkYhcfWCqzTJ4XFqTWTiASNIHn/79A==
+kind2string@^0.7.2:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/kind2string/-/kind2string-0.7.2.tgz#10d58aa3c797bed521c8a3256e551a0ad3189e51"
+  integrity sha512-AwSL6OpnM7bo82x7ENDdmbSb3BsM4uRfXK2ezIm4cnkLa+jFpFW/mEGReD00g3kmc94A8SNIrK9F9ph4+EpqVQ==
   dependencies:
     "@babel/runtime" "^7.4.4"
 
@@ -13888,7 +13875,7 @@ minimalistic-crypto-utils@^1.0.0, minimalistic-crypto-utils@^1.0.1:
   resolved "https://registry.yarnpkg.com/minimalistic-crypto-utils/-/minimalistic-crypto-utils-1.0.1.tgz#f6c00c1c0b082246e5c4d99dfb8c7c083b2b582a"
   integrity sha1-9sAMHAsIIkblxNmd+4x8CDsrWCo=
 
-"minimatch@2 || 3", minimatch@3.0.4, minimatch@^3.0.2, minimatch@^3.0.3, minimatch@^3.0.4, minimatch@~3.0.4:
+minimatch@3.0.4, minimatch@^3.0.2, minimatch@^3.0.3, minimatch@^3.0.4, minimatch@~3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.4.tgz#5166e286457f03306064be5497e8dbb0c3d32083"
   integrity sha512-yJHVQEhyqPLUTgt9B83PXu6W3rx4MvvHvSUvToogpwoGDOUQ+yDrR0HRot+yOCdCO7u4hX3pWft6kWBBcqh0UA==
@@ -15872,14 +15859,14 @@ pretty-hrtime@^1.0.3:
   resolved "https://registry.yarnpkg.com/pretty-hrtime/-/pretty-hrtime-1.0.3.tgz#b7e3ea42435a4c9b2759d99e0f201eb195802ee1"
   integrity sha1-t+PqQkNaTJsnWdmeDyAesZWALuE=
 
-pretty-proptypes@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/pretty-proptypes/-/pretty-proptypes-1.0.0.tgz#3849924d27e0ca9aeed43d5820eccd3539488efe"
-  integrity sha512-CJC6tcZ48pDg2QNd42x+QcBgINb//Ega5J0EPvXKGsFrTR7WO9faAVO8FYQcEQKQ53cyZwATxqOAOE83nFd1HA==
+pretty-proptypes@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/pretty-proptypes/-/pretty-proptypes-1.0.5.tgz#ff3b41b0bd47c7e18e9696d11166cb40e6d085ab"
+  integrity sha512-oNHi2MfYVi6x4tqHC50VhuG3KeUjHBZKq9g9d/2Rej26hhfZDP7NXFWaOzL93u5yrZ0W7xaJ7jD39B7HUpTAYA==
   dependencies:
     "@babel/runtime" "^7.4.4"
     "@emotion/core" "^10.0.14"
-    kind2string "^0.6.3"
+    kind2string "^0.7.2"
     react-markings "^1.2.0"
 
 pretty-quick@^1.4.1:
@@ -16615,10 +16602,10 @@ react-proptype-conditional-require@^1.0.4:
   resolved "https://registry.yarnpkg.com/react-proptype-conditional-require/-/react-proptype-conditional-require-1.0.4.tgz#69c2d5741e6df5e08f230f36bbc2944ee1222555"
   integrity sha1-acLVdB5t9eCPIw82u8KUTuEiJVU=
 
-react-range@^1.4.8:
-  version "1.4.8"
-  resolved "https://registry.yarnpkg.com/react-range/-/react-range-1.4.8.tgz#a22f04fa347b76d3a4af41a8773b7fb8a1c69ac0"
-  integrity sha512-1q7tnnag5ANlbeiohR+CH0daVanQRd9lCukYYMyEGP2+Vunl9hZcFH2kRuo+iBJpaQZfOruGicTeTi0Ba1NlCg==
+react-range@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/react-range/-/react-range-1.5.1.tgz#161075cbfd37186f8336ab37a0ed0d7cf72dd1c6"
+  integrity sha512-9ppaYXy4oD8DgofmfLIPFU3vCArVFq82RNGQJCS8WJkxQBHt0/nolNhWWV51IHfJg/H41nKe11CvZA9Ez/sHag==
 
 react-simple-code-editor@^0.10.0:
   version "0.10.0"
@@ -16674,10 +16661,10 @@ react-twitter-embed@^2.0.8:
     react-proptype-conditional-require "^1.0.4"
     scriptjs "^2.5.9"
 
-react-view@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/react-view/-/react-view-2.0.1.tgz#c9ac543820f17a79b7588d6b76e3d3f87f557036"
-  integrity sha512-YAhmwuF3R8+IUKiCUqOw/p32L1UaY00W26ZrkGo2s7wV2dEGEcfOLl2Vs16QSiF8UDm/zGO140v2MLs4tquM/Q==
+react-view@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/react-view/-/react-view-2.2.2.tgz#050c8911c3711eb36e63f1b2cadb0b19988e4f4a"
+  integrity sha512-oBb11/3g64m5K2K4gqq6SMw/JeSq30whb+NbV2VemQWSaApJNft+QnEr6VSOsHyIb3TGsYxzt06X5rRkNFicZQ==
   dependencies:
     "@babel/code-frame" "^7.5.5"
     "@babel/core" "^7.7.0"
@@ -19193,6 +19180,16 @@ ts-pnp@^1.1.2:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/ts-pnp/-/ts-pnp-1.1.4.tgz#ae27126960ebaefb874c6d7fa4729729ab200d90"
   integrity sha512-1J/vefLC+BWSo+qe8OnJQfWTYRS6ingxjwqmHMqaMxXMj7kFtKLgAaYW3JeX3mktjgUL+etlU8/B4VUAUI9QGw==
+
+tsconfig-paths@^3.9.0:
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/tsconfig-paths/-/tsconfig-paths-3.9.0.tgz#098547a6c4448807e8fcb8eae081064ee9a3c90b"
+  integrity sha512-dRcuzokWhajtZWkQsDVKbWyY+jgcLC5sqJhg2PSgf4ZkH2aHPvaOY8YWGhmjb68b5qqTfasSsDO9k7RUiEmZAw==
+  dependencies:
+    "@types/json5" "^0.0.29"
+    json5 "^1.0.1"
+    minimist "^1.2.0"
+    strip-bom "^3.0.0"
 
 tslib@^1, tslib@^1.9.1, tslib@^1.9.3:
   version "1.10.0"

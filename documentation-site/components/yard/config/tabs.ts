@@ -6,6 +6,7 @@ const tabsProps = require('!!extract-react-types-loader!../../../../src/tabs/tab
 const tabProps = require('!!extract-react-types-loader!../../../../src/tabs/tab.js');
 
 const TabsConfig: TConfig = {
+  componentName: 'Tabs',
   imports: {
     'baseui/tabs': {named: ['Tabs']},
   },

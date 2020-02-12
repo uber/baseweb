@@ -9,23 +9,24 @@ LICENSE file in the root directory of this source tree.
 
 import {styled} from '../styles/index.js';
 
-export const StyledTreeItemList = styled<{$isChildNode?: boolean}>(
-  'ul',
-  ({$theme, $isChildNode}) => {
-    return {
-      marginTop: 0,
-      marginBottom: 0,
-      marginLeft: $isChildNode ? $theme.sizing.scale800 : 0,
-      marginRight: 0,
-      overflow: 'auto',
-      paddingTop: 0,
-      paddingBottom: 0,
-      paddingLeft: 0,
-      paddingRight: 0,
-      position: 'relative',
-    };
-  },
-);
+export const StyledTreeItemList = styled<{
+  $isChildNode?: boolean,
+  $expanded?: boolean,
+}>('ul', ({$theme, $isChildNode, $expanded = true}) => {
+  return {
+    marginTop: 0,
+    marginBottom: 0,
+    marginLeft: $isChildNode ? $theme.sizing.scale800 : 0,
+    marginRight: 0,
+    overflow: 'auto',
+    paddingTop: 0,
+    paddingBottom: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
+    position: 'relative',
+    display: $expanded ? 'block' : 'none',
+  };
+});
 
 export const StyledTreeItem = styled<{$isLeafNode?: boolean}>(
   'li',

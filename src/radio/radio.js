@@ -35,6 +35,7 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
     disabled: false,
     autoFocus: false,
     inputRef: React.createRef(),
+    align: 'vertical',
     isError: false,
     onChange: () => {},
     onMouseEnter: () => {},
@@ -106,6 +107,7 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
     );
 
     const sharedProps = {
+      $align: this.props.align,
       $checked: this.props.checked,
       $disabled: this.props.disabled,
       $hasDescription: !!this.props.description,
@@ -159,7 +161,7 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
         </Root>
 
         {!!this.props.description && (
-          <Description {...descriptionProps}>
+          <Description {...sharedProps} {...descriptionProps}>
             {this.props.description}
           </Description>
         )}

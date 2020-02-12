@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import type {ResponsiveT} from '../layout-grid/types.js';
+import type {ResponsiveT, CSSLengthUnitT} from '../layout-grid/types.js';
 export type ColorTokensT = {
   // Primary Palette
   primaryA: string,
@@ -122,6 +122,7 @@ export type CoreExtensionSemanticColorTokensT = {
   backgroundLightNegative: string,
   backgroundLightWarning: string,
   backgroundAlwaysDark: string,
+  backgroundAlwaysLight: string,
 
   // Content
   contentStateDisabled: string,
@@ -134,6 +135,7 @@ export type CoreExtensionSemanticColorTokensT = {
   // Border
   borderStateDisabled: string,
   borderAccent: string,
+  borderAccentLight: string,
   borderNegative: string,
   borderWarning: string,
   borderPositive: string,
@@ -678,6 +680,7 @@ export type GridT = {
   margins: ResponsiveT<number>,
   gaps: ResponsiveT<number>,
   maxWidth: number,
+  unit: CSSLengthUnitT,
 };
 
 // TODO(#2318) Deprecate in the next major

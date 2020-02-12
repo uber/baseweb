@@ -19,6 +19,8 @@ import {
 import {useStyletron} from '../styles/index.js';
 import {Tooltip, PLACEMENT} from '../tooltip/index.js';
 
+import {EmptyState} from './styled-components.js';
+
 import {COLUMNS, SORT_DIRECTIONS} from './constants.js';
 import HeaderCell from './header-cell.js';
 import MeasureColumnWidths from './measure-column-widths.js';
@@ -28,12 +30,16 @@ import type {
   RowT,
   SortDirectionsT,
   RowActionT,
+  RenderPropT,
 } from './types.js';
+import {LocaleContext} from '../locale/index.js';
+import type {LocaleT} from '../locale/types.js';
 
 // consider pulling this out to a prop if useful.
 const HEADER_ROW_HEIGHT = 48;
 
 type InnerTableElementProps = {|
+  emptyMessage?: React.Node | RenderPropT,
   children: React.Node,
   style: {[string]: mixed},
 |};
@@ -118,6 +124,8 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
         borderTop: 'none',
         borderBottom: 'none',
         borderLeft: 'none',
+        // do not render a border on cells in the right-most column
+        borderRight: columnIndex === data.columns.length - 1 ? 'none' : null,
         boxSizing: 'border-box',
       })}
       style={style}
@@ -459,6 +467,8 @@ function Headers(props: {||}) {
                   backgroundColor: theme.colors.mono100,
                   borderTop: 'none',
                   borderLeft: 'none',
+                  borderRight:
+                    columnIndex === ctx.columns.length - 1 ? 'none' : null,
                   boxSizing: 'border-box',
                   display: 'flex',
                 })}
@@ -501,7 +511,9 @@ const InnerTableElement = React.forwardRef<
   InnerTableElementProps,
   HTMLDivElement,
 >((props, ref) => {
-  const [css, theme] = useStyletron();
+  const {emptyMessage} = props;
+
+  const [, theme] = useStyletron();
   const ctx = React.useContext(HeaderContext);
 
   // no need to render the cells until the columns have been measured
@@ -510,70 +522,74 @@ const InnerTableElement = React.forwardRef<
   }
 
   return (
-    <div ref={ref} data-baseweb="data-table" style={props.style}>
-      <Headers />
-      {React.Children.toArray(props.children).length <= ctx.columns.length ? (
-        <div
-          className={css({
-            ...theme.typography.font100,
-            marginTop: theme.sizing.scale600,
-            marginLeft: theme.sizing.scale600,
-          })}
-        >
-          No rows match the filter criteria defined. Please remove one or more
-          filters to view more data.
-        </div>
-      ) : (
-        props.children
-      )}
+    <LocaleContext.Consumer>
+      {(locale: LocaleT) => {
+        const emptyMessageComponent: React.Node =
+          emptyMessage && typeof emptyMessage === 'function' ? (
+            emptyMessage()
+          ) : (
+            <EmptyState>
+              {emptyMessage || locale.datatable.emptyState}
+            </EmptyState>
+          );
+        return (
+          <div ref={ref} data-baseweb="data-table" style={props.style}>
+            <Headers />
+            {React.Children.toArray(props.children).length <= ctx.columns.length
+              ? emptyMessageComponent
+              : props.children}
 
-      {ctx.rowActions &&
-        Boolean(ctx.rowActions.length) &&
-        ctx.rowHighlightIndex > 0 &&
-        !ctx.isScrollingX && (
-          <div
-            style={{
-              alignItems: 'center',
-              backgroundColor: 'rgba(238, 238, 238, 0.99)',
-              display: 'flex',
-              height: `${ctx.rowHeight}px`,
-              padding: '0 16px',
-              paddingLeft: theme.sizing.scale300,
-              paddingRight: theme.sizing.scale300,
-              position: 'absolute',
-              right: 0 - ctx.scrollLeft,
-              top:
-                (ctx.rowHighlightIndex - 1) * ctx.rowHeight + HEADER_ROW_HEIGHT,
-            }}
-          >
-            {ctx.rowActions.map(rowAction => {
-              const RowActionIcon = rowAction.renderIcon;
-              return (
-                <Button
-                  alt={rowAction.label}
-                  key={rowAction.label}
-                  onClick={event =>
-                    rowAction.onClick({
-                      event,
-                      row: ctx.rows[ctx.rowHighlightIndex - 1],
-                    })
-                  }
-                  size={BUTTON_SIZES.compact}
-                  kind={BUTTON_KINDS.minimal}
-                  shape={BUTTON_SHAPES.round}
-                  overrides={{
-                    BaseButton: {
-                      style: {marginLeft: theme.sizing.scale300},
-                    },
+            {ctx.rowActions &&
+              Boolean(ctx.rowActions.length) &&
+              ctx.rowHighlightIndex > 0 &&
+              !ctx.isScrollingX && (
+                <div
+                  style={{
+                    alignItems: 'center',
+                    backgroundColor: 'rgba(238, 238, 238, 0.99)',
+                    display: 'flex',
+                    height: `${ctx.rowHeight}px`,
+                    padding: '0 16px',
+                    paddingLeft: theme.sizing.scale300,
+                    paddingRight: theme.sizing.scale300,
+                    position: 'absolute',
+                    right: 0 - ctx.scrollLeft,
+                    top:
+                      (ctx.rowHighlightIndex - 1) * ctx.rowHeight +
+                      HEADER_ROW_HEIGHT,
                   }}
                 >
-                  <RowActionIcon size={24} />
-                </Button>
-              );
-            })}
+                  {ctx.rowActions.map(rowAction => {
+                    const RowActionIcon = rowAction.renderIcon;
+                    return (
+                      <Button
+                        alt={rowAction.label}
+                        key={rowAction.label}
+                        onClick={event =>
+                          rowAction.onClick({
+                            event,
+                            row: ctx.rows[ctx.rowHighlightIndex - 1],
+                          })
+                        }
+                        size={BUTTON_SIZES.compact}
+                        kind={BUTTON_KINDS.minimal}
+                        shape={BUTTON_SHAPES.round}
+                        overrides={{
+                          BaseButton: {
+                            style: {marginLeft: theme.sizing.scale300},
+                          },
+                        }}
+                      >
+                        <RowActionIcon size={24} />
+                      </Button>
+                    );
+                  })}
+                </div>
+              )}
           </div>
-        )}
-    </div>
+        );
+      }}
+    </LocaleContext.Consumer>
   );
 });
 InnerTableElement.displayName = 'InnerTableElement';
@@ -616,10 +632,13 @@ export function Unstable_DataTable(props: DataTablePropsT) {
   );
   const normalizedWidths = React.useMemo(() => {
     const sum = ns => ns.reduce((s, n) => s + n, 0);
-    const resizedWidths = measuredWidths.map((w, i) => w + resizeDeltas[i]);
+    const resizedWidths = measuredWidths.map(
+      (w, i) => Math.floor(w) + Math.floor(resizeDeltas[i]),
+    );
     if (gridRef.current) {
+      // minus 2 to account for the border stroke width
       // $FlowFixMe
-      const domWidth = gridRef.current.props.width;
+      const domWidth = gridRef.current.props.width - 2;
       const measuredWidth = sum(resizedWidths);
       // $FlowFixMe
       const offsetWidth = gridRef.current._outerRef.offsetWidth;
@@ -629,9 +648,15 @@ export function Unstable_DataTable(props: DataTablePropsT) {
       const scrollbar = offsetWidth - clientWidth - 2;
 
       const remainder = domWidth - measuredWidth - scrollbar;
-      const padding = remainder / measuredWidths.length;
+      const padding = Math.floor(remainder / measuredWidths.length);
       if (padding > 0) {
-        return resizedWidths.map(w => Math.ceil(w + padding));
+        const result = [];
+        // -1 so that we loop over all but the last item
+        for (let i = 0; i < resizedWidths.length - 1; i++) {
+          result.push(resizedWidths[i] + padding);
+        }
+        result.push(domWidth - sum(result));
+        return result;
       }
     }
 
@@ -853,6 +878,16 @@ export function Unstable_DataTable(props: DataTablePropsT) {
     textQuery,
   ]);
 
+  const WrappedInnerTableElement = React.useCallback(
+    innerTableElementProps => (
+      <InnerTableElement
+        emptyMessage={props.emptyMessage}
+        {...innerTableElementProps}
+      />
+    ),
+    [props.emptyMessage],
+  );
+
   return (
     <React.Fragment>
       <MeasureColumnWidths
@@ -896,16 +931,16 @@ export function Unstable_DataTable(props: DataTablePropsT) {
               // eslint-disable-next-line flowtype/no-weak-types
               ref={(gridRef: any)}
               overscanRowCount={10}
-              innerElementType={InnerTableElement}
+              innerElementType={WrappedInnerTableElement}
               columnCount={props.columns.length}
               columnWidth={columnIndex => normalizedWidths[columnIndex]}
-              height={height}
+              height={height - 2}
               // plus one to account for additional header row
               rowCount={rows.length + 1}
               rowHeight={rowIndex =>
                 rowIndex === 0 ? HEADER_ROW_HEIGHT : rowHeight
               }
-              width={width}
+              width={width - 2}
               itemData={itemData}
               onScroll={handleScroll}
               style={{

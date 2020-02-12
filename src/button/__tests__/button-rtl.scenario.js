@@ -8,15 +8,15 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {component as ButtonScenario} from './button.scenario.js';
+import ButtonScenario from './button.scenario.js';
 import {ThemeProvider, LightTheme} from '../../index.js';
 
-export const name = 'button-rtl';
-
-export const component = () => (
-  <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
-    <div dir="rtl">
-      <ButtonScenario />
-    </div>
-  </ThemeProvider>
-);
+export default function Scenario() {
+  return (
+    <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
+      <div dir="rtl">
+        <ButtonScenario />
+      </div>
+    </ThemeProvider>
+  );
+}

@@ -10,9 +10,7 @@ import React from 'react';
 import {Grid, Cell, BEHAVIOR} from '../index.js';
 import Inner from './inner.js';
 
-export const name = 'layout-grid-sizing';
-
-export function component() {
+export default function Scenario() {
   return (
     <>
       <Grid behavior={BEHAVIOR.fixed}>

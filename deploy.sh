@@ -8,6 +8,7 @@ apt-get install -y jq
 this_commit=$(echo $BUILDKITE_COMMIT | tr -d '"')
 tags=$(curl https://api.github.com/repos/uber/baseweb/git/refs/tags?access_token=${GITHUB_AUTH_TOKEN})
 latest_tagged_commit=$(echo $tags | jq '.[-1].object.sha' | tr -d '"')
+BASEDIR=$(pwd)
 
 echo this commit: $this_commit
 echo latest tagged commit: $latest_tagged_commit
@@ -43,6 +44,21 @@ if [ "$this_commit" = "$latest_tagged_commit" ]; then
      -H "Content-Type: application/json" \
      --data "{\"type\":\"CNAME\",\"name\":\"$cname.baseweb.design\",\"content\":\"alias.zeit.co\",\"ttl\":1,\"priority\":10,\"proxied\":false}"
   now --scope=uber-ui-platform --token=$ZEIT_NOW_TOKEN alias $deployment "$cname.baseweb.design"
+
+  # publish eslint-plugin-baseui
+  cd $BASEDIR
+  cd packages/eslint-plugin-baseui
+  node "$BASEDIR/scripts/sync-package-versions.js" package.json
+  npm publish
+
+  # publish the vscode extension
+  cd $BASEDIR
+  yarn build:code-snippets
+  cd packages/baseweb-vscode-extension
+  node "$BASEDIR/scripts/sync-package-versions.js" package.json
+  yarn
+  yarn build
+  ./node_modules/.bin/vsce publish --yarn -p $AZURE_TOKEN
 else
   echo current commit does not match latest tagged commit
   echo exited without deploying to now

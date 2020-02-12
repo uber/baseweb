@@ -12,7 +12,7 @@
 
 <p align="center">
   <a href="https://baseweb.design">
-    <img width="500px" src="https://res.cloudinary.com/dawr8pobn/image/upload/v1565816562/baseblack_oodvc1.png">
+    <img width="500px" src="https://i.imgur.com/UaRZdTq.png">
   </a>
 </p>
 

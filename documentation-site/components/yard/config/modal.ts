@@ -13,6 +13,7 @@ import {TConfig} from '../types';
 const modalProps = require('!!extract-react-types-loader!../../../../src/modal/modal.js');
 
 const ModalConfig: TConfig = {
+  componentName: 'Modal',
   imports: {
     'baseui/modal': {
       named: [

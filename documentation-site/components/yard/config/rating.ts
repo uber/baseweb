@@ -5,6 +5,7 @@ import {TConfig} from '../types';
 const starRatingProps = require('!!extract-react-types-loader!../../../../src/rating/star-rating.js');
 
 const ratingConfig: TConfig = {
+  componentName: 'StarRating',
   imports: {
     'baseui/rating': {
       named: ['StarRating'],

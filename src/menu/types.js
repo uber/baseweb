@@ -138,6 +138,8 @@ export type MenuPropsT = {
     Option?: OverrideT<*>,
     OptgroupHeader?: OverrideT<*>,
   },
+  /** Renders all menu content for SEO purposes regardless of menu  state */
+  renderAll?: boolean,
 };
 
 export type MenuProfilePropsT = {
@@ -219,6 +221,7 @@ export type OptionListPropsT = {
   size?: $Keys<typeof OPTION_LIST_SIZE>,
   overrides?: {
     ListItem?: OverrideT<*>,
+    ListItemAnchor?: OverrideT<*>,
   },
   /** Utility to reset menu to default state. Useful for rendering child menus. */
   resetMenu?: () => void,
@@ -226,6 +229,8 @@ export type OptionListPropsT = {
   $isHighlighted?: boolean,
   /** Is the parent menu focused. determines if highlighted item should be blue or black */
   $isFocused?: boolean,
+  /** Renders all menu content for SEO purposes regardless of menu  state */
+  renderAll?: boolean,
 };
 
 export type OptionProfilePropsT = {
@@ -252,4 +257,6 @@ export type OptionProfilePropsT = {
   resetMenu?: () => void,
   /** Renders UI in 'highlighted' state. */
   $isHighlighted?: boolean,
+  /** Renders all menu content for SEO purposes regardless of menu  state */
+  renderAll?: boolean,
 };

@@ -57,7 +57,8 @@ export default (
     backgroundLightPositive: colors.green700,
     backgroundLightNegative: colors.red700,
     backgroundLightWarning: colors.yellow700,
-    backgroundAlwaysDark: colors.black,
+    backgroundAlwaysDark: colors.gray900,
+    backgroundAlwaysLight: colors.gray100,
 
     // Content
     contentStateDisabled: colors.gray600,
@@ -69,7 +70,8 @@ export default (
 
     // Border
     borderStateDisabled: colors.gray800,
-    borderAccent: colors.blue500,
+    borderAccent: colors.blue400,
+    borderAccentLight: colors.blue500,
     borderNegative: colors.red500,
     borderWarning: colors.yellow500,
     borderPositive: colors.green500,

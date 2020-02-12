@@ -33,7 +33,7 @@ export default Layout;
 
 # Input
 
-<Yard componentName="Input" placeholderHeight={48} {...inputYardConfig} />
+<Yard placeholderHeight={48} {...inputYardConfig} />
 
 An input enables a person to type in text information.
 
@@ -81,6 +81,8 @@ Other input components such as [`Textarea`](/components/textarea), [`PhoneInput`
 `Input` has some built-in logic when you set `type` to `"password"`.
 A button is added to the right side of the input which, when activated, toggles the masking of the inputʼs current text.
 Allowing users to see the text they have entered is considered a [usability best practice](https://www.nngroup.com/articles/stop-password-masking/) so we have built-in this behavior.
+
+Please note, that by default the component will use the `autocomplete="new-password"` attribute. You can change that by providing the `autoComplete` property to the component, like `autoComplete="current-password"`. You can read more about this [decision here](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion#Preventing_autofilling_with_autocompletenew-password).
 
 If you want to opt-out of this behavior, you can override the toggle with a null component:
 

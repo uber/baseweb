@@ -10,22 +10,28 @@ import React from 'react';
 
 import {StatefulInput, SIZE} from '../index.js';
 
-export const name = 'input-sizes';
-
-export const component = () => (
-  <>
-    <StatefulInput
-      size={SIZE.compact}
-      initialState={{value: 'Compact'}}
-      endEnhancer=".com"
-    />
-    <br />
-    <StatefulInput initialState={{value: 'Default'}} endEnhancer=".com" />
-    <br />
-    <StatefulInput
-      size={SIZE.large}
-      initialState={{value: 'Large'}}
-      endEnhancer=".com"
-    />
-  </>
-);
+export default function Scenario() {
+  return (
+    <>
+      <StatefulInput
+        size={SIZE.mini}
+        initialState={{value: 'Mini'}}
+        endEnhancer=".com"
+      />
+      <br />
+      <StatefulInput
+        size={SIZE.compact}
+        initialState={{value: 'Compact'}}
+        endEnhancer=".com"
+      />
+      <br />
+      <StatefulInput initialState={{value: 'Default'}} endEnhancer=".com" />
+      <br />
+      <StatefulInput
+        size={SIZE.large}
+        initialState={{value: 'Large'}}
+        endEnhancer=".com"
+      />
+    </>
+  );
+}

@@ -3,11 +3,13 @@
 exports[`Popover component as anchor 1`] = `
 <Popover
   accessibilityType="menu"
+  autoFocus={true}
   content={
     <strong>
       Hello world
     </strong>
   }
+  focusLock={false}
   ignoreBoundary={false}
   isOpen={true}
   onClick={[MockFunction]}
@@ -15,6 +17,8 @@ exports[`Popover component as anchor 1`] = `
   onMouseLeaveDelay={200}
   overrides={Object {}}
   placement="auto"
+  renderAll={false}
+  returnFocus={true}
   showArrow={false}
   triggerType="click"
 >
@@ -163,7 +167,7 @@ exports[`Popover component as anchor 1`] = `
             styled-component="true"
             test-style={
               Object {
-                "backgroundColor": "$theme.colors.backgroundPrimary",
+                "backgroundColor": "$theme.colors.backgroundTertiary",
                 "borderBottomLeftRadius": "$theme.borders.popoverBorderRadius",
                 "borderBottomRightRadius": "$theme.borders.popoverBorderRadius",
                 "borderTopLeftRadius": "$theme.borders.popoverBorderRadius",
@@ -197,7 +201,6 @@ exports[`Popover component as anchor 1`] = `
                 }
               }
               $showArrow={false}
-              key="popover-inner"
             >
               <MockStyledComponent
                 $arrowOffset={
@@ -222,7 +225,7 @@ exports[`Popover component as anchor 1`] = `
                   styled-component="true"
                   test-style={
                     Object {
-                      "backgroundColor": "$theme.colors.backgroundPrimary",
+                      "backgroundColor": "$theme.colors.backgroundTertiary",
                       "borderBottomLeftRadius": "$theme.borders.popoverBorderRadius",
                       "borderBottomRightRadius": "$theme.borders.popoverBorderRadius",
                       "borderTopLeftRadius": "$theme.borders.popoverBorderRadius",
@@ -361,7 +364,9 @@ exports[`Popover component overrides: custom popover body has correct props 1`] 
           <div
             styled-component="true"
             test-style="[object Object]"
-          />
+          >
+            content
+          </div>
         </div>,
       }
     }
@@ -453,7 +458,6 @@ exports[`Popover component overrides: custom popover body has correct props 1`] 
           }
         }
         $showArrow={true}
-        key="popover-inner"
       >
         <MockStyledComponent
           $arrowOffset={
@@ -481,7 +485,9 @@ exports[`Popover component overrides: custom popover body has correct props 1`] 
                 "color": "blue",
               }
             }
-          />
+          >
+            content
+          </div>
         </MockStyledComponent>
       </ForwardRef>
     </div>
@@ -507,7 +513,6 @@ exports[`Popover component overrides: custom popover inner has correct props 1`]
     }
   }
   $showArrow={true}
-  key="popover-inner"
 >
   <MockStyledComponent
     $arrowOffset={
@@ -535,7 +540,9 @@ exports[`Popover component overrides: custom popover inner has correct props 1`]
           "color": "blue",
         }
       }
-    />
+    >
+      content
+    </div>
   </MockStyledComponent>
 </ForwardRef>
 `;

@@ -54,12 +54,24 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     this.startTimeout();
   }
 
+  componentDidUpdate(prevProps: ToastPropsT) {
+    if (
+      this.props.autoHideDuration !== prevProps.autoHideDuration ||
+      this.props.__updated !== prevProps.__updated
+    ) {
+      this.startTimeout();
+    }
+  }
+
   componentWillUnmount() {
     this.clearTimeout();
   }
 
   startTimeout() {
     if (this.props.autoHideDuration) {
+      if (this.autoHideTimeout) {
+        clearTimeout(this.autoHideTimeout);
+      }
       this.autoHideTimeout = setTimeout(
         this.dismiss,
         this.props.autoHideDuration,
@@ -100,12 +112,14 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   };
 
   onFocus = (e: Event) => {
-    this.clearTimeout();
+    clearTimeout(this.autoHideTimeout);
+    clearTimeout(this.animateOutCompleteTimer);
     typeof this.props.onFocus === 'function' && this.props.onFocus(e);
   };
 
   onMouseEnter = (e: Event) => {
-    this.clearTimeout();
+    clearTimeout(this.autoHideTimeout);
+    clearTimeout(this.animateOutCompleteTimer);
     typeof this.props.onMouseEnter === 'function' && this.props.onMouseEnter(e);
   };
 

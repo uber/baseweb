@@ -3,30 +3,32 @@ import {useStyletron} from 'baseui';
 import {Input, StyledInput} from 'spaceweb/input';
 import {Tag, VARIANT as TAG_VARIANT} from 'spaceweb/tag';
 
-const InputReplacement = ({tags, removeTag, ...restProps}: any) => {
-  const [css] = useStyletron();
-  return (
-    <div
-      className={css({
-        flex: '1 1 0%',
-        flexWrap: 'wrap',
-        display: 'flex',
-        alignItems: 'center',
-      })}
-    >
-      {tags.map((tag: string, index: number) => (
-        <Tag
-          variant={TAG_VARIANT.solid}
-          onActionClick={() => removeTag(tag)}
-          key={index}
-        >
-          {tag}
-        </Tag>
-      ))}
-      <StyledInput {...restProps} />
-    </div>
-  );
-};
+const InputReplacement = React.forwardRef(
+  ({tags, removeTag, ...restProps}: any, ref) => {
+    const [css] = useStyletron();
+    return (
+      <div
+        className={css({
+          flex: '1 1 0%',
+          flexWrap: 'wrap',
+          display: 'flex',
+          alignItems: 'center',
+        })}
+      >
+        {tags.map((tag: string, index: number) => (
+          <Tag
+            variant={TAG_VARIANT.solid}
+            onActionClick={() => removeTag(tag)}
+            key={index}
+          >
+            {tag}
+          </Tag>
+        ))}
+        <StyledInput ref={ref} {...restProps} />
+      </div>
+    );
+  },
+);
 
 export default () => {
   const [value, setValue] = React.useState('');

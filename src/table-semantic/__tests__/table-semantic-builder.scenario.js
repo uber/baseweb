@@ -9,9 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React, {useState, useMemo} from 'react';
 import {TableBuilder, TableBuilderColumn} from '../index.js';
 
-export const name = 'table-semantic-builder';
-
-export function component() {
+export default function Scenario() {
   const [sortColumn, setSortColumn] = useState('bar');
   const [sortAsc, setSortAsc] = useState(true);
   const [data] = useState([

@@ -3,6 +3,7 @@ import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
 const TableSemanticConfig: TConfig = {
+  componentName: 'Table',
   imports: {
     'baseui/table-semantic': {
       named: ['Table'],

@@ -19,6 +19,7 @@ import Dismiss from 'examples/popover/dismiss.js';
 import Clipping from 'examples/popover/clipping.js';
 import Customization from 'examples/popover/overrides.js';
 import AnchorRefHandling from 'examples/popover/ref-handling.js';
+import SSRRenderAll from 'examples/popover/ssr-render-all.js';
 
 import {Popover, PLACEMENT} from 'spaceweb/popover';
 import * as PopoverExports from 'spaceweb/popover';
@@ -33,11 +34,7 @@ export default Layout;
 
 # Popover
 
-<Yard
-  componentName="StatefulPopover"
-  placeholderHeight={20}
-  {...popoverYardConfig}
-/>
+<Yard placeholderHeight={20} {...popoverYardConfig} />
 
 Popovers provide the container and styles to overlay menus, tooltips, controls or text. They’re
 visually represented as a layer above other components and objects in a view, and float above a
@@ -52,6 +49,7 @@ structured content and imagery/illustration. It’s usage depends on the context
 
 ## Accessibility
 
+- Upon opening, focus will be transferred to the first interactive element (unless `autofocus` is set to false)
 - The anchor will be focusable and user can tab to it using their keyboard.
 - When triggerType="hover" focusing on the anchor will open the tooltip automatically
 - When triggerType="click" a focused tooltip can be triggered via spacebar (assuming the anchor is a button)
@@ -101,6 +99,10 @@ structured content and imagery/illustration. It’s usage depends on the context
 
 <Example title="Popover with Overrides" path="popover/overrides.js">
   <Customization />
+</Example>
+
+<Example title="SSR Popover" path="popover/ssr-render-all.js">
+  <SSRRenderAll />
 </Example>
 
 ## API

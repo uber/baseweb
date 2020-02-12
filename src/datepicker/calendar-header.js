@@ -147,7 +147,8 @@ export default class CalendarHeader extends React.Component<
       isDisabled = true;
     }
     const nextMonth = subMonths(date, 1);
-    if (getYear(nextMonth) < MIN_YEAR) {
+    const minYear = this.props.minDate ? getYear(this.props.minDate) : MIN_YEAR;
+    if (getYear(nextMonth) < minYear) {
       isDisabled = true;
     }
 
@@ -174,6 +175,7 @@ export default class CalendarHeader extends React.Component<
         tabIndex={0}
         onClick={clickHandler}
         disabled={isDisabled}
+        type="button"
         $disabled={isDisabled}
         {...prevButtonProps}
       >
@@ -203,8 +205,8 @@ export default class CalendarHeader extends React.Component<
       isDisabled = true;
     }
     const nextMonth = addMonths(date, 1);
-
-    if (getYear(nextMonth) > MAX_YEAR) {
+    const maxYear = this.props.maxDate ? getYear(this.props.maxDate) : MAX_YEAR;
+    if (getYear(nextMonth) > maxYear) {
       isDisabled = true;
     }
 
@@ -238,6 +240,7 @@ export default class CalendarHeader extends React.Component<
         tabIndex={0}
         onClick={clickHandler}
         disabled={isDisabled}
+        type="button"
         $disabled={isDisabled}
         {...nextButtonProps}
       >
@@ -293,7 +296,6 @@ export default class CalendarHeader extends React.Component<
     const defaultMonths = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
     const maxYear = maxDate ? getYear(maxDate) : MAX_YEAR;
     const minYear = minDate ? getYear(minDate) : MIN_YEAR;
-
     const maxDateMonth = maxDate ? getMonth(maxDate) : MAX_MONTH;
     // Generates array like [0,1,.... maxDateMonth]
     const maxYearMonths = Array.from({length: maxDateMonth + 1}, (x, i) => i);
@@ -340,6 +342,7 @@ export default class CalendarHeader extends React.Component<
     ) : (
       <OverriddenPopover
         placement="bottom"
+        focusLock={false}
         mountNode={this.props.popoverMountNode}
         isOpen={this.state.isMonthYearDropdownOpen}
         onClick={() => {
@@ -366,6 +369,7 @@ export default class CalendarHeader extends React.Component<
         {...popoverProps}
       >
         <MonthYearSelectButton
+          type="button"
           onKeyUp={event => {
             if (this.canArrowsOpenDropdown(event)) {
               this.setState({isMonthYearDropdownOpen: true});

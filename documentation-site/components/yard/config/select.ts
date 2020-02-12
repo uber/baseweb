@@ -1,12 +1,13 @@
 import pick from 'just-pick';
 import {Select, SIZE, TYPE} from 'spaceweb/select';
 import {PropTypes} from 'react-view';
-import {changeHandlers} from './common';
+import {changeHandlers} from './common/common';
 import {TConfig} from '../types';
 
 const selectProps = require('!!extract-react-types-loader!../../../../src/select/select.js');
 
 const SelectConfig: TConfig = {
+  componentName: 'Select',
   imports: {
     'baseui/select': {
       named: ['Select'],
@@ -200,7 +201,7 @@ const SelectConfig: TConfig = {
       type: PropTypes.Boolean,
       defaultValue: true,
       description:
-        'Defines if currently selected options are filtered out in the dropdown options.',
+        'Defines if currently selected options are filtered out in the dropdown options. Only for `multi` select.',
     },
     isLoading: {
       value: undefined,

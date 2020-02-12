@@ -6,6 +6,7 @@ import {TConfig} from '../types';
 const breadcrumbsProps = require('!!extract-react-types-loader!../../../../src/breadcrumbs/breadcrumbs.js');
 
 const BreadcrumbsConfig: TConfig = {
+  componentName: 'Breadcrumbs',
   imports: {
     'baseui/breadcrumbs': {
       named: ['Breadcrumbs'],

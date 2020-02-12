@@ -11,20 +11,33 @@ import * as React from 'react';
 import {Button} from '../../button/index.js';
 import {toaster, ToasterContainer, PLACEMENT} from '../index.js';
 
-export const name = 'toaster';
+export default function Scenario() {
+  const [text, setText] = React.useState('not updated');
+  return (
+    <React.Fragment>
+      <ToasterContainer
+        placement={PLACEMENT.bottomRight}
+        autoHideDuration={500}
+      />
 
-export const component = () => (
-  <React.Fragment>
-    <ToasterContainer
-      placement={PLACEMENT.bottomRight}
-      autoHideDuration={500}
-    />
-    <Button
-      onClick={() => {
-        toaster.info('hi');
-      }}
-    >
-      Info toast
-    </Button>
-  </React.Fragment>
-);
+      <Button
+        id="default"
+        onClick={() => {
+          toaster.info('hi');
+        }}
+      >
+        Info toast
+      </Button>
+
+      <Button
+        id="same-key"
+        onClick={() => {
+          toaster.info(text, {key: 'same-key'});
+          setText('updated');
+        }}
+      >
+        Info toast
+      </Button>
+    </React.Fragment>
+  );
+}

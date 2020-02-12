@@ -36,10 +36,12 @@ export class ToasterContainer extends React.Component<
     usePortal: true,
     overrides: {},
     autoHideDuration: 0,
+    resetAutoHideTimerOnUpdate: true,
   };
 
   constructor(props: ToasterPropsT) {
     super(props);
+
     toasterRef = this;
   }
 
@@ -56,31 +58,45 @@ export class ToasterContainer extends React.Component<
     this.setState({isMounted: true});
   }
 
-  getToastProps = (props: ToastPropsT): ToastPropsShapeT & {key: React.Key} => {
+  getToastProps = (props: ToastPropsT): ToastPropsT & {key: React.Key} => {
     const {autoHideDuration} = this.props;
     const key: React.Key = props.key || `toast-${this.toastId++}`;
-    // $FlowFixMe
     return {autoHideDuration, ...props, key};
   };
 
   show = (props: ToastPropsT = {}): React.Key => {
+    if (this.state.toasts.map(t => t.key).includes(props.key)) {
+      this.update(props.key, props);
+      return props.key;
+    }
     const toastProps = this.getToastProps(props);
     this.setState(({toasts}) => {
-      toasts.push(toastProps);
-      return {toasts};
+      return {toasts: [...toasts, toastProps]};
     });
     return toastProps.key;
   };
 
   update = (key: React.Key, props: ToastPropsT): void => {
     this.setState(({toasts}) => {
-      toasts.forEach((t, index, arr) => {
-        if (t.key === key) {
-          arr[index] = {...t, ...this.getToastProps(props), key};
+      const updatedToasts = toasts.map(toast => {
+        if (toast.key === key) {
+          const updatedToastProps = {
+            ...toast,
+            ...this.getToastProps({
+              autoHideDuration: toast.autoHideDuration,
+              ...props,
+            }),
+            key,
+            ...(this.props.resetAutoHideTimerOnUpdate
+              ? {__updated: (parseInt(toast.__updated) || 0) + 1}
+              : {}),
+          };
+          return updatedToastProps;
         }
+        return toast;
       });
       return {
-        toasts,
+        toasts: updatedToasts,
       };
     });
   };
@@ -178,7 +194,6 @@ export class ToasterContainer extends React.Component<
     // to the oldest at the end
     // eslint-disable-next-line for-direction
     for (let i = toastsLength - 1; i >= 0; i--) {
-      // $FlowFixMe
       toastsToRender.push(this.renderToast(this.state.toasts[i]));
     }
 
@@ -229,7 +244,9 @@ const toaster = {
     if (toasterInstance) {
       return toasterInstance.show({children, ...props});
     } else if (__DEV__) {
-      throw new Error('Can not add any toasts until Toaster is mounted!');
+      throw new Error(
+        'Please make sure to add the ToasterContainer to your application before adding toasts! You can find more information here: https://baseweb.design/components/toast',
+      );
     }
   },
   info: function(

@@ -5,6 +5,7 @@ import {TConfig} from '../types';
 const progressBarProps = require('!!extract-react-types-loader!../../../../src/progress-bar/progressbar.js');
 
 const ProgressBarConfig: TConfig = {
+  componentName: 'ProgressBar',
   imports: {
     'baseui/progress-bar': {named: ['ProgressBar']},
   },
@@ -37,6 +38,12 @@ const ProgressBarConfig: TConfig = {
       placeholder: 'false',
       type: PropTypes.Boolean,
       description: 'Can be used to show the progress bar label.',
+    },
+    infinite: {
+      value: undefined,
+      placeholder: 'false',
+      type: PropTypes.Boolean,
+      description: 'Can be used to show the infinite progress bar.',
     },
     overrides: {
       value: undefined,

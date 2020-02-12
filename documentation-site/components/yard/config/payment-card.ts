@@ -8,6 +8,7 @@ import {theme, inputProps} from './input';
 const paymentCardProps = require('!!extract-react-types-loader!../../../../src/payment-card/payment-card.js');
 
 const PaymentCardConfig: TConfig = {
+  componentName: 'PaymentCard',
   imports: {
     'baseui/payment-card': {named: ['PaymentCard']},
   },

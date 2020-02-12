@@ -7,6 +7,7 @@ const cardProps = require('!!extract-react-types-loader!../../../../src/card/car
 const buttonProps = require('!!extract-react-types-loader!../../../../src/button/button.js');
 
 const CardConfig: TConfig = {
+  componentName: 'Card',
   imports: {
     'baseui/card': {named: ['Card']},
   },

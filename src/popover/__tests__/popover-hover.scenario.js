@@ -11,14 +11,14 @@ import * as React from 'react';
 import {Button} from '../../button/index.js';
 import {StatefulPopover, TRIGGER_TYPE} from '../index.js';
 
-export const name = 'popover-hover';
-
-export const component = () => (
-  <StatefulPopover
-    accessibilityType={'tooltip'}
-    content={<div>content</div>}
-    triggerType={TRIGGER_TYPE.hover}
-  >
-    <Button>Open</Button>
-  </StatefulPopover>
-);
+export default function Scenario() {
+  return (
+    <StatefulPopover
+      accessibilityType={'tooltip'}
+      content={<div>content</div>}
+      triggerType={TRIGGER_TYPE.hover}
+    >
+      <Button>Open</Button>
+    </StatefulPopover>
+  );
+}

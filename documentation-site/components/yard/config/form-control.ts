@@ -7,6 +7,7 @@ const formControlProps = require('!!extract-react-types-loader!../../../../src/f
 const inputProps = require('!!extract-react-types-loader!../../../../src/input/input.js');
 
 const TextareaConfig: TConfig = {
+  componentName: 'FormControl',
   imports: {
     'baseui/form-control': {named: ['FormControl']},
   },

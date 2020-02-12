@@ -28,6 +28,7 @@ const items = `[
 ]`;
 
 const SideNavigationConfig: TConfig = {
+  componentName: 'Navigation',
   imports: {
     'baseui/side-navigation': {
       named: ['Navigation'],

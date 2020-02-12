@@ -12,6 +12,7 @@ import Exports from '../../components/exports';
 import * as DrawerExports from 'spaceweb/drawer';
 import Anchors from 'examples/drawer/anchors.js';
 import Sizes from 'examples/drawer/sizes.js';
+import SSRRenderAll from 'examples/drawer/ssr-render-all.js';
 
 import Yard from '../../components/yard/index';
 import drawerYardConfig from '../../components/yard/config/drawer';
@@ -21,7 +22,7 @@ export default Layout;
 
 # Drawer
 
-<Yard componentName="Drawer" placeholderHeight={0} {...drawerYardConfig} />
+<Yard placeholderHeight={0} {...drawerYardConfig} />
 
 <Example title="Drawer with anchor" path="drawer/anchors.js">
   <Anchors />
@@ -29,6 +30,13 @@ export default Layout;
 
 <Example title="Drawer with different size" path="drawer/sizes.js">
   <Sizes />
+</Example>
+
+<Example
+  title="Drawer with renderAll for SSR / SEO"
+  path="drawer/ssr-render-all.js"
+>
+  <SSRRenderAll />
 </Example>
 
 ## Accessibility

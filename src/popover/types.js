@@ -61,6 +61,18 @@ export type BasePopoverPropsT = {
    * See the A11Y section at the bottom of this document for more details.
    */
   accessibilityType?: AccessibilityTypeT,
+  /** If true, focus will be locked to elements within the popover.
+   */
+  focusLock?: boolean,
+  /** If true, focus will shift to the first interactive element within the popover.
+   * If false, the popover container itself will receive focus.
+   * Moving focus into a newly opened popover is important for accessibility purposes, so please be careful!
+   */
+  autoFocus?: boolean,
+  /** If true, focus will shift back to the original element that triggered the popover
+   * Becareful with elements that open the popover on focus (e.g. input) this will cause the popover to reopen on close!
+   */
+  returnFocus?: boolean,
   'data-baseweb'?: string,
   id?: string,
   /** If true, popover element will not avoid element boundaries. */
@@ -87,6 +99,8 @@ export type BasePopoverPropsT = {
    */
   // eslint-disable-next-line flowtype/no-weak-types
   popperOptions?: any,
+  /** Renders all popover content for SEO purposes regardless of popover isOpen state */
+  renderAll?: boolean,
 };
 
 // Props for stateless render logic

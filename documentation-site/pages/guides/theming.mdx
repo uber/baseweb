@@ -171,15 +171,15 @@ import {createTheme, lightThemePrimitives} from 'spaceweb';
 
 const primitives = {
   ...lightThemePrimitives,
-  accent: "#F127E4"; // hot pink
-  accent50: "#FDEDFC";
-  accent100: "#FCD3F9";
-  accent200: "#F89FF3";
-  accent300: "#F45AEA";
-  accent400: "#F127E4";
-  accent500: "#B71DAD";
-  accent600: "#901788";
-  accent700: "#600F5B";
+  accent: '#F127E4', // hot pink
+  accent50: '#FDEDFC',
+  accent100: '#FCD3F9',
+  accent200: '#F89FF3',
+  accent300: '#F45AEA',
+  accent400: '#F127E4',
+  accent500: '#B71DAD',
+  accent600: '#901788',
+  accent700: '#600F5B',
 };
 
 const theme = createTheme(primitives);
@@ -200,15 +200,15 @@ import {createTheme, lightThemePrimitives} from 'spaceweb';
 
 const primitives = {
   ...lightThemePrimitives,
-  accent: "#F127E4"; // hot pink
-  accent50: "#FDEDFC";
-  accent100: "#FCD3F9";
-  accent200: "#F89FF3";
-  accent300: "#F45AEA";
-  accent400: "#F127E4";
-  accent500: "#B71DAD";
-  accent600: "#901788";
-  accent700: "#600F5B";
+  accent: '#F127E4', // hot pink
+  accent50: '#FDEDFC',
+  accent100: '#FCD3F9',
+  accent200: '#F89FF3',
+  accent300: '#F45AEA',
+  accent400: '#F127E4',
+  accent500: '#B71DAD',
+  accent600: '#901788',
+  accent700: '#600F5B',
 };
 
 const overrides = {
@@ -501,94 +501,95 @@ The theme object organizes its various properties according to their respective 
 
 Control animation durations and easing functions.
 
-<Timing duration="timing100" />
-<Timing duration="timing400" />
-<Timing duration="timing700" />
-<Timing duration="timing1000" />
-<Easing easing="easeOutCurve" />
-<Easing easing="easeInCurve" />
-<Easing easing="easeInOutCurve" />
+<Timing name="timing100" />
+<Timing name="timing400" />
+<Timing name="timing700" />
+<Timing name="timing1000" />
+<Easing name="easeOutCurve" />
+<Easing name="easeInCurve" />
+<Easing name="easeInOutCurve" />
 
 ### Borders
 
 Control border and border radius styles.
 
-<Border value="border100" />
-<Border value="border200" />
-<Border value="border300" />
-<Border value="border400" />
-<Border value="border500" />
-<Border value="border600" />
-
-<Radius value="radius100" />
-<Radius value="radius200" />
-<Radius value="radius300" />
-<Radius value="radius400" />
+<Border name="border100" />
+<Border name="border200" />
+<Border name="border300" />
+<Border name="border400" />
+<Border name="border500" />
+<Border name="border600" />
+<Radius name="radius100" />
+<Radius name="radius200" />
+<Radius name="radius300" />
+<Radius name="radius400" />
 
 ### Breakpoints
 
 Control the media query widths used to establish responsive breakpoints.
 
-<Breakpoint value="small" />
-<Breakpoint value="medium" />
-<Breakpoint value="large" />
+<Breakpoint name="small" />
+<Breakpoint name="medium" />
+<Breakpoint name="large" />
 
 ### Colors
 
 Control literal and semantic color values. These differ between light and dark themes.
 
-<Color value="primaryA" />
-<Color value="primaryB" />
-<Color value="accent" />
-<Color value="negative" />
-<Color value="warning" />
-<Color value="positive" />
+<Color name="primaryA" />
+<Color name="primaryB" />
+<Color name="accent" />
+<Color name="negative" />
+<Color name="warning" />
+<Color name="positive" />
 
-<Color value="backgroundPrimary" />
-<Color value="backgroundSecondary" />
-<Color value="backgroundTertiary" />
-<Color value="backgroundInversePrimary" />
-<Color value="backgroundInverseSecondary" />
+<Color name="backgroundPrimary" />
+<Color name="backgroundSecondary" />
+<Color name="backgroundTertiary" />
+<Color name="backgroundInversePrimary" />
+<Color name="backgroundInverseSecondary" />
 
-<Color value="contentPrimary" />
-<Color value="contentSecondary" />
-<Color value="contentTertiary" />
-<Color value="contentInversePrimary" />
-<Color value="contentInverseSecondary" />
-<Color value="contentInverseTertiary" />
+<Color name="contentPrimary" />
+<Color name="contentSecondary" />
+<Color name="contentTertiary" />
+<Color name="contentInversePrimary" />
+<Color name="contentInverseSecondary" />
+<Color name="contentInverseTertiary" />
 
-<Color value="borderOpaque" />
-<Color value="borderTransparent" />
-<Color value="borderSelected" />
-<Color value="borderInverseOpaque" />
-<Color value="borderInverseTransparent" />
-<Color value="borderInverseSelected" />
+<Color name="borderOpaque" />
+<Color name="borderTransparent" />
+<Color name="borderSelected" />
+<Color name="borderInverseOpaque" />
+<Color name="borderInverseTransparent" />
+<Color name="borderInverseSelected" />
 
-<Color value="backgroundStateDisabled" />
-<Color value="backgroundOverlayDark" />
-<Color value="backgroundOverlayLight" />
-<Color value="backgroundAccent" />
-<Color value="backgroundNegative" />
-<Color value="backgroundWarning" />
-<Color value="backgroundPositive" />
-<Color value="backgroundLightAccent" />
-<Color value="backgroundLightNegative" />
-<Color value="backgroundLightWarning" />
-<Color value="backgroundLightPositive" />
-<Color value="backgroundAlwaysDark" />
+<Color name="backgroundStateDisabled" />
+<Color name="backgroundOverlayDark" />
+<Color name="backgroundOverlayLight" />
+<Color name="backgroundAccent" />
+<Color name="backgroundNegative" />
+<Color name="backgroundWarning" />
+<Color name="backgroundPositive" />
+<Color name="backgroundLightAccent" />
+<Color name="backgroundLightNegative" />
+<Color name="backgroundLightWarning" />
+<Color name="backgroundLightPositive" />
+<Color name="backgroundAlwaysDark" />
+<Color name="backgroundAlwaysLight" />
 
-<Color value="contentStateDisabled" />
-<Color value="contentAccent" />
-<Color value="contentNegative" />
-<Color value="contentWarning" />
-<Color value="contentPositive" />
-<Color value="contentOnColor" />
+<Color name="contentStateDisabled" />
+<Color name="contentAccent" />
+<Color name="borderAccentLight" />
+<Color name="contentNegative" />
+<Color name="contentWarning" />
+<Color name="contentPositive" />
+<Color name="contentOnColor" />
 
-<Color value="borderStateDisabled" />
-<Color value="borderAccent" />
-<Color value="borderNegative" />
-<Color value="borderWarning" />
-<Color value="borderPositive" />
+<Color name="borderStateDisabled" />
+<Color name="borderAccent" />
+<Color name="borderNegative" />
+<Color name="borderWarning" />
+<Color name="borderPositive" />
 
 ### Direction
 
@@ -604,18 +605,18 @@ Control the columns and gutters for [`LayoutGrid`](/components/layout-grid).
 
 Control shadows.
 
-<Lighting value="shadow400" />
-<Lighting value="shadow500" />
-<Lighting value="shadow600" />
-<Lighting value="shadow700" />
+<Lighting name="shadow400" />
+<Lighting name="shadow500" />
+<Lighting name="shadow600" />
+<Lighting name="shadow700" />
 
 ### Media Query
 
 Control media queries added to the theme for convenience.
 
-<Breakpoint value="small" media />
-<Breakpoint value="medium" media />
-<Breakpoint value="large" media />
+<Breakpoint name="small" media />
+<Breakpoint name="medium" media />
+<Breakpoint name="large" media />
 
 ### Name
 
@@ -625,52 +626,52 @@ Control the name of your theme. For example, `light-theme`.
 
 Control spacing and sizing.
 
-<Sizing value="scale0" />
-<Sizing value="scale100" />
-<Sizing value="scale200" />
-<Sizing value="scale300" />
-<Sizing value="scale400" />
-<Sizing value="scale500" />
-<Sizing value="scale550" />
-<Sizing value="scale600" />
-<Sizing value="scale650" />
-<Sizing value="scale700" />
-<Sizing value="scale750" />
-<Sizing value="scale800" />
-<Sizing value="scale900" />
-<Sizing value="scale1000" />
-<Sizing value="scale1200" />
-<Sizing value="scale1400" />
-<Sizing value="scale1600" />
-<Sizing value="scale2400" />
-<Sizing value="scale3200" />
-<Sizing value="scale4800" />
+<Sizing name="scale0" />
+<Sizing name="scale100" />
+<Sizing name="scale200" />
+<Sizing name="scale300" />
+<Sizing name="scale400" />
+<Sizing name="scale500" />
+<Sizing name="scale550" />
+<Sizing name="scale600" />
+<Sizing name="scale650" />
+<Sizing name="scale700" />
+<Sizing name="scale750" />
+<Sizing name="scale800" />
+<Sizing name="scale900" />
+<Sizing name="scale1000" />
+<Sizing name="scale1200" />
+<Sizing name="scale1400" />
+<Sizing name="scale1600" />
+<Sizing name="scale2400" />
+<Sizing name="scale3200" />
+<Sizing name="scale4800" />
 
 ### Typography
 
 Control typography family, size, weight, and height.
 
-<Type value="ParagraphXSmall" />
-<Type value="ParagraphSmall" />
-<Type value="ParagraphMedium" />
-<Type value="ParagraphLarge" />
+<Type name="ParagraphXSmall" />
+<Type name="ParagraphSmall" />
+<Type name="ParagraphMedium" />
+<Type name="ParagraphLarge" />
 
-<Type value="LabelXSmall" />
-<Type value="LabelSmall" />
-<Type value="LabelMedium" />
-<Type value="LabelLarge" />
+<Type name="LabelXSmall" />
+<Type name="LabelSmall" />
+<Type name="LabelMedium" />
+<Type name="LabelLarge" />
 
-<Type value="HeadingXSmall" />
-<Type value="HeadingSmall" />
-<Type value="HeadingMedium" />
-<Type value="HeadingLarge" />
-<Type value="HeadingXLarge" />
-<Type value="HeadingXXLarge" />
+<Type name="HeadingXSmall" />
+<Type name="HeadingSmall" />
+<Type name="HeadingMedium" />
+<Type name="HeadingLarge" />
+<Type name="HeadingXLarge" />
+<Type name="HeadingXXLarge" />
 
-<Type value="DisplayXSmall" />
-<Type value="DisplaySmall" />
-<Type value="DisplayMedium" />
-<Type value="DisplayLarge" />
+<Type name="DisplayXSmall" />
+<Type name="DisplaySmall" />
+<Type name="DisplayMedium" />
+<Type name="DisplayLarge" />
 
 ### Z-Index
 

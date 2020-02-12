@@ -11,6 +11,7 @@ import Exports from '../../components/exports';
 
 import ToastBasic from 'examples/toast/basic.js';
 import ToastNotification from 'examples/toast/toast-notification.js';
+import ToastSameKeyNotification from 'examples/toast/toast-same-key-notification.js';
 
 import {Toast} from 'spaceweb/toast';
 import * as ToastExports from 'spaceweb/toast';
@@ -22,16 +23,17 @@ export default Layout;
 
 # Toast
 
-<Yard
-  componentName="ToasterContainer"
-  placeholderHeight={52}
-  {...toastYardConfig}
-/>
+<Yard placeholderHeight={52} {...toastYardConfig} />
 
 Toasts can be dismissed and sit on top of a view in various position options - top/right, top/center,
 top/left, bottom/right, bottom/center, bottom/left. Toasts are intended to provide feedback to a user
 and self-dismiss after a short time with an option to self-dismiss. Each toast can be colored to fit
 it’s status type of neutral, positive, warning and alert.
+
+**Using the `toaster` utility:**
+
+Toasts can be created easily with some of the helper functions on `toaster`, as seen in the code sample above. If a key isn't provided, it will auto-generate a unique key for you which will be returned in the instantiation functions (`info, positive, warning, negative`).
+If a toast with an identical key already exists, that toast's contents will be updated instead of a new toast being created. The autoHide timeout will reset unless the `resetAutoHideTimerOnUpdate` prop is set to false on the toaster.
 
 ## Accessibility
 
@@ -46,6 +48,13 @@ it’s status type of neutral, positive, warning and alert.
   path="toast/toast-notification.js"
 >
   <ToastNotification />
+</Example>
+
+<Example
+  title="Toaster Using Key To Update Open Toasts"
+  path="toast/toast-same-key-notification.js"
+>
+  <ToastSameKeyNotification />
 </Example>
 
 ## API

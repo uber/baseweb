@@ -2,11 +2,12 @@ import pick from 'just-pick';
 import {Checkbox, STYLE_TYPE, LABEL_PLACEMENT} from 'spaceweb/checkbox';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
-import {changeHandlers} from './common';
+import {changeHandlers} from './common/common';
 
 const checkboxProps = require('!!extract-react-types-loader!../../../../src/checkbox/checkbox.js');
 
 const CheckboxConfig: TConfig = {
+  componentName: 'Checkbox',
   imports: {
     'baseui/checkbox': {
       named: ['Checkbox'],

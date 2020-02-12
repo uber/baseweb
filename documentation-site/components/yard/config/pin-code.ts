@@ -7,6 +7,7 @@ import {theme, inputProps} from './input';
 const pinCodeProps = require('!!extract-react-types-loader!../../../../src/pin-code/pin-code.js');
 
 const PincodeConfig: TConfig = {
+  componentName: 'PinCode',
   imports: {
     'baseui/pin-code': {
       named: ['PinCode'],

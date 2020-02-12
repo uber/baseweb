@@ -6,6 +6,7 @@ const accordionProps = require('!!extract-react-types-loader!../../../../src/acc
 const panelProps = require('!!extract-react-types-loader!../../../../src/accordion/panel.js');
 
 const AccordionConfig: TConfig = {
+  componentName: 'Accordion',
   imports: {
     'baseui/accordion': {named: ['Accordion']},
   },

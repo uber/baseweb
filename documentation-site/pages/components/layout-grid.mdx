@@ -23,6 +23,7 @@ import AlignExample from 'examples/layout-grid/align.js';
 import OrderExample from 'examples/layout-grid/order.js';
 import BehaviorExample from 'examples/layout-grid/behavior.js';
 import CustomExample from 'examples/layout-grid/custom.js';
+import CustomCssUnitExample from 'examples/layout-grid/custom-css-unit.js';
 
 export default Layout;
 
@@ -171,6 +172,29 @@ const theme = {
 Note how these are defined in a similar fashion to responsive props. Each value in the array corresponds to a theme breakpoint.
 
 If you want to customize the breakpoints of the grid, you can do so via the `breakpoints` and `mediaQuery` properties. The grid will always pull breakpoints from the theme and correlate responsive props with those breakpoints.
+
+<Example title="Custom css units" path="layout-grid/custom-css-unit.js">
+  <CustomCssUnitExample />
+</Example>
+
+The grid uses `px` as its default CSS length unit for measuring layout. You can change this, either globally in your theme, or locally via the `unit` prop on `Grid`. If you change the unit, you probably want to update `gridMaxWidth`, `gutters` and `margins` accordingly, as these will pull from your custom unit. For example, when using `em` as your CSS unit, you might update the other values like so:
+
+```js
+const theme = {
+  grid: {
+    unit: 'em',
+    gutters: [1, 2, 2],
+    margins: [1, 2, 4],
+    gridMaxWidth: 70,
+  },
+};
+```
+
+The above change will apply to every grid within the theme's subtree. If you want to override the unit for a single `Grid` instance, you can pass an alternative unit via the `unit` prop:
+
+```
+<Grid gridUnit="em" gridMargins={[1, 2, 3]} gridMaxWidth={40}>{/* ... */}</Grid>
+```
 
 ## API
 

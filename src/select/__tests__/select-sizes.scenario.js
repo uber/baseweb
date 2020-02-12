@@ -10,54 +10,69 @@ import React from 'react';
 
 import {StatefulSelect} from '../index.js';
 
-export const name = 'select-sizes';
-
-export const component = () => (
-  <>
-    <StatefulSelect
-      aria-label="Select a color"
-      options={[
-        {id: 'AliceBlue', color: '#F0F8FF'},
-        {id: 'AntiqueWhite', color: '#FAEBD7'},
-        {id: 'Aqua', color: '#00FFFF'},
-        {id: 'Aquamarine', color: '#7FFFD4'},
-        {id: 'Azure', color: '#F0FFFF'},
-        {id: 'Beige', color: '#F5F5DC'},
-      ]}
-      labelKey="id"
-      valueKey="color"
-      size="compact"
-    />
-    <br />
-    <StatefulSelect
-      aria-label="Select a color"
-      options={[
-        {id: 'AliceBlue', color: '#F0F8FF'},
-        {id: 'AntiqueWhite', color: '#FAEBD7'},
-        {id: 'Aqua', color: '#00FFFF'},
-        {id: 'Aquamarine', color: '#7FFFD4'},
-        {id: 'Azure', color: '#F0FFFF'},
-        {id: 'Beige', color: '#F5F5DC'},
-      ]}
-      labelKey="id"
-      valueKey="color"
-      size="default"
-    />
-    <br />
-    <StatefulSelect
-      aria-label="Select a color"
-      options={[
-        {id: 'AliceBlue', color: '#F0F8FF'},
-        {id: 'AntiqueWhite', color: '#FAEBD7'},
-        {id: 'Aqua', color: '#00FFFF'},
-        {id: 'Aquamarine', color: '#7FFFD4'},
-        {id: 'Azure', color: '#F0FFFF'},
-        {id: 'Beige', color: '#F5F5DC'},
-      ]}
-      labelKey="id"
-      valueKey="color"
-      size="large"
-    />
-    <br />
-  </>
-);
+export default function Scenario() {
+  return (
+    <>
+      <StatefulSelect
+        aria-label="Select a color"
+        options={[
+          {id: 'AliceBlue', color: '#F0F8FF'},
+          {id: 'AntiqueWhite', color: '#FAEBD7'},
+          {id: 'Aqua', color: '#00FFFF'},
+          {id: 'Aquamarine', color: '#7FFFD4'},
+          {id: 'Azure', color: '#F0FFFF'},
+          {id: 'Beige', color: '#F5F5DC'},
+        ]}
+        labelKey="id"
+        valueKey="color"
+        size="mini"
+      />
+      <br />
+      <StatefulSelect
+        aria-label="Select a color"
+        options={[
+          {id: 'AliceBlue', color: '#F0F8FF'},
+          {id: 'AntiqueWhite', color: '#FAEBD7'},
+          {id: 'Aqua', color: '#00FFFF'},
+          {id: 'Aquamarine', color: '#7FFFD4'},
+          {id: 'Azure', color: '#F0FFFF'},
+          {id: 'Beige', color: '#F5F5DC'},
+        ]}
+        labelKey="id"
+        valueKey="color"
+        size="compact"
+      />
+      <br />
+      <StatefulSelect
+        aria-label="Select a color"
+        options={[
+          {id: 'AliceBlue', color: '#F0F8FF'},
+          {id: 'AntiqueWhite', color: '#FAEBD7'},
+          {id: 'Aqua', color: '#00FFFF'},
+          {id: 'Aquamarine', color: '#7FFFD4'},
+          {id: 'Azure', color: '#F0FFFF'},
+          {id: 'Beige', color: '#F5F5DC'},
+        ]}
+        labelKey="id"
+        valueKey="color"
+        size="default"
+      />
+      <br />
+      <StatefulSelect
+        aria-label="Select a color"
+        options={[
+          {id: 'AliceBlue', color: '#F0F8FF'},
+          {id: 'AntiqueWhite', color: '#FAEBD7'},
+          {id: 'Aqua', color: '#00FFFF'},
+          {id: 'Aquamarine', color: '#7FFFD4'},
+          {id: 'Azure', color: '#F0FFFF'},
+          {id: 'Beige', color: '#F5F5DC'},
+        ]}
+        labelKey="id"
+        valueKey="color"
+        size="large"
+      />
+      <br />
+    </>
+  );
+}

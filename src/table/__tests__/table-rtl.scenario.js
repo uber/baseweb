@@ -11,17 +11,17 @@ import * as React from 'react';
 import {Table} from '../index.js';
 import {ThemeProvider, LightTheme} from '../../index.js';
 
-export const name = 'table-rtl';
-
-export const component = () => (
-  <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
-    <div dir="rtl" style={{height: '400px', width: '800px'}}>
-      <Table
-        columns={[...new Array(3)].map(() => 'Column Name')}
-        data={[...new Array(4)].map(() =>
-          [...new Array(3)].map(() => 'Cell Data'),
-        )}
-      />
-    </div>
-  </ThemeProvider>
-);
+export default function Scenario() {
+  return (
+    <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
+      <div dir="rtl" style={{height: '400px', width: '800px'}}>
+        <Table
+          columns={[...new Array(3)].map(() => 'Column Name')}
+          data={[...new Array(4)].map(() =>
+            [...new Array(3)].map(() => 'Cell Data'),
+          )}
+        />
+      </div>
+    </ThemeProvider>
+  );
+}

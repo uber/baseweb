@@ -12,6 +12,7 @@ const items = `[
 ]`;
 
 const MenuConfig: TConfig = {
+  componentName: 'StatefulMenu',
   imports: {
     'baseui/menu': {
       named: ['StatefulMenu'],
@@ -37,6 +38,12 @@ const MenuConfig: TConfig = {
       type: PropTypes.Function,
       description: 'Callback executed on menu item clicks.',
       placeholder: '({item}) => console.log(item)',
+    },
+    renderAll: {
+      value: false,
+      type: PropTypes.Boolean,
+      description:
+        'Renders all menu content for SEO purposes regardless of menu state.',
     },
     overrides: {
       value: undefined,

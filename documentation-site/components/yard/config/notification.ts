@@ -2,11 +2,12 @@ import pick from 'just-pick';
 import {Notification, KIND} from 'spaceweb/notification';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
-import {changeHandlers} from './common';
+import {changeHandlers} from './common/common';
 
 const notificationProps = require('!!extract-react-types-loader!../../../../src/notification/notification.js');
 
 const NotificationConfig: TConfig = {
+  componentName: 'Notification',
   imports: {
     'baseui/notification': {
       named: ['Notification'],

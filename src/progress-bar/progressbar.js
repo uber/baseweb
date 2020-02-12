@@ -24,6 +24,7 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
     value: 0,
     overrides: {},
     showLabel: false,
+    infinite: false,
   };
 
   render() {
@@ -33,6 +34,7 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
       value,
       successValue,
       showLabel,
+      infinite,
     } = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [Bar, barProps] = getOverrides(overrides.Bar, StyledBar);
@@ -44,6 +46,7 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
     const sharedProps = {
       $value: value,
       $successValue: successValue,
+      $infinite: infinite,
     };
     return (
       <Root

@@ -18,32 +18,32 @@ import {Button} from '../../button/index.js';
 import {StyledLink as Link} from '../../link/index.js';
 import Menu from '../../icon/menu.js';
 
-export const name = 'header-navigation';
-
-export const component = () => (
-  <HeaderNavigation>
-    <NavigationList $align={ALIGN.left}>
-      <NavigationItem>
-        <Menu />
-      </NavigationItem>
-      <NavigationItem>Uber</NavigationItem>
-    </NavigationList>
-    <NavigationList $align={ALIGN.center} />
-    <NavigationList $align={ALIGN.right}>
-      <NavigationItem>
-        <Link>Tab Link One</Link>
-      </NavigationItem>
-      <NavigationItem>
-        <Link>Tab Link Two</Link>
-      </NavigationItem>
-      <NavigationItem>
-        <Link>Tab Link Three</Link>
-      </NavigationItem>
-    </NavigationList>
-    <NavigationList $align={ALIGN.right}>
-      <NavigationItem>
-        <Button>Get started</Button>
-      </NavigationItem>
-    </NavigationList>
-  </HeaderNavigation>
-);
+export default function Scenario() {
+  return (
+    <HeaderNavigation>
+      <NavigationList $align={ALIGN.left}>
+        <NavigationItem>
+          <Menu />
+        </NavigationItem>
+        <NavigationItem>Uber</NavigationItem>
+      </NavigationList>
+      <NavigationList $align={ALIGN.center} />
+      <NavigationList $align={ALIGN.right}>
+        <NavigationItem>
+          <Link>Tab Link One</Link>
+        </NavigationItem>
+        <NavigationItem>
+          <Link>Tab Link Two</Link>
+        </NavigationItem>
+        <NavigationItem>
+          <Link>Tab Link Three</Link>
+        </NavigationItem>
+      </NavigationList>
+      <NavigationList $align={ALIGN.right}>
+        <NavigationItem>
+          <Button>Get started</Button>
+        </NavigationItem>
+      </NavigationList>
+    </HeaderNavigation>
+  );
+}

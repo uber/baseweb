@@ -3,7 +3,9 @@
 exports[`StatefulTooltip basic render: renders <StatefulContainer/> 1`] = `
 <StatefulContainer
   accessibilityType="tooltip"
+  autoFocus={true}
   content={[MockFunction]}
+  focusLock={true}
   initialState={
     Object {
       "isOpen": true,
@@ -20,6 +22,8 @@ exports[`StatefulTooltip basic render: renders <StatefulContainer/> 1`] = `
   }
   placement="topLeft"
   popperOptions={Object {}}
+  renderAll={false}
+  returnFocus={true}
   showArrow={true}
   stateReducer={[MockFunction]}
   triggerType="hover"
@@ -31,7 +35,9 @@ exports[`StatefulTooltip basic render: renders <StatefulContainer/> 1`] = `
 exports[`StatefulTooltip basic render: renders <Tooltip/> 1`] = `
 <Tooltip
   accessibilityType="tooltip"
+  autoFocus={true}
   content={[Function]}
+  focusLock={true}
   ignoreBoundary={false}
   isOpen={true}
   onBlur={[Function]}
@@ -49,6 +55,8 @@ exports[`StatefulTooltip basic render: renders <Tooltip/> 1`] = `
   }
   placement="topLeft"
   popperOptions={Object {}}
+  renderAll={false}
+  returnFocus={true}
   showArrow={true}
   triggerType="hover"
 >

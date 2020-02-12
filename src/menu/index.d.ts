@@ -26,7 +26,11 @@ export interface OPTION_LIST_SIZE {
   compact: 'compact';
 }
 
-export interface MenuProps {
+export type BaseMenuPropsT = {
+  renderAll?: boolean;
+};
+
+export interface MenuProps extends BaseMenuPropsT {
   size?: keyof OPTION_LIST_SIZE;
   overrides?: {
     EmptyState?: Override<any>;
@@ -99,7 +103,7 @@ export class StatefulContainer extends React.Component<
   StatefulContainerState
 > {}
 
-export interface OptionListProps {
+export interface OptionListProps extends BaseMenuPropsT {
   item: any;
   getItemLabel: (item: any) => React.ReactNode;
   getChildMenu?: (item: any) => React.ReactNode;
@@ -114,7 +118,7 @@ export interface OptionListProps {
 }
 export const OptionList: React.FC<OptionListProps>;
 
-export interface OptionProfileProps {
+export interface OptionProfileProps extends BaseMenuPropsT {
   item: any;
   getChildMenu?: (item: any) => React.ReactNode;
   getProfileItemLabels: (

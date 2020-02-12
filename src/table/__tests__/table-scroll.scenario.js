@@ -10,16 +10,16 @@ import * as React from 'react';
 
 import {Table} from '../index.js';
 
-export const name = 'table-scroll';
-
-export const component = () => (
-  <div style={{height: '500px', maxWidth: '1200px'}}>
-    <Table
-      columns={[...new Array(10)].map(() => 'Column Name')}
-      data={[...new Array(40)].map(() =>
-        [...new Array(10)].map(() => 'Cell Data'),
-      )}
-      horizontalScrollWidth="2200px"
-    />
-  </div>
-);
+export default function Scenario() {
+  return (
+    <div style={{height: '500px', maxWidth: '1200px'}}>
+      <Table
+        columns={[...new Array(10)].map(() => 'Column Name')}
+        data={[...new Array(40)].map(() =>
+          [...new Array(10)].map(() => 'Cell Data'),
+        )}
+        horizontalScrollWidth="2200px"
+      />
+    </div>
+  );
+}

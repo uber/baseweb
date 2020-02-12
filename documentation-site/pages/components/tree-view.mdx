@@ -14,6 +14,8 @@ import TreeViewControlled from 'examples/tree-view/controlled.js';
 import TreeViewUncontrolled from 'examples/tree-view/uncontrolled.js';
 import CustomLabelledTreeView from 'examples/tree-view/custom-label.js';
 import TreeViewOverrides from 'examples/tree-view/overrides.js';
+import TreeViewLabelOverrides from 'examples/tree-view/label-overrides.js';
+import SingleExpanded from 'examples/tree-view/single-expanded.js';
 
 import * as TreeViewExports from 'spaceweb/tree-view';
 
@@ -37,8 +39,19 @@ export default Layout;
   <CustomLabelledTreeView />
 </Example>
 
-<Example title="Overrides Usage" path="tree-view/overrides.js">
+<Example
+  title="Simple Overrides Usage with renderAll"
+  path="tree-view/overrides.js"
+>
   <TreeViewOverrides />
+</Example>
+
+<Example title="Advanced Overrides Usage" path="tree-view/label-overrides.js">
+  <TreeViewLabelOverrides />
+</Example>
+
+<Example title="Single Expanded Node" path="tree-view/single-expanded.js">
+  <SingleExpanded />
 </Example>
 
 ## Accessibility

@@ -11,14 +11,19 @@ import * as React from 'react';
 
 import {StatefulSlider} from '../index.js';
 
-export const name = 'slider-step';
-
-export const component = () => (
-  <div
-    style={{
-      maxWidth: '500px',
-    }}
-  >
-    <StatefulSlider initialState={{value: [0]}} step={5} min={-300} max={300} />
-  </div>
-);
+export default function Scenario() {
+  return (
+    <div
+      style={{
+        maxWidth: '500px',
+      }}
+    >
+      <StatefulSlider
+        initialState={{value: [0]}}
+        step={5}
+        min={-300}
+        max={300}
+      />
+    </div>
+  );
+}

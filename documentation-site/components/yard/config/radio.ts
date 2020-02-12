@@ -4,12 +4,13 @@ import {Radio, RadioGroup, ALIGN} from 'spaceweb/radio';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
-import {changeHandlers} from './common';
+import {changeHandlers} from './common/common';
 
 const radioProps = require('!!extract-react-types-loader!../../../../src/radio/radio.js');
 const radioGroupProps = require('!!extract-react-types-loader!../../../../src/radio/radiogroup.js');
 
 const RadioGroupConfig: TConfig = {
+  componentName: 'RadioGroup',
   imports: {
     'baseui/radio': {named: ['RadioGroup']},
   },

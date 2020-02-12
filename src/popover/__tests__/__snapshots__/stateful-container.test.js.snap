@@ -4,7 +4,9 @@ exports[`StatefulPopoverContainer basic render: function-as-child called with co
 Array [
   Object {
     "accessibilityType": "menu",
+    "autoFocus": undefined,
     "content": [Function],
+    "focusLock": undefined,
     "ignoreBoundary": false,
     "isOpen": true,
     "mountNode": undefined,
@@ -21,6 +23,8 @@ Array [
     },
     "placement": "topLeft",
     "popperOptions": Object {},
+    "renderAll": undefined,
+    "returnFocus": undefined,
     "showArrow": true,
     "triggerType": "hover",
   },

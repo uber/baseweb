@@ -16,11 +16,15 @@ export type SortDirectionsT =
   | null;
 
 export type ColumnsT =
+  | typeof COLUMNS.ANCHOR
   | typeof COLUMNS.BOOLEAN
   | typeof COLUMNS.CATEGORICAL
   | typeof COLUMNS.CUSTOM
+  | typeof COLUMNS.DATETIME
   | typeof COLUMNS.NUMERICAL
   | typeof COLUMNS.STRING;
+
+export type RenderPropT = () => React.Node;
 
 // eslint-disable-next-line flowtype/no-weak-types
 export type ColumnT<ValueT = any, FilterParamsT = any> = {|
@@ -80,6 +84,7 @@ export type StatefulDataTablePropsT = {|
   rowActions?: RowActionT[],
   rowHeight?: number,
   rowHighlightIndex?: number,
+  emptyMessage?: React.Node | RenderPropT,
 |};
 
 export type DataTablePropsT = {|

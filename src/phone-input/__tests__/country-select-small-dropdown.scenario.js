@@ -9,6 +9,6 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {StatefulPhoneInput} from '../index.js';
 
-export const name = 'country-select-small-dropdown';
-
-export const component = () => <StatefulPhoneInput maxDropdownHeight="100px" />;
+export default function Scenario() {
+  return <StatefulPhoneInput maxDropdownHeight="100px" />;
+}

@@ -11,10 +11,10 @@ import * as React from 'react';
 import {StyledLink} from '../index.js';
 import {Block} from '../../block/index.js';
 
-export const name = 'link';
-
-export const component = () => (
-  <Block font="font450">
-    <StyledLink href="#">I am a Link!</StyledLink>
-  </Block>
-);
+export default function Scenario() {
+  return (
+    <Block font="font450">
+      <StyledLink href="#">I am a Link!</StyledLink>
+    </Block>
+  );
+}

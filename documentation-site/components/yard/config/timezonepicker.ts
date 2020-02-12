@@ -8,6 +8,7 @@ import selectConfig from './select';
 const timezonePickerProps = require('!!extract-react-types-loader!../../../../src/timezonepicker/timezone-picker.js');
 
 const TimezonepickerConfig: TConfig = {
+  componentName: 'TimezonePicker',
   imports: {
     'baseui/timezonepicker': {named: ['TimezonePicker']},
   },

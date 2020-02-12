@@ -10,33 +10,33 @@ import React from 'react';
 
 import {StatefulPhoneInput} from '../index.js';
 
-export const name = 'phone-input-overrides';
-
-export const component = () => (
-  <StatefulPhoneInput
-    overrides={{
-      Input: {
-        props: {
-          overrides: {
-            InputContainer: {
-              style: {
-                backgroundColor: 'orange',
+export default function Scenario() {
+  return (
+    <StatefulPhoneInput
+      overrides={{
+        Input: {
+          props: {
+            overrides: {
+              InputContainer: {
+                style: {
+                  backgroundColor: 'orange',
+                },
               },
             },
           },
         },
-      },
-      CountrySelect: {
-        props: {
-          overrides: {
-            ControlContainer: {
-              style: {
-                backgroundColor: 'pink',
+        CountrySelect: {
+          props: {
+            overrides: {
+              ControlContainer: {
+                style: {
+                  backgroundColor: 'pink',
+                },
               },
             },
           },
         },
-      },
-    }}
-  />
-);
+      }}
+    />
+  );
+}

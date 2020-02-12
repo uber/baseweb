@@ -11,8 +11,6 @@ import * as React from 'react';
 import {Block} from '../../block/index.js';
 import {Checkbox} from '../index.js';
 
-export const name = 'checkbox-indeterminate';
-
 class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
   state = {checkboxes: [true, false]};
 
@@ -63,4 +61,6 @@ class GroupList extends React.Component<{}, {checkboxes: Array<boolean>}> {
   }
 }
 
-export const component = () => <GroupList />;
+export default function Scenario() {
+  return <GroupList />;
+}

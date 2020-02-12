@@ -5,18 +5,25 @@ import {
   PLACEMENT,
   TRIGGER_TYPE,
 } from 'spaceweb/popover';
+import {Button} from 'baseui/button';
+import {Block} from 'baseui/block';
+import {Input} from 'baseui/input';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
-import {changeHandlers} from './common';
+import {changeHandlers} from './common/common';
 
 const popoverProps = require('!!extract-react-types-loader!../../../../src/popover/stateful-popover.js');
 
 const PopoverConfig: TConfig = {
+  componentName: 'StatefulPopover',
   imports: {
     'baseui/popover': {named: ['StatefulPopover']},
   },
   scope: {
+    Button,
+    Block,
+    Input,
     StatefulPopover,
     ACCESSIBILITY_TYPE,
     PLACEMENT,
@@ -25,14 +32,29 @@ const PopoverConfig: TConfig = {
   theme: [],
   props: {
     content: {
-      value: `() => 'Hello, there! 👋'`,
+      value: `() => (
+  <Block padding={'20px'}>Hello, there! 👋
+    <Input placeholder="Focusable Element" />
+  </Block>
+)
+      `,
       type: PropTypes.Function,
       description: `The content of the popover.`,
+      imports: {
+        'baseui/input': {
+          named: ['Input'],
+        },
+      },
     },
     children: {
-      value: `Click me`,
+      value: `<Button>Click me</Button>`,
       type: PropTypes.ReactNode,
       description: `The content that will trigger the popover.`,
+      imports: {
+        'baseui/button': {
+          named: ['Button'],
+        },
+      },
     },
     placement: {
       value: 'PLACEMENT.auto',
@@ -66,6 +88,30 @@ const PopoverConfig: TConfig = {
       type: PropTypes.Boolean,
       description:
         'If true, an arrow will be shown pointing from the popover to the trigger element.',
+    },
+    focusLock: {
+      value: false,
+      type: PropTypes.Boolean,
+      description: 'If true, focus will be locked to the popover contents.',
+    },
+    returnFocus: {
+      value: true,
+      type: PropTypes.Boolean,
+      description:
+        'If true, focus will shift back to the original element after popover closes. Set this to false if focusing the original element triggers the popover.',
+    },
+    renderAll: {
+      value: false,
+      type: PropTypes.Boolean,
+      description:
+        'Renders all popover content for SEO purposes regardless of popover isOpen state.',
+    },
+    autoFocus: {
+      value: true,
+      type: PropTypes.Boolean,
+      description:
+        'If true, focus will shift to the first interactive element within the popover.',
+      hidden: true,
     },
     accessibilityType: {
       value: 'ACCESSIBILITY_TYPE.menu',

@@ -5,6 +5,7 @@ import {TConfig} from '../types';
 const tableProps = require('!!extract-react-types-loader!../../../../src/table/table.js');
 
 const TableConfig: TConfig = {
+  componentName: 'Table',
   imports: {
     'baseui/table': {
       named: ['Table'],
@@ -38,6 +39,11 @@ const TableConfig: TConfig = {
       value: undefined,
       type: PropTypes.String,
       description: 'Table width fills this provided value.',
+    },
+    isLoading: {
+      value: false,
+      type: PropTypes.Boolean,
+      description: 'Lets you specify loading state.',
     },
     overrides: {
       value: undefined,

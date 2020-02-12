@@ -39,6 +39,8 @@
     ".cache",
     "storybook-static",
     "documentation-site/.next",
+    /* Remove once we added lerna / yarn workspaces */
+    "packages/baseweb-vscode-extension",
     "build"
   ]
 }

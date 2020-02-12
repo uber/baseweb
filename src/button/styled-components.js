@@ -13,10 +13,18 @@ export const BaseButton = styled<SharedStylePropsT>(
   'button',
   ({$theme, $size, $kind, $shape, $isLoading, $isSelected, $disabled}) => ({
     display: 'inline-flex',
+    // need to maintain button width while showing loading spinner
+    flexDirection: $isLoading ? 'column' : 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 0,
-    borderStyle: 'none',
+    borderLeftWidth: 0,
+    borderTopWidth: 0,
+    borderRightWidth: 0,
+    borderBottomWidth: 0,
+    borderLeftStyle: 'none',
+    borderTopStyle: 'none',
+    borderRightStyle: 'none',
+    borderBottomStyle: 'none',
     textDecoration: 'none',
     outline: 'none',
     WebkitAppearance: 'none',
@@ -54,8 +62,7 @@ export const StartEnhancer = styled<SharedStylePropsT>('div', ({$theme}) => ({
 }));
 
 export const LoadingSpinnerContainer = styled('div', {
-  // To center within parent
-  position: 'absolute',
+  position: 'static',
 });
 
 export const LoadingSpinner = styled<SharedStylePropsT>(
@@ -73,8 +80,14 @@ export const LoadingSpinner = styled<SharedStylePropsT>(
       borderTopRightRadius: '50%',
       borderBottomRightRadius: '50%',
       borderBottomLeftRadius: '50%',
-      borderStyle: 'solid',
-      borderWidth: $theme.sizing.scale0,
+      borderLeftStyle: 'solid',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderBottomStyle: 'solid',
+      borderLeftWidth: $theme.sizing.scale0,
+      borderTopWidth: $theme.sizing.scale0,
+      borderRightWidth: $theme.sizing.scale0,
+      borderBottomWidth: $theme.sizing.scale0,
       borderTopColor: foreground,
       borderLeftColor: background,
       borderBottomColor: background,
@@ -155,6 +168,8 @@ function getBorderRadiiStyles({$theme, $size, $shape}) {
 
 function getFontStyles({$theme, $size}) {
   switch ($size) {
+    case SIZE.mini:
+      return $theme.typography.font150;
     case SIZE.compact:
       return $theme.typography.font250;
     case SIZE.large:
@@ -167,6 +182,17 @@ function getFontStyles({$theme, $size}) {
 function getPaddingStyles({$theme, $size, $shape}) {
   const iconShape = $shape === SHAPE.square || $shape === SHAPE.round;
   switch ($size) {
+    case SIZE.mini:
+      return {
+        paddingTop: $theme.sizing.scale200,
+        paddingBottom: $theme.sizing.scale200,
+        paddingLeft: iconShape
+          ? $theme.sizing.scale200
+          : $theme.sizing.scale300,
+        paddingRight: iconShape
+          ? $theme.sizing.scale200
+          : $theme.sizing.scale300,
+      };
     case SIZE.compact:
       return {
         paddingTop: $theme.sizing.scale400,

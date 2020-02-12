@@ -22,6 +22,7 @@ const changeHandlers = [
 ];
 
 const FileUploaderConfig: TConfig = {
+  componentName: 'FileUploader',
   imports: {
     'baseui/file-uploader': {named: ['FileUploader']},
   },
