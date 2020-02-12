@@ -532,7 +532,7 @@ const InnerTableElement = React.forwardRef<
   {|children: React.Node, style: {[string]: mixed}|},
   HTMLDivElement,
 >((props, ref) => {
-  const [css, theme] = useStyletron();
+  const [, theme] = useStyletron();
   const ctx = React.useContext(HeaderContext);
 
   // no need to render the cells until the columns have been measured

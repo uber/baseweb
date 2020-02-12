@@ -12,9 +12,6 @@ import {
   Unstable_StatefulDataTable,
   BooleanColumn,
   CategoricalColumn,
-  DatetimeColumn,
-  NumericalColumn,
-  StringColumn,
 } from '../index.js';
 
 type RowDataT = [boolean, string];
