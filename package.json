@@ -1,6 +1,6 @@
 {
   "name": "@sprinklr/spaceweb",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A React Component library implementing the Space design language",
   "keywords": [
     "react",
@@ -52,8 +52,7 @@
     "next:export": "next export documentation-site -o public",
     "tsc": "tsc --skipLibCheck",
     "validate:examples": "node ./scripts/validate-examples.js",
-
-    "//////Unused-Scripts///////":  "",
+    "//////Unused-Scripts///////": "",
     "e2e:build": "webpack --config webpack.e2e.config.js --mode=production",
     "e2e:serve": "static-server e2e/dist --port 8080",
     "e2e:test": "jest --runInBand -c jest.e2e.config.js",
