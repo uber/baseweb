@@ -18,7 +18,6 @@ coverage
 reports
 vrt/latest
 vrt/diff
-spacewebdist
 .cache
 documentation-site/.next
 documentation-site/posts.js
