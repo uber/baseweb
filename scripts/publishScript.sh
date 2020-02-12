@@ -25,6 +25,6 @@ fi
 git tag "$next_version"
 git push origin --tags
 
-npm publish --registry https://prod-nexus.sprinklr.com/nexus/repository/npm-internal/
+npm publish dist --registry https://prod-nexus.sprinklr.com/nexus/repository/npm-internal/
 
 echo "Version ${next_version} is successfully published."
