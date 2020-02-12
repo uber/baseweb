@@ -88,6 +88,7 @@ export type PropsT = {
 
 export type StatelessStateT = {
   isFocused: boolean,
+  isFocusVisible: boolean,
   isHovered: boolean,
   isActive: boolean,
 };
@@ -159,6 +160,7 @@ export type StatefulCheckboxPropsT = {
 
 export type SharedStylePropsT = {
   $isFocused: boolean,
+  $isFocusVisible: boolean,
   $isHovered: boolean,
   $isActive: boolean,
   $isError: boolean,

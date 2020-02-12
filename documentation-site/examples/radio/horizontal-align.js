@@ -7,7 +7,7 @@ export default () => {
   return (
     <RadioGroup
       align="horizontal"
-      name="radio group"
+      name="horizontal"
       onChange={e => setValue(e.target.value)}
       value={value}
     >

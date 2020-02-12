@@ -161,7 +161,7 @@ const Knob: React.SFC<{
           <Label tooltip={getTooltip(description, type, name)}>{name}</Label>
           {numberOfOptions < 7 ? (
             <RadioGroup
-              name="radio group"
+              name={`radio-${name}`}
               align="horizontal"
               overrides={{
                 RadioGroupRoot: {

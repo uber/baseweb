@@ -94,6 +94,8 @@ export interface RadioProps {
   disabled?: boolean;
   inputRef?: React.Ref<HTMLInputElement>;
   isError?: boolean;
+  isFocused?: boolean;
+  isFocusVisible?: boolean;
   labelPlacement?: 'top' | 'right' | 'bottom' | 'left';
   name?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
@@ -106,11 +108,11 @@ export interface RadioProps {
   overrides?: RadioOverrides & RadioGroupOverrides;
   required?: boolean;
   value?: string;
+  tabIndex?: string;
 }
 
 export interface RadioState {
   isActive: boolean;
-  isFocused: boolean;
   isHovered: boolean;
 }
 

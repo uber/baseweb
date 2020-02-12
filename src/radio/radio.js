@@ -48,7 +48,6 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
 
   state = {
     isActive: false,
-    isFocused: this.props.autoFocus || false,
     isHovered: false,
   };
 
@@ -78,16 +77,6 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
     this.props.onMouseUp && this.props.onMouseUp(e);
   };
 
-  onFocus = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.setState({isFocused: true});
-    this.props.onFocus && this.props.onFocus(e);
-  };
-
-  onBlur = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.setState({isFocused: false});
-    this.props.onBlur && this.props.onBlur(e);
-  };
-
   render() {
     const {overrides = {}} = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
@@ -113,7 +102,8 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
       $hasDescription: !!this.props.description,
       $isActive: this.state.isActive,
       $isError: this.props.isError,
-      $isFocused: this.state.isFocused,
+      $isFocused: this.props.isFocused,
+      $isFocusVisible: this.props.isFocused && this.props.isFocusVisible,
       $isHovered: this.state.isHovered,
       $labelPlacement: this.props.labelPlacement,
       $required: this.props.required,
@@ -143,15 +133,15 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
           </RadioMarkOuter>
           <Input
             aria-invalid={this.props.isError || null}
-            aria-required={this.props.required || null}
             checked={this.props.checked}
             disabled={this.props.disabled}
             name={this.props.name}
-            onBlur={this.onBlur}
-            onFocus={this.onFocus}
+            onBlur={this.props.onBlur}
+            onFocus={this.props.onFocus}
             onChange={this.props.onChange}
             ref={this.props.inputRef}
             required={this.props.required}
+            tabIndex={this.props.tabIndex}
             type="radio"
             value={this.props.value}
             {...sharedProps}
