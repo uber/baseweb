@@ -67,15 +67,24 @@ export const LoadingSpinnerContainer = styled('div', {
 
 export const LoadingSpinner = styled<SharedStylePropsT>(
   'div',
-  ({$theme, $kind, $disabled}) => {
+  ({$theme, $kind, $disabled, $size}) => {
     const {foreground, background} = getLoadingSpinnerColors({
       $theme,
       $kind,
       $disabled,
     });
+
+    let dimension = $theme.sizing.scale600;
+    if ($size === SIZE.mini || $size === SIZE.compact) {
+      dimension = $theme.sizing.scale500;
+    }
+    if ($size === SIZE.large) {
+      dimension = $theme.sizing.scale700;
+    }
+
     return {
-      height: $theme.sizing.scale600,
-      width: $theme.sizing.scale600,
+      height: dimension,
+      width: dimension,
       borderTopLeftRadius: '50%',
       borderTopRightRadius: '50%',
       borderBottomRightRadius: '50%',
