@@ -153,6 +153,9 @@ export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
     setHeadlineHeight(entries[0].contentRect.height);
   });
 
+  const filterable = props.filterable === undefined ? true : props.filterable;
+  const searchable = props.searchable === undefined ? true : props.searchable;
+
   return (
     <Unstable_StatefulContainer
       batchActions={props.batchActions}
@@ -191,26 +194,30 @@ export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
                     paddingTop: theme.sizing.scale500,
                   })}
                 >
-                  <QueryInput onChange={onTextQueryChange} />
+                  {searchable && <QueryInput onChange={onTextQueryChange} />}
 
-                  <FilterMenu
-                    columns={props.columns}
-                    filters={filters}
-                    rows={props.rows}
-                    onSetFilter={onFilterAdd}
-                  />
+                  {filterable && (
+                    <React.Fragment>
+                      <FilterMenu
+                        columns={props.columns}
+                        filters={filters}
+                        rows={props.rows}
+                        onSetFilter={onFilterAdd}
+                      />
 
-                  {Array.from(filters).map(([title, filter]) => (
-                    <FilterTag
-                      key={title}
-                      columns={props.columns}
-                      filter={filter}
-                      onFilterAdd={onFilterAdd}
-                      onFilterRemove={onFilterRemove}
-                      rows={props.rows}
-                      title={title}
-                    />
-                  ))}
+                      {Array.from(filters).map(([title, filter]) => (
+                        <FilterTag
+                          key={title}
+                          columns={props.columns}
+                          filter={filter}
+                          onFilterAdd={onFilterAdd}
+                          onFilterRemove={onFilterRemove}
+                          rows={props.rows}
+                          title={title}
+                        />
+                      ))}
+                    </React.Fragment>
+                  )}
                 </div>
               )}
 

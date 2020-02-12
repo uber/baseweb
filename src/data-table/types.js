@@ -78,6 +78,8 @@ export type RowActionT = {|
 export type StatefulDataTablePropsT = {|
   batchActions?: BatchActionT[],
   columns: ColumnT<>[],
+  emptyMessage?: React.Node | RenderPropT,
+  filterable?: boolean,
   onRowHighlightChange?: (rowIndex: number, row: RowT) => void,
   onSelectionChange?: (RowT[]) => mixed,
   resizableColumnWidths?: boolean,
@@ -85,7 +87,7 @@ export type StatefulDataTablePropsT = {|
   rowActions?: RowActionT[],
   rowHeight?: number,
   rowHighlightIndex?: number,
-  emptyMessage?: React.Node | RenderPropT,
+  searchable?: boolean,
 |};
 
 export type DataTablePropsT = {|
