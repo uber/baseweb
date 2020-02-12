@@ -2,9 +2,6 @@
   "name": "spaceweb",
   "version": "0.0.1",
   "description": "A React Component library implementing the Space design language",
-  "name": "baseui",
-  "version": "9.52.1",
-  "description": "A React Component library implementing the Base design language",
   "keywords": [
     "react",
     "sprinklr"
@@ -14,7 +11,10 @@
   "types": "index.d.ts",
   "sideEffects": false,
   "module": "./esm/index.js",
-  "repository": "TODO",
+  "repository": {
+    "type": "git",
+    "url": "TODO"
+  },
   "scripts": {
     "lint:code": "eslint ./",
     "lint:markdown": "markdownlint -c ./.markdownlint.json proposals",
@@ -35,6 +35,8 @@
     "build": "yarn build:cjs && yarn build:esm && yarn build:copy-files && yarn build:copy-ts-files && yarn build:package-json",
     "build:documentation-site-files": "node ./scripts/build-documentation-site-files.js",
     "unit-test": "yarn jest --coverage",
+    "deploy:publish": "./scripts/publishScript.sh",
+    "deploy:republish": "./scripts/republishScript.sh",
     "e2e:build": "webpack --config webpack.e2e.config.js --mode=production",
     "e2e:serve": "static-server e2e/dist --port 8080",
     "e2e:test": "jest --runInBand -c jest.e2e.config.js",
@@ -215,7 +217,6 @@
   },
   "husky": {
     "hooks": {
-      "commit-msg": "commitlint -e $GIT_PARAMS",
       "pre-commit": "pretty-quick --staged"
     }
   },
@@ -225,5 +226,9 @@
   },
   "engines": {
     "node": ">=10.x"
-  }
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "author": ""
 }
