@@ -28,24 +28,19 @@ import type {
   RowT,
   SortDirectionsT,
   RowActionT,
-  RenderPropT,
 } from './types.js';
 import {LocaleContext} from '../locale/index.js';
-import type {LocaleT} from '../locale/types.js';
 
 // consider pulling this out to a prop if useful.
 const HEADER_ROW_HEIGHT = 48;
 
-type InnerTableElementProps = {|
-  emptyMessage?: React.Node | RenderPropT,
-  children: React.Node,
-  style: {[string]: mixed},
-|};
-
 type HeaderContextT = {|
   columns: ColumnT<>[],
   columnHighlightIndex: number,
+  emptyMessage: string | React.ComponentType<{||}>,
   filters: $PropertyType<DataTablePropsT, 'filters'>,
+  loading: boolean,
+  loadingMessage: string | React.ComponentType<{||}>,
   isScrollingX: boolean,
   isSelectable: boolean,
   isSelectedAll: boolean,
@@ -205,7 +200,10 @@ CellPlacementMemo.displayName = 'CellPlacement';
 const HeaderContext = React.createContext<HeaderContextT>({
   columns: [],
   columnHighlightIndex: -1,
+  emptyMessage: '',
   filters: new Map(),
+  loading: false,
+  loadingMessage: '',
   isScrollingX: false,
   isSelectable: false,
   isSelectedAll: false,
@@ -511,15 +509,30 @@ function Headers(props: {||}) {
   );
 }
 
+function LoadingOrEmptyMessage(props) {
+  const [css, theme] = useStyletron();
+  return (
+    <p
+      className={css({
+        ...theme.typography.ParagraphSmall,
+        color: theme.colors.contentPrimary,
+        marginLeft: theme.sizing.scale500,
+      })}
+    >
+      {typeof props.children === 'function'
+        ? props.children()
+        : String(props.children)}
+    </p>
+  );
+}
+
 // replaces the content of the virtualized window with contents. in this case,
 // we are prepending a table header row before the table rows (children to the fn).
 const InnerTableElement = React.forwardRef<
-  InnerTableElementProps,
+  {|children: React.Node, style: {[string]: mixed}|},
   HTMLDivElement,
 >((props, ref) => {
-  const {emptyMessage} = props;
-
-  const [, theme] = useStyletron();
+  const [css, theme] = useStyletron();
   const ctx = React.useContext(HeaderContext);
 
   // no need to render the cells until the columns have been measured
@@ -527,87 +540,84 @@ const InnerTableElement = React.forwardRef<
     return null;
   }
 
-  return (
-    <LocaleContext.Consumer>
-      {(locale: LocaleT) => {
-        const emptyMessageComponent: React.Node =
-          emptyMessage && typeof emptyMessage === 'function' ? (
-            emptyMessage()
-          ) : (
-            <div
-              className={{
-                ...theme.typography.font100,
-                marginTop: theme.sizing.scale600,
-                marginLeft: theme.sizing.scale600,
-              }}
-            >
-              {emptyMessage || locale.datatable.emptyState}
-            </div>
-          );
-        return (
-          <div ref={ref} data-baseweb="data-table" style={props.style}>
-            <Headers />
-            {React.Children.toArray(props.children).length <= ctx.columns.length
-              ? emptyMessageComponent
-              : props.children}
+  const RENDERING = 0;
+  const LOADING = 1;
+  const EMPTY = 2;
+  let viewState = RENDERING;
+  if (ctx.loading) {
+    viewState = LOADING;
+  } else if (ctx.rows.length === 0) {
+    viewState = EMPTY;
+  }
 
-            {ctx.rowActions &&
-              Boolean(ctx.rowActions.length) &&
-              ctx.rowHighlightIndex > 0 &&
-              !ctx.isScrollingX && (
-                <div
-                  style={{
-                    alignItems: 'center',
-                    backgroundColor: theme.colors.backgroundTertiary,
-                    display: 'flex',
-                    height: `${ctx.rowHeight}px`,
-                    padding: '0 16px',
-                    paddingLeft: theme.sizing.scale300,
-                    paddingRight: theme.sizing.scale300,
-                    position: 'absolute',
-                    right: 0 - ctx.scrollLeft,
-                    top:
-                      (ctx.rowHighlightIndex - 1) * ctx.rowHeight +
-                      HEADER_ROW_HEIGHT,
+  return (
+    <div ref={ref} data-baseweb="data-table" style={props.style}>
+      <Headers />
+
+      {viewState === LOADING && (
+        <LoadingOrEmptyMessage>{ctx.loadingMessage}</LoadingOrEmptyMessage>
+      )}
+
+      {viewState === EMPTY && (
+        <LoadingOrEmptyMessage>{ctx.emptyMessage}</LoadingOrEmptyMessage>
+      )}
+
+      {viewState === RENDERING && props.children}
+
+      {ctx.rowActions &&
+        Boolean(ctx.rowActions.length) &&
+        ctx.rowHighlightIndex > 0 &&
+        !ctx.isScrollingX && (
+          <div
+            style={{
+              alignItems: 'center',
+              backgroundColor: theme.colors.backgroundTertiary,
+              display: 'flex',
+              height: `${ctx.rowHeight}px`,
+              padding: '0 16px',
+              paddingLeft: theme.sizing.scale300,
+              paddingRight: theme.sizing.scale300,
+              position: 'absolute',
+              right: 0 - ctx.scrollLeft,
+              top:
+                (ctx.rowHighlightIndex - 1) * ctx.rowHeight + HEADER_ROW_HEIGHT,
+            }}
+          >
+            {ctx.rowActions.map(rowAction => {
+              const RowActionIcon = rowAction.renderIcon;
+              return (
+                <Button
+                  alt={rowAction.label}
+                  key={rowAction.label}
+                  onClick={event =>
+                    rowAction.onClick({
+                      event,
+                      row: ctx.rows[ctx.rowHighlightIndex - 1],
+                    })
+                  }
+                  size={BUTTON_SIZES.compact}
+                  kind={BUTTON_KINDS.minimal}
+                  shape={BUTTON_SHAPES.round}
+                  overrides={{
+                    BaseButton: {
+                      style: {marginLeft: theme.sizing.scale300},
+                    },
                   }}
                 >
-                  {ctx.rowActions.map(rowAction => {
-                    const RowActionIcon = rowAction.renderIcon;
-                    return (
-                      <Button
-                        alt={rowAction.label}
-                        key={rowAction.label}
-                        onClick={event =>
-                          rowAction.onClick({
-                            event,
-                            row: ctx.rows[ctx.rowHighlightIndex - 1],
-                          })
-                        }
-                        size={BUTTON_SIZES.compact}
-                        kind={BUTTON_KINDS.minimal}
-                        shape={BUTTON_SHAPES.round}
-                        overrides={{
-                          BaseButton: {
-                            style: {marginLeft: theme.sizing.scale300},
-                          },
-                        }}
-                      >
-                        <RowActionIcon size={24} />
-                      </Button>
-                    );
-                  })}
-                </div>
-              )}
+                  <RowActionIcon size={24} />
+                </Button>
+              );
+            })}
           </div>
-        );
-      }}
-    </LocaleContext.Consumer>
+        )}
+    </div>
   );
 });
 InnerTableElement.displayName = 'InnerTableElement';
 
 export function Unstable_DataTable(props: DataTablePropsT) {
   const [, theme] = useStyletron();
+  const locale = React.useContext(LocaleContext);
   const rowHeight = props.rowHeight || 36;
   const gridRef = React.useRef<typeof VariableSizeGrid | null>(null);
   const [measuredWidths, setMeasuredWidths] = React.useState(
@@ -890,16 +900,6 @@ export function Unstable_DataTable(props: DataTablePropsT) {
     textQuery,
   ]);
 
-  const WrappedInnerTableElement = React.useCallback(
-    innerTableElementProps => (
-      <InnerTableElement
-        emptyMessage={props.emptyMessage}
-        {...innerTableElementProps}
-      />
-    ),
-    [props.emptyMessage],
-  );
-
   return (
     <React.Fragment>
       <MeasureColumnWidths
@@ -915,7 +915,11 @@ export function Unstable_DataTable(props: DataTablePropsT) {
             value={{
               columns: props.columns,
               columnHighlightIndex,
+              emptyMessage: props.emptyMessage || locale.datatable.emptyState,
               filters: props.filters,
+              loading: Boolean(props.loading),
+              loadingMessage:
+                props.loadingMessage || locale.datatable.loadingState,
               isScrollingX,
               isSelectable,
               isSelectedAll,
@@ -944,7 +948,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
               // eslint-disable-next-line flowtype/no-weak-types
               ref={(gridRef: any)}
               overscanRowCount={10}
-              innerElementType={WrappedInnerTableElement}
+              innerElementType={InnerTableElement}
               columnCount={props.columns.length}
               columnWidth={columnIndex => normalizedWidths[columnIndex]}
               height={height - 2}

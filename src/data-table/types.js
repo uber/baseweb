@@ -24,8 +24,6 @@ export type ColumnsT =
   | typeof COLUMNS.NUMERICAL
   | typeof COLUMNS.STRING;
 
-export type RenderPropT = () => React.Node;
-
 // eslint-disable-next-line flowtype/no-weak-types
 export type ColumnT<ValueT = any, FilterParamsT = any> = {|
   kind: ColumnsT,
@@ -78,8 +76,10 @@ export type RowActionT = {|
 export type StatefulDataTablePropsT = {|
   batchActions?: BatchActionT[],
   columns: ColumnT<>[],
-  emptyMessage?: React.Node | RenderPropT,
+  emptyMessage?: string | React.ComponentType<{||}>,
   filterable?: boolean,
+  loading?: boolean,
+  loadingMessage?: string | React.ComponentType<{||}>,
   onRowHighlightChange?: (rowIndex: number, row: RowT) => void,
   onSelectionChange?: (RowT[]) => mixed,
   resizableColumnWidths?: boolean,
@@ -92,7 +92,10 @@ export type StatefulDataTablePropsT = {|
 
 export type DataTablePropsT = {|
   ...StatefulDataTablePropsT,
+  emptyMessage?: string | React.ComponentType<{||}>,
   filters?: Map<string, {description: string}>,
+  loading?: boolean,
+  loadingMessage?: string | React.ComponentType<{||}>,
   onRowHighlightChange?: (rowIndex: number, row: RowT) => void,
   onSelectMany?: (rows: RowT[]) => void,
   onSelectNone?: () => void,
