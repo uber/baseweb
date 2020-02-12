@@ -15,12 +15,17 @@ import {getSharedProps} from './utils.js';
 import ButtonInternals from './button-internals.js';
 import {defaultProps} from './default-props.js';
 import {getOverrides} from '../helpers/overrides.js';
+import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 import type {ButtonPropsT} from './types.js';
 
-// eslint-disable-next-line flowtype/no-weak-types
-class Button extends React.Component<ButtonPropsT & {forwardedRef: any}> {
+class Button extends React.Component<
+  // eslint-disable-next-line flowtype/no-weak-types
+  ButtonPropsT & {forwardedRef: any},
+  {isFocusVisible: boolean},
+> {
   static defaultProps = defaultProps;
+  state = {isFocusVisible: false};
 
   internalOnClick = (...args: *) => {
     const {isLoading, onClick} = this.props;
@@ -28,6 +33,18 @@ class Button extends React.Component<ButtonPropsT & {forwardedRef: any}> {
       return;
     }
     onClick && onClick(...args);
+  };
+
+  handleFocus = (event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      this.setState({isFocusVisible: true});
+    }
+  };
+
+  handleBlur = (event: SyntheticEvent<>) => {
+    if (this.state.isFocusVisible !== false) {
+      this.setState({isFocusVisible: false});
+    }
   };
 
   render() {
@@ -61,7 +78,10 @@ class Button extends React.Component<ButtonPropsT & {forwardedRef: any}> {
       overrides.LoadingSpinnerContainer,
       StyledLoadingSpinnerContainer,
     );
-    const sharedProps = getSharedProps(this.props);
+    const sharedProps = {
+      ...getSharedProps(this.props),
+      $isFocusVisible: this.state.isFocusVisible,
+    };
     return (
       <BaseButton
         ref={forwardedRef}
@@ -71,6 +91,8 @@ class Button extends React.Component<ButtonPropsT & {forwardedRef: any}> {
         {...baseButtonProps}
         // Applies last to override passed in onClick
         onClick={this.internalOnClick}
+        onFocus={forkFocus(baseButtonProps, this.handleFocus)}
+        onBlur={forkBlur(baseButtonProps, this.handleBlur)}
       >
         {isLoading ? (
           <React.Fragment>

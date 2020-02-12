@@ -11,7 +11,16 @@ import type {SharedStylePropsT} from './types.js';
 
 export const BaseButton = styled<SharedStylePropsT>(
   'button',
-  ({$theme, $size, $kind, $shape, $isLoading, $isSelected, $disabled}) => ({
+  ({
+    $theme,
+    $size,
+    $kind,
+    $shape,
+    $isLoading,
+    $isSelected,
+    $disabled,
+    $isFocusVisible,
+  }) => ({
     display: 'inline-flex',
     // need to maintain button width while showing loading spinner
     flexDirection: $isLoading ? 'column' : 'row',
@@ -25,8 +34,9 @@ export const BaseButton = styled<SharedStylePropsT>(
     borderTopStyle: 'none',
     borderRightStyle: 'none',
     borderBottomStyle: 'none',
+    outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+    outlineOffset: '-3px',
     textDecoration: 'none',
-    outline: 'none',
     WebkitAppearance: 'none',
     transitionProperty: 'background',
     transitionDuration: $theme.animation.timing100,
@@ -258,11 +268,6 @@ function getKindStyles({$theme, $isLoading, $isSelected, $kind, $disabled}) {
             ? $theme.colors.buttonPrimaryActive
             : $theme.colors.buttonPrimaryHover,
         },
-        ':focus': {
-          backgroundColor: $isLoading
-            ? $theme.colors.buttonPrimaryActive
-            : $theme.colors.buttonPrimaryHover,
-        },
         ':active': {
           backgroundColor: $theme.colors.buttonPrimaryActive,
         },
@@ -278,11 +283,6 @@ function getKindStyles({$theme, $isLoading, $isSelected, $kind, $disabled}) {
         color: $theme.colors.buttonSecondaryText,
         backgroundColor: $theme.colors.buttonSecondaryFill,
         ':hover': {
-          backgroundColor: $isLoading
-            ? $theme.colors.buttonSecondaryActive
-            : $theme.colors.buttonSecondaryHover,
-        },
-        ':focus': {
           backgroundColor: $isLoading
             ? $theme.colors.buttonSecondaryActive
             : $theme.colors.buttonSecondaryHover,
@@ -306,11 +306,6 @@ function getKindStyles({$theme, $isLoading, $isSelected, $kind, $disabled}) {
             ? $theme.colors.buttonTertiaryActive
             : $theme.colors.buttonTertiaryHover,
         },
-        ':focus': {
-          backgroundColor: $isLoading
-            ? $theme.colors.buttonTertiaryActive
-            : $theme.colors.buttonTertiaryHover,
-        },
         ':active': {
           backgroundColor: $theme.colors.buttonTertiaryActive,
         },
@@ -326,11 +321,6 @@ function getKindStyles({$theme, $isLoading, $isSelected, $kind, $disabled}) {
         color: $theme.colors.buttonMinimalText,
         backgroundColor: $theme.colors.buttonMinimalFill,
         ':hover': {
-          backgroundColor: $isLoading
-            ? $theme.colors.buttonMinimalActive
-            : $theme.colors.buttonMinimalHover,
-        },
-        ':focus': {
           backgroundColor: $isLoading
             ? $theme.colors.buttonMinimalActive
             : $theme.colors.buttonMinimalHover,
