@@ -14,7 +14,6 @@ import {useStyletron} from '../../styles/index.js';
 
 export default function Scenario() {
   const [css] = useStyletron();
-  const [loading, setLoading] = React.useState(false);
 
   return (
     <React.Fragment>
