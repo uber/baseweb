@@ -100,7 +100,7 @@ function FilterTag(props) {
           data={data}
           filterParams={props.filter}
           setFilter={filterParams =>
-            props.onFilterAdd(filterParams, props.title)
+            props.onFilterAdd(props.title, filterParams)
           }
         />
       )}
@@ -160,6 +160,9 @@ export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
     <Unstable_StatefulContainer
       batchActions={props.batchActions}
       columns={props.columns}
+      initialFilters={props.initialFilters}
+      onFilterAdd={props.onFilterAdd}
+      onFilterRemove={props.onFilterRemove}
       onRowHighlightChange={props.onRowHighlightChange}
       onSelectionChange={props.onSelectionChange}
       rows={props.rows}
