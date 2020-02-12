@@ -32,7 +32,7 @@
     "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel ./src --out-dir ./dist/es --ignore **.test.js,**/__tests__/**,**/e2e.js,**/template-component/**,**/test/**",
     "build": "yarn build:cjs && yarn build:esm && yarn build:es && yarn build:copy-files && yarn build:copy-flow-files && yarn build:copy-ts-files && yarn build:package-json",
     "build:documentation-site-files": "node ./scripts/build-documentation-site-files.js",
-    "unit-test": "yarn jest /radiogroup.test.js",
+    "unit-test": "yarn jest --coverage",
     "e2e:build": "webpack --config ./e2e/webpack.e2e.config.js --mode=production",
     "e2e:serve": "static-server e2e/dist --port 8080",
     "e2e:test": "jest --runInBand -c jest.e2e.config.js",

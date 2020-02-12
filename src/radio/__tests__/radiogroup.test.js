@@ -61,28 +61,33 @@ describe('radio-group', () => {
 describe('radio-group focus and a11y management', () => {
   it('sets the initial state', () => {
     const {getByDisplayValue} = render(
-      <RadioGroup name="numbers" value="3">
+      <StatefulRadioGroup name="numberss" initialState={{value: '3'}}>
         <Radio value="1" />
         <Radio value="2" />
         <Radio value="3" />
-      </RadioGroup>,
+      </StatefulRadioGroup>,
     );
-    expect(getByDisplayValue('1')).not.toBeChecked();
-    expect(getByDisplayValue('2')).not.toBeChecked();
-    expect(getByDisplayValue('3')).toBeChecked();
 
-    expect(getByDisplayValue('1')).toHaveAttribute('tabindex', '-1');
-    expect(getByDisplayValue('2')).toHaveAttribute('tabindex', '-1');
-    expect(getByDisplayValue('3')).toHaveAttribute('tabindex', '0');
+    const one = getByDisplayValue('1');
+    const two = getByDisplayValue('2');
+    const three = getByDisplayValue('3');
 
-    expect(getByDisplayValue('1')).not.toHaveFocus();
-    expect(getByDisplayValue('2')).not.toHaveFocus();
-    expect(getByDisplayValue('3')).not.toHaveFocus();
+    expect(one).not.toBeChecked();
+    expect(two).not.toBeChecked();
+    expect(three).toBeChecked();
+
+    expect(one).toHaveAttribute('tabindex', '-1');
+    expect(two).toHaveAttribute('tabindex', '-1');
+    expect(three).toHaveAttribute('tabindex', '0');
+
+    expect(one).not.toHaveFocus();
+    expect(two).not.toHaveFocus();
+    expect(three).not.toHaveFocus();
   });
 
-  it('hits tab', () => {
-    const {getByDisplayValue, container} = render(
-      <StatefulRadioGroup name="numbersz" initialState={{value: '3'}}>
+  it('focus selected radio', () => {
+    const {getByDisplayValue} = render(
+      <StatefulRadioGroup name="numberss" initialState={{value: '3'}}>
         <Radio value="1" />
         <Radio value="2" />
         <Radio value="3" />
@@ -95,37 +100,36 @@ describe('radio-group focus and a11y management', () => {
 
     userEvent.tab();
 
-    fireEvent(
-      getByDisplayValue('2'),
-      new MouseEvent('click', {
-        bubbles: true,
-        cancelable: true,
-      }),
+    expect(one).not.toHaveFocus();
+    expect(two).not.toHaveFocus();
+    expect(three).toHaveFocus();
+  });
+
+  it('focus first radio if no value is selected', () => {
+    const {getByDisplayValue} = render(
+      <StatefulRadioGroup name="numberss" initialState={{value: undefined}}>
+        <Radio value="1" />
+        <Radio value="2" />
+        <Radio value="3" />
+      </StatefulRadioGroup>,
     );
-    // getByDisplayValue('3').focus();
-    // fireEvent(
-    //   getByDisplayValue('3'),
-    //   new KeyboardEvent('keydown', {
-    //     key: 'ArrowUp',
-    //     code: 'ArrowUp',
-    //     keyCode: 38,
-    //     charCode: 38,
-    //   }),
-    // );
-    // fireEvent.keyDown(container, {key: 'ArrowUp', code: 38});
-    // fireEvent.keyDown(three, {key: 'ArrowUp', code: 38});
-    // fireEvent.keyDown(document.body, {key: 'ArrowUp', code: 38});
 
-    // expect(one).not.toHaveFocus();
-    // expect(two).toHaveFocus();
-    // expect(three).not.toHaveFocus();
+    const one = getByDisplayValue('1');
+    const two = getByDisplayValue('2');
+    const three = getByDisplayValue('3');
 
-    expect(getByDisplayValue('1')).not.toBeChecked();
-    expect(getByDisplayValue('2')).toBeChecked();
-    expect(getByDisplayValue('3')).not.toBeChecked();
+    expect(one).not.toBeChecked();
+    expect(two).not.toBeChecked();
+    expect(three).not.toBeChecked();
 
-    expect(getByDisplayValue('1')).toHaveAttribute('tabindex', '-1');
-    expect(getByDisplayValue('2')).toHaveAttribute('tabindex', '0');
-    expect(getByDisplayValue('3')).toHaveAttribute('tabindex', '-1');
+    expect(one).toHaveAttribute('tabindex', '0');
+    expect(two).toHaveAttribute('tabindex', '-1');
+    expect(three).toHaveAttribute('tabindex', '-1');
+
+    userEvent.tab();
+
+    expect(one).toHaveFocus();
+    expect(two).not.toHaveFocus();
+    expect(three).not.toHaveFocus();
   });
 });
