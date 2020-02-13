@@ -7,5 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-export const ENTER_KEY_CODE = 13;
-export const SPACE_KEY_CODE = 32;
+export const ARROW_UP = 38;
+export const ARROW_DOWN = 40;
+export const ARROW_LEFT = 37;
+export const ARROW_RIGHT = 39;
