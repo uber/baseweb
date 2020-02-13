@@ -76,7 +76,7 @@ export const LoadingSpinnerContainer = styled('div', {
 });
 
 export const LoadingSpinner = styled<SharedStylePropsT>(
-  'div',
+  'span',
   ({$theme, $kind, $disabled, $size}) => {
     const {foreground, background} = getLoadingSpinnerColors({
       $theme,
@@ -84,12 +84,12 @@ export const LoadingSpinner = styled<SharedStylePropsT>(
       $disabled,
     });
 
-    let dimension = $theme.sizing.scale700;
+    let dimension = $theme.sizing.scale400;
     if ($size === SIZE.mini || $size === SIZE.compact) {
-      dimension = $theme.sizing.scale600;
+      dimension = $theme.sizing.scale300;
     }
     if ($size === SIZE.large) {
-      dimension = $theme.sizing.scale800;
+      dimension = $theme.sizing.scale500;
     }
 
     return {
@@ -111,7 +111,7 @@ export const LoadingSpinner = styled<SharedStylePropsT>(
       borderLeftColor: background,
       borderBottomColor: background,
       borderRightColor: background,
-      boxSizing: 'border-box',
+      display: 'inline-block',
       animationDuration: $theme.animation.timing700,
       animationTimingFunction: 'linear',
       animationIterationCount: 'infinite',
