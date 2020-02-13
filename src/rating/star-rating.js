@@ -75,13 +75,13 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
           onClick={() => this.selectItem(x)}
           onKeyDown={e => {
             if (e.keyCode === ARROW_UP || e.keyCode === ARROW_LEFT) {
-              e.preventDefault();
+              e.preventDefault && e.preventDefault();
               const prevIndex = value - 1 < 1 ? numItems : value - 1;
               this.selectItem(prevIndex);
               refs[prevIndex].current && refs[prevIndex].current.focus();
             }
             if (e.keyCode === ARROW_DOWN || e.keyCode === ARROW_RIGHT) {
-              e.preventDefault();
+              e.preventDefault && e.preventDefault();
               const nextIndex = value + 1 > numItems ? 1 : value + 1;
               this.selectItem(nextIndex);
               refs[nextIndex].current && refs[nextIndex].current.focus();

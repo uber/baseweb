@@ -81,14 +81,14 @@ class EmoticonRating extends React.Component<
           onClick={() => this.selectItem(x)}
           onKeyDown={e => {
             if (e.keyCode === ARROW_UP || e.keyCode === ARROW_LEFT) {
-              e.preventDefault();
+              e.preventDefault && e.preventDefault();
               // 5 value comes from non-configurable number of icons
               const prevIndex = value - 1 < 1 ? 5 : value - 1;
               this.selectItem(prevIndex);
               refs[prevIndex].current && refs[prevIndex].current.focus();
             }
             if (e.keyCode === ARROW_DOWN || e.keyCode === ARROW_RIGHT) {
-              e.preventDefault();
+              e.preventDefault && e.preventDefault();
               const nextIndex = value + 1 > 5 ? 1 : value + 1;
               this.selectItem(nextIndex);
               refs[nextIndex].current && refs[nextIndex].current.focus();
