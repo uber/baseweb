@@ -183,6 +183,7 @@ export default class Pagination extends React.PureComponent<PaginationPropsT> {
                           paddingRight: $theme.sizing.scale500,
                           color: $theme.colors.buttonTertiaryText,
                           ...$theme.typography.font350,
+                          lineHeight: 'unset',
                         }),
                       },
                       SelectArrow: {
