@@ -8,7 +8,7 @@ import {components} from './components.json';
 export function activate(context: vscode.ExtensionContext) {
   // @ts-ignore
   components.forEach((component: string) => {
-    let disposable = vscode.commands.registerCommand(
+    const disposable = vscode.commands.registerCommand(
       `extension.baseweb.docs.${component}`,
       () => {
         vscode.env.openExternal(
