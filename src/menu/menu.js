@@ -112,8 +112,8 @@ export default function Menu(props: StatelessMenuPropsT) {
           ref={rootRef}
           onMouseEnter={focusMenu}
           onMouseOver={focusMenu}
-          onFocus={forkFocus(focusMenu, handleFocus)}
-          onBlur={forkBlur(unfocusMenu, handleBlur)}
+          onFocus={forkFocus({onFocus: focusMenu}, handleFocus)}
+          onBlur={forkBlur({onBlur: unfocusMenu}, handleBlur)}
           tabIndex={0}
           data-baseweb="menu"
           $isFocusVisible={focusVisible}

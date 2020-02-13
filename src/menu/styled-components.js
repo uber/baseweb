@@ -39,7 +39,9 @@ export const StyledList = styled<StyledPropsT>(
       borderBottomLeftRadius: $theme.borders.popoverBorderRadius,
       boxShadow: $theme.lighting.shadow600,
       overflow: 'auto',
-      outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+      ':focus': {
+        outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+      },
     };
   },
 );
