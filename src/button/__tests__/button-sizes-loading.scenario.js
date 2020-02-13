@@ -10,11 +10,8 @@ import React from 'react';
 
 import {Button} from '../index.js';
 import {SIZE} from '../constants.js';
-import {useStyletron} from '../../styles/index.js';
 
 export default function Scenario() {
-  const [css] = useStyletron();
-
   return (
     <React.Fragment>
       <Button size={SIZE.mini}>Mini</Button>
