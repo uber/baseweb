@@ -116,7 +116,7 @@ function getRepositoryOwnerFromURL() {
 function sanitizeBranch() {
   return BUILDKITE_BRANCH.replace(/\//g, '-')
     .replace(/_/g, '')
-    .replace(/#/g, '-')
+    .replace(/#/g, '')
     .toLowerCase();
 }
 
