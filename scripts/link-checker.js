@@ -54,7 +54,7 @@ async function main() {
     console.log(' Connected!');
     console.log('Running link checker');
     childProcess.execSync(
-      `yarn blc ${url} -ro --exclude components/avatar --exclude example.com --exclude github.com --exclude zeit.co`,
+      `yarn blc ${url} -ro --exclude components/avatar --exclude example.com --exclude github.com --exclude zeit.co --exclude figma.com`,
       {stdio: 'inherit'},
     );
   } else {
