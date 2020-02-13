@@ -84,12 +84,12 @@ export const LoadingSpinner = styled<SharedStylePropsT>(
       $disabled,
     });
 
-    let dimension = $theme.sizing.scale600;
+    let dimension = $theme.sizing.scale700;
     if ($size === SIZE.mini || $size === SIZE.compact) {
-      dimension = $theme.sizing.scale500;
+      dimension = $theme.sizing.scale600;
     }
     if ($size === SIZE.large) {
-      dimension = $theme.sizing.scale700;
+      dimension = $theme.sizing.scale800;
     }
 
     return {
@@ -111,6 +111,7 @@ export const LoadingSpinner = styled<SharedStylePropsT>(
       borderLeftColor: background,
       borderBottomColor: background,
       borderRightColor: background,
+      boxSizing: 'border-box',
       animationDuration: $theme.animation.timing700,
       animationTimingFunction: 'linear',
       animationIterationCount: 'infinite',
