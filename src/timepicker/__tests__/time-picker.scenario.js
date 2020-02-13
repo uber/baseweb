@@ -13,8 +13,6 @@ import startOfDay from 'date-fns/startOfDay';
 import {TimePicker} from '../index.js';
 import {SIZE} from '../../input/index.js';
 
-export const name = 'time-picker';
-
 const MIDNIGHT = startOfDay(new Date(2019, 3, 19));
 const OFF_STEP_TIME = new Date(2019, 3, 19, 1, 11);
 const overrides = {
@@ -24,51 +22,43 @@ const overrides = {
 };
 
 const Controlled = ({
-  format,
-  step,
   size = 'default',
   initialDate,
   creatable = false,
+  onChange = () => {},
+  ...restProps
 }) => {
   const [time, setTime] = useState(initialDate);
   return (
     <React.Fragment>
       <TimePicker
-        format={format}
-        step={step}
         value={time}
-        onChange={setTime}
+        onChange={time => {
+          setTime(time);
+          onChange();
+        }}
         overrides={overrides}
         creatable={creatable}
         size={size}
+        {...restProps}
       />
-      <p data-e2e="hours">hour: {time.getHours()}</p>
-      <p data-e2e="minutes">minute: {time.getMinutes()}</p>
+      <p data-e2e="hours">hour: {time ? time.getHours() : 'null'}</p>
+      <p data-e2e="minutes">minute: {time ? time.getMinutes() : 'null'}</p>
     </React.Fragment>
   );
 };
 
-export const component = () => {
+export default function Scenario() {
   const [value, setValue] = React.useState(null);
   return (
     <div style={{width: '130px'}}>
       <div data-e2e="12-hour">
         12 hour format
-        <Controlled
-          format="12"
-          step={900}
-          initialDate={MIDNIGHT}
-          creatable={false}
-        />
+        <Controlled format="12" step={900} initialDate={null} nullable={true} />
       </div>
       <div data-e2e="24-hour">
         24 hour format
-        <Controlled
-          format="24"
-          step={1800}
-          initialDate={MIDNIGHT}
-          creatable={false}
-        />
+        <Controlled format="24" step={1800} initialDate={MIDNIGHT} />
       </div>
       <div data-e2e="12-hour-creatable">
         12 hour format creatable
@@ -101,4 +91,4 @@ export const component = () => {
       </div>
     </div>
   );
-};
+}

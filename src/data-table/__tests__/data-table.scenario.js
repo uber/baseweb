@@ -10,16 +10,18 @@ import * as React from 'react';
 
 import {useStyletron} from '../../styles/index.js';
 
-import AnchorColumn from '../column-anchor.js';
-import BooleanColumn from '../column-boolean.js';
-import CategoricalColumn from '../column-categorical.js';
-import CustomColumn from '../column-custom.js';
-import NumericalColumn from '../column-numerical.js';
-import StringColumn from '../column-string.js';
-import {COLUMNS, NUMERICAL_FORMATS} from '../constants.js';
-import {Unstable_StatefulDataTable} from '../stateful-data-table.js';
-
-export const name = 'data-table';
+import {
+  AnchorColumn,
+  BooleanColumn,
+  CategoricalColumn,
+  CustomColumn,
+  DatetimeColumn,
+  NumericalColumn,
+  StringColumn,
+  COLUMNS,
+  NUMERICAL_FORMATS,
+  Unstable_StatefulDataTable,
+} from '../index.js';
 
 type RowDataT = [
   string,
@@ -27,6 +29,7 @@ type RowDataT = [
   number,
   number,
   number,
+  Date,
   {color: string},
   string,
   boolean,
@@ -67,6 +70,8 @@ function makeRowsFromColumns(columns, rowCount) {
               default:
                 return 'F';
             }
+          case COLUMNS.DATETIME:
+            return new Date('2011-04-11T10:20:30Z');
           case COLUMNS.NUMERICAL:
             // eslint-disable-next-line no-case-declarations
             let base = i % 2 ? i - 1 : i + 3;
@@ -125,6 +130,10 @@ const columns = [
     minWidth: 120,
     mapDataToValue: (data: RowDataT) => data[4],
   }),
+  DatetimeColumn({
+    title: 'datetime',
+    mapDataToValue: (data: RowDataT) => data[5],
+  }),
   CustomColumn<
     {color: string},
     {selection: Set<string>, exclude: boolean, description: string},
@@ -133,7 +142,7 @@ const columns = [
     filterable: true,
     sortable: true,
     minWidth: 120,
-    mapDataToValue: (data: RowDataT) => data[5],
+    mapDataToValue: (data: RowDataT) => data[6],
     renderCell: function Cell(props) {
       const [css] = useStyletron();
       return (
@@ -212,28 +221,28 @@ const columns = [
   StringColumn({
     title: 'string',
     minWidth: 148,
-    mapDataToValue: (data: RowDataT) => data[6],
+    mapDataToValue: (data: RowDataT) => data[7],
   }),
   BooleanColumn({
     title: 'boolean',
-    mapDataToValue: (data: RowDataT) => data[7],
+    mapDataToValue: (data: RowDataT) => data[8],
   }),
   CategoricalColumn({
     title: 'second category',
-    mapDataToValue: (data: RowDataT) => data[8],
+    mapDataToValue: (data: RowDataT) => data[9],
   }),
   AnchorColumn({
     title: 'anchor',
-    mapDataToValue: (data: RowDataT) => data[9],
+    mapDataToValue: (data: RowDataT) => data[10],
   }),
 ];
 
 const rows = makeRowsFromColumns(columns, 2000);
 
-export const component = () => {
+export default function Scenario() {
   return (
     <div style={{height: '800px', width: '900px'}}>
       <Unstable_StatefulDataTable columns={columns} rows={rows} />
     </div>
   );
-};
+}

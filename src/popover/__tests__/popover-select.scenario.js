@@ -11,8 +11,6 @@ import {Button} from '../../button/index.js';
 import {StatefulSelect} from '../../select/index.js';
 import {StatefulPopover} from '../index.js';
 
-export const name = 'popover-select';
-
 const SelectInPopover = () => {
   return (
     <StatefulPopover
@@ -39,4 +37,4 @@ const SelectInPopover = () => {
   );
 };
 
-export const component = () => <SelectInPopover />;
+export default SelectInPopover;

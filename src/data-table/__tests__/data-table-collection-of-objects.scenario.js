@@ -17,8 +17,6 @@ import {
 
 import graphqlArrayData from './graphql-array-data.js';
 
-export const name = 'data-table-collection-of-objects';
-
 type RowDataT = {
   id: string,
   name: string,
@@ -74,10 +72,10 @@ const rows = [
   data: row,
 }));
 
-export const component = () => {
+export default function Scenario() {
   return (
     <div style={{height: '600px', width: '700px'}}>
       <Unstable_StatefulDataTable columns={columns} rows={rows} />
     </div>
   );
-};
+}

@@ -10,8 +10,6 @@ import * as React from 'react';
 
 import {StatefulMenu} from '../index.js';
 
-export const name = 'menu-grouped-items';
-
 const ITEMS = {
   __ungrouped: [{id: 'Black', color: '#000000'}],
   Blueish: [
@@ -26,21 +24,23 @@ const ITEMS = {
   ],
 };
 
-export const component = () => (
-  <StatefulMenu
-    items={ITEMS}
-    onItemSelect={({item}) => console.log(item)}
-    overrides={{
-      List: {
-        style: {
-          width: '200px',
+export default function Scenario() {
+  return (
+    <StatefulMenu
+      items={ITEMS}
+      onItemSelect={({item}) => console.log(item)}
+      overrides={{
+        List: {
+          style: {
+            width: '200px',
+          },
         },
-      },
-      Option: {
-        props: {
-          getItemLabel: item => item.id,
+        Option: {
+          props: {
+            getItemLabel: item => item.id,
+          },
         },
-      },
-    }}
-  />
-);
+      }}
+    />
+  );
+}

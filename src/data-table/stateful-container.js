@@ -51,15 +51,23 @@ function useSortParameters() {
 export function Unstable_StatefulContainer(props: StatefulContainerPropsT) {
   useDuplicateColumnTitleWarning(props.columns);
   const [sortIndex, sortDirection, handleSort] = useSortParameters();
-  const [filters, setFilters] = React.useState(new Map());
+  const [filters, setFilters] = React.useState(
+    props.initialFilters || new Map(),
+  );
   const [textQuery, setTextQuery] = React.useState('');
 
-  function handleFilterAdd(filterParams, title) {
+  function handleFilterAdd(title, filterParams) {
     filters.set(title, filterParams);
+    if (props.onFilterAdd) {
+      props.onFilterAdd(title, filterParams);
+    }
     setFilters(new Map(filters));
   }
   function handleFilterRemove(title) {
     filters.delete(title);
+    if (props.onFilterRemove) {
+      props.onFilterRemove(title);
+    }
     setFilters(new Map(filters));
   }
 
@@ -109,6 +117,7 @@ export function Unstable_StatefulContainer(props: StatefulContainerPropsT) {
     onSelectOne: handleSelectOne,
     onSort: handleSort,
     onTextQueryChange: setTextQuery,
+    resizableColumnWidths: Boolean(props.resizableColumnWidths),
     rowHighlightIndex: props.rowHighlightIndex,
     selectedRowIds,
     sortIndex,

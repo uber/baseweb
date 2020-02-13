@@ -6,20 +6,23 @@ import {
   TRIGGER_TYPE,
 } from 'baseui/popover';
 import {Button} from 'baseui/button';
+import {Block} from 'baseui/block';
 import {Input} from 'baseui/input';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
-import {changeHandlers} from './common';
+import {changeHandlers} from './common/common';
 
 const popoverProps = require('!!extract-react-types-loader!../../../../src/popover/stateful-popover.js');
 
 const PopoverConfig: TConfig = {
+  componentName: 'StatefulPopover',
   imports: {
     'baseui/popover': {named: ['StatefulPopover']},
   },
   scope: {
     Button,
+    Block,
     Input,
     StatefulPopover,
     ACCESSIBILITY_TYPE,
@@ -30,9 +33,9 @@ const PopoverConfig: TConfig = {
   props: {
     content: {
       value: `() => (
-  <div>Hello, there! 👋
+  <Block padding={'20px'}>Hello, there! 👋
     <Input placeholder="Focusable Element" />
-  </div>
+  </Block>
 )
       `,
       type: PropTypes.Function,
@@ -87,7 +90,7 @@ const PopoverConfig: TConfig = {
         'If true, an arrow will be shown pointing from the popover to the trigger element.',
     },
     focusLock: {
-      value: true,
+      value: false,
       type: PropTypes.Boolean,
       description: 'If true, focus will be locked to the popover contents.',
     },

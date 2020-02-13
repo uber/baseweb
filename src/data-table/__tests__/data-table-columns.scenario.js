@@ -12,15 +12,14 @@ import {
   Unstable_StatefulDataTable,
   BooleanColumn,
   CategoricalColumn,
+  DatetimeColumn,
   NumericalColumn,
   StringColumn,
 } from '../index.js';
 
-export const name = 'data-table-columns';
+type RowDataT = [boolean, string, number, string, Date];
 
-type RowDataT = [boolean, string, number, string];
-
-export const component = () => {
+export default function Scenario() {
   const columns = [
     BooleanColumn({
       title: 'boolean-column',
@@ -38,13 +37,17 @@ export const component = () => {
       title: 'string-column',
       mapDataToValue: (data: RowDataT) => data[3],
     }),
+    DatetimeColumn({
+      title: 'datetime-column',
+      mapDataToValue: (data: RowDataT) => data[4],
+    }),
   ];
 
   const rows = [
-    {id: 1, data: [true, 'A', 2, 'one']},
-    {id: 2, data: [false, 'B', 1, 'two']},
-    {id: 3, data: [true, 'A', 4, 'three']},
-    {id: 4, data: [false, 'A', 3, 'four']},
+    {id: 1, data: [true, 'A', 2, 'one', new Date('2012-05-11T10:20:30')]},
+    {id: 2, data: [false, 'B', 1, 'two', new Date('2011-04-12T11:21:31')]},
+    {id: 3, data: [true, 'A', 4, 'three', new Date('2014-07-13T12:22:32')]},
+    {id: 4, data: [false, 'A', 3, 'four', new Date('2013-06-14T13:23:33')]},
   ];
 
   return (
@@ -54,4 +57,4 @@ export const component = () => {
       </div>
     </React.Fragment>
   );
-};
+}

@@ -16,9 +16,15 @@ const config = {
         behavior: async page => {
           const selectSelector = `[data-baseweb="select"]`;
           const dropdownSelector = `[data-baseweb="menu"]`;
+          const flagOptionSelector = `li[role="option"] [data-iso="US"]`;
           await page.waitForSelector(selectSelector);
           await page.click(selectSelector);
-          await page.waitForSelector(dropdownSelector);
+          await page.waitForSelector(dropdownSelector, {
+            visible: true,
+          });
+          await page.waitForSelector(flagOptionSelector, {
+            visible: true,
+          });
         },
       },
     ],
@@ -30,14 +36,19 @@ const config = {
         behavior: async page => {
           const selectSelector = `[data-baseweb="select"]`;
           const dropdownSelector = `[data-baseweb="menu"]`;
+          const flagOptionSelector = `li[role="option"] [data-iso="US"]`;
           await page.waitForSelector(selectSelector);
           await page.click(selectSelector);
-          await page.waitForSelector(dropdownSelector);
+          await page.waitForSelector(dropdownSelector, {
+            visible: true,
+          });
+          await page.waitForSelector(flagOptionSelector, {
+            visible: true,
+          });
         },
       },
     ],
   },
-  //
   'data-table-extracted-highlight': {
     interactions: [
       {
@@ -81,7 +92,9 @@ const config = {
           await page.click(button);
           await page.waitForSelector(input);
           await page.click(input);
-          await page.waitForSelector(calendar);
+          await page.waitForSelector(calendar, {
+            visible: true,
+          });
         },
       },
     ],
@@ -95,7 +108,9 @@ const config = {
           const calendar = '[data-baseweb="calendar"]';
           await page.waitForSelector(input);
           await page.click(input);
-          await page.waitForSelector(calendar);
+          await page.waitForSelector(calendar, {
+            visible: true,
+          });
         },
       },
     ],
@@ -113,13 +128,19 @@ const config = {
             '[aria-label="Choose Wednesday, March 20th 2019. It\'s available."]';
           await page.waitForSelector(input);
           await page.click(input);
-          await page.waitForSelector(calendar);
+          await page.waitForSelector(calendar, {
+            visible: true,
+          });
           await page.click(startDay);
           await page.click(endDay);
-          await page.waitForSelector(calendar, {hidden: true});
+          await page.waitForSelector(calendar, {
+            hidden: true,
+          });
           await page.waitForSelector(input);
           await page.click(input);
-          await page.waitForSelector(calendar);
+          await page.waitForSelector(calendar, {
+            visible: true,
+          });
         },
       },
     ],
@@ -134,7 +155,9 @@ const config = {
           const rightArrow = `[aria-label="Next month"]`;
           await page.waitForSelector(input);
           await page.click(input);
-          await page.waitForSelector(calendar);
+          await page.waitForSelector(calendar, {
+            visible: true,
+          });
           await page.click(rightArrow);
           await page.waitForFunction(
             `document.querySelector("button[aria-haspopup]").innerText === 'April 2019'`,
@@ -198,7 +221,9 @@ const config = {
           const dropdownSelector = `[role="listbox"]`;
           await page.waitForSelector(selectSelector);
           await page.click(selectSelector);
-          await page.waitForSelector(dropdownSelector);
+          await page.waitForSelector(dropdownSelector, {
+            visible: true,
+          });
           await page.type(selectInputSelector, 'zzz');
         },
       },
@@ -237,7 +262,9 @@ const config = {
           const dropdownSelector = `[role="listbox"]`;
           await page.waitForSelector(selectSelector);
           await page.click(selectSelector);
-          await page.waitForSelector(dropdownSelector);
+          await page.waitForSelector(dropdownSelector, {
+            visible: true,
+          });
         },
       },
     ],
@@ -256,7 +283,9 @@ const config = {
           await page.waitForSelector(selectSelector);
           // open select dropdown
           await page.click(selectSelector);
-          await page.waitForSelector(dropdownSelector);
+          await page.waitForSelector(dropdownSelector, {
+            visible: true,
+          });
         },
       },
     ],
@@ -270,7 +299,9 @@ const config = {
           const dropdownSelector = `[role="listbox"]`;
           await page.waitForSelector(inputSelector);
           await page.click(inputSelector);
-          await page.waitForSelector(dropdownSelector);
+          await page.waitForSelector(dropdownSelector, {
+            visible: true,
+          });
         },
       },
     ],
@@ -284,7 +315,9 @@ const config = {
           const dropdownSelector = `[role="listbox"]`;
           await page.waitForSelector(inputSelector);
           await page.click(inputSelector);
-          await page.waitForSelector(dropdownSelector);
+          await page.waitForSelector(dropdownSelector, {
+            visible: true,
+          });
         },
       },
     ],
@@ -299,7 +332,9 @@ const config = {
           const dropdownSelector = `[role="listbox"]`;
           await page.waitForSelector(inputSelector);
           await page.click(inputSelector);
-          await page.waitForSelector(dropdownSelector);
+          await page.waitForSelector(dropdownSelector, {
+            visible: true,
+          });
           await page.type(selectInputSelector, 'zzz');
         },
       },
@@ -316,9 +351,13 @@ const config = {
           const firstOption = `${dropdownSelector} ${dropdownOptionSeletor}:nth-child(1)`;
           await page.waitForSelector(selectSelector);
           await page.click(selectSelector);
-          await page.waitForSelector(dropdownSelector);
+          await page.waitForSelector(dropdownSelector, {
+            visible: true,
+          });
           await page.click(firstOption);
-          await page.waitFor(dropdownSelector, {hidden: true});
+          await page.waitFor(dropdownSelector, {
+            hidden: true,
+          });
         },
       },
     ],

@@ -12,8 +12,6 @@ import {Button} from '../../button/index.js';
 import {StatefulSelect} from '../../select/index.js';
 import {Modal, ModalBody, ModalHeader} from '../index.js';
 
-export const name = 'modal-select';
-
 const Example = () => {
   const [isOpen, setIsOpen] = React.useState(true);
   return (
@@ -42,4 +40,4 @@ const Example = () => {
   );
 };
 
-export const component = () => <Example />;
+export default Example;

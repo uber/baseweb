@@ -6,7 +6,7 @@ export default () => {
   return (
     <RadioGroup
       isError
-      name="radio group"
+      name="error"
       onChange={e => setValue(e.target.value)}
       value={value}
     >

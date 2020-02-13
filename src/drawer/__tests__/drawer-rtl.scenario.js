@@ -7,14 +7,14 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {ThemeProvider, LightTheme} from '../../index.js';
-import {component as DrawerScenario} from './drawer.scenario.js';
+import DrawerScenario from './drawer.scenario.js';
 
-export const name = 'drawer-rtl';
-
-export const component = () => (
-  <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
-    <div dir="rtl">
-      <DrawerScenario />
-    </div>
-  </ThemeProvider>
-);
+export default function Scenario() {
+  return (
+    <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
+      <div dir="rtl">
+        <DrawerScenario />
+      </div>
+    </ThemeProvider>
+  );
+}

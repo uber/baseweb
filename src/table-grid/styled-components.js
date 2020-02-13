@@ -12,6 +12,8 @@ import {
   StyledTable as FlexStyledTable,
   StyledHeadCell as FlexStyledHeadCell,
   StyledCell as FlexStyledBodyCell,
+  SORT_DIRECTION,
+  SortableHeadCellFactory,
 } from '../table/index.js';
 import type {StyletronComponent} from '../styles/styled.js';
 
@@ -66,3 +68,7 @@ export const StyledBodyCell = withStyle<
     gridRow: props.$gridRow || null,
   };
 });
+
+export const SortableHeadCell = SortableHeadCellFactory(StyledHeadCell);
+
+export {SORT_DIRECTION};

@@ -11,14 +11,14 @@ import * as React from 'react';
 import {Button} from '../../button/index.js';
 import {StatefulPopover} from '../index.js';
 
-export const name = 'popover-render-all';
-
-export const component = () => (
-  <StatefulPopover
-    accessibilityType={'tooltip'}
-    renderAll
-    content={<div id="content">content</div>}
-  >
-    <Button>Open</Button>
-  </StatefulPopover>
-);
+export default function Scenario() {
+  return (
+    <StatefulPopover
+      accessibilityType={'tooltip'}
+      renderAll
+      content={<div id="content">content</div>}
+    >
+      <Button>Open</Button>
+    </StatefulPopover>
+  );
+}

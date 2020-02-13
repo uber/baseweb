@@ -8,14 +8,14 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import {ThemeProvider, LightTheme} from '../../index.js';
-import {component as PaymentScenario} from './payment-card.scenario.js';
+import PaymentScenario from './payment-card.scenario.js';
 
-export const name = 'payment-card-rtl';
-
-export const component = () => (
-  <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
-    <div dir="rtl">
-      <PaymentScenario />
-    </div>
-  </ThemeProvider>
-);
+export default function Scenario() {
+  return (
+    <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
+      <div dir="rtl">
+        <PaymentScenario />
+      </div>
+    </ThemeProvider>
+  );
+}

@@ -11,12 +11,31 @@ interface MediaQuery {
 }
 
 type Responsive<T> = T | T[];
+export type CSSLengthUnitT =
+  | 'cm'
+  | 'mm'
+  | 'Q'
+  | 'in'
+  | 'pc'
+  | 'px'
+  | 'pt'
+  | 'em'
+  | 'ex'
+  | 'ch'
+  | 'rem'
+  | 'lh'
+  | 'vw'
+  | 'vh'
+  | 'vmin'
+  | 'vmax'
+  | '%';
 interface Grid {
   columns: Responsive<number>;
   gutters: Responsive<number>;
   margins: Responsive<number>;
   gaps: Responsive<number>;
   maxWidth: number;
+  unit: CSSLengthUnitT;
 }
 
 interface Colors {
@@ -150,6 +169,7 @@ interface Colors {
   // Border
   borderStateDisabled: string;
   borderAccent: string;
+  borderAccentLight: string;
   borderNegative: string;
   borderWarning: string;
   borderPositive: string;

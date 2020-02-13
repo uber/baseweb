@@ -20,8 +20,6 @@ import {
 
 import AnimalData from './animal-data.js';
 
-export const name = 'data-table-extracted-filters';
-
 type RowDataT = [string, string, string, string, string, string];
 
 const columns = [
@@ -61,7 +59,7 @@ const rows = AnimalData.map(row => {
   };
 });
 
-export const component = () => {
+export default function Scenario() {
   const [css] = useStyletron();
   return (
     <Unstable_StatefulContainer columns={columns} rows={rows}>
@@ -109,7 +107,7 @@ export const component = () => {
                   <Filter
                     close={() => {}}
                     data={rows.map(r => r.data[index])}
-                    setFilter={params => onFilterAdd(params, column.title)}
+                    setFilter={params => onFilterAdd(column.title, params)}
                   />
                   <div
                     className={css({
@@ -146,4 +144,4 @@ export const component = () => {
       )}
     </Unstable_StatefulContainer>
   );
-};
+}

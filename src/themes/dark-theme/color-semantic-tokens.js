@@ -70,7 +70,8 @@ export default (
 
     // Border
     borderStateDisabled: colors.gray800,
-    borderAccent: colors.blue500,
+    borderAccent: colors.blue400,
+    borderAccentLight: colors.blue500,
     borderNegative: colors.red500,
     borderWarning: colors.yellow500,
     borderPositive: colors.green500,

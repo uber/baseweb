@@ -10,8 +10,6 @@ import * as React from 'react';
 
 import {Menu} from '../index.js';
 
-export const name = 'menu';
-
 const ITEMS = [
   {label: 'Item One'},
   {label: 'Item Two'},
@@ -27,21 +25,23 @@ const ITEMS = [
   {label: 'Item Twelve'},
 ];
 
-export const component = () => (
-  <Menu
-    items={ITEMS}
-    rootRef={React.createRef()}
-    overrides={{
-      List: {
-        style: {
-          width: '200px',
+export default function Scenario() {
+  return (
+    <Menu
+      items={ITEMS}
+      rootRef={React.createRef()}
+      overrides={{
+        List: {
+          style: {
+            width: '200px',
+          },
         },
-      },
-      Option: {
-        props: {
-          getItemLabel: item => item.label,
+        Option: {
+          props: {
+            getItemLabel: item => item.label,
+          },
         },
-      },
-    }}
-  />
-);
+      }}
+    />
+  );
+}

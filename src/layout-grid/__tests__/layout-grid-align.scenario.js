@@ -10,9 +10,7 @@ import React from 'react';
 import {Grid, Cell, ALIGNMENT} from '../index.js';
 import Inner from './inner.js';
 
-export const name = 'layout-grid-align';
-
-export function component() {
+export default function Scenario() {
   return (
     <>
       {/* No alignment specified. (defaults to `normal`) */}

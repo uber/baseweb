@@ -11,10 +11,10 @@ import * as React from 'react';
 import {Button} from '../../button/index.js';
 import {StatefulPopover} from '../index.js';
 
-export const name = 'popover-click';
-
-export const component = () => (
-  <StatefulPopover accessibilityType={'tooltip'} content={<div>content</div>}>
-    <Button>Open</Button>
-  </StatefulPopover>
-);
+export default function Scenario() {
+  return (
+    <StatefulPopover accessibilityType={'tooltip'} content={<div>content</div>}>
+      <Button>Open</Button>
+    </StatefulPopover>
+  );
+}

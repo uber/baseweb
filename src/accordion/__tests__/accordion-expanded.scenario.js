@@ -10,19 +10,19 @@ import * as React from 'react';
 
 import {Accordion, StatefulPanel, Panel} from '../index.js';
 
-export const name = 'accordion-expanded';
-
-export const component = () => (
-  <Accordion>
-    <Panel title="Default panel">stateless panel</Panel>
-    <Panel title="Expanded provided as prop" expanded>
-      stateless panel
-    </Panel>
-    <StatefulPanel
-      initialState={{expanded: true}}
-      title="Initial state expanded"
-    >
-      stateful panel
-    </StatefulPanel>
-  </Accordion>
-);
+export default function Scenario() {
+  return (
+    <Accordion>
+      <Panel title="Default panel">stateless panel</Panel>
+      <Panel title="Expanded provided as prop" expanded>
+        stateless panel
+      </Panel>
+      <StatefulPanel
+        initialState={{expanded: true}}
+        title="Initial state expanded"
+      >
+        stateful panel
+      </StatefulPanel>
+    </Accordion>
+  );
+}

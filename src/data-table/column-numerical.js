@@ -33,7 +33,7 @@ type NumericalOperations =
 
 type OptionsT = {|
   filterable?: boolean,
-  format?: NumericalFormats,
+  format?: NumericalFormats | ((value: number) => string),
   highlight?: number => boolean,
   // eslint-disable-next-line flowtype/no-weak-types
   mapDataToValue: (data: any) => number,
@@ -61,6 +61,9 @@ function roundToFixed(value: number, precision: number) {
 }
 
 function format(value: number, options) {
+  if (typeof options.format === 'function') {
+    return options.format(value);
+  }
   let formatted = value.toString();
   switch (options.format) {
     case NUMERICAL_FORMATS.ACCOUNTING: {
@@ -428,7 +431,6 @@ function NumericalFilter(props) {
 
 const NumericalCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
   const [css, theme] = useStyletron();
-
   return (
     <CellShell
       ref={ref}
@@ -440,7 +442,9 @@ const NumericalCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
         className={css({
           display: 'flex',
           justifyContent: 'flex-end',
-          color: props.highlight(props.value) ? theme.colors.negative : null,
+          color: props.highlight(props.value)
+            ? theme.colors.contentNegative
+            : null,
           fontFamily: `"Lucida Console", Monaco, monospace`,
           width: '100%',
         })}

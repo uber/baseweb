@@ -17,8 +17,6 @@ import {
 
 import AnimalData from './animal-data.js';
 
-export const name = 'data-table-extracted-highlight';
-
 type RowDataT = {
   isSelected: boolean,
   Name: string,
@@ -70,7 +68,7 @@ const initialRows = AnimalData.map(row => {
   };
 });
 
-export const component = () => {
+export default function Scenario() {
   const [highlightIndex, setHighlightIndex] = React.useState(-1);
   const [highlightedRow, setHighlightedRow] = React.useState(null);
   const [rows, setRows] = React.useState(initialRows);
@@ -124,4 +122,4 @@ export const component = () => {
       />
     </div>
   );
-};
+}

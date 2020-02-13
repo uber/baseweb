@@ -10,16 +10,22 @@ import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {Property} from './common.js';
 
-export function Sizing({value}: {value: string}) {
+export function Sizing({name}: {name: string}) {
   const [css, theme] = useStyletron();
   return (
-    <Property title={value} value={theme.sizing[value]}>
-      <div
-        className={css({
-          backgroundColor: theme.colors.contentPrimary,
-          height: theme.sizing[value],
-        })}
-      ></div>
-    </Property>
+    <Property
+      name={name}
+      concern="sizing"
+      renderPreview={() => (
+        <div
+          className={css({
+            backgroundColor: theme.colors.contentPrimary,
+            height: theme.sizing[name],
+            width: theme.sizing[name],
+          })}
+        ></div>
+      )}
+      renderValue={() => theme.sizing[name]}
+    />
   );
 }

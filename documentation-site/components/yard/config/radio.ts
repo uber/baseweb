@@ -4,12 +4,13 @@ import {Radio, RadioGroup, ALIGN} from 'baseui/radio';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
-import {changeHandlers} from './common';
+import {changeHandlers} from './common/common';
 
 const radioProps = require('!!extract-react-types-loader!../../../../src/radio/radio.js');
 const radioGroupProps = require('!!extract-react-types-loader!../../../../src/radio/radiogroup.js');
 
 const RadioGroupConfig: TConfig = {
+  componentName: 'RadioGroup',
   imports: {
     'baseui/radio': {named: ['RadioGroup']},
   },
@@ -71,6 +72,13 @@ const RadioGroupConfig: TConfig = {
         'baseui/radio': {named: ['Radio']},
       },
     },
+    name: {
+      value: 'number',
+      type: PropTypes.String,
+      description:
+        'String value for the name of RadioGroup, it is used to group buttons. If missed default is random ID string.',
+      hidden: false,
+    },
     align: {
       value: 'ALIGN.vertical',
       type: PropTypes.Enum,
@@ -92,13 +100,6 @@ const RadioGroupConfig: TConfig = {
       value: false,
       type: PropTypes.Boolean,
       description: 'Sets radio group into error state.',
-    },
-    name: {
-      value: undefined,
-      type: PropTypes.String,
-      description:
-        'String value for the name of RadioGroup, it is used to group buttons. If missed default is random ID string.',
-      hidden: true,
     },
     required: {
       value: false,

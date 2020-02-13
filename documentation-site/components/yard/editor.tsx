@@ -84,6 +84,7 @@ const Editor: React.FC<TEditorProps> = ({
         }}
       />
       <SimpleEditor
+        ignoreTabKey={true}
         value={code || ''}
         placeholder={placeholder}
         highlight={code => highlightCode(code, editorTheme, transformToken)}

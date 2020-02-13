@@ -12,6 +12,7 @@ const defaultProps = {
   'aria-label': 'Please enter your pin code',
   'aria-labelledby': null,
   'aria-describedby': null,
+  autoComplete: 'one-time-code',
   autoFocus: false,
   disabled: false,
   error: false,

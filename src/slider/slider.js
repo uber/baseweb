@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {Range, useThumbOverlap} from 'react-range';
 import type {PropsT} from './types.js';
+import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 import {
   Root as StyledRoot,
   Track as StyledTrack,
@@ -44,7 +45,10 @@ const ThumbLabel = ({index, values, rangeRef, Component, ...props}) => {
   );
 };
 
-class Slider extends React.Component<PropsT> {
+class Slider extends React.Component<
+  PropsT,
+  {isFocusVisible: boolean, focusedThumbIndex: number},
+> {
   static defaultProps = {
     overrides: {},
     disabled: false,
@@ -54,6 +58,7 @@ class Slider extends React.Component<PropsT> {
     max: 100,
     step: 1,
   };
+  state = {isFocusVisible: false, focusedThumbIndex: -1};
   rangeRef = React.createRef<Range>();
   getSharedProps() {
     const {disabled, step, min, max, value}: PropsT = this.props;
@@ -63,8 +68,26 @@ class Slider extends React.Component<PropsT> {
       $min: min,
       $max: max,
       $value: limitValue(value),
+      $isFocusVisible: this.state.isFocusVisible,
     };
   }
+
+  handleFocus = (event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      this.setState({isFocusVisible: true});
+    }
+    const index =
+      // eslint-disable-next-line flowtype/no-weak-types
+      (event.target: any).parentNode.firstChild === event.target ? 0 : 1;
+    this.setState({focusedThumbIndex: index});
+  };
+
+  handleBlur = (event: SyntheticEvent<>) => {
+    if (this.state.isFocusVisible !== false) {
+      this.setState({isFocusVisible: false});
+    }
+    this.setState({focusedThumbIndex: -1});
+  };
 
   render() {
     const {
@@ -98,10 +121,17 @@ class Slider extends React.Component<PropsT> {
       StyledTickBar,
     );
     const sharedProps = this.getSharedProps();
+
     return (
       <ThemeContext.Consumer>
         {theme => (
-          <Root data-baseweb="slider" {...sharedProps} {...rootProps}>
+          <Root
+            data-baseweb="slider"
+            {...sharedProps}
+            {...rootProps}
+            onFocus={forkFocus(rootProps, this.handleFocus)}
+            onBlur={forkBlur(rootProps, this.handleBlur)}
+          >
             <Range
               step={step}
               min={min}
@@ -140,6 +170,10 @@ class Slider extends React.Component<PropsT> {
                   }}
                   {...sharedProps}
                   {...thumbProps}
+                  $isFocusVisible={
+                    this.state.isFocusVisible &&
+                    this.state.focusedThumbIndex === index
+                  }
                 >
                   <ThumbLabel
                     Component={ThumbValue}

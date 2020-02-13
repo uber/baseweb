@@ -36,68 +36,48 @@ describe('visual snapshot tests', () => {
 
     if (snapshotConfig.skip) return;
 
-    describe(scenarioName, () => {
-      it(`desktop`, async () => {
+    it(`${scenarioName}__desktop`, async () => {
+      await preparePageForSnapshot(scenarioName, THEME.light, VIEWPORT.desktop);
+      await snapshot(`${scenarioName}__desktop`);
+    });
+
+    it(`${scenarioName}__mobile`, async () => {
+      await preparePageForSnapshot(scenarioName, THEME.light, VIEWPORT.mobile);
+      await snapshot(`${scenarioName}__mobile`, VIEWPORT.mobile);
+    });
+
+    if (!scenarioName.includes('rtl')) {
+      it(`${scenarioName}__dark`, async () => {
+        await preparePageForSnapshot(
+          scenarioName,
+          THEME.dark,
+          VIEWPORT.desktop,
+        );
+        await snapshot(`${scenarioName}__dark`);
+      });
+    }
+
+    snapshotConfig.interactions.forEach(interaction => {
+      it(`${scenarioName}__${interaction.name}`, async () => {
         await preparePageForSnapshot(
           scenarioName,
           THEME.light,
           VIEWPORT.desktop,
         );
-        await snapshot(`${scenarioName}__desktop`);
-      });
 
-      it(`mobile`, async () => {
-        await preparePageForSnapshot(
-          scenarioName,
-          THEME.light,
-          VIEWPORT.mobile,
-        );
-        await snapshot(`${scenarioName}__mobile`, VIEWPORT.mobile);
-      });
+        await interaction.behavior(page);
 
-      if (!scenarioName.includes('rtl')) {
-        it(`dark`, async () => {
-          await preparePageForSnapshot(
-            scenarioName,
-            THEME.dark,
-            VIEWPORT.desktop,
-          );
-          await snapshot(`${scenarioName}__dark`);
-        });
-      }
+        // Bad, but lets let things settle down after the interaction.
+        await page.waitFor(250);
 
-      snapshotConfig.interactions.forEach(interaction => {
-        it(interaction.name, async () => {
-          await preparePageForSnapshot(
-            scenarioName,
-            THEME.light,
-            VIEWPORT.desktop,
-          );
-          await interaction.behavior(page);
-          await page.waitFor(250);
-          await snapshot(`${scenarioName}__${interaction.name}`);
-        });
+        await snapshot(`${scenarioName}__${interaction.name}`);
       });
     });
   });
 });
 
 async function snapshot(identifier, viewport = VIEWPORT.desktop) {
-  // Snapshots should have fixed widths but allow for scrolling in the y dimension.
-  // We use the raw Chrome Devtools Protocol to get scroll height of page.
-  const client = await page.target().createCDPSession();
-  const metrics = await client.send('Page.getLayoutMetrics');
-  const height = Math.ceil(metrics.contentSize.height);
-
-  const image = await page.screenshot({
-    clip: {
-      x: 0,
-      y: 0,
-      width: VIEWPORT_WIDTH[viewport], // Clamp width to either mobile or desktop.
-      height: height,
-    },
-  });
-
+  const image = await page.screenshot();
   expect(image).toMatchImageSnapshot({
     customSnapshotIdentifier: identifier,
   });
@@ -108,12 +88,38 @@ async function preparePageForSnapshot(
   theme = THEME.light,
   viewport = VIEWPORT.desktop,
 ) {
+  // Set initial viewport size.
   await page.setViewport({
     width: VIEWPORT_WIDTH[viewport],
     height: 800,
   });
+
   await mount(page, scenarioName, theme);
+
+  // Set the viewport to our final screenshot dimensions.
+  // When we take a screenshot we do not want any resizing, which can cause flakiness.
+  // We will set the viewport now and take a straight-up screenshot later.
+  // The screenshot dimensions will use the scroll height of the page but clamp the width.
+  await page.setViewport({
+    width: VIEWPORT_WIDTH[viewport],
+    height: await getPageScrollHeight(),
+  });
+
+  // Bad, but lets let things settle down after resizing.
   await page.waitFor(250);
+}
+
+async function getPageScrollHeight() {
+  // Snapshots should have fixed widths but allow for scrolling in the y dimension.
+  // We use the raw Chrome Devtools Protocol to get the scroll height of page.
+  try {
+    const client = await page.target().createCDPSession();
+    const metrics = await client.send('Page.getLayoutMetrics');
+    return Math.ceil(metrics.contentSize.height);
+  } catch (er) {
+    // If something went wrong, just return a decent default height.
+    return 800;
+  }
 }
 
 function configureJest() {

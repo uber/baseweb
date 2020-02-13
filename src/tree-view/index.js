@@ -17,3 +17,5 @@ export {
   StyledItemContent,
   StyledIconContainer,
 } from './styled-components.js';
+
+export {default as TreeLabel} from './tree-label.js';

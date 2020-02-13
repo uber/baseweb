@@ -10,12 +10,12 @@ import * as React from 'react';
 
 import {Accordion, Panel} from '../index.js';
 
-export const name = 'accordion';
-
-export const component = () => (
-  <Accordion>
-    <Panel title="Accordion panel 1">panel 1</Panel>
-    <Panel title="Accordion panel 2">panel 2</Panel>
-    <Panel title="Accordion panel 3">panel 3</Panel>
-  </Accordion>
-);
+export default function Scenario() {
+  return (
+    <Accordion>
+      <Panel title="Accordion panel 1">panel 1</Panel>
+      <Panel title="Accordion panel 2">panel 2</Panel>
+      <Panel title="Accordion panel 3">panel 3</Panel>
+    </Accordion>
+  );
+}

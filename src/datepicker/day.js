@@ -23,6 +23,7 @@ import {getOverrides} from '../helpers/overrides.js';
 import type {DayPropsT, DayStateT} from './types.js';
 import {LocaleContext} from '../locale/index.js';
 import type {LocaleT} from '../locale/types.js';
+import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 export default class Day extends React.Component<DayPropsT, DayStateT> {
   static defaultProps = {
@@ -44,6 +45,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
 
   state = {
     isHovered: false,
+    isFocusVisible: false,
   };
 
   componentDidMount() {
@@ -98,6 +100,18 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     if (!disabled) {
       this.props.onClick({event, date});
       this.onSelect(date);
+    }
+  };
+
+  handleFocus = (event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      this.setState({isFocusVisible: true});
+    }
+  };
+
+  handleBlur = (event: SyntheticEvent<>) => {
+    if (this.state.isFocusVisible !== false) {
+      this.setState({isFocusVisible: false});
     }
   };
 
@@ -190,6 +204,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
       $highlightedDate: highlightedDate,
       $isHighlighted,
       $isHovered: this.state.isHovered,
+      $isFocusVisible: this.state.isFocusVisible,
       $startOfMonth: isStartOfMonth(date),
       $endOfMonth: isEndOfMonth(date),
       $outsideMonth: this.isOutsideMonth(),
@@ -246,6 +261,8 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
         data-state-code={getDayStateCode(sharedProps)}
         {...sharedProps}
         {...dayProps}
+        onFocus={forkFocus(dayProps, this.handleFocus)}
+        onBlur={forkBlur(dayProps, this.handleBlur)}
       />
     ) : (
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
@@ -271,8 +288,8 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
             // make sure the components functions as expected
             // We can extract the handlers from props overrides
             // and call it along with internal handlers by creating an inline handler
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
+            onFocus={forkFocus(this.props, this.handleFocus)}
+            onBlur={forkBlur(this.props, this.handleBlur)}
             onClick={this.onClick}
             onKeyDown={this.onKeyDown}
             onMouseOver={this.onMouseOver}
