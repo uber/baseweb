@@ -24,8 +24,6 @@ export type ColumnsT =
   | typeof COLUMNS.NUMERICAL
   | typeof COLUMNS.STRING;
 
-export type RenderPropT = () => React.Node;
-
 // eslint-disable-next-line flowtype/no-weak-types
 export type ColumnT<ValueT = any, FilterParamsT = any> = {|
   kind: ColumnsT,
@@ -78,23 +76,35 @@ export type RowActionT = {|
 export type StatefulDataTablePropsT = {|
   batchActions?: BatchActionT[],
   columns: ColumnT<>[],
+  emptyMessage?: string | React.ComponentType<{||}>,
+  filterable?: boolean,
+  initialFilters?: Map<string, {description: string}>,
+  loading?: boolean,
+  loadingMessage?: string | React.ComponentType<{||}>,
+  onFilterAdd?: (string, {description: string}) => mixed,
+  onFilterRemove?: string => mixed,
   onRowHighlightChange?: (rowIndex: number, row: RowT) => void,
   onSelectionChange?: (RowT[]) => mixed,
+  resizableColumnWidths?: boolean,
   rows: RowT[],
   rowActions?: RowActionT[],
   rowHeight?: number,
   rowHighlightIndex?: number,
-  emptyMessage?: React.Node | RenderPropT,
+  searchable?: boolean,
 |};
 
 export type DataTablePropsT = {|
   ...StatefulDataTablePropsT,
+  emptyMessage?: string | React.ComponentType<{||}>,
   filters?: Map<string, {description: string}>,
+  loading?: boolean,
+  loadingMessage?: string | React.ComponentType<{||}>,
   onRowHighlightChange?: (rowIndex: number, row: RowT) => void,
   onSelectMany?: (rows: RowT[]) => void,
   onSelectNone?: () => void,
   onSelectOne?: (row: RowT) => void,
   onSort?: (columnIndex: number) => void,
+  resizableColumnWidths?: boolean,
   rowHighlightIndex?: number,
   selectedRowIds?: Set<string | number>,
   sortIndex?: number,
@@ -106,7 +116,7 @@ export type StatefulContainerPropsT = {|
   ...StatefulDataTablePropsT,
   children: ({|
     filters: Map<string, {description: string}>,
-    onFilterAdd: (filterParams: {description: string}, title: string) => void,
+    onFilterAdd: (title: string, filterParams: {description: string}) => void,
     onFilterRemove: (title: string) => void,
     onRowHighlightChange: (rowIndex: number, row: RowT) => void,
     onSelectMany: (rows: RowT[]) => void,
@@ -114,6 +124,7 @@ export type StatefulContainerPropsT = {|
     onSelectOne: (row: RowT) => void,
     onSort: (columnIndex: number) => void,
     onTextQueryChange: (query: string) => void,
+    resizableColumnWidths: boolean,
     rowHighlightIndex?: number,
     selectedRowIds: Set<string | number>,
     sortIndex: number,

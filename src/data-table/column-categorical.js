@@ -64,10 +64,12 @@ function FilterQuickControls(props: {
         type="button"
         className={css({
           ...theme.typography.font100,
+          backgroundColor: theme.colors.backgroundPrimary,
           borderTop: 0,
           borderRight: 0,
           borderBottom: 0,
           borderLeft: 0,
+          color: theme.colors.contentPrimary,
           cursor: 'pointer',
         })}
         onClick={props.onSelectAll}
@@ -79,10 +81,12 @@ function FilterQuickControls(props: {
         type="button"
         className={css({
           ...theme.typography.font100,
+          backgroundColor: theme.colors.backgroundPrimary,
           borderTop: 0,
           borderRight: 0,
           borderBottom: 0,
           borderLeft: 0,
+          color: theme.colors.contentPrimary,
           cursor: 'pointer',
         })}
         onClick={props.onClearSelection}
@@ -97,8 +101,8 @@ const StyledHighlightLabel = withStyle(StyledLabel, props => {
   const style = {
     whiteSpace: 'pre',
     color: props.$isActive
-      ? props.$theme.colors.black
-      : props.$theme.colors.mono600,
+      ? props.$theme.colors.contentPrimary
+      : props.$theme.colors.contentSecondary,
   };
 
   if (!props.$isFirst) {
