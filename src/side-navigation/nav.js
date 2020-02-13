@@ -31,7 +31,6 @@ export default class SideNav extends React.Component<
   state = {isFocusVisible: false};
 
   handleFocus = (event: SyntheticEvent<>) => {
-    console.log(event);
     if (isFocusVisible(event)) {
       this.setState({isFocusVisible: true});
     }

@@ -14,6 +14,7 @@ export type SharedStylePropsArgT = {
   $disabled?: boolean,
   $active?: boolean,
   $orientation?: $Values<typeof ORIENTATION>,
+  $isFocusVisible?: boolean,
 };
 
 export type StatefulTabsStateT = {
