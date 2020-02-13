@@ -505,6 +505,7 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
   const {
     $disabled,
     $isHovered,
+    $isFocusVisible,
     $isHighlighted,
     $peekNextMonth,
     $pseudoHighlighted,
@@ -534,6 +535,7 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
     marginBottom: 0,
     marginLeft: 0,
     marginRight: 0,
+    outline: 'none',
     backgroundColor: 'transparent',
     // `transform` creates a stacking context so
     // a z-index used on its' children doesn't
@@ -547,6 +549,7 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
       content: '""',
       boxSizing: 'border-box',
       display: 'inline-block',
+      boxShadow: $isFocusVisible ? `0 0 0 3px ${colors.accent}` : 'none',
       backgroundColor: $selected
         ? $isHighlighted
           ? colors.calendarDayBackgroundSelectedHighlighted
