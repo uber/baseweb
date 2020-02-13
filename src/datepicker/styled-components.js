@@ -96,20 +96,26 @@ export const StyledMonthHeader = styled<SharedStylePropsT>('div', props => {
   };
 });
 
-export const StyledMonthYearSelectButton = styled<{}>('button', props => {
-  return {
-    ...props.$theme.typography.font200,
-    alignItems: 'center',
-    backgroundColor: 'transparent',
-    borderWidth: 0,
-    color: props.$theme.colors.calendarHeaderForeground,
-    cursor: 'pointer',
-    display: 'flex',
-    ':focus': {
-      backgroundColor: props.$theme.colors.calendarHeaderBackgroundActive,
-    },
-  };
-});
+export const StyledMonthYearSelectButton = styled<{$isFocusVisible: boolean}>(
+  'button',
+  props => {
+    return {
+      ...props.$theme.typography.font200,
+      alignItems: 'center',
+      backgroundColor: 'transparent',
+      borderWidth: 0,
+      color: props.$theme.colors.calendarHeaderForeground,
+      cursor: 'pointer',
+      display: 'flex',
+      outline: 'none',
+      ':focus': {
+        boxShadow: props.$isFocusVisible
+          ? `0 0 0 3px ${props.$theme.colors.accent}`
+          : 'none',
+      },
+    };
+  },
+);
 
 export const StyledMonthYearSelectIconContainer = styled<{}>('span', props => {
   return {
@@ -120,7 +126,7 @@ export const StyledMonthYearSelectIconContainer = styled<{}>('span', props => {
   };
 });
 
-function getArrowBtnStyle({$theme, $disabled}) {
+function getArrowBtnStyle({$theme, $disabled, $isFocusVisible}) {
   return {
     boxSizing: 'border-box',
     color: $disabled
@@ -141,11 +147,9 @@ function getArrowBtnStyle({$theme, $disabled}) {
     ':focus': $disabled
       ? {}
       : {
-          backgroundColor: $theme.colors.calendarHeaderBackgroundActive,
-          borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
-          borderTopRightRadius: $theme.borders.surfaceBorderRadius,
-          borderBottomRightRadius: $theme.borders.surfaceBorderRadius,
-          borderBottomLeftRadius: $theme.borders.surfaceBorderRadius,
+          boxShadow: $isFocusVisible
+            ? `0 0 0 3px ${$theme.colors.accent}`
+            : 'none',
         },
   };
 }
