@@ -11,6 +11,7 @@ import {getOverrides} from '../helpers/overrides.js';
 
 import {RadioGroupRoot as StyledRadioGroupRoot} from './styled-components.js';
 import type {PropsT, DefaultPropsT, StatelessStateT} from './types.js';
+import {isFocusVisible} from '../utils/focusVisible.js';
 
 class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
   static defaultProps: DefaultPropsT = {
@@ -28,6 +29,30 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
     onFocus: () => {},
     onBlur: () => {},
     overrides: {},
+  };
+
+  state = {isFocusVisible: false, focusedRadioIndex: -1};
+
+  handleFocus = (
+    event: SyntheticInputEvent<HTMLInputElement>,
+    index: number,
+  ) => {
+    if (isFocusVisible(event)) {
+      this.setState({isFocusVisible: true});
+    }
+    this.setState({focusedRadioIndex: index});
+    this.props.onFocus && this.props.onFocus(event);
+  };
+
+  handleBlur = (
+    event: SyntheticInputEvent<HTMLInputElement>,
+    index: number,
+  ) => {
+    if (this.state.isFocusVisible !== false) {
+      this.setState({isFocusVisible: false});
+    }
+    this.setState({focusedRadioIndex: -1});
+    this.props.onBlur && this.props.onBlur(event);
   };
 
   render() {
@@ -59,22 +84,28 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
         $required={this.props.required}
         {...radioGroupRootProps}
       >
-        {React.Children.map(this.props.children, child => {
+        {React.Children.map(this.props.children, (child, index) => {
           if (!React.isValidElement(child)) {
             return null;
           }
-
+          const checked = this.props.value === child.props.value;
           return React.cloneElement(child, {
             align: this.props.align,
             autoFocus: this.props.autoFocus,
-            checked: this.props.value === child.props.value,
+            checked,
             disabled: this.props.disabled || child.props.disabled,
             isError: this.props.isError,
+            isFocused: this.state.focusedRadioIndex === index,
+            isFocusVisible: this.state.isFocusVisible,
+            tabIndex:
+              (index === 0 && !this.props.value) || checked ? '0' : '-1',
             labelPlacement: this.props.labelPlacement,
             name: this.props.name,
-            onBlur: this.props.onBlur,
+            onBlur: (e: SyntheticInputEvent<HTMLInputElement>) =>
+              this.handleBlur(e, index),
+            onFocus: (e: SyntheticInputEvent<HTMLInputElement>) =>
+              this.handleFocus(e, index),
             onChange: this.props.onChange,
-            onFocus: this.props.onFocus,
             onMouseEnter: this.props.onMouseEnter,
             onMouseLeave: this.props.onMouseLeave,
             // will need to remove overrides pass-through on next major version

@@ -47,7 +47,7 @@ const ThumbLabel = ({index, values, rangeRef, Component, ...props}) => {
 
 class Slider extends React.Component<
   PropsT,
-  {focusVisible: boolean, focusedThumbIndex: number},
+  {isFocusVisible: boolean, focusedThumbIndex: number},
 > {
   static defaultProps = {
     overrides: {},
@@ -58,7 +58,7 @@ class Slider extends React.Component<
     max: 100,
     step: 1,
   };
-  state = {focusVisible: false, focusedThumbIndex: -1};
+  state = {isFocusVisible: false, focusedThumbIndex: -1};
   rangeRef = React.createRef<Range>();
   getSharedProps() {
     const {disabled, step, min, max, value}: PropsT = this.props;
@@ -68,9 +68,26 @@ class Slider extends React.Component<
       $min: min,
       $max: max,
       $value: limitValue(value),
-      $isFocusVisible: this.state.focusVisible,
+      $isFocusVisible: this.state.isFocusVisible,
     };
   }
+
+  handleFocus = (event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      this.setState({isFocusVisible: true});
+    }
+    const index =
+      // eslint-disable-next-line flowtype/no-weak-types
+      (event.target: any).parentNode.firstChild === event.target ? 0 : 1;
+    this.setState({focusedThumbIndex: index});
+  };
+
+  handleBlur = (event: SyntheticEvent<>) => {
+    if (this.state.isFocusVisible !== false) {
+      this.setState({isFocusVisible: false});
+    }
+    this.setState({focusedThumbIndex: -1});
+  };
 
   render() {
     const {
@@ -105,22 +122,6 @@ class Slider extends React.Component<
     );
     const sharedProps = this.getSharedProps();
 
-    const handleFocus = event => {
-      if (isFocusVisible(event)) {
-        this.setState({focusVisible: true});
-      }
-      const index =
-        // eslint-disable-next-line flowtype/no-weak-types
-        (event.target: any).parentNode.firstChild === event.target ? 0 : 1;
-      this.setState({focusedThumbIndex: index});
-    };
-
-    const handleBlur = event => {
-      if (this.state.focusVisible !== false) {
-        this.setState({focusVisible: false});
-      }
-      this.setState({focusedThumbIndex: -1});
-    };
     return (
       <ThemeContext.Consumer>
         {theme => (
@@ -128,8 +129,8 @@ class Slider extends React.Component<
             data-baseweb="slider"
             {...sharedProps}
             {...rootProps}
-            onFocus={forkFocus(rootProps, handleFocus)}
-            onBlur={forkBlur(rootProps, handleBlur)}
+            onFocus={forkFocus(rootProps, this.handleFocus)}
+            onBlur={forkBlur(rootProps, this.handleBlur)}
           >
             <Range
               step={step}
@@ -170,7 +171,7 @@ class Slider extends React.Component<
                   {...sharedProps}
                   {...thumbProps}
                   $isFocusVisible={
-                    this.state.focusVisible &&
+                    this.state.isFocusVisible &&
                     this.state.focusedThumbIndex === index
                   }
                 >

@@ -105,6 +105,10 @@ export type RadioPropsT = {
   inputRef: React.ElementRef<*>,
   /** Renders checkbox in errored state. */
   isError?: boolean,
+  /** Is radio focused / active? */
+  isFocused?: boolean,
+  /** Is parent RadioGroup focused by keyboard? */
+  isFocusVisible?: boolean,
   /** How to position the label relative to the checkbox itself. */
   labelPlacement?: 'top' | 'right' | 'bottom' | 'left',
   /** Passed to the input element name attribute */
@@ -128,11 +132,12 @@ export type RadioPropsT = {
   required?: boolean,
   /** Passed to the input element value attribute */
   value?: string,
+  /** Passed to the input element, typically managed by RadioGroup */
+  tabIndex?: string,
 };
 
 export type RadioStateT = {
   isActive: boolean,
-  isFocused: boolean,
   isHovered: boolean,
 };
 
@@ -143,7 +148,10 @@ export type StateReducerT = (
   event: SyntheticInputEvent<HTMLInputElement>,
 ) => StateT;
 
-export type StatelessStateT = {};
+export type StatelessStateT = {
+  isFocusVisible: boolean,
+  focusedRadioIndex: number,
+};
 
 export type DefaultStatefulPropsT = {
   initialState: StateT,
@@ -186,6 +194,7 @@ export type StylePropsT = {
   $isActive: boolean,
   $isError: boolean,
   $isFocused: boolean,
+  $isFocusVisible: boolean,
   $isHovered: boolean,
   $labelPlacement: LabelPlacementT,
   $required: boolean,

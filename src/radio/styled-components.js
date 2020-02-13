@@ -24,6 +24,7 @@ function getOuterColor(props) {
   if (props.$disabled) return colors.tickFillDisabled;
   if (!props.$checked) {
     if (props.$disabled) return colors.tickMarkFillDisabled;
+    if (props.$isFocusVisible) return colors.borderSelected;
     if (props.$isError) return colors.tickBorderError;
     return colors.tickBorder;
   } else {
@@ -171,6 +172,10 @@ export const RadioMarkOuter = styled<StylePropsT>('div', props => {
     borderTopRightRadius: '50%',
     borderBottomRightRadius: '50%',
     borderBottomLeftRadius: '50%',
+    boxShadow:
+      props.$isFocusVisible && props.$checked
+        ? `0 0 0 3px ${props.$theme.colors.accent}`
+        : 'none',
     display: 'flex',
     height: sizing.scale700,
     justifyContent: 'center',
@@ -178,6 +183,7 @@ export const RadioMarkOuter = styled<StylePropsT>('div', props => {
     marginRight: sizing.scale0,
     marginBottom: sizing.scale0,
     marginLeft: sizing.scale0,
+    outline: 'none',
     verticalAlign: 'middle',
     width: sizing.scale700,
     flexShrink: 0,

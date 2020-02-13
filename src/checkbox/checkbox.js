@@ -18,6 +18,7 @@ import {
   ToggleTrack as StyledToggleTrack,
 } from './styled-components.js';
 import {STYLE_TYPE} from './constants.js';
+import {isFocusVisible} from '../utils/focusVisible.js';
 
 class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
   static defaultProps: DefaultPropsT = {
@@ -41,6 +42,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
 
   state = {
     isFocused: this.props.autoFocus || false,
+    isFocusVisible: false,
     isHovered: false,
     isActive: false,
   };
@@ -83,11 +85,17 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
   onFocus = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.setState({isFocused: true});
     this.props.onFocus(e);
+    if (isFocusVisible(e)) {
+      this.setState({isFocusVisible: true});
+    }
   };
 
   onBlur = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.setState({isFocused: false});
     this.props.onBlur(e);
+    if (this.state.isFocusVisible !== false) {
+      this.setState({isFocusVisible: false});
+    }
   };
 
   isToggle = () => {
@@ -147,6 +155,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     };
     const sharedProps = {
       $isFocused: this.state.isFocused,
+      $isFocusVisible: this.state.isFocusVisible,
       $isHovered: this.state.isHovered,
       $isActive: this.state.isActive,
       $isError: isError,

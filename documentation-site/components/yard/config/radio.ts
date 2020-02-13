@@ -72,6 +72,13 @@ const RadioGroupConfig: TConfig = {
         'baseui/radio': {named: ['Radio']},
       },
     },
+    name: {
+      value: 'number',
+      type: PropTypes.String,
+      description:
+        'String value for the name of RadioGroup, it is used to group buttons. If missed default is random ID string.',
+      hidden: false,
+    },
     align: {
       value: 'ALIGN.vertical',
       type: PropTypes.Enum,
@@ -93,13 +100,6 @@ const RadioGroupConfig: TConfig = {
       value: false,
       type: PropTypes.Boolean,
       description: 'Sets radio group into error state.',
-    },
-    name: {
-      value: undefined,
-      type: PropTypes.String,
-      description:
-        'String value for the name of RadioGroup, it is used to group buttons. If missed default is random ID string.',
-      hidden: true,
     },
     required: {
       value: false,
