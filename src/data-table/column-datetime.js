@@ -307,183 +307,189 @@ function DatetimeFilter(props) {
         props.close();
       }}
     >
-      <ButtonGroup
-        size={SIZE.compact}
-        mode={MODE.radio}
-        selected={comparatorIndex}
-        onClick={(_, index) => setComparatorIndex(index)}
-        overrides={{
-          Root: {
-            style: ({$theme}) => ({marginBottom: $theme.sizing.scale300}),
-          },
-        }}
-      >
-        <Button
-          type="button"
-          overrides={{BaseButton: {style: {width: '100%'}}}}
+      <div ref={mountNode}>
+        <ButtonGroup
+          size={SIZE.compact}
+          mode={MODE.radio}
+          selected={comparatorIndex}
+          onClick={(_, index) => setComparatorIndex(index)}
+          overrides={{
+            Root: {
+              style: ({$theme}) => ({marginBottom: $theme.sizing.scale300}),
+            },
+          }}
         >
-          Range
-        </Button>
-        <Button
-          type="button"
-          overrides={{BaseButton: {style: {width: '100%'}}}}
-        >
-          Categorical
-        </Button>
-      </ButtonGroup>
+          <Button
+            type="button"
+            overrides={{BaseButton: {style: {width: '100%'}}}}
+          >
+            Range
+          </Button>
+          <Button
+            type="button"
+            overrides={{BaseButton: {style: {width: '100%'}}}}
+          >
+            Categorical
+          </Button>
+        </ButtonGroup>
 
-      {isRange && (
-        <div ref={mountNode}>
-          <Select
-            value={rangeOperator}
-            onChange={params => setRangeOperator(params.value)}
-            options={RANGE_OPERATIONS}
-            size="compact"
-            clearable={false}
-          />
+        {isRange && (
+          <div>
+            <Select
+              value={rangeOperator}
+              onChange={params => setRangeOperator(params.value)}
+              // eslint-disable-next-line flowtype/no-weak-types
+              mountNode={(mountNode.current: any)}
+              options={RANGE_OPERATIONS}
+              size="compact"
+              clearable={false}
+            />
 
-          <div className={css({paddingTop: theme.sizing.scale600})}>
-            {(rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATETIME ||
-              rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATE) && (
-              <Datepicker
-                // eslint-disable-next-line flowtype/no-weak-types
-                mountNode={(mountNode.current: any)}
-                value={rangeDates}
-                onChange={({date}) => {
-                  if (Array.isArray(date)) {
-                    if (!date.length) return;
-                    const nextDates = date.map((d, i) =>
-                      applyDateToTime(rangeDates[i], d),
-                    );
-                    setRangeDates(nextDates);
+            <div className={css({paddingTop: theme.sizing.scale600})}>
+              {(rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATETIME ||
+                rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATE) && (
+                <Datepicker
+                  // eslint-disable-next-line flowtype/no-weak-types
+                  mountNode={(mountNode.current: any)}
+                  value={rangeDates}
+                  onChange={({date}) => {
+                    if (Array.isArray(date)) {
+                      if (!date.length) return;
+                      const nextDates = date.map((d, i) =>
+                        applyDateToTime(rangeDates[i], d),
+                      );
+                      setRangeDates(nextDates);
+                    }
+                  }}
+                  formatString={DATE_FORMAT}
+                  placeholder="MM-DD-YYYY - MM-DD-YYYY"
+                  minDate={datesSorted[0]}
+                  maxDate={datesSorted[datesSorted.length - 1]}
+                  timeSelectStart={
+                    rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATETIME
                   }
-                }}
-                formatString={DATE_FORMAT}
-                placeholder="MM-DD-YYYY - MM-DD-YYYY"
-                minDate={datesSorted[0]}
-                maxDate={datesSorted[datesSorted.length - 1]}
-                timeSelectStart={
-                  rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATETIME
-                }
-                timeSelectEnd={
-                  rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATETIME
-                }
-                overrides={{TimeSelect: {props: {size: 'compact'}}}}
-                range
-                size="compact"
-              />
+                  timeSelectEnd={
+                    rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATETIME
+                  }
+                  overrides={{TimeSelect: {props: {size: 'compact'}}}}
+                  range
+                  size="compact"
+                />
+              )}
+            </div>
+
+            {(rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATETIME ||
+              rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_TIME) && (
+              <div
+                className={css({
+                  display: 'flex',
+                  paddingTop: theme.sizing.scale100,
+                })}
+              >
+                <div
+                  className={css({
+                    width: '100%',
+                    marginRight: theme.sizing.scale300,
+                  })}
+                >
+                  <TimePicker
+                    format="24"
+                    value={rangeDates[0]}
+                    onChange={time =>
+                      setRangeDates([
+                        applyTimeToDate(rangeDates[0], time),
+                        rangeDates[1],
+                      ])
+                    }
+                    creatable
+                    size="compact"
+                  />
+                </div>
+
+                <div
+                  className={css({
+                    width: '100%',
+                  })}
+                >
+                  <TimePicker
+                    format="24"
+                    value={rangeDates[1]}
+                    onChange={time =>
+                      setRangeDates([
+                        rangeDates[0],
+                        applyTimeToDate(rangeDates[1], time),
+                      ])
+                    }
+                    creatable
+                    size="compact"
+                  />
+                </div>
+              </div>
             )}
           </div>
+        )}
 
-          {(rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_DATETIME ||
-            rangeOperator[0].id === DATETIME_OPERATIONS.RANGE_TIME) && (
+        {isCategorical && (
+          <div>
+            <Select
+              value={categoricalOperator}
+              onChange={params => setCategoricalOperator(params.value)}
+              options={CATEGORICAL_OPERATIONS}
+              // eslint-disable-next-line flowtype/no-weak-types
+              mountNode={(mountNode.current: any)}
+              size="compact"
+              clearable={false}
+            />
+
             <div
               className={css({
-                display: 'flex',
-                paddingTop: theme.sizing.scale100,
+                paddingLeft: theme.sizing.scale300,
+                paddingTop: theme.sizing.scale500,
               })}
             >
-              <div
-                className={css({
-                  width: '100%',
-                  marginRight: theme.sizing.scale300,
-                })}
-              >
-                <TimePicker
-                  format="24"
-                  value={rangeDates[0]}
-                  onChange={time =>
-                    setRangeDates([
-                      applyTimeToDate(rangeDates[0], time),
-                      rangeDates[1],
-                    ])
-                  }
-                  creatable
-                  size="compact"
+              {categoricalOperator[0].id === DATETIME_OPERATIONS.WEEKDAY && (
+                <Checks
+                  value={weekdays}
+                  setValue={setWeekdays}
+                  options={WEEKDAYS.map((w, i) => ({label: w, id: i}))}
                 />
-              </div>
+              )}
 
-              <div
-                className={css({
-                  width: '100%',
-                })}
-              >
-                <TimePicker
-                  format="24"
-                  value={rangeDates[1]}
-                  onChange={time =>
-                    setRangeDates([
-                      rangeDates[0],
-                      applyTimeToDate(rangeDates[1], time),
-                    ])
-                  }
-                  creatable
-                  size="compact"
+              {categoricalOperator[0].id === DATETIME_OPERATIONS.MONTH && (
+                <Checks
+                  value={months}
+                  setValue={setMonths}
+                  options={MONTHS.map((m, i) => ({label: m, id: i}))}
                 />
-              </div>
+              )}
+
+              {categoricalOperator[0].id === DATETIME_OPERATIONS.QUARTER && (
+                <Checks
+                  value={quarters}
+                  setValue={setQuarters}
+                  options={QUARTERS.map((q, i) => ({label: q, id: i}))}
+                />
+              )}
+
+              {categoricalOperator[0].id === DATETIME_OPERATIONS.HALF && (
+                <Checks
+                  value={halves}
+                  setValue={setHalves}
+                  options={HALVES.map((h, i) => ({label: h, id: i}))}
+                />
+              )}
+
+              {categoricalOperator[0].id === DATETIME_OPERATIONS.YEAR && (
+                <Checks
+                  value={years}
+                  setValue={setYears}
+                  options={presentYears.map(year => ({label: year, id: year}))}
+                />
+              )}
             </div>
-          )}
-        </div>
-      )}
-
-      {isCategorical && (
-        <div>
-          <Select
-            value={categoricalOperator}
-            onChange={params => setCategoricalOperator(params.value)}
-            options={CATEGORICAL_OPERATIONS}
-            size="compact"
-            clearable={false}
-          />
-
-          <div
-            className={css({
-              paddingLeft: theme.sizing.scale300,
-              paddingTop: theme.sizing.scale500,
-            })}
-          >
-            {categoricalOperator[0].id === DATETIME_OPERATIONS.WEEKDAY && (
-              <Checks
-                value={weekdays}
-                setValue={setWeekdays}
-                options={WEEKDAYS.map((w, i) => ({label: w, id: i}))}
-              />
-            )}
-
-            {categoricalOperator[0].id === DATETIME_OPERATIONS.MONTH && (
-              <Checks
-                value={months}
-                setValue={setMonths}
-                options={MONTHS.map((m, i) => ({label: m, id: i}))}
-              />
-            )}
-
-            {categoricalOperator[0].id === DATETIME_OPERATIONS.QUARTER && (
-              <Checks
-                value={quarters}
-                setValue={setQuarters}
-                options={QUARTERS.map((q, i) => ({label: q, id: i}))}
-              />
-            )}
-
-            {categoricalOperator[0].id === DATETIME_OPERATIONS.HALF && (
-              <Checks
-                value={halves}
-                setValue={setHalves}
-                options={HALVES.map((h, i) => ({label: h, id: i}))}
-              />
-            )}
-
-            {categoricalOperator[0].id === DATETIME_OPERATIONS.YEAR && (
-              <Checks
-                value={years}
-                setValue={setYears}
-                options={presentYears.map(year => ({label: year, id: year}))}
-              />
-            )}
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </FilterShell>
   );
 }
@@ -504,6 +510,7 @@ const DatetimeCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
           justifyContent: 'flex-end',
           fontFamily: `"Lucida Console", Monaco, monospace`,
           width: '100%',
+          whiteSpace: 'nowrap',
         })}
       >
         {format(props.value, props.formatString)}

@@ -79,6 +79,7 @@ export type DayPropsT = {
 
 export type DayStateT = {
   isHovered: boolean,
+  isFocusVisible: boolean,
 };
 
 export type WeekPropsT = {
@@ -204,6 +205,7 @@ export type SharedStylePropsT = {
   $endOfMonth: ?boolean,
   $isHighlighted: ?boolean,
   $isHovered: ?boolean,
+  $isFocusVisible: ?boolean,
   $outsideMonth: ?boolean,
   $peekNextMonth: ?boolean,
   $pseudoHighlighted: ?boolean,

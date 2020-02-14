@@ -64,6 +64,7 @@ function Options(props: OptionsPropsT) {
       tabIndex="0"
       role="listbox"
       className={css({
+        backgroundColor: theme.colors.backgroundPrimary,
         minWidth: '320px',
         paddingTop: theme.sizing.scale600,
         paddingBottom: theme.sizing.scale600,
@@ -134,7 +135,9 @@ function Options(props: OptionsPropsT) {
               className={css({
                 ...theme.typography.font100,
                 alignItems: 'center',
-                backgroundColor: isHighlighted ? theme.colors.mono200 : null,
+                backgroundColor: isHighlighted
+                  ? theme.colors.backgroundSecondary
+                  : null,
                 cursor: 'pointer',
                 display: 'flex',
                 paddingTop: theme.sizing.scale100,
@@ -148,7 +151,7 @@ function Options(props: OptionsPropsT) {
                   ...theme.typography.font150,
                   fontSize: '8px',
                   alignItems: 'center',
-                  backgroundColor: theme.colors.mono300,
+                  backgroundColor: theme.colors.backgroundTertiary,
                   borderRadius: theme.borders.radius200,
                   display: 'flex',
                   height: theme.sizing.scale800,
@@ -175,8 +178,8 @@ type PropsT = {
   // eslint-disable-next-line flowtype/no-weak-types
   rows: any[],
   onSetFilter: (
-    filterParams: {description: string},
     columnTitle: string,
+    filterParams: {description: string},
   ) => void,
 };
 
@@ -251,7 +254,7 @@ function FilterMenu(props: PropsT) {
                 data={activeColumnData}
                 close={handleClose}
                 setFilter={filterParams =>
-                  props.onSetFilter(filterParams, activeColumn.title)
+                  props.onSetFilter(activeColumn.title, filterParams)
                 }
               />
             </FocusLock>

@@ -1,5 +1,6 @@
 import * as path from 'path';
 import * as vscode from 'vscode';
+import showColorSamples from './coloring';
 
 // @ts-ignore
 import {components} from './components.json';
@@ -7,7 +8,7 @@ import {components} from './components.json';
 export function activate(context: vscode.ExtensionContext) {
   // @ts-ignore
   components.forEach((component: string) => {
-    let disposable = vscode.commands.registerCommand(
+    const disposable = vscode.commands.registerCommand(
       `extension.baseweb.docs.${component}`,
       () => {
         vscode.env.openExternal(
@@ -24,6 +25,8 @@ export function activate(context: vscode.ExtensionContext) {
       ReactPanel.createOrShow(context.extensionPath);
     }),
   );
+
+  showColorSamples(context);
 }
 
 // this method is called when your extension is deactivated

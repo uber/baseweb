@@ -38,8 +38,8 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
     const [css, theme] = useStyletron();
 
     const backgroundColor = props.isHovered
-      ? theme.colors.mono200
-      : theme.colors.mono100;
+      ? theme.colors.backgroundSecondary
+      : theme.colors.backgroundPrimary;
 
     return (
       <div
@@ -51,6 +51,7 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
           alignItems: 'center',
           backgroundColor,
           boxSizing: 'border-box',
+          color: theme.colors.contentPrimary,
           cursor: props.sortable ? 'pointer' : null,
           display: props.isMeasured ? 'inline-flex' : 'flex',
           flexGrow: 1,
@@ -106,8 +107,8 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
                 <ChevronDown
                   color={
                     props.sortDirection
-                      ? theme.colors.primary
-                      : theme.colors.mono600
+                      ? theme.colors.contentPrimary
+                      : theme.colors.contentSecondary
                   }
                 />
               )}
@@ -115,8 +116,8 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
                 <ChevronUp
                   color={
                     props.sortDirection
-                      ? theme.colors.primary
-                      : theme.colors.mono600
+                      ? theme.colors.contentPrimary
+                      : theme.colors.contentSecondary
                   }
                 />
               )}

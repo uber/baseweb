@@ -15,7 +15,7 @@
   },
   "scripts": {
     "build": "npm run build:code-snippets && npm run build:copy-baseui && npm run build-theme && npm run compile",
-    "build:copy-baseui": "cp -r ../../dist/es src/baseui",
+    "build:copy-baseui": "rm -rf src/baseui && cp -r ../../dist/es src/baseui",
     "build:code-snippets": "ts-node -r tsconfig-paths/register --project ./snippets/tsconfig.json ./snippets/build.ts",
     "build-theme": "./scripts/build-non-split.js",
     "deploy": "vsce publish --yarn",
@@ -25,6 +25,9 @@
     "test": "node ./build/test/runTest.js"
   },
   "icon": "images/icon.png",
+  "dependencies": {
+    "baseui": "^9.51.0"
+  },
   "devDependencies": {
     "@types/glob": "^7.1.1",
     "@types/mocha": "^5.2.7",
@@ -47,6 +50,10 @@
     "Snippets"
   ],
   "activationEvents": [
+    "onLanguage:javascript",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact",
     "onCommand:extension.baseweb.theme",
     "onCommand:extension.baseweb.docs.select",
     "onCommand:extension.baseweb.docs.input",
@@ -98,6 +105,37 @@
   ],
   "main": "./build/extension.js",
   "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "Base Web plugin configuration",
+      "properties": {
+        "baseweb.theme.coloring.enabled": {
+          "type": "boolean",
+          "default": "true",
+          "description": "Set to false to turn off theme color samples."
+        },
+        "baseweb.theme.coloring.source": {
+          "type": "string",
+          "enum": [
+            "Light",
+            "Dark"
+          ],
+          "default": "Light",
+          "description": "The theme to be used for coloring."
+        },
+        "baseweb.theme.coloring.style": {
+          "type": "string",
+          "enum": [
+            "border",
+            "background",
+            "tooltipOnly",
+            "underline"
+          ],
+          "default": "underline",
+          "description": "Change the color samples display style."
+        }
+      }
+    },
     "snippets": [
       {
         "path": "./snippets/baseweb.code-snippets"

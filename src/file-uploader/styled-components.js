@@ -23,7 +23,7 @@ export const StyledFileDragAndDrop = styled<StylePropsT>('div', props => {
     boxSizing: 'border-box',
     display: 'flex',
     flexDirection: 'column',
-    outline: props.$isDisabled ? 'none' : null,
+    outline: 'none',
     paddingTop: props.$theme.sizing.scale900,
     paddingRight: props.$theme.sizing.scale800,
     paddingBottom: props.$afterFileDrop

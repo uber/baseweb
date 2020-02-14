@@ -6,9 +6,9 @@ export default () => {
   return (
     <StatefulMenu
       items={[
-        {label: 'www.example.com', href: '//www.example.com'},
-        {label: 'www.example.net', href: '//www.example.net'},
-        {label: 'www.example.org', href: '//www.example.org'},
+        {label: 'Apple', href: '//www.example.com/apple'},
+        {label: 'Orange', href: '//www.example.com/orange'},
+        {label: 'Strawberry', href: '//www.example.com/strawberry'},
       ]}
     />
   );

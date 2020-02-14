@@ -24,7 +24,7 @@ function FilterShell(props: PropsT) {
   return (
     <form
       className={css({
-        backgroundColor: theme.colors.white,
+        backgroundColor: theme.colors.backgroundPrimary,
         paddingTop: theme.sizing.scale600,
         paddingRight: theme.sizing.scale600,
         paddingBottom: theme.sizing.scale600,
