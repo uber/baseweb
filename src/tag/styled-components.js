@@ -293,7 +293,7 @@ export const Action = styled<SharedPropsArgT>('span', props => {
               ? $theme.colors.primaryA
               : $theme.colors.accent
           }`
-        : '0 1px 4px rgba(0, 0, 0, 0.12)',
+        : 'none',
     },
   }: {});
 });
@@ -665,7 +665,7 @@ export const Root = styled<SharedPropsArgT>('span', props => {
                     ? $theme.colors.primaryA
                     : $theme.colors.accent
                 }`
-              : '0 1px 4px rgba(0, 0, 0, 0.12)',
+              : 'none',
           },
   }: {});
 });
