@@ -20,10 +20,12 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
   >
     <ForwardRef
       $disabled={false}
+      $isFocusVisible={false}
       data-baseweb="accordion"
     >
       <MockStyledComponent
         $disabled={false}
+        $isFocusVisible={false}
         data-baseweb="accordion"
         forwardedRef={null}
       >
@@ -57,10 +59,12 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
             <ForwardRef
               $disabled={false}
               $expanded={false}
+              $isFocusVisible={false}
             >
               <MockStyledComponent
                 $disabled={false}
                 $expanded={false}
+                $isFocusVisible={false}
                 forwardedRef={null}
               >
                 <li
@@ -75,9 +79,12 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                   <ForwardRef
                     $disabled={false}
                     $expanded={false}
+                    $isFocusVisible={false}
                     aria-disabled={null}
                     aria-expanded={false}
+                    onBlur={[Function]}
                     onClick={[Function]}
+                    onFocus={[Function]}
                     onKeyDown={[Function]}
                     role="button"
                     tabIndex={0}
@@ -85,10 +92,13 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                     <MockStyledComponent
                       $disabled={false}
                       $expanded={false}
+                      $isFocusVisible={false}
                       aria-disabled={null}
                       aria-expanded={false}
                       forwardedRef={null}
+                      onBlur={[Function]}
                       onClick={[Function]}
+                      onFocus={[Function]}
                       onKeyDown={[Function]}
                       role="button"
                       tabIndex={0}
@@ -96,7 +106,9 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                       <div
                         aria-disabled={null}
                         aria-expanded={false}
+                        onBlur={[Function]}
                         onClick={[Function]}
+                        onFocus={[Function]}
                         onKeyDown={[Function]}
                         role="button"
                         styled-component="true"
@@ -121,6 +133,8 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                             "marginLeft": 0,
                             "marginRight": 0,
                             "marginTop": 0,
+                            "outline": "none",
+                            "outlineOffset": "-3px",
                             "paddingBottom": "$theme.sizing.scale600",
                             "paddingLeft": "$theme.sizing.scale700",
                             "paddingRight": "$theme.sizing.scale700",
@@ -132,6 +146,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                         <Plus
                           $disabled={false}
                           $expanded={false}
+                          $isFocusVisible={false}
                           overrides={
                             Object {
                               "Svg": Object {
@@ -148,6 +163,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                           <Icon
                             $disabled={false}
                             $expanded={false}
+                            $isFocusVisible={false}
                             overrides={
                               Object {
                                 "Svg": Object {
@@ -165,6 +181,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                             <ForwardRef
                               $disabled={false}
                               $expanded={false}
+                              $isFocusVisible={false}
                               $size={16}
                               data-baseweb="icon"
                               viewBox="0 0 24 24"
@@ -172,6 +189,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                               <MockStyledComponent
                                 $disabled={false}
                                 $expanded={false}
+                                $isFocusVisible={false}
                                 $size={16}
                                 data-baseweb="icon"
                                 forwardedRef={null}
@@ -211,10 +229,12 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                   <ForwardRef
                     $disabled={false}
                     $expanded={false}
+                    $isFocusVisible={false}
                   >
                     <MockStyledComponent
                       $disabled={false}
                       $expanded={false}
+                      $isFocusVisible={false}
                       forwardedRef={null}
                     >
                       <div
@@ -270,10 +290,12 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
             <ForwardRef
               $disabled={false}
               $expanded={false}
+              $isFocusVisible={false}
             >
               <MockStyledComponent
                 $disabled={false}
                 $expanded={false}
+                $isFocusVisible={false}
                 forwardedRef={null}
               >
                 <li
@@ -288,9 +310,12 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                   <ForwardRef
                     $disabled={false}
                     $expanded={false}
+                    $isFocusVisible={false}
                     aria-disabled={null}
                     aria-expanded={false}
+                    onBlur={[Function]}
                     onClick={[Function]}
+                    onFocus={[Function]}
                     onKeyDown={[Function]}
                     role="button"
                     tabIndex={0}
@@ -298,10 +323,13 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                     <MockStyledComponent
                       $disabled={false}
                       $expanded={false}
+                      $isFocusVisible={false}
                       aria-disabled={null}
                       aria-expanded={false}
                       forwardedRef={null}
+                      onBlur={[Function]}
                       onClick={[Function]}
+                      onFocus={[Function]}
                       onKeyDown={[Function]}
                       role="button"
                       tabIndex={0}
@@ -309,7 +337,9 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                       <div
                         aria-disabled={null}
                         aria-expanded={false}
+                        onBlur={[Function]}
                         onClick={[Function]}
+                        onFocus={[Function]}
                         onKeyDown={[Function]}
                         role="button"
                         styled-component="true"
@@ -334,6 +364,8 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                             "marginLeft": 0,
                             "marginRight": 0,
                             "marginTop": 0,
+                            "outline": "none",
+                            "outlineOffset": "-3px",
                             "paddingBottom": "$theme.sizing.scale600",
                             "paddingLeft": "$theme.sizing.scale700",
                             "paddingRight": "$theme.sizing.scale700",
@@ -345,6 +377,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                         <Plus
                           $disabled={false}
                           $expanded={false}
+                          $isFocusVisible={false}
                           overrides={
                             Object {
                               "Svg": Object {
@@ -361,6 +394,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                           <Icon
                             $disabled={false}
                             $expanded={false}
+                            $isFocusVisible={false}
                             overrides={
                               Object {
                                 "Svg": Object {
@@ -378,6 +412,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                             <ForwardRef
                               $disabled={false}
                               $expanded={false}
+                              $isFocusVisible={false}
                               $size={16}
                               data-baseweb="icon"
                               viewBox="0 0 24 24"
@@ -385,6 +420,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                               <MockStyledComponent
                                 $disabled={false}
                                 $expanded={false}
+                                $isFocusVisible={false}
                                 $size={16}
                                 data-baseweb="icon"
                                 forwardedRef={null}
@@ -424,10 +460,12 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                   <ForwardRef
                     $disabled={false}
                     $expanded={false}
+                    $isFocusVisible={false}
                   >
                     <MockStyledComponent
                       $disabled={false}
                       $expanded={false}
+                      $isFocusVisible={false}
                       forwardedRef={null}
                     >
                       <div
@@ -483,10 +521,12 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
             <ForwardRef
               $disabled={false}
               $expanded={false}
+              $isFocusVisible={false}
             >
               <MockStyledComponent
                 $disabled={false}
                 $expanded={false}
+                $isFocusVisible={false}
                 forwardedRef={null}
               >
                 <li
@@ -501,9 +541,12 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                   <ForwardRef
                     $disabled={false}
                     $expanded={false}
+                    $isFocusVisible={false}
                     aria-disabled={null}
                     aria-expanded={false}
+                    onBlur={[Function]}
                     onClick={[Function]}
+                    onFocus={[Function]}
                     onKeyDown={[Function]}
                     role="button"
                     tabIndex={0}
@@ -511,10 +554,13 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                     <MockStyledComponent
                       $disabled={false}
                       $expanded={false}
+                      $isFocusVisible={false}
                       aria-disabled={null}
                       aria-expanded={false}
                       forwardedRef={null}
+                      onBlur={[Function]}
                       onClick={[Function]}
+                      onFocus={[Function]}
                       onKeyDown={[Function]}
                       role="button"
                       tabIndex={0}
@@ -522,7 +568,9 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                       <div
                         aria-disabled={null}
                         aria-expanded={false}
+                        onBlur={[Function]}
                         onClick={[Function]}
+                        onFocus={[Function]}
                         onKeyDown={[Function]}
                         role="button"
                         styled-component="true"
@@ -547,6 +595,8 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                             "marginLeft": 0,
                             "marginRight": 0,
                             "marginTop": 0,
+                            "outline": "none",
+                            "outlineOffset": "-3px",
                             "paddingBottom": "$theme.sizing.scale600",
                             "paddingLeft": "$theme.sizing.scale700",
                             "paddingRight": "$theme.sizing.scale700",
@@ -558,6 +608,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                         <Plus
                           $disabled={false}
                           $expanded={false}
+                          $isFocusVisible={false}
                           overrides={
                             Object {
                               "Svg": Object {
@@ -574,6 +625,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                           <Icon
                             $disabled={false}
                             $expanded={false}
+                            $isFocusVisible={false}
                             overrides={
                               Object {
                                 "Svg": Object {
@@ -591,6 +643,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                             <ForwardRef
                               $disabled={false}
                               $expanded={false}
+                              $isFocusVisible={false}
                               $size={16}
                               data-baseweb="icon"
                               viewBox="0 0 24 24"
@@ -598,6 +651,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                               <MockStyledComponent
                                 $disabled={false}
                                 $expanded={false}
+                                $isFocusVisible={false}
                                 $size={16}
                                 data-baseweb="icon"
                                 forwardedRef={null}
@@ -637,10 +691,12 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                   <ForwardRef
                     $disabled={false}
                     $expanded={false}
+                    $isFocusVisible={false}
                   >
                     <MockStyledComponent
                       $disabled={false}
                       $expanded={false}
+                      $isFocusVisible={false}
                       forwardedRef={null}
                     >
                       <div
@@ -705,10 +761,12 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
   >
     <ForwardRef
       $disabled={false}
+      $isFocusVisible={false}
       data-baseweb="accordion"
     >
       <MockStyledComponent
         $disabled={false}
+        $isFocusVisible={false}
         data-baseweb="accordion"
         forwardedRef={null}
       >
@@ -742,10 +800,12 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
             <ForwardRef
               $disabled={false}
               $expanded={false}
+              $isFocusVisible={false}
             >
               <MockStyledComponent
                 $disabled={false}
                 $expanded={false}
+                $isFocusVisible={false}
                 forwardedRef={null}
               >
                 <li
@@ -760,9 +820,12 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                   <ForwardRef
                     $disabled={false}
                     $expanded={false}
+                    $isFocusVisible={false}
                     aria-disabled={null}
                     aria-expanded={false}
+                    onBlur={[Function]}
                     onClick={[Function]}
+                    onFocus={[Function]}
                     onKeyDown={[Function]}
                     role="button"
                     tabIndex={0}
@@ -770,10 +833,13 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                     <MockStyledComponent
                       $disabled={false}
                       $expanded={false}
+                      $isFocusVisible={false}
                       aria-disabled={null}
                       aria-expanded={false}
                       forwardedRef={null}
+                      onBlur={[Function]}
                       onClick={[Function]}
+                      onFocus={[Function]}
                       onKeyDown={[Function]}
                       role="button"
                       tabIndex={0}
@@ -781,7 +847,9 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                       <div
                         aria-disabled={null}
                         aria-expanded={false}
+                        onBlur={[Function]}
                         onClick={[Function]}
+                        onFocus={[Function]}
                         onKeyDown={[Function]}
                         role="button"
                         styled-component="true"
@@ -806,6 +874,8 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                             "marginLeft": 0,
                             "marginRight": 0,
                             "marginTop": 0,
+                            "outline": "none",
+                            "outlineOffset": "-3px",
                             "paddingBottom": "$theme.sizing.scale600",
                             "paddingLeft": "$theme.sizing.scale700",
                             "paddingRight": "$theme.sizing.scale700",
@@ -817,6 +887,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                         <Plus
                           $disabled={false}
                           $expanded={false}
+                          $isFocusVisible={false}
                           overrides={
                             Object {
                               "Svg": Object {
@@ -833,6 +904,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                           <Icon
                             $disabled={false}
                             $expanded={false}
+                            $isFocusVisible={false}
                             overrides={
                               Object {
                                 "Svg": Object {
@@ -850,6 +922,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                             <ForwardRef
                               $disabled={false}
                               $expanded={false}
+                              $isFocusVisible={false}
                               $size={16}
                               data-baseweb="icon"
                               viewBox="0 0 24 24"
@@ -857,6 +930,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                               <MockStyledComponent
                                 $disabled={false}
                                 $expanded={false}
+                                $isFocusVisible={false}
                                 $size={16}
                                 data-baseweb="icon"
                                 forwardedRef={null}
@@ -896,10 +970,12 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                   <ForwardRef
                     $disabled={false}
                     $expanded={false}
+                    $isFocusVisible={false}
                   >
                     <MockStyledComponent
                       $disabled={false}
                       $expanded={false}
+                      $isFocusVisible={false}
                       forwardedRef={null}
                     >
                       <div
@@ -953,10 +1029,12 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
             <ForwardRef
               $disabled={false}
               $expanded={false}
+              $isFocusVisible={false}
             >
               <MockStyledComponent
                 $disabled={false}
                 $expanded={false}
+                $isFocusVisible={false}
                 forwardedRef={null}
               >
                 <li
@@ -971,9 +1049,12 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                   <ForwardRef
                     $disabled={false}
                     $expanded={false}
+                    $isFocusVisible={false}
                     aria-disabled={null}
                     aria-expanded={false}
+                    onBlur={[Function]}
                     onClick={[Function]}
+                    onFocus={[Function]}
                     onKeyDown={[Function]}
                     role="button"
                     tabIndex={0}
@@ -981,10 +1062,13 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                     <MockStyledComponent
                       $disabled={false}
                       $expanded={false}
+                      $isFocusVisible={false}
                       aria-disabled={null}
                       aria-expanded={false}
                       forwardedRef={null}
+                      onBlur={[Function]}
                       onClick={[Function]}
+                      onFocus={[Function]}
                       onKeyDown={[Function]}
                       role="button"
                       tabIndex={0}
@@ -992,7 +1076,9 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                       <div
                         aria-disabled={null}
                         aria-expanded={false}
+                        onBlur={[Function]}
                         onClick={[Function]}
+                        onFocus={[Function]}
                         onKeyDown={[Function]}
                         role="button"
                         styled-component="true"
@@ -1017,6 +1103,8 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                             "marginLeft": 0,
                             "marginRight": 0,
                             "marginTop": 0,
+                            "outline": "none",
+                            "outlineOffset": "-3px",
                             "paddingBottom": "$theme.sizing.scale600",
                             "paddingLeft": "$theme.sizing.scale700",
                             "paddingRight": "$theme.sizing.scale700",
@@ -1028,6 +1116,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                         <Plus
                           $disabled={false}
                           $expanded={false}
+                          $isFocusVisible={false}
                           overrides={
                             Object {
                               "Svg": Object {
@@ -1044,6 +1133,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                           <Icon
                             $disabled={false}
                             $expanded={false}
+                            $isFocusVisible={false}
                             overrides={
                               Object {
                                 "Svg": Object {
@@ -1061,6 +1151,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                             <ForwardRef
                               $disabled={false}
                               $expanded={false}
+                              $isFocusVisible={false}
                               $size={16}
                               data-baseweb="icon"
                               viewBox="0 0 24 24"
@@ -1068,6 +1159,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                               <MockStyledComponent
                                 $disabled={false}
                                 $expanded={false}
+                                $isFocusVisible={false}
                                 $size={16}
                                 data-baseweb="icon"
                                 forwardedRef={null}
@@ -1107,10 +1199,12 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                   <ForwardRef
                     $disabled={false}
                     $expanded={false}
+                    $isFocusVisible={false}
                   >
                     <MockStyledComponent
                       $disabled={false}
                       $expanded={false}
+                      $isFocusVisible={false}
                       forwardedRef={null}
                     >
                       <div
@@ -1164,10 +1258,12 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
             <ForwardRef
               $disabled={false}
               $expanded={false}
+              $isFocusVisible={false}
             >
               <MockStyledComponent
                 $disabled={false}
                 $expanded={false}
+                $isFocusVisible={false}
                 forwardedRef={null}
               >
                 <li
@@ -1182,9 +1278,12 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                   <ForwardRef
                     $disabled={false}
                     $expanded={false}
+                    $isFocusVisible={false}
                     aria-disabled={null}
                     aria-expanded={false}
+                    onBlur={[Function]}
                     onClick={[Function]}
+                    onFocus={[Function]}
                     onKeyDown={[Function]}
                     role="button"
                     tabIndex={0}
@@ -1192,10 +1291,13 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                     <MockStyledComponent
                       $disabled={false}
                       $expanded={false}
+                      $isFocusVisible={false}
                       aria-disabled={null}
                       aria-expanded={false}
                       forwardedRef={null}
+                      onBlur={[Function]}
                       onClick={[Function]}
+                      onFocus={[Function]}
                       onKeyDown={[Function]}
                       role="button"
                       tabIndex={0}
@@ -1203,7 +1305,9 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                       <div
                         aria-disabled={null}
                         aria-expanded={false}
+                        onBlur={[Function]}
                         onClick={[Function]}
+                        onFocus={[Function]}
                         onKeyDown={[Function]}
                         role="button"
                         styled-component="true"
@@ -1228,6 +1332,8 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                             "marginLeft": 0,
                             "marginRight": 0,
                             "marginTop": 0,
+                            "outline": "none",
+                            "outlineOffset": "-3px",
                             "paddingBottom": "$theme.sizing.scale600",
                             "paddingLeft": "$theme.sizing.scale700",
                             "paddingRight": "$theme.sizing.scale700",
@@ -1239,6 +1345,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                         <Plus
                           $disabled={false}
                           $expanded={false}
+                          $isFocusVisible={false}
                           overrides={
                             Object {
                               "Svg": Object {
@@ -1255,6 +1362,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                           <Icon
                             $disabled={false}
                             $expanded={false}
+                            $isFocusVisible={false}
                             overrides={
                               Object {
                                 "Svg": Object {
@@ -1272,6 +1380,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                             <ForwardRef
                               $disabled={false}
                               $expanded={false}
+                              $isFocusVisible={false}
                               $size={16}
                               data-baseweb="icon"
                               viewBox="0 0 24 24"
@@ -1279,6 +1388,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                               <MockStyledComponent
                                 $disabled={false}
                                 $expanded={false}
+                                $isFocusVisible={false}
                                 $size={16}
                                 data-baseweb="icon"
                                 forwardedRef={null}
@@ -1318,10 +1428,12 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                   <ForwardRef
                     $disabled={false}
                     $expanded={false}
+                    $isFocusVisible={false}
                   >
                     <MockStyledComponent
                       $disabled={false}
                       $expanded={false}
+                      $isFocusVisible={false}
                       forwardedRef={null}
                     >
                       <div

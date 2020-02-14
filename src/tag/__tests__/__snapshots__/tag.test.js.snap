@@ -18,13 +18,16 @@ exports[`Stateless tag should render component: Component has correct render 1`]
     $clickable={false}
     $closeable={true}
     $disabled={false}
+    $isFocusVisible={false}
     $isFocused={false}
     $isHovered={false}
     $kind="primary"
     $variant="light"
     aria-label="button"
     data-baseweb="tag"
+    onBlur={[Function]}
     onClick={null}
+    onFocus={[Function]}
     onKeyDown={[Function]}
     role="button"
     tabIndex={null}
@@ -33,6 +36,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
       $clickable={false}
       $closeable={true}
       $disabled={false}
+      $isFocusVisible={false}
       $isFocused={false}
       $isHovered={false}
       $kind="primary"
@@ -40,7 +44,9 @@ exports[`Stateless tag should render component: Component has correct render 1`]
       aria-label="button"
       data-baseweb="tag"
       forwardedRef={null}
+      onBlur={[Function]}
       onClick={null}
+      onFocus={[Function]}
       onKeyDown={[Function]}
       role="button"
       tabIndex={null}
@@ -48,7 +54,9 @@ exports[`Stateless tag should render component: Component has correct render 1`]
       <span
         aria-label="button"
         data-baseweb="tag"
+        onBlur={[Function]}
         onClick={null}
+        onFocus={[Function]}
         onKeyDown={[Function]}
         role="button"
         styled-component="true"
@@ -115,6 +123,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
           $clickable={false}
           $closeable={true}
           $disabled={false}
+          $isFocusVisible={false}
           $isFocused={false}
           $isHovered={false}
           $kind="primary"
@@ -129,6 +138,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
             $clickable={false}
             $closeable={true}
             $disabled={false}
+            $isFocusVisible={false}
             $isFocused={false}
             $isHovered={false}
             $kind="primary"
@@ -150,8 +160,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
               test-style={
                 Object {
                   ":focus": Object {
-                    "backgroundColor": "$theme.colors.tagPrimaryLightActive",
-                    "color": "$theme.colors.tagPrimaryLightFontHover",
+                    "boxShadow": "none",
                   },
                   ":hover": Object {
                     "backgroundColor": "$theme.colors.tagPrimaryLightActive",
@@ -168,7 +177,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
                   "paddingLeft": "8px",
                   "paddingRight": "8px",
                   "paddingTop": "7px",
-                  "transitionDuration": "$theme.animation.timing100",
+                  "transitionDuration": "background-color",
                   "transitionProperty": "all",
                   "transitionTimingFunction": "$theme.animation.easeOutCurve",
                 }
