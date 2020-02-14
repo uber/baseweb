@@ -15,7 +15,7 @@ import ChevronUp from '../icon/chevron-up.js';
 
 import {SORT_DIRECTIONS} from './constants.js';
 import type {SortDirectionsT} from './types.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import {isFocusVisible} from '../utils/focusVisible.js';
 
 type HeaderCellPropsT = {|
   index: number,
