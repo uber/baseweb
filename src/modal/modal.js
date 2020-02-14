@@ -82,7 +82,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   }
 
   componentWillUnmount() {
-    this.removeDomEvents();
     this.resetMountNodeScroll();
     this.clearTimers();
   }
@@ -99,18 +98,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       } else {
         this.didClose();
       }
-    }
-  }
-
-  addDomEvents() {
-    if (__BROWSER__) {
-      document.addEventListener('keyup', this.onDocumentKeyPress);
-    }
-  }
-
-  removeDomEvents() {
-    if (__BROWSER__) {
-      document.removeEventListener('keyup', this.onDocumentKeyPress);
     }
   }
 
@@ -133,13 +120,8 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     }
   }
 
-  onDocumentKeyPress = (event: KeyboardEvent) => {
+  onKeyDown = (event: SyntheticKeyboardEvent<>) => {
     if (event.key !== 'Escape') {
-      return;
-    }
-
-    // Ignore events that have been `event.preventDefault()` marked.
-    if (event.defaultPrevented) {
       return;
     }
 
@@ -192,7 +174,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     // Clear any existing timers (like previous animateOutTimer)
     this.clearTimers();
 
-    this.addDomEvents();
     this.disableMountNodeScroll();
 
     // eslint-disable-next-line cup/no-undef
@@ -202,7 +183,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   }
 
   didClose() {
-    this.removeDomEvents();
     this.resetMountNodeScroll();
     this.animateOutTimer = setTimeout(this.animateOutComplete, 500);
   }
@@ -328,6 +308,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
             <Root
               data-baseweb="modal"
               ref={this.getRef('Root')}
+              onKeyDown={this.onKeyDown}
               {...sharedProps}
               {...rootProps}
             >

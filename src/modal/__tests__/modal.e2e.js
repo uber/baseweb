@@ -75,7 +75,6 @@ describe('modal', () => {
     expect(openIsFocused).toBe(true);
   });
 
-  // This is a regression test to verify that elements in a portal will still work.
   it('allows interaction with select', async () => {
     await mount(page, 'modal-select');
     await page.waitFor(selectors.dialog);
@@ -92,5 +91,20 @@ describe('modal', () => {
       select => select.textContent,
     );
     expect(selectedValue).toBe('AliceBlue');
+  });
+
+  it('closes one popover at a time on esc key press', async () => {
+    await mount(page, 'modal-select');
+    await page.waitFor(selectors.dialog);
+
+    await page.click(selectors.selectInput);
+    await page.waitFor(selectors.selectDropDown);
+
+    await page.keyboard.press('Escape');
+    await page.waitFor(selectors.selectDropDown, {hidden: true});
+    await page.waitFor(selectors.selectInput);
+
+    await page.keyboard.press('Escape');
+    await page.waitFor(selectors.selectInput, {hidden: true});
   });
 });

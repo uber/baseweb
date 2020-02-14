@@ -370,19 +370,19 @@ export default class CalendarHeader extends React.Component<
       >
         <MonthYearSelectButton
           type="button"
-          onKeyUp={event => {
-            if (this.canArrowsOpenDropdown(event)) {
-              this.setState({isMonthYearDropdownOpen: true});
-            }
-          }}
           onKeyDown={event => {
             if (this.canArrowsOpenDropdown(event)) {
+              this.setState({isMonthYearDropdownOpen: true});
               // disables page scroll
               event.preventDefault();
             }
 
-            if (event.key === 'Tab') {
+            if (event.key === 'Tab' || event.key === 'Escape') {
               this.setState({isMonthYearDropdownOpen: false});
+            }
+
+            if (this.state.isMonthYearDropdownOpen) {
+              event.stopPropagation();
             }
           }}
           {...monthYearSelectButtonProps}

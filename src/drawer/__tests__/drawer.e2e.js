@@ -24,7 +24,6 @@ const selectors = {
 const optionAtPosition = position =>
   `${selectors.selectDropDown} ${selectors.dropDownOption}:nth-child(${position})`;
 
-jest.setTimeout(60000);
 describe('drawer', () => {
   it('drawer component handles focus changes properly', async () => {
     await mount(page, 'drawer');
@@ -68,7 +67,6 @@ describe('drawer', () => {
     expect(openIsFocused).toBe(true);
   });
 
-  // This is a regression test to verify that elements in a portal will still work.
   it('allows interaction with select', async () => {
     await mount(page, 'drawer-select');
     await page.waitFor(selectors.drawer);
@@ -85,6 +83,21 @@ describe('drawer', () => {
       select => select.textContent,
     );
     expect(selectedValue).toBe('AliceBlue');
+  });
+
+  it('closes one popover at a time on esc key press', async () => {
+    await mount(page, 'drawer-select');
+    await page.waitFor(selectors.drawer);
+
+    await page.click(selectors.selectInput);
+    await page.waitFor(selectors.selectDropDown);
+
+    await page.keyboard.press('Escape');
+    await page.waitFor(selectors.selectDropDown, {hidden: true});
+    await page.waitFor(selectors.selectInput);
+
+    await page.keyboard.press('Escape');
+    await page.waitFor(selectors.selectInput, {hidden: true});
   });
 
   it('renders content even when hidden: with renderAll prop', async () => {

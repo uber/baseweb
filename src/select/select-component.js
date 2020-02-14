@@ -334,7 +334,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   };
 
-  handleKeyDown = (event: KeyboardEvent) => {
+  handleKeyDown = (event: SyntheticKeyboardEvent<>) => {
     if (this.props.disabled) return;
     switch (event.keyCode) {
       case 8: // backspace
@@ -366,7 +366,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
         } else if (this.props.clearable && this.props.escapeClearsValue) {
           this.clearValue(event);
           this.setState({isFocused: false, isPseudoFocused: false});
-          event.stopPropagation();
         }
         break;
       case 32: // space
@@ -544,7 +543,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     this.focus();
   };
 
-  clearValue = (event: KeyboardEvent | MouseEvent | TouchEvent) => {
+  clearValue = (event: SyntheticKeyboardEvent<> | MouseEvent | TouchEvent) => {
     if (isClick(event) && !isLeftClick(event)) return;
 
     const resetValue = this.props.value.filter(

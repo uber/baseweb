@@ -12,24 +12,30 @@ import {StatefulSelect} from '../../select/index.js';
 import {StatefulPopover} from '../index.js';
 
 const SelectInPopover = () => {
+  const contentRef = React.useRef();
   return (
     <StatefulPopover
-      content={
-        <StatefulSelect
-          options={[
-            {id: 'AliceBlue', color: '#F0F8FF'},
-            {id: 'AntiqueWhite', color: '#FAEBD7'},
-            {id: 'Aqua', color: '#00FFFF'},
-            {id: 'Aquamarine', color: '#7FFFD4'},
-            {id: 'Azure', color: '#F0FFFF'},
-            {id: 'Beige', color: '#F5F5DC'},
-          ]}
-          overrides={{ValueContainer: {props: {'data-id': 'selected'}}}}
-          labelKey="id"
-          valueKey="color"
-          placeholder="Start searching"
-        />
-      }
+      content={() => {
+        return (
+          <div ref={contentRef}>
+            <StatefulSelect
+              options={[
+                {id: 'AliceBlue', color: '#F0F8FF'},
+                {id: 'AntiqueWhite', color: '#FAEBD7'},
+                {id: 'Aqua', color: '#00FFFF'},
+                {id: 'Aquamarine', color: '#7FFFD4'},
+                {id: 'Azure', color: '#F0FFFF'},
+                {id: 'Beige', color: '#F5F5DC'},
+              ]}
+              overrides={{ValueContainer: {props: {'data-id': 'selected'}}}}
+              labelKey="id"
+              valueKey="color"
+              placeholder="Start searching"
+              mountNode={contentRef.current ? contentRef.current : undefined}
+            />
+          </div>
+        );
+      }}
       accessibilityType={'tooltip'}
     >
       <Button>Open</Button>

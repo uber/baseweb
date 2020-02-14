@@ -178,9 +178,10 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     this.triggerOnMouseLeaveWithDelay();
   };
 
-  onKeyPress = (evt: KeyboardEvent) => {
+  onKeyDown = (evt: SyntheticKeyboardEvent<>) => {
     if (evt.key === 'Escape' && this.props.onEsc) {
       this.props.onEsc();
+      evt.stopPropagation();
     }
   };
 
@@ -241,14 +242,12 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     if (__BROWSER__) {
       // using mousedown event so that callback runs before events on children inside of the popover
       document.addEventListener('mousedown', this.onDocumentClick);
-      document.addEventListener('keyup', this.onKeyPress);
     }
   }
 
   removeDomEvents() {
     if (__BROWSER__) {
       document.removeEventListener('mousedown', this.onDocumentClick);
-      document.removeEventListener('keyup', this.onKeyPress);
     }
   }
 
@@ -293,41 +292,6 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     return this.props.id || this.generatedId || null;
   }
 
-  getAnchorProps() {
-    const {isOpen} = this.props;
-
-    const anchorProps: AnchorPropsT = {
-      key: 'popover-anchor',
-      ref: this.anchorRef,
-    };
-
-    const anchorId = this.getAnchorIdAttr();
-    const popoverId = this.getPopoverIdAttr();
-    if (this.isAccessibilityTypeMenu()) {
-      anchorProps['aria-haspopup'] = 'true';
-      anchorProps['aria-expanded'] = isOpen ? 'true' : 'false';
-      const relationAttr = this.isClickTrigger()
-        ? 'aria-controls'
-        : 'aria-owns';
-      anchorProps[relationAttr] = isOpen ? popoverId : null;
-    } else if (this.isAccessibilityTypeTooltip()) {
-      anchorProps.id = anchorId;
-      anchorProps['aria-describedby'] = isOpen ? popoverId : null;
-    }
-
-    if (this.isHoverTrigger()) {
-      anchorProps.onMouseEnter = this.onAnchorMouseEnter;
-      anchorProps.onMouseLeave = this.onAnchorMouseLeave;
-
-      // Make it focusable too
-      anchorProps.onBlur = this.props.onBlur;
-      anchorProps.onFocus = this.props.onFocus;
-    } else {
-      anchorProps.onClick = this.onAnchorClick;
-    }
-    return anchorProps;
-  }
-
   getPopoverBodyProps() {
     const bodyProps = {};
 
@@ -359,28 +323,57 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     };
   }
 
-  getAnchorFromChildren() {
-    const {children} = this.props;
-    const childArray = React.Children.toArray(children);
-    if (childArray.length !== 1) {
+  anchorElement() {
+    const children = React.Children.toArray(this.props.children);
+    if (children.length !== 1) {
       // eslint-disable-next-line no-console
       console.error(
-        `[baseui] Exactly 1 child must be passed to Popover/Tooltip, found ${childArray.length} children`,
+        `[baseui] Exactly 1 child must be passed to Popover/Tooltip, found ${children.length} children`,
       );
     }
-    return childArray[0];
-  }
 
-  renderAnchor() {
-    const anchor = this.getAnchorFromChildren();
+    const anchor = children[0];
     if (!anchor) {
       return null;
     }
 
-    const isValidElement = React.isValidElement(anchor);
-    const anchorProps = this.getAnchorProps();
+    const anchorProps: AnchorPropsT = {
+      key: 'popover-anchor',
+      ref: this.anchorRef,
+      onKeyDown: event => {
+        if (anchor.props.onKeyDown) {
+          anchor.props.onKeyDown(event);
+        } else {
+          this.onKeyDown(event);
+        }
+      },
+    };
 
-    if (typeof anchor === 'object' && isValidElement) {
+    const anchorId = this.getAnchorIdAttr();
+    const popoverId = this.getPopoverIdAttr();
+    if (this.isAccessibilityTypeMenu()) {
+      anchorProps['aria-haspopup'] = 'true';
+      anchorProps['aria-expanded'] = this.props.isOpen ? 'true' : 'false';
+      const relationAttr = this.isClickTrigger()
+        ? 'aria-controls'
+        : 'aria-owns';
+      anchorProps[relationAttr] = this.props.isOpen ? popoverId : null;
+    } else if (this.isAccessibilityTypeTooltip()) {
+      anchorProps.id = anchorId;
+      anchorProps['aria-describedby'] = this.props.isOpen ? popoverId : null;
+    }
+
+    if (this.isHoverTrigger()) {
+      anchorProps.onMouseEnter = this.onAnchorMouseEnter;
+      anchorProps.onMouseLeave = this.onAnchorMouseLeave;
+
+      anchorProps.onBlur = this.props.onBlur;
+      anchorProps.onFocus = this.props.onFocus;
+    } else {
+      anchorProps.onClick = this.onAnchorClick;
+    }
+
+    if (typeof anchor === 'object' && React.isValidElement(anchor)) {
       return React.cloneElement(anchor, anchorProps);
     }
     return <span {...anchorProps}>{anchor}</span>;
@@ -404,6 +397,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
 
     return (
       <Body
+        onKeyDown={this.onKeyDown}
         key="popover-body"
         ref={this.popperRef}
         data-baseweb={this.props['data-baseweb'] || 'popover'}
@@ -433,7 +427,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
 
   render() {
     const mountedAndOpen = this.state.isMounted && this.props.isOpen;
-    const rendered = [this.renderAnchor()];
+    const rendered = [this.anchorElement()];
     const renderedContent =
       mountedAndOpen || this.props.renderAll ? this.renderContent() : null;
 
