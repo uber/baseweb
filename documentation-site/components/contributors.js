@@ -39,6 +39,19 @@ function Contributors(props: {contributors: Contributor[]}) {
             marginRight="scale200"
             key={contributor.login}
             title={contributor.login}
+            overrides={{
+              Block: {
+                style: ({$theme}) => ({
+                  ':focus > div > img': {
+                    boxShadow: `0 0 0 3px ${$theme.colors.accent}`,
+                    outline: 'none',
+                  },
+                  ':focus': {
+                    outline: 'none',
+                  },
+                }),
+              },
+            }}
           >
             <Avatar
               name={contributor.login}
@@ -48,11 +61,12 @@ function Contributors(props: {contributors: Contributor[]}) {
               overrides={{
                 Root: {
                   style: ({$theme}) => ({
-                    ...$theme.borders.border300,
-                    borderColor: $theme.colors.mono100,
+                    margin: $theme.sizing.scale100,
+                    transitionProperty: 'all',
+                    transitionDuration: $theme.animation.timing100,
+                    transitionTimingFunction: $theme.animation.easeInOutCurve,
                     ':hover': {
-                      borderColor: $theme.colors.primary,
-                      cursor: 'pointer',
+                      transform: 'scale(1.2)',
                     },
                   }),
                 },

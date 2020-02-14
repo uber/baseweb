@@ -22,7 +22,8 @@ export const Link = styled<{$isFocusVisible: boolean}>(
       transitionTimingFunction: animation.easeOutCurve,
       ':focus': {
         outline: $isFocusVisible ? `3px solid ${colors.accent}` : 'none',
-        outlineOffset: '3px',
+        outlineOffset: '1px',
+        textDecoration: 'none',
       },
       ':visited': {
         color: colors.linkVisited,
