@@ -18,13 +18,31 @@ import {
 import {List as MovableList} from 'react-movable';
 import Grab from '../icon/grab.js';
 import Delete from '../icon/delete.js';
+import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 import type {ListPropsT, SharedStylePropsArgT} from './types.js';
 
-class StatelessList extends React.Component<ListPropsT> {
+class StatelessList extends React.Component<
+  ListPropsT,
+  {isFocusVisible: boolean},
+> {
   static defaultProps: $Shape<ListPropsT> = {
     items: [],
     onChange: () => {},
+  };
+
+  state = {isFocusVisible: false};
+
+  handleFocus = (event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      this.setState({isFocusVisible: true});
+    }
+  };
+
+  handleBlur = (event: SyntheticEvent<>) => {
+    if (this.state.isFocusVisible !== false) {
+      this.setState({isFocusVisible: false});
+    }
   };
 
   render() {
@@ -52,7 +70,13 @@ class StatelessList extends React.Component<ListPropsT> {
     const isRemovable = this.props.removable || false;
     const isRemovableByMove = this.props.removableByMove || false;
     return (
-      <Root $isRemovable={isRemovable} data-baseweb="dnd-list" {...rootProps}>
+      <Root
+        $isRemovable={isRemovable}
+        data-baseweb="dnd-list"
+        {...rootProps}
+        onFocus={forkFocus(rootProps, this.handleFocus)}
+        onBlur={forkBlur(rootProps, this.handleBlur)}
+      >
         <MovableList
           removableByMove={isRemovableByMove}
           values={items}
@@ -87,6 +111,7 @@ class StatelessList extends React.Component<ListPropsT> {
             return (
               <Item
                 {...sharedProps}
+                $isFocusVisible={this.state.isFocusVisible}
                 ref={props.ref}
                 key={props.key}
                 tabIndex={props.tabIndex}

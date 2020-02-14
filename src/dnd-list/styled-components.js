@@ -29,7 +29,7 @@ List.displayName = 'StyledList';
 
 export const Item = styled<SharedStylePropsArgT>(
   'li',
-  ({$isDragged, $isSelected, $theme}) => {
+  ({$isDragged, $isSelected, $theme, $isFocusVisible}) => {
     return ({
       ':hover':
         !$isDragged && !$isSelected
@@ -48,6 +48,13 @@ export const Item = styled<SharedStylePropsArgT>(
               borderRightColor: $theme.colors.primary,
             }
           : {},
+      ':focus': {
+        outline:
+          $isFocusVisible && !$isDragged && !$isSelected
+            ? `3px solid ${$theme.colors.accent}`
+            : 'none',
+        outlineOffset: '-3px',
+      },
       paddingTop: $theme.sizing.scale600,
       paddingBottom: $theme.sizing.scale600,
       paddingLeft: $theme.sizing.scale600,

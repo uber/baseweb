@@ -78,6 +78,7 @@ export type StatefulComponentContainerPropsT = $Diff<
 export type SharedStylePropsArgT = {
   $isDragged: boolean,
   $isSelected: boolean,
+  $isFocusVisible: boolean,
   $isRemovable: boolean,
   $isRemovableByMove: boolean,
   $isOutOfBounds: boolean,
