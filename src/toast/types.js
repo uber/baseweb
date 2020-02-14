@@ -21,6 +21,7 @@ export type SharedStylePropsArgT = {
   $closeable: boolean,
   $isRendered: boolean,
   $isVisible: boolean,
+  $isFocusVisible: boolean,
 };
 
 export type ToasterSharedStylePropsArgT = {
@@ -42,6 +43,7 @@ export type ChildrenT = React.ChildrenArray<ChildT>;
 export type ToastPrivateStateT = {
   isVisible: boolean,
   isRendered: boolean,
+  isFocusVisible: boolean,
 };
 
 export type ToastPropsT = {

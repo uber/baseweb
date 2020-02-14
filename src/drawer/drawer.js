@@ -30,6 +30,7 @@ import type {
   CloseSourceT,
   ElementRefT,
 } from './types.js';
+import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
   static defaultProps: $Shape<DrawerPropsT> = {
@@ -53,6 +54,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
   state = {
     isVisible: false,
     mounted: false,
+    isFocusVisible: false,
   };
 
   componentDidMount() {
@@ -79,6 +81,18 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
       }
     }
   }
+
+  handleFocus = (event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      this.setState({isFocusVisible: true});
+    }
+  };
+
+  handleBlur = (event: SyntheticEvent<>) => {
+    if (this.state.isFocusVisible !== false) {
+      this.setState({isFocusVisible: false});
+    }
+  };
 
   addDomEvents() {
     if (__BROWSER__) {
@@ -217,6 +231,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
       $size: size,
       $closeable: !!closeable,
       $anchor: anchor,
+      $isFocusVisible: this.state.isFocusVisible,
     };
   }
 
@@ -293,6 +308,8 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
                       onClick={this.onCloseClick}
                       {...sharedProps}
                       {...closeProps}
+                      onFocus={forkFocus(closeProps, this.handleFocus)}
+                      onBlur={forkBlur(closeProps, this.handleBlur)}
                     >
                       <CloseIcon />
                     </Close>

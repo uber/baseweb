@@ -30,6 +30,7 @@ export const Header = styled<SharedStylePropsArgT>('div', props => {
   const {
     $disabled,
     $expanded,
+    $isFocusVisible,
     $theme: {colors, sizing, typography},
   } = props;
   return {
@@ -48,6 +49,8 @@ export const Header = styled<SharedStylePropsArgT>('div', props => {
     borderBottom: `1px solid ${$expanded ? colors.mono500 : colors.mono400}`,
     display: 'flex',
     alignItems: 'center',
+    outline: $isFocusVisible ? `3px solid ${colors.accent}` : 'none',
+    outlineOffset: '-3px',
     justifyContent: 'space-between',
     ':hover': {
       color: colors.primary,

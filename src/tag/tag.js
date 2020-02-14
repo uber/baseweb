@@ -16,8 +16,9 @@ import {
 import {KIND, VARIANT} from './constants.js';
 import {getTextFromChildren} from './utils.js';
 import type {PropsT, SharedPropsArgT} from './types.js';
+import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
-class Tag extends React.Component<PropsT, {}> {
+class Tag extends React.Component<PropsT, {isFocusVisible: boolean}> {
   static defaultProps = {
     closeable: true,
     disabled: false,
@@ -30,6 +31,20 @@ class Tag extends React.Component<PropsT, {}> {
     overrides: {},
     kind: KIND.primary,
     variant: VARIANT.light,
+  };
+
+  state = {isFocusVisible: false};
+
+  handleFocus = (event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      this.setState({isFocusVisible: true});
+    }
+  };
+
+  handleBlur = (event: SyntheticEvent<>) => {
+    if (this.state.isFocusVisible !== false) {
+      this.setState({isFocusVisible: false});
+    }
   };
 
   handleKeyDown = (event: KeyboardEvent) => {
@@ -105,6 +120,7 @@ class Tag extends React.Component<PropsT, {}> {
       $isHovered: isHovered,
       $kind: kind,
       $variant: variant,
+      $isFocusVisible: this.state.isFocusVisible,
     };
     const titleText = title || getTextFromChildren(children);
     return (
@@ -116,6 +132,8 @@ class Tag extends React.Component<PropsT, {}> {
         {...rootHandlers}
         {...sharedProps}
         {...rootProps}
+        onFocus={forkFocus(rootProps, this.handleFocus)}
+        onBlur={forkBlur(rootProps, this.handleBlur)}
       >
         <Text title={titleText} {...textProps}>
           {children}

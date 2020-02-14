@@ -15,6 +15,7 @@ import ChevronUp from '../icon/chevron-up.js';
 
 import {SORT_DIRECTIONS} from './constants.js';
 import type {SortDirectionsT} from './types.js';
+import {isFocusVisible} from '../utils/focusVisible.js';
 
 type HeaderCellPropsT = {|
   index: number,
@@ -36,6 +37,19 @@ type HeaderCellPropsT = {|
 const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
   (props, ref) => {
     const [css, theme] = useStyletron();
+    const [focusVisible, setFocusVisible] = React.useState(false);
+
+    const handleFocus = (event: SyntheticEvent<>) => {
+      if (isFocusVisible(event)) {
+        setFocusVisible(true);
+      }
+    };
+
+    const handleBlur = (event: SyntheticEvent<>) => {
+      if (focusVisible !== false) {
+        setFocusVisible(false);
+      }
+    };
 
     const backgroundColor = props.isHovered
       ? theme.colors.backgroundSecondary
@@ -60,6 +74,8 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
           paddingRight: theme.sizing.scale500,
           flexWrap: 'nowrap',
           whiteSpace: 'nowrap',
+          outline: focusVisible ? `3px solid ${theme.colors.accent}` : 'none',
+          outlineOffset: '-3px',
         })}
         onMouseEnter={props.onMouseEnter}
         onMouseLeave={props.onMouseLeave}
@@ -69,6 +85,8 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
           }
         }}
         onClick={() => props.onSort(props.index)}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
       >
         {props.isSelectable && (
           <Checkbox

@@ -24,6 +24,7 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
     $disabled,
     $active,
     $orientation,
+    $isFocusVisible,
     $theme: {colors, sizing, typography},
   } = props;
   let style = {
@@ -37,10 +38,12 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
     paddingRight: sizing.scale300,
     marginLeft: sizing.scale200,
     marginRight: sizing.scale200,
+    outline: $isFocusVisible ? `3px solid ${colors.accent}` : 'none',
+    outlineOffset: '-3px',
     borderBottom:
-      $orientation === ORIENTATION.horizontal && $active
+      $orientation === ORIENTATION.horizontal && $active && !$isFocusVisible
         ? `2px solid ${colors.primary}`
-        : 'none',
+        : '2px solid transparent',
     display: 'inline-block',
   };
   if (!$disabled) {

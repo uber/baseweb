@@ -23,6 +23,7 @@ import type {
   SharedStylePropsArgT,
 } from './types.js';
 import type {OverridesT} from '../icon/index.js';
+import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   static defaultProps: ToastPropsShapeT = {
@@ -47,6 +48,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   state = {
     isVisible: false,
     isRendered: true,
+    isFocusVisible: false,
   };
 
   componentDidMount() {
@@ -66,6 +68,18 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   componentWillUnmount() {
     this.clearTimeout();
   }
+
+  handleFocus = (event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      this.setState({isFocusVisible: true});
+    }
+  };
+
+  handleBlur = (event: SyntheticEvent<>) => {
+    if (this.state.isFocusVisible !== false) {
+      this.setState({isFocusVisible: false});
+    }
+  };
 
   startTimeout() {
     if (this.props.autoHideDuration) {
@@ -183,7 +197,6 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
           <Body
             role="alert"
             data-baseweb={this.props['data-baseweb'] || 'toast'}
-            tabIndex={-1}
             {...sharedProps}
             {...bodyProps}
             // the properties below have to go after overrides
@@ -201,6 +214,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
               <DeleteIcon
                 role="button"
                 tabIndex={0}
+                $isFocusVisible={this.state.isFocusVisible}
                 onClick={this.dismiss}
                 onKeyPress={event => {
                   if (event.key === 'Enter') {
@@ -210,6 +224,8 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
                 title={locale.toast.close}
                 {...sharedProps}
                 {...closeIconProps}
+                onFocus={forkFocus(closeIconProps, this.handleFocus)}
+                onBlur={forkBlur(closeIconProps, this.handleBlur)}
                 overrides={closeIconOverrides}
               />
             ) : null}
