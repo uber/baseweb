@@ -108,6 +108,7 @@ export default class Accordion extends React.Component<
     const {disabled} = this.props;
     return {
       $disabled: disabled,
+      $isFocusVisible: false,
     };
   }
 

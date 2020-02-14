@@ -231,6 +231,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
       $size: size,
       $closeable: !!closeable,
       $anchor: anchor,
+      $isFocusVisible: this.state.isFocusVisible,
     };
   }
 
@@ -303,7 +304,6 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
                   </DrawerBody>
                   {closeable ? (
                     <Close
-                      $isFocusVisible={this.state.isFocusVisible}
                       aria-label={locale.drawer.close}
                       onClick={this.onCloseClick}
                       {...sharedProps}

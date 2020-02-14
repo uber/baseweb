@@ -69,6 +69,7 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
     <ThemeContext.Consumer>
       {theme => (
         <HeaderNavigation
+          $as={'header'}
           overrides={{
             Root: {
               style: ({$theme}) => ({

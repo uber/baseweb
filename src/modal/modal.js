@@ -253,6 +253,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       $role: role,
       $closeable: !!closeable,
       $unstable_ModalBackdropScroll: unstable_ModalBackdropScroll,
+      $isFocusVisible: this.state.isFocusVisible,
     };
   }
 
@@ -373,7 +374,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
                   {children}
                   {closeable ? (
                     <Close
-                      $isFocusVisible={this.state.isFocusVisible}
                       aria-label={locale.modal.close}
                       onClick={this.onCloseClick}
                       {...sharedProps}

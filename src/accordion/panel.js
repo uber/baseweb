@@ -73,6 +73,7 @@ class Panel extends React.Component<PanelPropsT, {isFocusVisible: boolean}> {
     return {
       $disabled: disabled,
       $expanded: expanded,
+      $isFocusVisible: this.state.isFocusVisible,
     };
   }
 
@@ -135,7 +136,6 @@ class Panel extends React.Component<PanelPropsT, {isFocusVisible: boolean}> {
           <PanelContainer {...sharedProps} {...panelContainerProps}>
             <Header
               tabIndex={0}
-              $isFocusVisible={this.state.isFocusVisible}
               role="button"
               aria-expanded={expanded}
               aria-disabled={disabled || null}

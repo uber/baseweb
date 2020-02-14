@@ -99,7 +99,7 @@ DragHandle.displayName = 'StyledDragHandle';
 
 export const CloseHandle = styled<SharedStylePropsArgT>(
   'button',
-  ({$theme}) => ({
+  ({$theme, $isFocusVisible}) => ({
     border: 'none',
     paddingTop: 0,
     paddingBottom: 0,
@@ -113,6 +113,9 @@ export const CloseHandle = styled<SharedStylePropsArgT>(
     width: $theme.sizing.scale800,
     display: 'flex',
     alignItems: 'center',
+    ':focus': {
+      outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+    },
   }),
 );
 CloseHandle.displayName = 'StyledCloseHandle';
