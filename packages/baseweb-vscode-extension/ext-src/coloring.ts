@@ -1,6 +1,26 @@
 import * as vscode from 'vscode';
 import {LightTheme, DarkTheme} from 'baseui';
 
+function getContrastYIQ(color: string) {
+  let hexcolor = color;
+  if (hexcolor.length < 7) {
+    hexcolor = hexcolor.replace(
+      /#([0-9a-fA-F])([0-9a-fA-F])([0-9a-fA-F])/g,
+      '#$1$1$2$2$3$3',
+    );
+  }
+  const r = parseInt(hexcolor.substr(1, 2), 16);
+  const g = parseInt(hexcolor.substr(3, 2), 16);
+  const b = parseInt(hexcolor.substr(5, 2), 16);
+  const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+  return yiq >= 128 ? '#000000' : '#FFFFFF';
+}
+
+function isAcceptedColorValue(color: string | undefined) {
+  if (!color) return false;
+  return color.startsWith('#') || color.startsWith('rgb');
+}
+
 export default (context: vscode.ExtensionContext) => {
   let timeout: NodeJS.Timer | undefined = undefined;
   let activeEditor = vscode.window.activeTextEditor;
@@ -20,6 +40,9 @@ export default (context: vscode.ExtensionContext) => {
       borderColor: colorVal,
       backgroundColor:
         coloringStyle === 'background' ? colorVal : 'transparent',
+      ...(coloringStyle === 'background' && colorVal.startsWith('#')
+        ? {color: getContrastYIQ(colorVal)}
+        : {}),
     });
     return decorationType;
   }
@@ -112,7 +135,7 @@ export default (context: vscode.ExtensionContext) => {
       // @ts-ignore
       const themeColorVal: string | undefined = theme.colors[match[2].slice(7)];
       // Do not decorate if the found color key is not present in the theme object
-      if (!themeColorVal) {
+      if (!themeColorVal || !isAcceptedColorValue(themeColorVal)) {
         continue;
       }
       // It should never get to here if `!themeColorVal`
