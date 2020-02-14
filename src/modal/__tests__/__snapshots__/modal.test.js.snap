@@ -220,6 +220,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
             $size="default"
             $unstable_ModalBackdropScroll={false}
             data-baseweb="modal"
+            onKeyDown={[Function]}
           >
             <MockStyledComponent
               $animate={true}
@@ -294,6 +295,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                   </div>,
                 }
               }
+              onKeyDown={[Function]}
             >
               <Portal>
                 <ForwardRef

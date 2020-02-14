@@ -122,6 +122,7 @@ exports[`Select component renders component in search mode and false for multipl
         data-baseweb="select"
         key="popover-anchor"
         onClick={[Function]}
+        onKeyDown={[Function]}
       >
         <MockStyledComponent
           $clearable={true}
@@ -215,6 +216,7 @@ exports[`Select component renders component in search mode and false for multipl
             }
           }
           onClick={[Function]}
+          onKeyDown={[Function]}
         >
           <div
             aria-controls={null}
@@ -222,6 +224,7 @@ exports[`Select component renders component in search mode and false for multipl
             aria-haspopup="true"
             data-baseweb="select"
             onClick={[Function]}
+            onKeyDown={[Function]}
             styled-component="true"
             test-style={
               Object {
@@ -955,6 +958,7 @@ exports[`Select component renders component in search mode and true for multiple
         data-baseweb="select"
         key="popover-anchor"
         onClick={[Function]}
+        onKeyDown={[Function]}
       >
         <MockStyledComponent
           $clearable={true}
@@ -1048,6 +1052,7 @@ exports[`Select component renders component in search mode and true for multiple
             }
           }
           onClick={[Function]}
+          onKeyDown={[Function]}
         >
           <div
             aria-controls={null}
@@ -1055,6 +1060,7 @@ exports[`Select component renders component in search mode and true for multiple
             aria-haspopup="true"
             data-baseweb="select"
             onClick={[Function]}
+            onKeyDown={[Function]}
             styled-component="true"
             test-style={
               Object {
@@ -1788,6 +1794,7 @@ exports[`Select component renders component in select mode and false for multipl
         data-baseweb="select"
         key="popover-anchor"
         onClick={[Function]}
+        onKeyDown={[Function]}
       >
         <MockStyledComponent
           $clearable={true}
@@ -1875,6 +1882,7 @@ exports[`Select component renders component in select mode and false for multipl
             }
           }
           onClick={[Function]}
+          onKeyDown={[Function]}
         >
           <div
             aria-controls={null}
@@ -1882,6 +1890,7 @@ exports[`Select component renders component in select mode and false for multipl
             aria-haspopup="true"
             data-baseweb="select"
             onClick={[Function]}
+            onKeyDown={[Function]}
             styled-component="true"
             test-style={
               Object {
@@ -2638,6 +2647,7 @@ exports[`Select component renders component in select mode and true for multiple
         data-baseweb="select"
         key="popover-anchor"
         onClick={[Function]}
+        onKeyDown={[Function]}
       >
         <MockStyledComponent
           $clearable={true}
@@ -2725,6 +2735,7 @@ exports[`Select component renders component in select mode and true for multiple
             }
           }
           onClick={[Function]}
+          onKeyDown={[Function]}
         >
           <div
             aria-controls={null}
@@ -2732,6 +2743,7 @@ exports[`Select component renders component in select mode and true for multiple
             aria-haspopup="true"
             data-baseweb="select"
             onClick={[Function]}
+            onKeyDown={[Function]}
             styled-component="true"
             test-style={
               Object {

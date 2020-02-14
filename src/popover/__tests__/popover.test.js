@@ -263,16 +263,12 @@ describe('Popover', () => {
       </Popover>,
     );
 
-    const calls = document.addEventListener.mock.calls;
+    const documentcalls = document.addEventListener.mock.calls;
     expect(document.addEventListener).toBeCalled();
-    expect(calls[0][0]).toBe('mousedown');
-    expect(calls[1][0]).toBe('keyup');
+    expect(documentcalls[0][0]).toBe('mousedown');
 
-    calls[1][1]({
-      key: 'Escape',
-      code: 27,
-      keyCode: 27,
-    });
+    const el = wrapper.find('button');
+    el.simulate('keydown', {key: 'Escape'});
 
     expect(onEsc).toHaveBeenCalled();
   });

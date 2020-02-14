@@ -28,6 +28,7 @@ exports[`Popover component as anchor 1`] = `
     aria-haspopup="true"
     key="popover-anchor"
     onClick={[Function]}
+    onKeyDown={[Function]}
   >
     <MockStyledComponent
       aria-controls="bui-mock-id"
@@ -45,12 +46,14 @@ exports[`Popover component as anchor 1`] = `
         }
       }
       onClick={[Function]}
+      onKeyDown={[Function]}
     >
       <span
         aria-controls="bui-mock-id"
         aria-expanded="true"
         aria-haspopup="true"
         onClick={[Function]}
+        onKeyDown={[Function]}
         styled-component="true"
         test-style={Object {}}
       />
@@ -121,6 +124,7 @@ exports[`Popover component as anchor 1`] = `
         data-baseweb="popover"
         id="bui-mock-id"
         key="popover-body"
+        onKeyDown={[Function]}
       >
         <MockStyledComponent
           $arrowOffset={
@@ -160,10 +164,12 @@ exports[`Popover component as anchor 1`] = `
             }
           }
           id="bui-mock-id"
+          onKeyDown={[Function]}
         >
           <div
             data-baseweb="popover"
             id="bui-mock-id"
+            onKeyDown={[Function]}
             styled-component="true"
             test-style={
               Object {
@@ -328,6 +334,7 @@ exports[`Popover component overrides: custom popover body has correct props 1`] 
   data-baseweb="popover"
   id="bui-mock-id"
   key="popover-body"
+  onKeyDown={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
@@ -371,12 +378,14 @@ exports[`Popover component overrides: custom popover body has correct props 1`] 
       }
     }
     id="bui-mock-id"
+    onKeyDown={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
     <div
       data-baseweb="popover"
       id="bui-mock-id"
+      onKeyDown={[Function]}
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
       styled-component="true"

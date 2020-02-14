@@ -185,6 +185,7 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
             $isVisible={false}
             $size="default"
             data-baseweb="drawer"
+            onKeyDown={[Function]}
           >
             <MockStyledComponent
               $anchor="right"
@@ -241,6 +242,7 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
                   </div>,
                 }
               }
+              onKeyDown={[Function]}
             >
               <Portal>
                 <ForwardRef
