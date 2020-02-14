@@ -151,7 +151,7 @@ export const Dialog = styled<SharedStylePropsArgT>('div', props => {
 });
 
 export const Close = styled<SharedStylePropsArgT>('button', props => {
-  const {$theme} = props;
+  const {$theme, $isFocusVisible} = props;
   return {
     // Reset button styles
     background: 'transparent',
@@ -172,8 +172,7 @@ export const Close = styled<SharedStylePropsArgT>('button', props => {
       color: $theme.colors.modalCloseColorHover,
     },
     ':focus': {
-      color: $theme.colors.modalCloseColorFocus,
-      borderColor: $theme.colors.primary,
+      outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
     },
 
     // Positioning

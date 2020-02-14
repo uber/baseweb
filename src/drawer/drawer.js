@@ -41,7 +41,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     size: SIZE.default,
     anchor: ANCHOR.right,
     showBackdrop: true,
-    autoFocus: false,
+    autoFocus: true,
     renderAll: false,
   };
 
