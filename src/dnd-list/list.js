@@ -104,6 +104,7 @@ class StatelessList extends React.Component<
               $isRemovableByMove: isRemovableByMove,
               $isDragged: isDragged,
               $isSelected: isSelected,
+              $isFocusVisible: this.state.isFocusVisible,
               $isOutOfBounds: isOutOfBounds,
               $value: value,
               $index: index,
@@ -111,7 +112,6 @@ class StatelessList extends React.Component<
             return (
               <Item
                 {...sharedProps}
-                $isFocusVisible={this.state.isFocusVisible}
                 ref={props.ref}
                 key={props.key}
                 tabIndex={props.tabIndex}
