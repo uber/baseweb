@@ -279,15 +279,21 @@ export const Action = styled<SharedPropsArgT>('span', props => {
     paddingLeft: '8px',
     paddingRight: '8px',
     transitionProperty: 'all',
-    transitionDuration: $theme.animation.timing100,
+    transitionDuration: 'background-color',
     transitionTimingFunction: $theme.animation.easeOutCurve,
     ':hover': {
       backgroundColor: backgroundColor(true, false),
       color: fontColor(props, true, true),
     },
     ':focus': {
-      backgroundColor: backgroundColor(true, false),
-      color: fontColor(props, true, true),
+      boxShadow: props.$isFocusVisible
+        ? `0 0 0 3px ${
+            // when tag has the same background as focus-ring, we need to pick a different color
+            props.$kind === KIND.accent
+              ? $theme.colors.primaryA
+              : $theme.colors.accent
+          }`
+        : 'none',
     },
   }: {});
 });
@@ -653,9 +659,13 @@ export const Root = styled<SharedPropsArgT>('span', props => {
       $disabled || !$clickable
         ? {}
         : {
-            backgroundColor: backgroundColor(true, true),
-            borderColor: borderColor(true, true),
-            color: fontColor(props, true, false),
+            boxShadow: props.$isFocusVisible
+              ? `0 0 0 3px ${
+                  props.$kind === KIND.accent
+                    ? $theme.colors.primaryA
+                    : $theme.colors.accent
+                }`
+              : 'none',
           },
   }: {});
 });

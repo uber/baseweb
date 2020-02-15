@@ -15,14 +15,31 @@ import {
   StyledSubNavContainer,
 } from './styled-components.js';
 import type {NavPropsT, Item} from './types.js';
+import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
-export default class SideNav extends React.Component<NavPropsT> {
+export default class SideNav extends React.Component<
+  NavPropsT,
+  {isFocusVisible: boolean},
+> {
   static defaultProps = {
     activeItemId: '/',
     activePredicate: null,
     items: [],
     overrides: {},
     mapItem: null,
+  };
+  state = {isFocusVisible: false};
+
+  handleFocus = (event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      this.setState({isFocusVisible: true});
+    }
+  };
+
+  handleBlur = (event: SyntheticEvent<>) => {
+    if (this.state.isFocusVisible !== false) {
+      this.setState({isFocusVisible: false});
+    }
   };
 
   activePredicate = (item: Item) => item.itemId === this.props.activeItemId;
@@ -75,9 +92,12 @@ export default class SideNav extends React.Component<NavPropsT> {
           }`}
           {...sharedProps}
           {...itemContainerProps}
+          onFocus={forkFocus(itemContainerProps, this.handleFocus)}
+          onBlur={forkBlur(itemContainerProps, this.handleBlur)}
         >
           <>
             <NavItem
+              $isFocusVisible={this.state.isFocusVisible}
               item={item}
               itemMemoizationComparator={this.props.itemMemoizationComparator}
               onSelect={onChange}

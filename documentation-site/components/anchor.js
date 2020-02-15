@@ -10,9 +10,13 @@ import * as React from 'react';
 
 import {themedStyled} from '../pages/_app';
 
-const Wrapper = themedStyled('a', ({$isVisible}) => ({
+const Wrapper = themedStyled('a', ({$isVisible, $theme}) => ({
   visibility: $isVisible ? 'visible' : 'hidden',
-  color: '#000',
+  color: $theme.colors.primary,
+  ':focus': {
+    outline: `3px solid ${$theme.colors.accent}`,
+    outlineOffset: '1px',
+  },
 }));
 
 const elementToSize = element => {

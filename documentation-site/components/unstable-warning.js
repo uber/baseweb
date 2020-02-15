@@ -8,6 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import {Notification, KIND} from 'baseui/notification';
+import {StyledLink} from 'baseui/link';
+import Link from 'next/link';
 
 export default function UnstableWarning() {
   return (
@@ -20,8 +22,12 @@ export default function UnstableWarning() {
         functionality and API is subject to change in any version release. We
         publish unstable components so that feedback can be presented before
         aligning on a consistent design. Please see baseui's{' '}
-        <a href="/discover-more/versioning-policy">versioning policy</a> for
-        more information.
+        <Link href="/discover-more/versioning-policy">
+          <StyledLink href="/discover-more/versioning-policy">
+            versioning policy
+          </StyledLink>
+        </Link>{' '}
+        for more information.
       </>
     </Notification>
   );

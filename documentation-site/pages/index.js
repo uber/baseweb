@@ -92,9 +92,13 @@ const Index = (props: {
       href={BlogPosts[0].path}
       overrides={{
         Block: {
-          style: {
+          style: ({$theme}) => ({
             textDecoration: 'none',
-          },
+            ':focus': {
+              outline: `3px solid ${$theme.colors.accent}`,
+              outlineOffset: '5px',
+            },
+          }),
         },
       }}
     >

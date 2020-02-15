@@ -31,10 +31,22 @@ export const StyledRoot = styled<SharedPropsT>('nav', props => {
 
 export const StyledNavItemContainer = styled('li', {});
 
-export const StyledNavLink = styled('a', {
-  color: 'inherit',
-  textDecoration: 'none',
-});
+export const StyledNavLink = styled<{$isFocusVisible: boolean}>(
+  'a',
+  ({$theme, $isFocusVisible}) => ({
+    color: 'inherit',
+    outline: 'none',
+    textDecoration: 'none',
+    ':focus > div': {
+      outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+      outlineOffset: '-3px',
+      borderLeftColor: 'transparent',
+      borderTopColor: 'transparent',
+      borderRightColor: 'transparent',
+      borderBottomColor: 'transparent',
+    },
+  }),
+);
 
 export const StyledNavItemElement = styled<SharedPropsT>('div', props => {
   const {
@@ -62,7 +74,7 @@ export const StyledNavItemElement = styled<SharedPropsT>('div', props => {
       : 'borderLeftColor']: $active ? colors.primary : 'transparent',
     color: $active ? colors.primary : null,
     cursor: $selectable ? 'pointer' : 'default',
-    // outline: 'none',
+
     paddingTop: sizing.scale500,
     paddingBottom: sizing.scale500,
     [$theme.direction === 'rtl'

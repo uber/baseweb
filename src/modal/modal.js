@@ -29,6 +29,7 @@ import type {
   CloseSourceT,
   ElementRefT,
 } from './types.js';
+import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 class Modal extends React.Component<ModalPropsT, ModalStateT> {
   static defaultProps: $Shape<ModalPropsT> = {
@@ -53,6 +54,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   state = {
     isVisible: false,
     mounted: false,
+    isFocusVisible: false,
   };
 
   componentDidMount() {
@@ -101,6 +103,18 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       }
     }
   }
+
+  handleFocus = (event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      this.setState({isFocusVisible: true});
+    }
+  };
+
+  handleBlur = (event: SyntheticEvent<>) => {
+    if (this.state.isFocusVisible !== false) {
+      this.setState({isFocusVisible: false});
+    }
+  };
 
   addDomEvents() {
     if (__BROWSER__) {
@@ -239,6 +253,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       $role: role,
       $closeable: !!closeable,
       $unstable_ModalBackdropScroll: unstable_ModalBackdropScroll,
+      $isFocusVisible: this.state.isFocusVisible,
     };
   }
 
@@ -363,6 +378,8 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
                       onClick={this.onCloseClick}
                       {...sharedProps}
                       {...closeProps}
+                      onFocus={forkFocus(closeProps, this.handleFocus)}
+                      onBlur={forkBlur(closeProps, this.handleBlur)}
                     >
                       <CloseIcon />
                     </Close>

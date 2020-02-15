@@ -53,7 +53,6 @@ if [ "$this_commit" = "$latest_tagged_commit" ]; then
 
   # publish the vscode extension
   cd $BASEDIR
-  yarn build:code-snippets
   cd packages/baseweb-vscode-extension
   node "$BASEDIR/scripts/sync-package-versions.js" package.json
   yarn

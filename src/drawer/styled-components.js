@@ -170,7 +170,7 @@ export const StyledDrawerBody = styled<SharedStylePropsArgT>('div', props => {
 });
 
 export const StyledClose = styled<SharedStylePropsArgT>('button', props => {
-  const {$theme} = props;
+  const {$theme, $isFocusVisible} = props;
   return {
     // Reset button styles
     background: 'transparent',
@@ -191,8 +191,7 @@ export const StyledClose = styled<SharedStylePropsArgT>('button', props => {
       fill: $theme.colors.primary600,
     },
     ':focus': {
-      fill: $theme.colors.primary600,
-      borderColor: $theme.colors.primary,
+      outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
     },
 
     // Positioning

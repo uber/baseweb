@@ -21,10 +21,14 @@ export const StyledMaxLabel = styled<{}>('span', ({$theme}) => ({
     .scale600,
 }));
 
-export const StyledDropdownContainer = styled<{}>('div', ({$theme}) => ({
-  position: 'relative',
-  [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: $theme.sizing
-    .scale600,
-  [$theme.direction === 'rtl' ? 'marginLeft' : 'marginRight']: $theme.sizing
-    .scale300,
-}));
+export const StyledDropdownContainer = styled<{$isFocusVisible: boolean}>(
+  'div',
+  ({$theme, $isFocusVisible}) => ({
+    position: 'relative',
+    outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+    [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: $theme.sizing
+      .scale600,
+    [$theme.direction === 'rtl' ? 'marginLeft' : 'marginRight']: $theme.sizing
+      .scale300,
+  }),
+);
