@@ -142,4 +142,5 @@ export type SharedStylePropsArgT = {
   $disabled: ?boolean,
   $expanded?: ?boolean,
   $size?: string | number,
+  $isFocusVisible: boolean,
 };

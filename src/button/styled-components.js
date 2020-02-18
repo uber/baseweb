@@ -11,8 +11,19 @@ import type {SharedStylePropsT} from './types.js';
 
 export const BaseButton = styled<SharedStylePropsT>(
   'button',
-  ({$theme, $size, $kind, $shape, $isLoading, $isSelected, $disabled}) => ({
+  ({
+    $theme,
+    $size,
+    $kind,
+    $shape,
+    $isLoading,
+    $isSelected,
+    $disabled,
+    $isFocusVisible,
+  }) => ({
     display: 'inline-flex',
+    // need to maintain button width while showing loading spinner
+    flexDirection: $isLoading ? 'column' : 'row',
     alignItems: 'center',
     justifyContent: 'center',
     borderLeftWidth: 0,
@@ -23,8 +34,16 @@ export const BaseButton = styled<SharedStylePropsT>(
     borderTopStyle: 'none',
     borderRightStyle: 'none',
     borderBottomStyle: 'none',
+    outline:
+      $isFocusVisible && $shape !== SHAPE.round && $shape !== SHAPE.pill
+        ? `3px solid ${$theme.colors.accent}`
+        : 'none',
+    outlineOffset: '-3px',
+    boxShadow:
+      $isFocusVisible && ($shape === SHAPE.round || $shape === SHAPE.pill)
+        ? `0 0 0 3px ${$theme.colors.accent}`
+        : 'none',
     textDecoration: 'none',
-    outline: 'none',
     WebkitAppearance: 'none',
     transitionProperty: 'background',
     transitionDuration: $theme.animation.timing100,
@@ -60,21 +79,29 @@ export const StartEnhancer = styled<SharedStylePropsT>('div', ({$theme}) => ({
 }));
 
 export const LoadingSpinnerContainer = styled('div', {
-  // To center within parent
-  position: 'absolute',
+  position: 'static',
 });
 
 export const LoadingSpinner = styled<SharedStylePropsT>(
-  'div',
-  ({$theme, $kind, $disabled}) => {
+  'span',
+  ({$theme, $kind, $disabled, $size}) => {
     const {foreground, background} = getLoadingSpinnerColors({
       $theme,
       $kind,
       $disabled,
     });
+
+    let dimension = $theme.sizing.scale400;
+    if ($size === SIZE.mini || $size === SIZE.compact) {
+      dimension = $theme.sizing.scale300;
+    }
+    if ($size === SIZE.large) {
+      dimension = $theme.sizing.scale500;
+    }
+
     return {
-      height: $theme.sizing.scale600,
-      width: $theme.sizing.scale600,
+      height: dimension,
+      width: dimension,
       borderTopLeftRadius: '50%',
       borderTopRightRadius: '50%',
       borderBottomRightRadius: '50%',
@@ -91,6 +118,7 @@ export const LoadingSpinner = styled<SharedStylePropsT>(
       borderLeftColor: background,
       borderBottomColor: background,
       borderRightColor: background,
+      display: 'inline-block',
       animationDuration: $theme.animation.timing700,
       animationTimingFunction: 'linear',
       animationIterationCount: 'infinite',
@@ -248,11 +276,6 @@ function getKindStyles({$theme, $isLoading, $isSelected, $kind, $disabled}) {
             ? $theme.colors.buttonPrimaryActive
             : $theme.colors.buttonPrimaryHover,
         },
-        ':focus': {
-          backgroundColor: $isLoading
-            ? $theme.colors.buttonPrimaryActive
-            : $theme.colors.buttonPrimaryHover,
-        },
         ':active': {
           backgroundColor: $theme.colors.buttonPrimaryActive,
         },
@@ -268,11 +291,6 @@ function getKindStyles({$theme, $isLoading, $isSelected, $kind, $disabled}) {
         color: $theme.colors.buttonSecondaryText,
         backgroundColor: $theme.colors.buttonSecondaryFill,
         ':hover': {
-          backgroundColor: $isLoading
-            ? $theme.colors.buttonSecondaryActive
-            : $theme.colors.buttonSecondaryHover,
-        },
-        ':focus': {
           backgroundColor: $isLoading
             ? $theme.colors.buttonSecondaryActive
             : $theme.colors.buttonSecondaryHover,
@@ -296,11 +314,6 @@ function getKindStyles({$theme, $isLoading, $isSelected, $kind, $disabled}) {
             ? $theme.colors.buttonTertiaryActive
             : $theme.colors.buttonTertiaryHover,
         },
-        ':focus': {
-          backgroundColor: $isLoading
-            ? $theme.colors.buttonTertiaryActive
-            : $theme.colors.buttonTertiaryHover,
-        },
         ':active': {
           backgroundColor: $theme.colors.buttonTertiaryActive,
         },
@@ -316,11 +329,6 @@ function getKindStyles({$theme, $isLoading, $isSelected, $kind, $disabled}) {
         color: $theme.colors.buttonMinimalText,
         backgroundColor: $theme.colors.buttonMinimalFill,
         ':hover': {
-          backgroundColor: $isLoading
-            ? $theme.colors.buttonMinimalActive
-            : $theme.colors.buttonMinimalHover,
-        },
-        ':focus': {
           backgroundColor: $isLoading
             ? $theme.colors.buttonMinimalActive
             : $theme.colors.buttonMinimalHover,

@@ -442,7 +442,9 @@ const NumericalCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
         className={css({
           display: 'flex',
           justifyContent: 'flex-end',
-          color: props.highlight(props.value) ? theme.colors.negative : null,
+          color: props.highlight(props.value)
+            ? theme.colors.contentNegative
+            : null,
           fontFamily: `"Lucida Console", Monaco, monospace`,
           width: '100%',
         })}

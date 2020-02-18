@@ -15,7 +15,7 @@
   },
   "scripts": {
     "build": "npm run build:code-snippets && npm run build:copy-baseui && npm run build-theme && npm run compile",
-    "build:copy-baseui": "cp -r ../../dist/es src/baseui",
+    "build:copy-baseui": "rm -rf src/baseui && cp -r ../../dist/es src/baseui",
     "build:code-snippets": "ts-node -r tsconfig-paths/register --project ./snippets/tsconfig.json ./snippets/build.ts",
     "build-theme": "./scripts/build-non-split.js",
     "deploy": "vsce publish --yarn",
@@ -25,6 +25,9 @@
     "test": "node ./build/test/runTest.js"
   },
   "icon": "images/icon.png",
+  "dependencies": {
+    "baseui": "^9.51.0"
+  },
   "devDependencies": {
     "@types/glob": "^7.1.1",
     "@types/mocha": "^5.2.7",
@@ -47,57 +50,44 @@
     "Snippets"
   ],
   "activationEvents": [
-    "onCommand:extension.baseweb.theme",
-    "onCommand:extension.baseweb.docs.select",
-    "onCommand:extension.baseweb.docs.input",
-    "onCommand:extension.baseweb.docs.button",
-    "onCommand:extension.baseweb.docs.icon",
-    "onCommand:extension.baseweb.docs.popover",
-    "onCommand:extension.baseweb.docs.card",
-    "onCommand:extension.baseweb.docs.button-group",
-    "onCommand:extension.baseweb.docs.modal",
-    "onCommand:extension.baseweb.docs.menu",
-    "onCommand:extension.baseweb.docs.checkbox",
-    "onCommand:extension.baseweb.docs.tooltip",
-    "onCommand:extension.baseweb.docs.spinner",
-    "onCommand:extension.baseweb.docs.pagination",
-    "onCommand:extension.baseweb.docs.tag",
-    "onCommand:extension.baseweb.docs.tabs",
-    "onCommand:extension.baseweb.docs.table",
-    "onCommand:extension.baseweb.docs.radio",
-    "onCommand:extension.baseweb.docs.textarea",
-    "onCommand:extension.baseweb.docs.progress-bar",
-    "onCommand:extension.baseweb.docs.slider",
-    "onCommand:extension.baseweb.docs.toast",
-    "onCommand:extension.baseweb.docs.accordion",
-    "onCommand:extension.baseweb.docs.block",
-    "onCommand:extension.baseweb.docs.avatar",
-    "onCommand:extension.baseweb.docs.breadcrumbs",
-    "onCommand:extension.baseweb.docs.header-navigation",
-    "onCommand:extension.baseweb.docs.notification",
-    "onCommand:extension.baseweb.docs.progress-steps",
-    "onCommand:extension.baseweb.docs.rating",
-    "onCommand:extension.baseweb.docs.file-uploader",
-    "onCommand:extension.baseweb.docs.datepicker",
-    "onCommand:extension.baseweb.docs.dnd-list",
-    "onCommand:extension.baseweb.docs.typography",
-    "onCommand:extension.baseweb.docs.side-navigation",
-    "onCommand:extension.baseweb.docs.layer",
-    "onCommand:extension.baseweb.docs.flex-grid",
-    "onCommand:extension.baseweb.docs.heading",
-    "onCommand:extension.baseweb.docs.phone-input",
-    "onCommand:extension.baseweb.docs.payment-card",
-    "onCommand:extension.baseweb.docs.pin-code",
-    "onCommand:extension.baseweb.docs.drawer",
-    "onCommand:extension.baseweb.docs.list",
-    "onCommand:extension.baseweb.docs.tree-view",
-    "onCommand:extension.baseweb.docs.data-table",
-    "onCommand:extension.baseweb.docs.table-semantic",
-    "onCommand:extension.baseweb.docs.table-grid",
-    "onCommand:extension.baseweb.docs.layout-grid"
+    "onLanguage:javascript",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact"
   ],
   "main": "./build/extension.js",
   "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "Base Web plugin configuration",
+      "properties": {
+        "baseweb.theme.coloring.enabled": {
+          "type": "boolean",
+          "default": "true",
+          "description": "Set to false to turn off theme color samples."
+        },
+        "baseweb.theme.coloring.source": {
+          "type": "string",
+          "enum": [
+            "Light",
+            "Dark"
+          ],
+          "default": "Light",
+          "description": "The theme to be used for coloring."
+        },
+        "baseweb.theme.coloring.style": {
+          "type": "string",
+          "enum": [
+            "border",
+            "background",
+            "tooltipOnly",
+            "underline"
+          ],
+          "default": "underline",
+          "description": "Change the color samples display style."
+        }
+      }
+    },
     "snippets": [
       {
         "path": "./snippets/baseweb.code-snippets"

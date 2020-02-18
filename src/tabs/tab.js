@@ -8,10 +8,14 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {getOverrides} from '../helpers/overrides.js';
 import {Tab as StyledTab} from './styled-components.js';
+import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 import type {TabPropsT, SharedStylePropsArgT} from './types.js';
 
-class TabComponent extends React.Component<TabPropsT> {
+class TabComponent extends React.Component<
+  TabPropsT,
+  {isFocusVisible: boolean},
+> {
   static defaultProps = {
     disabled: false,
     expanded: false,
@@ -19,6 +23,20 @@ class TabComponent extends React.Component<TabPropsT> {
     onClick: () => {},
     onKeyDown: () => {},
     title: '',
+  };
+
+  state = {isFocusVisible: false};
+
+  handleFocus = (event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      this.setState({isFocusVisible: true});
+    }
+  };
+
+  handleBlur = (event: SyntheticEvent<>) => {
+    if (this.state.isFocusVisible !== false) {
+      this.setState({isFocusVisible: false});
+    }
   };
 
   onClick = (e: Event) => {
@@ -62,6 +80,7 @@ class TabComponent extends React.Component<TabPropsT> {
 
     return (
       <Tab
+        $isFocusVisible={this.state.isFocusVisible}
         tabIndex={disabled ? -1 : 0}
         role="tab"
         id={id}
@@ -69,6 +88,8 @@ class TabComponent extends React.Component<TabPropsT> {
         aria-disabled={disabled || null}
         {...sharedProps}
         {...tabProps}
+        onFocus={forkFocus(tabProps, this.handleFocus)}
+        onBlur={forkBlur(tabProps, this.handleBlur)}
         onClick={this.onClick}
         onKeyDown={this.onKeyDown}
       >

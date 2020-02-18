@@ -214,6 +214,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
           <ForwardRef
             $animate={true}
             $closeable={true}
+            $isFocusVisible={false}
             $isOpen={true}
             $isVisible={false}
             $role="dialog"
@@ -224,6 +225,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
             <MockStyledComponent
               $animate={true}
               $closeable={true}
+              $isFocusVisible={false}
               $isOpen={true}
               $isVisible={false}
               $role="dialog"
@@ -299,6 +301,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                 <ForwardRef
                   $animate={true}
                   $closeable={true}
+                  $isFocusVisible={false}
                   $isOpen={true}
                   $isVisible={false}
                   $role="dialog"
@@ -309,6 +312,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                   <MockStyledComponent
                     $animate={true}
                     $closeable={true}
+                    $isFocusVisible={false}
                     $isOpen={true}
                     $isVisible={false}
                     $role="dialog"
@@ -323,6 +327,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                 <ForwardRef
                   $animate={true}
                   $closeable={true}
+                  $isFocusVisible={false}
                   $isOpen={true}
                   $isVisible={false}
                   $role="dialog"
@@ -332,6 +337,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                   <MockStyledComponent
                     $animate={true}
                     $closeable={true}
+                    $isFocusVisible={false}
                     $isOpen={true}
                     $isVisible={false}
                     $role="dialog"
@@ -343,6 +349,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                       <ForwardRef
                         $animate={true}
                         $closeable={true}
+                        $isFocusVisible={false}
                         $isOpen={true}
                         $isVisible={false}
                         $role="dialog"
@@ -355,6 +362,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                         <MockStyledComponent
                           $animate={true}
                           $closeable={true}
+                          $isFocusVisible={false}
                           $isOpen={true}
                           $isVisible={false}
                           $role="dialog"
@@ -438,17 +446,21 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                             <ForwardRef
                               $animate={true}
                               $closeable={true}
+                              $isFocusVisible={false}
                               $isOpen={true}
                               $isVisible={false}
                               $role="dialog"
                               $size="default"
                               $unstable_ModalBackdropScroll={false}
                               aria-label="Close"
+                              onBlur={[Function]}
                               onClick={[Function]}
+                              onFocus={[Function]}
                             >
                               <MockStyledComponent
                                 $animate={true}
                                 $closeable={true}
+                                $isFocusVisible={false}
                                 $isOpen={true}
                                 $isVisible={false}
                                 $role="dialog"
@@ -456,7 +468,9 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                                 $unstable_ModalBackdropScroll={false}
                                 aria-label="Close"
                                 forwardedRef={null}
+                                onBlur={[Function]}
                                 onClick={[Function]}
+                                onFocus={[Function]}
                               >
                                 <Portal>
                                   <CloseIcon>

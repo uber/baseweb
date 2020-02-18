@@ -1,5 +1,10 @@
 import * as React from 'react';
-import {StyleObject, StyletronComponent} from 'styletron-react';
+import {
+  StyleObject,
+  StyletronComponent,
+  WithStyleFn as StyletronWithStyleFn,
+  StyledFn as StyletronStyledFn,
+} from 'styletron-react';
 import {Override, Overrides} from './overrides';
 import {Locale} from './locale';
 import {Theme, ThemePrimitives} from './theme';
@@ -62,15 +67,29 @@ export interface ThemeProviderProps {
 }
 export const ThemeProvider: React.FC<ThemeProviderProps>;
 
-export interface WithStyleFn {
-  <C extends StyletronComponent<any>, P extends object, T = Theme>(
+export interface StyledFn<T> extends StyletronStyledFn {
+  <
+    C extends keyof JSX.IntrinsicElements | React.ComponentType<any>,
+    P extends object
+  >(
     component: C,
-    style: (props: P & {$theme: T}) => StyleObject,
+    style: (props: {$theme: T} & P) => StyleObject,
+  ): StyletronComponent<
+    Pick<
+      React.ComponentProps<C>,
+      Exclude<keyof React.ComponentProps<C>, {className: string}>
+    > &
+      P
+  >;
+}
+
+export function createThemedStyled<Theme>(): StyledFn<Theme>;
+
+export interface WithStyleFn<T = Theme> extends StyletronWithStyleFn {
+  <C extends StyletronComponent<any>, P extends object, T1 = T>(
+    component: C,
+    style: (props: P & {$theme: T1}) => StyleObject,
   ): StyletronComponent<React.ComponentProps<C> & P>;
-  <C extends StyletronComponent<any>>(
-    component: C,
-    style: StyleObject,
-  ): StyletronComponent<React.ComponentProps<C>>;
 }
 
 export const withStyle: WithStyleFn;

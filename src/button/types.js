@@ -45,4 +45,5 @@ export type SharedStylePropsT = {
   $size?: $Keys<typeof SIZE>,
   $isLoading?: boolean,
   $disabled?: boolean,
+  $isFocusVisible: boolean,
 };

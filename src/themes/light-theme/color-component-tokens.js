@@ -30,7 +30,7 @@ export default (
   buttonSecondaryText: themePrimitives.primary,
   buttonSecondaryHover: themePrimitives.primary200,
   buttonSecondaryActive: themePrimitives.primary300,
-  buttonSecondarySelectedFill: themePrimitives.primary200,
+  buttonSecondarySelectedFill: themePrimitives.primary300,
   buttonSecondarySelectedText: themePrimitives.primary,
   buttonSecondarySpinnerForeground: themePrimitives.primary700,
   buttonSecondarySpinnerBackground: themePrimitives.primary300,

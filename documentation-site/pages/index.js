@@ -92,9 +92,13 @@ const Index = (props: {
       href={BlogPosts[0].path}
       overrides={{
         Block: {
-          style: {
+          style: ({$theme}) => ({
             textDecoration: 'none',
-          },
+            ':focus': {
+              outline: `3px solid ${$theme.colors.accent}`,
+              outlineOffset: '5px',
+            },
+          }),
         },
       }}
     >
@@ -209,6 +213,7 @@ const Index = (props: {
         '/static/images/extensis-logo.png',
         '/static/images/uptime-logo.png',
         '/static/images/streamlit-logo.png',
+        '/static/images/everbase-logo.png',
       ]}
     />
     <Contributors contributors={props.contributors} />

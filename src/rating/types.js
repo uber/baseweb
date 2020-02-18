@@ -34,6 +34,7 @@ export type EmoticonRatingPropsT = {
 
 export type RatingStateT = {
   previewIndex?: number,
+  isFocusVisible?: boolean,
 };
 
 export type StyledRootPropsT = {
@@ -44,5 +45,6 @@ export type StyledRatingItemPropsT = {
   $theme: ThemeT,
   $isActive: boolean,
   $isSelected: boolean,
+  $isFocusVisible: boolean,
   $index: number,
 };

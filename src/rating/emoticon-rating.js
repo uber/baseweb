@@ -11,7 +11,8 @@ import * as React from 'react';
 import type {EmoticonRatingPropsT, RatingStateT} from './types.js';
 import {StyledRoot, StyledEmoticon} from './styled-components.js';
 import {getOverrides} from '../helpers/overrides.js';
-import {ENTER_KEY_CODE, SPACE_KEY_CODE} from './utils.js';
+import {ARROW_UP, ARROW_DOWN, ARROW_LEFT, ARROW_RIGHT} from './utils.js';
+import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 class EmoticonRating extends React.Component<
   EmoticonRatingPropsT,
@@ -21,7 +22,7 @@ class EmoticonRating extends React.Component<
     overrides: {},
   };
 
-  state = {};
+  state = {isFocusVisible: false, previewIndex: undefined};
 
   selectItem = (value: number) => {
     const {onChange} = this.props;
@@ -34,6 +35,18 @@ class EmoticonRating extends React.Component<
     this.setState({previewIndex});
   };
 
+  handleFocus = (event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      this.setState({isFocusVisible: true});
+    }
+  };
+
+  handleBlur = (event: SyntheticEvent<>) => {
+    if (this.state.isFocusVisible !== false) {
+      this.setState({isFocusVisible: false});
+    }
+  };
+
   renderRatingContents = () => {
     const {overrides = {}, value = -1} = this.props;
     const {previewIndex} = this.state;
@@ -42,15 +55,20 @@ class EmoticonRating extends React.Component<
       overrides.Item,
       StyledEmoticon,
     );
-
     const ratings = [];
-
+    const refs = [{current: null}];
     for (let x = 1; x <= 5; x++) {
+      const isFocusable = x === value || (value < 1 && x === 1);
+      const starRef = React.createRef<HTMLLIElement>();
+      refs.push(starRef);
+
       ratings.push(
         <Emoticon
           key={x}
           role="radio"
-          tabIndex={0}
+          // eslint-disable-next-line flowtype/no-weak-types
+          ref={(starRef: any)}
+          tabIndex={isFocusable ? '0' : '-1'}
           aria-setsize={5}
           aria-checked={x === value}
           aria-posinset={x}
@@ -59,15 +77,26 @@ class EmoticonRating extends React.Component<
             previewIndex !== undefined ? x === previewIndex : x === value
           }
           $isSelected={x === previewIndex}
+          $isFocusVisible={this.state.isFocusVisible && isFocusable}
           onClick={() => this.selectItem(x)}
           onKeyDown={e => {
-            if (e.keyCode === SPACE_KEY_CODE || e.keyCode === ENTER_KEY_CODE) {
-              this.selectItem(x);
+            if (e.keyCode === ARROW_UP || e.keyCode === ARROW_LEFT) {
+              e.preventDefault && e.preventDefault();
+              // 5 value comes from non-configurable number of icons
+              const prevIndex = value - 1 < 1 ? 5 : value - 1;
+              this.selectItem(prevIndex);
+              refs[prevIndex].current && refs[prevIndex].current.focus();
+            }
+            if (e.keyCode === ARROW_DOWN || e.keyCode === ARROW_RIGHT) {
+              e.preventDefault && e.preventDefault();
+              const nextIndex = value + 1 > 5 ? 1 : value + 1;
+              this.selectItem(nextIndex);
+              refs[nextIndex].current && refs[nextIndex].current.focus();
             }
           }}
-          onFocus={() => this.updatePreview(x)}
           onMouseOver={() => this.updatePreview(x)}
-          onBlur={() => this.updatePreview(undefined)}
+          onFocus={forkFocus(emoticonProps, this.handleFocus)}
+          onBlur={forkBlur(emoticonProps, this.handleBlur)}
           {...emoticonProps}
         />,
       );
@@ -83,7 +112,6 @@ class EmoticonRating extends React.Component<
     return (
       <Root
         data-baseweb="emoticon-rating"
-        tabIndex={0}
         role="radiogroup"
         onBlur={() => this.updatePreview(undefined)}
         onMouseLeave={() => this.updatePreview(undefined)}

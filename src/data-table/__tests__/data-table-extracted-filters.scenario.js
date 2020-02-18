@@ -107,7 +107,7 @@ export default function Scenario() {
                   <Filter
                     close={() => {}}
                     data={rows.map(r => r.data[index])}
-                    setFilter={params => onFilterAdd(params, column.title)}
+                    setFilter={params => onFilterAdd(column.title, params)}
                   />
                   <div
                     className={css({

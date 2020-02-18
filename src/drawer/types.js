@@ -74,6 +74,7 @@ export type DrawerPropsWithoutChildrenT = $Diff<
 export type DrawerStateT = {
   isVisible: boolean,
   mounted: boolean,
+  isFocusVisible: boolean,
 };
 
 export type SharedStylePropsArgT = {
@@ -84,4 +85,5 @@ export type SharedStylePropsArgT = {
   $size: SizePropT,
   $closeable: boolean,
   $anchor: AnchorPropT,
+  $isFocusVisible: boolean,
 };

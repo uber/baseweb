@@ -82,8 +82,10 @@ function FileUploader(props: PropsT) {
 
         const getRootPropsArgs: {
           onClick?: (SyntheticEvent<HTMLElement>) => void,
+          tabIndex: string,
         } = {
           ...(props.disableClick ? {onClick: evt => evt.preventDefault()} : {}),
+          tabIndex: '-1',
         };
 
         return (
@@ -120,7 +122,7 @@ function FileUploader(props: PropsT) {
                         onClick={open}
                         overrides={{
                           BaseButton: {
-                            style: {outline: null, fontWeight: 'normal'},
+                            style: {fontWeight: 'normal'},
                           },
                         }}
                         role="button"

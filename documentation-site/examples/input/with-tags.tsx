@@ -60,6 +60,7 @@ export default () => {
   };
   return (
     <Input
+      placeholder={tags.length ? '' : 'Enter A Tag'}
       value={value}
       onChange={e => setValue(e.currentTarget.value)}
       overrides={{

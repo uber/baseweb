@@ -29,12 +29,16 @@ import Bulb from './bulb';
 import {StatefulTooltip} from 'baseui/tooltip';
 import {Button, KIND, SIZE} from 'baseui/button';
 
-const Hamburger = themedStyled<{}>('div', ({$theme}) => ({
+const Hamburger = themedStyled<{}>('a', ({$theme}) => ({
   display: 'block',
   userSelect: 'none',
   height: '32px',
-  marginLeft: $theme.sizing.scale600,
+  marginLeft: $theme.sizing.scale400,
   cursor: 'pointer',
+  ':focus': {
+    outline: `3px solid ${$theme.colors.accent}`,
+    outlineOffset: '1px',
+  },
   [$theme.mediaQuery.medium]: {
     display: 'none',
   },
@@ -65,6 +69,7 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
     <ThemeContext.Consumer>
       {theme => (
         <HeaderNavigation
+          $as={'header'}
           overrides={{
             Root: {
               style: ({$theme}) => ({
@@ -82,12 +87,27 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
             <Block display="flex" alignItems="center">
               <Link href="/">
                 <Block
-                  as="img"
-                  height="40px"
-                  src={theme.name.startsWith('dark') ? LogoWhite : Logo}
-                  width="101px"
-                  overrides={{Block: {style: {cursor: 'pointer'}}}}
-                />
+                  $as="a"
+                  href="#"
+                  overrides={{
+                    Block: {
+                      style: ({$theme}) => ({
+                        ':focus': {
+                          outline: `3px solid ${$theme.colors.accent}`,
+                          outlineOffset: '5px',
+                        },
+                      }),
+                    },
+                  }}
+                >
+                  <Block
+                    as="img"
+                    height="40px"
+                    src={theme.name.startsWith('dark') ? LogoWhite : Logo}
+                    width="101px"
+                    overrides={{Block: {style: {cursor: 'pointer'}}}}
+                  />
+                </Block>
               </Link>
               <Block marginLeft="scale300">
                 <VersionSelector />
@@ -101,7 +121,7 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                       BaseButton: {
                         style: {
                           display: 'none',
-                          '@media screen and (min-width: 820px)': {
+                          '@media screen and (min-width: 928px)': {
                             display: 'inline-block',
                           },
                         },
@@ -147,6 +167,10 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                   Block: {
                     style: ({$theme}) => ({
                       display: 'none',
+                      ':focus': {
+                        outline: `3px solid ${$theme.colors.accent}`,
+                        outlineOffset: '5px',
+                      },
                       height: $theme.sizing.scale800,
                       [$theme.mediaQuery.small]: {
                         display: 'block',
@@ -155,8 +179,8 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                   },
                 }}
                 href="https://join.slack.com/t/baseui/shared_invite/enQtNDI0NTgwMjU0NDUyLWQ0M2RhZWNiMDAwNDA4MDFiOWQyNmViODNkMzFmZDczYzM4MDliNjU3MmZhYWE5YjZhZmJjZWY0MDIxZjdkYzE"
-                marginLeft="scale400"
-                marginRight="scale400"
+                marginLeft="scale600"
+                marginRight="scale300"
                 $style={{textDecoration: 'none'}}
                 target="_blank"
               >
@@ -168,6 +192,10 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                   Block: {
                     style: ({$theme}) => ({
                       display: 'none',
+                      ':focus': {
+                        outline: `3px solid ${$theme.colors.accent}`,
+                        outlineOffset: '5px',
+                      },
                       height: $theme.sizing.scale800,
                       [$theme.mediaQuery.small]: {
                         display: 'block',
@@ -177,22 +205,28 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                 }}
                 href="https://github.com/uber/baseweb"
                 marginLeft="scale300"
+                marginRight="scale300"
                 $style={{textDecoration: 'none'}}
                 target="_blank"
               >
                 <GithubLogo size={24} color={theme.colors.contentPrimary} />
               </Block>
               <Block
-                as="span"
+                as="a"
                 font="font300"
-                marginLeft="scale400"
-                marginRight="scale400"
+                marginLeft="scale300"
+                marginRight="scale300"
                 onClick={toggleDirection}
+                href="#"
                 overrides={{
                   Block: {
                     style: ({$theme}) => ({
                       cursor: 'pointer',
                       display: 'none',
+                      ':focus': {
+                        outline: `3px solid ${$theme.colors.accent}`,
+                        outlineOffset: '5px',
+                      },
                       height: $theme.sizing.scale800,
                       [$theme.mediaQuery.small]: {
                         display: 'block',
@@ -219,6 +253,10 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                   Block: {
                     style: ({$theme}) => ({
                       height: $theme.sizing.scale800,
+                      ':focus': {
+                        outline: `3px solid ${$theme.colors.accent}`,
+                        outlineOffset: '5px',
+                      },
                       [$theme.mediaQuery.small]: {
                         display: 'block',
                       },
@@ -227,6 +265,7 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                 }}
                 $style={{textDecoration: 'none'}}
                 href="#"
+                marginLeft="scale300"
                 onClick={toggleTheme}
               >
                 <StatefulTooltip
@@ -238,8 +277,8 @@ const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
                   </Block>
                 </StatefulTooltip>
               </Block>
-              <Hamburger role="button" onClick={toggleSidebar}>
-                <Menu size={32} color={theme.colors.contentSecondary} />
+              <Hamburger role="button" onClick={toggleSidebar} href="#">
+                <Menu size={32} color={theme.colors.contentPrimary} />
               </Hamburger>
             </Block>
           </NavigationList>

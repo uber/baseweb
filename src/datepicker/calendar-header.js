@@ -41,6 +41,7 @@ import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import type {HeaderPropsT} from './types.js';
 import type {LocaleT} from '../locale/types.js';
 import type {ThemeT} from '../styles/types.js';
+import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 const navBtnStyle = ({$theme}) => ({
   cursor: 'pointer',
@@ -66,7 +67,7 @@ function idToYearMonth(id) {
 
 export default class CalendarHeader extends React.Component<
   HeaderPropsT,
-  {isMonthYearDropdownOpen: boolean},
+  {isMonthYearDropdownOpen: boolean, isFocusVisible: boolean},
 > {
   static defaultProps = {
     date: new Date(),
@@ -77,7 +78,7 @@ export default class CalendarHeader extends React.Component<
     overrides: {},
   };
 
-  state = {isMonthYearDropdownOpen: false};
+  state = {isMonthYearDropdownOpen: false, isFocusVisible: false};
   handleMonthChange = ({value}: {value: Array<{id: number}>}) => {
     if (this.props.onMonthChange) {
       // $FlowFixMe
@@ -132,6 +133,18 @@ export default class CalendarHeader extends React.Component<
     return false;
   };
 
+  handleFocus = (event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      this.setState({isFocusVisible: true});
+    }
+  };
+
+  handleBlur = (event: SyntheticEvent<>) => {
+    if (this.state.isFocusVisible !== false) {
+      this.setState({isFocusVisible: false});
+    }
+  };
+
   renderPreviousMonthButton = ({
     locale,
     theme,
@@ -175,6 +188,7 @@ export default class CalendarHeader extends React.Component<
         tabIndex={0}
         onClick={clickHandler}
         disabled={isDisabled}
+        $isFocusVisible={this.state.isFocusVisible}
         type="button"
         $disabled={isDisabled}
         {...prevButtonProps}
@@ -242,6 +256,7 @@ export default class CalendarHeader extends React.Component<
         disabled={isDisabled}
         type="button"
         $disabled={isDisabled}
+        $isFocusVisible={this.state.isFocusVisible}
         {...nextButtonProps}
       >
         {isHidden ? null : (
@@ -370,6 +385,7 @@ export default class CalendarHeader extends React.Component<
       >
         <MonthYearSelectButton
           type="button"
+          $isFocusVisible={this.state.isFocusVisible}
           onKeyUp={event => {
             if (this.canArrowsOpenDropdown(event)) {
               this.setState({isMonthYearDropdownOpen: true});
@@ -418,7 +434,11 @@ export default class CalendarHeader extends React.Component<
           <LocaleContext.Consumer>
             {locale => (
               <>
-                <CalendarHeader {...calendarHeaderProps}>
+                <CalendarHeader
+                  {...calendarHeaderProps}
+                  onFocus={forkFocus(calendarHeaderProps, this.handleFocus)}
+                  onBlur={forkBlur(calendarHeaderProps, this.handleBlur)}
+                >
                   {this.renderPreviousMonthButton({locale, theme})}
                   {this.renderMonthYearDropdown()}
                   {this.renderNextMonthButton({locale, theme})}
