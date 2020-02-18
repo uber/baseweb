@@ -159,8 +159,7 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
   };
 
   handleChange = (seconds: number) => {
-    const date =
-      this.props.value && seconds ? new Date(this.props.value) : new Date();
+    const date = this.props.value ? new Date(this.props.value) : new Date();
     const [hours, minutes] = secondsToHourMinute(seconds);
     date.setHours(hours, minutes, 0);
     this.props.onChange && this.props.onChange(date);
