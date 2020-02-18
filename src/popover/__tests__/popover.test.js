@@ -252,31 +252,6 @@ describe('Popover', () => {
     expect((document.activeElement: any).id).toEqual(buttonId);
   });
 
-  test('dismissOnEsc', () => {
-    const onClick = jest.fn();
-    const onEsc = jest.fn();
-    const content = <strong>Hello world</strong>;
-    const button = <button type="button">Click me</button>;
-    wrapper = mount(
-      <Popover isOpen content={content} onClick={onClick} onEsc={onEsc}>
-        {button}
-      </Popover>,
-    );
-
-    const calls = document.addEventListener.mock.calls;
-    expect(document.addEventListener).toBeCalled();
-    expect(calls[0][0]).toBe('mousedown');
-    expect(calls[1][0]).toBe('keyup');
-
-    calls[1][1]({
-      key: 'Escape',
-      code: 27,
-      keyCode: 27,
-    });
-
-    expect(onEsc).toHaveBeenCalled();
-  });
-
   test('text as anchor', () => {
     const onClick = jest.fn();
     const onEsc = jest.fn();

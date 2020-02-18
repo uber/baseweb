@@ -359,14 +359,13 @@ class Select extends React.Component<PropsT, SelectStateT> {
         }));
         break;
       case 27: // escape
-        event.preventDefault();
-        if (this.state.isOpen) {
-          this.closeMenu();
-          event.stopPropagation();
-        } else if (this.props.clearable && this.props.escapeClearsValue) {
+        if (
+          !this.state.isOpen &&
+          this.props.clearable &&
+          this.props.escapeClearsValue
+        ) {
           this.clearValue(event);
           this.setState({isFocused: false, isPseudoFocused: false});
-          event.stopPropagation();
         }
         break;
       case 32: // space
@@ -934,6 +933,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
             }}
             focusLock={false}
             mountNode={this.props.mountNode}
+            onEsc={() => this.closeMenu()}
             isOpen={isOpen}
             content={() => {
               const dropdownProps = {

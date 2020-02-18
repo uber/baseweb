@@ -87,6 +87,21 @@ describe('drawer', () => {
     expect(selectedValue).toBe('AliceBlue');
   });
 
+  it('closes one popover at a time on esc key press', async () => {
+    await mount(page, 'drawer-select');
+    await page.waitFor(selectors.drawer);
+
+    await page.click(selectors.selectInput);
+    await page.waitFor(selectors.selectDropDown);
+
+    await page.keyboard.press('Escape');
+    await page.waitFor(selectors.selectDropDown, {hidden: true});
+    await page.waitFor(selectors.selectInput);
+
+    await page.keyboard.press('Escape');
+    await page.waitFor(selectors.selectInput, {hidden: true});
+  });
+
   it('renders content even when hidden: with renderAll prop', async () => {
     await mount(page, 'drawer-render-all');
     // check for content while drawer is closed, then open
