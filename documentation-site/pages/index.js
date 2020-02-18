@@ -213,6 +213,7 @@ const Index = (props: {
         '/static/images/extensis-logo.png',
         '/static/images/uptime-logo.png',
         '/static/images/streamlit-logo.png',
+        '/static/images/everbase-logo.png',
       ]}
     />
     <Contributors contributors={props.contributors} />
