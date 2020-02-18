@@ -34,8 +34,15 @@ export const BaseButton = styled<SharedStylePropsT>(
     borderTopStyle: 'none',
     borderRightStyle: 'none',
     borderBottomStyle: 'none',
-    outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+    outline:
+      $isFocusVisible && $shape !== SHAPE.round && $shape !== SHAPE.pill
+        ? `3px solid ${$theme.colors.accent}`
+        : 'none',
     outlineOffset: '-3px',
+    boxShadow:
+      $isFocusVisible && ($shape === SHAPE.round || $shape === SHAPE.pill)
+        ? `0 0 0 3px ${$theme.colors.accent}`
+        : 'none',
     textDecoration: 'none',
     WebkitAppearance: 'none',
     transitionProperty: 'background',
@@ -76,7 +83,7 @@ export const LoadingSpinnerContainer = styled('div', {
 });
 
 export const LoadingSpinner = styled<SharedStylePropsT>(
-  'div',
+  'span',
   ({$theme, $kind, $disabled, $size}) => {
     const {foreground, background} = getLoadingSpinnerColors({
       $theme,
@@ -84,12 +91,12 @@ export const LoadingSpinner = styled<SharedStylePropsT>(
       $disabled,
     });
 
-    let dimension = $theme.sizing.scale600;
+    let dimension = $theme.sizing.scale400;
     if ($size === SIZE.mini || $size === SIZE.compact) {
-      dimension = $theme.sizing.scale500;
+      dimension = $theme.sizing.scale300;
     }
     if ($size === SIZE.large) {
-      dimension = $theme.sizing.scale700;
+      dimension = $theme.sizing.scale500;
     }
 
     return {
@@ -111,6 +118,7 @@ export const LoadingSpinner = styled<SharedStylePropsT>(
       borderLeftColor: background,
       borderBottomColor: background,
       borderRightColor: background,
+      display: 'inline-block',
       animationDuration: $theme.animation.timing700,
       animationTimingFunction: 'linear',
       animationIterationCount: 'infinite',

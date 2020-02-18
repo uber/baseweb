@@ -22,6 +22,7 @@ import Routes from '../routes';
 import DirectionContext from '../components/direction-context';
 import ComponentSizes from '../../component-sizes.json';
 import Help from './help';
+import SkipToContent from './skip-to-content';
 
 const GH_URL =
   'https://github.com/uber/baseweb/edit/master/documentation-site/pages';
@@ -63,7 +64,7 @@ const TOCWrapper = themedStyled<{}>('div', ({$theme}) => ({
 const SidebarWrapper = themedStyled<{
   $isOpen: boolean,
   $hideSideNavigation: boolean,
-}>('div', ({$theme, $isOpen, $hideSideNavigation}) => ({
+}>('nav', ({$theme, $isOpen, $hideSideNavigation}) => ({
   display: $isOpen ? 'block' : 'none',
   paddingTop: $theme.sizing.scale700,
   marginLeft: $theme.sizing.scale800,
@@ -77,13 +78,14 @@ const SidebarWrapper = themedStyled<{
 const ContentWrapper = themedStyled<{
   $isSidebarOpen: boolean,
   $maxWidth?: string,
-}>('div', ({$theme, $isSidebarOpen, $maxWidth}) => ({
+}>('main', ({$theme, $isSidebarOpen, $maxWidth}) => ({
   position: 'relative',
   boxSizing: 'border-box',
   display: $isSidebarOpen ? 'none' : 'block',
   paddingLeft: $theme.sizing.scale800,
   paddingRight: $theme.sizing.scale800,
   width: '100%',
+  outline: 'none',
   maxWidth: $maxWidth ? $maxWidth : '40em',
   [$theme.mediaQuery.medium]: {
     display: 'block',
@@ -131,6 +133,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
       <DirectionContext.Consumer>
         {direction => (
           <React.Fragment>
+            <SkipToContent />
             <HeaderNavigation
               toggleSidebar={() =>
                 this.setState(prevState => ({
@@ -149,6 +152,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
               justifyContent="center"
             >
               <SidebarWrapper
+                aria-label="primary"
                 $isOpen={sidebarOpen}
                 $hideSideNavigation={!!this.props.hideSideNavigation}
                 onClick={() =>
@@ -160,6 +164,7 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
               <ContentWrapper
                 id="docSearch-content"
                 role="main"
+                tabIndex="-1"
                 $isSidebarOpen={sidebarOpen}
                 $maxWidth={this.props.maxContentWidth}
               >

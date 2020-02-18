@@ -60,6 +60,11 @@ const AuthorLink = themedStyled('a', ({$theme}) => ({
   ':hover': {
     color: $theme.colors.contentPrimary,
   },
+  ':focus': {
+    outline: `3px solid ${$theme.colors.accent}`,
+    textDecoration: 'none',
+    outlineOffset: '2px',
+  },
 }));
 
 const ArticleDate = themedStyled('span', ({$theme}) => ({

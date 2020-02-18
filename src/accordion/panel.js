@@ -16,10 +16,11 @@ import {
   Content as StyledContent,
   ToggleIcon as StyledToggleIcon,
 } from './styled-components.js';
+import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 import type {PanelPropsT, SharedStylePropsArgT} from './types.js';
 
-class Panel extends React.Component<PanelPropsT> {
+class Panel extends React.Component<PanelPropsT, {isFocusVisible: boolean}> {
   static defaultProps = {
     disabled: false,
     expanded: false,
@@ -27,6 +28,20 @@ class Panel extends React.Component<PanelPropsT> {
     onClick: () => {},
     onKeyDown: () => {},
     title: '',
+  };
+
+  state = {isFocusVisible: false};
+
+  handleFocus = (event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      this.setState({isFocusVisible: true});
+    }
+  };
+
+  handleBlur = (event: SyntheticEvent<>) => {
+    if (this.state.isFocusVisible !== false) {
+      this.setState({isFocusVisible: false});
+    }
   };
 
   onClick = (e: Event) => {
@@ -58,6 +73,7 @@ class Panel extends React.Component<PanelPropsT> {
     return {
       $disabled: disabled,
       $expanded: expanded,
+      $isFocusVisible: this.state.isFocusVisible,
     };
   }
 
@@ -128,6 +144,8 @@ class Panel extends React.Component<PanelPropsT> {
               {...(ariaControls ? {'aria-controls': ariaControls} : {})}
               onClick={this.onClick}
               onKeyDown={this.onKeyDown}
+              onFocus={forkFocus(headerProps, this.handleFocus)}
+              onBlur={forkBlur(headerProps, this.handleBlur)}
             >
               {title}
               <ToggleIconComponent

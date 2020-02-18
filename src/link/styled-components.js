@@ -8,24 +8,32 @@ LICENSE file in the root directory of this source tree.
 
 import {styled} from '../styles/index.js';
 
-export const Link = styled<{}>('a', ({$theme}) => {
-  const {colors, typography, animation} = $theme;
-  return {
-    color: colors.linkText,
-    ...typography.font350,
-    fontSize: 'inherit',
-    lineHeight: 'inherit',
-    transitionProperty: 'color',
-    transitionDuration: animation.timing100,
-    transitionTimingFunction: animation.easeOutCurve,
-    ':visited': {
-      color: colors.linkVisited,
-    },
-    ':hover': {
-      color: colors.linkHover,
-    },
-    ':active': {
-      color: colors.linkActive,
-    },
-  };
-});
+export const Link = styled<{$isFocusVisible: boolean}>(
+  'a',
+  ({$theme, $isFocusVisible}) => {
+    const {colors, typography, animation} = $theme;
+    return {
+      color: colors.linkText,
+      ...typography.font350,
+      fontSize: 'inherit',
+      lineHeight: 'inherit',
+      transitionProperty: 'color',
+      transitionDuration: animation.timing100,
+      transitionTimingFunction: animation.easeOutCurve,
+      ':focus': {
+        outline: $isFocusVisible ? `3px solid ${colors.accent}` : 'none',
+        outlineOffset: '1px',
+        textDecoration: 'none',
+      },
+      ':visited': {
+        color: colors.linkVisited,
+      },
+      ':hover': {
+        color: colors.linkHover,
+      },
+      ':active': {
+        color: colors.linkActive,
+      },
+    };
+  },
+);
