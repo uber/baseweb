@@ -25,7 +25,7 @@ export const Caption = themedStyled<{}>('figcaption', ({$theme}) => ({
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale500,
   fontWeight: 300,
-  textAlign: 'right',
+  textAlign: 'center',
   padding: '4px 4px 0 0',
 }));
 
