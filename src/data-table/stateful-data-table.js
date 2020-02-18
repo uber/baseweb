@@ -86,7 +86,7 @@ function FilterTag(props) {
     return null;
   }
 
-  const data = props.rows.map(r => r.data[columnIndex]);
+  const data = props.rows.map(r => column.mapDataToValue(r.data));
   const Filter = column.renderFilter;
 
   return (
