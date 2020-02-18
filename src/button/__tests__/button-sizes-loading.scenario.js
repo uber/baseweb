@@ -10,64 +10,27 @@ import React from 'react';
 
 import {Button} from '../index.js';
 import {SIZE} from '../constants.js';
-import {useStyletron} from '../../styles/index.js';
 
 export default function Scenario() {
-  const [css] = useStyletron();
-
   return (
     <React.Fragment>
-      <div
-        className={css({display: 'flex', marginBottom: '12px', height: '64px'})}
-      >
-        <div>
-          <Button size={SIZE.mini}>Mini</Button>
-        </div>
-        <div>
-          <Button isLoading size={SIZE.mini}>
-            Mini
-          </Button>
-        </div>
-      </div>
+      <Button size={SIZE.mini}>Mini</Button>
+      <Button isLoading size={SIZE.mini}>
+        Mini
+      </Button>
+      <Button size={SIZE.compact}>Compact</Button>
+      <Button isLoading size={SIZE.compact}>
+        Compact
+      </Button>
 
-      <div
-        className={css({display: 'flex', marginBottom: '12px', height: '64px'})}
-      >
-        <div>
-          <Button size={SIZE.compact}>Compact</Button>
-        </div>
-        <div>
-          <Button isLoading size={SIZE.compact}>
-            Compact
-          </Button>
-        </div>
-      </div>
-
-      <div
-        className={css({display: 'flex', marginBottom: '12px', height: '64px'})}
-      >
-        <div>
-          <Button size={SIZE.default}>Default</Button>
-        </div>
-        <div>
-          <Button isLoading size={SIZE.default}>
-            Default
-          </Button>
-        </div>
-      </div>
-
-      <div
-        className={css({display: 'flex', marginBottom: '12px', height: '64px'})}
-      >
-        <div>
-          <Button size={SIZE.large}>Large</Button>
-        </div>
-        <div>
-          <Button isLoading size={SIZE.large}>
-            Large
-          </Button>
-        </div>
-      </div>
+      <Button size={SIZE.default}>Default</Button>
+      <Button isLoading size={SIZE.default}>
+        Default
+      </Button>
+      <Button size={SIZE.large}>Large</Button>
+      <Button isLoading size={SIZE.large}>
+        Large
+      </Button>
     </React.Fragment>
   );
 }
