@@ -1,4 +1,4 @@
-import {Pagination} from 'baseui/pagination';
+import {Pagination, SIZE} from 'baseui/pagination';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
@@ -11,13 +11,25 @@ const PaginationConfig: TConfig = {
       named: ['Pagination'],
     },
   },
-  scope: {Pagination},
+  scope: {Pagination, SIZE},
   theme: ['paginationTriangleDown'],
   props: {
     numPages: {
       value: 20,
       type: PropTypes.Number,
       description: 'The total number of pages available.',
+    },
+    size: {
+      value: 'SIZE.default',
+      defaultValue: 'SIZE.default',
+      options: SIZE,
+      type: PropTypes.Enum,
+      description: 'Renders component in provided size.',
+      imports: {
+        'baseui/pagination': {
+          named: ['SIZE'],
+        },
+      },
     },
     currentPage: {
       value: 1,
