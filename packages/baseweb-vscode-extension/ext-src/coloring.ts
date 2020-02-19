@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import {LightTheme, DarkTheme} from 'baseui';
+import {LightTheme, DarkTheme} from 'baseui/themes';
 
 function getContrastYIQ(color: string) {
   let hexcolor = color;
@@ -69,7 +69,7 @@ export default (context: vscode.ExtensionContext) => {
 
   // Set decorations
   function decorate(activeEditor: vscode.TextEditor) {
-    const keys = [];
+    const keys: Array<any> = [];
     for (const prop in decorationTypeMap) {
       if (decorationTypeMap.hasOwnProperty(prop)) {
         keys.push(prop);
@@ -85,7 +85,7 @@ export default (context: vscode.ExtensionContext) => {
 
   // Unset decorations
   function undecorate(activeEditor: vscode.TextEditor) {
-    const keys = [];
+    const keys: Array<any> = [];
     for (const prop in decorationTypeMap) {
       if (decorationTypeMap.hasOwnProperty(prop)) {
         keys.push(prop);
