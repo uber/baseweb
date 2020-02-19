@@ -12,12 +12,38 @@ import {StatefulPagination} from '../index.js';
 
 export default function Scenario() {
   return (
-    <StatefulPagination
-      overrides={{
-        NextButton: {props: {'data-test': 'next-button'}},
-        PrevButton: {props: {'data-test': 'prev-button'}},
-      }}
-      numPages={10}
-    />
+    <>
+      <StatefulPagination
+        overrides={{
+          NextButton: {props: {'data-test': 'next-button'}},
+          PrevButton: {props: {'data-test': 'prev-button'}},
+        }}
+        size="mini"
+        numPages={10}
+      />
+      <StatefulPagination
+        overrides={{
+          NextButton: {props: {'data-test': 'next-button'}},
+          PrevButton: {props: {'data-test': 'prev-button'}},
+        }}
+        size="compact"
+        numPages={10}
+      />
+      <StatefulPagination
+        overrides={{
+          NextButton: {props: {'data-test': 'next-button'}},
+          PrevButton: {props: {'data-test': 'prev-button'}},
+        }}
+        numPages={10}
+      />
+      <StatefulPagination
+        overrides={{
+          NextButton: {props: {'data-test': 'next-button'}},
+          PrevButton: {props: {'data-test': 'prev-button'}},
+        }}
+        numPages={10}
+        size="large"
+      />
+    </>
   );
 }

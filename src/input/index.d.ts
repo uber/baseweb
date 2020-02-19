@@ -12,6 +12,7 @@ export interface ADJOINED {
   both: 'both';
 }
 export interface SIZE {
+  mini: 'mini';
   default: 'default';
   compact: 'compact';
   large: 'large';

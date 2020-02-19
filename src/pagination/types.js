@@ -7,12 +7,15 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import type {OverrideT} from '../helpers/overrides.js';
 import {STATE_CHANGE_TYPE} from './constants.js';
+import {SIZE} from '../input/constants.js';
 
 export type LabelsT = {
   prevButton?: string,
   nextButton?: string,
   preposition?: string,
 };
+
+export type SizeT = $Keys<typeof SIZE>;
 
 export type CallbacksT = {
   /** Callback for prev button click. */
@@ -46,6 +49,7 @@ export type PaginationPropsT = CallbacksT & {
   /** Set of labels to use for the buttons and preposition. */
   labels?: LabelsT,
   overrides?: OverridesT,
+  size?: SizeT,
 };
 
 export type StatefulPaginationPropsT = CallbacksT & {
