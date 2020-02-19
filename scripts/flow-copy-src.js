@@ -15,7 +15,7 @@ const path = require('path');
 const babel = require('@babel/core');
 const glob = require('glob');
 
-const transformCupGlobals = require('./transform-cup-globals.js');
+const transformCupGlobals = require('../babel/transform-cup-globals.js');
 
 const src = path.resolve(__dirname, '../src');
 const dist = path.resolve(__dirname, '../dist');
