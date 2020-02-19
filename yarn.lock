@@ -334,6 +334,11 @@
   resolved "https://registry.yarnpkg.com/@babel/helper-plugin-utils/-/helper-plugin-utils-7.0.0.tgz#bbb3fbee98661c569034237cc03967ba99b4f250"
   integrity sha512-CYAOUCARwExnEixLdB6sDm2dIJ/YgEAKDM1MOeMeZu9Ld/bDgVo8aiWrXwcY7OBh+1Ea2uUcVRcxKk0GJvW7QA==
 
+"@babel/helper-plugin-utils@^7.8.3":
+  version "7.8.3"
+  resolved "https://registry.yarnpkg.com/@babel/helper-plugin-utils/-/helper-plugin-utils-7.8.3.tgz#9ea293be19babc0f52ff8ca88b34c3611b208670"
+  integrity sha512-j+fq49Xds2smCUNYmEHF9kGNkhbet6yVIBp4e6oeQpH1RUs/Ir06xUKzDjDkGcaaokPiTNs2JBWHjaE4csUkZQ==
+
 "@babel/helper-regex@^7.0.0", "@babel/helper-regex@^7.4.4":
   version "7.5.5"
   resolved "https://registry.yarnpkg.com/@babel/helper-regex/-/helper-regex-7.5.5.tgz#0aa6824f7100a2e0e89c1527c23936c152cab351"
@@ -672,6 +677,13 @@
   integrity sha512-vQMV07p+L+jZeUnvX3pEJ9EiXGCjB5CTTvsirFD9rpEuATnoAvLBLoYbw1v5tyn3d2XxSuvEKi8cV3KqYUa0vQ==
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
+
+"@babel/plugin-syntax-flow@^7.8.3":
+  version "7.8.3"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-flow/-/plugin-syntax-flow-7.8.3.tgz#f2c883bd61a6316f2c89380ae5122f923ba4527f"
+  integrity sha512-innAx3bUbA0KSYj2E2MNFSn9hiCeowOFLxlsuhXzw8hMQnzkDomUr9QCD7E9VF60NmnG1sNTuuv6Qf4f8INYsg==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.8.3"
 
 "@babel/plugin-syntax-json-strings@^7.2.0":
   version "7.2.0"
@@ -6389,7 +6401,7 @@ chickencurry@1.1.1:
   resolved "https://registry.yarnpkg.com/chickencurry/-/chickencurry-1.1.1.tgz#02655f2b26b3bc2ee1ae1e5316886de38eb79738"
   integrity sha1-AmVfKyazvC7hrh5TFoht4463lzg=
 
-chokidar@^2.0.0, chokidar@^2.0.2:
+chokidar@^2.0.2:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-2.0.4.tgz#356ff4e2b0e8e43e322d18a372460bbcf3accd26"
   integrity sha512-z9n7yt9rOvIJrMhvDtDictKrkFHeihkNl6uWMmZlmL6tJtX9Cs+87oK+teBx+JIgzvbX3yZHT3eF8vpbDxHJXQ==
@@ -9828,17 +9840,6 @@ flow-bin@^0.110.0:
   resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.110.0.tgz#c6c140e239f662839d8f61b64b7b911f12d3306c"
   integrity sha512-mmdEPEMoTuX+mguy/tjRlOlCtPfVdXZQeMgCAsEDVDgWMA5vwWhM2y653OcJiKX38t4gtZ2e/MNVo0qzyYeZDQ==
 
-flow-copy-source@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/flow-copy-source/-/flow-copy-source-2.0.2.tgz#096e579a9bb63a38afc5d4dd68ac847a5be27594"
-  integrity sha512-IHKgy45Q+Xs7UanUZyFFJae/ubMKtzj0dU4vs1YoqlfKl2wzLTaqehyTpjqO4vLAnL48yGvLfnttncX5Utn/4g==
-  dependencies:
-    chokidar "^2.0.0"
-    fs-extra "^7.0.0"
-    glob "^7.0.0"
-    kefir "^3.7.3"
-    yargs "^12.0.1"
-
 flow-parser@0.*:
   version "0.99.0"
   resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.99.0.tgz#1fd3d1751b897a74c1f92c758688eb7f200237f0"
@@ -12872,13 +12873,6 @@ jwt-decode@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/jwt-decode/-/jwt-decode-2.2.0.tgz#7d86bd56679f58ce6a84704a657dd392bba81a79"
   integrity sha1-fYa9VmefWM5qhHBKZX3TkruoGnk=
-
-kefir@^3.7.3:
-  version "3.8.3"
-  resolved "https://registry.yarnpkg.com/kefir/-/kefir-3.8.3.tgz#8e0ab10084ed8a01cbb5d4f7f18a0b859f7b9bd9"
-  integrity sha512-HMxsCDX2IzAU6Oj+7Uex8ysK9rl1OKH7D583CXZ0yjScuqeq+CA34nP+SX2Mx3gqKeriOKPWMaKL04Maw9K2xg==
-  dependencies:
-    symbol-observable "1.0.4"
 
 keyv@3.0.0:
   version "3.0.0"
@@ -18845,11 +18839,6 @@ swap-case@^1.1.0:
   dependencies:
     lower-case "^1.1.1"
     upper-case "^1.1.1"
-
-symbol-observable@1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.0.4.tgz#29bf615d4aa7121bdd898b22d4b3f9bc4e2aa03d"
-  integrity sha1-Kb9hXUqnEhvdiYsi1LP5vE4qoD0=
 
 symbol-tree@^3.2.2:
   version "3.2.2"

@@ -23,7 +23,7 @@ module.exports = {
     ['@babel/preset-flow', {all: true}],
   ],
   plugins: [
-    './babel/cup.js',
+    './scripts/transform-cup-globals.js',
     ['babel-plugin-transform-styletron-display-name', {importSources: 'any'}],
     '@babel/plugin-proposal-export-default-from',
     '@babel/plugin-proposal-class-properties',
@@ -39,8 +39,8 @@ module.exports = {
   ],
   env: {
     test: {
-      plugins: [['./babel/cup.js']],
+      plugins: [['./scripts/transform-cup-globals.js']],
     },
   },
-  ignore: ['./babel/cup.js'],
+  ignore: ['./scripts/transform-cup-globals.js'],
 };
