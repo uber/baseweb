@@ -379,7 +379,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       return null;
     }
     return (
-      <Layer onEscapeKeyUp={this.onEscape} mountNode={this.props.mountNode}>
+      <Layer onEscape={this.onEscape} mountNode={this.props.mountNode}>
         {this.renderModal()}
       </Layer>
     );

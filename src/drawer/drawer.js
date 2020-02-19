@@ -305,7 +305,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     if (renderedContent) {
       if (mountedAndOpen) {
         return (
-          <Layer onEscapeKeyUp={this.onEscape} mountNode={this.props.mountNode}>
+          <Layer onEscape={this.onEscape} mountNode={this.props.mountNode}>
             {this.renderDrawer(renderedContent)}
           </Layer>
         );

@@ -441,7 +441,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
           <Layer
             key="new-layer"
             mountNode={this.props.mountNode}
-            onEscapeKeyUp={this.props.onEsc}
+            onEscape={this.props.onEsc}
             onMount={() => this.setState({isLayerMounted: true})}
             onUnmount={() => this.setState({isLayerMounted: false})}
           >

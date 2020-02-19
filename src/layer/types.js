@@ -48,7 +48,7 @@ export type LayerPropsT = {
    Note that the `index` prop does not work with a custom `mountNode`. */
   mountNode?: HTMLElement,
   /** Handler called when escape key is pressed. */
-  onEscapeKeyUp?: () => mixed,
+  onEscape?: () => mixed,
   /** A handler that is called when the Layer is mounted. */
   onMount?: () => mixed,
   /** A handler that is called when the Layer is unmounted. */
@@ -63,7 +63,7 @@ export type LayerComponentPropsT = {
   host: ?HTMLElement,
   index?: number,
   mountNode?: HTMLElement,
-  onEscapeKeyUp?: () => mixed,
+  onEscape?: () => mixed,
   onMount?: () => mixed,
   onUnmount?: () => mixed,
   zIndex?: number,

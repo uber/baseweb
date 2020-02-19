@@ -70,14 +70,12 @@ export default class LayersManager extends React.Component<
 
   onKeyUp = (event: KeyboardEvent) => {
     if (event.key === 'Escape') {
-      this.setState(prev => {
-        const escapeKeyHandler = prev.escapeKeyHandlers.pop();
-        if (escapeKeyHandler) {
-          escapeKeyHandler();
-          return {escapeKeyHandlers: prev.escapeKeyHandlers};
-        }
-        return prev;
-      });
+      const escapeKeyHandler = this.state.escapeKeyHandlers[
+        this.state.escapeKeyHandlers.length - 1
+      ];
+      if (escapeKeyHandler) {
+        escapeKeyHandler();
+      }
     }
   };
 

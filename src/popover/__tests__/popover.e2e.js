@@ -18,9 +18,6 @@ const selectors = {
   content: '#content',
 };
 
-const optionAtPosition = position =>
-  `${selectors.selectDropDown} ${selectors.dropDownOption}:nth-child(${position})`;
-
 describe('popover', () => {
   it('passes basic a11y tests', async () => {
     await mount(page, 'popover');

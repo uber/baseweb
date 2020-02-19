@@ -13,7 +13,7 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
   size="default"
 >
   <mockConstructor
-    onEscapeKeyUp={[Function]}
+    onEscape={[Function]}
   >
     <ForwardRef
       autoFocus={true}

@@ -29,7 +29,7 @@ class LayerComponent extends React.Component<
   state = {container: null};
 
   componentDidMount() {
-    this.context.addEscapeHandler(this.onEscapeKeyPress);
+    this.context.addEscapeHandler(this.onEscape);
     const {onMount, mountNode, host: layersManagerHost} = this.props;
     if (mountNode) {
       onMount && onMount();
@@ -63,7 +63,7 @@ class LayerComponent extends React.Component<
   }
 
   componentWillUnmount() {
-    this.context.removeEscapeHandler(this.onEscapeKeyPress);
+    this.context.removeEscapeHandler(this.onEscape);
 
     if (this.props.onUnmount) {
       this.props.onUnmount();
@@ -78,9 +78,9 @@ class LayerComponent extends React.Component<
     }
   }
 
-  onEscapeKeyPress = () => {
-    if (this.props.onEscapeKeyUp) {
-      this.props.onEscapeKeyUp();
+  onEscape = () => {
+    if (this.props.onEscape) {
+      this.props.onEscape();
     }
   };
 
