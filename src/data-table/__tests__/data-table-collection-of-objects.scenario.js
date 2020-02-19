@@ -39,7 +39,7 @@ const columns = [
   AnchorColumn({
     // illustrates that this could be provided with a react-router-link
     elementAs: 'div',
-    title: 'Application',
+    title: 'User',
     mapDataToValue: (data: RowDataT) => ({
       content: data.realUser,
       href: `#id=${data.realUser}`,
