@@ -8,6 +8,8 @@ LICENSE file in the root directory of this source tree.
 export {default as Pagination} from './pagination.js';
 export {default as StatefulPagination} from './stateful-pagination.js';
 export {default as StatefulContainer} from './stateful-container.js';
+import {SIZE} from '../input/index.js';
+export {SIZE};
 export {
   StyledRoot,
   StyledMaxLabel,
