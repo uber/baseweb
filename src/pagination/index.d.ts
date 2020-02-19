@@ -2,6 +2,7 @@ import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
 import {Override} from '../overrides';
 import {Locale} from '../locale';
+import {SIZE} from '../input';
 
 export interface STATE_CHANGE_TYPE {
   change: 'change';
@@ -43,6 +44,7 @@ export interface PaginationProps extends Callbacks {
   currentPage: number;
   labels?: Labels;
   overrides?: PaginationOverrides;
+  size?: SIZE[keyof SIZE];
 }
 
 export interface PageOption {
