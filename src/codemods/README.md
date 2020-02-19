@@ -1,1 +1,0 @@
-This directory contains a collection of codemods for use with [JSCodeshift](https://github.com/facebook/jscodeshift) that help update baseui apis.

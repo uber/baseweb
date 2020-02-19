@@ -219,8 +219,7 @@ this extracted pattern. The codemod operates somewhat naively, but will output r
 may be some follow-up after running. Follow the instructions below to run the codemod locally.
 
 ```
-npm install -g jscodeshift
-jscodeshift -t node_modules/baseui/codemods/styled-v8-themedStyled.js <transform-path>
+npx @uber-web-ui/baseui-codemods --mod=v8Types --dir=<path_to_code>
 ```
 
 Use the -d option for a dry-run and use -p to print the output for comparison.
