@@ -21,9 +21,15 @@ export type LayersManagerPropsT = {
   zIndex?: number,
 };
 
+export type LayersManagerStateT = {|
+  escapeKeyHandlers: Array<() => mixed>,
+|};
+
 export type LayersContextT = {
   host: ?HTMLElement,
   zIndex?: number,
+  addEscapeHandler: (() => mixed) => void,
+  removeEscapeHandler: (() => mixed) => void,
 };
 
 /** Layer */
@@ -41,6 +47,8 @@ export type LayerPropsT = {
   /** A custom DOM element where the layer is inserted to as a child.
    Note that the `index` prop does not work with a custom `mountNode`. */
   mountNode?: HTMLElement,
+  /** Handler called when escape key is pressed. */
+  onEscape?: () => mixed,
   /** A handler that is called when the Layer is mounted. */
   onMount?: () => mixed,
   /** A handler that is called when the Layer is unmounted. */
@@ -55,6 +63,7 @@ export type LayerComponentPropsT = {
   host: ?HTMLElement,
   index?: number,
   mountNode?: HTMLElement,
+  onEscape?: () => mixed,
   onMount?: () => mixed,
   onUnmount?: () => mixed,
   zIndex?: number,

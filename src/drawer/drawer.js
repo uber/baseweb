@@ -62,7 +62,6 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
   }
 
   componentWillUnmount() {
-    this.removeDomEvents();
     this.resetMountNodeScroll();
     this.clearTimers();
   }
@@ -94,18 +93,6 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     }
   };
 
-  addDomEvents() {
-    if (__BROWSER__) {
-      document.addEventListener('keyup', this.onDocumentKeyPress);
-    }
-  }
-
-  removeDomEvents() {
-    if (__BROWSER__) {
-      document.removeEventListener('keyup', this.onDocumentKeyPress);
-    }
-  }
-
   disableMountNodeScroll() {
     if (this.props.showBackdrop) {
       const mountNode = this.getMountNode();
@@ -135,20 +122,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     return ((document.body: any): HTMLBodyElement);
   }
 
-  onDocumentKeyPress = (event: KeyboardEvent) => {
-    if (event.key !== 'Escape') {
-      return;
-    }
-
-    // Ignore events that have been `event.preventDefault()` marked.
-    if (event.defaultPrevented) {
-      return;
-    }
-
-    if (this.props.onEscapeKeyDown) {
-      this.props.onEscapeKeyDown(event);
-    }
-
+  onEscape = () => {
     if (!this.props.closeable) {
       return;
     }
@@ -192,7 +166,6 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     // Clear any existing timers (like previous animateOutTimer)
     this.clearTimers();
 
-    this.addDomEvents();
     this.disableMountNodeScroll();
 
     // eslint-disable-next-line cup/no-undef
@@ -202,7 +175,6 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
   }
 
   didClose() {
-    this.removeDomEvents();
     this.resetMountNodeScroll();
     this.animateOutTimer = setTimeout(this.animateOutComplete, 500);
   }
@@ -333,7 +305,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     if (renderedContent) {
       if (mountedAndOpen) {
         return (
-          <Layer mountNode={this.props.mountNode}>
+          <Layer onEscape={this.onEscape} mountNode={this.props.mountNode}>
             {this.renderDrawer(renderedContent)}
           </Layer>
         );

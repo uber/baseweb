@@ -84,7 +84,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   }
 
   componentWillUnmount() {
-    this.removeDomEvents();
     this.resetMountNodeScroll();
     this.clearTimers();
   }
@@ -116,18 +115,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     }
   };
 
-  addDomEvents() {
-    if (__BROWSER__) {
-      document.addEventListener('keyup', this.onDocumentKeyPress);
-    }
-  }
-
-  removeDomEvents() {
-    if (__BROWSER__) {
-      document.removeEventListener('keyup', this.onDocumentKeyPress);
-    }
-  }
-
   disableMountNodeScroll() {
     const mountNode = this.getMountNode();
     this.lastMountNodeOverflowStyle = mountNode.style.overflow || '';
@@ -147,16 +134,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     }
   }
 
-  onDocumentKeyPress = (event: KeyboardEvent) => {
-    if (event.key !== 'Escape') {
-      return;
-    }
-
-    // Ignore events that have been `event.preventDefault()` marked.
-    if (event.defaultPrevented) {
-      return;
-    }
-
+  onEscape = () => {
     if (!this.props.closeable) {
       return;
     }
@@ -206,7 +184,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     // Clear any existing timers (like previous animateOutTimer)
     this.clearTimers();
 
-    this.addDomEvents();
     this.disableMountNodeScroll();
 
     // eslint-disable-next-line cup/no-undef
@@ -216,7 +193,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   }
 
   didClose() {
-    this.removeDomEvents();
     this.resetMountNodeScroll();
     this.animateOutTimer = setTimeout(this.animateOutComplete, 500);
   }
@@ -402,7 +378,11 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     if (!this.props.isOpen && !this.state.isVisible) {
       return null;
     }
-    return <Layer mountNode={this.props.mountNode}>{this.renderModal()}</Layer>;
+    return (
+      <Layer onEscape={this.onEscape} mountNode={this.props.mountNode}>
+        {this.renderModal()}
+      </Layer>
+    );
   }
 }
 

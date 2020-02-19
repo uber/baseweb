@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import {styled} from '../styles/index.js';
-import {Consumer} from './layers-manager.js';
+import {LayersContext, Consumer} from './layers-manager.js';
 import type {LayerPropsT, LayerComponentPropsT, LayerStateT} from './types.js';
 
 const Container = styled<{$zIndex?: number}>('div', ({$zIndex}) => ({
@@ -24,9 +24,12 @@ class LayerComponent extends React.Component<
   LayerComponentPropsT,
   LayerStateT,
 > {
+  static contextType: typeof LayersContext = LayersContext;
+
   state = {container: null};
 
   componentDidMount() {
+    this.context.addEscapeHandler(this.onEscape);
     const {onMount, mountNode, host: layersManagerHost} = this.props;
     if (mountNode) {
       onMount && onMount();
@@ -60,14 +63,26 @@ class LayerComponent extends React.Component<
   }
 
   componentWillUnmount() {
-    const {container} = this.state;
-    const {host, onUnmount} = this.props;
-    onUnmount && onUnmount();
-    host &&
-      container &&
-      host.contains(container) &&
-      host.removeChild(container);
+    this.context.removeEscapeHandler(this.onEscape);
+
+    if (this.props.onUnmount) {
+      this.props.onUnmount();
+    }
+
+    const host = this.props.host;
+    const container = this.state.container;
+    if (host && container) {
+      if (host.contains(container)) {
+        host.removeChild(container);
+      }
+    }
   }
+
+  onEscape = () => {
+    if (this.props.onEscape) {
+      this.props.onEscape();
+    }
+  };
 
   addContainer(host) {
     const {index, mountNode, onMount} = this.props;

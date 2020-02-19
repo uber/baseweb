@@ -178,12 +178,6 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     this.triggerOnMouseLeaveWithDelay();
   };
 
-  onKeyPress = (evt: KeyboardEvent) => {
-    if (evt.key === 'Escape' && this.props.onEsc) {
-      this.props.onEsc();
-    }
-  };
-
   onPopperUpdate = (
     normalizedOffsets: NormalizedOffsetsT,
     data: PopperDataObjectT,
@@ -241,14 +235,12 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     if (__BROWSER__) {
       // using mousedown event so that callback runs before events on children inside of the popover
       document.addEventListener('mousedown', this.onDocumentClick);
-      document.addEventListener('keyup', this.onKeyPress);
     }
   }
 
   removeDomEvents() {
     if (__BROWSER__) {
       document.removeEventListener('mousedown', this.onDocumentClick);
-      document.removeEventListener('keyup', this.onKeyPress);
     }
   }
 
@@ -449,6 +441,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
           <Layer
             key="new-layer"
             mountNode={this.props.mountNode}
+            onEscape={this.props.onEsc}
             onMount={() => this.setState({isLayerMounted: true})}
             onUnmount={() => this.setState({isLayerMounted: false})}
           >

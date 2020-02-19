@@ -12,7 +12,9 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
   size="default"
   unstable_ModalBackdropScroll={false}
 >
-  <mockConstructor>
+  <mockConstructor
+    onEscape={[Function]}
+  >
     <ForwardRef
       autoFocus={true}
       returnFocus={true}

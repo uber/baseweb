@@ -366,6 +366,7 @@ export default class CalendarHeader extends React.Component<
           }));
         }}
         onClickOutside={() => this.setState({isMonthYearDropdownOpen: false})}
+        onEsc={() => this.setState({isMonthYearDropdownOpen: false})}
         content={() => (
           <OverriddenStatefulMenu
             initialState={{highlightedIndex: initialIndex, isFocused: true}}

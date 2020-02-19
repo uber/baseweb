@@ -93,4 +93,19 @@ describe('modal', () => {
     );
     expect(selectedValue).toBe('AliceBlue');
   });
+
+  it('closes one popover at a time on esc key press', async () => {
+    await mount(page, 'modal-select');
+    await page.waitFor(selectors.dialog);
+
+    await page.click(selectors.selectInput);
+    await page.waitFor(selectors.selectDropDown);
+
+    await page.keyboard.press('Escape');
+    await page.waitFor(selectors.selectDropDown, {hidden: true});
+    await page.waitFor(selectors.selectInput);
+
+    await page.keyboard.press('Escape');
+    await page.waitFor(selectors.selectInput, {hidden: true});
+  });
 });

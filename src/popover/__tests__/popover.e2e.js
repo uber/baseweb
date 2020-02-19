@@ -18,9 +18,6 @@ const selectors = {
   content: '#content',
 };
 
-const optionAtPosition = position =>
-  `${selectors.selectDropDown} ${selectors.dropDownOption}:nth-child(${position})`;
-
 describe('popover', () => {
   it('passes basic a11y tests', async () => {
     await mount(page, 'popover');
@@ -47,7 +44,6 @@ describe('popover', () => {
     await page.waitFor(selectors.tooltip, {hidden: true});
   });
 
-  // This is a regression test to verify that elements in a popover will still work.
   it('allows interaction with select', async () => {
     await mount(page, 'popover-select');
     await page.waitFor('button');
@@ -56,16 +52,33 @@ describe('popover', () => {
     await page.waitFor(selectors.selectInput);
     await page.click(selectors.selectInput);
     await page.waitFor(selectors.selectDropDown);
-    await page.$eval(optionAtPosition(1), elem => elem.click());
-    await page.waitFor(selectors.selectDropDown, {
-      hidden: true,
-    });
+
+    const options = await page.$$(selectors.dropDownOption);
+    await options[0].click();
+    await page.waitFor(selectors.selectDropDown, {hidden: true});
 
     const selectedValue = await page.$eval(
       selectors.selectedList,
       select => select.textContent,
     );
     expect(selectedValue).toBe('AliceBlue');
+  });
+
+  it('closes one popover at a time on esc key press', async () => {
+    await mount(page, 'popover-select');
+    await page.waitFor('button');
+    await page.click('button');
+    await page.waitFor(selectors.tooltip);
+    await page.waitFor(selectors.selectInput);
+    await page.click(selectors.selectInput);
+    await page.waitFor(selectors.selectDropDown);
+
+    await page.keyboard.press('Escape');
+    await page.waitFor(selectors.selectDropDown, {hidden: true});
+    await page.waitFor(selectors.selectInput);
+
+    await page.keyboard.press('Escape');
+    await page.waitFor(selectors.selectInput, {hidden: true});
   });
 
   it('renders content even when hidden: with renderAll prop', async () => {
