@@ -41,7 +41,7 @@
     "rewire": "^4.0.1",
     "ts-node": "^8.6.2",
     "tslint": "^5.20.0",
-    "typescript": "^3.6.4",
+    "typescript": "^3.7.2",
     "vsce": "^1.71.0",
     "vscode-test": "^1.2.2"
   },
