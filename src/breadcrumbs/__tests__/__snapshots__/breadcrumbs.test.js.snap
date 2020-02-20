@@ -12,6 +12,7 @@ exports[`Breadcrumbs displays separators in correct positions 1`] = `
     >
       <ForwardRef
         href="#"
+        key=".0"
       >
         Parent Page
       </ForwardRef>
@@ -29,6 +30,7 @@ exports[`Breadcrumbs displays separators in correct positions 1`] = `
     >
       <ForwardRef
         href="#"
+        key=".1"
       >
         Sub-Parent Page
       </ForwardRef>
@@ -44,7 +46,9 @@ exports[`Breadcrumbs displays separators in correct positions 1`] = `
       $itemIndex={2}
       key="breadcrumb-item-2"
     >
-      <span>
+      <span
+        key=".2"
+      >
         Current Page
       </span>
     </ForwardRef>

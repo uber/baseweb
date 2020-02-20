@@ -86,6 +86,18 @@ class Button extends React.Component<
       <BaseButton
         ref={forwardedRef}
         data-baseweb="button"
+        {...(isLoading
+          ? {
+              // we want the screenreader to say loading and also the content of child
+              // this seems like the best option even tho the child might not be a string
+              ['aria-label']: `loading ${
+                typeof this.props.children === 'string'
+                  ? this.props.children
+                  : ''
+              }`,
+              ['aria-busy']: 'true',
+            }
+          : {})}
         {...sharedProps}
         {...restProps}
         {...baseButtonProps}
