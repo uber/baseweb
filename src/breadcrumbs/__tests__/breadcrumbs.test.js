@@ -35,4 +35,23 @@ describe('Breadcrumbs', () => {
       ),
     ).toMatchSnapshot();
   });
+
+  it('ignores null, true, and false', () => {
+    expect(
+      shallow(
+        <Breadcrumbs>
+          <span>Foo</span>
+          {null}
+          <span>Bar</span>
+          {true}
+          {false}
+        </Breadcrumbs>,
+      ),
+    ).toMatchElement(
+      <Breadcrumbs>
+        <span>Foo</span>
+        <span>Bar</span>
+      </Breadcrumbs>,
+    );
+  });
 });
