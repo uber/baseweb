@@ -26,7 +26,7 @@ import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 type LocaleT = {|locale?: BreadcrumbLocaleT|};
 export function BreadcrumbsRoot(props: {|...BreadcrumbsPropsT, ...LocaleT|}) {
   const {overrides = {}} = props;
-  const numChildren = Children.count(props.children);
+  const childrenArray = Children.toArray(props.children);
   const childrenWithSeparators = [];
 
   const [Root, baseRootProps] = getOverrides(overrides.Root, StyledRoot);
@@ -50,7 +50,7 @@ export function BreadcrumbsRoot(props: {|...BreadcrumbsPropsT, ...LocaleT|}) {
   // $FlowFixMe
   baseIconProps.overrides = iconOverrides;
 
-  Children.forEach(props.children, (child, index) => {
+  childrenArray.forEach((child, index) => {
     childrenWithSeparators.push(
       <ListItem
         key={`breadcrumb-item-${index}`}
@@ -58,7 +58,7 @@ export function BreadcrumbsRoot(props: {|...BreadcrumbsPropsT, ...LocaleT|}) {
         {...baseListItemProps}
       >
         {child}
-        {index !== numChildren - 1 && (
+        {index !== childrenArray.length - 1 && (
           <Separator {...baseSeparatorProps} key={`separator-${index}`}>
             <ThemeContext.Consumer>
               {theme =>
