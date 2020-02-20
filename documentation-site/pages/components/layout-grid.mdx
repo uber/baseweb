@@ -24,6 +24,7 @@ import OrderExample from 'examples/layout-grid/order.js';
 import BehaviorExample from 'examples/layout-grid/behavior.js';
 import CustomExample from 'examples/layout-grid/custom.js';
 import CustomCssUnitExample from 'examples/layout-grid/custom-css-unit.js';
+import OverridesExample from 'examples/layout-grid/overrides.js';
 
 export default Layout;
 
@@ -195,6 +196,18 @@ The above change will apply to every grid within the theme's subtree. If you wan
 ```
 <Grid gridUnit="em" gridMargins={[1, 2, 3]} gridMaxWidth={40}>{/* ... */}</Grid>
 ```
+
+<Example title="Overrides" path="layout-grid/overrides.js">
+  <OverridesExample />
+</Example>
+
+`Grid` and `Cell` also accept an [`overrides`](/guides/understanding-overrides) prop. In the example above, we set the background color of our grid and give every cell in the grid a default `span`. Then we override a single cell (4) to have a higher contrast blue background.
+
+The only way to pass custom styles to `StyledGrid` and `StyledCell` is using `overrides`. It can also be a useful way to pass props to all of your cells in one place (via `Grid.overrides.StyledCell`). Just remember that the props for `StyledGrid` and `StyledCell` have a `$` prefix.
+
+Note, using `overrides` should be a last resort for achieving your desired layout. You can get pretty far by styling an element wrapping `Grid` or immediately inside of a `Cell`. `Grid` and `Cell` are meant to help align your content; generally they should not require styling of their own.
+
+That said, we provide `overrides` just in case your imagination surpasses our API 🚀.
 
 ## API
 

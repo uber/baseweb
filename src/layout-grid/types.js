@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {ALIGNMENT, BEHAVIOR} from './constants.js';
 import Cell from './cell.js';
+
 import type {OverrideT} from '../helpers/overrides.js';
 
 export type ResponsiveT<T> = T | Array<T>;
