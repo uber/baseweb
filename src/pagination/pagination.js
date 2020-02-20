@@ -103,7 +103,7 @@ export default class Pagination extends React.PureComponent<
   };
 
   render() {
-    const {overrides = {}, currentPage, labels, numPages} = this.props;
+    const {overrides = {}, currentPage, labels, numPages, size} = this.props;
 
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [MaxLabel, maxLabelProps] = getOverrides(
@@ -146,6 +146,7 @@ export default class Pagination extends React.PureComponent<
                   overrides={{
                     BaseButton: overrides.PrevButton,
                   }}
+                  size={size}
                 >
                   {labels && labels.prevButton
                     ? labels.prevButton
@@ -166,6 +167,7 @@ export default class Pagination extends React.PureComponent<
                     clearable={false}
                     value={[{label: currentPage}]}
                     maxDropdownHeight="200px"
+                    size={size}
                     overrides={{
                       ControlContainer: {
                         style: ({$theme, $disabled, $isOpen, $error}) => ({
@@ -244,6 +246,7 @@ export default class Pagination extends React.PureComponent<
                   overrides={{
                     BaseButton: overrides.NextButton,
                   }}
+                  size={size}
                 >
                   {labels && labels.nextButton
                     ? labels.nextButton
