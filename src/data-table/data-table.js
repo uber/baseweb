@@ -578,14 +578,10 @@ const InnerTableElement = React.forwardRef<
               paddingLeft: theme.sizing.scale300,
               paddingRight: theme.sizing.scale300,
               position: 'absolute',
-              right:
-                theme.direction !== 'rtl'
-                  ? 0 - ctx.scrollLeft
-                  : 'initial',
+              right: theme.direction !== 'rtl' ? 0 - ctx.scrollLeft : 'initial',
               left: theme.direction === 'rtl' ? 0 : 'initial',
               top:
                 (ctx.rowHighlightIndex - 1) * ctx.rowHeight + HEADER_ROW_HEIGHT,
-
             }}
           >
             {ctx.rowActions.map(rowAction => {
