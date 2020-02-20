@@ -24,7 +24,7 @@ module.exports = {
     let importState = {};
     return {
       ImportSpecifier(node) {
-        function isImporting(importName, importPath, callback) {
+        function isImporting(importName, importPath) {
           if (
             node.imported.name === importName &&
             node.parent.source.value === importPath
@@ -52,7 +52,7 @@ module.exports = {
         // of the component. We need to consider imports as well as instances
         // so that if people use the autofix flag, they don't end up with a
         // weird half-way fix. If we find a valid import here, we capture in
-        // `importState` what the `new` value should be when we renameinstances
+        // `importState` what the `new` value to use when we rename instances
         // later on. One consequence of this approach is that you have to fix
         // the import and instance separately if resolving lint warnings
         // manually.
