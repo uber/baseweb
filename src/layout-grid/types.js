@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {ALIGNMENT, BEHAVIOR} from './constants.js';
 import Cell from './cell.js';
+import type {OverrideT} from '../helpers/overrides.js';
 
 export type ResponsiveT<T> = T | Array<T>;
 
@@ -56,6 +57,11 @@ export type GridPropsT = {
   gridMaxWidth?: number,
   /** Modify the CSS length unit used to measure columns and rows. Defaults to theme value. */
   gridUnit?: CSSLengthUnitT,
+  /** Overrides for your grid. */
+  overrides?: {
+    StyledGrid?: OverrideT<*>,
+    StyledCell?: OverrideT<*>,
+  },
 };
 
 export type StyledGridPropsT = {
@@ -84,6 +90,10 @@ export type CellPropsT = {
   skip?: ResponsiveT<number>,
   /** Control number of columns the cell should span. */
   span?: ResponsiveT<number>,
+  /** Overrides for a single cell. */
+  overrides?: {
+    StyledCell?: OverrideT<*>,
+  },
 };
 
 export type StyledCellPropsT = {
