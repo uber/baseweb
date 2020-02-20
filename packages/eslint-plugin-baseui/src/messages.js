@@ -20,4 +20,20 @@ module.exports = {
     id: 'replaceThemeProperty',
     message: `The theme property, "{{ old }}", is deprecated and can be replaced with "{{ new }}".`,
   },
+  deprecateSpinner: {
+    id: 'deprecateSpinner',
+    message: `The "Spinner" component has been deprecated in favor of "StyledSpinnerNext". In v10 of baseui, "Spinner" will be removed and "StyledSpinnerNext" will be renamed to "Spinner".`,
+  },
+  styleOnBlock: {
+    id: 'styleOnBlock',
+    message: `"$style" and "style" are not supported props for the "Block" component. Please use "overrides.Block" to pass styles down to the root element.`,
+  },
+  buttonKindMinimal: {
+    id: 'buttonKindMinimal',
+    message: `The "minimal" option for the Button "kind" prop is deprecated in favor of "tertiary". In v10 of baseui, "minimal" will be removed.`,
+  },
+  modalBackdrop: {
+    id: 'modalBackdrop',
+    message: `"Backdrop" has been deprecated as an override property. In v10 of baseui, "Backdrop" will be removed in favor of "DialogContainer".`,
+  },
 };

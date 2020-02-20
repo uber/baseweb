@@ -14,18 +14,95 @@ module.exports = {
     fixable: 'code',
     messages: {
       [MESSAGES.replace.id]: MESSAGES.replace.message,
+      [MESSAGES.deprecateSpinner.id]: MESSAGES.deprecateSpinner.message,
+      [MESSAGES.styleOnBlock.id]: MESSAGES.styleOnBlock.message,
+      [MESSAGES.buttonKindMinimal.id]: MESSAGES.buttonKindMinimal.message,
+      [MESSAGES.modalBackdrop.id]: MESSAGES.modalBackdrop.message,
     },
   },
   create(context) {
+    let importState = {};
     return {
+      ImportSpecifier(node) {
+        function isImporting(importName, importPath) {
+          if (
+            node.imported.name === importName &&
+            node.parent.source.value === importPath
+          ) {
+            importState[importName] = node.local.name;
+            return true;
+          } else {
+            return false;
+          }
+        }
+
+        // Spinner
+        // Ex: import {Spinner} from "baseui/spinner";
+        // Note, we are not replacing Spinner because the new API
+        // is not compatible.
+        if (isImporting('Spinner', 'baseui/spinner')) {
+          context.report({
+            node: node.imported,
+            messageId: MESSAGES.deprecateSpinner.id,
+          });
+          return;
+        }
+
+        // For Caption1 and Caption2, we want to potentially replace instances
+        // of the component. We need to consider imports as well as instances
+        // so that if people use the autofix flag, they don't end up with a
+        // weird half-way fix. If we find a valid import here, we capture in
+        // `importState` what the `new` value to use when we rename instances
+        // later on. One consequence of this approach is that you have to fix
+        // the import and instance separately if resolving lint warnings
+        // manually.
+
+        if (isImporting('Caption1', 'baseui/typography')) {
+          context.report({
+            node: node.imported,
+            messageId: MESSAGES.replace.id,
+            data: {
+              old: 'Caption1',
+              new: 'ParagraphXSmall',
+            },
+            fix: function(fixer) {
+              return [fixer.replaceText(node.imported, 'ParagraphXSmall')];
+            },
+          });
+          return;
+        }
+
+        if (isImporting('Caption2', 'baseui/typography')) {
+          context.report({
+            node: node.imported,
+            messageId: MESSAGES.replace.id,
+            data: {
+              old: 'Caption2',
+              new: 'LabelXSmall',
+            },
+            fix: function(fixer) {
+              return [fixer.replaceText(node.imported, 'LabelXSmall')];
+            },
+          });
+          return;
+        }
+
+        // These can be referenced later on by instances of components.
+        if (isImporting('Accordion', 'baseui/accordion')) return;
+        if (isImporting('Modal', 'baseui/modal')) return;
+        if (isImporting('Block', 'baseui/block')) return;
+        if (isImporting('Checkbox', 'baseui/checkbox')) return;
+        if (isImporting('Button', 'baseui/button')) return;
+      },
       JSXIdentifier(node) {
         // =======
         // Helpers
         // =======
 
         // isProp
-        // Check if identifier is a prop with matching "name" and is used with "component".
-        // Ex: prop("foo", "Boo") with <Boo foo={} /> => true
+        // Check if identifier is a prop with matching "name" and is used with
+        // "component".
+        // Ex: isProp("foo", "Boo") with <Boo foo={} /> => true
         function isProp(name, component) {
           return (
             node.name === name &&
@@ -41,7 +118,7 @@ module.exports = {
 
         // isComponent
         // Check if identifier is a component matching "name".
-        // Ex: prop("foo", "Boo") with <Boo foo={} /> => true
+        // Ex: isComponent("Boo") with <Boo foo={} /> => true
         function isComponent(name) {
           return node.name === name && node.parent.type === 'JSXOpeningElement';
         }
@@ -53,7 +130,10 @@ module.exports = {
         // renderPanelContent
         // Ex: <Accordion renderPanelContent />
         // Replacement: renderAll
-        if (isProp('renderPanelContent', 'Accordion')) {
+        if (
+          importState.Accordion &&
+          isProp('renderPanelContent', importState.Accordion)
+        ) {
           context.report({
             node,
             messageId: MESSAGES.replace.id,
@@ -71,7 +151,7 @@ module.exports = {
         // autofocus
         // Ex: <Modal autofocus />
         // Replacement: autoFocus
-        if (isProp('autofocus', 'Modal')) {
+        if (importState.Modal && isProp('autofocus', importState.Modal)) {
           context.report({
             node: node,
             messageId: MESSAGES.replace.id,
@@ -93,14 +173,14 @@ module.exports = {
         // It works because Block spreads props down to the base
         // styled component, but styles are not guaranteed to be applied
         // as expected.
-        const isProp_$style = isProp('$style', 'Block');
-        const isProp_style = isProp('style', 'Block');
-        if (isProp_$style || isProp_style) {
+        if (
+          importState.Block &&
+          (isProp('$style', importState.Block) ||
+            isProp('style', importState.Block))
+        ) {
           context.report({
             node,
-            message: `The "${
-              isProp_$style ? '$style' : 'style'
-            }" prop is not supported on the "Block" component. Please use "overrides.Block" to pass styles down to the root element.`,
+            messageId: MESSAGES.styleOnBlock.id,
           });
         }
 
@@ -112,7 +192,10 @@ module.exports = {
         // Ex: <Checkbox checkmarkType="toggle" />
         // Ex: <Checkbox checkmarkType={STYLE_TYPE.toggle} />
         // Replacement: toggle_round
-        if (isProp('checkmarkType', 'Checkbox')) {
+        if (
+          importState.Checkbox &&
+          isProp('checkmarkType', importState.Checkbox)
+        ) {
           // The value can be a constant or a string literal.
           // We need to handle each a little differently.
           if (
@@ -160,7 +243,7 @@ module.exports = {
         // Ex: <Button kind="minimal" />
         // Ex: <Button kind={KIND.minimal} />
         // Replacement: tertiary
-        if (isProp('kind', 'Button')) {
+        if (importState.Button && isProp('kind', importState.Button)) {
           // The value can be a constant or a string literal.
           // We need to handle each a little differently.
           if (
@@ -170,7 +253,7 @@ module.exports = {
             // Ex: <Button kind="minimal" />
             context.report({
               node: node.parent.value,
-              message: `The "minimal" option for the Button "kind" prop is deprecated in favor of "tertiary". In v10 of baseui, "minimal" will be removed.`,
+              messageId: MESSAGES.buttonKindMinimal.id,
             });
             return;
           } else if (
@@ -182,7 +265,7 @@ module.exports = {
             // Ex: <Button kind={KIND.minimal} />
             context.report({
               node: node.parent.value.expression.property,
-              message: `The "KIND.minimal" option for the Button "kind" prop is deprecated in favor of "KIND.tertiary". In v10 of baseui, "KIND.minimal" will be removed.`,
+              messageId: MESSAGES.buttonKindMinimal.id,
             });
             return;
           }
@@ -195,7 +278,7 @@ module.exports = {
         // Backdrop
         // Ex: <Modal overrides={{ Backdrop: {}}} />
         // Replacement: DialogContainer
-        if (isProp('overrides', 'Modal')) {
+        if (importState.Modal && isProp('overrides', importState.Modal)) {
           // Verify that an object is passed to overrides.
           if (node.parent.value.expression.type === 'ObjectExpression') {
             // Find object property with "Backdrop" as key.
@@ -205,7 +288,7 @@ module.exports = {
             if (property) {
               context.report({
                 node: property,
-                message: `"Backdrop" has been deprecated as an override property. In v10 of baseui, "Backdrop" will be removed in favor of "DialogContainer".`,
+                messageId: MESSAGES.modalBackdrop.id,
               });
               return;
             }
@@ -216,38 +299,15 @@ module.exports = {
         // Deprecated Components
         // =====================
 
-        // Spinner
-        // Ex: <Spinner />
-        // Replacement: SpinnerNext
-        // Note, we are not replacing Spinner because the APIs are slightly different.
-        // We can't swap the components in a way 100% safe way.
-        if (isComponent('Spinner')) {
-          context.report({
-            node: node,
-            message: `The "Spinner" component has been deprecated in favor of "StyledSpinnerNext". In v10 of baseui, "Spinner" will be removed and "StyledSpinnerNext" will be renamed to "Spinner".`,
-          });
-          return;
-        }
+        // See @ImportSpecifier function for how this importState.Caption1
+        // stuff works.
 
         // Caption1
         // Ex: <Caption1 />
         // Replacement: ParagraphXSmall
-        if (isComponent('Caption1')) {
-          // Find import of Caption1
-          const program = context
-            .getAncestors(node)
-            .find(node => node.type === 'Program');
-          const importDeclaration = program.body.find(
-            node =>
-              node.type === 'ImportDeclaration' &&
-              node.source.value === 'baseui/typography',
-          );
-          const importSpecifier = importDeclaration.specifiers.find(
-            specifier => specifier.imported.name === 'Caption1',
-          );
-
+        if (importState.Caption1 && isComponent('Caption1')) {
           context.report({
-            node: node,
+            node,
             messageId: MESSAGES.replace.id,
             data: {
               old: 'Caption1',
@@ -255,7 +315,6 @@ module.exports = {
             },
             fix: function(fixer) {
               return [
-                fixer.replaceText(importSpecifier.imported, 'ParagraphXSmall'),
                 fixer.replaceText(node, 'ParagraphXSmall'),
                 fixer.replaceText(
                   node.parent.parent.closingElement.name,
@@ -270,22 +329,9 @@ module.exports = {
         // Caption2
         // Ex: <Caption2 />
         // Replacement: LabelXSmall
-        if (isComponent('Caption2')) {
-          // Find import of Caption2
-          const program = context
-            .getAncestors(node)
-            .find(node => node.type === 'Program');
-          const importDeclaration = program.body.find(
-            node =>
-              node.type === 'ImportDeclaration' &&
-              node.source.value === 'baseui/typography',
-          );
-          const importSpecifier = importDeclaration.specifiers.find(
-            specifier => specifier.imported.name === 'Caption2',
-          );
-
+        if (importState.Caption2 && isComponent('Caption2')) {
           context.report({
-            node: node,
+            node,
             messageId: MESSAGES.replace.id,
             data: {
               old: 'Caption2',
@@ -293,7 +339,6 @@ module.exports = {
             },
             fix: function(fixer) {
               return [
-                fixer.replaceText(importSpecifier.imported, 'LabelXSmall'),
                 fixer.replaceText(node, 'LabelXSmall'),
                 fixer.replaceText(
                   node.parent.parent.closingElement.name,
