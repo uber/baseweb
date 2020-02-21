@@ -23,17 +23,13 @@ function flow_check_version(version) {
 
   const src = `${basedir}/dist/`;
   const dest = `${packagedir}/node_modules/baseui/`;
-  const cp = spawnSync('cp', ['-r', src, dest]);
-  console.log('*************');
-  console.log(src);
-  console.log(dest);
-  console.log(cp);
-  console.log('*************');
+  spawnSync('cp', ['-r', src, dest]);
 
   const cmd = spawnSync('yarn', ['flow'], spawn_args);
   return cmd.status;
 }
 
+spawnSync('yarn', ['build'], {stdio: 'inherit'});
 spawnSync('yarn', spawn_args);
 spawnSync('node', ['build-dependencies.js'], spawn_args);
 
