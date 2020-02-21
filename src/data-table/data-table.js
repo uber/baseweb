@@ -578,7 +578,8 @@ const InnerTableElement = React.forwardRef<
               paddingLeft: theme.sizing.scale300,
               paddingRight: theme.sizing.scale300,
               position: 'absolute',
-              right: 0 - ctx.scrollLeft,
+              right: theme.direction !== 'rtl' ? 0 - ctx.scrollLeft : 'initial',
+              left: theme.direction === 'rtl' ? 0 : 'initial',
               top:
                 (ctx.rowHighlightIndex - 1) * ctx.rowHeight + HEADER_ROW_HEIGHT,
             }}
@@ -964,6 +965,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
                 ...theme.borders.border200,
                 borderColor: theme.colors.borderOpaque,
               }}
+              direction={theme.direction === 'rtl' ? 'rtl' : 'ltr'}
             >
               {CellPlacementMemo}
             </VariableSizeGrid>

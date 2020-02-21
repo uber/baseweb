@@ -102,7 +102,7 @@ function makeRowsFromColumns(columns, rowCount) {
   return rows;
 }
 
-const columns = [
+export const columns = [
   CategoricalColumn({
     title: 'categorical',
     mapDataToValue: (data: RowDataT) => data[0],
@@ -237,7 +237,7 @@ const columns = [
   }),
 ];
 
-const rows = makeRowsFromColumns(columns, 2000);
+export const rows = makeRowsFromColumns(columns, 2000);
 
 export default function Scenario() {
   return (
