@@ -5,6 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+/* eslint-disable */
 import * as $0 from 'baseui/accordion';
 import * as $1 from 'baseui/aspect-ratio-box';
 import * as $2 from 'baseui/avatar';
@@ -62,3 +63,4 @@ import * as $53 from 'baseui/tooltip';
 import * as $54 from 'baseui/tree-view';
 import * as $55 from 'baseui/typography';
 import * as baseui from 'baseui';
+/* eslint-enable */
