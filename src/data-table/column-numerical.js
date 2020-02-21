@@ -441,7 +441,7 @@ const NumericalCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
       <div
         className={css({
           display: 'flex',
-          justifyContent: 'flex-end',
+          justifyContent: theme.direction !== 'rtl' ? 'flex-end' : 'flex-start',
           color: props.highlight(props.value)
             ? theme.colors.contentNegative
             : null,
