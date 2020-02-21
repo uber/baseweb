@@ -21,12 +21,60 @@ RuleTester.setDefaultConfig({
 
 const tests = {
   valid: [
-    // Accordion - renderPanelContent
-    // Miss when Accordion is renamed
+    // Spinner
+    // Miss when StyledSpinnerNext is renamed
     {
       code: `
-        import {Accordion as Acc} from "baseui/accordion";
-        const Foo = () => <Acc renderPanelContent />;
+        import {StyledSpinnerNext as Spinner} from 'baseui/spinner';
+        export default function() {
+          return <Spinner />;
+        }
+      `,
+    },
+
+    // Spinner
+    // Miss when Spinner is not imported from baseui (imported elsewhere)
+    {
+      code: `
+        import {Spinner} from './spinner.js';
+        export default function() {
+          return <Spinner />;
+        }
+      `,
+    },
+
+    // Spinner
+    // Miss when Spinner is not imported from baseui (created locally)
+    {
+      code: `
+        function Spinner() {
+          return <span aria-label="loading" />;
+        }
+        export default function() {
+          return <Spinner />;
+        }
+      `,
+    },
+
+    // Caption1
+    // Miss when Caption1 is not imported from baseui
+    {
+      code: `
+        import {Caption1} from './typography.js';
+        export default function() {
+          return <Caption1>Hello</Caption1>;
+        }
+      `,
+    },
+
+    // Caption2
+    // Miss when Caption2 happens to be a rename from baseui
+    {
+      code: `
+        import {LabelXSmall as Caption2} from 'baseui/typography';
+        export default function() {
+          return <Caption2>Hello</Caption2>;
+        }
       `,
     },
 
@@ -37,17 +85,6 @@ const tests = {
         import { Checkbox, STYLE_TYPE as STYLES } from "baseui/checkbox"
         export default function() {
           return <Checkbox checkmarkType={STYLES.toggle} />
-        }
-      `,
-    },
-
-    // Modal - Backdrop
-    // Miss when Modal is renamed
-    {
-      code: `
-        import { Modal as Foo } from "baseui/modal"
-        export default function() {
-          return <Foo overrides={{ Backdrop: {} }} />
         }
       `,
     },
@@ -68,11 +105,27 @@ const tests = {
     // Accordion - renderPanelContent
     {
       code: `
+        import {Accordion} from "baseui/accordion";
         const Foo = () => <Accordion renderPanelContent />;
       `,
       errors: [{messageId: MESSAGES.replace.id}],
       output: `
+        import {Accordion} from "baseui/accordion";
         const Foo = () => <Accordion renderAll />;
+      `,
+    },
+
+    // Accordion - renderPanelContent
+    // Accordion is renamed
+    {
+      code: `
+        import {Accordion as Acc} from "baseui/accordion";
+        const Foo = () => <Acc renderPanelContent />;
+      `,
+      errors: [{messageId: MESSAGES.replace.id}],
+      output: `
+        import {Accordion as Acc} from "baseui/accordion";
+        const Foo = () => <Acc renderAll />;
       `,
     },
 
@@ -137,11 +190,19 @@ const tests = {
           return <Modal overrides={{ Backdrop: {} }} />
         }
       `,
-      errors: [
-        {
-          message: `"Backdrop" has been deprecated as an override property. In v10 of baseui, "Backdrop" will be removed in favor of "DialogContainer".`,
-        },
-      ],
+      errors: [{messageId: MESSAGES.modalBackdrop.id}],
+    },
+
+    // Modal - Backdrop
+    // Modal is renamed
+    {
+      code: `
+        import { Modal as Foo } from "baseui/modal"
+        export default function() {
+          return <Foo overrides={{ Backdrop: {} }} />
+        }
+      `,
+      errors: [{messageId: MESSAGES.modalBackdrop.id}],
     },
 
     // Spinner
@@ -152,11 +213,18 @@ const tests = {
           return <Spinner />
         }
       `,
-      errors: [
-        {
-          message: `The "Spinner" component has been deprecated in favor of "StyledSpinnerNext". In v10 of baseui, "Spinner" will be removed and "StyledSpinnerNext" will be renamed to "Spinner".`,
-        },
-      ],
+      errors: [{messageId: MESSAGES.deprecateSpinner.id}],
+    },
+
+    // Spinner renamed
+    {
+      code: `
+        import { Spinner as BaseSpinner } from "baseui/spinner"
+        export default function() {
+          return <BaseSpinner />
+        }
+      `,
+      errors: [{messageId: MESSAGES.deprecateSpinner.id}],
     },
 
     // Button - minimal kind
@@ -172,18 +240,14 @@ const tests = {
           )
         }
       `,
-      errors: [
-        {
-          message: `The "KIND.minimal" option for the Button "kind" prop is deprecated in favor of "KIND.tertiary". In v10 of baseui, "KIND.minimal" will be removed.`,
-        },
-      ],
+      errors: [{messageId: MESSAGES.buttonKindMinimal.id}],
     },
 
     // Button - minimal kind
     // Prop as string literal
     {
       code: `
-        import { Button, KIND } from "baseui/button"
+        import { Button } from "baseui/button"
         export default () => {
           return (
             <Button kind="minimal">
@@ -192,11 +256,23 @@ const tests = {
           )
         }
       `,
-      errors: [
-        {
-          message: `The "minimal" option for the Button "kind" prop is deprecated in favor of "tertiary". In v10 of baseui, "minimal" will be removed.`,
-        },
-      ],
+      errors: [{messageId: MESSAGES.buttonKindMinimal.id}],
+    },
+
+    // Button - minimal kind
+    // Button is aliased
+    {
+      code: `
+        import { Button as BaseButton } from "baseui/button"
+        export default () => {
+          return (
+            <BaseButton kind="minimal">
+              Hello
+            </BaseButton>
+          )
+        }
+      `,
+      errors: [{messageId: MESSAGES.buttonKindMinimal.id}],
     },
 
     // Caption1
@@ -207,11 +283,31 @@ const tests = {
           return <Caption1>Hello</Caption1>
         }
       `,
-      errors: [{messageId: MESSAGES.replace.id}],
+      errors: [
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+      ],
       output: `
         import { ParagraphXSmall } from "baseui/typography"
         export default () => {
           return <ParagraphXSmall>Hello</ParagraphXSmall>
+        }
+      `,
+    },
+
+    // Caption1, renamed
+    {
+      code: `
+        import { Caption1 as Foo } from "baseui/typography"
+        export default () => {
+          return <Foo>Hello</Foo>
+        }
+      `,
+      errors: [{messageId: MESSAGES.replace.id}],
+      output: `
+        import { ParagraphXSmall as Foo } from "baseui/typography"
+        export default () => {
+          return <Foo>Hello</Foo>
         }
       `,
     },
@@ -224,11 +320,31 @@ const tests = {
           return <Caption2>Hello</Caption2>
         }
       `,
-      errors: [{messageId: MESSAGES.replace.id}],
+      errors: [
+        {messageId: MESSAGES.replace.id},
+        {messageId: MESSAGES.replace.id},
+      ],
       output: `
         import { LabelXSmall } from "baseui/typography"
         export default () => {
           return <LabelXSmall>Hello</LabelXSmall>
+        }
+      `,
+    },
+
+    // Caption2, renamed
+    {
+      code: `
+        import { Caption2 as Foo } from "baseui/typography"
+        export default () => {
+          return <Foo>Hello</Foo>
+        }
+      `,
+      errors: [{messageId: MESSAGES.replace.id}],
+      output: `
+        import { LabelXSmall as Foo } from "baseui/typography"
+        export default () => {
+          return <Foo>Hello</Foo>
         }
       `,
     },
@@ -241,11 +357,7 @@ const tests = {
           return <Block $style={{ color: "red" }} />
         }
       `,
-      errors: [
-        {
-          message: `The "$style" prop is not supported on the "Block" component. Please use "overrides.Block" to pass styles down to the root element.`,
-        },
-      ],
+      errors: [{messageId: MESSAGES.styleOnBlock.id}],
     },
 
     // Block - style
@@ -256,11 +368,7 @@ const tests = {
           return <Block style={{ color: "red" }} />
         }
       `,
-      errors: [
-        {
-          message: `The "style" prop is not supported on the "Block" component. Please use "overrides.Block" to pass styles down to the root element.`,
-        },
-      ],
+      errors: [{messageId: MESSAGES.styleOnBlock.id}],
     },
   ],
 };
