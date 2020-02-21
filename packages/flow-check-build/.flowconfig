@@ -1,5 +1,7 @@
 [ignore]
-.*/node_modules/.*[^(package)]\.json$
+; flow does not support negative lookaheads therefore each package with errors
+; must be ignored individually https://github.com/facebook/flow/issues/564
+.*/node_modules/react-window/.*\.js.flow$
 
 [include]
 index.js
