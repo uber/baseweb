@@ -46,6 +46,13 @@ function flow_check() {
   });
 }
 
+function yarn_install() {
+  return new Promise(resolve => {
+    const cmd = spawn('yarn', spawn_args);
+    cmd.on('close', resolve);
+  });
+}
+
 function copy_build() {
   return new Promise(resolve => {
     const src = `${basedir}/dist/`;
@@ -78,6 +85,7 @@ async function flow_check_version(version) {
 }
 
 async function main() {
+  await yarn_install();
   await build_dependencies();
 
   const exit_code_110 = await flow_check_version('0.110');
