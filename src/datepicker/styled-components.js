@@ -198,6 +198,7 @@ function generateDayStyles(defaultCode: string, defaultStyle) {
   };
 }
 
+// eslint-disable-next-line flowtype/no-weak-types
 function getDayStyles(code, {colors}): any {
   const undefinedDayStyle = {
     ':before': {content: null},
