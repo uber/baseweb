@@ -52,6 +52,7 @@ export interface BaseProviderProps {
   children: React.ReactNode;
   theme: Theme;
   overrides?: BaseProviderOverrides;
+  zIndex?: number;
 }
 export const BaseProvider: React.FC<BaseProviderProps>;
 
