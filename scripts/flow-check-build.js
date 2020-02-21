@@ -21,16 +21,13 @@ function flow_check_version(version) {
   spawnSync('yarn', ['add', `flow-bin@${version}`], spawn_args);
   spawnSync('yarn', ['flow', 'stop'], spawn_args);
 
-  const src = `${basedir}/dist/`;
+  // an inconsistency between linux and mac cp commands
+  // linux requires the * symbol to copy children into destination
+  // versus create a new directory in the destication called dist
+  const is_ci = process.env.BUILDKITE === 'true';
+  const src = is_ci ? `${basedir}/dist/*` : `${basedir}/dist/`;
   const dest = `${packagedir}/node_modules/baseui/`;
-
-  spawnSync('ls', [src], {stdio: 'inherit'});
-  spawnSync('cat', [`${src}accordion/accordion.js.flow`], {stdio: 'inherit'});
-
   spawnSync('cp', ['-r', src, dest], {stdio: 'inherit'});
-
-  spawnSync('ls', [dest], {stdio: 'inherit'});
-  spawnSync('cat', [`${dest}accordion/accordion.js.flow`], {stdio: 'inherit'});
 
   const cmd = spawnSync('yarn', ['flow'], spawn_args);
   return cmd.status;
