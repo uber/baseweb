@@ -23,13 +23,19 @@ function flow_check_version(version) {
 
   const src = `${basedir}/dist/`;
   const dest = `${packagedir}/node_modules/baseui/`;
+
+  spawnSync('ls', [src]);
+  spawnSync('cat', [`${src}accordion/accordion.js.flow`]);
+
   spawnSync('cp', ['-r', src, dest]);
+
+  spawnSync('ls', [dest]);
+  spawnSync('cat', [`${dest}accordion/accordion.js.flow`]);
 
   const cmd = spawnSync('yarn', ['flow'], spawn_args);
   return cmd.status;
 }
 
-spawnSync('yarn', ['build'], {stdio: 'inherit'});
 spawnSync('yarn', spawn_args);
 spawnSync('node', ['build-dependencies.js'], spawn_args);
 
