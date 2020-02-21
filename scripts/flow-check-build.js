@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-env node */
 
+const fs = require('fs-extra');
 const path = require('path');
 const {spawnSync} = require('child_process');
 
@@ -21,13 +22,9 @@ function flow_check_version(version) {
   spawnSync('yarn', ['add', `flow-bin@${version}`], spawn_args);
   spawnSync('yarn', ['flow', 'stop'], spawn_args);
 
-  // an inconsistency between linux and mac cp commands
-  // linux requires the * symbol to copy children into destination
-  // versus create a new directory in the destication called dist
-  const is_ci = process.env.BUILDKITE === 'true';
-  const src = is_ci ? `${basedir}/dist/*` : `${basedir}/dist/`;
+  const src = `${basedir}/dist/`;
   const dest = `${packagedir}/node_modules/baseui/`;
-  spawnSync('cp', ['-r', src, dest], {stdio: 'inherit'});
+  fs.copySync(src, dest);
 
   const cmd = spawnSync('yarn', ['flow'], spawn_args);
   return cmd.status;
