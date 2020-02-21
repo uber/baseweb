@@ -17,6 +17,8 @@ services:
       interval: 5s
       timeout: 10s
       retries: 5
+    environment:
+      - COMPOSE_HTTP_TIMEOUT
 
   # tests if the e2e-server is ready to serve traffic
   e2e-server-healthy:
