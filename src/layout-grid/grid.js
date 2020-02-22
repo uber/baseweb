@@ -8,7 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import {getOverrides} from '../helpers/overrides.js';
-import {StyledGrid, StyledCell} from './styled-components.js';
+import {StyledGrid} from './styled-components.js';
+import Cell from './cell.js';
 
 import type {GridPropsT} from './types.js';
 
@@ -22,12 +23,9 @@ export default function Grid({
   gridMargins,
   gridMaxWidth,
   gridUnit,
-  overrides: GridOverrides = {},
+  overrides = {},
 }: GridPropsT) {
-  const [Grid, gridOverrideProps] = getOverrides(
-    GridOverrides.Grid,
-    StyledGrid,
-  );
+  const [Grid, overrideProps] = getOverrides(overrides.Grid, StyledGrid);
   return (
     <Grid
       $behavior={behavior}
@@ -36,35 +34,17 @@ export default function Grid({
       $gridMaxWidth={gridMaxWidth}
       $gridUnit={gridUnit}
       $align={align}
-      {...gridOverrideProps}
+      {...overrideProps}
     >
       {React.Children.map(children, child => {
-        const {
-          align,
-          children,
-          order,
-          overrides: CellOverrides = {},
-          skip,
-          span,
-        } = child.props;
-        const [Cell, cellOverrideProps] = getOverrides(
-          CellOverrides.Cell,
-          StyledCell,
-        );
         return (
           <Cell
-            $align={align}
-            $order={order}
-            $skip={skip}
-            $span={span}
-            $gridColumns={gridColumns}
-            $gridGutters={gridGutters}
-            $gridUnit={gridUnit}
-            $gridGaps={gridGaps}
-            {...cellOverrideProps}
-          >
-            {children}
-          </Cell>
+            gridColumns={gridColumns}
+            gridGaps={gridGaps}
+            gridGutters={gridGutters}
+            gridUnit={gridUnit}
+            {...child.props}
+          />
         );
       })}
     </Grid>

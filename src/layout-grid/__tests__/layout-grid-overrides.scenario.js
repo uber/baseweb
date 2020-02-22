@@ -16,7 +16,8 @@ export default function Scenario() {
         overrides={{
           Grid: {
             style: {
-              boxShadow: `inset 0px 0px 0px 1px blue`,
+              backgroundColor: `skyblue`,
+              marginTop: '12px',
             },
             props: {
               $gridMaxWidth: 800,
@@ -31,7 +32,7 @@ export default function Scenario() {
           overrides={{
             Cell: {
               style: {
-                boxShadow: 'inset 0px 0px 0px 1px green',
+                backgroundColor: `cornflowerblue`,
               },
               props: {
                 $span: [1, 5, 8],
