@@ -60,8 +60,7 @@ export type GridPropsT = {
   gridUnit?: CSSLengthUnitT,
   /** Overrides for your grid. */
   overrides?: {
-    StyledGrid?: OverrideT<*>,
-    StyledCell?: OverrideT<*>,
+    Grid?: OverrideT<*>,
   },
 };
 
@@ -93,7 +92,7 @@ export type CellPropsT = {
   span?: ResponsiveT<number>,
   /** Overrides for a single cell. */
   overrides?: {
-    StyledCell?: OverrideT<*>,
+    Cell?: OverrideT<*>,
   },
 };
 

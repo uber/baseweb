@@ -7,27 +7,20 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {Grid, Cell, StyledCell} from '../index.js';
+import {Grid, Cell} from '../index.js';
 
 export default function Scenario() {
   return (
     <>
       <Grid
         overrides={{
-          StyledGrid: {
+          Grid: {
             style: {
               boxShadow: `inset 0px 0px 0px 1px blue`,
             },
-          },
-          // applied to every cell in grid
-          StyledCell: {
-            style: {
-              boxShadow: 'inset 0px 0px 0px 1px red',
-            },
             props: {
-              $span: [1, 2, 3],
+              $gridMaxWidth: 800,
             },
-            component: StyledCell, // not sure why you would do this...
           },
         }}
       >
@@ -36,15 +29,17 @@ export default function Scenario() {
         <Cell>3</Cell>
         <Cell
           overrides={{
-            // set individual cell styles
-            StyledCell: {
+            Cell: {
               style: {
                 boxShadow: 'inset 0px 0px 0px 1px green',
+              },
+              props: {
+                $span: [1, 5, 8],
               },
             },
           }}
         >
-          4*
+          4
         </Cell>
       </Grid>
     </>

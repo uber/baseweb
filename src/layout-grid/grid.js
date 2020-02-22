@@ -8,10 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import {getOverrides} from '../helpers/overrides.js';
-import {
-  StyledGrid as DefaultStyledGrid,
-  StyledCell as DefaultStyledCell,
-} from './styled-components.js';
+import {StyledGrid, StyledCell} from './styled-components.js';
 
 import type {GridPropsT} from './types.js';
 
@@ -25,44 +22,37 @@ export default function Grid({
   gridMargins,
   gridMaxWidth,
   gridUnit,
-  overrides = {},
+  overrides: GridOverrides = {},
 }: GridPropsT) {
-  const {StyledGrid: StyledGridOverride} = overrides;
-  const [StyledGrid, styledGridProps] = getOverrides(
-    StyledGridOverride,
-    DefaultStyledGrid,
-  );
-  const {StyledCell: StyledGridCellOverride} = overrides;
-  const [StyledGridCell, styledGridCellProps] = getOverrides(
-    StyledGridCellOverride,
-    DefaultStyledCell,
+  const [Grid, gridOverrideProps] = getOverrides(
+    GridOverrides.Grid,
+    StyledGrid,
   );
   return (
-    <StyledGrid
+    <Grid
       $behavior={behavior}
       $gridMargins={gridMargins}
       $gridGutters={gridGutters}
       $gridMaxWidth={gridMaxWidth}
       $gridUnit={gridUnit}
       $align={align}
-      {...styledGridProps}
+      {...gridOverrideProps}
     >
       {React.Children.map(children, child => {
         const {
-          overrides = {},
           align,
           children,
           order,
+          overrides: CellOverrides = {},
           skip,
           span,
         } = child.props;
-        const {StyledCell: StyledCellOverride} = overrides;
-        const [StyledCell, styledCellProps] = getOverrides(
-          StyledCellOverride,
-          StyledGridCell,
+        const [Cell, cellOverrideProps] = getOverrides(
+          CellOverrides.Cell,
+          StyledCell,
         );
         return (
-          <StyledCell
+          <Cell
             $align={align}
             $order={order}
             $skip={skip}
@@ -71,13 +61,12 @@ export default function Grid({
             $gridGutters={gridGutters}
             $gridUnit={gridUnit}
             $gridGaps={gridGaps}
-            {...styledGridCellProps}
-            {...styledCellProps}
+            {...cellOverrideProps}
           >
             {children}
-          </StyledCell>
+          </Cell>
         );
       })}
-    </StyledGrid>
+    </Grid>
   );
 }

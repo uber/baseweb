@@ -27,8 +27,7 @@ export interface GridProps {
   gridMaxWidth?: number;
   gridUnit?: CSSLengthUnitT;
   overrides?: {
-    StyledGrid?: Override<any>;
-    StyledCell?: Override<any>;
+    Grid?: Override<any>;
   };
 }
 
@@ -48,7 +47,7 @@ export interface CellProps {
   skip?: Responsive<number>;
   span?: Responsive<number>;
   overrides?: {
-    StyledCell?: Override<any>;
+    Cell?: Override<any>;
   };
 }
 

@@ -1,40 +1,78 @@
 // @flow
 
-import React from 'react';
+import * as React from 'react';
+import {useStyletron} from 'baseui';
 import {Grid, Cell} from 'baseui/layout-grid';
 
 export default function Scenario() {
   return (
-    <Grid
-      overrides={{
-        StyledGrid: {
-          style: ({$theme}) => ({
-            background: $theme.colors.accent100,
-            color: $theme.colors.accent700,
-          }),
-        },
-        StyledCell: {
-          props: {
-            $span: [1, 2, 3],
-          },
-        },
-      }}
-    >
-      <Cell>1</Cell>
-      <Cell>2</Cell>
-      <Cell>3</Cell>
-      <Cell
+    <Outer>
+      <Grid
         overrides={{
-          StyledCell: {
+          Grid: {
             style: ({$theme}) => ({
-              background: $theme.colors.backgroundAccent,
-              color: $theme.colors.contentOnColor,
+              border: `solid 1px ${$theme.colors.positive400}`,
             }),
           },
         }}
       >
-        4
-      </Cell>
-    </Grid>
+        <Cell span={[1, 2, 3]}>
+          <Inner>1</Inner>
+        </Cell>
+        <Cell span={[1, 2, 3]}>
+          <Inner>2</Inner>
+        </Cell>
+        <Cell span={[1, 2, 3]}>
+          <Inner>3</Inner>
+        </Cell>
+        <Cell
+          span={[1, 2, 3]}
+          overrides={{
+            Cell: {
+              style: ({$theme}) => ({
+                outline: `solid 1px ${$theme.colors.negative400}`,
+              }),
+            },
+          }}
+        >
+          <Inner>4</Inner>
+        </Cell>
+      </Grid>
+    </Outer>
   );
 }
+
+const Outer: React.StatelessFunctionalComponent<{
+  children: React.Node,
+}> = ({children}) => {
+  const [css, theme] = useStyletron();
+  return (
+    <div
+      className={css({
+        background: theme.colors.accent100,
+      })}
+    >
+      {children}
+    </div>
+  );
+};
+
+const Inner: React.StatelessFunctionalComponent<{
+  children: React.Node,
+}> = ({children}) => {
+  const [css, theme] = useStyletron();
+  return (
+    <div
+      className={css({
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        background: theme.colors.accent200,
+        color: theme.colors.accent700,
+        padding: '.25rem',
+      })}
+    >
+      {children}
+    </div>
+  );
+};

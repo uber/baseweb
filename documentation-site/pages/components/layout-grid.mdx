@@ -203,11 +203,11 @@ The above change will apply to every grid within the theme's subtree. If you wan
   <OverridesExample />
 </Example>
 
-`Grid` and `Cell` also accept an [`overrides`](/guides/understanding-overrides) prop. In the example above, we set the background color of our grid and give every cell in the grid a default `span`. Then we override a single cell (4) to have a higher contrast blue background.
+`Grid` and `Cell` also accept an [`overrides`](/guides/understanding-overrides) prop. In the example above, we add a green border around our grid and override a single cell (4) to have a red outline.
 
-The only way to pass custom styles to `StyledGrid` and `StyledCell` is using `overrides`. It can also be a useful way to pass props to all of your cells in one place (via `Grid.overrides.StyledCell`). Just remember that the props for `StyledGrid` and `StyledCell` have a `$` prefix.
+You can also pass through props (`props`) or an alternate component implementation (`component`), but there is not much of a reason to do so. If you do decide to pass props through `overrides`, remember that the props for the inner `StyledGrid` and `StyledCell` components have a `$` prefix on all of their props.
 
-Note, using `overrides` should be a last resort for achieving your desired layout. You can get pretty far by styling an element wrapping `Grid` or immediately inside of a `Cell`. `Grid` and `Cell` are meant to help align your content; generally they should not require styling of their own.
+Note, you may not need to use `overrides` at all. You can get pretty far by styling an element wrapping `Grid` or immediately inside of a `Cell`. `Grid` and `Cell` are meant to help align your content; generally they should not require styling of their own.
 
 That said, we provide `overrides` just in case your imagination surpasses our API 🚀.
 
