@@ -50,7 +50,11 @@ async function run() {
           '@babel/plugin-proposal-class-properties',
         ],
       });
-      return transformed.code;
+
+      return transformed.code
+        .split('\n')
+        .filter(Boolean)
+        .join('\n');
     }),
   );
 

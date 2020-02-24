@@ -95,9 +95,10 @@ export const StyledInnerIcon = styled<StylePropsT>('div', ({$theme}) => {
 });
 
 export const StyledContent = styled<StylePropsT>('div', ({$theme}) => {
+  const marginDir: string =
+    $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
   return {
-    [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: $theme.sizing
-      .scale900,
+    [marginDir]: $theme.sizing.scale900,
   };
 });
 
@@ -136,9 +137,11 @@ export const StyledContentTail = styled<StylePropsT>(
       font = $theme.typography.font350;
     }
 
+    const dir: string = $theme.direction === 'rtl' ? 'right' : 'left';
+
     return {
       position: 'absolute',
-      [$theme.direction === 'rtl' ? 'right' : 'left']: '7px',
+      [dir]: '7px',
       top: 0,
       height: `calc(100% + ${$theme.sizing.scale500})`,
       marginBottom: 0,
