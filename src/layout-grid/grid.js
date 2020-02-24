@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import {getOverrides} from '../helpers/overrides.js';
-import {StyledGrid} from './styled-components.js';
+import {StyledGrid as DefaultStyledGrid} from './styled-components.js';
 import Cell from './cell.js';
 
 import type {GridPropsT} from './types.js';
@@ -25,15 +25,18 @@ export default function Grid({
   gridUnit,
   overrides = {},
 }: GridPropsT) {
-  const [Grid, overrideProps] = getOverrides(overrides.Grid, StyledGrid);
+  const [StyledGrid, overrideProps] = getOverrides(
+    overrides.Grid,
+    DefaultStyledGrid,
+  );
   return (
-    <Grid
+    <StyledGrid
+      $align={align}
       $behavior={behavior}
-      $gridMargins={gridMargins}
       $gridGutters={gridGutters}
+      $gridMargins={gridMargins}
       $gridMaxWidth={gridMaxWidth}
       $gridUnit={gridUnit}
-      $align={align}
       {...overrideProps}
     >
       {React.Children.map(children, child => {
@@ -47,6 +50,6 @@ export default function Grid({
           />
         );
       })}
-    </Grid>
+    </StyledGrid>
   );
 }

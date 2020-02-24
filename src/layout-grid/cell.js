@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import {getOverrides} from '../helpers/overrides.js';
-import {StyledCell} from './styled-components.js';
+import {StyledCell as DefaultStyledCell} from './styled-components.js';
 
 import type {CellPropsT} from './types.js';
 
@@ -20,13 +20,16 @@ export default function Cell({
   gridGutters,
   gridUnit,
   order,
-  overrides = {},
   skip,
   span,
+  overrides = {},
 }: CellPropsT) {
-  const [Cell, overrideProps] = getOverrides(overrides.Cell, StyledCell);
+  const [StyledCell, overrideProps] = getOverrides(
+    overrides.Cell,
+    DefaultStyledCell,
+  );
   return (
-    <Cell
+    <StyledCell
       $align={align}
       $gridColumns={gridColumns}
       $gridGaps={gridGaps}
@@ -38,6 +41,6 @@ export default function Cell({
       {...overrideProps}
     >
       {children}
-    </Cell>
+    </StyledCell>
   );
 }

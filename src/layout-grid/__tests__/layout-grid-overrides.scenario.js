@@ -29,6 +29,7 @@ export default function Scenario() {
         <Cell>2</Cell>
         <Cell>3</Cell>
         <Cell
+          span={1} // override takes priority
           overrides={{
             Cell: {
               style: {
