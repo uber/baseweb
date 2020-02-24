@@ -15,11 +15,12 @@ export const StyledClearIconContainer = styled<{
   $alignTop: boolean,
   $theme: ThemeT,
 }>('div', ({$alignTop = false, $theme}) => {
+  const paddingDir: string =
+    $theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
   return {
     display: 'flex',
     alignItems: $alignTop ? 'flex-start' : 'center',
-    [$theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight']: $theme.sizing
-      .scale500,
+    [paddingDir]: $theme.sizing.scale500,
     paddingTop: $alignTop ? $theme.sizing.scale500 : '0px',
     color: $theme.colors.contentPrimary,
   };
