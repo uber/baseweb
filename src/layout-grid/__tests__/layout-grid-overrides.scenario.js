@@ -11,39 +11,37 @@ import {Grid, Cell} from '../index.js';
 
 export default function Scenario() {
   return (
-    <>
-      <Grid
+    <Grid
+      overrides={{
+        Grid: {
+          style: {
+            backgroundColor: `skyblue`,
+            marginTop: '12px',
+          },
+          props: {
+            $gridMaxWidth: 800,
+          },
+        },
+      }}
+    >
+      <Cell>1</Cell>
+      <Cell>2</Cell>
+      <Cell>3</Cell>
+      <Cell
+        span={1} // override takes priority
         overrides={{
-          Grid: {
+          Cell: {
             style: {
-              backgroundColor: `skyblue`,
-              marginTop: '12px',
+              backgroundColor: `cornflowerblue`,
             },
             props: {
-              $gridMaxWidth: 800,
+              $span: [1, 5, 8],
             },
           },
         }}
       >
-        <Cell>1</Cell>
-        <Cell>2</Cell>
-        <Cell>3</Cell>
-        <Cell
-          span={1} // override takes priority
-          overrides={{
-            Cell: {
-              style: {
-                backgroundColor: `cornflowerblue`,
-              },
-              props: {
-                $span: [1, 5, 8],
-              },
-            },
-          }}
-        >
-          4
-        </Cell>
-      </Grid>
-    </>
+        4
+      </Cell>
+    </Grid>
   );
 }
