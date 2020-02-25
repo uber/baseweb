@@ -7,7 +7,7 @@ import {Grid, Cell} from 'baseui/layout-grid';
 export default () => (
   <Outer>
     <Grid
-      gridUnit="em"
+      gridUnit="rem"
       gridGutters={[1, 2, 2]}
       gridMargins={[1, 2, 4]}
     >
@@ -51,9 +51,7 @@ export default () => (
   </Outer>
 );
 
-const Outer: React.StatelessFunctionalComponent<{
-  children: React.Node,
-}> = ({children}) => {
+const Outer = ({children}: {children: React.Node}) => {
   const [css, theme] = useStyletron();
   return (
     <div
@@ -66,9 +64,7 @@ const Outer: React.StatelessFunctionalComponent<{
   );
 };
 
-const Inner: React.StatelessFunctionalComponent<{
-  children: React.Node,
-}> = ({children}) => {
+const Inner = ({children}: {children: React.Node}) => {
   const [css, theme] = useStyletron();
   return (
     <div

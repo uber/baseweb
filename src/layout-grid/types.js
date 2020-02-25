@@ -10,6 +10,8 @@ import * as React from 'react';
 import {ALIGNMENT, BEHAVIOR} from './constants.js';
 import Cell from './cell.js';
 
+import type {OverrideT} from '../helpers/overrides.js';
+
 export type ResponsiveT<T> = T | Array<T>;
 
 export type AlignmentT =
@@ -56,6 +58,10 @@ export type GridPropsT = {
   gridMaxWidth?: number,
   /** Modify the CSS length unit used to measure columns and rows. Defaults to theme value. */
   gridUnit?: CSSLengthUnitT,
+  /** Overrides for your grid. */
+  overrides?: {
+    Grid?: OverrideT<*>,
+  },
 };
 
 export type StyledGridPropsT = {
@@ -78,12 +84,24 @@ export type CellPropsT = {
   align?: ResponsiveT<AlignmentT>,
   /** Content to be placed in Cell. */
   children?: React.Node,
+  /** Number of columns at each breakpoint. */
+  gridColumns?: ResponsiveT<number>,
+  /** Gap between rows at each breakpoint. */
+  gridGaps?: ResponsiveT<number>,
+  /** Gap between columns at each breakpoint. */
+  gridGutters?: ResponsiveT<number>,
+  /** Modify the CSS length unit used to measure columns and rows. Defaults to theme value. */
+  gridUnit?: CSSLengthUnitT,
   /** Control placement order of cell in flex row at each breakpoint. Proxy for `order` CSS property. */
   order?: ResponsiveT<number>,
   /** Control number of columns to offset cell at each breakpoint. */
   skip?: ResponsiveT<number>,
   /** Control number of columns the cell should span. */
   span?: ResponsiveT<number>,
+  /** Overrides for a single cell. */
+  overrides?: {
+    Cell?: OverrideT<*>,
+  },
 };
 
 export type StyledCellPropsT = {
@@ -95,12 +113,12 @@ export type StyledCellPropsT = {
   $gridGaps?: ResponsiveT<number>,
   /** Gap between columns at each breakpoint. */
   $gridGutters?: ResponsiveT<number>,
+  /** Modify the CSS length unit used to measure columns and rows. Defaults to theme value. */
+  $gridUnit?: CSSLengthUnitT,
   /** Control placement order of cell in flex row at each breakpoint. Proxy for `order` CSS property. */
   $order?: ResponsiveT<number>,
   /** Control number of columns to offset cell at each breakpoint. */
   $skip?: ResponsiveT<number>,
   /** Control number of columns the cell should span. */
   $span?: ResponsiveT<number>,
-  /** Modify the CSS length unit used to measure columns and rows. Defaults to theme value. */
-  $gridUnit?: CSSLengthUnitT,
 };
