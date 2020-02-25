@@ -23,7 +23,8 @@ import AlignExample from 'examples/layout-grid/align.js';
 import OrderExample from 'examples/layout-grid/order.js';
 import BehaviorExample from 'examples/layout-grid/behavior.js';
 import CustomExample from 'examples/layout-grid/custom.js';
-import CustomCssUnitExample from 'examples/layout-grid/custom-css-unit.js';
+import UnitExample from 'examples/layout-grid/unit.js';
+import OverridesExample from 'examples/layout-grid/overrides.js';
 
 export default Layout;
 
@@ -155,7 +156,7 @@ You can customize pretty much any part of the grid while maintaining the core re
 - `gridMargins`
 - `gridMaxWidth` (Not responsive)
 
-The grid will use whatever values are on your theme `grid` property as the default values for these props. This way you do not have to create a "wrapper" grid if yours differs from the default Base grid. [Click here for the full theme shape](https://baseweb.design/guides/theming/#theme-properties)or see below for the grid relevant section of the theme:
+The grid will use whatever values are on your theme `grid` property as the default values for these props (denoted by the `grid` prefix for those props). This way you do not have to create a "wrapper" grid if yours differs from the default Base grid. [Click here for the full theme shape](https://baseweb.design/guides/theming/#theme-properties)or see below for the grid relevant section of the theme:
 
 ```js
 const theme = {
@@ -173,16 +174,16 @@ Note how these are defined in a similar fashion to responsive props. Each value 
 
 If you want to customize the breakpoints of the grid, you can do so via the `breakpoints` and `mediaQuery` properties. The grid will always pull breakpoints from the theme and correlate responsive props with those breakpoints.
 
-<Example title="Custom css units" path="layout-grid/custom-css-unit.js">
-  <CustomCssUnitExample />
+<Example title="Unit" path="layout-grid/unit.js">
+  <UnitExample />
 </Example>
 
-The grid uses `px` as its default CSS length unit for measuring layout. You can change this, either globally in your theme, or locally via the `unit` prop on `Grid`. If you change the unit, you probably want to update `gridMaxWidth`, `gutters` and `margins` accordingly, as these will pull from your custom unit. For example, when using `em` as your CSS unit, you might update the other values like so:
+The grid uses `px` as its default CSS unit for measuring layout. You can change this, either globally in your theme, or locally via the `unit` prop on `Grid`. If you do change your grid's unit of measurement, you probably also want to update `gridMaxWidth`, `gutters` and `margins` accordingly. For example, when using `rem` as your CSS unit, you might update the other values like so:
 
 ```js
 const theme = {
   grid: {
-    unit: 'em',
+    unit: 'rem',
     gutters: [1, 2, 2],
     margins: [1, 2, 4],
     gridMaxWidth: 70,
@@ -190,17 +191,36 @@ const theme = {
 };
 ```
 
-The above change will apply to every grid within the theme's subtree. If you want to override the unit for a single `Grid` instance, you can pass an alternative unit via the `unit` prop:
+The above change will apply to every grid within the theme's subtree. If you want to override the unit for a single `Grid` instance, you can pass an alternative unit via the `gridUnit` prop:
 
+```js
+<Grid gridUnit="rem" gridMargins={[1, 2, 3]} gridMaxWidth={40}>
+  {/* ... */}
+</Grid>
 ```
-<Grid gridUnit="em" gridMargins={[1, 2, 3]} gridMaxWidth={40}>{/* ... */}</Grid>
-```
+
+<Example title="Overrides" path="layout-grid/overrides.js">
+  <OverridesExample />
+</Example>
+
+`Grid` and `Cell` also accept an [`overrides`](/guides/understanding-overrides) prop. In the example above, we add a green border around our grid and override a single cell (4) to have a red outline.
+
+You can also pass through props (`props`) or an alternate component implementation (`component`), but there is not much of a reason to do so. If you do decide to pass props through `overrides`, remember that the props for the inner `StyledGrid` and `StyledCell` components have a `$` prefix on all of their props.
+
+Note, you may not need to use `overrides` at all. You can get pretty far by styling an element wrapping `Grid` or immediately inside of a `Cell`. `Grid` and `Cell` are meant to help align your content; generally they should not require styling of their own.
+
+That said, we provide `overrides` just in case your imagination surpasses our API 🚀.
 
 ## API
 
 <API
-  heading="Grid and Cell"
-  api={require('!!extract-react-types-loader!../../../src/layout-grid/styled-components.js')}
+  heading="Grid"
+  api={require('!!extract-react-types-loader!../../../src/layout-grid/grid.js')}
+/>
+
+<API
+  heading="Cell"
+  api={require('!!extract-react-types-loader!../../../src/layout-grid/cell.js')}
 />
 
 <Exports
