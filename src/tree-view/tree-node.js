@@ -17,6 +17,12 @@ import StyledTreeLabel from './tree-label.js';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 
 export default class TreeNode extends React.Component<TreeNodePropsT> {
+  treeItemRef = React.createRef<HTMLLIElement>();
+
+  componentDidMount() {
+    this.props.addRef(this.props.node.id, this.treeItemRef);
+  }
+
   onToggle = () => {
     const {onToggle, node} = this.props;
     if (onToggle) {
@@ -30,10 +36,12 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
       onToggle,
       overrides = {},
       renderAll,
-      focusedNodeId,
+      selectedNodeId,
       onKeyDown,
       onFocus,
       onBlur,
+      addRef,
+      isFocusVisible,
     } = this.props;
     const {children, isExpanded, label} = node;
     const hasChildren = children && children.length !== 0;
@@ -49,8 +57,10 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
     return (
       <TreeItem
         role="treeitem"
-        tabIndex={focusedNodeId === node.id ? 0 : -1}
-        onKeyDown={(e: KeyboardEvent) => onKeyDown(e, node)}
+        ref={this.treeItemRef}
+        data-nodeid={node.id}
+        tabIndex={selectedNodeId === node.id ? 0 : -1}
+        onKeyDown={(e: KeyboardEvent) => onKeyDown && onKeyDown(e, node)}
         onBlur={onBlur}
         onFocus={onFocus}
         aria-expanded={isExpanded ? true : false}
@@ -62,7 +72,8 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
           node={node}
           hasChildren={hasChildren}
           isExpanded={isExpanded}
-          isFocused={focusedNodeId === node.id}
+          isSelected={selectedNodeId === node.id}
+          isFocusVisible={isFocusVisible}
           label={label}
           overrides={overrides}
           {...getOverrideProps(TreeLabelOverride)}
@@ -81,10 +92,12 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
                 node={node}
                 onToggle={onToggle}
                 overrides={overrides}
-                focusedNodeId={focusedNodeId}
+                selectedNodeId={selectedNodeId}
                 onKeyDown={onKeyDown}
                 onFocus={onFocus}
                 onBlur={onBlur}
+                addRef={addRef}
+                isFocusVisible={isFocusVisible}
               />
             ))}
           </TreeItemList>

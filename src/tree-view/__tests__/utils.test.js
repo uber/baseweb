@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {getPrevId, getNextId} from '../utils.js';
+import {getPrevId, getParentId, getNextId, getFirstChildId} from '../utils.js';
 import type {TreeNodeT} from '../types.js';
 
 const data: TreeNodeT[] = [
@@ -74,11 +74,17 @@ const data: TreeNodeT[] = [
 ];
 
 describe('getPrevId', () => {
-  test('sibling at the root', () => {
-    expect(getPrevId(data, 4, null)).toBe(1);
+  test("sibling's leaf at the root", () => {
+    expect(getPrevId(data, 4, null)).toBe(3);
   });
   test('sibling at the second level', () => {
     expect(getPrevId(data, 10, null)).toBe(8);
+  });
+  test("sibling's last leaf", () => {
+    expect(getPrevId(data, 7, null)).toBe(11);
+  });
+  test('sibling at the root', () => {
+    expect(getPrevId(data, 4, null)).toBe(3);
   });
   test('parent at the root', () => {
     expect(getPrevId(data, 1, null)).toBe(null);
@@ -91,6 +97,18 @@ describe('getPrevId', () => {
   });
   test('for non-existent nodeId', () => {
     expect(getPrevId(data, 999, null)).toBe(null);
+  });
+});
+
+describe('getParentId', () => {
+  test('root', () => {
+    expect(getParentId(data, 1, null)).toBe(null);
+  });
+  test('deep, direct parent', () => {
+    expect(getParentId(data, 3, null)).toBe(2);
+  });
+  test('deep, skip first sibling', () => {
+    expect(getParentId(data, 11, null)).toBe(5);
   });
 });
 
@@ -118,5 +136,20 @@ describe('getNextId', () => {
   });
   test('for non-existent nodeId', () => {
     expect(getNextId(data, 999, null)).toBe(null);
+  });
+});
+
+describe('getFirstChild', () => {
+  test('root', () => {
+    expect(getFirstChildId(data, 1)).toBe(2);
+  });
+  test('deep', () => {
+    expect(getFirstChildId(data, 2)).toBe(3);
+  });
+  test('leaf', () => {
+    expect(getFirstChildId(data, 3)).toBe(null);
+  });
+  test('leaf with siblings', () => {
+    expect(getFirstChildId(data, 6)).toBe(null);
   });
 });

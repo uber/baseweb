@@ -38,7 +38,8 @@ export type TreeNodeT = {
 export type TreeLabelT = {
   hasChildren: boolean,
   isExpanded?: boolean,
-  isFocused?: boolean,
+  isSelected?: boolean,
+  isFocusVisible?: boolean,
   label: ((node: TreeNodeT) => React.Node) | string,
   overrides?: TreeLabelOverridesT,
   node: TreeNodeT,
@@ -47,6 +48,8 @@ export type TreeLabelT = {
 export type SharedStylePropsT = {
   $hasChildren: boolean,
   $isExpanded: boolean,
+  $isSelected: boolean,
+  $isFocusVisible: boolean,
 };
 
 export type TreeNodePropsT = {
@@ -54,10 +57,12 @@ export type TreeNodePropsT = {
   onToggle?: (node: TreeNodeT) => void,
   overrides?: TreeViewOverridesT,
   renderAll?: boolean,
-  onKeyDown?: (e: KeyboardEvent) => mixed,
+  onKeyDown?: (e: KeyboardEvent, node: TreeNodeT) => mixed,
   onFocus?: (event: SyntheticEvent<>) => mixed,
   onBlur?: (event: SyntheticEvent<>) => mixed,
-  focusedNodeId?: TreeNodeIdT,
+  selectedNodeId?: TreeNodeIdT,
+  addRef: (id: TreeNodeIdT, ref: React.ElementRef<HTMLLIElement>) => mixed,
+  isFocusVisible?: boolean,
 };
 
 export type StatefulContainerPropsT = {

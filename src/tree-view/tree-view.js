@@ -11,8 +11,9 @@ import * as React from 'react';
 
 import TreeNode from './tree-node.js';
 import {StyledTreeItemList} from './styled-components.js';
-import {getPrevId, getNextId} from './utils';
-import type {TreeViewPropsT, TreeNodeT} from './types.js';
+import {getPrevId, getNextId, getParentId, getFirstChildId} from './utils.js';
+import type {TreeViewPropsT, TreeNodeT, TreeNodeIdT} from './types.js';
+import {isFocusVisible} from '../utils/focusVisible.js';
 
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 
@@ -22,27 +23,52 @@ export default function TreeView(props: TreeViewPropsT) {
 
   const Root = getOverride(RootOverride) || StyledTreeItemList;
   const firstId = data.length && data[0].id;
-  const [focusedNodeId, setFocusedNodeId] = React.useState(firstId);
+  const [selectedNodeId, setSelectedNodeId] = React.useState(firstId);
+  const [focusVisible, setFocusVisible] = React.useState(false);
+  const treeItemRefs: {
+    // eslint-disable-next-line flowtype/no-weak-types
+    current: {[key: TreeNodeIdT]: React.ElementRef<any>},
+  } = React.useRef({});
 
-  //   eslint-disable-next-line flowtype/no-weak-types
+  const focusTreeItem = (id: TreeNodeIdT | null) => {
+    if (!id) return;
+    setSelectedNodeId(id);
+    treeItemRefs.current[id].current.focus();
+  };
+
   const onKeyDown = (e: KeyboardEvent, node: TreeNodeT) => {
-    console.log(e.key, node);
+    // eslint-disable-next-line flowtype/no-weak-types
+    const elementId = ((e.target: any): HTMLLIElement).getAttribute(
+      'data-nodeid',
+    );
+    // this check prevents bubbling
+    if (elementId !== node.id && parseInt(elementId) !== node.id) {
+      return;
+    }
     switch (e.key) {
       case 'ArrowRight':
         e.preventDefault();
+        if (typeof node.isExpanded === 'boolean' && !node.isExpanded) {
+          onToggle && onToggle(node);
+        } else {
+          focusTreeItem(getFirstChildId(data, selectedNodeId));
+        }
         break;
       case 'ArrowLeft':
         e.preventDefault();
+        if (typeof node.isExpanded === 'boolean' && node.isExpanded) {
+          onToggle && onToggle(node);
+        } else {
+          focusTreeItem(getParentId(data, selectedNodeId, null));
+        }
         break;
       case 'ArrowUp':
         e.preventDefault();
-        const prevId = getPrevId(data, focusedNodeId, null);
-        setFocusedNodeId(prevId);
+        focusTreeItem(getPrevId(data, selectedNodeId, null));
         break;
       case 'ArrowDown':
         e.preventDefault();
-        const nextId = getNextId(data, focusedNodeId, null);
-        setFocusedNodeId(nextId);
+        focusTreeItem(getNextId(data, selectedNodeId, null));
         break;
       case ' ':
       case 'Enter':
@@ -62,16 +88,19 @@ export default function TreeView(props: TreeViewPropsT) {
   };
 
   const onFocus = (event: SyntheticEvent<>) => {
-    if (focusedNodeId === null && data.length) {
-      setFocusedNodeId(data[0].id);
+    if (isFocusVisible(event)) {
+      setFocusVisible(true);
+    }
+    if (selectedNodeId === null && data.length) {
+      setSelectedNodeId(data[0].id);
     }
   };
 
   const onBlur = (event: SyntheticEvent<>) => {
-    //setFocusedNodeId(null);
+    if (focusVisible) {
+      setFocusVisible(false);
+    }
   };
-
-  console.log('focused node ', focusedNodeId);
 
   return (
     <Root role="tree" {...getOverrideProps(RootOverride)}>
@@ -80,13 +109,20 @@ export default function TreeView(props: TreeViewPropsT) {
           <TreeNode
             key={index}
             node={node}
-            onToggle={onToggle}
+            onToggle={node => {
+              onToggle && onToggle(node);
+              focusTreeItem(node.id);
+            }}
             overrides={overrides}
             renderAll={renderAll}
-            focusedNodeId={focusedNodeId}
+            selectedNodeId={selectedNodeId}
             onKeyDown={onKeyDown}
             onFocus={onFocus}
             onBlur={onBlur}
+            addRef={(id: TreeNodeIdT, ref: React.ElementRef<HTMLLIElement>) => {
+              treeItemRefs.current[id] = ref;
+            }}
+            isFocusVisible={focusVisible}
           />
         ))}
     </Root>

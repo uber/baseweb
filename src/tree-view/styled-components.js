@@ -49,27 +49,30 @@ export const StyledTreeItem = styled<{$isLeafNode?: boolean}>(
   },
 );
 
-export const StyledItemContent = styled<{$isFocused: boolean}>(
-  'div',
-  ({$theme, $isFocused}) => {
-    return {
-      ...$theme.typography.font300,
-      alignItems: 'center',
-      boxSizing: 'border-box',
-      color: $theme.colors.primary,
-      display: 'flex',
-      marginTop: 0,
-      marginBottom: 0,
-      marginLeft: 0,
-      outline: $isFocused ? `3px solid ${$theme.colors.accent}` : 'none',
-      outlineOffset: '-3px',
-      marginRight: 0,
-      ':hover': {
-        backgroundColor: $theme.colors.mono300,
-      },
-    };
-  },
-);
+export const StyledItemContent = styled<{
+  $isSelected: boolean,
+  $isFocusVisible: boolean,
+}>('div', ({$theme, $isSelected, $isFocusVisible}) => {
+  return {
+    ...$theme.typography.font300,
+    alignItems: 'center',
+    boxSizing: 'border-box',
+    color: $theme.colors.primary,
+    display: 'flex',
+    marginTop: 0,
+    marginBottom: 0,
+    marginLeft: 0,
+    outline:
+      $isSelected && $isFocusVisible
+        ? `3px solid ${$theme.colors.accent}`
+        : 'none',
+    outlineOffset: '-3px',
+    marginRight: 0,
+    ':hover': {
+      backgroundColor: $theme.colors.mono300,
+    },
+  };
+});
 
 export const StyledIconContainer = styled<{}>('div', ({$theme}) => {
   return {
