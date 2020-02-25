@@ -335,6 +335,7 @@ export interface PhoneInputProps extends InputProps {
   overrides?: PhoneInputOverrides;
 }
 export const PhoneInput: React.FC<PhoneInputProps>;
+export const PhoneInputAlternative: React.FC<PhoneInputProps>;
 
 export interface PhoneInputLiteProps extends PhoneInputProps {
   countries: {[key: string]: Country};

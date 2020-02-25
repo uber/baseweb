@@ -119,6 +119,11 @@ const PhoneInputConfig: TConfig = {
       type: PropTypes.String,
       description: "Input's placeholder.",
     },
+    clearable: {
+      value: false,
+      type: PropTypes.Boolean,
+      description: 'Adds clear icon to the input.',
+    },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
