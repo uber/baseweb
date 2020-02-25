@@ -62,12 +62,16 @@ export const StyledItemContent = styled<{
     marginTop: 0,
     marginBottom: 0,
     marginLeft: 0,
+    marginRight: 0,
+    paddingLeft: $theme.sizing.scale200,
+    paddingRight: $theme.sizing.scale200,
+    paddingTop: $theme.sizing.scale100,
+    paddingBottom: $theme.sizing.scale100,
     outline:
       $isSelected && $isFocusVisible
         ? `3px solid ${$theme.colors.accent}`
         : 'none',
     outlineOffset: '-3px',
-    marginRight: 0,
     ':hover': {
       backgroundColor: $theme.colors.mono300,
     },
