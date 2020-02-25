@@ -76,6 +76,9 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
     return (
       <RadioGroupRoot
         role="radiogroup"
+        aria-describedby={this.props['aria-describedby']}
+        aria-errormessage={this.props['aria-errormessage']}
+        aria-invalid={this.props.isError || null}
         aria-label={this.props['aria-label']}
         aria-labelledby={this.props['aria-labelledby']}
         $align={this.props.align}

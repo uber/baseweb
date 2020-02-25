@@ -657,6 +657,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
         <AutosizeInput
           aria-autocomplete="list"
           aria-describedby={this.props['aria-describedby']}
+          aria-errormessage={this.props['aria-errormessage']}
           aria-disabled={this.props.disabled || null}
           aria-expanded={isOpen}
           aria-haspopup={isOpen}

@@ -31,6 +31,7 @@ class BaseInput<T: EventTarget> extends React.Component<
   InternalStateT,
 > {
   static defaultProps = {
+    'aria-errormessage': null,
     'aria-label': null,
     'aria-labelledby': null,
     'aria-describedby': null,
@@ -277,6 +278,7 @@ class BaseInput<T: EventTarget> extends React.Component<
         <Before {...sharedProps} {...beforeProps} />
         <Input
           ref={this.inputRef}
+          aria-errormessage={this.props['aria-errormessage']}
           aria-label={this.props['aria-label']}
           aria-labelledby={this.props['aria-labelledby']}
           aria-describedby={this.props['aria-describedby']}
