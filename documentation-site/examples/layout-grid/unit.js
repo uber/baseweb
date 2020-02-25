@@ -51,9 +51,7 @@ export default () => (
   </Outer>
 );
 
-const Outer: React.StatelessFunctionalComponent<{
-  children: React.Node,
-}> = ({children}) => {
+const Outer = ({children}: {children: React.Node}) => {
   const [css, theme] = useStyletron();
   return (
     <div
@@ -66,9 +64,7 @@ const Outer: React.StatelessFunctionalComponent<{
   );
 };
 
-const Inner: React.StatelessFunctionalComponent<{
-  children: React.Node,
-}> = ({children}) => {
+const Inner = ({children}: {children: React.Node}) => {
   const [css, theme] = useStyletron();
   return (
     <div
