@@ -9,14 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 const {mount} = require('../../../e2e/helpers');
 
-const {
-  TABLE_ROOT,
-  getCellContentsAtColumnIndex,
-  openFilterAtIndex,
-  matchArrayElements,
-} = require('./utilities.js');
-
-const COLUMN_COUNT = 1;
+const {TABLE_ROOT} = require('./utilities.js');
 
 describe('data table initial filters', () => {
   it('mounts with initial rows selected', async () => {
