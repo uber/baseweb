@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {KIND, SIZE, SHAPE} from '../button/index.js';
+import {MODE} from './constants.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {LocaleContext} from '../locale/index.js';
 
@@ -32,6 +33,7 @@ type LocaleT = {|locale?: ButtonGroupLocaleT|};
 export function ButtonGroupRoot(props: {|...PropsT, ...LocaleT|}) {
   const {overrides = {}} = props;
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+  const isRadio = props.mode === MODE.radio;
 
   return (
     <Root
@@ -39,16 +41,18 @@ export function ButtonGroupRoot(props: {|...PropsT, ...LocaleT|}) {
         props.ariaLabel || (props.locale ? props.locale.ariaLabel : '')
       }
       data-baseweb="button-group"
+      role={isRadio ? 'radiogroup' : 'group'}
       {...rootProps}
     >
       {React.Children.map(props.children, (child, index) => {
         if (!React.isValidElement(child)) {
           return null;
         }
+        const selected = isSelected(props.selected, index);
 
         return React.cloneElement(child, {
           disabled: props.disabled || child.props.disabled,
-          isSelected: isSelected(props.selected, index),
+          isSelected: selected,
           kind: props.kind,
           onClick: event => {
             if (props.disabled) {
@@ -97,7 +101,12 @@ export function ButtonGroupRoot(props: {|...PropsT, ...LocaleT|}) {
                   borderBottomLeftRadius: 0,
                 };
               },
+              props: {
+                'aria-checked': selected,
+                role: isRadio ? 'radio' : 'checkbox',
+              },
             },
+
             ...child.props.overrides,
           },
         });
