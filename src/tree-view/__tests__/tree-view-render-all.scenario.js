@@ -12,15 +12,19 @@ import {Unstable_StatefulTreeView as StatefulTreeView} from '../index.js';
 
 const initialData = [
   {
+    id: 1,
     label: 'Node 1',
     children: [
       {
+        id: 2,
         label: 'Child 1',
         children: [
           {
+            id: 3,
             label: 'Grandchild 1',
             children: [
               {
+                id: 4,
                 label: 'hidden',
               },
             ],
@@ -30,14 +34,17 @@ const initialData = [
     ],
   },
   {
+    id: 5,
     label: 'Node 2',
     isExpanded: true,
     children: [
       {
+        id: 6,
         label: 'Child 2',
         isExpanded: true,
         children: [
           {
+            id: 7,
             label: 'Grandchild 2',
           },
         ],

@@ -9,17 +9,21 @@ import ChevronDown from 'baseui/icon/chevron-down';
 
 const initialData = [
   {
+    id: 1,
     label: 'Node 1',
     isExpanded: true,
     children: [
       {
+        id: 2,
         label: 'Child 1',
         isExpanded: true,
         children: [
           {
+            id: 3,
             label: 'Grandchild 1',
             children: [
               {
+                id: 4,
                 label:
                   'Should be rendered SSR / even when closed (check source!)',
               },
@@ -30,17 +34,21 @@ const initialData = [
     ],
   },
   {
+    id: 5,
     label: 'Node 2',
     isExpanded: true,
     children: [
       {
+        id: 6,
         label: 'Child 2',
         isExpanded: true,
         children: [
           {
+            id: 7,
             label: 'Grandchild 2',
             children: [
               {
+                id: 8,
                 label:
                   'Should be rendered SSR / even when closed (check source!)',
               },
