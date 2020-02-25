@@ -53,6 +53,10 @@ export type PropsT = {
    */
   'aria-labelledby'?: string,
   // This prop will be deprecated in the next major update. Pass overrides to the 'Radio' component instead.
+  /** Id of element which contains a related caption */
+  'aria-describedby'?: string,
+  /** Id of element which contains a related error message */
+  'aria-errormessage'?: string,
   overrides?: OverridesT,
   /** As `children` in React native approach represents radio buttons inside of Radio Group. Can use `Radio` from this package. */
   children?: Array<React.Node>,

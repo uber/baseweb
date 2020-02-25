@@ -87,6 +87,10 @@ export interface RadioGroupOverrides {
 }
 
 export interface RadioProps {
+  'aria-label'?: string;
+  'aria-labelledby'?: string;
+  'aria-describedby'?: string;
+  'aria-errormessage'?: string;
   autoFocus?: boolean;
   checked?: boolean;
   children?: React.ReactNode;
