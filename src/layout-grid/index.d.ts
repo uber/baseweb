@@ -1,6 +1,8 @@
 import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
 import {CSSLengthUnitT} from '../theme';
+import {Override} from '../overrides';
+
 export enum ALIGNMENT {
   start = 'start',
   center = 'center',
@@ -24,6 +26,9 @@ export interface GridProps {
   gridMargins?: Responsive<number>;
   gridMaxWidth?: number;
   gridUnit?: CSSLengthUnitT;
+  overrides?: {
+    Grid?: Override<any>;
+  };
 }
 
 export interface StyledGridProps {
@@ -41,6 +46,9 @@ export interface CellProps {
   order?: Responsive<number>;
   skip?: Responsive<number>;
   span?: Responsive<number>;
+  overrides?: {
+    Cell?: Override<any>;
+  };
 }
 
 export type StyledCellProps = {

@@ -84,7 +84,7 @@ export type ColorTokensT = {
   rating400: string,
 };
 
-export type CoreSemanticColorTokensT = {
+export type CoreSemanticColorTokensT = {|
   // Background
   backgroundPrimary: string,
   backgroundSecondary: string,
@@ -107,8 +107,8 @@ export type CoreSemanticColorTokensT = {
   borderInverseOpaque: string,
   borderInverseTransparent: ?string,
   borderInverseSelected: string,
-};
-export type CoreExtensionSemanticColorTokensT = {
+|};
+export type CoreExtensionSemanticColorTokensT = {|
   // Backgrounds
   backgroundStateDisabled: string,
   backgroundOverlayDark: ?string,
@@ -139,11 +139,14 @@ export type CoreExtensionSemanticColorTokensT = {
   borderNegative: string,
   borderWarning: string,
   borderPositive: string,
-};
-export type SemanticColorTokensT = CoreSemanticColorTokensT &
-  CoreExtensionSemanticColorTokensT;
+|};
 
-export type ComponentColorTokensT = {
+export type SemanticColorTokensT = {|
+  ...CoreSemanticColorTokensT,
+  ...CoreExtensionSemanticColorTokensT,
+|};
+
+export type ComponentColorTokensT = {|
   // Buttons
   buttonPrimaryFill: string,
   buttonPrimaryText: string,
@@ -500,9 +503,9 @@ export type ComponentColorTokensT = {
   // Tooltip
   tooltipBackground: string,
   tooltipText: string,
-};
+|};
 
-export type DeprecatedSemanticColorTokensT = {
+export type DeprecatedSemanticColorTokensT = {|
   // Font Color
   colorPrimary: string,
   colorSecondary: string,
@@ -526,16 +529,19 @@ export type DeprecatedSemanticColorTokensT = {
   // Shadow
   shadowFocus: string,
   shadowError: string,
-};
+|};
 
-export type FontTokensT = {
+export type FontTokensT = {|
   primaryFontFamily: string,
-};
+|};
 
 // TODO(#2318) Deprecate in the next major version
-export type PrimitivesT = ColorTokensT & FontTokensT;
+export type PrimitivesT = {
+  ...ColorTokensT,
+  ...FontTokensT,
+};
 
-export type FontT = {
+export type FontT = {|
   fontFamily: string,
   // eslint-disable-next-line flowtype/space-after-type-colon
   fontWeight:
@@ -551,7 +557,7 @@ export type FontT = {
     | number,
   fontSize: string,
   lineHeight: string | number,
-};
+|};
 export type TypographyT = {
   font100: FontT,
   font150: FontT,
