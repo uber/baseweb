@@ -24,6 +24,7 @@ export const StyledTreeItemList = styled<{
     paddingLeft: 0,
     paddingRight: 0,
     position: 'relative',
+    outline: 'none',
     display: $expanded ? 'block' : 'none',
   };
 });
@@ -43,26 +44,32 @@ export const StyledTreeItem = styled<{$isLeafNode?: boolean}>(
       paddingLeft: 0,
       paddingRight: 0,
       position: 'relative',
+      outline: 'none',
     };
   },
 );
 
-export const StyledItemContent = styled<{}>('div', ({$theme}) => {
-  return {
-    ...$theme.typography.font300,
-    alignItems: 'center',
-    boxSizing: 'border-box',
-    color: $theme.colors.primary,
-    display: 'flex',
-    marginTop: 0,
-    marginBottom: 0,
-    marginLeft: 0,
-    marginRight: 0,
-    ':hover': {
-      backgroundColor: $theme.colors.mono300,
-    },
-  };
-});
+export const StyledItemContent = styled<{$isFocused: boolean}>(
+  'div',
+  ({$theme, $isFocused}) => {
+    return {
+      ...$theme.typography.font300,
+      alignItems: 'center',
+      boxSizing: 'border-box',
+      color: $theme.colors.primary,
+      display: 'flex',
+      marginTop: 0,
+      marginBottom: 0,
+      marginLeft: 0,
+      outline: $isFocused ? `3px solid ${$theme.colors.accent}` : 'none',
+      outlineOffset: '-3px',
+      marginRight: 0,
+      ':hover': {
+        backgroundColor: $theme.colors.mono300,
+      },
+    };
+  },
+);
 
 export const StyledIconContainer = styled<{}>('div', ({$theme}) => {
   return {

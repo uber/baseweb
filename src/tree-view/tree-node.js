@@ -25,7 +25,16 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
   };
 
   render() {
-    const {node, onToggle, overrides = {}, renderAll} = this.props;
+    const {
+      node,
+      onToggle,
+      overrides = {},
+      renderAll,
+      focusedNodeId,
+      onKeyDown,
+      onFocus,
+      onBlur,
+    } = this.props;
     const {children, isExpanded, label} = node;
     const hasChildren = children && children.length !== 0;
     const {
@@ -40,6 +49,10 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
     return (
       <TreeItem
         role="treeitem"
+        tabIndex={focusedNodeId === node.id ? 0 : -1}
+        onKeyDown={(e: KeyboardEvent) => onKeyDown(e, node)}
+        onBlur={onBlur}
+        onFocus={onFocus}
         aria-expanded={isExpanded ? true : false}
         $isLeafNode={!hasChildren}
         {...getOverrideProps(TreeItemOverride)}
@@ -49,6 +62,7 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
           node={node}
           hasChildren={hasChildren}
           isExpanded={isExpanded}
+          isFocused={focusedNodeId === node.id}
           label={label}
           overrides={overrides}
           {...getOverrideProps(TreeLabelOverride)}
@@ -67,6 +81,10 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
                 node={node}
                 onToggle={onToggle}
                 overrides={overrides}
+                focusedNodeId={focusedNodeId}
+                onKeyDown={onKeyDown}
+                onFocus={onFocus}
+                onBlur={onBlur}
               />
             ))}
           </TreeItemList>

@@ -22,8 +22,10 @@ export type TreeViewOverridesT = {
   TreeLabel?: OverrideT<TreeLabelT>,
 };
 
+export type TreeNodeIdT = number | string;
+
 export type TreeNodeT = {
-  id?: number | string,
+  id: TreeNodeIdT,
   children?: TreeNodeT[],
   isExpanded?: boolean,
   label: ((node: TreeNodeT) => React.Node) | string,
@@ -36,6 +38,7 @@ export type TreeNodeT = {
 export type TreeLabelT = {
   hasChildren: boolean,
   isExpanded?: boolean,
+  isFocused?: boolean,
   label: ((node: TreeNodeT) => React.Node) | string,
   overrides?: TreeLabelOverridesT,
   node: TreeNodeT,
@@ -51,6 +54,10 @@ export type TreeNodePropsT = {
   onToggle?: (node: TreeNodeT) => void,
   overrides?: TreeViewOverridesT,
   renderAll?: boolean,
+  onKeyDown?: (e: KeyboardEvent) => mixed,
+  onFocus?: (event: SyntheticEvent<>) => mixed,
+  onBlur?: (event: SyntheticEvent<>) => mixed,
+  focusedNodeId?: TreeNodeIdT,
 };
 
 export type StatefulContainerPropsT = {

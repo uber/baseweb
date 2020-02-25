@@ -18,10 +18,12 @@ const TreeLabel: React$ComponentType<TreeLabelT> = ({
   label,
   overrides = {},
   node,
+  isFocused,
   ...props
 }) => {
   const sharedProps: SharedStylePropsT = {
     $isExpanded: !!isExpanded,
+    $isFocused: !!isFocused,
     $hasChildren: !!hasChildren,
   };
   const {
