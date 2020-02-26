@@ -7,11 +7,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {StatefulPhoneInputAlternative} from '../index.js';
+import {StatefulPhoneInputNext} from '../index.js';
 
 export default function Scenario() {
   return (
-    <StatefulPhoneInputAlternative
+    <StatefulPhoneInputNext
       overrides={{
         CountrySelectDropdownListItem: {
           props: {'data-e2e': 'country-picker-list-item'},

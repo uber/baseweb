@@ -7,16 +7,18 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import React from 'react';
 import StatefulPhoneInputContainer from './stateful-phone-input-container.js';
-import PhoneInputAlternative from './phone-input-alternative.js';
+import PhoneInputNext from './phone-input-next.js';
 import defaultProps from './default-props.js';
 import type {PropsT, StatefulPhoneInputPropsT} from './types.js';
 
-StatefulPhoneInput.defaultProps = {...defaultProps, clearable: true};
+StatefulPhoneInputNext.defaultProps = {...defaultProps, clearable: true};
 
-export default function StatefulPhoneInput(props: StatefulPhoneInputPropsT) {
+export default function StatefulPhoneInputNext(
+  props: StatefulPhoneInputPropsT,
+) {
   return (
     <StatefulPhoneInputContainer {...props}>
-      {(childrenProps: PropsT) => <PhoneInputAlternative {...childrenProps} />}
+      {(childrenProps: PropsT) => <PhoneInputNext {...childrenProps} />}
     </StatefulPhoneInputContainer>
   );
 }

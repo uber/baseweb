@@ -11,11 +11,10 @@ LICENSE file in the root directory of this source tree.
 const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const selectors = {
-  phoneInputAlt: `[data-baseweb="phone-input-alt"]`,
-  phoneInputAltInput: `[data-baseweb="phone-input-alt"] > input`,
-  phoneInputAltDialcode: `[data-e2e="phone-input-dialcode"]`,
-  countryPickerFlag: `[data-e2e="country-flag"]`,
+  phoneInput: `[data-baseweb="phone-input-next"]`,
+  phoneInputDialcode: `[data-e2e="phone-input-dialcode"]`,
   countryPicker: `[data-baseweb="select"]`,
+  countryPickerFlag: `[data-e2e="country-flag"]`,
   countryPickerDropdown: `[role="listbox"]`,
   countryPickerListItem: `[data-e2e="country-picker-list-item"]`,
 };
@@ -27,8 +26,8 @@ const UK = {iso: 'GB', dialCode: '+44'};
 
 describe('PhoneInput', () => {
   beforeEach(async () => {
-    await mount(page, 'phone-input-alternative-dropdown');
-    await page.waitFor(selectors.phoneInputAlt);
+    await mount(page, 'phone-input-next-dropdown');
+    await page.waitFor(selectors.phoneInput);
   });
 
   it('passes basic a11y tests', async () => {
@@ -56,7 +55,7 @@ describe('PhoneInput', () => {
     expect(iso).toEqual(UK.iso);
     // verify correct dial code shows up
     const dialcode = await page.$eval(
-      selectors.phoneInputAltDialcode,
+      selectors.phoneInputDialcode,
       block => block.innerText,
     );
     expect(dialcode).toEqual(UK.dialCode);

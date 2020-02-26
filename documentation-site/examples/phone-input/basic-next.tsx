@@ -1,19 +1,11 @@
-// @flow
 import React, {useState} from 'react';
-import {PhoneInputAlternative, COUNTRIES} from 'baseui/phone-input';
+import {PhoneInputNext, COUNTRIES} from 'baseui/phone-input';
 
 export default () => {
   const [text, setText] = useState('');
   const [country, setCountry] = useState(COUNTRIES.US);
   return (
-    <PhoneInputAlternative
-      overrides={{
-        Input: {
-          props: {
-            name: 'phone-input-alt',
-          },
-        },
-      }}
+    <PhoneInputNext
       text={text}
       country={country}
       onTextChange={event => {
