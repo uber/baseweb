@@ -90,6 +90,7 @@ export default function Menu(props: StatelessMenuPropsT) {
             $disabled={disabled}
             $isFocused={isFocused}
             $isHighlighted={isHighlighted}
+            aria-disabled={disabled}
             aria-selected={isHighlighted && isFocused}
             {...restProps}
             {...optionProps}
