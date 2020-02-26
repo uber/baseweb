@@ -11,7 +11,14 @@ import * as React from 'react';
 
 import TreeNode from './tree-node.js';
 import {StyledTreeItemList} from './styled-components.js';
-import {getPrevId, getNextId, getParentId, getFirstChildId} from './utils.js';
+import {
+  getPrevId,
+  getNextId,
+  getParentId,
+  getFirstChildId,
+  getEndId,
+  getExpandableSiblings,
+} from './utils.js';
 import type {TreeViewPropsT, TreeNodeT, TreeNodeIdT} from './types.js';
 import {isFocusVisible} from '../utils/focusVisible.js';
 
@@ -77,12 +84,19 @@ export default function TreeView(props: TreeViewPropsT) {
         break;
       case 'Home':
         e.preventDefault();
+        if (data.length) {
+          focusTreeItem(data[0].id);
+        }
         break;
       case 'End':
         e.preventDefault();
+        focusTreeItem(getEndId(data));
         break;
       case '*':
         e.preventDefault();
+        getExpandableSiblings(data, selectedNodeId).forEach(
+          node => onToggle && onToggle(node),
+        );
         break;
     }
   };

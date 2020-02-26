@@ -5,7 +5,14 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {getPrevId, getParentId, getNextId, getFirstChildId} from '../utils.js';
+import {
+  getPrevId,
+  getParentId,
+  getNextId,
+  getFirstChildId,
+  getEndId,
+  getExpandableSiblings,
+} from '../utils.js';
 import type {TreeNodeT} from '../types.js';
 
 const data: TreeNodeT[] = [
@@ -69,6 +76,17 @@ const data: TreeNodeT[] = [
         id: 10,
         label: 'Label 10',
       },
+      {
+        id: 11,
+        label: 'Label 11',
+        isExpanded: false,
+        children: [
+          {
+            id: 12,
+            label: 'Label 12',
+          },
+        ],
+      },
     ],
   },
 ];
@@ -129,7 +147,7 @@ describe('getNextId', () => {
     expect(getNextId(data, 11, null)).toBe(7);
   });
   test('root ommer', () => {
-    expect(getNextId(data, 10, null)).toBe(null);
+    expect(getNextId(data, 12, null)).toBe(null);
   });
   test('for nodeId that is in a non-expanded branch', () => {
     expect(getNextId(data, 9, null)).toBe(null);
@@ -151,5 +169,40 @@ describe('getFirstChild', () => {
   });
   test('leaf with siblings', () => {
     expect(getFirstChildId(data, 6)).toBe(null);
+  });
+});
+
+describe('getEndId', () => {
+  test('end', () => {
+    expect(getEndId(data)).toBe(11);
+  });
+});
+
+describe('getExpandableSiblings', () => {
+  test('end', () => {
+    expect(getExpandableSiblings(data, 10)).toEqual([
+      {
+        id: 8,
+        label: 'Label 8',
+        isExpanded: false,
+        children: [
+          {
+            id: 9,
+            label: 'Label 9',
+          },
+        ],
+      },
+      {
+        id: 11,
+        label: 'Label 11',
+        isExpanded: false,
+        children: [
+          {
+            id: 12,
+            label: 'Label 12',
+          },
+        ],
+      },
+    ]);
   });
 });

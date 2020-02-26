@@ -110,3 +110,39 @@ export const getNextId = (
   }
   return null;
 };
+
+export const getEndId = (nodes: TreeNodeT[]) => {
+  const endNode = nodes[nodes.length - 1];
+  if (endNode.isExpanded && endNode.children && endNode.children.length) {
+    return getEndId(endNode.children);
+  }
+  return endNode.id;
+};
+
+export const getExpandableSiblings = (
+  nodes: TreeNodeT[],
+  nodeId: TreeNodeIdT,
+) => {
+  for (let i = 0; i < nodes.length; i++) {
+    if (nodes[i].id === nodeId) {
+      const expandableSiblings = [];
+      for (let j = 0; j < nodes.length; j++) {
+        if (
+          !nodes[j].isExpanded &&
+          nodes[j].children &&
+          nodes[j].children.length
+        ) {
+          expandableSiblings.push(nodes[j]);
+        }
+      }
+      return expandableSiblings;
+    }
+    if (nodes[i].isExpanded && nodes[i].children && nodes[i].children.length) {
+      const result = getExpandableSiblings(nodes[i].children, nodeId);
+      if (result.length) {
+        return result;
+      }
+    }
+  }
+  return [];
+};
