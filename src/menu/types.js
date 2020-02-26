@@ -73,8 +73,6 @@ export type StateReducerFnT = (
 ) => StatefulContainerStateT;
 
 export type StatefulContainerStateT = {
-  // id of the currently highlighted item (from keyboard control)
-  activedescendantId?: ?string,
   // index of currently highlighted item (from keyboard control)
   highlightedIndex: number,
   // indicates when the menu can be navigated by keyboard and affects menu item option rendering
@@ -83,8 +81,6 @@ export type StatefulContainerStateT = {
 };
 
 export type InitialStateT = {
-  // id of the currently highlighted item (from keyboard control)
-  activedescendantId?: ?string,
   // index of currently highlighted item (from keyboard control)
   highlightedIndex?: number,
   // indicates when the menu can be navigated by keyboard and affects menu item option rendering

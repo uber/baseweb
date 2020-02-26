@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 // Files
+import getBuiId from '../utils/get-bui-id.js';
 import {STATE_CHANGE_TYPES, KEY_STRINGS} from './constants.js';
 import {scrollItemIntoView} from './utils.js';
 // Types
@@ -28,7 +29,6 @@ export default class MenuStatefulContainer extends React.Component<
       // We start the index at -1 to indicate that no highlighting exists initially
       highlightedIndex: -1,
       isFocused: false,
-      activedescendantId: null,
     },
     stateReducer: ((changeType, changes) => changes: StateReducerFnT),
     onItemSelect: () => {},
@@ -108,6 +108,8 @@ export default class MenuStatefulContainer extends React.Component<
 
   // One array to hold all of list item refs
   refList: Array<React$ElementRef<*>> = [];
+  // list of ids applied to list items. used to set aria-activedescendant
+  idList: string[] = [];
 
   // Internal set state function that will also invoke stateReducer
   internalSetState(
@@ -210,7 +212,6 @@ export default class MenuStatefulContainer extends React.Component<
   };
 
   handleItemClick = (
-    activedescendantId: ?string,
     index: number,
     item: *,
     event: SyntheticMouseEvent<HTMLElement>,
@@ -219,15 +220,13 @@ export default class MenuStatefulContainer extends React.Component<
       this.props.onItemSelect({item, event});
       this.internalSetState(STATE_CHANGE_TYPES.click, {
         highlightedIndex: index,
-        activedescendantId,
       });
     }
   };
 
-  handleMouseEnter = (activedescendantId: ?string, index: number) => {
+  handleMouseEnter = (index: number) => {
     this.internalSetState(STATE_CHANGE_TYPES.mouseEnter, {
       highlightedIndex: index,
-      activedescendantId,
     });
   };
 
@@ -236,28 +235,20 @@ export default class MenuStatefulContainer extends React.Component<
     if (!itemRef) {
       itemRef = React.createRef();
       this.refList[index] = itemRef;
+      this.idList[index] = getBuiId();
     }
     const requiredItemProps = this.props.getRequiredItemProps(item, index);
-    const activedescendantId = requiredItemProps.id || null;
-    if (
-      this.state.highlightedIndex === index &&
-      this.state.activedescendantId !== activedescendantId
-    ) {
-      this.setState({activedescendantId});
-    }
     return {
+      id: requiredItemProps.id || this.idList[index],
       disabled: !!item.disabled,
       ref: itemRef,
       isFocused: this.state.isFocused,
       isHighlighted: this.state.highlightedIndex === index,
       // binds so that in-line functions can be avoided. this is to ensure
       // referential equality when option-list compares props in memoized compoent
-      onClick: this.handleItemClick.bind(this, activedescendantId, index, item),
-      onMouseEnter: this.handleMouseEnter.bind(this, activedescendantId, index),
+      onClick: this.handleItemClick.bind(this, index, item),
+      onMouseEnter: this.handleMouseEnter.bind(this, index),
       resetMenu: this.resetMenu,
-      ...(this.state.highlightedIndex === index
-        ? {id: activedescendantId}
-        : {}),
       ...requiredItemProps,
     };
   };
@@ -291,7 +282,6 @@ export default class MenuStatefulContainer extends React.Component<
     this.internalSetState(STATE_CHANGE_TYPES.reset, {
       isFocused: false,
       highlightedIndex: -1,
-      activedescendantId: null,
     });
   };
 
@@ -313,7 +303,7 @@ export default class MenuStatefulContainer extends React.Component<
       ({
         ...restProps,
         rootRef: this.props.rootRef ? this.props.rootRef : this.rootRef,
-        activedescendantId: this.state.activedescendantId,
+        activedescendantId: this.idList[this.state.highlightedIndex],
         getRequiredItemProps: this.getRequiredItemProps,
         highlightedIndex: this.state.highlightedIndex,
         isFocused: this.state.isFocused,
