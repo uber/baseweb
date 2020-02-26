@@ -37,14 +37,10 @@ import type {
   SelectStateT,
   ValueT,
   OptionT,
+  OptionsT,
+  OptgroupsT,
   ChangeActionT,
 } from './types.js';
-import {
-  expandValue,
-  normalizeOptions,
-  shouldShowValue,
-  shouldShowPlaceholder,
-} from './utils/index.js';
 
 function Noop() {
   return null;
@@ -59,6 +55,47 @@ const containsNode = (parent, child) => {
     // eslint-disable-next-line flowtype/no-weak-types
     return child && parent && parent.contains((child: any));
   }
+};
+
+function groupedOptionsToArray(groupedOptions: OptgroupsT): ValueT {
+  return Object.keys(groupedOptions).reduce((arr, optgroup) => {
+    const optgroupOptions = groupedOptions[optgroup];
+    return arr.concat(
+      optgroupOptions.map(option => {
+        return {
+          ...option,
+          __optgroup: optgroup,
+        };
+      }),
+    );
+  }, []);
+}
+
+function normalizeOptions(options: OptionsT): ValueT {
+  if (options) {
+    if (Array.isArray(options)) {
+      return options;
+    } else {
+      return groupedOptionsToArray(options);
+    }
+  }
+
+  return [];
+}
+
+const expandValue = (value: OptionT, props: $Shape<PropsT>): OptionT => {
+  if (!props.options) return value;
+
+  const normalizedOptions = normalizeOptions(props.options);
+  for (let i = 0; i < normalizedOptions.length; i++) {
+    if (
+      String(normalizedOptions[i][props.valueKey]) ===
+      String(value[props.valueKey])
+    ) {
+      return normalizedOptions[i];
+    }
+  }
+  return value;
 };
 
 export function isInteractive(rootTarget: EventTarget, rootElement: Element) {
@@ -117,6 +154,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     isFocused: false,
     isOpen: this.props.startOpen,
     isPseudoFocused: false,
+    transientInputValue: '',
   };
 
   isMounted: boolean = false;
@@ -255,6 +293,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
         inputValue: '',
         isOpen: false,
         isPseudoFocused: this.state.isFocused && !this.props.multi,
+        transientInputValue: '',
       });
     } else {
       this.setState({
@@ -328,6 +367,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       inputValue: newInputValue,
       isOpen: true,
       isPseudoFocused: false,
+      transientInputValue: '',
     });
     if (this.props.onInputChange) {
       this.props.onInputChange(event);
@@ -356,6 +396,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           isFocused: false,
           isOpen: false,
           inputValue: this.props.onCloseResetsInput ? '' : prevState.inputValue,
+          transientInputValue: '',
         }));
         break;
       case 27: // escape
@@ -485,6 +526,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
         {
           inputValue: updatedValue,
           isOpen: !this.props.closeOnSelect,
+          transientInputValue: '',
         },
         () => {
           const valueArray = this.props.value;
@@ -507,11 +549,20 @@ class Select extends React.Component<PropsT, SelectStateT> {
           isOpen: !this.props.closeOnSelect,
           isFocused: true,
           isPseudoFocused: false,
+          transientInputValue: '',
         },
         () => {
           this.setValue([item], item, STATE_CHANGE_TYPE.select);
         },
       );
+    }
+  };
+
+  handleHighlightChange = (option?: OptionT) => {
+    if (option) {
+      this.setState({transientInputValue: option[this.props.labelKey]});
+    } else {
+      this.setState({transientInputValue: ''});
     }
   };
 
@@ -553,10 +604,46 @@ class Select extends React.Component<PropsT, SelectStateT> {
     this.setState({
       inputValue: '',
       isOpen: false,
+      transientInputValue: '',
     });
 
     this.focus();
     this.focusAfterClear = true;
+  };
+
+  shouldShowValue = () => {
+    const {
+      inputValue,
+      isPseudoFocused,
+      isFocused,
+      transientInputValue,
+    } = this.state;
+    const {onSelectResetsInput} = this.props;
+    if (transientInputValue) return false;
+    if (!inputValue) return true;
+    if (!onSelectResetsInput) {
+      return !(
+        (!isFocused && isPseudoFocused) ||
+        (isFocused && !isPseudoFocused)
+      );
+    }
+    return false;
+  };
+
+  shouldShowPlaceholder = () => {
+    const {
+      inputValue,
+      isPseudoFocused,
+      isFocused,
+      isOpen,
+      transientInputValue,
+    } = this.state;
+    const {onSelectResetsInput} = this.props;
+
+    return (
+      (!inputValue && !transientInputValue) ||
+      (!onSelectResetsInput && !isOpen && !isPseudoFocused && !isFocused)
+    );
   };
 
   renderLoading() {
@@ -607,7 +694,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           </Value>
         );
       });
-    } else if (shouldShowValue(this.state, this.props)) {
+    } else if (this.shouldShowValue()) {
       return (
         <Value
           value={valueArray[0][this.props.valueKey]}
@@ -629,7 +716,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     );
     const sharedProps = this.getSharedProps();
     const isOpen = this.state.isOpen;
-    let value = this.state.inputValue;
+    let value = this.state.transientInputValue || this.state.inputValue;
     if (value && !this.props.onSelectResetsInput && !this.state.isFocused) {
       // It hides input value when it is not focused and was not reset on select
       value = '';
@@ -914,9 +1001,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       }
     }
 
-    const showPlaceholder =
-      !valueArray.length &&
-      shouldShowPlaceholder(this.state, this.props, isOpen);
+    const showPlaceholder = !valueArray.length && this.shouldShowPlaceholder();
 
     return (
       <LocaleContext.Consumer>
@@ -948,6 +1033,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
                 multi,
                 noResultsMsg,
                 onItemSelect: this.selectValue,
+                onHighlightChange: this.handleHighlightChange,
                 options,
                 overrides,
                 required: this.props.required,

@@ -75,6 +75,8 @@ export type StateReducerFnT = (
 export type StatefulContainerStateT = {
   // index of currently highlighted item (from keyboard control)
   highlightedIndex: number,
+  // index of item hovered by cursor
+  hoverIndex: number,
   // indicates when the menu can be navigated by keyboard and affects menu item option rendering
   // see https://github.com/uber/baseweb/issues/993 for a description.
   isFocused: boolean,
@@ -113,6 +115,7 @@ export type StatefulContainerPropsT = {
   getRequiredItemProps: GetRequiredItemPropsFnT,
   /** Callback executed on menu item clicks. */
   onItemSelect: OnItemSelectFnT,
+  onHighlightedIndexChange?: (index: number) => mixed,
   /** Ref for the menu container element. Used to capture key events for navigation */
   rootRef?: RootRefT,
   /** Child as function pattern. */
@@ -182,6 +185,7 @@ export type StatefulMenuPropsT = {
   getRequiredItemProps?: GetRequiredItemPropsFnT,
   /** Callback executed on menu item clicks. */
   onItemSelect?: OnItemSelectFnT,
+  onHighlightedIndexChange?: (index: number) => mixed,
   /** Ref for the menu container element. Used to capture key events for navigation */
   rootRef?: RootRefT,
   /** Child as function pattern. */

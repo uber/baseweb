@@ -182,6 +182,7 @@ export type SelectStateT = {
   isFocused: boolean,
   isOpen: boolean,
   isPseudoFocused: boolean,
+  transientInputValue: string,
 };
 
 export type StateT = {
@@ -226,6 +227,7 @@ export type DropdownPropsT = {
   multi: boolean,
   noResultsMsg?: React.Node,
   onItemSelect: OnItemSelectFnT,
+  onHighlightChange?: (option?: OptionT) => mixed,
   options: ValueT,
   overrides?: OverridesDropdownT,
   required: boolean,

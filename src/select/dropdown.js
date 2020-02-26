@@ -114,11 +114,10 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
       );
       return a || 0;
     }
-    return 0;
+    return -1;
   };
 
   render() {
-    // TODO(#185) Add no-results and loading states to menu
     const {
       maxDropdownHeight,
       multi,
@@ -153,6 +152,11 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
         <OverriddenStatefulMenu
           noResultsMsg={noResultsMsg}
           onItemSelect={onItemSelect}
+          onHighlightedIndexChange={index => {
+            if (this.props.onHighlightChange) {
+              this.props.onHighlightChange(options[index]);
+            }
+          }}
           items={groupedOptions}
           size={size}
           initialState={{

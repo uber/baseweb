@@ -28,6 +28,7 @@ export default class MenuStatefulContainer extends React.Component<
     initialState: {
       // We start the index at -1 to indicate that no highlighting exists initially
       highlightedIndex: -1,
+      hoverIndex: -1,
       isFocused: false,
     },
     stateReducer: ((changeType, changes) => changes: StateReducerFnT),
@@ -116,8 +117,15 @@ export default class MenuStatefulContainer extends React.Component<
     changeType: $Keys<typeof STATE_CHANGE_TYPES>,
     changes: $Shape<StatefulContainerStateT>,
   ) {
-    const {stateReducer} = this.props;
-    this.setState(stateReducer(changeType, changes, this.state));
+    if (
+      this.props.onHighlightedIndexChange &&
+      typeof changes.highlightedIndex === 'number' &&
+      this.state.highlightedIndex !== changes.highlightedIndex
+    ) {
+      this.props.onHighlightedIndexChange(changes.highlightedIndex);
+    }
+
+    this.setState(this.props.stateReducer(changeType, changes, this.state));
   }
 
   onKeyDown = (event: KeyboardEvent) => {
@@ -149,7 +157,7 @@ export default class MenuStatefulContainer extends React.Component<
 
     if (event.key === KEY_STRINGS.ArrowUp) {
       event.preventDefault();
-      nextIndex = Math.max(0, prevIndex - 1);
+      nextIndex = Math.max(-1, prevIndex - 1);
       this.internalSetState(STATE_CHANGE_TYPES.moveUp, {
         highlightedIndex: nextIndex,
       });
@@ -226,7 +234,7 @@ export default class MenuStatefulContainer extends React.Component<
 
   handleMouseEnter = (index: number) => {
     this.internalSetState(STATE_CHANGE_TYPES.mouseEnter, {
-      highlightedIndex: index,
+      hoverIndex: index,
     });
   };
 
@@ -243,7 +251,9 @@ export default class MenuStatefulContainer extends React.Component<
       disabled: !!item.disabled,
       ref: itemRef,
       isFocused: this.state.isFocused,
-      isHighlighted: this.state.highlightedIndex === index,
+      isHighlighted:
+        this.state.highlightedIndex === index ||
+        this.state.hoverIndex === index,
       // binds so that in-line functions can be avoided. this is to ensure
       // referential equality when option-list compares props in memoized compoent
       onClick: this.handleItemClick.bind(this, index, item),
@@ -306,6 +316,7 @@ export default class MenuStatefulContainer extends React.Component<
         activedescendantId: this.idList[this.state.highlightedIndex],
         getRequiredItemProps: this.getRequiredItemProps,
         highlightedIndex: this.state.highlightedIndex,
+        hoverIndex: this.state.hoverIndex,
         isFocused: this.state.isFocused,
         focusMenu: this.focusMenu,
         unfocusMenu: this.unfocusMenu,
