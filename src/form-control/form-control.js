@@ -8,12 +8,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
+import getBuiId from '../utils/get-bui-id.js';
 import {
   Label as StyledLabel,
   Caption as StyledCaption,
   ControlContainer as StyledControlContainer,
 } from './styled-components.js';
-import type {FormControlPropsT} from './types.js';
+import type {FormControlPropsT, FormControlStateT} from './types.js';
 
 function chooseRenderedHint(caption, error, positive, sharedProps) {
   if (error && typeof error !== 'boolean') {
@@ -31,7 +32,10 @@ function chooseRenderedHint(caption, error, positive, sharedProps) {
   return null;
 }
 
-export default class FormControl extends React.Component<FormControlPropsT> {
+export default class FormControl extends React.Component<
+  FormControlPropsT,
+  FormControlStateT,
+> {
   static defaultProps = {
     overrides: {},
     label: null,
@@ -39,6 +43,7 @@ export default class FormControl extends React.Component<FormControlPropsT> {
     error: false,
     positive: false,
   };
+  state = {captionId: getBuiId()};
 
   render() {
     const {
@@ -102,6 +107,9 @@ export default class FormControl extends React.Component<FormControlPropsT> {
             const key = child.key || String(index);
             return React.cloneElement(child, {
               key,
+              'aria-errormessage': error ? this.state.captionId : null,
+              'aria-describedby':
+                caption || positive ? this.state.captionId : null,
               disabled:
                 typeof onlyChildProps.disabled !== 'undefined'
                   ? onlyChildProps.disabled
@@ -119,6 +127,7 @@ export default class FormControl extends React.Component<FormControlPropsT> {
           {(caption || error || positive) && (
             <Caption
               data-baseweb="form-control-caption"
+              id={this.state.captionId}
               {...sharedProps}
               {...getOverrideProps(CaptionOverride)}
             >

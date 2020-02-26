@@ -41,6 +41,10 @@ export type DefaultPropsT = {
 };
 
 export type PropsT = {
+  /** Id of element which contains a related caption */
+  'aria-describedby'?: string,
+  /** Id of element which contains a related error message */
+  'aria-errormessage'?: string,
   /** Component or String value for label of checkbox. */
   children?: React$Node,
   overrides?: OverridesT,

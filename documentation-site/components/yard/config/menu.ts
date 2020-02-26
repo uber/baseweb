@@ -50,7 +50,7 @@ const MenuConfig: TConfig = {
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
-        names: ['Option', 'List', 'EmptyState'],
+        names: ['Option', 'List', 'EmptyState', 'OptgroupHeader'],
         sharedProps: {},
       },
     },

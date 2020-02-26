@@ -49,15 +49,19 @@ export default class NestedMenus extends React.Component<PropsT, StateT> {
     // we need to do this so that when we renderAll, the hidden seo-only child-menus don't
     // register themselves which would break the nesting logic
     if (ref.current && ref.current.offsetHeight) {
-      this.setState({menus: [...this.state.menus, ref]});
+      this.setState(state => {
+        return {menus: [...state.menus, ref]};
+      });
     }
   };
 
   removeMenuFromNesting = (ref: Ref) => {
-    const nextMenus = this.state.menus.filter(
-      r => !isSame(r.current, ref.current),
-    );
-    this.setState({menus: nextMenus});
+    this.setState(state => {
+      const nextMenus = state.menus
+        .filter(r => r.current)
+        .filter(r => !isSame(r.current, ref.current));
+      return {menus: nextMenus};
+    });
   };
 
   findMenuIndexByRef = (ref: Ref) => {

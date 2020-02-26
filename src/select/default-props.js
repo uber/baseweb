@@ -11,6 +11,7 @@ import {TYPE, SIZE} from './constants.js';
 const defaultProps = {
   'aria-label': null,
   'aria-describedby': null,
+  'aria-errormessage': null,
   'aria-labelledby': null,
   autoFocus: false,
   backspaceRemoves: true,
