@@ -9,6 +9,10 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 
+export type FormControlStateT = {|
+  captionId: string,
+|};
+
 export type FormControlPropsT = {
   overrides: {
     /** Customizes the label element. */

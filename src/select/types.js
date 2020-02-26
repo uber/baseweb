@@ -74,6 +74,7 @@ export type OverridesDropdownT = {
 export type PropsT = {
   'aria-label': ?string,
   'aria-describedby': ?string,
+  'aria-errormessage': ?string,
   'aria-labelledby': ?string,
   /** Defines if select element is focused on the first mount. */
   autoFocus: boolean,
