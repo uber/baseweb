@@ -72,6 +72,7 @@ export interface SelectOverrides {
 }
 export interface SelectProps {
   'aria-label'?: string;
+  'aria-errormessage'?: string;
   'aria-describedby'?: string;
   'aria-labelledby'?: string;
   autoFocus?: boolean;

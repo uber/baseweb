@@ -52,6 +52,8 @@ export interface StatefulRadioGroupProps {
 export const StatefulRadioGroup: React.FC<StatefulRadioGroupProps>;
 
 export interface RadioGroupProps {
+  'aria-describedby'?: string;
+  'aria-errormessage'?: string;
   'aria-label'?: string;
   'aria-labelledby'?: string;
   overrides?: RadioOverrides & RadioGroupOverrides;

@@ -42,6 +42,10 @@ export type DefaultPropsT = {
 };
 
 export type PropsT = {
+  /** Id of element which contains a related caption */
+  'aria-describedby'?: string,
+  /** Id of element which contains a related error message */
+  'aria-errormessage'?: string,
   /**
    * Used to define a string that labels the radio group. Use this prop if the label is not
    * visible on screen. If the label is visible, use the 'aria-labeledby' prop instead.
