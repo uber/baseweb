@@ -47,6 +47,7 @@ export interface TreeViewProps {
   data: TreeNode[];
   onToggle?: (node: TreeNode) => void;
   overrides?: TreeViewOverrides;
+  getId?: (node: TreeNode) => number | string;
   renderAll?: boolean;
   singleExpanded?: boolean;
 }

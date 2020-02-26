@@ -26,13 +26,11 @@ const customLabel = (node: TreeNode) => {
 
 const initialData = [
   {
-    id: 1,
     label: customLabel,
     isExpanded: true,
     info: {price: '$2', name: 'Coffee'},
     children: [
       {
-        id: 2,
         label: customLabel,
         isExpanded: true,
         info: {price: '$1', name: 'Medium'},
@@ -40,13 +38,11 @@ const initialData = [
     ],
   },
   {
-    id: 3,
     label: customLabel,
     isExpanded: true,
     info: {price: '$8', name: 'Pizza'},
     children: [
       {
-        id: 4,
         label: customLabel,
         isExpanded: true,
         info: {price: '$2', name: 'Large'},
@@ -56,5 +52,10 @@ const initialData = [
 ];
 
 export default function CustomLabelledTreeView() {
-  return <StatefulTreeView data={initialData} />;
+  return (
+    <StatefulTreeView
+      data={initialData}
+      getId={node => node.info.name}
+    />
+  );
 }

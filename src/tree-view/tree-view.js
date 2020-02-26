@@ -18,6 +18,7 @@ import {
   getFirstChildId,
   getEndId,
   getExpandableSiblings,
+  createNodeToId,
 } from './utils.js';
 import type {TreeViewPropsT, TreeNodeT, TreeNodeIdT} from './types.js';
 import {isFocusVisible} from '../utils/focusVisible.js';
@@ -25,11 +26,12 @@ import {isFocusVisible} from '../utils/focusVisible.js';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 
 export default function TreeView(props: TreeViewPropsT) {
-  const {data, onToggle, overrides = {}, renderAll} = props;
+  const {data, onToggle, overrides = {}, renderAll, getId} = props;
   const {Root: RootOverride} = overrides;
+  const nodeToId = createNodeToId(getId);
 
   const Root = getOverride(RootOverride) || StyledTreeItemList;
-  const firstId = data.length && data[0].id;
+  const firstId = data.length && nodeToId(data[0]);
   const [selectedNodeId, setSelectedNodeId] = React.useState(firstId);
   const [focusVisible, setFocusVisible] = React.useState(false);
   const treeItemRefs: {
@@ -49,7 +51,10 @@ export default function TreeView(props: TreeViewPropsT) {
       'data-nodeid',
     );
     // this check prevents bubbling
-    if (elementId !== node.id && parseInt(elementId) !== node.id) {
+    if (
+      elementId !== nodeToId(node) &&
+      parseInt(elementId) !== nodeToId(node)
+    ) {
       return;
     }
     switch (e.key) {
@@ -58,7 +63,7 @@ export default function TreeView(props: TreeViewPropsT) {
         if (typeof node.isExpanded === 'boolean' && !node.isExpanded) {
           onToggle && onToggle(node);
         } else {
-          focusTreeItem(getFirstChildId(data, selectedNodeId));
+          focusTreeItem(getFirstChildId(data, selectedNodeId, nodeToId));
         }
         break;
       case 'ArrowLeft':
@@ -66,16 +71,16 @@ export default function TreeView(props: TreeViewPropsT) {
         if (typeof node.isExpanded === 'boolean' && node.isExpanded) {
           onToggle && onToggle(node);
         } else {
-          focusTreeItem(getParentId(data, selectedNodeId, null));
+          focusTreeItem(getParentId(data, selectedNodeId, null, nodeToId));
         }
         break;
       case 'ArrowUp':
         e.preventDefault();
-        focusTreeItem(getPrevId(data, selectedNodeId, null));
+        focusTreeItem(getPrevId(data, selectedNodeId, null, nodeToId));
         break;
       case 'ArrowDown':
         e.preventDefault();
-        focusTreeItem(getNextId(data, selectedNodeId, null));
+        focusTreeItem(getNextId(data, selectedNodeId, null, nodeToId));
         break;
       case ' ':
       case 'Enter':
@@ -85,16 +90,16 @@ export default function TreeView(props: TreeViewPropsT) {
       case 'Home':
         e.preventDefault();
         if (data.length) {
-          focusTreeItem(data[0].id);
+          focusTreeItem(nodeToId(data[0]));
         }
         break;
       case 'End':
         e.preventDefault();
-        focusTreeItem(getEndId(data));
+        focusTreeItem(getEndId(data, nodeToId));
         break;
       case '*':
         e.preventDefault();
-        getExpandableSiblings(data, selectedNodeId).forEach(
+        getExpandableSiblings(data, selectedNodeId, nodeToId).forEach(
           node => onToggle && onToggle(node),
         );
         break;
@@ -106,7 +111,7 @@ export default function TreeView(props: TreeViewPropsT) {
       setFocusVisible(true);
     }
     if (selectedNodeId === null && data.length) {
-      setSelectedNodeId(data[0].id);
+      setSelectedNodeId(nodeToId(data[0]));
     }
   };
 
@@ -123,9 +128,10 @@ export default function TreeView(props: TreeViewPropsT) {
           <TreeNode
             key={index}
             node={node}
+            nodeToId={nodeToId}
             onToggle={node => {
               onToggle && onToggle(node);
-              focusTreeItem(node.id);
+              focusTreeItem(nodeToId(node));
             }}
             overrides={overrides}
             renderAll={renderAll}

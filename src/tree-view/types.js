@@ -25,7 +25,7 @@ export type TreeViewOverridesT = {
 export type TreeNodeIdT = number | string;
 
 export type TreeNodeT = {
-  id: TreeNodeIdT,
+  id?: TreeNodeIdT,
   children?: TreeNodeT[],
   isExpanded?: boolean,
   label: ((node: TreeNodeT) => React.Node) | string,
@@ -54,6 +54,7 @@ export type SharedStylePropsT = {
 
 export type TreeNodePropsT = {
   node: TreeNodeT,
+  nodeToId: (node: TreeNodeT) => TreeNodeIdT,
   onToggle?: (node: TreeNodeT) => void,
   overrides?: TreeViewOverridesT,
   renderAll?: boolean,
@@ -61,7 +62,7 @@ export type TreeNodePropsT = {
   onFocus?: (event: SyntheticEvent<>) => mixed,
   onBlur?: (event: SyntheticEvent<>) => mixed,
   selectedNodeId?: TreeNodeIdT,
-  addRef: (id: TreeNodeIdT, ref: React.ElementRef<HTMLLIElement>) => mixed,
+  addRef: (id: TreeNodeIdT, ref: React.ElementRef<*>) => mixed,
   isFocusVisible?: boolean,
 };
 
@@ -75,6 +76,7 @@ export type TreeViewPropsT = {|
   onToggle?: (node: TreeNodeT) => void,
   overrides?: TreeViewOverridesT,
   renderAll?: boolean,
+  getId?: (node: TreeNodeT) => TreeNodeIdT,
 
   // will set isExpanded to false on sibling nodes when toggling isExpanded to true for one node
   // note: will NOT affect pre-set data. If you start with multiple sibling nodes open it will be open until you toggle one of them to isExpanded
