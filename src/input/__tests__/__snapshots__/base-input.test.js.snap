@@ -27,6 +27,7 @@ Object {
 exports[`BaseInput - basic functionality: Base input has correct props 1`] = `
 Object {
   "aria-describedby": null,
+  "aria-errormessage": null,
   "aria-invalid": false,
   "aria-label": null,
   "aria-labelledby": null,
