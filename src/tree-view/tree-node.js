@@ -20,7 +20,7 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
   treeItemRef = React.createRef<HTMLLIElement>();
 
   componentDidMount() {
-    this.props.addRef(this.props.nodeToId(this.props.node), this.treeItemRef);
+    this.props.addRef(this.props.getId(this.props.node), this.treeItemRef);
   }
 
   onToggle = () => {
@@ -33,7 +33,7 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
   render() {
     const {
       node,
-      nodeToId,
+      getId,
       onToggle,
       overrides = {},
       renderAll,
@@ -59,8 +59,8 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
       <TreeItem
         role="treeitem"
         ref={this.treeItemRef}
-        data-nodeid={nodeToId(node)}
-        tabIndex={selectedNodeId === nodeToId(node) ? 0 : -1}
+        data-nodeid={getId(node)}
+        tabIndex={selectedNodeId === getId(node) ? 0 : -1}
         onKeyDown={(e: KeyboardEvent) => onKeyDown && onKeyDown(e, node)}
         onBlur={onBlur}
         onFocus={onFocus}
@@ -73,7 +73,7 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
           node={node}
           hasChildren={hasChildren}
           isExpanded={isExpanded}
-          isSelected={selectedNodeId === nodeToId(node)}
+          isSelected={selectedNodeId === getId(node)}
           isFocusVisible={isFocusVisible}
           label={label}
           overrides={overrides}
@@ -91,7 +91,7 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
                 renderAll={renderAll}
                 key={index}
                 node={node}
-                nodeToId={nodeToId}
+                getId={getId}
                 onToggle={onToggle}
                 overrides={overrides}
                 selectedNodeId={selectedNodeId}

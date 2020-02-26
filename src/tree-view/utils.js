@@ -8,29 +8,29 @@ LICENSE file in the root directory of this source tree.
 
 import type {TreeNodeT, TreeNodeIdT} from './types.js';
 
-const getLastLeafId = (node: TreeNodeT, nodeToId: TreeNodeT => TreeNodeIdT) => {
+const getLastLeafId = (node: TreeNodeT, getId: TreeNodeT => TreeNodeIdT) => {
   if (node.isExpanded && node.children && node.children.length) {
-    return getLastLeafId(node.children[node.children.length - 1], nodeToId);
+    return getLastLeafId(node.children[node.children.length - 1], getId);
   }
-  return nodeToId(node);
+  return getId(node);
 };
 
 export const getParentId = (
   nodes: TreeNodeT[],
   nodeId: TreeNodeIdT,
   parentId: TreeNodeIdT | null,
-  nodeToId: TreeNodeT => TreeNodeIdT,
+  getId: TreeNodeT => TreeNodeIdT,
 ) => {
   for (let i = 0; i < nodes.length; i++) {
-    if (nodeToId(nodes[i]) === nodeId) {
+    if (getId(nodes[i]) === nodeId) {
       return parentId;
     }
     if (nodes[i].isExpanded && nodes[i].children && nodes[i].children.length) {
       const foundId = getParentId(
         nodes[i].children,
         nodeId,
-        nodeToId(nodes[i]),
-        nodeToId,
+        getId(nodes[i]),
+        getId,
       );
       if (foundId) {
         return foundId;
@@ -44,22 +44,22 @@ export const getPrevId = (
   nodes: TreeNodeT[],
   nodeId: TreeNodeIdT,
   parentId: TreeNodeIdT | null,
-  nodeToId: TreeNodeT => TreeNodeIdT,
+  getId: TreeNodeT => TreeNodeIdT,
 ) => {
   for (let i = 0; i < nodes.length; i++) {
-    if (nodeToId(nodes[i]) === nodeId) {
+    if (getId(nodes[i]) === nodeId) {
       if (i === 0) {
         return parentId;
       } else {
-        return getLastLeafId(nodes[i - 1], nodeToId);
+        return getLastLeafId(nodes[i - 1], getId);
       }
     }
     if (nodes[i].isExpanded && nodes[i].children && nodes[i].children.length) {
       const foundId = getPrevId(
         nodes[i].children,
         nodeId,
-        nodeToId(nodes[i]),
-        nodeToId,
+        getId(nodes[i]),
+        getId,
       );
       if (foundId) {
         return foundId;
@@ -72,20 +72,20 @@ export const getPrevId = (
 export const getFirstChildId = (
   nodes: TreeNodeT[],
   nodeId: TreeNodeIdT,
-  nodeToId: TreeNodeT => TreeNodeIdT,
+  getId: TreeNodeT => TreeNodeIdT,
 ) => {
   for (let i = 0; i < nodes.length; i++) {
-    if (nodeToId(nodes[i]) === nodeId) {
+    if (getId(nodes[i]) === nodeId) {
       if (
         nodes[i].isExpanded &&
         nodes[i].children &&
         nodes[i].children.length
       ) {
-        return nodeToId(nodes[i].children[0]);
+        return getId(nodes[i].children[0]);
       }
     }
     if (nodes[i].isExpanded && nodes[i].children && nodes[i].children.length) {
-      const foundId = getFirstChildId(nodes[i].children, nodeId, nodeToId);
+      const foundId = getFirstChildId(nodes[i].children, nodeId, getId);
       if (foundId) {
         return foundId;
       }
@@ -98,18 +98,18 @@ export const getNextId = (
   nodes: TreeNodeT[],
   nodeId: TreeNodeIdT,
   closestOmmer: TreeNodeIdT | null,
-  nodeToId: TreeNodeT => TreeNodeIdT,
+  getId: TreeNodeT => TreeNodeIdT,
 ) => {
   for (let i = 0; i < nodes.length; i++) {
-    if (nodeToId(nodes[i]) === nodeId) {
+    if (getId(nodes[i]) === nodeId) {
       if (
         nodes[i].isExpanded &&
         nodes[i].children &&
         nodes[i].children.length
       ) {
-        return nodeToId(nodes[i].children[0]);
+        return getId(nodes[i].children[0]);
       } else if (nodes[i + 1]) {
-        return nodeToId(nodes[i + 1]);
+        return getId(nodes[i + 1]);
       } else {
         return closestOmmer;
       }
@@ -118,8 +118,8 @@ export const getNextId = (
       const foundId = getNextId(
         nodes[i].children,
         nodeId,
-        nodes[i + 1] ? nodeToId(nodes[i + 1]) : closestOmmer,
-        nodeToId,
+        nodes[i + 1] ? getId(nodes[i + 1]) : closestOmmer,
+        getId,
       );
       if (foundId) {
         return foundId;
@@ -131,22 +131,22 @@ export const getNextId = (
 
 export const getEndId = (
   nodes: TreeNodeT[],
-  nodeToId: TreeNodeT => TreeNodeIdT,
+  getId: TreeNodeT => TreeNodeIdT,
 ) => {
   const endNode = nodes[nodes.length - 1];
   if (endNode.isExpanded && endNode.children && endNode.children.length) {
-    return getEndId(endNode.children, nodeToId);
+    return getEndId(endNode.children, getId);
   }
-  return nodeToId(endNode);
+  return getId(endNode);
 };
 
 export const getExpandableSiblings = (
   nodes: TreeNodeT[],
   nodeId: TreeNodeIdT,
-  nodeToId: TreeNodeT => TreeNodeIdT,
+  getId: TreeNodeT => TreeNodeIdT,
 ) => {
   for (let i = 0; i < nodes.length; i++) {
-    if (nodeToId(nodes[i]) === nodeId) {
+    if (getId(nodes[i]) === nodeId) {
       const expandableSiblings = [];
       for (let j = 0; j < nodes.length; j++) {
         if (
@@ -160,30 +160,13 @@ export const getExpandableSiblings = (
       return expandableSiblings;
     }
     if (nodes[i].isExpanded && nodes[i].children && nodes[i].children.length) {
-      const result = getExpandableSiblings(nodes[i].children, nodeId, nodeToId);
+      const result = getExpandableSiblings(nodes[i].children, nodeId, getId);
       if (result.length) {
         return result;
       }
     }
   }
   return [];
-};
-
-export const createNodeToId = (getId?: (node: TreeNodeT) => TreeNodeIdT) => (
-  node: TreeNodeT,
-): TreeNodeIdT => {
-  if (getId) {
-    return getId(node);
-  }
-  if (node.id) {
-    return node.id;
-  }
-  if (__DEV__) {
-    console.warn(
-      'All data nodes need to have set an unique `id` property or top-level getId function needs to be defined.',
-    );
-  }
-  return '';
 };
 
 export const toggleIsExpanded = (
@@ -202,4 +185,13 @@ export const toggleIsExpanded = (
     }
     return newNode;
   });
+};
+
+export const defaultGetId = (node: TreeNodeT) => {
+  if (!node.id) {
+    throw Error(
+      'There needs to be an unique node.id. You can implement a custom mapping with getId.',
+    );
+  }
+  return node.id;
 };

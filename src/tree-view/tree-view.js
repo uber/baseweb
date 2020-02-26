@@ -18,7 +18,7 @@ import {
   getFirstChildId,
   getEndId,
   getExpandableSiblings,
-  createNodeToId,
+  defaultGetId,
 } from './utils.js';
 import type {TreeViewPropsT, TreeNodeT, TreeNodeIdT} from './types.js';
 import {isFocusVisible} from '../utils/focusVisible.js';
@@ -26,12 +26,17 @@ import {isFocusVisible} from '../utils/focusVisible.js';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 
 export default function TreeView(props: TreeViewPropsT) {
-  const {data, onToggle, overrides = {}, renderAll, getId} = props;
+  const {
+    data,
+    onToggle,
+    overrides = {},
+    renderAll,
+    getId = defaultGetId,
+  } = props;
   const {Root: RootOverride} = overrides;
-  const nodeToId = createNodeToId(getId);
 
   const Root = getOverride(RootOverride) || StyledTreeItemList;
-  const firstId = data.length && nodeToId(data[0]);
+  const firstId = data.length && getId(data[0]);
   const [selectedNodeId, setSelectedNodeId] = React.useState(firstId);
   const [focusVisible, setFocusVisible] = React.useState(false);
   const treeItemRefs: {
@@ -51,10 +56,7 @@ export default function TreeView(props: TreeViewPropsT) {
       'data-nodeid',
     );
     // this check prevents bubbling
-    if (
-      elementId !== nodeToId(node) &&
-      parseInt(elementId) !== nodeToId(node)
-    ) {
+    if (elementId !== getId(node) && parseInt(elementId) !== getId(node)) {
       return;
     }
     switch (e.key) {
@@ -63,7 +65,7 @@ export default function TreeView(props: TreeViewPropsT) {
         if (typeof node.isExpanded === 'boolean' && !node.isExpanded) {
           onToggle && onToggle(node);
         } else {
-          focusTreeItem(getFirstChildId(data, selectedNodeId, nodeToId));
+          focusTreeItem(getFirstChildId(data, selectedNodeId, getId));
         }
         break;
       case 'ArrowLeft':
@@ -71,16 +73,16 @@ export default function TreeView(props: TreeViewPropsT) {
         if (typeof node.isExpanded === 'boolean' && node.isExpanded) {
           onToggle && onToggle(node);
         } else {
-          focusTreeItem(getParentId(data, selectedNodeId, null, nodeToId));
+          focusTreeItem(getParentId(data, selectedNodeId, null, getId));
         }
         break;
       case 'ArrowUp':
         e.preventDefault();
-        focusTreeItem(getPrevId(data, selectedNodeId, null, nodeToId));
+        focusTreeItem(getPrevId(data, selectedNodeId, null, getId));
         break;
       case 'ArrowDown':
         e.preventDefault();
-        focusTreeItem(getNextId(data, selectedNodeId, null, nodeToId));
+        focusTreeItem(getNextId(data, selectedNodeId, null, getId));
         break;
       case ' ':
       case 'Enter':
@@ -90,16 +92,16 @@ export default function TreeView(props: TreeViewPropsT) {
       case 'Home':
         e.preventDefault();
         if (data.length) {
-          focusTreeItem(nodeToId(data[0]));
+          focusTreeItem(getId(data[0]));
         }
         break;
       case 'End':
         e.preventDefault();
-        focusTreeItem(getEndId(data, nodeToId));
+        focusTreeItem(getEndId(data, getId));
         break;
       case '*':
         e.preventDefault();
-        getExpandableSiblings(data, selectedNodeId, nodeToId).forEach(
+        getExpandableSiblings(data, selectedNodeId, getId).forEach(
           node => onToggle && onToggle(node),
         );
         break;
@@ -111,7 +113,7 @@ export default function TreeView(props: TreeViewPropsT) {
       setFocusVisible(true);
     }
     if (selectedNodeId === null && data.length) {
-      setSelectedNodeId(nodeToId(data[0]));
+      setSelectedNodeId(getId(data[0]));
     }
   };
 
@@ -128,10 +130,10 @@ export default function TreeView(props: TreeViewPropsT) {
           <TreeNode
             key={index}
             node={node}
-            nodeToId={nodeToId}
+            getId={getId}
             onToggle={node => {
               onToggle && onToggle(node);
-              focusTreeItem(nodeToId(node));
+              focusTreeItem(getId(node));
             }}
             overrides={overrides}
             renderAll={renderAll}

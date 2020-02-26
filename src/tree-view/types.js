@@ -54,7 +54,7 @@ export type SharedStylePropsT = {
 
 export type TreeNodePropsT = {
   node: TreeNodeT,
-  nodeToId: (node: TreeNodeT) => TreeNodeIdT,
+  getId: (node: TreeNodeT) => TreeNodeIdT,
   onToggle?: (node: TreeNodeT) => void,
   overrides?: TreeViewOverridesT,
   renderAll?: boolean,
