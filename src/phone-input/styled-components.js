@@ -22,7 +22,7 @@ type SizeStyleProps = {
 };
 type HeightStyleProps = {$height: string};
 
-// The root element of the PhoneInputAlternative
+// The root element of the PhoneInputNext
 export const StyledPhoneInputRoot = styled('div', {display: 'flex'});
 
 export const StyledFlagContainer = styled<SizeStyleProps>(

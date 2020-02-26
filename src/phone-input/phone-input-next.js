@@ -14,13 +14,13 @@ import {Input as DefaultInput} from '../input/index.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import type {LitePropsT} from './types.js';
 
-PhoneInputAlternative.defaultProps = {
+PhoneInputNext.defaultProps = {
   ...defaultProps,
   countries: COUNTRIES,
   clearable: true,
 };
 
-export default function PhoneInputAlternative(props: LitePropsT) {
+export default function PhoneInputNext(props: LitePropsT) {
   const {
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
@@ -70,7 +70,7 @@ export default function PhoneInputAlternative(props: LitePropsT) {
   // $FlowFixMe
   inputProps.overrides = mergeOverrides(baseOverrides, inputProps.overrides);
   return (
-    <Root {...rootProps} data-baseweb="phone-input-alt">
+    <Root {...rootProps} data-baseweb="phone-input-next">
       <CountryPicker
         country={country}
         countries={countries}

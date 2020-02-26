@@ -8,11 +8,11 @@ LICENSE file in the root directory of this source tree.
 
 export {default as PhoneInput} from './phone-input.js';
 export {default as PhoneInputLite} from './phone-input-lite.js';
-export {default as PhoneInputAlternative} from './phone-input-alternative.js';
+export {default as PhoneInputNext} from './phone-input-next.js';
 export {default as StatefulPhoneInput} from './stateful-phone-input.js';
 export {
-  default as StatefulPhoneInputAlternative,
-} from './stateful-phone-input-alternative.js';
+  default as StatefulPhoneInputNext,
+} from './stateful-phone-input-next.js';
 export {
   default as StatefulPhoneInputContainer,
 } from './stateful-phone-input-container.js';

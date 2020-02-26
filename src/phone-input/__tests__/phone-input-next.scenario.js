@@ -7,37 +7,33 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {
-  SIZE,
-  PhoneInputAlternative,
-  StatefulPhoneInputAlternative,
-} from '../index.js';
+import {SIZE, PhoneInputNext, StatefulPhoneInputNext} from '../index.js';
 
 export default function Scenario() {
   return (
     <React.Fragment>
       <p>Uncontrolled (Stateful)</p>
-      <StatefulPhoneInputAlternative
+      <StatefulPhoneInputNext
         onCountryChange={e => console.log('COUNTRY_CHANGED_1:', e)}
         onTextChange={e => console.log('NUMBER_CHANGED_1:', e)}
       />
       <p>Controlled (Stateless)</p>
-      <PhoneInputAlternative
+      <PhoneInputNext
         onCountryChange={e => console.log('COUNTRY_CHANGED:', e)}
         onTextChange={e => console.log('NUMBER_CHANGED:', e)}
       />
       <p>Sizes</p>
-      <StatefulPhoneInputAlternative size={SIZE.mini} />
+      <StatefulPhoneInputNext size={SIZE.mini} />
       <br />
-      <StatefulPhoneInputAlternative size={SIZE.compact} />
+      <StatefulPhoneInputNext size={SIZE.compact} />
       <br />
-      <StatefulPhoneInputAlternative />
+      <StatefulPhoneInputNext />
       <br />
-      <StatefulPhoneInputAlternative size={SIZE.large} />
+      <StatefulPhoneInputNext size={SIZE.large} />
       <p>States</p>
-      <StatefulPhoneInputAlternative positive />
+      <StatefulPhoneInputNext positive />
       <br />
-      <StatefulPhoneInputAlternative error />
+      <StatefulPhoneInputNext error />
       <br />
     </React.Fragment>
   );
