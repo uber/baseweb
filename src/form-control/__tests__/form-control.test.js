@@ -45,6 +45,7 @@ Object {
   "$positive": false,
   "children": "Caption test",
   "data-baseweb": "form-control-caption",
+  "id": "bui-mock-id",
 }
 `);
 
@@ -60,6 +61,7 @@ Object {
   "$positive": false,
   "children": "Error test",
   "data-baseweb": "form-control-caption",
+  "id": "bui-mock-id",
 }
 `);
   });
@@ -180,6 +182,7 @@ Object {
   "$positive": false,
   "children": "Caption test",
   "data-baseweb": "form-control-caption",
+  "id": "bui-mock-id",
 }
 `);
   });
@@ -209,6 +212,7 @@ Object {
   "$positive": false,
   "children": "Caption test",
   "data-baseweb": "form-control-caption",
+  "id": "bui-mock-id",
 }
 `);
     rendered.setProps({
@@ -231,6 +235,7 @@ Object {
   "$positive": false,
   "children": "Caption test",
   "data-baseweb": "form-control-caption",
+  "id": "bui-mock-id",
 }
 `);
     expect(caption).toHaveText('Error test');
@@ -263,6 +268,7 @@ Object {
   "$positive": false,
   "children": "Caption test",
   "data-baseweb": "form-control-caption",
+  "id": "bui-mock-id",
 }
 `);
   });
@@ -295,6 +301,7 @@ Object {
   "$positive": false,
   "children": "Caption test",
   "data-baseweb": "form-control-caption",
+  "id": "bui-mock-id",
 }
 `);
 });
@@ -330,6 +337,7 @@ Object {
   "$positive": false,
   "children": "Caption test",
   "data-baseweb": "form-control-caption",
+  "id": "bui-mock-id",
 }
 `);
 });

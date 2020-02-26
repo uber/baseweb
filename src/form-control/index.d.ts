@@ -12,6 +12,10 @@ export interface FormControlOverrides {
   ControlContainer?: Override<any>;
 }
 
+export interface FormControlState {
+  captionId: string;
+}
+
 export interface FormControlProps {
   children: React.ReactNode;
   disabled?: boolean;
@@ -22,4 +26,7 @@ export interface FormControlProps {
   positive?: React.ReactNode;
 }
 
-export class FormControl extends React.Component<FormControlProps> {}
+export class FormControl extends React.Component<
+  FormControlProps,
+  FormControlState
+> {}

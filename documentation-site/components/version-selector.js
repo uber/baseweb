@@ -81,6 +81,9 @@ const VersionSelector = () => {
     <StatefulPopover
       placement={PopoverPlacement.bottomLeft}
       dismissOnClickOutside={false}
+      focusLock
+      // eslint-disable-next-line jsx-a11y/no-autofocus
+      autoFocus
       content={({close}) => (
         <NestedMenus>
           <StatefulMenu
