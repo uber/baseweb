@@ -139,6 +139,10 @@ export const Body = styled<SharedStylePropsArgT>('div', props => {
     transitionTimingFunction: $theme.animation.easeInOutCurve,
     display: 'flex',
     justifyContent: 'space-between',
+    ':focus': {
+      outline: `3px solid ${props.$theme.colors.accent}`,
+      outlineOffset: `2px`,
+    },
   };
 });
 

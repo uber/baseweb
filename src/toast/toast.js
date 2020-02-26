@@ -5,6 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+/* global document */
 import * as React from 'react';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import DeleteIcon from '../icon/delete.js';
@@ -27,6 +28,7 @@ import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   static defaultProps: ToastPropsShapeT = {
+    autoFocus: false,
     autoHideDuration: 0,
     closeable: true,
     kind: KIND.info,
@@ -44,6 +46,8 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   autoHideTimeout: ?TimeoutID;
   animateInTimer: ?TimeoutID;
   animateOutCompleteTimer: ?TimeoutID;
+  bodyRef: ?{current: ?mixed};
+  previouslyFocusedElement: ?HTMLElement;
 
   state = {
     isVisible: false,
@@ -51,9 +55,27 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     isFocusVisible: false,
   };
 
+  constructor(props: ToastPropsT) {
+    super(props);
+    this.bodyRef = React.createRef();
+    this.previouslyFocusedElement = null;
+  }
+
   componentDidMount() {
     this.animateIn();
     this.startTimeout();
+    if (
+      __BROWSER__ &&
+      this.props.autoFocus &&
+      this.bodyRef &&
+      this.bodyRef.current &&
+      this.bodyRef.current.focus &&
+      typeof this.bodyRef.current.focus === 'function'
+    ) {
+      this.previouslyFocusedElement = document.activeElement;
+      // $FlowFixMe: Body is `mixed` type so doesn't like `focus` call.
+      this.bodyRef.current.focus();
+    }
   }
 
   componentDidUpdate(prevProps: ToastPropsT) {
@@ -123,6 +145,9 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
 
   dismiss = () => {
     this.animateOut(this.props.onClose);
+    if (this.props.autoFocus && this.previouslyFocusedElement) {
+      this.previouslyFocusedElement.focus();
+    }
   };
 
   onFocus = (e: Event) => {
@@ -196,6 +221,8 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
         {locale => (
           <Body
             role="alert"
+            ref={this.bodyRef}
+            tabIndex={this.props.autoFocus ? 0 : null}
             data-baseweb={this.props['data-baseweb'] || 'toast'}
             {...sharedProps}
             {...bodyProps}
