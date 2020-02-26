@@ -14,15 +14,6 @@ const TreeViewConfig: TConfig = {
     toggleIsExpanded,
   },
   theme: [],
-  // data: TreeNodeT[],
-  // onToggle?: (node: TreeNodeT) => void,
-  // overrides?: TreeViewOverridesT,
-  // renderAll?: boolean,
-  // getId?: (node: TreeNodeT) => TreeNodeIdT,
-
-  // // will set isExpanded to false on sibling nodes when toggling isExpanded to true for one node
-  // // note: will NOT affect pre-set data. If you start with multiple sibling nodes open it will be open until you toggle one of them to isExpanded
-  // singleExpanded?: boolean,
   props: {
     data: {
       value: `[
