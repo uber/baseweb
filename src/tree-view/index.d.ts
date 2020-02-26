@@ -62,3 +62,12 @@ export const StyledTreeItemList: StyletronComponent<any>;
 export const StyledTreeItem: StyletronComponent<any>;
 export const StyledItemContent: StyletronComponent<any>;
 export const StyledIconContainer: StyletronComponent<any>;
+
+type TGetId = (node: TreeNode) => string | number;
+type toggleIsExpandedT = (
+  data: TreeNode[],
+  togggledNode: TreeNode,
+  getId?: TGetId,
+) => TreeNode[];
+
+export const toggleIsExpanded: toggleIsExpandedT;

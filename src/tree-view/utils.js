@@ -185,3 +185,21 @@ export const createNodeToId = (getId?: (node: TreeNodeT) => TreeNodeIdT) => (
   }
   return '';
 };
+
+export const toggleIsExpanded = (
+  arr: TreeNodeT[],
+  toggledNode: TreeNodeT,
+  getId?: (node: TreeNodeT) => TreeNodeIdT = (node: TreeNodeT) =>
+    node.id ? node.id : '',
+): TreeNodeT[] => {
+  return arr.map<TreeNodeT>(node => {
+    const newNode = {...node};
+    if (getId(newNode) === getId(toggledNode)) {
+      newNode.isExpanded = !newNode.isExpanded;
+    }
+    if (newNode.children && newNode.children.length) {
+      newNode.children = toggleIsExpanded(newNode.children, toggledNode);
+    }
+    return newNode;
+  });
+};

@@ -1,10 +1,11 @@
 import * as React from 'react';
 import {
   Unstable_TreeView as TreeView,
+  toggleIsExpanded,
   TreeNode,
 } from 'baseui/tree-view';
 
-const initialData = [
+const initialData: TreeNode[] = [
   {
     id: 1,
     label: 'Projects',
@@ -112,30 +113,15 @@ const initialData = [
   },
 ];
 
-function updateData<T extends TreeNode>(
-  arr: T[],
-  id: number | string | undefined,
-): T[] {
-  return arr.map(node => {
-    const newNode = {...node};
-    if (newNode.id && newNode.id === id) {
-      newNode.isExpanded = !newNode.isExpanded;
-    }
-    if (newNode.children && newNode.children.length) {
-      newNode.children = updateData(newNode.children, id);
-    }
-    return newNode;
-  });
-}
-
-export default function TreeViewControlled() {
+export default function TreeViewBasic() {
   const [data, setData] = React.useState(initialData);
 
-  const onToggle = (node: TreeNode) => {
-    setData(prevData => {
-      return updateData(prevData, node.id);
-    });
-  };
-
-  return <TreeView data={data} onToggle={onToggle} />;
+  return (
+    <TreeView
+      data={data}
+      onToggle={node =>
+        setData(prevData => toggleIsExpanded(prevData, node))
+      }
+    />
+  );
 }

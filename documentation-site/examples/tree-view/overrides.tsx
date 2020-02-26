@@ -1,17 +1,13 @@
 import * as React from 'react';
-import {Unstable_StatefulTreeView as StatefulTreeView} from 'baseui/tree-view';
+import {
+  Unstable_TreeView as TreeView,
+  TreeNode,
+  toggleIsExpanded,
+} from 'baseui/tree-view';
 import {ChevronRight} from 'baseui/icon';
 import {ChevronDown} from 'baseui/icon';
 
-function CollapseIconOverride() {
-  return <ChevronDown />;
-}
-
-function ExpandIconOverride() {
-  return <ChevronRight />;
-}
-
-const initialData = [
+const initialData: TreeNode[] = [
   {
     id: 1,
     label: 'Node 1',
@@ -65,10 +61,15 @@ const initialData = [
 ];
 
 export default function TreeViewOverrides() {
+  const [data, setData] = React.useState(initialData);
+
   return (
-    <StatefulTreeView
-      data={initialData}
-      renderAll={true}
+    <TreeView
+      data={data}
+      renderAll
+      onToggle={node =>
+        setData(prevData => toggleIsExpanded(prevData, node))
+      }
       overrides={{
         IconContainer: {
           style: {
@@ -76,10 +77,10 @@ export default function TreeViewOverrides() {
           },
         },
         CollapseIcon: {
-          component: CollapseIconOverride,
+          component: ChevronDown,
         },
         ExpandIcon: {
-          component: ExpandIconOverride,
+          component: ChevronRight,
         },
       }}
     />

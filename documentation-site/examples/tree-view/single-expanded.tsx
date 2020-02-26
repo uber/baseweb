@@ -2,7 +2,7 @@
 import * as React from 'react';
 import {Unstable_StatefulTreeView as StatefulTreeView} from 'baseui/tree-view';
 
-const data = [
+const initialData = [
   {
     id: 1,
     label: 'Node 1',
@@ -260,5 +260,5 @@ const data = [
 ];
 
 export default function TreeViewUncontrolled() {
-  return <StatefulTreeView singleExpanded={true} data={data} />;
+  return <StatefulTreeView singleExpanded data={initialData} />;
 }
