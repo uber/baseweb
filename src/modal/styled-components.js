@@ -9,12 +9,13 @@ import {styled} from '../styles/index.js';
 import {SIZE, SIZE_WIDTHS} from './constants.js';
 import type {SharedStylePropsArgT, SizePropT} from './types.js';
 
-function getSizeStyles($size: SizePropT) {
-  const styles: {
-    maxWidth: string | number,
-    width?: ?(string | number),
-    alignSelf?: string,
-  } = {
+type SizeStyleT = {|
+  maxWidth: string | number,
+  width?: ?(string | number),
+  alignSelf?: string,
+|};
+function getSizeStyles($size: SizePropT): SizeStyleT {
+  const styles: SizeStyleT = {
     maxWidth: '100%',
     width: null,
   };
@@ -152,6 +153,7 @@ export const Dialog = styled<SharedStylePropsArgT>('div', props => {
 
 export const Close = styled<SharedStylePropsArgT>('button', props => {
   const {$theme, $isFocusVisible} = props;
+  const dir: string = $theme.direction === 'rtl' ? 'left' : 'right';
   return {
     // Reset button styles
     background: 'transparent',
@@ -178,7 +180,7 @@ export const Close = styled<SharedStylePropsArgT>('button', props => {
     // Positioning
     position: 'absolute',
     top: $theme.sizing.scale500,
-    [$theme.direction === 'rtl' ? 'left' : 'right']: $theme.sizing.scale500,
+    [dir]: $theme.sizing.scale500,
     width: $theme.sizing.scale800,
     height: $theme.sizing.scale800,
     display: 'flex',
@@ -188,17 +190,22 @@ export const Close = styled<SharedStylePropsArgT>('button', props => {
   };
 });
 
-export const ModalHeader = styled<{}>('div', ({$theme}) => ({
-  ...$theme.typography.font550,
-  color: $theme.colors.contentPrimary,
-  marginTop: $theme.sizing.scale900,
-  marginBottom: $theme.sizing.scale600,
-  [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: $theme.sizing
-    .scale800,
-  // Slightly more margin than left side to leave room for close button
-  [$theme.direction === 'rtl' ? 'marginLeft' : 'marginRight']: $theme.sizing
-    .scale900,
-}));
+export const ModalHeader = styled<{}>('div', ({$theme}) => {
+  const marginStartDir: string =
+    $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+  const marginEndDir: string =
+    $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
+
+  return {
+    ...$theme.typography.font550,
+    color: $theme.colors.contentPrimary,
+    marginTop: $theme.sizing.scale900,
+    marginBottom: $theme.sizing.scale600,
+    [marginStartDir]: $theme.sizing.scale800,
+    // Slightly more margin than left side to leave room for close button
+    [marginEndDir]: $theme.sizing.scale900,
+  };
+});
 
 export const ModalBody = styled<{}>('div', ({$theme}) => ({
   ...$theme.typography.font200,

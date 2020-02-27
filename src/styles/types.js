@@ -40,10 +40,12 @@ export type {
   ZIndexT,
 };
 
-export type ColorsT = ColorTokensT &
-  ComponentColorTokensT &
-  SemanticColorTokensT &
-  DeprecatedSemanticColorTokensT;
+export type ColorsT = {
+  ...ColorTokensT,
+  ...ComponentColorTokensT,
+  ...SemanticColorTokensT,
+  ...DeprecatedSemanticColorTokensT,
+};
 
 export type ThemeT = {|
   name: string,

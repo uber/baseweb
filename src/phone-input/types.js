@@ -112,6 +112,7 @@ export type PropsT = {
   /** A handler for the input element's change events. */
   onTextChange: (event: SyntheticInputEvent<HTMLInputElement>) => mixed,
   overrides: {
+    Root?: OverrideT<*>,
     Input?: OverrideT<*>,
     CountrySelectContainer?: OverrideT<*>,
     CountrySelectDropdown?: OverrideT<*>,
@@ -133,6 +134,8 @@ export type PropsT = {
   size: SizeT,
   /** Defines the value of the input element. */
   text: string,
+  /** Defines if the input value is clearable. */
+  clearable?: boolean,
 };
 
 export type LitePropsT = {

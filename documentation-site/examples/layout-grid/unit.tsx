@@ -5,7 +5,7 @@ import {Grid, Cell} from 'baseui/layout-grid';
 export default () => (
   <Outer>
     <Grid
-      gridUnit="em"
+      gridUnit="rem"
       gridGutters={[1, 2, 2]}
       gridMargins={[1, 2, 4]}
     >

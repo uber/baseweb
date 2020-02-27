@@ -127,7 +127,9 @@ export function getArrowPositionStyles(
     return null;
   }
 
-  const alignmentProperty = isVerticalPosition(position) ? 'left' : 'top';
+  const alignmentProperty: string = isVerticalPosition(position)
+    ? 'left'
+    : 'top';
   return {
     [alignmentProperty]: `${offsets[alignmentProperty]}px`,
     [oppositePosition]: `-${ARROW_SIZE - 2}px`,

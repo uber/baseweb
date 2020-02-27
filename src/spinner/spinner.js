@@ -50,6 +50,7 @@ class Spinner extends React.Component<SpinnerPropsT> {
 
     return (
       <Icon
+        aria-label={this.props['aria-label'] || 'Loading'}
         data-baseweb="spinner"
         title="Spinner"
         viewBox="3 3 18 18"

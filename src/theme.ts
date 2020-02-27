@@ -665,6 +665,11 @@ interface Borders {
   radius100: string;
   radius200: string;
   radius300: string;
+  radius400: string
+  buttonBorderRadius: string;
+  inputBorderRadius: string;
+  popoverBorderRadius: string;
+  surfaceBorderRadius: string;
 }
 
 interface ZIndex {
