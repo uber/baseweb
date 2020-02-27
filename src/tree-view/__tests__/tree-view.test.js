@@ -13,14 +13,17 @@ import CheckIndeterminate from '../../icon/check-indeterminate.js';
 
 const mockData = [
   {
+    id: 1,
     label: 'Node 1',
     isExpanded: true,
     children: [
       {
+        id: 2,
         label: 'Child 1',
         isExpanded: true,
         children: [
           {
+            id: 3,
             label: 'Grandchild 1',
           },
         ],
@@ -28,14 +31,17 @@ const mockData = [
     ],
   },
   {
+    id: 4,
     label: 'Node 2',
     isExpanded: true,
     children: [
       {
+        id: 5,
         label: 'Child 2',
         isExpanded: true,
         children: [
           {
+            id: 6,
             label: 'Grandchild 2',
           },
         ],
@@ -43,12 +49,15 @@ const mockData = [
     ],
   },
   {
+    id: 7,
     label: 'Node 3',
     children: [
       {
+        id: 8,
         label: 'Child 3',
         children: [
           {
+            id: 9,
             label: 'Grandchild 3',
           },
         ],
