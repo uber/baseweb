@@ -66,7 +66,6 @@ export const StyledItemContent = styled<{}>('div', ({$theme}) => {
 
 export const StyledIconContainer = styled<{}>('div', ({$theme}) => {
   return {
-    ...$theme.borders.border600,
     alignItems: 'center',
     display: 'flex',
     justifyContent: 'center',
