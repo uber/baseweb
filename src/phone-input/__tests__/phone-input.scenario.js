@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-
 import {StatefulPhoneInput, PhoneInputLite} from '../index.js';
 
 export default function Scenario() {
@@ -28,7 +27,7 @@ export default function Scenario() {
       />
 
       <br />
-      <p>phone input lite</p>
+      <p>Phone input lite</p>
       <PhoneInputLite
         country={{
           label: 'Afghanistan (‫افغانستان‬‎)',
