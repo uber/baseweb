@@ -53,7 +53,7 @@ export default function CountryPicker(props: CountrySelectPropsT) {
           paddingLeft: sizeToLeftPadding[props.$size || SIZE.default],
           paddingRight: sizeToRightPadding[props.$size || SIZE.default],
         };
-        // do not add positive and error color borders wjen not focused
+        // do not add positive and error color borders when not focused
         if (!props.$isFocused && !props.$isPseudoFocused) {
           return {
             ...styleOverride,
