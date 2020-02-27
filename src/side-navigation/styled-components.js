@@ -37,14 +37,16 @@ export const StyledNavLink = styled<{$isFocusVisible: boolean}>(
     color: 'inherit',
     outline: 'none',
     textDecoration: 'none',
-    ':focus > div': {
-      outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
-      outlineOffset: '-3px',
-      borderLeftColor: 'transparent',
-      borderTopColor: 'transparent',
-      borderRightColor: 'transparent',
-      borderBottomColor: 'transparent',
-    },
+    ':focus > div': $isFocusVisible
+      ? {
+          outline: `3px solid ${$theme.colors.accent}`,
+          outlineOffset: '-3px',
+          borderLeftColor: 'transparent',
+          borderTopColor: 'transparent',
+          borderRightColor: 'transparent',
+          borderBottomColor: 'transparent',
+        }
+      : {outline: 'none'},
   }),
 );
 
