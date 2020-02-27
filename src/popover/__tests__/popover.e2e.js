@@ -10,6 +10,8 @@ LICENSE file in the root directory of this source tree.
 const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const selectors = {
+  popover: '[data-baseweb="popover"]',
+  outsideOfPopover: '[data-e2e="outside-popover"]',
   tooltip: '[role="tooltip"]',
   selectInput: 'input[role="combobox"]',
   selectDropDown: '[role="listbox"]',
@@ -52,7 +54,18 @@ describe('popover', () => {
     await page.waitFor(selectors.selectInput);
     await page.click(selectors.selectInput);
     await page.waitFor(selectors.selectDropDown);
-
+    // Both popovers opened at this point.
+    // Make sure that layers rendered flat and not nested.
+    const noNestedPopovers = await page.$$eval(selectors.popover, popovers => {
+      let notNested = true;
+      for (let i = 0; i < popovers.length; i++) {
+        notNested =
+          notNested && !popovers[i].querySelector('[data-baseweb="popover"]');
+      }
+      return notNested;
+    });
+    expect(noNestedPopovers).toBe(true);
+    // Select an option from the select dropdown
     const options = await page.$$(selectors.dropDownOption);
     await options[0].click();
     await page.waitFor(selectors.selectDropDown, {hidden: true});
@@ -62,6 +75,9 @@ describe('popover', () => {
       select => select.textContent,
     );
     expect(selectedValue).toBe('AliceBlue');
+    // Click outside to close the initial popover
+    await page.click(selectors.outsideOfPopover);
+    await page.waitFor(selectors.selectInput, {hidden: true});
   });
 
   it('closes one popover at a time on esc key press', async () => {
@@ -78,6 +94,40 @@ describe('popover', () => {
     await page.waitFor(selectors.selectInput);
 
     await page.keyboard.press('Escape');
+    await page.waitFor(selectors.selectInput, {hidden: true});
+  });
+
+  it('closes one popover at a time on click outside', async () => {
+    await mount(page, 'popover-select');
+    await page.waitFor('button');
+    await page.click('button');
+    await page.waitFor(selectors.tooltip);
+    await page.waitFor(selectors.selectInput);
+    await page.click(selectors.selectInput);
+    await page.waitFor(selectors.selectDropDown);
+    // Both popovers opened at this point.
+    // Verify that popovers are not nested but rendered in a flat layers way
+    // where every new layer rendered as a sibling to the rest of layers
+    // and not uses other layers rendered elements as a mount node.
+    const noNestedPopovers = await page.$$eval(selectors.popover, popovers => {
+      let notNested = true;
+      for (let i = 0; i < popovers.length; i++) {
+        notNested =
+          notNested && !popovers[i].querySelector('[data-baseweb="popover"]');
+      }
+      return notNested;
+    });
+    expect(noNestedPopovers).toBe(true);
+
+    // First document and outside of the popovers click
+    // closes only the top-most popover
+    await page.click(selectors.outsideOfPopover);
+    await page.waitFor(selectors.selectDropDown, {hidden: true});
+    await page.waitFor(selectors.selectInput);
+
+    // Second document and outside of the remaining popover click
+    // closes only the that popover
+    await page.click(selectors.outsideOfPopover);
     await page.waitFor(selectors.selectInput, {hidden: true});
   });
 

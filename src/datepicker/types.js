@@ -171,7 +171,6 @@ export type CalendarPropsT = {
 export type HeaderPropsT = CalendarPropsT & {
   date: Date,
   order: number,
-  popoverMountNode: ?HTMLElement,
 };
 
 export type DatepickerPropsT = CalendarPropsT & {
