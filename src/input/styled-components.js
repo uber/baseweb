@@ -31,9 +31,7 @@ export const StyledClearIcon = styled<
   {$isFocusVisible: boolean},
 >(DeleteAlt, ({$theme, $isFocusVisible}) => ({
   cursor: 'pointer',
-  ':focus': {
-    outline: $isFocusVisible ? `solid 3px ${$theme.colors.accent}` : 'none',
-  },
+  outline: $isFocusVisible ? `solid 3px ${$theme.colors.accent}` : 'none',
 }));
 
 function getInputPadding(size, sizing) {
