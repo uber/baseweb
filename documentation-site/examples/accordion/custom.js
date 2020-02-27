@@ -13,6 +13,6 @@ export default () => {
   );
 };
 
-export function CustomPanel(props) {
+function CustomPanel(props) {
   return <Panel {...props} />;
 }
