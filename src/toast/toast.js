@@ -46,7 +46,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   autoHideTimeout: ?TimeoutID;
   animateInTimer: ?TimeoutID;
   animateOutCompleteTimer: ?TimeoutID;
-  bodyRef: ?{current: ?mixed};
+  closeRef: ?{current: ?mixed};
   previouslyFocusedElement: ?HTMLElement;
 
   state = {
@@ -57,7 +57,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
 
   constructor(props: ToastPropsT) {
     super(props);
-    this.bodyRef = React.createRef();
+    this.closeRef = React.createRef();
     this.previouslyFocusedElement = null;
   }
 
@@ -67,14 +67,15 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     if (
       __BROWSER__ &&
       this.props.autoFocus &&
-      this.bodyRef &&
-      this.bodyRef.current &&
-      this.bodyRef.current.focus &&
-      typeof this.bodyRef.current.focus === 'function'
+      this.closeRef &&
+      this.closeRef.current &&
+      this.closeRef.current.focus &&
+      typeof this.closeRef.current.focus === 'function'
     ) {
       this.previouslyFocusedElement = document.activeElement;
-      // $FlowFixMe: Body is `mixed` type so doesn't like `focus` call.
-      this.bodyRef.current.focus();
+      // $FlowFixMe: CloseIcon is `mixed` type so doesn't like `focus` call.
+      this.closeRef.current.focus();
+      this.setState({isFocusVisible: true});
     }
   }
 
@@ -206,7 +207,14 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     );
 
     const closeIconOverrides: OverridesT = mergeOverrides(
-      {Svg: CloseIcon},
+      {
+        Svg: {
+          component: CloseIcon,
+          props: {
+            ref: this.closeRef,
+          },
+        },
+      },
       // $FlowFixMe
       {Svg: CloseIconOverride},
     );
@@ -221,8 +229,6 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
         {locale => (
           <Body
             role="alert"
-            ref={this.bodyRef}
-            tabIndex={this.props.autoFocus ? 0 : null}
             data-baseweb={this.props['data-baseweb'] || 'toast'}
             {...sharedProps}
             {...bodyProps}
@@ -232,11 +238,8 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
             onMouseEnter={this.onMouseEnter}
             onMouseLeave={this.onMouseLeave}
           >
-            <InnerContainer {...sharedProps} {...innerContainerProps}>
-              {typeof children === 'function'
-                ? children({dismiss: this.dismiss})
-                : children}
-            </InnerContainer>
+            {/* Close icon comes first so that we can tab to other content
+                inside of Toast body. We use flex order to move it back. */}
             {closeable ? (
               <DeleteIcon
                 role="button"
@@ -256,6 +259,11 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
                 overrides={closeIconOverrides}
               />
             ) : null}
+            <InnerContainer {...sharedProps} {...innerContainerProps}>
+              {typeof children === 'function'
+                ? children({dismiss: this.dismiss})
+                : children}
+            </InnerContainer>
           </Body>
         )}
       </LocaleContext.Consumer>

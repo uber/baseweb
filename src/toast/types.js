@@ -52,7 +52,7 @@ export type ToastPropsT = {
    *  currently the change detection is used to reset the autohide timer
    */
   __updated?: number,
-  /** If true, the toast body will receive focus on mount
+  /** If true, the toast close icon will receive focus on mount
       and restore focus to previously focused element on unmount.
       This should only be used when there is no autoHideDuration
       and the toast for some reason has an action within it.
@@ -98,7 +98,7 @@ export type ToasterPropsT = {
   overrides: ToasterOverridesT,
   placement: PlacementTypeT,
   usePortal: boolean,
-  /** If true, toasts will receive focus on mount
+  /** If true, the toast close icon will receive focus on mount
       and restore focus to previously focused element on unmount.
       This should only be used when there is no autoHideDuration
       and toasts for some reason have actions within them.

@@ -102,12 +102,12 @@ describe('toast', () => {
     expect(toastContent).toBe('updated');
   });
 
-  it('focuses toast body when autofocus is active and refocuses previously focused element on close', async () => {
+  it('focuses toast dismiss when autofocus is active and refocuses previously focused element on close', async () => {
     await mount(page, 'toaster-focus');
     await page.click(selectors.buttonDefault);
     await page.waitFor(selectors.toast);
-    const isToastActive = await isActiveEl(page, selectors.toast);
-    expect(isToastActive).toBe(true);
+    const isDismissActive = await isActiveEl(page, selectors.dismiss);
+    expect(isDismissActive).toBe(true);
     await page.click(selectors.dismiss);
     const isButtonActive = await isActiveEl(page, selectors.buttonDefault);
     expect(isButtonActive).toBe(true);
