@@ -15,6 +15,7 @@ const defaultProps = {
   'aria-label': 'Please choose a country dial code and enter a phone number.',
   'aria-describedby': null,
   'aria-labelledby': null,
+  clearable: false,
   focusLock: false,
   country: {label: 'United States', id: 'US', dialCode: '+1'},
   disabled: false,
