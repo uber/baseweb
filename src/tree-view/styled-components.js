@@ -24,6 +24,7 @@ export const StyledTreeItemList = styled<{
     paddingLeft: 0,
     paddingRight: 0,
     position: 'relative',
+    outline: 'none',
     display: $expanded ? 'block' : 'none',
   };
 });
@@ -43,11 +44,15 @@ export const StyledTreeItem = styled<{$isLeafNode?: boolean}>(
       paddingLeft: 0,
       paddingRight: 0,
       position: 'relative',
+      outline: 'none',
     };
   },
 );
 
-export const StyledItemContent = styled<{}>('div', ({$theme}) => {
+export const StyledItemContent = styled<{
+  $isSelected: boolean,
+  $isFocusVisible: boolean,
+}>('div', ({$theme, $isSelected, $isFocusVisible}) => {
   return {
     ...$theme.typography.font300,
     alignItems: 'center',
@@ -58,6 +63,15 @@ export const StyledItemContent = styled<{}>('div', ({$theme}) => {
     marginBottom: 0,
     marginLeft: 0,
     marginRight: 0,
+    paddingLeft: $theme.sizing.scale200,
+    paddingRight: $theme.sizing.scale200,
+    paddingTop: $theme.sizing.scale100,
+    paddingBottom: $theme.sizing.scale100,
+    outline:
+      $isSelected && $isFocusVisible
+        ? `3px solid ${$theme.colors.accent}`
+        : 'none',
+    outlineOffset: '-3px',
     ':hover': {
       backgroundColor: $theme.colors.mono300,
     },
