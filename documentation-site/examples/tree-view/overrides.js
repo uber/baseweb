@@ -4,8 +4,8 @@ import {
   Unstable_StatefulTreeView as StatefulTreeView,
   type TreeNodeT,
 } from 'baseui/tree-view';
-import ChevronRight from 'baseui/icon/chevron-right';
-import ChevronDown from 'baseui/icon/chevron-down';
+import {Plus as PlusIcon} from 'baseui/icon';
+import {CheckIndeterminate as CheckIndeterminateIcon} from 'baseui/icon';
 
 const initialData = [
   {
@@ -60,14 +60,17 @@ export default function TreeViewOverrides() {
       overrides={{
         IconContainer: {
           style: {
-            borderStyle: 'none',
+            borderStyle: 'solid',
+            borderWidth: '1px',
+            width: '12px',
+            height: '12px',
           },
         },
         CollapseIcon: {
-          component: ChevronDown,
+          component: CheckIndeterminateIcon,
         },
         ExpandIcon: {
-          component: ChevronRight,
+          component: PlusIcon,
         },
       }}
     />

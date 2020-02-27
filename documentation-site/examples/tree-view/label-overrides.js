@@ -5,8 +5,6 @@ import {
   TreeLabel,
   type TreeNodeT,
 } from 'baseui/tree-view';
-import {ChevronRight} from 'baseui/icon';
-import {ChevronDown} from 'baseui/icon';
 
 type CustomNodePropsT = {
   depth?: number,
@@ -21,8 +19,9 @@ const CustomLabel = (node: TreeNodeT) => {
       case 2:
         return 'h2';
       case 3:
-      default:
         return 'h3';
+      default:
+        return 'p';
     }
   })(node.depth);
   return (
@@ -37,13 +36,11 @@ const CustomTreeLabel = props => {
       label={CustomLabel}
       overrides={{
         CollapseIcon: {
-          component: ChevronDown,
           props: {
             size: (5 - props.node.depth) * 10,
           },
         },
         ExpandIcon: {
-          component: ChevronRight,
           props: {
             size: (5 - props.node.depth) * 10,
           },
@@ -111,11 +108,6 @@ export default function TreeViewOverrides() {
     <StatefulTreeView
       data={initialData}
       overrides={{
-        IconContainer: {
-          style: {
-            borderStyle: 'none',
-          },
-        },
         TreeLabel: {
           component: CustomTreeLabel,
         },
