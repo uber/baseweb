@@ -248,8 +248,9 @@ class BaseInput<T: EventTarget> extends React.Component<
           title={ariaLabel}
           aria-label={ariaLabel}
           onClick={this.onClearIconClick}
-          onKeyUp={event => {
+          onKeyDown={event => {
             if (event.key && (event.key === 'Enter' || event.key === ' ')) {
+              event.preventDefault();
               this.onClearIconClick();
             }
           }}
