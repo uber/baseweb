@@ -480,6 +480,9 @@ function lintUseStyletron(context, node) {
       declarator = declaration.declarations.find(
         declarator =>
           declarator.type === 'VariableDeclarator' &&
+          // couldn't repro in local test cases why we need it
+          // just opened a story in our backlog to look into this more
+          declarator.init &&
           declarator.init.type === 'CallExpression' &&
           declarator.init.callee.name === 'useStyletron',
       );
