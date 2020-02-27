@@ -52,6 +52,7 @@ export type PropsT = {|
   onDropRejected?: DropFileEventHandlerT,
   onFileDialogCancel?: () => mixed,
   preventDropOnDocument?: boolean,
+  'aria-describedby'?: string,
 
   // Error message to be displayed
   errorMessage?: string,
