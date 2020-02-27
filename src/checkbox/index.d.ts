@@ -84,6 +84,8 @@ export interface CheckboxOverrides {
 }
 
 export interface CheckboxProps {
+  'aria-describedby'?: string;
+  'aria-errormessage'?: string;
   children?: React.ReactNode;
   overrides?: CheckboxOverrides;
   checked?: boolean;
