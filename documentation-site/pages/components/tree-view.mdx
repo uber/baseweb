@@ -10,12 +10,16 @@ import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 import UnstableWarning from '../../components/unstable-warning';
 
-import TreeViewControlled from 'examples/tree-view/controlled.js';
+import TreeViewBasic from 'examples/tree-view/basic.js';
 import TreeViewUncontrolled from 'examples/tree-view/uncontrolled.js';
 import CustomLabelledTreeView from 'examples/tree-view/custom-label.js';
 import TreeViewOverrides from 'examples/tree-view/overrides.js';
 import TreeViewLabelOverrides from 'examples/tree-view/label-overrides.js';
 import SingleExpanded from 'examples/tree-view/single-expanded.js';
+
+import Yard from '../../components/yard/index';
+import treeviewYardConfig from '../../components/yard/config/tree-view';
+import ApiTable from '../../components/api-table';
 
 import * as TreeViewExports from 'baseui/tree-view';
 
@@ -25,14 +29,12 @@ export default Layout;
 
 <UnstableWarning />
 
+<Yard placeholderHeight={134} {...treeviewYardConfig} />
+
 ## Examples
 
-<Example title="Controlled Tree View Usage" path="tree-view/controlled.js">
-  <TreeViewControlled />
-</Example>
-
-<Example title="Uncontrolled Tree View Usage" path="tree-view/uncontrolled.js">
-  <TreeViewUncontrolled />
+<Example title="Basic Tree View Usage" path="tree-view/basic.js">
+  <TreeViewBasic />
 </Example>
 
 <Example title="Custom labels Usage" path="tree-view/custom-label.js">
@@ -54,6 +56,10 @@ export default Layout;
   <SingleExpanded />
 </Example>
 
+<Example title="Uncontrolled Tree View Usage" path="tree-view/uncontrolled.js">
+  <TreeViewUncontrolled />
+</Example>
+
 ## Accessibility
 
 Aria rules are applied based on recommendations for Tree View [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices/#TreeView).
@@ -61,7 +67,20 @@ Aria rules are applied based on recommendations for Tree View [WAI-ARIA Authorin
 - Expanded tree node will have 'aria-expanded' set to true.
 - Collapsed tree node will have 'aria-expanded' set to false.
 
+You can also `Tab` focus the component and use all shortcuts according to the spec above:
+
+- `Arrow Up`, `Arrow Down`, `Arrow Right`, `Arrow Left`
+- `Space`, `Enter`
+- `Home`, `End`
+- `*`
+
 ## API
+
+<ApiTable
+  title="TreeView props"
+  config={treeviewYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/tree-view/tree-view.js')}
+/>
 
 <Exports
   component={TreeViewExports}

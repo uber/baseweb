@@ -58,6 +58,7 @@ exports[`Popover component as anchor 1`] = `
   </CustomComponent>
   <mockConstructor
     key="new-layer"
+    onDocumentClick={[Function]}
     onMount={[Function]}
     onUnmount={[Function]}
   >

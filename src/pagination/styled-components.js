@@ -14,21 +14,30 @@ export const StyledRoot = styled<{}>('div', ({$theme}) => ({
   ...$theme.typography.font350,
 }));
 
-export const StyledMaxLabel = styled<{}>('span', ({$theme}) => ({
-  [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: $theme.sizing
-    .scale300,
-  [$theme.direction === 'rtl' ? 'marginLeft' : 'marginRight']: $theme.sizing
-    .scale600,
-}));
+export const StyledMaxLabel = styled<{}>('span', ({$theme}) => {
+  const marginStartDir: string =
+    $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+  const marginEndDir: string =
+    $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
+  return {
+    [marginStartDir]: $theme.sizing.scale300,
+    [marginEndDir]: $theme.sizing.scale600,
+  };
+});
 
 export const StyledDropdownContainer = styled<{$isFocusVisible: boolean}>(
   'div',
-  ({$theme, $isFocusVisible}) => ({
-    position: 'relative',
-    outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
-    [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: $theme.sizing
-      .scale600,
-    [$theme.direction === 'rtl' ? 'marginLeft' : 'marginRight']: $theme.sizing
-      .scale300,
-  }),
+  ({$theme, $isFocusVisible}) => {
+    const marginStartDir: string =
+      $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+    const marginEndDir: string =
+      $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
+
+    return {
+      position: 'relative',
+      outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+      [marginStartDir]: $theme.sizing.scale600,
+      [marginEndDir]: $theme.sizing.scale300,
+    };
+  },
 );

@@ -25,6 +25,8 @@ export type InternalStateT = {
   isFocused?: boolean,
   /** Renders input in 'masked' state if type equals "password" */
   isMasked?: boolean,
+  /** Tracks if focus should be visible on the clear button. */
+  isFocusVisibleForClear?: boolean,
 };
 
 export type StateT = {
@@ -77,6 +79,8 @@ export type InputComponentsT = {|
 |};
 
 export type BaseInputPropsT<T> = {|
+  /** Id of element which contains a related error message */
+  'aria-errormessage'?: string,
   /** Sets aria-label attribute. */
   'aria-label'?: string,
   /** Sets aria-labelledby attribute. */

@@ -22,6 +22,7 @@ export default () => {
         value={rangeDate}
         onChange={({date}) => setRangeDate(date)}
         placeholder="YYYY/MM/DD – YYYY/MM/DD"
+        quickSelect
       />
     </React.Fragment>
   );

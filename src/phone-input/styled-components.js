@@ -22,6 +22,9 @@ type SizeStyleProps = {
 };
 type HeightStyleProps = {$height: string};
 
+// The root element of the PhoneInputNext
+export const StyledPhoneInputRoot = styled('div', {display: 'flex'});
+
 export const StyledFlagContainer = styled<SizeStyleProps>(
   'span',
   ({$size = SIZE.default, $theme: {sizing}}) => {
@@ -37,6 +40,7 @@ export const StyledFlagContainer = styled<SizeStyleProps>(
   },
 );
 
+// An override component for the Select's Root styled element
 export const StyledRoot = withStyle<typeof SelectStyledRoot, SizeStyleProps>(
   SelectStyledRoot,
   props => {
@@ -50,12 +54,15 @@ export const StyledRoot = withStyle<typeof SelectStyledRoot, SizeStyleProps>(
 
     return {
       width: sizeToWidth[props.$size || SIZE.default],
+      display: 'inline-block',
     };
   },
 );
 
 export const StyledDialCode = styled<{}>('div', ({$theme: {sizing}}) => ({
   marginLeft: sizing.scale100,
+  display: 'flex',
+  alignItems: 'center',
 }));
 
 export const StyledCountrySelectContainer = styled('div', {
