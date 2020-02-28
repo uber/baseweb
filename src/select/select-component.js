@@ -113,6 +113,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
   }
 
   state = {
+    activeDescendant: null,
     inputValue: '',
     isFocused: false,
     isOpen: this.props.startOpen,
@@ -470,6 +471,14 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   }
 
+  handleActiveDescendantChange = (id?: string) => {
+    if (id) {
+      this.setState({activeDescendant: id});
+    } else {
+      this.setState({activeDescendant: null});
+    }
+  };
+
   selectValue = ({item}: {item: OptionT}) => {
     if (item.disabled) {
       return;
@@ -640,6 +649,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     if (!this.props.searchable) {
       return (
         <InputContainer
+          aria-activedescendant={this.state.activeDescendant}
           aria-expanded={isOpen}
           aria-disabled={this.props.disabled}
           aria-label={this.props['aria-label']}
@@ -657,6 +667,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     return (
       <InputContainer {...sharedProps} {...inputContainerProps}>
         <AutosizeInput
+          aria-activedescendant={this.state.activeDescendant}
           aria-autocomplete="list"
           aria-describedby={this.props['aria-describedby']}
           aria-errormessage={this.props['aria-errormessage']}
@@ -950,6 +961,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
                 maxDropdownHeight: this.props.maxDropdownHeight,
                 multi,
                 noResultsMsg,
+                onActiveDescendantChange: this.handleActiveDescendantChange,
                 onItemSelect: this.selectValue,
                 options,
                 overrides,

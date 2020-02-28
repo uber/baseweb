@@ -179,6 +179,7 @@ export type PropsT = {
 };
 
 export type SelectStateT = {
+  activeDescendant: ?string,
   inputValue: string,
   isFocused: boolean,
   isOpen: boolean,
@@ -226,6 +227,7 @@ export type DropdownPropsT = {
   maxDropdownHeight: string,
   multi: boolean,
   noResultsMsg?: React.Node,
+  onActiveDescendantChange?: (id?: string) => mixed,
   onItemSelect: OnItemSelectFnT,
   options: ValueT,
   overrides?: OverridesDropdownT,
