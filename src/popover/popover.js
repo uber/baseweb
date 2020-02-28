@@ -5,7 +5,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-/* global document */
 /* eslint-disable react/no-find-dom-node */
 import * as React from 'react';
 import FocusLock from 'react-focus-lock';
@@ -81,13 +80,11 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       if (this.props.isOpen && this.state.isLayerMounted) {
         // Clear any existing timers (like previous animateOutCompleteTimer)
         this.clearTimers();
-        this.addDomEvents();
         return;
       }
 
       // Transition from open to closed.
       if (!this.props.isOpen && prevProps.isOpen) {
-        this.removeDomEvents();
         this.animateOutTimer = setTimeout(this.animateOut, 20);
         return;
       }
@@ -95,7 +92,6 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   }
 
   componentWillUnmount() {
-    this.removeDomEvents();
     this.clearTimers();
   }
 
@@ -230,19 +226,6 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       this.props.onMouseEnter();
     }
   };
-
-  addDomEvents() {
-    if (__BROWSER__) {
-      // using mousedown event so that callback runs before events on children inside of the popover
-      document.addEventListener('mousedown', this.onDocumentClick);
-    }
-  }
-
-  removeDomEvents() {
-    if (__BROWSER__) {
-      document.removeEventListener('mousedown', this.onDocumentClick);
-    }
-  }
 
   onDocumentClick = (evt: MouseEvent) => {
     const target = evt.target;
@@ -442,6 +425,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
             key="new-layer"
             mountNode={this.props.mountNode}
             onEscape={this.props.onEsc}
+            onDocumentClick={this.onDocumentClick}
             onMount={() => this.setState({isLayerMounted: true})}
             onUnmount={() => this.setState({isLayerMounted: false})}
           >

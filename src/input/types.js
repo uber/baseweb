@@ -25,6 +25,8 @@ export type InternalStateT = {
   isFocused?: boolean,
   /** Renders input in 'masked' state if type equals "password" */
   isMasked?: boolean,
+  /** Tracks if focus should be visible on the clear button. */
+  isFocusVisibleForClear?: boolean,
 };
 
 export type StateT = {

@@ -23,6 +23,7 @@ import {Button, KIND} from '../button/index.js';
 import Hide from '../icon/hide.js';
 import Show from '../icon/show.js';
 import createEvent from '../utils/create-event.js';
+import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 const NullComponent = () => null;
 
@@ -66,6 +67,7 @@ class BaseInput<T: EventTarget> extends React.Component<
     isFocused: this.props.autoFocus || false,
     isMasked: this.props.type === 'password',
     initialType: this.props.type,
+    isFocusVisibleForClear: false,
   };
 
   componentDidMount() {
@@ -207,6 +209,18 @@ class BaseInput<T: EventTarget> extends React.Component<
     );
   }
 
+  handleFocusForClear = (event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      this.setState({isFocusVisibleForClear: true});
+    }
+  };
+
+  handleBlurForClear = (event: SyntheticEvent<>) => {
+    if (this.state.isFocusVisibleForClear !== false) {
+      this.setState({isFocusVisibleForClear: false});
+    }
+  };
+
   renderClear() {
     const {clearable, value, disabled, overrides = {}} = this.props;
     if (!clearable || !value || !value.length || disabled) {
@@ -230,12 +244,22 @@ class BaseInput<T: EventTarget> extends React.Component<
       >
         <ClearIcon
           size={16}
+          tabindex={0}
           title={ariaLabel}
           aria-label={ariaLabel}
           onClick={this.onClearIconClick}
+          onKeyDown={event => {
+            if (event.key && (event.key === 'Enter' || event.key === ' ')) {
+              event.preventDefault();
+              this.onClearIconClick();
+            }
+          }}
           role="button"
+          $isFocusVisible={this.state.isFocusVisibleForClear}
           {...sharedProps}
           {...clearIconProps}
+          onFocus={forkFocus(clearIconProps, this.handleFocusForClear)}
+          onBlur={forkBlur(clearIconProps, this.handleBlurForClear)}
         />
       </ClearIconContainer>
     );

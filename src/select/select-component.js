@@ -546,10 +546,12 @@ class Select extends React.Component<PropsT, SelectStateT> {
   clearValue = (event: KeyboardEvent | MouseEvent | TouchEvent) => {
     if (isClick(event) && !isLeftClick(event)) return;
 
-    const resetValue = this.props.value.filter(
-      item => item.clearableValue === false,
-    );
-    this.setValue(resetValue, null, STATE_CHANGE_TYPE.clear);
+    if (this.props.value) {
+      const resetValue = this.props.value.filter(
+        item => item.clearableValue === false,
+      );
+      this.setValue(resetValue, null, STATE_CHANGE_TYPE.clear);
+    }
     this.setState({
       inputValue: '',
       isOpen: false,
