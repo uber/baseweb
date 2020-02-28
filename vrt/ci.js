@@ -23,7 +23,7 @@ const {
 } = process.env;
 
 // Derive some useful constants
-const SNAPSHOT_BRANCH = `${BUILDKITE_BRANCH}--vrt`;
+const SNAPSHOT_BRANCH = `${sanitizeBranchName(BUILDKITE_BRANCH)}--vrt`;
 const [
   ORIGINAL_REPOSITORY_OWNER,
   ORIGINAL_REPOSITORY_NAME,
@@ -344,6 +344,12 @@ function getRepositoryOwnerAndNameFromURL(url) {
   const [, , , owner, name] = url.replace('.git', '').split('/');
   log(`Original repository identified as ${owner}/${name}.`);
   return [owner, name];
+}
+
+function sanitizeBranchName(branchName) {
+  // Colons are not permitted in git branch names and for some reason
+  // Buildkite will report the branch name as "user:branch".
+  return branchName.replace(/:/g, '-');
 }
 
 function log(message) {
