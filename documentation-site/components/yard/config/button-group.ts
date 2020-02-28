@@ -69,8 +69,8 @@ const ButtonGroupConfig: TConfig = {
       hidden: true,
     },
     mode: {
-      value: 'MODE.radio',
-      defaultValue: 'MODE.radio',
+      value: 'MODE.checkbox',
+      defaultValue: 'MODE.checkbox',
       options: MODE,
       type: PropTypes.Enum,
       description:
