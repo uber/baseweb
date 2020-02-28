@@ -188,7 +188,6 @@ exports[`Select component renders component in search mode and false for multipl
                     >
                       <input
                         aria-autocomplete="list"
-                        aria-controls="bui-mock-id"
                         aria-expanded="false"
                         aria-haspopup="listbox"
                         aria-label=""
@@ -549,7 +548,7 @@ exports[`Select component renders component in search mode and false for multipl
                                 $type="search"
                                 aria-activedescendant={null}
                                 aria-autocomplete="list"
-                                aria-controls="bui-mock-id"
+                                aria-controls={null}
                                 aria-describedby={null}
                                 aria-disabled={null}
                                 aria-errormessage={null}
@@ -593,7 +592,7 @@ exports[`Select component renders component in search mode and false for multipl
                                   $width="2px"
                                   aria-activedescendant={null}
                                   aria-autocomplete="list"
-                                  aria-controls="bui-mock-id"
+                                  aria-controls={null}
                                   aria-describedby={null}
                                   aria-disabled={null}
                                   aria-errormessage={null}
@@ -631,7 +630,7 @@ exports[`Select component renders component in search mode and false for multipl
                                     $width="2px"
                                     aria-activedescendant={null}
                                     aria-autocomplete="list"
-                                    aria-controls="bui-mock-id"
+                                    aria-controls={null}
                                     aria-describedby={null}
                                     aria-disabled={null}
                                     aria-errormessage={null}
@@ -654,7 +653,7 @@ exports[`Select component renders component in search mode and false for multipl
                                     <input
                                       aria-activedescendant={null}
                                       aria-autocomplete="list"
-                                      aria-controls="bui-mock-id"
+                                      aria-controls={null}
                                       aria-describedby={null}
                                       aria-disabled={null}
                                       aria-errormessage={null}
@@ -1037,7 +1036,6 @@ exports[`Select component renders component in search mode and true for multiple
                     >
                       <input
                         aria-autocomplete="list"
-                        aria-controls="bui-mock-id"
                         aria-expanded="false"
                         aria-haspopup="listbox"
                         aria-label=""
@@ -1398,7 +1396,7 @@ exports[`Select component renders component in search mode and true for multiple
                                 $type="search"
                                 aria-activedescendant={null}
                                 aria-autocomplete="list"
-                                aria-controls="bui-mock-id"
+                                aria-controls={null}
                                 aria-describedby={null}
                                 aria-disabled={null}
                                 aria-errormessage={null}
@@ -1442,7 +1440,7 @@ exports[`Select component renders component in search mode and true for multiple
                                   $width="2px"
                                   aria-activedescendant={null}
                                   aria-autocomplete="list"
-                                  aria-controls="bui-mock-id"
+                                  aria-controls={null}
                                   aria-describedby={null}
                                   aria-disabled={null}
                                   aria-errormessage={null}
@@ -1480,7 +1478,7 @@ exports[`Select component renders component in search mode and true for multiple
                                     $width="2px"
                                     aria-activedescendant={null}
                                     aria-autocomplete="list"
-                                    aria-controls="bui-mock-id"
+                                    aria-controls={null}
                                     aria-describedby={null}
                                     aria-disabled={null}
                                     aria-errormessage={null}
@@ -1503,7 +1501,7 @@ exports[`Select component renders component in search mode and true for multiple
                                     <input
                                       aria-activedescendant={null}
                                       aria-autocomplete="list"
-                                      aria-controls="bui-mock-id"
+                                      aria-controls={null}
                                       aria-describedby={null}
                                       aria-disabled={null}
                                       aria-errormessage={null}
@@ -1866,7 +1864,6 @@ exports[`Select component renders component in select mode and false for multipl
                     >
                       <input
                         aria-autocomplete="list"
-                        aria-controls="bui-mock-id"
                         aria-expanded="false"
                         aria-haspopup="listbox"
                         aria-label=""
@@ -2139,7 +2136,7 @@ exports[`Select component renders component in select mode and false for multipl
                                 $type="select"
                                 aria-activedescendant={null}
                                 aria-autocomplete="list"
-                                aria-controls="bui-mock-id"
+                                aria-controls={null}
                                 aria-describedby={null}
                                 aria-disabled={null}
                                 aria-errormessage={null}
@@ -2183,7 +2180,7 @@ exports[`Select component renders component in select mode and false for multipl
                                   $width="2px"
                                   aria-activedescendant={null}
                                   aria-autocomplete="list"
-                                  aria-controls="bui-mock-id"
+                                  aria-controls={null}
                                   aria-describedby={null}
                                   aria-disabled={null}
                                   aria-errormessage={null}
@@ -2221,7 +2218,7 @@ exports[`Select component renders component in select mode and false for multipl
                                     $width="2px"
                                     aria-activedescendant={null}
                                     aria-autocomplete="list"
-                                    aria-controls="bui-mock-id"
+                                    aria-controls={null}
                                     aria-describedby={null}
                                     aria-disabled={null}
                                     aria-errormessage={null}
@@ -2244,7 +2241,7 @@ exports[`Select component renders component in select mode and false for multipl
                                     <input
                                       aria-activedescendant={null}
                                       aria-autocomplete="list"
-                                      aria-controls="bui-mock-id"
+                                      aria-controls={null}
                                       aria-describedby={null}
                                       aria-disabled={null}
                                       aria-errormessage={null}
@@ -2732,7 +2729,6 @@ exports[`Select component renders component in select mode and true for multiple
                     >
                       <input
                         aria-autocomplete="list"
-                        aria-controls="bui-mock-id"
                         aria-expanded="false"
                         aria-haspopup="listbox"
                         aria-label=""
@@ -3005,7 +3001,7 @@ exports[`Select component renders component in select mode and true for multiple
                                 $type="select"
                                 aria-activedescendant={null}
                                 aria-autocomplete="list"
-                                aria-controls="bui-mock-id"
+                                aria-controls={null}
                                 aria-describedby={null}
                                 aria-disabled={null}
                                 aria-errormessage={null}
@@ -3049,7 +3045,7 @@ exports[`Select component renders component in select mode and true for multiple
                                   $width="2px"
                                   aria-activedescendant={null}
                                   aria-autocomplete="list"
-                                  aria-controls="bui-mock-id"
+                                  aria-controls={null}
                                   aria-describedby={null}
                                   aria-disabled={null}
                                   aria-errormessage={null}
@@ -3087,7 +3083,7 @@ exports[`Select component renders component in select mode and true for multiple
                                     $width="2px"
                                     aria-activedescendant={null}
                                     aria-autocomplete="list"
-                                    aria-controls="bui-mock-id"
+                                    aria-controls={null}
                                     aria-describedby={null}
                                     aria-disabled={null}
                                     aria-errormessage={null}
@@ -3110,7 +3106,7 @@ exports[`Select component renders component in select mode and true for multiple
                                     <input
                                       aria-activedescendant={null}
                                       aria-autocomplete="list"
-                                      aria-controls="bui-mock-id"
+                                      aria-controls={null}
                                       aria-describedby={null}
                                       aria-disabled={null}
                                       aria-errormessage={null}
