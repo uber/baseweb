@@ -9,7 +9,7 @@ import * as React from 'react';
 import {mount} from 'enzyme';
 import {StyledTreeItem, StyledItemContent} from '../styled-components.js';
 import TreeView from '../tree-view.js';
-import CheckIndeterminate from '../../icon/check-indeterminate.js';
+import ChevronDown from '../../icon/chevron-down.js';
 
 const mockData = [
   {
@@ -89,7 +89,7 @@ describe('TreeView Component', () => {
       .first()
       .simulate('click');
     expect(props.onToggle).toHaveBeenCalled();
-    expect(component.find(CheckIndeterminate)).toExist();
+    expect(component.find(ChevronDown)).toExist();
   });
 
   test('TreeLabel override should override default icons as well', () => {
@@ -118,6 +118,6 @@ describe('TreeView Component', () => {
     };
     const component = mount(<TreeView {...props} />);
     expect(component.find(CustomTreeLabel)).toExist();
-    expect(component.find(CheckIndeterminate)).not.toExist();
+    expect(component.find(ChevronDown)).not.toExist();
   });
 });
