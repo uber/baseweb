@@ -85,6 +85,42 @@ describe('input', () => {
       });
     });
 
+    it('with delete icon via enter', async () => {
+      await mount(page, 'input-clearable');
+      await page.waitFor(selectors.input);
+
+      let inputValue = await page.$eval(selectors.input, input => input.value);
+      expect(inputValue).toBe('Thing');
+
+      await page.focus(selectors.clearIcon);
+      await page.keyboard.press('Enter');
+
+      inputValue = await page.$eval(selectors.input, input => input.value);
+      expect(inputValue).toBe('');
+
+      await page.waitFor(selectors.clearIcon, {
+        hidden: true,
+      });
+    });
+
+    it('with delete icon via space', async () => {
+      await mount(page, 'input-clearable');
+      await page.waitFor(selectors.input);
+
+      let inputValue = await page.$eval(selectors.input, input => input.value);
+      expect(inputValue).toBe('Thing');
+
+      await page.focus(selectors.clearIcon);
+      await page.keyboard.press(' ');
+
+      inputValue = await page.$eval(selectors.input, input => input.value);
+      expect(inputValue).toBe('');
+
+      await page.waitFor(selectors.clearIcon, {
+        hidden: true,
+      });
+    });
+
     // regression test for https://github.com/uber/baseweb/issues/1643
     // verify that the input receiving the clear event is cleared and not another input
     it('clears the correct input', async () => {

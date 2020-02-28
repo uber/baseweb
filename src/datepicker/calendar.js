@@ -190,7 +190,6 @@ export default class Calendar extends React.Component<
         order={order}
         onMonthChange={this.changeMonth}
         onYearChange={this.changeYear}
-        popoverMountNode={this.state.rootElement}
       />
     );
   };
@@ -498,7 +497,6 @@ export default class Calendar extends React.Component<
               {...quickSelectFormControlProps}
             >
               <QuickSelect
-                mountNode={this.state.rootElement}
                 aria-label={locale.datepicker.quickSelectAriaLabel}
                 labelKey="id"
                 onChange={params => {
