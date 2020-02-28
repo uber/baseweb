@@ -118,7 +118,7 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
   componentDidMount() {
     const utils = this.context;
     const steps = this.buildSteps();
-    if (this.props.value instanceof Date) {
+    if (utils.isValid(this.props.value)) {
       this.setState({
         steps: steps,
         value: this.buildSelectedOption(this.props.value, this.props.format),
@@ -237,10 +237,9 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
     // $FlowFixMe
     selectProps.overrides = selectOverrides;
 
-    const value =
-      this.props.value instanceof Date
-        ? this.buildSelectedOption(this.props.value, this.props.format)
-        : this.state.value;
+    const value = utils.isValid(this.props.value)
+      ? this.buildSelectedOption(this.props.value, this.props.format)
+      : this.state.value;
 
     return (
       <LocaleContext.Consumer>
