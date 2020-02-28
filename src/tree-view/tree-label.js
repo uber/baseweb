@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import type {TreeLabelT, SharedStylePropsT} from './types.js';
 import {StyledIconContainer, StyledItemContent} from './styled-components.js';
-import CheckIndeterminateIcon from '../icon/check-indeterminate.js';
-import PlusIcon from '../icon/plus.js';
+import ChevronRight from '../icon/chevron-right.js';
+import ChevronDown from '../icon/chevron-down.js';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 
 const TreeLabel: React$ComponentType<TreeLabelT> = ({
@@ -36,9 +36,8 @@ const TreeLabel: React$ComponentType<TreeLabelT> = ({
   } = overrides;
   const IconContainer =
     getOverride(IconContainerOverride) || StyledIconContainer;
-  const ExpandIcon = getOverride(ExapandIconOverride) || PlusIcon;
-  const CollapseIcon =
-    getOverride(CollapseIconOverride) || CheckIndeterminateIcon;
+  const ExpandIcon = getOverride(ExapandIconOverride) || ChevronRight;
+  const CollapseIcon = getOverride(CollapseIconOverride) || ChevronDown;
   const TreeItemContent =
     getOverride(TreeItemContentOverride) || StyledItemContent;
   return (
