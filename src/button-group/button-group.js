@@ -30,89 +30,135 @@ function isSelected(selected, index) {
 }
 
 type LocaleT = {|locale?: ButtonGroupLocaleT|};
-export function ButtonGroupRoot(props: {|...PropsT, ...LocaleT|}) {
-  const {overrides = {}} = props;
-  const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
-  const isRadio = props.mode === MODE.radio;
+export class ButtonGroupRoot extends React.Component<{|
+  ...PropsT,
+  ...LocaleT,
+|}> {
+  childRefs: // eslint-disable-next-line flowtype/no-weak-types
+  {[key: number]: React.ElementRef<any>} = {};
+  render() {
+    const {
+      overrides = {},
+      mode = MODE.checkbox,
+      children,
+      ariaLabel,
+      locale,
+      selected,
+      disabled,
+      onClick,
+      kind,
+      shape,
+      size,
+    } = this.props;
+    const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+    const isRadio = mode === MODE.radio;
 
-  return (
-    <Root
-      aria-label={
-        props.ariaLabel || (props.locale ? props.locale.ariaLabel : '')
-      }
-      data-baseweb="button-group"
-      role={isRadio ? 'radiogroup' : 'group'}
-      {...rootProps}
-    >
-      {React.Children.map(props.children, (child, index) => {
-        if (!React.isValidElement(child)) {
-          return null;
-        }
-        const selected = isSelected(props.selected, index);
+    const numItems = React.Children.count(children);
 
-        return React.cloneElement(child, {
-          disabled: props.disabled || child.props.disabled,
-          isSelected: selected,
-          kind: props.kind,
-          onClick: event => {
-            if (props.disabled) {
-              return;
-            }
+    return (
+      <Root
+        aria-label={ariaLabel || (locale ? locale.ariaLabel : '')}
+        data-baseweb="button-group"
+        role={isRadio ? 'radiogroup' : 'group'}
+        {...rootProps}
+      >
+        {React.Children.map(children, (child, index) => {
+          if (!React.isValidElement(child)) {
+            return null;
+          }
+          if (isRadio) {
+            this.childRefs[index] = React.createRef<HTMLButtonElement>();
+          }
+          return React.cloneElement(child, {
+            disabled: disabled || child.props.disabled,
+            isSelected: isSelected(selected, index),
+            ref: isRadio ? this.childRefs[index] : undefined,
+            tabIndex:
+              !isRadio ||
+              isSelected(selected, index) ||
+              (isRadio && (!selected || selected === -1) && index === 0)
+                ? 0
+                : -1,
+            onKeyDown: e => {
+              if (!isRadio) return;
+              console.log(mode, isRadio);
+              const value = Number(selected) ? Number(selected) : 0;
+              if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                e.preventDefault && e.preventDefault();
+                const prevIndex = value - 1 < 0 ? numItems - 1 : value - 1;
+                onClick && onClick(e, prevIndex);
+                this.childRefs[prevIndex].current &&
+                  this.childRefs[prevIndex].current.focus();
+              }
+              if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+                e.preventDefault && e.preventDefault();
+                const nextIndex = value + 1 > numItems - 1 ? 0 : value + 1;
+                onClick && onClick(e, nextIndex);
+                this.childRefs[nextIndex].current &&
+                  this.childRefs[nextIndex].current.focus();
+              }
+            },
+            kind,
+            onClick: event => {
+              if (disabled) {
+                return;
+              }
 
-            if (child.props.onClick) {
-              child.props.onClick(event);
-            }
+              if (child.props.onClick) {
+                child.props.onClick(event);
+              }
 
-            if (props.onClick) {
-              props.onClick(event, index);
-            }
-          },
-          shape: props.shape,
-          size: props.size,
-          overrides: {
-            BaseButton: {
-              style: () => {
-                // Even though baseui's buttons have square corners, some applications override to
-                // rounded. Maintaining corner radius in this circumstance is ideal to avoid further
-                // customization.
-                if (props.children.length === 1) {
-                  return {};
-                }
+              if (onClick) {
+                onClick(event, index);
+              }
+            },
+            shape,
+            size,
+            overrides: {
+              BaseButton: {
+                style: () => {
+                  // Even though baseui's buttons have square corners, some applications override to
+                  // rounded. Maintaining corner radius in this circumstance is ideal to avoid further
+                  // customization.
+                  if (children.length === 1) {
+                    return {};
+                  }
 
-                // left most button
-                if (index === 0) {
+                  // left most button
+                  if (index === 0) {
+                    return {
+                      borderTopRightRadius: 0,
+                      borderBottomRightRadius: 0,
+                    };
+                  }
+                  // right most button
+                  if (index === children.length - 1) {
+                    return {
+                      borderTopLeftRadius: 0,
+                      borderBottomLeftRadius: 0,
+                    };
+                  }
+                  // inner button
                   return {
                     borderTopRightRadius: 0,
                     borderBottomRightRadius: 0,
-                  };
-                }
-                // right most button
-                if (index === props.children.length - 1) {
-                  return {
                     borderTopLeftRadius: 0,
                     borderBottomLeftRadius: 0,
                   };
-                }
-                // inner button
-                return {
-                  borderTopRightRadius: 0,
-                  borderBottomRightRadius: 0,
-                  borderTopLeftRadius: 0,
-                  borderBottomLeftRadius: 0,
-                };
+                },
+                props: {
+                  'aria-checked': isSelected(selected, index),
+                  role: isRadio ? 'radio' : 'checkbox',
+                },
               },
-              props: {
-                'aria-checked': selected,
-                role: isRadio ? 'radio' : 'checkbox',
-              },
-            },
 
-            ...child.props.overrides,
-          },
-        });
-      })}
-    </Root>
-  );
+              ...child.props.overrides,
+            },
+          });
+        })}
+      </Root>
+    );
+  }
 }
 
 // The wrapper component below was created to continue to support enzyme tests for the ButtonGroup
