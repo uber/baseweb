@@ -23,6 +23,7 @@ export type LayersManagerPropsT = {
 
 export type LayersManagerStateT = {|
   escapeKeyHandlers: Array<() => mixed>,
+  docClickHandlers: Array<(event: MouseEvent) => mixed>,
 |};
 
 export type LayersContextT = {
@@ -30,6 +31,8 @@ export type LayersContextT = {
   zIndex?: number,
   addEscapeHandler: (() => mixed) => void,
   removeEscapeHandler: (() => mixed) => void,
+  addDocClickHandler: (() => mixed) => void,
+  removeDocClickHandler: (() => mixed) => void,
 };
 
 /** Layer */
@@ -47,8 +50,12 @@ export type LayerPropsT = {
   /** A custom DOM element where the layer is inserted to as a child.
    Note that the `index` prop does not work with a custom `mountNode`. */
   mountNode?: HTMLElement,
-  /** Handler called when escape key is pressed. */
+  /** Handler called when escape key is pressed.
+    Only the top most layer's handler is called. */
   onEscape?: () => mixed,
+  /** Handler called when mousedown event happens on the document.
+    Only the top most layer's handler is called. */
+  onDocumentClick?: (event: MouseEvent) => mixed,
   /** A handler that is called when the Layer is mounted. */
   onMount?: () => mixed,
   /** A handler that is called when the Layer is unmounted. */
@@ -64,6 +71,7 @@ export type LayerComponentPropsT = {
   index?: number,
   mountNode?: HTMLElement,
   onEscape?: () => mixed,
+  onDocumentClick?: (event: MouseEvent) => mixed,
   onMount?: () => mixed,
   onUnmount?: () => mixed,
   zIndex?: number,
