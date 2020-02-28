@@ -27,6 +27,7 @@ exports[`Select component renders component in search mode and false for multipl
 >
   <Select
     aria-describedby={null}
+    aria-errormessage={null}
     aria-label={null}
     aria-labelledby={null}
     autoFocus={false}
@@ -547,6 +548,7 @@ exports[`Select component renders component in search mode and false for multipl
                                 aria-autocomplete="list"
                                 aria-describedby={null}
                                 aria-disabled={null}
+                                aria-errormessage={null}
                                 aria-expanded={false}
                                 aria-haspopup={false}
                                 aria-label={null}
@@ -588,6 +590,7 @@ exports[`Select component renders component in search mode and false for multipl
                                   aria-autocomplete="list"
                                   aria-describedby={null}
                                   aria-disabled={null}
+                                  aria-errormessage={null}
                                   aria-expanded={false}
                                   aria-haspopup={false}
                                   aria-label={null}
@@ -623,6 +626,7 @@ exports[`Select component renders component in search mode and false for multipl
                                     aria-autocomplete="list"
                                     aria-describedby={null}
                                     aria-disabled={null}
+                                    aria-errormessage={null}
                                     aria-expanded={false}
                                     aria-haspopup={false}
                                     aria-label={null}
@@ -643,6 +647,7 @@ exports[`Select component renders component in search mode and false for multipl
                                       aria-autocomplete="list"
                                       aria-describedby={null}
                                       aria-disabled={null}
+                                      aria-errormessage={null}
                                       aria-expanded={false}
                                       aria-haspopup={false}
                                       aria-label={null}
@@ -861,6 +866,7 @@ exports[`Select component renders component in search mode and true for multiple
 >
   <Select
     aria-describedby={null}
+    aria-errormessage={null}
     aria-label={null}
     aria-labelledby={null}
     autoFocus={false}
@@ -1381,6 +1387,7 @@ exports[`Select component renders component in search mode and true for multiple
                                 aria-autocomplete="list"
                                 aria-describedby={null}
                                 aria-disabled={null}
+                                aria-errormessage={null}
                                 aria-expanded={false}
                                 aria-haspopup={false}
                                 aria-label={null}
@@ -1422,6 +1429,7 @@ exports[`Select component renders component in search mode and true for multiple
                                   aria-autocomplete="list"
                                   aria-describedby={null}
                                   aria-disabled={null}
+                                  aria-errormessage={null}
                                   aria-expanded={false}
                                   aria-haspopup={false}
                                   aria-label={null}
@@ -1457,6 +1465,7 @@ exports[`Select component renders component in search mode and true for multiple
                                     aria-autocomplete="list"
                                     aria-describedby={null}
                                     aria-disabled={null}
+                                    aria-errormessage={null}
                                     aria-expanded={false}
                                     aria-haspopup={false}
                                     aria-label={null}
@@ -1477,6 +1486,7 @@ exports[`Select component renders component in search mode and true for multiple
                                       aria-autocomplete="list"
                                       aria-describedby={null}
                                       aria-disabled={null}
+                                      aria-errormessage={null}
                                       aria-expanded={false}
                                       aria-haspopup={false}
                                       aria-label={null}
@@ -1695,6 +1705,7 @@ exports[`Select component renders component in select mode and false for multipl
 >
   <Select
     aria-describedby={null}
+    aria-errormessage={null}
     aria-label={null}
     aria-labelledby={null}
     autoFocus={false}
@@ -2107,6 +2118,7 @@ exports[`Select component renders component in select mode and false for multipl
                                 aria-autocomplete="list"
                                 aria-describedby={null}
                                 aria-disabled={null}
+                                aria-errormessage={null}
                                 aria-expanded={false}
                                 aria-haspopup={false}
                                 aria-label={null}
@@ -2148,6 +2160,7 @@ exports[`Select component renders component in select mode and false for multipl
                                   aria-autocomplete="list"
                                   aria-describedby={null}
                                   aria-disabled={null}
+                                  aria-errormessage={null}
                                   aria-expanded={false}
                                   aria-haspopup={false}
                                   aria-label={null}
@@ -2183,6 +2196,7 @@ exports[`Select component renders component in select mode and false for multipl
                                     aria-autocomplete="list"
                                     aria-describedby={null}
                                     aria-disabled={null}
+                                    aria-errormessage={null}
                                     aria-expanded={false}
                                     aria-haspopup={false}
                                     aria-label={null}
@@ -2203,6 +2217,7 @@ exports[`Select component renders component in select mode and false for multipl
                                       aria-autocomplete="list"
                                       aria-describedby={null}
                                       aria-disabled={null}
+                                      aria-errormessage={null}
                                       aria-expanded={false}
                                       aria-haspopup={false}
                                       aria-label={null}
@@ -2546,6 +2561,7 @@ exports[`Select component renders component in select mode and true for multiple
 >
   <Select
     aria-describedby={null}
+    aria-errormessage={null}
     aria-label={null}
     aria-labelledby={null}
     autoFocus={false}
@@ -2958,6 +2974,7 @@ exports[`Select component renders component in select mode and true for multiple
                                 aria-autocomplete="list"
                                 aria-describedby={null}
                                 aria-disabled={null}
+                                aria-errormessage={null}
                                 aria-expanded={false}
                                 aria-haspopup={false}
                                 aria-label={null}
@@ -2999,6 +3016,7 @@ exports[`Select component renders component in select mode and true for multiple
                                   aria-autocomplete="list"
                                   aria-describedby={null}
                                   aria-disabled={null}
+                                  aria-errormessage={null}
                                   aria-expanded={false}
                                   aria-haspopup={false}
                                   aria-label={null}
@@ -3034,6 +3052,7 @@ exports[`Select component renders component in select mode and true for multiple
                                     aria-autocomplete="list"
                                     aria-describedby={null}
                                     aria-disabled={null}
+                                    aria-errormessage={null}
                                     aria-expanded={false}
                                     aria-haspopup={false}
                                     aria-label={null}
@@ -3054,6 +3073,7 @@ exports[`Select component renders component in select mode and true for multiple
                                       aria-autocomplete="list"
                                       aria-describedby={null}
                                       aria-disabled={null}
+                                      aria-errormessage={null}
                                       aria-expanded={false}
                                       aria-haspopup={false}
                                       aria-label={null}

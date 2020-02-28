@@ -19,3 +19,4 @@ export {
 } from './styled-components.js';
 
 export {default as TreeLabel} from './tree-label.js';
+export {toggleIsExpanded} from './utils.js';

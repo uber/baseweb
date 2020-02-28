@@ -44,6 +44,7 @@ export default function MaybeChildMenu(props: PropsT) {
             mountNode={ctx.mountRef.current ? ctx.mountRef.current : undefined}
             onMouseEnterDelay={30}
             onMouseLeaveDelay={30}
+            onEsc={props.resetParentMenu}
             placement="rightTop"
             overrides={{
               Body: {

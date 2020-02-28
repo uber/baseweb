@@ -30,6 +30,8 @@ class LayerComponent extends React.Component<
 
   componentDidMount() {
     this.context.addEscapeHandler(this.onEscape);
+    this.context.addDocClickHandler(this.onDocumentClick);
+
     const {onMount, mountNode, host: layersManagerHost} = this.props;
     if (mountNode) {
       onMount && onMount();
@@ -64,6 +66,7 @@ class LayerComponent extends React.Component<
 
   componentWillUnmount() {
     this.context.removeEscapeHandler(this.onEscape);
+    this.context.removeDocClickHandler(this.onDocumentClick);
 
     if (this.props.onUnmount) {
       this.props.onUnmount();
@@ -81,6 +84,12 @@ class LayerComponent extends React.Component<
   onEscape = () => {
     if (this.props.onEscape) {
       this.props.onEscape();
+    }
+  };
+
+  onDocumentClick = (event: MouseEvent) => {
+    if (this.props.onDocumentClick) {
+      this.props.onDocumentClick(event);
     }
   };
 
