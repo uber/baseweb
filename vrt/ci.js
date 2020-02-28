@@ -348,7 +348,7 @@ function getRepositoryOwnerAndNameFromURL(url) {
 
 function sanitizeBranchName(branchName) {
   // Colons are not permitted in git branch names and for some reason
-  // Buidlkite will report the branch name as "user:branch".
+  // Buildkite will report the branch name as "user:branch".
   return branchName.replace(/:/g, '-');
 }
 
