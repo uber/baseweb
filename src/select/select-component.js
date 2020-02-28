@@ -650,13 +650,19 @@ class Select extends React.Component<PropsT, SelectStateT> {
       value = '';
     }
 
+    const selected = this.getValueArray(this.props.value)
+      .map(v => v[this.props.labelKey])
+      .join(', ');
+    const selectedLabel = selected.length ? `Selected ${selected}. ` : '';
+    const label = `${selectedLabel}${this.props['aria-label'] || ''}`;
+
     if (!this.props.searchable) {
       return (
         <InputContainer
           aria-activedescendant={this.state.activeDescendant}
           aria-expanded={isOpen}
           aria-disabled={this.props.disabled}
-          aria-label={this.props['aria-label']}
+          aria-label={label}
           aria-labelledby={this.props['aria-labelledby']}
           aria-owns={this.listboxId}
           aria-required={this.props.required || null}
@@ -669,6 +675,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
         />
       );
     }
+
     return (
       <InputContainer {...sharedProps} {...inputContainerProps}>
         <AutosizeInput
@@ -680,7 +687,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           aria-disabled={this.props.disabled || null}
           aria-expanded={isOpen}
           aria-haspopup="listbox"
-          aria-label={this.props['aria-label']}
+          aria-label={label}
           aria-labelledby={this.props['aria-labelledby']}
           aria-required={this.props.required || null}
           disabled={this.props.disabled || null}
