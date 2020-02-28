@@ -86,6 +86,12 @@ const FileUploaderConfig: TConfig = {
       description: 'Name attribute.',
       hidden: true,
     },
+    ['aria-describedby']: {
+      value: undefined,
+      type: PropTypes.String,
+      description: `Sets aria-describedby attribute.`,
+      hidden: true,
+    },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
