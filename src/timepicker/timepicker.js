@@ -11,6 +11,7 @@ import * as React from 'react';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import {LocaleContext} from '../locale/index.js';
 import {Select, filterOptions} from '../select/index.js';
+import {DateUtilsContext} from '../datepicker/utils/date-utils-provider.js';
 
 import type {OptionT, OnChangeParamsT} from '../select/index.js';
 import type {TimePickerPropsT, TimePickerStateT} from './types.js';
@@ -20,10 +21,11 @@ const HOUR = MINUTE * 60;
 const DAY = HOUR * 24;
 const NOON = DAY / 2;
 
-function dateToSeconds(date: Date) {
-  const seconds = date.getSeconds();
-  const minutes = date.getMinutes() * MINUTE;
-  const hours = date.getHours() * HOUR;
+function dateToSeconds(date: Date, utils) {
+  const wrappedDate = utils.date(date);
+  const seconds = wrappedDate.getSeconds();
+  const minutes = wrappedDate.getMinutes() * MINUTE;
+  const hours = wrappedDate.getHours() * HOUR;
   return seconds + minutes + hours;
 }
 
@@ -114,6 +116,7 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
   state = {steps: [], value: null};
 
   componentDidMount() {
+    const utils = this.context;
     const steps = this.buildSteps();
     if (this.props.value instanceof Date) {
       this.setState({
@@ -121,7 +124,7 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
         value: this.buildSelectedOption(this.props.value, this.props.format),
       });
     } else {
-      const seconds = dateToSeconds(new Date());
+      const seconds = dateToSeconds(new Date(), utils);
       let closestStep = NOON;
       steps.forEach(step => {
         if (Math.abs(step - seconds) < Math.abs(closestStep - seconds)) {
@@ -201,13 +204,14 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
     return filterOptions(options, filterValue, excludeOptions, newProps);
   };
 
-  buildSelectedOption(value: Date, format: '12' | '24' = '12') {
-    const secs = dateToSeconds(value);
+  buildSelectedOption = (value: Date, format: '12' | '24' = '12') => {
+    const utils = this.context;
+    const secs = dateToSeconds(value, utils);
     return {
       id: secs,
       label: secondsToLabel(secs, format),
     };
-  }
+  };
 
   render() {
     const {format, overrides = {}} = this.props;
@@ -270,5 +274,7 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
     );
   }
 }
+
+TimePicker.contextType = DateUtilsContext;
 
 export default TimePicker;
