@@ -31,9 +31,15 @@ function isSelected(selected, index) {
 
 type LocaleT = {|locale?: ButtonGroupLocaleT|};
 export function ButtonGroupRoot(props: {|...PropsT, ...LocaleT|}) {
-  const {overrides = {}} = props;
+  const {overrides = {}, mode = MODE.checkbox} = props;
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
-  const isRadio = props.mode === MODE.radio;
+  const isRadio = mode === MODE.radio;
+
+  const numItems = React.Children.count(props.children);
+  const refs: {
+    // eslint-disable-next-line flowtype/no-weak-types
+    current: {[key: number]: React.ElementRef<any>},
+  } = React.useRef({});
 
   return (
     <Root
@@ -49,10 +55,39 @@ export function ButtonGroupRoot(props: {|...PropsT, ...LocaleT|}) {
           return null;
         }
         const selected = isSelected(props.selected, index);
-
+        if (isRadio) {
+          refs.current[index] = React.createRef<HTMLButtonElement>();
+        }
         return React.cloneElement(child, {
           disabled: props.disabled || child.props.disabled,
           isSelected: selected,
+          ref: isRadio ? refs.current[index] : undefined,
+          tabIndex:
+            !isRadio ||
+            selected ||
+            (isRadio &&
+              (!props.selected || props.selected === -1) &&
+              index === 0)
+              ? 0
+              : -1,
+          onKeyDown: e => {
+            if (!isRadio) return;
+            const value = Number(props.selected) ? Number(props.selected) : 0;
+            if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+              e.preventDefault && e.preventDefault();
+              const prevIndex = value - 1 < 0 ? numItems - 1 : value - 1;
+              props.onClick && props.onClick(e, prevIndex);
+              refs.current[prevIndex].current &&
+                refs.current[prevIndex].current.focus();
+            }
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+              e.preventDefault && e.preventDefault();
+              const nextIndex = value + 1 > numItems - 1 ? 0 : value + 1;
+              props.onClick && props.onClick(e, nextIndex);
+              refs.current[nextIndex].current &&
+                refs.current[nextIndex].current.focus();
+            }
+          },
           kind: props.kind,
           onClick: event => {
             if (props.disabled) {
