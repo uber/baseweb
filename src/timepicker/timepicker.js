@@ -22,20 +22,19 @@ const DAY = HOUR * 24;
 const NOON = DAY / 2;
 
 function dateToSeconds(date: Date, utils) {
-  const wrappedDate = utils.date(date);
-  const seconds = wrappedDate.getSeconds();
-  const minutes = wrappedDate.getMinutes() * MINUTE;
-  const hours = wrappedDate.getHours() * HOUR;
+  const seconds = utils.getSeconds(date);
+  const minutes = utils.getMinutes(date) * MINUTE;
+  const hours = utils.getHours(date) * HOUR;
   return seconds + minutes + hours;
 }
 
-export function secondsToHourMinute(seconds: number) {
-  const d = new Date(seconds * 1000);
+export function secondsToHourMinute(seconds: number, utils) {
+  const d = utils.toJsDate(utils.date(seconds * 1000));
   return [d.getUTCHours(), d.getUTCMinutes()];
 }
 
-function secondsToLabel(seconds, format) {
-  let [hours, minutes] = secondsToHourMinute(seconds);
+function secondsToLabel(seconds, format, utils) {
+  let [hours, minutes] = secondsToHourMinute(seconds, utils);
   const zeroPrefix = n => (n < 10 ? `0${n}` : n);
 
   if (format === '12') {
@@ -61,6 +60,7 @@ function secondsToLabel(seconds, format) {
 function stringToOptions(
   str: string,
   format: '12' | '24' = '12',
+  utils,
 ): Array<OptionT> {
   // leading zero is optional, AM/PM is optional
   const twelveHourRegex = /^(1[0-2]|0?[1-9]):([0-5][0-9]) ?([AaPp][Mm]?)?$/;
@@ -102,7 +102,7 @@ function stringToOptions(
 
   return hoursMinutes.map(({hours, minutes}) => {
     const secs = hours * 3600 + minutes * 60;
-    return {id: secs, label: secondsToLabel(secs, format)};
+    return {id: secs, label: secondsToLabel(secs, format, utils)};
   });
 }
 
@@ -135,7 +135,10 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
         steps: steps,
         value: this.props.nullable
           ? undefined
-          : {id: closestStep, label: secondsToLabel(closestStep)},
+          : {
+              id: closestStep,
+              label: secondsToLabel(closestStep, undefined, utils),
+            },
       });
       if (this.props.value || (!this.props.nullable && !this.props.value)) {
         this.handleChange(closestStep);
@@ -162,8 +165,9 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
   };
 
   handleChange = (seconds: number) => {
+    const utils = this.context;
     const date = this.props.value ? new Date(this.props.value) : new Date();
-    const [hours, minutes] = secondsToHourMinute(seconds);
+    const [hours, minutes] = secondsToHourMinute(seconds, utils);
     date.setHours(hours, minutes, 0);
     this.props.onChange && this.props.onChange(date);
   };
@@ -197,7 +201,8 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
     excludeOptions,
     newProps,
   ) => {
-    const result = stringToOptions(filterValue, this.props.format);
+    const utils = this.context;
+    const result = stringToOptions(filterValue, this.props.format, utils);
     if (result.length) {
       return result;
     }
@@ -209,12 +214,13 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
     const secs = dateToSeconds(value, utils);
     return {
       id: secs,
-      label: secondsToLabel(secs, format),
+      label: secondsToLabel(secs, format, utils),
     };
   };
 
   render() {
     const {format, overrides = {}} = this.props;
+    const utils = this.context;
 
     const [OverriddenSelect, selectProps] = getOverrides(
       overrides.Select,
@@ -257,7 +263,7 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
               placeholder={this.props.placeholder || 'HH:mm'}
               options={this.state.steps.map(n => ({
                 id: n,
-                label: secondsToLabel(n, this.props.format),
+                label: secondsToLabel(n, this.props.format, utils),
               }))}
               filterOptions={
                 this.props.creatable ? this.creatableFilterOptions : undefined
