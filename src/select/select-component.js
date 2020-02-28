@@ -664,7 +664,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           aria-disabled={this.props.disabled}
           aria-label={label}
           aria-labelledby={this.props['aria-labelledby']}
-          aria-owns={this.listboxId}
+          aria-owns={this.state.isOpen ? this.listboxId : null}
           aria-required={this.props.required || null}
           onBlur={this.handleBlur}
           onFocus={this.handleInputFocus}
@@ -681,7 +681,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
         <AutosizeInput
           aria-activedescendant={this.state.activeDescendant}
           aria-autocomplete="list"
-          aria-controls={this.listboxId}
+          aria-controls={this.state.isOpen ? this.listboxId : null}
           aria-describedby={this.props['aria-describedby']}
           aria-errormessage={this.props['aria-errormessage']}
           aria-disabled={this.props.disabled || null}
