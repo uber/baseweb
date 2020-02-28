@@ -182,6 +182,9 @@ function FileUploader(props: PropsT) {
                           onClick={() => {
                             props.onRetry && props.onRetry();
                           }}
+                          aria-invalid={Boolean(props.errorMessage)}
+                          aria-describedby={props['aria-describedby']}
+                          aria-errormessage={props.errorMessage}
                           overrides={{
                             BaseButton: {
                               style: {outline: null, fontWeight: 'normal'},
@@ -196,6 +199,7 @@ function FileUploader(props: PropsT) {
                           onClick={() => {
                             props.onCancel && props.onCancel();
                           }}
+                          aria-describedby={props['aria-describedby']}
                           overrides={{
                             BaseButton: {
                               style: {outline: null, fontWeight: 'normal'},
@@ -210,6 +214,9 @@ function FileUploader(props: PropsT) {
                 </FileDragAndDrop>
 
                 <HiddenInput
+                  aria-invalid={Boolean(props.errorMessage) || null}
+                  aria-describedby={props['aria-describedby']}
+                  aria-errormessage={props.errorMessage || null}
                   {...getInputProps()}
                   {...prefixedStyledProps}
                   {...hiddenInputProps}
