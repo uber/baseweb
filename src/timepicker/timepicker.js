@@ -124,7 +124,7 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
         value: this.buildSelectedOption(this.props.value, this.props.format),
       });
     } else {
-      const seconds = dateToSeconds(new Date(), utils);
+      const seconds = dateToSeconds(utils.date(), utils);
       let closestStep = NOON;
       steps.forEach(step => {
         if (Math.abs(step - seconds) < Math.abs(closestStep - seconds)) {
