@@ -172,6 +172,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
                   maxHeight: p.$maxHeight || null,
                 }),
                 props: {
+                  id: this.props.id ? this.props.id : null,
                   $maxHeight: maxDropdownHeight,
                   'aria-multiselectable': multi,
                 },

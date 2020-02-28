@@ -15,6 +15,7 @@ import {LocaleContext} from '../locale/index.js';
 import type {LocaleT} from '../locale/types.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
 import {Spinner} from '../spinner/index.js';
+import getBuiId from '../utils/get-bui-id.js';
 
 import AutosizeInput from './autosize-input.js';
 import {TYPE, STATE_CHANGE_TYPE} from './constants.js';
@@ -106,6 +107,9 @@ class Select extends React.Component<PropsT, SelectStateT> {
   // and values are arrays of options. this class property is constructed and updated in a normalized
   // shape where optgroup titles are stored on the option in the __optgroup field.
   options: ValueT = [];
+
+  // id generated for the listbox. used by screenreaders to associate the input with the menu it controls
+  listboxId: string = getBuiId();
 
   constructor(props: PropsT) {
     super(props);
@@ -654,6 +658,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           aria-disabled={this.props.disabled}
           aria-label={this.props['aria-label']}
           aria-labelledby={this.props['aria-labelledby']}
+          aria-owns={this.listboxId}
           aria-required={this.props.required || null}
           onBlur={this.handleBlur}
           onFocus={this.handleInputFocus}
@@ -669,11 +674,12 @@ class Select extends React.Component<PropsT, SelectStateT> {
         <AutosizeInput
           aria-activedescendant={this.state.activeDescendant}
           aria-autocomplete="list"
+          aria-controls={this.listboxId}
           aria-describedby={this.props['aria-describedby']}
           aria-errormessage={this.props['aria-errormessage']}
           aria-disabled={this.props.disabled || null}
           aria-expanded={isOpen}
-          aria-haspopup={isOpen}
+          aria-haspopup="listbox"
           aria-label={this.props['aria-label']}
           aria-labelledby={this.props['aria-labelledby']}
           aria-required={this.props.required || null}
@@ -956,6 +962,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
                 getOptionLabel:
                   this.props.getOptionLabel ||
                   this.getOptionLabel.bind(this, locale),
+                id: this.listboxId,
                 isLoading: this.props.isLoading,
                 labelKey: this.props.labelKey,
                 maxDropdownHeight: this.props.maxDropdownHeight,
