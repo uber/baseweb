@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
+import {LocaleContext} from '../locale/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 
 import {OPTION_LIST_SIZE} from './constants.js';
@@ -51,25 +52,34 @@ function OptionList(props: OptionListPropsT, ref: React.ElementRef<*>) {
   };
 
   return (
-    <MaybeChildMenu
-      getChildMenu={getChildMenu}
-      isOpen={!!$isHighlighted}
-      item={item}
-      resetParentMenu={resetMenu}
-      renderAll={renderAll}
-    >
-      <ListItem
-        ref={ref}
-        item={item}
-        onMouseEnter={onMouseEnter}
-        $size={size}
-        $isHighlighted={$isHighlighted}
-        {...restProps}
-        {...listItemProps}
-      >
-        {getItem({isHighlighted: $isHighlighted, ...item})}
-      </ListItem>
-    </MaybeChildMenu>
+    <LocaleContext.Consumer>
+      {locale => (
+        <MaybeChildMenu
+          getChildMenu={getChildMenu}
+          isOpen={!!$isHighlighted}
+          item={item}
+          resetParentMenu={resetMenu}
+          renderAll={renderAll}
+        >
+          <ListItem
+            ref={ref}
+            aria-label={
+              getChildMenu && getChildMenu(item)
+                ? locale.menu.parentMenuItemAriaLabel
+                : null
+            }
+            item={item}
+            onMouseEnter={onMouseEnter}
+            $size={size}
+            $isHighlighted={$isHighlighted}
+            {...restProps}
+            {...listItemProps}
+          >
+            {getItem({isHighlighted: $isHighlighted, ...item})}
+          </ListItem>
+        </MaybeChildMenu>
+      )}
+    </LocaleContext.Consumer>
   );
 }
 
