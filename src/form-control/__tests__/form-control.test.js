@@ -99,6 +99,16 @@ Object {
     expect(errorRendered).toHaveText('Error test');
   });
 
+  test('Disables the input component if "disabled" is provided to form control', () => {
+    const rendered = mount(
+      <FormControl disabled>
+        <Input />
+      </FormControl>,
+    );
+    const inputRendered = rendered.find(Input).first();
+    expect(inputRendered.prop('disabled')).toBeTruthy();
+  });
+
   test('Accepts a function for label', () => {
     const label = jest.fn().mockReturnValue(<span>Label test</span>);
     const sharedProps = {
