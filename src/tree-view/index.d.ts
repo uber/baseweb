@@ -14,6 +14,8 @@ export interface TreeLabelOverrides {
   IconContainer?: Override<{}>;
   ExpandIcon?: Override<{}>;
   CollapseIcon?: Override<{}>;
+  LeafIconContainer?: Override<{}>;
+  LeafIcon?: Override<{}>;
 }
 
 export interface TreeNode {
