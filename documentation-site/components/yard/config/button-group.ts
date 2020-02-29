@@ -57,19 +57,30 @@ const ButtonGroupConfig: TConfig = {
       },
     },
     onClick: {
-      value: '(event, index) => {\n  setSelected([index]);\n}',
+      value: undefined,
       type: PropTypes.Function,
       description: `Function called when any button is clicked.`,
-      propHook: {
-        what: '`[${index}]`',
-        into: 'selected',
-      },
+      hidden: true,
     },
     selected: {
-      value: '[0]',
+      value: undefined,
       type: PropTypes.Array,
       description: 'Defines which buttons are selected',
-      stateful: true,
+      hidden: true,
+    },
+    mode: {
+      value: 'MODE.checkbox',
+      defaultValue: 'MODE.checkbox',
+      options: MODE,
+      type: PropTypes.Enum,
+      description:
+        'Changes keyboard shortcuts and role attributes. The actual onClick update implementation is up to you.',
+      imports: {
+        'baseui/button-group': {
+          named: ['MODE'],
+        },
+      },
+      hidden: true,
     },
     disabled: {
       value: false,

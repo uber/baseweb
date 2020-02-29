@@ -35,6 +35,7 @@ export class ToasterContainer extends React.Component<
     placement: PLACEMENT.top,
     usePortal: true,
     overrides: {},
+    autoFocus: false,
     autoHideDuration: 0,
     resetAutoHideTimerOnUpdate: true,
   };
@@ -59,9 +60,9 @@ export class ToasterContainer extends React.Component<
   }
 
   getToastProps = (props: ToastPropsT): ToastPropsT & {key: React.Key} => {
-    const {autoHideDuration} = this.props;
+    const {autoFocus, autoHideDuration} = this.props;
     const key: React.Key = props.key || `toast-${this.toastId++}`;
-    return {autoHideDuration, ...props, key};
+    return {autoFocus, autoHideDuration, ...props, key};
   };
 
   show = (props: ToastPropsT = {}): React.Key => {
