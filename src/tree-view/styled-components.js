@@ -10,25 +10,25 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 
 export const StyledTreeItemList = styled<{
-  $indentGuide?: boolean,
+  $indentGuides?: boolean,
   $isChildNode?: boolean,
   $expanded?: boolean,
-}>('ul', ({$theme, $indentGuide, $isChildNode, $expanded = true}) => {
+}>('ul', ({$theme, $indentGuides, $isChildNode, $expanded = true}) => {
   return {
     marginTop: 0,
     marginBottom: 0,
-    marginLeft: $isChildNode ? $theme.sizing.scale300 : 0,
+    marginLeft: $isChildNode ? $theme.sizing.scale550 : 0,
     marginRight: 0,
     overflow: 'auto',
     paddingTop: 0,
     paddingBottom: 0,
-    paddingLeft: $isChildNode ? $theme.sizing.scale600 : 0,
+    paddingLeft: $isChildNode ? $theme.sizing.scale200 : 0,
     paddingRight: 0,
     position: 'relative',
     outline: 'none',
     display: $expanded ? 'block' : 'none',
     borderLeft:
-      $indentGuide && $isChildNode
+      $indentGuides && $isChildNode
         ? `1px solid ${$theme.colors.borderOpaque}`
         : 'none',
   };

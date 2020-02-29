@@ -67,7 +67,7 @@ export type TreeNodePropsT = {
   selectedNodeId?: TreeNodeIdT,
   addRef: (id: TreeNodeIdT, ref: React.ElementRef<*>) => mixed,
   isFocusVisible?: boolean,
-  indentGuide?: boolean,
+  indentGuides?: boolean,
 };
 
 export type StatefulContainerPropsT = {
@@ -77,7 +77,7 @@ export type StatefulContainerPropsT = {
 
 export type TreeViewPropsT = {|
   data: TreeNodeT[],
-  indentGuide?: boolean,
+  indentGuides?: boolean,
   onToggle?: (node: TreeNodeT) => void,
   overrides?: TreeViewOverridesT,
   renderAll?: boolean,
