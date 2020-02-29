@@ -589,7 +589,6 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
       borderBottomRightRadius: '100%',
       ...(getDayStyles(code, props.$theme)[':after'] || {}),
     },
-    // $FlowFixMe fails flow check in 0.111+
     ...($range
       ? {
           // :before pseudo element defines a grey background style that extends
