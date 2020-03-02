@@ -78,6 +78,7 @@ Object {
     "props": Object {
       "$maxHeight": "1000px",
       "aria-multiselectable": false,
+      "id": null,
     },
     "style": [Function],
   },

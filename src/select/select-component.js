@@ -15,6 +15,7 @@ import {LocaleContext} from '../locale/index.js';
 import type {LocaleT} from '../locale/types.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
 import {Spinner} from '../spinner/index.js';
+import getBuiId from '../utils/get-bui-id.js';
 
 import AutosizeInput from './autosize-input.js';
 import {TYPE, STATE_CHANGE_TYPE} from './constants.js';
@@ -107,12 +108,16 @@ class Select extends React.Component<PropsT, SelectStateT> {
   // shape where optgroup titles are stored on the option in the __optgroup field.
   options: ValueT = [];
 
+  // id generated for the listbox. used by screenreaders to associate the input with the menu it controls
+  listboxId: string = getBuiId();
+
   constructor(props: PropsT) {
     super(props);
     this.options = normalizeOptions(props.options);
   }
 
   state = {
+    activeDescendant: null,
     inputValue: '',
     isFocused: false,
     isOpen: this.props.startOpen,
@@ -470,6 +475,14 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   }
 
+  handleActiveDescendantChange = (id?: string) => {
+    if (id) {
+      this.setState({activeDescendant: id});
+    } else {
+      this.setState({activeDescendant: null});
+    }
+  };
+
   selectValue = ({item}: {item: OptionT}) => {
     if (item.disabled) {
       return;
@@ -637,13 +650,21 @@ class Select extends React.Component<PropsT, SelectStateT> {
       value = '';
     }
 
+    const selected = this.getValueArray(this.props.value)
+      .map(v => v[this.props.labelKey])
+      .join(', ');
+    const selectedLabel = selected.length ? `Selected ${selected}. ` : '';
+    const label = `${selectedLabel}${this.props['aria-label'] || ''}`;
+
     if (!this.props.searchable) {
       return (
         <InputContainer
+          aria-activedescendant={this.state.activeDescendant}
           aria-expanded={isOpen}
           aria-disabled={this.props.disabled}
-          aria-label={this.props['aria-label']}
+          aria-label={label}
           aria-labelledby={this.props['aria-labelledby']}
+          aria-owns={this.state.isOpen ? this.listboxId : null}
           aria-required={this.props.required || null}
           onBlur={this.handleBlur}
           onFocus={this.handleInputFocus}
@@ -654,16 +675,19 @@ class Select extends React.Component<PropsT, SelectStateT> {
         />
       );
     }
+
     return (
       <InputContainer {...sharedProps} {...inputContainerProps}>
         <AutosizeInput
+          aria-activedescendant={this.state.activeDescendant}
           aria-autocomplete="list"
+          aria-controls={this.state.isOpen ? this.listboxId : null}
           aria-describedby={this.props['aria-describedby']}
           aria-errormessage={this.props['aria-errormessage']}
           aria-disabled={this.props.disabled || null}
           aria-expanded={isOpen}
-          aria-haspopup={isOpen}
-          aria-label={this.props['aria-label']}
+          aria-haspopup="listbox"
+          aria-label={label}
           aria-labelledby={this.props['aria-labelledby']}
           aria-required={this.props.required || null}
           disabled={this.props.disabled || null}
@@ -945,11 +969,13 @@ class Select extends React.Component<PropsT, SelectStateT> {
                 getOptionLabel:
                   this.props.getOptionLabel ||
                   this.getOptionLabel.bind(this, locale),
+                id: this.listboxId,
                 isLoading: this.props.isLoading,
                 labelKey: this.props.labelKey,
                 maxDropdownHeight: this.props.maxDropdownHeight,
                 multi,
                 noResultsMsg,
+                onActiveDescendantChange: this.handleActiveDescendantChange,
                 onItemSelect: this.selectValue,
                 options,
                 overrides,
