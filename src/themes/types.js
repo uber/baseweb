@@ -6,6 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
+import type {StyleObject} from 'styletron-standard';
+
 import type {ResponsiveT, CSSLengthUnitT} from '../layout-grid/types.js';
 export type ColorTokensT = {
   // Primary Palette
@@ -657,9 +659,9 @@ export type AnimationT = {
 };
 
 export type BorderT = {
-  borderColor: string,
-  borderStyle: string,
-  borderWidth: string,
+  borderColor: $PropertyType<StyleObject, 'borderColor'>,
+  borderStyle: $PropertyType<StyleObject, 'borderStyle'>,
+  borderWidth: $PropertyType<StyleObject, 'borderWidth'>,
 };
 
 export type BordersT = {
