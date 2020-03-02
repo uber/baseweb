@@ -5,7 +5,7 @@ import {Input} from 'baseui/input';
 
 export default () => {
   const [css, theme] = useStyletron();
-  const inputRef = React.createRef<HTMLInputElement>();
+  const inputRef = React.useRef<HTMLInputElement>(null);
   return (
     <div className={css({display: 'flex'})}>
       <Input
