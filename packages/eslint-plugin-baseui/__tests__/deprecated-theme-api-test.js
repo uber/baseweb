@@ -149,6 +149,21 @@ const tests = {
         />
       `,
     },
+    {
+      code: `
+        export function Tag(props: Props) {
+          const [useCss, theme] = useStyletron();
+
+          let someVarWithoutInit;
+
+          const paramRowStyle = useCss({
+            display: 'flex',
+            flexWrap: 'wrap',
+            ...theme.typography.font200,
+          });
+        }
+      `,
+    },
   ],
   invalid: [
     {
