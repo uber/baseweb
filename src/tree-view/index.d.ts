@@ -39,6 +39,7 @@ export interface TreeNodeProps {
   node: TreeNode;
   onToggle?: (node: TreeNode) => void;
   overrides?: TreeViewOverrides;
+  indentGuides?: boolean;
 }
 
 export type StatefulContainerProps = TreeViewProps & {
@@ -47,6 +48,7 @@ export type StatefulContainerProps = TreeViewProps & {
 
 export interface TreeViewProps {
   data: TreeNode[];
+  indentGuides?: boolean;
   onToggle?: (node: TreeNode) => void;
   overrides?: TreeViewOverrides;
   getId?: (node: TreeNode) => number | string;
