@@ -589,7 +589,6 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
       borderBottomRightRadius: '100%',
       ...(getDayStyles(code, props.$theme)[':after'] || {}),
     },
-    // $FlowFixMe fails flow check in 0.111+
     ...($range
       ? {
           // :before pseudo element defines a grey background style that extends
@@ -620,7 +619,9 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
             ...(getDayStyles(code, props.$theme)[':before'] || {}),
           },
         }
-      : {}),
+      : // a hack to make flow happy, otherwise it complains about complexity
+        // eslint-disable-next-line flowtype/no-weak-types
+        ({}: any)),
     ':first-child': {
       ...($range
         ? {
