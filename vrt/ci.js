@@ -23,8 +23,8 @@ const {
 } = process.env;
 
 // Derive some useful constants
-const BRANCH_NAME = getBranchName();
-const SNAPSHOT_BRANCH_NAME = `${BRANCH_NAME}--vrt`;
+const ORIGINAL_BRANCH_NAME = getBranchName();
+const SNAPSHOT_BRANCH_NAME = `${ORIGINAL_BRANCH_NAME}--vrt`;
 const [
   ORIGINAL_REPOSITORY_OWNER,
   ORIGINAL_REPOSITORY_NAME,
