@@ -206,6 +206,15 @@ const Index = (props: {
       </Link>
       , this is one of the fastest solutions.
     </Markdown.p>
+    <H2>Figma Communities</H2>
+    <Markdown.p>
+      You can find all the Base Web compoonents on{' '}
+      <Link href="https://baseweb.design/blog/base-figma-community/">
+        Figma Communities
+      </Link>
+      .This should help your design team adopt Base Web, while engineers can use
+      the React implementation.
+    </Markdown.p>
     <Adopters
       logoSrcs={[
         '/static/images/uber-logo.png',
