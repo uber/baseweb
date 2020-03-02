@@ -5,6 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+/* global document */
 import * as React from 'react';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import DeleteIcon from '../icon/delete.js';
@@ -27,6 +28,7 @@ import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   static defaultProps: ToastPropsShapeT = {
+    autoFocus: false,
     autoHideDuration: 0,
     closeable: true,
     kind: KIND.info,
@@ -44,6 +46,8 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   autoHideTimeout: ?TimeoutID;
   animateInTimer: ?TimeoutID;
   animateOutCompleteTimer: ?TimeoutID;
+  closeRef: ?{current: ?mixed};
+  previouslyFocusedElement: ?HTMLElement;
 
   state = {
     isVisible: false,
@@ -51,9 +55,28 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     isFocusVisible: false,
   };
 
+  constructor(props: ToastPropsT) {
+    super(props);
+    this.closeRef = React.createRef();
+    this.previouslyFocusedElement = null;
+  }
+
   componentDidMount() {
     this.animateIn();
     this.startTimeout();
+    if (
+      __BROWSER__ &&
+      this.props.autoFocus &&
+      this.closeRef &&
+      this.closeRef.current &&
+      this.closeRef.current.focus &&
+      typeof this.closeRef.current.focus === 'function'
+    ) {
+      this.previouslyFocusedElement = document.activeElement;
+      // $FlowFixMe: CloseIcon is `mixed` type so doesn't like `focus` call.
+      this.closeRef.current.focus();
+      this.setState({isFocusVisible: true});
+    }
   }
 
   componentDidUpdate(prevProps: ToastPropsT) {
@@ -123,6 +146,9 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
 
   dismiss = () => {
     this.animateOut(this.props.onClose);
+    if (this.props.autoFocus && this.previouslyFocusedElement) {
+      this.previouslyFocusedElement.focus();
+    }
   };
 
   onFocus = (e: Event) => {
@@ -181,7 +207,14 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     );
 
     const closeIconOverrides: OverridesT = mergeOverrides(
-      {Svg: CloseIcon},
+      {
+        Svg: {
+          component: CloseIcon,
+          props: {
+            ref: this.closeRef,
+          },
+        },
+      },
       // $FlowFixMe
       {Svg: CloseIconOverride},
     );
@@ -205,11 +238,8 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
             onMouseEnter={this.onMouseEnter}
             onMouseLeave={this.onMouseLeave}
           >
-            <InnerContainer {...sharedProps} {...innerContainerProps}>
-              {typeof children === 'function'
-                ? children({dismiss: this.dismiss})
-                : children}
-            </InnerContainer>
+            {/* Close icon comes first so that we can tab to other content
+                inside of Toast body. We use flex order to move it back. */}
             {closeable ? (
               <DeleteIcon
                 role="button"
@@ -229,6 +259,11 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
                 overrides={closeIconOverrides}
               />
             ) : null}
+            <InnerContainer {...sharedProps} {...innerContainerProps}>
+              {typeof children === 'function'
+                ? children({dismiss: this.dismiss})
+                : children}
+            </InnerContainer>
           </Body>
         )}
       </LocaleContext.Consumer>

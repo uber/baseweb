@@ -340,6 +340,9 @@ const config = {
       },
     ],
   },
+  'toaster-focus': {
+    skip: true,
+  },
   'modal-select': {
     interactions: [
       {
