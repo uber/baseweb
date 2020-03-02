@@ -210,7 +210,7 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
   }
 
   render() {
-    const {overrides = {}} = this.props;
+    const {format, overrides = {}} = this.props;
 
     const [OverriddenSelect, selectProps] = getOverrides(
       overrides.Select,
@@ -231,28 +231,41 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
 
     return (
       <LocaleContext.Consumer>
-        {locale => (
-          <OverriddenSelect
-            aria-label={locale.datepicker.timePickerAriaLabel}
-            disabled={this.props.disabled}
-            error={this.props.error}
-            positive={this.props.positive}
-            size={this.props.size}
-            placeholder={this.props.placeholder || 'HH:mm'}
-            options={this.state.steps.map(n => ({
-              id: n,
-              label: secondsToLabel(n, this.props.format),
-            }))}
-            filterOptions={
-              this.props.creatable ? this.creatableFilterOptions : undefined
-            }
-            onChange={this.onChange}
-            // if value is defined, it should be an array type
-            value={value ? [value] : value}
-            clearable={false}
-            {...selectProps}
-          />
-        )}
+        {locale => {
+          let ariaLabel;
+
+          if (locale.datepicker.timePickerAriaLabel) {
+            ariaLabel = locale.datepicker.timePickerAriaLabel;
+          } else {
+            ariaLabel =
+              format === '12'
+                ? locale.datepicker.timePickerAriaLabel12Hour
+                : locale.datepicker.timePickerAriaLabel24Hour;
+          }
+
+          return (
+            <OverriddenSelect
+              aria-label={ariaLabel}
+              disabled={this.props.disabled}
+              error={this.props.error}
+              positive={this.props.positive}
+              size={this.props.size}
+              placeholder={this.props.placeholder || 'HH:mm'}
+              options={this.state.steps.map(n => ({
+                id: n,
+                label: secondsToLabel(n, this.props.format),
+              }))}
+              filterOptions={
+                this.props.creatable ? this.creatableFilterOptions : undefined
+              }
+              onChange={this.onChange}
+              // if value is defined, it should be an array type
+              value={value ? [value] : value}
+              clearable={false}
+              {...selectProps}
+            />
+          );
+        }}
       </LocaleContext.Consumer>
     );
   }
