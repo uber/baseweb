@@ -17,6 +17,14 @@ const selectors = {
   buttonSameKey: 'button#same-key',
 };
 
+const isActiveEl = async (page, selector) => {
+  // eslint-disable-next-line cup/no-undef
+  const el = await page.evaluateHandle(() => window.document.activeElement);
+  const selectedEl = await page.$(selector);
+  const equal = await page.evaluate((e1, e2) => e1 === e2, el, selectedEl);
+  return equal;
+};
+
 describe('toast', () => {
   it('passes basic a11y tests', async () => {
     await mount(page, 'toast');
@@ -92,5 +100,16 @@ describe('toast', () => {
     // it is only changed to 'updated' after the first toast has popped up
     // so we check to make sure the toast contains the updated text
     expect(toastContent).toBe('updated');
+  });
+
+  it('focuses toast dismiss when autofocus is active and refocuses previously focused element on close', async () => {
+    await mount(page, 'toaster-focus');
+    await page.click(selectors.buttonDefault);
+    await page.waitFor(selectors.toast);
+    const isDismissActive = await isActiveEl(page, selectors.dismiss);
+    expect(isDismissActive).toBe(true);
+    await page.click(selectors.dismiss);
+    const isButtonActive = await isActiveEl(page, selectors.buttonDefault);
+    expect(isButtonActive).toBe(true);
   });
 });

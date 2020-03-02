@@ -1,9 +1,10 @@
 import * as React from 'react';
 import {
-  Unstable_StatefulTreeView as StatefulTreeView,
+  Unstable_TreeView as TreeView,
   TreeLabel,
   TreeNode,
   TreeLabelProps,
+  toggleIsExpanded,
 } from 'baseui/tree-view';
 import {ChevronRight} from 'baseui/icon';
 import {ChevronDown} from 'baseui/icon';
@@ -46,23 +47,27 @@ const CustomTreeLabel = (props: TreeLabelProps) => {
   );
 };
 
-const initialData = [
+const initialData: TreeNode[] = [
   {
+    id: 1,
     depth: 1,
     label: 'Node 1',
     isExpanded: true,
     children: [
       {
+        id: 2,
         depth: 2,
         label: 'Child 1',
         isExpanded: true,
         children: [
           {
+            id: 3,
             depth: 3,
             label: 'Grandchild 1',
             isExpanded: true,
             children: [
               {
+                id: 4,
                 depth: 4,
                 label: 'Greatgrandchild 1',
               },
@@ -73,21 +78,25 @@ const initialData = [
     ],
   },
   {
+    id: 5,
     depth: 1,
     label: 'Node 2',
     isExpanded: true,
     children: [
       {
+        id: 6,
         depth: 2,
         label: 'Child 2',
         isExpanded: true,
         children: [
           {
+            id: 7,
             depth: 3,
             label: 'Grandchild 2',
             isExpanded: true,
             children: [
               {
+                id: 8,
                 depth: 4,
                 label: 'Greatgrandchild 2',
               },
@@ -100,20 +109,19 @@ const initialData = [
 ];
 
 export default function TreeViewOverrides() {
+  const [data, setData] = React.useState(initialData);
+
   return (
-    <StatefulTreeView
-      data={initialData}
+    <TreeView
+      data={data}
+      onToggle={node =>
+        setData(prevData => toggleIsExpanded(prevData, node))
+      }
       overrides={{
         IconContainer: {
           style: {
             borderStyle: 'none',
           },
-        },
-        CollapseIcon: {
-          component: ChevronDown,
-        },
-        ExpandIcon: {
-          component: ChevronRight,
         },
         TreeLabel: {
           component: CustomTreeLabel,

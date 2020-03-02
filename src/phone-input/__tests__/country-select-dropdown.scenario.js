@@ -12,11 +12,16 @@ import {StatefulPhoneInput, SIZE} from '../index.js';
 export default function Scenario() {
   return (
     <React.Fragment>
+      <br />
       <StatefulPhoneInput size={SIZE.compact} />
       <br />
       <StatefulPhoneInput />
       <br />
       <StatefulPhoneInput size={SIZE.large} />
+      <br />
+      <StatefulPhoneInput positive />
+      <br />
+      <StatefulPhoneInput error />
     </React.Fragment>
   );
 }

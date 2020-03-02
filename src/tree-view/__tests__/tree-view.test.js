@@ -9,18 +9,21 @@ import * as React from 'react';
 import {mount} from 'enzyme';
 import {StyledTreeItem, StyledItemContent} from '../styled-components.js';
 import TreeView from '../tree-view.js';
-import CheckIndeterminate from '../../icon/check-indeterminate.js';
+import ChevronDown from '../../icon/chevron-down.js';
 
 const mockData = [
   {
+    id: 1,
     label: 'Node 1',
     isExpanded: true,
     children: [
       {
+        id: 2,
         label: 'Child 1',
         isExpanded: true,
         children: [
           {
+            id: 3,
             label: 'Grandchild 1',
           },
         ],
@@ -28,14 +31,17 @@ const mockData = [
     ],
   },
   {
+    id: 4,
     label: 'Node 2',
     isExpanded: true,
     children: [
       {
+        id: 5,
         label: 'Child 2',
         isExpanded: true,
         children: [
           {
+            id: 6,
             label: 'Grandchild 2',
           },
         ],
@@ -43,12 +49,15 @@ const mockData = [
     ],
   },
   {
+    id: 7,
     label: 'Node 3',
     children: [
       {
+        id: 8,
         label: 'Child 3',
         children: [
           {
+            id: 9,
             label: 'Grandchild 3',
           },
         ],
@@ -80,7 +89,7 @@ describe('TreeView Component', () => {
       .first()
       .simulate('click');
     expect(props.onToggle).toHaveBeenCalled();
-    expect(component.find(CheckIndeterminate)).toExist();
+    expect(component.find(ChevronDown)).toExist();
   });
 
   test('TreeLabel override should override default icons as well', () => {
@@ -109,6 +118,6 @@ describe('TreeView Component', () => {
     };
     const component = mount(<TreeView {...props} />);
     expect(component.find(CustomTreeLabel)).toExist();
-    expect(component.find(CheckIndeterminate)).not.toExist();
+    expect(component.find(ChevronDown)).not.toExist();
   });
 });
