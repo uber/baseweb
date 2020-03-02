@@ -23,7 +23,8 @@ const {
 } = process.env;
 
 // Derive some useful constants
-const SNAPSHOT_BRANCH = `${sanitizeBranchName(BUILDKITE_BRANCH)}--vrt`;
+const BRANCH_NAME = getBranchName();
+const SNAPSHOT_BRANCH_NAME = `${BRANCH_NAME}--vrt`;
 const [
   ORIGINAL_REPOSITORY_OWNER,
   ORIGINAL_REPOSITORY_NAME,
@@ -135,7 +136,7 @@ async function updatePullRequests(snapshotPullRequest) {
     await addCommentToOriginalPullRequest(newSnapshotPullRequest.html_url);
     await addOriginalAuthorAsReviewer(newSnapshotPullRequest.number);
     log(
-      `Snapshots on \`${SNAPSHOT_BRANCH}\` must be merged into \`${BUILDKITE_BRANCH}\` before it can be merged into \`master\`.`,
+      `Snapshots on \`${SNAPSHOT_BRANCH_NAME}\` must be merged into \`${BUILDKITE_BRANCH}\` before it can be merged into \`master\`.`,
     );
   }
 }
@@ -168,7 +169,7 @@ async function removeSnapshotBranchFromGitHub() {
     await octokit.git.deleteRef({
       owner: `uber`,
       repo: `baseweb`,
-      ref: `heads/${SNAPSHOT_BRANCH}`,
+      ref: `heads/${SNAPSHOT_BRANCH_NAME}`,
     });
     log(`Removed the snapshot branch from GitHub`);
   } catch (er) {
@@ -221,7 +222,7 @@ async function notifySnapshotPullRequestOfClosure(snapshotPullRequestNumber) {
       issue_number: snapshotPullRequestNumber,
       body:
         `Visual changes have been resolved. ` +
-        `This PR will be closed and \`${SNAPSHOT_BRANCH}\` will be deleted. ` +
+        `This PR will be closed and \`${SNAPSHOT_BRANCH_NAME}\` will be deleted. ` +
         `If future commits on \`${BUILDKITE_BRANCH}\` trigger visual changes, a new snapshot branch will be created and a new PR will be opened.`,
     });
     log(`Posted a comment on snapshot PR about visual resolution and closure.`);
@@ -273,7 +274,7 @@ async function createSnapshotPullRequest() {
       owner: ORIGINAL_REPOSITORY_OWNER,
       repo: ORIGINAL_REPOSITORY_NAME,
       title: `test(vrt): update visual snapshots for ${BUILDKITE_BRANCH} [skip ci]`,
-      head: `uber:${SNAPSHOT_BRANCH}`,
+      head: `uber:${SNAPSHOT_BRANCH_NAME}`,
       base: BUILDKITE_BRANCH,
       body:
         `This PR was generated based on visual changes detected in #${BUILDKITE_PULL_REQUEST}. ` +
@@ -291,7 +292,7 @@ async function getSnapshotPullRequest() {
     const pullRequests = await octokit.pulls.list({
       owner: ORIGINAL_REPOSITORY_OWNER,
       repo: ORIGINAL_REPOSITORY_NAME,
-      head: `uber/baseweb:${SNAPSHOT_BRANCH}`,
+      head: `uber/baseweb:${SNAPSHOT_BRANCH_NAME}`,
     });
     const pullRequest = pullRequests.data[0]; // should only ever be one PR
     if (pullRequest) {
@@ -312,17 +313,17 @@ async function getSnapshotPullRequest() {
 
 function pushChangesToGitHub() {
   log(
-    `Creating a new snapshot branch: ${SNAPSHOT_BRANCH}. ` +
+    `Creating a new snapshot branch: ${SNAPSHOT_BRANCH_NAME}. ` +
       `This will overwrite any existing snapshot branch.`,
   );
-  execSync(`git checkout -b ${SNAPSHOT_BRANCH}`);
+  execSync(`git checkout -b ${SNAPSHOT_BRANCH_NAME}`);
   execSync(`git add vrt/__image_snapshots__/`);
-  log(`Commiting updated snapshots to ${SNAPSHOT_BRANCH}.`);
+  log(`Commiting updated snapshots to ${SNAPSHOT_BRANCH_NAME}.`);
   execSync(
     `git commit -m "test(vrt): update visual snapshots for ${ORIGINAL_COMMIT_SHORT_HASH} [skip ci]"`,
   );
   log(`Force pushing updated snapshot branch to GitHub.`);
-  execSync(`git push --force origin ${SNAPSHOT_BRANCH}`);
+  execSync(`git push --force origin ${SNAPSHOT_BRANCH_NAME}`);
 }
 
 function someSnapshotsWereUpdated() {
@@ -346,10 +347,12 @@ function getRepositoryOwnerAndNameFromURL(url) {
   return [owner, name];
 }
 
-function sanitizeBranchName(branchName) {
-  // Colons are not permitted in git branch names and for some reason
-  // Buildkite will report the branch name as "user:branch".
-  return branchName.replace(/:/g, '-');
+function getBranchName() {
+  if (BUILDKITE_BRANCH.includes(':')) {
+    return BUILDKITE_BRANCH.split(':')[1];
+  } else {
+    return BUILDKITE_BRANCH;
+  }
 }
 
 function log(message) {
