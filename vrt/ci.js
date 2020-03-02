@@ -275,7 +275,7 @@ async function createSnapshotPullRequest() {
       repo: ORIGINAL_REPOSITORY_NAME,
       title: `test(vrt): update visual snapshots for ${BUILDKITE_BRANCH} [skip ci]`,
       head: `uber:${SNAPSHOT_BRANCH_NAME}`,
-      base: BUILDKITE_BRANCH,
+      base: ORIGINAL_BRANCH_NAME,
       body:
         `This PR was generated based on visual changes detected in #${BUILDKITE_PULL_REQUEST}. ` +
         `Please verify that the updated snapshots look correct before merging this PR into \`${BUILDKITE_BRANCH}\`.`,
