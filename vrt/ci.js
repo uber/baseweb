@@ -23,13 +23,15 @@ const {
 } = process.env;
 
 // Derive some useful constants
-const ORIGINAL_BRANCH_NAME = getBranchName();
-const SNAPSHOT_BRANCH_NAME = `${ORIGINAL_BRANCH_NAME}--vrt`;
+const ORIGINAL_BRANCH_NAME = getOriginalBranchName();
 const [
   ORIGINAL_REPOSITORY_OWNER,
   ORIGINAL_REPOSITORY_NAME,
 ] = getRepositoryOwnerAndNameFromURL(BUILDKITE_PULL_REQUEST_REPO);
 const ORIGINAL_COMMIT_SHORT_HASH = BUILDKITE_COMMIT.substring(0, 7); // First 7 chars makes it linkable in GitHub
+
+// Derive a consistent and unique snapshot branch name
+const SNAPSHOT_BRANCH_NAME = getSnapshotBranchName();
 
 // Prepare GitHub API helper
 const octokit = Octokit({
@@ -56,7 +58,7 @@ async function main() {
 }
 
 function buildIsValid() {
-  if (BUILDKITE_BRANCH.endsWith(`--vrt`)) {
+  if (BUILDKITE_BRANCH.startsWith(`vrt/uber/baseweb/`)) {
     log(`This build was somehow triggered from a snapshot update branch!`);
     log(`This should not happen! Check the logs! Exiting early.`);
     return false;
@@ -341,18 +343,24 @@ function someSnapshotsWereUpdated() {
   return result;
 }
 
+// Utilities
+
 function getRepositoryOwnerAndNameFromURL(url) {
   const [, , , owner, name] = url.replace('.git', '').split('/');
   log(`Original repository identified as ${owner}/${name}.`);
   return [owner, name];
 }
 
-function getBranchName() {
+function getOriginalBranchName() {
   if (BUILDKITE_BRANCH.includes(':')) {
     return BUILDKITE_BRANCH.split(':')[1];
   } else {
     return BUILDKITE_BRANCH;
   }
+}
+
+function getSnapshotBranchName() {
+  return `vrt/${ORIGINAL_REPOSITORY_OWNER}/${ORIGINAL_REPOSITORY_NAME}/${ORIGINAL_BRANCH_NAME}`;
 }
 
 function log(message) {
