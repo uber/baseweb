@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {formatCode} from 'react-view';
 
 export function resolveToLast(type) {
   switch (type.kind) {
@@ -381,7 +380,7 @@ function TypeDefinition(props) {
       return convert(property, true);
     });
 
-    definition = formatCode(`type ${name} = {` + proptypes.join(',') + '}');
+    definition = `type ${name} = {\n  ` + proptypes.join(',\n  ') + '\n}';
   } catch (e) {
     errored = true;
   }
