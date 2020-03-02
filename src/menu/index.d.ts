@@ -85,6 +85,7 @@ export interface StatefulContainerProps {
   initialState?: StatefulContainerState;
   stateReducer?: StateReducer;
   getRequiredItemProps?: GetRequiredItemProps;
+  onActiveDescendantChange?: (id?: string) => void;
   onItemSelect?: OnItemSelect;
   rootRef?: React.Ref<any>;
   children?: (args: RenderProps) => React.ReactNode;
