@@ -35,9 +35,7 @@ describe('Timepicker', () => {
     const [hours, minutes] = secondsToHourMinute(option.id);
     date.setHours(hours, minutes, 0);
     expect(onChange).toHaveBeenCalled();
-    // $FlowFixMe
     expect(onChange.mock.calls[0][0].getMinutes()).toEqual(date.getMinutes());
-    // $FlowFixMe
     expect(onChange.mock.calls[0][0].getHours()).toEqual(date.getHours());
   });
 });

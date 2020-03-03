@@ -7,6 +7,7 @@ import {
 } from 'baseui/tree-view';
 import {Plus as PlusIcon} from 'baseui/icon';
 import {CheckIndeterminate as CheckIndeterminateIcon} from 'baseui/icon';
+import {Search as SearchIcon} from 'baseui/icon';
 
 const initialData = [
   {
@@ -22,6 +23,7 @@ const initialData = [
           {
             id: 3,
             label: 'Grandchild 1',
+            isExpanded: true,
             children: [
               {
                 id: 4,
@@ -85,6 +87,16 @@ export default function TreeViewOverrides() {
         },
         ExpandIcon: {
           component: PlusIcon,
+        },
+        LeafIconContainer: {
+          style: {
+            backgroundColor: '#000',
+            color: '#fff',
+            width: '20px',
+          },
+        },
+        LeafIcon: {
+          component: SearchIcon,
         },
       }}
     />

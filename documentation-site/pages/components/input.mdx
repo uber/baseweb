@@ -67,6 +67,10 @@ An input enables a person to type in text information.
   <Mask />
 </Example>
 
+Masking an input can lead to accessibility problems. Screen-readers will read out the value of the input on focus and change events. With masking, an input's value might make visual sense, but sound strange when read aloud.
+
+Consider if you can format the value of the input on a blur event, rather than on change events. This still gives users visual feedback but also provides a much smoother experience for someone using a screenreader.
+
 <Example title="Clearable" path="input/clearable.js">
   <Clearable />
 </Example>
