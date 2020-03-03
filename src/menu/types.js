@@ -115,6 +115,7 @@ export type StatefulContainerPropsT = {
    * bindings to work properly. Every rendered item should call this.
    */
   getRequiredItemProps: GetRequiredItemPropsFnT,
+  onActiveDescendantChange?: (id?: string) => mixed,
   /** Callback executed on menu item clicks. */
   onItemSelect: OnItemSelectFnT,
   /** Ref for the menu container element. Used to capture key events for navigation */
@@ -184,6 +185,7 @@ export type StatefulMenuPropsT = {
    * bindings to work properly. Every rendered item should call this.
    */
   getRequiredItemProps?: GetRequiredItemPropsFnT,
+  onActiveDescendantChange?: (id?: string) => mixed,
   /** Callback executed on menu item clicks. */
   onItemSelect?: OnItemSelectFnT,
   /** Ref for the menu container element. Used to capture key events for navigation */

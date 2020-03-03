@@ -28,6 +28,7 @@ import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 export default function TreeView(props: TreeViewPropsT) {
   const {
     data,
+    indentGuides = false,
     onToggle,
     overrides = {},
     renderAll,
@@ -128,6 +129,7 @@ export default function TreeView(props: TreeViewPropsT) {
       {data.length &&
         data.map((node, index) => (
           <TreeNode
+            indentGuides={indentGuides}
             key={index}
             node={node}
             getId={getId}

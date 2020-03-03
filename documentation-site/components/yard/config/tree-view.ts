@@ -38,7 +38,7 @@ const TreeViewConfig: TConfig = {
         label: 'report-1.docx',
       }
     ]
-  }, 
+  },
 ]`,
       type: PropTypes.Array,
       description: 'Tree View data structure.',
@@ -56,6 +56,11 @@ const TreeViewConfig: TConfig = {
       type: PropTypes.Boolean,
       description:
         'Renders all tab content for SEO purposes regardless of tab active state.',
+    },
+    indentGuides: {
+      value: false,
+      type: PropTypes.Boolean,
+      description: 'Displays indent guides',
     },
     getId: {
       value: undefined,

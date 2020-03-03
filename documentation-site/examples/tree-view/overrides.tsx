@@ -4,8 +4,9 @@ import {
   TreeNode,
   toggleIsExpanded,
 } from 'baseui/tree-view';
-import {ChevronRight} from 'baseui/icon';
-import {ChevronDown} from 'baseui/icon';
+import {Plus as PlusIcon} from 'baseui/icon';
+import {CheckIndeterminate as CheckIndeterminateIcon} from 'baseui/icon';
+import {Search as SearchIcon} from 'baseui/icon';
 
 const initialData: TreeNode[] = [
   {
@@ -21,6 +22,7 @@ const initialData: TreeNode[] = [
           {
             id: 3,
             label: 'Grandchild 1',
+            isExpanded: true,
             children: [
               {
                 id: 4,
@@ -73,14 +75,27 @@ export default function TreeViewOverrides() {
       overrides={{
         IconContainer: {
           style: {
-            borderStyle: 'none',
+            borderStyle: 'solid',
+            borderWidth: '1px',
+            width: '12px',
+            height: '12px',
           },
         },
         CollapseIcon: {
-          component: ChevronDown,
+          component: CheckIndeterminateIcon,
         },
         ExpandIcon: {
-          component: ChevronRight,
+          component: PlusIcon,
+        },
+        LeafIconContainer: {
+          style: {
+            backgroundColor: '#000',
+            color: '#fff',
+            width: '20px',
+          },
+        },
+        LeafIcon: {
+          component: SearchIcon,
         },
       }}
     />
