@@ -32,6 +32,7 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
 
   render() {
     const {
+      indentGuides,
       node,
       getId,
       onToggle,
@@ -82,12 +83,14 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
         {children && (isExpanded || renderAll) && (
           <TreeItemList
             role="group"
+            $indentGuides={!!indentGuides}
             $isChildNode={true}
             $expanded={!!isExpanded}
             {...getOverrideProps(TreeItemListOverride)}
           >
             {children.map((node, index) => (
               <TreeNode
+                indentGuides={!!indentGuides}
                 renderAll={renderAll}
                 key={index}
                 node={node}
