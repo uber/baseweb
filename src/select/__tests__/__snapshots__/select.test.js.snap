@@ -189,7 +189,8 @@ exports[`Select component renders component in search mode and false for multipl
                       <input
                         aria-autocomplete="list"
                         aria-expanded="false"
-                        aria-haspopup="false"
+                        aria-haspopup="listbox"
+                        aria-label=""
                         role="combobox"
                         styled-component="true"
                         tabindex="0"
@@ -545,13 +546,15 @@ exports[`Select component renders component in search mode and false for multipl
                                 $searchable={true}
                                 $size="default"
                                 $type="search"
+                                aria-activedescendant={null}
                                 aria-autocomplete="list"
+                                aria-controls={null}
                                 aria-describedby={null}
                                 aria-disabled={null}
                                 aria-errormessage={null}
                                 aria-expanded={false}
-                                aria-haspopup={false}
-                                aria-label={null}
+                                aria-haspopup="listbox"
+                                aria-label=""
                                 aria-labelledby={null}
                                 aria-required={null}
                                 disabled={null}
@@ -587,13 +590,15 @@ exports[`Select component renders component in search mode and false for multipl
                                   $size="default"
                                   $type="search"
                                   $width="2px"
+                                  aria-activedescendant={null}
                                   aria-autocomplete="list"
+                                  aria-controls={null}
                                   aria-describedby={null}
                                   aria-disabled={null}
                                   aria-errormessage={null}
                                   aria-expanded={false}
-                                  aria-haspopup={false}
-                                  aria-label={null}
+                                  aria-haspopup="listbox"
+                                  aria-label=""
                                   aria-labelledby={null}
                                   aria-required={null}
                                   disabled={null}
@@ -623,13 +628,15 @@ exports[`Select component renders component in search mode and false for multipl
                                     $size="default"
                                     $type="search"
                                     $width="2px"
+                                    aria-activedescendant={null}
                                     aria-autocomplete="list"
+                                    aria-controls={null}
                                     aria-describedby={null}
                                     aria-disabled={null}
                                     aria-errormessage={null}
                                     aria-expanded={false}
-                                    aria-haspopup={false}
-                                    aria-label={null}
+                                    aria-haspopup="listbox"
+                                    aria-label=""
                                     aria-labelledby={null}
                                     aria-required={null}
                                     disabled={null}
@@ -644,13 +651,15 @@ exports[`Select component renders component in search mode and false for multipl
                                     value=""
                                   >
                                     <input
+                                      aria-activedescendant={null}
                                       aria-autocomplete="list"
+                                      aria-controls={null}
                                       aria-describedby={null}
                                       aria-disabled={null}
                                       aria-errormessage={null}
                                       aria-expanded={false}
-                                      aria-haspopup={false}
-                                      aria-label={null}
+                                      aria-haspopup="listbox"
+                                      aria-label=""
                                       aria-labelledby={null}
                                       aria-required={null}
                                       disabled={null}
@@ -1028,7 +1037,8 @@ exports[`Select component renders component in search mode and true for multiple
                       <input
                         aria-autocomplete="list"
                         aria-expanded="false"
-                        aria-haspopup="false"
+                        aria-haspopup="listbox"
+                        aria-label=""
                         role="combobox"
                         styled-component="true"
                         tabindex="0"
@@ -1384,13 +1394,15 @@ exports[`Select component renders component in search mode and true for multiple
                                 $searchable={true}
                                 $size="default"
                                 $type="search"
+                                aria-activedescendant={null}
                                 aria-autocomplete="list"
+                                aria-controls={null}
                                 aria-describedby={null}
                                 aria-disabled={null}
                                 aria-errormessage={null}
                                 aria-expanded={false}
-                                aria-haspopup={false}
-                                aria-label={null}
+                                aria-haspopup="listbox"
+                                aria-label=""
                                 aria-labelledby={null}
                                 aria-required={null}
                                 disabled={null}
@@ -1426,13 +1438,15 @@ exports[`Select component renders component in search mode and true for multiple
                                   $size="default"
                                   $type="search"
                                   $width="2px"
+                                  aria-activedescendant={null}
                                   aria-autocomplete="list"
+                                  aria-controls={null}
                                   aria-describedby={null}
                                   aria-disabled={null}
                                   aria-errormessage={null}
                                   aria-expanded={false}
-                                  aria-haspopup={false}
-                                  aria-label={null}
+                                  aria-haspopup="listbox"
+                                  aria-label=""
                                   aria-labelledby={null}
                                   aria-required={null}
                                   disabled={null}
@@ -1462,13 +1476,15 @@ exports[`Select component renders component in search mode and true for multiple
                                     $size="default"
                                     $type="search"
                                     $width="2px"
+                                    aria-activedescendant={null}
                                     aria-autocomplete="list"
+                                    aria-controls={null}
                                     aria-describedby={null}
                                     aria-disabled={null}
                                     aria-errormessage={null}
                                     aria-expanded={false}
-                                    aria-haspopup={false}
-                                    aria-label={null}
+                                    aria-haspopup="listbox"
+                                    aria-label=""
                                     aria-labelledby={null}
                                     aria-required={null}
                                     disabled={null}
@@ -1483,13 +1499,15 @@ exports[`Select component renders component in search mode and true for multiple
                                     value=""
                                   >
                                     <input
+                                      aria-activedescendant={null}
                                       aria-autocomplete="list"
+                                      aria-controls={null}
                                       aria-describedby={null}
                                       aria-disabled={null}
                                       aria-errormessage={null}
                                       aria-expanded={false}
-                                      aria-haspopup={false}
-                                      aria-label={null}
+                                      aria-haspopup="listbox"
+                                      aria-label=""
                                       aria-labelledby={null}
                                       aria-required={null}
                                       disabled={null}
@@ -1847,7 +1865,8 @@ exports[`Select component renders component in select mode and false for multipl
                       <input
                         aria-autocomplete="list"
                         aria-expanded="false"
-                        aria-haspopup="false"
+                        aria-haspopup="listbox"
+                        aria-label=""
                         role="combobox"
                         styled-component="true"
                         tabindex="0"
@@ -2115,13 +2134,15 @@ exports[`Select component renders component in select mode and false for multipl
                                 $searchable={true}
                                 $size="default"
                                 $type="select"
+                                aria-activedescendant={null}
                                 aria-autocomplete="list"
+                                aria-controls={null}
                                 aria-describedby={null}
                                 aria-disabled={null}
                                 aria-errormessage={null}
                                 aria-expanded={false}
-                                aria-haspopup={false}
-                                aria-label={null}
+                                aria-haspopup="listbox"
+                                aria-label=""
                                 aria-labelledby={null}
                                 aria-required={null}
                                 disabled={null}
@@ -2157,13 +2178,15 @@ exports[`Select component renders component in select mode and false for multipl
                                   $size="default"
                                   $type="select"
                                   $width="2px"
+                                  aria-activedescendant={null}
                                   aria-autocomplete="list"
+                                  aria-controls={null}
                                   aria-describedby={null}
                                   aria-disabled={null}
                                   aria-errormessage={null}
                                   aria-expanded={false}
-                                  aria-haspopup={false}
-                                  aria-label={null}
+                                  aria-haspopup="listbox"
+                                  aria-label=""
                                   aria-labelledby={null}
                                   aria-required={null}
                                   disabled={null}
@@ -2193,13 +2216,15 @@ exports[`Select component renders component in select mode and false for multipl
                                     $size="default"
                                     $type="select"
                                     $width="2px"
+                                    aria-activedescendant={null}
                                     aria-autocomplete="list"
+                                    aria-controls={null}
                                     aria-describedby={null}
                                     aria-disabled={null}
                                     aria-errormessage={null}
                                     aria-expanded={false}
-                                    aria-haspopup={false}
-                                    aria-label={null}
+                                    aria-haspopup="listbox"
+                                    aria-label=""
                                     aria-labelledby={null}
                                     aria-required={null}
                                     disabled={null}
@@ -2214,13 +2239,15 @@ exports[`Select component renders component in select mode and false for multipl
                                     value=""
                                   >
                                     <input
+                                      aria-activedescendant={null}
                                       aria-autocomplete="list"
+                                      aria-controls={null}
                                       aria-describedby={null}
                                       aria-disabled={null}
                                       aria-errormessage={null}
                                       aria-expanded={false}
-                                      aria-haspopup={false}
-                                      aria-label={null}
+                                      aria-haspopup="listbox"
+                                      aria-label=""
                                       aria-labelledby={null}
                                       aria-required={null}
                                       disabled={null}
@@ -2703,7 +2730,8 @@ exports[`Select component renders component in select mode and true for multiple
                       <input
                         aria-autocomplete="list"
                         aria-expanded="false"
-                        aria-haspopup="false"
+                        aria-haspopup="listbox"
+                        aria-label=""
                         role="combobox"
                         styled-component="true"
                         tabindex="0"
@@ -2971,13 +2999,15 @@ exports[`Select component renders component in select mode and true for multiple
                                 $searchable={true}
                                 $size="default"
                                 $type="select"
+                                aria-activedescendant={null}
                                 aria-autocomplete="list"
+                                aria-controls={null}
                                 aria-describedby={null}
                                 aria-disabled={null}
                                 aria-errormessage={null}
                                 aria-expanded={false}
-                                aria-haspopup={false}
-                                aria-label={null}
+                                aria-haspopup="listbox"
+                                aria-label=""
                                 aria-labelledby={null}
                                 aria-required={null}
                                 disabled={null}
@@ -3013,13 +3043,15 @@ exports[`Select component renders component in select mode and true for multiple
                                   $size="default"
                                   $type="select"
                                   $width="2px"
+                                  aria-activedescendant={null}
                                   aria-autocomplete="list"
+                                  aria-controls={null}
                                   aria-describedby={null}
                                   aria-disabled={null}
                                   aria-errormessage={null}
                                   aria-expanded={false}
-                                  aria-haspopup={false}
-                                  aria-label={null}
+                                  aria-haspopup="listbox"
+                                  aria-label=""
                                   aria-labelledby={null}
                                   aria-required={null}
                                   disabled={null}
@@ -3049,13 +3081,15 @@ exports[`Select component renders component in select mode and true for multiple
                                     $size="default"
                                     $type="select"
                                     $width="2px"
+                                    aria-activedescendant={null}
                                     aria-autocomplete="list"
+                                    aria-controls={null}
                                     aria-describedby={null}
                                     aria-disabled={null}
                                     aria-errormessage={null}
                                     aria-expanded={false}
-                                    aria-haspopup={false}
-                                    aria-label={null}
+                                    aria-haspopup="listbox"
+                                    aria-label=""
                                     aria-labelledby={null}
                                     aria-required={null}
                                     disabled={null}
@@ -3070,13 +3104,15 @@ exports[`Select component renders component in select mode and true for multiple
                                     value=""
                                   >
                                     <input
+                                      aria-activedescendant={null}
                                       aria-autocomplete="list"
+                                      aria-controls={null}
                                       aria-describedby={null}
                                       aria-disabled={null}
                                       aria-errormessage={null}
                                       aria-expanded={false}
-                                      aria-haspopup={false}
-                                      aria-label={null}
+                                      aria-haspopup="listbox"
+                                      aria-label=""
                                       aria-labelledby={null}
                                       aria-required={null}
                                       disabled={null}

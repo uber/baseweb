@@ -90,6 +90,7 @@ export default function Menu(props: StatelessMenuPropsT) {
             $disabled={disabled}
             $isFocused={isFocused}
             $isHighlighted={isHighlighted}
+            aria-disabled={disabled}
             aria-selected={isHighlighted && isFocused}
             {...restProps}
             {...optionProps}
@@ -120,7 +121,7 @@ export default function Menu(props: StatelessMenuPropsT) {
           {...listProps}
         >
           {isEmpty ? (
-            <EmptyState {...emptyStateProps}>
+            <EmptyState aria-live="polite" aria-atomic {...emptyStateProps}>
               {props.noResultsMsg || locale.menu.noResultsMsg}
             </EmptyState>
           ) : (
