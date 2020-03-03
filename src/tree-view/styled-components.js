@@ -10,22 +10,27 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 
 export const StyledTreeItemList = styled<{
+  $indentGuides?: boolean,
   $isChildNode?: boolean,
   $expanded?: boolean,
-}>('ul', ({$theme, $isChildNode, $expanded = true}) => {
+}>('ul', ({$theme, $indentGuides, $isChildNode, $expanded = true}) => {
   return {
     marginTop: 0,
     marginBottom: 0,
-    marginLeft: $isChildNode ? $theme.sizing.scale800 : 0,
+    marginLeft: $isChildNode ? $theme.sizing.scale550 : 0,
     marginRight: 0,
     overflow: 'auto',
     paddingTop: 0,
     paddingBottom: 0,
-    paddingLeft: 0,
+    paddingLeft: $isChildNode ? $theme.sizing.scale200 : 0,
     paddingRight: 0,
     position: 'relative',
     outline: 'none',
     display: $expanded ? 'block' : 'none',
+    borderLeft:
+      $indentGuides && $isChildNode
+        ? `1px solid ${$theme.colors.borderOpaque}`
+        : 'none',
   };
 });
 
@@ -87,5 +92,19 @@ export const StyledIconContainer = styled<{}>('div', ({$theme}) => {
     marginBottom: 0,
     marginLeft: 0,
     marginRight: $theme.sizing.scale200,
+  };
+});
+
+export const StyledNoIconContainer = styled<{}>('div', ({$theme}) => {
+  return {
+    alignItems: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: 0,
+    marginBottom: 0,
+    marginLeft: 0,
+    marginRight: $theme.sizing.scale500,
+    width: 0,
+    height: '1em',
   };
 });
