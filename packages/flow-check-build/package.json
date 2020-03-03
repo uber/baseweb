@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "baseui": "latest",
-    "flow-bin": "0.110"
+    "flow-bin": "0.110",
+    "styletron-react": "latest"
   }
 }

@@ -9,6 +9,11 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
+"@rtsao/csstype@2.6.5-forked.0":
+  version "2.6.5-forked.0"
+  resolved "https://registry.yarnpkg.com/@rtsao/csstype/-/csstype-2.6.5-forked.0.tgz#b5b4e2a07ad83a91874ebf5fabdb73dc8c1632f6"
+  integrity sha512-0HwnY8uPWcCloTgdbbaJG3MbDUfNf6yKWZfCKxFv9yj2Sbp4mSKaIjC7Cr/5L4hMxvrrk85CU3wlAg7EtBBJ1Q==
+
 attr-accept@^1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/attr-accept/-/attr-accept-1.1.3.tgz#48230c79f93790ef2775fcec4f0db0f5db41ca52"
@@ -30,9 +35,9 @@ balanced-match@^1.0.0:
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
 
 baseui@latest:
-  version "9.56.0"
-  resolved "https://registry.yarnpkg.com/baseui/-/baseui-9.56.0.tgz#4eb82e7099998117c342ec92033b1f868ef4b6e9"
-  integrity sha512-6KnHcZSoEP10i7zQPFCJxVju8Z9g8A0L1WLrzvYhu4Lz3MncmkaLnEkTNEGtZYumDDeiBCGgHK6G0XZwjVd2WA==
+  version "9.60.0"
+  resolved "https://registry.yarnpkg.com/baseui/-/baseui-9.60.0.tgz#1ef5b44572bb3d54d41043147630f5d61877021f"
+  integrity sha512-Zi34ChVtBXJjp/gIDdSZRe4AosHxIcu4ejI/+j6fx47MAq7da/+oH/RLng3TJVDI6nmLhl7/HIiuBm12HLvgmQ==
   dependencies:
     card-validator "^6.2.0"
     date-fns "^2.6.0"
@@ -93,6 +98,14 @@ credit-card-type@^8.0.0:
   resolved "https://registry.yarnpkg.com/credit-card-type/-/credit-card-type-8.3.0.tgz#f93c187c9362411544158c91d552efcc443aa87a"
   integrity sha512-czfZUpQ7W9CDxZL4yFLb1kFtM/q2lTOY975hL2aO+DC8+GRNDVSXVCHXhVFZPxiUKmQCZbFP8vIhxx5TBQaThw==
 
+css-in-js-utils@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/css-in-js-utils/-/css-in-js-utils-2.0.1.tgz#3b472b398787291b47cfe3e44fecfdd9e914ba99"
+  integrity sha512-PJF0SpJT+WdbVVt0AOYp9C8GnuruRlL/UFW7932nLWmFLQTaWEzTBQEx7/hn4BuV+WON75iAViSUJLiU3PKbpA==
+  dependencies:
+    hyphenate-style-name "^1.0.2"
+    isobject "^3.0.1"
+
 csstype@^2.6.7:
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.9.tgz#05141d0cd557a56b8891394c1911c40c8a98d098"
@@ -150,6 +163,11 @@ glob@^7.1.6:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
+hyphenate-style-name@^1.0.2:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.3.tgz#097bb7fa0b8f1a9cf0bd5c734cf95899981a9b48"
+  integrity sha512-EcuixamT82oplpoJ2XU4pDtKGWQ7b00CD9f1ug9IaQ3p1bkHMiKCZ9ut9QDI6qsa6cpUuB+A/I+zLtdNK4n2DQ==
+
 inflight@^1.0.4:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/inflight/-/inflight-1.0.6.tgz#49bd6331d7d02d0c09bc910a1075ba8165b56df9"
@@ -163,12 +181,24 @@ inherits@2:
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.4.tgz#0fa2c64f932917c3433a0ded55363aae37416b7c"
   integrity sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
 
+inline-style-prefixer@^5.1.0:
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/inline-style-prefixer/-/inline-style-prefixer-5.1.2.tgz#e5a5a3515e25600e016b71e39138971228486c33"
+  integrity sha512-PYUF+94gDfhy+LsQxM0g3d6Hge4l1pAqOSOiZuHWzMvQEGsbRQ/ck2WioLqrY2ZkHyPgVUXxn+hrkF7D6QUGbA==
+  dependencies:
+    css-in-js-utils "^2.0.0"
+
 invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   integrity sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
   dependencies:
     loose-envify "^1.0.0"
+
+isobject@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
+  integrity sha1-TkMekrEalzFjaqH5yNHMvP2reN8=
 
 "js-tokens@^3.0.0 || ^4.0.0":
   version "4.0.0"
@@ -343,6 +373,22 @@ regenerator-runtime@^0.13.2:
   version "0.13.3"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.3.tgz#7cf6a77d8f5c6f60eb73c5fc1955b2ceb01e6bf5"
   integrity sha512-naKIZz2GQ8JWh///G7L3X6LaQUAMp2lvb1rvwwsURe/VXwD6VMfr+/1NuNw3ag8v2kY1aQ/go5SNn79O9JU7yw==
+
+styletron-react@latest:
+  version "5.2.7"
+  resolved "https://registry.yarnpkg.com/styletron-react/-/styletron-react-5.2.7.tgz#7aa283a0b06787024f96289480c60bafed5048cf"
+  integrity sha512-PUUf7MAv9aaO8oT0B4ryPreeLi3BT1kQ7WIDNhkkpLkvCzk+pOvmtaZJJZRIxWPimj8756rLZqpF7/2ssF9KhQ==
+  dependencies:
+    prop-types "^15.6.0"
+    styletron-standard "^3.0.4"
+
+styletron-standard@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/styletron-standard/-/styletron-standard-3.0.4.tgz#2b286752f464e4c9824faaee466013aa8f13cf6b"
+  integrity sha512-AozOYUEtB5m0s+6ieLCObqYsBitLJmag3IoD/yg0Y9X32AYKwtGO4emx9cljD25k2S/R1XmLPgThOU+orjXTKg==
+  dependencies:
+    "@rtsao/csstype" "2.6.5-forked.0"
+    inline-style-prefixer "^5.1.0"
 
 timezone-support@^2.0.2:
   version "2.0.2"
