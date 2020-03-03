@@ -42,6 +42,7 @@ export default class FormControl extends React.Component<
     caption: null,
     error: false,
     positive: false,
+    disabled: false,
   };
   state = {captionId: getBuiId()};
 
@@ -110,10 +111,7 @@ export default class FormControl extends React.Component<
               'aria-errormessage': error ? this.state.captionId : null,
               'aria-describedby':
                 caption || positive ? this.state.captionId : null,
-              disabled:
-                typeof onlyChildProps.disabled !== 'undefined'
-                  ? onlyChildProps.disabled
-                  : disabled,
+              disabled: onlyChildProps.disabled || disabled,
               error:
                 typeof onlyChildProps.error !== 'undefined'
                   ? onlyChildProps.error
