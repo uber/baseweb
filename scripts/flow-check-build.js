@@ -26,7 +26,11 @@ function flow_check_version(version) {
   const dest = `${packagedir}/node_modules/baseui/`;
   fs.copySync(src, dest);
 
-  const cmd = spawnSync('yarn', ['flow'], spawn_args);
+  const cmd = spawnSync(
+    'yarn',
+    ['flow', 'check', '--max-warnings', '0'],
+    spawn_args,
+  );
   return cmd.status;
 }
 

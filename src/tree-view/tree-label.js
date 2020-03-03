@@ -10,6 +10,7 @@ import type {TreeLabelT, SharedStylePropsT} from './types.js';
 import {StyledIconContainer, StyledItemContent} from './styled-components.js';
 import ChevronRight from '../icon/chevron-right.js';
 import ChevronDown from '../icon/chevron-down.js';
+import BlankIcon from '../icon/blank.js';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 
 const TreeLabel: React$ComponentType<TreeLabelT> = ({
@@ -32,12 +33,17 @@ const TreeLabel: React$ComponentType<TreeLabelT> = ({
     IconContainer: IconContainerOverride,
     ExpandIcon: ExapandIconOverride,
     CollapseIcon: CollapseIconOverride,
+    LeafIconContainer: LeafIconContainerOverride,
+    LeafIcon: LeafIconOverride,
     TreeItemContent: TreeItemContentOverride,
   } = overrides;
   const IconContainer =
     getOverride(IconContainerOverride) || StyledIconContainer;
   const ExpandIcon = getOverride(ExapandIconOverride) || ChevronRight;
   const CollapseIcon = getOverride(CollapseIconOverride) || ChevronDown;
+  const LeafIconContainer =
+    getOverride(LeafIconContainerOverride) || StyledIconContainer;
+  const LeafIcon = getOverride(LeafIconOverride) || BlankIcon;
   const TreeItemContent =
     getOverride(TreeItemContentOverride) || StyledItemContent;
   return (
@@ -59,6 +65,14 @@ const TreeLabel: React$ComponentType<TreeLabelT> = ({
             />
           )}
         </IconContainer>
+      )}
+      {!hasChildren && LeafIcon && (
+        <LeafIconContainer
+          {...sharedProps}
+          {...getOverrideProps(LeafIconContainerOverride)}
+        >
+          <LeafIcon {...sharedProps} {...getOverrideProps(LeafIconOverride)} />
+        </LeafIconContainer>
       )}
       {typeof label === 'function' ? label(node) : label}
     </TreeItemContent>

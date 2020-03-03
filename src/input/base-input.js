@@ -244,7 +244,7 @@ class BaseInput<T: EventTarget> extends React.Component<
       >
         <ClearIcon
           size={16}
-          tabindex={0}
+          tabIndex={0}
           title={ariaLabel}
           aria-label={ariaLabel}
           onClick={this.onClearIconClick}

@@ -260,5 +260,11 @@ const initialData = [
 ];
 
 export default function TreeViewUncontrolled() {
-  return <StatefulTreeView singleExpanded data={initialData} />;
+  return (
+    <StatefulTreeView
+      singleExpanded
+      indentGuides
+      data={initialData}
+    />
+  );
 }
