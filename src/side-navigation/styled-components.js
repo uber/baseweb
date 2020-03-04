@@ -101,7 +101,7 @@ export const StyledNavItem = ((React.forwardRef<
   any,
 >(
   ({item, ...restProps}, ref) => (
-    <StyledNavItemElement ref={ref} {...restProps} />
+    <StyledNavItemElement ref={ref} {...restProps} $item={item} />
   ),
   // eslint-disable-next-line flowtype/no-weak-types
 ): any): StyletronComponent<SharedPropsT>);
