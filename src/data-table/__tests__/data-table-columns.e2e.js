@@ -222,7 +222,7 @@ describe('data table columns', () => {
     expect(matchArrayElements(filtered, ['T', 'T'])).toBe(true);
 
     const tag = await page.$('span[data-baseweb="tag"]');
-    const closeTagButton = await tag.$('span[role="button"]');
+    const closeTagButton = await tag.$('span[role="presentation"]');
     await closeTagButton.click();
 
     const restored = await getCellContentsAtColumnIndex(
@@ -260,7 +260,7 @@ describe('data table columns', () => {
     expect(matchArrayElements(filtered, ['A', 'A', 'A'])).toBe(true);
 
     const tag = await page.$('span[data-baseweb="tag"]');
-    const closeTagButton = await tag.$('span[role="button"]');
+    const closeTagButton = await tag.$('span[role="presentation"]');
     await closeTagButton.click();
 
     const restored = await getCellContentsAtColumnIndex(
@@ -303,7 +303,7 @@ describe('data table columns', () => {
     expect(matchArrayElements(filtered, ['2'])).toBe(true);
 
     const tag = await page.$('span[data-baseweb="tag"]');
-    const closeTagButton = await tag.$('span[role="button"]');
+    const closeTagButton = await tag.$('span[role="presentation"]');
     await closeTagButton.click();
 
     const restored = await getCellContentsAtColumnIndex(
