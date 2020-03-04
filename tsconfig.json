@@ -117,6 +117,8 @@
     "build",
     "packages/**/*",
     // remove when adding test type coverage
-    "src/*/__tests__/**/*"
+    "src/*/__tests__/**/*",
+    // remove after fixing types in documentation
+    "documentation-site"
   ]
 }
