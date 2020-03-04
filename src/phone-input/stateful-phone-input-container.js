@@ -57,8 +57,7 @@ export default class StatefulPhoneInputContainer extends React.Component<
   };
 
   render() {
-    const {children, initialState, stateReducer} = this.props;
-    return children({
+    return this.props.children({
       ...defaultProps,
       'aria-label': this.props['aria-label'],
       'aria-labelledby': this.props['aria-labelledby'],
