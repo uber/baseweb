@@ -1,16 +1,16 @@
-import {Unstable_TreeView, toggleIsExpanded} from 'baseui/tree-view';
+import {TreeView, toggleIsExpanded} from 'baseui/tree-view';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
 const treeViewProps = require('!!extract-react-types-loader!../../../../src/tree-view/tree-view.js');
 
 const TreeViewConfig: TConfig = {
-  componentName: 'Unstable_TreeView',
+  componentName: 'TreeView',
   imports: {
-    'baseui/tree-view': {named: ['Unstable_TreeView', 'toggleIsExpanded']},
+    'baseui/tree-view': {named: ['TreeView', 'toggleIsExpanded']},
   },
   scope: {
-    Unstable_TreeView,
+    TreeView,
     toggleIsExpanded,
   },
   theme: [],
@@ -105,7 +105,7 @@ const TreeViewConfig: TConfig = {
     },
   },
   mapTokensToProps: {
-    Unstable_TreeView: treeViewProps,
+    TreeView: treeViewProps,
   },
 };
 
