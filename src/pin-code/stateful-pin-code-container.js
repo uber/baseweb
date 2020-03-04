@@ -42,11 +42,24 @@ export default class StatefulPinCodeContainer extends React.Component<
   };
 
   render() {
-    const {children, initialState, stateReducer, ...restProps} = this.props;
-    return children({
+    return this.props.children({
       ...defaultProps,
-      ...restProps,
-      ...this.state,
+      'aria-label': this.props['aria-label'],
+      'aria-labelledby': this.props['aria-labelledby'],
+      'aria-describedby': this.props['aria-describedby'],
+      autoComplete: this.props.autoComplete,
+      autoFocus: this.props.autoFocus,
+      disabled: this.props.disabled,
+      error: this.props.error,
+      id: this.props.id,
+      name: this.props.name,
+      overrides: this.props.overrides,
+      placeholder: this.props.placeholder,
+      positive: this.props.positive,
+      required: this.props.required,
+      size: this.props.size,
+      manageFocus: this.props.manageFocus,
+      values: this.state.values,
       onChange: this.handleChange,
     });
   }

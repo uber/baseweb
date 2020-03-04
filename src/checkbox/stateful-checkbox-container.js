@@ -89,7 +89,8 @@ class StatefulCheckboxContainer extends React.Component<
     const {onChange, onMouseEnter, onMouseLeave, onFocus, onBlur} = this;
     return children({
       ...restProps,
-      ...this.state,
+      checked: this.state.checked,
+      isIndeterminate: this.state.isIndeterminate,
       onChange,
       onMouseEnter,
       onMouseLeave,

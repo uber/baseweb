@@ -41,7 +41,7 @@ describe('Stateful container', function() {
   });
 
   test('should provide initial state as part of state', function() {
-    allProps.initialState = {prop3: 'some initial state'};
+    allProps.initialState = {value: 'x'};
     wrapper = mount(<StatefulContainer {...allProps} />);
     const actualProps = childFn.mock.calls[0][0];
     expect(actualProps).toMatchObject(allProps.initialState);

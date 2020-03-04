@@ -243,7 +243,7 @@ const toaster = {
     // no SSR for the `toaster.show()`
     const toasterInstance = this.getRef();
     if (toasterInstance) {
-      return toasterInstance.show({children, ...props});
+      return toasterInstance.show({...props, children});
     } else if (__DEV__) {
       throw new Error(
         'Please make sure to add the ToasterContainer to your application before adding toasts! You can find more information here: https://baseweb.design/components/toast',
