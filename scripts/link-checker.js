@@ -53,9 +53,12 @@ async function main() {
   if (urlExists) {
     console.log(' Connected!');
     console.log('Running link checker');
-    childProcess.execSync(`yarn blc ${url} -ro --exclude-external`, {
-      stdio: 'inherit',
-    });
+    childProcess.execSync(
+      `yarn blc ${url} -ro --exclude-external --exclude zeit.co`,
+      {
+        stdio: 'inherit',
+      },
+    );
   } else {
     console.log('');
     throw new Error('Maximum number of attempts reached.');
