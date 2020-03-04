@@ -14,7 +14,6 @@ import Negative from 'examples/progress-bar/negative.js';
 import WithLabel from 'examples/progress-bar/with-label.js';
 import Infinite from 'examples/progress-bar/infinite.js';
 import CustomLabel from 'examples/progress-bar/custom-label.js';
-import SuccessValue from 'examples/progress-bar/success-value.js';
 import Customization from 'examples/progress-bar/overrides.js';
 
 import {ProgressBar} from 'baseui/progress-bar';
@@ -30,11 +29,17 @@ export default Layout;
 
 <Yard placeholderHeight={28} {...progressBarYardConfig} />
 
-Indicates a wait time for deterministic actions- either within an experience flow or loading data.
+Indicates a wait time for actions - either within an experience flow or loading data.
 
 ## Accessibility
 
-- ProgressBar has a `role="progressbar"` and `aria-valuenow={number}` set.
+- The progress bar always sets `role="progressbar"`
+- When `infinite` is `false` (the progress bar is determinate), these determinate aria tags are set:
+  - `aria-valuenow={value}`
+  - `aria-valuemin={0}`
+  - `aria-valuemax={100}`
+- It's important to normalize the value in the range 0 - 100 to properly support screen-reader users. You can apply this formula:
+  - `(value - MIN) * 100 / (MAX - MIN)`
 
 ## Examples
 
@@ -68,13 +73,6 @@ Indicates a wait time for deterministic actions- either within an experience flo
   path="progress-bar/custom-label.js"
 >
   <CustomLabel />
-</Example>
-
-<Example
-  title="Progress bar with Alternate Success Value"
-  path="progress-bar/success-value.js"
->
-  <SuccessValue />
 </Example>
 
 <Example title="Progress bar with Overrides" path="progress-bar/overrides.js">

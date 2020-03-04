@@ -13,6 +13,10 @@ exports[`Stateless progress bar should render component: Component has correct r
     $infinite={false}
     $successValue={100}
     $value={75}
+    aria-invalid={null}
+    aria-valuemax={100}
+    aria-valuemin={0}
+    aria-valuenow={75}
     data-baseweb="progress-bar"
     role="progressbar"
   >
@@ -20,11 +24,19 @@ exports[`Stateless progress bar should render component: Component has correct r
       $infinite={false}
       $successValue={100}
       $value={75}
+      aria-invalid={null}
+      aria-valuemax={100}
+      aria-valuemin={0}
+      aria-valuenow={75}
       data-baseweb="progress-bar"
       forwardedRef={null}
       role="progressbar"
     >
       <div
+        aria-invalid={null}
+        aria-valuemax={100}
+        aria-valuemin={0}
+        aria-valuenow={75}
         data-baseweb="progress-bar"
         role="progressbar"
         styled-component="true"

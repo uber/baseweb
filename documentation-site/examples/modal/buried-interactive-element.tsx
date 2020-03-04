@@ -14,7 +14,11 @@ export default function() {
   return (
     <React.Fragment>
       <Button onClick={() => setOpen(s => !s)}>Open Modal</Button>
-      <Modal onClose={() => setOpen(false)} isOpen={isOpen}>
+      <Modal
+        onClose={() => setOpen(false)}
+        isOpen={isOpen}
+        unstable_ModalBackdropScroll
+      >
         <FocusOnce>
           <ModalHeader>Some Header</ModalHeader>
         </FocusOnce>
