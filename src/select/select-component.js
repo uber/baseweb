@@ -737,12 +737,14 @@ class Select extends React.Component<PropsT, SelectStateT> {
         overrides={{
           Svg: {
             component: StyledClearIcon,
-            ...(overrides.ClearIcon && overrides.ClearIcon.props
-              ? {props: overrides.ClearIcon.props}
-              : {}),
-            ...(overrides.ClearIcon && overrides.ClearIcon.style
-              ? {style: overrides.ClearIcon.style}
-              : {}),
+            props:
+              overrides.StyledClearIcon && overrides.StyledClearIcon.props
+                ? overrides.StyledClearIcon.props
+                : {},
+            style:
+              overrides.StyledClearIcon && overrides.StyledClearIcon.style
+                ? overrides.StyledClearIcon.style
+                : {},
           },
         }}
         {...sharedProps}
@@ -768,12 +770,14 @@ class Select extends React.Component<PropsT, SelectStateT> {
         overrides={{
           Svg: {
             component: StyledSelectArrow,
-            ...(overrides.SelectArrow && overrides.SelectArrow.props
-              ? {props: overrides.SelectArrow.props}
-              : {}),
-            ...(overrides.SelectArrow && overrides.SelectArrow.style
-              ? {style: overrides.SelectArrow.style}
-              : {}),
+            props:
+              overrides.SelectArrow && overrides.SelectArrow.props
+                ? overrides.SelectArrow.props
+                : {},
+            style:
+              overrides.SelectArrow && overrides.SelectArrow.style
+                ? overrides.SelectArrow.style
+                : {},
           },
         }}
         {...sharedProps}

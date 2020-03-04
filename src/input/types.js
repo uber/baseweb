@@ -149,11 +149,11 @@ export type InputPropsT = {|
 |};
 
 export type MaskedInputPropsT = $Shape<{|
+  ...InputPropsT,
   /** See pattern examples here: https://github.com/sanniassin/react-input-mask */
   mask?: string,
   /** Character to render for unfilled mask element. */
   maskChar?: string,
-  ...InputPropsT,
 |}>;
 
 export type StatefulContainerPropsT<T> = {|

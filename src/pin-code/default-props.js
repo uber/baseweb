@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import {SIZE} from '../input/index.js';
 
-const defaultProps = {
+const defaultProps = Object.freeze({
   'aria-label': 'Please enter your pin code',
   'aria-labelledby': null,
   'aria-describedby': null,
@@ -26,6 +26,6 @@ const defaultProps = {
   size: SIZE.default,
   manageFocus: true,
   values: ['', '', '', ''],
-};
+});
 
 export default defaultProps;
