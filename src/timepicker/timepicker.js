@@ -12,6 +12,7 @@ import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import {LocaleContext} from '../locale/index.js';
 import {Select, filterOptions} from '../select/index.js';
 import {DateUtilsContext} from '../datepicker/utils/date-utils-provider.js';
+import type {DateT, DateUtilsT} from '../datepicker/utils/types.js';
 
 import type {OptionT, OnChangeParamsT} from '../select/index.js';
 import type {TimePickerPropsT, TimePickerStateT} from './types.js';
@@ -21,19 +22,19 @@ const HOUR = MINUTE * 60;
 const DAY = HOUR * 24;
 const NOON = DAY / 2;
 
-function dateToSeconds(date: Date, utils) {
+function dateToSeconds(date: DateT, utils: DateUtilsT) {
   const seconds = utils.getSeconds(date);
   const minutes = utils.getMinutes(date) * MINUTE;
   const hours = utils.getHours(date) * HOUR;
   return seconds + minutes + hours;
 }
 
-export function secondsToHourMinute(seconds: number, utils) {
+export function secondsToHourMinute(seconds: number, utils: DateUtilsT) {
   const d = utils.toJsDate(utils.date(seconds * 1000));
   return [d.getUTCHours(), d.getUTCMinutes()];
 }
 
-function secondsToLabel(seconds, format, utils) {
+function secondsToLabel(seconds: number, format, utils: DateUtilsT) {
   let [hours, minutes] = secondsToHourMinute(seconds, utils);
   const zeroPrefix = n => (n < 10 ? `0${n}` : n);
 
@@ -60,7 +61,7 @@ function secondsToLabel(seconds, format, utils) {
 function stringToOptions(
   str: string,
   format: '12' | '24' = '12',
-  utils,
+  utils: DateUtilsT,
 ): Array<OptionT> {
   // leading zero is optional, AM/PM is optional
   const twelveHourRegex = /^(1[0-2]|0?[1-9]):([0-5][0-9]) ?([AaPp][Mm]?)?$/;
@@ -114,11 +115,14 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
   };
 
   state = {steps: [], value: null};
+  static contextType: React.Context<DateUtilsT> = DateUtilsContext;
+  context: DateUtilsT;
 
   componentDidMount() {
     const utils = this.context;
     const steps = this.buildSteps();
-    if (utils.isValid(this.props.value)) {
+
+    if (utils.isValid(this.props.value) && this.props.value) {
       this.setState({
         steps: steps,
         value: this.buildSelectedOption(this.props.value, this.props.format),
@@ -167,7 +171,7 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
   handleChange = (seconds: number) => {
     const utils = this.context;
     const {setHours, setMinutes, setSeconds} = this.context;
-    const date = utils.date(this.props.value || undefined);
+    const date = utils.date();
     const [hours, minutes] = secondsToHourMinute(seconds, utils);
     const hourDate = setHours(date, hours);
     const minuteDate = setMinutes(hourDate, minutes);
@@ -212,7 +216,7 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
     return filterOptions(options, filterValue, excludeOptions, newProps);
   };
 
-  buildSelectedOption = (value: Date, format: '12' | '24' = '12') => {
+  buildSelectedOption = (value: DateT, format: '12' | '24' = '12') => {
     const utils = this.context;
     const secs = dateToSeconds(value, utils);
     return {
@@ -237,9 +241,10 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
     // $FlowFixMe
     selectProps.overrides = selectOverrides;
 
-    const value = utils.isValid(this.props.value)
-      ? this.buildSelectedOption(this.props.value, this.props.format)
-      : this.state.value;
+    const value =
+      utils.isValid(this.props.value) && this.props.value
+        ? this.buildSelectedOption(this.props.value, this.props.format)
+        : this.state.value;
 
     return (
       <LocaleContext.Consumer>

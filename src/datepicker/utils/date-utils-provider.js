@@ -7,14 +7,15 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import DateFnsUtils from '@date-io/date-fns';
+import type {AdapterT, DateUtilsT} from './types.js';
 
 const baseInstance = new DateFnsUtils();
 
-export const DateUtilsContext: React.Context<ThemeT> = React.createContext(
+export const DateUtilsContext: React.Context<DateUtilsT> = React.createContext(
   baseInstance,
 );
 
-const DateUtilsProvider = (props: {utils: any, children: ?React.Node}) => {
+const DateUtilsProvider = (props: {utils: AdapterT, children: ?React.Node}) => {
   const {utils: Utils, children} = props;
   const utilsInstance = React.useMemo(() => new Utils(), [Utils]);
   return (

@@ -34,8 +34,10 @@ const Controlled = ({
       <TimePicker
         value={time}
         onChange={time => {
-          setTime(time);
-          onChange();
+          if (time instanceof Date) {
+            setTime(time);
+            onChange();
+          }
         }}
         overrides={overrides}
         creatable={creatable}
