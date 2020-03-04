@@ -17,6 +17,7 @@ export default function Scenario() {
         <Cell span={12}>
           <Inner>1</Inner>
         </Cell>
+        {null}
       </Grid>
       <br />
       <Grid>
