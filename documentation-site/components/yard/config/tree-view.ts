@@ -19,24 +19,51 @@ const TreeViewConfig: TConfig = {
       value: `[
   {
     id: 1,
-    label: 'Projects',
+    label: 'The Two Gentlemen of Verona',
     isExpanded: true,
     children: [
       {
-        id: 2,
-        label: 'project-1.docx',
-      }
+        id: 11,
+        label: 'Duke of Milan',
+      },
+      {
+        id: 12,
+        label: 'Two Gentleman',
+        isExpanded: true,
+        children: [
+          {
+            id: 121,
+            label: 'Valentine',
+          },
+          {
+            id: 122,
+            label: 'Proteus',
+          }
+        ]
+      },
     ]
   },
   {
-    id: 3,
-    label: 'Reports',
+    id: 2,
+    label: 'The Tempest',
     isExpanded: false,
     children: [
       {
-        id: 4,
-        label: 'report-1.docx',
-      }
+        id: 21,
+        label: 'Alonso',
+      },
+      {
+        id: 22,
+        label: 'Sebastian',
+      },
+      {
+        id: 23,
+        label: 'Prospero',
+      },
+      {
+        id: 24,
+        label: 'Antonio',
+      },
     ]
   },
 ]`,
