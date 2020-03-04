@@ -75,8 +75,7 @@ export type StatefulPinCodePropsT = PropsT & {
   stateReducer?: StateReducerT,
 };
 
-export type StatefulPinCodeContainerPropsT = {
-  ...$Exact<PropsT>,
+export type StatefulPinCodeContainerPropsT = PropsT & {
   children: PropsT => React.Node,
   initialState: StatefulPinCodeContainerStateT,
   onChange: (event: ChangeEventT) => mixed,
