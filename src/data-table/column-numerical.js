@@ -464,7 +464,7 @@ const defaultOptions = {
   sortable: true,
   filterable: true,
   format: NUMERICAL_FORMATS.DEFAULT,
-  highlight: (n: number) => false,
+  highlight: (n => false: number => boolean),
   precision: 0,
 };
 
@@ -485,7 +485,7 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
     normalizedOptions.format === NUMERICAL_FORMATS.ACCOUNTING &&
     (options.highlight === null || options.highlight === undefined)
   ) {
-    normalizedOptions.highlight = n => n < 0;
+    normalizedOptions.highlight = (n: number) => (n < 0: boolean);
   }
 
   return {

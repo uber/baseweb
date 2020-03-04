@@ -15,7 +15,7 @@ import {mergeOverrides} from '../helpers/overrides.js';
 const overrides = {
   BaseButton: {
     style: ({$theme}) => {
-      const marginInlineEnd =
+      const marginInlineEnd: string =
         $theme.direction !== 'rtl' ? 'marginRight' : 'marginLeft';
       return {
         ':nth-last-child(n+2)': {

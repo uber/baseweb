@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import type {StatefulContainerPropsT, TreeNodeT} from './types.js';
 
-type StateType = {
+type StateType = {|
   data: TreeNodeT[],
-};
+|};
 
 const findSiblings = (
   node: TreeNodeT,
@@ -68,10 +68,12 @@ export default class StatefulContainer extends React.Component<
   render() {
     const {children, ...restProps} = this.props;
     const {onToggle} = this;
-    return children({
-      ...restProps,
-      ...this.state,
-      onToggle,
-    });
+    return children(
+      Object.freeze({
+        ...restProps,
+        ...this.state,
+        onToggle,
+      }),
+    );
   }
 }

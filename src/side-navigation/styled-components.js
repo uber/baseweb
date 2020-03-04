@@ -59,32 +59,33 @@ export const StyledNavItemElement = styled<SharedPropsT>('div', props => {
     $theme: {colors, sizing},
   } = props;
   const bgImgGradient = hexToRgb(colors.backgroundPrimary, '0.92') || '';
+  const borderWidthDir: string =
+    $theme.direction === 'rtl' ? 'borderRightWidth' : 'borderLeftWidth';
+  const borderStyleDir: string =
+    $theme.direction === 'rtl' ? 'borderRightStyle' : 'borderLeftStyle';
+  const borderColorDir: string =
+    $theme.direction === 'rtl' ? 'borderRightColor' : 'borderLeftColor';
+  const paddingPrefixDir: string =
+    $theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
+  const paddingSuffixDir: string =
+    $theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
+
   return ({
     backgroundColor: $active ? colors.backgroundInversePrimary : 'transparent',
     backgroundImage: $active
       ? `linear-gradient(0deg, ${bgImgGradient}, ${bgImgGradient})`
       : null,
     boxSizing: 'border-box',
-    [$theme.direction === 'rtl'
-      ? 'borderRightWidth'
-      : 'borderLeftWidth']: '4px',
-    [$theme.direction === 'rtl'
-      ? 'borderRightStyle'
-      : 'borderLeftStyle']: 'solid',
-    [$theme.direction === 'rtl'
-      ? 'borderRightColor'
-      : 'borderLeftColor']: $active ? colors.primary : 'transparent',
+    [borderWidthDir]: '4px',
+    [borderStyleDir]: 'solid',
+    [borderColorDir]: $active ? colors.primary : 'transparent',
     color: $active ? colors.primary : null,
     cursor: $selectable ? 'pointer' : 'default',
 
     paddingTop: sizing.scale500,
     paddingBottom: sizing.scale500,
-    [$theme.direction === 'rtl'
-      ? 'paddingRight'
-      : 'paddingLeft']: `calc(${sizing.scale800} * ${$level})`,
-    [$theme.direction === 'rtl'
-      ? 'paddingLeft'
-      : 'paddingRight']: sizing.scale500,
+    [paddingPrefixDir]: `calc(${sizing.scale800} * ${$level})`,
+    [paddingSuffixDir]: sizing.scale500,
     ':hover': {
       color: $selectable ? colors.primary : null,
     },

@@ -30,7 +30,7 @@ export const flexGridItemMediaQueryStyle = ({
   flexGridRowGap: ScaleT,
   flexGridItemIndex: number,
   flexGridItemCount: number,
-}): StyleOverrideT => {
+}) => {
   // 0px needed for calc() to behave properly
   const colGap = $theme.sizing[flexGridColumnGap] || flexGridColumnGap || '0px';
   const colGapQuantity = parseFloat(colGap);
@@ -39,9 +39,9 @@ export const flexGridItemMediaQueryStyle = ({
   const rowGapQuantity = parseFloat(rowGap);
   const widthCalc = `(100% - ${(colCount - 1) *
     colGapQuantity}${colGapUnit}) / ${colCount}`;
-  const marginDirection =
+  const marginDirection: string =
     $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
-  return {
+  return Object.freeze({
     // Subtract .5px to avoid rounding issues on IE/Edge
     // See https://github.com/uber/baseweb/pull/1748
     width: `calc(${widthCalc} - .5px)`,
@@ -62,7 +62,7 @@ export const flexGridItemMediaQueryStyle = ({
             1} * (${colGap} + ${widthCalc}))`,
         }
       : {}),
-  };
+  });
 };
 
 export const getResponsiveValue = <T>(

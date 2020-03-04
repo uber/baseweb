@@ -2446,6 +2446,8 @@ exports[`Select component renders component in select mode and false for multipl
                                   "$$typeof": Symbol(react.forward_ref),
                                   "render": [Function],
                                 },
+                                "props": Object {},
+                                "style": Object {},
                               },
                             }
                           }
@@ -2475,6 +2477,8 @@ exports[`Select component renders component in select mode and false for multipl
                                     "$$typeof": Symbol(react.forward_ref),
                                     "render": [Function],
                                   },
+                                  "props": Object {},
+                                  "style": Object {},
                                 },
                               }
                             }
@@ -2497,6 +2501,7 @@ exports[`Select component renders component in select mode and false for multipl
                               $required={false}
                               $searchable={true}
                               $size={16}
+                              $style={Object {}}
                               $type="select"
                               data-baseweb="icon"
                               viewBox="0 0 24 24"
@@ -2516,6 +2521,7 @@ exports[`Select component renders component in select mode and false for multipl
                                 $required={false}
                                 $searchable={true}
                                 $size={16}
+                                $style={Object {}}
                                 $type="select"
                                 data-baseweb="icon"
                                 forwardedRef={null}
@@ -3311,6 +3317,8 @@ exports[`Select component renders component in select mode and true for multiple
                                   "$$typeof": Symbol(react.forward_ref),
                                   "render": [Function],
                                 },
+                                "props": Object {},
+                                "style": Object {},
                               },
                             }
                           }
@@ -3340,6 +3348,8 @@ exports[`Select component renders component in select mode and true for multiple
                                     "$$typeof": Symbol(react.forward_ref),
                                     "render": [Function],
                                   },
+                                  "props": Object {},
+                                  "style": Object {},
                                 },
                               }
                             }
@@ -3362,6 +3372,7 @@ exports[`Select component renders component in select mode and true for multiple
                               $required={false}
                               $searchable={true}
                               $size={16}
+                              $style={Object {}}
                               $type="select"
                               data-baseweb="icon"
                               viewBox="0 0 24 24"
@@ -3381,6 +3392,7 @@ exports[`Select component renders component in select mode and true for multiple
                                 $required={false}
                                 $searchable={true}
                                 $size={16}
+                                $style={Object {}}
                                 $type="select"
                                 data-baseweb="icon"
                                 forwardedRef={null}
