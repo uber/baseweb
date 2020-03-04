@@ -33,7 +33,7 @@ describe('data table initial filters', () => {
     expect(before.length).toBe(0);
 
     const tag = await page.$('span[data-baseweb="tag"]');
-    const closeTagButton = await tag.$('span[role="button"]');
+    const closeTagButton = await tag.$('span[role="presentation"]');
     await closeTagButton.click();
 
     const after = await page.$$('li[data-log="remove"]');
@@ -48,7 +48,7 @@ describe('data table initial filters', () => {
     expect(before.length).toBe(0);
 
     const tag = await page.$('span[data-baseweb="tag"]');
-    const closeTagButton = await tag.$('span[role="button"]');
+    const closeTagButton = await tag.$('span[role="presentation"]');
     await closeTagButton.click();
 
     const popover = await openFilterAtIndex(page, 0);

@@ -23,14 +23,15 @@ exports[`Stateless tag should render component: Component has correct render 1`]
     $isHovered={false}
     $kind="primary"
     $variant="light"
-    aria-label="button"
+    aria-disabled={null}
+    aria-label="Some tag, close by backspace"
     data-baseweb="tag"
     onBlur={[Function]}
     onClick={null}
     onFocus={[Function]}
     onKeyDown={[Function]}
     role="button"
-    tabIndex={null}
+    tabIndex={0}
   >
     <MockStyledComponent
       $clickable={false}
@@ -41,7 +42,8 @@ exports[`Stateless tag should render component: Component has correct render 1`]
       $isHovered={false}
       $kind="primary"
       $variant="light"
-      aria-label="button"
+      aria-disabled={null}
+      aria-label="Some tag, close by backspace"
       data-baseweb="tag"
       forwardedRef={null}
       onBlur={[Function]}
@@ -49,10 +51,11 @@ exports[`Stateless tag should render component: Component has correct render 1`]
       onFocus={[Function]}
       onKeyDown={[Function]}
       role="button"
-      tabIndex={null}
+      tabIndex={0}
     >
       <span
-        aria-label="button"
+        aria-disabled={null}
+        aria-label="Some tag, close by backspace"
         data-baseweb="tag"
         onBlur={[Function]}
         onClick={null}
@@ -60,10 +63,12 @@ exports[`Stateless tag should render component: Component has correct render 1`]
         onKeyDown={[Function]}
         role="button"
         styled-component="true"
-        tabIndex={null}
+        tabIndex={0}
         test-style={
           Object {
-            ":focus": Object {},
+            ":focus": Object {
+              "boxShadow": "none",
+            },
             ":hover": Object {},
             "alignItems": "center",
             "backgroundColor": "$theme.colors.tagPrimaryLightBackground",
@@ -128,11 +133,9 @@ exports[`Stateless tag should render component: Component has correct render 1`]
           $isHovered={false}
           $kind="primary"
           $variant="light"
-          aria-label="close button"
+          aria-hidden={true}
           onClick={[Function]}
-          onKeyDown={[Function]}
-          role="button"
-          tabIndex={0}
+          role="presentation"
         >
           <MockStyledComponent
             $clickable={false}
@@ -143,25 +146,18 @@ exports[`Stateless tag should render component: Component has correct render 1`]
             $isHovered={false}
             $kind="primary"
             $variant="light"
-            aria-label="close button"
+            aria-hidden={true}
             forwardedRef={null}
             onClick={[Function]}
-            onKeyDown={[Function]}
-            role="button"
-            tabIndex={0}
+            role="presentation"
           >
             <span
-              aria-label="close button"
+              aria-hidden={true}
               onClick={[Function]}
-              onKeyDown={[Function]}
-              role="button"
+              role="presentation"
               styled-component="true"
-              tabIndex={0}
               test-style={
                 Object {
-                  ":focus": Object {
-                    "boxShadow": "none",
-                  },
                   ":hover": Object {
                     "backgroundColor": "$theme.colors.tagPrimaryLightActive",
                     "color": "$theme.colors.tagPrimaryLightFontHover",
