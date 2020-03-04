@@ -2,7 +2,7 @@
 import * as React from 'react';
 import {ProgressBar} from 'baseui/progress-bar';
 
-const SUCCESS_VALUE = 100;
+const MAX_MB_VALUE = 1000;
 
 // https://overreacted.io/making-setinterval-declarative-with-react-hooks/
 function useInterval(callback: () => void, delay: number | null) {
@@ -28,7 +28,7 @@ function useInterval(callback: () => void, delay: number | null) {
 export default () => {
   const [value, setValue] = React.useState(0);
   useInterval(() => {
-    if (value < SUCCESS_VALUE) {
+    if (value < 100) {
       setValue(value + 10);
     } else {
       setValue(0);
@@ -38,9 +38,9 @@ export default () => {
   return (
     <ProgressBar
       value={value}
-      successValue={SUCCESS_VALUE}
-      getProgressLabel={(currentValue, successValue) =>
-        `${currentValue}mb out of ${successValue}mb downloaded`
+      getProgressLabel={value =>
+        `${(MAX_MB_VALUE / 100) *
+          value}mb out of ${MAX_MB_VALUE}mb downloaded`
       }
       showLabel
     />

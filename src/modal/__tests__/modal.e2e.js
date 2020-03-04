@@ -19,6 +19,7 @@ const selectors = {
   selectDropDown: '[role="listbox"]',
   selectedList: '[data-id="selected"]',
   dropDownOption: '[role="option"]',
+  backdrop: '[data-e2e="backdrop"]',
 };
 
 const optionAtPosition = position =>
@@ -92,6 +93,27 @@ describe('modal', () => {
       select => select.textContent,
     );
     expect(selectedValue).toBe('AliceBlue');
+  });
+
+  it('closes one layer at a time on click outside', async () => {
+    await mount(page, 'modal-select');
+    await page.waitFor(selectors.dialog);
+
+    await page.click(selectors.selectInput);
+    await page.waitFor(selectors.selectDropDown);
+
+    // clicking outside of the modal content
+    // and outside the select dropdown
+    await page.click(selectors.openModal);
+    await page.waitFor(selectors.selectDropDown, {
+      hidden: true,
+    });
+    await page.waitFor(selectors.dialog);
+
+    await page.click(selectors.openModal);
+    await page.waitFor(selectors.dialog, {
+      hidden: true,
+    });
   });
 
   it('closes one popover at a time on esc key press', async () => {

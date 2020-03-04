@@ -13,7 +13,10 @@ export type TreeLabelOverridesT = {
   IconContainer?: OverrideT<{}>,
   ExpandIcon?: OverrideT<{}>,
   CollapseIcon?: OverrideT<{}>,
+  LeafIconContainer?: OverrideT<{}>,
+  LeafIcon?: OverrideT<{}>,
 };
+
 export type TreeViewOverridesT = {
   ...TreeLabelOverridesT,
   Root?: OverrideT<{}>,
@@ -64,6 +67,7 @@ export type TreeNodePropsT = {
   selectedNodeId?: TreeNodeIdT,
   addRef: (id: TreeNodeIdT, ref: React.ElementRef<*>) => mixed,
   isFocusVisible?: boolean,
+  indentGuides?: boolean,
 };
 
 export type StatefulContainerPropsT = {
@@ -73,6 +77,7 @@ export type StatefulContainerPropsT = {
 
 export type TreeViewPropsT = {|
   data: TreeNodeT[],
+  indentGuides?: boolean,
   onToggle?: (node: TreeNodeT) => void,
   overrides?: TreeViewOverridesT,
   renderAll?: boolean,
