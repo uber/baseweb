@@ -1,8 +1,6 @@
 import * as React from 'react';
 import {ProgressBar} from 'baseui/progress-bar';
 
-const SUCCESS_VALUE = 100;
-
 // https://overreacted.io/making-setinterval-declarative-with-react-hooks/
 function useInterval(callback: () => void, delay: number | null) {
   const savedCallback = React.useRef(() => {});
@@ -27,7 +25,7 @@ function useInterval(callback: () => void, delay: number | null) {
 export default () => {
   const [value, setValue] = React.useState(0);
   useInterval(() => {
-    if (value < SUCCESS_VALUE) {
+    if (value < 100) {
       setValue(value + 10);
     } else {
       setValue(0);
@@ -37,7 +35,6 @@ export default () => {
   return (
     <ProgressBar
       value={value}
-      successValue={SUCCESS_VALUE}
       overrides={{
         BarProgress: {
           style: ({$theme, $value}) => {
