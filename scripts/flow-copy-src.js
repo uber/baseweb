@@ -12,7 +12,6 @@ LICENSE file in the root directory of this source tree.
 
 const fs = require('fs').promises;
 const path = require('path');
-const babel = require('@babel/core');
 const glob = require('glob');
 
 const src = path.resolve(__dirname, '../src');
