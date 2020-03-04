@@ -57,11 +57,26 @@ export default class StatefulPhoneInputContainer extends React.Component<
   };
 
   render() {
-    const {children, initialState, stateReducer, ...restProps} = this.props;
-    return children({
+    return this.props.children({
       ...defaultProps,
-      ...restProps,
-      ...this.state,
+      'aria-label': this.props['aria-label'],
+      'aria-labelledby': this.props['aria-labelledby'],
+      'aria-describedby': this.props['aria-describedby'],
+      disabled: this.props.disabled,
+      error: this.props.error,
+      id: this.props.id,
+      maxDropdownHeight: this.props.maxDropdownHeight,
+      maxDropdownWidth: this.props.maxDropdownWidth,
+      mapIsoToLabel: this.props.mapIsoToLabel,
+      name: this.props.name,
+      overrides: this.props.overrides,
+      placeholder: this.props.placeholder,
+      positive: this.props.positive,
+      required: this.props.required,
+      size: this.props.size,
+      clearable: this.props.clearable,
+      country: this.state.country,
+      text: this.state.text,
       onTextChange: this.onTextChange,
       onCountryChange: this.onCountryChange,
     });

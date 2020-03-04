@@ -62,7 +62,7 @@ class StatefulRadioGroupContainer extends React.Component<
     const {onChange} = this;
     return children({
       ...restProps,
-      ...this.state,
+      value: this.state.value,
       onChange,
     });
   }

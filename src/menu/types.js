@@ -58,13 +58,15 @@ export type RenderItemPropsT = {
   isFocused?: boolean,
   // indicates when the item is visually focused
   isHighlighted?: boolean,
+  onClick?: (event: SyntheticMouseEvent<HTMLElement>) => mixed,
+  onMouseEnter?: (event: SyntheticMouseEvent<HTMLElement>) => mixed,
   resetMenu?: () => mixed,
 };
 
 export type GetRequiredItemPropsFnT = (
   item: ItemT,
   index: number,
-) => RenderItemPropsT;
+) => $Shape<RenderItemPropsT>;
 
 export type StateReducerFnT = (
   changeType: ?$Keys<typeof STATE_CHANGE_TYPES>,

@@ -40,15 +40,18 @@ export default function Grid({
       {...overrideProps}
     >
       {React.Children.map(children, child => {
-        return (
-          <Cell
-            gridColumns={gridColumns}
-            gridGaps={gridGaps}
-            gridGutters={gridGutters}
-            gridUnit={gridUnit}
-            {...child.props}
-          />
-        );
+        if (child) {
+          return (
+            <Cell
+              gridColumns={gridColumns}
+              gridGaps={gridGaps}
+              gridGutters={gridGutters}
+              gridUnit={gridUnit}
+              {...child.props}
+            />
+          );
+        }
+        return null;
       })}
     </StyledGrid>
   );
