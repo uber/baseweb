@@ -41,6 +41,14 @@ const TreeViewConfig: TConfig = {
           }
         ]
       },
+      {
+        id: 13,
+        label: 'Silvia',
+      },
+      {
+        id: 14,
+        label: 'Julia',
+      },
     ]
   },
   {
@@ -72,6 +80,17 @@ const TreeViewConfig: TConfig = {
       stateful: true,
       hidden: true,
     },
+    getId: {
+      value: undefined,
+      type: PropTypes.Function,
+      placeholder: 'node => node.id',
+      description: `Let's you set a custom mapping node => id function.`,
+    },
+    indentGuides: {
+      value: false,
+      type: PropTypes.Boolean,
+      description: 'Displays indent guides',
+    },
     onToggle: {
       value:
         'node => {\n  setData(prevData => toggleIsExpanded(prevData, node))\n}',
@@ -83,17 +102,6 @@ const TreeViewConfig: TConfig = {
       type: PropTypes.Boolean,
       description:
         'Renders all tab content for SEO purposes regardless of tab active state.',
-    },
-    indentGuides: {
-      value: false,
-      type: PropTypes.Boolean,
-      description: 'Displays indent guides',
-    },
-    getId: {
-      value: undefined,
-      type: PropTypes.Function,
-      placeholder: 'node => node.id',
-      description: `Let's you set a custom mapping node => id function.`,
     },
     overrides: {
       value: undefined,
