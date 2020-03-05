@@ -14,11 +14,6 @@ export function useCellNavigation() {
   const [rowIndex, setRowIndex] = React.useState(0);
   const [focusCoords, setFocusCoords] = React.useState([-1, -1]);
 
-  const initialAddressableCoordinates = [0, 0];
-  const [addressableCoordinates, setAddressableCoodinates] = React.useState(
-    initialAddressableCoordinates,
-  );
-
   function cellAtCoordinates(column, row) {
     const candidateRow = cells.current[row];
     if (candidateRow) {
@@ -52,6 +47,7 @@ export function useCellNavigation() {
       row >= 0 &&
       row < cells.current.length &&
       column >= 0 &&
+      cells.current[0] &&
       column < cells.current[0].length
     );
   }
