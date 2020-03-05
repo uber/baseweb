@@ -10,8 +10,9 @@ import { Block, BlockPropsT } from '../block/index';
 import { flattenFragments } from '../helpers/react-helpers';
 import { getOverrides } from '../helpers/overrides';
 import type { FlexGridPropsT } from './types';
+import type { ComponentProps } from 'react';
 
-export const BaseFlexGrid = React.forwardRef<HTMLElement, BlockPropsT>(
+export const BaseFlexGrid = React.forwardRef<HTMLElement, ComponentProps<typeof Block>>(
   ({ display, flexWrap, ...restProps }, ref) => (
     //$FlowFixMe
     <Block
@@ -25,7 +26,9 @@ export const BaseFlexGrid = React.forwardRef<HTMLElement, BlockPropsT>(
 );
 BaseFlexGrid.displayName = 'BaseFlexGrid';
 
-const FlexGrid: React.FC<FlexGridPropsT & { forwardedRef: React.Ref<HTMLElement> }> = ({
+const FlexGrid: React.FC<
+  ComponentProps<typeof BaseFlexGrid> & FlexGridPropsT & { forwardedRef: React.Ref<HTMLElement> }
+> = ({
   forwardedRef,
   children,
   as,
