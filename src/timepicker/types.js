@@ -15,7 +15,7 @@ export type TimePickerPropsT = {
   /** Render options in AM/PM format or 24 hour format. Defaults to 12 hour. */
   format?: '12' | '24',
   /** Callback for when time selection changes. */
-  onChange?: Date => mixed,
+  onChange?: DateT => mixed,
   overrides?: {
     Select?: OverrideT<*>,
   },

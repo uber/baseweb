@@ -25,6 +25,7 @@ import {Datepicker} from '../datepicker/index.js';
 import {TimePicker} from '../timepicker/index.js';
 import {useStyletron} from '../styles/index.js';
 import {Select, type ValueT} from '../select/index.js';
+import {DateUtilsContext} from '../datepicker/utils/date-utils-provider.js';
 
 import CellShell from './cell-shell.js';
 import {COLUMNS, DATETIME_OPERATIONS} from './constants.js';
@@ -243,6 +244,8 @@ function DatetimeFilter(props) {
     initialState.weekdays,
   );
 
+  const {utils} = React.useContext(DateUtilsContext);
+
   const isRange = comparatorIndex === 0;
   const isCategorical = comparatorIndex === 1;
 
@@ -397,7 +400,7 @@ function DatetimeFilter(props) {
                     value={rangeDates[0]}
                     onChange={time =>
                       setRangeDates([
-                        applyTimeToDate(rangeDates[0], time),
+                        applyTimeToDate(rangeDates[0], utils.toJsDate(time)),
                         rangeDates[1],
                       ])
                     }
@@ -417,7 +420,7 @@ function DatetimeFilter(props) {
                     onChange={time => {
                       setRangeDates([
                         rangeDates[0],
-                        applyTimeToDate(rangeDates[1], time),
+                        applyTimeToDate(rangeDates[1], utils.toJsDate(time)),
                       ]);
                     }}
                     creatable
