@@ -77,6 +77,10 @@ export type DateUtilsT = {
   getMeridiemText(ampm: 'am' | 'pm'): string,
 };
 
+export type DateUtilsContextT = {
+  utils: DateUtilsT,
+};
+
 export type DateFormatsT = {
   /** Localized full date, useful for accessibility @example "January 1st, 2019" */
   fullDate: string,
