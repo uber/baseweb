@@ -150,15 +150,33 @@ export default class TableBuilder<T> extends React.Component<
 
       switch (col.id === sortColumn && sortOrder) {
         case 'ASC':
-          sortIcon = <SortAscIcon {...sortAscIconProps} />;
+          sortIcon = (
+            <SortAscIcon
+              aria-hidden={true}
+              role="presentation"
+              {...sortAscIconProps}
+            />
+          );
           sortLabel = 'ascending sorting';
           break;
         case 'DESC':
-          sortIcon = <SortDescIcon {...sortDescIconProps} />;
+          sortIcon = (
+            <SortDescIcon
+              aria-hidden={true}
+              role="presentation"
+              {...sortDescIconProps}
+            />
+          );
           sortLabel = 'descending sorting';
           break;
         default:
-          sortIcon = <SortNoneIcon {...sortNoneIconProps} />;
+          sortIcon = (
+            <SortNoneIcon
+              aria-hidden={true}
+              role="presentation"
+              {...sortNoneIconProps}
+            />
+          );
           break;
       }
 
