@@ -415,12 +415,10 @@ function DatetimeFilter(props) {
                     format="24"
                     value={rangeDates[1]}
                     onChange={time => {
-                      if (time instanceof Date) {
-                        setRangeDates([
-                          rangeDates[0],
-                          applyTimeToDate(rangeDates[1], time),
-                        ]);
-                      }
+                      setRangeDates([
+                        rangeDates[0],
+                        applyTimeToDate(rangeDates[1], time),
+                      ]);
                     }}
                     creatable
                     size="compact"
