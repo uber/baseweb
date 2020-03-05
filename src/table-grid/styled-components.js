@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {withStyle} from '../styles/index.js';
+import {withWrapper} from '../styles/styled.js';
 import {
   StyledTable as FlexStyledTable,
   StyledHeadCell as FlexStyledHeadCell,
@@ -15,7 +16,6 @@ import {
   SORT_DIRECTION,
   SortableHeadCellFactory,
 } from '../table/index.js';
-import type {StyletronComponent} from '../styles/styled.js';
 
 const StyledTableElement = withStyle<
   typeof FlexStyledTable,
@@ -28,21 +28,15 @@ const StyledTableElement = withStyle<
   };
 });
 
-// eslint-disable-next-line flowtype/no-weak-types
-export const StyledTable = ((React.forwardRef<{}, any>((props, ref) => {
-  return (
-    //$FlowFixMe
-    <StyledTableElement
-      ref={ref}
-      data-baseweb="table-grid"
-      role="grid"
-      {...props}
-    />
-  );
-  // eslint-disable-next-line flowtype/no-weak-types
-}): any): StyletronComponent<{}>);
-StyledTable.__STYLETRON__ = StyledTableElement.__STYLETRON__;
-StyledTable.displayName = 'StyledTable';
+export const StyledTable = withWrapper(
+  StyledTableElement,
+  StyledComponent =>
+    function StyledTable(props) {
+      return (
+        <StyledComponent data-baseweb="table-grid" role="grid" {...props} />
+      );
+    },
+);
 
 export const StyledHeadCell = withStyle<
   typeof FlexStyledHeadCell,
