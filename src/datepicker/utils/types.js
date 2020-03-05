@@ -127,20 +127,3 @@ export type DateFormatsT = {
   /** Not localized keyboard input friendly date/time 24h format @example "2019/01/01 11:44 PM" */
   keyboardDateTime24h: string,
 };
-
-export type DateFnsAdapterInputT = {
-  // eslint-disable-next-line flowtype/no-weak-types
-  locale?: any,
-  formats?: DateFormatsT,
-};
-
-export type MomentAdapterInputT = {
-  locale: string,
-  instance?: moment$Moment,
-  // eslint-disable-next-line flowtype/no-weak-types
-  formats?: DateFormatsT,
-};
-
-export type AdapterInputT = DateFnsAdapterInputT | MomentAdapterInputT;
-
-export type AdapterT = (input?: AdapterInputT) => DateUtilsT;

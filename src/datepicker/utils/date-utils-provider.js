@@ -15,9 +15,11 @@ export const DateUtilsContext: React.Context<DateUtilsT> = React.createContext(
   baseInstance,
 );
 
-const DateUtilsProvider = (props: {utils: AdapterT, children: ?React.Node}) => {
-  const {utils: Utils, children} = props;
-  const utilsInstance = React.useMemo(() => new Utils(), [Utils]);
+const DateUtilsProvider = (props: {
+  utilsInstance: DateUtilsT,
+  children: ?React.Node,
+}) => {
+  const {utilsInstance = baseInstance, children} = props;
   return (
     <DateUtilsContext.Provider value={utilsInstance}>
       {children}
