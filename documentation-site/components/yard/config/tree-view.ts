@@ -1,16 +1,16 @@
-import {Unstable_TreeView, toggleIsExpanded} from 'baseui/tree-view';
+import {TreeView, toggleIsExpanded} from 'baseui/tree-view';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
 const treeViewProps = require('!!extract-react-types-loader!../../../../src/tree-view/tree-view.js');
 
 const TreeViewConfig: TConfig = {
-  componentName: 'Unstable_TreeView',
+  componentName: 'TreeView',
   imports: {
-    'baseui/tree-view': {named: ['Unstable_TreeView', 'toggleIsExpanded']},
+    'baseui/tree-view': {named: ['TreeView', 'toggleIsExpanded']},
   },
   scope: {
-    Unstable_TreeView,
+    TreeView,
     toggleIsExpanded,
   },
   theme: [],
@@ -19,24 +19,59 @@ const TreeViewConfig: TConfig = {
       value: `[
   {
     id: 1,
-    label: 'Projects',
+    label: 'The Two Gentlemen of Verona',
     isExpanded: true,
     children: [
       {
-        id: 2,
-        label: 'project-1.docx',
-      }
+        id: 11,
+        label: 'Duke of Milan',
+      },
+      {
+        id: 12,
+        label: 'Two Gentleman',
+        isExpanded: true,
+        children: [
+          {
+            id: 121,
+            label: 'Valentine',
+          },
+          {
+            id: 122,
+            label: 'Proteus',
+          }
+        ]
+      },
+      {
+        id: 13,
+        label: 'Silvia',
+      },
+      {
+        id: 14,
+        label: 'Julia',
+      },
     ]
   },
   {
-    id: 3,
-    label: 'Reports',
+    id: 2,
+    label: 'The Tempest',
     isExpanded: false,
     children: [
       {
-        id: 4,
-        label: 'report-1.docx',
-      }
+        id: 21,
+        label: 'Alonso',
+      },
+      {
+        id: 22,
+        label: 'Sebastian',
+      },
+      {
+        id: 23,
+        label: 'Prospero',
+      },
+      {
+        id: 24,
+        label: 'Antonio',
+      },
     ]
   },
 ]`,
@@ -44,6 +79,17 @@ const TreeViewConfig: TConfig = {
       description: 'Tree View data structure.',
       stateful: true,
       hidden: true,
+    },
+    getId: {
+      value: undefined,
+      type: PropTypes.Function,
+      placeholder: 'node => node.id',
+      description: `Let's you set a custom mapping node => id function.`,
+    },
+    indentGuides: {
+      value: false,
+      type: PropTypes.Boolean,
+      description: 'Displays indent guides',
     },
     onToggle: {
       value:
@@ -56,17 +102,6 @@ const TreeViewConfig: TConfig = {
       type: PropTypes.Boolean,
       description:
         'Renders all tab content for SEO purposes regardless of tab active state.',
-    },
-    indentGuides: {
-      value: false,
-      type: PropTypes.Boolean,
-      description: 'Displays indent guides',
-    },
-    getId: {
-      value: undefined,
-      type: PropTypes.Function,
-      placeholder: 'node => node.id',
-      description: `Let's you set a custom mapping node => id function.`,
     },
     overrides: {
       value: undefined,
@@ -105,7 +140,7 @@ const TreeViewConfig: TConfig = {
     },
   },
   mapTokensToProps: {
-    Unstable_TreeView: treeViewProps,
+    TreeView: treeViewProps,
   },
 };
 

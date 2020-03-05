@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
-import UnstableWarning from '../../components/unstable-warning';
 
 import TreeViewBasic from 'examples/tree-view/basic.js';
 import TreeViewUncontrolled from 'examples/tree-view/uncontrolled.js';
@@ -27,36 +26,42 @@ export default Layout;
 
 # Tree View
 
-<UnstableWarning />
-
 <Yard placeholderHeight={134} {...treeviewYardConfig} />
+
+The TreeView is used to display a hierarchical list of items.
 
 ## Examples
 
-<Example title="Basic Tree View Usage" path="tree-view/basic.js">
+<Example title="Basic usage" path="tree-view/basic.js">
   <TreeViewBasic />
 </Example>
 
-<Example title="Custom labels Usage" path="tree-view/custom-label.js">
+<Example title="Adding custom labels" path="tree-view/custom-label.js">
   <CustomLabelledTreeView />
 </Example>
 
 <Example
-  title="Simple Overrides Usage with renderAll"
+  title="Customizing icons and rendering all content for SEO"
   path="tree-view/overrides.js"
 >
   <TreeViewOverrides />
 </Example>
 
-<Example title="Advanced Overrides Usage" path="tree-view/label-overrides.js">
+<Example
+  title="Customizing labels based on depth"
+  path="tree-view/label-overrides.js"
+>
   <TreeViewLabelOverrides />
 </Example>
 
-<Example title="Single Expanded Node" path="tree-view/single-expanded.js">
+<Example
+  title="Expanding a single node at a time with indent guides"
+  path="tree-view/single-expanded.js"
+>
   <SingleExpanded />
 </Example>
 
-<Example title="Uncontrolled Tree View Usage" path="tree-view/uncontrolled.js">
+<Example title="Stateful (uncontrolled) usage" path="tree-view/uncontrolled.js">
   <TreeViewUncontrolled />
 </Example>
 

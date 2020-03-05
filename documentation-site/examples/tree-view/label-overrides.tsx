@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-  Unstable_TreeView as TreeView,
+  TreeView,
   TreeLabel,
   TreeNode,
   TreeLabelProps,
