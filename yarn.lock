@@ -1861,6 +1861,13 @@
   dependencies:
     "@date-io/core" "^2.4.0"
 
+"@date-io/moment@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@date-io/moment/-/moment-2.4.0.tgz#84612f4cf175ec8093c43a6b6176f874d2d1f007"
+  integrity sha512-857C9idmZGpD8NygxQsOXPa3OePC6UFAhU996dCUv8cY17p1tkjgj7/JZ3J7PTV2i8ybeUDUD/tAadACEtI05g==
+  dependencies:
+    "@date-io/core" "^2.4.0"
+
 "@emotion/cache@^10.0.15":
   version "10.0.15"
   resolved "https://registry.yarnpkg.com/@emotion/cache/-/cache-10.0.15.tgz#b81767b48015aae2689c60373992145c67b8de02"

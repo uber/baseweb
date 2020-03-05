@@ -6,14 +6,20 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 // eslint-disable-next-line import/extensions
 import startOfDay from 'date-fns/startOfDay';
+import {DateUtilsContext} from '../../datepicker/utils/date-utils-provider.js';
 
 import {TimePicker} from '../index.js';
 import {SIZE} from '../../input/index.js';
+import {DateUtilsProvider} from '../../index.js';
+import MomentUtils from '@date-io/moment';
+import moment from 'moment';
+const momentUtilsInstance = new MomentUtils();
 
 const MIDNIGHT = startOfDay(new Date(2019, 3, 19));
+const MOMENT_MIDNIGHT = moment(MIDNIGHT);
 const OFF_STEP_TIME = new Date(2019, 3, 19, 1, 11);
 const overrides = {
   Select: {
@@ -29,6 +35,8 @@ const Controlled = ({
   ...restProps
 }) => {
   const [time, setTime] = useState(initialDate);
+  const {utils} = useContext(DateUtilsContext);
+  const {getHours, getMinutes} = utils;
   return (
     <React.Fragment>
       <TimePicker
@@ -42,8 +50,8 @@ const Controlled = ({
         size={size}
         {...restProps}
       />
-      <p data-e2e="hours">hour: {time ? time.getHours() : 'null'}</p>
-      <p data-e2e="minutes">minute: {time ? time.getMinutes() : 'null'}</p>
+      <p data-e2e="hours">hour: {time ? getHours(time) : 'null'}</p>
+      <p data-e2e="minutes">minute: {time ? getMinutes(time) : 'null'}</p>
     </React.Fragment>
   );
 };
@@ -88,6 +96,12 @@ export default function Scenario() {
           nullable
           placeholder="XX:YY"
         />
+      </div>
+      <div data-e2e="24-hour-moment">
+        24 hour format(moment)
+        <DateUtilsProvider utilsInstance={momentUtilsInstance}>
+          <Controlled format="24" step={1800} initialDate={MOMENT_MIDNIGHT} />
+        </DateUtilsProvider>
       </div>
     </div>
   );

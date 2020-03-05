@@ -13,6 +13,7 @@ const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 const selectors = {
   twelveHour: '[data-e2e="12-hour"]',
   twentyFourHour: '[data-e2e="24-hour"]',
+  twentyFourHourMoment: '[data-e2e="24-hour-moment"]',
   twelveHourCreatable: '[data-e2e="12-hour-creatable"]',
   twentyFourHourCreatable: '[data-e2e="24-hour-creatable"]',
   hours: '[data-e2e="hours"]',
@@ -218,6 +219,38 @@ describe('TimePicker', () => {
       expect(options.length).toBe(1);
       const option1 = await page.evaluate(e => e.textContent, options[0]);
       expect(option1).toBe('00:15');
+    });
+  });
+  describe('when using moment', () => {
+    it('is renders expected 24 hour format times with custom step', async () => {
+      await mount(page, 'time-picker');
+      await page.waitFor(selectors.twentyFourHourMoment);
+      await page.click(`${selectors.twentyFourHourMoment} ${selectors.input}`);
+      await page.waitFor(selectors.dropdown);
+      await page.keyboard.press('ArrowDown');
+      await page.keyboard.press('ArrowDown');
+      await page.keyboard.press('ArrowDown');
+      await page.keyboard.press('ArrowDown');
+      await page.keyboard.press('Enter');
+
+      const value = await page.$eval(
+        `${selectors.twentyFourHourMoment} ${selectors.value}`,
+        select => select.textContent,
+      );
+
+      expect(value).toBe('02:00');
+
+      const hours = await page.$eval(
+        `${selectors.twentyFourHourMoment} ${selectors.hours}`,
+        select => select.textContent,
+      );
+      expect(hours).toBe('hour: 2');
+
+      const minutes = await page.$eval(
+        `${selectors.twentyFourHourMoment} ${selectors.minutes}`,
+        select => select.textContent,
+      );
+      expect(minutes).toBe('minute: 0');
     });
   });
 });
