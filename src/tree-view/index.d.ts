@@ -56,9 +56,9 @@ export interface TreeViewProps {
   singleExpanded?: boolean;
 }
 
-export const Unstable_TreeView: React.FC<TreeViewProps>;
+export const TreeView: React.FC<TreeViewProps>;
 
-export const Unstable_StatefulTreeView: React.FC<TreeViewProps>;
+export const StatefulTreeView: React.FC<TreeViewProps>;
 
 export const TreeLabel: React.FC<TreeLabelProps>;
 

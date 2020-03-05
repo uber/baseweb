@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Unstable_StatefulTreeView as StatefulTreeView} from 'baseui/tree-view';
+import {StatefulTreeView} from 'baseui/tree-view';
 
 const data = [
   {

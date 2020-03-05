@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import {
-  Unstable_TreeView as TreeView,
+  TreeView,
   type TreeNodeT,
   toggleIsExpanded,
 } from 'baseui/tree-view';
