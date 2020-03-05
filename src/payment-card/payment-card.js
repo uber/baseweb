@@ -76,8 +76,9 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
       ...restProps
     } = this.props;
 
+    const {IconWrapper: IconWrapperOverride, ...restOverrides} = overrides;
     const [IconWrapper, iconWrapperProps] = getOverrides(
-      overrides.IconWrapper,
+      IconWrapperOverride,
       StyledIconWrapper,
     );
 
@@ -116,10 +117,10 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
             aria-label={ariaLabel}
             data-baseweb="payment-card-input"
             inputMode="numeric"
-            overrides={{
-              ...overrides,
+            overrides={Object.freeze({
+              ...restOverrides,
               Before: getBeforeComponent(theme),
-            }}
+            })}
             onChange={e => {
               const [position, value] = getCaretPosition(
                 e.target.value,

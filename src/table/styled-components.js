@@ -69,6 +69,8 @@ StyledHead.displayName = 'StyledHead';
 const StyledHeadCellElement = styled<HorizontalStyleProps>(
   'div',
   ({$theme, $cursor}) => {
+    const borderDir: string =
+      $theme.direction === 'rtl' ? 'borderLeft' : 'borderRight';
     return {
       ...$theme.typography.font350,
       ...$theme.borders.border300,
@@ -85,7 +87,7 @@ const StyledHeadCellElement = styled<HorizontalStyleProps>(
       cursor: $cursor ? $cursor : 'inherit',
       width: '100%',
       ':last-of-type': {
-        [$theme.direction === 'rtl' ? 'borderLeft' : 'borderRight']: 'none',
+        [borderDir]: 'none',
       },
     };
   },

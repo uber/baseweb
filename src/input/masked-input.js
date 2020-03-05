@@ -75,14 +75,18 @@ export default function MaskedInput({
     styleOverride = inputOverride.style || {};
   }
 
+  if (typeof propsOverride === 'object') {
+    propsOverride = {
+      ...propsOverride,
+      mask: propsOverride.mask || mask,
+      maskChar: propsOverride.maskChar || maskChar,
+    };
+  }
+
   const nextOverrides = {
     Input: {
       component: componentOverride,
-      props: {
-        mask,
-        maskChar,
-        ...propsOverride,
-      },
+      props: propsOverride,
       style: styleOverride,
     },
     ...restOverrides,
