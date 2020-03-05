@@ -115,7 +115,10 @@ class Button extends React.Component<
             <div style={{opacity: 0, display: 'flex', height: '0px'}}>
               <ButtonInternals {...this.props} />
             </div>
-            <LoadingSpinnerContainer {...loadingSpinnerContainerProps}>
+            <LoadingSpinnerContainer
+              {...sharedProps}
+              {...loadingSpinnerContainerProps}
+            >
               <LoadingSpinner {...sharedProps} {...loadingSpinnerProps} />
             </LoadingSpinnerContainer>
           </React.Fragment>
