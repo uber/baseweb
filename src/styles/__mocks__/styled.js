@@ -5,18 +5,19 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+/* eslint-disable flowtype/no-weak-types */
 
 import * as React from 'react';
 import {getInitialStyle} from 'styletron-standard';
 import {LightTheme} from '../../themes/index.js';
 import createMockTheme from '../../test/create-mock-theme.js';
 import type {ThemeT} from '../../styles/types.js';
+import type {StyletronComponent} from '../styled.js';
 type ObjOrFnT = {} | (({}) => {});
 
 type PropsT = {
   $style?: ObjOrFnT,
   $theme?: ThemeT,
-  // eslint-disable-next-line flowtype/no-weak-types
   forwardedRef: any,
 };
 
@@ -26,7 +27,6 @@ const MOCK_THEME = createMockTheme(LightTheme);
 const IDENTITY = x => x;
 
 export function useStyletron() {
-  // eslint-disable-next-line flowtype/no-weak-types
   function css(styles: Object) {
     return {
       label: 'useStyletron mock describes the applied css properties',
@@ -103,3 +103,12 @@ export function styled(
 }
 
 export const withStyle = styled;
+
+export function withWrapper(
+  StyledElement: StyletronComponent<any>,
+  wrapperFn: (StyletronComponent<any>) => any => any,
+) {
+  return React.forwardRef<any, any>((props, ref) =>
+    wrapperFn(StyledElement)({ref: ref, ...props, $theme: MOCK_THEME}),
+  );
+}
