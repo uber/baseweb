@@ -16,6 +16,7 @@ import Basic from 'examples/table-grid/basic.js';
 import Nested from 'examples/table-grid/nested.js';
 import CellSpan from 'examples/table-grid/cell-span.js';
 import Sortable from 'examples/table-grid/sortable.js';
+import CellNavigation from 'examples/table-grid/cell-navigation.js';
 
 export default Layout;
 
@@ -44,6 +45,18 @@ with [flex-box](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Bo
 
 <Example title="Table with sorting by a column" path="table-grid/sortable.js">
   <Sortable />
+</Example>
+
+## Accessibility
+
+Tables should be navigatable by keyboard. The example below includes a useful react hook to apply arrow
+event handlers to cells.
+
+<Example
+  title="Accessible cell navigation"
+  path="table-grid/cell-navigation.js"
+>
+  <CellNavigation />
 </Example>
 
 ## API
