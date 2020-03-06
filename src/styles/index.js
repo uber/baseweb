@@ -12,9 +12,11 @@ export {
   createThemedStyled,
   createThemedWithStyle,
   createThemedUseStyletron,
+  createThemedWithWrapper,
   styled,
   withStyle,
   useStyletron,
+  withWrapper,
 } from './styled.js';
 export {hexToRgb} from './util.js';
 export {default as ThemeProvider} from './theme-provider.js';
