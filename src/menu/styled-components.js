@@ -6,9 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {styled} from '../styles/index.js';
+import {styled, withWrapper} from '../styles/index.js';
 import {OPTION_LIST_SIZE} from './constants.js';
-import {withWrapper} from '../styles/styled.js';
 
 type StyledPropsT = {
   $disabled?: boolean,

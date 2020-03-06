@@ -7,8 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {withStyle} from '../styles/index.js';
-import {withWrapper} from '../styles/styled.js';
+import {withStyle, withWrapper} from '../styles/index.js';
 import {
   StyledTable as FlexStyledTable,
   StyledHeadCell as FlexStyledHeadCell,

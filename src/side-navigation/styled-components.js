@@ -6,9 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {styled, hexToRgb} from '../styles/index.js';
+import {styled, hexToRgb, withWrapper} from '../styles/index.js';
 import type {SharedPropsT} from './types.js';
-import {withWrapper} from '../styles/styled.js';
 
 export const StyledRoot = styled<SharedPropsT>('nav', props => {
   const {
