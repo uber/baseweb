@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import valid from 'card-validator';
 
-export const addGaps = (gaps: number[], value: string) =>
+export const addGaps = (gaps: number[], value: string | number) =>
   gaps.reduce(
     (prev, gap, index) =>
       `${prev.slice(0, gap + index)} ${prev.slice(gap + index)}`.trim(),
@@ -30,9 +30,11 @@ export const sanitizeNumber = (input: string) => {
 
 export const getCaretPosition = (
   value: string,
-  prevValue: string,
+  prevValue: string | number,
   position: number,
 ) => {
+  // prevValue has to be a string, because we access the length of it
+  prevValue = String(prevValue);
   const cleanValue = sanitizeNumber(value);
   const validatedValue = valid.number(cleanValue);
 
