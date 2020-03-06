@@ -103,28 +103,24 @@ export function createThemedUseStyletron<Theme>(): UseStyletronFn<Theme> {
 
 export const useStyletron = createThemedUseStyletron<ThemeT>();
 
-export function createThemedWithWrapper() {
-  return function(
+export function withWrapper(
+  // eslint-disable-next-line flowtype/no-weak-types
+  StyledElement: StyletronComponent<any>,
+  wrapperFn: (
     // eslint-disable-next-line flowtype/no-weak-types
-    StyledElement: StyletronComponent<any>,
-    wrapperFn: (
-      // eslint-disable-next-line flowtype/no-weak-types
-      StyletronComponent<any>,
-      // eslint-disable-next-line flowtype/no-weak-types
-    ) => any => any,
-  ) {
+    StyletronComponent<any>,
     // eslint-disable-next-line flowtype/no-weak-types
-    return styletronWithWrapper<StyletronComponent<any>, any>(
-      StyledElement,
-      Styled => {
-        return React.forwardRef((props, ref) => (
-          <ThemeContext.Consumer>
-            {theme => wrapperFn(Styled)({ref: ref, ...props, $theme: theme})}
-          </ThemeContext.Consumer>
-        ));
-      },
-    );
-  };
+  ) => any => any,
+) {
+  // eslint-disable-next-line flowtype/no-weak-types
+  return styletronWithWrapper<StyletronComponent<any>, any>(
+    StyledElement,
+    Styled => {
+      return React.forwardRef((props, ref) => (
+        <ThemeContext.Consumer>
+          {theme => wrapperFn(Styled)({ref: ref, ...props, $theme: theme})}
+        </ThemeContext.Consumer>
+      ));
+    },
+  );
 }
-
-export const withWrapper = createThemedWithWrapper();

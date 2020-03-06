@@ -12,7 +12,6 @@ export {
   createThemedStyled,
   createThemedWithStyle,
   createThemedUseStyletron,
-  createThemedWithWrapper,
   styled,
   withStyle,
   useStyletron,
