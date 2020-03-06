@@ -43,7 +43,6 @@ import type {
 import {
   expandValue,
   normalizeOptions,
-  shouldShowValue,
   shouldShowPlaceholder,
 } from './utils/index.js';
 
@@ -114,15 +113,14 @@ class Select extends React.Component<PropsT, SelectStateT> {
   constructor(props: PropsT) {
     super(props);
     this.options = normalizeOptions(props.options);
+    this.state = {
+      activeDescendant: null,
+      inputValue: props.inputValue || '',
+      isFocused: false,
+      isOpen: this.props.startOpen,
+      isPseudoFocused: false,
+    };
   }
-
-  state = {
-    activeDescendant: null,
-    inputValue: '',
-    isFocused: false,
-    isOpen: this.props.startOpen,
-    isPseudoFocused: false,
-  };
 
   isMounted: boolean = false;
 
@@ -236,12 +234,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
       // focused. Call focus here again to ensure.
       this.focus();
 
-      // Case comes up when click outside does not reset input - once text has been provided to
-      // the input, and the user closes the dropdown menu the provided text is maintained. After
-      // this, if the user focuses back into the select component then clicks on the component,
-      // the provided text highlights rather than position's the cursor at the end of the input.
-      if (this.input) this.input.value = '';
-
       this.setState(prev => ({
         isOpen: !this.focusAfterClear && !prev.isOpen,
         isPseudoFocused: false,
@@ -256,17 +248,12 @@ class Select extends React.Component<PropsT, SelectStateT> {
 
   closeMenu() {
     if (this.props.onCloseResetsInput) {
-      this.setState({
-        inputValue: '',
-        isOpen: false,
-        isPseudoFocused: this.state.isFocused && !this.props.multi,
-      });
-    } else {
-      this.setState({
-        isOpen: false,
-        isPseudoFocused: this.state.isFocused && !this.props.multi,
-      });
+      this.setInputValue('');
     }
+    this.setState({
+      isOpen: false,
+      isPseudoFocused: this.state.isFocused && !this.props.multi,
+    });
   }
 
   handleInputFocus = (event: SyntheticEvent<HTMLElement>) => {
@@ -302,7 +289,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     };
 
     if (this.props.onBlurResetsInput) {
-      onBlurredState.inputValue = '';
+      this.setInputValue('');
     }
 
     if (this.isMounted) {
@@ -327,23 +314,34 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   };
 
-  handleInputChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
-    let newInputValue = event.target.value;
-    this.setState({
-      inputValue: newInputValue,
-      isOpen: true,
-      isPseudoFocused: false,
-    });
-    if (this.props.onInputChange) {
-      this.props.onInputChange(event);
+  setInputValue = (
+    value: string,
+    event?: SyntheticInputEvent<HTMLInputElement>,
+  ) => {
+    if (this.props.inputValue === undefined || this.props.inputValue === null) {
+      this.setState({inputValue: value});
     }
+
+    if (event) {
+      if (this.props.onInputChange) {
+        this.props.onInputChange(event);
+      }
+    }
+
+    if (this.props.onInputValueChange) {
+      this.props.onInputValueChange(value);
+    }
+  };
+
+  getInputValue = () => {
+    return this.props.inputValue || this.state.inputValue;
   };
 
   handleKeyDown = (event: KeyboardEvent) => {
     if (this.props.disabled) return;
     switch (event.keyCode) {
       case 8: // backspace
-        if (!this.state.inputValue && this.props.backspaceRemoves) {
+        if (!this.getInputValue() && this.props.backspaceRemoves) {
           event.preventDefault();
           this.popValue();
         }
@@ -356,12 +354,16 @@ class Select extends React.Component<PropsT, SelectStateT> {
         }
         break;
       case 9: // tab
-        this.setState(prevState => ({
-          isPseudoFocused: false,
-          isFocused: false,
-          isOpen: false,
-          inputValue: this.props.onCloseResetsInput ? '' : prevState.inputValue,
-        }));
+        if (this.props.onCloseResetsInput) {
+          this.setInputValue('');
+        }
+        this.setState(prevState => {
+          return {
+            isPseudoFocused: false,
+            isFocused: false,
+            isOpen: false,
+          };
+        });
         break;
       case 27: // escape
         if (
@@ -425,7 +427,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
         }
         break;
       case 46: // delete
-        if (!this.state.inputValue && this.props.deleteRemoves) {
+        if (!this.getInputValue() && this.props.deleteRemoves) {
           event.preventDefault();
           this.popValue();
         }
@@ -488,15 +490,14 @@ class Select extends React.Component<PropsT, SelectStateT> {
       return;
     }
     this.justSelected = true;
-    // NOTE: we add/set the value in a callback to make sure the
-    // input value is empty to avoid styling issues in Chrome
-    const updatedValue = this.props.onSelectResetsInput
-      ? ''
-      : this.state.inputValue;
+
+    if (this.props.onSelectResetsInput) {
+      this.setInputValue('');
+    }
+
     if (this.props.multi) {
       this.setState(
         {
-          inputValue: updatedValue,
           isOpen: !this.props.closeOnSelect,
         },
         () => {
@@ -516,7 +517,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
       this.focus();
       this.setState(
         {
-          inputValue: updatedValue,
           isOpen: !this.props.closeOnSelect,
           isFocused: true,
           isPseudoFocused: false,
@@ -565,10 +565,9 @@ class Select extends React.Component<PropsT, SelectStateT> {
       );
       this.setValue(resetValue, null, STATE_CHANGE_TYPE.clear);
     }
-    this.setState({
-      inputValue: '',
-      isOpen: false,
-    });
+
+    this.setInputValue('');
+    this.setState({isOpen: false});
 
     this.focus();
     this.focusAfterClear = true;
@@ -622,7 +621,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           </Value>
         );
       });
-    } else if (shouldShowValue(this.state, this.props)) {
+    } else if (!this.getInputValue()) {
       return (
         <Value
           value={valueArray[0][this.props.valueKey]}
@@ -643,13 +642,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
       StyledInputContainer,
     );
     const sharedProps = this.getSharedProps();
-    const isOpen = this.state.isOpen;
-    let value = this.state.inputValue;
-    if (value && !this.props.onSelectResetsInput && !this.state.isFocused) {
-      // It hides input value when it is not focused and was not reset on select
-      value = '';
-    }
-
     const selected = this.getValueArray(this.props.value)
       .map(v => v[this.props.labelKey])
       .join(', ');
@@ -660,7 +652,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       return (
         <InputContainer
           aria-activedescendant={this.state.activeDescendant}
-          aria-expanded={isOpen}
+          aria-expanded={this.state.isOpen}
           aria-disabled={this.props.disabled}
           aria-label={label}
           aria-labelledby={this.props['aria-labelledby']}
@@ -685,7 +677,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           aria-describedby={this.props['aria-describedby']}
           aria-errormessage={this.props['aria-errormessage']}
           aria-disabled={this.props.disabled || null}
-          aria-expanded={isOpen}
+          aria-expanded={this.state.isOpen}
           aria-haspopup="listbox"
           aria-label={label}
           aria-labelledby={this.props['aria-labelledby']}
@@ -694,12 +686,18 @@ class Select extends React.Component<PropsT, SelectStateT> {
           id={this.props.id || null}
           inputRef={ref => (this.input = ref)}
           onBlur={this.handleBlur}
-          onChange={this.handleInputChange}
+          onChange={event => {
+            this.setInputValue(event.target.value, event);
+            this.setState({
+              isOpen: true,
+              isPseudoFocused: false,
+            });
+          }}
           onFocus={this.handleInputFocus}
           overrides={{Input: overrides.Input}}
           required={(this.props.required && !this.props.value.length) || null}
           role="combobox"
-          value={value}
+          value={this.getInputValue()}
           tabIndex={0}
           {...sharedProps}
         />
@@ -814,7 +812,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
   }
 
   filterOptions(excludeOptions: ?ValueT) {
-    const filterValue = this.state.inputValue;
+    const filterValue = this.getInputValue();
     // apply filter function
     if (this.props.filterOptions) {
       this.options = this.props.filterOptions(

@@ -59,7 +59,7 @@ describe('Select component', function() {
     const select = wrapper.find(SelectComponent).first();
     const e = {target: {value: 'test'}};
     // $FlowFixMe
-    select.instance().handleInputChange(e);
+    select.instance().setInputValue(e.target.value, e);
     expect(props.onInputChange).toHaveBeenCalledWith(e);
   });
 

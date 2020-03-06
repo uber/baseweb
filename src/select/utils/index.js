@@ -14,19 +14,6 @@ import type {
   SelectStateT,
 } from '../types.js';
 
-export const shouldShowValue = (state: SelectStateT, props: $Shape<PropsT>) => {
-  const {inputValue, isPseudoFocused, isFocused} = state;
-  const {onSelectResetsInput} = props;
-  if (!inputValue) return true;
-  if (!onSelectResetsInput) {
-    return !(
-      (!isFocused && isPseudoFocused) ||
-      (isFocused && !isPseudoFocused)
-    );
-  }
-  return false;
-};
-
 export const shouldShowPlaceholder = (
   state: SelectStateT,
   props: $Shape<PropsT>,

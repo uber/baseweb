@@ -121,6 +121,8 @@ export type PropsT = {
   id?: string,
   /** Defines if the select is in a loading (async) state. */
   isLoading: boolean,
+  /** Optionally control the input element's value */
+  inputValue?: string,
   /** Defines an option key for a default label value. */
   labelKey: string,
   /** Sets max height of the dropdown list. */
@@ -135,7 +137,10 @@ export type PropsT = {
   /** change handler of the select to be called when a value is changed. */
   onChange: (params: OnChangeParamsT) => mixed,
   onFocus: (e: SyntheticEvent<HTMLElement>) => mixed,
+  /** Change handler attached to the input element. */
   onInputChange: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+  /** Called when inputValue field is changed in internal state. */
+  onInputValueChange?: string => mixed,
   /** Defines if the input value is reset to an empty string when dropdown is closed. */
   onCloseResetsInput: boolean,
   /** Defines if the input value is reset to an empty string when a selection is made. */

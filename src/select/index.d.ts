@@ -102,6 +102,7 @@ export interface SelectProps {
   }) => React.ReactNode;
   getValueLabel?: (args: {option: Option}) => React.ReactNode;
   id?: string;
+  inputValue?: string;
   isLoading?: boolean;
   labelKey?: string;
   startOpen?: boolean;
@@ -113,6 +114,7 @@ export interface SelectProps {
   onChange?: (params: OnChangeParams) => any;
   onFocus?: React.FocusEventHandler<HTMLElement>;
   onInputChange?: React.FormEventHandler<HTMLInputElement>;
+  onInputValueChange?: string => any;
   onCloseResetsInput?: boolean;
   onSelectResetsInput?: boolean;
   onOpen?: () => any;
