@@ -114,7 +114,7 @@ export interface SelectProps {
   onChange?: (params: OnChangeParams) => any;
   onFocus?: React.FocusEventHandler<HTMLElement>;
   onInputChange?: React.FormEventHandler<HTMLInputElement>;
-  onInputValueChange?: string => any;
+  onInputValueChange?: (string) => any;
   onCloseResetsInput?: boolean;
   onSelectResetsInput?: boolean;
   onOpen?: () => any;
