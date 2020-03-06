@@ -14,6 +14,8 @@ import {
   SortableHeadCell,
   SORT_DIRECTION,
 } from '../index.js';
+import {useCellNavigation} from './shared.js';
+
 const DATA = [
   ['Marlyn', 10],
   ['Luther', 15],
@@ -37,11 +39,12 @@ const DATA = [
   ['Neil', 27],
 ];
 
-// eslint-disable-next-line flowtype/no-weak-types
-class SortableTable extends React.Component<any, any> {
-  state = {nameDirection: null, ageDirection: null};
+function SortableTable() {
+  const {getCellProps} = useCellNavigation();
+  const [nameDirection, setNameDirection] = React.useState(null);
+  const [ageDirection, setAgeDirection] = React.useState(null);
 
-  handleSort = (title: string, prevDirection: ?string) => {
+  function handleSort(title, prevDirection) {
     let nextDirection = null;
     if (prevDirection === SORT_DIRECTION.ASC) {
       nextDirection = SORT_DIRECTION.DESC;
@@ -54,71 +57,73 @@ class SortableTable extends React.Component<any, any> {
     }
 
     if (title === 'name') {
-      this.setState({nameDirection: nextDirection, ageDirection: null});
-      return;
+      setNameDirection(nextDirection);
+      setAgeDirection(null);
     }
 
     if (title === 'age') {
-      this.setState({nameDirection: null, ageDirection: nextDirection});
-      return;
+      setNameDirection(null);
+      setAgeDirection(nextDirection);
     }
-  };
-
-  getSortedData = () => {
-    if (this.state.nameDirection) {
-      // $FlowFixMe
-      const sorted = DATA.slice(0).sort((a, b) => a[0].localeCompare(b[0]));
-
-      if (this.state.nameDirection === SORT_DIRECTION.ASC) {
-        return sorted;
-      }
-
-      if (this.state.nameDirection === SORT_DIRECTION.DESC) {
-        return sorted.reverse();
-      }
-    }
-
-    if (this.state.ageDirection) {
-      const sorted = DATA.slice(0).sort((a, b) => a[1] - b[1]);
-      if (this.state.ageDirection === SORT_DIRECTION.ASC) {
-        return sorted;
-      }
-
-      if (this.state.ageDirection === SORT_DIRECTION.DESC) {
-        return sorted.reverse();
-      }
-    }
-
-    return DATA;
-  };
-
-  render() {
-    return (
-      <StyledTable $gridTemplateColumns="repeat(2,1fr)">
-        <SortableHeadCell
-          title="Name"
-          direction={this.state.nameDirection}
-          onSort={() => this.handleSort('name', this.state.nameDirection)}
-        />
-        <SortableHeadCell
-          disabled
-          title="Age"
-          direction={this.state.ageDirection}
-          onSort={() => this.handleSort('age', this.state.ageDirection)}
-          overrides={{
-            HeadCell: {style: {color: 'blue'}},
-          }}
-        />
-        {this.getSortedData().map((row, index) => (
-          <>
-            {row.map((cell, cellIndex) => (
-              <StyledBodyCell key={cellIndex}>{cell}</StyledBodyCell>
-            ))}
-          </>
-        ))}
-      </StyledTable>
-    );
   }
+
+  const sortedData = React.useMemo(() => {
+    if (nameDirection) {
+      const sorted = DATA.slice(0).sort((a, b) => a[0].localeCompare(b[0]));
+      if (nameDirection === SORT_DIRECTION.ASC) {
+        return sorted;
+      }
+      if (nameDirection === SORT_DIRECTION.DESC) {
+        return sorted.reverse();
+      }
+    }
+    if (ageDirection) {
+      const sorted = DATA.slice(0).sort((a, b) => a[1] - b[1]);
+      if (ageDirection === SORT_DIRECTION.ASC) {
+        return sorted;
+      }
+      if (ageDirection === SORT_DIRECTION.DESC) {
+        return sorted.reverse();
+      }
+    }
+    return DATA;
+  }, [nameDirection, ageDirection]);
+
+  return (
+    <StyledTable tabIndex="0" role="grid" $gridTemplateColumns="repeat(2,1fr)">
+      <SortableHeadCell
+        title="Name"
+        direction={nameDirection}
+        onSort={() => handleSort('name', nameDirection)}
+        overrides={{
+          HeadCell: {
+            props: getCellProps(0, 0),
+          },
+        }}
+      />
+      <SortableHeadCell
+        disabled
+        title="Age"
+        direction={ageDirection}
+        onSort={() => handleSort('age', ageDirection)}
+        overrides={{
+          HeadCell: {props: getCellProps(1, 0), style: {color: 'blue'}},
+        }}
+      />
+      {sortedData.map((row, rowIndex) => (
+        <React.Fragment key={rowIndex}>
+          {row.map((cell, columnIndex) => (
+            <StyledBodyCell
+              {...getCellProps(columnIndex, rowIndex + 1)}
+              key={columnIndex}
+            >
+              {cell}
+            </StyledBodyCell>
+          ))}
+        </React.Fragment>
+      ))}
+    </StyledTable>
+  );
 }
 
 export default SortableTable;

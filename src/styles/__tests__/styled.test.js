@@ -16,6 +16,7 @@ import {
   createThemedWithStyle,
   useStyletron,
   createThemedUseStyletron,
+  withWrapper,
 } from '../styled.js';
 import {
   withStyletronProvider,
@@ -24,6 +25,30 @@ import {
 import {LightTheme} from '../../themes/index.js';
 
 jest.unmock('../styled.js');
+
+describe('withWrapper', () => {
+  it('preserves non styletron props when extending with "withStyle"', () => {
+    const StyledComponentElement = styled('div', {color: 'pink'});
+    const StyledComponent = withWrapper(
+      StyledComponentElement,
+      Styled =>
+        function(props) {
+          return <Styled id="test" aria-label="something useful" {...props} />;
+        },
+    );
+    const ExtendedStyledComponent = withStyle(StyledComponent, {color: 'red'});
+    const TestComponent = withStyletronProvider(
+      withThemeProvider(() => <ExtendedStyledComponent />),
+    );
+    const wrapper = mount(<TestComponent />);
+    const props = wrapper
+      .find('#test')
+      .children()
+      .at(0)
+      .props();
+    expect(props['aria-label']).toBe('something useful');
+  });
+});
 
 test('styled', () => {
   const StyledMockButton = styled('button', ({$theme}) => ({
