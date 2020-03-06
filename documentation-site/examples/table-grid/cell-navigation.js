@@ -15,7 +15,6 @@ function useCellNavigation() {
   const cells = React.useRef([]);
   const [columnIndex, setColumnIndex] = React.useState(0);
   const [rowIndex, setRowIndex] = React.useState(0);
-  const [focusCoords, setFocusCoords] = React.useState([-1, -1]);
 
   function cellAtCoordinates(column, row) {
     const candidateRow = cells.current[row];
@@ -128,18 +127,18 @@ function useCellNavigation() {
     return function(column: number, row: number) {
       const isAddressable =
         column === columnIndex && row === rowIndex;
-      const isFocused =
-        focusCoords[0] === column && focusCoords[1] === row;
       return {
         ref: (r: ?HTMLElement) => register(r, column, row),
-        tabIndex: isAddressable ? 0 : undefined,
-        onBlur: () => setFocusCoords([-1, -1]),
-        onFocus: () => setFocusCoords([column, row]),
+        tabIndex: isAddressable ? 0 : -1,
+        onFocus: () => {
+          setColumnIndex(column);
+          setRowIndex(row);
+        },
         onKeyDown: isAddressable ? handleKeyDown : undefined,
-        $isFocusVisible: isFocused,
+        $isFocusVisible: isAddressable,
       };
     };
-  }, [columnIndex, rowIndex, focusCoords]);
+  }, [columnIndex, rowIndex]);
 
   return {getCellProps};
 }
