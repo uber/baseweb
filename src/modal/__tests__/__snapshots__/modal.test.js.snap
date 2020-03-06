@@ -13,6 +13,7 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
   unstable_ModalBackdropScroll={false}
 >
   <mockConstructor
+    onDocumentClick={[Function]}
     onEscape={[Function]}
   >
     <ForwardRef
@@ -309,7 +310,6 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                   $role="dialog"
                   $size="default"
                   $unstable_ModalBackdropScroll={false}
-                  onClick={[Function]}
                 >
                   <MockStyledComponent
                     $animate={true}
@@ -320,8 +320,14 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                     $role="dialog"
                     $size="default"
                     $unstable_ModalBackdropScroll={false}
-                    forwardedRef={null}
-                    onClick={[Function]}
+                    forwardedRef={
+                      Object {
+                        "current": <div
+                          styled-component="true"
+                          test-style="[object Object]"
+                        />,
+                      }
+                    }
                   >
                     <Portal />
                   </MockStyledComponent>

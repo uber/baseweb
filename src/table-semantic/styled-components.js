@@ -101,16 +101,16 @@ export const StyledTableHeadCell = styled<{}>('th', ({$theme}) => {
 
 export const StyledTableHeadCellSortable = withStyle<
   typeof StyledTableHeadCell,
-  {},
->(StyledTableHeadCell, ({$theme}) => {
+  {$isFocusVisible: boolean},
+>(StyledTableHeadCell, ({$theme, $isFocusVisible}) => {
   return {
     cursor: 'pointer',
     paddingRight: $theme.sizing.scale1000,
-
+    outline: 'none',
     ':focus': {
-      backgroundColor: $theme.colors.tableStripedBackground,
+      outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+      outlineOffset: '-3px',
     },
-
     ':hover': {
       backgroundColor: $theme.colors.tableStripedBackground,
     },

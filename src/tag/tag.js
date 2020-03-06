@@ -51,24 +51,23 @@ class Tag extends React.Component<PropsT, {isFocusVisible: boolean}> {
     if (event.currentTarget !== event.target) {
       return;
     }
-    const {onClick, onKeyDown} = this.props;
+    const {
+      onClick,
+      onKeyDown,
+      closeable,
+      onActionClick,
+      onActionKeyDown,
+    } = this.props;
     const key = event.key;
     if (onClick && key === 'Enter') {
       onClick(event);
     }
+    if (closeable && (key === 'Backspace' || key === 'Delete')) {
+      onActionClick(event);
+      onActionKeyDown(event);
+    }
     if (onKeyDown) {
       onKeyDown(event);
-    }
-  };
-
-  handleActionKeyDown = (event: KeyboardEvent) => {
-    const {onActionClick, onActionKeyDown} = this.props;
-    const key = event.key;
-    if (onActionClick && key === 'Enter') {
-      onActionClick(event);
-    }
-    if (onActionKeyDown) {
-      onActionKeyDown(event);
     }
   };
 
@@ -109,7 +108,6 @@ class Tag extends React.Component<PropsT, {isFocusVisible: boolean}> {
             event.stopPropagation();
             onActionClick(event);
           },
-          onKeyDown: this.handleActionKeyDown,
         };
     const sharedProps: SharedPropsArgT = {
       $clickable: clickable,
@@ -123,12 +121,20 @@ class Tag extends React.Component<PropsT, {isFocusVisible: boolean}> {
       $isFocusVisible: this.state.isFocusVisible,
     };
     const titleText = title || getTextFromChildren(children);
+    const isButton = (clickable || closeable) && !disabled;
     return (
       <Root
         data-baseweb="tag"
-        aria-label={disabled ? null : 'button'}
-        role={disabled ? null : 'button'}
-        tabIndex={clickable ? 0 : null}
+        aria-label={
+          isButton && closeable
+            ? `${
+                typeof children === 'string' ? `${children}, ` : ''
+              }close by backspace`
+            : null
+        }
+        aria-disabled={disabled ? true : null}
+        role={isButton ? 'button' : null}
+        tabIndex={isButton ? 0 : null}
         {...rootHandlers}
         {...sharedProps}
         {...rootProps}
@@ -140,9 +146,8 @@ class Tag extends React.Component<PropsT, {isFocusVisible: boolean}> {
         </Text>
         {closeable ? (
           <Action
-            aria-label={disabled ? null : 'close button'}
-            role={disabled ? null : 'button'}
-            tabIndex={0}
+            aria-hidden={true}
+            role="presentation"
             {...actionHandlers}
             {...sharedProps}
             {...actionProps}

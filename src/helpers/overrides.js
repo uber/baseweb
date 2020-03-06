@@ -59,10 +59,16 @@ export function getOverride(override: any): any {
  */
 export function getOverrideProps<T>(override: ?OverrideT<T>) {
   if (override && typeof override === 'object') {
-    return {
-      ...override.props,
-      $style: override.style,
-    };
+    if (typeof override.props === 'object') {
+      return {
+        ...override.props,
+        $style: override.style,
+      };
+    } else {
+      return {
+        $style: override.style,
+      };
+    }
   }
   return {};
 }
@@ -126,7 +132,10 @@ export function mergeOverrides<T>(
   target?: OverridesT<T> = {},
   source?: OverridesT<T> = {},
 ): OverridesT<T> {
-  const allIdentifiers = Object.keys({...target, ...source});
+  const merged = Object.assign({}, target, source);
+  const allIdentifiers = Object.keys(merged);
+  // const allIdentifiers = Object.keys({...target, ...source});
+
   return allIdentifiers.reduce((acc, name) => {
     acc[name] = mergeOverride(
       toObjectOverride(target[name]),

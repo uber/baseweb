@@ -16,8 +16,14 @@ const Example = () => {
   const [isOpen, setIsOpen] = React.useState(true);
   return (
     <div>
-      <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      <Button onClick={() => setIsOpen(true)} className="open-modal-button">
+        Open Modal
+      </Button>
+      <Modal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        overrides={{Backdrop: {props: {'data-e2e': 'backdrop'}}}}
+      >
         <ModalHeader>Hello world</ModalHeader>
         <ModalBody>
           <StatefulSelect

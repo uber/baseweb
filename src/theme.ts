@@ -600,6 +600,24 @@ interface Typography {
   font1250: Font;
   font1350: Font;
   font1450: Font;
+  ParagraphXSmall: Font;
+  ParagraphSmall: Font;
+  ParagraphMedium: Font;
+  ParagraphLarge: Font;
+  LabelXSmall: Font;
+  LabelSmall: Font;
+  LabelMedium: Font;
+  LabelLarge: Font;
+  HeadingXSmall: Font;
+  HeadingSmall: Font;
+  HeadingMedium: Font;
+  HeadingLarge: Font;
+  HeadingXLarge: Font;
+  HeadingXXLarge: Font;
+  DisplayXSmall: Font;
+  DisplaySmall: Font;
+  DisplayMedium: Font;
+  DisplayLarge: Font;
 }
 
 interface Sizing {

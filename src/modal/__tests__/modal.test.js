@@ -20,7 +20,6 @@ import {
   StyledDialog,
   CLOSE_SOURCE,
 } from '../index.js';
-
 import {styled} from '../../styles/index.js';
 
 jest.useFakeTimers();
@@ -102,21 +101,6 @@ describe('Modal', () => {
     expect(onClose).toHaveBeenCalledTimes(1);
     expect(onClose).toHaveBeenLastCalledWith({
       closeSource: CLOSE_SOURCE.closeButton,
-    });
-  });
-
-  test('backdrop triggers close', () => {
-    const onClose = jest.fn();
-    wrapper = mount(
-      <Modal isOpen onClose={onClose}>
-        <ModalBody>Modal Body</ModalBody>
-      </Modal>,
-    );
-
-    wrapper.find(StyledBackdrop).simulate('click');
-    expect(onClose).toHaveBeenCalledTimes(1);
-    expect(onClose).toHaveBeenLastCalledWith({
-      closeSource: CLOSE_SOURCE.backdrop,
     });
   });
 
