@@ -174,6 +174,7 @@ export type PopoverPrivateStateT = {
   placement: TetherPlacementT,
   isLayerMounted: boolean,
   isMounted: boolean,
+  doAutoFocus: boolean,
 };
 
 export type ArrowStylePropsArgT = {
