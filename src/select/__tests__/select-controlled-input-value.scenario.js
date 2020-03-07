@@ -19,7 +19,7 @@ export default function Scenario() {
         clear input value
       </button>
       <button id="hello-world" onClick={() => setInputValue('hello world')}>
-        set input value to 'hello world'
+        set input value to hello world
       </button>
       <Select
         options={[
