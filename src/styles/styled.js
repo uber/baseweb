@@ -10,6 +10,7 @@ import {
   createStyled,
   withStyle as styletronWithStyle,
   useStyletron as styletronUseStyletron,
+  withWrapper as styletronWithWrapper,
 } from 'styletron-react';
 import {driver, getInitialStyle} from 'styletron-standard';
 import type {StyleObject} from 'styletron-standard';
@@ -101,3 +102,25 @@ export function createThemedUseStyletron<Theme>(): UseStyletronFn<Theme> {
 }
 
 export const useStyletron = createThemedUseStyletron<ThemeT>();
+
+export function withWrapper(
+  // eslint-disable-next-line flowtype/no-weak-types
+  StyledElement: StyletronComponent<any>,
+  wrapperFn: (
+    // eslint-disable-next-line flowtype/no-weak-types
+    StyletronComponent<any>,
+    // eslint-disable-next-line flowtype/no-weak-types
+  ) => any => any,
+) {
+  // eslint-disable-next-line flowtype/no-weak-types
+  return styletronWithWrapper<StyletronComponent<any>, any>(
+    StyledElement,
+    Styled => {
+      return React.forwardRef((props, ref) => (
+        <ThemeContext.Consumer>
+          {theme => wrapperFn(Styled)({ref: ref, ...props, $theme: theme})}
+        </ThemeContext.Consumer>
+      ));
+    },
+  );
+}

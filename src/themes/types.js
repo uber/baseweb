@@ -658,11 +658,11 @@ export type AnimationT = {
   easeInOutCurve: string,
 };
 
-export type BorderT = {
+export type BorderT = {|
   borderColor: $PropertyType<StyleObject, 'borderColor'>,
   borderStyle: $PropertyType<StyleObject, 'borderStyle'>,
   borderWidth: $PropertyType<StyleObject, 'borderWidth'>,
-};
+|};
 
 export type BordersT = {
   border100: BorderT,

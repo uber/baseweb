@@ -63,7 +63,7 @@ async function main() {
     textarea: 'Textarea',
     toast: ['toaster', 'ToasterContainer'],
     tooltip: 'Tooltip',
-    'tree-view': 'Unstable_StatefulTreeView',
+    'tree-view': 'StatefulTreeView',
     typography: ['Display1', 'Label1'],
   };
   const components = Object.keys(componentExports);

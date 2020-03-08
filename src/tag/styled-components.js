@@ -290,16 +290,6 @@ export const Action = styled<SharedPropsArgT>('span', props => {
       backgroundColor: backgroundColor(true, false),
       color: fontColor(props, true, true),
     },
-    ':focus': {
-      boxShadow: props.$isFocusVisible
-        ? `0 0 0 3px ${
-            // when tag has the same background as focus-ring, we need to pick a different color
-            props.$kind === KIND.accent
-              ? $theme.colors.primaryA
-              : $theme.colors.accent
-          }`
-        : 'none',
-    },
   }: {});
 });
 
@@ -664,7 +654,7 @@ export const Root = styled<SharedPropsArgT>('span', props => {
             color: fontColor(props, true, false),
           },
     ':focus':
-      $disabled || !$clickable
+      $disabled || (!$clickable && !$closeable)
         ? {}
         : {
             boxShadow: props.$isFocusVisible
