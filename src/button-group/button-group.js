@@ -81,7 +81,6 @@ export class ButtonGroupRoot extends React.Component<{|
                 : -1,
             onKeyDown: e => {
               if (!isRadio) return;
-              console.log(mode, isRadio);
               const value = Number(selected) ? Number(selected) : 0;
               if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
                 e.preventDefault && e.preventDefault();
