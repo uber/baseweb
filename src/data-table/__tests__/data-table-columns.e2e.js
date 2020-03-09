@@ -95,11 +95,11 @@ describe('data table columns', () => {
 
     await sortColumnAtIndex(page, index);
     const desc = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
-    expect(matchArrayElements(desc, ['4', '3', '2', '1'])).toBe(true);
+    expect(matchArrayElements(desc, ['1', '2', '3', '4'])).toBe(true);
 
     await sortColumnAtIndex(page, index);
     const asc = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
-    expect(matchArrayElements(asc, ['1', '2', '3', '4'])).toBe(true);
+    expect(matchArrayElements(asc, ['4', '3', '2', '1'])).toBe(true);
 
     await sortColumnAtIndex(page, index);
     const restored = await getCellContentsAtColumnIndex(
