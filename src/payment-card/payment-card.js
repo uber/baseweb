@@ -124,7 +124,7 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
             onChange={e => {
               const [position, value] = getCaretPosition(
                 e.target.value,
-                this.props.value || '',
+                this.props.value ? String(this.props.value) : '',
                 e.target.selectionStart,
               );
               this.caretPosition = position;
@@ -132,7 +132,7 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
               e.target.value = value;
               onChange && onChange(e);
             }}
-            value={addGaps(gaps, value || '')}
+            value={addGaps(gaps, String(value) || '')}
             {...restProps}
           />
         )}
