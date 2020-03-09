@@ -708,22 +708,27 @@ class Select extends React.Component<PropsT, SelectStateT> {
   }
 
   renderClear() {
-    const sharedProps = this.getSharedProps();
-    const value = this.props.value;
+    const isValueEntered = Boolean(
+      (this.props.value && this.props.value.length) || this.state.inputValue,
+    );
+
     if (
       !this.props.clearable ||
-      !value ||
-      !value.length ||
       this.props.disabled ||
-      this.props.isLoading
-    )
+      this.props.isLoading ||
+      !isValueEntered
+    ) {
       return;
+    }
+
+    const sharedProps = this.getSharedProps();
     const {overrides = {}} = this.props;
     const [ClearIcon, clearIconProps] = getOverrides(
       overrides.ClearIcon,
       DeleteAlt,
     );
     const ariaLabel = this.props.multi ? 'Clear all' : 'Clear value';
+
     return (
       <ClearIcon
         size={16}
