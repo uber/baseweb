@@ -71,11 +71,11 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     if (
       this.props.autoFocus &&
       this.props.focusLock &&
-      !this.state.doAutoFocus &&
+      !this.state.autoFocusAfterPositioning &&
       this.popperRef.current !== null &&
       this.popperRef.current.getBoundingClientRect().top > 0
     ) {
-      this.setState({doAutoFocus: true});
+      this.setState({autoFocusAfterPositioning: true});
     }
   }
 
@@ -112,7 +112,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       placement: props.placement,
       isMounted: false,
       isLayerMounted: false,
-      doAutoFocus: false,
+      autoFocusAfterPositioning: false,
     };
   }
 
@@ -457,7 +457,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
                 noFocusGuards={false}
                 // see popover-focus-loop.scenario.js for why hover cannot return focus
                 returnFocus={this.props.returnFocus && !this.isHoverTrigger()}
-                autoFocus={this.state.doAutoFocus} // eslint-disable-line jsx-a11y/no-autofocus
+                autoFocus={this.state.autoFocusAfterPositioning} // eslint-disable-line jsx-a11y/no-autofocus
               >
                 {this.renderPopover(renderedContent)}
               </FocusLock>
