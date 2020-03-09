@@ -22,6 +22,7 @@ const SelectConfig: TConfig = {
     'borderFocus',
     'contentPrimary',
     'contentSecondary',
+    'inputBorder',
     'inputFill',
     'inputFillError',
     'inputFillDisabled',

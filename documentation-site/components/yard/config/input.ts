@@ -9,6 +9,7 @@ import {changeHandlers} from './common/common';
 const inputPropsType = require('!!extract-react-types-loader!../../../../src/input/input.js');
 
 export const theme = [
+  'inputBorder',
   'inputFill',
   'inputFillError',
   'inputFillDisabled',
