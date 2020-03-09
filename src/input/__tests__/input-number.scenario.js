@@ -10,5 +10,7 @@ import React from 'react';
 import {StatefulInput} from '../index.js';
 
 export default function Scenario() {
-  return <StatefulInput type="number" min={0} max={100} />;
+  return (
+    <StatefulInput initialState={{value: 10}} type="number" min={0} max={100} />
+  );
 }
