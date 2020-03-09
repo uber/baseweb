@@ -112,7 +112,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
       const a = options.findIndex(
         option => option && option[valueKey] === firstValue[valueKey],
       );
-      return a || 0;
+      return a === -1 ? 0 : a;
     }
     return 0;
   };
@@ -152,6 +152,11 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
       >
         <OverriddenStatefulMenu
           noResultsMsg={noResultsMsg}
+          onActiveDescendantChange={id => {
+            if (this.props.onActiveDescendantChange) {
+              this.props.onActiveDescendantChange(id);
+            }
+          }}
           onItemSelect={onItemSelect}
           items={groupedOptions}
           size={size}
@@ -167,6 +172,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
                   maxHeight: p.$maxHeight || null,
                 }),
                 props: {
+                  id: this.props.id ? this.props.id : null,
                   $maxHeight: maxDropdownHeight,
                   'aria-multiselectable': multi,
                 },

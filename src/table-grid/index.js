@@ -6,10 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
+export {SORT_DIRECTION} from '../table/index.js';
+
 export {
   StyledTable,
   StyledHeadCell,
   StyledBodyCell,
-  SortableHeadCell,
-  SORT_DIRECTION,
 } from './styled-components.js';
+export {SortableHeadCell} from './sortable-head-cell.js';

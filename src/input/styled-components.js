@@ -104,7 +104,11 @@ function getInputEnhancerBorderRadius(position, radius) {
   }[position];
 }
 
-function getInputEnhancerPadding($size, sizing) {
+type InputEnhancerStyles = {|
+  paddingRight: string,
+  paddingLeft: string,
+|};
+function getInputEnhancerPadding($size, sizing): InputEnhancerStyles {
   return {
     [SIZE.mini]: {
       paddingRight: sizing.scale200,

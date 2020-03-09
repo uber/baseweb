@@ -14,6 +14,8 @@ export interface TreeLabelOverrides {
   IconContainer?: Override<{}>;
   ExpandIcon?: Override<{}>;
   CollapseIcon?: Override<{}>;
+  LeafIconContainer?: Override<{}>;
+  LeafIcon?: Override<{}>;
 }
 
 export interface TreeNode {
@@ -37,6 +39,7 @@ export interface TreeNodeProps {
   node: TreeNode;
   onToggle?: (node: TreeNode) => void;
   overrides?: TreeViewOverrides;
+  indentGuides?: boolean;
 }
 
 export type StatefulContainerProps = TreeViewProps & {
@@ -45,6 +48,7 @@ export type StatefulContainerProps = TreeViewProps & {
 
 export interface TreeViewProps {
   data: TreeNode[];
+  indentGuides?: boolean;
   onToggle?: (node: TreeNode) => void;
   overrides?: TreeViewOverrides;
   getId?: (node: TreeNode) => number | string;
@@ -52,9 +56,9 @@ export interface TreeViewProps {
   singleExpanded?: boolean;
 }
 
-export const Unstable_TreeView: React.FC<TreeViewProps>;
+export const TreeView: React.FC<TreeViewProps>;
 
-export const Unstable_StatefulTreeView: React.FC<TreeViewProps>;
+export const StatefulTreeView: React.FC<TreeViewProps>;
 
 export const TreeLabel: React.FC<TreeLabelProps>;
 

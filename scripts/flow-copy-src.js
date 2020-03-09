@@ -12,10 +12,7 @@ LICENSE file in the root directory of this source tree.
 
 const fs = require('fs').promises;
 const path = require('path');
-const babel = require('@babel/core');
 const glob = require('glob');
-
-const transformCupGlobals = require('../babel/transform-cup-globals.js');
 
 const src = path.resolve(__dirname, '../src');
 const dist = path.resolve(__dirname, '../dist');
@@ -42,19 +39,11 @@ async function run() {
     filepaths.map(async filepath => {
       const fullPath = path.resolve(src, filepath);
       const sourceCode = await fs.readFile(fullPath, 'utf-8');
-      const transformed = await babel.transformAsync(sourceCode, {
-        presets: ['@babel/react'],
-        plugins: [
-          transformCupGlobals,
-          '@babel/plugin-syntax-flow',
-          '@babel/plugin-proposal-class-properties',
-        ],
-      });
-
-      return transformed.code
-        .split('\n')
-        .filter(Boolean)
-        .join('\n');
+      return `${sourceCode}
+declare var __DEV__: boolean;
+declare var __NODE__: boolean;
+declare var __BROWSER__: boolean;
+`;
     }),
   );
 

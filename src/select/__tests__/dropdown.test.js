@@ -78,6 +78,7 @@ Object {
     "props": Object {
       "$maxHeight": "1000px",
       "aria-multiselectable": false,
+      "id": null,
     },
     "style": [Function],
   },
@@ -89,8 +90,6 @@ Object {
         "ListItem": Object {
           "component": Object {
             "$$typeof": Symbol(react.forward_ref),
-            "__STYLETRON__": undefined,
-            "displayName": "StyledListItem",
             "render": [MockFunction],
           },
           "props": Object {
@@ -141,8 +140,6 @@ Object {
       "ListItem": Object {
         "component": Object {
           "$$typeof": Symbol(react.forward_ref),
-          "__STYLETRON__": undefined,
-          "displayName": "StyledListItem",
           "render": [MockFunction],
         },
         "props": Object {

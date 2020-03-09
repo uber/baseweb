@@ -138,8 +138,21 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     if (!this.props.closeable) {
       return;
     }
-
     this.triggerClose(CLOSE_SOURCE.escape);
+  };
+
+  onDocumentClick = (e: MouseEvent) => {
+    if (
+      e.target &&
+      e.target instanceof HTMLElement &&
+      // Handles modal closure when unstable_ModalBackdropScroll is set to true
+      (e.target.contains(this.getRef('DialogContainer').current) ||
+        // Handles modal closure when unstable_ModalBackdropScroll is set to false
+        // $FlowFixMe
+        e.target.contains(this.getRef('DeprecatedBackdrop').current))
+    ) {
+      this.onBackdropClick();
+    }
   };
 
   onBackdropClick = () => {
@@ -147,16 +160,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       return;
     }
     this.triggerClose(CLOSE_SOURCE.backdrop);
-  };
-
-  // Handles modal closure when unstable_ModalBackdropScroll is set to true
-  onDialogContainerBackdropClick = (e: Event) => {
-    if (
-      e.target instanceof HTMLElement &&
-      e.target.contains(this.getRef('DialogContainer').current)
-    ) {
-      this.onBackdropClick();
-    }
   };
 
   onCloseClick = () => {
@@ -304,7 +307,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     const dialogContainerConditionalProps = unstable_ModalBackdropScroll
       ? {
           ref: this.getRef('DialogContainer'),
-          onClick: this.onDialogContainerBackdropClick,
         }
       : {};
 
@@ -325,7 +327,9 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
               <Backdrop
                 {...(unstable_ModalBackdropScroll
                   ? {}
-                  : {onClick: this.onBackdropClick})}
+                  : {
+                      ref: this.getRef('DeprecatedBackdrop'),
+                    })}
                 {...sharedProps}
                 {...backdropProps}
               />
@@ -379,7 +383,11 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       return null;
     }
     return (
-      <Layer onEscape={this.onEscape} mountNode={this.props.mountNode}>
+      <Layer
+        onEscape={this.onEscape}
+        onDocumentClick={this.onDocumentClick}
+        mountNode={this.props.mountNode}
+      >
         {this.renderModal()}
       </Layer>
     );

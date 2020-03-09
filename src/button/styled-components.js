@@ -84,9 +84,26 @@ export const StartEnhancer = styled<SharedStylePropsT>('div', ({$theme}) => {
   };
 });
 
-export const LoadingSpinnerContainer = styled('div', {
-  position: 'static',
-});
+export const LoadingSpinnerContainer = styled<SharedStylePropsT>(
+  'div',
+  ({$theme, $size}) => {
+    // we don't have a themeing value for this
+    let margins = '3px';
+    if ($size === SIZE.mini || $size === SIZE.compact) {
+      margins = $theme.sizing.scale0;
+    }
+    if ($size === SIZE.large) {
+      margins = $theme.sizing.scale100;
+    }
+
+    return {
+      lineHeight: 0,
+      position: 'static',
+      marginBottom: margins,
+      marginTop: margins,
+    };
+  },
+);
 
 export const LoadingSpinner = styled<SharedStylePropsT>(
   'span',

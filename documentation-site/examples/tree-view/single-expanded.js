@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import {Unstable_StatefulTreeView as StatefulTreeView} from 'baseui/tree-view';
+import {StatefulTreeView} from 'baseui/tree-view';
 
 const initialData = [
   {
@@ -260,5 +260,11 @@ const initialData = [
 ];
 
 export default function TreeViewUncontrolled() {
-  return <StatefulTreeView singleExpanded data={initialData} />;
+  return (
+    <StatefulTreeView
+      singleExpanded
+      indentGuides
+      data={initialData}
+    />
+  );
 }

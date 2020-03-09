@@ -58,13 +58,15 @@ export type RenderItemPropsT = {
   isFocused?: boolean,
   // indicates when the item is visually focused
   isHighlighted?: boolean,
+  onClick?: (event: SyntheticMouseEvent<HTMLElement>) => mixed,
+  onMouseEnter?: (event: SyntheticMouseEvent<HTMLElement>) => mixed,
   resetMenu?: () => mixed,
 };
 
 export type GetRequiredItemPropsFnT = (
   item: ItemT,
   index: number,
-) => RenderItemPropsT;
+) => $Shape<RenderItemPropsT>;
 
 export type StateReducerFnT = (
   changeType: ?$Keys<typeof STATE_CHANGE_TYPES>,
@@ -115,6 +117,7 @@ export type StatefulContainerPropsT = {
    * bindings to work properly. Every rendered item should call this.
    */
   getRequiredItemProps: GetRequiredItemPropsFnT,
+  onActiveDescendantChange?: (id?: string) => mixed,
   /** Callback executed on menu item clicks. */
   onItemSelect: OnItemSelectFnT,
   /** Ref for the menu container element. Used to capture key events for navigation */
@@ -184,6 +187,7 @@ export type StatefulMenuPropsT = {
    * bindings to work properly. Every rendered item should call this.
    */
   getRequiredItemProps?: GetRequiredItemPropsFnT,
+  onActiveDescendantChange?: (id?: string) => mixed,
   /** Callback executed on menu item clicks. */
   onItemSelect?: OnItemSelectFnT,
   /** Ref for the menu container element. Used to capture key events for navigation */

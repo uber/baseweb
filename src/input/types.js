@@ -30,7 +30,7 @@ export type InternalStateT = {
 };
 
 export type StateT = {
-  value?: string,
+  value?: string | number,
 };
 
 export type StateReducerT = (
@@ -127,7 +127,7 @@ export type BaseInputPropsT<T> = {|
   /** Input type attribute. */
   type?: string,
   /** Input value attribute. */
-  value?: string,
+  value?: string | number,
   rows?: number,
   /** min value when used as input type=number */
   min?: number,
@@ -149,11 +149,11 @@ export type InputPropsT = {|
 |};
 
 export type MaskedInputPropsT = $Shape<{|
+  ...InputPropsT,
   /** See pattern examples here: https://github.com/sanniassin/react-input-mask */
   mask?: string,
   /** Character to render for unfilled mask element. */
   maskChar?: string,
-  ...InputPropsT,
 |}>;
 
 export type StatefulContainerPropsT<T> = {|

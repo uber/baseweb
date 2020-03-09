@@ -6,10 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {styled} from '../styles/index.js';
+import {styled, withWrapper} from '../styles/index.js';
 import {OPTION_LIST_SIZE} from './constants.js';
-import type {ItemT} from './types.js';
-import type {StyletronComponent} from '../styles/styled.js';
 
 type StyledPropsT = {
   $disabled?: boolean,
@@ -149,18 +147,13 @@ export const StyledListItemElement = styled<StyledPropsT>('li', props => {
   };
 });
 
-export const StyledListItem = ((React.forwardRef<
-  {item: ItemT, ...$Exact<StyledPropsT>},
-  // eslint-disable-next-line flowtype/no-weak-types
-  any,
->(
-  ({item, ...restProps}, ref) => (
-    <StyledListItemElement ref={ref} {...restProps} />
-  ),
-  // eslint-disable-next-line flowtype/no-weak-types
-): any): StyletronComponent<StyledPropsT>);
-StyledListItem.__STYLETRON__ = StyledListItemElement.__STYLETRON__;
-StyledListItem.displayName = 'StyledListItem';
+export const StyledListItem = withWrapper(
+  StyledListItemElement,
+  Styled =>
+    function StyledListItem({item, ...restProps}) {
+      return <Styled {...restProps} />;
+    },
+);
 
 export const StyledListItemProfile = styled<StyledPropsT>('li', ({$theme}) => ({
   position: 'relative',

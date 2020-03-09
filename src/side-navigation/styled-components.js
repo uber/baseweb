@@ -6,9 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {styled, hexToRgb} from '../styles/index.js';
-import type {Item, SharedPropsT} from './types.js';
-import type {StyletronComponent} from '../styles/styled.js';
+import {styled, hexToRgb, withWrapper} from '../styles/index.js';
+import type {SharedPropsT} from './types.js';
 
 export const StyledRoot = styled<SharedPropsT>('nav', props => {
   const {
@@ -59,32 +58,33 @@ export const StyledNavItemElement = styled<SharedPropsT>('div', props => {
     $theme: {colors, sizing},
   } = props;
   const bgImgGradient = hexToRgb(colors.backgroundPrimary, '0.92') || '';
+  const borderWidthDir: string =
+    $theme.direction === 'rtl' ? 'borderRightWidth' : 'borderLeftWidth';
+  const borderStyleDir: string =
+    $theme.direction === 'rtl' ? 'borderRightStyle' : 'borderLeftStyle';
+  const borderColorDir: string =
+    $theme.direction === 'rtl' ? 'borderRightColor' : 'borderLeftColor';
+  const paddingPrefixDir: string =
+    $theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
+  const paddingSuffixDir: string =
+    $theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
+
   return ({
     backgroundColor: $active ? colors.backgroundInversePrimary : 'transparent',
     backgroundImage: $active
       ? `linear-gradient(0deg, ${bgImgGradient}, ${bgImgGradient})`
       : null,
     boxSizing: 'border-box',
-    [$theme.direction === 'rtl'
-      ? 'borderRightWidth'
-      : 'borderLeftWidth']: '4px',
-    [$theme.direction === 'rtl'
-      ? 'borderRightStyle'
-      : 'borderLeftStyle']: 'solid',
-    [$theme.direction === 'rtl'
-      ? 'borderRightColor'
-      : 'borderLeftColor']: $active ? colors.primary : 'transparent',
+    [borderWidthDir]: '4px',
+    [borderStyleDir]: 'solid',
+    [borderColorDir]: $active ? colors.primary : 'transparent',
     color: $active ? colors.primary : null,
     cursor: $selectable ? 'pointer' : 'default',
 
     paddingTop: sizing.scale500,
     paddingBottom: sizing.scale500,
-    [$theme.direction === 'rtl'
-      ? 'paddingRight'
-      : 'paddingLeft']: `calc(${sizing.scale800} * ${$level})`,
-    [$theme.direction === 'rtl'
-      ? 'paddingLeft'
-      : 'paddingRight']: sizing.scale500,
+    [paddingPrefixDir]: `calc(${sizing.scale800} * ${$level})`,
+    [paddingSuffixDir]: sizing.scale500,
     ':hover': {
       color: $selectable ? colors.primary : null,
     },
@@ -94,18 +94,13 @@ export const StyledNavItemElement = styled<SharedPropsT>('div', props => {
   }: {});
 });
 
-export const StyledNavItem = ((React.forwardRef<
-  {item: Item, ...$Exact<SharedPropsT>},
-  // eslint-disable-next-line flowtype/no-weak-types
-  any,
->(
-  ({item, ...restProps}, ref) => (
-    <StyledNavItemElement ref={ref} {...restProps} />
-  ),
-  // eslint-disable-next-line flowtype/no-weak-types
-): any): StyletronComponent<SharedPropsT>);
-StyledNavItem.__STYLETRON__ = StyledNavItemElement.__STYLETRON__;
-StyledNavItem.displayName = 'StyledNavItem';
+export const StyledNavItem = withWrapper(
+  StyledNavItemElement,
+  Styled =>
+    function StyledNav({item, ...restProps}) {
+      return <Styled {...restProps} />;
+    },
+);
 
 export const StyledSubNavContainer = styled('ul', {
   listStyleType: 'none',

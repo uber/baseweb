@@ -103,8 +103,11 @@ class Button extends React.Component<
         {...baseButtonProps}
         // Applies last to override passed in onClick
         onClick={this.internalOnClick}
-        onFocus={forkFocus(baseButtonProps, this.handleFocus)}
-        onBlur={forkBlur(baseButtonProps, this.handleBlur)}
+        onFocus={forkFocus(
+          {...restProps, ...baseButtonProps},
+          this.handleFocus,
+        )}
+        onBlur={forkBlur({...restProps, ...baseButtonProps}, this.handleBlur)}
       >
         {isLoading ? (
           <React.Fragment>
@@ -112,7 +115,10 @@ class Button extends React.Component<
             <div style={{opacity: 0, display: 'flex', height: '0px'}}>
               <ButtonInternals {...this.props} />
             </div>
-            <LoadingSpinnerContainer {...loadingSpinnerContainerProps}>
+            <LoadingSpinnerContainer
+              {...sharedProps}
+              {...loadingSpinnerContainerProps}
+            >
               <LoadingSpinner {...sharedProps} {...loadingSpinnerProps} />
             </LoadingSpinnerContainer>
           </React.Fragment>

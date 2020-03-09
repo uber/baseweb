@@ -54,7 +54,7 @@ describe('Stateless tag', function() {
       expect(tag.getAttribute('aria-label')).toBeNull();
       expect(tag.getAttribute('role')).toBeNull();
       expect(closeBtn.getAttribute('aria-label')).toBeNull();
-      expect(closeBtn.getAttribute('role')).toBeNull();
+      expect(closeBtn.getAttribute('role')).toBe('presentation');
     });
   });
 
