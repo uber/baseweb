@@ -18,7 +18,16 @@ const TextareaConfig: TConfig = {
   },
   theme,
   props: {
-    ...omit(inputProps, ['type', 'startEnhancer', 'endEnhancer']),
+    ...omit(inputProps, [
+      'type',
+      'startEnhancer',
+      'endEnhancer',
+      'adjoined',
+      'min',
+      'max',
+      'inputMode',
+      'autoComplete',
+    ]),
     overrides: {
       value: undefined,
       type: PropTypes.Custom,

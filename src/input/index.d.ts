@@ -60,14 +60,14 @@ export interface BaseInputProps<T> {
   required?: boolean;
   size?: SIZE[keyof SIZE];
   type?: string;
-  value?: string;
+  value?: string | number;
   rows?: number;
   min?: number;
   max?: number;
 }
 
 export interface State {
-  value?: string;
+  value?: string | number;
 }
 
 export type InputOverrides = BaseInputOverrides<SharedProps> & {
