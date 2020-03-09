@@ -117,7 +117,7 @@ describe('select', () => {
       selectors.selectedList,
       select => select.textContent,
     );
-    expect(second).toBe('');
+    expect(second).toBe('Start searching');
   });
 
   it('does not close dropdown after multiple selections were made', async () => {
