@@ -30,7 +30,7 @@ export type InternalStateT = {
 };
 
 export type StateT = {
-  value?: string,
+  value?: string | number,
 };
 
 export type StateReducerT = (
@@ -127,7 +127,7 @@ export type BaseInputPropsT<T> = {|
   /** Input type attribute. */
   type?: string,
   /** Input value attribute. */
-  value?: string,
+  value?: string | number,
   rows?: number,
   /** min value when used as input type=number */
   min?: number,
