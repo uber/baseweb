@@ -218,6 +218,7 @@ export default class MenuStatefulContainer extends React.Component<
       onItemSelect &&
       !items[highlightedIndex].disabled
     ) {
+      event.preventDefault();
       onItemSelect({item: items[highlightedIndex], event});
     }
   };
