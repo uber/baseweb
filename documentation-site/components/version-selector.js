@@ -22,6 +22,8 @@ import versions from '../../versions.json';
 // list of version for which we don't have a deployed documentation site
 // for some reason
 const disabledVersions = [
+  'v9.62.0',
+  'v9.61.0',
   'v9.38.0',
   'v9.37.2',
   'v9.37.1',
