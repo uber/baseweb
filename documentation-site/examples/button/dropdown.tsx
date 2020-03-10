@@ -21,6 +21,7 @@ const ITEMS = [
 
 export default () => (
   <StatefulPopover
+    focusLock
     placement={PLACEMENT.bottomLeft}
     content={({close}) => (
       <StatefulMenu

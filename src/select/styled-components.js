@@ -186,7 +186,7 @@ function getControlContainerColors(
 
   return {
     color: colors.contentPrimary,
-    borderColor: colors.inputFill,
+    borderColor: colors.inputBorder,
     backgroundColor: colors.inputFill,
   };
 }

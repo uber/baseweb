@@ -636,7 +636,7 @@ describe('numerical column', () => {
     const input = [2, 1, 3, 4];
     input.sort(column.sortFn);
 
-    const output = [4, 3, 2, 1];
+    const output = [1, 2, 3, 4];
     for (let i = 0; i < input.length; i++) {
       expect(input[i]).toBe(output[i]);
     }
