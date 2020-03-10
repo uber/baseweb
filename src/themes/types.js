@@ -291,6 +291,7 @@ export type ComponentColorTokensT = {|
   sliderBorderDisabled: string,
 
   // Input
+  inputBorder: string,
   inputFill: string,
   inputFillError: string,
   inputFillDisabled: string,

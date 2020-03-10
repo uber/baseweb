@@ -112,7 +112,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
       const a = options.findIndex(
         option => option && option[valueKey] === firstValue[valueKey],
       );
-      return a || 0;
+      return a === -1 ? 0 : a;
     }
     return 0;
   };
