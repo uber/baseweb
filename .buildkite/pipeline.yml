@@ -69,8 +69,24 @@ steps:
     agents:
       queue: workers
 
-  - name: ':deploy:'
-    command: './deploy.sh'
+  - name: ':deploy-npm:'
+    command: './scripts/deploy-npm.sh'
+    plugins:
+      'docker-compose#v3.0.3':
+        run: baseui
+    agents:
+      queue: workers
+
+  - name: ':deploy-vscode:'
+    command: './scripts/deploy-vscode.sh'
+    plugins:
+      'docker-compose#v3.0.3':
+        run: baseui
+    agents:
+      queue: workers
+
+  - name: ':deploy-docs:'
+    command: './scripts/deploy-docs.sh'
     plugins:
       'docker-compose#v3.0.3':
         run: baseui
