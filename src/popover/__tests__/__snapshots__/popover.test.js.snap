@@ -103,87 +103,57 @@ exports[`Popover component as anchor 1`] = `
       }
     >
       <ForwardRef
-        $arrowOffset={
-          Object {
-            "left": 0,
-            "top": 0,
-          }
-        }
-        $isAnimating={false}
-        $isOpen={true}
-        $placement="auto"
-        $popoverOffset={
-          Object {
-            "left": 0,
-            "top": 0,
-          }
-        }
-        $showArrow={false}
-        data-baseweb="popover"
-        id="bui-mock-id"
-        key="popover-body"
+        autoFocus={false}
+        disabled={true}
+        noFocusGuards={false}
+        returnFocus={true}
       >
-        <MockStyledComponent
-          $arrowOffset={
-            Object {
-              "left": 0,
-              "top": 0,
-            }
-          }
-          $isAnimating={false}
-          $isOpen={true}
-          $placement="auto"
-          $popoverOffset={
-            Object {
-              "left": 0,
-              "top": 0,
-            }
-          }
-          $showArrow={false}
-          data-baseweb="popover"
-          forwardedRef={
-            Object {
-              "current": <div
-                data-baseweb="popover"
-                id="bui-mock-id"
-                styled-component="true"
-                test-style="[object Object]"
-              >
-                <div
-                  styled-component="true"
-                  test-style="[object Object]"
-                >
-                  <strong>
-                    Hello world
-                  </strong>
-                </div>
-              </div>,
-            }
-          }
-          id="bui-mock-id"
+        <ForwardRef
+          as="div"
+          autoFocus={false}
+          disabled={true}
+          lockProps={Object {}}
+          noFocusGuards={false}
+          persistentFocus={false}
+          returnFocus={true}
+          sideCar={[Function]}
         >
           <div
-            data-baseweb="popover"
-            id="bui-mock-id"
-            styled-component="true"
-            test-style={
+            data-focus-guard={true}
+            key="guard-first"
+            style={
               Object {
-                "backgroundColor": "$theme.colors.backgroundTertiary",
-                "borderBottomLeftRadius": "$theme.borders.popoverBorderRadius",
-                "borderBottomRightRadius": "$theme.borders.popoverBorderRadius",
-                "borderTopLeftRadius": "$theme.borders.popoverBorderRadius",
-                "borderTopRightRadius": "$theme.borders.popoverBorderRadius",
-                "boxShadow": "$theme.lighting.shadow600",
-                "left": 0,
-                "opacity": 0,
-                "position": "absolute",
-                "top": 0,
-                "transform": "translate3d(-16px, 0px, 0)",
-                "transitionDuration": "0s",
-                "transitionProperty": "opacity,transform",
-                "transitionTimingFunction": "$theme.animation.easeOutCurve",
+                "height": "0px",
+                "left": "1px",
+                "overflow": "hidden",
+                "padding": 0,
+                "position": "fixed",
+                "top": "1px",
+                "width": "1px",
               }
             }
+            tabIndex={-1}
+          />
+          <div
+            data-focus-guard={true}
+            key="guard-nearest"
+            style={
+              Object {
+                "height": "0px",
+                "left": "1px",
+                "overflow": "hidden",
+                "padding": 0,
+                "position": "fixed",
+                "top": "1px",
+                "width": "1px",
+              }
+            }
+            tabIndex={-1}
+          />
+          <div
+            data-focus-lock-disabled="disabled"
+            onBlur={[Function]}
+            onFocus={[Function]}
           >
             <ForwardRef
               $arrowOffset={
@@ -202,6 +172,9 @@ exports[`Popover component as anchor 1`] = `
                 }
               }
               $showArrow={false}
+              data-baseweb="popover"
+              id="bui-mock-id"
+              key="popover-body"
             >
               <MockStyledComponent
                 $arrowOffset={
@@ -220,9 +193,31 @@ exports[`Popover component as anchor 1`] = `
                   }
                 }
                 $showArrow={false}
-                forwardedRef={null}
+                data-baseweb="popover"
+                forwardedRef={
+                  Object {
+                    "current": <div
+                      data-baseweb="popover"
+                      id="bui-mock-id"
+                      styled-component="true"
+                      test-style="[object Object]"
+                    >
+                      <div
+                        styled-component="true"
+                        test-style="[object Object]"
+                      >
+                        <strong>
+                          Hello world
+                        </strong>
+                      </div>
+                    </div>,
+                  }
+                }
+                id="bui-mock-id"
               >
                 <div
+                  data-baseweb="popover"
+                  id="bui-mock-id"
                   styled-component="true"
                   test-style={
                     Object {
@@ -231,19 +226,95 @@ exports[`Popover component as anchor 1`] = `
                       "borderBottomRightRadius": "$theme.borders.popoverBorderRadius",
                       "borderTopLeftRadius": "$theme.borders.popoverBorderRadius",
                       "borderTopRightRadius": "$theme.borders.popoverBorderRadius",
-                      "color": "$theme.colors.contentPrimary",
-                      "position": "relative",
+                      "boxShadow": "$theme.lighting.shadow600",
+                      "left": 0,
+                      "opacity": 0,
+                      "position": "absolute",
+                      "top": 0,
+                      "transform": "translate3d(-16px, 0px, 0)",
+                      "transitionDuration": "0s",
+                      "transitionProperty": "opacity,transform",
+                      "transitionTimingFunction": "$theme.animation.easeOutCurve",
                     }
                   }
                 >
-                  <strong>
-                    Hello world
-                  </strong>
+                  <ForwardRef
+                    $arrowOffset={
+                      Object {
+                        "left": 0,
+                        "top": 0,
+                      }
+                    }
+                    $isAnimating={false}
+                    $isOpen={true}
+                    $placement="auto"
+                    $popoverOffset={
+                      Object {
+                        "left": 0,
+                        "top": 0,
+                      }
+                    }
+                    $showArrow={false}
+                  >
+                    <MockStyledComponent
+                      $arrowOffset={
+                        Object {
+                          "left": 0,
+                          "top": 0,
+                        }
+                      }
+                      $isAnimating={false}
+                      $isOpen={true}
+                      $placement="auto"
+                      $popoverOffset={
+                        Object {
+                          "left": 0,
+                          "top": 0,
+                        }
+                      }
+                      $showArrow={false}
+                      forwardedRef={null}
+                    >
+                      <div
+                        styled-component="true"
+                        test-style={
+                          Object {
+                            "backgroundColor": "$theme.colors.backgroundTertiary",
+                            "borderBottomLeftRadius": "$theme.borders.popoverBorderRadius",
+                            "borderBottomRightRadius": "$theme.borders.popoverBorderRadius",
+                            "borderTopLeftRadius": "$theme.borders.popoverBorderRadius",
+                            "borderTopRightRadius": "$theme.borders.popoverBorderRadius",
+                            "color": "$theme.colors.contentPrimary",
+                            "position": "relative",
+                          }
+                        }
+                      >
+                        <strong>
+                          Hello world
+                        </strong>
+                      </div>
+                    </MockStyledComponent>
+                  </ForwardRef>
                 </div>
               </MockStyledComponent>
             </ForwardRef>
           </div>
-        </MockStyledComponent>
+          <div
+            data-focus-guard={true}
+            style={
+              Object {
+                "height": "0px",
+                "left": "1px",
+                "overflow": "hidden",
+                "padding": 0,
+                "position": "fixed",
+                "top": "1px",
+                "width": "1px",
+              }
+            }
+            tabIndex={-1}
+          />
+        </ForwardRef>
       </ForwardRef>
     </mockConstructor>
   </mockConstructor>
