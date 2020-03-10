@@ -21,9 +21,13 @@ export default function Scenario() {
       overrides={{
         Day: {
           // eslint-disable-next-line react/display-name
-          component: props => (
-            <StyledDay data-highlighted={props.$isHighlighted} {...props} />
-          ),
+          component: React.forwardRef((props, ref) => (
+            <StyledDay
+              data-highlighted={props.$isHighlighted}
+              {...props}
+              ref={ref}
+            />
+          )),
         },
         MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
         MonthYearSelectStatefulMenu: {
