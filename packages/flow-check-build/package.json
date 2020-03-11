@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "baseui": "latest",
+    "baseui": "../../dist",
     "flow-bin": "0.110",
     "styletron-react": "latest"
   }
