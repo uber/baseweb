@@ -7,15 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {withStyle} from '../styles/index.js';
+import {withStyle, withWrapper} from '../styles/index.js';
 import {
   StyledTable as FlexStyledTable,
   StyledHeadCell as FlexStyledHeadCell,
   StyledCell as FlexStyledBodyCell,
-  SORT_DIRECTION,
-  SortableHeadCellFactory,
 } from '../table/index.js';
-import type {StyletronComponent} from '../styles/styled.js';
 
 const StyledTableElement = withStyle<
   typeof FlexStyledTable,
@@ -28,47 +25,45 @@ const StyledTableElement = withStyle<
   };
 });
 
-// eslint-disable-next-line flowtype/no-weak-types
-export const StyledTable = ((React.forwardRef<{}, any>((props, ref) => {
-  return (
-    //$FlowFixMe
-    <StyledTableElement
-      ref={ref}
-      data-baseweb="table-grid"
-      role="grid"
-      {...props}
-    />
-  );
-  // eslint-disable-next-line flowtype/no-weak-types
-}): any): StyletronComponent<{}>);
-StyledTable.__STYLETRON__ = StyledTableElement.__STYLETRON__;
-StyledTable.displayName = 'StyledTable';
+export const StyledTable = withWrapper(
+  StyledTableElement,
+  StyledComponent =>
+    function StyledTable(props) {
+      return <StyledComponent data-baseweb="table-grid" {...props} />;
+    },
+);
 
 export const StyledHeadCell = withStyle<
   typeof FlexStyledHeadCell,
-  {$sticky?: boolean},
->(FlexStyledHeadCell, ({$sticky = true, $theme}) => {
+  {$sticky?: boolean, $isFocusVisible?: boolean},
+>(FlexStyledHeadCell, ({$sticky = true, $isFocusVisible, $theme}) => {
   return {
     backgroundColor: $theme.colors.tableHeadBackgroundColor,
     boxShadow: $theme.lighting.shadow400,
     position: $sticky ? 'sticky' : null,
     top: $sticky ? 0 : null,
     width: 'unset',
+    ':focus': {
+      outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+      outlineOffset: '-3px',
+    },
   };
 });
 
 export const StyledBodyCell = withStyle<
   typeof FlexStyledBodyCell,
-  {$gridColumn?: string, $gridRow?: string},
+  {$gridColumn?: string, $gridRow?: string, $isFocusVisible?: boolean},
 >(FlexStyledBodyCell, props => {
   return {
     display: 'block',
     flex: 'unset',
     gridColumn: props.$gridColumn || null,
     gridRow: props.$gridRow || null,
+    ':focus': {
+      outline: props.$isFocusVisible
+        ? `3px solid ${props.$theme.colors.accent}`
+        : 'none',
+      outlineOffset: '-3px',
+    },
   };
 });
-
-export const SortableHeadCell = SortableHeadCellFactory(StyledHeadCell);
-
-export {SORT_DIRECTION};

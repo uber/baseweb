@@ -21,6 +21,7 @@ import {styled, withStyle, useStyletron} from '../../styles/index.js';
 import {Tag} from '../../tag/index.js';
 
 import {StyledTable, StyledHeadCell, StyledBodyCell} from '../index.js';
+import {useCellNavigation} from './shared.js';
 
 type StatusT = 'running' | 'passed' | 'failed';
 type RowT = [string, StatusT, Date, string, string, string, TaskT[]];
@@ -182,11 +183,16 @@ const Truncate = styled('div', {
   whiteSpace: 'nowrap',
 });
 
-function Row({striped, row}: {striped: boolean, row: RowT}) {
+type RowPropsT = {|
+  getCellProps: number => {},
+  striped: boolean,
+  row: RowT,
+|};
+function Row(props: RowPropsT) {
   const [expanded, setExpanded] = React.useState(false);
   return (
     <>
-      <CenteredBodyCell $striped={striped}>
+      <CenteredBodyCell {...props.getCellProps(0)} $striped={props.striped}>
         <Button
           size="compact"
           kind="minimal"
@@ -195,25 +201,25 @@ function Row({striped, row}: {striped: boolean, row: RowT}) {
         >
           {expanded ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
         </Button>
-        {row[0]}
+        {props.row[0]}
       </CenteredBodyCell>
-      <CenteredBodyCell $striped={striped}>
+      <CenteredBodyCell {...props.getCellProps(1)} $striped={props.striped}>
         <Tag
           closeable={false}
           variant="outlined"
-          kind={statusToTagKind(row[1])}
+          kind={statusToTagKind(props.row[1])}
         >
-          {row[1]}
+          {props.row[1]}
         </Tag>
       </CenteredBodyCell>
-      <CenteredBodyCell $striped={striped}>
-        <StyledLink href={row[4]}>{row[3]}</StyledLink>
+      <CenteredBodyCell {...props.getCellProps(2)} $striped={props.striped}>
+        <StyledLink href={props.row[4]}>{props.row[3]}</StyledLink>
       </CenteredBodyCell>
-      <CenteredBodyCell $striped={striped}>
-        {format(row[2], 'yyyy-MM-dd h:mm a')}
+      <CenteredBodyCell {...props.getCellProps(3)} $striped={props.striped}>
+        {format(props.row[2], 'yyyy-MM-dd h:mm a')}
       </CenteredBodyCell>
-      <CenteredBodyCell $striped={striped}>
-        <Truncate>{row[5]}</Truncate>
+      <CenteredBodyCell {...props.getCellProps(4)} $striped={props.striped}>
+        <Truncate>{props.row[5]}</Truncate>
         <StatefulPopover
           placement={PLACEMENT.bottomLeft}
           content={({close}) => (
@@ -234,13 +240,15 @@ function Row({striped, row}: {striped: boolean, row: RowT}) {
           </Button>
         </StatefulPopover>
       </CenteredBodyCell>
-      {expanded && <Tasks tasks={row[6]} />}
+      {expanded && <Tasks tasks={props.row[6]} />}
     </>
   );
 }
 
 export default function Scenario() {
   const [css] = useStyletron();
+  const {getCellProps} = useCellNavigation();
+
   return (
     <div className={css({height: '600px'})}>
       <HeadingLevel>
@@ -256,16 +264,29 @@ export default function Scenario() {
         </div>
       </HeadingLevel>
 
-      <StyledTable $gridTemplateColumns="auto auto max-content auto auto">
-        <StyledHeadCell>Job Name</StyledHeadCell>
-        <StyledHeadCell>Status</StyledHeadCell>
-        <StyledHeadCell>Pull Request</StyledHeadCell>
-        <StyledHeadCell>Last Run</StyledHeadCell>
-        <StyledHeadCell>Details</StyledHeadCell>
+      <StyledTable
+        tabIndex="0"
+        role="grid"
+        $gridTemplateColumns="auto auto max-content auto auto"
+      >
+        <StyledHeadCell {...getCellProps(0, 0)}>Job Name</StyledHeadCell>
+        <StyledHeadCell {...getCellProps(1, 0)}>Status</StyledHeadCell>
+        <StyledHeadCell {...getCellProps(2, 0)}>Pull Request</StyledHeadCell>
+        <StyledHeadCell {...getCellProps(3, 0)}>Last Run</StyledHeadCell>
+        <StyledHeadCell {...getCellProps(4, 0)}>Details</StyledHeadCell>
 
-        {data.map((row, index) => {
-          const striped = index % 2 === 0;
-          return <Row key={index} row={row} striped={striped} />;
+        {data.map((row, rowIndex) => {
+          const striped = rowIndex % 2 === 0;
+          return (
+            <Row
+              getCellProps={columnIndex =>
+                getCellProps(columnIndex, rowIndex + 1)
+              }
+              key={rowIndex}
+              row={row}
+              striped={striped}
+            />
+          );
         })}
       </StyledTable>
     </div>
