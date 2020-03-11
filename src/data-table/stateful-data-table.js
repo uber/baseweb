@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+import ResizeObserver from 'resize-observer-polyfill';
 
 import {
   Button,
@@ -19,7 +20,6 @@ import {Input, SIZE as INPUT_SIZES} from '../input/index.js';
 import {Popover} from '../popover/index.js';
 import {useStyletron} from '../styles/index.js';
 import {Tag} from '../tag/index.js';
-
 import FilterMenu from './filter-menu.js';
 import {Unstable_DataTable} from './data-table.js';
 import {Unstable_StatefulContainer} from './stateful-container.js';
@@ -32,6 +32,7 @@ function useResizeObserver(
   React.useLayoutEffect(() => {
     if (__BROWSER__) {
       if (ref.current) {
+        //$FlowFixMe
         const observer = new ResizeObserver(callback);
         observer.observe(ref.current);
         return () => observer.disconnect();
@@ -91,6 +92,8 @@ function FilterTag(props) {
 
   return (
     <Popover
+      focusLock
+      returnFocus
       key={props.title}
       isOpen={isOpen}
       onClickOutside={() => setIsOpen(false)}
