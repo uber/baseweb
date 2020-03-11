@@ -26,14 +26,14 @@ const selectors = {
 
 describe('TimePicker', () => {
   it('passes basic a11y tests', async () => {
-    await mount(page, 'time-picker');
+    await mount(page, 'time-picker-adapter');
     await page.waitFor(selectors.twelveHour);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('is renders expected 12 hour format times', async () => {
-    await mount(page, 'time-picker');
+    await mount(page, 'time-picker-adapter');
     await page.waitFor(selectors.twelveHour);
     await page.click(`${selectors.twelveHour} ${selectors.input}`);
     await page.waitFor(selectors.dropdown);
@@ -63,7 +63,7 @@ describe('TimePicker', () => {
   });
 
   it('is renders expected 24 hour format times with custom step', async () => {
-    await mount(page, 'time-picker');
+    await mount(page, 'time-picker-adapter');
     await page.waitFor(selectors.twentyFourHour);
     await page.click(`${selectors.twentyFourHour} ${selectors.input}`);
     await page.waitFor(selectors.dropdown);
@@ -94,7 +94,7 @@ describe('TimePicker', () => {
   });
 
   it('renders a date that is not one of the steps', async () => {
-    await mount(page, 'time-picker');
+    await mount(page, 'time-picker-adapter');
     await page.waitFor(selectors.twelveHourCreatable);
     await page.waitFor(selectors.twentyFourHourCreatable);
 
@@ -114,7 +114,7 @@ describe('TimePicker', () => {
 
   describe('creatable', () => {
     it('shows both AM and PM options when a 12-hour time without meridiem is entered', async () => {
-      await mount(page, 'time-picker');
+      await mount(page, 'time-picker-adapter');
       await page.waitFor(selectors.twelveHourCreatable);
       await page.click(`${selectors.twelveHourCreatable} ${selectors.input}`);
       await page.waitFor(selectors.dropdown);
@@ -130,7 +130,7 @@ describe('TimePicker', () => {
     });
 
     it('shows AM option when a 12-hour time with partial meridiem is entered', async () => {
-      await mount(page, 'time-picker');
+      await mount(page, 'time-picker-adapter');
       await page.waitFor(selectors.twelveHourCreatable);
       await page.click(`${selectors.twelveHourCreatable} ${selectors.input}`);
       await page.waitFor(selectors.dropdown);
@@ -144,7 +144,7 @@ describe('TimePicker', () => {
     });
 
     it('generates the correct seconds for 12PM', async () => {
-      await mount(page, 'time-picker');
+      await mount(page, 'time-picker-adapter');
       await page.waitFor(selectors.twelveHourCreatable);
       await page.click(`${selectors.twelveHourCreatable} ${selectors.input}`);
       await page.waitFor(selectors.dropdown);
@@ -173,7 +173,7 @@ describe('TimePicker', () => {
     });
 
     it('generates the correct seconds for 12AM', async () => {
-      await mount(page, 'time-picker');
+      await mount(page, 'time-picker-adapter');
       await page.waitFor(selectors.twelveHourCreatable);
       await page.click(`${selectors.twelveHourCreatable} ${selectors.input}`);
       await page.waitFor(selectors.dropdown);
@@ -190,7 +190,7 @@ describe('TimePicker', () => {
     });
 
     it('shows an option when a 24 hour time without leading zero is entered', async () => {
-      await mount(page, 'time-picker');
+      await mount(page, 'time-picker-adapter');
       await page.waitFor(selectors.twentyFourHourCreatable);
       await page.click(
         `${selectors.twentyFourHourCreatable} ${selectors.input}`,
@@ -206,7 +206,7 @@ describe('TimePicker', () => {
     });
 
     it('shows only one option when a time is entered that matches an existing option', async () => {
-      await mount(page, 'time-picker');
+      await mount(page, 'time-picker-adapter');
       await page.waitFor(selectors.twentyFourHourCreatable);
       await page.click(
         `${selectors.twentyFourHourCreatable} ${selectors.input}`,

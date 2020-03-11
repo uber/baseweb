@@ -9,9 +9,10 @@ LICENSE file in the root directory of this source tree.
 import type {OverrideT} from '../helpers/overrides.js';
 import type {OptionT} from '../select/index.js';
 import type {SizeT} from '../input/types.js';
-import type {DateT} from '../datepicker/utils/types.js';
+import type {DateIOAdapter} from '../datepicker/utils/types.js';
 
-export type TimePickerPropsT = {
+export type TimePickerPropsT<DateT = Date> = {
+  adapter?: DateIOAdapter<DateT>,
   /** Render options in AM/PM format or 24 hour format. Defaults to 12 hour. */
   format?: '12' | '24',
   /** Callback for when time selection changes. */

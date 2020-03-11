@@ -6,20 +6,23 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React, {useState} from 'react';
-// eslint-disable-next-line import/extensions
-import startOfDay from 'date-fns/startOfDay';
+import React, {useState, useContext} from 'react';
+import MomentAdapter from '@date-io/moment';
 
 import {TimePicker} from '../index.js';
 import {SIZE} from '../../input/index.js';
 
-const MIDNIGHT = startOfDay(new Date(2019, 3, 19));
-const OFF_STEP_TIME = new Date(2019, 3, 19, 1, 11);
+const moment = new MomentAdapter();
+
+const MIDNIGHT = moment.startOfDay(moment.date([2019, 3, 19]));
+const OFF_STEP_TIME = moment.date([2019, 3, 19, 1, 11]);
 const overrides = {
   Select: {
     props: {overrides: {ValueContainer: {props: {'data-id': 'selected'}}}},
   },
 };
+
+const MomentTimePicker: Class<TimePicker<moment$Moment>> = TimePicker;
 
 const Controlled = ({
   size = 'default',
@@ -28,10 +31,11 @@ const Controlled = ({
   onChange = () => {},
   ...restProps
 }) => {
-  const [time, setTime] = useState(initialDate);
+  const [time, setTime] = useState<?moment$Moment>(initialDate);
   return (
     <React.Fragment>
-      <TimePicker
+      <MomentTimePicker
+        adapter={moment}
         value={time}
         onChange={time => {
           setTime(time);
@@ -42,14 +46,17 @@ const Controlled = ({
         size={size}
         {...restProps}
       />
-      <p data-e2e="hours">hour: {time ? time.getHours() : 'null'}</p>
-      <p data-e2e="minutes">minute: {time ? time.getMinutes() : 'null'}</p>
+      <p data-e2e="hours">hour: {time ? moment.getHours(time) : 'null'}</p>
+      <p data-e2e="minutes">
+        minute: {time ? moment.getMinutes(time) : 'null'}
+      </p>
     </React.Fragment>
   );
 };
 
 export default function Scenario() {
   const [value, setValue] = React.useState(null);
+
   return (
     <div style={{width: '130px'}}>
       <div data-e2e="12-hour">

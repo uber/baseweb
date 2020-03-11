@@ -6,82 +6,73 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-export type DateT = moment$Moment | Date;
+type DateInput<DateT> = DateT | string | number | null | void;
+type Comparison<DateT> = (value: DateT, comparing: DateT) => boolean;
+type DateInDateOut<DateT> = (value: DateT) => DateT;
 
-type DateValues = DateT | string | number;
-type DateInput = ?DateValues;
+export interface DateIOAdapter<DateT = Date> {
+  date: (DateInput<DateT> | void) => DateT | null;
+  toJsDate(value: DateInput<DateT>): Date;
 
-type Comparison = (value: DateT, comparing: DateT) => boolean;
-type DateInDateOut = (value: DateT) => DateT;
+  parse(value: string, format: string): DateT;
+  getCurrentLocaleCode(): string;
+  is12HourCycleInCurrentLocale(): boolean;
 
-type DateFuncT = (DateInput | void) => DateT;
+  isNull(value?: DateT): boolean;
+  isValid(value: DateInput<DateT>): boolean;
+  getDiff: Comparison<DateT>;
+  isEqual: Comparison<DateT>;
+  isSameDay: Comparison<DateT>;
+  isSameMonth: Comparison<DateT>;
+  isSameYear: Comparison<DateT>;
+  isSameHour: Comparison<DateT>;
+  isAfter: Comparison<DateT>;
+  isAfterDay: Comparison<DateT>;
+  isAfterYear: Comparison<DateT>;
 
-export type DateUtilsT = {
-  date: DateFuncT,
-  toJsDate(value: DateInput): Date,
-  parse(value: string, format: string): DateT,
-  getCurrentLocaleCode(): string,
-  is12HourCycleInCurrentLocale(): boolean,
+  isBeforeDay: Comparison<DateT>;
+  isBeforeYear: Comparison<DateT>;
+  isBefore: Comparison<DateT>;
+  startOfMonth: DateInDateOut<DateT>;
+  endOfMonth: DateInDateOut<DateT>;
+  startOfWeek: DateInDateOut<DateT>;
+  endOfWeek: (value: DateT) => DateT;
+  addDays: (value: DateT, count: number) => DateT;
 
-  isNull(value?: DateT): boolean,
-  isValid(value: DateInput): boolean,
-  getDiff: Comparison,
-  isEqual: Comparison,
-  isSameDay: Comparison,
-  isSameMonth: Comparison,
-  isSameYear: Comparison,
-  isSameHour: Comparison,
-  isAfter: Comparison,
-  isAfterDay: Comparison,
-  isAfterYear: Comparison,
+  startOfDay: DateInDateOut<DateT>;
+  endOfDay: DateInDateOut<DateT>;
+  format(value: DateT, formatKey: string): string;
+  formatByString(value: DateT, formatString: string): string;
+  formatNumber(numberToFormat: string): string;
+  getHours(value: DateT): number;
+  setHours(value: DateT, count: number): DateT;
 
-  isBeforeDay: Comparison,
-  isBeforeYear: Comparison,
-  isBefore: Comparison,
-  startOfMonth: DateInDateOut,
-  endOfMonth: DateInDateOut,
-  startOfWeek: DateInDateOut,
-  endOfWeek(value: DateT): DateT,
-  addDays(value: DateT, count: number): DateT,
+  getMinutes(value: DateT): number;
+  setMinutes(value: DateT, count: number): DateT;
 
-  startOfDay: DateInDateOut,
-  endOfDay: DateInDateOut,
-  format(value: DateT, formatKey: string): string,
-  formatByString(value: DateT, formatString: string): string,
-  formatNumber(numberToFormat: string): string,
-  getHours(value: DateT): number,
-  setHours(value: DateT, count: number): DateT,
+  getSeconds(value: DateT): number;
+  setSeconds(value: DateT, count: number): DateT;
 
-  getMinutes(value: DateT): number,
-  setMinutes(value: DateT, count: number): DateT,
+  getMonth(value: DateT): number;
+  setMonth(value: DateT, count: number): DateT;
+  getNextMonth: DateInDateOut<DateT>;
+  getPreviousMonth: DateInDateOut<DateT>;
+  getMonthArray(value: DateT): DateT[];
 
-  getSeconds(value: DateT): number,
-  setSeconds(value: DateT, count: number): DateT,
+  getYear(value: DateT): number;
+  setYear(value: DateT, count: number): DateT;
 
-  getMonth(value: DateT): number,
-  setMonth(value: DateT, count: number): DateT,
-  getNextMonth: DateInDateOut,
-  getPreviousMonth: DateInDateOut,
-  getMonthArray(value: DateT): DateT[],
+  mergeDateAndTime(date: DateT, time: DateT): DateT;
 
-  getYear(value: DateT): number,
-  setYear(value: DateT, count: number): DateT,
-
-  mergeDateAndTime(date: DateT, time: DateT): DateT,
-
-  getWeekdays(): string[],
-  getWeekArray(date: DateT): DateT[][],
-  getYearRange(start: DateT, end: DateT): DateT[],
+  getWeekdays(): string[];
+  getWeekArray(date: DateT): DateT[][];
+  getYearRange(start: DateT, end: DateT): DateT[];
 
   /** Allow to customize displaying "am/pm" strings */
-  getMeridiemText(ampm: 'am' | 'pm'): string,
-};
+  getMeridiemText(ampm: 'am' | 'pm'): string;
+}
 
-export type DateUtilsContextT = {
-  utils: DateUtilsT,
-};
-
-export type DateFormatsT = {
+type DateFormatsT = {
   /** Localized full date, useful for accessibility @example "January 1st, 2019" */
   fullDate: string,
   /** Date format string with month and day of month @example "01 January" */
