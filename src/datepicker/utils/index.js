@@ -134,6 +134,10 @@ export function getWeekdayMinInLocale(date: Date, locale: any) {
   return formatDate(date, 'EEEE', locale).charAt(0);
 }
 // eslint-disable-next-line flowtype/no-weak-types
+export function getWeekdayInLocale(date: Date, locale: any) {
+  return formatDate(date, 'EEEE', locale);
+}
+// eslint-disable-next-line flowtype/no-weak-types
 export function getMonthInLocale(month: number, locale: any) {
   return formatDate(setMonth(new Date(), month), 'LLLL', locale);
 }
