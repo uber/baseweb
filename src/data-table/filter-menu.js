@@ -12,6 +12,7 @@ import {Filter as FilterIcon} from '../icon/index.js';
 import {Input, SIZE as INPUT_SIZE} from '../input/index.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
 import {useStyletron} from '../styles/index.js';
+import getBuiId from '../utils/get-bui-id.js';
 
 import {COLUMNS} from './constants.js';
 import {matchesQuery} from './text-search.js';
@@ -60,6 +61,7 @@ function Options(props: OptionsPropsT) {
   }, [inputRef.current]);
 
   const [focusVisible, setFocusVisible] = React.useState(false);
+  const buiRef = React.useRef(props.columns.map((_, index) => getBuiId()));
 
   const handleFocus = (event: SyntheticEvent<>) => {
     if (isFocusVisible(event)) {
@@ -131,7 +133,7 @@ function Options(props: OptionsPropsT) {
         onBlur={handleBlur}
         tabIndex="0"
         role="listbox"
-        aria-activedescendant={`bui-${props.highlightIndex}`}
+        aria-activedescendant={`bui-${buiRef.current[props.highlightIndex]}`}
         className={css({
           listStyleType: 'none',
           marginBlockStart: 'unset',
@@ -142,11 +144,12 @@ function Options(props: OptionsPropsT) {
       >
         {props.columns.map((column, index) => {
           const isHighlighted = index === props.highlightIndex;
+
           return (
             // handled on the wrapper element
             // eslint-disable-next-line jsx-a11y/click-events-have-key-events
             <li
-              id={`bui-${index}`}
+              id={`bui-${buiRef.current[index]}`}
               role="option"
               aria-selected={isHighlighted}
               onMouseEnter={() => props.onMouseEnter(index)}

@@ -61,8 +61,12 @@ function FilterQuickControls(props: {
 }) {
   return (
     <ButtonGroup size={SIZE.mini} kind={KIND.minimal}>
-      <Button onClick={props.onSelectAll}>Select All</Button>
-      <Button onClick={props.onClearSelection}>Clear</Button>
+      <Button type="button" onClick={props.onSelectAll}>
+        Select All
+      </Button>
+      <Button type="button" onClick={props.onClearSelection}>
+        Clear
+      </Button>
     </ButtonGroup>
   );
 }
