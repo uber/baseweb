@@ -9,6 +9,18 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
+"@date-io/core@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@date-io/core/-/core-2.4.0.tgz#59e1c6de1d48ee63c6e97681b415076d04e7b5bf"
+  integrity sha512-XUr4TSwFmthcCn5QYnGqobbnBqOsSyCggRfvieMQHPSz5zei8KYpw4xlvFFQfu/MI3CmCHDjWMkVaPy/uFIDNA==
+
+"@date-io/date-fns@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@date-io/date-fns/-/date-fns-2.4.0.tgz#d41aa353806a3b8aa28fbcadf2c860438bcbfaa9"
+  integrity sha512-DYlfSiTs6GuPmbAmJ9ws7aaOd8f89lVBBqU+71w4Qxxv9DW2qQvBWwOkvCJ5qSp4ae4+PtCzy6JKQDKsdgBaJg==
+  dependencies:
+    "@date-io/core" "^2.4.0"
+
 "@rtsao/csstype@2.6.5-forked.0":
   version "2.6.5-forked.0"
   resolved "https://registry.yarnpkg.com/@rtsao/csstype/-/csstype-2.6.5-forked.0.tgz#b5b4e2a07ad83a91874ebf5fabdb73dc8c1632f6"
@@ -34,11 +46,10 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
 
-baseui@latest:
-  version "9.60.0"
-  resolved "https://registry.yarnpkg.com/baseui/-/baseui-9.60.0.tgz#1ef5b44572bb3d54d41043147630f5d61877021f"
-  integrity sha512-Zi34ChVtBXJjp/gIDdSZRe4AosHxIcu4ejI/+j6fx47MAq7da/+oH/RLng3TJVDI6nmLhl7/HIiuBm12HLvgmQ==
+baseui@../../dist:
+  version "9.61.0"
   dependencies:
+    "@date-io/date-fns" "^2.4.0"
     card-validator "^6.2.0"
     date-fns "^2.6.0"
     glob "^7.1.6"

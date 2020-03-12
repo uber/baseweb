@@ -16,6 +16,7 @@ import {Popover, PLACEMENT} from '../popover/index.js';
 import Calendar from './calendar.js';
 import {formatDate, getHours, getMinutes} from './utils/index.js';
 import {getOverrides} from '../helpers/overrides.js';
+import getInterpolatedString from '../helpers/i18n-interpolation.js';
 import {LocaleContext} from '../locale/index.js';
 import {StyledInputWrapper} from './styled-components.js';
 import type {DatepickerPropsT} from './types.js';
@@ -118,6 +119,7 @@ export default class Datepicker extends React.Component<
     this.setState({
       isOpen: true,
       isPseudoFocused: true,
+      calendarFocused: false,
     });
   };
 
@@ -306,12 +308,15 @@ export default class Datepicker extends React.Component<
                 <InputComponent
                   aria-disabled={this.props.disabled}
                   aria-label={
-                    this.props['aria-label'] || locale.datepicker.ariaLabel
+                    this.props['aria-label'] ||
+                    (this.props.range
+                      ? locale.datepicker.ariaLabelRange
+                      : locale.datepicker.ariaLabel)
                   }
                   error={this.props.error}
                   positive={this.props.positive}
-                  aria-labelledby={this.props['aria-labelledby']}
                   aria-describedby={this.props['aria-describedby']}
+                  aria-labelledby={this.props['aria-labelledby']}
                   aria-required={this.props.required || null}
                   disabled={this.props.disabled}
                   size={this.props.size}
@@ -332,9 +337,8 @@ export default class Datepicker extends React.Component<
               id={this.props['aria-describedby']}
               style={{
                 position: 'fixed',
-                width: '1px',
-                height: '1px',
-                margin: '-1px',
+                width: '0px',
+                height: '0px',
                 border: 0,
                 padding: 0,
                 overflow: 'hidden',
@@ -343,6 +347,42 @@ export default class Datepicker extends React.Component<
               }}
             >
               {locale.datepicker.screenReaderMessageInput}
+            </p>
+            <p
+              aria-live="assertive"
+              style={{
+                position: 'fixed',
+                width: '0px',
+                height: '0px',
+                border: 0,
+                padding: 0,
+                overflow: 'hidden',
+                clip: 'rect(0, 0, 0, 0)',
+                clipPath: 'inset(100%)',
+              }}
+            >
+              {// No date selected
+              !this.props.value ||
+              (Array.isArray(this.props.value) && !this.props.value.length)
+                ? ''
+                : // Date selected in a non-range picker
+                !Array.isArray(this.props.value)
+                ? getInterpolatedString(locale.datepicker.selectedDate, {
+                    date: this.state.inputValue || '',
+                  })
+                : // Start and end dates are selected in a range picker
+                this.props.value.length > 1
+                ? getInterpolatedString(locale.datepicker.selectedDateRange, {
+                    startDate: this.formatDisplayValue(this.props.value[0]),
+                    endDate: this.formatDisplayValue(
+                      // $FlowFixMe
+                      this.props.value[1],
+                    ),
+                  })
+                : // A single date selected in a range picker
+                  `${getInterpolatedString(locale.datepicker.selectedDate, {
+                    date: this.formatDisplayValue(this.props.value[0]),
+                  })} ${locale.datepicker.selectSecondDatePrompt}`}
             </p>
           </React.Fragment>
         )}

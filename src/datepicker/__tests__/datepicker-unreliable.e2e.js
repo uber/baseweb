@@ -19,8 +19,8 @@ const selectors = {
   day4: '[aria-label="Choose Monday, April 1st 2019. It\'s available."]',
   day5: '[aria-label="Choose Saturday, March 10th 2018. It\'s available."]',
   day6: '[aria-label="Choose Monday, July 1st 2019. It\'s available."]',
-  leftArrow: '[aria-label="Previous month"]',
-  rightArrow: '[aria-label="Next month"]',
+  leftArrow: '[aria-label="Previous month."]',
+  rightArrow: '[aria-label="Next month."]',
   monthYearSelectButton: '[data-id="monthYearSelectButton"]',
   monthYearSelectMenu: '[data-id="monthYearSelectMenu"]',
 };
@@ -114,8 +114,7 @@ describe('Datepicker', () => {
     await page.click(selectors.leftArrow);
     const value = await page.$(selectors.monthYearSelectButton);
     const text = await page.evaluate(element => element.textContent, value);
-    // (Month YearTriangle Down) because it renders an icon within the element
-    expect(text).toBe('January 2000Triangle Down');
+    expect(text).toBe('January 2000');
   });
 
   it('disables next month button if maximum month is selected', async () => {
@@ -136,8 +135,7 @@ describe('Datepicker', () => {
     await page.click(selectors.rightArrow);
     const value = await page.$(selectors.monthYearSelectButton);
     const text = await page.evaluate(element => element.textContent, value);
-    // (Month YearTriangle Down) because it renders an icon within the element
-    expect(text).toBe('December 2030Triangle Down');
+    expect(text).toBe('December 2030');
   });
 
   it('selects day when typed', async () => {
