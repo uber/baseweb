@@ -12,6 +12,7 @@ Object.values(COUNTRIES).forEach(country => {
 });
 
 const PhoneInputConfig: TConfig = {
+  componentName: 'PhoneInput',
   imports: {
     'baseui/phone-input': {
       named: ['PhoneInput'],
@@ -117,6 +118,11 @@ const PhoneInputConfig: TConfig = {
       value: '',
       type: PropTypes.String,
       description: "Input's placeholder.",
+    },
+    clearable: {
+      value: false,
+      type: PropTypes.Boolean,
+      description: 'Adds clear icon to the input.',
     },
     overrides: {
       value: undefined,

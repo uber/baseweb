@@ -7,17 +7,18 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import FocusLock from 'react-focus-lock';
-
 import {Button, SHAPE, SIZE} from '../button/index.js';
 import {Filter as FilterIcon} from '../icon/index.js';
 import {Input, SIZE as INPUT_SIZE} from '../input/index.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
 import {useStyletron} from '../styles/index.js';
+import getBuiId from '../utils/get-bui-id.js';
 
 import {COLUMNS} from './constants.js';
 import {matchesQuery} from './text-search.js';
 import type {ColumnT} from './types.js';
+
+import {isFocusVisible} from '../utils/focusVisible.js';
 
 function ColumnIcon(props: {column: ColumnT<>}) {
   if (props.column.kind === COLUMNS.BOOLEAN) {
@@ -26,6 +27,10 @@ function ColumnIcon(props: {column: ColumnT<>}) {
 
   if (props.column.kind === COLUMNS.CATEGORICAL) {
     return 'abc';
+  }
+
+  if (props.column.kind === COLUMNS.DATETIME) {
+    return 'dt';
   }
 
   if (props.column.kind === COLUMNS.NUMERICAL) {
@@ -55,16 +60,30 @@ function Options(props: OptionsPropsT) {
     }
   }, [inputRef.current]);
 
+  const [focusVisible, setFocusVisible] = React.useState(false);
+  const buiRef = React.useRef(props.columns.map((_, index) => getBuiId()));
+
+  const handleFocus = (event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      setFocusVisible(true);
+    }
+  };
+
+  const handleBlur = (event: SyntheticEvent<>) => {
+    if (focusVisible !== false) {
+      setFocusVisible(false);
+    }
+  };
+
   return (
     <div
-      tabIndex="0"
-      role="listbox"
       className={css({
+        backgroundColor: theme.colors.backgroundPrimary,
         minWidth: '320px',
+        outline: focusVisible ? `3px solid ${theme.colors.accent}` : 'none',
         paddingTop: theme.sizing.scale600,
         paddingBottom: theme.sizing.scale600,
       })}
-      onKeyDown={props.onKeyDown}
     >
       <p
         className={css({
@@ -109,19 +128,28 @@ function Options(props: OptionsPropsT) {
       )}
 
       <ul
+        onKeyDown={props.onKeyDown}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        tabIndex="0"
+        role="listbox"
+        aria-activedescendant={`bui-${buiRef.current[props.highlightIndex]}`}
         className={css({
           listStyleType: 'none',
           marginBlockStart: 'unset',
           marginBlockEnd: 'unset',
           paddingInlineStart: 'unset',
+          outline: 'none',
         })}
       >
         {props.columns.map((column, index) => {
           const isHighlighted = index === props.highlightIndex;
+
           return (
             // handled on the wrapper element
             // eslint-disable-next-line jsx-a11y/click-events-have-key-events
             <li
+              id={`bui-${buiRef.current[index]}`}
               role="option"
               aria-selected={isHighlighted}
               onMouseEnter={() => props.onMouseEnter(index)}
@@ -130,7 +158,9 @@ function Options(props: OptionsPropsT) {
               className={css({
                 ...theme.typography.font100,
                 alignItems: 'center',
-                backgroundColor: isHighlighted ? theme.colors.mono200 : null,
+                backgroundColor: isHighlighted
+                  ? theme.colors.backgroundSecondary
+                  : null,
                 cursor: 'pointer',
                 display: 'flex',
                 paddingTop: theme.sizing.scale100,
@@ -144,7 +174,7 @@ function Options(props: OptionsPropsT) {
                   ...theme.typography.font150,
                   fontSize: '8px',
                   alignItems: 'center',
-                  backgroundColor: theme.colors.mono300,
+                  backgroundColor: theme.colors.backgroundTertiary,
                   borderRadius: theme.borders.radius200,
                   display: 'flex',
                   height: theme.sizing.scale800,
@@ -171,8 +201,8 @@ type PropsT = {
   // eslint-disable-next-line flowtype/no-weak-types
   rows: any[],
   onSetFilter: (
-    filterParams: {description: string},
     columnTitle: string,
+    filterParams: {description: string},
   ) => void,
 };
 
@@ -237,23 +267,21 @@ function FilterMenu(props: PropsT) {
 
   return (
     <Popover
+      focusLock
+      returnFocus={true}
       placement={PLACEMENT.bottomLeft}
       content={() => {
         if (Filter && activeColumn) {
           return (
-            // eslint-disable-next-line jsx-a11y/no-autofocus
-            <FocusLock autoFocus={false}>
-              <Filter
-                data={activeColumnData}
-                close={handleClose}
-                setFilter={filterParams =>
-                  props.onSetFilter(filterParams, activeColumn.title)
-                }
-              />
-            </FocusLock>
+            <Filter
+              data={activeColumnData}
+              close={handleClose}
+              setFilter={filterParams =>
+                props.onSetFilter(activeColumn.title, filterParams)
+              }
+            />
           );
         }
-
         return (
           <Options
             columns={columns}
@@ -282,7 +310,6 @@ function FilterMenu(props: PropsT) {
       <Button
         shape={SHAPE.pill}
         size={SIZE.compact}
-        onKeyDown={handleKeyDown}
         overrides={{
           BaseButton: {
             style: {

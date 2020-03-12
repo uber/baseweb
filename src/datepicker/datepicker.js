@@ -8,12 +8,15 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import isValid from 'date-fns/isValid/index.js';
 import isAfter from 'date-fns/isAfter/index.js';
+import isEqual from 'date-fns/isEqual/index.js';
+import parse from 'date-fns/parse/index.js';
 
 import {MaskedInput} from '../input/index.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
 import Calendar from './calendar.js';
-import {formatDate} from './utils/index.js';
+import {formatDate, getHours, getMinutes} from './utils/index.js';
 import {getOverrides} from '../helpers/overrides.js';
+import getInterpolatedString from '../helpers/i18n-interpolation.js';
 import {LocaleContext} from '../locale/index.js';
 import {StyledInputWrapper} from './styled-components.js';
 import type {DatepickerPropsT} from './types.js';
@@ -57,6 +60,32 @@ export default class Datepicker extends React.Component<
     } else if (this.state.lastActiveElm) {
       this.state.lastActiveElm.focus();
     }
+
+    // Time selectors previously caused the calendar popover to close.
+    // The check below refrains from closing the popover if only times changed.
+    const onlyTimeChanged = (prev: ?Date, next: ?Date) => {
+      if (!prev || !next) return false;
+      const p = formatDate(prev, 'dd-MM-yyyy');
+      const n = formatDate(next, 'dd-MM-yyyy');
+      if (p === n) {
+        return (
+          getHours(prev) !== getHours(next) ||
+          getMinutes(prev) !== getMinutes(next)
+        );
+      }
+      return false;
+    };
+    const prevValue = this.props.value;
+    if (Array.isArray(date) && Array.isArray(prevValue)) {
+      if (date.some((d, i) => onlyTimeChanged(prevValue[i], d))) {
+        isOpen = true;
+      }
+    } else if (!Array.isArray(date) && !Array.isArray(prevValue)) {
+      if (onlyTimeChanged(prevValue, date)) {
+        isOpen = true;
+      }
+    }
+
     this.setState({
       isOpen,
       isPseudoFocused,
@@ -90,6 +119,7 @@ export default class Datepicker extends React.Component<
     this.setState({
       isOpen: true,
       isPseudoFocused: true,
+      calendarFocused: false,
     });
   };
 
@@ -166,16 +196,28 @@ export default class Datepicker extends React.Component<
     });
 
     if (this.props.range) {
-      const dates = this.normalizeDashes(inputValue).split(' – ');
-      const startDate = new Date(dates[0]);
-      const endDate = new Date(dates[1]);
-      isValid(startDate) &&
-        isValid(endDate) &&
-        isAfter(endDate, startDate) &&
-        this.props.onChange &&
-        this.props.onChange({
-          date: [startDate, endDate],
-        });
+      const [left, right] = this.normalizeDashes(inputValue).split(' – ');
+      let startDate = new Date(left);
+      let endDate = new Date(right);
+
+      const formatString = this.props.formatString;
+      if (formatString) {
+        startDate = parse(left, this.normalizeDashes(formatString), new Date());
+        endDate = parse(right, this.normalizeDashes(formatString), new Date());
+      }
+
+      const onChange = this.props.onChange;
+      if (onChange) {
+        const datesValid = isValid(startDate) && isValid(endDate);
+
+        // added equal case so that times within the same day can be expressed
+        const rangeValid =
+          isAfter(endDate, startDate) || isEqual(startDate, endDate);
+
+        if (datesValid && rangeValid) {
+          onChange({date: [startDate, endDate]});
+        }
+      }
     } else {
       const date = new Date(inputValue);
       isValid(date) &&
@@ -245,6 +287,7 @@ export default class Datepicker extends React.Component<
         {locale => (
           <React.Fragment>
             <PopoverComponent
+              focusLock={false}
               mountNode={this.props.mountNode}
               placement={PLACEMENT.bottom}
               isOpen={this.state.isOpen}
@@ -265,12 +308,15 @@ export default class Datepicker extends React.Component<
                 <InputComponent
                   aria-disabled={this.props.disabled}
                   aria-label={
-                    this.props['aria-label'] || locale.datepicker.ariaLabel
+                    this.props['aria-label'] ||
+                    (this.props.range
+                      ? locale.datepicker.ariaLabelRange
+                      : locale.datepicker.ariaLabel)
                   }
                   error={this.props.error}
                   positive={this.props.positive}
-                  aria-labelledby={this.props['aria-labelledby']}
                   aria-describedby={this.props['aria-describedby']}
+                  aria-labelledby={this.props['aria-labelledby']}
                   aria-required={this.props.required || null}
                   disabled={this.props.disabled}
                   size={this.props.size}
@@ -291,9 +337,8 @@ export default class Datepicker extends React.Component<
               id={this.props['aria-describedby']}
               style={{
                 position: 'fixed',
-                width: '1px',
-                height: '1px',
-                margin: '-1px',
+                width: '0px',
+                height: '0px',
                 border: 0,
                 padding: 0,
                 overflow: 'hidden',
@@ -302,6 +347,42 @@ export default class Datepicker extends React.Component<
               }}
             >
               {locale.datepicker.screenReaderMessageInput}
+            </p>
+            <p
+              aria-live="assertive"
+              style={{
+                position: 'fixed',
+                width: '0px',
+                height: '0px',
+                border: 0,
+                padding: 0,
+                overflow: 'hidden',
+                clip: 'rect(0, 0, 0, 0)',
+                clipPath: 'inset(100%)',
+              }}
+            >
+              {// No date selected
+              !this.props.value ||
+              (Array.isArray(this.props.value) && !this.props.value.length)
+                ? ''
+                : // Date selected in a non-range picker
+                !Array.isArray(this.props.value)
+                ? getInterpolatedString(locale.datepicker.selectedDate, {
+                    date: this.state.inputValue || '',
+                  })
+                : // Start and end dates are selected in a range picker
+                this.props.value.length > 1
+                ? getInterpolatedString(locale.datepicker.selectedDateRange, {
+                    startDate: this.formatDisplayValue(this.props.value[0]),
+                    endDate: this.formatDisplayValue(
+                      // $FlowFixMe
+                      this.props.value[1],
+                    ),
+                  })
+                : // A single date selected in a range picker
+                  `${getInterpolatedString(locale.datepicker.selectedDate, {
+                    date: this.formatDisplayValue(this.props.value[0]),
+                  })} ${locale.datepicker.selectSecondDatePrompt}`}
             </p>
           </React.Fragment>
         )}

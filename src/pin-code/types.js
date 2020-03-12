@@ -19,6 +19,8 @@ export type PropsT = {
   'aria-labelledby': ?string,
   /** Sets aria-describedby attribute for each input element. */
   'aria-describedby': ?string,
+  /** Sets autocomplete attribute for each input element. */
+  autoComplete: ?string,
   /** If true, the first input will be focused upon mounting. */
   autoFocus: boolean,
   /** Render the component in a disabled state. */
@@ -67,15 +69,15 @@ export type StateReducerT = (
   currentState: StatefulPinCodeContainerStateT,
 ) => StatefulPinCodeContainerStateT;
 
-export type StatefulPinCodeContainerPropsT = {
-  children: PropsT => React.Node,
-  initialState: StatefulPinCodeContainerStateT,
-  onChange: (event: ChangeEventT) => mixed,
-  stateReducer: StateReducerT,
-};
-
 export type StatefulPinCodePropsT = PropsT & {
   initialState?: StatefulPinCodeContainerStateT,
   onChange?: (event: ChangeEventT) => mixed,
   stateReducer?: StateReducerT,
+};
+
+export type StatefulPinCodeContainerPropsT = PropsT & {
+  children: PropsT => React.Node,
+  initialState: StatefulPinCodeContainerStateT,
+  onChange: (event: ChangeEventT) => mixed,
+  stateReducer: StateReducerT,
 };

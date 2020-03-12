@@ -15,19 +15,24 @@ export const StyledClearIconContainer = styled<{
   $alignTop: boolean,
   $theme: ThemeT,
 }>('div', ({$alignTop = false, $theme}) => {
+  const paddingDir: string =
+    $theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
   return {
     display: 'flex',
     alignItems: $alignTop ? 'flex-start' : 'center',
-    [$theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight']: $theme.sizing
-      .scale500,
+    [paddingDir]: $theme.sizing.scale500,
     paddingTop: $alignTop ? $theme.sizing.scale500 : '0px',
     color: $theme.colors.contentPrimary,
   };
 });
 
-export const StyledClearIcon = styled<typeof DeleteAlt, {}>(DeleteAlt, {
+export const StyledClearIcon = styled<
+  typeof DeleteAlt,
+  {$isFocusVisible: boolean},
+>(DeleteAlt, ({$theme, $isFocusVisible}) => ({
   cursor: 'pointer',
-});
+  outline: $isFocusVisible ? `solid 3px ${$theme.colors.accent}` : 'none',
+}));
 
 function getInputPadding(size, sizing) {
   return {
@@ -99,7 +104,11 @@ function getInputEnhancerBorderRadius(position, radius) {
   }[position];
 }
 
-function getInputEnhancerPadding($size, sizing) {
+type InputEnhancerStyles = {|
+  paddingRight: string,
+  paddingLeft: string,
+|};
+function getInputEnhancerPadding($size, sizing): InputEnhancerStyles {
   return {
     [SIZE.mini]: {
       paddingRight: sizing.scale200,
@@ -257,7 +266,7 @@ function getInputContainerColors(
 
   return {
     color: colors.contentPrimary,
-    borderColor: colors.inputFill,
+    borderColor: colors.inputBorder,
     backgroundColor: colors.inputFill,
   };
 }

@@ -18,11 +18,11 @@ import {
   isStartOfMonth,
   isEndOfMonth,
 } from './utils/index.js';
-import getDayStateCode from './utils/day-state.js';
 import {getOverrides} from '../helpers/overrides.js';
 import type {DayPropsT, DayStateT} from './types.js';
 import {LocaleContext} from '../locale/index.js';
 import type {LocaleT} from '../locale/types.js';
+import {isFocusVisible} from '../utils/focusVisible.js';
 
 export default class Day extends React.Component<DayPropsT, DayStateT> {
   static defaultProps = {
@@ -33,6 +33,8 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     month: new Date().getMonth(),
     onClick: () => {},
     onSelect: () => {},
+    onFocus: () => {},
+    onBlur: () => {},
     onMouseOver: () => {},
     onMouseLeave: () => {},
     overrides: {},
@@ -44,6 +46,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
 
   state = {
     isHovered: false,
+    isFocusVisible: false,
   };
 
   componentDidMount() {
@@ -99,6 +102,20 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
       this.props.onClick({event, date});
       this.onSelect(date);
     }
+  };
+
+  onFocus = (event: Event) => {
+    if (isFocusVisible(event)) {
+      this.setState({isFocusVisible: true});
+    }
+    this.props.onFocus({event, date: this.props.date});
+  };
+
+  onBlur = (event: Event) => {
+    if (this.state.isFocusVisible !== false) {
+      this.setState({isFocusVisible: false});
+    }
+    this.props.onBlur({event, date: this.props.date});
   };
 
   onMouseOver = (event: Event) => {
@@ -190,6 +207,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
       $highlightedDate: highlightedDate,
       $isHighlighted,
       $isHovered: this.state.isHovered,
+      $isFocusVisible: this.state.isFocusVisible,
       $startOfMonth: isStartOfMonth(date),
       $endOfMonth: isEndOfMonth(date),
       $outsideMonth: this.isOutsideMonth(),
@@ -218,6 +236,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
       $range: boolean,
       $selected: boolean,
       $startDate: boolean,
+      $endDate: boolean,
     },
     localeContext: LocaleT,
   ) {
@@ -225,9 +244,9 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     return `${
       sharedProps.$selected
         ? sharedProps.$range
-          ? sharedProps.$startDate
-            ? localeContext.datepicker.selectedStartDateLabel
-            : localeContext.datepicker.selectedEndDateLabel
+          ? sharedProps.$endDate
+            ? localeContext.datepicker.selectedEndDateLabel
+            : localeContext.datepicker.selectedStartDateLabel
           : localeContext.datepicker.selectedLabel
         : sharedProps.$disabled
         ? localeContext.datepicker.dateNotAvailableLabel
@@ -242,19 +261,24 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     const sharedProps = this.getSharedProps();
     const [Day, dayProps] = getOverrides(overrides.Day, StyledDay);
     return !peekNextMonth && sharedProps.$outsideMonth ? (
-      <Day data-state-code={getDayStateCode(sharedProps)} />
+      <Day
+        role="gridcell"
+        {...sharedProps}
+        {...dayProps}
+        onFocus={this.onFocus}
+        onBlur={this.onBlur}
+      />
     ) : (
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
-
       <LocaleContext.Consumer>
         {(locale: LocaleT) => (
           <Day
-            data-state-code={getDayStateCode(sharedProps)}
             aria-label={this.getAriaLabel(sharedProps, locale)}
             ref={dayElm => {
               this.dayElm = dayElm;
             }}
-            role="cell"
+            role="gridcell"
+            aria-roledescription="button"
             tabIndex={
               this.props.highlighted ||
               (!this.props.highlightedDate && this.isSelected())
@@ -267,8 +291,8 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
             // make sure the components functions as expected
             // We can extract the handlers from props overrides
             // and call it along with internal handlers by creating an inline handler
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
+            onFocus={this.onFocus}
+            onBlur={this.onBlur}
             onClick={this.onClick}
             onKeyDown={this.onKeyDown}
             onMouseOver={this.onMouseOver}

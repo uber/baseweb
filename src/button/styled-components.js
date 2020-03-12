@@ -11,14 +11,39 @@ import type {SharedStylePropsT} from './types.js';
 
 export const BaseButton = styled<SharedStylePropsT>(
   'button',
-  ({$theme, $size, $kind, $shape, $isLoading, $isSelected, $disabled}) => ({
+  ({
+    $theme,
+    $size,
+    $kind,
+    $shape,
+    $isLoading,
+    $isSelected,
+    $disabled,
+    $isFocusVisible,
+  }) => ({
     display: 'inline-flex',
+    // need to maintain button width while showing loading spinner
+    flexDirection: $isLoading ? 'column' : 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 0,
-    borderStyle: 'none',
+    borderLeftWidth: 0,
+    borderTopWidth: 0,
+    borderRightWidth: 0,
+    borderBottomWidth: 0,
+    borderLeftStyle: 'none',
+    borderTopStyle: 'none',
+    borderRightStyle: 'none',
+    borderBottomStyle: 'none',
+    outline:
+      $isFocusVisible && $shape !== SHAPE.round && $shape !== SHAPE.pill
+        ? `3px solid ${$theme.colors.accent}`
+        : 'none',
+    outlineOffset: '-3px',
+    boxShadow:
+      $isFocusVisible && ($shape === SHAPE.round || $shape === SHAPE.pill)
+        ? `0 0 0 3px ${$theme.colors.accent}`
+        : 'none',
     textDecoration: 'none',
-    outline: 'none',
     WebkitAppearance: 'none',
     transitionProperty: 'background',
     transitionDuration: $theme.animation.timing100,
@@ -41,44 +66,82 @@ export const BaseButton = styled<SharedStylePropsT>(
   }),
 );
 
-export const EndEnhancer = styled<SharedStylePropsT>('div', ({$theme}) => ({
-  display: 'flex',
-  [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: $theme.sizing
-    .scale500,
-}));
-
-export const StartEnhancer = styled<SharedStylePropsT>('div', ({$theme}) => ({
-  display: 'flex',
-  [$theme.direction === 'rtl' ? 'marginLeft' : 'marginRight']: $theme.sizing
-    .scale500,
-}));
-
-export const LoadingSpinnerContainer = styled('div', {
-  // To center within parent
-  position: 'absolute',
+export const EndEnhancer = styled<SharedStylePropsT>('div', ({$theme}) => {
+  const marginDirection: string =
+    $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+  return {
+    display: 'flex',
+    [marginDirection]: $theme.sizing.scale500,
+  };
 });
 
-export const LoadingSpinner = styled<SharedStylePropsT>(
+export const StartEnhancer = styled<SharedStylePropsT>('div', ({$theme}) => {
+  const marginDirection: string =
+    $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
+  return {
+    display: 'flex',
+    [marginDirection]: $theme.sizing.scale500,
+  };
+});
+
+export const LoadingSpinnerContainer = styled<SharedStylePropsT>(
   'div',
-  ({$theme, $kind, $disabled}) => {
+  ({$theme, $size}) => {
+    // we don't have a themeing value for this
+    let margins = '3px';
+    if ($size === SIZE.mini || $size === SIZE.compact) {
+      margins = $theme.sizing.scale0;
+    }
+    if ($size === SIZE.large) {
+      margins = $theme.sizing.scale100;
+    }
+
+    return {
+      lineHeight: 0,
+      position: 'static',
+      marginBottom: margins,
+      marginTop: margins,
+    };
+  },
+);
+
+export const LoadingSpinner = styled<SharedStylePropsT>(
+  'span',
+  ({$theme, $kind, $disabled, $size}) => {
     const {foreground, background} = getLoadingSpinnerColors({
       $theme,
       $kind,
       $disabled,
     });
+
+    let dimension = $theme.sizing.scale400;
+    if ($size === SIZE.mini || $size === SIZE.compact) {
+      dimension = $theme.sizing.scale300;
+    }
+    if ($size === SIZE.large) {
+      dimension = $theme.sizing.scale500;
+    }
+
     return {
-      height: $theme.sizing.scale600,
-      width: $theme.sizing.scale600,
+      height: dimension,
+      width: dimension,
       borderTopLeftRadius: '50%',
       borderTopRightRadius: '50%',
       borderBottomRightRadius: '50%',
       borderBottomLeftRadius: '50%',
-      borderStyle: 'solid',
-      borderWidth: $theme.sizing.scale0,
+      borderLeftStyle: 'solid',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderBottomStyle: 'solid',
+      borderLeftWidth: $theme.sizing.scale0,
+      borderTopWidth: $theme.sizing.scale0,
+      borderRightWidth: $theme.sizing.scale0,
+      borderBottomWidth: $theme.sizing.scale0,
       borderTopColor: foreground,
       borderLeftColor: background,
       borderBottomColor: background,
       borderRightColor: background,
+      display: 'inline-block',
       animationDuration: $theme.animation.timing700,
       animationTimingFunction: 'linear',
       animationIterationCount: 'infinite',
@@ -216,9 +279,28 @@ function getPaddingStyles({$theme, $size, $shape}) {
   }
 }
 
-function getKindStyles({$theme, $isLoading, $isSelected, $kind, $disabled}) {
+type KindStylesT = {|
+  color?: string,
+  backgroundColor?: string,
+  ':hover'?: {
+    backgroundColor: string,
+  },
+  ':focus'?: {
+    backgroundColor: string,
+  },
+  ':active'?: {
+    backgroundColor: string,
+  },
+|};
+function getKindStyles({
+  $theme,
+  $isLoading,
+  $isSelected,
+  $kind,
+  $disabled,
+}): KindStylesT {
   if ($disabled) {
-    return {};
+    return Object.freeze({});
   }
   switch ($kind) {
     case KIND.primary:
@@ -232,11 +314,6 @@ function getKindStyles({$theme, $isLoading, $isSelected, $kind, $disabled}) {
         color: $theme.colors.buttonPrimaryText,
         backgroundColor: $theme.colors.buttonPrimaryFill,
         ':hover': {
-          backgroundColor: $isLoading
-            ? $theme.colors.buttonPrimaryActive
-            : $theme.colors.buttonPrimaryHover,
-        },
-        ':focus': {
           backgroundColor: $isLoading
             ? $theme.colors.buttonPrimaryActive
             : $theme.colors.buttonPrimaryHover,
@@ -260,11 +337,6 @@ function getKindStyles({$theme, $isLoading, $isSelected, $kind, $disabled}) {
             ? $theme.colors.buttonSecondaryActive
             : $theme.colors.buttonSecondaryHover,
         },
-        ':focus': {
-          backgroundColor: $isLoading
-            ? $theme.colors.buttonSecondaryActive
-            : $theme.colors.buttonSecondaryHover,
-        },
         ':active': {
           backgroundColor: $theme.colors.buttonSecondaryActive,
         },
@@ -280,11 +352,6 @@ function getKindStyles({$theme, $isLoading, $isSelected, $kind, $disabled}) {
         color: $theme.colors.buttonTertiaryText,
         backgroundColor: $theme.colors.buttonTertiaryFill,
         ':hover': {
-          backgroundColor: $isLoading
-            ? $theme.colors.buttonTertiaryActive
-            : $theme.colors.buttonTertiaryHover,
-        },
-        ':focus': {
           backgroundColor: $isLoading
             ? $theme.colors.buttonTertiaryActive
             : $theme.colors.buttonTertiaryHover,
@@ -308,16 +375,11 @@ function getKindStyles({$theme, $isLoading, $isSelected, $kind, $disabled}) {
             ? $theme.colors.buttonMinimalActive
             : $theme.colors.buttonMinimalHover,
         },
-        ':focus': {
-          backgroundColor: $isLoading
-            ? $theme.colors.buttonMinimalActive
-            : $theme.colors.buttonMinimalHover,
-        },
         ':active': {
           backgroundColor: $theme.colors.buttonMinimalActive,
         },
       };
     default:
-      return {};
+      return Object.freeze({});
   }
 }

@@ -10,12 +10,12 @@ import * as React from 'react';
 
 import {StyledSpinnerNext, SIZE} from '../index.js';
 
-export const name = 'spinner-next';
-
-export const component = () => (
-  <React.Fragment>
-    <StyledSpinnerNext $size={SIZE.small} />
-    <StyledSpinnerNext $size={SIZE.medium} />
-    <StyledSpinnerNext $size={SIZE.large} />
-  </React.Fragment>
-);
+export default function Scenario() {
+  return (
+    <React.Fragment>
+      <StyledSpinnerNext $size={SIZE.small} />
+      <StyledSpinnerNext $size={SIZE.medium} />
+      <StyledSpinnerNext $size={SIZE.large} />
+    </React.Fragment>
+  );
+}

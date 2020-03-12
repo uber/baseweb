@@ -46,9 +46,9 @@ export type PropsT = {
   }) => mixed,
 };
 
-export type StateT = {
+export type StateT = {|
   value: Array<number>,
-};
+|};
 
 export type StateReducerT = (
   stateType: string,
@@ -92,4 +92,5 @@ export type StylePropsT = {
   $min?: number,
   $thumbIndex?: number,
   $value?: Array<number>,
+  $isFocusVisible?: boolean,
 };

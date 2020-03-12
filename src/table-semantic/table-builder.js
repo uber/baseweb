@@ -22,14 +22,29 @@ import {
   StyledSortNoneIcon,
 } from './styled-components.js';
 import {getOverrides} from '../helpers/overrides.js';
+import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 import type {TableBuilderPropsT} from './types.js';
 
 export default class TableBuilder<T> extends React.Component<
   TableBuilderPropsT<T>,
+  {isFocusVisible: boolean},
 > {
   static defaultProps = {
     data: [],
+  };
+  state = {isFocusVisible: false};
+
+  handleFocus = (event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      this.setState({isFocusVisible: true});
+    }
+  };
+
+  handleBlur = (event: SyntheticEvent<>) => {
+    if (this.state.isFocusVisible !== false) {
+      this.setState({isFocusVisible: false});
+    }
   };
 
   render() {
@@ -102,7 +117,7 @@ export default class TableBuilder<T> extends React.Component<
       .filter(Boolean)
       .map(child => child.props);
 
-    function renderHeader(col, colIndex) {
+    function renderHeader(col, colIndex, isFocusVisible) {
       const colOverrides = col.overrides || {};
 
       if (!col.sortable) {
@@ -131,16 +146,37 @@ export default class TableBuilder<T> extends React.Component<
       );
 
       let sortIcon = null;
+      let sortLabel = 'not sorted';
 
       switch (col.id === sortColumn && sortOrder) {
         case 'ASC':
-          sortIcon = <SortAscIcon {...sortAscIconProps} />;
+          sortIcon = (
+            <SortAscIcon
+              aria-hidden={true}
+              role="presentation"
+              {...sortAscIconProps}
+            />
+          );
+          sortLabel = 'ascending sorting';
           break;
         case 'DESC':
-          sortIcon = <SortDescIcon {...sortDescIconProps} />;
+          sortIcon = (
+            <SortDescIcon
+              aria-hidden={true}
+              role="presentation"
+              {...sortDescIconProps}
+            />
+          );
+          sortLabel = 'descending sorting';
           break;
         default:
-          sortIcon = <SortNoneIcon {...sortNoneIconProps} />;
+          sortIcon = (
+            <SortNoneIcon
+              aria-hidden={true}
+              role="presentation"
+              {...sortNoneIconProps}
+            />
+          );
           break;
       }
 
@@ -149,7 +185,15 @@ export default class TableBuilder<T> extends React.Component<
           key={colIndex}
           role="button"
           tabIndex="0"
+          aria-label={`${col.header}, ${sortLabel}`}
+          $isFocusVisible={isFocusVisible}
           onClick={() => onSort && onSort(col.id)}
+          onKeyDown={(e: KeyboardEvent) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              onSort && onSort(col.id);
+            }
+          }}
           {...tableHeadCellSortableProps}
           {...colTableHeadCellSortableProps}
         >
@@ -181,10 +225,17 @@ export default class TableBuilder<T> extends React.Component<
 
     return (
       <Root data-baseweb="table-builder-semantic" {...rootProps} {...rest}>
-        <Table $width={horizontalScrollWidth} {...tableProps}>
+        <Table
+          $width={horizontalScrollWidth}
+          {...tableProps}
+          onBlur={forkBlur(tableProps, this.handleBlur)}
+          onFocus={forkFocus(tableProps, this.handleFocus)}
+        >
           <TableHead {...tableHeadProps}>
             <TableHeadRow {...tableHeadRowProps}>
-              {columns.map((col, colIndex) => renderHeader(col, colIndex))}
+              {columns.map((col, colIndex) =>
+                renderHeader(col, colIndex, this.state.isFocusVisible),
+              )}
             </TableHeadRow>
           </TableHead>
           <TableBody {...tableBodyProps}>

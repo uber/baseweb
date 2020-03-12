@@ -24,7 +24,7 @@ export type CountriesT = $ReadOnly<CountryT>;
 
 export type StateT = {
   country: CountryT,
-  text?: string,
+  text: string,
 };
 
 export type StateChangeT = $Keys<typeof STATE_CHANGE_TYPE>;
@@ -112,6 +112,7 @@ export type PropsT = {
   /** A handler for the input element's change events. */
   onTextChange: (event: SyntheticInputEvent<HTMLInputElement>) => mixed,
   overrides: {
+    Root?: OverrideT<*>,
     Input?: OverrideT<*>,
     CountrySelectContainer?: OverrideT<*>,
     CountrySelectDropdown?: OverrideT<*>,
@@ -133,6 +134,8 @@ export type PropsT = {
   size: SizeT,
   /** Defines the value of the input element. */
   text: string,
+  /** Defines if the input value is clearable. */
+  clearable?: boolean,
 };
 
 export type LitePropsT = {
@@ -141,6 +144,7 @@ export type LitePropsT = {
 };
 
 export type StatefulPhoneInputContainerPropsT = {
+  ...$Exact<PropsT>,
   children: PropsT => React.Node,
   initialState: StateT,
   stateReducer: StateReducerT,

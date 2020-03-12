@@ -425,5 +425,47 @@ describe('toaster', () => {
       wrapper.update();
       expect(wrapper.find(Toast).length).toEqual(0);
     });
+
+    test('toasts with the same key should extend autohide duration from ToastContainer', () => {
+      // open two toasts with the samae key, but different children
+      //
+      const toastSameKey = 'same-key';
+
+      toaster.info('toast', {
+        key: toastSameKey,
+      });
+      toaster.info('toast2', {
+        key: toastSameKey,
+      });
+
+      // verify all toasts rendered
+      jest.advanceTimersByTime(100);
+      wrapper.update();
+      expect(wrapper.find(Toast).length).toEqual(1);
+      // verify oldest toasts are rendered last in the tree
+      expect(
+        wrapper
+          .find(Toast)
+          .last()
+          .render()
+          .text(),
+      ).toEqual(expect.stringContaining('toast2'));
+      jest.advanceTimersByTime(75);
+
+      // this should reset the auto hide timer
+      toaster.info('toast3', {
+        key: toastSameKey,
+      });
+
+      jest.advanceTimersByTime(75);
+
+      // verify there's one remaining toast rendered
+      wrapper.update();
+      expect(wrapper.find(Toast).length).toEqual(1);
+      jest.advanceTimersByTime(1000);
+
+      wrapper.update();
+      expect(wrapper.find(Toast).length).toEqual(0);
+    });
   });
 });

@@ -30,7 +30,7 @@ export default Layout;
 
 # Tag
 
-<Yard componentName="Tag" placeholderHeight={34} {...tagYardConfig} />
+<Yard placeholderHeight={34} {...tagYardConfig} />
 
 Compact UI to display a collection of concise information.
 
@@ -78,6 +78,12 @@ Compact UI to display a collection of concise information.
 <Example title="Tag Custom Color example" path="tag/custom-color.js">
   <CustomColor />
 </Example>
+
+## Accessibility
+
+- When the tag is closable or clickable and not disabled it gets the role button and is focusable.
+- Closable tag can be closed by pressing `backspace` or `delete`.
+- Clickable tag can be clicked by pressing `enter`.
 
 ## API
 

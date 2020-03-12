@@ -333,6 +333,11 @@ function lintStyleFunction(context, node) {
   // Only one parameter should be passed to a style function.
   const parameter = scope.block.params[0];
 
+  // nothing is passed to the `styled` function
+  if (!parameter) {
+    return false;
+  }
+
   // Option 1. No destructuring.
   // Ex: props => ({ color: props.$theme.colors.foreground })
   if (parameter.type === 'Identifier') {
@@ -356,6 +361,11 @@ function lintStyleFunction(context, node) {
     const $themeProperty = parameter.properties.find(
       property => property.key.name === '$theme',
     );
+
+    // the styled function is not using the theme
+    if (!$themeProperty) {
+      return false;
+    }
 
     // Option 2. Destructuring $theme in parameters.
     // ({$theme}) => ({ color: $theme.colors.foreground })
@@ -470,6 +480,7 @@ function lintUseStyletron(context, node) {
       declarator = declaration.declarations.find(
         declarator =>
           declarator.type === 'VariableDeclarator' &&
+          declarator.init &&
           declarator.init.type === 'CallExpression' &&
           declarator.init.callee.name === 'useStyletron',
       );

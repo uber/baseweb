@@ -17,6 +17,8 @@ services:
       interval: 5s
       timeout: 10s
       retries: 5
+    environment:
+      - COMPOSE_HTTP_TIMEOUT
 
   # tests if the e2e-server is ready to serve traffic
   e2e-server-healthy:
@@ -69,6 +71,8 @@ services:
       - BUILDKITE_MESSAGE
       - GITHUB_AUTH_TOKEN
       - ZEIT_NOW_TOKEN
+      - ZEIT_NOW_TEAM_ID
+      - ZEIT_NOW_PROJECT_ID
       - FOSSA_API_KEY
       - CF_ZONE_ID
       - CF_ACCOUNT_ID
@@ -77,3 +81,5 @@ services:
       - NPM_TOKEN
       - NETLIFY_AUTH_TOKEN
       - NETLIFY_SITE_ID
+      - AZURE_TOKEN
+      - WEBSITE_ENV

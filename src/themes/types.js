@@ -6,7 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import type {ResponsiveT} from '../layout-grid/types.js';
+import type {StyleObject} from 'styletron-standard';
+
+import type {ResponsiveT, CSSLengthUnitT} from '../layout-grid/types.js';
 export type ColorTokensT = {
   // Primary Palette
   primaryA: string,
@@ -84,7 +86,7 @@ export type ColorTokensT = {
   rating400: string,
 };
 
-export type CoreSemanticColorTokensT = {
+export type CoreSemanticColorTokensT = {|
   // Background
   backgroundPrimary: string,
   backgroundSecondary: string,
@@ -107,8 +109,8 @@ export type CoreSemanticColorTokensT = {
   borderInverseOpaque: string,
   borderInverseTransparent: ?string,
   borderInverseSelected: string,
-};
-export type CoreExtensionSemanticColorTokensT = {
+|};
+export type CoreExtensionSemanticColorTokensT = {|
   // Backgrounds
   backgroundStateDisabled: string,
   backgroundOverlayDark: ?string,
@@ -122,6 +124,7 @@ export type CoreExtensionSemanticColorTokensT = {
   backgroundLightNegative: string,
   backgroundLightWarning: string,
   backgroundAlwaysDark: string,
+  backgroundAlwaysLight: string,
 
   // Content
   contentStateDisabled: string,
@@ -134,14 +137,18 @@ export type CoreExtensionSemanticColorTokensT = {
   // Border
   borderStateDisabled: string,
   borderAccent: string,
+  borderAccentLight: string,
   borderNegative: string,
   borderWarning: string,
   borderPositive: string,
-};
-export type SemanticColorTokensT = CoreSemanticColorTokensT &
-  CoreExtensionSemanticColorTokensT;
+|};
 
-export type ComponentColorTokensT = {
+export type SemanticColorTokensT = {|
+  ...CoreSemanticColorTokensT,
+  ...CoreExtensionSemanticColorTokensT,
+|};
+
+export type ComponentColorTokensT = {|
   // Buttons
   buttonPrimaryFill: string,
   buttonPrimaryText: string,
@@ -284,6 +291,7 @@ export type ComponentColorTokensT = {
   sliderBorderDisabled: string,
 
   // Input
+  inputBorder: string,
   inputFill: string,
   inputFillError: string,
   inputFillDisabled: string,
@@ -498,9 +506,9 @@ export type ComponentColorTokensT = {
   // Tooltip
   tooltipBackground: string,
   tooltipText: string,
-};
+|};
 
-export type DeprecatedSemanticColorTokensT = {
+export type DeprecatedSemanticColorTokensT = {|
   // Font Color
   colorPrimary: string,
   colorSecondary: string,
@@ -524,16 +532,19 @@ export type DeprecatedSemanticColorTokensT = {
   // Shadow
   shadowFocus: string,
   shadowError: string,
-};
+|};
 
-export type FontTokensT = {
+export type FontTokensT = {|
   primaryFontFamily: string,
-};
+|};
 
 // TODO(#2318) Deprecate in the next major version
-export type PrimitivesT = ColorTokensT & FontTokensT;
+export type PrimitivesT = {
+  ...ColorTokensT,
+  ...FontTokensT,
+};
 
-export type FontT = {
+export type FontT = {|
   fontFamily: string,
   // eslint-disable-next-line flowtype/space-after-type-colon
   fontWeight:
@@ -549,7 +560,7 @@ export type FontT = {
     | number,
   fontSize: string,
   lineHeight: string | number,
-};
+|};
 export type TypographyT = {
   font100: FontT,
   font150: FontT,
@@ -648,11 +659,11 @@ export type AnimationT = {
   easeInOutCurve: string,
 };
 
-export type BorderT = {
-  borderColor: string,
-  borderStyle: string,
-  borderWidth: string,
-};
+export type BorderT = {|
+  borderColor: $PropertyType<StyleObject, 'borderColor'>,
+  borderStyle: $PropertyType<StyleObject, 'borderStyle'>,
+  borderWidth: $PropertyType<StyleObject, 'borderWidth'>,
+|};
 
 export type BordersT = {
   border100: BorderT,
@@ -678,6 +689,7 @@ export type GridT = {
   margins: ResponsiveT<number>,
   gaps: ResponsiveT<number>,
   maxWidth: number,
+  unit: CSSLengthUnitT,
 };
 
 // TODO(#2318) Deprecate in the next major

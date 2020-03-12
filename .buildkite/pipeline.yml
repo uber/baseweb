@@ -28,6 +28,7 @@ steps:
         run: baseui
     agents:
       queue: workers
+
   - name: ':typescript:'
     command: yarn tsc
     plugins:
@@ -35,6 +36,7 @@ steps:
         run: baseui
     agents:
       queue: workers
+
   - name: ':eslint:'
     command: yarn lint
     plugins:
@@ -42,6 +44,7 @@ steps:
         run: baseui
     agents:
       queue: workers
+
   - name: ':flowtype:'
     command: yarn flow check
     plugins:
@@ -49,6 +52,7 @@ steps:
         run: baseui
     agents:
       queue: workers
+
   - name: ':jest:'
     command: yarn unit-test
     plugins:
@@ -56,6 +60,7 @@ steps:
         run: baseui
     agents:
       queue: workers
+
   - name: ':fossa:'
     command: 'curl https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | bash && fossa'
     plugins:
@@ -63,13 +68,31 @@ steps:
         run: baseui
     agents:
       queue: workers
-  - name: ':deploy:'
-    command: './deploy.sh'
+
+  - name: ':deploy-npm:'
+    command: './scripts/deploy-npm.sh'
     plugins:
       'docker-compose#v3.0.3':
         run: baseui
     agents:
       queue: workers
+
+  - name: ':deploy-vscode:'
+    command: './scripts/deploy-vscode.sh'
+    plugins:
+      'docker-compose#v3.0.3':
+        run: baseui
+    agents:
+      queue: workers
+
+  - name: ':deploy-docs:'
+    command: './scripts/deploy-docs.sh'
+    plugins:
+      'docker-compose#v3.0.3':
+        run: baseui
+    agents:
+      queue: workers
+
   - name: ':guard-component-sizes:'
     command: './scripts/component-sizes.js'
     plugins:
@@ -77,13 +100,15 @@ steps:
         run: baseui
     agents:
       queue: workers
+
   - name: ':documentation-site-link-checker:'
-    command: ./scripts/link-checker.sh
+    command: ./scripts/link-checker.js
     plugins:
       'docker-compose#v3.0.3':
         run: baseui
     agents:
       queue: workers
+
   - name: ':e2e:'
     # we have to install puppeteer here to trigger the install.js script
     # and also to make sure we do not add this to the released build artifact
@@ -98,6 +123,7 @@ steps:
           - e2e-server-healthy
     agents:
       queue: workers
+
   - name: ':vrt:'
     command: yarn vrt:ci
     artifact_paths:
@@ -108,5 +134,13 @@ steps:
         pull:
           - e2e-server
           - e2e-server-healthy
+    agents:
+      queue: workers
+
+  - name: flow-check-build
+    command: ./scripts/flow-check-build.js
+    plugins:
+      'docker-compose#v3.0.3':
+        run: baseui
     agents:
       queue: workers

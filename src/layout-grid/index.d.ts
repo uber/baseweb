@@ -1,5 +1,7 @@
 import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
+import {CSSLengthUnitT} from '../theme';
+import {Override} from '../overrides';
 
 export enum ALIGNMENT {
   start = 'start',
@@ -23,6 +25,10 @@ export interface GridProps {
   gridGutters?: Responsive<number>;
   gridMargins?: Responsive<number>;
   gridMaxWidth?: number;
+  gridUnit?: CSSLengthUnitT;
+  overrides?: {
+    Grid?: Override<any>;
+  };
 }
 
 export interface StyledGridProps {
@@ -31,6 +37,7 @@ export interface StyledGridProps {
   $gridGutters?: Responsive<number>;
   $gridMargins?: Responsive<number>;
   $gridMaxWidth?: number;
+  $gridUnit?: CSSLengthUnitT;
 }
 
 export interface CellProps {
@@ -39,6 +46,9 @@ export interface CellProps {
   order?: Responsive<number>;
   skip?: Responsive<number>;
   span?: Responsive<number>;
+  overrides?: {
+    Cell?: Override<any>;
+  };
 }
 
 export type StyledCellProps = {
@@ -46,6 +56,7 @@ export type StyledCellProps = {
   $gridColumns?: Responsive<number>;
   $gridGaps?: Responsive<number>;
   $gridGutters?: Responsive<number>;
+  $gridUnit?: CSSLengthUnitT;
   $order?: Responsive<number>;
   $skip?: Responsive<number>;
   $span?: Responsive<number>;

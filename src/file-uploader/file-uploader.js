@@ -20,6 +20,7 @@ import {
   StyledRoot,
   StyledFileDragAndDrop,
   StyledContentMessage,
+  StyledContentSeparator,
   StyledErrorMessage,
   StyledHiddenInput,
 } from './styled-components.js';
@@ -43,6 +44,11 @@ function FileUploader(props: PropsT) {
   const [ContentMessage, contentMessageProps] = getOverrides(
     overrides.ContentMessage,
     StyledContentMessage,
+  );
+
+  const [ContentSeparator, contentSeparatorProps] = getOverrides(
+    overrides.ContentSeparator,
+    StyledContentSeparator,
   );
   const [ErrorMessage, errorMessageProps] = getOverrides(
     overrides.ErrorMessage,
@@ -76,8 +82,10 @@ function FileUploader(props: PropsT) {
 
         const getRootPropsArgs: {
           onClick?: (SyntheticEvent<HTMLElement>) => void,
+          tabIndex: string,
         } = {
           ...(props.disableClick ? {onClick: evt => evt.preventDefault()} : {}),
+          tabIndex: '-1',
         };
 
         return (
@@ -101,13 +109,12 @@ function FileUploader(props: PropsT) {
                       >
                         {locale.fileuploader.dropFilesToUpload}
                       </ContentMessage>
-                      <ContentMessage
+                      <ContentSeparator
                         {...prefixedStyledProps}
-                        {...contentMessageProps}
+                        {...contentSeparatorProps}
                       >
                         {locale.fileuploader.or}
-                      </ContentMessage>
-
+                      </ContentSeparator>
                       <ButtonComponent
                         aria-controls="fileupload"
                         disabled={props.disabled}
@@ -115,7 +122,7 @@ function FileUploader(props: PropsT) {
                         onClick={open}
                         overrides={{
                           BaseButton: {
-                            style: {outline: null, fontWeight: 'normal'},
+                            style: {fontWeight: 'normal'},
                           },
                         }}
                         role="button"
@@ -175,6 +182,9 @@ function FileUploader(props: PropsT) {
                           onClick={() => {
                             props.onRetry && props.onRetry();
                           }}
+                          aria-invalid={Boolean(props.errorMessage)}
+                          aria-describedby={props['aria-describedby']}
+                          aria-errormessage={props.errorMessage}
                           overrides={{
                             BaseButton: {
                               style: {outline: null, fontWeight: 'normal'},
@@ -189,6 +199,7 @@ function FileUploader(props: PropsT) {
                           onClick={() => {
                             props.onCancel && props.onCancel();
                           }}
+                          aria-describedby={props['aria-describedby']}
                           overrides={{
                             BaseButton: {
                               style: {outline: null, fontWeight: 'normal'},
@@ -203,6 +214,9 @@ function FileUploader(props: PropsT) {
                 </FileDragAndDrop>
 
                 <HiddenInput
+                  aria-invalid={Boolean(props.errorMessage) || null}
+                  aria-describedby={props['aria-describedby']}
+                  aria-errormessage={props.errorMessage || null}
                   {...getInputProps()}
                   {...prefixedStyledProps}
                   {...hiddenInputProps}

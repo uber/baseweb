@@ -8,8 +8,26 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import type {StatefulContainerPropsT, TreeNodeT} from './types.js';
 
-type StateType = {
+type StateType = {|
   data: TreeNodeT[],
+|};
+
+const findSiblings = (
+  node: TreeNodeT,
+  children: TreeNodeT[],
+): ?(TreeNodeT[]) => {
+  if (children.indexOf(node) !== -1) {
+    return children;
+  }
+  for (let child of children) {
+    if (child.children) {
+      const siblings = findSiblings(node, child.children);
+      if (siblings != null) {
+        return siblings;
+      }
+    }
+  }
+  return null;
 };
 
 export default class StatefulContainer extends React.Component<
@@ -24,10 +42,21 @@ export default class StatefulContainer extends React.Component<
   }
 
   onToggle = (node: TreeNodeT) => {
-    const {onToggle} = this.props;
+    const {onToggle, singleExpanded} = this.props;
     this.setState(
       prevState => {
-        node.isExpanded = !node.isExpanded;
+        const shouldExpand = !node.isExpanded;
+        if (singleExpanded && shouldExpand) {
+          const siblings = findSiblings(node, prevState.data);
+          if (siblings != null) {
+            siblings.forEach(sibling => {
+              if (sibling !== node) {
+                sibling.isExpanded = false;
+              }
+            });
+          }
+        }
+        node.isExpanded = shouldExpand;
         return {data: prevState.data};
       },
       () => {
@@ -39,10 +68,12 @@ export default class StatefulContainer extends React.Component<
   render() {
     const {children, ...restProps} = this.props;
     const {onToggle} = this;
-    return children({
-      ...restProps,
-      ...this.state,
-      onToggle,
-    });
+    return children(
+      Object.freeze({
+        ...restProps,
+        ...this.state,
+        onToggle,
+      }),
+    );
   }
 }

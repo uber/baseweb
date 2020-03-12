@@ -9,8 +9,8 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {StatefulInput} from '../index.js';
 
-export const name = 'input-number';
-
-export const component = () => (
-  <StatefulInput type="number" min={0} max={100} />
-);
+export default function Scenario() {
+  return (
+    <StatefulInput initialState={{value: 10}} type="number" min={0} max={100} />
+  );
+}

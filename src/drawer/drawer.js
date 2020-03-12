@@ -19,6 +19,7 @@ import {
   StyledDrawerContainer,
   StyledDrawerBody,
   StyledClose,
+  Hidden,
 } from './styled-components.js';
 import {CloseIcon} from './close-icon.js';
 
@@ -29,6 +30,7 @@ import type {
   CloseSourceT,
   ElementRefT,
 } from './types.js';
+import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
   static defaultProps: $Shape<DrawerPropsT> = {
@@ -40,6 +42,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     anchor: ANCHOR.right,
     showBackdrop: true,
     autoFocus: true,
+    renderAll: false,
   };
 
   animateOutTimer: ?TimeoutID;
@@ -51,6 +54,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
   state = {
     isVisible: false,
     mounted: false,
+    isFocusVisible: false,
   };
 
   componentDidMount() {
@@ -58,7 +62,6 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
   }
 
   componentWillUnmount() {
-    this.removeDomEvents();
     this.resetMountNodeScroll();
     this.clearTimers();
   }
@@ -78,17 +81,17 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     }
   }
 
-  addDomEvents() {
-    if (__BROWSER__) {
-      document.addEventListener('keyup', this.onDocumentKeyPress);
+  handleFocus = (event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      this.setState({isFocusVisible: true});
     }
-  }
+  };
 
-  removeDomEvents() {
-    if (__BROWSER__) {
-      document.removeEventListener('keyup', this.onDocumentKeyPress);
+  handleBlur = (event: SyntheticEvent<>) => {
+    if (this.state.isFocusVisible !== false) {
+      this.setState({isFocusVisible: false});
     }
-  }
+  };
 
   disableMountNodeScroll() {
     if (this.props.showBackdrop) {
@@ -119,20 +122,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     return ((document.body: any): HTMLBodyElement);
   }
 
-  onDocumentKeyPress = (event: KeyboardEvent) => {
-    if (event.key !== 'Escape') {
-      return;
-    }
-
-    // Ignore events that have been `event.preventDefault()` marked.
-    if (event.defaultPrevented) {
-      return;
-    }
-
-    if (this.props.onEscapeKeyDown) {
-      this.props.onEscapeKeyDown(event);
-    }
-
+  onEscape = () => {
     if (!this.props.closeable) {
       return;
     }
@@ -176,7 +166,6 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     // Clear any existing timers (like previous animateOutTimer)
     this.clearTimers();
 
-    this.addDomEvents();
     this.disableMountNodeScroll();
 
     // eslint-disable-next-line cup/no-undef
@@ -186,7 +175,6 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
   }
 
   didClose() {
-    this.removeDomEvents();
     this.resetMountNodeScroll();
     this.animateOutTimer = setTimeout(this.animateOutComplete, 500);
   }
@@ -215,6 +203,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
       $size: size,
       $closeable: !!closeable,
       $anchor: anchor,
+      $isFocusVisible: this.state.isFocusVisible,
     };
   }
 
@@ -230,7 +219,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     return this._refs[component];
   }
 
-  renderDrawer() {
+  renderDrawer(renderedContent: React.Node) {
     const {overrides = {}, closeable, showBackdrop, autoFocus} = this.props;
 
     const {
@@ -257,7 +246,6 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
     const [Close, closeProps] = getOverrides(CloseOverride, StyledClose);
 
     const sharedProps = this.getSharedProps();
-    const children = this.getChildren();
 
     return (
       <LocaleContext.Consumer>
@@ -284,7 +272,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
                   {...drawerContainerProps}
                 >
                   <DrawerBody {...sharedProps} {...drawerBodyProps}>
-                    {children}
+                    {renderedContent}
                   </DrawerBody>
                   {closeable ? (
                     <Close
@@ -292,6 +280,8 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
                       onClick={this.onCloseClick}
                       {...sharedProps}
                       {...closeProps}
+                      onFocus={forkFocus(closeProps, this.handleFocus)}
+                      onBlur={forkBlur(closeProps, this.handleBlur)}
                     >
                       <CloseIcon />
                     </Close>
@@ -306,17 +296,24 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
   }
 
   render() {
-    // Only render drawer on the browser (portals aren't supported server-side)
-    if (!this.state.mounted) {
-      return null;
+    const mountedAndOpen =
+      this.state.mounted && (this.props.isOpen || this.state.isVisible);
+
+    const renderedContent =
+      mountedAndOpen || this.props.renderAll ? this.getChildren() : null;
+
+    if (renderedContent) {
+      if (mountedAndOpen) {
+        return (
+          <Layer onEscape={this.onEscape} mountNode={this.props.mountNode}>
+            {this.renderDrawer(renderedContent)}
+          </Layer>
+        );
+      } else {
+        return <Hidden>{renderedContent}</Hidden>;
+      }
     }
-    // Only render the drawer if its isOpen is passed, or isVisible is true (still animating)
-    if (!this.props.isOpen && !this.state.isVisible) {
-      return null;
-    }
-    return (
-      <Layer mountNode={this.props.mountNode}>{this.renderDrawer()}</Layer>
-    );
+    return null;
   }
 }
 

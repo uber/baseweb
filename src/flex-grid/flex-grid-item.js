@@ -30,7 +30,7 @@ export const flexGridItemMediaQueryStyle = ({
   flexGridRowGap: ScaleT,
   flexGridItemIndex: number,
   flexGridItemCount: number,
-}): StyleOverrideT => {
+}) => {
   // 0px needed for calc() to behave properly
   const colGap = $theme.sizing[flexGridColumnGap] || flexGridColumnGap || '0px';
   const colGapQuantity = parseFloat(colGap);
@@ -39,9 +39,9 @@ export const flexGridItemMediaQueryStyle = ({
   const rowGapQuantity = parseFloat(rowGap);
   const widthCalc = `(100% - ${(colCount - 1) *
     colGapQuantity}${colGapUnit}) / ${colCount}`;
-  const marginDirection =
+  const marginDirection: string =
     $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
-  return {
+  return Object.freeze({
     // Subtract .5px to avoid rounding issues on IE/Edge
     // See https://github.com/uber/baseweb/pull/1748
     width: `calc(${widthCalc} - .5px)`,
@@ -62,7 +62,7 @@ export const flexGridItemMediaQueryStyle = ({
             1} * (${colGap} + ${widthCalc}))`,
         }
       : {}),
-  };
+  });
 };
 
 export const getResponsiveValue = <T>(
@@ -152,6 +152,7 @@ export const flexGridItemStyle = ({
 };
 
 const FlexGridItem = ({
+  forwardedRef,
   children,
   as,
   overrides,
@@ -161,7 +162,7 @@ const FlexGridItem = ({
   flexGridItemIndex,
   flexGridItemCount,
   ...restProps
-}: FlexGridItemPropsT): React.Node => {
+}): React.Node => {
   const flexGridItemOverrides = {
     Block: {
       style: flexGridItemStyle,
@@ -172,6 +173,10 @@ const FlexGridItem = ({
     : flexGridItemOverrides;
   return (
     <Block
+      // coerced to any because because of how react components are typed.
+      // cannot guarantee an html element
+      // eslint-disable-next-line flowtype/no-weak-types
+      ref={(forwardedRef: any)}
       as={as}
       overrides={blockOverrides}
       $flexGridColumnCount={flexGridColumnCount}
@@ -187,4 +192,10 @@ const FlexGridItem = ({
   );
 };
 
-export default FlexGridItem;
+const FlexGridItemComponent = React.forwardRef<FlexGridItemPropsT, HTMLElement>(
+  (props: FlexGridItemPropsT, ref) => (
+    <FlexGridItem {...props} forwardedRef={ref} />
+  ),
+);
+FlexGridItemComponent.displayName = 'FlexGridItem';
+export default FlexGridItemComponent;

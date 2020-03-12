@@ -18,44 +18,57 @@ exports[`Stateless tag should render component: Component has correct render 1`]
     $clickable={false}
     $closeable={true}
     $disabled={false}
+    $isFocusVisible={false}
     $isFocused={false}
     $isHovered={false}
     $kind="primary"
     $variant="light"
-    aria-label="button"
+    aria-disabled={null}
+    aria-label="Some tag, close by backspace"
     data-baseweb="tag"
+    onBlur={[Function]}
     onClick={null}
+    onFocus={[Function]}
     onKeyDown={[Function]}
     role="button"
-    tabIndex={null}
+    tabIndex={0}
   >
     <MockStyledComponent
       $clickable={false}
       $closeable={true}
       $disabled={false}
+      $isFocusVisible={false}
       $isFocused={false}
       $isHovered={false}
       $kind="primary"
       $variant="light"
-      aria-label="button"
+      aria-disabled={null}
+      aria-label="Some tag, close by backspace"
       data-baseweb="tag"
       forwardedRef={null}
+      onBlur={[Function]}
       onClick={null}
+      onFocus={[Function]}
       onKeyDown={[Function]}
       role="button"
-      tabIndex={null}
+      tabIndex={0}
     >
       <span
-        aria-label="button"
+        aria-disabled={null}
+        aria-label="Some tag, close by backspace"
         data-baseweb="tag"
+        onBlur={[Function]}
         onClick={null}
+        onFocus={[Function]}
         onKeyDown={[Function]}
         role="button"
         styled-component="true"
-        tabIndex={null}
+        tabIndex={0}
         test-style={
           Object {
-            ":focus": Object {},
+            ":focus": Object {
+              "boxShadow": "none",
+            },
             ":hover": Object {},
             "alignItems": "center",
             "backgroundColor": "$theme.colors.tagPrimaryLightBackground",
@@ -115,44 +128,36 @@ exports[`Stateless tag should render component: Component has correct render 1`]
           $clickable={false}
           $closeable={true}
           $disabled={false}
+          $isFocusVisible={false}
           $isFocused={false}
           $isHovered={false}
           $kind="primary"
           $variant="light"
-          aria-label="close button"
+          aria-hidden={true}
           onClick={[Function]}
-          onKeyDown={[Function]}
-          role="button"
-          tabIndex={0}
+          role="presentation"
         >
           <MockStyledComponent
             $clickable={false}
             $closeable={true}
             $disabled={false}
+            $isFocusVisible={false}
             $isFocused={false}
             $isHovered={false}
             $kind="primary"
             $variant="light"
-            aria-label="close button"
+            aria-hidden={true}
             forwardedRef={null}
             onClick={[Function]}
-            onKeyDown={[Function]}
-            role="button"
-            tabIndex={0}
+            role="presentation"
           >
             <span
-              aria-label="close button"
+              aria-hidden={true}
               onClick={[Function]}
-              onKeyDown={[Function]}
-              role="button"
+              role="presentation"
               styled-component="true"
-              tabIndex={0}
               test-style={
                 Object {
-                  ":focus": Object {
-                    "backgroundColor": "$theme.colors.tagPrimaryLightActive",
-                    "color": "$theme.colors.tagPrimaryLightFontHover",
-                  },
                   ":hover": Object {
                     "backgroundColor": "$theme.colors.tagPrimaryLightActive",
                     "color": "$theme.colors.tagPrimaryLightFontHover",
@@ -168,7 +173,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
                   "paddingLeft": "8px",
                   "paddingRight": "8px",
                   "paddingTop": "7px",
-                  "transitionDuration": "$theme.animation.timing100",
+                  "transitionDuration": "background-color",
                   "transitionProperty": "all",
                   "transitionTimingFunction": "$theme.animation.easeOutCurve",
                 }

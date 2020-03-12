@@ -9,8 +9,6 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {Select} from '../index.js';
 
-export const name = 'select-async-options';
-
 const COLORS = [
   {label: 'AliceBlue', id: '#F0F8FF'},
   {label: 'AntiqueWhite', id: '#FAEBD7'},
@@ -20,7 +18,7 @@ const COLORS = [
   {label: 'Beige', id: '#F5F5DC'},
 ];
 
-export const component = () => {
+export default function Scenario() {
   const [value, setValue] = React.useState([]);
   const [searchResults, setSearchResults] = React.useState([]);
   return (
@@ -41,4 +39,4 @@ export const component = () => {
       }}
     />
   );
-};
+}

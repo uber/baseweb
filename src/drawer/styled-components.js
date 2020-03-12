@@ -10,12 +10,7 @@ import {SIZE, SIZE_DIMENSION, ANCHOR} from './constants.js';
 import type {SharedStylePropsArgT, SizePropT, AnchorPropT} from './types.js';
 
 function getSizeStyles($size: SizePropT, $anchor: AnchorPropT) {
-  const styles: {
-    maxWidth: string,
-    maxHeight: string,
-    width: string,
-    height: string,
-  } = {
+  const styles = {
     maxWidth: '100%',
     maxHeight: '100%',
     width: SIZE_DIMENSION.default,
@@ -142,13 +137,11 @@ export const StyledDrawerContainer = styled<SharedStylePropsArgT>(
 
       // Animation
       opacity: $isVisible && $isOpen ? 1 : 0,
-      ...($animating
-        ? {
-            transitionProperty: 'opacity, transform',
-            transitionDuration: $theme.animation.timing400,
-            transitionTimingFunction: $theme.animation.easeOutCurve,
-          }
-        : null),
+      transitionProperty: $animating ? 'opacity, transform' : null,
+      transitionDuration: $animating ? $theme.animation.timing400 : null,
+      transitionTimingFunction: $animating
+        ? $theme.animation.easeOutCurve
+        : null,
       display: 'flex',
       position: 'fixed',
     };
@@ -170,7 +163,8 @@ export const StyledDrawerBody = styled<SharedStylePropsArgT>('div', props => {
 });
 
 export const StyledClose = styled<SharedStylePropsArgT>('button', props => {
-  const {$theme} = props;
+  const {$theme, $isFocusVisible} = props;
+  const dir: string = $theme.direction === 'rtl' ? 'left' : 'right';
   return {
     // Reset button styles
     background: 'transparent',
@@ -191,14 +185,13 @@ export const StyledClose = styled<SharedStylePropsArgT>('button', props => {
       fill: $theme.colors.primary600,
     },
     ':focus': {
-      fill: $theme.colors.primary600,
-      borderColor: $theme.colors.primary,
+      outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
     },
 
     // Positioning
     position: 'absolute',
     top: $theme.sizing.scale500,
-    [$theme.direction === 'rtl' ? 'left' : 'right']: $theme.sizing.scale500,
+    [dir]: $theme.sizing.scale500,
     width: $theme.sizing.scale800,
     height: $theme.sizing.scale800,
     display: 'flex',
@@ -206,4 +199,8 @@ export const StyledClose = styled<SharedStylePropsArgT>('button', props => {
     alignItems: 'center',
     cursor: 'pointer',
   };
+});
+
+export const Hidden = styled('div', {
+  display: 'none',
 });

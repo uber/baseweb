@@ -73,6 +73,7 @@ export type ModalPropsWithoutChildrenT = $Diff<
 export type ModalStateT = {
   isVisible: boolean,
   mounted: boolean,
+  isFocusVisible: boolean,
 };
 
 export type SharedStylePropsArgT = {
@@ -83,4 +84,5 @@ export type SharedStylePropsArgT = {
   $role: RolePropT,
   $closeable: boolean,
   $unstable_ModalBackdropScroll?: boolean,
+  $isFocusVisible: boolean,
 };

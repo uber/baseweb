@@ -19,12 +19,17 @@ import {
   StyledSelectorContainer,
 } from './styled-components.js';
 import {
+  applyDateToTime,
+  applyTimeToDate,
   addDays,
   addMonths,
-  getMonth,
   addWeeks,
   getEffectiveMinDate,
   getEffectiveMaxDate,
+  getEndOfWeek,
+  getMonth,
+  getStartOfWeek,
+  getStartOfMonth,
   isAfter,
   isBefore,
   isSameDay,
@@ -34,25 +39,10 @@ import {
   subWeeks,
   subMonths,
   subYears,
-  setHours,
-  setMinutes,
-  setSeconds,
-  getHours,
-  getMinutes,
-  getStartOfWeek,
-  getEndOfWeek,
 } from './utils/index.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import type {CalendarPropsT, CalendarInternalState} from './types.js';
 import {ORIENTATION} from './constants.js';
-
-function applyTime(prev: ?Date, next: Date) {
-  if (!prev) return next;
-  const hours = setHours(next, getHours(prev));
-  const minutes = setMinutes(hours, getMinutes(prev));
-  const seconds = setSeconds(minutes, 0);
-  return seconds;
-}
 
 export default class Calendar extends React.Component<
   CalendarPropsT,
@@ -69,6 +59,7 @@ export default class Calendar extends React.Component<
     maxDate: null,
     minDate: null,
     onDayClick: () => {},
+    onDayFocus: () => {},
     onDayMouseOver: () => {},
     onDayMouseLeave: () => {},
     onMonthChange: () => {},
@@ -85,13 +76,15 @@ export default class Calendar extends React.Component<
 
   constructor(props: CalendarPropsT) {
     super(props);
+    const dateInView = this.getDateInView();
+    const {highlightedDate, value} = this.props;
     this.state = {
       highlightedDate:
-        this.props.highlightedDate ||
-        this.getSingleDate(this.props.value) ||
-        new Date(),
+        highlightedDate && isSameMonth(dateInView, highlightedDate)
+          ? highlightedDate
+          : this.getSingleDate(value) || new Date(),
       focused: false,
-      date: this.getDateInView(),
+      date: dateInView,
       quickSelectId: null,
       rootElement: null,
     };
@@ -120,10 +113,28 @@ export default class Calendar extends React.Component<
     }
 
     if (prevProps.value !== this.props.value) {
-      this.setState({
-        date: this.getDateInView(),
-      });
+      const nextDate = this.getDateInView();
+      if (!this.isInView(nextDate)) {
+        this.setState({
+          date: nextDate,
+        });
+      }
     }
+  }
+
+  isInView(date: Date): boolean {
+    // we calculate the month delta between the date arg and the date in the state.
+    const currentDate = this.state.date;
+
+    // First we get the year delta
+    const yearDelta = date.getFullYear() - currentDate.getFullYear();
+
+    // then we convert it to months. Then we simply add the date-without-year month delta back in.
+    const monthDelta =
+      yearDelta * 12 + date.getMonth() - currentDate.getMonth();
+
+    // we just check that the delta is between the range given by "this month" (i.e. 0) and "the last month" (i.e. monthsShown)
+    return monthDelta >= 0 && monthDelta < (this.props.monthsShown || 1);
   }
 
   getSingleDate(value: ?Date | Array<Date>): ?Date {
@@ -154,6 +165,7 @@ export default class Calendar extends React.Component<
   };
 
   handleMonthChange = (date: Date) => {
+    this.setHighlightedDate(getStartOfMonth(date));
     if (this.props.onMonthChange) {
       this.props.onMonthChange({date});
     }
@@ -183,7 +195,6 @@ export default class Calendar extends React.Component<
         order={order}
         onMonthChange={this.changeMonth}
         onYearChange={this.changeYear}
-        popoverMountNode={this.state.rootElement}
       />
     );
   };
@@ -307,6 +318,13 @@ export default class Calendar extends React.Component<
     }
   };
 
+  onDayFocus = (data: {event: Event, date: Date}) => {
+    const {date} = data;
+    this.setState({highlightedDate: date});
+    this.focusCalendar();
+    this.props.onDayFocus && this.props.onDayFocus(data);
+  };
+
   onDayMouseOver = (data: {event: Event, date: Date}) => {
     const {date} = data;
     this.setState({highlightedDate: date});
@@ -324,11 +342,11 @@ export default class Calendar extends React.Component<
     if (Array.isArray(data.date)) {
       const dates = data.date.map((date, index) => {
         const values = [].concat(this.props.value);
-        return applyTime(values[index], date);
+        return applyDateToTime(values[index], date);
       });
       onChange({date: dates});
     } else if (!Array.isArray(this.props.value) && data.date) {
-      const nextDate = applyTime(this.props.value, data.date);
+      const nextDate = applyDateToTime(this.props.value, data.date);
       onChange({date: nextDate});
     } else {
       onChange({date: data.date});
@@ -340,13 +358,13 @@ export default class Calendar extends React.Component<
     if (Array.isArray(this.props.value)) {
       const dates = this.props.value.map((date, i) => {
         if (index === i) {
-          return applyTime(date, time);
+          return applyTimeToDate(date, time);
         }
         return date;
       });
       onChange({date: dates});
     } else {
-      const date = applyTime(this.props.value, time);
+      const date = applyTimeToDate(this.props.value, time);
       onChange({date});
     }
   };
@@ -365,7 +383,7 @@ export default class Calendar extends React.Component<
     this.setState(nextState);
   }
 
-  renderMonths = () => {
+  renderMonths = (translations: {ariaRoleDescCalMonth: string}) => {
     const {overrides = {}} = this.props;
     const monthList = [];
     const [CalendarContainer, calendarContainerProps] = getOverrides(
@@ -389,6 +407,7 @@ export default class Calendar extends React.Component<
             this.calendar = calendar;
           }}
           role="grid"
+          aria-roledescription={translations.ariaRoleDescCalMonth}
           aria-multiselectable={this.props.range || null}
           onKeyDown={this.onKeyDown}
           {...calendarContainerProps}
@@ -406,7 +425,7 @@ export default class Calendar extends React.Component<
             minDate={this.props.minDate}
             month={getMonth(this.state.date)}
             onDayBlur={this.blurCalendar}
-            onDayFocus={this.focusCalendar}
+            onDayFocus={this.onDayFocus}
             onDayClick={this.props.onDayClick}
             onDayMouseOver={this.onDayMouseOver}
             onDayMouseLeave={this.onDayMouseLeave}
@@ -445,7 +464,11 @@ export default class Calendar extends React.Component<
     return (
       <TimeSelectContainer {...timeSelectContainerProps}>
         <TimeSelectFormControl label={label} {...timeSelectFormControlProps}>
-          <TimeSelect value={value} onChange={onChange} {...timeSelectProps} />
+          <TimeSelect
+            value={value ? new Date(value) : value}
+            onChange={onChange}
+            {...timeSelectProps}
+          />
         </TimeSelectFormControl>
       </TimeSelectContainer>
     );
@@ -487,7 +510,6 @@ export default class Calendar extends React.Component<
               {...quickSelectFormControlProps}
             >
               <QuickSelect
-                mountNode={this.state.rootElement}
                 aria-label={locale.datepicker.quickSelectAriaLabel}
                 labelKey="id"
                 onChange={params => {
@@ -580,11 +602,14 @@ export default class Calendar extends React.Component<
                 this.setState({rootElement: (root: HTMLElement)});
               }
             }}
-            aria-label="calendar"
+            aria-label={locale.datepicker.ariaLabelCalendar}
             onKeyDown={this.props.trapTabbing ? this.handleTabbing : null}
             {...rootProps}
           >
-            {this.renderMonths()}
+            {this.renderMonths({
+              ariaRoleDescCalMonth:
+                locale.datepicker.ariaRoleDescriptionCalendarMonth,
+            })}
             {this.props.timeSelectStart &&
               this.renderTimeSelect(
                 startDate,

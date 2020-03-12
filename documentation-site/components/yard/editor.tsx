@@ -75,7 +75,7 @@ const Editor: React.FC<TEditorProps> = ({
         overflow: 'hidden',
         border: focused
           ? `2px solid ${theme.colors.borderFocus}`
-          : `2px solid ${theme.colors.inputFill}`,
+          : `2px solid ${theme.colors.inputBorder}`,
       })}
     >
       <style
@@ -84,6 +84,7 @@ const Editor: React.FC<TEditorProps> = ({
         }}
       />
       <SimpleEditor
+        ignoreTabKey={true}
         value={code || ''}
         placeholder={placeholder}
         highlight={code => highlightCode(code, editorTheme, transformToken)}

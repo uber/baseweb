@@ -8,20 +8,21 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Unstable_StatefulTreeView as StatefulTreeView} from '../index.js';
-
-export const name = 'tree-view';
+import {StatefulTreeView} from '../index.js';
 
 const initialData = [
   {
+    id: 1,
     label: 'Node 1',
     isExpanded: true,
     children: [
       {
+        id: 2,
         label: 'Child 1',
         isExpanded: true,
         children: [
           {
+            id: 3,
             label: 'Grandchild 1',
           },
         ],
@@ -29,14 +30,17 @@ const initialData = [
     ],
   },
   {
+    id: 4,
     label: 'Node 2',
     isExpanded: true,
     children: [
       {
+        id: 5,
         label: 'Child 2',
         isExpanded: true,
         children: [
           {
+            id: 6,
             label: 'Grandchild 2',
           },
         ],
@@ -45,4 +49,6 @@ const initialData = [
   },
 ];
 
-export const component = () => <StatefulTreeView data={initialData} />;
+export default function Scenario() {
+  return <StatefulTreeView data={initialData} />;
+}

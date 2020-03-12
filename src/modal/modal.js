@@ -29,6 +29,7 @@ import type {
   CloseSourceT,
   ElementRefT,
 } from './types.js';
+import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 class Modal extends React.Component<ModalPropsT, ModalStateT> {
   static defaultProps: $Shape<ModalPropsT> = {
@@ -53,6 +54,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   state = {
     isVisible: false,
     mounted: false,
+    isFocusVisible: false,
   };
 
   componentDidMount() {
@@ -72,11 +74,16 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
         Then pass backdrop overrides to DialogContainer instead. Tha will help you with
         the next major version upgrade.`);
       }
+      // $FlowFixMe: flow complains that this prop doesn't exist
+      if (this.props.closable) {
+        console.warn(
+          'The property `closable` is not supported on the Modal. Did you mean `closeable`?',
+        );
+      }
     }
   }
 
   componentWillUnmount() {
-    this.removeDomEvents();
     this.resetMountNodeScroll();
     this.clearTimers();
   }
@@ -96,17 +103,17 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     }
   }
 
-  addDomEvents() {
-    if (__BROWSER__) {
-      document.addEventListener('keyup', this.onDocumentKeyPress);
+  handleFocus = (event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      this.setState({isFocusVisible: true});
     }
-  }
+  };
 
-  removeDomEvents() {
-    if (__BROWSER__) {
-      document.removeEventListener('keyup', this.onDocumentKeyPress);
+  handleBlur = (event: SyntheticEvent<>) => {
+    if (this.state.isFocusVisible !== false) {
+      this.setState({isFocusVisible: false});
     }
-  }
+  };
 
   disableMountNodeScroll() {
     const mountNode = this.getMountNode();
@@ -127,21 +134,25 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     }
   }
 
-  onDocumentKeyPress = (event: KeyboardEvent) => {
-    if (event.key !== 'Escape') {
-      return;
-    }
-
-    // Ignore events that have been `event.preventDefault()` marked.
-    if (event.defaultPrevented) {
-      return;
-    }
-
+  onEscape = () => {
     if (!this.props.closeable) {
       return;
     }
-
     this.triggerClose(CLOSE_SOURCE.escape);
+  };
+
+  onDocumentClick = (e: MouseEvent) => {
+    if (
+      e.target &&
+      e.target instanceof HTMLElement &&
+      // Handles modal closure when unstable_ModalBackdropScroll is set to true
+      (e.target.contains(this.getRef('DialogContainer').current) ||
+        // Handles modal closure when unstable_ModalBackdropScroll is set to false
+        // $FlowFixMe
+        e.target.contains(this.getRef('DeprecatedBackdrop').current))
+    ) {
+      this.onBackdropClick();
+    }
   };
 
   onBackdropClick = () => {
@@ -149,16 +160,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       return;
     }
     this.triggerClose(CLOSE_SOURCE.backdrop);
-  };
-
-  // Handles modal closure when unstable_ModalBackdropScroll is set to true
-  onDialogContainerBackdropClick = (e: Event) => {
-    if (
-      e.target instanceof HTMLElement &&
-      e.target.contains(this.getRef('DialogContainer').current)
-    ) {
-      this.onBackdropClick();
-    }
   };
 
   onCloseClick = () => {
@@ -186,7 +187,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     // Clear any existing timers (like previous animateOutTimer)
     this.clearTimers();
 
-    this.addDomEvents();
     this.disableMountNodeScroll();
 
     // eslint-disable-next-line cup/no-undef
@@ -196,7 +196,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   }
 
   didClose() {
-    this.removeDomEvents();
     this.resetMountNodeScroll();
     this.animateOutTimer = setTimeout(this.animateOutComplete, 500);
   }
@@ -233,6 +232,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       $role: role,
       $closeable: !!closeable,
       $unstable_ModalBackdropScroll: unstable_ModalBackdropScroll,
+      $isFocusVisible: this.state.isFocusVisible,
     };
   }
 
@@ -264,6 +264,8 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       closeable,
       role,
       unstable_ModalBackdropScroll,
+      autofocus,
+      autoFocus,
     } = this.props;
 
     const {
@@ -289,7 +291,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     const sharedProps = this.getSharedProps();
     const children = this.getChildren();
 
-    if (this.props.autofocus === false && __DEV__) {
+    if (autofocus === false && __DEV__) {
       console.warn(
         `The prop "autofocus" is deprecated in favor of "autoFocus" to be consistent across the project.
         The property "autofocus" will be removed in a future major version.`,
@@ -305,7 +307,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     const dialogContainerConditionalProps = unstable_ModalBackdropScroll
       ? {
           ref: this.getRef('DialogContainer'),
-          onClick: this.onDialogContainerBackdropClick,
         }
       : {};
 
@@ -315,11 +316,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
           <FocusLock
             returnFocus
             // eslint-disable-next-line jsx-a11y/no-autofocus
-            autoFocus={
-              this.props.autofocus !== null
-                ? this.props.autofocus
-                : this.props.autoFocus
-            }
+            autoFocus={autofocus !== null ? autofocus : autoFocus}
           >
             <Root
               data-baseweb="modal"
@@ -330,7 +327,9 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
               <Backdrop
                 {...(unstable_ModalBackdropScroll
                   ? {}
-                  : {onClick: this.onBackdropClick})}
+                  : {
+                      ref: this.getRef('DeprecatedBackdrop'),
+                    })}
                 {...sharedProps}
                 {...backdropProps}
               />
@@ -359,6 +358,8 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
                       onClick={this.onCloseClick}
                       {...sharedProps}
                       {...closeProps}
+                      onFocus={forkFocus(closeProps, this.handleFocus)}
+                      onBlur={forkBlur(closeProps, this.handleBlur)}
                     >
                       <CloseIcon />
                     </Close>
@@ -381,7 +382,15 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     if (!this.props.isOpen && !this.state.isVisible) {
       return null;
     }
-    return <Layer mountNode={this.props.mountNode}>{this.renderModal()}</Layer>;
+    return (
+      <Layer
+        onEscape={this.onEscape}
+        onDocumentClick={this.onDocumentClick}
+        mountNode={this.props.mountNode}
+      >
+        {this.renderModal()}
+      </Layer>
+    );
   }
 }
 

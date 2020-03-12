@@ -8,10 +8,40 @@ LICENSE file in the root directory of this source tree.
 // Styled elements
 import * as React from 'react';
 import {Link} from './styled-components.js';
+import {withWrapper} from '../styles/index.js';
+import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
-// $FlowFixMe
-export const StyledLink: React.AbstractComponent = React.forwardRef(
-  (props, ref) => <Link data-baseweb="link" {...props} ref={ref} />,
+function LinkFocus(props) {
+  const [focusVisible, setFocusVisible] = React.useState(false);
+  const handleFocus = (event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      setFocusVisible(true);
+    }
+  };
+  const handleBlur = (event: SyntheticEvent<>) => {
+    if (focusVisible !== false) {
+      setFocusVisible(false);
+    }
+  };
+  return props.children({focusVisible, handleFocus, handleBlur});
+}
+
+export const StyledLink = withWrapper(
+  Link,
+  Styled =>
+    function StyledLink(props) {
+      return (
+        <LinkFocus>
+          {focusProps => (
+            <Styled
+              data-baseweb="link"
+              {...props}
+              $isFocusVisible={focusProps.focusVisible}
+              onFocus={forkFocus(props, focusProps.handleFocus)}
+              onBlur={forkBlur(props, focusProps.handleBlur)}
+            />
+          )}
+        </LinkFocus>
+      );
+    },
 );
-
-StyledLink.__STYLETRON__ = Link.__STYLETRON__;

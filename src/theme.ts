@@ -11,12 +11,31 @@ interface MediaQuery {
 }
 
 type Responsive<T> = T | T[];
+export type CSSLengthUnitT =
+  | 'cm'
+  | 'mm'
+  | 'Q'
+  | 'in'
+  | 'pc'
+  | 'px'
+  | 'pt'
+  | 'em'
+  | 'ex'
+  | 'ch'
+  | 'rem'
+  | 'lh'
+  | 'vw'
+  | 'vh'
+  | 'vmin'
+  | 'vmax'
+  | '%';
 interface Grid {
   columns: Responsive<number>;
   gutters: Responsive<number>;
   margins: Responsive<number>;
   gaps: Responsive<number>;
   maxWidth: number;
+  unit: CSSLengthUnitT;
 }
 
 interface Colors {
@@ -137,6 +156,7 @@ interface Colors {
   backgroundLightNegative: string;
   backgroundLightWarning: string;
   backgroundAlwaysDark: string;
+  backgroundAlwaysLight: string;
 
   // Content
   contentStateDisabled: string;
@@ -149,6 +169,7 @@ interface Colors {
   // Border
   borderStateDisabled: string;
   borderAccent: string;
+  borderAccentLight: string;
   borderNegative: string;
   borderWarning: string;
   borderPositive: string;
@@ -316,6 +337,7 @@ interface Colors {
   sliderBorderDisabled: string;
 
   // Input
+  inputBorder: string;
   inputFill: string;
   inputFillActive: string;
   inputFillError: string;
@@ -579,6 +601,24 @@ interface Typography {
   font1250: Font;
   font1350: Font;
   font1450: Font;
+  ParagraphXSmall: Font;
+  ParagraphSmall: Font;
+  ParagraphMedium: Font;
+  ParagraphLarge: Font;
+  LabelXSmall: Font;
+  LabelSmall: Font;
+  LabelMedium: Font;
+  LabelLarge: Font;
+  HeadingXSmall: Font;
+  HeadingSmall: Font;
+  HeadingMedium: Font;
+  HeadingLarge: Font;
+  HeadingXLarge: Font;
+  HeadingXXLarge: Font;
+  DisplayXSmall: Font;
+  DisplaySmall: Font;
+  DisplayMedium: Font;
+  DisplayLarge: Font;
 }
 
 interface Sizing {
@@ -644,6 +684,11 @@ interface Borders {
   radius100: string;
   radius200: string;
   radius300: string;
+  radius400: string;
+  buttonBorderRadius: string;
+  inputBorderRadius: string;
+  popoverBorderRadius: string;
+  surfaceBorderRadius: string;
 }
 
 interface ZIndex {

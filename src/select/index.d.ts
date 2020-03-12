@@ -72,6 +72,7 @@ export interface SelectOverrides {
 }
 export interface SelectProps {
   'aria-label'?: string;
+  'aria-errormessage'?: string;
   'aria-describedby'?: string;
   'aria-labelledby'?: string;
   autoFocus?: boolean;
@@ -129,6 +130,7 @@ export interface SelectProps {
   mountNode?: HTMLElement;
 }
 export interface SelectState {
+  activeDescendant: string | null;
   inputValue: string;
   isFocused: boolean;
   isOpen: boolean;
@@ -240,11 +242,13 @@ export interface DropdownProps {
       $isHighlighted: boolean;
     };
   }) => React.ReactNode;
+  id?: string;
   innerRef?: React.Ref<any>;
   isLoading?: boolean;
   labelKey?: string;
   maxDropdownHeight?: string;
   multi?: boolean;
+  onActiveDescendantChange?: (id?: string) => void;
   noResultsMsg?: React.ReactNode;
   onItemSelect?: OnItemSelect;
   options?: Value;

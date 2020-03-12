@@ -25,10 +25,12 @@ export type InternalStateT = {
   isFocused?: boolean,
   /** Renders input in 'masked' state if type equals "password" */
   isMasked?: boolean,
+  /** Tracks if focus should be visible on the clear button. */
+  isFocusVisibleForClear?: boolean,
 };
 
 export type StateT = {
-  value?: string,
+  value?: string | number,
 };
 
 export type StateReducerT = (
@@ -77,6 +79,8 @@ export type InputComponentsT = {|
 |};
 
 export type BaseInputPropsT<T> = {|
+  /** Id of element which contains a related error message */
+  'aria-errormessage'?: string,
   /** Sets aria-label attribute. */
   'aria-label'?: string,
   /** Sets aria-labelledby attribute. */
@@ -123,7 +127,7 @@ export type BaseInputPropsT<T> = {|
   /** Input type attribute. */
   type?: string,
   /** Input value attribute. */
-  value?: string,
+  value?: string | number,
   rows?: number,
   /** min value when used as input type=number */
   min?: number,
@@ -145,11 +149,11 @@ export type InputPropsT = {|
 |};
 
 export type MaskedInputPropsT = $Shape<{|
+  ...InputPropsT,
   /** See pattern examples here: https://github.com/sanniassin/react-input-mask */
   mask?: string,
   /** Character to render for unfilled mask element. */
   maskChar?: string,
-  ...InputPropsT,
 |}>;
 
 export type StatefulContainerPropsT<T> = {|

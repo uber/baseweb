@@ -87,8 +87,7 @@ along with the baseui version update or run the codemod to save the changes for 
 instructions below to run the codemod locally.
 
 ```bash
-npm install -g jscodeshift
-jscodeshift -t node_modules/baseui/codemods/styled-flowfixme.js <transform-path>
+npx @uber-web-ui/baseui-codemods --mod=v8Types --dir=<path_to_code>
 ```
 
 Use the -d option for a dry-run and use -p to print the output for comparison.

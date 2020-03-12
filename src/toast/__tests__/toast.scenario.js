@@ -11,31 +11,31 @@ import * as React from 'react';
 import {Button, KIND as BUTTON_KIND, SIZE} from '../../button/index.js';
 import {Toast, KIND} from '../index.js';
 
-export const name = 'toast';
-
-export const component = () => (
-  <React.Fragment>
-    <Toast>Default info notification</Toast>
-    <Toast>
-      {({dismiss}) => {
-        return (
-          <div>
-            Info notification with no close button and children as a function.
+export default function Scenario() {
+  return (
+    <React.Fragment>
+      <Toast>Default info notification</Toast>
+      <Toast>
+        {({dismiss}) => {
+          return (
             <div>
-              <Button
-                onClick={dismiss}
-                kind={BUTTON_KIND.secondary}
-                size={SIZE.compact}
-              >
-                Click to dismiss
-              </Button>
+              Info notification with no close button and children as a function.
+              <div>
+                <Button
+                  onClick={dismiss}
+                  kind={BUTTON_KIND.secondary}
+                  size={SIZE.compact}
+                >
+                  Click to dismiss
+                </Button>
+              </div>
             </div>
-          </div>
-        );
-      }}
-    </Toast>
-    <Toast kind={KIND.positive}>Positive notification</Toast>
-    <Toast kind={KIND.warning}>Warning notification</Toast>
-    <Toast kind={KIND.negative}>Negative notification</Toast>
-  </React.Fragment>
-);
+          );
+        }}
+      </Toast>
+      <Toast kind={KIND.positive}>Positive notification</Toast>
+      <Toast kind={KIND.warning}>Warning notification</Toast>
+      <Toast kind={KIND.negative}>Negative notification</Toast>
+    </React.Fragment>
+  );
+}

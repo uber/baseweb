@@ -4,11 +4,12 @@ import {Input, ADJOINED, SIZE} from 'baseui/input';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
-import {changeHandlers} from './common';
+import {changeHandlers} from './common/common';
 
 const inputPropsType = require('!!extract-react-types-loader!../../../../src/input/input.js');
 
 export const theme = [
+  'inputBorder',
   'inputFill',
   'inputFillError',
   'inputFillDisabled',
@@ -200,6 +201,7 @@ export const inputProps = {
 };
 
 const InputConfig: TConfig = {
+  componentName: 'Input',
   imports: {
     'baseui/input': {
       named: ['Input'],

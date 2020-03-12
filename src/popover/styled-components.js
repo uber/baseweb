@@ -37,7 +37,7 @@ export function getBodyStyles(props: BodyStylePropsArgT & {$theme: ThemeT}) {
     position: 'absolute',
     top: 0,
     left: 0,
-    backgroundColor: $theme.colors.backgroundPrimary,
+    backgroundColor: $theme.colors.backgroundTertiary,
     borderTopLeftRadius: $theme.borders.popoverBorderRadius,
     borderTopRightRadius: $theme.borders.popoverBorderRadius,
     borderBottomRightRadius: $theme.borders.popoverBorderRadius,
@@ -65,7 +65,7 @@ export const Body = styled<BodyStylePropsArgT>('div', getBodyStyles);
 export function getArrowStyles(props: ArrowStylePropsArgT & {$theme: ThemeT}) {
   const {$arrowOffset, $placement, $theme} = props;
   return {
-    backgroundColor: $theme.colors.backgroundPrimary,
+    backgroundColor: $theme.colors.backgroundTertiary,
     boxShadow: $theme.lighting.shadow600,
     width: `${ARROW_WIDTH}px`,
     height: `${ARROW_WIDTH}px`,
@@ -85,7 +85,7 @@ export const Arrow = styled<ArrowStylePropsArgT>('div', getArrowStyles);
  */
 export function getInnerStyles({$theme}: {$theme: ThemeT}) {
   return {
-    backgroundColor: $theme.colors.backgroundPrimary,
+    backgroundColor: $theme.colors.backgroundTertiary,
     borderTopLeftRadius: $theme.borders.popoverBorderRadius,
     borderTopRightRadius: $theme.borders.popoverBorderRadius,
     borderBottomRightRadius: $theme.borders.popoverBorderRadius,
@@ -107,4 +107,8 @@ export const Padding = styled('div', {
   paddingTop: '12px',
   paddingRight: '12px',
   paddingBottom: '12px',
+});
+
+export const Hidden = styled('div', {
+  display: 'none',
 });

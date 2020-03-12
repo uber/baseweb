@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import {styled} from '../styles/index.js';
-import {Consumer} from './layers-manager.js';
+import {LayersContext, Consumer} from './layers-manager.js';
 import type {LayerPropsT, LayerComponentPropsT, LayerStateT} from './types.js';
 
 const Container = styled<{$zIndex?: number}>('div', ({$zIndex}) => ({
@@ -24,18 +24,31 @@ class LayerComponent extends React.Component<
   LayerComponentPropsT,
   LayerStateT,
 > {
+  static contextType: typeof LayersContext = LayersContext;
+
   state = {container: null};
 
   componentDidMount() {
-    const {onMount, mountNode} = this.props;
+    this.context.addEscapeHandler(this.onEscape);
+    this.context.addDocClickHandler(this.onDocumentClick);
+
+    const {onMount, mountNode, host: layersManagerHost} = this.props;
     if (mountNode) {
       onMount && onMount();
       return;
     }
+
     // There was no LayersManager added if this.props.host === undefined.
     // Use document.body is the case no LayersManager is used.
-    const host =
-      this.props.host !== undefined ? this.props.host : document.body;
+    const hasLayersManager = layersManagerHost !== undefined;
+    if (__DEV__) {
+      if (!hasLayersManager) {
+        console.warn(
+          '`LayersManager` was not found. This occurs if you are attempting to use a component requiring `Layer` without using the `BaseProvider` at the root of your app. Please visit https://baseweb.design/components/base-provider/ for more information',
+        );
+      }
+    }
+    const host = hasLayersManager ? layersManagerHost : document.body;
     if (host) {
       this.addContainer(host);
     }
@@ -52,14 +65,33 @@ class LayerComponent extends React.Component<
   }
 
   componentWillUnmount() {
-    const {container} = this.state;
-    const {host, onUnmount} = this.props;
-    onUnmount && onUnmount();
-    host &&
-      container &&
-      host.contains(container) &&
-      host.removeChild(container);
+    this.context.removeEscapeHandler(this.onEscape);
+    this.context.removeDocClickHandler(this.onDocumentClick);
+
+    if (this.props.onUnmount) {
+      this.props.onUnmount();
+    }
+
+    const host = this.props.host;
+    const container = this.state.container;
+    if (host && container) {
+      if (host.contains(container)) {
+        host.removeChild(container);
+      }
+    }
   }
+
+  onEscape = () => {
+    if (this.props.onEscape) {
+      this.props.onEscape();
+    }
+  };
+
+  onDocumentClick = (event: MouseEvent) => {
+    if (this.props.onDocumentClick) {
+      this.props.onDocumentClick(event);
+    }
+  };
 
   addContainer(host) {
     const {index, mountNode, onMount} = this.props;

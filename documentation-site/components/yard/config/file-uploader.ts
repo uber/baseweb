@@ -22,6 +22,7 @@ const changeHandlers = [
 ];
 
 const FileUploaderConfig: TConfig = {
+  componentName: 'FileUploader',
   imports: {
     'baseui/file-uploader': {named: ['FileUploader']},
   },
@@ -83,6 +84,12 @@ const FileUploaderConfig: TConfig = {
       value: undefined,
       type: PropTypes.String,
       description: 'Name attribute.',
+      hidden: true,
+    },
+    ['aria-describedby']: {
+      value: undefined,
+      type: PropTypes.String,
+      description: `Sets aria-describedby attribute.`,
       hidden: true,
     },
     overrides: {

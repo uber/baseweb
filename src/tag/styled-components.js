@@ -258,34 +258,35 @@ export const Action = styled<SharedPropsArgT>('span', props => {
     }
   }
 
+  const bottomRadiusDir: string =
+    $theme.direction === 'rtl'
+      ? 'borderBottomLeftRadius'
+      : 'borderBottomRightRadius';
+  const topRadiusDir: string =
+    $theme.direction === 'rtl' ? 'borderTopLeftRadius' : 'borderTopRightRadius';
+  const marginDir: string =
+    $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+
   return ({
     alignItems: 'center',
-    [$theme.direction === 'rtl'
-      ? 'borderBottomLeftRadius'
-      : 'borderBottomRightRadius']: $theme.borders.useRoundedCorners
+    [bottomRadiusDir]: $theme.borders.useRoundedCorners
       ? $theme.borders.radius400
       : 0,
-    [$theme.direction === 'rtl'
-      ? 'borderTopLeftRadius'
-      : 'borderTopRightRadius']: $theme.borders.useRoundedCorners
+    [topRadiusDir]: $theme.borders.useRoundedCorners
       ? $theme.borders.radius400
       : 0,
     cursor: $disabled ? 'not-allowed' : 'pointer',
     display: 'flex',
-    [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: '8px',
+    [marginDir]: '8px',
     outline: 'none',
     paddingTop: $variant === VARIANT.outlined ? '5px' : '7px',
     paddingBottom: $variant === VARIANT.outlined ? '5px' : '7px',
     paddingLeft: '8px',
     paddingRight: '8px',
     transitionProperty: 'all',
-    transitionDuration: $theme.animation.timing100,
+    transitionDuration: 'background-color',
     transitionTimingFunction: $theme.animation.easeOutCurve,
     ':hover': {
-      backgroundColor: backgroundColor(true, false),
-      color: fontColor(props, true, true),
-    },
-    ':focus': {
       backgroundColor: backgroundColor(true, false),
       color: fontColor(props, true, true),
     },
@@ -613,6 +614,11 @@ export const Root = styled<SharedPropsArgT>('span', props => {
     ? $theme.borders.radius400
     : 0;
 
+  const paddingStartDir: string =
+    $theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
+  const paddingEndDir: string =
+    $theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
+
   return ({
     ...font150,
     alignItems: 'center',
@@ -636,10 +642,8 @@ export const Root = styled<SharedPropsArgT>('span', props => {
     marginRight: '5px',
     paddingTop: scale0,
     paddingBottom: scale0,
-    [$theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft']: scale500,
-    [$theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight']: $closeable
-      ? null
-      : scale500,
+    [paddingStartDir]: scale500,
+    [paddingEndDir]: $closeable ? null : scale500,
     outline: 'none',
     ':hover':
       $disabled || !$clickable
@@ -650,12 +654,16 @@ export const Root = styled<SharedPropsArgT>('span', props => {
             color: fontColor(props, true, false),
           },
     ':focus':
-      $disabled || !$clickable
+      $disabled || (!$clickable && !$closeable)
         ? {}
         : {
-            backgroundColor: backgroundColor(true, true),
-            borderColor: borderColor(true, true),
-            color: fontColor(props, true, false),
+            boxShadow: props.$isFocusVisible
+              ? `0 0 0 3px ${
+                  props.$kind === KIND.accent
+                    ? $theme.colors.primaryA
+                    : $theme.colors.accent
+                }`
+              : 'none',
           },
   }: {});
 });

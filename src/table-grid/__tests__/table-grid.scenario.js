@@ -12,7 +12,7 @@ import {useStyletron} from '../../styles/index.js';
 
 import {StyledTable, StyledHeadCell, StyledBodyCell} from '../index.js';
 
-export const name = 'table-grid';
+import {useCellNavigation} from './shared.js';
 
 const data = Array(100)
   .fill(2)
@@ -26,27 +26,45 @@ const data = Array(100)
     'Cell six',
   ]);
 
-export function component() {
+export default function Scenario() {
+  const {getCellProps} = useCellNavigation();
   const [css] = useStyletron();
   return (
     <div className={css({height: '750px', width: '900px'})}>
-      <StyledTable $gridTemplateColumns="minmax(400px, max-content) 200px 200px 200px 200px 200px">
-        <StyledHeadCell>Column 1</StyledHeadCell>
-        <StyledHeadCell>Column 2</StyledHeadCell>
-        <StyledHeadCell>Column 3</StyledHeadCell>
-        <StyledHeadCell>Column 4</StyledHeadCell>
-        <StyledHeadCell>Column 5</StyledHeadCell>
-        <StyledHeadCell>Column 6</StyledHeadCell>
-        {data.map(row => {
+      <StyledTable
+        tabIndex="0"
+        role="grid"
+        $gridTemplateColumns="minmax(400px, max-content) 200px 200px 200px 200px 200px"
+      >
+        <StyledHeadCell {...getCellProps(0, 0)}>Column 1</StyledHeadCell>
+        <StyledHeadCell {...getCellProps(1, 0)}>Column 2</StyledHeadCell>
+        <StyledHeadCell {...getCellProps(2, 0)}>Column 3</StyledHeadCell>
+        <StyledHeadCell {...getCellProps(3, 0)}>Column 4</StyledHeadCell>
+        <StyledHeadCell {...getCellProps(4, 0)}>Column 5</StyledHeadCell>
+        <StyledHeadCell {...getCellProps(5, 0)}>Column 6</StyledHeadCell>
+        {data.map((row, index) => {
+          const rowNumber = index + 1;
           return (
-            <>
-              <StyledBodyCell>{row[0]}</StyledBodyCell>
-              <StyledBodyCell>{row[1]}</StyledBodyCell>
-              <StyledBodyCell>{row[2]}</StyledBodyCell>
-              <StyledBodyCell>{row[3]}</StyledBodyCell>
-              <StyledBodyCell>{row[4]}</StyledBodyCell>
-              <StyledBodyCell>{row[5]}</StyledBodyCell>
-            </>
+            <React.Fragment key={index}>
+              <StyledBodyCell {...getCellProps(0, rowNumber)}>
+                {row[0]}
+              </StyledBodyCell>
+              <StyledBodyCell {...getCellProps(1, rowNumber)}>
+                {row[1]}
+              </StyledBodyCell>
+              <StyledBodyCell {...getCellProps(2, rowNumber)}>
+                {row[2]}
+              </StyledBodyCell>
+              <StyledBodyCell {...getCellProps(3, rowNumber)}>
+                {row[3]}
+              </StyledBodyCell>
+              <StyledBodyCell {...getCellProps(4, rowNumber)}>
+                {row[4]}
+              </StyledBodyCell>
+              <StyledBodyCell {...getCellProps(5, rowNumber)}>
+                {row[5]}
+              </StyledBodyCell>
+            </React.Fragment>
           );
         })}
       </StyledTable>

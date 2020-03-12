@@ -6,38 +6,43 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {styled} from '../styles/index.js';
+import {styled, withWrapper} from '../styles/index.js';
 import {OPTION_LIST_SIZE} from './constants.js';
-import type {ItemT} from './types.js';
-import type {StyletronComponent} from '../styles/styled.js';
 
 type StyledPropsT = {
   $disabled?: boolean,
   $isFocused?: boolean,
+  $isFocusVisible?: boolean,
   $isHighlighted?: boolean,
   $size?: $Keys<typeof OPTION_LIST_SIZE>,
 };
 
-export const StyledList = styled<StyledPropsT>('ul', ({$theme}) => {
-  return {
-    backgroundColor: $theme.colors.menuFill,
-    position: 'relative',
-    marginTop: 0,
-    marginBottom: 0,
-    marginLeft: 0,
-    marginRight: 0,
-    paddingTop: $theme.sizing.scale300,
-    paddingBottom: $theme.sizing.scale300,
-    paddingLeft: 0,
-    paddingRight: 0,
-    borderTopLeftRadius: $theme.borders.popoverBorderRadius,
-    borderTopRightRadius: $theme.borders.popoverBorderRadius,
-    borderBottomRightRadius: $theme.borders.popoverBorderRadius,
-    borderBottomLeftRadius: $theme.borders.popoverBorderRadius,
-    boxShadow: $theme.lighting.shadow600,
-    overflow: 'auto',
-  };
-});
+export const StyledList = styled<StyledPropsT>(
+  'ul',
+  ({$theme, $isFocusVisible}) => {
+    return {
+      backgroundColor: $theme.colors.menuFill,
+      position: 'relative',
+      marginTop: 0,
+      marginBottom: 0,
+      marginLeft: 0,
+      marginRight: 0,
+      paddingTop: $theme.sizing.scale300,
+      paddingBottom: $theme.sizing.scale300,
+      paddingLeft: 0,
+      paddingRight: 0,
+      borderTopLeftRadius: $theme.borders.popoverBorderRadius,
+      borderTopRightRadius: $theme.borders.popoverBorderRadius,
+      borderBottomRightRadius: $theme.borders.popoverBorderRadius,
+      borderBottomLeftRadius: $theme.borders.popoverBorderRadius,
+      boxShadow: $theme.lighting.shadow600,
+      overflow: 'auto',
+      ':focus': {
+        outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+      },
+    };
+  },
+);
 
 function getFontColor(props) {
   if (props.$disabled) {
@@ -99,7 +104,12 @@ export const StyledOptgroupHeader = styled<{}>('li', props => {
     paddingLeft: paddingX,
   };
 });
-
+export const StyledListItemAnchor = styled<StyledPropsT>('a', props => {
+  return {
+    display: 'block',
+    color: getFontColor(props),
+  };
+});
 export const StyledListItemElement = styled<StyledPropsT>('li', props => {
   const {$disabled, $theme, $size} = props;
   return {
@@ -137,18 +147,13 @@ export const StyledListItemElement = styled<StyledPropsT>('li', props => {
   };
 });
 
-export const StyledListItem = ((React.forwardRef<
-  {item: ItemT, ...$Exact<StyledPropsT>},
-  // eslint-disable-next-line flowtype/no-weak-types
-  any,
->(
-  ({item, ...restProps}, ref) => (
-    <StyledListItemElement ref={ref} {...restProps} />
-  ),
-  // eslint-disable-next-line flowtype/no-weak-types
-): any): StyletronComponent<StyledPropsT>);
-StyledListItem.__STYLETRON__ = StyledListItemElement.__STYLETRON__;
-StyledListItem.displayName = 'StyledListItem';
+export const StyledListItem = withWrapper(
+  StyledListItemElement,
+  Styled =>
+    function StyledListItem({item, ...restProps}) {
+      return <Styled {...restProps} />;
+    },
+);
 
 export const StyledListItemProfile = styled<StyledPropsT>('li', ({$theme}) => ({
   position: 'relative',

@@ -79,6 +79,7 @@ export type DayPropsT = {
 
 export type DayStateT = {
   isHovered: boolean,
+  isFocusVisible: boolean,
 };
 
 export type WeekPropsT = {
@@ -142,6 +143,8 @@ export type CalendarPropsT = {
   monthsShown?: number,
   /** Day's `click` event handler. */
   onDayClick?: ({date: Date, event: Event}) => mixed,
+  /** Day's `focus` event handler. */
+  onDayFocus?: ({date: Date, event: Event}) => mixed,
   /** Day's `mouseover` event handler. */
   onDayMouseOver?: ({date: Date, event: Event}) => mixed,
   /** Day's `mouseleave` event handler. */
@@ -170,7 +173,6 @@ export type CalendarPropsT = {
 export type HeaderPropsT = CalendarPropsT & {
   date: Date,
   order: number,
-  popoverMountNode: ?HTMLElement,
 };
 
 export type DatepickerPropsT = CalendarPropsT & {
@@ -204,6 +206,7 @@ export type SharedStylePropsT = {
   $endOfMonth: ?boolean,
   $isHighlighted: ?boolean,
   $isHovered: ?boolean,
+  $isFocusVisible: ?boolean,
   $outsideMonth: ?boolean,
   $peekNextMonth: ?boolean,
   $pseudoHighlighted: ?boolean,

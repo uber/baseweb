@@ -44,6 +44,8 @@ Object {
   "$error": false,
   "$positive": false,
   "children": "Caption test",
+  "data-baseweb": "form-control-caption",
+  "id": "bui-mock-id",
 }
 `);
 
@@ -58,6 +60,8 @@ Object {
   "$error": true,
   "$positive": false,
   "children": "Error test",
+  "data-baseweb": "form-control-caption",
+  "id": "bui-mock-id",
 }
 `);
   });
@@ -93,6 +97,16 @@ Object {
     );
     const errorRendered = rendered.find(Caption).first();
     expect(errorRendered).toHaveText('Error test');
+  });
+
+  test('Disables the input component if "disabled" is provided to form control', () => {
+    const rendered = mount(
+      <FormControl disabled>
+        <Input />
+      </FormControl>,
+    );
+    const inputRendered = rendered.find(Input).first();
+    expect(inputRendered.prop('disabled')).toBeTruthy();
   });
 
   test('Accepts a function for label', () => {
@@ -177,6 +191,8 @@ Object {
   "$error": false,
   "$positive": false,
   "children": "Caption test",
+  "data-baseweb": "form-control-caption",
+  "id": "bui-mock-id",
 }
 `);
   });
@@ -205,6 +221,8 @@ Object {
   "$error": false,
   "$positive": false,
   "children": "Caption test",
+  "data-baseweb": "form-control-caption",
+  "id": "bui-mock-id",
 }
 `);
     rendered.setProps({
@@ -226,6 +244,8 @@ Object {
   "$error": false,
   "$positive": false,
   "children": "Caption test",
+  "data-baseweb": "form-control-caption",
+  "id": "bui-mock-id",
 }
 `);
     expect(caption).toHaveText('Error test');
@@ -257,6 +277,8 @@ Object {
   "$error": false,
   "$positive": false,
   "children": "Caption test",
+  "data-baseweb": "form-control-caption",
+  "id": "bui-mock-id",
 }
 `);
   });
@@ -288,6 +310,8 @@ Object {
   "$error": false,
   "$positive": false,
   "children": "Caption test",
+  "data-baseweb": "form-control-caption",
+  "id": "bui-mock-id",
 }
 `);
 });
@@ -322,6 +346,8 @@ Object {
   "$error": false,
   "$positive": false,
   "children": "Caption test",
+  "data-baseweb": "form-control-caption",
+  "id": "bui-mock-id",
 }
 `);
 });

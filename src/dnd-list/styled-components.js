@@ -29,7 +29,7 @@ List.displayName = 'StyledList';
 
 export const Item = styled<SharedStylePropsArgT>(
   'li',
-  ({$isDragged, $isSelected, $theme}) => {
+  ({$isDragged, $isSelected, $theme, $isFocusVisible}) => {
     return ({
       ':hover':
         !$isDragged && !$isSelected
@@ -48,6 +48,13 @@ export const Item = styled<SharedStylePropsArgT>(
               borderRightColor: $theme.colors.primary,
             }
           : {},
+      ':focus': {
+        outline:
+          $isFocusVisible && !$isDragged && !$isSelected
+            ? `3px solid ${$theme.colors.accent}`
+            : 'none',
+        outlineOffset: '-3px',
+      },
       paddingTop: $theme.sizing.scale600,
       paddingBottom: $theme.sizing.scale600,
       paddingLeft: $theme.sizing.scale600,
@@ -81,32 +88,41 @@ export const Item = styled<SharedStylePropsArgT>(
 );
 List.displayName = 'StyledItem';
 
-export const DragHandle = styled<SharedStylePropsArgT>('div', ({$theme}) => ({
-  [$theme.direction === 'rtl' ? 'marginLeft' : 'marginRight']: $theme.sizing
-    .scale600,
-  width: $theme.sizing.scale800,
-  display: 'flex',
-  alignItems: 'center',
-}));
+export const DragHandle = styled<SharedStylePropsArgT>('div', ({$theme}) => {
+  const marginDir: string =
+    $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
+  return {
+    [marginDir]: $theme.sizing.scale600,
+    width: $theme.sizing.scale800,
+    display: 'flex',
+    alignItems: 'center',
+  };
+});
 DragHandle.displayName = 'StyledDragHandle';
 
 export const CloseHandle = styled<SharedStylePropsArgT>(
   'button',
-  ({$theme}) => ({
-    border: 'none',
-    paddingTop: 0,
-    paddingBottom: 0,
-    paddingLeft: 0,
-    paddingRight: 0,
-    overflow: 'visible',
-    cursor: 'pointer',
-    backgroundColor: 'transparent',
-    [$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: $theme.sizing
-      .scale600,
-    width: $theme.sizing.scale800,
-    display: 'flex',
-    alignItems: 'center',
-  }),
+  ({$theme, $isFocusVisible}) => {
+    const marginDir: string =
+      $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+    return {
+      border: 'none',
+      paddingTop: 0,
+      paddingBottom: 0,
+      paddingLeft: 0,
+      paddingRight: 0,
+      overflow: 'visible',
+      cursor: 'pointer',
+      backgroundColor: 'transparent',
+      [marginDir]: $theme.sizing.scale600,
+      width: $theme.sizing.scale800,
+      display: 'flex',
+      alignItems: 'center',
+      ':focus': {
+        outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+      },
+    };
+  },
 );
 CloseHandle.displayName = 'StyledCloseHandle';
 

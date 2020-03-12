@@ -7,7 +7,7 @@ export default () => {
   const [value, setValue] = React.useState('1');
   return (
     <RadioGroup
-      name="radio group"
+      name="overrides"
       onChange={e => setValue(e.target.value)}
       value={value}
     >

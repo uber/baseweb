@@ -11,7 +11,8 @@ import * as React from 'react';
 import type {StarRatingPropsT, RatingStateT} from './types.js';
 import {StyledRoot, StyledStar} from './styled-components.js';
 import {getOverrides} from '../helpers/overrides.js';
-import {ENTER_KEY_CODE, SPACE_KEY_CODE} from './utils.js';
+import {ARROW_UP, ARROW_DOWN, ARROW_LEFT, ARROW_RIGHT} from './utils.js';
+import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
   static defaultProps = {
@@ -19,7 +20,7 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
     numItems: 5,
   };
 
-  state = {};
+  state = {isFocusVisible: false, previewIndex: undefined};
 
   selectItem = (value: number) => {
     const {onChange} = this.props;
@@ -32,20 +33,36 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
     this.setState({previewIndex});
   };
 
+  handleFocus = (event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      this.setState({isFocusVisible: true});
+    }
+  };
+
+  handleBlur = (event: SyntheticEvent<>) => {
+    if (this.state.isFocusVisible !== false) {
+      this.setState({isFocusVisible: false});
+    }
+  };
+
   renderRatingContents = () => {
     const {overrides = {}, value = -1, numItems} = this.props;
     const {previewIndex} = this.state;
-
     const [Star, starProps] = getOverrides(overrides.Item, StyledStar);
 
     const ratings = [];
-
+    const refs = [{current: null}];
     for (let x = 1; x <= numItems; x++) {
+      const isFocusable = x === value || (value < 1 && x === 1);
+      const starRef = React.createRef<HTMLLIElement>();
+      refs.push(starRef);
       ratings.push(
         <Star
           key={x}
           role="radio"
-          tabIndex={0}
+          // eslint-disable-next-line flowtype/no-weak-types
+          ref={(starRef: any)}
+          tabIndex={isFocusable ? '0' : '-1'}
           aria-setsize={numItems}
           aria-checked={x <= value}
           aria-posinset={x}
@@ -54,16 +71,26 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
             previewIndex !== undefined ? x <= previewIndex : x <= value
           }
           $isSelected={x === previewIndex}
+          $isFocusVisible={this.state.isFocusVisible && isFocusable}
           onClick={() => this.selectItem(x)}
           onKeyDown={e => {
-            if (e.keyCode === SPACE_KEY_CODE || e.keyCode === ENTER_KEY_CODE) {
-              this.selectItem(x);
+            if (e.keyCode === ARROW_UP || e.keyCode === ARROW_LEFT) {
+              e.preventDefault && e.preventDefault();
+              const prevIndex = value - 1 < 1 ? numItems : value - 1;
+              this.selectItem(prevIndex);
+              refs[prevIndex].current && refs[prevIndex].current.focus();
+            }
+            if (e.keyCode === ARROW_DOWN || e.keyCode === ARROW_RIGHT) {
+              e.preventDefault && e.preventDefault();
+              const nextIndex = value + 1 > numItems ? 1 : value + 1;
+              this.selectItem(nextIndex);
+              refs[nextIndex].current && refs[nextIndex].current.focus();
             }
           }}
-          onFocus={() => this.updatePreview(x)}
           onMouseOver={() => this.updatePreview(x)}
-          onBlur={() => this.updatePreview(undefined)}
           {...starProps}
+          onFocus={forkFocus(starProps, this.handleFocus)}
+          onBlur={forkBlur(starProps, this.handleBlur)}
         />,
       );
     }
@@ -78,7 +105,6 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
     return (
       <Root
         data-baseweb="star-rating"
-        tabIndex={0}
         role="radiogroup"
         onBlur={() => this.updatePreview(undefined)}
         onMouseLeave={() => this.updatePreview(undefined)}

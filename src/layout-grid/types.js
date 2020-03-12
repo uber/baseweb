@@ -10,6 +10,8 @@ import * as React from 'react';
 import {ALIGNMENT, BEHAVIOR} from './constants.js';
 import Cell from './cell.js';
 
+import type {OverrideT} from '../helpers/overrides.js';
+
 export type ResponsiveT<T> = T | Array<T>;
 
 export type AlignmentT =
@@ -18,6 +20,24 @@ export type AlignmentT =
   | typeof ALIGNMENT.end;
 
 export type BehaviorT = typeof BEHAVIOR.fixed | typeof BEHAVIOR.fluid;
+export type CSSLengthUnitT =
+  | 'cm'
+  | 'mm'
+  | 'Q'
+  | 'in'
+  | 'pc'
+  | 'px'
+  | 'pt'
+  | 'em'
+  | 'ex'
+  | 'ch'
+  | 'rem'
+  | 'lh'
+  | 'vw'
+  | 'vh'
+  | 'vmin'
+  | 'vmax'
+  | '%';
 
 export type GridPropsT = {
   /** Control vertical alignment of cells at each breakpoint. */
@@ -25,7 +45,7 @@ export type GridPropsT = {
   /** Grid container behavior beyond max width. Fluid will continue to expand. Fixed will limit grid container to max width and center the container horizontally within parent element. */
   behavior?: BehaviorT,
   /** Children should be Cells. */
-  children: React.ChildrenArray<React.Element<typeof Cell>>,
+  children: React.ChildrenArray<React.Element<typeof Cell> | null>,
   /** Number of columns at each breakpoint. */
   gridColumns?: ResponsiveT<number>,
   /** Gap between rows at each breakpoint. */
@@ -36,6 +56,12 @@ export type GridPropsT = {
   gridMargins?: ResponsiveT<number>,
   /** Maximum width of the grid container. Does not include Margins. Only applies when `behavior` is `fluid`. */
   gridMaxWidth?: number,
+  /** Modify the CSS length unit used to measure columns and rows. Defaults to theme value. */
+  gridUnit?: CSSLengthUnitT,
+  /** Overrides for your grid. */
+  overrides?: {
+    Grid?: OverrideT<*>,
+  },
 };
 
 export type StyledGridPropsT = {
@@ -49,6 +75,8 @@ export type StyledGridPropsT = {
   $gridMargins?: ResponsiveT<number>,
   /** Maximum width of the grid container. Does not include Margins. Only applies when `behavior` is `fluid`. */
   $gridMaxWidth?: number,
+  /** Modify the CSS length unit used to measure columns and rows. Defaults to theme value. */
+  $gridUnit?: CSSLengthUnitT,
 };
 
 export type CellPropsT = {
@@ -56,12 +84,24 @@ export type CellPropsT = {
   align?: ResponsiveT<AlignmentT>,
   /** Content to be placed in Cell. */
   children?: React.Node,
+  /** Number of columns at each breakpoint. */
+  gridColumns?: ResponsiveT<number>,
+  /** Gap between rows at each breakpoint. */
+  gridGaps?: ResponsiveT<number>,
+  /** Gap between columns at each breakpoint. */
+  gridGutters?: ResponsiveT<number>,
+  /** Modify the CSS length unit used to measure columns and rows. Defaults to theme value. */
+  gridUnit?: CSSLengthUnitT,
   /** Control placement order of cell in flex row at each breakpoint. Proxy for `order` CSS property. */
   order?: ResponsiveT<number>,
   /** Control number of columns to offset cell at each breakpoint. */
   skip?: ResponsiveT<number>,
   /** Control number of columns the cell should span. */
   span?: ResponsiveT<number>,
+  /** Overrides for a single cell. */
+  overrides?: {
+    Cell?: OverrideT<*>,
+  },
 };
 
 export type StyledCellPropsT = {
@@ -73,6 +113,8 @@ export type StyledCellPropsT = {
   $gridGaps?: ResponsiveT<number>,
   /** Gap between columns at each breakpoint. */
   $gridGutters?: ResponsiveT<number>,
+  /** Modify the CSS length unit used to measure columns and rows. Defaults to theme value. */
+  $gridUnit?: CSSLengthUnitT,
   /** Control placement order of cell in flex row at each breakpoint. Proxy for `order` CSS property. */
   $order?: ResponsiveT<number>,
   /** Control number of columns to offset cell at each breakpoint. */

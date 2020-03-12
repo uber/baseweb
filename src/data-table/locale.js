@@ -8,11 +8,13 @@ LICENSE file in the root directory of this source tree.
 
 export type DataTableLocaleT = {|
   emptyState: string,
+  loadingState: string,
 |};
 
 const locale = {
   emptyState:
     'No rows match the filter criteria defined. Please remove one or more filters to view more data.',
+  loadingState: 'Loading Rows.',
 };
 
 export default locale;

@@ -8,11 +8,12 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
+import {LocaleContext} from '../locale/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 
 import {OPTION_LIST_SIZE} from './constants.js';
 import MaybeChildMenu from './maybe-child-menu.js';
-import {StyledListItem} from './styled-components.js';
+import {StyledListItem, StyledListItemAnchor} from './styled-components.js';
 import type {OptionListPropsT} from './types.js';
 
 function OptionList(props: OptionListPropsT, ref: React.ElementRef<*>) {
@@ -25,6 +26,7 @@ function OptionList(props: OptionListPropsT, ref: React.ElementRef<*>) {
     resetMenu = () => {},
     size = OPTION_LIST_SIZE.default,
     $isHighlighted,
+    renderAll,
     ...restProps
   } = props;
 
@@ -32,26 +34,52 @@ function OptionList(props: OptionListPropsT, ref: React.ElementRef<*>) {
     overrides.ListItem,
     StyledListItem,
   );
+  const [ListItemAnchor, listItemAnchorProps] = getOverrides(
+    overrides.ListItemAnchor,
+    StyledListItemAnchor,
+  );
+
+  const getItem = item => {
+    if (item.href) {
+      return (
+        <ListItemAnchor $item={item} href={item.href} {...listItemAnchorProps}>
+          {getItemLabel(item)}
+        </ListItemAnchor>
+      );
+    } else {
+      return <>{getItemLabel(item)}</>;
+    }
+  };
 
   return (
-    <MaybeChildMenu
-      getChildMenu={getChildMenu}
-      isOpen={!!$isHighlighted}
-      item={item}
-      resetParentMenu={resetMenu}
-    >
-      <ListItem
-        ref={ref}
-        item={item}
-        onMouseEnter={onMouseEnter}
-        $size={size}
-        $isHighlighted={$isHighlighted}
-        {...restProps}
-        {...listItemProps}
-      >
-        {getItemLabel({isHighlighted: $isHighlighted, ...item})}
-      </ListItem>
-    </MaybeChildMenu>
+    <LocaleContext.Consumer>
+      {locale => (
+        <MaybeChildMenu
+          getChildMenu={getChildMenu}
+          isOpen={!!$isHighlighted}
+          item={item}
+          resetParentMenu={resetMenu}
+          renderAll={renderAll}
+        >
+          <ListItem
+            ref={ref}
+            aria-label={
+              getChildMenu && getChildMenu(item)
+                ? locale.menu.parentMenuItemAriaLabel
+                : null
+            }
+            item={item}
+            onMouseEnter={onMouseEnter}
+            $size={size}
+            $isHighlighted={$isHighlighted}
+            {...restProps}
+            {...listItemProps}
+          >
+            {getItem({isHighlighted: $isHighlighted, ...item})}
+          </ListItem>
+        </MaybeChildMenu>
+      )}
+    </LocaleContext.Consumer>
   );
 }
 

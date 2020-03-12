@@ -42,6 +42,10 @@ export type DefaultPropsT = {
 };
 
 export type PropsT = {
+  /** Id of element which contains a related caption */
+  'aria-describedby'?: string,
+  /** Id of element which contains a related error message */
+  'aria-errormessage'?: string,
   /**
    * Used to define a string that labels the radio group. Use this prop if the label is not
    * visible on screen. If the label is visible, use the 'aria-labeledby' prop instead.
@@ -91,6 +95,8 @@ export type StateT = {
 export type RadioPropsT = {
   /** Focus the radio on initial render. */
   autoFocus?: boolean,
+  /** How the radio will be displayed along with its description. Controls spacing */
+  align?: AlignT,
   /** Check or uncheck the control. */
   checked?: boolean,
   /** Label of radio. */
@@ -103,6 +109,10 @@ export type RadioPropsT = {
   inputRef: React.ElementRef<*>,
   /** Renders checkbox in errored state. */
   isError?: boolean,
+  /** Is radio focused / active? */
+  isFocused?: boolean,
+  /** Is parent RadioGroup focused by keyboard? */
+  isFocusVisible?: boolean,
   /** How to position the label relative to the checkbox itself. */
   labelPlacement?: 'top' | 'right' | 'bottom' | 'left',
   /** Passed to the input element name attribute */
@@ -126,11 +136,12 @@ export type RadioPropsT = {
   required?: boolean,
   /** Passed to the input element value attribute */
   value?: string,
+  /** Passed to the input element, typically managed by RadioGroup */
+  tabIndex?: string,
 };
 
 export type RadioStateT = {
   isActive: boolean,
-  isFocused: boolean,
   isHovered: boolean,
 };
 
@@ -141,7 +152,10 @@ export type StateReducerT = (
   event: SyntheticInputEvent<HTMLInputElement>,
 ) => StateT;
 
-export type StatelessStateT = {};
+export type StatelessStateT = {
+  isFocusVisible: boolean,
+  focusedRadioIndex: number,
+};
 
 export type DefaultStatefulPropsT = {
   initialState: StateT,
@@ -184,6 +198,7 @@ export type StylePropsT = {
   $isActive: boolean,
   $isError: boolean,
   $isFocused: boolean,
+  $isFocusVisible: boolean,
   $isHovered: boolean,
   $labelPlacement: LabelPlacementT,
   $required: boolean,

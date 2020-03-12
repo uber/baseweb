@@ -19,13 +19,29 @@ import {getOverrides} from '../helpers/overrides.js';
 import type {StatelessMenuPropsT} from './types.js';
 import type {LocaleT} from '../locale/types.js';
 
+import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+
 export default function Menu(props: StatelessMenuPropsT) {
   const {
     overrides = {},
     rootRef = React.createRef(),
     focusMenu = () => {},
     unfocusMenu = () => {},
+    renderAll = false,
   } = props;
+
+  const [focusVisible, setFocusVisible] = React.useState(false);
+  const handleFocus = (event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      setFocusVisible(true);
+    }
+  };
+
+  const handleBlur = (event: SyntheticEvent<>) => {
+    if (focusVisible !== false) {
+      setFocusVisible(false);
+    }
+  };
 
   const [List, listProps] = getOverrides(overrides.List, StyledList);
   const [Option, optionProps] = getOverrides(overrides.Option, OptionList);
@@ -65,6 +81,7 @@ export default function Menu(props: StatelessMenuPropsT) {
 
         return (
           <Option
+            renderAll={renderAll}
             key={itemIndex}
             item={item}
             overrides={props.overrides}
@@ -73,6 +90,7 @@ export default function Menu(props: StatelessMenuPropsT) {
             $disabled={disabled}
             $isFocused={isFocused}
             $isHighlighted={isHighlighted}
+            aria-disabled={disabled}
             aria-selected={isHighlighted && isFocused}
             {...restProps}
             {...optionProps}
@@ -95,14 +113,15 @@ export default function Menu(props: StatelessMenuPropsT) {
           ref={rootRef}
           onMouseEnter={focusMenu}
           onMouseOver={focusMenu}
-          onFocus={focusMenu}
-          onBlur={unfocusMenu}
+          onFocus={forkFocus({onFocus: focusMenu}, handleFocus)}
+          onBlur={forkBlur({onBlur: unfocusMenu}, handleBlur)}
           tabIndex={0}
           data-baseweb="menu"
+          $isFocusVisible={focusVisible}
           {...listProps}
         >
           {isEmpty ? (
-            <EmptyState {...emptyStateProps}>
+            <EmptyState aria-live="polite" aria-atomic {...emptyStateProps}>
               {props.noResultsMsg || locale.menu.noResultsMsg}
             </EmptyState>
           ) : (

@@ -39,6 +39,8 @@ export type DrawerPropsT = {
    * Moving focus into a newly opened drawer is important for accessibility purposes, so please be careful!
    */
   autoFocus: boolean,
+  /** Renders all drawer content for SEO purposes regardless of drawer isOpen state */
+  renderAll?: boolean,
   /** Where to mount the modal */
   mountNode?: HTMLElement,
   /** Drawer content. The children-as-function API may be preferable
@@ -72,6 +74,7 @@ export type DrawerPropsWithoutChildrenT = $Diff<
 export type DrawerStateT = {
   isVisible: boolean,
   mounted: boolean,
+  isFocusVisible: boolean,
 };
 
 export type SharedStylePropsArgT = {
@@ -82,4 +85,5 @@ export type SharedStylePropsArgT = {
   $size: SizePropT,
   $closeable: boolean,
   $anchor: AnchorPropT,
+  $isFocusVisible: boolean,
 };

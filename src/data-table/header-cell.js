@@ -15,6 +15,7 @@ import ChevronUp from '../icon/chevron-up.js';
 
 import {SORT_DIRECTIONS} from './constants.js';
 import type {SortDirectionsT} from './types.js';
+import {isFocusVisible} from '../utils/focusVisible.js';
 
 type HeaderCellPropsT = {|
   index: number,
@@ -36,10 +37,23 @@ type HeaderCellPropsT = {|
 const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
   (props, ref) => {
     const [css, theme] = useStyletron();
+    const [focusVisible, setFocusVisible] = React.useState(false);
+
+    const handleFocus = (event: SyntheticEvent<>) => {
+      if (isFocusVisible(event)) {
+        setFocusVisible(true);
+      }
+    };
+
+    const handleBlur = (event: SyntheticEvent<>) => {
+      if (focusVisible !== false) {
+        setFocusVisible(false);
+      }
+    };
 
     const backgroundColor = props.isHovered
-      ? theme.colors.mono200
-      : theme.colors.mono100;
+      ? theme.colors.backgroundSecondary
+      : theme.colors.backgroundPrimary;
 
     return (
       <div
@@ -51,6 +65,7 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
           alignItems: 'center',
           backgroundColor,
           boxSizing: 'border-box',
+          color: theme.colors.contentPrimary,
           cursor: props.sortable ? 'pointer' : null,
           display: props.isMeasured ? 'inline-flex' : 'flex',
           flexGrow: 1,
@@ -59,6 +74,8 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
           paddingRight: theme.sizing.scale500,
           flexWrap: 'nowrap',
           whiteSpace: 'nowrap',
+          outline: focusVisible ? `3px solid ${theme.colors.accent}` : 'none',
+          outlineOffset: '-3px',
         })}
         onMouseEnter={props.onMouseEnter}
         onMouseLeave={props.onMouseLeave}
@@ -68,6 +85,8 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
           }
         }}
         onClick={() => props.onSort(props.index)}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
       >
         {props.isSelectable && (
           <Checkbox
@@ -106,8 +125,8 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
                 <ChevronDown
                   color={
                     props.sortDirection
-                      ? theme.colors.primary
-                      : theme.colors.mono600
+                      ? theme.colors.contentPrimary
+                      : theme.colors.contentSecondary
                   }
                 />
               )}
@@ -115,8 +134,8 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
                 <ChevronUp
                   color={
                     props.sortDirection
-                      ? theme.colors.primary
-                      : theme.colors.mono600
+                      ? theme.colors.contentPrimary
+                      : theme.colors.contentSecondary
                   }
                 />
               )}

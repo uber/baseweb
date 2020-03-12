@@ -3,7 +3,9 @@
 exports[`StatefulPopover basic render: renders <Popover/> as child to container 1`] = `
 <Popover
   accessibilityType="menu"
+  autoFocus={true}
   content={[Function]}
+  focusLock={false}
   ignoreBoundary={false}
   isOpen={true}
   onBlur={[Function]}
@@ -21,6 +23,8 @@ exports[`StatefulPopover basic render: renders <Popover/> as child to container 
   }
   placement="topLeft"
   popperOptions={Object {}}
+  renderAll={false}
+  returnFocus={true}
   showArrow={true}
   triggerType="hover"
 >

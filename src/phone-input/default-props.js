@@ -12,10 +12,11 @@ import {
 } from './constants.js';
 
 const defaultProps = {
-  'aria-label': 'Please choose a country dial code and enter a phone number.',
+  'aria-label': 'Please enter a phone number without the country dial code.',
   'aria-describedby': null,
   'aria-labelledby': null,
-  autoFocus: false,
+  clearable: false,
+  focusLock: false,
   country: {label: 'United States', id: 'US', dialCode: '+1'},
   disabled: false,
   error: false,

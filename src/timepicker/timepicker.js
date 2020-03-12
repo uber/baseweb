@@ -12,7 +12,7 @@ import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import {LocaleContext} from '../locale/index.js';
 import {Select, filterOptions} from '../select/index.js';
 
-import type {OptionT} from '../select/index.js';
+import type {OptionT, OnChangeParamsT} from '../select/index.js';
 import type {TimePickerPropsT, TimePickerStateT} from './types.js';
 
 const MINUTE = 60;
@@ -27,7 +27,7 @@ function dateToSeconds(date: Date) {
   return seconds + minutes + hours;
 }
 
-function secondsToHourMinute(seconds) {
+export function secondsToHourMinute(seconds: number) {
   const d = new Date(seconds * 1000);
   return [d.getUTCHours(), d.getUTCMinutes()];
 }
@@ -134,7 +134,9 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
           ? undefined
           : {id: closestStep, label: secondsToLabel(closestStep)},
       });
-      this.handleChange(closestStep);
+      if (this.props.value || (!this.props.nullable && !this.props.value)) {
+        this.handleChange(closestStep);
+      }
     }
   }
 
@@ -147,11 +149,17 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
     }
   }
 
+  onChange = (params: OnChangeParamsT) => {
+    this.setState({value: params.value[0]});
+    const seconds: number =
+      typeof params.value[0].id === 'string'
+        ? parseInt(params.value[0].id, 10)
+        : params.value[0].id || 0;
+    this.handleChange(seconds);
+  };
+
   handleChange = (seconds: number) => {
-    if (!this.props.value) {
-      return;
-    }
-    const date = new Date(this.props.value);
+    const date = this.props.value ? new Date(this.props.value) : new Date();
     const [hours, minutes] = secondsToHourMinute(seconds);
     date.setHours(hours, minutes, 0);
     this.props.onChange && this.props.onChange(date);
@@ -202,7 +210,7 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
   }
 
   render() {
-    const {overrides = {}} = this.props;
+    const {format, overrides = {}} = this.props;
 
     const [OverriddenSelect, selectProps] = getOverrides(
       overrides.Select,
@@ -223,35 +231,41 @@ class TimePicker extends React.Component<TimePickerPropsT, TimePickerStateT> {
 
     return (
       <LocaleContext.Consumer>
-        {locale => (
-          <OverriddenSelect
-            aria-label={locale.datepicker.timePickerAriaLabel}
-            disabled={this.props.disabled}
-            error={this.props.error}
-            positive={this.props.positive}
-            size={this.props.size}
-            placeholder={this.props.placeholder || 'HH:mm'}
-            options={this.state.steps.map(n => ({
-              id: n,
-              label: secondsToLabel(n, this.props.format),
-            }))}
-            filterOptions={
-              this.props.creatable ? this.creatableFilterOptions : undefined
-            }
-            onChange={params => {
-              this.setState({value: params.value[0]});
+        {locale => {
+          let ariaLabel;
 
-              const date = this.props.value || new Date();
-              const seconds = params.value[0].id;
-              const [hours, minutes] = secondsToHourMinute(seconds);
-              date.setHours(hours, minutes, 0);
-              this.handleChange(params.value[0].id);
-            }}
-            value={value}
-            clearable={false}
-            {...selectProps}
-          />
-        )}
+          if (locale.datepicker.timePickerAriaLabel) {
+            ariaLabel = locale.datepicker.timePickerAriaLabel;
+          } else {
+            ariaLabel =
+              format === '12'
+                ? locale.datepicker.timePickerAriaLabel12Hour
+                : locale.datepicker.timePickerAriaLabel24Hour;
+          }
+
+          return (
+            <OverriddenSelect
+              aria-label={ariaLabel}
+              disabled={this.props.disabled}
+              error={this.props.error}
+              positive={this.props.positive}
+              size={this.props.size}
+              placeholder={this.props.placeholder || 'HH:mm'}
+              options={this.state.steps.map(n => ({
+                id: n,
+                label: secondsToLabel(n, this.props.format),
+              }))}
+              filterOptions={
+                this.props.creatable ? this.creatableFilterOptions : undefined
+              }
+              onChange={this.onChange}
+              // if value is defined, it should be an array type
+              value={value ? [value] : value}
+              clearable={false}
+              {...selectProps}
+            />
+          );
+        }}
       </LocaleContext.Consumer>
     );
   }

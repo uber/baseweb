@@ -176,6 +176,7 @@ describe('Popover', () => {
     wrapper = mount(
       <Popover
         content={content}
+        returnFocus={false}
         isOpen={false}
         triggerType="hover"
         onClick={onClickPopover}
@@ -198,8 +199,7 @@ describe('Popover', () => {
     // Show the popover
     wrapper.setProps({isOpen: true});
 
-    // Portal should have the popover body and content
-    let popoverBody = wrapper.childAt(1).childAt(0);
+    let popoverBody = wrapper.find('[data-baseweb="popover"]').first();
     popoverBody.simulate('mouseleave');
     expect(onMouseLeave).not.toBeCalled();
     jest.runAllTimers();
@@ -211,29 +211,46 @@ describe('Popover', () => {
     expect(onClickPopover).not.toBeCalled();
   });
 
-  test('dismissOnEsc', () => {
-    const onClick = jest.fn();
-    const onEsc = jest.fn();
-    const content = <strong>Hello world</strong>;
-    const button = <button type="button">Click me</button>;
+  test('autoFocus and returnFocus', () => {
+    const buttonId = 'foo';
+    const firstInputId = 'bar';
+    const FocusMe = React.forwardRef(() => {
+      const el = React.useRef(null);
+      React.useEffect(() => {
+        el.current && el.current.focus();
+      });
+      return (
+        <button id={buttonId} ref={el} type="button">
+          Click me
+        </button>
+      );
+    });
+    const content = (
+      <div>
+        <input id={firstInputId} />
+        <input id="baz" />
+      </div>
+    );
     wrapper = mount(
-      <Popover isOpen content={content} onClick={onClick} onEsc={onEsc}>
-        {button}
+      <Popover content={content} isOpen={false} focusLock>
+        <FocusMe />
       </Popover>,
     );
 
-    const calls = document.addEventListener.mock.calls;
-    expect(document.addEventListener).toBeCalled();
-    expect(calls[0][0]).toBe('mousedown');
-    expect(calls[1][0]).toBe('keyup');
+    // Show the popover
+    wrapper.simulate('click');
+    wrapper.setProps({isOpen: true});
+    wrapper.setState({autoFocusAfterPositioning: true});
 
-    calls[1][1]({
-      key: 'Escape',
-      code: 27,
-      keyCode: 27,
-    });
+    // focused element (document.activeElement) should be the first input
+    expect(document.activeElement).not.toBeNull();
+    expect((document.activeElement: any).id).toEqual(firstInputId);
 
-    expect(onEsc).toHaveBeenCalled();
+    wrapper.setProps({isOpen: false});
+
+    // focused element (document.activeElement) should return to button
+    expect(document.activeElement).not.toBeNull();
+    expect((document.activeElement: any).id).toEqual(buttonId);
   });
 
   test('text as anchor', () => {
@@ -287,6 +304,7 @@ describe('Popover', () => {
     wrapper = mount(
       <Popover
         isOpen
+        content="content"
         overrides={overrides}
         showArrow
         triggerType={TRIGGER_TYPE.hover}

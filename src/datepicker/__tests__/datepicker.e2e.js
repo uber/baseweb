@@ -19,8 +19,8 @@ const selectors = {
   day4: '[aria-label="Choose Monday, April 1st 2019. It\'s available."]',
   day5: '[aria-label="Choose Saturday, March 10th 2018. It\'s available."]',
   day6: '[aria-label="Choose Monday, July 1st 2019. It\'s available."]',
-  leftArrow: '[aria-label="Previous month"]',
-  rightArrow: '[aria-label="Next month"]',
+  leftArrow: '[aria-label="Previous month."]',
+  rightArrow: '[aria-label="Next month."]',
   monthYearSelectButton: '[data-id="monthYearSelectButton"]',
   monthYearSelectMenu: '[data-id="monthYearSelectMenu"]',
 };
@@ -104,6 +104,25 @@ describe('Datepicker', () => {
     expect(selectedValue).toBe('2019/07/01');
   });
 
+  it('input causes calendar to switch to appropriate month', async () => {
+    await mount(page, 'datepicker');
+    await page.waitFor(selectors.input);
+    await page.click(selectors.input);
+    await page.waitFor(selectors.calendar);
+    // march should be visible
+    await page.waitFor(selectors.day);
+
+    // we want to enter entire date but the onChange functionality only fires on key press so...
+    await page.$eval(selectors.input, el => (el.value = '2019/07/0'));
+    // also make sure the selected date isn't the date we're testing - selected/non-selected dates have different aria-labels
+    await page.keyboard.press('2');
+
+    // make sure march is gone
+    await page.waitFor(selectors.day, {hidden: true});
+    // and make sure july is now visible
+    await page.waitFor(selectors.day6);
+  });
+
   it('month year dropdown opens on arrow down', async () => {
     await mount(page, 'datepicker');
     await page.waitFor(selectors.input);
@@ -139,5 +158,19 @@ describe('Datepicker', () => {
     await page.waitFor(selectors.monthYearSelectMenu);
     await page.keyboard.press('Tab');
     await page.waitFor(selectors.monthYearSelectMenu, {hidden: true});
+  });
+
+  it('month year dropdown escape does not close calendar', async () => {
+    await mount(page, 'datepicker');
+    await page.waitFor(selectors.input);
+    await page.click(selectors.input);
+    await page.waitFor(selectors.calendar);
+    await page.waitFor(selectors.day);
+    await page.focus(selectors.monthYearSelectButton);
+    await page.keyboard.press('ArrowDown');
+    await page.waitFor(selectors.monthYearSelectMenu);
+    await page.keyboard.press('Escape');
+    await page.waitFor(selectors.monthYearSelectMenu, {hidden: true});
+    await page.waitFor(selectors.calendar);
   });
 });

@@ -16,7 +16,7 @@ import {
   ThemeProvider,
 } from 'baseui';
 import {Card} from 'baseui/card';
-import {Spinner} from 'baseui/spinner';
+import {StyledSpinnerNext as Spinner} from 'baseui/spinner';
 import {useRouter} from 'next/router';
 
 import {useView, Compiler, Error} from 'react-view';

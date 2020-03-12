@@ -18,6 +18,7 @@ import {
   ToggleTrack as StyledToggleTrack,
 } from './styled-components.js';
 import {STYLE_TYPE} from './constants.js';
+import {isFocusVisible} from '../utils/focusVisible.js';
 
 class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
   static defaultProps: DefaultPropsT = {
@@ -41,6 +42,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
 
   state = {
     isFocused: this.props.autoFocus || false,
+    isFocusVisible: false,
     isHovered: false,
     isActive: false,
   };
@@ -83,11 +85,17 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
   onFocus = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.setState({isFocused: true});
     this.props.onFocus(e);
+    if (isFocusVisible(e)) {
+      this.setState({isFocusVisible: true});
+    }
   };
 
   onBlur = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.setState({isFocused: false});
     this.props.onBlur(e);
+    if (this.state.isFocusVisible !== false) {
+      this.setState({isFocusVisible: false});
+    }
   };
 
   isToggle = () => {
@@ -147,6 +155,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     };
     const sharedProps = {
       $isFocused: this.state.isFocused,
+      $isFocusVisible: this.state.isFocusVisible,
       $isHovered: this.state.isHovered,
       $isActive: this.state.isActive,
       $isError: isError,
@@ -180,7 +189,8 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
         {this.isToggle() ? (
           <ToggleTrack
             role="checkbox"
-            aria-checked={checked}
+            aria-checked={isIndeterminate ? 'mixed' : checked}
+            aria-invalid={isError || null}
             {...sharedProps}
             {...getOverrideProps(ToggleTrackOverride)}
           >
@@ -195,7 +205,8 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
           <Checkmark
             role="checkbox"
             checked={checked}
-            aria-checked={checked}
+            aria-checked={isIndeterminate ? 'mixed' : checked}
+            aria-invalid={isError || null}
             {...sharedProps}
             {...getOverrideProps(CheckmarkOverride)}
           />
@@ -205,6 +216,9 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
           name={name}
           checked={checked}
           required={required}
+          aria-checked={isIndeterminate ? 'mixed' : checked}
+          aria-describedby={this.props['aria-describedby']}
+          aria-errormessage={this.props['aria-errormessage']}
           aria-invalid={isError || null}
           aria-required={required || null}
           disabled={disabled}

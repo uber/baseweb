@@ -10,6 +10,9 @@ import type {BasePopoverPropsT} from './types.js';
 
 const baseDefaultProps: $Shape<BasePopoverPropsT> = {
   accessibilityType: ACCESSIBILITY_TYPE.menu,
+  focusLock: false,
+  autoFocus: true,
+  returnFocus: true,
   // Remove the `ignoreBoundary` prop in the next major version
   // and have it replaced with the TetherBehavior props overrides
   ignoreBoundary: false,
@@ -19,6 +22,7 @@ const baseDefaultProps: $Shape<BasePopoverPropsT> = {
   placement: PLACEMENT.auto,
   showArrow: false,
   triggerType: TRIGGER_TYPE.click,
+  renderAll: false,
 };
 
 export default baseDefaultProps;

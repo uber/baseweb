@@ -19,8 +19,8 @@ const selectors = {
   day4: '[aria-label="Choose Monday, April 1st 2019. It\'s available."]',
   day5: '[aria-label="Choose Saturday, March 10th 2018. It\'s available."]',
   day6: '[aria-label="Choose Monday, July 1st 2019. It\'s available."]',
-  leftArrow: '[aria-label="Previous month"]',
-  rightArrow: '[aria-label="Next month"]',
+  leftArrow: '[aria-label="Previous month."]',
+  rightArrow: '[aria-label="Next month."]',
   monthYearSelectButton: '[data-id="monthYearSelectButton"]',
   monthYearSelectMenu: '[data-id="monthYearSelectMenu"]',
 };
@@ -114,8 +114,7 @@ describe('Datepicker', () => {
     await page.click(selectors.leftArrow);
     const value = await page.$(selectors.monthYearSelectButton);
     const text = await page.evaluate(element => element.textContent, value);
-    // (Month YearTriangle Down) because it renders an icon within the element
-    expect(text).toBe('January 2000Triangle Down');
+    expect(text).toBe('January 2000');
   });
 
   it('disables next month button if maximum month is selected', async () => {
@@ -136,8 +135,7 @@ describe('Datepicker', () => {
     await page.click(selectors.rightArrow);
     const value = await page.$(selectors.monthYearSelectButton);
     const text = await page.evaluate(element => element.textContent, value);
-    // (Month YearTriangle Down) because it renders an icon within the element
-    expect(text).toBe('December 2030Triangle Down');
+    expect(text).toBe('December 2030');
   });
 
   it('selects day when typed', async () => {
@@ -153,5 +151,34 @@ describe('Datepicker', () => {
     await page.type(selectors.input, '2019/03/10');
     selectedValue = await page.$eval(selectors.input, input => input.value);
     expect(selectedValue).toBe('2019/03/10');
+  });
+
+  it('selects range - verifies end of year', async () => {
+    await mount(page, 'datepicker-range');
+
+    await page.waitFor('input');
+    await page.click('input');
+    await page.waitFor('[data-baseweb="calendar"]');
+    await page.click('[data-id="monthYearSelectButton"]');
+    await page.waitFor('[data-id="monthYearSelectMenu"]');
+
+    await page.$$eval('ul[role="listbox"] li', items => {
+      const option = items.find(item => {
+        return item.textContent === 'December 2019';
+      });
+      option.click();
+      return option;
+    });
+
+    await page.click(
+      '[aria-label="Choose Wednesday, December 25th 2019. It\'s available."]',
+    );
+
+    await page.click(
+      '[aria-label="Choose Tuesday, December 31st 2019. It\'s available."]',
+    );
+
+    const selectedValue = await page.$eval('input', input => input.value);
+    expect(selectedValue).toBe('2019/12/25 – 2019/12/31');
   });
 });

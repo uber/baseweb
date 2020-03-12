@@ -56,11 +56,12 @@ export const StyledCalendarContainer = styled<SharedStylePropsT>(
 export const StyledSelectorContainer = styled<SharedStylePropsT>(
   'div',
   ({$theme}) => {
+    const textAlign = $theme.direction === 'rtl' ? 'right' : 'left';
     return {
       marginBottom: $theme.sizing.scale600,
       paddingLeft: $theme.sizing.scale600,
       paddingRight: $theme.sizing.scale600,
-      textAlign: $theme.direction === 'rtl' ? 'right' : 'left',
+      textAlign,
     };
   },
 );
@@ -96,31 +97,38 @@ export const StyledMonthHeader = styled<SharedStylePropsT>('div', props => {
   };
 });
 
-export const StyledMonthYearSelectButton = styled<{}>('button', props => {
-  return {
-    ...props.$theme.typography.font200,
-    alignItems: 'center',
-    backgroundColor: 'transparent',
-    borderWidth: 0,
-    color: props.$theme.colors.calendarHeaderForeground,
-    cursor: 'pointer',
-    display: 'flex',
-    ':focus': {
-      backgroundColor: props.$theme.colors.calendarHeaderBackgroundActive,
-    },
-  };
-});
+export const StyledMonthYearSelectButton = styled<{$isFocusVisible: boolean}>(
+  'button',
+  props => {
+    return {
+      ...props.$theme.typography.font200,
+      alignItems: 'center',
+      backgroundColor: 'transparent',
+      borderWidth: 0,
+      color: props.$theme.colors.calendarHeaderForeground,
+      cursor: 'pointer',
+      display: 'flex',
+      outline: 'none',
+      ':focus': {
+        boxShadow: props.$isFocusVisible
+          ? `0 0 0 3px ${props.$theme.colors.accent}`
+          : 'none',
+      },
+    };
+  },
+);
 
 export const StyledMonthYearSelectIconContainer = styled<{}>('span', props => {
+  const marginDirection: string =
+    props.$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
   return {
     alignItems: 'center',
     display: 'flex',
-    [props.$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: props
-      .$theme.sizing.scale500,
+    [marginDirection]: props.$theme.sizing.scale500,
   };
 });
 
-function getArrowBtnStyle({$theme, $disabled}) {
+function getArrowBtnStyle({$theme, $disabled, $isFocusVisible}) {
   return {
     boxSizing: 'border-box',
     color: $disabled
@@ -141,11 +149,9 @@ function getArrowBtnStyle({$theme, $disabled}) {
     ':focus': $disabled
       ? {}
       : {
-          backgroundColor: $theme.colors.calendarHeaderBackgroundActive,
-          borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
-          borderTopRightRadius: $theme.borders.surfaceBorderRadius,
-          borderBottomRightRadius: $theme.borders.surfaceBorderRadius,
-          borderBottomLeftRadius: $theme.borders.surfaceBorderRadius,
+          boxShadow: $isFocusVisible
+            ? `0 0 0 3px ${$theme.colors.accent}`
+            : 'none',
         },
   };
 }
@@ -180,7 +186,7 @@ export const StyledWeek = styled<SharedStylePropsT>('div', props => {
   };
 });
 
-function generateDayStyles(defaultCode, defaultStyle) {
+function generateDayStyles(defaultCode: string, defaultStyle) {
   const codeForSM =
     defaultCode.substr(0, 12) + '1' + defaultCode.substr(12 + 1);
   const codeForEM =
@@ -192,7 +198,8 @@ function generateDayStyles(defaultCode, defaultStyle) {
   };
 }
 
-function getDayStyles(code, {colors}) {
+// eslint-disable-next-line flowtype/no-weak-types
+function getDayStyles(code, {colors}): any {
   const undefinedDayStyle = {
     ':before': {content: null},
     ':after': {content: null},
@@ -505,19 +512,22 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
   const {
     $disabled,
     $isHovered,
+    $isFocusVisible,
     $isHighlighted,
     $peekNextMonth,
     $pseudoHighlighted,
     $pseudoSelected,
     $range,
     $selected,
+    $outsideMonth,
     $theme: {colors, sizing},
   } = props;
   const code = getDayStateCode(props);
   return ({
     boxSizing: 'border-box',
     position: 'relative',
-    cursor: $disabled ? 'default' : 'pointer',
+    cursor:
+      $disabled || (!$peekNextMonth && $outsideMonth) ? 'default' : 'pointer',
     color: colors.calendarForeground,
     display: 'inline-block',
     width: sizing.scale1000,
@@ -532,6 +542,7 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
     marginBottom: 0,
     marginLeft: 0,
     marginRight: 0,
+    outline: 'none',
     backgroundColor: 'transparent',
     // `transform` creates a stacking context so
     // a z-index used on its' children doesn't
@@ -545,6 +556,7 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
       content: '""',
       boxSizing: 'border-box',
       display: 'inline-block',
+      boxShadow: $isFocusVisible ? `0 0 0 3px ${colors.accent}` : 'none',
       backgroundColor: $selected
         ? $isHighlighted
           ? colors.calendarDayBackgroundSelectedHighlighted
@@ -607,7 +619,9 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
             ...(getDayStyles(code, props.$theme)[':before'] || {}),
           },
         }
-      : {}),
+      : // a hack to make flow happy, otherwise it complains about complexity
+        // eslint-disable-next-line flowtype/no-weak-types
+        ({}: any)),
     ':first-child': {
       ...($range
         ? {
@@ -627,6 +641,18 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
           }
         : {}),
     },
+    ...(!$peekNextMonth && $outsideMonth
+      ? {
+          ':before': {content: null},
+          ':after': {content: null},
+          ':first-child': {
+            ':before': {content: null},
+          },
+          ':last-child': {
+            ':before': {content: null},
+          },
+        }
+      : {}),
   }: {});
 });
 

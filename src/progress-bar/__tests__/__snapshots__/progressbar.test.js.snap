@@ -3,25 +3,40 @@
 exports[`Stateless progress bar should render component: Component has correct render 1`] = `
 <ProgressBar
   getProgressLabel={[MockFunction]}
+  infinite={false}
   overrides={Object {}}
   showLabel={false}
   successValue={100}
   value={75}
 >
   <ForwardRef
+    $infinite={false}
     $successValue={100}
     $value={75}
+    aria-invalid={null}
+    aria-valuemax={100}
+    aria-valuemin={0}
+    aria-valuenow={75}
     data-baseweb="progress-bar"
     role="progressbar"
   >
     <MockStyledComponent
+      $infinite={false}
       $successValue={100}
       $value={75}
+      aria-invalid={null}
+      aria-valuemax={100}
+      aria-valuemin={0}
+      aria-valuenow={75}
       data-baseweb="progress-bar"
       forwardedRef={null}
       role="progressbar"
     >
       <div
+        aria-invalid={null}
+        aria-valuemax={100}
+        aria-valuemin={0}
+        aria-valuenow={75}
         data-baseweb="progress-bar"
         role="progressbar"
         styled-component="true"
@@ -32,10 +47,12 @@ exports[`Stateless progress bar should render component: Component has correct r
         }
       >
         <ForwardRef
+          $infinite={false}
           $successValue={100}
           $value={75}
         >
           <MockStyledComponent
+            $infinite={false}
             $successValue={100}
             $value={75}
             forwardedRef={null}
@@ -54,14 +71,18 @@ exports[`Stateless progress bar should render component: Component has correct r
                   "marginLeft": "$theme.sizing.scale500",
                   "marginRight": "$theme.sizing.scale500",
                   "marginTop": "$theme.sizing.scale500",
+                  "overflow": "hidden",
+                  "position": "relative",
                 }
               }
             >
               <ForwardRef
+                $infinite={false}
                 $successValue={100}
                 $value={75}
               >
                 <MockStyledComponent
+                  $infinite={false}
                   $successValue={100}
                   $value={75}
                   forwardedRef={null}

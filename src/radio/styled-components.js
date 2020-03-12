@@ -24,6 +24,7 @@ function getOuterColor(props) {
   if (props.$disabled) return colors.tickFillDisabled;
   if (!props.$checked) {
     if (props.$disabled) return colors.tickMarkFillDisabled;
+    if (props.$isFocusVisible) return colors.borderSelected;
     if (props.$isError) return colors.tickBorderError;
     return colors.tickBorder;
   } else {
@@ -126,8 +127,11 @@ export const RadioGroupRoot = styled<StylePropsT>('div', props => {
 });
 
 export const Root = styled<StylePropsT>('label', props => {
-  const {$disabled, $hasDescription, $labelPlacement, $theme} = props;
+  const {$disabled, $hasDescription, $labelPlacement, $theme, $align} = props;
   const {sizing} = $theme;
+  const isHorizontal = $align === 'horizontal';
+
+  const marginAfter = $theme.direction === 'rtl' ? 'Left' : 'Right';
   return ({
     flexDirection:
       $labelPlacement === 'top' || $labelPlacement === 'bottom'
@@ -137,7 +141,8 @@ export const Root = styled<StylePropsT>('label', props => {
     alignItems: 'center',
     cursor: $disabled ? 'not-allowed' : 'pointer',
     marginTop: sizing.scale200,
-    marginBottom: $hasDescription ? null : sizing.scale200,
+    [`margin${marginAfter}`]: isHorizontal ? sizing.scale200 : null,
+    marginBottom: $hasDescription && !isHorizontal ? null : sizing.scale200,
   }: {});
 });
 
@@ -167,6 +172,10 @@ export const RadioMarkOuter = styled<StylePropsT>('div', props => {
     borderTopRightRadius: '50%',
     borderBottomRightRadius: '50%',
     borderBottomLeftRadius: '50%',
+    boxShadow:
+      props.$isFocusVisible && props.$checked
+        ? `0 0 0 3px ${props.$theme.colors.accent}`
+        : 'none',
     display: 'flex',
     height: sizing.scale700,
     justifyContent: 'center',
@@ -174,6 +183,7 @@ export const RadioMarkOuter = styled<StylePropsT>('div', props => {
     marginRight: sizing.scale0,
     marginBottom: sizing.scale0,
     marginLeft: sizing.scale0,
+    outline: 'none',
     verticalAlign: 'middle',
     width: sizing.scale700,
     flexShrink: 0,
@@ -205,12 +215,17 @@ export const Input = styled('input', {
 });
 
 export const Description = styled<StylePropsT>('div', props => {
+  const {$theme, $align} = props;
+  const isHorizontal = $align === 'horizontal';
+  const marginBefore = $theme.direction === 'rtl' ? 'Right' : 'Left';
+  const marginAfter = $theme.direction === 'rtl' ? 'Left' : 'Right';
   return {
-    ...props.$theme.typography.font200,
-    color: props.$theme.colors.contentSecondary,
+    ...$theme.typography.font200,
+    color: $theme.colors.contentSecondary,
     cursor: 'auto',
-    [props.$theme.direction === 'rtl' ? 'marginRight' : 'marginLeft']: props
-      .$theme.sizing.scale900,
+    [`margin${marginBefore}`]:
+      $align === 'horizontal' ? null : $theme.sizing.scale900,
+    [`margin${marginAfter}`]: isHorizontal ? $theme.sizing.scale200 : null,
     maxWidth: '240px',
   };
 });

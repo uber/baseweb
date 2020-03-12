@@ -24,6 +24,7 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
     value: 0,
     overrides: {},
     showLabel: false,
+    infinite: false,
   };
 
   render() {
@@ -33,6 +34,8 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
       value,
       successValue,
       showLabel,
+      infinite,
+      errorMessage,
     } = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [Bar, barProps] = getOverrides(overrides.Bar, StyledBar);
@@ -44,11 +47,17 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
     const sharedProps = {
       $value: value,
       $successValue: successValue,
+      $infinite: infinite,
     };
     return (
       <Root
         data-baseweb="progress-bar"
         role="progressbar"
+        aria-valuenow={infinite ? null : value}
+        aria-valuemin={infinite ? null : 0}
+        aria-valuemax={infinite ? null : 100}
+        aria-invalid={errorMessage ? true : null}
+        aria-errormessage={errorMessage}
         {...sharedProps}
         {...rootProps}
       >

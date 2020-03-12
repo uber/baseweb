@@ -10,8 +10,6 @@ import * as React from 'react';
 
 import {Avatar} from '../index.js';
 
-export const name = 'avatar-custom-initials';
-
-export const component = () => (
-  <Avatar name="Product - Marketplace" initials="PM" />
-);
+export default function Scenario() {
+  return <Avatar name="Product - Marketplace" initials="PM" />;
+}

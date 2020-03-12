@@ -30,23 +30,52 @@ export const Bar = styled<StylePropsT>('div', props => {
     borderBottomLeftRadius: borderRadius,
     backgroundColor: hexToRgb(colors.progressbarTrackFill, '0.16'),
     height: '4px',
+    position: 'relative',
+    overflow: 'hidden',
   }: {});
 });
 
 export const BarProgress = styled<StylePropsT>('div', props => {
-  const {$theme, $value, $successValue} = props;
+  const {$theme, $value, $successValue, $infinite} = props;
   const {colors, sizing, borders} = $theme;
   const width = `${($value / $successValue) * 100}%`;
   const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
+
+  const animationStyles = $infinite
+    ? {
+        width: '100%',
+        position: 'absolute',
+        animationDuration: '2.1s',
+        animationIterationCount: 'infinite',
+        animationTimingFunction: 'cubic-bezier(0.65, 0.815, 0.735, 0.395)',
+        animationName: {
+          '0%': {
+            left: '-200%',
+            right: '100%',
+          },
+          '60%': {
+            left: '107%',
+            right: '-8%',
+          },
+          '100%': {
+            left: '107%',
+            right: '-8%',
+          },
+        },
+      }
+    : {
+        width: width,
+        transition: 'width 0.5s',
+      };
+
   return {
     borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
     backgroundColor: colors.accent,
-    width: width,
-    transition: 'width 0.5s',
     height: '100%',
+    ...animationStyles,
   };
 });
 

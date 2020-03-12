@@ -33,9 +33,17 @@ export const HeaderImage = styled<{}>('img', ({$theme}) => ({
   maxWidth: '100%',
 }));
 
-export const Root = styled<{}>('div', ({$theme}) => ({
-  borderWidth: '2px',
-  borderStyle: 'solid',
+// by using the section tag, we can keep the h1 for the title
+// https://html.spec.whatwg.org/multipage/sections.html#headings-and-sections
+export const Root = styled<{}>('section', ({$theme}) => ({
+  borderLeftWidth: '2px',
+  borderTopWidth: '2px',
+  borderRightWidth: '2px',
+  borderBottomWidth: '2px',
+  borderLeftStyle: 'solid',
+  borderTopStyle: 'solid',
+  borderRightStyle: 'solid',
+  borderBottomStyle: 'solid',
   borderColor: $theme.colors.borderOpaque,
   borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
   borderTopRightRadius: $theme.borders.surfaceBorderRadius,

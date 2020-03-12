@@ -33,7 +33,7 @@ export default Layout;
 
 # Datepicker
 
-<Yard componentName="Datepicker" placeholderHeight={48} {...datepickerConfig} />
+<Yard placeholderHeight={48} {...datepickerConfig} />
 
 A simple and reusable component to work with or select a date or a range of dates.
 
@@ -67,6 +67,7 @@ A simple and reusable component to work with or select a date or a range of date
 </Example>
 
 The `formatString` property supports all the patterns supported by [date-fns' format method](https://date-fns.org/v2.8.1/docs/format).
+For example, if someone wants to change it to Australian format, one has to simply pass the `formatString={'d/MM/YYYY'}` as the props.
 Please note, that some of the options require you to pass in the `locale` object too, just as shown in this example.
 
 <Example title="Datepicker with overrides" path="datepicker/with-overrides.js">

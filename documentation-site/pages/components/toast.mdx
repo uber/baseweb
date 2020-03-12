@@ -11,6 +11,7 @@ import Exports from '../../components/exports';
 
 import ToastBasic from 'examples/toast/basic.js';
 import ToastNotification from 'examples/toast/toast-notification.js';
+import ToastSameKeyNotification from 'examples/toast/toast-same-key-notification.js';
 
 import {Toast} from 'baseui/toast';
 import * as ToastExports from 'baseui/toast';
@@ -22,22 +23,25 @@ export default Layout;
 
 # Toast
 
-<Yard
-  componentName="ToasterContainer"
-  placeholderHeight={52}
-  {...toastYardConfig}
-/>
+<Yard placeholderHeight={52} {...toastYardConfig} />
 
 Toasts can be dismissed and sit on top of a view in various position options - top/right, top/center,
 top/left, bottom/right, bottom/center, bottom/left. Toasts are intended to provide feedback to a user
 and self-dismiss after a short time with an option to self-dismiss. Each toast can be colored to fit
 it’s status type of neutral, positive, warning and alert.
 
+**Using the `toaster` utility:**
+
+Toasts can be created easily with some of the helper functions on `toaster`, as seen in the code sample above. If a key isn't provided, it will auto-generate a unique key for you which will be returned in the instantiation functions (`info, positive, warning, negative`).
+If a toast with an identical key already exists, that toast's contents will be updated instead of a new toast being created. The autoHide timeout will reset unless the `resetAutoHideTimerOnUpdate` prop is set to false on the toaster.
+
 ## Accessibility
 
 - Toast notification container element has `role="alert"` set on it.
-- When multiple alerts are displayed and positioned relative to the browser window they won't overlap but displayed in a column way, latest notifications are displayed at the initial position of a chosen placement
-- When a notification is set to be dismissed automatically after a provided `autoHideDuration` time hovering or focusing the notification will prevent the notification from disappearing and reset the timeout to the initial `autoHideDuration` value
+- When multiple alerts are displayed and positioned relative to the browser window they won't overlap but displayed in a column way, latest notifications are displayed at the initial position of a chosen placement.
+- By default, `autoHideDuration` is set to `0`, which means a Toast will remain until dismissed by the user. If possible, try setting an `autoHideDuration` that makes sense for the content of the Toast. The `autoHideDuration` countdown will be paused when a user focuses or hovers over the Toast. The countdown will be reset once the user unfocuses or moves their mouse off of the Toast.
+- Do not put important actions in Toasts. If you must put an action in a Toast, do not set an `autoHideDuration`.
+- You can force focus to the dismiss button when a Toast mounts with the `autoFocus` prop (on both `Toast` and `Toaster`). Use this with caution and keep in mind that screenreaders may read the Toast's content twice (due to the focus shift and alert role).
 
 ## Examples
 
@@ -46,6 +50,13 @@ it’s status type of neutral, positive, warning and alert.
   path="toast/toast-notification.js"
 >
   <ToastNotification />
+</Example>
+
+<Example
+  title="Toaster Using Key To Update Open Toasts"
+  path="toast/toast-same-key-notification.js"
+>
+  <ToastSameKeyNotification />
 </Example>
 
 ## API

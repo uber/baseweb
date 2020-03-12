@@ -15,6 +15,7 @@ type ContextT = {
   removeMenuFromNesting: (ref: Ref) => void,
   getParentMenu: (ref: Ref) => ?Ref,
   getChildMenu: (ref: Ref) => ?Ref,
+  mountRef: {current: HTMLElement | null},
 };
 type StateT = {
   menus: Ref[],
@@ -28,6 +29,7 @@ export const NestedMenuContext: React.Context<ContextT> = React.createContext({
   removeMenuFromNesting: () => {},
   getParentMenu: () => {},
   getChildMenu: () => {},
+  mountRef: {current: null},
 });
 
 function isSame(a: ?HTMLElement, b: ?HTMLElement) {
@@ -40,16 +42,26 @@ function isSame(a: ?HTMLElement, b: ?HTMLElement) {
 
 export default class NestedMenus extends React.Component<PropsT, StateT> {
   state = {menus: []};
+  mountRef = (React.createRef(): {current: HTMLElement | null});
 
   addMenuToNesting = (ref: Ref) => {
-    this.setState({menus: [...this.state.menus, ref]});
+    // check offsetHeight to determine if component is visible in the dom (0 means hidden)
+    // we need to do this so that when we renderAll, the hidden seo-only child-menus don't
+    // register themselves which would break the nesting logic
+    if (ref.current && ref.current.offsetHeight) {
+      this.setState(state => {
+        return {menus: [...state.menus, ref]};
+      });
+    }
   };
 
   removeMenuFromNesting = (ref: Ref) => {
-    const nextMenus = this.state.menus.filter(
-      r => !isSame(r.current, ref.current),
-    );
-    this.setState({menus: nextMenus});
+    this.setState(state => {
+      const nextMenus = state.menus
+        .filter(r => r.current)
+        .filter(r => !isSame(r.current, ref.current));
+      return {menus: nextMenus};
+    });
   };
 
   findMenuIndexByRef = (ref: Ref) => {
@@ -74,9 +86,13 @@ export default class NestedMenus extends React.Component<PropsT, StateT> {
           removeMenuFromNesting: this.removeMenuFromNesting,
           getParentMenu: this.getParentMenu,
           getChildMenu: this.getChildMenu,
+          mountRef: this.mountRef,
         }}
       >
-        {this.props.children}
+        <React.Fragment>
+          {this.props.children}
+          <span ref={this.mountRef} />
+        </React.Fragment>
       </NestedMenuContext.Provider>
     );
   }

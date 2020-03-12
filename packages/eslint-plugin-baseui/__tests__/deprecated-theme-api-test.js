@@ -127,6 +127,43 @@ const tests = {
         const theme = createTheme();
       `,
     },
+    {
+      code: `
+        const ExploreAdvancedSidebar = styled('div', ({$isShowingTopNav, $isVisible}) => ({
+          background: 'white',
+        }));
+      `,
+    },
+    {
+      code: `
+        <Slider
+          overrides={{
+            InnerTrack: {
+              style: () => {
+                return {
+                  background: red,
+                };
+              },
+            },
+          }}
+        />
+      `,
+    },
+    {
+      code: `
+        export function Tag(props: Props) {
+          const [useCss, theme] = useStyletron();
+
+          let someVarWithoutInit;
+
+          const paramRowStyle = useCss({
+            display: 'flex',
+            flexWrap: 'wrap',
+            ...theme.typography.font200,
+          });
+        }
+      `,
+    },
   ],
   invalid: [
     {

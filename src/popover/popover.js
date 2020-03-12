@@ -5,9 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-/* global document */
 /* eslint-disable react/no-find-dom-node */
 import * as React from 'react';
+import FocusLock from 'react-focus-lock';
 
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 import getBuiId from '../utils/get-bui-id.js';
@@ -23,6 +23,7 @@ import {
   Arrow as StyledArrow,
   Body as StyledBody,
   Inner as StyledInner,
+  Hidden,
 } from './styled-components.js';
 import {fromPopperPlacement} from './utils.js';
 import defaultProps from './default-props.js';
@@ -67,6 +68,15 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     prevState: PopoverPrivateStateT,
   ) {
     this.init(prevProps, prevState);
+    if (
+      this.props.autoFocus &&
+      this.props.focusLock &&
+      !this.state.autoFocusAfterPositioning &&
+      this.popperRef.current !== null &&
+      this.popperRef.current.getBoundingClientRect().top > 0
+    ) {
+      this.setState({autoFocusAfterPositioning: true});
+    }
   }
 
   init(prevProps: PopoverPropsT, prevState: PopoverPrivateStateT) {
@@ -79,13 +89,11 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       if (this.props.isOpen && this.state.isLayerMounted) {
         // Clear any existing timers (like previous animateOutCompleteTimer)
         this.clearTimers();
-        this.addDomEvents();
         return;
       }
 
       // Transition from open to closed.
       if (!this.props.isOpen && prevProps.isOpen) {
-        this.removeDomEvents();
         this.animateOutTimer = setTimeout(this.animateOut, 20);
         return;
       }
@@ -93,7 +101,6 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   }
 
   componentWillUnmount() {
-    this.removeDomEvents();
     this.clearTimers();
   }
 
@@ -105,6 +112,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       placement: props.placement,
       isMounted: false,
       isLayerMounted: false,
+      autoFocusAfterPositioning: false,
     };
   }
 
@@ -176,12 +184,6 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     this.triggerOnMouseLeaveWithDelay();
   };
 
-  onKeyPress = (evt: KeyboardEvent) => {
-    if (evt.key === 'Escape' && this.props.onEsc) {
-      this.props.onEsc();
-    }
-  };
-
   onPopperUpdate = (
     normalizedOffsets: NormalizedOffsetsT,
     data: PopperDataObjectT,
@@ -234,21 +236,6 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       this.props.onMouseEnter();
     }
   };
-
-  addDomEvents() {
-    if (__BROWSER__) {
-      // using mousedown event so that callback runs before events on children inside of the popover
-      document.addEventListener('mousedown', this.onDocumentClick);
-      document.addEventListener('keyup', this.onKeyPress);
-    }
-  }
-
-  removeDomEvents() {
-    if (__BROWSER__) {
-      document.removeEventListener('mousedown', this.onDocumentClick);
-      document.removeEventListener('keyup', this.onKeyPress);
-    }
-  }
 
   onDocumentClick = (evt: MouseEvent) => {
     const target = evt.target;
@@ -384,8 +371,8 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     return <span {...anchorProps}>{anchor}</span>;
   }
 
-  renderPopover() {
-    const {showArrow, overrides = {}, content} = this.props;
+  renderPopover(renderedContent: React.Node) {
+    const {showArrow, overrides = {}} = this.props;
 
     const {
       Arrow: ArrowOverride,
@@ -417,31 +404,38 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
             {...getOverrideProps(ArrowOverride)}
           />
         ) : null}
-        <Inner
-          key="popover-inner"
-          {...sharedProps}
-          {...getOverrideProps(InnerOverride)}
-        >
-          {typeof content === 'function' ? content() : content}
+        <Inner {...sharedProps} {...getOverrideProps(InnerOverride)}>
+          {renderedContent}
         </Inner>
       </Body>
     );
   }
 
+  renderContent() {
+    const {content} = this.props;
+    return typeof content === 'function' ? content() : content;
+  }
+
   render() {
+    const mountedAndOpen = this.state.isMounted && this.props.isOpen;
     const rendered = [this.renderAnchor()];
+    const renderedContent =
+      mountedAndOpen || this.props.renderAll ? this.renderContent() : null;
+
     const defaultPopperOptions = {
       modifiers: {
         preventOverflow: {enabled: !this.props.ignoreBoundary},
       },
     };
     // Only render popover on the browser (portals aren't supported server-side)
-    if (__BROWSER__) {
-      if (this.state.isMounted && this.props.isOpen) {
+    if (renderedContent) {
+      if (mountedAndOpen) {
         rendered.push(
           <Layer
-            key={'new-layer'}
+            key="new-layer"
             mountNode={this.props.mountNode}
+            onEscape={this.props.onEsc}
+            onDocumentClick={this.onDocumentClick}
             onMount={() => this.setState({isLayerMounted: true})}
             onUnmount={() => this.setState({isLayerMounted: false})}
           >
@@ -458,10 +452,20 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
               onPopperUpdate={this.onPopperUpdate}
               placement={this.state.placement}
             >
-              {this.renderPopover()}
+              <FocusLock
+                disabled={!this.props.focusLock}
+                noFocusGuards={false}
+                // see popover-focus-loop.scenario.js for why hover cannot return focus
+                returnFocus={this.props.returnFocus && !this.isHoverTrigger()}
+                autoFocus={this.state.autoFocusAfterPositioning} // eslint-disable-line jsx-a11y/no-autofocus
+              >
+                {this.renderPopover(renderedContent)}
+              </FocusLock>
             </TetherBehavior>
           </Layer>,
         );
+      } else {
+        rendered.push(<Hidden key="hidden-layer">{renderedContent}</Hidden>);
       }
     }
     return rendered;

@@ -17,8 +17,6 @@ import {
 
 import graphqlArrayData from './graphql-array-data.js';
 
-export const name = 'data-table-collection-of-objects';
-
 type RowDataT = {
   id: string,
   name: string,
@@ -41,7 +39,7 @@ const columns = [
   AnchorColumn({
     // illustrates that this could be provided with a react-router-link
     elementAs: 'div',
-    title: 'Application',
+    title: 'User',
     mapDataToValue: (data: RowDataT) => ({
       content: data.realUser,
       href: `#id=${data.realUser}`,
@@ -74,10 +72,10 @@ const rows = [
   data: row,
 }));
 
-export const component = () => {
+export default function Scenario() {
   return (
     <div style={{height: '600px', width: '700px'}}>
       <Unstable_StatefulDataTable columns={columns} rows={rows} />
     </div>
   );
-};
+}

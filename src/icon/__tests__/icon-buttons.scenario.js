@@ -11,18 +11,18 @@ import * as React from 'react';
 import {Button} from '../../button/index.js';
 import Upload from '../upload.js';
 
-export const name = 'icon-buttons';
-
-export const component = () => (
-  <div>
-    <Button startEnhancer={Upload}>Start Enhancer</Button>
-    <br />
-    <br />
-    <Button endEnhancer={Upload}>End Enhancer</Button>
-    <br />
-    <br />
-    <Button>
-      <Upload />
-    </Button>
-  </div>
-);
+export default function Scenario() {
+  return (
+    <div>
+      <Button startEnhancer={Upload}>Start Enhancer</Button>
+      <br />
+      <br />
+      <Button endEnhancer={Upload}>End Enhancer</Button>
+      <br />
+      <br />
+      <Button>
+        <Upload />
+      </Button>
+    </div>
+  );
+}

@@ -8,6 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
+import {Button, SIZE, KIND} from '../button/index.js';
+import {ButtonGroup} from '../button-group/index.js';
 import {Checkbox, StyledLabel} from '../checkbox/index.js';
 import Search from '../icon/search.js';
 import {Input, SIZE as INPUT_SIZE} from '../input/index.js';
@@ -57,39 +59,15 @@ function FilterQuickControls(props: {
   onSelectAll: () => void,
   onClearSelection: () => void,
 }) {
-  const [css, theme] = useStyletron();
   return (
-    <React.Fragment>
-      <button
-        type="button"
-        className={css({
-          ...theme.typography.font100,
-          borderTop: 0,
-          borderRight: 0,
-          borderBottom: 0,
-          borderLeft: 0,
-          cursor: 'pointer',
-        })}
-        onClick={props.onSelectAll}
-      >
+    <ButtonGroup size={SIZE.mini} kind={KIND.minimal}>
+      <Button type="button" onClick={props.onSelectAll}>
         Select All
-      </button>
-      <span className={css({...theme.typography.font100})}> | </span>
-      <button
-        type="button"
-        className={css({
-          ...theme.typography.font100,
-          borderTop: 0,
-          borderRight: 0,
-          borderBottom: 0,
-          borderLeft: 0,
-          cursor: 'pointer',
-        })}
-        onClick={props.onClearSelection}
-      >
+      </Button>
+      <Button type="button" onClick={props.onClearSelection}>
         Clear
-      </button>
-    </React.Fragment>
+      </Button>
+    </ButtonGroup>
   );
 }
 
@@ -97,8 +75,8 @@ const StyledHighlightLabel = withStyle(StyledLabel, props => {
   const style = {
     whiteSpace: 'pre',
     color: props.$isActive
-      ? props.$theme.colors.black
-      : props.$theme.colors.mono600,
+      ? props.$theme.colors.contentPrimary
+      : props.$theme.colors.contentSecondary,
   };
 
   if (!props.$isFirst) {

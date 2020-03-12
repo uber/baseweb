@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-export {default as Unstable_TreeView} from './tree-view.js';
-export {default as Unstable_StatefulTreeView} from './stateful-tree-view.js';
+export {default as TreeView} from './tree-view.js';
+export {default as StatefulTreeView} from './stateful-tree-view.js';
 
 export type * from './types.js';
 
@@ -17,3 +17,6 @@ export {
   StyledItemContent,
   StyledIconContainer,
 } from './styled-components.js';
+
+export {default as TreeLabel} from './tree-label.js';
+export {toggleIsExpanded} from './utils.js';

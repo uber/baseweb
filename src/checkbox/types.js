@@ -41,6 +41,10 @@ export type DefaultPropsT = {
 };
 
 export type PropsT = {
+  /** Id of element which contains a related caption */
+  'aria-describedby'?: string,
+  /** Id of element which contains a related error message */
+  'aria-errormessage'?: string,
   /** Component or String value for label of checkbox. */
   children?: React$Node,
   overrides?: OverridesT,
@@ -88,6 +92,7 @@ export type PropsT = {
 
 export type StatelessStateT = {
   isFocused: boolean,
+  isFocusVisible: boolean,
   isHovered: boolean,
   isActive: boolean,
 };
@@ -159,6 +164,7 @@ export type StatefulCheckboxPropsT = {
 
 export type SharedStylePropsT = {
   $isFocused: boolean,
+  $isFocusVisible: boolean,
   $isHovered: boolean,
   $isActive: boolean,
   $isError: boolean,

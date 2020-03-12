@@ -22,15 +22,32 @@ import ChevronRight from '../icon/chevron-right.js';
 import {getOverrides} from '../helpers/overrides.js';
 import type {PaginationPropsT} from './types.js';
 import type {LocaleT} from '../locale/types.js';
+import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 type PageOptionT = {
   label: number,
 };
 
-export default class Pagination extends React.PureComponent<PaginationPropsT> {
+export default class Pagination extends React.PureComponent<
+  PaginationPropsT,
+  {isFocusVisible: boolean},
+> {
   static defaultProps = {
     labels: {},
     overrides: {},
+  };
+
+  state = {isFocusVisible: false};
+  handleFocus = (event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      this.setState({isFocusVisible: true});
+    }
+  };
+
+  handleBlur = (event: SyntheticEvent<>) => {
+    if (this.state.isFocusVisible !== false) {
+      this.setState({isFocusVisible: false});
+    }
   };
 
   getMenuOptions = memoize((numPages: number) => {
@@ -86,7 +103,7 @@ export default class Pagination extends React.PureComponent<PaginationPropsT> {
   };
 
   render() {
-    const {overrides = {}, currentPage, labels, numPages} = this.props;
+    const {overrides = {}, currentPage, labels, numPages, size} = this.props;
 
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const [MaxLabel, maxLabelProps] = getOverrides(
@@ -129,12 +146,18 @@ export default class Pagination extends React.PureComponent<PaginationPropsT> {
                   overrides={{
                     BaseButton: overrides.PrevButton,
                   }}
+                  size={size}
                 >
                   {labels && labels.prevButton
                     ? labels.prevButton
                     : locale.pagination.prev}
                 </Button>
-                <DropdownContainer {...dropdownContainerProps}>
+                <DropdownContainer
+                  $isFocusVisible={this.state.isFocusVisible}
+                  {...dropdownContainerProps}
+                  onFocus={forkFocus(dropdownContainerProps, this.handleFocus)}
+                  onBlur={forkBlur(dropdownContainerProps, this.handleBlur)}
+                >
                   <Select
                     options={options}
                     labelKey="label"
@@ -144,24 +167,22 @@ export default class Pagination extends React.PureComponent<PaginationPropsT> {
                     clearable={false}
                     value={[{label: currentPage}]}
                     maxDropdownHeight="200px"
+                    size={size}
                     overrides={{
                       ControlContainer: {
-                        style: ({
-                          $theme,
-                          $disabled,
-                          $isFocused,
-                          $isPseudoFocused,
-                          $error,
-                        }) => ({
+                        style: ({$theme, $disabled, $isOpen, $error}) => ({
                           borderColor: 'transparent',
                           boxShadow: 'none',
                           backgroundColor: $disabled
                             ? $theme.colors.buttonDisabledFill
-                            : $isFocused || $isPseudoFocused
+                            : $isOpen
                             ? $theme.colors.buttonTertiaryHover
                             : $error
                             ? $theme.colors.negative50
                             : $theme.colors.buttonTertiaryFill,
+                          ':hover': {
+                            backgroundColor: $theme.colors.buttonTertiaryHover,
+                          },
                         }),
                       },
                       InputContainer: {
@@ -183,6 +204,7 @@ export default class Pagination extends React.PureComponent<PaginationPropsT> {
                           paddingRight: $theme.sizing.scale500,
                           color: $theme.colors.buttonTertiaryText,
                           ...$theme.typography.font350,
+                          lineHeight: 'unset',
                         }),
                       },
                       SelectArrow: {
@@ -224,6 +246,7 @@ export default class Pagination extends React.PureComponent<PaginationPropsT> {
                   overrides={{
                     BaseButton: overrides.NextButton,
                   }}
+                  size={size}
                 >
                   {labels && labels.nextButton
                     ? labels.nextButton

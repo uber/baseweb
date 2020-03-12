@@ -9,13 +9,13 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import {StatefulDatepicker} from '../index.js';
 
-export const name = 'datepicker-range-highlight';
-
-export const component = () => (
-  <StatefulDatepicker
-    aria-label="Select a date"
-    initialState={{value: []}}
-    range
-    highlightedDate={new Date('March 10, 2019')}
-  />
-);
+export default function Scenario() {
+  return (
+    <StatefulDatepicker
+      aria-label="Select a date"
+      initialState={{value: []}}
+      range
+      highlightedDate={new Date('March 10, 2019')}
+    />
+  );
+}

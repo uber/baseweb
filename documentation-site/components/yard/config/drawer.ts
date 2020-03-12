@@ -5,6 +5,7 @@ import {TConfig} from '../types';
 const drawerProps = require('!!extract-react-types-loader!../../../../src/drawer/drawer.js');
 
 const DrawerConfig: TConfig = {
+  componentName: 'Drawer',
   imports: {
     'baseui/drawer': {
       named: ['Drawer'],
@@ -33,6 +34,12 @@ const DrawerConfig: TConfig = {
       description:
         'If true, focus will shift to the first interactive element within the drawer.',
       hidden: true,
+    },
+    renderAll: {
+      value: false,
+      type: PropTypes.Boolean,
+      description:
+        'Renders all drawer content for SEO purposes regardless of drawer isOpen state.',
     },
     children: {
       value: '<div>drawer content</div>',

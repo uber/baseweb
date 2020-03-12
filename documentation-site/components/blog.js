@@ -25,7 +25,7 @@ export const Caption = themedStyled<{}>('figcaption', ({$theme}) => ({
   fontFamily: $theme.typography.font100.fontFamily,
   fontSize: $theme.sizing.scale500,
   fontWeight: 300,
-  textAlign: 'right',
+  textAlign: 'center',
   padding: '4px 4px 0 0',
 }));
 
@@ -59,6 +59,11 @@ const AuthorLink = themedStyled('a', ({$theme}) => ({
   fontFamily: $theme.typography.font100.fontFamily,
   ':hover': {
     color: $theme.colors.contentPrimary,
+  },
+  ':focus': {
+    outline: `3px solid ${$theme.colors.accent}`,
+    textDecoration: 'none',
+    outlineOffset: '2px',
   },
 }));
 

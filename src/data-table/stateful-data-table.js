@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+import ResizeObserver from 'resize-observer-polyfill';
 
 import {
   Button,
@@ -19,7 +20,6 @@ import {Input, SIZE as INPUT_SIZES} from '../input/index.js';
 import {Popover} from '../popover/index.js';
 import {useStyletron} from '../styles/index.js';
 import {Tag} from '../tag/index.js';
-
 import FilterMenu from './filter-menu.js';
 import {Unstable_DataTable} from './data-table.js';
 import {Unstable_StatefulContainer} from './stateful-container.js';
@@ -32,6 +32,7 @@ function useResizeObserver(
   React.useLayoutEffect(() => {
     if (__BROWSER__) {
       if (ref.current) {
+        //$FlowFixMe
         const observer = new ResizeObserver(callback);
         observer.observe(ref.current);
         return () => observer.disconnect();
@@ -86,11 +87,13 @@ function FilterTag(props) {
     return null;
   }
 
-  const data = props.rows.map(r => r.data[columnIndex]);
+  const data = props.rows.map(r => column.mapDataToValue(r.data));
   const Filter = column.renderFilter;
 
   return (
     <Popover
+      focusLock
+      returnFocus
       key={props.title}
       isOpen={isOpen}
       onClickOutside={() => setIsOpen(false)}
@@ -100,7 +103,7 @@ function FilterTag(props) {
           data={data}
           filterParams={props.filter}
           setFilter={filterParams =>
-            props.onFilterAdd(filterParams, props.title)
+            props.onFilterAdd(props.title, filterParams)
           }
         />
       )}
@@ -133,7 +136,7 @@ function FilterTag(props) {
           <span
             className={css({
               ...theme.typography.font150,
-              color: theme.colors.mono1000,
+              color: theme.colors.contentPrimary,
             })}
           >
             {props.title}
@@ -153,10 +156,16 @@ export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
     setHeadlineHeight(entries[0].contentRect.height);
   });
 
+  const filterable = props.filterable === undefined ? true : props.filterable;
+  const searchable = props.searchable === undefined ? true : props.searchable;
+
   return (
     <Unstable_StatefulContainer
       batchActions={props.batchActions}
       columns={props.columns}
+      initialFilters={props.initialFilters}
+      onFilterAdd={props.onFilterAdd}
+      onFilterRemove={props.onFilterRemove}
       onRowHighlightChange={props.onRowHighlightChange}
       onSelectionChange={props.onSelectionChange}
       rows={props.rows}
@@ -191,26 +200,30 @@ export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
                     paddingTop: theme.sizing.scale500,
                   })}
                 >
-                  <QueryInput onChange={onTextQueryChange} />
+                  {searchable && <QueryInput onChange={onTextQueryChange} />}
 
-                  <FilterMenu
-                    columns={props.columns}
-                    filters={filters}
-                    rows={props.rows}
-                    onSetFilter={onFilterAdd}
-                  />
+                  {filterable && (
+                    <React.Fragment>
+                      <FilterMenu
+                        columns={props.columns}
+                        filters={filters}
+                        rows={props.rows}
+                        onSetFilter={onFilterAdd}
+                      />
 
-                  {Array.from(filters).map(([title, filter]) => (
-                    <FilterTag
-                      key={title}
-                      columns={props.columns}
-                      filter={filter}
-                      onFilterAdd={onFilterAdd}
-                      onFilterRemove={onFilterRemove}
-                      rows={props.rows}
-                      title={title}
-                    />
-                  ))}
+                      {Array.from(filters).map(([title, filter]) => (
+                        <FilterTag
+                          key={title}
+                          columns={props.columns}
+                          filter={filter}
+                          onFilterAdd={onFilterAdd}
+                          onFilterRemove={onFilterRemove}
+                          rows={props.rows}
+                          title={title}
+                        />
+                      ))}
+                    </React.Fragment>
+                  )}
                 </div>
               )}
 
@@ -273,14 +286,16 @@ export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
             <Unstable_DataTable
               batchActions={props.batchActions}
               columns={props.columns}
+              emptyMessage={props.emptyMessage}
               filters={filters}
+              loading={props.loading}
+              loadingMessage={props.loadingMessage}
               onRowHighlightChange={onRowHighlightChange}
               onSelectionChange={props.onSelectionChange}
               onSelectMany={onSelectMany}
               onSelectNone={onSelectNone}
               onSelectOne={onSelectOne}
               onSort={onSort}
-              emptyMessage={props.emptyMessage}
               rowHighlightIndex={rowHighlightIndex}
               rows={props.rows}
               rowActions={props.rowActions}

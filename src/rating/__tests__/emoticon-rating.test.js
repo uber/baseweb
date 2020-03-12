@@ -21,7 +21,6 @@ describe('EmoticonRating', () => {
 
   describe('Root', () => {
     it('applies correct accessibility attributes to the Root element', () => {
-      expect(example).toHaveProp('tabIndex', 0);
       expect(example).toHaveProp('role', 'radiogroup');
     });
 
@@ -36,34 +35,20 @@ describe('EmoticonRating', () => {
       expect(example.childAt(0)).toMatchSnapshot();
     });
 
-    it('applies correct props if item is selected', () => {
-      example.childAt(1).simulate('focus');
-      example.update();
-
-      expect(example.childAt(1)).toMatchSnapshot();
-    });
-
     it('calls onChange if item is clicked', () => {
       example.childAt(1).simulate('click');
 
       expect(onChangeSpy).toHaveBeenCalledWith({value: 2});
     });
 
-    it('calls onChange if item is keyed with spacebar', () => {
-      example.childAt(1).simulate('keyDown', {keyCode: 32});
-
-      expect(onChangeSpy).toHaveBeenCalledWith({value: 2});
+    it('calls onChange if item is keyed with arrow right', () => {
+      example.childAt(1).simulate('keyDown', {keyCode: 39});
+      expect(onChangeSpy).toHaveBeenCalledWith({value: 3});
     });
 
-    it('calls onChange if item is keyed with enter', () => {
-      example.childAt(1).simulate('keyDown', {keyCode: 13});
-
-      expect(onChangeSpy).toHaveBeenCalledWith({value: 2});
-    });
-
-    it('updates previewIndex if item is focused', () => {
-      example.childAt(3).simulate('focus');
-      expect(example).toHaveState('previewIndex', 4);
+    it('calls onChange if item is keyed with arrow left', () => {
+      example.childAt(1).simulate('keyDown', {keyCode: 37});
+      expect(onChangeSpy).toHaveBeenCalledWith({value: 1});
     });
 
     it('updates previewIndex if item is moused over', () => {

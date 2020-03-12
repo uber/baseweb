@@ -9,6 +9,7 @@ const buttonProps = require('!!extract-react-types-loader!../../../../src/button
 const blockProps = require('!!extract-react-types-loader!../../../../src/block/block.js');
 
 const toastConfig: TConfig = {
+  componentName: 'ToasterContainer',
   imports: {
     'baseui/toast': {
       named: ['toaster', 'ToasterContainer'],
@@ -82,6 +83,13 @@ const toastConfig: TConfig = {
       type: PropTypes.Number,
       description: `The number of milliseconds to wait before automatically dismissing a
         notification. This behavior is disabled when the value is set to 0.`,
+    },
+    resetAutoHideTimerOnUpdate: {
+      value: true,
+      defaultValue: true,
+      type: PropTypes.Boolean,
+      description: `If true, the autohide timer on a toast will reset when updated by triggering a toast with the same key`,
+      hidden: true,
     },
     usePortal: {
       value: true,

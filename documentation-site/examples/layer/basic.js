@@ -5,8 +5,6 @@ import {Layer} from 'baseui/layer';
 import {useStyletron} from 'baseui';
 import {Button} from 'baseui/button';
 
-const layerRef = React.createRef();
-
 function Wrapper(props: any) {
   const [css] = useStyletron();
   const {offset, color, children, forwardedRef} = props;

@@ -22,6 +22,7 @@ export default function deepMerge(
         value = obj[key];
         if (isCloneable(value)) {
           target[key] = deepMerge(
+            /* eslint-disable-next-line no-mixed-operators */
             target[key] || (Array.isArray(value) && []) || {},
             value,
           );
@@ -37,5 +38,6 @@ export default function deepMerge(
 
 /* eslint-disable-next-line flowtype/no-weak-types */
 function isCloneable(obj: mixed) {
+  /* eslint-disable-next-line eqeqeq */
   return Array.isArray(obj) || {}.toString.call(obj) == '[object Object]';
 }

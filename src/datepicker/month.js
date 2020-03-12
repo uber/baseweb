@@ -30,6 +30,8 @@ const defaultProps = {
   minDate: null,
   month: null,
   onDayClick: () => {},
+  onDayFocus: () => {},
+  onDayBlur: () => {},
   onDayMouseOver: () => {},
   onDayMouseLeave: () => {},
   overrides: {},
@@ -92,10 +94,6 @@ export default class CalendarMonth extends React.Component<MonthPropsT> {
   render() {
     const {overrides = {}} = this.props;
     const [Month, monthProps] = getOverrides(overrides.Month, StyledMonth);
-    return (
-      <Month role="rowgroup" {...monthProps}>
-        {this.renderWeeks()}
-      </Month>
-    );
+    return <Month {...monthProps}>{this.renderWeeks()}</Month>;
   }
 }

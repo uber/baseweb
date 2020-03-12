@@ -11,9 +11,7 @@ import * as React from 'react';
 import {Datepicker} from '../index.js';
 import {Button} from '../../button/index.js';
 
-export const name = 'datepicker';
-
-export const component = () => {
+export default function Scenario() {
   const [date, setDate] = React.useState(null);
 
   return (
@@ -30,6 +28,7 @@ export const component = () => {
         aria-label="Select a date"
         highlightedDate={new Date('March 10, 2019')}
         value={date}
+        onChange={({date}) => setDate(date)}
         overrides={{
           MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
           MonthYearSelectStatefulMenu: {
@@ -71,4 +70,4 @@ export const component = () => {
       />
     </React.Fragment>
   );
-};
+}

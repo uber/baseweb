@@ -3,6 +3,7 @@ import {StyletronComponent} from 'styletron-react';
 import {Override} from '../overrides';
 
 export interface SpinnerProps {
+  'aria-label'?: string;
   size?: number | string;
   color?: string;
   title?: string;

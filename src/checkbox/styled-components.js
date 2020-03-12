@@ -12,7 +12,14 @@ import {STYLE_TYPE} from './constants.js';
 import type {SharedStylePropsT} from './types.js';
 
 function getBorderColor(props) {
-  const {$disabled, $checked, $isError, $isIndeterminate, $theme} = props;
+  const {
+    $disabled,
+    $checked,
+    $isError,
+    $isIndeterminate,
+    $theme,
+    $isFocusVisible,
+  } = props;
   const {colors} = $theme;
   if ($disabled) {
     return colors.tickFillDisabled;
@@ -20,6 +27,8 @@ function getBorderColor(props) {
     return 'transparent';
   } else if ($isError) {
     return colors.borderError;
+  } else if ($isFocusVisible) {
+    return colors.borderSelected;
   } else {
     return colors.tickBorder;
   }
@@ -63,7 +72,6 @@ function getBackgroundColor(props) {
     $disabled,
     $checked,
     $isIndeterminate,
-    $isFocused,
     $isError,
     $isHovered,
     $isActive,
@@ -82,7 +90,7 @@ function getBackgroundColor(props) {
       return colors.tickFill;
     }
   } else if ($isError && ($isIndeterminate || $checked)) {
-    if ($isActive || $isFocused) {
+    if ($isActive) {
       return colors.tickFillErrorSelectedHoverActive;
     } else if ($isHovered) {
       return colors.tickFillErrorSelectedHover;
@@ -90,7 +98,7 @@ function getBackgroundColor(props) {
       return colors.tickFillErrorSelected;
     }
   } else if ($isError) {
-    if ($isActive || $isFocused) {
+    if ($isActive) {
       return colors.tickFillErrorHoverActive;
     } else if ($isHovered) {
       return colors.tickFillErrorHover;
@@ -98,7 +106,7 @@ function getBackgroundColor(props) {
       return colors.tickFillError;
     }
   } else if ($isIndeterminate || $checked) {
-    if ($isActive || $isFocused) {
+    if ($isActive) {
       return colors.tickFillSelectedHoverActive;
     } else if ($isHovered) {
       return colors.tickFillSelectedHover;
@@ -106,7 +114,7 @@ function getBackgroundColor(props) {
       return colors.tickFillSelected;
     }
   } else {
-    if ($isActive || $isFocused) {
+    if ($isActive) {
       return isToggle ? colors.sliderTrackFillActive : colors.tickFillActive;
     } else if ($isHovered) {
       return isToggle ? colors.sliderTrackFillHover : colors.tickFillHover;
@@ -140,7 +148,14 @@ export const Root = styled<SharedStylePropsT>('label', props => {
 });
 
 export const Checkmark = styled<SharedStylePropsT>('span', props => {
-  const {$checked, $disabled, $isError, $isIndeterminate, $theme} = props;
+  const {
+    $checked,
+    $disabled,
+    $isError,
+    $isIndeterminate,
+    $theme,
+    $isFocusVisible,
+  } = props;
   const {sizing, animation} = $theme;
 
   const tickColor = $disabled
@@ -167,6 +182,7 @@ export const Checkmark = styled<SharedStylePropsT>('span', props => {
     flex: '0 0 auto',
     transitionDuration: animation.timing100,
     transitionTimingFunction: animation.easeOutCurve,
+    transitionProperty: 'background-image, border-color, background-color',
     width: sizing.scale700,
     height: sizing.scale700,
     left: '4px',
@@ -179,6 +195,10 @@ export const Checkmark = styled<SharedStylePropsT>('span', props => {
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
+    outline:
+      $isFocusVisible && $checked
+        ? `3px solid ${$theme.colors.accent}`
+        : 'none',
     display: 'inline-block',
     verticalAlign: 'middle',
     backgroundImage: $isIndeterminate
@@ -234,7 +254,10 @@ export const Toggle = styled<SharedStylePropsT>('div', props => {
       borderTopRightRadius: borderRadius,
       borderBottomRightRadius: borderRadius,
       borderBottomLeftRadius: borderRadius,
-      boxShadow: props.$theme.lighting.shadow400,
+      boxShadow: props.$isFocusVisible
+        ? `0 0 0 3px ${props.$theme.colors.accent}`
+        : props.$theme.lighting.shadow400,
+      outline: 'none',
       display: 'flex',
       justifyContent: 'center',
       height: props.$theme.sizing.scale800,
@@ -257,10 +280,12 @@ export const Toggle = styled<SharedStylePropsT>('div', props => {
       borderTopRightRadius: '50%',
       borderBottomRightRadius: '50%',
       borderBottomLeftRadius: '50%',
-      boxShadow:
-        (props.$isFocused || props.$isHovered) && !props.$disabled
-          ? props.$theme.lighting.shadow500
-          : props.$theme.lighting.shadow400,
+      boxShadow: props.$isFocusVisible
+        ? `0 0 0 3px ${props.$theme.colors.accent}`
+        : props.$isHovered && !props.$disabled
+        ? props.$theme.lighting.shadow500
+        : props.$theme.lighting.shadow400,
+      outline: 'none',
       height: props.$theme.sizing.scale700,
       width: props.$theme.sizing.scale700,
       transform: props.$checked

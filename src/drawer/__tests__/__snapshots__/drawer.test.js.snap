@@ -8,10 +8,13 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
   closeable={true}
   isOpen={true}
   overrides={Object {}}
+  renderAll={false}
   showBackdrop={true}
   size="default"
 >
-  <mockConstructor>
+  <mockConstructor
+    onEscape={[Function]}
+  >
     <ForwardRef
       autoFocus={true}
       returnFocus={true}
@@ -180,6 +183,7 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
             $anchor="right"
             $animating={true}
             $closeable={true}
+            $isFocusVisible={false}
             $isOpen={true}
             $isVisible={false}
             $size="default"
@@ -189,6 +193,7 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
               $anchor="right"
               $animating={true}
               $closeable={true}
+              $isFocusVisible={false}
               $isOpen={true}
               $isVisible={false}
               $size="default"
@@ -246,6 +251,7 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
                   $anchor="right"
                   $animating={true}
                   $closeable={true}
+                  $isFocusVisible={false}
                   $isOpen={true}
                   $isVisible={false}
                   $size="default"
@@ -255,6 +261,7 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
                     $anchor="right"
                     $animating={true}
                     $closeable={true}
+                    $isFocusVisible={false}
                     $isOpen={true}
                     $isVisible={false}
                     $size="default"
@@ -268,6 +275,7 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
                   $anchor="right"
                   $animating={true}
                   $closeable={true}
+                  $isFocusVisible={false}
                   $isOpen={true}
                   $isVisible={false}
                   $size="default"
@@ -277,6 +285,7 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
                     $anchor="right"
                     $animating={true}
                     $closeable={true}
+                    $isFocusVisible={false}
                     $isOpen={true}
                     $isVisible={false}
                     $size="default"
@@ -288,6 +297,7 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
                         $anchor="right"
                         $animating={true}
                         $closeable={true}
+                        $isFocusVisible={false}
                         $isOpen={true}
                         $isVisible={false}
                         $size="default"
@@ -296,6 +306,7 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
                           $anchor="right"
                           $animating={true}
                           $closeable={true}
+                          $isFocusVisible={false}
                           $isOpen={true}
                           $isVisible={false}
                           $size="default"
@@ -308,22 +319,28 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
                         $anchor="right"
                         $animating={true}
                         $closeable={true}
+                        $isFocusVisible={false}
                         $isOpen={true}
                         $isVisible={false}
                         $size="default"
                         aria-label="Close"
+                        onBlur={[Function]}
                         onClick={[Function]}
+                        onFocus={[Function]}
                       >
                         <MockStyledComponent
                           $anchor="right"
                           $animating={true}
                           $closeable={true}
+                          $isFocusVisible={false}
                           $isOpen={true}
                           $isVisible={false}
                           $size="default"
                           aria-label="Close"
                           forwardedRef={null}
+                          onBlur={[Function]}
                           onClick={[Function]}
+                          onFocus={[Function]}
                         >
                           <Portal>
                             <CloseIcon>

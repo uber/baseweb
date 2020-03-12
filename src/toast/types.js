@@ -21,6 +21,7 @@ export type SharedStylePropsArgT = {
   $closeable: boolean,
   $isRendered: boolean,
   $isVisible: boolean,
+  $isFocusVisible: boolean,
 };
 
 export type ToasterSharedStylePropsArgT = {
@@ -42,9 +43,21 @@ export type ChildrenT = React.ChildrenArray<ChildT>;
 export type ToastPrivateStateT = {
   isVisible: boolean,
   isRendered: boolean,
+  isFocusVisible: boolean,
 };
 
 export type ToastPropsT = {
+  /** This is a private property to detect manual changes to a toast
+   *  i.e. calling toaster.info() with the same key twice
+   *  currently the change detection is used to reset the autohide timer
+   */
+  __updated?: number,
+  /** If true, the toast close icon will receive focus on mount
+      and restore focus to previously focused element on unmount.
+      This should only be used when there is no autoHideDuration
+      and the toast for some reason has an action within it.
+      Focusing alerts is bad for screenreaders! */
+  autoFocus: boolean,
   /** The number of milliseconds to wait before automatically dismissing a
    * notification. This behavior is disabled when the value is set to 0.*/
   autoHideDuration: number,
@@ -85,11 +98,19 @@ export type ToasterPropsT = {
   overrides: ToasterOverridesT,
   placement: PlacementTypeT,
   usePortal: boolean,
+  /** If true, the toast close icon will receive focus on mount
+      and restore focus to previously focused element on unmount.
+      This should only be used when there is no autoHideDuration
+      and toasts for some reason have actions within them.
+      Focusing alerts is bad for screenreaders! */
+  autoFocus: boolean,
   /** The number of milliseconds to wait before automatically dismissing a
    * notification. This behavior is disabled when the value is set to 0.*/
   autoHideDuration: number,
+  /** Defines if updating a toast resets the autohide timer */
+  resetAutoHideTimerOnUpdate?: boolean,
 };
 export type ToasterContainerStateT = {
   isMounted: boolean,
-  toasts: Array<ToastPropsShapeT>,
+  toasts: Array<ToastPropsT>,
 };
