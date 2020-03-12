@@ -9,23 +9,15 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-env node */
 
-const fs = require('fs-extra');
 const path = require('path');
 const {spawnSync} = require('child_process');
 
-const basedir = path.resolve(__dirname, '..');
-const packagedir = path.resolve(basedir, 'packages/flow-check-build');
-
+const packagedir = path.resolve(__dirname, '..', 'packages/flow-check-build');
 const spawn_args = {stdio: 'inherit', cwd: packagedir};
 
 function flow_check_version(version) {
   spawnSync('yarn', ['add', `flow-bin@${version}`], spawn_args);
   spawnSync('yarn', ['flow', 'stop'], spawn_args);
-
-  const src = `${basedir}/dist/`;
-  const dest = `${packagedir}/node_modules/baseui/`;
-  fs.copySync(src, dest);
-
   const cmd = spawnSync(
     'yarn',
     ['flow', 'check', '--max-warnings', '0'],

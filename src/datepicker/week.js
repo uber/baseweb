@@ -23,6 +23,8 @@ export default class Week extends React.Component<WeekPropsT> {
     date: new Date(),
     highlightedDate: null,
     onDayClick: () => {},
+    onDayFocus: () => {},
+    onDayBlur: () => {},
     onDayMouseOver: () => {},
     onDayMouseLeave: () => {},
     onChange: () => {},

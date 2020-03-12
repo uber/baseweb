@@ -16,8 +16,8 @@ const selectors = {
   day: '[aria-label="Choose Sunday, March 10th 2019. It\'s available."]',
   selected:
     '[aria-label="Choose Tuesday, February 19th 2019. It\'s available."]',
-  leftArrow: '[aria-label="Previous month"]',
-  rightArrow: '[aria-label="Next month"]',
+  leftArrow: '[aria-label="Previous month."]',
+  rightArrow: '[aria-label="Next month."]',
   monthYearSelectButton: '[data-id="monthYearSelectButton"]',
   monthYearSelectMenu: '[data-id="monthYearSelectMenu"]',
 };

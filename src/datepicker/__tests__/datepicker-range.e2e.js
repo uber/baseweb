@@ -17,7 +17,7 @@ const selectors = {
   day2: '[aria-label="Choose Thursday, March 28th 2019. It\'s available."]',
   day4: '[aria-label="Choose Monday, April 1st 2019. It\'s available."]',
   day5: '[aria-label="Choose Wednesday, May 1st 2019. It\'s available."]',
-  rightArrow: '[aria-label="Next month"]',
+  rightArrow: '[aria-label="Next month."]',
 };
 
 describe('Datepicker, Range', () => {
