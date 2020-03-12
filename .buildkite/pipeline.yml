@@ -70,7 +70,7 @@ steps:
       queue: workers
 
   - name: ':deploy-npm:'
-    command: './scripts/deploy-npm.sh'
+    command: './deploy-npm.sh'
     plugins:
       'docker-compose#v3.0.3':
         run: baseui
@@ -78,7 +78,7 @@ steps:
       queue: workers
 
   - name: ':deploy-vscode:'
-    command: './scripts/deploy-vscode.sh'
+    command: './deploy-vscode.sh'
     plugins:
       'docker-compose#v3.0.3':
         run: baseui
@@ -86,7 +86,7 @@ steps:
       queue: workers
 
   - name: ':deploy-docs:'
-    command: './scripts/deploy-docs.sh'
+    command: './deploy-docs.sh'
     plugins:
       'docker-compose#v3.0.3':
         run: baseui
