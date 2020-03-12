@@ -17,7 +17,7 @@ echo latest tagged commit: $latest_tagged_commit
 if [ "$BUILDKITE_BRANCH" = "master" ]; then
   # we build the doc site on purpose here - it will slow down builds on the master only
   FORCE_EXTRACT_REACT_TYPES=true yarn documentation:build
-  yarn netlify deploy --dir=public --prod
+  ../node_modules/.bin/netlify deploy --dir=public --prod
 fi
 
 #BUILDKITE_MESSAGE="Release v8.4.0 (#1532)"
