@@ -47,6 +47,7 @@ export interface BaseInputProps<T> {
   positive?: boolean;
   id?: string;
   'data-baseweb'?: string;
+  inputMode?: string;
   inputRef?: React.Ref<T>;
   name?: string;
   onBlur?: React.FocusEventHandler<T>;
