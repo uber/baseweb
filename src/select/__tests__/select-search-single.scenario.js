@@ -21,7 +21,10 @@ export default function SelectComponent() {
         {id: 'Azure', color: '#F0FFFF'},
         {id: 'Beige', color: '#F5F5DC'},
       ]}
-      overrides={{ValueContainer: {props: {'data-id': 'selected'}}}}
+      overrides={{
+        ValueContainer: {props: {'data-id': 'selected'}},
+        ClearIcon: {props: {'data-id': 'clear-icon'}},
+      }}
       labelKey="id"
       valueKey="color"
       type={TYPE.search}
