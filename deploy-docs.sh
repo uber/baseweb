@@ -12,12 +12,10 @@ latest_tagged_commit=$(echo $tags | jq '.[-1].object.sha' | tr -d '"')
 echo this commit: $this_commit
 echo latest tagged commit: $latest_tagged_commit
 
-# deploy to netlify the master
-if [ "$BUILDKITE_BRANCH" = "master" ]; then
-  # we build the doc site on purpose here - it will slow down builds on the master only
-  FORCE_EXTRACT_REACT_TYPES=true yarn documentation:build
-  yarn netlify deploy --dir=public --prod
-fi
+# we build the doc site on purpose here - it will slow down builds on the master only
+FORCE_EXTRACT_REACT_TYPES=true yarn documentation:build
+DEBUG=* yarn netlify deploy --dir=public --prod
+
 
 #BUILDKITE_MESSAGE="Release v8.4.0 (#1532)"
 if [ "$this_commit" = "$latest_tagged_commit" ]; then
