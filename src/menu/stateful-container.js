@@ -252,7 +252,6 @@ export default class MenuStatefulContainer extends React.Component<
       this.optionIds[index] = getBuiId();
     }
     const requiredItemProps = this.props.getRequiredItemProps(item, index);
-    const activedescendantId = requiredItemProps.id || null;
     return {
       id: requiredItemProps.id || this.optionIds[index],
       disabled: !!item.disabled,
