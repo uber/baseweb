@@ -16,6 +16,7 @@ const selectors = {
   selectedList: '[data-id="selected"]',
   searchType: '[aria-autocomplete="list"]',
   expandedDropDown: '[aria-expanded="true"]',
+  clearIcon: '[data-id="clear-icon"]',
 };
 
 const optionAtPosition = position =>
@@ -97,6 +98,26 @@ describe('select', () => {
       select => select.textContent,
     );
     expect(selectedValue).toBe('Aquza');
+  });
+
+  it('renders clear button after input text is typed in', async () => {
+    await mount(page, 'select-search-single');
+    await page.waitFor(selectors.selectInput);
+    await page.focus(selectors.selectInput);
+
+    await page.keyboard.type('a');
+    const first = await page.$eval(
+      selectors.selectedList,
+      select => select.textContent,
+    );
+    expect(first).toBe('a');
+
+    await page.click(selectors.clearIcon);
+    const second = await page.$eval(
+      selectors.selectedList,
+      select => select.textContent,
+    );
+    expect(second).toBe('Start searching');
   });
 
   it('does not close dropdown after multiple selections were made', async () => {
