@@ -21,6 +21,7 @@ initializeRTL();
 
 // Add providers for theme and styletron
 const engine = new Styletron();
+
 addDecorator((story, context) => {
   return (
     <StyletronProvider value={engine}>
@@ -36,3 +37,7 @@ addDecorator((story, context) => {
 addParameters({options: {showAddonPanel: false}});
 
 configure(() => require('./load-stories.js'), module);
+
+if (module.hot) {
+  configure(() => require('./load-stories.js'), module);
+}
