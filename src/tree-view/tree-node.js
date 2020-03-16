@@ -23,6 +23,10 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
     this.props.addRef(this.props.getId(this.props.node), this.treeItemRef);
   }
 
+  componentWillUnmount() {
+    this.props.removeRef(this.props.getId(this.props.node));
+  }
+
   onToggle = () => {
     const {onToggle, node} = this.props;
     if (onToggle) {
@@ -43,6 +47,7 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
       onFocus,
       onBlur,
       addRef,
+      removeRef,
       isFocusVisible,
     } = this.props;
     const {children, isExpanded, label} = node;
@@ -102,6 +107,7 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
                 onFocus={onFocus}
                 onBlur={onBlur}
                 addRef={addRef}
+                removeRef={removeRef}
                 isFocusVisible={isFocusVisible}
               />
             ))}
