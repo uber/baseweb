@@ -282,21 +282,20 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     const {isOpen} = this.props;
 
     const anchorProps: AnchorPropsT = {
+      'aria-haspopup': 'true',
+      'aria-expanded': isOpen ? 'true' : 'false',
       key: 'popover-anchor',
       ref: this.anchorRef,
     };
 
-    const anchorId = this.getAnchorIdAttr();
     const popoverId = this.getPopoverIdAttr();
     if (this.isAccessibilityTypeMenu()) {
-      anchorProps['aria-haspopup'] = 'true';
-      anchorProps['aria-expanded'] = isOpen ? 'true' : 'false';
       const relationAttr = this.isClickTrigger()
         ? 'aria-controls'
         : 'aria-owns';
       anchorProps[relationAttr] = isOpen ? popoverId : null;
     } else if (this.isAccessibilityTypeTooltip()) {
-      anchorProps.id = anchorId;
+      anchorProps.id = this.getAnchorIdAttr();
       anchorProps['aria-describedby'] = isOpen ? popoverId : null;
     }
 
