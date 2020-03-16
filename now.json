@@ -6,5 +6,6 @@
       "use": "@now/static-build",
       "config": {"distDir": "public"}
     }
-  ]
+  ],
+  "alias": ["test.baseweb.design", "baseweb.design"]
 }
