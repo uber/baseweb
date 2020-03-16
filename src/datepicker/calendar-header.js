@@ -358,6 +358,7 @@ export default class CalendarHeader extends React.Component<
     ) : (
       <OverriddenPopover
         placement="bottom"
+        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={true}
         focusLock={true}
         isOpen={this.state.isMonthYearDropdownOpen}
