@@ -147,19 +147,6 @@ describe('Datepicker', () => {
     await page.waitFor(selectors.monthYearSelectMenu);
   });
 
-  it('month year dropdown closes on tab away', async () => {
-    await mount(page, 'datepicker');
-    await page.waitFor(selectors.input);
-    await page.click(selectors.input);
-    await page.waitFor(selectors.calendar);
-    await page.waitFor(selectors.day);
-    await page.focus(selectors.monthYearSelectButton);
-    await page.keyboard.press('ArrowDown');
-    await page.waitFor(selectors.monthYearSelectMenu);
-    await page.keyboard.press('Tab');
-    await page.waitFor(selectors.monthYearSelectMenu, {hidden: true});
-  });
-
   it('month year dropdown escape does not close calendar', async () => {
     await mount(page, 'datepicker');
     await page.waitFor(selectors.input);
