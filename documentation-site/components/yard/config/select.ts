@@ -34,6 +34,8 @@ const SelectConfig: TConfig = {
     'inputEnhancerFill',
     'inputEnhancerFillDisabled',
     'inputEnhancerTextDisabled',
+    'inputPlaceholder',
+    'inputPlaceholderDisabled',
     'menuFill',
     'menuFillHover',
     'menuFontDefault',
