@@ -16,9 +16,9 @@ const packageJson = require(path.resolve(__dirname, '../package.json'));
 components.forEach(component => {
   // making sure there are no duplicates
   const command = `extension.baseweb.docs.${component}`;
-  // if (!packageJson.activationEvents.includes(`onCommand:${command}`)) {
-  //   packageJson.activationEvents.push(`onCommand:${command}`);
-  // }
+  if (!packageJson.activationEvents.includes(`onCommand:${command}`)) {
+    packageJson.activationEvents.push(`onCommand:${command}`);
+  }
 
   const hasCommand =
     packageJson.contributes.commands.filter(cmd => {
