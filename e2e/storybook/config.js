@@ -20,7 +20,10 @@ import {LightThemeMove, DarkThemeMove} from '../../src/themes/index.js';
 initializeRTL();
 
 // Add providers for theme and styletron
-const engine = new Styletron();
+
+// This file is re-invoked in HMR, preserve engine across re-render
+const engineKey = Symbol.for('styletron.engine');
+const engine = (window[engineKey] = window[engineKey] || new Styletron());
 
 addDecorator((story, context) => {
   return (
@@ -37,7 +40,3 @@ addDecorator((story, context) => {
 addParameters({options: {showAddonPanel: false}});
 
 configure(() => require('./load-stories.js'), module);
-
-if (module.hot) {
-  configure(() => require('./load-stories.js'), module);
-}
