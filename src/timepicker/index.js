@@ -7,4 +7,4 @@ LICENSE file in the root directory of this source tree.
 // @flow
 export {default as TimePicker} from './timepicker.js';
 // Flow
-export * from './types';
+export type * from './types.js';
