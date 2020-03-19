@@ -21,6 +21,8 @@ const selectors = {
 };
 
 describe('popover', () => {
+  jest.retryTimes(3);
+
   it('passes basic a11y tests', async () => {
     await mount(page, 'popover');
     await page.waitFor(selectors.tooltip);
