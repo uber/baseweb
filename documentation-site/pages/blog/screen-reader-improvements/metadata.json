@@ -1,0 +1,17 @@
+{
+  "author": "Chase Starr",
+  "authorLink": "https://github.com/chasestarr",
+  "title": "Screen Reader Improvements",
+  "tagline": "Base Web has added better support for assistive technologies",
+  "date": "19 March 2020",
+  "coverImage": "https://user-images.githubusercontent.com/5317799/77105167-6fefe080-69da-11ea-84a0-f51b610611aa.png",
+  "coverImageWidth": 600,
+  "coverImageHeight": 450,
+  "keyWords": [
+    "Base Web",
+    "Design System",
+    "React",
+    "screen reader",
+    "accessibility"
+  ]
+}
