@@ -27,6 +27,12 @@ export default (context: vscode.ExtensionContext) => {
 
   const decorationTypeMap: any = {};
 
+  // Handle theme props other than colors
+  // Create a decorator type that we use to decorate theme props.
+  // We do not apply any styles to the theme props other than colors
+  const emptyDecorationType = vscode.window.createTextEditorDecorationType({});
+  let themePropsDecorationList: Array<any> = [];
+
   // Create a decorator type that we use to decorate theme colors
   function getColorDecorationType(coloringStyle: string, colorVal: string) {
     const decorationType = vscode.window.createTextEditorDecorationType({
@@ -108,6 +114,12 @@ export default (context: vscode.ExtensionContext) => {
     // and clear the lists of decorations for every decoration type
     undecorate(activeEditor);
 
+    // Handle theme props other than colors
+    // Clear the lists of decorations
+    // and unset all decorations
+    themePropsDecorationList = [];
+    activeEditor.setDecorations(emptyDecorationType, themePropsDecorationList);
+
     const workspaceConfig = vscode.workspace.getConfiguration('baseweb');
     // Get the coloring enabled/disabled setting
     const isColoringOn = workspaceConfig.get('theme.coloring.enabled');
@@ -126,28 +138,30 @@ export default (context: vscode.ExtensionContext) => {
       workspaceConfig.get('theme.coloring.style') || '';
 
     // RegExp for finding `colors.[THEME_PROP]`
-    const regEx = /(^|\W)(colors\.\w+)/gm;
+    const regEx = /(^|\W)(colors\.)(\w+)/gm;
     // Get the current active document's text
     const text = activeEditor.document.getText();
     let match;
     // Find matches to decorate accordingly
     while ((match = regEx.exec(text))) {
       // @ts-ignore
-      const themeColorVal: string | undefined = theme.colors[match[2].slice(7)];
+      const themeColorVal: string | undefined = theme.colors[match[3]];
       // Do not decorate if the found color key is not present in the theme object
-      if (!themeColorVal || !isAcceptedColorValue(themeColorVal)) {
+      if (!themeColorVal) {
         continue;
       }
       // It should never get to here if `!themeColorVal`
       // but adding a default `transparent` to satisfy types
-      const colorVal: string = themeColorVal || 'transparent';
+      const colorVal: string = isAcceptedColorValue(themeColorVal)
+        ? themeColorVal
+        : 'transparent';
       // Start position excluding the `colors.` part
       const startPos = activeEditor.document.positionAt(
-        match.index + match[1].length + 7,
+        match.index + match[1].length + match[2].length,
       );
       // End position of the match
       const endPos = activeEditor.document.positionAt(
-        match.index + match[1].length + match[2].length,
+        match.index + match[0].length,
       );
       // Create decoration for the current match position
       const decoration = {
@@ -166,6 +180,46 @@ export default (context: vscode.ExtensionContext) => {
     }
     // Apply all memoized decorations
     decorate(activeEditor);
+
+    // Handle theme props other than colors
+    // List of theme props we show hints for
+    const themeProps = [
+      'animation',
+      'borders',
+      'breakpoints',
+      'lighting',
+      'sizing',
+      'typography',
+    ];
+    for (let i = 0; i < themeProps.length; i++) {
+      const regEx = new RegExp(`(\^|\\W)(${themeProps[i]}\\.)(\\w+)`, 'gm');
+      // Find matches to decorate accordingly
+      while ((match = regEx.exec(text))) {
+        // @ts-ignore
+        const themePropVal: any = theme[themeProps[i]][match[3]];
+        // Do not decorate if the found porp key is not present in the theme object
+        if (!themePropVal) {
+          continue;
+        }
+        // Start position excluding the `sizing.` part
+        const startPos = activeEditor.document.positionAt(
+          match.index + match[1].length + match[2].length,
+        );
+        // End position of the match
+        const endPos = activeEditor.document.positionAt(
+          match.index + match[0].length,
+        );
+        // Create decoration for the current match position
+        const decoration = {
+          range: new vscode.Range(startPos, endPos),
+          hoverMessage: `${JSON.stringify(themePropVal)} | ${themeMode}Theme`,
+        };
+        // Add the decoration for the current match to the list
+        themePropsDecorationList.push(decoration);
+      }
+    }
+    // Apply all decorations
+    activeEditor.setDecorations(emptyDecorationType, themePropsDecorationList);
   }
 
   function triggerUpdateDecorations() {
