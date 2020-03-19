@@ -544,6 +544,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       const remainingInput = labelForInput.slice(0, -1);
       this.setState({
         inputValue: remainingInput,
+        isOpen: true,
       });
     }
   };
