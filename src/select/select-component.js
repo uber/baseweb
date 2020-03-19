@@ -340,7 +340,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       case 8: // backspace
         if (!this.state.inputValue && this.props.backspaceRemoves) {
           event.preventDefault();
-          this.popValue();
+          this.backspaceValue();
         }
         break;
       case 13: // enter
@@ -531,15 +531,31 @@ class Select extends React.Component<PropsT, SelectStateT> {
     this.setValue(valueArray.concat(item), item, STATE_CHANGE_TYPE.select);
   };
 
-  popValue = () => {
-    if (this.props.multi) {
-      const valueArray = [...this.props.value];
-      const valueLength = valueArray.length;
-      if (!valueLength) return;
-      if (valueArray[valueLength - 1].clearableValue === false) return;
-      const item = valueArray.pop();
-      this.setValue(valueArray, item, STATE_CHANGE_TYPE.remove);
+  backspaceValue = () => {
+    const item = this.popValue();
+    if (!item) {
+      return;
     }
+    const valueLength = this.props.value.length;
+    const renderLabel = this.props.getValueLabel || this.getValueLabel;
+    const labelForInput = renderLabel({option: item, index: valueLength - 1});
+    // label might not be a string, it might be a Node of another kind.
+    if (typeof labelForInput === 'string') {
+      const remainingInput = labelForInput.slice(0, -1);
+      this.setState({
+        inputValue: remainingInput,
+      });
+    }
+  };
+
+  popValue = () => {
+    const valueArray = [...this.props.value];
+    const valueLength = valueArray.length;
+    if (!valueLength) return;
+    if (valueArray[valueLength - 1].clearableValue === false) return;
+    const item = valueArray.pop();
+    this.setValue(valueArray, item, STATE_CHANGE_TYPE.remove);
+    return item;
   };
 
   removeValue = (item: OptionT) => {
