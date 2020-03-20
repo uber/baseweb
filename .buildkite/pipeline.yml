@@ -71,7 +71,7 @@ steps:
 
   - name: deploy-npm
     command: './deploy-npm.sh'
-    if: build.tag =~ /^v[0-9]+\.[0-9]+\.[0-9]+\$/
+    if: build.branch == "master" && build.message =~ /^Release v[0-9]+\.[0-9]+\.[0-9]+\$/
     plugins:
       'docker-compose#v3.0.3':
         run: baseui
@@ -80,7 +80,7 @@ steps:
 
   - name: deploy-vscode
     command: './deploy-vscode.sh'
-    if: build.tag =~ /^v[0-9]+\.[0-9]+\.[0-9]+\$/
+    if: build.branch == "master" && build.message =~ /^Release v[0-9]+\.[0-9]+\.[0-9]+\$/
     plugins:
       'docker-compose#v3.0.3':
         run: baseui
@@ -89,7 +89,7 @@ steps:
 
   - name: deploy-versioned-docs
     command: './deploy-versioned-docs.sh'
-    if: build.tag =~ /^v[0-9]+\.[0-9]+\.[0-9]+\$/
+    if: build.branch == "master" && build.message =~ /^Release v[0-9]+\.[0-9]+\.[0-9]+\$/
     plugins:
       'docker-compose#v3.0.3':
         run: baseui
