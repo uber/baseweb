@@ -186,7 +186,10 @@ class BaseInput<T: EventTarget> extends React.Component<
       <MaskToggleButton
         $size={this.props.size}
         $isFocusVisible={this.state.isFocusVisibleForMaskToggle}
+        aria-label={label}
         onClick={() => this.setState(state => ({isMasked: !state.isMasked}))}
+        title={label}
+        type="button"
         {...maskToggleButtonProps}
         onFocus={forkFocus(
           maskToggleButtonProps,

@@ -32,6 +32,7 @@ export const StyledMaskToggleButton = styled<{
     paddingLeft: pad,
     paddingRight: pad,
     outline: $isFocusVisible ? `solid 3px ${$theme.colors.accent}` : 'none',
+    color: $theme.colors.contentPrimary,
   };
 });
 
