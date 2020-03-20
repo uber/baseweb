@@ -61,7 +61,6 @@ const Toast = props => {
         },
       },
     },
-    // $FlowFixMe
     {Svg: CloseIconOverride},
   );
   return (

@@ -78,7 +78,7 @@ export type PropsT = {
   'aria-labelledby': ?string,
   /** Defines if select element is focused on the first mount. */
   autoFocus: boolean,
-  /** Defines if options can be removed by pressing backspace. */
+  /** Defines if options can be removed by pressing backspace. If you have customized labels, it will remove the option entirely, otherwise, it starts removing characters from the end of the string. */
   backspaceRemoves: boolean,
   /** Defines if the select value can be cleared. If true a clear icon is rendered when a value is set. */
   clearable: boolean,
