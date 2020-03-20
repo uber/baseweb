@@ -27,6 +27,8 @@ export type InternalStateT = {
   isMasked?: boolean,
   /** Tracks if focus should be visible on the clear button. */
   isFocusVisibleForClear?: boolean,
+  /** Tracks if focus should be visible on the mask toggle button. */
+  isFocusVisibleForMaskToggle?: boolean,
 };
 
 export type StateT = {
