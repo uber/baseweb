@@ -3,6 +3,7 @@
 set -e
 
 # deploy to now the versioned docs site
+FORCE_EXTRACT_REACT_TYPES=true yarn documentation:build
 now --scope=uber-ui-platform --token=$ZEIT_NOW_TOKEN --public --no-clipboard deploy ./public > deployment.txt
 deployment=`cat deployment.txt`
 cname="${BUILDKITE_TAG//./-}"
