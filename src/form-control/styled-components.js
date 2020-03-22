@@ -38,7 +38,7 @@ export const Caption = styled<StylePropsT>('div', props => {
     $theme: {colors, sizing, typography},
   } = props;
 
-  let fontColor = colors.contentSecondary;
+  let fontColor = colors.caption;
   if ($error) {
     fontColor = colors.negative400;
   } else if ($positive) {

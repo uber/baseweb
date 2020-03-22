@@ -15,7 +15,7 @@ const TextareaConfig: TConfig = {
     FormControl,
     Input,
   },
-  theme: [],
+  theme: ['caption'],
   props: {
     children: {
       value: '<Input />',

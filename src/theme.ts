@@ -274,6 +274,9 @@ interface Colors {
   fileUploaderBorderColorDefault: string;
   fileUploaderMessageColor: string;
 
+  // FormControl
+  caption: string;
+
   // Links
   linkText: string;
   linkVisited: string;

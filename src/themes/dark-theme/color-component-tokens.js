@@ -93,6 +93,9 @@ export default (
   fileUploaderBorderColorDefault: themePrimitives.mono500,
   fileUploaderMessageColor: themePrimitives.mono100,
 
+  // FormControl
+  caption: themePrimitives.mono200,
+
   // Links
   linkText: themePrimitives.primary,
   linkVisited: themePrimitives.primary100,
