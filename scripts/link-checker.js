@@ -113,10 +113,19 @@ function getRepositoryOwnerFromURL() {
 
 // Best guess of how ZEIT sanitizes branch names
 function sanitizeBranch() {
-  return BUILDKITE_BRANCH.replace(/\//g, '-')
+  return getOriginalBranchName()
+    .replace(/\//g, '-')
     .replace(/_/g, '')
     .replace(/#/g, '')
     .toLowerCase();
+}
+
+function getOriginalBranchName() {
+  if (BUILDKITE_BRANCH.includes(':')) {
+    return BUILDKITE_BRANCH.split(':')[1];
+  } else {
+    return BUILDKITE_BRANCH;
+  }
 }
 
 function sleep(n) {
