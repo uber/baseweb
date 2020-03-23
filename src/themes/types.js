@@ -303,6 +303,8 @@ export type ComponentColorTokensT = {|
   inputEnhancerFill: string,
   inputEnhancerFillDisabled: string,
   inputEnhancerTextDisabled: string,
+  inputPlaceholder: string,
+  inputPlaceholderDisabled: string,
 
   // Notification
   notificationPrimaryBackground: string,
