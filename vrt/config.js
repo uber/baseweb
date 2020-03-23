@@ -152,7 +152,7 @@ const config = {
         behavior: async page => {
           const input = `input`;
           const calendar = '[data-baseweb="calendar"]';
-          const rightArrow = `[aria-label="Next month"]`;
+          const rightArrow = `[aria-label="Next month."]`;
           await page.waitForSelector(input);
           await page.click(input);
           await page.waitForSelector(calendar, {

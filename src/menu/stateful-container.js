@@ -218,6 +218,7 @@ export default class MenuStatefulContainer extends React.Component<
       onItemSelect &&
       !items[highlightedIndex].disabled
     ) {
+      event.preventDefault();
       onItemSelect({item: items[highlightedIndex], event});
     }
   };
@@ -251,13 +252,6 @@ export default class MenuStatefulContainer extends React.Component<
       this.optionIds[index] = getBuiId();
     }
     const requiredItemProps = this.props.getRequiredItemProps(item, index);
-    const activedescendantId = requiredItemProps.id || null;
-    if (
-      this.state.highlightedIndex === index &&
-      this.state.activedescendantId !== activedescendantId
-    ) {
-      this.setState({activedescendantId});
-    }
     return {
       id: requiredItemProps.id || this.optionIds[index],
       disabled: !!item.disabled,

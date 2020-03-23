@@ -20,7 +20,7 @@ export function Breakpoint({
   return (
     <Property
       name={name}
-      concern="breakpoints"
+      concern={media ? 'mediaQuery' : 'breakpoints'}
       renderValue={() =>
         media
           ? LightTheme.mediaQuery[name]

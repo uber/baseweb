@@ -240,6 +240,7 @@ describe('Popover', () => {
     // Show the popover
     wrapper.simulate('click');
     wrapper.setProps({isOpen: true});
+    wrapper.setState({autoFocusAfterPositioning: true});
 
     // focused element (document.activeElement) should be the first input
     expect(document.activeElement).not.toBeNull();

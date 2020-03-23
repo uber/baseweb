@@ -40,12 +40,7 @@ import type {
   OptionT,
   ChangeActionT,
 } from './types.js';
-import {
-  expandValue,
-  normalizeOptions,
-  shouldShowValue,
-  shouldShowPlaceholder,
-} from './utils/index.js';
+import {expandValue, normalizeOptions} from './utils/index.js';
 
 function Noop() {
   return null;
@@ -345,7 +340,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       case 8: // backspace
         if (!this.state.inputValue && this.props.backspaceRemoves) {
           event.preventDefault();
-          this.popValue();
+          this.backspaceValue();
         }
         break;
       case 13: // enter
@@ -360,7 +355,10 @@ class Select extends React.Component<PropsT, SelectStateT> {
           isPseudoFocused: false,
           isFocused: false,
           isOpen: false,
-          inputValue: this.props.onCloseResetsInput ? '' : prevState.inputValue,
+          inputValue:
+            !this.props.onCloseResetsInput || !this.props.onBlurResetsInput
+              ? prevState.inputValue
+              : '',
         }));
         break;
       case 27: // escape
@@ -533,15 +531,32 @@ class Select extends React.Component<PropsT, SelectStateT> {
     this.setValue(valueArray.concat(item), item, STATE_CHANGE_TYPE.select);
   };
 
-  popValue = () => {
-    if (this.props.multi) {
-      const valueArray = [...this.props.value];
-      const valueLength = valueArray.length;
-      if (!valueLength) return;
-      if (valueArray[valueLength - 1].clearableValue === false) return;
-      const item = valueArray.pop();
-      this.setValue(valueArray, item, STATE_CHANGE_TYPE.remove);
+  backspaceValue = () => {
+    const item = this.popValue();
+    if (!item) {
+      return;
     }
+    const valueLength = this.props.value.length;
+    const renderLabel = this.props.getValueLabel || this.getValueLabel;
+    const labelForInput = renderLabel({option: item, index: valueLength - 1});
+    // label might not be a string, it might be a Node of another kind.
+    if (typeof labelForInput === 'string') {
+      const remainingInput = labelForInput.slice(0, -1);
+      this.setState({
+        inputValue: remainingInput,
+        isOpen: true,
+      });
+    }
+  };
+
+  popValue = () => {
+    const valueArray = [...this.props.value];
+    const valueLength = valueArray.length;
+    if (!valueLength) return;
+    if (valueArray[valueLength - 1].clearableValue === false) return;
+    const item = valueArray.pop();
+    this.setValue(valueArray, item, STATE_CHANGE_TYPE.remove);
+    return item;
   };
 
   removeValue = (item: OptionT) => {
@@ -572,6 +587,17 @@ class Select extends React.Component<PropsT, SelectStateT> {
 
     this.focus();
     this.focusAfterClear = true;
+  };
+
+  shouldShowPlaceholder = () => {
+    return !(
+      this.state.inputValue ||
+      (this.props.value && this.props.value.length)
+    );
+  };
+
+  shouldShowValue = () => {
+    return !this.state.inputValue;
   };
 
   renderLoading() {
@@ -622,7 +648,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           </Value>
         );
       });
-    } else if (shouldShowValue(this.state, this.props)) {
+    } else if (this.shouldShowValue()) {
       return (
         <Value
           value={valueArray[0][this.props.valueKey]}
@@ -644,12 +670,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
     );
     const sharedProps = this.getSharedProps();
     const isOpen = this.state.isOpen;
-    let value = this.state.inputValue;
-    if (value && !this.props.onSelectResetsInput && !this.state.isFocused) {
-      // It hides input value when it is not focused and was not reset on select
-      value = '';
-    }
-
     const selected = this.getValueArray(this.props.value)
       .map(v => v[this.props.labelKey])
       .join(', ');
@@ -699,7 +719,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           overrides={{Input: overrides.Input}}
           required={(this.props.required && !this.props.value.length) || null}
           role="combobox"
-          value={value}
+          value={this.state.inputValue}
           tabIndex={0}
           {...sharedProps}
         />
@@ -708,22 +728,27 @@ class Select extends React.Component<PropsT, SelectStateT> {
   }
 
   renderClear() {
-    const sharedProps = this.getSharedProps();
-    const value = this.props.value;
+    const isValueEntered = Boolean(
+      (this.props.value && this.props.value.length) || this.state.inputValue,
+    );
+
     if (
       !this.props.clearable ||
-      !value ||
-      !value.length ||
       this.props.disabled ||
-      this.props.isLoading
-    )
+      this.props.isLoading ||
+      !isValueEntered
+    ) {
       return;
+    }
+
+    const sharedProps = this.getSharedProps();
     const {overrides = {}} = this.props;
     const [ClearIcon, clearIconProps] = getOverrides(
       overrides.ClearIcon,
       DeleteAlt,
     );
     const ariaLabel = this.props.multi ? 'Clear all' : 'Clear value';
+
     return (
       <ClearIcon
         size={16}
@@ -945,10 +970,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
       }
     }
 
-    const showPlaceholder =
-      !valueArray.length &&
-      shouldShowPlaceholder(this.state, this.props, isOpen);
-
     return (
       <LocaleContext.Consumer>
         {locale => (
@@ -1015,7 +1036,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
                 <ValueContainer {...sharedProps} {...valueContainerProps}>
                   {this.renderValue(valueArray, isOpen, locale)}
                   {this.renderInput()}
-                  {showPlaceholder ? (
+                  {this.shouldShowPlaceholder() ? (
                     <Placeholder {...sharedProps} {...placeholderProps}>
                       {typeof this.props.placeholder !== 'undefined'
                         ? this.props.placeholder

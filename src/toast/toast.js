@@ -238,8 +238,11 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
             onMouseEnter={this.onMouseEnter}
             onMouseLeave={this.onMouseLeave}
           >
-            {/* Close icon comes first so that we can tab to other content
-                inside of Toast body. We use flex order to move it back. */}
+            <InnerContainer {...sharedProps} {...innerContainerProps}>
+              {typeof children === 'function'
+                ? children({dismiss: this.dismiss})
+                : children}
+            </InnerContainer>
             {closeable ? (
               <DeleteIcon
                 role="button"
@@ -259,11 +262,6 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
                 overrides={closeIconOverrides}
               />
             ) : null}
-            <InnerContainer {...sharedProps} {...innerContainerProps}>
-              {typeof children === 'function'
-                ? children({dismiss: this.dismiss})
-                : children}
-            </InnerContainer>
           </Body>
         )}
       </LocaleContext.Consumer>

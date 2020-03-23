@@ -9,17 +9,17 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import {getOverrides} from '../helpers/overrides.js';
 import {ADJOINED, SIZE, CUSTOM_INPUT_TYPE} from './constants.js';
 import {
   InputContainer as StyledInputContainer,
   Input as StyledInput,
   StyledClearIcon,
   StyledClearIconContainer,
+  StyledMaskToggleButton,
 } from './styled-components.js';
 import type {BaseInputPropsT, InternalStateT} from './types.js';
 import {getSharedProps} from './utils.js';
-import {Button, KIND} from '../button/index.js';
 import Hide from '../icon/hide.js';
 import Show from '../icon/show.js';
 import createEvent from '../utils/create-event.js';
@@ -68,6 +68,7 @@ class BaseInput<T: EventTarget> extends React.Component<
     isMasked: this.props.type === 'password',
     initialType: this.props.type,
     isFocusVisibleForClear: false,
+    isFocusVisibleForMaskToggle: false,
   };
 
   componentDidMount() {
@@ -145,25 +146,24 @@ class BaseInput<T: EventTarget> extends React.Component<
     }
   }
 
+  handleFocusForMaskToggle = (event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      this.setState({isFocusVisibleForMaskToggle: true});
+    }
+  };
+
+  handleBlurForMaskToggle = (event: SyntheticEvent<>) => {
+    if (this.state.isFocusVisibleForMaskToggle !== false) {
+      this.setState({isFocusVisibleForMaskToggle: false});
+    }
+  };
+
   renderMaskToggle() {
     if (this.props.type !== 'password') return null;
 
     const [MaskToggleButton, maskToggleButtonProps] = getOverrides(
       this.props.overrides.MaskToggleButton,
-      Button,
-    );
-    const baseButtonOverrides = {
-      BaseButton: {
-        style: ({$theme}) => ({
-          color: $theme.colors.contentPrimary,
-        }),
-      },
-    };
-    // $FlowFixMe
-    maskToggleButtonProps.overrides = mergeOverrides(
-      baseButtonOverrides,
-      // $FlowFixMe
-      maskToggleButtonProps.overrides,
+      StyledMaskToggleButton,
     );
     const [MaskToggleShowIcon, maskToggleIconShowProps] = getOverrides(
       this.props.overrides.MaskToggleShowIcon,
@@ -184,13 +184,18 @@ class BaseInput<T: EventTarget> extends React.Component<
     }[this.props.size];
     return (
       <MaskToggleButton
+        $size={this.props.size}
+        $isFocusVisible={this.state.isFocusVisibleForMaskToggle}
         aria-label={label}
-        kind={KIND.minimal}
-        onClick={() => this.setState({isMasked: !this.state.isMasked})}
+        onClick={() => this.setState(state => ({isMasked: !state.isMasked}))}
         title={label}
         type="button"
-        size={this.props.size}
         {...maskToggleButtonProps}
+        onFocus={forkFocus(
+          maskToggleButtonProps,
+          this.handleFocusForMaskToggle,
+        )}
+        onBlur={forkBlur(maskToggleButtonProps, this.handleBlurForMaskToggle)}
       >
         {this.state.isMasked ? (
           <MaskToggleShowIcon

@@ -18,4 +18,4 @@ export {
   TabContent as StyledTabContent,
 } from './styled-components.js';
 // Flow
-export type * from './types';
+export type * from './types.js';

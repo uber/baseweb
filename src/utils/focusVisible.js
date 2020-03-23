@@ -4,16 +4,23 @@ Copyright (c) 2018-2020 Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
+/* eslint-env browser */
 
 // @flow
 // based on:
 // - https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/utils/focusVisible.js
 // - https://github.com/WICG/focus-visible/blob/v4.1.5/src/focus-visible.js
 
-let initialized = false;
-let hadKeyboardEvent = true;
-let hadFocusVisibleRecently = false;
-let hadFocusVisibleRecentlyTimeout = null;
+// CodeSandbox is strangely reloading this file somehow
+// this ensures a single instance of these flags
+const initializedKey = Symbol.for('baseweb.focusVisible.initialized');
+const hadKeyboardEventKey = Symbol.for('baseweb.focusVisible.hadKeyboardEvent');
+const hadFocusVisibleRecentlyKey = Symbol.for(
+  'baseweb.focusVisible.hadFocusVisibleRecently',
+);
+const hadFocusVisibleRecentlyTimeoutKey = Symbol.for(
+  'baseweb.focusVisible.hadFocusVisibleRecentlyTimeout',
+);
 
 const inputTypesWhitelist = {
   text: true,
@@ -39,6 +46,7 @@ const inputTypesWhitelist = {
  * @return {boolean}
  */
 function focusTriggersKeyboardModality(node) {
+  if (!node) return false;
   const {type, tagName} = node;
 
   if (tagName === 'INPUT' && inputTypesWhitelist[type] && !node.readOnly) {
@@ -67,7 +75,7 @@ function handleKeyDown(event) {
   if (event.metaKey || event.altKey || event.ctrlKey) {
     return;
   }
-  hadKeyboardEvent = true;
+  window[hadKeyboardEventKey] = true;
 }
 
 /**
@@ -78,7 +86,7 @@ function handleKeyDown(event) {
  * pointing device, while we still think we're in keyboard modality.
  */
 function handlePointerDown() {
-  hadKeyboardEvent = false;
+  window[hadKeyboardEventKey] = false;
 }
 
 function handleVisibilityChange() {
@@ -87,8 +95,8 @@ function handleVisibilityChange() {
     // on the element (Safari actually calls it twice).
     // If this tab change caused a blur on an element with focus-visible,
     // re-apply the class when the user switches back to the tab.
-    if (hadFocusVisibleRecently) {
-      hadKeyboardEvent = true;
+    if (window[hadFocusVisibleRecentlyKey]) {
+      window[hadKeyboardEventKey] = true;
     }
   }
 }
@@ -124,7 +132,7 @@ export function isFocusVisible(event) {
 
   // no need for validFocusTarget check. the user does that by attaching it to
   // focusable events only
-  return hadKeyboardEvent || focusTriggersKeyboardModality(target);
+  return window[hadKeyboardEventKey] || focusTriggersKeyboardModality(target);
 }
 
 /**
@@ -135,19 +143,22 @@ export function handleBlurVisible() {
   // rapidly by a visibility change.
   // If we don't see a visibility change within 100ms, it's probably a
   // regular focus change.
-  hadFocusVisibleRecently = true;
+  window[hadFocusVisibleRecentlyKey] = true;
   if (__BROWSER__) {
-    window.clearTimeout(hadFocusVisibleRecentlyTimeout);
-    hadFocusVisibleRecentlyTimeout = window.setTimeout(() => {
-      hadFocusVisibleRecently = false;
+    window.clearTimeout(window[hadFocusVisibleRecentlyTimeoutKey]);
+    window[hadFocusVisibleRecentlyTimeoutKey] = window.setTimeout(() => {
+      window[hadFocusVisibleRecentlyKey] = false;
     }, 100);
   }
 }
 
 //$FlowFixMe
 export function initFocusVisible(node) {
-  if (!initialized && node != null) {
-    initialized = true;
+  if (!window[initializedKey] && node != null) {
+    window[initializedKey] = true;
+    window[hadKeyboardEventKey] = true;
+    window[hadFocusVisibleRecentlyKey] = false;
+    window[hadFocusVisibleRecentlyTimeoutKey] = null;
     prepare(node.ownerDocument);
   }
 }

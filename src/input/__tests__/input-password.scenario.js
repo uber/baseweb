@@ -14,6 +14,12 @@ export default function Scenario() {
   return (
     <React.Fragment>
       <StatefulInput
+        size={SIZE.mini}
+        type="password"
+        initialState={{value: '1234'}}
+      />
+      <br />
+      <StatefulInput
         size={SIZE.compact}
         type="password"
         initialState={{value: '1234'}}

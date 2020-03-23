@@ -345,6 +345,7 @@ export default (
   sliderBorderDisabled: themePrimitives.mono400,
 
   // Input
+  inputBorder: themePrimitives.mono600,
   inputFill: themePrimitives.mono600,
   inputFillActive: themePrimitives.mono500,
   inputFillError: themePrimitives.negative700,

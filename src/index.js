@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 export {
   styled,
   withStyle,
+  withWrapper,
   useStyletron,
   createThemedStyled,
   createThemedWithStyle,

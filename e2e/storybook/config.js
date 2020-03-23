@@ -5,6 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 /* global module */
+/* eslint-env browser */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import * as React from 'react';
@@ -20,7 +21,11 @@ import {LightThemeMove, DarkThemeMove} from '../../src/themes/index.js';
 initializeRTL();
 
 // Add providers for theme and styletron
-const engine = new Styletron();
+
+// This file is re-invoked in HMR, preserve engine across re-render
+const engineKey = Symbol.for('styletron.engine');
+const engine = (window[engineKey] = window[engineKey] || new Styletron());
+
 addDecorator((story, context) => {
   return (
     <StyletronProvider value={engine}>

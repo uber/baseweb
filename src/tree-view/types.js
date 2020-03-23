@@ -66,6 +66,7 @@ export type TreeNodePropsT = {
   onBlur?: (event: SyntheticEvent<>) => mixed,
   selectedNodeId?: TreeNodeIdT,
   addRef: (id: TreeNodeIdT, ref: React.ElementRef<*>) => mixed,
+  removeRef: (id: TreeNodeIdT) => mixed,
   isFocusVisible?: boolean,
   indentGuides?: boolean,
 };
