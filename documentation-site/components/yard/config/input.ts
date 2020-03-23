@@ -21,6 +21,8 @@ export const theme = [
   'inputEnhancerFill',
   'inputEnhancerFillDisabled',
   'inputEnhancerTextDisabled',
+  'inputPlaceholder',
+  'inputPlaceholderDisabled',
 ];
 
 export const inputProps = {

@@ -53,7 +53,7 @@ Object {
   "styled-component": "true",
   "test-style": Object {
     "::placeholder": Object {
-      "color": "$theme.colors.contentSecondary",
+      "color": "$theme.colors.inputPlaceholder",
     },
     "backgroundColor": "transparent",
     "borderStyle": "none",

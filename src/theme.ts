@@ -343,6 +343,8 @@ interface Colors {
   inputFillError: string;
   inputFillDisabled: string;
   inputTextDisabled: string;
+  inputPlaceholder: string;
+  inputPlaceholderDisabled: string;
 
   // Notification
   notificationPrimaryBackground: string;
