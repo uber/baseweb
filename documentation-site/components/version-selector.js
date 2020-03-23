@@ -22,6 +22,8 @@ import versions from '../../versions.json';
 // list of version for which we don't have a deployed documentation site
 // for some reason
 const disabledVersions = [
+  'v9.64.8',
+  'v9.64.7',
   'v9.64.6',
   'v9.64.5',
   'v9.64.4',
@@ -73,10 +75,9 @@ const versionsToShowPerMajor = versions
     const key = `v${semver.major(version.tag_name)}`;
     acc[key] = acc[key] || [];
 
-    acc[key].push({
-      label: version.tag_name,
-      disabled: disabledVersions.includes(version.tag_name),
-    });
+    if (!disabledVersions.includes(version.tag_name)) {
+      acc[key].push({label: version.tag_name});
+    }
 
     return acc;
   }, {});
@@ -85,7 +86,6 @@ const VersionSelector = () => {
   return (
     <StatefulPopover
       placement={PopoverPlacement.bottomLeft}
-      dismissOnClickOutside={false}
       focusLock
       // eslint-disable-next-line jsx-a11y/no-autofocus
       autoFocus
