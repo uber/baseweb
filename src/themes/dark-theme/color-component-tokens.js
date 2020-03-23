@@ -357,7 +357,7 @@ export default (
   inputEnhancerFill: themePrimitives.mono500,
   inputEnhancerFillDisabled: themePrimitives.mono700,
   inputEnhancerTextDisabled: themePrimitives.mono500,
-  inputPlaceholder: themePrimitives.mono200,
+  inputPlaceholder: themePrimitives.mono300,
   inputPlaceholderDisabled: themePrimitives.mono500,
 
   // Menu
