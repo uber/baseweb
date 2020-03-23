@@ -71,7 +71,9 @@ export function Unstable_StatefulContainer(props: StatefulContainerPropsT) {
     setFilters(new Map(filters));
   }
 
-  const [selectedRowIds, setSelectedRowIds] = React.useState(new Set());
+  const [selectedRowIds, setSelectedRowIds] = React.useState(
+    props.initialSelectedRowIds || new Set(),
+  );
   function handleSelectChange(next) {
     setSelectedRowIds(next);
 

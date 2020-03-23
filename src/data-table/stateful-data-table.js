@@ -164,6 +164,7 @@ export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
       batchActions={props.batchActions}
       columns={props.columns}
       initialFilters={props.initialFilters}
+      initialSelectedRowIds={props.initialSelectedRowIds}
       onFilterAdd={props.onFilterAdd}
       onFilterRemove={props.onFilterRemove}
       onRowHighlightChange={props.onRowHighlightChange}
