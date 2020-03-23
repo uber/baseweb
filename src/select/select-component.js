@@ -763,12 +763,12 @@ class Select extends React.Component<PropsT, SelectStateT> {
           Svg: {
             component: StyledClearIcon,
             props:
-              overrides.StyledClearIcon && overrides.StyledClearIcon.props
-                ? overrides.StyledClearIcon.props
+              overrides.ClearIcon && overrides.ClearIcon.props
+                ? overrides.ClearIcon.props
                 : {},
             style:
-              overrides.StyledClearIcon && overrides.StyledClearIcon.style
-                ? overrides.StyledClearIcon.style
+              overrides.ClearIcon && overrides.ClearIcon.style
+                ? overrides.ClearIcon.style
                 : {},
           },
         }}
