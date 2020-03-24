@@ -54,6 +54,7 @@ export const StyledSpinnerNext = styled<{$size?: SizeT}>(
   'div',
   ({$theme, $size = SIZE.medium}) => {
     return {
+      display: 'block',
       animationName: spin,
       animationDuration: $theme.animation.timing1000,
       animationIterationCount: 'infinite',
