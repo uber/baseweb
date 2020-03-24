@@ -3,6 +3,6 @@ import {StyledSpinnerNext} from 'baseui/spinner';
 
 export default () => (
   <p>
-    <StyledSpinnerNext $as="span" $style={{display: 'block'}} />
+    <StyledSpinnerNext $as="span" />
   </p>
 );
