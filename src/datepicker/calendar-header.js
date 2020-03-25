@@ -28,6 +28,7 @@ import {
   getMonth,
   getMonthInLocale,
   getStartOfWeek,
+  getWeekdayInLocale,
   getWeekdayMinInLocale,
   getYear,
   monthDisabledBefore,
@@ -357,7 +358,9 @@ export default class CalendarHeader extends React.Component<
     ) : (
       <OverriddenPopover
         placement="bottom"
-        focusLock={false}
+        // eslint-disable-next-line jsx-a11y/no-autofocus
+        autoFocus={true}
+        focusLock={true}
         isOpen={this.state.isMonthYearDropdownOpen}
         onClick={() => {
           this.setState(prev => ({
@@ -384,6 +387,7 @@ export default class CalendarHeader extends React.Component<
         {...popoverProps}
       >
         <MonthYearSelectButton
+          aria-live="polite"
           type="button"
           $isFocusVisible={this.state.isFocusVisible}
           onKeyUp={event => {
@@ -405,7 +409,10 @@ export default class CalendarHeader extends React.Component<
         >
           {monthYearTitle}
           <MonthYearSelectIconContainer {...monthYearSelectIconContainerProps}>
-            <TriangleDown />
+            <TriangleDown
+              title=""
+              overrides={{Svg: {props: {role: 'presentation'}}}}
+            />
           </MonthYearSelectIconContainer>
         </MonthYearSelectButton>
       </OverriddenPopover>
@@ -447,7 +454,11 @@ export default class CalendarHeader extends React.Component<
                   {WEEKDAYS.map(offset => {
                     const day = addDays(startOfWeek, offset);
                     return (
-                      <WeekdayHeader key={offset} {...weekdayHeaderProps}>
+                      <WeekdayHeader
+                        key={offset}
+                        alt={getWeekdayInLocale(day, this.props.locale)}
+                        {...weekdayHeaderProps}
+                      >
                         {getWeekdayMinInLocale(day, this.props.locale)}
                       </WeekdayHeader>
                     );

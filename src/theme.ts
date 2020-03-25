@@ -337,11 +337,14 @@ interface Colors {
   sliderBorderDisabled: string;
 
   // Input
+  inputBorder: string;
   inputFill: string;
   inputFillActive: string;
   inputFillError: string;
   inputFillDisabled: string;
   inputTextDisabled: string;
+  inputPlaceholder: string;
+  inputPlaceholderDisabled: string;
 
   // Notification
   notificationPrimaryBackground: string;
@@ -683,7 +686,7 @@ interface Borders {
   radius100: string;
   radius200: string;
   radius300: string;
-  radius400: string
+  radius400: string;
   buttonBorderRadius: string;
   inputBorderRadius: string;
   popoverBorderRadius: string;

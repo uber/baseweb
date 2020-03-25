@@ -16,6 +16,7 @@ const selectors = {
   selectedList: '[data-id="selected"]',
   searchType: '[aria-autocomplete="list"]',
   expandedDropDown: '[aria-expanded="true"]',
+  clearIcon: '[data-id="clear-icon"]',
 };
 
 const optionAtPosition = position =>
@@ -99,6 +100,26 @@ describe('select', () => {
     expect(selectedValue).toBe('Aquza');
   });
 
+  it('renders clear button after input text is typed in', async () => {
+    await mount(page, 'select-search-single');
+    await page.waitFor(selectors.selectInput);
+    await page.focus(selectors.selectInput);
+
+    await page.keyboard.type('a');
+    const first = await page.$eval(
+      selectors.selectedList,
+      select => select.textContent,
+    );
+    expect(first).toBe('a');
+
+    await page.click(selectors.clearIcon);
+    const second = await page.$eval(
+      selectors.selectedList,
+      select => select.textContent,
+    );
+    expect(second).toBe('Start searching');
+  });
+
   it('does not close dropdown after multiple selections were made', async () => {
     await mount(page, 'select-search-multi');
     await page.waitFor(selectors.selectInput);
@@ -123,6 +144,27 @@ describe('select', () => {
       select => select.textContent,
     );
     expect(selectedValue).toBe('DarkBlue');
+  });
+
+  it('subsequent multi select dropdown opens highlights first value', async () => {
+    await mount(page, 'select-search-multi');
+    await page.waitFor(selectors.selectInput);
+    await page.click(selectors.selectInput);
+    await page.waitFor(selectors.selectDropDown);
+    await page.keyboard.press('Enter');
+
+    const first = await page.$eval(
+      selectors.selectedList,
+      select => select.textContent,
+    );
+    expect(first).toBe('AliceBlue');
+
+    await page.keyboard.press('Enter');
+    const second = await page.$eval(
+      selectors.selectedList,
+      select => select.textContent,
+    );
+    expect(second).toBe('AliceBlueAntiqueWhite');
   });
 
   it('creates and selects a new option', async () => {

@@ -143,6 +143,8 @@ export type CalendarPropsT = {
   monthsShown?: number,
   /** Day's `click` event handler. */
   onDayClick?: ({date: Date, event: Event}) => mixed,
+  /** Day's `focus` event handler. */
+  onDayFocus?: ({date: Date, event: Event}) => mixed,
   /** Day's `mouseover` event handler. */
   onDayMouseOver?: ({date: Date, event: Event}) => mixed,
   /** Day's `mouseleave` event handler. */

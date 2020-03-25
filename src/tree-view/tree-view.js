@@ -127,10 +127,10 @@ export default function TreeView(props: TreeViewPropsT) {
   return (
     <Root role="tree" {...getOverrideProps(RootOverride)}>
       {data.length &&
-        data.map((node, index) => (
+        data.map(node => (
           <TreeNode
             indentGuides={indentGuides}
-            key={index}
+            key={getId(node)}
             node={node}
             getId={getId}
             onToggle={node => {
@@ -145,6 +145,9 @@ export default function TreeView(props: TreeViewPropsT) {
             onBlur={onBlur}
             addRef={(id: TreeNodeIdT, ref: React.ElementRef<HTMLLIElement>) => {
               treeItemRefs.current[id] = ref;
+            }}
+            removeRef={(id: TreeNodeIdT) => {
+              delete treeItemRefs.current[id];
             }}
             isFocusVisible={focusVisible}
           />

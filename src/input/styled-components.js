@@ -11,6 +11,31 @@ import {ADJOINED, ENHANCER_POSITION, SIZE} from './constants.js';
 import type {SharedPropsT, SizeT} from './types.js';
 import DeleteAlt from '../icon/delete-alt.js';
 
+export const StyledMaskToggleButton = styled<{
+  $size: SizeT,
+  $isFocusVisible: boolean,
+  $theme: ThemeT,
+}>('button', ({$theme, $size, $isFocusVisible}) => {
+  const pad = {
+    [SIZE.mini]: $theme.sizing.scale300,
+    [SIZE.compact]: $theme.sizing.scale400,
+    [SIZE.default]: $theme.sizing.scale500,
+    [SIZE.large]: $theme.sizing.scale600,
+  }[$size];
+  return {
+    display: 'flex',
+    borderTop: 'none',
+    borderBottom: 'none',
+    borderLeft: 'none',
+    borderRight: 'none',
+    background: 'none',
+    paddingLeft: pad,
+    paddingRight: pad,
+    outline: $isFocusVisible ? `solid 3px ${$theme.colors.accent}` : 'none',
+    color: $theme.colors.contentPrimary,
+  };
+});
+
 export const StyledClearIconContainer = styled<{
   $alignTop: boolean,
   $theme: ThemeT,
@@ -266,7 +291,7 @@ function getInputContainerColors(
 
   return {
     color: colors.contentPrimary,
-    borderColor: colors.inputFill,
+    borderColor: colors.inputBorder,
     backgroundColor: colors.inputFill,
   };
 }
@@ -321,7 +346,7 @@ function getInputColors($disabled, $isFocused, $error, colors) {
       color: colors.contentSecondary,
       caretColor: colors.contentPrimary,
       '::placeholder': {
-        color: colors.inputTextDisabled,
+        color: colors.inputPlaceholderDisabled,
       },
     };
   }
@@ -330,7 +355,7 @@ function getInputColors($disabled, $isFocused, $error, colors) {
     color: colors.contentPrimary,
     caretColor: colors.contentPrimary,
     '::placeholder': {
-      color: colors.contentSecondary,
+      color: colors.inputPlaceholder,
     },
   };
 }

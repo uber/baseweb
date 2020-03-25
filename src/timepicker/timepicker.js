@@ -274,6 +274,7 @@ class TimePicker<T = Date> extends React.Component<
               // if value is defined, it should be an array type
               value={value ? [value] : value}
               clearable={false}
+              backspaceRemoves={false}
               {...selectProps}
             />
           );

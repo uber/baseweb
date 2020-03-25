@@ -35,4 +35,4 @@ export {
   DarkTheme as darkThemeOverrides,
 };
 
-export * from './types';
+export type * from './types.js';

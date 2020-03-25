@@ -345,6 +345,7 @@ export default (
   sliderBorderDisabled: themePrimitives.mono400,
 
   // Input
+  inputBorder: themePrimitives.mono600,
   inputFill: themePrimitives.mono600,
   inputFillActive: themePrimitives.mono500,
   inputFillError: themePrimitives.negative700,
@@ -356,6 +357,8 @@ export default (
   inputEnhancerFill: themePrimitives.mono500,
   inputEnhancerFillDisabled: themePrimitives.mono700,
   inputEnhancerTextDisabled: themePrimitives.mono500,
+  inputPlaceholder: themePrimitives.mono300,
+  inputPlaceholderDisabled: themePrimitives.mono500,
 
   // Menu
   menuFill: themePrimitives.mono600,

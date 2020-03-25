@@ -19,9 +19,9 @@ import type {SortDirectionT, HeadCellPropsT} from './types.js';
 function SortDirectionIcon({direction}: {direction: SortDirectionT}) {
   switch (direction) {
     case SORT_DIRECTION.ASC:
-      return <TriangleDown />;
+      return <TriangleDown title="Sort ascending" />;
     case SORT_DIRECTION.DESC:
-      return <TriangleUp />;
+      return <TriangleUp title="Sort descending" />;
     default:
       return null;
   }

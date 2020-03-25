@@ -13,6 +13,7 @@ import {StyledLink} from '../../link/index.js';
 import {useStyletron} from '../../styles/index.js';
 
 import {StyledTable, StyledHeadCell, StyledBodyCell} from '../index.js';
+import {useCellNavigation} from './shared.js';
 
 // [date, event description]
 type EventT = [Date, string];
@@ -43,44 +44,69 @@ const data: RowT[] = [row, row, row, row, row, row, row];
 
 export default function Scenario() {
   const [css] = useStyletron();
+  const {getCellProps} = useCellNavigation();
   return (
     <div className={css({height: '600px'})}>
-      <StyledTable $gridTemplateColumns="auto minmax(auto, 500px) repeat(4, auto)">
-        <StyledHeadCell>Name</StyledHeadCell>
-        <StyledHeadCell>Summary</StyledHeadCell>
-        <StyledHeadCell>Release Type</StyledHeadCell>
-        <StyledHeadCell>Author</StyledHeadCell>
-        <StyledHeadCell>Date</StyledHeadCell>
-        <StyledHeadCell>Event</StyledHeadCell>
-        {data.map(row => {
+      <StyledTable
+        role="grid"
+        tabIndex="0"
+        $gridTemplateColumns="auto minmax(auto, 500px) repeat(4, auto)"
+      >
+        <StyledHeadCell {...getCellProps(0, 0)}>Name</StyledHeadCell>
+        <StyledHeadCell {...getCellProps(1, 0)}>Summary</StyledHeadCell>
+        <StyledHeadCell {...getCellProps(2, 0)}>Release Type</StyledHeadCell>
+        <StyledHeadCell {...getCellProps(3, 0)}>Author</StyledHeadCell>
+        <StyledHeadCell {...getCellProps(4, 0)}>Date</StyledHeadCell>
+        <StyledHeadCell {...getCellProps(5, 0)}>Event</StyledHeadCell>
+        {data.map((row, rowIndex) => {
+          const events = row[5];
+          const primaryRowIndex = rowIndex * events.length + 1;
           return (
-            <>
-              <StyledBodyCell $gridRow={`span ${row[5].length}`}>
+            <React.Fragment key={rowIndex}>
+              <StyledBodyCell
+                {...getCellProps(0, primaryRowIndex)}
+                $gridRow={`span ${row[5].length}`}
+              >
                 <StyledLink href={row[1]}>{row[0]}</StyledLink>
               </StyledBodyCell>
-              <StyledBodyCell $gridRow={`span ${row[5].length}`}>
+              <StyledBodyCell
+                {...getCellProps(1, primaryRowIndex)}
+                $gridRow={`span ${row[5].length}`}
+              >
                 {row[2]}
               </StyledBodyCell>
-              <StyledBodyCell $gridRow={`span ${row[5].length}`}>
+              <StyledBodyCell
+                {...getCellProps(2, primaryRowIndex)}
+                $gridRow={`span ${row[5].length}`}
+              >
                 {row[3]}
               </StyledBodyCell>
-              <StyledBodyCell $gridRow={`span ${row[5].length}`}>
+              <StyledBodyCell
+                {...getCellProps(3, primaryRowIndex)}
+                $gridRow={`span ${row[5].length}`}
+              >
                 {row[4]}
               </StyledBodyCell>
-              {row[5].map((event, index) => {
-                const striped = index % 2 === 0;
+              {events.map((event, eventIndex) => {
+                const striped = eventIndex % 2 === 0;
                 return (
-                  <>
-                    <StyledBodyCell $striped={striped}>
+                  <React.Fragment key={eventIndex}>
+                    <StyledBodyCell
+                      {...getCellProps(4, primaryRowIndex + eventIndex)}
+                      $striped={striped}
+                    >
                       {format(event[0], 'yyyy-MM-dd h:mm a')}
                     </StyledBodyCell>
-                    <StyledBodyCell $striped={striped}>
+                    <StyledBodyCell
+                      {...getCellProps(5, primaryRowIndex + eventIndex)}
+                      $striped={striped}
+                    >
                       {event[1]}
                     </StyledBodyCell>
-                  </>
+                  </React.Fragment>
                 );
               })}
-            </>
+            </React.Fragment>
           );
         })}
       </StyledTable>

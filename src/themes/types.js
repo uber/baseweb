@@ -291,6 +291,7 @@ export type ComponentColorTokensT = {|
   sliderBorderDisabled: string,
 
   // Input
+  inputBorder: string,
   inputFill: string,
   inputFillError: string,
   inputFillDisabled: string,
@@ -302,6 +303,8 @@ export type ComponentColorTokensT = {|
   inputEnhancerFill: string,
   inputEnhancerFillDisabled: string,
   inputEnhancerTextDisabled: string,
+  inputPlaceholder: string,
+  inputPlaceholderDisabled: string,
 
   // Notification
   notificationPrimaryBackground: string,

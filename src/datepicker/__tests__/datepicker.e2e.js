@@ -19,8 +19,8 @@ const selectors = {
   day4: '[aria-label="Choose Monday, April 1st 2019. It\'s available."]',
   day5: '[aria-label="Choose Saturday, March 10th 2018. It\'s available."]',
   day6: '[aria-label="Choose Monday, July 1st 2019. It\'s available."]',
-  leftArrow: '[aria-label="Previous month"]',
-  rightArrow: '[aria-label="Next month"]',
+  leftArrow: '[aria-label="Previous month."]',
+  rightArrow: '[aria-label="Next month."]',
   monthYearSelectButton: '[data-id="monthYearSelectButton"]',
   monthYearSelectMenu: '[data-id="monthYearSelectMenu"]',
 };
@@ -145,19 +145,6 @@ describe('Datepicker', () => {
     await page.keyboard.press('ArrowUp');
 
     await page.waitFor(selectors.monthYearSelectMenu);
-  });
-
-  it('month year dropdown closes on tab away', async () => {
-    await mount(page, 'datepicker');
-    await page.waitFor(selectors.input);
-    await page.click(selectors.input);
-    await page.waitFor(selectors.calendar);
-    await page.waitFor(selectors.day);
-    await page.focus(selectors.monthYearSelectButton);
-    await page.keyboard.press('ArrowDown');
-    await page.waitFor(selectors.monthYearSelectMenu);
-    await page.keyboard.press('Tab');
-    await page.waitFor(selectors.monthYearSelectMenu, {hidden: true});
   });
 
   it('month year dropdown escape does not close calendar', async () => {

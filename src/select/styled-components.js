@@ -186,7 +186,7 @@ function getControlContainerColors(
 
   return {
     color: colors.contentPrimary,
-    borderColor: colors.inputFill,
+    borderColor: colors.inputBorder,
     backgroundColor: colors.inputFill,
   };
 }
@@ -261,7 +261,9 @@ export const StyledPlaceholder = styled<SharedStylePropsArgT>('div', props => {
     $theme: {colors},
   } = props;
   return {
-    color: $disabled ? colors.inputTextDisabled : colors.contentSecondary,
+    color: $disabled
+      ? colors.inputPlaceholderDisabled
+      : colors.inputPlaceholder,
     maxWidth: '100%',
     overflow: 'hidden',
     textOverflow: 'ellipsis',

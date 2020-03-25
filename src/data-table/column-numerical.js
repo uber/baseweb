@@ -535,9 +535,8 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
       return <NumericalFilter {...props} options={normalizedOptions} />;
     },
     sortable: normalizedOptions.sortable,
-    // initial sort should display largest values first
     sortFn: function(a, b) {
-      return b - a;
+      return a - b;
     },
     title: normalizedOptions.title,
   };

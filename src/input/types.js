@@ -27,10 +27,12 @@ export type InternalStateT = {
   isMasked?: boolean,
   /** Tracks if focus should be visible on the clear button. */
   isFocusVisibleForClear?: boolean,
+  /** Tracks if focus should be visible on the mask toggle button. */
+  isFocusVisibleForMaskToggle?: boolean,
 };
 
 export type StateT = {
-  value?: string,
+  value?: string | number,
 };
 
 export type StateReducerT = (
@@ -127,7 +129,7 @@ export type BaseInputPropsT<T> = {|
   /** Input type attribute. */
   type?: string,
   /** Input value attribute. */
-  value?: string,
+  value?: string | number,
   rows?: number,
   /** min value when used as input type=number */
   min?: number,

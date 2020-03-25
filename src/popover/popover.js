@@ -68,6 +68,15 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     prevState: PopoverPrivateStateT,
   ) {
     this.init(prevProps, prevState);
+    if (
+      this.props.autoFocus &&
+      this.props.focusLock &&
+      !this.state.autoFocusAfterPositioning &&
+      this.popperRef.current !== null &&
+      this.popperRef.current.getBoundingClientRect().top > 0
+    ) {
+      this.setState({autoFocusAfterPositioning: true});
+    }
   }
 
   init(prevProps: PopoverPropsT, prevState: PopoverPrivateStateT) {
@@ -103,6 +112,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       placement: props.placement,
       isMounted: false,
       isLayerMounted: false,
+      autoFocusAfterPositioning: false,
     };
   }
 
@@ -272,21 +282,20 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     const {isOpen} = this.props;
 
     const anchorProps: AnchorPropsT = {
+      'aria-haspopup': 'true',
+      'aria-expanded': isOpen ? 'true' : 'false',
       key: 'popover-anchor',
       ref: this.anchorRef,
     };
 
-    const anchorId = this.getAnchorIdAttr();
     const popoverId = this.getPopoverIdAttr();
     if (this.isAccessibilityTypeMenu()) {
-      anchorProps['aria-haspopup'] = 'true';
-      anchorProps['aria-expanded'] = isOpen ? 'true' : 'false';
       const relationAttr = this.isClickTrigger()
         ? 'aria-controls'
         : 'aria-owns';
       anchorProps[relationAttr] = isOpen ? popoverId : null;
     } else if (this.isAccessibilityTypeTooltip()) {
-      anchorProps.id = anchorId;
+      anchorProps.id = this.getAnchorIdAttr();
       anchorProps['aria-describedby'] = isOpen ? popoverId : null;
     }
 
@@ -442,18 +451,15 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
               onPopperUpdate={this.onPopperUpdate}
               placement={this.state.placement}
             >
-              {this.props.focusLock ? (
-                <FocusLock
-                  noFocusGuards={true}
-                  // see popover-focus-loop.scenario.js for why hover cannot return focus
-                  returnFocus={this.props.returnFocus && !this.isHoverTrigger()}
-                  autoFocus={this.props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
-                >
-                  {this.renderPopover(renderedContent)}
-                </FocusLock>
-              ) : (
-                this.renderPopover(renderedContent)
-              )}
+              <FocusLock
+                disabled={!this.props.focusLock}
+                noFocusGuards={false}
+                // see popover-focus-loop.scenario.js for why hover cannot return focus
+                returnFocus={this.props.returnFocus && !this.isHoverTrigger()}
+                autoFocus={this.state.autoFocusAfterPositioning} // eslint-disable-line jsx-a11y/no-autofocus
+              >
+                {this.renderPopover(renderedContent)}
+              </FocusLock>
             </TetherBehavior>
           </Layer>,
         );
