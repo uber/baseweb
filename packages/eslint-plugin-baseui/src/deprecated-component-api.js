@@ -283,7 +283,10 @@ module.exports = {
           if (node.parent.value.expression.type === 'ObjectExpression') {
             // Find object property with "Backdrop" as key.
             const property = node.parent.value.expression.properties.find(
-              property => property.key.name === 'Backdrop',
+              property =>
+                property.key &&
+                property.key.name &&
+                property.key.name === 'Backdrop',
             );
             if (property) {
               context.report({
