@@ -100,6 +100,18 @@ const tests = {
         }
       `,
     },
+
+    // Modal - Backdrop
+    // Regression: object spread in overrides
+    {
+      code: `
+        import {Modal as BaseModal} from "baseui/modal"
+        const overrides = { Backdrop: {}}
+        export default function(props) {
+          return <BaseModal overrides={{ ...overrides }} />
+        }
+      `,
+    },
   ],
   invalid: [
     // Accordion - renderPanelContent
