@@ -17,7 +17,6 @@ import {
 } from 'baseui';
 import {Card} from 'baseui/card';
 import {StyledSpinnerNext as Spinner} from 'baseui/spinner';
-import {useRouter} from 'next/router';
 
 import {useView, Compiler, Error} from 'react-view';
 
@@ -41,7 +40,6 @@ const Yard: React.FC<TYardProps> = ({
   props,
   theme,
   imports,
-  queryStringName,
   mapTokensToProps,
 }) => {
   const [css, baseTheme] = useStyletron();
@@ -51,12 +49,6 @@ const Yard: React.FC<TYardProps> = ({
       ? 'darkThemePrimitives'
       : 'lightThemePrimitives';
   const provider = getProvider(componentTheme, themePrimitives);
-  const {query, push, pathname} = useRouter();
-
-  const initialCode = (typeof queryStringName !== 'undefined'
-    ? query[queryStringName]
-    : query.code) as string;
-
   const params = useView<TProviderValue, TCustomPropFields>({
     componentName,
     props,
@@ -70,16 +62,6 @@ const Yard: React.FC<TYardProps> = ({
     imports,
     provider,
     customProps,
-    initialCode,
-    onUpdate: ({code}) => {
-      const query = queryStringName || 'code';
-      push({
-        pathname,
-        query: {
-          [query]: code,
-        },
-      });
-    },
   });
 
   const activeProps = countProps(params.knobProps.state, props);
