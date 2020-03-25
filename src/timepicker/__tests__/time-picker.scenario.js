@@ -6,17 +6,16 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React, {useState, useContext} from 'react';
+import React, {useState} from 'react';
 // eslint-disable-next-line import/extensions
 import startOfDay from 'date-fns/startOfDay';
-import {DateUtilsContext} from '../../datepicker/utils/date-utils-provider.js';
 
 import {TimePicker} from '../index.js';
 import {SIZE} from '../../input/index.js';
-import {DateUtilsProvider} from '../../index.js';
+import dateFnsAdapter from '../../datepicker/utils/date-fns-adapter.js';
 import MomentUtils from '@date-io/moment';
 import moment from 'moment';
-const momentUtilsInstance = new MomentUtils();
+const momentAdapter = new MomentUtils();
 
 const MIDNIGHT = startOfDay(new Date(2019, 3, 19));
 const MOMENT_MIDNIGHT = moment(MIDNIGHT);
@@ -35,11 +34,39 @@ const Controlled = ({
   ...restProps
 }) => {
   const [time, setTime] = useState(initialDate);
-  const {utils} = useContext(DateUtilsContext);
-  const {getHours, getMinutes} = utils;
+  const {getHours, getMinutes} = dateFnsAdapter;
   return (
     <React.Fragment>
       <TimePicker
+        value={time}
+        onChange={time => {
+          setTime(time);
+          onChange();
+        }}
+        overrides={overrides}
+        creatable={creatable}
+        size={size}
+        {...restProps}
+      />
+      <p data-e2e="hours">hour: {time ? getHours(time) : 'null'}</p>
+      <p data-e2e="minutes">minute: {time ? getMinutes(time) : 'null'}</p>
+    </React.Fragment>
+  );
+};
+
+const MomentControlled = ({
+  size = 'default',
+  initialDate,
+  creatable = false,
+  onChange = () => {},
+  ...restProps
+}) => {
+  const [time, setTime] = useState(initialDate);
+  const {getHours, getMinutes} = momentAdapter;
+  return (
+    <React.Fragment>
+      <TimePicker
+        adapter={momentAdapter}
         value={time}
         onChange={time => {
           setTime(time);
@@ -99,9 +126,11 @@ export default function Scenario() {
       </div>
       <div data-e2e="24-hour-moment">
         24 hour format(moment)
-        <DateUtilsProvider utilsInstance={momentUtilsInstance}>
-          <Controlled format="24" step={1800} initialDate={MOMENT_MIDNIGHT} />
-        </DateUtilsProvider>
+        <MomentControlled
+          format="24"
+          step={1800}
+          initialDate={MOMENT_MIDNIGHT}
+        />
       </div>
     </div>
   );

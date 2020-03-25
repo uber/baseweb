@@ -6,79 +6,73 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-export type DateT = moment$Moment | Date;
+type DateValues<T> = T | string | number;
+type DateInput<T> = ?DateValues<T>;
 
-type DateValues = DateT | string | number;
-type DateInput = ?DateValues;
+type Comparison<T> = (value: T, comparing: T) => boolean;
+type DateInDateOut<T> = (value: T) => T;
 
-type Comparison = (value: DateT, comparing: DateT) => boolean;
-type DateInDateOut = (value: DateT) => DateT;
+type DateFuncT<T> = (DateInput<T> | void) => T;
 
-type DateFuncT = (DateInput | void) => DateT;
-
-export type DateUtilsT = {
-  date: DateFuncT,
-  toJsDate(value: DateInput): Date,
-  parse(value: string, format: string): DateT,
+export type DateIOAdapter<T> = {
+  date: DateFuncT<T>,
+  toJsDate(value: DateInput<T>): Date,
+  parse(value: string, format: string): T,
   getCurrentLocaleCode(): string,
   is12HourCycleInCurrentLocale(): boolean,
 
-  isNull(value?: DateT): boolean,
-  isValid(value: DateInput): boolean,
-  getDiff: Comparison,
-  isEqual: Comparison,
-  isSameDay: Comparison,
-  isSameMonth: Comparison,
-  isSameYear: Comparison,
-  isSameHour: Comparison,
-  isAfter: Comparison,
-  isAfterDay: Comparison,
-  isAfterYear: Comparison,
+  isNull(value?: T): boolean,
+  isValid(value: DateInput<T>): boolean,
+  getDiff: Comparison<T>,
+  isEqual: Comparison<T>,
+  isSameDay: Comparison<T>,
+  isSameMonth: Comparison<T>,
+  isSameYear: Comparison<T>,
+  isSameHour: Comparison<T>,
+  isAfter: Comparison<T>,
+  isAfterDay: Comparison<T>,
+  isAfterYear: Comparison<T>,
 
-  isBeforeDay: Comparison,
-  isBeforeYear: Comparison,
-  isBefore: Comparison,
-  startOfMonth: DateInDateOut,
-  endOfMonth: DateInDateOut,
-  startOfWeek: DateInDateOut,
-  endOfWeek(value: DateT): DateT,
-  addDays(value: DateT, count: number): DateT,
+  isBeforeDay: Comparison<T>,
+  isBeforeYear: Comparison<T>,
+  isBefore: Comparison<T>,
+  startOfMonth: DateInDateOut<T>,
+  endOfMonth: DateInDateOut<T>,
+  startOfWeek: DateInDateOut<T>,
+  endOfWeek(value: T): T,
+  addDays(value: T, count: number): T,
 
-  startOfDay: DateInDateOut,
-  endOfDay: DateInDateOut,
-  format(value: DateT, formatKey: string): string,
-  formatByString(value: DateT, formatString: string): string,
+  startOfDay: DateInDateOut<T>,
+  endOfDay: DateInDateOut<T>,
+  format(value: T, formatKey: string): string,
+  formatByString(value: T, formatString: string): string,
   formatNumber(numberToFormat: string): string,
-  getHours(value: DateT): number,
-  setHours(value: DateT, count: number): DateT,
+  getHours(value: T): number,
+  setHours(value: T, count: number): T,
 
-  getMinutes(value: DateT): number,
-  setMinutes(value: DateT, count: number): DateT,
+  getMinutes(value: T): number,
+  setMinutes(value: T, count: number): T,
 
-  getSeconds(value: DateT): number,
-  setSeconds(value: DateT, count: number): DateT,
+  getSeconds(value: T): number,
+  setSeconds(value: T, count: number): T,
 
-  getMonth(value: DateT): number,
-  setMonth(value: DateT, count: number): DateT,
-  getNextMonth: DateInDateOut,
-  getPreviousMonth: DateInDateOut,
-  getMonthArray(value: DateT): DateT[],
+  getMonth(value: T): number,
+  setMonth(value: T, count: number): T,
+  getNextMonth: DateInDateOut<T>,
+  getPreviousMonth: DateInDateOut<T>,
+  getMonthArray(value: T): T[],
 
-  getYear(value: DateT): number,
-  setYear(value: DateT, count: number): DateT,
+  getYear(value: T): number,
+  setYear(value: T, count: number): T,
 
-  mergeDateAndTime(date: DateT, time: DateT): DateT,
+  mergeDateAndTime(date: T, time: T): T,
 
   getWeekdays(): string[],
-  getWeekArray(date: DateT): DateT[][],
-  getYearRange(start: DateT, end: DateT): DateT[],
+  getWeekArray(date: T): T[][],
+  getYearRange(start: T, end: T): T[],
 
   /** Allow to customize displaying "am/pm" strings */
   getMeridiemText(ampm: 'am' | 'pm'): string,
-};
-
-export type DateUtilsContextT = {
-  utils: DateUtilsT,
 };
 
 export type DateFormatsT = {
