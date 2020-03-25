@@ -20,6 +20,7 @@ import SpinnerWithOverrides from 'examples/spinner/with-overrides.js';
 import SpinnerNextBasic from 'examples/spinner/next-basic.js';
 import SpinnerNextSize from 'examples/spinner/next-size.js';
 import SpinnerNextCustom from 'examples/spinner/next-custom.js';
+import SpinnerNextSpan from 'examples/spinner/next-span.js';
 
 import {Spinner} from 'baseui/spinner';
 import * as SpinnerExports from 'baseui/spinner';
@@ -80,7 +81,7 @@ Spinners provide a visual cue that an action is processing awaiting a course of 
 
 ## Spinner Next
 
-`StyledSpinnerNext` will replace our current `Spinner` in v10 of `baseui`.
+`StyledSpinnerNext` will replace our current `Spinner` in v10 of `baseui`. This will be a breaking change since the APIs between the new and old components are not the same.
 
 What's the difference?
 
@@ -98,16 +99,18 @@ Let's look at a few examples!
   <SpinnerNextBasic />
 </Example>
 
-Neat! If that isn't enough, the spinner also comes in three sizes...
-
 <Example title="Sizes" path="spinner/next-size.js">
   <SpinnerNextSize />
 </Example>
 
-If you want to customize the default styling of the spinner you can extend it using [`withStyle`](/blog/base-web-v8/#themed-withstyle-function).
+<Example title="Element" path="spinner/next-span.js">
+  <SpinnerNextSpan />
+</Example>
+
+By default the spinner styles a single `div` element. You can change the underlying element type by using the `$as` prop. In this example we change it to a `span`. This allows us to use the `Spinner` inside of a `p` element.
 
 <Example title="Customizing" path="spinner/next-custom.js">
   <SpinnerNextCustom />
 </Example>
 
-In this example we modify the size of the spinner (via `width`, `height`, and `borderWidth`) as well as the highlight color (via `borderTopColor`). You could also use `withStyle` to add margins to the spinner or align it within another element.
+If you want to customize the default styling of the spinner you can extend it using [`withStyle`](/blog/base-web-v8/#themed-withstyle-function). In this example we modify the size of the spinner (via `width`, `height`, and `borderWidth`) as well as the highlight color (via `borderTopColor`). You could also use `withStyle` to add margins to the spinner or align it within another element.
