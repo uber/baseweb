@@ -15,7 +15,6 @@ import {Card} from 'baseui/card';
 import {Block} from 'baseui/block';
 import {StyledLink} from 'baseui/link';
 
-import {version} from '../../package.json';
 import Code from './code';
 import CodeIcon from './code-icon';
 //$FlowFixMe
@@ -93,7 +92,7 @@ class Example extends React.Component<PropsT, StateT> {
         trackEvent('codesandbox_deployed_error', this.props.title);
       },
       dependencies: {
-        baseui: version,
+        baseui: 'latest',
         react: '16.8.6',
         'react-dom': '16.8.6',
         'react-scripts': '3.0.1',
