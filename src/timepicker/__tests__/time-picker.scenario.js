@@ -14,11 +14,10 @@ import {TimePicker} from '../index.js';
 import {SIZE} from '../../input/index.js';
 import dateFnsAdapter from '../../datepicker/utils/date-fns-adapter.js';
 import MomentUtils from '@date-io/moment';
-import moment from 'moment';
 const momentAdapter = new MomentUtils();
 
 const MIDNIGHT = startOfDay(new Date(2019, 3, 19));
-const MOMENT_MIDNIGHT = moment(MIDNIGHT);
+const MOMENT_MIDNIGHT = momentAdapter.date(MIDNIGHT);
 const OFF_STEP_TIME = new Date(2019, 3, 19, 1, 11);
 const overrides = {
   Select: {
