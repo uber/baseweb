@@ -45,7 +45,7 @@ class TimePicker<T = Date> extends React.Component<
     const {adapter} = this.props;
     this.dateHelpers = new DateHelpers(adapter);
 
-    if (adapter.isValid(this.props.value) && this.props.value) {
+    if (this.props.value && adapter.isValid(this.props.value)) {
       this.setState({
         steps: steps,
         value: this.buildSelectedOption(this.props.value, this.props.format),
