@@ -12,7 +12,6 @@ import startOfDay from 'date-fns/startOfDay';
 
 import {TimePicker} from '../index.js';
 import {SIZE} from '../../input/index.js';
-import dateFnsAdapter from '../../datepicker/utils/date-fns-adapter.js';
 import MomentUtils from '@date-io/moment';
 const momentAdapter = new MomentUtils();
 
@@ -33,7 +32,6 @@ const Controlled = ({
   ...restProps
 }) => {
   const [time, setTime] = useState(initialDate);
-  const {getHours, getMinutes} = dateFnsAdapter;
   return (
     <React.Fragment>
       <TimePicker
@@ -47,8 +45,8 @@ const Controlled = ({
         size={size}
         {...restProps}
       />
-      <p data-e2e="hours">hour: {time ? getHours(time) : 'null'}</p>
-      <p data-e2e="minutes">minute: {time ? getMinutes(time) : 'null'}</p>
+      <p data-e2e="hours">hour: {time ? time.getHours() : 'null'}</p>
+      <p data-e2e="minutes">minute: {time ? time.getMinutes() : 'null'}</p>
     </React.Fragment>
   );
 };
