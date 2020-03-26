@@ -43,7 +43,7 @@ function findActiveElement(page) {
 async function findHighlightedLabel(page) {
   const highlightedItem = await page.$(highlightedSelector);
   return await page.evaluate(
-    highlightedItem => highlightedItem.textContent,
+    item => (item ? item.textContent : 'NOT_FOUND'),
     highlightedItem,
   );
 }
@@ -72,6 +72,17 @@ describe('menu-child', () => {
 
     const text = await findHighlightedLabel(page);
     expect(text).toBe('New Window');
+  });
+
+  it('unhighlights item on mouse leave', async () => {
+    await mount(page, 'menu-child');
+    await hoverItem(page, 0, 0);
+    const before = await findHighlightedLabel(page);
+    expect(before).toBe('New File');
+
+    await hoverItem(page, 1, 0);
+    const after = await findHighlightedLabel(page);
+    expect(after).toBe('NOT_FOUND');
   });
 
   it('left and right arrows change focused menu', async () => {

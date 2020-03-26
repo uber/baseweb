@@ -24,6 +24,7 @@ export const StyledMaskToggleButton = styled<{
   }[$size];
   return {
     display: 'flex',
+    alignItems: 'center',
     borderTop: 'none',
     borderBottom: 'none',
     borderLeft: 'none',

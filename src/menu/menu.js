@@ -27,6 +27,7 @@ export default function Menu(props: StatelessMenuPropsT) {
     rootRef = React.createRef(),
     focusMenu = () => {},
     unfocusMenu = () => {},
+    handleMouseLeave = () => {},
     renderAll = false,
   } = props;
 
@@ -112,6 +113,7 @@ export default function Menu(props: StatelessMenuPropsT) {
           role="listbox"
           ref={rootRef}
           onMouseEnter={focusMenu}
+          onMouseLeave={handleMouseLeave}
           onMouseOver={focusMenu}
           onFocus={forkFocus({onFocus: focusMenu}, handleFocus)}
           onBlur={forkBlur({onBlur: unfocusMenu}, handleBlur)}
