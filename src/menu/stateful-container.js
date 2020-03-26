@@ -244,6 +244,15 @@ export default class MenuStatefulContainer extends React.Component<
     });
   };
 
+  handleMouseLeave = () => {
+    const rootRef = this.props.rootRef ? this.props.rootRef : this.rootRef;
+    if (!this.props.getChildMenu || !this.props.getChildMenu(rootRef)) {
+      this.internalSetState(STATE_CHANGE_TYPES.mouseLeave, {
+        highlightedIndex: -1,
+      });
+    }
+  };
+
   getRequiredItemProps: GetRequiredItemPropsFnT = (item, index) => {
     let itemRef = this.refList[index];
     if (!itemRef) {
@@ -320,6 +329,7 @@ export default class MenuStatefulContainer extends React.Component<
         rootRef: this.props.rootRef ? this.props.rootRef : this.rootRef,
         activedescendantId: this.optionIds[this.state.highlightedIndex],
         getRequiredItemProps: this.getRequiredItemProps,
+        handleMouseLeave: this.handleMouseLeave,
         highlightedIndex: this.state.highlightedIndex,
         isFocused: this.state.isFocused,
         focusMenu: this.focusMenu,
