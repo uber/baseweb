@@ -8,8 +8,6 @@ import {
 import {Override, Overrides} from './overrides';
 import {Locale} from './locale';
 import {Theme, ThemePrimitives} from './theme';
-import {IUtils} from '@date-io/core/IUtils';
-import {Moment} from 'moment';
 
 type UseStyletronFn<Theme> = () => [(arg: StyleObject) => string, Theme];
 export function createThemedUseStyletron<Theme>(): UseStyletronFn<Theme>;
@@ -49,15 +47,6 @@ export interface BaseProviderOverrides {
   AppContainer?: Override<any>;
   LayersContainer?: Override<any>;
 }
-
-const DateType = Date | Moment;
-
-export interface DateUtilsProviderProps {
-  children: React.Node;
-  utilsInstance: IUtils<DateType>;
-}
-
-export const DateUtilsProvider: React.FC<DateUtilsProviderProps>;
 
 export interface BaseProviderProps {
   children: React.ReactNode;
