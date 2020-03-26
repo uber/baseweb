@@ -91,7 +91,7 @@ class TimePicker<T = Date> extends React.Component<
     this.handleChange(seconds);
   };
 
-  secondsToLabel = (seconds: number, format: '12' | '24') => {
+  secondsToLabel = (seconds: number, format?: '12' | '24') => {
     let [hours, minutes] = this.dateHelpers.secondsToHourMinute(seconds);
     const zeroPrefix = n => (n < 10 ? `0${n}` : n);
 
@@ -216,7 +216,7 @@ class TimePicker<T = Date> extends React.Component<
     const secs = this.dateHelpers.dateToSeconds(value);
     return {
       id: secs,
-      label: this.secondsToLabel(secs, format),
+      label: this.secondsToLabel(secs, format || '12'),
     };
   };
 
