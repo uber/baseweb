@@ -229,8 +229,7 @@ class TimePicker<T = Date> extends React.Component<
   };
 
   render() {
-    const {format, overrides = {}} = this.props;
-    const {utils} = this.context;
+    const {format, overrides = {}, adapter} = this.props;
 
     const [OverriddenSelect, selectProps] = getOverrides(
       overrides.Select,
@@ -245,7 +244,7 @@ class TimePicker<T = Date> extends React.Component<
     selectProps.overrides = selectOverrides;
 
     const value =
-      utils.isValid(this.props.value) && this.props.value
+      this.props.value && adapter.isValid(this.props.value)
         ? this.buildSelectedOption(this.props.value, this.props.format)
         : this.state.value;
 
