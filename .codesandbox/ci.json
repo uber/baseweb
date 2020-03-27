@@ -1,0 +1,8 @@
+{
+  "installCommand": "install",
+  "buildCommand": "build",
+  "publishDirectory": {
+    "baseui": "dist"
+  },
+  "sandboxes": ["basic-usage-9olot"]
+}
