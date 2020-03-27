@@ -1,5 +1,5 @@
 {
-  "installCommand": "yarn",
+  "installCommand": "install --production=false",
   "buildCommand": "build",
   "publishDirectory": {
     "baseui": "dist"
