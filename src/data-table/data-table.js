@@ -781,10 +781,15 @@ export function Unstable_DataTable(props: DataTablePropsT) {
   }, [props.filters, textQuery, props.columns, props.rows]);
 
   const rows = React.useMemo(() => {
-    return sortedIndices
+    const result = sortedIndices
       .filter(idx => filteredIndices.has(idx))
       .map(idx => props.rows[idx]);
-  }, [sortedIndices, filteredIndices, props.rows]);
+
+    if (props.onIncludedRowsChange) {
+      props.onIncludedRowsChange(result);
+    }
+    return result;
+  }, [sortedIndices, filteredIndices, props.onIncludedRowsChange, props.rows]);
 
   const isSelectable = props.batchActions ? !!props.batchActions.length : false;
   const isSelectedAll = React.useMemo(() => {
