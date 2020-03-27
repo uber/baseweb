@@ -9,7 +9,8 @@ export const codesandboxIndexCode = `
 import React from "react";
 import ReactDOM from "react-dom";
 
-import {BaseProvider, LightTheme} from 'baseui';
+// CodeSandbox's bundler needs the /esm path, webpack not
+import {BaseProvider, LightTheme} from 'baseui/esm';
 import { Provider as StyletronProvider } from "styletron-react";
 import { Client as Styletron } from "styletron-engine-atomic";
 
