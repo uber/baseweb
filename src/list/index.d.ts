@@ -22,10 +22,10 @@ export interface StyledContentPropsT {
 }
 
 export interface OverridesT {
-  Root: Override<{}>;
-  ArtworkContainer: Override<StyledArtworkContainerPropsT>;
-  Content: Override<StyledContentPropsT>;
-  EndEnhancerContainer: Override<{}>;
+  Root?: Override<{}>;
+  ArtworkContainer?: Override<StyledArtworkContainerPropsT>;
+  Content?: Override<StyledContentPropsT>;
+  EndEnhancerContainer?: Override<{}>;
 }
 
 export interface PropsT {
