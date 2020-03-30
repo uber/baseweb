@@ -24,9 +24,10 @@ function ProgressSteps({
 
     const childOverrides = child.props.overrides || {};
 
-    const isActive = child.props.isActive
-      ? child.props.isActive
-      : index === current;
+    const isActive =
+      typeof child.props.isActive !== 'undefined'
+        ? child.props.isActive
+        : index === current;
 
     return React.cloneElement(
       child,
