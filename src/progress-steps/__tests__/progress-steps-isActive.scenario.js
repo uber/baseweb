@@ -13,7 +13,7 @@ import {ProgressSteps, Step} from '../index.js';
 
 const ProgressStepsIsActive = () => {
   return (
-    <ProgressSteps>
+    <ProgressSteps current={1}>
       <Step title="Step 1" isActive>
         <Block font="font400">
           Content should be visible, due to the isActive prop
