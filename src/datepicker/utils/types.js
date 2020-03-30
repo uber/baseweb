@@ -12,10 +12,10 @@ type DateInput<T> = DateValues<T>;
 type Comparison<T> = (value: T, comparing: T) => boolean;
 type DateInDateOut<T> = (value: T) => T;
 
-type DateFuncT<T> = (DateInput<T> | void) => T;
+type DateFunc<T> = (DateInput<T> | void) => T;
 
 export type DateIOAdapter<T> = {
-  date: DateFuncT<T>,
+  date: DateFunc<T>,
   toJsDate(value: DateInput<T>): Date,
   parse(value: string, format: string): T,
   getCurrentLocaleCode(): string,
