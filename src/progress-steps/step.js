@@ -69,7 +69,6 @@ function Step({
 
 Step.defaultProps = {
   isCompleted: false,
-  isActive: false,
   isLast: false,
 };
 

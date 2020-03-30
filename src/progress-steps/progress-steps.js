@@ -25,7 +25,7 @@ function ProgressSteps({
     const childOverrides = child.props.overrides || {};
 
     const isActive =
-      typeof child.props.isActive !== 'undefined'
+      child.props.isActive !== undefined
         ? child.props.isActive
         : index === current;
 
