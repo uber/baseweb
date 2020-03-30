@@ -23,6 +23,7 @@ function OptionList(props: OptionListPropsT, ref: React.ElementRef<*>) {
     item,
     onMouseEnter = () => {},
     overrides = {},
+    renderHrefAsAnchor = true,
     resetMenu = () => {},
     size = OPTION_LIST_SIZE.default,
     $isHighlighted,
@@ -40,7 +41,7 @@ function OptionList(props: OptionListPropsT, ref: React.ElementRef<*>) {
   );
 
   const getItem = item => {
-    if (item.href) {
+    if (item.href && renderHrefAsAnchor) {
       return (
         <ListItemAnchor $item={item} href={item.href} {...listItemAnchorProps}>
           {getItemLabel(item)}
