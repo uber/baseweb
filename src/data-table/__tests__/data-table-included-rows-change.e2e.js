@@ -7,15 +7,9 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
+const {mount} = require('../../../e2e/helpers');
 
-const {
-  TABLE_ROOT,
-  sortColumnAtIndex,
-  matchArrayElements,
-} = require('./utilities.js');
-
-const COLUMN_COUNT = 1;
+const {sortColumnAtIndex, matchArrayElements} = require('./utilities.js');
 
 describe('data table columns', () => {
   it('updates application state when rows change', async () => {

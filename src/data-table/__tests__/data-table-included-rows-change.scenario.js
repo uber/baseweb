@@ -8,14 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {
-  Unstable_StatefulDataTable,
-  BooleanColumn,
-  CategoricalColumn,
-  DatetimeColumn,
-  NumericalColumn,
-  StringColumn,
-} from '../index.js';
+import {Unstable_StatefulDataTable, BooleanColumn} from '../index.js';
 
 type RowDataT = [boolean, string, number, string, Date];
 
