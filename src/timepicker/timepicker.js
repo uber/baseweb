@@ -47,15 +47,14 @@ class TimePicker<T = Date> extends React.Component<
 
   componentDidMount() {
     const steps = this.buildSteps();
-    const {adapter} = this.props;
 
-    if (this.props.value && adapter.isValid(this.props.value)) {
+    if (this.props.value && this.props.adapter.isValid(this.props.value)) {
       this.setState({
         steps: steps,
         value: this.buildSelectedOption(this.props.value, this.props.format),
       });
     } else {
-      const seconds = this.dateHelpers.dateToSeconds(adapter.date());
+      const seconds = this.dateHelpers.dateToSeconds(this.props.adapter.date());
       let closestStep = NOON;
       steps.forEach(step => {
         if (Math.abs(step - seconds) < Math.abs(closestStep - seconds)) {
@@ -172,12 +171,11 @@ class TimePicker<T = Date> extends React.Component<
   };
 
   handleChange = (seconds: number) => {
-    const {adapter} = this.props;
-    const date = adapter.date(this.props.value || undefined);
+    const date = this.props.adapter.date(this.props.value || undefined);
     const [hours, minutes] = this.dateHelpers.secondsToHourMinute(seconds);
-    const hourDate = adapter.setHours(date, hours);
-    const minuteDate = adapter.setMinutes(hourDate, minutes);
-    const updatedDate = adapter.setSeconds(minuteDate, 0);
+    const hourDate = this.props.adapter.setHours(date, hours);
+    const minuteDate = this.props.adapter.setMinutes(hourDate, minutes);
+    const updatedDate = this.props.adapter.setSeconds(minuteDate, 0);
     this.props.onChange && this.props.onChange(updatedDate);
   };
 
