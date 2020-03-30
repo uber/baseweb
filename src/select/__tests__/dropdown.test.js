@@ -98,6 +98,7 @@ Object {
           "style": undefined,
         },
       },
+      "renderHrefAsAnchor": false,
     },
   },
 }
@@ -148,6 +149,7 @@ Object {
         "style": undefined,
       },
     },
+    "renderHrefAsAnchor": false,
   },
 }
 `);
