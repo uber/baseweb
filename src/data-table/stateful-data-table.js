@@ -167,6 +167,7 @@ export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
       initialSelectedRowIds={props.initialSelectedRowIds}
       onFilterAdd={props.onFilterAdd}
       onFilterRemove={props.onFilterRemove}
+      onIncludedRowsChange={props.onIncludedRowsChange}
       onRowHighlightChange={props.onRowHighlightChange}
       onSelectionChange={props.onSelectionChange}
       rows={props.rows}
@@ -177,6 +178,7 @@ export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
         filters,
         onFilterAdd,
         onFilterRemove,
+        onIncludedRowsChange,
         onRowHighlightChange,
         onSelectMany,
         onSelectNone,
@@ -291,6 +293,7 @@ export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
               filters={filters}
               loading={props.loading}
               loadingMessage={props.loadingMessage}
+              onIncludedRowsChange={onIncludedRowsChange}
               onRowHighlightChange={onRowHighlightChange}
               onSelectionChange={props.onSelectionChange}
               onSelectMany={onSelectMany}
