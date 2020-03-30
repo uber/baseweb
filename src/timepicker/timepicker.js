@@ -81,12 +81,12 @@ class TimePicker<T = Date> extends React.Component<
     const formatChanged = prevProps.format !== this.props.format;
     const stepChanged = prevProps.step !== this.props.step;
     const adapterChanged = prevProps.adapter !== this.props.adapter;
+    if (adapterChanged) {
+      this.dateHelpers = new DateHelpers(this.props.adapter);
+    }
     if (formatChanged || stepChanged) {
       const steps = this.buildSteps();
       this.setState({steps});
-    }
-    if (adapterChanged) {
-      this.dateHelpers = new DateHelpers(this.props.adapter);
     }
   }
 
