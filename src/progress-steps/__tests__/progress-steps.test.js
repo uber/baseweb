@@ -77,4 +77,22 @@ describe('ProgressSteps', () => {
       expect(element).toHaveProp('step', step);
     });
   });
+
+  it('applying isActive on Step should override the ProgressStep isActive logic', () => {
+    const steps = [];
+
+    for (let x = 0; x < 5; x++) {
+      steps.push(
+        <Step key={x} isActive>
+          Step {x}
+        </Step>,
+      );
+    }
+
+    example = shallow(<ProgressSteps current={3}>{steps}</ProgressSteps>);
+
+    example.children().forEach((element, index) => {
+      expect(element).toHaveProp('isActive', true);
+    });
+  });
 });
