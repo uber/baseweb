@@ -157,7 +157,7 @@ function FileUploader(props: PropsT) {
                         />
                       ) : (
                         <Block marginBottom="scale300">
-                          <Spinner size={40} />
+                          <Spinner silenceV10DeprecationWarning size={40} />
                         </Block>
                       )}
                       {(props.errorMessage || props.progressMessage) &&
