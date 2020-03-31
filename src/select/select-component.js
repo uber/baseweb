@@ -616,6 +616,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       <LoadingIndicator
         size={16}
         overrides={{Svg: {style: getLoadingIconStyles}}}
+        silenceV10DeprecationWarning
         {...sharedProps}
         {...loadingIndicatorProps}
       />
