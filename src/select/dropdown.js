@@ -193,6 +193,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
                       style: listItemProps.$style,
                     },
                   },
+                  renderHrefAsAnchor: false,
                 },
               },
             },
