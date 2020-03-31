@@ -11,11 +11,12 @@ import React from 'react';
 import {StatefulSelect} from '../index.js';
 
 export default function Scenario() {
-  const [blurCalled, setBlurCalled] = React.useState(false);
+  const [blurCount, setBlurCount] = React.useState(0);
   return (
     <React.Fragment>
       <StatefulSelect
-        onBlur={() => setBlurCalled(true)}
+        closeOnSelect={false}
+        onBlur={() => setBlurCount(prev => prev + 1)}
         options={[
           {id: 'a', label: 'hey!'},
           {id: 'b', label: 'are you listening?'},
@@ -23,7 +24,7 @@ export default function Scenario() {
         ]}
       />
       <button>focus target</button>
-      <p>{String(blurCalled)}</p>
+      <p>{blurCount}</p>
     </React.Fragment>
   );
 }
