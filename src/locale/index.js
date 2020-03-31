@@ -19,7 +19,7 @@ const LocaleProvider = (props: {
 }) => {
   const {locale, children} = props;
   if (__DEV__) {
-    if (locale.datepicker.timePickerAriaLabel) {
+    if (locale.datepicker && locale.datepicker.timePickerAriaLabel) {
       console.warn(
         '`timePickerAriaLabel` will be removed in v10 - please use timePickerAriaLabel12Hour and timePickerAriaLabel24Hour instead',
       );

@@ -228,6 +228,7 @@ export type OptionListPropsT = {
     ListItem?: OverrideT<*>,
     ListItemAnchor?: OverrideT<*>,
   },
+  renderHrefAsAnchor?: boolean,
   /** Utility to reset menu to default state. Useful for rendering child menus. */
   resetMenu?: () => void,
   /** Renders UI in 'highlighted' state. */

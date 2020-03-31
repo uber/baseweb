@@ -100,6 +100,15 @@ export function Unstable_StatefulContainer(props: StatefulContainerPropsT) {
     handleSelectChange(new Set(selectedRowIds));
   }
 
+  const handleIncludedRowsChange = React.useCallback(
+    rows => {
+      if (props.onIncludedRowsChange) {
+        props.onIncludedRowsChange(rows);
+      }
+    },
+    [props.onIncludedRowsChange],
+  );
+
   const handleRowHighlightChange = React.useCallback(
     (rowIndex, row) => {
       if (props.onRowHighlightChange) {
@@ -113,6 +122,7 @@ export function Unstable_StatefulContainer(props: StatefulContainerPropsT) {
     filters,
     onFilterAdd: handleFilterAdd,
     onFilterRemove: handleFilterRemove,
+    onIncludedRowsChange: handleIncludedRowsChange,
     onRowHighlightChange: handleRowHighlightChange,
     onSelectMany: handleSelectMany,
     onSelectNone: handleSelectNone,

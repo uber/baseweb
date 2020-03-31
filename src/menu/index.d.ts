@@ -113,6 +113,7 @@ export interface OptionListProps extends BaseMenuPropsT {
   overrides?: {
     ListItem?: Override<any>;
   };
+  renderHrefAsAnchor?: boolean;
   resetMenu?: () => void;
   $isHighlighted?: boolean;
   $isFocused?: boolean;
