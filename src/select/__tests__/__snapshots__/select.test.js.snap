@@ -123,6 +123,7 @@ exports[`Select component renders component in search mode and false for multipl
         aria-haspopup="true"
         data-baseweb="select"
         key="popover-anchor"
+        onBlur={[Function]}
         onClick={[Function]}
       >
         <MockStyledComponent
@@ -217,6 +218,7 @@ exports[`Select component renders component in search mode and false for multipl
               </div>,
             }
           }
+          onBlur={[Function]}
           onClick={[Function]}
         >
           <div
@@ -224,6 +226,7 @@ exports[`Select component renders component in search mode and false for multipl
             aria-expanded="false"
             aria-haspopup="true"
             data-baseweb="select"
+            onBlur={[Function]}
             onClick={[Function]}
             styled-component="true"
             test-style={
@@ -560,7 +563,6 @@ exports[`Select component renders component in search mode and false for multipl
                                 disabled={null}
                                 id={null}
                                 inputRef={[Function]}
-                                onBlur={[Function]}
                                 onChange={[Function]}
                                 onFocus={[Function]}
                                 overrides={
@@ -603,7 +605,6 @@ exports[`Select component renders component in search mode and false for multipl
                                   aria-required={null}
                                   disabled={null}
                                   id={null}
-                                  onBlur={[Function]}
                                   onChange={[Function]}
                                   onFocus={[Function]}
                                   required={null}
@@ -642,7 +643,6 @@ exports[`Select component renders component in search mode and false for multipl
                                     disabled={null}
                                     forwardedRef={[Function]}
                                     id={null}
-                                    onBlur={[Function]}
                                     onChange={[Function]}
                                     onFocus={[Function]}
                                     required={null}
@@ -664,7 +664,6 @@ exports[`Select component renders component in search mode and false for multipl
                                       aria-required={null}
                                       disabled={null}
                                       id={null}
-                                      onBlur={[Function]}
                                       onChange={[Function]}
                                       onFocus={[Function]}
                                       required={null}
@@ -971,6 +970,7 @@ exports[`Select component renders component in search mode and true for multiple
         aria-haspopup="true"
         data-baseweb="select"
         key="popover-anchor"
+        onBlur={[Function]}
         onClick={[Function]}
       >
         <MockStyledComponent
@@ -1065,6 +1065,7 @@ exports[`Select component renders component in search mode and true for multiple
               </div>,
             }
           }
+          onBlur={[Function]}
           onClick={[Function]}
         >
           <div
@@ -1072,6 +1073,7 @@ exports[`Select component renders component in search mode and true for multiple
             aria-expanded="false"
             aria-haspopup="true"
             data-baseweb="select"
+            onBlur={[Function]}
             onClick={[Function]}
             styled-component="true"
             test-style={
@@ -1408,7 +1410,6 @@ exports[`Select component renders component in search mode and true for multiple
                                 disabled={null}
                                 id={null}
                                 inputRef={[Function]}
-                                onBlur={[Function]}
                                 onChange={[Function]}
                                 onFocus={[Function]}
                                 overrides={
@@ -1451,7 +1452,6 @@ exports[`Select component renders component in search mode and true for multiple
                                   aria-required={null}
                                   disabled={null}
                                   id={null}
-                                  onBlur={[Function]}
                                   onChange={[Function]}
                                   onFocus={[Function]}
                                   required={null}
@@ -1490,7 +1490,6 @@ exports[`Select component renders component in search mode and true for multiple
                                     disabled={null}
                                     forwardedRef={[Function]}
                                     id={null}
-                                    onBlur={[Function]}
                                     onChange={[Function]}
                                     onFocus={[Function]}
                                     required={null}
@@ -1512,7 +1511,6 @@ exports[`Select component renders component in search mode and true for multiple
                                       aria-required={null}
                                       disabled={null}
                                       id={null}
-                                      onBlur={[Function]}
                                       onChange={[Function]}
                                       onFocus={[Function]}
                                       required={null}
@@ -1819,6 +1817,7 @@ exports[`Select component renders component in select mode and false for multipl
         aria-haspopup="true"
         data-baseweb="select"
         key="popover-anchor"
+        onBlur={[Function]}
         onClick={[Function]}
       >
         <MockStyledComponent
@@ -1907,6 +1906,7 @@ exports[`Select component renders component in select mode and false for multipl
               </div>,
             }
           }
+          onBlur={[Function]}
           onClick={[Function]}
         >
           <div
@@ -1914,6 +1914,7 @@ exports[`Select component renders component in select mode and false for multipl
             aria-expanded="false"
             aria-haspopup="true"
             data-baseweb="select"
+            onBlur={[Function]}
             onClick={[Function]}
             styled-component="true"
             test-style={
@@ -2148,7 +2149,6 @@ exports[`Select component renders component in select mode and false for multipl
                                 disabled={null}
                                 id={null}
                                 inputRef={[Function]}
-                                onBlur={[Function]}
                                 onChange={[Function]}
                                 onFocus={[Function]}
                                 overrides={
@@ -2191,7 +2191,6 @@ exports[`Select component renders component in select mode and false for multipl
                                   aria-required={null}
                                   disabled={null}
                                   id={null}
-                                  onBlur={[Function]}
                                   onChange={[Function]}
                                   onFocus={[Function]}
                                   required={null}
@@ -2230,7 +2229,6 @@ exports[`Select component renders component in select mode and false for multipl
                                     disabled={null}
                                     forwardedRef={[Function]}
                                     id={null}
-                                    onBlur={[Function]}
                                     onChange={[Function]}
                                     onFocus={[Function]}
                                     required={null}
@@ -2252,7 +2250,6 @@ exports[`Select component renders component in select mode and false for multipl
                                       aria-required={null}
                                       disabled={null}
                                       id={null}
-                                      onBlur={[Function]}
                                       onChange={[Function]}
                                       onFocus={[Function]}
                                       required={null}
@@ -2690,6 +2687,7 @@ exports[`Select component renders component in select mode and true for multiple
         aria-haspopup="true"
         data-baseweb="select"
         key="popover-anchor"
+        onBlur={[Function]}
         onClick={[Function]}
       >
         <MockStyledComponent
@@ -2778,6 +2776,7 @@ exports[`Select component renders component in select mode and true for multiple
               </div>,
             }
           }
+          onBlur={[Function]}
           onClick={[Function]}
         >
           <div
@@ -2785,6 +2784,7 @@ exports[`Select component renders component in select mode and true for multiple
             aria-expanded="false"
             aria-haspopup="true"
             data-baseweb="select"
+            onBlur={[Function]}
             onClick={[Function]}
             styled-component="true"
             test-style={
@@ -3019,7 +3019,6 @@ exports[`Select component renders component in select mode and true for multiple
                                 disabled={null}
                                 id={null}
                                 inputRef={[Function]}
-                                onBlur={[Function]}
                                 onChange={[Function]}
                                 onFocus={[Function]}
                                 overrides={
@@ -3062,7 +3061,6 @@ exports[`Select component renders component in select mode and true for multiple
                                   aria-required={null}
                                   disabled={null}
                                   id={null}
-                                  onBlur={[Function]}
                                   onChange={[Function]}
                                   onFocus={[Function]}
                                   required={null}
@@ -3101,7 +3099,6 @@ exports[`Select component renders component in select mode and true for multiple
                                     disabled={null}
                                     forwardedRef={[Function]}
                                     id={null}
-                                    onBlur={[Function]}
                                     onChange={[Function]}
                                     onFocus={[Function]}
                                     required={null}
@@ -3123,7 +3120,6 @@ exports[`Select component renders component in select mode and true for multiple
                                       aria-required={null}
                                       disabled={null}
                                       id={null}
-                                      onBlur={[Function]}
                                       onChange={[Function]}
                                       onFocus={[Function]}
                                       required={null}
