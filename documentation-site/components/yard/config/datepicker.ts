@@ -242,6 +242,13 @@ const DatepickerConfig: TConfig = {
         'Defines if tabbing inside the calendar is circled within it.',
       hidden: true,
     },
+    resetHighlightOnValueChange: {
+      value: undefined,
+      type: PropTypes.Boolean,
+      description:
+        'Defines if highlightedDate of the calendar resets on value change.',
+      hidden: true,
+    },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,

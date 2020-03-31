@@ -70,6 +70,7 @@ export default class Calendar extends React.Component<
     peekNextMonth: false,
     value: null,
     trapTabbing: false,
+    resetHighlightOnValueChange: false,
   };
 
   calendar: React.ElementRef<*>;
@@ -114,6 +115,11 @@ export default class Calendar extends React.Component<
 
     if (prevProps.value !== this.props.value) {
       const nextDate = this.getDateInView();
+      if (this.props.resetHighlightOnValueChange) {
+        this.setState({
+          highlightedDate: undefined,
+        });
+      }
       if (!this.isInView(nextDate)) {
         this.setState({
           date: nextDate,

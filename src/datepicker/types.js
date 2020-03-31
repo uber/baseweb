@@ -168,6 +168,8 @@ export type CalendarPropsT = {
   trapTabbing?: boolean,
   /** Currently selected date. */
   value?: ?Date | Array<Date>,
+  /** Defines if highlightedDate of the calendar resets on value change */
+  resetHighlightOnValueChange?: boolean,
 };
 
 export type HeaderPropsT = CalendarPropsT & {
