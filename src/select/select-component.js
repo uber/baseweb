@@ -281,27 +281,31 @@ class Select extends React.Component<PropsT, SelectStateT> {
     this.openAfterFocus = false;
   };
 
-  handleBlur = (event: Event) => {
-    if (containsNode(this.anchor.current, event.target)) {
-      return;
+  handleBlur = (event: FocusEvent | MouseEvent) => {
+    if (event.relatedTarget) {
+      if (
+        containsNode(this.anchor.current, event.relatedTarget) ||
+        containsNode(this.dropdown.current, event.relatedTarget)
+      ) {
+        return;
+      }
+    } else {
+      if (containsNode(this.anchor.current, event.target)) {
+        return;
+      }
     }
 
     if (this.props.onBlur) {
       this.props.onBlur(event);
     }
 
-    const onBlurredState: $Shape<SelectStateT> = {
-      isFocused: false,
-      isOpen: false,
-      isPseudoFocused: false,
-    };
-
-    if (this.props.onBlurResetsInput) {
-      onBlurredState.inputValue = '';
-    }
-
     if (this.isMounted) {
-      this.setState(onBlurredState);
+      this.setState({
+        isFocused: false,
+        isOpen: false,
+        isPseudoFocused: false,
+        inputValue: this.props.onBlurResetsInput ? '' : this.state.inputValue,
+      });
     }
 
     if (__BROWSER__) {
@@ -687,7 +691,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
           aria-labelledby={this.props['aria-labelledby']}
           aria-owns={this.state.isOpen ? this.listboxId : null}
           aria-required={this.props.required || null}
-          onBlur={this.handleBlur}
           onFocus={this.handleInputFocus}
           ref={ref => (this.input = ref)}
           tabIndex={0}
@@ -714,7 +717,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
           disabled={this.props.disabled || null}
           id={this.props.id || null}
           inputRef={ref => (this.input = ref)}
-          onBlur={this.handleBlur}
           onChange={this.handleInputChange}
           onFocus={this.handleInputFocus}
           overrides={{Input: overrides.Input}}
@@ -1023,7 +1025,12 @@ class Select extends React.Component<PropsT, SelectStateT> {
             placement={PLACEMENT.bottom}
             {...popoverProps}
           >
-            <Root data-baseweb="select" {...sharedProps} {...rootProps}>
+            <Root
+              onBlur={this.handleBlur}
+              data-baseweb="select"
+              {...sharedProps}
+              {...rootProps}
+            >
               <ControlContainer
                 onKeyDown={this.handleKeyDown}
                 onClick={this.handleClick}
