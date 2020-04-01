@@ -19,7 +19,7 @@ function Old(props: {overrides: {Base: OverrideT<{}>}}) {
   const [Base, baseProps] = getOverrides(props.overrides.Base, StyledBase);
   return (
     <div>
-      <Base override={props.overrides.Base}>default children</Base>
+      <Base {...baseProps}>default children</Base>
     </div>
   );
 }
@@ -41,16 +41,29 @@ function BaseOverride(props: any) {
 export default function Parent() {
   const [value, setValue] = React.useState('');
   return (
-    <Old
-      overrides={{
-        Base: {
-          component: BaseOverride,
-          props: {
-            onChange: event => setValue(event.target.value),
-            value,
+    <div>
+      <Old
+        overrides={{
+          Base: {
+            component: BaseOverride,
+            props: {
+              onChange: event => setValue(event.target.value),
+              value,
+            },
           },
-        },
-      }}
-    />
+        }}
+      />
+      <New
+        overrides={{
+          Base: {
+            component: BaseOverride,
+            props: {
+              onChange: event => setValue(event.target.value),
+              value,
+            },
+          },
+        }}
+      />
+    </div>
   );
 }

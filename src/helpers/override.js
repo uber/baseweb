@@ -29,7 +29,8 @@ export function Override<Config: {}>(
     const {override, ...props} = allProps;
     if (override) {
       if (isValidElementType(override)) {
-        // eslint-disable-next-line flowtype/no-weak-types https://github.com/facebook/flow/issues/6666
+        // https://github.com/facebook/flow/issues/6666
+        // eslint-disable-next-line flowtype/no-weak-types
         const ComponentOverride = ((override: any): ComponentPropertyT<Config>);
         // eslint-disable-next-line flowtype/no-weak-types
         return <ComponentOverride ref={(ref: any)} {...props} />;
