@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {render, fireEvent} from '@testing-library/react';
+import {render, fireEvent, getByTestId} from '@testing-library/react';
 
 import {styled} from '../../styles/index.js';
 import {Override, type OverrideT} from '../override.js';
@@ -193,6 +193,129 @@ describe('override hoc', () => {
       const input = container.querySelector('input');
       fireEvent.change(input, {target: {value: 'abc'}});
       expect(input.getAttribute('value')).toBe('abc');
+    });
+  });
+
+  describe('grandchild overrides', () => {
+    it('can override a grandchild props with overrides api', () => {
+      const StyledBase = styled('div', {});
+      const Base = Override(StyledBase);
+      function Grandchild(props: {overrides?: {Base: OverrideT<{}>}}) {
+        const {overrides = {}} = props;
+        return (
+          <div>
+            <Base override={overrides.Base}>default children</Base>
+          </div>
+        );
+      }
+
+      const GrandchildOverride = Override(Grandchild);
+      function Child(props: {overrides?: {Grandchild: OverrideT<{}>}}) {
+        const {overrides = {}} = props;
+        return <GrandchildOverride override={overrides.Grandchild} />;
+      }
+
+      function Parent() {
+        return (
+          <Child
+            overrides={{
+              Grandchild: {
+                props: {overrides: {Base: {props: {'data-testid': 'xyz'}}}},
+              },
+            }}
+          />
+        );
+      }
+
+      const {container} = render(<Parent />);
+      const element = getByTestId(container, 'xyz');
+      expect(element).not.toBeNull();
+    });
+
+    it('can override a grandchild styles with overrides api', () => {
+      const StyledBase = styled('div', {});
+      const Base = Override(StyledBase);
+      function Grandchild(props: {overrides?: {Base: OverrideT<{}>}}) {
+        const {overrides = {}} = props;
+        return (
+          <div>
+            <Base override={overrides.Base}>default children</Base>
+          </div>
+        );
+      }
+
+      const GrandchildOverride = Override(Grandchild);
+      function Child(props: {overrides?: {Grandchild: OverrideT<{}>}}) {
+        const {overrides = {}} = props;
+        return <GrandchildOverride override={overrides.Grandchild} />;
+      }
+
+      function Parent() {
+        return (
+          <Child
+            overrides={{
+              Grandchild: {
+                props: {
+                  overrides: {
+                    Base: {
+                      props: {'data-testid': 'xyz'},
+                      style: {color: 'blue'},
+                    },
+                  },
+                },
+              },
+            }}
+          />
+        );
+      }
+
+      const {container} = render(<Parent />);
+      const element = getByTestId(container, 'xyz');
+      const style = JSON.parse(element.getAttribute('test-style-stringified'));
+      expect(style.color).toBe('blue');
+    });
+
+    it('can override a grandchild component with overrides api', () => {
+      const StyledBase = styled('div', {});
+      const Base = Override(StyledBase);
+      function Grandchild(props: {overrides?: {Base: OverrideT<{}>}}) {
+        const {overrides = {}} = props;
+        return (
+          <div>
+            <Base override={overrides.Base}>default children</Base>
+          </div>
+        );
+      }
+
+      const GrandchildOverride = Override(Grandchild);
+      function Child(props: {overrides?: {Grandchild: OverrideT<{}>}}) {
+        const {overrides = {}} = props;
+        return <GrandchildOverride override={overrides.Grandchild} />;
+      }
+
+      const PTag = styled('p', {});
+      function Parent() {
+        return (
+          <Child
+            overrides={{
+              Grandchild: {
+                props: {
+                  overrides: {
+                    Base: {
+                      props: {'data-testid': 'xyz'},
+                      component: PTag,
+                    },
+                  },
+                },
+              },
+            }}
+          />
+        );
+      }
+
+      const {container} = render(<Parent />);
+      const element = getByTestId(container, 'xyz');
+      expect(element.tagName).toBe('P');
     });
   });
 });
