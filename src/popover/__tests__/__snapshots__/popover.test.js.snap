@@ -41,6 +41,7 @@ exports[`Popover component as anchor 1`] = `
             aria-haspopup="true"
             styled-component="true"
             test-style="[object Object]"
+            test-style-stringified="{}"
           />,
         }
       }
@@ -53,6 +54,7 @@ exports[`Popover component as anchor 1`] = `
         onClick={[Function]}
         styled-component="true"
         test-style={Object {}}
+        test-style-stringified="{}"
       />
     </MockStyledComponent>
   </CustomComponent>
@@ -70,6 +72,7 @@ exports[`Popover component as anchor 1`] = `
           aria-haspopup="true"
           styled-component="true"
           test-style="[object Object]"
+          test-style-stringified="{}"
         />
       }
       arrowRef={null}
@@ -90,10 +93,12 @@ exports[`Popover component as anchor 1`] = `
           id="bui-mock-id"
           styled-component="true"
           test-style="[object Object]"
+          test-style-stringified="{\\"position\\":\\"absolute\\",\\"top\\":0,\\"left\\":0,\\"backgroundColor\\":\\"$theme.colors.backgroundTertiary\\",\\"borderTopLeftRadius\\":\\"$theme.borders.popoverBorderRadius\\",\\"borderTopRightRadius\\":\\"$theme.borders.popoverBorderRadius\\",\\"borderBottomRightRadius\\":\\"$theme.borders.popoverBorderRadius\\",\\"borderBottomLeftRadius\\":\\"$theme.borders.popoverBorderRadius\\",\\"boxShadow\\":\\"$theme.lighting.shadow600\\",\\"transitionProperty\\":\\"opacity,transform\\",\\"transitionDuration\\":\\"0s\\",\\"transitionTimingFunction\\":\\"$theme.animation.easeOutCurve\\",\\"opacity\\":0,\\"transform\\":\\"translate3d(-16px, 0px, 0)\\"}"
         >
           <div
             styled-component="true"
             test-style="[object Object]"
+            test-style-stringified="{\\"backgroundColor\\":\\"$theme.colors.backgroundTertiary\\",\\"borderTopLeftRadius\\":\\"$theme.borders.popoverBorderRadius\\",\\"borderTopRightRadius\\":\\"$theme.borders.popoverBorderRadius\\",\\"borderBottomRightRadius\\":\\"$theme.borders.popoverBorderRadius\\",\\"borderBottomLeftRadius\\":\\"$theme.borders.popoverBorderRadius\\",\\"color\\":\\"$theme.colors.contentPrimary\\",\\"position\\":\\"relative\\"}"
           >
             <strong>
               Hello world
@@ -201,10 +206,12 @@ exports[`Popover component as anchor 1`] = `
                       id="bui-mock-id"
                       styled-component="true"
                       test-style="[object Object]"
+                      test-style-stringified="{\\"position\\":\\"absolute\\",\\"top\\":0,\\"left\\":0,\\"backgroundColor\\":\\"$theme.colors.backgroundTertiary\\",\\"borderTopLeftRadius\\":\\"$theme.borders.popoverBorderRadius\\",\\"borderTopRightRadius\\":\\"$theme.borders.popoverBorderRadius\\",\\"borderBottomRightRadius\\":\\"$theme.borders.popoverBorderRadius\\",\\"borderBottomLeftRadius\\":\\"$theme.borders.popoverBorderRadius\\",\\"boxShadow\\":\\"$theme.lighting.shadow600\\",\\"transitionProperty\\":\\"opacity,transform\\",\\"transitionDuration\\":\\"0s\\",\\"transitionTimingFunction\\":\\"$theme.animation.easeOutCurve\\",\\"opacity\\":0,\\"transform\\":\\"translate3d(-16px, 0px, 0)\\"}"
                     >
                       <div
                         styled-component="true"
                         test-style="[object Object]"
+                        test-style-stringified="{\\"backgroundColor\\":\\"$theme.colors.backgroundTertiary\\",\\"borderTopLeftRadius\\":\\"$theme.borders.popoverBorderRadius\\",\\"borderTopRightRadius\\":\\"$theme.borders.popoverBorderRadius\\",\\"borderBottomRightRadius\\":\\"$theme.borders.popoverBorderRadius\\",\\"borderBottomLeftRadius\\":\\"$theme.borders.popoverBorderRadius\\",\\"color\\":\\"$theme.colors.contentPrimary\\",\\"position\\":\\"relative\\"}"
                       >
                         <strong>
                           Hello world
@@ -237,6 +244,7 @@ exports[`Popover component as anchor 1`] = `
                       "transitionTimingFunction": "$theme.animation.easeOutCurve",
                     }
                   }
+                  test-style-stringified="{\\"position\\":\\"absolute\\",\\"top\\":0,\\"left\\":0,\\"backgroundColor\\":\\"$theme.colors.backgroundTertiary\\",\\"borderTopLeftRadius\\":\\"$theme.borders.popoverBorderRadius\\",\\"borderTopRightRadius\\":\\"$theme.borders.popoverBorderRadius\\",\\"borderBottomRightRadius\\":\\"$theme.borders.popoverBorderRadius\\",\\"borderBottomLeftRadius\\":\\"$theme.borders.popoverBorderRadius\\",\\"boxShadow\\":\\"$theme.lighting.shadow600\\",\\"transitionProperty\\":\\"opacity,transform\\",\\"transitionDuration\\":\\"0s\\",\\"transitionTimingFunction\\":\\"$theme.animation.easeOutCurve\\",\\"opacity\\":0,\\"transform\\":\\"translate3d(-16px, 0px, 0)\\"}"
                 >
                   <ForwardRef
                     $arrowOffset={
@@ -288,6 +296,7 @@ exports[`Popover component as anchor 1`] = `
                             "position": "relative",
                           }
                         }
+                        test-style-stringified="{\\"backgroundColor\\":\\"$theme.colors.backgroundTertiary\\",\\"borderTopLeftRadius\\":\\"$theme.borders.popoverBorderRadius\\",\\"borderTopRightRadius\\":\\"$theme.borders.popoverBorderRadius\\",\\"borderBottomRightRadius\\":\\"$theme.borders.popoverBorderRadius\\",\\"borderBottomLeftRadius\\":\\"$theme.borders.popoverBorderRadius\\",\\"color\\":\\"$theme.colors.contentPrimary\\",\\"position\\":\\"relative\\"}"
                       >
                         <strong>
                           Hello world
@@ -363,6 +372,7 @@ exports[`Popover component overrides: custom popover arrow has correct props 1`]
         "current": <div
           styled-component="true"
           test-style="[object Object]"
+          test-style-stringified="{\\"color\\":\\"red\\"}"
         />,
       }
     }
@@ -374,6 +384,7 @@ exports[`Popover component overrides: custom popover arrow has correct props 1`]
           "color": "red",
         }
       }
+      test-style-stringified="{\\"color\\":\\"red\\"}"
     />
   </MockStyledComponent>
 </ForwardRef>
@@ -428,14 +439,17 @@ exports[`Popover component overrides: custom popover body has correct props 1`] 
           id="bui-mock-id"
           styled-component="true"
           test-style="[object Object]"
+          test-style-stringified="{\\"color\\":\\"green\\"}"
         >
           <div
             styled-component="true"
             test-style="[object Object]"
+            test-style-stringified="{\\"color\\":\\"red\\"}"
           />
           <div
             styled-component="true"
             test-style="[object Object]"
+            test-style-stringified="{\\"color\\":\\"blue\\"}"
           >
             content
           </div>
@@ -457,6 +471,7 @@ exports[`Popover component overrides: custom popover body has correct props 1`] 
           "color": "green",
         }
       }
+      test-style-stringified="{\\"color\\":\\"green\\"}"
     >
       <ForwardRef
         $arrowOffset={
@@ -499,6 +514,7 @@ exports[`Popover component overrides: custom popover body has correct props 1`] 
               "current": <div
                 styled-component="true"
                 test-style="[object Object]"
+                test-style-stringified="{\\"color\\":\\"red\\"}"
               />,
             }
           }
@@ -510,6 +526,7 @@ exports[`Popover component overrides: custom popover body has correct props 1`] 
                 "color": "red",
               }
             }
+            test-style-stringified="{\\"color\\":\\"red\\"}"
           />
         </MockStyledComponent>
       </ForwardRef>
@@ -557,6 +574,7 @@ exports[`Popover component overrides: custom popover body has correct props 1`] 
                 "color": "blue",
               }
             }
+            test-style-stringified="{\\"color\\":\\"blue\\"}"
           >
             content
           </div>
@@ -612,6 +630,7 @@ exports[`Popover component overrides: custom popover inner has correct props 1`]
           "color": "blue",
         }
       }
+      test-style-stringified="{\\"color\\":\\"blue\\"}"
     >
       content
     </div>

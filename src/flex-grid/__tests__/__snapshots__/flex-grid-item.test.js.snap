@@ -146,6 +146,7 @@ exports[`FlexGridItem renders: with default styles 1`] = `
                   "width": "calc((100% - 0px) / 1 - .5px)",
                 }
               }
+              test-style-stringified="{\\"flexGrow\\":1,\\"width\\":\\"calc((100% - 0px) / 1 - .5px)\\",\\"marginRight\\":0,\\"marginBottom\\":0}"
             />
           </MockStyledComponent>
         </ForwardRef>
@@ -223,6 +224,7 @@ exports[`FlexGridItem renders: with overridden styles 1`] = `
                   "width": "calc((100% - 0px) / 1 - .5px)",
                 }
               }
+              test-style-stringified="{\\"flexGrow\\":1,\\"width\\":\\"calc((100% - 0px) / 1 - .5px)\\",\\"marginRight\\":0,\\"marginBottom\\":0,\\"color\\":\\"red\\"}"
             />
           </MockStyledComponent>
         </ForwardRef>

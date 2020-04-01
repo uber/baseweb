@@ -43,6 +43,7 @@ exports[`Panel aria-controls populated when provided: Content has correct props 
           "transitionTimingFunction": "$theme.animation.easeInOutCurve",
         }
       }
+      test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font200.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font200.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font200.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font200.lineHeight\\",\\"backgroundColor\\":\\"$theme.colors.listBodyFill\\",\\"color\\":\\"$theme.colors.contentPrimary\\",\\"paddingTop\\":0,\\"paddingBottom\\":0,\\"paddingLeft\\":\\"$theme.sizing.scale800\\",\\"paddingRight\\":\\"$theme.sizing.scale800\\",\\"marginTop\\":0,\\"marginBottom\\":0,\\"marginLeft\\":0,\\"marginRight\\":0,\\"borderBottom\\":\\"none\\",\\"boxSizing\\":\\"border-box\\",\\"height\\":0,\\"maxHeight\\":0,\\"overflow\\":\\"hidden\\",\\"transitionProperty\\":\\"all\\",\\"transitionDuration\\":\\"$theme.animation.timing400\\",\\"transitionTimingFunction\\":\\"$theme.animation.easeInOutCurve\\"}"
     />
   </MockStyledComponent>
 </ForwardRef>
@@ -117,6 +118,7 @@ exports[`Panel aria-controls populated when provided: Header has correct props w
           "paddingTop": "$theme.sizing.scale600",
         }
       }
+      test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font350.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font350.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font350.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font350.lineHeight\\",\\"color\\":\\"$theme.colors.contentPrimary\\",\\"cursor\\":\\"pointer\\",\\"backgroundColor\\":\\"$theme.colors.listHeaderFill\\",\\"paddingTop\\":\\"$theme.sizing.scale600\\",\\"paddingBottom\\":\\"$theme.sizing.scale600\\",\\"paddingLeft\\":\\"$theme.sizing.scale700\\",\\"paddingRight\\":\\"$theme.sizing.scale700\\",\\"marginTop\\":0,\\"marginBottom\\":0,\\"marginLeft\\":0,\\"marginRight\\":0,\\"borderBottom\\":\\"1px solid $theme.colors.mono400\\",\\"display\\":\\"flex\\",\\"alignItems\\":\\"center\\",\\"outline\\":\\"none\\",\\"outlineOffset\\":\\"-3px\\",\\"justifyContent\\":\\"space-between\\",\\":hover\\":{\\"color\\":\\"$theme.colors.primary\\"}}"
     >
       title
       <Plus
@@ -184,6 +186,7 @@ exports[`Panel aria-controls populated when provided: Header has correct props w
                     "width": "16px",
                   }
                 }
+                test-style-stringified="{\\"display\\":\\"inline-block\\",\\"fill\\":\\"currentColor\\",\\"color\\":\\"$theme.colors.contentPrimary\\",\\"height\\":\\"16px\\",\\"width\\":\\"16px\\",\\"cursor\\":\\"pointer\\"}"
                 viewBox="0 0 24 24"
               >
                 <title>

@@ -63,6 +63,7 @@ exports[`AspectRatioBox renders: for aspectRatio={1} 1`] = `
                   "position": "relative",
                 }
               }
+              test-style-stringified="{\\"position\\":\\"relative\\",\\"::before\\":{\\"content\\":\\"\\\\\\"\\\\\\"\\",\\"width\\":\\"1px\\",\\"marginLeft\\":\\"-1px\\",\\"float\\":\\"left\\",\\"height\\":0,\\"paddingTop\\":\\"100%\\",\\"pointerEvents\\":\\"none\\"},\\"::after\\":{\\"content\\":\\"\\\\\\"\\\\\\"\\",\\"display\\":\\"table\\",\\"clear\\":\\"both\\"}}"
             />
           </MockStyledComponent>
         </ForwardRef>
@@ -138,6 +139,7 @@ exports[`AspectRatioBox renders: for aspectRatio={16 / 9} 1`] = `
                   "position": "relative",
                 }
               }
+              test-style-stringified="{\\"position\\":\\"relative\\",\\"::before\\":{\\"content\\":\\"\\\\\\"\\\\\\"\\",\\"width\\":\\"1px\\",\\"marginLeft\\":\\"-1px\\",\\"float\\":\\"left\\",\\"height\\":0,\\"paddingTop\\":\\"56.25%\\",\\"pointerEvents\\":\\"none\\"},\\"::after\\":{\\"content\\":\\"\\\\\\"\\\\\\"\\",\\"display\\":\\"table\\",\\"clear\\":\\"both\\"}}"
             />
           </MockStyledComponent>
         </ForwardRef>
@@ -232,6 +234,7 @@ exports[`AspectRatioBox renders: with overridden styles 1`] = `
                   "position": "relative",
                 }
               }
+              test-style-stringified="{\\"position\\":\\"relative\\",\\"::before\\":{\\"content\\":\\"\\\\\\"\\\\\\"\\",\\"width\\":\\"1px\\",\\"marginLeft\\":\\"-1px\\",\\"float\\":\\"left\\",\\"height\\":0,\\"paddingTop\\":\\"56.25%\\",\\"pointerEvents\\":\\"none\\"},\\"::after\\":{\\"content\\":\\"\\\\\\"\\\\\\"\\",\\"display\\":\\"table\\",\\"clear\\":\\"both\\"},\\"marginBottom\\":\\"10px\\"}"
             />
           </MockStyledComponent>
         </ForwardRef>

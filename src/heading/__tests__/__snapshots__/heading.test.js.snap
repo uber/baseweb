@@ -41,6 +41,7 @@ exports[`Heading basic render 1`] = `
                   "lineHeight": "$theme.typography.font1050.lineHeight",
                 }
               }
+              test-style-stringified="{\\"color\\":\\"$theme.colors.contentPrimary\\",\\"fontFamily\\":\\"$theme.typography.font1050.fontFamily\\",\\"fontWeight\\":\\"$theme.typography.font1050.fontWeight\\",\\"fontSize\\":\\"$theme.typography.font1050.fontSize\\",\\"lineHeight\\":\\"$theme.typography.font1050.lineHeight\\"}"
             >
               Base Web [L1]
             </div>
@@ -89,6 +90,7 @@ exports[`Heading basic render 1`] = `
                     "lineHeight": "$theme.typography.font950.lineHeight",
                   }
                 }
+                test-style-stringified="{\\"color\\":\\"$theme.colors.contentPrimary\\",\\"fontFamily\\":\\"$theme.typography.font950.fontFamily\\",\\"fontWeight\\":\\"$theme.typography.font950.fontWeight\\",\\"fontSize\\":\\"$theme.typography.font950.fontSize\\",\\"lineHeight\\":\\"$theme.typography.font950.lineHeight\\"}"
               >
                 Introduction [L2]
               </div>
@@ -137,6 +139,7 @@ exports[`Heading basic render 1`] = `
                       "lineHeight": "$theme.typography.font850.lineHeight",
                     }
                   }
+                  test-style-stringified="{\\"color\\":\\"$theme.colors.contentPrimary\\",\\"fontFamily\\":\\"$theme.typography.font850.fontFamily\\",\\"fontWeight\\":\\"$theme.typography.font850.fontWeight\\",\\"fontSize\\":\\"$theme.typography.font850.fontSize\\",\\"lineHeight\\":\\"$theme.typography.font850.lineHeight\\"}"
                 >
                   Quotes [L3]
                 </div>
@@ -185,6 +188,7 @@ exports[`Heading basic render 1`] = `
                         "lineHeight": "$theme.typography.font750.lineHeight",
                       }
                     }
+                    test-style-stringified="{\\"color\\":\\"$theme.colors.contentPrimary\\",\\"fontFamily\\":\\"$theme.typography.font750.fontFamily\\",\\"fontWeight\\":\\"$theme.typography.font750.fontWeight\\",\\"fontSize\\":\\"$theme.typography.font750.fontSize\\",\\"lineHeight\\":\\"$theme.typography.font750.lineHeight\\"}"
                   >
                     Subtitle [L4]
                   </div>
@@ -233,6 +237,7 @@ exports[`Heading basic render 1`] = `
                           "lineHeight": "$theme.typography.font650.lineHeight",
                         }
                       }
+                      test-style-stringified="{\\"color\\":\\"$theme.colors.contentPrimary\\",\\"fontFamily\\":\\"$theme.typography.font650.fontFamily\\",\\"fontWeight\\":\\"$theme.typography.font650.fontWeight\\",\\"fontSize\\":\\"$theme.typography.font650.fontSize\\",\\"lineHeight\\":\\"$theme.typography.font650.lineHeight\\"}"
                     >
                       Subtitle [L5]
                     </div>
@@ -281,6 +286,7 @@ exports[`Heading basic render 1`] = `
                             "lineHeight": "$theme.typography.font550.lineHeight",
                           }
                         }
+                        test-style-stringified="{\\"color\\":\\"$theme.colors.contentPrimary\\",\\"fontFamily\\":\\"$theme.typography.font550.fontFamily\\",\\"fontWeight\\":\\"$theme.typography.font550.fontWeight\\",\\"fontSize\\":\\"$theme.typography.font550.fontSize\\",\\"lineHeight\\":\\"$theme.typography.font550.lineHeight\\"}"
                       >
                         Subtitle [L6]
                       </div>
@@ -332,6 +338,7 @@ exports[`Heading basic render 1`] = `
                     "lineHeight": "$theme.typography.font950.lineHeight",
                   }
                 }
+                test-style-stringified="{\\"color\\":\\"$theme.colors.contentPrimary\\",\\"fontFamily\\":\\"$theme.typography.font950.fontFamily\\",\\"fontWeight\\":\\"$theme.typography.font950.fontWeight\\",\\"fontSize\\":\\"$theme.typography.font950.fontSize\\",\\"lineHeight\\":\\"$theme.typography.font950.lineHeight\\"}"
               >
                 Motivation [L2]
               </div>
@@ -387,6 +394,7 @@ exports[`Heading styleLevels 1`] = `
                   "lineHeight": "$theme.typography.font950.lineHeight",
                 }
               }
+              test-style-stringified="{\\"color\\":\\"$theme.colors.contentPrimary\\",\\"fontFamily\\":\\"$theme.typography.font950.fontFamily\\",\\"fontWeight\\":\\"$theme.typography.font950.fontWeight\\",\\"fontSize\\":\\"$theme.typography.font950.fontSize\\",\\"lineHeight\\":\\"$theme.typography.font950.lineHeight\\"}"
             >
               Base Web [L1 styled as L2]
             </div>

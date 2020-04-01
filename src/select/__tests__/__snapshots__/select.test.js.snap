@@ -153,19 +153,23 @@ exports[`Select component renders component in search mode and false for multipl
                 data-baseweb="select"
                 styled-component="true"
                 test-style="[object Object]"
+                test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"boxSizing\\":\\"border-box\\",\\"position\\":\\"relative\\",\\"width\\":\\"100%\\"}"
               >
                 <div
                   styled-component="true"
                   test-style="[object Object]"
+                  test-style-stringified="{\\"borderTopLeftRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"borderTopRightRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"borderBottomRightRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"borderBottomLeftRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"boxSizing\\":\\"border-box\\",\\"overflow\\":\\"hidden\\",\\"width\\":\\"100%\\",\\"display\\":\\"flex\\",\\"justifyContent\\":\\"space-between\\",\\"cursor\\":\\"text\\",\\"borderWidth\\":\\"2px\\",\\"borderStyle\\":\\"solid\\",\\"transitionProperty\\":\\"border, box-shadow, background-color\\",\\"transitionDuration\\":\\"$theme.animation.timing100\\",\\"transitionTimingFunction\\":\\"$theme.animation.easeOutCurve\\",\\"color\\":\\"$theme.colors.contentPrimary\\",\\"borderColor\\":\\"$theme.colors.inputBorder\\",\\"backgroundColor\\":\\"$theme.colors.inputFill\\"}"
                 >
                   <div
                     styled-component="true"
                     test-style="[object Object]"
+                    test-style-stringified="{\\"display\\":\\"flex\\",\\"fill\\":\\"currentColor\\",\\"color\\":\\"$theme.colors.contentPrimary\\",\\"height\\":\\"100%\\",\\"width\\":\\"$theme.sizing.scale600\\",\\"cursor\\":\\"pointer\\",\\"position\\":\\"absolute\\",\\"top\\":0,\\"left\\":\\"$theme.sizing.scale500\\",\\"alignItems\\":\\"center\\"}"
                   >
                     <svg
                       data-baseweb="icon"
                       styled-component="true"
                       test-style="[object Object]"
+                      test-style-stringified="{\\"display\\":\\"inline-block\\",\\"fill\\":\\"currentColor\\",\\"color\\":\\"currentColor\\",\\"height\\":\\"16px\\",\\"width\\":\\"16px\\"}"
                       viewBox="0 0 24 24"
                     >
                       <title>
@@ -181,10 +185,12 @@ exports[`Select component renders component in search mode and false for multipl
                   <div
                     styled-component="true"
                     test-style="[object Object]"
+                    test-style-stringified="{\\"boxSizing\\":\\"border-box\\",\\"position\\":\\"relative\\",\\"flexGrow\\":1,\\"flexShrink\\":1,\\"flexBasis\\":\\"0%\\",\\"display\\":\\"flex\\",\\"alignItems\\":\\"center\\",\\"flexWrap\\":\\"nowrap\\",\\"overflow\\":\\"hidden\\",\\"paddingTop\\":\\"$theme.sizing.scale400\\",\\"paddingBottom\\":\\"$theme.sizing.scale400\\",\\"paddingLeft\\":\\"calc($theme.sizing.scale1000 - $theme.sizing.scale0)\\",\\"paddingRight\\":0}"
                   >
                     <div
                       styled-component="true"
                       test-style="[object Object]"
+                      test-style-stringified="{\\"position\\":\\"relative\\",\\"display\\":\\"inline-block\\",\\"maxWidth\\":\\"100%\\",\\"backgroundColor\\":\\"transparent\\",\\"border\\":\\"none\\",\\"boxShadow\\":\\"none\\",\\"boxSizing\\":\\"border-box\\",\\"outline\\":\\"none\\",\\"marginTop\\":0,\\"marginBottom\\":0,\\"marginLeft\\":0,\\"marginRight\\":0,\\"paddingTop\\":0,\\"paddingBottom\\":0,\\"paddingLeft\\":0,\\"paddingRight\\":0,\\"height\\":\\"auto\\",\\"maxHeight\\":\\"$theme.typography.font300.lineHeight\\"}"
                     >
                       <input
                         aria-autocomplete="list"
@@ -195,16 +201,19 @@ exports[`Select component renders component in search mode and false for multipl
                         styled-component="true"
                         tabindex="0"
                         test-style="[object Object]"
+                        test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"boxSizing\\":\\"content-box\\",\\"width\\":\\"2px\\",\\"maxWidth\\":\\"100%\\",\\"background\\":\\"transparent\\",\\"border\\":\\"none\\",\\"boxShadow\\":\\"none\\",\\"display\\":\\"inline-block\\",\\"outline\\":\\"none\\",\\"marginTop\\":\\"0\\",\\"marginBottom\\":\\"0\\",\\"marginLeft\\":\\"0\\",\\"marginRight\\":\\"0\\",\\"paddingTop\\":\\"0\\",\\"paddingBottom\\":\\"0\\",\\"paddingLeft\\":\\"0\\",\\"paddingRight\\":\\"0\\"}"
                         value=""
                       />
                       <div
                         styled-component="true"
                         test-style="[object Object]"
+                        test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"position\\":\\"absolute\\",\\"top\\":0,\\"left\\":0,\\"visibility\\":\\"hidden\\",\\"height\\":0,\\"overflow\\":\\"scroll\\",\\"whiteSpace\\":\\"pre\\"}"
                       />
                     </div>
                     <div
                       styled-component="true"
                       test-style="[object Object]"
+                      test-style-stringified="{\\"color\\":\\"$theme.colors.inputPlaceholder\\",\\"maxWidth\\":\\"100%\\",\\"overflow\\":\\"hidden\\",\\"textOverflow\\":\\"ellipsis\\",\\"whiteSpace\\":\\"nowrap\\"}"
                     >
                       Select...
                     </div>
@@ -212,6 +221,7 @@ exports[`Select component renders component in search mode and false for multipl
                   <div
                     styled-component="true"
                     test-style="[object Object]"
+                    test-style-stringified="{\\"boxSizing\\":\\"border-box\\",\\"position\\":\\"relative\\",\\"display\\":\\"flex\\",\\"flexShrink\\":0,\\"alignItems\\":\\"center\\",\\"alignSelf\\":\\"stretch\\",\\"paddingRight\\":\\"$theme.sizing.scale500\\"}"
                   />
                 </div>
               </div>,
@@ -237,6 +247,7 @@ exports[`Select component renders component in search mode and false for multipl
                 "width": "100%",
               }
             }
+            test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"boxSizing\\":\\"border-box\\",\\"position\\":\\"relative\\",\\"width\\":\\"100%\\"}"
           >
             <ForwardRef
               $clearable={true}
@@ -312,6 +323,7 @@ exports[`Select component renders component in search mode and false for multipl
                       "width": "100%",
                     }
                   }
+                  test-style-stringified="{\\"borderTopLeftRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"borderTopRightRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"borderBottomRightRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"borderBottomLeftRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"boxSizing\\":\\"border-box\\",\\"overflow\\":\\"hidden\\",\\"width\\":\\"100%\\",\\"display\\":\\"flex\\",\\"justifyContent\\":\\"space-between\\",\\"cursor\\":\\"text\\",\\"borderWidth\\":\\"2px\\",\\"borderStyle\\":\\"solid\\",\\"transitionProperty\\":\\"border, box-shadow, background-color\\",\\"transitionDuration\\":\\"$theme.animation.timing100\\",\\"transitionTimingFunction\\":\\"$theme.animation.easeOutCurve\\",\\"color\\":\\"$theme.colors.contentPrimary\\",\\"borderColor\\":\\"$theme.colors.inputBorder\\",\\"backgroundColor\\":\\"$theme.colors.inputFill\\"}"
                 >
                   <ForwardRef
                     $clearable={true}
@@ -364,6 +376,7 @@ exports[`Select component renders component in search mode and false for multipl
                             "width": "$theme.sizing.scale600",
                           }
                         }
+                        test-style-stringified="{\\"display\\":\\"flex\\",\\"fill\\":\\"currentColor\\",\\"color\\":\\"$theme.colors.contentPrimary\\",\\"height\\":\\"100%\\",\\"width\\":\\"$theme.sizing.scale600\\",\\"cursor\\":\\"pointer\\",\\"position\\":\\"absolute\\",\\"top\\":0,\\"left\\":\\"$theme.sizing.scale500\\",\\"alignItems\\":\\"center\\"}"
                       >
                         <Search
                           size={16}
@@ -397,6 +410,7 @@ exports[`Select component renders component in search mode and false for multipl
                                       "width": "16px",
                                     }
                                   }
+                                  test-style-stringified="{\\"display\\":\\"inline-block\\",\\"fill\\":\\"currentColor\\",\\"color\\":\\"currentColor\\",\\"height\\":\\"16px\\",\\"width\\":\\"16px\\"}"
                                   viewBox="0 0 24 24"
                                 >
                                   <title>
@@ -469,6 +483,7 @@ exports[`Select component renders component in search mode and false for multipl
                             "position": "relative",
                           }
                         }
+                        test-style-stringified="{\\"boxSizing\\":\\"border-box\\",\\"position\\":\\"relative\\",\\"flexGrow\\":1,\\"flexShrink\\":1,\\"flexBasis\\":\\"0%\\",\\"display\\":\\"flex\\",\\"alignItems\\":\\"center\\",\\"flexWrap\\":\\"nowrap\\",\\"overflow\\":\\"hidden\\",\\"paddingTop\\":\\"$theme.sizing.scale400\\",\\"paddingBottom\\":\\"$theme.sizing.scale400\\",\\"paddingLeft\\":\\"calc($theme.sizing.scale1000 - $theme.sizing.scale0)\\",\\"paddingRight\\":0}"
                       >
                         <ForwardRef
                           $clearable={true}
@@ -529,6 +544,7 @@ exports[`Select component renders component in search mode and false for multipl
                                   "position": "relative",
                                 }
                               }
+                              test-style-stringified="{\\"position\\":\\"relative\\",\\"display\\":\\"inline-block\\",\\"maxWidth\\":\\"100%\\",\\"backgroundColor\\":\\"transparent\\",\\"border\\":\\"none\\",\\"boxShadow\\":\\"none\\",\\"boxSizing\\":\\"border-box\\",\\"outline\\":\\"none\\",\\"marginTop\\":0,\\"marginBottom\\":0,\\"marginLeft\\":0,\\"marginRight\\":0,\\"paddingTop\\":0,\\"paddingBottom\\":0,\\"paddingLeft\\":0,\\"paddingRight\\":0,\\"height\\":\\"auto\\",\\"maxHeight\\":\\"$theme.typography.font300.lineHeight\\"}"
                             >
                               <AutosizeInput
                                 $clearable={true}
@@ -695,6 +711,7 @@ exports[`Select component renders component in search mode and false for multipl
                                           "width": "2px",
                                         }
                                       }
+                                      test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"boxSizing\\":\\"content-box\\",\\"width\\":\\"2px\\",\\"maxWidth\\":\\"100%\\",\\"background\\":\\"transparent\\",\\"border\\":\\"none\\",\\"boxShadow\\":\\"none\\",\\"display\\":\\"inline-block\\",\\"outline\\":\\"none\\",\\"marginTop\\":\\"0\\",\\"marginBottom\\":\\"0\\",\\"marginLeft\\":\\"0\\",\\"marginRight\\":\\"0\\",\\"paddingTop\\":\\"0\\",\\"paddingBottom\\":\\"0\\",\\"paddingLeft\\":\\"0\\",\\"paddingRight\\":\\"0\\"}"
                                       value=""
                                     />
                                   </MockStyledComponent>
@@ -725,6 +742,7 @@ exports[`Select component renders component in search mode and false for multipl
                                           "whiteSpace": "pre",
                                         }
                                       }
+                                      test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"position\\":\\"absolute\\",\\"top\\":0,\\"left\\":0,\\"visibility\\":\\"hidden\\",\\"height\\":0,\\"overflow\\":\\"scroll\\",\\"whiteSpace\\":\\"pre\\"}"
                                     />
                                   </MockStyledComponent>
                                 </ForwardRef>
@@ -778,6 +796,7 @@ exports[`Select component renders component in search mode and false for multipl
                                   "whiteSpace": "nowrap",
                                 }
                               }
+                              test-style-stringified="{\\"color\\":\\"$theme.colors.inputPlaceholder\\",\\"maxWidth\\":\\"100%\\",\\"overflow\\":\\"hidden\\",\\"textOverflow\\":\\"ellipsis\\",\\"whiteSpace\\":\\"nowrap\\"}"
                             >
                               Select...
                             </div>
@@ -834,6 +853,7 @@ exports[`Select component renders component in search mode and false for multipl
                             "position": "relative",
                           }
                         }
+                        test-style-stringified="{\\"boxSizing\\":\\"border-box\\",\\"position\\":\\"relative\\",\\"display\\":\\"flex\\",\\"flexShrink\\":0,\\"alignItems\\":\\"center\\",\\"alignSelf\\":\\"stretch\\",\\"paddingRight\\":\\"$theme.sizing.scale500\\"}"
                       />
                     </MockStyledComponent>
                   </ForwardRef>
@@ -1001,19 +1021,23 @@ exports[`Select component renders component in search mode and true for multiple
                 data-baseweb="select"
                 styled-component="true"
                 test-style="[object Object]"
+                test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"boxSizing\\":\\"border-box\\",\\"position\\":\\"relative\\",\\"width\\":\\"100%\\"}"
               >
                 <div
                   styled-component="true"
                   test-style="[object Object]"
+                  test-style-stringified="{\\"borderTopLeftRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"borderTopRightRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"borderBottomRightRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"borderBottomLeftRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"boxSizing\\":\\"border-box\\",\\"overflow\\":\\"hidden\\",\\"width\\":\\"100%\\",\\"display\\":\\"flex\\",\\"justifyContent\\":\\"space-between\\",\\"cursor\\":\\"text\\",\\"borderWidth\\":\\"2px\\",\\"borderStyle\\":\\"solid\\",\\"transitionProperty\\":\\"border, box-shadow, background-color\\",\\"transitionDuration\\":\\"$theme.animation.timing100\\",\\"transitionTimingFunction\\":\\"$theme.animation.easeOutCurve\\",\\"color\\":\\"$theme.colors.contentPrimary\\",\\"borderColor\\":\\"$theme.colors.inputBorder\\",\\"backgroundColor\\":\\"$theme.colors.inputFill\\"}"
                 >
                   <div
                     styled-component="true"
                     test-style="[object Object]"
+                    test-style-stringified="{\\"display\\":\\"flex\\",\\"fill\\":\\"currentColor\\",\\"color\\":\\"$theme.colors.contentPrimary\\",\\"height\\":\\"100%\\",\\"width\\":\\"$theme.sizing.scale600\\",\\"cursor\\":\\"pointer\\",\\"position\\":\\"absolute\\",\\"top\\":0,\\"left\\":\\"$theme.sizing.scale500\\",\\"alignItems\\":\\"center\\"}"
                   >
                     <svg
                       data-baseweb="icon"
                       styled-component="true"
                       test-style="[object Object]"
+                      test-style-stringified="{\\"display\\":\\"inline-block\\",\\"fill\\":\\"currentColor\\",\\"color\\":\\"currentColor\\",\\"height\\":\\"16px\\",\\"width\\":\\"16px\\"}"
                       viewBox="0 0 24 24"
                     >
                       <title>
@@ -1029,10 +1053,12 @@ exports[`Select component renders component in search mode and true for multiple
                   <div
                     styled-component="true"
                     test-style="[object Object]"
+                    test-style-stringified="{\\"boxSizing\\":\\"border-box\\",\\"position\\":\\"relative\\",\\"flexGrow\\":1,\\"flexShrink\\":1,\\"flexBasis\\":\\"0%\\",\\"display\\":\\"flex\\",\\"alignItems\\":\\"center\\",\\"flexWrap\\":\\"nowrap\\",\\"overflow\\":\\"hidden\\",\\"paddingTop\\":\\"$theme.sizing.scale400\\",\\"paddingBottom\\":\\"$theme.sizing.scale400\\",\\"paddingLeft\\":\\"calc($theme.sizing.scale1000 - $theme.sizing.scale0)\\",\\"paddingRight\\":0}"
                   >
                     <div
                       styled-component="true"
                       test-style="[object Object]"
+                      test-style-stringified="{\\"position\\":\\"relative\\",\\"display\\":\\"inline-block\\",\\"maxWidth\\":\\"100%\\",\\"backgroundColor\\":\\"transparent\\",\\"border\\":\\"none\\",\\"boxShadow\\":\\"none\\",\\"boxSizing\\":\\"border-box\\",\\"outline\\":\\"none\\",\\"marginTop\\":0,\\"marginBottom\\":0,\\"marginLeft\\":0,\\"marginRight\\":0,\\"paddingTop\\":0,\\"paddingBottom\\":0,\\"paddingLeft\\":0,\\"paddingRight\\":0,\\"height\\":\\"auto\\",\\"maxHeight\\":\\"$theme.typography.font300.lineHeight\\"}"
                     >
                       <input
                         aria-autocomplete="list"
@@ -1043,16 +1069,19 @@ exports[`Select component renders component in search mode and true for multiple
                         styled-component="true"
                         tabindex="0"
                         test-style="[object Object]"
+                        test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"boxSizing\\":\\"content-box\\",\\"width\\":\\"2px\\",\\"maxWidth\\":\\"100%\\",\\"background\\":\\"transparent\\",\\"border\\":\\"none\\",\\"boxShadow\\":\\"none\\",\\"display\\":\\"inline-block\\",\\"outline\\":\\"none\\",\\"marginTop\\":\\"0\\",\\"marginBottom\\":\\"0\\",\\"marginLeft\\":\\"0\\",\\"marginRight\\":\\"0\\",\\"paddingTop\\":\\"0\\",\\"paddingBottom\\":\\"0\\",\\"paddingLeft\\":\\"0\\",\\"paddingRight\\":\\"0\\"}"
                         value=""
                       />
                       <div
                         styled-component="true"
                         test-style="[object Object]"
+                        test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"position\\":\\"absolute\\",\\"top\\":0,\\"left\\":0,\\"visibility\\":\\"hidden\\",\\"height\\":0,\\"overflow\\":\\"scroll\\",\\"whiteSpace\\":\\"pre\\"}"
                       />
                     </div>
                     <div
                       styled-component="true"
                       test-style="[object Object]"
+                      test-style-stringified="{\\"color\\":\\"$theme.colors.inputPlaceholder\\",\\"maxWidth\\":\\"100%\\",\\"overflow\\":\\"hidden\\",\\"textOverflow\\":\\"ellipsis\\",\\"whiteSpace\\":\\"nowrap\\"}"
                     >
                       Select...
                     </div>
@@ -1060,6 +1089,7 @@ exports[`Select component renders component in search mode and true for multiple
                   <div
                     styled-component="true"
                     test-style="[object Object]"
+                    test-style-stringified="{\\"boxSizing\\":\\"border-box\\",\\"position\\":\\"relative\\",\\"display\\":\\"flex\\",\\"flexShrink\\":0,\\"alignItems\\":\\"center\\",\\"alignSelf\\":\\"stretch\\",\\"paddingRight\\":\\"$theme.sizing.scale500\\"}"
                   />
                 </div>
               </div>,
@@ -1085,6 +1115,7 @@ exports[`Select component renders component in search mode and true for multiple
                 "width": "100%",
               }
             }
+            test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"boxSizing\\":\\"border-box\\",\\"position\\":\\"relative\\",\\"width\\":\\"100%\\"}"
           >
             <ForwardRef
               $clearable={true}
@@ -1160,6 +1191,7 @@ exports[`Select component renders component in search mode and true for multiple
                       "width": "100%",
                     }
                   }
+                  test-style-stringified="{\\"borderTopLeftRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"borderTopRightRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"borderBottomRightRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"borderBottomLeftRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"boxSizing\\":\\"border-box\\",\\"overflow\\":\\"hidden\\",\\"width\\":\\"100%\\",\\"display\\":\\"flex\\",\\"justifyContent\\":\\"space-between\\",\\"cursor\\":\\"text\\",\\"borderWidth\\":\\"2px\\",\\"borderStyle\\":\\"solid\\",\\"transitionProperty\\":\\"border, box-shadow, background-color\\",\\"transitionDuration\\":\\"$theme.animation.timing100\\",\\"transitionTimingFunction\\":\\"$theme.animation.easeOutCurve\\",\\"color\\":\\"$theme.colors.contentPrimary\\",\\"borderColor\\":\\"$theme.colors.inputBorder\\",\\"backgroundColor\\":\\"$theme.colors.inputFill\\"}"
                 >
                   <ForwardRef
                     $clearable={true}
@@ -1212,6 +1244,7 @@ exports[`Select component renders component in search mode and true for multiple
                             "width": "$theme.sizing.scale600",
                           }
                         }
+                        test-style-stringified="{\\"display\\":\\"flex\\",\\"fill\\":\\"currentColor\\",\\"color\\":\\"$theme.colors.contentPrimary\\",\\"height\\":\\"100%\\",\\"width\\":\\"$theme.sizing.scale600\\",\\"cursor\\":\\"pointer\\",\\"position\\":\\"absolute\\",\\"top\\":0,\\"left\\":\\"$theme.sizing.scale500\\",\\"alignItems\\":\\"center\\"}"
                       >
                         <Search
                           size={16}
@@ -1245,6 +1278,7 @@ exports[`Select component renders component in search mode and true for multiple
                                       "width": "16px",
                                     }
                                   }
+                                  test-style-stringified="{\\"display\\":\\"inline-block\\",\\"fill\\":\\"currentColor\\",\\"color\\":\\"currentColor\\",\\"height\\":\\"16px\\",\\"width\\":\\"16px\\"}"
                                   viewBox="0 0 24 24"
                                 >
                                   <title>
@@ -1317,6 +1351,7 @@ exports[`Select component renders component in search mode and true for multiple
                             "position": "relative",
                           }
                         }
+                        test-style-stringified="{\\"boxSizing\\":\\"border-box\\",\\"position\\":\\"relative\\",\\"flexGrow\\":1,\\"flexShrink\\":1,\\"flexBasis\\":\\"0%\\",\\"display\\":\\"flex\\",\\"alignItems\\":\\"center\\",\\"flexWrap\\":\\"nowrap\\",\\"overflow\\":\\"hidden\\",\\"paddingTop\\":\\"$theme.sizing.scale400\\",\\"paddingBottom\\":\\"$theme.sizing.scale400\\",\\"paddingLeft\\":\\"calc($theme.sizing.scale1000 - $theme.sizing.scale0)\\",\\"paddingRight\\":0}"
                       >
                         <ForwardRef
                           $clearable={true}
@@ -1377,6 +1412,7 @@ exports[`Select component renders component in search mode and true for multiple
                                   "position": "relative",
                                 }
                               }
+                              test-style-stringified="{\\"position\\":\\"relative\\",\\"display\\":\\"inline-block\\",\\"maxWidth\\":\\"100%\\",\\"backgroundColor\\":\\"transparent\\",\\"border\\":\\"none\\",\\"boxShadow\\":\\"none\\",\\"boxSizing\\":\\"border-box\\",\\"outline\\":\\"none\\",\\"marginTop\\":0,\\"marginBottom\\":0,\\"marginLeft\\":0,\\"marginRight\\":0,\\"paddingTop\\":0,\\"paddingBottom\\":0,\\"paddingLeft\\":0,\\"paddingRight\\":0,\\"height\\":\\"auto\\",\\"maxHeight\\":\\"$theme.typography.font300.lineHeight\\"}"
                             >
                               <AutosizeInput
                                 $clearable={true}
@@ -1543,6 +1579,7 @@ exports[`Select component renders component in search mode and true for multiple
                                           "width": "2px",
                                         }
                                       }
+                                      test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"boxSizing\\":\\"content-box\\",\\"width\\":\\"2px\\",\\"maxWidth\\":\\"100%\\",\\"background\\":\\"transparent\\",\\"border\\":\\"none\\",\\"boxShadow\\":\\"none\\",\\"display\\":\\"inline-block\\",\\"outline\\":\\"none\\",\\"marginTop\\":\\"0\\",\\"marginBottom\\":\\"0\\",\\"marginLeft\\":\\"0\\",\\"marginRight\\":\\"0\\",\\"paddingTop\\":\\"0\\",\\"paddingBottom\\":\\"0\\",\\"paddingLeft\\":\\"0\\",\\"paddingRight\\":\\"0\\"}"
                                       value=""
                                     />
                                   </MockStyledComponent>
@@ -1573,6 +1610,7 @@ exports[`Select component renders component in search mode and true for multiple
                                           "whiteSpace": "pre",
                                         }
                                       }
+                                      test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"position\\":\\"absolute\\",\\"top\\":0,\\"left\\":0,\\"visibility\\":\\"hidden\\",\\"height\\":0,\\"overflow\\":\\"scroll\\",\\"whiteSpace\\":\\"pre\\"}"
                                     />
                                   </MockStyledComponent>
                                 </ForwardRef>
@@ -1626,6 +1664,7 @@ exports[`Select component renders component in search mode and true for multiple
                                   "whiteSpace": "nowrap",
                                 }
                               }
+                              test-style-stringified="{\\"color\\":\\"$theme.colors.inputPlaceholder\\",\\"maxWidth\\":\\"100%\\",\\"overflow\\":\\"hidden\\",\\"textOverflow\\":\\"ellipsis\\",\\"whiteSpace\\":\\"nowrap\\"}"
                             >
                               Select...
                             </div>
@@ -1682,6 +1721,7 @@ exports[`Select component renders component in search mode and true for multiple
                             "position": "relative",
                           }
                         }
+                        test-style-stringified="{\\"boxSizing\\":\\"border-box\\",\\"position\\":\\"relative\\",\\"display\\":\\"flex\\",\\"flexShrink\\":0,\\"alignItems\\":\\"center\\",\\"alignSelf\\":\\"stretch\\",\\"paddingRight\\":\\"$theme.sizing.scale500\\"}"
                       />
                     </MockStyledComponent>
                   </ForwardRef>
@@ -1849,18 +1889,22 @@ exports[`Select component renders component in select mode and false for multipl
                 data-baseweb="select"
                 styled-component="true"
                 test-style="[object Object]"
+                test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"boxSizing\\":\\"border-box\\",\\"position\\":\\"relative\\",\\"width\\":\\"100%\\"}"
               >
                 <div
                   styled-component="true"
                   test-style="[object Object]"
+                  test-style-stringified="{\\"borderTopLeftRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"borderTopRightRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"borderBottomRightRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"borderBottomLeftRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"boxSizing\\":\\"border-box\\",\\"overflow\\":\\"hidden\\",\\"width\\":\\"100%\\",\\"display\\":\\"flex\\",\\"justifyContent\\":\\"space-between\\",\\"cursor\\":\\"text\\",\\"borderWidth\\":\\"2px\\",\\"borderStyle\\":\\"solid\\",\\"transitionProperty\\":\\"border, box-shadow, background-color\\",\\"transitionDuration\\":\\"$theme.animation.timing100\\",\\"transitionTimingFunction\\":\\"$theme.animation.easeOutCurve\\",\\"color\\":\\"$theme.colors.contentPrimary\\",\\"borderColor\\":\\"$theme.colors.inputBorder\\",\\"backgroundColor\\":\\"$theme.colors.inputFill\\"}"
                 >
                   <div
                     styled-component="true"
                     test-style="[object Object]"
+                    test-style-stringified="{\\"boxSizing\\":\\"border-box\\",\\"position\\":\\"relative\\",\\"flexGrow\\":1,\\"flexShrink\\":1,\\"flexBasis\\":\\"0%\\",\\"display\\":\\"flex\\",\\"alignItems\\":\\"center\\",\\"flexWrap\\":\\"nowrap\\",\\"overflow\\":\\"hidden\\",\\"paddingTop\\":\\"$theme.sizing.scale400\\",\\"paddingBottom\\":\\"$theme.sizing.scale400\\",\\"paddingLeft\\":\\"$theme.sizing.scale400\\",\\"paddingRight\\":0}"
                   >
                     <div
                       styled-component="true"
                       test-style="[object Object]"
+                      test-style-stringified="{\\"position\\":\\"relative\\",\\"display\\":\\"inline-block\\",\\"maxWidth\\":\\"100%\\",\\"backgroundColor\\":\\"transparent\\",\\"border\\":\\"none\\",\\"boxShadow\\":\\"none\\",\\"boxSizing\\":\\"border-box\\",\\"outline\\":\\"none\\",\\"marginTop\\":0,\\"marginBottom\\":0,\\"marginLeft\\":0,\\"marginRight\\":0,\\"paddingTop\\":0,\\"paddingBottom\\":0,\\"paddingLeft\\":0,\\"paddingRight\\":0,\\"height\\":\\"auto\\",\\"maxHeight\\":\\"$theme.typography.font300.lineHeight\\"}"
                     >
                       <input
                         aria-autocomplete="list"
@@ -1871,16 +1915,19 @@ exports[`Select component renders component in select mode and false for multipl
                         styled-component="true"
                         tabindex="0"
                         test-style="[object Object]"
+                        test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"boxSizing\\":\\"content-box\\",\\"width\\":\\"2px\\",\\"maxWidth\\":\\"100%\\",\\"background\\":\\"transparent\\",\\"border\\":\\"none\\",\\"boxShadow\\":\\"none\\",\\"display\\":\\"inline-block\\",\\"outline\\":\\"none\\",\\"marginTop\\":\\"0\\",\\"marginBottom\\":\\"0\\",\\"marginLeft\\":\\"0\\",\\"marginRight\\":\\"0\\",\\"paddingTop\\":\\"0\\",\\"paddingBottom\\":\\"0\\",\\"paddingLeft\\":\\"0\\",\\"paddingRight\\":\\"0\\"}"
                         value=""
                       />
                       <div
                         styled-component="true"
                         test-style="[object Object]"
+                        test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"position\\":\\"absolute\\",\\"top\\":0,\\"left\\":0,\\"visibility\\":\\"hidden\\",\\"height\\":0,\\"overflow\\":\\"scroll\\",\\"whiteSpace\\":\\"pre\\"}"
                       />
                     </div>
                     <div
                       styled-component="true"
                       test-style="[object Object]"
+                      test-style-stringified="{\\"color\\":\\"$theme.colors.inputPlaceholder\\",\\"maxWidth\\":\\"100%\\",\\"overflow\\":\\"hidden\\",\\"textOverflow\\":\\"ellipsis\\",\\"whiteSpace\\":\\"nowrap\\"}"
                     >
                       Select...
                     </div>
@@ -1888,11 +1935,13 @@ exports[`Select component renders component in select mode and false for multipl
                   <div
                     styled-component="true"
                     test-style="[object Object]"
+                    test-style-stringified="{\\"boxSizing\\":\\"border-box\\",\\"position\\":\\"relative\\",\\"display\\":\\"flex\\",\\"flexShrink\\":0,\\"alignItems\\":\\"center\\",\\"alignSelf\\":\\"stretch\\",\\"paddingRight\\":\\"$theme.sizing.scale500\\"}"
                   >
                     <svg
                       data-baseweb="icon"
                       styled-component="true"
                       test-style="[object Object]"
+                      test-style-stringified="{\\"display\\":\\"inline-block\\",\\"fill\\":\\"currentColor\\",\\"color\\":\\"$theme.colors.contentPrimary\\",\\"height\\":\\"$theme.sizing.scale600\\",\\"width\\":\\"$theme.sizing.scale600\\",\\"cursor\\":\\"pointer\\"}"
                       viewBox="0 0 24 24"
                     >
                       <title>
@@ -1927,6 +1976,7 @@ exports[`Select component renders component in select mode and false for multipl
                 "width": "100%",
               }
             }
+            test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"boxSizing\\":\\"border-box\\",\\"position\\":\\"relative\\",\\"width\\":\\"100%\\"}"
           >
             <ForwardRef
               $clearable={true}
@@ -2002,6 +2052,7 @@ exports[`Select component renders component in select mode and false for multipl
                       "width": "100%",
                     }
                   }
+                  test-style-stringified="{\\"borderTopLeftRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"borderTopRightRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"borderBottomRightRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"borderBottomLeftRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"boxSizing\\":\\"border-box\\",\\"overflow\\":\\"hidden\\",\\"width\\":\\"100%\\",\\"display\\":\\"flex\\",\\"justifyContent\\":\\"space-between\\",\\"cursor\\":\\"text\\",\\"borderWidth\\":\\"2px\\",\\"borderStyle\\":\\"solid\\",\\"transitionProperty\\":\\"border, box-shadow, background-color\\",\\"transitionDuration\\":\\"$theme.animation.timing100\\",\\"transitionTimingFunction\\":\\"$theme.animation.easeOutCurve\\",\\"color\\":\\"$theme.colors.contentPrimary\\",\\"borderColor\\":\\"$theme.colors.inputBorder\\",\\"backgroundColor\\":\\"$theme.colors.inputFill\\"}"
                 >
                   <ForwardRef
                     $clearable={true}
@@ -2057,6 +2108,7 @@ exports[`Select component renders component in select mode and false for multipl
                             "position": "relative",
                           }
                         }
+                        test-style-stringified="{\\"boxSizing\\":\\"border-box\\",\\"position\\":\\"relative\\",\\"flexGrow\\":1,\\"flexShrink\\":1,\\"flexBasis\\":\\"0%\\",\\"display\\":\\"flex\\",\\"alignItems\\":\\"center\\",\\"flexWrap\\":\\"nowrap\\",\\"overflow\\":\\"hidden\\",\\"paddingTop\\":\\"$theme.sizing.scale400\\",\\"paddingBottom\\":\\"$theme.sizing.scale400\\",\\"paddingLeft\\":\\"$theme.sizing.scale400\\",\\"paddingRight\\":0}"
                       >
                         <ForwardRef
                           $clearable={true}
@@ -2117,6 +2169,7 @@ exports[`Select component renders component in select mode and false for multipl
                                   "position": "relative",
                                 }
                               }
+                              test-style-stringified="{\\"position\\":\\"relative\\",\\"display\\":\\"inline-block\\",\\"maxWidth\\":\\"100%\\",\\"backgroundColor\\":\\"transparent\\",\\"border\\":\\"none\\",\\"boxShadow\\":\\"none\\",\\"boxSizing\\":\\"border-box\\",\\"outline\\":\\"none\\",\\"marginTop\\":0,\\"marginBottom\\":0,\\"marginLeft\\":0,\\"marginRight\\":0,\\"paddingTop\\":0,\\"paddingBottom\\":0,\\"paddingLeft\\":0,\\"paddingRight\\":0,\\"height\\":\\"auto\\",\\"maxHeight\\":\\"$theme.typography.font300.lineHeight\\"}"
                             >
                               <AutosizeInput
                                 $clearable={true}
@@ -2283,6 +2336,7 @@ exports[`Select component renders component in select mode and false for multipl
                                           "width": "2px",
                                         }
                                       }
+                                      test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"boxSizing\\":\\"content-box\\",\\"width\\":\\"2px\\",\\"maxWidth\\":\\"100%\\",\\"background\\":\\"transparent\\",\\"border\\":\\"none\\",\\"boxShadow\\":\\"none\\",\\"display\\":\\"inline-block\\",\\"outline\\":\\"none\\",\\"marginTop\\":\\"0\\",\\"marginBottom\\":\\"0\\",\\"marginLeft\\":\\"0\\",\\"marginRight\\":\\"0\\",\\"paddingTop\\":\\"0\\",\\"paddingBottom\\":\\"0\\",\\"paddingLeft\\":\\"0\\",\\"paddingRight\\":\\"0\\"}"
                                       value=""
                                     />
                                   </MockStyledComponent>
@@ -2313,6 +2367,7 @@ exports[`Select component renders component in select mode and false for multipl
                                           "whiteSpace": "pre",
                                         }
                                       }
+                                      test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"position\\":\\"absolute\\",\\"top\\":0,\\"left\\":0,\\"visibility\\":\\"hidden\\",\\"height\\":0,\\"overflow\\":\\"scroll\\",\\"whiteSpace\\":\\"pre\\"}"
                                     />
                                   </MockStyledComponent>
                                 </ForwardRef>
@@ -2366,6 +2421,7 @@ exports[`Select component renders component in select mode and false for multipl
                                   "whiteSpace": "nowrap",
                                 }
                               }
+                              test-style-stringified="{\\"color\\":\\"$theme.colors.inputPlaceholder\\",\\"maxWidth\\":\\"100%\\",\\"overflow\\":\\"hidden\\",\\"textOverflow\\":\\"ellipsis\\",\\"whiteSpace\\":\\"nowrap\\"}"
                             >
                               Select...
                             </div>
@@ -2422,6 +2478,7 @@ exports[`Select component renders component in select mode and false for multipl
                             "position": "relative",
                           }
                         }
+                        test-style-stringified="{\\"boxSizing\\":\\"border-box\\",\\"position\\":\\"relative\\",\\"display\\":\\"flex\\",\\"flexShrink\\":0,\\"alignItems\\":\\"center\\",\\"alignSelf\\":\\"stretch\\",\\"paddingRight\\":\\"$theme.sizing.scale500\\"}"
                       >
                         <TriangleDown
                           $clearable={true}
@@ -2540,6 +2597,7 @@ exports[`Select component renders component in select mode and false for multipl
                                       "width": "$theme.sizing.scale600",
                                     }
                                   }
+                                  test-style-stringified="{\\"display\\":\\"inline-block\\",\\"fill\\":\\"currentColor\\",\\"color\\":\\"$theme.colors.contentPrimary\\",\\"height\\":\\"$theme.sizing.scale600\\",\\"width\\":\\"$theme.sizing.scale600\\",\\"cursor\\":\\"pointer\\"}"
                                   viewBox="0 0 24 24"
                                 >
                                   <title>
@@ -2720,18 +2778,22 @@ exports[`Select component renders component in select mode and true for multiple
                 data-baseweb="select"
                 styled-component="true"
                 test-style="[object Object]"
+                test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"boxSizing\\":\\"border-box\\",\\"position\\":\\"relative\\",\\"width\\":\\"100%\\"}"
               >
                 <div
                   styled-component="true"
                   test-style="[object Object]"
+                  test-style-stringified="{\\"borderTopLeftRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"borderTopRightRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"borderBottomRightRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"borderBottomLeftRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"boxSizing\\":\\"border-box\\",\\"overflow\\":\\"hidden\\",\\"width\\":\\"100%\\",\\"display\\":\\"flex\\",\\"justifyContent\\":\\"space-between\\",\\"cursor\\":\\"text\\",\\"borderWidth\\":\\"2px\\",\\"borderStyle\\":\\"solid\\",\\"transitionProperty\\":\\"border, box-shadow, background-color\\",\\"transitionDuration\\":\\"$theme.animation.timing100\\",\\"transitionTimingFunction\\":\\"$theme.animation.easeOutCurve\\",\\"color\\":\\"$theme.colors.contentPrimary\\",\\"borderColor\\":\\"$theme.colors.inputBorder\\",\\"backgroundColor\\":\\"$theme.colors.inputFill\\"}"
                 >
                   <div
                     styled-component="true"
                     test-style="[object Object]"
+                    test-style-stringified="{\\"boxSizing\\":\\"border-box\\",\\"position\\":\\"relative\\",\\"flexGrow\\":1,\\"flexShrink\\":1,\\"flexBasis\\":\\"0%\\",\\"display\\":\\"flex\\",\\"alignItems\\":\\"center\\",\\"flexWrap\\":\\"nowrap\\",\\"overflow\\":\\"hidden\\",\\"paddingTop\\":\\"$theme.sizing.scale400\\",\\"paddingBottom\\":\\"$theme.sizing.scale400\\",\\"paddingLeft\\":\\"$theme.sizing.scale400\\",\\"paddingRight\\":0}"
                   >
                     <div
                       styled-component="true"
                       test-style="[object Object]"
+                      test-style-stringified="{\\"position\\":\\"relative\\",\\"display\\":\\"inline-block\\",\\"maxWidth\\":\\"100%\\",\\"backgroundColor\\":\\"transparent\\",\\"border\\":\\"none\\",\\"boxShadow\\":\\"none\\",\\"boxSizing\\":\\"border-box\\",\\"outline\\":\\"none\\",\\"marginTop\\":0,\\"marginBottom\\":0,\\"marginLeft\\":0,\\"marginRight\\":0,\\"paddingTop\\":0,\\"paddingBottom\\":0,\\"paddingLeft\\":0,\\"paddingRight\\":0,\\"height\\":\\"auto\\",\\"maxHeight\\":\\"$theme.typography.font300.lineHeight\\"}"
                     >
                       <input
                         aria-autocomplete="list"
@@ -2742,16 +2804,19 @@ exports[`Select component renders component in select mode and true for multiple
                         styled-component="true"
                         tabindex="0"
                         test-style="[object Object]"
+                        test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"boxSizing\\":\\"content-box\\",\\"width\\":\\"2px\\",\\"maxWidth\\":\\"100%\\",\\"background\\":\\"transparent\\",\\"border\\":\\"none\\",\\"boxShadow\\":\\"none\\",\\"display\\":\\"inline-block\\",\\"outline\\":\\"none\\",\\"marginTop\\":\\"0\\",\\"marginBottom\\":\\"0\\",\\"marginLeft\\":\\"0\\",\\"marginRight\\":\\"0\\",\\"paddingTop\\":\\"0\\",\\"paddingBottom\\":\\"0\\",\\"paddingLeft\\":\\"0\\",\\"paddingRight\\":\\"0\\"}"
                         value=""
                       />
                       <div
                         styled-component="true"
                         test-style="[object Object]"
+                        test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"position\\":\\"absolute\\",\\"top\\":0,\\"left\\":0,\\"visibility\\":\\"hidden\\",\\"height\\":0,\\"overflow\\":\\"scroll\\",\\"whiteSpace\\":\\"pre\\"}"
                       />
                     </div>
                     <div
                       styled-component="true"
                       test-style="[object Object]"
+                      test-style-stringified="{\\"color\\":\\"$theme.colors.inputPlaceholder\\",\\"maxWidth\\":\\"100%\\",\\"overflow\\":\\"hidden\\",\\"textOverflow\\":\\"ellipsis\\",\\"whiteSpace\\":\\"nowrap\\"}"
                     >
                       Select...
                     </div>
@@ -2759,11 +2824,13 @@ exports[`Select component renders component in select mode and true for multiple
                   <div
                     styled-component="true"
                     test-style="[object Object]"
+                    test-style-stringified="{\\"boxSizing\\":\\"border-box\\",\\"position\\":\\"relative\\",\\"display\\":\\"flex\\",\\"flexShrink\\":0,\\"alignItems\\":\\"center\\",\\"alignSelf\\":\\"stretch\\",\\"paddingRight\\":\\"$theme.sizing.scale500\\"}"
                   >
                     <svg
                       data-baseweb="icon"
                       styled-component="true"
                       test-style="[object Object]"
+                      test-style-stringified="{\\"display\\":\\"inline-block\\",\\"fill\\":\\"currentColor\\",\\"color\\":\\"$theme.colors.contentPrimary\\",\\"height\\":\\"$theme.sizing.scale600\\",\\"width\\":\\"$theme.sizing.scale600\\",\\"cursor\\":\\"pointer\\"}"
                       viewBox="0 0 24 24"
                     >
                       <title>
@@ -2798,6 +2865,7 @@ exports[`Select component renders component in select mode and true for multiple
                 "width": "100%",
               }
             }
+            test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"boxSizing\\":\\"border-box\\",\\"position\\":\\"relative\\",\\"width\\":\\"100%\\"}"
           >
             <ForwardRef
               $clearable={true}
@@ -2873,6 +2941,7 @@ exports[`Select component renders component in select mode and true for multiple
                       "width": "100%",
                     }
                   }
+                  test-style-stringified="{\\"borderTopLeftRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"borderTopRightRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"borderBottomRightRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"borderBottomLeftRadius\\":\\"$theme.borders.inputBorderRadius\\",\\"boxSizing\\":\\"border-box\\",\\"overflow\\":\\"hidden\\",\\"width\\":\\"100%\\",\\"display\\":\\"flex\\",\\"justifyContent\\":\\"space-between\\",\\"cursor\\":\\"text\\",\\"borderWidth\\":\\"2px\\",\\"borderStyle\\":\\"solid\\",\\"transitionProperty\\":\\"border, box-shadow, background-color\\",\\"transitionDuration\\":\\"$theme.animation.timing100\\",\\"transitionTimingFunction\\":\\"$theme.animation.easeOutCurve\\",\\"color\\":\\"$theme.colors.contentPrimary\\",\\"borderColor\\":\\"$theme.colors.inputBorder\\",\\"backgroundColor\\":\\"$theme.colors.inputFill\\"}"
                 >
                   <ForwardRef
                     $clearable={true}
@@ -2928,6 +2997,7 @@ exports[`Select component renders component in select mode and true for multiple
                             "position": "relative",
                           }
                         }
+                        test-style-stringified="{\\"boxSizing\\":\\"border-box\\",\\"position\\":\\"relative\\",\\"flexGrow\\":1,\\"flexShrink\\":1,\\"flexBasis\\":\\"0%\\",\\"display\\":\\"flex\\",\\"alignItems\\":\\"center\\",\\"flexWrap\\":\\"nowrap\\",\\"overflow\\":\\"hidden\\",\\"paddingTop\\":\\"$theme.sizing.scale400\\",\\"paddingBottom\\":\\"$theme.sizing.scale400\\",\\"paddingLeft\\":\\"$theme.sizing.scale400\\",\\"paddingRight\\":0}"
                       >
                         <ForwardRef
                           $clearable={true}
@@ -2988,6 +3058,7 @@ exports[`Select component renders component in select mode and true for multiple
                                   "position": "relative",
                                 }
                               }
+                              test-style-stringified="{\\"position\\":\\"relative\\",\\"display\\":\\"inline-block\\",\\"maxWidth\\":\\"100%\\",\\"backgroundColor\\":\\"transparent\\",\\"border\\":\\"none\\",\\"boxShadow\\":\\"none\\",\\"boxSizing\\":\\"border-box\\",\\"outline\\":\\"none\\",\\"marginTop\\":0,\\"marginBottom\\":0,\\"marginLeft\\":0,\\"marginRight\\":0,\\"paddingTop\\":0,\\"paddingBottom\\":0,\\"paddingLeft\\":0,\\"paddingRight\\":0,\\"height\\":\\"auto\\",\\"maxHeight\\":\\"$theme.typography.font300.lineHeight\\"}"
                             >
                               <AutosizeInput
                                 $clearable={true}
@@ -3154,6 +3225,7 @@ exports[`Select component renders component in select mode and true for multiple
                                           "width": "2px",
                                         }
                                       }
+                                      test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"boxSizing\\":\\"content-box\\",\\"width\\":\\"2px\\",\\"maxWidth\\":\\"100%\\",\\"background\\":\\"transparent\\",\\"border\\":\\"none\\",\\"boxShadow\\":\\"none\\",\\"display\\":\\"inline-block\\",\\"outline\\":\\"none\\",\\"marginTop\\":\\"0\\",\\"marginBottom\\":\\"0\\",\\"marginLeft\\":\\"0\\",\\"marginRight\\":\\"0\\",\\"paddingTop\\":\\"0\\",\\"paddingBottom\\":\\"0\\",\\"paddingLeft\\":\\"0\\",\\"paddingRight\\":\\"0\\"}"
                                       value=""
                                     />
                                   </MockStyledComponent>
@@ -3184,6 +3256,7 @@ exports[`Select component renders component in select mode and true for multiple
                                           "whiteSpace": "pre",
                                         }
                                       }
+                                      test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"position\\":\\"absolute\\",\\"top\\":0,\\"left\\":0,\\"visibility\\":\\"hidden\\",\\"height\\":0,\\"overflow\\":\\"scroll\\",\\"whiteSpace\\":\\"pre\\"}"
                                     />
                                   </MockStyledComponent>
                                 </ForwardRef>
@@ -3237,6 +3310,7 @@ exports[`Select component renders component in select mode and true for multiple
                                   "whiteSpace": "nowrap",
                                 }
                               }
+                              test-style-stringified="{\\"color\\":\\"$theme.colors.inputPlaceholder\\",\\"maxWidth\\":\\"100%\\",\\"overflow\\":\\"hidden\\",\\"textOverflow\\":\\"ellipsis\\",\\"whiteSpace\\":\\"nowrap\\"}"
                             >
                               Select...
                             </div>
@@ -3293,6 +3367,7 @@ exports[`Select component renders component in select mode and true for multiple
                             "position": "relative",
                           }
                         }
+                        test-style-stringified="{\\"boxSizing\\":\\"border-box\\",\\"position\\":\\"relative\\",\\"display\\":\\"flex\\",\\"flexShrink\\":0,\\"alignItems\\":\\"center\\",\\"alignSelf\\":\\"stretch\\",\\"paddingRight\\":\\"$theme.sizing.scale500\\"}"
                       >
                         <TriangleDown
                           $clearable={true}
@@ -3411,6 +3486,7 @@ exports[`Select component renders component in select mode and true for multiple
                                       "width": "$theme.sizing.scale600",
                                     }
                                   }
+                                  test-style-stringified="{\\"display\\":\\"inline-block\\",\\"fill\\":\\"currentColor\\",\\"color\\":\\"$theme.colors.contentPrimary\\",\\"height\\":\\"$theme.sizing.scale600\\",\\"width\\":\\"$theme.sizing.scale600\\",\\"cursor\\":\\"pointer\\"}"
                                   viewBox="0 0 24 24"
                                 >
                                   <title>

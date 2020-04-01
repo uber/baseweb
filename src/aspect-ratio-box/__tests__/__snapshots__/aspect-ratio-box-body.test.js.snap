@@ -45,6 +45,7 @@ exports[`AspectRatioBoxBody renders: with default styles 1`] = `
                 "width": "100%",
               }
             }
+            test-style-stringified="{\\"position\\":\\"absolute\\",\\"width\\":\\"100%\\",\\"top\\":0,\\"bottom\\":0}"
           />
         </MockStyledComponent>
       </ForwardRef>
@@ -137,6 +138,7 @@ exports[`AspectRatioBoxBody renders: with overridden styles 1`] = `
                 "width": "100%",
               }
             }
+            test-style-stringified="{\\"position\\":\\"absolute\\",\\"width\\":\\"100%\\",\\"top\\":0,\\"bottom\\":0,\\"marginBottom\\":\\"10px\\"}"
           />
         </MockStyledComponent>
       </ForwardRef>
