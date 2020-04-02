@@ -219,13 +219,16 @@ export default class Datepicker extends React.Component<
         }
       }
     } else {
-      let date = new Date(inputValue);
+      const dateString = this.normalizeDashes(inputValue);
+      let date = new Date(dateString);
       const formatString = this.props.formatString;
       if (formatString) {
-        if (inputValue.replace(/ /g, '').length < formatString.length) {
+        // Prevent early parsing of value.
+        // Eg 25.12.2 will be transformed to 25.12.0002 formatted from date to string
+        if (dateString.replace(/ /g, '').length < formatString.length) {
           date = null;
         } else {
-          date = parse(inputValue, formatString, new Date());
+          date = parse(dateString, formatString, new Date());
         }
       }
 
