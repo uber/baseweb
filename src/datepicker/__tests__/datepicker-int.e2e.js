@@ -13,33 +13,19 @@ const {mount} = require('../../../e2e/helpers');
 const selectors = {
   input: 'input',
   calendar: '[data-baseweb="calendar"]',
-  day: '[aria-label="Choose vasárnap, március 10. 2019. It\'s available."]',
-  day2: '[aria-label="Choose csütörtök, március 28. 2019. It\'s available."]',
-  monthYearSelectButton: '[data-id="monthYearSelectButton"]',
-  monthYearSelectMenu: '[data-id="monthYearSelectMenu"]',
+  day: '[aria-label="Selected. Tuesday, March 31st. 2020. It\'s available."]',
 };
 
 describe('Datepicker, Int', () => {
-  it('selects range - int', async () => {
+  it('parses input with formatString', async () => {
     await mount(page, 'datepicker-int');
     await page.waitFor(selectors.input);
     await page.click(selectors.input);
-    await page.waitFor(selectors.calendar);
-    await page.click(selectors.day);
-    await page.waitFor(selectors.calendar);
-    const selectedValue1 = await page.$eval(
-      selectors.input,
-      input => input.value,
-    );
-    expect(selectedValue1).toBe('2019 vasárnap 10');
-    await page.click(selectors.day2);
-    await page.waitFor(selectors.calendar, {
-      hidden: true,
-    });
-    const selectedValue2 = await page.$eval(
-      selectors.input,
-      input => input.value,
-    );
-    expect(selectedValue2).toBe('2019 vasárnap 10 – 2019 csütörtök 28');
+
+    await page.type('14.12.2020');
+    const inputValue = await page.$eval(selectors.input, input => input.value);
+    expect(inputValue).toBe('14.12.2020');
+
+    await page.waitFor(selectors.day);
   });
 });

@@ -15,9 +15,12 @@ export default function Scenario() {
   return (
     <StatefulDatepicker
       aria-label="Select a date"
-      formatString="dd.MM.yyyy"
+      formatString="yyyy EEEE d"
+      placeholder="dd.mm.yyyy – dd.mm.yyyy"
       locale={hu}
+      highlightedDate={new Date('March 10, 2019')}
       mask={null}
+      range
       overrides={{
         MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
         MonthYearSelectStatefulMenu: {
