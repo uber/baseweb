@@ -46,32 +46,117 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
               <div
                 data-baseweb="drawer"
                 styled-component="true"
-                test-style="[object Object]"
+                test-style="{
+  \\"position\\": \\"fixed\\",
+  \\"overflow\\": \\"auto\\",
+  \\"right\\": 0,
+  \\"bottom\\": 0,
+  \\"top\\": 0,
+  \\"left\\": 0
+}"
               >
                 <div
                   styled-component="true"
-                  test-style="[object Object]"
+                  test-style="{
+  \\"position\\": \\"fixed\\",
+  \\"right\\": 0,
+  \\"bottom\\": 0,
+  \\"top\\": 0,
+  \\"left\\": 0,
+  \\"backgroundColor\\": \\"rgba(0, 0, 0, 0.5)\\",
+  \\"WebkitTapHighlightColor\\": \\"transparent\\",
+  \\"touchAction\\": \\"none\\",
+  \\"opacity\\": 0,
+  \\"transitionProperty\\": \\"opacity\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing400\\",
+  \\"transitionTimingFunction\\": \\"$theme.animation.easeOutCurve\\"
+}"
                 />
                 <div
                   aria-label="drawer"
                   styled-component="true"
-                  test-style="[object Object]"
+                  test-style="{
+  \\"backgroundColor\\": \\"$theme.colors.backgroundPrimary\\",
+  \\"borderTopLeftRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"borderTopRightRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"borderBottomRightRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"borderBottomLeftRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"transform\\": \\"translateX(500px)\\",
+  \\"right\\": \\"-500px\\",
+  \\"top\\": 0,
+  \\"maxWidth\\": \\"100%\\",
+  \\"maxHeight\\": \\"100%\\",
+  \\"width\\": \\"500px\\",
+  \\"height\\": \\"100%\\",
+  \\"opacity\\": 0,
+  \\"transitionProperty\\": \\"opacity, transform\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing400\\",
+  \\"transitionTimingFunction\\": \\"$theme.animation.easeOutCurve\\",
+  \\"display\\": \\"flex\\",
+  \\"position\\": \\"fixed\\"
+}"
                 >
                   <div
                     styled-component="true"
-                    test-style="[object Object]"
+                    test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"marginTop\\": \\"$theme.sizing.scale900\\",
+  \\"marginBottom\\": \\"$theme.sizing.scale900\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale900\\",
+  \\"marginRight\\": \\"$theme.sizing.scale900\\",
+  \\"overflow\\": \\"auto\\",
+  \\"width\\": \\"100%\\"
+}"
                   >
                     Drawer Body
                   </div>
                   <button
                     aria-label="Close"
                     styled-component="true"
-                    test-style="[object Object]"
+                    test-style="{
+  \\"background\\": \\"transparent\\",
+  \\"outline\\": 0,
+  \\"paddingLeft\\": 0,
+  \\"paddingTop\\": 0,
+  \\"paddingRight\\": 0,
+  \\"paddingBottom\\": 0,
+  \\"fill\\": \\"$theme.colors.primary\\",
+  \\"transitionProperty\\": \\"fill, border-color\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing100\\",
+  \\"borderWidth\\": \\"1px\\",
+  \\"borderStyle\\": \\"solid\\",
+  \\"borderColor\\": \\"transparent\\",
+  \\":hover\\": {
+    \\"fill\\": \\"$theme.colors.primary600\\"
+  },
+  \\":focus\\": {
+    \\"outline\\": \\"none\\"
+  },
+  \\"position\\": \\"absolute\\",
+  \\"top\\": \\"$theme.sizing.scale500\\",
+  \\"right\\": \\"$theme.sizing.scale500\\",
+  \\"width\\": \\"$theme.sizing.scale800\\",
+  \\"height\\": \\"$theme.sizing.scale800\\",
+  \\"display\\": \\"flex\\",
+  \\"justifyContent\\": \\"center\\",
+  \\"alignItems\\": \\"center\\",
+  \\"cursor\\": \\"pointer\\"
+}"
                   >
                     <svg
                       data-baseweb="icon"
                       styled-component="true"
-                      test-style="[object Object]"
+                      test-style="{
+  \\"display\\": \\"inline-block\\",
+  \\"fill\\": \\"inherit\\",
+  \\"color\\": \\"inherit\\",
+  \\"height\\": \\"inherit\\",
+  \\"width\\": \\"inherit\\"
+}"
                       viewBox="0 0 24 24"
                     >
                       <title>
@@ -117,32 +202,117 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
                 <div
                   data-baseweb="drawer"
                   styled-component="true"
-                  test-style="[object Object]"
+                  test-style="{
+  \\"position\\": \\"fixed\\",
+  \\"overflow\\": \\"auto\\",
+  \\"right\\": 0,
+  \\"bottom\\": 0,
+  \\"top\\": 0,
+  \\"left\\": 0
+}"
                 >
                   <div
                     styled-component="true"
-                    test-style="[object Object]"
+                    test-style="{
+  \\"position\\": \\"fixed\\",
+  \\"right\\": 0,
+  \\"bottom\\": 0,
+  \\"top\\": 0,
+  \\"left\\": 0,
+  \\"backgroundColor\\": \\"rgba(0, 0, 0, 0.5)\\",
+  \\"WebkitTapHighlightColor\\": \\"transparent\\",
+  \\"touchAction\\": \\"none\\",
+  \\"opacity\\": 0,
+  \\"transitionProperty\\": \\"opacity\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing400\\",
+  \\"transitionTimingFunction\\": \\"$theme.animation.easeOutCurve\\"
+}"
                   />
                   <div
                     aria-label="drawer"
                     styled-component="true"
-                    test-style="[object Object]"
+                    test-style="{
+  \\"backgroundColor\\": \\"$theme.colors.backgroundPrimary\\",
+  \\"borderTopLeftRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"borderTopRightRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"borderBottomRightRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"borderBottomLeftRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"transform\\": \\"translateX(500px)\\",
+  \\"right\\": \\"-500px\\",
+  \\"top\\": 0,
+  \\"maxWidth\\": \\"100%\\",
+  \\"maxHeight\\": \\"100%\\",
+  \\"width\\": \\"500px\\",
+  \\"height\\": \\"100%\\",
+  \\"opacity\\": 0,
+  \\"transitionProperty\\": \\"opacity, transform\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing400\\",
+  \\"transitionTimingFunction\\": \\"$theme.animation.easeOutCurve\\",
+  \\"display\\": \\"flex\\",
+  \\"position\\": \\"fixed\\"
+}"
                   >
                     <div
                       styled-component="true"
-                      test-style="[object Object]"
+                      test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"marginTop\\": \\"$theme.sizing.scale900\\",
+  \\"marginBottom\\": \\"$theme.sizing.scale900\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale900\\",
+  \\"marginRight\\": \\"$theme.sizing.scale900\\",
+  \\"overflow\\": \\"auto\\",
+  \\"width\\": \\"100%\\"
+}"
                     >
                       Drawer Body
                     </div>
                     <button
                       aria-label="Close"
                       styled-component="true"
-                      test-style="[object Object]"
+                      test-style="{
+  \\"background\\": \\"transparent\\",
+  \\"outline\\": 0,
+  \\"paddingLeft\\": 0,
+  \\"paddingTop\\": 0,
+  \\"paddingRight\\": 0,
+  \\"paddingBottom\\": 0,
+  \\"fill\\": \\"$theme.colors.primary\\",
+  \\"transitionProperty\\": \\"fill, border-color\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing100\\",
+  \\"borderWidth\\": \\"1px\\",
+  \\"borderStyle\\": \\"solid\\",
+  \\"borderColor\\": \\"transparent\\",
+  \\":hover\\": {
+    \\"fill\\": \\"$theme.colors.primary600\\"
+  },
+  \\":focus\\": {
+    \\"outline\\": \\"none\\"
+  },
+  \\"position\\": \\"absolute\\",
+  \\"top\\": \\"$theme.sizing.scale500\\",
+  \\"right\\": \\"$theme.sizing.scale500\\",
+  \\"width\\": \\"$theme.sizing.scale800\\",
+  \\"height\\": \\"$theme.sizing.scale800\\",
+  \\"display\\": \\"flex\\",
+  \\"justifyContent\\": \\"center\\",
+  \\"alignItems\\": \\"center\\",
+  \\"cursor\\": \\"pointer\\"
+}"
                     >
                       <svg
                         data-baseweb="icon"
                         styled-component="true"
-                        test-style="[object Object]"
+                        test-style="{
+  \\"display\\": \\"inline-block\\",
+  \\"fill\\": \\"inherit\\",
+  \\"color\\": \\"inherit\\",
+  \\"height\\": \\"inherit\\",
+  \\"width\\": \\"inherit\\"
+}"
                         viewBox="0 0 24 24"
                       >
                         <title>
@@ -203,32 +373,117 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
                   "current": <div
                     data-baseweb="drawer"
                     styled-component="true"
-                    test-style="[object Object]"
+                    test-style="{
+  \\"position\\": \\"fixed\\",
+  \\"overflow\\": \\"auto\\",
+  \\"right\\": 0,
+  \\"bottom\\": 0,
+  \\"top\\": 0,
+  \\"left\\": 0
+}"
                   >
                     <div
                       styled-component="true"
-                      test-style="[object Object]"
+                      test-style="{
+  \\"position\\": \\"fixed\\",
+  \\"right\\": 0,
+  \\"bottom\\": 0,
+  \\"top\\": 0,
+  \\"left\\": 0,
+  \\"backgroundColor\\": \\"rgba(0, 0, 0, 0.5)\\",
+  \\"WebkitTapHighlightColor\\": \\"transparent\\",
+  \\"touchAction\\": \\"none\\",
+  \\"opacity\\": 0,
+  \\"transitionProperty\\": \\"opacity\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing400\\",
+  \\"transitionTimingFunction\\": \\"$theme.animation.easeOutCurve\\"
+}"
                     />
                     <div
                       aria-label="drawer"
                       styled-component="true"
-                      test-style="[object Object]"
+                      test-style="{
+  \\"backgroundColor\\": \\"$theme.colors.backgroundPrimary\\",
+  \\"borderTopLeftRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"borderTopRightRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"borderBottomRightRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"borderBottomLeftRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"transform\\": \\"translateX(500px)\\",
+  \\"right\\": \\"-500px\\",
+  \\"top\\": 0,
+  \\"maxWidth\\": \\"100%\\",
+  \\"maxHeight\\": \\"100%\\",
+  \\"width\\": \\"500px\\",
+  \\"height\\": \\"100%\\",
+  \\"opacity\\": 0,
+  \\"transitionProperty\\": \\"opacity, transform\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing400\\",
+  \\"transitionTimingFunction\\": \\"$theme.animation.easeOutCurve\\",
+  \\"display\\": \\"flex\\",
+  \\"position\\": \\"fixed\\"
+}"
                     >
                       <div
                         styled-component="true"
-                        test-style="[object Object]"
+                        test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"marginTop\\": \\"$theme.sizing.scale900\\",
+  \\"marginBottom\\": \\"$theme.sizing.scale900\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale900\\",
+  \\"marginRight\\": \\"$theme.sizing.scale900\\",
+  \\"overflow\\": \\"auto\\",
+  \\"width\\": \\"100%\\"
+}"
                       >
                         Drawer Body
                       </div>
                       <button
                         aria-label="Close"
                         styled-component="true"
-                        test-style="[object Object]"
+                        test-style="{
+  \\"background\\": \\"transparent\\",
+  \\"outline\\": 0,
+  \\"paddingLeft\\": 0,
+  \\"paddingTop\\": 0,
+  \\"paddingRight\\": 0,
+  \\"paddingBottom\\": 0,
+  \\"fill\\": \\"$theme.colors.primary\\",
+  \\"transitionProperty\\": \\"fill, border-color\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing100\\",
+  \\"borderWidth\\": \\"1px\\",
+  \\"borderStyle\\": \\"solid\\",
+  \\"borderColor\\": \\"transparent\\",
+  \\":hover\\": {
+    \\"fill\\": \\"$theme.colors.primary600\\"
+  },
+  \\":focus\\": {
+    \\"outline\\": \\"none\\"
+  },
+  \\"position\\": \\"absolute\\",
+  \\"top\\": \\"$theme.sizing.scale500\\",
+  \\"right\\": \\"$theme.sizing.scale500\\",
+  \\"width\\": \\"$theme.sizing.scale800\\",
+  \\"height\\": \\"$theme.sizing.scale800\\",
+  \\"display\\": \\"flex\\",
+  \\"justifyContent\\": \\"center\\",
+  \\"alignItems\\": \\"center\\",
+  \\"cursor\\": \\"pointer\\"
+}"
                       >
                         <svg
                           data-baseweb="icon"
                           styled-component="true"
-                          test-style="[object Object]"
+                          test-style="{
+  \\"display\\": \\"inline-block\\",
+  \\"fill\\": \\"inherit\\",
+  \\"color\\": \\"inherit\\",
+  \\"height\\": \\"inherit\\",
+  \\"width\\": \\"inherit\\"
+}"
                           viewBox="0 0 24 24"
                         >
                           <title>
