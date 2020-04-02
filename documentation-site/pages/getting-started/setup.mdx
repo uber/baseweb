@@ -135,6 +135,16 @@ There are detailed guides for Styletron setup for the following frameworks:
 - [Other React applications](https://www.styletron.org/getting-started/#with-react)
 - [Bedrock](http://t.uber.com/base-bedrock) (Uber only)
 
+When using **Gatsby** and `gatsby-plugin-styletron`, make sure to place `BaseProvider` into the root component of your application (typically `layout.js`) and not into `gatsby-client.js`. This will ensure the correct order of
+
+```
+<StyletronProvider>
+  <BaseProvider />
+</StyletronProvider>
+```
+
+nesting. Otherwise, you could see this console warning: "_Did you forget to provide a Styletron engine instance..._".
+
 ## Base Web for Designers
 
 Base Web is published on Figma Communities, so your design team can take advantage of the Base Web components too. Read more [here](https://baseweb.design/blog/base-figma-community/).
