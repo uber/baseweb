@@ -5,41 +5,20 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import colors from './color-tokens.js';
-import getSemanticColors from './color-semantic-tokens.js';
-import getColorComponentTokens from './color-component-tokens.js';
-import getDeprecatedSemanticColors from './color-deprecated-semantic-tokens.js';
-import borders from './borders.js';
-import lighting from '../shared/lighting.js';
-import getTypography from '../shared/typography.js';
-import animation from '../shared/animation.js';
-import breakpoints from '../shared/breakpoints.js';
-import grid from '../shared/grid.js';
-import mediaQuery from '../shared/media-query.js';
-import sizing from '../shared/sizing.js';
+import {defaultPrimaryFontFamily as primaryFontFamily} from '../shared/typography.js';
+import createTheme from '../creator.js';
+import darkColorTokens from './color-tokens.js';
 
 import type {ThemeT} from '../../styles/types.js';
+import type {PrimitivesT} from '../types.js';
 
-export const DarkTheme: ThemeT = {
-  name: 'dark-theme',
-  colors: {
-    ...colors,
-    ...getColorComponentTokens(),
-    ...getDeprecatedSemanticColors(),
-    ...getSemanticColors(),
-  },
-  animation,
-  breakpoints,
-  borders,
-  direction: 'auto',
-  grid,
-  lighting,
-  mediaQuery,
-  sizing,
-  typography: getTypography(),
-  // TODO(#2318) Remove it in the next v10 major version.
-  // Do not use.
-  zIndex: {
-    modal: 2000,
-  },
+export const darkThemePrimitives: PrimitivesT = {
+  ...darkColorTokens,
+  primaryFontFamily,
 };
+
+export const DarkTheme: ThemeT = createTheme(
+  darkThemePrimitives,
+  {name: 'dark-theme'},
+  {isDark: true},
+);

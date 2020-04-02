@@ -6,23 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import createTheme from './creator.js';
-import {LightTheme} from './light-theme/light-theme.js';
+import {LightTheme, lightThemePrimitives} from './light-theme/light-theme.js';
 import {LightThemeMove} from './move-theme/light-theme-with-move.js';
-import lightColorTokens from './light-theme/color-tokens.js';
-import {fontTokens} from './shared/typography.js';
-import {DarkTheme} from './dark-theme/dark-theme.js';
+import {DarkTheme, darkThemePrimitives} from './dark-theme/dark-theme.js';
 import {DarkThemeMove} from './move-theme/dark-theme-with-move.js';
-import darkColorTokens from './dark-theme/color-tokens.js';
-
-const lightThemePrimitives = {
-  ...lightColorTokens,
-  ...fontTokens,
-};
-
-const darkThemePrimitives = {
-  ...darkColorTokens,
-  ...fontTokens,
-};
 
 export {
   createTheme,

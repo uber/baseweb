@@ -17,7 +17,7 @@ import getDarkComponentColorTokens from './dark-theme/color-component-tokens.js'
 import getDarkDeprecatedSemanticColorTokens from './dark-theme/color-deprecated-semantic-tokens.js';
 import darkBorders from './dark-theme/borders.js';
 import lighting from './shared/lighting.js';
-import sharedBorders from './shared/borders.js';
+import borders from './shared/borders.js';
 import getTypography from './shared/typography.js';
 import animation from './shared/animation.js';
 import breakpoints from './shared/breakpoints.js';
@@ -37,23 +37,17 @@ export default function createTheme(
   options?: {isDark?: boolean} = {},
 ): ThemeT {
   const {primaryFontFamily, ...colorTokens} = primitives;
-  const {colors, borders} = deriveColorsAndBorders(colorTokens, options.isDark);
   const theme = {
     animation,
-    borders,
+    borders: options.isDark ? darkBorders : borders,
     breakpoints,
-    colors,
+    colors: getColors(colorTokens, options.isDark),
     direction: 'auto',
     grid,
     lighting,
     mediaQuery,
     sizing,
-    typography: primaryFontFamily
-      ? // have to check if primaryFontFamily override is passed in
-        // and use it to build the typography theme value
-        // otherwise the default primaryFontFamily value is used
-        getTypography({primaryFontFamily})
-      : getTypography(),
+    typography: getTypography(primaryFontFamily),
     // TODO(#2318) Remove in v10, the next major version.
     // Do not use.
     zIndex: {
@@ -64,22 +58,19 @@ export default function createTheme(
   return deepMerge(theme, overrides);
 }
 
-function deriveColorsAndBorders(colorTokens, isDark = false) {
+function getColors(colorTokens, isDark = false) {
   // The following vary depending on if the theme is light or dark.
-  let borders;
   let defaultColorTokens;
   let getComponentColorTokens;
   let getDeprecatedSemanticColorTokens;
   let getSemanticColorTokens;
 
   if (isDark) {
-    borders = darkBorders;
     defaultColorTokens = darkColorTokens;
     getComponentColorTokens = getDarkComponentColorTokens;
     getDeprecatedSemanticColorTokens = getDarkDeprecatedSemanticColorTokens;
     getSemanticColorTokens = getDarkSemanticColorTokens;
   } else {
-    borders = sharedBorders;
     defaultColorTokens = lightColorTokens;
     getComponentColorTokens = getLightComponentColorTokens;
     getDeprecatedSemanticColorTokens = getLightDeprecatedSemanticColorTokens;
@@ -87,13 +78,10 @@ function deriveColorsAndBorders(colorTokens, isDark = false) {
   }
 
   return {
-    borders,
-    colors: {
-      ...defaultColorTokens,
-      ...colorTokens,
-      ...getComponentColorTokens(colorTokens),
-      ...getDeprecatedSemanticColorTokens(colorTokens),
-      ...getSemanticColorTokens(colorTokens),
-    },
+    ...defaultColorTokens,
+    ...colorTokens,
+    ...getComponentColorTokens(colorTokens),
+    ...getDeprecatedSemanticColorTokens(colorTokens),
+    ...getSemanticColorTokens(colorTokens),
   };
 }
