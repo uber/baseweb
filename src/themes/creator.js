@@ -7,12 +7,17 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import deepMerge from '../utils/deep-merge.js';
-import colorTokens from './light-theme/color-tokens.js';
-import getSemanticColors from './light-theme/color-semantic-tokens.js';
-import getColorComponentTokens from './light-theme/color-component-tokens.js';
-import getDeprecatedSemanticColors from './light-theme/color-deprecated-semantic-tokens.js';
+import lightColorTokens from './light-theme/color-tokens.js';
+import lightGetSemanticColors from './light-theme/color-semantic-tokens.js';
+import lightGetColorComponentTokens from './light-theme/color-component-tokens.js';
+import lightGetDeprecatedSemanticColors from './light-theme/color-deprecated-semantic-tokens.js';
+import darkColorTokens from './dark-theme/color-tokens.js';
+import darkGetSemanticColors from './dark-theme/color-semantic-tokens.js';
+import darkGetColorComponentTokens from './dark-theme/color-component-tokens.js';
+import darkGetDeprecatedSemanticColors from './dark-theme/color-deprecated-semantic-tokens.js';
+import darkBorders from './dark-theme/borders.js';
 import lighting from './shared/lighting.js';
-import borders from './shared/borders.js';
+import sharedBorders from './shared/borders.js';
 import getTypography from './shared/typography.js';
 import animation from './shared/animation.js';
 import breakpoints from './shared/breakpoints.js';
@@ -24,25 +29,20 @@ import type {ThemeT} from '../styles/types.js';
 import type {PrimitivesT} from './types.js';
 
 export default function createTheme(
-  // overrides for colorTokens + primatyFontFamily
-  themeBuildingPrimitives: PrimitivesT,
+  // Used to derive various theme properties.
+  primitives: PrimitivesT,
+  // Used to override default values and theme properties derived from primitives.
   overrides?: {},
+  // Options for generating the final theme object.
+  options?: {isDark?: boolean} = {},
 ): ThemeT {
-  // extract font-family from the themeBuildingPrimitives
-  const {primaryFontFamily, ...colors} = themeBuildingPrimitives;
-  // color keys in the themeBuildingPrimitives are the same as
-  // the colorTokens so we just extend it with overrides
-  // passed as an argument
-  const colorTokensWithOverrides = {...colorTokens, ...colors};
+  const {primaryFontFamily, ...primitiveColorTokens} = primitives;
+  const {colors, borders} = deriveColorsAndBorders(
+    primitiveColorTokens,
+    options.isDark,
+  );
   const theme = {
-    colors: {
-      ...colorTokensWithOverrides,
-      // get component color tokens based on the colors with overrides
-      ...getColorComponentTokens(colorTokensWithOverrides),
-      // get deprecated semantic color tokens based on the colors with overrides
-      ...getDeprecatedSemanticColors(colorTokensWithOverrides),
-      ...getSemanticColors(colorTokensWithOverrides),
-    },
+    colors,
     animation,
     breakpoints,
     borders,
@@ -63,5 +63,42 @@ export default function createTheme(
       modal: 2000,
     },
   };
+
   return deepMerge(theme, overrides);
+}
+
+function deriveColorsAndBorders(primitiveColorTokens, isDark = false) {
+  // The following vary depending on if the theme is light or dark.
+  let defaultColorTokens;
+  let getColorComponentTokens;
+  let getDeprecatedSemanticColors;
+  let getSemanticColors;
+  let borders;
+
+  if (isDark) {
+    defaultColorTokens = darkColorTokens;
+    getColorComponentTokens = darkGetColorComponentTokens;
+    getDeprecatedSemanticColors = darkGetDeprecatedSemanticColors;
+    getSemanticColors = darkGetSemanticColors;
+    borders = darkBorders;
+  } else {
+    defaultColorTokens = lightColorTokens;
+    getColorComponentTokens = lightGetColorComponentTokens;
+    getDeprecatedSemanticColors = lightGetDeprecatedSemanticColors;
+    getSemanticColors = lightGetSemanticColors;
+    borders = sharedBorders;
+  }
+
+  // Override default color tokens with passed in primitive color tokens.
+  const colorTokens = {...defaultColorTokens, ...primitiveColorTokens};
+
+  return {
+    colors: {
+      ...colorTokens,
+      ...getColorComponentTokens(colorTokens),
+      ...getDeprecatedSemanticColors(colorTokens),
+      ...getSemanticColors(colorTokens),
+    },
+    borders,
+  };
 }
