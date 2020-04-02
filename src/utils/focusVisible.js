@@ -157,7 +157,7 @@ export const forkFocus = (
   rootProps: any,
   handler: (e: SyntheticEvent<>) => void,
 ) => (e: SyntheticEvent<>) => {
-  if (typeof rootProps.onFocus === 'function') {
+  if (rootProps && typeof rootProps.onFocus === 'function') {
     rootProps.onFocus(e);
   }
   handler(e);
@@ -168,7 +168,7 @@ export const forkBlur = (
   rootProps: any,
   handler: (e: SyntheticEvent<>) => void,
 ) => (e: SyntheticEvent<>) => {
-  if (typeof rootProps.onBlur === 'function') {
+  if (rootProps && typeof rootProps.onBlur === 'function') {
     rootProps.onBlur(e);
   }
   handler(e);

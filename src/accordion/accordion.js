@@ -6,7 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
+
+import {Override} from '../helpers/override.js';
+
 import {Root as StyledRoot} from './styled-components.js';
 import {STATE_CHANGE_TYPE} from './constants.js';
 import type {
@@ -15,6 +17,10 @@ import type {
   StateChangeTypeT,
   SharedStylePropsArgT,
 } from './types.js';
+
+const Root = Override<$Diff<SharedStylePropsArgT, {$expanded?: ?boolean}>>(
+  StyledRoot,
+);
 
 export default class Accordion extends React.Component<
   AccordionPropsT,
@@ -124,10 +130,8 @@ export default class Accordion extends React.Component<
   render() {
     const sharedProps = this.getSharedProps();
     const {overrides = {}} = this.props;
-    const {Root: RootOverride} = overrides;
-    const [Root, rootProps] = getOverrides(RootOverride, StyledRoot);
     return (
-      <Root data-baseweb="accordion" {...sharedProps} {...rootProps}>
+      <Root data-baseweb="accordion" {...sharedProps} override={overrides.Root}>
         {this.getItems()}
       </Root>
     );

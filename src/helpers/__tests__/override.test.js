@@ -10,7 +10,7 @@ import * as React from 'react';
 import {render, fireEvent, getByTestId} from '@testing-library/react';
 
 import {styled} from '../../styles/index.js';
-import {Override, type OverrideT} from '../override.js';
+import {Override, type OverrideResourceT} from '../override.js';
 
 describe('override hoc', () => {
   it('renders provided component with no overrides', () => {
@@ -159,7 +159,7 @@ describe('override hoc', () => {
     it('does not remount component on parent update', () => {
       const StyledBase = styled('div', {});
       const Base = Override(StyledBase);
-      function Child(props: {overrides: {Base: OverrideT<{}>}}) {
+      function Child(props: {overrides: {Base: OverrideResourceT<{}>}}) {
         return (
           <div>
             <Base override={props.overrides.Base}>default children</Base>
@@ -200,7 +200,7 @@ describe('override hoc', () => {
     it('can override a grandchild props with overrides api', () => {
       const StyledBase = styled('div', {});
       const Base = Override(StyledBase);
-      function Grandchild(props: {overrides?: {Base: OverrideT<{}>}}) {
+      function Grandchild(props: {overrides?: {Base: OverrideResourceT<{}>}}) {
         const {overrides = {}} = props;
         return (
           <div>
@@ -210,7 +210,7 @@ describe('override hoc', () => {
       }
 
       const GrandchildOverride = Override(Grandchild);
-      function Child(props: {overrides?: {Grandchild: OverrideT<{}>}}) {
+      function Child(props: {overrides?: {Grandchild: OverrideResourceT<{}>}}) {
         const {overrides = {}} = props;
         return <GrandchildOverride override={overrides.Grandchild} />;
       }
@@ -235,7 +235,7 @@ describe('override hoc', () => {
     it('can override a grandchild styles with overrides api', () => {
       const StyledBase = styled('div', {});
       const Base = Override(StyledBase);
-      function Grandchild(props: {overrides?: {Base: OverrideT<{}>}}) {
+      function Grandchild(props: {overrides?: {Base: OverrideResourceT<{}>}}) {
         const {overrides = {}} = props;
         return (
           <div>
@@ -245,7 +245,7 @@ describe('override hoc', () => {
       }
 
       const GrandchildOverride = Override(Grandchild);
-      function Child(props: {overrides?: {Grandchild: OverrideT<{}>}}) {
+      function Child(props: {overrides?: {Grandchild: OverrideResourceT<{}>}}) {
         const {overrides = {}} = props;
         return <GrandchildOverride override={overrides.Grandchild} />;
       }
@@ -278,7 +278,7 @@ describe('override hoc', () => {
     it('can override a grandchild component with overrides api', () => {
       const StyledBase = styled('div', {});
       const Base = Override(StyledBase);
-      function Grandchild(props: {overrides?: {Base: OverrideT<{}>}}) {
+      function Grandchild(props: {overrides?: {Base: OverrideResourceT<{}>}}) {
         const {overrides = {}} = props;
         return (
           <div>
@@ -288,7 +288,7 @@ describe('override hoc', () => {
       }
 
       const GrandchildOverride = Override(Grandchild);
-      function Child(props: {overrides?: {Grandchild: OverrideT<{}>}}) {
+      function Child(props: {overrides?: {Grandchild: OverrideResourceT<{}>}}) {
         const {overrides = {}} = props;
         return <GrandchildOverride override={overrides.Grandchild} />;
       }

@@ -10,12 +10,12 @@ import * as React from 'react';
 
 import {styled} from '../../styles/index.js';
 import {Override} from '../override.js';
-import type {OverrideT} from '../override.js';
+import type {OverrideResourceT} from '../override.js';
 import {getOverrides} from '../overrides.js';
 
 const StyledBase = styled('div', {});
 
-function Old(props: {overrides: {Base: OverrideT<{}>}}) {
+function Old(props: {overrides: {Base: OverrideResourceT<{}>}}) {
   const [Base, baseProps] = getOverrides(props.overrides.Base, StyledBase);
   return (
     <div>
@@ -25,7 +25,7 @@ function Old(props: {overrides: {Base: OverrideT<{}>}}) {
 }
 
 const Base = Override(StyledBase);
-function New(props: {overrides: {Base: OverrideT<{}>}}) {
+function New(props: {overrides: {Base: OverrideResourceT<{}>}}) {
   return (
     <div>
       <Base override={props.overrides.Base}>default children</Base>

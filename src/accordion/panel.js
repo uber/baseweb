@@ -6,19 +6,25 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+import {isValidElementType} from 'react-is';
+
 import {LocaleContext} from '../locale/index.js';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import {Override} from '../helpers/override.js';
 import PlusIcon from '../icon/plus.js';
 import CheckIndeterminateIcon from '../icon/check-indeterminate.js';
+import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+
 import {
   PanelContainer as StyledPanelContainer,
   Header as StyledHeader,
   Content as StyledContent,
   ToggleIcon as StyledToggleIcon,
 } from './styled-components.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
-
 import type {PanelPropsT, SharedStylePropsArgT} from './types.js';
+
+const PanelContainer = Override(StyledPanelContainer);
+const Header = Override(StyledHeader);
+const Content = Override(StyledContent);
 
 class Panel extends React.Component<PanelPropsT, {isFocusVisible: boolean}> {
   static defaultProps = {
@@ -77,6 +83,37 @@ class Panel extends React.Component<PanelPropsT, {isFocusVisible: boolean}> {
     };
   }
 
+  maybeIconComponentOverride = (): ?React.ComponentType<SharedStylePropsArgT> => {
+    const overrides = this.props.overrides;
+    if (overrides) {
+      const ToggleIcon = overrides.ToggleIcon;
+      if (typeof ToggleIcon === 'object') {
+        if (ToggleIcon.component && isValidElementType(ToggleIcon.component)) {
+          return ToggleIcon.component;
+        }
+      }
+      if (typeof ToggleIcon === 'function' && isValidElementType(ToggleIcon)) {
+        return ToggleIcon;
+      }
+    }
+    return null;
+  };
+
+  getToggleIconComponent = () => {
+    // it's a bit tricky ¯\_(ツ)_/¯
+    // we only want to use the theme overrides, if it was not override locally
+    const ToggleIconComponentOverride = this.maybeIconComponentOverride();
+    let ToggleIconComponent = PlusIcon;
+    if (ToggleIconComponentOverride) {
+      ToggleIconComponent = ToggleIconComponentOverride;
+    } else {
+      if (this.props.expanded) {
+        ToggleIconComponent = CheckIndeterminateIcon;
+      }
+    }
+    return ToggleIconComponent;
+  };
+
   render() {
     const {
       expanded,
@@ -90,62 +127,32 @@ class Panel extends React.Component<PanelPropsT, {isFocusVisible: boolean}> {
     } = this.props;
 
     const sharedProps = this.getSharedProps();
-    const {
-      PanelContainer: PanelContainerOverride,
-      Header: HeaderOverride,
-      Content: ContentOverride,
-      ToggleIcon: ToggleIconOverride,
-    } = overrides;
-
-    const isIconOverriden =
-      ToggleIconOverride &&
-      (typeof ToggleIconOverride === 'function' ||
-        typeof ToggleIconOverride.component === 'function');
-
-    const [PanelContainer, panelContainerProps] = getOverrides(
-      PanelContainerOverride,
-      StyledPanelContainer,
-    );
-    const [Header, headerProps] = getOverrides(HeaderOverride, StyledHeader);
-    const [Content, contentProps] = getOverrides(
-      ContentOverride,
-      StyledContent,
-    );
-    const [ToggleIcon, toggleIconProps] = getOverrides(
-      ToggleIconOverride,
-      StyledToggleIcon,
-    );
-
-    const toggleIconOverrides = mergeOverrides(
-      {Svg: ToggleIcon},
-      // $FlowFixMe
-      {Svg: ToggleIconOverride},
-    );
-
-    // it's a bit tricky ¯\_(ツ)_/¯
-    // we only want to use the theme overrides, if it was not override locally
-    const ToggleIconComponent = isIconOverriden
-      ? ToggleIcon
-      : expanded
-      ? CheckIndeterminateIcon
-      : PlusIcon;
+    const ToggleIconComponent = this.getToggleIconComponent();
 
     return (
       <LocaleContext.Consumer>
         {locale => (
-          <PanelContainer {...sharedProps} {...panelContainerProps}>
+          <PanelContainer {...sharedProps} override={overrides.PanelContainer}>
             <Header
               tabIndex={0}
               role="button"
               aria-expanded={expanded}
               aria-disabled={disabled || null}
               {...sharedProps}
-              {...headerProps}
               {...(ariaControls ? {'aria-controls': ariaControls} : {})}
               onClick={this.onClick}
               onKeyDown={this.onKeyDown}
-              onFocus={forkFocus(headerProps, this.handleFocus)}
-              onBlur={forkBlur(headerProps, this.handleBlur)}
+              onFocus={
+                overrides.Header && overrides.Header.props
+                  ? forkFocus(overrides.Header.props, this.handleFocus)
+                  : this.handleFocus
+              }
+              onFocus={
+                overrides.Header && overrides.Header.props
+                  ? forkBlur(overrides.Header.props, this.handleBlur)
+                  : this.handleBlur
+              }
+              override={overrides.Header}
             >
               {title}
               <ToggleIconComponent
@@ -154,14 +161,14 @@ class Panel extends React.Component<PanelPropsT, {isFocusVisible: boolean}> {
                   expanded ? locale.accordion.collapse : locale.accordion.expand
                 }
                 {...sharedProps}
-                {...toggleIconProps}
-                overrides={toggleIconOverrides}
+                // $FlowFixMe Icon svg override does not have same props type
+                overrides={{Svg: overrides.ToggleIcon}}
               />
             </Header>
             <Content
               {...sharedProps}
-              {...contentProps}
               {...(ariaControls ? {id: ariaControls} : {})}
+              override={overrides.Content}
             >
               {expanded || renderPanelContent || renderAll ? children : null}
             </Content>

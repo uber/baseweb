@@ -10,61 +10,83 @@ import * as React from 'react';
 import {isValidElementType} from 'react-is';
 
 type StaticPropertyT = {};
-type DynamicPropertyT = ({}) => {};
-type ComponentPropertyT<T> = React.ComponentType<T>;
-type OverridePropertyT = StaticPropertyT | DynamicPropertyT;
+type DynamicPropertyT<A, B> = A => B;
 
-type OverrideObjectT<T> = {|
+type ComponentPropertyT<Props> = React.AbstractComponent<Props>;
+type PropsPropertyT<Props> = StaticPropertyT | DynamicPropertyT<{}, Props>;
+type StylePropertyT = StaticPropertyT | DynamicPropertyT<{}, {}>;
+
+type OverrideConfigT<T> = {|
   component?: ?ComponentPropertyT<T>,
-  props?: ?OverridePropertyT,
-  style?: ?OverridePropertyT,
+  props?: ?PropsPropertyT<T>,
+  style?: ?StylePropertyT,
 |};
 
-export type OverrideT<T> = OverrideObjectT<T> | ComponentPropertyT<T>;
+export type OverrideResourceT<P> = OverrideConfigT<P> | ComponentPropertyT<P>;
 
-export function Override<Config: {}>(
-  Base: React.AbstractComponent<Config>,
-): React.AbstractComponent<Config & {override?: OverrideT<Config>}> {
-  function ConfigureOverride(allProps, ref) {
+function refineResourceToConfig<Props>(
+  resource: OverrideResourceT<Props>,
+): OverrideConfigT<Props> {
+  if (typeof resource === 'object') {
+    return resource;
+  }
+  if (isValidElementType(resource)) {
+    // https://github.com/facebook/flow/issues/6666
+    // eslint-disable-next-line flowtype/no-weak-types
+    const component: ComponentPropertyT<Props> = (resource: any);
+    return {component, props: null, style: null};
+  }
+  return {
+    component: null,
+    props: null,
+    style: null,
+  };
+}
+
+export function Override<Props: {}>(
+  Base: React.AbstractComponent<Props>,
+): React.AbstractComponent<Props & {override: ?OverrideResourceT<Props>}> {
+  function ProxyOverrides(allProps, ref) {
     const {override, ...props} = allProps;
     if (override) {
-      if (isValidElementType(override)) {
-        // https://github.com/facebook/flow/issues/6666
-        // eslint-disable-next-line flowtype/no-weak-types
-        const ComponentOverride = ((override: any): ComponentPropertyT<Config>);
-        // eslint-disable-next-line flowtype/no-weak-types
-        return <ComponentOverride ref={(ref: any)} {...props} />;
+      const config = refineResourceToConfig<Props>(override);
+
+      let Component = Base;
+      if (config.component && isValidElementType(config.component)) {
+        Component = config.component;
       }
 
-      if (typeof override === 'object') {
-        let Component = Base;
-        if (override.component && isValidElementType(override.component)) {
-          Component = override.component;
-        }
-
-        let overrideProps = props;
-        if (typeof override.props === 'object') {
-          overrideProps = {...props, ...override.props};
-        } else if (typeof override.props === 'function') {
-          overrideProps = override.props(props);
-        }
-
-        return (
-          <Component
-            // eslint-disable-next-line flowtype/no-weak-types
-            ref={(ref: any)}
-            $style={override.style}
-            {...overrideProps}
-          />
-        );
+      let overrideProps = props;
+      if (typeof config.props === 'object') {
+        overrideProps = {...props, ...config.props};
+      } else if (typeof config.props === 'function') {
+        overrideProps = config.props(props);
       }
+
+      return <Component ref={ref} $style={config.style} {...overrideProps} />;
     }
-    ConfigureOverride.displayName = Base.displayName;
+    ProxyOverrides.displayName = Base.displayName;
 
     return <Base ref={ref} {...props} />;
   }
 
-  return React.forwardRef<Config & {override?: OverrideT<Config>}, mixed>(
-    ConfigureOverride,
+  return React.forwardRef<Props & {override: ?OverrideResourceT<Props>}, mixed>(
+    ProxyOverrides,
   );
+}
+
+function mergeOverrideResources<Props>(
+  target: OverrideResourceT<Props>,
+  source: OverrideResourceT<Props>,
+): OverrideResourceT<Props> {
+  // TODO
+  return target;
+}
+
+function mergeOverrideCollections<Props>(
+  target: {[string]: OverrideResourceT<Props>},
+  source: {[string]: OverrideResourceT<Props>},
+): {[string]: OverrideResourceT<Props>} {
+  // TODO
+  return target;
 }

@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type {OverrideT} from '../helpers/overrides.js';
+import type {OverrideResourceT} from '../helpers/override.js';
 import {STATE_CHANGE_TYPE} from './constants.js';
 
 export type AccordionStateT = {
@@ -32,16 +32,16 @@ export type PanelStateReducerT = (
   currentState: PanelStateT,
 ) => PanelStateT;
 
-export type AccordionOverridesT<T> = {
-  Root?: OverrideT<T>,
-};
+export type AccordionOverridesT<T> = {|
+  Root?: OverrideResourceT<T>,
+|};
 
-export type PanelOverridesT<T> = {
-  PanelContainer?: OverrideT<T>,
-  Header?: OverrideT<T>,
-  ToggleIcon?: OverrideT<T>,
-  Content?: OverrideT<T>,
-};
+export type PanelOverridesT<T> = {|
+  PanelContainer?: OverrideResourceT<T>,
+  Header?: OverrideResourceT<T>,
+  ToggleIcon?: OverrideResourceT<T>,
+  Content?: OverrideResourceT<T>,
+|};
 
 export type OnChangeHandlerT = ({expanded: boolean}) => mixed;
 
