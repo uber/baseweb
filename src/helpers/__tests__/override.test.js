@@ -19,7 +19,7 @@ describe('override hoc', () => {
     const {container} = render(<Base override={undefined}>text</Base>);
     const element = container.querySelector('p');
     expect(element.textContent).toBe('text');
-    const style = JSON.parse(element.getAttribute('test-style-stringified'));
+    const style = JSON.parse(element.getAttribute('test-style'));
     expect(style.color).toBe('blue');
   });
 
@@ -30,7 +30,7 @@ describe('override hoc', () => {
       const override = {style: {backgroundColor: 'green'}};
       const {container} = render(<Base override={override}>text</Base>);
       const element = container.querySelector('p');
-      const style = JSON.parse(element.getAttribute('test-style-stringified'));
+      const style = JSON.parse(element.getAttribute('test-style'));
       expect(style.color).toBe('blue');
       expect(style.backgroundColor).toBe(override.style.backgroundColor);
     });
@@ -43,7 +43,7 @@ describe('override hoc', () => {
       };
       const {container} = render(<Base override={override}>text</Base>);
       const element = container.querySelector('p');
-      const style = JSON.parse(element.getAttribute('test-style-stringified'));
+      const style = JSON.parse(element.getAttribute('test-style'));
       expect(style.color).toBe('blue');
       expect(style.backgroundColor).toBe('$theme.colors.primary');
     });
@@ -54,7 +54,7 @@ describe('override hoc', () => {
       const override = {style: {color: 'green'}};
       const {container} = render(<Base override={override}>text</Base>);
       const element = container.querySelector('p');
-      const style = JSON.parse(element.getAttribute('test-style-stringified'));
+      const style = JSON.parse(element.getAttribute('test-style'));
       expect(style.color).toBe('green');
     });
 
@@ -66,7 +66,7 @@ describe('override hoc', () => {
       };
       const {container} = render(<Base override={override}>text</Base>);
       const element = container.querySelector('p');
-      const style = JSON.parse(element.getAttribute('test-style-stringified'));
+      const style = JSON.parse(element.getAttribute('test-style'));
       expect(style.color).toBe('$theme.colors.primary');
     });
   });
@@ -137,7 +137,7 @@ describe('override hoc', () => {
       const h1 = container.querySelector('h1');
       expect(h1).not.toBeNull();
       expect(h1.textContent).toBe('text');
-      const style = JSON.parse(h1.getAttribute('test-style-stringified'));
+      const style = JSON.parse(h1.getAttribute('test-style'));
       expect(style.color).toBe('red');
     });
 
@@ -152,7 +152,7 @@ describe('override hoc', () => {
       const h1 = container.querySelector('h1');
       expect(h1).not.toBeNull();
       expect(h1.textContent).toBe('text');
-      const style = JSON.parse(h1.getAttribute('test-style-stringified'));
+      const style = JSON.parse(h1.getAttribute('test-style'));
       expect(style.color).toBe('red');
     });
 
@@ -271,7 +271,7 @@ describe('override hoc', () => {
 
       const {container} = render(<Parent />);
       const element = getByTestId(container, 'xyz');
-      const style = JSON.parse(element.getAttribute('test-style-stringified'));
+      const style = JSON.parse(element.getAttribute('test-style'));
       expect(style.color).toBe('blue');
     });
 

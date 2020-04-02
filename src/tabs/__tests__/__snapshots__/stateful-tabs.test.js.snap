@@ -33,13 +33,10 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
           <div
             data-baseweb="tabs"
             styled-component="true"
-            test-style={
-              Object {
-                "display": "flex",
-                "flexDirection": "column",
-              }
-            }
-            test-style-stringified="{\\"display\\":\\"flex\\",\\"flexDirection\\":\\"column\\"}"
+            test-style="{
+  \\"display\\": \\"flex\\",
+  \\"flexDirection\\": \\"column\\"
+}"
           >
             <ForwardRef
               $disabled={false}
@@ -55,16 +52,13 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                 <div
                   role="tablist"
                   styled-component="true"
-                  test-style={
-                    Object {
-                      "backgroundColor": "$theme.colors.tabBarFill",
-                      "display": "flex",
-                      "flexDirection": "row",
-                      "paddingLeft": "$theme.sizing.scale400",
-                      "paddingRight": "$theme.sizing.scale400",
-                    }
-                  }
-                  test-style-stringified="{\\"display\\":\\"flex\\",\\"flexDirection\\":\\"row\\",\\"paddingLeft\\":\\"$theme.sizing.scale400\\",\\"paddingRight\\":\\"$theme.sizing.scale400\\",\\"backgroundColor\\":\\"$theme.colors.tabBarFill\\"}"
+                  test-style="{
+  \\"display\\": \\"flex\\",
+  \\"flexDirection\\": \\"row\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale400\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale400\\",
+  \\"backgroundColor\\": \\"$theme.colors.tabBarFill\\"
+}"
                 >
                   <TabComponent
                     $orientation="horizontal"
@@ -120,34 +114,31 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                           role="tab"
                           styled-component="true"
                           tabIndex={0}
-                          test-style={
-                            Object {
-                              ":focus": Object {
-                                "color": "$theme.colors.primary",
-                              },
-                              ":hover": Object {
-                                "color": "$theme.colors.primary",
-                              },
-                              "borderBottom": "2px solid $theme.colors.primary",
-                              "boxSizing": "border-box",
-                              "color": "$theme.colors.contentPrimary",
-                              "cursor": "pointer",
-                              "display": "inline-block",
-                              "fontFamily": "$theme.typography.font200.fontFamily",
-                              "fontSize": "$theme.typography.font200.fontSize",
-                              "fontWeight": "$theme.typography.font200.fontWeight",
-                              "lineHeight": "$theme.typography.font200.lineHeight",
-                              "marginLeft": "$theme.sizing.scale200",
-                              "marginRight": "$theme.sizing.scale200",
-                              "outline": "none",
-                              "outlineOffset": "-3px",
-                              "paddingBottom": "$theme.sizing.scale600",
-                              "paddingLeft": "$theme.sizing.scale300",
-                              "paddingRight": "$theme.sizing.scale300",
-                              "paddingTop": "$theme.sizing.scale600",
-                            }
-                          }
-                          test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font200.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font200.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font200.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font200.lineHeight\\",\\"boxSizing\\":\\"border-box\\",\\"color\\":\\"$theme.colors.contentPrimary\\",\\"cursor\\":\\"pointer\\",\\"paddingTop\\":\\"$theme.sizing.scale600\\",\\"paddingBottom\\":\\"$theme.sizing.scale600\\",\\"paddingLeft\\":\\"$theme.sizing.scale300\\",\\"paddingRight\\":\\"$theme.sizing.scale300\\",\\"marginLeft\\":\\"$theme.sizing.scale200\\",\\"marginRight\\":\\"$theme.sizing.scale200\\",\\"outline\\":\\"none\\",\\"outlineOffset\\":\\"-3px\\",\\"borderBottom\\":\\"2px solid $theme.colors.primary\\",\\"display\\":\\"inline-block\\",\\":focus\\":{\\"color\\":\\"$theme.colors.primary\\"},\\":hover\\":{\\"color\\":\\"$theme.colors.primary\\"}}"
+                          test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"cursor\\": \\"pointer\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale600\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale300\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale300\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale200\\",
+  \\"marginRight\\": \\"$theme.sizing.scale200\\",
+  \\"outline\\": \\"none\\",
+  \\"outlineOffset\\": \\"-3px\\",
+  \\"borderBottom\\": \\"2px solid $theme.colors.primary\\",
+  \\"display\\": \\"inline-block\\",
+  \\":focus\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  },
+  \\":hover\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  }
+}"
                         >
                           Tab Link 1
                         </div>
@@ -208,34 +199,31 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                           role="tab"
                           styled-component="true"
                           tabIndex={0}
-                          test-style={
-                            Object {
-                              ":focus": Object {
-                                "color": "$theme.colors.primary",
-                              },
-                              ":hover": Object {
-                                "color": "$theme.colors.primary",
-                              },
-                              "borderBottom": "2px solid transparent",
-                              "boxSizing": "border-box",
-                              "color": "$theme.colors.tabColor",
-                              "cursor": "pointer",
-                              "display": "inline-block",
-                              "fontFamily": "$theme.typography.font200.fontFamily",
-                              "fontSize": "$theme.typography.font200.fontSize",
-                              "fontWeight": "$theme.typography.font200.fontWeight",
-                              "lineHeight": "$theme.typography.font200.lineHeight",
-                              "marginLeft": "$theme.sizing.scale200",
-                              "marginRight": "$theme.sizing.scale200",
-                              "outline": "none",
-                              "outlineOffset": "-3px",
-                              "paddingBottom": "$theme.sizing.scale600",
-                              "paddingLeft": "$theme.sizing.scale300",
-                              "paddingRight": "$theme.sizing.scale300",
-                              "paddingTop": "$theme.sizing.scale600",
-                            }
-                          }
-                          test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font200.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font200.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font200.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font200.lineHeight\\",\\"boxSizing\\":\\"border-box\\",\\"color\\":\\"$theme.colors.tabColor\\",\\"cursor\\":\\"pointer\\",\\"paddingTop\\":\\"$theme.sizing.scale600\\",\\"paddingBottom\\":\\"$theme.sizing.scale600\\",\\"paddingLeft\\":\\"$theme.sizing.scale300\\",\\"paddingRight\\":\\"$theme.sizing.scale300\\",\\"marginLeft\\":\\"$theme.sizing.scale200\\",\\"marginRight\\":\\"$theme.sizing.scale200\\",\\"outline\\":\\"none\\",\\"outlineOffset\\":\\"-3px\\",\\"borderBottom\\":\\"2px solid transparent\\",\\"display\\":\\"inline-block\\",\\":focus\\":{\\"color\\":\\"$theme.colors.primary\\"},\\":hover\\":{\\"color\\":\\"$theme.colors.primary\\"}}"
+                          test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"color\\": \\"$theme.colors.tabColor\\",
+  \\"cursor\\": \\"pointer\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale600\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale300\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale300\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale200\\",
+  \\"marginRight\\": \\"$theme.sizing.scale200\\",
+  \\"outline\\": \\"none\\",
+  \\"outlineOffset\\": \\"-3px\\",
+  \\"borderBottom\\": \\"2px solid transparent\\",
+  \\"display\\": \\"inline-block\\",
+  \\":focus\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  },
+  \\":hover\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  }
+}"
                         >
                           Tab Link 2
                         </div>
@@ -296,34 +284,31 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                           role="tab"
                           styled-component="true"
                           tabIndex={0}
-                          test-style={
-                            Object {
-                              ":focus": Object {
-                                "color": "$theme.colors.primary",
-                              },
-                              ":hover": Object {
-                                "color": "$theme.colors.primary",
-                              },
-                              "borderBottom": "2px solid transparent",
-                              "boxSizing": "border-box",
-                              "color": "$theme.colors.tabColor",
-                              "cursor": "pointer",
-                              "display": "inline-block",
-                              "fontFamily": "$theme.typography.font200.fontFamily",
-                              "fontSize": "$theme.typography.font200.fontSize",
-                              "fontWeight": "$theme.typography.font200.fontWeight",
-                              "lineHeight": "$theme.typography.font200.lineHeight",
-                              "marginLeft": "$theme.sizing.scale200",
-                              "marginRight": "$theme.sizing.scale200",
-                              "outline": "none",
-                              "outlineOffset": "-3px",
-                              "paddingBottom": "$theme.sizing.scale600",
-                              "paddingLeft": "$theme.sizing.scale300",
-                              "paddingRight": "$theme.sizing.scale300",
-                              "paddingTop": "$theme.sizing.scale600",
-                            }
-                          }
-                          test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font200.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font200.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font200.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font200.lineHeight\\",\\"boxSizing\\":\\"border-box\\",\\"color\\":\\"$theme.colors.tabColor\\",\\"cursor\\":\\"pointer\\",\\"paddingTop\\":\\"$theme.sizing.scale600\\",\\"paddingBottom\\":\\"$theme.sizing.scale600\\",\\"paddingLeft\\":\\"$theme.sizing.scale300\\",\\"paddingRight\\":\\"$theme.sizing.scale300\\",\\"marginLeft\\":\\"$theme.sizing.scale200\\",\\"marginRight\\":\\"$theme.sizing.scale200\\",\\"outline\\":\\"none\\",\\"outlineOffset\\":\\"-3px\\",\\"borderBottom\\":\\"2px solid transparent\\",\\"display\\":\\"inline-block\\",\\":focus\\":{\\"color\\":\\"$theme.colors.primary\\"},\\":hover\\":{\\"color\\":\\"$theme.colors.primary\\"}}"
+                          test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"color\\": \\"$theme.colors.tabColor\\",
+  \\"cursor\\": \\"pointer\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale600\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale300\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale300\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale200\\",
+  \\"marginRight\\": \\"$theme.sizing.scale200\\",
+  \\"outline\\": \\"none\\",
+  \\"outlineOffset\\": \\"-3px\\",
+  \\"borderBottom\\": \\"2px solid transparent\\",
+  \\"display\\": \\"inline-block\\",
+  \\":focus\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  },
+  \\":hover\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  }
+}"
                         >
                           Tab Link 3
                         </div>
@@ -353,20 +338,17 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                   aria-labelledby="0"
                   role="tabpanel"
                   styled-component="true"
-                  test-style={
-                    Object {
-                      "display": "block",
-                      "fontFamily": "$theme.typography.font300.fontFamily",
-                      "fontSize": "$theme.typography.font300.fontSize",
-                      "fontWeight": "$theme.typography.font300.fontWeight",
-                      "lineHeight": "$theme.typography.font300.lineHeight",
-                      "paddingBottom": "$theme.sizing.scale500",
-                      "paddingLeft": "$theme.sizing.scale800",
-                      "paddingRight": "$theme.sizing.scale800",
-                      "paddingTop": "$theme.sizing.scale500",
-                    }
-                  }
-                  test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"display\\":\\"block\\",\\"paddingLeft\\":\\"$theme.sizing.scale800\\",\\"paddingRight\\":\\"$theme.sizing.scale800\\",\\"paddingTop\\":\\"$theme.sizing.scale500\\",\\"paddingBottom\\":\\"$theme.sizing.scale500\\"}"
+                  test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"display\\": \\"block\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale800\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale800\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale500\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale500\\"
+}"
                 >
                   Tab 1 content
                 </div>
@@ -392,20 +374,17 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                   aria-labelledby="1"
                   role="tabpanel"
                   styled-component="true"
-                  test-style={
-                    Object {
-                      "display": "none",
-                      "fontFamily": "$theme.typography.font300.fontFamily",
-                      "fontSize": "$theme.typography.font300.fontSize",
-                      "fontWeight": "$theme.typography.font300.fontWeight",
-                      "lineHeight": "$theme.typography.font300.lineHeight",
-                      "paddingBottom": "$theme.sizing.scale500",
-                      "paddingLeft": "$theme.sizing.scale800",
-                      "paddingRight": "$theme.sizing.scale800",
-                      "paddingTop": "$theme.sizing.scale500",
-                    }
-                  }
-                  test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"display\\":\\"none\\",\\"paddingLeft\\":\\"$theme.sizing.scale800\\",\\"paddingRight\\":\\"$theme.sizing.scale800\\",\\"paddingTop\\":\\"$theme.sizing.scale500\\",\\"paddingBottom\\":\\"$theme.sizing.scale500\\"}"
+                  test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"display\\": \\"none\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale800\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale800\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale500\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale500\\"
+}"
                 >
                   Tab 2 content
                 </div>
@@ -431,20 +410,17 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                   aria-labelledby="2"
                   role="tabpanel"
                   styled-component="true"
-                  test-style={
-                    Object {
-                      "display": "none",
-                      "fontFamily": "$theme.typography.font300.fontFamily",
-                      "fontSize": "$theme.typography.font300.fontSize",
-                      "fontWeight": "$theme.typography.font300.fontWeight",
-                      "lineHeight": "$theme.typography.font300.lineHeight",
-                      "paddingBottom": "$theme.sizing.scale500",
-                      "paddingLeft": "$theme.sizing.scale800",
-                      "paddingRight": "$theme.sizing.scale800",
-                      "paddingTop": "$theme.sizing.scale500",
-                    }
-                  }
-                  test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"display\\":\\"none\\",\\"paddingLeft\\":\\"$theme.sizing.scale800\\",\\"paddingRight\\":\\"$theme.sizing.scale800\\",\\"paddingTop\\":\\"$theme.sizing.scale500\\",\\"paddingBottom\\":\\"$theme.sizing.scale500\\"}"
+                  test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"display\\": \\"none\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale800\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale800\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale500\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale500\\"
+}"
                 >
                   Tab 3 content
                 </div>
@@ -499,13 +475,10 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
           <div
             data-baseweb="tabs"
             styled-component="true"
-            test-style={
-              Object {
-                "display": "flex",
-                "flexDirection": "column",
-              }
-            }
-            test-style-stringified="{\\"display\\":\\"flex\\",\\"flexDirection\\":\\"column\\"}"
+            test-style="{
+  \\"display\\": \\"flex\\",
+  \\"flexDirection\\": \\"column\\"
+}"
           >
             <ForwardRef
               $disabled={false}
@@ -521,16 +494,13 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                 <div
                   role="tablist"
                   styled-component="true"
-                  test-style={
-                    Object {
-                      "backgroundColor": "$theme.colors.tabBarFill",
-                      "display": "flex",
-                      "flexDirection": "row",
-                      "paddingLeft": "$theme.sizing.scale400",
-                      "paddingRight": "$theme.sizing.scale400",
-                    }
-                  }
-                  test-style-stringified="{\\"display\\":\\"flex\\",\\"flexDirection\\":\\"row\\",\\"paddingLeft\\":\\"$theme.sizing.scale400\\",\\"paddingRight\\":\\"$theme.sizing.scale400\\",\\"backgroundColor\\":\\"$theme.colors.tabBarFill\\"}"
+                  test-style="{
+  \\"display\\": \\"flex\\",
+  \\"flexDirection\\": \\"row\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale400\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale400\\",
+  \\"backgroundColor\\": \\"$theme.colors.tabBarFill\\"
+}"
                 >
                   <TabComponent
                     $orientation="horizontal"
@@ -586,34 +556,31 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                           role="tab"
                           styled-component="true"
                           tabIndex={0}
-                          test-style={
-                            Object {
-                              ":focus": Object {
-                                "color": "$theme.colors.primary",
-                              },
-                              ":hover": Object {
-                                "color": "$theme.colors.primary",
-                              },
-                              "borderBottom": "2px solid transparent",
-                              "boxSizing": "border-box",
-                              "color": "$theme.colors.tabColor",
-                              "cursor": "pointer",
-                              "display": "inline-block",
-                              "fontFamily": "$theme.typography.font200.fontFamily",
-                              "fontSize": "$theme.typography.font200.fontSize",
-                              "fontWeight": "$theme.typography.font200.fontWeight",
-                              "lineHeight": "$theme.typography.font200.lineHeight",
-                              "marginLeft": "$theme.sizing.scale200",
-                              "marginRight": "$theme.sizing.scale200",
-                              "outline": "none",
-                              "outlineOffset": "-3px",
-                              "paddingBottom": "$theme.sizing.scale600",
-                              "paddingLeft": "$theme.sizing.scale300",
-                              "paddingRight": "$theme.sizing.scale300",
-                              "paddingTop": "$theme.sizing.scale600",
-                            }
-                          }
-                          test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font200.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font200.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font200.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font200.lineHeight\\",\\"boxSizing\\":\\"border-box\\",\\"color\\":\\"$theme.colors.tabColor\\",\\"cursor\\":\\"pointer\\",\\"paddingTop\\":\\"$theme.sizing.scale600\\",\\"paddingBottom\\":\\"$theme.sizing.scale600\\",\\"paddingLeft\\":\\"$theme.sizing.scale300\\",\\"paddingRight\\":\\"$theme.sizing.scale300\\",\\"marginLeft\\":\\"$theme.sizing.scale200\\",\\"marginRight\\":\\"$theme.sizing.scale200\\",\\"outline\\":\\"none\\",\\"outlineOffset\\":\\"-3px\\",\\"borderBottom\\":\\"2px solid transparent\\",\\"display\\":\\"inline-block\\",\\":focus\\":{\\"color\\":\\"$theme.colors.primary\\"},\\":hover\\":{\\"color\\":\\"$theme.colors.primary\\"}}"
+                          test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"color\\": \\"$theme.colors.tabColor\\",
+  \\"cursor\\": \\"pointer\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale600\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale300\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale300\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale200\\",
+  \\"marginRight\\": \\"$theme.sizing.scale200\\",
+  \\"outline\\": \\"none\\",
+  \\"outlineOffset\\": \\"-3px\\",
+  \\"borderBottom\\": \\"2px solid transparent\\",
+  \\"display\\": \\"inline-block\\",
+  \\":focus\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  },
+  \\":hover\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  }
+}"
                         >
                           Tab Link 1
                         </div>
@@ -674,34 +641,31 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                           role="tab"
                           styled-component="true"
                           tabIndex={0}
-                          test-style={
-                            Object {
-                              ":focus": Object {
-                                "color": "$theme.colors.primary",
-                              },
-                              ":hover": Object {
-                                "color": "$theme.colors.primary",
-                              },
-                              "borderBottom": "2px solid $theme.colors.primary",
-                              "boxSizing": "border-box",
-                              "color": "$theme.colors.contentPrimary",
-                              "cursor": "pointer",
-                              "display": "inline-block",
-                              "fontFamily": "$theme.typography.font200.fontFamily",
-                              "fontSize": "$theme.typography.font200.fontSize",
-                              "fontWeight": "$theme.typography.font200.fontWeight",
-                              "lineHeight": "$theme.typography.font200.lineHeight",
-                              "marginLeft": "$theme.sizing.scale200",
-                              "marginRight": "$theme.sizing.scale200",
-                              "outline": "none",
-                              "outlineOffset": "-3px",
-                              "paddingBottom": "$theme.sizing.scale600",
-                              "paddingLeft": "$theme.sizing.scale300",
-                              "paddingRight": "$theme.sizing.scale300",
-                              "paddingTop": "$theme.sizing.scale600",
-                            }
-                          }
-                          test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font200.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font200.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font200.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font200.lineHeight\\",\\"boxSizing\\":\\"border-box\\",\\"color\\":\\"$theme.colors.contentPrimary\\",\\"cursor\\":\\"pointer\\",\\"paddingTop\\":\\"$theme.sizing.scale600\\",\\"paddingBottom\\":\\"$theme.sizing.scale600\\",\\"paddingLeft\\":\\"$theme.sizing.scale300\\",\\"paddingRight\\":\\"$theme.sizing.scale300\\",\\"marginLeft\\":\\"$theme.sizing.scale200\\",\\"marginRight\\":\\"$theme.sizing.scale200\\",\\"outline\\":\\"none\\",\\"outlineOffset\\":\\"-3px\\",\\"borderBottom\\":\\"2px solid $theme.colors.primary\\",\\"display\\":\\"inline-block\\",\\":focus\\":{\\"color\\":\\"$theme.colors.primary\\"},\\":hover\\":{\\"color\\":\\"$theme.colors.primary\\"}}"
+                          test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"cursor\\": \\"pointer\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale600\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale300\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale300\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale200\\",
+  \\"marginRight\\": \\"$theme.sizing.scale200\\",
+  \\"outline\\": \\"none\\",
+  \\"outlineOffset\\": \\"-3px\\",
+  \\"borderBottom\\": \\"2px solid $theme.colors.primary\\",
+  \\"display\\": \\"inline-block\\",
+  \\":focus\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  },
+  \\":hover\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  }
+}"
                         >
                           Tab Link 2
                         </div>
@@ -762,34 +726,31 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                           role="tab"
                           styled-component="true"
                           tabIndex={0}
-                          test-style={
-                            Object {
-                              ":focus": Object {
-                                "color": "$theme.colors.primary",
-                              },
-                              ":hover": Object {
-                                "color": "$theme.colors.primary",
-                              },
-                              "borderBottom": "2px solid transparent",
-                              "boxSizing": "border-box",
-                              "color": "$theme.colors.tabColor",
-                              "cursor": "pointer",
-                              "display": "inline-block",
-                              "fontFamily": "$theme.typography.font200.fontFamily",
-                              "fontSize": "$theme.typography.font200.fontSize",
-                              "fontWeight": "$theme.typography.font200.fontWeight",
-                              "lineHeight": "$theme.typography.font200.lineHeight",
-                              "marginLeft": "$theme.sizing.scale200",
-                              "marginRight": "$theme.sizing.scale200",
-                              "outline": "none",
-                              "outlineOffset": "-3px",
-                              "paddingBottom": "$theme.sizing.scale600",
-                              "paddingLeft": "$theme.sizing.scale300",
-                              "paddingRight": "$theme.sizing.scale300",
-                              "paddingTop": "$theme.sizing.scale600",
-                            }
-                          }
-                          test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font200.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font200.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font200.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font200.lineHeight\\",\\"boxSizing\\":\\"border-box\\",\\"color\\":\\"$theme.colors.tabColor\\",\\"cursor\\":\\"pointer\\",\\"paddingTop\\":\\"$theme.sizing.scale600\\",\\"paddingBottom\\":\\"$theme.sizing.scale600\\",\\"paddingLeft\\":\\"$theme.sizing.scale300\\",\\"paddingRight\\":\\"$theme.sizing.scale300\\",\\"marginLeft\\":\\"$theme.sizing.scale200\\",\\"marginRight\\":\\"$theme.sizing.scale200\\",\\"outline\\":\\"none\\",\\"outlineOffset\\":\\"-3px\\",\\"borderBottom\\":\\"2px solid transparent\\",\\"display\\":\\"inline-block\\",\\":focus\\":{\\"color\\":\\"$theme.colors.primary\\"},\\":hover\\":{\\"color\\":\\"$theme.colors.primary\\"}}"
+                          test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"color\\": \\"$theme.colors.tabColor\\",
+  \\"cursor\\": \\"pointer\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale600\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale300\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale300\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale200\\",
+  \\"marginRight\\": \\"$theme.sizing.scale200\\",
+  \\"outline\\": \\"none\\",
+  \\"outlineOffset\\": \\"-3px\\",
+  \\"borderBottom\\": \\"2px solid transparent\\",
+  \\"display\\": \\"inline-block\\",
+  \\":focus\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  },
+  \\":hover\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  }
+}"
                         >
                           Tab Link 3
                         </div>
@@ -819,20 +780,17 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                   aria-labelledby="0"
                   role="tabpanel"
                   styled-component="true"
-                  test-style={
-                    Object {
-                      "display": "none",
-                      "fontFamily": "$theme.typography.font300.fontFamily",
-                      "fontSize": "$theme.typography.font300.fontSize",
-                      "fontWeight": "$theme.typography.font300.fontWeight",
-                      "lineHeight": "$theme.typography.font300.lineHeight",
-                      "paddingBottom": "$theme.sizing.scale500",
-                      "paddingLeft": "$theme.sizing.scale800",
-                      "paddingRight": "$theme.sizing.scale800",
-                      "paddingTop": "$theme.sizing.scale500",
-                    }
-                  }
-                  test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"display\\":\\"none\\",\\"paddingLeft\\":\\"$theme.sizing.scale800\\",\\"paddingRight\\":\\"$theme.sizing.scale800\\",\\"paddingTop\\":\\"$theme.sizing.scale500\\",\\"paddingBottom\\":\\"$theme.sizing.scale500\\"}"
+                  test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"display\\": \\"none\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale800\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale800\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale500\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale500\\"
+}"
                 />
               </MockStyledComponent>
             </ForwardRef>
@@ -856,20 +814,17 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                   aria-labelledby="1"
                   role="tabpanel"
                   styled-component="true"
-                  test-style={
-                    Object {
-                      "display": "block",
-                      "fontFamily": "$theme.typography.font300.fontFamily",
-                      "fontSize": "$theme.typography.font300.fontSize",
-                      "fontWeight": "$theme.typography.font300.fontWeight",
-                      "lineHeight": "$theme.typography.font300.lineHeight",
-                      "paddingBottom": "$theme.sizing.scale500",
-                      "paddingLeft": "$theme.sizing.scale800",
-                      "paddingRight": "$theme.sizing.scale800",
-                      "paddingTop": "$theme.sizing.scale500",
-                    }
-                  }
-                  test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"display\\":\\"block\\",\\"paddingLeft\\":\\"$theme.sizing.scale800\\",\\"paddingRight\\":\\"$theme.sizing.scale800\\",\\"paddingTop\\":\\"$theme.sizing.scale500\\",\\"paddingBottom\\":\\"$theme.sizing.scale500\\"}"
+                  test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"display\\": \\"block\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale800\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale800\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale500\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale500\\"
+}"
                 >
                   Tab 2 content
                 </div>
@@ -895,20 +850,17 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                   aria-labelledby="2"
                   role="tabpanel"
                   styled-component="true"
-                  test-style={
-                    Object {
-                      "display": "none",
-                      "fontFamily": "$theme.typography.font300.fontFamily",
-                      "fontSize": "$theme.typography.font300.fontSize",
-                      "fontWeight": "$theme.typography.font300.fontWeight",
-                      "lineHeight": "$theme.typography.font300.lineHeight",
-                      "paddingBottom": "$theme.sizing.scale500",
-                      "paddingLeft": "$theme.sizing.scale800",
-                      "paddingRight": "$theme.sizing.scale800",
-                      "paddingTop": "$theme.sizing.scale500",
-                    }
-                  }
-                  test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"display\\":\\"none\\",\\"paddingLeft\\":\\"$theme.sizing.scale800\\",\\"paddingRight\\":\\"$theme.sizing.scale800\\",\\"paddingTop\\":\\"$theme.sizing.scale500\\",\\"paddingBottom\\":\\"$theme.sizing.scale500\\"}"
+                  test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"display\\": \\"none\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale800\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale800\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale500\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale500\\"
+}"
                 />
               </MockStyledComponent>
             </ForwardRef>
@@ -950,13 +902,10 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
           <div
             data-baseweb="tabs"
             styled-component="true"
-            test-style={
-              Object {
-                "display": "flex",
-                "flexDirection": "column",
-              }
-            }
-            test-style-stringified="{\\"display\\":\\"flex\\",\\"flexDirection\\":\\"column\\"}"
+            test-style="{
+  \\"display\\": \\"flex\\",
+  \\"flexDirection\\": \\"column\\"
+}"
           >
             <ForwardRef
               $disabled={false}
@@ -972,16 +921,13 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                 <div
                   role="tablist"
                   styled-component="true"
-                  test-style={
-                    Object {
-                      "backgroundColor": "$theme.colors.tabBarFill",
-                      "display": "flex",
-                      "flexDirection": "row",
-                      "paddingLeft": "$theme.sizing.scale400",
-                      "paddingRight": "$theme.sizing.scale400",
-                    }
-                  }
-                  test-style-stringified="{\\"display\\":\\"flex\\",\\"flexDirection\\":\\"row\\",\\"paddingLeft\\":\\"$theme.sizing.scale400\\",\\"paddingRight\\":\\"$theme.sizing.scale400\\",\\"backgroundColor\\":\\"$theme.colors.tabBarFill\\"}"
+                  test-style="{
+  \\"display\\": \\"flex\\",
+  \\"flexDirection\\": \\"row\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale400\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale400\\",
+  \\"backgroundColor\\": \\"$theme.colors.tabBarFill\\"
+}"
                 >
                   <TabComponent
                     $orientation="horizontal"
@@ -1037,34 +983,31 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                           role="tab"
                           styled-component="true"
                           tabIndex={0}
-                          test-style={
-                            Object {
-                              ":focus": Object {
-                                "color": "$theme.colors.primary",
-                              },
-                              ":hover": Object {
-                                "color": "$theme.colors.primary",
-                              },
-                              "borderBottom": "2px solid $theme.colors.primary",
-                              "boxSizing": "border-box",
-                              "color": "$theme.colors.contentPrimary",
-                              "cursor": "pointer",
-                              "display": "inline-block",
-                              "fontFamily": "$theme.typography.font200.fontFamily",
-                              "fontSize": "$theme.typography.font200.fontSize",
-                              "fontWeight": "$theme.typography.font200.fontWeight",
-                              "lineHeight": "$theme.typography.font200.lineHeight",
-                              "marginLeft": "$theme.sizing.scale200",
-                              "marginRight": "$theme.sizing.scale200",
-                              "outline": "none",
-                              "outlineOffset": "-3px",
-                              "paddingBottom": "$theme.sizing.scale600",
-                              "paddingLeft": "$theme.sizing.scale300",
-                              "paddingRight": "$theme.sizing.scale300",
-                              "paddingTop": "$theme.sizing.scale600",
-                            }
-                          }
-                          test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font200.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font200.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font200.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font200.lineHeight\\",\\"boxSizing\\":\\"border-box\\",\\"color\\":\\"$theme.colors.contentPrimary\\",\\"cursor\\":\\"pointer\\",\\"paddingTop\\":\\"$theme.sizing.scale600\\",\\"paddingBottom\\":\\"$theme.sizing.scale600\\",\\"paddingLeft\\":\\"$theme.sizing.scale300\\",\\"paddingRight\\":\\"$theme.sizing.scale300\\",\\"marginLeft\\":\\"$theme.sizing.scale200\\",\\"marginRight\\":\\"$theme.sizing.scale200\\",\\"outline\\":\\"none\\",\\"outlineOffset\\":\\"-3px\\",\\"borderBottom\\":\\"2px solid $theme.colors.primary\\",\\"display\\":\\"inline-block\\",\\":focus\\":{\\"color\\":\\"$theme.colors.primary\\"},\\":hover\\":{\\"color\\":\\"$theme.colors.primary\\"}}"
+                          test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"cursor\\": \\"pointer\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale600\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale300\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale300\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale200\\",
+  \\"marginRight\\": \\"$theme.sizing.scale200\\",
+  \\"outline\\": \\"none\\",
+  \\"outlineOffset\\": \\"-3px\\",
+  \\"borderBottom\\": \\"2px solid $theme.colors.primary\\",
+  \\"display\\": \\"inline-block\\",
+  \\":focus\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  },
+  \\":hover\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  }
+}"
                         >
                           Tab Link 1
                         </div>
@@ -1125,34 +1068,31 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                           role="tab"
                           styled-component="true"
                           tabIndex={0}
-                          test-style={
-                            Object {
-                              ":focus": Object {
-                                "color": "$theme.colors.primary",
-                              },
-                              ":hover": Object {
-                                "color": "$theme.colors.primary",
-                              },
-                              "borderBottom": "2px solid transparent",
-                              "boxSizing": "border-box",
-                              "color": "$theme.colors.tabColor",
-                              "cursor": "pointer",
-                              "display": "inline-block",
-                              "fontFamily": "$theme.typography.font200.fontFamily",
-                              "fontSize": "$theme.typography.font200.fontSize",
-                              "fontWeight": "$theme.typography.font200.fontWeight",
-                              "lineHeight": "$theme.typography.font200.lineHeight",
-                              "marginLeft": "$theme.sizing.scale200",
-                              "marginRight": "$theme.sizing.scale200",
-                              "outline": "none",
-                              "outlineOffset": "-3px",
-                              "paddingBottom": "$theme.sizing.scale600",
-                              "paddingLeft": "$theme.sizing.scale300",
-                              "paddingRight": "$theme.sizing.scale300",
-                              "paddingTop": "$theme.sizing.scale600",
-                            }
-                          }
-                          test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font200.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font200.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font200.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font200.lineHeight\\",\\"boxSizing\\":\\"border-box\\",\\"color\\":\\"$theme.colors.tabColor\\",\\"cursor\\":\\"pointer\\",\\"paddingTop\\":\\"$theme.sizing.scale600\\",\\"paddingBottom\\":\\"$theme.sizing.scale600\\",\\"paddingLeft\\":\\"$theme.sizing.scale300\\",\\"paddingRight\\":\\"$theme.sizing.scale300\\",\\"marginLeft\\":\\"$theme.sizing.scale200\\",\\"marginRight\\":\\"$theme.sizing.scale200\\",\\"outline\\":\\"none\\",\\"outlineOffset\\":\\"-3px\\",\\"borderBottom\\":\\"2px solid transparent\\",\\"display\\":\\"inline-block\\",\\":focus\\":{\\"color\\":\\"$theme.colors.primary\\"},\\":hover\\":{\\"color\\":\\"$theme.colors.primary\\"}}"
+                          test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"color\\": \\"$theme.colors.tabColor\\",
+  \\"cursor\\": \\"pointer\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale600\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale300\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale300\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale200\\",
+  \\"marginRight\\": \\"$theme.sizing.scale200\\",
+  \\"outline\\": \\"none\\",
+  \\"outlineOffset\\": \\"-3px\\",
+  \\"borderBottom\\": \\"2px solid transparent\\",
+  \\"display\\": \\"inline-block\\",
+  \\":focus\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  },
+  \\":hover\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  }
+}"
                         >
                           Tab Link 2
                         </div>
@@ -1213,34 +1153,31 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                           role="tab"
                           styled-component="true"
                           tabIndex={0}
-                          test-style={
-                            Object {
-                              ":focus": Object {
-                                "color": "$theme.colors.primary",
-                              },
-                              ":hover": Object {
-                                "color": "$theme.colors.primary",
-                              },
-                              "borderBottom": "2px solid transparent",
-                              "boxSizing": "border-box",
-                              "color": "$theme.colors.tabColor",
-                              "cursor": "pointer",
-                              "display": "inline-block",
-                              "fontFamily": "$theme.typography.font200.fontFamily",
-                              "fontSize": "$theme.typography.font200.fontSize",
-                              "fontWeight": "$theme.typography.font200.fontWeight",
-                              "lineHeight": "$theme.typography.font200.lineHeight",
-                              "marginLeft": "$theme.sizing.scale200",
-                              "marginRight": "$theme.sizing.scale200",
-                              "outline": "none",
-                              "outlineOffset": "-3px",
-                              "paddingBottom": "$theme.sizing.scale600",
-                              "paddingLeft": "$theme.sizing.scale300",
-                              "paddingRight": "$theme.sizing.scale300",
-                              "paddingTop": "$theme.sizing.scale600",
-                            }
-                          }
-                          test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font200.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font200.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font200.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font200.lineHeight\\",\\"boxSizing\\":\\"border-box\\",\\"color\\":\\"$theme.colors.tabColor\\",\\"cursor\\":\\"pointer\\",\\"paddingTop\\":\\"$theme.sizing.scale600\\",\\"paddingBottom\\":\\"$theme.sizing.scale600\\",\\"paddingLeft\\":\\"$theme.sizing.scale300\\",\\"paddingRight\\":\\"$theme.sizing.scale300\\",\\"marginLeft\\":\\"$theme.sizing.scale200\\",\\"marginRight\\":\\"$theme.sizing.scale200\\",\\"outline\\":\\"none\\",\\"outlineOffset\\":\\"-3px\\",\\"borderBottom\\":\\"2px solid transparent\\",\\"display\\":\\"inline-block\\",\\":focus\\":{\\"color\\":\\"$theme.colors.primary\\"},\\":hover\\":{\\"color\\":\\"$theme.colors.primary\\"}}"
+                          test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"color\\": \\"$theme.colors.tabColor\\",
+  \\"cursor\\": \\"pointer\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale600\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale300\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale300\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale200\\",
+  \\"marginRight\\": \\"$theme.sizing.scale200\\",
+  \\"outline\\": \\"none\\",
+  \\"outlineOffset\\": \\"-3px\\",
+  \\"borderBottom\\": \\"2px solid transparent\\",
+  \\"display\\": \\"inline-block\\",
+  \\":focus\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  },
+  \\":hover\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  }
+}"
                         >
                           Tab Link 3
                         </div>
@@ -1270,20 +1207,17 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                   aria-labelledby="0"
                   role="tabpanel"
                   styled-component="true"
-                  test-style={
-                    Object {
-                      "display": "block",
-                      "fontFamily": "$theme.typography.font300.fontFamily",
-                      "fontSize": "$theme.typography.font300.fontSize",
-                      "fontWeight": "$theme.typography.font300.fontWeight",
-                      "lineHeight": "$theme.typography.font300.lineHeight",
-                      "paddingBottom": "$theme.sizing.scale500",
-                      "paddingLeft": "$theme.sizing.scale800",
-                      "paddingRight": "$theme.sizing.scale800",
-                      "paddingTop": "$theme.sizing.scale500",
-                    }
-                  }
-                  test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"display\\":\\"block\\",\\"paddingLeft\\":\\"$theme.sizing.scale800\\",\\"paddingRight\\":\\"$theme.sizing.scale800\\",\\"paddingTop\\":\\"$theme.sizing.scale500\\",\\"paddingBottom\\":\\"$theme.sizing.scale500\\"}"
+                  test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"display\\": \\"block\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale800\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale800\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale500\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale500\\"
+}"
                 >
                   Tab 1 content
                 </div>
@@ -1309,20 +1243,17 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                   aria-labelledby="1"
                   role="tabpanel"
                   styled-component="true"
-                  test-style={
-                    Object {
-                      "display": "none",
-                      "fontFamily": "$theme.typography.font300.fontFamily",
-                      "fontSize": "$theme.typography.font300.fontSize",
-                      "fontWeight": "$theme.typography.font300.fontWeight",
-                      "lineHeight": "$theme.typography.font300.lineHeight",
-                      "paddingBottom": "$theme.sizing.scale500",
-                      "paddingLeft": "$theme.sizing.scale800",
-                      "paddingRight": "$theme.sizing.scale800",
-                      "paddingTop": "$theme.sizing.scale500",
-                    }
-                  }
-                  test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"display\\":\\"none\\",\\"paddingLeft\\":\\"$theme.sizing.scale800\\",\\"paddingRight\\":\\"$theme.sizing.scale800\\",\\"paddingTop\\":\\"$theme.sizing.scale500\\",\\"paddingBottom\\":\\"$theme.sizing.scale500\\"}"
+                  test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"display\\": \\"none\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale800\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale800\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale500\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale500\\"
+}"
                 />
               </MockStyledComponent>
             </ForwardRef>
@@ -1346,20 +1277,17 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                   aria-labelledby="2"
                   role="tabpanel"
                   styled-component="true"
-                  test-style={
-                    Object {
-                      "display": "none",
-                      "fontFamily": "$theme.typography.font300.fontFamily",
-                      "fontSize": "$theme.typography.font300.fontSize",
-                      "fontWeight": "$theme.typography.font300.fontWeight",
-                      "lineHeight": "$theme.typography.font300.lineHeight",
-                      "paddingBottom": "$theme.sizing.scale500",
-                      "paddingLeft": "$theme.sizing.scale800",
-                      "paddingRight": "$theme.sizing.scale800",
-                      "paddingTop": "$theme.sizing.scale500",
-                    }
-                  }
-                  test-style-stringified="{\\"fontFamily\\":\\"$theme.typography.font300.fontFamily\\",\\"fontSize\\":\\"$theme.typography.font300.fontSize\\",\\"fontWeight\\":\\"$theme.typography.font300.fontWeight\\",\\"lineHeight\\":\\"$theme.typography.font300.lineHeight\\",\\"display\\":\\"none\\",\\"paddingLeft\\":\\"$theme.sizing.scale800\\",\\"paddingRight\\":\\"$theme.sizing.scale800\\",\\"paddingTop\\":\\"$theme.sizing.scale500\\",\\"paddingBottom\\":\\"$theme.sizing.scale500\\"}"
+                  test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"display\\": \\"none\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale800\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale800\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale500\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale500\\"
+}"
                 />
               </MockStyledComponent>
             </ForwardRef>
