@@ -83,7 +83,7 @@ export function styled(
         <ElementName
           ref={this.props.forwardedRef}
           styled-component="true"
-          test-style={this.state.styles}
+          test-style={JSON.stringify(this.state.styles, null, 2)}
           {...this.getPassedProps()}
         />
       );

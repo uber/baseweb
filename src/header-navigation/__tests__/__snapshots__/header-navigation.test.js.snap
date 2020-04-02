@@ -17,19 +17,17 @@ exports[`Stateless header navigation should render component: Component has corr
         data-baseweb="header-navigation"
         role="navigation"
         styled-component="true"
-        test-style={
-          Object {
-            "backgroundColor": "$theme.colors.headerNavigationFill",
-            "borderBottom": "1px solid $theme.colors.border",
-            "display": "flex",
-            "fontFamily": "$theme.typography.font300.fontFamily",
-            "fontSize": "$theme.typography.font300.fontSize",
-            "fontWeight": "$theme.typography.font300.fontWeight",
-            "lineHeight": "$theme.typography.font300.lineHeight",
-            "paddingBottom": "$theme.sizing.scale500",
-            "paddingTop": "$theme.sizing.scale500",
-          }
-        }
+        test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"display\\": \\"flex\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale500\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale500\\",
+  \\"borderBottom\\": \\"1px solid $theme.colors.border\\",
+  \\"backgroundColor\\": \\"$theme.colors.headerNavigationFill\\"
+}"
       >
         Some tag
       </nav>

@@ -64,42 +64,40 @@ exports[`Stateless tag should render component: Component has correct render 1`]
         role="button"
         styled-component="true"
         tabIndex={0}
-        test-style={
-          Object {
-            ":focus": Object {
-              "boxShadow": "none",
-            },
-            ":hover": Object {},
-            "alignItems": "center",
-            "backgroundColor": "$theme.colors.tagPrimaryLightBackground",
-            "borderBottomLeftRadius": "$theme.borders.radius400",
-            "borderBottomRightRadius": "$theme.borders.radius400",
-            "borderColor": null,
-            "borderStyle": "solid",
-            "borderTopLeftRadius": "$theme.borders.radius400",
-            "borderTopRightRadius": "$theme.borders.radius400",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "color": "$theme.colors.tagPrimaryLightFont",
-            "cursor": "default",
-            "display": "inline-flex",
-            "fontFamily": "$theme.typography.font150.fontFamily",
-            "fontSize": "$theme.typography.font150.fontSize",
-            "fontWeight": "$theme.typography.font150.fontWeight",
-            "height": "$theme.sizing.scale800",
-            "justifyContent": "space-between",
-            "lineHeight": "$theme.typography.font150.lineHeight",
-            "marginBottom": "5px",
-            "marginLeft": "5px",
-            "marginRight": "5px",
-            "marginTop": "5px",
-            "outline": "none",
-            "paddingBottom": "$theme.sizing.scale0",
-            "paddingLeft": "$theme.sizing.scale500",
-            "paddingRight": null,
-            "paddingTop": "$theme.sizing.scale0",
-          }
-        }
+        test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font150.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font150.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font150.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font150.lineHeight\\",
+  \\"alignItems\\": \\"center\\",
+  \\"backgroundColor\\": \\"$theme.colors.tagPrimaryLightBackground\\",
+  \\"borderColor\\": null,
+  \\"borderStyle\\": \\"solid\\",
+  \\"borderWidth\\": 0,
+  \\"borderTopLeftRadius\\": \\"$theme.borders.radius400\\",
+  \\"borderTopRightRadius\\": \\"$theme.borders.radius400\\",
+  \\"borderBottomRightRadius\\": \\"$theme.borders.radius400\\",
+  \\"borderBottomLeftRadius\\": \\"$theme.borders.radius400\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"color\\": \\"$theme.colors.tagPrimaryLightFont\\",
+  \\"cursor\\": \\"default\\",
+  \\"display\\": \\"inline-flex\\",
+  \\"height\\": \\"$theme.sizing.scale800\\",
+  \\"justifyContent\\": \\"space-between\\",
+  \\"marginTop\\": \\"5px\\",
+  \\"marginBottom\\": \\"5px\\",
+  \\"marginLeft\\": \\"5px\\",
+  \\"marginRight\\": \\"5px\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale0\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale0\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale500\\",
+  \\"paddingRight\\": null,
+  \\"outline\\": \\"none\\",
+  \\":hover\\": {},
+  \\":focus\\": {
+    \\"boxShadow\\": \\"none\\"
+  }
+}"
       >
         <ForwardRef
           title="Some tag"
@@ -110,14 +108,12 @@ exports[`Stateless tag should render component: Component has correct render 1`]
           >
             <span
               styled-component="true"
-              test-style={
-                Object {
-                  "maxWidth": "$theme.sizing.scale3200",
-                  "overflow": "hidden",
-                  "textOverflow": "ellipsis",
-                  "whiteSpace": "nowrap",
-                }
-              }
+              test-style="{
+  \\"overflow\\": \\"hidden\\",
+  \\"whiteSpace\\": \\"nowrap\\",
+  \\"textOverflow\\": \\"ellipsis\\",
+  \\"maxWidth\\": \\"$theme.sizing.scale3200\\"
+}"
               title="Some tag"
             >
               Some tag
@@ -156,28 +152,26 @@ exports[`Stateless tag should render component: Component has correct render 1`]
               onClick={[Function]}
               role="presentation"
               styled-component="true"
-              test-style={
-                Object {
-                  ":hover": Object {
-                    "backgroundColor": "$theme.colors.tagPrimaryLightActive",
-                    "color": "$theme.colors.tagPrimaryLightFontHover",
-                  },
-                  "alignItems": "center",
-                  "borderBottomRightRadius": "$theme.borders.radius400",
-                  "borderTopRightRadius": "$theme.borders.radius400",
-                  "cursor": "pointer",
-                  "display": "flex",
-                  "marginLeft": "8px",
-                  "outline": "none",
-                  "paddingBottom": "7px",
-                  "paddingLeft": "8px",
-                  "paddingRight": "8px",
-                  "paddingTop": "7px",
-                  "transitionDuration": "background-color",
-                  "transitionProperty": "all",
-                  "transitionTimingFunction": "$theme.animation.easeOutCurve",
-                }
-              }
+              test-style="{
+  \\"alignItems\\": \\"center\\",
+  \\"borderBottomRightRadius\\": \\"$theme.borders.radius400\\",
+  \\"borderTopRightRadius\\": \\"$theme.borders.radius400\\",
+  \\"cursor\\": \\"pointer\\",
+  \\"display\\": \\"flex\\",
+  \\"marginLeft\\": \\"8px\\",
+  \\"outline\\": \\"none\\",
+  \\"paddingTop\\": \\"7px\\",
+  \\"paddingBottom\\": \\"7px\\",
+  \\"paddingLeft\\": \\"8px\\",
+  \\"paddingRight\\": \\"8px\\",
+  \\"transitionProperty\\": \\"all\\",
+  \\"transitionDuration\\": \\"background-color\\",
+  \\"transitionTimingFunction\\": \\"$theme.animation.easeOutCurve\\",
+  \\":hover\\": {
+    \\"backgroundColor\\": \\"$theme.colors.tagPrimaryLightActive\\",
+    \\"color\\": \\"$theme.colors.tagPrimaryLightFontHover\\"
+  }
+}"
             >
               <ForwardRef
                 fill="none"
@@ -198,7 +192,7 @@ exports[`Stateless tag should render component: Component has correct render 1`]
                     fill="none"
                     height="10"
                     styled-component="true"
-                    test-style={Object {}}
+                    test-style="{}"
                     viewBox="0 0 8 8"
                     width="10"
                     xmlns="http://www.w3.org/2000/svg"
