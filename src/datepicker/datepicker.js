@@ -222,8 +222,13 @@ export default class Datepicker extends React.Component<
       let date = new Date(inputValue);
       const formatString = this.props.formatString;
       if (formatString) {
-        date = parse(inputValue, formatString, new Date());
+        if (inputValue.replace(/ /g, '').length < formatString.length) {
+          date = null;
+        } else {
+          date = parse(inputValue, formatString, new Date());
+        }
       }
+
       isValid(date) &&
         this.props.onChange &&
         this.props.onChange({

@@ -13,7 +13,7 @@ const {mount} = require('../../../e2e/helpers');
 const selectors = {
   input: 'input',
   calendar: '[data-baseweb="calendar"]',
-  day: '[aria-label="Selected. Tuesday, March 31st. 2020. It\'s available."]',
+  day: '[aria-label="Selected. Tuesday, March 31st 2020. It\'s available."]',
 };
 
 describe('Datepicker, Int', () => {
@@ -22,9 +22,13 @@ describe('Datepicker, Int', () => {
     await page.waitFor(selectors.input);
     await page.click(selectors.input);
 
-    await page.type('14.12.2020');
+    await page.keyboard.type('31.03.202');
+    await page.waitFor(selectors.day, {hidden: true});
+
+    await page.keyboard.type('0');
     const inputValue = await page.$eval(selectors.input, input => input.value);
-    expect(inputValue).toBe('14.12.2020');
+
+    expect(inputValue).toBe('31.03.2020');
 
     await page.waitFor(selectors.day);
   });
