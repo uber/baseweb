@@ -712,7 +712,11 @@ export interface Theme {
   zIndex: ZIndex;
 }
 
-export interface ThemePrimitives {
+export interface FontTokens {
+  primaryFontFamily: string;
+}
+
+export interface ColorTokens {
   // Primary Palette
   primaryA: string;
   primaryB: string;
@@ -785,6 +789,9 @@ export interface ThemePrimitives {
   // Rating Palette
   rating200: string;
   rating400: string;
-
-  primaryFontFamily: string;
 }
+
+export interface ThemePrimitives extends FontTokens, ColorTokens {}
+export interface PartialThemePrimitives
+  extends FontTokens,
+    Partial<ColorTokens> {}

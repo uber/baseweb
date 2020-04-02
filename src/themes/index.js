@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import createTheme from './creator.js';
+import createTheme from './create-theme.js';
 import {LightTheme, lightThemePrimitives} from './light-theme/light-theme.js';
 import {LightThemeMove} from './move-theme/light-theme-with-move.js';
 import {DarkTheme, darkThemePrimitives} from './dark-theme/dark-theme.js';

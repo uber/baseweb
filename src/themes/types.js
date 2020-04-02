@@ -86,6 +86,8 @@ export type ColorTokensT = {
   rating400: string,
 };
 
+export type PartialColorTokensT = $Rest<ColorTokensT, {}>;
+
 export type CoreSemanticColorTokensT = {|
   // Background
   backgroundPrimary: string,
@@ -542,7 +544,7 @@ export type FontTokensT = {|
 
 // TODO(#2318) Deprecate in the next major version
 export type PrimitivesT = {
-  ...ColorTokensT,
+  ...PartialColorTokensT,
   ...FontTokensT,
 };
 

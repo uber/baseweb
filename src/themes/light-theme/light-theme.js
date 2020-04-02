@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {defaultPrimaryFontFamily as primaryFontFamily} from '../shared/typography.js';
-import createTheme from '../creator.js';
+import createTheme from '../create-theme.js';
 import lightColorTokens from './color-tokens.js';
 
 import type {ThemeT} from '../../styles/types.js';

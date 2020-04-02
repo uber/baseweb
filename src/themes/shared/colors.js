@@ -14,7 +14,12 @@ import getDarkSemanticColorTokens from '../dark-theme/color-semantic-tokens.js';
 import getDarkComponentColorTokens from '../dark-theme/color-component-tokens.js';
 import getDarkDeprecatedSemanticColorTokens from '../dark-theme/color-deprecated-semantic-tokens.js';
 
-export default function getColors(customColorTokens, isDark = false) {
+import type {PartialColorTokensT} from '../types.js';
+
+export default function getColors(
+  customColorTokens: PartialColorTokensT,
+  isDark: boolean = false,
+) {
   // The following vary depending on if the theme is light or dark.
   let defaultColorTokens;
   let getComponentColorTokens;
