@@ -29,6 +29,7 @@ export default function createTheme(
   // Options for deriving the final theme object.
   options?: {isDark?: boolean} = {},
 ): ThemeT {
+  // Extract font family from primitives.
   const {primaryFontFamily, ...customColorTokens} = primitives;
   const {isDark = false} = options;
   const theme = {
@@ -41,7 +42,9 @@ export default function createTheme(
     lighting,
     mediaQuery,
     sizing,
-    typography: getTypography(primaryFontFamily),
+    typography: primaryFontFamily
+      ? getTypography({primaryFontFamily})
+      : getTypography(),
     // TODO(#2318) Remove in v10, the next major version.
     // Do not use.
     zIndex: {
