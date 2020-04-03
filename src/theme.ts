@@ -713,8 +713,6 @@ export interface Theme {
 }
 
 export interface ThemePrimitives {
-  primaryFontFamily: string;
-
   // Primary Palette
   primaryA: string;
   primaryB: string;
@@ -787,4 +785,6 @@ export interface ThemePrimitives {
   // Rating Palette
   rating200: string;
   rating400: string;
+
+  primaryFontFamily: string;
 }
