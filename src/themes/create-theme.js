@@ -23,7 +23,7 @@ import type {ThemeT} from '../styles/types.js';
 
 export default function createTheme(
   // Used to derive various theme properties.
-  primitives: PrimitivesT,
+  primitives?: $Shape<PrimitivesT> = {},
   // Used to override default theme property values derived from primitives.
   overrides?: {},
   // Options for deriving the final theme object.
@@ -33,7 +33,7 @@ export default function createTheme(
   const {isDark = false} = options;
   const theme = {
     animation,
-    borders: options.isDark ? darkBorders : borders,
+    borders: isDark ? darkBorders : borders,
     breakpoints,
     colors: getColors(customColorTokens, isDark),
     direction: 'auto',

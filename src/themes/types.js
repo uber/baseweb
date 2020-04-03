@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 import type {StyleObject} from 'styletron-standard';
 
 import type {ResponsiveT, CSSLengthUnitT} from '../layout-grid/types.js';
+
 export type ColorTokensT = {
   // Primary Palette
   primaryA: string,
@@ -86,8 +87,6 @@ export type ColorTokensT = {
   rating400: string,
 };
 
-export type PartialColorTokensT = $Rest<ColorTokensT, {}>;
-
 export type CoreSemanticColorTokensT = {|
   // Background
   backgroundPrimary: string,
@@ -112,6 +111,7 @@ export type CoreSemanticColorTokensT = {|
   borderInverseTransparent: ?string,
   borderInverseSelected: string,
 |};
+
 export type CoreExtensionSemanticColorTokensT = {|
   // Backgrounds
   backgroundStateDisabled: string,
@@ -544,7 +544,7 @@ export type FontTokensT = {|
 
 // TODO(#2318) Deprecate in the next major version
 export type PrimitivesT = {
-  ...PartialColorTokensT,
+  ...ColorTokensT,
   ...FontTokensT,
 };
 
@@ -565,6 +565,7 @@ export type FontT = {|
   fontSize: string,
   lineHeight: string | number,
 |};
+
 export type TypographyT = {
   font100: FontT,
   font150: FontT,

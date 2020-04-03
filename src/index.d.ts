@@ -7,14 +7,14 @@ import {
 } from 'styletron-react';
 import {Override, Overrides} from './overrides';
 import {Locale} from './locale';
-import {Theme, ThemePrimitives, PartialThemePrimitives} from './theme';
+import {Theme, ThemePrimitives} from './theme';
 
 type UseStyletronFn<Theme> = () => [(arg: StyleObject) => string, Theme];
 export function createThemedUseStyletron<Theme>(): UseStyletronFn<Theme>;
 export const useStyletron: UseStyletronFn<Theme>;
 
 export function createTheme<P extends object>(
-  primitives: PartialThemePrimitives,
+  primitives: Partial<ThemePrimitives>,
   overrides?: P,
   options?: {isDark?: boolean},
 ): Theme & P;
