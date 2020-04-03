@@ -22,14 +22,14 @@ import type {PrimitivesT} from './types.js';
 import type {ThemeT} from '../styles/types.js';
 
 export default function createTheme(
-  // Used to derive various theme properties.
+  // Used to derive typography and color theme properties.
   primitives?: $Shape<PrimitivesT> = {},
   // Used to override default theme property values derived from primitives.
   overrides?: {},
   // Options for deriving the final theme object.
   options?: {isDark?: boolean} = {},
 ): ThemeT {
-  // Extract font family from primitives.
+  // Extract font tokens and color tokens from primitives.
   const {primaryFontFamily, ...customColorTokens} = primitives;
   const {isDark = false} = options;
   const theme = {
@@ -42,9 +42,7 @@ export default function createTheme(
     lighting,
     mediaQuery,
     sizing,
-    typography: primaryFontFamily
-      ? getTypography({primaryFontFamily})
-      : getTypography(),
+    typography: getTypography({primaryFontFamily}),
     // TODO(#2318) Remove in v10, the next major version.
     // Do not use.
     zIndex: {
