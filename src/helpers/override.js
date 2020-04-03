@@ -27,14 +27,14 @@ export type OverrideResourceT<P> = OverrideConfigT<P> | ComponentPropertyT<P>;
 function refineResourceToConfig<Props>(
   resource: OverrideResourceT<Props>,
 ): OverrideConfigT<Props> {
-  if (typeof resource === 'object') {
-    return resource;
-  }
   if (isValidElementType(resource)) {
     // https://github.com/facebook/flow/issues/6666
     // eslint-disable-next-line flowtype/no-weak-types
     const component: ComponentPropertyT<Props> = (resource: any);
     return {component, props: null, style: null};
+  }
+  if (typeof resource === 'object') {
+    return resource;
   }
   return {
     component: null,
