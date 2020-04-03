@@ -29,12 +29,10 @@ exports[`BaseFlexGrid renders: with default styles 1`] = `
           <div
             data-baseweb="flex-grid"
             styled-component="true"
-            test-style={
-              Object {
-                "display": "flex",
-                "flexWrap": "wrap",
-              }
-            }
+            test-style="{
+  \\"display\\": \\"flex\\",
+  \\"flexWrap\\": \\"wrap\\"
+}"
           />
         </MockStyledComponent>
       </ForwardRef>
@@ -112,13 +110,11 @@ exports[`BaseFlexGrid renders: with overridden styles 1`] = `
           <div
             data-baseweb="flex-grid"
             styled-component="true"
-            test-style={
-              Object {
-                "color": "red",
-                "display": "none",
-                "flexWrap": "wrap",
-              }
-            }
+            test-style="{
+  \\"display\\": \\"none\\",
+  \\"flexWrap\\": \\"wrap\\",
+  \\"color\\": \\"red\\"
+}"
           />
         </MockStyledComponent>
       </ForwardRef>
@@ -163,12 +159,10 @@ exports[`FlexGrid passes FlexGrid props to children: FlexGridItem with flexGridC
               <div
                 data-baseweb="flex-grid"
                 styled-component="true"
-                test-style={
-                  Object {
-                    "display": "flex",
-                    "flexWrap": "wrap",
-                  }
-                }
+                test-style="{
+  \\"display\\": \\"flex\\",
+  \\"flexWrap\\": \\"wrap\\"
+}"
               >
                 <MockFlexGridItem
                   flexGridColumnCount={4}
@@ -241,12 +235,10 @@ exports[`FlexGrid renders: with default styles 1`] = `
               <div
                 data-baseweb="flex-grid"
                 styled-component="true"
-                test-style={
-                  Object {
-                    "display": "flex",
-                    "flexWrap": "wrap",
-                  }
-                }
+                test-style="{
+  \\"display\\": \\"flex\\",
+  \\"flexWrap\\": \\"wrap\\"
+}"
               />
             </MockStyledComponent>
           </ForwardRef>
@@ -335,13 +327,11 @@ exports[`FlexGrid renders: with overridden styles 1`] = `
               <div
                 data-baseweb="flex-grid"
                 styled-component="true"
-                test-style={
-                  Object {
-                    "color": "red",
-                    "display": "flex",
-                    "flexWrap": "wrap",
-                  }
-                }
+                test-style="{
+  \\"display\\": \\"flex\\",
+  \\"flexWrap\\": \\"wrap\\",
+  \\"color\\": \\"red\\"
+}"
               />
             </MockStyledComponent>
           </ForwardRef>

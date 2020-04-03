@@ -17,32 +17,30 @@ exports[`Panel aria-controls populated when provided: Content has correct props 
     <div
       id="panel"
       styled-component="true"
-      test-style={
-        Object {
-          "backgroundColor": "$theme.colors.listBodyFill",
-          "borderBottom": "none",
-          "boxSizing": "border-box",
-          "color": "$theme.colors.contentPrimary",
-          "fontFamily": "$theme.typography.font200.fontFamily",
-          "fontSize": "$theme.typography.font200.fontSize",
-          "fontWeight": "$theme.typography.font200.fontWeight",
-          "height": 0,
-          "lineHeight": "$theme.typography.font200.lineHeight",
-          "marginBottom": 0,
-          "marginLeft": 0,
-          "marginRight": 0,
-          "marginTop": 0,
-          "maxHeight": 0,
-          "overflow": "hidden",
-          "paddingBottom": 0,
-          "paddingLeft": "$theme.sizing.scale800",
-          "paddingRight": "$theme.sizing.scale800",
-          "paddingTop": 0,
-          "transitionDuration": "$theme.animation.timing400",
-          "transitionProperty": "all",
-          "transitionTimingFunction": "$theme.animation.easeInOutCurve",
-        }
-      }
+      test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"backgroundColor\\": \\"$theme.colors.listBodyFill\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"paddingTop\\": 0,
+  \\"paddingBottom\\": 0,
+  \\"paddingLeft\\": \\"$theme.sizing.scale800\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale800\\",
+  \\"marginTop\\": 0,
+  \\"marginBottom\\": 0,
+  \\"marginLeft\\": 0,
+  \\"marginRight\\": 0,
+  \\"borderBottom\\": \\"none\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"height\\": 0,
+  \\"maxHeight\\": 0,
+  \\"overflow\\": \\"hidden\\",
+  \\"transitionProperty\\": \\"all\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing400\\",
+  \\"transitionTimingFunction\\": \\"$theme.animation.easeInOutCurve\\"
+}"
     />
   </MockStyledComponent>
 </ForwardRef>
@@ -89,34 +87,32 @@ exports[`Panel aria-controls populated when provided: Header has correct props w
       role="button"
       styled-component="true"
       tabIndex={0}
-      test-style={
-        Object {
-          ":hover": Object {
-            "color": "$theme.colors.primary",
-          },
-          "alignItems": "center",
-          "backgroundColor": "$theme.colors.listHeaderFill",
-          "borderBottom": "1px solid $theme.colors.mono400",
-          "color": "$theme.colors.contentPrimary",
-          "cursor": "pointer",
-          "display": "flex",
-          "fontFamily": "$theme.typography.font350.fontFamily",
-          "fontSize": "$theme.typography.font350.fontSize",
-          "fontWeight": "$theme.typography.font350.fontWeight",
-          "justifyContent": "space-between",
-          "lineHeight": "$theme.typography.font350.lineHeight",
-          "marginBottom": 0,
-          "marginLeft": 0,
-          "marginRight": 0,
-          "marginTop": 0,
-          "outline": "none",
-          "outlineOffset": "-3px",
-          "paddingBottom": "$theme.sizing.scale600",
-          "paddingLeft": "$theme.sizing.scale700",
-          "paddingRight": "$theme.sizing.scale700",
-          "paddingTop": "$theme.sizing.scale600",
-        }
-      }
+      test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font350.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font350.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font350.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font350.lineHeight\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"cursor\\": \\"pointer\\",
+  \\"backgroundColor\\": \\"$theme.colors.listHeaderFill\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale600\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale700\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale700\\",
+  \\"marginTop\\": 0,
+  \\"marginBottom\\": 0,
+  \\"marginLeft\\": 0,
+  \\"marginRight\\": 0,
+  \\"borderBottom\\": \\"1px solid $theme.colors.mono400\\",
+  \\"display\\": \\"flex\\",
+  \\"alignItems\\": \\"center\\",
+  \\"outline\\": \\"none\\",
+  \\"outlineOffset\\": \\"-3px\\",
+  \\"justifyContent\\": \\"space-between\\",
+  \\":hover\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  }
+}"
     >
       title
       <Plus
@@ -174,16 +170,14 @@ exports[`Panel aria-controls populated when provided: Header has correct props w
               <svg
                 data-baseweb="icon"
                 styled-component="true"
-                test-style={
-                  Object {
-                    "color": "$theme.colors.contentPrimary",
-                    "cursor": "pointer",
-                    "display": "inline-block",
-                    "fill": "currentColor",
-                    "height": "16px",
-                    "width": "16px",
-                  }
-                }
+                test-style="{
+  \\"display\\": \\"inline-block\\",
+  \\"fill\\": \\"currentColor\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"height\\": \\"16px\\",
+  \\"width\\": \\"16px\\",
+  \\"cursor\\": \\"pointer\\"
+}"
                 viewBox="0 0 24 24"
               >
                 <title>

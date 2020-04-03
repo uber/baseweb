@@ -22,11 +22,9 @@ exports[`Block FlexWrap renders flexWrap styling as expected 1`] = `
         <div
           data-baseweb="block"
           styled-component="true"
-          test-style={
-            Object {
-              "flexWrap": "wrap",
-            }
-          }
+          test-style="{
+  \\"flexWrap\\": \\"wrap\\"
+}"
         >
           test
         </div>
@@ -58,13 +56,11 @@ exports[`Block Overflow renders overflow styling if provided any other value 1`]
         <div
           data-baseweb="block"
           styled-component="true"
-          test-style={
-            Object {
-              "overflow": "auto",
-              "overflowX": null,
-              "overflowY": null,
-            }
-          }
+          test-style="{
+  \\"overflowX\\": null,
+  \\"overflowY\\": null,
+  \\"overflow\\": \\"auto\\"
+}"
         >
           test
         </div>
@@ -96,13 +92,11 @@ exports[`Block Overflow renders overflowX styling if provided with scrollX value
         <div
           data-baseweb="block"
           styled-component="true"
-          test-style={
-            Object {
-              "overflow": null,
-              "overflowX": "scroll",
-              "overflowY": null,
-            }
-          }
+          test-style="{
+  \\"overflowX\\": \\"scroll\\",
+  \\"overflowY\\": null,
+  \\"overflow\\": null
+}"
         >
           test
         </div>
@@ -134,13 +128,11 @@ exports[`Block Overflow renders overflowY styling if provided with scrollY value
         <div
           data-baseweb="block"
           styled-component="true"
-          test-style={
-            Object {
-              "overflow": null,
-              "overflowX": null,
-              "overflowY": "scroll",
-            }
-          }
+          test-style="{
+  \\"overflowX\\": null,
+  \\"overflowY\\": \\"scroll\\",
+  \\"overflow\\": null
+}"
         >
           test
         </div>
@@ -192,14 +184,12 @@ exports[`Block Responsive applies expected styles if responsive array has less t
         <div
           data-baseweb="block"
           styled-component="true"
-          test-style={
-            Object {
-              "@media screen and (min-width: $theme.breakpoints.smallpx)": Object {
-                "marginLeft": "$theme.sizing.scale200",
-              },
-              "marginLeft": "$theme.sizing.scale100",
-            }
-          }
+          test-style="{
+  \\"marginLeft\\": \\"$theme.sizing.scale100\\",
+  \\"@media screen and (min-width: $theme.breakpoints.smallpx)\\": {
+    \\"marginLeft\\": \\"$theme.sizing.scale200\\"
+  }
+}"
         >
           test
         </div>
@@ -259,20 +249,18 @@ exports[`Block Responsive applies expected styles if responsive array is provide
         <div
           data-baseweb="block"
           styled-component="true"
-          test-style={
-            Object {
-              "@media screen and (min-width: $theme.breakpoints.largepx)": Object {
-                "marginLeft": "$theme.sizing.scale400",
-              },
-              "@media screen and (min-width: $theme.breakpoints.mediumpx)": Object {
-                "marginLeft": "$theme.sizing.scale300",
-              },
-              "@media screen and (min-width: $theme.breakpoints.smallpx)": Object {
-                "marginLeft": "$theme.sizing.scale200",
-              },
-              "marginLeft": "$theme.sizing.scale100",
-            }
-          }
+          test-style="{
+  \\"marginLeft\\": \\"$theme.sizing.scale100\\",
+  \\"@media screen and (min-width: $theme.breakpoints.smallpx)\\": {
+    \\"marginLeft\\": \\"$theme.sizing.scale200\\"
+  },
+  \\"@media screen and (min-width: $theme.breakpoints.mediumpx)\\": {
+    \\"marginLeft\\": \\"$theme.sizing.scale300\\"
+  },
+  \\"@media screen and (min-width: $theme.breakpoints.largepx)\\": {
+    \\"marginLeft\\": \\"$theme.sizing.scale400\\"
+  }
+}"
         >
           test
         </div>
@@ -532,68 +520,66 @@ exports[`Block applies expected style rules 1`] = `
         <div
           data-baseweb="block"
           styled-component="true"
-          test-style={
-            Object {
-              "alignContent": "start",
-              "alignItems": "start",
-              "backgroundAttachment": "scroll",
-              "backgroundClip": "border-box",
-              "backgroundColor": "red",
-              "backgroundImage": "linear-gradient(pink, cornflowerblue)",
-              "backgroundOrigin": "border-box",
-              "backgroundPosition": "25% 75%",
-              "backgroundRepeat": "repeat-x",
-              "backgroundSize": "contain",
-              "bottom": "1px",
-              "color": "red",
-              "display": "inline-block",
-              "flex": "grow",
-              "flexDirection": "row",
-              "grid": "100px / 200px",
-              "gridArea": "auto",
-              "gridAutoColumns": "min-content",
-              "gridAutoFlow": "row dense",
-              "gridAutoRows": "20cm",
-              "gridColumn": "1 / 3",
-              "gridColumnEnd": "span 3",
-              "gridColumnGap": "$theme.sizing.scale800",
-              "gridColumnStart": "span 2",
-              "gridGap": "50px",
-              "gridRow": "1",
-              "gridRowEnd": "2",
-              "gridRowStart": "-1",
-              "gridTemplate": "1fr / 1fr",
-              "gridTemplateAreas": "inherit",
-              "gridTemplateColumns": "1fr 60px",
-              "gridTemplateRows": "auto",
-              "height": "100px",
-              "justifyContent": "start",
-              "justifyItems": "center",
-              "justifySelf": "start",
-              "left": "1px",
-              "margin": "$theme.sizing.scale200",
-              "marginBottom": "$theme.sizing.scale200",
-              "marginLeft": "$theme.sizing.scale200",
-              "marginRight": "$theme.sizing.scale200",
-              "marginTop": "$theme.sizing.scale200",
-              "maxHeight": "100px",
-              "maxWidth": "100px",
-              "minHeight": "100px",
-              "minWidth": "100px",
-              "padding": "$theme.sizing.scale200",
-              "paddingBottom": "$theme.sizing.scale200",
-              "paddingLeft": "$theme.sizing.scale200",
-              "paddingRight": "$theme.sizing.scale200",
-              "paddingTop": "$theme.sizing.scale200",
-              "placeContent": "end center",
-              "placeItems": "end center",
-              "placeSelf": "center start",
-              "position": "static",
-              "right": "1px",
-              "top": "1px",
-              "width": "100px",
-            }
-          }
+          test-style="{
+  \\"color\\": \\"red\\",
+  \\"backgroundAttachment\\": \\"scroll\\",
+  \\"backgroundClip\\": \\"border-box\\",
+  \\"backgroundColor\\": \\"red\\",
+  \\"backgroundImage\\": \\"linear-gradient(pink, cornflowerblue)\\",
+  \\"backgroundOrigin\\": \\"border-box\\",
+  \\"backgroundPosition\\": \\"25% 75%\\",
+  \\"backgroundRepeat\\": \\"repeat-x\\",
+  \\"backgroundSize\\": \\"contain\\",
+  \\"alignContent\\": \\"start\\",
+  \\"alignItems\\": \\"start\\",
+  \\"display\\": \\"inline-block\\",
+  \\"flex\\": \\"grow\\",
+  \\"flexDirection\\": \\"row\\",
+  \\"grid\\": \\"100px / 200px\\",
+  \\"gridArea\\": \\"auto\\",
+  \\"gridAutoColumns\\": \\"min-content\\",
+  \\"gridAutoFlow\\": \\"row dense\\",
+  \\"gridAutoRows\\": \\"20cm\\",
+  \\"gridColumn\\": \\"1 / 3\\",
+  \\"gridColumnEnd\\": \\"span 3\\",
+  \\"gridColumnGap\\": \\"$theme.sizing.scale800\\",
+  \\"gridColumnStart\\": \\"span 2\\",
+  \\"gridGap\\": \\"50px\\",
+  \\"gridRow\\": \\"1\\",
+  \\"gridRowEnd\\": \\"2\\",
+  \\"gridRowStart\\": \\"-1\\",
+  \\"gridTemplate\\": \\"1fr / 1fr\\",
+  \\"gridTemplateAreas\\": \\"inherit\\",
+  \\"gridTemplateColumns\\": \\"1fr 60px\\",
+  \\"gridTemplateRows\\": \\"auto\\",
+  \\"justifyContent\\": \\"start\\",
+  \\"justifyItems\\": \\"center\\",
+  \\"justifySelf\\": \\"start\\",
+  \\"position\\": \\"static\\",
+  \\"width\\": \\"100px\\",
+  \\"minWidth\\": \\"100px\\",
+  \\"maxWidth\\": \\"100px\\",
+  \\"height\\": \\"100px\\",
+  \\"minHeight\\": \\"100px\\",
+  \\"maxHeight\\": \\"100px\\",
+  \\"margin\\": \\"$theme.sizing.scale200\\",
+  \\"marginTop\\": \\"$theme.sizing.scale200\\",
+  \\"marginRight\\": \\"$theme.sizing.scale200\\",
+  \\"marginBottom\\": \\"$theme.sizing.scale200\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale200\\",
+  \\"padding\\": \\"$theme.sizing.scale200\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale200\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale200\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale200\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale200\\",
+  \\"placeContent\\": \\"end center\\",
+  \\"placeItems\\": \\"end center\\",
+  \\"placeSelf\\": \\"center start\\",
+  \\"top\\": \\"1px\\",
+  \\"right\\": \\"1px\\",
+  \\"left\\": \\"1px\\",
+  \\"bottom\\": \\"1px\\"
+}"
         >
           test
         </div>
@@ -625,14 +611,12 @@ exports[`Block does not throw if provided unknown font prop 1`] = `
         <div
           data-baseweb="block"
           styled-component="true"
-          test-style={
-            Object {
-              "fontFamily": null,
-              "fontSize": null,
-              "fontWeight": null,
-              "lineHeight": null,
-            }
-          }
+          test-style="{
+  \\"fontFamily\\": null,
+  \\"fontWeight\\": null,
+  \\"fontSize\\": null,
+  \\"lineHeight\\": null
+}"
         >
           test
         </div>
@@ -664,11 +648,9 @@ exports[`Block renders themed backgroundColor if provided 1`] = `
         <div
           data-baseweb="block"
           styled-component="true"
-          test-style={
-            Object {
-              "backgroundColor": "$theme.colors.primary200",
-            }
-          }
+          test-style="{
+  \\"backgroundColor\\": \\"$theme.colors.primary200\\"
+}"
         >
           test
         </div>
@@ -700,11 +682,9 @@ exports[`Block renders themed color if provided 1`] = `
         <div
           data-baseweb="block"
           styled-component="true"
-          test-style={
-            Object {
-              "color": "$theme.colors.primary200",
-            }
-          }
+          test-style="{
+  \\"color\\": \\"$theme.colors.primary200\\"
+}"
         >
           test
         </div>
@@ -736,14 +716,12 @@ exports[`Block renders themed font if provided 1`] = `
         <div
           data-baseweb="block"
           styled-component="true"
-          test-style={
-            Object {
-              "fontFamily": "$theme.typography.font200.fontFamily",
-              "fontSize": "$theme.typography.font200.fontSize",
-              "fontWeight": "$theme.typography.font200.fontWeight",
-              "lineHeight": "$theme.typography.font200.lineHeight",
-            }
-          }
+          test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
+  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
+  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
+  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\"
+}"
         >
           test
         </div>
