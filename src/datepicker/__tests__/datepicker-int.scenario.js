@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {StatefulDatepicker} from '../index.js';
+import {hu} from 'date-fns/locale/index.js';
 
 export default function Scenario() {
   return (
@@ -17,6 +18,7 @@ export default function Scenario() {
       formatString="dd.MM.yyyy"
       placeholder="DD.MM.YYYY"
       mask="99.99.9999"
+      locale={hu}
       overrides={{
         MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
         MonthYearSelectStatefulMenu: {

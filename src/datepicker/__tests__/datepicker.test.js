@@ -201,6 +201,34 @@ describe('Datepicker', () => {
     expect(onChange.mock.calls).toHaveLength(1);
   });
 
+  test('handles spaces replacement correctly with formatString', () => {
+    const onChange = jest.fn();
+    const format = 'dd MM yyyy';
+    const date = new Date('2019 01 01');
+    const newDate = '10 10 2019';
+    const component = mount(
+      <Datepicker onChange={onChange} value={date} formatString={format} />,
+    );
+
+    // $FlowFixMe
+    component.instance().handleInputChange({
+      currentTarget: {
+        value: newDate,
+      },
+    });
+
+    // $FlowFixMe
+    component.instance().handleInputChange({
+      currentTarget: {
+        value: newDate,
+      },
+    });
+
+    expect(onChange.mock.calls[0][0]).toEqual({
+      date: parse(newDate, format, new Date()),
+    });
+  });
+
   test('fires the onchange only when date length is same as formatString with single date', () => {
     const onChange = jest.fn();
     const format = 'dd.MM.yyyy';

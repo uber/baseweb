@@ -13,7 +13,7 @@ const {mount} = require('../../../e2e/helpers');
 const selectors = {
   input: 'input',
   calendar: '[data-baseweb="calendar"]',
-  day: '[aria-label="Selected. Tuesday, March 31st 2020. It\'s available."]',
+  day: '[aria-label="Selected. kedd, március 31. 2020. It\'s available."]',
 };
 
 describe('Datepicker, Int', () => {

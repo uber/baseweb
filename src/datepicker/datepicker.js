@@ -174,7 +174,7 @@ export default class Datepicker extends React.Component<
     const inputValue = event.currentTarget.value;
 
     if (
-      inputValue === this.getMask().replace(/9/g, ' ') ||
+      inputValue === this.getMask().replace(/ /g, ' ') ||
       inputValue.length === 0
     ) {
       if (this.props.range) {
@@ -225,7 +225,10 @@ export default class Datepicker extends React.Component<
       if (formatString) {
         // Prevent early parsing of value.
         // Eg 25.12.2 will be transformed to 25.12.0002 formatted from date to string
-        if (dateString.replace(/ /g, '').length < formatString.length) {
+        if (
+          dateString.replace(/(\s)*/g, '').length <
+          formatString.replace(/(\s)*/g, '').length
+        ) {
           date = null;
         } else {
           date = parse(dateString, formatString, new Date());
