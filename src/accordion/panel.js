@@ -127,7 +127,7 @@ class Panel extends React.Component<PanelPropsT, {isFocusVisible: boolean}> {
     } = this.props;
 
     const sharedProps = this.getSharedProps();
-    const ToggleIconComponent = this.getToggleIconComponent();
+    const ToggleIconComponent = expanded ? CheckIndeterminateIcon : PlusIcon;
 
     return (
       <LocaleContext.Consumer>
