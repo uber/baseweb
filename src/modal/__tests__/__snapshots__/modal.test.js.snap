@@ -47,45 +47,159 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
               <div
                 data-baseweb="modal"
                 styled-component="true"
-                test-style="[object Object]"
+                test-style="{
+  \\"position\\": \\"fixed\\",
+  \\"overflow\\": \\"auto\\",
+  \\"right\\": 0,
+  \\"bottom\\": 0,
+  \\"top\\": 0,
+  \\"left\\": 0,
+  \\"pointerEvents\\": \\"auto\\"
+}"
               >
                 <div
                   styled-component="true"
-                  test-style="[object Object]"
+                  test-style="{
+  \\"position\\": \\"fixed\\",
+  \\"right\\": 0,
+  \\"bottom\\": 0,
+  \\"top\\": 0,
+  \\"left\\": 0,
+  \\"backgroundColor\\": \\"rgba(0, 0, 0, 0.5)\\",
+  \\"WebkitTapHighlightColor\\": \\"transparent\\",
+  \\"touchAction\\": \\"none\\",
+  \\"opacity\\": 0,
+  \\"transitionProperty\\": \\"opacity\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing400\\",
+  \\"transitionTimingFunction\\": \\"$theme.animation.easeOutCurve\\"
+}"
                 />
                 <div
                   styled-component="true"
-                  test-style="[object Object]"
+                  test-style="{
+  \\"display\\": \\"flex\\",
+  \\"alignItems\\": \\"center\\",
+  \\"justifyContent\\": \\"center\\",
+  \\"width\\": \\"100%\\",
+  \\"minHeight\\": \\"100%\\",
+  \\"pointerEvents\\": \\"none\\",
+  \\"userSelect\\": \\"none\\"
+}"
                 >
                   <div
                     aria-modal="true"
                     role="dialog"
                     styled-component="true"
                     tabindex="-1"
-                    test-style="[object Object]"
+                    test-style="{
+  \\"position\\": \\"relative\\",
+  \\"backgroundColor\\": \\"$theme.colors.backgroundPrimary\\",
+  \\"borderTopLeftRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"borderTopRightRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"borderBottomRightRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"borderBottomLeftRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale600\\",
+  \\"marginTop\\": \\"$theme.sizing.scale600\\",
+  \\"marginRight\\": \\"$theme.sizing.scale600\\",
+  \\"marginBottom\\": \\"$theme.sizing.scale600\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"width\\": \\"500px\\",
+  \\"opacity\\": 0,
+  \\"transform\\": \\"translateY(20px)\\",
+  \\"transitionProperty\\": \\"opacity, transform\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing400\\",
+  \\"transitionTimingFunction\\": \\"$theme.animation.easeOutCurve\\",
+  \\"userSelect\\": \\"text\\",
+  \\"pointerEvents\\": \\"all\\",
+  \\":focus\\": {
+    \\"outline\\": \\"none\\"
+  }
+}"
                   >
                     <div
                       styled-component="true"
-                      test-style="[object Object]"
+                      test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font550.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font550.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font550.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font550.lineHeight\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"marginTop\\": \\"$theme.sizing.scale900\\",
+  \\"marginBottom\\": \\"$theme.sizing.scale600\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale800\\",
+  \\"marginRight\\": \\"$theme.sizing.scale900\\"
+}"
                     >
                       Hello world
                     </div>
                     <div
                       styled-component="true"
-                      test-style="[object Object]"
+                      test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"color\\": \\"$theme.colors.contentSecondary\\",
+  \\"marginTop\\": \\"$theme.sizing.scale600\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale800\\",
+  \\"marginRight\\": \\"$theme.sizing.scale800\\",
+  \\"marginBottom\\": \\"$theme.sizing.scale700\\"
+}"
                     >
                       Modal Body
                     </div>
                     <div
                       styled-component="true"
-                      test-style="[object Object]"
+                      test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"marginTop\\": \\"$theme.sizing.scale700\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale800\\",
+  \\"marginRight\\": \\"$theme.sizing.scale800\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale500\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale500\\",
+  \\"borderTopWidth\\": \\"1px\\",
+  \\"borderTopStyle\\": \\"solid\\",
+  \\"borderTopColor\\": \\"$theme.colors.mono400\\",
+  \\"textAlign\\": \\"right\\"
+}"
                     >
                       Footer
                     </div>
                     <button
                       aria-label="Close"
                       styled-component="true"
-                      test-style="[object Object]"
+                      test-style="{
+  \\"background\\": \\"transparent\\",
+  \\"outline\\": 0,
+  \\"paddingLeft\\": 0,
+  \\"paddingTop\\": 0,
+  \\"paddingRight\\": 0,
+  \\"paddingBottom\\": 0,
+  \\"color\\": \\"$theme.colors.modalCloseColor\\",
+  \\"transitionProperty\\": \\"color, border-color\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing100\\",
+  \\"borderWidth\\": \\"1px\\",
+  \\"borderStyle\\": \\"solid\\",
+  \\"borderColor\\": \\"transparent\\",
+  \\":hover\\": {
+    \\"color\\": \\"$theme.colors.modalCloseColorHover\\"
+  },
+  \\":focus\\": {
+    \\"outline\\": \\"none\\"
+  },
+  \\"position\\": \\"absolute\\",
+  \\"top\\": \\"$theme.sizing.scale500\\",
+  \\"right\\": \\"$theme.sizing.scale500\\",
+  \\"width\\": \\"$theme.sizing.scale800\\",
+  \\"height\\": \\"$theme.sizing.scale800\\",
+  \\"display\\": \\"flex\\",
+  \\"justifyContent\\": \\"center\\",
+  \\"alignItems\\": \\"center\\",
+  \\"cursor\\": \\"pointer\\"
+}"
                     >
                       <svg
                         height="10"
@@ -135,45 +249,159 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                 <div
                   data-baseweb="modal"
                   styled-component="true"
-                  test-style="[object Object]"
+                  test-style="{
+  \\"position\\": \\"fixed\\",
+  \\"overflow\\": \\"auto\\",
+  \\"right\\": 0,
+  \\"bottom\\": 0,
+  \\"top\\": 0,
+  \\"left\\": 0,
+  \\"pointerEvents\\": \\"auto\\"
+}"
                 >
                   <div
                     styled-component="true"
-                    test-style="[object Object]"
+                    test-style="{
+  \\"position\\": \\"fixed\\",
+  \\"right\\": 0,
+  \\"bottom\\": 0,
+  \\"top\\": 0,
+  \\"left\\": 0,
+  \\"backgroundColor\\": \\"rgba(0, 0, 0, 0.5)\\",
+  \\"WebkitTapHighlightColor\\": \\"transparent\\",
+  \\"touchAction\\": \\"none\\",
+  \\"opacity\\": 0,
+  \\"transitionProperty\\": \\"opacity\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing400\\",
+  \\"transitionTimingFunction\\": \\"$theme.animation.easeOutCurve\\"
+}"
                   />
                   <div
                     styled-component="true"
-                    test-style="[object Object]"
+                    test-style="{
+  \\"display\\": \\"flex\\",
+  \\"alignItems\\": \\"center\\",
+  \\"justifyContent\\": \\"center\\",
+  \\"width\\": \\"100%\\",
+  \\"minHeight\\": \\"100%\\",
+  \\"pointerEvents\\": \\"none\\",
+  \\"userSelect\\": \\"none\\"
+}"
                   >
                     <div
                       aria-modal="true"
                       role="dialog"
                       styled-component="true"
                       tabindex="-1"
-                      test-style="[object Object]"
+                      test-style="{
+  \\"position\\": \\"relative\\",
+  \\"backgroundColor\\": \\"$theme.colors.backgroundPrimary\\",
+  \\"borderTopLeftRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"borderTopRightRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"borderBottomRightRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"borderBottomLeftRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale600\\",
+  \\"marginTop\\": \\"$theme.sizing.scale600\\",
+  \\"marginRight\\": \\"$theme.sizing.scale600\\",
+  \\"marginBottom\\": \\"$theme.sizing.scale600\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"width\\": \\"500px\\",
+  \\"opacity\\": 0,
+  \\"transform\\": \\"translateY(20px)\\",
+  \\"transitionProperty\\": \\"opacity, transform\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing400\\",
+  \\"transitionTimingFunction\\": \\"$theme.animation.easeOutCurve\\",
+  \\"userSelect\\": \\"text\\",
+  \\"pointerEvents\\": \\"all\\",
+  \\":focus\\": {
+    \\"outline\\": \\"none\\"
+  }
+}"
                     >
                       <div
                         styled-component="true"
-                        test-style="[object Object]"
+                        test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font550.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font550.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font550.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font550.lineHeight\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"marginTop\\": \\"$theme.sizing.scale900\\",
+  \\"marginBottom\\": \\"$theme.sizing.scale600\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale800\\",
+  \\"marginRight\\": \\"$theme.sizing.scale900\\"
+}"
                       >
                         Hello world
                       </div>
                       <div
                         styled-component="true"
-                        test-style="[object Object]"
+                        test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"color\\": \\"$theme.colors.contentSecondary\\",
+  \\"marginTop\\": \\"$theme.sizing.scale600\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale800\\",
+  \\"marginRight\\": \\"$theme.sizing.scale800\\",
+  \\"marginBottom\\": \\"$theme.sizing.scale700\\"
+}"
                       >
                         Modal Body
                       </div>
                       <div
                         styled-component="true"
-                        test-style="[object Object]"
+                        test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"marginTop\\": \\"$theme.sizing.scale700\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale800\\",
+  \\"marginRight\\": \\"$theme.sizing.scale800\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale500\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale500\\",
+  \\"borderTopWidth\\": \\"1px\\",
+  \\"borderTopStyle\\": \\"solid\\",
+  \\"borderTopColor\\": \\"$theme.colors.mono400\\",
+  \\"textAlign\\": \\"right\\"
+}"
                       >
                         Footer
                       </div>
                       <button
                         aria-label="Close"
                         styled-component="true"
-                        test-style="[object Object]"
+                        test-style="{
+  \\"background\\": \\"transparent\\",
+  \\"outline\\": 0,
+  \\"paddingLeft\\": 0,
+  \\"paddingTop\\": 0,
+  \\"paddingRight\\": 0,
+  \\"paddingBottom\\": 0,
+  \\"color\\": \\"$theme.colors.modalCloseColor\\",
+  \\"transitionProperty\\": \\"color, border-color\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing100\\",
+  \\"borderWidth\\": \\"1px\\",
+  \\"borderStyle\\": \\"solid\\",
+  \\"borderColor\\": \\"transparent\\",
+  \\":hover\\": {
+    \\"color\\": \\"$theme.colors.modalCloseColorHover\\"
+  },
+  \\":focus\\": {
+    \\"outline\\": \\"none\\"
+  },
+  \\"position\\": \\"absolute\\",
+  \\"top\\": \\"$theme.sizing.scale500\\",
+  \\"right\\": \\"$theme.sizing.scale500\\",
+  \\"width\\": \\"$theme.sizing.scale800\\",
+  \\"height\\": \\"$theme.sizing.scale800\\",
+  \\"display\\": \\"flex\\",
+  \\"justifyContent\\": \\"center\\",
+  \\"alignItems\\": \\"center\\",
+  \\"cursor\\": \\"pointer\\"
+}"
                       >
                         <svg
                           height="10"
@@ -240,45 +468,159 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                   "current": <div
                     data-baseweb="modal"
                     styled-component="true"
-                    test-style="[object Object]"
+                    test-style="{
+  \\"position\\": \\"fixed\\",
+  \\"overflow\\": \\"auto\\",
+  \\"right\\": 0,
+  \\"bottom\\": 0,
+  \\"top\\": 0,
+  \\"left\\": 0,
+  \\"pointerEvents\\": \\"auto\\"
+}"
                   >
                     <div
                       styled-component="true"
-                      test-style="[object Object]"
+                      test-style="{
+  \\"position\\": \\"fixed\\",
+  \\"right\\": 0,
+  \\"bottom\\": 0,
+  \\"top\\": 0,
+  \\"left\\": 0,
+  \\"backgroundColor\\": \\"rgba(0, 0, 0, 0.5)\\",
+  \\"WebkitTapHighlightColor\\": \\"transparent\\",
+  \\"touchAction\\": \\"none\\",
+  \\"opacity\\": 0,
+  \\"transitionProperty\\": \\"opacity\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing400\\",
+  \\"transitionTimingFunction\\": \\"$theme.animation.easeOutCurve\\"
+}"
                     />
                     <div
                       styled-component="true"
-                      test-style="[object Object]"
+                      test-style="{
+  \\"display\\": \\"flex\\",
+  \\"alignItems\\": \\"center\\",
+  \\"justifyContent\\": \\"center\\",
+  \\"width\\": \\"100%\\",
+  \\"minHeight\\": \\"100%\\",
+  \\"pointerEvents\\": \\"none\\",
+  \\"userSelect\\": \\"none\\"
+}"
                     >
                       <div
                         aria-modal="true"
                         role="dialog"
                         styled-component="true"
                         tabindex="-1"
-                        test-style="[object Object]"
+                        test-style="{
+  \\"position\\": \\"relative\\",
+  \\"backgroundColor\\": \\"$theme.colors.backgroundPrimary\\",
+  \\"borderTopLeftRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"borderTopRightRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"borderBottomRightRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"borderBottomLeftRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale600\\",
+  \\"marginTop\\": \\"$theme.sizing.scale600\\",
+  \\"marginRight\\": \\"$theme.sizing.scale600\\",
+  \\"marginBottom\\": \\"$theme.sizing.scale600\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"width\\": \\"500px\\",
+  \\"opacity\\": 0,
+  \\"transform\\": \\"translateY(20px)\\",
+  \\"transitionProperty\\": \\"opacity, transform\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing400\\",
+  \\"transitionTimingFunction\\": \\"$theme.animation.easeOutCurve\\",
+  \\"userSelect\\": \\"text\\",
+  \\"pointerEvents\\": \\"all\\",
+  \\":focus\\": {
+    \\"outline\\": \\"none\\"
+  }
+}"
                       >
                         <div
                           styled-component="true"
-                          test-style="[object Object]"
+                          test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font550.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font550.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font550.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font550.lineHeight\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"marginTop\\": \\"$theme.sizing.scale900\\",
+  \\"marginBottom\\": \\"$theme.sizing.scale600\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale800\\",
+  \\"marginRight\\": \\"$theme.sizing.scale900\\"
+}"
                         >
                           Hello world
                         </div>
                         <div
                           styled-component="true"
-                          test-style="[object Object]"
+                          test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"color\\": \\"$theme.colors.contentSecondary\\",
+  \\"marginTop\\": \\"$theme.sizing.scale600\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale800\\",
+  \\"marginRight\\": \\"$theme.sizing.scale800\\",
+  \\"marginBottom\\": \\"$theme.sizing.scale700\\"
+}"
                         >
                           Modal Body
                         </div>
                         <div
                           styled-component="true"
-                          test-style="[object Object]"
+                          test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"marginTop\\": \\"$theme.sizing.scale700\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale800\\",
+  \\"marginRight\\": \\"$theme.sizing.scale800\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale500\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale500\\",
+  \\"borderTopWidth\\": \\"1px\\",
+  \\"borderTopStyle\\": \\"solid\\",
+  \\"borderTopColor\\": \\"$theme.colors.mono400\\",
+  \\"textAlign\\": \\"right\\"
+}"
                         >
                           Footer
                         </div>
                         <button
                           aria-label="Close"
                           styled-component="true"
-                          test-style="[object Object]"
+                          test-style="{
+  \\"background\\": \\"transparent\\",
+  \\"outline\\": 0,
+  \\"paddingLeft\\": 0,
+  \\"paddingTop\\": 0,
+  \\"paddingRight\\": 0,
+  \\"paddingBottom\\": 0,
+  \\"color\\": \\"$theme.colors.modalCloseColor\\",
+  \\"transitionProperty\\": \\"color, border-color\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing100\\",
+  \\"borderWidth\\": \\"1px\\",
+  \\"borderStyle\\": \\"solid\\",
+  \\"borderColor\\": \\"transparent\\",
+  \\":hover\\": {
+    \\"color\\": \\"$theme.colors.modalCloseColorHover\\"
+  },
+  \\":focus\\": {
+    \\"outline\\": \\"none\\"
+  },
+  \\"position\\": \\"absolute\\",
+  \\"top\\": \\"$theme.sizing.scale500\\",
+  \\"right\\": \\"$theme.sizing.scale500\\",
+  \\"width\\": \\"$theme.sizing.scale800\\",
+  \\"height\\": \\"$theme.sizing.scale800\\",
+  \\"display\\": \\"flex\\",
+  \\"justifyContent\\": \\"center\\",
+  \\"alignItems\\": \\"center\\",
+  \\"cursor\\": \\"pointer\\"
+}"
                         >
                           <svg
                             height="10"
@@ -324,7 +666,20 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                       Object {
                         "current": <div
                           styled-component="true"
-                          test-style="[object Object]"
+                          test-style="{
+  \\"position\\": \\"fixed\\",
+  \\"right\\": 0,
+  \\"bottom\\": 0,
+  \\"top\\": 0,
+  \\"left\\": 0,
+  \\"backgroundColor\\": \\"rgba(0, 0, 0, 0.5)\\",
+  \\"WebkitTapHighlightColor\\": \\"transparent\\",
+  \\"touchAction\\": \\"none\\",
+  \\"opacity\\": 0,
+  \\"transitionProperty\\": \\"opacity\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing400\\",
+  \\"transitionTimingFunction\\": \\"$theme.animation.easeOutCurve\\"
+}"
                         />,
                       }
                     }
@@ -384,30 +739,115 @@ exports[`Modal renders portal when open: Rendered Modal 1`] = `
                                 role="dialog"
                                 styled-component="true"
                                 tabindex="-1"
-                                test-style="[object Object]"
+                                test-style="{
+  \\"position\\": \\"relative\\",
+  \\"backgroundColor\\": \\"$theme.colors.backgroundPrimary\\",
+  \\"borderTopLeftRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"borderTopRightRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"borderBottomRightRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"borderBottomLeftRadius\\": \\"$theme.borders.surfaceBorderRadius\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale600\\",
+  \\"marginTop\\": \\"$theme.sizing.scale600\\",
+  \\"marginRight\\": \\"$theme.sizing.scale600\\",
+  \\"marginBottom\\": \\"$theme.sizing.scale600\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"width\\": \\"500px\\",
+  \\"opacity\\": 0,
+  \\"transform\\": \\"translateY(20px)\\",
+  \\"transitionProperty\\": \\"opacity, transform\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing400\\",
+  \\"transitionTimingFunction\\": \\"$theme.animation.easeOutCurve\\",
+  \\"userSelect\\": \\"text\\",
+  \\"pointerEvents\\": \\"all\\",
+  \\":focus\\": {
+    \\"outline\\": \\"none\\"
+  }
+}"
                               >
                                 <div
                                   styled-component="true"
-                                  test-style="[object Object]"
+                                  test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font550.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font550.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font550.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font550.lineHeight\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"marginTop\\": \\"$theme.sizing.scale900\\",
+  \\"marginBottom\\": \\"$theme.sizing.scale600\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale800\\",
+  \\"marginRight\\": \\"$theme.sizing.scale900\\"
+}"
                                 >
                                   Hello world
                                 </div>
                                 <div
                                   styled-component="true"
-                                  test-style="[object Object]"
+                                  test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"color\\": \\"$theme.colors.contentSecondary\\",
+  \\"marginTop\\": \\"$theme.sizing.scale600\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale800\\",
+  \\"marginRight\\": \\"$theme.sizing.scale800\\",
+  \\"marginBottom\\": \\"$theme.sizing.scale700\\"
+}"
                                 >
                                   Modal Body
                                 </div>
                                 <div
                                   styled-component="true"
-                                  test-style="[object Object]"
+                                  test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"marginTop\\": \\"$theme.sizing.scale700\\",
+  \\"marginLeft\\": \\"$theme.sizing.scale800\\",
+  \\"marginRight\\": \\"$theme.sizing.scale800\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale500\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale500\\",
+  \\"borderTopWidth\\": \\"1px\\",
+  \\"borderTopStyle\\": \\"solid\\",
+  \\"borderTopColor\\": \\"$theme.colors.mono400\\",
+  \\"textAlign\\": \\"right\\"
+}"
                                 >
                                   Footer
                                 </div>
                                 <button
                                   aria-label="Close"
                                   styled-component="true"
-                                  test-style="[object Object]"
+                                  test-style="{
+  \\"background\\": \\"transparent\\",
+  \\"outline\\": 0,
+  \\"paddingLeft\\": 0,
+  \\"paddingTop\\": 0,
+  \\"paddingRight\\": 0,
+  \\"paddingBottom\\": 0,
+  \\"color\\": \\"$theme.colors.modalCloseColor\\",
+  \\"transitionProperty\\": \\"color, border-color\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing100\\",
+  \\"borderWidth\\": \\"1px\\",
+  \\"borderStyle\\": \\"solid\\",
+  \\"borderColor\\": \\"transparent\\",
+  \\":hover\\": {
+    \\"color\\": \\"$theme.colors.modalCloseColorHover\\"
+  },
+  \\":focus\\": {
+    \\"outline\\": \\"none\\"
+  },
+  \\"position\\": \\"absolute\\",
+  \\"top\\": \\"$theme.sizing.scale500\\",
+  \\"right\\": \\"$theme.sizing.scale500\\",
+  \\"width\\": \\"$theme.sizing.scale800\\",
+  \\"height\\": \\"$theme.sizing.scale800\\",
+  \\"display\\": \\"flex\\",
+  \\"justifyContent\\": \\"center\\",
+  \\"alignItems\\": \\"center\\",
+  \\"cursor\\": \\"pointer\\"
+}"
                                 >
                                   <svg
                                     height="10"

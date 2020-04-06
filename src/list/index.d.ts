@@ -53,7 +53,7 @@ export interface MenuAdapterPropsT extends PropsT {
   $disabled: boolean;
 }
 
-export const ListItem: React.FC<PropsT>;
+export const ListItem: React.ForwardRefExoticComponent<PropsT & React.RefAttributes<HTMLLIElement>>
 export const ListItemLabel: React.FC<LabelPropsT>;
 export const MenuAdapter: React.FC<MenuAdapterPropsT>;
 

@@ -9,12 +9,14 @@ LICENSE file in the root directory of this source tree.
 import type {OverrideT} from '../helpers/overrides.js';
 import type {OptionT} from '../select/index.js';
 import type {SizeT} from '../input/types.js';
+import type {DateIOAdapter} from '../datepicker/utils/types.js';
 
-export type TimePickerPropsT = {
+export type TimePickerPropsT<T> = {
   /** Render options in AM/PM format or 24 hour format. Defaults to 12 hour. */
+  adapter: DateIOAdapter<T>,
   format?: '12' | '24',
   /** Callback for when time selection changes. */
-  onChange?: Date => mixed,
+  onChange?: T => mixed,
   overrides?: {
     Select?: OverrideT<*>,
   },
@@ -26,7 +28,7 @@ export type TimePickerPropsT = {
    * Optional value that can be provided to fully control the component. If not provided, TimePicker
    * will manage state internally and default to the closest step to new Date().
    */
-  value?: ?Date,
+  value?: ?T,
   disabled?: boolean,
   error?: boolean,
   positive?: boolean,
@@ -39,4 +41,11 @@ export type TimePickerStateT = {
   steps: number[],
   /** Internal value of the selected time as an integer since midnight (0) */
   value: ?OptionT,
+};
+
+export type TimePickerDefaultPropsT = {
+  format: '12',
+  step: 900,
+  creatable: false,
+  adapter: DateIOAdapter<Date>,
 };
