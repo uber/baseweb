@@ -84,21 +84,33 @@ async function generateNewIcons() {
       'utf8',
     );
 
-    const iconProps = [`title="${titleCase(svgFile)}"`];
+    const title = titleCase(svgFile);
+    const viewboxRegex = svgFileContents.match(/viewBox="([^"]+)"/);
+    let viewBox = null;
+    if (viewboxRegex && viewboxRegex[1]) {
+      viewBox = viewboxRegex[1];
+    }
 
-    const viewBox = svgFileContents.match(/viewBox="[^"]+"/);
-    if (viewBox) {
-      iconProps.push(viewBox[0]);
+    const props = [{key: 'title', value: title}];
+    if (viewboxRegex && viewboxRegex[1]) {
+      props.push({key: 'viewBox', value: viewBox});
     }
 
     let result = iconTemplate
       .replace(new RegExp('%%ICON_NAME%%', 'g'), componentName)
-      .replace(new RegExp('%%ICON_PROPS%%', 'g'), iconProps.join(' '))
+      .replace(
+        new RegExp('%%ICON_OBJ_PROPS%%', 'g'),
+        props.map(p => `${p.key}: '${p.value}',`).join(''),
+      )
+      .replace(
+        new RegExp('%%ICON_JSX_PROPS%%', 'g'),
+        props.map(p => `${p.key}="${p.value}"`).join(' '),
+      )
       .replace('%%ICON_PATH%%', reactify(svgFileContents));
 
     fs.writeFileSync(
       path.resolve(__dirname, `./${svgFile}.js`),
-      prettier.format(result, {parser: 'babylon', ...prettierOptions}),
+      prettier.format(result, {parser: 'flow', ...prettierOptions}),
     );
   });
 

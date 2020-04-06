@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import {SIZE} from './constants.js';
-import type {OverrideT} from '../helpers/overrides.js';
+import type {OverrideResourceT} from '../helpers/override.js';
 
 export type SizeT = $Keys<typeof SIZE>;
 export type SpinnerPropsT = {
@@ -21,9 +21,9 @@ export type SpinnerPropsT = {
   silenceV10DeprecationWarning?: boolean,
   /** Allows you to set the SVG `<title>` label, which is used for accessibility */
   title?: string,
-  overrides?: {
-    Svg?: OverrideT<*>,
-    ActivePath?: OverrideT<*>,
-    TrackPath?: OverrideT<*>,
-  },
+  overrides?: {|
+    Svg?: OverrideResourceT<*>,
+    ActivePath?: OverrideResourceT<*>,
+    TrackPath?: OverrideResourceT<*>,
+  |},
 };

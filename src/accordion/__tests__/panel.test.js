@@ -26,7 +26,7 @@ describe('Panel', () => {
     let renderedToggleIcon;
     const wrapper = mount(<Panel {...props} />);
     renderedHeader = wrapper.find(StyledHeader).first();
-    renderedToggleIcon = wrapper.find(StyledToggleIcon).first();
+    renderedToggleIcon = wrapper.find('ForwardRef(Icon)').first();
     renderedContent = wrapper.find(StyledContent).first();
     expect(renderedHeader).toExist();
     expect(renderedHeader.props()).toMatchSnapshot('Header has correct props');

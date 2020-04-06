@@ -121,27 +121,24 @@ exports[`Panel aria-controls populated when provided: Header has correct props w
         $isFocusVisible={false}
         overrides={
           Object {
-            "Svg": Object {
-              "component": Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "render": [Function],
-              },
-            },
+            "Svg": undefined,
           }
         }
         size={16}
         title="Expand"
       >
-        <Icon
+        <ForwardRef(Icon)
           $disabled={false}
           $expanded={false}
           $isFocusVisible={false}
           overrides={
             Object {
               "Svg": Object {
-                "component": Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "render": [Function],
+                "component": null,
+                "props": Object {
+                  "size": 16,
+                  "title": "Expand",
+                  "viewBox": "0 0 24 24",
                 },
               },
             }
@@ -150,48 +147,72 @@ exports[`Panel aria-controls populated when provided: Header has correct props w
           title="Expand"
           viewBox="0 0 24 24"
         >
-          <ForwardRef
+          <ForwardRef(ProxyOverrides)
             $disabled={false}
             $expanded={false}
             $isFocusVisible={false}
             $size={16}
             data-baseweb="icon"
+            override={
+              Object {
+                "component": null,
+                "props": Object {
+                  "size": 16,
+                  "title": "Expand",
+                  "viewBox": "0 0 24 24",
+                },
+              }
+            }
             viewBox="0 0 24 24"
           >
-            <MockStyledComponent
+            <ForwardRef
               $disabled={false}
               $expanded={false}
               $isFocusVisible={false}
               $size={16}
               data-baseweb="icon"
-              forwardedRef={null}
+              size={16}
+              title="Expand"
               viewBox="0 0 24 24"
             >
-              <svg
+              <MockStyledComponent
+                $disabled={false}
+                $expanded={false}
+                $isFocusVisible={false}
+                $size={16}
                 data-baseweb="icon"
-                styled-component="true"
-                test-style="{
-  \\"display\\": \\"inline-block\\",
-  \\"fill\\": \\"currentColor\\",
-  \\"color\\": \\"$theme.colors.contentPrimary\\",
-  \\"height\\": \\"16px\\",
-  \\"width\\": \\"16px\\",
-  \\"cursor\\": \\"pointer\\"
-}"
+                forwardedRef={null}
+                size={16}
+                title="Expand"
                 viewBox="0 0 24 24"
               >
-                <title>
-                  Expand
-                </title>
-                <path
-                  clipRule="evenodd"
-                  d="M12 5C12.5523 5 13 5.44772 13 6V11L18 11C18.5523 11 19 11.4477 19 12C19 12.5523 18.5523 13 18 13L13 13V18C13 18.5523 12.5523 19 12 19C11.4477 19 11 18.5523 11 18V13L6 13C5.44772 13 5 12.5523 5 12C5 11.4477 5.44771 11 6 11L11 11V6C11 5.44772 11.4477 5 12 5Z"
-                  fillRule="evenodd"
-                />
-              </svg>
-            </MockStyledComponent>
-          </ForwardRef>
-        </Icon>
+                <svg
+                  data-baseweb="icon"
+                  size={16}
+                  styled-component="true"
+                  test-style="{
+  \\"display\\": \\"inline-block\\",
+  \\"fill\\": \\"currentColor\\",
+  \\"color\\": \\"currentColor\\",
+  \\"height\\": \\"16px\\",
+  \\"width\\": \\"16px\\"
+}"
+                  title="Expand"
+                  viewBox="0 0 24 24"
+                >
+                  <title>
+                    Expand
+                  </title>
+                  <path
+                    clipRule="evenodd"
+                    d="M12 5C12.5523 5 13 5.44772 13 6V11L18 11C18.5523 11 19 11.4477 19 12C19 12.5523 18.5523 13 18 13L13 13V18C13 18.5523 12.5523 19 12 19C11.4477 19 11 18.5523 11 18V13L6 13C5.44772 13 5 12.5523 5 12C5 11.4477 5.44771 11 6 11L11 11V6C11 5.44772 11.4477 5 12 5Z"
+                    fillRule="evenodd"
+                  />
+                </svg>
+              </MockStyledComponent>
+            </ForwardRef>
+          </ForwardRef(ProxyOverrides)>
+        </ForwardRef(Icon)>
       </Plus>
     </div>
   </MockStyledComponent>
@@ -222,12 +243,7 @@ Object {
       $isFocusVisible={false}
       overrides={
         Object {
-          "Svg": Object {
-            "component": Object {
-              "$$typeof": Symbol(react.forward_ref),
-              "render": [Function],
-            },
-          },
+          "Svg": undefined,
         }
       }
       size={16}

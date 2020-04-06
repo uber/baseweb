@@ -203,6 +203,7 @@ exports[`Select component renders component in search mode and false for multipl
                   >
                     <svg
                       data-baseweb="icon"
+                      size="16"
                       styled-component="true"
                       test-style="{
   \\"display\\": \\"inline-block\\",
@@ -211,6 +212,7 @@ exports[`Select component renders component in search mode and false for multipl
   \\"height\\": \\"16px\\",
   \\"width\\": \\"16px\\"
 }"
+                      title="search"
                       viewBox="0 0 24 24"
                     >
                       <title>
@@ -490,46 +492,80 @@ exports[`Select component renders component in search mode and false for multipl
                           size={16}
                           title="search"
                         >
-                          <Icon
+                          <ForwardRef(Icon)
+                            overrides={
+                              Object {
+                                "Svg": Object {
+                                  "component": null,
+                                  "props": Object {
+                                    "size": 16,
+                                    "title": "search",
+                                    "viewBox": "0 0 24 24",
+                                  },
+                                },
+                              }
+                            }
                             size={16}
                             title="search"
                             viewBox="0 0 24 24"
                           >
-                            <ForwardRef
+                            <ForwardRef(ProxyOverrides)
                               $size={16}
                               data-baseweb="icon"
+                              override={
+                                Object {
+                                  "component": null,
+                                  "props": Object {
+                                    "size": 16,
+                                    "title": "search",
+                                    "viewBox": "0 0 24 24",
+                                  },
+                                }
+                              }
                               viewBox="0 0 24 24"
                             >
-                              <MockStyledComponent
+                              <ForwardRef
                                 $size={16}
                                 data-baseweb="icon"
-                                forwardedRef={null}
+                                size={16}
+                                title="search"
                                 viewBox="0 0 24 24"
                               >
-                                <svg
+                                <MockStyledComponent
+                                  $size={16}
                                   data-baseweb="icon"
-                                  styled-component="true"
-                                  test-style="{
+                                  forwardedRef={null}
+                                  size={16}
+                                  title="search"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <svg
+                                    data-baseweb="icon"
+                                    size={16}
+                                    styled-component="true"
+                                    test-style="{
   \\"display\\": \\"inline-block\\",
   \\"fill\\": \\"currentColor\\",
   \\"color\\": \\"currentColor\\",
   \\"height\\": \\"16px\\",
   \\"width\\": \\"16px\\"
 }"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <title>
-                                    search
-                                  </title>
-                                  <path
-                                    clipRule="evenodd"
-                                    d="M11 6C8.79086 6 7 7.79086 7 10C7 12.2091 8.79086 14 11 14C13.2091 14 15 12.2091 15 10C15 7.79086 13.2091 6 11 6ZM5 10C5 6.68629 7.68629 4 11 4C14.3137 4 17 6.68629 17 10C17 11.2958 16.5892 12.4957 15.8907 13.4765L19.7071 17.2929C20.0976 17.6834 20.0976 18.3166 19.7071 18.7071C19.3166 19.0976 18.6834 19.0976 18.2929 18.7071L14.4765 14.8907C13.4957 15.5892 12.2958 16 11 16C7.68629 16 5 13.3137 5 10Z"
-                                    fillRule="evenodd"
-                                  />
-                                </svg>
-                              </MockStyledComponent>
-                            </ForwardRef>
-                          </Icon>
+                                    title="search"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <title>
+                                      search
+                                    </title>
+                                    <path
+                                      clipRule="evenodd"
+                                      d="M11 6C8.79086 6 7 7.79086 7 10C7 12.2091 8.79086 14 11 14C13.2091 14 15 12.2091 15 10C15 7.79086 13.2091 6 11 6ZM5 10C5 6.68629 7.68629 4 11 4C14.3137 4 17 6.68629 17 10C17 11.2958 16.5892 12.4957 15.8907 13.4765L19.7071 17.2929C20.0976 17.6834 20.0976 18.3166 19.7071 18.7071C19.3166 19.0976 18.6834 19.0976 18.2929 18.7071L14.4765 14.8907C13.4957 15.5892 12.2958 16 11 16C7.68629 16 5 13.3137 5 10Z"
+                                      fillRule="evenodd"
+                                    />
+                                  </svg>
+                                </MockStyledComponent>
+                              </ForwardRef>
+                            </ForwardRef(ProxyOverrides)>
+                          </ForwardRef(Icon)>
                         </Search>
                       </div>
                     </MockStyledComponent>
@@ -1154,6 +1190,7 @@ exports[`Select component renders component in search mode and true for multiple
                   >
                     <svg
                       data-baseweb="icon"
+                      size="16"
                       styled-component="true"
                       test-style="{
   \\"display\\": \\"inline-block\\",
@@ -1162,6 +1199,7 @@ exports[`Select component renders component in search mode and true for multiple
   \\"height\\": \\"16px\\",
   \\"width\\": \\"16px\\"
 }"
+                      title="search"
                       viewBox="0 0 24 24"
                     >
                       <title>
@@ -1441,46 +1479,80 @@ exports[`Select component renders component in search mode and true for multiple
                           size={16}
                           title="search"
                         >
-                          <Icon
+                          <ForwardRef(Icon)
+                            overrides={
+                              Object {
+                                "Svg": Object {
+                                  "component": null,
+                                  "props": Object {
+                                    "size": 16,
+                                    "title": "search",
+                                    "viewBox": "0 0 24 24",
+                                  },
+                                },
+                              }
+                            }
                             size={16}
                             title="search"
                             viewBox="0 0 24 24"
                           >
-                            <ForwardRef
+                            <ForwardRef(ProxyOverrides)
                               $size={16}
                               data-baseweb="icon"
+                              override={
+                                Object {
+                                  "component": null,
+                                  "props": Object {
+                                    "size": 16,
+                                    "title": "search",
+                                    "viewBox": "0 0 24 24",
+                                  },
+                                }
+                              }
                               viewBox="0 0 24 24"
                             >
-                              <MockStyledComponent
+                              <ForwardRef
                                 $size={16}
                                 data-baseweb="icon"
-                                forwardedRef={null}
+                                size={16}
+                                title="search"
                                 viewBox="0 0 24 24"
                               >
-                                <svg
+                                <MockStyledComponent
+                                  $size={16}
                                   data-baseweb="icon"
-                                  styled-component="true"
-                                  test-style="{
+                                  forwardedRef={null}
+                                  size={16}
+                                  title="search"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <svg
+                                    data-baseweb="icon"
+                                    size={16}
+                                    styled-component="true"
+                                    test-style="{
   \\"display\\": \\"inline-block\\",
   \\"fill\\": \\"currentColor\\",
   \\"color\\": \\"currentColor\\",
   \\"height\\": \\"16px\\",
   \\"width\\": \\"16px\\"
 }"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <title>
-                                    search
-                                  </title>
-                                  <path
-                                    clipRule="evenodd"
-                                    d="M11 6C8.79086 6 7 7.79086 7 10C7 12.2091 8.79086 14 11 14C13.2091 14 15 12.2091 15 10C15 7.79086 13.2091 6 11 6ZM5 10C5 6.68629 7.68629 4 11 4C14.3137 4 17 6.68629 17 10C17 11.2958 16.5892 12.4957 15.8907 13.4765L19.7071 17.2929C20.0976 17.6834 20.0976 18.3166 19.7071 18.7071C19.3166 19.0976 18.6834 19.0976 18.2929 18.7071L14.4765 14.8907C13.4957 15.5892 12.2958 16 11 16C7.68629 16 5 13.3137 5 10Z"
-                                    fillRule="evenodd"
-                                  />
-                                </svg>
-                              </MockStyledComponent>
-                            </ForwardRef>
-                          </Icon>
+                                    title="search"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <title>
+                                      search
+                                    </title>
+                                    <path
+                                      clipRule="evenodd"
+                                      d="M11 6C8.79086 6 7 7.79086 7 10C7 12.2091 8.79086 14 11 14C13.2091 14 15 12.2091 15 10C15 7.79086 13.2091 6 11 6ZM5 10C5 6.68629 7.68629 4 11 4C14.3137 4 17 6.68629 17 10C17 11.2958 16.5892 12.4957 15.8907 13.4765L19.7071 17.2929C20.0976 17.6834 20.0976 18.3166 19.7071 18.7071C19.3166 19.0976 18.6834 19.0976 18.2929 18.7071L14.4765 14.8907C13.4957 15.5892 12.2958 16 11 16C7.68629 16 5 13.3137 5 10Z"
+                                      fillRule="evenodd"
+                                    />
+                                  </svg>
+                                </MockStyledComponent>
+                              </ForwardRef>
+                            </ForwardRef(ProxyOverrides)>
+                          </ForwardRef(Icon)>
                         </Search>
                       </div>
                     </MockStyledComponent>
@@ -2205,6 +2277,7 @@ exports[`Select component renders component in select mode and false for multipl
                   >
                     <svg
                       data-baseweb="icon"
+                      size="16"
                       styled-component="true"
                       test-style="{
   \\"display\\": \\"inline-block\\",
@@ -2214,6 +2287,7 @@ exports[`Select component renders component in select mode and false for multipl
   \\"width\\": \\"$theme.sizing.scale600\\",
   \\"cursor\\": \\"pointer\\"
 }"
+                      title="open"
                       viewBox="0 0 24 24"
                     >
                       <title>
@@ -2757,7 +2831,7 @@ exports[`Select component renders component in select mode and false for multipl
                           size={16}
                           title="open"
                         >
-                          <Icon
+                          <ForwardRef(Icon)
                             $clearable={true}
                             $creatable={false}
                             $disabled={false}
@@ -2780,7 +2854,11 @@ exports[`Select component renders component in select mode and false for multipl
                                     "$$typeof": Symbol(react.forward_ref),
                                     "render": [Function],
                                   },
-                                  "props": Object {},
+                                  "props": Object {
+                                    "size": 16,
+                                    "title": "open",
+                                    "viewBox": "0 0 24 24",
+                                  },
                                   "style": Object {},
                                 },
                               }
@@ -2789,7 +2867,7 @@ exports[`Select component renders component in select mode and false for multipl
                             title="open"
                             viewBox="0 0 24 24"
                           >
-                            <ForwardRef
+                            <ForwardRef(ProxyOverrides)
                               $clearable={true}
                               $creatable={false}
                               $disabled={false}
@@ -2804,12 +2882,25 @@ exports[`Select component renders component in select mode and false for multipl
                               $required={false}
                               $searchable={true}
                               $size={16}
-                              $style={Object {}}
                               $type="select"
                               data-baseweb="icon"
+                              override={
+                                Object {
+                                  "component": Object {
+                                    "$$typeof": Symbol(react.forward_ref),
+                                    "render": [Function],
+                                  },
+                                  "props": Object {
+                                    "size": 16,
+                                    "title": "open",
+                                    "viewBox": "0 0 24 24",
+                                  },
+                                  "style": Object {},
+                                }
+                              }
                               viewBox="0 0 24 24"
                             >
-                              <MockStyledComponent
+                              <ForwardRef
                                 $clearable={true}
                                 $creatable={false}
                                 $disabled={false}
@@ -2827,13 +2918,38 @@ exports[`Select component renders component in select mode and false for multipl
                                 $style={Object {}}
                                 $type="select"
                                 data-baseweb="icon"
-                                forwardedRef={null}
+                                size={16}
+                                title="open"
                                 viewBox="0 0 24 24"
                               >
-                                <svg
+                                <MockStyledComponent
+                                  $clearable={true}
+                                  $creatable={false}
+                                  $disabled={false}
+                                  $error={false}
+                                  $isEmpty={true}
+                                  $isFocused={false}
+                                  $isLoading={false}
+                                  $isOpen={false}
+                                  $isPseudoFocused={false}
+                                  $multi={false}
+                                  $positive={false}
+                                  $required={false}
+                                  $searchable={true}
+                                  $size={16}
+                                  $style={Object {}}
+                                  $type="select"
                                   data-baseweb="icon"
-                                  styled-component="true"
-                                  test-style="{
+                                  forwardedRef={null}
+                                  size={16}
+                                  title="open"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <svg
+                                    data-baseweb="icon"
+                                    size={16}
+                                    styled-component="true"
+                                    test-style="{
   \\"display\\": \\"inline-block\\",
   \\"fill\\": \\"currentColor\\",
   \\"color\\": \\"$theme.colors.contentPrimary\\",
@@ -2841,18 +2957,20 @@ exports[`Select component renders component in select mode and false for multipl
   \\"width\\": \\"$theme.sizing.scale600\\",
   \\"cursor\\": \\"pointer\\"
 }"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <title>
-                                    open
-                                  </title>
-                                  <path
-                                    d="M12.7071 15.2929L17.1464 10.8536C17.4614 10.5386 17.2383 10 16.7929 10L7.20711 10C6.76165 10 6.53857 10.5386 6.85355 10.8536L11.2929 15.2929C11.6834 15.6834 12.3166 15.6834 12.7071 15.2929Z"
-                                  />
-                                </svg>
-                              </MockStyledComponent>
-                            </ForwardRef>
-                          </Icon>
+                                    title="open"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <title>
+                                      open
+                                    </title>
+                                    <path
+                                      d="M12.7071 15.2929L17.1464 10.8536C17.4614 10.5386 17.2383 10 16.7929 10L7.20711 10C6.76165 10 6.53857 10.5386 6.85355 10.8536L11.2929 15.2929C11.6834 15.6834 12.3166 15.6834 12.7071 15.2929Z"
+                                    />
+                                  </svg>
+                                </MockStyledComponent>
+                              </ForwardRef>
+                            </ForwardRef(ProxyOverrides)>
+                          </ForwardRef(Icon)>
                         </TriangleDown>
                       </div>
                     </MockStyledComponent>
@@ -3171,6 +3289,7 @@ exports[`Select component renders component in select mode and true for multiple
                   >
                     <svg
                       data-baseweb="icon"
+                      size="16"
                       styled-component="true"
                       test-style="{
   \\"display\\": \\"inline-block\\",
@@ -3180,6 +3299,7 @@ exports[`Select component renders component in select mode and true for multiple
   \\"width\\": \\"$theme.sizing.scale600\\",
   \\"cursor\\": \\"pointer\\"
 }"
+                      title="open"
                       viewBox="0 0 24 24"
                     >
                       <title>
@@ -3723,7 +3843,7 @@ exports[`Select component renders component in select mode and true for multiple
                           size={16}
                           title="open"
                         >
-                          <Icon
+                          <ForwardRef(Icon)
                             $clearable={true}
                             $creatable={false}
                             $disabled={false}
@@ -3746,7 +3866,11 @@ exports[`Select component renders component in select mode and true for multiple
                                     "$$typeof": Symbol(react.forward_ref),
                                     "render": [Function],
                                   },
-                                  "props": Object {},
+                                  "props": Object {
+                                    "size": 16,
+                                    "title": "open",
+                                    "viewBox": "0 0 24 24",
+                                  },
                                   "style": Object {},
                                 },
                               }
@@ -3755,7 +3879,7 @@ exports[`Select component renders component in select mode and true for multiple
                             title="open"
                             viewBox="0 0 24 24"
                           >
-                            <ForwardRef
+                            <ForwardRef(ProxyOverrides)
                               $clearable={true}
                               $creatable={false}
                               $disabled={false}
@@ -3770,12 +3894,25 @@ exports[`Select component renders component in select mode and true for multiple
                               $required={false}
                               $searchable={true}
                               $size={16}
-                              $style={Object {}}
                               $type="select"
                               data-baseweb="icon"
+                              override={
+                                Object {
+                                  "component": Object {
+                                    "$$typeof": Symbol(react.forward_ref),
+                                    "render": [Function],
+                                  },
+                                  "props": Object {
+                                    "size": 16,
+                                    "title": "open",
+                                    "viewBox": "0 0 24 24",
+                                  },
+                                  "style": Object {},
+                                }
+                              }
                               viewBox="0 0 24 24"
                             >
-                              <MockStyledComponent
+                              <ForwardRef
                                 $clearable={true}
                                 $creatable={false}
                                 $disabled={false}
@@ -3793,13 +3930,38 @@ exports[`Select component renders component in select mode and true for multiple
                                 $style={Object {}}
                                 $type="select"
                                 data-baseweb="icon"
-                                forwardedRef={null}
+                                size={16}
+                                title="open"
                                 viewBox="0 0 24 24"
                               >
-                                <svg
+                                <MockStyledComponent
+                                  $clearable={true}
+                                  $creatable={false}
+                                  $disabled={false}
+                                  $error={false}
+                                  $isEmpty={true}
+                                  $isFocused={false}
+                                  $isLoading={false}
+                                  $isOpen={false}
+                                  $isPseudoFocused={false}
+                                  $multi={false}
+                                  $positive={false}
+                                  $required={false}
+                                  $searchable={true}
+                                  $size={16}
+                                  $style={Object {}}
+                                  $type="select"
                                   data-baseweb="icon"
-                                  styled-component="true"
-                                  test-style="{
+                                  forwardedRef={null}
+                                  size={16}
+                                  title="open"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <svg
+                                    data-baseweb="icon"
+                                    size={16}
+                                    styled-component="true"
+                                    test-style="{
   \\"display\\": \\"inline-block\\",
   \\"fill\\": \\"currentColor\\",
   \\"color\\": \\"$theme.colors.contentPrimary\\",
@@ -3807,18 +3969,20 @@ exports[`Select component renders component in select mode and true for multiple
   \\"width\\": \\"$theme.sizing.scale600\\",
   \\"cursor\\": \\"pointer\\"
 }"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <title>
-                                    open
-                                  </title>
-                                  <path
-                                    d="M12.7071 15.2929L17.1464 10.8536C17.4614 10.5386 17.2383 10 16.7929 10L7.20711 10C6.76165 10 6.53857 10.5386 6.85355 10.8536L11.2929 15.2929C11.6834 15.6834 12.3166 15.6834 12.7071 15.2929Z"
-                                  />
-                                </svg>
-                              </MockStyledComponent>
-                            </ForwardRef>
-                          </Icon>
+                                    title="open"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <title>
+                                      open
+                                    </title>
+                                    <path
+                                      d="M12.7071 15.2929L17.1464 10.8536C17.4614 10.5386 17.2383 10 16.7929 10L7.20711 10C6.76165 10 6.53857 10.5386 6.85355 10.8536L11.2929 15.2929C11.6834 15.6834 12.3166 15.6834 12.7071 15.2929Z"
+                                    />
+                                  </svg>
+                                </MockStyledComponent>
+                              </ForwardRef>
+                            </ForwardRef(ProxyOverrides)>
+                          </ForwardRef(Icon)>
                         </TriangleDown>
                       </div>
                     </MockStyledComponent>

@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {default as DeleteIcon} from '../delete.js';
 import {ThemeProvider, LightTheme, styled} from '../../index.js';
-import {getOverrides, mergeOverrides} from '../../helpers/overrides.js';
+import {mergeOverrideResources} from '../../helpers/override.js';
 import {getSvgStyles} from '../../icon/styled-components.js';
 
 const XSmallFilled = ({title, ...props}) => {
@@ -31,7 +31,6 @@ const theme = {
   },
 };
 
-// ! All of these styles will be wiped out by the theme icons.
 const StyledCloseIcon = styled('svg', props => {
   return {
     ...getSvgStyles(props),
@@ -47,30 +46,26 @@ const StyledBody = styled('div', {
 const Toast = props => {
   const closeRef = React.useRef();
   const {CloseIcon: CloseIconOverride = {}} = props.overrides || {};
-  // eslint-disable-next-line no-unused-vars
-  const [CloseIcon, closeIconProps] = getOverrides(
-    CloseIconOverride,
-    StyledCloseIcon,
-  );
-  const closeIconOverrides = mergeOverrides(
+
+  const closeIconOverrides = mergeOverrideResources(
     {
-      Svg: {
-        component: StyledCloseIcon,
-        props: {
-          ref: closeRef,
-        },
+      component: StyledCloseIcon,
+      props: {
+        ref: closeRef,
       },
     },
-    {Svg: CloseIconOverride},
+    CloseIconOverride,
   );
+
   return (
     <StyledBody>
-      <DeleteIcon {...closeIconProps} overrides={closeIconOverrides} />
+      <DeleteIcon overrides={{Svg: closeIconOverrides}} />
       Stuff
     </StyledBody>
   );
 };
 
+// This scenario proves that icons from theme will not supercede local overrides
 export default function Scenario() {
   return (
     <div>

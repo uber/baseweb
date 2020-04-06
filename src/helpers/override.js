@@ -8,18 +8,18 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {isValidElementType} from 'react-is';
+import deepMerge from '../utils/deep-merge.js';
 
 type StaticPropertyT = {};
 type DynamicPropertyT<A, B> = A => B;
 
 type ComponentPropertyT<Props> = React.AbstractComponent<Props>;
-type PropsPropertyT<Props> = StaticPropertyT | DynamicPropertyT<{}, Props>;
-type StylePropertyT = StaticPropertyT | DynamicPropertyT<{}, {}>;
+type ConfigPropertyT<A, B> = StaticPropertyT | DynamicPropertyT<A, B>;
 
 type OverrideConfigT<T> = {|
   component?: ?ComponentPropertyT<T>,
-  props?: ?PropsPropertyT<T>,
-  style?: ?StylePropertyT,
+  props?: ?ConfigPropertyT<{}, T>,
+  style?: ?ConfigPropertyT<{}, {}>,
 |};
 
 export type OverrideResourceT<P> = OverrideConfigT<P> | ComponentPropertyT<P>;
@@ -75,12 +75,42 @@ export function Override<Props: {}>(
   );
 }
 
-function mergeOverrideResources<Props>(
+function mergeOverrideProperties<A: {}, B: {}>(
+  target: ConfigPropertyT<A, B>,
+  source: ConfigPropertyT<A, B>,
+): ConfigPropertyT<A, B> {
+  if (typeof target === 'object' && typeof source === 'object') {
+    return deepMerge({}, target, source);
+  }
+  return (props: A): B => {
+    return deepMerge(
+      {},
+      typeof source === 'function' ? source(props) : source,
+      typeof source === 'function' ? source(props) : source,
+    );
+  };
+}
+
+export function mergeOverrideResources<Props: {}>(
   target: OverrideResourceT<Props>,
   source: OverrideResourceT<Props>,
-): OverrideResourceT<Props> {
-  // TODO
-  return target;
+): OverrideConfigT<Props> {
+  const targetConfig = refineResourceToConfig<Props>(target);
+  const sourceConfig = refineResourceToConfig<Props>(source);
+  const merged = {...targetConfig, ...sourceConfig};
+  if (targetConfig.props && sourceConfig.props) {
+    merged.props = mergeOverrideProperties<{}, Props>(
+      targetConfig.props,
+      sourceConfig.props,
+    );
+  }
+  if (targetConfig.style && sourceConfig.style) {
+    merged.style = mergeOverrideProperties<{}, {}>(
+      targetConfig.style,
+      sourceConfig.style,
+    );
+  }
+  return merged;
 }
 
 function mergeOverrideCollections<Props>(

@@ -7,11 +7,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type {OverrideT} from '../helpers/overrides.js';
+import type {OverrideResourceT} from '../helpers/override.js';
 
-export type OverridesT = {
-  Svg?: OverrideT<StyledComponentArgsT>,
-};
+export type OverridesT = {|
+  Svg?: OverrideResourceT<StyledComponentArgsT>,
+|};
 
 export type SizeT = number | string;
 export type ColorT = string;
@@ -27,6 +27,8 @@ export type IconPropsT = {
   size?: SizeT,
   /** Color of icon, will be used as svg fill */
   color?: ColorT,
+  /** A ref to access an svg element. */
+  svgRef?: React.ElementRef<*>,
   /** Allows you to set the SVG `<title>` label, which is used for accessibility */
   title?: string,
   overrides?: OverridesT,

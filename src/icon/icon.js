@@ -6,24 +6,41 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
+import {Override} from '../helpers/override.js';
 import {Svg as StyledSvg} from './styled-components.js';
-import type {IconPropsT} from './types.js';
+import type {IconPropsT, StyledComponentArgsT} from './types.js';
 
-export default function Icon(props: IconPropsT) {
+const Svg = Override<StyledComponentArgsT>(StyledSvg);
+
+function Icon(props: IconPropsT, ref) {
   const {children, title, overrides = {}, size, color, ...restProps} = props;
 
-  const sharedProps = {
-    $size: size,
-    $color: color,
-  };
-
-  const [Svg, overrideProps] = getOverrides(overrides.Svg, StyledSvg);
+  // maintains props from overrides applying to the size/color values
+  const SvgOverrideProps =
+    overrides.Svg && overrides.Svg.props ? overrides.Svg.props : {};
+  const sizeOverride =
+    typeof SvgOverrideProps.size === 'string' ||
+    typeof SvgOverrideProps.size === 'number'
+      ? SvgOverrideProps.size
+      : undefined;
+  const colorOverride =
+    typeof SvgOverrideProps.color === 'string'
+      ? SvgOverrideProps.color
+      : undefined;
 
   return (
-    <Svg data-baseweb="icon" {...restProps} {...sharedProps} {...overrideProps}>
+    <Svg
+      data-baseweb="icon"
+      {...restProps}
+      $size={sizeOverride || size}
+      $color={colorOverride || color}
+      override={overrides.Svg}
+      ref={ref}
+    >
       {title ? <title>{title}</title> : null}
       {children}
     </Svg>
   );
 }
+
+export default React.forwardRef<IconPropsT, mixed>(Icon);

@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {mount} from 'enzyme';
 import {Toast, StyledBody, StyledCloseIcon, KIND} from '../index.js';
+import {render, getByTestId} from '@testing-library/react';
 
 describe('Toast', () => {
   beforeEach(async () => {
@@ -195,26 +196,32 @@ describe('Toast', () => {
     expect(props.onBlur).toHaveBeenCalled();
   });
 
-  test('component overrides', () => {
-    const Override = ({children}) => <span>{children}</span>;
+  it('accepts overrides', () => {
     const overrides = {
-      Body: jest.fn().mockImplementation(Override),
+      Body: {
+        component: ({children}) => <div data-testid="body">{children}</div>,
+      },
+      InnerContainer: {
+        component: ({children}) => <div data-testid="inner">{children}</div>,
+      },
       CloseIcon: {
-        props: {size: '54px'},
+        props: {size: '54px', 'data-testid': 'icon'},
         style: {color: 'red'},
-        component: Override,
       },
     };
 
-    // $FlowFixMe
-    const wrapper = mount(<Toast overrides={overrides}>Notification</Toast>);
-    // $FlowFixMe
-    const bodyOverride = wrapper.find(overrides.Body);
-    expect(bodyOverride).toHaveLength(1);
-
-    const closeIconOverride = wrapper.find(overrides.CloseIcon.component);
-    expect(closeIconOverride).toHaveLength(1);
-    expect(closeIconOverride.props().$size).toBe('54px');
-    expect(closeIconOverride.props().$style).toBe(overrides.CloseIcon.style);
+    const {container} = render(
+      <Toast overrides={overrides}>Toast content</Toast>,
+    );
+    const body = getByTestId(container, 'body');
+    expect(body).not.toBeNull();
+    const inner = getByTestId(container, 'inner');
+    expect(inner).not.toBeNull();
+    const icon = getByTestId(container, 'icon');
+    expect(icon).not.toBeNull();
+    const iconStyle = JSON.parse(icon.getAttribute('test-style'));
+    expect(iconStyle.height).toBe('54px');
+    expect(iconStyle.width).toBe('54px');
+    expect(iconStyle.color).toBe('red');
   });
 });

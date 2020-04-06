@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {isValidElementType} from 'react-is';
 
 import {LocaleContext} from '../locale/index.js';
 import {Override} from '../helpers/override.js';
@@ -83,37 +82,6 @@ class Panel extends React.Component<PanelPropsT, {isFocusVisible: boolean}> {
     };
   }
 
-  maybeIconComponentOverride = (): ?React.ComponentType<SharedStylePropsArgT> => {
-    const overrides = this.props.overrides;
-    if (overrides) {
-      const ToggleIcon = overrides.ToggleIcon;
-      if (typeof ToggleIcon === 'object') {
-        if (ToggleIcon.component && isValidElementType(ToggleIcon.component)) {
-          return ToggleIcon.component;
-        }
-      }
-      if (typeof ToggleIcon === 'function' && isValidElementType(ToggleIcon)) {
-        return ToggleIcon;
-      }
-    }
-    return null;
-  };
-
-  getToggleIconComponent = () => {
-    // it's a bit tricky ¯\_(ツ)_/¯
-    // we only want to use the theme overrides, if it was not override locally
-    const ToggleIconComponentOverride = this.maybeIconComponentOverride();
-    let ToggleIconComponent = PlusIcon;
-    if (ToggleIconComponentOverride) {
-      ToggleIconComponent = ToggleIconComponentOverride;
-    } else {
-      if (this.props.expanded) {
-        ToggleIconComponent = CheckIndeterminateIcon;
-      }
-    }
-    return ToggleIconComponent;
-  };
-
   render() {
     const {
       expanded,
@@ -147,7 +115,7 @@ class Panel extends React.Component<PanelPropsT, {isFocusVisible: boolean}> {
                   ? forkFocus(overrides.Header.props, this.handleFocus)
                   : this.handleFocus
               }
-              onFocus={
+              onBlur={
                 overrides.Header && overrides.Header.props
                   ? forkBlur(overrides.Header.props, this.handleBlur)
                   : this.handleBlur

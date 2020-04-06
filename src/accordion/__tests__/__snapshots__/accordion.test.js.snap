@@ -18,21 +18,26 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
     renderPanelContent={false}
     stateReducer={[Function]}
   >
-    <ForwardRef
+    <ForwardRef(ProxyOverrides)
       $disabled={false}
       $isFocusVisible={false}
       data-baseweb="accordion"
     >
-      <MockStyledComponent
+      <ForwardRef
         $disabled={false}
         $isFocusVisible={false}
         data-baseweb="accordion"
-        forwardedRef={null}
       >
-        <ul
+        <MockStyledComponent
+          $disabled={false}
+          $isFocusVisible={false}
           data-baseweb="accordion"
-          styled-component="true"
-          test-style="{
+          forwardedRef={null}
+        >
+          <ul
+            data-baseweb="accordion"
+            styled-component="true"
+            test-style="{
   \\"listStyleType\\": \\"none\\",
   \\"marginBottom\\": 0,
   \\"marginTop\\": 0,
@@ -40,66 +45,47 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
   \\"paddingRight\\": 0,
   \\"width\\": \\"100%\\"
 }"
-        >
-          <Panel
-            accordion={true}
-            disabled={false}
-            expanded={false}
-            key="0/.0"
-            onChange={[Function]}
-            onClick={[Function]}
-            onKeyDown={[Function]}
-            overrides={Object {}}
-            renderAll={true}
-            renderPanelContent={false}
-            title="Accordion panel 1"
           >
-            <ForwardRef
-              $disabled={false}
-              $expanded={false}
-              $isFocusVisible={false}
+            <Panel
+              accordion={true}
+              disabled={false}
+              expanded={false}
+              key="0/.0"
+              onChange={[Function]}
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              overrides={Object {}}
+              renderAll={true}
+              renderPanelContent={false}
+              title="Accordion panel 1"
             >
-              <MockStyledComponent
+              <ForwardRef(ProxyOverrides)
                 $disabled={false}
                 $expanded={false}
                 $isFocusVisible={false}
-                forwardedRef={null}
               >
-                <li
-                  styled-component="true"
-                  test-style="{
-  \\"listStyleType\\": \\"none\\",
-  \\"width\\": \\"100%\\"
-}"
+                <ForwardRef
+                  $disabled={false}
+                  $expanded={false}
+                  $isFocusVisible={false}
                 >
-                  <ForwardRef
+                  <MockStyledComponent
                     $disabled={false}
                     $expanded={false}
                     $isFocusVisible={false}
-                    aria-disabled={null}
-                    aria-expanded={false}
-                    onBlur={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    role="button"
-                    tabIndex={0}
+                    forwardedRef={null}
                   >
-                    <MockStyledComponent
-                      $disabled={false}
-                      $expanded={false}
-                      $isFocusVisible={false}
-                      aria-disabled={null}
-                      aria-expanded={false}
-                      forwardedRef={null}
-                      onBlur={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      role="button"
-                      tabIndex={0}
+                    <li
+                      styled-component="true"
+                      test-style="{
+  \\"listStyleType\\": \\"none\\",
+  \\"width\\": \\"100%\\"
+}"
                     >
-                      <div
+                      <ForwardRef(ProxyOverrides)
+                        $disabled={false}
+                        $expanded={false}
+                        $isFocusVisible={false}
                         aria-disabled={null}
                         aria-expanded={false}
                         onBlur={[Function]}
@@ -107,9 +93,46 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                         onFocus={[Function]}
                         onKeyDown={[Function]}
                         role="button"
-                        styled-component="true"
                         tabIndex={0}
-                        test-style="{
+                      >
+                        <ForwardRef
+                          $disabled={false}
+                          $expanded={false}
+                          $isFocusVisible={false}
+                          aria-disabled={null}
+                          aria-expanded={false}
+                          onBlur={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          role="button"
+                          tabIndex={0}
+                        >
+                          <MockStyledComponent
+                            $disabled={false}
+                            $expanded={false}
+                            $isFocusVisible={false}
+                            aria-disabled={null}
+                            aria-expanded={false}
+                            forwardedRef={null}
+                            onBlur={[Function]}
+                            onClick={[Function]}
+                            onFocus={[Function]}
+                            onKeyDown={[Function]}
+                            role="button"
+                            tabIndex={0}
+                          >
+                            <div
+                              aria-disabled={null}
+                              aria-expanded={false}
+                              onBlur={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              role="button"
+                              styled-component="true"
+                              tabIndex={0}
+                              test-style="{
   \\"fontFamily\\": \\"$theme.typography.font350.fontFamily\\",
   \\"fontSize\\": \\"$theme.typography.font350.fontSize\\",
   \\"fontWeight\\": \\"$theme.typography.font350.fontWeight\\",
@@ -135,103 +158,130 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
     \\"color\\": \\"$theme.colors.primary\\"
   }
 }"
-                      >
-                        Accordion panel 1
-                        <Plus
-                          $disabled={false}
-                          $expanded={false}
-                          $isFocusVisible={false}
-                          overrides={
-                            Object {
-                              "Svg": Object {
-                                "component": Object {
-                                  "$$typeof": Symbol(react.forward_ref),
-                                  "render": [Function],
-                                },
-                              },
-                            }
-                          }
-                          size={16}
-                          title="Expand"
-                        >
-                          <Icon
-                            $disabled={false}
-                            $expanded={false}
-                            $isFocusVisible={false}
-                            overrides={
-                              Object {
-                                "Svg": Object {
-                                  "component": Object {
-                                    "$$typeof": Symbol(react.forward_ref),
-                                    "render": [Function],
-                                  },
-                                },
-                              }
-                            }
-                            size={16}
-                            title="Expand"
-                            viewBox="0 0 24 24"
-                          >
-                            <ForwardRef
-                              $disabled={false}
-                              $expanded={false}
-                              $isFocusVisible={false}
-                              $size={16}
-                              data-baseweb="icon"
-                              viewBox="0 0 24 24"
                             >
-                              <MockStyledComponent
+                              Accordion panel 1
+                              <Plus
                                 $disabled={false}
                                 $expanded={false}
                                 $isFocusVisible={false}
-                                $size={16}
-                                data-baseweb="icon"
-                                forwardedRef={null}
-                                viewBox="0 0 24 24"
+                                overrides={
+                                  Object {
+                                    "Svg": undefined,
+                                  }
+                                }
+                                size={16}
+                                title="Expand"
                               >
-                                <svg
-                                  data-baseweb="icon"
-                                  styled-component="true"
-                                  test-style="{
-  \\"display\\": \\"inline-block\\",
-  \\"fill\\": \\"currentColor\\",
-  \\"color\\": \\"$theme.colors.contentPrimary\\",
-  \\"height\\": \\"16px\\",
-  \\"width\\": \\"16px\\",
-  \\"cursor\\": \\"pointer\\"
-}"
+                                <ForwardRef(Icon)
+                                  $disabled={false}
+                                  $expanded={false}
+                                  $isFocusVisible={false}
+                                  overrides={
+                                    Object {
+                                      "Svg": Object {
+                                        "component": null,
+                                        "props": Object {
+                                          "size": 16,
+                                          "title": "Expand",
+                                          "viewBox": "0 0 24 24",
+                                        },
+                                      },
+                                    }
+                                  }
+                                  size={16}
+                                  title="Expand"
                                   viewBox="0 0 24 24"
                                 >
-                                  <title>
-                                    Expand
-                                  </title>
-                                  <path
-                                    clipRule="evenodd"
-                                    d="M12 5C12.5523 5 13 5.44772 13 6V11L18 11C18.5523 11 19 11.4477 19 12C19 12.5523 18.5523 13 18 13L13 13V18C13 18.5523 12.5523 19 12 19C11.4477 19 11 18.5523 11 18V13L6 13C5.44772 13 5 12.5523 5 12C5 11.4477 5.44771 11 6 11L11 11V6C11 5.44772 11.4477 5 12 5Z"
-                                    fillRule="evenodd"
-                                  />
-                                </svg>
-                              </MockStyledComponent>
-                            </ForwardRef>
-                          </Icon>
-                        </Plus>
-                      </div>
-                    </MockStyledComponent>
-                  </ForwardRef>
-                  <ForwardRef
-                    $disabled={false}
-                    $expanded={false}
-                    $isFocusVisible={false}
-                  >
-                    <MockStyledComponent
-                      $disabled={false}
-                      $expanded={false}
-                      $isFocusVisible={false}
-                      forwardedRef={null}
-                    >
-                      <div
-                        styled-component="true"
-                        test-style="{
+                                  <ForwardRef(ProxyOverrides)
+                                    $disabled={false}
+                                    $expanded={false}
+                                    $isFocusVisible={false}
+                                    $size={16}
+                                    data-baseweb="icon"
+                                    override={
+                                      Object {
+                                        "component": null,
+                                        "props": Object {
+                                          "size": 16,
+                                          "title": "Expand",
+                                          "viewBox": "0 0 24 24",
+                                        },
+                                      }
+                                    }
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <ForwardRef
+                                      $disabled={false}
+                                      $expanded={false}
+                                      $isFocusVisible={false}
+                                      $size={16}
+                                      data-baseweb="icon"
+                                      size={16}
+                                      title="Expand"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <MockStyledComponent
+                                        $disabled={false}
+                                        $expanded={false}
+                                        $isFocusVisible={false}
+                                        $size={16}
+                                        data-baseweb="icon"
+                                        forwardedRef={null}
+                                        size={16}
+                                        title="Expand"
+                                        viewBox="0 0 24 24"
+                                      >
+                                        <svg
+                                          data-baseweb="icon"
+                                          size={16}
+                                          styled-component="true"
+                                          test-style="{
+  \\"display\\": \\"inline-block\\",
+  \\"fill\\": \\"currentColor\\",
+  \\"color\\": \\"currentColor\\",
+  \\"height\\": \\"16px\\",
+  \\"width\\": \\"16px\\"
+}"
+                                          title="Expand"
+                                          viewBox="0 0 24 24"
+                                        >
+                                          <title>
+                                            Expand
+                                          </title>
+                                          <path
+                                            clipRule="evenodd"
+                                            d="M12 5C12.5523 5 13 5.44772 13 6V11L18 11C18.5523 11 19 11.4477 19 12C19 12.5523 18.5523 13 18 13L13 13V18C13 18.5523 12.5523 19 12 19C11.4477 19 11 18.5523 11 18V13L6 13C5.44772 13 5 12.5523 5 12C5 11.4477 5.44771 11 6 11L11 11V6C11 5.44772 11.4477 5 12 5Z"
+                                            fillRule="evenodd"
+                                          />
+                                        </svg>
+                                      </MockStyledComponent>
+                                    </ForwardRef>
+                                  </ForwardRef(ProxyOverrides)>
+                                </ForwardRef(Icon)>
+                              </Plus>
+                            </div>
+                          </MockStyledComponent>
+                        </ForwardRef>
+                      </ForwardRef(ProxyOverrides)>
+                      <ForwardRef(ProxyOverrides)
+                        $disabled={false}
+                        $expanded={false}
+                        $isFocusVisible={false}
+                      >
+                        <ForwardRef
+                          $disabled={false}
+                          $expanded={false}
+                          $isFocusVisible={false}
+                        >
+                          <MockStyledComponent
+                            $disabled={false}
+                            $expanded={false}
+                            $isFocusVisible={false}
+                            forwardedRef={null}
+                          >
+                            <div
+                              styled-component="true"
+                              test-style="{
   \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
   \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
   \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
@@ -255,74 +305,57 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
   \\"transitionDuration\\": \\"$theme.animation.timing400\\",
   \\"transitionTimingFunction\\": \\"$theme.animation.easeInOutCurve\\"
 }"
-                      >
-                        panel 1
-                      </div>
-                    </MockStyledComponent>
-                  </ForwardRef>
-                </li>
-              </MockStyledComponent>
-            </ForwardRef>
-          </Panel>
-          <Panel
-            accordion={true}
-            disabled={false}
-            expanded={false}
-            key="1/.1"
-            onChange={[Function]}
-            onClick={[Function]}
-            onKeyDown={[Function]}
-            overrides={Object {}}
-            renderAll={true}
-            renderPanelContent={false}
-            title="Accordion panel 2"
-          >
-            <ForwardRef
-              $disabled={false}
-              $expanded={false}
-              $isFocusVisible={false}
+                            >
+                              panel 1
+                            </div>
+                          </MockStyledComponent>
+                        </ForwardRef>
+                      </ForwardRef(ProxyOverrides)>
+                    </li>
+                  </MockStyledComponent>
+                </ForwardRef>
+              </ForwardRef(ProxyOverrides)>
+            </Panel>
+            <Panel
+              accordion={true}
+              disabled={false}
+              expanded={false}
+              key="1/.1"
+              onChange={[Function]}
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              overrides={Object {}}
+              renderAll={true}
+              renderPanelContent={false}
+              title="Accordion panel 2"
             >
-              <MockStyledComponent
+              <ForwardRef(ProxyOverrides)
                 $disabled={false}
                 $expanded={false}
                 $isFocusVisible={false}
-                forwardedRef={null}
               >
-                <li
-                  styled-component="true"
-                  test-style="{
-  \\"listStyleType\\": \\"none\\",
-  \\"width\\": \\"100%\\"
-}"
+                <ForwardRef
+                  $disabled={false}
+                  $expanded={false}
+                  $isFocusVisible={false}
                 >
-                  <ForwardRef
+                  <MockStyledComponent
                     $disabled={false}
                     $expanded={false}
                     $isFocusVisible={false}
-                    aria-disabled={null}
-                    aria-expanded={false}
-                    onBlur={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    role="button"
-                    tabIndex={0}
+                    forwardedRef={null}
                   >
-                    <MockStyledComponent
-                      $disabled={false}
-                      $expanded={false}
-                      $isFocusVisible={false}
-                      aria-disabled={null}
-                      aria-expanded={false}
-                      forwardedRef={null}
-                      onBlur={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      role="button"
-                      tabIndex={0}
+                    <li
+                      styled-component="true"
+                      test-style="{
+  \\"listStyleType\\": \\"none\\",
+  \\"width\\": \\"100%\\"
+}"
                     >
-                      <div
+                      <ForwardRef(ProxyOverrides)
+                        $disabled={false}
+                        $expanded={false}
+                        $isFocusVisible={false}
                         aria-disabled={null}
                         aria-expanded={false}
                         onBlur={[Function]}
@@ -330,9 +363,46 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                         onFocus={[Function]}
                         onKeyDown={[Function]}
                         role="button"
-                        styled-component="true"
                         tabIndex={0}
-                        test-style="{
+                      >
+                        <ForwardRef
+                          $disabled={false}
+                          $expanded={false}
+                          $isFocusVisible={false}
+                          aria-disabled={null}
+                          aria-expanded={false}
+                          onBlur={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          role="button"
+                          tabIndex={0}
+                        >
+                          <MockStyledComponent
+                            $disabled={false}
+                            $expanded={false}
+                            $isFocusVisible={false}
+                            aria-disabled={null}
+                            aria-expanded={false}
+                            forwardedRef={null}
+                            onBlur={[Function]}
+                            onClick={[Function]}
+                            onFocus={[Function]}
+                            onKeyDown={[Function]}
+                            role="button"
+                            tabIndex={0}
+                          >
+                            <div
+                              aria-disabled={null}
+                              aria-expanded={false}
+                              onBlur={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              role="button"
+                              styled-component="true"
+                              tabIndex={0}
+                              test-style="{
   \\"fontFamily\\": \\"$theme.typography.font350.fontFamily\\",
   \\"fontSize\\": \\"$theme.typography.font350.fontSize\\",
   \\"fontWeight\\": \\"$theme.typography.font350.fontWeight\\",
@@ -358,103 +428,130 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
     \\"color\\": \\"$theme.colors.primary\\"
   }
 }"
-                      >
-                        Accordion panel 2
-                        <Plus
-                          $disabled={false}
-                          $expanded={false}
-                          $isFocusVisible={false}
-                          overrides={
-                            Object {
-                              "Svg": Object {
-                                "component": Object {
-                                  "$$typeof": Symbol(react.forward_ref),
-                                  "render": [Function],
-                                },
-                              },
-                            }
-                          }
-                          size={16}
-                          title="Expand"
-                        >
-                          <Icon
-                            $disabled={false}
-                            $expanded={false}
-                            $isFocusVisible={false}
-                            overrides={
-                              Object {
-                                "Svg": Object {
-                                  "component": Object {
-                                    "$$typeof": Symbol(react.forward_ref),
-                                    "render": [Function],
-                                  },
-                                },
-                              }
-                            }
-                            size={16}
-                            title="Expand"
-                            viewBox="0 0 24 24"
-                          >
-                            <ForwardRef
-                              $disabled={false}
-                              $expanded={false}
-                              $isFocusVisible={false}
-                              $size={16}
-                              data-baseweb="icon"
-                              viewBox="0 0 24 24"
                             >
-                              <MockStyledComponent
+                              Accordion panel 2
+                              <Plus
                                 $disabled={false}
                                 $expanded={false}
                                 $isFocusVisible={false}
-                                $size={16}
-                                data-baseweb="icon"
-                                forwardedRef={null}
-                                viewBox="0 0 24 24"
+                                overrides={
+                                  Object {
+                                    "Svg": undefined,
+                                  }
+                                }
+                                size={16}
+                                title="Expand"
                               >
-                                <svg
-                                  data-baseweb="icon"
-                                  styled-component="true"
-                                  test-style="{
-  \\"display\\": \\"inline-block\\",
-  \\"fill\\": \\"currentColor\\",
-  \\"color\\": \\"$theme.colors.contentPrimary\\",
-  \\"height\\": \\"16px\\",
-  \\"width\\": \\"16px\\",
-  \\"cursor\\": \\"pointer\\"
-}"
+                                <ForwardRef(Icon)
+                                  $disabled={false}
+                                  $expanded={false}
+                                  $isFocusVisible={false}
+                                  overrides={
+                                    Object {
+                                      "Svg": Object {
+                                        "component": null,
+                                        "props": Object {
+                                          "size": 16,
+                                          "title": "Expand",
+                                          "viewBox": "0 0 24 24",
+                                        },
+                                      },
+                                    }
+                                  }
+                                  size={16}
+                                  title="Expand"
                                   viewBox="0 0 24 24"
                                 >
-                                  <title>
-                                    Expand
-                                  </title>
-                                  <path
-                                    clipRule="evenodd"
-                                    d="M12 5C12.5523 5 13 5.44772 13 6V11L18 11C18.5523 11 19 11.4477 19 12C19 12.5523 18.5523 13 18 13L13 13V18C13 18.5523 12.5523 19 12 19C11.4477 19 11 18.5523 11 18V13L6 13C5.44772 13 5 12.5523 5 12C5 11.4477 5.44771 11 6 11L11 11V6C11 5.44772 11.4477 5 12 5Z"
-                                    fillRule="evenodd"
-                                  />
-                                </svg>
-                              </MockStyledComponent>
-                            </ForwardRef>
-                          </Icon>
-                        </Plus>
-                      </div>
-                    </MockStyledComponent>
-                  </ForwardRef>
-                  <ForwardRef
-                    $disabled={false}
-                    $expanded={false}
-                    $isFocusVisible={false}
-                  >
-                    <MockStyledComponent
-                      $disabled={false}
-                      $expanded={false}
-                      $isFocusVisible={false}
-                      forwardedRef={null}
-                    >
-                      <div
-                        styled-component="true"
-                        test-style="{
+                                  <ForwardRef(ProxyOverrides)
+                                    $disabled={false}
+                                    $expanded={false}
+                                    $isFocusVisible={false}
+                                    $size={16}
+                                    data-baseweb="icon"
+                                    override={
+                                      Object {
+                                        "component": null,
+                                        "props": Object {
+                                          "size": 16,
+                                          "title": "Expand",
+                                          "viewBox": "0 0 24 24",
+                                        },
+                                      }
+                                    }
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <ForwardRef
+                                      $disabled={false}
+                                      $expanded={false}
+                                      $isFocusVisible={false}
+                                      $size={16}
+                                      data-baseweb="icon"
+                                      size={16}
+                                      title="Expand"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <MockStyledComponent
+                                        $disabled={false}
+                                        $expanded={false}
+                                        $isFocusVisible={false}
+                                        $size={16}
+                                        data-baseweb="icon"
+                                        forwardedRef={null}
+                                        size={16}
+                                        title="Expand"
+                                        viewBox="0 0 24 24"
+                                      >
+                                        <svg
+                                          data-baseweb="icon"
+                                          size={16}
+                                          styled-component="true"
+                                          test-style="{
+  \\"display\\": \\"inline-block\\",
+  \\"fill\\": \\"currentColor\\",
+  \\"color\\": \\"currentColor\\",
+  \\"height\\": \\"16px\\",
+  \\"width\\": \\"16px\\"
+}"
+                                          title="Expand"
+                                          viewBox="0 0 24 24"
+                                        >
+                                          <title>
+                                            Expand
+                                          </title>
+                                          <path
+                                            clipRule="evenodd"
+                                            d="M12 5C12.5523 5 13 5.44772 13 6V11L18 11C18.5523 11 19 11.4477 19 12C19 12.5523 18.5523 13 18 13L13 13V18C13 18.5523 12.5523 19 12 19C11.4477 19 11 18.5523 11 18V13L6 13C5.44772 13 5 12.5523 5 12C5 11.4477 5.44771 11 6 11L11 11V6C11 5.44772 11.4477 5 12 5Z"
+                                            fillRule="evenodd"
+                                          />
+                                        </svg>
+                                      </MockStyledComponent>
+                                    </ForwardRef>
+                                  </ForwardRef(ProxyOverrides)>
+                                </ForwardRef(Icon)>
+                              </Plus>
+                            </div>
+                          </MockStyledComponent>
+                        </ForwardRef>
+                      </ForwardRef(ProxyOverrides)>
+                      <ForwardRef(ProxyOverrides)
+                        $disabled={false}
+                        $expanded={false}
+                        $isFocusVisible={false}
+                      >
+                        <ForwardRef
+                          $disabled={false}
+                          $expanded={false}
+                          $isFocusVisible={false}
+                        >
+                          <MockStyledComponent
+                            $disabled={false}
+                            $expanded={false}
+                            $isFocusVisible={false}
+                            forwardedRef={null}
+                          >
+                            <div
+                              styled-component="true"
+                              test-style="{
   \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
   \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
   \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
@@ -478,74 +575,57 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
   \\"transitionDuration\\": \\"$theme.animation.timing400\\",
   \\"transitionTimingFunction\\": \\"$theme.animation.easeInOutCurve\\"
 }"
-                      >
-                        panel 2
-                      </div>
-                    </MockStyledComponent>
-                  </ForwardRef>
-                </li>
-              </MockStyledComponent>
-            </ForwardRef>
-          </Panel>
-          <Panel
-            accordion={true}
-            disabled={false}
-            expanded={false}
-            key="2/.2"
-            onChange={[Function]}
-            onClick={[Function]}
-            onKeyDown={[Function]}
-            overrides={Object {}}
-            renderAll={true}
-            renderPanelContent={false}
-            title="Accordion panel 3"
-          >
-            <ForwardRef
-              $disabled={false}
-              $expanded={false}
-              $isFocusVisible={false}
+                            >
+                              panel 2
+                            </div>
+                          </MockStyledComponent>
+                        </ForwardRef>
+                      </ForwardRef(ProxyOverrides)>
+                    </li>
+                  </MockStyledComponent>
+                </ForwardRef>
+              </ForwardRef(ProxyOverrides)>
+            </Panel>
+            <Panel
+              accordion={true}
+              disabled={false}
+              expanded={false}
+              key="2/.2"
+              onChange={[Function]}
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              overrides={Object {}}
+              renderAll={true}
+              renderPanelContent={false}
+              title="Accordion panel 3"
             >
-              <MockStyledComponent
+              <ForwardRef(ProxyOverrides)
                 $disabled={false}
                 $expanded={false}
                 $isFocusVisible={false}
-                forwardedRef={null}
               >
-                <li
-                  styled-component="true"
-                  test-style="{
-  \\"listStyleType\\": \\"none\\",
-  \\"width\\": \\"100%\\"
-}"
+                <ForwardRef
+                  $disabled={false}
+                  $expanded={false}
+                  $isFocusVisible={false}
                 >
-                  <ForwardRef
+                  <MockStyledComponent
                     $disabled={false}
                     $expanded={false}
                     $isFocusVisible={false}
-                    aria-disabled={null}
-                    aria-expanded={false}
-                    onBlur={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    role="button"
-                    tabIndex={0}
+                    forwardedRef={null}
                   >
-                    <MockStyledComponent
-                      $disabled={false}
-                      $expanded={false}
-                      $isFocusVisible={false}
-                      aria-disabled={null}
-                      aria-expanded={false}
-                      forwardedRef={null}
-                      onBlur={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      role="button"
-                      tabIndex={0}
+                    <li
+                      styled-component="true"
+                      test-style="{
+  \\"listStyleType\\": \\"none\\",
+  \\"width\\": \\"100%\\"
+}"
                     >
-                      <div
+                      <ForwardRef(ProxyOverrides)
+                        $disabled={false}
+                        $expanded={false}
+                        $isFocusVisible={false}
                         aria-disabled={null}
                         aria-expanded={false}
                         onBlur={[Function]}
@@ -553,9 +633,46 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                         onFocus={[Function]}
                         onKeyDown={[Function]}
                         role="button"
-                        styled-component="true"
                         tabIndex={0}
-                        test-style="{
+                      >
+                        <ForwardRef
+                          $disabled={false}
+                          $expanded={false}
+                          $isFocusVisible={false}
+                          aria-disabled={null}
+                          aria-expanded={false}
+                          onBlur={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          role="button"
+                          tabIndex={0}
+                        >
+                          <MockStyledComponent
+                            $disabled={false}
+                            $expanded={false}
+                            $isFocusVisible={false}
+                            aria-disabled={null}
+                            aria-expanded={false}
+                            forwardedRef={null}
+                            onBlur={[Function]}
+                            onClick={[Function]}
+                            onFocus={[Function]}
+                            onKeyDown={[Function]}
+                            role="button"
+                            tabIndex={0}
+                          >
+                            <div
+                              aria-disabled={null}
+                              aria-expanded={false}
+                              onBlur={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              role="button"
+                              styled-component="true"
+                              tabIndex={0}
+                              test-style="{
   \\"fontFamily\\": \\"$theme.typography.font350.fontFamily\\",
   \\"fontSize\\": \\"$theme.typography.font350.fontSize\\",
   \\"fontWeight\\": \\"$theme.typography.font350.fontWeight\\",
@@ -581,103 +698,130 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
     \\"color\\": \\"$theme.colors.primary\\"
   }
 }"
-                      >
-                        Accordion panel 3
-                        <Plus
-                          $disabled={false}
-                          $expanded={false}
-                          $isFocusVisible={false}
-                          overrides={
-                            Object {
-                              "Svg": Object {
-                                "component": Object {
-                                  "$$typeof": Symbol(react.forward_ref),
-                                  "render": [Function],
-                                },
-                              },
-                            }
-                          }
-                          size={16}
-                          title="Expand"
-                        >
-                          <Icon
-                            $disabled={false}
-                            $expanded={false}
-                            $isFocusVisible={false}
-                            overrides={
-                              Object {
-                                "Svg": Object {
-                                  "component": Object {
-                                    "$$typeof": Symbol(react.forward_ref),
-                                    "render": [Function],
-                                  },
-                                },
-                              }
-                            }
-                            size={16}
-                            title="Expand"
-                            viewBox="0 0 24 24"
-                          >
-                            <ForwardRef
-                              $disabled={false}
-                              $expanded={false}
-                              $isFocusVisible={false}
-                              $size={16}
-                              data-baseweb="icon"
-                              viewBox="0 0 24 24"
                             >
-                              <MockStyledComponent
+                              Accordion panel 3
+                              <Plus
                                 $disabled={false}
                                 $expanded={false}
                                 $isFocusVisible={false}
-                                $size={16}
-                                data-baseweb="icon"
-                                forwardedRef={null}
-                                viewBox="0 0 24 24"
+                                overrides={
+                                  Object {
+                                    "Svg": undefined,
+                                  }
+                                }
+                                size={16}
+                                title="Expand"
                               >
-                                <svg
-                                  data-baseweb="icon"
-                                  styled-component="true"
-                                  test-style="{
-  \\"display\\": \\"inline-block\\",
-  \\"fill\\": \\"currentColor\\",
-  \\"color\\": \\"$theme.colors.contentPrimary\\",
-  \\"height\\": \\"16px\\",
-  \\"width\\": \\"16px\\",
-  \\"cursor\\": \\"pointer\\"
-}"
+                                <ForwardRef(Icon)
+                                  $disabled={false}
+                                  $expanded={false}
+                                  $isFocusVisible={false}
+                                  overrides={
+                                    Object {
+                                      "Svg": Object {
+                                        "component": null,
+                                        "props": Object {
+                                          "size": 16,
+                                          "title": "Expand",
+                                          "viewBox": "0 0 24 24",
+                                        },
+                                      },
+                                    }
+                                  }
+                                  size={16}
+                                  title="Expand"
                                   viewBox="0 0 24 24"
                                 >
-                                  <title>
-                                    Expand
-                                  </title>
-                                  <path
-                                    clipRule="evenodd"
-                                    d="M12 5C12.5523 5 13 5.44772 13 6V11L18 11C18.5523 11 19 11.4477 19 12C19 12.5523 18.5523 13 18 13L13 13V18C13 18.5523 12.5523 19 12 19C11.4477 19 11 18.5523 11 18V13L6 13C5.44772 13 5 12.5523 5 12C5 11.4477 5.44771 11 6 11L11 11V6C11 5.44772 11.4477 5 12 5Z"
-                                    fillRule="evenodd"
-                                  />
-                                </svg>
-                              </MockStyledComponent>
-                            </ForwardRef>
-                          </Icon>
-                        </Plus>
-                      </div>
-                    </MockStyledComponent>
-                  </ForwardRef>
-                  <ForwardRef
-                    $disabled={false}
-                    $expanded={false}
-                    $isFocusVisible={false}
-                  >
-                    <MockStyledComponent
-                      $disabled={false}
-                      $expanded={false}
-                      $isFocusVisible={false}
-                      forwardedRef={null}
-                    >
-                      <div
-                        styled-component="true"
-                        test-style="{
+                                  <ForwardRef(ProxyOverrides)
+                                    $disabled={false}
+                                    $expanded={false}
+                                    $isFocusVisible={false}
+                                    $size={16}
+                                    data-baseweb="icon"
+                                    override={
+                                      Object {
+                                        "component": null,
+                                        "props": Object {
+                                          "size": 16,
+                                          "title": "Expand",
+                                          "viewBox": "0 0 24 24",
+                                        },
+                                      }
+                                    }
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <ForwardRef
+                                      $disabled={false}
+                                      $expanded={false}
+                                      $isFocusVisible={false}
+                                      $size={16}
+                                      data-baseweb="icon"
+                                      size={16}
+                                      title="Expand"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <MockStyledComponent
+                                        $disabled={false}
+                                        $expanded={false}
+                                        $isFocusVisible={false}
+                                        $size={16}
+                                        data-baseweb="icon"
+                                        forwardedRef={null}
+                                        size={16}
+                                        title="Expand"
+                                        viewBox="0 0 24 24"
+                                      >
+                                        <svg
+                                          data-baseweb="icon"
+                                          size={16}
+                                          styled-component="true"
+                                          test-style="{
+  \\"display\\": \\"inline-block\\",
+  \\"fill\\": \\"currentColor\\",
+  \\"color\\": \\"currentColor\\",
+  \\"height\\": \\"16px\\",
+  \\"width\\": \\"16px\\"
+}"
+                                          title="Expand"
+                                          viewBox="0 0 24 24"
+                                        >
+                                          <title>
+                                            Expand
+                                          </title>
+                                          <path
+                                            clipRule="evenodd"
+                                            d="M12 5C12.5523 5 13 5.44772 13 6V11L18 11C18.5523 11 19 11.4477 19 12C19 12.5523 18.5523 13 18 13L13 13V18C13 18.5523 12.5523 19 12 19C11.4477 19 11 18.5523 11 18V13L6 13C5.44772 13 5 12.5523 5 12C5 11.4477 5.44771 11 6 11L11 11V6C11 5.44772 11.4477 5 12 5Z"
+                                            fillRule="evenodd"
+                                          />
+                                        </svg>
+                                      </MockStyledComponent>
+                                    </ForwardRef>
+                                  </ForwardRef(ProxyOverrides)>
+                                </ForwardRef(Icon)>
+                              </Plus>
+                            </div>
+                          </MockStyledComponent>
+                        </ForwardRef>
+                      </ForwardRef(ProxyOverrides)>
+                      <ForwardRef(ProxyOverrides)
+                        $disabled={false}
+                        $expanded={false}
+                        $isFocusVisible={false}
+                      >
+                        <ForwardRef
+                          $disabled={false}
+                          $expanded={false}
+                          $isFocusVisible={false}
+                        >
+                          <MockStyledComponent
+                            $disabled={false}
+                            $expanded={false}
+                            $isFocusVisible={false}
+                            forwardedRef={null}
+                          >
+                            <div
+                              styled-component="true"
+                              test-style="{
   \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
   \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
   \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
@@ -701,18 +845,21 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
   \\"transitionDuration\\": \\"$theme.animation.timing400\\",
   \\"transitionTimingFunction\\": \\"$theme.animation.easeInOutCurve\\"
 }"
-                      >
-                        panel 3
-                      </div>
-                    </MockStyledComponent>
-                  </ForwardRef>
-                </li>
-              </MockStyledComponent>
-            </ForwardRef>
-          </Panel>
-        </ul>
-      </MockStyledComponent>
-    </ForwardRef>
+                            >
+                              panel 3
+                            </div>
+                          </MockStyledComponent>
+                        </ForwardRef>
+                      </ForwardRef(ProxyOverrides)>
+                    </li>
+                  </MockStyledComponent>
+                </ForwardRef>
+              </ForwardRef(ProxyOverrides)>
+            </Panel>
+          </ul>
+        </MockStyledComponent>
+      </ForwardRef>
+    </ForwardRef(ProxyOverrides)>
   </Accordion>
 </Component>
 `;
@@ -733,21 +880,26 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
     renderPanelContent={false}
     stateReducer={[Function]}
   >
-    <ForwardRef
+    <ForwardRef(ProxyOverrides)
       $disabled={false}
       $isFocusVisible={false}
       data-baseweb="accordion"
     >
-      <MockStyledComponent
+      <ForwardRef
         $disabled={false}
         $isFocusVisible={false}
         data-baseweb="accordion"
-        forwardedRef={null}
       >
-        <ul
+        <MockStyledComponent
+          $disabled={false}
+          $isFocusVisible={false}
           data-baseweb="accordion"
-          styled-component="true"
-          test-style="{
+          forwardedRef={null}
+        >
+          <ul
+            data-baseweb="accordion"
+            styled-component="true"
+            test-style="{
   \\"listStyleType\\": \\"none\\",
   \\"marginBottom\\": 0,
   \\"marginTop\\": 0,
@@ -755,66 +907,47 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
   \\"paddingRight\\": 0,
   \\"width\\": \\"100%\\"
 }"
-        >
-          <Panel
-            accordion={true}
-            disabled={false}
-            expanded={false}
-            key="0/.0"
-            onChange={[Function]}
-            onClick={[Function]}
-            onKeyDown={[Function]}
-            overrides={Object {}}
-            renderAll={false}
-            renderPanelContent={false}
-            title="Accordion panel 1"
           >
-            <ForwardRef
-              $disabled={false}
-              $expanded={false}
-              $isFocusVisible={false}
+            <Panel
+              accordion={true}
+              disabled={false}
+              expanded={false}
+              key="0/.0"
+              onChange={[Function]}
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              overrides={Object {}}
+              renderAll={false}
+              renderPanelContent={false}
+              title="Accordion panel 1"
             >
-              <MockStyledComponent
+              <ForwardRef(ProxyOverrides)
                 $disabled={false}
                 $expanded={false}
                 $isFocusVisible={false}
-                forwardedRef={null}
               >
-                <li
-                  styled-component="true"
-                  test-style="{
-  \\"listStyleType\\": \\"none\\",
-  \\"width\\": \\"100%\\"
-}"
+                <ForwardRef
+                  $disabled={false}
+                  $expanded={false}
+                  $isFocusVisible={false}
                 >
-                  <ForwardRef
+                  <MockStyledComponent
                     $disabled={false}
                     $expanded={false}
                     $isFocusVisible={false}
-                    aria-disabled={null}
-                    aria-expanded={false}
-                    onBlur={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    role="button"
-                    tabIndex={0}
+                    forwardedRef={null}
                   >
-                    <MockStyledComponent
-                      $disabled={false}
-                      $expanded={false}
-                      $isFocusVisible={false}
-                      aria-disabled={null}
-                      aria-expanded={false}
-                      forwardedRef={null}
-                      onBlur={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      role="button"
-                      tabIndex={0}
+                    <li
+                      styled-component="true"
+                      test-style="{
+  \\"listStyleType\\": \\"none\\",
+  \\"width\\": \\"100%\\"
+}"
                     >
-                      <div
+                      <ForwardRef(ProxyOverrides)
+                        $disabled={false}
+                        $expanded={false}
+                        $isFocusVisible={false}
                         aria-disabled={null}
                         aria-expanded={false}
                         onBlur={[Function]}
@@ -822,9 +955,46 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                         onFocus={[Function]}
                         onKeyDown={[Function]}
                         role="button"
-                        styled-component="true"
                         tabIndex={0}
-                        test-style="{
+                      >
+                        <ForwardRef
+                          $disabled={false}
+                          $expanded={false}
+                          $isFocusVisible={false}
+                          aria-disabled={null}
+                          aria-expanded={false}
+                          onBlur={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          role="button"
+                          tabIndex={0}
+                        >
+                          <MockStyledComponent
+                            $disabled={false}
+                            $expanded={false}
+                            $isFocusVisible={false}
+                            aria-disabled={null}
+                            aria-expanded={false}
+                            forwardedRef={null}
+                            onBlur={[Function]}
+                            onClick={[Function]}
+                            onFocus={[Function]}
+                            onKeyDown={[Function]}
+                            role="button"
+                            tabIndex={0}
+                          >
+                            <div
+                              aria-disabled={null}
+                              aria-expanded={false}
+                              onBlur={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              role="button"
+                              styled-component="true"
+                              tabIndex={0}
+                              test-style="{
   \\"fontFamily\\": \\"$theme.typography.font350.fontFamily\\",
   \\"fontSize\\": \\"$theme.typography.font350.fontSize\\",
   \\"fontWeight\\": \\"$theme.typography.font350.fontWeight\\",
@@ -850,103 +1020,130 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
     \\"color\\": \\"$theme.colors.primary\\"
   }
 }"
-                      >
-                        Accordion panel 1
-                        <Plus
-                          $disabled={false}
-                          $expanded={false}
-                          $isFocusVisible={false}
-                          overrides={
-                            Object {
-                              "Svg": Object {
-                                "component": Object {
-                                  "$$typeof": Symbol(react.forward_ref),
-                                  "render": [Function],
-                                },
-                              },
-                            }
-                          }
-                          size={16}
-                          title="Expand"
-                        >
-                          <Icon
-                            $disabled={false}
-                            $expanded={false}
-                            $isFocusVisible={false}
-                            overrides={
-                              Object {
-                                "Svg": Object {
-                                  "component": Object {
-                                    "$$typeof": Symbol(react.forward_ref),
-                                    "render": [Function],
-                                  },
-                                },
-                              }
-                            }
-                            size={16}
-                            title="Expand"
-                            viewBox="0 0 24 24"
-                          >
-                            <ForwardRef
-                              $disabled={false}
-                              $expanded={false}
-                              $isFocusVisible={false}
-                              $size={16}
-                              data-baseweb="icon"
-                              viewBox="0 0 24 24"
                             >
-                              <MockStyledComponent
+                              Accordion panel 1
+                              <Plus
                                 $disabled={false}
                                 $expanded={false}
                                 $isFocusVisible={false}
-                                $size={16}
-                                data-baseweb="icon"
-                                forwardedRef={null}
-                                viewBox="0 0 24 24"
+                                overrides={
+                                  Object {
+                                    "Svg": undefined,
+                                  }
+                                }
+                                size={16}
+                                title="Expand"
                               >
-                                <svg
-                                  data-baseweb="icon"
-                                  styled-component="true"
-                                  test-style="{
-  \\"display\\": \\"inline-block\\",
-  \\"fill\\": \\"currentColor\\",
-  \\"color\\": \\"$theme.colors.contentPrimary\\",
-  \\"height\\": \\"16px\\",
-  \\"width\\": \\"16px\\",
-  \\"cursor\\": \\"pointer\\"
-}"
+                                <ForwardRef(Icon)
+                                  $disabled={false}
+                                  $expanded={false}
+                                  $isFocusVisible={false}
+                                  overrides={
+                                    Object {
+                                      "Svg": Object {
+                                        "component": null,
+                                        "props": Object {
+                                          "size": 16,
+                                          "title": "Expand",
+                                          "viewBox": "0 0 24 24",
+                                        },
+                                      },
+                                    }
+                                  }
+                                  size={16}
+                                  title="Expand"
                                   viewBox="0 0 24 24"
                                 >
-                                  <title>
-                                    Expand
-                                  </title>
-                                  <path
-                                    clipRule="evenodd"
-                                    d="M12 5C12.5523 5 13 5.44772 13 6V11L18 11C18.5523 11 19 11.4477 19 12C19 12.5523 18.5523 13 18 13L13 13V18C13 18.5523 12.5523 19 12 19C11.4477 19 11 18.5523 11 18V13L6 13C5.44772 13 5 12.5523 5 12C5 11.4477 5.44771 11 6 11L11 11V6C11 5.44772 11.4477 5 12 5Z"
-                                    fillRule="evenodd"
-                                  />
-                                </svg>
-                              </MockStyledComponent>
-                            </ForwardRef>
-                          </Icon>
-                        </Plus>
-                      </div>
-                    </MockStyledComponent>
-                  </ForwardRef>
-                  <ForwardRef
-                    $disabled={false}
-                    $expanded={false}
-                    $isFocusVisible={false}
-                  >
-                    <MockStyledComponent
-                      $disabled={false}
-                      $expanded={false}
-                      $isFocusVisible={false}
-                      forwardedRef={null}
-                    >
-                      <div
-                        styled-component="true"
-                        test-style="{
+                                  <ForwardRef(ProxyOverrides)
+                                    $disabled={false}
+                                    $expanded={false}
+                                    $isFocusVisible={false}
+                                    $size={16}
+                                    data-baseweb="icon"
+                                    override={
+                                      Object {
+                                        "component": null,
+                                        "props": Object {
+                                          "size": 16,
+                                          "title": "Expand",
+                                          "viewBox": "0 0 24 24",
+                                        },
+                                      }
+                                    }
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <ForwardRef
+                                      $disabled={false}
+                                      $expanded={false}
+                                      $isFocusVisible={false}
+                                      $size={16}
+                                      data-baseweb="icon"
+                                      size={16}
+                                      title="Expand"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <MockStyledComponent
+                                        $disabled={false}
+                                        $expanded={false}
+                                        $isFocusVisible={false}
+                                        $size={16}
+                                        data-baseweb="icon"
+                                        forwardedRef={null}
+                                        size={16}
+                                        title="Expand"
+                                        viewBox="0 0 24 24"
+                                      >
+                                        <svg
+                                          data-baseweb="icon"
+                                          size={16}
+                                          styled-component="true"
+                                          test-style="{
+  \\"display\\": \\"inline-block\\",
+  \\"fill\\": \\"currentColor\\",
+  \\"color\\": \\"currentColor\\",
+  \\"height\\": \\"16px\\",
+  \\"width\\": \\"16px\\"
+}"
+                                          title="Expand"
+                                          viewBox="0 0 24 24"
+                                        >
+                                          <title>
+                                            Expand
+                                          </title>
+                                          <path
+                                            clipRule="evenodd"
+                                            d="M12 5C12.5523 5 13 5.44772 13 6V11L18 11C18.5523 11 19 11.4477 19 12C19 12.5523 18.5523 13 18 13L13 13V18C13 18.5523 12.5523 19 12 19C11.4477 19 11 18.5523 11 18V13L6 13C5.44772 13 5 12.5523 5 12C5 11.4477 5.44771 11 6 11L11 11V6C11 5.44772 11.4477 5 12 5Z"
+                                            fillRule="evenodd"
+                                          />
+                                        </svg>
+                                      </MockStyledComponent>
+                                    </ForwardRef>
+                                  </ForwardRef(ProxyOverrides)>
+                                </ForwardRef(Icon)>
+                              </Plus>
+                            </div>
+                          </MockStyledComponent>
+                        </ForwardRef>
+                      </ForwardRef(ProxyOverrides)>
+                      <ForwardRef(ProxyOverrides)
+                        $disabled={false}
+                        $expanded={false}
+                        $isFocusVisible={false}
+                      >
+                        <ForwardRef
+                          $disabled={false}
+                          $expanded={false}
+                          $isFocusVisible={false}
+                        >
+                          <MockStyledComponent
+                            $disabled={false}
+                            $expanded={false}
+                            $isFocusVisible={false}
+                            forwardedRef={null}
+                          >
+                            <div
+                              styled-component="true"
+                              test-style="{
   \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
   \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
   \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
@@ -970,72 +1167,55 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
   \\"transitionDuration\\": \\"$theme.animation.timing400\\",
   \\"transitionTimingFunction\\": \\"$theme.animation.easeInOutCurve\\"
 }"
-                      />
-                    </MockStyledComponent>
-                  </ForwardRef>
-                </li>
-              </MockStyledComponent>
-            </ForwardRef>
-          </Panel>
-          <Panel
-            accordion={true}
-            disabled={false}
-            expanded={false}
-            key="1/.1"
-            onChange={[Function]}
-            onClick={[Function]}
-            onKeyDown={[Function]}
-            overrides={Object {}}
-            renderAll={false}
-            renderPanelContent={false}
-            title="Accordion panel 2"
-          >
-            <ForwardRef
-              $disabled={false}
-              $expanded={false}
-              $isFocusVisible={false}
+                            />
+                          </MockStyledComponent>
+                        </ForwardRef>
+                      </ForwardRef(ProxyOverrides)>
+                    </li>
+                  </MockStyledComponent>
+                </ForwardRef>
+              </ForwardRef(ProxyOverrides)>
+            </Panel>
+            <Panel
+              accordion={true}
+              disabled={false}
+              expanded={false}
+              key="1/.1"
+              onChange={[Function]}
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              overrides={Object {}}
+              renderAll={false}
+              renderPanelContent={false}
+              title="Accordion panel 2"
             >
-              <MockStyledComponent
+              <ForwardRef(ProxyOverrides)
                 $disabled={false}
                 $expanded={false}
                 $isFocusVisible={false}
-                forwardedRef={null}
               >
-                <li
-                  styled-component="true"
-                  test-style="{
-  \\"listStyleType\\": \\"none\\",
-  \\"width\\": \\"100%\\"
-}"
+                <ForwardRef
+                  $disabled={false}
+                  $expanded={false}
+                  $isFocusVisible={false}
                 >
-                  <ForwardRef
+                  <MockStyledComponent
                     $disabled={false}
                     $expanded={false}
                     $isFocusVisible={false}
-                    aria-disabled={null}
-                    aria-expanded={false}
-                    onBlur={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    role="button"
-                    tabIndex={0}
+                    forwardedRef={null}
                   >
-                    <MockStyledComponent
-                      $disabled={false}
-                      $expanded={false}
-                      $isFocusVisible={false}
-                      aria-disabled={null}
-                      aria-expanded={false}
-                      forwardedRef={null}
-                      onBlur={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      role="button"
-                      tabIndex={0}
+                    <li
+                      styled-component="true"
+                      test-style="{
+  \\"listStyleType\\": \\"none\\",
+  \\"width\\": \\"100%\\"
+}"
                     >
-                      <div
+                      <ForwardRef(ProxyOverrides)
+                        $disabled={false}
+                        $expanded={false}
+                        $isFocusVisible={false}
                         aria-disabled={null}
                         aria-expanded={false}
                         onBlur={[Function]}
@@ -1043,9 +1223,46 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                         onFocus={[Function]}
                         onKeyDown={[Function]}
                         role="button"
-                        styled-component="true"
                         tabIndex={0}
-                        test-style="{
+                      >
+                        <ForwardRef
+                          $disabled={false}
+                          $expanded={false}
+                          $isFocusVisible={false}
+                          aria-disabled={null}
+                          aria-expanded={false}
+                          onBlur={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          role="button"
+                          tabIndex={0}
+                        >
+                          <MockStyledComponent
+                            $disabled={false}
+                            $expanded={false}
+                            $isFocusVisible={false}
+                            aria-disabled={null}
+                            aria-expanded={false}
+                            forwardedRef={null}
+                            onBlur={[Function]}
+                            onClick={[Function]}
+                            onFocus={[Function]}
+                            onKeyDown={[Function]}
+                            role="button"
+                            tabIndex={0}
+                          >
+                            <div
+                              aria-disabled={null}
+                              aria-expanded={false}
+                              onBlur={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              role="button"
+                              styled-component="true"
+                              tabIndex={0}
+                              test-style="{
   \\"fontFamily\\": \\"$theme.typography.font350.fontFamily\\",
   \\"fontSize\\": \\"$theme.typography.font350.fontSize\\",
   \\"fontWeight\\": \\"$theme.typography.font350.fontWeight\\",
@@ -1071,103 +1288,130 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
     \\"color\\": \\"$theme.colors.primary\\"
   }
 }"
-                      >
-                        Accordion panel 2
-                        <Plus
-                          $disabled={false}
-                          $expanded={false}
-                          $isFocusVisible={false}
-                          overrides={
-                            Object {
-                              "Svg": Object {
-                                "component": Object {
-                                  "$$typeof": Symbol(react.forward_ref),
-                                  "render": [Function],
-                                },
-                              },
-                            }
-                          }
-                          size={16}
-                          title="Expand"
-                        >
-                          <Icon
-                            $disabled={false}
-                            $expanded={false}
-                            $isFocusVisible={false}
-                            overrides={
-                              Object {
-                                "Svg": Object {
-                                  "component": Object {
-                                    "$$typeof": Symbol(react.forward_ref),
-                                    "render": [Function],
-                                  },
-                                },
-                              }
-                            }
-                            size={16}
-                            title="Expand"
-                            viewBox="0 0 24 24"
-                          >
-                            <ForwardRef
-                              $disabled={false}
-                              $expanded={false}
-                              $isFocusVisible={false}
-                              $size={16}
-                              data-baseweb="icon"
-                              viewBox="0 0 24 24"
                             >
-                              <MockStyledComponent
+                              Accordion panel 2
+                              <Plus
                                 $disabled={false}
                                 $expanded={false}
                                 $isFocusVisible={false}
-                                $size={16}
-                                data-baseweb="icon"
-                                forwardedRef={null}
-                                viewBox="0 0 24 24"
+                                overrides={
+                                  Object {
+                                    "Svg": undefined,
+                                  }
+                                }
+                                size={16}
+                                title="Expand"
                               >
-                                <svg
-                                  data-baseweb="icon"
-                                  styled-component="true"
-                                  test-style="{
-  \\"display\\": \\"inline-block\\",
-  \\"fill\\": \\"currentColor\\",
-  \\"color\\": \\"$theme.colors.contentPrimary\\",
-  \\"height\\": \\"16px\\",
-  \\"width\\": \\"16px\\",
-  \\"cursor\\": \\"pointer\\"
-}"
+                                <ForwardRef(Icon)
+                                  $disabled={false}
+                                  $expanded={false}
+                                  $isFocusVisible={false}
+                                  overrides={
+                                    Object {
+                                      "Svg": Object {
+                                        "component": null,
+                                        "props": Object {
+                                          "size": 16,
+                                          "title": "Expand",
+                                          "viewBox": "0 0 24 24",
+                                        },
+                                      },
+                                    }
+                                  }
+                                  size={16}
+                                  title="Expand"
                                   viewBox="0 0 24 24"
                                 >
-                                  <title>
-                                    Expand
-                                  </title>
-                                  <path
-                                    clipRule="evenodd"
-                                    d="M12 5C12.5523 5 13 5.44772 13 6V11L18 11C18.5523 11 19 11.4477 19 12C19 12.5523 18.5523 13 18 13L13 13V18C13 18.5523 12.5523 19 12 19C11.4477 19 11 18.5523 11 18V13L6 13C5.44772 13 5 12.5523 5 12C5 11.4477 5.44771 11 6 11L11 11V6C11 5.44772 11.4477 5 12 5Z"
-                                    fillRule="evenodd"
-                                  />
-                                </svg>
-                              </MockStyledComponent>
-                            </ForwardRef>
-                          </Icon>
-                        </Plus>
-                      </div>
-                    </MockStyledComponent>
-                  </ForwardRef>
-                  <ForwardRef
-                    $disabled={false}
-                    $expanded={false}
-                    $isFocusVisible={false}
-                  >
-                    <MockStyledComponent
-                      $disabled={false}
-                      $expanded={false}
-                      $isFocusVisible={false}
-                      forwardedRef={null}
-                    >
-                      <div
-                        styled-component="true"
-                        test-style="{
+                                  <ForwardRef(ProxyOverrides)
+                                    $disabled={false}
+                                    $expanded={false}
+                                    $isFocusVisible={false}
+                                    $size={16}
+                                    data-baseweb="icon"
+                                    override={
+                                      Object {
+                                        "component": null,
+                                        "props": Object {
+                                          "size": 16,
+                                          "title": "Expand",
+                                          "viewBox": "0 0 24 24",
+                                        },
+                                      }
+                                    }
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <ForwardRef
+                                      $disabled={false}
+                                      $expanded={false}
+                                      $isFocusVisible={false}
+                                      $size={16}
+                                      data-baseweb="icon"
+                                      size={16}
+                                      title="Expand"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <MockStyledComponent
+                                        $disabled={false}
+                                        $expanded={false}
+                                        $isFocusVisible={false}
+                                        $size={16}
+                                        data-baseweb="icon"
+                                        forwardedRef={null}
+                                        size={16}
+                                        title="Expand"
+                                        viewBox="0 0 24 24"
+                                      >
+                                        <svg
+                                          data-baseweb="icon"
+                                          size={16}
+                                          styled-component="true"
+                                          test-style="{
+  \\"display\\": \\"inline-block\\",
+  \\"fill\\": \\"currentColor\\",
+  \\"color\\": \\"currentColor\\",
+  \\"height\\": \\"16px\\",
+  \\"width\\": \\"16px\\"
+}"
+                                          title="Expand"
+                                          viewBox="0 0 24 24"
+                                        >
+                                          <title>
+                                            Expand
+                                          </title>
+                                          <path
+                                            clipRule="evenodd"
+                                            d="M12 5C12.5523 5 13 5.44772 13 6V11L18 11C18.5523 11 19 11.4477 19 12C19 12.5523 18.5523 13 18 13L13 13V18C13 18.5523 12.5523 19 12 19C11.4477 19 11 18.5523 11 18V13L6 13C5.44772 13 5 12.5523 5 12C5 11.4477 5.44771 11 6 11L11 11V6C11 5.44772 11.4477 5 12 5Z"
+                                            fillRule="evenodd"
+                                          />
+                                        </svg>
+                                      </MockStyledComponent>
+                                    </ForwardRef>
+                                  </ForwardRef(ProxyOverrides)>
+                                </ForwardRef(Icon)>
+                              </Plus>
+                            </div>
+                          </MockStyledComponent>
+                        </ForwardRef>
+                      </ForwardRef(ProxyOverrides)>
+                      <ForwardRef(ProxyOverrides)
+                        $disabled={false}
+                        $expanded={false}
+                        $isFocusVisible={false}
+                      >
+                        <ForwardRef
+                          $disabled={false}
+                          $expanded={false}
+                          $isFocusVisible={false}
+                        >
+                          <MockStyledComponent
+                            $disabled={false}
+                            $expanded={false}
+                            $isFocusVisible={false}
+                            forwardedRef={null}
+                          >
+                            <div
+                              styled-component="true"
+                              test-style="{
   \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
   \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
   \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
@@ -1191,72 +1435,55 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
   \\"transitionDuration\\": \\"$theme.animation.timing400\\",
   \\"transitionTimingFunction\\": \\"$theme.animation.easeInOutCurve\\"
 }"
-                      />
-                    </MockStyledComponent>
-                  </ForwardRef>
-                </li>
-              </MockStyledComponent>
-            </ForwardRef>
-          </Panel>
-          <Panel
-            accordion={true}
-            disabled={false}
-            expanded={false}
-            key="2/.2"
-            onChange={[Function]}
-            onClick={[Function]}
-            onKeyDown={[Function]}
-            overrides={Object {}}
-            renderAll={false}
-            renderPanelContent={false}
-            title="Accordion panel 3"
-          >
-            <ForwardRef
-              $disabled={false}
-              $expanded={false}
-              $isFocusVisible={false}
+                            />
+                          </MockStyledComponent>
+                        </ForwardRef>
+                      </ForwardRef(ProxyOverrides)>
+                    </li>
+                  </MockStyledComponent>
+                </ForwardRef>
+              </ForwardRef(ProxyOverrides)>
+            </Panel>
+            <Panel
+              accordion={true}
+              disabled={false}
+              expanded={false}
+              key="2/.2"
+              onChange={[Function]}
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              overrides={Object {}}
+              renderAll={false}
+              renderPanelContent={false}
+              title="Accordion panel 3"
             >
-              <MockStyledComponent
+              <ForwardRef(ProxyOverrides)
                 $disabled={false}
                 $expanded={false}
                 $isFocusVisible={false}
-                forwardedRef={null}
               >
-                <li
-                  styled-component="true"
-                  test-style="{
-  \\"listStyleType\\": \\"none\\",
-  \\"width\\": \\"100%\\"
-}"
+                <ForwardRef
+                  $disabled={false}
+                  $expanded={false}
+                  $isFocusVisible={false}
                 >
-                  <ForwardRef
+                  <MockStyledComponent
                     $disabled={false}
                     $expanded={false}
                     $isFocusVisible={false}
-                    aria-disabled={null}
-                    aria-expanded={false}
-                    onBlur={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    role="button"
-                    tabIndex={0}
+                    forwardedRef={null}
                   >
-                    <MockStyledComponent
-                      $disabled={false}
-                      $expanded={false}
-                      $isFocusVisible={false}
-                      aria-disabled={null}
-                      aria-expanded={false}
-                      forwardedRef={null}
-                      onBlur={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      role="button"
-                      tabIndex={0}
+                    <li
+                      styled-component="true"
+                      test-style="{
+  \\"listStyleType\\": \\"none\\",
+  \\"width\\": \\"100%\\"
+}"
                     >
-                      <div
+                      <ForwardRef(ProxyOverrides)
+                        $disabled={false}
+                        $expanded={false}
+                        $isFocusVisible={false}
                         aria-disabled={null}
                         aria-expanded={false}
                         onBlur={[Function]}
@@ -1264,9 +1491,46 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                         onFocus={[Function]}
                         onKeyDown={[Function]}
                         role="button"
-                        styled-component="true"
                         tabIndex={0}
-                        test-style="{
+                      >
+                        <ForwardRef
+                          $disabled={false}
+                          $expanded={false}
+                          $isFocusVisible={false}
+                          aria-disabled={null}
+                          aria-expanded={false}
+                          onBlur={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          role="button"
+                          tabIndex={0}
+                        >
+                          <MockStyledComponent
+                            $disabled={false}
+                            $expanded={false}
+                            $isFocusVisible={false}
+                            aria-disabled={null}
+                            aria-expanded={false}
+                            forwardedRef={null}
+                            onBlur={[Function]}
+                            onClick={[Function]}
+                            onFocus={[Function]}
+                            onKeyDown={[Function]}
+                            role="button"
+                            tabIndex={0}
+                          >
+                            <div
+                              aria-disabled={null}
+                              aria-expanded={false}
+                              onBlur={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              role="button"
+                              styled-component="true"
+                              tabIndex={0}
+                              test-style="{
   \\"fontFamily\\": \\"$theme.typography.font350.fontFamily\\",
   \\"fontSize\\": \\"$theme.typography.font350.fontSize\\",
   \\"fontWeight\\": \\"$theme.typography.font350.fontWeight\\",
@@ -1292,103 +1556,130 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
     \\"color\\": \\"$theme.colors.primary\\"
   }
 }"
-                      >
-                        Accordion panel 3
-                        <Plus
-                          $disabled={false}
-                          $expanded={false}
-                          $isFocusVisible={false}
-                          overrides={
-                            Object {
-                              "Svg": Object {
-                                "component": Object {
-                                  "$$typeof": Symbol(react.forward_ref),
-                                  "render": [Function],
-                                },
-                              },
-                            }
-                          }
-                          size={16}
-                          title="Expand"
-                        >
-                          <Icon
-                            $disabled={false}
-                            $expanded={false}
-                            $isFocusVisible={false}
-                            overrides={
-                              Object {
-                                "Svg": Object {
-                                  "component": Object {
-                                    "$$typeof": Symbol(react.forward_ref),
-                                    "render": [Function],
-                                  },
-                                },
-                              }
-                            }
-                            size={16}
-                            title="Expand"
-                            viewBox="0 0 24 24"
-                          >
-                            <ForwardRef
-                              $disabled={false}
-                              $expanded={false}
-                              $isFocusVisible={false}
-                              $size={16}
-                              data-baseweb="icon"
-                              viewBox="0 0 24 24"
                             >
-                              <MockStyledComponent
+                              Accordion panel 3
+                              <Plus
                                 $disabled={false}
                                 $expanded={false}
                                 $isFocusVisible={false}
-                                $size={16}
-                                data-baseweb="icon"
-                                forwardedRef={null}
-                                viewBox="0 0 24 24"
+                                overrides={
+                                  Object {
+                                    "Svg": undefined,
+                                  }
+                                }
+                                size={16}
+                                title="Expand"
                               >
-                                <svg
-                                  data-baseweb="icon"
-                                  styled-component="true"
-                                  test-style="{
-  \\"display\\": \\"inline-block\\",
-  \\"fill\\": \\"currentColor\\",
-  \\"color\\": \\"$theme.colors.contentPrimary\\",
-  \\"height\\": \\"16px\\",
-  \\"width\\": \\"16px\\",
-  \\"cursor\\": \\"pointer\\"
-}"
+                                <ForwardRef(Icon)
+                                  $disabled={false}
+                                  $expanded={false}
+                                  $isFocusVisible={false}
+                                  overrides={
+                                    Object {
+                                      "Svg": Object {
+                                        "component": null,
+                                        "props": Object {
+                                          "size": 16,
+                                          "title": "Expand",
+                                          "viewBox": "0 0 24 24",
+                                        },
+                                      },
+                                    }
+                                  }
+                                  size={16}
+                                  title="Expand"
                                   viewBox="0 0 24 24"
                                 >
-                                  <title>
-                                    Expand
-                                  </title>
-                                  <path
-                                    clipRule="evenodd"
-                                    d="M12 5C12.5523 5 13 5.44772 13 6V11L18 11C18.5523 11 19 11.4477 19 12C19 12.5523 18.5523 13 18 13L13 13V18C13 18.5523 12.5523 19 12 19C11.4477 19 11 18.5523 11 18V13L6 13C5.44772 13 5 12.5523 5 12C5 11.4477 5.44771 11 6 11L11 11V6C11 5.44772 11.4477 5 12 5Z"
-                                    fillRule="evenodd"
-                                  />
-                                </svg>
-                              </MockStyledComponent>
-                            </ForwardRef>
-                          </Icon>
-                        </Plus>
-                      </div>
-                    </MockStyledComponent>
-                  </ForwardRef>
-                  <ForwardRef
-                    $disabled={false}
-                    $expanded={false}
-                    $isFocusVisible={false}
-                  >
-                    <MockStyledComponent
-                      $disabled={false}
-                      $expanded={false}
-                      $isFocusVisible={false}
-                      forwardedRef={null}
-                    >
-                      <div
-                        styled-component="true"
-                        test-style="{
+                                  <ForwardRef(ProxyOverrides)
+                                    $disabled={false}
+                                    $expanded={false}
+                                    $isFocusVisible={false}
+                                    $size={16}
+                                    data-baseweb="icon"
+                                    override={
+                                      Object {
+                                        "component": null,
+                                        "props": Object {
+                                          "size": 16,
+                                          "title": "Expand",
+                                          "viewBox": "0 0 24 24",
+                                        },
+                                      }
+                                    }
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <ForwardRef
+                                      $disabled={false}
+                                      $expanded={false}
+                                      $isFocusVisible={false}
+                                      $size={16}
+                                      data-baseweb="icon"
+                                      size={16}
+                                      title="Expand"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <MockStyledComponent
+                                        $disabled={false}
+                                        $expanded={false}
+                                        $isFocusVisible={false}
+                                        $size={16}
+                                        data-baseweb="icon"
+                                        forwardedRef={null}
+                                        size={16}
+                                        title="Expand"
+                                        viewBox="0 0 24 24"
+                                      >
+                                        <svg
+                                          data-baseweb="icon"
+                                          size={16}
+                                          styled-component="true"
+                                          test-style="{
+  \\"display\\": \\"inline-block\\",
+  \\"fill\\": \\"currentColor\\",
+  \\"color\\": \\"currentColor\\",
+  \\"height\\": \\"16px\\",
+  \\"width\\": \\"16px\\"
+}"
+                                          title="Expand"
+                                          viewBox="0 0 24 24"
+                                        >
+                                          <title>
+                                            Expand
+                                          </title>
+                                          <path
+                                            clipRule="evenodd"
+                                            d="M12 5C12.5523 5 13 5.44772 13 6V11L18 11C18.5523 11 19 11.4477 19 12C19 12.5523 18.5523 13 18 13L13 13V18C13 18.5523 12.5523 19 12 19C11.4477 19 11 18.5523 11 18V13L6 13C5.44772 13 5 12.5523 5 12C5 11.4477 5.44771 11 6 11L11 11V6C11 5.44772 11.4477 5 12 5Z"
+                                            fillRule="evenodd"
+                                          />
+                                        </svg>
+                                      </MockStyledComponent>
+                                    </ForwardRef>
+                                  </ForwardRef(ProxyOverrides)>
+                                </ForwardRef(Icon)>
+                              </Plus>
+                            </div>
+                          </MockStyledComponent>
+                        </ForwardRef>
+                      </ForwardRef(ProxyOverrides)>
+                      <ForwardRef(ProxyOverrides)
+                        $disabled={false}
+                        $expanded={false}
+                        $isFocusVisible={false}
+                      >
+                        <ForwardRef
+                          $disabled={false}
+                          $expanded={false}
+                          $isFocusVisible={false}
+                        >
+                          <MockStyledComponent
+                            $disabled={false}
+                            $expanded={false}
+                            $isFocusVisible={false}
+                            forwardedRef={null}
+                          >
+                            <div
+                              styled-component="true"
+                              test-style="{
   \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
   \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
   \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
@@ -1412,16 +1703,19 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
   \\"transitionDuration\\": \\"$theme.animation.timing400\\",
   \\"transitionTimingFunction\\": \\"$theme.animation.easeInOutCurve\\"
 }"
-                      />
-                    </MockStyledComponent>
-                  </ForwardRef>
-                </li>
-              </MockStyledComponent>
-            </ForwardRef>
-          </Panel>
-        </ul>
-      </MockStyledComponent>
-    </ForwardRef>
+                            />
+                          </MockStyledComponent>
+                        </ForwardRef>
+                      </ForwardRef(ProxyOverrides)>
+                    </li>
+                  </MockStyledComponent>
+                </ForwardRef>
+              </ForwardRef(ProxyOverrides)>
+            </Panel>
+          </ul>
+        </MockStyledComponent>
+      </ForwardRef>
+    </ForwardRef(ProxyOverrides)>
   </Accordion>
 </Component>
 `;

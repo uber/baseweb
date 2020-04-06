@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* global document */
 import * as React from 'react';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import {Override, mergeOverrideResources} from '../helpers/override.js';
 import DeleteIcon from '../icon/delete.js';
 import {
   Body as StyledBody,
@@ -25,6 +25,9 @@ import type {
 } from './types.js';
 import type {OverridesT} from '../icon/index.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+
+const Body = Override(StyledBody);
+const InnerContainer = Override(StyledInnerContainer);
 
 class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   static defaultProps: ToastPropsShapeT = {
@@ -186,37 +189,12 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   }
 
   render() {
-    const {children, closeable} = this.props;
+    const {children, closeable, overrides = {}} = this.props;
     const {isRendered} = this.state;
-    const {
-      Body: BodyOverride,
-      CloseIcon: CloseIconOverride,
-      InnerContainer: InnerContainerOverride,
-    } = this.props.overrides;
 
-    const [Body, bodyProps] = getOverrides(BodyOverride, StyledBody);
-
-    const [InnerContainer, innerContainerProps] = getOverrides(
-      InnerContainerOverride,
-      StyledInnerContainer,
-    );
-
-    const [CloseIcon, closeIconProps] = getOverrides(
-      CloseIconOverride,
-      StyledCloseIcon,
-    );
-
-    const closeIconOverrides: OverridesT = mergeOverrides(
-      {
-        Svg: {
-          component: CloseIcon,
-          props: {
-            ref: this.closeRef,
-          },
-        },
-      },
-      // $FlowFixMe
-      {Svg: CloseIconOverride},
+    const SvgOverrides = mergeOverrideResources(
+      {component: StyledCloseIcon},
+      overrides.CloseIcon ? overrides.CloseIcon : {},
     );
 
     const sharedProps = this.getSharedProps();
@@ -231,20 +209,23 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
             role="alert"
             data-baseweb={this.props['data-baseweb'] || 'toast'}
             {...sharedProps}
-            {...bodyProps}
-            // the properties below have to go after overrides
             onBlur={this.onBlur}
             onFocus={this.onFocus}
             onMouseEnter={this.onMouseEnter}
             onMouseLeave={this.onMouseLeave}
+            override={overrides.Body}
           >
-            <InnerContainer {...sharedProps} {...innerContainerProps}>
+            <InnerContainer
+              {...sharedProps}
+              override={overrides.InnerContainer}
+            >
               {typeof children === 'function'
                 ? children({dismiss: this.dismiss})
                 : children}
             </InnerContainer>
             {closeable ? (
               <DeleteIcon
+                svgRef={this.closeRef}
                 role="button"
                 tabIndex={0}
                 $isFocusVisible={this.state.isFocusVisible}
@@ -256,10 +237,18 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
                 }}
                 title={locale.toast.close}
                 {...sharedProps}
-                {...closeIconProps}
-                onFocus={forkFocus(closeIconProps, this.handleFocus)}
-                onBlur={forkBlur(closeIconProps, this.handleBlur)}
-                overrides={closeIconOverrides}
+                onFocus={
+                  overrides.CloseIcon && overrides.CloseIcon.props
+                    ? forkFocus(overrides.CloseIcon.props, this.handleFocus)
+                    : this.handleFocus
+                }
+                onBlur={
+                  overrides.CloseIcon && overrides.CloseIcon.props
+                    ? forkBlur(overrides.CloseIcon.props, this.handleBlur)
+                    : this.handleBlur
+                }
+                // $FlowFixMe Icon svg override does not have same props type
+                overrides={{Svg: SvgOverrides}}
               />
             ) : null}
           </Body>
