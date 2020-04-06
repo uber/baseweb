@@ -152,12 +152,12 @@ However, before you go down either of these roads, you should know that Base Web
 
 ### `createTheme`
 
-As you might expect, `createTheme` is a factory function for Base Web compliant theme objects. We use `createTheme` to construct our default light and dark themes.
+As you might expect, `createTheme` is a factory function for Base Web compliant theme objects. We provide it as a utility for you to quickly create a custom theme.
 
 ```js
 import {createTheme} from 'baseui';
 
-const theme = createTheme(/* primitives */, /* overrides */, /* options */);
+const theme = createTheme(/* primitives */, /* overrides */);
 ```
 
 #### `primitives`
@@ -229,12 +229,12 @@ const theme = createTheme(primitives, overrides);
 
 In this example, we first reassign the accent color on our theme primitives to hot pink. Then we use `overrides` to re-map the secondary button colors to use our hot pink accent colors rather than the default primary colors.
 
-### `options`
+### `createDarkTheme`
 
-One of the main reasons to have a dynamic theme is to toggle your app between light and dark modes. `createTheme` will by default map `primitives` to theme colors in a way suited to light themes. If you want to create a dark theme instead you can use the third argument to `createTheme`, **`options`**.
+One of the main reasons to have a dynamic theme is to toggle your app between light and dark modes. `createTheme` will by default map `primitives` to theme colors in a way suited to light themes. If you want to create a dark theme you can instead use the `createDarkTheme` function.
 
 ```js
-import {createTheme} from 'baseui';
+import {createDarkTheme} from 'baseui';
 
 const primitives = {
   accent: '#F127E4', // hot pink
@@ -248,12 +248,14 @@ const primitives = {
   accent700: '#600F5B',
 };
 
-const darkTheme = createTheme(primitives, {}, {isDark: true});
+const darkTheme = createDarkTheme(primitives);
 ```
 
-Here we simply pass `{isDark: true}` via the `options` argument and `createTheme` will map your `primitives` in a way suited to dark themes. Currently `isDark` is the only option accepted, but who knows what the future holds?
+This works exactly the same way as `createTheme`, but `createDarkTheme` will map all of your `primitives` to theme properties in a way better suited to dark themes.
 
-Between `parameters`, `overrides`, and `options`, you should have a fair amount of control over theme object creation. Ideally, you can use `createTheme` to quickly construct a Base Web compliant theme object.
+If you aren't sure why this mapping changes, try creating a dark theme with `createTheme`. You might notice that the colors look somewhat off. This is because, in a typical light theme, things start light and then get darker as they require more attention, whereas, in a dark theme, things start dark and become lighter. We need to know which direction (light/dark) to go when assigning your primitive colors to theme properties. By separating the assignment logic for light and dark theme creation we can better estimate which values to assign to various properties.
+
+Between `parameters` and `overrides` you should have a fair amount of control over theme object creation. Ideally, you can use `createTheme` to quickly construct a Base Web compliant theme object.
 
 ### Customizing Typography
 
