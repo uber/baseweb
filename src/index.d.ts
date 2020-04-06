@@ -16,7 +16,14 @@ export const useStyletron: UseStyletronFn<Theme>;
 export function createTheme<P extends object>(
   primitives: Partial<ThemePrimitives>,
   overrides?: P,
-  options?: {isDark?: boolean},
+): Theme & P;
+export function createLightTheme<P extends object>(
+  primitives: Partial<ThemePrimitives>,
+  overrides?: P,
+): Theme & P;
+export function createDarkTheme<P extends object>(
+  primitives: Partial<ThemePrimitives>,
+  overrides?: P,
 ): Theme & P;
 export function mergeOverrides<T>(
   target?: Overrides<T>,
