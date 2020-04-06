@@ -255,7 +255,7 @@ This works exactly the same way as `createTheme`, but `createDarkTheme` will map
 
 If you aren't sure why this mapping changes, try creating a dark theme with `createTheme`. You might notice that the colors look somewhat off. This is because, in a typical light theme, things start light and then get darker as they require more attention, whereas, in a dark theme, things start dark and become lighter. We need to know which direction (light/dark) to go when assigning your primitive colors to theme properties. By separating the assignment logic for light and dark theme creation we can better estimate which values to assign to various properties.
 
-Between `parameters` and `overrides` you should have a fair amount of control over theme object creation. Ideally, you can use `createTheme` to quickly construct a Base Web compliant theme object.
+Between `primitives` and `overrides` you should have a fair amount of control over theme object creation. Ideally, you can use `createTheme` to quickly construct a Base Web compliant theme object.
 
 ### Customizing Typography
 
