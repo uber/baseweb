@@ -32,9 +32,12 @@ export default function createLightTheme(
   // Extract font tokens and color tokens from primitives
   const {primaryFontFamily, ...customColorTokens} = primitives;
   // Assemble font tokens
-  const fontTokens = {primaryFontFamily};
+  const fontTokens: FontTokensT = {primaryFontFamily};
   // Assemble color tokens by overriding defaults with custom color tokens
-  const colorTokens = {...defaultColorTokens, ...customColorTokens};
+  const colorTokens: ColorTokensT = {
+    ...defaultColorTokens,
+    ...customColorTokens,
+  };
   const theme = {
     animation,
     borders,

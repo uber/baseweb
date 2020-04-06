@@ -20,7 +20,7 @@ import lighting from '../shared/lighting.js';
 import mediaQuery from '../shared/media-query.js';
 import sizing from '../shared/sizing.js';
 
-import type {PrimitivesT} from '../types.js';
+import type {PrimitivesT, FontTokensT, ColorTokensT} from '../types.js';
 import type {ThemeT} from '../../styles/types.js';
 
 export default function createDarkTheme(
@@ -32,9 +32,12 @@ export default function createDarkTheme(
   // Extract font tokens and color tokens from primitives
   const {primaryFontFamily, ...customColorTokens} = primitives;
   // Assemble font tokens
-  const fontTokens = {primaryFontFamily};
+  const fontTokens: FontTokensT = {primaryFontFamily};
   // Assemble color tokens by overriding defaults with custom color tokens
-  const colorTokens = {...defaultColorTokens, ...customColorTokens};
+  const colorTokens: ColorTokensT = {
+    ...defaultColorTokens,
+    ...customColorTokens,
+  };
   const theme = {
     animation,
     borders,

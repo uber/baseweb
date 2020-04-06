@@ -12,116 +12,113 @@ export const defaultFontTokens: FontTokensT = {
     'system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif',
 };
 
-export default (
-  customFontTokens?: $Shape<FontTokensT> = defaultFontTokens,
-): TypographyT => {
-  const {
-    primaryFontFamily = defaultFontTokens.primaryFontFamily,
-  } = customFontTokens;
+export default (customFontTokens?: $Shape<FontTokensT> = {}): TypographyT => {
+  // Assemble font tokens by overriding defaults with custom font tokens
+  const fontTokens: FontTokensT = {...defaultFontTokens, ...customFontTokens};
   const font100 = {
-    fontFamily: primaryFontFamily,
+    fontFamily: fontTokens.primaryFontFamily,
     fontSize: '12px',
     fontWeight: 'normal',
     lineHeight: '20px',
   };
   const font150 = {
-    fontFamily: primaryFontFamily,
+    fontFamily: fontTokens.primaryFontFamily,
     fontSize: '12px',
     fontWeight: 500,
     lineHeight: '16px',
   };
   const font200 = {
-    fontFamily: primaryFontFamily,
+    fontFamily: fontTokens.primaryFontFamily,
     fontSize: '14px',
     fontWeight: 'normal',
     lineHeight: '20px',
   };
   const font250 = {
-    fontFamily: primaryFontFamily,
+    fontFamily: fontTokens.primaryFontFamily,
     fontSize: '14px',
     fontWeight: 500,
     lineHeight: '16px',
   };
   const font300 = {
-    fontFamily: primaryFontFamily,
+    fontFamily: fontTokens.primaryFontFamily,
     fontSize: '16px',
     fontWeight: 'normal',
     lineHeight: '24px',
   };
   const font350 = {
-    fontFamily: primaryFontFamily,
+    fontFamily: fontTokens.primaryFontFamily,
     fontSize: '16px',
     fontWeight: 500,
     lineHeight: '20px',
   };
   const font400 = {
-    fontFamily: primaryFontFamily,
+    fontFamily: fontTokens.primaryFontFamily,
     fontSize: '18px',
     fontWeight: 'normal',
     lineHeight: '28px',
   };
   const font450 = {
-    fontFamily: primaryFontFamily,
+    fontFamily: fontTokens.primaryFontFamily,
     fontSize: '18px',
     fontWeight: 500,
     lineHeight: '24px',
   };
   const font550 = {
-    fontFamily: primaryFontFamily,
+    fontFamily: fontTokens.primaryFontFamily,
     fontSize: '20px',
     fontWeight: 500,
     lineHeight: '28px',
   };
   const font650 = {
-    fontFamily: primaryFontFamily,
+    fontFamily: fontTokens.primaryFontFamily,
     fontSize: '24px',
     fontWeight: 500,
     lineHeight: '32px',
   };
   const font750 = {
-    fontFamily: primaryFontFamily,
+    fontFamily: fontTokens.primaryFontFamily,
     fontSize: '28px',
     fontWeight: 500,
     lineHeight: '36px',
   };
   const font850 = {
-    fontFamily: primaryFontFamily,
+    fontFamily: fontTokens.primaryFontFamily,
     fontSize: '32px',
     fontWeight: 500,
     lineHeight: '40px',
   };
   const font950 = {
-    fontFamily: primaryFontFamily,
+    fontFamily: fontTokens.primaryFontFamily,
     fontSize: '36px',
     fontWeight: 500,
     lineHeight: '44px',
   };
   const font1050 = {
-    fontFamily: primaryFontFamily,
+    fontFamily: fontTokens.primaryFontFamily,
     fontSize: '40px',
     fontWeight: 500,
     lineHeight: '52px',
   };
   const font1150 = {
-    fontFamily: primaryFontFamily,
+    fontFamily: fontTokens.primaryFontFamily,
     fontSize: '36px',
     fontWeight: 500,
     lineHeight: '44px',
   };
   const font1250 = {
-    fontFamily: primaryFontFamily,
+    fontFamily: fontTokens.primaryFontFamily,
     fontSize: '44px',
     fontWeight: 500,
     lineHeight: '52px',
   };
   const font1350 = {
-    fontFamily: primaryFontFamily,
+    fontFamily: fontTokens.primaryFontFamily,
     fontSize: '52px',
     fontWeight: 500,
     lineHeight: '64px',
   };
   const font1450 = {
-    fontFamily: primaryFontFamily,
+    fontFamily: fontTokens.primaryFontFamily,
     fontSize: '96px',
     fontWeight: 500,
     lineHeight: '112px',
