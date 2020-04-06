@@ -20,7 +20,7 @@ import lighting from '../shared/lighting.js';
 import mediaQuery from '../shared/media-query.js';
 import sizing from '../shared/sizing.js';
 
-import type {PrimitivesT} from '../types.js';
+import type {PrimitivesT, FontTokensT, ColorTokensT} from '../types.js';
 import type {ThemeT} from '../../styles/types.js';
 
 export default function createLightTheme(
