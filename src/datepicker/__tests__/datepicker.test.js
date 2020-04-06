@@ -10,7 +10,7 @@ import {mount} from 'enzyme';
 import {Datepicker, Calendar, ORIENTATION} from '../index.js';
 import {Input} from '../../input/index.js';
 import {Popover} from '../../popover/index.js';
-import {addDays} from 'date-fns';
+import {addDays, parse} from 'date-fns';
 import CalendarHeader from '../calendar-header.js';
 import ArrowLeft from '../../icon/arrow-left.js';
 import ArrowRight from '../../icon/arrow-right.js';
@@ -197,6 +197,65 @@ describe('Datepicker', () => {
 
     expect(onChange.mock.calls[0][0]).toEqual({
       date: new Date(newDate),
+    });
+    expect(onChange.mock.calls).toHaveLength(1);
+  });
+
+  test('handles spaces replacement correctly with formatString', () => {
+    const onChange = jest.fn();
+    const format = 'dd MM yyyy';
+    const date = new Date('2019 01 01');
+    const newDate = '10 10 2019';
+    const component = mount(
+      <Datepicker onChange={onChange} value={date} formatString={format} />,
+    );
+
+    // $FlowFixMe
+    component.instance().handleInputChange({
+      currentTarget: {
+        value: newDate,
+      },
+    });
+
+    // $FlowFixMe
+    component.instance().handleInputChange({
+      currentTarget: {
+        value: newDate,
+      },
+    });
+
+    expect(onChange.mock.calls[0][0]).toEqual({
+      date: parse(newDate, format, new Date()),
+    });
+  });
+
+  test('fires the onchange only when date length is same as formatString with single date', () => {
+    const onChange = jest.fn();
+    const format = 'dd.MM.yyyy';
+    const date = new Date('2019 01 01');
+    const newDate = '10.10.2019';
+    const component = mount(
+      <Datepicker onChange={onChange} value={date} formatString={format} />,
+    );
+
+    // $FlowFixMe
+    component.instance().handleInputChange({
+      currentTarget: {
+        value: newDate.substring(0, newDate.length - 1),
+      },
+    });
+
+    expect(onChange.mock.calls).toHaveLength(0);
+
+    // $FlowFixMe
+    component.instance().handleInputChange({
+      currentTarget: {
+        value: newDate,
+      },
+    });
+
+    expect(onChange.mock.calls[0][0]).toEqual({
+      date: parse(newDate, format, new Date()),
     });
     expect(onChange.mock.calls).toHaveLength(1);
   });
