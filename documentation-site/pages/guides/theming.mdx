@@ -251,11 +251,42 @@ const primitives = {
 const darkTheme = createDarkTheme(primitives);
 ```
 
-This works exactly the same way as `createTheme`, but `createDarkTheme` will map all of your `primitives` to theme properties in a way better suited to dark themes.
+This works exactly the same way as `createTheme`, but `createDarkTheme` will map all of your `primitives` to theme properties in a way better suited to dark themes. Note, `createDarkTheme` also accepts an optional `overrides` object as the second argument.
 
-If you aren't sure why this mapping changes, try creating a dark theme with `createTheme`. You might notice that the colors look somewhat off. This is because, in a typical light theme, things start light and then get darker as they require more attention, whereas, in a dark theme, things start dark and become lighter. We need to know which direction (light/dark) to go when assigning your primitive colors to theme properties. By separating the assignment logic for light and dark theme creation we can better estimate which values to assign to various properties.
+```js
+import {createDarkTheme} from 'baseui';
 
-Between `primitives` and `overrides` you should have a fair amount of control over theme object creation. Ideally, you can use `createTheme` to quickly construct a Base Web compliant theme object.
+const primitives = {
+  accent: '#F127E4', // hot pink
+  accent50: '#FDEDFC',
+  accent100: '#FCD3F9',
+  accent200: '#F89FF3',
+  accent300: '#F45AEA',
+  accent400: '#F127E4',
+  accent500: '#B71DAD',
+  accent600: '#901788',
+  accent700: '#600F5B',
+};
+
+const overrides = {
+  colors: {
+    buttonSecondaryFill: primitives.accent100,
+    buttonSecondaryText: primitives.accent,
+    buttonSecondaryHover: primitives.accent200,
+    buttonSecondaryActive: primitives.accent300,
+    buttonSecondarySelectedFill: primitives.accent200,
+    buttonSecondarySelectedText: primitives.accent,
+    buttonSecondarySpinnerForeground: primitives.accent700,
+    buttonSecondarySpinnerBackground: primitives.accent300,
+  },
+};
+
+const darkTheme = createDarkTheme(primitives, overrides);
+```
+
+This is equivalent to our earlier `overrides` example, only the result is a dark theme rather than a light theme.
+
+If you aren't sure why this change in mapping is necessary, try creating a dark theme with `createTheme`. You might notice that the colors look somewhat off. This is because, in a typical light theme, things start light and then get darker as they require more attention, whereas, in a dark theme, things start dark and become lighter. We need to know which direction (light/dark) to go when assigning your primitive colors to theme properties. By separating the assignment logic for light and dark theme creation we can better estimate which values to assign to various properties.
 
 ### Customizing Typography
 
