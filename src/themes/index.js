@@ -9,7 +9,7 @@ import {DarkTheme} from './dark-theme/dark-theme.js';
 import {DarkThemeMove} from './move-theme/dark-theme-with-move.js';
 import {LightTheme} from './light-theme/light-theme.js';
 import {LightThemeMove} from './move-theme/light-theme-with-move.js';
-import createDarkTheme from './light-theme/create-dark-theme.js';
+import createDarkTheme from './dark-theme/create-dark-theme.js';
 import createLightTheme from './light-theme/create-light-theme.js';
 import darkThemePrimitives from './dark-theme/primitives.js';
 import lightThemePrimitives from './light-theme/primitives.js';
