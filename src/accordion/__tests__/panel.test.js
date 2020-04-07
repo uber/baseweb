@@ -9,12 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {mount} from 'enzyme';
 import {render, getByTestId} from '@testing-library/react';
-import {
-  Panel,
-  StyledContent,
-  StyledHeader,
-  StyledToggleIcon,
-} from '../index.js';
+import {Panel, StyledContent, StyledHeader} from '../index.js';
 
 describe('Panel', () => {
   test('basic rendering', () => {

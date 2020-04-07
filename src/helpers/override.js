@@ -128,10 +128,10 @@ export function mergeOverrideResources<Props: {}>(
   return merged;
 }
 
-function mergeOverrideCollections<Props>(
-  target: {[string]: OverrideResourceT<Props>},
-  source: {[string]: OverrideResourceT<Props>},
-): {[string]: OverrideResourceT<Props>} {
-  // TODO
-  return target;
-}
+// TODO maybe?
+// function mergeOverrideCollections<Props>(
+//   target: {[string]: OverrideResourceT<Props>},
+//   source: {[string]: OverrideResourceT<Props>},
+// ): {[string]: OverrideResourceT<Props>} {
+//   return target;
+// }

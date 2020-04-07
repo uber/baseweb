@@ -199,10 +199,14 @@ describe('Toast', () => {
   it('accepts overrides', () => {
     const overrides = {
       Body: {
-        component: ({children}) => <div data-testid="body">{children}</div>,
+        component: function BodyComponentOverride({children}) {
+          return <div data-testid="body">{children}</div>;
+        },
       },
       InnerContainer: {
-        component: ({children}) => <div data-testid="inner">{children}</div>,
+        component: function InnerContainerOverride({children}) {
+          return <div data-testid="inner">{children}</div>;
+        },
       },
       CloseIcon: {
         props: {size: '54px', 'data-testid': 'icon'},

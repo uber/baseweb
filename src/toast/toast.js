@@ -23,7 +23,6 @@ import type {
   ToastPrivateStateT,
   SharedStylePropsArgT,
 } from './types.js';
-import type {OverridesT} from '../icon/index.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 const Body = Override(StyledBody);

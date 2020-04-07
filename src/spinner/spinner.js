@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 
-import {mergeOverrides, getOverrides} from '../helpers/overrides.js';
 import {Override, mergeOverrideResources} from '../helpers/override.js';
 import Icon from '../icon/icon.js';
 

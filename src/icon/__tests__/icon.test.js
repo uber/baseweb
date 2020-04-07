@@ -9,13 +9,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {render} from '@testing-library/react';
-import {mount, shallow} from 'enzyme';
 import {Icon} from '../index.js';
-import {Svg} from '../styled-components.js';
 import * as Icons from '../icon-exports.js';
-
-import {ThemeProvider} from '../../styles/index.js';
-import {LightTheme} from '../../themes/index.js';
 
 describe('Icon', () => {
   it('renders an icon with viewBox and title', () => {

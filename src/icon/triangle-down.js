@@ -16,7 +16,7 @@ import omitDollarPrefixedKeys from './omit-dollar-prefixed-keys.js';
 import type {IconPropsT, StyledComponentArgsT} from './types.js';
 
 export default function TriangleDown(props: IconPropsT) {
-  const [_, theme] = useStyletron();
+  const [, theme] = useStyletron();
   const {overrides = {}, svgRef, ...restProps} = props;
   const SvgOverride = mergeOverrideResources<StyledComponentArgsT>(
     // Icons from theme really targets the SVG override in the underlying Icon component, but

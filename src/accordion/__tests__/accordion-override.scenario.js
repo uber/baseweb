@@ -29,7 +29,9 @@ export default function Scenario() {
             PanelContainer: {style: {border: '4px solid blue'}},
             ToggleIcon: {
               style: {border: '4px solid indigo'},
-              component: () => <StyledIconOverride>hello</StyledIconOverride>,
+              component: function ToggleIconOverride() {
+                return <StyledIconOverride>hello</StyledIconOverride>;
+              },
             },
           }}
         >
