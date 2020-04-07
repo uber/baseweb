@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {mount} from 'enzyme';
+import {render, getByTestId} from '@testing-library/react';
 import {
   Panel,
   StyledContent,
@@ -110,5 +111,27 @@ describe('Panel', () => {
     header.simulate('keydown', event);
     expect(props.onChange).toHaveBeenCalledWith({expanded: true});
     expect(props.onKeyDown).toHaveBeenCalled();
+  });
+
+  it('does not clobber header focus events if provided in overrides', () => {
+    const overrides = {
+      Header: {
+        props: {
+          'data-testid': 'header',
+          onFocus: jest.fn(),
+          onBlur: jest.fn(),
+        },
+      },
+    };
+    const {container} = render(<Panel overrides={overrides}>Content</Panel>);
+    const header = getByTestId(container, 'header');
+    const beforeFocus = JSON.parse(header.getAttribute('test-style'));
+    expect(beforeFocus.outline).toBe('none');
+    header.focus();
+    const afterFocus = JSON.parse(header.getAttribute('test-style'));
+    expect(afterFocus.outline).not.toBe('none');
+    header.blur();
+    const afterBlur = JSON.parse(header.getAttribute('test-style'));
+    expect(afterBlur.outline).toBe('none');
   });
 });

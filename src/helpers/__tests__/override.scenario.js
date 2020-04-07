@@ -9,13 +9,12 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {styled} from '../../styles/index.js';
-import {Override} from '../override.js';
-import type {OverrideResourceT} from '../override.js';
-import {getOverrides} from '../overrides.js';
+import {Override, type OverrideResourceT} from '../override.js';
+import {getOverrides, type OverrideT} from '../overrides.js';
 
 const StyledBase = styled('div', {});
 
-function Old(props: {overrides: {Base: OverrideResourceT<{}>}}) {
+function Old(props: {overrides: {Base: OverrideT<{}>}}) {
   const [Base, baseProps] = getOverrides(props.overrides.Base, StyledBase);
   return (
     <div>

@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {LocaleContext} from '../locale/index.js';
-import {Override} from '../helpers/override.js';
+import {Override, mergeOverrideResources} from '../helpers/override.js';
 import PlusIcon from '../icon/plus.js';
 import CheckIndeterminateIcon from '../icon/check-indeterminate.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
@@ -38,12 +38,30 @@ class Panel extends React.Component<PanelPropsT, {isFocusVisible: boolean}> {
   state = {isFocusVisible: false};
 
   handleFocus = (event: SyntheticEvent<>) => {
+    const {overrides = {}} = this.props;
+    if (
+      typeof overrides.Header === 'object' &&
+      typeof overrides.Header.props === 'object' &&
+      // $FlowFixMe
+      typeof overrides.Header.props.onFocus === 'function'
+    ) {
+      overrides.Header.props.onFocus(event);
+    }
     if (isFocusVisible(event)) {
       this.setState({isFocusVisible: true});
     }
   };
 
   handleBlur = (event: SyntheticEvent<>) => {
+    const {overrides = {}} = this.props;
+    if (
+      typeof overrides.Header === 'object' &&
+      typeof overrides.Header.props === 'object' &&
+      // $FlowFixMe
+      typeof overrides.Header.props.onBlur === 'function'
+    ) {
+      overrides.Header.props.onBlur(event);
+    }
     if (this.state.isFocusVisible !== false) {
       this.setState({isFocusVisible: false});
     }
@@ -97,6 +115,14 @@ class Panel extends React.Component<PanelPropsT, {isFocusVisible: boolean}> {
     const sharedProps = this.getSharedProps();
     const ToggleIconComponent = expanded ? CheckIndeterminateIcon : PlusIcon;
 
+    const HeaderOverrides = mergeOverrideResources(overrides.Header || {}, {
+      props: {
+        // constrain focus handlers, overrides handled in component methods
+        onFocus: this.handleFocus,
+        onBlur: this.handleBlur,
+      },
+    });
+
     return (
       <LocaleContext.Consumer>
         {locale => (
@@ -110,17 +136,9 @@ class Panel extends React.Component<PanelPropsT, {isFocusVisible: boolean}> {
               {...(ariaControls ? {'aria-controls': ariaControls} : {})}
               onClick={this.onClick}
               onKeyDown={this.onKeyDown}
-              onFocus={
-                overrides.Header && overrides.Header.props
-                  ? forkFocus(overrides.Header.props, this.handleFocus)
-                  : this.handleFocus
-              }
-              onBlur={
-                overrides.Header && overrides.Header.props
-                  ? forkBlur(overrides.Header.props, this.handleBlur)
-                  : this.handleBlur
-              }
-              override={overrides.Header}
+              onFocus={this.handleFocus}
+              onBlur={this.handleBlur}
+              override={HeaderOverrides}
             >
               {title}
               <ToggleIconComponent

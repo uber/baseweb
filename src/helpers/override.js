@@ -16,9 +16,9 @@ type DynamicPropertyT<A, B> = A => B;
 type ComponentPropertyT<Props> = React.AbstractComponent<Props>;
 type ConfigPropertyT<A, B> = StaticPropertyT | DynamicPropertyT<A, B>;
 
-type OverrideConfigT<T> = {|
-  component?: ?ComponentPropertyT<T>,
-  props?: ?ConfigPropertyT<{}, T>,
+type OverrideConfigT<P> = {|
+  component?: ?ComponentPropertyT<P>,
+  props?: ?ConfigPropertyT<{}, P>,
   style?: ?ConfigPropertyT<{}, {}>,
 |};
 
@@ -75,17 +75,32 @@ export function Override<Props: {}>(
   );
 }
 
-function mergeOverrideProperties<A: {}, B: {}>(
+function shallowMergeOverrideProperties<A: {}, B: {}>(
+  target: ConfigPropertyT<A, B>,
+  source: ConfigPropertyT<A, B>,
+): ConfigPropertyT<A, B> {
+  if (typeof target === 'object' && typeof source === 'object') {
+    return {...target, ...source};
+  }
+  return function shallowDynamicMerge(props: A): B {
+    return ({
+      ...(typeof target === 'function' ? target(props) : target),
+      ...(typeof source === 'function' ? source(props) : source),
+    }: any);
+  };
+}
+
+function deepMergeOverrideProperties<A: {}, B: {}>(
   target: ConfigPropertyT<A, B>,
   source: ConfigPropertyT<A, B>,
 ): ConfigPropertyT<A, B> {
   if (typeof target === 'object' && typeof source === 'object') {
     return deepMerge({}, target, source);
   }
-  return (props: A): B => {
+  return function deepDynamicMerge(props: A): B {
     return deepMerge(
       {},
-      typeof source === 'function' ? source(props) : source,
+      typeof target === 'function' ? target(props) : target,
       typeof source === 'function' ? source(props) : source,
     );
   };
@@ -99,13 +114,13 @@ export function mergeOverrideResources<Props: {}>(
   const sourceConfig = refineResourceToConfig<Props>(source);
   const merged = {...targetConfig, ...sourceConfig};
   if (targetConfig.props && sourceConfig.props) {
-    merged.props = mergeOverrideProperties<{}, Props>(
+    merged.props = shallowMergeOverrideProperties<Props, Props>(
       targetConfig.props,
       sourceConfig.props,
     );
   }
   if (targetConfig.style && sourceConfig.style) {
-    merged.style = mergeOverrideProperties<{}, {}>(
+    merged.style = deepMergeOverrideProperties<{}, {}>(
       targetConfig.style,
       sourceConfig.style,
     );
