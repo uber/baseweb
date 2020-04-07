@@ -200,7 +200,7 @@ export const Label = styled<StylePropsT>('div', props => {
     verticalAlign: 'middle',
     ...getLabelPadding(props),
     color: getLabelColor(props),
-    ...typography.font350,
+    ...typography.LabelMedium,
   };
 });
 
@@ -220,7 +220,7 @@ export const Description = styled<StylePropsT>('div', props => {
   const marginBefore = $theme.direction === 'rtl' ? 'Right' : 'Left';
   const marginAfter = $theme.direction === 'rtl' ? 'Left' : 'Right';
   return {
-    ...$theme.typography.font200,
+    ...$theme.typography.ParagraphSmall,
     color: $theme.colors.contentSecondary,
     cursor: 'auto',
     [`margin${marginBefore}`]:
