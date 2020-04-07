@@ -11,7 +11,7 @@ import {LocaleContext} from '../locale/index.js';
 import {Override, mergeOverrideResources} from '../helpers/override.js';
 import PlusIcon from '../icon/plus.js';
 import CheckIndeterminateIcon from '../icon/check-indeterminate.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import {isFocusVisible} from '../utils/focusVisible.js';
 
 import {
   PanelContainer as StyledPanelContainer,
@@ -113,7 +113,6 @@ class Panel extends React.Component<PanelPropsT, {isFocusVisible: boolean}> {
     } = this.props;
 
     const sharedProps = this.getSharedProps();
-    const ToggleIconComponent = expanded ? CheckIndeterminateIcon : PlusIcon;
 
     const HeaderOverrides = mergeOverrideResources(overrides.Header || {}, {
       props: {
@@ -122,6 +121,11 @@ class Panel extends React.Component<PanelPropsT, {isFocusVisible: boolean}> {
         onBlur: this.handleBlur,
       },
     });
+
+    const ToggleIconSvgOverrides = mergeOverrideResources(
+      {component: StyledToggleIcon},
+      overrides.ToggleIcon || {},
+    );
 
     return (
       <LocaleContext.Consumer>
@@ -141,15 +145,31 @@ class Panel extends React.Component<PanelPropsT, {isFocusVisible: boolean}> {
               override={HeaderOverrides}
             >
               {title}
-              <ToggleIconComponent
-                size={16}
-                title={
-                  expanded ? locale.accordion.collapse : locale.accordion.expand
-                }
-                {...sharedProps}
-                // $FlowFixMe Icon svg override does not have same props type
-                overrides={{Svg: overrides.ToggleIcon}}
-              />
+              {expanded ? (
+                <CheckIndeterminateIcon
+                  size={16}
+                  title={
+                    expanded
+                      ? locale.accordion.collapse
+                      : locale.accordion.expand
+                  }
+                  {...sharedProps}
+                  // $FlowFixMe Icon svg override does not have same props type
+                  overrides={{Svg: ToggleIconSvgOverrides}}
+                />
+              ) : (
+                <PlusIcon
+                  size={16}
+                  title={
+                    expanded
+                      ? locale.accordion.collapse
+                      : locale.accordion.expand
+                  }
+                  {...sharedProps}
+                  // $FlowFixMe Icon svg override does not have same props type
+                  overrides={{Svg: ToggleIconSvgOverrides}}
+                />
+              )}
             </Header>
             <Content
               {...sharedProps}

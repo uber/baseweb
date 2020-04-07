@@ -83,10 +83,11 @@ function shallowMergeOverrideProperties<A: {}, B: {}>(
     return {...target, ...source};
   }
   return function shallowDynamicMerge(props: A): B {
-    return ({
+    // $FlowFixMe
+    return {
       ...(typeof target === 'function' ? target(props) : target),
       ...(typeof source === 'function' ? source(props) : source),
-    }: any);
+    };
   };
 }
 
