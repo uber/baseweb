@@ -96,7 +96,9 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                           Object {
                             "props": Object {
                               "onBlur": [Function],
+                              "onClick": [Function],
                               "onFocus": [Function],
+                              "onKeyDown": [Function],
                             },
                           }
                         }
@@ -386,7 +388,9 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                           Object {
                             "props": Object {
                               "onBlur": [Function],
+                              "onClick": [Function],
                               "onFocus": [Function],
+                              "onKeyDown": [Function],
                             },
                           }
                         }
@@ -676,7 +680,9 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                           Object {
                             "props": Object {
                               "onBlur": [Function],
+                              "onClick": [Function],
                               "onFocus": [Function],
+                              "onKeyDown": [Function],
                             },
                           }
                         }
@@ -1018,7 +1024,9 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                           Object {
                             "props": Object {
                               "onBlur": [Function],
+                              "onClick": [Function],
                               "onFocus": [Function],
+                              "onKeyDown": [Function],
                             },
                           }
                         }
@@ -1306,7 +1314,9 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                           Object {
                             "props": Object {
                               "onBlur": [Function],
+                              "onClick": [Function],
                               "onFocus": [Function],
+                              "onKeyDown": [Function],
                             },
                           }
                         }
@@ -1594,7 +1604,9 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                           Object {
                             "props": Object {
                               "onBlur": [Function],
+                              "onClick": [Function],
                               "onFocus": [Function],
+                              "onKeyDown": [Function],
                             },
                           }
                         }

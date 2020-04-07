@@ -119,6 +119,9 @@ class Panel extends React.Component<PanelPropsT, {isFocusVisible: boolean}> {
         // constrain focus handlers, overrides handled in component methods
         onFocus: this.handleFocus,
         onBlur: this.handleBlur,
+        // keydown and click handlers should not be overwritten
+        onClick: this.onClick,
+        onKeyDown: this.onKeyDown,
       },
     });
 
