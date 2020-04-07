@@ -8,9 +8,8 @@ LICENSE file in the root directory of this source tree.
 import type {AnimationT} from '../types.js';
 
 const animation: AnimationT = {
-  timing100: '0.25s',
+  timing100: '100ms',
   timing200: '200ms',
-  timing250: '250ms',
   timing300: '300ms',
   timing400: '400ms',
   timing500: '500ms',
