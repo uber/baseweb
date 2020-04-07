@@ -9,6 +9,22 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 
 const config = {
+  'app-nav-bar': {
+    interactions: [
+      {
+        name: 'openedMenu',
+        behavior: async page => {
+          const buttonSelector = `[data-baseweb="button"]`;
+          const menuSelector = `[data-baseweb="menu"]`;
+          await page.waitForSelector(buttonSelector);
+          await page.click(buttonSelector);
+          await page.waitForSelector(menuSelector, {
+            visible: true,
+          });
+        },
+      },
+    ],
+  },
   'country-select-dropdown': {
     interactions: [
       {
