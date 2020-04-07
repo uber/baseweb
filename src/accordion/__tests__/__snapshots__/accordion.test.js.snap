@@ -92,6 +92,14 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                         onClick={[Function]}
                         onFocus={[Function]}
                         onKeyDown={[Function]}
+                        override={
+                          Object {
+                            "props": Object {
+                              "onBlur": [Function],
+                              "onFocus": [Function],
+                            },
+                          }
+                        }
                         role="button"
                         tabIndex={0}
                       >
@@ -362,6 +370,14 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                         onClick={[Function]}
                         onFocus={[Function]}
                         onKeyDown={[Function]}
+                        override={
+                          Object {
+                            "props": Object {
+                              "onBlur": [Function],
+                              "onFocus": [Function],
+                            },
+                          }
+                        }
                         role="button"
                         tabIndex={0}
                       >
@@ -632,6 +648,14 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                         onClick={[Function]}
                         onFocus={[Function]}
                         onKeyDown={[Function]}
+                        override={
+                          Object {
+                            "props": Object {
+                              "onBlur": [Function],
+                              "onFocus": [Function],
+                            },
+                          }
+                        }
                         role="button"
                         tabIndex={0}
                       >
@@ -954,6 +978,14 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                         onClick={[Function]}
                         onFocus={[Function]}
                         onKeyDown={[Function]}
+                        override={
+                          Object {
+                            "props": Object {
+                              "onBlur": [Function],
+                              "onFocus": [Function],
+                            },
+                          }
+                        }
                         role="button"
                         tabIndex={0}
                       >
@@ -1222,6 +1254,14 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                         onClick={[Function]}
                         onFocus={[Function]}
                         onKeyDown={[Function]}
+                        override={
+                          Object {
+                            "props": Object {
+                              "onBlur": [Function],
+                              "onFocus": [Function],
+                            },
+                          }
+                        }
                         role="button"
                         tabIndex={0}
                       >
@@ -1490,6 +1530,14 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                         onClick={[Function]}
                         onFocus={[Function]}
                         onKeyDown={[Function]}
+                        override={
+                          Object {
+                            "props": Object {
+                              "onBlur": [Function],
+                              "onFocus": [Function],
+                            },
+                          }
+                        }
                         role="button"
                         tabIndex={0}
                       >

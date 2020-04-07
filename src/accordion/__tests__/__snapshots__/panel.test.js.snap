@@ -233,6 +233,7 @@ Object {
   "$disabled": false,
   "$expanded": false,
   "$isFocusVisible": false,
+  "$style": undefined,
   "aria-disabled": null,
   "aria-expanded": false,
   "children": Array [
