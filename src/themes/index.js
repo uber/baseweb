@@ -5,27 +5,19 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import createTheme from './creator.js';
 import {LightTheme} from './light-theme/light-theme.js';
 import {LightThemeMove} from './move-theme/light-theme-with-move.js';
-import lightColorTokens from './light-theme/color-tokens.js';
-import {fontTokens} from './shared/typography.js';
 import {DarkTheme} from './dark-theme/dark-theme.js';
 import {DarkThemeMove} from './move-theme/dark-theme-with-move.js';
-import darkColorTokens from './dark-theme/color-tokens.js';
-
-const lightThemePrimitives = {
-  ...lightColorTokens,
-  ...fontTokens,
-};
-
-const darkThemePrimitives = {
-  ...darkColorTokens,
-  ...fontTokens,
-};
+import createDarkTheme from './dark-theme/create-dark-theme.js';
+import createLightTheme from './light-theme/create-light-theme.js';
+import darkThemePrimitives from './dark-theme/primitives.js';
+import lightThemePrimitives from './light-theme/primitives.js';
 
 export {
-  createTheme,
+  createDarkTheme,
+  createLightTheme,
+  createLightTheme as createTheme,
   LightTheme,
   LightThemeMove,
   lightThemePrimitives,
