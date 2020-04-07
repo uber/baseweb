@@ -40,6 +40,12 @@ const ProgressBarConfig: TConfig = {
       type: PropTypes.Boolean,
       description: 'Can be used to show the infinite progress bar.',
     },
+    successValue: {
+      value: 100,
+      type: PropTypes.Number,
+      description: 'A custom completion value. Will be removed in v10.',
+      hidden: true,
+    },
     errorMessage: {
       value: undefined,
       type: PropTypes.String,
