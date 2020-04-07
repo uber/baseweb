@@ -12,9 +12,7 @@ export const defaultFontTokens: FontTokensT = {
     'system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif',
 };
 
-export default (customFontTokens?: $Shape<FontTokensT> = {}): TypographyT => {
-  // Assemble font tokens by overriding defaults with custom font tokens
-  const fontTokens: FontTokensT = {...defaultFontTokens, ...customFontTokens};
+export default (fontTokens?: FontTokensT = defaultFontTokens): TypographyT => {
   const font100 = {
     fontFamily: fontTokens.primaryFontFamily,
     fontSize: '12px',

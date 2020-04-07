@@ -20,7 +20,7 @@ import lighting from '../shared/lighting.js';
 import mediaQuery from '../shared/media-query.js';
 import sizing from '../shared/sizing.js';
 
-import type {PrimitivesT, FontTokensT, ColorTokensT} from '../types.js';
+import type {PrimitivesT, ColorTokensT} from '../types.js';
 import type {ThemeT} from '../../styles/types.js';
 
 export default function createDarkTheme(
@@ -31,8 +31,6 @@ export default function createDarkTheme(
 ): ThemeT {
   // Extract font tokens and color tokens from primitives
   const {primaryFontFamily, ...customColorTokens} = primitives;
-  // Assemble font tokens
-  const fontTokens: FontTokensT = {primaryFontFamily};
   // Assemble color tokens by overriding defaults with custom color tokens
   const colorTokens: ColorTokensT = {
     ...defaultColorTokens,
@@ -53,7 +51,10 @@ export default function createDarkTheme(
     lighting,
     mediaQuery,
     sizing,
-    typography: getTypography(fontTokens),
+    // If primaryFontFamily is not provided, we use our default font tokens
+    typography: primaryFontFamily
+      ? getTypography({primaryFontFamily})
+      : getTypography(),
     // TODO(#2318) Remove in v10, the next major version.
     // Do not use.
     zIndex: {
