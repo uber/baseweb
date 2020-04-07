@@ -1590,6 +1590,25 @@
   dependencies:
     find-up "^2.1.0"
 
+"@date-io/core@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@date-io/core/-/core-2.4.0.tgz#59e1c6de1d48ee63c6e97681b415076d04e7b5bf"
+  integrity sha512-XUr4TSwFmthcCn5QYnGqobbnBqOsSyCggRfvieMQHPSz5zei8KYpw4xlvFFQfu/MI3CmCHDjWMkVaPy/uFIDNA==
+
+"@date-io/date-fns@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@date-io/date-fns/-/date-fns-2.4.0.tgz#d41aa353806a3b8aa28fbcadf2c860438bcbfaa9"
+  integrity sha512-DYlfSiTs6GuPmbAmJ9ws7aaOd8f89lVBBqU+71w4Qxxv9DW2qQvBWwOkvCJ5qSp4ae4+PtCzy6JKQDKsdgBaJg==
+  dependencies:
+    "@date-io/core" "^2.4.0"
+
+"@date-io/moment@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@date-io/moment/-/moment-2.4.0.tgz#84612f4cf175ec8093c43a6b6176f874d2d1f007"
+  integrity sha512-857C9idmZGpD8NygxQsOXPa3OePC6UFAhU996dCUv8cY17p1tkjgj7/JZ3J7PTV2i8ybeUDUD/tAadACEtI05g==
+  dependencies:
+    "@date-io/core" "^2.4.0"
+
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
@@ -13921,6 +13940,11 @@ module-definition@^3.1.0:
   dependencies:
     ast-module-types "^2.4.0"
     node-source-walk "^4.0.0"
+
+moment@^2.24.0:
+  version "2.24.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
+  integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
 
 moo@^0.4.3:
   version "0.4.3"
