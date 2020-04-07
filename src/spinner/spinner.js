@@ -44,7 +44,7 @@ class Spinner extends React.Component<SpinnerPropsT> {
   render() {
     const {
       overrides = {},
-      silenceV10DeprecationWarning,
+      $silenceV10DeprecationWarning,
       ...restProps
     } = this.props;
 
