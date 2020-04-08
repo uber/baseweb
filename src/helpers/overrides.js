@@ -109,6 +109,12 @@ export function getOverrides(
     typeof override === 'object' &&
     typeof override.props === 'function'
   ) {
+    // TODO(v10)
+    if (__DEV__) {
+      console.warn(
+        'baseui:Overrides Props as a function will be removed in the next major version.',
+      );
+    }
     const DynamicOverride = React.forwardRef((props, ref) => {
       const mappedProps = override.props(props);
       const nextProps = getOverrideProps({...override, props: mappedProps});
