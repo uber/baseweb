@@ -82,6 +82,15 @@ export type AccordionPropsT = {
   renderAll?: boolean,
 };
 
+export type StatelessAccordionPropsT = $Diff<
+  AccordionPropsT,
+  {
+    accordion?: boolean,
+    initialState?: AccordionStateT,
+    stateReducer?: StateReducerT,
+  },
+>;
+
 type SharedPanelPropsT = {
   /** The content visible when Panel is expanded. */
   children: React.Node,
