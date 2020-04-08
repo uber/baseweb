@@ -13,6 +13,7 @@ import BasicAccordion from 'examples/accordion/basic.js';
 import StatefulAccordion from 'examples/accordion/stateful.js';
 import AccordionSEO from 'examples/accordion/renderpanelcontent.js';
 import CustomPanel from 'examples/accordion/custom.js';
+import StatelessAccordion from 'examples/accordion/stateless.js';
 
 import * as AccordionExports from 'baseui/accordion';
 import * as PanelExports from 'baseui/accordion/panel.js';
@@ -59,7 +60,11 @@ Accordions display a list of high-level options that can expand/contract to reve
   <StatefulAccordion />
 </Example>
 
-**Note:** the `Panel` has the same overrides, with the exception of the `Root` subcomponent.
+<Example title="Stateless Accordion" path="accordion/stateless.js">
+  <StatelessAccordion />
+</Example>
+
+If you want to control the `expanded` state of the accordion panels yourself, you can use the stateless version of our accordion: `StatelessAccordion`.
 
 ## API
 
@@ -68,6 +73,8 @@ Accordions display a list of high-level options that can expand/contract to reve
   config={accordionYardConfig}
   types={require('!!extract-react-types-loader!../../../src/accordion/accordion.js')}
 />
+
+**Note:** the `Panel` has the same overrides as `Accordion`, with the exception of the `Root` subcomponent.
 
 <Exports
   component={AccordionExports}
