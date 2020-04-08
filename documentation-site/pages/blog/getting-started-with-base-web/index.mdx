@@ -221,8 +221,14 @@ Tie that into our `Input`:
   overrides={{
     InputContainer: {
       style: ({ $theme }) => ({
-        borderColor: $theme.colors[getStrengthColor(strength)],
-        borderWidth: $theme.sizing.scale200
+        borderLeftColor: $theme.colors[getStrengthColor(strength)],
+        borderRightColor: $theme.colors[getStrengthColor(strength)],
+        borderTopColor: $theme.colors[getStrengthColor(strength)],
+        borderBottomColor: $theme.colors[getStrengthColor(strength)],
+        borderLeftWidth: $theme.sizing.scale200,
+        borderRightWidth: $theme.sizing.scale200,
+        borderTopWidth: $theme.sizing.scale200,
+        borderBottomWidth: $theme.sizing.scale200,
       })
     },
     After: () => (...)

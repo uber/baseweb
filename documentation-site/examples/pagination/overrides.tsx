@@ -48,7 +48,10 @@ export default () => (
                 $isPseudoFocused,
                 $error,
               }: any) => ({
-                borderColor: 'transparent',
+                borderLeftColor: 'transparent',
+                borderRightColor: 'transparent',
+                borderTopColor: 'transparent',
+                borderBottomColor: 'transparent',
                 boxShadow: 'none',
                 backgroundColor: $disabled
                   ? $theme.colors.buttonDisabledFill

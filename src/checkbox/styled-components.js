@@ -177,6 +177,7 @@ export const Checkmark = styled<SharedStylePropsT>('span', props => {
   `);
 
   const borderRadius = $theme.borders.inputBorderRadius;
+  const borderColor = getBorderColor(props);
 
   return ({
     flex: '0 0 auto',
@@ -188,9 +189,18 @@ export const Checkmark = styled<SharedStylePropsT>('span', props => {
     left: '4px',
     top: '4px',
     boxSizing: 'border-box',
-    borderStyle: 'solid',
-    borderWidth: '3px',
-    borderColor: getBorderColor(props),
+    borderLeftStyle: 'solid',
+    borderRightStyle: 'solid',
+    borderTopStyle: 'solid',
+    borderBottomStyle: 'solid',
+    borderLeftWidth: '3px',
+    borderRightWidth: '3px',
+    borderTopWidth: '3px',
+    borderBottomWidth: '3px',
+    borderLeftColor: borderColor,
+    borderRightColor: borderColor,
+    borderTopColor: borderColor,
+    borderBottomColor: borderColor,
     borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,

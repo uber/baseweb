@@ -37,7 +37,10 @@ export const BlogImage = ({full, alt, caption, src, style}) => (
 );
 
 export const Demo = themedStyled('iframe', {
-  border: 0,
+  borderLeftWidth: 0,
+  borderRightWidth: 0,
+  borderTopWidth: 0,
+  borderBottomWidth: 0,
   borderTopLeftRadius: '4px',
   borderTopRightRadius: '4px',
   borderBottomRightRadius: '4px',

@@ -53,23 +53,30 @@ export const StyledActivePath = styled<StylePropsT>('path', props => ({
 export const StyledSpinnerNext = styled<{$size?: SizeT}>(
   'div',
   ({$theme, $size = SIZE.medium}) => {
+    const borderWidth = {
+      large: $theme.sizing.scale300,
+      medium: $theme.sizing.scale100,
+      small: $theme.sizing.scale0,
+    }[$size];
     return {
       display: 'block',
       animationName: spin,
       animationDuration: $theme.animation.timing1000,
       animationIterationCount: 'infinite',
       animationTimingFunction: 'linear',
-      borderStyle: 'solid',
+      borderLeftStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderTopStyle: 'solid',
+      borderBottomStyle: 'solid',
       borderRadius: '50%',
       borderTopColor: $theme.colors.contentAccent,
       borderRightColor: $theme.colors.backgroundTertiary,
       borderBottomColor: $theme.colors.backgroundTertiary,
       borderLeftColor: $theme.colors.backgroundTertiary,
-      borderWidth: {
-        large: $theme.sizing.scale300,
-        medium: $theme.sizing.scale100,
-        small: $theme.sizing.scale0,
-      }[$size],
+      borderLeftWidth: borderWidth,
+      borderRightWidth: borderWidth,
+      borderTopWidth: borderWidth,
+      borderBottomWidth: borderWidth,
       width: {
         large: $theme.sizing.scale1000,
         medium: $theme.sizing.scale900,

@@ -30,9 +30,9 @@ export const StyledContent = styled<StyledContentPropsT>(
     return {
       ...$theme.borders.border100,
       alignItems: 'center',
-      borderTop: 'none',
-      borderRight: 'none',
-      borderLeft: 'none',
+      borderTopStyle: 'none',
+      borderRightStyle: 'none',
+      borderLeftStyle: 'none',
       display: 'flex',
       flexGrow: 1,
       height: $sublist ? '48px' : '72px',

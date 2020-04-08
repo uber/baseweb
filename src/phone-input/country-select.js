@@ -50,7 +50,10 @@ export default function CountrySelect(props: CountrySelectPropsT) {
         if (!props.$isFocused && !props.$isPseudoFocused) {
           return {
             backgroundColor: 'transparent',
-            borderColor: 'transparent',
+            borderLeftColor: 'transparent',
+            borderRightColor: 'transparent',
+            borderTopColor: 'transparent',
+            borderBottomColor: 'transparent',
           };
         }
       },

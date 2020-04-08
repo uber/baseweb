@@ -73,9 +73,26 @@ const Editor: React.FC<TEditorProps> = ({
         paddingBottom: small ? '2px' : '0px',
         maxWidth: small ? '255px' : 'auto',
         overflow: 'hidden',
-        border: focused
-          ? `2px solid ${theme.colors.borderFocus}`
-          : `2px solid ${theme.colors.inputBorder}`,
+        borderLeftWidth: '2px',
+        borderRightWidth: '2px',
+        borderTopWidth: '2px',
+        borderBottomWidth: '2px',
+        borderLeftStyle: 'solid',
+        borderTopStyle: 'solid',
+        borderRightStyle: 'solid',
+        borderBottomStyle: 'solid',
+        borderLeftColor: focused
+          ? theme.colors.borderFocus
+          : theme.colors.inputBorder,
+        borderTopColor: focused
+          ? theme.colors.borderFocus
+          : theme.colors.inputBorder,
+        borderRightColor: focused
+          ? theme.colors.borderFocus
+          : theme.colors.inputBorder,
+        borderBottomColor: focused
+          ? theme.colors.borderFocus
+          : theme.colors.inputBorder,
       })}
     >
       <style

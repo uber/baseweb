@@ -28,9 +28,18 @@ const PlainInput = themedStyled<{$inputVisible: boolean}>(
   ({$inputVisible, $theme}) =>
     ({
       display: $inputVisible ? 'block' : 'none',
-      borderWidth: '2px',
-      borderColor: $theme.colors.inputEnhancerFill,
-      borderStyle: 'solid',
+      borderLeftWidth: '2px',
+      borderRightWidth: '2px',
+      borderTopWidth: '2px',
+      borderBottomWidth: '2px',
+      borderLeftColor: $theme.colors.inputEnhancerFill,
+      borderRightColor: $theme.colors.inputEnhancerFill,
+      borderTopColor: $theme.colors.inputEnhancerFill,
+      borderBottomColor: $theme.colors.inputEnhancerFill,
+      borderLeftStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderTopStyle: 'solid',
+      borderBottomStyle: 'solid',
       paddingLeft: $theme.direction === 'rtl' ? '9px' : '42px',
       paddingRight: $theme.direction === 'rtl' ? '42px' : '9px',
       backgroundColor: 'transparent',
@@ -42,7 +51,10 @@ const PlainInput = themedStyled<{$inputVisible: boolean}>(
       outline: 'none',
       '-webkit-appearance': 'none',
       ':focus': {
-        borderColor: $theme.colors.primary,
+        borderLeftColor: $theme.colors.primary,
+        borderRightColor: $theme.colors.primary,
+        borderTopColor: $theme.colors.primary,
+        borderBottomColor: $theme.colors.primary,
       },
       [$theme.mediaQuery.small]: {
         position: 'static',

@@ -17,7 +17,18 @@ const bodyProps = {
   overrides: {
     Block: {
       style: {
-        border: 'grey solid 2px',
+        borderLeftWidth: 'solid',
+        borderRightWidth: 'solid',
+        borderTopWidth: 'solid',
+        borderBottomWidth: 'solid',
+        borderLeftStyle: '2px',
+        borderTopStyle: '2px',
+        borderRightStyle: '2px',
+        borderBottomStyle: '2px',
+        borderLeftColor: `grey`,
+        borderTopColor: `grey`,
+        borderRightColor: `grey`,
+        borderBottomColor: `grey`,
       },
     },
   },

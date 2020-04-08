@@ -21,7 +21,10 @@ export default () => {
         },
         Checkmark: {
           style: ({$checked, $theme}) => ({
-            borderColor: $theme.colors.warning,
+            borderLeftColor: $theme.colors.warning,
+            borderRightColor: $theme.colors.warning,
+            borderTopColor: $theme.colors.warning,
+            borderBottomColor: $theme.colors.warning,
             backgroundColor: $checked
               ? $theme.colors.warning
               : null,
