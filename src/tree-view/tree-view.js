@@ -51,7 +51,7 @@ export default function TreeView(props: TreeViewPropsT) {
     treeItemRefs.current[id].current.focus();
   };
 
-  const onKeyDown = (e: KeyboardEvent, node: TreeNodeT) => {
+  const onKeyDown = (e: KeyboardEvent, node: TreeNodeT<>) => {
     // eslint-disable-next-line flowtype/no-weak-types
     const elementId = ((e.target: any): HTMLLIElement).getAttribute(
       'data-nodeid',

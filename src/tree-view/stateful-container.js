@@ -9,13 +9,13 @@ import * as React from 'react';
 import type {StatefulContainerPropsT, TreeNodeT} from './types.js';
 
 type StateType = {|
-  data: TreeNodeT[],
+  data: TreeNodeT<>[],
 |};
 
 const findSiblings = (
-  node: TreeNodeT,
-  children: TreeNodeT[],
-): ?(TreeNodeT[]) => {
+  node: TreeNodeT<>,
+  children: TreeNodeT<>[],
+): ?(TreeNodeT<>[]) => {
   if (children.indexOf(node) !== -1) {
     return children;
   }
@@ -41,7 +41,7 @@ export default class StatefulContainer extends React.Component<
     this.state = {data: this.props.data};
   }
 
-  onToggle = (node: TreeNodeT) => {
+  onToggle = (node: TreeNodeT<>) => {
     const {onToggle, singleExpanded} = this.props;
     this.setState(
       prevState => {
