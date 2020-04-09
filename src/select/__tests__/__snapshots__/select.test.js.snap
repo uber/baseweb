@@ -203,6 +203,7 @@ exports[`Select component renders component in search mode and false for multipl
                   >
                     <svg
                       data-baseweb="icon"
+                      size="16"
                       styled-component="true"
                       test-style="{
   \\"display\\": \\"inline-block\\",
@@ -211,6 +212,7 @@ exports[`Select component renders component in search mode and false for multipl
   \\"height\\": \\"16px\\",
   \\"width\\": \\"16px\\"
 }"
+                      title="search"
                       viewBox="0 0 24 24"
                     >
                       <title>
@@ -486,11 +488,23 @@ exports[`Select component renders component in search mode and false for multipl
   \\"alignItems\\": \\"center\\"
 }"
                       >
-                        <Search
+                        <ForwardRef(Search)
                           size={16}
                           title="search"
                         >
-                          <Icon
+                          <ForwardRef(Icon)
+                            overrides={
+                              Object {
+                                "Svg": Object {
+                                  "component": null,
+                                  "props": Object {
+                                    "size": 16,
+                                    "title": "search",
+                                    "viewBox": "0 0 24 24",
+                                  },
+                                },
+                              }
+                            }
                             size={16}
                             title="search"
                             viewBox="0 0 24 24"
@@ -498,16 +512,21 @@ exports[`Select component renders component in search mode and false for multipl
                             <ForwardRef
                               $size={16}
                               data-baseweb="icon"
+                              size={16}
+                              title="search"
                               viewBox="0 0 24 24"
                             >
                               <MockStyledComponent
                                 $size={16}
                                 data-baseweb="icon"
                                 forwardedRef={null}
+                                size={16}
+                                title="search"
                                 viewBox="0 0 24 24"
                               >
                                 <svg
                                   data-baseweb="icon"
+                                  size={16}
                                   styled-component="true"
                                   test-style="{
   \\"display\\": \\"inline-block\\",
@@ -516,6 +535,7 @@ exports[`Select component renders component in search mode and false for multipl
   \\"height\\": \\"16px\\",
   \\"width\\": \\"16px\\"
 }"
+                                  title="search"
                                   viewBox="0 0 24 24"
                                 >
                                   <title>
@@ -529,8 +549,8 @@ exports[`Select component renders component in search mode and false for multipl
                                 </svg>
                               </MockStyledComponent>
                             </ForwardRef>
-                          </Icon>
-                        </Search>
+                          </ForwardRef(Icon)>
+                        </ForwardRef(Search)>
                       </div>
                     </MockStyledComponent>
                   </ForwardRef>
@@ -1154,6 +1174,7 @@ exports[`Select component renders component in search mode and true for multiple
                   >
                     <svg
                       data-baseweb="icon"
+                      size="16"
                       styled-component="true"
                       test-style="{
   \\"display\\": \\"inline-block\\",
@@ -1162,6 +1183,7 @@ exports[`Select component renders component in search mode and true for multiple
   \\"height\\": \\"16px\\",
   \\"width\\": \\"16px\\"
 }"
+                      title="search"
                       viewBox="0 0 24 24"
                     >
                       <title>
@@ -1437,11 +1459,23 @@ exports[`Select component renders component in search mode and true for multiple
   \\"alignItems\\": \\"center\\"
 }"
                       >
-                        <Search
+                        <ForwardRef(Search)
                           size={16}
                           title="search"
                         >
-                          <Icon
+                          <ForwardRef(Icon)
+                            overrides={
+                              Object {
+                                "Svg": Object {
+                                  "component": null,
+                                  "props": Object {
+                                    "size": 16,
+                                    "title": "search",
+                                    "viewBox": "0 0 24 24",
+                                  },
+                                },
+                              }
+                            }
                             size={16}
                             title="search"
                             viewBox="0 0 24 24"
@@ -1449,16 +1483,21 @@ exports[`Select component renders component in search mode and true for multiple
                             <ForwardRef
                               $size={16}
                               data-baseweb="icon"
+                              size={16}
+                              title="search"
                               viewBox="0 0 24 24"
                             >
                               <MockStyledComponent
                                 $size={16}
                                 data-baseweb="icon"
                                 forwardedRef={null}
+                                size={16}
+                                title="search"
                                 viewBox="0 0 24 24"
                               >
                                 <svg
                                   data-baseweb="icon"
+                                  size={16}
                                   styled-component="true"
                                   test-style="{
   \\"display\\": \\"inline-block\\",
@@ -1467,6 +1506,7 @@ exports[`Select component renders component in search mode and true for multiple
   \\"height\\": \\"16px\\",
   \\"width\\": \\"16px\\"
 }"
+                                  title="search"
                                   viewBox="0 0 24 24"
                                 >
                                   <title>
@@ -1480,8 +1520,8 @@ exports[`Select component renders component in search mode and true for multiple
                                 </svg>
                               </MockStyledComponent>
                             </ForwardRef>
-                          </Icon>
-                        </Search>
+                          </ForwardRef(Icon)>
+                        </ForwardRef(Search)>
                       </div>
                     </MockStyledComponent>
                   </ForwardRef>
@@ -2205,6 +2245,7 @@ exports[`Select component renders component in select mode and false for multipl
                   >
                     <svg
                       data-baseweb="icon"
+                      size="16"
                       styled-component="true"
                       test-style="{
   \\"display\\": \\"inline-block\\",
@@ -2214,6 +2255,7 @@ exports[`Select component renders component in select mode and false for multipl
   \\"width\\": \\"$theme.sizing.scale600\\",
   \\"cursor\\": \\"pointer\\"
 }"
+                      title="open"
                       viewBox="0 0 24 24"
                     >
                       <title>
@@ -2726,7 +2768,7 @@ exports[`Select component renders component in select mode and false for multipl
   \\"paddingRight\\": \\"$theme.sizing.scale500\\"
 }"
                       >
-                        <TriangleDown
+                        <ForwardRef(TriangleDown)
                           $clearable={true}
                           $creatable={false}
                           $disabled={false}
@@ -2757,7 +2799,7 @@ exports[`Select component renders component in select mode and false for multipl
                           size={16}
                           title="open"
                         >
-                          <Icon
+                          <ForwardRef(Icon)
                             $clearable={true}
                             $creatable={false}
                             $disabled={false}
@@ -2780,7 +2822,11 @@ exports[`Select component renders component in select mode and false for multipl
                                     "$$typeof": Symbol(react.forward_ref),
                                     "render": [Function],
                                   },
-                                  "props": Object {},
+                                  "props": Object {
+                                    "size": 16,
+                                    "title": "open",
+                                    "viewBox": "0 0 24 24",
+                                  },
                                   "style": Object {},
                                 },
                               }
@@ -2803,10 +2849,12 @@ exports[`Select component renders component in select mode and false for multipl
                               $positive={false}
                               $required={false}
                               $searchable={true}
-                              $size={16}
+                              $size="default"
                               $style={Object {}}
                               $type="select"
                               data-baseweb="icon"
+                              size={16}
+                              title="open"
                               viewBox="0 0 24 24"
                             >
                               <MockStyledComponent
@@ -2823,15 +2871,18 @@ exports[`Select component renders component in select mode and false for multipl
                                 $positive={false}
                                 $required={false}
                                 $searchable={true}
-                                $size={16}
+                                $size="default"
                                 $style={Object {}}
                                 $type="select"
                                 data-baseweb="icon"
                                 forwardedRef={null}
+                                size={16}
+                                title="open"
                                 viewBox="0 0 24 24"
                               >
                                 <svg
                                   data-baseweb="icon"
+                                  size={16}
                                   styled-component="true"
                                   test-style="{
   \\"display\\": \\"inline-block\\",
@@ -2841,6 +2892,7 @@ exports[`Select component renders component in select mode and false for multipl
   \\"width\\": \\"$theme.sizing.scale600\\",
   \\"cursor\\": \\"pointer\\"
 }"
+                                  title="open"
                                   viewBox="0 0 24 24"
                                 >
                                   <title>
@@ -2852,8 +2904,8 @@ exports[`Select component renders component in select mode and false for multipl
                                 </svg>
                               </MockStyledComponent>
                             </ForwardRef>
-                          </Icon>
-                        </TriangleDown>
+                          </ForwardRef(Icon)>
+                        </ForwardRef(TriangleDown)>
                       </div>
                     </MockStyledComponent>
                   </ForwardRef>
@@ -3171,6 +3223,7 @@ exports[`Select component renders component in select mode and true for multiple
                   >
                     <svg
                       data-baseweb="icon"
+                      size="16"
                       styled-component="true"
                       test-style="{
   \\"display\\": \\"inline-block\\",
@@ -3180,6 +3233,7 @@ exports[`Select component renders component in select mode and true for multiple
   \\"width\\": \\"$theme.sizing.scale600\\",
   \\"cursor\\": \\"pointer\\"
 }"
+                      title="open"
                       viewBox="0 0 24 24"
                     >
                       <title>
@@ -3692,7 +3746,7 @@ exports[`Select component renders component in select mode and true for multiple
   \\"paddingRight\\": \\"$theme.sizing.scale500\\"
 }"
                       >
-                        <TriangleDown
+                        <ForwardRef(TriangleDown)
                           $clearable={true}
                           $creatable={false}
                           $disabled={false}
@@ -3723,7 +3777,7 @@ exports[`Select component renders component in select mode and true for multiple
                           size={16}
                           title="open"
                         >
-                          <Icon
+                          <ForwardRef(Icon)
                             $clearable={true}
                             $creatable={false}
                             $disabled={false}
@@ -3746,7 +3800,11 @@ exports[`Select component renders component in select mode and true for multiple
                                     "$$typeof": Symbol(react.forward_ref),
                                     "render": [Function],
                                   },
-                                  "props": Object {},
+                                  "props": Object {
+                                    "size": 16,
+                                    "title": "open",
+                                    "viewBox": "0 0 24 24",
+                                  },
                                   "style": Object {},
                                 },
                               }
@@ -3769,10 +3827,12 @@ exports[`Select component renders component in select mode and true for multiple
                               $positive={false}
                               $required={false}
                               $searchable={true}
-                              $size={16}
+                              $size="default"
                               $style={Object {}}
                               $type="select"
                               data-baseweb="icon"
+                              size={16}
+                              title="open"
                               viewBox="0 0 24 24"
                             >
                               <MockStyledComponent
@@ -3789,15 +3849,18 @@ exports[`Select component renders component in select mode and true for multiple
                                 $positive={false}
                                 $required={false}
                                 $searchable={true}
-                                $size={16}
+                                $size="default"
                                 $style={Object {}}
                                 $type="select"
                                 data-baseweb="icon"
                                 forwardedRef={null}
+                                size={16}
+                                title="open"
                                 viewBox="0 0 24 24"
                               >
                                 <svg
                                   data-baseweb="icon"
+                                  size={16}
                                   styled-component="true"
                                   test-style="{
   \\"display\\": \\"inline-block\\",
@@ -3807,6 +3870,7 @@ exports[`Select component renders component in select mode and true for multiple
   \\"width\\": \\"$theme.sizing.scale600\\",
   \\"cursor\\": \\"pointer\\"
 }"
+                                  title="open"
                                   viewBox="0 0 24 24"
                                 >
                                   <title>
@@ -3818,8 +3882,8 @@ exports[`Select component renders component in select mode and true for multiple
                                 </svg>
                               </MockStyledComponent>
                             </ForwardRef>
-                          </Icon>
-                        </TriangleDown>
+                          </ForwardRef(Icon)>
+                        </ForwardRef(TriangleDown)>
                       </div>
                     </MockStyledComponent>
                   </ForwardRef>

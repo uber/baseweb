@@ -28,7 +28,7 @@ export default function ButtonInternals(props: ButtonPropsT) {
   const sharedProps = getSharedProps(props);
   return (
     <React.Fragment>
-      {startEnhancer && (
+      {startEnhancer !== null && startEnhancer !== undefined && (
         <StartEnhancer {...sharedProps} {...startEnhancerProps}>
           {typeof startEnhancer === 'function'
             ? startEnhancer(sharedProps)
@@ -36,7 +36,7 @@ export default function ButtonInternals(props: ButtonPropsT) {
         </StartEnhancer>
       )}
       {children}
-      {endEnhancer && (
+      {endEnhancer !== null && endEnhancer !== undefined && (
         <EndEnhancer {...sharedProps} {...endEnhancerProps}>
           {typeof endEnhancer === 'function'
             ? endEnhancer(sharedProps)

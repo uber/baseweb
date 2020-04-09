@@ -62,7 +62,7 @@ export default function Scenario() {
         flagRows(selection.map(r => r.id));
         clearSelection();
       },
-      renderIcon: Alert,
+      renderIcon: ({size}) => <Alert size={size} />,
     },
     {
       label: 'Approve',
@@ -70,7 +70,7 @@ export default function Scenario() {
         removeRows(selection.map(r => r.id));
         clearSelection();
       },
-      renderIcon: Check,
+      renderIcon: ({size}) => <Check size={size} />,
     },
     {
       label: 'Download',

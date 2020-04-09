@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {default as DeleteIcon} from '../delete.js';
+import DeleteIcon from '../delete.js';
+import PlusIcon from '../plus.js';
 import {ThemeProvider, LightTheme, styled} from '../../index.js';
-import {getOverrides, mergeOverrides} from '../../helpers/overrides.js';
 import {getSvgStyles} from '../../icon/styled-components.js';
 
 const XSmallFilled = ({title, ...props}) => {
@@ -24,14 +24,7 @@ const XSmallFilled = ({title, ...props}) => {
   );
 };
 
-const theme = {
-  ...LightTheme,
-  icons: {
-    Delete: XSmallFilled,
-  },
-};
-
-// ! All of these styles will be wiped out by the theme icons.
+const StyledBody = styled('div', {display: 'flex'});
 const StyledCloseIcon = styled('svg', props => {
   return {
     ...getSvgStyles(props),
@@ -40,43 +33,23 @@ const StyledCloseIcon = styled('svg', props => {
   };
 });
 
-const StyledBody = styled('div', {
-  display: 'flex',
-});
-
-const Toast = props => {
-  const closeRef = React.useRef();
-  const {CloseIcon: CloseIconOverride = {}} = props.overrides || {};
-  // eslint-disable-next-line no-unused-vars
-  const [CloseIcon, closeIconProps] = getOverrides(
-    CloseIconOverride,
-    StyledCloseIcon,
-  );
-  const closeIconOverrides = mergeOverrides(
-    {
-      Svg: {
-        component: StyledCloseIcon,
-        props: {
-          ref: closeRef,
-        },
-      },
-    },
-    {Svg: CloseIconOverride},
-  );
-  return (
-    <StyledBody>
-      <DeleteIcon {...closeIconProps} overrides={closeIconOverrides} />
-      Stuff
-    </StyledBody>
-  );
-};
-
+// This scenario proves that local icon overrides take precedence over theme icons
 export default function Scenario() {
+  const closeRef = React.useRef();
   return (
     <div>
-      <ThemeProvider theme={theme}>
-        <Toast />
+      <ThemeProvider theme={{...LightTheme, icons: {Delete: XSmallFilled}}}>
+        <StyledBody>
+          <DeleteIcon
+            ref={closeRef}
+            overrides={{Svg: {component: StyledCloseIcon}}}
+          />
+          Stuff
+        </StyledBody>
       </ThemeProvider>
+      <div>
+        <PlusIcon size="54px" overrides={{Svg: {props: {size: '54px'}}}} />
+      </div>
     </div>
   );
 }

@@ -90,14 +90,14 @@ export default function Scenario() {
       onClick: ({row}) => {
         setSelected([...selected, row.id]);
       },
-      renderIcon: ArrowUp,
+      renderIcon: ({size}) => <ArrowUp size={size} />,
     },
     {
       label: 'row-action-label-two',
       onClick: ({row}) => {
         setSelected([...selected, row.id]);
       },
-      renderIcon: ArrowUp,
+      renderIcon: ({size}) => <ArrowUp size={size} />,
     },
   ];
 

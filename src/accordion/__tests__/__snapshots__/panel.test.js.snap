@@ -115,7 +115,7 @@ exports[`Panel aria-controls populated when provided: Header has correct props w
 }"
     >
       title
-      <Plus
+      <ForwardRef(Plus)
         $disabled={false}
         $expanded={false}
         $isFocusVisible={false}
@@ -132,7 +132,7 @@ exports[`Panel aria-controls populated when provided: Header has correct props w
         size={16}
         title="Expand"
       >
-        <Icon
+        <ForwardRef(Icon)
           $disabled={false}
           $expanded={false}
           $isFocusVisible={false}
@@ -142,6 +142,11 @@ exports[`Panel aria-controls populated when provided: Header has correct props w
                 "component": Object {
                   "$$typeof": Symbol(react.forward_ref),
                   "render": [Function],
+                },
+                "props": Object {
+                  "size": 16,
+                  "title": "Expand",
+                  "viewBox": "0 0 24 24",
                 },
               },
             }
@@ -156,6 +161,8 @@ exports[`Panel aria-controls populated when provided: Header has correct props w
             $isFocusVisible={false}
             $size={16}
             data-baseweb="icon"
+            size={16}
+            title="Expand"
             viewBox="0 0 24 24"
           >
             <MockStyledComponent
@@ -165,10 +172,13 @@ exports[`Panel aria-controls populated when provided: Header has correct props w
               $size={16}
               data-baseweb="icon"
               forwardedRef={null}
+              size={16}
+              title="Expand"
               viewBox="0 0 24 24"
             >
               <svg
                 data-baseweb="icon"
+                size={16}
                 styled-component="true"
                 test-style="{
   \\"display\\": \\"inline-block\\",
@@ -178,6 +188,7 @@ exports[`Panel aria-controls populated when provided: Header has correct props w
   \\"width\\": \\"16px\\",
   \\"cursor\\": \\"pointer\\"
 }"
+                title="Expand"
                 viewBox="0 0 24 24"
               >
                 <title>
@@ -191,8 +202,8 @@ exports[`Panel aria-controls populated when provided: Header has correct props w
               </svg>
             </MockStyledComponent>
           </ForwardRef>
-        </Icon>
-      </Plus>
+        </ForwardRef(Icon)>
+      </ForwardRef(Plus)>
     </div>
   </MockStyledComponent>
 </ForwardRef>
@@ -216,7 +227,7 @@ Object {
   "aria-expanded": false,
   "children": Array [
     "title",
-    <Plus
+    <ForwardRef(Plus)
       $disabled={false}
       $expanded={false}
       $isFocusVisible={false}

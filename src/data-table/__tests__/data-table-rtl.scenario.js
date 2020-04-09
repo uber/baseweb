@@ -18,12 +18,12 @@ const rowActions = [
   {
     label: 'Check',
     onClick: ({row}) => {},
-    renderIcon: Check,
+    renderIcon: ({size}) => <Check size={size} />,
   },
   {
     label: 'Remove',
     onClick: ({row}) => {},
-    renderIcon: Alert,
+    renderIcon: ({size}) => <Alert size={size} />,
   },
 ];
 
