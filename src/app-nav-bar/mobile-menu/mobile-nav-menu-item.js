@@ -20,7 +20,7 @@ export default React.forwardRef<{item: any}, HTMLLIElement>((props, ref) => {
       <MenuAdapter
         {...restProps}
         ref={ref}
-        artwork={item.subnavExitIcon || ArrowLeft}
+        artwork={item.navExitIcon || ArrowLeft}
         artworkSize={ARTWORK_SIZES.LARGE}
       >
         <ListItemLabel>{item.mapItemToString(item.item) || ''}</ListItemLabel>
@@ -44,7 +44,11 @@ export default React.forwardRef<{item: any}, HTMLLIElement>((props, ref) => {
       artwork={item.icon || null}
       artworkSize={ARTWORK_SIZES.LARGE}
     >
-      <ListItemLabel>{item.mapItemToNode(item.item) || ''}</ListItemLabel>
+      <ListItemLabel>
+        {typeof item.mapItemToNode === 'function'
+          ? item.mapItemToNode(item.item)
+          : item.mapItemToString(item.item)}
+      </ListItemLabel>
     </MenuAdapter>
   );
 });

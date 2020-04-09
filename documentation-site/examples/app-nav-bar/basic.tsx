@@ -1,18 +1,10 @@
-/*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
-
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
-*/
-// @flow
-
 import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {Button} from 'baseui/button';
 import {ChevronDown, Delete, Overflow as UserIcon, Upload as Icon} from 'baseui/icon';
 import {Unstable_AppNavBar as AppNavBar} from 'baseui/app-nav-bar';
 
-function renderItem(item) {
+function renderItem(item: any) {
   return item.label;
 }
 

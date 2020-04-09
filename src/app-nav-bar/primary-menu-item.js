@@ -69,7 +69,9 @@ export default class MenuItem extends React.Component<
         onClick={this.onClick}
         onKeyDown={this.onKeyDown}
       >
-        {item.mapItemToNode(item.item)}
+        {typeof item.mapItemToNode === 'function'
+          ? item.mapItemToNode(item.item)
+          : item.mapItemToString(item.item)}
       </StyledPrimaryMenuItem>
     );
   }

@@ -47,30 +47,40 @@ const NavigationBarConfig: TConfig = {
     mainNav: {
       hidden: true,
       value: `[
-        {icon: Upload, label: 'Primary alpha1'},
-        {icon: Upload, label: 'Primary alpha2'},
         {
-          icon: ChevronDown,
-          label: 'Primary alpha3',
-          nav: [
-            {icon: Upload, label: 'Secondary menu1'},
-            {icon: Upload, label: 'Secondary menu2'},
-          ],
-          subnavExitIcon: Delete,
+          icon: Upload, 
+          item: {label: 'Primary alpha1'},
+          mapItemToNode: item => item.label,
+          mapItemToString: item => item.label,
+        },
+        {
+          icon: Upload, 
+          item: {label: 'Primary alpha2'},
+          mapItemToNode: item => item.label,
+          mapItemToString: item => item.label,
         },
         {
           active: true,
           icon: ChevronDown,
-          label: 'Primary alpha4',
+          item: {label: 'Primary alpha3'},
+          mapItemToNode: item => item.label,
+          mapItemToString: item => item.label,
+          navExitIcon: Delete,
           nav: [
             {
-              icon: ChevronDown,
-              label: 'Secondary menu1',
+              icon: Upload, 
+              item: {label: 'Secondary menu1'},
+              mapItemToNode: item => item.label,
+              mapItemToString: item => item.label,
             },
-            {icon: Upload, label: 'Secondary menu2'},
+            {
+              icon: Upload, 
+              item: {label: 'Secondary menu2'},
+              mapItemToNode: item => item.label,
+              mapItemToString: item => item.label,
+            },
           ],
-          subnavExitIcon: Delete,
-        }
+        },
       ]`,
       type: PropTypes.Array,
       description:
@@ -94,10 +104,30 @@ const NavigationBarConfig: TConfig = {
     userNav: {
       hidden: true,
       value: `[
-        {icon: Overflow, label: 'Account item1'},
-        {icon: Overflow, label: 'Account item2'},
-        {icon: Overflow, label: 'Account item3'},
-        {icon: Overflow, label: 'Account item4'},
+        {
+          icon: Overflow, 
+          item: {label: 'Account item1'},
+          mapItemToNode: item => item.label,
+          mapItemToString: item => item.label,
+        },
+        {
+          icon: Overflow, 
+          item: {label: 'Account item2'},
+          mapItemToNode: item => item.label,
+          mapItemToString: item => item.label,
+        },
+        {
+          icon: Overflow, 
+          item: {label: 'Account item3'},
+          mapItemToNode: item => item.label,
+          mapItemToString: item => item.label,
+        },
+        {
+          icon: Overflow, 
+          item: {label: 'Account item4'},
+          mapItemToNode: item => item.label,
+          mapItemToString: item => item.label,
+        },
       ]`,
       type: PropTypes.Array,
       description: 'List of the user profile navigation items.',
