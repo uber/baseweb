@@ -9,7 +9,18 @@ export default function Scenario() {
         overrides={{
           Grid: {
             style: ({$theme}) => ({
-              border: `solid 1px ${$theme.colors.positive400}`,
+              borderLeftWidth: '1px',
+              borderRightWidth: '1px',
+              borderTopWidth: '1px',
+              borderBottomWidth: '1px',
+              borderLeftStyle: 'solid',
+              borderTopStyle: 'solid',
+              borderRightStyle: 'solid',
+              borderBottomStyle: 'solid',
+              borderLeftColor: `${$theme.colors.positive400}`,
+              borderTopColor: `${$theme.colors.positive400}`,
+              borderRightColor: `${$theme.colors.positive400}`,
+              borderBottomColor: `${$theme.colors.positive400}`,
             }),
           },
         }}

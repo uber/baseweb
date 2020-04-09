@@ -3,6 +3,7 @@ import * as React from 'react';
 import {styled} from 'baseui';
 import {Select} from 'baseui/select';
 import type {ValueT} from 'baseui/select';
+import {expandBorderStyles} from 'baseui/styles';
 
 const ColorSwatch = styled<{$color: string}>('div', props => {
   return {
@@ -12,7 +13,7 @@ const ColorSwatch = styled<{$color: string}>('div', props => {
     display: 'inline-block',
     backgroundColor: props.$color,
     verticalAlign: 'baseline',
-    ...props.$theme.borders.border400,
+    ...expandBorderStyles(props.$theme.borders.border400),
   };
 });
 

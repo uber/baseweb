@@ -618,14 +618,25 @@ export const Root = styled<SharedPropsArgT>('span', props => {
     $theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
   const paddingEndDir: string =
     $theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
-
+  const borderWidth = $variant === VARIANT.outlined ? '2px' : 0;
+  const regularBorderColor = borderColor(false, false);
+  const borderHoverColor = borderColor(true, false);
   return ({
     ...font150,
     alignItems: 'center',
     backgroundColor: backgroundColor(false, false),
-    borderColor: borderColor(false, false),
-    borderStyle: 'solid',
-    borderWidth: $variant === VARIANT.outlined ? '2px' : 0,
+    borderLeftColor: regularBorderColor,
+    borderRightColor: regularBorderColor,
+    borderTopColor: regularBorderColor,
+    borderBottomColor: regularBorderColor,
+    borderLeftStyle: 'solid',
+    borderRightStyle: 'solid',
+    borderTopStyle: 'solid',
+    borderBottomStyle: 'solid',
+    borderLeftWidth: borderWidth,
+    borderRightWidth: borderWidth,
+    borderTopWidth: borderWidth,
+    borderBottomWidth: borderWidth,
     borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
@@ -650,7 +661,10 @@ export const Root = styled<SharedPropsArgT>('span', props => {
         ? {}
         : {
             backgroundColor: backgroundColor(true, false),
-            borderColor: borderColor(true, false),
+            borderLeftColor: borderHoverColor,
+            borderRightColor: borderHoverColor,
+            borderTopColor: borderHoverColor,
+            borderBottomColor: borderHoverColor,
             color: fontColor(props, true, false),
           },
     ':focus':

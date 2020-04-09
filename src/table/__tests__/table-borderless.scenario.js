@@ -19,7 +19,10 @@ import {
 } from '../index.js';
 
 const BorderlessTable = withStyle(StyledTable, {
-  border: 0,
+  borderLeftWidth: 0,
+  borderRightWidth: 0,
+  borderTopWidth: 0,
+  borderBottomWidth: 0,
 });
 
 const DATA = [
