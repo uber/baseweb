@@ -35,12 +35,13 @@ export interface AccordionProps {
   renderAll?: boolean;
 }
 
-type StatelessAccordionProps = Omit<
+export type StatelessAccordionProps = Omit<
   AccordionProps,
   'accordion',
   'initialState',
   'stateReducer'
 >;
+export const StatelessAccordion: React.FC<StatelessAccordionProps>;
 
 export interface AccordionState {
   expanded: React.Key[];
