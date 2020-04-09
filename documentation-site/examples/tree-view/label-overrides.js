@@ -11,7 +11,7 @@ type CustomNodePropsT = {
   depth?: number,
 };
 
-const CustomLabel = (node: TreeNodeT) => {
+const CustomLabel = (node: TreeNodeT<>) => {
   const {label} = node;
   const Tag = (depth => {
     switch (depth) {

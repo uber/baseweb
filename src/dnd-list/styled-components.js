@@ -106,7 +106,10 @@ export const CloseHandle = styled<SharedStylePropsArgT>(
     const marginDir: string =
       $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
     return {
-      border: 'none',
+      borderLeftStyle: 'none',
+      borderTopStyle: 'none',
+      borderRightStyle: 'none',
+      borderBottomStyle: 'none',
       paddingTop: 0,
       paddingBottom: 0,
       paddingLeft: 0,

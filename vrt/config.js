@@ -269,6 +269,17 @@ const config = {
       },
     ],
   },
+  select: {
+    interactions: [
+      {
+        name: 'typeToFilter',
+        behavior: async page => {
+          const selectSelector = `[data-baseweb="select"] input`;
+          await page.type(selectSelector, 'aq');
+        },
+      },
+    ],
+  },
   'select-in-modal': {
     interactions: [
       {

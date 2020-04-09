@@ -16,7 +16,7 @@ import {
 } from '../utils.js';
 import type {TreeNodeT} from '../types.js';
 
-const data: TreeNodeT[] = [
+const data: TreeNodeT<>[] = [
   {
     id: 1,
     label: 'Label 1',

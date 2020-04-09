@@ -8,11 +8,11 @@ LICENSE file in the root directory of this source tree.
 import Blank from '../icon/blank.js';
 import ChevronDown from '../icon/chevron-down.js';
 import ChevronUp from '../icon/chevron-up.js';
-import {styled, withStyle} from '../styles/index.js';
+import {styled, withStyle, expandBorderStyles} from '../styles/index.js';
 
 export const StyledRoot = styled<{}>('div', ({$theme}) => {
   return {
-    ...$theme.borders.border300,
+    ...expandBorderStyles($theme.borders.border300),
     position: 'relative',
     overflow: 'auto',
     WebkitOverflowScrolling: 'touch',
@@ -73,7 +73,6 @@ export const StyledTableHeadCell = styled<{}>('th', ({$theme}) => {
       right: '100%',
       bottom: '0',
       borderLeftColor: $theme.borders.border300.borderColor,
-      // $FlowFixMe
       borderLeftStyle: $theme.borders.border300.borderStyle,
       borderLeftWidth: $theme.borders.border300.borderWidth,
     },

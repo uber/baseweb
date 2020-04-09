@@ -25,7 +25,9 @@ exports[`Stateless header navigation should render component: Component has corr
   \\"display\\": \\"flex\\",
   \\"paddingBottom\\": \\"$theme.sizing.scale500\\",
   \\"paddingTop\\": \\"$theme.sizing.scale500\\",
-  \\"borderBottom\\": \\"1px solid $theme.colors.border\\",
+  \\"borderBottomWidth\\": \\"1px\\",
+  \\"borderBottomStyle\\": \\"solid\\",
+  \\"borderBottomColor\\": \\"$theme.colors.border\\",
   \\"backgroundColor\\": \\"$theme.colors.headerNavigationFill\\"
 }"
       >

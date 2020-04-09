@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 /* @flow */
 
-import {styled} from '../styles/index.js';
+import {styled, expandBorderStyles} from '../styles/index.js';
 
 export const Action = styled<{}>('div', ({$theme}) => ({
   ...$theme.typography.LabelMedium,
@@ -44,7 +44,10 @@ export const Root = styled<{}>('section', ({$theme}) => ({
   borderTopStyle: 'solid',
   borderRightStyle: 'solid',
   borderBottomStyle: 'solid',
-  borderColor: $theme.colors.borderOpaque,
+  borderLeftColor: $theme.colors.borderOpaque,
+  borderRightColor: $theme.colors.borderOpaque,
+  borderTopColor: $theme.colors.borderOpaque,
+  borderBottomColor: $theme.colors.borderOpaque,
   borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
   borderTopRightRadius: $theme.borders.surfaceBorderRadius,
   borderBottomLeftRadius: $theme.borders.surfaceBorderRadius,
@@ -61,7 +64,7 @@ export const Thumbnail = styled<{}>('img', ({$theme}) => ({
   borderTopRightRadius: $theme.borders.surfaceBorderRadius,
   borderBottomLeftRadius: $theme.borders.surfaceBorderRadius,
   borderBottomRightRadius: $theme.borders.surfaceBorderRadius,
-  ...$theme.borders.border200,
+  ...expandBorderStyles($theme.borders.border200),
   margin: `0 0 ${$theme.sizing.scale500} ${$theme.sizing.scale500}`,
 }));
 
