@@ -1,13 +1,14 @@
 import * as React from 'react';
 import {Notification} from 'baseui/notification';
 import {DeleteAlt} from 'baseui/icon';
+import {expandBorderStyles} from 'baseui/styles';
 
 export default () => (
   <Notification
     overrides={{
       Body: {
         style: ({$theme}) => ({
-          ...$theme.borders.border600,
+          ...expandBorderStyles($theme.borders.border600),
         }),
       },
       CloseIcon: {

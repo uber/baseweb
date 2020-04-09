@@ -17,7 +17,7 @@ const Price = styled('span', {
   marginLeft: 'auto',
 });
 
-const customLabel = (node: TreeNodeT) => {
+const customLabel = (node: TreeNodeT<>) => {
   return (
     <Label>
       <span>{node.info && node.info.name}</span>

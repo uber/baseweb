@@ -9,26 +9,15 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {styled} from '../../styles/index.js';
-import {Override} from '../override.js';
-import type {OverrideT} from '../override.js';
-import {getOverrides} from '../overrides.js';
+import {getOverrides, type OverrideT} from '../overrides.js';
 
 const StyledBase = styled('div', {});
 
-function Old(props: {overrides: {Base: OverrideT<{}>}}) {
+function Child(props: {overrides: {Base: OverrideT<{}>}}) {
   const [Base, baseProps] = getOverrides(props.overrides.Base, StyledBase);
   return (
     <div>
       <Base {...baseProps}>default children</Base>
-    </div>
-  );
-}
-
-const Base = Override(StyledBase);
-function New(props: {overrides: {Base: OverrideT<{}>}}) {
-  return (
-    <div>
-      <Base override={props.overrides.Base}>default children</Base>
     </div>
   );
 }
@@ -42,18 +31,7 @@ export default function Parent() {
   const [value, setValue] = React.useState('');
   return (
     <div>
-      <Old
-        overrides={{
-          Base: {
-            component: BaseOverride,
-            props: {
-              onChange: event => setValue(event.target.value),
-              value,
-            },
-          },
-        }}
-      />
-      <New
+      <Child
         overrides={{
           Base: {
             component: BaseOverride,

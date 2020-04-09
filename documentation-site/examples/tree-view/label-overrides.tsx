@@ -120,7 +120,10 @@ export default function TreeViewOverrides() {
       overrides={{
         IconContainer: {
           style: {
-            borderStyle: 'none',
+            borderLeftStyle: 'none',
+            borderRightStyle: 'none',
+            borderTopStyle: 'none',
+            borderBottomStyle: 'none',
           },
         },
         TreeLabel: {

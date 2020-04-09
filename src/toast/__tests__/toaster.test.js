@@ -134,7 +134,12 @@ describe('toaster', () => {
       const overrides = {
         Root: {
           props: {'data-attr': 'root'},
-          style: {borderColor: 'skyblue'},
+          style: {
+            borderLeftColor: 'skyblue',
+            borderRightColor: 'skyblue',
+            borderTopColor: 'skyblue',
+            borderBottomColor: 'skyblue',
+          },
         },
         ToastBody: {
           props: {'data-attr': 'body'},

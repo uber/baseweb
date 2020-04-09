@@ -77,7 +77,16 @@ export default () => {
       overrides={{
         FileDragAndDrop: {
           style: props => ({
-            borderColor: props.$isDragActive
+            borderLeftColor: props.$isDragActive
+              ? props.$theme.colors.positive
+              : props.$theme.colors.warning,
+            borderRightColor: props.$isDragActive
+              ? props.$theme.colors.positive
+              : props.$theme.colors.warning,
+            borderTopColor: props.$isDragActive
+              ? props.$theme.colors.positive
+              : props.$theme.colors.warning,
+            borderBottomColor: props.$isDragActive
               ? props.$theme.colors.positive
               : props.$theme.colors.warning,
           }),
