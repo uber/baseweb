@@ -12,42 +12,107 @@ import {Button} from 'baseui/button';
 import {ChevronDown, Delete, Overflow as UserIcon, Upload as Icon} from 'baseui/icon';
 import {Unstable_AppNavBar as AppNavBar} from 'baseui/app-nav-bar';
 
+function renderItem(item) {
+  return item.label;
+}
+
 const MAIN_NAV = [
-  {icon: Icon, label: 'Primary alpha1'},
-  {icon: Icon, label: 'Primary alpha2'},
+  {
+    icon: Icon,
+    item: {label: 'Primary alpha1'},
+    mapItemToNode: renderItem,
+    mapItemToString: renderItem,
+  },
+  {
+    icon: Icon,
+    item: {label: 'Primary alpha2'},
+    mapItemToNode: renderItem,
+    mapItemToString: renderItem,
+  },
   {
     icon: ChevronDown,
-    label: 'Primary alpha3',
+    item: {label: 'Primary alpha3'},
+    mapItemToNode: renderItem,
+    mapItemToString: renderItem,
     nav: [
-      {icon: Icon, label: 'Secondary menu1'},
-      {icon: Icon, label: 'Secondary menu2'},
+      {
+        icon: Icon,
+        item: {label: 'Secondary menu1'},
+        mapItemToNode: renderItem,
+        mapItemToString: renderItem,
+      },
+      {
+        icon: Icon,
+        item: {label: 'Secondary menu2'},
+        mapItemToNode: renderItem,
+        mapItemToString: renderItem,
+      },
     ],
     subnavExitIcon: Delete,
   },
   {
     active: true,
     icon: ChevronDown,
-    label: 'Primary alpha4',
+    item: {label: 'Primary alpha4'},
+    mapItemToNode: renderItem,
+    mapItemToString: renderItem,
     nav: [
       {
         icon: ChevronDown,
-        label: 'Secondary menu1',
+        item: {label: 'Secondary menu1'},
+        mapItemToNode: renderItem,
+        mapItemToString: renderItem,
         nav: [
-          {icon: Icon, label: 'Tertiary menu1'},
-          {icon: Icon, label: 'Tertiary menu2'},
+          {
+            icon: Icon,
+            item: {label: 'Tertiary menu1'},
+            mapItemToNode: renderItem,
+            mapItemToString: renderItem,
+          },
+          {
+            icon: Icon,
+            item: {label: 'Tertiary menu2'},
+            mapItemToNode: renderItem,
+            mapItemToString: renderItem,
+          },
         ],
       },
-      {icon: Icon, label: 'Secondary menu2'},
+      {
+        icon: Icon,
+        item: {label: 'Secondary menu2'},
+        mapItemToNode: renderItem,
+        mapItemToString: renderItem,
+      },
     ],
     subnavExitIcon: Delete,
   },
 ];
 
 const USER_NAV = [
-  {icon: UserIcon, label: 'Account item1'},
-  {icon: UserIcon, label: 'Account item2'},
-  {icon: UserIcon, label: 'Account item3'},
-  {icon: UserIcon, label: 'Account item4'},
+  {
+    icon: UserIcon,
+    item: {label: 'Account item1'},
+    mapItemToNode: renderItem,
+    mapItemToString: renderItem,
+  },
+  {
+    icon: UserIcon,
+    item: {label: 'Account item2'},
+    mapItemToNode: renderItem,
+    mapItemToString: renderItem,
+  },
+  {
+    icon: UserIcon,
+    item: {label: 'Account item3'},
+    mapItemToNode: renderItem,
+    mapItemToString: renderItem,
+  },
+  {
+    icon: UserIcon,
+    item: {label: 'Account item4'},
+    mapItemToNode: renderItem,
+    mapItemToString: renderItem,
+  },
 ];
 
 export default () => {

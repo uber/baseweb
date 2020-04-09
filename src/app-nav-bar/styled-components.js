@@ -55,28 +55,27 @@ export const StyledSpacing = styled<{}>('div', props => {
   return {
     boxSizing: 'border-box',
     height: '100%',
-    paddingTop: $theme.sizing.scale700,
-    paddingBottom: $theme.sizing.scale700,
     display: 'flex',
     alignItems: 'center',
-    [`@media screen and (max-width: ${$theme.breakpoints.medium - 1}px)`]: {
-      paddingTop: $theme.sizing.scale400,
-      paddingBottom: $theme.sizing.scale400,
+    paddingTop: $theme.sizing.scale400,
+    paddingBottom: $theme.sizing.scale400,
+    [$theme.mediaQuery.medium]: {
+      paddingTop: $theme.sizing.scale700,
+      paddingBottom: $theme.sizing.scale700,
     },
   };
 });
 
 export const StyledAppName = styled<{}>('span', ({$theme}) => ({
-  ...$theme.typography.font650,
+  ...$theme.typography.font550,
   color: $theme.colors.primary,
   textDecoration: 'none',
-  [`@media screen and (max-width: ${$theme.breakpoints.medium - 1}px)`]: {
-    ...$theme.typography.font550,
+  [$theme.mediaQuery.medium]: {
+    ...$theme.typography.font650,
   },
 }));
 
-// $FlowFixMe
-export const StyledSideMenuButton = withStyle<{}>(
+export const StyledSideMenuButton = withStyle<typeof StyledClearButton, {}>(
   StyledClearButton,
   ({$theme}) => ({
     marginRight: $theme.sizing.scale600,
@@ -117,10 +116,10 @@ export const StyledPrimaryMenuItem = styled<{
     marginRight: sizing.scale700,
     outline: $isFocusVisible ? `3px solid ${colors.accent}` : 'none',
     outlineOffset: '-3px',
-    borderBottom:
-      $active && !$isFocusVisible
-        ? `2px solid ${colors.primary}`
-        : '2px solid transparent',
+    borderBottomWidth: '2px',
+    borderBottomStyle: 'solid',
+    borderBottomColor:
+      $active && !$isFocusVisible ? colors.primary : 'transparent',
     ':hover': {
       color: colors.primary,
     },
