@@ -35,6 +35,14 @@ Then add it to your ESLint configuration:
 }
 ```
 
+Or extend the recommended config
+
+```js
+{
+  "extends": ['plugin:baseui/recommended']
+}
+```
+
 ### Versioning
 
 To get linting specific to your version of `baseui`, simply install the matching version of `eslint-plugin-baseui`.
