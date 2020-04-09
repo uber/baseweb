@@ -26,7 +26,10 @@ export default function Scenario() {
               overrides: {
                 InputContainer: {
                   style: {
-                    borderColor: 'turquoise',
+                    borderLeftColor: 'turquoise',
+                    borderRightColor: 'turquoise',
+                    borderTopColor: 'turquoise',
+                    borderBottomColor: 'turquoise',
                   },
                 },
                 Input: {

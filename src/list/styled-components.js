@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {styled} from '../styles/index.js';
+import {styled, expandBorderStyles} from '../styles/index.js';
 
 import {ARTWORK_SIZES} from './constants.js';
 import type {
@@ -28,11 +28,11 @@ export const StyledContent = styled<StyledContentPropsT>(
   'div',
   ({$mLeft, $sublist, $theme}) => {
     return {
-      ...$theme.borders.border100,
+      ...expandBorderStyles($theme.borders.border100),
       alignItems: 'center',
-      borderTop: 'none',
-      borderRight: 'none',
-      borderLeft: 'none',
+      borderTopStyle: 'none',
+      borderRightStyle: 'none',
+      borderLeftStyle: 'none',
       display: 'flex',
       flexGrow: 1,
       height: $sublist ? '48px' : '72px',

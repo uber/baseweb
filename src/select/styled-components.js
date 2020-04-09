@@ -155,7 +155,10 @@ function getControlContainerColors(
   if ($disabled) {
     return {
       color: colors.inputTextDisabled,
-      borderColor: colors.inputFillDisabled,
+      borderLeftColor: colors.inputFillDisabled,
+      borderRightColor: colors.inputFillDisabled,
+      borderTopColor: colors.inputFillDisabled,
+      borderBottomColor: colors.inputFillDisabled,
       backgroundColor: colors.inputFillDisabled,
     };
   }
@@ -163,7 +166,10 @@ function getControlContainerColors(
   if ($isFocused || $isPseudoFocused) {
     return {
       color: colors.contentPrimary,
-      borderColor: colors.borderFocus,
+      borderLeftColor: colors.borderFocus,
+      borderRightColor: colors.borderFocus,
+      borderTopColor: colors.borderFocus,
+      borderBottomColor: colors.borderFocus,
       backgroundColor: colors.inputFillActive,
     };
   }
@@ -171,7 +177,10 @@ function getControlContainerColors(
   if ($error) {
     return {
       color: colors.contentPrimary,
-      borderColor: colors.inputBorderError,
+      borderLeftColor: colors.inputBorderError,
+      borderRightColor: colors.inputBorderError,
+      borderTopColor: colors.inputBorderError,
+      borderBottomColor: colors.inputBorderError,
       backgroundColor: colors.inputFillError,
     };
   }
@@ -179,14 +188,20 @@ function getControlContainerColors(
   if ($positive) {
     return {
       color: colors.contentPrimary,
-      borderColor: colors.inputBorderPositive,
+      borderLeftColor: colors.inputBorderPositive,
+      borderRightColor: colors.inputBorderPositive,
+      borderTopColor: colors.inputBorderPositive,
+      borderBottomColor: colors.inputBorderPositive,
       backgroundColor: colors.inputFillPositive,
     };
   }
 
   return {
     color: colors.contentPrimary,
-    borderColor: colors.inputBorder,
+    borderLeftColor: colors.inputBorder,
+    borderRightColor: colors.inputBorder,
+    borderTopColor: colors.inputBorder,
+    borderBottomColor: colors.inputBorder,
     backgroundColor: colors.inputFill,
   };
 }
@@ -219,8 +234,14 @@ export const StyledControlContainer = styled<SharedStylePropsArgT>(
         : $searchable || $type === TYPE.search
         ? 'text'
         : 'pointer',
-      borderWidth: '2px',
-      borderStyle: 'solid',
+      borderLeftWidth: '2px',
+      borderRightWidth: '2px',
+      borderTopWidth: '2px',
+      borderBottomWidth: '2px',
+      borderLeftStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderTopStyle: 'solid',
+      borderBottomStyle: 'solid',
       transitionProperty: 'border, box-shadow, background-color',
       transitionDuration: animation.timing100,
       transitionTimingFunction: animation.easeOutCurve,
@@ -306,7 +327,10 @@ export const StyledInputContainer = styled<SharedStylePropsArgT>(
       display: 'inline-block',
       maxWidth: '100%',
       backgroundColor: 'transparent',
-      border: 'none',
+      borderLeftStyle: 'none',
+      borderTopStyle: 'none',
+      borderRightStyle: 'none',
+      borderBottomStyle: 'none',
       boxShadow: 'none',
       boxSizing: 'border-box',
       outline: 'none',
@@ -338,7 +362,10 @@ export const StyledInput = styled<SharedStylePropsArgT>('input', props => {
     width: !$searchable ? '1px' : $width || '100%',
     maxWidth: '100%',
     background: 'transparent',
-    border: 'none',
+    borderLeftStyle: 'none',
+    borderTopStyle: 'none',
+    borderRightStyle: 'none',
+    borderBottomStyle: 'none',
     boxShadow: 'none',
     display: 'inline-block',
     outline: 'none',

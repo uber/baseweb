@@ -75,8 +75,14 @@ export default function TreeViewOverrides() {
       overrides={{
         IconContainer: {
           style: {
-            borderStyle: 'solid',
-            borderWidth: '1px',
+            borderLeftStyle: 'solid',
+            borderRightStyle: 'solid',
+            borderTopStyle: 'solid',
+            borderBottomStyle: 'solid',
+            borderLeftWidth: '1px',
+            borderRightWidth: '1px',
+            borderTopWidth: '1px',
+            borderBottomWidth: '1px',
             width: '12px',
             height: '12px',
           },

@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 // @flow
-import {styled} from '../styles/index.js';
+import {styled, expandBorderStyles} from '../styles/index.js';
 import {STYLE_TYPE} from './constants.js';
 
 import type {SharedStylePropsT} from './types.js';
@@ -177,6 +177,7 @@ export const Checkmark = styled<SharedStylePropsT>('span', props => {
   `);
 
   const borderRadius = $theme.borders.inputBorderRadius;
+  const borderColor = getBorderColor(props);
 
   return ({
     flex: '0 0 auto',
@@ -188,9 +189,18 @@ export const Checkmark = styled<SharedStylePropsT>('span', props => {
     left: '4px',
     top: '4px',
     boxSizing: 'border-box',
-    borderStyle: 'solid',
-    borderWidth: '3px',
-    borderColor: getBorderColor(props),
+    borderLeftStyle: 'solid',
+    borderRightStyle: 'solid',
+    borderTopStyle: 'solid',
+    borderBottomStyle: 'solid',
+    borderLeftWidth: '3px',
+    borderRightWidth: '3px',
+    borderTopWidth: '3px',
+    borderBottomWidth: '3px',
+    borderLeftColor: borderColor,
+    borderRightColor: borderColor,
+    borderTopColor: borderColor,
+    borderBottomColor: borderColor,
     borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
@@ -247,7 +257,7 @@ export const Toggle = styled<SharedStylePropsT>('div', props => {
       ? props.$theme.borders.radius200
       : null;
     return ({
-      ...props.$theme.borders.border300,
+      ...expandBorderStyles(props.$theme.borders.border300),
       alignItems: 'center',
       backgroundColor: props.$theme.colors.mono100,
       borderTopLeftRadius: borderRadius,

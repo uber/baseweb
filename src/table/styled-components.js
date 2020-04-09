@@ -7,11 +7,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 
-import {styled, withWrapper} from '../styles/index.js';
+import {styled, withWrapper, expandBorderStyles} from '../styles/index.js';
 
 const StyledTableElement = styled<{}>('div', ({$theme}) => {
   return {
-    ...$theme.borders.border300,
+    ...expandBorderStyles($theme.borders.border300),
     backgroundColor: $theme.colors.tableBackground,
     borderTopLeftRadius: $theme.borders.radius200,
     borderTopRightRadius: $theme.borders.radius200,
@@ -67,10 +67,10 @@ const StyledHeadCellElement = styled<HorizontalStyleProps>(
       $theme.direction === 'rtl' ? 'borderLeft' : 'borderRight';
     return {
       ...$theme.typography.font350,
-      ...$theme.borders.border300,
-      borderTop: 'none',
-      borderBottom: 'none',
-      borderLeft: 'none',
+      ...expandBorderStyles($theme.borders.border300),
+      borderTopStyle: 'none',
+      borderBottomStyle: 'none',
+      borderLeftStyle: 'none',
       color: $theme.colors.contentPrimary,
       display: 'flex',
       justifyContent: 'space-between',
@@ -100,7 +100,10 @@ export const StyledSortableLabel = styled<{}>('button', ({$theme}) => {
     ...$theme.typography.font250,
     alignItems: 'center',
     backgroundColor: 'transparent',
-    border: 'none',
+    borderLeftStyle: 'none',
+    borderTopStyle: 'none',
+    borderRightStyle: 'none',
+    borderBottomStyle: 'none',
     color: $theme.colors.contentPrimary,
     display: 'flex',
     padding: 0,
@@ -196,7 +199,10 @@ export const StyledFilterButton = styled<{
 
   return {
     backgroundColor: 'transparent',
-    border: 'none',
+    borderLeftStyle: 'none',
+    borderTopStyle: 'none',
+    borderRightStyle: 'none',
+    borderBottomStyle: 'none',
     color: getIconColor(),
     cursor: props.$disabled ? null : 'pointer',
     paddingTop: 'none',
@@ -210,10 +216,10 @@ export const StyledFilterButton = styled<{
 });
 
 export const StyledFilterContent = styled<{}>('div', ({$theme}) => ({
-  ...$theme.borders.border300,
+  ...expandBorderStyles($theme.borders.border300),
   backgroundColor: $theme.colors.tableFilterBackground,
-  borderRight: 'none',
-  borderLeft: 'none',
+  borderRightStyle: 'none',
+  borderLeftStyle: 'none',
   maxHeight: '196px',
   paddingRight: $theme.sizing.scale600,
   paddingLeft: $theme.sizing.scale600,
@@ -243,7 +249,10 @@ export const StyledFilterFooter = styled<{}>('div', ({$theme}) => ({
 export const StyledAction = styled<{}>('button', ({$theme}) => {
   return {
     backgroundColor: 'transparent',
-    border: 'none',
+    borderLeftStyle: 'none',
+    borderTopStyle: 'none',
+    borderRightStyle: 'none',
+    borderBottomStyle: 'none',
     color: $theme.colors.primary,
     paddingTop: 0,
     paddingRight: 0,
