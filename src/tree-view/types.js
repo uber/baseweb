@@ -27,13 +27,13 @@ export type TreeViewOverridesT = {
 
 export type TreeNodeIdT = number | string;
 
-export type TreeNodeT = {
+// eslint-disable-next-line flowtype/no-weak-types
+export type TreeNodeT<T = any> = {
   id?: TreeNodeIdT,
-  children?: TreeNodeT[],
+  children?: TreeNodeT<>[],
   isExpanded?: boolean,
-  label: ((node: TreeNodeT) => React.Node) | string,
-  // eslint-disable-next-line flowtype/no-weak-types
-  info?: any,
+  label: ((node: TreeNodeT<>) => React.Node) | string,
+  info?: T,
   // eslint-disable-next-line flowtype/no-weak-types
   [key: string]: any,
 };
@@ -43,9 +43,9 @@ export type TreeLabelT = {
   isExpanded?: boolean,
   isSelected?: boolean,
   isFocusVisible?: boolean,
-  label: ((node: TreeNodeT) => React.Node) | string,
+  label: ((node: TreeNodeT<>) => React.Node) | string,
   overrides?: TreeLabelOverridesT,
-  node: TreeNodeT,
+  node: TreeNodeT<>,
 };
 
 export type SharedStylePropsT = {
@@ -56,12 +56,12 @@ export type SharedStylePropsT = {
 };
 
 export type TreeNodePropsT = {
-  node: TreeNodeT,
-  getId: (node: TreeNodeT) => TreeNodeIdT,
-  onToggle?: (node: TreeNodeT) => void,
+  node: TreeNodeT<>,
+  getId: (node: TreeNodeT<>) => TreeNodeIdT,
+  onToggle?: (node: TreeNodeT<>) => void,
   overrides?: TreeViewOverridesT,
   renderAll?: boolean,
-  onKeyDown?: (e: KeyboardEvent, node: TreeNodeT) => mixed,
+  onKeyDown?: (e: KeyboardEvent, node: TreeNodeT<>) => mixed,
   onFocus?: (event: SyntheticEvent<>) => mixed,
   onBlur?: (event: SyntheticEvent<>) => mixed,
   selectedNodeId?: TreeNodeIdT,
@@ -77,12 +77,12 @@ export type StatefulContainerPropsT = {
 };
 
 export type TreeViewPropsT = {|
-  data: TreeNodeT[],
+  data: TreeNodeT<>[],
   indentGuides?: boolean,
-  onToggle?: (node: TreeNodeT) => void,
+  onToggle?: (node: TreeNodeT<>) => void,
   overrides?: TreeViewOverridesT,
   renderAll?: boolean,
-  getId?: (node: TreeNodeT) => TreeNodeIdT,
+  getId?: (node: TreeNodeT<>) => TreeNodeIdT,
 
   // will set isExpanded to false on sibling nodes when toggling isExpanded to true for one node
   // note: will NOT affect pre-set data. If you start with multiple sibling nodes open it will be open until you toggle one of them to isExpanded
