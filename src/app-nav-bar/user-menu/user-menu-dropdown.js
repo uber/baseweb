@@ -15,9 +15,10 @@ import type {AppNavBarPropsT} from '../types.js';
 
 const MENU_ITEM_WIDTH = '275px';
 
-export default function UserMenuDropdown(
-  props: {|...AppNavBarPropsT, ...{|close: () => void|}|}
-) {
+export default function UserMenuDropdown(props: {|
+  ...AppNavBarPropsT,
+  ...{|close: () => void|},
+|}) {
   // Provide API for handlers to be called on render, like analytics
   return (
     <StatefulMenu

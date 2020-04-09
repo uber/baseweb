@@ -48,7 +48,7 @@ const MAIN_NAV = [
         mapItemToString: renderItem,
       },
     ],
-    subnavExitIcon: Delete,
+    navExitIcon: Delete,
   },
   {
     active: true,
@@ -84,7 +84,7 @@ const MAIN_NAV = [
         mapItemToString: renderItem,
       },
     ],
-    subnavExitIcon: Delete,
+    navExitIcon: Delete,
   },
 ];
 

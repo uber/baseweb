@@ -15,32 +15,33 @@ export type MainNavItemT = {|
   active?: boolean,
   icon?: React.AbstractComponent<{||}>,
   item: ItemT,
-  mapItemToNode: ItemT => React.Node,
+  mapItemToNode?: ItemT => React.Node,
   mapItemToString: ItemT => string,
   nav?: MainNavItemT[],
-  subnavExitIcon?: React.AbstractComponent<{||}>,
+  navExitIcon?: React.AbstractComponent<{||}>,
 |};
 
 export type UserNavItemT = {|
   active?: boolean,
   icon?: React.AbstractComponent<{||}>,
   item: ItemT,
-  mapItemToNode: ItemT => React.Node,
+  mapItemToNode?: ItemT => React.Node,
   mapItemToString: ItemT => string,
 |};
-export type AppNavBarPropsT = {|
-  appDisplayName?: React.Node,
-  appDisplayNameLink?: string,
-  // eslint-disable-next-line flowtype/no-weak-types
-  mainNav?: MainNavItemT[],
-  onNavItemSelect: (params: {item: MainNavItemT | UserNavItemT}) => mixed,
+
+export type UserMenuPropsT = {|
   userNav?: UserNavItemT[],
   username?: string,
   usernameSubtitle?: React.Node,
   userImgUrl?: string,
 |};
 
-export type UserMenuPropsT = {|
+export type AppNavBarPropsT = {|
+  appDisplayName?: React.Node,
+  appDisplayNameLink?: string,
+  // eslint-disable-next-line flowtype/no-weak-types
+  mainNav?: MainNavItemT[],
+  onNavItemSelect: (params: {item: MainNavItemT | UserNavItemT}) => mixed,
   userNav?: UserNavItemT[],
   username?: string,
   usernameSubtitle?: React.Node,
