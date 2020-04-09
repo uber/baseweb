@@ -8,24 +8,41 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-export type AppNavBarPropsT = {
+// eslint-disable-next-line flowtype/no-weak-types
+type ItemT = any;
+
+export type MainNavItemT = {|
+  active?: boolean,
+  icon?: React.AbstractComponent<{||}>,
+  item: ItemT,
+  mapItemToNode: ItemT => React.Node,
+  mapItemToString: ItemT => string,
+  nav?: MainNavItemT[],
+  subnavExitIcon?: React.AbstractComponent<{||}>,
+|};
+
+export type UserNavItemT = {|
+  active?: boolean,
+  icon?: React.AbstractComponent<{||}>,
+  item: ItemT,
+  mapItemToNode: ItemT => React.Node,
+  mapItemToString: ItemT => string,
+|};
+export type AppNavBarPropsT = {|
   appDisplayName?: React.Node,
   appDisplayNameLink?: string,
   // eslint-disable-next-line flowtype/no-weak-types
-  mainNav?: Array<any>,
-  // eslint-disable-next-line flowtype/no-weak-types
-  onNavItemSelect: (params: {item: any}) => mixed,
-  // eslint-disable-next-line flowtype/no-weak-types
-  userNav?: Array<any>,
+  mainNav?: MainNavItemT[],
+  onNavItemSelect: (params: {item: MainNavItemT | UserNavItemT}) => mixed,
+  userNav?: UserNavItemT[],
   username?: string,
   usernameSubtitle?: React.Node,
   userImgUrl?: string,
-};
+|};
 
-export type UserMenuPropsT = {
-  // eslint-disable-next-line flowtype/no-weak-types
-  userNav?: Array<any>,
+export type UserMenuPropsT = {|
+  userNav?: UserNavItemT[],
   username?: string,
   usernameSubtitle?: React.Node,
   userImgUrl?: string,
-};
+|};

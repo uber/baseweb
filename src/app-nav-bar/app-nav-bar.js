@@ -71,7 +71,11 @@ export default function AppNavBar(props: AppNavBarPropsT) {
             >
               {mainNav.map((navItem, index) => (
                 // Replace with a menu item renderer
-                <PrimaryMenuItem key={index} item={navItem} />
+                <PrimaryMenuItem
+                  key={index}
+                  item={navItem}
+                  onSelect={props.onNavItemSelect}
+                />
               ))}
             </StyledPrimaryMenuContainer>
           </Cell>

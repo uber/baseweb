@@ -23,7 +23,7 @@ export default React.forwardRef<{item: any}, HTMLLIElement>((props, ref) => {
         artwork={item.subnavExitIcon || ArrowLeft}
         artworkSize={ARTWORK_SIZES.LARGE}
       >
-        <ListItemLabel>{item.label || ''}</ListItemLabel>
+        <ListItemLabel>{item.mapItemToString(item.item) || ''}</ListItemLabel>
       </MenuAdapter>
     );
   }
@@ -32,11 +32,7 @@ export default React.forwardRef<{item: any}, HTMLLIElement>((props, ref) => {
     return (
       // $FlowFixMe
       <StyledUserMenuListItem {...restProps} ref={ref}>
-        <UserProfileTile
-          username={item.username}
-          usernameSubtitle={item.usernameSubtitle}
-          userImgUrl={item.userImgUrl}
-        />
+        <UserProfileTile {...item.item} />
       </StyledUserMenuListItem>
     );
   }
@@ -48,9 +44,7 @@ export default React.forwardRef<{item: any}, HTMLLIElement>((props, ref) => {
       artwork={item.icon || null}
       artworkSize={ARTWORK_SIZES.LARGE}
     >
-      <ListItemLabel description={item.subtitle}>
-        {item.label || ''}
-      </ListItemLabel>
+      <ListItemLabel>{item.mapItemToNode(item.item) || ''}</ListItemLabel>
     </MenuAdapter>
   );
 });

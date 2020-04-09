@@ -21,7 +21,7 @@ const UserMenuListItem = React.forwardRef<{item: any}, HTMLLIElement>(
         artwork={item.icon || null}
         artworkSize={ARTWORK_SIZES.LARGE}
       >
-        <ListItemLabel>{item.label || ''}</ListItemLabel>
+        <ListItemLabel>{item.mapItemToNode(item.item) || ''}</ListItemLabel>
       </MenuAdapter>
     );
   },

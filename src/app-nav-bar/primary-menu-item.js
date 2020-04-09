@@ -5,23 +5,18 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-/*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
 
-This source code is licensed under the MIT license found in the
-LICENSE file in the root directory of this source tree.
-*/
-// @flow
 import * as React from 'react';
 import {StyledPrimaryMenuItem} from './styled-components.js';
 import {isFocusVisible} from '../utils/focusVisible.js';
+import type {MainNavItemT} from './types.js';
 
 export default class MenuItem extends React.Component<
   {
     // eslint-disable-next-line flowtype/no-weak-types
-    item: any,
-    onClick: (e: Event) => mixed,
-    onKeyDown: (e: KeyboardEvent) => mixed,
+    item: MainNavItemT,
+    onClick?: (e: Event) => mixed,
+    onKeyDown?: (e: KeyboardEvent) => mixed,
     // eslint-disable-next-line flowtype/no-weak-types
     onSelect: ({item: any}) => mixed,
   },
@@ -66,7 +61,7 @@ export default class MenuItem extends React.Component<
     return (
       <StyledPrimaryMenuItem
         $isFocusVisible={this.state.hasFocusVisible}
-        $active={item.active}
+        $active={item.active || false}
         tabIndex={0}
         aria-selected={item.active || null}
         onFocus={this.handleFocus}
@@ -74,7 +69,7 @@ export default class MenuItem extends React.Component<
         onClick={this.onClick}
         onKeyDown={this.onKeyDown}
       >
-        {item.label}
+        {item.mapItemToNode(item.item)}
       </StyledPrimaryMenuItem>
     );
   }

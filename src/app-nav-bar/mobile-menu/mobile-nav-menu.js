@@ -15,11 +15,16 @@ const USER_MENU_ITEM = 'USER_MENU_ITEM';
 const PARENT_MENU_ITEM = 'PARENT_MENU_ITEM';
 
 export default function MobileNavMenu(
-  props: AppNavBarPropsT & {close: () => void},
+  props: {|...AppNavBarPropsT, ...{|close: () => void|}|}
 ) {
   const {mainNav = [], userNav = [], close = () => {}, ...rest} = props;
   const navItems = [
-    {...rest, [USER_MENU_ITEM]: true, nav: userNav},
+    {
+      item: {...rest},
+      mapItemToString: item => item.username || '',
+      [USER_MENU_ITEM]: true,
+      nav: userNav,
+    },
     ...mainNav,
   ];
   const [currentNavItems, setCurrentNavItems] = React.useState(navItems);
