@@ -663,7 +663,10 @@ export type AnimationT = {
 
 export type BorderT = {|
   borderColor: $PropertyType<StyleObject, 'borderColor'>,
-  borderStyle: $PropertyType<StyleObject, 'borderStyle'>,
+  // borderLeftStyle is a subset of borderStyle, since we want to use longhand styles
+  // at all times this ensures that border styles with differing side styles (e.g groove)
+  // are not used
+  borderStyle: $PropertyType<StyleObject, 'borderLeftStyle'>,
   borderWidth: $PropertyType<StyleObject, 'borderWidth'>,
 |};
 

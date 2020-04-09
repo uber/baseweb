@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {useStyletron} from 'baseui';
+import {useStyletron, expandBorderStyles} from 'baseui/styles';
 import {colors} from 'baseui/tokens';
 import {PropertyCompareTheme} from './common.js';
 
@@ -29,7 +29,7 @@ export function Color({name}: {name: string}) {
         <div
           className={css({
             ...commonStyles,
-            ...previewTheme.borders.border600,
+            ...expandBorderStyles(previewTheme.borders.border600),
             backgroundColor: previewTheme.colors[name],
           })}
         ></div>

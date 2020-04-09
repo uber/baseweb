@@ -7,11 +7,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 
-import {styled, withWrapper} from '../styles/index.js';
+import {styled, withWrapper, expandBorderStyles} from '../styles/index.js';
 
 const StyledTableElement = styled<{}>('div', ({$theme}) => {
   return {
-    ...$theme.borders.border300,
+    ...expandBorderStyles($theme.borders.border300),
     backgroundColor: $theme.colors.tableBackground,
     borderTopLeftRadius: $theme.borders.radius200,
     borderTopRightRadius: $theme.borders.radius200,
@@ -67,7 +67,7 @@ const StyledHeadCellElement = styled<HorizontalStyleProps>(
       $theme.direction === 'rtl' ? 'borderLeft' : 'borderRight';
     return {
       ...$theme.typography.font350,
-      ...$theme.borders.border300,
+      ...expandBorderStyles($theme.borders.border300),
       borderTopStyle: 'none',
       borderBottomStyle: 'none',
       borderLeftStyle: 'none',
@@ -216,7 +216,7 @@ export const StyledFilterButton = styled<{
 });
 
 export const StyledFilterContent = styled<{}>('div', ({$theme}) => ({
-  ...$theme.borders.border300,
+  ...expandBorderStyles($theme.borders.border300),
   backgroundColor: $theme.colors.tableFilterBackground,
   borderRightStyle: 'none',
   borderLeftStyle: 'none',

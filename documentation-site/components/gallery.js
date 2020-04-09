@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import {H2} from '../components/markdown-elements';
-import {useStyletron} from 'baseui/styles';
+import {useStyletron, expandBorderStyles} from 'baseui/styles';
 
 import * as thumbnails from '../components/thumbs';
 
@@ -268,7 +268,7 @@ function Thumbnail({children, href}) {
     <a
       href={href}
       className={css({
-        ...theme.borders.border300,
+        ...expandBorderStyles(theme.borders.border300),
         borderLeftColor: theme.colors.border,
         borderRightColor: theme.colors.border,
         borderTopColor: theme.colors.border,
@@ -317,7 +317,7 @@ function Thumbnail({children, href}) {
           ...theme.typography.font100,
           fontFamily:
             'SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace',
-          ...theme.borders.border300,
+          ...expandBorderStyles(theme.borders.border300),
           borderLeftColor: theme.colors.border,
           borderRightColor: theme.colors.border,
           borderTopColor: theme.colors.border,

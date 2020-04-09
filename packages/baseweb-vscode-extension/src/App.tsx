@@ -310,7 +310,10 @@ const Themeval: React.FC<{}> = () => {
           ...LightTheme.typography.ParagraphXSmall,
         }}
       >
-        Usage: <code>{'<div css={{ ...theme.borders.border400}} />'}</code>
+        Usage:{' '}
+        <code>
+          {'<div css={{ ...expandBorderStyles(theme.borders.border400)}} />'}
+        </code>
       </div>
       <table style={{borderSpacing: '10px 0px', margin: '16px 16px 8px 16px'}}>
         <thead style={{textAlign: 'left', fontSize: '14px'}}>

@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 // @flow
-import {styled} from '../styles/index.js';
+import {styled, expandBorderStyles} from '../styles/index.js';
 import {STYLE_TYPE} from './constants.js';
 
 import type {SharedStylePropsT} from './types.js';
@@ -257,7 +257,7 @@ export const Toggle = styled<SharedStylePropsT>('div', props => {
       ? props.$theme.borders.radius200
       : null;
     return ({
-      ...props.$theme.borders.border300,
+      ...expandBorderStyles(props.$theme.borders.border300),
       alignItems: 'center',
       backgroundColor: props.$theme.colors.mono100,
       borderTopLeftRadius: borderRadius,

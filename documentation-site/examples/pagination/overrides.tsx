@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {Button} from 'baseui/button';
 import {StatefulPagination} from 'baseui/pagination';
+import {expandBorderStyles} from 'baseui/styles';
 
 export default () => (
   <StatefulPagination
@@ -8,7 +9,7 @@ export default () => (
     overrides={{
       Root: {
         style: ({$theme}) => ({
-          ...$theme.borders.border400,
+          ...expandBorderStyles($theme.borders.border400),
           borderTopLeftRadius: $theme.borders.radius200,
           borderTopRightRadius: $theme.borders.radius200,
           borderBottomRightRadius: $theme.borders.radius200,
