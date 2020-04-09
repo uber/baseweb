@@ -41,9 +41,9 @@ describe('Component', () => {
   });
 });
 
-describe('Highlight resets on value change', async () => {
+describe('Highlight resets on value change', () => {
   describe('starting value is 2020-03-16 to 2020-03-20, 2020-03-16 is highlighted', () => {
-    test('change resetHighlightOnValueChange is false, highlight does not reset', () => {
+    test('changing value to 2020-03-23 to 2020-03-27, 2020-3-23 is highlighted', () => {
       const wrapper = mount(
         <Calendar
           quickSelect
@@ -52,7 +52,6 @@ describe('Highlight resets on value change', async () => {
             new Date('2020-03-16T00:00:00'),
             new Date('2020-03-20T23:59:59'),
           ]}
-          resetHighlightOnValueChange={false}
           highlightedDate={new Date('2020-03-16T00:00:00')}
         />,
       );
@@ -68,35 +67,8 @@ describe('Highlight resets on value change', async () => {
       wrapper.instance().componentDidUpdate(prevProps);
 
       expect(wrapper.state().highlightedDate).toEqual(
-        new Date('2020-03-16T00:00:00'),
+        new Date('2020-03-23T00:00:01'),
       );
-    });
-
-    test('change resetHighlightOnValueChange is true, highlight does reset', () => {
-      const wrapper = mount(
-        <Calendar
-          quickSelect
-          range
-          value={[
-            new Date('2020-03-16T00:00:00'),
-            new Date('2020-03-20T23:59:59'),
-          ]}
-          resetHighlightOnValueChange={true}
-          highlightedDate={new Date('2020-03-16T00:00:00')}
-        />,
-      );
-      const prevProps = wrapper.props();
-
-      wrapper.setProps({
-        value: [
-          new Date('2020-03-23T00:00:01'),
-          new Date('2020-03-27T23:59:59'),
-        ],
-      });
-
-      wrapper.instance().componentDidUpdate(prevProps);
-
-      expect(wrapper.state().highlightedDate).toEqual(undefined);
     });
   });
 });

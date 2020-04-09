@@ -34,7 +34,6 @@ import {
   isBefore,
   isSameDay,
   isSameMonth,
-  isSameYear,
   subDays,
   subWeeks,
   subMonths,
@@ -70,7 +69,6 @@ export default class Calendar extends React.Component<
     peekNextMonth: false,
     value: null,
     trapTabbing: false,
-    resetHighlightOnValueChange: false,
   };
 
   calendar: React.ElementRef<*>;
@@ -113,13 +111,16 @@ export default class Calendar extends React.Component<
       this.focusCalendar();
     }
 
-    if (prevProps.value !== this.props.value) {
-      const nextDate = this.getDateInView();
-      if (this.props.resetHighlightOnValueChange) {
-        this.setState({
-          highlightedDate: undefined,
-        });
+    if (prevProps.value !== this.props.value && !this.state.focused) {
+      if (this.props.value instanceof Date) {
+        this.setState({highlightedDate: this.props.value});
+      } else if (this.props.value instanceof Array) {
+        this.setState({highlightedDate: this.props.value[0]});
+      } else {
+        this.setState({highlightedDate: new Date()});
       }
+      const nextDate = this.getDateInView();
+
       if (!this.isInView(nextDate)) {
         this.setState({
           date: nextDate,
@@ -378,15 +379,8 @@ export default class Calendar extends React.Component<
   setHighlightedDate(date: Date) {
     const {value} = this.props;
     const selected = this.getSingleDate(value);
-    let nextState;
-    if (selected && isSameMonth(selected, date) && isSameYear(selected, date)) {
-      nextState = {highlightedDate: selected};
-    } else {
-      nextState = {
-        highlightedDate: date,
-      };
-    }
-    this.setState(nextState);
+    if (selected) this.setState({highlightedDate: selected});
+    else this.setState({highlightedDate: new Date()});
   }
 
   renderMonths = (translations: {ariaRoleDescCalMonth: string}) => {
