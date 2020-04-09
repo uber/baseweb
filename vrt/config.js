@@ -14,10 +14,17 @@ const config = {
       {
         name: 'openedMenu',
         behavior: async page => {
-          const buttonSelector = `[data-baseweb="button"]`;
+          const drawerMenuSelector = `[data-baseweb="button"] [data-baseweb="icon"]`;
+          const userMenuSelector = `[data-baseweb="button"] [data-baseweb="avatar"]`;
           const menuSelector = `[data-baseweb="menu"]`;
-          await page.waitForSelector(buttonSelector);
-          await page.click(buttonSelector);
+          let menuToClickOn = userMenuSelector;
+          await page.waitForSelector('body');
+          // the large breakpoint from the theme is 1136
+          if (page.viewport().width < 1136) {
+            menuToClickOn = drawerMenuSelector;
+          }
+          await page.waitForSelector(menuToClickOn, {visible: true});
+          await page.click(menuToClickOn);
           await page.waitForSelector(menuSelector, {
             visible: true,
           });

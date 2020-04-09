@@ -14,9 +14,10 @@ import type {AppNavBarPropsT} from '../types.js';
 const USER_MENU_ITEM = 'USER_MENU_ITEM';
 const PARENT_MENU_ITEM = 'PARENT_MENU_ITEM';
 
-export default function MobileNavMenu(
-  props: {|...AppNavBarPropsT, ...{|close: () => void|}|}
-) {
+export default function MobileNavMenu(props: {|
+  ...AppNavBarPropsT,
+  ...{|close: () => void|},
+|}) {
   const {mainNav = [], userNav = [], close = () => {}, ...rest} = props;
   const navItems = [
     {
