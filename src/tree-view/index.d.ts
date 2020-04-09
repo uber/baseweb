@@ -18,19 +18,19 @@ export interface TreeLabelOverrides {
   LeafIcon?: Override<{}>;
 }
 
-export interface TreeNode {
+export interface TreeNode<T = any> {
   id?: number | string;
   children?: TreeNode[];
   isExpanded?: boolean;
   label: ((node: TreeNode) => React.ReactNode) | string;
-  info?: any;
+  info?: T;
   [key: string]: any;
 }
 
 export interface TreeLabelProps {
   hasChildren: boolean;
   isExpanded?: boolean;
-  label: ((node: TreeNode) => React.Node) | string;
+  label: ((node: TreeNode) => React.ReactNode) | string;
   overrides?: TreeLabelOverrides;
   node: TreeNode;
 }
