@@ -5,14 +5,17 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import React, {Children} from 'react';
+import * as React from 'react';
 import {getOverrides} from '../helpers/overrides.js';
 import {Root as StyledRoot} from './styled-components.js';
 import type {StatelessAccordionPropsT} from './types.js';
 
 function StatelessAccordion({
+  accordion = true,
   children,
   disabled,
+  expanded,
+  onChange = () => {},
   overrides = {},
   renderAll,
   renderPanelContent,
@@ -21,14 +24,34 @@ function StatelessAccordion({
   const [Root, rootProps] = getOverrides(RootOverrides, StyledRoot);
   return (
     <Root data-baseweb="accordion" {...rootProps}>
-      {Children.map(children, child =>
-        React.cloneElement(child, {
+      {React.Children.map(children, (child, index) => {
+        const key = child.key || String(index);
+        return React.cloneElement(child, {
           disabled: child.props.disabled || disabled,
+          expanded: expanded.includes(key),
+          key,
+          onChange: () => {
+            let next;
+            if (accordion) {
+              if (expanded.includes(key)) {
+                next = [];
+              } else {
+                next = [key];
+              }
+            } else {
+              if (expanded.includes(key)) {
+                next = expanded.filter(k => k !== key);
+              } else {
+                next = [...expanded, key];
+              }
+            }
+            onChange({key, expanded: next});
+          },
           overrides: child.props.overrides || PanelOverrides,
           renderAll,
           renderPanelContent,
-        }),
-      )}
+        });
+      })}
     </Root>
   );
 }

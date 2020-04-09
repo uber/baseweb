@@ -11,37 +11,21 @@ import Accordion from '../stateless-accordion.js';
 import Panel from '../panel.js';
 
 export default function Scenario() {
-  const [panelState, setPanelState] = React.useState([true, false, true]);
+  const [expanded, setExpanded] = React.useState(['L1', 'L2']);
   return (
-    <Accordion overrides={{Content: {style: {fontFamily: 'fantasy'}}}}>
-      <Panel
-        key="L1"
-        title="Litany I"
-        expanded={panelState[0]}
-        onChange={({expanded}) =>
-          setPanelState(panelState.map((s, i) => (i === 0 ? expanded : s)))
-        }
-      >
+    <Accordion
+      accordion={false} // Open multiple panels simultaneously
+      expanded={expanded}
+      onChange={({key, expanded}) => setExpanded(expanded)} // Use key or expanded however you like
+      overrides={{Content: {style: {fontFamily: 'fantasy'}}}}
+    >
+      <Panel key="L1" title="Litany I">
         I must not fear.
       </Panel>
-      <Panel
-        key="L2"
-        title="Litany II"
-        expanded={panelState[1]}
-        onChange={({expanded}) =>
-          setPanelState(panelState.map((s, i) => (i === 1 ? expanded : s)))
-        }
-      >
+      <Panel key="L2" title="Litany II">
         Fear is the mind-killer.
       </Panel>
-      <Panel
-        key="L3"
-        title="Litany III"
-        expanded={panelState[2]}
-        onChange={({expanded}) =>
-          setPanelState(panelState.map((s, i) => (i === 2 ? expanded : s)))
-        }
-      >
+      <Panel key="L3" title="Litany III">
         Fear is the little-death that brings total obliteration.
       </Panel>
     </Accordion>
