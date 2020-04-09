@@ -15,7 +15,7 @@ const KnobColumn: React.FC<TKnobsProps & {knobNames: string[]}> = ({
   return (
     <div
       className={css({
-        flexBasis: '50%',
+        flexBasis: '100%',
         padding: `0 ${theme.sizing.scale600}`,
       })}
     >
@@ -53,10 +53,8 @@ const Knobs: React.FC<TKnobsProps> = ({state, set, error}) => {
     <React.Fragment>
       <div
         className={css({
-          display: 'flex',
-          flexWrap: 'wrap',
           [theme.mediaQuery.medium]: {
-            flexWrap: 'nowrap',
+            display: 'flex',
           },
           margin: `0 -${theme.sizing.scale600}`,
         })}
