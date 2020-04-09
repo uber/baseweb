@@ -326,13 +326,14 @@ export const StyledInputContainer = styled<SharedStylePropsArgT>(
 
 export const StyledInput = styled<SharedStylePropsArgT>('input', props => {
   const {
-    $theme: {typography},
+    $theme: {colors, typography},
     $size,
     $searchable,
     $width,
   } = props;
   return {
     ...getFont($size, typography),
+    color: colors.contentPrimary,
     boxSizing: 'content-box',
     width: !$searchable ? '1px' : $width || '100%',
     maxWidth: '100%',
