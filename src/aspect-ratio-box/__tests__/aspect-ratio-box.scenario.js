@@ -17,14 +17,14 @@ const bodyProps = {
   overrides: {
     Block: {
       style: {
-        borderLeftWidth: 'solid',
-        borderRightWidth: 'solid',
-        borderTopWidth: 'solid',
-        borderBottomWidth: 'solid',
-        borderLeftStyle: '2px',
-        borderTopStyle: '2px',
-        borderRightStyle: '2px',
-        borderBottomStyle: '2px',
+        borderLeftStyle: 'solid',
+        borderRightStyle: 'solid',
+        borderTopStyle: 'solid',
+        borderBottomStyle: 'solid',
+        borderLeftWidth: '2px',
+        borderTopWidth: '2px',
+        borderRightWidth: '2px',
+        borderBottomWidth: '2px',
         borderLeftColor: `grey`,
         borderTopColor: `grey`,
         borderRightColor: `grey`,
