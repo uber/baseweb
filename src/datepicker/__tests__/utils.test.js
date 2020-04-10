@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-// eslint-disable-next-line import/extensions
+/* eslint-disable import/extensions */
 import {
   formatDate,
   isSameMonth,
@@ -25,10 +25,25 @@ import {
   applyTimeToDate,
   applyDateToTime,
 } from '../utils/index.js';
+import differenceInCalendarMonths from 'date-fns/differenceInCalendarMonths';
 import {es} from 'date-fns/locale/index.js';
+/* eslint-enable import/extensions */
 
 const MIDNIGHT = new Date(2019, 3, 19);
 describe('Datepicker utils', () => {
+  describe('differenceInCalendarMonths', () => {
+    test('should return the difference in calendar months', () => {
+      expect(
+        differenceInCalendarMonths(new Date(2020, 5, 1), new Date(2020, 6, 1)),
+      ).toEqual(-1);
+      expect(
+        differenceInCalendarMonths(new Date(2020, 5, 1), new Date(2020, 4, 1)),
+      ).toEqual(1);
+      expect(
+        differenceInCalendarMonths(new Date(2020, 5, 1), new Date(2020, 5, 10)),
+      ).toEqual(0);
+    });
+  });
   describe('format', () => {
     test('should format date', () => {
       expect(formatDate(MIDNIGHT, 'yyyy-MM-dd')).toEqual('2019-04-19');
