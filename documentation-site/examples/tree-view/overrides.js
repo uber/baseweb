@@ -83,10 +83,10 @@ export default function TreeViewOverrides() {
           },
         },
         CollapseIcon: {
-          component: props => <CheckIndeterminateIcon {...props} />,
+          component: CheckIndeterminateIcon,
         },
         ExpandIcon: {
-          component: props => <PlusIcon {...props} />,
+          component: PlusIcon,
         },
         LeafIconContainer: {
           style: {
@@ -96,7 +96,7 @@ export default function TreeViewOverrides() {
           },
         },
         LeafIcon: {
-          component: props => <SearchIcon {...props} />,
+          component: SearchIcon,
         },
       }}
     />

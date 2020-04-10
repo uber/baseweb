@@ -12,7 +12,7 @@ export default () => (
         }),
       },
       CloseIcon: {
-        component: props => <DeleteAlt {...props} />,
+        component: DeleteAlt,
         style: {float: 'right', cursor: 'pointer'},
       },
     }}
