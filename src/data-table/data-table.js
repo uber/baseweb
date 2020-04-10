@@ -16,7 +16,7 @@ import {
   SIZE as BUTTON_SIZES,
   KIND as BUTTON_KINDS,
 } from '../button/index.js';
-import {useStyletron} from '../styles/index.js';
+import {useStyletron, expandBorderStyles} from '../styles/index.js';
 import {Tooltip, PLACEMENT} from '../tooltip/index.js';
 
 import {COLUMNS, SORT_DIRECTIONS} from './constants.js';
@@ -113,13 +113,16 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
   return (
     <div
       className={css({
-        ...theme.borders.border200,
+        ...expandBorderStyles(theme.borders.border200),
         backgroundColor,
-        borderTop: 'none',
-        borderBottom: 'none',
-        borderLeft: 'none',
+        borderTopStyle: 'none',
+        borderBottomStyle: 'none',
+        borderLeftStyle: 'none',
         // do not render a border on cells in the right-most column
-        borderRight: columnIndex === data.columns.length - 1 ? 'none' : null,
+        borderRightStyle:
+          columnIndex === data.columns.length - 1
+            ? 'none'
+            : theme.borders.border200.borderStyle,
         boxSizing: 'border-box',
       })}
       style={style}
@@ -466,10 +469,10 @@ function Headers(props: {||}) {
             >
               <div
                 className={css({
-                  ...theme.borders.border200,
+                  ...expandBorderStyles(theme.borders.border200),
                   backgroundColor: theme.colors.backgroundPrimary,
-                  borderTop: 'none',
-                  borderLeft: 'none',
+                  borderTopStyle: 'none',
+                  borderLeftStyle: 'none',
                   borderRight:
                     columnIndex === ctx.columns.length - 1 ? 'none' : null,
                   boxSizing: 'border-box',
@@ -967,8 +970,11 @@ export function Unstable_DataTable(props: DataTablePropsT) {
               itemData={itemData}
               onScroll={handleScroll}
               style={{
-                ...theme.borders.border200,
-                borderColor: theme.colors.borderOpaque,
+                ...expandBorderStyles(theme.borders.border200),
+                borderLeftColor: theme.colors.borderOpaque,
+                borderRightColor: theme.colors.borderOpaque,
+                borderTopColor: theme.colors.borderOpaque,
+                borderBottomColor: theme.colors.borderOpaque,
               }}
               direction={theme.direction === 'rtl' ? 'rtl' : 'ltr'}
             >

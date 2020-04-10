@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {Avatar} from 'baseui/avatar';
 import {useStyletron} from 'baseui';
+import {expandBorderStyles} from 'baseui/styles';
 
 export default () => {
   const [css] = useStyletron();
@@ -11,7 +12,7 @@ export default () => {
           overrides={{
             Root: {
               style: ({$theme}) => ({
-                ...$theme.borders.border500,
+                ...expandBorderStyles($theme.borders.border500),
               }),
             },
           }}
@@ -24,7 +25,7 @@ export default () => {
           overrides={{
             Root: {
               style: ({$theme}) => ({
-                ...$theme.borders.border500,
+                ...expandBorderStyles($theme.borders.border500),
               }),
             },
           }}

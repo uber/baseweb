@@ -11,3 +11,4 @@ documentation-site/posts.js
 documentation-site/cheat-sheet.js
 public
 out
+packages/eslint-plugin-baseui/__tests__/example-config

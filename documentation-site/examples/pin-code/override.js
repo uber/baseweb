@@ -10,7 +10,10 @@ const overrides = {
           style: {
             // use longhand CSS properties
             backgroundColor: 'lightgreen',
-            borderColor: 'seagreen',
+            borderLeftColor: 'seagreen',
+            borderRightColor: 'seagreen',
+            borderTopColor: 'seagreen',
+            borderBottomColor: 'seagreen',
           },
         },
       },

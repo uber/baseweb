@@ -133,7 +133,18 @@ const ColorCell: React.FC<{color: string}> = ({color}) => (
           width: '30px',
           height: '18px',
           marginRight: '10px',
-          border: '1px solid black',
+          borderLeftStyle: 'solid',
+          borderRightStyle: 'solid',
+          borderTopStyle: 'solid',
+          borderBottomStyle: 'solid',
+          borderLeftWidth: '1px',
+          borderTopWidth: '1px',
+          borderRightWidth: '1px',
+          borderBottomWidth: '1px',
+          borderLeftColor: `black`,
+          borderTopColor: `black`,
+          borderRightColor: `black`,
+          borderBottomColor: `black`,
         }}
       />
       {color.replace(/ /g, '')}
@@ -173,7 +184,18 @@ const Themeval: React.FC<{}> = () => {
                 <div
                   style={{
                     backgroundColor: 'white',
-                    border: '1px solid black',
+                    borderLeftStyle: 'solid',
+                    borderRightStyle: 'solid',
+                    borderTopStyle: 'solid',
+                    borderBottomStyle: 'solid',
+                    borderLeftWidth: '1px',
+                    borderTopWidth: '1px',
+                    borderRightWidth: '1px',
+                    borderBottomWidth: '1px',
+                    borderLeftColor: `black`,
+                    borderTopColor: `black`,
+                    borderRightColor: `black`,
+                    borderBottomColor: `black`,
                     height: '10px',
                     width: LightTheme.sizing[scale],
                   }}
@@ -288,7 +310,10 @@ const Themeval: React.FC<{}> = () => {
           ...LightTheme.typography.ParagraphXSmall,
         }}
       >
-        Usage: <code>{'<div css={{ ...theme.borders.border400}} />'}</code>
+        Usage:{' '}
+        <code>
+          {'<div css={{ ...expandBorderStyles(theme.borders.border400)}} />'}
+        </code>
       </div>
       <table style={{borderSpacing: '10px 0px', margin: '16px 16px 8px 16px'}}>
         <thead style={{textAlign: 'left', fontSize: '14px'}}>
@@ -304,7 +329,18 @@ const Themeval: React.FC<{}> = () => {
                 <div
                   style={{
                     backgroundColor: 'white',
-                    border: '1px solid black',
+                    borderLeftStyle: 'solid',
+                    borderRightStyle: 'solid',
+                    borderTopStyle: 'solid',
+                    borderBottomStyle: 'solid',
+                    borderLeftWidth: '1px',
+                    borderTopWidth: '1px',
+                    borderRightWidth: '1px',
+                    borderBottomWidth: '1px',
+                    borderLeftColor: `black`,
+                    borderTopColor: `black`,
+                    borderRightColor: `black`,
+                    borderBottomColor: `black`,
                     borderRadius: LightTheme.borders[radius],
                     height: '14px',
                     width: '20px',

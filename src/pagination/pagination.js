@@ -171,7 +171,10 @@ export default class Pagination extends React.PureComponent<
                     overrides={{
                       ControlContainer: {
                         style: ({$theme, $disabled, $isOpen, $error}) => ({
-                          borderColor: 'transparent',
+                          borderLeftColor: 'transparent',
+                          borderRightColor: 'transparent',
+                          borderTopColor: 'transparent',
+                          borderBottomColor: 'transparent',
                           boxShadow: 'none',
                           backgroundColor: $disabled
                             ? $theme.colors.buttonDisabledFill
