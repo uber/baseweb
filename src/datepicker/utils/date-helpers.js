@@ -25,6 +25,13 @@ class DateHelpers<T> {
     const d = this.adapter.toJsDate(this.adapter.date(seconds * 1000));
     return [d.getUTCHours(), d.getUTCMinutes()];
   };
+  differenceInCalendarMonths: (T, T) => number = (fromDate, toDate) => {
+    var yearDiff =
+      this.adapter.getYear(fromDate) - this.adapter.getYear(toDate);
+    var monthDiff =
+      this.adapter.getMonth(fromDate) - this.adapter.getMonth(toDate);
+    return yearDiff * 12 + monthDiff;
+  };
 }
 
 export default DateHelpers;

@@ -27,20 +27,32 @@ import {
 } from '../utils/index.js';
 import differenceInCalendarMonths from 'date-fns/differenceInCalendarMonths';
 import {es} from 'date-fns/locale/index.js';
+import DateHelpers from '../utils/date-helpers';
+import adapter from '../utils/date-fns-adapter';
 /* eslint-enable import/extensions */
+const helpers = new DateHelpers(adapter);
 
 const MIDNIGHT = new Date(2019, 3, 19);
 describe('Datepicker utils', () => {
   describe('differenceInCalendarMonths', () => {
     test('should return the difference in calendar months', () => {
       expect(
-        differenceInCalendarMonths(new Date(2020, 5, 1), new Date(2020, 6, 1)),
+        helpers.differenceInCalendarMonths(
+          new Date(2020, 5, 1),
+          new Date(2020, 6, 1),
+        ),
       ).toEqual(-1);
       expect(
-        differenceInCalendarMonths(new Date(2020, 5, 1), new Date(2020, 4, 1)),
+        helpers.differenceInCalendarMonths(
+          new Date(2020, 5, 1),
+          new Date(2020, 4, 1),
+        ),
       ).toEqual(1);
       expect(
-        differenceInCalendarMonths(new Date(2020, 5, 1), new Date(2020, 5, 10)),
+        helpers.differenceInCalendarMonths(
+          new Date(2020, 5, 1),
+          new Date(2020, 5, 10),
+        ),
       ).toEqual(0);
     });
   });
