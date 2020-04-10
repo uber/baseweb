@@ -19,11 +19,13 @@ export type ConfigurationOverrideT =
 export type StyleOverrideT = ConfigurationOverrideT;
 
 export type OverrideObjectT = {|
+  // eslint-disable-next-line flowtype/no-weak-types
   component?: ?React.ComponentType<any>,
   props?: ?ConfigurationOverrideT,
   style?: ?ConfigurationOverrideT,
 |};
 
+// eslint-disable-next-line flowtype/no-weak-types
 export type OverrideT = OverrideObjectT | React.ComponentType<any>;
 
 export type OverridesT = {
@@ -55,7 +57,7 @@ export function getOverride(override: any): any {
  * Given an override argument, returns the override props that should be passed
  * to the component when rendering it.
  */
-export function getOverrideProps<T>(override: ?OverrideT) {
+export function getOverrideProps(override: ?OverrideT) {
   if (override && typeof override === 'object') {
     if (typeof override.props === 'object') {
       return {

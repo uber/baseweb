@@ -32,7 +32,7 @@ export type PanelStateReducerT = (
   currentState: PanelStateT,
 ) => PanelStateT;
 
-export type AccordionOverridesT<T> = {
+export type AccordionOverridesT = {
   Root?: OverrideT,
 };
 
