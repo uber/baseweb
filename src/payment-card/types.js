@@ -15,7 +15,7 @@ import type {OverrideT} from '../helpers/overrides.js';
 
 export type PaymentCardComponentsT = {
   ...InputComponentsT,
-  IconWrapper?: OverrideT<*>,
+  IconWrapper?: OverrideT,
 };
 
 export type PaymentCardPropsT = {

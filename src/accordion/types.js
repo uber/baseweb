@@ -33,14 +33,14 @@ export type PanelStateReducerT = (
 ) => PanelStateT;
 
 export type AccordionOverridesT<T> = {
-  Root?: OverrideT<T>,
+  Root?: OverrideT,
 };
 
-export type PanelOverridesT<T> = {
-  PanelContainer?: OverrideT<T>,
-  Header?: OverrideT<T>,
-  ToggleIcon?: OverrideT<T>,
-  Content?: OverrideT<T>,
+export type PanelOverridesT = {
+  PanelContainer?: OverrideT,
+  Header?: OverrideT,
+  ToggleIcon?: OverrideT,
+  Content?: OverrideT,
 };
 
 export type OnChangeHandlerT = ({expanded: boolean}) => mixed;
@@ -103,7 +103,7 @@ export type StatelessAccordionPropsT = {
   overrides?: AccordionOverridesT<
     $Diff<SharedStylePropsArgT, {$expanded?: ?boolean}>,
   > &
-    PanelOverridesT<SharedStylePropsArgT>,
+    PanelOverridesT,
   /**
    * Allows users to render all child content whether a panel is expanded or not
    * for SEO purposed
@@ -134,7 +134,7 @@ type SharedPanelPropsT = {
   onClick?: (e: Event) => mixed,
   /** Handler for the Header's keyDown events. */
   onKeyDown?: (e: KeyboardEvent) => mixed,
-  overrides?: PanelOverridesT<SharedStylePropsArgT>,
+  overrides?: PanelOverridesT,
   /** The title of an accordion panel. */
   title?: React.Node,
   /**

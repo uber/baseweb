@@ -14,14 +14,14 @@ export type ParamsT = {
   value: Array<number>,
 };
 export type OverridesT = {
-  Root?: OverrideT<*>,
-  Track?: OverrideT<*>,
-  InnerTrack?: OverrideT<*>,
-  Tick?: OverrideT<*>,
-  TickBar?: OverrideT<*>,
-  Thumb?: OverrideT<*>,
-  InnerThumb?: OverrideT<*>,
-  ThumbValue?: OverrideT<*>,
+  Root?: OverrideT,
+  Track?: OverrideT,
+  InnerTrack?: OverrideT,
+  Tick?: OverrideT,
+  TickBar?: OverrideT,
+  Thumb?: OverrideT,
+  InnerThumb?: OverrideT,
+  ThumbValue?: OverrideT,
 };
 
 export type PropsT = {

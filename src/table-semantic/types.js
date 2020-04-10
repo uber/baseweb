@@ -10,14 +10,14 @@ import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 
 export type OverridesT = {
-  Root?: OverrideT<*>,
-  Table?: OverrideT<*>,
-  TableHead?: OverrideT<*>,
-  TableHeadRow?: OverrideT<*>,
-  TableHeadCell?: OverrideT<*>,
-  TableBody?: OverrideT<*>,
-  TableBodyRow?: OverrideT<*>,
-  TableBodyCell?: OverrideT<*>,
+  Root?: OverrideT,
+  Table?: OverrideT,
+  TableHead?: OverrideT,
+  TableHeadRow?: OverrideT,
+  TableHeadCell?: OverrideT,
+  TableBody?: OverrideT,
+  TableBodyRow?: OverrideT,
+  TableBodyCell?: OverrideT,
 };
 
 export type TablePropsT = {
@@ -29,10 +29,10 @@ export type TablePropsT = {
 
 export type BuilderOverridesT = {
   ...OverridesT,
-  TableHeadCellSortable?: OverrideT<*>,
-  SortAscIcon?: OverrideT<*>,
-  SortDescIcon?: OverrideT<*>,
-  SortNoneIcon?: OverrideT<*>,
+  TableHeadCellSortable?: OverrideT,
+  SortAscIcon?: OverrideT,
+  SortDescIcon?: OverrideT,
+  SortNoneIcon?: OverrideT,
 };
 
 export type TableBuilderPropsT<RowT> = {
@@ -46,12 +46,12 @@ export type TableBuilderPropsT<RowT> = {
 };
 
 export type ColumnOverridesT = {
-  TableHeadCell?: OverrideT<*>,
-  TableHeadCellSortable?: OverrideT<*>,
-  TableBodyCell?: OverrideT<*>,
-  SortAscIcon?: OverrideT<*>,
-  SortDescIcon?: OverrideT<*>,
-  SortNoneIcon?: OverrideT<*>,
+  TableHeadCell?: OverrideT,
+  TableHeadCellSortable?: OverrideT,
+  TableBodyCell?: OverrideT,
+  SortAscIcon?: OverrideT,
+  SortDescIcon?: OverrideT,
+  SortNoneIcon?: OverrideT,
 };
 
 export type TableBuilderColumnPropsT<RowT> = {

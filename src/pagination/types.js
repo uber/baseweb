@@ -33,12 +33,12 @@ export type StateReducerFnT = (
 ) => StatefulContainerStateT;
 
 export type OverridesT = {
-  Root?: OverrideT<*>,
-  PrevButton?: OverrideT<*>,
-  NextButton?: OverrideT<*>,
-  MaxLabel?: OverrideT<*>,
-  DropdownContainer?: OverrideT<*>,
-  Select?: OverrideT<*>,
+  Root?: OverrideT,
+  PrevButton?: OverrideT,
+  NextButton?: OverrideT,
+  MaxLabel?: OverrideT,
+  DropdownContainer?: OverrideT,
+  Select?: OverrideT,
 };
 
 export type PaginationPropsT = CallbacksT & {

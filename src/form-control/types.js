@@ -16,11 +16,11 @@ export type FormControlStateT = {|
 export type FormControlPropsT = {
   overrides: {
     /** Customizes the label element. */
-    Label?: OverrideT<*>,
+    Label?: OverrideT,
     /** Customizes the caption element. */
-    Caption?: OverrideT<*>,
+    Caption?: OverrideT,
     /** Customizes the container element. */
-    ControlContainer?: OverrideT<*>,
+    ControlContainer?: OverrideT,
   },
   /** A label rendered above the input field. */
   label: ?(React.Node | ((props: {}) => React.Node)),

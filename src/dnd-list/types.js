@@ -23,12 +23,12 @@ export type StateReducerT = (
 ) => StateT;
 
 export type OverridesT = {
-  Root?: OverrideT<SharedStylePropsArgT>,
-  List?: OverrideT<SharedStylePropsArgT>,
-  Item?: OverrideT<SharedStylePropsArgT>,
-  DragHandle?: OverrideT<SharedStylePropsArgT>,
-  CloseHandle?: OverrideT<SharedStylePropsArgT>,
-  Label?: OverrideT<SharedStylePropsArgT>,
+  Root?: OverrideT,
+  List?: OverrideT,
+  Item?: OverrideT,
+  DragHandle?: OverrideT,
+  CloseHandle?: OverrideT,
+  Label?: OverrideT,
 };
 
 type ChildrenT = Array<React.Node>;

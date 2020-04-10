@@ -40,7 +40,7 @@ export type TimezonePickerPropsT = {
   mapLabels?: OptionT => React.Node,
   /** Callback for when the timezone selection changes. */
   onChange?: (value: ?TimezoneT) => mixed,
-  overrides?: {Select?: OverrideT<*>},
+  overrides?: {Select?: OverrideT},
   /**
    * Optional value that can be provided to fully control the component. If not provided,
    * TimezonePicker will manage state internally.

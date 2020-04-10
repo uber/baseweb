@@ -20,10 +20,10 @@ export type StyledArtworkContainerPropsT = {$artworkSize: ArtworkSizesT};
 export type StyledContentPropsT = {$mLeft: boolean, $sublist: boolean};
 
 export type OverridesT = {|
-  Root?: OverrideT<{}>,
-  ArtworkContainer?: OverrideT<StyledArtworkContainerPropsT>,
-  Content?: OverrideT<StyledContentPropsT>,
-  EndEnhancerContainer?: OverrideT<{}>,
+  Root?: OverrideT,
+  ArtworkContainer?: OverrideT,
+  Content?: OverrideT,
+  EndEnhancerContainer?: OverrideT,
 |};
 
 export type PropsT = {|

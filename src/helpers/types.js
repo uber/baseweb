@@ -14,8 +14,8 @@ export type BaseProviderPropsT = {
    should be added at the top level of an application. */
   children: ?React.Node,
   overrides?: {
-    AppContainer?: OverrideT<{}>,
-    LayersContainer?: OverrideT<{}>,
+    AppContainer?: OverrideT,
+    LayersContainer?: OverrideT,
   },
   /** The base theme to be used in the application. */
   theme: ThemeT,
