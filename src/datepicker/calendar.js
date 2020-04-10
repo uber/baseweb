@@ -111,11 +111,20 @@ export default class Calendar extends React.Component<
       this.focusCalendar();
     }
 
+    // If this.props.value changes and if calender is not focused, then update highlightedValue to the startDate of this.props.value.
+    // The second part of the condition is needed because, without it, the update gets called even on onDayClick event.
+    // When selecting range Dates, this leads to the endDate of Range not being rendered properly.
     if (prevProps.value !== this.props.value && !this.state.focused) {
+      // Check if this.props.value is Date.
       if (this.props.value instanceof Date) {
         this.setState({highlightedDate: this.props.value});
-      } else if (this.props.value instanceof Array) {
+        // Check if this.props.value is Date array and if it is not an empty array.
+      } else if (
+        this.props.value instanceof Array &&
+        this.props.value[0] instanceof Date
+      ) {
         this.setState({highlightedDate: this.props.value[0]});
+        // If props.value not given properly formatted value, set highlightedDate to today's date.
       } else {
         this.setState({highlightedDate: new Date()});
       }
