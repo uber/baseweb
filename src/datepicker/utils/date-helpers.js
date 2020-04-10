@@ -36,6 +36,15 @@ class DateHelpers<T> {
     const msDiff = this.adapter.getDiff(fromDate, toDate);
     return msDiff / 864e5;
   };
+  isOutOfBounds: (T, {minDate: T, maxDate: T}) => boolean = (
+    day,
+    {minDate, maxDate} = {},
+  ) => {
+    return (
+      (!!minDate && this.differenceInCalendarDays(day, minDate) < 0) ||
+      (!!maxDate && this.differenceInCalendarDays(day, maxDate) > 0)
+    );
+  };
 }
 
 export default DateHelpers;

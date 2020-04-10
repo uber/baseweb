@@ -162,19 +162,19 @@ describe('Datepicker utils', () => {
     describe('if both minDate and maxDate are provided', () => {
       test('should show if the date is above the max or below the min', () => {
         expect(
-          isOutOfBounds(new Date(2020, 0, 3), {
+          helpers.isOutOfBounds(new Date(2020, 0, 3), {
             minDate,
             maxDate,
           }),
         ).toEqual(false);
         expect(
-          isOutOfBounds(new Date(2020, 0, 5), {
+          helpers.isOutOfBounds(new Date(2020, 0, 5), {
             minDate,
             maxDate,
           }),
         ).toEqual(true);
         expect(
-          isOutOfBounds(new Date(2020, 0, 1), {
+          helpers.isOutOfBounds(new Date(2020, 0, 1), {
             minDate,
             maxDate,
           }),
