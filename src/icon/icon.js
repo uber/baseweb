@@ -15,13 +15,17 @@ function Icon(props: IconPropsT, ref) {
 
   const [Svg, overrideProps] = getOverrides(overrides.Svg, StyledSvg);
 
+  const sharedProps = {
+    $size: size,
+    $color: color,
+  };
+
   return (
     <Svg
       data-baseweb="icon"
       ref={ref}
-      $size={size}
-      $color={color}
       {...restProps}
+      {...sharedProps}
       {...overrideProps}
     >
       {title ? <title>{title}</title> : null}
