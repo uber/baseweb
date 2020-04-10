@@ -17,4 +17,14 @@ module.exports = {
     'deprecated-component-api': DeprecatedComponentAPI,
     'no-deep-imports': NoDeepImports,
   },
+  configs: {
+    recommended: {
+      plugins: ['baseui'],
+      rules: {
+        'deprecated-theme-api': ['warn'],
+        'deprecated-component-api': ['warn'],
+        'no-deep-imports': ['warn'],
+      },
+    },
+  },
 };

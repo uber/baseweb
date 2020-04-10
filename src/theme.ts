@@ -669,7 +669,7 @@ interface Animation {
   easeInOutCurve: string;
 }
 
-interface Border {
+export interface Border {
   borderColor: string;
   borderStyle: string;
   borderWidth: string;

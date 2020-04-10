@@ -10,14 +10,18 @@ const RootWithStyle = withStyle(StyledInputContainer, props => {
     $isFocused,
     $theme: {colors, sizing},
   } = props;
+  const borderColor = $disabled
+    ? colors.borderAlt
+    : $error
+    ? colors.borderError
+    : $isFocused
+    ? 'darkseagreen'
+    : colors.border;
   return {
-    borderColor: $disabled
-      ? colors.borderAlt
-      : $error
-      ? colors.borderError
-      : $isFocused
-      ? 'darkseagreen'
-      : colors.border,
+    borderLeftColor: borderColor,
+    borderRightColor: borderColor,
+    borderTopColor: borderColor,
+    borderBottomColor: borderColor,
     boxShadow: `0 0 ${sizing.scale100} ${
       $disabled
         ? 'transparent'

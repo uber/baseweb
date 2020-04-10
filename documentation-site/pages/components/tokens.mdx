@@ -32,7 +32,9 @@ export function ColorPreview({name, value, displayValue}) {
       style={{
         display: 'flex',
         alignItems: 'center',
-        borderBottom: `solid 1px ${value}`,
+        borderBottomStyle: 'solid',
+        borderBottomWidth: '1px',
+        borderBottomColor: `${value}`,
       }}
     >
       <div

@@ -43,8 +43,14 @@ const tabContentStyle = ({$theme}) => ({
   borderRightWidth: '2px',
   borderBottomWidth: '2px',
   borderTopWidth: '0',
-  borderStyle: 'dashed',
-  borderColor: $theme.colors.mono600,
+  borderLeftStyle: 'dashed',
+  borderRightStyle: 'dashed',
+  borderTopStyle: 'dashed',
+  borderBottomStyle: 'dashed',
+  borderLeftColor: $theme.colors.mono600,
+  borderRightColor: $theme.colors.mono600,
+  borderTopColor: $theme.colors.mono600,
+  borderBottomColor: $theme.colors.mono600,
 });
 
 const content = ['Tab Content 1', 'Tab Content 2', 'Tab Content 3'];

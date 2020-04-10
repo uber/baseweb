@@ -10,16 +10,27 @@ import {styled} from '../styles/index.js';
 import type {StylePropsT} from './types.js';
 
 export const StyledFileDragAndDrop = styled<StylePropsT>('div', props => {
+  const borderColor = props.$isDragActive
+    ? props.$theme.colors.fileUploaderBorderColorActive
+    : props.$theme.colors.fileUploaderBorderColorDefault;
+  const borderStyle = props.$afterFileDrop ? 'none' : 'dashed';
   return ({
     alignItems: 'center',
     backgroundColor: props.$isDragActive
       ? props.$theme.colors.fileUploaderBackgroundColorActive
       : props.$theme.colors.fileUploaderBackgroundColor,
-    borderColor: props.$isDragActive
-      ? props.$theme.colors.fileUploaderBorderColorActive
-      : props.$theme.colors.fileUploaderBorderColorDefault,
-    borderStyle: props.$afterFileDrop ? 'none' : 'dashed',
-    borderWidth: props.$theme.sizing.scale0,
+    borderLeftColor: borderColor,
+    borderRightColor: borderColor,
+    borderTopColor: borderColor,
+    borderBottomColor: borderColor,
+    borderLeftStyle: borderStyle,
+    borderRightStyle: borderStyle,
+    borderTopStyle: borderStyle,
+    borderBottomStyle: borderStyle,
+    borderLeftWidth: props.$theme.sizing.scale0,
+    borderRightWidth: props.$theme.sizing.scale0,
+    borderTopWidth: props.$theme.sizing.scale0,
+    borderBottomWidth: props.$theme.sizing.scale0,
     boxSizing: 'border-box',
     display: 'flex',
     flexDirection: 'column',

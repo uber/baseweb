@@ -12,14 +12,18 @@ export default () => (
             $isFocused,
             $theme: {colors, sizing},
           } = props;
+          const border = $disabled
+            ? colors.borderAlt
+            : $error
+            ? colors.borderError
+            : $isFocused
+            ? 'darkseagreen'
+            : colors.border;
           return {
-            borderColor: $disabled
-              ? colors.borderAlt
-              : $error
-              ? colors.borderError
-              : $isFocused
-              ? 'darkseagreen'
-              : colors.border,
+            borderLeftColor: border,
+            borderRightColor: border,
+            borderTopColor: border,
+            borderBottomColor: border,
             boxShadow: `0 0 ${sizing.scale100} ${
               $disabled
                 ? 'transparent'

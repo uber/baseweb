@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import {H2} from '../components/markdown-elements';
-import {useStyletron} from 'baseui/styles';
+import {useStyletron, expandBorderStyles} from 'baseui/styles';
 
 import * as thumbnails from '../components/thumbs';
 
@@ -268,8 +268,11 @@ function Thumbnail({children, href}) {
     <a
       href={href}
       className={css({
-        ...theme.borders.border300,
-        borderColor: theme.colors.border,
+        ...expandBorderStyles(theme.borders.border300),
+        borderLeftColor: theme.colors.border,
+        borderRightColor: theme.colors.border,
+        borderTopColor: theme.colors.border,
+        borderBottomColor: theme.colors.border,
         display: 'flex',
         flexDirection: 'column',
         marginRight: theme.sizing.scale800,
@@ -279,11 +282,33 @@ function Thumbnail({children, href}) {
         transitionDuration: theme.animation.timing100,
         transitionTimingFunction: theme.animation.easeInOutCurve,
         ':hover': {
-          border: `solid 1px ${theme.colors.borderFocus}`,
+          borderLeftWidth: '1px',
+          borderRightWidth: '1px',
+          borderTopWidth: '1px',
+          borderBottomWidth: '1px',
+          borderLeftStyle: 'solid',
+          borderTopStyle: 'solid',
+          borderRightStyle: 'solid',
+          borderBottomStyle: 'solid',
+          borderLeftColor: `${theme.colors.borderFocus}`,
+          borderTopColor: `${theme.colors.borderFocus}`,
+          borderRightColor: `${theme.colors.borderFocus}`,
+          borderBottomColor: `${theme.colors.borderFocus}`,
         },
         ':focus': {
           outline: 'none',
-          border: `solid 1px ${theme.colors.borderFocus}`,
+          borderLeftWidth: '1px',
+          borderRightWidth: '1px',
+          borderTopWidth: '1px',
+          borderBottomWidth: '1px',
+          borderLeftStyle: 'solid',
+          borderTopStyle: 'solid',
+          borderRightStyle: 'solid',
+          borderBottomStyle: 'solid',
+          borderLeftColor: `${theme.colors.borderFocus}`,
+          borderTopColor: `${theme.colors.borderFocus}`,
+          borderRightColor: `${theme.colors.borderFocus}`,
+          borderBottomColor: `${theme.colors.borderFocus}`,
         },
       })}
     >
@@ -292,11 +317,14 @@ function Thumbnail({children, href}) {
           ...theme.typography.font100,
           fontFamily:
             'SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace',
-          ...theme.borders.border300,
-          borderColor: theme.colors.border,
-          borderTop: 0,
-          borderLeft: 0,
-          borderRight: 0,
+          ...expandBorderStyles(theme.borders.border300),
+          borderLeftColor: theme.colors.border,
+          borderRightColor: theme.colors.border,
+          borderTopColor: theme.colors.border,
+          borderBottomColor: theme.colors.border,
+          borderTopWidth: 0,
+          borderLeftWidth: 0,
+          borderRightWidth: 0,
           color: `${theme.colors.contentSecondary}`,
           paddingTop: theme.sizing.scale300,
           paddingBottom: theme.sizing.scale300,
