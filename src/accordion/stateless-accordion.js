@@ -15,7 +15,7 @@ function StatelessAccordion({
   children,
   disabled,
   expanded,
-  onChange = () => {},
+  onChange,
   overrides = {},
   renderAll,
   renderPanelContent,
@@ -30,23 +30,27 @@ function StatelessAccordion({
           disabled: child.props.disabled || disabled,
           expanded: expanded.includes(key),
           key,
-          onChange: () => {
-            let next;
-            if (accordion) {
-              if (expanded.includes(key)) {
-                next = [];
-              } else {
-                next = [key];
-              }
-            } else {
-              if (expanded.includes(key)) {
-                next = expanded.filter(k => k !== key);
-              } else {
-                next = [...expanded, key];
-              }
-            }
-            onChange({key, expanded: next});
-          },
+          onChange:
+            // Don't bother constructing the wrapper function if no one is listening
+            onChange && typeof onChange === 'function'
+              ? () => {
+                  let next;
+                  if (accordion) {
+                    if (expanded.includes(key)) {
+                      next = [];
+                    } else {
+                      next = [key];
+                    }
+                  } else {
+                    if (expanded.includes(key)) {
+                      next = expanded.filter(k => k !== key);
+                    } else {
+                      next = [...expanded, key];
+                    }
+                  }
+                  onChange({key, expanded: next});
+                }
+              : onChange,
           overrides: child.props.overrides || PanelOverrides,
           renderAll,
           renderPanelContent,
