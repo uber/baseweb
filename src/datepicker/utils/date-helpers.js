@@ -32,6 +32,10 @@ class DateHelpers<T> {
       this.adapter.getMonth(fromDate) - this.adapter.getMonth(toDate);
     return yearDiff * 12 + monthDiff;
   };
+  differenceInCalendarDays: (T, T) => number = (fromDate, toDate) => {
+    const msDiff = this.adapter.getDiff(fromDate, toDate);
+    return msDiff / 864e5;
+  };
 }
 
 export default DateHelpers;

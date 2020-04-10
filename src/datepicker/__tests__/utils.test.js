@@ -26,6 +26,7 @@ import {
   applyDateToTime,
 } from '../utils/index.js';
 import differenceInCalendarMonths from 'date-fns/differenceInCalendarMonths';
+import differenceInCalendarDays from 'date-fns/differenceInCalendarDays';
 import {es} from 'date-fns/locale/index.js';
 import DateHelpers from '../utils/date-helpers';
 import adapter from '../utils/date-fns-adapter';
@@ -52,6 +53,28 @@ describe('Datepicker utils', () => {
         helpers.differenceInCalendarMonths(
           new Date(2020, 5, 1),
           new Date(2020, 5, 10),
+        ),
+      ).toEqual(0);
+    });
+  });
+  describe('differenceInCalendarDays', () => {
+    test('should return different in calendar days', () => {
+      expect(
+        helpers.differenceInCalendarDays(
+          new Date(2020, 5, 2),
+          new Date(2020, 5, 3),
+        ),
+      ).toEqual(-1);
+      expect(
+        helpers.differenceInCalendarDays(
+          new Date(2020, 5, 2),
+          new Date(2020, 5, 1),
+        ),
+      ).toEqual(1);
+      expect(
+        helpers.differenceInCalendarDays(
+          new Date(2020, 5, 1),
+          new Date(2020, 5, 1),
         ),
       ).toEqual(0);
     });
