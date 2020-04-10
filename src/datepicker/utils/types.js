@@ -23,7 +23,7 @@ export type DateIOAdapter<T> = {
 
   isNull(value?: T): boolean,
   isValid(value: DateInput<T>): boolean,
-  getDiff: Comparison<T>,
+  getDiff: (from: T, to: T) => number,
   isEqual: Comparison<T>,
   isSameDay: Comparison<T>,
   isSameMonth: Comparison<T>,
