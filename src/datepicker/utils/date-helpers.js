@@ -36,7 +36,34 @@ class DateHelpers<T> {
     const msDiff = this.adapter.getDiff(fromDate, toDate);
     return msDiff / 864e5;
   };
-  isOutOfBounds: (T, {minDate: T, maxDate: T}) => boolean = (
+  isDayDisabled: (
+    T,
+    {
+      minDate: ?T,
+      maxDate: ?T,
+      excludeDates: ?Array<T>,
+      includeDates: ?Array<T>,
+      filterDate: ?(day: T) => boolean,
+    },
+  ) => boolean = (
+    day,
+    {minDate, maxDate, excludeDates, includeDates, filterDate} = {},
+  ) => {
+    return (
+      this.isOutOfBounds(day, {minDate, maxDate}) ||
+      (excludeDates &&
+        excludeDates.some(excludeDate =>
+          this.adapter.isSameDay(day, excludeDate),
+        )) ||
+      (includeDates &&
+        !includeDates.some(includeDate =>
+          this.adapter.isSameDay(day, includeDate),
+        )) ||
+      (filterDate && !filterDate(day)) ||
+      false
+    );
+  };
+  isOutOfBounds: (T, {minDate: ?T, maxDate: ?T}) => boolean = (
     day,
     {minDate, maxDate} = {},
   ) => {

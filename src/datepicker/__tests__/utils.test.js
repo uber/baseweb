@@ -188,7 +188,7 @@ describe('Datepicker utils', () => {
     describe('if maxDate and minDate are provided', () => {
       test('should return true if the date is outside of the max and min', () => {
         expect(
-          isDayDisabled(new Date(2020, 0, 5), {
+          helpers.isDayDisabled(new Date(2020, 0, 5), {
             minDate,
             maxDate,
             excludeDates: undefined,
@@ -197,7 +197,7 @@ describe('Datepicker utils', () => {
           }),
         ).toEqual(true);
         expect(
-          isDayDisabled(new Date(2020, 0, 3), {
+          helpers.isDayDisabled(new Date(2020, 0, 3), {
             minDate,
             maxDate,
             excludeDates: undefined,
@@ -210,7 +210,7 @@ describe('Datepicker utils', () => {
     describe('if excludedDates is provided', () => {
       test('should return true if the date is in excludedDates', () => {
         expect(
-          isDayDisabled(new Date(2020, 0, 3), {
+          helpers.isDayDisabled(new Date(2020, 0, 3), {
             minDate: undefined,
             maxDate: undefined,
             excludeDates: [new Date(2020, 0, 3)],
@@ -219,7 +219,7 @@ describe('Datepicker utils', () => {
           }),
         ).toEqual(true);
         expect(
-          isDayDisabled(new Date(2020, 0, 4), {
+          helpers.isDayDisabled(new Date(2020, 0, 4), {
             minDate: undefined,
             maxDate: undefined,
             excludeDates: [new Date(2020, 0, 3)],
@@ -232,7 +232,7 @@ describe('Datepicker utils', () => {
     describe('if includedDates is provided', () => {
       test('should return true if the date is not in includedDates', () => {
         expect(
-          isDayDisabled(new Date(2020, 0, 3), {
+          helpers.isDayDisabled(new Date(2020, 0, 3), {
             minDate: undefined,
             maxDate: undefined,
             excludeDates: undefined,
@@ -241,7 +241,7 @@ describe('Datepicker utils', () => {
           }),
         ).toEqual(true);
         expect(
-          isDayDisabled(new Date(2020, 0, 3), {
+          helpers.isDayDisabled(new Date(2020, 0, 3), {
             minDate: undefined,
             maxDate: undefined,
             excludeDates: undefined,
@@ -254,7 +254,7 @@ describe('Datepicker utils', () => {
     describe('if filterDate is provided', () => {
       test('should return true if filterDate returns false', () => {
         expect(
-          isDayDisabled(new Date(2020, 0, 3), {
+          helpers.isDayDisabled(new Date(2020, 0, 3), {
             minDate: undefined,
             maxDate: undefined,
             excludeDates: undefined,
@@ -265,7 +265,7 @@ describe('Datepicker utils', () => {
           }),
         ).toEqual(true);
         expect(
-          isDayDisabled(new Date(2020, 0, 3), {
+          helpers.isDayDisabled(new Date(2020, 0, 3), {
             minDate: undefined,
             maxDate: undefined,
             excludeDates: undefined,
