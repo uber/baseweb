@@ -42,14 +42,8 @@ export default (context: vscode.ExtensionContext) => {
           : coloringStyle === 'underline'
           ? '0 0 2px'
           : '0',
-      borderLeftStyle: 'solid',
-      borderRightStyle: 'solid',
-      borderTopStyle: 'solid',
-      borderBottomStyle: 'solid',
-      borderLeftColor: colorVal,
-      borderRightColor: colorVal,
-      borderTopColor: colorVal,
-      borderBottomColor: colorVal,
+      borderStyle: 'solid',
+      borderColor: colorVal,
       backgroundColor:
         coloringStyle === 'background' ? colorVal : 'transparent',
       ...(coloringStyle === 'background' && colorVal.startsWith('#')
