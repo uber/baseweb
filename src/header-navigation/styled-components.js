@@ -20,7 +20,9 @@ export const Root = styled<{}>('nav', props => {
     display: 'flex',
     paddingBottom: scale500,
     paddingTop: scale500,
-    borderBottom: `1px solid ${border}`,
+    borderBottomWidth: '1px',
+    borderBottomStyle: 'solid',
+    borderBottomColor: `${border}`,
     backgroundColor: $theme.colors.headerNavigationFill,
   };
 });

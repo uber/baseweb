@@ -82,6 +82,40 @@ export type AccordionPropsT = {
   renderAll?: boolean,
 };
 
+export type StatelessAccordionOnChangeHandlerT = ({
+  expanded: Array<React.Key>,
+  key: React.Key,
+}) => mixed;
+
+export type StatelessAccordionPropsT = {
+  /** Determines how many panels may be expanded at a time. If set to
+   * true it will collapse a current panel when a new panel is expanded.
+   * If set to false more than one panel may be expanded at a time. */
+  accordion?: boolean,
+  /** Accordion expandable items. See Panel API below for reference. */
+  children: ChildrenT,
+  /** If set to true all its children panels will be disabled from toggling. */
+  disabled?: boolean,
+  /** List of Panel keys which are expanded. */
+  expanded: Array<React.Key>,
+  /** Handler called each time a panel is toggled. */
+  onChange?: StatelessAccordionOnChangeHandlerT,
+  overrides?: AccordionOverridesT<
+    $Diff<SharedStylePropsArgT, {$expanded?: ?boolean}>,
+  > &
+    PanelOverridesT<SharedStylePropsArgT>,
+  /**
+   * Allows users to render all child content whether a panel is expanded or not
+   * for SEO purposed
+   */
+  renderPanelContent?: boolean,
+  /**
+   * Allows users to render all child content whether a panel is expanded or not
+   * for SEO purposed
+   */
+  renderAll?: boolean,
+};
+
 type SharedPanelPropsT = {
   /** The content visible when Panel is expanded. */
   children: React.Node,

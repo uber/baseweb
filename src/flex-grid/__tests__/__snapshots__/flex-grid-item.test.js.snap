@@ -138,14 +138,12 @@ exports[`FlexGridItem renders: with default styles 1`] = `
             <div
               data-baseweb="flex-grid-item"
               styled-component="true"
-              test-style={
-                Object {
-                  "flexGrow": 1,
-                  "marginBottom": 0,
-                  "marginRight": 0,
-                  "width": "calc((100% - 0px) / 1 - .5px)",
-                }
-              }
+              test-style="{
+  \\"flexGrow\\": 1,
+  \\"width\\": \\"calc((100% - 0px) / 1 - .5px)\\",
+  \\"marginRight\\": 0,
+  \\"marginBottom\\": 0
+}"
             />
           </MockStyledComponent>
         </ForwardRef>
@@ -214,15 +212,13 @@ exports[`FlexGridItem renders: with overridden styles 1`] = `
             <div
               data-baseweb="flex-grid-item"
               styled-component="true"
-              test-style={
-                Object {
-                  "color": "red",
-                  "flexGrow": 1,
-                  "marginBottom": 0,
-                  "marginRight": 0,
-                  "width": "calc((100% - 0px) / 1 - .5px)",
-                }
-              }
+              test-style="{
+  \\"flexGrow\\": 1,
+  \\"width\\": \\"calc((100% - 0px) / 1 - .5px)\\",
+  \\"marginRight\\": 0,
+  \\"marginBottom\\": 0,
+  \\"color\\": \\"red\\"
+}"
             />
           </MockStyledComponent>
         </ForwardRef>

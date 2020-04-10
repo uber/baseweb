@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import {Checkbox} from 'baseui/checkbox';
+import {expandBorderStyles} from 'baseui/styles';
 
 export default () => {
   const [checked, setChecked] = React.useState(true);
@@ -11,7 +12,7 @@ export default () => {
       overrides={{
         Root: {
           style: ({$theme}) => ({
-            ...$theme.borders.border300,
+            ...expandBorderStyles($theme.borders.border300),
           }),
         },
         Label: {
@@ -21,7 +22,10 @@ export default () => {
         },
         Checkmark: {
           style: ({$checked, $theme}) => ({
-            borderColor: $theme.colors.warning,
+            borderLeftColor: $theme.colors.warning,
+            borderRightColor: $theme.colors.warning,
+            borderTopColor: $theme.colors.warning,
+            borderBottomColor: $theme.colors.warning,
             backgroundColor: $checked
               ? $theme.colors.warning
               : null,

@@ -152,7 +152,7 @@ However, before you go down either of these roads, you should know that Base Web
 
 ### `createTheme`
 
-As you might expect, `createTheme` is a factory function for Base Web compliant theme objects. We use `createTheme` to construct our default light and dark themes.
+As you might expect, `createTheme` is a factory function for Base Web compliant theme objects. We provide it as a utility for you to quickly create a custom theme.
 
 ```js
 import {createTheme} from 'baseui';
@@ -164,13 +164,12 @@ const theme = createTheme(/* primitives */, /* overrides */);
 
 Our theme object has a lot of properties. Most of these properties are assigned to a subset of reoccurring values. We call these reoccurring values, theme building `primitives`. Primitives are made up mostly of colors, (`primary`, `accent`, etc), gradients of those colors (`primary100`, `primary200`, etc) as well as a `primaryFontFamily`. To see the exact shape for `primitives`, reference the [Flow](https://github.com/uber/baseweb/blob/master/src/themes/types.js#L534) or [Typescript](https://github.com/uber/baseweb/blob/master/src/theme.ts#L668) definitions.
 
-These are passed as the first (and only required) argument for `createTheme`.
+These are passed as the first argument to `createTheme`.
 
 ```js
-import {createTheme, lightThemePrimitives} from 'baseui';
+import {createTheme} from 'baseui';
 
 const primitives = {
-  ...lightThemePrimitives,
   accent: '#F127E4', // hot pink
   accent50: '#FDEDFC',
   accent100: '#FCD3F9',
@@ -185,7 +184,9 @@ const primitives = {
 const theme = createTheme(primitives);
 ```
 
-`createTheme` will use these primitive values to fill out all of the required properties on the theme object. Note, you don't have to assign every primitive from scratch. You can modify our default primitives before passing them into `createTheme`, as we do in the example above. `createTheme` then essentially _maps_ this small set of `primitives` to the much larger set of theme properties in a sensible manner.
+`createTheme` will use these primitive values to fill out all of the required properties on your theme object. Note, you don't have to assign every primitive right away. The primitives you pass into `createTheme` will override our default primitives so you can gradually build up your theme.
+
+Once you've passed some primitives in, `createTheme` _maps_ this small set of `primitives` to a much larger set of theme properties in a sensible manner.
 
 But what if the default _mapping_ (of primitives to theme properties) is not quite what you want?
 
@@ -196,10 +197,9 @@ The second parameter for createTheme is an `overrides` object.
 The `overrides` object will be deep-merged with the initial result of mapping `primitives` to all of the theme properties. `overrides` is just a convenient shortcut for deep-merging assignments onto your theme object.
 
 ```js
-import {createTheme, lightThemePrimitives} from 'baseui';
+import {createTheme} from 'baseui';
 
 const primitives = {
-  ...lightThemePrimitives,
   accent: '#F127E4', // hot pink
   accent50: '#FDEDFC',
   accent100: '#FCD3F9',
@@ -224,22 +224,78 @@ const overrides = {
   },
 };
 
-const theme = createTheme(lightThemePrimitives, overrides);
+const theme = createTheme(primitives, overrides);
 ```
 
 In this example, we first reassign the accent color on our theme primitives to hot pink. Then we use `overrides` to re-map the secondary button colors to use our hot pink accent colors rather than the default primary colors.
 
-Between `parameters` and `overrides`, you should have a fair amount of control over theme object creation. Ideally, you can use `createTheme` to quickly construct a Base Web compliant theme object.
+### `createDarkTheme`
+
+One of the main reasons to have a dynamic theme is to toggle your app between light and dark modes. `createTheme` will by default map `primitives` to theme colors in a way suited to light themes. If you want to create a custom theme on top of our dark theme you can instead use the `createDarkTheme` function.
+
+```js
+import {createDarkTheme} from 'baseui';
+
+const primitives = {
+  accent: '#F127E4', // hot pink
+  accent50: '#FDEDFC',
+  accent100: '#FCD3F9',
+  accent200: '#F89FF3',
+  accent300: '#F45AEA',
+  accent400: '#F127E4',
+  accent500: '#B71DAD',
+  accent600: '#901788',
+  accent700: '#600F5B',
+};
+
+const darkTheme = createDarkTheme(primitives);
+```
+
+This works exactly the same way as `createTheme`, but `createDarkTheme` will map all of your `primitives` to theme properties in a way better suited to dark themes. Note, `createDarkTheme` also accepts an optional `overrides` object as the second argument.
+
+```js
+import {createDarkTheme} from 'baseui';
+
+const primitives = {
+  accent: '#F127E4', // hot pink
+  accent50: '#FDEDFC',
+  accent100: '#FCD3F9',
+  accent200: '#F89FF3',
+  accent300: '#F45AEA',
+  accent400: '#F127E4',
+  accent500: '#B71DAD',
+  accent600: '#901788',
+  accent700: '#600F5B',
+};
+
+const overrides = {
+  colors: {
+    buttonSecondaryFill: primitives.accent100,
+    buttonSecondaryText: primitives.accent,
+    buttonSecondaryHover: primitives.accent200,
+    buttonSecondaryActive: primitives.accent300,
+    buttonSecondarySelectedFill: primitives.accent200,
+    buttonSecondarySelectedText: primitives.accent,
+    buttonSecondarySpinnerForeground: primitives.accent700,
+    buttonSecondarySpinnerBackground: primitives.accent300,
+  },
+};
+
+const darkTheme = createDarkTheme(primitives, overrides);
+```
+
+This is equivalent to our earlier `overrides` example, only the result is a dark theme rather than a light theme.
+
+If you aren't sure why this change in mapping is necessary, try creating a dark theme with `createTheme`. You might notice that the colors look somewhat off. This is because, in a typical light theme, things start light and then get darker as they require more attention, whereas, in a dark theme, things start dark and become lighter. We need to know which direction (light/dark) to go when assigning your primitive colors to theme properties. By separating the assignment logic for light and dark theme creation we can better estimate which values to assign to various properties.
 
 ### Customizing Typography
 
 The `primitives` object has an optional property, `primaryFontFamily`, which allows you to set a custom font family string for typography components.
 
 ```js
-import {createTheme, lightThemePrimitives} from 'baseui';
+import {createTheme} from 'baseui';
 
 const primitives = {
-  ...lightThemePrimitives,
   primaryFontFamily: 'Verdana',
 };
 
@@ -251,10 +307,9 @@ In this example, we assign `primaryFontFamily` to the vastly underrated `Verdana
 But what if we wanted to use `Georgia` for Display typography? For this purpose, you would need to use `overrides`.
 
 ```js
-import {createTheme, lightThemePrimitives} from 'baseui';
+import {createTheme} from 'baseui';
 
 const primitives = {
-  ...lightThemePrimitives,
   primaryFontFamily: 'Verdana',
 };
 

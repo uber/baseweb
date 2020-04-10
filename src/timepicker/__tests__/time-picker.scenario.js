@@ -12,8 +12,11 @@ import startOfDay from 'date-fns/startOfDay';
 
 import {TimePicker} from '../index.js';
 import {SIZE} from '../../input/index.js';
+import MomentUtils from '@date-io/moment';
+const momentAdapter = new MomentUtils({});
 
 const MIDNIGHT = startOfDay(new Date(2019, 3, 19));
+const MOMENT_MIDNIGHT = momentAdapter.date(MIDNIGHT);
 const OFF_STEP_TIME = new Date(2019, 3, 19, 1, 11);
 const overrides = {
   Select: {
@@ -44,6 +47,35 @@ const Controlled = ({
       />
       <p data-e2e="hours">hour: {time ? time.getHours() : 'null'}</p>
       <p data-e2e="minutes">minute: {time ? time.getMinutes() : 'null'}</p>
+    </React.Fragment>
+  );
+};
+
+const MomentControlled = ({
+  size = 'default',
+  initialDate,
+  creatable = false,
+  onChange = () => {},
+  ...restProps
+}) => {
+  const [time, setTime] = useState(initialDate);
+  const {getHours, getMinutes} = momentAdapter;
+  return (
+    <React.Fragment>
+      <TimePicker
+        adapter={momentAdapter}
+        value={time}
+        onChange={time => {
+          setTime(time);
+          onChange();
+        }}
+        overrides={overrides}
+        creatable={creatable}
+        size={size}
+        {...restProps}
+      />
+      <p data-e2e="hours">hour: {time ? getHours(time) : 'null'}</p>
+      <p data-e2e="minutes">minute: {time ? getMinutes(time) : 'null'}</p>
     </React.Fragment>
   );
 };
@@ -87,6 +119,14 @@ export default function Scenario() {
           onChange={date => setValue(date)}
           nullable
           placeholder="XX:YY"
+        />
+      </div>
+      <div data-e2e="24-hour-moment">
+        24 hour format(moment)
+        <MomentControlled
+          format="24"
+          step={1800}
+          initialDate={MOMENT_MIDNIGHT}
         />
       </div>
     </div>

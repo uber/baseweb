@@ -57,7 +57,10 @@ export default function CountryPicker(props: CountrySelectPropsT) {
         if (!props.$isFocused && !props.$isPseudoFocused) {
           return {
             ...styleOverride,
-            borderColor: 'transparent',
+            borderLeftColor: 'transparent',
+            borderRightColor: 'transparent',
+            borderTopColor: 'transparent',
+            borderBottomColor: 'transparent',
           };
         }
         return styleOverride;

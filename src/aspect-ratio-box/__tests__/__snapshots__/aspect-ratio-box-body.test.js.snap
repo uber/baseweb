@@ -37,14 +37,12 @@ exports[`AspectRatioBoxBody renders: with default styles 1`] = `
           <div
             data-baseweb="aspect-ratio-box-body"
             styled-component="true"
-            test-style={
-              Object {
-                "bottom": 0,
-                "position": "absolute",
-                "top": 0,
-                "width": "100%",
-              }
-            }
+            test-style="{
+  \\"position\\": \\"absolute\\",
+  \\"width\\": \\"100%\\",
+  \\"top\\": 0,
+  \\"bottom\\": 0
+}"
           />
         </MockStyledComponent>
       </ForwardRef>
@@ -128,15 +126,13 @@ exports[`AspectRatioBoxBody renders: with overridden styles 1`] = `
           <div
             data-baseweb="aspect-ratio-box-body"
             styled-component="true"
-            test-style={
-              Object {
-                "bottom": 0,
-                "marginBottom": "10px",
-                "position": "absolute",
-                "top": 0,
-                "width": "100%",
-              }
-            }
+            test-style="{
+  \\"position\\": \\"absolute\\",
+  \\"width\\": \\"100%\\",
+  \\"top\\": 0,
+  \\"bottom\\": 0,
+  \\"marginBottom\\": \\"10px\\"
+}"
           />
         </MockStyledComponent>
       </ForwardRef>

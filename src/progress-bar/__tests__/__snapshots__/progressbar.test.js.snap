@@ -40,11 +40,9 @@ exports[`Stateless progress bar should render component: Component has correct r
         data-baseweb="progress-bar"
         role="progressbar"
         styled-component="true"
-        test-style={
-          Object {
-            "width": "100%",
-          }
-        }
+        test-style="{
+  \\"width\\": \\"100%\\"
+}"
       >
         <ForwardRef
           $infinite={false}
@@ -59,22 +57,20 @@ exports[`Stateless progress bar should render component: Component has correct r
           >
             <div
               styled-component="true"
-              test-style={
-                Object {
-                  "backgroundColor": null,
-                  "borderBottomLeftRadius": "$theme.sizing.scale0",
-                  "borderBottomRightRadius": "$theme.sizing.scale0",
-                  "borderTopLeftRadius": "$theme.sizing.scale0",
-                  "borderTopRightRadius": "$theme.sizing.scale0",
-                  "height": "4px",
-                  "marginBottom": "$theme.sizing.scale500",
-                  "marginLeft": "$theme.sizing.scale500",
-                  "marginRight": "$theme.sizing.scale500",
-                  "marginTop": "$theme.sizing.scale500",
-                  "overflow": "hidden",
-                  "position": "relative",
-                }
-              }
+              test-style="{
+  \\"marginLeft\\": \\"$theme.sizing.scale500\\",
+  \\"marginRight\\": \\"$theme.sizing.scale500\\",
+  \\"marginTop\\": \\"$theme.sizing.scale500\\",
+  \\"marginBottom\\": \\"$theme.sizing.scale500\\",
+  \\"borderTopLeftRadius\\": \\"$theme.sizing.scale0\\",
+  \\"borderTopRightRadius\\": \\"$theme.sizing.scale0\\",
+  \\"borderBottomRightRadius\\": \\"$theme.sizing.scale0\\",
+  \\"borderBottomLeftRadius\\": \\"$theme.sizing.scale0\\",
+  \\"backgroundColor\\": null,
+  \\"height\\": \\"4px\\",
+  \\"position\\": \\"relative\\",
+  \\"overflow\\": \\"hidden\\"
+}"
             >
               <ForwardRef
                 $infinite={false}
@@ -89,18 +85,16 @@ exports[`Stateless progress bar should render component: Component has correct r
                 >
                   <div
                     styled-component="true"
-                    test-style={
-                      Object {
-                        "backgroundColor": "$theme.colors.accent",
-                        "borderBottomLeftRadius": "$theme.sizing.scale0",
-                        "borderBottomRightRadius": "$theme.sizing.scale0",
-                        "borderTopLeftRadius": "$theme.sizing.scale0",
-                        "borderTopRightRadius": "$theme.sizing.scale0",
-                        "height": "100%",
-                        "transition": "width 0.5s",
-                        "width": "75%",
-                      }
-                    }
+                    test-style="{
+  \\"borderTopLeftRadius\\": \\"$theme.sizing.scale0\\",
+  \\"borderTopRightRadius\\": \\"$theme.sizing.scale0\\",
+  \\"borderBottomRightRadius\\": \\"$theme.sizing.scale0\\",
+  \\"borderBottomLeftRadius\\": \\"$theme.sizing.scale0\\",
+  \\"backgroundColor\\": \\"$theme.colors.accent\\",
+  \\"height\\": \\"100%\\",
+  \\"width\\": \\"75%\\",
+  \\"transition\\": \\"width 0.5s\\"
+}"
                   />
                 </MockStyledComponent>
               </ForwardRef>

@@ -75,9 +75,9 @@ const panelOverrides = {
     style: ({$theme: {colors, sizing, typography}, $expanded}) => ({
       ...typography.font300,
       color: 'inherit',
-      borderBottom: $expanded
-        ? `1px solid ${colors.mono500}`
-        : '1px solid transparent',
+      borderBottomWidth: '1px',
+      borderBottomStyle: 'solid',
+      borderBottomColor: $expanded ? colors.mono500 : 'transparent',
       paddingTop: sizing.scale300,
       paddingBottom: sizing.scale300,
       paddingLeft: sizing.scale500,
