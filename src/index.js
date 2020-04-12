@@ -18,8 +18,6 @@ export {
 } from './styles/index.js';
 export {
   createTheme,
-  createDarkTheme,
-  createLightTheme,
   lightThemePrimitives,
   darkThemePrimitives,
   darkThemeOverrides,
