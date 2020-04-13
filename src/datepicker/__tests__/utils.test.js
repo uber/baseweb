@@ -27,6 +27,8 @@ import {
 } from '../utils/index.js';
 import differenceInCalendarMonths from 'date-fns/differenceInCalendarMonths';
 import differenceInCalendarDays from 'date-fns/differenceInCalendarDays';
+import min from 'date-fns/min';
+import max from 'date-fns/max';
 import {es} from 'date-fns/locale/index.js';
 import DateHelpers from '../utils/date-helpers';
 import adapter from '../utils/date-fns-adapter';
@@ -439,6 +441,26 @@ describe('applyDateToTime', () => {
       expect(applyDateToTime(time, date).toISOString()).toEqual(
         '2000-03-02T16:10:10.000Z',
       );
+    });
+  });
+  describe('min', () => {
+    test('should return the earliest date in the provided array', () => {
+      const dates = [
+        new Date(2020, 0, 3),
+        new Date(2020, 0, 2),
+        new Date(2020, 0, 1),
+      ];
+      expect(min(dates)).toEqual(dates[2]);
+    });
+    describe('min', () => {
+      test('should return the latest date in the provided array', () => {
+        const dates = [
+          new Date(2020, 0, 3),
+          new Date(2020, 0, 2),
+          new Date(2020, 0, 1),
+        ];
+        expect(max(dates)).toEqual(dates[0]);
+      });
     });
   });
 });
