@@ -399,18 +399,23 @@ describe('getEffectiveMaxDate', () => {
   describe('if only maxDate is provider', () => {
     test('should return maxDate', () => {
       const maxDate = new Date(2020, 4, 25);
-      expect(getEffectiveMaxDate({maxDate})).toEqual(maxDate);
+      expect(helpers.getEffectiveMaxDate({maxDate})).toEqual(maxDate);
     });
   });
   describe('if only includeDates is provided', () => {
     test('should return the earliest includeDate', () => {
-      expect(getEffectiveMaxDate({includeDates})).toEqual(includeDates[2]);
+      expect(helpers.getEffectiveMaxDate({includeDates})).toEqual(
+        includeDates[2],
+      );
     });
   });
   describe('if maxDate and includeDates are provided', () => {
     test('should return the earliest includeDate thats on or after the maxDate', () => {
       expect(
-        getEffectiveMaxDate({includeDates, maxDate: new Date(2020, 0, 2)}),
+        helpers.getEffectiveMaxDate({
+          includeDates,
+          maxDate: new Date(2020, 0, 2),
+        }),
       ).toEqual(includeDates[1]);
     });
   });

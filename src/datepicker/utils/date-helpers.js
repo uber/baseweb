@@ -53,21 +53,38 @@ class DateHelpers<T> {
     minDate,
     includeDates,
   }) => {
-    const hasIncludedDates = includeDates && includeDates.length;
     if (includeDates && minDate) {
       let minDates = includeDates.filter(
         includeDate => this.differenceInCalendarDays(includeDate, minDate) >= 0,
       );
-      // $FlowFixMe
       return this.min(minDates);
-    } else if (hasIncludedDates) {
-      // $FlowFixMe
+    } else if (includeDates && includeDates.length) {
       return this.min(includeDates);
-    } else if (!hasIncludedDates && minDate) {
+    } else if (!(includeDates && includeDates.length) && minDate) {
       return minDate;
     }
     // this condition can't ever be reached
-    // it just makes the flow happy
+    // but flow isn't smart enough to see that all of the conditions are covered
+    return this.adapter.date();
+  };
+  getEffectiveMaxDate: ({maxDate?: T, includeDates?: Array<T>}) => T = ({
+    maxDate,
+    includeDates,
+  }) => {
+    if (includeDates && maxDate) {
+      let maxDates = includeDates.filter(
+        includeDate => this.differenceInCalendarDays(includeDate, maxDate) <= 0,
+      );
+      // $FlowFixMe
+      return this.max(maxDates);
+    } else if (includeDates) {
+      // $FlowFixMe
+      return this.max(includeDates);
+    } else if (!includeDates && maxDate) {
+      return maxDate;
+    }
+    // this condition can't ever be reached
+    // but flow isn't smart enough to see that all of the conditions are covered
     return this.adapter.date();
   };
   monthDisabledBefore: (
