@@ -39,6 +39,11 @@ class DateHelpers<T> {
   subMonths: (T, number) => T = (date, months) => {
     return this.adapter.addMonths(date, months * -1);
   };
+  min: (Array<T>) => T = dates => {
+    return dates.reduce((minDate, date) => {
+      return this.adapter.isBefore(date, minDate) ? date : minDate;
+    });
+  };
   monthDisabledBefore: (
     T,
     {minDate: ?T, includeDates: ?Array<T>},

@@ -450,9 +450,9 @@ describe('applyDateToTime', () => {
         new Date(2020, 0, 2),
         new Date(2020, 0, 1),
       ];
-      expect(min(dates)).toEqual(dates[2]);
+      expect(helpers.min(dates)).toEqual(dates[2]);
     });
-    describe('min', () => {
+    describe('max', () => {
       test('should return the latest date in the provided array', () => {
         const dates = [
           new Date(2020, 0, 3),
