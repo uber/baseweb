@@ -189,7 +189,7 @@
     "webpack-cli": "^3.1.0"
   },
   "dependencies": {
-    "@date-io/date-fns": "^2.4.0",
+    "@date-io/date-fns": "^2.5.0",
     "card-validator": "^6.2.0",
     "date-fns": "^2.6.0",
     "glob": "^7.1.6",
