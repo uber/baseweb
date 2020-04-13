@@ -28,6 +28,7 @@ import {
 import differenceInCalendarMonths from 'date-fns/differenceInCalendarMonths';
 import differenceInCalendarDays from 'date-fns/differenceInCalendarDays';
 import min from 'date-fns/min';
+import setDate from 'date-fns/setDate';
 import max from 'date-fns/max';
 import {es} from 'date-fns/locale/index.js';
 import DateHelpers from '../utils/date-helpers';
@@ -471,6 +472,13 @@ describe('applyDateToTime', () => {
         ];
         expect(helpers.max(dates)).toEqual(dates[0]);
       });
+    });
+  });
+  describe('setDate', () => {
+    test('should set the provided day number on the provided date', () => {
+      expect(setDate(new Date(2020, 0, 1), 10)).toEqual(new Date(2020, 0, 10));
+      expect(setDate(new Date(2020, 0, 1), 0)).toEqual(new Date(2019, 11, 31));
+      expect(setDate(new Date(2020, 0, 1), 32)).toEqual(new Date(2020, 1, 1));
     });
   });
 });
