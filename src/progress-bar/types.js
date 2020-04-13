@@ -9,10 +9,10 @@ import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 
 export type OverridesT = {
-  Root?: OverrideT<*>,
-  Bar?: OverrideT<*>,
-  BarProgress?: OverrideT<*>,
-  Label?: OverrideT<*>,
+  Root?: OverrideT,
+  Bar?: OverrideT,
+  BarProgress?: OverrideT,
+  Label?: OverrideT,
 };
 
 export type ProgressBarPropsT = {

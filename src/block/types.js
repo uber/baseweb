@@ -11,7 +11,7 @@ import type {Node, ElementType} from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 
 export type OverridesT = {
-  Block?: OverrideT<*>,
+  Block?: OverrideT,
 };
 
 export type ResponsiveT<T> = T | Array<T>;

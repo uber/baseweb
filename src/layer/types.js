@@ -14,8 +14,8 @@ import type {OverrideT} from '../helpers/overrides.js';
 export type LayersManagerPropsT = {
   children: React.Node,
   overrides?: {
-    AppContainer?: OverrideT<{}>,
-    LayersContainer?: OverrideT<{}>,
+    AppContainer?: OverrideT,
+    LayersContainer?: OverrideT,
   },
   // z-index to be set for all the layers.
   zIndex?: number,

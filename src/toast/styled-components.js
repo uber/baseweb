@@ -147,7 +147,7 @@ export const CloseIconSvg = styled<SharedStylePropsArgT>('svg', props => {
   return {
     ...getSvgStyles(props),
     cursor: 'pointer',
-    width: '16px',
+    width: props.$size || '16px',
     flexShrink: 0,
     outline: props.$isFocusVisible
       ? `3px solid ${props.$theme.colors.accent}`

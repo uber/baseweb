@@ -10,8 +10,8 @@ import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 
 export type RatingOverridesT = {
-  Root?: OverrideT<*>,
-  Item?: OverrideT<*>,
+  Root?: OverrideT,
+  Item?: OverrideT,
 };
 
 export type StarRatingPropsT = {

@@ -10,7 +10,7 @@ import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 
 export type OverridesT = {
-  Svg?: OverrideT<StyledComponentArgsT>,
+  Svg?: OverrideT,
 };
 
 export type SizeT = number | string;

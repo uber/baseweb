@@ -49,11 +49,11 @@ export type NavPropsT = {
   onChange?: ({item: *, event: Event | KeyboardEvent}) => mixed,
   /** Overrides for the internal elements and components */
   overrides: {
-    Root?: OverrideT<*>,
-    NavItemContainer?: OverrideT<*>,
-    NavLink?: OverrideT<*>,
-    NavItem?: OverrideT<*>,
-    SubNavContainer?: OverrideT<*>,
+    Root?: OverrideT,
+    NavItemContainer?: OverrideT,
+    NavLink?: OverrideT,
+    NavItem?: OverrideT,
+    SubNavContainer?: OverrideT,
   },
   /** Optional transform function that is called for each Item */
   mapItem: ?(item: Item) => Item,
@@ -81,8 +81,8 @@ export type NavItemPropsT = SharedPropsT & {
   itemMemoizationComparator?: (NavItemPropsT, NavItemPropsT) => boolean,
   onSelect?: ({item: *, event: Event | KeyboardEvent}) => mixed,
   overrides: {
-    NavLink?: OverrideT<*>,
-    NavItem?: OverrideT<*>,
+    NavLink?: OverrideT,
+    NavItem?: OverrideT,
   },
 };
 

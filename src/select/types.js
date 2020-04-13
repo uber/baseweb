@@ -38,37 +38,37 @@ export type OnChangeParamsT = {
 };
 
 export type OverridesT = {
-  Root?: OverrideT<*>,
-  ControlContainer?: OverrideT<*>,
-  Placeholder?: OverrideT<*>,
-  ValueContainer?: OverrideT<*>,
-  SingleValue?: OverrideT<*>,
-  MultiValue?: OverrideT<*>,
-  InputContainer?: OverrideT<*>,
-  Input?: OverrideT<*>,
-  IconsContainer?: OverrideT<*>,
-  SelectArrow?: OverrideT<*>,
-  ClearIcon?: OverrideT<*>,
-  LoadingIndicator?: OverrideT<*>,
-  SearchIconContainer?: OverrideT<*>,
-  SearchIcon?: OverrideT<*>,
-  Popover?: OverrideT<*>,
-  DropdownContainer?: OverrideT<*>,
-  Dropdown?: OverrideT<*>,
-  DropdownOption?: OverrideT<*>,
-  DropdownListItem?: OverrideT<*>,
-  OptionContent?: OverrideT<*>,
-  StatefulMenu?: OverrideT<*>,
+  Root?: OverrideT,
+  ControlContainer?: OverrideT,
+  Placeholder?: OverrideT,
+  ValueContainer?: OverrideT,
+  SingleValue?: OverrideT,
+  MultiValue?: OverrideT,
+  InputContainer?: OverrideT,
+  Input?: OverrideT,
+  IconsContainer?: OverrideT,
+  SelectArrow?: OverrideT,
+  ClearIcon?: OverrideT,
+  LoadingIndicator?: OverrideT,
+  SearchIconContainer?: OverrideT,
+  SearchIcon?: OverrideT,
+  Popover?: OverrideT,
+  DropdownContainer?: OverrideT,
+  Dropdown?: OverrideT,
+  DropdownOption?: OverrideT,
+  DropdownListItem?: OverrideT,
+  OptionContent?: OverrideT,
+  StatefulMenu?: OverrideT,
 };
 
 export type OverridesDropdownT = {
-  DropdownContainer?: OverrideT<*>,
-  Dropdown?: OverrideT<*>,
+  DropdownContainer?: OverrideT,
+  Dropdown?: OverrideT,
   // Not a styled component
-  DropdownOption?: OverrideT<*>,
-  DropdownListItem?: OverrideT<*>,
-  OptionContent?: OverrideT<*>,
-  StatefulMenu?: OverrideT<*>,
+  DropdownOption?: OverrideT,
+  DropdownListItem?: OverrideT,
+  OptionContent?: OverrideT,
+  StatefulMenu?: OverrideT,
 };
 
 export type PropsT = {
@@ -242,7 +242,7 @@ export type DropdownPropsT = {
 };
 
 export type AutosizeInputOverridesT = {
-  Input?: OverrideT<*>,
+  Input?: OverrideT,
 };
 
 export type AutosizeInputPropsT = {

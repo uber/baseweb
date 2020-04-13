@@ -33,7 +33,7 @@ export type PropsT = {|
    * this handler will trigger.
    */
   onClick?: ClickHandlerT,
-  overrides?: OverridesT<*>,
+  overrides?: OverridesT,
   /**
    * Index or array of indices of the selected Button(s).
    * Primarily for use with controlled components with a `mode` prop defined.
@@ -47,8 +47,8 @@ export type PropsT = {|
   kind?: $Values<typeof KIND>,
 |};
 
-type OverridesT<T> = {
-  Root?: OverrideT<T>,
+type OverridesT = {
+  Root?: OverrideT,
 };
 
 // stateful-group

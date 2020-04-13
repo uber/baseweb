@@ -29,14 +29,14 @@ export type StateReducerT = (
   currentState: StatefulTabsStateT,
 ) => StatefulTabsStateT;
 
-export type TabsOverridesT<T> = {
-  Root?: OverrideT<T>,
-  TabBar?: OverrideT<T>,
-  TabContent?: OverrideT<T>,
+export type TabsOverridesT = {
+  Root?: OverrideT,
+  TabBar?: OverrideT,
+  TabContent?: OverrideT,
 };
 
-export type TabOverridesT<T> = {
-  Tab?: OverrideT<T>,
+export type TabOverridesT = {
+  Tab?: OverrideT,
 };
 
 export type OnChangeHandlerT = ({activeKey: React.Key}) => mixed;
@@ -55,7 +55,7 @@ export type TabsPropsT = {
   orientation?: $Values<typeof ORIENTATION>,
   /** Renders all tab content for SEO purposes regardless of tab active state */
   renderAll?: boolean,
-  overrides?: TabsOverridesT<$Diff<SharedStylePropsArgT, {$active?: ?boolean}>>,
+  overrides?: TabsOverridesT,
 };
 
 export type StatefulTabsPropsT = $Diff<TabsPropsT, {activeKey: React.Key}> & {
@@ -78,7 +78,7 @@ export type TabPanelPropsT = {
   onKeyDown?: (e: KeyboardEvent) => mixed,
   /** onSelect handler for the Tab element */
   onSelect?: () => mixed,
-  overrides?: TabOverridesT<SharedStylePropsArgT>,
+  overrides?: TabOverridesT,
   /** Title of the Tab to be shown in the Tab bar */
   title?: React.Node,
 };

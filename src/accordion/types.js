@@ -32,15 +32,15 @@ export type PanelStateReducerT = (
   currentState: PanelStateT,
 ) => PanelStateT;
 
-export type AccordionOverridesT<T> = {
-  Root?: OverrideT<T>,
+export type AccordionOverridesT = {
+  Root?: OverrideT,
 };
 
-export type PanelOverridesT<T> = {
-  PanelContainer?: OverrideT<T>,
-  Header?: OverrideT<T>,
-  ToggleIcon?: OverrideT<T>,
-  Content?: OverrideT<T>,
+export type PanelOverridesT = {
+  PanelContainer?: OverrideT,
+  Header?: OverrideT,
+  ToggleIcon?: OverrideT,
+  Content?: OverrideT,
 };
 
 export type OnChangeHandlerT = ({expanded: boolean}) => mixed;
@@ -64,9 +64,7 @@ export type AccordionPropsT = {
   /** Handler called each time a panel is toggled. expanded prop is an array
    * of Panel keys that are currently expanded. */
   onChange?: AccordionOnChangeHandlerT,
-  overrides?: AccordionOverridesT<
-    $Diff<SharedStylePropsArgT, {$expanded?: ?boolean}>,
-  >,
+  overrides?: AccordionOverridesT,
   /** Handler called each time the component state changes.
    * Used to override default state-change functionality. */
   stateReducer: StateReducerT,
@@ -100,10 +98,7 @@ export type StatelessAccordionPropsT = {
   expanded: Array<React.Key>,
   /** Handler called each time a panel is toggled. */
   onChange?: StatelessAccordionOnChangeHandlerT,
-  overrides?: AccordionOverridesT<
-    $Diff<SharedStylePropsArgT, {$expanded?: ?boolean}>,
-  > &
-    PanelOverridesT<SharedStylePropsArgT>,
+  overrides?: AccordionOverridesT & PanelOverridesT,
   /**
    * Allows users to render all child content whether a panel is expanded or not
    * for SEO purposed
@@ -134,7 +129,7 @@ type SharedPanelPropsT = {
   onClick?: (e: Event) => mixed,
   /** Handler for the Header's keyDown events. */
   onKeyDown?: (e: KeyboardEvent) => mixed,
-  overrides?: PanelOverridesT<SharedStylePropsArgT>,
+  overrides?: PanelOverridesT,
   /** The title of an accordion panel. */
   title?: React.Node,
   /**
