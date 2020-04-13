@@ -368,18 +368,23 @@ describe('getEffectiveMinDate', () => {
   describe('if only minDate is provider', () => {
     test('should return minDate', () => {
       const minDate = new Date(2020, 4, 25);
-      expect(getEffectiveMinDate({minDate})).toEqual(minDate);
+      expect(helpers.getEffectiveMinDate({minDate})).toEqual(minDate);
     });
   });
   describe('if only includeDates is provided', () => {
     test('should return the earliest includeDate', () => {
-      expect(getEffectiveMinDate({includeDates})).toEqual(includeDates[0]);
+      expect(helpers.getEffectiveMinDate({includeDates})).toEqual(
+        includeDates[0],
+      );
     });
   });
   describe('if minDate and includeDates are provided', () => {
     test('should return the earliest includeDate thats on or before the minDate', () => {
       expect(
-        getEffectiveMinDate({includeDates, minDate: new Date(2020, 0, 2)}),
+        helpers.getEffectiveMinDate({
+          includeDates,
+          minDate: new Date(2020, 0, 2),
+        }),
       ).toEqual(includeDates[1]);
     });
   });
@@ -459,7 +464,7 @@ describe('applyDateToTime', () => {
           new Date(2020, 0, 2),
           new Date(2020, 0, 1),
         ];
-        expect(max(dates)).toEqual(dates[0]);
+        expect(helpers.max(dates)).toEqual(dates[0]);
       });
     });
   });

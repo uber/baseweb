@@ -44,6 +44,32 @@ class DateHelpers<T> {
       return this.adapter.isBefore(date, minDate) ? date : minDate;
     });
   };
+  max: (Array<T>) => T = dates => {
+    return dates.reduce((maxDate, date) => {
+      return this.adapter.isAfter(date, maxDate) ? date : maxDate;
+    });
+  };
+  getEffectiveMinDate: ({minDate?: T, includeDates?: Array<T>}) => T = ({
+    minDate,
+    includeDates,
+  }) => {
+    const hasIncludedDates = includeDates && includeDates.length;
+    if (includeDates && minDate) {
+      let minDates = includeDates.filter(
+        includeDate => this.differenceInCalendarDays(includeDate, minDate) >= 0,
+      );
+      // $FlowFixMe
+      return this.min(minDates);
+    } else if (hasIncludedDates) {
+      // $FlowFixMe
+      return this.min(includeDates);
+    } else if (!hasIncludedDates && minDate) {
+      return minDate;
+    }
+    // this condition can't ever be reached
+    // it just makes the flow happy
+    return this.adapter.date();
+  };
   monthDisabledBefore: (
     T,
     {minDate: ?T, includeDates: ?Array<T>},
