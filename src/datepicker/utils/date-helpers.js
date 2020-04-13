@@ -140,6 +140,13 @@ class DateHelpers<T> {
     const monthDate = this.adapter.setMonth(yearDate, monthNumber);
     return this.setDate(monthDate, dayNumber);
   };
+  applyTimeToDate: (?T, T) => T = (date, time) => {
+    if (!date) return time;
+    return this.adapter.setSeconds(
+      this.adapter.mergeDateAndTime(date, time),
+      0,
+    );
+  };
   isDayDisabled: (
     T,
     {

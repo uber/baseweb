@@ -427,12 +427,12 @@ describe('applyTimeToDate', () => {
   const date = new Date(2000, 2, 2, 5, 5, 5);
   describe('if date is not provided', () => {
     test('should return the time', () => {
-      expect(applyTimeToDate(null, time)).toEqual(time);
+      expect(helpers.applyTimeToDate(null, time)).toEqual(time);
     });
   });
   describe('if date is provided', () => {
     test('should apply the hours and minutes of the time to the date, and set the seconds to zero', () => {
-      expect(applyTimeToDate(date, time).toISOString()).toEqual(
+      expect(helpers.applyTimeToDate(date, time).toISOString()).toEqual(
         '2000-03-02T16:10:00.000Z',
       );
     });
