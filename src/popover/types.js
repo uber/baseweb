@@ -46,9 +46,9 @@ export type StatefulContentRenderPropT = ({
 }) => React.Node;
 
 export type OverridesT = {
-  Body?: OverrideT<SharedStylePropsArgT>,
-  Arrow?: OverrideT<SharedStylePropsArgT>,
-  Inner?: OverrideT<SharedStylePropsArgT>,
+  Body?: OverrideT,
+  Arrow?: OverrideT,
+  Inner?: OverrideT,
 };
 
 // re-exports to maintain same public interface

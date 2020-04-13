@@ -41,14 +41,14 @@ export type OnItemSelectFnT = ({
 }) => mixed;
 
 export type ProfileOverridesT = {
-  List?: OverrideT<*>,
-  ListItemProfile?: OverrideT<*>,
-  ProfileImgContainer?: OverrideT<*>,
-  ProfileImg?: OverrideT<*>,
-  ProfileLabelsContainer?: OverrideT<*>,
-  ProfileTitle?: OverrideT<*>,
-  ProfileSubtitle?: OverrideT<*>,
-  ProfileBody?: OverrideT<*>,
+  List?: OverrideT,
+  ListItemProfile?: OverrideT,
+  ProfileImgContainer?: OverrideT,
+  ProfileImg?: OverrideT,
+  ProfileLabelsContainer?: OverrideT,
+  ProfileTitle?: OverrideT,
+  ProfileSubtitle?: OverrideT,
+  ProfileBody?: OverrideT,
 };
 
 export type RenderItemPropsT = {
@@ -136,10 +136,10 @@ export type StatefulContainerPropsT = {
 
 export type MenuPropsT = {
   overrides?: {
-    EmptyState?: OverrideT<*>,
-    List?: OverrideT<*>,
-    Option?: OverrideT<*>,
-    OptgroupHeader?: OverrideT<*>,
+    EmptyState?: OverrideT,
+    List?: OverrideT,
+    Option?: OverrideT,
+    OptgroupHeader?: OverrideT,
   },
   /** Renders all menu content for SEO purposes regardless of menu  state */
   renderAll?: boolean,
@@ -225,8 +225,8 @@ export type OptionListPropsT = {
   /** Renders UI in defined scale. */
   size?: $Keys<typeof OPTION_LIST_SIZE>,
   overrides?: {
-    ListItem?: OverrideT<*>,
-    ListItemAnchor?: OverrideT<*>,
+    ListItem?: OverrideT,
+    ListItemAnchor?: OverrideT,
   },
   renderHrefAsAnchor?: boolean,
   /** Utility to reset menu to default state. Useful for rendering child menus. */
@@ -251,13 +251,13 @@ export type OptionProfilePropsT = {
   /** Returns the alt text for the image */
   getProfileItemImgText: GetProfileItemImgTextFnT,
   overrides?: {
-    ListItemProfile?: OverrideT<*>,
-    ProfileImgContainer?: OverrideT<*>,
-    ProfileImg?: OverrideT<*>,
-    ProfileLabelsContainer?: OverrideT<*>,
-    ProfileTitle?: OverrideT<*>,
-    ProfileSubtitle?: OverrideT<*>,
-    ProfileBody?: OverrideT<*>,
+    ListItemProfile?: OverrideT,
+    ProfileImgContainer?: OverrideT,
+    ProfileImg?: OverrideT,
+    ProfileLabelsContainer?: OverrideT,
+    ProfileTitle?: OverrideT,
+    ProfileSubtitle?: OverrideT,
+    ProfileBody?: OverrideT,
   },
   /** Utility to reset menu to default state. Useful for rendering child menus. */
   resetMenu?: () => void,

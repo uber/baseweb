@@ -9,13 +9,13 @@ import type {Node} from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 
 export type CardComponentsT = {
-  Action?: OverrideT<?{}>,
-  Body?: OverrideT<?{}>,
-  Contents?: OverrideT<?{}>,
-  HeaderImage?: OverrideT<?{}>,
-  Root?: OverrideT<?{}>,
-  Thumbnail?: OverrideT<?{}>,
-  Title?: OverrideT<?{}>,
+  Action?: OverrideT,
+  Body?: OverrideT,
+  Contents?: OverrideT,
+  HeaderImage?: OverrideT,
+  Root?: OverrideT,
+  Thumbnail?: OverrideT,
+  Title?: OverrideT,
 };
 
 export type ImagePropsT = {

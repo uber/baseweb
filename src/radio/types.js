@@ -15,16 +15,16 @@ export type LabelPlacementT = 'top' | 'right' | 'bottom' | 'left';
 export type AlignT = $Keys<typeof ALIGN>;
 
 export type RadioOverridesT = {
-  RadioMarkInner?: OverrideT<*>,
-  RadioMarkOuter?: OverrideT<*>,
-  Label?: OverrideT<*>,
-  Root?: OverrideT<*>,
-  Input?: OverrideT<*>,
-  Description?: OverrideT<*>,
+  RadioMarkInner?: OverrideT,
+  RadioMarkOuter?: OverrideT,
+  Label?: OverrideT,
+  Root?: OverrideT,
+  Input?: OverrideT,
+  Description?: OverrideT,
 };
 
 export type RadioGroupOverridesT = {
-  RadioGroupRoot?: OverrideT<*>,
+  RadioGroupRoot?: OverrideT,
 };
 
 export type OverridesT = {

@@ -11,14 +11,14 @@ import type {Node} from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 
 export type ProgressStepsOverridesT = {
-  Root?: OverrideT<*>,
-  StepRoot?: OverrideT<*>,
-  Icon?: OverrideT<*>,
-  InnerIcon?: OverrideT<*>,
-  Tail?: OverrideT<*>,
-  Content?: OverrideT<*>,
-  Title?: OverrideT<*>,
-  Description?: OverrideT<*>,
+  Root?: OverrideT,
+  StepRoot?: OverrideT,
+  Icon?: OverrideT,
+  InnerIcon?: OverrideT,
+  Tail?: OverrideT,
+  Content?: OverrideT,
+  Title?: OverrideT,
+  Description?: OverrideT,
 };
 
 export type ProgressStepsPropsT = {
@@ -29,13 +29,13 @@ export type ProgressStepsPropsT = {
 };
 
 export type StepOverridesT = {
-  Root?: OverrideT<*>,
-  Icon?: OverrideT<*>,
-  InnerIcon?: OverrideT<*>,
-  Tail?: OverrideT<*>,
-  Content?: OverrideT<*>,
-  Title?: OverrideT<*>,
-  Description?: OverrideT<*>,
+  Root?: OverrideT,
+  Icon?: OverrideT,
+  InnerIcon?: OverrideT,
+  Tail?: OverrideT,
+  Content?: OverrideT,
+  Title?: OverrideT,
+  Description?: OverrideT,
 };
 
 export type StepPropsT = {
@@ -52,13 +52,13 @@ export type StepPropsT = {
 };
 
 export type NumberedStepOverridesT = {
-  Root?: OverrideT<*>,
-  Icon?: OverrideT<*>,
-  InnerIcon?: OverrideT<*>,
-  Tail?: OverrideT<*>,
-  Content?: OverrideT<*>,
-  Title?: OverrideT<*>,
-  Description?: OverrideT<*>,
+  Root?: OverrideT,
+  Icon?: OverrideT,
+  InnerIcon?: OverrideT,
+  Tail?: OverrideT,
+  Content?: OverrideT,
+  Title?: OverrideT,
+  Description?: OverrideT,
 };
 
 export type NumberedStepPropsT = {

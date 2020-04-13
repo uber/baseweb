@@ -18,18 +18,18 @@ export type ConfigurationOverrideT =
 
 export type StyleOverrideT = ConfigurationOverrideT;
 
-export type OverrideObjectT<T> = {|
-  component?: ?React.ComponentType<T & {children: React.Node}>,
+export type OverrideObjectT = {|
+  // eslint-disable-next-line flowtype/no-weak-types
+  component?: ?React.ComponentType<any>,
   props?: ?ConfigurationOverrideT,
   style?: ?ConfigurationOverrideT,
 |};
 
-export type OverrideT<T> =
-  | OverrideObjectT<T>
-  | React.ComponentType<T & {children: React.Node}>;
+// eslint-disable-next-line flowtype/no-weak-types
+export type OverrideT = OverrideObjectT | React.ComponentType<any>;
 
-export type OverridesT<T> = {
-  [string]: OverrideT<T>,
+export type OverridesT = {
+  [string]: OverrideT,
 };
 
 /**
@@ -57,7 +57,7 @@ export function getOverride(override: any): any {
  * Given an override argument, returns the override props that should be passed
  * to the component when rendering it.
  */
-export function getOverrideProps<T>(override: ?OverrideT<T>) {
+export function getOverrideProps(override: ?OverrideT) {
   if (override && typeof override === 'object') {
     if (typeof override.props === 'object') {
       return {
@@ -77,9 +77,7 @@ export function getOverrideProps<T>(override: ?OverrideT<T>) {
  * Coerces an override argument into an override object
  * (sometimes it is just an override component)
  */
-export function toObjectOverride<T>(
-  override: OverrideT<T>,
-): OverrideObjectT<T> {
+export function toObjectOverride<T>(override: OverrideT): OverrideObjectT {
   if (isValidElementType(override)) {
     return {
       // eslint-disable-next-line flowtype/no-weak-types
@@ -91,7 +89,7 @@ export function toObjectOverride<T>(
   // catch React.StatelessFunctionalComponent
   // (probably related to https://github.com/facebook/flow/issues/6666)
   // eslint-disable-next-line flowtype/no-weak-types
-  return ((override || {}: any): OverrideObjectT<T>);
+  return ((override || {}: any): OverrideObjectT);
 }
 
 /**
@@ -134,10 +132,10 @@ export function getOverrides(
  * overrides into a child component, but also accept further overrides from
  * from upstream. See `mergeOverride` below.
  */
-export function mergeOverrides<T>(
-  target?: OverridesT<T> = {},
-  source?: OverridesT<T> = {},
-): OverridesT<T> {
+export function mergeOverrides(
+  target?: OverridesT = {},
+  source?: OverridesT = {},
+): OverridesT {
   const merged = Object.assign({}, target, source);
   const allIdentifiers = Object.keys(merged);
   // const allIdentifiers = Object.keys({...target, ...source});
@@ -156,10 +154,10 @@ export function mergeOverrides<T>(
  * - Component implementation from the source (parent) replaces target
  * - Props and styles are both deep merged
  */
-export function mergeOverride<T>(
-  target: OverrideObjectT<T>,
-  source: OverrideObjectT<T>,
-): OverrideObjectT<T> {
+export function mergeOverride(
+  target: OverrideObjectT,
+  source: OverrideObjectT,
+): OverrideObjectT {
   // Shallow merge should handle `component`
   const merged = {...target, ...source};
   if (target.props && source.props) {
