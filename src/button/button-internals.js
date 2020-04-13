@@ -18,13 +18,10 @@ import type {ButtonPropsT} from './types.js';
 
 function RenderEnhancer(props) {
   const {Enhancer, ...restProps} = props;
-  if (
-    typeof Enhancer === 'string' ||
-    typeof Enhancer === 'number' ||
-    Array.isArray(Enhancer)
-  ) {
+  if (typeof Enhancer === 'string') {
     return Enhancer;
-  } else if (ReactIs.isValidElementType(Enhancer)) {
+  }
+  if (ReactIs.isValidElementType(Enhancer)) {
     // $FlowFixMe
     return <Enhancer {...restProps} />;
   }
