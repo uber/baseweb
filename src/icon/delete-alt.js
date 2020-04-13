@@ -13,7 +13,7 @@ import {mergeOverride, toObjectOverride} from '../helpers/overrides.js';
 
 import Icon from './icon.js';
 import omitDollarPrefixedKeys from './omit-dollar-prefixed-keys.js';
-import type {IconPropsT, StyledComponentArgsT} from './types.js';
+import type {IconPropsT} from './types.js';
 
 function DeleteAlt(props: IconPropsT, ref) {
   const [, theme] = useStyletron();
