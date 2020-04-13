@@ -18,7 +18,7 @@ import type {IconPropsT, StyledComponentArgsT} from './types.js';
 function TriangleLeft(props: IconPropsT, ref) {
   const [, theme] = useStyletron();
   const {overrides = {}, ...restProps} = props;
-  const SvgOverride = mergeOverride<StyledComponentArgsT>(
+  const SvgOverride = mergeOverride(
     // Icons from theme really targets the SVG override in the underlying Icon component, but
     // have props typed with IconPropsT. Provided the missing props inline below here.
     // $FlowFixMe
