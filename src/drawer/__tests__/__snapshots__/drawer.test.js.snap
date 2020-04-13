@@ -157,6 +157,7 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
 }"
                   >
                     <svg
+                      color="inherit"
                       data-baseweb="icon"
                       styled-component="true"
                       test-style="{
@@ -166,6 +167,7 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
   \\"height\\": \\"inherit\\",
   \\"width\\": \\"inherit\\"
 }"
+                      title="Delete"
                       viewBox="0 0 24 24"
                     >
                       <title>
@@ -322,6 +324,7 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
 }"
                     >
                       <svg
+                        color="inherit"
                         data-baseweb="icon"
                         styled-component="true"
                         test-style="{
@@ -331,6 +334,7 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
   \\"height\\": \\"inherit\\",
   \\"width\\": \\"inherit\\"
 }"
+                        title="Delete"
                         viewBox="0 0 24 24"
                       >
                         <title>
@@ -502,6 +506,7 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
 }"
                       >
                         <svg
+                          color="inherit"
                           data-baseweb="icon"
                           styled-component="true"
                           test-style="{
@@ -511,6 +516,7 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
   \\"height\\": \\"inherit\\",
   \\"width\\": \\"inherit\\"
 }"
+                          title="Delete"
                           viewBox="0 0 24 24"
                         >
                           <title>
@@ -626,12 +632,25 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
                         >
                           <Portal>
                             <CloseIcon>
-                              <Delete
+                              <ForwardRef(Delete)
                                 color="inherit"
                                 size="inherit"
                               >
-                                <Icon
+                                <ForwardRef(Icon)
                                   color="inherit"
+                                  overrides={
+                                    Object {
+                                      "Svg": Object {
+                                        "component": null,
+                                        "props": Object {
+                                          "color": "inherit",
+                                          "size": "inherit",
+                                          "title": "Delete",
+                                          "viewBox": "0 0 24 24",
+                                        },
+                                      },
+                                    }
+                                  }
                                   size="inherit"
                                   title="Delete"
                                   viewBox="0 0 24 24"
@@ -639,14 +658,20 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
                                   <ForwardRef
                                     $color="inherit"
                                     $size="inherit"
+                                    color="inherit"
                                     data-baseweb="icon"
+                                    size="inherit"
+                                    title="Delete"
                                     viewBox="0 0 24 24"
                                   >
                                     <MockStyledComponent
                                       $color="inherit"
                                       $size="inherit"
+                                      color="inherit"
                                       data-baseweb="icon"
                                       forwardedRef={null}
+                                      size="inherit"
+                                      title="Delete"
                                       viewBox="0 0 24 24"
                                     >
                                       <Portal>
@@ -655,8 +680,8 @@ exports[`Drawer renders portal when open: Rendered Drawer 1`] = `
                                       </Portal>
                                     </MockStyledComponent>
                                   </ForwardRef>
-                                </Icon>
-                              </Delete>
+                                </ForwardRef(Icon)>
+                              </ForwardRef(Delete)>
                             </CloseIcon>
                           </Portal>
                         </MockStyledComponent>

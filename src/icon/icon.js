@@ -10,20 +10,28 @@ import {getOverrides} from '../helpers/overrides.js';
 import {Svg as StyledSvg} from './styled-components.js';
 import type {IconPropsT} from './types.js';
 
-export default function Icon(props: IconPropsT) {
+function Icon(props: IconPropsT, ref) {
   const {children, title, overrides = {}, size, color, ...restProps} = props;
+
+  const [Svg, overrideProps] = getOverrides(overrides.Svg, StyledSvg);
 
   const sharedProps = {
     $size: size,
     $color: color,
   };
 
-  const [Svg, overrideProps] = getOverrides(overrides.Svg, StyledSvg);
-
   return (
-    <Svg data-baseweb="icon" {...restProps} {...sharedProps} {...overrideProps}>
+    <Svg
+      data-baseweb="icon"
+      ref={ref}
+      {...restProps}
+      {...sharedProps}
+      {...overrideProps}
+    >
       {title ? <title>{title}</title> : null}
       {children}
     </Svg>
   );
 }
+
+export default React.forwardRef<IconPropsT, mixed>(Icon);

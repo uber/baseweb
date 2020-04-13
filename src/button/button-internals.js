@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+import * as ReactIs from 'react-is';
 import {
   StartEnhancer as StyledStartEnhancer,
   EndEnhancer as StyledEndEnhancer,
@@ -14,6 +15,19 @@ import {getSharedProps} from './utils.js';
 import {getOverrides} from '../helpers/overrides.js';
 
 import type {ButtonPropsT} from './types.js';
+
+function RenderEnhancer(props) {
+  const {Enhancer, ...restProps} = props;
+  if (typeof Enhancer === 'string') {
+    return Enhancer;
+  }
+  if (ReactIs.isValidElementType(Enhancer)) {
+    // $FlowFixMe
+    return <Enhancer {...restProps} />;
+  }
+  // $FlowFixMe
+  return Enhancer;
+}
 
 export default function ButtonInternals(props: ButtonPropsT) {
   const {children, overrides = {}, startEnhancer, endEnhancer} = props;
@@ -28,19 +42,15 @@ export default function ButtonInternals(props: ButtonPropsT) {
   const sharedProps = getSharedProps(props);
   return (
     <React.Fragment>
-      {startEnhancer && (
+      {startEnhancer !== null && startEnhancer !== undefined && (
         <StartEnhancer {...sharedProps} {...startEnhancerProps}>
-          {typeof startEnhancer === 'function'
-            ? startEnhancer(sharedProps)
-            : startEnhancer}
+          <RenderEnhancer {...sharedProps} Enhancer={startEnhancer} />
         </StartEnhancer>
       )}
       {children}
-      {endEnhancer && (
+      {endEnhancer !== null && endEnhancer !== undefined && (
         <EndEnhancer {...sharedProps} {...endEnhancerProps}>
-          {typeof endEnhancer === 'function'
-            ? endEnhancer(sharedProps)
-            : endEnhancer}
+          <RenderEnhancer {...sharedProps} Enhancer={endEnhancer} />
         </EndEnhancer>
       )}
     </React.Fragment>

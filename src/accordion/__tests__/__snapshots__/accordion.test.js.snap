@@ -139,7 +139,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
 }"
                       >
                         Accordion panel 1
-                        <Plus
+                        <ForwardRef(Plus)
                           $disabled={false}
                           $expanded={false}
                           $isFocusVisible={false}
@@ -156,7 +156,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                           size={16}
                           title="Expand"
                         >
-                          <Icon
+                          <ForwardRef(Icon)
                             $disabled={false}
                             $expanded={false}
                             $isFocusVisible={false}
@@ -166,6 +166,11 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                                   "component": Object {
                                     "$$typeof": Symbol(react.forward_ref),
                                     "render": [Function],
+                                  },
+                                  "props": Object {
+                                    "size": 16,
+                                    "title": "Expand",
+                                    "viewBox": "0 0 24 24",
                                   },
                                 },
                               }
@@ -180,6 +185,8 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                               $isFocusVisible={false}
                               $size={16}
                               data-baseweb="icon"
+                              size={16}
+                              title="Expand"
                               viewBox="0 0 24 24"
                             >
                               <MockStyledComponent
@@ -189,10 +196,13 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                                 $size={16}
                                 data-baseweb="icon"
                                 forwardedRef={null}
+                                size={16}
+                                title="Expand"
                                 viewBox="0 0 24 24"
                               >
                                 <svg
                                   data-baseweb="icon"
+                                  size={16}
                                   styled-component="true"
                                   test-style="{
   \\"display\\": \\"inline-block\\",
@@ -202,6 +212,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
   \\"width\\": \\"16px\\",
   \\"cursor\\": \\"pointer\\"
 }"
+                                  title="Expand"
                                   viewBox="0 0 24 24"
                                 >
                                   <title>
@@ -215,8 +226,8 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                                 </svg>
                               </MockStyledComponent>
                             </ForwardRef>
-                          </Icon>
-                        </Plus>
+                          </ForwardRef(Icon)>
+                        </ForwardRef(Plus)>
                       </div>
                     </MockStyledComponent>
                   </ForwardRef>
@@ -366,7 +377,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
 }"
                       >
                         Accordion panel 2
-                        <Plus
+                        <ForwardRef(Plus)
                           $disabled={false}
                           $expanded={false}
                           $isFocusVisible={false}
@@ -383,7 +394,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                           size={16}
                           title="Expand"
                         >
-                          <Icon
+                          <ForwardRef(Icon)
                             $disabled={false}
                             $expanded={false}
                             $isFocusVisible={false}
@@ -393,6 +404,11 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                                   "component": Object {
                                     "$$typeof": Symbol(react.forward_ref),
                                     "render": [Function],
+                                  },
+                                  "props": Object {
+                                    "size": 16,
+                                    "title": "Expand",
+                                    "viewBox": "0 0 24 24",
                                   },
                                 },
                               }
@@ -407,6 +423,8 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                               $isFocusVisible={false}
                               $size={16}
                               data-baseweb="icon"
+                              size={16}
+                              title="Expand"
                               viewBox="0 0 24 24"
                             >
                               <MockStyledComponent
@@ -416,10 +434,13 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                                 $size={16}
                                 data-baseweb="icon"
                                 forwardedRef={null}
+                                size={16}
+                                title="Expand"
                                 viewBox="0 0 24 24"
                               >
                                 <svg
                                   data-baseweb="icon"
+                                  size={16}
                                   styled-component="true"
                                   test-style="{
   \\"display\\": \\"inline-block\\",
@@ -429,6 +450,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
   \\"width\\": \\"16px\\",
   \\"cursor\\": \\"pointer\\"
 }"
+                                  title="Expand"
                                   viewBox="0 0 24 24"
                                 >
                                   <title>
@@ -442,8 +464,8 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                                 </svg>
                               </MockStyledComponent>
                             </ForwardRef>
-                          </Icon>
-                        </Plus>
+                          </ForwardRef(Icon)>
+                        </ForwardRef(Plus)>
                       </div>
                     </MockStyledComponent>
                   </ForwardRef>
@@ -593,7 +615,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
 }"
                       >
                         Accordion panel 3
-                        <Plus
+                        <ForwardRef(Plus)
                           $disabled={false}
                           $expanded={false}
                           $isFocusVisible={false}
@@ -610,7 +632,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                           size={16}
                           title="Expand"
                         >
-                          <Icon
+                          <ForwardRef(Icon)
                             $disabled={false}
                             $expanded={false}
                             $isFocusVisible={false}
@@ -620,6 +642,11 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                                   "component": Object {
                                     "$$typeof": Symbol(react.forward_ref),
                                     "render": [Function],
+                                  },
+                                  "props": Object {
+                                    "size": 16,
+                                    "title": "Expand",
+                                    "viewBox": "0 0 24 24",
                                   },
                                 },
                               }
@@ -634,6 +661,8 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                               $isFocusVisible={false}
                               $size={16}
                               data-baseweb="icon"
+                              size={16}
+                              title="Expand"
                               viewBox="0 0 24 24"
                             >
                               <MockStyledComponent
@@ -643,10 +672,13 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                                 $size={16}
                                 data-baseweb="icon"
                                 forwardedRef={null}
+                                size={16}
+                                title="Expand"
                                 viewBox="0 0 24 24"
                               >
                                 <svg
                                   data-baseweb="icon"
+                                  size={16}
                                   styled-component="true"
                                   test-style="{
   \\"display\\": \\"inline-block\\",
@@ -656,6 +688,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
   \\"width\\": \\"16px\\",
   \\"cursor\\": \\"pointer\\"
 }"
+                                  title="Expand"
                                   viewBox="0 0 24 24"
                                 >
                                   <title>
@@ -669,8 +702,8 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
                                 </svg>
                               </MockStyledComponent>
                             </ForwardRef>
-                          </Icon>
-                        </Plus>
+                          </ForwardRef(Icon)>
+                        </ForwardRef(Plus)>
                       </div>
                     </MockStyledComponent>
                   </ForwardRef>
@@ -866,7 +899,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
 }"
                       >
                         Accordion panel 1
-                        <Plus
+                        <ForwardRef(Plus)
                           $disabled={false}
                           $expanded={false}
                           $isFocusVisible={false}
@@ -883,7 +916,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                           size={16}
                           title="Expand"
                         >
-                          <Icon
+                          <ForwardRef(Icon)
                             $disabled={false}
                             $expanded={false}
                             $isFocusVisible={false}
@@ -893,6 +926,11 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                                   "component": Object {
                                     "$$typeof": Symbol(react.forward_ref),
                                     "render": [Function],
+                                  },
+                                  "props": Object {
+                                    "size": 16,
+                                    "title": "Expand",
+                                    "viewBox": "0 0 24 24",
                                   },
                                 },
                               }
@@ -907,6 +945,8 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                               $isFocusVisible={false}
                               $size={16}
                               data-baseweb="icon"
+                              size={16}
+                              title="Expand"
                               viewBox="0 0 24 24"
                             >
                               <MockStyledComponent
@@ -916,10 +956,13 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                                 $size={16}
                                 data-baseweb="icon"
                                 forwardedRef={null}
+                                size={16}
+                                title="Expand"
                                 viewBox="0 0 24 24"
                               >
                                 <svg
                                   data-baseweb="icon"
+                                  size={16}
                                   styled-component="true"
                                   test-style="{
   \\"display\\": \\"inline-block\\",
@@ -929,6 +972,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
   \\"width\\": \\"16px\\",
   \\"cursor\\": \\"pointer\\"
 }"
+                                  title="Expand"
                                   viewBox="0 0 24 24"
                                 >
                                   <title>
@@ -942,8 +986,8 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                                 </svg>
                               </MockStyledComponent>
                             </ForwardRef>
-                          </Icon>
-                        </Plus>
+                          </ForwardRef(Icon)>
+                        </ForwardRef(Plus)>
                       </div>
                     </MockStyledComponent>
                   </ForwardRef>
@@ -1091,7 +1135,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
 }"
                       >
                         Accordion panel 2
-                        <Plus
+                        <ForwardRef(Plus)
                           $disabled={false}
                           $expanded={false}
                           $isFocusVisible={false}
@@ -1108,7 +1152,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                           size={16}
                           title="Expand"
                         >
-                          <Icon
+                          <ForwardRef(Icon)
                             $disabled={false}
                             $expanded={false}
                             $isFocusVisible={false}
@@ -1118,6 +1162,11 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                                   "component": Object {
                                     "$$typeof": Symbol(react.forward_ref),
                                     "render": [Function],
+                                  },
+                                  "props": Object {
+                                    "size": 16,
+                                    "title": "Expand",
+                                    "viewBox": "0 0 24 24",
                                   },
                                 },
                               }
@@ -1132,6 +1181,8 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                               $isFocusVisible={false}
                               $size={16}
                               data-baseweb="icon"
+                              size={16}
+                              title="Expand"
                               viewBox="0 0 24 24"
                             >
                               <MockStyledComponent
@@ -1141,10 +1192,13 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                                 $size={16}
                                 data-baseweb="icon"
                                 forwardedRef={null}
+                                size={16}
+                                title="Expand"
                                 viewBox="0 0 24 24"
                               >
                                 <svg
                                   data-baseweb="icon"
+                                  size={16}
                                   styled-component="true"
                                   test-style="{
   \\"display\\": \\"inline-block\\",
@@ -1154,6 +1208,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
   \\"width\\": \\"16px\\",
   \\"cursor\\": \\"pointer\\"
 }"
+                                  title="Expand"
                                   viewBox="0 0 24 24"
                                 >
                                   <title>
@@ -1167,8 +1222,8 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                                 </svg>
                               </MockStyledComponent>
                             </ForwardRef>
-                          </Icon>
-                        </Plus>
+                          </ForwardRef(Icon)>
+                        </ForwardRef(Plus)>
                       </div>
                     </MockStyledComponent>
                   </ForwardRef>
@@ -1316,7 +1371,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
 }"
                       >
                         Accordion panel 3
-                        <Plus
+                        <ForwardRef(Plus)
                           $disabled={false}
                           $expanded={false}
                           $isFocusVisible={false}
@@ -1333,7 +1388,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                           size={16}
                           title="Expand"
                         >
-                          <Icon
+                          <ForwardRef(Icon)
                             $disabled={false}
                             $expanded={false}
                             $isFocusVisible={false}
@@ -1343,6 +1398,11 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                                   "component": Object {
                                     "$$typeof": Symbol(react.forward_ref),
                                     "render": [Function],
+                                  },
+                                  "props": Object {
+                                    "size": 16,
+                                    "title": "Expand",
+                                    "viewBox": "0 0 24 24",
                                   },
                                 },
                               }
@@ -1357,6 +1417,8 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                               $isFocusVisible={false}
                               $size={16}
                               data-baseweb="icon"
+                              size={16}
+                              title="Expand"
                               viewBox="0 0 24 24"
                             >
                               <MockStyledComponent
@@ -1366,10 +1428,13 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                                 $size={16}
                                 data-baseweb="icon"
                                 forwardedRef={null}
+                                size={16}
+                                title="Expand"
                                 viewBox="0 0 24 24"
                               >
                                 <svg
                                   data-baseweb="icon"
+                                  size={16}
                                   styled-component="true"
                                   test-style="{
   \\"display\\": \\"inline-block\\",
@@ -1379,6 +1444,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
   \\"width\\": \\"16px\\",
   \\"cursor\\": \\"pointer\\"
 }"
+                                  title="Expand"
                                   viewBox="0 0 24 24"
                                 >
                                   <title>
@@ -1392,8 +1458,8 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
                                 </svg>
                               </MockStyledComponent>
                             </ForwardRef>
-                          </Icon>
-                        </Plus>
+                          </ForwardRef(Icon)>
+                        </ForwardRef(Plus)>
                       </div>
                     </MockStyledComponent>
                   </ForwardRef>
