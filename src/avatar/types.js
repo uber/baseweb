@@ -18,10 +18,10 @@ export type RootStylePropsT = {
 };
 export type StylePropsT = RootStylePropsT;
 
-export type OverridesT<T> = {|
-  Avatar?: OverrideT<T>,
-  Initials?: OverrideT<T>,
-  Root?: OverrideT<T>,
+export type OverridesT = {|
+  Avatar?: OverrideT,
+  Initials?: OverrideT,
+  Root?: OverrideT,
 |};
 
 export type StateT = {|
@@ -33,7 +33,7 @@ export type PropsT = {|
   initials?: string,
   /** Defines an alternative text description of the image. */
   name: string,
-  overrides?: OverridesT<StylePropsT>,
+  overrides?: OverridesT,
   /** Defines the width/height of the image. Accepts labels from theme.sizing, or passes value to height/width. */
   size?: string,
   /** Image to display. */

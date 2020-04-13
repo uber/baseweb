@@ -34,8 +34,8 @@ export type PropsT = {
   /** A handler for when any pin code input changes value. */
   onChange: ChangeEventT => mixed,
   overrides: {
-    Root?: OverrideT<*>,
-    Input?: OverrideT<*>,
+    Root?: OverrideT,
+    Input?: OverrideT,
   },
   /** Sets the placeholder text for each pin code input element. */
   placeholder: string,

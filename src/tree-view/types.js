@@ -9,20 +9,20 @@ import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 
 export type TreeLabelOverridesT = {
-  TreeItemContent?: OverrideT<{}>,
-  IconContainer?: OverrideT<{}>,
-  ExpandIcon?: OverrideT<{}>,
-  CollapseIcon?: OverrideT<{}>,
-  LeafIconContainer?: OverrideT<{}>,
-  LeafIcon?: OverrideT<{}>,
+  TreeItemContent?: OverrideT,
+  IconContainer?: OverrideT,
+  ExpandIcon?: OverrideT,
+  CollapseIcon?: OverrideT,
+  LeafIconContainer?: OverrideT,
+  LeafIcon?: OverrideT,
 };
 
 export type TreeViewOverridesT = {
   ...TreeLabelOverridesT,
-  Root?: OverrideT<{}>,
-  TreeItemList?: OverrideT<{$isChildNode?: boolean}>,
-  TreeItem?: OverrideT<{$isLeafNode?: boolean}>,
-  TreeLabel?: OverrideT<TreeLabelT>,
+  Root?: OverrideT,
+  TreeItemList?: OverrideT,
+  TreeItem?: OverrideT,
+  TreeLabel?: OverrideT,
 };
 
 export type TreeNodeIdT = number | string;

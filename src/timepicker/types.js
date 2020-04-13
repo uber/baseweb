@@ -18,7 +18,7 @@ export type TimePickerPropsT<T> = {
   /** Callback for when time selection changes. */
   onChange?: T => mixed,
   overrides?: {
-    Select?: OverrideT<*>,
+    Select?: OverrideT,
   },
   /** Set to true to allow times that aren't displayed in the options list to be entered manually. Defaults to false. */
   creatable?: boolean,
