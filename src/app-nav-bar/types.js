@@ -13,17 +13,20 @@ type ItemT = any;
 
 export type MainNavItemT = {|
   active?: boolean,
-  icon?: React.AbstractComponent<{||}>,
+  // eslint-disable-next-line flowtype/no-weak-types
+  icon?: React.AbstractComponent<any>,
   item: ItemT,
   mapItemToNode?: ItemT => React.Node,
   mapItemToString: ItemT => string,
   nav?: MainNavItemT[],
-  navExitIcon?: React.AbstractComponent<{||}>,
+  // eslint-disable-next-line flowtype/no-weak-types
+  navExitIcon?: React.AbstractComponent<any>,
 |};
 
 export type UserNavItemT = {|
   active?: boolean,
-  icon?: React.AbstractComponent<{||}>,
+  // eslint-disable-next-line flowtype/no-weak-types
+  icon?: React.AbstractComponent<any>,
   item: ItemT,
   mapItemToNode?: ItemT => React.Node,
   mapItemToString: ItemT => string,

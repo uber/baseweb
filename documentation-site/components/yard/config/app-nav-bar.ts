@@ -54,15 +54,9 @@ const NavigationBarConfig: TConfig = {
           mapItemToString: item => item.label,
         },
         {
-          icon: Upload, 
-          item: {label: 'Primary alpha2'},
-          mapItemToNode: item => item.label,
-          mapItemToString: item => item.label,
-        },
-        {
           active: true,
           icon: ChevronDown,
-          item: {label: 'Primary alpha3'},
+          item: {label: 'Primary alpha2'},
           mapItemToNode: item => item.label,
           mapItemToString: item => item.label,
           navExitIcon: Delete,
@@ -113,18 +107,6 @@ const NavigationBarConfig: TConfig = {
         {
           icon: Overflow, 
           item: {label: 'Account item2'},
-          mapItemToNode: item => item.label,
-          mapItemToString: item => item.label,
-        },
-        {
-          icon: Overflow, 
-          item: {label: 'Account item3'},
-          mapItemToNode: item => item.label,
-          mapItemToString: item => item.label,
-        },
-        {
-          icon: Overflow, 
-          item: {label: 'Account item4'},
           mapItemToNode: item => item.label,
           mapItemToString: item => item.label,
         },

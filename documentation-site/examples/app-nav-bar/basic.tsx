@@ -26,31 +26,10 @@ const MAIN_NAV = [
     item: {label: 'Primary alpha3'},
     mapItemToNode: renderItem,
     mapItemToString: renderItem,
-    nav: [
-      {
-        icon: Icon,
-        item: {label: 'Secondary menu1'},
-        mapItemToNode: renderItem,
-        mapItemToString: renderItem,
-      },
-      {
-        icon: Icon,
-        item: {label: 'Secondary menu2'},
-        mapItemToNode: renderItem,
-        mapItemToString: renderItem,
-      },
-    ],
     navExitIcon: Delete,
-  },
-  {
-    active: true,
-    icon: ChevronDown,
-    item: {label: 'Primary alpha4'},
-    mapItemToNode: renderItem,
-    mapItemToString: renderItem,
     nav: [
       {
-        icon: ChevronDown,
+        icon: Icon,
         item: {label: 'Secondary menu1'},
         mapItemToNode: renderItem,
         mapItemToString: renderItem,
@@ -76,7 +55,28 @@ const MAIN_NAV = [
         mapItemToString: renderItem,
       },
     ],
+  },
+  {
+    active: true,
+    icon: ChevronDown,
+    item: {label: 'Primary alpha4'},
+    mapItemToNode: renderItem,
+    mapItemToString: renderItem,
     navExitIcon: Delete,
+    nav: [
+      {
+        icon: ChevronDown,
+        item: {label: 'Secondary menu1'},
+        mapItemToNode: renderItem,
+        mapItemToString: renderItem,
+      },
+      {
+        icon: Icon,
+        item: {label: 'Secondary menu2'},
+        mapItemToNode: renderItem,
+        mapItemToString: renderItem,
+      },
+    ],
   },
 ];
 
@@ -111,8 +111,10 @@ export default () => {
   const [css] = useStyletron();
   const [isNavBarVisible, setIsNavBarVisible] = React.useState(false);
   return (
-    <>
-      <Button onClick={() => setIsNavBarVisible(!isNavBarVisible)}>{isNavBarVisible ? 'Hide' : 'Show'} navigation bar</Button>
+    <React.Fragment>
+      <Button onClick={() => setIsNavBarVisible(!isNavBarVisible)}>
+        {isNavBarVisible ? 'Hide' : 'Show'} navigation bar
+      </Button>
       {isNavBarVisible ? (
         <div className={css({
           boxSizing: 'border-box', 
@@ -122,7 +124,7 @@ export default () => {
           left: '0'
         })}>
           <AppNavBar
-            appDisplayName="Uber Something"
+            appDisplayName="App Something"
             mainNav={MAIN_NAV}
             onNavItemSelect={({item}) => {
               console.log(item);
@@ -134,6 +136,6 @@ export default () => {
           />
         </div>
       ) : null}
-    </>
+    </React.Fragment>
   );
 }

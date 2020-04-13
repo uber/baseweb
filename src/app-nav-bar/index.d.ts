@@ -1,23 +1,22 @@
 import * as React from 'react';
 
-// eslint-disable-next-line flowtype/no-weak-types
 type ItemT = any;
 type mapItemToNode = (item: ItemT) => React.ReactNode;
 type mapItemToString = (item: ItemT) => string;
 
 export type MainNavItemT = {
   active?: boolean;
-  icon?: React.AbstractComponent<{}>;
+  icon?: React.AbstractComponent<any>;
   item: ItemT;
   mapItemToNode?: mapItemToNode;
   mapItemToString: mapItemToString;
   nav?: MainNavItemT[];
-  navExitIcon?: React.AbstractComponent<{}>;
+  navExitIcon?: React.AbstractComponent<any>;
 };
 
 export type UserNavItemT = {
   active?: boolean;
-  icon?: React.AbstractComponent<{}>;
+  icon?: React.AbstractComponent<any>;
   item: ItemT;
   mapItemToNode?: mapItemToNode;
   mapItemToString: mapItemToString;

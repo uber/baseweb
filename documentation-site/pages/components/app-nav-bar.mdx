@@ -9,13 +9,10 @@ import Example from '../../components/example';
 import Exports from '../../components/exports';
 import Layout from '../../components/layout';
 import SEO from '../../components/meta-seo';
-
-import {Unstable_AppNavBar} from 'baseui/app-nav-bar';
-import * as AppNavBarExports from 'baseui/app-nav-bar';
-
-import Yard from '../../components/yard/index';
 import appNavBarYardConfig from '../../components/yard/config/app-nav-bar';
 import ApiTable from '../../components/api-table';
+
+import * as AppNavBarExports from 'baseui/app-nav-bar';
 
 import Basic from 'examples/app-nav-bar/basic.js';
 
@@ -40,7 +37,7 @@ It enables users to orient and navigate different sections of applications relia
 ## API
 
 <ApiTable
-  title="Avatar props"
+  title="Unstable_AppNavBar"
   config={appNavBarYardConfig}
   types={require('!!extract-react-types-loader!../../../src/app-nav-bar/app-nav-bar.js')}
 />
