@@ -302,13 +302,13 @@ describe('Datepicker utils', () => {
     describe('if includeDates is provided', () => {
       test('should return true if every date in includeDates falls on later month than one month before the provided date', () => {
         expect(
-          monthDisabledBefore(new Date(2020, 4, 25), {
+          helpers.monthDisabledBefore(new Date(2020, 4, 25), {
             minDate: undefined,
             includeDates: [new Date(2020, 4, 1), new Date(2020, 4, 2)],
           }),
         ).toEqual(true);
         expect(
-          monthDisabledBefore(new Date(2020, 4, 25), {
+          helpers.monthDisabledBefore(new Date(2020, 4, 25), {
             minDate: undefined,
             includeDates: [new Date(2020, 4, 1), new Date(2020, 3, 25)],
           }),
@@ -321,19 +321,19 @@ describe('monthDisabledAfter', () => {
   describe('if maxDate is provided', () => {
     test('should return true if the maxDate falls on a earlier month than one month after the provided date', () => {
       expect(
-        monthDisabledAfter(new Date(2020, 4, 25), {
+        helpers.monthDisabledAfter(new Date(2020, 4, 25), {
           maxDate: new Date(2020, 4, 30),
           includeDates: undefined,
         }),
       ).toEqual(true);
       expect(
-        monthDisabledAfter(new Date(2020, 4, 25), {
+        helpers.monthDisabledAfter(new Date(2020, 4, 25), {
           maxDate: new Date(2020, 5, 1),
           includeDates: undefined,
         }),
       ).toEqual(false);
       expect(
-        monthDisabledAfter(new Date(2020, 4, 25), {
+        helpers.monthDisabledAfter(new Date(2020, 4, 25), {
           maxDate: new Date(2020, 5, 25),
           includeDates: undefined,
         }),
@@ -343,14 +343,14 @@ describe('monthDisabledAfter', () => {
   describe('if includeDates is provided', () => {
     test('should return true if every date in includeDates falls on a earlier month than one month after the provided date', () => {
       expect(
-        monthDisabledAfter(new Date(2020, 4, 25), {
-          minDate: undefined,
+        helpers.monthDisabledAfter(new Date(2020, 4, 25), {
+          maxDate: undefined,
           includeDates: [new Date(2020, 4, 29), new Date(2020, 4, 30)],
         }),
       ).toEqual(true);
       expect(
-        monthDisabledAfter(new Date(2020, 4, 25), {
-          minDate: undefined,
+        helpers.monthDisabledAfter(new Date(2020, 4, 25), {
+          maxDate: undefined,
           includeDates: [new Date(2020, 5, 1), new Date(2020, 4, 30)],
         }),
       ).toEqual(false);
