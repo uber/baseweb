@@ -10,7 +10,6 @@ import * as React from 'react';
 import {render, getByTestId} from '@testing-library/react';
 import {mount} from 'enzyme';
 import {Toast, StyledBody, StyledCloseIcon, KIND} from '../index.js';
-import {styled} from '../../styles/index.js';
 
 describe('Toast', () => {
   beforeEach(async () => {
