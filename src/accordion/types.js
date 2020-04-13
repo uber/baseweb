@@ -64,9 +64,7 @@ export type AccordionPropsT = {
   /** Handler called each time a panel is toggled. expanded prop is an array
    * of Panel keys that are currently expanded. */
   onChange?: AccordionOnChangeHandlerT,
-  overrides?: AccordionOverridesT<
-    $Diff<SharedStylePropsArgT, {$expanded?: ?boolean}>,
-  >,
+  overrides?: AccordionOverridesT,
   /** Handler called each time the component state changes.
    * Used to override default state-change functionality. */
   stateReducer: StateReducerT,
@@ -100,10 +98,7 @@ export type StatelessAccordionPropsT = {
   expanded: Array<React.Key>,
   /** Handler called each time a panel is toggled. */
   onChange?: StatelessAccordionOnChangeHandlerT,
-  overrides?: AccordionOverridesT<
-    $Diff<SharedStylePropsArgT, {$expanded?: ?boolean}>,
-  > &
-    PanelOverridesT,
+  overrides?: AccordionOverridesT & PanelOverridesT,
   /**
    * Allows users to render all child content whether a panel is expanded or not
    * for SEO purposed
