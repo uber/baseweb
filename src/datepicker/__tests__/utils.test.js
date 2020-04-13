@@ -280,19 +280,19 @@ describe('Datepicker utils', () => {
     describe('if minDate is provided', () => {
       test('should return true if the minDate falls on a later month than one month before the provided date', () => {
         expect(
-          monthDisabledBefore(new Date(2020, 4, 25), {
+          helpers.monthDisabledBefore(new Date(2020, 4, 25), {
             minDate: new Date(2020, 4, 1),
             includeDates: undefined,
           }),
         ).toEqual(true);
         expect(
-          monthDisabledBefore(new Date(2020, 4, 25), {
+          helpers.monthDisabledBefore(new Date(2020, 4, 25), {
             minDate: new Date(2020, 3, 25),
             includeDates: undefined,
           }),
         ).toEqual(false);
         expect(
-          monthDisabledBefore(new Date(2020, 4, 25), {
+          helpers.monthDisabledBefore(new Date(2020, 4, 25), {
             minDate: new Date(2020, 3, 26),
             includeDates: undefined,
           }),

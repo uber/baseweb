@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import type {DateIOAdapter} from './types.js';
+import {monthDisabledBefore} from './index.js';
 
 const MINUTE = 60;
 const HOUR = MINUTE * 60;
@@ -35,6 +36,25 @@ class DateHelpers<T> {
   differenceInCalendarDays: (T, T) => number = (fromDate, toDate) => {
     const msDiff = this.adapter.getDiff(fromDate, toDate);
     return msDiff / 864e5;
+  };
+  subMonths: (T, number) => T = (date, months) => {
+    return this.adapter.addMonths(date, months * -1);
+  };
+  monthDisabledBefore: (
+    T,
+    {minDate: ?T, includeDates: ?Array<T>},
+  ) => boolean = (day, {minDate, includeDates} = {}) => {
+    const previousMonth = this.subMonths(day, 1);
+    return (
+      (!!minDate &&
+        this.differenceInCalendarMonths(minDate, previousMonth) > 0) ||
+      (!!includeDates &&
+        includeDates.every(
+          includeDate =>
+            this.differenceInCalendarMonths(includeDate, previousMonth) > 0,
+        )) ||
+      false
+    );
   };
   isDayDisabled: (
     T,
