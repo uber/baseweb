@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import type {DateIOAdapter} from './types.js';
+import {applyDateToTime} from './index.js';
 
 const MINUTE = 60;
 const HOUR = MINUTE * 60;
@@ -117,6 +118,10 @@ class DateHelpers<T> {
         )) ||
       false
     );
+  };
+  setDate: (T, number) => T = (date, dayNumber) => {
+    const startOfMonth = this.adapter.startOfMonth(date);
+    return this.adapter.addDays(startOfMonth, dayNumber - 1);
   };
   isDayDisabled: (
     T,

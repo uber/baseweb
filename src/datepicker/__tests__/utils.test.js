@@ -476,9 +476,15 @@ describe('applyDateToTime', () => {
   });
   describe('setDate', () => {
     test('should set the provided day number on the provided date', () => {
-      expect(setDate(new Date(2020, 0, 1), 10)).toEqual(new Date(2020, 0, 10));
-      expect(setDate(new Date(2020, 0, 1), 0)).toEqual(new Date(2019, 11, 31));
-      expect(setDate(new Date(2020, 0, 1), 32)).toEqual(new Date(2020, 1, 1));
+      expect(helpers.setDate(new Date(2020, 0, 1), 10)).toEqual(
+        new Date(2020, 0, 10),
+      );
+      expect(helpers.setDate(new Date(2020, 0, 1), 0)).toEqual(
+        new Date(2019, 11, 31),
+      );
+      expect(helpers.setDate(new Date(2020, 0, 1), 32)).toEqual(
+        new Date(2020, 1, 1),
+      );
     });
   });
 });
