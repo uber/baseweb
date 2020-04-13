@@ -444,12 +444,12 @@ describe('applyDateToTime', () => {
   const date = new Date(2000, 2, 2, 5, 5, 5);
   describe('if date is not provided', () => {
     test('should return the time', () => {
-      expect(applyDateToTime(null, date)).toEqual(date);
+      expect(helpers.applyDateToTime(null, date)).toEqual(date);
     });
   });
   describe('if date is provided', () => {
     test('should apply the year, month, and day of the date to the time', () => {
-      expect(applyDateToTime(time, date).toISOString()).toEqual(
+      expect(helpers.applyDateToTime(time, date).toISOString()).toEqual(
         '2000-03-02T16:10:10.000Z',
       );
     });

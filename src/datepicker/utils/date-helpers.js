@@ -120,8 +120,25 @@ class DateHelpers<T> {
     );
   };
   setDate: (T, number) => T = (date, dayNumber) => {
-    const startOfMonth = this.adapter.startOfMonth(date);
+    const startOfMonthNoTime = this.adapter.startOfMonth(date);
+    const startOfMonthHoursAndMinutes = this.adapter.mergeDateAndTime(
+      startOfMonthNoTime,
+      date,
+    );
+    const startOfMonth = this.adapter.setSeconds(
+      startOfMonthHoursAndMinutes,
+      this.adapter.getSeconds(date),
+    );
     return this.adapter.addDays(startOfMonth, dayNumber - 1);
+  };
+  applyDateToTime: (?T, T) => T = (time, date) => {
+    if (!time) return date;
+    const yearNumber = this.adapter.getYear(date);
+    const monthNumber = this.adapter.getMonth(date);
+    const dayNumber = Number(this.adapter.formatByString(date, 'd'));
+    const yearDate = this.adapter.setYear(time, yearNumber);
+    const monthDate = this.adapter.setMonth(yearDate, monthNumber);
+    return this.setDate(monthDate, dayNumber);
   };
   isDayDisabled: (
     T,
