@@ -35,6 +35,20 @@ export interface AccordionProps {
   renderAll?: boolean;
 }
 
+export type StatelessAccordionProps = {
+  accordion?: boolean;
+  children: React.ReactNode;
+  disabled?: boolean;
+  expanded: React.Key[];
+  onChange?: (args: {expanded: React.Key[]; key: React.Key}) => any;
+  overrides?: AccordionOverrides<SharedProps & {$expanded?: never}> &
+    PanelOverrides<SharedProps>;
+  renderPanelContent?: boolean;
+  renderAll?: boolean;
+};
+
+export const StatelessAccordion: React.FC<StatelessAccordionProps>;
+
 export interface AccordionState {
   expanded: React.Key[];
 }

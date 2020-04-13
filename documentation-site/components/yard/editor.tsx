@@ -71,7 +71,6 @@ const Editor: React.FC<TEditorProps> = ({
         paddingRight: '4px',
         paddingTop: small ? '2px' : '0px',
         paddingBottom: small ? '2px' : '0px',
-        maxWidth: small ? '255px' : 'auto',
         overflow: 'hidden',
         borderLeftWidth: '2px',
         borderRightWidth: '2px',
