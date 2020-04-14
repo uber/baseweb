@@ -57,13 +57,6 @@ describe('Datepicker', () => {
     expect(calendarCount).toEqual(1);
   });
 
-  it('opens the calendar on input focus', async () => {
-    await mount(page, 'datepicker');
-    await page.waitFor(selectors.input);
-    await page.focus(selectors.input);
-    await page.waitFor(selectors.calendar);
-  });
-
   it('closes the calendar on esc', async () => {
     await mount(page, 'datepicker');
     await page.waitFor(selectors.input);
