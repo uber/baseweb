@@ -27,7 +27,7 @@ const SkipToContent = () => {
         ':focus': {
           top: theme.sizing.scale600,
           outlineOffset: '-3px',
-          transition: `top ${theme.animation.timing100} ${theme.animation.easeInCurve} 0ms`,
+          transition: `top ${theme.animation.timing200} ${theme.animation.easeInCurve} 0ms`,
         },
       }}
     >

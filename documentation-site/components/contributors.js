@@ -63,7 +63,7 @@ function Contributors(props: {contributors: Contributor[]}) {
                   style: ({$theme}) => ({
                     margin: $theme.sizing.scale100,
                     transitionProperty: 'all',
-                    transitionDuration: $theme.animation.timing100,
+                    transitionDuration: $theme.animation.timing200,
                     transitionTimingFunction: $theme.animation.easeInOutCurve,
                     ':hover': {
                       transform: 'scale(1.2)',

@@ -122,7 +122,7 @@ export const StyledListItemElement = styled<StyledPropsT>('li', props => {
     cursor: $disabled ? 'not-allowed' : 'pointer',
     backgroundColor: getBackgroundColor(props),
     transitionProperty: 'color, background-color',
-    transitionDuration: $theme.animation.timing100,
+    transitionDuration: $theme.animation.timing200,
     transitionTimingFunction: $theme.animation.easeOutCurve,
     marginBottom: 0,
     paddingTop:
@@ -165,7 +165,7 @@ export const StyledListItemProfile = styled<StyledPropsT>('li', ({$theme}) => ({
   paddingRight: $theme.sizing.scale800,
   paddingLeft: $theme.sizing.scale800,
   transitionProperty: 'color, background-color',
-  transitionDuration: $theme.animation.timing100,
+  transitionDuration: $theme.animation.timing200,
   transitionTimingFunction: $theme.animation.easeOutCurve,
   ':hover': {
     backgroundColor: $theme.colors.menuFillHover,

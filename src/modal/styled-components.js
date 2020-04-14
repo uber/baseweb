@@ -166,7 +166,7 @@ export const Close = styled<SharedStylePropsArgT>('button', props => {
     // colors
     color: $theme.colors.modalCloseColor,
     transitionProperty: 'color, border-color',
-    transitionDuration: $theme.animation.timing100,
+    transitionDuration: $theme.animation.timing200,
     borderLeftWidth: '1px',
     borderRightWidth: '1px',
     borderTopWidth: '1px',

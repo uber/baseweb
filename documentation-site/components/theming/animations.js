@@ -23,7 +23,19 @@ const move = {
 const animations = {
   timing100: {
     ...move,
-    ['25%']: {
+    ['10%']: {
+      width: '100%',
+    },
+  },
+  timing200: {
+    ...move,
+    ['20%']: {
+      width: '100%',
+    },
+  },
+  timing300: {
+    ...move,
+    ['30%']: {
       width: '100%',
     },
   },
@@ -33,9 +45,33 @@ const animations = {
       width: '100%',
     },
   },
-  timing700: {
+  timing500: {
+    ...move,
+    ['50%']: {
+      width: '100%',
+    },
+  },
+  timing600: {
     ...move,
     ['60%']: {
+      width: '100%',
+    },
+  },
+  timing700: {
+    ...move,
+    ['70%']: {
+      width: '100%',
+    },
+  },
+  timing800: {
+    ...move,
+    ['80%']: {
+      width: '100%',
+    },
+  },
+  timing900: {
+    ...move,
+    ['90%']: {
       width: '100%',
     },
   },

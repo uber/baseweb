@@ -279,7 +279,7 @@ function Thumbnail({children, href}) {
         marginBottom: theme.sizing.scale800,
         textDecoration: 'none',
         transitionProperty: 'all',
-        transitionDuration: theme.animation.timing100,
+        transitionDuration: theme.animation.timing200,
         transitionTimingFunction: theme.animation.easeInOutCurve,
         ':hover': {
           borderLeftWidth: '1px',

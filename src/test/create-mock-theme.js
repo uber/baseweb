@@ -35,7 +35,7 @@ LICENSE file in the root directory of this source tree.
  *     radius300: '$theme.borders.radius300',
  *   },
  *   animation: {
- *     timing100: '$theme.animation.timing100',
+ *     timing100: '$theme.animation.timing200',
  *     timing400: '$theme.animation.timing400',
  *   }
  * }
