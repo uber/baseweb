@@ -78,7 +78,6 @@ describe('Popover styled components flow', () => {
   test('it provides flow error if we not provide all required props for StyledBody', () => {
     const BrokenCustomBody = props => {
       const {$isAnimating, children, ...rest} = props;
-      // $FlowFixMe missing $isAnimating prop
       return <StyledBody {...rest}>{children}</StyledBody>;
     };
     const CustomPopover = () => (

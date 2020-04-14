@@ -21,7 +21,6 @@ function Spinner(props: IconPropsT, ref) {
   const SvgOverride = mergeOverride(
     // Icons from theme really targets the SVG override in the underlying Icon component, but
     // have props typed with IconPropsT. Provided the missing props inline below here.
-    // $FlowFixMe
     {
       component:
         theme.icons && theme.icons.Spinner ? theme.icons.Spinner : null,

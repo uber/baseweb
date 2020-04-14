@@ -152,6 +152,10 @@ const routes = [
             itemId: '/components/breadcrumbs',
           },
           {
+            title: 'Navigation Bar',
+            itemId: '/components/app-nav-bar',
+          },
+          {
             title: 'Header Navigation',
             itemId: '/components/header-navigation',
           },

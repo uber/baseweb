@@ -1,0 +1,49 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Exports from '../../components/exports';
+import Layout from '../../components/layout';
+import SEO from '../../components/meta-seo';
+import appNavBarYardConfig from '../../components/yard/config/app-nav-bar';
+import ApiTable from '../../components/api-table';
+
+import * as AppNavBarExports from 'baseui/app-nav-bar';
+
+import Basic from 'examples/app-nav-bar/basic.js';
+
+<SEO
+  description="The shared navigation bar component enables users to orient and navigate different sections of applications reliably."
+  keywords="navigation, menu, app header, app navigation bar"
+/>
+
+export default Layout;
+
+# Application navigation bar
+
+The navigation bar standartizes and creates a shared navigation experience across the applications and products.
+It enables users to orient and navigate different sections of applications reliably.
+
+## Examples
+
+<Example title="Web application navigation bar " path="app-nav-bar/basic.js">
+  <Basic />
+</Example>
+
+## API
+
+<ApiTable
+  title="Unstable_AppNavBar"
+  config={appNavBarYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/app-nav-bar/app-nav-bar.js')}
+/>
+
+<Exports
+  component={AppNavBarExports}
+  title="Navigation bar exports"
+  path="baseui/app-nav-bar"
+/>
