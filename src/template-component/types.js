@@ -25,7 +25,7 @@ export type StateReducerT = (
 export type ComponentRenderPropT = (props: {}) => React.Node;
 
 export type OverridesT = {
-  Root?: OverrideT<SharedStylePropsT>,
+  Root?: OverrideT,
 };
 
 export type ChildT = React.Node;

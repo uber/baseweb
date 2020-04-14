@@ -62,22 +62,22 @@ export type SharedPropsT = {|
 export type PropsT = *;
 
 export type BaseInputComponentsT = {|
-  InputContainer?: OverrideT<*>,
-  Input?: OverrideT<*>,
-  Before?: OverrideT<*>,
-  After?: OverrideT<*>,
-  ClearIcon?: OverrideT<*>,
-  ClearIconContainer?: OverrideT<*>,
-  MaskToggleButton?: OverrideT<*>,
-  MaskToggleShowIcon?: OverrideT<*>,
-  MaskToggleHideIcon?: OverrideT<*>,
+  InputContainer?: OverrideT,
+  Input?: OverrideT,
+  Before?: OverrideT,
+  After?: OverrideT,
+  ClearIcon?: OverrideT,
+  ClearIconContainer?: OverrideT,
+  MaskToggleButton?: OverrideT,
+  MaskToggleShowIcon?: OverrideT,
+  MaskToggleHideIcon?: OverrideT,
 |};
 
 export type InputComponentsT = {|
   ...BaseInputComponentsT,
-  Root?: OverrideT<*>,
-  StartEnhancer?: OverrideT<*>,
-  EndEnhancer?: OverrideT<*>,
+  Root?: OverrideT,
+  StartEnhancer?: OverrideT,
+  EndEnhancer?: OverrideT,
 |};
 
 export type BaseInputPropsT<T> = {|

@@ -169,7 +169,7 @@ export default () => {
         flagRows(selection.map(r => r.id));
         clearSelection();
       },
-      renderIcon: Check,
+      renderIcon: ({size}) => <Check size={size} />,
     },
     {
       label: 'Remove',
@@ -177,7 +177,7 @@ export default () => {
         removeRows(selection.map(r => r.id));
         clearSelection();
       },
-      renderIcon: Alert,
+      renderIcon: ({size}) => <Alert size={size} />,
     },
     {
       label: 'Download',
@@ -189,12 +189,12 @@ export default () => {
     {
       label: 'Check',
       onClick: ({row}) => flagRow(row.id),
-      renderIcon: Check,
+      renderIcon: ({size}) => <Check size={size} />,
     },
     {
       label: 'Remove',
       onClick: ({row}) => removeRow(row.id),
-      renderIcon: Alert,
+      renderIcon: ({size}) => <Alert size={size} />,
     },
   ];
 

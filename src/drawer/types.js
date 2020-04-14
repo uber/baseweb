@@ -19,11 +19,11 @@ export type AnchorPropT = AnchorT | string;
 export type CloseSourceT = $Keys<typeof CLOSE_SOURCE>;
 
 export type OverridesT = {
-  Root?: OverrideT<SharedStylePropsArgT>,
-  Backdrop?: OverrideT<SharedStylePropsArgT>,
-  DrawerBody?: OverrideT<SharedStylePropsArgT>,
-  DrawerContainer?: OverrideT<SharedStylePropsArgT>,
-  Close?: OverrideT<SharedStylePropsArgT>,
+  Root?: OverrideT,
+  Backdrop?: OverrideT,
+  DrawerBody?: OverrideT,
+  DrawerContainer?: OverrideT,
+  Close?: OverrideT,
 };
 
 // eslint-disable-next-line flowtype/no-weak-types

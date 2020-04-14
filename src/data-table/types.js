@@ -32,14 +32,14 @@ export type ColumnT<ValueT = any, FilterParamsT = any> = {|
   filterable: boolean,
   // eslint-disable-next-line flowtype/no-weak-types
   mapDataToValue: (data: any) => ValueT,
-  renderCell: React.ComponentType<{
+  renderCell: React.AbstractComponent<{
     value: ValueT,
     isMeasured?: boolean,
     isSelected?: boolean,
     onSelect?: () => void,
     textQuery?: string,
   }>,
-  renderFilter: React.ComponentType<{|
+  renderFilter: React.AbstractComponent<{|
     close: () => void,
     data: ValueT[],
     filterParams?: FilterParamsT,
@@ -64,24 +64,24 @@ export type BatchActionT = {|
     event: SyntheticEvent<HTMLButtonElement>,
     selection: RowT[],
   }) => mixed,
-  renderIcon?: React.ComponentType<{|size: number|}>,
+  renderIcon?: React.AbstractComponent<{|size: number|}>,
 |};
 
 export type RowActionT = {|
   label: string,
   onClick: ({event: SyntheticEvent<HTMLButtonElement>, row: RowT}) => mixed,
-  renderIcon: React.ComponentType<{|size: number|}>,
+  renderIcon: React.AbstractComponent<{|size: number|}>,
 |};
 
 export type StatefulDataTablePropsT = {|
   batchActions?: BatchActionT[],
   columns: ColumnT<>[],
-  emptyMessage?: string | React.ComponentType<{||}>,
+  emptyMessage?: string | React.AbstractComponent<{||}>,
   filterable?: boolean,
   initialFilters?: Map<string, {description: string}>,
   initialSelectedRowIds?: Set<number | string>,
   loading?: boolean,
-  loadingMessage?: string | React.ComponentType<{||}>,
+  loadingMessage?: string | React.AbstractComponent<{||}>,
   onFilterAdd?: (string, {description: string}) => mixed,
   onFilterRemove?: string => mixed,
   onIncludedRowsChange?: (rows: RowT[]) => void,
@@ -97,10 +97,10 @@ export type StatefulDataTablePropsT = {|
 
 export type DataTablePropsT = {|
   ...StatefulDataTablePropsT,
-  emptyMessage?: string | React.ComponentType<{||}>,
+  emptyMessage?: string | React.AbstractComponent<{||}>,
   filters?: Map<string, {description: string}>,
   loading?: boolean,
-  loadingMessage?: string | React.ComponentType<{||}>,
+  loadingMessage?: string | React.AbstractComponent<{||}>,
   onIncludedRowsChange?: (rows: RowT[]) => void,
   onRowHighlightChange?: (rowIndex: number, row: RowT) => void,
   onSelectMany?: (rows: RowT[]) => void,

@@ -19,11 +19,11 @@ export type RolePropT = RoleT | string;
 export type CloseSourceT = $Keys<typeof CLOSE_SOURCE>;
 
 export type OverridesT = {
-  Root?: OverrideT<SharedStylePropsArgT>,
-  Backdrop?: OverrideT<SharedStylePropsArgT>,
-  Dialog?: OverrideT<SharedStylePropsArgT>,
-  DialogContainer?: OverrideT<SharedStylePropsArgT>,
-  Close?: OverrideT<SharedStylePropsArgT>,
+  Root?: OverrideT,
+  Backdrop?: OverrideT,
+  Dialog?: OverrideT,
+  DialogContainer?: OverrideT,
+  Close?: OverrideT,
 };
 
 // eslint-disable-next-line flowtype/no-weak-types

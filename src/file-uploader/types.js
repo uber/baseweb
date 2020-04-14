@@ -17,15 +17,15 @@ export type StylePropsT = {|
   $isFocused: boolean,
 |};
 
-export type OverridesT<T> = {|
-  Root?: OverrideT<T>,
-  FileDragAndDrop?: OverrideT<T>,
-  ContentMessage?: OverrideT<T>,
-  ContentSeparator?: OverrideT<T>,
-  HiddenInput?: OverrideT<T>,
-  ProgressMessage?: OverrideT<T>,
-  ErrorMessage?: OverrideT<T>,
-  ButtonComponent?: OverrideT<T>,
+export type OverridesT = {|
+  Root?: OverrideT,
+  FileDragAndDrop?: OverrideT,
+  ContentMessage?: OverrideT,
+  ContentSeparator?: OverrideT,
+  HiddenInput?: OverrideT,
+  ProgressMessage?: OverrideT,
+  ErrorMessage?: OverrideT,
+  ButtonComponent?: OverrideT,
 |};
 
 export type PropsT = {|
@@ -58,7 +58,7 @@ export type PropsT = {|
   errorMessage?: string,
   onCancel?: () => mixed,
   onRetry?: () => mixed,
-  overrides?: OverridesT<StylePropsT>,
+  overrides?: OverridesT,
   progressAmount?: number,
   progressMessage?: string,
 |};

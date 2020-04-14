@@ -13,13 +13,13 @@ export type LabelPlacementT = 'top' | 'right' | 'bottom' | 'left';
 export type StyleTypeT = $Keys<typeof STYLE_TYPE>;
 
 export type OverridesT = {
-  Checkmark?: OverrideT<*>,
-  Label?: OverrideT<*>,
-  Root?: OverrideT<*>,
-  Input?: OverrideT<*>,
-  Toggle?: OverrideT<*>,
-  ToggleInner?: OverrideT<*>,
-  ToggleTrack?: OverrideT<*>,
+  Checkmark?: OverrideT,
+  Label?: OverrideT,
+  Root?: OverrideT,
+  Input?: OverrideT,
+  Toggle?: OverrideT,
+  ToggleInner?: OverrideT,
+  ToggleTrack?: OverrideT,
 };
 
 export type DefaultPropsT = {

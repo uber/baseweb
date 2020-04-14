@@ -17,7 +17,22 @@ export default function Scenario() {
       <Button startEnhancer={Upload}>Start Enhancer</Button>
       <br />
       <br />
+      <Button startEnhancer="hello">Start Enhancer</Button>
+      <br />
+      <br />
+      <Button startEnhancer={() => <span>fn</span>}>Start Enhancer</Button>
+      <br />
+      <br />
+      <Button startEnhancer={<span>node</span>}>Start Enhancer</Button>
+      <br />
+      <br />
       <Button endEnhancer={Upload}>End Enhancer</Button>
+      <br />
+      <br />
+      <Button endEnhancer={21}>End Enhancer</Button>
+      <br />
+      <br />
+      <Button endEnhancer={['a', 'b']}>End Enhancer</Button>
       <br />
       <br />
       <Button>

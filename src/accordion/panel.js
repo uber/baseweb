@@ -97,11 +97,6 @@ class Panel extends React.Component<PanelPropsT, {isFocusVisible: boolean}> {
       ToggleIcon: ToggleIconOverride,
     } = overrides;
 
-    const isIconOverriden =
-      ToggleIconOverride &&
-      (typeof ToggleIconOverride === 'function' ||
-        typeof ToggleIconOverride.component === 'function');
-
     const [PanelContainer, panelContainerProps] = getOverrides(
       PanelContainerOverride,
       StyledPanelContainer,
@@ -111,24 +106,12 @@ class Panel extends React.Component<PanelPropsT, {isFocusVisible: boolean}> {
       ContentOverride,
       StyledContent,
     );
-    const [ToggleIcon, toggleIconProps] = getOverrides(
-      ToggleIconOverride,
-      StyledToggleIcon,
-    );
 
     const toggleIconOverrides = mergeOverrides(
-      {Svg: ToggleIcon},
+      {Svg: {component: StyledToggleIcon}},
       // $FlowFixMe
       {Svg: ToggleIconOverride},
     );
-
-    // it's a bit tricky ¯\_(ツ)_/¯
-    // we only want to use the theme overrides, if it was not override locally
-    const ToggleIconComponent = isIconOverriden
-      ? ToggleIcon
-      : expanded
-      ? CheckIndeterminateIcon
-      : PlusIcon;
 
     return (
       <LocaleContext.Consumer>
@@ -148,15 +131,22 @@ class Panel extends React.Component<PanelPropsT, {isFocusVisible: boolean}> {
               onBlur={forkBlur(headerProps, this.handleBlur)}
             >
               {title}
-              <ToggleIconComponent
-                size={16}
-                title={
-                  expanded ? locale.accordion.collapse : locale.accordion.expand
-                }
-                {...sharedProps}
-                {...toggleIconProps}
-                overrides={toggleIconOverrides}
-              />
+              {expanded ? (
+                <CheckIndeterminateIcon
+                  size={16}
+                  title={locale.accordion.collapse}
+                  {...sharedProps}
+                  // $FlowFixMe
+                  overrides={toggleIconOverrides}
+                />
+              ) : (
+                <PlusIcon
+                  size={16}
+                  title={locale.accordion.expand}
+                  {...sharedProps}
+                  overrides={toggleIconOverrides}
+                />
+              )}
             </Header>
             <Content
               {...sharedProps}

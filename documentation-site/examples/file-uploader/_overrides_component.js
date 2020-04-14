@@ -4,11 +4,10 @@ import {FileUploader} from 'baseui/file-uploader';
 import type {
   DropFilesEventHandlerT,
   OverridesT,
-  StylePropsT,
 } from 'baseui/file-uploader';
 
 export default class Uploader extends React.Component<
-  {overrides: OverridesT<StylePropsT>},
+  {overrides: OverridesT},
   {progressAmount: number},
 > {
   state = {progressAmount: 0};
