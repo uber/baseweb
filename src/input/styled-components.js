@@ -25,10 +25,10 @@ export const StyledMaskToggleButton = styled<{
   return {
     display: 'flex',
     alignItems: 'center',
-    borderTop: 'none',
-    borderBottom: 'none',
-    borderLeft: 'none',
-    borderRight: 'none',
+    borderTopStyle: 'none',
+    borderBottomStyle: 'none',
+    borderLeftStyle: 'none',
+    borderRightStyle: 'none',
     background: 'none',
     paddingLeft: pad,
     paddingRight: pad,
@@ -261,7 +261,10 @@ function getInputContainerColors(
   if ($disabled) {
     return {
       color: colors.inputTextDisabled,
-      borderColor: colors.inputFillDisabled,
+      borderLeftColor: colors.inputFillDisabled,
+      borderRightColor: colors.inputFillDisabled,
+      borderTopColor: colors.inputFillDisabled,
+      borderBottomColor: colors.inputFillDisabled,
       backgroundColor: colors.inputFillDisabled,
     };
   }
@@ -269,7 +272,10 @@ function getInputContainerColors(
   if ($isFocused) {
     return {
       color: colors.contentPrimary,
-      borderColor: colors.borderFocus,
+      borderLeftColor: colors.borderFocus,
+      borderRightColor: colors.borderFocus,
+      borderTopColor: colors.borderFocus,
+      borderBottomColor: colors.borderFocus,
       backgroundColor: colors.inputFillActive,
     };
   }
@@ -277,7 +283,10 @@ function getInputContainerColors(
   if ($error) {
     return {
       color: colors.contentPrimary,
-      borderColor: colors.inputBorderError,
+      borderLeftColor: colors.inputBorderError,
+      borderRightColor: colors.inputBorderError,
+      borderTopColor: colors.inputBorderError,
+      borderBottomColor: colors.inputBorderError,
       backgroundColor: colors.inputFillError,
     };
   }
@@ -285,14 +294,20 @@ function getInputContainerColors(
   if ($positive) {
     return {
       color: colors.contentPrimary,
-      borderColor: colors.inputBorderPositive,
+      borderLeftColor: colors.inputBorderPositive,
+      borderRightColor: colors.inputBorderPositive,
+      borderTopColor: colors.inputBorderPositive,
+      borderBottomColor: colors.inputBorderPositive,
       backgroundColor: colors.inputFillPositive,
     };
   }
 
   return {
     color: colors.contentPrimary,
-    borderColor: colors.inputBorder,
+    borderLeftColor: colors.inputBorder,
+    borderRightColor: colors.inputBorder,
+    borderTopColor: colors.inputBorder,
+    borderBottomColor: colors.inputBorder,
     backgroundColor: colors.inputFill,
   };
 }
@@ -319,8 +334,14 @@ export const getInputContainerStyles = (props: {
     boxSizing: 'border-box',
     display: 'flex',
     width: '100%',
-    borderWidth: '2px',
-    borderStyle: 'solid',
+    borderLeftWidth: '2px',
+    borderRightWidth: '2px',
+    borderTopWidth: '2px',
+    borderBottomWidth: '2px',
+    borderLeftStyle: 'solid',
+    borderRightStyle: 'solid',
+    borderTopStyle: 'solid',
+    borderBottomStyle: 'solid',
     transitionProperty: 'border, background-color',
     transitionDuration: animation.timing100,
     transitionTimingFunction: animation.easeOutCurve,
@@ -372,8 +393,14 @@ export const getInputStyles = (props: SharedPropsT & {$theme: ThemeT}) => {
   return {
     boxSizing: 'border-box',
     backgroundColor: 'transparent',
-    borderWidth: 0,
-    borderStyle: 'none',
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    borderTopWidth: 0,
+    borderBottomWidth: 0,
+    borderLeftStyle: 'none',
+    borderRightStyle: 'none',
+    borderTopStyle: 'none',
+    borderBottomStyle: 'none',
     outline: 'none',
     width: '100%',
     maxWidth: '100%',

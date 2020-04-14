@@ -6,9 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import 'jest-enzyme';
-import toHaveStyleRule from './expect-to-have-style-rule.js';
-
-expect.extend({toHaveStyleRule});
 
 jest.mock('../styles/styled.js');
 jest.mock('../utils/get-bui-id.js');

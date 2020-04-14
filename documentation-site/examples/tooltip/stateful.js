@@ -14,7 +14,9 @@ export default () => {
       >
         <span
           className={css({
-            borderBottom: `1px dotted ${theme.colors.primary500}`,
+            borderBottomWidth: '1px',
+            borderBottomStyle: 'dotted',
+            borderBottomColor: `${theme.colors.primary500}`,
             color: theme.colors.primary500,
           })}
           tabIndex={0}

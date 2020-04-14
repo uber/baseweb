@@ -224,6 +224,7 @@ const Index = (props: {
         '/static/images/streamlit-logo.png',
         '/static/images/everbase-logo.png',
         '/static/images/cadre-logo.png',
+        '/static/images/banzaicloud-logo.png',
       ]}
     />
     <Contributors contributors={props.contributors} />

@@ -123,6 +123,7 @@ exports[`Select component renders component in search mode and false for multipl
         aria-haspopup="true"
         data-baseweb="select"
         key="popover-anchor"
+        onBlur={[Function]}
         onClick={[Function]}
       >
         <MockStyledComponent
@@ -152,20 +153,73 @@ exports[`Select component renders component in search mode and false for multipl
                 aria-haspopup="true"
                 data-baseweb="select"
                 styled-component="true"
-                test-style="[object Object]"
+                test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"position\\": \\"relative\\",
+  \\"width\\": \\"100%\\"
+}"
               >
                 <div
                   styled-component="true"
-                  test-style="[object Object]"
+                  test-style="{
+  \\"borderTopLeftRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"borderTopRightRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"borderBottomRightRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"borderBottomLeftRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"overflow\\": \\"hidden\\",
+  \\"width\\": \\"100%\\",
+  \\"display\\": \\"flex\\",
+  \\"justifyContent\\": \\"space-between\\",
+  \\"cursor\\": \\"text\\",
+  \\"borderLeftWidth\\": \\"2px\\",
+  \\"borderRightWidth\\": \\"2px\\",
+  \\"borderTopWidth\\": \\"2px\\",
+  \\"borderBottomWidth\\": \\"2px\\",
+  \\"borderLeftStyle\\": \\"solid\\",
+  \\"borderRightStyle\\": \\"solid\\",
+  \\"borderTopStyle\\": \\"solid\\",
+  \\"borderBottomStyle\\": \\"solid\\",
+  \\"transitionProperty\\": \\"border, box-shadow, background-color\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing100\\",
+  \\"transitionTimingFunction\\": \\"$theme.animation.easeOutCurve\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"borderLeftColor\\": \\"$theme.colors.inputBorder\\",
+  \\"borderRightColor\\": \\"$theme.colors.inputBorder\\",
+  \\"borderTopColor\\": \\"$theme.colors.inputBorder\\",
+  \\"borderBottomColor\\": \\"$theme.colors.inputBorder\\",
+  \\"backgroundColor\\": \\"$theme.colors.inputFill\\"
+}"
                 >
                   <div
                     styled-component="true"
-                    test-style="[object Object]"
+                    test-style="{
+  \\"display\\": \\"flex\\",
+  \\"fill\\": \\"currentColor\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"height\\": \\"100%\\",
+  \\"width\\": \\"$theme.sizing.scale600\\",
+  \\"cursor\\": \\"pointer\\",
+  \\"position\\": \\"absolute\\",
+  \\"top\\": 0,
+  \\"left\\": \\"$theme.sizing.scale500\\",
+  \\"alignItems\\": \\"center\\"
+}"
                   >
                     <svg
                       data-baseweb="icon"
                       styled-component="true"
-                      test-style="[object Object]"
+                      test-style="{
+  \\"display\\": \\"inline-block\\",
+  \\"fill\\": \\"currentColor\\",
+  \\"color\\": \\"currentColor\\",
+  \\"height\\": \\"16px\\",
+  \\"width\\": \\"16px\\"
+}"
                       viewBox="0 0 24 24"
                     >
                       <title>
@@ -180,11 +234,47 @@ exports[`Select component renders component in search mode and false for multipl
                   </div>
                   <div
                     styled-component="true"
-                    test-style="[object Object]"
+                    test-style="{
+  \\"boxSizing\\": \\"border-box\\",
+  \\"position\\": \\"relative\\",
+  \\"flexGrow\\": 1,
+  \\"flexShrink\\": 1,
+  \\"flexBasis\\": \\"0%\\",
+  \\"display\\": \\"flex\\",
+  \\"alignItems\\": \\"center\\",
+  \\"flexWrap\\": \\"nowrap\\",
+  \\"overflow\\": \\"hidden\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale400\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale400\\",
+  \\"paddingLeft\\": \\"calc($theme.sizing.scale1000 - $theme.sizing.scale0)\\",
+  \\"paddingRight\\": 0
+}"
                   >
                     <div
                       styled-component="true"
-                      test-style="[object Object]"
+                      test-style="{
+  \\"position\\": \\"relative\\",
+  \\"display\\": \\"inline-block\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"backgroundColor\\": \\"transparent\\",
+  \\"borderLeftStyle\\": \\"none\\",
+  \\"borderTopStyle\\": \\"none\\",
+  \\"borderRightStyle\\": \\"none\\",
+  \\"borderBottomStyle\\": \\"none\\",
+  \\"boxShadow\\": \\"none\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"outline\\": \\"none\\",
+  \\"marginTop\\": 0,
+  \\"marginBottom\\": 0,
+  \\"marginLeft\\": 0,
+  \\"marginRight\\": 0,
+  \\"paddingTop\\": 0,
+  \\"paddingBottom\\": 0,
+  \\"paddingLeft\\": 0,
+  \\"paddingRight\\": 0,
+  \\"height\\": \\"auto\\",
+  \\"maxHeight\\": \\"$theme.typography.font300.lineHeight\\"
+}"
                     >
                       <input
                         aria-autocomplete="list"
@@ -194,29 +284,81 @@ exports[`Select component renders component in search mode and false for multipl
                         role="combobox"
                         styled-component="true"
                         tabindex="0"
-                        test-style="[object Object]"
+                        test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"boxSizing\\": \\"content-box\\",
+  \\"width\\": \\"2px\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"background\\": \\"transparent\\",
+  \\"borderLeftStyle\\": \\"none\\",
+  \\"borderTopStyle\\": \\"none\\",
+  \\"borderRightStyle\\": \\"none\\",
+  \\"borderBottomStyle\\": \\"none\\",
+  \\"boxShadow\\": \\"none\\",
+  \\"display\\": \\"inline-block\\",
+  \\"outline\\": \\"none\\",
+  \\"marginTop\\": \\"0\\",
+  \\"marginBottom\\": \\"0\\",
+  \\"marginLeft\\": \\"0\\",
+  \\"marginRight\\": \\"0\\",
+  \\"paddingTop\\": \\"0\\",
+  \\"paddingBottom\\": \\"0\\",
+  \\"paddingLeft\\": \\"0\\",
+  \\"paddingRight\\": \\"0\\"
+}"
                         value=""
                       />
                       <div
                         styled-component="true"
-                        test-style="[object Object]"
+                        test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"position\\": \\"absolute\\",
+  \\"top\\": 0,
+  \\"left\\": 0,
+  \\"visibility\\": \\"hidden\\",
+  \\"height\\": 0,
+  \\"overflow\\": \\"scroll\\",
+  \\"whiteSpace\\": \\"pre\\"
+}"
                       />
                     </div>
                     <div
                       styled-component="true"
-                      test-style="[object Object]"
+                      test-style="{
+  \\"color\\": \\"$theme.colors.inputPlaceholder\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"overflow\\": \\"hidden\\",
+  \\"textOverflow\\": \\"ellipsis\\",
+  \\"whiteSpace\\": \\"nowrap\\"
+}"
                     >
                       Select...
                     </div>
                   </div>
                   <div
                     styled-component="true"
-                    test-style="[object Object]"
+                    test-style="{
+  \\"boxSizing\\": \\"border-box\\",
+  \\"position\\": \\"relative\\",
+  \\"display\\": \\"flex\\",
+  \\"flexShrink\\": 0,
+  \\"alignItems\\": \\"center\\",
+  \\"alignSelf\\": \\"stretch\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale500\\"
+}"
                   />
                 </div>
               </div>,
             }
           }
+          onBlur={[Function]}
           onClick={[Function]}
         >
           <div
@@ -224,19 +366,18 @@ exports[`Select component renders component in search mode and false for multipl
             aria-expanded="false"
             aria-haspopup="true"
             data-baseweb="select"
+            onBlur={[Function]}
             onClick={[Function]}
             styled-component="true"
-            test-style={
-              Object {
-                "boxSizing": "border-box",
-                "fontFamily": "$theme.typography.font300.fontFamily",
-                "fontSize": "$theme.typography.font300.fontSize",
-                "fontWeight": "$theme.typography.font300.fontWeight",
-                "lineHeight": "$theme.typography.font300.lineHeight",
-                "position": "relative",
-                "width": "100%",
-              }
-            }
+            test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"position\\": \\"relative\\",
+  \\"width\\": \\"100%\\"
+}"
           >
             <ForwardRef
               $clearable={true}
@@ -290,28 +431,35 @@ exports[`Select component renders component in search mode and false for multipl
                   onTouchMove={[Function]}
                   onTouchStart={[Function]}
                   styled-component="true"
-                  test-style={
-                    Object {
-                      "backgroundColor": "$theme.colors.inputFill",
-                      "borderBottomLeftRadius": "$theme.borders.inputBorderRadius",
-                      "borderBottomRightRadius": "$theme.borders.inputBorderRadius",
-                      "borderColor": "$theme.colors.inputBorder",
-                      "borderStyle": "solid",
-                      "borderTopLeftRadius": "$theme.borders.inputBorderRadius",
-                      "borderTopRightRadius": "$theme.borders.inputBorderRadius",
-                      "borderWidth": "2px",
-                      "boxSizing": "border-box",
-                      "color": "$theme.colors.contentPrimary",
-                      "cursor": "text",
-                      "display": "flex",
-                      "justifyContent": "space-between",
-                      "overflow": "hidden",
-                      "transitionDuration": "$theme.animation.timing100",
-                      "transitionProperty": "border, box-shadow, background-color",
-                      "transitionTimingFunction": "$theme.animation.easeOutCurve",
-                      "width": "100%",
-                    }
-                  }
+                  test-style="{
+  \\"borderTopLeftRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"borderTopRightRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"borderBottomRightRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"borderBottomLeftRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"overflow\\": \\"hidden\\",
+  \\"width\\": \\"100%\\",
+  \\"display\\": \\"flex\\",
+  \\"justifyContent\\": \\"space-between\\",
+  \\"cursor\\": \\"text\\",
+  \\"borderLeftWidth\\": \\"2px\\",
+  \\"borderRightWidth\\": \\"2px\\",
+  \\"borderTopWidth\\": \\"2px\\",
+  \\"borderBottomWidth\\": \\"2px\\",
+  \\"borderLeftStyle\\": \\"solid\\",
+  \\"borderRightStyle\\": \\"solid\\",
+  \\"borderTopStyle\\": \\"solid\\",
+  \\"borderBottomStyle\\": \\"solid\\",
+  \\"transitionProperty\\": \\"border, box-shadow, background-color\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing100\\",
+  \\"transitionTimingFunction\\": \\"$theme.animation.easeOutCurve\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"borderLeftColor\\": \\"$theme.colors.inputBorder\\",
+  \\"borderRightColor\\": \\"$theme.colors.inputBorder\\",
+  \\"borderTopColor\\": \\"$theme.colors.inputBorder\\",
+  \\"borderBottomColor\\": \\"$theme.colors.inputBorder\\",
+  \\"backgroundColor\\": \\"$theme.colors.inputFill\\"
+}"
                 >
                   <ForwardRef
                     $clearable={true}
@@ -350,20 +498,18 @@ exports[`Select component renders component in search mode and false for multipl
                     >
                       <div
                         styled-component="true"
-                        test-style={
-                          Object {
-                            "alignItems": "center",
-                            "color": "$theme.colors.contentPrimary",
-                            "cursor": "pointer",
-                            "display": "flex",
-                            "fill": "currentColor",
-                            "height": "100%",
-                            "left": "$theme.sizing.scale500",
-                            "position": "absolute",
-                            "top": 0,
-                            "width": "$theme.sizing.scale600",
-                          }
-                        }
+                        test-style="{
+  \\"display\\": \\"flex\\",
+  \\"fill\\": \\"currentColor\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"height\\": \\"100%\\",
+  \\"width\\": \\"$theme.sizing.scale600\\",
+  \\"cursor\\": \\"pointer\\",
+  \\"position\\": \\"absolute\\",
+  \\"top\\": 0,
+  \\"left\\": \\"$theme.sizing.scale500\\",
+  \\"alignItems\\": \\"center\\"
+}"
                       >
                         <Search
                           size={16}
@@ -388,15 +534,13 @@ exports[`Select component renders component in search mode and false for multipl
                                 <svg
                                   data-baseweb="icon"
                                   styled-component="true"
-                                  test-style={
-                                    Object {
-                                      "color": "currentColor",
-                                      "display": "inline-block",
-                                      "fill": "currentColor",
-                                      "height": "16px",
-                                      "width": "16px",
-                                    }
-                                  }
+                                  test-style="{
+  \\"display\\": \\"inline-block\\",
+  \\"fill\\": \\"currentColor\\",
+  \\"color\\": \\"currentColor\\",
+  \\"height\\": \\"16px\\",
+  \\"width\\": \\"16px\\"
+}"
                                   viewBox="0 0 24 24"
                                 >
                                   <title>
@@ -452,23 +596,21 @@ exports[`Select component renders component in search mode and false for multipl
                     >
                       <div
                         styled-component="true"
-                        test-style={
-                          Object {
-                            "alignItems": "center",
-                            "boxSizing": "border-box",
-                            "display": "flex",
-                            "flexBasis": "0%",
-                            "flexGrow": 1,
-                            "flexShrink": 1,
-                            "flexWrap": "nowrap",
-                            "overflow": "hidden",
-                            "paddingBottom": "$theme.sizing.scale400",
-                            "paddingLeft": "calc($theme.sizing.scale1000 - $theme.sizing.scale0)",
-                            "paddingRight": 0,
-                            "paddingTop": "$theme.sizing.scale400",
-                            "position": "relative",
-                          }
-                        }
+                        test-style="{
+  \\"boxSizing\\": \\"border-box\\",
+  \\"position\\": \\"relative\\",
+  \\"flexGrow\\": 1,
+  \\"flexShrink\\": 1,
+  \\"flexBasis\\": \\"0%\\",
+  \\"display\\": \\"flex\\",
+  \\"alignItems\\": \\"center\\",
+  \\"flexWrap\\": \\"nowrap\\",
+  \\"overflow\\": \\"hidden\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale400\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale400\\",
+  \\"paddingLeft\\": \\"calc($theme.sizing.scale1000 - $theme.sizing.scale0)\\",
+  \\"paddingRight\\": 0
+}"
                       >
                         <ForwardRef
                           $clearable={true}
@@ -507,28 +649,29 @@ exports[`Select component renders component in search mode and false for multipl
                           >
                             <div
                               styled-component="true"
-                              test-style={
-                                Object {
-                                  "backgroundColor": "transparent",
-                                  "border": "none",
-                                  "boxShadow": "none",
-                                  "boxSizing": "border-box",
-                                  "display": "inline-block",
-                                  "height": "auto",
-                                  "marginBottom": 0,
-                                  "marginLeft": 0,
-                                  "marginRight": 0,
-                                  "marginTop": 0,
-                                  "maxHeight": "$theme.typography.font300.lineHeight",
-                                  "maxWidth": "100%",
-                                  "outline": "none",
-                                  "paddingBottom": 0,
-                                  "paddingLeft": 0,
-                                  "paddingRight": 0,
-                                  "paddingTop": 0,
-                                  "position": "relative",
-                                }
-                              }
+                              test-style="{
+  \\"position\\": \\"relative\\",
+  \\"display\\": \\"inline-block\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"backgroundColor\\": \\"transparent\\",
+  \\"borderLeftStyle\\": \\"none\\",
+  \\"borderTopStyle\\": \\"none\\",
+  \\"borderRightStyle\\": \\"none\\",
+  \\"borderBottomStyle\\": \\"none\\",
+  \\"boxShadow\\": \\"none\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"outline\\": \\"none\\",
+  \\"marginTop\\": 0,
+  \\"marginBottom\\": 0,
+  \\"marginLeft\\": 0,
+  \\"marginRight\\": 0,
+  \\"paddingTop\\": 0,
+  \\"paddingBottom\\": 0,
+  \\"paddingLeft\\": 0,
+  \\"paddingRight\\": 0,
+  \\"height\\": \\"auto\\",
+  \\"maxHeight\\": \\"$theme.typography.font300.lineHeight\\"
+}"
                             >
                               <AutosizeInput
                                 $clearable={true}
@@ -560,7 +703,6 @@ exports[`Select component renders component in search mode and false for multipl
                                 disabled={null}
                                 id={null}
                                 inputRef={[Function]}
-                                onBlur={[Function]}
                                 onChange={[Function]}
                                 onFocus={[Function]}
                                 overrides={
@@ -603,7 +745,6 @@ exports[`Select component renders component in search mode and false for multipl
                                   aria-required={null}
                                   disabled={null}
                                   id={null}
-                                  onBlur={[Function]}
                                   onChange={[Function]}
                                   onFocus={[Function]}
                                   required={null}
@@ -642,7 +783,6 @@ exports[`Select component renders component in search mode and false for multipl
                                     disabled={null}
                                     forwardedRef={[Function]}
                                     id={null}
-                                    onBlur={[Function]}
                                     onChange={[Function]}
                                     onFocus={[Function]}
                                     required={null}
@@ -664,37 +804,38 @@ exports[`Select component renders component in search mode and false for multipl
                                       aria-required={null}
                                       disabled={null}
                                       id={null}
-                                      onBlur={[Function]}
                                       onChange={[Function]}
                                       onFocus={[Function]}
                                       required={null}
                                       role="combobox"
                                       styled-component="true"
                                       tabIndex={0}
-                                      test-style={
-                                        Object {
-                                          "background": "transparent",
-                                          "border": "none",
-                                          "boxShadow": "none",
-                                          "boxSizing": "content-box",
-                                          "display": "inline-block",
-                                          "fontFamily": "$theme.typography.font300.fontFamily",
-                                          "fontSize": "$theme.typography.font300.fontSize",
-                                          "fontWeight": "$theme.typography.font300.fontWeight",
-                                          "lineHeight": "$theme.typography.font300.lineHeight",
-                                          "marginBottom": "0",
-                                          "marginLeft": "0",
-                                          "marginRight": "0",
-                                          "marginTop": "0",
-                                          "maxWidth": "100%",
-                                          "outline": "none",
-                                          "paddingBottom": "0",
-                                          "paddingLeft": "0",
-                                          "paddingRight": "0",
-                                          "paddingTop": "0",
-                                          "width": "2px",
-                                        }
-                                      }
+                                      test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"boxSizing\\": \\"content-box\\",
+  \\"width\\": \\"2px\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"background\\": \\"transparent\\",
+  \\"borderLeftStyle\\": \\"none\\",
+  \\"borderTopStyle\\": \\"none\\",
+  \\"borderRightStyle\\": \\"none\\",
+  \\"borderBottomStyle\\": \\"none\\",
+  \\"boxShadow\\": \\"none\\",
+  \\"display\\": \\"inline-block\\",
+  \\"outline\\": \\"none\\",
+  \\"marginTop\\": \\"0\\",
+  \\"marginBottom\\": \\"0\\",
+  \\"marginLeft\\": \\"0\\",
+  \\"marginRight\\": \\"0\\",
+  \\"paddingTop\\": \\"0\\",
+  \\"paddingBottom\\": \\"0\\",
+  \\"paddingLeft\\": \\"0\\",
+  \\"paddingRight\\": \\"0\\"
+}"
                                       value=""
                                     />
                                   </MockStyledComponent>
@@ -710,21 +851,19 @@ exports[`Select component renders component in search mode and false for multipl
                                   >
                                     <div
                                       styled-component="true"
-                                      test-style={
-                                        Object {
-                                          "fontFamily": "$theme.typography.font300.fontFamily",
-                                          "fontSize": "$theme.typography.font300.fontSize",
-                                          "fontWeight": "$theme.typography.font300.fontWeight",
-                                          "height": 0,
-                                          "left": 0,
-                                          "lineHeight": "$theme.typography.font300.lineHeight",
-                                          "overflow": "scroll",
-                                          "position": "absolute",
-                                          "top": 0,
-                                          "visibility": "hidden",
-                                          "whiteSpace": "pre",
-                                        }
-                                      }
+                                      test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"position\\": \\"absolute\\",
+  \\"top\\": 0,
+  \\"left\\": 0,
+  \\"visibility\\": \\"hidden\\",
+  \\"height\\": 0,
+  \\"overflow\\": \\"scroll\\",
+  \\"whiteSpace\\": \\"pre\\"
+}"
                                     />
                                   </MockStyledComponent>
                                 </ForwardRef>
@@ -769,15 +908,13 @@ exports[`Select component renders component in search mode and false for multipl
                           >
                             <div
                               styled-component="true"
-                              test-style={
-                                Object {
-                                  "color": "$theme.colors.inputPlaceholder",
-                                  "maxWidth": "100%",
-                                  "overflow": "hidden",
-                                  "textOverflow": "ellipsis",
-                                  "whiteSpace": "nowrap",
-                                }
-                              }
+                              test-style="{
+  \\"color\\": \\"$theme.colors.inputPlaceholder\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"overflow\\": \\"hidden\\",
+  \\"textOverflow\\": \\"ellipsis\\",
+  \\"whiteSpace\\": \\"nowrap\\"
+}"
                             >
                               Select...
                             </div>
@@ -823,17 +960,15 @@ exports[`Select component renders component in search mode and false for multipl
                     >
                       <div
                         styled-component="true"
-                        test-style={
-                          Object {
-                            "alignItems": "center",
-                            "alignSelf": "stretch",
-                            "boxSizing": "border-box",
-                            "display": "flex",
-                            "flexShrink": 0,
-                            "paddingRight": "$theme.sizing.scale500",
-                            "position": "relative",
-                          }
-                        }
+                        test-style="{
+  \\"boxSizing\\": \\"border-box\\",
+  \\"position\\": \\"relative\\",
+  \\"display\\": \\"flex\\",
+  \\"flexShrink\\": 0,
+  \\"alignItems\\": \\"center\\",
+  \\"alignSelf\\": \\"stretch\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale500\\"
+}"
                       />
                     </MockStyledComponent>
                   </ForwardRef>
@@ -971,6 +1106,7 @@ exports[`Select component renders component in search mode and true for multiple
         aria-haspopup="true"
         data-baseweb="select"
         key="popover-anchor"
+        onBlur={[Function]}
         onClick={[Function]}
       >
         <MockStyledComponent
@@ -1000,20 +1136,73 @@ exports[`Select component renders component in search mode and true for multiple
                 aria-haspopup="true"
                 data-baseweb="select"
                 styled-component="true"
-                test-style="[object Object]"
+                test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"position\\": \\"relative\\",
+  \\"width\\": \\"100%\\"
+}"
               >
                 <div
                   styled-component="true"
-                  test-style="[object Object]"
+                  test-style="{
+  \\"borderTopLeftRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"borderTopRightRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"borderBottomRightRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"borderBottomLeftRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"overflow\\": \\"hidden\\",
+  \\"width\\": \\"100%\\",
+  \\"display\\": \\"flex\\",
+  \\"justifyContent\\": \\"space-between\\",
+  \\"cursor\\": \\"text\\",
+  \\"borderLeftWidth\\": \\"2px\\",
+  \\"borderRightWidth\\": \\"2px\\",
+  \\"borderTopWidth\\": \\"2px\\",
+  \\"borderBottomWidth\\": \\"2px\\",
+  \\"borderLeftStyle\\": \\"solid\\",
+  \\"borderRightStyle\\": \\"solid\\",
+  \\"borderTopStyle\\": \\"solid\\",
+  \\"borderBottomStyle\\": \\"solid\\",
+  \\"transitionProperty\\": \\"border, box-shadow, background-color\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing100\\",
+  \\"transitionTimingFunction\\": \\"$theme.animation.easeOutCurve\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"borderLeftColor\\": \\"$theme.colors.inputBorder\\",
+  \\"borderRightColor\\": \\"$theme.colors.inputBorder\\",
+  \\"borderTopColor\\": \\"$theme.colors.inputBorder\\",
+  \\"borderBottomColor\\": \\"$theme.colors.inputBorder\\",
+  \\"backgroundColor\\": \\"$theme.colors.inputFill\\"
+}"
                 >
                   <div
                     styled-component="true"
-                    test-style="[object Object]"
+                    test-style="{
+  \\"display\\": \\"flex\\",
+  \\"fill\\": \\"currentColor\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"height\\": \\"100%\\",
+  \\"width\\": \\"$theme.sizing.scale600\\",
+  \\"cursor\\": \\"pointer\\",
+  \\"position\\": \\"absolute\\",
+  \\"top\\": 0,
+  \\"left\\": \\"$theme.sizing.scale500\\",
+  \\"alignItems\\": \\"center\\"
+}"
                   >
                     <svg
                       data-baseweb="icon"
                       styled-component="true"
-                      test-style="[object Object]"
+                      test-style="{
+  \\"display\\": \\"inline-block\\",
+  \\"fill\\": \\"currentColor\\",
+  \\"color\\": \\"currentColor\\",
+  \\"height\\": \\"16px\\",
+  \\"width\\": \\"16px\\"
+}"
                       viewBox="0 0 24 24"
                     >
                       <title>
@@ -1028,11 +1217,47 @@ exports[`Select component renders component in search mode and true for multiple
                   </div>
                   <div
                     styled-component="true"
-                    test-style="[object Object]"
+                    test-style="{
+  \\"boxSizing\\": \\"border-box\\",
+  \\"position\\": \\"relative\\",
+  \\"flexGrow\\": 1,
+  \\"flexShrink\\": 1,
+  \\"flexBasis\\": \\"0%\\",
+  \\"display\\": \\"flex\\",
+  \\"alignItems\\": \\"center\\",
+  \\"flexWrap\\": \\"nowrap\\",
+  \\"overflow\\": \\"hidden\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale400\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale400\\",
+  \\"paddingLeft\\": \\"calc($theme.sizing.scale1000 - $theme.sizing.scale0)\\",
+  \\"paddingRight\\": 0
+}"
                   >
                     <div
                       styled-component="true"
-                      test-style="[object Object]"
+                      test-style="{
+  \\"position\\": \\"relative\\",
+  \\"display\\": \\"inline-block\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"backgroundColor\\": \\"transparent\\",
+  \\"borderLeftStyle\\": \\"none\\",
+  \\"borderTopStyle\\": \\"none\\",
+  \\"borderRightStyle\\": \\"none\\",
+  \\"borderBottomStyle\\": \\"none\\",
+  \\"boxShadow\\": \\"none\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"outline\\": \\"none\\",
+  \\"marginTop\\": 0,
+  \\"marginBottom\\": 0,
+  \\"marginLeft\\": 0,
+  \\"marginRight\\": 0,
+  \\"paddingTop\\": 0,
+  \\"paddingBottom\\": 0,
+  \\"paddingLeft\\": 0,
+  \\"paddingRight\\": 0,
+  \\"height\\": \\"auto\\",
+  \\"maxHeight\\": \\"$theme.typography.font300.lineHeight\\"
+}"
                     >
                       <input
                         aria-autocomplete="list"
@@ -1042,29 +1267,81 @@ exports[`Select component renders component in search mode and true for multiple
                         role="combobox"
                         styled-component="true"
                         tabindex="0"
-                        test-style="[object Object]"
+                        test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"boxSizing\\": \\"content-box\\",
+  \\"width\\": \\"2px\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"background\\": \\"transparent\\",
+  \\"borderLeftStyle\\": \\"none\\",
+  \\"borderTopStyle\\": \\"none\\",
+  \\"borderRightStyle\\": \\"none\\",
+  \\"borderBottomStyle\\": \\"none\\",
+  \\"boxShadow\\": \\"none\\",
+  \\"display\\": \\"inline-block\\",
+  \\"outline\\": \\"none\\",
+  \\"marginTop\\": \\"0\\",
+  \\"marginBottom\\": \\"0\\",
+  \\"marginLeft\\": \\"0\\",
+  \\"marginRight\\": \\"0\\",
+  \\"paddingTop\\": \\"0\\",
+  \\"paddingBottom\\": \\"0\\",
+  \\"paddingLeft\\": \\"0\\",
+  \\"paddingRight\\": \\"0\\"
+}"
                         value=""
                       />
                       <div
                         styled-component="true"
-                        test-style="[object Object]"
+                        test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"position\\": \\"absolute\\",
+  \\"top\\": 0,
+  \\"left\\": 0,
+  \\"visibility\\": \\"hidden\\",
+  \\"height\\": 0,
+  \\"overflow\\": \\"scroll\\",
+  \\"whiteSpace\\": \\"pre\\"
+}"
                       />
                     </div>
                     <div
                       styled-component="true"
-                      test-style="[object Object]"
+                      test-style="{
+  \\"color\\": \\"$theme.colors.inputPlaceholder\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"overflow\\": \\"hidden\\",
+  \\"textOverflow\\": \\"ellipsis\\",
+  \\"whiteSpace\\": \\"nowrap\\"
+}"
                     >
                       Select...
                     </div>
                   </div>
                   <div
                     styled-component="true"
-                    test-style="[object Object]"
+                    test-style="{
+  \\"boxSizing\\": \\"border-box\\",
+  \\"position\\": \\"relative\\",
+  \\"display\\": \\"flex\\",
+  \\"flexShrink\\": 0,
+  \\"alignItems\\": \\"center\\",
+  \\"alignSelf\\": \\"stretch\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale500\\"
+}"
                   />
                 </div>
               </div>,
             }
           }
+          onBlur={[Function]}
           onClick={[Function]}
         >
           <div
@@ -1072,19 +1349,18 @@ exports[`Select component renders component in search mode and true for multiple
             aria-expanded="false"
             aria-haspopup="true"
             data-baseweb="select"
+            onBlur={[Function]}
             onClick={[Function]}
             styled-component="true"
-            test-style={
-              Object {
-                "boxSizing": "border-box",
-                "fontFamily": "$theme.typography.font300.fontFamily",
-                "fontSize": "$theme.typography.font300.fontSize",
-                "fontWeight": "$theme.typography.font300.fontWeight",
-                "lineHeight": "$theme.typography.font300.lineHeight",
-                "position": "relative",
-                "width": "100%",
-              }
-            }
+            test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"position\\": \\"relative\\",
+  \\"width\\": \\"100%\\"
+}"
           >
             <ForwardRef
               $clearable={true}
@@ -1138,28 +1414,35 @@ exports[`Select component renders component in search mode and true for multiple
                   onTouchMove={[Function]}
                   onTouchStart={[Function]}
                   styled-component="true"
-                  test-style={
-                    Object {
-                      "backgroundColor": "$theme.colors.inputFill",
-                      "borderBottomLeftRadius": "$theme.borders.inputBorderRadius",
-                      "borderBottomRightRadius": "$theme.borders.inputBorderRadius",
-                      "borderColor": "$theme.colors.inputBorder",
-                      "borderStyle": "solid",
-                      "borderTopLeftRadius": "$theme.borders.inputBorderRadius",
-                      "borderTopRightRadius": "$theme.borders.inputBorderRadius",
-                      "borderWidth": "2px",
-                      "boxSizing": "border-box",
-                      "color": "$theme.colors.contentPrimary",
-                      "cursor": "text",
-                      "display": "flex",
-                      "justifyContent": "space-between",
-                      "overflow": "hidden",
-                      "transitionDuration": "$theme.animation.timing100",
-                      "transitionProperty": "border, box-shadow, background-color",
-                      "transitionTimingFunction": "$theme.animation.easeOutCurve",
-                      "width": "100%",
-                    }
-                  }
+                  test-style="{
+  \\"borderTopLeftRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"borderTopRightRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"borderBottomRightRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"borderBottomLeftRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"overflow\\": \\"hidden\\",
+  \\"width\\": \\"100%\\",
+  \\"display\\": \\"flex\\",
+  \\"justifyContent\\": \\"space-between\\",
+  \\"cursor\\": \\"text\\",
+  \\"borderLeftWidth\\": \\"2px\\",
+  \\"borderRightWidth\\": \\"2px\\",
+  \\"borderTopWidth\\": \\"2px\\",
+  \\"borderBottomWidth\\": \\"2px\\",
+  \\"borderLeftStyle\\": \\"solid\\",
+  \\"borderRightStyle\\": \\"solid\\",
+  \\"borderTopStyle\\": \\"solid\\",
+  \\"borderBottomStyle\\": \\"solid\\",
+  \\"transitionProperty\\": \\"border, box-shadow, background-color\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing100\\",
+  \\"transitionTimingFunction\\": \\"$theme.animation.easeOutCurve\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"borderLeftColor\\": \\"$theme.colors.inputBorder\\",
+  \\"borderRightColor\\": \\"$theme.colors.inputBorder\\",
+  \\"borderTopColor\\": \\"$theme.colors.inputBorder\\",
+  \\"borderBottomColor\\": \\"$theme.colors.inputBorder\\",
+  \\"backgroundColor\\": \\"$theme.colors.inputFill\\"
+}"
                 >
                   <ForwardRef
                     $clearable={true}
@@ -1198,20 +1481,18 @@ exports[`Select component renders component in search mode and true for multiple
                     >
                       <div
                         styled-component="true"
-                        test-style={
-                          Object {
-                            "alignItems": "center",
-                            "color": "$theme.colors.contentPrimary",
-                            "cursor": "pointer",
-                            "display": "flex",
-                            "fill": "currentColor",
-                            "height": "100%",
-                            "left": "$theme.sizing.scale500",
-                            "position": "absolute",
-                            "top": 0,
-                            "width": "$theme.sizing.scale600",
-                          }
-                        }
+                        test-style="{
+  \\"display\\": \\"flex\\",
+  \\"fill\\": \\"currentColor\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"height\\": \\"100%\\",
+  \\"width\\": \\"$theme.sizing.scale600\\",
+  \\"cursor\\": \\"pointer\\",
+  \\"position\\": \\"absolute\\",
+  \\"top\\": 0,
+  \\"left\\": \\"$theme.sizing.scale500\\",
+  \\"alignItems\\": \\"center\\"
+}"
                       >
                         <Search
                           size={16}
@@ -1236,15 +1517,13 @@ exports[`Select component renders component in search mode and true for multiple
                                 <svg
                                   data-baseweb="icon"
                                   styled-component="true"
-                                  test-style={
-                                    Object {
-                                      "color": "currentColor",
-                                      "display": "inline-block",
-                                      "fill": "currentColor",
-                                      "height": "16px",
-                                      "width": "16px",
-                                    }
-                                  }
+                                  test-style="{
+  \\"display\\": \\"inline-block\\",
+  \\"fill\\": \\"currentColor\\",
+  \\"color\\": \\"currentColor\\",
+  \\"height\\": \\"16px\\",
+  \\"width\\": \\"16px\\"
+}"
                                   viewBox="0 0 24 24"
                                 >
                                   <title>
@@ -1300,23 +1579,21 @@ exports[`Select component renders component in search mode and true for multiple
                     >
                       <div
                         styled-component="true"
-                        test-style={
-                          Object {
-                            "alignItems": "center",
-                            "boxSizing": "border-box",
-                            "display": "flex",
-                            "flexBasis": "0%",
-                            "flexGrow": 1,
-                            "flexShrink": 1,
-                            "flexWrap": "nowrap",
-                            "overflow": "hidden",
-                            "paddingBottom": "$theme.sizing.scale400",
-                            "paddingLeft": "calc($theme.sizing.scale1000 - $theme.sizing.scale0)",
-                            "paddingRight": 0,
-                            "paddingTop": "$theme.sizing.scale400",
-                            "position": "relative",
-                          }
-                        }
+                        test-style="{
+  \\"boxSizing\\": \\"border-box\\",
+  \\"position\\": \\"relative\\",
+  \\"flexGrow\\": 1,
+  \\"flexShrink\\": 1,
+  \\"flexBasis\\": \\"0%\\",
+  \\"display\\": \\"flex\\",
+  \\"alignItems\\": \\"center\\",
+  \\"flexWrap\\": \\"nowrap\\",
+  \\"overflow\\": \\"hidden\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale400\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale400\\",
+  \\"paddingLeft\\": \\"calc($theme.sizing.scale1000 - $theme.sizing.scale0)\\",
+  \\"paddingRight\\": 0
+}"
                       >
                         <ForwardRef
                           $clearable={true}
@@ -1355,28 +1632,29 @@ exports[`Select component renders component in search mode and true for multiple
                           >
                             <div
                               styled-component="true"
-                              test-style={
-                                Object {
-                                  "backgroundColor": "transparent",
-                                  "border": "none",
-                                  "boxShadow": "none",
-                                  "boxSizing": "border-box",
-                                  "display": "inline-block",
-                                  "height": "auto",
-                                  "marginBottom": 0,
-                                  "marginLeft": 0,
-                                  "marginRight": 0,
-                                  "marginTop": 0,
-                                  "maxHeight": "$theme.typography.font300.lineHeight",
-                                  "maxWidth": "100%",
-                                  "outline": "none",
-                                  "paddingBottom": 0,
-                                  "paddingLeft": 0,
-                                  "paddingRight": 0,
-                                  "paddingTop": 0,
-                                  "position": "relative",
-                                }
-                              }
+                              test-style="{
+  \\"position\\": \\"relative\\",
+  \\"display\\": \\"inline-block\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"backgroundColor\\": \\"transparent\\",
+  \\"borderLeftStyle\\": \\"none\\",
+  \\"borderTopStyle\\": \\"none\\",
+  \\"borderRightStyle\\": \\"none\\",
+  \\"borderBottomStyle\\": \\"none\\",
+  \\"boxShadow\\": \\"none\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"outline\\": \\"none\\",
+  \\"marginTop\\": 0,
+  \\"marginBottom\\": 0,
+  \\"marginLeft\\": 0,
+  \\"marginRight\\": 0,
+  \\"paddingTop\\": 0,
+  \\"paddingBottom\\": 0,
+  \\"paddingLeft\\": 0,
+  \\"paddingRight\\": 0,
+  \\"height\\": \\"auto\\",
+  \\"maxHeight\\": \\"$theme.typography.font300.lineHeight\\"
+}"
                             >
                               <AutosizeInput
                                 $clearable={true}
@@ -1408,7 +1686,6 @@ exports[`Select component renders component in search mode and true for multiple
                                 disabled={null}
                                 id={null}
                                 inputRef={[Function]}
-                                onBlur={[Function]}
                                 onChange={[Function]}
                                 onFocus={[Function]}
                                 overrides={
@@ -1451,7 +1728,6 @@ exports[`Select component renders component in search mode and true for multiple
                                   aria-required={null}
                                   disabled={null}
                                   id={null}
-                                  onBlur={[Function]}
                                   onChange={[Function]}
                                   onFocus={[Function]}
                                   required={null}
@@ -1490,7 +1766,6 @@ exports[`Select component renders component in search mode and true for multiple
                                     disabled={null}
                                     forwardedRef={[Function]}
                                     id={null}
-                                    onBlur={[Function]}
                                     onChange={[Function]}
                                     onFocus={[Function]}
                                     required={null}
@@ -1512,37 +1787,38 @@ exports[`Select component renders component in search mode and true for multiple
                                       aria-required={null}
                                       disabled={null}
                                       id={null}
-                                      onBlur={[Function]}
                                       onChange={[Function]}
                                       onFocus={[Function]}
                                       required={null}
                                       role="combobox"
                                       styled-component="true"
                                       tabIndex={0}
-                                      test-style={
-                                        Object {
-                                          "background": "transparent",
-                                          "border": "none",
-                                          "boxShadow": "none",
-                                          "boxSizing": "content-box",
-                                          "display": "inline-block",
-                                          "fontFamily": "$theme.typography.font300.fontFamily",
-                                          "fontSize": "$theme.typography.font300.fontSize",
-                                          "fontWeight": "$theme.typography.font300.fontWeight",
-                                          "lineHeight": "$theme.typography.font300.lineHeight",
-                                          "marginBottom": "0",
-                                          "marginLeft": "0",
-                                          "marginRight": "0",
-                                          "marginTop": "0",
-                                          "maxWidth": "100%",
-                                          "outline": "none",
-                                          "paddingBottom": "0",
-                                          "paddingLeft": "0",
-                                          "paddingRight": "0",
-                                          "paddingTop": "0",
-                                          "width": "2px",
-                                        }
-                                      }
+                                      test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"boxSizing\\": \\"content-box\\",
+  \\"width\\": \\"2px\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"background\\": \\"transparent\\",
+  \\"borderLeftStyle\\": \\"none\\",
+  \\"borderTopStyle\\": \\"none\\",
+  \\"borderRightStyle\\": \\"none\\",
+  \\"borderBottomStyle\\": \\"none\\",
+  \\"boxShadow\\": \\"none\\",
+  \\"display\\": \\"inline-block\\",
+  \\"outline\\": \\"none\\",
+  \\"marginTop\\": \\"0\\",
+  \\"marginBottom\\": \\"0\\",
+  \\"marginLeft\\": \\"0\\",
+  \\"marginRight\\": \\"0\\",
+  \\"paddingTop\\": \\"0\\",
+  \\"paddingBottom\\": \\"0\\",
+  \\"paddingLeft\\": \\"0\\",
+  \\"paddingRight\\": \\"0\\"
+}"
                                       value=""
                                     />
                                   </MockStyledComponent>
@@ -1558,21 +1834,19 @@ exports[`Select component renders component in search mode and true for multiple
                                   >
                                     <div
                                       styled-component="true"
-                                      test-style={
-                                        Object {
-                                          "fontFamily": "$theme.typography.font300.fontFamily",
-                                          "fontSize": "$theme.typography.font300.fontSize",
-                                          "fontWeight": "$theme.typography.font300.fontWeight",
-                                          "height": 0,
-                                          "left": 0,
-                                          "lineHeight": "$theme.typography.font300.lineHeight",
-                                          "overflow": "scroll",
-                                          "position": "absolute",
-                                          "top": 0,
-                                          "visibility": "hidden",
-                                          "whiteSpace": "pre",
-                                        }
-                                      }
+                                      test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"position\\": \\"absolute\\",
+  \\"top\\": 0,
+  \\"left\\": 0,
+  \\"visibility\\": \\"hidden\\",
+  \\"height\\": 0,
+  \\"overflow\\": \\"scroll\\",
+  \\"whiteSpace\\": \\"pre\\"
+}"
                                     />
                                   </MockStyledComponent>
                                 </ForwardRef>
@@ -1617,15 +1891,13 @@ exports[`Select component renders component in search mode and true for multiple
                           >
                             <div
                               styled-component="true"
-                              test-style={
-                                Object {
-                                  "color": "$theme.colors.inputPlaceholder",
-                                  "maxWidth": "100%",
-                                  "overflow": "hidden",
-                                  "textOverflow": "ellipsis",
-                                  "whiteSpace": "nowrap",
-                                }
-                              }
+                              test-style="{
+  \\"color\\": \\"$theme.colors.inputPlaceholder\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"overflow\\": \\"hidden\\",
+  \\"textOverflow\\": \\"ellipsis\\",
+  \\"whiteSpace\\": \\"nowrap\\"
+}"
                             >
                               Select...
                             </div>
@@ -1671,17 +1943,15 @@ exports[`Select component renders component in search mode and true for multiple
                     >
                       <div
                         styled-component="true"
-                        test-style={
-                          Object {
-                            "alignItems": "center",
-                            "alignSelf": "stretch",
-                            "boxSizing": "border-box",
-                            "display": "flex",
-                            "flexShrink": 0,
-                            "paddingRight": "$theme.sizing.scale500",
-                            "position": "relative",
-                          }
-                        }
+                        test-style="{
+  \\"boxSizing\\": \\"border-box\\",
+  \\"position\\": \\"relative\\",
+  \\"display\\": \\"flex\\",
+  \\"flexShrink\\": 0,
+  \\"alignItems\\": \\"center\\",
+  \\"alignSelf\\": \\"stretch\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale500\\"
+}"
                       />
                     </MockStyledComponent>
                   </ForwardRef>
@@ -1819,6 +2089,7 @@ exports[`Select component renders component in select mode and false for multipl
         aria-haspopup="true"
         data-baseweb="select"
         key="popover-anchor"
+        onBlur={[Function]}
         onClick={[Function]}
       >
         <MockStyledComponent
@@ -1848,19 +2119,91 @@ exports[`Select component renders component in select mode and false for multipl
                 aria-haspopup="true"
                 data-baseweb="select"
                 styled-component="true"
-                test-style="[object Object]"
+                test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"position\\": \\"relative\\",
+  \\"width\\": \\"100%\\"
+}"
               >
                 <div
                   styled-component="true"
-                  test-style="[object Object]"
+                  test-style="{
+  \\"borderTopLeftRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"borderTopRightRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"borderBottomRightRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"borderBottomLeftRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"overflow\\": \\"hidden\\",
+  \\"width\\": \\"100%\\",
+  \\"display\\": \\"flex\\",
+  \\"justifyContent\\": \\"space-between\\",
+  \\"cursor\\": \\"text\\",
+  \\"borderLeftWidth\\": \\"2px\\",
+  \\"borderRightWidth\\": \\"2px\\",
+  \\"borderTopWidth\\": \\"2px\\",
+  \\"borderBottomWidth\\": \\"2px\\",
+  \\"borderLeftStyle\\": \\"solid\\",
+  \\"borderRightStyle\\": \\"solid\\",
+  \\"borderTopStyle\\": \\"solid\\",
+  \\"borderBottomStyle\\": \\"solid\\",
+  \\"transitionProperty\\": \\"border, box-shadow, background-color\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing100\\",
+  \\"transitionTimingFunction\\": \\"$theme.animation.easeOutCurve\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"borderLeftColor\\": \\"$theme.colors.inputBorder\\",
+  \\"borderRightColor\\": \\"$theme.colors.inputBorder\\",
+  \\"borderTopColor\\": \\"$theme.colors.inputBorder\\",
+  \\"borderBottomColor\\": \\"$theme.colors.inputBorder\\",
+  \\"backgroundColor\\": \\"$theme.colors.inputFill\\"
+}"
                 >
                   <div
                     styled-component="true"
-                    test-style="[object Object]"
+                    test-style="{
+  \\"boxSizing\\": \\"border-box\\",
+  \\"position\\": \\"relative\\",
+  \\"flexGrow\\": 1,
+  \\"flexShrink\\": 1,
+  \\"flexBasis\\": \\"0%\\",
+  \\"display\\": \\"flex\\",
+  \\"alignItems\\": \\"center\\",
+  \\"flexWrap\\": \\"nowrap\\",
+  \\"overflow\\": \\"hidden\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale400\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale400\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale400\\",
+  \\"paddingRight\\": 0
+}"
                   >
                     <div
                       styled-component="true"
-                      test-style="[object Object]"
+                      test-style="{
+  \\"position\\": \\"relative\\",
+  \\"display\\": \\"inline-block\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"backgroundColor\\": \\"transparent\\",
+  \\"borderLeftStyle\\": \\"none\\",
+  \\"borderTopStyle\\": \\"none\\",
+  \\"borderRightStyle\\": \\"none\\",
+  \\"borderBottomStyle\\": \\"none\\",
+  \\"boxShadow\\": \\"none\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"outline\\": \\"none\\",
+  \\"marginTop\\": 0,
+  \\"marginBottom\\": 0,
+  \\"marginLeft\\": 0,
+  \\"marginRight\\": 0,
+  \\"paddingTop\\": 0,
+  \\"paddingBottom\\": 0,
+  \\"paddingLeft\\": 0,
+  \\"paddingRight\\": 0,
+  \\"height\\": \\"auto\\",
+  \\"maxHeight\\": \\"$theme.typography.font300.lineHeight\\"
+}"
                     >
                       <input
                         aria-autocomplete="list"
@@ -1870,29 +2213,87 @@ exports[`Select component renders component in select mode and false for multipl
                         role="combobox"
                         styled-component="true"
                         tabindex="0"
-                        test-style="[object Object]"
+                        test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"boxSizing\\": \\"content-box\\",
+  \\"width\\": \\"2px\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"background\\": \\"transparent\\",
+  \\"borderLeftStyle\\": \\"none\\",
+  \\"borderTopStyle\\": \\"none\\",
+  \\"borderRightStyle\\": \\"none\\",
+  \\"borderBottomStyle\\": \\"none\\",
+  \\"boxShadow\\": \\"none\\",
+  \\"display\\": \\"inline-block\\",
+  \\"outline\\": \\"none\\",
+  \\"marginTop\\": \\"0\\",
+  \\"marginBottom\\": \\"0\\",
+  \\"marginLeft\\": \\"0\\",
+  \\"marginRight\\": \\"0\\",
+  \\"paddingTop\\": \\"0\\",
+  \\"paddingBottom\\": \\"0\\",
+  \\"paddingLeft\\": \\"0\\",
+  \\"paddingRight\\": \\"0\\"
+}"
                         value=""
                       />
                       <div
                         styled-component="true"
-                        test-style="[object Object]"
+                        test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"position\\": \\"absolute\\",
+  \\"top\\": 0,
+  \\"left\\": 0,
+  \\"visibility\\": \\"hidden\\",
+  \\"height\\": 0,
+  \\"overflow\\": \\"scroll\\",
+  \\"whiteSpace\\": \\"pre\\"
+}"
                       />
                     </div>
                     <div
                       styled-component="true"
-                      test-style="[object Object]"
+                      test-style="{
+  \\"color\\": \\"$theme.colors.inputPlaceholder\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"overflow\\": \\"hidden\\",
+  \\"textOverflow\\": \\"ellipsis\\",
+  \\"whiteSpace\\": \\"nowrap\\"
+}"
                     >
                       Select...
                     </div>
                   </div>
                   <div
                     styled-component="true"
-                    test-style="[object Object]"
+                    test-style="{
+  \\"boxSizing\\": \\"border-box\\",
+  \\"position\\": \\"relative\\",
+  \\"display\\": \\"flex\\",
+  \\"flexShrink\\": 0,
+  \\"alignItems\\": \\"center\\",
+  \\"alignSelf\\": \\"stretch\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale500\\"
+}"
                   >
                     <svg
                       data-baseweb="icon"
                       styled-component="true"
-                      test-style="[object Object]"
+                      test-style="{
+  \\"display\\": \\"inline-block\\",
+  \\"fill\\": \\"currentColor\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"height\\": \\"$theme.sizing.scale600\\",
+  \\"width\\": \\"$theme.sizing.scale600\\",
+  \\"cursor\\": \\"pointer\\"
+}"
                       viewBox="0 0 24 24"
                     >
                       <title>
@@ -1907,6 +2308,7 @@ exports[`Select component renders component in select mode and false for multipl
               </div>,
             }
           }
+          onBlur={[Function]}
           onClick={[Function]}
         >
           <div
@@ -1914,19 +2316,18 @@ exports[`Select component renders component in select mode and false for multipl
             aria-expanded="false"
             aria-haspopup="true"
             data-baseweb="select"
+            onBlur={[Function]}
             onClick={[Function]}
             styled-component="true"
-            test-style={
-              Object {
-                "boxSizing": "border-box",
-                "fontFamily": "$theme.typography.font300.fontFamily",
-                "fontSize": "$theme.typography.font300.fontSize",
-                "fontWeight": "$theme.typography.font300.fontWeight",
-                "lineHeight": "$theme.typography.font300.lineHeight",
-                "position": "relative",
-                "width": "100%",
-              }
-            }
+            test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"position\\": \\"relative\\",
+  \\"width\\": \\"100%\\"
+}"
           >
             <ForwardRef
               $clearable={true}
@@ -1980,28 +2381,35 @@ exports[`Select component renders component in select mode and false for multipl
                   onTouchMove={[Function]}
                   onTouchStart={[Function]}
                   styled-component="true"
-                  test-style={
-                    Object {
-                      "backgroundColor": "$theme.colors.inputFill",
-                      "borderBottomLeftRadius": "$theme.borders.inputBorderRadius",
-                      "borderBottomRightRadius": "$theme.borders.inputBorderRadius",
-                      "borderColor": "$theme.colors.inputBorder",
-                      "borderStyle": "solid",
-                      "borderTopLeftRadius": "$theme.borders.inputBorderRadius",
-                      "borderTopRightRadius": "$theme.borders.inputBorderRadius",
-                      "borderWidth": "2px",
-                      "boxSizing": "border-box",
-                      "color": "$theme.colors.contentPrimary",
-                      "cursor": "text",
-                      "display": "flex",
-                      "justifyContent": "space-between",
-                      "overflow": "hidden",
-                      "transitionDuration": "$theme.animation.timing100",
-                      "transitionProperty": "border, box-shadow, background-color",
-                      "transitionTimingFunction": "$theme.animation.easeOutCurve",
-                      "width": "100%",
-                    }
-                  }
+                  test-style="{
+  \\"borderTopLeftRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"borderTopRightRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"borderBottomRightRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"borderBottomLeftRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"overflow\\": \\"hidden\\",
+  \\"width\\": \\"100%\\",
+  \\"display\\": \\"flex\\",
+  \\"justifyContent\\": \\"space-between\\",
+  \\"cursor\\": \\"text\\",
+  \\"borderLeftWidth\\": \\"2px\\",
+  \\"borderRightWidth\\": \\"2px\\",
+  \\"borderTopWidth\\": \\"2px\\",
+  \\"borderBottomWidth\\": \\"2px\\",
+  \\"borderLeftStyle\\": \\"solid\\",
+  \\"borderRightStyle\\": \\"solid\\",
+  \\"borderTopStyle\\": \\"solid\\",
+  \\"borderBottomStyle\\": \\"solid\\",
+  \\"transitionProperty\\": \\"border, box-shadow, background-color\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing100\\",
+  \\"transitionTimingFunction\\": \\"$theme.animation.easeOutCurve\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"borderLeftColor\\": \\"$theme.colors.inputBorder\\",
+  \\"borderRightColor\\": \\"$theme.colors.inputBorder\\",
+  \\"borderTopColor\\": \\"$theme.colors.inputBorder\\",
+  \\"borderBottomColor\\": \\"$theme.colors.inputBorder\\",
+  \\"backgroundColor\\": \\"$theme.colors.inputFill\\"
+}"
                 >
                   <ForwardRef
                     $clearable={true}
@@ -2040,23 +2448,21 @@ exports[`Select component renders component in select mode and false for multipl
                     >
                       <div
                         styled-component="true"
-                        test-style={
-                          Object {
-                            "alignItems": "center",
-                            "boxSizing": "border-box",
-                            "display": "flex",
-                            "flexBasis": "0%",
-                            "flexGrow": 1,
-                            "flexShrink": 1,
-                            "flexWrap": "nowrap",
-                            "overflow": "hidden",
-                            "paddingBottom": "$theme.sizing.scale400",
-                            "paddingLeft": "$theme.sizing.scale400",
-                            "paddingRight": 0,
-                            "paddingTop": "$theme.sizing.scale400",
-                            "position": "relative",
-                          }
-                        }
+                        test-style="{
+  \\"boxSizing\\": \\"border-box\\",
+  \\"position\\": \\"relative\\",
+  \\"flexGrow\\": 1,
+  \\"flexShrink\\": 1,
+  \\"flexBasis\\": \\"0%\\",
+  \\"display\\": \\"flex\\",
+  \\"alignItems\\": \\"center\\",
+  \\"flexWrap\\": \\"nowrap\\",
+  \\"overflow\\": \\"hidden\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale400\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale400\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale400\\",
+  \\"paddingRight\\": 0
+}"
                       >
                         <ForwardRef
                           $clearable={true}
@@ -2095,28 +2501,29 @@ exports[`Select component renders component in select mode and false for multipl
                           >
                             <div
                               styled-component="true"
-                              test-style={
-                                Object {
-                                  "backgroundColor": "transparent",
-                                  "border": "none",
-                                  "boxShadow": "none",
-                                  "boxSizing": "border-box",
-                                  "display": "inline-block",
-                                  "height": "auto",
-                                  "marginBottom": 0,
-                                  "marginLeft": 0,
-                                  "marginRight": 0,
-                                  "marginTop": 0,
-                                  "maxHeight": "$theme.typography.font300.lineHeight",
-                                  "maxWidth": "100%",
-                                  "outline": "none",
-                                  "paddingBottom": 0,
-                                  "paddingLeft": 0,
-                                  "paddingRight": 0,
-                                  "paddingTop": 0,
-                                  "position": "relative",
-                                }
-                              }
+                              test-style="{
+  \\"position\\": \\"relative\\",
+  \\"display\\": \\"inline-block\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"backgroundColor\\": \\"transparent\\",
+  \\"borderLeftStyle\\": \\"none\\",
+  \\"borderTopStyle\\": \\"none\\",
+  \\"borderRightStyle\\": \\"none\\",
+  \\"borderBottomStyle\\": \\"none\\",
+  \\"boxShadow\\": \\"none\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"outline\\": \\"none\\",
+  \\"marginTop\\": 0,
+  \\"marginBottom\\": 0,
+  \\"marginLeft\\": 0,
+  \\"marginRight\\": 0,
+  \\"paddingTop\\": 0,
+  \\"paddingBottom\\": 0,
+  \\"paddingLeft\\": 0,
+  \\"paddingRight\\": 0,
+  \\"height\\": \\"auto\\",
+  \\"maxHeight\\": \\"$theme.typography.font300.lineHeight\\"
+}"
                             >
                               <AutosizeInput
                                 $clearable={true}
@@ -2148,7 +2555,6 @@ exports[`Select component renders component in select mode and false for multipl
                                 disabled={null}
                                 id={null}
                                 inputRef={[Function]}
-                                onBlur={[Function]}
                                 onChange={[Function]}
                                 onFocus={[Function]}
                                 overrides={
@@ -2191,7 +2597,6 @@ exports[`Select component renders component in select mode and false for multipl
                                   aria-required={null}
                                   disabled={null}
                                   id={null}
-                                  onBlur={[Function]}
                                   onChange={[Function]}
                                   onFocus={[Function]}
                                   required={null}
@@ -2230,7 +2635,6 @@ exports[`Select component renders component in select mode and false for multipl
                                     disabled={null}
                                     forwardedRef={[Function]}
                                     id={null}
-                                    onBlur={[Function]}
                                     onChange={[Function]}
                                     onFocus={[Function]}
                                     required={null}
@@ -2252,37 +2656,38 @@ exports[`Select component renders component in select mode and false for multipl
                                       aria-required={null}
                                       disabled={null}
                                       id={null}
-                                      onBlur={[Function]}
                                       onChange={[Function]}
                                       onFocus={[Function]}
                                       required={null}
                                       role="combobox"
                                       styled-component="true"
                                       tabIndex={0}
-                                      test-style={
-                                        Object {
-                                          "background": "transparent",
-                                          "border": "none",
-                                          "boxShadow": "none",
-                                          "boxSizing": "content-box",
-                                          "display": "inline-block",
-                                          "fontFamily": "$theme.typography.font300.fontFamily",
-                                          "fontSize": "$theme.typography.font300.fontSize",
-                                          "fontWeight": "$theme.typography.font300.fontWeight",
-                                          "lineHeight": "$theme.typography.font300.lineHeight",
-                                          "marginBottom": "0",
-                                          "marginLeft": "0",
-                                          "marginRight": "0",
-                                          "marginTop": "0",
-                                          "maxWidth": "100%",
-                                          "outline": "none",
-                                          "paddingBottom": "0",
-                                          "paddingLeft": "0",
-                                          "paddingRight": "0",
-                                          "paddingTop": "0",
-                                          "width": "2px",
-                                        }
-                                      }
+                                      test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"boxSizing\\": \\"content-box\\",
+  \\"width\\": \\"2px\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"background\\": \\"transparent\\",
+  \\"borderLeftStyle\\": \\"none\\",
+  \\"borderTopStyle\\": \\"none\\",
+  \\"borderRightStyle\\": \\"none\\",
+  \\"borderBottomStyle\\": \\"none\\",
+  \\"boxShadow\\": \\"none\\",
+  \\"display\\": \\"inline-block\\",
+  \\"outline\\": \\"none\\",
+  \\"marginTop\\": \\"0\\",
+  \\"marginBottom\\": \\"0\\",
+  \\"marginLeft\\": \\"0\\",
+  \\"marginRight\\": \\"0\\",
+  \\"paddingTop\\": \\"0\\",
+  \\"paddingBottom\\": \\"0\\",
+  \\"paddingLeft\\": \\"0\\",
+  \\"paddingRight\\": \\"0\\"
+}"
                                       value=""
                                     />
                                   </MockStyledComponent>
@@ -2298,21 +2703,19 @@ exports[`Select component renders component in select mode and false for multipl
                                   >
                                     <div
                                       styled-component="true"
-                                      test-style={
-                                        Object {
-                                          "fontFamily": "$theme.typography.font300.fontFamily",
-                                          "fontSize": "$theme.typography.font300.fontSize",
-                                          "fontWeight": "$theme.typography.font300.fontWeight",
-                                          "height": 0,
-                                          "left": 0,
-                                          "lineHeight": "$theme.typography.font300.lineHeight",
-                                          "overflow": "scroll",
-                                          "position": "absolute",
-                                          "top": 0,
-                                          "visibility": "hidden",
-                                          "whiteSpace": "pre",
-                                        }
-                                      }
+                                      test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"position\\": \\"absolute\\",
+  \\"top\\": 0,
+  \\"left\\": 0,
+  \\"visibility\\": \\"hidden\\",
+  \\"height\\": 0,
+  \\"overflow\\": \\"scroll\\",
+  \\"whiteSpace\\": \\"pre\\"
+}"
                                     />
                                   </MockStyledComponent>
                                 </ForwardRef>
@@ -2357,15 +2760,13 @@ exports[`Select component renders component in select mode and false for multipl
                           >
                             <div
                               styled-component="true"
-                              test-style={
-                                Object {
-                                  "color": "$theme.colors.inputPlaceholder",
-                                  "maxWidth": "100%",
-                                  "overflow": "hidden",
-                                  "textOverflow": "ellipsis",
-                                  "whiteSpace": "nowrap",
-                                }
-                              }
+                              test-style="{
+  \\"color\\": \\"$theme.colors.inputPlaceholder\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"overflow\\": \\"hidden\\",
+  \\"textOverflow\\": \\"ellipsis\\",
+  \\"whiteSpace\\": \\"nowrap\\"
+}"
                             >
                               Select...
                             </div>
@@ -2411,17 +2812,15 @@ exports[`Select component renders component in select mode and false for multipl
                     >
                       <div
                         styled-component="true"
-                        test-style={
-                          Object {
-                            "alignItems": "center",
-                            "alignSelf": "stretch",
-                            "boxSizing": "border-box",
-                            "display": "flex",
-                            "flexShrink": 0,
-                            "paddingRight": "$theme.sizing.scale500",
-                            "position": "relative",
-                          }
-                        }
+                        test-style="{
+  \\"boxSizing\\": \\"border-box\\",
+  \\"position\\": \\"relative\\",
+  \\"display\\": \\"flex\\",
+  \\"flexShrink\\": 0,
+  \\"alignItems\\": \\"center\\",
+  \\"alignSelf\\": \\"stretch\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale500\\"
+}"
                       >
                         <TriangleDown
                           $clearable={true}
@@ -2530,16 +2929,14 @@ exports[`Select component renders component in select mode and false for multipl
                                 <svg
                                   data-baseweb="icon"
                                   styled-component="true"
-                                  test-style={
-                                    Object {
-                                      "color": "$theme.colors.contentPrimary",
-                                      "cursor": "pointer",
-                                      "display": "inline-block",
-                                      "fill": "currentColor",
-                                      "height": "$theme.sizing.scale600",
-                                      "width": "$theme.sizing.scale600",
-                                    }
-                                  }
+                                  test-style="{
+  \\"display\\": \\"inline-block\\",
+  \\"fill\\": \\"currentColor\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"height\\": \\"$theme.sizing.scale600\\",
+  \\"width\\": \\"$theme.sizing.scale600\\",
+  \\"cursor\\": \\"pointer\\"
+}"
                                   viewBox="0 0 24 24"
                                 >
                                   <title>
@@ -2690,6 +3087,7 @@ exports[`Select component renders component in select mode and true for multiple
         aria-haspopup="true"
         data-baseweb="select"
         key="popover-anchor"
+        onBlur={[Function]}
         onClick={[Function]}
       >
         <MockStyledComponent
@@ -2719,19 +3117,91 @@ exports[`Select component renders component in select mode and true for multiple
                 aria-haspopup="true"
                 data-baseweb="select"
                 styled-component="true"
-                test-style="[object Object]"
+                test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"position\\": \\"relative\\",
+  \\"width\\": \\"100%\\"
+}"
               >
                 <div
                   styled-component="true"
-                  test-style="[object Object]"
+                  test-style="{
+  \\"borderTopLeftRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"borderTopRightRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"borderBottomRightRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"borderBottomLeftRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"overflow\\": \\"hidden\\",
+  \\"width\\": \\"100%\\",
+  \\"display\\": \\"flex\\",
+  \\"justifyContent\\": \\"space-between\\",
+  \\"cursor\\": \\"text\\",
+  \\"borderLeftWidth\\": \\"2px\\",
+  \\"borderRightWidth\\": \\"2px\\",
+  \\"borderTopWidth\\": \\"2px\\",
+  \\"borderBottomWidth\\": \\"2px\\",
+  \\"borderLeftStyle\\": \\"solid\\",
+  \\"borderRightStyle\\": \\"solid\\",
+  \\"borderTopStyle\\": \\"solid\\",
+  \\"borderBottomStyle\\": \\"solid\\",
+  \\"transitionProperty\\": \\"border, box-shadow, background-color\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing100\\",
+  \\"transitionTimingFunction\\": \\"$theme.animation.easeOutCurve\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"borderLeftColor\\": \\"$theme.colors.inputBorder\\",
+  \\"borderRightColor\\": \\"$theme.colors.inputBorder\\",
+  \\"borderTopColor\\": \\"$theme.colors.inputBorder\\",
+  \\"borderBottomColor\\": \\"$theme.colors.inputBorder\\",
+  \\"backgroundColor\\": \\"$theme.colors.inputFill\\"
+}"
                 >
                   <div
                     styled-component="true"
-                    test-style="[object Object]"
+                    test-style="{
+  \\"boxSizing\\": \\"border-box\\",
+  \\"position\\": \\"relative\\",
+  \\"flexGrow\\": 1,
+  \\"flexShrink\\": 1,
+  \\"flexBasis\\": \\"0%\\",
+  \\"display\\": \\"flex\\",
+  \\"alignItems\\": \\"center\\",
+  \\"flexWrap\\": \\"nowrap\\",
+  \\"overflow\\": \\"hidden\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale400\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale400\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale400\\",
+  \\"paddingRight\\": 0
+}"
                   >
                     <div
                       styled-component="true"
-                      test-style="[object Object]"
+                      test-style="{
+  \\"position\\": \\"relative\\",
+  \\"display\\": \\"inline-block\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"backgroundColor\\": \\"transparent\\",
+  \\"borderLeftStyle\\": \\"none\\",
+  \\"borderTopStyle\\": \\"none\\",
+  \\"borderRightStyle\\": \\"none\\",
+  \\"borderBottomStyle\\": \\"none\\",
+  \\"boxShadow\\": \\"none\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"outline\\": \\"none\\",
+  \\"marginTop\\": 0,
+  \\"marginBottom\\": 0,
+  \\"marginLeft\\": 0,
+  \\"marginRight\\": 0,
+  \\"paddingTop\\": 0,
+  \\"paddingBottom\\": 0,
+  \\"paddingLeft\\": 0,
+  \\"paddingRight\\": 0,
+  \\"height\\": \\"auto\\",
+  \\"maxHeight\\": \\"$theme.typography.font300.lineHeight\\"
+}"
                     >
                       <input
                         aria-autocomplete="list"
@@ -2741,29 +3211,87 @@ exports[`Select component renders component in select mode and true for multiple
                         role="combobox"
                         styled-component="true"
                         tabindex="0"
-                        test-style="[object Object]"
+                        test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"boxSizing\\": \\"content-box\\",
+  \\"width\\": \\"2px\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"background\\": \\"transparent\\",
+  \\"borderLeftStyle\\": \\"none\\",
+  \\"borderTopStyle\\": \\"none\\",
+  \\"borderRightStyle\\": \\"none\\",
+  \\"borderBottomStyle\\": \\"none\\",
+  \\"boxShadow\\": \\"none\\",
+  \\"display\\": \\"inline-block\\",
+  \\"outline\\": \\"none\\",
+  \\"marginTop\\": \\"0\\",
+  \\"marginBottom\\": \\"0\\",
+  \\"marginLeft\\": \\"0\\",
+  \\"marginRight\\": \\"0\\",
+  \\"paddingTop\\": \\"0\\",
+  \\"paddingBottom\\": \\"0\\",
+  \\"paddingLeft\\": \\"0\\",
+  \\"paddingRight\\": \\"0\\"
+}"
                         value=""
                       />
                       <div
                         styled-component="true"
-                        test-style="[object Object]"
+                        test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"position\\": \\"absolute\\",
+  \\"top\\": 0,
+  \\"left\\": 0,
+  \\"visibility\\": \\"hidden\\",
+  \\"height\\": 0,
+  \\"overflow\\": \\"scroll\\",
+  \\"whiteSpace\\": \\"pre\\"
+}"
                       />
                     </div>
                     <div
                       styled-component="true"
-                      test-style="[object Object]"
+                      test-style="{
+  \\"color\\": \\"$theme.colors.inputPlaceholder\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"overflow\\": \\"hidden\\",
+  \\"textOverflow\\": \\"ellipsis\\",
+  \\"whiteSpace\\": \\"nowrap\\"
+}"
                     >
                       Select...
                     </div>
                   </div>
                   <div
                     styled-component="true"
-                    test-style="[object Object]"
+                    test-style="{
+  \\"boxSizing\\": \\"border-box\\",
+  \\"position\\": \\"relative\\",
+  \\"display\\": \\"flex\\",
+  \\"flexShrink\\": 0,
+  \\"alignItems\\": \\"center\\",
+  \\"alignSelf\\": \\"stretch\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale500\\"
+}"
                   >
                     <svg
                       data-baseweb="icon"
                       styled-component="true"
-                      test-style="[object Object]"
+                      test-style="{
+  \\"display\\": \\"inline-block\\",
+  \\"fill\\": \\"currentColor\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"height\\": \\"$theme.sizing.scale600\\",
+  \\"width\\": \\"$theme.sizing.scale600\\",
+  \\"cursor\\": \\"pointer\\"
+}"
                       viewBox="0 0 24 24"
                     >
                       <title>
@@ -2778,6 +3306,7 @@ exports[`Select component renders component in select mode and true for multiple
               </div>,
             }
           }
+          onBlur={[Function]}
           onClick={[Function]}
         >
           <div
@@ -2785,19 +3314,18 @@ exports[`Select component renders component in select mode and true for multiple
             aria-expanded="false"
             aria-haspopup="true"
             data-baseweb="select"
+            onBlur={[Function]}
             onClick={[Function]}
             styled-component="true"
-            test-style={
-              Object {
-                "boxSizing": "border-box",
-                "fontFamily": "$theme.typography.font300.fontFamily",
-                "fontSize": "$theme.typography.font300.fontSize",
-                "fontWeight": "$theme.typography.font300.fontWeight",
-                "lineHeight": "$theme.typography.font300.lineHeight",
-                "position": "relative",
-                "width": "100%",
-              }
-            }
+            test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"position\\": \\"relative\\",
+  \\"width\\": \\"100%\\"
+}"
           >
             <ForwardRef
               $clearable={true}
@@ -2851,28 +3379,35 @@ exports[`Select component renders component in select mode and true for multiple
                   onTouchMove={[Function]}
                   onTouchStart={[Function]}
                   styled-component="true"
-                  test-style={
-                    Object {
-                      "backgroundColor": "$theme.colors.inputFill",
-                      "borderBottomLeftRadius": "$theme.borders.inputBorderRadius",
-                      "borderBottomRightRadius": "$theme.borders.inputBorderRadius",
-                      "borderColor": "$theme.colors.inputBorder",
-                      "borderStyle": "solid",
-                      "borderTopLeftRadius": "$theme.borders.inputBorderRadius",
-                      "borderTopRightRadius": "$theme.borders.inputBorderRadius",
-                      "borderWidth": "2px",
-                      "boxSizing": "border-box",
-                      "color": "$theme.colors.contentPrimary",
-                      "cursor": "text",
-                      "display": "flex",
-                      "justifyContent": "space-between",
-                      "overflow": "hidden",
-                      "transitionDuration": "$theme.animation.timing100",
-                      "transitionProperty": "border, box-shadow, background-color",
-                      "transitionTimingFunction": "$theme.animation.easeOutCurve",
-                      "width": "100%",
-                    }
-                  }
+                  test-style="{
+  \\"borderTopLeftRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"borderTopRightRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"borderBottomRightRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"borderBottomLeftRadius\\": \\"$theme.borders.inputBorderRadius\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"overflow\\": \\"hidden\\",
+  \\"width\\": \\"100%\\",
+  \\"display\\": \\"flex\\",
+  \\"justifyContent\\": \\"space-between\\",
+  \\"cursor\\": \\"text\\",
+  \\"borderLeftWidth\\": \\"2px\\",
+  \\"borderRightWidth\\": \\"2px\\",
+  \\"borderTopWidth\\": \\"2px\\",
+  \\"borderBottomWidth\\": \\"2px\\",
+  \\"borderLeftStyle\\": \\"solid\\",
+  \\"borderRightStyle\\": \\"solid\\",
+  \\"borderTopStyle\\": \\"solid\\",
+  \\"borderBottomStyle\\": \\"solid\\",
+  \\"transitionProperty\\": \\"border, box-shadow, background-color\\",
+  \\"transitionDuration\\": \\"$theme.animation.timing100\\",
+  \\"transitionTimingFunction\\": \\"$theme.animation.easeOutCurve\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"borderLeftColor\\": \\"$theme.colors.inputBorder\\",
+  \\"borderRightColor\\": \\"$theme.colors.inputBorder\\",
+  \\"borderTopColor\\": \\"$theme.colors.inputBorder\\",
+  \\"borderBottomColor\\": \\"$theme.colors.inputBorder\\",
+  \\"backgroundColor\\": \\"$theme.colors.inputFill\\"
+}"
                 >
                   <ForwardRef
                     $clearable={true}
@@ -2911,23 +3446,21 @@ exports[`Select component renders component in select mode and true for multiple
                     >
                       <div
                         styled-component="true"
-                        test-style={
-                          Object {
-                            "alignItems": "center",
-                            "boxSizing": "border-box",
-                            "display": "flex",
-                            "flexBasis": "0%",
-                            "flexGrow": 1,
-                            "flexShrink": 1,
-                            "flexWrap": "nowrap",
-                            "overflow": "hidden",
-                            "paddingBottom": "$theme.sizing.scale400",
-                            "paddingLeft": "$theme.sizing.scale400",
-                            "paddingRight": 0,
-                            "paddingTop": "$theme.sizing.scale400",
-                            "position": "relative",
-                          }
-                        }
+                        test-style="{
+  \\"boxSizing\\": \\"border-box\\",
+  \\"position\\": \\"relative\\",
+  \\"flexGrow\\": 1,
+  \\"flexShrink\\": 1,
+  \\"flexBasis\\": \\"0%\\",
+  \\"display\\": \\"flex\\",
+  \\"alignItems\\": \\"center\\",
+  \\"flexWrap\\": \\"nowrap\\",
+  \\"overflow\\": \\"hidden\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale400\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale400\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale400\\",
+  \\"paddingRight\\": 0
+}"
                       >
                         <ForwardRef
                           $clearable={true}
@@ -2966,28 +3499,29 @@ exports[`Select component renders component in select mode and true for multiple
                           >
                             <div
                               styled-component="true"
-                              test-style={
-                                Object {
-                                  "backgroundColor": "transparent",
-                                  "border": "none",
-                                  "boxShadow": "none",
-                                  "boxSizing": "border-box",
-                                  "display": "inline-block",
-                                  "height": "auto",
-                                  "marginBottom": 0,
-                                  "marginLeft": 0,
-                                  "marginRight": 0,
-                                  "marginTop": 0,
-                                  "maxHeight": "$theme.typography.font300.lineHeight",
-                                  "maxWidth": "100%",
-                                  "outline": "none",
-                                  "paddingBottom": 0,
-                                  "paddingLeft": 0,
-                                  "paddingRight": 0,
-                                  "paddingTop": 0,
-                                  "position": "relative",
-                                }
-                              }
+                              test-style="{
+  \\"position\\": \\"relative\\",
+  \\"display\\": \\"inline-block\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"backgroundColor\\": \\"transparent\\",
+  \\"borderLeftStyle\\": \\"none\\",
+  \\"borderTopStyle\\": \\"none\\",
+  \\"borderRightStyle\\": \\"none\\",
+  \\"borderBottomStyle\\": \\"none\\",
+  \\"boxShadow\\": \\"none\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"outline\\": \\"none\\",
+  \\"marginTop\\": 0,
+  \\"marginBottom\\": 0,
+  \\"marginLeft\\": 0,
+  \\"marginRight\\": 0,
+  \\"paddingTop\\": 0,
+  \\"paddingBottom\\": 0,
+  \\"paddingLeft\\": 0,
+  \\"paddingRight\\": 0,
+  \\"height\\": \\"auto\\",
+  \\"maxHeight\\": \\"$theme.typography.font300.lineHeight\\"
+}"
                             >
                               <AutosizeInput
                                 $clearable={true}
@@ -3019,7 +3553,6 @@ exports[`Select component renders component in select mode and true for multiple
                                 disabled={null}
                                 id={null}
                                 inputRef={[Function]}
-                                onBlur={[Function]}
                                 onChange={[Function]}
                                 onFocus={[Function]}
                                 overrides={
@@ -3062,7 +3595,6 @@ exports[`Select component renders component in select mode and true for multiple
                                   aria-required={null}
                                   disabled={null}
                                   id={null}
-                                  onBlur={[Function]}
                                   onChange={[Function]}
                                   onFocus={[Function]}
                                   required={null}
@@ -3101,7 +3633,6 @@ exports[`Select component renders component in select mode and true for multiple
                                     disabled={null}
                                     forwardedRef={[Function]}
                                     id={null}
-                                    onBlur={[Function]}
                                     onChange={[Function]}
                                     onFocus={[Function]}
                                     required={null}
@@ -3123,37 +3654,38 @@ exports[`Select component renders component in select mode and true for multiple
                                       aria-required={null}
                                       disabled={null}
                                       id={null}
-                                      onBlur={[Function]}
                                       onChange={[Function]}
                                       onFocus={[Function]}
                                       required={null}
                                       role="combobox"
                                       styled-component="true"
                                       tabIndex={0}
-                                      test-style={
-                                        Object {
-                                          "background": "transparent",
-                                          "border": "none",
-                                          "boxShadow": "none",
-                                          "boxSizing": "content-box",
-                                          "display": "inline-block",
-                                          "fontFamily": "$theme.typography.font300.fontFamily",
-                                          "fontSize": "$theme.typography.font300.fontSize",
-                                          "fontWeight": "$theme.typography.font300.fontWeight",
-                                          "lineHeight": "$theme.typography.font300.lineHeight",
-                                          "marginBottom": "0",
-                                          "marginLeft": "0",
-                                          "marginRight": "0",
-                                          "marginTop": "0",
-                                          "maxWidth": "100%",
-                                          "outline": "none",
-                                          "paddingBottom": "0",
-                                          "paddingLeft": "0",
-                                          "paddingRight": "0",
-                                          "paddingTop": "0",
-                                          "width": "2px",
-                                        }
-                                      }
+                                      test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"boxSizing\\": \\"content-box\\",
+  \\"width\\": \\"2px\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"background\\": \\"transparent\\",
+  \\"borderLeftStyle\\": \\"none\\",
+  \\"borderTopStyle\\": \\"none\\",
+  \\"borderRightStyle\\": \\"none\\",
+  \\"borderBottomStyle\\": \\"none\\",
+  \\"boxShadow\\": \\"none\\",
+  \\"display\\": \\"inline-block\\",
+  \\"outline\\": \\"none\\",
+  \\"marginTop\\": \\"0\\",
+  \\"marginBottom\\": \\"0\\",
+  \\"marginLeft\\": \\"0\\",
+  \\"marginRight\\": \\"0\\",
+  \\"paddingTop\\": \\"0\\",
+  \\"paddingBottom\\": \\"0\\",
+  \\"paddingLeft\\": \\"0\\",
+  \\"paddingRight\\": \\"0\\"
+}"
                                       value=""
                                     />
                                   </MockStyledComponent>
@@ -3169,21 +3701,19 @@ exports[`Select component renders component in select mode and true for multiple
                                   >
                                     <div
                                       styled-component="true"
-                                      test-style={
-                                        Object {
-                                          "fontFamily": "$theme.typography.font300.fontFamily",
-                                          "fontSize": "$theme.typography.font300.fontSize",
-                                          "fontWeight": "$theme.typography.font300.fontWeight",
-                                          "height": 0,
-                                          "left": 0,
-                                          "lineHeight": "$theme.typography.font300.lineHeight",
-                                          "overflow": "scroll",
-                                          "position": "absolute",
-                                          "top": 0,
-                                          "visibility": "hidden",
-                                          "whiteSpace": "pre",
-                                        }
-                                      }
+                                      test-style="{
+  \\"fontFamily\\": \\"$theme.typography.font300.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.font300.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
+  \\"position\\": \\"absolute\\",
+  \\"top\\": 0,
+  \\"left\\": 0,
+  \\"visibility\\": \\"hidden\\",
+  \\"height\\": 0,
+  \\"overflow\\": \\"scroll\\",
+  \\"whiteSpace\\": \\"pre\\"
+}"
                                     />
                                   </MockStyledComponent>
                                 </ForwardRef>
@@ -3228,15 +3758,13 @@ exports[`Select component renders component in select mode and true for multiple
                           >
                             <div
                               styled-component="true"
-                              test-style={
-                                Object {
-                                  "color": "$theme.colors.inputPlaceholder",
-                                  "maxWidth": "100%",
-                                  "overflow": "hidden",
-                                  "textOverflow": "ellipsis",
-                                  "whiteSpace": "nowrap",
-                                }
-                              }
+                              test-style="{
+  \\"color\\": \\"$theme.colors.inputPlaceholder\\",
+  \\"maxWidth\\": \\"100%\\",
+  \\"overflow\\": \\"hidden\\",
+  \\"textOverflow\\": \\"ellipsis\\",
+  \\"whiteSpace\\": \\"nowrap\\"
+}"
                             >
                               Select...
                             </div>
@@ -3282,17 +3810,15 @@ exports[`Select component renders component in select mode and true for multiple
                     >
                       <div
                         styled-component="true"
-                        test-style={
-                          Object {
-                            "alignItems": "center",
-                            "alignSelf": "stretch",
-                            "boxSizing": "border-box",
-                            "display": "flex",
-                            "flexShrink": 0,
-                            "paddingRight": "$theme.sizing.scale500",
-                            "position": "relative",
-                          }
-                        }
+                        test-style="{
+  \\"boxSizing\\": \\"border-box\\",
+  \\"position\\": \\"relative\\",
+  \\"display\\": \\"flex\\",
+  \\"flexShrink\\": 0,
+  \\"alignItems\\": \\"center\\",
+  \\"alignSelf\\": \\"stretch\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale500\\"
+}"
                       >
                         <TriangleDown
                           $clearable={true}
@@ -3401,16 +3927,14 @@ exports[`Select component renders component in select mode and true for multiple
                                 <svg
                                   data-baseweb="icon"
                                   styled-component="true"
-                                  test-style={
-                                    Object {
-                                      "color": "$theme.colors.contentPrimary",
-                                      "cursor": "pointer",
-                                      "display": "inline-block",
-                                      "fill": "currentColor",
-                                      "height": "$theme.sizing.scale600",
-                                      "width": "$theme.sizing.scale600",
-                                    }
-                                  }
+                                  test-style="{
+  \\"display\\": \\"inline-block\\",
+  \\"fill\\": \\"currentColor\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"height\\": \\"$theme.sizing.scale600\\",
+  \\"width\\": \\"$theme.sizing.scale600\\",
+  \\"cursor\\": \\"pointer\\"
+}"
                                   viewBox="0 0 24 24"
                                 >
                                   <title>

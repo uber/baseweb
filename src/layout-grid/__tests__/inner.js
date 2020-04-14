@@ -19,9 +19,18 @@ const Inner: React.StatelessFunctionalComponent<{
       className={css({
         padding: theme.sizing.scale300,
         color: theme.colors.contentPrimary,
-        borderStyle: `solid`,
-        borderWidth: `1px`,
-        borderColor: theme.colors.contentPrimary,
+        borderLeftStyle: `solid`,
+        borderRightStyle: `solid`,
+        borderTopStyle: `solid`,
+        borderBottomStyle: `solid`,
+        borderLeftWidth: `1px`,
+        borderRightWidth: `1px`,
+        borderTopWidth: `1px`,
+        borderBottomWidth: `1px`,
+        borderLeftColor: theme.colors.contentPrimary,
+        borderRightColor: theme.colors.contentPrimary,
+        borderTopColor: theme.colors.contentPrimary,
+        borderBottomColor: theme.colors.contentPrimary,
         height: h,
       })}
     >

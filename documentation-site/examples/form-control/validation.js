@@ -44,7 +44,7 @@ export default () => {
         }
       >
         <Input
-          id="input-id"
+          id="email-input-id"
           value={value}
           onChange={onChange}
           onBlur={() => setIsVisited(true)}
