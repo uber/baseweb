@@ -136,7 +136,6 @@ class Panel extends React.Component<PanelPropsT, {isFocusVisible: boolean}> {
                   size={16}
                   title={locale.accordion.collapse}
                   {...sharedProps}
-                  // $FlowFixMe
                   overrides={toggleIconOverrides}
                 />
               ) : (
