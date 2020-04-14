@@ -48,59 +48,72 @@ export const StyledTableHeadRow = styled<{}>('tr', ({$theme}) => {
   return {};
 });
 
-export const StyledTableHeadCell = styled<{}>('th', ({$theme}) => {
-  return {
-    ...$theme.typography.font350,
-    position: 'sticky',
-    top: 0,
-    paddingTop: $theme.sizing.scale500,
-    paddingRight: $theme.sizing.scale600,
-    paddingBottom: $theme.sizing.scale500,
-    paddingLeft: $theme.sizing.scale600,
-    backgroundColor: $theme.colors.tableHeadBackgroundColor,
-    color: $theme.colors.contentPrimary,
-    textAlign: 'left',
-    verticalAlign: 'top',
-    whiteSpace: 'nowrap',
+type StyledTableHeadCellPropsT = {
+  $col?: {},
+  $colIndex?: ?number,
+};
 
-    // We have to use pseudo elements to add the border for headers
-    // because browsers don't properly handle borders on sticky cells.
-    // The cells stay fixed in place, but the borders scroll.
-    '::before': {
-      content: '""',
-      position: 'absolute',
-      top: '0',
-      right: '100%',
-      bottom: '0',
-      borderLeftColor: $theme.borders.border300.borderColor,
-      borderLeftStyle: $theme.borders.border300.borderStyle,
-      borderLeftWidth: $theme.borders.border300.borderWidth,
-    },
+export const StyledTableHeadCell = styled<StyledTableHeadCellPropsT>(
+  'th',
+  ({$theme}) => {
+    return {
+      ...$theme.typography.font350,
+      position: 'sticky',
+      top: 0,
+      paddingTop: $theme.sizing.scale500,
+      paddingRight: $theme.sizing.scale600,
+      paddingBottom: $theme.sizing.scale500,
+      paddingLeft: $theme.sizing.scale600,
+      backgroundColor: $theme.colors.tableHeadBackgroundColor,
+      color: $theme.colors.contentPrimary,
+      textAlign: 'left',
+      verticalAlign: 'top',
+      whiteSpace: 'nowrap',
 
-    // We have to use pseudo elements to add the shadow to prevent
-    // the shadows from casting on sibling cells.
-    '::after': {
-      content: '""',
-      position: 'absolute',
-      top: '100%',
-      right: '0',
-      left: '0',
-      height: $theme.sizing.scale100,
-      pointerEvents: 'none',
-      backgroundImage: `
+      // We have to use pseudo elements to add the border for headers
+      // because browsers don't properly handle borders on sticky cells.
+      // The cells stay fixed in place, but the borders scroll.
+      '::before': {
+        content: '""',
+        position: 'absolute',
+        top: '0',
+        right: '100%',
+        bottom: '0',
+        borderLeftColor: $theme.borders.border300.borderColor,
+        borderLeftStyle: $theme.borders.border300.borderStyle,
+        borderLeftWidth: $theme.borders.border300.borderWidth,
+      },
+
+      // We have to use pseudo elements to add the shadow to prevent
+      // the shadows from casting on sibling cells.
+      '::after': {
+        content: '""',
+        position: 'absolute',
+        top: '100%',
+        right: '0',
+        left: '0',
+        height: $theme.sizing.scale100,
+        pointerEvents: 'none',
+        backgroundImage: `
         linear-gradient(
           to bottom,
           rgba(0, 0, 0, 0.16),
           rgba(0, 0, 0, 0)
         )
       `,
-    },
-  };
-});
+      },
+    };
+  },
+);
+
+type StyledTableHeadCellSortablePropsT = {
+  ...StyledTableHeadCellPropsT,
+  $isFocusVisible: boolean,
+};
 
 export const StyledTableHeadCellSortable = withStyle<
   typeof StyledTableHeadCell,
-  {$isFocusVisible: boolean},
+  StyledTableHeadCellSortablePropsT,
 >(StyledTableHeadCell, ({$theme, $isFocusVisible}) => {
   return {
     cursor: 'pointer',
@@ -156,15 +169,27 @@ export const StyledTableBody = styled<{}>('tbody', ({$theme}) => {
   return {};
 });
 
-export const StyledTableBodyRow = styled<{}>('tr', ({$theme}) => {
-  return {
-    ':hover': {
-      backgroundColor: $theme.colors.tableStripedBackground,
-    },
-  };
-});
+type StyledTableBodyRowPropsT = {
+  $col?: {},
+  $colIndex?: ?number,
+};
+
+export const StyledTableBodyRow = styled<StyledTableBodyRowPropsT>(
+  'tr',
+  ({$theme}) => {
+    return {
+      ':hover': {
+        backgroundColor: $theme.colors.tableStripedBackground,
+      },
+    };
+  },
+);
 
 type StyledTableBodyCellPropsT = {
+  $col?: {},
+  $colIndex?: ?number,
+  $row?: {},
+  $rowIndex?: ?number,
   $isNumeric?: ?boolean,
 };
 

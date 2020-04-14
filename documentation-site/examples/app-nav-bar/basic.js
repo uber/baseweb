@@ -2,7 +2,13 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {Button} from 'baseui/button';
-import {ChevronDown, Delete, Overflow as UserIcon, Upload as Icon} from 'baseui/icon';
+import {Layer} from 'baseui/layer';
+import {
+  ChevronDown,
+  Delete,
+  Overflow as UserIcon,
+  Upload as Icon,
+} from 'baseui/icon';
 import {Unstable_AppNavBar as AppNavBar} from 'baseui/app-nav-bar';
 
 function renderItem(item) {
@@ -110,33 +116,39 @@ const USER_NAV = [
 
 export default () => {
   const [css] = useStyletron();
-  const [isNavBarVisible, setIsNavBarVisible] = React.useState(false);
+  const [isNavBarVisible, setIsNavBarVisible] = React.useState(
+    false,
+  );
   return (
     <React.Fragment>
       <Button onClick={() => setIsNavBarVisible(!isNavBarVisible)}>
         {isNavBarVisible ? 'Hide' : 'Show'} navigation bar
       </Button>
       {isNavBarVisible ? (
-        <div className={css({
-          boxSizing: 'border-box', 
-          width: '100vw', 
-          position: 'fixed', 
-          top: '0', 
-          left: '0'
-        })}>
-          <AppNavBar
-            appDisplayName="App Something"
-            mainNav={MAIN_NAV}
-            onNavItemSelect={({item}) => {
-              console.log(item);
-            }}
-            userNav={USER_NAV}
-            username="Umka Marshmallow"
-            usernameSubtitle="5.0"
-            userImgUrl=""
-          />
-        </div>
+        <Layer>
+          <div
+            className={css({
+              boxSizing: 'border-box',
+              width: '100vw',
+              position: 'fixed',
+              top: '0',
+              left: '0',
+            })}
+          >
+            <AppNavBar
+              appDisplayName="App Something"
+              mainNav={MAIN_NAV}
+              onNavItemSelect={({item}) => {
+                console.log(item);
+              }}
+              userNav={USER_NAV}
+              username="Umka Marshmallow"
+              usernameSubtitle="5.0"
+              userImgUrl=""
+            />
+          </div>
+        </Layer>
       ) : null}
     </React.Fragment>
   );
-}
+};
