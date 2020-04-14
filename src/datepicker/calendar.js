@@ -330,6 +330,14 @@ export default class Calendar extends React.Component<
             focusable[0].focus();
           }
         }
+
+        // When tabbing out of the day secion of the calendar, reset highlightedDate to today.
+        // This timing can be captured when the next activeElement is a button.
+        const nextActiveElm = document.activeElement;
+
+        if (nextActiveElm && nextActiveElm.tagName.toLowerCase() === 'button') {
+          this.setState({highlightedDate: new Date()});
+        }
       }
     }
   };

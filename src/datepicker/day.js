@@ -133,6 +133,11 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     return weekday === 0 || weekday === 6;
   };
 
+  isSunday = () => {
+    const weekday = getDay(this.props.date);
+    return weekday === 0;
+  };
+
   isOutsideMonth = () => {
     return (
       this.props.month !== undefined &&
@@ -281,7 +286,8 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
             aria-roledescription="button"
             tabIndex={
               this.props.highlighted ||
-              (!this.props.highlightedDate && this.isSelected())
+              (!this.props.highlightedDate && this.isSelected()) ||
+              this.isSunday()
                 ? 0
                 : -1
             }
