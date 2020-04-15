@@ -54,7 +54,7 @@ describe('MaybeChildMenu', () => {
   test('renders with components overrides', () => {
     const NewPopover = () => <div id="popover" />;
     const overrides = {
-      Popover: {
+      ChildMenuPopover: {
         component: NewPopover,
         props: {
           showArrow: true,

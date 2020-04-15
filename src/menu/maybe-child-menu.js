@@ -21,8 +21,8 @@ type PropsT = {
   item: *,
   resetParentMenu: () => void,
   renderAll?: boolean,
-  overrides: {
-    Popover?: OverrideT,
+  overrides?: {
+    ChildMenuPopover?: OverrideT,
   },
 };
 
@@ -35,9 +35,9 @@ export default function MaybeChildMenu(props: PropsT) {
   if (!ChildMenu) {
     return props.children;
   }
-
+  const {overrides = {}} = props;
   const [PopoverOverride, popoverProps] = getOverrides(
-    props.overrides.Popover,
+    overrides.ChildMenuPopover,
     Popover,
   );
 
@@ -74,6 +74,7 @@ export default function MaybeChildMenu(props: PropsT) {
                   },
                 },
               },
+              // $FlowFixMe - getOverrides' return type for props is {}
               popoverProps.overrides,
             )}
           >

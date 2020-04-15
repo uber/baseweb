@@ -112,7 +112,7 @@ export interface OptionListProps extends BaseMenuPropsT {
   size?: OPTION_LIST_SIZE[keyof OPTION_LIST_SIZE];
   overrides?: {
     ListItem?: Override<any>;
-    Popover?: Override<any>;
+    ChildMenuPopover?: Override<any>;
   };
   renderHrefAsAnchor?: boolean;
   resetMenu?: () => void;
@@ -137,7 +137,7 @@ export interface OptionProfileProps extends BaseMenuPropsT {
     ProfileTitle?: Override<any>;
     ProfileSubtitle?: Override<any>;
     ProfileBody?: Override<any>;
-    Popover?: Override<any>;
+    ChildMenuPopover?: Override<any>;
   };
   resetMenu?: () => void;
   $isHighlighted?: boolean;
