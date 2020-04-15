@@ -33,7 +33,10 @@ export default class TableBuilder<T> extends React.Component<
   static defaultProps = {
     data: [],
   };
-  state = {isFocusVisible: false};
+
+  state = {
+    isFocusVisible: false,
+  };
 
   handleFocus = (event: SyntheticEvent<>) => {
     if (isFocusVisible(event)) {
@@ -129,6 +132,8 @@ export default class TableBuilder<T> extends React.Component<
         return (
           <ColTableHeadCell
             key={colIndex}
+            $col={col}
+            $colIndex={colIndex}
             {...tableHeadCellProps}
             {...colTableHeadCellProps}
           >
@@ -183,6 +188,8 @@ export default class TableBuilder<T> extends React.Component<
       return (
         <ColTableHeadCellSortable
           key={colIndex}
+          $col={col}
+          $colIndex={colIndex}
           role="button"
           tabIndex="0"
           aria-label={`${col.header}, ${sortLabel}`}
@@ -214,6 +221,10 @@ export default class TableBuilder<T> extends React.Component<
       return (
         <ColTableBodyCell
           key={colIndex}
+          $col={col}
+          $colIndex={colIndex}
+          $row={row}
+          $rowIndex={rowIndex}
           $isNumeric={col.numeric}
           {...tableBodyCellProps}
           {...colTableBodyCellProps}
@@ -240,7 +251,12 @@ export default class TableBuilder<T> extends React.Component<
           </TableHead>
           <TableBody {...tableBodyProps}>
             {data.map((row, rowIndex) => (
-              <TableBodyRow key={rowIndex} {...tableBodyRowProps}>
+              <TableBodyRow
+                key={rowIndex}
+                $row={row}
+                $rowIndex={rowIndex}
+                {...tableBodyRowProps}
+              >
                 {columns.map((col, colIndex) =>
                   renderCell(col, colIndex, row, rowIndex),
                 )}
