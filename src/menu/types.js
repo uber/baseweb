@@ -227,6 +227,7 @@ export type OptionListPropsT = {
   overrides?: {
     ListItem?: OverrideT,
     ListItemAnchor?: OverrideT,
+    ChildMenuPopover?: OverrideT,
   },
   renderHrefAsAnchor?: boolean,
   /** Utility to reset menu to default state. Useful for rendering child menus. */
@@ -258,6 +259,7 @@ export type OptionProfilePropsT = {
     ProfileTitle?: OverrideT,
     ProfileSubtitle?: OverrideT,
     ProfileBody?: OverrideT,
+    ChildMenuPopover?: OverrideT,
   },
   /** Utility to reset menu to default state. Useful for rendering child menus. */
   resetMenu?: () => void,
