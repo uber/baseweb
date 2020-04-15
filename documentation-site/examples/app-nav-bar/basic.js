@@ -119,6 +119,13 @@ export default () => {
   const [isNavBarVisible, setIsNavBarVisible] = React.useState(
     false,
   );
+  const containerStyles = css({
+    boxSizing: 'border-box',
+    width: '100vw',
+    position: 'fixed',
+    top: '0',
+    left: '0',
+  });
   return (
     <React.Fragment>
       <Button onClick={() => setIsNavBarVisible(!isNavBarVisible)}>
@@ -126,15 +133,7 @@ export default () => {
       </Button>
       {isNavBarVisible ? (
         <Layer>
-          <div
-            className={css({
-              boxSizing: 'border-box',
-              width: '100vw',
-              position: 'fixed',
-              top: '0',
-              left: '0',
-            })}
-          >
+          <div className={containerStyles}>
             <AppNavBar
               appDisplayName="App Something"
               mainNav={MAIN_NAV}
