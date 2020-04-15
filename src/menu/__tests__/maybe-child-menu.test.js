@@ -10,6 +10,7 @@ import * as React from 'react';
 import {mount} from 'enzyme';
 
 import MaybeChildMenu from '../maybe-child-menu.js';
+import {Popover} from '../../popover/index.js';
 
 describe('MaybeChildMenu', () => {
   it('does not render popover if getChildMenu is undefined', () => {
@@ -49,5 +50,30 @@ describe('MaybeChildMenu', () => {
         .first()
         .name(),
     ).toBe('Popover');
+  });
+  test('renders with components overrides', () => {
+    const NewPopover = () => <div id="popover" />;
+    const overrides = {
+      ChildMenuPopover: {
+        component: NewPopover,
+        props: {
+          showArrow: true,
+        },
+      },
+    };
+    const component = mount(
+      <MaybeChildMenu
+        isOpen={true}
+        getChildMenu={() => <button>child menu</button>}
+        item={{label: 'item'}}
+        resetParentMenu={() => {}}
+        overrides={overrides}
+      >
+        <div>child</div>
+      </MaybeChildMenu>,
+    );
+    expect(component.find(Popover)).not.toExist();
+    expect(component.find(NewPopover)).toExist();
+    expect(component.find(NewPopover).prop('showArrow')).toBeTruthy();
   });
 });

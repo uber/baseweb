@@ -75,6 +75,7 @@ export default function OptionProfile(props: OptionProfilePropsT) {
       item={item}
       resetParentMenu={resetMenu}
       renderAll={renderAll}
+      overrides={overrides}
     >
       <ListItemProfile {...restProps} {...listItemProfileProps}>
         <ProfileImgContainer {...profileImgContainerProps}>
