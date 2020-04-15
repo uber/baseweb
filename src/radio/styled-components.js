@@ -156,7 +156,7 @@ export const RadioMarkInner = styled<StylePropsT>('div', props => {
     borderBottomRightRadius: '50%',
     borderBottomLeftRadius: '50%',
     height: props.$checked ? sizing.scale200 : sizing.scale550,
-    transitionDuration: animation.timing100,
+    transitionDuration: animation.timing200,
     transitionTimingFunction: animation.easeOutCurve,
     width: props.$checked ? sizing.scale200 : sizing.scale550,
   };
@@ -187,7 +187,7 @@ export const RadioMarkOuter = styled<StylePropsT>('div', props => {
     verticalAlign: 'middle',
     width: sizing.scale700,
     flexShrink: 0,
-    transitionDuration: animation.timing100,
+    transitionDuration: animation.timing200,
     transitionTimingFunction: animation.easeOutCurve,
   }: {});
 });
