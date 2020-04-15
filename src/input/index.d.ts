@@ -35,6 +35,7 @@ export interface BaseInputOverrides<T> {
 }
 
 export interface BaseInputProps<T> {
+  'aria-errormessage'?: string;
   'aria-label'?: string;
   'aria-labelledby'?: string;
   'aria-describedby'?: string;
@@ -48,6 +49,7 @@ export interface BaseInputProps<T> {
   id?: string;
   'data-baseweb'?: string;
   inputMode?: string;
+  pattern?: string,
   inputRef?: React.Ref<T>;
   name?: string;
   onBlur?: React.FocusEventHandler<T>;
