@@ -665,9 +665,10 @@ export type AnimationT = {
   easeOutCurve: string,
   easeInCurve: string,
   easeInOutCurve: string,
-  easeInQuintic: string,
-  easeOutQuintic: string,
-  easeInOutQuintic: string,
+  easeInQuinticCurve: string,
+  easeOutQuinticCurve: string,
+  easeInOutQuinticCurve: string,
+  linearCurve: string,
 };
 
 export type BorderT = {|
