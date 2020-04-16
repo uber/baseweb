@@ -47,6 +47,12 @@ class DateHelpers<T> {
   subYears: (T, number) => T = (date, yearNumber) => {
     return this.addYears(date, yearNumber * -1);
   };
+  isSameYear: (?T, ?T) => boolean = (fromDate, toDate) => {
+    if (fromDate && toDate) {
+      return this.adapter.isSameYear(fromDate, toDate);
+    }
+    return false;
+  };
   differenceInCalendarDays: (T, T) => number = (fromDate, toDate) => {
     const msDiff = this.adapter.getDiff(fromDate, toDate);
     return msDiff / 864e5;

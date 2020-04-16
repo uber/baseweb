@@ -99,16 +99,16 @@ describe('Datepicker utils', () => {
   });
   describe('isSameYear', () => {
     test('should show if dates are same year', () => {
-      expect(isSameYear(new Date(2019, 1, 1), new Date(2020, 1, 1))).toEqual(
-        false,
-      );
-      expect(isSameYear(new Date(2019, 1, 1), new Date(2019, 2, 1))).toEqual(
-        true,
-      );
+      expect(
+        helpers.isSameYear(new Date(2019, 1, 1), new Date(2020, 1, 1)),
+      ).toEqual(false);
+      expect(
+        helpers.isSameYear(new Date(2019, 1, 1), new Date(2019, 2, 1)),
+      ).toEqual(true);
     });
     test('should return false if either date is falsy', () => {
-      expect(isSameYear(null, MIDNIGHT)).toEqual(false);
-      expect(isSameYear(MIDNIGHT, null)).toEqual(false);
+      expect(helpers.isSameYear(null, MIDNIGHT)).toEqual(false);
+      expect(helpers.isSameYear(MIDNIGHT, null)).toEqual(false);
     });
   });
   describe('isSameMonth', () => {
