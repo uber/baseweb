@@ -47,7 +47,7 @@ export const BaseButton = styled<SharedStylePropsT>(
     WebkitAppearance: 'none',
     transitionProperty: 'background',
     transitionDuration: $theme.animation.timing200,
-    transitionTimingFunction: $theme.animation.easeOutCurve,
+    transitionTimingFunction: $theme.animation.linearCurve,
     cursor: 'pointer',
     ':disabled': {
       cursor: 'not-allowed',

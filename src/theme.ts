@@ -673,9 +673,10 @@ interface Animation {
   easeOutCurve: string;
   easeInCurve: string;
   easeInOutCurve: string;
-  easeInQuintic: string;
-  easeOutQuintic: string;
-  easeInOutQuintic: string;
+  easeInQuinticCurve: string;
+  easeOutQuinticCurve: string;
+  easeInOutQuinticCurve: string;
+  linearCurve: string;
 }
 
 export interface Border {
