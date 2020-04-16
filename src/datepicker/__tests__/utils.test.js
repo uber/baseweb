@@ -16,6 +16,7 @@ import {
   getWeekdayMinInLocale,
   getWeekdayInLocale,
   getMonthInLocale,
+  getDate,
   getDay,
   isOutOfBounds,
   isDayDisabled,
@@ -489,11 +490,11 @@ describe('applyDateToTime', () => {
     });
   });
   describe('getDay', () => {
-    test('should return the day number for the provided date', () => {
+    test('should return the weekday number for the provided date', () => {
       // March 29th, 2020 is a Sunday
-      expect(getDay(new Date(2020, 2, 29))).toEqual(0);
-      expect(getDay(new Date(2020, 3, 2))).toEqual(4);
-      expect(getDay(new Date(2020, 3, 4))).toEqual(6);
+      expect(helpers.getDay(new Date(2020, 2, 29))).toEqual(0);
+      expect(helpers.getDay(new Date(2020, 3, 2))).toEqual(4);
+      expect(helpers.getDay(new Date(2020, 3, 4))).toEqual(6);
     });
   });
 });
