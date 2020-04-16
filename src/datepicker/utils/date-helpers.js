@@ -53,6 +53,12 @@ class DateHelpers<T> {
     }
     return false;
   };
+  isSameDay: (?T, ?T) => boolean = (fromDate, toDate) => {
+    if (fromDate && toDate) {
+      return this.adapter.isSameDay(fromDate, toDate);
+    }
+    return false;
+  };
   isSameMonth: (?T, ?T) => boolean = (fromDate, toDate) => {
     if (fromDate && toDate) {
       return this.adapter.isSameMonth(fromDate, toDate);

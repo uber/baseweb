@@ -127,16 +127,16 @@ describe('Datepicker utils', () => {
   });
   describe('isSameDay', () => {
     test('should show if dates are same day', () => {
-      expect(isSameDay(new Date(2019, 1, 1), new Date(2019, 1, 2))).toEqual(
-        false,
-      );
-      expect(isSameDay(new Date(2019, 1, 1), new Date(2019, 1, 1))).toEqual(
-        true,
-      );
+      expect(
+        helpers.isSameDay(new Date(2019, 1, 1), new Date(2019, 1, 2)),
+      ).toEqual(false);
+      expect(
+        helpers.isSameDay(new Date(2019, 1, 1), new Date(2019, 1, 1)),
+      ).toEqual(true);
     });
     test('should return false if either date is falsy', () => {
-      expect(isSameDay(null, MIDNIGHT)).toEqual(false);
-      expect(isSameDay(MIDNIGHT, null)).toEqual(false);
+      expect(helpers.isSameDay(null, MIDNIGHT)).toEqual(false);
+      expect(helpers.isSameDay(MIDNIGHT, null)).toEqual(false);
     });
   });
   describe('isStartOfMonth', () => {
