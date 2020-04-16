@@ -53,6 +53,12 @@ class DateHelpers<T> {
     }
     return false;
   };
+  isSameMonth: (?T, ?T) => boolean = (fromDate, toDate) => {
+    if (fromDate && toDate) {
+      return this.adapter.isSameMonth(fromDate, toDate);
+    }
+    return false;
+  };
   differenceInCalendarDays: (T, T) => number = (fromDate, toDate) => {
     const msDiff = this.adapter.getDiff(fromDate, toDate);
     return msDiff / 864e5;
