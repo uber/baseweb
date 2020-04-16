@@ -53,6 +53,9 @@ class DateHelpers<T> {
     }
     return false;
   };
+  isStartOfMonth: T => boolean = date => {
+    return this.adapter.isSameDay(date, this.adapter.startOfMonth(date));
+  };
   isDayInRange: (T, T, T) => boolean = (date, startDate, endDate) => {
     return this.adapter.isWithinRange(date, [startDate, endDate]);
   };

@@ -142,8 +142,8 @@ describe('Datepicker utils', () => {
   });
   describe('isStartOfMonth', () => {
     test('should show if date is start of month', () => {
-      expect(isStartOfMonth(new Date(2019, 1, 2))).toEqual(false);
-      expect(isStartOfMonth(new Date(2019, 1, 1))).toEqual(true);
+      expect(helpers.isStartOfMonth(new Date(2019, 1, 2))).toEqual(false);
+      expect(helpers.isStartOfMonth(new Date(2019, 1, 1))).toEqual(true);
     });
   });
   describe('isEndOfMonth', () => {
@@ -547,28 +547,28 @@ describe('applyDateToTime', () => {
   describe('isDayInRange', () => {
     test('should return true if the provided is between the start date and end date', () => {
       expect(
-        isDayInRange(
+        helpers.isDayInRange(
           new Date(2020, 0, 5),
           new Date(2020, 0, 4),
           new Date(2020, 0, 6),
         ),
       ).toEqual(true);
       expect(
-        isDayInRange(
+        helpers.isDayInRange(
           new Date(2020, 0, 4),
           new Date(2020, 0, 4),
           new Date(2020, 0, 6),
         ),
       ).toEqual(true);
       expect(
-        isDayInRange(
+        helpers.isDayInRange(
           new Date(2020, 0, 6),
           new Date(2020, 0, 5),
           new Date(2020, 0, 6),
         ),
       ).toEqual(true);
       expect(
-        isDayInRange(
+        helpers.isDayInRange(
           new Date(2020, 0, 7),
           new Date(2020, 0, 4),
           new Date(2020, 0, 6),
