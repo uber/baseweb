@@ -522,7 +522,9 @@ describe('applyDateToTime', () => {
   });
   describe('subDays', () => {
     test('should subtract the provided days from the provided date', () => {
-      expect(subDays(new Date(2020, 0, 10), 5)).toEqual(new Date(2020, 0, 5));
+      expect(helpers.subDays(new Date(2020, 0, 10), 5)).toEqual(
+        new Date(2020, 0, 5),
+      );
     });
   });
 });

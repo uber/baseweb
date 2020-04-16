@@ -45,6 +45,9 @@ class DateHelpers<T> {
     const msDiff = this.adapter.getDiff(fromDate, toDate);
     return msDiff / 864e5;
   };
+  subDays: (T, number) => T = (date, days) => {
+    return this.adapter.addDays(date, days * -1);
+  };
   subMonths: (T, number) => T = (date, months) => {
     return this.adapter.addMonths(date, months * -1);
   };
