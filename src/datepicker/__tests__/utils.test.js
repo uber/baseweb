@@ -17,6 +17,7 @@ import {
   getWeekdayInLocale,
   getMonthInLocale,
   subDays,
+  subYears,
   subWeeks,
   addWeeks,
   addYears,
@@ -526,6 +527,11 @@ describe('applyDateToTime', () => {
       expect(helpers.addYears(new Date(2020, 0, 1), 1)).toEqual(
         new Date(2021, 0, 1),
       );
+    });
+  });
+  describe('subYears', () => {
+    test('should add the provided number of years to the provided date', () => {
+      expect(subYears(new Date(2021, 0, 1), 1)).toEqual(new Date(2020, 0, 1));
     });
   });
   describe('subDays', () => {
