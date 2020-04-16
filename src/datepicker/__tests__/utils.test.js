@@ -148,8 +148,8 @@ describe('Datepicker utils', () => {
   });
   describe('isEndOfMonth', () => {
     test('should show if date is end of month', () => {
-      expect(isEndOfMonth(new Date(2020, 0, 30))).toEqual(false);
-      expect(isEndOfMonth(new Date(2020, 0, 31))).toEqual(true);
+      expect(helpers.isEndOfMonth(new Date(2020, 0, 30))).toEqual(false);
+      expect(helpers.isEndOfMonth(new Date(2020, 0, 31))).toEqual(true);
     });
   });
   describe('getWeekdayMinInLocale', () => {
