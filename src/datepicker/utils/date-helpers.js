@@ -134,11 +134,12 @@ class DateHelpers<T> {
     );
     return this.adapter.addDays(startOfMonth, dayNumber - 1);
   };
+  getDate: T => number = date => Number(this.adapter.formatByString(date, 'd'));
   applyDateToTime: (?T, T) => T = (time, date) => {
     if (!time) return date;
     const yearNumber = this.adapter.getYear(date);
     const monthNumber = this.adapter.getMonth(date);
-    const dayNumber = Number(this.adapter.formatByString(date, 'd'));
+    const dayNumber = this.getDate(date);
     const yearDate = this.adapter.setYear(time, yearNumber);
     const monthDate = this.adapter.setMonth(yearDate, monthNumber);
     return this.setDate(monthDate, dayNumber);
