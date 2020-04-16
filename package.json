@@ -11,7 +11,6 @@
   "license": "MIT",
   "types": "index.d.ts",
   "sideEffects": false,
-  "main": "./index.js",
   "module": "./esm/index.js",
   "repository": "uber/baseweb",
   "scripts": {
