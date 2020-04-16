@@ -35,6 +35,9 @@ class DateHelpers<T> {
   getDay: T => number = date => {
     return Number(this.adapter.formatByString(date, 'e')) - 1;
   };
+  addWeeks: (T, number) => T = (date, weekNumber) => {
+    return this.adapter.addDays(date, weekNumber * 7);
+  };
   differenceInCalendarDays: (T, T) => number = (fromDate, toDate) => {
     const msDiff = this.adapter.getDiff(fromDate, toDate);
     return msDiff / 864e5;

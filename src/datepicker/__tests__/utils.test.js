@@ -506,7 +506,9 @@ describe('applyDateToTime', () => {
   });
   describe('addWeeks', () => {
     test('should add the provided number of weeks to the provided date', () => {
-      expect(addWeeks(new Date(2020, 0, 1), 2)).toEqual(new Date(2020, 0, 15));
+      expect(helpers.addWeeks(new Date(2020, 0, 1), 2)).toEqual(
+        new Date(2020, 0, 15),
+      );
     });
   });
 });
