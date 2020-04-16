@@ -12,8 +12,8 @@ pull_request_rules:
   - name: Automatic merge for master when CI passes and has 2 approvals
     conditions:
       - '#approved-reviews-by>=2'
-      - status-success=status-success=buildkite/baseweb
-      - status-success=status-success=probot/pr-label
+      - status-success=buildkite/baseweb
+      - status-success=probot/pr-label
       - status-success=license/cla
       - status-success=ci/codesandbox
       - status-success=now
