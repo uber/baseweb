@@ -135,7 +135,7 @@ export const Body = styled<SharedStylePropsArgT>('div', props => {
     boxShadow: isInline ? 'none' : $theme.lighting.shadow600,
     opacity: $isVisible ? 1 : 0,
     transitionProperty: 'all',
-    transitionDuration: $theme.animation.timing100,
+    transitionDuration: $theme.animation.timing200,
     transitionTimingFunction: $theme.animation.easeInOutCurve,
     display: 'flex',
     justifyContent: 'space-between',

@@ -8,13 +8,22 @@ LICENSE file in the root directory of this source tree.
 import type {AnimationT} from '../types.js';
 
 const animation: AnimationT = {
-  timing100: '0.25s',
-  timing400: '0.4s',
-  timing700: '0.6s',
-  timing1000: '1s',
-  easeOutCurve: 'cubic-bezier(.2, .8, .4, 1)',
+  timing100: '100ms',
+  timing200: '200ms',
+  timing300: '300ms',
+  timing400: '400ms',
+  timing500: '500ms',
+  timing600: '600ms',
+  timing700: '700ms',
+  timing800: '800ms',
+  timing900: '900ms',
+  timing1000: '1000ms',
   easeInCurve: 'cubic-bezier(.8, .2, .6, 1)',
+  easeOutCurve: 'cubic-bezier(.2, .8, .4, 1)',
   easeInOutCurve: 'cubic-bezier(0.4, 0, 0.2, 1)',
+  easeInQuintic: 'cubic-bezier(0.755, 0.05, 0.855, 0.06)',
+  easeOutQuintic: 'cubic-bezier(0.23, 1, 0.32, 1)',
+  easeInOutQuintic: 'cubic-bezier(0.86, 0, 0.07, 1)',
 };
 
 export default animation;
