@@ -12,3 +12,4 @@ documentation-site/cheat-sheet.js
 public
 out
 packages/eslint-plugin-baseui/__tests__/example-config
+__artifacts__

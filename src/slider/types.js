@@ -28,20 +28,20 @@ export type PropsT = {
   /** Position of the thumbs. It can be a single point (one thumb) or 2 points array (range thumbs). */
   value: Array<number>,
   /** The minimum allowed value of the slider. Should not be bigger than max. */
-  min: number,
+  min?: number,
   /** The maximum allowed value of the slider. Should not be smaller than min. */
-  max: number,
+  max?: number,
   /** The granularity the slider can step through value. Default step is 1. */
-  step: number,
+  step?: number,
   overrides?: OverridesT,
   /** Disable control from being changed. */
-  disabled: boolean,
+  disabled?: boolean,
   /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
-  onChange: ({
+  onChange?: ({
     ...ParamsT,
   }) => mixed,
   /** Handler for events on trigger element, each time thumbs finish changing selection, which is passed in `value`. */
-  onFinalChange: ({
+  onFinalChange?: ({
     ...ParamsT,
   }) => mixed,
 };
