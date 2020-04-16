@@ -9,6 +9,16 @@ pull_request_rules:
         # because of the setting below, PRs will be automatially updated with the latest master
         strict: true
 
+  - name: Automatic merge for dependabot pull requests
+    conditions:
+      - author=dependabot
+      - status-success=buildkite/baseweb
+    actions:
+      merge:
+        method: squash
+        # because of the setting below, PRs will be automatially updated with the latest master
+        strict: true
+
   - name: Automatic merge for master when CI passes and has 2 approvals
     conditions:
       - '#approved-reviews-by>=2'
