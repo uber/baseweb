@@ -16,6 +16,7 @@ import {
   getWeekdayMinInLocale,
   getWeekdayInLocale,
   getMonthInLocale,
+  addWeeks,
   getDate,
   getDay,
   isOutOfBounds,
@@ -501,6 +502,11 @@ describe('applyDateToTime', () => {
     test('should return the day of month number for the provided date', () => {
       expect(helpers.getDate(new Date(2020, 0, 1))).toEqual(1);
       expect(helpers.getDate(new Date(2020, 0, 20))).toEqual(20);
+    });
+  });
+  describe('addWeeks', () => {
+    test('should add the provided number of weeks to the provided date', () => {
+      expect(addWeeks(new Date(2020, 0, 1), 2)).toEqual(new Date(2020, 0, 15));
     });
   });
 });
