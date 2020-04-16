@@ -38,6 +38,9 @@ class DateHelpers<T> {
   addWeeks: (T, number) => T = (date, weekNumber) => {
     return this.adapter.addDays(date, weekNumber * 7);
   };
+  subWeeks: (T, number) => T = (date, weekNumber) => {
+    return this.addWeeks(date, weekNumber * -1);
+  };
   addYears: (T, number) => T = (date, yearNumber) => {
     return this.adapter.addMonths(date, yearNumber * 12);
   };

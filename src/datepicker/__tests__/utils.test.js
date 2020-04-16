@@ -516,7 +516,9 @@ describe('applyDateToTime', () => {
   });
   describe('subWeeks', () => {
     test('should add the provided number of weeks to the provided date', () => {
-      expect(subWeeks(new Date(2020, 0, 15), 2)).toEqual(new Date(2020, 0, 1));
+      expect(helpers.subWeeks(new Date(2020, 0, 15), 2)).toEqual(
+        new Date(2020, 0, 1),
+      );
     });
   });
   describe('addYears', () => {
