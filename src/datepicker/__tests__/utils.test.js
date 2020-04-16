@@ -16,6 +16,7 @@ import {
   getWeekdayMinInLocale,
   getWeekdayInLocale,
   getMonthInLocale,
+  isDayInRange,
   subDays,
   subYears,
   subWeeks,
@@ -541,6 +542,38 @@ describe('applyDateToTime', () => {
       expect(helpers.subDays(new Date(2020, 0, 10), 5)).toEqual(
         new Date(2020, 0, 5),
       );
+    });
+  });
+  describe('isDayInRange', () => {
+    test('should return true if the provided is between the start date and end date', () => {
+      expect(
+        isDayInRange(
+          new Date(2020, 0, 5),
+          new Date(2020, 0, 4),
+          new Date(2020, 0, 6),
+        ),
+      ).toEqual(true);
+      expect(
+        isDayInRange(
+          new Date(2020, 0, 4),
+          new Date(2020, 0, 4),
+          new Date(2020, 0, 6),
+        ),
+      ).toEqual(true);
+      expect(
+        isDayInRange(
+          new Date(2020, 0, 6),
+          new Date(2020, 0, 5),
+          new Date(2020, 0, 6),
+        ),
+      ).toEqual(true);
+      expect(
+        isDayInRange(
+          new Date(2020, 0, 7),
+          new Date(2020, 0, 4),
+          new Date(2020, 0, 6),
+        ),
+      ).toEqual(false);
     });
   });
 });

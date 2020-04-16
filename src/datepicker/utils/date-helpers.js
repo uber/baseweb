@@ -53,6 +53,9 @@ class DateHelpers<T> {
     }
     return false;
   };
+  isDayInRange: (T, T, T) => boolean = (date, startDate, endDate) => {
+    return this.adapter.isWithinRange(date, [startDate, endDate]);
+  };
   isSameDay: (?T, ?T) => boolean = (fromDate, toDate) => {
     if (fromDate && toDate) {
       return this.adapter.isSameDay(fromDate, toDate);
