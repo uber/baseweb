@@ -65,6 +65,7 @@ InnerTrack.displayName = 'StyledInnerTrack';
 export const Tick = styled<StylePropsT>('div', props => {
   return {
     ...props.$theme.typography.font200,
+    color: props.$theme.colors.contentPrimary,
   };
 });
 Tick.displayName = 'StyledTick';
@@ -101,6 +102,7 @@ export const Thumb = styled<StylePropsT>('div', props => {
     borderBottomLeftRadius: isRight ? '1px' : '4px',
     borderBottomRightRadius: isLeft ? '1px' : '4px',
     backgroundColor: $theme.colors.mono100,
+    color: $theme.colors.contentPrimary,
     display: 'flex',
     outline: 'none',
     justifyContent: 'center',
