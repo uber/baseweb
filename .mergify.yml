@@ -6,3 +6,22 @@ pull_request_rules:
     actions:
       merge:
         method: squash
+        # because of the setting below, PRs will be automatially updated with the latest master
+        strict: true
+
+  - name: Automatic merge for master when CI passes and has 2 approvals
+    conditions:
+      - '#approved-reviews-by>=2'
+      - status-success=status-success=buildkite/baseweb
+      - status-success=status-success=probot/pr-label
+      - status-success=license/cla
+      - status-success=ci/codesandbox
+      - status-success=now
+      - base=master
+      - -draft
+      - label!=work in progress
+    actions:
+      merge:
+        method: squash
+        # because of the setting below, PRs will be automatially updated with the latest master
+        strict: true
