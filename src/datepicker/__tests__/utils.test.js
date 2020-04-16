@@ -16,6 +16,7 @@ import {
   getWeekdayMinInLocale,
   getWeekdayInLocale,
   getMonthInLocale,
+  subDays,
   addWeeks,
   addYears,
   getDate,
@@ -517,6 +518,11 @@ describe('applyDateToTime', () => {
       expect(helpers.addYears(new Date(2020, 0, 1), 1)).toEqual(
         new Date(2021, 0, 1),
       );
+    });
+  });
+  describe('subDays', () => {
+    test('should subtract the provided days from the provided date', () => {
+      expect(subDays(new Date(2020, 0, 10), 5)).toEqual(new Date(2020, 0, 5));
     });
   });
 });
