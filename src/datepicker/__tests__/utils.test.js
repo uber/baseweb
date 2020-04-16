@@ -497,4 +497,10 @@ describe('applyDateToTime', () => {
       expect(helpers.getDay(new Date(2020, 3, 4))).toEqual(6);
     });
   });
+  describe('getDate', () => {
+    test('should return the day of month number for the provided date', () => {
+      expect(getDate(new Date(2020, 0, 1))).toEqual(1);
+      expect(getDate(new Date(2020, 0, 20))).toEqual(20);
+    });
+  });
 });
