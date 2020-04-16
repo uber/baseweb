@@ -514,7 +514,9 @@ describe('applyDateToTime', () => {
   });
   describe('addYears', () => {
     test('should add the provided number of years to the provided date', () => {
-      expect(addYears(new Date(2020, 0, 1), 1)).toEqual(new Date(2021, 0, 1));
+      expect(helpers.addYears(new Date(2020, 0, 1), 1)).toEqual(
+        new Date(2021, 0, 1),
+      );
     });
   });
 });
