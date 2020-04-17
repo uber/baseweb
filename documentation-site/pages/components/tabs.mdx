@@ -11,6 +11,7 @@ import Exports from '../../components/exports';
 
 import TabsControlled from 'examples/tabs/controlled.js';
 import TabsUncontrolled from 'examples/tabs/uncontrolled.js';
+import TabsCustomKeys from 'examples/tabs/custom-keys.js';
 import TabsVertical from 'examples/tabs/vertical.js';
 import TabsRenderAll from 'examples/tabs/renderall.js';
 import TabsOverrides from 'examples/tabs/overrides.js';
@@ -46,6 +47,12 @@ The Tabs component is used for navigating frequently accesssed, but distinct cat
 <Example title="Uncontrolled Tabs Usage" path="tabs/uncontrolled.js">
   <TabsUncontrolled />
 </Example>
+
+<Example title="With Custom Keys" path="tabs/custom-keys.js">
+  <TabsCustomKeys />
+</Example>
+
+We use tab order to provide default keys for each tab. You can however, pass in your own key to a tab and set `activeKey` accordingly.
 
 <Example title="Tabs SEO Friendly" path="tabs/renderall.js">
   <TabsRenderAll />
