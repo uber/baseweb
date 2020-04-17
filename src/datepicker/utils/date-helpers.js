@@ -55,6 +55,12 @@ class DateHelpers<T> {
       this.adapter.getMonth(fromDate) - this.adapter.getMonth(toDate);
     return yearDiff * 12 + monthDiff;
   };
+  getStartOfWeek: (T, locale: ?mixed) => T = (date, locale) => {
+    const adapter = locale
+      ? this.getAdapterWithNewLocale(locale)
+      : this.adapter;
+    return adapter.startOfWeek(date);
+  };
   getDay: T => number = date => {
     return Number(this.adapter.formatByString(date, 'e')) - 1;
   };
