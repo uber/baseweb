@@ -156,7 +156,9 @@ describe('Datepicker utils', () => {
   });
   describe('getWeekdayMinInLocale', () => {
     test('should get the first letter of the weekday in the provided locale', () => {
-      expect(getWeekdayMinInLocale(new Date(2020, 0, 1), es)).toEqual('m');
+      expect(helpers.getWeekdayMinInLocale(new Date(2020, 0, 1), es)).toEqual(
+        'm',
+      );
     });
   });
   describe('getWeekdayInLocale', () => {
