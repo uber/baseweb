@@ -61,6 +61,9 @@ class DateHelpers<T> {
       : this.adapter;
     return adapter.startOfWeek(date);
   };
+  getEndOfWeek: T => T = date => {
+    return this.adapter.endOfWeek(date);
+  };
   getDay: T => number = date => {
     return Number(this.adapter.formatByString(date, 'e')) - 1;
   };

@@ -596,7 +596,7 @@ describe('applyDateToTime', () => {
   });
   describe('getEndOfWeek', () => {
     test('should return the end of the week', () => {
-      expect(getEndOfWeek(new Date(2020, 3, 15))).toEqual(
+      expect(helpers.getEndOfWeek(new Date(2020, 3, 15))).toEqual(
         new Date('2020-04-19T04:59:59.999Z'),
       );
     });
