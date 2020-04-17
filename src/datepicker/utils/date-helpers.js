@@ -66,6 +66,9 @@ class DateHelpers<T> {
       .formatByString(date, 'EEEE')
       .charAt(0);
   };
+  getWeekdayInLocale: (T, locale: mixed) => string = (date, locale) => {
+    return this.getAdapterWithNewLocale(locale).formatByString(date, 'EEEE');
+  };
   getEndOfWeek: T => T = date => {
     return this.adapter.endOfWeek(date);
   };

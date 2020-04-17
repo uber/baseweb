@@ -163,7 +163,9 @@ describe('Datepicker utils', () => {
   });
   describe('getWeekdayInLocale', () => {
     test('should get the weekday name in the provided locale', () => {
-      expect(getWeekdayInLocale(new Date(2020, 0, 1), es)).toEqual('miércoles');
+      expect(helpers.getWeekdayInLocale(new Date(2020, 0, 1), es)).toEqual(
+        'miércoles',
+      );
     });
   });
   describe('getMonthInLocale', () => {
