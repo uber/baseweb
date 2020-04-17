@@ -16,6 +16,7 @@ import {
   getWeekdayMinInLocale,
   getWeekdayInLocale,
   getMonthInLocale,
+  getStartOfWeek,
   isDayInRange,
   subDays,
   subYears,
@@ -574,6 +575,22 @@ describe('applyDateToTime', () => {
           new Date(2020, 0, 6),
         ),
       ).toEqual(false);
+    });
+  });
+  describe('getStartOfWeek', () => {
+    describe('if a locale is provided', () => {
+      test('should return the start of the week in the provided locale', () => {
+        expect(getStartOfWeek(new Date(2020, 3, 15), es)).toEqual(
+          new Date(2020, 3, 13),
+        );
+      });
+    });
+    describe('if a locale is not provided', () => {
+      test('should return the start of the week', () => {
+        expect(getStartOfWeek(new Date(2020, 3, 15))).toEqual(
+          new Date(2020, 3, 12),
+        );
+      });
     });
   });
 });
