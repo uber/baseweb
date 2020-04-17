@@ -170,7 +170,7 @@ describe('Datepicker utils', () => {
   });
   describe('getMonthInLocale', () => {
     test('should get the name of the provided month number in the provided locale', () => {
-      expect(getMonthInLocale(0, es)).toEqual('enero');
+      expect(helpers.getMonthInLocale(0, es)).toEqual('enero');
     });
   });
   describe('isOutOfBounds', () => {

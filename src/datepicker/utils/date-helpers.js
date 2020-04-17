@@ -66,6 +66,16 @@ class DateHelpers<T> {
       .formatByString(date, 'EEEE')
       .charAt(0);
   };
+  getMonthInLocale: (number, locale: mixed) => string = (
+    monthNumber,
+    locale,
+  ) => {
+    const localeAdapter = this.getAdapterWithNewLocale(locale);
+    return localeAdapter.formatByString(
+      localeAdapter.setMonth(localeAdapter.date(), monthNumber),
+      'LLLL',
+    );
+  };
   getWeekdayInLocale: (T, locale: mixed) => string = (date, locale) => {
     return this.getAdapterWithNewLocale(locale).formatByString(date, 'EEEE');
   };
