@@ -7,6 +7,16 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import type {DateIOAdapter} from './types.js';
 
+const adapterOptionMap = {
+  // all utils classes set the arguments passed into their constructor as public members in some way
+  // it just varies by class, most just set formats and locale, but this handles the exceptions
+  DayjsUtils: instance => ({
+    instance: instance.rawJsInstance,
+    formats: instance.formats,
+    locale: instance.locale,
+  }),
+};
+
 const MINUTE = 60;
 const HOUR = MINUTE * 60;
 
@@ -15,6 +25,19 @@ class DateHelpers<T> {
   constructor(adapter: DateIOAdapter<T>) {
     this.adapter = adapter;
   }
+  getAdapterWithNewLocale: mixed => DateIOAdapter<T> = locale => {
+    const defaultGetOptions = instance => ({
+      formats: instance.formats,
+      locale: instance.locale,
+    });
+
+    const className = this.adapter.constructor.name;
+    const UtilsClass = this.adapter.constructor;
+    const getOptions = adapterOptionMap[className] || defaultGetOptions;
+
+    const options = getOptions(this.adapter);
+    return new UtilsClass({...options, locale});
+  };
   dateToSeconds: T => number = date => {
     const seconds = this.adapter.getSeconds(date);
     const minutes = this.adapter.getMinutes(date) * MINUTE;
