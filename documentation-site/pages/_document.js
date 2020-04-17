@@ -74,12 +74,14 @@ export default class MyDocument extends Document {
             rel="preload"
             href="https://d1a3f4spazzrp4.cloudfront.net/dotcom-assets/fonts/UberMoveText-Regular.woff2"
             as="font"
+            type="font/woff2"
             crossOrigin="anonymous"
           />
           <link
             rel="preload"
             href="https://d1a3f4spazzrp4.cloudfront.net/dotcom-assets/fonts/UberMoveText-Medium.woff2"
             as="font"
+            type="font/woff2"
             crossOrigin="anonymous"
           />
           <link rel="stylesheet" href="/static/fonts.css" />
