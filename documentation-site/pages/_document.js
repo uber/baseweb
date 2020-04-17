@@ -70,7 +70,19 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"
           />
-          <link rel="prefetch" as="style" href="/static/fonts.css" />
+          <link
+            rel="preload"
+            href="https://d1a3f4spazzrp4.cloudfront.net/dotcom-assets/fonts/UberMoveText-Regular.woff2"
+            as="font"
+            crossOrigin="anonymous"
+          />
+          <link
+            rel="preload"
+            href="https://d1a3f4spazzrp4.cloudfront.net/dotcom-assets/fonts/UberMoveText-Medium.woff2"
+            as="font"
+            crossOrigin="anonymous"
+          />
+          <link rel="stylesheet" href="/static/fonts.css" />
           <style>{`
             body {
               margin: 0;
