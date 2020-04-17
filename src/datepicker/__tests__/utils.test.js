@@ -7,10 +7,46 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable import/extensions */
 import {es} from 'date-fns/locale/index.js';
+import * as utilsHelpers from '../utils/index';
 import DateHelpers from '../utils/date-helpers';
 import adapter from '../utils/date-fns-adapter';
 /* eslint-enable import/extensions */
-const helpers = new DateHelpers(adapter);
+const dateHelpers = new DateHelpers(adapter);
+
+//$FlowFixMe
+const helpers: DateHelpers<Date> = Object.keys(dateHelpers).reduce(
+  (memo, methodName) => {
+    return {
+      ...memo,
+      [methodName]: (...args) => {
+        //$FlowFixMe
+        const dateHelpersReturn = dateHelpers[methodName](...args);
+        //$FlowFixMe
+        if (!utilsHelpers[methodName]) {
+          return dateHelpersReturn;
+        }
+        const utilsHelpersReturn = utilsHelpers[methodName](...args);
+        const getComparisonValue = value => {
+          if (value instanceof Date) {
+            return value.toISOString();
+          }
+          return value;
+        };
+        if (
+          getComparisonValue(utilsHelpersReturn) !==
+          getComparisonValue(dateHelpersReturn)
+        ) {
+          console.log(dateHelpersReturn, utilsHelpersReturn);
+          throw new Error(
+            'utils/index method and dateHelpers method return different values',
+          );
+        }
+        return dateHelpersReturn;
+      },
+    };
+  },
+  {},
+);
 
 const MIDNIGHT = new Date(2019, 3, 19);
 describe('Datepicker utils', () => {
@@ -434,141 +470,142 @@ describe('applyDateToTime', () => {
       );
     });
   });
-  describe('min', () => {
-    test('should return the earliest date in the provided array', () => {
-      const dates = [
-        new Date(2020, 0, 3),
-        new Date(2020, 0, 2),
-        new Date(2020, 0, 1),
-      ];
-      expect(helpers.min(dates)).toEqual(dates[2]);
-    });
-    describe('max', () => {
-      test('should return the latest date in the provided array', () => {
-        const dates = [
-          new Date(2020, 0, 3),
-          new Date(2020, 0, 2),
-          new Date(2020, 0, 1),
-        ];
-        expect(helpers.max(dates)).toEqual(dates[0]);
-      });
-    });
+});
+
+describe('min', () => {
+  test('should return the earliest date in the provided array', () => {
+    const dates = [
+      new Date(2020, 0, 3),
+      new Date(2020, 0, 2),
+      new Date(2020, 0, 1),
+    ];
+    expect(helpers.min(dates)).toEqual(dates[2]);
   });
-  describe('setDate', () => {
-    test('should set the provided day number on the provided date', () => {
-      expect(helpers.setDate(new Date(2020, 0, 1), 10)).toEqual(
-        new Date(2020, 0, 10),
-      );
-      expect(helpers.setDate(new Date(2020, 0, 1), 0)).toEqual(
-        new Date(2019, 11, 31),
-      );
-      expect(helpers.setDate(new Date(2020, 0, 1), 32)).toEqual(
-        new Date(2020, 1, 1),
-      );
-    });
+});
+describe('max', () => {
+  test('should return the latest date in the provided array', () => {
+    const dates = [
+      new Date(2020, 0, 3),
+      new Date(2020, 0, 2),
+      new Date(2020, 0, 1),
+    ];
+    expect(helpers.max(dates)).toEqual(dates[0]);
   });
-  describe('getDay', () => {
-    test('should return the weekday number for the provided date', () => {
-      // March 29th, 2020 is a Sunday
-      expect(helpers.getDay(new Date(2020, 2, 29))).toEqual(0);
-      expect(helpers.getDay(new Date(2020, 3, 2))).toEqual(4);
-      expect(helpers.getDay(new Date(2020, 3, 4))).toEqual(6);
-    });
+});
+describe('setDate', () => {
+  test('should set the provided day number on the provided date', () => {
+    expect(helpers.setDate(new Date(2020, 0, 1), 10)).toEqual(
+      new Date(2020, 0, 10),
+    );
+    expect(helpers.setDate(new Date(2020, 0, 1), 0)).toEqual(
+      new Date(2019, 11, 31),
+    );
+    expect(helpers.setDate(new Date(2020, 0, 1), 32)).toEqual(
+      new Date(2020, 1, 1),
+    );
   });
-  describe('getDate', () => {
-    test('should return the day of month number for the provided date', () => {
-      expect(helpers.getDate(new Date(2020, 0, 1))).toEqual(1);
-      expect(helpers.getDate(new Date(2020, 0, 20))).toEqual(20);
-    });
+});
+describe('getDay', () => {
+  test('should return the weekday number for the provided date', () => {
+    // March 29th, 2020 is a Sunday
+    expect(helpers.getDay(new Date(2020, 2, 29))).toEqual(0);
+    expect(helpers.getDay(new Date(2020, 3, 2))).toEqual(4);
+    expect(helpers.getDay(new Date(2020, 3, 4))).toEqual(6);
   });
-  describe('addWeeks', () => {
-    test('should add the provided number of weeks to the provided date', () => {
-      expect(helpers.addWeeks(new Date(2020, 0, 1), 2)).toEqual(
-        new Date(2020, 0, 15),
-      );
-    });
+});
+describe('getDate', () => {
+  test('should return the day of month number for the provided date', () => {
+    expect(helpers.getDate(new Date(2020, 0, 1))).toEqual(1);
+    expect(helpers.getDate(new Date(2020, 0, 20))).toEqual(20);
   });
-  describe('subWeeks', () => {
-    test('should add the provided number of weeks to the provided date', () => {
-      expect(helpers.subWeeks(new Date(2020, 0, 15), 2)).toEqual(
-        new Date(2020, 0, 1),
-      );
-    });
+});
+describe('addWeeks', () => {
+  test('should add the provided number of weeks to the provided date', () => {
+    expect(helpers.addWeeks(new Date(2020, 0, 1), 2)).toEqual(
+      new Date(2020, 0, 15),
+    );
   });
-  describe('addYears', () => {
-    test('should add the provided number of years to the provided date', () => {
-      expect(helpers.addYears(new Date(2020, 0, 1), 1)).toEqual(
-        new Date(2021, 0, 1),
-      );
-    });
+});
+describe('subWeeks', () => {
+  test('should add the provided number of weeks to the provided date', () => {
+    expect(helpers.subWeeks(new Date(2020, 0, 15), 2)).toEqual(
+      new Date(2020, 0, 1),
+    );
   });
-  describe('subYears', () => {
-    test('should add the provided number of years to the provided date', () => {
-      expect(helpers.subYears(new Date(2021, 0, 1), 1)).toEqual(
-        new Date(2020, 0, 1),
-      );
-    });
+});
+describe('addYears', () => {
+  test('should add the provided number of years to the provided date', () => {
+    expect(helpers.addYears(new Date(2020, 0, 1), 1)).toEqual(
+      new Date(2021, 0, 1),
+    );
   });
-  describe('subDays', () => {
-    test('should subtract the provided days from the provided date', () => {
-      expect(helpers.subDays(new Date(2020, 0, 10), 5)).toEqual(
+});
+describe('subYears', () => {
+  test('should add the provided number of years to the provided date', () => {
+    expect(helpers.subYears(new Date(2021, 0, 1), 1)).toEqual(
+      new Date(2020, 0, 1),
+    );
+  });
+});
+describe('subDays', () => {
+  test('should subtract the provided days from the provided date', () => {
+    expect(helpers.subDays(new Date(2020, 0, 10), 5)).toEqual(
+      new Date(2020, 0, 5),
+    );
+  });
+});
+describe('isDayInRange', () => {
+  test('should return true if the provided is between the start date and end date', () => {
+    expect(
+      helpers.isDayInRange(
         new Date(2020, 0, 5),
+        new Date(2020, 0, 4),
+        new Date(2020, 0, 6),
+      ),
+    ).toEqual(true);
+    expect(
+      helpers.isDayInRange(
+        new Date(2020, 0, 4),
+        new Date(2020, 0, 4),
+        new Date(2020, 0, 6),
+      ),
+    ).toEqual(true);
+    expect(
+      helpers.isDayInRange(
+        new Date(2020, 0, 6),
+        new Date(2020, 0, 5),
+        new Date(2020, 0, 6),
+      ),
+    ).toEqual(true);
+    expect(
+      helpers.isDayInRange(
+        new Date(2020, 0, 7),
+        new Date(2020, 0, 4),
+        new Date(2020, 0, 6),
+      ),
+    ).toEqual(false);
+  });
+});
+describe('getStartOfWeek', () => {
+  describe('if a locale is provided', () => {
+    test('should return the start of the week in the provided locale', () => {
+      expect(helpers.getStartOfWeek(new Date(2020, 3, 15), es)).toEqual(
+        new Date(2020, 3, 13),
       );
     });
   });
-  describe('isDayInRange', () => {
-    test('should return true if the provided is between the start date and end date', () => {
-      expect(
-        helpers.isDayInRange(
-          new Date(2020, 0, 5),
-          new Date(2020, 0, 4),
-          new Date(2020, 0, 6),
-        ),
-      ).toEqual(true);
-      expect(
-        helpers.isDayInRange(
-          new Date(2020, 0, 4),
-          new Date(2020, 0, 4),
-          new Date(2020, 0, 6),
-        ),
-      ).toEqual(true);
-      expect(
-        helpers.isDayInRange(
-          new Date(2020, 0, 6),
-          new Date(2020, 0, 5),
-          new Date(2020, 0, 6),
-        ),
-      ).toEqual(true);
-      expect(
-        helpers.isDayInRange(
-          new Date(2020, 0, 7),
-          new Date(2020, 0, 4),
-          new Date(2020, 0, 6),
-        ),
-      ).toEqual(false);
-    });
-  });
-  describe('getStartOfWeek', () => {
-    describe('if a locale is provided', () => {
-      test('should return the start of the week in the provided locale', () => {
-        expect(helpers.getStartOfWeek(new Date(2020, 3, 15), es)).toEqual(
-          new Date(2020, 3, 13),
-        );
-      });
-    });
-    describe('if a locale is not provided', () => {
-      test('should return the start of the week', () => {
-        expect(helpers.getStartOfWeek(new Date(2020, 3, 15))).toEqual(
-          new Date(2020, 3, 12),
-        );
-      });
-    });
-  });
-  describe('getEndOfWeek', () => {
-    test('should return the end of the week', () => {
-      expect(helpers.getEndOfWeek(new Date(2020, 3, 15))).toEqual(
-        new Date('2020-04-19T04:59:59.999Z'),
+  describe('if a locale is not provided', () => {
+    test('should return the start of the week', () => {
+      expect(helpers.getStartOfWeek(new Date(2020, 3, 15))).toEqual(
+        new Date(2020, 3, 12),
       );
     });
+  });
+});
+describe('getEndOfWeek', () => {
+  test('should return the end of the week', () => {
+    expect(helpers.getEndOfWeek(new Date(2020, 3, 15))).toEqual(
+      new Date('2020-04-19T04:59:59.999Z'),
+    );
   });
 });
