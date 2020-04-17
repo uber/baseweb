@@ -61,6 +61,12 @@ class DateHelpers<T> {
       : this.adapter;
     return adapter.startOfWeek(date);
   };
+  formatDate: (T, string, ?mixed) => string = (date, formatString, locale) => {
+    const adapter = locale
+      ? this.getAdapterWithNewLocale(locale)
+      : this.adapter;
+    return adapter.formatByString(date, formatString);
+  };
   getWeekdayMinInLocale: (T, locale: mixed) => string = (date, locale) => {
     return this.getAdapterWithNewLocale(locale)
       .formatByString(date, 'EEEE')

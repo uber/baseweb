@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable import/extensions */
-import {formatDate} from '../utils/index.js';
 import {es} from 'date-fns/locale/index.js';
 import DateHelpers from '../utils/date-helpers';
 import adapter from '../utils/date-fns-adapter';
@@ -61,10 +60,10 @@ describe('Datepicker utils', () => {
   });
   describe('format', () => {
     test('should format date', () => {
-      expect(formatDate(MIDNIGHT, 'yyyy-MM-dd')).toEqual('2019-04-19');
+      expect(helpers.formatDate(MIDNIGHT, 'yyyy-MM-dd')).toEqual('2019-04-19');
     });
     test('should apply locale to format if provided', () => {
-      expect(formatDate(MIDNIGHT, 'MMM', es)).toEqual('abr');
+      expect(helpers.formatDate(MIDNIGHT, 'MMM', es)).toEqual('abr');
     });
   });
   describe('isSameYear', () => {
