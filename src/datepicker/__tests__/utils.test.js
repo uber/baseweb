@@ -6,40 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable import/extensions */
-import {
-  formatDate,
-  isSameMonth,
-  isSameYear,
-  isSameDay,
-  isStartOfMonth,
-  isEndOfMonth,
-  getWeekdayMinInLocale,
-  getWeekdayInLocale,
-  getMonthInLocale,
-  getStartOfWeek,
-  getEndOfWeek,
-  isDayInRange,
-  subDays,
-  subYears,
-  subWeeks,
-  addWeeks,
-  addYears,
-  getDate,
-  getDay,
-  isOutOfBounds,
-  isDayDisabled,
-  monthDisabledBefore,
-  monthDisabledAfter,
-  getEffectiveMinDate,
-  getEffectiveMaxDate,
-  applyTimeToDate,
-  applyDateToTime,
-} from '../utils/index.js';
-import differenceInCalendarMonths from 'date-fns/differenceInCalendarMonths';
-import differenceInCalendarDays from 'date-fns/differenceInCalendarDays';
-import min from 'date-fns/min';
-import setDate from 'date-fns/setDate';
-import max from 'date-fns/max';
+import {formatDate} from '../utils/index.js';
 import {es} from 'date-fns/locale/index.js';
 import DateHelpers from '../utils/date-helpers';
 import adapter from '../utils/date-fns-adapter';
