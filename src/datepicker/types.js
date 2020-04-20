@@ -10,6 +10,7 @@ import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 import type {SizeT} from '../input/types.js';
 import {ORIENTATION, STATE_CHANGE_TYPE} from './constants.js';
+import type {DateIOAdapter} from './utils/types.js';
 
 import type {OptionT} from '../select/index.js';
 
@@ -176,11 +177,18 @@ export type HeaderPropsT = CalendarPropsT & {
   order: number,
 };
 
-export type DatepickerPropsT = CalendarPropsT & {
+export type DatepickerDefaultPropsT = {
+  'aria-describedby': 'datepicker--screenreader--message--input',
+  value: null,
+  adapter: DateIOAdapter<Date>,
+};
+
+export type DatepickerPropsT<T> = CalendarPropsT & {
   'aria-label'?: string,
   'aria-labelledby'?: string,
   'aria-describedby'?: ?string,
   disabled?: boolean,
+  adapter: DateIOAdapter<T>,
   size?: SizeT,
   /** Renders UI in 'error' state. */
   error?: boolean,
