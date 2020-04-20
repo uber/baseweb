@@ -67,7 +67,7 @@ export type NumberedStepPropsT = {
   /** Defines if the step is completed. */
   isCompleted: boolean,
   /** Defines if the step is currently active. */
-  isActive: boolean,
+  isActive?: boolean,
   /** Defines if the step is the last item displayed. */
   isLast: boolean,
   overrides?: NumberedStepOverridesT,
