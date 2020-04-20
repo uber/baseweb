@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable import/extensions */
 import {es} from 'date-fns/locale/index.js';
 import * as utilsHelpers from '../utils/index';
+import {formatDate} from '../utils/index';
 import DateHelpers from '../utils/date-helpers';
 import adapter from '../utils/date-fns-adapter';
 /* eslint-enable import/extensions */
@@ -51,6 +52,13 @@ const helpers: DateHelpers<Date> = Object.keys(dateHelpers).reduce(
 
 const MIDNIGHT = new Date(2019, 3, 19);
 describe('Datepicker utils', () => {
+  describe('if using destructured utils function', () => {
+    test('should behave the same as date-helpers version', () => {
+      const destructuredReturn = formatDate(MIDNIGHT, 'yyyy-MM-dd');
+      const helpersReturn = formatDate(MIDNIGHT, 'yyyy-MM-dd');
+      expect(destructuredReturn).toEqual(helpersReturn);
+    });
+  });
   describe('differenceInCalendarMonths', () => {
     test('should return the difference in calendar months', () => {
       expect(
