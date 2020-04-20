@@ -611,90 +611,90 @@ describe('getEndOfWeek', () => {
 });
 describe('setSeconds', () => {
   test('should set the seconds', () => {
-    expect(utilsHelpers.setSeconds(new Date(2020, 0, 1), 5)).toEqual(
+    expect(helpers.setSeconds(new Date(2020, 0, 1), 5)).toEqual(
       new Date(2020, 0, 1, 0, 0, 5),
     );
   });
 });
 describe('setMinutes', () => {
   test('should set the minutes', () => {
-    expect(utilsHelpers.setMinutes(new Date(2020, 0, 1), 5)).toEqual(
+    expect(helpers.setMinutes(new Date(2020, 0, 1), 5)).toEqual(
       new Date(2020, 0, 1, 0, 5, 0),
     );
   });
 });
 describe('setHours', () => {
   test('should set the hours', () => {
-    expect(utilsHelpers.setHours(new Date(2020, 0, 1), 5)).toEqual(
+    expect(helpers.setHours(new Date(2020, 0, 1), 5)).toEqual(
       new Date(2020, 0, 1, 5, 0, 0),
     );
   });
 });
 describe('setMonth', () => {
   test('should set the month', () => {
-    expect(utilsHelpers.setMonth(new Date(2020, 0, 1), 4)).toEqual(
+    expect(helpers.setMonth(new Date(2020, 0, 1), 4)).toEqual(
       new Date(2020, 4, 1, 0, 0, 0),
     );
   });
 });
 describe('setYear', () => {
   test('should set the year', () => {
-    expect(utilsHelpers.setYear(new Date(2020, 0, 1), 2021)).toEqual(
+    expect(helpers.setYear(new Date(2020, 0, 1), 2021)).toEqual(
       new Date(2021, 0, 1),
     );
   });
 });
 describe('getMinutes', () => {
   test('should get the minutes', () => {
-    expect(utilsHelpers.getMinutes(new Date(2020, 0, 1, 0, 5))).toEqual(5);
+    expect(helpers.getMinutes(new Date(2020, 0, 1, 0, 5))).toEqual(5);
   });
 });
 describe('getHours', () => {
   test('should get the hours', () => {
-    expect(utilsHelpers.getHours(new Date(2020, 0, 1, 5))).toEqual(5);
+    expect(helpers.getHours(new Date(2020, 0, 1, 5))).toEqual(5);
   });
 });
 describe('getMonth', () => {
   test('should get the month', () => {
-    expect(utilsHelpers.getMonth(new Date(2020, 0, 1))).toEqual(0);
+    expect(helpers.getMonth(new Date(2020, 0, 1))).toEqual(0);
   });
 });
 describe('getYear', () => {
   test('should get the year', () => {
-    expect(utilsHelpers.getYear(new Date(2020, 0, 1))).toEqual(2020);
+    expect(helpers.getYear(new Date(2020, 0, 1))).toEqual(2020);
   });
 });
 describe('getStartOfMonth', () => {
   test('should get the start of the month', () => {
-    expect(utilsHelpers.getStartOfMonth(new Date(2020, 0, 5))).toEqual(
+    expect(helpers.getStartOfMonth(new Date(2020, 0, 5))).toEqual(
       new Date(2020, 0, 1),
     );
   });
 });
 describe('getEndOfMonth', () => {
   test('should get the end of the month', () => {
-    expect(utilsHelpers.getEndOfMonth(new Date(2020, 0, 5))).toEqual(
+    expect(helpers.getEndOfMonth(new Date(2020, 0, 5))).toEqual(
       new Date('2020-02-01T05:59:59.999Z'),
     );
   });
 });
 describe('addDays', () => {
   test('should add days to the provided date', () => {
-    expect(utilsHelpers.addDays(new Date(2020, 0, 1), 4)).toEqual(
+    expect(helpers.addDays(new Date(2020, 0, 1), 4)).toEqual(
       new Date(2020, 0, 5),
     );
   });
 });
 describe('addMonths', () => {
   test('should add months to the provided date', () => {
-    expect(utilsHelpers.addMonths(new Date(2020, 0, 1), 1)).toEqual(
+    expect(helpers.addMonths(new Date(2020, 0, 1), 1)).toEqual(
       new Date(2020, 1, 1),
     );
   });
 });
 describe('subMonths', () => {
   test('should subract months from the provided date', () => {
-    expect(utilsHelpers.subMonths(new Date(2020, 2, 1), 1)).toEqual(
+    expect(helpers.subMonths(new Date(2020, 2, 1), 1)).toEqual(
       new Date(2020, 1, 1),
     );
   });
@@ -703,27 +703,27 @@ describe('subMonths', () => {
 describe('isBefore', () => {
   test('should return true if the first date is before the second', () => {
     expect(
-      utilsHelpers.isBefore(new Date(2020, 0, 1), new Date(2020, 0, 2)),
+      helpers.isBefore(new Date(2020, 0, 1), new Date(2020, 0, 2)),
     ).toEqual(true);
     expect(
-      utilsHelpers.isBefore(new Date(2020, 0, 1), new Date(2020, 0, 1)),
+      helpers.isBefore(new Date(2020, 0, 1), new Date(2020, 0, 1)),
     ).toEqual(false);
     expect(
-      utilsHelpers.isBefore(new Date(2020, 0, 2), new Date(2020, 0, 1)),
+      helpers.isBefore(new Date(2020, 0, 2), new Date(2020, 0, 1)),
     ).toEqual(false);
   });
 });
 
 describe('isAfter', () => {
   test('should return ture if the first date is after the second', () => {
-    expect(
-      utilsHelpers.isAfter(new Date(2020, 0, 2), new Date(2020, 0, 1)),
-    ).toEqual(true);
-    expect(
-      utilsHelpers.isAfter(new Date(2020, 0, 1), new Date(2020, 0, 1)),
-    ).toEqual(false);
-    expect(
-      utilsHelpers.isAfter(new Date(2020, 0, 1), new Date(2020, 0, 2)),
-    ).toEqual(false);
+    expect(helpers.isAfter(new Date(2020, 0, 2), new Date(2020, 0, 1))).toEqual(
+      true,
+    );
+    expect(helpers.isAfter(new Date(2020, 0, 1), new Date(2020, 0, 1))).toEqual(
+      false,
+    );
+    expect(helpers.isAfter(new Date(2020, 0, 1), new Date(2020, 0, 2))).toEqual(
+      false,
+    );
   });
 });

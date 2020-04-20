@@ -284,6 +284,29 @@ class DateHelpers<T> {
       (!!maxDate && this.differenceInCalendarDays(day, maxDate) > 0)
     );
   };
+  setSeconds: (T, number) => T = (date, seconds) =>
+    this.adapter.setSeconds(date, seconds);
+  setMinutes: (T, number) => T = (date, minutes) =>
+    this.adapter.setMinutes(date, minutes);
+  setHours: (T, number) => T = (date, hours) =>
+    this.adapter.setHours(date, hours);
+  setMonth: (T, number) => T = (date, monthNumber) =>
+    this.adapter.setMonth(date, monthNumber);
+  setYear: (T, number) => T = (date, yearNumber) =>
+    this.adapter.setYear(date, yearNumber);
+  getMinutes: T => number = date => this.adapter.getMinutes(date);
+  getHours: T => number = date => this.adapter.getHours(date);
+  getMonth: T => number = date => this.adapter.getMonth(date);
+  getYear: T => number = date => this.adapter.getYear(date);
+  getStartOfMonth: T => T = date => this.adapter.startOfMonth(date);
+  getEndOfMonth: T => T = date => this.adapter.endOfMonth(date);
+  addDays: (T, number) => T = (date, days) => this.adapter.addDays(date, days);
+  addMonths: (T, number) => T = (date, months) =>
+    this.adapter.addMonths(date, months);
+  isBefore: (T, T) => boolean = (fromDate, toDate) =>
+    this.adapter.isBefore(fromDate, toDate);
+  isAfter: (T, T) => boolean = (fromDate, toDate) =>
+    this.adapter.isAfter(fromDate, toDate);
 }
 
 export default DateHelpers;
