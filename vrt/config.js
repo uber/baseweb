@@ -380,7 +380,7 @@ const config = {
   'tooltip-complex': {
     interactions: [
       {
-        name: '',
+        name: 'contrast',
         behavior: async page => {
           const tooltipSelector = 'span';
           const tooltipPopoverSelector = '[data-baseweb="tooltip"]';

@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react';
 import {StatefulTooltip} from 'baseui/tooltip';
-import {Button} from 'baseui/button';
 import {StyledLink} from 'baseui/link';
 import {useStyletron, DarkTheme, ThemeProvider} from 'baseui';
 
