@@ -11,7 +11,7 @@ pull_request_rules:
 
   - name: Automatic merge for dependabot pull requests
     conditions:
-      - author=dependabot
+      - author=dependabot[bot]
       - status-success=buildkite/baseweb
     actions:
       merge:
