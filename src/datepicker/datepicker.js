@@ -117,10 +117,12 @@ export default class Datepicker<T = Date> extends React.Component<
       return '';
     } else if (Array.isArray(date)) {
       return date
-        .map(day => formatDate(day, formatString, this.props.locale))
+        .map(day =>
+          this.dateHelpers.formatDate(day, formatString, this.props.locale),
+        )
         .join(' – ');
     } else {
-      return formatDate(date, formatString, this.props.locale);
+      return this.dateHelpers.formatDate(date, formatString, this.props.locale);
     }
   }
 
