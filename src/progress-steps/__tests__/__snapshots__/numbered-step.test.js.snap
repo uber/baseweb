@@ -30,11 +30,9 @@ exports[`NumberedStep applies isActive prop correctly 1`] = `
 
 exports[`NumberedStep applies isCompleted prop correctly 1`] = `
 <ForwardRef
-  $isActive={false}
   $isCompleted={true}
 >
   <ForwardRef
-    $isActive={false}
     $isCompleted={true}
   >
     <ForwardRef(Check)
@@ -42,15 +40,12 @@ exports[`NumberedStep applies isCompleted prop correctly 1`] = `
     />
   </ForwardRef>
   <ForwardRef
-    $isActive={false}
     $isCompleted={true}
   />
   <ForwardRef
-    $isActive={false}
     $isCompleted={true}
   >
     <ForwardRef
-      $isActive={false}
       $isCompleted={true}
     />
     <ForwardRef />
@@ -60,21 +55,17 @@ exports[`NumberedStep applies isCompleted prop correctly 1`] = `
 
 exports[`NumberedStep applies isLast prop correctly 1`] = `
 <ForwardRef
-  $isActive={false}
   $isCompleted={false}
 >
   <ForwardRef
-    $isActive={false}
     $isCompleted={false}
   >
     <span />
   </ForwardRef>
   <ForwardRef
-    $isActive={false}
     $isCompleted={false}
   >
     <ForwardRef
-      $isActive={false}
       $isCompleted={false}
     />
     <ForwardRef />
@@ -84,25 +75,20 @@ exports[`NumberedStep applies isLast prop correctly 1`] = `
 
 exports[`NumberedStep applies title prop correctly 1`] = `
 <ForwardRef
-  $isActive={false}
   $isCompleted={false}
 >
   <ForwardRef
-    $isActive={false}
     $isCompleted={false}
   >
     <span />
   </ForwardRef>
   <ForwardRef
-    $isActive={false}
     $isCompleted={false}
   />
   <ForwardRef
-    $isActive={false}
     $isCompleted={false}
   >
     <ForwardRef
-      $isActive={false}
       $isCompleted={false}
     >
       Test Title
