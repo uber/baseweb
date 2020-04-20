@@ -377,7 +377,7 @@ const config = {
   'toaster-focus': {
     skip: true,
   },
-  tooltip: {
+  'tooltip-complex': {
     interactions: [
       {
         name: '',
