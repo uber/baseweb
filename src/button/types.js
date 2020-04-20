@@ -5,22 +5,25 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+import * as React from 'react';
+
 import {KIND, SIZE, SHAPE} from './constants.js';
 import type {OverrideT} from '../helpers/overrides.js';
 
 export type OverridesT = {
-  BaseButton?: OverrideT<*>,
-  StartEnhancer?: OverrideT<*>,
-  EndEnhancer?: OverrideT<*>,
-  LoadingSpinnerContainer?: OverrideT<*>,
-  LoadingSpinner?: OverrideT<*>,
+  BaseButton?: OverrideT,
+  StartEnhancer?: OverrideT,
+  EndEnhancer?: OverrideT,
+  LoadingSpinnerContainer?: OverrideT,
+  LoadingSpinner?: OverrideT,
 };
 
 export type ButtonPropsT = {
   children?: React$Node,
   disabled?: boolean,
   /** A helper rendered at the end of the button. */
-  endEnhancer?: (*) => React$Node | React$Node,
+  // eslint-disable-next-line flowtype/no-weak-types
+  endEnhancer?: React.Node | React.AbstractComponent<any>,
   /** Show loading button style and spinner. */
   isLoading?: boolean,
   /** Indicates that the button is selected */
@@ -34,7 +37,8 @@ export type ButtonPropsT = {
   /** Defines the size of the button */
   size?: $Keys<typeof SIZE>,
   /** A helper rendered at the start of the button. */
-  startEnhancer?: (*) => React$Node | React$Node,
+  // eslint-disable-next-line flowtype/no-weak-types
+  startEnhancer?: React.Node | React.AbstractComponent<any>,
   type?: 'submit' | 'reset' | 'button',
 };
 

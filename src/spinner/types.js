@@ -22,8 +22,8 @@ export type SpinnerPropsT = {
   /** Allows you to set the SVG `<title>` label, which is used for accessibility */
   title?: string,
   overrides?: {
-    Svg?: OverrideT<*>,
-    ActivePath?: OverrideT<*>,
-    TrackPath?: OverrideT<*>,
+    Svg?: OverrideT,
+    ActivePath?: OverrideT,
+    TrackPath?: OverrideT,
   },
 };

@@ -653,12 +653,22 @@ export type LightingT = {
 
 export type AnimationT = {
   timing100: string,
+  timing200: string,
+  timing300: string,
   timing400: string,
+  timing500: string,
+  timing600: string,
   timing700: string,
+  timing800: string,
+  timing900: string,
   timing1000: string,
   easeOutCurve: string,
   easeInCurve: string,
   easeInOutCurve: string,
+  easeInQuinticCurve: string,
+  easeOutQuinticCurve: string,
+  easeInOutQuinticCurve: string,
+  linearCurve: string,
 };
 
 export type BorderT = {|

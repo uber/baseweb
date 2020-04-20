@@ -243,7 +243,7 @@ export const StyledControlContainer = styled<SharedStylePropsArgT>(
       borderTopStyle: 'solid',
       borderBottomStyle: 'solid',
       transitionProperty: 'border, box-shadow, background-color',
-      transitionDuration: animation.timing100,
+      transitionDuration: animation.timing200,
       transitionTimingFunction: animation.easeOutCurve,
       ...getControlContainerColors(
         $disabled,

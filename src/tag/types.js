@@ -16,10 +16,10 @@ export type TagKindT = $Keys<typeof TagKind>;
 export type TagVariantT = $Values<typeof TagVariant>;
 
 export type OverridesT = {
-  Root?: OverrideT<*>,
-  Action?: OverrideT<*>,
-  ActionIcon?: OverrideT<*>,
-  Text?: OverrideT<*>,
+  Root?: OverrideT,
+  Action?: OverrideT,
+  ActionIcon?: OverrideT,
+  Text?: OverrideT,
 };
 
 export type PropsT = {

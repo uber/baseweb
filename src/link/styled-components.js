@@ -18,7 +18,7 @@ export const Link = styled<{$isFocusVisible: boolean}>(
       fontSize: 'inherit',
       lineHeight: 'inherit',
       transitionProperty: 'color',
-      transitionDuration: animation.timing100,
+      transitionDuration: animation.timing200,
       transitionTimingFunction: animation.easeOutCurve,
       ':focus': {
         outline: $isFocusVisible ? `3px solid ${colors.accent}` : 'none',

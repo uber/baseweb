@@ -29,9 +29,9 @@ export type ToasterSharedStylePropsArgT = {
 };
 
 export type OverridesT = {
-  Body?: OverrideT<SharedStylePropsArgT>,
-  CloseIcon?: OverrideT<SharedStylePropsArgT>,
-  InnerContainer?: OverrideT<SharedStylePropsArgT>,
+  Body?: OverrideT,
+  CloseIcon?: OverrideT,
+  InnerContainer?: OverrideT,
 };
 
 export type ComponentRenderPropT = (props: {dismiss: () => void}) => React.Node;
@@ -87,10 +87,10 @@ export type ToastPropsShapeT = $Shape<
 >;
 
 export type ToasterOverridesT = {
-  Root?: OverrideT<ToasterSharedStylePropsArgT>,
-  ToastBody?: OverrideT<SharedStylePropsArgT>,
-  ToastCloseIcon?: OverrideT<SharedStylePropsArgT>,
-  ToastInnerContainer?: OverrideT<SharedStylePropsArgT>,
+  Root?: OverrideT,
+  ToastBody?: OverrideT,
+  ToastCloseIcon?: OverrideT,
+  ToastInnerContainer?: OverrideT,
 };
 
 export type ToasterPropsT = {

@@ -61,6 +61,7 @@ function OptionList(props: OptionListPropsT, ref: React.ElementRef<*>) {
           item={item}
           resetParentMenu={resetMenu}
           renderAll={renderAll}
+          overrides={overrides}
         >
           <ListItem
             ref={ref}

@@ -181,7 +181,7 @@ export const Checkmark = styled<SharedStylePropsT>('span', props => {
 
   return ({
     flex: '0 0 auto',
-    transitionDuration: animation.timing100,
+    transitionDuration: animation.timing200,
     transitionTimingFunction: animation.easeOutCurve,
     transitionProperty: 'background-image, border-color, background-color',
     width: sizing.scale700,
@@ -301,7 +301,7 @@ export const Toggle = styled<SharedStylePropsT>('div', props => {
       transform: props.$checked
         ? `translateX(${props.$theme.direction === 'rtl' ? '-100%' : '100%'})`
         : null,
-      transition: `transform ${props.$theme.animation.timing100}`,
+      transition: `transform ${props.$theme.animation.timing200}`,
     };
   }
 

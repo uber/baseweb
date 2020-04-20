@@ -18,39 +18,39 @@ type LocaleT = any; // see https://github.com/date-fns/date-fns/blob/master/src/
 
 type onChangeT = ({date: ?Date | Array<Date>}) => mixed;
 
-export type DatepickerOverridesT<T> = {
-  Root?: OverrideT<T>,
+export type DatepickerOverridesT = {
+  Root?: OverrideT,
   /** Override for reused Select component. QuickSelect is **not a styled  element** but a react component that can be replaced */
-  QuickSelect?: OverrideT<T>,
-  QuickSelectContainer?: OverrideT<T>,
+  QuickSelect?: OverrideT,
+  QuickSelectContainer?: OverrideT,
   /** Override for reused Select component. QuickSelectFormControl is **not a styled  element** but a react component that can be replaced */
-  QuickSelectFormControl?: OverrideT<T>,
+  QuickSelectFormControl?: OverrideT,
   /** Override for reused TimePicker component. TimeSelect is **not a styled  element** but a react component that can be replaced */
-  TimeSelect?: OverrideT<T>,
-  TimeSelectContainer?: OverrideT<T>,
+  TimeSelect?: OverrideT,
+  TimeSelectContainer?: OverrideT,
   /** Override for reused Select component. TimeSelectFormControl is **not a styled  element** but a react component that can be replaced */
-  TimeSelectFormControl?: OverrideT<T>,
-  CalendarContainer?: OverrideT<T>,
-  CalendarHeader?: OverrideT<T>,
-  PrevButton?: OverrideT<T>,
-  PrevButtonIcon?: OverrideT<T>,
-  NextButton?: OverrideT<T>,
-  NextButtonIcon?: OverrideT<T>,
-  MonthContainer?: OverrideT<T>,
-  MonthHeader?: OverrideT<T>,
-  MonthYearSelectButton?: OverrideT<T>,
-  MonthYearSelectIconContainer?: OverrideT<T>,
-  MonthYearSelectPopover?: OverrideT<T>,
-  MonthYearSelectStatefulMenu?: OverrideT<T>,
-  WeekdayHeader?: OverrideT<T>,
-  Month?: OverrideT<T>,
-  Week?: OverrideT<T>,
-  Day?: OverrideT<T>,
+  TimeSelectFormControl?: OverrideT,
+  CalendarContainer?: OverrideT,
+  CalendarHeader?: OverrideT,
+  PrevButton?: OverrideT,
+  PrevButtonIcon?: OverrideT,
+  NextButton?: OverrideT,
+  NextButtonIcon?: OverrideT,
+  MonthContainer?: OverrideT,
+  MonthHeader?: OverrideT,
+  MonthYearSelectButton?: OverrideT,
+  MonthYearSelectIconContainer?: OverrideT,
+  MonthYearSelectPopover?: OverrideT,
+  MonthYearSelectStatefulMenu?: OverrideT,
+  WeekdayHeader?: OverrideT,
+  Month?: OverrideT,
+  Week?: OverrideT,
+  Day?: OverrideT,
   /** Override for reused Input component. Input is **not a styled  element** but a react component that can be replaced */
-  Input?: OverrideT<T>,
-  InputWrapper?: OverrideT<T>,
+  Input?: OverrideT,
+  InputWrapper?: OverrideT,
   /** Override for reused Popover component. Popover is **not a styled  element** but a react component that can be replaced */
-  Popover?: OverrideT<T>,
+  Popover?: OverrideT,
 };
 
 export type DayPropsT = {
@@ -72,7 +72,7 @@ export type DayPropsT = {
   onClick: ({event: Event, date: Date}) => mixed,
   onMouseOver: ({event: Event, date: Date}) => mixed,
   onMouseLeave: ({event: Event, date: Date}) => mixed,
-  overrides?: DatepickerOverridesT<{}>,
+  overrides?: DatepickerOverridesT,
   peekNextMonth: boolean,
   value: ?Date | Array<Date>,
 };
@@ -101,7 +101,7 @@ export type WeekPropsT = {
   onDayMouseOver: ({date: Date, event: Event}) => mixed,
   onDayMouseLeave: ({date: Date, event: Event}) => mixed,
   onChange?: onChangeT,
-  overrides?: DatepickerOverridesT<{}>,
+  overrides?: DatepickerOverridesT,
   peekNextMonth: boolean,
   value: ?Date | Array<Date>,
 };
@@ -157,7 +157,7 @@ export type CalendarPropsT = {
   onChange?: onChangeT,
   /** Sets the orientation of the calendar when multiple months are displayed */
   orientation?: $Values<typeof ORIENTATION>,
-  overrides?: DatepickerOverridesT<{}>,
+  overrides?: DatepickerOverridesT,
   /** Defines if dates outside of the range of the current month are displayed. */
   peekNextMonth?: boolean,
   /** Determines if `TimePicker` component will be enabled for start time */
@@ -296,7 +296,7 @@ export type TimePickerPropsT = {
   /** Callback for when time selection changes. */
   onChange?: Date => mixed,
   overrides?: {
-    Select?: OverrideT<*>,
+    Select?: OverrideT,
   },
   /** Set to true to allow times that aren't displayed in the options list to be entered manually. Defaults to false. */
   creatable?: boolean,
@@ -340,7 +340,7 @@ export type TimezonePickerPropsT = {
   mapLabels?: OptionT => React.Node,
   /** Callback for when the timezone selection changes. */
   onChange?: (value: ?{id: string, label: string, offset: number}) => mixed,
-  overrides?: {Select?: OverrideT<*>},
+  overrides?: {Select?: OverrideT},
   /**
    * Optional value that can be provided to fully control the component. If not provided,
    * TimezonePicker will manage state internally.

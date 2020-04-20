@@ -151,18 +151,91 @@ describe('Table Semantic Builder', () => {
       </TableBuilder>,
     );
 
-    wrapper
-      .find(StyledTableHeadCellSortable)
-      .at(0)
-      .simulate('click');
+    const headCells = wrapper.find(StyledTableHeadCellSortable);
 
-    wrapper
-      .find(StyledTableHeadCellSortable)
+    headCells.at(0).simulate('click');
+    headCells.at(1).simulate('click');
+
+    headCells
       .at(1)
-      .simulate('click');
+      .simulate('focus')
+      .simulate('keydown', {key: 'Enter'});
 
-    expect(mockOnSort.mock.calls.length).toBe(2);
-    expect(mockOnSort.mock.calls[0][0]).toBe('foo');
-    expect(mockOnSort.mock.calls[1][0]).toBe('bar');
+    headCells
+      .at(1)
+      .simulate('focus')
+      .simulate('keydown', {key: ' '});
+
+    headCells
+      .at(1)
+      .simulate('focus')
+      .simulate('keydown', {key: 'a'});
+
+    headCells.at(1).simulate('blur');
+
+    expect(mockOnSort.mock.calls.length).toBe(4);
+    expect(mockOnSort.mock.calls).toEqual([['foo'], ['bar'], ['bar'], ['bar']]);
+  });
+
+  it('exposes row and column data to overrides', () => {
+    const mockTableHeadCellStyle = jest.fn();
+    const mockTableBodyRowStyle = jest.fn();
+    const mockTableBodyCellStyle = jest.fn();
+
+    mount(
+      <TableBuilder
+        data={DATA}
+        overrides={{
+          TableHeadCell: {
+            style: mockTableHeadCellStyle,
+          },
+          TableBodyRow: {
+            style: mockTableBodyRowStyle,
+          },
+          TableBodyCell: {
+            style: mockTableBodyCellStyle,
+          },
+        }}
+      >
+        <TableBuilderColumn header="Foo" id="foo">
+          {row => row.foo}
+        </TableBuilderColumn>
+        <TableBuilderColumn header="Bar" id="bar">
+          {row => <a href={row.url}>{row.bar}</a>}
+        </TableBuilderColumn>
+      </TableBuilder>,
+    );
+
+    expect(mockTableHeadCellStyle.mock.calls.length).toBe(2);
+    expect(mockTableHeadCellStyle.mock.calls[0][0]).toEqual(
+      expect.objectContaining({
+        $colIndex: 0,
+        $col: expect.objectContaining({
+          header: 'Foo',
+          id: 'foo',
+        }),
+      }),
+    );
+
+    expect(mockTableBodyRowStyle.mock.calls.length).toBe(3);
+    expect(mockTableBodyRowStyle.mock.calls[0][0]).toEqual(
+      expect.objectContaining({
+        $rowIndex: 0,
+        $row: DATA[0],
+      }),
+    );
+
+    expect(mockTableBodyCellStyle.mock.calls.length).toBe(6);
+    expect(mockTableBodyCellStyle.mock.calls[0][0]).toEqual(
+      expect.objectContaining({
+        $colIndex: 0,
+        $col: expect.objectContaining({
+          header: 'Foo',
+          id: 'foo',
+        }),
+        $rowIndex: 0,
+        $row: DATA[0],
+      }),
+    );
   });
 });

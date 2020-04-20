@@ -9,7 +9,11 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {Range, useThumbOverlap} from 'react-range';
 import type {PropsT} from './types.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import {
+  isFocusVisible as focusVisible,
+  forkFocus,
+  forkBlur,
+} from '../utils/focusVisible.js';
 import {
   Root as StyledRoot,
   Track as StyledTrack,
@@ -35,178 +39,174 @@ const limitValue = (value: number[]) => {
   return value;
 };
 
-const ThumbLabel = ({index, values, rangeRef, Component, ...props}) => {
-  const {$step: step} = props;
-  const [labelValue, style] = useThumbOverlap(rangeRef, values, index, step);
+function ThumbLabel({
+  index,
+  values,
+  rangeRef,
+  Component,
+  separator,
+  valueToLabel,
+  $step: step,
+  ...props
+}) {
+  const [labelValue, style] = useThumbOverlap(
+    rangeRef,
+    values,
+    index,
+    step,
+    separator,
+    valueToLabel,
+  );
   return (
     <Component {...props} style={style}>
       {labelValue}
     </Component>
   );
-};
+}
 
-class Slider extends React.Component<
-  PropsT,
-  {isFocusVisible: boolean, focusedThumbIndex: number},
-> {
-  static defaultProps = {
-    overrides: {},
-    disabled: false,
-    onChange: () => {},
-    onFinalChange: () => {},
-    min: 0,
-    max: 100,
-    step: 1,
-  };
-  state = {isFocusVisible: false, focusedThumbIndex: -1};
-  rangeRef = React.createRef<Range>();
-  getSharedProps() {
-    const {disabled, step, min, max, value}: PropsT = this.props;
-    return {
-      $disabled: disabled,
-      $step: step,
-      $min: min,
-      $max: max,
-      $value: limitValue(value),
-      $isFocusVisible: this.state.isFocusVisible,
-    };
-  }
+function Slider({
+  overrides = {},
+  disabled = false,
+  onChange = () => {},
+  onFinalChange = () => {},
+  min = 0,
+  max = 100,
+  step = 1,
+  value: providedValue,
+}: PropsT) {
+  const theme = React.useContext(ThemeContext);
 
-  handleFocus = (event: SyntheticEvent<>) => {
-    if (isFocusVisible(event)) {
-      this.setState({isFocusVisible: true});
+  const [isFocusVisible, setIsFocusVisible] = React.useState(false);
+  const [focusedThumbIndex, setFocusedThumbIndex] = React.useState(-1);
+  const handleFocus = React.useCallback((event: SyntheticEvent<>) => {
+    if (focusVisible(event)) {
+      setIsFocusVisible(true);
     }
     const index =
       // eslint-disable-next-line flowtype/no-weak-types
       (event.target: any).parentNode.firstChild === event.target ? 0 : 1;
-    this.setState({focusedThumbIndex: index});
-  };
-
-  handleBlur = (event: SyntheticEvent<>) => {
-    if (this.state.isFocusVisible !== false) {
-      this.setState({isFocusVisible: false});
+    setFocusedThumbIndex(index);
+  }, []);
+  const handleBlur = React.useCallback((event: SyntheticEvent<>) => {
+    if (isFocusVisible !== false) {
+      setIsFocusVisible(false);
     }
-    this.setState({focusedThumbIndex: -1});
+    setFocusedThumbIndex(-1);
+  }, []);
+
+  // Use ref callback pattern so useThumbOverlap can properly measure dom nodes
+  // https://reactjs.org/docs/hooks-faq.html#how-can-i-measure-a-dom-node
+  const [rangeRef, setRangeRef] = React.useState(null);
+  const rangeRefCallback = React.useCallback(node => setRangeRef(node), []);
+
+  const value = limitValue(providedValue);
+  const sharedProps = {
+    $disabled: disabled,
+    $step: step,
+    $min: min,
+    $max: max,
+    $value: value,
+    $isFocusVisible: isFocusVisible,
   };
 
-  render() {
-    const {
-      overrides = {},
-      min,
-      max,
-      step,
-      onChange,
-      onFinalChange,
-      disabled,
-    } = this.props;
-    const value = limitValue(this.props.value);
-    const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
-    const [Track, trackProps] = getOverrides(overrides.Track, StyledTrack);
-    const [InnerTrack, innerTrackProps] = getOverrides(
-      overrides.InnerTrack,
-      StyledInnerTrack,
-    );
-    const [Thumb, thumbProps] = getOverrides(overrides.Thumb, StyledThumb);
-    const [InnerThumb, innerThumbProps] = getOverrides(
-      overrides.InnerThumb,
-      StyledInnerThumb,
-    );
-    const [ThumbValue, thumbValueProps] = getOverrides(
-      overrides.ThumbValue,
-      StyledThumbValue,
-    );
-    const [Tick, tickProps] = getOverrides(overrides.Tick, StyledTick);
-    const [TickBar, tickBarProps] = getOverrides(
-      overrides.TickBar,
-      StyledTickBar,
-    );
-    const sharedProps = this.getSharedProps();
+  const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+  const [Track, trackProps] = getOverrides(overrides.Track, StyledTrack);
+  const [InnerTrack, innerTrackProps] = getOverrides(
+    overrides.InnerTrack,
+    StyledInnerTrack,
+  );
+  const [Thumb, thumbProps] = getOverrides(overrides.Thumb, StyledThumb);
+  const [InnerThumb, innerThumbProps] = getOverrides(
+    overrides.InnerThumb,
+    StyledInnerThumb,
+  );
+  const [ThumbValue, thumbValueProps] = getOverrides(
+    overrides.ThumbValue,
+    StyledThumbValue,
+  );
+  const [Tick, tickProps] = getOverrides(overrides.Tick, StyledTick);
+  const [TickBar, tickBarProps] = getOverrides(
+    overrides.TickBar,
+    StyledTickBar,
+  );
 
-    return (
-      <ThemeContext.Consumer>
-        {theme => (
-          <Root
-            data-baseweb="slider"
+  return (
+    <Root
+      data-baseweb="slider"
+      {...sharedProps}
+      {...rootProps}
+      onFocus={forkFocus(rootProps, handleFocus)}
+      onBlur={forkBlur(rootProps, handleBlur)}
+    >
+      <Range
+        step={step}
+        min={min}
+        max={max}
+        values={value}
+        disabled={disabled}
+        onChange={value => onChange({value})}
+        onFinalChange={value => onFinalChange({value})}
+        ref={rangeRefCallback}
+        rtl={theme.direction === 'rtl'}
+        renderTrack={({props, children, isDragged}) => (
+          <Track
+            onMouseDown={props.onMouseDown}
+            onTouchStart={props.onTouchStart}
+            $isDragged={isDragged}
             {...sharedProps}
-            {...rootProps}
-            onFocus={forkFocus(rootProps, this.handleFocus)}
-            onBlur={forkBlur(rootProps, this.handleBlur)}
+            {...trackProps}
           >
-            <Range
-              step={step}
-              min={min}
-              max={max}
-              values={value}
-              disabled={disabled}
-              onChange={value => onChange({value})}
-              onFinalChange={value => onFinalChange({value})}
-              ref={this.rangeRef}
-              rtl={theme.direction === 'rtl'}
-              renderTrack={({props, children, isDragged}) => (
-                <Track
-                  onMouseDown={props.onMouseDown}
-                  onTouchStart={props.onTouchStart}
-                  $isDragged={isDragged}
-                  {...sharedProps}
-                  {...trackProps}
-                >
-                  <InnerTrack
-                    $isDragged={isDragged}
-                    ref={props.ref}
-                    {...sharedProps}
-                    {...innerTrackProps}
-                  >
-                    {children}
-                  </InnerTrack>
-                </Track>
-              )}
-              renderThumb={({props, index, isDragged}) => (
-                <Thumb
-                  {...props}
-                  $thumbIndex={index}
-                  $isDragged={isDragged}
-                  style={{
-                    ...props.style,
-                  }}
-                  {...sharedProps}
-                  {...thumbProps}
-                  $isFocusVisible={
-                    this.state.isFocusVisible &&
-                    this.state.focusedThumbIndex === index
-                  }
-                >
-                  <ThumbLabel
-                    Component={ThumbValue}
-                    values={value}
-                    index={index}
-                    rangeRef={this.rangeRef.current}
-                    $thumbIndex={index}
-                    $isDragged={isDragged}
-                    {...sharedProps}
-                    {...thumbValueProps}
-                  />
-                  <InnerThumb
-                    $thumbIndex={index}
-                    $isDragged={isDragged}
-                    {...sharedProps}
-                    {...innerThumbProps}
-                  />
-                </Thumb>
-              )}
-            />
-            <TickBar {...sharedProps} {...tickBarProps}>
-              <Tick {...sharedProps} {...tickProps}>
-                {min}
-              </Tick>
-              <Tick {...sharedProps} {...tickProps}>
-                {max}
-              </Tick>
-            </TickBar>
-          </Root>
+            <InnerTrack
+              $isDragged={isDragged}
+              ref={props.ref}
+              {...sharedProps}
+              {...innerTrackProps}
+            >
+              {children}
+            </InnerTrack>
+          </Track>
         )}
-      </ThemeContext.Consumer>
-    );
-  }
+        renderThumb={({props, index, isDragged}) => (
+          <Thumb
+            {...props}
+            $thumbIndex={index}
+            $isDragged={isDragged}
+            style={{
+              ...props.style,
+            }}
+            {...sharedProps}
+            {...thumbProps}
+            $isFocusVisible={isFocusVisible && focusedThumbIndex === index}
+          >
+            <ThumbLabel
+              Component={ThumbValue}
+              values={value}
+              index={index}
+              rangeRef={rangeRef}
+              $thumbIndex={index}
+              $isDragged={isDragged}
+              {...sharedProps}
+              {...(thumbValueProps: mixed)}
+            />
+            <InnerThumb
+              $thumbIndex={index}
+              $isDragged={isDragged}
+              {...sharedProps}
+              {...innerThumbProps}
+            />
+          </Thumb>
+        )}
+      />
+      <TickBar {...sharedProps} {...tickBarProps}>
+        <Tick {...sharedProps} {...tickProps}>
+          {min}
+        </Tick>
+        <Tick {...sharedProps} {...tickProps}>
+          {max}
+        </Tick>
+      </TickBar>
+    </Root>
+  );
 }
 
 export default Slider;

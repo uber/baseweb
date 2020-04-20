@@ -207,14 +207,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     );
 
     const closeIconOverrides: OverridesT = mergeOverrides(
-      {
-        Svg: {
-          component: CloseIcon,
-          props: {
-            ref: this.closeRef,
-          },
-        },
-      },
+      {Svg: {component: CloseIcon}},
       // $FlowFixMe
       {Svg: CloseIconOverride},
     );
@@ -245,6 +238,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
             </InnerContainer>
             {closeable ? (
               <DeleteIcon
+                ref={this.closeRef}
                 role="button"
                 tabIndex={0}
                 $isFocusVisible={this.state.isFocusVisible}

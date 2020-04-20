@@ -435,7 +435,7 @@ The theme object acts as a centralized API for customizing global styling proper
 
 Let's look at how you can use the theme object while extending our components and when building out your interfaces.
 
-> In some cases, the theme object may contain short-hand CSS properties, like the [border](#borders) values. If you had spread these values in the methods below, Styletron would raise warnings. In these cases, you can use a utility function that expands short-hand CSS properties to long-hand CSS properties. For this use-case, you may find the library called [css-property-parser](https://github.com/mahirshah/css-property-parser#expandshorthandpropertyproperty-string-value-string-recursivelyresolvefalse-includeinitialvaluesfalse-object) useful.
+> In some cases, the theme object may contain short-hand CSS properties, like the [border](#borders) values. If you had spread these values in the methods below, Styletron would raise warnings. In these cases, you can use a utility function that expands short-hand CSS properties to long-hand CSS properties. For this use-case, you may find [inline-style-expand-shorthand](https://github.com/robinweser/inline-style-expand-shorthand) or [lostyle](https://github.com/rtsao/lostyle) useful.
 
 ### Extension
 
@@ -559,12 +559,22 @@ The theme object organizes its various properties according to their respective 
 Control animation durations and easing functions.
 
 <Timing name="timing100" />
+<Timing name="timing200" />
+<Timing name="timing300" />
 <Timing name="timing400" />
+<Timing name="timing500" />
+<Timing name="timing600" />
 <Timing name="timing700" />
+<Timing name="timing800" />
+<Timing name="timing900" />
 <Timing name="timing1000" />
 <Easing name="easeOutCurve" />
 <Easing name="easeInCurve" />
 <Easing name="easeInOutCurve" />
+<Easing name="easeInQuinticCurve" />
+<Easing name="easeOutQuinticCurve" />
+<Easing name="easeInOutQuinticCurve" />
+<Easing name="linearCurve" />
 
 ### Borders
 
