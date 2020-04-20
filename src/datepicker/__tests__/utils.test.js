@@ -25,7 +25,8 @@ const helpers: DateHelpers<Date> = Object.keys(dateHelpers).reduce(
         if (!utilsHelpers[methodName]) {
           return dateHelpersReturn;
         }
-        const utilsHelpersReturn = utilsHelpers[methodName](...args);
+        const {[methodName]: utilsFunction} = utilsHelpers;
+        const utilsHelpersReturn = utilsFunction(...args);
         const getComparisonValue = value => {
           if (value instanceof Date) {
             return value.toISOString();
