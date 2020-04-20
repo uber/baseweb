@@ -74,7 +74,6 @@ function NumberedStep({
 
 NumberedStep.defaultProps = {
   isCompleted: false,
-  isActive: false,
   isLast: false,
 };
 
