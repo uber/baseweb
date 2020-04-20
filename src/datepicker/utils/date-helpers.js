@@ -176,10 +176,8 @@ class DateHelpers<T> {
       let maxDates = includeDates.filter(
         includeDate => this.differenceInCalendarDays(includeDate, maxDate) <= 0,
       );
-      // $FlowFixMe
       return this.max(maxDates);
     } else if (includeDates) {
-      // $FlowFixMe
       return this.max(includeDates);
     } else if (!includeDates && maxDate) {
       return maxDate;
