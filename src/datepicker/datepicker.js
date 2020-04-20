@@ -220,7 +220,16 @@ export default class Datepicker extends React.Component<
       }
     } else {
       const dateString = this.normalizeDashes(inputValue);
-      let date = new Date(dateString);
+      let yearString = dateString.split('/')[0].trim();
+      let date;
+
+      if (yearString != '' && yearString.length < 4) {
+        yearString = yearString + '0'.repeat(4 - yearString.length);
+        date = new Date(yearString, 0, 1);
+      } else {
+        date = new Date(dateString);
+      }
+
       const formatString = this.props.formatString;
       if (formatString) {
         // Prevent early parsing of value.
