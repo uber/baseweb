@@ -6,6 +6,8 @@ const content =
 
 export default () => (
   <ul>
-    <StatefulPanel title="Expandable panel">{content}</StatefulPanel>
+    <StatefulPanel title="Expandable panel">
+      {content}
+    </StatefulPanel>
   </ul>
 );

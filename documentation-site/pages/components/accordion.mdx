@@ -10,14 +10,14 @@ import Exports from '../../components/exports';
 import Layout from '../../components/layout';
 import SEO from '../../components/meta-seo';
 import BasicAccordion from 'examples/accordion/basic.js';
-import StatefulAccordion from 'examples/accordion/stateful.js';
+import StatefulPanelExample from 'examples/accordion/stateful-panel.js';
 import AccordionSEO from 'examples/accordion/renderpanelcontent.js';
 import CustomPanel from 'examples/accordion/custom.js';
 import StatelessAccordion from 'examples/accordion/stateless.js';
 
 import * as AccordionExports from 'baseui/accordion';
 import * as PanelExports from 'baseui/accordion/panel.js';
-import {Accordion, Panel, StatefulPanel} from 'baseui/accordion';
+import {Accordion, Panel} from 'baseui/accordion';
 
 import Yard from '../../components/yard/index';
 import accordionYardConfig from '../../components/yard/config/accordion';
@@ -56,8 +56,11 @@ Accordions display a list of high-level options that can expand/contract to reve
   <AccordionSEO />
 </Example>
 
-<Example title="Accordion as a stateful component" path="accordion/stateful.js">
-  <StatefulAccordion />
+<Example
+  title="Using a stateful panel component on it's own"
+  path="accordion/stateful-panel.js"
+>
+  <StatefulPanelExample />
 </Example>
 
 <Example title="Stateless Accordion" path="accordion/stateless.js">

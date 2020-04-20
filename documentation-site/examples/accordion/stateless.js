@@ -1,14 +1,11 @@
 // @flow
 import * as React from 'react';
-import {
-  StatelessAccordion as Accordion,
-  Panel,
-} from 'baseui/accordion';
+import {StatelessAccordion, Panel} from 'baseui/accordion';
 
 export default () => {
   const [expanded, setExpanded] = React.useState(['L1', 'L2']);
   return (
-    <Accordion
+    <StatelessAccordion
       expanded={expanded}
       onChange={({key, expanded}) => {
         console.log(key);
@@ -24,6 +21,6 @@ export default () => {
       <Panel key="P3" title="Panel 3">
         Proin egestas dui sed semper iaculis.
       </Panel>
-    </Accordion>
+    </StatelessAccordion>
   );
 };
