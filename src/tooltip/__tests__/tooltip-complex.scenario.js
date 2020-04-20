@@ -11,21 +11,39 @@ import * as React from 'react';
 import {StatefulTooltip} from '../index.js';
 import {StyledLink} from '../../link/index.js';
 import {DarkTheme} from '../../themes/index.js';
-import {ThemeProvider} from '../../styles/index.js';
+import {ThemeProvider, useStyletron} from '../../styles/index.js';
 
 function ComplexContent() {
   return (
     <ThemeProvider theme={DarkTheme}>
-      Please click this link here:{` `}
-      <StyledLink href="#">Click Me!</StyledLink>
+      feat: super cool feature{` `}
+      <StyledLink href="#">#123</StyledLink>
     </ThemeProvider>
   );
 }
 
 export default function Scenario() {
+  const [css, theme] = useStyletron();
   return (
-    <StatefulTooltip accessibilityType={'tooltip'} content={ComplexContent}>
-      <span>such as this</span>
-    </StatefulTooltip>
+    <React.Fragment>
+      This {` `}
+      <StatefulTooltip
+        accessibilityType={'tooltip'}
+        content={ComplexContent}
+        showArrow
+      >
+        <span
+          className={css({
+            borderBottomWidth: '1px',
+            borderBottomStyle: 'dotted',
+            borderBottomColor: `${theme.colors.primary500}`,
+            color: theme.colors.primary500,
+          })}
+        >
+          commit
+        </span>
+      </StatefulTooltip>
+      {` `}introduced a new feature.
+    </React.Fragment>
   );
 }
