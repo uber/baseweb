@@ -377,6 +377,21 @@ const config = {
   'toaster-focus': {
     skip: true,
   },
+  'tooltip-complex': {
+    interactions: [
+      {
+        name: 'contrast',
+        behavior: async page => {
+          const tooltipSelector = 'span';
+          const tooltipPopoverSelector = '[data-baseweb="tooltip"]';
+          await page.hover(tooltipSelector);
+          await page.waitForSelector(tooltipPopoverSelector, {
+            visible: true,
+          });
+        },
+      },
+    ],
+  },
   'modal-select': {
     interactions: [
       {

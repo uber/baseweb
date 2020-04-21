@@ -1,6 +1,16 @@
 import * as React from 'react';
 import {StatefulTooltip} from 'baseui/tooltip';
-import {useStyletron} from 'baseui';
+import {StyledLink} from 'baseui/link';
+import {useStyletron, DarkTheme, ThemeProvider} from 'baseui';
+
+function ComplexContent() {
+  return (
+    <ThemeProvider theme={DarkTheme}>
+      Please click this link here:{` `}
+      <StyledLink href="#">Click Me!</StyledLink>
+    </ThemeProvider>
+  );
+}
 
 export default () => {
   const [css, theme] = useStyletron();
@@ -9,17 +19,7 @@ export default () => {
       You can use tooltips in many places, including inline text{' '}
       <StatefulTooltip
         accessibilityType={'tooltip'}
-        content={
-          <div>
-            <p>
-              Tooltips also support rendering arbitrary content.
-            </p>
-            <p>
-              This in includes paragraphs, links, and any other
-              markup.
-            </p>
-          </div>
-        }
+        content={ComplexContent}
       >
         <span
           className={css({
