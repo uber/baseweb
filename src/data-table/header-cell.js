@@ -84,7 +84,11 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
             props.onSort(props.index);
           }
         }}
-        onClick={() => props.onSort(props.index)}
+        onClick={() => {
+          if (props.sortable) {
+            props.onSort(props.index);
+          }
+        }}
         onFocus={handleFocus}
         onBlur={handleBlur}
       >
