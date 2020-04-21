@@ -16,7 +16,7 @@ import {
   SIZE as BUTTON_SIZES,
   KIND as BUTTON_KINDS,
 } from '../button/index.js';
-import {useStyletron, expandBorderStyles} from '../styles/index.js';
+import {useStyletron} from '../styles/index.js';
 import {Tooltip, PLACEMENT} from '../tooltip/index.js';
 
 import {COLUMNS, SORT_DIRECTIONS} from './constants.js';
@@ -113,7 +113,7 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
   return (
     <div
       className={css({
-        ...expandBorderStyles(theme.borders.border200),
+        ...theme.borders.border200,
         backgroundColor,
         borderTopStyle: 'none',
         borderBottomStyle: 'none',
@@ -469,7 +469,7 @@ function Headers(props: {||}) {
             >
               <div
                 className={css({
-                  ...expandBorderStyles(theme.borders.border200),
+                  ...theme.borders.border200,
                   backgroundColor: theme.colors.backgroundPrimary,
                   borderTopStyle: 'none',
                   borderLeftStyle: 'none',
@@ -970,7 +970,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
               itemData={itemData}
               onScroll={handleScroll}
               style={{
-                ...expandBorderStyles(theme.borders.border200),
+                ...theme.borders.border200,
                 borderLeftColor: theme.colors.borderOpaque,
                 borderRightColor: theme.colors.borderOpaque,
                 borderTopColor: theme.colors.borderOpaque,
