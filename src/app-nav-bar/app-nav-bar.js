@@ -10,9 +10,11 @@ import * as React from 'react';
 import {useStyletron} from '../styles/index.js';
 import {Cell, Grid} from '../layout-grid/index.js';
 import PrimaryMenuItem from './primary-menu-item.js';
+import SecondaryMenu from './secondary-menu.js';
 import MobileNav from './mobile-menu/mobile-nav.js';
 import Logo from './logo.js';
 import UserMenu from './user-menu/user-menu.js';
+import {NAV_POSITION} from './constants.js';
 import {
   StyledRoot,
   StyledSpacing,
@@ -29,7 +31,17 @@ export default function AppNavBar(props: AppNavBarPropsT) {
     appDisplayName,
     appDisplayNameLink,
   } = props;
-
+  const activeMainNavItem = mainNav.find(item => item.active);
+  const activeSubNav =
+    activeMainNavItem &&
+    activeMainNavItem.nav &&
+    activeMainNavItem.nav.length &&
+    activeMainNavItem.nav;
+  const desktopSubNavPosition =
+    (activeMainNavItem &&
+      activeMainNavItem.navPosition &&
+      activeMainNavItem.navPosition.desktop) ||
+    NAV_POSITION.horizontal;
   return (
     <StyledRoot>
       {/* Mobile Nav Experience */}
@@ -93,6 +105,12 @@ export default function AppNavBar(props: AppNavBarPropsT) {
             </Cell>
           ) : null}
         </Grid>
+        {activeSubNav && desktopSubNavPosition === NAV_POSITION.horizontal ? (
+          <SecondaryMenu
+            nav={activeSubNav}
+            onNavItemSelect={props.onNavItemSelect}
+          />
+        ) : null}
       </div>
     </StyledRoot>
   );

@@ -8,8 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import {styled, withStyle} from '../styles/index.js';
 import {StyledListItem} from '../menu/index.js';
+import {NAV_ITEM_KIND} from './constants.js';
 
-const StyledClearButton = styled<{$isFocusVisible: boolean}>(
+const StyledButton = styled<{$isFocusVisible: boolean}>(
   'button',
   ({$theme, $isFocusVisible}) => ({
     boxSizing: 'border-box',
@@ -45,8 +46,15 @@ export const StyledRoot = styled<{}>('div', props => {
     ...$theme.typography.font300,
     boxSizing: 'border-box',
     backgroundColor: $theme.colors.backgroundPrimary,
-    boxShadow: $theme.lighting.shadow600,
+    boxShadow: '0px 1px 0px rgba(0, 0, 0, 0.08)',
     width: '100%',
+  };
+});
+
+export const StyledSubnavContainer = styled<{}>('div', ({$theme}) => {
+  return {
+    boxSizing: 'border-box',
+    boxShadow: '0px -1px 0px rgba(0, 0, 0, 0.08)',
   };
 });
 
@@ -75,8 +83,8 @@ export const StyledAppName = styled<{}>('span', ({$theme}) => ({
   },
 }));
 
-export const StyledSideMenuButton = withStyle<typeof StyledClearButton, {}>(
-  StyledClearButton,
+export const StyledSideMenuButton = withStyle<typeof StyledButton, {}>(
+  StyledButton,
   ({$theme}) => ({
     marginRight: $theme.sizing.scale600,
     paddingTop: $theme.sizing.scale100,
@@ -101,10 +109,12 @@ export const StyledPrimaryMenuContainer = styled<{}>('div', ({$theme}) => {
 export const StyledPrimaryMenuItem = styled<{
   $active: boolean,
   $isFocusVisible: boolean,
+  $kind: $Values<typeof NAV_ITEM_KIND>,
 }>('div', props => {
   const {
     $active,
     $isFocusVisible,
+    $kind,
     $theme: {colors, sizing},
   } = props;
   return {
@@ -114,19 +124,42 @@ export const StyledPrimaryMenuItem = styled<{
     color: $active ? colors.contentPrimary : colors.contentTertiary,
     marginLeft: sizing.scale700,
     marginRight: sizing.scale700,
+    paddingTop: $kind === NAV_ITEM_KIND.secondary ? sizing.scale750 : '0',
+    paddingBottom: $kind === NAV_ITEM_KIND.secondary ? sizing.scale750 : '0',
     outline: $isFocusVisible ? `3px solid ${colors.accent}` : 'none',
     outlineOffset: '-3px',
     borderBottomWidth: '2px',
     borderBottomStyle: 'solid',
     borderBottomColor:
       $active && !$isFocusVisible ? colors.primary : 'transparent',
+    cursor: $active ? 'default' : 'pointer',
+    whiteSpace: $kind === NAV_ITEM_KIND.secondary ? 'nowrap' : 'initial',
+    ':first-child': {
+      marginLeft: '0',
+    },
+    ':last-child': {
+      marginRight: '0',
+    },
     ':hover': {
       color: colors.primary,
     },
   };
 });
 
-export const StyledUserMenuButton = StyledClearButton;
+export const StyledSecondaryMenuContainer = styled<{}>('div', ({$theme}) => {
+  return {
+    boxSizing: 'border-box',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    overflow: 'scroll',
+  };
+});
+
+export const StyledUserMenuButton = StyledButton;
 
 export const StyledUserMenuListItem = withStyle(StyledListItem, {
   paddingTop: '0',

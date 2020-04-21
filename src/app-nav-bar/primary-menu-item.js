@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+import {NAV_ITEM_KIND} from './constants.js';
 import {StyledPrimaryMenuItem} from './styled-components.js';
 import {isFocusVisible} from '../utils/focusVisible.js';
 import type {MainNavItemT} from './types.js';
@@ -15,6 +16,7 @@ export default class MenuItem extends React.Component<
   {
     // eslint-disable-next-line flowtype/no-weak-types
     item: MainNavItemT,
+    kind?: $Values<typeof NAV_ITEM_KIND>,
     onClick?: (e: Event) => mixed,
     onKeyDown?: (e: KeyboardEvent) => mixed,
     // eslint-disable-next-line flowtype/no-weak-types
@@ -57,9 +59,10 @@ export default class MenuItem extends React.Component<
   };
 
   render() {
-    const {item} = this.props;
+    const {item, kind = NAV_ITEM_KIND.primary} = this.props;
     return (
       <StyledPrimaryMenuItem
+        $kind={kind}
         $isFocusVisible={this.state.hasFocusVisible}
         $active={item.active || false}
         tabIndex={0}

@@ -11,7 +11,7 @@ import ChevronDown from '../../icon/chevron-down.js';
 import Delete from '../../icon/delete.js';
 import Icon from '../../icon/upload.js';
 import UserIcon from '../../icon/overflow.js';
-import {Unstable_AppNavBar as AppNavBar} from '../index.js';
+import {Unstable_AppNavBar as AppNavBar, NAV_POSITION} from '../index.js';
 
 function renderItem(item) {
   return item.label;
@@ -35,6 +35,10 @@ const MAIN_NAV = [
     item: {label: 'Primary alpha3'},
     mapItemToNode: renderItem,
     mapItemToString: renderItem,
+    navExitIcon: Delete,
+    navPosition: {
+      desktop: NAV_POSITION.horizontal,
+    },
     nav: [
       {
         icon: Icon,
@@ -48,15 +52,29 @@ const MAIN_NAV = [
         mapItemToNode: renderItem,
         mapItemToString: renderItem,
       },
+      {
+        icon: Icon,
+        item: {label: 'Secondary menu3'},
+        mapItemToNode: renderItem,
+        mapItemToString: renderItem,
+      },
+      {
+        icon: Icon,
+        item: {label: 'Secondary menu4'},
+        mapItemToNode: renderItem,
+        mapItemToString: renderItem,
+      },
     ],
-    navExitIcon: Delete,
   },
   {
-    active: true,
     icon: ChevronDown,
     item: {label: 'Primary alpha4'},
     mapItemToNode: renderItem,
     mapItemToString: renderItem,
+    navExitIcon: Delete,
+    navPosition: {
+      desktop: NAV_POSITION.horizontal,
+    },
     nav: [
       {
         icon: ChevronDown,
@@ -85,7 +103,6 @@ const MAIN_NAV = [
         mapItemToString: renderItem,
       },
     ],
-    navExitIcon: Delete,
   },
 ];
 
@@ -116,13 +133,38 @@ const USER_NAV = [
   },
 ];
 
+function findAndSetActiveChain(item, arr): [boolean, Array<any>] {
+  let returnValue = [false, arr];
+  for (let i = 0; i < arr.length; i++) {
+    const elm = arr[i];
+    if (elm === item) {
+      const newArr = [...arr];
+      newArr[i] = {...elm, active: true};
+      returnValue = [true, newArr];
+      break;
+    } else if (elm.nav) {
+      const [foundItem, updatedSubnav] = findAndSetActiveChain(item, elm.nav);
+      if (foundItem) {
+        const newArr = [...arr];
+        newArr[i] = {...elm, active: true, nav: updatedSubnav};
+        returnValue = [true, newArr];
+        break;
+      }
+    }
+  }
+  return returnValue;
+}
+
 export default function Scenario() {
+  const [nav, setNav] = React.useState(MAIN_NAV);
   return (
     <AppNavBar
       appDisplayName="Uber Something"
-      mainNav={MAIN_NAV}
+      mainNav={nav}
       onNavItemSelect={({item}) => {
-        console.log(item);
+        if (item.active) return;
+        const [_, nextNav] = findAndSetActiveChain(item, MAIN_NAV);
+        setNav(nextNav);
       }}
       userNav={USER_NAV}
       username="Umka Marshmallow"

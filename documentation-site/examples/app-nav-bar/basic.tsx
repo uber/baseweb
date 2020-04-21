@@ -63,7 +63,6 @@ const MAIN_NAV = [
     ],
   },
   {
-    active: true,
     icon: ChevronDown,
     item: {label: 'Primary alpha4'},
     mapItemToNode: renderItem,
@@ -113,11 +112,37 @@ const USER_NAV = [
   },
 ];
 
+function findAndSetActiveChain(item, arr): [boolean, Array<any>] {
+  let returnValue = [false, arr];
+  for (let i = 0; i < arr.length; i++) {
+    const elm = arr[i];
+    if (elm === item) {
+      const newArr = [...arr];
+      newArr[i] = {...elm, active: true};
+      returnValue = [true, newArr];
+      break;
+    } else if (elm.nav) {
+      const [foundItem, updatedSubnav] = findAndSetActiveChain(
+        item,
+        elm.nav,
+      );
+      if (foundItem) {
+        const newArr = [...arr];
+        newArr[i] = {...elm, active: true, nav: updatedSubnav};
+        returnValue = [true, newArr];
+        break;
+      }
+    }
+  }
+  return returnValue;
+}
+
 export default () => {
   const [css] = useStyletron();
   const [isNavBarVisible, setIsNavBarVisible] = React.useState(
     false,
   );
+  const [nav, setNav] = React.useState(MAIN_NAV);
   const containerStyles = css({
     boxSizing: 'border-box',
     width: '100vw',
@@ -135,9 +160,15 @@ export default () => {
           <div className={containerStyles}>
             <AppNavBar
               appDisplayName="App Something"
-              mainNav={MAIN_NAV}
+              mainNav={nav}
               onNavItemSelect={({item}) => {
                 console.log(item);
+                if (item.active) return;
+                const [_, nextNav] = findAndSetActiveChain(
+                  item,
+                  MAIN_NAV,
+                );
+                setNav(nextNav);
               }}
               userNav={USER_NAV}
               username="Umka Marshmallow"
