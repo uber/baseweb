@@ -115,14 +115,11 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
       className={css({
         ...theme.borders.border200,
         backgroundColor,
-        borderTopStyle: 'none',
-        borderBottomStyle: 'none',
-        borderLeftStyle: 'none',
+        borderTop: 'none',
+        borderBottom: 'none',
+        borderLeft: 'none',
         // do not render a border on cells in the right-most column
-        borderRightStyle:
-          columnIndex === data.columns.length - 1
-            ? 'none'
-            : theme.borders.border200.borderStyle,
+        borderRight: columnIndex === data.columns.length - 1 ? 'none' : null,
         boxSizing: 'border-box',
       })}
       style={style}
@@ -471,8 +468,8 @@ function Headers(props: {||}) {
                 className={css({
                   ...theme.borders.border200,
                   backgroundColor: theme.colors.backgroundPrimary,
-                  borderTopStyle: 'none',
-                  borderLeftStyle: 'none',
+                  borderTop: 'none',
+                  borderLeft: 'none',
                   borderRight:
                     columnIndex === ctx.columns.length - 1 ? 'none' : null,
                   boxSizing: 'border-box',
@@ -971,10 +968,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
               onScroll={handleScroll}
               style={{
                 ...theme.borders.border200,
-                borderLeftColor: theme.colors.borderOpaque,
-                borderRightColor: theme.colors.borderOpaque,
-                borderTopColor: theme.colors.borderOpaque,
-                borderBottomColor: theme.colors.borderOpaque,
+                borderColor: theme.colors.borderOpaque,
               }}
               direction={theme.direction === 'rtl' ? 'rtl' : 'ltr'}
             >
