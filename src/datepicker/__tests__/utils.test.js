@@ -14,6 +14,22 @@ import adapter from '../utils/date-fns-adapter';
 /* eslint-enable import/extensions */
 const dateHelpers = new DateHelpers(adapter);
 
+// these are helpers that we want to test
+// but aren't exported from utils/index
+// so we don't need to make sure that they remained the same
+const excludedFromChecks = [
+  'min',
+  'max',
+  'setDate',
+  'differenceInCalendarDays',
+  'differenceInCalendarMonths',
+  'parse',
+  'set',
+  'getQuarter',
+  'isEqual',
+  'isValid',
+];
+
 //$FlowFixMe
 const helpers: DateHelpers<Date> = Object.keys(dateHelpers).reduce(
   (memo, methodName) => {
@@ -22,8 +38,11 @@ const helpers: DateHelpers<Date> = Object.keys(dateHelpers).reduce(
       [methodName]: (...args) => {
         //$FlowFixMe
         const dateHelpersReturn = dateHelpers[methodName](...args);
-        //$FlowFixMe
-        if (!utilsHelpers[methodName]) {
+        if (
+          // //$FlowFixMe
+          !utilsHelpers[methodName] &&
+          excludedFromChecks.includes(methodName)
+        ) {
           return dateHelpersReturn;
         }
         const {[methodName]: utilsFunction} = utilsHelpers;
