@@ -55,34 +55,36 @@ class DateHelpers<T> {
       this.adapter.getMonth(fromDate) - this.adapter.getMonth(toDate);
     return yearDiff * 12 + monthDiff;
   };
-  getStartOfWeek: (T, locale: ?mixed) => T = (date, locale) => {
+  // eslint-disable-next-line flowtype/no-weak-types
+  getStartOfWeek: (T, any) => T = (date, locale) => {
     const adapter = locale
       ? this.getAdapterWithNewLocale(locale)
       : this.adapter;
     return adapter.startOfWeek(date);
   };
-  formatDate: (T, string, ?mixed) => string = (date, formatString, locale) => {
+  // eslint-disable-next-line flowtype/no-weak-types
+  formatDate: (T, string, any) => string = (date, formatString, locale) => {
     const adapter = locale
       ? this.getAdapterWithNewLocale(locale)
       : this.adapter;
     return adapter.formatByString(date, formatString);
   };
-  getWeekdayMinInLocale: (T, locale: mixed) => string = (date, locale) => {
+  // eslint-disable-next-line flowtype/no-weak-types
+  getWeekdayMinInLocale: (T, any) => string = (date, locale) => {
     return this.getAdapterWithNewLocale(locale)
       .formatByString(date, 'EEEE')
       .charAt(0);
   };
-  getMonthInLocale: (number, locale: mixed) => string = (
-    monthNumber,
-    locale,
-  ) => {
+  // eslint-disable-next-line flowtype/no-weak-types
+  getMonthInLocale: (number, any) => string = (monthNumber, locale) => {
     const localeAdapter = this.getAdapterWithNewLocale(locale);
     return localeAdapter.formatByString(
       localeAdapter.setMonth(localeAdapter.date(), monthNumber),
       'LLLL',
     );
   };
-  getWeekdayInLocale: (T, locale: mixed) => string = (date, locale) => {
+  // eslint-disable-next-line flowtype/no-weak-types
+  getWeekdayInLocale: (T, any) => string = (date, locale) => {
     return this.getAdapterWithNewLocale(locale).formatByString(date, 'EEEE');
   };
   getEndOfWeek: T => T = date => {
