@@ -241,22 +241,32 @@ export default class Datepicker<T = Date> extends React.Component<
       typeof this.props.displayValueAtRangeIndex !== 'number'
     ) {
       const [left, right] = this.normalizeDashes(inputValue).split(' – ');
-      let startDate = new Date(left);
-      let endDate = new Date(right);
+
+      let startDate = this.dateHelpers.date(left);
+      let endDate = this.dateHelpers.date(right);
 
       const formatString = this.props.formatString;
       if (formatString) {
-        startDate = parse(left, this.normalizeDashes(formatString), new Date());
-        endDate = parse(right, this.normalizeDashes(formatString), new Date());
+        startDate = this.dateHelpers.parse(
+          left,
+          this.normalizeDashes(formatString),
+        );
+        endDate = this.dateHelpers.parse(
+          right,
+          this.normalizeDashes(formatString),
+        );
       }
 
       const onChange = this.props.onChange;
       if (onChange) {
-        const datesValid = isValid(startDate) && isValid(endDate);
+        const datesValid =
+          this.dateHelpers.isValid(startDate) &&
+          this.dateHelpers.isValid(endDate);
 
         // added equal case so that times within the same day can be expressed
         const rangeValid =
-          isAfter(endDate, startDate) || isEqual(startDate, endDate);
+          this.dateHelpers.isAfter(endDate, startDate) ||
+          this.dateHelpers.isEqual(startDate, endDate);
 
         if (datesValid && rangeValid) {
           onChange({date: [startDate, endDate]});
@@ -264,7 +274,7 @@ export default class Datepicker<T = Date> extends React.Component<
       }
     } else {
       const dateString = this.normalizeDashes(inputValue);
-      let date = new Date(dateString);
+      let date = new this.dateHelpers.date(dateString);
       const formatString = this.props.formatString;
 
       // Prevent early parsing of value.
@@ -275,7 +285,7 @@ export default class Datepicker<T = Date> extends React.Component<
       ) {
         date = null;
       } else {
-        date = parse(dateString, formatString, new Date());
+        date = this.dateHelpers.parse(dateString, formatString, new Date());
       }
 
       const {displayValueAtRangeIndex, onChange, range, value} = this.props;
