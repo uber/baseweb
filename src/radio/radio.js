@@ -37,6 +37,7 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
     inputRef: React.createRef(),
     align: 'vertical',
     isError: false,
+    error: false,
     onChange: () => {},
     onMouseEnter: () => {},
     onMouseLeave: () => {},
@@ -102,6 +103,7 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
       $hasDescription: !!this.props.description,
       $isActive: this.state.isActive,
       $isError: this.props.isError,
+      $error: this.props.error,
       $isFocused: this.props.isFocused,
       $isFocusVisible: this.props.isFocused && this.props.isFocusVisible,
       $isHovered: this.state.isHovered,
@@ -132,7 +134,7 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
             <RadioMarkInner {...sharedProps} {...radioMarkInnerProps} />
           </RadioMarkOuter>
           <Input
-            aria-invalid={this.props.isError || null}
+            aria-invalid={this.props.error || this.props.isError || null}
             checked={this.props.checked}
             disabled={this.props.disabled}
             name={this.props.name}
