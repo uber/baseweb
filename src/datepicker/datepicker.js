@@ -402,6 +402,7 @@ export default class Datepicker<T = Date> extends React.Component<
               onEsc={this.handleEsc}
               content={
                 <Calendar
+                  adapter={this.props.adapter}
                   autoFocusCalendar={this.state.calendarFocused}
                   trapTabbing={true}
                   value={this.props.value}
