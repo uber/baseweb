@@ -17,7 +17,7 @@ import type {OptionT} from '../select/index.js';
 // eslint-disable-next-line flowtype/no-weak-types
 type LocaleT = any; // see https://github.com/date-fns/date-fns/blob/master/src/locale/index.js.flow
 
-type onChangeT = ({date: ?Date | Array<Date>}) => mixed;
+type onChangeT<T> = ({date: ?T | Array<T>}) => mixed;
 
 export type DatepickerOverridesT = {
   Root?: OverrideT,
@@ -83,7 +83,7 @@ export type DayStateT = {
   isFocusVisible: boolean,
 };
 
-export type WeekPropsT = {
+export type WeekPropsT<T> = {
   date: Date,
   excludeDates: ?Array<Date>,
   filterDate: ?(day: Date) => boolean,
@@ -101,13 +101,13 @@ export type WeekPropsT = {
   onDayFocus: ({date: Date, event: Event}) => mixed,
   onDayMouseOver: ({date: Date, event: Event}) => mixed,
   onDayMouseLeave: ({date: Date, event: Event}) => mixed,
-  onChange?: onChangeT,
+  onChange?: onChangeT<T>,
   overrides?: DatepickerOverridesT,
   peekNextMonth: boolean,
   value: ?Date | Array<Date>,
 };
 
-export type MonthPropsT = WeekPropsT;
+export type MonthPropsT<T> = WeekPropsT<T>;
 
 export type CalendarInternalState = {
   date: Date,
@@ -118,7 +118,7 @@ export type CalendarInternalState = {
   time: Array<Date>,
 };
 
-export type CalendarPropsT = {
+export type CalendarPropsT<T> = {
   /** Defines if the calendar is set to be focused on an initial render. */
   autoFocusCalendar?: boolean,
   /** A list of dates to disable. */
@@ -156,7 +156,7 @@ export type CalendarPropsT = {
   /** Event handler that is called when the current rendered month's year is changed. */
   onYearChange?: ({date: Date}) => mixed,
   /** Event handler that is called when a new date is selected. */
-  onChange?: onChangeT,
+  onChange?: onChangeT<T>,
   /** Sets the orientation of the calendar when multiple months are displayed */
   orientation?: $Values<typeof ORIENTATION>,
   overrides?: DatepickerOverridesT,
@@ -169,10 +169,10 @@ export type CalendarPropsT = {
   /** Defines if tabbing inside the calendar is circled within it. */
   trapTabbing?: boolean,
   /** Currently selected date. */
-  value?: ?Date | Array<Date>,
+  value?: ?T | Array<T>,
 };
 
-export type HeaderPropsT = CalendarPropsT & {
+export type HeaderPropsT<T> = CalendarPropsT<T> & {
   date: Date,
   order: number,
 };
@@ -183,7 +183,7 @@ export type DatepickerDefaultPropsT = {
   adapter: DateIOAdapter<Date>,
 };
 
-export type DatepickerPropsT<T> = CalendarPropsT & {
+export type DatepickerPropsT<T> = CalendarPropsT<T> & {
   'aria-label'?: string,
   'aria-labelledby'?: string,
   'aria-describedby'?: ?string,
@@ -197,11 +197,8 @@ export type DatepickerPropsT<T> = CalendarPropsT & {
   required?: boolean,
   clearable?: boolean,
   displayValueAtRangeIndex?: number,
-  formatDisplayValue?: (
-    date: ?Date | Array<Date>,
-    formatString: string,
-  ) => string,
-  formatString: string,
+  formatDisplayValue?: (date: ?T | Array<T>, formatString: string) => string,
+  formatString?: string,
   /** Where to mount the popover */
   mountNode?: HTMLElement,
   /** Called when calendar is closed */

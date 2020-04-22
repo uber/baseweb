@@ -6,15 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import isValid from 'date-fns/isValid/index.js';
-import isAfter from 'date-fns/isAfter/index.js';
-import isEqual from 'date-fns/isEqual/index.js';
-import parse from 'date-fns/parse/index.js';
 
 import {MaskedInput} from '../input/index.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
 import Calendar from './calendar.js';
-import {formatDate, getHours, getMinutes} from './utils/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import getInterpolatedString from '../helpers/i18n-interpolation.js';
 import {LocaleContext} from '../locale/index.js';
@@ -62,7 +57,7 @@ export default class Datepicker<T = Date> extends React.Component<
     this.dateHelpers = new DateHelpers(props.adapter);
   }
 
-  onChange = (data: {date: ?Date | Array<Date>}) => {
+  onChange = (data: {date: ?T | Array<T>}) => {
     const {date} = data;
     let isOpen = false;
     let isPseudoFocused = false;
@@ -77,7 +72,7 @@ export default class Datepicker<T = Date> extends React.Component<
 
     // Time selectors previously caused the calendar popover to close.
     // The check below refrains from closing the popover if only times changed.
-    const onlyTimeChanged = (prev: ?Date, next: ?Date) => {
+    const onlyTimeChanged = (prev: ?T, next: ?T) => {
       if (!prev || !next) return false;
       const p = this.dateHelpers.formatDate(prev, 'dd-MM-yyyy');
       const n = this.dateHelpers.formatDate(next, 'dd-MM-yyyy');
@@ -110,7 +105,7 @@ export default class Datepicker<T = Date> extends React.Component<
     this.props.onChange && this.props.onChange(data);
   };
 
-  formatDate(date: ?Date | Array<Date>, formatString: string) {
+  formatDate(date: ?T | Array<T>, formatString: string) {
     if (!date) {
       return '';
     } else if (Array.isArray(date) && (!date[0] && !date[1])) {
@@ -126,7 +121,7 @@ export default class Datepicker<T = Date> extends React.Component<
     }
   }
 
-  formatDisplayValue = (date: ?Date | Array<Date>) => {
+  formatDisplayValue = (date: ?T | Array<T>) => {
     const {
       displayValueAtRangeIndex,
       formatDisplayValue,
@@ -274,7 +269,7 @@ export default class Datepicker<T = Date> extends React.Component<
       }
     } else {
       const dateString = this.normalizeDashes(inputValue);
-      let date = new this.dateHelpers.date(dateString);
+      let date = this.dateHelpers.date(dateString);
       const formatString = this.props.formatString;
 
       // Prevent early parsing of value.
@@ -289,7 +284,7 @@ export default class Datepicker<T = Date> extends React.Component<
       }
 
       const {displayValueAtRangeIndex, onChange, range, value} = this.props;
-      if (date && isValid(date) && onChange) {
+      if (date && this.dateHelpers.isValid(date) && onChange) {
         if (
           range &&
           Array.isArray(value) &&
@@ -301,7 +296,7 @@ export default class Datepicker<T = Date> extends React.Component<
             if (!right) {
               onChange({date: [left]});
             } else {
-              if (isAfter(right, left) || isEqual(left, right)) {
+              if (this.dateHelpers.isAfter(right, left) || this.dateHelpers.isEqual(left, right)) {
                 onChange({date: [left, right]});
               } else {
                 // Is resetting back to previous value appropriate? Invalid range is not
@@ -317,7 +312,7 @@ export default class Datepicker<T = Date> extends React.Component<
               // If start value is not defined, set start/end to the same day.
               onChange({date: [right, right]});
             } else {
-              if (isAfter(right, left) || isEqual(left, right)) {
+              if (this.dateHelpers.isAfter(right, left) || this.dateHelpers.isEqual(left, right)) {
                 onChange({date: [left, right]});
               } else {
                 // See comment above about resetting dates on invalid range
@@ -359,7 +354,7 @@ export default class Datepicker<T = Date> extends React.Component<
     return inputValue.replace(/-/g, '–').replace(/—/g, '–');
   };
 
-  componentDidUpdate(prevProps: DatepickerPropsT) {
+  componentDidUpdate(prevProps: DatepickerPropsT<T>) {
     if (prevProps.value !== this.props.value) {
       this.setState({
         inputValue: this.formatDisplayValue(this.props.value),
