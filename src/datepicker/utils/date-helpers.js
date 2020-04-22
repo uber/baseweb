@@ -282,6 +282,56 @@ class DateHelpers<T> {
       (!!maxDate && this.differenceInCalendarDays(day, maxDate) > 0)
     );
   };
+  parse: (string, string) => T = (string, formatString) => {
+    return this.adapter.parse(string, formatString);
+  };
+  setMilliseconds: (T, number) => T = (date, milliseconds) => {
+    return this.adapter.date(
+      this.adapter.getSeconds(this.adapter.startOfDay(date)) * 1000 +
+        milliseconds,
+    );
+  };
+  set: (
+    T,
+    values: {
+      year: ?number,
+      month: ?number,
+      date: ?number,
+      hours: ?number,
+      minutes: ?number,
+      seconds: ?number,
+    },
+  ) => T = (date, values) => {
+    let updatedDate = date;
+    if (values.year != null) {
+      updatedDate = this.setYear(updatedDate, values.year);
+    }
+
+    if (values.month != null) {
+      updatedDate = this.setMonth(updatedDate, values.month);
+    }
+
+    if (values.date != null) {
+      updatedDate = this.setDate(updatedDate, Number(values.date));
+    }
+
+    if (values.hours != null) {
+      updatedDate = this.setHours(updatedDate, Number(values.hours));
+    }
+
+    if (values.minutes != null) {
+      updatedDate = this.setMinutes(updatedDate, Number(values.minutes));
+    }
+
+    if (values.seconds != null) {
+      updatedDate = this.setSeconds(updatedDate, Number(values.seconds));
+    }
+
+    return updatedDate;
+  };
+  getQuarter: T => number = date => {
+    return Math.floor(this.getMonth(date) / 3) + 1;
+  };
   setSeconds: (T, number) => T = (date, seconds) =>
     this.adapter.setSeconds(date, seconds);
   setMinutes: (T, number) => T = (date, minutes) =>
@@ -305,6 +355,11 @@ class DateHelpers<T> {
     this.adapter.isBefore(fromDate, toDate);
   isAfter: (T, T) => boolean = (fromDate, toDate) =>
     this.adapter.isAfter(fromDate, toDate);
+  isEqual: (T, T) => boolean = (fromDate, toDate) =>
+    this.adapter.isEqual(fromDate, toDate);
+  isValid: mixed => boolean = possibleDate => {
+    return this.adapter.isValid(possibleDate);
+  };
 }
 
 export default DateHelpers;

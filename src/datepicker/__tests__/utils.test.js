@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable import/extensions */
 import {es} from 'date-fns/locale/index.js';
 import * as utilsHelpers from '../utils/index';
-import {formatDate} from '../utils/index';
+import {formatDate} from '../utils';
 import DateHelpers from '../utils/date-helpers';
 import adapter from '../utils/date-fns-adapter';
 /* eslint-enable import/extensions */
@@ -734,5 +734,52 @@ describe('isAfter', () => {
     expect(helpers.isAfter(new Date(2020, 0, 1), new Date(2020, 0, 2))).toEqual(
       false,
     );
+  });
+});
+describe('parse', () => {
+  test('should convert the provided string back into a date according to the provided format', () => {
+    expect(helpers.parse('2020.03.01', 'yyyy.MM.dd')).toEqual(
+      new Date(2020, 2, 1),
+    );
+  });
+});
+
+describe('set', () => {
+  test('should apply the provided values to the provided date', () => {
+    expect(
+      helpers.set(new Date(2020, 1, 1, 1, 1, 1), {
+        year: 2021,
+        month: 2,
+        date: 2,
+        hours: 2,
+        minutes: 2,
+        seconds: 2,
+      }),
+    ).toEqual(new Date(2021, 2, 2, 2, 2, 2));
+  });
+});
+
+describe('getQuarter', () => {
+  test('should get the quarter of the provided date', () => {
+    expect(helpers.getQuarter(new Date(2020, 0, 1))).toEqual(1);
+  });
+});
+
+describe('isEqual', () => {
+  test('should return true if the dates are equal', () => {
+    expect(helpers.isEqual(new Date(2020, 0, 1), new Date(2020, 0, 1))).toEqual(
+      true,
+    );
+    expect(helpers.isEqual(new Date(2020, 0, 1), new Date(2020, 0, 2))).toEqual(
+      false,
+    );
+  });
+});
+
+describe('isValid', () => {
+  test('should return true if the provided value is a valid date object', () => {
+    expect(helpers.isValid(new Date(2020, 0, 1))).toEqual(true);
+    expect(helpers.isValid(new Date('messed up stuff'))).toEqual(false);
+    expect(helpers.isValid(NaN)).toEqual(false);
   });
 });
