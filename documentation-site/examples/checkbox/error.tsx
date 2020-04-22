@@ -7,7 +7,7 @@ export default () => {
     <Checkbox
       checked={checked}
       onChange={() => setChecked(!checked)}
-      isError
+      error
     >
       Checkbox with an error
     </Checkbox>

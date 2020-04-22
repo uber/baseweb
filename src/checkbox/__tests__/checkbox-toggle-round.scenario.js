@@ -27,10 +27,10 @@ export default function Scenario() {
         disabled checked
       </Checkbox>
 
-      <Checkbox checkmarkType={STYLE_TYPE.toggle_round} isError>
+      <Checkbox checkmarkType={STYLE_TYPE.toggle_round} error>
         error unchecked
       </Checkbox>
-      <Checkbox checkmarkType={STYLE_TYPE.toggle_round} checked isError>
+      <Checkbox checkmarkType={STYLE_TYPE.toggle_round} checked error>
         error checked
       </Checkbox>
     </div>

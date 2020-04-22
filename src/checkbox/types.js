@@ -27,6 +27,7 @@ export type DefaultPropsT = {
   checked: boolean,
   disabled: boolean,
   isError: boolean,
+  error: boolean,
   autoFocus: boolean,
   isIndeterminate: boolean,
   inputRef: {current: HTMLInputElement | null},
@@ -55,6 +56,8 @@ export type PropsT = {
   /** Marks the checkbox as required. */
   required?: boolean,
   /** Renders checkbox in errored state. */
+  error?: boolean,
+  /** You should use error instead. */
   isError?: boolean,
   /** Used to get a ref to the input element. Useful for programmatically focusing the input */
   inputRef: {current: HTMLInputElement | null},
@@ -168,6 +171,7 @@ export type SharedStylePropsT = {
   $isHovered: boolean,
   $isActive: boolean,
   $isError: boolean,
+  $error: boolean,
   $checked: boolean,
   $isIndeterminate: boolean,
   $required: boolean,
