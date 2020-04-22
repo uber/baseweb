@@ -9,7 +9,13 @@ LICENSE file in the root directory of this source tree.
 
 const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
-const {getTable} = require('./utilities.js');
+const {
+  getTable,
+  getCellContentsAtColumnIndex,
+  matchArrayElements,
+} = require('./utilities.js');
+
+const COLUMN_COUNT = 2;
 
 function getCheckboxes(parent) {
   return parent.$$('label[data-baseweb="checkbox"]');
@@ -29,14 +35,6 @@ async function getCheckboxValues(element) {
   return element.$$eval('label[data-baseweb="checkbox"] input', elements =>
     elements.map(el => el.checked),
   );
-}
-
-function matchArrayElements(a, b) {
-  if (a.length !== b.length) return false;
-  for (let i = 0; i < a.length; i++) {
-    if (a[i] !== b[i]) return false;
-  }
-  return true;
 }
 
 describe('data-table batch-actions', () => {
@@ -125,6 +123,23 @@ describe('data-table batch-actions', () => {
       el => el.textContent,
     );
     expect(count).toBe('selection change count: 3');
+  });
+
+  it('avoids sort on header check', async () => {
+    const index = 0;
+    await mount(page, 'data-table-batch-action');
+    const table = await getTable(page);
+
+    const before = await getCellContentsAtColumnIndex(
+      page,
+      COLUMN_COUNT,
+      index,
+    );
+    expect(matchArrayElements(before, ['1', '2', '3', '4', '5'])).toBe(true);
+
+    await clickCheckboxAtRowIndex(table, 0);
+    const after = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, index);
+    expect(matchArrayElements(after, ['1', '2', '3', '4', '5'])).toBe(true);
   });
 
   it('calls batch action onClick with selected rows', async () => {
