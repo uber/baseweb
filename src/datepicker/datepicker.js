@@ -55,6 +55,14 @@ export default class Datepicker<T = Date> extends React.Component<
   constructor(props: DatepickerPropsT<T>) {
     super(props);
     this.dateHelpers = new DateHelpers(props.adapter);
+    this.state = {
+      calendarFocused: false,
+      isOpen: false,
+      isPseudoFocused: false,
+      lastActiveElm: null,
+      inputValue: this.formatDisplayValue(props.value) || '',
+      isInputUsed: false,
+    };
   }
 
   onChange = (data: {date: ?T | Array<T>}) => {
