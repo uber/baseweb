@@ -115,7 +115,10 @@ export default class Calendar<T = Date> extends React.Component<
   componentDidUpdate(prevProps: CalendarPropsT) {
     if (
       this.props.highlightedDate &&
-      !isSameDay(this.props.highlightedDate, prevProps.highlightedDate)
+      !this.dateHelpers.isSameDay(
+        this.props.highlightedDate,
+        prevProps.highlightedDate,
+      )
     ) {
       this.setState({
         date: this.props.highlightedDate,
@@ -143,11 +146,14 @@ export default class Calendar<T = Date> extends React.Component<
     const currentDate = this.state.date;
 
     // First we get the year delta
-    const yearDelta = date.getFullYear() - currentDate.getFullYear();
+    const yearDelta =
+      this.dateHelpers.getYear(date) - this.dateHelpers.getYear(currentDate);
 
     // then we convert it to months. Then we simply add the date-without-year month delta back in.
     const monthDelta =
-      yearDelta * 12 + date.getMonth() - currentDate.getMonth();
+      yearDelta * 12 +
+      this.dateHelpers.getMonth(date) -
+      this.dateHelpers.getMonth(currentDate);
 
     // we just check that the delta is between the range given by "this month" (i.e. 0) and "the last month" (i.e. monthsShown)
     return monthDelta >= 0 && monthDelta < (this.props.monthsShown || 1);
