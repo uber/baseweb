@@ -38,6 +38,7 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
   (props, ref) => {
     const [css, theme] = useStyletron();
     const [focusVisible, setFocusVisible] = React.useState(false);
+    const checkboxRef = React.useRef(null);
 
     const handleFocus = (event: SyntheticEvent<>) => {
       if (isFocusVisible(event)) {
@@ -84,22 +85,33 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
             props.onSort(props.index);
           }
         }}
-        onClick={() => props.onSort(props.index)}
+        onClick={event => {
+          // Avoid column sort if select-all checkbox click.
+          if (
+            checkboxRef.current &&
+            checkboxRef.current.contains(event.target)
+          ) {
+            return;
+          }
+          props.onSort(props.index);
+        }}
         onFocus={handleFocus}
         onBlur={handleBlur}
       >
         {props.isSelectable && (
-          <Checkbox
-            onChange={e => {
-              if (props.isSelectedAll || props.isSelectedIndeterminate) {
-                props.onSelectNone();
-              } else {
-                props.onSelectAll();
-              }
-            }}
-            checked={props.isSelectedAll || props.isSelectedIndeterminate}
-            isIndeterminate={props.isSelectedIndeterminate}
-          />
+          <span ref={checkboxRef}>
+            <Checkbox
+              onChange={e => {
+                if (props.isSelectedAll || props.isSelectedIndeterminate) {
+                  props.onSelectNone();
+                } else {
+                  props.onSelectAll();
+                }
+              }}
+              checked={props.isSelectedAll || props.isSelectedIndeterminate}
+              isIndeterminate={props.isSelectedIndeterminate}
+            />
+          </span>
         )}
         {props.title}
         <div
