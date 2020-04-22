@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import type {DateIOAdapter} from './types.js';
+import type {DateIOAdapter, DateInput} from './types.js';
 
 const adapterOptionMap = {
   // all utils classes set the arguments passed into their constructor as public members in some way
@@ -38,6 +38,7 @@ class DateHelpers<T> {
     const options = getOptions(this.adapter);
     return new UtilsClass({...options, locale});
   };
+  date: (DateInput<T>) => T = date => this.adapter.date(date);
   dateToSeconds: T => number = date => {
     const seconds = this.adapter.getSeconds(date);
     const minutes = this.adapter.getMinutes(date) * MINUTE;
