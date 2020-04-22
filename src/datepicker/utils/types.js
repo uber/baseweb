@@ -22,7 +22,7 @@ export type DateIOAdapter<T> = {
   is12HourCycleInCurrentLocale(): boolean,
 
   isNull(value?: T): boolean,
-  isValid(value: DateInput<T>): boolean,
+  isValid(value: mixed): boolean,
   getDiff: (from: T, to: T) => number,
   isEqual: Comparison<T>,
   isSameDay: Comparison<T>,
