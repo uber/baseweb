@@ -187,7 +187,7 @@ export default class Calendar<T = Date> extends React.Component<
   };
 
   handleMonthChange = (date: Date) => {
-    this.setHighlightedDate(getStartOfMonth(date));
+    this.setHighlightedDate(this.dateHelpers.getStartOfMonth(date));
     if (this.props.onMonthChange) {
       this.props.onMonthChange({date});
     }
@@ -241,58 +241,59 @@ export default class Calendar<T = Date> extends React.Component<
   handleArrowKey = (key: string) => {
     const {highlightedDate: oldDate} = this.state;
     let highlightedDate = oldDate;
+    const currentDate = this.dateHelpers.date();
     switch (key) {
       case 'ArrowLeft':
         // adding `new Date()` as the last option to satisfy Flow
-        highlightedDate = subDays(
-          highlightedDate ? highlightedDate : new Date(),
+        highlightedDate = this.dateHelpers.subDays(
+          highlightedDate ? highlightedDate : currentDate,
           1,
         );
         break;
       case 'ArrowRight':
-        highlightedDate = addDays(
+        highlightedDate = this.dateHelpers.addDays(
           // adding `new Date()` as the last option to satisfy Flow
-          highlightedDate ? highlightedDate : new Date(),
+          highlightedDate ? highlightedDate : currentDate,
           1,
         );
         break;
       case 'ArrowUp':
-        highlightedDate = subWeeks(
+        highlightedDate = this.dateHelpers.subWeeks(
           // adding `new Date()` as the last option to satisfy Flow
-          highlightedDate ? highlightedDate : new Date(),
+          highlightedDate ? highlightedDate : currentDate,
           1,
         );
         break;
       case 'ArrowDown':
-        highlightedDate = addWeeks(
+        highlightedDate = this.dateHelpers.addWeeks(
           // adding `new Date()` as the last option to satisfy Flow
-          highlightedDate ? highlightedDate : new Date(),
+          highlightedDate ? highlightedDate : currentDate,
           1,
         );
         break;
       case 'Home':
-        highlightedDate = getStartOfWeek(
+        highlightedDate = this.dateHelpers.getStartOfWeek(
           // adding `new Date()` as the last option to satisfy Flow
-          highlightedDate ? highlightedDate : new Date(),
+          highlightedDate ? highlightedDate : currentDate,
         );
         break;
       case 'End':
-        highlightedDate = getEndOfWeek(
+        highlightedDate = this.dateHelpers.getEndOfWeek(
           // adding `new Date()` as the last option to satisfy Flow
-          highlightedDate ? highlightedDate : new Date(),
+          highlightedDate ? highlightedDate : currentDate,
         );
         break;
       case 'PageUp':
-        highlightedDate = subMonths(
+        highlightedDate = this.dateHelpers.subMonths(
           // adding `new Date()` as the last option to satisfy Flow
-          highlightedDate ? highlightedDate : new Date(),
+          highlightedDate ? highlightedDate : currentDate,
           1,
         );
         break;
       case 'PageDown':
-        highlightedDate = addMonths(
+        highlightedDate = this.dateHelpers.addMonths(
           // adding `new Date()` as the last option to satisfy Flow
-          highlightedDate ? highlightedDate : new Date(),
+          highlightedDate ? highlightedDate : currentDate,
           1,
         );
         break;
@@ -405,7 +406,11 @@ export default class Calendar<T = Date> extends React.Component<
     const {value} = this.props;
     const selected = this.getSingleDate(value);
     let nextState;
-    if (selected && isSameMonth(selected, date) && isSameYear(selected, date)) {
+    if (
+      selected &&
+      this.dateHelpers.isSameMonth(selected, date) &&
+      this.dateHelpers.isSameYear(selected, date)
+    ) {
       nextState = {highlightedDate: selected};
     } else {
       nextState = {
