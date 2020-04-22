@@ -40,12 +40,14 @@ import {
   subMonths,
   subYears,
 } from './utils/index.js';
+import dateFnsAdapter from './utils/date-fns-adapter.js';
+import DateHelpers from './utils/date-helpers.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import type {CalendarPropsT, CalendarInternalState} from './types.js';
 import {ORIENTATION} from './constants.js';
 
-export default class Calendar extends React.Component<
-  CalendarPropsT,
+export default class Calendar<T = Date> extends React.Component<
+  CalendarPropsT<T>,
   CalendarInternalState,
 > {
   static defaultProps = {
@@ -68,14 +70,19 @@ export default class Calendar extends React.Component<
     orientation: ORIENTATION.vertical,
     overrides: {},
     peekNextMonth: false,
+    adapter: dateFnsAdapter,
     value: null,
     trapTabbing: false,
   };
 
+  dateHelpers: DateHelpers<T>;
+
   calendar: React.ElementRef<*>;
 
-  constructor(props: CalendarPropsT) {
+  constructor(props: CalendarPropsT<T>) {
     super(props);
+    const {highlightedDate, value, adapter} = this.props;
+    this.dateHelpers = new DateHelpers(adapter);
     const dateInView = this.getDateInView();
     const {highlightedDate, value} = this.props;
     let time = [];
@@ -536,7 +543,9 @@ export default class Calendar extends React.Component<
                     this.setState({quickSelectId: null});
                     this.props.onChange && this.props.onChange({date: []});
                   } else {
-                    this.setState({quickSelectId: params.option.id});
+                    this.setState({
+                      quickSelectId: params.option.id,
+                    });
                     if (this.props.onChange) {
                       if (this.props.range) {
                         this.props.onChange({
@@ -546,7 +555,9 @@ export default class Calendar extends React.Component<
                           ],
                         });
                       } else {
-                        this.props.onChange({date: params.option.beginDate});
+                        this.props.onChange({
+                          date: params.option.beginDate,
+                        });
                       }
                     }
                   }
@@ -618,7 +629,9 @@ export default class Calendar extends React.Component<
                 root instanceof HTMLElement &&
                 !this.state.rootElement
               ) {
-                this.setState({rootElement: (root: HTMLElement)});
+                this.setState({
+                  rootElement: (root: HTMLElement),
+                });
               }
             }}
             aria-label={locale.datepicker.ariaLabelCalendar}

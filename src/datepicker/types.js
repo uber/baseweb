@@ -126,7 +126,11 @@ export type CalendarPropsT<T> = {
   /** Display select for quickly choosing date ranges. `range` must be true as well. */
   quickSelect?: boolean,
   /** Array of custom options displayed in the quick select. Overrides default options if provided. */
-  quickSelectOptions?: Array<{id: string, beginDate: Date, endDate?: Date}>,
+  quickSelectOptions?: Array<{
+    id: string,
+    beginDate: Date,
+    endDate?: Date,
+  }>,
   /** A filter function that is called to check the disabled state of a day. If `false` is returned the day is considered to be disabled. */
   filterDate?: ?(day: Date) => boolean,
   /** Indicates a highlighted date on hover and keyboard navigation */
@@ -141,6 +145,7 @@ export type CalendarPropsT<T> = {
   maxDate?: ?Date,
   /** A min date that is selectable. */
   minDate?: ?Date,
+  adapter: DateIOAdapter<T>,
   /** A number of months rendered in the calendar. */
   monthsShown?: number,
   /** Day's `click` event handler. */
@@ -188,7 +193,6 @@ export type DatepickerPropsT<T> = CalendarPropsT<T> & {
   'aria-labelledby'?: string,
   'aria-describedby'?: ?string,
   disabled?: boolean,
-  adapter: DateIOAdapter<T>,
   size?: SizeT,
   /** Renders UI in 'error' state. */
   error?: boolean,
