@@ -94,9 +94,10 @@ export default class Calendar<T = Date> extends React.Component<
     this.state = {
       highlightedDate:
         this.getSingleDate(value) ||
-        (highlightedDate && isSameMonth(dateInView, highlightedDate)
+        (highlightedDate &&
+        this.dateHelpers.isSameMonth(dateInView, highlightedDate)
           ? highlightedDate
-          : new Date()),
+          : this.dateHelpers.date()),
       focused: false,
       date: dateInView,
       quickSelectId: null,
@@ -163,16 +164,16 @@ export default class Calendar<T = Date> extends React.Component<
 
   getDateInView = (): Date => {
     const {highlightedDate, value} = this.props;
-    const minDate = getEffectiveMinDate(this.props);
-    const maxDate = getEffectiveMaxDate(this.props);
-    const current = new Date();
+    const minDate = this.dateHelpers.getEffectiveMinDate(this.props);
+    const maxDate = this.dateHelpers.getEffectiveMaxDate(this.props);
+    const current = this.dateHelpers.date();
     const initialDate = this.getSingleDate(value) || highlightedDate;
     if (initialDate) {
       return initialDate;
     } else {
-      if (minDate && isBefore(current, minDate)) {
+      if (minDate && this.dateHelpers.isBefore(current, minDate)) {
         return minDate;
-      } else if (maxDate && isAfter(current, maxDate)) {
+      } else if (maxDate && this.dateHelpers.isAfter(current, maxDate)) {
         return maxDate;
       }
     }
