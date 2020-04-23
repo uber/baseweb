@@ -502,7 +502,7 @@ export default class Calendar<T = Date> extends React.Component<
       <TimeSelectContainer {...timeSelectContainerProps}>
         <TimeSelectFormControl label={label} {...timeSelectFormControlProps}>
           <TimeSelect
-            value={value ? new Date(value) : value}
+            value={value ? this.dateHelpers.date(value) : value}
             onChange={onChange}
             nullable
             {...timeSelectProps}
@@ -536,8 +536,11 @@ export default class Calendar<T = Date> extends React.Component<
       return null;
     }
 
-    const NOW = new Date();
-    NOW.setHours(12, 0, 0);
+    const NOW = this.dateHelpers.set(this.dateHelpers.date(), {
+      hours: 12,
+      minutes: 0,
+      seconds: 0,
+    });
 
     return (
       <LocaleContext.Consumer>
@@ -578,27 +581,27 @@ export default class Calendar<T = Date> extends React.Component<
                   this.props.quickSelectOptions || [
                     {
                       id: locale.datepicker.pastWeek,
-                      beginDate: subWeeks(NOW, 1),
+                      beginDate: this.dateHelpers.subWeeks(NOW, 1),
                     },
                     {
                       id: locale.datepicker.pastMonth,
-                      beginDate: subMonths(NOW, 1),
+                      beginDate: this.dateHelpers.subMonths(NOW, 1),
                     },
                     {
                       id: locale.datepicker.pastThreeMonths,
-                      beginDate: subMonths(NOW, 3),
+                      beginDate: this.dateHelpers.subMonths(NOW, 3),
                     },
                     {
                       id: locale.datepicker.pastSixMonths,
-                      beginDate: subMonths(NOW, 6),
+                      beginDate: this.dateHelpers.subMonths(NOW, 6),
                     },
                     {
                       id: locale.datepicker.pastYear,
-                      beginDate: subYears(NOW, 1),
+                      beginDate: this.dateHelpers.subYears(NOW, 1),
                     },
                     {
                       id: locale.datepicker.pastTwoYears,
-                      beginDate: subYears(NOW, 2),
+                      beginDate: this.dateHelpers.subYears(NOW, 2),
                     },
                   ]
                 }
