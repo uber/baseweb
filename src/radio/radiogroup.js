@@ -22,6 +22,7 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
     labelPlacement: 'right',
     align: 'vertical',
     isError: false,
+    error: false,
     required: false,
     onChange: () => {},
     onMouseEnter: () => {},
@@ -32,6 +33,14 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
   };
 
   state = {isFocusVisible: false, focusedRadioIndex: -1};
+
+  componentDidMount() {
+    if (__DEV__ && this.props.isError) {
+      console.warn(
+        'baseui:Radio Property "isError" will be removed in the next major version. Use "error" property instead.',
+      );
+    }
+  }
 
   handleFocus = (
     event: SyntheticInputEvent<HTMLInputElement>,
@@ -78,12 +87,13 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
         role="radiogroup"
         aria-describedby={this.props['aria-describedby']}
         aria-errormessage={this.props['aria-errormessage']}
-        aria-invalid={this.props.isError || null}
+        aria-invalid={this.props.error || this.props.isError || null}
         aria-label={this.props['aria-label']}
         aria-labelledby={this.props['aria-labelledby']}
         $align={this.props.align}
         $disabled={this.props.disabled}
-        $isError={this.props.isError}
+        $isError={this.props.error || this.props.isError}
+        $error={this.props.error || this.props.isError}
         $required={this.props.required}
         {...radioGroupRootProps}
       >
@@ -98,6 +108,7 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
             checked,
             disabled: this.props.disabled || child.props.disabled,
             isError: this.props.isError,
+            error: this.props.error,
             isFocused: this.state.focusedRadioIndex === index,
             isFocusVisible: this.state.isFocusVisible,
             tabIndex:

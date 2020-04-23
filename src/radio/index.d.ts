@@ -62,6 +62,7 @@ export interface RadioGroupProps {
   disabled?: boolean;
   required?: boolean;
   isError?: boolean;
+  error?: boolean;
   autoFocus?: boolean;
   align?: 'horizontal' | 'vertical';
   name?: string;
@@ -96,6 +97,7 @@ export interface RadioProps {
   disabled?: boolean;
   inputRef?: React.Ref<HTMLInputElement>;
   isError?: boolean;
+  error?: boolean;
   isFocused?: boolean;
   isFocusVisible?: boolean;
   labelPlacement?: 'top' | 'right' | 'bottom' | 'left';

@@ -96,7 +96,7 @@ const RadioGroupConfig: TConfig = {
       description:
         'Disabled all radio group from being changed. To disable some of radios provide disabled flag in each of them.',
     },
-    isError: {
+    error: {
       value: false,
       type: PropTypes.Boolean,
       description: 'Sets radio group into error state.',
@@ -157,7 +157,7 @@ const RadioGroupConfig: TConfig = {
             type: PropTypes.Boolean,
             description: 'True when the component is active.',
           },
-          $isError: 'isError',
+          $error: 'error',
           $checked: {
             type: PropTypes.Boolean,
             description: 'True when the component is active.',

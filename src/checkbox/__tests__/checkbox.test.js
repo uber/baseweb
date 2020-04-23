@@ -22,7 +22,7 @@ describe('Stateless checkbox', function() {
     events = {};
   let allProps: any = {},
     overrides,
-    isError,
+    error,
     mockFn;
 
   beforeEach(function() {
@@ -33,7 +33,7 @@ describe('Stateless checkbox', function() {
       Label: StyledLabel,
       Input: StyledInput,
     };
-    isError = false;
+    error = false;
     events = {
       onChange: mockFn,
     };
@@ -42,7 +42,7 @@ describe('Stateless checkbox', function() {
       ...events,
       labelPlacement: 'left',
       children: 'some',
-      isError: isError,
+      error: error,
       inputRef: React.createRef(),
       autoFocus: false,
       isIndeterminate: false,
