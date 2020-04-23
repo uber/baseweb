@@ -391,13 +391,13 @@ export default class Calendar<T = Date> extends React.Component<
     if (Array.isArray(this.props.value)) {
       const dates = this.props.value.map((date, i) => {
         if (index === i) {
-          return applyTimeToDate(date, time);
+          return this.dateHelpers.applyTimeToDate(date, time);
         }
         return date;
       });
       onChange({date: dates});
     } else {
-      const date = applyTimeToDate(this.props.value, time);
+      const date = this.dateHelpers.applyTimeToDate(this.props.value, time);
       onChange({date});
     }
   };
