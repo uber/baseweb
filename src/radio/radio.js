@@ -56,6 +56,11 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
     if (this.props.autoFocus && this.props.inputRef.current) {
       this.props.inputRef.current.focus();
     }
+    if (__DEV__ && this.props.isError) {
+      console.warn(
+        'baseui:Radio Property "isError" will be removed in the next major version. Use "error" property instead.',
+      );
+    }
   }
 
   onMouseEnter = (e: SyntheticInputEvent<HTMLInputElement>) => {
