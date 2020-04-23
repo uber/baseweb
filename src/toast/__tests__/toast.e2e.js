@@ -83,9 +83,6 @@ describe('toast', () => {
     await page.click(selectors.buttonSameKey);
 
     const numberOfAlerts = await page.$$eval(selectors.toast, toasts => {
-      console.log('toasts', {
-        toast: toasts[0],
-      });
       return toasts.length;
     });
 
