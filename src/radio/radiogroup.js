@@ -34,6 +34,14 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
 
   state = {isFocusVisible: false, focusedRadioIndex: -1};
 
+  componentDidMount() {
+    if (__DEV__ && this.props.isError) {
+      console.warn(
+        'baseui:Radio Property "isError" will be removed in the next major version. Use "error" property instead.',
+      );
+    }
+  }
+
   handleFocus = (
     event: SyntheticInputEvent<HTMLInputElement>,
     index: number,
