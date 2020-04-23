@@ -153,7 +153,7 @@ class DateHelpers<T> {
       return this.adapter.isAfter(date, maxDate) ? date : maxDate;
     });
   };
-  getEffectiveMinDate: ({minDate?: T, includeDates?: Array<T>}) => T = ({
+  getEffectiveMinDate: ({minDate: ?T, includeDates: ?Array<T>}) => T = ({
     minDate,
     includeDates,
   }) => {
@@ -171,7 +171,7 @@ class DateHelpers<T> {
     // but flow isn't smart enough to see that all of the conditions are covered
     return this.adapter.date();
   };
-  getEffectiveMaxDate: ({maxDate?: T, includeDates?: Array<T>}) => T = ({
+  getEffectiveMaxDate: ({maxDate: ?T, includeDates: ?Array<T>}) => T = ({
     maxDate,
     includeDates,
   }) => {
@@ -297,12 +297,12 @@ class DateHelpers<T> {
   set: (
     T,
     values: {
-      year: ?number,
-      month: ?number,
-      date: ?number,
-      hours: ?number,
-      minutes: ?number,
-      seconds: ?number,
+      year?: number,
+      date?: number,
+      month?: number,
+      hours?: number,
+      minutes?: number,
+      seconds?: number,
     },
   ) => T = (date, values) => {
     let updatedDate = date;

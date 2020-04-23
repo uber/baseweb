@@ -84,35 +84,35 @@ export type DayStateT = {
 };
 
 export type WeekPropsT<T> = {
-  date: Date,
-  excludeDates: ?Array<Date>,
+  date: T,
+  excludeDates: ?Array<T>,
   filterDate: ?(day: Date) => boolean,
   // highlighted while keyboard navigating or hovered
-  highlightedDate: ?Date,
-  includeDates: ?Array<Date>,
+  highlightedDate: ?T,
+  includeDates: ?Array<T>,
   focusedCalendar: boolean,
   range?: boolean,
   locale: ?LocaleT,
-  maxDate: ?Date,
-  minDate: ?Date,
+  maxDate: ?T,
+  minDate: ?T,
   month: ?number,
-  onDayBlur: ({date: Date, event: Event}) => mixed,
-  onDayClick: ({date: Date, event: Event}) => mixed,
-  onDayFocus: ({date: Date, event: Event}) => mixed,
-  onDayMouseOver: ({date: Date, event: Event}) => mixed,
-  onDayMouseLeave: ({date: Date, event: Event}) => mixed,
+  onDayBlur: ({date: T, event: Event}) => mixed,
+  onDayClick: ({date: T, event: Event}) => mixed,
+  onDayFocus: ({date: T, event: Event}) => mixed,
+  onDayMouseOver: ({date: T, event: Event}) => mixed,
+  onDayMouseLeave: ({date: T, event: Event}) => mixed,
   onChange?: onChangeT<T>,
   overrides?: DatepickerOverridesT,
   peekNextMonth: boolean,
-  value: ?Date | Array<Date>,
+  value: ?T | Array<T>,
 };
 
 export type MonthPropsT<T> = WeekPropsT<T>;
 
-export type CalendarInternalState = {
-  date: Date,
+export type CalendarInternalState<T> = {
+  highlightedDate: T,
   focused: boolean,
-  highlightedDate: Date,
+  date: T,
   quickSelectId: ?string,
   rootElement: ?HTMLElement,
   time: Array<Date>,
@@ -122,44 +122,44 @@ export type CalendarPropsT<T> = {
   /** Defines if the calendar is set to be focused on an initial render. */
   autoFocusCalendar?: boolean,
   /** A list of dates to disable. */
-  excludeDates?: ?Array<Date>,
+  excludeDates?: ?Array<T>,
   /** Display select for quickly choosing date ranges. `range` must be true as well. */
   quickSelect?: boolean,
   /** Array of custom options displayed in the quick select. Overrides default options if provided. */
   quickSelectOptions?: Array<{
     id: string,
-    beginDate: Date,
-    endDate?: Date,
+    beginDate: T,
+    endDate?: T,
   }>,
   /** A filter function that is called to check the disabled state of a day. If `false` is returned the day is considered to be disabled. */
-  filterDate?: ?(day: Date) => boolean,
+  filterDate?: ?(day: T) => boolean,
   /** Indicates a highlighted date on hover and keyboard navigation */
-  highlightedDate?: ?Date,
+  highlightedDate?: ?T,
   /** A list of selectable dates. */
-  includeDates?: ?Array<Date>,
+  includeDates?: ?Array<T>,
   /** Defines if a range of dates can be selected. */
   range?: boolean,
   /** A locale object. See `date-fns` for more details https://github.com/date-fns/date-fns/tree/master/src/locale. */
   locale?: ?LocaleT,
   /** A max date that is selectable. */
-  maxDate?: ?Date,
+  maxDate?: ?T,
   /** A min date that is selectable. */
-  minDate?: ?Date,
+  minDate?: ?T,
   adapter: DateIOAdapter<T>,
   /** A number of months rendered in the calendar. */
   monthsShown?: number,
   /** Day's `click` event handler. */
-  onDayClick?: ({date: Date, event: Event}) => mixed,
+  onDayClick?: ({date: T, event: Event}) => mixed,
   /** Day's `focus` event handler. */
-  onDayFocus?: ({date: Date, event: Event}) => mixed,
+  onDayFocus?: ({date: T, event: Event}) => mixed,
   /** Day's `mouseover` event handler. */
-  onDayMouseOver?: ({date: Date, event: Event}) => mixed,
+  onDayMouseOver?: ({date: T, event: Event}) => mixed,
   /** Day's `mouseleave` event handler. */
-  onDayMouseLeave?: ({date: Date, event: Event}) => mixed,
+  onDayMouseLeave?: ({date: T, event: Event}) => mixed,
   /** Event handler that is called when the current rendered month is changed. */
-  onMonthChange?: ({date: Date}) => mixed,
+  onMonthChange?: ({date: T}) => mixed,
   /** Event handler that is called when the current rendered month's year is changed. */
-  onYearChange?: ({date: Date}) => mixed,
+  onYearChange?: ({date: T}) => mixed,
   /** Event handler that is called when a new date is selected. */
   onChange?: onChangeT<T>,
   /** Sets the orientation of the calendar when multiple months are displayed */
@@ -269,7 +269,7 @@ export type StatefulContainerPropsT<T> = {
   /** A state change handler. */
   stateReducer: StateReducerT,
   /** Event handler that is called when a date/time is selected. */
-  onChange?: onChangeT,
+  onChange?: onChangeT<T>,
   /** Should the date value be stored as an array or single value. */
   range?: boolean,
 };

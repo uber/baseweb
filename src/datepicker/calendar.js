@@ -12,34 +12,13 @@ import {Select} from '../select/index.js';
 import CalendarHeader from './calendar-header.js';
 import Month from './month.js';
 import TimePicker from '../timepicker/timepicker.js';
+import type {DateIOAdapter} from './utils/types.js';
 import {
   StyledCalendarContainer,
   StyledMonthContainer,
   StyledRoot,
   StyledSelectorContainer,
 } from './styled-components.js';
-import {
-  applyDateToTime,
-  applyTimeToDate,
-  addDays,
-  addMonths,
-  addWeeks,
-  getEffectiveMinDate,
-  getEffectiveMaxDate,
-  getEndOfWeek,
-  getMonth,
-  getStartOfWeek,
-  getStartOfMonth,
-  isAfter,
-  isBefore,
-  isSameDay,
-  isSameMonth,
-  isSameYear,
-  subDays,
-  subWeeks,
-  subMonths,
-  subYears,
-} from './utils/index.js';
 import dateFnsAdapter from './utils/date-fns-adapter.js';
 import DateHelpers from './utils/date-helpers.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
@@ -48,9 +27,9 @@ import {ORIENTATION} from './constants.js';
 
 export default class Calendar<T = Date> extends React.Component<
   CalendarPropsT<T>,
-  CalendarInternalState,
+  CalendarInternalState<T>,
 > {
-  static defaultProps = {
+  static defaultProps: {adapter: DateIOAdapter<Date>} = {
     autoFocusCalendar: false,
     excludeDates: null,
     filterDate: null,
@@ -81,6 +60,7 @@ export default class Calendar<T = Date> extends React.Component<
 
   constructor(props: CalendarPropsT<T>) {
     super(props);
+
     const {highlightedDate, value, adapter} = this.props;
     this.dateHelpers = new DateHelpers(adapter);
     const dateInView = this.getDateInView();
@@ -112,7 +92,7 @@ export default class Calendar<T = Date> extends React.Component<
     }
   }
 
-  componentDidUpdate(prevProps: CalendarPropsT) {
+  componentDidUpdate(prevProps: CalendarPropsT<T>) {
     if (
       this.props.highlightedDate &&
       !this.dateHelpers.isSameDay(
@@ -141,7 +121,7 @@ export default class Calendar<T = Date> extends React.Component<
     }
   }
 
-  isInView(date: Date): boolean {
+  isInView(date: T): boolean {
     // we calculate the month delta between the date arg and the date in the state.
     const currentDate = this.state.date;
 
@@ -159,7 +139,7 @@ export default class Calendar<T = Date> extends React.Component<
     return monthDelta >= 0 && monthDelta < (this.props.monthsShown || 1);
   }
 
-  getSingleDate(value: ?Date | Array<Date>): ?Date {
+  getSingleDate(value: ?T | Array<T>): ?T {
     // need to check this.props.range but flow would complain
     // at the return value in the else clause
     if (Array.isArray(value)) {
@@ -168,7 +148,7 @@ export default class Calendar<T = Date> extends React.Component<
     return value;
   }
 
-  getDateInView = (): Date => {
+  getDateInView: () => T = () => {
     const {highlightedDate, value} = this.props;
     const minDate = this.dateHelpers.getEffectiveMinDate(this.props);
     const maxDate = this.dateHelpers.getEffectiveMaxDate(this.props);
@@ -186,29 +166,32 @@ export default class Calendar<T = Date> extends React.Component<
     return current;
   };
 
-  handleMonthChange = (date: Date) => {
+  handleMonthChange: T => void = date => {
     this.setHighlightedDate(this.dateHelpers.getStartOfMonth(date));
     if (this.props.onMonthChange) {
       this.props.onMonthChange({date});
     }
   };
 
-  handleYearChange = (date: Date) => {
+  handleYearChange: T => void = date => {
     this.setHighlightedDate(date);
     if (this.props.onYearChange) {
       this.props.onYearChange({date});
     }
   };
 
-  changeMonth = ({date}: {date: Date}) => {
+  changeMonth = ({date}: {date: T}) => {
     this.setState({date: date}, () => this.handleMonthChange(this.state.date));
   };
 
-  changeYear = ({date}: {date: Date}) => {
+  changeYear = ({date}: {date: T}) => {
     this.setState({date: date}, () => this.handleYearChange(this.state.date));
   };
 
-  renderCalendarHeader = (date: Date = this.state.date, order: number) => {
+  renderCalendarHeader: (T, number) => React.Node = (
+    date = this.state.date,
+    order,
+  ) => {
     return (
       <CalendarHeader
         {...this.props}
@@ -341,26 +324,26 @@ export default class Calendar<T = Date> extends React.Component<
     }
   };
 
-  onDayFocus = (data: {event: Event, date: Date}) => {
+  onDayFocus = (data: {event: Event, date: T}) => {
     const {date} = data;
     this.setState({highlightedDate: date});
     this.focusCalendar();
     this.props.onDayFocus && this.props.onDayFocus(data);
   };
 
-  onDayMouseOver = (data: {event: Event, date: Date}) => {
+  onDayMouseOver = (data: {event: Event, date: T}) => {
     const {date} = data;
     this.setState({highlightedDate: date});
     this.props.onDayMouseOver && this.props.onDayMouseOver(data);
   };
 
-  onDayMouseLeave = (data: {event: Event, date: Date}) => {
+  onDayMouseLeave = (data: {event: Event, date: T}) => {
     const {date} = data;
     this.setHighlightedDate(date);
     this.props.onDayMouseLeave && this.props.onDayMouseLeave(data);
   };
 
-  handleDateChange = (data: {date: ?Date | Array<Date>}) => {
+  handleDateChange: ({date: ?T | Array<T>}) => void = data => {
     const {onChange = params => {}} = this.props;
     let updatedDate = data.date;
     // We'll need to update the date in time values of internal state
@@ -386,7 +369,7 @@ export default class Calendar<T = Date> extends React.Component<
     onChange({date: updatedDate});
   };
 
-  handleTimeChange = (time: Date, index: number) => {
+  handleTimeChange = (time: T, index: number) => {
     const {onChange = params => {}} = this.props;
     // Save/update the time value in internal state
     const newTimeState = [...this.state.time];
@@ -408,7 +391,7 @@ export default class Calendar<T = Date> extends React.Component<
     }
   };
 
-  setHighlightedDate(date: Date) {
+  setHighlightedDate(date: T) {
     const {value} = this.props;
     const selected = this.getSingleDate(value);
     let nextState;
@@ -489,7 +472,11 @@ export default class Calendar<T = Date> extends React.Component<
   };
 
   // eslint-disable-next-line flowtype/no-weak-types
-  renderTimeSelect = (value: ?Date, onChange: Function, label: string) => {
+  renderTimeSelect: (?T, Function, string) => React.Node = (
+    value,
+    onChange,
+    label,
+  ) => {
     const {overrides = {}} = this.props;
     const [TimeSelectContainer, timeSelectContainerProps] = getOverrides(
       overrides.TimeSelectContainer,
