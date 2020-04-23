@@ -57,6 +57,7 @@ export interface StatefulCheckboxProps {
   overrides?: CheckboxOverrides;
   disabled?: boolean;
   isError?: boolean;
+  error?: boolean;
   labelPlacement?: 'top' | 'right' | 'bottom' | 'left';
   inputRef?: React.Ref<HTMLInputElement>;
   isIndeterminate?: boolean;
@@ -92,6 +93,7 @@ export interface CheckboxProps {
   disabled?: boolean;
   required?: boolean;
   isError?: boolean;
+  error?: boolean;
   inputRef?: React.Ref<HTMLInputElement>;
   autoFocus?: boolean;
   type?: string;

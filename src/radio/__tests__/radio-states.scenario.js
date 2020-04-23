@@ -21,7 +21,7 @@ export default function Scenario() {
         <Radio value="1">Uber</Radio>
         <Radio value="2">Taxi</Radio>
       </RadioGroup>
-      <RadioGroup name="example3" value="1" isError>
+      <RadioGroup name="example3" value="1" error>
         <Radio value="1">Uber</Radio>
         <Radio value="2">Taxi</Radio>
       </RadioGroup>

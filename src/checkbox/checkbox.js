@@ -29,6 +29,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
     isIndeterminate: false,
     inputRef: React.createRef(),
     isError: false,
+    error: false,
     type: 'checkbox',
     checkmarkType: STYLE_TYPE.default,
     onChange: () => {},
@@ -114,6 +115,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       inputRef,
       isIndeterminate,
       isError,
+      error,
       disabled,
       value,
       name,
@@ -159,6 +161,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       $isHovered: this.state.isHovered,
       $isActive: this.state.isActive,
       $isError: isError,
+      $error: error,
       $checked: checked,
       $isIndeterminate: isIndeterminate,
       $required: required,
@@ -190,7 +193,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
           <ToggleTrack
             role="checkbox"
             aria-checked={isIndeterminate ? 'mixed' : checked}
-            aria-invalid={isError || null}
+            aria-invalid={error || isError || null}
             {...sharedProps}
             {...getOverrideProps(ToggleTrackOverride)}
           >
@@ -206,7 +209,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
             role="checkbox"
             checked={checked}
             aria-checked={isIndeterminate ? 'mixed' : checked}
-            aria-invalid={isError || null}
+            aria-invalid={error || isError || null}
             {...sharedProps}
             {...getOverrideProps(CheckmarkOverride)}
           />
@@ -219,7 +222,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
           aria-checked={isIndeterminate ? 'mixed' : checked}
           aria-describedby={this.props['aria-describedby']}
           aria-errormessage={this.props['aria-errormessage']}
-          aria-invalid={isError || null}
+          aria-invalid={error || isError || null}
           aria-required={required || null}
           disabled={disabled}
           type={type}

@@ -16,6 +16,7 @@ function getBorderColor(props) {
     $disabled,
     $checked,
     $isError,
+    $error,
     $isIndeterminate,
     $theme,
     $isFocusVisible,
@@ -25,7 +26,7 @@ function getBorderColor(props) {
     return colors.tickFillDisabled;
   } else if ($checked || $isIndeterminate) {
     return 'transparent';
-  } else if ($isError) {
+  } else if ($error || $isError) {
     return colors.borderError;
   } else if ($isFocusVisible) {
     return colors.borderSelected;
@@ -73,6 +74,7 @@ function getBackgroundColor(props) {
     $checked,
     $isIndeterminate,
     $isError,
+    $error,
     $isHovered,
     $isActive,
     $theme,
@@ -89,7 +91,7 @@ function getBackgroundColor(props) {
     } else {
       return colors.tickFill;
     }
-  } else if ($isError && ($isIndeterminate || $checked)) {
+  } else if (($error || $isError) && ($isIndeterminate || $checked)) {
     if ($isActive) {
       return colors.tickFillErrorSelectedHoverActive;
     } else if ($isHovered) {
@@ -97,7 +99,7 @@ function getBackgroundColor(props) {
     } else {
       return colors.tickFillErrorSelected;
     }
-  } else if ($isError) {
+  } else if ($error || $isError) {
     if ($isActive) {
       return colors.tickFillErrorHoverActive;
     } else if ($isHovered) {
@@ -152,6 +154,7 @@ export const Checkmark = styled<SharedStylePropsT>('span', props => {
     $checked,
     $disabled,
     $isError,
+    $error,
     $isIndeterminate,
     $theme,
     $isFocusVisible,
@@ -160,7 +163,7 @@ export const Checkmark = styled<SharedStylePropsT>('span', props => {
 
   const tickColor = $disabled
     ? $theme.colors.tickMarkFillDisabled
-    : $isError
+    : $isError || $error
     ? $theme.colors.tickMarkFillError
     : $theme.colors.tickMarkFill;
 
@@ -279,7 +282,7 @@ export const Toggle = styled<SharedStylePropsT>('div', props => {
     let backgroundColor = props.$theme.colors.toggleFill;
     if (props.$disabled) {
       backgroundColor = props.$theme.colors.toggleFillDisabled;
-    } else if (props.$checked && props.$isError) {
+    } else if (props.$checked && (props.$error || props.$isError)) {
       backgroundColor = props.$theme.colors.borderError;
     } else if (props.$checked) {
       backgroundColor = props.$theme.colors.toggleFillChecked;
@@ -371,7 +374,7 @@ export const ToggleTrack = styled<SharedStylePropsT>('div', props => {
     let backgroundColor = props.$theme.colors.toggleTrackFill;
     if (props.$disabled) {
       backgroundColor = props.$theme.colors.toggleTrackFillDisabled;
-    } else if (props.$isError && props.$checked) {
+    } else if ((props.$error || props.$isError) && props.$checked) {
       backgroundColor = props.$theme.colors.tickFillError;
     }
     return {

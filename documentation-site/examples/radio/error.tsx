@@ -5,7 +5,7 @@ export default () => {
   const [value, setValue] = React.useState('1');
   return (
     <RadioGroup
-      isError
+      error
       name="error"
       onChange={e => setValue(e.target.value)}
       value={value}

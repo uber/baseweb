@@ -21,12 +21,12 @@ export default function Scenario() {
       <Checkbox disabled isIndeterminate>
         Checkbox disabled isIndeterminate
       </Checkbox>
-      <Checkbox isError>Checkbox isError</Checkbox>
-      <Checkbox isError checked>
-        Checkbox isError checked
+      <Checkbox error>Checkbox error</Checkbox>
+      <Checkbox error checked>
+        Checkbox error checked
       </Checkbox>
-      <Checkbox isError isIndeterminate>
-        Checkbox isError isIndeterminate
+      <Checkbox error isIndeterminate>
+        Checkbox error isIndeterminate
       </Checkbox>
     </React.Fragment>
   );
