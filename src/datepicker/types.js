@@ -54,28 +54,28 @@ export type DatepickerOverridesT = {
   Popover?: OverrideT,
 };
 
-export type DayPropsT = {
+export type DayPropsT<T> = {
   disabled: boolean,
-  date: Date,
-  filterDate: ?(day: Date) => boolean,
-  highlightedDate: ?Date,
-  includeDates: ?Array<Date>,
+  date: T,
+  filterDate: ?(day: T) => boolean,
+  highlightedDate: ?T,
+  includeDates: ?Array<T>,
   highlighted: boolean,
   range: boolean,
   focusedCalendar: boolean,
   locale: ?LocaleT,
-  maxDate: ?Date,
-  minDate: ?Date,
+  maxDate: ?T,
+  minDate: ?T,
   month: ?number,
-  onBlur: ({event: Event, date: Date}) => mixed,
-  onFocus: ({event: Event, date: Date}) => mixed,
-  onSelect: ({date: ?Date | Array<Date>}) => mixed,
-  onClick: ({event: Event, date: Date}) => mixed,
-  onMouseOver: ({event: Event, date: Date}) => mixed,
-  onMouseLeave: ({event: Event, date: Date}) => mixed,
+  onBlur: ({event: Event, date: T}) => mixed,
+  onFocus: ({event: Event, date: T}) => mixed,
+  onSelect: ({date: ?T | Array<T>}) => mixed,
+  onClick: ({event: Event, date: T}) => mixed,
+  onMouseOver: ({event: Event, date: T}) => mixed,
+  onMouseLeave: ({event: Event, date: T}) => mixed,
   overrides?: DatepickerOverridesT,
   peekNextMonth: boolean,
-  value: ?Date | Array<Date>,
+  value: ?T | Array<T>,
 };
 
 export type DayStateT = {
@@ -86,7 +86,7 @@ export type DayStateT = {
 export type WeekPropsT<T> = {
   date: T,
   excludeDates: ?Array<T>,
-  filterDate: ?(day: Date) => boolean,
+  filterDate: ?(day: T) => boolean,
   // highlighted while keyboard navigating or hovered
   highlightedDate: ?T,
   includeDates: ?Array<T>,
