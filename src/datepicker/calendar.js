@@ -434,7 +434,7 @@ export default class Calendar<T = Date> extends React.Component<
 
     for (let i = 0; i < (this.props.monthsShown || 1); ++i) {
       const monthSubComponents = [];
-      const monthDate = addMonths(this.state.date, i);
+      const monthDate = this.dateHelpers.addMonths(this.state.date, i);
       const monthKey = `month-${i}`;
       monthSubComponents.push(this.renderCalendarHeader(monthDate, i));
       monthSubComponents.push(
@@ -460,7 +460,7 @@ export default class Calendar<T = Date> extends React.Component<
             locale={this.props.locale}
             maxDate={this.props.maxDate}
             minDate={this.props.minDate}
-            month={getMonth(this.state.date)}
+            month={this.dateHelpers.getMonth(this.state.date)}
             onDayBlur={this.blurCalendar}
             onDayFocus={this.onDayFocus}
             onDayClick={this.props.onDayClick}
