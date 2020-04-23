@@ -95,6 +95,7 @@ export type WeekPropsT<T> = {
   locale: ?LocaleT,
   maxDate: ?T,
   minDate: ?T,
+  adapter: DateIOAdapter<T>,
   month: ?number,
   onDayBlur: ({date: T, event: Event}) => mixed,
   onDayClick: ({date: T, event: Event}) => mixed,

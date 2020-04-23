@@ -439,6 +439,7 @@ export default class Calendar<T = Date> extends React.Component<
           {...calendarContainerProps}
         >
           <Month
+            adapter={this.props.adapter}
             date={monthDate}
             excludeDates={this.props.excludeDates}
             filterDate={this.props.filterDate}
