@@ -368,11 +368,17 @@ export default class Calendar<T = Date> extends React.Component<
     // Apply the currently selected time values (saved in state) to the updated date
     if (Array.isArray(data.date)) {
       updatedDate = data.date.map((date, index) => {
-        newTimeState[index] = applyDateToTime(newTimeState[index], date);
+        newTimeState[index] = this.dateHelpers.applyDateToTime(
+          newTimeState[index],
+          date,
+        );
         return newTimeState[index];
       });
     } else if (!Array.isArray(this.props.value) && data.date) {
-      newTimeState[0] = applyDateToTime(newTimeState[0], data.date);
+      newTimeState[0] = this.dateHelpers.applyDateToTime(
+        newTimeState[0],
+        data.date,
+      );
       updatedDate = newTimeState[0];
     }
     // Update the date in time values of internal state
