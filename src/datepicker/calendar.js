@@ -80,9 +80,10 @@ export default class Calendar extends React.Component<
     const {highlightedDate, value} = this.props;
     this.state = {
       highlightedDate:
-        highlightedDate && isSameMonth(dateInView, highlightedDate)
+        this.getSingleDate(value) ||
+        (highlightedDate && isSameMonth(dateInView, highlightedDate)
           ? highlightedDate
-          : this.getSingleDate(value) || new Date(),
+          : new Date()),
       focused: false,
       date: dateInView,
       quickSelectId: null,
