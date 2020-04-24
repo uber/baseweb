@@ -324,20 +324,20 @@ export default class Calendar<T = Date> extends React.Component<
     }
   };
 
-  onDayFocus = (data: {event: Event, date: T}) => {
+  onDayFocus: ({event: Event, date: T}) => mixed = data => {
     const {date} = data;
     this.setState({highlightedDate: date});
     this.focusCalendar();
     this.props.onDayFocus && this.props.onDayFocus(data);
   };
 
-  onDayMouseOver = (data: {event: Event, date: T}) => {
+  onDayMouseOver: ({event: Event, date: T}) => mixed = data => {
     const {date} = data;
     this.setState({highlightedDate: date});
     this.props.onDayMouseOver && this.props.onDayMouseOver(data);
   };
 
-  onDayMouseLeave = (data: {event: Event, date: T}) => {
+  onDayMouseLeave: ({event: Event, date: T}) => mixed = data => {
     const {date} = data;
     this.setHighlightedDate(date);
     this.props.onDayMouseLeave && this.props.onDayMouseLeave(data);
