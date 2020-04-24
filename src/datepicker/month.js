@@ -14,7 +14,6 @@ import {getOverrides} from '../helpers/overrides.js';
 import type {MonthPropsT} from './types.js';
 
 const defaultProps = {
-  date: new Date(),
   excludeDates: null,
   filterDate: null,
   highlightDates: null,
@@ -46,8 +45,12 @@ export default class CalendarMonth<T = Date> extends React.Component<
     this.dateHelpers = new DateHelpers(props.adapter);
   }
 
+  getDateProp: () => T = () => {
+    return this.props.date || this.dateHelpers.date();
+  };
+
   isWeekInMonth: T => boolean = startOfWeek => {
-    const date = this.props.date;
+    const date = this.getDateProp();
     const endOfWeek = this.dateHelpers.addDays(startOfWeek, 6);
     return (
       this.dateHelpers.isSameMonth(startOfWeek, date) ||
@@ -58,7 +61,7 @@ export default class CalendarMonth<T = Date> extends React.Component<
   renderWeeks = () => {
     const weeks = [];
     let currentWeekStart = this.dateHelpers.getStartOfWeek(
-      this.dateHelpers.getStartOfMonth(this.props.date),
+      this.dateHelpers.getStartOfMonth(this.getDateProp()),
       this.props.locale,
     );
     let i = 0;
@@ -79,7 +82,7 @@ export default class CalendarMonth<T = Date> extends React.Component<
           locale={this.props.locale}
           minDate={this.props.minDate}
           maxDate={this.props.maxDate}
-          month={this.dateHelpers.getMonth(this.props.date)}
+          month={this.dateHelpers.getMonth(this.getDateProp())}
           onDayBlur={this.props.onDayBlur}
           onDayFocus={this.props.onDayFocus}
           onDayClick={this.props.onDayClick}
