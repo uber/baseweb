@@ -244,16 +244,22 @@ export default class CalendarHeader<T = Date> extends React.Component<
     locale: LocaleT,
     theme: ThemeT,
   }) => {
-    const {date, overrides = {}} = this.props;
-    const allNextDaysDisabled = monthDisabledAfter(date, this.props);
+    const date = this.getDateProp();
+    const {overrides = {}} = this.props;
+    const allNextDaysDisabled = this.dateHelpers.monthDisabledAfter(
+      date,
+      this.props,
+    );
 
     let isDisabled = false;
     if (allNextDaysDisabled) {
       isDisabled = true;
     }
-    const nextMonth = addMonths(date, 1);
-    const maxYear = this.props.maxDate ? getYear(this.props.maxDate) : MAX_YEAR;
-    if (getYear(nextMonth) > maxYear) {
+    const nextMonth = this.dateHelpers.addMonths(date, 1);
+    const maxYear = this.props.maxDate
+      ? this.dateHelpers.getYear(this.props.maxDate)
+      : MAX_YEAR;
+    if (this.dateHelpers.getYear(nextMonth) > maxYear) {
       isDisabled = true;
     }
 
