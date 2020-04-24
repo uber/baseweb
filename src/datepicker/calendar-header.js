@@ -129,7 +129,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
     if (this.props.onMonthChange) {
       // $FlowFixMe
       this.props.onMonthChange({
-        date: subMonths(this.props.date, 1),
+        date: this.dateHelpers.subMonths(this.getDateProp(), 1),
       });
     }
   };
@@ -179,16 +179,22 @@ export default class CalendarHeader<T = Date> extends React.Component<
     locale: LocaleT,
     theme: ThemeT,
   }) => {
-    const {date, overrides = {}} = this.props;
-    const allPrevDaysDisabled = monthDisabledBefore(date, this.props);
+    const date = this.getDateProp();
+    const {overrides = {}} = this.props;
+    const allPrevDaysDisabled = this.dateHelpers.monthDisabledBefore(
+      date,
+      this.props,
+    );
 
     let isDisabled = false;
     if (allPrevDaysDisabled) {
       isDisabled = true;
     }
-    const nextMonth = subMonths(date, 1);
-    const minYear = this.props.minDate ? getYear(this.props.minDate) : MIN_YEAR;
-    if (getYear(nextMonth) < minYear) {
+    const nextMonth = this.dateHelpers.subMonths(date, 1);
+    const minYear = this.props.minDate
+      ? this.dateHelpers.getYear(this.props.minDate)
+      : MIN_YEAR;
+    if (this.dateHelpers.getYear(nextMonth) < minYear) {
       isDisabled = true;
     }
 
