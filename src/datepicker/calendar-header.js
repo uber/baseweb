@@ -319,7 +319,8 @@ export default class CalendarHeader<T = Date> extends React.Component<
   };
 
   renderMonthYearDropdown = () => {
-    const {date, locale, maxDate, minDate, overrides = {}} = this.props;
+    const date = this.getDateProp();
+    const {locale, maxDate, minDate, overrides = {}} = this.props;
     const [MonthYearSelectButton, monthYearSelectButtonProps] = getOverrides(
       overrides.MonthYearSelectButton,
       StyledMonthYearSelectButton,
@@ -348,13 +349,17 @@ export default class CalendarHeader<T = Date> extends React.Component<
     menuProps.overrides = menuOverrides;
 
     const defaultMonths = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-    const maxYear = maxDate ? getYear(maxDate) : MAX_YEAR;
-    const minYear = minDate ? getYear(minDate) : MIN_YEAR;
-    const maxDateMonth = maxDate ? getMonth(maxDate) : MAX_MONTH;
+    const maxYear = maxDate ? this.dateHelpers.getYear(maxDate) : MAX_YEAR;
+    const minYear = minDate ? this.dateHelpers.getYear(minDate) : MIN_YEAR;
+    const maxDateMonth = maxDate
+      ? this.dateHelpers.getMonth(maxDate)
+      : MAX_MONTH;
     // Generates array like [0,1,.... maxDateMonth]
     const maxYearMonths = Array.from({length: maxDateMonth + 1}, (x, i) => i);
 
-    const minDateMonth = minDate ? getMonth(minDate) : MIN_MONTH;
+    const minDateMonth = minDate
+      ? this.dateHelpers.getMonth(minDate)
+      : MIN_MONTH;
     // Generates array like [minDateMonth, ...., 10, 11]
     const minYearMonths = Array.from(
       {length: 12 - minDateMonth},
@@ -377,19 +382,25 @@ export default class CalendarHeader<T = Date> extends React.Component<
       months.forEach(month => {
         items.push({
           id: yearMonthToId(i, month),
-          label: `${getMonthInLocale(month, locale)} ${i}`,
+          label: `${this.dateHelpers.getMonthInLocale(month, locale)} ${i}`,
         });
       });
     }
 
     const initialIndex = items.findIndex(item => {
-      return item.id === yearMonthToId(getYear(date), getMonth(date));
+      return (
+        item.id ===
+        yearMonthToId(
+          this.dateHelpers.getYear(date),
+          this.dateHelpers.getMonth(date),
+        )
+      );
     });
 
-    const monthYearTitle = `${getMonthInLocale(
-      getMonth(date),
+    const monthYearTitle = `${this.dateHelpers.getMonthInLocale(
+      this.dateHelpers.getMonth(date),
       locale,
-    )} ${getYear(date)}`;
+    )} ${this.dateHelpers.getYear(date)}`;
 
     return this.isMultiMonthHorizontal() ? (
       <div>{monthYearTitle}</div>
@@ -417,9 +428,14 @@ export default class CalendarHeader<T = Date> extends React.Component<
             onItemSelect={({item, event}) => {
               event.preventDefault();
               const [year, month] = idToYearMonth(item.id);
-              date.setFullYear(year, month);
-              this.props.onMonthChange && this.props.onMonthChange({date});
-              this.props.onYearChange && this.props.onYearChange({date});
+              const updatedDate = this.dateHelpers.set(date, {
+                year,
+                month,
+              });
+              this.props.onMonthChange &&
+                this.props.onMonthChange({date: updatedDate});
+              this.props.onYearChange &&
+                this.props.onYearChange({date: updatedDate});
               this.setState({isMonthYearDropdownOpen: false});
             }}
             {...menuProps}
