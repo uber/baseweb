@@ -65,6 +65,7 @@ export type DayPropsT<T> = {
   focusedCalendar: boolean,
   locale: ?LocaleT,
   maxDate: ?T,
+  adapter: DateIOAdapter<T>,
   minDate: ?T,
   month: ?number,
   onBlur: ({event: Event, date: T}) => mixed,
@@ -181,12 +182,6 @@ export type CalendarPropsT<T> = {
 export type HeaderPropsT<T> = CalendarPropsT<T> & {
   date: Date,
   order: number,
-};
-
-export type DatepickerDefaultPropsT = {
-  'aria-describedby': 'datepicker--screenreader--message--input',
-  value: null,
-  adapter: DateIOAdapter<Date>,
 };
 
 export type DatepickerPropsT<T> = CalendarPropsT<T> & {

@@ -11,13 +11,12 @@ import {StyledWeek} from './styled-components.js';
 import {WEEKDAYS} from './constants.js';
 import dateFnsAdapter from './utils/date-fns-adapter.js';
 import DateHelpers from './utils/date-helpers.js';
-import type {DateIOAdapter} from './utils/types.js';
 
 import {getOverrides} from '../helpers/overrides.js';
 import type {WeekPropsT} from './types.js';
 
 export default class Week<T = Date> extends React.Component<WeekPropsT<T>> {
-  static defaultProps: {adapter: DateIOAdapter<Date>} = {
+  static defaultProps = {
     adapter: dateFnsAdapter,
     highlightedDate: null,
     onDayClick: () => {},
@@ -50,6 +49,7 @@ export default class Week<T = Date> extends React.Component<WeekPropsT<T>> {
         return (
           // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
           <Day
+            adapter={this.props.adapter}
             date={day}
             disabled={this.dateHelpers.isDayDisabled(day, this.props)}
             excludeDates={this.props.excludeDates}

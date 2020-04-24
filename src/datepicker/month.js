@@ -11,7 +11,6 @@ import {StyledMonth} from './styled-components.js';
 import dateFnsAdapter from './utils/date-fns-adapter.js';
 import DateHelpers from './utils/date-helpers.js';
 import {getOverrides} from '../helpers/overrides.js';
-import type {DateIOAdapter} from './utils/types.js';
 import type {MonthPropsT} from './types.js';
 
 const defaultProps = {
@@ -38,9 +37,7 @@ const defaultProps = {
 export default class CalendarMonth<T = Date> extends React.Component<
   MonthPropsT<T>,
 > {
-  static defaultProps: {
-    adapter: DateIOAdapter<Date>,
-  } = defaultProps;
+  static defaultProps = defaultProps;
 
   dateHelpers: DateHelpers<T>;
 

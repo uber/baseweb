@@ -14,7 +14,7 @@ import {getOverrides} from '../helpers/overrides.js';
 import getInterpolatedString from '../helpers/i18n-interpolation.js';
 import {LocaleContext} from '../locale/index.js';
 import {StyledInputWrapper} from './styled-components.js';
-import type {DatepickerPropsT, DatepickerDefaultPropsT} from './types.js';
+import type {DatepickerPropsT} from './types.js';
 import DateHelpers from './utils/date-helpers.js';
 import dateFnsAdapter from './utils/date-fns-adapter.js';
 
@@ -30,7 +30,7 @@ export default class Datepicker<T = Date> extends React.Component<
   DatepickerPropsT<T>,
   StateT,
 > {
-  static defaultProps: DatepickerDefaultPropsT = {
+  static defaultProps = {
     'aria-describedby': 'datepicker--screenreader--message--input',
     value: null,
     formatString: 'yyyy/MM/dd',
