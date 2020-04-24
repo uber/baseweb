@@ -180,7 +180,7 @@ export type CalendarPropsT<T> = {
 };
 
 export type HeaderPropsT<T> = CalendarPropsT<T> & {
-  date: Date,
+  date: T,
   order: number,
 };
 

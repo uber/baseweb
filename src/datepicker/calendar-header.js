@@ -93,11 +93,16 @@ export default class CalendarHeader<T = Date> extends React.Component<
     isMonthYearDropdownOpen: false,
     isFocusVisible: false,
   };
+
+  getDateProp: () => T = () => {
+    return this.props.date || this.dateHelpers.date();
+  };
+
   handleMonthChange = ({value}: {value: Array<{id: number}>}) => {
     if (this.props.onMonthChange) {
       // $FlowFixMe
       this.props.onMonthChange({
-        date: setMonth(this.props.date, value[0].id),
+        date: this.dateHelpers.setMonth(this.getDateProp(), value[0].id),
       });
     }
   };
@@ -106,7 +111,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
     if (this.props.onYearChange) {
       // $FlowFixMe
       this.props.onYearChange({
-        date: setYear(this.props.date, value[0].id),
+        date: this.dateHelpers.setYear(this.getDateProp(), value[0].id),
       });
     }
   };
