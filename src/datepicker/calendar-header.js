@@ -120,7 +120,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
     if (this.props.onMonthChange) {
       // $FlowFixMe
       this.props.onMonthChange({
-        date: addMonths(this.props.date, 1),
+        date: this.dateHelpers.addMonths(this.getDateProp(), 1),
       });
     }
   };
