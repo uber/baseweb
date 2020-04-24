@@ -180,11 +180,11 @@ export default class Calendar<T = Date> extends React.Component<
     }
   };
 
-  changeMonth = ({date}: {date: T}) => {
+  changeMonth: ({date: T}) => mixed = ({date}) => {
     this.setState({date: date}, () => this.handleMonthChange(this.state.date));
   };
 
-  changeYear = ({date}: {date: T}) => {
+  changeYear: ({date: T}) => mixed = ({date}) => {
     this.setState({date: date}, () => this.handleYearChange(this.state.date));
   };
 
