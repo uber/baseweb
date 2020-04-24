@@ -9,6 +9,8 @@ import * as React from 'react';
 import ArrowRight from '../icon/arrow-right.js';
 import ArrowLeft from '../icon/arrow-left.js';
 import TriangleDown from '../icon/triangle-down.js';
+import dateFnsAdapter from './utils/date-fns-adapter.js';
+import DateHelpers from './utils/date-helpers.js';
 import {StatefulMenu} from '../menu/index.js';
 import {Popover} from '../popover/index.js';
 import {LocaleContext} from '../locale/index.js';
@@ -66,12 +68,13 @@ function idToYearMonth(id) {
   return id.split('-').map(Number);
 }
 
-export default class CalendarHeader extends React.Component<
-  HeaderPropsT,
+export default class CalendarHeader<T = Date> extends React.Component<
+  HeaderPropsT<T>,
   {isMonthYearDropdownOpen: boolean, isFocusVisible: boolean},
 > {
   static defaultProps = {
     date: new Date(),
+    adapter: dateFnsAdapter,
     locale: null,
     maxDate: null,
     minDate: null,
@@ -79,32 +82,50 @@ export default class CalendarHeader extends React.Component<
     overrides: {},
   };
 
-  state = {isMonthYearDropdownOpen: false, isFocusVisible: false};
+  dateHelpers: DateHelpers<T>;
+
+  constructor(props: HeaderPropsT<T>) {
+    super(props);
+    this.dateHelpers = new DateHelpers(props.adapter);
+  }
+
+  state = {
+    isMonthYearDropdownOpen: false,
+    isFocusVisible: false,
+  };
   handleMonthChange = ({value}: {value: Array<{id: number}>}) => {
     if (this.props.onMonthChange) {
       // $FlowFixMe
-      this.props.onMonthChange({date: setMonth(this.props.date, value[0].id)});
+      this.props.onMonthChange({
+        date: setMonth(this.props.date, value[0].id),
+      });
     }
   };
 
   handleYearChange = ({value}: {value: Array<{id: number}>}) => {
     if (this.props.onYearChange) {
       // $FlowFixMe
-      this.props.onYearChange({date: setYear(this.props.date, value[0].id)});
+      this.props.onYearChange({
+        date: setYear(this.props.date, value[0].id),
+      });
     }
   };
 
   increaseMonth = () => {
     if (this.props.onMonthChange) {
       // $FlowFixMe
-      this.props.onMonthChange({date: addMonths(this.props.date, 1)});
+      this.props.onMonthChange({
+        date: addMonths(this.props.date, 1),
+      });
     }
   };
 
   decreaseMonth = () => {
     if (this.props.onMonthChange) {
       // $FlowFixMe
-      this.props.onMonthChange({date: subMonths(this.props.date, 1)});
+      this.props.onMonthChange({
+        date: subMonths(this.props.date, 1),
+      });
     }
   };
 
@@ -371,7 +392,10 @@ export default class CalendarHeader extends React.Component<
         onEsc={() => this.setState({isMonthYearDropdownOpen: false})}
         content={() => (
           <OverriddenStatefulMenu
-            initialState={{highlightedIndex: initialIndex, isFocused: true}}
+            initialState={{
+              highlightedIndex: initialIndex,
+              isFocused: true,
+            }}
             items={items}
             onItemSelect={({item, event}) => {
               event.preventDefault();
@@ -446,7 +470,10 @@ export default class CalendarHeader extends React.Component<
                   onFocus={forkFocus(calendarHeaderProps, this.handleFocus)}
                   onBlur={forkBlur(calendarHeaderProps, this.handleBlur)}
                 >
-                  {this.renderPreviousMonthButton({locale, theme})}
+                  {this.renderPreviousMonthButton({
+                    locale,
+                    theme,
+                  })}
                   {this.renderMonthYearDropdown()}
                   {this.renderNextMonthButton({locale, theme})}
                 </CalendarHeader>
