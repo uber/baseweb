@@ -77,7 +77,7 @@ const CheckboxConfig: TConfig = {
         into: 'checked',
       },
     },
-    isError: {
+    error: {
       value: false,
       type: PropTypes.Boolean,
       description: 'Renders component in error state.',
@@ -164,7 +164,7 @@ const CheckboxConfig: TConfig = {
             type: PropTypes.Boolean,
             description: 'True when the component is active.',
           },
-          $isError: 'isError',
+          $error: 'error',
           $checked: 'checked',
           $isIndeterminate: 'isIndeterminate',
           $required: 'required',

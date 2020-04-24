@@ -36,6 +36,7 @@ export type DefaultPropsT = {
   value: string,
   disabled: boolean,
   isError: boolean,
+  error: boolean,
   autoFocus: boolean,
   labelPlacement: LabelPlacementT,
   onChange: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
@@ -67,6 +68,8 @@ export type PropsT = {
   /** Set if the control is required to be checked. */
   required?: boolean,
   /** Sets radio group into error state. */
+  error?: boolean,
+  /** You should use the error prop instead. */
   isError?: boolean,
   /** Set to be focused (active) on selected\checked radio. */
   autoFocus?: boolean,
@@ -108,6 +111,8 @@ export type RadioPropsT = {
   /** Used to get a ref to the input element. Useful for programmatically focusing the input */
   inputRef: React.ElementRef<*>,
   /** Renders checkbox in errored state. */
+  error?: boolean,
+  /** You should use the error prop instead. */
   isError?: boolean,
   /** Is radio focused / active? */
   isFocused?: boolean,
@@ -197,6 +202,7 @@ export type StylePropsT = {
   $hasDescription: boolean,
   $isActive: boolean,
   $isError: boolean,
+  $error: boolean,
   $isFocused: boolean,
   $isFocusVisible: boolean,
   $isHovered: boolean,
