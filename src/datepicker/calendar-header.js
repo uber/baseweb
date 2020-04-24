@@ -24,21 +24,6 @@ import {
   StyledMonthYearSelectButton,
   StyledMonthYearSelectIconContainer,
 } from './styled-components.js';
-import {
-  addDays,
-  addMonths,
-  getMonth,
-  getMonthInLocale,
-  getStartOfWeek,
-  getWeekdayInLocale,
-  getWeekdayMinInLocale,
-  getYear,
-  monthDisabledBefore,
-  monthDisabledAfter,
-  setMonth,
-  setYear,
-  subMonths,
-} from './utils/index.js';
 import {ORIENTATION, WEEKDAYS} from './constants.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import type {HeaderPropsT} from './types.js';
