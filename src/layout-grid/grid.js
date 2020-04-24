@@ -5,13 +5,15 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-
-import React from 'react';
+import * as React from 'react';
 import {getOverrides} from '../helpers/overrides.js';
 import {StyledGrid as DefaultStyledGrid} from './styled-components.js';
-import Cell from './cell.js';
 
-import type {GridPropsT} from './types.js';
+import type {GridPropsT, SharedGridPropsT} from './types.js';
+
+export const GridContext: React.Context<SharedGridPropsT> = React.createContext(
+  {},
+);
 
 export default function Grid({
   align,
@@ -39,20 +41,11 @@ export default function Grid({
       $gridUnit={gridUnit}
       {...overrideProps}
     >
-      {React.Children.map(children, child => {
-        if (child) {
-          return (
-            <Cell
-              gridColumns={gridColumns}
-              gridGaps={gridGaps}
-              gridGutters={gridGutters}
-              gridUnit={gridUnit}
-              {...child.props}
-            />
-          );
-        }
-        return null;
-      })}
+      <GridContext.Provider
+        value={{gridColumns, gridGaps, gridGutters, gridUnit}}
+      >
+        {children}
+      </GridContext.Provider>
     </StyledGrid>
   );
 }
