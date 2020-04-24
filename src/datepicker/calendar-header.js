@@ -491,7 +491,10 @@ export default class CalendarHeader<T = Date> extends React.Component<
       StyledWeekdayHeader,
     );
 
-    const startOfWeek = getStartOfWeek(this.props.date, this.props.locale);
+    const startOfWeek = this.dateHelpers.getStartOfWeek(
+      this.getDateProp(),
+      this.props.locale,
+    );
     return (
       <ThemeContext.Consumer>
         {theme => (
@@ -512,14 +515,20 @@ export default class CalendarHeader<T = Date> extends React.Component<
                 </CalendarHeader>
                 <MonthHeader role="presentation" {...monthHeaderProps}>
                   {WEEKDAYS.map(offset => {
-                    const day = addDays(startOfWeek, offset);
+                    const day = this.dateHelpers.addDays(startOfWeek, offset);
                     return (
                       <WeekdayHeader
                         key={offset}
-                        alt={getWeekdayInLocale(day, this.props.locale)}
+                        alt={this.dateHelpers.getWeekdayInLocale(
+                          day,
+                          this.props.locale,
+                        )}
                         {...weekdayHeaderProps}
                       >
-                        {getWeekdayMinInLocale(day, this.props.locale)}
+                        {this.dateHelpers.getWeekdayMinInLocale(
+                          day,
+                          this.props.locale,
+                        )}
                       </WeekdayHeader>
                     );
                   })}
