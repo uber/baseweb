@@ -133,10 +133,6 @@ class DateHelpers<T> {
     }
     return false;
   };
-  differenceInCalendarDays: (T, T) => number = (fromDate, toDate) => {
-    const msDiff = this.adapter.getDiff(fromDate, toDate);
-    return msDiff / 864e5;
-  };
   subDays: (T, number) => T = (date, days) => {
     return this.adapter.addDays(date, days * -1);
   };
@@ -158,8 +154,8 @@ class DateHelpers<T> {
     includeDates,
   }) => {
     if (includeDates && minDate) {
-      let minDates = includeDates.filter(
-        includeDate => this.differenceInCalendarDays(includeDate, minDate) >= 0,
+      let minDates = includeDates.filter(includeDate =>
+        this.isOnOrAfterDay(includeDate, minDate),
       );
       return this.min(minDates);
     } else if (includeDates && includeDates.length) {
@@ -176,8 +172,8 @@ class DateHelpers<T> {
     includeDates,
   }) => {
     if (includeDates && maxDate) {
-      let maxDates = includeDates.filter(
-        includeDate => this.differenceInCalendarDays(includeDate, maxDate) <= 0,
+      let maxDates = includeDates.filter(includeDate =>
+        this.isOnOrBeforeDay(includeDate, maxDate),
       );
       return this.max(maxDates);
     } else if (includeDates) {
@@ -276,13 +272,26 @@ class DateHelpers<T> {
       false
     );
   };
+  //Tue Apr 12 2011 00:00:00 GMT-0500, Tue Apr 12 2011 11:21:31 GMT-0500
+  isOnOrAfterDay: (T, T) => boolean = (fromDate, toDate) => {
+    if (this.adapter.isSameDay(fromDate, toDate)) {
+      return true;
+    }
+    return this.adapter.isAfter(fromDate, toDate);
+  };
+  isOnOrBeforeDay: (T, T) => boolean = (fromDate, toDate) => {
+    if (this.adapter.isSameDay(fromDate, toDate)) {
+      return true;
+    }
+    return this.adapter.isBefore(fromDate, toDate);
+  };
   isOutOfBounds: (T, {minDate: ?T, maxDate: ?T}) => boolean = (
     day,
     {minDate, maxDate} = {},
   ) => {
     return (
-      (!!minDate && this.differenceInCalendarDays(day, minDate) < 0) ||
-      (!!maxDate && this.differenceInCalendarDays(day, maxDate) > 0)
+      (!!minDate && !this.isOnOrAfterDay(day, minDate)) ||
+      (!!maxDate && !this.isOnOrBeforeDay(day, maxDate))
     );
   };
   parse: (string, string) => T = (string, formatString) => {

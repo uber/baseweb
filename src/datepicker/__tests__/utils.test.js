@@ -21,10 +21,11 @@ const excludedFromChecks = [
   'min',
   'max',
   'setDate',
-  'differenceInCalendarDays',
   'differenceInCalendarMonths',
   'parse',
   'set',
+  'isOnOrAfterDay',
+  'isOnOrBeforeDay',
   'getQuarter',
   'isEqual',
   'isValid',
@@ -78,6 +79,50 @@ describe('Datepicker utils', () => {
       expect(destructuredReturn).toEqual(helpersReturn);
     });
   });
+  describe('isOnOrAfterDay', () => {
+    test('should return true if the second provided date is on or after the start of the day of the first provided date', () => {
+      expect(
+        helpers.isOnOrAfterDay(
+          new Date('Tue Apr 12 2011 00:00:00 GMT-0500'),
+          new Date('Tue Apr 12 2011 11:21:31 GMT-0500'),
+        ),
+      ).toEqual(true);
+      expect(
+        helpers.isOnOrAfterDay(
+          new Date('Tue Apr 11 2011 00:00:00 GMT-0500'),
+          new Date('Tue Apr 12 2011 11:21:31 GMT-0500'),
+        ),
+      ).toEqual(false);
+      expect(
+        helpers.isOnOrAfterDay(
+          new Date('Tue Apr 12 2011 00:00:00 GMT-0500'),
+          new Date('Tue Apr 11 2011 11:21:31 GMT-0500'),
+        ),
+      ).toEqual(true);
+    });
+  });
+  describe('isOnOrBeforeDay', () => {
+    test('should return true if the second provided date is on or before the start of the day of the first provided date', () => {
+      expect(
+        helpers.isOnOrBeforeDay(
+          new Date('Tue Apr 12 2011 00:00:00 GMT-0500'),
+          new Date('Tue Apr 12 2011 11:21:31 GMT-0500'),
+        ),
+      ).toEqual(true);
+      expect(
+        helpers.isOnOrBeforeDay(
+          new Date('Tue Apr 11 2011 00:00:00 GMT-0500'),
+          new Date('Tue Apr 12 2011 11:21:31 GMT-0500'),
+        ),
+      ).toEqual(true);
+      expect(
+        helpers.isOnOrBeforeDay(
+          new Date('Tue Apr 12 2011 00:00:00 GMT-0500'),
+          new Date('Tue Apr 11 2011 11:21:31 GMT-0500'),
+        ),
+      ).toEqual(false);
+    });
+  });
   describe('differenceInCalendarMonths', () => {
     test('should return the difference in calendar months', () => {
       expect(
@@ -96,28 +141,6 @@ describe('Datepicker utils', () => {
         helpers.differenceInCalendarMonths(
           new Date(2020, 5, 1),
           new Date(2020, 5, 10),
-        ),
-      ).toEqual(0);
-    });
-  });
-  describe('differenceInCalendarDays', () => {
-    test('should return different in calendar days', () => {
-      expect(
-        helpers.differenceInCalendarDays(
-          new Date(2020, 5, 2),
-          new Date(2020, 5, 3),
-        ),
-      ).toEqual(-1);
-      expect(
-        helpers.differenceInCalendarDays(
-          new Date(2020, 5, 2),
-          new Date(2020, 5, 1),
-        ),
-      ).toEqual(1);
-      expect(
-        helpers.differenceInCalendarDays(
-          new Date(2020, 5, 1),
-          new Date(2020, 5, 1),
         ),
       ).toEqual(0);
     });
@@ -226,6 +249,12 @@ describe('Datepicker utils', () => {
             maxDate,
           }),
         ).toEqual(true);
+        expect(
+          helpers.isOutOfBounds(new Date('Tue Apr 12 2011 00:00:00 GMT-0500'), {
+            minDate: new Date('Tue Apr 12 2011 11:21:31 GMT-0500'),
+            maxDate,
+          }),
+        ).toEqual(false);
       });
     });
   });
@@ -428,7 +457,7 @@ describe('getEffectiveMinDate', () => {
       expect(
         helpers.getEffectiveMinDate({
           includeDates,
-          minDate: new Date(2020, 0, 2),
+          minDate: new Date(2020, 0, 2, 1, 1),
         }),
       ).toEqual(includeDates[1]);
     });
