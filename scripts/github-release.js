@@ -99,4 +99,4 @@ async function main() {
   console.log(`Successfully created release at: ${release.html_url}`);
 }
 
-main();
+main().catch(console.error);
