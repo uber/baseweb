@@ -58,7 +58,6 @@ export default class CalendarHeader<T = Date> extends React.Component<
   {isMonthYearDropdownOpen: boolean, isFocusVisible: boolean},
 > {
   static defaultProps = {
-    date: new Date(),
     adapter: dateFnsAdapter,
     locale: null,
     maxDate: null,
