@@ -207,7 +207,8 @@ export type DatepickerPropsT<T> = CalendarPropsT<T> & {
 };
 
 export type SharedStylePropsT = {
-  $date: Date,
+  // eslint-disable-next-line flowtype/no-weak-types
+  $date: any,
   $disabled: ?boolean,
   $endDate: ?boolean,
   $endOfMonth: ?boolean,
@@ -229,14 +230,14 @@ export type SharedStylePropsT = {
 
 export type StateChangeTypeT = ?$Values<typeof STATE_CHANGE_TYPE>;
 
-export type ContainerStateT = {
+export type ContainerStateT<T> = {
   /** Selected `Date`. If `range` is set, `value` is an array of 2 values. */
-  value?: ?Date | Array<Date>,
+  value?: ?T | Array<T>,
 };
 
-export type NavigationContainerStateT = {
+export type NavigationContainerStateT<T> = {
   // indicates a highlighted date on hover and keyboard navigation
-  highlightedDate?: ?Date,
+  highlightedDate?: ?T,
   // used to disable keyboard navigation when a month or year select
   // dropdown is opened
   isActive?: boolean,
@@ -246,32 +247,34 @@ export type NavigationContainerStateT = {
   lastHighlightedDate?: Date,
 };
 
-export type StateReducerT = (
+export type StateReducerT<T> = (
   stateType: StateChangeTypeT,
-  nextState: ContainerStateT,
-  currentState: ContainerStateT,
-) => ContainerStateT;
+  nextState: ContainerStateT<T>,
+  currentState: ContainerStateT<T>,
+) => ContainerStateT<T>;
 
-export type NavigationContainerStateReducerT = (
+export type NavigationContainerStateReducerT<T> = (
   stateType: StateChangeTypeT,
-  nextState: NavigationContainerStateT,
-  currentState: NavigationContainerStateT,
-) => NavigationContainerStateT;
+  nextState: NavigationContainerStateT<T>,
+  currentState: NavigationContainerStateT<T>,
+) => NavigationContainerStateT<T>;
 
-export type StatefulContainerPropsT<T> = {
-  children: T => React.Node,
+export type StatefulContainerPropsT<PropsT, T> = {
+  children: PropsT => React.Node,
   /** Initial state of an uncontrolled datepicker component. */
-  initialState: ContainerStateT,
+  initialState: ContainerStateT<T>,
   /** A state change handler. */
-  stateReducer: StateReducerT,
+  stateReducer: StateReducerT<T>,
   /** Event handler that is called when a date/time is selected. */
   onChange?: onChangeT<T>,
+  adapter?: DateIOAdapter<T>,
   /** Should the date value be stored as an array or single value. */
   range?: boolean,
 };
 
-export type NavigationContainerPropsT = {
-  children: CalendarPropsT => React.Node,
+// This type is seemingly not used anywhere
+export type NavigationContainerPropsT<T> = {
+  children: (CalendarPropsT<T>) => React.Node,
   range?: boolean,
   highlightedDate?: ?Date,
   /** Day's `mouseover` event handler. */
@@ -279,14 +282,14 @@ export type NavigationContainerPropsT = {
   /** Day's `mouseleave` event handler. */
   onDayMouseLeave: (params: {date: Date, event: Event}) => mixed,
   /** Event handler that is called when a new date is selected. */
-  onChange: onChangeT,
+  onChange: onChangeT<T>,
   /** Event handler that is called when the current rendered month is changed. */
-  onMonthChange?: ({date: Date}) => mixed,
+  onMonthChange?: ({date: T}) => mixed,
   /** Event handler that is called when the current rendered year is changed. */
-  onYearChange?: ({date: Date}) => mixed,
+  onYearChange?: ({date: T}) => mixed,
   /** Selected `Date`. If `range` is set, `value` is an array of 2 values. */
-  value?: ?Date | Array<Date>,
-  stateReducer: NavigationContainerStateReducerT,
+  value?: ?T | Array<T>,
+  stateReducer: NavigationContainerStateReducerT<T>,
   trapTabbing: boolean,
 };
 

@@ -38,7 +38,7 @@ class DateHelpers<T> {
     const options = getOptions(this.adapter);
     return new UtilsClass({...options, locale});
   };
-  date: (DateInput<T>) => T = date => this.adapter.date(date);
+  date: (DateInput<T> | void) => T = date => this.adapter.date(date);
   dateToSeconds: T => number = date => {
     const seconds = this.adapter.getSeconds(date);
     const minutes = this.adapter.getMinutes(date) * MINUTE;

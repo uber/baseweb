@@ -9,19 +9,23 @@ import * as React from 'react';
 import StatefulContainer from './stateful-container.js';
 import Calendar from './calendar.js';
 import type {CalendarPropsT, StatefulDatepickerPropsT} from './types.js';
+import type {StateReducerT} from './types.js';
 
-function StatefulComponent(props: StatefulDatepickerPropsT<CalendarPropsT>) {
-  return (
-    <StatefulContainer {...props}>
-      {extendedProps => <Calendar {...extendedProps} />}
-    </StatefulContainer>
-  );
+class StatefulComponent<T = Date> extends React.Component<
+  StatefulDatepickerPropsT<CalendarPropsT<T>>,
+> {
+  static defaultProps: {stateReducer: StateReducerT<T>} = {
+    initialState: {},
+    stateReducer: (type, nextState) => nextState,
+    onSelect: () => {},
+  };
+  render() {
+    return (
+      <StatefulContainer {...this.props}>
+        {extendedProps => <Calendar {...extendedProps} />}
+      </StatefulContainer>
+    );
+  }
 }
-
-StatefulComponent.defaultProps = {
-  initialState: {},
-  stateReducer: (type, nextState) => nextState,
-  onSelect: () => {},
-};
 
 export default StatefulComponent;

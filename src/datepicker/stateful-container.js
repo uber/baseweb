@@ -16,23 +16,27 @@ import type {
   StateReducerT,
 } from './types.js';
 
-const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
+type InputProps<T> = CalendarPropsT<T> | DatepickerPropsT<T>;
 
-type PropsT = StatefulContainerPropsT<CalendarPropsT | DatepickerPropsT>;
-class StatefulContainer extends React.Component<PropsT, ContainerStateT> {
-  static defaultProps = {
+type PropsT<T> = StatefulContainerPropsT<InputProps<T>, T>;
+
+class StatefulContainer<T = Date> extends React.Component<
+  PropsT<T>,
+  ContainerStateT<T>,
+> {
+  static defaultProps: {stateReducer: StateReducerT<T>} = {
     initialState: {},
-    stateReducer: defaultStateReducer,
+    stateReducer: (type, nextState) => nextState,
     onChange: () => {},
   };
 
-  constructor(props: PropsT) {
+  constructor(props: PropsT<T>) {
     super(props);
-    const value = props.range ? [] : (null: ?Date);
+    const value = props.range ? [] : (null: ?T);
     this.state = {value, ...props.initialState};
   }
 
-  onChange = (data: {date: ?Date | Array<Date>}) => {
+  onChange: ({date: ?T | Array<T>}) => mixed = data => {
     const {date} = data;
     this.internalSetState(STATE_CHANGE_TYPE.change, {value: date});
     if (typeof this.props.onChange === 'function') {
@@ -40,7 +44,7 @@ class StatefulContainer extends React.Component<PropsT, ContainerStateT> {
     }
   };
 
-  internalSetState(type: StateChangeTypeT, changes: ContainerStateT) {
+  internalSetState(type: StateChangeTypeT, changes: ContainerStateT<T>) {
     const {stateReducer} = this.props;
     this.setState(prevState => stateReducer(type, changes, prevState));
   }

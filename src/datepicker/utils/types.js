@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 type DateValues<T> = T | string | number;
-type DateInput<T> = DateValues<T>;
+export type DateInput<T> = DateValues<T>;
 
 type Comparison<T> = (value: T, comparing: T) => boolean;
 type DateInDateOut<T> = (value: T) => T;
