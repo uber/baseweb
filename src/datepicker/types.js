@@ -11,6 +11,10 @@ import type {OverrideT} from '../helpers/overrides.js';
 import type {SizeT} from '../input/types.js';
 import {ORIENTATION, STATE_CHANGE_TYPE} from './constants.js';
 import type {DateIOAdapter} from './utils/types.js';
+import type {
+  TimePickerPropsT as TimePickerPropsTBase,
+  TimePickerStateT as TimePickerStateTBase,
+} from '../timepicker/types.js';
 
 import type {OptionT} from '../select/index.js';
 
@@ -54,7 +58,7 @@ export type DatepickerOverridesT = {
   Popover?: OverrideT,
 };
 
-export type DayPropsT<T> = {
+export type DayPropsT<T = Date> = {
   disabled: boolean,
   date: T,
   filterDate: ?(day: T) => boolean,
@@ -84,7 +88,7 @@ export type DayStateT = {
   isFocusVisible: boolean,
 };
 
-export type WeekPropsT<T> = {
+export type WeekPropsT<T = Date> = {
   date: T,
   excludeDates: ?Array<T>,
   filterDate: ?(day: T) => boolean,
@@ -109,9 +113,9 @@ export type WeekPropsT<T> = {
   value: ?T | Array<T>,
 };
 
-export type MonthPropsT<T> = WeekPropsT<T>;
+export type MonthPropsT<T = Date> = WeekPropsT<T>;
 
-export type CalendarInternalState<T> = {
+export type CalendarInternalState<T = Date> = {
   highlightedDate: T,
   focused: boolean,
   date: T,
@@ -120,7 +124,7 @@ export type CalendarInternalState<T> = {
   time: Array<Date>,
 };
 
-export type CalendarPropsT<T> = {
+export type CalendarPropsT<T = Date> = {
   /** Defines if the calendar is set to be focused on an initial render. */
   autoFocusCalendar?: boolean,
   /** A list of dates to disable. */
@@ -179,12 +183,12 @@ export type CalendarPropsT<T> = {
   value?: ?T | Array<T>,
 };
 
-export type HeaderPropsT<T> = CalendarPropsT<T> & {
+export type HeaderPropsT<T = Date> = CalendarPropsT<T> & {
   date: T,
   order: number,
 };
 
-export type DatepickerPropsT<T> = CalendarPropsT<T> & {
+export type DatepickerPropsT<T = Date> = CalendarPropsT<T> & {
   'aria-label'?: string,
   'aria-labelledby'?: string,
   'aria-describedby'?: ?string,
@@ -230,12 +234,12 @@ export type SharedStylePropsT = {
 
 export type StateChangeTypeT = ?$Values<typeof STATE_CHANGE_TYPE>;
 
-export type ContainerStateT<T> = {
+export type ContainerStateT<T = Date> = {
   /** Selected `Date`. If `range` is set, `value` is an array of 2 values. */
   value?: ?T | Array<T>,
 };
 
-export type NavigationContainerStateT<T> = {
+export type NavigationContainerStateT<T = Date> = {
   // indicates a highlighted date on hover and keyboard navigation
   highlightedDate?: ?T,
   // used to disable keyboard navigation when a month or year select
@@ -244,22 +248,22 @@ export type NavigationContainerStateT<T> = {
   // last remembered highlighted date to restore
   // when keyboard navigating after a mouse moved off the cal and reset
   // highlightedDate value
-  lastHighlightedDate?: Date,
+  lastHighlightedDate?: T,
 };
 
-export type StateReducerT<T> = (
+export type StateReducerT<T = Date> = (
   stateType: StateChangeTypeT,
   nextState: ContainerStateT<T>,
   currentState: ContainerStateT<T>,
 ) => ContainerStateT<T>;
 
-export type NavigationContainerStateReducerT<T> = (
+export type NavigationContainerStateReducerT<T = Date> = (
   stateType: StateChangeTypeT,
   nextState: NavigationContainerStateT<T>,
   currentState: NavigationContainerStateT<T>,
 ) => NavigationContainerStateT<T>;
 
-export type StatefulContainerPropsT<PropsT, T> = {
+export type StatefulContainerPropsT<PropsT, T = Date> = {
   children: PropsT => React.Node,
   /** Initial state of an uncontrolled datepicker component. */
   initialState: ContainerStateT<T>,
@@ -273,7 +277,7 @@ export type StatefulContainerPropsT<PropsT, T> = {
 };
 
 // This type is seemingly not used anywhere
-export type NavigationContainerPropsT<T> = {
+export type NavigationContainerPropsT<T = Date> = {
   children: (CalendarPropsT<T>) => React.Node,
   range?: boolean,
   highlightedDate?: ?Date,
@@ -293,40 +297,15 @@ export type NavigationContainerPropsT<T> = {
   trapTabbing: boolean,
 };
 
-export type StatefulDatepickerPropsT<T> = $Diff<
-  StatefulContainerPropsT<T>,
+export type StatefulDatepickerPropsT<PropsT, T = Date> = $Diff<
+  StatefulContainerPropsT<PropsT, T>,
   {
-    children: T => React.Node,
+    children: PropsT => React.Node,
   },
 >;
 
-export type TimePickerPropsT = {
-  /** Render options in AM/PM format or 24 hour format. Defaults to 12 hour. */
-  format?: '12' | '24',
-  /** Callback for when time selection changes. */
-  onChange?: Date => mixed,
-  overrides?: {
-    Select?: OverrideT,
-  },
-  /** Set to true to allow times that aren't displayed in the options list to be entered manually. Defaults to false. */
-  creatable?: boolean,
-  /** Amount of seconds between each option time. Defaults to 900 (15 minutes). */
-  step?: number,
-  /**
-   * Optional value that can be provided to fully control the component. If not provided, TimePicker
-   * will manage state internally and default to the closest step to new Date().
-   */
-  value?: ?Date,
-  disabled?: boolean,
-  error?: boolean,
-  positive?: boolean,
-};
-export type TimePickerStateT = {
-  /** List of times (in seconds) displayed in the dropdown menu. */
-  steps: number[],
-  /** Internal value of the selected time as an integer since midnight (0) */
-  value: ?OptionT,
-};
+export type TimePickerPropsT<T = Date> = TimePickerPropsTBase<T>;
+export type TimePickerStateT = TimePickerStateTBase;
 
 export type TimezonePickerStateT = {
   /** List of timezones from the IANA database. */
