@@ -140,6 +140,7 @@ export type MenuPropsT = {
     List?: OverrideT,
     Option?: OverrideT,
     OptgroupHeader?: OverrideT,
+    ListItem?: OverrideT,
   },
   /** Renders all menu content for SEO purposes regardless of menu  state */
   renderAll?: boolean,

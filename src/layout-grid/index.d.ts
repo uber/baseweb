@@ -4,9 +4,9 @@ import {CSSLengthUnitT} from '../theme';
 import {Override} from '../overrides';
 
 export enum ALIGNMENT {
-  start = 'start',
+  start = 'flex-start',
   center = 'center',
-  end = 'end',
+  end = 'flex-end',
 }
 
 export enum BEHAVIOR {

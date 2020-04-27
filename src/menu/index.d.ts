@@ -36,6 +36,7 @@ export interface MenuProps extends BaseMenuPropsT {
     EmptyState?: Override<any>;
     List?: Override<any>;
     Option?: Override<any>;
+    ListItem?: Override<any>;
   };
 }
 
