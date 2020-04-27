@@ -442,14 +442,24 @@ describe('getEffectiveMinDate', () => {
   describe('if only minDate is provider', () => {
     test('should return minDate', () => {
       const minDate = new Date(2020, 4, 25);
-      expect(helpers.getEffectiveMinDate({minDate})).toEqual(minDate);
+      expect(
+        helpers.getEffectiveMinDate({
+          minDate,
+          maxDate: null,
+          includeDates: null,
+        }),
+      ).toEqual(minDate);
     });
   });
   describe('if only includeDates is provided', () => {
     test('should return the earliest includeDate', () => {
-      expect(helpers.getEffectiveMinDate({includeDates})).toEqual(
-        includeDates[0],
-      );
+      expect(
+        helpers.getEffectiveMinDate({
+          includeDates,
+          maxDate: null,
+          minDate: null,
+        }),
+      ).toEqual(includeDates[0]);
     });
   });
   describe('if minDate and includeDates are provided', () => {
@@ -473,14 +483,24 @@ describe('getEffectiveMaxDate', () => {
   describe('if only maxDate is provider', () => {
     test('should return maxDate', () => {
       const maxDate = new Date(2020, 4, 25);
-      expect(helpers.getEffectiveMaxDate({maxDate})).toEqual(maxDate);
+      expect(
+        helpers.getEffectiveMaxDate({
+          maxDate,
+          minDate: null,
+          includeDates: null,
+        }),
+      ).toEqual(maxDate);
     });
   });
   describe('if only includeDates is provided', () => {
     test('should return the earliest includeDate', () => {
-      expect(helpers.getEffectiveMaxDate({includeDates})).toEqual(
-        includeDates[2],
-      );
+      expect(
+        helpers.getEffectiveMaxDate({
+          includeDates,
+          minDate: null,
+          maxDate: null,
+        }),
+      ).toEqual(includeDates[2]);
     });
   });
   describe('if maxDate and includeDates are provided', () => {
