@@ -11,8 +11,12 @@ import * as utilsHelpers from '../utils/index';
 import {formatDate} from '../utils';
 import DateHelpers from '../utils/date-helpers';
 import adapter from '../utils/date-fns-adapter';
+import MomentUtils from '@date-io/moment';
+const momentAdapter = new MomentUtils();
 /* eslint-enable import/extensions */
 const dateHelpers = new DateHelpers(adapter);
+const momentHelpers = new DateHelpers(momentAdapter);
+import moment from 'moment';
 
 // these are helpers that we want to test
 // but aren't exported from utils/index
@@ -31,6 +35,37 @@ const excludedFromChecks = [
   'isValid',
 ];
 
+const defaultIsDate = value => value instanceof Date;
+
+const adapterVersions = [
+  {
+    name: 'utils/index',
+    helpers: utilsHelpers,
+    isDate: defaultIsDate,
+  },
+  {
+    name: 'moment',
+    helpers: momentHelpers,
+    isDate: value => moment.isMoment(value),
+  },
+];
+
+const getDiffereningAdapters = (runAdapter, value) => {
+  const getComparisonValue = (isDate, value) => {
+    //$FlowFixMe
+    return isDate(value) ? value.toISOString() : value;
+  };
+  const comparisonValue = getComparisonValue(defaultIsDate, value);
+  return adapterVersions
+    .filter(version => {
+      const {helpers, isDate} = version;
+      return (
+        getComparisonValue(isDate, runAdapter(helpers)) !== comparisonValue
+      );
+    })
+    .map(version => version.name);
+};
+
 //$FlowFixMe
 const helpers: DateHelpers<Date> = Object.keys(dateHelpers).reduce(
   (memo, methodName) => {
@@ -46,21 +81,15 @@ const helpers: DateHelpers<Date> = Object.keys(dateHelpers).reduce(
         ) {
           return dateHelpersReturn;
         }
-        const {[methodName]: utilsFunction} = utilsHelpers;
-        const utilsHelpersReturn = utilsFunction(...args);
-        const getComparisonValue = value => {
-          if (value instanceof Date) {
-            return value.toISOString();
-          }
-          return value;
-        };
-        if (
-          getComparisonValue(utilsHelpersReturn) !==
-          getComparisonValue(dateHelpersReturn)
-        ) {
-          console.log(dateHelpersReturn, utilsHelpersReturn);
+        const differingAdapters = getDiffereningAdapters(
+          //$FlowFixMe
+          helpers => helpers[methodName](...args),
+          dateHelpersReturn,
+        );
+        if (differingAdapters.length > 0) {
+          const adapterString = differingAdapters.join(',');
           throw new Error(
-            'utils/index method and dateHelpers method return different values',
+            `${adapterString} return different values than default adapter`,
           );
         }
         return dateHelpersReturn;
