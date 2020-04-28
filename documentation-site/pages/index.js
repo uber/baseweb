@@ -208,7 +208,7 @@ const Index = (props: {
     </Markdown.p>
     <H2>Figma Communities</H2>
     <Markdown.p>
-      You can find all the Base Web compoonents on{' '}
+      You can find all the Base Web components on{' '}
       <Link href="https://baseweb.design/blog/base-figma-community/">
         Figma Communities
       </Link>
