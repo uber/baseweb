@@ -14,20 +14,19 @@ export const StyledTreeItemList = styled<{
   $isChildNode?: boolean,
   $expanded?: boolean,
 }>('ul', ({$theme, $indentGuides, $isChildNode, $expanded = true}) => {
+  const direction: string = $theme.direction === 'rtl' ? 'Right' : 'Left';
   return {
     marginTop: 0,
     marginBottom: 0,
-    marginLeft: $isChildNode ? $theme.sizing.scale550 : 0,
-    marginRight: 0,
+    [`margin${direction}`]: $isChildNode ? $theme.sizing.scale550 : 0,
     overflow: 'auto',
     paddingTop: 0,
     paddingBottom: 0,
-    paddingLeft: $isChildNode ? $theme.sizing.scale200 : 0,
-    paddingRight: 0,
+    [`padding${direction}`]: $isChildNode ? $theme.sizing.scale200 : 0,
     position: 'relative',
     outline: 'none',
     display: $expanded ? 'block' : 'none',
-    borderLeft:
+    [`border${direction}`]:
       $indentGuides && $isChildNode
         ? `1px solid ${$theme.colors.borderOpaque}`
         : 'none',
@@ -84,26 +83,28 @@ export const StyledItemContent = styled<{
 });
 
 export const StyledIconContainer = styled<{}>('div', ({$theme}) => {
+  const marginDirection: string =
+    $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
   return {
     alignItems: 'center',
     display: 'flex',
     justifyContent: 'center',
     marginTop: 0,
     marginBottom: 0,
-    marginLeft: 0,
-    marginRight: $theme.sizing.scale200,
+    [marginDirection]: $theme.sizing.scale200,
   };
 });
 
 export const StyledNoIconContainer = styled<{}>('div', ({$theme}) => {
+  const marginDirection: string =
+    $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
   return {
     alignItems: 'center',
     display: 'flex',
     justifyContent: 'center',
     marginTop: 0,
     marginBottom: 0,
-    marginLeft: 0,
-    marginRight: $theme.sizing.scale500,
+    [marginDirection]: $theme.sizing.scale200,
     width: 0,
     height: '1em',
   };
