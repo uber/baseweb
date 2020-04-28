@@ -10,6 +10,8 @@ export {default as ButtonGroup} from './button-group.js';
 export {default as StatefulButtonGroup} from './stateful-button-group.js';
 export {default as StatefulContainer} from './stateful-container.js';
 
+// Constants
+export {SIZE} from '../button/constants.js';
 export {MODE, STATE_CHANGE_TYPE} from './constants.js';
 
 // Styled elements
