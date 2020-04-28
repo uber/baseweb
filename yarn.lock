@@ -2305,11 +2305,6 @@
   dependencies:
     find-up "^2.1.0"
 
-"@date-io/core@^2.4.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@date-io/core/-/core-2.4.0.tgz#59e1c6de1d48ee63c6e97681b415076d04e7b5bf"
-  integrity sha512-XUr4TSwFmthcCn5QYnGqobbnBqOsSyCggRfvieMQHPSz5zei8KYpw4xlvFFQfu/MI3CmCHDjWMkVaPy/uFIDNA==
-
 "@date-io/core@^2.6.0":
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/@date-io/core/-/core-2.6.0.tgz#01efa47b225d1a94d3138583588b919442149ee8"
@@ -2322,12 +2317,12 @@
   dependencies:
     "@date-io/core" "^2.6.0"
 
-"@date-io/moment@^2.4.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@date-io/moment/-/moment-2.4.0.tgz#84612f4cf175ec8093c43a6b6176f874d2d1f007"
-  integrity sha512-857C9idmZGpD8NygxQsOXPa3OePC6UFAhU996dCUv8cY17p1tkjgj7/JZ3J7PTV2i8ybeUDUD/tAadACEtI05g==
+"@date-io/moment@2.6.0":
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/@date-io/moment/-/moment-2.6.0.tgz#08e00a8ff86e4d144bb0e465487048c15db3be25"
+  integrity sha512-G2gpe2AEW221lJGNPjy6ImnJuwFWLwkpJ/IfU3EFbblo/tCzyDmREh7spdDW8auqm5a9EOZShcCIpsommf6L0w==
   dependencies:
-    "@date-io/core" "^2.4.0"
+    "@date-io/core" "^2.6.0"
 
 "@emotion/cache@^10.0.15":
   version "10.0.15"

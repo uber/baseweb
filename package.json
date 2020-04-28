@@ -78,7 +78,7 @@
     "@babel/types": "^7.7.1",
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^8.0.0",
-    "@date-io/moment": "^2.4.0",
+    "@date-io/moment": "2.6.0",
     "@mdx-js/tag": "^0.20.0",
     "@octokit/rest": "^16.33.1",
     "@stackblitz/sdk": "^1.4.0",
