@@ -15,8 +15,8 @@ import {StyledLink as Link} from 'baseui/link';
 import {H1, H2} from '../components/markdown-elements';
 import {Card, StyledBody} from 'baseui/card';
 import {Tag} from 'baseui/tag';
-import fetch from 'isomorphic-fetch';
 import {withStyle} from 'baseui';
+import Octokit from '@octokit/rest';
 
 import BlogPosts from '../posts.js';
 
@@ -231,35 +231,21 @@ const Index = (props: {
   </Layout>
 );
 
-async function fetchContributorsByPage(page = 1) {
-  const res = await fetch(
-    `https://api.github.com/repos/uber/baseweb/contributors?&page=${page}`,
-    {
-      headers: {
-        Authorization: process.env.GITHUB_AUTH_TOKEN || '',
-      },
-    },
-  );
-  return res.json();
-}
-
+const octokit = Octokit({auth: process.env.GITHUB_AUTH_TOKEN});
 Index.getInitialProps = async () => {
-  let contributors = [];
-  let page = 1;
-  while (page !== -1) {
-    const res = await fetchContributorsByPage(page);
-    contributors = contributors.concat(res);
-    if (res.length) {
-      page += 1;
-    } else {
-      page = -1;
-    }
-  }
-
-  if (Array.isArray(contributors)) {
+  try {
+    const contributors = await octokit.paginate(
+      'GET /repos/:owner/:repo/contributors',
+      {
+        owner: 'uber',
+        repo: 'baseweb',
+      },
+    );
     return {contributors};
+  } catch (error) {
+    console.error(`Failed to fetch contributors.`, error);
+    return {contributors: []};
   }
-  return {contributors: []};
 };
 
 export default Index;
