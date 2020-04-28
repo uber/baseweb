@@ -20,7 +20,6 @@ const octokit = Octokit({auth: process.env.GITHUB_AUTH_TOKEN});
 
 const owner = 'uber';
 const repo = 'baseweb';
-const root = `https://api.github.com/repos/${owner}/${repo}`;
 
 // https://github.com/uber-workflow/probot-app-release-notes/blob/master/pr-for-commit.js
 async function prFromCommit(sha) {
