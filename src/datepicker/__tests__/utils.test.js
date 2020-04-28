@@ -12,11 +12,11 @@ import {formatDate} from '../utils';
 import DateHelpers from '../utils/date-helpers';
 import adapter from '../utils/date-fns-adapter';
 import MomentUtils from '@date-io/moment';
-const momentAdapter = new MomentUtils();
+import moment from 'moment';
+const momentAdapter = new MomentUtils({instance: moment});
 /* eslint-enable import/extensions */
 const dateHelpers = new DateHelpers(adapter);
 const momentHelpers = new DateHelpers(momentAdapter);
-import moment from 'moment';
 
 // these are helpers that we want to test
 // but aren't exported from utils/index
@@ -35,35 +35,73 @@ const excludedFromChecks = [
   'isValid',
 ];
 
-const defaultIsDate = value => value instanceof Date;
-
+const defaultGetComparisonValue = value => {
+  if (value instanceof Date) {
+    return value.toISOString();
+  }
+  return value;
+};
 const adapterVersions = [
   {
     name: 'utils/index',
     helpers: utilsHelpers,
-    isDate: defaultIsDate,
+    getComparisonValue: defaultGetComparisonValue,
   },
   {
     name: 'moment',
     helpers: momentHelpers,
-    isDate: value => moment.isMoment(value),
+    getComparisonValue: value => {
+      if (moment.isMoment(value)) {
+        return value.toDate().toISOString();
+      }
+
+      return value;
+    },
+    convertArgs: args =>
+      args.map(arg => {
+        if (Array.isArray(arg)) {
+          return arg.map(item => {
+            if (item instanceof Date) {
+              return moment(item);
+            }
+            return item;
+          });
+        }
+        if (arg instanceof Date) {
+          return moment(arg);
+        }
+        if (typeof arg === 'object') {
+          return Object.keys(arg).reduce((memo, key) => {
+            const value = arg[key];
+            return {
+              ...memo,
+              [key]: value instanceof Date ? moment(value) : value,
+            };
+          }, {});
+        }
+        return arg;
+      }),
   },
 ];
 
-const getDiffereningAdapters = (runAdapter, value) => {
-  const getComparisonValue = (isDate, value) => {
-    //$FlowFixMe
-    return isDate(value) ? value.toISOString() : value;
-  };
-  const comparisonValue = getComparisonValue(defaultIsDate, value);
-  return adapterVersions
-    .filter(version => {
-      const {helpers, isDate} = version;
-      return (
-        getComparisonValue(isDate, runAdapter(helpers)) !== comparisonValue
-      );
-    })
-    .map(version => version.name);
+const getDiffereningAdapterMap = (runAdapter, value) => {
+  const comparisonValue = defaultGetComparisonValue(value);
+  return adapterVersions.reduce((memo, version) => {
+    const {
+      helpers,
+      getComparisonValue,
+      convertArgs = args => args,
+      name,
+    } = version;
+    const currentValue = getComparisonValue(runAdapter(helpers, convertArgs));
+    if (currentValue !== comparisonValue) {
+      return {
+        ...memo,
+        [name]: currentValue,
+      };
+    }
+    return memo;
+  }, {});
 };
 
 //$FlowFixMe
@@ -81,15 +119,23 @@ const helpers: DateHelpers<Date> = Object.keys(dateHelpers).reduce(
         ) {
           return dateHelpersReturn;
         }
-        const differingAdapters = getDiffereningAdapters(
+        const differingAdapterMap = getDiffereningAdapterMap(
           //$FlowFixMe
-          helpers => helpers[methodName](...args),
+          (helpers, convertArgs) => {
+            const convertedArgs = convertArgs(args);
+            return helpers[methodName](...convertedArgs);
+          },
           dateHelpersReturn,
         );
-        if (differingAdapters.length > 0) {
-          const adapterString = differingAdapters.join(',');
+        if (Object.keys(differingAdapterMap).length > 0) {
+          const adapterString = Object.keys(differingAdapterMap).reduce(
+            (memo, name) => {
+              return `${memo}${name}: Original: ${dateHelpersReturn} Current: ${differingAdapterMap[name]}\n`;
+            },
+            '',
+          );
           throw new Error(
-            `${adapterString} return different values than default adapter`,
+            `values return by one or more versions of helpers differ\n${adapterString}`,
           );
         }
         return dateHelpersReturn;
