@@ -35,6 +35,7 @@ export default class Datepicker extends React.Component<
   static defaultProps = {
     'aria-describedby': 'datepicker--screenreader--message--input',
     value: null,
+    formatString: 'yyyy/MM/dd',
   };
 
   calendar: ?HTMLElement;
@@ -112,7 +113,7 @@ export default class Datepicker extends React.Component<
   formatDisplayValue(date: ?Date | Array<Date>) {
     let formatDisplayValue = this.props.formatDisplayValue || this.formatDate;
     formatDisplayValue = formatDisplayValue.bind(this);
-    return formatDisplayValue(date, this.props.formatString || 'yyyy/MM/dd');
+    return formatDisplayValue(date, this.props.formatString);
   }
 
   open = () => {
@@ -221,7 +222,7 @@ export default class Datepicker extends React.Component<
     } else {
       const dateString = this.normalizeDashes(inputValue);
       let date = new Date(dateString);
-      const formatString = this.props.formatString || 'yyyy/MM/dd';
+      const formatString = this.props.formatString;
 
       // Prevent early parsing of value.
       // Eg 25.12.2 will be transformed to 25.12.0002 formatted from date to string
