@@ -19,7 +19,7 @@ export type Responsive<T> = T | T[];
 export interface GridProps {
   align?: Responsive<ALIGNMENT>;
   behavior?: BEHAVIOR;
-  children: React.ReactElement<CellProps> | React.ReactElement<CellProps>[];
+  children: React.ReactNode;
   gridColumns?: Responsive<number>;
   gridGaps?: Responsive<number>;
   gridGutters?: Responsive<number>;

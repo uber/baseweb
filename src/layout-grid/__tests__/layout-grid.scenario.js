@@ -14,10 +14,12 @@ export default function Scenario() {
   return (
     <>
       <Grid>
-        <Cell span={12}>
-          <Inner>1</Inner>
-        </Cell>
-        {null}
+        <>
+          <Cell span={12}>
+            <Inner>1</Inner>
+          </Cell>
+          {null}
+        </>
       </Grid>
       <br />
       <Grid>

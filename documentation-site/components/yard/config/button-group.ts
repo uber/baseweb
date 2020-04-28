@@ -1,4 +1,4 @@
-import {ButtonGroup, MODE} from 'baseui/button-group';
+import {ButtonGroup, MODE, SIZE} from 'baseui/button-group';
 import {Button} from 'baseui/button';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
@@ -17,6 +17,7 @@ const ButtonGroupConfig: TConfig = {
     Button,
     ButtonGroup,
     MODE,
+    SIZE,
   },
   theme: [
     'buttonPrimaryFill',
@@ -67,6 +68,18 @@ const ButtonGroupConfig: TConfig = {
       type: PropTypes.Array,
       description: 'Defines which buttons are selected',
       hidden: true,
+    },
+    size: {
+      value: 'SIZE.default',
+      defaultValue: 'SIZE.default',
+      options: SIZE,
+      type: PropTypes.Enum,
+      description: 'Defines the size of the button.',
+      imports: {
+        'baseui/button-group': {
+          named: ['SIZE'],
+        },
+      },
     },
     mode: {
       value: 'MODE.checkbox',
