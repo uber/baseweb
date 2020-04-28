@@ -9,19 +9,23 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-env node */
 
+const Octokit = require('@octokit/rest');
 const fetch = require('isomorphic-fetch');
 
 if (!process.env.GITHUB_AUTH_TOKEN) {
   throw new Error('No GITHUB_AUTH_TOKEN set.');
 }
 
-const repo = 'uber/baseweb';
-const root = `https://api.github.com/repos/${repo}`;
-const headers = {Authorization: `token ${process.env.GITHUB_AUTH_TOKEN}`};
+const octokit = Octokit({auth: process.env.GITHUB_AUTH_TOKEN});
+
+const owner = 'uber';
+const repo = 'baseweb';
 
 // https://github.com/uber-workflow/probot-app-release-notes/blob/master/pr-for-commit.js
 async function prFromCommit(sha) {
-  const res = await fetch(`https://github.com/${repo}/branch_commits/${sha}`);
+  const res = await fetch(
+    `https://github.com/${owner}/${repo}/branch_commits/${sha}`,
+  );
   if (res.ok) {
     const text = await res.text();
     const mergedRegex = /<li class="pull-request">\((?:.+?)(\d+)<\/a>\)<\/li>/;
@@ -35,17 +39,17 @@ async function prFromCommit(sha) {
 }
 
 async function main() {
-  const tagsResponse = await fetch(`${root}/tags`, {headers});
-  if (!tagsResponse.ok) {
+  const tagsResponse = await octokit.repos.listTags({owner, repo});
+  if (tagsResponse.status !== 200) {
     throw new Error(`Failed to fetch tags. ${tagsResponse.statusText}`);
   }
-  const tags = await tagsResponse.json();
+  const tags = await tagsResponse.data;
 
-  const commitsResponse = await fetch(`${root}/commits`, {headers});
-  if (!commitsResponse.ok) {
+  const commitsResponse = await octokit.repos.listCommits({owner, repo});
+  if (commitsResponse.status !== 200) {
     throw new Error(`Failed to fetch commits. ${commitsResponse.statusText}`);
   }
-  const [releaseCommit, ...commits] = await commitsResponse.json();
+  const [releaseCommit, ...commits] = await commitsResponse.data;
 
   const releaseMessageRgx = /^Release (v[0-9]+\.[0-9]+\.[0-9]+)/;
   const match = releaseMessageRgx.exec(releaseCommit.commit.message);
@@ -76,27 +80,19 @@ async function main() {
     }
   }
 
-  const options = {
-    method: 'POST',
-    headers: {
-      ...headers,
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      tag_name: releaseVersion,
-      name: releaseVersion,
-      body: '## Changelog\n' + changelogEntries.join('\n'),
-    }),
-  };
-
-  const releaseResponse = await fetch(`${root}/releases`, options);
-  if (!releaseResponse.ok) {
-    throw new Error(`Failed to create release. ${releaseResponse.statusText}`);
+  const releaseResponse = await octokit.repos.createRelease({
+    owner,
+    repo,
+    tag_name: releaseVersion,
+    name: releaseVersion,
+    body: '## Changelog\n' + changelogEntries.join('\n'),
+  });
+  if (releaseResponse.status !== 201) {
+    throw new Error(`Failed to create release. ${releaseResponse.status}`);
   }
-
-  const release = await releaseResponse.json();
-  console.log(`Successfully created release at: ${release.html_url}`);
+  console.log(
+    `Successfully created release at: ${releaseResponse.data.html_url}`,
+  );
 }
 
-main().catch(console.error);
+main();
