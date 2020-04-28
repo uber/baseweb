@@ -6,12 +6,18 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
+import {ThemeContext} from '../styles/theme-provider.js';
 import type {TreeLabelT, SharedStylePropsT} from './types.js';
 import {StyledIconContainer, StyledItemContent} from './styled-components.js';
 import ChevronRight from '../icon/chevron-right.js';
 import ChevronDown from '../icon/chevron-down.js';
+import ChevronLeft from '../icon/chevron-left.js';
 import BlankIcon from '../icon/blank.js';
-import {getOverride, getOverrideProps} from '../helpers/overrides.js';
+import {
+  getOverride,
+  getOverrideProps,
+  getOverrides,
+} from '../helpers/overrides.js';
 
 const TreeLabel: React$ComponentType<TreeLabelT> = ({
   hasChildren,
@@ -31,7 +37,7 @@ const TreeLabel: React$ComponentType<TreeLabelT> = ({
   };
   const {
     IconContainer: IconContainerOverride,
-    ExpandIcon: ExapandIconOverride,
+    ExpandIcon: ExpandIconOverride,
     CollapseIcon: CollapseIconOverride,
     LeafIconContainer: LeafIconContainerOverride,
     LeafIcon: LeafIconOverride,
@@ -39,7 +45,8 @@ const TreeLabel: React$ComponentType<TreeLabelT> = ({
   } = overrides;
   const IconContainer =
     getOverride(IconContainerOverride) || StyledIconContainer;
-  const ExpandIcon = getOverride(ExapandIconOverride) || ChevronRight;
+  const [Left, LeftProps] = getOverrides(ExpandIconOverride, ChevronLeft);
+  const [Right, RightProps] = getOverrides(ExpandIconOverride, ChevronRight);
   const CollapseIcon = getOverride(CollapseIconOverride) || ChevronDown;
   const LeafIconContainer =
     getOverride(LeafIconContainerOverride) || StyledIconContainer;
@@ -54,10 +61,15 @@ const TreeLabel: React$ComponentType<TreeLabelT> = ({
           {...getOverrideProps(IconContainerOverride)}
         >
           {!isExpanded ? (
-            <ExpandIcon
-              {...sharedProps}
-              {...getOverrideProps(ExapandIconOverride)}
-            />
+            <ThemeContext.Consumer>
+              {theme =>
+                theme.direction === 'rtl' ? (
+                  <Left {...sharedProps} {...LeftProps} />
+                ) : (
+                  <Right {...sharedProps} {...RightProps} />
+                )
+              }
+            </ThemeContext.Consumer>
           ) : (
             <CollapseIcon
               {...sharedProps}
