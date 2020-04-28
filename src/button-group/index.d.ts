@@ -11,6 +11,13 @@ export interface STATE_CHANGE_TYPE {
   change: 'change';
 }
 
+export interface SIZE {
+  compact: 'compact';
+  default: 'default';
+  large: 'large';
+  mini: 'mini';
+}
+
 export const StyledRoot: StyletronComponent<any>;
 
 export interface ButtonGroupOverrides {
@@ -61,3 +68,4 @@ export class StatefulContainer extends React.Component<
 
 export const MODE: MODE;
 export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
+export const SIZE: SIZE;
