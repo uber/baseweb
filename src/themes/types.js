@@ -6,9 +6,21 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import type {StyleObject} from 'styletron-standard';
-
 import type {ResponsiveT, CSSLengthUnitT} from '../layout-grid/types.js';
+
+type Globals = '-moz-initial' | 'inherit' | 'initial' | 'revert' | 'unset';
+type LineStyle =
+  | 'dashed'
+  | 'dotted'
+  | 'double'
+  | 'groove'
+  | 'hidden'
+  | 'inset'
+  | 'none'
+  | 'outset'
+  | 'ridge'
+  | 'solid';
+
 export type ColorTokensT = {
   // Primary Palette
   primaryA: string,
@@ -548,18 +560,7 @@ export type PrimitivesT = {
 
 export type FontT = {|
   fontFamily: string,
-  // eslint-disable-next-line flowtype/space-after-type-colon
-  fontWeight:
-    | '-moz-initial'
-    | 'inherit'
-    | 'initial'
-    | 'revert'
-    | 'unset'
-    | 'bold'
-    | 'normal'
-    | 'bolder'
-    | 'lighter'
-    | number,
+  fontWeight: Globals | 'bold' | 'normal' | 'bolder' | 'lighter' | number,
   fontSize: string,
   lineHeight: string | number,
 |};
@@ -672,12 +673,10 @@ export type AnimationT = {
 };
 
 export type BorderT = {|
-  borderColor: $PropertyType<StyleObject, 'borderColor'>,
-  // borderLeftStyle is a subset of borderStyle, since we want to use longhand styles
-  // at all times this ensures that border styles with differing side styles (e.g groove)
-  // are not used
-  borderStyle: $PropertyType<StyleObject, 'borderLeftStyle'>,
-  borderWidth: $PropertyType<StyleObject, 'borderWidth'>,
+  borderColor: string,
+  // longhand border-style properties do not accept string values
+  borderStyle: Globals | LineStyle,
+  borderWidth: string,
 |};
 
 export type BordersT = {
