@@ -26,7 +26,7 @@ pull_request_rules:
       - status-success=probot/pr-label
       - status-success=license/cla
       - status-success=ci/codesandbox
-      - status-success=now
+      - status-success=Vercel
       - base=master
       - -draft
       - label!=work in progress
