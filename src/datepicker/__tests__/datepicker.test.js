@@ -229,7 +229,7 @@ describe('Datepicker', () => {
     });
   });
 
-  test('fires the onchange only when date length is same as formatString with single date', () => {
+  test('does not fire the onchange when date length is less than passed formatString with single date', () => {
     const onChange = jest.fn();
     const format = 'dd.MM.yyyy';
     const date = new Date('2019 01 01');
@@ -258,6 +258,21 @@ describe('Datepicker', () => {
       date: parse(newDate, format, new Date()),
     });
     expect(onChange.mock.calls).toHaveLength(1);
+  });
+
+  // Issue #3230
+  test('does not fire the onchange when date length is less than default formatDate with single date when no formatString is passed', () => {
+    const onChange = jest.fn();
+    const component = mount(<Datepicker onChange={onChange} value={null} />);
+
+    // $FlowFixMe
+    component.instance().handleInputChange({
+      currentTarget: {
+        value: '1',
+      },
+    });
+
+    expect(onChange.mock.calls).toHaveLength(0);
   });
 
   test('returns an array of date objects on input change', () => {
