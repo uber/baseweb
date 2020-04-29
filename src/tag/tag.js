@@ -104,6 +104,7 @@ const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
   const isButton = (clickable || closeable) && !disabled;
   return (
     <Root
+      // eslint-disable-next-line flowtype/no-weak-types
       ref={(ref: any)}
       data-baseweb="tag"
       aria-label={
