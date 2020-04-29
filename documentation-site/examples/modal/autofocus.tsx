@@ -27,7 +27,10 @@ export default function() {
           </p>
         </ModalBody>
         <ModalFooter>
-          <ModalButton onClick={() => setOpen(false)}>
+          <ModalButton
+            kind="tertiary"
+            onClick={() => setOpen(false)}
+          >
             Close
           </ModalButton>
           <ModalButton autoFocus onClick={() => setOpen(false)}>

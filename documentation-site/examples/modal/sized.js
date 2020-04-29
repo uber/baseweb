@@ -40,7 +40,9 @@ export default () => {
           aliquet mauris ut tempus.
         </ModalBody>
         <ModalFooter>
-          <ModalButton onClick={close}>Cancel</ModalButton>
+          <ModalButton kind="tertiary" onClick={close}>
+            Cancel
+          </ModalButton>
           <ModalButton onClick={close}>Okay</ModalButton>
         </ModalFooter>
       </Modal>
