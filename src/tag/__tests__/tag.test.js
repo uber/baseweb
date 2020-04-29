@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {render, fireEvent, getByTestId} from '@testing-library/react';
 
-import {Tag, StyledAction} from '../index.js';
+import {Tag} from '../index.js';
 import type {TagKindT} from '../index.js';
 
 describe('Tag', () => {

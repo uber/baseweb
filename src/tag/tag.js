@@ -28,7 +28,7 @@ const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
     isHovered = false,
     kind = KIND.primary,
     onActionClick = event => {},
-    onActionKeyDown = () => {},
+    onActionKeyDown = event => {},
     onClick = null,
     onKeyDown = null,
     overrides = {},
@@ -39,13 +39,13 @@ const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
 
   function handleFocus(event: SyntheticEvent<>) {
     if (isFocusVisible(event)) {
-      this.setState({isFocusVisible: true});
+      setFocusVisible(true);
     }
   }
 
   function handleBlur(event: SyntheticEvent<>) {
-    if (isFocusVisible(event)) {
-      this.setState({isFocusVisible: true});
+    if (focusVisible !== false) {
+      setFocusVisible(false);
     }
   }
 
@@ -53,13 +53,6 @@ const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
     if (event.currentTarget !== event.target) {
       return;
     }
-    const {
-      onClick,
-      onKeyDown,
-      closeable,
-      onActionClick,
-      onActionKeyDown,
-    } = this.props;
     const key = event.key;
     if (onClick && key === 'Enter') {
       onClick(event);
