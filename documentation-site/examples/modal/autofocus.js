@@ -26,8 +26,11 @@ export default function() {
           aliquet.
         </ModalBody>
         <ModalFooter>
-          <ModalButton onClick={() => setOpen(false)}>
-            Close
+          <ModalButton
+            kind="tertiary"
+            onClick={() => setOpen(false)}
+          >
+            Cancel
           </ModalButton>
           <ModalButton autoFocus onClick={() => setOpen(false)}>
             Confirm

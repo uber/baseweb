@@ -54,7 +54,10 @@ export default () => {
               aliquet mauris ut tempus.
             </ModalBody>
             <ModalFooter>
-              <ModalButton onClick={() => setIsOpen(false)}>
+              <ModalButton
+                kind="tertiary"
+                onClick={() => setIsOpen(false)}
+              >
                 Cancel
               </ModalButton>
               <ModalButton onClick={() => toggleConfirm(true)}>
@@ -69,7 +72,10 @@ export default () => {
             <ModalHeader>Confirm</ModalHeader>
             <ModalBody>Confirm closing all.</ModalBody>
             <ModalFooter>
-              <ModalButton onClick={() => toggleConfirm(false)}>
+              <ModalButton
+                kind="tertiary"
+                onClick={() => toggleConfirm(false)}
+              >
                 No
               </ModalButton>
               <ModalButton
