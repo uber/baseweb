@@ -41,6 +41,32 @@ const defaultGetComparisonValue = value => {
   }
   return value;
 };
+const isLocale = val => {
+  return val && val.code && val.match;
+};
+
+const convertValueToMoment = value => {
+  if (Array.isArray(value)) {
+    return value.map(convertValueToMoment);
+  }
+  if (value instanceof Date) {
+    return moment(value);
+  }
+  if (isLocale(value)) {
+    return value.code;
+  }
+  if (typeof value === 'object' && value !== null) {
+    return Object.keys(value).reduce((memo, key) => {
+      const childValue = value[key];
+      return {
+        ...memo,
+        [key]: convertValueToMoment(childValue),
+      };
+    }, {});
+  }
+  return value;
+};
+
 const adapterVersions = [
   {
     name: 'utils/index',
@@ -54,33 +80,9 @@ const adapterVersions = [
       if (moment.isMoment(value)) {
         return value.toDate().toISOString();
       }
-
       return value;
     },
-    convertArgs: args =>
-      args.map(arg => {
-        if (Array.isArray(arg)) {
-          return arg.map(item => {
-            if (item instanceof Date) {
-              return moment(item);
-            }
-            return item;
-          });
-        }
-        if (arg instanceof Date) {
-          return moment(arg);
-        }
-        if (typeof arg === 'object') {
-          return Object.keys(arg).reduce((memo, key) => {
-            const value = arg[key];
-            return {
-              ...memo,
-              [key]: value instanceof Date ? moment(value) : value,
-            };
-          }, {});
-        }
-        return arg;
-      }),
+    convertArgs: args => args.map(convertValueToMoment),
   },
 ];
 
@@ -411,7 +413,13 @@ describe('Datepicker utils', () => {
             excludeDates: undefined,
             includeDates: undefined,
             filterDate: date => {
-              return date.getFullYear() === 2019;
+              if (date instanceof Date) {
+                return helpers.getYear(date) === 2019;
+              }
+              if (moment.isMoment(date)) {
+                return momentHelpers.getYear(date) === 2019;
+              }
+              return false;
             },
           }),
         ).toEqual(true);
@@ -421,7 +429,15 @@ describe('Datepicker utils', () => {
             maxDate: undefined,
             excludeDates: undefined,
             includeDates: undefined,
-            filterDate: date => date.getFullYear() === 2020,
+            filterDate: date => {
+              if (date instanceof Date) {
+                return helpers.getYear(date) === 2020;
+              }
+              if (moment.isMoment(date)) {
+                return momentHelpers.getYear(date) === 2020;
+              }
+              return false;
+            },
           }),
         ).toEqual(false);
       });
