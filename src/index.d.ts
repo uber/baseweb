@@ -102,3 +102,5 @@ export interface WithStyleFn<T = Theme> extends StyletronWithStyleFn {
 }
 
 export const withStyle: WithStyleFn;
+
+export function createThemedWithStyle<Theme>(): WithStyleFn<Theme>;
