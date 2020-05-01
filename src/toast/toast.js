@@ -145,7 +145,9 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
         this.bodyRef &&
         this.bodyRef.current &&
         Number(
-          getComputedStyle(this.bodyRef.current)
+          // $FlowFixMe: Body is typed as `mixed` but actually is Element so this isn't a problem
+          window
+            .getComputedStyle(this.bodyRef.current)
             .getPropertyValue('transition-duration')
             .replace('s', ''),
         ) * 1000) ||

@@ -242,11 +242,13 @@ describe('Toast', () => {
             },
           },
         }}
-      />,
+      >
+        Toast Content
+      </Toast>,
     );
 
     let getComputedStyleMock = jest
-      .spyOn(window, 'getComputedStyle')
+      .spyOn(global.window, 'getComputedStyle')
       .mockImplementationOnce(bodyNode => {
         expect(
           JSON.parse(bodyNode.getAttribute('test-style')).transitionDuration,
