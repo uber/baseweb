@@ -46,7 +46,10 @@ class StatefulContainer extends React.Component<
     ...this.props.initialState,
   };
 
-  onBlur = () => {
+  onBlur = (e: Event) => {
+    if (this.props.onBlur) {
+      this.props.onBlur(e);
+    }
     this.close();
   };
 
@@ -69,15 +72,24 @@ class StatefulContainer extends React.Component<
     this.close();
   };
 
-  onFocus = () => {
+  onFocus = (e: Event) => {
+    if (this.props.onFocus) {
+      this.props.onFocus(e);
+    }
     this.open();
   };
 
-  onMouseEnter = () => {
+  onMouseEnter = (e: Event) => {
+    if (this.props.onMouseEnter) {
+      this.props.onMouseEnter(e);
+    }
     this.open();
   };
 
-  onMouseLeave = () => {
+  onMouseLeave = (e: Event) => {
+    if (this.props.onMouseLeave) {
+      this.props.onMouseLeave(e);
+    }
     this.close();
   };
 
@@ -133,40 +145,50 @@ class StatefulContainer extends React.Component<
   render() {
     const {
       accessibilityType,
+      autoFocus,
       dismissOnClickOutside,
       dismissOnEsc,
+      focusLock,
       ignoreBoundary,
-      overrides,
+      mountNode,
+      onBlur,
+      onClick,
+      onFocus,
+      onMouseEnter,
+      onMouseLeave,
       onMouseEnterDelay,
       onMouseLeaveDelay,
+      overrides,
       placement,
       popperOptions,
+      renderAll,
+      returnFocus,
       showArrow,
       triggerType,
-      mountNode,
-      renderAll,
-      autoFocus,
-      returnFocus,
-      focusLock,
     } = this.props;
 
     const popoverProps: PopoverPropsWithoutChildrenT = {
       accessibilityType,
+      autoFocus,
+      content: this.renderContent,
+      focusLock,
       ignoreBoundary,
       isOpen: this.state.isOpen,
-      overrides,
-      content: this.renderContent,
+      mountNode,
+      onBlur,
+      onClick,
+      onFocus,
+      onMouseEnter,
+      onMouseLeave,
       onMouseEnterDelay,
       onMouseLeaveDelay,
+      overrides,
       placement,
       popperOptions,
+      renderAll,
+      returnFocus,
       showArrow,
       triggerType,
-      mountNode,
-      renderAll,
-      autoFocus,
-      returnFocus,
-      focusLock,
     };
 
     if (dismissOnClickOutside) {

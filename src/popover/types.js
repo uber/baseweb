@@ -61,39 +61,39 @@ export type BasePopoverPropsT = {
    * See the A11Y section at the bottom of this document for more details.
    */
   accessibilityType?: AccessibilityTypeT,
-  /** If true, focus will be locked to elements within the popover.
-   */
-  focusLock?: boolean,
+  /** How long should be fade out animation in ms, default 0ms */
+  animateOutTime?: number,
   /** If true, focus will shift to the first interactive element within the popover.
    * If false, the popover container itself will receive focus.
    * Moving focus into a newly opened popover is important for accessibility purposes, so please be careful!
    */
   autoFocus?: boolean,
-  /** If true, focus will shift back to the original element that triggered the popover
-   * Becareful with elements that open the popover on focus (e.g. input) this will cause the popover to reopen on close!
+  /** If true, focus will be locked to elements within the popover.
    */
-  returnFocus?: boolean,
+  focusLock?: boolean,
   'data-baseweb'?: string,
   id?: string,
   /** If true, popover element will not avoid element boundaries. */
   ignoreBoundary?: boolean,
-  /** Number of milliseconds to wait before showing the popover after mouse enters the trigger element (for triggerType `hover`). */
-  onMouseEnterDelay?: number,
-  /** Number of milliseconds to wait before showing the popover after mouse leaves the trigger element (for triggerType `hover`). */
-  onMouseLeaveDelay?: number,
+  /** Where to mount the popover */
+  mountNode?: HTMLElement,
+  /** Handler for blur events on trigger element. */
+  onBlur?: (e: Event) => mixed,
   /** Handler for click events on trigger element. */
   onClick?: (e: Event) => mixed,
+  /** Handler for 'Esc' keypress events */
+  onFocus?: (e: Event) => mixed,
+  /** Handler for mouseenter events on trigger element. */
+  onMouseEnter?: (e: Event) => mixed,
+  /** Number of milliseconds to wait before showing the popover after mouse enters the trigger element (for triggerType `hover`). */
+  onMouseEnterDelay?: number,
+  /** Handler for mouseleave events on trigger element. */
+  onMouseLeave?: (e: Event) => mixed,
+  /** Number of milliseconds to wait before showing the popover after mouse leaves the trigger element (for triggerType `hover`). */
+  onMouseLeaveDelay?: number,
   overrides?: OverridesT,
   /** How to position the popover relative to the target. */
   placement: TetherPlacementT,
-  /** Whether or not to show the arrow pointing from the popover to the trigger. */
-  showArrow?: boolean,
-  /** Whether to toggle the popover when trigger is clicked or hovered. */
-  triggerType: TriggerTypeT,
-  /** Where to mount the popover */
-  mountNode?: HTMLElement,
-  /** How long should be fade out animation in ms, default 0ms */
-  animateOutTime?: number,
   /** Popper options override
    * https://github.com/popperjs/popper.js/blob/v1.x/docs/_includes/popper-documentation.md
    */
@@ -101,6 +101,14 @@ export type BasePopoverPropsT = {
   popperOptions?: any,
   /** Renders all popover content for SEO purposes regardless of popover isOpen state */
   renderAll?: boolean,
+  /** If true, focus will shift back to the original element that triggered the popover
+   * Becareful with elements that open the popover on focus (e.g. input) this will cause the popover to reopen on close!
+   */
+  returnFocus?: boolean,
+  /** Whether or not to show the arrow pointing from the popover to the trigger. */
+  showArrow?: boolean,
+  /** Whether to toggle the popover when trigger is clicked or hovered. */
+  triggerType: TriggerTypeT,
 };
 
 // Props for stateless render logic
@@ -113,18 +121,10 @@ export type PopoverPropsT = BasePopoverPropsT & {
   content: React.Node | ContentRenderPropT,
   /** Whether or not to show the popover. */
   isOpen: boolean,
-  /** Handler for blur events on trigger element. */
-  onBlur?: () => mixed,
   /** Handler for clicks outside the anchor/popover elements. */
   onClickOutside?: (event: MouseEvent) => mixed,
   /** Handler for click events on trigger element. */
   onEsc?: () => mixed,
-  /** Handler for 'Esc' keypress events */
-  onFocus?: () => mixed,
-  /** Handler for mouseenter events on trigger element. */
-  onMouseEnter?: () => mixed,
-  /** Handler for mouseleave events on trigger element. */
-  onMouseLeave?: () => mixed,
 };
 
 // Props for stateful wrapper
@@ -207,9 +207,9 @@ export type AnchorPropsT = {
   'aria-haspopup'?: string,
   'aria-owns'?: string | null,
   id?: string | null,
-  onBlur?: () => mixed,
+  onBlur?: (e: Event) => mixed,
   onClick?: (e: Event) => mixed,
-  onFocus?: () => mixed,
+  onFocus?: (e: Event) => mixed,
   onMouseEnter?: (e: Event) => mixed,
   onMouseLeave?: (e: Event) => mixed,
   ref?: React.Ref<*>,

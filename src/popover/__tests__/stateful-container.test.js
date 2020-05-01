@@ -246,15 +246,16 @@ describe('StatefulPopoverContainer', () => {
     const component = shallow(
       <StatefulContainer {...props}>{children}</StatefulContainer>,
     );
-
-    component.instance().onMouseEnter();
+    // $FlowFixMe
+    component.instance().onMouseEnter({});
     expect(props.onOpen).toHaveBeenCalledTimes(1);
     expect(props.onClose).toHaveBeenCalledTimes(0);
 
     props.onOpen.mockClear();
     props.onClose.mockClear();
 
-    component.instance().onMouseLeave();
+    // $FlowFixMe
+    component.instance().onMouseLeave({});
     expect(props.onOpen).toHaveBeenCalledTimes(0);
     expect(props.onClose).toHaveBeenCalledTimes(1);
   });
