@@ -228,4 +228,50 @@ describe('Toast', () => {
     expect(iconStyle.width).toBe('54px');
     expect(iconStyle.color).toBe('red');
   });
+
+  it('unmounts immediately after dom transition ends', () => {
+    let transitionDurationMilliseconds = 10;
+    let transitionDurationSeconds = transitionDurationMilliseconds / 1000;
+
+    const wrapper = mount(
+      <Toast
+        overrides={{
+          Body: {
+            style: {
+              transitionDuration: `${transitionDurationMilliseconds}ms`,
+            },
+          },
+        }}
+      />,
+    );
+
+    let getComputedStyleMock = jest
+      .spyOn(window, 'getComputedStyle')
+      .mockImplementationOnce(bodyNode => {
+        expect(
+          JSON.parse(bodyNode.getAttribute('test-style')).transitionDuration,
+        ).toBe(`${transitionDurationMilliseconds}ms`); // to make sure node we got is actually bodyNode
+
+        return {
+          getPropertyValue: propertyName => {
+            expect(propertyName).toBe('transition-duration');
+            return `${transitionDurationSeconds}s`;
+            // computed always returns in seconds
+            // https://www.w3.org/TR/cssom-1/#serializing-css-values
+          },
+        };
+      });
+
+    wrapper
+      .find(StyledCloseIcon)
+      .first()
+      .simulate('click');
+    expect(getComputedStyleMock).toHaveBeenCalledTimes(1);
+    expect(setTimeout).toHaveBeenLastCalledWith(
+      expect.any(Function),
+      transitionDurationMilliseconds,
+    );
+    jest.runAllTimers();
+    expect(wrapper.instance().state.isRendered).toBe(false);
+  });
 });

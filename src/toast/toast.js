@@ -48,6 +48,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   animateOutCompleteTimer: ?TimeoutID;
   closeRef: ?{current: ?mixed};
   previouslyFocusedElement: ?HTMLElement;
+  bodyRef: ?{current: ?mixed};
 
   state = {
     isVisible: false,
@@ -58,6 +59,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   constructor(props: ToastPropsT) {
     super(props);
     this.closeRef = React.createRef();
+    this.bodyRef = React.createRef();
     this.previouslyFocusedElement = null;
   }
 
@@ -137,11 +139,23 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
 
   animateOut = (callback: () => mixed = () => {}) => {
     this.setState({isVisible: false});
+
+    let animationDuration =
+      (__BROWSER__ &&
+        this.bodyRef &&
+        this.bodyRef.current &&
+        Number(
+          getComputedStyle(this.bodyRef.current)
+            .getPropertyValue('transition-duration')
+            .replace('s', ''),
+        ) * 1000) ||
+      200; // default backup just in case
+
     // Remove the toast from the DOM after animation finishes
     this.animateOutCompleteTimer = setTimeout(() => {
       this.setState({isRendered: false});
       callback();
-    }, 600);
+    }, animationDuration);
   };
 
   dismiss = () => {
@@ -226,6 +240,7 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
             {...sharedProps}
             {...bodyProps}
             // the properties below have to go after overrides
+            ref={this.bodyRef}
             onBlur={this.onBlur}
             onFocus={this.onFocus}
             onMouseEnter={this.onMouseEnter}
