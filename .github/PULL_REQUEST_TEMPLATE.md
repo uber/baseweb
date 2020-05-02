@@ -8,4 +8,5 @@
 <!-- Pick one:
 Patch: Bug Fix
 Minor: New Feature
+Major: Breaking change
 -->
