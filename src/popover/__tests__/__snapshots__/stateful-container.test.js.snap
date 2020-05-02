@@ -11,6 +11,7 @@ Array [
     "isOpen": true,
     "mountNode": undefined,
     "onBlur": [Function],
+    "onClick": undefined,
     "onClickOutside": [Function],
     "onEsc": [Function],
     "onFocus": [Function],

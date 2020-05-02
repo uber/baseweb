@@ -11,13 +11,6 @@ export interface STATE_CHANGE_TYPE {
   change: 'change';
 }
 
-export interface SIZE {
-  compact: 'compact';
-  default: 'default';
-  large: 'large';
-  mini: 'mini';
-}
-
 export const StyledRoot: StyletronComponent<any>;
 
 export interface ButtonGroupOverrides {
