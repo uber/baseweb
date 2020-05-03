@@ -361,10 +361,20 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       return null;
     }
 
-    const isValidElement = React.isValidElement(anchor);
-    const anchorProps = this.getAnchorProps();
+    let anchorProps = this.getAnchorProps();
 
-    if (typeof anchor === 'object' && isValidElement) {
+    if (typeof anchor === 'object' && React.isValidElement(anchor)) {
+      if (typeof anchor.type === 'function') {
+        /* if is non-forwardRef functional component
+         * (if it's wrapped by forwardRef then the type is no longer a function)
+         * then remove ref because rendering non-forwardRef functional component throws
+         * an error and which makes tether unable to show the ref not set warning
+         * see: issue #3265
+         */
+
+        delete anchorProps.ref;
+      }
+
       return React.cloneElement(anchor, anchorProps);
     }
     return <span {...anchorProps}>{anchor}</span>;
