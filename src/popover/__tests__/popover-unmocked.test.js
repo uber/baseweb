@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env browser */
 
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 import {mount} from 'enzyme';
 import {Popover} from '../index.js';
 
@@ -19,7 +18,9 @@ describe('Popover', () => {
     const originalConsoleError = console.error;
     const originalConsoleWarn = console.warn;
 
+    // $FlowFixMe (it's okay for this test)
     console.error = jest.fn(); // not using spy because it also calls the original console.error
+    // $FlowFixMe
     console.warn = jest.fn();
 
     mount(
@@ -35,7 +36,10 @@ describe('Popover', () => {
         `http://baseui.design/components/popover#anchor-ref-handling-example`,
     );
 
+    // $FlowFixMe
     console.error = originalConsoleError;
+
+    // $FlowFixMe
     console.warn = originalConsoleWarn;
   });
 });
