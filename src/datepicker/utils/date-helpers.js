@@ -13,16 +13,19 @@ const adapterMap = {
   MomentUtils: {
     formats: {
       fullOrdinalWeek: 'dddd, MMMM Do YYYY',
+      weekday: 'dddd',
     },
   },
   DateFnsUtils: {
     formats: {
+      weekday: 'EEEE',
       fullOrdinalWeek: 'EEEE, MMMM do yyyy',
     },
   },
   LuxonUtils: {
     formats: {
-      fullOrdinalWeek: 'dddd, MMMM Do YYYY',
+      weekday: 'EEEE',
+      fullOrdinalWeek: 'EEEE, MMMM dd YYYY',
     },
   },
 };
