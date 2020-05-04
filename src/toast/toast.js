@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-/* global document */
+/* global document, window */
 import * as React from 'react';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import DeleteIcon from '../icon/delete.js';
@@ -141,17 +141,15 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
     this.setState({isVisible: false});
 
     let animationDuration =
-      (__BROWSER__ &&
-        this.bodyRef &&
-        this.bodyRef.current &&
-        Number(
-          // $FlowFixMe: Body is typed as `mixed` but actually is Element so this isn't a problem
-          window
-            .getComputedStyle(this.bodyRef.current)
-            .getPropertyValue('transition-duration')
-            .replace('s', ''),
-        ) * 1000) ||
-      200; // default backup just in case
+      __BROWSER__ && this.bodyRef && this.bodyRef.current
+        ? Number(
+            // $FlowFixMe: Body is typed as `mixed` but actually is Element so this isn't a problem
+            window
+              .getComputedStyle(this.bodyRef.current)
+              .getPropertyValue('transition-duration')
+              .replace('s', ''),
+          ) * 1000
+        : 200; // default backup just in case
 
     // Remove the toast from the DOM after animation finishes
     this.animateOutCompleteTimer = setTimeout(() => {
