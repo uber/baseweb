@@ -60,7 +60,7 @@ export const StyledLoadingSpinner: StyletronComponent<any>;
 export const StyledLoadingSpinnerContainer: StyletronComponent<any>;
 
 export const Button: React.ForwardRefExoticComponent<
-  React.PropsWithoutRef<ButtonProps> & React.RefObject<HTMLButtonElement>
+  React.PropsWithoutRef<ButtonProps> & React.RefAttributes<HTMLButtonElement>
 >;
 
 export const KIND: KIND;
