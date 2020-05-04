@@ -6,7 +6,7 @@ import {PinCode} from 'baseui/pin-code';
 export default function() {
   const [css] = useStyletron();
   const [values, setValues] = React.useState(['', '', '', '']);
-  const buttonRef = React.useRef<Button>(null);
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
   return (
     <div className={css({display: 'flex'})}>
       <PinCode

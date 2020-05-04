@@ -59,10 +59,9 @@ export const StyledEndEnhancer: StyletronComponent<any>;
 export const StyledLoadingSpinner: StyletronComponent<any>;
 export const StyledLoadingSpinnerContainer: StyletronComponent<any>;
 
-export class Button extends React.Component<ButtonProps> {
-  internalOnClick(...args: any): void;
-  focus(): void;
-}
+export const Button: React.ForwardRefExoticComponent<
+  React.PropsWithoutRef<ButtonProps> & React.RefAttributes<HTMLButtonElement>
+>;
 
 export const KIND: KIND;
 export const SHAPE: SHAPE;
