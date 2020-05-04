@@ -94,7 +94,6 @@ export function Combobox<OptionT>(props: PropsT<OptionT>) {
       <ul>
         {options.map((option, index) => {
           const isSelected = selectionIndex === index;
-
           return (
             <li
               className={css({
@@ -107,6 +106,7 @@ export function Combobox<OptionT>(props: PropsT<OptionT>) {
               key={index}
               onClick={() => handleOptionClick(index)}
             >
+              {/* TODO(chase): implement custom mapOptionToNode renderer */}
               {mapOptionToString(option)}
             </li>
           );

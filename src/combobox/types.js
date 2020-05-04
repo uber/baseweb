@@ -6,16 +6,15 @@ export type PropsT<OptionT = mixed> = {|
   // Used to render a custom node besides the default.
   mapOptionToNode?: React.AbstractComponent<{
     option: OptionT,
-    isMouseHighlighted: boolean,
-    isKeyboardHighlighted: boolean,
+    isSelected: boolean,
   }>,
   // Options are often fetched from remote server, provides a simple way to
   // map whatever value the client gets into a visible string in the list item.
   mapOptionToString: OptionT => string,
-  // Called when input value changes.
+  // Called when input value changes or option is selected.
   onChange: string => mixed,
-  // Data to populate items in the dropdown menu.
+  // Data to populate list items in the dropdown menu.
   options: OptionT[],
-  // Test in the input box.
+  // Initial text provided to the input element.
   value: string,
 |};
