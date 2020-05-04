@@ -118,7 +118,7 @@ describe('Toast', () => {
       onMouseEnter: jest.fn(),
     };
     const wrapper = mount(<Toast {...props}>Notification</Toast>);
-
+    jest.runAllTimers();
     const renderedRoot = wrapper.find(StyledBody).first();
     const toastOnMouseEnterHandler = wrapper.instance().onMouseEnter;
 
@@ -150,7 +150,7 @@ describe('Toast', () => {
       onFocus: jest.fn(),
     };
     const wrapper = mount(<Toast {...props}>Notification</Toast>);
-
+    jest.runAllTimers();
     const renderedRoot = wrapper.find(StyledBody).first();
     const toastOnFocusHandler = wrapper.instance().onFocus;
 
