@@ -5,16 +5,31 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import type {DateIOAdapter, DateInput} from './types.js';
+import type {DateIOAdapter, DateInput, AdapterOptions} from './types.js';
 
-const adapterOptionMap = {
+const adapterMap = {
   // all utils classes set the arguments passed into their constructor as public members in some way
   // it just varies by class, most just set formats and locale, but this handles the exceptions
-  DayjsUtils: instance => ({
-    instance: instance.rawJsInstance,
-    formats: instance.formats,
-    locale: instance.locale,
-  }),
+  MomentUtils: {
+    formats: {
+      fullOrdinalWeek: 'dddd, MMMM Do YYYY',
+    },
+  },
+  DateFnsUtils: {
+    formats: {
+      fullOrdinalWeek: 'EEEE, MMMM do yyyy',
+    },
+  },
+  DayjsUtils: {
+    formats: {
+      fullOrdinalWeek: 'EEEE, MMMM do yyyy',
+    },
+    getOptions: instance => ({
+      instance: instance.rawJsInstance,
+      formats: instance.formats,
+      locale: instance.locale,
+    }),
+  },
 };
 
 const MINUTE = 60;
@@ -23,20 +38,30 @@ const HOUR = MINUTE * 60;
 class DateHelpers<T> {
   adapter: DateIOAdapter<T>;
   constructor(adapter: DateIOAdapter<T>) {
-    this.adapter = adapter;
+    this.adapter = this.cloneAdapter(adapter);
   }
-  getAdapterWithNewLocale: mixed => DateIOAdapter<T> = locale => {
+  cloneAdapter: (
+    DateIOAdapter<T>,
+    ?(AdapterOptions) => AdapterOptions,
+  ) => DateIOAdapter<T> = (adapter, updateOptionsBase) => {
     const defaultGetOptions = instance => ({
       formats: instance.formats,
       locale: instance.locale,
     });
-
-    const className = this.adapter.constructor.name;
-    const UtilsClass = this.adapter.constructor;
-    const getOptions = adapterOptionMap[className] || defaultGetOptions;
-
-    const options = getOptions(this.adapter);
-    return new UtilsClass({...options, locale});
+    const updateOptions = updateOptionsBase || defaultGetOptions;
+    const UtilsClass = adapter.constructor;
+    const className = adapter.constructor.name;
+    const {getOptions = defaultGetOptions, formats} = adapterMap[className];
+    const options = getOptions(adapter);
+    return new UtilsClass({
+      ...updateOptions({...options, formats: {...options.formats, ...formats}}),
+    });
+  };
+  format: (T, string) => string = (date, format) => {
+    return this.adapter.format(date, format);
+  };
+  getAdapterWithNewLocale: mixed => DateIOAdapter<T> = locale => {
+    return this.cloneAdapter(this.adapter, options => ({...options, locale}));
   };
   date: (DateInput<T> | void) => T = date => this.adapter.date(date);
   dateToSeconds: T => number = date => {
