@@ -13,7 +13,7 @@ import {Popover} from '../index.js';
 
 describe('Popover', () => {
   // Issue #3265
-  test.only('does not throw when anchor component is not refable', () => {
+  test('does not throw when anchor component is not refable', () => {
     const NonForwardRefFunctionalComponent = () => <>hello</>;
     const originalConsoleError = console.error;
     const originalConsoleWarn = console.warn;
