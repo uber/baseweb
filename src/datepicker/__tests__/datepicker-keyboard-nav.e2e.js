@@ -185,7 +185,7 @@ describe('Datepicker - keyboard navigation', () => {
     expect(isMar12Active).toBe(true);
 
     // Now we'll check that with keyboard navigation the higlighed/focusable
-    // date is set appropriatly and doesn't just beetween options like
+    // date is set appropriatly and doesn't jump beetween options like
     // the first day of the month, preset highlighted date, or selected date.
 
     // Navigating out of the calendar into its header and then back into the calendar
