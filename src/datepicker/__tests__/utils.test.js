@@ -45,22 +45,24 @@ const isLocale = val => {
   return val && val.code && val.match;
 };
 
-const convertValueToMoment = value => {
+const convertValue = ({value, convertDate, convertLocale}) => {
   if (Array.isArray(value)) {
-    return value.map(convertValueToMoment);
+    return value.map(childValue =>
+      convertValue({value: childValue, convertDate, convertLocale}),
+    );
   }
   if (value instanceof Date) {
-    return moment(value);
+    return convertDate(value);
   }
   if (isLocale(value)) {
-    return value.code;
+    return convertLocale(value);
   }
   if (typeof value === 'object' && value !== null) {
     return Object.keys(value).reduce((memo, key) => {
       const childValue = value[key];
       return {
         ...memo,
-        [key]: convertValueToMoment(childValue),
+        [key]: convertValue({value: childValue, convertDate, convertLocale}),
       };
     }, {});
   }
@@ -76,13 +78,14 @@ const adapterVersions = [
   {
     name: 'moment',
     helpers: momentHelpers,
+    convertDate: date => moment(date),
+    convertLocale: locale => locale.code,
     getComparisonValue: value => {
       if (moment.isMoment(value)) {
         return value.toDate().toISOString();
       }
       return value;
     },
-    convertArgs: args => args.map(convertValueToMoment),
   },
 ];
 
@@ -92,9 +95,12 @@ const getDiffereningAdapterMap = (runAdapter, value) => {
     const {
       helpers,
       getComparisonValue,
-      convertArgs = args => args,
+      convertDate = value => value,
+      convertLocale = value => value,
       name,
     } = version;
+    const convertArgs = args =>
+      args.map(arg => convertValue({value: arg, convertDate, convertLocale}));
     const currentValue = getComparisonValue(runAdapter(helpers, convertArgs));
     if (currentValue !== comparisonValue) {
       return {
@@ -125,6 +131,7 @@ const helpers: DateHelpers<Date> = Object.keys(dateHelpers).reduce(
           //$FlowFixMe
           (helpers, convertArgs) => {
             const convertedArgs = convertArgs(args);
+            console.log(convertedArgs);
             return helpers[methodName](...convertedArgs);
           },
           dateHelpersReturn,
@@ -159,10 +166,17 @@ describe('Datepicker utils', () => {
   describe('format', () => {
     describe('when passing', () => {
       describe('fullOrdinalWeek', () => {
-        test('should return a date like Sunday, March 10th 2019', () => {
+        test('should return a date like Friday, May 15th 2020', () => {
           expect(
             helpers.format(new Date('05/15/2020'), 'fullOrdinalWeek'),
           ).toEqual('Friday, May 15th 2020');
+        });
+      });
+      describe('weekday', () => {
+        test('should return a date like Friday, May 15th 2020', () => {
+          expect(helpers.format(new Date('05/15/2020'), 'weekday')).toEqual(
+            'Friday',
+          );
         });
       });
     });

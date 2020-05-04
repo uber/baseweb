@@ -20,15 +20,10 @@ const adapterMap = {
       fullOrdinalWeek: 'EEEE, MMMM do yyyy',
     },
   },
-  DayjsUtils: {
+  LuxonUtils: {
     formats: {
-      fullOrdinalWeek: 'EEEE, MMMM do yyyy',
+      fullOrdinalWeek: 'dddd, MMMM Do YYYY',
     },
-    getOptions: instance => ({
-      instance: instance.rawJsInstance,
-      formats: instance.formats,
-      locale: instance.locale,
-    }),
   },
 };
 
