@@ -12,18 +12,21 @@ const adapterMap = {
   // it just varies by class, most just set formats and locale, but this handles the exceptions
   MomentUtils: {
     formats: {
+      dayOfMonthNumber: 'D',
       fullOrdinalWeek: 'dddd, MMMM Do YYYY',
       weekday: 'dddd',
     },
   },
   DateFnsUtils: {
     formats: {
+      dayOfMonthNumber: 'd',
       weekday: 'EEEE',
       fullOrdinalWeek: 'EEEE, MMMM do yyyy',
     },
   },
   LuxonUtils: {
     formats: {
+      dayOfMonthNumber: 'd',
       weekday: 'EEEE',
       fullOrdinalWeek: 'EEEE, MMMM dd YYYY',
     },

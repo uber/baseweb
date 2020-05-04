@@ -194,6 +194,13 @@ describe('Datepicker utils', () => {
           );
         });
       });
+      describe('dayOfMonthNumber', () => {
+        test('should return a date like Friday, May 15th 2020', () => {
+          expect(
+            helpers.format(new Date('05/15/2020'), 'dayOfMonthNumber'),
+          ).toEqual('15');
+        });
+      });
     });
   });
   describe('isOnOrAfterDay', () => {
