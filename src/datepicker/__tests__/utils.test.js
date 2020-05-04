@@ -156,6 +156,17 @@ describe('Datepicker utils', () => {
       expect(destructuredReturn).toEqual(helpersReturn);
     });
   });
+  describe('format', () => {
+    describe('when passing', () => {
+      describe('fullOrdinalWeek', () => {
+        test('should return a date like Sunday, March 10th 2019', () => {
+          expect(
+            helpers.format(new Date('05/15/2020'), 'fullOrdinalWeek'),
+          ).toEqual('Friday, May 15th 2020');
+        });
+      });
+    });
+  });
   describe('isOnOrAfterDay', () => {
     test('should return true if the second provided date is on or after the start of the day of the first provided date', () => {
       expect(

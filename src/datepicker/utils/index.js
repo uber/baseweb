@@ -87,3 +87,6 @@ export const subYears = createDirtySetter(defaultDateHelpers.subYears);
 
 export const isBefore = createDirtyCompare(defaultDateHelpers.isBefore);
 export const isAfter = createDirtyCompare(defaultDateHelpers.isAfter);
+
+export const format = (date: Date, format: string) =>
+  defaultDateHelpers.format(date, format);
