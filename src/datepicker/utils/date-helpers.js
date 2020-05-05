@@ -105,7 +105,7 @@ class DateHelpers<T> {
   // eslint-disable-next-line flowtype/no-weak-types
   getWeekdayMinInLocale: (T, any) => string = (date, locale) => {
     return this.getAdapterWithNewLocale(locale)
-      .formatByString(date, 'EEEE')
+      .format(date, 'weekday')
       .charAt(0);
   };
   // eslint-disable-next-line flowtype/no-weak-types
