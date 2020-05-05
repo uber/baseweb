@@ -39,6 +39,24 @@ const excludedFromChecks = [
   'isValid',
 ];
 
+const getHelpersForDateObject = date => {
+  if (date instanceof Date) {
+    return dateHelpers;
+  }
+  if (moment.isMoment(date)) {
+    return momentHelpers;
+  }
+  if (Luxon.isDateTime(date)) {
+    return luxonHelpers;
+  }
+  return dateHelpers;
+};
+
+const getYearForDate = date => {
+  const currentHelpers = getHelpersForDateObject(date);
+  return currentHelpers.getYear(date);
+};
+
 const defaultGetComparisonValue = value => {
   if (value instanceof Date) {
     return value.toISOString();
@@ -489,13 +507,7 @@ describe('Datepicker utils', () => {
             excludeDates: undefined,
             includeDates: undefined,
             filterDate: date => {
-              if (date instanceof Date) {
-                return helpers.getYear(date) === 2019;
-              }
-              if (moment.isMoment(date)) {
-                return momentHelpers.getYear(date) === 2019;
-              }
-              return false;
+              return getYearForDate(date) === 2019;
             },
           }),
         ).toEqual(true);
@@ -506,13 +518,7 @@ describe('Datepicker utils', () => {
             excludeDates: undefined,
             includeDates: undefined,
             filterDate: date => {
-              if (date instanceof Date) {
-                return helpers.getYear(date) === 2020;
-              }
-              if (moment.isMoment(date)) {
-                return momentHelpers.getYear(date) === 2020;
-              }
-              return false;
+              return getYearForDate(date) === 2020;
             },
           }),
         ).toEqual(false);
