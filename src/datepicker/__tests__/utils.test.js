@@ -303,7 +303,7 @@ describe('Datepicker utils', () => {
       expect(helpers.formatDate(MIDNIGHT, 'MMM')).toEqual('Apr');
     });
     test('should apply locale to format if provided', () => {
-      expect(helpers.formatDate(MIDNIGHT, 'MMM', es)).toEqual('abr');
+      expect(helpers.formatDate(MIDNIGHT, 'MMMM', es)).toEqual('abril');
     });
   });
   describe('isSameYear', () => {
