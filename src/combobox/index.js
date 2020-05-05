@@ -12,16 +12,9 @@ const ARROW_DOWN = 40;
 
 export function Combobox<OptionT>(props: PropsT<OptionT>) {
   const [css, theme] = useStyletron();
-  const {onChange, options, mapOptionToString, value} = props;
+  const {onChange, options, mapOptionToNode, mapOptionToString, value} = props;
   const [selectionIndex, setSelectionIndex] = React.useState(-1);
-  const [tempValue, setTempValue] = React.useState('');
-
-  // Value changes should clear transient state. This takes care of how
-  // typing into the input element will clear keyboard selection.
-  React.useEffect(() => {
-    setSelectionIndex(-1);
-    setTempValue(value);
-  }, [value]);
+  const [tempValue, setTempValue] = React.useState(value);
 
   // Changing the 'selected' option temporarily updates the visible text string
   // in the input element until the user clicks an option or presses enter.
@@ -29,6 +22,10 @@ export function Combobox<OptionT>(props: PropsT<OptionT>) {
     // If no option selected, display the most recently user-edited string.
     if (selectionIndex === -1) {
       setTempValue(value);
+    } else if (selectionIndex > options.length) {
+      // Handles the case where option length is variable. After user clicks an
+      // option and selection index is not in option bounds, reset it to default.
+      setSelectionIndex(-1);
     } else {
       let selectedOption = options[selectionIndex];
       if (selectedOption) {
@@ -62,6 +59,7 @@ export function Combobox<OptionT>(props: PropsT<OptionT>) {
 
     if (event.keyCode === ENTER) {
       // TODO(chase): handle closing the dropdown
+      setSelectionIndex(-1);
       onChange(tempValue);
     }
     if (event.keyCode === ESCAPE) {
@@ -77,10 +75,19 @@ export function Combobox<OptionT>(props: PropsT<OptionT>) {
     setTempValue(value);
   }
 
+  function handleInputChange(event) {
+    onChange(event.target.value);
+    setSelectionIndex(-1);
+    setTempValue(event.target.value);
+  }
+
   function handleOptionClick(index) {
     let clickedOption = options[index];
     if (clickedOption) {
-      onChange(mapOptionToString(clickedOption));
+      const stringified = mapOptionToString(clickedOption);
+      setSelectionIndex(index);
+      setTempValue(stringified);
+      onChange(stringified);
     }
   }
 
@@ -88,12 +95,13 @@ export function Combobox<OptionT>(props: PropsT<OptionT>) {
   return (
     <div onBlur={handleBlur} onKeyDown={handleKeyDown}>
       <input
-        onChange={event => onChange(event.target.value)}
+        onChange={handleInputChange}
         value={tempValue ? tempValue : value}
       />
       <ul>
         {options.map((option, index) => {
           const isSelected = selectionIndex === index;
+          const ReplacementNode = mapOptionToNode;
           return (
             <li
               className={css({
@@ -106,8 +114,11 @@ export function Combobox<OptionT>(props: PropsT<OptionT>) {
               key={index}
               onClick={() => handleOptionClick(index)}
             >
-              {/* TODO(chase): implement custom mapOptionToNode renderer */}
-              {mapOptionToString(option)}
+              {ReplacementNode ? (
+                <ReplacementNode isSelected={isSelected} option={option} />
+              ) : (
+                mapOptionToString(option)
+              )}
             </li>
           );
         })}
