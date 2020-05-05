@@ -30,6 +30,7 @@ class Button extends React.Component<
   internalOnClick = (...args: *) => {
     const {isLoading, onClick} = this.props;
     if (isLoading) {
+      args[0].preventDefault();
       return;
     }
     onClick && onClick(...args);
