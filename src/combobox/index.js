@@ -1,7 +1,9 @@
 // @flow
 
 import * as React from 'react';
+
 import {useStyletron} from '../styles/index.js';
+import getBuiId from '../utils/get-bui-id.js';
 
 import type {PropsT} from './types.js';
 
@@ -19,6 +21,9 @@ export function Combobox<OptionT>(props: PropsT<OptionT>) {
 
   const rootRef = React.useRef(null);
   const inputRef = React.useRef(null);
+
+  const activeDescendantId = React.useMemo(() => getBuiId(), []);
+  const listboxId = React.useMemo(() => getBuiId(), []);
 
   // Changing the 'selected' option temporarily updates the visible text string
   // in the input element until the user clicks an option or presses enter.
@@ -107,16 +112,18 @@ export function Combobox<OptionT>(props: PropsT<OptionT>) {
   return (
     <div ref={rootRef} onBlur={handleBlur} onKeyDown={handleKeyDown}>
       <div
-        // aria-owns="REFERENCE_TO_LISTBOX_ID"
+        aria-owns={listboxId}
         aria-expanded={isOpen}
         aria-haspopup="listbox"
         role="combobox"
       >
         <input
           ref={inputRef}
-          // aria-activedescendant="REFERENCE_TO_OPTION_ID"
+          aria-activedescendant={
+            selectionIndex >= 0 ? activeDescendantId : null
+          }
           aria-autocomplete="list"
-          // aria-controls="REFERENCE_TO_LISTBOX_ID"
+          aria-controls={listboxId}
           onChange={handleInputChange}
           value={tempValue ? tempValue : value}
         />
@@ -126,7 +133,7 @@ export function Combobox<OptionT>(props: PropsT<OptionT>) {
         <ul
           className={css({outline: 'none'})}
           tabIndex="-1"
-          // id="UNIQUE_ID_VALUE"
+          id={listboxId}
           role="listbox"
         >
           {options.map((option, index) => {
@@ -135,7 +142,7 @@ export function Combobox<OptionT>(props: PropsT<OptionT>) {
             return (
               <li
                 aria-selected={isSelected}
-                // id="UNIQUE_ID_VALUE"
+                id={isSelected ? activeDescendantId : null}
                 className={css({
                   backgroundColor: isSelected ? theme.colors.accent : null,
                   cursor: 'default',
