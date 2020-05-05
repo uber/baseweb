@@ -118,7 +118,7 @@ class DateHelpers<T> {
   };
   // eslint-disable-next-line flowtype/no-weak-types
   getWeekdayInLocale: (T, any) => string = (date, locale) => {
-    return this.getAdapterWithNewLocale(locale).formatByString(date, 'EEEE');
+    return this.getAdapterWithNewLocale(locale).format(date, 'weekday');
   };
   getEndOfWeek: T => T = date => {
     return this.adapter.endOfWeek(date);
