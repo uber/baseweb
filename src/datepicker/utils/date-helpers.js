@@ -111,9 +111,9 @@ class DateHelpers<T> {
   // eslint-disable-next-line flowtype/no-weak-types
   getMonthInLocale: (number, any) => string = (monthNumber, locale) => {
     const localeAdapter = this.getAdapterWithNewLocale(locale);
-    return localeAdapter.formatByString(
+    return localeAdapter.format(
       localeAdapter.setMonth(localeAdapter.date(), monthNumber),
-      'LLLL',
+      'month',
     );
   };
   // eslint-disable-next-line flowtype/no-weak-types
