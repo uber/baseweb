@@ -154,7 +154,9 @@ const helpers: DateHelpers<Date> = Object.keys(dateHelpers).reduce(
         if (Object.keys(differingAdapterMap).length > 0) {
           const adapterString = Object.keys(differingAdapterMap).reduce(
             (memo, name) => {
-              return `${memo}${name}: Original: ${dateHelpersReturn} Current: ${differingAdapterMap[name]}\n`;
+              return `${memo}${name}: Original: ${defaultGetComparisonValue(
+                dateHelpersReturn,
+              )} Current: ${differingAdapterMap[name]}\n`;
             },
             '',
           );
@@ -180,31 +182,51 @@ describe('Datepicker utils', () => {
   });
   describe('format', () => {
     describe('when passing', () => {
-      // describe('fullOrdinalWeek', () => {
-      //   test('should return a date like Friday, May 15th 2020', () => {
-      //     expect(
-      //       helpers.format(new Date('05/15/2020'), 'fullOrdinalWeek'),
-      //     ).toEqual('Friday, May 15th 2020');
-      //   });
-      // });
-      describe('weekday', () => {
+      describe('fullOrdinalWeek', () => {
         test('should return a date like Friday, May 15th 2020', () => {
+          // because this differs, we can't use the automatic helper variation
+          expect(
+            dateHelpers.format(new Date('05/15/2020'), 'fullOrdinalWeek'),
+          ).toEqual('Friday, May 15th 2020');
+          expect(
+            momentHelpers.format(
+              moment(new Date('05/15/2020')),
+              'fullOrdinalWeek',
+            ),
+          ).toEqual('Friday, May 15th 2020');
+          expect(
+            luxonHelpers.format(
+              Luxon.fromJSDate(new Date('05/15/2020')),
+              'fullOrdinalWeek',
+            ),
+          ).toEqual('Friday, May 15 2020');
+        });
+      });
+      describe('weekday', () => {
+        test('should return a date like Friday', () => {
           expect(helpers.format(new Date('05/15/2020'), 'weekday')).toEqual(
             'Friday',
           );
         });
       });
       describe('dayOfMonthNumber', () => {
-        test('should return a date like Friday, May 15th 2020', () => {
+        test('should return a date like 15', () => {
           expect(
             helpers.format(new Date('05/15/2020'), 'dayOfMonthNumber'),
           ).toEqual('15');
         });
       });
       describe('monthNumber', () => {
-        test('should return a date like Friday, May 15th 2020', () => {
+        test('should return a date like 5', () => {
           expect(helpers.format(new Date('05/15/2020'), 'monthNumber')).toEqual(
             '5',
+          );
+        });
+      });
+      describe('fullDate', () => {
+        test('should return a date like 2020/05/15', () => {
+          expect(helpers.format(new Date('05/15/2020'), 'slashDate')).toEqual(
+            '2020/05/15',
           );
         });
       });
@@ -725,14 +747,6 @@ describe('setDate', () => {
     expect(helpers.setDate(new Date(2020, 0, 1), 32)).toEqual(
       new Date(2020, 1, 1),
     );
-  });
-});
-describe('getDay', () => {
-  test('should return the weekday number for the provided date', () => {
-    // March 29th, 2020 is a Sunday
-    expect(helpers.getDay(new Date(2020, 2, 29))).toEqual(0);
-    expect(helpers.getDay(new Date(2020, 3, 2))).toEqual(4);
-    expect(helpers.getDay(new Date(2020, 3, 4))).toEqual(6);
   });
 });
 describe('getDate', () => {

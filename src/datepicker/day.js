@@ -138,11 +138,6 @@ export default class Day<T = Date> extends React.Component<
     this.props.onMouseLeave({event, date: this.getDateProp()});
   };
 
-  isWeekend = () => {
-    const weekday = this.dateHelpers.getDay(this.getDateProp());
-    return weekday === 0 || weekday === 6;
-  };
-
   isOutsideMonth = () => {
     const month = this.getMonthProp();
     return (

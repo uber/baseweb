@@ -68,7 +68,6 @@ export const setYear = createDirtySetter(defaultDateHelpers.setYear);
 // ** Date Getters **
 export const getMinutes = createDirtyGetter(defaultDateHelpers.getMinutes);
 export const getHours = createDirtyGetter(defaultDateHelpers.getHours);
-export const getDay = createDirtyGetter(defaultDateHelpers.getDay);
 export const getDate = createDirtyGetter(defaultDateHelpers.getDate);
 export const getMonth = createDirtyGetter(defaultDateHelpers.getMonth);
 export const getYear = createDirtyGetter(defaultDateHelpers.getYear);
