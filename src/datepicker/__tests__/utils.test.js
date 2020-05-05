@@ -858,9 +858,22 @@ describe('getStartOfWeek', () => {
 });
 describe('getEndOfWeek', () => {
   test('should return the end of the week', () => {
-    expect(helpers.getEndOfWeek(new Date(2020, 3, 15))).toEqual(
+    // end of week differs in luxon as well
+    const date = new Date(2020, 3, 15);
+    const momentDate = moment(date);
+    const luxonDate = Luxon.fromJSDate(date);
+    expect(dateHelpers.getEndOfWeek(date)).toEqual(
       new Date('2020-04-19T04:59:59.999Z'),
     );
+    expect(momentHelpers.getEndOfWeek(momentDate).toISOString()).toEqual(
+      new Date('2020-04-19T04:59:59.999Z').toISOString(),
+    );
+    expect(
+      luxonHelpers
+        .getEndOfWeek(luxonDate)
+        .toJSDate()
+        .toISOString(),
+    ).toEqual(new Date('2020-04-20T04:59:59.999Z').toISOString());
   });
 });
 describe('setSeconds', () => {
