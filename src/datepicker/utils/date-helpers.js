@@ -93,7 +93,8 @@ class DateHelpers<T> {
     const adapter = locale
       ? this.getAdapterWithNewLocale(locale)
       : this.adapter;
-    return adapter.startOfWeek(date);
+    // rewrapping this date here ensures that the locale will be taken into account in all adapters
+    return adapter.startOfWeek(adapter.date(date));
   };
   // eslint-disable-next-line flowtype/no-weak-types
   formatDate: (T, string, any) => string = (date, formatString, locale) => {
@@ -260,7 +261,8 @@ class DateHelpers<T> {
     );
     return this.adapter.addDays(startOfMonth, dayNumber - 1);
   };
-  getDate: T => number = date => Number(this.adapter.formatByString(date, 'd'));
+  getDate: T => number = date =>
+    Number(this.adapter.format(date, 'dayOfMonthNumber'));
   applyDateToTime: (?T, T) => T = (time, date) => {
     if (!time) return date;
     const yearNumber = this.adapter.getYear(date);

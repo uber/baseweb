@@ -172,9 +172,9 @@ const helpers: DateHelpers<Date> = Object.keys(dateHelpers).reduce(
         if (Object.keys(differingAdapterMap).length > 0) {
           const adapterString = Object.keys(differingAdapterMap).reduce(
             (memo, name) => {
-              return `${memo}${name}: Original: ${defaultGetComparisonValue(
-                dateHelpersReturn,
-              )} Current: ${differingAdapterMap[name]}\n`;
+              return `${memo}${name}: ${
+                differingAdapterMap[name]
+              } date-fns: ${defaultGetComparisonValue(dateHelpersReturn)}\n`;
             },
             '',
           );
@@ -829,17 +829,29 @@ describe('isDayInRange', () => {
   });
 });
 describe('getStartOfWeek', () => {
+  describe('if a locale is not provided', () => {
+    test('should return the start of the week', () => {
+      // luxon helpers differs in how it handles start of week
+      expect(dateHelpers.getStartOfWeek(new Date(2020, 3, 15))).toEqual(
+        new Date(2020, 3, 12),
+      );
+      expect(
+        momentHelpers
+          .getStartOfWeek(moment(new Date(2020, 3, 15)))
+          .toISOString(),
+      ).toEqual(new Date(2020, 3, 12).toISOString());
+      expect(
+        luxonHelpers
+          .getStartOfWeek(Luxon.fromJSDate(new Date(2020, 3, 15)))
+          .toJSDate()
+          .toISOString(),
+      ).toEqual(new Date(2020, 3, 13).toISOString());
+    });
+  });
   describe('if a locale is provided', () => {
     test('should return the start of the week in the provided locale', () => {
       expect(helpers.getStartOfWeek(new Date(2020, 3, 15), es)).toEqual(
         new Date(2020, 3, 13),
-      );
-    });
-  });
-  describe('if a locale is not provided', () => {
-    test('should return the start of the week', () => {
-      expect(helpers.getStartOfWeek(new Date(2020, 3, 15))).toEqual(
-        new Date(2020, 3, 12),
       );
     });
   });
