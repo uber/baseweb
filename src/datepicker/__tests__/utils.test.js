@@ -298,9 +298,9 @@ describe('Datepicker utils', () => {
       ).toEqual(0);
     });
   });
-  describe('format', () => {
+  describe('formatDate', () => {
     test('should format date', () => {
-      expect(helpers.formatDate(MIDNIGHT, 'yyyy-MM-dd')).toEqual('2019-04-19');
+      expect(helpers.formatDate(MIDNIGHT, 'MMM')).toEqual('Apr');
     });
     test('should apply locale to format if provided', () => {
       expect(helpers.formatDate(MIDNIGHT, 'MMM', es)).toEqual('abr');
