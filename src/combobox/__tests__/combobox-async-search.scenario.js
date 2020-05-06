@@ -11,7 +11,7 @@ import * as React from 'react';
 import {Combobox} from '../index.js';
 
 type OptionT = {label: string, id: string};
-const initialOptions: OptionT[] = [
+const options: OptionT[] = [
   {label: 'AliceBlue', id: '#F0F8FF'},
   {label: 'AntiqueWhite', id: '#FAEBD7'},
   {label: 'Aqua', id: '#00FFFF'},
@@ -72,7 +72,6 @@ const initialOptions: OptionT[] = [
 
 function Example() {
   const [value, setValue] = React.useState('');
-  const [options, setOptions] = React.useState(initialOptions);
 
   function mapOptionToString(option: OptionT): string {
     return option.label;

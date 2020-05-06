@@ -116,28 +116,25 @@ export function Combobox<OptionT>(props: PropsT<OptionT>) {
   }
 
   return (
-    <div ref={rootRef} onBlur={handleBlur} onKeyDown={handleKeyDown}>
-      <div
-        aria-owns={listboxId}
+    <div ref={rootRef}>
+      <input
+        ref={inputRef}
+        aria-activedescendant={selectionIndex >= 0 ? activeDescendantId : null}
+        aria-autocomplete="list"
+        aria-controls={listboxId}
         aria-expanded={isOpen}
         aria-haspopup="listbox"
+        onBlur={handleBlur}
+        onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
         role="combobox"
-      >
-        <input
-          ref={inputRef}
-          aria-activedescendant={
-            selectionIndex >= 0 ? activeDescendantId : null
-          }
-          aria-autocomplete="list"
-          aria-controls={listboxId}
-          onChange={handleInputChange}
-          value={tempValue ? tempValue : value}
-        />
-      </div>
+        value={tempValue ? tempValue : value}
+      />
 
       {isOpen && (
         <ul
           className={css({outline: 'none'})}
+          // TabIndex attribute exists to exclude option clicks from triggering onBlur event actions.
           tabIndex="-1"
           id={listboxId}
           role="listbox"

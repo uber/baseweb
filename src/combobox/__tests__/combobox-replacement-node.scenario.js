@@ -22,7 +22,7 @@ const options: OptionT[] = [
 ];
 
 function ReplacementNode({isSelected, option}) {
-  const [css, theme] = useStyletron();
+  const [css] = useStyletron();
   return (
     <div
       className={css({display: 'flex', alignItems: 'center', height: '36px'})}
