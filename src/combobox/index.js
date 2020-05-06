@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
+import {Popover, PLACEMENT} from '../popover/index.js';
 import {useStyletron} from '../styles/index.js';
 import getBuiId from '../utils/get-bui-id.js';
 
@@ -17,6 +18,14 @@ const ENTER = 13;
 const ESCAPE = 27;
 const ARROW_UP = 38;
 const ARROW_DOWN = 40;
+
+// __Likely overrides__
+// Root
+// InputContainer
+// Input
+// Popover
+// ListBox
+// ListItem
 
 // aria 1.1 spec: https://www.w3.org/TR/wai-aria-practices/#combobox
 // aria 1.2 spec: https://www.w3.org/TR/wai-aria-practices-1.2/#combobox
@@ -126,70 +135,78 @@ export function Combobox<OptionT>(props: PropsT<OptionT>) {
 
   return (
     <div ref={rootRef}>
-      <div
-        aria-expanded={isOpen}
-        aria-haspopup="listbox"
-        aria-owns={listboxId}
-        // a11y linter implements the older 1.0 spec, supressing to use updated 1.1
-        // https://github.com/A11yance/aria-query/issues/43
-        // https://github.com/evcohen/eslint-plugin-jsx-a11y/issues/442
-        // eslint-disable-next-line jsx-a11y/role-has-required-aria-props
-        role="combobox"
+      <Popover
+        isOpen={isOpen}
+        placement={PLACEMENT.bottomLeft}
+        content={
+          <ul
+            className={css({
+              outline: 'none',
+              maxHeight: '480px',
+              overflowY: 'auto',
+            })}
+            // TabIndex attribute exists to exclude option clicks from triggering onBlur event actions.
+            tabIndex="-1"
+            id={listboxId}
+            role="listbox"
+          >
+            {options.map((option, index) => {
+              const isSelected = selectionIndex === index;
+              const ReplacementNode = mapOptionToNode;
+              return (
+                // List items are not focusable, therefore will never trigger a key event from it.
+                // Secondly, key events are handled from the input element.
+                // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+                <li
+                  aria-selected={isSelected}
+                  id={isSelected ? activeDescendantId : null}
+                  className={css({
+                    backgroundColor: isSelected ? theme.colors.accent : null,
+                    cursor: 'default',
+                    listStyle: 'none',
+                    ':hover': {
+                      backgroundColor: isSelected ? null : theme.colors.warning,
+                    },
+                  })}
+                  key={index}
+                  onClick={() => handleOptionClick(index)}
+                  role="option"
+                >
+                  {ReplacementNode ? (
+                    <ReplacementNode isSelected={isSelected} option={option} />
+                  ) : (
+                    mapOptionToString(option)
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        }
       >
-        <input
-          ref={inputRef}
-          aria-activedescendant={
-            selectionIndex >= 0 ? activeDescendantId : null
-          }
-          aria-autocomplete="list"
-          aria-controls={listboxId}
-          onBlur={handleBlur}
-          onChange={handleInputChange}
-          onKeyDown={handleKeyDown}
-          value={tempValue ? tempValue : value}
-        />
-      </div>
-
-      {isOpen && (
-        <ul
-          className={css({outline: 'none'})}
-          // TabIndex attribute exists to exclude option clicks from triggering onBlur event actions.
-          tabIndex="-1"
-          id={listboxId}
-          role="listbox"
+        <div
+          aria-expanded={isOpen}
+          aria-haspopup="listbox"
+          aria-owns={listboxId}
+          // a11y linter implements the older 1.0 spec, supressing to use updated 1.1
+          // https://github.com/A11yance/aria-query/issues/43
+          // https://github.com/evcohen/eslint-plugin-jsx-a11y/issues/442
+          // eslint-disable-next-line jsx-a11y/role-has-required-aria-props
+          role="combobox"
         >
-          {options.map((option, index) => {
-            const isSelected = selectionIndex === index;
-            const ReplacementNode = mapOptionToNode;
-            return (
-              // List items are not focusable, therefore will never trigger a key event from it.
-              // Secondly, key events are handled from the input element.
-              // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-              <li
-                aria-selected={isSelected}
-                id={isSelected ? activeDescendantId : null}
-                className={css({
-                  backgroundColor: isSelected ? theme.colors.accent : null,
-                  cursor: 'default',
-                  listStyle: 'none',
-                  ':hover': {
-                    backgroundColor: isSelected ? null : theme.colors.warning,
-                  },
-                })}
-                key={index}
-                onClick={() => handleOptionClick(index)}
-                role="option"
-              >
-                {ReplacementNode ? (
-                  <ReplacementNode isSelected={isSelected} option={option} />
-                ) : (
-                  mapOptionToString(option)
-                )}
-              </li>
-            );
-          })}
-        </ul>
-      )}
+          <input
+            ref={inputRef}
+            aria-activedescendant={
+              selectionIndex >= 0 ? activeDescendantId : null
+            }
+            aria-autocomplete="list"
+            aria-controls={listboxId}
+            onBlur={handleBlur}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
+            value={tempValue ? tempValue : value}
+          />
+        </div>
+      </Popover>
     </div>
   );
 }

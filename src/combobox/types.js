@@ -10,10 +10,10 @@ import * as React from 'react';
 
 export type PropsT<OptionT = mixed> = {|
   // Used to render a custom node besides the default.
-  mapOptionToNode?: React.AbstractComponent<{
+  mapOptionToNode?: React.AbstractComponent<{|
     isSelected: boolean,
     option: OptionT,
-  }>,
+  |}>,
   // Options are often fetched from remote server, provides a simple way to
   // map whatever value the client gets into a visible string in the list item.
   mapOptionToString: OptionT => string,
