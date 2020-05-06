@@ -18,6 +18,8 @@ const ESCAPE = 27;
 const ARROW_UP = 38;
 const ARROW_DOWN = 40;
 
+// aria 1.1 spec: https://www.w3.org/TR/wai-aria-practices/#combobox
+// aria 1.2 spec: https://www.w3.org/TR/wai-aria-practices-1.2/#combobox
 export function Combobox<OptionT>(props: PropsT<OptionT>) {
   const [css, theme] = useStyletron();
   const {onChange, options, mapOptionToNode, mapOptionToString, value} = props;
@@ -42,6 +44,9 @@ export function Combobox<OptionT>(props: PropsT<OptionT>) {
       // option and selection index is not in option bounds, reset it to default.
       setSelectionIndex(-1);
     } else {
+      // NOTE(chase): May want to consider adding an option to _not_ autocomplete the
+      // temporary value in the input element. If a feature request comes up, this is
+      // where it would go.
       let selectedOption = options[selectionIndex];
       if (selectedOption) {
         setTempValue(mapOptionToString(selectedOption));
@@ -77,6 +82,10 @@ export function Combobox<OptionT>(props: PropsT<OptionT>) {
       onChange(tempValue);
     }
     if (event.keyCode === ESCAPE) {
+      // NOTE(chase): aria 1.2 spec outlines a pattern where when escape is
+      // pressed, it closes the listbox and further presses will clear value.
+      // Google search and some other examples I've seen do not implement this,
+      // but something to consider when the 1.2 spec becomes more widespread.
       setIsOpen(false);
       setSelectionIndex(-1);
       setTempValue(value);
@@ -117,19 +126,29 @@ export function Combobox<OptionT>(props: PropsT<OptionT>) {
 
   return (
     <div ref={rootRef}>
-      <input
-        ref={inputRef}
-        aria-activedescendant={selectionIndex >= 0 ? activeDescendantId : null}
-        aria-autocomplete="list"
-        aria-controls={listboxId}
+      <div
         aria-expanded={isOpen}
         aria-haspopup="listbox"
-        onBlur={handleBlur}
-        onChange={handleInputChange}
-        onKeyDown={handleKeyDown}
+        aria-owns={listboxId}
+        // a11y linter implements the older 1.0 spec, supressing to use updated 1.1
+        // https://github.com/A11yance/aria-query/issues/43
+        // https://github.com/evcohen/eslint-plugin-jsx-a11y/issues/442
+        // eslint-disable-next-line jsx-a11y/role-has-required-aria-props
         role="combobox"
-        value={tempValue ? tempValue : value}
-      />
+      >
+        <input
+          ref={inputRef}
+          aria-activedescendant={
+            selectionIndex >= 0 ? activeDescendantId : null
+          }
+          aria-autocomplete="list"
+          aria-controls={listboxId}
+          onBlur={handleBlur}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+          value={tempValue ? tempValue : value}
+        />
+      </div>
 
       {isOpen && (
         <ul
@@ -143,6 +162,9 @@ export function Combobox<OptionT>(props: PropsT<OptionT>) {
             const isSelected = selectionIndex === index;
             const ReplacementNode = mapOptionToNode;
             return (
+              // List items are not focusable, therefore will never trigger a key event from it.
+              // Secondly, key events are handled from the input element.
+              // eslint-disable-next-line jsx-a11y/click-events-have-key-events
               <li
                 aria-selected={isSelected}
                 id={isSelected ? activeDescendantId : null}
