@@ -277,10 +277,8 @@ export function Combobox<OptionT>(props: PropsT<OptionT>) {
         >
           <Input
             inputRef={inputRef}
-            // TODO(chase): move aria labels to overrides, or consider adding props
-            // to input component.
             aria-activedescendant={
-              selectionIndex >= 0 ? activeDescendantId : null
+              selectionIndex >= 0 ? activeDescendantId : undefined
             }
             aria-autocomplete="list"
             aria-controls={listboxId}

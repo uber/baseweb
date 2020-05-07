@@ -32,6 +32,9 @@ class BaseInput<T: EventTarget> extends React.Component<
   InternalStateT,
 > {
   static defaultProps = {
+    'aria-activedescendant': null,
+    'aria-autocomplete': null,
+    'aria-controls': null,
     'aria-errormessage': null,
     'aria-label': null,
     'aria-labelledby': null,
@@ -307,6 +310,9 @@ class BaseInput<T: EventTarget> extends React.Component<
         <Before {...sharedProps} {...beforeProps} />
         <Input
           ref={this.inputRef}
+          aria-activedescendant={this.props['aria-activedescendant']}
+          aria-autocomplete={this.props['aria-autocomplete']}
+          aria-controls={this.props['aria-controls']}
           aria-errormessage={this.props['aria-errormessage']}
           aria-label={this.props['aria-label']}
           aria-labelledby={this.props['aria-labelledby']}

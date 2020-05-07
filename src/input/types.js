@@ -81,6 +81,9 @@ export type InputComponentsT = {|
 |};
 
 export type BaseInputPropsT<T> = {|
+  'aria-activedescendant'?: string,
+  'aria-autocomplete'?: string,
+  'aria-controls'?: string,
   /** Id of element which contains a related error message */
   'aria-errormessage'?: string,
   /** Sets aria-label attribute. */
