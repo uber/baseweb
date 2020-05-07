@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import {
   Root as StyledRoot,
   TabBar as StyledTabBar,
@@ -50,7 +50,7 @@ export default class Tabs extends React.Component<TabsPropsT> {
         $orientation: orientation,
         onSelect: () => this.onChange({activeKey: key}),
         children: child.props.title,
-        overrides: mergeOverrides(overrides, child.props.overrides || {})
+        overrides: mergeOverrides(overrides, child.props.overrides || {}),
       });
     });
 
