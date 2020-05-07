@@ -30,7 +30,13 @@ export default class Tabs extends React.Component<TabsPropsT> {
   }
 
   getTabs() {
-    const {activeKey, disabled, orientation, children} = this.props;
+    const {
+      activeKey,
+      disabled,
+      orientation,
+      children,
+      overrides = {},
+    } = this.props;
     // eslint-disable-next-line flowtype/no-weak-types
     const tabs = React.Children.map(children, (child: any, index) => {
       if (!child) return;
@@ -44,6 +50,7 @@ export default class Tabs extends React.Component<TabsPropsT> {
         $orientation: orientation,
         onSelect: () => this.onChange({activeKey: key}),
         children: child.props.title,
+        overrides: child.props.overrides || overrides,
       });
     });
 
