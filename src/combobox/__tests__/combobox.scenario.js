@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
+import {useStyletron} from '../../styles/index.js';
 import {Combobox} from '../index.js';
 
 type OptionT = {label: string, id: string};
@@ -21,9 +22,10 @@ const options: OptionT[] = [
 ];
 
 function Example() {
+  const [css] = useStyletron();
   const [value, setValue] = React.useState('');
   return (
-    <div>
+    <div className={css({width: '375px', padding: '12px 48px'})}>
       <Combobox
         value={value}
         onChange={setValue}

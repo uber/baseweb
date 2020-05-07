@@ -8,7 +8,10 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
+import {SIZE} from '../input/index.js';
+
 export type PropsT<OptionT = mixed> = {|
+  disabled?: boolean,
   // Used to render a custom node besides the default.
   mapOptionToNode?: React.AbstractComponent<{|
     isSelected: boolean,
@@ -17,6 +20,8 @@ export type PropsT<OptionT = mixed> = {|
   // Options are often fetched from remote server, provides a simple way to
   // map whatever value the client gets into a visible string in the list item.
   mapOptionToString: OptionT => string,
+  // Configures the height of input and list item elements.
+  size?: $Keys<typeof SIZE>,
   // Called when input value changes or option is selected.
   onChange: string => mixed,
   // Data to populate list items in the dropdown menu.

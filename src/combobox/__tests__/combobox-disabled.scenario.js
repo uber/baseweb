@@ -21,39 +21,16 @@ const options: OptionT[] = [
   {label: 'Beige', id: '#F5F5DC'},
 ];
 
-function ReplacementNode({isSelected, option}) {
-  const [css] = useStyletron();
-  return (
-    <div
-      className={css({
-        display: 'flex',
-        alignItems: 'center',
-        height: '36px',
-      })}
-    >
-      <div
-        className={css({
-          backgroundColor: option.id,
-          height: '12px',
-          marginRight: '8px',
-          width: '12px',
-        })}
-      />
-      {option.label}
-    </div>
-  );
-}
-
 function Example() {
   const [css] = useStyletron();
   const [value, setValue] = React.useState('');
   return (
     <div className={css({width: '375px', padding: '12px 48px'})}>
       <Combobox
+        disabled
         value={value}
         onChange={setValue}
         mapOptionToString={o => o.label}
-        mapOptionToNode={ReplacementNode}
         options={options}
       />
     </div>

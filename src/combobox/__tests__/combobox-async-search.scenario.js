@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
+import {useStyletron} from '../../styles/index.js';
 import {Combobox} from '../index.js';
 
 type OptionT = {label: string, id: string};
@@ -70,7 +71,9 @@ const options: OptionT[] = [
   {label: 'MediumSlateBlue', id: '7B68EE'},
 ];
 
+// TODO(chase): Need to configure this example to better mirror a server fetch.
 function Example() {
+  const [css] = useStyletron();
   const [value, setValue] = React.useState('');
 
   function mapOptionToString(option: OptionT): string {
@@ -85,7 +88,7 @@ function Example() {
   }, [options, value]);
 
   return (
-    <div>
+    <div className={css({width: '375px', padding: '12px 48px'})}>
       <Combobox
         value={value}
         onChange={setValue}

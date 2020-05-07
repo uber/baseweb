@@ -21,41 +21,37 @@ const options: OptionT[] = [
   {label: 'Beige', id: '#F5F5DC'},
 ];
 
-function ReplacementNode({isSelected, option}) {
-  const [css] = useStyletron();
+// eslint-disable-next-line flowtype/no-weak-types
+function Instance({size}: any) {
+  const [css, theme] = useStyletron();
+  const [value, setValue] = React.useState('');
   return (
-    <div
-      className={css({
-        display: 'flex',
-        alignItems: 'center',
-        height: '36px',
-      })}
-    >
-      <div
-        className={css({
-          backgroundColor: option.id,
-          height: '12px',
-          marginRight: '8px',
-          width: '12px',
-        })}
-      />
-      {option.label}
+    <div>
+      <p className={css({color: theme.colors.contentPrimary})}>
+        {size ? size : 'unspecified (default)'}
+      </p>
+      <div className={css({width: '375px'})}>
+        <Combobox
+          value={value}
+          onChange={setValue}
+          mapOptionToString={o => o.label}
+          options={options}
+          size={size}
+        />
+      </div>
     </div>
   );
 }
 
 function Example() {
   const [css] = useStyletron();
-  const [value, setValue] = React.useState('');
   return (
-    <div className={css({width: '375px', padding: '12px 48px'})}>
-      <Combobox
-        value={value}
-        onChange={setValue}
-        mapOptionToString={o => o.label}
-        mapOptionToNode={ReplacementNode}
-        options={options}
-      />
+    <div className={css({padding: '12px 48px'})}>
+      <Instance />
+      <Instance size={'mini'} />
+      <Instance size={'compact'} />
+      <Instance size={'default'} />
+      <Instance size={'large'} />
     </div>
   );
 }

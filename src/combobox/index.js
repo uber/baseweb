@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
+import {Input, SIZE} from '../input/index.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
 import {useStyletron} from '../styles/index.js';
 import getBuiId from '../utils/get-bui-id.js';
@@ -18,6 +19,36 @@ const ENTER = 13;
 const ESCAPE = 27;
 const ARROW_UP = 38;
 const ARROW_DOWN = 40;
+
+function buildStylesForSize(size: $Keys<typeof SIZE>, theme) {
+  switch (size) {
+    case SIZE.mini:
+      return {
+        ...theme.typography.ParagraphXSmall,
+        height: '30px',
+        paddingLeft: theme.sizing.scale200,
+      };
+    case SIZE.compact:
+      return {
+        ...theme.typography.ParagraphSmall,
+        height: '36px',
+        paddingLeft: theme.sizing.scale400,
+      };
+    case SIZE.large:
+      return {
+        ...theme.typography.ParagraphLarge,
+        height: '56px',
+        paddingLeft: theme.sizing.scale650,
+      };
+    case SIZE.default:
+    default:
+      return {
+        ...theme.typography.ParagraphMedium,
+        height: '48px',
+        paddingLeft: theme.sizing.scale550,
+      };
+  }
+}
 
 // __Likely overrides__
 // Root
@@ -30,14 +61,24 @@ const ARROW_DOWN = 40;
 // aria 1.1 spec: https://www.w3.org/TR/wai-aria-practices/#combobox
 // aria 1.2 spec: https://www.w3.org/TR/wai-aria-practices-1.2/#combobox
 export function Combobox<OptionT>(props: PropsT<OptionT>) {
+  const {
+    disabled = false,
+    onChange,
+    options,
+    mapOptionToNode,
+    mapOptionToString,
+    size = SIZE.default,
+    value,
+  } = props;
+
   const [css, theme] = useStyletron();
-  const {onChange, options, mapOptionToNode, mapOptionToString, value} = props;
   const [selectionIndex, setSelectionIndex] = React.useState(-1);
   const [tempValue, setTempValue] = React.useState(value);
   const [isOpen, setIsOpen] = React.useState(false);
 
   const rootRef = React.useRef(null);
   const inputRef = React.useRef(null);
+  const selectedOptionRef = React.useRef(null);
 
   const activeDescendantId = React.useMemo(() => getBuiId(), []);
   const listboxId = React.useMemo(() => getBuiId(), []);
@@ -63,10 +104,29 @@ export function Combobox<OptionT>(props: PropsT<OptionT>) {
     }
   }, [options, selectionIndex]);
 
+  React.useEffect(() => {
+    if (isOpen && selectedOptionRef.current) {
+      selectedOptionRef.current.scrollIntoView({block: 'nearest'});
+    }
+  }, [isOpen, selectedOptionRef.current]);
+
+  const listboxWidth = React.useMemo(() => {
+    if (rootRef.current) {
+      return `${rootRef.current.clientWidth}px`;
+    }
+    return null;
+  }, [rootRef.current]);
+
+  function handleOpen() {
+    if (!disabled) {
+      setIsOpen(true);
+    }
+  }
+
   function handleKeyDown(event) {
     if (event.keyCode === ARROW_DOWN) {
       event.preventDefault();
-      setIsOpen(true);
+      handleOpen();
       setSelectionIndex(prev => {
         let next = prev + 1;
         if (next > options.length - 1) {
@@ -102,7 +162,15 @@ export function Combobox<OptionT>(props: PropsT<OptionT>) {
   }
 
   function handleBlur(event) {
-    if (rootRef.current && rootRef.current.contains(event.relatedTarget)) {
+    if (
+      rootRef.current &&
+      event.relatedTarget &&
+      // NOTE(chase): Contains method expects a Node type, but relatedTarget is
+      // EventTarget which is a super type of Node. Passing an EventTarget seems
+      // to work fine, assuming the flow type is too strict.
+      // eslint-disable-next-line flowtype/no-weak-types
+      rootRef.current.contains((event.relatedTarget: any))
+    ) {
       return;
     }
 
@@ -112,9 +180,9 @@ export function Combobox<OptionT>(props: PropsT<OptionT>) {
   }
 
   function handleInputChange(event) {
-    setIsOpen(true);
-    onChange(event.target.value);
+    handleOpen();
     setSelectionIndex(-1);
+    onChange(event.target.value);
     setTempValue(event.target.value);
   }
 
@@ -122,10 +190,10 @@ export function Combobox<OptionT>(props: PropsT<OptionT>) {
     let clickedOption = options[index];
     if (clickedOption) {
       const stringified = mapOptionToString(clickedOption);
-      setSelectionIndex(index);
-      setTempValue(stringified);
-      onChange(stringified);
       setIsOpen(false);
+      setSelectionIndex(index);
+      onChange(stringified);
+      setTempValue(stringified);
 
       if (inputRef.current) {
         inputRef.current.focus();
@@ -138,12 +206,18 @@ export function Combobox<OptionT>(props: PropsT<OptionT>) {
       <Popover
         isOpen={isOpen}
         placement={PLACEMENT.bottomLeft}
+        mountNode={rootRef.current ? rootRef.current : undefined}
         content={
           <ul
             className={css({
-              outline: 'none',
+              backgroundColor: theme.colors.backgroundPrimary,
+              marginBlockStart: 'unset',
+              marginBlockEnd: 'unset',
               maxHeight: '480px',
               overflowY: 'auto',
+              outline: 'none',
+              paddingInlineStart: 'unset',
+              width: listboxWidth,
             })}
             // TabIndex attribute exists to exclude option clicks from triggering onBlur event actions.
             tabIndex="-1"
@@ -159,17 +233,25 @@ export function Combobox<OptionT>(props: PropsT<OptionT>) {
                 // eslint-disable-next-line jsx-a11y/click-events-have-key-events
                 <li
                   aria-selected={isSelected}
-                  id={isSelected ? activeDescendantId : null}
                   className={css({
-                    backgroundColor: isSelected ? theme.colors.accent : null,
+                    ...buildStylesForSize(size, theme),
+                    alignItems: 'center',
+                    backgroundColor: isSelected
+                      ? theme.colors.comboboxListItemFocus
+                      : null,
                     cursor: 'default',
+                    display: 'flex',
                     listStyle: 'none',
                     ':hover': {
-                      backgroundColor: isSelected ? null : theme.colors.warning,
+                      backgroundColor: isSelected
+                        ? null
+                        : theme.colors.comboboxListItemHover,
                     },
                   })}
+                  id={isSelected ? activeDescendantId : null}
                   key={index}
                   onClick={() => handleOptionClick(index)}
+                  ref={isSelected ? selectedOptionRef : null}
                   role="option"
                 >
                   {ReplacementNode ? (
@@ -193,16 +275,20 @@ export function Combobox<OptionT>(props: PropsT<OptionT>) {
           // eslint-disable-next-line jsx-a11y/role-has-required-aria-props
           role="combobox"
         >
-          <input
-            ref={inputRef}
+          <Input
+            inputRef={inputRef}
+            // TODO(chase): move aria labels to overrides, or consider adding props
+            // to input component.
             aria-activedescendant={
               selectionIndex >= 0 ? activeDescendantId : null
             }
             aria-autocomplete="list"
             aria-controls={listboxId}
+            disabled={disabled}
             onBlur={handleBlur}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
+            size={size}
             value={tempValue ? tempValue : value}
           />
         </div>
