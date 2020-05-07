@@ -50,7 +50,7 @@ export default class Tabs extends React.Component<TabsPropsT> {
         $orientation: orientation,
         onSelect: () => this.onChange({activeKey: key}),
         children: child.props.title,
-        overrides: child.props.overrides || overrides,
+        overrides: mergeOverrides(overrides, child.props.overrides || {})
       });
     });
 
