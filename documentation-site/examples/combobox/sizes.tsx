@@ -35,7 +35,6 @@ function Instance({size}: any) {
 }
 
 function Example() {
-  const [css] = useStyletron();
   return (
     <div>
       <Instance />

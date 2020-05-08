@@ -12,9 +12,10 @@ export type PropsT<OptionT = unknown> = {
   mapOptionToNode?: ({isSelected: boolean, option: OptionT}) => React.ReactNode;
   mapOptionToString: (OptionT) => string;
   onChange?: (string) => any;
-  options: OptionT[];
+  options: OptionT;
   size?: SIZE[keyof SIZE];
   value: string;
 };
 
 export const Combobox: React.FC<PropsT>;
+export const SIZE: SIZE;
