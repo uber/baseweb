@@ -6,12 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-export {default as Combobox} from './combobox.js';
-
-// TODO(chase): convert to styled components
-// export {
-//   Root as StyledRoot,
-// } from './styled-components.js';
-
 export {SIZE} from '../input/constants.js';
+
+export {default as Combobox} from './combobox.js';
+export {
+  StyledRoot,
+  StyledInputContainer,
+  StyledListBox,
+  StyledListItem,
+} from './styled-components.js';
 export type * from './types.js';
