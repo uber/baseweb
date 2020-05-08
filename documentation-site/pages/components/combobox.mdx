@@ -1,0 +1,63 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import ApiTable from '../../components/api-table';
+import Example from '../../components/example';
+import Exports from '../../components/exports';
+import Layout from '../../components/layout';
+import Yard from '../../components/yard/index';
+
+import comboboxYardConfig from '../../components/yard/config/combobox';
+
+import * as ComboboxExports from 'baseui/combobox';
+
+import Basic from 'examples/combobox/basic.js';
+import FilteredOptions from 'examples/combobox/filtered-options.js';
+import ReplacementNode from 'examples/combobox/replacement-node.js';
+import Sizes from 'examples/combobox/sizes.js';
+
+export default Layout;
+
+# Combobox
+
+_TODO(chase): Address overlapping listbox bug. Examples below work fine._
+
+<Yard placeholderHeight={48} {...comboboxYardConfig} />
+
+Paragraph description of the component...
+
+## When to use
+
+- When a...
+- When a...
+- When a...
+
+## Examples
+
+<Example title="Basic usage" path="combobox/basic.js">
+  <Basic />
+</Example>
+
+<Example title="Filtered options" path="combobox/filtered-options.js">
+  <FilteredOptions />
+</Example>
+
+<Example title="Custom option node" path="combobox/replacement-node.js">
+  <ReplacementNode />
+</Example>
+
+<Example title="Available sizes" path="combobox/sizes.js">
+  <Sizes />
+</Example>
+
+## API
+
+<Exports
+  component={ComboboxExports}
+  title="Combobox exports"
+  path="baseui/combobox"
+/>

@@ -20,12 +20,12 @@ export type PropsT<OptionT = mixed> = {|
   // Options are often fetched from remote server, provides a simple way to
   // map whatever value the client gets into a visible string in the list item.
   mapOptionToString: OptionT => string,
-  // Configures the height of input and list item elements.
-  size?: $Keys<typeof SIZE>,
   // Called when input value changes or option is selected.
   onChange: string => mixed,
   // Data to populate list items in the dropdown menu.
   options: OptionT[],
+  // Configures the height of input and list item elements.
+  size?: $Keys<typeof SIZE>,
   // Initial text provided to the input element.
   value: string,
 |};

@@ -267,6 +267,10 @@ interface Colors {
   calendarDayBackgroundSelectedHighlighted: string;
   calendarDayForegroundSelectedHighlighted: string;
 
+  // Combobox
+  comboboxListItemFocus: string;
+  comboboxListItemHover: string;
+
   // FileUploader
   fileUploaderBackgroundColor: string;
   fileUploaderBackgroundColorActive: string;
