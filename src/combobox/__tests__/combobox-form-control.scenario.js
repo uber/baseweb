@@ -35,6 +35,22 @@ function Example() {
           options={options}
         />
       </FormControl>
+      <FormControl label="label" caption="caption" positive="positive message">
+        <Combobox
+          value={value}
+          onChange={setValue}
+          mapOptionToString={o => o.label}
+          options={options}
+        />
+      </FormControl>
+      <FormControl label="label" caption="caption" error="error message">
+        <Combobox
+          value={value}
+          onChange={setValue}
+          mapOptionToString={o => o.label}
+          options={options}
+        />
+      </FormControl>
     </div>
   );
 }

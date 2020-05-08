@@ -14,7 +14,10 @@ import type {InputComponentsT} from '../input/index.js';
 import type {OverridesT} from '../popover/index.js';
 
 export type PropsT<OptionT = mixed> = {|
+  // Disallows text input and listbox opening.
   disabled?: boolean,
+  // Proxies value through to Input component.
+  error?: boolean,
   // Used to render a custom node besides the default.
   mapOptionToNode?: React.AbstractComponent<{|
     isSelected: boolean,
@@ -35,6 +38,8 @@ export type PropsT<OptionT = mixed> = {|
     ListBox?: OverrideT,
     ListItem?: OverrideT,
   |},
+  // Proxies value through to Input component.
+  positive?: boolean,
   // Configures the height of input and list item elements.
   size?: $Keys<typeof SIZE>,
   // Initial text provided to the input element.

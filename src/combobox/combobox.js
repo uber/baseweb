@@ -34,11 +34,13 @@ const ARROW_DOWN = 40;
 function Combobox<OptionT>(props: PropsT<OptionT>) {
   const {
     disabled = false,
+    error = false,
     onChange,
     mapOptionToNode,
     mapOptionToString,
     options,
     overrides = {},
+    positive = false,
     size = SIZE.default,
     value,
   } = props;
@@ -263,10 +265,12 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
             aria-autocomplete="list"
             aria-controls={listboxId}
             disabled={disabled}
+            error={error}
             onBlur={handleBlur}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
             overrides={overrides.Input}
+            positive={positive}
             size={size}
             value={tempValue ? tempValue : value}
           />
