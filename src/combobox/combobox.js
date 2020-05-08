@@ -10,10 +10,16 @@ import * as React from 'react';
 
 import {Input, SIZE} from '../input/index.js';
 import {scrollItemIntoView} from '../menu/utils.js';
+import {getOverrides} from '../helpers/overrides.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
-import {useStyletron} from '../styles/index.js';
 import getBuiId from '../utils/get-bui-id.js';
 
+import {
+  StyledRoot,
+  StyledInputContainer,
+  StyledListBox,
+  StyledListItem,
+} from './styled-components.js';
 import type {PropsT} from './types.js';
 
 const ENTER = 13;
@@ -21,43 +27,7 @@ const ESCAPE = 27;
 const ARROW_UP = 38;
 const ARROW_DOWN = 40;
 
-function buildStylesForSize(size: $Keys<typeof SIZE>, theme) {
-  switch (size) {
-    case SIZE.mini:
-      return {
-        ...theme.typography.ParagraphXSmall,
-        height: '30px',
-        paddingLeft: theme.sizing.scale200,
-      };
-    case SIZE.compact:
-      return {
-        ...theme.typography.ParagraphSmall,
-        height: '36px',
-        paddingLeft: theme.sizing.scale400,
-      };
-    case SIZE.large:
-      return {
-        ...theme.typography.ParagraphLarge,
-        height: '56px',
-        paddingLeft: theme.sizing.scale650,
-      };
-    case SIZE.default:
-    default:
-      return {
-        ...theme.typography.ParagraphMedium,
-        height: '48px',
-        paddingLeft: theme.sizing.scale550,
-      };
-  }
-}
-
-// __Likely overrides__
-// Root
-// InputContainer
-// Input
-// Popover
-// ListBox
-// ListItem
+// TODO(chase): Likely need to forward props from form-control
 
 // aria 1.1 spec: https://www.w3.org/TR/wai-aria-practices/#combobox
 // aria 1.2 spec: https://www.w3.org/TR/wai-aria-practices-1.2/#combobox
@@ -65,14 +35,14 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
   const {
     disabled = false,
     onChange,
-    options,
     mapOptionToNode,
     mapOptionToString,
+    options,
+    overrides = {},
     size = SIZE.default,
     value,
   } = props;
 
-  const [css, theme] = useStyletron();
   const [selectionIndex, setSelectionIndex] = React.useState(-1);
   const [tempValue, setTempValue] = React.useState(value);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -208,29 +178,41 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     }
   }
 
+  const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+  const [InputContainer, inputContainerProps] = getOverrides(
+    overrides.InputContainer,
+    StyledInputContainer,
+  );
+  const [ListBox, listBoxProps] = getOverrides(
+    overrides.ListBox,
+    StyledListBox,
+  );
+  const [ListItem, listItemProps] = getOverrides(
+    overrides.ListItem,
+    StyledListItem,
+  );
+
   return (
-    <div ref={rootRef}>
+    <Root
+      // eslint-disable-next-line flowtype/no-weak-types
+      ref={(rootRef: any)}
+      {...rootProps}
+    >
       <Popover
         isOpen={isOpen}
-        placement={PLACEMENT.bottomLeft}
         mountNode={rootRef.current ? rootRef.current : undefined}
+        overrides={overrides.Popover}
+        placement={PLACEMENT.bottomLeft}
         content={
-          <ul
-            className={css({
-              backgroundColor: theme.colors.backgroundPrimary,
-              marginBlockStart: 'unset',
-              marginBlockEnd: 'unset',
-              maxHeight: '200px',
-              overflowY: 'auto',
-              outline: 'none',
-              paddingInlineStart: 'unset',
-              width: listboxWidth,
-            })}
+          <ListBox
             // TabIndex attribute exists to exclude option clicks from triggering onBlur event actions.
             tabIndex="-1"
             id={listboxId}
-            ref={listboxRef}
+            // eslint-disable-next-line flowtype/no-weak-types
+            ref={(listboxRef: any)}
             role="listbox"
+            $width={listboxWidth}
+            {...listBoxProps}
           >
             {options.map((option, index) => {
               const isSelected = selectionIndex === index;
@@ -239,41 +221,30 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
                 // List items are not focusable, therefore will never trigger a key event from it.
                 // Secondly, key events are handled from the input element.
                 // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-                <li
+                <ListItem
                   aria-selected={isSelected}
-                  className={css({
-                    ...buildStylesForSize(size, theme),
-                    alignItems: 'center',
-                    backgroundColor: isSelected
-                      ? theme.colors.comboboxListItemFocus
-                      : null,
-                    cursor: 'default',
-                    display: 'flex',
-                    listStyle: 'none',
-                    ':hover': {
-                      backgroundColor: isSelected
-                        ? null
-                        : theme.colors.comboboxListItemHover,
-                    },
-                  })}
                   id={isSelected ? activeDescendantId : null}
                   key={index}
                   onClick={() => handleOptionClick(index)}
-                  ref={isSelected ? selectedOptionRef : null}
+                  // eslint-disable-next-line flowtype/no-weak-types
+                  ref={isSelected ? (selectedOptionRef: any) : null}
                   role="option"
+                  $isSelected={isSelected}
+                  $size={size}
+                  {...listItemProps}
                 >
                   {ReplacementNode ? (
                     <ReplacementNode isSelected={isSelected} option={option} />
                   ) : (
                     mapOptionToString(option)
                   )}
-                </li>
+                </ListItem>
               );
             })}
-          </ul>
+          </ListBox>
         }
       >
-        <div
+        <InputContainer
           aria-expanded={isOpen}
           aria-haspopup="listbox"
           aria-owns={listboxId}
@@ -282,6 +253,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
           // https://github.com/evcohen/eslint-plugin-jsx-a11y/issues/442
           // eslint-disable-next-line jsx-a11y/role-has-required-aria-props
           role="combobox"
+          {...inputContainerProps}
         >
           <Input
             inputRef={inputRef}
@@ -294,12 +266,13 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
             onBlur={handleBlur}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
+            overrides={overrides.Input}
             size={size}
             value={tempValue ? tempValue : value}
           />
-        </div>
+        </InputContainer>
       </Popover>
-    </div>
+    </Root>
   );
 }
 

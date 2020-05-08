@@ -8,7 +8,10 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
+import type {OverrideT} from '../helpers/overrides.js';
 import {SIZE} from '../input/index.js';
+import type {InputComponentsT} from '../input/index.js';
+import type {OverridesT} from '../popover/index.js';
 
 export type PropsT<OptionT = mixed> = {|
   disabled?: boolean,
@@ -24,6 +27,14 @@ export type PropsT<OptionT = mixed> = {|
   onChange: string => mixed,
   // Data to populate list items in the dropdown menu.
   options: OptionT[],
+  overrides?: {|
+    Root?: OverrideT,
+    InputContainer?: OverrideT,
+    Input?: InputComponentsT,
+    Popover?: OverridesT,
+    ListBox?: OverrideT,
+    ListItem?: OverrideT,
+  |},
   // Configures the height of input and list item elements.
   size?: $Keys<typeof SIZE>,
   // Initial text provided to the input element.
