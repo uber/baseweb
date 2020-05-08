@@ -70,6 +70,7 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                     onClick={[Function]}
                     onKeyDown={[Function]}
                     onSelect={[Function]}
+                    overrides={Object {}}
                     title="Tab Link 1"
                   >
                     <ForwardRef
@@ -155,6 +156,7 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                     onClick={[Function]}
                     onKeyDown={[Function]}
                     onSelect={[Function]}
+                    overrides={Object {}}
                     title="Tab Link 2"
                   >
                     <ForwardRef
@@ -240,6 +242,7 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                     onClick={[Function]}
                     onKeyDown={[Function]}
                     onSelect={[Function]}
+                    overrides={Object {}}
                     title="Tab Link 3"
                   >
                     <ForwardRef
@@ -512,6 +515,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                     onClick={[Function]}
                     onKeyDown={[Function]}
                     onSelect={[Function]}
+                    overrides={Object {}}
                     title="Tab Link 1"
                   >
                     <ForwardRef
@@ -597,6 +601,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                     onClick={[Function]}
                     onKeyDown={[Function]}
                     onSelect={[Function]}
+                    overrides={Object {}}
                     title="Tab Link 2"
                   >
                     <ForwardRef
@@ -682,6 +687,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                     onClick={[Function]}
                     onKeyDown={[Function]}
                     onSelect={[Function]}
+                    overrides={Object {}}
                     title="Tab Link 3"
                   >
                     <ForwardRef
@@ -939,6 +945,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                     onClick={[Function]}
                     onKeyDown={[Function]}
                     onSelect={[Function]}
+                    overrides={Object {}}
                     title="Tab Link 1"
                   >
                     <ForwardRef
@@ -1024,6 +1031,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                     onClick={[Function]}
                     onKeyDown={[Function]}
                     onSelect={[Function]}
+                    overrides={Object {}}
                     title="Tab Link 2"
                   >
                     <ForwardRef
@@ -1109,6 +1117,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                     onClick={[Function]}
                     onKeyDown={[Function]}
                     onSelect={[Function]}
+                    overrides={Object {}}
                     title="Tab Link 3"
                   >
                     <ForwardRef
