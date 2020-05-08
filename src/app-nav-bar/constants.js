@@ -6,12 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-export const NAV_POSITION = {
+export const POSITION = {
   horizontal: 'horizontal',
   vertical: 'vertical',
 };
 
-export const NAV_ITEM_KIND = {
+export const KIND = {
   primary: 'primary',
   secondary: 'secondary',
 };

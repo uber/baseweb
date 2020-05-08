@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {Cell, Grid} from '../layout-grid/index.js';
-import PrimaryMenuItem from './primary-menu-item.js';
-import {NAV_ITEM_KIND} from './constants.js';
+import MainMenuItem from './main-menu-item.js';
+import {KIND} from './constants.js';
 import {
   StyledSubnavContainer,
   StyledSecondaryMenuContainer,
@@ -17,7 +17,7 @@ import {
 import type {SecondaryMenuT} from './types.js';
 
 export default function AppNavBar(props: SecondaryMenuT) {
-  const {nav = [], onNavItemSelect} = props;
+  const {nav = [], isNavItemActive = params => {}, onNavItemSelect} = props;
   return (
     <StyledSubnavContainer>
       <Grid>
@@ -26,12 +26,17 @@ export default function AppNavBar(props: SecondaryMenuT) {
             role="navigation"
             aria-label="Secondary navigation"
           >
-            {nav.map((navItem, index) => (
+            {nav.map((item, index) => (
               // Replace with a menu item renderer
-              <PrimaryMenuItem
-                kind={NAV_ITEM_KIND.secondary}
+              <MainMenuItem
+                active={
+                  item.active !== undefined
+                    ? item.active
+                    : isNavItemActive({item})
+                }
+                item={item}
+                kind={KIND.secondary}
                 key={index}
-                item={navItem}
                 onSelect={onNavItemSelect}
               />
             ))}

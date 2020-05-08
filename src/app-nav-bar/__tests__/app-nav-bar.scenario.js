@@ -7,11 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+import {StyledLink} from '../../link/index.js';
 import ChevronDown from '../../icon/chevron-down.js';
 import Delete from '../../icon/delete.js';
 import Icon from '../../icon/upload.js';
 import UserIcon from '../../icon/overflow.js';
-import {Unstable_AppNavBar as AppNavBar, NAV_POSITION} from '../index.js';
+import {Unstable_AppNavBar as AppNavBar, POSITION} from '../index.js';
 
 function renderItem(item) {
   return item.label;
@@ -37,7 +38,7 @@ const MAIN_NAV = [
     mapItemToString: renderItem,
     navExitIcon: Delete,
     navPosition: {
-      desktop: NAV_POSITION.horizontal,
+      desktop: POSITION.horizontal,
     },
     nav: [
       {
@@ -73,7 +74,8 @@ const MAIN_NAV = [
     mapItemToString: renderItem,
     navExitIcon: Delete,
     navPosition: {
-      desktop: NAV_POSITION.horizontal,
+      desktop: POSITION.horizontal,
+      mobile: POSITION.horizontal,
     },
     nav: [
       {
@@ -133,38 +135,47 @@ const USER_NAV = [
   },
 ];
 
-function findAndSetActiveChain(item, arr): [boolean, Array<any>] {
-  let returnValue = [false, arr];
+function isActive(arr, item, activeItem): boolean {
+  let active = false;
   for (let i = 0; i < arr.length; i++) {
     const elm = arr[i];
     if (elm === item) {
-      const newArr = [...arr];
-      newArr[i] = {...elm, active: true};
-      returnValue = [true, newArr];
-      break;
+      if (item === activeItem) return true;
+      return isActive((item && item.nav) || [], activeItem, activeItem);
     } else if (elm.nav) {
-      const [foundItem, updatedSubnav] = findAndSetActiveChain(item, elm.nav);
-      if (foundItem) {
-        const newArr = [...arr];
-        newArr[i] = {...elm, active: true, nav: updatedSubnav};
-        returnValue = [true, newArr];
-        break;
-      }
+      active = isActive(elm.nav || [], item, activeItem);
     }
   }
-  return returnValue;
+  return active;
 }
 
 export default function Scenario() {
-  const [nav, setNav] = React.useState(MAIN_NAV);
+  const [activeNavItem, setActiveNavItem] = React.useState();
+  const appDisplayName = (
+    <StyledLink
+      $style={{
+        textDecoration: 'none',
+        color: 'inherit',
+        ':hover': {color: 'inherit'},
+        ':visited': {color: 'inherit'},
+      }}
+      href={'#'}
+    >
+      Uber Something
+    </StyledLink>
+  );
   return (
     <AppNavBar
-      appDisplayName="Uber Something"
-      mainNav={nav}
+      appDisplayName={appDisplayName}
+      mainNav={MAIN_NAV}
+      isNavItemActive={({item}) => {
+        return (
+          item === activeNavItem || isActive(MAIN_NAV, item, activeNavItem)
+        );
+      }}
       onNavItemSelect={({item}) => {
-        if (item.active) return;
-        const [_, nextNav] = findAndSetActiveChain(item, MAIN_NAV);
-        setNav(nextNav);
+        if (item === activeNavItem) return;
+        setActiveNavItem(item);
       }}
       userNav={USER_NAV}
       username="Umka Marshmallow"

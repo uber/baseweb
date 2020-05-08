@@ -25,13 +25,14 @@ export default function UserMenu(props: AppNavBarPropsT) {
 
   return (
     <StatefulPopover
-      placement={PLACEMENT.bottomRight}
-      triggerType={TRIGGER_TYPE.click}
+      content={({close}) => <UserMenuDropdown close={close} {...props} />}
       dismissOnEsc={true}
       dismissOnClickOutside={true}
       onOpen={() => setIsOpen(true)}
       onClose={() => setIsOpen(false)}
-      content={({close}) => <UserMenuDropdown close={close} {...props} />}
+      placement={PLACEMENT.bottomRight}
+      popperOptions={{modifiers: {flip: {enabled: false}}}}
+      triggerType={TRIGGER_TYPE.click}
     >
       <Button overrides={{BaseButton: {component: StyledUserMenuButton}}}>
         <Avatar name={username} src={userImgUrl} size={'32px'} />

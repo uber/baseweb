@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import {useStyletron} from 'baseui';
+import {StyledLink} from 'baseui/link';
 import {Button} from 'baseui/button';
 import {Layer} from 'baseui/layer';
 import {
@@ -11,7 +12,7 @@ import {
 } from 'baseui/icon';
 import {
   Unstable_AppNavBar as AppNavBar,
-  NAV_POSITION,
+  POSITION,
 } from 'baseui/app-nav-bar';
 
 function renderItem(item) {
@@ -37,7 +38,7 @@ const MAIN_NAV = [
     mapItemToNode: renderItem,
     mapItemToString: renderItem,
     navExitIcon: Delete,
-    navPosition: {desktop: NAV_POSITION.horizontal},
+    navPosition: {desktop: POSITION.horizontal},
     nav: [
       {
         icon: Icon,
@@ -51,6 +52,18 @@ const MAIN_NAV = [
         mapItemToNode: renderItem,
         mapItemToString: renderItem,
       },
+      {
+        icon: Icon,
+        item: {label: 'Secondary menu3'},
+        mapItemToNode: renderItem,
+        mapItemToString: renderItem,
+      },
+      {
+        icon: Icon,
+        item: {label: 'Secondary menu4'},
+        mapItemToNode: renderItem,
+        mapItemToString: renderItem,
+      },
     ],
   },
   {
@@ -59,7 +72,7 @@ const MAIN_NAV = [
     mapItemToNode: renderItem,
     mapItemToString: renderItem,
     navExitIcon: Delete,
-    navPosition: {desktop: NAV_POSITION.horizontal},
+    navPosition: {desktop: POSITION.horizontal},
     nav: [
       {
         icon: ChevronDown,
@@ -118,29 +131,22 @@ const USER_NAV = [
   },
 ];
 
-function findAndSetActiveChain(item, arr): [boolean, Array<any>] {
-  let returnValue = [false, arr];
+function isActive(arr, item, activeItem): boolean {
+  let active = false;
   for (let i = 0; i < arr.length; i++) {
     const elm = arr[i];
     if (elm === item) {
-      const newArr = [...arr];
-      newArr[i] = {...elm, active: true};
-      returnValue = [true, newArr];
-      break;
-    } else if (elm.nav) {
-      const [foundItem, updatedSubnav] = findAndSetActiveChain(
-        item,
-        elm.nav,
+      if (item === activeItem) return true;
+      return isActive(
+        (item && item.nav) || [],
+        activeItem,
+        activeItem,
       );
-      if (foundItem) {
-        const newArr = [...arr];
-        newArr[i] = {...elm, active: true, nav: updatedSubnav};
-        returnValue = [true, newArr];
-        break;
-      }
+    } else if (elm.nav) {
+      active = isActive(elm.nav || [], item, activeItem);
     }
   }
-  return returnValue;
+  return active;
 }
 
 export default () => {
@@ -148,7 +154,7 @@ export default () => {
   const [isNavBarVisible, setIsNavBarVisible] = React.useState(
     false,
   );
-  const [nav, setNav] = React.useState(MAIN_NAV);
+  const [activeNavItem, setActiveNavItem] = React.useState();
   const containerStyles = css({
     boxSizing: 'border-box',
     width: '100vw',
@@ -156,6 +162,19 @@ export default () => {
     top: '0',
     left: '0',
   });
+  const appDisplayName = (
+    <StyledLink
+      $style={{
+        textDecoration: 'none',
+        color: 'inherit',
+        ':hover': {color: 'inherit'},
+        ':visited': {color: 'inherit'},
+      }}
+      href={'#'}
+    >
+      App Something
+    </StyledLink>
+  );
   return (
     <React.Fragment>
       <Button onClick={() => setIsNavBarVisible(!isNavBarVisible)}>
@@ -165,16 +184,17 @@ export default () => {
         <Layer>
           <div className={containerStyles}>
             <AppNavBar
-              appDisplayName="App Something"
-              mainNav={nav}
-              onNavItemSelect={({item}) => {
-                console.log(item);
-                if (item.active) return;
-                const [_, nextNav] = findAndSetActiveChain(
-                  item,
-                  MAIN_NAV,
+              appDisplayName={appDisplayName}
+              mainNav={MAIN_NAV}
+              isNavItemActive={({item}) => {
+                return (
+                  item === activeNavItem ||
+                  isActive(MAIN_NAV, item, activeNavItem)
                 );
-                setNav(nextNav);
+              }}
+              onNavItemSelect={({item}) => {
+                if (item === activeNavItem) return;
+                setActiveNavItem(item);
               }}
               userNav={USER_NAV}
               username="Umka Marshmallow"

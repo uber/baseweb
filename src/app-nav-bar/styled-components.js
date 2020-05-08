@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import {styled, withStyle} from '../styles/index.js';
 import {StyledListItem} from '../menu/index.js';
-import {NAV_ITEM_KIND} from './constants.js';
+import {KIND} from './constants.js';
 
 const StyledButton = styled<{$isFocusVisible: boolean}>(
   'button',
@@ -74,7 +74,7 @@ export const StyledSpacing = styled<{}>('div', props => {
   };
 });
 
-export const StyledAppName = styled<{}>('span', ({$theme}) => ({
+export const StyledAppName = styled<{}>('div', ({$theme}) => ({
   ...$theme.typography.font550,
   color: $theme.colors.primary,
   textDecoration: 'none',
@@ -106,10 +106,10 @@ export const StyledPrimaryMenuContainer = styled<{}>('div', ({$theme}) => {
   };
 });
 
-export const StyledPrimaryMenuItem = styled<{
-  $active: boolean,
+export const StyledMainMenuItem = styled<{
+  $active?: boolean,
   $isFocusVisible: boolean,
-  $kind: $Values<typeof NAV_ITEM_KIND>,
+  $kind: $Values<typeof KIND>,
 }>('div', props => {
   const {
     $active,
@@ -124,8 +124,8 @@ export const StyledPrimaryMenuItem = styled<{
     color: $active ? colors.contentPrimary : colors.contentTertiary,
     marginLeft: sizing.scale700,
     marginRight: sizing.scale700,
-    paddingTop: $kind === NAV_ITEM_KIND.secondary ? sizing.scale750 : '0',
-    paddingBottom: $kind === NAV_ITEM_KIND.secondary ? sizing.scale750 : '0',
+    paddingTop: $kind === KIND.secondary ? sizing.scale750 : '0',
+    paddingBottom: $kind === KIND.secondary ? sizing.scale750 : '0',
     outline: $isFocusVisible ? `3px solid ${colors.accent}` : 'none',
     outlineOffset: '-3px',
     borderBottomWidth: '2px',
@@ -133,7 +133,7 @@ export const StyledPrimaryMenuItem = styled<{
     borderBottomColor:
       $active && !$isFocusVisible ? colors.primary : 'transparent',
     cursor: $active ? 'default' : 'pointer',
-    whiteSpace: $kind === NAV_ITEM_KIND.secondary ? 'nowrap' : 'initial',
+    whiteSpace: $kind === KIND.secondary ? 'nowrap' : 'initial',
     ':first-child': {
       marginLeft: '0',
     },

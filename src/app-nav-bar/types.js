@@ -7,10 +7,14 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {NAV_POSITION} from './constants.js';
+import {POSITION} from './constants.js';
 
 // eslint-disable-next-line flowtype/no-weak-types
 type ItemT = any;
+type isNavItemActiveT = (params: {
+  item: MainNavItemT | UserNavItemT,
+}) => boolean;
+type onNavItemSelectT = (params: {item: MainNavItemT | UserNavItemT}) => mixed;
 
 export type MainNavItemT = {|
   active?: boolean,
@@ -23,8 +27,8 @@ export type MainNavItemT = {|
   // eslint-disable-next-line flowtype/no-weak-types
   navExitIcon?: React.AbstractComponent<any>,
   navPosition?: {
-    desktop?: $Values<typeof NAV_POSITION>,
-    mobile?: $Values<typeof NAV_POSITION>,
+    desktop?: $Values<typeof POSITION>,
+    mobile?: $Values<typeof POSITION>,
   },
 |};
 
@@ -35,6 +39,7 @@ export type UserNavItemT = {|
   item: ItemT,
   mapItemToNode?: ItemT => React.Node,
   mapItemToString: ItemT => string,
+  nav?: UserNavItemT[],
 |};
 
 export type UserMenuPropsT = {|
@@ -46,9 +51,9 @@ export type UserMenuPropsT = {|
 
 export type AppNavBarPropsT = {|
   appDisplayName?: React.Node,
-  appDisplayNameLink?: string,
   mainNav?: MainNavItemT[],
-  onNavItemSelect: (params: {item: MainNavItemT | UserNavItemT}) => mixed,
+  isNavItemActive?: isNavItemActiveT,
+  onNavItemSelect: onNavItemSelectT,
   userNav?: UserNavItemT[],
   username?: string,
   usernameSubtitle?: React.Node,
@@ -56,5 +61,6 @@ export type AppNavBarPropsT = {|
 |};
 export type SecondaryMenuT = {|
   nav?: MainNavItemT[],
-  onNavItemSelect: (params: {item: MainNavItemT | UserNavItemT}) => mixed,
+  isNavItemActive?: isNavItemActiveT,
+  onNavItemSelect: onNavItemSelectT,
 |};
