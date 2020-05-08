@@ -27,8 +27,6 @@ const ESCAPE = 27;
 const ARROW_UP = 38;
 const ARROW_DOWN = 40;
 
-// TODO(chase): Likely need to forward props from form-control
-
 // aria 1.1 spec: https://www.w3.org/TR/wai-aria-practices/#combobox
 // aria 1.2 spec: https://www.w3.org/TR/wai-aria-practices-1.2/#combobox
 function Combobox<OptionT>(props: PropsT<OptionT>) {
