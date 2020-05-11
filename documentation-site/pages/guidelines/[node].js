@@ -54,8 +54,6 @@ async function getStaticPaths() {
     console.log(
       'there was a problem requesting the figma file to generate paths',
     );
-    console.log('process.env.FIGMA_FILE_ID', process.env.FIGMA_FILE_ID);
-    console.log('process.env.FIGMA_AUTH_TOKEN:', process.env.FIGMA_AUTH_TOKEN);
     return {paths: [], fallback: false};
   }
 }
