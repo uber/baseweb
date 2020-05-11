@@ -52,7 +52,7 @@ function Node({node}: any) {
     return <FrameNode node={node} />;
   }
 
-  console.log('This node type is unaccounted for:', node);
+  // console.log('This node type is unaccounted for:', node);
   return null;
 }
 
@@ -194,7 +194,7 @@ function VectorNode({node}: any) {
     );
   } else {
     // This probably means we have something with no visuals, such as a spacer.
-    console.log('This node has no svg', node);
+    // console.log('This node has no svg', node);
     return null;
   }
 }
