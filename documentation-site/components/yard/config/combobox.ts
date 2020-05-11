@@ -26,7 +26,7 @@ const ComboboxConfig: TConfig = {
       type: PropTypes.Function,
       description: 'Callback for when input value changes.',
       propHook: {
-        what: 'val',
+        what: 'nextValue',
         into: 'value',
       },
     },

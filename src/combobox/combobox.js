@@ -140,13 +140,13 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
 
   function handleBlur(event) {
     if (
-      rootRef.current &&
+      listboxRef.current &&
       event.relatedTarget &&
       // NOTE(chase): Contains method expects a Node type, but relatedTarget is
       // EventTarget which is a super type of Node. Passing an EventTarget seems
       // to work fine, assuming the flow type is too strict.
       // eslint-disable-next-line flowtype/no-weak-types
-      rootRef.current.contains((event.relatedTarget: any))
+      listboxRef.current.contains((event.relatedTarget: any))
     ) {
       return;
     }
@@ -210,7 +210,6 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     >
       <OverriddenPopover
         isOpen={isOpen}
-        mountNode={rootRef.current ? rootRef.current : undefined}
         overrides={popoverOverrides}
         placement={PLACEMENT.bottomLeft}
         content={

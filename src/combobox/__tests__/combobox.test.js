@@ -23,6 +23,7 @@ describe('combobox', () => {
         options={options}
         value={''}
       />,
+      {container: document.body},
     );
     const input = container.querySelector('input');
     fireEvent.change(input, {target: {value: 'x'}});
@@ -39,6 +40,7 @@ describe('combobox', () => {
         options={options}
         value={''}
       />,
+      {container: document.body},
     );
     const before = container.querySelector('ul');
     expect(before).toBeNull();
@@ -58,6 +60,7 @@ describe('combobox', () => {
         options={options}
         value={''}
       />,
+      {container: document.body},
     );
     const before = container.querySelector('ul');
     expect(before).toBeNull();
@@ -78,6 +81,7 @@ describe('combobox', () => {
         options={options}
         value={''}
       />,
+      {container: document.body},
     );
     const input = container.querySelector('input');
     fireEvent.keyDown(input, {keyCode: 40});
@@ -96,6 +100,7 @@ describe('combobox', () => {
         options={options}
         value={''}
       />,
+      {container: document.body},
     );
     const input = container.querySelector('input');
     fireEvent.keyDown(input, {keyCode: 40});
@@ -115,6 +120,7 @@ describe('combobox', () => {
         options={options}
         value={''}
       />,
+      {container: document.body},
     );
     const input = container.querySelector('input');
     fireEvent.keyDown(input, {keyCode: 40});
@@ -136,6 +142,7 @@ describe('combobox', () => {
         options={options}
         value={''}
       />,
+      {container: document.body},
     );
     const initial = container.querySelector('ul');
     expect(initial).toBeNull();
