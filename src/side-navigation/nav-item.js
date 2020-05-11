@@ -52,7 +52,7 @@ class NavItem extends React.Component<NavItemPropsT> {
         {...tabIndex}
         {...sharedProps}
         {...linkProps}
-        {...(item.itemId
+        {...(item.itemId && !item.disabled
           ? {
               onClick: item.disabled ? () => {} : this.handleClick,
               onKeyDown: item.disabled ? () => {} : this.handleKeyDown,
