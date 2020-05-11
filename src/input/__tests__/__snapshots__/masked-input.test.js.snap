@@ -54,6 +54,9 @@ Object {
 
 exports[`MaskedInput - basic functionality: Masked input has correct props 1`] = `
 Object {
+  "aria-activedescendant": null,
+  "aria-autocomplete": null,
+  "aria-controls": null,
   "aria-describedby": null,
   "aria-errormessage": null,
   "aria-invalid": false,
