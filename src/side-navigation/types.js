@@ -29,6 +29,8 @@ export type SharedPropsT = {
   $level: number,
   /** Defines if the nav item is selectable/clickable */
   $selectable: boolean,
+  /** Defines if the nav item is disabled */
+  $disabled: boolean,
 };
 
 export type NavPropsT = {
@@ -71,6 +73,8 @@ export type Item = {
   itemId?: string,
   /** A list of sub-navigation items */
   subNav?: Item[],
+  /** Renders the item in disabled state */
+  disabled?: boolean,
 };
 
 export type NavItemPropsT = SharedPropsT & {
