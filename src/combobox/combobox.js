@@ -208,7 +208,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
       ref={(rootRef: any)}
       {...rootProps}
     >
-      <Popover
+      <OverriddenPopover
         isOpen={isOpen}
         mountNode={rootRef.current ? rootRef.current : undefined}
         overrides={popoverOverrides}
@@ -266,7 +266,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
           role="combobox"
           {...inputContainerProps}
         >
-          <Input
+          <OverriddenInput
             inputRef={inputRef}
             aria-activedescendant={
               selectionIndex >= 0 ? activeDescendantId : undefined
@@ -285,7 +285,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
             {...restInputProps}
           />
         </InputContainer>
-      </Popover>
+      </OverriddenPopover>
     </Root>
   );
 }
