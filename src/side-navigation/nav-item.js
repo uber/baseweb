@@ -54,7 +54,7 @@ class NavItem extends React.Component<NavItemPropsT> {
         {...linkProps}
         {...(item.itemId && !item.disabled
           ? {
-              onClick: item.disabled ? () => {} : this.handleClick,
+              onClick: this.handleClick,
               onKeyDown: this.handleKeyDown,
             }
           : {})}
