@@ -21,6 +21,11 @@ const items = `[
             title: 'Dark',
             itemId: '#dark',
           },
+          {
+            title: 'Disabled',
+            itemId: '#disabled',
+            disabled: true,
+          },
         ]
       },
     ],

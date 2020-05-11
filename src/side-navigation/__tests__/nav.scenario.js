@@ -29,6 +29,7 @@ const nav = [
   {
     title: 'Sizing',
     itemId: '#level1.2',
+    disabled: true,
   },
   {
     title: 'Typography',
