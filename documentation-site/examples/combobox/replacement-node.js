@@ -4,6 +4,7 @@ import * as React from 'react';
 
 import {useStyletron} from 'baseui';
 import {Combobox} from 'baseui/combobox';
+import {FormControl} from 'baseui/form-control';
 
 type OptionT = {label: string, id: string};
 const options: OptionT[] = [
@@ -43,13 +44,15 @@ function Example() {
   const [value, setValue] = React.useState('');
   return (
     <div className={css({width: '375px'})}>
-      <Combobox
-        value={value}
-        onChange={setValue}
-        mapOptionToString={o => o.label}
-        mapOptionToNode={ReplacementNode}
-        options={options}
-      />
+      <FormControl label="Color">
+        <Combobox
+          value={value}
+          onChange={setValue}
+          mapOptionToString={o => o.label}
+          mapOptionToNode={ReplacementNode}
+          options={options}
+        />
+      </FormControl>
     </div>
   );
 }

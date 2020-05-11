@@ -37,13 +37,21 @@ function Example() {
             style: {padding: '10px', backgroundColor: 'lightgreen'},
           },
           Input: {
-            Root: {
-              style: {padding: '10px', backgroundColor: 'red'},
+            props: {
+              overrides: {
+                Root: {
+                  style: {padding: '10px', backgroundColor: 'red'},
+                },
+              },
             },
           },
           Popover: {
-            Body: {
-              style: {padding: '10px', backgroundColor: 'green'},
+            props: {
+              overrides: {
+                Body: {
+                  style: {padding: '10px', backgroundColor: 'green'},
+                },
+              },
             },
           },
           ListBox: {

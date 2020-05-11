@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {Override} from '../overrides';
 
 export interface SIZE {
   compact: 'compact';
@@ -13,6 +14,14 @@ export type PropsT<OptionT = unknown> = {
   mapOptionToString: (OptionT) => string;
   onChange?: (string) => any;
   options: OptionT;
+  overrides?: {
+    Root?: Override<any>;
+    InputContainer?: Override<any>;
+    Input?: Override<any>;
+    Popover?: Override<any>;
+    ListBox?: Override<any>;
+    ListItem?: Override<any>;
+  };
   size?: SIZE[keyof SIZE];
   value: string;
 };

@@ -191,6 +191,16 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     overrides.ListItem,
     StyledListItem,
   );
+  const [
+    OverriddenInput,
+    // $FlowFixMe
+    {overrides: inputOverrides = {}, ...restInputProps},
+  ] = getOverrides(overrides.Input, Input);
+  const [
+    OverriddenPopover,
+    // $FlowFixMe
+    {overrides: popoverOverrides = {}, ...restPopoverProps},
+  ] = getOverrides(overrides.Popover, Popover);
 
   return (
     <Root
@@ -201,7 +211,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
       <Popover
         isOpen={isOpen}
         mountNode={rootRef.current ? rootRef.current : undefined}
-        overrides={overrides.Popover}
+        overrides={popoverOverrides}
         placement={PLACEMENT.bottomLeft}
         content={
           <ListBox
@@ -243,6 +253,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
             })}
           </ListBox>
         }
+        {...restPopoverProps}
       >
         <InputContainer
           aria-expanded={isOpen}
@@ -267,10 +278,11 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
             onBlur={handleBlur}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
-            overrides={overrides.Input}
+            overrides={inputOverrides}
             positive={positive}
             size={size}
             value={tempValue ? tempValue : value}
+            {...restInputProps}
           />
         </InputContainer>
       </Popover>

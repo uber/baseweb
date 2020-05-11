@@ -1,7 +1,8 @@
 import * as React from 'react';
 
 import {useStyletron} from 'baseui';
-import {Combobox, SIZE} from 'baseui/combobox';
+import {Combobox} from 'baseui/combobox';
+import {FormControl} from 'baseui/form-control';
 
 type OptionT = {label: string; id: string};
 const options: OptionT[] = [
@@ -13,35 +14,26 @@ const options: OptionT[] = [
   {label: 'Beige', id: '#F5F5DC'},
 ];
 
-function Instance({size}: any) {
-  const [css, theme] = useStyletron();
+function Example() {
+  const [css] = useStyletron();
   const [value, setValue] = React.useState('');
   return (
-    <div>
-      <p className={css({color: theme.colors.contentPrimary})}>
-        {size ? size : 'unspecified (default)'}
-      </p>
-      <div className={css({width: '375px'})}>
+    <div className={css({width: '375px'})}>
+      <FormControl label="Color">
         <Combobox
           value={value}
           onChange={setValue}
           mapOptionToString={o => o.label}
           options={options}
-          size={size}
+          overrides={{
+            Input: {
+              props: {
+                placeholder: 'placeholder text',
+              },
+            },
+          }}
         />
-      </div>
-    </div>
-  );
-}
-
-function Example() {
-  return (
-    <div>
-      <Instance />
-      <Instance size={SIZE.mini} />
-      <Instance size={SIZE.compact} />
-      <Instance size={SIZE.default} />
-      <Instance size={SIZE.large} />
+      </FormControl>
     </div>
   );
 }

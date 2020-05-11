@@ -1,11 +1,13 @@
+// @flow
+
 import * as React from 'react';
 
 import {useStyletron} from 'baseui';
 import {Combobox} from 'baseui/combobox';
 import {FormControl} from 'baseui/form-control';
 
-type OptionT = {label: string; id: string};
-const options: OptionT[] = [
+type OptionT = {label: string, id: string};
+const asyncOptions: OptionT[] = [
   {label: 'AliceBlue', id: '#F0F8FF'},
   {label: 'AntiqueWhite', id: '#FAEBD7'},
   {label: 'Aqua', id: '#00FFFF'},
@@ -64,31 +66,40 @@ const options: OptionT[] = [
   {label: 'MediumSlateBlue', id: '7B68EE'},
 ];
 
-function Example() {
-  const [css] = useStyletron();
-  const [value, setValue] = React.useState('');
+function mapOptionToString(option: OptionT): string {
+  return option.label;
+}
 
-  function mapOptionToString(option: OptionT): string {
-    return option.label;
-  }
-
-  const filteredOptions = React.useMemo(() => {
-    return options.filter(option => {
+function fetchOptions(searchTerm, callback) {
+  setTimeout(() => {
+    const options = asyncOptions.filter(option => {
       const optionAsString = mapOptionToString(option);
       return optionAsString
         .toLowerCase()
-        .includes(value.toLowerCase());
+        .includes(searchTerm.toLowerCase());
     });
-  }, [options, value]);
+    callback(options);
+  }, 500);
+}
+
+function Example() {
+  const [css] = useStyletron();
+  const [value, setValue] = React.useState('');
+  const [options, setOptions] = React.useState([]);
+
+  async function handleChange(nextValue) {
+    setValue(nextValue);
+    fetchOptions(nextValue, setOptions);
+  }
 
   return (
     <div className={css({width: '375px'})}>
       <FormControl label="Color">
         <Combobox
           value={value}
-          onChange={setValue}
+          onChange={handleChange}
           mapOptionToString={mapOptionToString}
-          options={filteredOptions}
+          options={options}
         />
       </FormControl>
     </div>

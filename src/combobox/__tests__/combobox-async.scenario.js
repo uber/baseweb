@@ -1,11 +1,18 @@
+/*
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
+
 import * as React from 'react';
 
-import {useStyletron} from 'baseui';
-import {Combobox} from 'baseui/combobox';
-import {FormControl} from 'baseui/form-control';
+import {useStyletron} from '../../styles/index.js';
+import {Combobox} from '../index.js';
 
-type OptionT = {label: string; id: string};
-const options: OptionT[] = [
+type OptionT = {label: string, id: string};
+const asyncOptions: OptionT[] = [
   {label: 'AliceBlue', id: '#F0F8FF'},
   {label: 'AntiqueWhite', id: '#FAEBD7'},
   {label: 'Aqua', id: '#00FFFF'},
@@ -64,33 +71,38 @@ const options: OptionT[] = [
   {label: 'MediumSlateBlue', id: '7B68EE'},
 ];
 
+function mapOptionToString(option: OptionT): string {
+  return option.label;
+}
+
+function fetchOptions(searchTerm, callback) {
+  setTimeout(() => {
+    const options = asyncOptions.filter(option => {
+      const optionAsString = mapOptionToString(option);
+      return optionAsString.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+    callback(options);
+  }, 500);
+}
+
 function Example() {
   const [css] = useStyletron();
   const [value, setValue] = React.useState('');
+  const [options, setOptions] = React.useState([]);
 
-  function mapOptionToString(option: OptionT): string {
-    return option.label;
+  async function handleChange(nextValue) {
+    setValue(nextValue);
+    fetchOptions(nextValue, setOptions);
   }
 
-  const filteredOptions = React.useMemo(() => {
-    return options.filter(option => {
-      const optionAsString = mapOptionToString(option);
-      return optionAsString
-        .toLowerCase()
-        .includes(value.toLowerCase());
-    });
-  }, [options, value]);
-
   return (
-    <div className={css({width: '375px'})}>
-      <FormControl label="Color">
-        <Combobox
-          value={value}
-          onChange={setValue}
-          mapOptionToString={mapOptionToString}
-          options={filteredOptions}
-        />
-      </FormControl>
+    <div className={css({width: '375px', padding: '12px 48px'})}>
+      <Combobox
+        value={value}
+        onChange={handleChange}
+        mapOptionToString={mapOptionToString}
+        options={options}
+      />
     </div>
   );
 }

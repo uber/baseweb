@@ -59,6 +59,12 @@ const ComboboxConfig: TConfig = {
       type: PropTypes.Function,
       description: 'Transforms option to visible string in listbox.',
     },
+    mapOptionToNode: {
+      value: undefined,
+      placeholder: 'option => <>🦊{option.label}</>',
+      type: PropTypes.Function,
+      description: 'Transforms option to custom node in listbox.',
+    },
     disabled: {
       value: false,
       type: PropTypes.Boolean,
@@ -70,9 +76,14 @@ const ComboboxConfig: TConfig = {
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
-        // TODO(chase): add overrides
-        names: [],
-        sharedProps: {},
+        names: ['Root', 'InputContainer', 'ListBox', 'ListItem'],
+        sharedProps: {
+          $isSelected: {
+            type: PropTypes.Boolean,
+            description:
+              'Applied to the selected listbox option. Only applies to ListItem override.',
+          },
+        },
       },
     },
   },

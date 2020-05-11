@@ -10,8 +10,8 @@ import * as React from 'react';
 
 import type {OverrideT} from '../helpers/overrides.js';
 import {SIZE} from '../input/index.js';
-import type {InputComponentsT} from '../input/index.js';
-import type {OverridesT} from '../popover/index.js';
+// import type {InputPropsT} from '../input/index.js';
+// import type {PopoverPropsT} from '../popover/index.js';
 
 export type PropsT<OptionT = mixed> = {|
   // Disallows text input and listbox opening.
@@ -33,8 +33,8 @@ export type PropsT<OptionT = mixed> = {|
   overrides?: {|
     Root?: OverrideT,
     InputContainer?: OverrideT,
-    Input?: InputComponentsT,
-    Popover?: OverridesT,
+    Input?: OverrideT,
+    Popover?: OverrideT,
     ListBox?: OverrideT,
     ListItem?: OverrideT,
   |},
