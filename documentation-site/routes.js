@@ -73,6 +73,10 @@ const routes = [
             itemId: '/components/checkbox',
           },
           {
+            title: 'Combobox',
+            itemId: '/components/combobox',
+          },
+          {
             title: 'Form Control',
             itemId: '/components/form-control',
           },
