@@ -71,6 +71,8 @@ export type Item = {
   itemId?: string,
   /** A list of sub-navigation items */
   subNav?: Item[],
+  /** Renders the item in disabled state */
+  disabled?: boolean,
 };
 
 export type NavItemPropsT = SharedPropsT & {

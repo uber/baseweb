@@ -83,6 +83,7 @@ export default class SideNav extends React.Component<
           : this.activePredicate(item),
         $level: level,
         $selectable: !!item.itemId,
+        $disabled: item.disabled || false,
       };
 
       return (

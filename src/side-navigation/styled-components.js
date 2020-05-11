@@ -54,6 +54,7 @@ export const StyledNavItemElement = styled<SharedPropsT>('div', props => {
     $active,
     $selectable,
     $level,
+    $disabled,
     $theme,
     $theme: {colors, sizing},
   } = props;
@@ -69,6 +70,16 @@ export const StyledNavItemElement = styled<SharedPropsT>('div', props => {
   const paddingSuffixDir: string =
     $theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
 
+  let cursor = $selectable ? 'pointer' : 'default';
+  let color = $active ? colors.primary : null;
+  let hoverColor = $selectable ? colors.primary : null;
+
+  if ($disabled) {
+    cursor = 'not-allowed';
+    color = colors.contentSecondary;
+    hoverColor = null;
+  }
+
   return ({
     backgroundColor: $active ? colors.backgroundInversePrimary : 'transparent',
     backgroundImage: $active
@@ -78,15 +89,15 @@ export const StyledNavItemElement = styled<SharedPropsT>('div', props => {
     [borderWidthDir]: '4px',
     [borderStyleDir]: 'solid',
     [borderColorDir]: $active ? colors.primary : 'transparent',
-    color: $active ? colors.primary : null,
-    cursor: $selectable ? 'pointer' : 'default',
+    color: color,
+    cursor: cursor,
 
     paddingTop: sizing.scale500,
     paddingBottom: sizing.scale500,
     [paddingPrefixDir]: `calc(${sizing.scale800} * ${$level})`,
     [paddingSuffixDir]: sizing.scale500,
     ':hover': {
-      color: $selectable ? colors.primary : null,
+      color: hoverColor,
     },
     ':focus': {
       color: $selectable ? colors.primary : null,
