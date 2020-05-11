@@ -22,7 +22,7 @@ const ComboboxConfig: TConfig = {
       stateful: true,
     },
     onChange: {
-      value: 'val => setValue(val)',
+      value: 'nextValue => setValue(nextValue)',
       type: PropTypes.Function,
       description: 'Callback for when input value changes.',
       propHook: {
