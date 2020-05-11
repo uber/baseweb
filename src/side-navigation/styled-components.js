@@ -89,8 +89,8 @@ export const StyledNavItemElement = styled<SharedPropsT>('div', props => {
     [borderWidthDir]: '4px',
     [borderStyleDir]: 'solid',
     [borderColorDir]: $active ? colors.primary : 'transparent',
-    color: color,
-    cursor: cursor,
+    color,
+    cursor,
 
     paddingTop: sizing.scale500,
     paddingBottom: sizing.scale500,
