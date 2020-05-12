@@ -7,11 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+import {StyledLink} from '../../link/index.js';
 import ChevronDown from '../../icon/chevron-down.js';
 import Delete from '../../icon/delete.js';
 import Icon from '../../icon/upload.js';
 import UserIcon from '../../icon/overflow.js';
-import {Unstable_AppNavBar as AppNavBar} from '../index.js';
+import {Unstable_AppNavBar as AppNavBar, POSITION} from '../index.js';
 
 function renderItem(item) {
   return item.label;
@@ -35,6 +36,10 @@ const MAIN_NAV = [
     item: {label: 'Primary alpha3'},
     mapItemToNode: renderItem,
     mapItemToString: renderItem,
+    navExitIcon: Delete,
+    navPosition: {
+      desktop: POSITION.horizontal,
+    },
     nav: [
       {
         icon: Icon,
@@ -48,15 +53,30 @@ const MAIN_NAV = [
         mapItemToNode: renderItem,
         mapItemToString: renderItem,
       },
+      {
+        icon: Icon,
+        item: {label: 'Secondary menu3'},
+        mapItemToNode: renderItem,
+        mapItemToString: renderItem,
+      },
+      {
+        icon: Icon,
+        item: {label: 'Secondary menu4'},
+        mapItemToNode: renderItem,
+        mapItemToString: renderItem,
+      },
     ],
-    navExitIcon: Delete,
   },
   {
-    active: true,
     icon: ChevronDown,
     item: {label: 'Primary alpha4'},
     mapItemToNode: renderItem,
     mapItemToString: renderItem,
+    navExitIcon: Delete,
+    navPosition: {
+      desktop: POSITION.horizontal,
+      mobile: POSITION.horizontal,
+    },
     nav: [
       {
         icon: ChevronDown,
@@ -85,7 +105,6 @@ const MAIN_NAV = [
         mapItemToString: renderItem,
       },
     ],
-    navExitIcon: Delete,
   },
 ];
 
@@ -116,13 +135,47 @@ const USER_NAV = [
   },
 ];
 
+function isActive(arr, item, activeItem): boolean {
+  let active = false;
+  for (let i = 0; i < arr.length; i++) {
+    const elm = arr[i];
+    if (elm === item) {
+      if (item === activeItem) return true;
+      return isActive((item && item.nav) || [], activeItem, activeItem);
+    } else if (elm.nav) {
+      active = isActive(elm.nav || [], item, activeItem);
+    }
+  }
+  return active;
+}
+
 export default function Scenario() {
+  const [activeNavItem, setActiveNavItem] = React.useState();
+  const appDisplayName = (
+    <StyledLink
+      $style={{
+        textDecoration: 'none',
+        color: 'inherit',
+        ':hover': {color: 'inherit'},
+        ':visited': {color: 'inherit'},
+      }}
+      href={'#'}
+    >
+      Uber Something
+    </StyledLink>
+  );
   return (
     <AppNavBar
-      appDisplayName="Uber Something"
+      appDisplayName={appDisplayName}
       mainNav={MAIN_NAV}
+      isNavItemActive={({item}) => {
+        return (
+          item === activeNavItem || isActive(MAIN_NAV, item, activeNavItem)
+        );
+      }}
       onNavItemSelect={({item}) => {
-        console.log(item);
+        if (item === activeNavItem) return;
+        setActiveNavItem(item);
       }}
       userNav={USER_NAV}
       username="Umka Marshmallow"
