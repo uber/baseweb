@@ -21,23 +21,6 @@ const octokit = Octokit({auth: process.env.GITHUB_AUTH_TOKEN});
 const owner = 'uber';
 const repo = 'baseweb';
 
-// https://github.com/uber-workflow/probot-app-release-notes/blob/master/pr-for-commit.js
-async function prFromCommit(sha) {
-  const res = await fetch(
-    `https://github.com/${owner}/${repo}/branch_commits/${sha}`,
-  );
-  if (res.ok) {
-    const text = await res.text();
-    const mergedRegex = /<li class="pull-request">\((?:.+?)(\d+)<\/a>\)<\/li>/;
-    const pr = text.match(mergedRegex);
-    if (pr) {
-      return parseInt(pr[1], 10);
-    }
-  } else {
-    throw new Error(res.statusText);
-  }
-}
-
 async function main() {
   const tagsResponse = await octokit.repos.listTags({owner, repo});
   if (tagsResponse.status !== 200) {
@@ -67,17 +50,11 @@ async function main() {
     }
     commitsSinceTag.push(commit);
   }
-  const prs = await Promise.all(commitsSinceTag.map(c => prFromCommit(c.sha)));
 
   const changelogEntries = [];
   for (let i = 0; i < commitsSinceTag.length; i++) {
     const commit = commitsSinceTag[i];
-    const pr = prs[i];
-    if (pr) {
-      changelogEntries.push(`- ${commit.commit.message} (#${pr})`);
-    } else {
-      changelogEntries.push(`- ${commit.commit.message}`);
-    }
+    changelogEntries.push(`- ${commit.commit.message.split('\n')[0]}`);
   }
 
   const releaseResponse = await octokit.repos.createRelease({
