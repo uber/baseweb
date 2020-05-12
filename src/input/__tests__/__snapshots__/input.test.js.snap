@@ -2,6 +2,9 @@
 
 exports[`Input - basic functionality: input has correct props 1`] = `
 Object {
+  "aria-activedescendant": null,
+  "aria-autocomplete": null,
+  "aria-controls": null,
   "aria-describedby": null,
   "aria-errormessage": null,
   "aria-invalid": false,
@@ -89,6 +92,9 @@ Object {
       $positive={false}
       $required={false}
       $size="default"
+      aria-activedescendant={null}
+      aria-autocomplete={null}
+      aria-controls={null}
       aria-describedby={null}
       aria-errormessage={null}
       aria-invalid={false}
@@ -154,6 +160,9 @@ Object {
       $positive={false}
       $required={false}
       $size="default"
+      aria-activedescendant={null}
+      aria-autocomplete={null}
+      aria-controls={null}
       aria-describedby={null}
       aria-errormessage={null}
       aria-invalid={false}
@@ -219,6 +228,9 @@ Object {
       $positive={false}
       $required={false}
       $size="default"
+      aria-activedescendant={null}
+      aria-autocomplete={null}
+      aria-controls={null}
       aria-describedby={null}
       aria-errormessage={null}
       aria-invalid={false}
