@@ -16781,10 +16781,10 @@ react-proptype-conditional-require@^1.0.4:
   resolved "https://registry.yarnpkg.com/react-proptype-conditional-require/-/react-proptype-conditional-require-1.0.4.tgz#69c2d5741e6df5e08f230f36bbc2944ee1222555"
   integrity sha1-acLVdB5t9eCPIw82u8KUTuEiJVU=
 
-react-range@^1.6.1:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/react-range/-/react-range-1.6.1.tgz#cfebc8c41acc9f4f948f8da20204f9c662b8c46c"
-  integrity sha512-b+0LRrrwWyAWCVLlXUu67dC6zTzSetqRN9uR1ocBEjKg6jnaGbLLza3sWXcIPCZHhDpIUkLJinnjCtkuQt5NNg==
+react-range@^1.6.2:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/react-range/-/react-range-1.6.2.tgz#bcfcb3024e6b37d094fda2bcb81f14e7cbba91d5"
+  integrity sha512-8WBzsk0SRv1YD2Xjx+CQT3g7bIKu17xWAg9KwSpBmMoRCP93HZ+VNq/4q2rz92m7SncfGXeVYCNgDWpa4bo5jQ==
 
 react-simple-code-editor@^0.10.0:
   version "0.10.0"
