@@ -10,7 +10,6 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 
 const Octokit = require('@octokit/rest');
-const fetch = require('isomorphic-fetch');
 
 if (!process.env.GITHUB_AUTH_TOKEN) {
   throw new Error('No GITHUB_AUTH_TOKEN set.');
