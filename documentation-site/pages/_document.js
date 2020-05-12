@@ -86,8 +86,15 @@ export default class MyDocument extends Document {
           />
           <link rel="stylesheet" href="/static/fonts.css" />
           <style>{`
+            * {
+              box-sizing: border-box;
+            }
             body {
               margin: 0;
+            }
+            ::selection {
+              background: #276EF1;
+              color: white;
             }
           `}</style>
           <Favicons />
