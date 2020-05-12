@@ -105,21 +105,25 @@ function TextNode({node}: any) {
           // Characters can be styled individually...
           const styleOverrideKey = node.characterStyleOverrides[i];
           if (styleOverrideKey) {
-            const foo = node.styleOverrideTable[styleOverrideKey];
+            const styleOverrides = node.styleOverrideTable[styleOverrideKey];
             return (
               <span
                 key={node.id + i}
                 className={css({
-                  color: foo.fills
-                    ? getBackgroundColor({fills: foo.fills})
+                  color: styleOverrides.fills
+                    ? getBackgroundColor({fills: styleOverrides.fills})
                     : 'inherit',
-                  fontFamily: foo.fontFamily
-                    ? getFontFamily(foo.fontFamily)
+                  fontFamily: styleOverrides.fontFamily
+                    ? getFontFamily(styleOverrides.fontFamily)
                     : 'inherit',
-                  fontWeight: foo.fontWeight ? foo.fontWeight : 'inherit',
-                  fontSize: foo.fontSize ? foo.fontSize + 'px' : 'inherit',
-                  lineHeight: foo.lineHeightPx
-                    ? foo.lineHeightPx + 'px'
+                  fontWeight: styleOverrides.fontWeight
+                    ? styleOverrides.fontWeight
+                    : 'inherit',
+                  fontSize: styleOverrides.fontSize
+                    ? styleOverrides.fontSize + 'px'
+                    : 'inherit',
+                  lineHeight: styleOverrides.lineHeightPx
+                    ? styleOverrides.lineHeightPx + 'px'
                     : 'inherit',
                 })}
               >
