@@ -24,14 +24,20 @@ export type UserNavItemT = {
 
 export interface AppNavBarPropsT {
   appDisplayName?: React.ReactNode;
-  appDisplayNameLink?: string;
   // eslint-disable-next-line flowtype/no-weak-type;
   mainNav?: MainNavItemT[];
+  isNavItemActive: (params: {item: MainNavItemT | UserNavItemT}) => boolean;
   onNavItemSelect: (params: {item: MainNavItemT | UserNavItemT}) => mixed;
   userNav?: UserNavItemT[];
   username?: string;
   usernameSubtitle?: React.ReactNode;
   userImgUrl?: string;
-};
+}
+
+export interface POSITION {
+  horizontal: 'horizontal';
+  vertical: 'vertical';
+}
 
 export class Unstable_AppNavBar extends React.Component<AppNavBarPropsT> {}
+export const POSITION: POSITION;

@@ -7,18 +7,19 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {StyledPrimaryMenuItem} from './styled-components.js';
+import {KIND} from './constants.js';
+import {StyledMainMenuItem} from './styled-components.js';
 import {isFocusVisible} from '../utils/focusVisible.js';
-import type {MainNavItemT} from './types.js';
+import type {MainNavItemT, UserNavItemT} from './types.js';
 
 export default class MenuItem extends React.Component<
   {
-    // eslint-disable-next-line flowtype/no-weak-types
-    item: MainNavItemT,
+    item: MainNavItemT | UserNavItemT,
+    active?: boolean,
+    kind?: $Values<typeof KIND>,
     onClick?: (e: Event) => mixed,
     onKeyDown?: (e: KeyboardEvent) => mixed,
-    // eslint-disable-next-line flowtype/no-weak-types
-    onSelect: ({item: any}) => mixed,
+    onSelect: ({item: MainNavItemT | UserNavItemT}) => mixed,
   },
   {hasFocusVisible: boolean},
 > {
@@ -57,13 +58,14 @@ export default class MenuItem extends React.Component<
   };
 
   render() {
-    const {item} = this.props;
+    const {item, active, kind = KIND.primary} = this.props;
     return (
-      <StyledPrimaryMenuItem
+      <StyledMainMenuItem
+        $kind={kind}
         $isFocusVisible={this.state.hasFocusVisible}
-        $active={item.active || false}
+        $active={active}
         tabIndex={0}
-        aria-selected={item.active || null}
+        aria-selected={active || null}
         onFocus={this.handleFocus}
         onBlur={this.handleBlur}
         onClick={this.onClick}
@@ -72,7 +74,7 @@ export default class MenuItem extends React.Component<
         {typeof item.mapItemToNode === 'function'
           ? item.mapItemToNode(item.item)
           : item.mapItemToString(item.item)}
-      </StyledPrimaryMenuItem>
+      </StyledMainMenuItem>
     );
   }
 }
