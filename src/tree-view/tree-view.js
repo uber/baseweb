@@ -48,7 +48,9 @@ export default function TreeView(props: TreeViewPropsT) {
   const focusTreeItem = (id: TreeNodeIdT | null) => {
     if (!id) return;
     setSelectedNodeId(id);
-    treeItemRefs.current[id].current.focus();
+
+    const node = treeItemRefs.current[id].current;
+    if (node) node.focus();
   };
 
   const onKeyDown = (e: KeyboardEvent, node: TreeNodeT<>) => {
