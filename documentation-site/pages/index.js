@@ -61,7 +61,7 @@ const Adopters = (props: {logoSrcs: string[]}) => (
           alignItems="center"
           justifyContent="center"
         >
-          <Block width="125px" as="img" src={logoSrc} />
+          <Block margin="scale200" width="125px" as="img" src={logoSrc} />
         </FlexGridItem>
       ))}
     </FlexGrid>
@@ -225,6 +225,7 @@ const Index = (props: {
         '/static/images/everbase-logo.png',
         '/static/images/cadre-logo.png',
         '/static/images/banzaicloud-logo.png',
+        '/static/images/sprinklr-logo.png',
       ]}
     />
     <Contributors contributors={props.contributors} />
