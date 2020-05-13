@@ -48,7 +48,7 @@ class NavItem extends React.Component<NavItemPropsT> {
     };
     return (
       <NavLink
-        href={item.itemId}
+        href={item.disabled ? null : item.itemId}
         {...tabIndex}
         {...sharedProps}
         {...linkProps}
