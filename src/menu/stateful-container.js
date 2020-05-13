@@ -260,18 +260,28 @@ export default class MenuStatefulContainer extends React.Component<
       this.refList[index] = itemRef;
       this.optionIds[index] = getBuiId();
     }
-    const requiredItemProps = this.props.getRequiredItemProps(item, index);
+    const {
+      disabled: disabledVal,
+      ...requiredItemProps
+    } = this.props.getRequiredItemProps(item, index);
+    const disabled =
+      typeof disabledVal === 'boolean' ? disabledVal : !!item.disabled;
     return {
       id: requiredItemProps.id || this.optionIds[index],
-      disabled: !!item.disabled,
+      disabled,
       ref: itemRef,
       isFocused: this.state.isFocused,
       isHighlighted: this.state.highlightedIndex === index,
-      // binds so that in-line functions can be avoided. this is to ensure
-      // referential equality when option-list compares props in memoized compoent
-      onClick: this.handleItemClick.bind(this, index, item),
-      onMouseEnter: this.handleMouseEnter.bind(this, index),
       resetMenu: this.resetMenu,
+      // binds so that in-line functions can be avoided. this is to ensure
+      // referential equality when option-list compares props in memoized component
+      ...(disabled
+        ? {}
+        : {
+            onClick: this.handleItemClick.bind(this, index, item),
+            onMouseEnter: this.handleMouseEnter.bind(this, index),
+          }),
+      // $FlowFixMe due to flow-check-build failure on 0.111.3
       ...requiredItemProps,
     };
   };
