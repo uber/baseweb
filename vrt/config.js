@@ -72,6 +72,30 @@ const config = {
       },
     ],
   },
+  combobox: {
+    interactions: [
+      {
+        name: 'listboxOpen',
+        behavior: async page => {
+          const input = await page.$('input');
+          await input.focus();
+          await page.keyboard.press('a');
+        },
+      },
+    ],
+  },
+  'combobox-overrides': {
+    interactions: [
+      {
+        name: 'listboxOpen',
+        behavior: async page => {
+          const input = await page.$('input');
+          await input.focus();
+          await page.keyboard.press('a');
+        },
+      },
+    ],
+  },
   'data-table-extracted-highlight': {
     interactions: [
       {
