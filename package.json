@@ -203,7 +203,7 @@
     "react-is": "^16.8.6",
     "react-movable": "^2.4.0",
     "react-multi-ref": "^1.0.0",
-    "react-range": "^1.6.2",
+    "react-range": "^1.6.3",
     "react-virtualized": "^9.21.1",
     "react-virtualized-auto-sizer": "^1.0.2",
     "react-window": "^1.8.5",
