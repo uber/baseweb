@@ -10,7 +10,7 @@ const ListItemConfig: TConfig = {
   componentName: 'ListItem',
   imports: {
     'baseui/list': {
-      named: ['ListItem'],
+      named: ['ListItem', 'ListItemLabel'],
     },
     'baseui/icon': {
       named: ['Check'],
@@ -47,7 +47,7 @@ const ListItemConfig: TConfig = {
       },
     },
     endEnhancer: {
-      value: '() => "Right-Label"',
+      value: '() => <ListItemLabel>End Enhancer</ListItemLabel>',
       type: PropTypes.ReactNode,
       description: 'Right-hand content to render in the list item.',
     },
