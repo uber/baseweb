@@ -8,11 +8,11 @@ LICENSE file in the root directory of this source tree.
 
 import {styled, expandBorderStyles} from '../styles/index.js';
 
-import {ARTWORK_SIZES} from './constants.js';
 import type {
   StyledContentPropsT,
   StyledArtworkContainerPropsT,
 } from './types.js';
+import {artworkSizeToValue} from './utils.js';
 
 export const StyledRoot = styled<{}>('li', ({$theme}) => {
   return {
@@ -37,8 +37,8 @@ export const StyledContent = styled<StyledContentPropsT>(
       flexGrow: 1,
       height: $sublist ? '48px' : '72px',
       justifyContent: 'space-between',
-      paddingRight: $theme.sizing.scale500,
-      marginLeft: $mLeft ? $theme.sizing.scale500 : null,
+      paddingRight: $theme.sizing.scale600,
+      marginLeft: $mLeft ? $theme.sizing.scale600 : null,
     };
   },
 );
@@ -50,25 +50,26 @@ export const StyledEndEnhancerContainer = styled('div', {
 
 export const StyledArtworkContainer = styled<StyledArtworkContainerPropsT>(
   'div',
-  ({$artworkSize, $theme}) => {
-    let padding = null;
-    switch ($artworkSize) {
-      case ARTWORK_SIZES.SMALL:
-        padding = $theme.sizing.scale800;
-        break;
-      case ARTWORK_SIZES.LARGE:
-        padding = $theme.sizing.scale600;
-        break;
-      case ARTWORK_SIZES.MEDIUM:
-      default:
-        padding = $theme.sizing.scale700;
+  ({$artworkSize, $sublist, $theme}) => {
+    let sizeValue: number =
+      typeof $artworkSize === 'number'
+        ? $artworkSize
+        : artworkSizeToValue($artworkSize, Boolean($sublist));
+
+    if (sizeValue > 36) {
+      return {
+        alignItems: 'center',
+        display: 'flex',
+        paddingLeft: $theme.sizing.scale600,
+        paddingRight: $theme.sizing.scale600,
+      };
     }
 
     return {
       alignItems: 'center',
       display: 'flex',
-      paddingLeft: padding,
-      paddingRight: padding,
+      justifyContent: 'center',
+      width: $theme.sizing.scale1600,
     };
   },
 );
