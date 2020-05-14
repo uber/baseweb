@@ -113,10 +113,44 @@ describe('Menu StatefulContainer', () => {
     expect(props).toHaveProperty('disabled', true);
     expect(props).toHaveProperty('isFocused', false);
     expect(props).toHaveProperty('isHighlighted', false);
-    expect(props).toHaveProperty('onClick');
-    expect(props).toHaveProperty('onMouseEnter');
+    expect(props).not.toHaveProperty('onClick');
+    expect(props).not.toHaveProperty('onMouseEnter');
     expect(props).toHaveProperty('ref');
     expect(props).toHaveProperty('resetMenu');
+  });
+
+  test('getRequiredItemProps does not return onClick and onMouseEnter props for item set to disabled through getRequiredItemProps', () => {
+    const getRequiredItemProps = jest
+      .fn()
+      .mockImplementation(item => ({disabled: true}));
+    const component = mount(
+      <StatefulContainer
+        {...getSharedProps()}
+        getRequiredItemProps={getRequiredItemProps}
+      />,
+    );
+    const item = mockItems[0]; // not disabled by default
+    const props = component.instance().getRequiredItemProps(item, 1);
+
+    expect(props).not.toHaveProperty('onClick');
+    expect(props).not.toHaveProperty('onMouseEnter');
+  });
+
+  test('disabled prop value returned from getRequiredItemProps takes precedence over the one defined on item', () => {
+    const getRequiredItemProps = jest
+      .fn()
+      .mockImplementation(item => ({disabled: false}));
+    const component = mount(
+      <StatefulContainer
+        {...getSharedProps()}
+        getRequiredItemProps={getRequiredItemProps}
+      />,
+    );
+    const item = mockItems[1]; // disabled by default
+    const props = component.instance().getRequiredItemProps(item, 1);
+
+    expect(props).toHaveProperty('onClick');
+    expect(props).toHaveProperty('onMouseEnter');
   });
 
   test('getRequiredItemProps returns correct props for active child', () => {
