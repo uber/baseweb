@@ -81,6 +81,7 @@
     "@date-io/moment": "^2.4.0",
     "@mdx-js/tag": "^0.20.0",
     "@octokit/rest": "^16.33.1",
+    "@stackblitz/sdk": "^1.4.0",
     "@storybook/react": "^5.0.0",
     "@svgr/cli": "^4.3.2",
     "@testing-library/jest-dom": "^5.1.1",

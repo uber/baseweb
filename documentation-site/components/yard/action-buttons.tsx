@@ -1,8 +1,6 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {TImportsConfig} from 'react-view';
-//@ts-ignore
-import CodeSandboxer from 'react-codesandboxer';
 import {
   MdContentCopy,
   MdFormatIndentIncrease,
@@ -12,10 +10,8 @@ import {
 import {Button, KIND, SIZE} from 'baseui/button';
 import {ButtonGroup} from 'baseui/button-group';
 
-//@ts-ignore
-import {version} from '../../../package.json';
-//@ts-ignore
-import {codesandboxIndexCode} from '../const';
+// @ts-ignore
+import {useStackBlitz} from '../../components/hooks.js';
 
 const ActionButtons: React.FC<{
   formatCode: () => void;
@@ -27,6 +23,10 @@ const ActionButtons: React.FC<{
   importsConfig: TImportsConfig;
 }> = ({formatCode, copyCode, reset, code, componentName, importsConfig}) => {
   const [, theme] = useStyletron();
+  const openStackBlitz = useStackBlitz({
+    code,
+    description: `Base Web - ${componentName}`,
+  });
   return (
     <React.Fragment>
       <ButtonGroup
@@ -57,32 +57,13 @@ const ActionButtons: React.FC<{
         >
           <MdRotateRight style={{paddingRight: theme.sizing.scale100}} /> Reset
         </Button>
-
-        <CodeSandboxer
-          key="js"
-          examplePath="/example.js"
-          example={code}
-          providedFiles={{
-            'index.js': {
-              content: codesandboxIndexCode,
-            },
-          }}
-          template="create-react-app"
-          name={componentName}
-          dependencies={{
-            baseui: version,
-            react: '16.8.6',
-            'react-dom': '16.8.6',
-            'react-scripts': '3.0.1',
-            'styletron-engine-atomic': '1.4.0',
-            'styletron-react': '5.2.0',
-          }}
-          children={() => (
-            <Button kind={KIND.secondary} size={SIZE.compact}>
-              CodeSandbox
-            </Button>
-          )}
-        />
+        <Button
+          kind={KIND.secondary}
+          size={SIZE.compact}
+          onClick={openStackBlitz}
+        >
+          StackBlitz
+        </Button>
         <Button
           overrides={{
             BaseButton: {
