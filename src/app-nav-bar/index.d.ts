@@ -6,17 +6,17 @@ type mapItemToString = (item: ItemT) => string;
 
 export type MainNavItemT = {
   active?: boolean;
-  icon?: React.AbstractComponent<any>;
+  icon?: React.ComponentType<any>;
   item: ItemT;
   mapItemToNode?: mapItemToNode;
   mapItemToString: mapItemToString;
   nav?: MainNavItemT[];
-  navExitIcon?: React.AbstractComponent<any>;
+  navExitIcon?: React.ComponentType<any>;
 };
 
 export type UserNavItemT = {
   active?: boolean;
-  icon?: React.AbstractComponent<any>;
+  icon?: React.ComponentType<any>;
   item: ItemT;
   mapItemToNode?: mapItemToNode;
   mapItemToString: mapItemToString;
@@ -27,7 +27,7 @@ export interface AppNavBarPropsT {
   // eslint-disable-next-line flowtype/no-weak-type;
   mainNav?: MainNavItemT[];
   isNavItemActive: (params: {item: MainNavItemT | UserNavItemT}) => boolean;
-  onNavItemSelect: (params: {item: MainNavItemT | UserNavItemT}) => mixed;
+  onNavItemSelect: (params: {item: MainNavItemT | UserNavItemT}) => any;
   userNav?: UserNavItemT[];
   username?: string;
   usernameSubtitle?: React.ReactNode;
