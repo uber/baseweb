@@ -5,7 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-export const codesandboxIndexCode = `
+export const sandboxHTML = `<div id="root" />`;
+export const sandboxIndexJS = `
 import React from "react";
 import ReactDOM from "react-dom";
 
