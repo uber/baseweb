@@ -16,12 +16,12 @@ export type NotificationTypeT = $Values<typeof TYPE>;
 export type PlacementTypeT = $Values<typeof PLACEMENT>;
 
 export type SharedStylePropsArgT = {
-  $kind: KindTypeT,
-  $type: NotificationTypeT,
   $closeable: boolean,
+  $isFocusVisible: boolean,
   $isRendered: boolean,
   $isVisible: boolean,
-  $isFocusVisible: boolean,
+  $kind: KindTypeT,
+  $type: NotificationTypeT,
 };
 
 export type ToasterSharedStylePropsArgT = {
@@ -41,9 +41,9 @@ export type ChildT = React.Node;
 export type ChildrenT = React.ChildrenArray<ChildT>;
 
 export type ToastPrivateStateT = {
-  isVisible: boolean,
-  isRendered: boolean,
   isFocusVisible: boolean,
+  isRendered: boolean,
+  isVisible: boolean,
 };
 
 export type ToastPropsT = {
@@ -68,18 +68,18 @@ export type ToastPropsT = {
   children: ChildrenT | ComponentRenderPropT,
   /** When set to true a close button is displayed and the notification can be dismissed by a user. */
   closeable: boolean,
+  'data-baseweb'?: string,
+  key: React.Key,
   /** Defines the type of notification. */
   kind: KindTypeT,
   notificationType: NotificationTypeT,
   /** A callback function called when a notification is dismissed. */
-  onClose: () => mixed,
   onBlur: (e: Event) => mixed,
+  onClose: () => mixed,
   onFocus: (e: Event) => mixed,
   onMouseEnter: (e: Event) => mixed,
   onMouseLeave: (e: Event) => mixed,
-  'data-baseweb'?: string,
   overrides: OverridesT,
-  key: React.Key,
 };
 
 export type ToastPropsShapeT = $Shape<
@@ -94,10 +94,6 @@ export type ToasterOverridesT = {
 };
 
 export type ToasterPropsT = {
-  children: React.Node,
-  overrides: ToasterOverridesT,
-  placement: PlacementTypeT,
-  usePortal: boolean,
   /** If true, the toast close icon will receive focus on mount
       and restore focus to previously focused element on unmount.
       This should only be used when there is no autoHideDuration
@@ -107,8 +103,14 @@ export type ToasterPropsT = {
   /** The number of milliseconds to wait before automatically dismissing a
    * notification. This behavior is disabled when the value is set to 0.*/
   autoHideDuration: number,
+  children: React.Node,
+  /** When set to true a close button is displayed and the notification can be dismissed by a user. */
+  closeable: boolean,
+  overrides: ToasterOverridesT,
+  placement: PlacementTypeT,
   /** Defines if updating a toast resets the autohide timer */
   resetAutoHideTimerOnUpdate?: boolean,
+  usePortal: boolean,
 };
 export type ToasterContainerStateT = {
   isMounted: boolean,
