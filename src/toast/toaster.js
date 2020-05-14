@@ -31,13 +31,14 @@ export class ToasterContainer extends React.Component<
   ToasterContainerStateT,
 > {
   static defaultProps: ToasterPropsT = {
-    children: null,
-    placement: PLACEMENT.top,
-    usePortal: true,
-    overrides: {},
     autoFocus: false,
     autoHideDuration: 0,
+    children: null,
+    closeable: true,
+    overrides: {},
+    placement: PLACEMENT.top,
     resetAutoHideTimerOnUpdate: true,
+    usePortal: true,
   };
 
   constructor(props: ToasterPropsT) {
@@ -60,9 +61,9 @@ export class ToasterContainer extends React.Component<
   }
 
   getToastProps = (props: ToastPropsT): ToastPropsT & {key: React.Key} => {
-    const {autoFocus, autoHideDuration} = this.props;
+    const {autoFocus, autoHideDuration, closeable} = this.props;
     const key: React.Key = props.key || `toast-${this.toastId++}`;
-    return {autoFocus, autoHideDuration, ...props, key};
+    return {autoFocus, autoHideDuration, closeable, ...props, key};
   };
 
   show = (props: ToastPropsT = {}): React.Key => {
