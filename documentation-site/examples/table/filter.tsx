@@ -34,8 +34,9 @@ class FilterTable extends React.Component<any> {
     filters: [],
   };
 
-  FILTER_FUNCTIONS = Array.from({length: 10}, (_, i) => row =>
-    row[0] % (i + 1) === 0,
+  FILTER_FUNCTIONS = Array.from(
+    {length: 10},
+    (_, i) => (row: any) => row[0] % (i + 1) === 0,
   );
 
   onFilter = (index: number) => {
