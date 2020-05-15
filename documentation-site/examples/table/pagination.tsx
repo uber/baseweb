@@ -85,7 +85,7 @@ function PaginatedTable(props: {data: any[]; columns: any[]}) {
         <StatefulPopover
           content={({close}) => (
             <StatefulMenu
-              items={[...new Array(100)].map((_, i) => ({
+              items={Array.from({length: 100}, (_, i) => ({
                 label: i + 1,
               }))}
               onItemSelect={({item}) => {
@@ -116,9 +116,9 @@ function PaginatedTable(props: {data: any[]; columns: any[]}) {
   );
 }
 
-const COLUMNS = [...new Array(5)].map(() => 'Label');
-const DATA = [...new Array(45)].map((_, i) =>
-  [...new Array(5)].map(() => `row: ${i + 1}`),
+const COLUMNS = Array.from({length: 5}, () => 'Label');
+const DATA = Array.from({length: 45}, (_, i) =>
+  Array.from({length: 5}, () => `row: ${i + 1}`),
 );
 
 export default () => (
