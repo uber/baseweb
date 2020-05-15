@@ -18,28 +18,7 @@ import {
   StyledArtworkContainer,
 } from './styled-components.js';
 import type {PropsT} from './types.js';
-
-function artworkSizeToIconSize(artworkSize, isSublist) {
-  if (isSublist) {
-    switch (artworkSize) {
-      case ARTWORK_SIZES.LARGE:
-        return 22;
-      case ARTWORK_SIZES.SMALL:
-      default:
-        return 16;
-    }
-  }
-
-  switch (artworkSize) {
-    case ARTWORK_SIZES.SMALL:
-      return 16;
-    case ARTWORK_SIZES.LARGE:
-      return 33;
-    case ARTWORK_SIZES.MEDIUM:
-    default:
-      return 22;
-  }
-}
+import {artworkSizeToValue} from './utils.js';
 
 const ListItem = React.forwardRef<PropsT, HTMLLIElement>(
   (props: PropsT, ref) => {
@@ -62,6 +41,10 @@ const ListItem = React.forwardRef<PropsT, HTMLLIElement>(
     );
 
     const artworkSize = React.useMemo(() => {
+      if (typeof artworkSize === 'number') {
+        return artworkSize;
+      }
+
       if (props.sublist) {
         let size = props.artworkSize || ARTWORK_SIZES.SMALL;
         if (props.artworkSize === ARTWORK_SIZES.MEDIUM) {
@@ -84,9 +67,16 @@ const ListItem = React.forwardRef<PropsT, HTMLLIElement>(
         {Artwork && (
           <ArtworkContainer
             $artworkSize={artworkSize}
+            $sublist={Boolean(props.sublist)}
             {...artworkContainerProps}
           >
-            <Artwork size={artworkSizeToIconSize(artworkSize, props.sublist)} />
+            <Artwork
+              size={
+                typeof artworkSize === 'number'
+                  ? artworkSize
+                  : artworkSizeToValue(artworkSize, Boolean(props.sublist))
+              }
+            />
           </ArtworkContainer>
         )}
         <Content $mLeft={!Artwork} $sublist={!!props.sublist} {...contentProps}>
