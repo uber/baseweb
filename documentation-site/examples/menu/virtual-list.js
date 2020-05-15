@@ -5,7 +5,7 @@ import {StatefulMenu, OptionList, StyledList} from 'baseui/menu';
 import List from 'react-virtualized/dist/commonjs/List';
 import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
 
-const ITEMS = [...new Array(1500)].map((_, index) => ({
+const ITEMS = Array.from({length: 1500}, (_, index) => ({
   label: `item number: ${index + 1}`,
 }));
 

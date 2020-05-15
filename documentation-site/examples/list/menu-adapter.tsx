@@ -8,7 +8,7 @@ import {
   ARTWORK_SIZES,
 } from 'baseui/list';
 
-const ITEMS = [...new Array(10)].map(() => ({
+const ITEMS = Array.from({length: 10}, () => ({
   title: 'Jane Smith',
   subtitle: 'Senior Engineering Manager',
   icon: Search,

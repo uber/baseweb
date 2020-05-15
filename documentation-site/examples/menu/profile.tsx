@@ -8,7 +8,7 @@ interface IItem {
   imgUrl: string;
 }
 
-const ITEMS = [...new Array(4)].map(() => ({
+const ITEMS = Array.from({length: 4}, () => ({
   title: 'David Smith',
   subtitle: 'Senior Engineering Manager',
   body: 'Uber Everything',

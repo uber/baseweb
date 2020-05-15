@@ -2,7 +2,7 @@
 import * as React from 'react';
 import {StatefulMenu, OptionProfile} from 'baseui/menu';
 
-const ITEMS = [...new Array(4)].map(() => ({
+const ITEMS = Array.from({length: 4}, () => ({
   title: 'David Smith',
   subtitle: 'Senior Engineering Manager',
   body: 'Uber Everything',

@@ -3,7 +3,7 @@ import {withStyle} from 'baseui';
 import {StatefulMenu, OptionList, StyledList} from 'baseui/menu';
 import {List, AutoSizer} from 'react-virtualized';
 
-const ITEMS = [...new Array(1500)].map((_, index) => ({
+const ITEMS = Array.from({length: 1500}, (_, index) => ({
   label: `item number: ${index + 1}`,
 }));
 

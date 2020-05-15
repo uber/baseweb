@@ -34,7 +34,7 @@ class FilterTable extends React.Component<any> {
     filters: [],
   };
 
-  FILTER_FUNCTIONS = [...new Array(10)].map((_, i) => (row: any) =>
+  FILTER_FUNCTIONS = Array.from({length: 10}, (_, i) => row =>
     row[0] % (i + 1) === 0,
   );
 
@@ -102,7 +102,7 @@ class FilterTable extends React.Component<any> {
 
 export default () => {
   const [css] = useStyletron();
-  const FILTER_DATA = [...new Array(100)].map((_, i) => [
+  const FILTER_DATA = Array.from({length: 100}, (_, i) => [
     i,
     'row title',
   ]);
