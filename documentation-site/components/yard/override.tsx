@@ -41,7 +41,7 @@ const SharedPropsTooltip: React.FC<{
 }> = ({componentConfig, children}) => {
   const sharedProps = Object.keys(componentConfig.overrides.custom.sharedProps);
   const getDescription = (name: string) => {
-    let metaObj: any = {};
+    let metaObj: {type: string; description: string} | undefined;
     if (
       typeof componentConfig.overrides.custom.sharedProps[name] === 'string'
     ) {
@@ -50,11 +50,20 @@ const SharedPropsTooltip: React.FC<{
     } else {
       metaObj = componentConfig.overrides.custom.sharedProps[name];
     }
-    return (
-      <React.Fragment>
-        <i>{metaObj.type}</i> - {metaObj.description}
-      </React.Fragment>
-    );
+    if (metaObj) {
+      return (
+        <React.Fragment>
+          <i>{metaObj.type}</i> - {metaObj.description}
+        </React.Fragment>
+      );
+    } else {
+      if (process.env.WEBSITE_ENV !== 'production') {
+        console.warn(
+          `Could not find a tooltip description for "${name}". Is this prop included in the yard configuration?`,
+        );
+      }
+      return '-';
+    }
   };
   return (
     <StatefulTooltip
