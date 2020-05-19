@@ -41,4 +41,16 @@ describe('tree view', () => {
       0,
     );
   });
+
+  it('interactable elements in tree node label', async () => {
+    const checkbox = '[data-baseweb="checkbox"]';
+    const checkboxInput = '[data-baseweb="checkbox"] input';
+    await mount(page, 'tree-view-interactable');
+    await page.waitFor(checkbox);
+    let isChecked = await page.$eval(checkboxInput, i => i.checked);
+    expect(isChecked).toBe(false);
+    await page.click(checkbox);
+    isChecked = await page.$eval(checkboxInput, i => i.checked);
+    expect(isChecked).toBe(true);
+  });
 });

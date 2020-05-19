@@ -34,6 +34,14 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
     }
   };
 
+  onFocus = (e: SyntheticEvent<>) => {
+    if (e && e.target !== this.treeItemRef.current) return;
+    const {onFocus} = this.props;
+    if (onFocus) {
+      onFocus(e);
+    }
+  };
+
   render() {
     const {
       indentGuides,
@@ -69,7 +77,7 @@ export default class TreeNode extends React.Component<TreeNodePropsT> {
         tabIndex={selectedNodeId === getId(node) ? 0 : -1}
         onKeyDown={(e: KeyboardEvent) => onKeyDown && onKeyDown(e, node)}
         onBlur={onBlur}
-        onFocus={onFocus}
+        onFocus={this.onFocus}
         aria-expanded={isExpanded ? true : false}
         $isLeafNode={!hasChildren}
         {...getOverrideProps(TreeItemOverride)}
