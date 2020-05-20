@@ -109,3 +109,7 @@ export const StyledNoIconContainer = styled<{}>('div', ({$theme}) => {
     height: '1em',
   };
 });
+
+export const StyledLabelInteractable = styled<{}>('div', () => ({
+  width: '100%',
+}));

@@ -19,4 +19,5 @@ export {
 } from './styled-components.js';
 
 export {default as TreeLabel} from './tree-label.js';
+export {default as TreeLabelInteractable} from './tree-label-interactable.js';
 export {toggleIsExpanded} from './utils.js';
