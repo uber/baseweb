@@ -24,6 +24,7 @@ documentation-site/.next
 documentation-site/posts.js
 documentation-site/cheat-sheet.js
 public
+!documentation-site/public
 versions.json
 __artifacts__
 # Local Netlify folder
