@@ -217,15 +217,15 @@ const Index = (props: {
     </Markdown.p>
     <Adopters
       logoSrcs={[
-        '/static/images/uber-logo.png',
-        '/static/images/broadcom-logo.png',
-        '/static/images/extensis-logo.png',
-        '/static/images/uptime-logo.png',
-        '/static/images/streamlit-logo.png',
-        '/static/images/everbase-logo.png',
-        '/static/images/cadre-logo.png',
-        '/static/images/banzaicloud-logo.png',
-        '/static/images/sprinklr-logo.png',
+        '/images/uber-logo.png',
+        '/images/broadcom-logo.png',
+        '/images/extensis-logo.png',
+        '/images/uptime-logo.png',
+        '/images/streamlit-logo.png',
+        '/images/everbase-logo.png',
+        '/images/cadre-logo.png',
+        '/images/banzaicloud-logo.png',
+        '/images/sprinklr-logo.png',
       ]}
     />
     <Contributors contributors={props.contributors} />

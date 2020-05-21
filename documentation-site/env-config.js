@@ -15,7 +15,7 @@ if (prod) {
 }
 
 module.exports = {
-  'process.env.STATIC_ROOT': '/static/',
+  'process.env.STATIC_ROOT': '/',
   'process.env.GITHUB_AUTH_TOKEN': process.env.GITHUB_AUTH_TOKEN || '',
   // These are required to render pages at /guidelines based on a figma file
   'process.env.FIGMA_AUTH_TOKEN': process.env.FIGMA_AUTH_TOKEN || '',
