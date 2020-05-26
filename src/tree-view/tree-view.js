@@ -128,32 +128,31 @@ export default function TreeView(props: TreeViewPropsT) {
 
   return (
     <Root role="tree" {...getOverrideProps(RootOverride)}>
-      {data.length &&
-        data.map(node => (
-          <TreeNode
-            indentGuides={indentGuides}
-            key={getId(node)}
-            node={node}
-            getId={getId}
-            onToggle={node => {
-              onToggle && onToggle(node);
-              focusTreeItem(getId(node));
-            }}
-            overrides={overrides}
-            renderAll={renderAll}
-            selectedNodeId={selectedNodeId}
-            onKeyDown={onKeyDown}
-            onFocus={onFocus}
-            onBlur={onBlur}
-            addRef={(id: TreeNodeIdT, ref: React.ElementRef<HTMLLIElement>) => {
-              treeItemRefs.current[id] = ref;
-            }}
-            removeRef={(id: TreeNodeIdT) => {
-              delete treeItemRefs.current[id];
-            }}
-            isFocusVisible={focusVisible}
-          />
-        ))}
+      {data.map(node => (
+        <TreeNode
+          indentGuides={indentGuides}
+          key={getId(node)}
+          node={node}
+          getId={getId}
+          onToggle={node => {
+            onToggle && onToggle(node);
+            focusTreeItem(getId(node));
+          }}
+          overrides={overrides}
+          renderAll={renderAll}
+          selectedNodeId={selectedNodeId}
+          onKeyDown={onKeyDown}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          addRef={(id: TreeNodeIdT, ref: React.ElementRef<HTMLLIElement>) => {
+            treeItemRefs.current[id] = ref;
+          }}
+          removeRef={(id: TreeNodeIdT) => {
+            delete treeItemRefs.current[id];
+          }}
+          isFocusVisible={focusVisible}
+        />
+      ))}
     </Root>
   );
 }
