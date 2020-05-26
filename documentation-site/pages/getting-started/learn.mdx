@@ -19,12 +19,10 @@ of Base Web, then you'll build your first Base Web application.
 
 ### Styletron
 
-Styletron is an universal toolkit for component-oriented styling. It falls into the
-[CSS in JS](https://github.com/tuchk4/awesome-css-in-js/) category.
+Styletron is an universal toolkit for component-oriented styling. It uses a [CSS in JS](https://github.com/tuchk4/awesome-css-in-js/) approach.
 
-Base Web always needs Styletron to function. You probably will not be able to build the whole application
-only with Base Web components and you will be creating some new components as well. Since Styletron is
-already loaded in your project, **we recommend you use Styletron to style any new components**:
+Base Web uses Styletron to apply styles to components. In addition to using Base Web components you'll probably be adding some components of your own. Since Styletron is
+already loaded in your project, **we recommend you use Styletron to style these new components too**:
 
 ```js
 import {useStyletron} from 'baseui';
@@ -45,7 +43,7 @@ export default () => {
 };
 ```
 
-_Do you want to learn more about Styletron? Go to [styletron.org](https://www.styletron.org)._
+_Want to learn more about Styletron? Go to [styletron.org](https://www.styletron.org)._
 
 Do you prefer other approaches when styling your components? CSS Modules? Styled-components?
 You can use them in parallel to Base Web and Styletron. Styletron adds only `8kB` to your bundle
@@ -55,10 +53,10 @@ _Check out the documentation on [useStyletron](/components/use-styletron/) to le
 
 ### Overrides
 
-Looking to customize Base Web components? There is a concept call overrides. Each Base Web component consists of multiple subcomponents (for example list can have list container and list items). Overrides gives you a full access to all those subcomponents and lets you to customize:
+You can customize Base Web components by means of overrides. Each Base Web component consists of multiple subcomponents (for example list can have list container and list items). Overrides gives you a full access to all those subcomponents and lets you customize:
 
-- styles of the subcomponent
-- props of the subcomponent
+- the styles of the subcomponent
+- the props of the subcomponent
 - or replace it completely
 
 Every Base Web component has a top-level prop called overrides. It accepts a map of subcomponents
