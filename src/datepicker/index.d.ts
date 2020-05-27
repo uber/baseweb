@@ -167,6 +167,8 @@ declare function formatDate(
   formatString: string,
 ): string | string[];
 
+export {formatDate};
+
 export class Datepicker extends React.Component<
   DatepickerProps,
   DatepickerState
