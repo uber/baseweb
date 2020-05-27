@@ -28,6 +28,7 @@ export type ColorTokensT = {
   platinum500: string,
   platinum600: string,
   platinum700: string,
+  platinum800: string,
 
   blue50: string,
   blue100: string,
@@ -91,4 +92,13 @@ export type ColorTokensT = {
   brown500: string,
   brown600: string,
   brown700: string,
+
+  cobalt50: string,
+  cobalt100: string,
+  cobalt200: string,
+  cobalt300: string,
+  cobalt400: string,
+  cobalt500: string,
+  cobalt600: string,
+  cobalt700: string,
 };
