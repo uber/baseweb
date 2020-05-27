@@ -181,12 +181,15 @@ export class Datepicker extends React.Component<
   handleKeyDown(event: KeyboardEvent): void;
   focusCalendar(): void;
 }
+export {Datepicker as DatePicker};
 
 export type StatefulDatepickerProps<T> = T &
   StatefulContainerProps<T> & {children?: (args: T) => React.ReactNode};
 export const StatefulDatepicker: React.FC<
   StatefulDatepickerProps<DatepickerProps>
 >;
+
+export {StatefulDatepicker as StatefulDatePicker};
 
 export interface TimezonePickerProps {
   date?: Date;
