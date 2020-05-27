@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {useStyletron} from 'baseui';
 import {FormControl} from 'baseui/form-control';
 import {ArrowRight} from 'baseui/icon';
-import {Datepicker, formatDate} from 'baseui/datepicker';
+import {DatePicker, formatDate} from 'baseui/datepicker';
 import {TimePicker} from 'baseui/timepicker';
 
 const START_DATE = new Date(2019, 3, 1, 12, 0, 0);
@@ -32,7 +32,7 @@ export default () => {
         })}
       >
         <FormControl label="Start Date" caption="YYYY/MM/DD">
-          <Datepicker
+          <DatePicker
             value={dates}
             onChange={({date}) => setDates(date as Array<Date>)}
             formatDisplayValue={date => formatDateAtIndex(date, 0)}
@@ -72,7 +72,7 @@ export default () => {
         })}
       >
         <FormControl label="End Date" caption="yyyy/MM/DD">
-          <Datepicker
+          <DatePicker
             value={dates}
             onChange={({date}) => setDates(date as Array<Date>)}
             formatDisplayValue={date => formatDateAtIndex(date, 1)}
