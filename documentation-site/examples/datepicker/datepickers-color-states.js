@@ -3,7 +3,7 @@ import React from 'react';
 
 import {useStyletron} from 'baseui';
 import {FormControl} from 'baseui/form-control';
-import {StatefulDatepicker} from 'baseui/datepicker';
+import {StatefulDatePicker} from 'baseui/datepicker';
 import {TimePicker} from 'baseui/timepicker';
 import {TimezonePicker} from 'baseui/timezonepicker';
 
@@ -24,7 +24,7 @@ export default () => {
           })}
         >
           <FormControl label="Datepicker">
-            <StatefulDatepicker disabled />
+            <StatefulDatePicker disabled />
           </FormControl>
         </div>
         <div
@@ -56,7 +56,7 @@ export default () => {
           })}
         >
           <FormControl label="Datepicker">
-            <StatefulDatepicker positive />
+            <StatefulDatePicker positive />
           </FormControl>
         </div>
         <div
@@ -88,7 +88,7 @@ export default () => {
           })}
         >
           <FormControl label="Datepicker">
-            <StatefulDatepicker error />
+            <StatefulDatePicker error />
           </FormControl>
         </div>
         <div

@@ -1,6 +1,6 @@
 // @flow
 import React, {useState} from 'react';
-import {Datepicker} from 'baseui/datepicker';
+import {DatePicker} from 'baseui/datepicker';
 import {TimezonePicker} from 'baseui/timezonepicker';
 import {FormControl} from 'baseui/form-control';
 
@@ -15,7 +15,7 @@ export default () => {
   return (
     <React.Fragment>
       <FormControl label="Date">
-        <Datepicker
+        <DatePicker
           onChange={({date}) => {
             setDate(date);
           }}
