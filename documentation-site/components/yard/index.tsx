@@ -76,7 +76,9 @@ const Yard: React.FC<TYardProps> = ({
   if (
     typeof window !== 'undefined' &&
     typeof document !== 'undefined' &&
+    // @ts-ignore: non standard window property
     !!window.MSInputMethodContext &&
+    // @ts-ignore: non standard document property
     !!document.documentMode
   ) {
     console.warn(
