@@ -14,10 +14,12 @@ export default function Scenario() {
   return (
     <StatefulDatepicker
       aria-label="Select a date"
-      initialState={{value: []}}
-      range
-      highlightedDate={new Date('March 10, 2019')}
       clearable={true}
+      initialState={{value: []}}
+      highlightedDate={new Date('March 10, 2019')}
+      range
+      timeSelectEnd
+      timeSelectStart
       overrides={{
         Day: {
           // eslint-disable-next-line react/display-name

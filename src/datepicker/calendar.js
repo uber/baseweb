@@ -88,6 +88,11 @@ export default class Calendar extends React.Component<
       date: dateInView,
       quickSelectId: null,
       rootElement: null,
+      time: Array.isArray(this.props.value)
+        ? this.props.value
+        : this.props.value
+        ? [this.props.value]
+        : [],
     };
   }
 
@@ -340,22 +345,33 @@ export default class Calendar extends React.Component<
 
   handleDateChange = (data: {date: ?Date | Array<Date>}) => {
     const {onChange = params => {}} = this.props;
+    let updatedDate = data.date;
+    // We'll need to update the date in time values of internal state
+    const newTimeState = [...this.state.time];
+    // Apply the currently selected time values (saved in state) to the updated date
     if (Array.isArray(data.date)) {
       const dates = data.date.map((date, index) => {
-        const values = [].concat(this.props.value);
-        return applyDateToTime(values[index], date);
+        newTimeState[index] = applyDateToTime(newTimeState[index], date);
+        return newTimeState[index];
       });
-      onChange({date: dates});
+      updatedDate = dates;
     } else if (!Array.isArray(this.props.value) && data.date) {
-      const nextDate = applyDateToTime(this.props.value, data.date);
-      onChange({date: nextDate});
-    } else {
-      onChange({date: data.date});
+      newTimeState[0] = applyDateToTime(newTimeState[0], data.date);
+      updatedDate = newTimeState[0];
     }
+    // Update the date in time values of internal state
+    this.setState({time: newTimeState});
+    onChange({date: updatedDate});
   };
 
   handleTimeChange = (time: Date, index: number) => {
     const {onChange = params => {}} = this.props;
+    // Save/update the time value in internal state
+    const newTimeState = [...this.state.time];
+    newTimeState[index] = applyTimeToDate(newTimeState[index], time);
+    this.setState({time: newTimeState});
+    // Time change calls calendar's onChange handler
+    // with the date value set to the date with updated time
     if (Array.isArray(this.props.value)) {
       const dates = this.props.value.map((date, i) => {
         if (index === i) {
@@ -468,6 +484,7 @@ export default class Calendar extends React.Component<
           <TimeSelect
             value={value ? new Date(value) : value}
             onChange={onChange}
+            nullable
             {...timeSelectProps}
           />
         </TimeSelectFormControl>
