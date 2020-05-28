@@ -75,6 +75,7 @@ const Yard: React.FC<TYardProps> = ({
   // Bail in IE11
   if (
     typeof window !== 'undefined' &&
+    typeof document !== 'undefined' &&
     !!window.MSInputMethodContext &&
     !!document.documentMode
   ) {
