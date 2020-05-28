@@ -71,6 +71,15 @@ const Yard: React.FC<TYardProps> = ({
   const showOverrides =
     props.overrides.custom.names && props.overrides.custom.names.length > 0;
   const showTheme = theme.length > 0;
+
+  // Bail in IE11
+  if (!!window.MSInputMethodContext && !!document.documentMode) {
+    console.warn(
+      '[react-live] does not work in IE11! Please use Edge or another modern browser.',
+    );
+    return null;
+  }
+
   return (
     <Card>
       <Compiler
