@@ -22,7 +22,7 @@ export default function UserProfileTile(props: UserMenuPropsT) {
     // Replace with a  profile tile renderer: renderUserProfileTile()
     <StyledUserProfileTileContainer>
       <StyledUserProfilePictureContainer>
-        <Avatar name={username} src={userImgUrl} size={'48px'} />
+        <Avatar name={username || ''} src={userImgUrl} size={'48px'} />
       </StyledUserProfilePictureContainer>
       <StyledUserProfileInfoContainer>
         <LabelMedium>{username}</LabelMedium>

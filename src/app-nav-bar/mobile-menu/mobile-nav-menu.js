@@ -20,12 +20,16 @@ export default function MobileNavMenu(props: {|
 |}) {
   const {mainNav = [], userNav = [], close = () => {}, ...rest} = props;
   const navItems = [
-    {
-      item: {...rest},
-      mapItemToString: item => item.username || '',
-      [USER_MENU_ITEM]: true,
-      nav: userNav,
-    },
+    ...(userNav.length
+      ? [
+          {
+            item: {...rest},
+            mapItemToString: item => item.username || '',
+            [USER_MENU_ITEM]: true,
+            nav: userNav,
+          },
+        ]
+      : []),
     ...mainNav,
   ];
   const [currentNavItems, setCurrentNavItems] = React.useState(navItems);
