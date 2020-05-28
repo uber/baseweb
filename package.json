@@ -195,6 +195,7 @@
     "glob": "^7.1.6",
     "just-extend": "^4.0.2",
     "memoize-one": "^5.1.1",
+    "next-transpile-modules": "^3.3.0",
     "polished": "^3.2.0",
     "popper.js": "^1.16.0",
     "react-dropzone": "^9.0.0",
