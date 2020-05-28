@@ -84,7 +84,6 @@ const IconWrapper = themedStyled<{$inputVisible: boolean}>(
     [$theme.direction === 'rtl' ? 'right' : 'left']: $inputVisible
       ? '12px'
       : '-33px',
-    height: '22px',
     cursor: 'pointer',
     [$theme.mediaQuery.small]: {
       [$theme.direction === 'rtl' ? 'right' : 'left']: '12px',
