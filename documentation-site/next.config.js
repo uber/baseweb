@@ -13,6 +13,10 @@ const withImages = require('next-images');
 const withMDX = require('@zeit/next-mdx')({
   extension: /\.mdx?$/,
 });
+
+// The following modules need to be transpiled for IE11.
+// If IE11 breaks again in the future, enable production source maps to find
+// which module is causing the issue.
 const withTM = require('next-transpile-modules')([
   '@octokit/rest',
   '@octokit/endpoint',
