@@ -73,7 +73,11 @@ const Yard: React.FC<TYardProps> = ({
   const showTheme = theme.length > 0;
 
   // Bail in IE11
-  if (!!window.MSInputMethodContext && !!document.documentMode) {
+  if (
+    typeof window !== 'undefined' &&
+    !!window.MSInputMethodContext &&
+    !!document.documentMode
+  ) {
     console.warn(
       '[react-live] does not work in IE11! Please use Edge or another modern browser.',
     );
