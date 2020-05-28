@@ -74,7 +74,9 @@ export default function AppNavBar(props: AppNavBarPropsT) {
         <Grid>
           <Cell span={[4, 8, 0]}>
             <StyledSpacing>
-              <MobileNav {...props} />
+              {mainNav.length || userNav.length ? (
+                <MobileNav {...props} />
+              ) : null}
               <Logo appDisplayName={appDisplayName} />
             </StyledSpacing>
           </Cell>

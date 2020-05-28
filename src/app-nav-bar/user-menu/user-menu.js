@@ -35,7 +35,7 @@ export default function UserMenu(props: AppNavBarPropsT) {
       triggerType={TRIGGER_TYPE.click}
     >
       <Button overrides={{BaseButton: {component: StyledUserMenuButton}}}>
-        <Avatar name={username} src={userImgUrl} size={'32px'} />
+        <Avatar name={username || ''} src={userImgUrl} size={'32px'} />
         {isOpen ? (
           <ChevronUpSmallFilled
             size={28}

@@ -4,7 +4,7 @@ Copyright (c) 2018-2020 Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-import {Datepicker, ORIENTATION} from 'baseui/datepicker';
+import {DatePicker, ORIENTATION} from 'baseui/datepicker';
 import {SIZE} from 'baseui/input';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
@@ -13,13 +13,13 @@ import inputConfig from './input';
 const datepickerProps = require('!!extract-react-types-loader!../../../../src/datepicker/datepicker.js');
 
 const DatepickerConfig: TConfig = {
-  componentName: 'Datepicker',
+  componentName: 'DatePicker',
   imports: {
     'baseui/datepicker': {
-      named: ['Datepicker'],
+      named: ['DatePicker'],
     },
   },
-  scope: {Datepicker, ORIENTATION, SIZE},
+  scope: {DatePicker, ORIENTATION, SIZE},
   theme: [
     'datepickerBackground',
     'datepickerDayFont',

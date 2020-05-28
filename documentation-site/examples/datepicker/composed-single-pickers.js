@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 
 import {useStyletron} from 'baseui';
 import {FormControl} from 'baseui/form-control';
-import {Datepicker} from 'baseui/datepicker';
+import {DatePicker} from 'baseui/datepicker';
 import {TimePicker} from 'baseui/timepicker';
 import {TimezonePicker} from 'baseui/timezonepicker';
 
@@ -23,7 +23,7 @@ export default () => {
         })}
       >
         <FormControl label="Date" caption="YYYY/MM/DD">
-          <Datepicker
+          <DatePicker
             value={date}
             onChange={({date}) => setDate(date)}
             timeSelectStart

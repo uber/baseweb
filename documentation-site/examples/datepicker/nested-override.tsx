@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {Datepicker} from 'baseui/datepicker';
+import {DatePicker} from 'baseui/datepicker';
 
 export default () => {
   const [singleDate, setSingleDate] = React.useState();
   return (
-    <Datepicker
+    <DatePicker
       value={singleDate || null}
       onChange={({date}) => setSingleDate(date)}
       overrides={{
