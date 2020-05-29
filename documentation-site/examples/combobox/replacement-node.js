@@ -50,6 +50,7 @@ function Example() {
           onChange={setValue}
           mapOptionToString={o => o.label}
           mapOptionToNode={ReplacementNode}
+          name="replacement-node"
           options={options}
         />
       </FormControl>

@@ -100,7 +100,7 @@ function Example() {
           onChange={handleChange}
           mapOptionToString={mapOptionToString}
           options={options}
-          name="color-selector"
+          name="async-options"
         />
       </FormControl>
     </div>
