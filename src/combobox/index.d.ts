@@ -8,10 +8,10 @@ export interface SIZE {
   mini: 'mini';
 }
 
-export interface ChangeSourceT = {
-  input: 'input',
-  option: 'option',
-};
+export interface ChangeSourceT {
+  input: 'input';
+  option: 'option';
+}
 
 export type PropsT<OptionT = unknown> = {
   disabled?: boolean;
