@@ -100,6 +100,7 @@ function Example() {
           onChange={handleChange}
           mapOptionToString={mapOptionToString}
           options={options}
+          name="color-selector"
         />
       </FormControl>
     </div>
