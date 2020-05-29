@@ -7,7 +7,7 @@ import * as React from 'react';
 
 function Icon() {
   return (
-    <div style={{width: '16px', marginTop: '3px'}}>
+    <div style={{height: '16px', width: '16px', marginTop: '3px'}}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
