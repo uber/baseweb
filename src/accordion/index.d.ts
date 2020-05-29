@@ -7,7 +7,11 @@ export interface STATE_CHANGE_TYPE {
 }
 
 export interface AccordionOverrides<T> {
+  Content?: Override<T>;
+  Header?: Override<T>;
+  PanelContainer?: Override<T>;
   Root?: Override<T>;
+  ToggleIcon?: Override<T>;
 }
 
 export interface SharedProps {

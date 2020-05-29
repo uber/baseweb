@@ -33,7 +33,11 @@ export type PanelStateReducerT = (
 ) => PanelStateT;
 
 export type AccordionOverridesT = {
+  Content?: OverrideT,
+  Header?: OverrideT,
+  PanelContainer?: OverrideT,
   Root?: OverrideT,
+  ToggleIcon?: OverrideT,
 };
 
 export type PanelOverridesT = {
