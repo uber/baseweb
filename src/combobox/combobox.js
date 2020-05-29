@@ -14,6 +14,7 @@ import {getOverrides} from '../helpers/overrides.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
 import getBuiId from '../utils/get-bui-id.js';
 
+import {CHANGE_SOURCE} from './constants.js';
 import {
   StyledRoot,
   StyledInputContainer,
@@ -125,7 +126,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     if (event.keyCode === ENTER) {
       setIsOpen(false);
       setSelectionIndex(-1);
-      onChange(tempValue);
+      onChange(tempValue, CHANGE_SOURCE.option);
     }
     if (event.keyCode === ESCAPE) {
       // NOTE(chase): aria 1.2 spec outlines a pattern where when escape is
@@ -159,7 +160,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
   function handleInputChange(event) {
     handleOpen();
     setSelectionIndex(-1);
-    onChange(event.target.value);
+    onChange(event.target.value, CHANGE_SOURCE.input);
     setTempValue(event.target.value);
   }
 
@@ -169,7 +170,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
       const stringified = mapOptionToString(clickedOption);
       setIsOpen(false);
       setSelectionIndex(index);
-      onChange(stringified);
+      onChange(stringified, CHANGE_SOURCE.option);
       setTempValue(stringified);
 
       if (inputRef.current) {

@@ -8,10 +8,12 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
+import {CHANGE_SOURCE} from './constants.js';
+
 import type {OverrideT} from '../helpers/overrides.js';
 import {SIZE} from '../input/index.js';
-// import type {InputPropsT} from '../input/index.js';
-// import type {PopoverPropsT} from '../popover/index.js';
+
+export type ChangeSourceT = $Keys<typeof CHANGE_SOURCE>;
 
 export type PropsT<OptionT = mixed> = {|
   // Disallows text input and listbox opening.
@@ -27,7 +29,7 @@ export type PropsT<OptionT = mixed> = {|
   // map whatever value the client gets into a visible string in the list item.
   mapOptionToString: OptionT => string,
   // Called when input value changes or option is selected.
-  onChange: string => mixed,
+  onChange: (string, ChangeSourceT) => mixed,
   // Data to populate list items in the dropdown menu.
   options: OptionT[],
   overrides?: {|

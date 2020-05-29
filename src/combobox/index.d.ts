@@ -8,6 +8,11 @@ export interface SIZE {
   mini: 'mini';
 }
 
+export interface ChangeSourceT = {
+  input: 'input',
+  option: 'option',
+};
+
 export type PropsT<OptionT = unknown> = {
   disabled?: boolean;
   mapOptionToNode?: ({isSelected: boolean, option: OptionT}) => React.ReactNode;

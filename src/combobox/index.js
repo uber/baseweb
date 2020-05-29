@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 export {SIZE} from '../input/constants.js';
 
 export {default as Combobox} from './combobox.js';
+export {CHANGE_SOURCE} from './constants.js';
 export {
   StyledRoot,
   StyledInputContainer,
