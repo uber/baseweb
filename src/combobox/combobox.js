@@ -36,6 +36,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     onChange,
     mapOptionToNode,
     mapOptionToString,
+    name,
     options,
     overrides = {},
     positive = false,
@@ -274,6 +275,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
             aria-controls={listboxId}
             disabled={disabled}
             error={error}
+            name={name}
             onBlur={handleBlur}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
