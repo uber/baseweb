@@ -56,6 +56,13 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
   const activeDescendantId = React.useMemo(() => getBuiId(), []);
   const listboxId = React.useMemo(() => getBuiId(), []);
 
+  // Handles case where an application wants to clear the value in the input element.
+  React.useEffect(() => {
+    if (value === '') {
+      setTempValue('');
+    }
+  }, [value]);
+
   // Changing the 'selected' option temporarily updates the visible text string
   // in the input element until the user clicks an option or presses enter.
   React.useEffect(() => {
