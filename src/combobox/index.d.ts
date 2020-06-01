@@ -12,6 +12,7 @@ export type PropsT<OptionT = unknown> = {
   disabled?: boolean;
   mapOptionToNode?: ({isSelected: boolean, option: OptionT}) => React.ReactNode;
   mapOptionToString: (OptionT) => string;
+  name?: string;
   onChange?: (string) => any;
   options: OptionT;
   overrides?: {

@@ -89,6 +89,7 @@ function Example() {
           onChange={setValue}
           mapOptionToString={mapOptionToString}
           options={filteredOptions}
+          name="filtered-options"
         />
       </FormControl>
     </div>
