@@ -56,6 +56,12 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
   const activeDescendantId = React.useMemo(() => getBuiId(), []);
   const listboxId = React.useMemo(() => getBuiId(), []);
 
+  // Handles case where an application wants to update the value in the input element
+  // from outside of the combobox component.
+  React.useEffect(() => {
+    setTempValue('');
+  }, [value]);
+
   // Changing the 'selected' option temporarily updates the visible text string
   // in the input element until the user clicks an option or presses enter.
   React.useEffect(() => {

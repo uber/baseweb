@@ -162,4 +162,61 @@ describe('combobox', () => {
     const closed = container.querySelector('ul');
     expect(closed).toBeNull();
   });
+
+  it('clears input on value state set to empty string', () => {
+    function TestCase() {
+      const [value, setValue] = React.useState('');
+      return (
+        <div>
+          <Combobox
+            mapOptionToString={o => o}
+            onChange={v => setValue(v)}
+            options={options}
+            value={value}
+          />
+          <button onClick={() => setValue('')}>clear</button>
+        </div>
+      );
+    }
+    const {container} = render(<TestCase />);
+
+    const input = container.querySelector('input');
+    fireEvent.keyDown(input, {keyCode: 40});
+    fireEvent.keyDown(input, {keyCode: 40});
+    fireEvent.keyDown(input, {keyCode: 13});
+    expect(input.getAttribute('value')).toBe(options[1]);
+
+    const button = container.querySelector('button');
+    fireEvent.click(button);
+    expect(input.getAttribute('value')).toBe('');
+  });
+
+  it('clears input on value state set to arbitrary string', () => {
+    let updateValue = 'abc';
+    function TestCase() {
+      const [value, setValue] = React.useState('');
+      return (
+        <div>
+          <Combobox
+            mapOptionToString={o => o}
+            onChange={v => setValue(v)}
+            options={options}
+            value={value}
+          />
+          <button onClick={() => setValue(updateValue)}>update</button>
+        </div>
+      );
+    }
+    const {container} = render(<TestCase />);
+
+    const input = container.querySelector('input');
+    fireEvent.keyDown(input, {keyCode: 40});
+    fireEvent.keyDown(input, {keyCode: 40});
+    fireEvent.keyDown(input, {keyCode: 13});
+    expect(input.getAttribute('value')).toBe(options[1]);
+
+    const button = container.querySelector('button');
+    fireEvent.click(button);
+    expect(input.getAttribute('value')).toBe(updateValue);
+  });
 });
