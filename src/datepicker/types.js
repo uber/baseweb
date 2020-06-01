@@ -109,11 +109,12 @@ export type WeekPropsT = {
 export type MonthPropsT = WeekPropsT;
 
 export type CalendarInternalState = {
-  highlightedDate: Date,
-  focused: boolean,
   date: Date,
+  focused: boolean,
+  highlightedDate: Date,
   quickSelectId: ?string,
   rootElement: ?HTMLElement,
+  time: Array<Date>,
 };
 
 export type CalendarPropsT = {

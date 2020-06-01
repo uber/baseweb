@@ -18,6 +18,10 @@ const selectors = {
   day4: '[aria-label="Choose Monday, April 1st 2019. It\'s available."]',
   day5: '[aria-label="Choose Wednesday, May 1st 2019. It\'s available."]',
   rightArrow: '[aria-label="Next month."]',
+  timeSelect: '[data-id="time-select"]',
+  timeSelectDropdown: '[role="listbox"]',
+  timeSelectOption: '[role="option"]',
+  timeSelectValue: '[data-id="selected"]',
 };
 
 describe('Datepicker, Range', () => {
@@ -93,5 +97,71 @@ describe('Datepicker, Range', () => {
       input => input.value,
     );
     expect(selectedValue2).toBe('2019/03/10 – 2019/04/01');
+  });
+  it('selected time is preserved when dates are changed', async () => {
+    await mount(page, 'datepicker-range');
+    await page.waitFor(selectors.input);
+    await page.click(selectors.input);
+    await page.waitFor(selectors.timeSelect);
+
+    let timeSelects = await page.$$(selectors.timeSelect);
+    // Set the start time
+    await timeSelects[0].click();
+    await page.waitFor(selectors.timeSelectDropdown);
+    await page.keyboard.type('12:30 AM');
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('Enter');
+    let timeSelectValue = await page.$$eval(
+      `${selectors.timeSelect} ${selectors.timeSelectValue}`,
+      selects => selects[0].textContent,
+    );
+    expect(timeSelectValue).toBe('12:30 AM');
+    // Set the end time
+    await timeSelects[1].click();
+    await page.waitFor(selectors.timeSelectDropdown);
+    await page.keyboard.type('4:30 AM');
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('Enter');
+    let timeSelectValue2 = await page.$$eval(
+      `${selectors.timeSelect} ${selectors.timeSelectValue}`,
+      selects => selects[1].textContent,
+    );
+    expect(timeSelectValue2).toBe('4:30 AM');
+    // Select the start day
+    await page.waitFor(selectors.calendar);
+    await page.waitFor(selectors.day);
+    await page.click(selectors.day);
+    const selectedValue1 = await page.$eval(
+      selectors.input,
+      input => input.value,
+    );
+    expect(selectedValue1).toBe('2019/03/10 –     /  /  ');
+    // Select the start day
+    await page.waitFor(selectors.day2);
+    await page.click(selectors.day2);
+    await page.waitFor(selectors.calendar, {
+      hidden: true,
+    });
+    const selectedValue2 = await page.$eval(
+      selectors.input,
+      input => input.value,
+    );
+    expect(selectedValue2).toBe('2019/03/10 – 2019/03/28');
+    await page.waitFor(selectors.calendar, {hidden: true});
+
+    // Open the calendar again and check that the time is set correctly
+    await page.click(selectors.input);
+    await page.waitFor(selectors.timeSelect);
+    timeSelectValue = await page.$$eval(
+      `${selectors.timeSelect} ${selectors.timeSelectValue}`,
+      selects => selects[0].textContent,
+    );
+    expect(timeSelectValue).toBe('12:30 AM');
+    // Set the end time
+    timeSelectValue2 = await page.$$eval(
+      `${selectors.timeSelect} ${selectors.timeSelectValue}`,
+      selects => selects[1].textContent,
+    );
+    expect(timeSelectValue2).toBe('4:30 AM');
   });
 });
