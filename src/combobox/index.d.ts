@@ -13,7 +13,7 @@ export type PropsT<OptionT = unknown> = {
   mapOptionToNode?: ({isSelected: boolean, option: OptionT}) => React.ReactNode;
   mapOptionToString: (OptionT) => string;
   name?: string;
-  onChange?: (string) => any;
+  onChange?: (value: string, option: OptionT | null) => any;
   options: OptionT;
   overrides?: {
     Root?: Override<any>;

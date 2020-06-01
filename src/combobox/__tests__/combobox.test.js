@@ -31,6 +31,7 @@ describe('combobox', () => {
 
     expect(handleChange.mock.calls.length).toBe(1);
     expect(handleChange.mock.calls[0][0]).toBe('x');
+    expect(handleChange.mock.calls[0][1]).toBe(null);
   });
 
   it('opens listbox when text is entered', () => {
@@ -110,6 +111,7 @@ describe('combobox', () => {
 
     expect(handleChange.mock.calls.length).toBe(1);
     expect(handleChange.mock.calls[0][0]).toBe(options[1]);
+    expect(handleChange.mock.calls[0][1]).toBe(options[1]);
   });
 
   it('calls onChange with selected value when option clicked', () => {
@@ -133,6 +135,7 @@ describe('combobox', () => {
 
     expect(handleChange.mock.calls.length).toBe(1);
     expect(handleChange.mock.calls[0][0]).toBe(options[2]);
+    expect(handleChange.mock.calls[0][1]).toBe(options[2]);
   });
 
   it('closes listbox on blur', () => {
