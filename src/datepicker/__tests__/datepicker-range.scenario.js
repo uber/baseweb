@@ -37,6 +37,20 @@ export default function Scenario() {
             overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}},
           },
         },
+        TimeSelect: {
+          props: {
+            overrides: {
+              Select: {
+                props: {
+                  overrides: {
+                    Root: {props: {'data-id': 'time-select'}},
+                    ValueContainer: {props: {'data-id': 'selected'}},
+                  },
+                },
+              },
+            },
+          },
+        },
       }}
     />
   );

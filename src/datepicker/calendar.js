@@ -78,6 +78,12 @@ export default class Calendar extends React.Component<
     super(props);
     const dateInView = this.getDateInView();
     const {highlightedDate, value} = this.props;
+    let time = [];
+    if (Array.isArray(this.props.value)) {
+      time = this.props.value;
+    } else if (this.props.value) {
+      time = [this.props.value];
+    }
     this.state = {
       highlightedDate:
         this.getSingleDate(value) ||
@@ -88,11 +94,7 @@ export default class Calendar extends React.Component<
       date: dateInView,
       quickSelectId: null,
       rootElement: null,
-      time: Array.isArray(this.props.value)
-        ? this.props.value
-        : this.props.value
-        ? [this.props.value]
-        : [],
+      time,
     };
   }
 
@@ -350,11 +352,10 @@ export default class Calendar extends React.Component<
     const newTimeState = [...this.state.time];
     // Apply the currently selected time values (saved in state) to the updated date
     if (Array.isArray(data.date)) {
-      const dates = data.date.map((date, index) => {
+      updatedDate = data.date.map((date, index) => {
         newTimeState[index] = applyDateToTime(newTimeState[index], date);
         return newTimeState[index];
       });
-      updatedDate = dates;
     } else if (!Array.isArray(this.props.value) && data.date) {
       newTimeState[0] = applyDateToTime(newTimeState[0], data.date);
       updatedDate = newTimeState[0];
