@@ -30,6 +30,7 @@ export type PropsT<OptionT = mixed> = {|
   // Called when input value changes or option is selected. If user selects a
   // suggested option, that option will be provided as the second function parameter.
   // Otherwise the second parameter will be null.
+  // TODO(v10): consider consolidating function params into a single object bag.
   onChange: (string, OptionT | null) => mixed,
   // Data to populate list items in the dropdown menu.
   options: OptionT[],
