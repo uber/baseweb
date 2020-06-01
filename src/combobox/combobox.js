@@ -124,9 +124,12 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
       });
     }
     if (event.keyCode === ENTER) {
-      setIsOpen(false);
-      setSelectionIndex(-1);
-      onChange(tempValue);
+      let clickedOption = options[selectionIndex];
+      if (clickedOption) {
+        setIsOpen(false);
+        setSelectionIndex(-1);
+        onChange(mapOptionToString(clickedOption), clickedOption);
+      }
     }
     if (event.keyCode === ESCAPE) {
       // NOTE(chase): aria 1.2 spec outlines a pattern where when escape is
@@ -160,7 +163,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
   function handleInputChange(event) {
     handleOpen();
     setSelectionIndex(-1);
-    onChange(event.target.value);
+    onChange(event.target.value, null);
     setTempValue(event.target.value);
   }
 
@@ -170,7 +173,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
       const stringified = mapOptionToString(clickedOption);
       setIsOpen(false);
       setSelectionIndex(index);
-      onChange(stringified);
+      onChange(stringified, clickedOption);
       setTempValue(stringified);
 
       if (inputRef.current) {
