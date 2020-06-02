@@ -219,4 +219,20 @@ describe('combobox', () => {
     fireEvent.click(button);
     expect(input.getAttribute('value')).toBe(updateValue);
   });
+
+  it('does not change input value while keyboard nav if autocomplete is false', () => {
+    const {container} = render(
+      <Combobox
+        autocomplete={false}
+        mapOptionToString={o => o}
+        onChange={() => {}}
+        options={options}
+        value={''}
+      />,
+      {container: document.body},
+    );
+    const input = container.querySelector('input');
+    fireEvent.keyDown(input, {keyCode: 40});
+    expect(input.getAttribute('value')).toBe('');
+  });
 });

@@ -31,6 +31,7 @@ const ARROW_DOWN = 40;
 // aria 1.2 spec: https://www.w3.org/TR/wai-aria-practices-1.2/#combobox
 function Combobox<OptionT>(props: PropsT<OptionT>) {
   const {
+    autocomplete = true,
     disabled = false,
     error = false,
     onChange,
@@ -73,12 +74,11 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
       // option and selection index is not in option bounds, reset it to default.
       setSelectionIndex(-1);
     } else {
-      // NOTE(chase): May want to consider adding an option to _not_ autocomplete the
-      // temporary value in the input element. If a feature request comes up, this is
-      // where it would go.
-      let selectedOption = options[selectionIndex];
-      if (selectedOption) {
-        setTempValue(mapOptionToString(selectedOption));
+      if (autocomplete) {
+        let selectedOption = options[selectionIndex];
+        if (selectedOption) {
+          setTempValue(mapOptionToString(selectedOption));
+        }
       }
     }
   }, [options, selectionIndex]);
