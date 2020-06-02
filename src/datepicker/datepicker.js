@@ -82,8 +82,8 @@ export default class Datepicker<T = Date> extends React.Component<
     // The check below refrains from closing the popover if only times changed.
     const onlyTimeChanged = (prev: ?T, next: ?T) => {
       if (!prev || !next) return false;
-      const p = this.dateHelpers.formatDate(prev, 'dd-MM-yyyy');
-      const n = this.dateHelpers.formatDate(next, 'dd-MM-yyyy');
+      const p = this.dateHelpers.format(prev, 'keyboardDate');
+      const n = this.dateHelpers.format(next, 'keyboardDate');
       if (p === n) {
         return (
           this.dateHelpers.getHours(prev) !== this.dateHelpers.getHours(next) ||
