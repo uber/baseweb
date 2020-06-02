@@ -14,6 +14,7 @@ import {Block} from '../block/index.js';
 import {Button, KIND} from '../button/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {ProgressBar} from '../progress-bar/index.js';
+import {Spinner} from '../spinner/index.js';
 
 import {
   StyledRoot,
@@ -154,7 +155,11 @@ function FileUploader(props: PropsT) {
                             },
                           }}
                         />
-                      ) : null}
+                      ) : props.errorMessage ? null : (
+                        <Block marginBottom="scale300">
+                          <Spinner $silenceV10DeprecationWarning size={40} />
+                        </Block>
+                      )}
                       {(props.errorMessage || props.progressMessage) &&
                       props.errorMessage ? (
                         <ErrorMessage
