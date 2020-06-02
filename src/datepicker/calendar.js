@@ -64,7 +64,6 @@ export default class Calendar<T = Date> extends React.Component<
     const {highlightedDate, value, adapter} = this.props;
     this.dateHelpers = new DateHelpers(adapter);
     const dateInView = this.getDateInView();
-    const {highlightedDate, value} = this.props;
     let time = [];
     if (Array.isArray(this.props.value)) {
       time = this.props.value;
@@ -373,7 +372,10 @@ export default class Calendar<T = Date> extends React.Component<
     const {onChange = params => {}} = this.props;
     // Save/update the time value in internal state
     const newTimeState = [...this.state.time];
-    newTimeState[index] = applyTimeToDate(newTimeState[index], time);
+    newTimeState[index] = this.dateHelpers.applyTimeToDate(
+      newTimeState[index],
+      time,
+    );
     this.setState({time: newTimeState});
     // Time change calls calendar's onChange handler
     // with the date value set to the date with updated time
