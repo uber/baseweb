@@ -254,7 +254,6 @@ export default class Day<T = Date> extends React.Component<
     localeContext: LocaleT,
   ) {
     const date = this.getDateProp();
-    const {locale} = this.props;
     return `${
       sharedProps.$selected
         ? sharedProps.$range
@@ -265,7 +264,7 @@ export default class Day<T = Date> extends React.Component<
         : sharedProps.$disabled
         ? localeContext.datepicker.dateNotAvailableLabel
         : localeContext.datepicker.chooseLabel
-    } ${this.dateHelpers.formatDate(date, 'EEEE, MMMM do yyyy', locale)}. ${
+    } ${this.dateHelpers.format(date, 'fullOrdinalWeek')}. ${
       !sharedProps.$disabled ? localeContext.datepicker.dateAvailableLabel : ''
     }`;
   }
