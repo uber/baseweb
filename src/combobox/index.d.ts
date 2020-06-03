@@ -9,6 +9,7 @@ export interface SIZE {
 }
 
 export type PropsT<OptionT = unknown> = {
+  autocomplete?: boolean;
   disabled?: boolean;
   mapOptionToNode?: ({isSelected: boolean, option: OptionT}) => React.ReactNode;
   mapOptionToString: (OptionT) => string;
