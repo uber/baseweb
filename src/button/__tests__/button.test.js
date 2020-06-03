@@ -66,7 +66,7 @@ describe('Button Component', () => {
     });
   });
 
-  test('internalOnClick prevents external onClick while loading', () => {
+  test("onClick doesn't fire while loading", () => {
     const props = {
       onClick: jest.fn(),
       isLoading: true,

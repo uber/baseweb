@@ -84,10 +84,17 @@ export default class MyDocument extends Document {
             type="font/woff2"
             crossOrigin="anonymous"
           />
-          <link rel="stylesheet" href="/static/fonts.css" />
+          <link rel="stylesheet" href="/fonts.css" />
           <style>{`
+            * {
+              box-sizing: border-box;
+            }
             body {
               margin: 0;
+            }
+            ::selection {
+              background: #276EF1;
+              color: white;
             }
           `}</style>
           <Favicons />

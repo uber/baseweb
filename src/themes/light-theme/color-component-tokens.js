@@ -86,6 +86,10 @@ export default (
   calendarDayBackgroundSelectedHighlighted: themePrimitives.primary,
   calendarDayForegroundSelectedHighlighted: themePrimitives.white,
 
+  // Combobox
+  comboboxListItemFocus: themePrimitives.mono200,
+  comboboxListItemHover: themePrimitives.mono300,
+
   // FileUploader
   fileUploaderBackgroundColor: themePrimitives.mono200,
   fileUploaderBackgroundColorActive: themePrimitives.primary50,

@@ -67,8 +67,10 @@ const DARK_MEDIA_QUERY = '(prefers-color-scheme: dark)';
 const LIGHT_MEDIA_QUERY = '(prefers-color-scheme: light)';
 
 const blockProps = {
+  color: 'contentPrimary',
   backgroundColor: 'backgroundPrimary',
   maxWidth: '100vw',
+  minHeight: '100vh',
   overflow: 'hidden',
 };
 

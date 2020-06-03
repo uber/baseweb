@@ -343,3 +343,24 @@ describe('themedUseStyletron flow', () => {
     }
   });
 });
+
+describe('longhand border properties', () => {
+  test('it accepts border style from theme in longhand property', () => {
+    const ProperBorderStyleType = styled<{}>('div', ({$theme}) => {
+      return {
+        borderTopWidth: $theme.borders.border100.borderWidth,
+        borderTopStyle: $theme.borders.border100.borderStyle,
+        borderTopColor: $theme.borders.border100.borderColor,
+      };
+    });
+
+    // $FlowFixMe
+    const StringBorderStyleType = styled<{}>('div', ({$theme}) => {
+      return {
+        borderTopWidth: $theme.borders.border100.borderWidth,
+        borderTopStyle: 'hello world',
+        borderTopColor: $theme.borders.border100.borderColor,
+      };
+    });
+  });
+});

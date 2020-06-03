@@ -7,6 +7,7 @@ import {
   SIZE,
   ROLE,
 } from 'baseui/modal';
+import {KIND as ButtonKind} from 'baseui/button';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
@@ -24,8 +25,20 @@ const ModalConfig: TConfig = {
         'ModalButton',
       ],
     },
+    'baseui/button': {
+      named: ['KIND as ButtonKind'],
+    },
   },
-  scope: {Modal, ModalHeader, ModalBody, ModalFooter, ModalButton, SIZE, ROLE},
+  scope: {
+    Modal,
+    ModalHeader,
+    ModalBody,
+    ModalFooter,
+    ModalButton,
+    SIZE,
+    ROLE,
+    ButtonKind,
+  },
   theme: [],
   props: {
     children: {
@@ -36,7 +49,7 @@ const ModalConfig: TConfig = {
   aliquet mauris ut tempus.
 </ModalBody>
 <ModalFooter>
-  <ModalButton>Cancel</ModalButton>
+  <ModalButton kind={ButtonKind.tertiary}>Cancel</ModalButton>
   <ModalButton>Okay</ModalButton>
 </ModalFooter>
 `,

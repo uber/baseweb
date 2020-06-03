@@ -16,8 +16,9 @@ export default function Scenario() {
   return (
     <React.Fragment>
       <ToasterContainer
+        autoHideDuration={3000}
+        closeable={false}
         placement={PLACEMENT.bottomRight}
-        autoHideDuration={500}
       />
 
       <Button

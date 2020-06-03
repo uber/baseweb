@@ -43,12 +43,17 @@ class NavItem extends React.Component<NavItemPropsT> {
 
     const [NavItem, itemProps] = getOverrides(overrides.NavItem, StyledNavItem);
     const [NavLink, linkProps] = getOverrides(overrides.NavLink, StyledNavLink);
+    const tabIndex = {
+      tabIndex: item.disabled ? -1 : undefined,
+    };
     return (
       <NavLink
-        href={item.itemId}
+        $as={item.disabled ? 'span' : 'a'}
+        href={item.disabled ? null : item.itemId}
+        {...tabIndex}
         {...sharedProps}
         {...linkProps}
-        {...(item.itemId
+        {...(item.itemId && !item.disabled
           ? {
               onClick: this.handleClick,
               onKeyDown: this.handleKeyDown,

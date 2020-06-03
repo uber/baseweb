@@ -73,6 +73,8 @@ services:
       - ZEIT_NOW_TOKEN
       - ZEIT_NOW_TEAM_ID
       - ZEIT_NOW_PROJECT_ID
+      - FIGMA_AUTH_TOKEN
+      - FIGMA_FILE_ID
       - FOSSA_API_KEY
       - CF_ZONE_ID
       - CF_ACCOUNT_ID

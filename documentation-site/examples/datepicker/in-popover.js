@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import {Datepicker} from 'baseui/datepicker';
+import {DatePicker} from 'baseui/datepicker';
 import {addDays} from 'date-fns';
 
 export default () => {
@@ -12,12 +12,12 @@ export default () => {
 
   return (
     <React.Fragment>
-      <Datepicker
+      <DatePicker
         value={singleDate}
         onChange={({date}) => setSingleDate(date)}
       />
       <br />
-      <Datepicker
+      <DatePicker
         range
         value={rangeDate}
         onChange={({date}) => setRangeDate(date)}

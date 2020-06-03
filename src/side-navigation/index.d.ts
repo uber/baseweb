@@ -10,6 +10,7 @@ export interface Item {
   title: React.ReactNode;
   itemId?: string;
   subNav?: Item[];
+  disabled?: boolean;
 }
 
 export interface NavigationOverrides {

@@ -6,17 +6,17 @@ type mapItemToString = (item: ItemT) => string;
 
 export type MainNavItemT = {
   active?: boolean;
-  icon?: React.AbstractComponent<any>;
+  icon?: React.ComponentType<any>;
   item: ItemT;
   mapItemToNode?: mapItemToNode;
   mapItemToString: mapItemToString;
   nav?: MainNavItemT[];
-  navExitIcon?: React.AbstractComponent<any>;
+  navExitIcon?: React.ComponentType<any>;
 };
 
 export type UserNavItemT = {
   active?: boolean;
-  icon?: React.AbstractComponent<any>;
+  icon?: React.ComponentType<any>;
   item: ItemT;
   mapItemToNode?: mapItemToNode;
   mapItemToString: mapItemToString;
@@ -24,14 +24,20 @@ export type UserNavItemT = {
 
 export interface AppNavBarPropsT {
   appDisplayName?: React.ReactNode;
-  appDisplayNameLink?: string;
   // eslint-disable-next-line flowtype/no-weak-type;
   mainNav?: MainNavItemT[];
-  onNavItemSelect: (params: {item: MainNavItemT | UserNavItemT}) => mixed;
+  isNavItemActive: (params: {item: MainNavItemT | UserNavItemT}) => boolean;
+  onNavItemSelect: (params: {item: MainNavItemT | UserNavItemT}) => any;
   userNav?: UserNavItemT[];
   username?: string;
   usernameSubtitle?: React.ReactNode;
   userImgUrl?: string;
-};
+}
+
+export interface POSITION {
+  horizontal: 'horizontal';
+  vertical: 'vertical';
+}
 
 export class Unstable_AppNavBar extends React.Component<AppNavBarPropsT> {}
+export const POSITION: POSITION;

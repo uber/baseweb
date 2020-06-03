@@ -1,0 +1,75 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import ApiTable from '../../components/api-table';
+import Example from '../../components/example';
+import Exports from '../../components/exports';
+import Layout from '../../components/layout';
+import Yard from '../../components/yard/index';
+
+import comboboxYardConfig from '../../components/yard/config/combobox';
+
+import * as ComboboxExports from 'baseui/combobox';
+
+import AsyncOptions from 'examples/combobox/async-options.js';
+import FilteredOptions from 'examples/combobox/filtered-options.js';
+import ReplacementNode from 'examples/combobox/replacement-node.js';
+import InputOverrides from 'examples/combobox/input-overrides.js';
+
+export default Layout;
+
+# Combobox
+
+<Yard placeholderHeight={48} {...comboboxYardConfig} />
+
+A Combobox is an input element paired with a list to provide suggestions to autocomplete the text. Use this
+component rather than [Select](/components/select) for search inputs, city form fields, or any other instance
+where users may enter text that is not included in the list of provided options.
+
+## Examples
+
+For search suggestions a combobox will likely want to filter the rendered suggestions based on the user-entered
+text. Use this example as a reference if the options are known to the application.
+
+<Example title="Filtered options" path="combobox/filtered-options.js">
+  <FilteredOptions />
+</Example>
+
+Applications will often need to fetch suggestions from from a remote API. The example below shows how to make
+asynchronous requests on input change to populate the listbox.
+
+<Example title="Async options" path="combobox/async-options.js">
+  <AsyncOptions />
+</Example>
+
+Your application may want to render some alternative content rather than simply mapping the option to a string.
+Use the `mapOptionToNode` prop to translate the option to a React node.
+
+<Example title="Custom option node" path="combobox/replacement-node.js">
+  <ReplacementNode />
+</Example>
+
+Props can be provided to the composed [Input](/components/input) through overrides. The example below shows how
+to provide a placeholder, but can be applied to any Input props.
+
+<Example title="Input props" path="combobox/input-overrides.js">
+  <InputOverrides />
+</Example>
+
+## API
+
+<ApiTable
+  title="Combobox props"
+  config={comboboxYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/combobox/combobox.js')}
+/>
+
+<Exports
+  component={ComboboxExports}
+  title="Combobox exports"
+  path="baseui/combobox"
+/>

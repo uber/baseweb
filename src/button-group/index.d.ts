@@ -3,6 +3,8 @@ import {StyledFn, StyletronComponent} from 'styletron-react';
 import {SHAPE, SIZE, KIND} from '../button';
 import {Override} from '../overrides';
 
+export {SIZE};
+
 export interface MODE {
   checkbox: 'checkbox';
   radio: 'radio';

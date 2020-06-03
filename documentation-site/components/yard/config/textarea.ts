@@ -22,7 +22,6 @@ const TextareaConfig: TConfig = {
       'type',
       'startEnhancer',
       'endEnhancer',
-      'adjoined',
       'min',
       'max',
       'inputMode',

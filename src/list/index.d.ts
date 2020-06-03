@@ -15,6 +15,7 @@ export type ArtworkSizesT =
 
 export interface StyledArtworkContainerPropsT {
   $artworkSize: ArtworkSizesT;
+  $sublist?: boolean;
 }
 export interface StyledContentPropsT {
   $mLeft: boolean;
@@ -30,7 +31,7 @@ export interface OverridesT {
 
 export interface PropsT {
   artwork?: React.ReactNode;
-  artworkSize?: ArtworkSizesT;
+  artworkSize?: ArtworkSizesT | number;
   children: React.ReactNode;
   endEnhancer?: React.ReactNode;
   overrides?: OverridesT;
@@ -53,7 +54,9 @@ export interface MenuAdapterPropsT extends PropsT {
   $disabled: boolean;
 }
 
-export const ListItem: React.ForwardRefExoticComponent<PropsT & React.RefAttributes<HTMLLIElement>>
+export const ListItem: React.ForwardRefExoticComponent<
+  PropsT & React.RefAttributes<HTMLLIElement>
+>;
 export const ListItemLabel: React.FC<LabelPropsT>;
 export const MenuAdapter: React.FC<MenuAdapterPropsT>;
 

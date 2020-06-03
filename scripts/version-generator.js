@@ -12,19 +12,10 @@ LICENSE file in the root directory of this source tree.
 
 const {writeFileSync, unlinkSync} = require('fs');
 const {resolve} = require('path');
-const fetch = require('isomorphic-fetch');
+const Octokit = require('@octokit/rest');
 
+const octokit = Octokit({auth: process.env.GITHUB_AUTH_TOKEN});
 const VERSIONS_PATH = resolve(__dirname, '../versions.json');
-
-async function fetchVersionsByPage(page = 1) {
-  const res = await fetch(
-    `https://api.github.com/repos/uber/baseweb/releases?access_token=${process
-      .env.GITHUB_AUTH_TOKEN || ''}&page=${page}`,
-  );
-
-  return res.json();
-}
-
 module.exports = async function generateVersions() {
   try {
     unlinkSync(VERSIONS_PATH);
@@ -32,22 +23,17 @@ module.exports = async function generateVersions() {
     // do nothing
   }
 
-  let versions = [];
-  let page = 1;
-  while (page !== -1) {
-    const res = await fetchVersionsByPage(page);
-    versions = versions.concat(res);
-    if (res.length) {
-      page += 1;
-    } else {
-      page = -1;
-    }
+  try {
+    const releases = await octokit.paginate(
+      'GET /repos/:owner/:repo/releases',
+      {
+        owner: 'uber',
+        repo: 'baseweb',
+      },
+    );
+    writeFileSync(VERSIONS_PATH, JSON.stringify(releases, null, 2));
+  } catch (error) {
+    console.error(`Failed to generate baseweb versions`, error);
+    writeFileSync(VERSIONS_PATH, JSON.stringify([], null, 2));
   }
-
-  if (!Array.isArray(versions)) {
-    // fetching failed - probably with rate limit issues
-    versions = [];
-  }
-
-  writeFileSync(VERSIONS_PATH, JSON.stringify(versions, null, 2));
 };

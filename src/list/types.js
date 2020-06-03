@@ -17,7 +17,10 @@ export type ArtworkSizesT =
   | typeof ARTWORK_SIZES.MEDIUM
   | typeof ARTWORK_SIZES.LARGE;
 
-export type StyledArtworkContainerPropsT = {$artworkSize: ArtworkSizesT};
+export type StyledArtworkContainerPropsT = {
+  $artworkSize: ArtworkSizesT | number,
+  $sublist?: boolean,
+};
 export type StyledContentPropsT = {$mLeft: boolean, $sublist: boolean};
 
 export type OverridesT = {|
@@ -32,7 +35,7 @@ export type PropsT = {|
     ...IconPropsT,
     size: $PropertyType<IconPropsT, 'size'>,
   }>,
-  artworkSize?: ArtworkSizesT,
+  artworkSize?: ArtworkSizesT | number,
   children: React.Node,
   endEnhancer?: React.AbstractComponent<{}>,
   overrides?: OverridesT,

@@ -156,22 +156,22 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     }
   };
 
-  onAnchorMouseEnter = () => {
+  onAnchorMouseEnter = (e: Event) => {
     // First clear any existing close timers, this ensures that the user can
     // move their mouse from the popover back to anchor without it hiding
     if (this.onMouseLeaveTimer) {
       clearTimeout(this.onMouseLeaveTimer);
     }
 
-    this.triggerOnMouseEnterWithDelay();
+    this.triggerOnMouseEnterWithDelay(e);
   };
 
-  onAnchorMouseLeave = () => {
+  onAnchorMouseLeave = (e: Event) => {
     // Clear any existing open timer, otherwise popover could be stuck open
     if (this.onMouseEnterTimer) {
       clearTimeout(this.onMouseEnterTimer);
     }
-    this.triggerOnMouseLeaveWithDelay();
+    this.triggerOnMouseLeaveWithDelay(e);
   };
 
   onPopoverMouseEnter = () => {
@@ -180,8 +180,8 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     }
   };
 
-  onPopoverMouseLeave = () => {
-    this.triggerOnMouseLeaveWithDelay();
+  onPopoverMouseLeave = (e: Event) => {
+    this.triggerOnMouseLeaveWithDelay(e);
   };
 
   onPopperUpdate = (
@@ -201,39 +201,39 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     return data;
   };
 
-  triggerOnMouseLeaveWithDelay() {
+  triggerOnMouseLeaveWithDelay(e: Event) {
     const {onMouseLeaveDelay} = this.props;
     if (onMouseLeaveDelay) {
       this.onMouseLeaveTimer = setTimeout(
-        this.triggerOnMouseLeave,
+        () => this.triggerOnMouseLeave(e),
         onMouseLeaveDelay,
       );
       return;
     }
-    this.triggerOnMouseLeave();
+    this.triggerOnMouseLeave(e);
   }
 
-  triggerOnMouseLeave = () => {
+  triggerOnMouseLeave = (e: Event) => {
     if (this.props.onMouseLeave) {
-      this.props.onMouseLeave();
+      this.props.onMouseLeave(e);
     }
   };
 
-  triggerOnMouseEnterWithDelay() {
+  triggerOnMouseEnterWithDelay(e: Event) {
     const {onMouseEnterDelay} = this.props;
     if (onMouseEnterDelay) {
       this.onMouseEnterTimer = setTimeout(
-        this.triggerOnMouseEnter,
+        () => this.triggerOnMouseEnter(e),
         onMouseEnterDelay,
       );
       return;
     }
-    this.triggerOnMouseEnter();
+    this.triggerOnMouseEnter(e);
   }
 
-  triggerOnMouseEnter = () => {
+  triggerOnMouseEnter = (e: Event) => {
     if (this.props.onMouseEnter) {
-      this.props.onMouseEnter();
+      this.props.onMouseEnter(e);
     }
   };
 

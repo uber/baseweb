@@ -14,10 +14,12 @@ export default function Scenario() {
   return (
     <StatefulDatepicker
       aria-label="Select a date"
-      initialState={{value: []}}
-      range
-      highlightedDate={new Date('March 10, 2019')}
       clearable={true}
+      initialState={{value: []}}
+      highlightedDate={new Date('March 10, 2019')}
+      range
+      timeSelectEnd
+      timeSelectStart
       overrides={{
         Day: {
           // eslint-disable-next-line react/display-name
@@ -33,6 +35,20 @@ export default function Scenario() {
         MonthYearSelectStatefulMenu: {
           props: {
             overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}},
+          },
+        },
+        TimeSelect: {
+          props: {
+            overrides: {
+              Select: {
+                props: {
+                  overrides: {
+                    Root: {props: {'data-id': 'time-select'}},
+                    ValueContainer: {props: {'data-id': 'selected'}},
+                  },
+                },
+              },
+            },
           },
         },
       }}
