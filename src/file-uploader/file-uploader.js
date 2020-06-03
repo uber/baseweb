@@ -155,7 +155,7 @@ function FileUploader(props: PropsT) {
                             },
                           }}
                         />
-                      ) : (
+                      ) : props.errorMessage ? null : (
                         <Block marginBottom="scale300">
                           <Spinner $silenceV10DeprecationWarning size={40} />
                         </Block>
