@@ -10,10 +10,10 @@ import * as React from 'react';
 
 import type {OverrideT} from '../helpers/overrides.js';
 import {SIZE} from '../input/index.js';
-// import type {InputPropsT} from '../input/index.js';
-// import type {PopoverPropsT} from '../popover/index.js';
 
 export type PropsT<OptionT = mixed> = {|
+  // Controls if the input value will be updated while keyboard navigating. Defaults to true.
+  autocomplete?: boolean,
   // Disallows text input and listbox opening.
   disabled?: boolean,
   // Proxies value through to Input component.

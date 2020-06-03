@@ -65,6 +65,13 @@ const ComboboxConfig: TConfig = {
       type: PropTypes.Function,
       description: 'Transforms option to custom node in listbox.',
     },
+    autocomplete: {
+      value: true,
+      defaultValue: true,
+      type: PropTypes.Boolean,
+      description:
+        'Controls if keyboard navigation should temporarily update input value.',
+    },
     disabled: {
       value: false,
       type: PropTypes.Boolean,
