@@ -23,6 +23,7 @@ vrt/diff
 documentation-site/.next
 documentation-site/posts.js
 documentation-site/cheat-sheet.js
+documentation-site/figma/data/*
 public
 !documentation-site/public
 versions.json

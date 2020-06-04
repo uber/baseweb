@@ -264,7 +264,8 @@ function FrameNode({node}: any) {
 function getFontFamily(font) {
   switch (font) {
     case 'Roboto Mono':
-      return 'Roboto Mono, Consolas, Menlo, monospace';
+    case 'Uber Move Mono':
+      return 'Uber Move Mono, Roboto Mono, Consolas, Menlo, monospace';
     case 'SF Pro Text':
       return 'SF Pro Text, system-ui, sans-serif';
     case 'Uber Move Text':

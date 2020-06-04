@@ -12,62 +12,35 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import fetch from 'node-fetch';
 import {useStyletron} from 'baseui';
+import Layout from '../../components/guidelines/layout.js';
 
-declare var process: {env: {FIGMA_AUTH_TOKEN: string, FIGMA_FILE_ID: string}};
+declare var process: {
+  env: {FIGMA_USE_FS: string},
+};
 
 async function getStaticProps({params}: {params: {node: any}}) {
-  try {
-    // Query top-level figma file, this ID should never change
-    const figmaFileRequest = await fetch(
-      `https://api.figma.com/v1/files/${process.env.FIGMA_FILE_ID}?depth=2`,
-      {
-        headers: {
-          'X-FIGMA-TOKEN': process.env.FIGMA_AUTH_TOKEN,
-        },
-      },
+  let staticProps;
+  if (process.env.FIGMA_USE_FS) {
+    const fs = require('fs');
+    const path = require('path');
+    staticProps = JSON.parse(
+      fs.readFileSync(
+        path.join(
+          process.cwd(),
+          'documentation-site/figma/data/indexStaticProps.json',
+        ),
+        'utf8',
+      ),
     );
-
-    // Figma file structure: File > Pages > Frames.
-    // By convention, we use the top-level frames in each figma page
-    // as individual web pages.
-    const figmaFile = await figmaFileRequest.json();
-    const figmaPages = figmaFile.document.children;
-
-    return {
-      props: {
-        figmaPages,
-      },
-    };
-  } catch (er) {
-    console.log('there was a problem requesting the figma file');
-    return {
-      props: {
-        figmaPages: [],
-      },
-    };
+  } else {
+    const {getStaticPropsForIndex} = require('../../figma/api.js');
+    staticProps = await getStaticPropsForIndex();
   }
+  return staticProps;
 }
 
-function Index({figmaPages}: any) {
+function Index({pages}: any) {
   const [css] = useStyletron();
-  return (
-    <div>
-      {figmaPages.length > 0
-        ? figmaPages.map(page => (
-            <div key={page.id} className={css({marginBottom: '16px'})}>
-              <div>{page.name}</div>
-              {page.children.map(frame => (
-                <div key={frame.id} className={css({marginLeft: '16px'})}>
-                  <a href={`/guidelines/${frame.id.replace(':', '-')}`}>
-                    {frame.name}
-                  </a>
-                </div>
-              ))}
-            </div>
-          ))
-        : 'No pages were found.'}
-    </div>
-  );
+  return <Layout pages={pages}>🍉docs go here!</Layout>;
 }
-
 export {Index as default, getStaticProps};

@@ -71,7 +71,6 @@ const blockProps = {
   backgroundColor: 'backgroundPrimary',
   maxWidth: '100vw',
   minHeight: '100vh',
-  overflow: 'hidden',
 };
 
 export default class MyApp extends App {
