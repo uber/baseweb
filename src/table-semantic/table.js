@@ -76,7 +76,12 @@ export default class Table extends React.Component<TablePropsT> {
           <TableHead {...tableHeadProps}>
             <TableHeadRow {...tableHeadRowProps}>
               {columns.map((col, colIndex) => (
-                <TableHeadCell key={colIndex} {...tableHeadCellProps}>
+                <TableHeadCell
+                  key={colIndex}
+                  $col={col}
+                  $colIndex={colIndex}
+                  {...tableHeadCellProps}
+                >
                   {col}
                 </TableHeadCell>
               ))}
@@ -84,9 +89,21 @@ export default class Table extends React.Component<TablePropsT> {
           </TableHead>
           <TableBody {...tableBodyProps}>
             {data.map((row, rowIndex) => (
-              <TableBodyRow key={rowIndex} {...tableBodyRowProps}>
+              <TableBodyRow
+                key={rowIndex}
+                $row={row}
+                $rowIndex={rowIndex}
+                {...tableBodyRowProps}
+              >
                 {columns.map((col, colIndex) => (
-                  <TableBodyCell key={colIndex} {...tableBodyCellProps}>
+                  <TableBodyCell
+                    key={colIndex}
+                    $col={col}
+                    $colIndex={colIndex}
+                    $row={row}
+                    $rowIndex={rowIndex}
+                    {...tableBodyCellProps}
+                  >
                     {row[colIndex]}
                   </TableBodyCell>
                 ))}

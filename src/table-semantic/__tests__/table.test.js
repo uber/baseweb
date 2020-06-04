@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {shallow} from 'enzyme';
+import {shallow, mount} from 'enzyme';
 
 import {Table, StyledTableBodyRow, StyledTableBodyCell} from '../index.js';
 
@@ -34,5 +34,55 @@ describe('Table Semantic', () => {
       .find(StyledTableBodyCell);
 
     expect(cells).toHaveLength(DATA[0].length);
+  });
+
+  it('exposes row and column data to overrides', () => {
+    const mockTableHeadCellStyle = jest.fn();
+    const mockTableBodyRowStyle = jest.fn();
+    const mockTableBodyCellStyle = jest.fn();
+
+    mount(
+      <Table
+        columns={COLUMNS}
+        data={DATA}
+        overrides={{
+          TableHeadCell: {
+            style: mockTableHeadCellStyle,
+          },
+          TableBodyRow: {
+            style: mockTableBodyRowStyle,
+          },
+          TableBodyCell: {
+            style: mockTableBodyCellStyle,
+          },
+        }}
+      />,
+    );
+
+    expect(mockTableHeadCellStyle.mock.calls.length).toBe(5);
+    expect(mockTableHeadCellStyle.mock.calls[0][0]).toEqual(
+      expect.objectContaining({
+        $colIndex: 0,
+        $col: 'ID',
+      }),
+    );
+
+    expect(mockTableBodyRowStyle.mock.calls.length).toBe(3);
+    expect(mockTableBodyRowStyle.mock.calls[0][0]).toEqual(
+      expect.objectContaining({
+        $rowIndex: 0,
+        $row: DATA[0],
+      }),
+    );
+
+    expect(mockTableBodyCellStyle.mock.calls.length).toBe(15);
+    expect(mockTableBodyCellStyle.mock.calls[0][0]).toEqual(
+      expect.objectContaining({
+        $colIndex: 0,
+        $col: 'ID',
+        $rowIndex: 0,
+        $row: DATA[0],
+      }),
+    );
   });
 });
