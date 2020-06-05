@@ -45,6 +45,13 @@ const MenuConfig: TConfig = {
       description:
         'Renders all menu content for SEO purposes regardless of menu state.',
     },
+    noResultsMsg: {
+      value: undefined,
+      type: PropTypes.ReactNode,
+      description:
+        'Message to be displayed if no options is found for a search query.',
+      hidden: true,
+    },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
