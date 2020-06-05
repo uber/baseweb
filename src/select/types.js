@@ -119,6 +119,8 @@ export type PropsT = {
   getValueLabel: ?({option: OptionT}) => React.Node,
   /** Sets the id attribute of the internal input element. Allows for usage with labels. */
   id?: string,
+  /** A ref to access the input element powering the select if it's a search select, or the container div if it isn't. */
+  controlRef?: React.ElementRef<*>,
   /** Defines if the select is in a loading (async) state. */
   isLoading: boolean,
   /** Defines an option key for a default label value. */
