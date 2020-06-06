@@ -102,6 +102,71 @@ async function getStaticPathsForNode() {
 }
 
 async function getStaticPropsForNode({params}) {
+  let pages;
+  try {
+    let figmaFile;
+
+    if (figmaFileCache !== null) {
+      figmaFile = figmaFileCache;
+    } else {
+      // Query top-level figma file, this ID should never change
+      const figmaFileRequest = await fetch(
+        `https://api.figma.com/v1/files/${process.env.FIGMA_FILE_ID}?depth=2`,
+        {
+          headers: {
+            'X-FIGMA-TOKEN': process.env.FIGMA_AUTH_TOKEN,
+          },
+        },
+      );
+
+      // Figma file structure: File > Pages > Frames.
+      // By convention, we use the top-level frames in each figma page
+      // as individual web pages.
+      figmaFile = await figmaFileRequest.json();
+      figmaFileCache = figmaFile;
+    }
+
+    const figmaPages = figmaFile.document.children;
+
+    // Filter top level pages.
+    // Only showing pages that start with a capital letter.
+    const filteredFigmaPages = figmaPages.filter(page => {
+      return page.name.match(/^[A-Z]/);
+    });
+
+    pages = filteredFigmaPages;
+  } catch (er) {
+    console.log('there was a problem requesting the figma file');
+    console.log(er);
+    pages = [];
+  }
+
+  let image;
+  try {
+    const response = await fetch(
+      `https://api.figma.com/v1/images/${
+        process.env.FIGMA_FILE_ID
+      }?ids=${params.node.replace('-', ':')}&format=pdf`,
+      {
+        headers: {
+          'X-FIGMA-TOKEN': process.env.FIGMA_AUTH_TOKEN,
+        },
+      },
+    );
+    const json = await response.json();
+    image = json.images[params.node.replace('-', ':')];
+  } catch (er) {
+    console.log(`there was a problem getting the image for [${params.node}]`);
+    console.log(er);
+  }
+
+  return {
+    props: {image, pages},
+  };
+}
+
+/*
+async function getStaticPropsForNode({params}) {
   let figmaImageFills;
 
   if (imageFillsCache !== null) {
@@ -253,6 +318,7 @@ async function getStaticPropsForNode({params}) {
     },
   };
 }
+*/
 
 module.exports = {
   getStaticPropsForIndex,

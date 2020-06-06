@@ -66,6 +66,31 @@ async function getStaticProps(params) {
   return staticProps;
 }
 
+function Page({pages, image}) {
+  const [css] = useStyletron();
+  return (
+    <Layout pages={pages}>
+      {image ? (
+        <embed
+          id="pdf"
+          title="Figma PDF"
+          type="application/pdf"
+          src={image}
+          className={css({
+            display: 'block',
+            width: '100%',
+            height: '100vh',
+            border: '0',
+          })}
+        />
+      ) : (
+        'No Figma node found.'
+      )}
+    </Layout>
+  );
+}
+
+/*
 function Page({document, styles, images, vectors, pages}: any) {
   const [css, theme] = useStyletron();
   return (
@@ -97,5 +122,6 @@ function Page({document, styles, images, vectors, pages}: any) {
     </Layout>
   );
 }
+*/
 
 export {Page as default, getStaticPaths, getStaticProps};
