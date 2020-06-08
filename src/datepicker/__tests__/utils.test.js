@@ -105,6 +105,7 @@ const adapterVersions = [
     convertLocale: locale => locale.code,
     getComparisonValue: value => {
       if (moment.isMoment(value)) {
+        //$FlowFixMe
         return value.toDate().toISOString();
       }
       return value;
@@ -117,6 +118,7 @@ const adapterVersions = [
     convertLocale: locale => locale.code,
     getComparisonValue: value => {
       if (Luxon.isDateTime(value)) {
+        //$FlowFixMe
         return value.toJSDate().toISOString();
       }
       return value;
@@ -147,6 +149,15 @@ const getDiffereningAdapterMap = (runAdapter, value) => {
   }, {});
 };
 
+// every time a helper.method is called in tests
+// this will call that same method in date-fns, luxon, moment
+// and in the functions exports from utils/index (to ensure that users imports those functions
+// in apps won't have issues)
+// and ensure that they all return the same value.
+// If they don't, a helpful error is displayed showing the difference.
+// To make it possible to easily compare dates across libraries, all date objects
+// are converted to iso strings before being passed into expect
+
 //$FlowFixMe
 const helpers: DateHelpers<Date> = Object.keys(dateHelpers).reduce(
   (memo, methodName) => {
@@ -166,6 +177,7 @@ const helpers: DateHelpers<Date> = Object.keys(dateHelpers).reduce(
           //$FlowFixMe
           (helpers, convertArgs) => {
             const convertedArgs = convertArgs(args);
+            //$FlowFixMe
             return helpers[methodName](...convertedArgs);
           },
           dateHelpersReturn,
@@ -174,7 +186,9 @@ const helpers: DateHelpers<Date> = Object.keys(dateHelpers).reduce(
           const adapterString = Object.keys(differingAdapterMap).reduce(
             (memo, name) => {
               return `${memo}${name}: ${
+                //$FlowFixMe
                 differingAdapterMap[name]
+                //$FlowFixMe
               } date-fns: ${defaultGetComparisonValue(dateHelpersReturn)}\n`;
             },
             '',
