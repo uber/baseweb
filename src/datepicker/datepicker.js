@@ -268,10 +268,6 @@ export default class Datepicker<T = Date> extends React.Component<
 
       const formatString = this.props.formatString;
       if (formatString) {
-        startDate = this.dateHelpers.parse(
-          left,
-          this.normalizeDashes(formatString),
-        );
         startDate = parseDateString(left);
         endDate = parseDateString(right);
       }
