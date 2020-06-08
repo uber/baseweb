@@ -58,7 +58,18 @@ class DateHelpers<T> {
     const updateOptions = updateOptionsBase || defaultGetOptions;
     const UtilsClass = adapter.constructor;
     const className = adapter.constructor.name;
-    const {getOptions = defaultGetOptions, formats} = adapterMap[className];
+    // This ensures that if the adapter class isn't
+    // supported it just falls back the default formats
+
+    // NOTE: in e2e tests puppeteer seems to add
+    // a JSHandle wrapping class to all objects
+    // so className always resolves to JSHandle:e
+    // and if falls back to the default
+    // if we want to test other adapter implementation
+    // in e2e tests down the road, we're going to have
+    // to figure that out
+    const {getOptions = defaultGetOptions, formats} =
+      adapterMap[className] || adapterMap['DateFnsUtils'];
     const options = getOptions(adapter);
     return new UtilsClass({
       ...updateOptions({...options, formats: {...options.formats, ...formats}}),
