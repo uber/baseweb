@@ -485,6 +485,17 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   };
 
+  handleInputRef = (input: React.ElementRef<*>) => {
+    this.input = input;
+    if (this.props.controlRef) {
+      if (typeof this.props.controlRef === 'function') {
+        this.props.controlRef(input);
+      } else {
+        this.props.controlRef.current = input;
+      }
+    }
+  };
+
   selectValue = ({item}: {item: OptionT}) => {
     if (item.disabled) {
       return;
@@ -692,7 +703,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           aria-owns={this.state.isOpen ? this.listboxId : null}
           aria-required={this.props.required || null}
           onFocus={this.handleInputFocus}
-          ref={ref => (this.input = ref)}
+          ref={this.handleInputRef}
           tabIndex={0}
           {...sharedProps}
           {...inputContainerProps}
@@ -716,7 +727,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
           aria-required={this.props.required || null}
           disabled={this.props.disabled || null}
           id={this.props.id || null}
-          inputRef={ref => (this.input = ref)}
+          inputRef={this.handleInputRef}
           onChange={this.handleInputChange}
           onFocus={this.handleInputFocus}
           overrides={{Input: overrides.Input}}
