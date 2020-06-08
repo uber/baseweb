@@ -65,10 +65,10 @@ export default class Calendar<T = Date> extends React.Component<
     this.dateHelpers = new DateHelpers(adapter);
     const dateInView = this.getDateInView();
     let time = [];
-    if (Array.isArray(this.props.value)) {
-      time = this.props.value;
-    } else if (this.props.value) {
-      time = [this.props.value];
+    if (Array.isArray(value)) {
+      time = [...value];
+    } else if (value) {
+      time = [value];
     }
     this.state = {
       highlightedDate:
