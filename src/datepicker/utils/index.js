@@ -87,5 +87,6 @@ export const subYears = createDirtySetter(defaultDateHelpers.subYears);
 export const isBefore = createDirtyCompare(defaultDateHelpers.isBefore);
 export const isAfter = createDirtyCompare(defaultDateHelpers.isAfter);
 
-export const format = (date: Date, format: string) =>
-  defaultDateHelpers.format(date, format);
+// eslint-disable-next-line flowtype/no-weak-types
+export const format = (date: Date, format: string, locale: ?any) =>
+  defaultDateHelpers.format(date, format, locale);

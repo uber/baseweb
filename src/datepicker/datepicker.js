@@ -116,7 +116,7 @@ export default class Datepicker<T = Date> extends React.Component<
   formatDate(date: ?T | Array<T>, formatString: string) {
     const format = date => {
       if (formatString === 'yyyy/MM/dd') {
-        return this.dateHelpers.format(date, 'slashDate');
+        return this.dateHelpers.format(date, 'slashDate', this.props.locale);
       }
       return this.dateHelpers.formatDate(date, formatString, this.props.locale);
     };
@@ -241,6 +241,22 @@ export default class Datepicker<T = Date> extends React.Component<
 
     this.setState({inputValue});
 
+    const parseDateString = dateString => {
+      const formatString = this.normalizeDashes(this.props.formatString);
+      if (formatString === 'yyyy/MM/dd') {
+        return this.dateHelpers.parse(
+          dateString,
+          'slashDate',
+          this.props.locale,
+        );
+      }
+      return this.dateHelpers.parseString(
+        dateString,
+        formatString,
+        this.props.locale,
+      );
+    };
+
     if (
       this.props.range &&
       typeof this.props.displayValueAtRangeIndex !== 'number'
@@ -256,10 +272,8 @@ export default class Datepicker<T = Date> extends React.Component<
           left,
           this.normalizeDashes(formatString),
         );
-        endDate = this.dateHelpers.parse(
-          right,
-          this.normalizeDashes(formatString),
-        );
+        startDate = parseDateString(left);
+        endDate = parseDateString(right);
       }
 
       const onChange = this.props.onChange;
@@ -290,13 +304,7 @@ export default class Datepicker<T = Date> extends React.Component<
       ) {
         date = null;
       } else {
-        date = this.dateHelpers.parse(
-          dateString,
-          formatString === 'yyyy/MM/dd'
-            ? this.dateHelpers.adapter.formats.slashDate
-            : formatString,
-          new Date(),
-        );
+        parseDateString(dateString);
       }
 
       const {displayValueAtRangeIndex, onChange, range, value} = this.props;
@@ -312,7 +320,10 @@ export default class Datepicker<T = Date> extends React.Component<
             if (!right) {
               onChange({date: [left]});
             } else {
-              if (this.dateHelpers.isAfter(right, left) || this.dateHelpers.isEqual(left, right)) {
+              if (
+                this.dateHelpers.isAfter(right, left) ||
+                this.dateHelpers.isEqual(left, right)
+              ) {
                 onChange({date: [left, right]});
               } else {
                 // Is resetting back to previous value appropriate? Invalid range is not
@@ -328,7 +339,10 @@ export default class Datepicker<T = Date> extends React.Component<
               // If start value is not defined, set start/end to the same day.
               onChange({date: [right, right]});
             } else {
-              if (this.dateHelpers.isAfter(right, left) || this.dateHelpers.isEqual(left, right)) {
+              if (
+                this.dateHelpers.isAfter(right, left) ||
+                this.dateHelpers.isEqual(left, right)
+              ) {
                 onChange({date: [left, right]});
               } else {
                 // See comment above about resetting dates on invalid range

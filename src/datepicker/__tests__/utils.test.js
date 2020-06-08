@@ -31,6 +31,7 @@ const excludedFromChecks = [
   'setDate',
   'differenceInCalendarMonths',
   'parse',
+  'parseString',
   'set',
   'isOnOrAfterDay',
   'isOnOrBeforeDay',
@@ -199,6 +200,13 @@ describe('Datepicker utils', () => {
     });
   });
   describe('format', () => {
+    describe('when passing a locale', () => {
+      test('should return different values based on the locale', () => {
+        expect(helpers.format(new Date('05/15/2020'), 'month', es)).toEqual(
+          'mayo',
+        );
+      });
+    });
     describe('when passing', () => {
       describe('fullOrdinalWeek', () => {
         test('should return a date like Friday, May 15th 2020', () => {
@@ -994,10 +1002,39 @@ describe('isAfter', () => {
     );
   });
 });
-describe('parse', () => {
-  test('should convert the provided string back into a date according to the provided format', () => {
-    expect(helpers.parse('2020.03.01', 'yyyy.MM.dd')).toEqual(
+describe('parseString', () => {
+  test('should convert the provided string back into a date according to the provided format string', () => {
+    expect(helpers.parseString('2020.03.01', 'yyyy.MM.dd')).toEqual(
       new Date(2020, 2, 1),
+    );
+  });
+  describe('when passing locale', () => {
+    test('should parse based on the locale', () => {
+      // these differ so they need to be called individually
+      expect(
+        dateHelpers
+          .parseString('jueves 02 2020', 'EEEE dd yyyy', es)
+          .toISOString(),
+      ).toEqual(new Date(2020, 0, 2).toISOString());
+      expect(
+        momentHelpers
+          .parseString('jueves 02 2020', 'dddd DD YYYY', 'es')
+          .toISOString(),
+      ).toEqual(new Date(2020, 0, 2).toISOString());
+      // Doing this creates an invalid date because the luxon adapter
+      // doesn't current pass through locale correctly
+      expect(
+        luxonHelpers.parseString('jueves 02 2020', 'EEEE dd yyyy', 'es').invalid
+          .reason,
+      ).toBe('unparsable');
+    });
+  });
+});
+
+describe('parse', () => {
+  test('should convert the provided string back into a date according to the provided generic date-io format', () => {
+    expect(helpers.parse('2019/01/01', 'slashDate')).toEqual(
+      new Date(2019, 0, 1),
     );
   });
 });

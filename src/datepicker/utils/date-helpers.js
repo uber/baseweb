@@ -64,8 +64,13 @@ class DateHelpers<T> {
       ...updateOptions({...options, formats: {...options.formats, ...formats}}),
     });
   };
-  format: (T, string) => string = (date, format) => {
-    return this.adapter.format(date, format);
+  // eslint-disable-next-line flowtype/no-weak-types
+  format: (T, string, any) => string = (date, format, locale) => {
+    const adapter = locale
+      ? this.getAdapterWithNewLocale(locale)
+      : this.adapter;
+
+    return adapter.format(date, format);
   };
   getAdapterWithNewLocale: mixed => DateIOAdapter<T> = locale => {
     return this.cloneAdapter(this.adapter, options => ({...options, locale}));
@@ -328,8 +333,21 @@ class DateHelpers<T> {
       (!!maxDate && !this.isOnOrBeforeDay(day, maxDate))
     );
   };
-  parse: (string, string) => T = (string, formatString) => {
-    return this.adapter.parse(string, formatString);
+  // eslint-disable-next-line flowtype/no-weak-types
+  parseString: (string, string, ?any) => T = (string, formatString, locale) => {
+    const adapter = locale
+      ? this.getAdapterWithNewLocale(locale)
+      : this.adapter;
+
+    return adapter.parse(string, formatString);
+  };
+  // eslint-disable-next-line flowtype/no-weak-types
+  parse: (string, string, ?any) => T = (string, format, locale) => {
+    const adapter = locale
+      ? this.getAdapterWithNewLocale(locale)
+      : this.adapter;
+
+    return adapter.parse(string, adapter.formats[format]);
   };
   setMilliseconds: (T, number) => T = (date, milliseconds) => {
     return this.adapter.date(
