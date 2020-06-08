@@ -76,6 +76,7 @@ export default function Scenario() {
       <Datepicker
         adapter={adapter}
         aria-label="Select a date"
+        aria-describedby="moment-datepicker"
         highlightedDate={moment('March 10, 2019')}
         value={momentDate}
         onChange={({date}) => setMomentDate(date)}
