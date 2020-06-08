@@ -300,7 +300,7 @@ export default class Datepicker<T = Date> extends React.Component<
       ) {
         date = null;
       } else {
-        parseDateString(dateString);
+        date = parseDateString(dateString);
       }
 
       const {displayValueAtRangeIndex, onChange, range, value} = this.props;
