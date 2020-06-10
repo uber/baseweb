@@ -156,7 +156,6 @@ export default function Scenario() {
       $style={{
         textDecoration: 'none',
         color: 'inherit',
-        backgroundImage: 'none',
         ':hover': {color: 'inherit'},
         ':visited': {color: 'inherit'},
       }}

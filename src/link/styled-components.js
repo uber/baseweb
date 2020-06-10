@@ -27,12 +27,17 @@ export const Link = styled<{
     transitionDuration: animation.timing500,
     transitionTimingFunction: animation.easeOutQuinticCurve,
     position: 'relative',
-    textDecoration: 'none',
+    textDecoration: $isAnimateUnderline ? 'none' : 'underline',
+    textUnderlinePosition: 'under',
     willChange: 'background-size',
     backgroundSize:
       direction === 'rtl' ? '100% 100%, 100% 100%' : '0% 100%, 100% 100%',
     backgroundRepeat: 'no-repeat',
-    backgroundImage: direction === 'rtl' ? underlineRTL : underlineLTR,
+    backgroundImage: $isAnimateUnderline
+      ? direction === 'rtl'
+        ? underlineRTL
+        : underlineLTR
+      : 'none',
     backgroundPosition: '0 bottom 0 bottom',
     ':hover': {
       color: colors.linkHover,

@@ -14,22 +14,8 @@ import {Breadcrumbs} from '../index.js';
 export default function Scenario() {
   return (
     <Breadcrumbs>
-      <StyledLink
-        $style={{
-          backgroundImage: 'none',
-        }}
-        href="#"
-      >
-        Parent Page
-      </StyledLink>
-      <StyledLink
-        $style={{
-          backgroundImage: 'none',
-        }}
-        href="#"
-      >
-        Sub-Parent Page
-      </StyledLink>
+      <StyledLink href="#">Parent Page</StyledLink>
+      <StyledLink href="#">Sub-Parent Page</StyledLink>
       <span>Current Page</span>
     </Breadcrumbs>
   );

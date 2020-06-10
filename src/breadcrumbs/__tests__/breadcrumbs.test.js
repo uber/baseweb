@@ -16,22 +16,8 @@ describe('Breadcrumbs', () => {
     const ariaLabel = 'Breadcrumbs navigation';
     const example = shallow(
       <Breadcrumbs locale={{ariaLabel}}>
-        <StyledLink
-          $style={{
-            backgroundImage: 'none',
-          }}
-          href="#"
-        >
-          Parent Page
-        </StyledLink>
-        <StyledLink
-          $style={{
-            backgroundImage: 'none',
-          }}
-          href="#"
-        >
-          Sub-Parent Page
-        </StyledLink>
+        <StyledLink href="#">Parent Page</StyledLink>
+        <StyledLink href="#">Sub-Parent Page</StyledLink>
 
         <span>Current Page</span>
       </Breadcrumbs>,
@@ -43,22 +29,8 @@ describe('Breadcrumbs', () => {
     expect(
       shallow(
         <Breadcrumbs>
-          <StyledLink
-            $style={{
-              backgroundImage: 'none',
-            }}
-            href="#"
-          >
-            Parent Page
-          </StyledLink>
-          <StyledLink
-            $style={{
-              backgroundImage: 'none',
-            }}
-            href="#"
-          >
-            Sub-Parent Page
-          </StyledLink>
+          <StyledLink href="#">Parent Page</StyledLink>
+          <StyledLink href="#">Sub-Parent Page</StyledLink>
 
           <span>Current Page</span>
         </Breadcrumbs>,

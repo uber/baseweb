@@ -52,13 +52,7 @@ const AnchorCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
           overflow: 'hidden',
         })}
       >
-        <StyledLink
-          style={{
-            backgroundImage: props.elementAs === 'div' ? 'initial' : '',
-          }}
-          $as={props.elementAs}
-          href={props.value.href}
-        >
+        <StyledLink $as={props.elementAs} href={props.value.href}>
           {props.value.content}
         </StyledLink>
       </div>
