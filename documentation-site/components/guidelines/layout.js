@@ -3,6 +3,8 @@ import {useStyletron} from 'baseui';
 import {StyledLink} from 'baseui/link';
 import Link from 'next/link';
 
+import Logo from './logo.js';
+
 function Layout({pages, children}: any) {
   const [css, theme] = useStyletron();
   return (
@@ -17,6 +19,7 @@ function Layout({pages, children}: any) {
           ...theme.typography.LabelMedium,
         })}
       >
+        <Logo />
         {pages.length > 0
           ? pages.map(page => (
               <div key={page.id} className={css({marginBottom: '16px'})}>

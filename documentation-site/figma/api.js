@@ -154,7 +154,8 @@ async function getStaticPropsForNode({params}) {
       },
     );
     const json = await response.json();
-    image = json.images[params.node.replace('-', ':')];
+    console.log(json);
+    image = json.images[params.node.replace('-', ':')] || null;
   } catch (er) {
     console.log(`there was a problem getting the image for [${params.node}]`);
     console.log(er);
