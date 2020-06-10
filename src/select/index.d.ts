@@ -102,6 +102,7 @@ export interface SelectProps {
   }) => React.ReactNode;
   getValueLabel?: (args: {option: Option}) => React.ReactNode;
   id?: string;
+  controlRef?: React.Ref<HTMLInputElement | HTMLDivElement>;
   isLoading?: boolean;
   labelKey?: string;
   startOpen?: boolean;

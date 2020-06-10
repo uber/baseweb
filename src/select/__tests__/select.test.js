@@ -4,6 +4,7 @@ Copyright (c) 2018-2020 Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
+/* global document */
 // @flow
 import * as React from 'react';
 import {mount} from 'enzyme';
@@ -97,6 +98,17 @@ describe('Select component', function() {
         multi
         valueKey="color"
       />,
+    );
+  });
+
+  test('sets controlRef from props', () => {
+    const ref = React.createRef();
+    wrapper = mount(<Select {...props} controlRef={ref} />);
+    expect(ref.current).toBeDefined();
+    // $FlowFixMe
+    ref.current.focus();
+    expect(wrapper.find('input').getDOMNode() === document.activeElement).toBe(
+      true,
     );
   });
 });
