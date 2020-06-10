@@ -34,8 +34,22 @@ export default function Scenario() {
         },
       }}
     >
-      <Link href="#">Parent Page</Link>
-      <Link href="#">Sub-Parent Page</Link>
+      <Link
+        $style={{
+          backgroundImage: 'none',
+        }}
+        href="#"
+      >
+        Parent Page
+      </Link>
+      <Link
+        $style={{
+          backgroundImage: 'none',
+        }}
+        href="#"
+      >
+        Sub-Parent Page
+      </Link>
       <span>Current Page</span>
     </Breadcrumbs>
   );

@@ -17,7 +17,14 @@ function ComplexContent() {
   return (
     <ThemeProvider theme={DarkTheme}>
       feat: super cool feature{` `}
-      <StyledLink href="#">#123</StyledLink>
+      <StyledLink
+        $style={{
+          backgroundImage: 'none',
+        }}
+        href="#"
+      >
+        #123
+      </StyledLink>
     </ThemeProvider>
   );
 }

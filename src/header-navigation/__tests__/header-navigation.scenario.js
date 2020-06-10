@@ -30,13 +30,31 @@ export default function Scenario() {
       <NavigationList $align={ALIGN.center} />
       <NavigationList $align={ALIGN.right}>
         <NavigationItem>
-          <Link>Tab Link One</Link>
+          <Link
+            $style={{
+              backgroundImage: 'none',
+            }}
+          >
+            Tab Link One
+          </Link>
         </NavigationItem>
         <NavigationItem>
-          <Link>Tab Link Two</Link>
+          <Link
+            $style={{
+              backgroundImage: 'none',
+            }}
+          >
+            Tab Link Two
+          </Link>
         </NavigationItem>
         <NavigationItem>
-          <Link>Tab Link Three</Link>
+          <Link
+            $style={{
+              backgroundImage: 'none',
+            }}
+          >
+            Tab Link Three
+          </Link>
         </NavigationItem>
       </NavigationList>
       <NavigationList $align={ALIGN.right}>

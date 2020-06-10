@@ -13,51 +13,31 @@ export const Link = styled<{
   $isFocusVisible: boolean,
 }>('a', ({$theme, $isAnimateUnderline, $isFocusVisible}) => {
   const {colors, typography, animation, direction} = $theme;
-  const pos = direction === 'rtl' ? {right: 0} : {left: 0};
+
+  const underlineLTR = `linear-gradient(transparent calc(100% - 1px), ${colors.linkHover} 1px), linear-gradient(transparent calc(100% - 1px), ${colors.linkText} 1px)`;
+
+  const underlineRTL = `linear-gradient(transparent calc(100% - 1px), ${colors.linkText} 1px), linear-gradient(transparent calc(100% - 1px), ${colors.linkHover} 1px)`;
 
   return {
     color: colors.linkText,
     ...typography.font350,
     fontSize: 'inherit',
     lineHeight: 'inherit',
-    transitionProperty: 'color',
+    transitionProperty: !$isAnimateUnderline ? 'backgroundSize' : '',
     transitionDuration: animation.timing500,
     transitionTimingFunction: animation.easeOutQuinticCurve,
     position: 'relative',
     textDecoration: 'none',
-    ':before': {
-      content: '""',
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      right: 0,
-      width: '100%',
-      height: '1px',
-      opacity: $isAnimateUnderline ? '0.2' : '1',
-      background: colors.linkText,
-    },
-    ':after': {
-      content: '""',
-      position: 'absolute',
-      bottom: 0,
-      ...pos,
-      width: $isAnimateUnderline ? '0%' : '100%',
-      height: '1px',
-      opacity: 0,
-      background: colors.linkText,
-      transitionDuration: animation.timing500,
-      transitionTimingFunction: animation.easeOutQuinticCurve,
-    },
+    willChange: 'background-size',
+    backgroundSize:
+      direction === 'rtl' ? '100% 100%, 100% 100%' : '0% 100%, 100% 100%',
+    backgroundRepeat: 'no-repeat',
+    backgroundImage: direction === 'rtl' ? underlineRTL : underlineLTR,
+    backgroundPosition: '0 bottom 0 bottom',
     ':hover': {
       color: colors.linkHover,
-    },
-    ':hover:after': {
-      opacity: 1,
-      width: '100%',
-      background: colors.linkHover,
-    },
-    ':hover:before': {
-      background: colors.linkHover,
+      backgroundSize:
+        direction === 'rtl' ? '0% 100%, 100% 100%' : '100% 100%, 100% 100%',
     },
     ':focus': {
       outline: $isFocusVisible ? `3px solid ${colors.accent}` : 'none',
@@ -67,20 +47,8 @@ export const Link = styled<{
     ':visited': {
       color: colors.linkVisited,
     },
-    ':visited:after': {
-      background: colors.linkVisited,
-    },
-    ':visited:before': {
-      background: colors.linkVisited,
-    },
     ':active': {
       color: colors.linkActive,
-    },
-    ':active:after': {
-      background: colors.linkActive,
-    },
-    ':active:before': {
-      background: colors.linkActive,
     },
   };
 });
