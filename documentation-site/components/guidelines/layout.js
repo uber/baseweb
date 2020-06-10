@@ -16,29 +16,37 @@ function Layout({pages, children}: any) {
           width: '250px',
           overflowY: 'scroll',
           padding: '16px',
+          borderRightColor: theme.borders.border400.borderColor,
+          borderRightStyle: theme.borders.border400.borderStyle,
+          borderRightWidth: theme.borders.border400.borderWidth,
           ...theme.typography.LabelMedium,
         })}
       >
         <Logo />
+        <div className={css({height: theme.sizing.scale1000})} />
         {pages.length > 0
           ? pages.map(page => (
               <div key={page.id} className={css({marginBottom: '16px'})}>
-                <div className={css({marginBottom: '8px'})}>{page.name}</div>
-                {page.children.map(frame => {
-                  // Convention: Only link to frames which start with a capital letter.
-                  if (frame.visible !== false && frame.name.match(/^[A-Z]/)) {
-                    return (
-                      <div key={frame.id} className={css({marginLeft: '16px'})}>
-                        <Link
-                          href={`/guidelines/${frame.id.replace(':', '-')}`}
-                          passHref
-                        >
-                          <StyledLink>{frame.name}</StyledLink>
-                        </Link>
-                      </div>
-                    );
-                  }
-                })}
+                <div className={css(theme.typography.LabelLarge)}>
+                  {page.name}
+                </div>
+                <ul>
+                  {page.children.map(frame => {
+                    // Convention: Only link to frames which start with a capital letter.
+                    if (frame.visible !== false && frame.name.match(/^[A-Z]/)) {
+                      return (
+                        <li key={frame.id}>
+                          <Link
+                            href={`/guidelines/${frame.id.replace(':', '-')}`}
+                            passHref
+                          >
+                            <StyledLink>{frame.name}</StyledLink>
+                          </Link>
+                        </li>
+                      );
+                    }
+                  })}
+                </ul>
               </div>
             ))
           : null}

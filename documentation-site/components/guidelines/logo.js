@@ -1,6 +1,6 @@
 import {useStyletron} from 'baseui';
 
-export default function Logo() {
+export default function Logo({size = '48px'}) {
   const [css, theme] = useStyletron();
   return (
     <svg
@@ -9,6 +9,7 @@ export default function Logo() {
       viewBox="0 0 200 201"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={css({height: size, width: size})}
     >
       <path
         d="M89.9745 30.5439C95.445 25.0735 104.314 25.0735 109.785 30.5439L169.215 89.9745C174.686 95.445 174.686 104.314 169.215 109.785L109.785 169.215C104.314 174.686 95.445 174.686 89.9745 169.215L30.544 109.785C25.0735 104.314 25.0735 95.445 30.544 89.9745L89.9745 30.5439Z"

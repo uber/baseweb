@@ -15,28 +15,43 @@ import {useStyletron} from 'baseui';
 import Layout from '../../components/guidelines/layout.js';
 
 declare var process: {
-  env: {FIGMA_USE_FS: string},
+  env: {FIGMA_FILE_ID: string, FIGMA_AUTH_TOKEN: string},
 };
 
 async function getStaticProps({params}: {params: {node: any}}) {
-  let staticProps;
-  if (process.env.FIGMA_USE_FS) {
-    const fs = require('fs');
-    const path = require('path');
-    staticProps = JSON.parse(
-      fs.readFileSync(
-        path.join(
-          process.cwd(),
-          'documentation-site/figma/data/indexStaticProps.json',
-        ),
-        'utf8',
-      ),
+  let pages = [];
+  try {
+    // Figma file structure: File > Pages > Frames.
+
+    // By convention we turn the top level Figma Frames for each Figma Page
+    // into web pages. The Figma Pages become headers for grouping the pages
+    // in our navigation.
+
+    // Fetch Figma file 2 levels deep. We only need Figma Pages & the
+    // top level Figma Frames within them.
+    const figmaFileResponse = await fetch(
+      `https://api.figma.com/v1/files/${process.env.FIGMA_FILE_ID}?depth=2`,
+      {
+        headers: {
+          'X-FIGMA-TOKEN': process.env.FIGMA_AUTH_TOKEN,
+        },
+      },
     );
-  } else {
-    const {getStaticPropsForIndex} = require('../../figma/api.js');
-    staticProps = await getStaticPropsForIndex();
+    const figmaFile = await figmaFileResponse.json();
+
+    // By convention, only use Figma Pages starting with a capital letter.
+    const figmaPages = figmaFile.document.children.filter(page =>
+      page.name.match(/^[A-Z]/),
+    );
+
+    // We need both the Figma Page as well as its children (top level frames).
+    pages = figmaPages;
+  } catch (er) {
+    console.log('there was a problem fetching the figma file');
+    console.log(er);
   }
-  return staticProps;
+
+  return {props: {pages}};
 }
 
 function Index({pages}: any) {
