@@ -35,10 +35,11 @@ export const StyledLink = withWrapper(
           {focusProps => (
             <Styled
               data-baseweb="link"
-              {...props}
+              $isAnimateUnderline={props.animateUnderline}
               $isFocusVisible={focusProps.focusVisible}
               onFocus={forkFocus(props, focusProps.handleFocus)}
               onBlur={forkBlur(props, focusProps.handleBlur)}
+              {...props}
             />
           )}
         </LinkFocus>
