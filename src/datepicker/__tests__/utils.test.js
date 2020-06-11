@@ -174,7 +174,6 @@ const helpers: DateHelpers<Date> = Object.keys(dateHelpers).reduce(
           return dateHelpersReturn;
         }
         const differingAdapterMap = getDiffereningAdapterMap(
-          //$FlowFixMe
           (helpers, convertArgs) => {
             const convertedArgs = convertArgs(args);
             //$FlowFixMe
