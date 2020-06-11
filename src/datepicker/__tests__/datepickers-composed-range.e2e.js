@@ -19,8 +19,6 @@ const DISPLAY_END_DATE = '[id="display-end-date"]';
 const SET_UNDEFINED_BTN = '[id="set-undefined"]';
 
 describe('datepicker-composed-range', () => {
-  jest.setTimeout(20 * 1000);
-
   it('displaying start date can update value from text input with existing dates', async () => {
     await mount(page, 'datepickers-composed-range');
     await page.waitFor(START_DATE_INPUT);
