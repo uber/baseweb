@@ -18,6 +18,7 @@ describe('Breadcrumbs', () => {
       <Breadcrumbs locale={{ariaLabel}}>
         <StyledLink href="#">Parent Page</StyledLink>
         <StyledLink href="#">Sub-Parent Page</StyledLink>
+
         <span>Current Page</span>
       </Breadcrumbs>,
     );
@@ -30,6 +31,7 @@ describe('Breadcrumbs', () => {
         <Breadcrumbs>
           <StyledLink href="#">Parent Page</StyledLink>
           <StyledLink href="#">Sub-Parent Page</StyledLink>
+
           <span>Current Page</span>
         </Breadcrumbs>,
       ),
