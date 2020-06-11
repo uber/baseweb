@@ -7,38 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import type {DateIOAdapter, DateInput, AdapterOptions} from './types.js';
 
-const adapterMap = {
-  // all utils classes set the arguments passed into their constructor as public members in some way
-  // it just varies by class, most just set formats and locale, but this handles the exceptions
-  MomentUtils: {
-    formats: {
-      monthNumber: 'M',
-      dayOfMonthNumber: 'D',
-      fullOrdinalWeek: 'dddd, MMMM Do YYYY',
-      slashDate: 'YYYY/MM/DD',
-      weekday: 'dddd',
-    },
-  },
-  DateFnsUtils: {
-    formats: {
-      monthNumber: 'M',
-      dayOfMonthNumber: 'd',
-      weekday: 'EEEE',
-      slashDate: 'yyyy/MM/dd',
-      fullOrdinalWeek: 'EEEE, MMMM do yyyy',
-    },
-  },
-  LuxonUtils: {
-    formats: {
-      monthNumber: 'M',
-      dayOfMonthNumber: 'd',
-      weekday: 'EEEE',
-      slashDate: 'yyyy/MM/dd',
-      fullOrdinalWeek: 'EEEE, MMMM dd yyyy',
-    },
-  },
-};
-
 const MINUTE = 60;
 const HOUR = MINUTE * 60;
 
@@ -51,6 +19,37 @@ class DateHelpers<T> {
     DateIOAdapter<T>,
     ?(AdapterOptions) => AdapterOptions,
   ) => DateIOAdapter<T> = (adapter, updateOptionsBase) => {
+    const adapterMap = {
+      // all utils classes set the arguments passed into their constructor as public members in some way
+      // it just varies by class, most just set formats and locale, but this handles the exceptions
+      MomentUtils: {
+        formats: {
+          monthNumber: 'M',
+          dayOfMonthNumber: 'D',
+          fullOrdinalWeek: 'dddd, MMMM Do YYYY',
+          slashDate: 'YYYY/MM/DD',
+          weekday: 'dddd',
+        },
+      },
+      DateFnsUtils: {
+        formats: {
+          monthNumber: 'M',
+          dayOfMonthNumber: 'd',
+          weekday: 'EEEE',
+          slashDate: 'yyyy/MM/dd',
+          fullOrdinalWeek: 'EEEE, MMMM do yyyy',
+        },
+      },
+      LuxonUtils: {
+        formats: {
+          monthNumber: 'M',
+          dayOfMonthNumber: 'd',
+          weekday: 'EEEE',
+          slashDate: 'yyyy/MM/dd',
+          fullOrdinalWeek: 'EEEE, MMMM dd yyyy',
+        },
+      },
+    };
     const defaultGetOptions = instance => ({
       formats: instance.formats,
       locale: instance.locale,
