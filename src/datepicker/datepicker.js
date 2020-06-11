@@ -25,6 +25,7 @@ type StateT = {|
   lastActiveElm: ?HTMLElement,
   inputValue?: string,
 |};
+export const DEFAULT_DATE_FORMAT = 'yyyy/MM/dd';
 
 export default class Datepicker<T = Date> extends React.Component<
   DatepickerPropsT<T>,
@@ -33,7 +34,7 @@ export default class Datepicker<T = Date> extends React.Component<
   static defaultProps = {
     'aria-describedby': 'datepicker--screenreader--message--input',
     value: null,
-    formatString: 'yyyy/MM/dd',
+    formatString: DEFAULT_DATE_FORMAT,
     adapter: dateFnsAdapter,
   };
 
@@ -115,7 +116,7 @@ export default class Datepicker<T = Date> extends React.Component<
 
   formatDate(date: ?T | Array<T>, formatString: string) {
     const format = date => {
-      if (formatString === 'yyyy/MM/dd') {
+      if (formatString === DEFAULT_DATE_FORMAT) {
         return this.dateHelpers.format(date, 'slashDate', this.props.locale);
       }
       return this.dateHelpers.formatDate(date, formatString, this.props.locale);
@@ -243,7 +244,7 @@ export default class Datepicker<T = Date> extends React.Component<
 
     const parseDateString = dateString => {
       const formatString = this.normalizeDashes(this.props.formatString);
-      if (formatString === 'yyyy/MM/dd') {
+      if (formatString === DEFAULT_DATE_FORMAT) {
         return this.dateHelpers.parse(
           dateString,
           'slashDate',
