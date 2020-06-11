@@ -303,7 +303,6 @@ export default class Datepicker extends React.Component<
               }
             }
           }
-          // onChange({date: [left, right]});
         } else {
           onChange({date});
         }
