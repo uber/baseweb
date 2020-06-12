@@ -1,11 +1,37 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {StyledLink} from 'baseui/link';
+import {Navigation} from 'baseui/side-navigation';
 import Link from 'next/link';
 
 import Logo from './logo.js';
 
-function Layout({pages, children}: any) {
+function _nav(pages) {
+  let nav = [];
+  pages.forEach(page => {
+    const params = {
+      itemId: page.id,
+      title: page.name,
+    };
+
+    let subNav = [];
+    page.children.forEach(frame => {
+      if (frame.visible !== false && frame.name.match(/^[A-Z]/)) {
+        subNav.push({
+          itemId: `/guidelines/${frame.id.replace(':', '-')}`,
+          title: frame.name,
+        });
+      }
+    });
+
+    if (subNav.length) params.subNav = subNav;
+
+    nav.push(params);
+  });
+  return nav;
+}
+
+function Layout({pages, node = '', children}: any) {
   const [css, theme] = useStyletron();
   return (
     <React.Fragment>
@@ -13,45 +39,26 @@ function Layout({pages, children}: any) {
         className={css({
           position: 'fixed',
           height: '100vh',
-          width: '250px',
+          width: '300px',
           overflowY: 'scroll',
-          padding: '16px',
-          borderRightColor: theme.borders.border400.borderColor,
-          borderRightStyle: theme.borders.border400.borderStyle,
-          borderRightWidth: theme.borders.border400.borderWidth,
           ...theme.typography.LabelMedium,
         })}
       >
-        <Logo />
-        <div className={css({height: theme.sizing.scale1000})} />
-        {pages.length > 0
-          ? pages.map(page => (
-              <div key={page.id} className={css({marginBottom: '16px'})}>
-                <div className={css(theme.typography.LabelLarge)}>
-                  {page.name}
-                </div>
-                <ul>
-                  {page.children.map(frame => {
-                    // Convention: Only link to frames which start with a capital letter.
-                    if (frame.visible !== false && frame.name.match(/^[A-Z]/)) {
-                      return (
-                        <li key={frame.id}>
-                          <Link
-                            href={`/guidelines/${frame.id.replace(':', '-')}`}
-                            passHref
-                          >
-                            <StyledLink>{frame.name}</StyledLink>
-                          </Link>
-                        </li>
-                      );
-                    }
-                  })}
-                </ul>
-              </div>
-            ))
-          : null}
+        <div
+          className={css({
+            display: 'flex',
+            // justifyContent: 'center',
+            alignItems: 'center',
+            paddingLeft: '24px',
+            paddingTop: '20px',
+          })}
+        >
+          <Logo />
+        </div>
+        <div className={css({height: theme.sizing.scale800})} />
+        <Navigation items={_nav(pages)} activeItemId={`/guidelines/${node}`} />
       </nav>
-      <main className={css({marginLeft: '250px'})}>{children}</main>
+      <main className={css({marginLeft: '300px'})}>{children}</main>
     </React.Fragment>
   );
 }
