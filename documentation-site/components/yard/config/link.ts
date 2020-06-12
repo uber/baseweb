@@ -22,6 +22,11 @@ const LinkConfig: TConfig = {
       type: PropTypes.String,
       description: 'The URL that the hyperlink points to.',
     },
+    animateUnderline: {
+      value: false,
+      type: PropTypes.Boolean,
+      description: 'Indicates that the link underline is animated.',
+    },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
