@@ -22,7 +22,9 @@ import {
 } from '../../components/guidelines/render.js';
 import Layout from '../../components/guidelines/layout.js';
 
-declare var process: {env: {FIGMA_AUTH_TOKEN: string, FIGMA_FILE_ID: string}};
+declare var process: {
+  env: {FIGMA_AUTH_TOKEN: string, HD_FIGMA_FILE_ID: string},
+};
 
 async function getStaticPaths() {
   let paths = [];
@@ -36,7 +38,7 @@ async function getStaticPaths() {
     // Fetch Figma file 2 levels deep. We only need Figma Pages & the
     // top level Figma Frames within them.
     const figmaFileResponse = await fetch(
-      `https://api.figma.com/v1/files/${process.env.FIGMA_FILE_ID}?depth=2`,
+      `https://api.figma.com/v1/files/${process.env.HD_FIGMA_FILE_ID}?depth=2`,
       {
         headers: {
           'X-FIGMA-TOKEN': process.env.FIGMA_AUTH_TOKEN,
@@ -81,7 +83,7 @@ async function getStaticProps({params}: {params: {node: any}}) {
     // Fetch Figma file 2 levels deep. We only need Figma Pages & the
     // top level Figma Frames within them.
     const figmaFileResponse = await fetch(
-      `https://api.figma.com/v1/files/${process.env.FIGMA_FILE_ID}?depth=2`,
+      `https://api.figma.com/v1/files/${process.env.HD_FIGMA_FILE_ID}?depth=2`,
       {
         headers: {
           'X-FIGMA-TOKEN': process.env.FIGMA_AUTH_TOKEN,
@@ -107,7 +109,7 @@ async function getStaticProps({params}: {params: {node: any}}) {
   try {
     const response = await fetch(
       `https://api.figma.com/v1/images/${
-        process.env.FIGMA_FILE_ID
+        process.env.HD_FIGMA_FILE_ID
       }?ids=${params.node.replace('-', ':')}&format=pdf`,
       {
         headers: {
@@ -123,14 +125,14 @@ async function getStaticProps({params}: {params: {node: any}}) {
   }
 
   return {
-    props: {pages, image},
+    props: {pages, image, node: params.node},
   };
 }
 
-function Page({pages, image}) {
+function Page({pages, image, node}) {
   const [css] = useStyletron();
   return (
-    <Layout pages={pages}>
+    <Layout pages={pages} node={node}>
       {image ? (
         <embed
           id="pdf"

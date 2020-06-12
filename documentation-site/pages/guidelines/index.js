@@ -15,7 +15,7 @@ import {useStyletron} from 'baseui';
 import Layout from '../../components/guidelines/layout.js';
 
 declare var process: {
-  env: {FIGMA_FILE_ID: string, FIGMA_AUTH_TOKEN: string},
+  env: {HD_FIGMA_FILE_ID: string, FIGMA_AUTH_TOKEN: string},
 };
 
 async function getStaticProps({params}: {params: {node: any}}) {
@@ -30,7 +30,7 @@ async function getStaticProps({params}: {params: {node: any}}) {
     // Fetch Figma file 2 levels deep. We only need Figma Pages & the
     // top level Figma Frames within them.
     const figmaFileResponse = await fetch(
-      `https://api.figma.com/v1/files/${process.env.FIGMA_FILE_ID}?depth=2`,
+      `https://api.figma.com/v1/files/${process.env.HD_FIGMA_FILE_ID}?depth=2`,
       {
         headers: {
           'X-FIGMA-TOKEN': process.env.FIGMA_AUTH_TOKEN,
