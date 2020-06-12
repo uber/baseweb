@@ -188,6 +188,7 @@ export type DatepickerPropsT = CalendarPropsT & {
   placeholder?: string,
   required?: boolean,
   clearable?: boolean,
+  displayValueAtRangeIndex?: number,
   formatDisplayValue?: (
     date: ?Date | Array<Date>,
     formatString: string,

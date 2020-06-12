@@ -10,16 +10,6 @@ import {TimePicker} from 'baseui/timepicker';
 const START_DATE = new Date(2019, 3, 1, 12, 0, 0);
 const END_DATE = new Date(2019, 3, 10, 16, 0, 0);
 
-function formatDateAtIndex(
-  dates: ?Date | ?Array<Date>,
-  index: number,
-) {
-  if (!dates || !Array.isArray(dates)) return '';
-  const date = dates[index];
-  if (!date) return '';
-  return formatDate(date, 'yyyy/MM/dd');
-}
-
 export default () => {
   const [css, theme] = useStyletron();
   const [dates, setDates] = useState<any>([START_DATE, END_DATE]);
@@ -36,10 +26,11 @@ export default () => {
           <DatePicker
             value={dates}
             onChange={({date}) => setDates(date)}
-            formatDisplayValue={date => formatDateAtIndex(date, 0)}
             timeSelectStart
             range
             mask="9999/99/99"
+            displayValueAtRangeIndex={0}
+            placeholder="Start Date"
           />
         </FormControl>
       </div>
@@ -76,15 +67,11 @@ export default () => {
           <DatePicker
             value={dates}
             onChange={({date}) => setDates(date)}
-            formatDisplayValue={date => formatDateAtIndex(date, 1)}
-            overrides={{
-              TimeSelectFormControl: {
-                props: {label: 'End time'},
-              },
-            }}
             timeSelectEnd
             range
             mask="9999/99/99"
+            displayValueAtRangeIndex={1}
+            placeholder="End Date"
           />
         </FormControl>
       </div>

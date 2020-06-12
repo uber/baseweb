@@ -21,16 +21,17 @@ import {LocaleContext} from '../locale/index.js';
 import {StyledInputWrapper} from './styled-components.js';
 import type {DatepickerPropsT} from './types.js';
 
+type StateT = {|
+  calendarFocused: boolean,
+  isOpen: boolean,
+  isPseudoFocused: boolean,
+  lastActiveElm: ?HTMLElement,
+  inputValue?: string,
+|};
+
 export default class Datepicker extends React.Component<
   DatepickerPropsT,
-  {
-    calendarFocused: boolean,
-    isOpen: boolean,
-    isPseudoFocused: boolean,
-    lastActiveElm: ?HTMLElement,
-    inputValue?: string,
-    isInputUsed?: boolean,
-  },
+  StateT,
 > {
   static defaultProps = {
     'aria-describedby': 'datepicker--screenreader--message--input',
@@ -38,16 +39,18 @@ export default class Datepicker extends React.Component<
     formatString: 'yyyy/MM/dd',
   };
 
-  calendar: ?HTMLElement;
+  constructor(props: DatepickerPropsT) {
+    super(props);
+    this.state = {
+      calendarFocused: false,
+      isOpen: false,
+      isPseudoFocused: false,
+      lastActiveElm: null,
+      inputValue: this.formatDisplayValue(this.props.value) || '',
+    };
+  }
 
-  state = {
-    calendarFocused: false,
-    isOpen: false,
-    isPseudoFocused: false,
-    lastActiveElm: null,
-    inputValue: this.formatDisplayValue(this.props.value) || '',
-    isInputUsed: false,
-  };
+  calendar: ?HTMLElement;
 
   onChange = (data: {date: ?Date | Array<Date>}) => {
     const {date} = data;
@@ -110,11 +113,38 @@ export default class Datepicker extends React.Component<
     }
   }
 
-  formatDisplayValue(date: ?Date | Array<Date>) {
-    let formatDisplayValue = this.props.formatDisplayValue || this.formatDate;
-    formatDisplayValue = formatDisplayValue.bind(this);
-    return formatDisplayValue(date, this.props.formatString);
-  }
+  formatDisplayValue = (date: ?Date | Array<Date>) => {
+    const {
+      displayValueAtRangeIndex,
+      formatDisplayValue,
+      formatString,
+      range,
+    } = this.props;
+
+    if (typeof displayValueAtRangeIndex === 'number') {
+      if (__DEV__) {
+        if (!range) {
+          console.error('displayValueAtRangeIndex only applies if range');
+        }
+        if (range && displayValueAtRangeIndex > 1) {
+          console.error('displayValueAtRangeIndex value must be 0 or 1');
+        }
+      }
+      if (date && Array.isArray(date)) {
+        const value = date[displayValueAtRangeIndex];
+        if (formatDisplayValue) {
+          return formatDisplayValue(value, formatString);
+        }
+        return this.formatDate(value, formatString);
+      }
+    }
+
+    if (formatDisplayValue) {
+      return formatDisplayValue(date, formatString);
+    }
+
+    return this.formatDate(date, formatString);
+  };
 
   open = () => {
     this.setState({
@@ -191,12 +221,12 @@ export default class Datepicker extends React.Component<
       }
     }
 
-    this.setState({
-      inputValue,
-      isInputUsed: true,
-    });
+    this.setState({inputValue});
 
-    if (this.props.range) {
+    if (
+      this.props.range &&
+      typeof this.props.displayValueAtRangeIndex !== 'number'
+    ) {
       const [left, right] = this.normalizeDashes(inputValue).split(' – ');
       let startDate = new Date(left);
       let endDate = new Date(right);
@@ -235,11 +265,47 @@ export default class Datepicker extends React.Component<
         date = parse(dateString, formatString, new Date());
       }
 
-      isValid(date) &&
-        this.props.onChange &&
-        this.props.onChange({
-          date,
-        });
+      const {displayValueAtRangeIndex, onChange, range, value} = this.props;
+      if (date && isValid(date) && onChange) {
+        if (
+          range &&
+          Array.isArray(value) &&
+          typeof displayValueAtRangeIndex === 'number'
+        ) {
+          let [left, right] = value;
+          if (displayValueAtRangeIndex === 0) {
+            left = date;
+            if (!right) {
+              onChange({date: [left]});
+            } else {
+              if (isAfter(right, left) || isEqual(left, right)) {
+                onChange({date: [left, right]});
+              } else {
+                // Is resetting back to previous value appropriate? Invalid range is not
+                // communicated to the user, but if it was not reset the text value would
+                // show one value and date value another. This seems a bit better but clearly
+                // has a downside.
+                onChange({date: [...value]});
+              }
+            }
+          } else if (displayValueAtRangeIndex === 1) {
+            right = date;
+            if (!left) {
+              // If start value is not defined, set start/end to the same day.
+              onChange({date: [right, right]});
+            } else {
+              if (isAfter(right, left) || isEqual(left, right)) {
+                onChange({date: [left, right]});
+              } else {
+                // See comment above about resetting dates on invalid range
+                onChange({date: [...value]});
+              }
+            }
+          }
+        } else {
+          onChange({date});
+        }
+      }
     }
   };
 

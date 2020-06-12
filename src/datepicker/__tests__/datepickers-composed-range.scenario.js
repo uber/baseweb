@@ -6,102 +6,102 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
+import React, {useState} from 'react';
 
-import {Block} from '../../block/index.js';
+import {useStyletron} from '../../styles/index.js';
 import {FormControl} from '../../form-control/index.js';
 import ArrowRight from '../../icon/arrow-right.js';
-import {Datepicker, TimePicker, formatDate} from '../index.js';
+import {Datepicker, TimePicker} from '../index.js';
 
 const START_DATE = new Date(2019, 3, 1, 12, 0, 0);
 const END_DATE = new Date(2019, 3, 10, 16, 0, 0);
 
-function formatDateAtIndex(dates: ?Date | ?Array<Date>, index: number) {
-  if (!dates || !Array.isArray(dates)) return '';
-  const date = dates[index];
-  if (!date) return '';
-  return formatDate(date, 'yyyy/MM/dd');
+function printDate(dt) {
+  if (!dt) return 'undefined';
+  return dt.getFullYear() + '/' + (dt.getMonth() + 1) + '/' + dt.getDate();
 }
 
-// eslint-disable-next-line flowtype/no-weak-types
-class Controlled extends React.Component<any, any> {
-  state = {date: [START_DATE, END_DATE]};
+export default function Controlled() {
+  const [css, theme] = useStyletron();
+  const [dates, setDates] = useState<Array<Date>>([START_DATE, END_DATE]);
 
-  render() {
-    return (
-      <>
-        <Block display="flex" alignItems="center">
-          <Block width="120px" marginRight="scale300">
-            <FormControl label="Start Date" caption="YYYY/MM/DD">
-              <Datepicker
-                value={this.state.date}
-                onChange={({date}) => this.setState({date})}
-                formatDisplayValue={date => formatDateAtIndex(date, 0)}
-                timeSelectStart
-                range
-              />
-            </FormControl>
-          </Block>
+  const inputGap = theme.sizing.scale300;
 
-          <Block width="120px" marginRight="scale300">
-            <FormControl label="Start Time" caption="HH:MM">
-              <TimePicker
-                value={this.state.date[0]}
-                onChange={time => {
-                  this.setState({date: [time, this.state.date[1]]});
-                }}
-              />
-            </FormControl>
-          </Block>
-
-          <Block marginRight="scale300">
-            <ArrowRight size={24} />
-          </Block>
-
-          <Block width="120px" marginRight="scale300">
-            <FormControl label="End Date" caption="YYYY/MM/DD">
-              <Datepicker
-                value={this.state.date}
-                onChange={({date}) => this.setState({date})}
-                formatDisplayValue={date => formatDateAtIndex(date, 1)}
-                overrides={{
-                  TimeSelectFormControl: {props: {label: 'End time'}},
-                }}
-                timeSelectEnd
-                range
-              />
-            </FormControl>
-          </Block>
-
-          <Block width="120px">
-            <FormControl label="End Time" caption="HH:MM">
-              <TimePicker
-                value={this.state.date[1]}
-                onChange={time => {
-                  this.setState({date: [this.state.date[0], time]});
-                }}
-              />
-            </FormControl>
-          </Block>
-        </Block>
-
-        <button
-          onClick={() =>
-            this.setState({date: [null, null], startTime: null, endTime: null})
-          }
+  return (
+    <div>
+      <div className={css({display: 'flex', alignItems: 'center'})}>
+        <div
+          id="start-date"
+          className={css({width: '120px', marginRight: inputGap})}
         >
-          set null
-        </button>
-        <button
-          onClick={() =>
-            this.setState({date: [], startTime: undefined, endTime: undefined})
-          }
+          <FormControl label="Start Date" caption="YYYY/MM/DD">
+            <Datepicker
+              value={dates}
+              // typecast to any because if datepicker is range, value is always array type
+              // eslint-disable-next-line flowtype/no-weak-types
+              onChange={({date}) => setDates((date: any))}
+              timeSelectStart
+              range
+              placeholder="Start Date"
+              displayValueAtRangeIndex={0}
+              mask="9999/99/99"
+            />
+          </FormControl>
+        </div>
+
+        <div
+          id="start-time"
+          className={css({width: '120px', marginRight: inputGap})}
         >
-          set undefined
-        </button>
-      </>
-    );
-  }
+          <FormControl label="Start Time" caption="HH:MM">
+            <TimePicker
+              value={dates[0]}
+              onChange={time => setDates([time, dates[1]])}
+            />
+          </FormControl>
+        </div>
+
+        <div className={css({marginRight: inputGap})}>
+          <ArrowRight size={24} />
+        </div>
+
+        <div
+          id="end-date"
+          className={css({width: '120px', marginRight: inputGap})}
+        >
+          <FormControl label="End Date" caption="YYYY/MM/DD">
+            <Datepicker
+              value={dates}
+              // typecast to any because if datepicker is range, value is always array type
+              // eslint-disable-next-line flowtype/no-weak-types
+              onChange={({date}) => setDates((date: any))}
+              timeSelectEnd
+              range
+              placeholder="End Date"
+              displayValueAtRangeIndex={1}
+              mask="9999/99/99"
+            />
+          </FormControl>
+        </div>
+
+        <div id="end-time" className={css({width: '120px'})}>
+          <FormControl label="End Time" caption="HH:MM">
+            <TimePicker
+              value={dates[1]}
+              onChange={time => setDates([dates[0], time])}
+            />
+          </FormControl>
+        </div>
+      </div>
+
+      <button id="set-undefined" onClick={() => setDates([])}>
+        set undefined
+      </button>
+
+      <div>
+        <p id="display-start-date">{printDate(dates[0])}</p>
+        <p id="display-end-date">{printDate(dates[1])}</p>
+      </div>
+    </div>
+  );
 }
-
-export default Controlled;
