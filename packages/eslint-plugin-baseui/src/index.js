@@ -21,9 +21,9 @@ module.exports = {
     recommended: {
       plugins: ['baseui'],
       rules: {
-        'deprecated-theme-api': ['warn'],
-        'deprecated-component-api': ['warn'],
-        'no-deep-imports': ['warn'],
+        'baseui/deprecated-theme-api': ['warn'],
+        'baseui/deprecated-component-api': ['warn'],
+        'baseui/no-deep-imports': ['warn'],
       },
     },
   },

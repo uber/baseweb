@@ -169,7 +169,11 @@ export const COUNTRIES = {
   LT: {label: 'Lithuania (Lietuva)', id: 'LT', dialCode: '+370'},
   LU: {label: 'Luxembourg', id: 'LU', dialCode: '+352'},
   MO: {label: 'Macau (澳門)', id: 'MO', dialCode: '+853'},
-  MK: {label: 'Macedonia (FYROM) (Македонија)', id: 'MK', dialCode: '+389'},
+  MK: {
+    label: 'North Macedonia (FYROM) (Македонија)',
+    id: 'MK',
+    dialCode: '+389',
+  },
   MG: {label: 'Madagascar (Madagasikara)', id: 'MG', dialCode: '+261'},
   MW: {label: 'Malawi', id: 'MW', dialCode: '+265'},
   MY: {label: 'Malaysia', id: 'MY', dialCode: '+60'},
