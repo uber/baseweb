@@ -87,6 +87,9 @@ class TimePicker<T = Date> extends React.Component<
       const steps = this.buildSteps();
       this.setState({steps});
     }
+    if (prevProps.value && !this.props.value) {
+      this.setState({value: null});
+    }
   }
 
   onChange = (params: OnChangeParamsT) => {
