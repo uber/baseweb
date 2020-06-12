@@ -79,7 +79,7 @@ describe('datepicker-composed-range', () => {
 
     const start = await page.$eval(DISPLAY_START_DATE, e => e.textContent);
     const end = await page.$eval(DISPLAY_END_DATE, e => e.textContent);
-    expect(start).toBe('2020/10/9');
+    expect(start).toBe('2020/10/10');
     expect(end).toBe('2020/10/10');
   });
 

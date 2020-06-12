@@ -14,7 +14,7 @@ import parse from 'date-fns/parse/index.js';
 import {MaskedInput} from '../input/index.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
 import Calendar from './calendar.js';
-import {formatDate, getHours, getMinutes, subDays} from './utils/index.js';
+import {formatDate, getHours, getMinutes} from './utils/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import getInterpolatedString from '../helpers/i18n-interpolation.js';
 import {LocaleContext} from '../locale/index.js';
@@ -291,9 +291,8 @@ export default class Datepicker extends React.Component<
           } else if (displayValueAtRangeIndex === 1) {
             right = date;
             if (!left) {
-              // If start value is not defined, and user chooses an end value make a 'guess'
-              // to set the start value to one prior to the selection
-              onChange({date: [subDays(right, 1), right]});
+              // If start value is not defined, set start/end to the same day.
+              onChange({date: [right, right]});
             } else {
               if (isAfter(right, left) || isEqual(left, right)) {
                 onChange({date: [left, right]});
