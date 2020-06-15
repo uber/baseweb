@@ -76,6 +76,6 @@ type toggleIsExpandedT = (
 
 export const toggleIsExpanded: toggleIsExpandedT;
 export const TreeLabelInteractable: React.FC<{
-  overrides?: {LabelInteractable: OverrideT},
-  children?: React.ReactNode | React.ChildrenArray<void | null | boolean | string | number | React.Element<any>>
+  overrides?: {LabelInteractable: Override<any>};
+  children?: React.ReactNode;
 }>;
