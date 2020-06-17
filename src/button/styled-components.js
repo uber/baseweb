@@ -141,6 +141,7 @@ export const LoadingSpinner = styled<SharedStylePropsT>(
       borderLeftColor: background,
       borderBottomColor: background,
       borderRightColor: background,
+      boxSizing: 'content-box',
       display: 'inline-block',
       animationDuration: $theme.animation.timing700,
       animationTimingFunction: 'linear',
