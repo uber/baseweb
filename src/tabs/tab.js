@@ -77,7 +77,13 @@ class TabComponent extends React.Component<
 
   componentDidMount() {
     // Immediately scroll the selected Tab into view.
-    if (this.props.active && this.ref && this.ref.current) {
+    if (
+      this.props.active &&
+      this.ref &&
+      this.ref.current &&
+      this.ref.current.scrollIntoView &&
+      typeof this.ref.current.scrollIntoView === 'function'
+    ) {
       this.ref.current.scrollIntoView({
         block: 'center',
         inline: 'center',
@@ -87,7 +93,13 @@ class TabComponent extends React.Component<
 
   componentDidUpdate() {
     // Smooth scroll a selected Tab into view.
-    if (this.props.active && this.ref && this.ref.current) {
+    if (
+      this.props.active &&
+      this.ref &&
+      this.ref.current &&
+      this.ref.current.scrollIntoView &&
+      typeof this.ref.current.scrollIntoView === 'function'
+    ) {
       this.ref.current.scrollIntoView({
         behavior: 'smooth',
       });
