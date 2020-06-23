@@ -28,22 +28,28 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
     $theme: {colors, sizing, typography},
   } = props;
   let style = {
-    ...typography.font200,
+    ...typography.LabelSmall,
+    flexShrink: '0',
     boxSizing: 'border-box',
     color: $active ? colors.contentPrimary : colors.tabColor,
     cursor: $disabled ? 'not-allowed' : 'pointer',
     paddingTop: sizing.scale600,
     paddingBottom: sizing.scale600,
-    paddingLeft: sizing.scale300,
-    paddingRight: sizing.scale300,
-    marginLeft: sizing.scale200,
-    marginRight: sizing.scale200,
+    paddingLeft: sizing.scale600,
+    paddingRight: sizing.scale600,
+    scrollSnapAlign: 'start',
     outline: $isFocusVisible ? `3px solid ${colors.accent}` : 'none',
     outlineOffset: '-3px',
+    boxShadow:
+      $orientation === ORIENTATION.vertical && $active && !$isFocusVisible
+        ? `inset -5px 0 ${colors.primary}`
+        : null,
     borderBottom:
-      $orientation === ORIENTATION.horizontal && $active && !$isFocusVisible
-        ? `2px solid ${colors.primary}`
-        : '2px solid transparent',
+      $orientation === ORIENTATION.horizontal
+        ? $active && !$isFocusVisible
+          ? `5px solid ${colors.primary}`
+          : '5px solid transparent'
+        : null,
     display: 'inline-block',
   };
   if (!$disabled) {
@@ -64,14 +70,29 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
 export const TabBar = styled<SharedStylePropsArgT>('div', props => {
   const {
     $orientation,
-    $theme: {colors, sizing},
+    $theme: {colors},
   } = props;
   return {
     display: 'flex',
     flexDirection: $orientation === ORIENTATION.vertical ? 'column' : 'row',
-    paddingLeft: sizing.scale400,
-    paddingRight: sizing.scale400,
-    backgroundColor: colors.tabBarFill,
+    overflowY: ORIENTATION.vertical ? 'scroll' : null,
+    overflowX: ORIENTATION.horizontal ? 'scroll' : null,
+    scrollSnapType: `${
+      $orientation === ORIENTATION.vertical ? 'y' : 'x'
+    } mandatory`,
+    boxShadow:
+      $orientation === ORIENTATION.vertical
+        ? `inset -5px 0px ${colors.borderOpaque}`
+        : `inset 0 -5px ${colors.borderOpaque}`,
+    // The following properties hide the scroll bar on various browsers:
+    // Chrome, Safari, etc
+    '::-webkit-scrollbar': {
+      display: 'none',
+    },
+    // IE, Edge
+    '-ms-overflow-style': 'none',
+    // Firefox
+    scrollbarWidth: 'none',
   };
 });
 
@@ -84,8 +105,8 @@ export const TabContent = styled<SharedStylePropsArgT>('div', props => {
   return {
     ...typography.font300,
     display: $active ? 'block' : 'none',
-    paddingLeft: sizing.scale800,
-    paddingRight: sizing.scale800,
+    paddingLeft: sizing.scale600,
+    paddingRight: sizing.scale600,
     paddingTop: sizing.scale500,
     paddingBottom: sizing.scale500,
   };
