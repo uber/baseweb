@@ -27,6 +27,8 @@ class TabComponent extends React.Component<
 
   state = {isFocusVisible: false};
 
+  ref = React.createRef<HTMLElement>();
+
   handleFocus = (event: SyntheticEvent<>) => {
     if (isFocusVisible(event)) {
       this.setState({isFocusVisible: true});
@@ -72,6 +74,25 @@ class TabComponent extends React.Component<
     };
   }
 
+  componentDidMount() {
+    // Immediately scroll the selected Tab into view.
+    if (this.props.active && this.ref && this.ref.current) {
+      this.ref.current.scrollIntoView({
+        block: 'center',
+        inline: 'center',
+      });
+    }
+  }
+
+  componentDidUpdate() {
+    // Smooth scroll a selected Tab into view.
+    if (this.props.active && this.ref && this.ref.current) {
+      this.ref.current.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
+  }
+
   render() {
     const {active, disabled, id, overrides = {}, children} = this.props;
     const sharedProps = this.getSharedProps();
@@ -86,6 +107,8 @@ class TabComponent extends React.Component<
         id={id}
         aria-selected={active}
         aria-disabled={disabled || null}
+        // $FlowFixMe - Not sure why `this.ref` complains
+        ref={this.ref}
         {...sharedProps}
         {...tabProps}
         onFocus={forkFocus(tabProps, this.handleFocus)}
