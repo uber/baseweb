@@ -13,7 +13,7 @@ import {
   TabContent as StyledTabContent,
 } from './styled-components.js';
 import type {TabsPropsT, SharedStylePropsArgT} from './types.js';
-import {ORIENTATION} from './constants.js';
+import {ORIENTATION, TAB_WIDTH} from './constants.js';
 
 export default class Tabs extends React.Component<TabsPropsT> {
   static defaultProps: $Shape<TabsPropsT> = {
@@ -21,6 +21,7 @@ export default class Tabs extends React.Component<TabsPropsT> {
     onChange: () => {},
     overrides: {},
     orientation: ORIENTATION.horizontal,
+    tabWidth: TAB_WIDTH.intrinsic,
     renderAll: false,
   };
 
@@ -34,6 +35,7 @@ export default class Tabs extends React.Component<TabsPropsT> {
       activeKey,
       disabled,
       orientation,
+      tabWidth,
       children,
       overrides = {},
     } = this.props;
@@ -48,6 +50,7 @@ export default class Tabs extends React.Component<TabsPropsT> {
         active: key === activeKey,
         disabled: disabled || child.props.disabled,
         $orientation: orientation,
+        $tabWidth: tabWidth,
         onSelect: () => this.onChange({activeKey: key}),
         children: child.props.title,
         overrides: mergeOverrides(overrides, child.props.overrides || {}),
@@ -102,10 +105,11 @@ export default class Tabs extends React.Component<TabsPropsT> {
   }
 
   getSharedProps(): SharedStylePropsArgT {
-    const {disabled, orientation} = this.props;
+    const {disabled, orientation, tabWidth} = this.props;
     return {
       $disabled: disabled,
       $orientation: orientation,
+      $tabWidth: tabWidth,
     };
   }
 

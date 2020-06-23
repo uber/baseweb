@@ -66,11 +66,12 @@ class TabComponent extends React.Component<
   };
 
   getSharedProps(): SharedStylePropsArgT {
-    const {disabled, active, $orientation} = this.props;
+    const {disabled, active, $orientation, $tabWidth} = this.props;
     return {
       $disabled: disabled,
       $active: active,
       $orientation: $orientation,
+      $tabWidth: $tabWidth,
     };
   }
 

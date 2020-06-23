@@ -8,12 +8,13 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
-import {ORIENTATION, STATE_CHANGE_TYPE} from './constants.js';
+import {ORIENTATION, STATE_CHANGE_TYPE, TAB_WIDTH} from './constants.js';
 
 export type SharedStylePropsArgT = {
   $disabled?: boolean,
   $active?: boolean,
   $orientation?: $Values<typeof ORIENTATION>,
+  $tabWidth?: $Values<typeof TAB_WIDTH>,
   $isFocusVisible?: boolean,
 };
 
@@ -53,6 +54,16 @@ export type TabsPropsT = {
   onChange?: OnChangeHandlerT,
   /** Sets the orientation of the Tab component */
   orientation?: $Values<typeof ORIENTATION>,
+  /**
+    Determines how to resolve Tab widths. This only applies to Tabs with a
+    horiztonal orientation.
+    - Set to "fixed" if you want each Tab to have the same width and take up
+      an equal proportion of the containing element's width. This option will
+      also disable scrolling.
+    - Set to "intrinsic" (default) to have each Tab take up as much width as
+      needed by its content. This option enables scrolling.
+  */
+  tabWidth?: $Values<typeof TAB_WIDTH>,
   /** Renders all tab content for SEO purposes regardless of tab active state */
   renderAll?: boolean,
   overrides?: TabsOverridesT,
@@ -86,4 +97,5 @@ export type TabPanelPropsT = {
 export type TabPropsT = TabPanelPropsT & {
   id?: string,
   $orientation?: $Values<typeof ORIENTATION>,
+  $tabWidth?: $Values<typeof TAB_WIDTH>,
 };

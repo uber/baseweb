@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {styled} from '../styles/index.js';
-import {ORIENTATION} from './constants.js';
+import {ORIENTATION, TAB_WIDTH} from './constants.js';
 import type {SharedStylePropsArgT} from './types.js';
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
@@ -24,12 +24,12 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
     $disabled,
     $active,
     $orientation,
+    $tabWidth,
     $isFocusVisible,
     $theme: {colors, sizing, typography},
   } = props;
   let style = {
     ...typography.LabelSmall,
-    flexShrink: '0',
     boxSizing: 'border-box',
     color: $active ? colors.contentPrimary : colors.tabColor,
     cursor: $disabled ? 'not-allowed' : 'pointer',
@@ -51,6 +51,13 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
           : '5px solid transparent'
         : null,
     display: 'inline-block',
+    flexShrink: $tabWidth === TAB_WIDTH.intrinsic ? '0' : null,
+    ...($tabWidth === TAB_WIDTH.fixed && $orientation === ORIENTATION.horizontal
+      ? {
+          flexGrow: '1',
+          textAlign: 'center',
+        }
+      : {}),
   };
   if (!$disabled) {
     style = {
@@ -70,29 +77,34 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
 export const TabBar = styled<SharedStylePropsArgT>('div', props => {
   const {
     $orientation,
+    $tabWidth,
     $theme: {colors},
   } = props;
   return {
     display: 'flex',
     flexDirection: $orientation === ORIENTATION.vertical ? 'column' : 'row',
-    overflowY: ORIENTATION.vertical ? 'scroll' : null,
-    overflowX: ORIENTATION.horizontal ? 'scroll' : null,
-    scrollSnapType: `${
-      $orientation === ORIENTATION.vertical ? 'y' : 'x'
-    } mandatory`,
     boxShadow:
       $orientation === ORIENTATION.vertical
         ? `inset -5px 0px ${colors.borderOpaque}`
         : `inset 0 -5px ${colors.borderOpaque}`,
-    // The following properties hide the scroll bar on various browsers:
-    // Chrome, Safari, etc
-    '::-webkit-scrollbar': {
-      display: 'none',
-    },
-    // IE, Edge
-    '-ms-overflow-style': 'none',
-    // Firefox
-    scrollbarWidth: 'none',
+    ...($tabWidth === TAB_WIDTH.intrinsic
+      ? {
+          overflowY: $orientation === ORIENTATION.vertical ? 'scroll' : null,
+          overflowX: $orientation === ORIENTATION.horizontal ? 'scroll' : null,
+          scrollSnapType: `${
+            $orientation === ORIENTATION.vertical ? 'y' : 'x'
+          } mandatory`,
+          // The following properties hide the scroll bar on various browsers:
+          // Chrome, Safari, etc
+          '::-webkit-scrollbar': {
+            display: 'none',
+          },
+          // IE, Edge
+          '-ms-overflow-style': 'none',
+          // Firefox
+          scrollbarWidth: 'none',
+        }
+      : {}),
   };
 });
 

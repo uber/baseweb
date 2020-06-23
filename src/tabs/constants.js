@@ -14,3 +14,8 @@ export const ORIENTATION = {
   horizontal: 'horizontal',
   vertical: 'vertical',
 };
+
+export const TAB_WIDTH = {
+  fixed: 'fixed',
+  intrinsic: 'intrinsic',
+};
