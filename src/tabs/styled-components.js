@@ -26,7 +26,7 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
     $orientation,
     $tabWidth,
     $isFocusVisible,
-    $theme: {colors, sizing, typography},
+    $theme: {colors, sizing, typography, direction},
   } = props;
   let style = {
     ...typography.LabelSmall,
@@ -40,16 +40,13 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
     scrollSnapAlign: 'start',
     outline: $isFocusVisible ? `5px solid ${colors.accent}` : 'none',
     outlineOffset: '-5px',
-    boxShadow:
-      $orientation === ORIENTATION.vertical && $active && !$isFocusVisible
-        ? `inset -5px 0 ${colors.primary}`
-        : null,
-    borderBottom:
-      $orientation === ORIENTATION.horizontal
-        ? $active && !$isFocusVisible
-          ? `5px solid ${colors.primary}`
-          : '5px solid transparent'
-        : null,
+    [$orientation === ORIENTATION.horizontal
+      ? 'borderBottom'
+      : direction === 'rtl'
+      ? 'borderLeft'
+      : 'borderRight']: `solid 5px ${
+      $active && !$isFocusVisible ? colors.primary : 'transparent'
+    }`,
     display: 'inline-block',
     flexShrink: $tabWidth === TAB_WIDTH.intrinsic ? '0' : null,
     ...($tabWidth === TAB_WIDTH.fixed && $orientation === ORIENTATION.horizontal
@@ -78,19 +75,21 @@ export const TabBar = styled<SharedStylePropsArgT>('div', props => {
   const {
     $orientation,
     $tabWidth,
-    $theme: {colors},
+    $theme: {colors, direction},
   } = props;
   return {
     display: 'flex',
     flexDirection: $orientation === ORIENTATION.vertical ? 'column' : 'row',
     boxShadow:
       $orientation === ORIENTATION.vertical
-        ? `inset -5px 0px ${colors.borderOpaque}`
+        ? direction === 'rtl'
+          ? `inset 5px 0px ${colors.borderOpaque}`
+          : `inset -5px 0px ${colors.borderOpaque}`
         : `inset 0 -5px ${colors.borderOpaque}`,
     ...($tabWidth === TAB_WIDTH.intrinsic
       ? {
-          overflowY: $orientation === ORIENTATION.vertical ? 'scroll' : null,
-          overflowX: $orientation === ORIENTATION.horizontal ? 'scroll' : null,
+          [$orientation === ORIENTATION.horizontal ? 'overflowX' : 'overflowY']:
+            $orientation === ORIENTATION.vertical ? 'scroll' : null,
           scrollSnapType: `${
             $orientation === ORIENTATION.vertical ? 'y' : 'x'
           } mandatory`,
