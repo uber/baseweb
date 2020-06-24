@@ -18,15 +18,18 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
       orientation="horizontal"
       overrides={Object {}}
       renderAll={true}
+      tabWidth="intrinsic"
     >
       <ForwardRef
         $disabled={false}
         $orientation="horizontal"
+        $tabWidth="intrinsic"
         data-baseweb="tabs"
       >
         <MockStyledComponent
           $disabled={false}
           $orientation="horizontal"
+          $tabWidth="intrinsic"
           data-baseweb="tabs"
           forwardedRef={null}
         >
@@ -41,27 +44,37 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
             <ForwardRef
               $disabled={false}
               $orientation="horizontal"
+              $tabWidth="intrinsic"
+              aria-orientation="horizontal"
               role="tablist"
             >
               <MockStyledComponent
                 $disabled={false}
                 $orientation="horizontal"
+                $tabWidth="intrinsic"
+                aria-orientation="horizontal"
                 forwardedRef={null}
                 role="tablist"
               >
                 <div
+                  aria-orientation="horizontal"
                   role="tablist"
                   styled-component="true"
                   test-style="{
   \\"display\\": \\"flex\\",
   \\"flexDirection\\": \\"row\\",
-  \\"paddingLeft\\": \\"$theme.sizing.scale400\\",
-  \\"paddingRight\\": \\"$theme.sizing.scale400\\",
-  \\"backgroundColor\\": \\"$theme.colors.tabBarFill\\"
+  \\"boxShadow\\": \\"inset 0 -5px $theme.colors.borderOpaque\\",
+  \\"overflowX\\": \\"scroll\\",
+  \\"::-webkit-scrollbar\\": {
+    \\"display\\": \\"none\\"
+  },
+  \\"-ms-overflow-style\\": \\"none\\",
+  \\"scrollbarWidth\\": \\"none\\"
 }"
                 >
                   <TabComponent
                     $orientation="horizontal"
+                    $tabWidth="intrinsic"
                     active={true}
                     disabled={false}
                     expanded={false}
@@ -78,6 +91,7 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                       $disabled={false}
                       $isFocusVisible={false}
                       $orientation="horizontal"
+                      $tabWidth="intrinsic"
                       aria-disabled={null}
                       aria-selected={true}
                       id="0"
@@ -93,9 +107,46 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                         $disabled={false}
                         $isFocusVisible={false}
                         $orientation="horizontal"
+                        $tabWidth="intrinsic"
                         aria-disabled={null}
                         aria-selected={true}
-                        forwardedRef={null}
+                        forwardedRef={
+                          Object {
+                            "current": <div
+                              aria-selected="true"
+                              id="0"
+                              role="tab"
+                              styled-component="true"
+                              tabindex="0"
+                              test-style="{
+  \\"fontFamily\\": \\"$theme.typography.LabelSmall.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.LabelSmall.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.LabelSmall.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.LabelSmall.lineHeight\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"cursor\\": \\"pointer\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale600\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale600\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale600\\",
+  \\"outline\\": \\"none\\",
+  \\"outlineOffset\\": \\"-5px\\",
+  \\"borderBottom\\": \\"solid 5px $theme.colors.primary\\",
+  \\"display\\": \\"inline-block\\",
+  \\"flexShrink\\": \\"0\\",
+  \\":focus\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  },
+  \\":hover\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  }
+}"
+                            >
+                              Tab Link 1
+                            </div>,
+                          }
+                        }
                         id="0"
                         onBlur={[Function]}
                         onClick={[Function]}
@@ -116,23 +167,22 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                           styled-component="true"
                           tabIndex={0}
                           test-style="{
-  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
-  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
-  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
-  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"fontFamily\\": \\"$theme.typography.LabelSmall.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.LabelSmall.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.LabelSmall.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.LabelSmall.lineHeight\\",
   \\"boxSizing\\": \\"border-box\\",
   \\"color\\": \\"$theme.colors.contentPrimary\\",
   \\"cursor\\": \\"pointer\\",
   \\"paddingTop\\": \\"$theme.sizing.scale600\\",
   \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
-  \\"paddingLeft\\": \\"$theme.sizing.scale300\\",
-  \\"paddingRight\\": \\"$theme.sizing.scale300\\",
-  \\"marginLeft\\": \\"$theme.sizing.scale200\\",
-  \\"marginRight\\": \\"$theme.sizing.scale200\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale600\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"outline\\": \\"none\\",
-  \\"outlineOffset\\": \\"-3px\\",
-  \\"borderBottom\\": \\"2px solid $theme.colors.primary\\",
+  \\"outlineOffset\\": \\"-5px\\",
+  \\"borderBottom\\": \\"solid 5px $theme.colors.primary\\",
   \\"display\\": \\"inline-block\\",
+  \\"flexShrink\\": \\"0\\",
   \\":focus\\": {
     \\"color\\": \\"$theme.colors.primary\\"
   },
@@ -148,6 +198,7 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                   </TabComponent>
                   <TabComponent
                     $orientation="horizontal"
+                    $tabWidth="intrinsic"
                     active={false}
                     disabled={false}
                     expanded={false}
@@ -164,6 +215,7 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                       $disabled={false}
                       $isFocusVisible={false}
                       $orientation="horizontal"
+                      $tabWidth="intrinsic"
                       aria-disabled={null}
                       aria-selected={false}
                       id="1"
@@ -179,9 +231,46 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                         $disabled={false}
                         $isFocusVisible={false}
                         $orientation="horizontal"
+                        $tabWidth="intrinsic"
                         aria-disabled={null}
                         aria-selected={false}
-                        forwardedRef={null}
+                        forwardedRef={
+                          Object {
+                            "current": <div
+                              aria-selected="false"
+                              id="1"
+                              role="tab"
+                              styled-component="true"
+                              tabindex="0"
+                              test-style="{
+  \\"fontFamily\\": \\"$theme.typography.LabelSmall.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.LabelSmall.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.LabelSmall.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.LabelSmall.lineHeight\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"color\\": \\"$theme.colors.tabColor\\",
+  \\"cursor\\": \\"pointer\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale600\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale600\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale600\\",
+  \\"outline\\": \\"none\\",
+  \\"outlineOffset\\": \\"-5px\\",
+  \\"borderBottom\\": \\"solid 5px transparent\\",
+  \\"display\\": \\"inline-block\\",
+  \\"flexShrink\\": \\"0\\",
+  \\":focus\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  },
+  \\":hover\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  }
+}"
+                            >
+                              Tab Link 2
+                            </div>,
+                          }
+                        }
                         id="1"
                         onBlur={[Function]}
                         onClick={[Function]}
@@ -202,23 +291,22 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                           styled-component="true"
                           tabIndex={0}
                           test-style="{
-  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
-  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
-  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
-  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"fontFamily\\": \\"$theme.typography.LabelSmall.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.LabelSmall.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.LabelSmall.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.LabelSmall.lineHeight\\",
   \\"boxSizing\\": \\"border-box\\",
   \\"color\\": \\"$theme.colors.tabColor\\",
   \\"cursor\\": \\"pointer\\",
   \\"paddingTop\\": \\"$theme.sizing.scale600\\",
   \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
-  \\"paddingLeft\\": \\"$theme.sizing.scale300\\",
-  \\"paddingRight\\": \\"$theme.sizing.scale300\\",
-  \\"marginLeft\\": \\"$theme.sizing.scale200\\",
-  \\"marginRight\\": \\"$theme.sizing.scale200\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale600\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"outline\\": \\"none\\",
-  \\"outlineOffset\\": \\"-3px\\",
-  \\"borderBottom\\": \\"2px solid transparent\\",
+  \\"outlineOffset\\": \\"-5px\\",
+  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\"display\\": \\"inline-block\\",
+  \\"flexShrink\\": \\"0\\",
   \\":focus\\": {
     \\"color\\": \\"$theme.colors.primary\\"
   },
@@ -234,6 +322,7 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                   </TabComponent>
                   <TabComponent
                     $orientation="horizontal"
+                    $tabWidth="intrinsic"
                     active={false}
                     disabled={false}
                     expanded={false}
@@ -250,6 +339,7 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                       $disabled={false}
                       $isFocusVisible={false}
                       $orientation="horizontal"
+                      $tabWidth="intrinsic"
                       aria-disabled={null}
                       aria-selected={false}
                       id="2"
@@ -265,9 +355,46 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                         $disabled={false}
                         $isFocusVisible={false}
                         $orientation="horizontal"
+                        $tabWidth="intrinsic"
                         aria-disabled={null}
                         aria-selected={false}
-                        forwardedRef={null}
+                        forwardedRef={
+                          Object {
+                            "current": <div
+                              aria-selected="false"
+                              id="2"
+                              role="tab"
+                              styled-component="true"
+                              tabindex="0"
+                              test-style="{
+  \\"fontFamily\\": \\"$theme.typography.LabelSmall.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.LabelSmall.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.LabelSmall.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.LabelSmall.lineHeight\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"color\\": \\"$theme.colors.tabColor\\",
+  \\"cursor\\": \\"pointer\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale600\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale600\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale600\\",
+  \\"outline\\": \\"none\\",
+  \\"outlineOffset\\": \\"-5px\\",
+  \\"borderBottom\\": \\"solid 5px transparent\\",
+  \\"display\\": \\"inline-block\\",
+  \\"flexShrink\\": \\"0\\",
+  \\":focus\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  },
+  \\":hover\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  }
+}"
+                            >
+                              Tab Link 3
+                            </div>,
+                          }
+                        }
                         id="2"
                         onBlur={[Function]}
                         onClick={[Function]}
@@ -288,23 +415,22 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
                           styled-component="true"
                           tabIndex={0}
                           test-style="{
-  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
-  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
-  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
-  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"fontFamily\\": \\"$theme.typography.LabelSmall.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.LabelSmall.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.LabelSmall.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.LabelSmall.lineHeight\\",
   \\"boxSizing\\": \\"border-box\\",
   \\"color\\": \\"$theme.colors.tabColor\\",
   \\"cursor\\": \\"pointer\\",
   \\"paddingTop\\": \\"$theme.sizing.scale600\\",
   \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
-  \\"paddingLeft\\": \\"$theme.sizing.scale300\\",
-  \\"paddingRight\\": \\"$theme.sizing.scale300\\",
-  \\"marginLeft\\": \\"$theme.sizing.scale200\\",
-  \\"marginRight\\": \\"$theme.sizing.scale200\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale600\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"outline\\": \\"none\\",
-  \\"outlineOffset\\": \\"-3px\\",
-  \\"borderBottom\\": \\"2px solid transparent\\",
+  \\"outlineOffset\\": \\"-5px\\",
+  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\"display\\": \\"inline-block\\",
+  \\"flexShrink\\": \\"0\\",
   \\":focus\\": {
     \\"color\\": \\"$theme.colors.primary\\"
   },
@@ -347,8 +473,8 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
   \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
   \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
   \\"display\\": \\"block\\",
-  \\"paddingLeft\\": \\"$theme.sizing.scale800\\",
-  \\"paddingRight\\": \\"$theme.sizing.scale800\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale600\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"paddingTop\\": \\"$theme.sizing.scale500\\",
   \\"paddingBottom\\": \\"$theme.sizing.scale500\\"
 }"
@@ -383,8 +509,8 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
   \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
   \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
   \\"display\\": \\"none\\",
-  \\"paddingLeft\\": \\"$theme.sizing.scale800\\",
-  \\"paddingRight\\": \\"$theme.sizing.scale800\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale600\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"paddingTop\\": \\"$theme.sizing.scale500\\",
   \\"paddingBottom\\": \\"$theme.sizing.scale500\\"
 }"
@@ -419,8 +545,8 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
   \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
   \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
   \\"display\\": \\"none\\",
-  \\"paddingLeft\\": \\"$theme.sizing.scale800\\",
-  \\"paddingRight\\": \\"$theme.sizing.scale800\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale600\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"paddingTop\\": \\"$theme.sizing.scale500\\",
   \\"paddingBottom\\": \\"$theme.sizing.scale500\\"
 }"
@@ -463,15 +589,18 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
       orientation="horizontal"
       overrides={Object {}}
       renderAll={false}
+      tabWidth="intrinsic"
     >
       <ForwardRef
         $disabled={false}
         $orientation="horizontal"
+        $tabWidth="intrinsic"
         data-baseweb="tabs"
       >
         <MockStyledComponent
           $disabled={false}
           $orientation="horizontal"
+          $tabWidth="intrinsic"
           data-baseweb="tabs"
           forwardedRef={null}
         >
@@ -486,27 +615,37 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
             <ForwardRef
               $disabled={false}
               $orientation="horizontal"
+              $tabWidth="intrinsic"
+              aria-orientation="horizontal"
               role="tablist"
             >
               <MockStyledComponent
                 $disabled={false}
                 $orientation="horizontal"
+                $tabWidth="intrinsic"
+                aria-orientation="horizontal"
                 forwardedRef={null}
                 role="tablist"
               >
                 <div
+                  aria-orientation="horizontal"
                   role="tablist"
                   styled-component="true"
                   test-style="{
   \\"display\\": \\"flex\\",
   \\"flexDirection\\": \\"row\\",
-  \\"paddingLeft\\": \\"$theme.sizing.scale400\\",
-  \\"paddingRight\\": \\"$theme.sizing.scale400\\",
-  \\"backgroundColor\\": \\"$theme.colors.tabBarFill\\"
+  \\"boxShadow\\": \\"inset 0 -5px $theme.colors.borderOpaque\\",
+  \\"overflowX\\": \\"scroll\\",
+  \\"::-webkit-scrollbar\\": {
+    \\"display\\": \\"none\\"
+  },
+  \\"-ms-overflow-style\\": \\"none\\",
+  \\"scrollbarWidth\\": \\"none\\"
 }"
                 >
                   <TabComponent
                     $orientation="horizontal"
+                    $tabWidth="intrinsic"
                     active={false}
                     disabled={false}
                     expanded={false}
@@ -523,6 +662,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                       $disabled={false}
                       $isFocusVisible={false}
                       $orientation="horizontal"
+                      $tabWidth="intrinsic"
                       aria-disabled={null}
                       aria-selected={false}
                       id="0"
@@ -538,9 +678,46 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                         $disabled={false}
                         $isFocusVisible={false}
                         $orientation="horizontal"
+                        $tabWidth="intrinsic"
                         aria-disabled={null}
                         aria-selected={false}
-                        forwardedRef={null}
+                        forwardedRef={
+                          Object {
+                            "current": <div
+                              aria-selected="false"
+                              id="0"
+                              role="tab"
+                              styled-component="true"
+                              tabindex="0"
+                              test-style="{
+  \\"fontFamily\\": \\"$theme.typography.LabelSmall.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.LabelSmall.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.LabelSmall.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.LabelSmall.lineHeight\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"color\\": \\"$theme.colors.tabColor\\",
+  \\"cursor\\": \\"pointer\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale600\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale600\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale600\\",
+  \\"outline\\": \\"none\\",
+  \\"outlineOffset\\": \\"-5px\\",
+  \\"borderBottom\\": \\"solid 5px transparent\\",
+  \\"display\\": \\"inline-block\\",
+  \\"flexShrink\\": \\"0\\",
+  \\":focus\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  },
+  \\":hover\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  }
+}"
+                            >
+                              Tab Link 1
+                            </div>,
+                          }
+                        }
                         id="0"
                         onBlur={[Function]}
                         onClick={[Function]}
@@ -561,23 +738,22 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                           styled-component="true"
                           tabIndex={0}
                           test-style="{
-  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
-  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
-  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
-  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"fontFamily\\": \\"$theme.typography.LabelSmall.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.LabelSmall.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.LabelSmall.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.LabelSmall.lineHeight\\",
   \\"boxSizing\\": \\"border-box\\",
   \\"color\\": \\"$theme.colors.tabColor\\",
   \\"cursor\\": \\"pointer\\",
   \\"paddingTop\\": \\"$theme.sizing.scale600\\",
   \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
-  \\"paddingLeft\\": \\"$theme.sizing.scale300\\",
-  \\"paddingRight\\": \\"$theme.sizing.scale300\\",
-  \\"marginLeft\\": \\"$theme.sizing.scale200\\",
-  \\"marginRight\\": \\"$theme.sizing.scale200\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale600\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"outline\\": \\"none\\",
-  \\"outlineOffset\\": \\"-3px\\",
-  \\"borderBottom\\": \\"2px solid transparent\\",
+  \\"outlineOffset\\": \\"-5px\\",
+  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\"display\\": \\"inline-block\\",
+  \\"flexShrink\\": \\"0\\",
   \\":focus\\": {
     \\"color\\": \\"$theme.colors.primary\\"
   },
@@ -593,6 +769,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                   </TabComponent>
                   <TabComponent
                     $orientation="horizontal"
+                    $tabWidth="intrinsic"
                     active={true}
                     disabled={false}
                     expanded={false}
@@ -609,6 +786,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                       $disabled={false}
                       $isFocusVisible={false}
                       $orientation="horizontal"
+                      $tabWidth="intrinsic"
                       aria-disabled={null}
                       aria-selected={true}
                       id="1"
@@ -624,9 +802,46 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                         $disabled={false}
                         $isFocusVisible={false}
                         $orientation="horizontal"
+                        $tabWidth="intrinsic"
                         aria-disabled={null}
                         aria-selected={true}
-                        forwardedRef={null}
+                        forwardedRef={
+                          Object {
+                            "current": <div
+                              aria-selected="true"
+                              id="1"
+                              role="tab"
+                              styled-component="true"
+                              tabindex="0"
+                              test-style="{
+  \\"fontFamily\\": \\"$theme.typography.LabelSmall.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.LabelSmall.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.LabelSmall.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.LabelSmall.lineHeight\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"cursor\\": \\"pointer\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale600\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale600\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale600\\",
+  \\"outline\\": \\"none\\",
+  \\"outlineOffset\\": \\"-5px\\",
+  \\"borderBottom\\": \\"solid 5px $theme.colors.primary\\",
+  \\"display\\": \\"inline-block\\",
+  \\"flexShrink\\": \\"0\\",
+  \\":focus\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  },
+  \\":hover\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  }
+}"
+                            >
+                              Tab Link 2
+                            </div>,
+                          }
+                        }
                         id="1"
                         onBlur={[Function]}
                         onClick={[Function]}
@@ -647,23 +862,22 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                           styled-component="true"
                           tabIndex={0}
                           test-style="{
-  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
-  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
-  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
-  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"fontFamily\\": \\"$theme.typography.LabelSmall.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.LabelSmall.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.LabelSmall.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.LabelSmall.lineHeight\\",
   \\"boxSizing\\": \\"border-box\\",
   \\"color\\": \\"$theme.colors.contentPrimary\\",
   \\"cursor\\": \\"pointer\\",
   \\"paddingTop\\": \\"$theme.sizing.scale600\\",
   \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
-  \\"paddingLeft\\": \\"$theme.sizing.scale300\\",
-  \\"paddingRight\\": \\"$theme.sizing.scale300\\",
-  \\"marginLeft\\": \\"$theme.sizing.scale200\\",
-  \\"marginRight\\": \\"$theme.sizing.scale200\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale600\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"outline\\": \\"none\\",
-  \\"outlineOffset\\": \\"-3px\\",
-  \\"borderBottom\\": \\"2px solid $theme.colors.primary\\",
+  \\"outlineOffset\\": \\"-5px\\",
+  \\"borderBottom\\": \\"solid 5px $theme.colors.primary\\",
   \\"display\\": \\"inline-block\\",
+  \\"flexShrink\\": \\"0\\",
   \\":focus\\": {
     \\"color\\": \\"$theme.colors.primary\\"
   },
@@ -679,6 +893,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                   </TabComponent>
                   <TabComponent
                     $orientation="horizontal"
+                    $tabWidth="intrinsic"
                     active={false}
                     disabled={false}
                     expanded={false}
@@ -695,6 +910,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                       $disabled={false}
                       $isFocusVisible={false}
                       $orientation="horizontal"
+                      $tabWidth="intrinsic"
                       aria-disabled={null}
                       aria-selected={false}
                       id="2"
@@ -710,9 +926,46 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                         $disabled={false}
                         $isFocusVisible={false}
                         $orientation="horizontal"
+                        $tabWidth="intrinsic"
                         aria-disabled={null}
                         aria-selected={false}
-                        forwardedRef={null}
+                        forwardedRef={
+                          Object {
+                            "current": <div
+                              aria-selected="false"
+                              id="2"
+                              role="tab"
+                              styled-component="true"
+                              tabindex="0"
+                              test-style="{
+  \\"fontFamily\\": \\"$theme.typography.LabelSmall.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.LabelSmall.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.LabelSmall.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.LabelSmall.lineHeight\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"color\\": \\"$theme.colors.tabColor\\",
+  \\"cursor\\": \\"pointer\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale600\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale600\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale600\\",
+  \\"outline\\": \\"none\\",
+  \\"outlineOffset\\": \\"-5px\\",
+  \\"borderBottom\\": \\"solid 5px transparent\\",
+  \\"display\\": \\"inline-block\\",
+  \\"flexShrink\\": \\"0\\",
+  \\":focus\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  },
+  \\":hover\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  }
+}"
+                            >
+                              Tab Link 3
+                            </div>,
+                          }
+                        }
                         id="2"
                         onBlur={[Function]}
                         onClick={[Function]}
@@ -733,23 +986,22 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
                           styled-component="true"
                           tabIndex={0}
                           test-style="{
-  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
-  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
-  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
-  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"fontFamily\\": \\"$theme.typography.LabelSmall.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.LabelSmall.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.LabelSmall.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.LabelSmall.lineHeight\\",
   \\"boxSizing\\": \\"border-box\\",
   \\"color\\": \\"$theme.colors.tabColor\\",
   \\"cursor\\": \\"pointer\\",
   \\"paddingTop\\": \\"$theme.sizing.scale600\\",
   \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
-  \\"paddingLeft\\": \\"$theme.sizing.scale300\\",
-  \\"paddingRight\\": \\"$theme.sizing.scale300\\",
-  \\"marginLeft\\": \\"$theme.sizing.scale200\\",
-  \\"marginRight\\": \\"$theme.sizing.scale200\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale600\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"outline\\": \\"none\\",
-  \\"outlineOffset\\": \\"-3px\\",
-  \\"borderBottom\\": \\"2px solid transparent\\",
+  \\"outlineOffset\\": \\"-5px\\",
+  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\"display\\": \\"inline-block\\",
+  \\"flexShrink\\": \\"0\\",
   \\":focus\\": {
     \\"color\\": \\"$theme.colors.primary\\"
   },
@@ -792,8 +1044,8 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
   \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
   \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
   \\"display\\": \\"none\\",
-  \\"paddingLeft\\": \\"$theme.sizing.scale800\\",
-  \\"paddingRight\\": \\"$theme.sizing.scale800\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale600\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"paddingTop\\": \\"$theme.sizing.scale500\\",
   \\"paddingBottom\\": \\"$theme.sizing.scale500\\"
 }"
@@ -826,8 +1078,8 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
   \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
   \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
   \\"display\\": \\"block\\",
-  \\"paddingLeft\\": \\"$theme.sizing.scale800\\",
-  \\"paddingRight\\": \\"$theme.sizing.scale800\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale600\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"paddingTop\\": \\"$theme.sizing.scale500\\",
   \\"paddingBottom\\": \\"$theme.sizing.scale500\\"
 }"
@@ -862,8 +1114,8 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
   \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
   \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
   \\"display\\": \\"none\\",
-  \\"paddingLeft\\": \\"$theme.sizing.scale800\\",
-  \\"paddingRight\\": \\"$theme.sizing.scale800\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale600\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"paddingTop\\": \\"$theme.sizing.scale500\\",
   \\"paddingBottom\\": \\"$theme.sizing.scale500\\"
 }"
@@ -893,15 +1145,18 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
       orientation="horizontal"
       overrides={Object {}}
       renderAll={false}
+      tabWidth="intrinsic"
     >
       <ForwardRef
         $disabled={false}
         $orientation="horizontal"
+        $tabWidth="intrinsic"
         data-baseweb="tabs"
       >
         <MockStyledComponent
           $disabled={false}
           $orientation="horizontal"
+          $tabWidth="intrinsic"
           data-baseweb="tabs"
           forwardedRef={null}
         >
@@ -916,27 +1171,37 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
             <ForwardRef
               $disabled={false}
               $orientation="horizontal"
+              $tabWidth="intrinsic"
+              aria-orientation="horizontal"
               role="tablist"
             >
               <MockStyledComponent
                 $disabled={false}
                 $orientation="horizontal"
+                $tabWidth="intrinsic"
+                aria-orientation="horizontal"
                 forwardedRef={null}
                 role="tablist"
               >
                 <div
+                  aria-orientation="horizontal"
                   role="tablist"
                   styled-component="true"
                   test-style="{
   \\"display\\": \\"flex\\",
   \\"flexDirection\\": \\"row\\",
-  \\"paddingLeft\\": \\"$theme.sizing.scale400\\",
-  \\"paddingRight\\": \\"$theme.sizing.scale400\\",
-  \\"backgroundColor\\": \\"$theme.colors.tabBarFill\\"
+  \\"boxShadow\\": \\"inset 0 -5px $theme.colors.borderOpaque\\",
+  \\"overflowX\\": \\"scroll\\",
+  \\"::-webkit-scrollbar\\": {
+    \\"display\\": \\"none\\"
+  },
+  \\"-ms-overflow-style\\": \\"none\\",
+  \\"scrollbarWidth\\": \\"none\\"
 }"
                 >
                   <TabComponent
                     $orientation="horizontal"
+                    $tabWidth="intrinsic"
                     active={true}
                     disabled={false}
                     expanded={false}
@@ -953,6 +1218,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                       $disabled={false}
                       $isFocusVisible={false}
                       $orientation="horizontal"
+                      $tabWidth="intrinsic"
                       aria-disabled={null}
                       aria-selected={true}
                       id="0"
@@ -968,9 +1234,46 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                         $disabled={false}
                         $isFocusVisible={false}
                         $orientation="horizontal"
+                        $tabWidth="intrinsic"
                         aria-disabled={null}
                         aria-selected={true}
-                        forwardedRef={null}
+                        forwardedRef={
+                          Object {
+                            "current": <div
+                              aria-selected="true"
+                              id="0"
+                              role="tab"
+                              styled-component="true"
+                              tabindex="0"
+                              test-style="{
+  \\"fontFamily\\": \\"$theme.typography.LabelSmall.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.LabelSmall.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.LabelSmall.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.LabelSmall.lineHeight\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"color\\": \\"$theme.colors.contentPrimary\\",
+  \\"cursor\\": \\"pointer\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale600\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale600\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale600\\",
+  \\"outline\\": \\"none\\",
+  \\"outlineOffset\\": \\"-5px\\",
+  \\"borderBottom\\": \\"solid 5px $theme.colors.primary\\",
+  \\"display\\": \\"inline-block\\",
+  \\"flexShrink\\": \\"0\\",
+  \\":focus\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  },
+  \\":hover\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  }
+}"
+                            >
+                              Tab Link 1
+                            </div>,
+                          }
+                        }
                         id="0"
                         onBlur={[Function]}
                         onClick={[Function]}
@@ -991,23 +1294,22 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                           styled-component="true"
                           tabIndex={0}
                           test-style="{
-  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
-  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
-  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
-  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"fontFamily\\": \\"$theme.typography.LabelSmall.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.LabelSmall.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.LabelSmall.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.LabelSmall.lineHeight\\",
   \\"boxSizing\\": \\"border-box\\",
   \\"color\\": \\"$theme.colors.contentPrimary\\",
   \\"cursor\\": \\"pointer\\",
   \\"paddingTop\\": \\"$theme.sizing.scale600\\",
   \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
-  \\"paddingLeft\\": \\"$theme.sizing.scale300\\",
-  \\"paddingRight\\": \\"$theme.sizing.scale300\\",
-  \\"marginLeft\\": \\"$theme.sizing.scale200\\",
-  \\"marginRight\\": \\"$theme.sizing.scale200\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale600\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"outline\\": \\"none\\",
-  \\"outlineOffset\\": \\"-3px\\",
-  \\"borderBottom\\": \\"2px solid $theme.colors.primary\\",
+  \\"outlineOffset\\": \\"-5px\\",
+  \\"borderBottom\\": \\"solid 5px $theme.colors.primary\\",
   \\"display\\": \\"inline-block\\",
+  \\"flexShrink\\": \\"0\\",
   \\":focus\\": {
     \\"color\\": \\"$theme.colors.primary\\"
   },
@@ -1023,6 +1325,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                   </TabComponent>
                   <TabComponent
                     $orientation="horizontal"
+                    $tabWidth="intrinsic"
                     active={false}
                     disabled={false}
                     expanded={false}
@@ -1039,6 +1342,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                       $disabled={false}
                       $isFocusVisible={false}
                       $orientation="horizontal"
+                      $tabWidth="intrinsic"
                       aria-disabled={null}
                       aria-selected={false}
                       id="1"
@@ -1054,9 +1358,46 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                         $disabled={false}
                         $isFocusVisible={false}
                         $orientation="horizontal"
+                        $tabWidth="intrinsic"
                         aria-disabled={null}
                         aria-selected={false}
-                        forwardedRef={null}
+                        forwardedRef={
+                          Object {
+                            "current": <div
+                              aria-selected="false"
+                              id="1"
+                              role="tab"
+                              styled-component="true"
+                              tabindex="0"
+                              test-style="{
+  \\"fontFamily\\": \\"$theme.typography.LabelSmall.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.LabelSmall.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.LabelSmall.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.LabelSmall.lineHeight\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"color\\": \\"$theme.colors.tabColor\\",
+  \\"cursor\\": \\"pointer\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale600\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale600\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale600\\",
+  \\"outline\\": \\"none\\",
+  \\"outlineOffset\\": \\"-5px\\",
+  \\"borderBottom\\": \\"solid 5px transparent\\",
+  \\"display\\": \\"inline-block\\",
+  \\"flexShrink\\": \\"0\\",
+  \\":focus\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  },
+  \\":hover\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  }
+}"
+                            >
+                              Tab Link 2
+                            </div>,
+                          }
+                        }
                         id="1"
                         onBlur={[Function]}
                         onClick={[Function]}
@@ -1077,23 +1418,22 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                           styled-component="true"
                           tabIndex={0}
                           test-style="{
-  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
-  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
-  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
-  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"fontFamily\\": \\"$theme.typography.LabelSmall.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.LabelSmall.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.LabelSmall.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.LabelSmall.lineHeight\\",
   \\"boxSizing\\": \\"border-box\\",
   \\"color\\": \\"$theme.colors.tabColor\\",
   \\"cursor\\": \\"pointer\\",
   \\"paddingTop\\": \\"$theme.sizing.scale600\\",
   \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
-  \\"paddingLeft\\": \\"$theme.sizing.scale300\\",
-  \\"paddingRight\\": \\"$theme.sizing.scale300\\",
-  \\"marginLeft\\": \\"$theme.sizing.scale200\\",
-  \\"marginRight\\": \\"$theme.sizing.scale200\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale600\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"outline\\": \\"none\\",
-  \\"outlineOffset\\": \\"-3px\\",
-  \\"borderBottom\\": \\"2px solid transparent\\",
+  \\"outlineOffset\\": \\"-5px\\",
+  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\"display\\": \\"inline-block\\",
+  \\"flexShrink\\": \\"0\\",
   \\":focus\\": {
     \\"color\\": \\"$theme.colors.primary\\"
   },
@@ -1109,6 +1449,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                   </TabComponent>
                   <TabComponent
                     $orientation="horizontal"
+                    $tabWidth="intrinsic"
                     active={false}
                     disabled={false}
                     expanded={false}
@@ -1125,6 +1466,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                       $disabled={false}
                       $isFocusVisible={false}
                       $orientation="horizontal"
+                      $tabWidth="intrinsic"
                       aria-disabled={null}
                       aria-selected={false}
                       id="2"
@@ -1140,9 +1482,46 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                         $disabled={false}
                         $isFocusVisible={false}
                         $orientation="horizontal"
+                        $tabWidth="intrinsic"
                         aria-disabled={null}
                         aria-selected={false}
-                        forwardedRef={null}
+                        forwardedRef={
+                          Object {
+                            "current": <div
+                              aria-selected="false"
+                              id="2"
+                              role="tab"
+                              styled-component="true"
+                              tabindex="0"
+                              test-style="{
+  \\"fontFamily\\": \\"$theme.typography.LabelSmall.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.LabelSmall.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.LabelSmall.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.LabelSmall.lineHeight\\",
+  \\"boxSizing\\": \\"border-box\\",
+  \\"color\\": \\"$theme.colors.tabColor\\",
+  \\"cursor\\": \\"pointer\\",
+  \\"paddingTop\\": \\"$theme.sizing.scale600\\",
+  \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale600\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale600\\",
+  \\"outline\\": \\"none\\",
+  \\"outlineOffset\\": \\"-5px\\",
+  \\"borderBottom\\": \\"solid 5px transparent\\",
+  \\"display\\": \\"inline-block\\",
+  \\"flexShrink\\": \\"0\\",
+  \\":focus\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  },
+  \\":hover\\": {
+    \\"color\\": \\"$theme.colors.primary\\"
+  }
+}"
+                            >
+                              Tab Link 3
+                            </div>,
+                          }
+                        }
                         id="2"
                         onBlur={[Function]}
                         onClick={[Function]}
@@ -1163,23 +1542,22 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
                           styled-component="true"
                           tabIndex={0}
                           test-style="{
-  \\"fontFamily\\": \\"$theme.typography.font200.fontFamily\\",
-  \\"fontSize\\": \\"$theme.typography.font200.fontSize\\",
-  \\"fontWeight\\": \\"$theme.typography.font200.fontWeight\\",
-  \\"lineHeight\\": \\"$theme.typography.font200.lineHeight\\",
+  \\"fontFamily\\": \\"$theme.typography.LabelSmall.fontFamily\\",
+  \\"fontSize\\": \\"$theme.typography.LabelSmall.fontSize\\",
+  \\"fontWeight\\": \\"$theme.typography.LabelSmall.fontWeight\\",
+  \\"lineHeight\\": \\"$theme.typography.LabelSmall.lineHeight\\",
   \\"boxSizing\\": \\"border-box\\",
   \\"color\\": \\"$theme.colors.tabColor\\",
   \\"cursor\\": \\"pointer\\",
   \\"paddingTop\\": \\"$theme.sizing.scale600\\",
   \\"paddingBottom\\": \\"$theme.sizing.scale600\\",
-  \\"paddingLeft\\": \\"$theme.sizing.scale300\\",
-  \\"paddingRight\\": \\"$theme.sizing.scale300\\",
-  \\"marginLeft\\": \\"$theme.sizing.scale200\\",
-  \\"marginRight\\": \\"$theme.sizing.scale200\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale600\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"outline\\": \\"none\\",
-  \\"outlineOffset\\": \\"-3px\\",
-  \\"borderBottom\\": \\"2px solid transparent\\",
+  \\"outlineOffset\\": \\"-5px\\",
+  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\"display\\": \\"inline-block\\",
+  \\"flexShrink\\": \\"0\\",
   \\":focus\\": {
     \\"color\\": \\"$theme.colors.primary\\"
   },
@@ -1222,8 +1600,8 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
   \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
   \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
   \\"display\\": \\"block\\",
-  \\"paddingLeft\\": \\"$theme.sizing.scale800\\",
-  \\"paddingRight\\": \\"$theme.sizing.scale800\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale600\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"paddingTop\\": \\"$theme.sizing.scale500\\",
   \\"paddingBottom\\": \\"$theme.sizing.scale500\\"
 }"
@@ -1258,8 +1636,8 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
   \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
   \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
   \\"display\\": \\"none\\",
-  \\"paddingLeft\\": \\"$theme.sizing.scale800\\",
-  \\"paddingRight\\": \\"$theme.sizing.scale800\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale600\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"paddingTop\\": \\"$theme.sizing.scale500\\",
   \\"paddingBottom\\": \\"$theme.sizing.scale500\\"
 }"
@@ -1292,8 +1670,8 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
   \\"fontWeight\\": \\"$theme.typography.font300.fontWeight\\",
   \\"lineHeight\\": \\"$theme.typography.font300.lineHeight\\",
   \\"display\\": \\"none\\",
-  \\"paddingLeft\\": \\"$theme.sizing.scale800\\",
-  \\"paddingRight\\": \\"$theme.sizing.scale800\\",
+  \\"paddingLeft\\": \\"$theme.sizing.scale600\\",
+  \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"paddingTop\\": \\"$theme.sizing.scale500\\",
   \\"paddingBottom\\": \\"$theme.sizing.scale500\\"
 }"

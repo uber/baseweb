@@ -6,6 +6,7 @@ Object {
   "$disabled": false,
   "$isFocusVisible": false,
   "$orientation": undefined,
+  "$tabWidth": undefined,
   "aria-disabled": null,
   "aria-selected": true,
   "children": "title",
