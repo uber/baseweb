@@ -176,7 +176,7 @@ const routes = [
             itemId: '/components/side-nav',
           },
           {
-            title: 'Tab',
+            title: 'Tabs',
             itemId: '/components/tabs',
           },
         ],
