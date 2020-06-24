@@ -38,8 +38,8 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
     paddingLeft: sizing.scale600,
     paddingRight: sizing.scale600,
     scrollSnapAlign: 'start',
-    outline: $isFocusVisible ? `3px solid ${colors.accent}` : 'none',
-    outlineOffset: '-3px',
+    outline: $isFocusVisible ? `5px solid ${colors.accent}` : 'none',
+    outlineOffset: '-5px',
     boxShadow:
       $orientation === ORIENTATION.vertical && $active && !$isFocusVisible
         ? `inset -5px 0 ${colors.primary}`
