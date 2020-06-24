@@ -39,13 +39,6 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
     paddingRight: sizing.scale600,
     outline: $isFocusVisible ? `5px solid ${colors.accent}` : 'none',
     outlineOffset: '-5px',
-    [$orientation === ORIENTATION.horizontal
-      ? 'borderBottom'
-      : direction === 'rtl'
-      ? 'borderLeft'
-      : 'borderRight']: `solid 5px ${
-      $active && !$isFocusVisible ? colors.primary : 'transparent'
-    }`,
     display: 'inline-block',
     flexShrink: $tabWidth === TAB_WIDTH.intrinsic ? '0' : null,
     ...($tabWidth === TAB_WIDTH.fixed && $orientation === ORIENTATION.horizontal
@@ -55,6 +48,18 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
         }
       : {}),
   };
+  // Styling for the active highlight.
+  // Flow requires a conditional property be assigned in this manner.
+  // Read more here: https://medium.com/flow-type/spreads-common-errors-fixes-9701012e9d58
+  style[
+    $orientation === ORIENTATION.horizontal
+      ? 'borderBottom'
+      : direction === 'rtl'
+      ? 'borderLeft'
+      : 'borderRight'
+  ] = `solid 5px ${
+    $active && !$isFocusVisible ? colors.primary : 'transparent'
+  }`;
   if (!$disabled) {
     style = {
       ...style,
@@ -87,9 +92,8 @@ export const TabBar = styled<SharedStylePropsArgT>('div', props => {
         : `inset 0 -5px ${colors.borderOpaque}`,
     ...($tabWidth === TAB_WIDTH.intrinsic
       ? {
-          [$orientation === ORIENTATION.horizontal
-            ? 'overflowX'
-            : 'overflowY']: 'scroll',
+          overflowX: $orientation === ORIENTATION.horizontal ? 'scroll' : null,
+          overflowY: $orientation === ORIENTATION.vertical ? 'scroll' : null,
           // The following properties hide the scroll bar on various browsers:
           // Chrome, Safari, etc
           '::-webkit-scrollbar': {
