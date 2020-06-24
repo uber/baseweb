@@ -4,7 +4,9 @@ import {Tabs, Tab, TAB_WIDTH} from 'baseui/tabs';
 const content = ['Tab Content 1', 'Tab Content 2', 'Tab Content 3'];
 
 export default function TabWidthExample() {
-  const [activeKey, setActiveKey] = React.useState('0');
+  const [activeKey, setActiveKey] = React.useState<string | number>(
+    '0',
+  );
   return (
     <Tabs
       activeKey={activeKey}

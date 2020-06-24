@@ -9,6 +9,10 @@ export interface ORIENTATION {
 export interface STATE_CHANGE_TYPE {
   change: 'change';
 }
+export interface TAB_WIDTH {
+  fixed: 'fixed';
+  intrinsic: 'intrinsic';
+}
 
 export interface State {
   activeKey: React.Key;
@@ -33,6 +37,7 @@ export interface TabsProps {
   renderAll?: boolean;
   onChange?: (args: {activeKey: React.Key}) => any;
   orientation?: ORIENTATION[keyof ORIENTATION];
+  tabWidth?: TAB_WIDTH[keyof TAB_WIDTH];
   overrides?: TabsOverrides<SharedProps & {$active?: boolean}>;
 }
 
@@ -62,6 +67,7 @@ export interface SharedProps {
   $disabled?: boolean;
   $active?: boolean;
   $orientation?: ORIENTATION[keyof ORIENTATION];
+  $tabWidth?: TAB_WIDTH[keyof TAB_WIDTH];
 }
 
 export interface TabProps {
@@ -76,6 +82,7 @@ export interface TabProps {
   title?: React.ReactNode;
   id?: string;
   $orientation?: ORIENTATION[keyof ORIENTATION];
+  $tabWidth?: TAB_WIDTH[keyof TAB_WIDTH];
 }
 
 export class Tab extends React.Component<TabProps> {
@@ -91,3 +98,4 @@ export const StyledTabContent: StyletronComponent<any>;
 
 export const ORIENTATION: ORIENTATION;
 export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
+export const TAB_WIDTH: TAB_WIDTH;
