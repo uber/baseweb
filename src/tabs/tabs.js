@@ -122,7 +122,12 @@ export default class Tabs extends React.Component<TabsPropsT> {
 
     return (
       <Root data-baseweb="tabs" {...sharedProps} {...rootProps}>
-        <TabBar role="tablist" {...sharedProps} {...tabBarProps}>
+        <TabBar
+          role="tablist"
+          aria-orientation={this.props.orientation}
+          {...sharedProps}
+          {...tabBarProps}
+        >
           {this.getTabs()}
         </TabBar>
         {this.getPanels()}
