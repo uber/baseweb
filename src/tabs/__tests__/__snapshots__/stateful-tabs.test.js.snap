@@ -65,6 +65,7 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
   \\"flexDirection\\": \\"row\\",
   \\"boxShadow\\": \\"inset 0 -5px $theme.colors.borderOpaque\\",
   \\"overflowX\\": \\"scroll\\",
+  \\"overflowY\\": null,
   \\"::-webkit-scrollbar\\": {
     \\"display\\": \\"none\\"
   },
@@ -132,9 +133,9 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
   \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"outline\\": \\"none\\",
   \\"outlineOffset\\": \\"-5px\\",
-  \\"borderBottom\\": \\"solid 5px $theme.colors.primary\\",
   \\"display\\": \\"inline-block\\",
   \\"flexShrink\\": \\"0\\",
+  \\"borderBottom\\": \\"solid 5px $theme.colors.primary\\",
   \\":focus\\": {
     \\"color\\": \\"$theme.colors.primary\\"
   },
@@ -180,9 +181,9 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
   \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"outline\\": \\"none\\",
   \\"outlineOffset\\": \\"-5px\\",
-  \\"borderBottom\\": \\"solid 5px $theme.colors.primary\\",
   \\"display\\": \\"inline-block\\",
   \\"flexShrink\\": \\"0\\",
+  \\"borderBottom\\": \\"solid 5px $theme.colors.primary\\",
   \\":focus\\": {
     \\"color\\": \\"$theme.colors.primary\\"
   },
@@ -256,9 +257,9 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
   \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"outline\\": \\"none\\",
   \\"outlineOffset\\": \\"-5px\\",
-  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\"display\\": \\"inline-block\\",
   \\"flexShrink\\": \\"0\\",
+  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\":focus\\": {
     \\"color\\": \\"$theme.colors.primary\\"
   },
@@ -304,9 +305,9 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
   \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"outline\\": \\"none\\",
   \\"outlineOffset\\": \\"-5px\\",
-  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\"display\\": \\"inline-block\\",
   \\"flexShrink\\": \\"0\\",
+  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\":focus\\": {
     \\"color\\": \\"$theme.colors.primary\\"
   },
@@ -380,9 +381,9 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
   \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"outline\\": \\"none\\",
   \\"outlineOffset\\": \\"-5px\\",
-  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\"display\\": \\"inline-block\\",
   \\"flexShrink\\": \\"0\\",
+  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\":focus\\": {
     \\"color\\": \\"$theme.colors.primary\\"
   },
@@ -428,9 +429,9 @@ exports[`StatefulTabs basic render w/ SEO: Stateful tabs render all tab content 
   \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"outline\\": \\"none\\",
   \\"outlineOffset\\": \\"-5px\\",
-  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\"display\\": \\"inline-block\\",
   \\"flexShrink\\": \\"0\\",
+  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\":focus\\": {
     \\"color\\": \\"$theme.colors.primary\\"
   },
@@ -636,6 +637,7 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
   \\"flexDirection\\": \\"row\\",
   \\"boxShadow\\": \\"inset 0 -5px $theme.colors.borderOpaque\\",
   \\"overflowX\\": \\"scroll\\",
+  \\"overflowY\\": null,
   \\"::-webkit-scrollbar\\": {
     \\"display\\": \\"none\\"
   },
@@ -703,9 +705,9 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
   \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"outline\\": \\"none\\",
   \\"outlineOffset\\": \\"-5px\\",
-  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\"display\\": \\"inline-block\\",
   \\"flexShrink\\": \\"0\\",
+  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\":focus\\": {
     \\"color\\": \\"$theme.colors.primary\\"
   },
@@ -751,9 +753,9 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
   \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"outline\\": \\"none\\",
   \\"outlineOffset\\": \\"-5px\\",
-  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\"display\\": \\"inline-block\\",
   \\"flexShrink\\": \\"0\\",
+  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\":focus\\": {
     \\"color\\": \\"$theme.colors.primary\\"
   },
@@ -827,9 +829,9 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
   \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"outline\\": \\"none\\",
   \\"outlineOffset\\": \\"-5px\\",
-  \\"borderBottom\\": \\"solid 5px $theme.colors.primary\\",
   \\"display\\": \\"inline-block\\",
   \\"flexShrink\\": \\"0\\",
+  \\"borderBottom\\": \\"solid 5px $theme.colors.primary\\",
   \\":focus\\": {
     \\"color\\": \\"$theme.colors.primary\\"
   },
@@ -875,9 +877,9 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
   \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"outline\\": \\"none\\",
   \\"outlineOffset\\": \\"-5px\\",
-  \\"borderBottom\\": \\"solid 5px $theme.colors.primary\\",
   \\"display\\": \\"inline-block\\",
   \\"flexShrink\\": \\"0\\",
+  \\"borderBottom\\": \\"solid 5px $theme.colors.primary\\",
   \\":focus\\": {
     \\"color\\": \\"$theme.colors.primary\\"
   },
@@ -951,9 +953,9 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
   \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"outline\\": \\"none\\",
   \\"outlineOffset\\": \\"-5px\\",
-  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\"display\\": \\"inline-block\\",
   \\"flexShrink\\": \\"0\\",
+  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\":focus\\": {
     \\"color\\": \\"$theme.colors.primary\\"
   },
@@ -999,9 +1001,9 @@ exports[`StatefulTabs basic render with initial state: Stateful tabs render corr
   \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"outline\\": \\"none\\",
   \\"outlineOffset\\": \\"-5px\\",
-  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\"display\\": \\"inline-block\\",
   \\"flexShrink\\": \\"0\\",
+  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\":focus\\": {
     \\"color\\": \\"$theme.colors.primary\\"
   },
@@ -1192,6 +1194,7 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
   \\"flexDirection\\": \\"row\\",
   \\"boxShadow\\": \\"inset 0 -5px $theme.colors.borderOpaque\\",
   \\"overflowX\\": \\"scroll\\",
+  \\"overflowY\\": null,
   \\"::-webkit-scrollbar\\": {
     \\"display\\": \\"none\\"
   },
@@ -1259,9 +1262,9 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
   \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"outline\\": \\"none\\",
   \\"outlineOffset\\": \\"-5px\\",
-  \\"borderBottom\\": \\"solid 5px $theme.colors.primary\\",
   \\"display\\": \\"inline-block\\",
   \\"flexShrink\\": \\"0\\",
+  \\"borderBottom\\": \\"solid 5px $theme.colors.primary\\",
   \\":focus\\": {
     \\"color\\": \\"$theme.colors.primary\\"
   },
@@ -1307,9 +1310,9 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
   \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"outline\\": \\"none\\",
   \\"outlineOffset\\": \\"-5px\\",
-  \\"borderBottom\\": \\"solid 5px $theme.colors.primary\\",
   \\"display\\": \\"inline-block\\",
   \\"flexShrink\\": \\"0\\",
+  \\"borderBottom\\": \\"solid 5px $theme.colors.primary\\",
   \\":focus\\": {
     \\"color\\": \\"$theme.colors.primary\\"
   },
@@ -1383,9 +1386,9 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
   \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"outline\\": \\"none\\",
   \\"outlineOffset\\": \\"-5px\\",
-  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\"display\\": \\"inline-block\\",
   \\"flexShrink\\": \\"0\\",
+  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\":focus\\": {
     \\"color\\": \\"$theme.colors.primary\\"
   },
@@ -1431,9 +1434,9 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
   \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"outline\\": \\"none\\",
   \\"outlineOffset\\": \\"-5px\\",
-  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\"display\\": \\"inline-block\\",
   \\"flexShrink\\": \\"0\\",
+  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\":focus\\": {
     \\"color\\": \\"$theme.colors.primary\\"
   },
@@ -1507,9 +1510,9 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
   \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"outline\\": \\"none\\",
   \\"outlineOffset\\": \\"-5px\\",
-  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\"display\\": \\"inline-block\\",
   \\"flexShrink\\": \\"0\\",
+  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\":focus\\": {
     \\"color\\": \\"$theme.colors.primary\\"
   },
@@ -1555,9 +1558,9 @@ exports[`StatefulTabs basic render: Stateful tabs render correctly 1`] = `
   \\"paddingRight\\": \\"$theme.sizing.scale600\\",
   \\"outline\\": \\"none\\",
   \\"outlineOffset\\": \\"-5px\\",
-  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\"display\\": \\"inline-block\\",
   \\"flexShrink\\": \\"0\\",
+  \\"borderBottom\\": \\"solid 5px transparent\\",
   \\":focus\\": {
     \\"color\\": \\"$theme.colors.primary\\"
   },
