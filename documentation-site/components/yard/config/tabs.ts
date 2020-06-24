@@ -1,4 +1,4 @@
-import {Tabs, Tab, ORIENTATION} from 'baseui/tabs';
+import {Tabs, Tab, ORIENTATION, TAB_WIDTH} from 'baseui/tabs';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
@@ -50,6 +50,17 @@ const TabsConfig: TConfig = {
       description: 'The orientation of the tab component.',
       imports: {
         'baseui/tabs': {named: ['ORIENTATION']},
+      },
+    },
+    tabWidth: {
+      value: 'TAB_WIDTH.intrinsic',
+      defaultValue: 'TAB_WIDTH.intrinsic',
+      options: TAB_WIDTH,
+      type: PropTypes.Enum,
+      enumName: 'TAB_WIDTH',
+      description: 'How tab widths should be determined.',
+      imports: {
+        'baseui/tabs': {named: ['TAB_WIDTH']},
       },
     },
     activeKey: {
