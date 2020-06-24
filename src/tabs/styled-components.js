@@ -37,7 +37,6 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
     paddingBottom: sizing.scale600,
     paddingLeft: sizing.scale600,
     paddingRight: sizing.scale600,
-    scrollSnapAlign: 'start',
     outline: $isFocusVisible ? `5px solid ${colors.accent}` : 'none',
     outlineOffset: '-5px',
     [$orientation === ORIENTATION.horizontal
@@ -88,11 +87,9 @@ export const TabBar = styled<SharedStylePropsArgT>('div', props => {
         : `inset 0 -5px ${colors.borderOpaque}`,
     ...($tabWidth === TAB_WIDTH.intrinsic
       ? {
-          [$orientation === ORIENTATION.horizontal ? 'overflowX' : 'overflowY']:
-            $orientation === ORIENTATION.vertical ? 'scroll' : null,
-          scrollSnapType: `${
-            $orientation === ORIENTATION.vertical ? 'y' : 'x'
-          } mandatory`,
+          [$orientation === ORIENTATION.horizontal
+            ? 'overflowX'
+            : 'overflowY']: 'scroll',
           // The following properties hide the scroll bar on various browsers:
           // Chrome, Safari, etc
           '::-webkit-scrollbar': {
