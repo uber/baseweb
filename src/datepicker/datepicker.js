@@ -120,7 +120,7 @@ export default class Datepicker<T = Date> extends React.Component<
     }
   }
 
-  formatDisplayValue = (date: ?T | Array<T>) => {
+  formatDisplayValue: (?T | Array<T>) => string = (date: ?T | Array<T>) => {
     const {
       displayValueAtRangeIndex,
       formatDisplayValue,
