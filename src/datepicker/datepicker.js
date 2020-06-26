@@ -38,17 +38,6 @@ export default class Datepicker<T = Date> extends React.Component<
     adapter: dateFnsAdapter,
   };
 
-  constructor(props: DatepickerPropsT) {
-    super(props);
-    this.state = {
-      calendarFocused: false,
-      isOpen: false,
-      isPseudoFocused: false,
-      lastActiveElm: null,
-      inputValue: this.formatDisplayValue(this.props.value) || '',
-    };
-  }
-
   calendar: ?HTMLElement;
 
   dateHelpers: DateHelpers<T>;
@@ -62,7 +51,6 @@ export default class Datepicker<T = Date> extends React.Component<
       isPseudoFocused: false,
       lastActiveElm: null,
       inputValue: this.formatDisplayValue(props.value) || '',
-      isInputUsed: false,
     };
   }
 
