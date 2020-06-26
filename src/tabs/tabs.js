@@ -11,11 +11,17 @@ import {
   Root as StyledRoot,
   TabBar as StyledTabBar,
   TabContent as StyledTabContent,
+  TabHighlight,
+  TabDivider,
 } from './styled-components.js';
+import TabComponent from './tab.js';
 import type {TabsPropsT, SharedStylePropsArgT} from './types.js';
 import {ORIENTATION, TAB_WIDTH} from './constants.js';
 
-export default class Tabs extends React.Component<TabsPropsT> {
+export default class Tabs extends React.Component<
+  TabsPropsT,
+  {highlightLength: number, highlightDistance: number},
+> {
   static defaultProps: $Shape<TabsPropsT> = {
     disabled: false,
     onChange: () => {},
@@ -24,6 +30,66 @@ export default class Tabs extends React.Component<TabsPropsT> {
     tabWidth: TAB_WIDTH.intrinsic,
     renderAll: false,
   };
+
+  activeTabRef = React.createRef<typeof TabComponent>();
+
+  state = {
+    highlightLength: 0,
+    highlightDistance: 0,
+  };
+
+  componentDidMount() {
+    this.updateHighlight();
+    this.updateScrollPosition();
+  }
+
+  componentDidUpdate(prevProps: TabsPropsT) {
+    if (prevProps.activeKey !== this.props.activeKey) {
+      this.updateHighlight();
+      this.updateScrollPosition({smooth: true});
+    }
+  }
+
+  updateHighlight() {
+    // $FlowFixMe: Cannot get this.activeTabRef.current.ref because property ref is missing in statics of TabComponent
+    if (this.activeTabRef.current && this.activeTabRef.current.ref.current) {
+      const el = this.activeTabRef.current.ref.current;
+      if (this.props.orientation === ORIENTATION.vertical) {
+        this.setState({
+          highlightLength: el.clientHeight,
+          highlightDistance: el.offsetTop,
+        });
+      } else {
+        this.setState({
+          highlightLength: el.clientWidth,
+          highlightDistance: el.offsetLeft,
+        });
+      }
+    }
+  }
+
+  updateScrollPosition(options: {smooth?: boolean} = {}) {
+    const {smooth = false} = options;
+    // $FlowFixMe: Cannot get this.activeTabRef.current.ref because property ref is missing in statics of TabComponent
+    if (this.activeTabRef.current && this.activeTabRef.current.ref.current) {
+      const el = this.activeTabRef.current.ref.current;
+      // Immediately scroll the selected Tab into view.
+      if (el.scrollIntoView && typeof el.scrollIntoView === 'function') {
+        el.scrollIntoView(
+          smooth
+            ? {
+                behavior: 'smooth',
+                block: 'nearest',
+                inline: 'nearest',
+              }
+            : {
+                block: 'start',
+                inline: 'start',
+              },
+        );
+      }
+    }
+  }
 
   onChange({activeKey}: {activeKey: string}) {
     const {onChange} = this.props;
@@ -47,6 +113,7 @@ export default class Tabs extends React.Component<TabsPropsT> {
       return React.cloneElement(child, {
         key,
         id: key, // for aria-labelledby
+        ref: key === activeKey ? this.activeTabRef : null,
         active: key === activeKey,
         disabled: disabled || child.props.disabled,
         $orientation: orientation,
@@ -129,7 +196,14 @@ export default class Tabs extends React.Component<TabsPropsT> {
           {...tabBarProps}
         >
           {this.getTabs()}
+          <TabHighlight
+            {...sharedProps}
+            aria-hidden="true"
+            $distance={this.state.highlightDistance}
+            $length={this.state.highlightLength}
+          />
         </TabBar>
+        <TabDivider {...sharedProps} />
         {this.getPanels()}
       </Root>
     );

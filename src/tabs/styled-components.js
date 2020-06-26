@@ -26,7 +26,7 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
     $orientation,
     $tabWidth,
     $isFocusVisible,
-    $theme: {colors, sizing, typography, direction},
+    $theme: {colors, sizing, typography},
   } = props;
   let style = {
     ...typography.LabelSmall,
@@ -39,27 +39,16 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
     paddingRight: sizing.scale600,
     outline: $isFocusVisible ? `5px solid ${colors.accent}` : 'none',
     outlineOffset: '-5px',
-    display: 'inline-block',
     flexShrink: $tabWidth === TAB_WIDTH.intrinsic ? '0' : null,
-    ...($tabWidth === TAB_WIDTH.fixed && $orientation === ORIENTATION.horizontal
-      ? {
-          flexGrow: '1',
-          textAlign: 'center',
-        }
-      : {}),
+    flexGrow:
+      $tabWidth === TAB_WIDTH.fixed && $orientation === ORIENTATION.horizontal
+        ? '1'
+        : null,
+    textAlign:
+      $tabWidth === TAB_WIDTH.fixed && $orientation === ORIENTATION.horizontal
+        ? 'center'
+        : null,
   };
-  // Styling for the active highlight.
-  // Flow requires a conditional property be assigned in this manner.
-  // Read more here: https://medium.com/flow-type/spreads-common-errors-fixes-9701012e9d58
-  style[
-    $orientation === ORIENTATION.horizontal
-      ? 'borderBottom'
-      : direction === 'rtl'
-      ? 'borderLeft'
-      : 'borderRight'
-  ] = `solid 5px ${
-    $active && !$isFocusVisible ? colors.primary : 'transparent'
-  }`;
   if (!$disabled) {
     style = {
       ...style,
@@ -76,20 +65,20 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const TabBar = styled<SharedStylePropsArgT>('div', props => {
-  const {
-    $orientation,
-    $tabWidth,
-    $theme: {colors, direction},
-  } = props;
+  const {$orientation, $tabWidth, $theme} = props;
   return {
     display: 'flex',
+    position: 'relative',
+    paddingBottom: $orientation === ORIENTATION.horizontal ? '5px' : null,
+    paddingRight:
+      $orientation === ORIENTATION.vertical && $theme.direction !== 'rtl'
+        ? '5px'
+        : null,
+    paddingLeft:
+      $orientation === ORIENTATION.vertical && $theme.direction === 'rtl'
+        ? '5px'
+        : null,
     flexDirection: $orientation === ORIENTATION.vertical ? 'column' : 'row',
-    boxShadow:
-      $orientation === ORIENTATION.vertical
-        ? direction === 'rtl'
-          ? `inset 5px 0px ${colors.borderOpaque}`
-          : `inset -5px 0px ${colors.borderOpaque}`
-        : `inset 0 -5px ${colors.borderOpaque}`,
     ...($tabWidth === TAB_WIDTH.intrinsic
       ? {
           overflowX: $orientation === ORIENTATION.horizontal ? 'scroll' : null,
@@ -107,6 +96,60 @@ export const TabBar = styled<SharedStylePropsArgT>('div', props => {
       : {}),
   };
 });
+
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
+export const TabDivider = styled<SharedStylePropsArgT>(
+  'div',
+  ({$theme, $orientation}) => {
+    return {
+      height: $orientation === ORIENTATION.horizontal ? '5px' : null,
+      width: $orientation === ORIENTATION.vertical ? '5px' : null,
+      marginTop: $orientation === ORIENTATION.horizontal ? '-5px' : null,
+      marginLeft:
+        $orientation === ORIENTATION.vertical && $theme.direction !== 'rtl'
+          ? '-5px'
+          : null,
+      marginRight:
+        $orientation === ORIENTATION.vertical && $theme.direction === 'rtl'
+          ? '-5px'
+          : null,
+      backgroundColor: $theme.colors.borderOpaque,
+    };
+  },
+);
+
+export const TabHighlight = styled<
+  // $FlowFixMe https://github.com/facebook/flow/issues/7745
+  SharedStylePropsArgT & {$length: number, $distance: number},
+>(
+  'div',
+  ({
+    $theme,
+    $orientation = ORIENTATION.horizontal,
+    $length = 0,
+    $distance = 0,
+  }) => {
+    return {
+      bottom: $orientation === ORIENTATION.horizontal ? '0' : null,
+      left:
+        $orientation === ORIENTATION.vertical && $theme.direction === 'rtl'
+          ? '0'
+          : null,
+      right:
+        $orientation === ORIENTATION.vertical && $theme.direction !== 'rtl'
+          ? '0'
+          : null,
+      position: 'absolute',
+      backgroundColor: $theme.colors.primary,
+      transition: `transform ${$theme.animation.timing200} ${$theme.animation.easeInOutQuinticCurve}`,
+      height: $orientation === ORIENTATION.horizontal ? '5px' : `${$length}px`,
+      width: $orientation === ORIENTATION.vertical ? '5px' : `${$length}px`,
+      transform: `translate${
+        $orientation === ORIENTATION.horizontal ? 'X' : 'Y'
+      }(${$distance}px)`,
+    };
+  },
+);
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const TabContent = styled<SharedStylePropsArgT>('div', props => {

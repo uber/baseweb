@@ -16,6 +16,8 @@ export {
   Tab as StyledTab,
   TabBar as StyledTabBar,
   TabContent as StyledTabContent,
+  TabDivider as StyledTabDivider,
+  TabHighlight as StyledTabHighlight,
 } from './styled-components.js';
 // Flow
 export type * from './types.js';
