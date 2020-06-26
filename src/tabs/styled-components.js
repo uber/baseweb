@@ -141,7 +141,7 @@ export const TabHighlight = styled<
           : null,
       position: 'absolute',
       backgroundColor: $theme.colors.primary,
-      transition: `transform ${$theme.animation.timing200} ${$theme.animation.easeInOutQuinticCurve}`,
+      transition: `all ${$theme.animation.timing200} ${$theme.animation.easeInOutQuinticCurve}`,
       height: $orientation === ORIENTATION.horizontal ? '5px' : `${$length}px`,
       width: $orientation === ORIENTATION.vertical ? '5px' : `${$length}px`,
       transform: `translate${
