@@ -12,7 +12,6 @@ const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 async function checkedByValue(n) {
   const input = await page.$(`input[value="${n}"]`);
-  console.log(input);
   const checked = await input.getProperty('checked');
   return checked.jsonValue();
 }
