@@ -58,7 +58,8 @@ export default function HeaderNavigation({
       {/* Logo & Links  */}
       <div
         className={css({
-          marginRight: 'auto',
+          marginLeft: theme.direction === 'rtl' ? 'auto' : 'none',
+          marginRight: theme.direction === 'rtl' ? 'none' : 'auto',
           display: 'flex',
           alignItems: 'center',
           order: 1,
@@ -69,7 +70,11 @@ export default function HeaderNavigation({
           {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
           <a
             className={css({
-              marginRight: theme.sizing.scale400,
+              display: 'flex',
+              marginLeft:
+                theme.direction === 'rtl' ? theme.sizing.scale400 : 'none',
+              marginRight:
+                theme.direction === 'rtl' ? 'none' : theme.sizing.scale400,
               ':focus': {
                 outline: `3px solid ${theme.colors.accent}`,
                 outlineOffset: '5px',
@@ -149,7 +154,10 @@ export default function HeaderNavigation({
             flexBasis: 'auto',
             order: 2,
             marginTop: '0',
-            marginRight: theme.sizing.scale400,
+            marginLeft:
+              theme.direction === 'rtl' ? theme.sizing.scale400 : 'none',
+            marginRight:
+              theme.direction === 'rtl' ? 'none' : theme.sizing.scale400,
           },
         })}
       >
