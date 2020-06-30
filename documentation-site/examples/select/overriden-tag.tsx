@@ -9,7 +9,7 @@ export default () => {
   return (
     <Select
       overrides={{
-        MultiValue: {
+        Tag: {
           props: {
             overrides: {
               Root: {

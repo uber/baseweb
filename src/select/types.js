@@ -44,6 +44,7 @@ export type OverridesT = {
   ValueContainer?: OverrideT,
   SingleValue?: OverrideT,
   MultiValue?: OverrideT,
+  Tag?: OverrideT,
   InputContainer?: OverrideT,
   Input?: OverrideT,
   IconsContainer?: OverrideT,

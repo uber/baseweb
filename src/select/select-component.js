@@ -656,7 +656,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
             key={`value-${i}-${value[this.props.valueKey]}`}
             removeValue={() => this.removeValue(value)}
             disabled={disabled}
-            overrides={{MultiValue: overrides.MultiValue}}
+            overrides={{Tag: overrides.Tag, MultiValue: overrides.MultiValue}}
             {...sharedProps}
             $disabled={disabled}
           >
