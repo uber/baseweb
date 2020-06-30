@@ -103,10 +103,12 @@ class DocSearch extends React.Component<{}, State> {
         <style>{`
           .algolia-autocomplete {
             width: 100%;
-            min-width: 225px
+            min-width: 225px;
           }
           .ds-dropdown-menu {
-            margin-top: 12px !important
+            margin-top: 12px !important;
+            width: calc(100vw - 50px) !important;
+            min-width: unset !important;
           }
         `}</style>
         <SearchContainer>
