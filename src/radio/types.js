@@ -79,6 +79,8 @@ export type PropsT = {
   name?: string,
   /** How to position the label relative to the radio itself. */
   labelPlacement?: LabelPlacementT,
+  /** Unique id for RadioGroup, help ARIA to identify element */
+  id?: string,
   /** Handler for change events on trigger element. */
   onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for mouseenter events on trigger element. */

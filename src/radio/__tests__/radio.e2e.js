@@ -26,8 +26,8 @@ describe('radio', () => {
   it('changes selection on radio click', async () => {
     await mount(page, 'radio');
     expect(await checkedByValue(2)).toBeTruthy();
-    await page.click('label:nth-of-type(1)');
-    expect(await checkedByValue(1)).toBeTruthy();
+    await page.click('label:nth-of-type(3)');
+    expect(await checkedByValue(3)).toBeTruthy();
     expect(await checkedByValue(2)).toBeFalsy();
   });
 });
