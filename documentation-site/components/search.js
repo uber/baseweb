@@ -43,6 +43,7 @@ const PlainInput = themedStyled<{}>(
       paddingBottom: '9px',
       fontSize: '14px',
       width: '100%',
+      minWidth: '225px',
       color: $theme.colors.contentPrimary,
       lineHeight: '20px',
       outline: 'none',
@@ -103,7 +104,6 @@ class DocSearch extends React.Component<{}, State> {
         <style>{`
           .algolia-autocomplete {
             width: 100%;
-            min-width: 225px;
           }
           .ds-dropdown-menu {
             margin-top: 12px !important;
