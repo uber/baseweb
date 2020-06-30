@@ -6,28 +6,24 @@ LICENSE file in the root directory of this source tree.
 */
 //@flow
 import * as React from 'react';
-import {default as SearchIcon} from 'baseui/icon/search';
+import SearchIcon from 'baseui/icon/search';
 import {themedStyled} from '../pages/_app';
 //$FlowFixMe
 import {trackEvent} from '../helpers/ga';
 
 const SEARCH_INPUT_ID = 'algolia-doc-search';
 
-type Props = {
-  toggleSearchInput: () => void,
-  searchInputOpen: boolean,
-};
 type State = {
   enabled: boolean,
 };
 
 // can't really use baseui/input because algolia injects its
 // own markdown and breaks our component (that's fairly complex)
-const PlainInput = themedStyled<{$inputVisible: boolean}>(
+const PlainInput = themedStyled<{}>(
   'input',
-  ({$inputVisible, $theme}) =>
+  ({$theme}) =>
     ({
-      display: $inputVisible ? 'block' : 'none',
+      display: 'block',
       borderLeftWidth: '2px',
       borderRightWidth: '2px',
       borderTopWidth: '2px',
@@ -40,13 +36,15 @@ const PlainInput = themedStyled<{$inputVisible: boolean}>(
       borderRightStyle: 'solid',
       borderTopStyle: 'solid',
       borderBottomStyle: 'solid',
-      paddingLeft: $theme.direction === 'rtl' ? '9px' : '42px',
-      paddingRight: $theme.direction === 'rtl' ? '42px' : '9px',
+      paddingLeft: $theme.direction === 'rtl' ? '9px' : '36px',
+      paddingRight: $theme.direction === 'rtl' ? '36px' : '9px',
       backgroundColor: 'transparent',
       paddingTop: '9px',
       paddingBottom: '9px',
       fontSize: '14px',
-      width: $inputVisible ? '62vw' : '250px',
+      width: '100%',
+      minWidth: '225px',
+      color: $theme.colors.contentPrimary,
       lineHeight: '20px',
       outline: 'none',
       '-webkit-appearance': 'none',
@@ -55,11 +53,6 @@ const PlainInput = themedStyled<{$inputVisible: boolean}>(
         borderRightColor: $theme.colors.primary,
         borderTopColor: $theme.colors.primary,
         borderBottomColor: $theme.colors.primary,
-      },
-      [$theme.mediaQuery.small]: {
-        position: 'static',
-        display: 'block',
-        width: '250px',
       },
     }: {}),
 );
@@ -75,24 +68,16 @@ const SearchContainer = themedStyled<{}>(
     }: {}),
 );
 
-const IconWrapper = themedStyled<{$inputVisible: boolean}>(
-  'div',
-  ({$inputVisible, $theme}) => ({
-    position: 'absolute',
-    top: '9.5px',
-    height: '22px',
-    [$theme.direction === 'rtl' ? 'right' : 'left']: $inputVisible
-      ? '12px'
-      : '-33px',
-    cursor: 'pointer',
-    [$theme.mediaQuery.small]: {
-      [$theme.direction === 'rtl' ? 'right' : 'left']: '12px',
-      cursor: 'inherit',
-    },
-  }),
-);
+const IconWrapper = themedStyled<{}>('div', ({$theme}) => ({
+  position: 'absolute',
+  height: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '36px',
+}));
 
-class DocSearch extends React.Component<Props, State> {
+class DocSearch extends React.Component<{}, State> {
   state = {
     enabled: true,
   };
@@ -114,38 +99,23 @@ class DocSearch extends React.Component<Props, State> {
   }
 
   render() {
-    const {enabled} = this.state;
-    const {searchInputOpen, toggleSearchInput} = this.props;
-
-    return enabled ? (
+    return this.state.enabled ? (
       <React.Fragment>
-        <style>{`.ds-dropdown-menu { margin-top: 12px !important }`}</style>
+        <style>{`
+          .algolia-autocomplete {
+            width: 100%;
+          }
+          .ds-dropdown-menu {
+            margin-top: 12px !important;
+            width: calc(100vw - 50px) !important;
+            min-width: unset !important;
+          }
+        `}</style>
         <SearchContainer>
-          <IconWrapper
-            $inputVisible={searchInputOpen}
-            role="button"
-            onClick={toggleSearchInput}
-          >
-            <SearchIcon
-              overrides={{
-                Svg: {
-                  style: ({$theme}) => ({
-                    height: searchInputOpen ? '22px' : '32px',
-                    width: searchInputOpen ? '22px' : '32px',
-                    fill: searchInputOpen ? '#666' : '#333',
-                    [$theme.mediaQuery.small]: {
-                      height: '22px',
-                      width: '22px',
-                      fill: '#666',
-                    },
-                  }),
-                },
-              }}
-              color={searchInputOpen ? '#333' : '#666'}
-            />
+          <IconWrapper>
+            <SearchIcon size={24} color="contentPrimary" />
           </IconWrapper>
           <PlainInput
-            $inputVisible={searchInputOpen}
             id={SEARCH_INPUT_ID}
             type="search"
             placeholder="Search documentation"

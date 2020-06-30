@@ -8,283 +8,285 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import Link from 'next/link';
-import {Block} from 'baseui/block';
-import {
-  HeaderNavigation,
-  StyledNavigationList as NavigationList,
-  ALIGN,
-} from 'baseui/header-navigation';
-import {themedStyled} from '../pages/_app';
+import {themedUseStyletron as useStyletron} from '../pages/_app';
 import Menu from 'baseui/icon/menu';
-import Logo from '../images/base-web.svg';
-import LogoWhite from '../images/base-web-white.svg';
+import DarkLogo from '../images/base-web.svg';
+import LightLogo from '../images/base-web-white.svg';
 import GithubLogo from './github-logo';
 import SlackLogo from './slack-logo';
 import AlignLeftIcon from './align-left-icon';
 import AlignRightIcon from './align-right-icon';
 import VersionSelector from './version-selector.js';
 import Search from './search';
-import {ThemeContext} from 'baseui/styles/theme-provider.js';
 import Bulb from './bulb';
-import {StatefulTooltip} from 'baseui/tooltip';
-import {Button, KIND, SIZE} from 'baseui/button';
+import {Button, KIND, SIZE, SHAPE} from 'baseui/button';
 
-const Hamburger = themedStyled<{}>('a', ({$theme}) => ({
-  display: 'block',
-  userSelect: 'none',
-  height: '32px',
-  marginLeft: $theme.sizing.scale400,
-  cursor: 'pointer',
-  ':focus': {
-    outline: `3px solid ${$theme.colors.accent}`,
-    outlineOffset: '1px',
-  },
-  [$theme.mediaQuery.medium]: {
-    display: 'none',
-  },
-}));
+// Breakpoint for un-wrapping the search bar from under the links and toggles.
+const WRAP_SEARCH = 715;
 
-const LogoSegment = themedStyled<{$searchInputOpen: boolean}>(
-  'div',
-  ({$searchInputOpen, $theme}) => ({
-    display: $searchInputOpen ? 'none' : 'flex',
-    justifySelf: 'flex-start',
-    justifyContent: 'flex-start',
-    flex: 'none',
-    [$theme.mediaQuery.small]: {
-      display: 'flex',
-    },
-  }),
-);
+const mq = (breakpoint: number): string =>
+  `@media screen and (min-width: ${breakpoint}px)`;
 
-type PropsT = {
+export default function HeaderNavigation({
+  toggleSidebar,
+  toggleTheme,
+  toggleDirection,
+}: {
   toggleSidebar: () => void,
   toggleTheme: () => void,
   toggleDirection: () => void,
-};
-
-const Navigation = ({toggleSidebar, toggleTheme, toggleDirection}: PropsT) => {
-  const [searchInputOpen, setSearchInputOpen] = React.useState(false);
+}) {
+  const [css, theme] = useStyletron();
   return (
-    <ThemeContext.Consumer>
-      {theme => (
-        <HeaderNavigation
-          $as={'header'}
+    <header
+      className={css({
+        ...theme.typography.ParagraphMedium,
+        display: 'flex',
+        flexWrap: 'wrap',
+        paddingTop: theme.sizing.scale500,
+        paddingBottom: theme.sizing.scale500,
+        paddingLeft: theme.sizing.scale800,
+        paddingRight: theme.sizing.scale800,
+        borderBottomStyle: 'solid',
+        borderBottomWidth: '1px',
+        borderBottomColor: theme.colors.border,
+        [mq(WRAP_SEARCH)]: {
+          flexWrap: 'nowrap',
+        },
+      })}
+    >
+      {/* Logo & Links  */}
+      <div
+        className={css({
+          marginLeft: theme.direction === 'rtl' ? 'auto' : 'none',
+          marginRight: theme.direction === 'rtl' ? 'none' : 'auto',
+          display: 'flex',
+          alignItems: 'center',
+          order: 1,
+        })}
+      >
+        {/* Base Web Logo */}
+        <Link href="/">
+          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+          <a
+            className={css({
+              display: 'flex',
+              marginLeft:
+                theme.direction === 'rtl' ? theme.sizing.scale400 : 'none',
+              marginRight:
+                theme.direction === 'rtl' ? 'none' : theme.sizing.scale400,
+              ':focus': {
+                outline: `3px solid ${theme.colors.accent}`,
+                outlineOffset: '5px',
+              },
+            })}
+          >
+            <img
+              src={theme.name.startsWith('dark') ? LightLogo : DarkLogo}
+              className={css({height: '40px'})}
+              alt="Base Web"
+            />
+          </a>
+        </Link>
+
+        {/* Version Selector */}
+        <div
+          className={css({
+            display: 'none',
+            [mq(400)]: {
+              display: 'block',
+            },
+          })}
+        >
+          <VersionSelector />
+        </div>
+
+        {/* Link to Blog */}
+        <Link href="/blog/base-web-v9" passHref>
+          <Button
+            $as="a"
+            size={SIZE.compact}
+            kind={KIND.minimal}
+            overrides={{
+              BaseButton: {
+                style: {
+                  display: 'none',
+                  [mq(875)]: {
+                    display: 'block',
+                  },
+                },
+              },
+            }}
+          >
+            {"What's new in v9?"}
+          </Button>
+        </Link>
+
+        {/* Link to component gallery */}
+        <Link href="/components" passHref>
+          <Button
+            $as="a"
+            size={SIZE.compact}
+            kind={KIND.minimal}
+            overrides={{
+              BaseButton: {
+                style: {
+                  display: 'none',
+                  [mq(1000)]: {
+                    display: 'block',
+                  },
+                },
+              },
+            }}
+          >
+            Components
+          </Button>
+        </Link>
+      </div>
+
+      {/* Search */}
+      <div
+        className={css({
+          flexBasis: '100%',
+          order: 3,
+          marginTop: theme.sizing.scale400,
+          [mq(WRAP_SEARCH)]: {
+            flexBasis: 'auto',
+            order: 2,
+            marginTop: '0',
+            marginLeft:
+              theme.direction === 'rtl' ? theme.sizing.scale400 : 'none',
+            marginRight:
+              theme.direction === 'rtl' ? 'none' : theme.sizing.scale400,
+          },
+        })}
+      >
+        <Search />
+      </div>
+
+      {/* Toggles & Links */}
+      <div
+        className={css({
+          display: 'flex',
+          alignItems: 'center',
+          order: 2,
+          [mq(WRAP_SEARCH)]: {
+            order: 3,
+          },
+        })}
+      >
+        {/* Slack */}
+        <Button
+          $as="a"
+          href="https://join.slack.com/t/baseui/shared_invite/enQtNDI0NTgwMjU0NDUyLWQ0M2RhZWNiMDAwNDA4MDFiOWQyNmViODNkMzFmZDczYzM4MDliNjU3MmZhYWE5YjZhZmJjZWY0MDIxZjdkYzE"
+          target="_blank"
+          rel="noopener noreferrer"
+          size={SIZE.compact}
+          kind={KIND.tertiary}
+          shape={SHAPE.square}
+          title="Join our Slack channel"
           overrides={{
-            Root: {
-              style: ({$theme}) => ({
-                justifyContent: 'space-between',
-                paddingLeft: $theme.sizing.scale800,
-                paddingRight: $theme.sizing.scale800,
-                paddingTop: $theme.sizing.scale600,
-                paddingBottom: $theme.sizing.scale600,
-                boxShadow: 'none',
-              }),
+            BaseButton: {
+              style: {
+                display: 'none',
+                [mq(500)]: {
+                  display: 'flex',
+                },
+              },
             },
           }}
         >
-          <LogoSegment $searchInputOpen={searchInputOpen}>
-            <Block display="flex" alignItems="center">
-              <Link href="/">
-                <Block
-                  $as="a"
-                  href="#"
-                  overrides={{
-                    Block: {
-                      style: ({$theme}) => ({
-                        ':focus': {
-                          outline: `3px solid ${$theme.colors.accent}`,
-                          outlineOffset: '5px',
-                        },
-                      }),
-                    },
-                  }}
-                >
-                  <Block
-                    as="img"
-                    height="40px"
-                    src={theme.name.startsWith('dark') ? LogoWhite : Logo}
-                    width="101px"
-                    overrides={{Block: {style: {cursor: 'pointer'}}}}
-                  />
-                </Block>
-              </Link>
-              <Block marginLeft="scale300">
-                <VersionSelector />
-                <Link href="/blog/base-web-v9">
-                  <Button
-                    size={SIZE.compact}
-                    kind={KIND.minimal}
-                    $as="a"
-                    href="/blog/base-web-v9"
-                    overrides={{
-                      BaseButton: {
-                        style: {
-                          display: 'none',
-                          '@media screen and (min-width: 928px)': {
-                            display: 'inline-block',
-                          },
-                        },
-                      },
-                    }}
-                  >
-                    {"What's new in v9?"}
-                  </Button>
-                </Link>
-              </Block>
-              <Block>
-                <Link href="/components">
-                  <Button
-                    size={SIZE.compact}
-                    kind={KIND.minimal}
-                    overrides={{
-                      BaseButton: {
-                        style: {
-                          display: 'none',
-                          '@media screen and (min-width: 820px)': {
-                            display: 'inline-block',
-                          },
-                        },
-                      },
-                    }}
-                  >
-                    Components
-                  </Button>
-                </Link>
-              </Block>
-            </Block>
-          </LogoSegment>
+          <SlackLogo size={24} color={theme.colors.contentPrimary} />
+        </Button>
 
-          <NavigationList $align={ALIGN.right}>
-            <Block display="flex" alignItems="center">
-              <Search
-                searchInputOpen={searchInputOpen}
-                toggleSearchInput={() => setSearchInputOpen(!searchInputOpen)}
-              />
-              <Block
-                $as="a"
-                overrides={{
-                  Block: {
-                    style: ({$theme}) => ({
-                      display: 'none',
-                      ':focus': {
-                        outline: `3px solid ${$theme.colors.accent}`,
-                        outlineOffset: '5px',
-                      },
-                      height: $theme.sizing.scale800,
-                      [$theme.mediaQuery.small]: {
-                        display: 'block',
-                      },
-                    }),
-                  },
-                }}
-                href="https://join.slack.com/t/baseui/shared_invite/enQtNDI0NTgwMjU0NDUyLWQ0M2RhZWNiMDAwNDA4MDFiOWQyNmViODNkMzFmZDczYzM4MDliNjU3MmZhYWE5YjZhZmJjZWY0MDIxZjdkYzE"
-                marginLeft="scale600"
-                marginRight="scale300"
-                $style={{textDecoration: 'none'}}
-                target="_blank"
-              >
-                <SlackLogo size={24} color={theme.colors.contentPrimary} />
-              </Block>
-              <Block
-                $as="a"
-                overrides={{
-                  Block: {
-                    style: ({$theme}) => ({
-                      display: 'none',
-                      ':focus': {
-                        outline: `3px solid ${$theme.colors.accent}`,
-                        outlineOffset: '5px',
-                      },
-                      height: $theme.sizing.scale800,
-                      [$theme.mediaQuery.small]: {
-                        display: 'block',
-                      },
-                    }),
-                  },
-                }}
-                href="https://github.com/uber/baseweb"
-                marginLeft="scale300"
-                marginRight="scale300"
-                $style={{textDecoration: 'none'}}
-                target="_blank"
-              >
-                <GithubLogo size={24} color={theme.colors.contentPrimary} />
-              </Block>
-              <Block
-                as="a"
-                font="font300"
-                marginLeft="scale300"
-                marginRight="scale300"
-                onClick={toggleDirection}
-                href="#"
-                overrides={{
-                  Block: {
-                    style: ({$theme}) => ({
-                      cursor: 'pointer',
-                      display: 'none',
-                      ':focus': {
-                        outline: `3px solid ${$theme.colors.accent}`,
-                        outlineOffset: '5px',
-                      },
-                      height: $theme.sizing.scale800,
-                      [$theme.mediaQuery.small]: {
-                        display: 'block',
-                      },
-                    }),
-                  },
-                }}
-              >
-                {theme.direction === 'rtl' ? (
-                  <AlignLeftIcon
-                    size={24}
-                    color={theme.colors.contentPrimary}
-                  />
-                ) : (
-                  <AlignRightIcon
-                    size={24}
-                    color={theme.colors.contentPrimary}
-                  />
-                )}
-              </Block>
-              <Block
-                $as="a"
-                overrides={{
-                  Block: {
-                    style: ({$theme}) => ({
-                      height: $theme.sizing.scale800,
-                      ':focus': {
-                        outline: `3px solid ${$theme.colors.accent}`,
-                        outlineOffset: '5px',
-                      },
-                      [$theme.mediaQuery.small]: {
-                        display: 'block',
-                      },
-                    }),
-                  },
-                }}
-                $style={{textDecoration: 'none'}}
-                href="#"
-                marginLeft="scale300"
-                onClick={toggleTheme}
-              >
-                <StatefulTooltip
-                  content="Switch theme"
-                  accessibilityType={'tooltip'}
-                >
-                  <Block as="span" font="font300">
-                    <Bulb size={24} color={theme.colors.contentPrimary} />
-                  </Block>
-                </StatefulTooltip>
-              </Block>
-              <Hamburger role="button" onClick={toggleSidebar} href="#">
-                <Menu size={32} color={theme.colors.contentPrimary} />
-              </Hamburger>
-            </Block>
-          </NavigationList>
-        </HeaderNavigation>
-      )}
-    </ThemeContext.Consumer>
+        {/* GitHub */}
+        <Button
+          $as="a"
+          href="https://github.com/uber/baseweb"
+          target="_blank"
+          rel="noopener noreferrer"
+          size={SIZE.compact}
+          kind={KIND.tertiary}
+          shape={SHAPE.square}
+          title="Open GitHub repository"
+          overrides={{
+            BaseButton: {
+              style: {
+                display: 'none',
+                [mq(400)]: {
+                  display: 'flex',
+                },
+              },
+            },
+          }}
+        >
+          <GithubLogo size={24} color={theme.colors.contentPrimary} />
+        </Button>
+
+        {/* Direction Toggle */}
+        <Button
+          onClick={toggleDirection}
+          size={SIZE.compact}
+          kind={KIND.tertiary}
+          shape={SHAPE.square}
+          title="Toggle direction"
+          overrides={{
+            BaseButton: {
+              style: {
+                display: 'none',
+                [mq(450)]: {
+                  display: 'flex',
+                },
+              },
+            },
+          }}
+        >
+          {theme.direction === 'rtl' ? (
+            <AlignLeftIcon size={24} color={theme.colors.contentPrimary} />
+          ) : (
+            <AlignRightIcon size={24} color={theme.colors.contentPrimary} />
+          )}
+        </Button>
+
+        {/* Theme Toggle */}
+        <Button
+          onClick={toggleTheme}
+          size={SIZE.compact}
+          kind={KIND.tertiary}
+          shape={SHAPE.square}
+          title="Toggle theme"
+          overrides={{
+            BaseButton: {
+              style: {
+                display: 'flex',
+              },
+            },
+          }}
+        >
+          <Bulb size={24} color={theme.colors.contentPrimary} />
+        </Button>
+
+        {/* Nav Toggle */}
+        <Button
+          onClick={toggleSidebar}
+          size={SIZE.compact}
+          kind={KIND.tertiary}
+          shape={SHAPE.square}
+          title="Toggle navigation"
+          overrides={{
+            BaseButton: {
+              style: {
+                display: 'flex',
+                [theme.mediaQuery.medium]: {
+                  display: 'none',
+                },
+              },
+            },
+          }}
+        >
+          <Menu size={24} color={theme.colors.contentPrimary} />
+        </Button>
+      </div>
+    </header>
   );
-};
-export default Navigation;
+}
