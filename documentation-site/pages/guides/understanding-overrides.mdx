@@ -233,9 +233,9 @@ Here is the default multi-select option for Base Web:
 
 Let's change the way the selected values appear.
 
-The first step is to identify _what_ we want to override. In this case, we want to change the selected values for a multi-select. Let's check out the [`overrides` inspector for Select](/components/select/#overrides). Looking through the list of possible overrides, we see there is a promising `MultiValue` property.
+The first step is to identify _what_ we want to override. In this case, we want to change the selected values for a multi-select. Let's check out the [`overrides` inspector for Select](/components/select/#overrides). Looking through the list of possible overrides, we see there is a promising `Tag` property.
 
-You might notice that the `MultiValue` component is just an instance of the `Tag` component. We can [reference the documentation for Tag](/components/tag/#overrides) to see what overrides are available.
+We can [reference the documentation for Tag](/components/tag/#overrides) to see what overrides are available.
 
 We have identified a nested Base Web component that is accessible via overrides. Now we can apply some nested overrides to customize things:
 
@@ -245,7 +245,7 @@ We have identified a nested Base Web component that is accessible via overrides.
 
 Notice the nested override pattern here:
 
-> StatefulSelect > overrides > MultiValue > props > overrides
+> StatefulSelect > overrides > Tag > props > overrides
 
 Once we have access to the nested `Tag`, we can override the styles for the `Root`, `Text`, `Action` & `ActionIcon`, changing the colors to a few lovely shades of purple.
 

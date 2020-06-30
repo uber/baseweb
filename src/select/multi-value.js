@@ -12,7 +12,11 @@ import {Tag, VARIANT as TAG_VARIANT} from '../tag/index.js';
 // eslint-disable-next-line flowtype/no-weak-types
 export default function MultiValue(props: any) {
   const {overrides = {}, removeValue, ...restProps} = props;
-  const [MultiValue, multiValueProps] = getOverrides(overrides.MultiValue, Tag);
+  // todo(v10): remove the MultiValue override in favor of Tag
+  const [MultiValue, tagProps] = getOverrides(
+    overrides.Tag || overrides.MultiValue,
+    Tag,
+  );
   return (
     <MultiValue
       variant={TAG_VARIANT.solid}
@@ -28,7 +32,7 @@ export default function MultiValue(props: any) {
       }}
       onActionClick={removeValue}
       {...restProps}
-      {...multiValueProps}
+      {...tagProps}
     >
       {props.children}
     </MultiValue>

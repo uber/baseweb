@@ -54,6 +54,7 @@ export interface SelectOverrides {
   ValueContainer?: Override<any>;
   SingleValue?: Override<any>;
   MultiValue?: Override<any>;
+  Tag?: Override<any>;
   InputContainer?: Override<any>;
   Input?: Override<any>;
   IconsContainer?: Override<any>;
