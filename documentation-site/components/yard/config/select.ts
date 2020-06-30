@@ -342,7 +342,7 @@ const SelectConfig: TConfig = {
           'Placeholder',
           'ValueContainer',
           'SingleValue',
-          'MultiValue',
+          'Tag',
           'InputContainer',
           'Input',
           'IconsContainer',

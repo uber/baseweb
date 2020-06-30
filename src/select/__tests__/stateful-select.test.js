@@ -47,7 +47,7 @@ describe('Stateful select', function() {
         ValueContainer: StyledValueContainer,
         Placeholder: StyledPlaceholder,
         SingleValue: StyledSingleValue,
-        MultiValue: function MultiValueComponent({children}) {
+        Tag: function TagComponent({children}) {
           return <div>{children}</div>;
         },
         InputContainer: StyledInputContainer,
