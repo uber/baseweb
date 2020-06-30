@@ -13,10 +13,6 @@ import {trackEvent} from '../helpers/ga';
 
 const SEARCH_INPUT_ID = 'algolia-doc-search';
 
-type Props = {
-  toggleSearchInput: () => void,
-  searchInputOpen: boolean,
-};
 type State = {
   enabled: boolean,
 };
@@ -71,19 +67,16 @@ const SearchContainer = themedStyled<{}>(
     }: {}),
 );
 
-const IconWrapper = themedStyled<{$inputVisible: boolean}>(
-  'div',
-  ({$inputVisible, $theme}) => ({
-    position: 'absolute',
-    height: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '36px',
-  }),
-);
+const IconWrapper = themedStyled<{}>('div', ({$theme}) => ({
+  position: 'absolute',
+  height: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '36px',
+}));
 
-class DocSearch extends React.Component<Props, State> {
+class DocSearch extends React.Component<{}, State> {
   state = {
     enabled: true,
   };

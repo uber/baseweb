@@ -61,7 +61,7 @@ export default function HeaderNavigation({
           marginRight: 'auto',
           display: 'flex',
           alignItems: 'center',
-          order: '1',
+          order: 1,
         })}
       >
         {/* Base Web Logo */}
@@ -143,11 +143,11 @@ export default function HeaderNavigation({
       <div
         className={css({
           flexBasis: '100%',
-          order: '3',
+          order: 3,
           marginTop: theme.sizing.scale400,
           [mq(WRAP_SEARCH)]: {
             flexBasis: 'auto',
-            order: '2',
+            order: 2,
             marginTop: '0',
             marginRight: theme.sizing.scale400,
           },
@@ -161,9 +161,9 @@ export default function HeaderNavigation({
         className={css({
           display: 'flex',
           alignItems: 'center',
-          order: '2',
+          order: 2,
           [mq(WRAP_SEARCH)]: {
-            order: '3',
+            order: 3,
           },
         })}
       >
@@ -267,8 +267,8 @@ export default function HeaderNavigation({
           title="Toggle navigation"
           overrides={{
             BaseButton: {
-              display: 'flex',
               style: {
+                display: 'flex',
                 [theme.mediaQuery.medium]: {
                   display: 'none',
                 },
