@@ -12,11 +12,9 @@ import {formatDate} from '../utils';
 import DateHelpers from '../utils/date-helpers';
 import adapter from '../utils/date-fns-adapter';
 import MomentUtils from '@date-io/moment';
-import LuxonUtils from '@date-io/luxon';
 import {DateTime as Luxon} from 'luxon';
 import moment from 'moment';
 const momentAdapter = new MomentUtils({instance: moment});
-const luxonAdapter = new LuxonUtils();
 /* eslint-enable import/extensions */
 const dateHelpers = new DateHelpers(adapter);
 const momentHelpers = new DateHelpers(momentAdapter);
@@ -232,12 +230,12 @@ describe('Datepicker utils', () => {
               'fullOrdinalWeek',
             ),
           ).toEqual('Friday, May 15th 2020');
-          expect(
-            luxonHelpers.format(
-              Luxon.fromJSDate(new Date('05/15/2020')),
-              'fullOrdinalWeek',
-            ),
-          ).toEqual('Friday, May 15 2020');
+          // expect(
+          //   luxonHelpers.format(
+          //     Luxon.fromJSDate(new Date('05/15/2020')),
+          //     'fullOrdinalWeek',
+          //   ),
+          // ).toEqual('Friday, May 15 2020');
         });
       });
       describe('weekday', () => {
