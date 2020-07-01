@@ -12,7 +12,6 @@ import {formatDate} from '../utils';
 import DateHelpers from '../utils/date-helpers';
 import adapter from '../utils/date-fns-adapter';
 import MomentUtils from '@date-io/moment';
-import {DateTime as Luxon} from 'luxon';
 import moment from 'moment';
 const momentAdapter = new MomentUtils({instance: moment});
 /* eslint-enable import/extensions */
