@@ -51,6 +51,9 @@ class StatefulContainer<T = Date> extends React.Component<
 
   render() {
     const {children, initialState, stateReducer, ...restProps} = this.props;
+    // this an error that only shows up in the older version
+    // of flow running on CI
+    // $FlowFixMe
     return this.props.children({
       ...restProps,
       value: this.state.value,
