@@ -20,7 +20,6 @@ const luxonAdapter = new LuxonUtils();
 /* eslint-enable import/extensions */
 const dateHelpers = new DateHelpers(adapter);
 const momentHelpers = new DateHelpers(momentAdapter);
-const luxonHelpers = new DateHelpers(luxonAdapter);
 
 // these are helpers that we want to test
 // but aren't exported from utils/index
@@ -47,9 +46,9 @@ const getHelpersForDateObject = date => {
   if (moment.isMoment(date)) {
     return momentHelpers;
   }
-  if (Luxon.isDateTime(date)) {
-    return luxonHelpers;
-  }
+  // if (Luxon.isDateTime(date)) {
+  //   return luxonHelpers;
+  // }
   return dateHelpers;
 };
 
@@ -111,19 +110,19 @@ const adapterVersions = [
       return value;
     },
   },
-  {
-    name: 'luxon',
-    helpers: luxonHelpers,
-    convertDate: date => Luxon.fromJSDate(date),
-    convertLocale: locale => locale.code,
-    getComparisonValue: value => {
-      if (Luxon.isDateTime(value)) {
-        //$FlowFixMe
-        return value.toJSDate().toISOString();
-      }
-      return value;
-    },
-  },
+  // {
+  //   name: 'luxon',
+  //   helpers: luxonHelpers,
+  //   convertDate: date => Luxon.fromJSDate(date),
+  //   convertLocale: locale => locale.code,
+  //   getComparisonValue: value => {
+  //     if (Luxon.isDateTime(value)) {
+  //       //$FlowFixMe
+  //       return value.toJSDate().toISOString();
+  //     }
+  //     return value;
+  //   },
+  // },
 ];
 
 const getDiffereningAdapterMap = (runAdapter, value) => {
@@ -861,12 +860,12 @@ describe('getStartOfWeek', () => {
           .getStartOfWeek(moment(new Date(2020, 3, 15)))
           .toISOString(),
       ).toEqual(new Date(2020, 3, 12).toISOString());
-      expect(
-        luxonHelpers
-          .getStartOfWeek(Luxon.fromJSDate(new Date(2020, 3, 15)))
-          .toJSDate()
-          .toISOString(),
-      ).toEqual(new Date(2020, 3, 13).toISOString());
+      // expect(
+      //   luxonHelpers
+      //     .getStartOfWeek(Luxon.fromJSDate(new Date(2020, 3, 15)))
+      //     .toJSDate()
+      //     .toISOString(),
+      // ).toEqual(new Date(2020, 3, 13).toISOString());
     });
   });
   describe('if a locale is provided', () => {
@@ -882,19 +881,19 @@ describe('getEndOfWeek', () => {
     // end of week differs in luxon as well
     const date = new Date(2020, 3, 15);
     const momentDate = moment(date);
-    const luxonDate = Luxon.fromJSDate(date);
+    // const luxonDate = Luxon.fromJSDate(date);
     expect(dateHelpers.getEndOfWeek(date)).toEqual(
       new Date('2020-04-19T04:59:59.999Z'),
     );
     expect(momentHelpers.getEndOfWeek(momentDate).toISOString()).toEqual(
       new Date('2020-04-19T04:59:59.999Z').toISOString(),
     );
-    expect(
-      luxonHelpers
-        .getEndOfWeek(luxonDate)
-        .toJSDate()
-        .toISOString(),
-    ).toEqual(new Date('2020-04-20T04:59:59.999Z').toISOString());
+    // expect(
+    //   luxonHelpers
+    //     .getEndOfWeek(luxonDate)
+    //     .toJSDate()
+    //     .toISOString(),
+    // ).toEqual(new Date('2020-04-20T04:59:59.999Z').toISOString());
   });
 });
 describe('setSeconds', () => {
@@ -1036,10 +1035,10 @@ describe('parseString', () => {
       ).toEqual(new Date(2020, 0, 2).toISOString());
       // Doing this creates an invalid date because the luxon adapter
       // doesn't current pass through locale correctly
-      expect(
-        luxonHelpers.parseString('jueves 02 2020', 'EEEE dd yyyy', 'es').invalid
-          .reason,
-      ).toBe('unparsable');
+      // expect(
+      //   luxonHelpers.parseString('jueves 02 2020', 'EEEE dd yyyy', 'es').invalid
+      //     .reason,
+      // ).toBe('unparsable');
     });
   });
 });
