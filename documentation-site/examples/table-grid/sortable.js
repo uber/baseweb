@@ -97,7 +97,7 @@ class SortableTable extends React.Component<any, any> {
   render() {
     return (
       <StyledTable role='grid' $gridTemplateColumns="repeat(2,1fr)">
-        <div role='row' style={{dispaly:'contents'}}>
+        <div role='row' style={{display:'contents'}}>
           <SortableHeadCell
             title="Name"
             direction={this.state.nameDirection}
@@ -118,7 +118,7 @@ class SortableTable extends React.Component<any, any> {
           />
         </div>
         {this.getSortedData().map((row, index) => (
-          <div role='row' style={{dispaly:'contents'}}>
+          <div role='row' style={{display:'contents'}}>
             {row.map((cell, cellIndex) => (
               <StyledBodyCell key={cellIndex}>
                 {cell}
