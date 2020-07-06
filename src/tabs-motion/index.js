@@ -109,8 +109,7 @@ export function Tabs({
   // We will use them when building keyDown handlers for focus management-
   // at which point we won't have access to other Tab component's keys.
   const tabKeys = React.Children.map(children, (child, index) => {
-    if (!child) return;
-    return child.key || String(index);
+    return child ? child.key || String(index) : null;
   });
 
   return (
