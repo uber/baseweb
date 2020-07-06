@@ -36,10 +36,6 @@ const excludedFromChecks = [
   'isValid',
 ];
 
-const getUtcDate = (...args) => {
-  return new Date(Date.UTC(...args));
-};
-
 const getHelpersForDateObject = date => {
   if (date instanceof Date) {
     return dateHelpers;
@@ -60,7 +56,7 @@ const getYearForDate = date => {
 
 const defaultGetComparisonValue = value => {
   if (value instanceof Date) {
-    return value.toISOString();
+    return dateHelpers.format(value, 'fullDateTime');
   }
   return value;
 };
@@ -106,7 +102,7 @@ const adapterVersions = [
     getComparisonValue: value => {
       if (moment.isMoment(value)) {
         //$FlowFixMe
-        return value.toDate().toISOString();
+        return momentHelpers.format(value, 'fullDateTime', 'en');
       }
       return value;
     },
@@ -118,7 +114,6 @@ const adapterVersions = [
   //   convertLocale: locale => locale.code,
   //   getComparisonValue: value => {
   //     if (Luxon.isDateTime(value)) {
-  //       //$FlowFixMe
   //       return value.toJSDate().toISOString();
   //     }
   //     return value;
@@ -710,8 +705,8 @@ describe('getEffectiveMaxDate', () => {
 });
 
 describe('applyTimeToDate', () => {
-  const time = getUtcDate(2020, 1, 1, 10, 10);
-  const date = getUtcDate(2000, 2, 2, 5, 5, 5);
+  const time = new Date(2020, 1, 1, 10, 10);
+  const date = new Date(2000, 2, 2, 5, 5, 5);
 
   describe('if date is not provided', () => {
     test('should return the time', () => {
@@ -720,16 +715,16 @@ describe('applyTimeToDate', () => {
   });
   describe('if date is provided', () => {
     test('should apply the hours and minutes of the time to the date, and set the seconds to zero', () => {
-      expect(helpers.applyTimeToDate(date, time).toISOString()).toEqual(
-        '2000-03-02T10:10:00.000Z',
+      expect(helpers.applyTimeToDate(date, time)).toEqual(
+        new Date(2000, 2, 2, 10, 10),
       );
     });
   });
 });
 
 describe('applyDateToTime', () => {
-  const time = getUtcDate(2020, 1, 1, 10, 10, 10);
-  const date = getUtcDate(2000, 2, 2, 5, 5, 5);
+  const time = new Date(2020, 1, 1, 10, 10, 10);
+  const date = new Date(2000, 2, 2, 5, 5, 5);
   describe('if date is not provided', () => {
     test('should return the time', () => {
       expect(helpers.applyDateToTime(null, date)).toEqual(date);
@@ -737,8 +732,8 @@ describe('applyDateToTime', () => {
   });
   describe('if date is provided', () => {
     test('should apply the year, month, and day of the date to the time', () => {
-      expect(helpers.applyDateToTime(time, date).toISOString()).toEqual(
-        '2000-03-02T10:10:10.000Z',
+      expect(helpers.applyDateToTime(time, date)).toEqual(
+        new Date(2000, 2, 2, 10, 10, 10),
       );
     });
   });
@@ -881,11 +876,12 @@ describe('getStartOfWeek', () => {
 describe('getEndOfWeek', () => {
   test('should return the end of the week', () => {
     // end of week differs in luxon as well
-    const date = getUtcDate(2020, 3, 15);
+    const date = new Date(2020, 3, 15);
     // const luxonDate = Luxon.fromJSDate(date);
-    expect(helpers.getEndOfWeek(date).toISOString()).toEqual(
-      '2020-04-18T23:59:59.999Z',
+    expect(helpers.getEndOfWeek(date)).toEqual(
+      new Date(2020, 3, 18, 23, 59, 59, 999),
     );
+
     // expect(
     //   luxonHelpers
     //     .getEndOfWeek(luxonDate)
@@ -958,8 +954,8 @@ describe('getStartOfMonth', () => {
 });
 describe('getEndOfMonth', () => {
   test('should get the end of the month', () => {
-    expect(helpers.getEndOfMonth(getUtcDate(2020, 0, 5)).toISOString()).toEqual(
-      '2020-01-31T23:59:59.999Z',
+    expect(helpers.getEndOfMonth(new Date(2020, 0, 5))).toEqual(
+      new Date(2020, 0, 31, 23, 59, 59, 999),
     );
   });
 });
