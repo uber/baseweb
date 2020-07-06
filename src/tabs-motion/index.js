@@ -25,6 +25,11 @@ export const FILL = {
   intrinsic: 'intrinsic',
 };
 
+export const KEYBOARD_ACTIVATION = {
+  automatic: 'automatic',
+  manual: 'manual',
+};
+
 // Utilities
 
 export const getTabId = key => `tab_${key}`;
@@ -69,6 +74,7 @@ export const StyledTabPanel = styled('div', () => {});
 export function Tabs({
   activeTabKey = '0',
   disabled = false,
+  keyboardActivation = KEYBOARD_ACTIVATION.automatic,
   onSelect = () => {},
   orientation = ORIENTATION.horizontal,
   fill = FILL.intrinsic,
@@ -99,12 +105,20 @@ export function Tabs({
   // Collect shared styling props
   const shared$Props = {$orientation: orientation, $fill: fill};
 
+  // We do a first pass to collect what each Tab's [key] will be.
+  // We will use them when building keyDown handlers for focus management-
+  // at which point we won't have access to other Tab component's keys.
+  const tabKeys = React.Children.map(children, (child, index) => {
+    if (!child) return;
+    return child.key || String(index);
+  });
+
   return (
     <React.Fragment>
       <StyledTabList role="tablist" {...shared$Props}>
         {React.Children.map(children, (child, index) => {
           if (!child) return;
-          const key = child.key || String(index);
+          const key = tabKeys[index];
           const isActive = key === activeTabKey;
           return (
             <Button
@@ -113,40 +127,48 @@ export function Tabs({
               role="tab"
               onClick={() => onSelect({selectedTabKey: key})}
               onKeyDown={event => {
-                // TODO(tabs-motion): Add automatic keyboard activation option
                 // TODO(tabs-motion): Add alternate keyCode conditions (RTL, orientation)
 
                 // WAI-ARIA 1.1
                 // https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel
                 // We use directional keys to iterate focus through Tabs.
 
-                if (
-                  // Previous
-                  // ⬆️ if Vertical
-                  // ➡️ if RTL
-                  // ⬅️
-                  event.keyCode === 37
-                ) {
-                  if (event.target.previousSibling) {
-                    event.target.previousSibling.focus();
-                  } else {
-                    event.target.parentNode.lastElementChild.previousSibling.focus();
-                  }
-                } else if (
-                  // Next
-                  // ⬇️ if Vertical
-                  // ⬅️ if RTL
-                  // ➡️
-                  event.keyCode === 39
-                ) {
+                if (event.keyCode === 37 || event.keyCode === 39) {
+                  let nextActiveIndex;
                   if (
-                    event.target.nextSibling &&
-                    event.target.nextSibling !==
-                      event.target.parentNode.lastElementChild
+                    // Previous
+                    // ⬆️ if Vertical
+                    // ➡️ if RTL
+                    // ⬅️
+                    event.keyCode === 37
                   ) {
-                    event.target.nextSibling.focus();
-                  } else {
-                    event.target.parentNode.firstElementChild.focus();
+                    if (event.target.previousSibling) {
+                      nextActiveIndex = index - 1;
+                    } else {
+                      nextActiveIndex = children.length - 1;
+                    }
+                  } else if (
+                    // Next
+                    // ⬇️ if Vertical
+                    // ⬅️ if RTL
+                    // ➡️
+                    event.keyCode === 39
+                  ) {
+                    if (
+                      event.target.nextSibling &&
+                      event.target.nextSibling !==
+                        event.target.parentNode.lastElementChild
+                    ) {
+                      nextActiveIndex = index + 1;
+                    } else {
+                      nextActiveIndex = 0;
+                    }
+                  }
+                  // Focus the Tab first...
+                  event.target.parentNode.childNodes[nextActiveIndex].focus();
+                  // And then optionally activate the Tab.
+                  if (keyboardActivation === KEYBOARD_ACTIVATION.automatic) {
+                    onSelect({selectedTabKey: tabKeys[nextActiveIndex]});
                   }
                 }
               }}
