@@ -852,11 +852,13 @@ describe('getStartOfWeek', () => {
       expect(dateHelpers.getStartOfWeek(new Date(2020, 3, 15))).toEqual(
         new Date(2020, 3, 12),
       );
-      expect(
-        momentHelpers
-          .getStartOfWeek(moment(new Date(2020, 3, 15)))
-          .toISOString(),
-      ).toEqual(new Date(2020, 3, 12).toISOString());
+      const returnValue = momentHelpers.getStartOfWeek(
+        moment(new Date(2020, 3, 15)),
+      );
+      const assertValue =
+        typeof returnValue === 'object' ? returnValue.toISOString() : null;
+
+      expect(assertValue).toEqual(new Date(2020, 3, 12).toISOString());
       // expect(
       //   luxonHelpers
       //     .getStartOfWeek(Luxon.fromJSDate(new Date(2020, 3, 15)))
@@ -1018,15 +1020,16 @@ describe('parseString', () => {
     test('should parse based on the locale', () => {
       // these differ so they need to be called individually
       expect(
-        dateHelpers
-          .parseString('jueves 02 2020', 'EEEE dd yyyy', es)
-          .toISOString(),
-      ).toEqual(new Date(2020, 0, 2).toISOString());
-      expect(
-        momentHelpers
-          .parseString('jueves 02 2020', 'dddd DD YYYY', 'es')
-          .toISOString(),
-      ).toEqual(new Date(2020, 0, 2).toISOString());
+        dateHelpers.parseString('jueves 02 2020', 'EEEE dd yyyy', es),
+      ).toEqual(new Date(2020, 0, 2));
+      const returnValue = momentHelpers.parseString(
+        'jueves 02 2020',
+        'dddd DD YYYY',
+        'es',
+      );
+      const assertValue =
+        typeof returnValue === 'object' ? returnValue.toISOString() : null;
+      expect(assertValue).toEqual(new Date(2020, 0, 2).toISOString());
       // Doing this creates an invalid date because the luxon adapter
       // doesn't current pass through locale correctly
       // expect(
