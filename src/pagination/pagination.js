@@ -144,7 +144,7 @@ export default class Pagination extends React.PureComponent<
                   }}
                   kind={KIND.tertiary}
                   overrides={{
-                    BaseButton: overrides.PrevButton,
+                    Root: overrides.PrevButton,
                   }}
                   size={size}
                 >
@@ -247,7 +247,7 @@ export default class Pagination extends React.PureComponent<
                   }}
                   kind={KIND.tertiary}
                   overrides={{
-                    BaseButton: overrides.NextButton,
+                    Root: overrides.NextButton,
                   }}
                   size={size}
                 >

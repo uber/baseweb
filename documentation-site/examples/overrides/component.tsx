@@ -4,7 +4,7 @@ import {Button} from 'baseui/button';
 export default () => (
   <Button
     overrides={{
-      BaseButton: props => <button>{props.children}</button>,
+      Root: props => <button>{props.children}</button>,
     }}
   >
     Submit

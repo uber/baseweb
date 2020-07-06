@@ -13,7 +13,7 @@ export default () => (
       ornare faucibus ex, non facilisis nisl.
     </StyledBody>
     <StyledAction>
-      <Button overrides={{BaseButton: {style: {width: '100%'}}}}>
+      <Button overrides={{Root: {style: {width: '100%'}}}}>
         Button Label
       </Button>
     </StyledAction>

@@ -114,7 +114,7 @@ export class ButtonGroupRoot extends React.Component<{|
             shape,
             size,
             overrides: {
-              BaseButton: {
+              Root: {
                 style: () => {
                   // Even though baseui's buttons have square corners, some applications override to
                   // rounded. Maintaining corner radius in this circumstance is ideal to avoid further

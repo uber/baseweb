@@ -28,6 +28,7 @@ export interface SHAPE {
 }
 
 export interface ButtonOverrides {
+  Root?: Override<any>;
   BaseButton?: Override<any>;
   StartEnhancer?: Override<any>;
   EndEnhancer?: Override<any>;
@@ -53,6 +54,7 @@ export interface ButtonProps
   type?: 'submit' | 'reset' | 'button';
 }
 
+export const StyledRoot: StyletronComponent<any>;
 export const StyledBaseButton: StyletronComponent<any>;
 export const StyledStartEnhancer: StyletronComponent<any>;
 export const StyledEndEnhancer: StyletronComponent<any>;

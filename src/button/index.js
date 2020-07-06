@@ -10,6 +10,7 @@ export {default as Button} from './button.js';
 export {KIND, SIZE, SHAPE} from './constants.js';
 // Styled elements
 export {
+  BaseButton as StyledRoot,
   BaseButton as StyledBaseButton,
   StartEnhancer as StyledStartEnhancer,
   EndEnhancer as StyledEndEnhancer,

@@ -256,7 +256,7 @@ export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
                         <Button
                           key={action.label}
                           overrides={{
-                            BaseButton: {props: {'aria-label': action.label}},
+                            Root: {props: {'aria-label': action.label}},
                           }}
                           onClick={onClick}
                           kind={BUTTON_KINDS.tertiary}

@@ -24,7 +24,7 @@ export default function MobileNav(props: AppNavBarPropsT) {
   return (
     <>
       <Button
-        overrides={{BaseButton: {component: StyledSideMenuButton}}}
+        overrides={{Root: {component: StyledSideMenuButton}}}
         onClick={toggleMenu}
       >
         <MenuIcon size={'24px'} />

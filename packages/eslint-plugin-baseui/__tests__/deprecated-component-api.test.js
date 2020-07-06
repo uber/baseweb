@@ -275,12 +275,12 @@ const tests = {
     // Button is aliased
     {
       code: `
-        import { Button as BaseButton } from "baseui/button"
+        import { Button as Root } from "baseui/button"
         export default () => {
           return (
-            <BaseButton kind="minimal">
+            <Root kind="minimal">
               Hello
-            </BaseButton>
+            </Root>
           )
         }
       `,

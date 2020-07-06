@@ -21,7 +21,7 @@ export default () => {
           <Button
             onClick={() => setIsOpen({...isOpen, [eachSize]: true})}
             overrides={{
-              BaseButton: {
+              Root: {
                 style: {
                   marginTop: '12px',
                   marginBottom: '12px',

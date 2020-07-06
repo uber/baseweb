@@ -5,7 +5,7 @@ import {Button} from 'baseui/button';
 export default () => (
   <Button
     overrides={{
-      BaseButton: {
+      Root: {
         style: ({$theme}) => ({
           backgroundColor: $theme.colors.warning,
         }),

@@ -22,7 +22,7 @@ export default () => {
               setIsOpen({...isOpen, [eachAnchor]: true})
             }
             overrides={{
-              BaseButton: {
+              Root: {
                 style: {
                   marginTop: '12px',
                   marginBottom: '12px',

@@ -79,7 +79,7 @@ const Index = () => {
                     rel="noreferrer noopener"
                     href={p.path}
                     overrides={{
-                      BaseButton: {
+                      Root: {
                         style: {boxSizing: 'border-box', width: '100%'},
                       },
                     }}

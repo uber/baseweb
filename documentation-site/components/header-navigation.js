@@ -108,7 +108,7 @@ export default function HeaderNavigation({
             size={SIZE.compact}
             kind={KIND.minimal}
             overrides={{
-              BaseButton: {
+              Root: {
                 style: {
                   display: 'none',
                   [mq(875)]: {
@@ -129,7 +129,7 @@ export default function HeaderNavigation({
             size={SIZE.compact}
             kind={KIND.minimal}
             overrides={{
-              BaseButton: {
+              Root: {
                 style: {
                   display: 'none',
                   [mq(1000)]: {
@@ -186,7 +186,7 @@ export default function HeaderNavigation({
           shape={SHAPE.square}
           title="Join our Slack channel"
           overrides={{
-            BaseButton: {
+            Root: {
               style: {
                 display: 'none',
                 [mq(500)]: {
@@ -210,7 +210,7 @@ export default function HeaderNavigation({
           shape={SHAPE.square}
           title="Open GitHub repository"
           overrides={{
-            BaseButton: {
+            Root: {
               style: {
                 display: 'none',
                 [mq(400)]: {
@@ -231,7 +231,7 @@ export default function HeaderNavigation({
           shape={SHAPE.square}
           title="Toggle direction"
           overrides={{
-            BaseButton: {
+            Root: {
               style: {
                 display: 'none',
                 [mq(450)]: {
@@ -256,7 +256,7 @@ export default function HeaderNavigation({
           shape={SHAPE.square}
           title="Toggle theme"
           overrides={{
-            BaseButton: {
+            Root: {
               style: {
                 display: 'flex',
               },
@@ -274,7 +274,7 @@ export default function HeaderNavigation({
           shape={SHAPE.square}
           title="Toggle navigation"
           overrides={{
-            BaseButton: {
+            Root: {
               style: {
                 display: 'flex',
                 [theme.mediaQuery.medium]: {

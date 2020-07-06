@@ -13,7 +13,7 @@ import {mergeOverrides} from '../helpers/overrides.js';
 
 // ModalButtons should have some margin pre-applied
 const overrides = {
-  BaseButton: {
+  Root: {
     style: ({$theme}) => {
       const marginInlineEnd: string =
         $theme.direction !== 'rtl' ? 'marginRight' : 'marginLeft';

@@ -121,7 +121,7 @@ function FileUploader(props: PropsT) {
                         kind={KIND.minimal}
                         onClick={open}
                         overrides={{
-                          BaseButton: {
+                          Root: {
                             style: {fontWeight: 'normal'},
                           },
                         }}
@@ -186,7 +186,7 @@ function FileUploader(props: PropsT) {
                           aria-describedby={props['aria-describedby']}
                           aria-errormessage={props.errorMessage}
                           overrides={{
-                            BaseButton: {
+                            Root: {
                               style: {outline: null, fontWeight: 'normal'},
                             },
                           }}
@@ -201,7 +201,7 @@ function FileUploader(props: PropsT) {
                           }}
                           aria-describedby={props['aria-describedby']}
                           overrides={{
-                            BaseButton: {
+                            Root: {
                               style: {outline: null, fontWeight: 'normal'},
                             },
                           }}

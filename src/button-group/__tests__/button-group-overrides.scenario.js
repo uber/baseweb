@@ -12,7 +12,7 @@ import {Button} from '../../button/index.js';
 import {StatefulButtonGroup, MODE} from '../index.js';
 
 const buttonOverrides = {
-  BaseButton: {
+  Root: {
     style: ({$isSelected}) => {
       if ($isSelected)
         return {

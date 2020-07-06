@@ -325,16 +325,10 @@ function NumericalFilter(props) {
           },
         }}
       >
-        <Button
-          type="button"
-          overrides={{BaseButton: {style: {width: '100%'}}}}
-        >
+        <Button type="button" overrides={{Root: {style: {width: '100%'}}}}>
           Range
         </Button>
-        <Button
-          type="button"
-          overrides={{BaseButton: {style: {width: '100%'}}}}
-        >
+        <Button type="button" overrides={{Root: {style: {width: '100%'}}}}>
           Single Value
         </Button>
       </ButtonGroup>
@@ -351,34 +345,19 @@ function NumericalFilter(props) {
             },
           }}
         >
-          <Button
-            type="button"
-            overrides={{BaseButton: {style: {width: '100%'}}}}
-          >
+          <Button type="button" overrides={{Root: {style: {width: '100%'}}}}>
             &#60;
           </Button>
-          <Button
-            type="button"
-            overrides={{BaseButton: {style: {width: '100%'}}}}
-          >
+          <Button type="button" overrides={{Root: {style: {width: '100%'}}}}>
             &#62;
           </Button>
-          <Button
-            type="button"
-            overrides={{BaseButton: {style: {width: '100%'}}}}
-          >
+          <Button type="button" overrides={{Root: {style: {width: '100%'}}}}>
             &#8804;
           </Button>
-          <Button
-            type="button"
-            overrides={{BaseButton: {style: {width: '100%'}}}}
-          >
+          <Button type="button" overrides={{Root: {style: {width: '100%'}}}}>
             &#8805;
           </Button>
-          <Button
-            type="button"
-            overrides={{BaseButton: {style: {width: '100%'}}}}
-          >
+          <Button type="button" overrides={{Root: {style: {width: '100%'}}}}>
             &#61;
           </Button>
         </ButtonGroup>

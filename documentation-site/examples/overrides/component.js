@@ -9,7 +9,7 @@ function customButton(props) {
 export default () => (
   <Button
     overrides={{
-      BaseButton: customButton,
+      Root: customButton,
     }}
   >
     Submit

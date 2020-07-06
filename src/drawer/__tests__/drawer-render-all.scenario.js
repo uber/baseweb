@@ -16,7 +16,7 @@ function Example() {
       <Button
         onClick={() => setIsOpen(true)}
         overrides={{
-          BaseButton: {
+          Root: {
             props: {
               'data-e2e': 'open-drawer-button',
             },

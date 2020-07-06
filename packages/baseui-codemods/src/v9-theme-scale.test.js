@@ -123,9 +123,9 @@ describe('shift theme usage for fonts', () => {
     });
 
     it('override style function', async () => {
-      const content = `const Foo = <Button overrides={{ BaseButton: { style: ({$theme}) => ({ ...$theme.typography.font200 })}}}>Foo</Button>`;
+      const content = `const Foo = <Button overrides={{ Root: { style: ({$theme}) => ({ ...$theme.typography.font200 })}}}>Foo</Button>`;
       expect(await transform(content)).toMatchInlineSnapshot(
-        `"const Foo = <Button overrides={{ BaseButton: { style: ({$theme}) => ({ ...$theme.typography.font100 })}}}>Foo</Button>"`,
+        `"const Foo = <Button overrides={{ Root: { style: ({$theme}) => ({ ...$theme.typography.font100 })}}}>Foo</Button>"`,
       );
     });
 

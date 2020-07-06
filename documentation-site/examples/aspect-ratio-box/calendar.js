@@ -11,7 +11,7 @@ const CalendarButton = props => (
   <Button
     kind={KIND.minimal}
     overrides={{
-      BaseButton: {
+      Root: {
         style: {
           paddingTop: 0,
           paddingRight: 0,

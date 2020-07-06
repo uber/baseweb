@@ -66,7 +66,7 @@ const ActionButtons: React.FC<{
         </Button>
         <Button
           overrides={{
-            BaseButton: {
+            Root: {
               props: {
                 $as: 'a',
               },

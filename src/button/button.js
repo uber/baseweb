@@ -64,8 +64,8 @@ class Button extends React.Component<
       ...restProps
     } = this.props;
     // Get overrides
-    const [BaseButton, baseButtonProps] = getOverrides(
-      overrides.BaseButton,
+    const [Root, rootProps] = getOverrides(
+      overrides.BaseButton || overrides.Root,
       StyledBaseButton,
     );
     const [LoadingSpinner, loadingSpinnerProps] = getOverrides(
@@ -84,7 +84,7 @@ class Button extends React.Component<
       $isFocusVisible: this.state.isFocusVisible,
     };
     return (
-      <BaseButton
+      <Root
         ref={forwardedRef}
         data-baseweb="button"
         {...(isLoading
@@ -101,14 +101,11 @@ class Button extends React.Component<
           : {})}
         {...sharedProps}
         {...restProps}
-        {...baseButtonProps}
+        {...rootProps}
         // Applies last to override passed in onClick
         onClick={this.internalOnClick}
-        onFocus={forkFocus(
-          {...restProps, ...baseButtonProps},
-          this.handleFocus,
-        )}
-        onBlur={forkBlur({...restProps, ...baseButtonProps}, this.handleBlur)}
+        onFocus={forkFocus({...restProps, ...rootProps}, this.handleFocus)}
+        onBlur={forkBlur({...restProps, ...rootProps}, this.handleBlur)}
       >
         {isLoading ? (
           <React.Fragment>
@@ -126,7 +123,7 @@ class Button extends React.Component<
         ) : (
           <ButtonInternals {...this.props} />
         )}
-      </BaseButton>
+      </Root>
     );
   }
 }

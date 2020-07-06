@@ -34,7 +34,7 @@ export default function UserMenu(props: AppNavBarPropsT) {
       popperOptions={{modifiers: {flip: {enabled: false}}}}
       triggerType={TRIGGER_TYPE.click}
     >
-      <Button overrides={{BaseButton: {component: StyledUserMenuButton}}}>
+      <Button overrides={{Root: {component: StyledUserMenuButton}}}>
         <Avatar name={username || ''} src={userImgUrl} size={'32px'} />
         {isOpen ? (
           <ChevronUpSmallFilled

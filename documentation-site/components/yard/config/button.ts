@@ -119,7 +119,7 @@ const ButtonConfig: TConfig = {
       description: 'Lets you customize all aspects of the component.',
       custom: {
         names: [
-          'BaseButton',
+          'Root',
           'EndEnhancer',
           'LoadingSpinner',
           'LoadingSpinnerContainer',

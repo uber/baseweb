@@ -600,7 +600,7 @@ const InnerTableElement = React.forwardRef<
                   kind={BUTTON_KINDS.minimal}
                   shape={BUTTON_SHAPES.round}
                   overrides={{
-                    BaseButton: {
+                    Root: {
                       style: {marginLeft: theme.sizing.scale300},
                     },
                   }}

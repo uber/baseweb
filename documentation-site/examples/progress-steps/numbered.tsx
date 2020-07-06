@@ -8,7 +8,7 @@ function SpacedButton(props: ButtonProps) {
     <Button
       {...props}
       overrides={{
-        BaseButton: {
+        Root: {
           style: ({$theme}) => ({
             marginLeft: $theme.sizing.scale200,
             marginRight: $theme.sizing.scale200,

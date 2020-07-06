@@ -138,7 +138,7 @@ const Index = (props: {
           $as="a"
           href="/getting-started/setup"
           overrides={{
-            BaseButton: {
+            Root: {
               style: ({$theme}) => ({
                 boxSizing: 'border-box',
                 width: '100%',
@@ -160,7 +160,7 @@ const Index = (props: {
           $as="a"
           href="/getting-started/learn"
           overrides={{
-            BaseButton: {
+            Root: {
               style: ({$theme}) => ({
                 boxSizing: 'border-box',
                 width: '100%',

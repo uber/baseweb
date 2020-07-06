@@ -18,7 +18,7 @@ const mockTheme = createMockTheme(LightTheme);
 
 describe('ModalButton', () => {
   test('renders modal button with correct styles', () => {
-    const overrides = {BaseButton: {style: {color: 'red'}}};
+    const overrides = {Root: {style: {color: 'red'}}};
     const wrapper = shallow(
       <ModalButton kind={KIND.tertiary} overrides={overrides}>
         Hello World
@@ -30,7 +30,7 @@ describe('ModalButton', () => {
     expect(button).toHaveProp('kind', KIND.tertiary);
 
     const mergedOverrides = button.prop('overrides');
-    const result = mergedOverrides.BaseButton.style({$theme: mockTheme});
+    const result = mergedOverrides.Root.style({$theme: mockTheme});
     expect(result).toEqual({
       color: 'red',
       ':nth-last-child(n+2)': {

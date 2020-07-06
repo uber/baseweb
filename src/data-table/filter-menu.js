@@ -311,7 +311,7 @@ function FilterMenu(props: PropsT) {
         shape={SHAPE.pill}
         size={SIZE.compact}
         overrides={{
-          BaseButton: {
+          Root: {
             style: {
               marginLeft: theme.sizing.scale500,
               marginBottom: theme.sizing.scale500,
