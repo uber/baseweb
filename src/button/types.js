@@ -11,6 +11,7 @@ import {KIND, SIZE, SHAPE} from './constants.js';
 import type {OverrideT} from '../helpers/overrides.js';
 
 export type OverridesT = {
+  Root?: OverrideT,
   BaseButton?: OverrideT,
   StartEnhancer?: OverrideT,
   EndEnhancer?: OverrideT,
