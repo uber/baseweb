@@ -72,11 +72,15 @@ export default class Day<T = Date> extends React.Component<
   }
 
   getDateProp: () => T = () => {
-    return this.props.date || this.dateHelpers.date();
+    return this.props.date === undefined
+      ? this.dateHelpers.date()
+      : this.props.date;
   };
 
   getMonthProp: () => number = () => {
-    return this.props.month || this.dateHelpers.getMonth(this.getDateProp());
+    return this.props.month === undefined || this.props.month === null
+      ? this.dateHelpers.getMonth(this.getDateProp())
+      : this.props.month;
   };
 
   onSelect: T => void = selectedDate => {
