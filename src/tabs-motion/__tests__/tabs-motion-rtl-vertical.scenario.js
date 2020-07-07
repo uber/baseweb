@@ -12,30 +12,35 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {Tab, Tabs, ORIENTATION} from '../index.js';
 import {Button, KIND} from '../../button/index.js';
+import {ThemeProvider, LightTheme} from '../../index.js';
 
 export default function Scenario() {
   const [activeTabKey, setActiveTabKey] = React.useState('0');
   return (
-    <Tabs
-      activeTabKey={activeTabKey}
-      onSelect={({selectedTabKey}) => setActiveTabKey(selectedTabKey)}
-      orientation={ORIENTATION.vertical}
-    >
-      <Tab title="Robot">
-        <div style={{padding: '16px'}}>
-          <Button kind={KIND.secondary}>🤖</Button>
-        </div>
-      </Tab>
-      <Tab title="Monster">
-        <div style={{padding: '16px'}}>
-          <Button kind={KIND.secondary}>👺</Button>
-        </div>
-      </Tab>
-      <Tab title="Watermelon">
-        <div style={{padding: '16px'}}>
-          <Button kind={KIND.secondary}>🍉</Button>
-        </div>
-      </Tab>
-    </Tabs>
+    <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
+      <div dir="rtl">
+        <Tabs
+          activeTabKey={activeTabKey}
+          onSelect={({selectedTabKey}) => setActiveTabKey(selectedTabKey)}
+          orientation={ORIENTATION.vertical}
+        >
+          <Tab title="Robot">
+            <div style={{padding: '16px'}}>
+              <Button kind={KIND.secondary}>🤖</Button>
+            </div>
+          </Tab>
+          <Tab title="Monster">
+            <div style={{padding: '16px'}}>
+              <Button kind={KIND.secondary}>👺</Button>
+            </div>
+          </Tab>
+          <Tab title="Watermelon">
+            <div style={{padding: '16px'}}>
+              <Button kind={KIND.secondary}>🍉</Button>
+            </div>
+          </Tab>
+        </Tabs>
+      </div>
+    </ThemeProvider>
   );
 }

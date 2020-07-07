@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {styled} from '../styles/index.js';
+import {styled, useStyletron} from '../styles/index.js';
 import {Button, KIND} from '../button/index.js';
 
 // TODO(tabs-motion): Use unique ids for when there are multiple Tabs on the page.
@@ -37,29 +37,54 @@ export const getTabPanelId = key => `tabpanel_${key}`;
 
 // Styled Components
 
-export const StyledTabList = styled('div', ({$theme}) => {
+export const StyledRoot = styled('div', ({$theme, $helper}) => {
+  return {
+    display: 'flex',
+    flexDirection: $helper({h: 'column', v: 'row'}),
+  };
+});
+
+export const StyledTabList = styled('div', ({$theme, $helper}) => {
   return {
     position: 'relative',
     display: 'flex',
-    flexDirection: 'row',
     flexWrap: 'nowrap',
-    overflowY: 'scroll',
+    flexDirection: $helper({h: 'row', v: 'column'}),
+    overflowX: $helper({h: 'scroll'}),
+    overflowY: $helper({v: 'scroll'}),
     // The track for the StyledTabAccent
-    boxShadow: `inset 0 -5px ${$theme.colors.borderOpaque}`,
-    paddingBottom: '5px',
+    boxShadow: $helper({
+      h: `inset 0 -5px ${$theme.colors.borderOpaque}`,
+      vltr: `inset -5px 0 ${$theme.colors.borderOpaque}`,
+      vrtl: `inset 5px 0 ${$theme.colors.borderOpaque}`,
+    }),
+    paddingLeft: $helper({
+      vrtl: '5px',
+    }),
+    paddingRight: $helper({
+      vltr: '5px',
+    }),
+    paddingBottom: $helper({
+      h: '5px',
+    }),
   };
 });
 
 export const StyledTabAccent = styled(
   'div',
-  ({$theme, $length = 0, $distance = 0}) => {
+  ({$theme, $orientation, $helper, $length = 0, $distance = 0}) => {
     return {
       position: 'absolute',
-      bottom: '0',
-      height: '5px',
-      width: `${$length}px`,
+      bottom: $helper({h: '0'}),
+      right: $helper({hrtl: '0', vltr: '0'}),
+      left: $helper({hltr: '0', vrtl: '0'}),
+      height: $helper({h: '5px', v: `${$length}px`}),
+      width: $helper({v: '5px', h: `${$length}px`}),
+      transform: $helper({
+        h: `translateX(${$distance}px)`,
+        v: `translateY(${$distance}px)`,
+      }),
       backgroundColor: $theme.colors.primary,
-      transform: `translateX(${$distance}px)`,
       transitionProperty: 'all',
       transitionDuration: $theme.animation.timing400,
       transitionTimingFunction: $theme.animation.easeInOutQuinticCurve,
@@ -80,30 +105,62 @@ export function Tabs({
   fill = FILL.intrinsic,
   children,
 }) {
-  const activeTabRef = React.useRef();
+  const [, theme] = useStyletron();
 
-  // Keep state for the Tab Accent layout.
-  // [length] The width or height of the Accent
-  // [distance] How far from the origin the Accent should be placed.
+  // Positioning the TabAccent
+  const activeTabRef = React.useRef();
   const [accentLayout, setAccentLayout] = React.useState({
     length: 0,
     distance: 0,
   });
-
-  // When the active Tab changes, update the Accent layout.
   React.useEffect(() => {
     if (activeTabRef.current) {
       setAccentLayout({
-        length: activeTabRef.current.clientWidth,
-        distance: activeTabRef.current.offsetLeft,
+        length:
+          orientation === ORIENTATION.horizontal
+            ? activeTabRef.current.clientWidth
+            : activeTabRef.current.clientHeight,
+        distance:
+          orientation === ORIENTATION.horizontal
+            ? theme.direction !== 'rtl'
+              ? activeTabRef.current.offsetLeft
+              : -1 *
+                (activeTabRef.current.parentElement.scrollWidth -
+                  activeTabRef.current.offsetLeft -
+                  activeTabRef.current.clientWidth)
+            : activeTabRef.current.offsetTop,
       });
     }
   }, [activeTabKey]);
 
   // TODO(tabs-motion): Add scrolling handlers
 
+  // A helper for styling all the various states (RTL/Orientation)
+  const helper = React.useCallback(
+    results => {
+      if (orientation === ORIENTATION.horizontal && theme.direction !== 'rtl') {
+        return results.hltr || results.h || results.ltr || null;
+      }
+      if (orientation === ORIENTATION.vertical && theme.direction !== 'rtl') {
+        return results.vltr || results.v || results.ltr || null;
+      }
+      if (orientation === ORIENTATION.horizontal && theme.direction === 'rtl') {
+        return results.hrtl || results.h || results.rtl || null;
+      }
+      if (orientation === ORIENTATION.vertical && theme.direction === 'rtl') {
+        return results.vrtl || results.v || results.rtl || null;
+      }
+      return null;
+    },
+    [orientation, theme.direction],
+  );
+
   // Collect shared styling props
-  const shared$Props = {$orientation: orientation, $fill: fill};
+  const shared$Props = {
+    $orientation: orientation,
+    $fill: fill,
+    $helper: helper,
+  };
 
   // We do a first pass to collect what each Tab's [key] will be.
   // We will use them when building keyDown handlers for focus management-
@@ -113,7 +170,7 @@ export function Tabs({
   });
 
   return (
-    <React.Fragment>
+    <StyledRoot {...shared$Props}>
       <StyledTabList role="tablist" {...shared$Props}>
         {React.Children.map(children, (child, index) => {
           if (!child) return;
@@ -206,7 +263,7 @@ export function Tabs({
           </StyledTabPanel>
         );
       })}
-    </React.Fragment>
+    </StyledRoot>
   );
 }
 
