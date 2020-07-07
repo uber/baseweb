@@ -30,6 +30,11 @@ export const KEYBOARD_ACTIVATION = {
   manual: 'manual',
 };
 
+export const KEYBOARD_ACTION = {
+  next: 'next',
+  previous: 'previous',
+};
+
 // Utilities
 
 export const getTabId = key => `tab_${key}`;
@@ -202,6 +207,42 @@ export function Tabs({
     return child ? child.key || String(index) : null;
   });
 
+  const parseKeyDown = React.useCallback(
+    event => {
+      if (orientation === ORIENTATION.horizontal) {
+        if (theme.direction === 'rtl') {
+          switch (event.keyCode) {
+            case 39:
+              return KEYBOARD_ACTION.previous;
+            case 37:
+              return KEYBOARD_ACTION.next;
+            default:
+              return null;
+          }
+        } else {
+          switch (event.keyCode) {
+            case 37:
+              return KEYBOARD_ACTION.previous;
+            case 39:
+              return KEYBOARD_ACTION.next;
+            default:
+              return null;
+          }
+        }
+      } else {
+        switch (event.keyCode) {
+          case 38:
+            return KEYBOARD_ACTION.previous;
+          case 40:
+            return KEYBOARD_ACTION.next;
+          default:
+            return null;
+        }
+      }
+    },
+    [orientation, theme.direction],
+  );
+
   return (
     <StyledRoot {...shared$Props}>
       <StyledTabList role="tablist" {...shared$Props}>
@@ -216,33 +257,19 @@ export function Tabs({
               role="tab"
               onClick={() => onSelect({selectedTabKey: key})}
               onKeyDown={event => {
-                // TODO(tabs-motion): Add alternate keyCode conditions (RTL, orientation)
-
                 // WAI-ARIA 1.1
                 // https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel
                 // We use directional keys to iterate focus through Tabs.
-
-                if (event.keyCode === 37 || event.keyCode === 39) {
+                let action = parseKeyDown(event);
+                if (action) {
                   let nextActiveIndex;
-                  if (
-                    // Previous
-                    // ⬆️ if Vertical
-                    // ➡️ if RTL
-                    // ⬅️
-                    event.keyCode === 37
-                  ) {
+                  if (action === KEYBOARD_ACTION.previous) {
                     if (event.target.previousSibling) {
                       nextActiveIndex = index - 1;
                     } else {
                       nextActiveIndex = children.length - 1;
                     }
-                  } else if (
-                    // Next
-                    // ⬇️ if Vertical
-                    // ⬅️ if RTL
-                    // ➡️
-                    event.keyCode === 39
-                  ) {
+                  } else if (action === KEYBOARD_ACTION.next) {
                     if (
                       event.target.nextSibling &&
                       event.target.nextSibling !==
