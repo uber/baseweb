@@ -148,7 +148,7 @@ const PopoverConfig: TConfig = {
       placeholder: '200',
       type: PropTypes.Number,
       description:
-        'Number of milliseconds to wait before showing the popover after mouse leaves the trigger element.',
+        'Number of milliseconds to wait before hiding the popover after mouse leaves the trigger element.',
       hidden: true,
     },
     ignoreBoundary: {
