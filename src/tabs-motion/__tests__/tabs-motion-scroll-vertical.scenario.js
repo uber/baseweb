@@ -14,7 +14,7 @@ import {Tab, Tabs, ORIENTATION} from '../index.js';
 import {Button, KIND} from '../../button/index.js';
 
 export default function Scenario() {
-  const [activeTabKey, setActiveTabKey] = React.useState('0');
+  const [activeTabKey, setActiveTabKey] = React.useState('8');
   return (
     <Tabs
       activeTabKey={activeTabKey}

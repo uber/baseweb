@@ -44,14 +44,12 @@ export const StyledRoot = styled('div', ({$theme, $helper}) => {
   };
 });
 
-export const StyledTabList = styled('div', ({$theme, $helper}) => {
+export const StyledTabList = styled('div', ({$theme, $fill, $helper}) => {
   return {
     position: 'relative',
     display: 'flex',
     flexWrap: 'nowrap',
     flexDirection: $helper({h: 'row', v: 'column'}),
-    overflowX: $helper({h: 'scroll'}),
-    overflowY: $helper({v: 'scroll'}),
     // The track for the StyledTabAccent
     boxShadow: $helper({
       h: `inset 0 -5px ${$theme.colors.borderOpaque}`,
@@ -67,6 +65,21 @@ export const StyledTabList = styled('div', ({$theme, $helper}) => {
     paddingBottom: $helper({
       h: '5px',
     }),
+    ...($fill === FILL.intrinsic
+      ? {
+          overflowX: $helper({h: 'scroll'}),
+          overflowY: $helper({v: 'scroll'}),
+          // The following properties hide the scroll bar on various browsers:
+          // Chrome, Safari, etc
+          '::-webkit-scrollbar': {
+            display: 'none',
+          },
+          // IE, Edge
+          '-ms-overflow-style': 'none',
+          // Firefox
+          scrollbarWidth: 'none',
+        }
+      : {}),
   };
 });
 
@@ -133,7 +146,27 @@ export function Tabs({
     }
   }, [activeTabKey]);
 
-  // TODO(tabs-motion): Add scrolling handlers
+  // Scroll active Tab into view.
+  // We have to split up the scrollIntoView for mount and key change.
+  // On first mount:
+  React.useEffect(() => {
+    if (activeTabRef.current) {
+      activeTabRef.current.scrollIntoView({
+        block: 'start',
+        inline: 'center',
+      });
+    }
+  }, []);
+  // On key change:
+  React.useEffect(() => {
+    if (activeTabRef.current) {
+      activeTabRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'nearest',
+      });
+    }
+  }, [activeTabKey]);
 
   // A helper for styling all the various states (RTL/Orientation)
   const helper = React.useCallback(
