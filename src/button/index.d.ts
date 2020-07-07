@@ -28,6 +28,7 @@ export interface SHAPE {
 }
 
 export interface ButtonOverrides {
+  Root?: Override<any>;
   BaseButton?: Override<any>;
   StartEnhancer?: Override<any>;
   EndEnhancer?: Override<any>;
