@@ -102,7 +102,14 @@ export const StyledTabList = styled('div', ({$theme, $fill, $helper}) => {
 
 export const StyledTabAccent = styled(
   'div',
-  ({$theme, $orientation, $helper, $length = 0, $distance = 0}) => {
+  ({
+    $theme,
+    $orientation,
+    $helper,
+    $length = 0,
+    $distance = 0,
+    $animate = false,
+  }) => {
     return {
       position: 'absolute',
       bottom: $helper({h: '0'}),
@@ -115,9 +122,13 @@ export const StyledTabAccent = styled(
         v: `translateY(${$distance}px)`,
       }),
       backgroundColor: $theme.colors.primary,
-      transitionProperty: 'all',
-      transitionDuration: $theme.animation.timing400,
-      transitionTimingFunction: $theme.animation.easeInOutQuinticCurve,
+      ...($animate
+        ? {
+            transitionProperty: 'all',
+            transitionDuration: $theme.animation.timing400,
+            transitionTimingFunction: $theme.animation.easeInOutQuinticCurve,
+          }
+        : {}),
     };
   },
 );
@@ -135,9 +146,16 @@ export function Tabs({
   fill = FILL.intrinsic,
   children,
 }) {
-  const [, theme] = useStyletron();
+  // Count key updates
+  // We disable the accent animation until the first key update
+  // This avoids the tab sliding in from the side on mount
+  const [keyUpdated, setKeyUpdated] = React.useState(0);
+  React.useEffect(() => {
+    setKeyUpdated(keyUpdated + 1);
+  }, [activeTabKey]);
 
-  // Positioning the TabAccent
+  // Positioning the accent
+  const [, theme] = useStyletron();
   const activeTabRef = React.useRef();
   const [accentLayout, setAccentLayout] = React.useState({
     length: 0,
@@ -313,6 +331,8 @@ export function Tabs({
         <StyledTabAccent
           $length={accentLayout.length}
           $distance={accentLayout.distance}
+          // This avoids the tab sliding in from the side on mount
+          $animate={keyUpdated > 1}
           aria-hidden="true"
           role="presentation"
           {...sharedProps}
