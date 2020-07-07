@@ -65,7 +65,10 @@ class Button extends React.Component<
     } = this.props;
     // Get overrides
     const [BaseButton, baseButtonProps] = getOverrides(
-      overrides.BaseButton,
+      // adding both (1) BaseButton and (2) Root
+      // (1) because it's a Button under the hood
+      // (2) because we want consitency with the rest of the components
+      overrides.BaseButton || overrides.Root,
       StyledBaseButton,
     );
     const [LoadingSpinner, loadingSpinnerProps] = getOverrides(
