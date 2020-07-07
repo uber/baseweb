@@ -20,17 +20,19 @@ export default function() {
   const [css] = useStyletron();
   return (
     <div className={css({height: '750px'})}>
-      <StyledTable $gridTemplateColumns="minmax(400px, max-content) 200px 200px">
-        <StyledHeadCell>Column 1</StyledHeadCell>
-        <StyledHeadCell>Column 2</StyledHeadCell>
-        <StyledHeadCell>Column 3</StyledHeadCell>
+      <StyledTable role='grid' $gridTemplateColumns="minmax(400px, max-content) 200px 200px">
+        <div role='row' className={css({display: 'contents'})}>
+          <StyledHeadCell>Column 1</StyledHeadCell>
+          <StyledHeadCell>Column 2</StyledHeadCell>
+          <StyledHeadCell>Column 3</StyledHeadCell>
+        </div>
         {data.map((row, index) => {
           return (
-            <React.Fragment key={index}>
+            <div role='row' className={css({display: 'contents'})} key={index}>
               <StyledBodyCell>{row[0]}</StyledBodyCell>
               <StyledBodyCell>{row[1]}</StyledBodyCell>
               <StyledBodyCell>{row[2]}</StyledBodyCell>
-            </React.Fragment>
+            </div>
           );
         })}
       </StyledTable>
