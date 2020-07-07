@@ -7,11 +7,23 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
+// TODO(tabs-motion): Add [fill]
+// TODO(tabs-motion): Add [overrides]
+// TODO(tabs-motion): Align buttons properly when vertical
+// TODO(tabs-motion): Add Flow types
+// TODO(tabs-motion): Add TS types
+// TODO(tabs-motion): Add react-testing-library tests
+// TODO(tabs-motion): Add e2e tests
+// TODO(tabs-motion): Add align scenario
+// TODO(tabs-motion): Add new documentation & examples
+
+// TODO(tabs-motion): Use [withWrapper] for default props on styled components?
+// TODO(tabs-motion): Remove initial accent animation?
+// TODO(tabs-motion): Use unique ids for when there are multiple Tabs on the page?
+
 import * as React from 'react';
 import {styled, useStyletron} from '../styles/index.js';
 import {Button, KIND} from '../button/index.js';
-
-// TODO(tabs-motion): Use unique ids for when there are multiple Tabs on the page.
 
 // Constants
 
@@ -140,12 +152,12 @@ export function Tabs({
             : activeTabRef.current.clientHeight,
         distance:
           orientation === ORIENTATION.horizontal
-            ? theme.direction !== 'rtl'
-              ? activeTabRef.current.offsetLeft
-              : -1 *
+            ? theme.direction === 'rtl'
+              ? -1 *
                 (activeTabRef.current.parentElement.scrollWidth -
                   activeTabRef.current.offsetLeft -
                   activeTabRef.current.clientWidth)
+              : activeTabRef.current.offsetLeft
             : activeTabRef.current.offsetTop,
       });
     }
@@ -194,7 +206,7 @@ export function Tabs({
   );
 
   // Collect shared styling props
-  const shared$Props = {
+  const sharedProps = {
     $orientation: orientation,
     $fill: fill,
     $helper: helper,
@@ -244,8 +256,8 @@ export function Tabs({
   );
 
   return (
-    <StyledRoot {...shared$Props}>
-      <StyledTabList role="tablist" {...shared$Props}>
+    <StyledRoot {...sharedProps}>
+      <StyledTabList role="tablist" {...sharedProps}>
         {React.Children.map(children, (child, index) => {
           if (!child) return;
           const key = tabKeys[index];
@@ -303,7 +315,7 @@ export function Tabs({
           $distance={accentLayout.distance}
           aria-hidden="true"
           role="presentation"
-          {...shared$Props}
+          {...sharedProps}
         />
       </StyledTabList>
 

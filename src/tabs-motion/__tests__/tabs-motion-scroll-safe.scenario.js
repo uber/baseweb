@@ -13,8 +13,8 @@ import * as React from 'react';
 import {Tab, Tabs} from '../index.js';
 import {Button, KIND} from '../../button/index.js';
 
-// This scenario tests to make sure that the page does not scroll with
-// the component on initial mount.
+// This scenario tests to make sure that the page does not scroll to the
+// component on initial mount.
 
 export default function Scenario() {
   const [activeTabKey, setActiveTabKey] = React.useState('8');
