@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-// TODO(tabs-motion): Add [fill]
 // TODO(tabs-motion): Add [overrides]
 // TODO(tabs-motion): Add Flow types
 // TODO(tabs-motion): Add TS types
