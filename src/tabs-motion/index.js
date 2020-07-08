@@ -18,7 +18,6 @@ LICENSE file in the root directory of this source tree.
 // TODO(tabs-motion): Add new documentation & examples
 
 // TODO(tabs-motion): Use [withWrapper] for default props on styled components?
-// TODO(tabs-motion): Remove initial accent animation?
 // TODO(tabs-motion): Use unique ids for when there are multiple Tabs on the page?
 
 import * as React from 'react';
