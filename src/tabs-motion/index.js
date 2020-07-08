@@ -326,6 +326,15 @@ export function Tabs({
               tabIndex={isActive ? '0' : '-1'}
               ref={isActive ? activeTabRef : null}
               kind={KIND.tertiary}
+              overrides={{
+                BaseButton: {
+                  style: {
+                    justifyContent: helper({
+                      v: 'flex-end',
+                    }),
+                  },
+                },
+              }}
             >
               {child.props.title}
             </Button>
