@@ -9,7 +9,6 @@ LICENSE file in the root directory of this source tree.
 
 // TODO(tabs-motion): Add [fill]
 // TODO(tabs-motion): Add [overrides]
-// TODO(tabs-motion): Align buttons properly when vertical
 // TODO(tabs-motion): Add Flow types
 // TODO(tabs-motion): Add TS types
 // TODO(tabs-motion): Add react-testing-library tests
