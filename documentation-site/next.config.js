@@ -81,6 +81,10 @@ module.exports = withTM(
           return entries;
         };
 
+        if (dev) {
+          config.devtool = 'inline-source-map';
+        }
+
         return config;
       },
       pageExtensions: ['js', 'jsx', 'mdx'],

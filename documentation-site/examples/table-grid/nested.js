@@ -131,14 +131,16 @@ function Tasks(props) {
         padding: '32px 24px',
       })}
     >
-      <StyledTable $gridTemplateColumns="max-content auto auto auto">
-        <StyledHeadCell $sticky={false}>Task</StyledHeadCell>
-        <StyledHeadCell $sticky={false}>Status</StyledHeadCell>
-        <StyledHeadCell $sticky={false}>Last Run</StyledHeadCell>
-        <StyledHeadCell $sticky={false}>Details</StyledHeadCell>
+      <StyledTable role='grid' $gridTemplateColumns="max-content auto auto auto">
+        <div role='row' className={css({display: 'contents'})}>
+          <StyledHeadCell $sticky={false}>Task</StyledHeadCell>
+          <StyledHeadCell $sticky={false}>Status</StyledHeadCell>
+          <StyledHeadCell $sticky={false}>Last Run</StyledHeadCell>
+          <StyledHeadCell $sticky={false}>Details</StyledHeadCell>
+        </div>
         {props.tasks.map((task, index) => {
           return (
-            <React.Fragment>
+            <div role='row' className={css({display: 'contents'})}>
               <StyledBodyCell>{task[0]}</StyledBodyCell>
               <StyledBodyCell>
                 <Tag
@@ -155,7 +157,7 @@ function Tasks(props) {
               <StyledBodyCell>
                 <StyledLink href={task[4]}>{task[3]}</StyledLink>
               </StyledBodyCell>
-            </React.Fragment>
+            </div>
           );
         })}
       </StyledTable>
@@ -172,7 +174,7 @@ function Row({striped, row}) {
   const [css] = useStyletron();
   const [expanded, setExpanded] = React.useState(false);
   return (
-    <React.Fragment>
+    <div role='row' className={css({display: 'contents'})}>
       <CenteredBodyCell $striped={striped}>
         <Button
           size="compact"
@@ -237,7 +239,7 @@ function Row({striped, row}) {
         </StatefulPopover>
       </CenteredBodyCell>
       {expanded && <Tasks tasks={row[6]} />}
-    </React.Fragment>
+    </div>
   );
 }
 
@@ -245,13 +247,14 @@ export default function() {
   const [css] = useStyletron();
   return (
     <div className={css({height: '600px'})}>
-      <StyledTable $gridTemplateColumns="max-content min-content minmax(300px, max-content) max-content auto">
-        <StyledHeadCell>Job Name</StyledHeadCell>
-        <StyledHeadCell>Status</StyledHeadCell>
-        <StyledHeadCell>Pull Request</StyledHeadCell>
-        <StyledHeadCell>Last Run</StyledHeadCell>
-        <StyledHeadCell>Details</StyledHeadCell>
-
+      <StyledTable role='grid' $gridTemplateColumns="max-content min-content minmax(300px, max-content) max-content auto">
+        <div role='row' className={css({display: 'contents'})}>
+          <StyledHeadCell>Job Name</StyledHeadCell>
+          <StyledHeadCell>Status</StyledHeadCell>
+          <StyledHeadCell>Pull Request</StyledHeadCell>
+          <StyledHeadCell>Last Run</StyledHeadCell>
+          <StyledHeadCell>Details</StyledHeadCell>
+        </div>
         {data.map((row, index) => {
           const striped = index % 2 === 0;
           return <Row key={index} row={row} striped={striped} />;
