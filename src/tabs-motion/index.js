@@ -280,12 +280,14 @@ export function Tabs({
           if (!child) return;
           const key = tabKeys[index];
           const isActive = key === activeTabKey;
+          const Artwork = child.props.artwork;
           return (
             <Button
               key={key}
               id={getTabId(key)}
               role="tab"
               onClick={() => onSelect({selectedTabKey: key})}
+              startEnhancer={Artwork ? <Artwork size={16} /> : null}
               onKeyDown={event => {
                 // WAI-ARIA 1.1
                 // https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel
