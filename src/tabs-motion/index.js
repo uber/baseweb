@@ -327,9 +327,14 @@ export function Tabs({
               overrides={{
                 BaseButton: {
                   style: {
-                    justifyContent: helper({
-                      v: 'flex-end',
-                    }),
+                    ...(fill === FILL.fixed
+                      ? {
+                          flexGrow: '1',
+                          justifyContent: helper({v: 'flex-end', h: 'center'}),
+                        }
+                      : {
+                          justifyContent: helper({v: 'flex-end'}),
+                        }),
                   },
                 },
               }}
