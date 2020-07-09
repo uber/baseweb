@@ -156,6 +156,10 @@ export const StyledTab = styled(
       transitionTimingFunction: $theme.animation.linearCurve,
       outline: $focusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
       outlineOffset: '-3px',
+      ':disabled': {
+        cursor: 'not-allowed',
+        color: $theme.colors.contentStateDisabled,
+      },
       ...$theme.typography.LabelSmall,
       ...($fill === FILL.fixed
         ? {
