@@ -21,6 +21,14 @@ export default function Scenario() {
       onSelect={({selectedTabKey}) => setActiveTabKey(selectedTabKey)}
       orientation={ORIENTATION.vertical}
       fill={FILL.fixed}
+      overrides={{
+        Root: {
+          style: ({$theme}) => ({
+            height: '250px',
+            borderBottom: `solid 1px ${$theme.colors.borderOpaque}`,
+          }),
+        },
+      }}
     >
       <Tab title="Robot">
         <div style={{padding: '16px'}}>

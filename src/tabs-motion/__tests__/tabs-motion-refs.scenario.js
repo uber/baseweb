@@ -14,7 +14,7 @@ import {Tab, Tabs} from '../index.js';
 import {Button, KIND, SIZE} from '../../button/index.js';
 
 export default function Scenario() {
-  const [activeTabKey, setActiveTabKey] = React.useState(0);
+  const [activeTabKey, setActiveTabKey] = React.useState(2);
   const ref = React.useRef();
   return (
     <React.Fragment>

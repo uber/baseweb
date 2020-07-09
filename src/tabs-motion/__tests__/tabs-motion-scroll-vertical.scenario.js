@@ -14,12 +14,20 @@ import {Tab, Tabs, ORIENTATION} from '../index.js';
 import {Button, KIND} from '../../button/index.js';
 
 export default function Scenario() {
-  const [activeTabKey, setActiveTabKey] = React.useState('8');
+  const [activeTabKey, setActiveTabKey] = React.useState(5);
   return (
     <Tabs
       activeTabKey={activeTabKey}
       onSelect={({selectedTabKey}) => setActiveTabKey(selectedTabKey)}
       orientation={ORIENTATION.vertical}
+      overrides={{
+        Root: {
+          style: ({$theme}) => ({
+            height: '250px',
+            borderBottom: `solid 1px ${$theme.colors.borderOpaque}`,
+          }),
+        },
+      }}
     >
       <Tab title="Watermelon">
         <div style={{padding: '16px'}}>

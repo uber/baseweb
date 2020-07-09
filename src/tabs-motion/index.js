@@ -7,13 +7,10 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-// TODO(tabs-motion): Add imperative refs
 // TODO(tabs-motion): Add Flow types
 // TODO(tabs-motion): Add TS types
-// TODO(tabs-motion): Add react-testing-library tests
 // TODO(tabs-motion): Add e2e tests
-// TODO(tabs-motion): Add align scenario (go flush on mobile)
-// TODO(tabs-motion): Add tabs within container scenario
+// TODO(tabs-motion): Add react-testing-library tests
 // TODO(tabs-motion): Add new documentation & examples
 
 // TODO(tabs-motion): Use [withWrapper] for default props on styled components?
