@@ -135,6 +135,7 @@ export const StyledTab = styled(
   ({$theme, $orientation, $fill, $focusVisible}) => {
     const helper = makeStylingHelper($orientation, $theme.direction);
     return {
+      boxSizing: 'border-box',
       display: 'inline-flex',
       alignItems: 'center',
       paddingLeft: $theme.sizing.scale600,
@@ -145,6 +146,10 @@ export const StyledTab = styled(
       borderTopWidth: 0,
       borderRightWidth: 0,
       borderBottomWidth: 0,
+      borderLeftStyle: 'none',
+      borderTopStyle: 'none',
+      borderRightStyle: 'none',
+      borderBottomStyle: 'none',
       color: $theme.colors.contentPrimary,
       backgroundColor: $theme.colors.backgroundPrimary,
       transitionProperty: 'background',
@@ -202,8 +207,7 @@ export const StyledTabHighlight = styled(
       zIndex: '1',
       position: 'absolute',
       bottom: helper({h: '0'}),
-      right: helper({hrtl: '0', vltr: '0'}),
-      left: helper({hltr: '0', vrtl: '0'}),
+      left: '0px',
       height: helper({h: '5px', v: `${$length}px`}),
       width: helper({v: '5px', h: `${$length}px`}),
       transform: helper({
@@ -275,21 +279,21 @@ export function Tabs({
   });
   React.useEffect(() => {
     if (activeTabRef.current) {
-      setHighlightLayout({
-        length:
-          orientation === ORIENTATION.horizontal
-            ? activeTabRef.current.getBoundingClientRect().width
-            : activeTabRef.current.getBoundingClientRect().height,
-        distance:
-          orientation === ORIENTATION.horizontal
-            ? theme.direction === 'rtl'
-              ? -1 *
-                (activeTabRef.current.parentElement.scrollWidth -
-                  activeTabRef.current.offsetLeft -
-                  activeTabRef.current.getBoundingClientRect().width)
-              : activeTabRef.current.offsetLeft
-            : activeTabRef.current.offsetTop,
-      });
+      // Note, we are using clientHeight/Width here, which excludes borders.
+      // getBoundingClientRect includes borders but returns a fractional value.
+      // This leads to the highlight being slightly misaligned every so often.
+      if (orientation === ORIENTATION.vertical) {
+        setHighlightLayout({
+          length: activeTabRef.current.clientHeight,
+          distance: activeTabRef.current.offsetTop,
+        });
+      } else {
+        setHighlightLayout({
+          length: activeTabRef.current.clientWidth,
+
+          distance: activeTabRef.current.offsetLeft,
+        });
+      }
     }
   }, [activeTabKey]);
 
