@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-// TODO(tabs-motion): Add disabled
 // TODO(tabs-motion): Add imperative refs
 // TODO(tabs-motion): Add Flow types
 // TODO(tabs-motion): Add TS types
@@ -21,6 +20,7 @@ LICENSE file in the root directory of this source tree.
 // TODO(tabs-motion): Use unique ids for when there are multiple Tabs on the page?
 
 import * as React from 'react';
+import {useUID} from 'react-uid';
 import {styled, useStyletron} from '../styles/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
@@ -49,9 +49,8 @@ export const KEYBOARD_ACTION = {
 
 // Utilities
 
-export const getTabId = key => `tab_${key}`;
-
-export const getTabPanelId = key => `tabpanel_${key}`;
+export const getTabId = (uid, key) => `tabs-${uid}-tab-${key}`;
+export const getTabPanelId = (uid, key) => `tabs-${uid}-tabpanel-${key}`;
 
 export const makeStylingHelper = (orientation, direction) => results => {
   if (orientation === ORIENTATION.horizontal && direction !== 'rtl') {
@@ -104,10 +103,10 @@ export const StyledTabList = styled('div', ({$theme, $fill, $orientation}) => {
         }
       : {}),
     // Some CSS trickery for the the TabHighlight track...
-    // By setting overflowX/Y, we cut off the TabHighlight.
-    // We add 5px padding so that the TabHighlight becomes visible.
-    // This requires adding an equivalent negative margin to bring the
-    // TabBorder "back in" under the TabHighlight.
+    // By setting overflowX/Y, we cut off the TabHighlight. Uh oh! To fix this,
+    // we add 5px padding. This makes the TabHighlight visible again. But this
+    // then requires adding an equivalent negative margin to the same side as
+    // the padding. This bring the TabBorder "back in" under the TabHighlight.
     paddingLeft: helper({
       vrtl: '5px',
     }),
@@ -248,6 +247,9 @@ export function Tabs({
   fill = FILL.intrinsic,
   children,
 }) {
+  // Create unique id prefix for this tabs component
+  const uid = useUID();
+
   // Unpack overrides
   const {
     Root: RootOverrides,
@@ -302,8 +304,9 @@ export function Tabs({
   }, [activeTabKey]);
 
   // Scroll active Tab into view.
-  // We have to split up the scrollIntoView for mount and key change.
-  // On first mount:
+  // We have separate scroll styles for mount and key change.
+
+  // On mount
   React.useEffect(() => {
     if (activeTabRef.current) {
       activeTabRef.current.scrollIntoView({
@@ -312,7 +315,8 @@ export function Tabs({
       });
     }
   }, []);
-  // On key change:
+
+  // On key change
   React.useEffect(() => {
     if (activeTabRef.current) {
       activeTabRef.current.scrollIntoView({
@@ -329,6 +333,7 @@ export function Tabs({
     $fill: fill,
   };
 
+  // Helper for parsing directional keys
   const parseKeyDown = React.useCallback(
     event => {
       if (orientation === ORIENTATION.horizontal) {
@@ -376,10 +381,10 @@ export function Tabs({
       >
         {React.Children.map(children, (child, index) => {
           if (!child) return;
-          const {artwork: Artwork, overrides = {}, ...restProps} = child.props;
 
+          const {artwork: Artwork, overrides = {}, ...restProps} = child.props;
           const key = child.key || String(index);
-          const isActive = key === activeTabKey;
+          const isActive = key == activeTabKey;
 
           // Collect overrides
           const {
@@ -455,12 +460,12 @@ export function Tabs({
             <Tab
               data-baseweb="tab"
               key={key}
-              id={getTabId(key)}
+              id={getTabId(uid, key)}
               role="tab"
               onClick={() => onSelect({selectedTabKey: key})}
               onKeyDown={handleKeyDown}
               aria-selected={isActive}
-              aria-controls={getTabPanelId(key)}
+              aria-controls={getTabPanelId(uid, key)}
               tabIndex={isActive ? '0' : '-1'}
               ref={isActive ? activeTabRef : null}
               $focusVisible={focusVisible}
@@ -502,11 +507,10 @@ export function Tabs({
         {...sharedProps}
         {...TabBorderProps}
       />
-
       {React.Children.map(children, (child, index) => {
         if (!child) return;
         const key = child.key || String(index);
-        const isActive = key === activeTabKey;
+        const isActive = key == activeTabKey;
         const {overrides = {}} = child.props;
         const {TabPanel: TabPanelOverrides} = overrides;
         const [TabPanel, TabPanelProps] = getOverrides(
@@ -517,8 +521,9 @@ export function Tabs({
           <TabPanel
             data-baseweb="tab-panel"
             key={key}
-            id={getTabPanelId(key)}
             role="tabpanel"
+            id={getTabPanelId(uid, key)}
+            aria-labelledby={getTabId(uid, key)}
             aria-expanded={isActive}
             hidden={!isActive}
             {...sharedProps}
