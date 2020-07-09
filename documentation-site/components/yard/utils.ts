@@ -28,6 +28,9 @@ export const countProps = (
 };
 
 export const countOverrides = (overrides: any) => {
+  if (!overrides) {
+    return 0;
+  }
   const existingOverrides = overrides.value ? Object.keys(overrides.value) : [];
   return existingOverrides.filter(key => overrides.value[key].active).length;
 };

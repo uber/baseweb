@@ -69,7 +69,10 @@ const Yard: React.FC<TYardProps> = ({
   const activeThemeValues = countThemeValues(params.providerValue);
 
   const showOverrides =
-    props.overrides.custom.names && props.overrides.custom.names.length > 0;
+    props.overrides &&
+    props.overrides.custom &&
+    props.overrides.custom.names &&
+    props.overrides.custom.names.length > 0;
   const showTheme = theme.length > 0;
 
   // Bail in IE11
