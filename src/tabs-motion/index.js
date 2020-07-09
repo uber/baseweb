@@ -7,7 +7,8 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-// TODO(tabs-motion): Add [overrides]
+// TODO(tabs-motion): Add disabled
+// TODO(tabs-motion): Add imperative refs
 // TODO(tabs-motion): Add Flow types
 // TODO(tabs-motion): Add TS types
 // TODO(tabs-motion): Add react-testing-library tests
@@ -21,7 +22,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {styled, useStyletron} from '../styles/index.js';
-import {Button, KIND} from '../button/index.js';
+import {getOverrides} from '../helpers/overrides.js';
+import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 // Constants
 
@@ -49,6 +51,21 @@ export const KEYBOARD_ACTION = {
 
 export const getTabId = key => `tab_${key}`;
 export const getTabPanelId = key => `tabpanel_${key}`;
+export const makeHelper = ({orientation, direction}) => results => {
+  if (orientation === ORIENTATION.horizontal && direction !== 'rtl') {
+    return results.hltr || results.h || results.ltr || null;
+  }
+  if (orientation === ORIENTATION.vertical && direction !== 'rtl') {
+    return results.vltr || results.v || results.ltr || null;
+  }
+  if (orientation === ORIENTATION.horizontal && direction === 'rtl') {
+    return results.hrtl || results.h || results.rtl || null;
+  }
+  if (orientation === ORIENTATION.vertical && direction === 'rtl') {
+    return results.vrtl || results.v || results.rtl || null;
+  }
+  return null;
+};
 
 // Styled Components
 
@@ -65,7 +82,7 @@ export const StyledTabList = styled('div', ({$theme, $fill, $helper}) => {
     display: 'flex',
     flexWrap: 'nowrap',
     flexDirection: $helper({h: 'row', v: 'column'}),
-    // The track for the StyledTabAccent
+    // The track for the StyledTabHighlight
     boxShadow: $helper({
       h: `inset 0 -5px ${$theme.colors.borderOpaque}`,
       vltr: `inset -5px 0 ${$theme.colors.borderOpaque}`,
@@ -98,7 +115,49 @@ export const StyledTabList = styled('div', ({$theme, $fill, $helper}) => {
   };
 });
 
-export const StyledTabAccent = styled(
+export const StyledTab = styled(
+  'button',
+  ({$theme, $helper, $fill, $focusVisible}) => {
+    return {
+      display: 'inline-flex',
+      alignItems: 'center',
+      paddingLeft: $theme.sizing.scale600,
+      paddingTop: $theme.sizing.scale600,
+      paddingRight: $theme.sizing.scale600,
+      paddingBottom: $theme.sizing.scale600,
+      borderLeftWidth: 0,
+      borderTopWidth: 0,
+      borderRightWidth: 0,
+      borderBottomWidth: 0,
+      color: $theme.colors.contentPrimary,
+      backgroundColor: $theme.colors.backgroundPrimary,
+      transitionProperty: 'background',
+      transitionDuration: $theme.animation.timing200,
+      transitionTimingFunction: $theme.animation.linearCurve,
+      outline: $focusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+      outlineOffset: '-3px',
+      ...$theme.typography.LabelSmall,
+      ...($fill === FILL.fixed
+        ? {
+            flexGrow: '1',
+            justifyContent: $helper({v: 'flex-end', h: 'center'}),
+          }
+        : {
+            justifyContent: $helper({v: 'flex-end'}),
+          }),
+    };
+  },
+);
+
+export const StyledArtworkContainer = styled('div', ({$theme, $helper}) => {
+  return {
+    display: 'flex',
+    marginLeft: $helper({rtl: $theme.sizing.scale300}),
+    marginRight: $helper({ltr: $theme.sizing.scale300}),
+  };
+});
+
+export const StyledTabHighlight = styled(
   'div',
   ({
     $theme,
@@ -131,7 +190,11 @@ export const StyledTabAccent = styled(
   },
 );
 
-export const StyledTabPanel = styled('div', () => {});
+export const StyledTabPanel = styled('div', () => {
+  return {
+    flexGrow: 1,
+  };
+});
 
 // Components
 
@@ -141,38 +204,52 @@ export function Tabs({
   keyboardActivation = KEYBOARD_ACTIVATION.automatic,
   onSelect = () => {},
   orientation = ORIENTATION.horizontal,
+  overrides = {},
   fill = FILL.intrinsic,
   children,
 }) {
+  // Unpack overrides
+  const {
+    Root: RootOverrides,
+    TabList: TabListOverrides,
+    TabHighlight: TabHighlightOverrides,
+  } = overrides;
+  const [Root, RootProps] = getOverrides(RootOverrides, StyledRoot);
+  const [TabList, TabListProps] = getOverrides(TabListOverrides, StyledTabList);
+  const [TabHighlight, TabHighlightProps] = getOverrides(
+    TabHighlightOverrides,
+    StyledTabHighlight,
+  );
+
   // Count key updates
-  // We disable the accent animation until the first key update
+  // We disable the Highlight animation until the first key update
   // This avoids the tab sliding in from the side on mount
   const [keyUpdated, setKeyUpdated] = React.useState(0);
   React.useEffect(() => {
     setKeyUpdated(keyUpdated + 1);
   }, [activeTabKey]);
 
-  // Positioning the accent
+  // Positioning the Highlight
   const [, theme] = useStyletron();
   const activeTabRef = React.useRef();
-  const [accentLayout, setAccentLayout] = React.useState({
+  const [highlightLayout, setHighlightLayout] = React.useState({
     length: 0,
     distance: 0,
   });
   React.useEffect(() => {
     if (activeTabRef.current) {
-      setAccentLayout({
+      setHighlightLayout({
         length:
           orientation === ORIENTATION.horizontal
-            ? activeTabRef.current.clientWidth
-            : activeTabRef.current.clientHeight,
+            ? activeTabRef.current.getBoundingClientRect().width
+            : activeTabRef.current.getBoundingClientRect().height,
         distance:
           orientation === ORIENTATION.horizontal
             ? theme.direction === 'rtl'
               ? -1 *
                 (activeTabRef.current.parentElement.scrollWidth -
                   activeTabRef.current.offsetLeft -
-                  activeTabRef.current.clientWidth)
+                  activeTabRef.current.getBoundingClientRect().width)
               : activeTabRef.current.offsetLeft
             : activeTabRef.current.offsetTop,
       });
@@ -202,22 +279,8 @@ export function Tabs({
   }, [activeTabKey]);
 
   // A helper for styling all the various states (RTL/Orientation)
-  const helper = React.useCallback(
-    results => {
-      if (orientation === ORIENTATION.horizontal && theme.direction !== 'rtl') {
-        return results.hltr || results.h || results.ltr || null;
-      }
-      if (orientation === ORIENTATION.vertical && theme.direction !== 'rtl') {
-        return results.vltr || results.v || results.ltr || null;
-      }
-      if (orientation === ORIENTATION.horizontal && theme.direction === 'rtl') {
-        return results.hrtl || results.h || results.rtl || null;
-      }
-      if (orientation === ORIENTATION.vertical && theme.direction === 'rtl') {
-        return results.vrtl || results.v || results.rtl || null;
-      }
-      return null;
-    },
+  const helper = React.useMemo(
+    () => makeHelper({orientation, direction: theme.direction}),
     [orientation, theme.direction],
   );
 
@@ -272,105 +335,141 @@ export function Tabs({
   );
 
   return (
-    <StyledRoot {...sharedProps}>
-      <StyledTabList role="tablist" {...sharedProps}>
+    <Root {...sharedProps} {...RootProps}>
+      <TabList role="tablist" {...sharedProps} {...TabListProps}>
         {React.Children.map(children, (child, index) => {
           if (!child) return;
+          const {artwork: Artwork, overrides = {}, ...restProps} = child.props;
+
           const key = tabKeys[index];
           const isActive = key === activeTabKey;
-          const Artwork = child.props.artwork;
+
+          // Collect overrides
+          const {
+            Tab: TabOverrides,
+            ArtworkContainer: ArtworkContainerOverrides,
+          } = overrides;
+          const [Tab, TabProps] = getOverrides(TabOverrides, StyledTab);
+          const [ArtworkContainer, ArtworkContainerProps] = getOverrides(
+            ArtworkContainerOverrides,
+            StyledArtworkContainer,
+          );
+
+          // Keyboard focus styling
+          const [focusVisible, setFocusVisible] = React.useState(false);
+          const handleFocus = React.useCallback((event: SyntheticEvent<>) => {
+            if (isFocusVisible(event)) {
+              setFocusVisible(true);
+            }
+          }, []);
+          const handleBlur = React.useCallback(
+            (event: SyntheticEvent<>) => {
+              if (focusVisible !== false) {
+                setFocusVisible(false);
+              }
+            },
+            [focusVisible],
+          );
+
+          // Keyboard focus management
+          const handleKeyDown = React.useCallback(event => {
+            // WAI-ARIA 1.1
+            // https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel
+            // We use directional keys to iterate focus through Tabs.
+            let action = parseKeyDown(event);
+            if (action) {
+              let nextActiveIndex;
+              if (action === KEYBOARD_ACTION.previous) {
+                if (event.target.previousSibling) {
+                  nextActiveIndex = index - 1;
+                } else {
+                  nextActiveIndex = children.length - 1;
+                }
+              } else if (action === KEYBOARD_ACTION.next) {
+                if (
+                  event.target.nextSibling &&
+                  event.target.nextSibling !==
+                    event.target.parentNode.lastElementChild
+                ) {
+                  nextActiveIndex = index + 1;
+                } else {
+                  nextActiveIndex = 0;
+                }
+              }
+              // Focus the Tab first...
+              event.target.parentNode.childNodes[nextActiveIndex].focus();
+              // And then optionally activate the Tab.
+              if (keyboardActivation === KEYBOARD_ACTIVATION.automatic) {
+                onSelect({selectedTabKey: tabKeys[nextActiveIndex]});
+              }
+            }
+          });
+
           return (
-            <Button
+            <Tab
               key={key}
               id={getTabId(key)}
               role="tab"
               onClick={() => onSelect({selectedTabKey: key})}
-              startEnhancer={Artwork ? <Artwork size={16} /> : null}
-              onKeyDown={event => {
-                // WAI-ARIA 1.1
-                // https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel
-                // We use directional keys to iterate focus through Tabs.
-                let action = parseKeyDown(event);
-                if (action) {
-                  let nextActiveIndex;
-                  if (action === KEYBOARD_ACTION.previous) {
-                    if (event.target.previousSibling) {
-                      nextActiveIndex = index - 1;
-                    } else {
-                      nextActiveIndex = children.length - 1;
-                    }
-                  } else if (action === KEYBOARD_ACTION.next) {
-                    if (
-                      event.target.nextSibling &&
-                      event.target.nextSibling !==
-                        event.target.parentNode.lastElementChild
-                    ) {
-                      nextActiveIndex = index + 1;
-                    } else {
-                      nextActiveIndex = 0;
-                    }
-                  }
-                  // Focus the Tab first...
-                  event.target.parentNode.childNodes[nextActiveIndex].focus();
-                  // And then optionally activate the Tab.
-                  if (keyboardActivation === KEYBOARD_ACTIVATION.automatic) {
-                    onSelect({selectedTabKey: tabKeys[nextActiveIndex]});
-                  }
-                }
-              }}
+              onKeyDown={handleKeyDown}
               aria-selected={isActive}
               aria-controls={getTabPanelId(key)}
               tabIndex={isActive ? '0' : '-1'}
               ref={isActive ? activeTabRef : null}
-              kind={KIND.tertiary}
-              overrides={{
-                BaseButton: {
-                  style: {
-                    ...(fill === FILL.fixed
-                      ? {
-                          flexGrow: '1',
-                          justifyContent: helper({v: 'flex-end', h: 'center'}),
-                        }
-                      : {
-                          justifyContent: helper({v: 'flex-end'}),
-                        }),
-                  },
-                },
-              }}
+              $focusVisible={focusVisible}
+              {...sharedProps}
+              {...restProps}
+              {...TabProps}
+              onFocus={forkFocus({...restProps, ...TabProps}, handleFocus)}
+              onBlur={forkBlur({...restProps, ...TabProps}, handleBlur)}
             >
+              {Artwork ? (
+                <ArtworkContainer {...sharedProps} {...ArtworkContainerProps}>
+                  <Artwork size={20} color="contentPrimary" />
+                </ArtworkContainer>
+              ) : null}
               {child.props.title}
-            </Button>
+            </Tab>
           );
         })}
-        <StyledTabAccent
-          $length={accentLayout.length}
-          $distance={accentLayout.distance}
+        <TabHighlight
+          $length={highlightLayout.length}
+          $distance={highlightLayout.distance}
           // This avoids the tab sliding in from the side on mount
           $animate={keyUpdated > 1}
           aria-hidden="true"
           role="presentation"
           {...sharedProps}
+          {...TabHighlightProps}
         />
-      </StyledTabList>
+      </TabList>
 
       {React.Children.map(children, (child, index) => {
         if (!child) return;
         const key = child.key || String(index);
         const isActive = key === activeTabKey;
+        const {overrides = {}} = child.props;
+        const {TabPanel: TabPanelOverrides} = overrides;
+        const [TabPanel, TabPanelProps] = getOverrides(
+          TabPanelOverrides,
+          StyledTabPanel,
+        );
         return (
-          <StyledTabPanel
+          <TabPanel
             key={key}
             id={getTabPanelId(key)}
             role="tabpanel"
             aria-expanded={isActive}
             hidden={!isActive}
+            {...sharedProps}
+            {...TabPanelProps}
           >
             {child.props.children}
-          </StyledTabPanel>
+          </TabPanel>
         );
       })}
-    </StyledRoot>
+    </Root>
   );
 }
 
-export function Tab({id}) {}
+export function Tab() {}
