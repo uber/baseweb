@@ -381,9 +381,20 @@ export function Tabs({
         {React.Children.map(children, (child, index) => {
           if (!child) return;
 
-          const {artwork: Artwork, overrides = {}, ...restProps} = child.props;
           const key = child.key || String(index);
           const isActive = key == activeTabKey;
+          const {
+            artwork: Artwork,
+            overrides = {},
+            tabRef,
+            ...restProps
+          } = child.props;
+
+          // A way to share our internal activeTabRef via the "tabRef" prop.
+          const ref = React.useRef();
+          React.useImperativeHandle(tabRef, () => {
+            return isActive ? activeTabRef.current : ref.current;
+          });
 
           // Collect overrides
           const {
@@ -466,7 +477,7 @@ export function Tabs({
               aria-selected={isActive}
               aria-controls={getTabPanelId(uid, key)}
               tabIndex={isActive ? '0' : '-1'}
-              ref={isActive ? activeTabRef : null}
+              ref={isActive ? activeTabRef : ref}
               disabled={disabled}
               $focusVisible={focusVisible}
               {...sharedProps}
