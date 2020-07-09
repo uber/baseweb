@@ -10,31 +10,63 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable jsx-a11y/accessible-emoji */
 
 import * as React from 'react';
-import {Tab, Tabs} from '../index.js';
+import {Tab, Tabs, StyledTabList, StyledTabPanel} from '../index.js';
 import {Button, KIND} from '../../button/index.js';
+import {Grid, Cell} from '../../layout-grid/index.js';
+
+const TabsOverrides = {
+  TabList: {
+    component: function TabsListOverride(props) {
+      return (
+        <Grid>
+          <Cell span={12}>
+            <StyledTabList {...props} />
+          </Cell>
+        </Grid>
+      );
+    },
+  },
+};
+
+const TabOverrides = {
+  TabPanel: {
+    component: function TabPanelOverride(props) {
+      return (
+        <Grid>
+          <Cell span={12}>
+            <StyledTabPanel {...props} />
+          </Cell>
+        </Grid>
+      );
+    },
+  },
+};
 
 export default function Scenario() {
   const [activeTabKey, setActiveTabKey] = React.useState('0');
   return (
-    <Tabs
-      activeTabKey={activeTabKey}
-      onSelect={({selectedTabKey}) => setActiveTabKey(selectedTabKey)}
-    >
-      <Tab title="Robot">
-        <div style={{padding: '16px'}}>
-          <Button kind={KIND.secondary}>🤖</Button>
-        </div>
-      </Tab>
-      <Tab title="Monster">
-        <div style={{padding: '16px'}}>
-          <Button kind={KIND.secondary}>👺</Button>
-        </div>
-      </Tab>
-      <Tab title="Watermelon">
-        <div style={{padding: '16px'}}>
-          <Button kind={KIND.secondary}>🍉</Button>
-        </div>
-      </Tab>
-    </Tabs>
+    <React.Fragment>
+      <Tabs
+        activeTabKey={activeTabKey}
+        onSelect={({selectedTabKey}) => setActiveTabKey(selectedTabKey)}
+        overrides={TabsOverrides}
+      >
+        <Tab title="Robot" overrides={TabOverrides}>
+          <div style={{padding: '16px'}}>
+            <Button kind={KIND.secondary}>🤖</Button>
+          </div>
+        </Tab>
+        <Tab title="Monster" overrides={TabOverrides}>
+          <div style={{padding: '16px'}}>
+            <Button kind={KIND.secondary}>👺</Button>
+          </div>
+        </Tab>
+        <Tab title="Watermelon" overrides={TabOverrides}>
+          <div style={{padding: '16px'}}>
+            <Button kind={KIND.secondary}>🍉</Button>
+          </div>
+        </Tab>
+      </Tabs>
+    </React.Fragment>
   );
 }

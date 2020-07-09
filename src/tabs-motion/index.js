@@ -50,7 +50,9 @@ export const KEYBOARD_ACTION = {
 // Utilities
 
 export const getTabId = key => `tab_${key}`;
+
 export const getTabPanelId = key => `tabpanel_${key}`;
+
 export const makeHelper = ({orientation, direction}) => results => {
   if (orientation === ORIENTATION.horizontal && direction !== 'rtl') {
     return results.hltr || results.h || results.ltr || null;
@@ -71,8 +73,10 @@ export const makeHelper = ({orientation, direction}) => results => {
 
 export const StyledRoot = styled('div', ({$theme, $helper}) => {
   return {
-    display: 'flex',
-    flexDirection: $helper({h: 'column', v: 'row'}),
+    display: $helper({v: 'flex'}),
+    // Creates a stacking context so we can use z-index on the TabHighlight
+    // without affecting anything outside of this element.
+    transform: 'scale(1)',
   };
 });
 
@@ -82,21 +86,6 @@ export const StyledTabList = styled('div', ({$theme, $fill, $helper}) => {
     display: 'flex',
     flexWrap: 'nowrap',
     flexDirection: $helper({h: 'row', v: 'column'}),
-    // The track for the StyledTabHighlight
-    boxShadow: $helper({
-      h: `inset 0 -5px ${$theme.colors.borderOpaque}`,
-      vltr: `inset -5px 0 ${$theme.colors.borderOpaque}`,
-      vrtl: `inset 5px 0 ${$theme.colors.borderOpaque}`,
-    }),
-    paddingLeft: $helper({
-      vrtl: '5px',
-    }),
-    paddingRight: $helper({
-      vltr: '5px',
-    }),
-    paddingBottom: $helper({
-      h: '5px',
-    }),
     ...($fill === FILL.intrinsic
       ? {
           overflowX: $helper({h: 'scroll'}),
@@ -112,6 +101,29 @@ export const StyledTabList = styled('div', ({$theme, $fill, $helper}) => {
           scrollbarWidth: 'none',
         }
       : {}),
+    // Some CSS trickery for the the TabHighlight track...
+    // By setting overflowX/Y, we cut off the TabHighlight.
+    // We add 5px padding so that the TabHighlight becomes visible.
+    // This requires adding an equivalent negative margin to bring the
+    // TabBorder "back in" under the TabHighlight.
+    paddingLeft: $helper({
+      vrtl: '5px',
+    }),
+    marginLeft: $helper({
+      vrtl: '-5px',
+    }),
+    paddingRight: $helper({
+      vltr: '5px',
+    }),
+    marginRight: $helper({
+      vltr: '-5px',
+    }),
+    paddingBottom: $helper({
+      h: '5px',
+    }),
+    marginBottom: $helper({
+      h: '-5px',
+    }),
   };
 });
 
@@ -157,6 +169,15 @@ export const StyledArtworkContainer = styled('div', ({$theme, $helper}) => {
   };
 });
 
+export const StyledTabBorder = styled('div', ({$theme, $helper}) => {
+  return {
+    position: 'relative',
+    backgroundColor: $theme.colors.borderOpaque,
+    height: $helper({h: '5px'}),
+    width: $helper({v: '5px'}),
+  };
+});
+
 export const StyledTabHighlight = styled(
   'div',
   ({
@@ -168,6 +189,7 @@ export const StyledTabHighlight = styled(
     $animate = false,
   }) => {
     return {
+      zIndex: '1',
       position: 'absolute',
       bottom: $helper({h: '0'}),
       right: $helper({hrtl: '0', vltr: '0'}),
@@ -178,7 +200,7 @@ export const StyledTabHighlight = styled(
         h: `translateX(${$distance}px)`,
         v: `translateY(${$distance}px)`,
       }),
-      backgroundColor: $theme.colors.primary,
+      backgroundColor: $theme.colors.borderSelected,
       ...($animate
         ? {
             transitionProperty: 'all',
@@ -192,7 +214,7 @@ export const StyledTabHighlight = styled(
 
 export const StyledTabPanel = styled('div', () => {
   return {
-    flexGrow: 1,
+    flexGrow: 1, // only used in vertical orientation
   };
 });
 
@@ -213,12 +235,17 @@ export function Tabs({
     Root: RootOverrides,
     TabList: TabListOverrides,
     TabHighlight: TabHighlightOverrides,
+    TabBorder: TabBorderOverrides,
   } = overrides;
   const [Root, RootProps] = getOverrides(RootOverrides, StyledRoot);
   const [TabList, TabListProps] = getOverrides(TabListOverrides, StyledTabList);
   const [TabHighlight, TabHighlightProps] = getOverrides(
     TabHighlightOverrides,
     StyledTabHighlight,
+  );
+  const [TabBorder, TabBorderProps] = getOverrides(
+    TabBorderOverrides,
+    StyledTabBorder,
   );
 
   // Count key updates
@@ -336,7 +363,12 @@ export function Tabs({
 
   return (
     <Root {...sharedProps} {...RootProps}>
-      <TabList role="tablist" {...sharedProps} {...TabListProps}>
+      <TabList
+        role="tablist"
+        aria-orientation={orientation}
+        {...sharedProps}
+        {...TabListProps}
+      >
         {React.Children.map(children, (child, index) => {
           if (!child) return;
           const {artwork: Artwork, overrides = {}, ...restProps} = child.props;
@@ -443,6 +475,7 @@ export function Tabs({
           {...TabHighlightProps}
         />
       </TabList>
+      <TabBorder {...sharedProps} {...TabBorderProps} />
 
       {React.Children.map(children, (child, index) => {
         if (!child) return;
