@@ -17,7 +17,6 @@ LICENSE file in the root directory of this source tree.
 // TODO(tabs-motion): Add new documentation & examples
 
 // TODO(tabs-motion): Use [withWrapper] for default props on styled components?
-// TODO(tabs-motion): Use unique ids for when there are multiple Tabs on the page?
 
 import * as React from 'react';
 import {useUID} from 'react-uid';
@@ -468,6 +467,7 @@ export function Tabs({
               aria-controls={getTabPanelId(uid, key)}
               tabIndex={isActive ? '0' : '-1'}
               ref={isActive ? activeTabRef : null}
+              disabled={disabled}
               $focusVisible={focusVisible}
               {...sharedProps}
               {...restProps}
