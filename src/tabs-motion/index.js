@@ -207,7 +207,8 @@ export const StyledTabHighlight = styled(
       zIndex: '1',
       position: 'absolute',
       bottom: helper({h: '0'}),
-      left: '0px',
+      left: helper({h: '0px', vrtl: '0px'}),
+      right: helper({vltr: '0px'}),
       height: helper({h: '5px', v: `${$length}px`}),
       width: helper({v: '5px', h: `${$length}px`}),
       transform: helper({
