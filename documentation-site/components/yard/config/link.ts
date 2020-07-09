@@ -27,15 +27,6 @@ const LinkConfig: TConfig = {
       type: PropTypes.Boolean,
       description: 'Indicates that the link underline is animated.',
     },
-    overrides: {
-      value: undefined,
-      type: PropTypes.Custom,
-      description: 'Lets you customize all aspects of the component.',
-      custom: {
-        names: [],
-        sharedProps: {},
-      },
-    },
   },
 };
 
