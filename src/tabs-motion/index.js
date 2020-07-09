@@ -329,13 +329,6 @@ export function Tabs({
     $fill: fill,
   };
 
-  // We do a first pass to collect what each Tab's [key] will be.
-  // We will use them when building keyDown handlers for focus management-
-  // at which point we won't have access to other Tab component's keys.
-  const tabKeys = React.Children.map(children, (child, index) => {
-    return child ? child.key || String(index) : null;
-  });
-
   const parseKeyDown = React.useCallback(
     event => {
       if (orientation === ORIENTATION.horizontal) {
@@ -375,6 +368,7 @@ export function Tabs({
   return (
     <Root {...sharedProps} {...RootProps}>
       <TabList
+        data-baseweb="tab-list"
         role="tablist"
         aria-orientation={orientation}
         {...sharedProps}
@@ -384,7 +378,7 @@ export function Tabs({
           if (!child) return;
           const {artwork: Artwork, overrides = {}, ...restProps} = child.props;
 
-          const key = tabKeys[index];
+          const key = child.key || String(index);
           const isActive = key === activeTabKey;
 
           // Collect overrides
@@ -419,37 +413,47 @@ export function Tabs({
             // WAI-ARIA 1.1
             // https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel
             // We use directional keys to iterate focus through Tabs.
-            let action = parseKeyDown(event);
+
+            // Find all tabs eligible for focus
+            const availableTabs = [
+              ...event.target.parentNode.childNodes,
+            ].filter(node => !node.disabled && node.dataset.baseweb === 'tab');
+
+            // Exit early if there are no other tabs available
+            if (availableTabs.length === 1) return;
+
+            // Find tab to focus, looping to start/end of list if necessary
+            const currentTabIndex = availableTabs.indexOf(event.target);
+            const action = parseKeyDown(event);
             if (action) {
-              let nextActiveIndex;
+              let nextTab;
               if (action === KEYBOARD_ACTION.previous) {
-                if (event.target.previousSibling) {
-                  nextActiveIndex = index - 1;
+                if (availableTabs[currentTabIndex - 1]) {
+                  nextTab = availableTabs[currentTabIndex - 1];
                 } else {
-                  nextActiveIndex = children.length - 1;
+                  nextTab = availableTabs[availableTabs.length - 1];
                 }
               } else if (action === KEYBOARD_ACTION.next) {
-                if (
-                  event.target.nextSibling &&
-                  event.target.nextSibling !==
-                    event.target.parentNode.lastElementChild
-                ) {
-                  nextActiveIndex = index + 1;
+                if (availableTabs[currentTabIndex + 1]) {
+                  nextTab = availableTabs[currentTabIndex + 1];
                 } else {
-                  nextActiveIndex = 0;
+                  nextTab = availableTabs[0];
                 }
               }
-              // Focus the Tab first...
-              event.target.parentNode.childNodes[nextActiveIndex].focus();
-              // And then optionally activate the Tab.
+
+              // Focus the tab
+              nextTab.focus();
+
+              // Optionally activate the tab
               if (keyboardActivation === KEYBOARD_ACTIVATION.automatic) {
-                onSelect({selectedTabKey: tabKeys[nextActiveIndex]});
+                nextTab.click();
               }
             }
           });
 
           return (
             <Tab
+              data-baseweb="tab"
               key={key}
               id={getTabId(key)}
               role="tab"
@@ -467,7 +471,11 @@ export function Tabs({
               onBlur={forkBlur({...restProps, ...TabProps}, handleBlur)}
             >
               {Artwork ? (
-                <ArtworkContainer {...sharedProps} {...ArtworkContainerProps}>
+                <ArtworkContainer
+                  data-baseweb="artwork-container"
+                  {...sharedProps}
+                  {...ArtworkContainerProps}
+                >
                   <Artwork size={20} color="contentPrimary" />
                 </ArtworkContainer>
               ) : null}
@@ -476,6 +484,7 @@ export function Tabs({
           );
         })}
         <TabHighlight
+          data-baseweb="tab-highlight"
           $length={highlightLayout.length}
           $distance={highlightLayout.distance}
           // This avoids the tab sliding in from the side on mount
@@ -487,6 +496,7 @@ export function Tabs({
         />
       </TabList>
       <TabBorder
+        data-baseweb="tab-border"
         aria-hidden="true"
         role="presentation"
         {...sharedProps}
@@ -505,6 +515,7 @@ export function Tabs({
         );
         return (
           <TabPanel
+            data-baseweb="tab-panel"
             key={key}
             id={getTabPanelId(key)}
             role="tabpanel"
