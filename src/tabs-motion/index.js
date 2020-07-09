@@ -54,7 +54,7 @@ export const getTabId = key => `tab_${key}`;
 
 export const getTabPanelId = key => `tabpanel_${key}`;
 
-export const makeHelper = ({orientation, direction}) => results => {
+export const makeStylingHelper = (orientation, direction) => results => {
   if (orientation === ORIENTATION.horizontal && direction !== 'rtl') {
     return results.hltr || results.h || results.ltr || null;
   }
@@ -72,25 +72,27 @@ export const makeHelper = ({orientation, direction}) => results => {
 
 // Styled Components
 
-export const StyledRoot = styled('div', ({$theme, $helper}) => {
+export const StyledRoot = styled('div', ({$theme, $orientation}) => {
+  const helper = makeStylingHelper($orientation, $theme.direction);
   return {
-    display: $helper({v: 'flex'}),
+    display: helper({v: 'flex'}),
     // Creates a stacking context so we can use z-index on the TabHighlight
     // without affecting anything outside of this element.
     transform: 'scale(1)',
   };
 });
 
-export const StyledTabList = styled('div', ({$theme, $fill, $helper}) => {
+export const StyledTabList = styled('div', ({$theme, $fill, $orientation}) => {
+  const helper = makeStylingHelper($orientation, $theme.direction);
   return {
     position: 'relative',
     display: 'flex',
     flexWrap: 'nowrap',
-    flexDirection: $helper({h: 'row', v: 'column'}),
+    flexDirection: helper({h: 'row', v: 'column'}),
     ...($fill === FILL.intrinsic
       ? {
-          overflowX: $helper({h: 'scroll'}),
-          overflowY: $helper({v: 'scroll'}),
+          overflowX: helper({h: 'scroll'}),
+          overflowY: helper({v: 'scroll'}),
           // The following properties hide the scroll bar on various browsers:
           // Chrome, Safari, etc
           '::-webkit-scrollbar': {
@@ -107,22 +109,22 @@ export const StyledTabList = styled('div', ({$theme, $fill, $helper}) => {
     // We add 5px padding so that the TabHighlight becomes visible.
     // This requires adding an equivalent negative margin to bring the
     // TabBorder "back in" under the TabHighlight.
-    paddingLeft: $helper({
+    paddingLeft: helper({
       vrtl: '5px',
     }),
-    marginLeft: $helper({
+    marginLeft: helper({
       vrtl: '-5px',
     }),
-    paddingRight: $helper({
+    paddingRight: helper({
       vltr: '5px',
     }),
-    marginRight: $helper({
+    marginRight: helper({
       vltr: '-5px',
     }),
-    paddingBottom: $helper({
+    paddingBottom: helper({
       h: '5px',
     }),
-    marginBottom: $helper({
+    marginBottom: helper({
       h: '-5px',
     }),
   };
@@ -130,7 +132,8 @@ export const StyledTabList = styled('div', ({$theme, $fill, $helper}) => {
 
 export const StyledTab = styled(
   'button',
-  ({$theme, $helper, $fill, $focusVisible}) => {
+  ({$theme, $orientation, $fill, $focusVisible}) => {
+    const helper = makeStylingHelper($orientation, $theme.direction);
     return {
       display: 'inline-flex',
       alignItems: 'center',
@@ -153,29 +156,34 @@ export const StyledTab = styled(
       ...($fill === FILL.fixed
         ? {
             flexGrow: '1',
-            justifyContent: $helper({v: 'flex-end', h: 'center'}),
+            justifyContent: helper({v: 'flex-end', h: 'center'}),
           }
         : {
-            justifyContent: $helper({v: 'flex-end'}),
+            justifyContent: helper({v: 'flex-end'}),
           }),
     };
   },
 );
 
-export const StyledArtworkContainer = styled('div', ({$theme, $helper}) => {
-  return {
-    display: 'flex',
-    marginLeft: $helper({rtl: $theme.sizing.scale300}),
-    marginRight: $helper({ltr: $theme.sizing.scale300}),
-  };
-});
+export const StyledArtworkContainer = styled(
+  'div',
+  ({$theme, $orientation}) => {
+    const helper = makeStylingHelper($orientation, $theme.direction);
+    return {
+      display: 'flex',
+      marginLeft: helper({rtl: $theme.sizing.scale300}),
+      marginRight: helper({ltr: $theme.sizing.scale300}),
+    };
+  },
+);
 
-export const StyledTabBorder = styled('div', ({$theme, $helper}) => {
+export const StyledTabBorder = styled('div', ({$theme, $orientation}) => {
+  const helper = makeStylingHelper($orientation, $theme.direction);
   return {
     position: 'relative',
     backgroundColor: $theme.colors.borderOpaque,
-    height: $helper({h: '5px'}),
-    width: $helper({v: '5px'}),
+    height: helper({h: '5px'}),
+    width: helper({v: '5px'}),
   };
 });
 
@@ -189,15 +197,16 @@ export const StyledTabHighlight = styled(
     $distance = 0,
     $animate = false,
   }) => {
+    const helper = makeStylingHelper($orientation, $theme.direction);
     return {
       zIndex: '1',
       position: 'absolute',
-      bottom: $helper({h: '0'}),
-      right: $helper({hrtl: '0', vltr: '0'}),
-      left: $helper({hltr: '0', vrtl: '0'}),
-      height: $helper({h: '5px', v: `${$length}px`}),
-      width: $helper({v: '5px', h: `${$length}px`}),
-      transform: $helper({
+      bottom: helper({h: '0'}),
+      right: helper({hrtl: '0', vltr: '0'}),
+      left: helper({hltr: '0', vrtl: '0'}),
+      height: helper({h: '5px', v: `${$length}px`}),
+      width: helper({v: '5px', h: `${$length}px`}),
+      transform: helper({
         h: `translateX(${$distance}px)`,
         v: `translateY(${$distance}px)`,
       }),
@@ -306,17 +315,10 @@ export function Tabs({
     }
   }, [activeTabKey]);
 
-  // A helper for styling all the various states (RTL/Orientation)
-  const helper = React.useMemo(
-    () => makeHelper({orientation, direction: theme.direction}),
-    [orientation, theme.direction],
-  );
-
   // Collect shared styling props
   const sharedProps = {
     $orientation: orientation,
     $fill: fill,
-    $helper: helper,
   };
 
   // We do a first pass to collect what each Tab's [key] will be.
