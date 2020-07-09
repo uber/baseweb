@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
+// TODO(tabs-motion): Move helper into each styled component
 // TODO(tabs-motion): Add disabled
 // TODO(tabs-motion): Add imperative refs
 // TODO(tabs-motion): Add Flow types
@@ -475,7 +476,12 @@ export function Tabs({
           {...TabHighlightProps}
         />
       </TabList>
-      <TabBorder {...sharedProps} {...TabBorderProps} />
+      <TabBorder
+        aria-hidden="true"
+        role="presentation"
+        {...sharedProps}
+        {...TabBorderProps}
+      />
 
       {React.Children.map(children, (child, index) => {
         if (!child) return;
