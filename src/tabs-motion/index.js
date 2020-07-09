@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-// TODO(tabs-motion): Move helper into each styled component
 // TODO(tabs-motion): Add disabled
 // TODO(tabs-motion): Add imperative refs
 // TODO(tabs-motion): Add Flow types
