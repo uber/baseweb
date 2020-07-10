@@ -6,8 +6,7 @@ import {Skeleton} from "../index.js";
 export default function Scenario() {
   return (
     <div>
-
-    <Skeleton
+      <Skeleton
         rows={4}
         overrides={{
           Row: {
