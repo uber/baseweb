@@ -20,7 +20,7 @@ export default function Scenario() {
   const [activeTabKey, setActiveTabKey] = React.useState('8');
   return (
     <React.Fragment>
-      <div style={{height: '1000px'}} />
+      <div style={{height: '100vh'}} />
       <Tabs
         activeTabKey={activeTabKey}
         onSelect={({selectedTabKey}) => setActiveTabKey(selectedTabKey)}
@@ -91,7 +91,7 @@ export default function Scenario() {
           </div>
         </Tab>
       </Tabs>
-      <div style={{height: '1000px'}} />
+      <div style={{height: '100vh'}} />
     </React.Fragment>
   );
 }
