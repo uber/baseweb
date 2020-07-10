@@ -11,11 +11,15 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {Tab, Tabs} from '../index.js';
-import {Button, KIND, SIZE} from '../../button/index.js';
+import {Button, KIND} from '../../button/index.js';
 
 export default function Scenario() {
-  const [activeTabKey, setActiveTabKey] = React.useState(2);
+  const [activeTabKey, setActiveTabKey] = React.useState(0);
   const ref = React.useRef();
+  const [s, ss] = React.useState(0);
+  React.useEffect(() => {
+    if (ref.current) ss(ref.current.clientWidth);
+  });
   return (
     <React.Fragment>
       <Tabs
@@ -38,15 +42,7 @@ export default function Scenario() {
           </div>
         </Tab>
       </Tabs>
-      <Button
-        onClick={() => {
-          ref.current.focus();
-          ref.current.click();
-        }}
-        size={SIZE.compact}
-      >
-        Select first tab (via ref)
-      </Button>
+      {`${s}px`}
     </React.Fragment>
   );
 }
