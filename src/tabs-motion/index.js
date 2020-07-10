@@ -273,7 +273,6 @@ export function Tabs({
   }, [activeTabKey]);
 
   // Positioning the Highlight
-  const [, theme] = useStyletron();
   const activeTabRef = React.useRef();
   const [highlightLayout, setHighlightLayout] = React.useState({
     length: 0,
@@ -330,6 +329,7 @@ export function Tabs({
   };
 
   // Helper for parsing directional keys
+  const [, theme] = useStyletron();
   const parseKeyDown = React.useCallback(
     event => {
       if (orientation === ORIENTATION.horizontal) {
