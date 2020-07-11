@@ -435,7 +435,7 @@ export function Tabs({
         {React.Children.map(children, (child, index) => {
           if (!child) return;
 
-          const key = child.key || String(index);
+          const key = child.key || index;
           const isActive = key == activeTabKey;
           const {
             artwork: Artwork,
@@ -575,7 +575,7 @@ export function Tabs({
       />
       {React.Children.map(children, (child, index) => {
         if (!child) return;
-        const key = child.key || String(index);
+        const key = child.key || index;
         const isActive = key == activeTabKey;
         const {overrides = {}} = child.props;
         const {TabPanel: TabPanelOverrides} = overrides;
