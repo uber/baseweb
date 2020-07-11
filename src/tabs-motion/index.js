@@ -52,49 +52,49 @@ export type FillT = $Values<typeof FILL>;
 export type KeyboardActivationT = $Values<typeof KEYBOARD_ACTIVATION>;
 export type DirectionT = 'rtl' | 'ltr';
 
-export type SharedStylingPropsT = {
+export type SharedStylingPropsT = {|
   $orientation: OrientationT,
   $fill: FillT,
-};
+|};
 
-export type StyledTabPropsT = {
+export type StyledTabPropsT = {|
   ...SharedStylingPropsT,
   $focusVisible?: boolean,
-};
+|};
 
-export type StyledTabHighlightPropsT = {
+export type StyledTabHighlightPropsT = {|
   ...SharedStylingPropsT,
   $length?: number,
   $distance?: number,
   $animate?: boolean,
-};
+|};
 
-export type TabsOverridesT = {
+export type TabsOverridesT = {|
   Root?: OverrideT,
   TabList?: OverrideT,
   TabHighlight?: OverrideT,
   TabBorder?: OverrideT,
-};
+|};
 
-export type TabOverridesT = {
+export type TabOverridesT = {|
   Tab?: OverrideT,
   ArtworkContainer?: OverrideT,
   TabPanel?: OverrideT,
-};
+|};
 
-export type TabsPropsT = {
-  activeTabKey?: string | number,
+export type TabsPropsT = {|
+  activeTabKey?: React.Key,
   disabled?: boolean,
   fill?: FillT,
   orientation?: OrientationT,
   keyboardActivation?: KeyboardActivationT,
-  onSelect?: (params: {selectedTabKey: string}) => mixed,
+  onSelect?: (params: {selectedTabKey: React.Key}) => void,
   overrides?: TabsOverridesT,
   children?: React.Node,
-};
+|};
 
 export type TabPropsT = {
-  title: React.Node,
+  title?: React.Node,
   key?: React.Key,
   tabRef?: React.Ref<'button'>,
   overrides?: TabOverridesT,
@@ -108,8 +108,9 @@ export type TabPropsT = {
 
 // Utilities
 
-export const getTabId = (uid: string, key: string) => `tabs-${uid}-tab-${key}`;
-export const getTabPanelId = (uid: string, key: string) =>
+export const getTabId = (uid: string, key: React.Key) =>
+  `tabs-${uid}-tab-${key}`;
+export const getTabPanelId = (uid: string, key: React.Key) =>
   `tabs-${uid}-tabpanel-${key}`;
 
 const isHorizontal = orientation => orientation === ORIENTATION.horizontal;
@@ -549,7 +550,7 @@ export function Tabs({
                   <Artwork size={20} color="contentPrimary" />
                 </ArtworkContainer>
               ) : null}
-              {child.props.title}
+              {child.props.title ? child.props.title : key}
             </Tab>
           );
         })}
