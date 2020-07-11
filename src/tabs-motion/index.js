@@ -19,6 +19,10 @@ import {styled, useStyletron} from '../styles/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
+import type {StyleObject} from 'styletron-standard';
+import type {OverrideT} from '../helpers/overrides.js';
+import type {IconPropsT} from '../icon/types.js';
+
 // Constants
 
 export const ORIENTATION = {
@@ -41,92 +45,137 @@ export const KEYBOARD_ACTION = {
   previous: 'previous',
 };
 
+// Types
+
+export type OrientationT = $Values<typeof ORIENTATION>;
+export type FillT = $Values<typeof FILL>;
+export type KeyboardActivationT = $Values<typeof KEYBOARD_ACTIVATION>;
+export type DirectionT = 'rtl' | 'ltr';
+
+export type SharedStylingPropsT = {
+  $orientation: OrientationT,
+  $fill: FillT,
+};
+
+export type StyledTabPropsT = {
+  ...SharedStylingPropsT,
+  $focusVisible?: boolean,
+};
+
+export type StyledTabHighlightPropsT = {
+  ...SharedStylingPropsT,
+  $length?: number,
+  $distance?: number,
+  $animate?: boolean,
+};
+
+export type TabsOverridesT = {
+  Root?: OverrideT,
+  TabList?: OverrideT,
+  TabHighlight?: OverrideT,
+  TabBorder?: OverrideT,
+};
+
+export type TabOverridesT = {
+  Tab?: OverrideT,
+  ArtworkContainer?: OverrideT,
+  TabPanel?: OverrideT,
+};
+
+export type TabsPropsT = {
+  activeTabKey?: string | number,
+  disabled?: boolean,
+  fill?: FillT,
+  orientation?: OrientationT,
+  keyboardActivation?: KeyboardActivationT,
+  onSelect?: (params: {selectedTabKey: string}) => mixed,
+  overrides?: TabsOverridesT,
+  children?: React.Node,
+};
+
+export type TabPropsT = {
+  title: React.Node,
+  key?: React.Key,
+  tabRef?: React.Ref<'button'>,
+  overrides?: TabOverridesT,
+  children?: React.Node,
+  artwork?: React.AbstractComponent<{
+    ...IconPropsT,
+    size: $PropertyType<IconPropsT, 'size'>,
+    color: $PropertyType<IconPropsT, 'color'>,
+  }>,
+};
+
 // Utilities
 
-export const getTabId = (uid, key) => `tabs-${uid}-tab-${key}`;
-export const getTabPanelId = (uid, key) => `tabs-${uid}-tabpanel-${key}`;
+export const getTabId = (uid: string, key: string) => `tabs-${uid}-tab-${key}`;
+export const getTabPanelId = (uid: string, key: string) =>
+  `tabs-${uid}-tabpanel-${key}`;
 
-export const makeStylingHelper = (orientation, direction) => results => {
-  if (orientation === ORIENTATION.horizontal && direction !== 'rtl') {
-    return results.hltr || results.h || results.ltr || null;
-  }
-  if (orientation === ORIENTATION.vertical && direction !== 'rtl') {
-    return results.vltr || results.v || results.ltr || null;
-  }
-  if (orientation === ORIENTATION.horizontal && direction === 'rtl') {
-    return results.hrtl || results.h || results.rtl || null;
-  }
-  if (orientation === ORIENTATION.vertical && direction === 'rtl') {
-    return results.vrtl || results.v || results.rtl || null;
-  }
-  return null;
-};
+const isHorizontal = orientation => orientation === ORIENTATION.horizontal;
+const isVertical = orientation => orientation === ORIENTATION.vertical;
+const isLTR = direction => direction === 'ltr';
+const isIntrinsic = fill => fill === FILL.intrinsic;
+const isFixed = fill => fill === FILL.fixed;
 
 // Styled Components
 
-export const StyledRoot = styled('div', ({$theme, $orientation}) => {
-  const helper = makeStylingHelper($orientation, $theme.direction);
-  return {
-    display: helper({v: 'flex'}),
-    // Creates a stacking context so we can use z-index on the TabHighlight
-    // without affecting anything outside of this element.
-    transform: 'scale(1)',
-  };
-});
+export const StyledRoot = styled<SharedStylingPropsT>(
+  'div',
+  ({$theme, $orientation}) => {
+    const style: StyleObject = {
+      // Creates a stacking context so we can use z-index on the TabHighlight
+      // without affecting anything outside of this element.
+      transform: 'scale(1)',
+    };
+    if (isVertical($orientation)) {
+      style.display = 'flex';
+    }
+    return style;
+  },
+);
 
-export const StyledTabList = styled('div', ({$theme, $fill, $orientation}) => {
-  const helper = makeStylingHelper($orientation, $theme.direction);
-  return {
-    position: 'relative',
-    display: 'flex',
-    flexWrap: 'nowrap',
-    flexDirection: helper({h: 'row', v: 'column'}),
-    ...($fill === FILL.intrinsic
-      ? {
-          overflowX: helper({h: 'scroll'}),
-          overflowY: helper({v: 'scroll'}),
-          // The following properties hide the scroll bar on various browsers:
-          // Chrome, Safari, etc
-          '::-webkit-scrollbar': {
-            display: 'none',
-          },
-          // IE, Edge
-          '-ms-overflow-style': 'none',
-          // Firefox
-          scrollbarWidth: 'none',
-        }
-      : {}),
-    // Some CSS trickery for the the TabHighlight track...
-    // By setting overflowX/Y, we cut off the TabHighlight. Uh oh! To fix this,
-    // we add 5px padding. This makes the TabHighlight visible again. But this
-    // then requires adding an equivalent negative margin to the same side as
-    // the padding. This bring the TabBorder "back in" under the TabHighlight.
-    paddingLeft: helper({
-      vrtl: '5px',
-    }),
-    marginLeft: helper({
-      vrtl: '-5px',
-    }),
-    paddingRight: helper({
-      vltr: '5px',
-    }),
-    marginRight: helper({
-      vltr: '-5px',
-    }),
-    paddingBottom: helper({
-      h: '5px',
-    }),
-    marginBottom: helper({
-      h: '-5px',
-    }),
-  };
-});
+export const StyledTabList = styled<SharedStylingPropsT>(
+  'div',
+  ({$theme, $fill, $orientation}) => {
+    const style: StyleObject = {
+      position: 'relative',
+      display: 'flex',
+      flexWrap: 'nowrap',
+    };
+    if (isHorizontal($orientation)) {
+      style.flexDirection = 'row';
+      style.paddingBottom = '5px';
+      style.marginBottom = '-5px';
+    } else {
+      style.flexDirection = 'column';
+      if (isLTR($theme.direction)) {
+        style.paddingRight = '5px';
+        style.marginRight = '-5px';
+      } else {
+        style.paddingLeft = '5px';
+        style.marginLeft = '-5px';
+      }
+    }
+    if (isIntrinsic($fill)) {
+      style['::-webkit-scrollbar'] = {display: 'none'};
+      // $FlowFixMe: property missing in StyleObject
+      style['-ms-overflow-style'] = 'none';
+      style.scrollbarWidth = 'none';
+      if (isHorizontal($orientation)) {
+        style.overflowX = 'scroll';
+      } else {
+        style.overflowY = 'scroll';
+      }
+    }
+    return style;
+  },
+);
 
-export const StyledTab = styled(
+export const StyledTab = styled<StyledTabPropsT>(
   'button',
-  ({$theme, $orientation, $fill, $focusVisible}) => {
-    const helper = makeStylingHelper($orientation, $theme.direction);
-    return {
+  ({$theme, $orientation, $fill, $focusVisible = false}) => {
+    const style: StyleObject = {
       boxSizing: 'border-box',
       display: 'inline-flex',
       alignItems: 'center',
@@ -147,83 +196,92 @@ export const StyledTab = styled(
       transitionProperty: 'background',
       transitionDuration: $theme.animation.timing200,
       transitionTimingFunction: $theme.animation.linearCurve,
-      outline: $focusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+      outline: 'none',
       outlineOffset: '-3px',
       ':disabled': {
         cursor: 'not-allowed',
         color: $theme.colors.contentStateDisabled,
       },
       ...$theme.typography.LabelSmall,
-      ...($fill === FILL.fixed
-        ? {
-            flexGrow: '1',
-            justifyContent: helper({v: 'flex-end', h: 'center'}),
-          }
-        : {
-            justifyContent: helper({v: 'flex-end'}),
-          }),
     };
+    if ($focusVisible) {
+      style.outline = `3px solid ${$theme.colors.accent}`;
+    }
+    if (isFixed($fill)) {
+      style.flexGrow = 1;
+    }
+    if (isHorizontal($orientation)) {
+      style.justifyContent = 'center';
+    } else {
+      style.justifyContent = 'flex-end';
+    }
+    return style;
   },
 );
 
-export const StyledArtworkContainer = styled(
+export const StyledArtworkContainer = styled<SharedStylingPropsT>(
   'div',
   ({$theme, $orientation}) => {
-    const helper = makeStylingHelper($orientation, $theme.direction);
-    return {
+    const style: StyleObject = {
       display: 'flex',
-      marginLeft: helper({rtl: $theme.sizing.scale300}),
-      marginRight: helper({ltr: $theme.sizing.scale300}),
     };
+    if (isLTR($theme.direction)) {
+      style.marginRight = $theme.sizing.scale300;
+    } else {
+      style.marginLeft = $theme.sizing.scale300;
+    }
+    return style;
   },
 );
 
-export const StyledTabBorder = styled('div', ({$theme, $orientation}) => {
-  const helper = makeStylingHelper($orientation, $theme.direction);
-  return {
-    position: 'relative',
-    backgroundColor: $theme.colors.borderOpaque,
-    height: helper({h: '5px'}),
-    width: helper({v: '5px'}),
-  };
-});
-
-export const StyledTabHighlight = styled(
+export const StyledTabBorder = styled<SharedStylingPropsT>(
   'div',
-  ({
-    $theme,
-    $orientation,
-    $helper,
-    $length = 0,
-    $distance = 0,
-    $animate = false,
-  }) => {
-    const helper = makeStylingHelper($orientation, $theme.direction);
-    return {
-      zIndex: '1',
-      position: 'absolute',
-      bottom: helper({h: '0'}),
-      left: helper({h: '0px', vrtl: '0px'}),
-      right: helper({vltr: '0px'}),
-      height: helper({h: '5px', v: `${$length}px`}),
-      width: helper({v: '5px', h: `${$length}px`}),
-      transform: helper({
-        h: `translateX(${$distance}px)`,
-        v: `translateY(${$distance}px)`,
-      }),
-      backgroundColor: $theme.colors.borderSelected,
-      ...($animate
-        ? {
-            transitionProperty: 'all',
-            transitionDuration: $theme.animation.timing400,
-            transitionTimingFunction: $theme.animation.easeInOutQuinticCurve,
-          }
-        : {}),
+  ({$theme, $orientation}) => {
+    const style: StyleObject = {
+      backgroundColor: $theme.colors.borderOpaque,
+      position: 'relative',
     };
+    if (isHorizontal($orientation)) {
+      style.height = '5px';
+    } else {
+      style.width = '5px';
+    }
+    return style;
   },
 );
 
-export const StyledTabPanel = styled('div', () => {
+export const StyledTabHighlight = styled<StyledTabHighlightPropsT>(
+  'div',
+  ({$theme, $orientation, $length = 0, $distance = 0, $animate = false}) => {
+    const style: StyleObject = {
+      backgroundColor: $theme.colors.borderSelected,
+      position: 'absolute',
+      zIndex: 1,
+    };
+    if (isHorizontal($orientation)) {
+      style.bottom = '0px';
+      style.height = '5px';
+      style.left = '0px';
+      style.transform = `translateX(${$distance}px)`;
+    } else {
+      style.transform = `translateY(${$distance}px)`;
+      style.width = '5px';
+      if (isLTR($theme.direction)) {
+        style.right = '0px';
+      } else {
+        style.left = '0px';
+      }
+    }
+    if ($animate) {
+      style.transitionProperty = 'all';
+      style.transitionDuration = $theme.animation.timing400;
+      style.transitionTimingFunction = $theme.animation.easeInOutQuinticCurve;
+    }
+    return style;
+  },
+);
+
+export const StyledTabPanel = styled<{}>('div', () => {
   return {
     flexGrow: 1, // only used in vertical orientation
   };
@@ -234,13 +292,13 @@ export const StyledTabPanel = styled('div', () => {
 export function Tabs({
   activeTabKey = '0',
   disabled = false,
+  children,
+  fill = FILL.intrinsic,
   keyboardActivation = KEYBOARD_ACTIVATION.automatic,
   onSelect = () => {},
   orientation = ORIENTATION.horizontal,
   overrides = {},
-  fill = FILL.intrinsic,
-  children,
-}) {
+}: TabsPropsT) {
   // Create unique id prefix for this tabs component
   const uid = useUID();
 
@@ -321,7 +379,7 @@ export function Tabs({
   }, [activeTabKey]);
 
   // Collect shared styling props
-  const sharedProps = {
+  const sharedStylingProps = {
     $orientation: orientation,
     $fill: fill,
   };
@@ -365,12 +423,12 @@ export function Tabs({
   );
 
   return (
-    <Root {...sharedProps} {...RootProps}>
+    <Root {...sharedStylingProps} {...RootProps}>
       <TabList
         data-baseweb="tab-list"
         role="tablist"
         aria-orientation={orientation}
-        {...sharedProps}
+        {...sharedStylingProps}
         {...TabListProps}
       >
         {React.Children.map(children, (child, index) => {
@@ -436,7 +494,7 @@ export function Tabs({
             const currentTabIndex = availableTabs.indexOf(event.target);
             const action = parseKeyDown(event);
             if (action) {
-              let nextTab;
+              let nextTab: ?HTMLButtonElement;
               if (action === KEYBOARD_ACTION.previous) {
                 if (availableTabs[currentTabIndex - 1]) {
                   nextTab = availableTabs[currentTabIndex - 1];
@@ -450,13 +508,14 @@ export function Tabs({
                   nextTab = availableTabs[0];
                 }
               }
+              if (nextTab) {
+                // Focus the tab
+                nextTab.focus();
 
-              // Focus the tab
-              nextTab.focus();
-
-              // Optionally activate the tab
-              if (keyboardActivation === KEYBOARD_ACTIVATION.automatic) {
-                nextTab.click();
+                // Optionally activate the tab
+                if (keyboardActivation === KEYBOARD_ACTIVATION.automatic) {
+                  nextTab.click();
+                }
               }
             }
           });
@@ -475,7 +534,7 @@ export function Tabs({
               ref={isActive ? activeTabRef : ref}
               disabled={disabled}
               $focusVisible={focusVisible}
-              {...sharedProps}
+              {...sharedStylingProps}
               {...restProps}
               {...TabProps}
               onFocus={forkFocus({...restProps, ...TabProps}, handleFocus)}
@@ -484,7 +543,7 @@ export function Tabs({
               {Artwork ? (
                 <ArtworkContainer
                   data-baseweb="artwork-container"
-                  {...sharedProps}
+                  {...sharedStylingProps}
                   {...ArtworkContainerProps}
                 >
                   <Artwork size={20} color="contentPrimary" />
@@ -502,7 +561,7 @@ export function Tabs({
           $animate={keyUpdated > 1}
           aria-hidden="true"
           role="presentation"
-          {...sharedProps}
+          {...sharedStylingProps}
           {...TabHighlightProps}
         />
       </TabList>
@@ -510,7 +569,7 @@ export function Tabs({
         data-baseweb="tab-border"
         aria-hidden="true"
         role="presentation"
-        {...sharedProps}
+        {...sharedStylingProps}
         {...TabBorderProps}
       />
       {React.Children.map(children, (child, index) => {
@@ -532,7 +591,7 @@ export function Tabs({
             aria-labelledby={getTabId(uid, key)}
             aria-expanded={isActive}
             hidden={!isActive}
-            {...sharedProps}
+            {...sharedStylingProps}
             {...TabPanelProps}
           >
             {child.props.children}
@@ -543,4 +602,6 @@ export function Tabs({
   );
 }
 
-export function Tab() {}
+export function Tab(props: TabPropsT) {
+  return null;
+}
