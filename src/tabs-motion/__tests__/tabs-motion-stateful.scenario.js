@@ -10,16 +10,12 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable jsx-a11y/accessible-emoji */
 
 import * as React from 'react';
-import {Tab, Tabs} from '../index.js';
+import {Tab, StatefulTabs} from '../index.js';
 import {Button, KIND} from '../../button/index.js';
 
 export default function Scenario() {
-  const [activeTabKey, setActiveTabKey] = React.useState('0');
   return (
-    <Tabs
-      activeTabKey={activeTabKey}
-      onSelect={({selectedTabKey}) => setActiveTabKey(selectedTabKey)}
-    >
+    <StatefulTabs>
       <Tab title="Robot">
         <div style={{padding: '16px'}}>
           <Button kind={KIND.secondary}>🤖</Button>
@@ -35,6 +31,6 @@ export default function Scenario() {
           <Button kind={KIND.secondary}>🍉</Button>
         </div>
       </Tab>
-    </Tabs>
+    </StatefulTabs>
   );
 }

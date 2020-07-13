@@ -16,13 +16,13 @@ import {ArrowUp, ArrowRight, ArrowDown, ArrowLeft} from '../../icon/index.js';
 import {ThemeProvider, LightTheme} from '../../index.js';
 
 export default function Scenario() {
-  const [activeTabKey, setActiveTabKey] = React.useState('0');
+  const [activeKey, setActiveKey] = React.useState('0');
   return (
     <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
       <div dir="rtl">
         <Tabs
-          activeTabKey={activeTabKey}
-          onSelect={({selectedTabKey}) => setActiveTabKey(selectedTabKey)}
+          activeKey={activeKey}
+          onChange={({activeKey}) => setActiveKey(activeKey)}
         >
           <Tab title="Robot" artwork={props => <ArrowUp {...props} />}>
             <div style={{padding: '16px'}}>

@@ -14,11 +14,11 @@ import {Tab, Tabs, FILL} from '../index.js';
 import {Button, KIND} from '../../button/index.js';
 
 export default function Scenario() {
-  const [activeTabKey, setActiveTabKey] = React.useState('0');
+  const [activeKey, setActiveKey] = React.useState('0');
   return (
     <Tabs
-      activeTabKey={activeTabKey}
-      onSelect={({selectedTabKey}) => setActiveTabKey(selectedTabKey)}
+      activeKey={activeKey}
+      onChange={({activeKey}) => setActiveKey(activeKey)}
       fill={FILL.fixed}
     >
       <Tab title="Robot">

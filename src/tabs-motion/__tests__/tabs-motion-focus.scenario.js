@@ -11,13 +11,13 @@ import * as React from 'react';
 import {Tab, Tabs} from '../index.js';
 
 export default function Scenario() {
-  const [activeTabKey, setActiveTabKey] = React.useState(1);
+  const [activeKey, setActiveKey] = React.useState(1);
   return (
     <React.Fragment>
       <input id="first-focus" type="text" />
       <Tabs
-        activeTabKey={activeTabKey}
-        onSelect={({selectedTabKey}) => setActiveTabKey(selectedTabKey)}
+        activeKey={activeKey}
+        onChange={({activeKey}) => setActiveKey(activeKey)}
       >
         <Tab title="Robot">nada</Tab>
         <Tab title="Monster">

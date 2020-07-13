@@ -23,11 +23,11 @@ const TabOverrides = {
 };
 
 export default function Scenario() {
-  const [activeTabKey, setActiveTabKey] = React.useState('0');
+  const [activeKey, setActiveKey] = React.useState('0');
   return (
     <Tabs
-      activeTabKey={activeTabKey}
-      onSelect={({selectedTabKey}) => setActiveTabKey(selectedTabKey)}
+      activeKey={activeKey}
+      onChange={({activeKey}) => setActiveKey(activeKey)}
       overrides={{
         Root: {style: {backgroundColor: 'pink'}},
         TabList: {style: {backgroundColor: 'skyblue'}},

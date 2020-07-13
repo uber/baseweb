@@ -14,11 +14,11 @@ import {Tab, Tabs, ORIENTATION} from '../index.js';
 import {Button, KIND} from '../../button/index.js';
 
 export default function Scenario() {
-  const [activeTabKey, setActiveTabKey] = React.useState(5);
+  const [activeKey, setActiveKey] = React.useState(5);
   return (
     <Tabs
-      activeTabKey={activeTabKey}
-      onSelect={({selectedTabKey}) => setActiveTabKey(selectedTabKey)}
+      activeKey={activeKey}
+      onChange={({activeKey}) => setActiveKey(activeKey)}
       orientation={ORIENTATION.vertical}
       overrides={{
         Root: {

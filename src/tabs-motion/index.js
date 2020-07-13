@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-// TODO(tabs-motion): Add Flow types
+// TODO(tabs-motion): Add stateful
 // TODO(tabs-motion): Add TS types
 // TODO(tabs-motion): Add new documentation & examples
 
@@ -45,12 +45,16 @@ export const KEYBOARD_ACTION = {
   previous: 'previous',
 };
 
+export const STATE_CHANGE_TYPE = {
+  change: 'change',
+};
+
 // Types
 
 export type OrientationT = $Values<typeof ORIENTATION>;
 export type FillT = $Values<typeof FILL>;
 export type KeyboardActivationT = $Values<typeof KEYBOARD_ACTIVATION>;
-export type DirectionT = 'rtl' | 'ltr';
+export type StateChangeT = $Values<typeof STATE_CHANGE_TYPE>;
 
 export type SharedStylingPropsT = {|
   $orientation: OrientationT,
@@ -82,13 +86,36 @@ export type TabOverridesT = {|
   TabPanel?: OverrideT,
 |};
 
+export type StatefulTabsStateT = {|
+  activeKey: React.Key,
+|};
+
+export type StatefulTabsActionT = {|
+  type: StateChangeT,
+  payload: React.Key,
+|};
+
+export type StatefulTabsReducerT = (
+  state: StatefulTabsStateT,
+  action: StatefulTabsActionT,
+) => StatefulTabsStateT;
+
+export type StatefulTabsPropsT = {
+  initialState?: StatefulTabsStateT,
+  stateReducer?: StatefulTabsReducerT,
+  onChange?: onChangeT,
+  children: React.Node,
+};
+
+export type onChangeT = (params: {activeKey: React.Key}) => void;
+
 export type TabsPropsT = {|
-  activeTabKey?: React.Key,
+  activeKey?: React.Key,
   disabled?: boolean,
   fill?: FillT,
   orientation?: OrientationT,
   keyboardActivation?: KeyboardActivationT,
-  onSelect?: (params: {selectedTabKey: React.Key}) => void,
+  onChange?: onChangeT,
   overrides?: TabsOverridesT,
   children?: React.Node,
 |};
@@ -115,7 +142,7 @@ export const getTabPanelId = (uid: string, key: React.Key) =>
 
 const isHorizontal = orientation => orientation === ORIENTATION.horizontal;
 const isVertical = orientation => orientation === ORIENTATION.vertical;
-const isLTR = direction => direction === 'ltr';
+const isRTL = direction => direction === 'rtl';
 const isIntrinsic = fill => fill === FILL.intrinsic;
 const isFixed = fill => fill === FILL.fixed;
 
@@ -150,12 +177,12 @@ export const StyledTabList = styled<SharedStylingPropsT>(
       style.marginBottom = '-5px';
     } else {
       style.flexDirection = 'column';
-      if (isLTR($theme.direction)) {
-        style.paddingRight = '5px';
-        style.marginRight = '-5px';
-      } else {
+      if (isRTL($theme.direction)) {
         style.paddingLeft = '5px';
         style.marginLeft = '-5px';
+      } else {
+        style.paddingRight = '5px';
+        style.marginRight = '-5px';
       }
     }
     if (isIntrinsic($fill)) {
@@ -226,10 +253,10 @@ export const StyledArtworkContainer = styled<SharedStylingPropsT>(
     const style: StyleObject = {
       display: 'flex',
     };
-    if (isLTR($theme.direction)) {
-      style.marginRight = $theme.sizing.scale300;
-    } else {
+    if (isRTL($theme.direction)) {
       style.marginLeft = $theme.sizing.scale300;
+    } else {
+      style.marginRight = $theme.sizing.scale300;
     }
     return style;
   },
@@ -261,16 +288,18 @@ export const StyledTabHighlight = styled<StyledTabHighlightPropsT>(
     };
     if (isHorizontal($orientation)) {
       style.bottom = '0px';
-      style.height = '5px';
       style.left = '0px';
+      style.height = '5px';
+      style.width = `${$length}px`;
       style.transform = `translateX(${$distance}px)`;
     } else {
       style.transform = `translateY(${$distance}px)`;
       style.width = '5px';
-      if (isLTR($theme.direction)) {
-        style.right = '0px';
-      } else {
+      style.height = `${$length}px`;
+      if (isRTL($theme.direction)) {
         style.left = '0px';
+      } else {
+        style.right = '0px';
       }
     }
     if ($animate) {
@@ -291,12 +320,12 @@ export const StyledTabPanel = styled<{}>('div', () => {
 // Components
 
 export function Tabs({
-  activeTabKey = '0',
+  activeKey = '0',
   disabled = false,
   children,
   fill = FILL.intrinsic,
   keyboardActivation = KEYBOARD_ACTIVATION.automatic,
-  onSelect = () => {},
+  onChange,
   orientation = ORIENTATION.horizontal,
   overrides = {},
 }: TabsPropsT) {
@@ -327,7 +356,7 @@ export function Tabs({
   const [keyUpdated, setKeyUpdated] = React.useState(0);
   React.useEffect(() => {
     setKeyUpdated(keyUpdated + 1);
-  }, [activeTabKey]);
+  }, [activeKey]);
 
   // Positioning the Highlight
   const activeTabRef = React.useRef();
@@ -348,12 +377,11 @@ export function Tabs({
       } else {
         setHighlightLayout({
           length: activeTabRef.current.clientWidth,
-
           distance: activeTabRef.current.offsetLeft,
         });
       }
     }
-  }, [activeTabKey]);
+  }, [activeKey]);
 
   // Scroll active Tab into view.
   // We have separate scroll styles for mount and key change.
@@ -377,7 +405,7 @@ export function Tabs({
         inline: 'nearest',
       });
     }
-  }, [activeTabKey]);
+  }, [activeKey]);
 
   // Collect shared styling props
   const sharedStylingProps = {
@@ -436,7 +464,7 @@ export function Tabs({
           if (!child) return;
 
           const key = child.key || index;
-          const isActive = key == activeTabKey;
+          const isActive = key == activeKey;
           const {
             artwork: Artwork,
             overrides = {},
@@ -527,7 +555,9 @@ export function Tabs({
               key={key}
               id={getTabId(uid, key)}
               role="tab"
-              onClick={() => onSelect({selectedTabKey: key})}
+              onClick={() => {
+                if (typeof onChange === 'function') onChange({activeKey: key});
+              }}
               onKeyDown={handleKeyDown}
               aria-selected={isActive}
               aria-controls={getTabPanelId(uid, key)}
@@ -576,7 +606,7 @@ export function Tabs({
       {React.Children.map(children, (child, index) => {
         if (!child) return;
         const key = child.key || index;
-        const isActive = key == activeTabKey;
+        const isActive = key == activeKey;
         const {overrides = {}} = child.props;
         const {TabPanel: TabPanelOverrides} = overrides;
         const [TabPanel, TabPanelProps] = getOverrides(
@@ -605,4 +635,47 @@ export function Tabs({
 
 export function Tab(props: TabPropsT) {
   return null;
+}
+
+export const getInitialState = (initialState, children) => {
+  if (initialState && initialState.activeKey) {
+    return initialState;
+  } else {
+    const firstKey = React.Children.map(
+      children,
+      (child, index) => child.key || String(index),
+    )[0];
+    return {activeKey: firstKey};
+  }
+};
+
+export const defaultStateReducer: StatefulTabsReducerT = (state, action) => {
+  if (action.type === STATE_CHANGE_TYPE.change) {
+    return {activeKey: action.payload};
+  }
+  return state;
+};
+
+export function StatefulTabs(props: StatefulTabsPropsT) {
+  const {
+    initialState = {activeKey: '0'},
+    stateReducer = defaultStateReducer,
+    onChange,
+    children,
+    ...restProps
+  } = props;
+  const [state, dispatch] = React.useReducer(
+    stateReducer,
+    getInitialState(initialState, children),
+  );
+  const handleChange = React.useCallback(params => {
+    const {activeKey} = params;
+    dispatch({type: STATE_CHANGE_TYPE.change, payload: activeKey});
+    if (typeof onChange === 'function') onChange(params);
+  }, []);
+  return (
+    <Tabs {...restProps} activeKey={state.activeKey} onChange={handleChange}>
+      {children}
+    </Tabs>
+  );
 }

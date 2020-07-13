@@ -14,7 +14,7 @@ import {Tab, Tabs} from '../index.js';
 import {Button, KIND} from '../../button/index.js';
 
 export default function Scenario() {
-  const [activeTabKey, setActiveTabKey] = React.useState(0);
+  const [activeKey, setActiveKey] = React.useState(0);
   const ref = React.useRef();
   const [s, ss] = React.useState(0);
   React.useEffect(() => {
@@ -23,8 +23,8 @@ export default function Scenario() {
   return (
     <React.Fragment>
       <Tabs
-        activeTabKey={activeTabKey}
-        onSelect={({selectedTabKey}) => setActiveTabKey(selectedTabKey)}
+        activeKey={activeKey}
+        onChange={({activeKey}) => setActiveKey(activeKey)}
       >
         <Tab title="Robot" tabRef={ref}>
           <div style={{padding: '16px'}}>

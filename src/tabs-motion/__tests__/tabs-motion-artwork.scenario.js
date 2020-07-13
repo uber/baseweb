@@ -15,11 +15,11 @@ import {Button, KIND} from '../../button/index.js';
 import {ArrowUp, ArrowRight, ArrowDown, ArrowLeft} from '../../icon/index.js';
 
 export default function Scenario() {
-  const [activeTabKey, setActiveTabKey] = React.useState('0');
+  const [activeKey, setActiveKey] = React.useState('0');
   return (
     <Tabs
-      activeTabKey={activeTabKey}
-      onSelect={({selectedTabKey}) => setActiveTabKey(selectedTabKey)}
+      activeKey={activeKey}
+      onChange={({activeKey}) => setActiveKey(activeKey)}
     >
       <Tab title="Robot" artwork={props => <ArrowUp {...props} />}>
         <div style={{padding: '16px'}}>

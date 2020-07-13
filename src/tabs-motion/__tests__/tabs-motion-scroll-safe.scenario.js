@@ -17,13 +17,13 @@ import {Button, KIND} from '../../button/index.js';
 // component on initial mount.
 
 export default function Scenario() {
-  const [activeTabKey, setActiveTabKey] = React.useState('8');
+  const [activeKey, setActiveKey] = React.useState('8');
   return (
     <React.Fragment>
       <div style={{height: '100vh'}} />
       <Tabs
-        activeTabKey={activeTabKey}
-        onSelect={({selectedTabKey}) => setActiveTabKey(selectedTabKey)}
+        activeKey={activeKey}
+        onChange={({activeKey}) => setActiveKey(activeKey)}
       >
         <Tab title="Watermelon">
           <div style={{padding: '16px'}}>
