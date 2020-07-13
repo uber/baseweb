@@ -14,7 +14,7 @@ const fs = require('fs');
 const path = require('path');
 const {spawnSync} = require('child_process');
 
-const ROOT_DIR = path.resolve(__dirname, '..', '..');
+const ROOT_DIR = path.resolve(__dirname, '..');
 const ESLINT_PLUGIN_DIR = path.resolve(
   ROOT_DIR,
   'packages',
@@ -35,6 +35,7 @@ function writeNpmTokenFromEnv() {
 }
 
 function readJSONFile(filepath) {
+  console.log('provided to readjsonfile fn', filepath);
   const contents = fs.readFileSync(filepath, 'utf8');
   return JSON.parse(contents);
 }
@@ -95,6 +96,7 @@ function main() {
       throw new Error('No GIT_COMMIT environment variable set.');
     }
     const packageJSONPath = path.resolve(ROOT_DIR, 'package.json');
+    console.log('path', packageJSONPath);
     const packageJSON = readJSONFile(packageJSONPath);
     const shortHash = commitHash.slice(-7);
     packageJSON.version = `0.0.0-alpha-${shortHash}`;
