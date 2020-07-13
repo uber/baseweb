@@ -470,6 +470,7 @@ export function Tabs({
             artwork: Artwork,
             overrides = {},
             tabRef,
+            onClick,
             ...restProps
           } = child.props;
 
@@ -556,9 +557,6 @@ export function Tabs({
               key={key}
               id={getTabId(uid, key)}
               role="tab"
-              onClick={() => {
-                if (typeof onChange === 'function') onChange({activeKey: key});
-              }}
               onKeyDown={handleKeyDown}
               aria-selected={isActive}
               aria-controls={getTabPanelId(uid, key)}
@@ -569,6 +567,10 @@ export function Tabs({
               {...sharedStylingProps}
               {...restProps}
               {...TabProps}
+              onClick={event => {
+                if (typeof onChange === 'function') onChange({activeKey: key});
+                if (typeof onClick === 'function') onClick(event);
+              }}
               onFocus={forkFocus({...restProps, ...TabProps}, handleFocus)}
               onBlur={forkBlur({...restProps, ...TabProps}, handleBlur)}
             >
