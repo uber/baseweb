@@ -35,7 +35,6 @@ function writeNpmTokenFromEnv() {
 }
 
 function readJSONFile(filepath) {
-  console.log('provided to readjsonfile fn', filepath);
   const contents = fs.readFileSync(filepath, 'utf8');
   return JSON.parse(contents);
 }
@@ -86,9 +85,6 @@ function main() {
     );
   }
 
-  console.log('*********');
-  console.log(__dirname, process.cwd());
-
   if (tag === ALPHA_TAG) {
     console.log('--- Updating package.json version to alpha.');
     const commitHash = process.env.GIT_COMMIT;
@@ -96,7 +92,6 @@ function main() {
       throw new Error('No GIT_COMMIT environment variable set.');
     }
     const packageJSONPath = path.resolve(ROOT_DIR, 'package.json');
-    console.log('path', packageJSONPath);
     const packageJSON = readJSONFile(packageJSONPath);
     const shortHash = commitHash.slice(-7);
     packageJSON.version = `0.0.0-alpha-${shortHash}`;
