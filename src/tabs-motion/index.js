@@ -7,11 +7,11 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-// TODO(tabs-motion): Add stateful
 // TODO(tabs-motion): Add TS types
 // TODO(tabs-motion): Add new documentation & examples
 
 // TODO(tabs-motion): Use [withWrapper] for default props on styled components?
+// TODO(tabs-motion): Add option to not mount TabPanel content?
 
 import * as React from 'react';
 import {useUID} from 'react-uid';
@@ -100,13 +100,6 @@ export type StatefulTabsReducerT = (
   action: StatefulTabsActionT,
 ) => StatefulTabsStateT;
 
-export type StatefulTabsPropsT = {
-  initialState?: StatefulTabsStateT,
-  stateReducer?: StatefulTabsReducerT,
-  onChange?: onChangeT,
-  children: React.Node,
-};
-
 export type onChangeT = (params: {activeKey: React.Key}) => void;
 
 export type TabsPropsT = {|
@@ -118,6 +111,14 @@ export type TabsPropsT = {|
   onChange?: onChangeT,
   overrides?: TabsOverridesT,
   children?: React.Node,
+|};
+
+export type StatefulTabsPropsT = {|
+  ...TabsPropsT,
+  initialState?: StatefulTabsStateT,
+  stateReducer?: StatefulTabsReducerT,
+  onChange?: onChangeT,
+  children: React.Node,
 |};
 
 export type TabPropsT = {
@@ -637,7 +638,10 @@ export function Tab(props: TabPropsT) {
   return null;
 }
 
-export const getInitialState = (initialState, children) => {
+export const getInitialState = (
+  initialState: StatefulTabsStateT,
+  children: React.Node,
+) => {
   if (initialState && initialState.activeKey) {
     return initialState;
   } else {
