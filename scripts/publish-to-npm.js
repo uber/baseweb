@@ -85,6 +85,9 @@ function main() {
     );
   }
 
+  console.log('*********');
+  console.log(__dirname, process.cwd());
+
   if (tag === ALPHA_TAG) {
     console.log('--- Updating package.json version to alpha.');
     const commitHash = process.env.GIT_COMMIT;

@@ -8,154 +8,151 @@ steps:
         env: DOCKER_BUILDKIT=1
     agents:
       queue: builders
-  - name: ':docker: :package: e2e'
-    plugins:
-      'docker-compose#v3.0.3':
-        build:
-          - e2e-test
-          - e2e-server
-          - e2e-server-healthy
-        image-repository: 027047743804.dkr.ecr.us-east-2.amazonaws.com/uber
-        env: DOCKER_BUILDKIT=1
-    agents:
-      queue: builders
+
+  # - name: ':docker: :package: e2e'
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       build:
+  #         - e2e-test
+  #         - e2e-server
+  #         - e2e-server-healthy
+  #       image-repository: 027047743804.dkr.ecr.us-east-2.amazonaws.com/uber
+  #       env: DOCKER_BUILDKIT=1
+  #   agents:
+  #     queue: builders
+
   # Wait until all images are built.
   # This way we can download the built image from a registry instead of building each for each test task.
   - wait
+
   # All of the commands after the wait are run in parallel.
-  - name: validate-examples
-    command: yarn validate:examples
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers
+  # - name: validate-examples
+  #   command: yarn validate:examples
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       run: baseui
+  #   agents:
+  #     queue: workers
 
-  - name: ':typescript:'
-    command: yarn tsc
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers
+  # - name: ':typescript:'
+  #   command: yarn tsc
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       run: baseui
+  #   agents:
+  #     queue: workers
 
-  - name: ':eslint:'
-    command: yarn lint
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers
+  # - name: ':eslint:'
+  #   command: yarn lint
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       run: baseui
+  #   agents:
+  #     queue: workers
 
-  - name: ':flowtype:'
-    command: yarn flow check
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers
+  # - name: ':flowtype:'
+  #   command: yarn flow check
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       run: baseui
+  #   agents:
+  #     queue: workers
 
-  - name: ':jest:'
-    command: yarn unit-test
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers
+  # - name: ':jest:'
+  #   command: yarn unit-test
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       run: baseui
+  #   agents:
+  #     queue: workers
 
-  - name: fossa
-    command: 'curl https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | bash && fossa'
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers
+  # - name: fossa
+  #   command: 'curl https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | bash && fossa'
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       run: baseui
+  #   agents:
+  #     queue: workers
 
-  - name: deploy-npm-latest
-    command: 'TAG=latest node scripts/publish-to-npm.js'
-    if: build.branch == "master" && build.message =~ /^Release v[0-9]+\.[0-9]+\.[0-9]+/
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers
+  # - name: deploy-npm-latest
+  #   command: 'TAG=latest node scripts/publish-to-npm.js'
+  #   if: build.branch == "master" && build.message =~ /^Release v[0-9]+\.[0-9]+\.[0-9]+/
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       run: baseui
+  #   agents:
+  #     queue: workers
 
   - name: deploy-npm-alpha
     command: 'GIT_COMMIT=$BUILDKITE_COMMIT TAG=alpha node scripts/publish-to-npm.js'
-    if: build.message =~ /^Release v[0-9]+\.[0-9]+\.[0-9]+/
+    # commenting out for testing purposes
+    # if: build.message =~ /^Release v[0-9]+\.[0-9]+\.[0-9]+/
     plugins:
       'docker-compose#v3.0.3':
         run: baseui
     agents:
       queue: workers
-
-  - name: deploy-vscode
-    command: './deploy-vscode.sh'
-    if: build.branch == "master" && build.message =~ /^Release v[0-9]+\.[0-9]+\.[0-9]+/
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers
-
-  - name: deploy-versioned-docs
-    command: './deploy-versioned-docs.sh'
-    if: build.branch == "master" && build.message =~ /^Release v[0-9]+\.[0-9]+\.[0-9]+/
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers
-
-  - name: create-github-release
-    command: './scripts/github-release.js'
-    if: build.branch == "master" && build.message =~ /^Release v[0-9]+\.[0-9]+\.[0-9]+/
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers
-
-  - name: guard-component-sizes
-    command: './scripts/component-sizes.js'
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers
-
-  - name: e2e
-    # we have to install puppeteer here to trigger the install.js script
-    # and also to make sure we do not add this to the released build artifact
-    command: yarn add puppeteer && yarn e2e:test:ci
-    artifact_paths:
-      - '__artifacts__/*.png'
-    plugins:
-      'docker-compose#v3.0.3':
-        run: e2e-test
-        pull:
-          - e2e-server
-          - e2e-server-healthy
-    agents:
-      queue: workers
-
-  - name: vrt
-    command: yarn vrt:ci
-    artifact_paths:
-      - '__artifacts__/*.png'
-    plugins:
-      'docker-compose#v3.0.3':
-        run: e2e-test
-        pull:
-          - e2e-server
-          - e2e-server-healthy
-    agents:
-      queue: workers
-
-  - name: flow-check-build
-    command: ./scripts/flow-check-build.js
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers
+  # - name: deploy-vscode
+  #   command: './deploy-vscode.sh'
+  #   if: build.branch == "master" && build.message =~ /^Release v[0-9]+\.[0-9]+\.[0-9]+/
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       run: baseui
+  #   agents:
+  #     queue: workers
+  # - name: deploy-versioned-docs
+  #   command: './deploy-versioned-docs.sh'
+  #   if: build.branch == "master" && build.message =~ /^Release v[0-9]+\.[0-9]+\.[0-9]+/
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       run: baseui
+  #   agents:
+  #     queue: workers
+  # - name: create-github-release
+  #   command: './scripts/github-release.js'
+  #   if: build.branch == "master" && build.message =~ /^Release v[0-9]+\.[0-9]+\.[0-9]+/
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       run: baseui
+  #   agents:
+  #     queue: workers
+  # - name: guard-component-sizes
+  #   command: './scripts/component-sizes.js'
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       run: baseui
+  #   agents:
+  #     queue: workers
+  # - name: e2e
+  #   # we have to install puppeteer here to trigger the install.js script
+  #   # and also to make sure we do not add this to the released build artifact
+  #   command: yarn add puppeteer && yarn e2e:test:ci
+  #   artifact_paths:
+  #     - '__artifacts__/*.png'
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       run: e2e-test
+  #       pull:
+  #         - e2e-server
+  #         - e2e-server-healthy
+  #   agents:
+  #     queue: workers
+  # - name: vrt
+  #   command: yarn vrt:ci
+  #   artifact_paths:
+  #     - '__artifacts__/*.png'
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       run: e2e-test
+  #       pull:
+  #         - e2e-server
+  #         - e2e-server-healthy
+  #   agents:
+  #     queue: workers
+  # - name: flow-check-build
+  #   command: ./scripts/flow-check-build.js
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       run: baseui
+  #   agents:
+  #     queue: workers
