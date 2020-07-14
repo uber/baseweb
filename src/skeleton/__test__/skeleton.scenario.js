@@ -24,7 +24,11 @@ export default function Scenario() {
               <Skeleton
                 overrides={{
                   Row: {
-                    style: {width: '50px', height: '50px', borderRadius: '50%'},
+                    style: {
+                      width: '50px',
+                      height: '50px',
+                      borderRadius: '50%',
+                    },
                   },
                 }}
               />
