@@ -50,7 +50,7 @@ export type DateIOAdapter<T> = {
   endOfWeek(value: T): T,
   addDays(value: T, count: number): T,
   addMonths(value: T, count: number): T,
-  isWithinRange(value: T, range: [T, T]): boolean,
+  isWithinRange(value: T, range: T[]): boolean,
 
   startOfDay: DateInDateOut<T>,
   endOfDay: DateInDateOut<T>,
