@@ -63,6 +63,7 @@ interface TabsOverrides {
 }
 
 interface TabsProps {
+  children: React.ReactNode;
   activeKey?: React.Key;
   disabled?: boolean;
   fill?: FILL[keyof FILL];
@@ -71,7 +72,6 @@ interface TabsProps {
   renderAll?: boolean;
   onChange?: (params: {activeKey: React.Key}) => void;
   overrides?: TabsOverrides;
-  children?: React.ReactNode;
 }
 
 interface TabOverrides {
@@ -115,8 +115,8 @@ type StatefulTabsProps = TabsProps & {
 };
 
 export const getInitialState: (
-  initialState: State,
   children: React.Node,
+  initialState?: State,
 ) => State;
 export const defaultStateReducer: StateReducer;
 export const StatefulTabs: React.FC<StatefulTabsProps>;

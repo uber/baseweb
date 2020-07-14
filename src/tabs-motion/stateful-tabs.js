@@ -18,8 +18,8 @@ import type {
 } from './types.js';
 
 export const getInitialState = (
-  initialState: StatefulTabsStateT,
   children: React.Node,
+  initialState?: StatefulTabsStateT,
 ) => {
   if (initialState && initialState.activeKey) {
     return initialState;
@@ -41,15 +41,15 @@ export const defaultStateReducer: StatefulTabsReducerT = (state, action) => {
 
 export function StatefulTabs(props: StatefulTabsPropsT) {
   const {
-    initialState = {activeKey: '0'},
+    children,
+    initialState,
     stateReducer = defaultStateReducer,
     onChange,
-    children,
     ...restProps
   } = props;
   const [state, dispatch] = React.useReducer(
     stateReducer,
-    getInitialState(initialState, children),
+    getInitialState(children, initialState),
   );
   const handleChange = React.useCallback(params => {
     const {activeKey} = params;

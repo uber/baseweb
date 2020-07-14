@@ -53,6 +53,7 @@ export type StatefulTabsReducerT = (
 export type onChangeT = (params: {activeKey: React.Key}) => void;
 
 export type TabsPropsT = {|
+  children: React.Node,
   activeKey?: React.Key,
   disabled?: boolean,
   fill?: FillT,
@@ -60,7 +61,6 @@ export type TabsPropsT = {|
   keyboardActivation?: KeyboardActivationT,
   onChange?: onChangeT,
   overrides?: TabsOverridesT,
-  children?: React.Node,
   renderAll?: boolean,
 |};
 
