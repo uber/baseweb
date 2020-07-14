@@ -75,19 +75,18 @@ export const StyledStar = styled<StyledRatingItemPropsT>(
 
 export const StyledEmoticon = styled<StyledRatingItemPropsT>(
   'li',
-  ({$theme, $isActive, $isSelected, $index = 1, $isFocusVisible}) => {
+  ({$theme, $isActive, $isSelected, $index = 1, $isFocusVisible, size}) => {
     let emoticonFill = $theme.colors.mono500;
-
     if ($isActive) {
       emoticonFill = $theme.colors.rating400;
     }
 
     const ratingIcons = [
-      angryRatingSVG(emoticonFill),
-      sadRatingSVG(emoticonFill),
-      neutralRatingSVG(emoticonFill),
-      happyRatingSVG(emoticonFill),
-      veryHappyRatingSVG(emoticonFill),
+      angryRatingSVG(emoticonFill, size),
+      sadRatingSVG(emoticonFill, size),
+      neutralRatingSVG(emoticonFill, size),
+      happyRatingSVG(emoticonFill, size),
+      veryHappyRatingSVG(emoticonFill, size),
     ];
 
     const styles = {

@@ -50,7 +50,7 @@ class EmoticonRating extends React.Component<
   renderRatingContents = () => {
     const {overrides = {}, value = -1} = this.props;
     const {previewIndex} = this.state;
-
+    const size = this.props.size;
     const [Emoticon, emoticonProps] = getOverrides(
       overrides.Item,
       StyledEmoticon,
@@ -71,6 +71,7 @@ class EmoticonRating extends React.Component<
           tabIndex={isFocusable ? '0' : '-1'}
           aria-setsize={5}
           aria-checked={x === value}
+          size={size}
           aria-posinset={x}
           $index={x}
           $isActive={
