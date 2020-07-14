@@ -68,8 +68,6 @@ export type StatefulTabsPropsT = {|
   ...TabsPropsT,
   initialState?: StatefulTabsStateT,
   stateReducer?: StatefulTabsReducerT,
-  onChange?: onChangeT,
-  children: React.Node,
 |};
 
 export type TabPropsT = {
