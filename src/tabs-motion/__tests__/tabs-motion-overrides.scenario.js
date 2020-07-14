@@ -36,19 +36,13 @@ export default function Scenario() {
       }}
     >
       <Tab title="Robot" artwork={ArrowLeft} overrides={TabOverrides}>
-        <div style={{padding: '16px'}}>
-          <Button kind={KIND.secondary}>🤖</Button>
-        </div>
+        <Button kind={KIND.secondary}>🤖</Button>
       </Tab>
       <Tab title="Monster" artwork={ArrowUp} overrides={TabOverrides}>
-        <div style={{padding: '16px'}}>
-          <Button kind={KIND.secondary}>👺</Button>
-        </div>
+        <Button kind={KIND.secondary}>👺</Button>
       </Tab>
       <Tab title="Watermelon" artwork={ArrowRight} overrides={TabOverrides}>
-        <div style={{padding: '16px'}}>
-          <Button kind={KIND.secondary}>🍉</Button>
-        </div>
+        <Button kind={KIND.secondary}>🍉</Button>
       </Tab>
     </Tabs>
   );

@@ -29,20 +29,14 @@ export default function Scenario() {
       renderAll
     >
       <Tab title="Robot">
-        <div style={{padding: '16px'}}>
-          <Button kind={KIND.secondary}>🤖</Button>
-        </div>
+        <Button kind={KIND.secondary}>🤖</Button>
       </Tab>
       <Tab title="Monster">
-        <div style={{padding: '16px'}}>
-          <Button kind={KIND.secondary}>👺</Button>
-        </div>
+        <Button kind={KIND.secondary}>👺</Button>
       </Tab>
       <Tab title="Watermelon">
-        <div style={{padding: '16px'}}>
-          <Button kind={KIND.secondary}>🍉</Button>
-          <Mounty />
-        </div>
+        <Button kind={KIND.secondary}>🍉</Button>
+        <Mounty />
       </Tab>
     </Tabs>
   );

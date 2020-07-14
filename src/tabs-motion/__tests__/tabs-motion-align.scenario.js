@@ -52,19 +52,13 @@ export default function Scenario() {
         overrides={TabsOverrides}
       >
         <Tab title="Robot" overrides={TabOverrides}>
-          <div style={{padding: '16px'}}>
-            <Button kind={KIND.secondary}>🤖</Button>
-          </div>
+          <Button kind={KIND.secondary}>🤖</Button>
         </Tab>
         <Tab title="Monster" overrides={TabOverrides}>
-          <div style={{padding: '16px'}}>
-            <Button kind={KIND.secondary}>👺</Button>
-          </div>
+          <Button kind={KIND.secondary}>👺</Button>
         </Tab>
         <Tab title="Watermelon" overrides={TabOverrides}>
-          <div style={{padding: '16px'}}>
-            <Button kind={KIND.secondary}>🍉</Button>
-          </div>
+          <Button kind={KIND.secondary}>🍉</Button>
         </Tab>
       </Tabs>
     </React.Fragment>

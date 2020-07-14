@@ -32,19 +32,13 @@ export default function Scenario() {
           }}
         >
           <Tab title="Robot">
-            <div style={{padding: '16px'}}>
-              <Button kind={KIND.secondary}>🤖</Button>
-            </div>
+            <Button kind={KIND.secondary}>🤖</Button>
           </Tab>
           <Tab title="Monster">
-            <div style={{padding: '16px'}}>
-              <Button kind={KIND.secondary}>👺</Button>
-            </div>
+            <Button kind={KIND.secondary}>👺</Button>
           </Tab>
           <Tab title="Watermelon">
-            <div style={{padding: '16px'}}>
-              <Button kind={KIND.secondary}>🍉</Button>
-            </div>
+            <Button kind={KIND.secondary}>🍉</Button>
           </Tab>
         </Tabs>
       </div>

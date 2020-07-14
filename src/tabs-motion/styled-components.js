@@ -188,8 +188,18 @@ export const StyledTabHighlight = styled<{
   },
 );
 
-export const StyledTabPanel = styled<{}>('div', () => {
-  return {
-    flexGrow: 1, // only used in vertical orientation
-  };
-});
+export const StyledTabPanel = styled<{$pad: boolean}>(
+  'div',
+  ({$theme, $pad = true}) => {
+    const style: StyleObject = {
+      flexGrow: 1, // only used in vertical orientation
+    };
+    if ($pad) {
+      style.paddingTop = $theme.sizing.scale600;
+      style.paddingRight = $theme.sizing.scale600;
+      style.paddingBottom = $theme.sizing.scale600;
+      style.paddingLeft = $theme.sizing.scale600;
+    }
+    return style;
+  },
+);

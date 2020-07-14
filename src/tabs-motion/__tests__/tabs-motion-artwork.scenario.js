@@ -22,24 +22,16 @@ export default function Scenario() {
       onChange={({activeKey}) => setActiveKey(activeKey)}
     >
       <Tab title="Robot" artwork={props => <ArrowUp {...props} />}>
-        <div style={{padding: '16px'}}>
-          <Button kind={KIND.secondary}>🤖</Button>
-        </div>
+        <Button kind={KIND.secondary}>🤖</Button>
       </Tab>
       <Tab title="Monster" artwork={props => <ArrowRight {...props} />}>
-        <div style={{padding: '16px'}}>
-          <Button kind={KIND.secondary}>👺</Button>
-        </div>
+        <Button kind={KIND.secondary}>👺</Button>
       </Tab>
       <Tab title="Watermelon" artwork={props => <ArrowDown {...props} />}>
-        <div style={{padding: '16px'}}>
-          <Button kind={KIND.secondary}>🍉</Button>
-        </div>
+        <Button kind={KIND.secondary}>🍉</Button>
       </Tab>
       <Tab title="Dragon" artwork={props => <ArrowLeft {...props} />}>
-        <div style={{padding: '16px'}}>
-          <Button kind={KIND.secondary}>🐲</Button>
-        </div>
+        <Button kind={KIND.secondary}>🐲</Button>
       </Tab>
     </Tabs>
   );

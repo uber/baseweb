@@ -81,7 +81,7 @@ interface TabOverrides {
     $focusVisible: boolean;
   }>;
   ArtworkContainer?: Override<{$orientation: ORIENTATION}>;
-  TabPanel?: Override<>;
+  TabPanel?: Override<{$pad: boolean}>;
 }
 
 interface TabProps {

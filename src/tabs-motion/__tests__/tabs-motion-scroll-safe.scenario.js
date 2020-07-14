@@ -26,69 +26,43 @@ export default function Scenario() {
         onChange={({activeKey}) => setActiveKey(activeKey)}
       >
         <Tab title="Watermelon">
-          <div style={{padding: '16px'}}>
-            <Button kind={KIND.secondary}>🍉</Button>
-          </div>
+          <Button kind={KIND.secondary}>🍉</Button>
         </Tab>
         <Tab title="Watermelon">
-          <div style={{padding: '16px'}}>
-            <Button kind={KIND.secondary}>🍉</Button>
-          </div>
+          <Button kind={KIND.secondary}>🍉</Button>
         </Tab>
         <Tab title="Watermelon">
-          <div style={{padding: '16px'}}>
-            <Button kind={KIND.secondary}>🍉</Button>
-          </div>
+          <Button kind={KIND.secondary}>🍉</Button>
         </Tab>
         <Tab title="Watermelon">
-          <div style={{padding: '16px'}}>
-            <Button kind={KIND.secondary}>🍉</Button>
-          </div>
+          <Button kind={KIND.secondary}>🍉</Button>
         </Tab>
         <Tab title="Watermelon">
-          <div style={{padding: '16px'}}>
-            <Button kind={KIND.secondary}>🍉</Button>
-          </div>
+          <Button kind={KIND.secondary}>🍉</Button>
         </Tab>
         <Tab title="Watermelon">
-          <div style={{padding: '16px'}}>
-            <Button kind={KIND.secondary}>🍉</Button>
-          </div>
+          <Button kind={KIND.secondary}>🍉</Button>
         </Tab>
         <Tab title="Watermelon">
-          <div style={{padding: '16px'}}>
-            <Button kind={KIND.secondary}>🍉</Button>
-          </div>
+          <Button kind={KIND.secondary}>🍉</Button>
         </Tab>
         <Tab title="Watermelon">
-          <div style={{padding: '16px'}}>
-            <Button kind={KIND.secondary}>🍉</Button>
-          </div>
+          <Button kind={KIND.secondary}>🍉</Button>
         </Tab>
         <Tab title="Watermelon">
-          <div style={{padding: '16px'}}>
-            <Button kind={KIND.secondary}>🍉</Button>
-          </div>
+          <Button kind={KIND.secondary}>🍉</Button>
         </Tab>
         <Tab title="Watermelon">
-          <div style={{padding: '16px'}}>
-            <Button kind={KIND.secondary}>🍉</Button>
-          </div>
+          <Button kind={KIND.secondary}>🍉</Button>
         </Tab>
         <Tab title="Watermelon">
-          <div style={{padding: '16px'}}>
-            <Button kind={KIND.secondary}>🍉</Button>
-          </div>
+          <Button kind={KIND.secondary}>🍉</Button>
         </Tab>
         <Tab title="Watermelon">
-          <div style={{padding: '16px'}}>
-            <Button kind={KIND.secondary}>🍉</Button>
-          </div>
+          <Button kind={KIND.secondary}>🍉</Button>
         </Tab>
         <Tab title="Watermelon">
-          <div style={{padding: '16px'}}>
-            <Button kind={KIND.secondary}>🍉</Button>
-          </div>
+          <Button kind={KIND.secondary}>🍉</Button>
         </Tab>
       </Tabs>
       <div style={{height: '100vh'}} />
