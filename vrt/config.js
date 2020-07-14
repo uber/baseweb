@@ -407,6 +407,9 @@ const config = {
   'tabs-motion-stateful': {
     skip: true,
   },
+  'tabs-motion-renderAll': {
+    skip: true,
+  },
   'tabs-motion': {
     interactions: [
       {

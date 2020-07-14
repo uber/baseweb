@@ -56,6 +56,7 @@ describe('tabs', () => {
     expect(await isSelected(tabs[2])).toBeFalsy();
     expect(await isExpanded(tabPanels[2])).toBeFalsy();
     expect(await isHidden(tabPanels[2])).toBeTruthy();
+    expect(await page.evaluate(`document.mounted`)).toBe(false);
   });
 
   it('*click* selects tab', async () => {
@@ -72,6 +73,13 @@ describe('tabs', () => {
     expect(await isSelected(tabs[0])).toBeTruthy();
     await tabs[1].click();
     expect(await isSelected(tabs[0])).toBeTruthy();
+  });
+
+  it('[renderAll] mounts non selected tab content', async () => {
+    await mount(page, 'tabs-motion-renderAll');
+    const tabs = await getTabs();
+    expect(await isSelected(tabs[0])).toBeTruthy();
+    expect(await page.evaluate(`document.mounted`)).toBe(true);
   });
 
   it('*tab* moves focus to active tab', async () => {

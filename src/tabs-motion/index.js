@@ -11,7 +11,6 @@ LICENSE file in the root directory of this source tree.
 // TODO(tabs-motion): Add new documentation & examples
 
 // TODO(tabs-motion): Use [withWrapper] for default props on styled components?
-// TODO(tabs-motion): Add option to not mount TabPanel content?
 
 import * as React from 'react';
 import {useUID} from 'react-uid';
@@ -111,6 +110,7 @@ export type TabsPropsT = {|
   onChange?: onChangeT,
   overrides?: TabsOverridesT,
   children?: React.Node,
+  renderAll?: boolean,
 |};
 
 export type StatefulTabsPropsT = {|
@@ -329,6 +329,7 @@ export function Tabs({
   onChange,
   orientation = ORIENTATION.horizontal,
   overrides = {},
+  renderAll = false,
 }: TabsPropsT) {
   // Create unique id prefix for this tabs component
   const uid = useUID();
@@ -610,7 +611,7 @@ export function Tabs({
         if (!child) return;
         const key = child.key || index;
         const isActive = key == activeKey;
-        const {overrides = {}} = child.props;
+        const {overrides = {}, children} = child.props;
         const {TabPanel: TabPanelOverrides} = overrides;
         const [TabPanel, TabPanelProps] = getOverrides(
           TabPanelOverrides,
@@ -628,7 +629,7 @@ export function Tabs({
             {...sharedStylingProps}
             {...TabPanelProps}
           >
-            {child.props.children}
+            {!isActive && !renderAll ? null : children}
           </TabPanel>
         );
       })}

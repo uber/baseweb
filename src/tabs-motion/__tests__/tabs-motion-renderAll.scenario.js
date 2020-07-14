@@ -26,6 +26,7 @@ export default function Scenario() {
     <Tabs
       activeKey={activeKey}
       onChange={({activeKey}) => setActiveKey(activeKey)}
+      renderAll
     >
       <Tab title="Robot">
         <div style={{padding: '16px'}}>
