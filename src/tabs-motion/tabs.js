@@ -27,7 +27,7 @@ import {
   StyledTabBorder,
   StyledTabPanel,
 } from './styled-components.js';
-import {getTabId, getTabPanelId} from './utils.js';
+import {getTabId, getTabPanelId, isVertical} from './utils.js';
 
 import type {TabsPropsT, TabPropsT} from './types.js';
 
@@ -259,6 +259,10 @@ export function Tabs({
                 if (keyboardActivation === KEYBOARD_ACTIVATION.automatic) {
                   nextTab.click();
                 }
+              }
+              // Prevent default page scroll when in vertical orientation
+              if (isVertical(orientation)) {
+                event.preventDefault();
               }
             }
           });
