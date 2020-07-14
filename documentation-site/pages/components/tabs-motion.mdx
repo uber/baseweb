@@ -12,6 +12,7 @@ import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
 import BasicExample from 'examples/tabs-motion/basic.js';
+import KeysExample from 'examples/tabs-motion/keys.js';
 
 export default Layout;
 
@@ -43,9 +44,11 @@ This component implements the latest [WAI-ARIA Tabs specifications](https://www.
   <BasicExample />
 </Example>
 
-### Keys
+<Example title="Keys" path="tabs-motion/keys.js">
+  <KeysExample />
+</Example>
 
-We use tab order to provide default keys for each tab. You can however, pass in your own key to a tab and set `activeKey` accordingly.
+We use tab order to provide default keys for each tab. You can however, pass in your own key to a tab and set `activeKey` accordingly. Note, React keys can be either a string or a number so `1` and `"1"` are both valid. The component will default to numbers if no keys are provided.
 
 ### Keyboard activation
 
