@@ -193,6 +193,10 @@ export const StyledTabPanel = styled<{$pad: boolean}>(
   ({$theme, $pad = true}) => {
     const style: StyleObject = {
       flexGrow: 1, // only used in vertical orientation
+      ':focus': {
+        outline: `3px solid ${$theme.colors.accent}`,
+        outlineOffset: '-3px',
+      },
     };
     if ($pad) {
       style.paddingTop = $theme.sizing.scale600;

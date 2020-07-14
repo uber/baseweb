@@ -335,6 +335,7 @@ export function Tabs({
             role="tabpanel"
             id={getTabPanelId(uid, key)}
             aria-labelledby={getTabId(uid, key)}
+            tabIndex={isActive ? '0' : null}
             aria-expanded={isActive}
             hidden={!isActive}
             {...sharedStylingProps}
