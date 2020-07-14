@@ -1,0 +1,70 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import {Notification, KIND} from 'baseui/notification';
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import BasicExample from 'examples/tabs-motion/basic.js';
+
+export default Layout;
+
+# Tabs (Motion)
+
+Tabs are a navigational element that allows users to easily move between groups of related content. The main difference between this component and the older
+
+## Motion?
+
+There are two main differences between the `tabs-motion` module and the original `tabs` module:
+
+1. `tabs-motion` has an updated design using an animated Tab highlight.
+2. `tabs-motion` is implemented in accordance with the [WAI-ARIA 1.1 specification](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel).
+
+The newer design will be considered our default Tabs component going forward but the older design will remain until our next major version (which is currently slated for late 2021).
+
+## Accessibility
+
+This component implements the latest [WAI-ARIA Tabs specifications](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel). Here are the key takeaways from the spec:
+
+- Proper `role` and `aria` attributes are assigned based on the currently active Tab and TabList orientation.
+- Directional keys are used to move focus through Tabs.
+- When a Tab is focused, the associated TabPanel is automatically opened unless `keyboardActivation` is set to `manual`.
+- When focusing a Tab, the next focusable target is the associated TabPanel's content.
+
+## Examples
+
+### Basic
+
+<Example title="Basic" path="tabs-motion/basic.js">
+  <BasicExample />
+</Example>
+
+### Keys
+
+We use tab order to provide default keys for each tab. You can however, pass in your own key to a tab and set `activeKey` accordingly.
+
+### Keyboard activation
+
+### Vertical orientation
+
+### Fill
+
+### Disabled
+
+### Artwork
+
+### Rendering content
+
+### Alignment
+
+### Refs
+
+### Overrides
+
+### Stateful
