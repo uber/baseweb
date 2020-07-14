@@ -8,15 +8,15 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 /* eslint-disable jsx-a11y/accessible-emoji */
-/* eslint-disable cup/no-undef */
+/* global window */
 
 import * as React from 'react';
 import {Tab, Tabs} from '../index.js';
 import {Button, KIND} from '../../button/index.js';
 
-document.mounted = false;
+window.__e2e__mounted = false;
 const Mounty = () => {
-  document.mounted = true;
+  window.__e2e__mounted = true;
   return null;
 };
 

@@ -56,7 +56,7 @@ describe('tabs', () => {
     expect(await isSelected(tabs[2])).toBeFalsy();
     expect(await isExpanded(tabPanels[2])).toBeFalsy();
     expect(await isHidden(tabPanels[2])).toBeTruthy();
-    expect(await page.evaluate(`document.mounted`)).toBe(false);
+    expect(await page.evaluate(`window.__e2e__mounted`)).toBe(false);
   });
 
   it('*click* selects tab', async () => {
@@ -79,7 +79,7 @@ describe('tabs', () => {
     await mount(page, 'tabs-motion-renderAll');
     const tabs = await getTabs();
     expect(await isSelected(tabs[0])).toBeTruthy();
-    expect(await page.evaluate(`document.mounted`)).toBe(true);
+    expect(await page.evaluate(`window.__e2e__mounted`)).toBe(true);
   });
 
   it('*tab* moves focus to active tab', async () => {
