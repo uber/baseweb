@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-export function starSVG(fillColor: string, strokeColor: string) {
+export function starSVG(fillColor: string, strokeColor: string, size: string) {
   return encodeURIComponent(`
-    <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="${size}" height="${size}" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M11 1.54816L13.1268 7.78053L13.2423 8.11905H13.6H20.4143L14.9132 11.9714L14.6055 12.1869L14.7268 12.5424L16.8321 18.7118L11.2868 14.8285L11 14.6277L10.7132 14.8285L5.16792 18.7118L7.27321 12.5424L7.39454 12.1869L7.08681 11.9714L1.58566 8.11905H8.4H8.75769L8.87321 7.78053L11 1.54816Z"
         fill="${fillColor}"

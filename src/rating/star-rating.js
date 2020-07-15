@@ -46,7 +46,7 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
   };
 
   renderRatingContents = () => {
-    const {overrides = {}, value = -1, numItems} = this.props;
+    const {overrides = {}, value = -1, numItems, size} = this.props;
     const {previewIndex} = this.state;
     const [Star, starProps] = getOverrides(overrides.Item, StyledStar);
 
@@ -67,6 +67,7 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
           aria-checked={x <= value}
           aria-posinset={x}
           $index={x}
+          $size={size}
           $isActive={
             previewIndex !== undefined ? x <= previewIndex : x <= value
           }
