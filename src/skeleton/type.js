@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
+import {stringLiteral} from '@babel/types';
 
 export type OverridesT = {
   Row?: OverrideT,
@@ -17,4 +18,6 @@ export type SkeletonPropsT = {
   overrides?: OverridesT,
   /** Defines the number of row element in a skeleton */
   rows: number,
+  /** Defines the testId for a skeleton using for testing the existence of skeleton*/
+  testid: string,
 };

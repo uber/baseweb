@@ -22,3 +22,27 @@ export const StyledRow = styled('div', {
   marginTop: '10px',
   marginBottom: '10px',
 });
+
+export const StyledAnimationRow = styled('div', {
+  backgroundColor: '#eee',
+  height: '100px',
+  width: '20px',
+  marginRight: '10px',
+  marginLeft: '10px',
+  marginTop: '10px',
+  marginBottom: '10px',
+  animationTimingFunction: 'ease-in-out',
+  animationDuration: '2s',
+  animationIterationCount: 'infinite',
+  animationName: {
+    '0%': {
+      opacity: 1,
+    },
+    '50%': {
+      opacity: 0.4,
+    },
+    '100%': {
+      opacity: 1,
+    },
+  },
+});

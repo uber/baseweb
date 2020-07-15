@@ -10,23 +10,29 @@ LICENSE file in the root directory of this source tree.
 
 const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
-async function countNumber() {
-  const groupCount = await page.$$eval(
-    'div[dataTestId="loader"]',
-    divs => divs.length,
-  );
-  return groupCount > 0;
-}
-
-describe('skeleton', () => {
+describe('skeleton-loading', () => {
   it('passes basic a11y tests', async () => {
-    await mount(page, 'skeleton');
+    await mount(page, 'skeleton-loading');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
-  it('check skeleton element number ', async () => {
-    await mount(page, 'skeleton');
-    expect(await countNumber()).toBeTruthy();
+  it('if loads component correctly', async () => {
+    await mount(page, 'skeleton-loading');
+    const haveSkeleton = await page.$$eval('div[testid="loader"]', divs => {
+      if (divs.length > 0) {
+        return true;
+      }
+      return false;
+    });
+    expect(haveSkeleton).toBe(true);
+    await page.waitFor('div[testid="loader"]', {hidden: true});
+    const haveContent = await page.$$eval('div[id="content"]', divs => {
+      if (divs.length > 0) {
+        return true;
+      }
+      return false;
+    });
+    expect(haveContent).toBe(true);
   });
 });
