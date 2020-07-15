@@ -233,7 +233,9 @@ export function Tabs({
             // Find all tabs eligible for focus
             const availableTabs = [
               ...event.target.parentNode.childNodes,
-            ].filter(node => !node.disabled && node.dataset.baseweb === 'tab');
+            ].filter(
+              node => !node.disabled && node.getAttribute('role') === 'tab',
+            );
 
             // Exit early if there are no other tabs available
             if (availableTabs.length === 1) return;
