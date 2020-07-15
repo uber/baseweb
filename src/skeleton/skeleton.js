@@ -31,8 +31,8 @@ class Skeleton extends React.Component<SkeletonPropsT> {
         <Root testid="loader" {...rootProps}>
           {Array(this.props.rows)
             .fill()
-            .map(() => (
-              <Row {...rowProps}></Row>
+            .map((item, index) => (
+              <Row key={index} {...rowProps}></Row>
             ))}
         </Root>
       );

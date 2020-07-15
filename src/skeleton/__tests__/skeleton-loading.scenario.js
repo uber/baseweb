@@ -72,6 +72,7 @@ export default function Scenario() {
           marginLeft: '10px',
           marginRight: '10px',
         })}
+        alt=""
         src={imageFile}
       />
       <div className={css({display: 'flex', flexDirection: 'row'})}>
