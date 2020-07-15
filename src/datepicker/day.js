@@ -7,30 +7,23 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {StyledDay} from './styled-components.js';
-import {
-  formatDate,
-  getDay,
-  getMonth,
-  getDate,
-  isAfter,
-  isDayInRange,
-  isSameDay,
-  isStartOfMonth,
-  isEndOfMonth,
-} from './utils/index.js';
+import dateFnsAdapter from './utils/date-fns-adapter.js';
+import DateHelpers from './utils/date-helpers.js';
 import {getOverrides} from '../helpers/overrides.js';
 import type {DayPropsT, DayStateT} from './types.js';
 import {LocaleContext} from '../locale/index.js';
 import type {LocaleT} from '../locale/types.js';
 import {isFocusVisible} from '../utils/focusVisible.js';
 
-export default class Day extends React.Component<DayPropsT, DayStateT> {
+export default class Day<T = Date> extends React.Component<
+  DayPropsT<T>,
+  DayStateT,
+> {
   static defaultProps = {
     disabled: false,
-    date: new Date(),
     highlighted: false,
     range: false,
-    month: new Date().getMonth(),
+    adapter: dateFnsAdapter,
     onClick: () => {},
     onSelect: () => {},
     onFocus: () => {},
@@ -49,6 +42,13 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     isFocusVisible: false,
   };
 
+  dateHelpers: DateHelpers<T>;
+
+  constructor(props: DayPropsT<T>) {
+    super(props);
+    this.dateHelpers = new DateHelpers(props.adapter);
+  }
+
   componentDidMount() {
     if (this.dayElm && this.props.focusedCalendar) {
       if (
@@ -60,7 +60,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     }
   }
 
-  componentDidUpdate(prevProps: DayPropsT) {
+  componentDidUpdate(prevProps: DayPropsT<T>) {
     if (this.dayElm && this.props.focusedCalendar) {
       if (
         this.props.highlighted ||
@@ -71,13 +71,25 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     }
   }
 
-  onSelect(selectedDate: Date) {
+  getDateProp: () => T = () => {
+    return this.props.date === undefined
+      ? this.dateHelpers.date()
+      : this.props.date;
+  };
+
+  getMonthProp: () => number = () => {
+    return this.props.month === undefined || this.props.month === null
+      ? this.dateHelpers.getMonth(this.getDateProp())
+      : this.props.month;
+  };
+
+  onSelect: T => void = selectedDate => {
     const {range, value} = this.props;
     let date;
     if (Array.isArray(value) && range) {
       if (!value.length || value.length > 1) {
         date = [selectedDate];
-      } else if (isAfter(selectedDate, value[0])) {
+      } else if (this.dateHelpers.isAfter(selectedDate, value[0])) {
         date = [value[0], selectedDate];
       } else {
         date = [selectedDate, value[0]];
@@ -86,10 +98,11 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
       date = selectedDate;
     }
     this.props.onSelect({date});
-  }
+  };
 
   onKeyDown = (event: KeyboardEvent) => {
-    const {highlighted, date, disabled} = this.props;
+    const date = this.getDateProp();
+    const {highlighted, disabled} = this.props;
     if (event.key === 'Enter' && highlighted && !disabled) {
       event.preventDefault();
       this.onSelect(date);
@@ -97,7 +110,8 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
   };
 
   onClick = (event: Event) => {
-    const {date, disabled} = this.props;
+    const date = this.getDateProp();
+    const {disabled} = this.props;
     if (!disabled) {
       this.props.onClick({event, date});
       this.onSelect(date);
@@ -108,77 +122,80 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     if (isFocusVisible(event)) {
       this.setState({isFocusVisible: true});
     }
-    this.props.onFocus({event, date: this.props.date});
+    this.props.onFocus({event, date: this.getDateProp()});
   };
 
   onBlur = (event: Event) => {
     if (this.state.isFocusVisible !== false) {
       this.setState({isFocusVisible: false});
     }
-    this.props.onBlur({event, date: this.props.date});
+    this.props.onBlur({event, date: this.getDateProp()});
   };
 
   onMouseOver = (event: Event) => {
     this.setState({isHovered: true});
-    this.props.onMouseOver({event, date: this.props.date});
+    this.props.onMouseOver({event, date: this.getDateProp()});
   };
 
   onMouseLeave = (event: Event) => {
     this.setState({isHovered: false});
-    this.props.onMouseLeave({event, date: this.props.date});
-  };
-
-  isWeekend = () => {
-    const weekday = getDay(this.props.date);
-    return weekday === 0 || weekday === 6;
+    this.props.onMouseLeave({event, date: this.getDateProp()});
   };
 
   isOutsideMonth = () => {
+    const month = this.getMonthProp();
     return (
-      this.props.month !== undefined &&
-      this.props.month !== getMonth(this.props.date)
+      month !== undefined &&
+      month !== this.dateHelpers.getMonth(this.getDateProp())
     );
   };
 
   isSelected() {
-    const {value, date} = this.props;
+    const date = this.getDateProp();
+    const {value} = this.props;
     if (Array.isArray(value)) {
-      return isSameDay(date, value[0]) || isSameDay(date, value[1]);
+      return (
+        this.dateHelpers.isSameDay(date, value[0]) ||
+        this.dateHelpers.isSameDay(date, value[1])
+      );
     } else {
-      return isSameDay(date, value);
+      return this.dateHelpers.isSameDay(date, value);
     }
   }
 
   // calculated for range case only
   isPseudoSelected() {
-    const {date, value} = this.props;
+    const date = this.getDateProp();
+    const {value} = this.props;
     if (Array.isArray(value) && !value[0] && !value[1]) {
       return false;
     }
     // fix flow by passing a specific arg type and remove 'Array.isArray(value)'
     if (Array.isArray(value) && value.length > 1) {
-      return isDayInRange(date, value[0], value[1]);
+      return this.dateHelpers.isDayInRange(date, value[0], value[1]);
     }
   }
 
   // calculated for range case only
   isPseudoHighlighted() {
-    const {date, value, highlightedDate} = this.props;
+    const date = this.getDateProp();
+    const {value, highlightedDate} = this.props;
     if (Array.isArray(value) && !value[0] && !value[1]) {
       return false;
     }
     // fix flow by passing a specific arg type and remove 'Array.isArray(value)'
     if (Array.isArray(value) && highlightedDate && value[0] && !value[1]) {
-      if (isAfter(highlightedDate, value[0])) {
-        return isDayInRange(date, value[0], highlightedDate);
+      if (this.dateHelpers.isAfter(highlightedDate, value[0])) {
+        return this.dateHelpers.isDayInRange(date, value[0], highlightedDate);
       } else {
-        return isDayInRange(date, highlightedDate, value[0]);
+        return this.dateHelpers.isDayInRange(date, highlightedDate, value[0]);
       }
     }
   }
 
   getSharedProps() {
-    const {date, value, highlightedDate, range, highlighted} = this.props;
+    const date = this.getDateProp();
+    const {value, highlightedDate, range, highlighted} = this.props;
     const $isHighlighted = highlighted;
     const $selected = this.isSelected();
     const $hasRangeHighlighted = !!(
@@ -186,7 +203,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
       range &&
       value.length === 1 &&
       highlightedDate &&
-      !isSameDay(value[0], highlightedDate)
+      !this.dateHelpers.isSameDay(value[0], highlightedDate)
     );
     return {
       $date: date,
@@ -195,21 +212,21 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
         (Array.isArray(value) &&
           this.props.range &&
           $selected &&
-          isSameDay(date, value[1])) ||
+          this.dateHelpers.isSameDay(date, value[1])) ||
         false,
       $hasRangeHighlighted,
       $hasRangeOnRight:
         Array.isArray(value) &&
         $hasRangeHighlighted &&
         (highlightedDate && value[0]) &&
-        isAfter(highlightedDate, value[0]),
+        this.dateHelpers.isAfter(highlightedDate, value[0]),
       $hasRangeSelected: Array.isArray(value) ? value.length === 2 : false,
       $highlightedDate: highlightedDate,
       $isHighlighted,
       $isHovered: this.state.isHovered,
       $isFocusVisible: this.state.isFocusVisible,
-      $startOfMonth: isStartOfMonth(date),
-      $endOfMonth: isEndOfMonth(date),
+      $startOfMonth: this.dateHelpers.isStartOfMonth(date),
+      $endOfMonth: this.dateHelpers.isEndOfMonth(date),
       $outsideMonth: this.isOutsideMonth(),
       $peekNextMonth: this.props.peekNextMonth,
       $pseudoHighlighted:
@@ -225,7 +242,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
         this.props.value.length > 1 &&
         this.props.range &&
         $selected
-          ? isSameDay(date, this.props.value[0])
+          ? this.dateHelpers.isSameDay(date, this.props.value[0])
           : false,
     };
   }
@@ -240,7 +257,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
     },
     localeContext: LocaleT,
   ) {
-    const {date, locale} = this.props;
+    const date = this.getDateProp();
     return `${
       sharedProps.$selected
         ? sharedProps.$range
@@ -251,13 +268,14 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
         : sharedProps.$disabled
         ? localeContext.datepicker.dateNotAvailableLabel
         : localeContext.datepicker.chooseLabel
-    } ${formatDate(date, 'EEEE, MMMM do yyyy', locale)}. ${
+    } ${this.dateHelpers.format(date, 'fullOrdinalWeek', this.props.locale)}. ${
       !sharedProps.$disabled ? localeContext.datepicker.dateAvailableLabel : ''
     }`;
   }
 
   render() {
-    const {date, peekNextMonth, overrides = {}} = this.props;
+    const date = this.getDateProp();
+    const {peekNextMonth, overrides = {}} = this.props;
     const sharedProps = this.getSharedProps();
     const [Day, dayProps] = getOverrides(overrides.Day, StyledDay);
     return !peekNextMonth && sharedProps.$outsideMonth ? (
@@ -298,7 +316,7 @@ export default class Day extends React.Component<DayPropsT, DayStateT> {
             onMouseOver={this.onMouseOver}
             onMouseLeave={this.onMouseLeave}
           >
-            {getDate(date)}
+            {this.dateHelpers.getDate(date)}
           </Day>
         )}
       </LocaleContext.Consumer>

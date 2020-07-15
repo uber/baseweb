@@ -78,7 +78,8 @@
     "@babel/types": "^7.7.1",
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^8.0.0",
-    "@date-io/moment": "^2.4.0",
+    "@date-io/luxon": "^2.7.0",
+    "@date-io/moment": "^2.7.0",
     "@mdx-js/tag": "^0.20.0",
     "@octokit/rest": "^16.33.1",
     "@stackblitz/sdk": "^1.4.0",
@@ -150,6 +151,7 @@
     "jscodeshift": "^0.6.4",
     "just-omit": "^1.1.0",
     "just-pick": "^2.1.0",
+    "luxon": "1.21.3",
     "markdownlint-cli": "^0.18.0",
     "mkdirp": "^0.5.1",
     "moment": "^2.24.0",
@@ -189,7 +191,7 @@
     "webpack-cli": "^3.1.0"
   },
   "dependencies": {
-    "@date-io/date-fns": "^2.4.0",
+    "@date-io/date-fns": "^2.6.2",
     "card-validator": "^6.2.0",
     "date-fns": "^2.6.0",
     "glob": "^7.1.6",
