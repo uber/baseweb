@@ -114,6 +114,9 @@ export const StyledTab = styled<{
         cursor: 'not-allowed',
         color: $theme.colors.contentStateDisabled,
       },
+      ':hover': {
+        backgroundColor: $theme.colors.backgroundSecondary,
+      },
       ...$theme.typography.LabelSmall,
     };
     if ($focusVisible) {
