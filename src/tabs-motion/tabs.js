@@ -102,10 +102,7 @@ export function Tabs({
     }
   }, [activeKey]);
 
-  // Scroll active Tab into view.
-  // We have separate scroll styles for mount and key change.
-
-  // On mount
+  // Scroll active tab into view on mount. This should *not* scroll the page!
   React.useEffect(() => {
     if (activeTabRef.current) {
       activeTabRef.current.scrollIntoView({
@@ -115,9 +112,9 @@ export function Tabs({
     }
   }, []);
 
-  // On key change
+  // Scroll active tab into view on key change *after* mounting.
   React.useEffect(() => {
-    if (activeTabRef.current) {
+    if (activeTabRef.current && keyUpdated > 1) {
       activeTabRef.current.scrollIntoView({
         behavior: 'smooth',
         block: 'nearest',
