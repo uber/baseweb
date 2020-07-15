@@ -332,6 +332,21 @@ export function Tabs({
           TabPanelOverrides,
           StyledTabPanel,
         );
+        // Keyboard focus styling
+        const [focusVisible, setFocusVisible] = React.useState(false);
+        const handleFocus = React.useCallback((event: SyntheticEvent<>) => {
+          if (isFocusVisible(event)) {
+            setFocusVisible(true);
+          }
+        }, []);
+        const handleBlur = React.useCallback(
+          (event: SyntheticEvent<>) => {
+            if (focusVisible !== false) {
+              setFocusVisible(false);
+            }
+          },
+          [focusVisible],
+        );
         return (
           <TabPanel
             data-baseweb="tab-panel"
@@ -342,8 +357,11 @@ export function Tabs({
             tabIndex={isActive ? '0' : null}
             aria-expanded={isActive}
             hidden={!isActive}
+            $focusVisible={focusVisible}
             {...sharedStylingProps}
             {...TabPanelProps}
+            onFocus={forkFocus(TabPanelProps, handleFocus)}
+            onBlur={forkBlur(TabPanelProps, handleBlur)}
           >
             {!isActive && !renderAll ? null : children}
           </TabPanel>

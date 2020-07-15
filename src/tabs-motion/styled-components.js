@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import {styled} from '../styles/index.js';
+import {ORIENTATION, FILL} from './constants.js';
 import {
   isHorizontal,
   isVertical,
@@ -19,9 +20,9 @@ import {
 import type {StyleObject} from 'styletron-standard';
 import type {OrientationT, FillT} from './types.js';
 
-export const StyledRoot = styled<{$orientation: OrientationT}>(
+export const StyledRoot = styled<{$orientation?: OrientationT}>(
   'div',
-  ({$theme, $orientation}) => {
+  ({$theme, $orientation = ORIENTATION.horizontal}) => {
     const style: StyleObject = {
       // Creates a stacking context so we can use z-index on the TabHighlight
       // without affecting anything outside of this element.
@@ -34,9 +35,12 @@ export const StyledRoot = styled<{$orientation: OrientationT}>(
   },
 );
 
-export const StyledTabList = styled<{$orientation: OrientationT, $fill: FillT}>(
+export const StyledTabList = styled<{
+  $orientation?: OrientationT,
+  $fill?: FillT,
+}>(
   'div',
-  ({$theme, $fill, $orientation}) => {
+  ({$theme, $fill = FILL.intrinsic, $orientation = ORIENTATION.horizontal}) => {
     const style: StyleObject = {
       position: 'relative',
       display: 'flex',
@@ -72,56 +76,64 @@ export const StyledTabList = styled<{$orientation: OrientationT, $fill: FillT}>(
 );
 
 export const StyledTab = styled<{
-  $orientation: OrientationT,
-  $fill: FillT,
-  $focusVisible: boolean,
-}>('button', ({$theme, $orientation, $fill, $focusVisible = false}) => {
-  const style: StyleObject = {
-    boxSizing: 'border-box',
-    display: 'inline-flex',
-    alignItems: 'center',
-    paddingLeft: $theme.sizing.scale600,
-    paddingTop: $theme.sizing.scale600,
-    paddingRight: $theme.sizing.scale600,
-    paddingBottom: $theme.sizing.scale600,
-    borderLeftWidth: 0,
-    borderTopWidth: 0,
-    borderRightWidth: 0,
-    borderBottomWidth: 0,
-    borderLeftStyle: 'none',
-    borderTopStyle: 'none',
-    borderRightStyle: 'none',
-    borderBottomStyle: 'none',
-    color: $theme.colors.contentPrimary,
-    backgroundColor: $theme.colors.backgroundPrimary,
-    transitionProperty: 'background',
-    transitionDuration: $theme.animation.timing200,
-    transitionTimingFunction: $theme.animation.linearCurve,
-    outline: 'none',
-    outlineOffset: '-3px',
-    ':disabled': {
-      cursor: 'not-allowed',
-      color: $theme.colors.contentStateDisabled,
-    },
-    ...$theme.typography.LabelSmall,
-  };
-  if ($focusVisible) {
-    style.outline = `3px solid ${$theme.colors.accent}`;
-  }
-  if (isFixed($fill)) {
-    style.flexGrow = 1;
-  }
-  if (isHorizontal($orientation)) {
-    style.justifyContent = 'center';
-  } else {
-    style.justifyContent = 'flex-end';
-  }
-  return style;
-});
+  $orientation?: OrientationT,
+  $fill?: FillT,
+  $focusVisible?: boolean,
+}>(
+  'button',
+  ({
+    $theme,
+    $orientation = ORIENTATION.horizontal,
+    $fill = FILL.intrinsic,
+    $focusVisible = false,
+  }) => {
+    const style: StyleObject = {
+      boxSizing: 'border-box',
+      display: 'inline-flex',
+      alignItems: 'center',
+      paddingLeft: $theme.sizing.scale600,
+      paddingTop: $theme.sizing.scale600,
+      paddingRight: $theme.sizing.scale600,
+      paddingBottom: $theme.sizing.scale600,
+      borderLeftWidth: 0,
+      borderTopWidth: 0,
+      borderRightWidth: 0,
+      borderBottomWidth: 0,
+      borderLeftStyle: 'none',
+      borderTopStyle: 'none',
+      borderRightStyle: 'none',
+      borderBottomStyle: 'none',
+      color: $theme.colors.contentPrimary,
+      backgroundColor: $theme.colors.backgroundPrimary,
+      transitionProperty: 'background',
+      transitionDuration: $theme.animation.timing200,
+      transitionTimingFunction: $theme.animation.linearCurve,
+      outline: 'none',
+      outlineOffset: '-3px',
+      ':disabled': {
+        cursor: 'not-allowed',
+        color: $theme.colors.contentStateDisabled,
+      },
+      ...$theme.typography.LabelSmall,
+    };
+    if ($focusVisible) {
+      style.outline = `3px solid ${$theme.colors.accent}`;
+    }
+    if (isFixed($fill)) {
+      style.flexGrow = 1;
+    }
+    if (isHorizontal($orientation)) {
+      style.justifyContent = 'center';
+    } else {
+      style.justifyContent = 'flex-end';
+    }
+    return style;
+  },
+);
 
-export const StyledArtworkContainer = styled<{$orientation: OrientationT}>(
+export const StyledArtworkContainer = styled<{$orientation?: OrientationT}>(
   'div',
-  ({$theme, $orientation}) => {
+  ({$theme, $orientation = ORIENTATION.horizontal}) => {
     const style: StyleObject = {
       display: 'flex',
     };
@@ -134,9 +146,9 @@ export const StyledArtworkContainer = styled<{$orientation: OrientationT}>(
   },
 );
 
-export const StyledTabBorder = styled<{$orientation: OrientationT}>(
+export const StyledTabBorder = styled<{$orientation?: OrientationT}>(
   'div',
-  ({$theme, $orientation}) => {
+  ({$theme, $orientation = ORIENTATION.horizontal}) => {
     const style: StyleObject = {
       backgroundColor: $theme.colors.borderOpaque,
       position: 'relative',
@@ -151,13 +163,19 @@ export const StyledTabBorder = styled<{$orientation: OrientationT}>(
 );
 
 export const StyledTabHighlight = styled<{
-  $orientation: OrientationT,
-  $length: number,
-  $distance: number,
-  $animate: boolean,
+  $orientation?: OrientationT,
+  $length?: number,
+  $distance?: number,
+  $animate?: boolean,
 }>(
   'div',
-  ({$theme, $orientation, $length = 0, $distance = 0, $animate = false}) => {
+  ({
+    $theme,
+    $orientation = ORIENTATION.horizontal,
+    $length = 0,
+    $distance = 0,
+    $animate = false,
+  }) => {
     const style: StyleObject = {
       backgroundColor: $theme.colors.borderSelected,
       position: 'absolute',
@@ -190,19 +208,20 @@ export const StyledTabHighlight = styled<{
 
 export const StyledTabPanel = styled<{$pad: boolean}>(
   'div',
-  ({$theme, $pad = true}) => {
+  ({$theme, $pad = true, $focusVisible = false}) => {
     const style: StyleObject = {
       flexGrow: 1, // only used in vertical orientation
-      ':focus': {
-        outline: `3px solid ${$theme.colors.accent}`,
-        outlineOffset: '-3px',
-      },
+      outline: 'none',
     };
     if ($pad) {
       style.paddingTop = $theme.sizing.scale600;
       style.paddingRight = $theme.sizing.scale600;
       style.paddingBottom = $theme.sizing.scale600;
       style.paddingLeft = $theme.sizing.scale600;
+    }
+    if ($focusVisible) {
+      style.outline = `3px solid ${$theme.colors.accent}`;
+      style.outlineOffset = '-3px';
     }
     return style;
   },

@@ -51,15 +51,22 @@ export const StyledTabPanel: StyletronComponent<any>;
 // tabs
 
 interface TabsOverrides {
-  Root?: Override<{$orientation: ORIENTATION}>;
-  TabList?: Override<{$fill: FILL; $orientation: ORIENTATION}>;
-  TabHighlight?: Override<{
-    $orientation: ORIENTATION;
-    $length: number;
-    $distance: number;
-    $animate: boolean;
+  Root?: Override<{
+    $orientation?: ORIENTATION;
   }>;
-  TabBorder?: Override<{$orientation: ORIENTATION}>;
+  TabList?: Override<{
+    $fill?: FILL;
+    $orientation?: ORIENTATION;
+  }>;
+  TabHighlight?: Override<{
+    $orientation?: ORIENTATION;
+    $length?: number;
+    $distance?: number;
+    $animate?: boolean;
+  }>;
+  TabBorder?: Override<{
+    $orientation?: ORIENTATION;
+  }>;
 }
 
 interface TabsProps {
@@ -80,12 +87,17 @@ export const Tabs: React.FC<TabsProps>;
 
 interface TabOverrides {
   Tab?: Override<{
-    $fill: FILL;
-    $orientation: ORIENTATION;
-    $focusVisible: boolean;
+    $fill?: FILL;
+    $orientation?: ORIENTATION;
+    $focusVisible?: boolean;
   }>;
-  ArtworkContainer?: Override<{$orientation: ORIENTATION}>;
-  TabPanel?: Override<{$pad: boolean}>;
+  ArtworkContainer?: Override<{
+    $orientation?: ORIENTATION;
+  }>;
+  TabPanel?: Override<{
+    $pad?: boolean;
+    $focusVisible?: boolean;
+  }>;
 }
 
 interface TabProps {

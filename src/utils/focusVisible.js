@@ -112,7 +112,11 @@ export function teardown(doc) {
 
 //$FlowFixMe
 export function isFocusVisible(event) {
-  const {target} = event;
+  const {target, currentTarget} = event;
+
+  // Ensure nested handlers do not all return true
+  if (target !== currentTarget) return false;
+
   try {
     return target.matches(':focus-visible');
   } catch (error) {
