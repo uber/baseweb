@@ -86,8 +86,10 @@ export function Tabs({
   React.useEffect(() => {
     if (activeTabRef.current) {
       // Note, we are using clientHeight/Width here, which excludes borders.
-      // getBoundingClientRect includes borders but returns a fractional value.
-      // This leads to the highlight being slightly misaligned every so often.
+      // This means borders won't be taken into account if someone adds borders
+      // through overrides. In that case you would use getBoundingClientRect
+      // which includes borders, but because it returns a fractional value the
+      // highlight is slightly misaligned every so often.
       if (orientation === ORIENTATION.vertical) {
         setHighlightLayout({
           length: activeTabRef.current.clientHeight,
