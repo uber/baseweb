@@ -49,7 +49,7 @@ export default function Scenario() {
                     style: {
                       width: '220px',
                       height: '15px',
-                      marginBottum: '0px',
+                      marginBottom: '0px',
                     },
                   },
                 }}

@@ -19,15 +19,15 @@ describe('skeleton-loading', () => {
 
   it('if loads component correctly', async () => {
     await mount(page, 'skeleton-loading');
-    const haveSkeleton = await page.$$eval('div[testid="loader"]', divs => {
+    const haveSkeleton = await page.$$eval('div[testid="loader"]', (divs) => {
       if (divs.length > 0) {
         return true;
       }
       return false;
     });
     expect(haveSkeleton).toBe(true);
-    await page.waitFor('div[testid="loader"]', {hidden: true});
-    const haveContent = await page.$$eval('div[id="content"]', divs => {
+    await page.waitForSelector('div[testid="loader"]', {hidden: true});
+    const haveContent = await page.$$eval('div[id="content"]', (divs) => {
       if (divs.length > 0) {
         return true;
       }

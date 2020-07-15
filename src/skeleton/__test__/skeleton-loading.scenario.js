@@ -51,7 +51,7 @@ export default function Scenario() {
                 style: {
                   width: '220px',
                   height: '15px',
-                  marginBottum: '0px',
+                  marginBottom: '0px',
                 },
               },
             }}
@@ -67,7 +67,7 @@ export default function Scenario() {
         className={css({
           width: '300px',
           height: '150px',
-          marginBottum: '10px',
+          marginBottom: '10px',
           marginTop: '10px',
           marginLeft: '10px',
           marginRight: '10px',
