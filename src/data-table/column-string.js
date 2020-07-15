@@ -72,6 +72,9 @@ function StringColumn(options: OptionsT): StringColumnT {
         return true;
       };
     },
+    textQueryFilter: function(textQuery, data) {
+      return data.toLocaleLowerCase().includes(textQuery.toLowerCase());
+    },
     filterable: false,
     mapDataToValue: options.mapDataToValue,
     maxWidth: options.maxWidth,

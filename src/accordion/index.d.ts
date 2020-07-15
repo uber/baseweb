@@ -33,7 +33,7 @@ export interface AccordionProps {
   disabled?: boolean;
   initialState?: AccordionState;
   onChange?: (args: {expanded: React.Key[]}) => any;
-  overrides?: AccordionOverrides<SharedProps & {$expanded?: never}>;
+  overrides?: AccordionOverrides<SharedProps>;
   stateReducer?: StateReducer<AccordionState>;
   renderPanelContent?: boolean;
   renderAll?: boolean;
@@ -45,8 +45,7 @@ export type StatelessAccordionProps = {
   disabled?: boolean;
   expanded: React.Key[];
   onChange?: (args: {expanded: React.Key[]; key: React.Key}) => any;
-  overrides?: AccordionOverrides<SharedProps & {$expanded?: never}> &
-    PanelOverrides<SharedProps>;
+  overrides?: AccordionOverrides<SharedProps> & PanelOverrides<SharedProps>;
   renderPanelContent?: boolean;
   renderAll?: boolean;
 };
