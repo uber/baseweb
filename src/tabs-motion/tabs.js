@@ -70,14 +70,15 @@ export function Tabs({
   );
 
   // Count key updates
-  // We disable the Highlight animation until the first key update
-  // This avoids the tab sliding in from the side on mount
+  // We disable a few things until after first mount:
+  // - the highlight animation, avoiding an initial slide-in
+  // - smooth scrolling active tab into view
   const [keyUpdated, setKeyUpdated] = React.useState(0);
   React.useEffect(() => {
     setKeyUpdated(keyUpdated + 1);
   }, [activeKey]);
 
-  // Positioning the Highlight
+  // Positioning the highlight
   const activeTabRef = React.useRef();
   const [highlightLayout, setHighlightLayout] = React.useState({
     length: 0,
@@ -102,7 +103,7 @@ export function Tabs({
         });
       }
     }
-  }, [activeKey]);
+  });
 
   // Scroll active tab into view on mount. This should *not* scroll the page!
   React.useEffect(() => {
