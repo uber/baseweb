@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {Tabs, Tab, ORIENTATION} from 'baseui/tabs-motion';
+import {Tabs, Tab} from 'baseui/tabs-motion';
 
 export default () => {
   const [activeKey, setActiveKey] = React.useState(0);

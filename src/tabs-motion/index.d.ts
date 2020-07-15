@@ -103,7 +103,7 @@ interface TabOverrides {
 interface TabProps {
   title?: React.ReactNode;
   key?: React.Key;
-  tabRef?: React.RefObject<HTMLButtonElement>;
+  tabRef?: React.MutableRefObject<HTMLButtonElement | undefined>;
   overrides?: TabOverrides;
   artwork?: React.ReactNode;
   children?: React.ReactNode;

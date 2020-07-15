@@ -9,7 +9,7 @@ import {Grid, Cell} from 'baseui/layout-grid';
 
 const TabsOverrides = {
   TabList: {
-    component: function TabsListOverride(props) {
+    component: function TabsListOverride(props: any) {
       return (
         <Grid>
           <Cell span={12}>
@@ -23,7 +23,7 @@ const TabsOverrides = {
 
 const TabOverrides = {
   TabPanel: {
-    component: function TabPanelOverride(props) {
+    component: function TabPanelOverride(props: any) {
       return (
         <Grid>
           <Cell span={12}>

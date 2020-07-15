@@ -209,7 +209,7 @@ export const StyledTabHighlight = styled<{
   },
 );
 
-export const StyledTabPanel = styled<{$pad: boolean}>(
+export const StyledTabPanel = styled<{$pad: boolean, $focusVisible?: boolean}>(
   'div',
   ({$theme, $pad = true, $focusVisible = false}) => {
     const style: StyleObject = {
