@@ -27,7 +27,13 @@ import {
   StyledTabBorder,
   StyledTabPanel,
 } from './styled-components.js';
-import {getTabId, getTabPanelId, isVertical} from './utils.js';
+import {
+  getTabId,
+  getTabPanelId,
+  isVertical,
+  isHorizontal,
+  isRTL,
+} from './utils.js';
 
 import type {TabsPropsT} from './types.js';
 
@@ -130,8 +136,8 @@ export function Tabs({
   const [, theme] = useStyletron();
   const parseKeyDown = React.useCallback(
     event => {
-      if (orientation === ORIENTATION.horizontal) {
-        if (theme.direction === 'rtl') {
+      if (isHorizontal(orientation)) {
+        if (isRTL(theme.direction)) {
           switch (event.keyCode) {
             case 39:
               return KEYBOARD_ACTION.previous;
