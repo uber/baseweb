@@ -201,6 +201,13 @@ const DatepickerConfig: TConfig = {
       description: `Event handler that is called when the current rendered month's year is changed.`,
       hidden: true,
     },
+    onClose: {
+      value: undefined,
+      type: PropTypes.Function,
+      placeholder: '() => {}',
+      description: `Event handler that is called when the calendar is closed.`,
+      hidden: true,
+    },
     orientation: {
       value: 'ORIENTATION.vertical',
       defaultValue: 'ORIENTATION.vertical',
@@ -213,6 +220,12 @@ const DatepickerConfig: TConfig = {
           named: ['ORIENTATION'],
         },
       },
+      hidden: true,
+    },
+    mountNode: {
+      value: undefined,
+      type: PropTypes.Ref,
+      description: 'Where to mount the datepicker.',
       hidden: true,
     },
     peekNextMonth: {
