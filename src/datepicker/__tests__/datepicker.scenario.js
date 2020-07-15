@@ -10,9 +10,13 @@ import * as React from 'react';
 
 import {Datepicker} from '../index.js';
 import {Button} from '../../button/index.js';
+import MomentUtils from '@date-io/moment';
+const adapter = new MomentUtils({});
+import moment from 'moment';
 
 export default function Scenario() {
   const [date, setDate] = React.useState(null);
+  const [momentDate, setMomentDate] = React.useState(null);
 
   return (
     <React.Fragment>
@@ -59,6 +63,23 @@ export default function Scenario() {
         aria-describedby="compact-datepicker"
         highlightedDate={new Date('March 10, 2019')}
         size="compact"
+        overrides={{
+          MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
+          MonthYearSelectStatefulMenu: {
+            props: {
+              overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}},
+            },
+          },
+        }}
+      />
+      <span>Moment</span>
+      <Datepicker
+        adapter={adapter}
+        aria-label="Select a date"
+        aria-describedby="moment-datepicker"
+        highlightedDate={moment('March 10, 2019')}
+        value={momentDate}
+        onChange={({date}) => setMomentDate(date)}
         overrides={{
           MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
           MonthYearSelectStatefulMenu: {

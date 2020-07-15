@@ -9,6 +9,8 @@ import * as React from 'react';
 import ArrowRight from '../icon/arrow-right.js';
 import ArrowLeft from '../icon/arrow-left.js';
 import TriangleDown from '../icon/triangle-down.js';
+import dateFnsAdapter from './utils/date-fns-adapter.js';
+import DateHelpers from './utils/date-helpers.js';
 import {StatefulMenu} from '../menu/index.js';
 import {Popover} from '../popover/index.js';
 import {LocaleContext} from '../locale/index.js';
@@ -22,21 +24,6 @@ import {
   StyledMonthYearSelectButton,
   StyledMonthYearSelectIconContainer,
 } from './styled-components.js';
-import {
-  addDays,
-  addMonths,
-  getMonth,
-  getMonthInLocale,
-  getStartOfWeek,
-  getWeekdayInLocale,
-  getWeekdayMinInLocale,
-  getYear,
-  monthDisabledBefore,
-  monthDisabledAfter,
-  setMonth,
-  setYear,
-  subMonths,
-} from './utils/index.js';
 import {ORIENTATION, WEEKDAYS} from './constants.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import type {HeaderPropsT} from './types.js';
@@ -66,12 +53,12 @@ function idToYearMonth(id) {
   return id.split('-').map(Number);
 }
 
-export default class CalendarHeader extends React.Component<
-  HeaderPropsT,
+export default class CalendarHeader<T = Date> extends React.Component<
+  HeaderPropsT<T>,
   {isMonthYearDropdownOpen: boolean, isFocusVisible: boolean},
 > {
   static defaultProps = {
-    date: new Date(),
+    adapter: dateFnsAdapter,
     locale: null,
     maxDate: null,
     minDate: null,
@@ -79,32 +66,55 @@ export default class CalendarHeader extends React.Component<
     overrides: {},
   };
 
-  state = {isMonthYearDropdownOpen: false, isFocusVisible: false};
+  dateHelpers: DateHelpers<T>;
+
+  constructor(props: HeaderPropsT<T>) {
+    super(props);
+    this.dateHelpers = new DateHelpers(props.adapter);
+  }
+
+  state = {
+    isMonthYearDropdownOpen: false,
+    isFocusVisible: false,
+  };
+
+  getDateProp: () => T = () => {
+    return this.props.date || this.dateHelpers.date();
+  };
+
   handleMonthChange = ({value}: {value: Array<{id: number}>}) => {
     if (this.props.onMonthChange) {
       // $FlowFixMe
-      this.props.onMonthChange({date: setMonth(this.props.date, value[0].id)});
+      this.props.onMonthChange({
+        date: this.dateHelpers.setMonth(this.getDateProp(), value[0].id),
+      });
     }
   };
 
   handleYearChange = ({value}: {value: Array<{id: number}>}) => {
     if (this.props.onYearChange) {
       // $FlowFixMe
-      this.props.onYearChange({date: setYear(this.props.date, value[0].id)});
+      this.props.onYearChange({
+        date: this.dateHelpers.setYear(this.getDateProp(), value[0].id),
+      });
     }
   };
 
   increaseMonth = () => {
     if (this.props.onMonthChange) {
       // $FlowFixMe
-      this.props.onMonthChange({date: addMonths(this.props.date, 1)});
+      this.props.onMonthChange({
+        date: this.dateHelpers.addMonths(this.getDateProp(), 1),
+      });
     }
   };
 
   decreaseMonth = () => {
     if (this.props.onMonthChange) {
       // $FlowFixMe
-      this.props.onMonthChange({date: subMonths(this.props.date, 1)});
+      this.props.onMonthChange({
+        date: this.dateHelpers.subMonths(this.getDateProp(), 1),
+      });
     }
   };
 
@@ -153,16 +163,22 @@ export default class CalendarHeader extends React.Component<
     locale: LocaleT,
     theme: ThemeT,
   }) => {
-    const {date, overrides = {}} = this.props;
-    const allPrevDaysDisabled = monthDisabledBefore(date, this.props);
+    const date = this.getDateProp();
+    const {overrides = {}} = this.props;
+    const allPrevDaysDisabled = this.dateHelpers.monthDisabledBefore(
+      date,
+      this.props,
+    );
 
     let isDisabled = false;
     if (allPrevDaysDisabled) {
       isDisabled = true;
     }
-    const nextMonth = subMonths(date, 1);
-    const minYear = this.props.minDate ? getYear(this.props.minDate) : MIN_YEAR;
-    if (getYear(nextMonth) < minYear) {
+    const nextMonth = this.dateHelpers.subMonths(date, 1);
+    const minYear = this.props.minDate
+      ? this.dateHelpers.getYear(this.props.minDate)
+      : MIN_YEAR;
+    if (this.dateHelpers.getYear(nextMonth) < minYear) {
       isDisabled = true;
     }
 
@@ -212,16 +228,22 @@ export default class CalendarHeader extends React.Component<
     locale: LocaleT,
     theme: ThemeT,
   }) => {
-    const {date, overrides = {}} = this.props;
-    const allNextDaysDisabled = monthDisabledAfter(date, this.props);
+    const date = this.getDateProp();
+    const {overrides = {}} = this.props;
+    const allNextDaysDisabled = this.dateHelpers.monthDisabledAfter(
+      date,
+      this.props,
+    );
 
     let isDisabled = false;
     if (allNextDaysDisabled) {
       isDisabled = true;
     }
-    const nextMonth = addMonths(date, 1);
-    const maxYear = this.props.maxDate ? getYear(this.props.maxDate) : MAX_YEAR;
-    if (getYear(nextMonth) > maxYear) {
+    const nextMonth = this.dateHelpers.addMonths(date, 1);
+    const maxYear = this.props.maxDate
+      ? this.dateHelpers.getYear(this.props.maxDate)
+      : MAX_YEAR;
+    if (this.dateHelpers.getYear(nextMonth) > maxYear) {
       isDisabled = true;
     }
 
@@ -281,7 +303,8 @@ export default class CalendarHeader extends React.Component<
   };
 
   renderMonthYearDropdown = () => {
-    const {date, locale, maxDate, minDate, overrides = {}} = this.props;
+    const date = this.getDateProp();
+    const {locale, maxDate, minDate, overrides = {}} = this.props;
     const [MonthYearSelectButton, monthYearSelectButtonProps] = getOverrides(
       overrides.MonthYearSelectButton,
       StyledMonthYearSelectButton,
@@ -310,13 +333,17 @@ export default class CalendarHeader extends React.Component<
     menuProps.overrides = menuOverrides;
 
     const defaultMonths = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-    const maxYear = maxDate ? getYear(maxDate) : MAX_YEAR;
-    const minYear = minDate ? getYear(minDate) : MIN_YEAR;
-    const maxDateMonth = maxDate ? getMonth(maxDate) : MAX_MONTH;
+    const maxYear = maxDate ? this.dateHelpers.getYear(maxDate) : MAX_YEAR;
+    const minYear = minDate ? this.dateHelpers.getYear(minDate) : MIN_YEAR;
+    const maxDateMonth = maxDate
+      ? this.dateHelpers.getMonth(maxDate)
+      : MAX_MONTH;
     // Generates array like [0,1,.... maxDateMonth]
     const maxYearMonths = Array.from({length: maxDateMonth + 1}, (x, i) => i);
 
-    const minDateMonth = minDate ? getMonth(minDate) : MIN_MONTH;
+    const minDateMonth = minDate
+      ? this.dateHelpers.getMonth(minDate)
+      : MIN_MONTH;
     // Generates array like [minDateMonth, ...., 10, 11]
     const minYearMonths = Array.from(
       {length: 12 - minDateMonth},
@@ -339,19 +366,25 @@ export default class CalendarHeader extends React.Component<
       months.forEach(month => {
         items.push({
           id: yearMonthToId(i, month),
-          label: `${getMonthInLocale(month, locale)} ${i}`,
+          label: `${this.dateHelpers.getMonthInLocale(month, locale)} ${i}`,
         });
       });
     }
 
     const initialIndex = items.findIndex(item => {
-      return item.id === yearMonthToId(getYear(date), getMonth(date));
+      return (
+        item.id ===
+        yearMonthToId(
+          this.dateHelpers.getYear(date),
+          this.dateHelpers.getMonth(date),
+        )
+      );
     });
 
-    const monthYearTitle = `${getMonthInLocale(
-      getMonth(date),
+    const monthYearTitle = `${this.dateHelpers.getMonthInLocale(
+      this.dateHelpers.getMonth(date),
       locale,
-    )} ${getYear(date)}`;
+    )} ${this.dateHelpers.getYear(date)}`;
 
     return this.isMultiMonthHorizontal() ? (
       <div>{monthYearTitle}</div>
@@ -371,14 +404,22 @@ export default class CalendarHeader extends React.Component<
         onEsc={() => this.setState({isMonthYearDropdownOpen: false})}
         content={() => (
           <OverriddenStatefulMenu
-            initialState={{highlightedIndex: initialIndex, isFocused: true}}
+            initialState={{
+              highlightedIndex: initialIndex,
+              isFocused: true,
+            }}
             items={items}
             onItemSelect={({item, event}) => {
               event.preventDefault();
               const [year, month] = idToYearMonth(item.id);
-              date.setFullYear(year, month);
-              this.props.onMonthChange && this.props.onMonthChange({date});
-              this.props.onYearChange && this.props.onYearChange({date});
+              const updatedDate = this.dateHelpers.set(date, {
+                year,
+                month,
+              });
+              this.props.onMonthChange &&
+                this.props.onMonthChange({date: updatedDate});
+              this.props.onYearChange &&
+                this.props.onYearChange({date: updatedDate});
               this.setState({isMonthYearDropdownOpen: false});
             }}
             {...menuProps}
@@ -434,7 +475,10 @@ export default class CalendarHeader extends React.Component<
       StyledWeekdayHeader,
     );
 
-    const startOfWeek = getStartOfWeek(this.props.date, this.props.locale);
+    const startOfWeek = this.dateHelpers.getStartOfWeek(
+      this.getDateProp(),
+      this.props.locale,
+    );
     return (
       <ThemeContext.Consumer>
         {theme => (
@@ -446,20 +490,29 @@ export default class CalendarHeader extends React.Component<
                   onFocus={forkFocus(calendarHeaderProps, this.handleFocus)}
                   onBlur={forkBlur(calendarHeaderProps, this.handleBlur)}
                 >
-                  {this.renderPreviousMonthButton({locale, theme})}
+                  {this.renderPreviousMonthButton({
+                    locale,
+                    theme,
+                  })}
                   {this.renderMonthYearDropdown()}
                   {this.renderNextMonthButton({locale, theme})}
                 </CalendarHeader>
                 <MonthHeader role="presentation" {...monthHeaderProps}>
                   {WEEKDAYS.map(offset => {
-                    const day = addDays(startOfWeek, offset);
+                    const day = this.dateHelpers.addDays(startOfWeek, offset);
                     return (
                       <WeekdayHeader
                         key={offset}
-                        alt={getWeekdayInLocale(day, this.props.locale)}
+                        alt={this.dateHelpers.getWeekdayInLocale(
+                          day,
+                          this.props.locale,
+                        )}
                         {...weekdayHeaderProps}
                       >
-                        {getWeekdayMinInLocale(day, this.props.locale)}
+                        {this.dateHelpers.getWeekdayMinInLocale(
+                          day,
+                          this.props.locale,
+                        )}
                       </WeekdayHeader>
                     );
                   })}
