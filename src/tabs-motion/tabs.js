@@ -370,7 +370,7 @@ export function Tabs({
             onFocus={forkFocus(TabPanelProps, handleFocus)}
             onBlur={forkBlur(TabPanelProps, handleBlur)}
           >
-            {!isActive && !renderAll ? null : children}
+            {isActive || renderAll ? children : null}
           </TabPanel>
         );
       })}
