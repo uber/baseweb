@@ -17,6 +17,6 @@ export type SkeletonPropsT = {
   overrides?: OverridesT,
   /** Defines the number of row element in a skeleton */
   rows: number,
-  /** Defines the testId for a skeleton using for testing the existence of skeleton*/
-  testid: string,
+  /** Deinfes if the skeleton has an animation default is false*/
+  animation: boolean,
 };

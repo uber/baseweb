@@ -15,8 +15,8 @@ export default function Scenario() {
     <div className={css({width: '1000px', display: 'flex', flexWrap: 'wrap'})}>
       {Array(8)
         .fill()
-        .map(() => (
-          <div>
+        .map((item, index) => (
+          <div key={index}>
             <Skeleton
               overrides={{
                 Row: {

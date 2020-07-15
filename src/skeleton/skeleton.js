@@ -28,7 +28,7 @@ class Skeleton extends React.Component<SkeletonPropsT> {
 
     if (typeof this.props.rows === 'number') {
       return (
-        <Root testid="loader" {...rootProps}>
+        <Root testid={'loader'} {...rootProps}>
           {Array(this.props.rows)
             .fill()
             .map((item, index) => (
@@ -37,7 +37,7 @@ class Skeleton extends React.Component<SkeletonPropsT> {
         </Root>
       );
     }
-    return <Root testid="loader" {...rootProps} />;
+    return <Root testid={'loader'} {...rootProps} />;
   }
 }
 
