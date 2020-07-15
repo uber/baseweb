@@ -11,6 +11,9 @@ import Example from '../../components/example';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 
+import Yard from '../../components/yard/index';
+import tabsYardConfig from '../../components/yard/config/tabs-motion';
+
 import BasicExample from 'examples/tabs-motion/basic.js';
 import KeysExample from 'examples/tabs-motion/keys.js';
 import KeyboardActivationExample from 'examples/tabs-motion/keyboard-activation.js';
@@ -18,12 +21,21 @@ import VerticalOrientationExample from 'examples/tabs-motion/vertical-orientatio
 import FixedExample from 'examples/tabs-motion/fixed.js';
 import DisabledExample from 'examples/tabs-motion/disabled.js';
 import ArtworkExample from 'examples/tabs-motion/artwork.js';
+import RenderAllExample from 'examples/tabs-motion/renderAll.js';
+import AlignmentExample from 'examples/tabs-motion/alignment.js';
+import RefsExample from 'examples/tabs-motion/refs.js';
+import StatefulExample from 'examples/tabs-motion/stateful.js';
+
+import * as TabsExports from 'baseui/tabs';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
 # Tabs (Motion)
 
-Tabs are a navigational element that allows users to easily move between groups of related content. The main difference between this component and the older
+Tabs are a navigational element that allows users to easily move between groups of related content.
+
+<Yard placeholderHeight={100} {...tabsYardConfig} />
 
 ## Motion?
 
@@ -94,12 +106,40 @@ You can disable all of the Tabs (except for the active one) by passing `disabled
 
 You can use a leading icon for each Tab with the `artwork` prop. Icons from `baseui/icon` will work out-of-the-box, as you can see in the example above. If you want to use a custom icon or component, your component will be rendered with a small margin between it and the Tab title. Your component will receive a `size` and `color` prop too if you want to use them.
 
-### Rendering content
+<Example title="Rendering & SEO" path="tabs-motion/renderAll.js">
+  <RenderAllExample />
+</Example>
 
-### Alignment
+By default, the content within a `TabPanel` will only mount once the corresponding Tab is active. If you want the content of each `TabPanel` to render when the `Tabs` component renders, you can use the `renderAll` prop as in the example above. If you inspect the markup for this example, you will notice that each Tab's content is rendered (though it still isn't visible). This option can be useful for SEO purposes where you might want all of your content to be crawlable.
 
-### Refs
+<Example title="Alignment" path="tabs-motion/alignment.js">
+  <AlignmentExample />
+</Example>
 
-### Overrides
+In this example we align the Tabs and TabPanels with our LayoutGrid component. This allows the TabBorder to expand to fill the viewport. You may want to open this example in StackBlitz to get a better sense of the visual effect.
 
-### Stateful
+<Example title="Refs" path="tabs-motion/refs.js">
+  <RefsExample />
+</Example>
+
+You can pass refs to every internal element within the Tabs component using `overrides`. There is one exception however: the button elements rendered by `Tab`. Internally, the Tabs component keeps a ref attached to the active Tab's button element. This is used for the animated highlight. Because we already need to attach this ref internally, we "share" the ref via the `tabRef` prop. If you pass a ref to the `tabRef` you will receive a ref to the underlying button element, even when it is active.
+
+<Example title="Stateful" path="tabs-motion/stateful.js">
+  <StatefulExample />
+</Example>
+
+If you don't need to control the component yourself you can use the stateful version.
+
+## API
+
+<ApiTable
+  title="Tabs props"
+  config={tabsYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/tabs-motion/tabs.js')}
+/>
+
+<Exports
+  component={TabsExports}
+  title="Tabs exports"
+  path="baseui/tabs-motion"
+/>
