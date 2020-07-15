@@ -181,7 +181,6 @@ export function Tabs({
       >
         {React.Children.map(children, (child, index) => {
           if (!child) return;
-
           const key = child.key || index;
           const isActive = key == activeKey;
           const {
