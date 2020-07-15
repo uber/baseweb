@@ -46,6 +46,7 @@ export type ColumnT<ValueT = any, FilterParamsT = any> = {|
     setFilter: FilterParamsT => void,
   |}>,
   buildFilter: FilterParamsT => ValueT => boolean,
+  textQueryFilter?: (string, ValueT) => boolean,
   sortFn: (ValueT, ValueT) => number,
   maxWidth?: number,
   minWidth?: number,

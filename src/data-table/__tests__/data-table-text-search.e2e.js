@@ -33,4 +33,15 @@ describe('data table text search', () => {
     const expected = ['American bison', 'Goat', 'Giraffe', 'Llama', 'Reindeer'];
     expect(matchArrayElements(actual, expected)).toBe(true);
   });
+
+  it('filters custom columns', async () => {
+    await mount(page, 'data-table-text-search');
+    await page.waitFor(TABLE_ROOT);
+    await page.type('input', 'moll');
+    await wait(250); // input is debounced by 250ms
+
+    const actual = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, 0);
+    const expected = ['Mediterranean mussel'];
+    expect(matchArrayElements(actual, expected)).toBe(true);
+  });
 });
