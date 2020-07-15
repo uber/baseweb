@@ -133,6 +133,7 @@ export function Tabs({
   };
 
   // Helper for parsing directional keys
+  // TODO(WPT-6473): move to universal keycode aliases
   const [, theme] = useStyletron();
   const parseKeyDown = React.useCallback(
     event => {
