@@ -410,6 +410,18 @@ const config = {
   'tabs-motion-renderAll': {
     skip: true,
   },
+  'tabs-motion-vertical-pageScroll': {
+    interactions: [
+      {
+        name: 'ArrowDown',
+        behavior: async page => {
+          const tab = await page.$('[role=tab]');
+          await tab.focus();
+          await page.keyboard.press('ArrowDown');
+        },
+      },
+    ],
+  },
   'tabs-motion': {
     interactions: [
       {

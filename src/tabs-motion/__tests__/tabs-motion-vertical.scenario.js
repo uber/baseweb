@@ -16,32 +16,28 @@ import {Button, KIND} from '../../button/index.js';
 export default function Scenario() {
   const [activeKey, setActiveKey] = React.useState('0');
   return (
-    <React.Fragment>
-      <div style={{height: '50vh'}} />
-      <Tabs
-        activeKey={activeKey}
-        onChange={({activeKey}) => setActiveKey(activeKey)}
-        orientation={ORIENTATION.vertical}
-        overrides={{
-          Root: {
-            style: ({$theme}) => ({
-              borderTop: `solid 1px ${$theme.colors.borderOpaque}`,
-              borderBottom: `solid 1px ${$theme.colors.borderOpaque}`,
-            }),
-          },
-        }}
-      >
-        <Tab title="Robot">
-          <Button kind={KIND.secondary}>🤖</Button>
-        </Tab>
-        <Tab title="Monster">
-          <Button kind={KIND.secondary}>👺</Button>
-        </Tab>
-        <Tab title="Watermelon">
-          <Button kind={KIND.secondary}>🍉</Button>
-        </Tab>
-      </Tabs>
-      <div style={{height: '50vh'}} />
-    </React.Fragment>
+    <Tabs
+      activeKey={activeKey}
+      onChange={({activeKey}) => setActiveKey(activeKey)}
+      orientation={ORIENTATION.vertical}
+      overrides={{
+        Root: {
+          style: ({$theme}) => ({
+            borderTop: `solid 1px ${$theme.colors.borderOpaque}`,
+            borderBottom: `solid 1px ${$theme.colors.borderOpaque}`,
+          }),
+        },
+      }}
+    >
+      <Tab title="Robot">
+        <Button kind={KIND.secondary}>🤖</Button>
+      </Tab>
+      <Tab title="Monster">
+        <Button kind={KIND.secondary}>👺</Button>
+      </Tab>
+      <Tab title="Watermelon">
+        <Button kind={KIND.secondary}>🍉</Button>
+      </Tab>
+    </Tabs>
   );
 }
