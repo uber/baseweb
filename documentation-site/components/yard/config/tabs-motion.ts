@@ -110,7 +110,7 @@ const TabsConfig: TConfig = {
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
-        names: ['Root', 'Tab', 'TabList', 'ArtworkContainer', 'TabHighlight'],
+        names: ['Root', 'TabList', 'TabHighlight', 'TabBorder'],
         sharedProps: {
           $orientation: 'orientation',
           $fill: 'fill',
