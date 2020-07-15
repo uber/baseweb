@@ -56,7 +56,6 @@ describe('tabs', () => {
     expect(await isSelected(tabs[2])).toBeFalsy();
     expect(await isExpanded(tabPanels[2])).toBeFalsy();
     expect(await isHidden(tabPanels[2])).toBeTruthy();
-    expect(await page.evaluate(`window.__e2e__mounted`)).toBe(false);
   });
 
   it('*click* selects tab', async () => {
@@ -73,6 +72,13 @@ describe('tabs', () => {
     expect(await isSelected(tabs[0])).toBeTruthy();
     await tabs[1].click();
     expect(await isSelected(tabs[0])).toBeTruthy();
+  });
+
+  it('does not mount non selected tab content', async () => {
+    await mount(page, 'tabs-motion');
+    const tabs = await getTabs();
+    expect(await isSelected(tabs[0])).toBeTruthy();
+    expect(await page.evaluate(`window.__e2e__mounted`)).toBe(false);
   });
 
   it('[renderAll] mounts non selected tab content', async () => {
@@ -92,11 +98,14 @@ describe('tabs', () => {
     expect(await isActiveEl(tabs[1])).toBeTruthy();
   });
 
-  it('*tab* moves focus to tabpanel content', async () => {
+  it('*tab* moves focus to tabpanel and then tab content', async () => {
     await mount(page, 'tabs-motion-focus');
     const tabs = await getTabs();
     await tabs[1].focus();
     expect(await isActiveEl(tabs[1])).toBeTruthy();
+    await page.keyboard.press('Tab');
+    const tabPanel = await page.$('#tab-panel');
+    expect(await isActiveEl(tabPanel)).toBeTruthy();
     await page.keyboard.press('Tab');
     const tabContent = await page.$('#tab-content');
     expect(await isActiveEl(tabContent)).toBeTruthy();

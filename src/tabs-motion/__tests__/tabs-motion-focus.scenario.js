@@ -20,7 +20,7 @@ export default function Scenario() {
         onChange={({activeKey}) => setActiveKey(activeKey)}
       >
         <Tab title="Robot">nada</Tab>
-        <Tab title="Monster">
+        <Tab title="Monster" overrides={{TabPanel: {props: {id: 'tab-panel'}}}}>
           <input id="tab-content" type="text" />
         </Tab>
         <Tab title="Watermelon">nada</Tab>
