@@ -74,6 +74,10 @@ interface TabsProps {
   overrides?: TabsOverrides;
 }
 
+export const Tabs: React.FC<TabsProps>;
+
+// tab
+
 interface TabOverrides {
   Tab?: Override<{
     $fill: FILL;
@@ -93,7 +97,6 @@ interface TabProps {
   children?: React.ReactNode;
 }
 
-export const Tabs: React.FC<TabsProps>;
 export const Tab: React.FC<TabProps>;
 
 // stateful-tabs

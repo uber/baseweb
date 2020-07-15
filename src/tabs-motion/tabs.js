@@ -29,7 +29,7 @@ import {
 } from './styled-components.js';
 import {getTabId, getTabPanelId, isVertical} from './utils.js';
 
-import type {TabsPropsT, TabPropsT} from './types.js';
+import type {TabsPropsT} from './types.js';
 
 export function Tabs({
   activeKey = '0',
@@ -351,8 +351,4 @@ export function Tabs({
       })}
     </Root>
   );
-}
-
-export function Tab(props: TabPropsT) {
-  return null;
 }
