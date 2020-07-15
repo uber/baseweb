@@ -122,6 +122,8 @@ export type BaseInputPropsT<T> = {|
   onFocus: (e: SyntheticFocusEvent<T>) => mixed,
   /** If true, adds a clear value icon button to the end of the input container. */
   clearable?: boolean,
+  /** If undefined or true, clears the input when the Escape button is pressed with the input focused. True by default. */
+  clearOnEscape?: boolean,
   onClear?: (e: SyntheticEvent<T>) => mixed,
   overrides: BaseInputComponentsT,
   placeholder?: string,
