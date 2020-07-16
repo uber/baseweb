@@ -6,6 +6,7 @@ exports[`StarRating RatingItem applies correct props if item is active 1`] = `
   $isActive={true}
   $isFocusVisible={false}
   $isSelected={false}
+  $size={22}
   aria-checked={true}
   aria-posinset={1}
   aria-setsize={5}
