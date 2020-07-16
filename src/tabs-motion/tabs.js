@@ -91,7 +91,7 @@ export function Tabs({
       // through overrides. In that case you would use getBoundingClientRect
       // which includes borders, but because it returns a fractional value the
       // highlight is slightly misaligned every so often.
-      if (orientation === ORIENTATION.vertical) {
+      if (isVertical(orientation)) {
         setHighlightLayout({
           length: activeTabRef.current.clientHeight,
           distance: activeTabRef.current.offsetTop,
