@@ -68,6 +68,20 @@ describe('input', () => {
       });
     });
 
+    it('not with escape key when its disabled', async () => {
+      await mount(page, 'input-clearable-noescape');
+      await page.waitFor(selectors.input);
+
+      let inputValue = await page.$eval(selectors.input, input => input.value);
+      expect(inputValue).toBe('Thing');
+
+      await page.focus(selectors.input);
+      await page.keyboard.press('Escape');
+
+      inputValue = await page.$eval(selectors.input, input => input.value);
+      expect(inputValue).toBe('Thing');
+    });
+
     it('with delete icon', async () => {
       await mount(page, 'input-clearable');
       await page.waitFor(selectors.input);

@@ -10,18 +10,21 @@ import StatefulContainer from './stateful-container.js';
 import Datepicker from './datepicker.js';
 import type {StatefulDatepickerPropsT, DatepickerPropsT} from './types.js';
 
-function StatefulComponent(props: StatefulDatepickerPropsT<DatepickerPropsT>) {
-  return (
-    <StatefulContainer {...props}>
-      {extendedProps => <Datepicker {...extendedProps} />}
-    </StatefulContainer>
-  );
-}
+type PropsT<T> = StatefulDatepickerPropsT<DatepickerPropsT<T>, T>;
 
-StatefulComponent.defaultProps = {
-  initialState: {},
-  stateReducer: (type, nextState) => nextState,
-  onChange: () => {},
-};
+class StatefulComponent<T = Date> extends React.Component<PropsT<T>> {
+  static defaultProps: PropsT<T> = {
+    initialState: {},
+    stateReducer: (type, nextState) => nextState,
+    onChange: () => {},
+  };
+  render() {
+    return (
+      <StatefulContainer {...this.props}>
+        {extendedProps => <Datepicker {...extendedProps} />}
+      </StatefulContainer>
+    );
+  }
+}
 
 export default StatefulComponent;
