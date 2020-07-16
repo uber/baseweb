@@ -12,7 +12,7 @@ import {useUID} from 'react-uid';
 import {useStyletron} from '../styles/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
-import {KEYBOARD_ACTION, ORIENTATION, FILL} from './constants.js';
+import {ORIENTATION, FILL} from './constants.js';
 import {
   StyledRoot,
   StyledTabList,
@@ -31,6 +31,11 @@ import {
 } from './utils.js';
 
 import type {TabsPropsT} from './types.js';
+
+const KEYBOARD_ACTION = {
+  next: 'next',
+  previous: 'previous',
+};
 
 export function Tabs({
   activeKey = '0',

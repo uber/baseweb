@@ -14,11 +14,6 @@ export enum FILL {
   fixed = 'fixed',
 }
 
-export enum KEYBOARD_ACTION {
-  next = 'next',
-  previous = 'previous',
-}
-
 export enum STATE_CHANGE_TYPE {
   change = 'change',
 }

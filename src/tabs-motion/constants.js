@@ -17,11 +17,6 @@ export const FILL = {
   intrinsic: 'intrinsic',
 };
 
-export const KEYBOARD_ACTION = {
-  next: 'next',
-  previous: 'previous',
-};
-
 export const STATE_CHANGE_TYPE = {
   change: 'change',
 };
