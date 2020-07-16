@@ -12,12 +12,7 @@ import {useUID} from 'react-uid';
 import {useStyletron} from '../styles/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
-import {
-  KEYBOARD_ACTIVATION,
-  KEYBOARD_ACTION,
-  ORIENTATION,
-  FILL,
-} from './constants.js';
+import {KEYBOARD_ACTION, ORIENTATION, FILL} from './constants.js';
 import {
   StyledRoot,
   StyledTabList,
@@ -42,7 +37,7 @@ export function Tabs({
   disabled = false,
   children,
   fill = FILL.intrinsic,
-  keyboardActivation = KEYBOARD_ACTIVATION.automatic,
+  activateOnFocus = true,
   onChange,
   orientation = ORIENTATION.horizontal,
   overrides = {},
@@ -264,7 +259,7 @@ export function Tabs({
                 nextTab.focus();
 
                 // Optionally activate the tab
-                if (keyboardActivation === KEYBOARD_ACTIVATION.automatic) {
+                if (activateOnFocus) {
                   nextTab.click();
                 }
               }

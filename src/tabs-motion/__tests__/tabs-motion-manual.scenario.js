@@ -10,7 +10,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable jsx-a11y/accessible-emoji */
 
 import * as React from 'react';
-import {Tab, Tabs, KEYBOARD_ACTIVATION} from '../index.js';
+import {Tab, Tabs} from '../index.js';
 import {Button, KIND} from '../../button/index.js';
 
 export default function Scenario() {
@@ -19,7 +19,7 @@ export default function Scenario() {
     <Tabs
       activeKey={activeKey}
       onChange={({activeKey}) => setActiveKey(activeKey)}
-      keyboardActivation={KEYBOARD_ACTIVATION.manual}
+      activateOnFocus={false}
     >
       <Tab title="Robot">
         <Button kind={KIND.secondary}>🤖</Button>

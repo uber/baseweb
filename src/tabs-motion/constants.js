@@ -17,11 +17,6 @@ export const FILL = {
   intrinsic: 'intrinsic',
 };
 
-export const KEYBOARD_ACTIVATION = {
-  automatic: 'automatic',
-  manual: 'manual',
-};
-
 export const KEYBOARD_ACTION = {
   next: 'next',
   previous: 'previous',

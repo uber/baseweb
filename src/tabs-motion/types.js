@@ -8,19 +8,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {
-  ORIENTATION,
-  FILL,
-  KEYBOARD_ACTIVATION,
-  STATE_CHANGE_TYPE,
-} from './constants.js';
+import {ORIENTATION, FILL, STATE_CHANGE_TYPE} from './constants.js';
 
 import type {OverrideT} from '../helpers/overrides.js';
 import type {IconPropsT} from '../icon/types.js';
 
 export type OrientationT = $Values<typeof ORIENTATION>;
 export type FillT = $Values<typeof FILL>;
-export type KeyboardActivationT = $Values<typeof KEYBOARD_ACTIVATION>;
 export type StateChangeT = $Values<typeof STATE_CHANGE_TYPE>;
 
 export type TabsOverridesT = {|
@@ -58,7 +52,7 @@ export type TabsPropsT = {|
   disabled?: boolean,
   fill?: FillT,
   orientation?: OrientationT,
-  keyboardActivation?: KeyboardActivationT,
+  activateOnFocus?: boolean,
   onChange?: onChangeT,
   overrides?: TabsOverridesT,
   renderAll?: boolean,

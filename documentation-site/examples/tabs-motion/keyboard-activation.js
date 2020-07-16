@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {Tabs, Tab, KEYBOARD_ACTIVATION} from 'baseui/tabs-motion';
+import {Tabs, Tab} from 'baseui/tabs-motion';
 
 export default () => {
   const [activeKey, setActiveKey] = React.useState(0);
@@ -9,7 +9,7 @@ export default () => {
     <Tabs
       activeKey={activeKey}
       onChange={({activeKey}) => setActiveKey(activeKey)}
-      keyboardActivation={KEYBOARD_ACTIVATION.manual}
+      activateOnFocus={false}
     >
       <Tab title="First">I must not fear.</Tab>
       <Tab title="Second">Fear is the mind-killer.</Tab>

@@ -1,10 +1,4 @@
-import {
-  Tabs,
-  Tab,
-  ORIENTATION,
-  FILL,
-  KEYBOARD_ACTIVATION,
-} from 'baseui/tabs-motion';
+import {Tabs, Tab, ORIENTATION, FILL} from 'baseui/tabs-motion';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
@@ -21,7 +15,6 @@ const TabsConfig: TConfig = {
     Tab,
     ORIENTATION,
     FILL,
-    KEYBOARD_ACTIVATION,
   },
   theme: [
     'accent',
@@ -83,16 +76,10 @@ const TabsConfig: TConfig = {
         'baseui/tabs-motion': {named: ['FILL']},
       },
     },
-    keyboardActivation: {
-      type: PropTypes.Enum,
-      value: 'KEYBOARD_ACTIVATION.automatic',
-      defaultValue: 'KEYBOARD_ACTIVATION.automatic',
-      options: KEYBOARD_ACTIVATION,
-      enumName: 'KEYBOARD_ACTIVATION',
-      description: 'Determines if Tabs activate when focused.',
-      imports: {
-        'baseui/tabs-motion': {named: ['KEYBOARD_ACTIVATION']},
-      },
+    activateOnFocus: {
+      value: true,
+      type: PropTypes.Boolean,
+      description: 'Activate tabs when they receive focus.',
     },
     disabled: {
       value: false,

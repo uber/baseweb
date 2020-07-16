@@ -14,11 +14,6 @@ export enum FILL {
   fixed = 'fixed',
 }
 
-export enum KEYBOARD_ACTIVATION {
-  automatic = 'automatic',
-  manual = 'manual',
-}
-
 export enum KEYBOARD_ACTION {
   next = 'next',
   previous = 'previous',
@@ -75,7 +70,7 @@ interface TabsProps {
   disabled?: boolean;
   fill?: FILL[keyof FILL];
   orientation?: ORIENTATION[keyof ORIENTATION];
-  keyboardActivation?: KEYBOARD_ACTIVATION[keyof KEYBOARD_ACTIVATION];
+  activateOnFocus?: boolean;
   renderAll?: boolean;
   onChange?: (params: {activeKey: React.Key}) => void;
   overrides?: TabsOverrides;
