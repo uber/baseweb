@@ -7,6 +7,8 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
+/* global window */
+
 import * as React from 'react';
 import {useUID} from 'react-uid';
 import {useStyletron} from '../styles/index.js';
@@ -35,6 +37,35 @@ import type {TabsPropsT} from './types.js';
 const KEYBOARD_ACTION = {
   next: 'next',
   previous: 'previous',
+};
+
+const debounce = (fn, wait) => {
+  let timeout;
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      fn(...args);
+    }, wait);
+  };
+};
+
+const getHighlightLayoutParams = (el, orientation) => {
+  // Note, we are using clientHeight/Width here, which excludes borders.
+  // This means borders won't be taken into account if someone adds borders
+  // through overrides. In that case you would use getBoundingClientRect
+  // which includes borders, but because it returns a fractional value the
+  // highlight is slightly misaligned every so often.
+  if (isVertical(orientation)) {
+    return {
+      length: el.clientHeight,
+      distance: el.offsetTop,
+    };
+  } else {
+    return {
+      length: el.clientWidth,
+      distance: el.offsetLeft,
+    };
+  }
 };
 
 export function Tabs({
@@ -78,33 +109,33 @@ export function Tabs({
     setKeyUpdated(keyUpdated + 1);
   }, [activeKey]);
 
-  // Positioning the highlight. Note, this currently does not respond to
-  // sizing changes.
+  // Positioning the highlight.
   const activeTabRef = React.useRef();
   const [highlightLayout, setHighlightLayout] = React.useState({
     length: 0,
     distance: 0,
   });
+
+  // Update highlight on key and orientation changes.
   React.useEffect(() => {
     if (activeTabRef.current) {
-      // Note, we are using clientHeight/Width here, which excludes borders.
-      // This means borders won't be taken into account if someone adds borders
-      // through overrides. In that case you would use getBoundingClientRect
-      // which includes borders, but because it returns a fractional value the
-      // highlight is slightly misaligned every so often.
-      if (isVertical(orientation)) {
-        setHighlightLayout({
-          length: activeTabRef.current.clientHeight,
-          distance: activeTabRef.current.offsetTop,
-        });
-      } else {
-        setHighlightLayout({
-          length: activeTabRef.current.clientWidth,
-          distance: activeTabRef.current.offsetLeft,
-        });
-      }
+      setHighlightLayout(
+        getHighlightLayoutParams(activeTabRef.current, orientation),
+      );
     }
-  }, [activeKey]);
+  }, [activeKey, orientation]);
+
+  // Create a shared, memoized, debounced callback for tabs to call on resize.
+  const updateHighlight = React.useCallback(
+    debounce(() => {
+      if (activeTabRef.current) {
+        setHighlightLayout(
+          getHighlightLayoutParams(activeTabRef.current, orientation),
+        );
+      }
+    }, 100),
+    [activeKey, orientation],
+  );
 
   // Scroll active tab into view when the parent has scrollbar on mount and
   // on key change (smooth scroll). Note, if the active key changes while
@@ -204,6 +235,16 @@ export function Tabs({
           React.useImperativeHandle(tabRef, () => {
             return isActive ? activeTabRef.current : ref.current;
           });
+
+          React.useEffect(() => {
+            // We need to update the active tab highlight when the width or
+            // placement changes so we listen for resize updates in each tab.
+            const observer = new window.ResizeObserver(updateHighlight);
+            observer.observe(isActive ? activeTabRef.current : ref.current);
+            return () => {
+              observer.disconnect();
+            };
+          }, [activeKey, orientation]);
 
           // Collect overrides
           const {
