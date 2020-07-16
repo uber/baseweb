@@ -78,7 +78,8 @@ export function Tabs({
     setKeyUpdated(keyUpdated + 1);
   }, [activeKey]);
 
-  // Positioning the highlight
+  // Positioning the highlight. Note, this currently does not respond to
+  // sizing changes.
   const activeTabRef = React.useRef();
   const [highlightLayout, setHighlightLayout] = React.useState({
     length: 0,
@@ -105,24 +106,30 @@ export function Tabs({
     }
   }, [activeKey]);
 
-  // Scroll active tab into view on mount. This should *not* scroll the page!
+  // Scroll active tab into view when the parent has scrollbar on mount and
+  // on key change (smooth scroll). Note, if the active key changes while
+  // the tab is not in view, the page will scroll it into view.
+  // TODO: replace with custom scrolling logic.
   React.useEffect(() => {
-    if (activeTabRef.current) {
-      activeTabRef.current.scrollIntoView({
-        block: 'start',
-        inline: 'center',
-      });
-    }
-  }, []);
-
-  // Scroll active tab into view on key change *after* mounting.
-  React.useEffect(() => {
-    if (activeTabRef.current && keyUpdated > 1) {
-      activeTabRef.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'nearest',
-      });
+    if (
+      activeTabRef.current && isHorizontal(orientation)
+        ? activeTabRef.current.parentNode.scrollWidth >
+          activeTabRef.current.parentNode.clientWidth
+        : activeTabRef.current.parentNode.scrollHeight >
+          activeTabRef.current.parentNode.clientHeight
+    ) {
+      if (keyUpdated > 1) {
+        activeTabRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'nearest',
+        });
+      } else {
+        activeTabRef.current.scrollIntoView({
+          block: 'center',
+          inline: 'center',
+        });
+      }
     }
   }, [activeKey]);
 
