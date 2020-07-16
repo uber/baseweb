@@ -237,13 +237,15 @@ export function Tabs({
           });
 
           React.useEffect(() => {
-            // We need to update the active tab highlight when the width or
-            // placement changes so we listen for resize updates in each tab.
-            const observer = new window.ResizeObserver(updateHighlight);
-            observer.observe(isActive ? activeTabRef.current : ref.current);
-            return () => {
-              observer.disconnect();
-            };
+            if (window.ResizeObserver) {
+              // We need to update the active tab highlight when the width or
+              // placement changes so we listen for resize updates in each tab.
+              const observer = new window.ResizeObserver(updateHighlight);
+              observer.observe(isActive ? activeTabRef.current : ref.current);
+              return () => {
+                observer.disconnect();
+              };
+            }
           }, [activeKey, orientation]);
 
           // Collect overrides
