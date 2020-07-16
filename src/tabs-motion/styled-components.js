@@ -88,6 +88,11 @@ export const StyledTab = styled<{
     $focusVisible = false,
   }) => {
     const style: StyleObject = {
+      WebkitAppearance: 'none',
+      marginLeft: '0',
+      marginRight: '0',
+      marginTop: '0',
+      marginBottom: '0',
       boxSizing: 'border-box',
       display: 'inline-flex',
       alignItems: 'center',
