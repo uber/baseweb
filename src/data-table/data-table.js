@@ -19,7 +19,7 @@ import {
 import {useStyletron} from '../styles/index.js';
 import {Tooltip, PLACEMENT} from '../tooltip/index.js';
 
-import {COLUMNS, SORT_DIRECTIONS} from './constants.js';
+import {SORT_DIRECTIONS} from './constants.js';
 import HeaderCell from './header-cell.js';
 import MeasureColumnWidths from './measure-column-widths.js';
 import type {
@@ -742,7 +742,6 @@ export function Unstable_DataTable(props: DataTablePropsT) {
           return;
         }
 
-        // start here after
         const filterFn = column.buildFilter(filter);
         Array.from(set).forEach(idx => {
           if (!filterFn(column.mapDataToValue(props.rows[idx].data))) {
@@ -755,20 +754,21 @@ export function Unstable_DataTable(props: DataTablePropsT) {
     if (textQuery) {
       const stringishColumnIndices = [];
       for (let i = 0; i < props.columns.length; i++) {
-        if (
-          props.columns[i].kind === COLUMNS.CATEGORICAL ||
-          props.columns[i].kind === COLUMNS.STRING
-        ) {
+        if (props.columns[i].textQueryFilter) {
           stringishColumnIndices.push(i);
         }
       }
       Array.from(set).forEach(idx => {
         const matches = stringishColumnIndices.some(cdx => {
           const column = props.columns[cdx];
-          return column
-            .mapDataToValue(props.rows[idx].data)
-            .toLowerCase()
-            .includes(textQuery.toLowerCase());
+          const textQueryFilter = column.textQueryFilter;
+          if (textQueryFilter) {
+            return textQueryFilter(
+              textQuery,
+              column.mapDataToValue(props.rows[idx].data),
+            );
+          }
+          return false;
         });
 
         if (!matches) {

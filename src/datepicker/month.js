@@ -8,19 +8,12 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import Week from './week.js';
 import {StyledMonth} from './styled-components.js';
-import {
-  addDays,
-  isSameMonth,
-  getStartOfWeek,
-  getStartOfMonth,
-  getMonth,
-  addWeeks,
-} from './utils/index.js';
+import dateFnsAdapter from './utils/date-fns-adapter.js';
+import DateHelpers from './utils/date-helpers.js';
 import {getOverrides} from '../helpers/overrides.js';
 import type {MonthPropsT} from './types.js';
 
 const defaultProps = {
-  date: new Date(),
   excludeDates: null,
   filterDate: null,
   highlightDates: null,
@@ -29,6 +22,7 @@ const defaultProps = {
   maxDate: null,
   minDate: null,
   month: null,
+  adapter: dateFnsAdapter,
   onDayClick: () => {},
   onDayFocus: () => {},
   onDayBlur: () => {},
@@ -39,19 +33,35 @@ const defaultProps = {
   value: null,
 };
 
-export default class CalendarMonth extends React.Component<MonthPropsT> {
+export default class CalendarMonth<T = Date> extends React.Component<
+  MonthPropsT<T>,
+> {
   static defaultProps = defaultProps;
 
-  isWeekInMonth = (startOfWeek: Date) => {
-    const date = this.props.date;
-    const endOfWeek = addDays(startOfWeek, 6);
-    return isSameMonth(startOfWeek, date) || isSameMonth(endOfWeek, date);
+  dateHelpers: DateHelpers<T>;
+
+  constructor(props: MonthPropsT<T>) {
+    super(props);
+    this.dateHelpers = new DateHelpers(props.adapter);
+  }
+
+  getDateProp: () => T = () => {
+    return this.props.date || this.dateHelpers.date();
+  };
+
+  isWeekInMonth: T => boolean = startOfWeek => {
+    const date = this.getDateProp();
+    const endOfWeek = this.dateHelpers.addDays(startOfWeek, 6);
+    return (
+      this.dateHelpers.isSameMonth(startOfWeek, date) ||
+      this.dateHelpers.isSameMonth(endOfWeek, date)
+    );
   };
 
   renderWeeks = () => {
     const weeks = [];
-    let currentWeekStart = getStartOfWeek(
-      getStartOfMonth(this.props.date),
+    let currentWeekStart = this.dateHelpers.getStartOfWeek(
+      this.dateHelpers.getStartOfMonth(this.getDateProp()),
       this.props.locale,
     );
     let i = 0;
@@ -60,6 +70,7 @@ export default class CalendarMonth extends React.Component<MonthPropsT> {
     while (isWithinMonth) {
       weeks.push(
         <Week
+          adapter={this.props.adapter}
           date={currentWeekStart}
           excludeDates={this.props.excludeDates}
           filterDate={this.props.filterDate}
@@ -71,7 +82,7 @@ export default class CalendarMonth extends React.Component<MonthPropsT> {
           locale={this.props.locale}
           minDate={this.props.minDate}
           maxDate={this.props.maxDate}
-          month={getMonth(this.props.date)}
+          month={this.dateHelpers.getMonth(this.getDateProp())}
           onDayBlur={this.props.onDayBlur}
           onDayFocus={this.props.onDayFocus}
           onDayClick={this.props.onDayClick}
@@ -84,7 +95,7 @@ export default class CalendarMonth extends React.Component<MonthPropsT> {
         />,
       );
       i++;
-      currentWeekStart = addWeeks(currentWeekStart, 1);
+      currentWeekStart = this.dateHelpers.addWeeks(currentWeekStart, 1);
       // It will break on the next week if the week is out of the month
       isWithinMonth = this.isWeekInMonth(currentWeekStart);
     }

@@ -28,6 +28,7 @@ type OptionsT<ValueT, FilterParamsT> = {|
     setFilter: FilterParamsT => void,
   |}>,
   buildFilter?: FilterParamsT => ValueT => boolean,
+  textQueryFilter?: (string, ValueT) => boolean,
   sortable?: boolean,
   sortFn?: (ValueT, ValueT) => number,
   title: string,
@@ -39,6 +40,7 @@ function CustomColumn<ValueT, FilterParamsT>(
   return {
     kind: COLUMNS.CUSTOM,
     buildFilter: options.buildFilter || (() => () => true),
+    textQueryFilter: options.textQueryFilter,
     filterable:
       Boolean(options.filterable) &&
       Boolean(options.renderFilter) &&
