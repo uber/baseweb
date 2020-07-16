@@ -124,6 +124,7 @@ export const StyledTab = styled<{
     }
     if (isFixed($fill)) {
       style.flexGrow = 1;
+      style.flexBasis = 0;
     }
     if (isHorizontal($orientation)) {
       style.justifyContent = 'center';
