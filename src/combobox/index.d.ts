@@ -15,6 +15,7 @@ export type PropsT<OptionT = unknown> = {
   mapOptionToString: (OptionT) => string;
   name?: string;
   onChange?: (value: string, option: OptionT | null) => any;
+  onSubmit?: (params: {closeListbox: () => void; value: string}) => any;
   options: OptionT;
   overrides?: {
     Root?: Override<any>;

@@ -35,6 +35,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     disabled = false,
     error = false,
     onChange,
+    onSubmit,
     mapOptionToNode,
     mapOptionToString,
     name,
@@ -132,9 +133,14 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     if (event.keyCode === ENTER) {
       let clickedOption = options[selectionIndex];
       if (clickedOption) {
+        event.preventDefault();
         setIsOpen(false);
         setSelectionIndex(-1);
         onChange(mapOptionToString(clickedOption), clickedOption);
+      } else {
+        if (onSubmit) {
+          onSubmit({closeListbox: () => setIsOpen(false), value});
+        }
       }
     }
     if (event.keyCode === ESCAPE) {
