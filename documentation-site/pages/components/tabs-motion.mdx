@@ -13,6 +13,7 @@ import Exports from '../../components/exports';
 
 import Yard from '../../components/yard/index';
 import tabsYardConfig from '../../components/yard/config/tabs-motion';
+import tabYardConfig from '../../components/yard/config/tab-motion';
 
 import BasicExample from 'examples/tabs-motion/basic.js';
 import KeysExample from 'examples/tabs-motion/keys.js';
@@ -26,7 +27,7 @@ import AlignmentExample from 'examples/tabs-motion/alignment.js';
 import RefsExample from 'examples/tabs-motion/refs.js';
 import StatefulExample from 'examples/tabs-motion/stateful.js';
 
-import * as TabsExports from 'baseui/tabs';
+import * as TabsExports from 'baseui/tabs-motion';
 import ApiTable from '../../components/api-table';
 
 export default Layout;
@@ -148,8 +149,10 @@ To get around this potential issue we use a [`ResizeObserver`](https://developer
   types={require('!!extract-react-types-loader!../../../src/tabs-motion/tabs.js')}
 />
 
-<Exports
-  component={TabsExports}
-  title="Tabs exports"
-  path="baseui/tabs-motion"
+<ApiTable
+  title="Tab props"
+  config={tabYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/tabs-motion/tab.js')}
 />
+
+<Exports component={TabsExports} title="Exports" path="baseui/tabs-motion" />

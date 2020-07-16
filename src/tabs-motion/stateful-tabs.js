@@ -17,7 +17,7 @@ import type {
   StatefulTabsReducerT,
 } from './types.js';
 
-export const getInitialState = (
+const getInitialState = (
   children: React.Node,
   initialState?: StatefulTabsStateT,
 ) => {
@@ -32,7 +32,7 @@ export const getInitialState = (
   }
 };
 
-export const defaultStateReducer: StatefulTabsReducerT = (state, action) => {
+const defaultStateReducer: StatefulTabsReducerT = (state, action) => {
   if (action.type === STATE_CHANGE_TYPE.change) {
     return {activeKey: action.payload};
   }

@@ -119,9 +119,4 @@ type StatefulTabsProps = TabsProps & {
   stateReducer?: StateReducer;
 };
 
-export const getInitialState: (
-  children: React.Node,
-  initialState?: State,
-) => State;
-export const defaultStateReducer: StateReducer;
 export const StatefulTabs: React.FC<StatefulTabsProps>;
