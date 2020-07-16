@@ -85,6 +85,12 @@ export const inputProps = {
     description:
       'If true, adds a clear value icon button to the end of the input container.',
   },
+  clearOnEscape: {
+    value: true,
+    type: PropTypes.Boolean,
+    description:
+      'If true, clears the input when the Escape button is pressed with the input focused.',
+  },
   startEnhancer: {
     value: undefined,
     placeholder: '() => <span>$</span>',
