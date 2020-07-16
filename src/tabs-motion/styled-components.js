@@ -104,7 +104,7 @@ export const StyledTab = styled<{
       borderRightStyle: 'none',
       borderBottomStyle: 'none',
       color: $theme.colors.contentPrimary,
-      backgroundColor: $theme.colors.backgroundPrimary,
+      background: $theme.colors.backgroundPrimary,
       transitionProperty: 'background',
       transitionDuration: $theme.animation.timing200,
       transitionTimingFunction: $theme.animation.linearCurve,
@@ -115,7 +115,10 @@ export const StyledTab = styled<{
         color: $theme.colors.contentStateDisabled,
       },
       ':hover': {
-        backgroundColor: $theme.colors.backgroundSecondary,
+        background: $theme.colors.backgroundSecondary,
+      },
+      ':disabled:hover': {
+        background: 'none',
       },
       ...$theme.typography.LabelSmall,
     };
