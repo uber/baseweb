@@ -6,21 +6,43 @@ import {TConfig} from '../types';
 
 const tabProps = require('!!extract-react-types-loader!../../../../src/tabs-motion/tab.js');
 
-const TabsConfig: TConfig = {
+const TabConfig: TConfig = {
+  componentName: 'Tab',
+  imports: {
+    'baseui/tabs-motion': {named: ['Tab']},
+  },
+  scope: {
+    Tabs,
+    Tab,
+    ORIENTATION,
+    FILL,
+  },
+  theme: [
+    'accent',
+    'borderOpaque',
+    'borderSelected',
+    'contentPrimary',
+    'backgroundPrimary',
+    'contentStateDisabled',
+  ],
   props: {
     title: {
+      value: undefined,
       type: PropTypes.ReactNode,
       description: 'The content of the Tab.',
     },
     tabRef: {
+      value: undefined,
       type: PropTypes.Ref,
       description: 'Use to pass a ref to the Tab.',
     },
     artwork: {
+      value: undefined,
       type: PropTypes.ReactNode,
       description: 'Optional leading icon or content.',
     },
     overrides: {
+      value: undefined,
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
@@ -32,6 +54,7 @@ const TabsConfig: TConfig = {
       },
     },
     children: {
+      value: undefined,
       type: PropTypes.ReactNode,
       description: `The content of the TabPanel.`,
     },
@@ -41,4 +64,4 @@ const TabsConfig: TConfig = {
   },
 };
 
-export default TabsConfig;
+export default TabConfig;
