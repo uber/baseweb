@@ -18,7 +18,15 @@ global.it = async function(name, func, timeout) {
         await func();
       } catch (e) {
         mkdirp.sync('__artifacts__');
-        await page.screenshot({path: `__artifacts__/${name}.png`});
+        try {
+          await page.screenshot({
+            type: 'png',
+            path: `__artifacts__/${name}.png`,
+          });
+        } catch (er) {
+          console.log('There was an issue taking a test failure screenshot.');
+          console.log(er);
+        }
         if (process.env.CI) {
           console.log(
             `\u001B]1338;url="artifact://__artifacts__/${name}.png";alt="Screenshot"\u0007`,
