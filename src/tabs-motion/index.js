@@ -7,8 +7,6 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-// TODO(tabs-motion): Use [withWrapper] for default props on styled components?
-
 export * from './constants.js';
 export * from './stateful-tabs.js';
 export * from './styled-components.js';
