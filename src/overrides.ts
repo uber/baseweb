@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyleObject} from 'styletron-react';
+import {StyleObject} from 'styletron-react-ts';
 import {Theme} from './theme';
 
 type StyleOverride<T> =

@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import {withStyle} from 'styletron-react';
+import {withStyle} from 'styletron-react-ts';
 import {StatefulMenu, OptionList, StyledList} from 'baseui/menu';
 import List from 'react-virtualized/dist/commonjs/List';
 import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';

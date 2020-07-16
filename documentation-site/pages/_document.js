@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import Document, {Head, Main, NextScript} from 'next/document';
-import {Provider as StyletronProvider} from 'styletron-react';
+import {Provider as StyletronProvider} from 'styletron-react-ts';
 
 import Favicons from '../components/meta-favicons';
 import {styletron} from '../helpers/styletron';

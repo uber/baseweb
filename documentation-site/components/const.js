@@ -11,7 +11,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import {BaseProvider, LightTheme} from 'baseui';
-import { Provider as StyletronProvider } from "styletron-react";
+import { Provider as StyletronProvider } from "styletron-react-ts";
 import { Client as Styletron } from "styletron-engine-atomic";
 
 import Example from "./example";

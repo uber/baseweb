@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
+import {StyletronComponent} from 'styletron-react-ts';
 import {Override} from '../overrides';
 
 export interface STATE_CHANGE_TYPE {
@@ -49,7 +49,7 @@ export interface BaseInputProps<T> {
   id?: string;
   'data-baseweb'?: string;
   inputMode?: string;
-  pattern?: string,
+  pattern?: string;
   inputRef?: React.Ref<T>;
   name?: string;
   onBlur?: React.FocusEventHandler<T>;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
+import {StyletronComponent} from 'styletron-react-ts';
 import {Override} from '../overrides';
 import {
   arrayMove as arrayMoveT,
@@ -23,13 +23,11 @@ export interface StatefulListProps {
   stateReducer?: StateReducer;
   removable?: boolean;
   removableByMove?: boolean;
-  onChange?: (
-    params: {
-      newState: React.ReactNode[];
-      oldIndex: number;
-      newIndex: number;
-    },
-  ) => any;
+  onChange?: (params: {
+    newState: React.ReactNode[];
+    oldIndex: number;
+    newIndex: number;
+  }) => any;
   overrides?: ListOverrides;
 }
 

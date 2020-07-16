@@ -3801,14 +3801,6 @@
   dependencies:
     "@types/styletron-standard" "*"
 
-"@types/styletron-react@^5.0.1":
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/@types/styletron-react/-/styletron-react-5.0.1.tgz#2d0131bb1e498f4c8ec468b77bb0f6b2bcba59ea"
-  integrity sha512-rOgsOZwRiRKQfxxM6cguh1Tk3vyLzOFxCq3CoDgAPp79qg6oK5VlF0gc9hnk9Tl4UYv0fKJRkJ+oy/UJk5x5PA==
-  dependencies:
-    "@types/react" "*"
-    "@types/styletron-standard" "*"
-
 "@types/styletron-standard@*", "@types/styletron-standard@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@types/styletron-standard/-/styletron-standard-2.0.0.tgz#fff4c89cb2cb1f6cc48699188fcea31a02191052"
@@ -19749,6 +19741,14 @@ styletron-engine-atomic@^1.4.3:
     inline-style-prefixer "^5.1.0"
     styletron-standard "^3.0.4"
 
+styletron-react-ts@^5.2.8:
+  version "5.2.8"
+  resolved "https://registry.yarnpkg.com/styletron-react-ts/-/styletron-react-ts-5.2.8.tgz#ddd316979ed6dbf79943833aad3b644dbf71e8a0"
+  integrity sha512-LdwAmmlCMx2zGWK+aUkRUwCrl2w3nSvXfk/UsIjrwofkz72RQdLFN8NoDZzzXhnlVsTJypUPJ6CZrU2L1VnZyw==
+  dependencies:
+    prop-types "^15.6.0"
+    styletron-standard "^3.0.4"
+
 styletron-react@^5.2.4:
   version "5.2.5"
   resolved "https://registry.yarnpkg.com/styletron-react/-/styletron-react-5.2.5.tgz#e4c721de63f78e243fce4ffc5832e8e74d0b2a65"
@@ -20464,10 +20464,10 @@ typescript@^3.4.5:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.6.3.tgz#fea942fabb20f7e1ca7164ff626f1a9f3f70b4da"
   integrity sha512-N7bceJL1CtRQ2RiG0AQME13ksR7DiuQh/QehubYcghzv20tnh+MQnQIuJddTmsbqYj+dztchykemz0zFzlvdQw==
 
-typescript@^3.5.3:
-  version "3.5.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.3.tgz#c830f657f93f1ea846819e929092f5fe5983e977"
-  integrity sha512-ACzBtm/PhXBDId6a6sDJfroT2pOWt/oOnk4/dElG5G33ZL776N3Y6/6bKZJBFpd+b05F3Ct9qDjMeJmRWtE2/g==
+typescript@^3.9.6:
+  version "3.9.6"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.6.tgz#8f3e0198a34c3ae17091b35571d3afd31999365a"
+  integrity sha512-Pspx3oKAPJtjNwE92YS05HQoY7z2SFyOpHo9MqJor3BXAGNaPUs83CuVp9VISFkSjyRfiTpmKuAYGJB7S7hOxw==
 
 ua-parser-js@^0.7.18:
   version "0.7.18"

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
+import {StyletronComponent} from 'styletron-react-ts';
 import {BlockProps} from '../block';
 
 export interface HeadingLevelProps {

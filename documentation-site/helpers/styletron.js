@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 /* global document */
 
 import {Client, Server} from 'styletron-engine-atomic';
-import {DebugEngine} from 'styletron-react';
+import {DebugEngine} from 'styletron-react-ts';
 
 export const isServer = typeof window === 'undefined';
 

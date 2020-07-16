@@ -22,7 +22,7 @@ import {
 import type {BreakpointsT, ThemeT} from 'baseui/styles/types';
 
 import App from 'next/app';
-import {Provider as StyletronProvider} from 'styletron-react';
+import {Provider as StyletronProvider} from 'styletron-react-ts';
 import {Block} from 'baseui/block';
 import Router from 'next/router';
 import type {AppProps} from 'next/app';

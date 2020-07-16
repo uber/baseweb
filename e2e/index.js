@@ -12,7 +12,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import tests from './tests.js';
 
-import {Provider as StyletronProvider} from 'styletron-react';
+import {Provider as StyletronProvider} from 'styletron-react-ts';
 import {Client as Styletron} from 'styletron-engine-atomic';
 import {LightTheme, DarkTheme} from '../src/themes/index.js';
 import BaseProvider from '../src/helpers/base-provider.js';

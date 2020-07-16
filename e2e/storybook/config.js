@@ -12,7 +12,7 @@ import * as React from 'react';
 import {configure, addDecorator, addParameters} from '@storybook/react';
 import {initializeRTL} from 'storybook-addon-rtl';
 
-import {Provider as StyletronProvider} from 'styletron-react';
+import {Provider as StyletronProvider} from 'styletron-react-ts';
 import {Client as Styletron} from 'styletron-engine-atomic';
 
 import {BaseProvider} from '../../src/index.js';

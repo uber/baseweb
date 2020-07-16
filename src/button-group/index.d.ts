@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyledFn, StyletronComponent} from 'styletron-react';
+import {StyledFn, StyletronComponent} from 'styletron-react-ts';
 import {SHAPE, SIZE, KIND} from '../button';
 import {Override} from '../overrides';
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Override} from '../overrides';
-import {StyletronComponent} from 'styletron-react';
+import {StyletronComponent} from 'styletron-react-ts';
 import {SORT_DIRECTION, SortableHeadCell} from '../table/';
 
 export const StyledTable: StyletronComponent<any>;

@@ -11,7 +11,7 @@ import {
   withStyle as styletronWithStyle,
   useStyletron as styletronUseStyletron,
   withWrapper as styletronWithWrapper,
-} from 'styletron-react';
+} from 'styletron-react-ts';
 import {driver, getInitialStyle} from 'styletron-standard';
 import type {StyleObject} from 'styletron-standard';
 import type {ThemeT} from './types.js';
