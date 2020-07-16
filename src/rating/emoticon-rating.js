@@ -48,7 +48,7 @@ class EmoticonRating extends React.Component<
   };
 
   renderRatingContents = () => {
-    const {overrides = {}, value = -1, size} = this.props;
+    const {overrides = {}, value = -1, size = '44'} = this.props;
     const {previewIndex} = this.state;
     const [Emoticon, emoticonProps] = getOverrides(
       overrides.Item,
