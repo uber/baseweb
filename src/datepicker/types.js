@@ -10,13 +10,18 @@ import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 import type {SizeT} from '../input/types.js';
 import {ORIENTATION, STATE_CHANGE_TYPE} from './constants.js';
+import type {DateIOAdapter} from './utils/types.js';
+import type {
+  TimePickerPropsT as TimePickerPropsTBase,
+  TimePickerStateT as TimePickerStateTBase,
+} from '../timepicker/types.js';
 
 import type {OptionT} from '../select/index.js';
 
 // eslint-disable-next-line flowtype/no-weak-types
 type LocaleT = any; // see https://github.com/date-fns/date-fns/blob/master/src/locale/index.js.flow
 
-type onChangeT = ({date: ?Date | Array<Date>}) => mixed;
+type onChangeT<T> = ({date: ?T | Array<T>}) => mixed;
 
 export type DatepickerOverridesT = {
   Root?: OverrideT,
@@ -53,28 +58,29 @@ export type DatepickerOverridesT = {
   Popover?: OverrideT,
 };
 
-export type DayPropsT = {
+export type DayPropsT<T = Date> = {
   disabled: boolean,
-  date: Date,
-  filterDate: ?(day: Date) => boolean,
-  highlightedDate: ?Date,
-  includeDates: ?Array<Date>,
+  date: T,
+  filterDate: ?(day: T) => boolean,
+  highlightedDate: ?T,
+  includeDates: ?Array<T>,
   highlighted: boolean,
   range: boolean,
   focusedCalendar: boolean,
   locale: ?LocaleT,
-  maxDate: ?Date,
-  minDate: ?Date,
+  maxDate: ?T,
+  adapter: DateIOAdapter<T>,
+  minDate: ?T,
   month: ?number,
-  onBlur: ({event: Event, date: Date}) => mixed,
-  onFocus: ({event: Event, date: Date}) => mixed,
-  onSelect: ({date: ?Date | Array<Date>}) => mixed,
-  onClick: ({event: Event, date: Date}) => mixed,
-  onMouseOver: ({event: Event, date: Date}) => mixed,
-  onMouseLeave: ({event: Event, date: Date}) => mixed,
+  onBlur: ({event: Event, date: T}) => mixed,
+  onFocus: ({event: Event, date: T}) => mixed,
+  onSelect: ({date: ?T | Array<T>}) => mixed,
+  onClick: ({event: Event, date: T}) => mixed,
+  onMouseOver: ({event: Event, date: T}) => mixed,
+  onMouseLeave: ({event: Event, date: T}) => mixed,
   overrides?: DatepickerOverridesT,
   peekNextMonth: boolean,
-  value: ?Date | Array<Date>,
+  value: ?T | Array<T>,
 };
 
 export type DayStateT = {
@@ -82,80 +88,86 @@ export type DayStateT = {
   isFocusVisible: boolean,
 };
 
-export type WeekPropsT = {
-  date: Date,
-  excludeDates: ?Array<Date>,
-  filterDate: ?(day: Date) => boolean,
+export type WeekPropsT<T = Date> = {
+  date: T,
+  excludeDates: ?Array<T>,
+  filterDate: ?(day: T) => boolean,
   // highlighted while keyboard navigating or hovered
-  highlightedDate: ?Date,
-  includeDates: ?Array<Date>,
+  highlightedDate: ?T,
+  includeDates: ?Array<T>,
   focusedCalendar: boolean,
   range?: boolean,
   locale: ?LocaleT,
-  maxDate: ?Date,
-  minDate: ?Date,
+  maxDate: ?T,
+  minDate: ?T,
+  adapter: DateIOAdapter<T>,
   month: ?number,
-  onDayBlur: ({date: Date, event: Event}) => mixed,
-  onDayClick: ({date: Date, event: Event}) => mixed,
-  onDayFocus: ({date: Date, event: Event}) => mixed,
-  onDayMouseOver: ({date: Date, event: Event}) => mixed,
-  onDayMouseLeave: ({date: Date, event: Event}) => mixed,
-  onChange?: onChangeT,
+  onDayBlur: ({date: T, event: Event}) => mixed,
+  onDayClick: ({date: T, event: Event}) => mixed,
+  onDayFocus: ({date: T, event: Event}) => mixed,
+  onDayMouseOver: ({date: T, event: Event}) => mixed,
+  onDayMouseLeave: ({date: T, event: Event}) => mixed,
+  onChange?: onChangeT<T>,
   overrides?: DatepickerOverridesT,
   peekNextMonth: boolean,
-  value: ?Date | Array<Date>,
+  value: ?T | Array<T>,
 };
 
-export type MonthPropsT = WeekPropsT;
+export type MonthPropsT<T = Date> = WeekPropsT<T>;
 
-export type CalendarInternalState = {
-  date: Date,
+export type CalendarInternalState<T = Date> = {
+  highlightedDate: T,
   focused: boolean,
-  highlightedDate: Date,
+  date: T,
   quickSelectId: ?string,
   rootElement: ?HTMLElement,
-  time: Array<Date>,
+  time: Array<T>,
 };
 
-export type CalendarPropsT = {
+export type CalendarPropsT<T = Date> = {
   /** Defines if the calendar is set to be focused on an initial render. */
   autoFocusCalendar?: boolean,
   /** A list of dates to disable. */
-  excludeDates?: ?Array<Date>,
+  excludeDates?: ?Array<T>,
   /** Display select for quickly choosing date ranges. `range` must be true as well. */
   quickSelect?: boolean,
   /** Array of custom options displayed in the quick select. Overrides default options if provided. */
-  quickSelectOptions?: Array<{id: string, beginDate: Date, endDate?: Date}>,
+  quickSelectOptions?: Array<{
+    id: string,
+    beginDate: T,
+    endDate?: T,
+  }>,
   /** A filter function that is called to check the disabled state of a day. If `false` is returned the day is considered to be disabled. */
-  filterDate?: ?(day: Date) => boolean,
+  filterDate?: ?(day: T) => boolean,
   /** Indicates a highlighted date on hover and keyboard navigation */
-  highlightedDate?: ?Date,
+  highlightedDate?: ?T,
   /** A list of selectable dates. */
-  includeDates?: ?Array<Date>,
+  includeDates?: ?Array<T>,
   /** Defines if a range of dates can be selected. */
   range?: boolean,
   /** A locale object. See `date-fns` for more details https://github.com/date-fns/date-fns/tree/master/src/locale. */
   locale?: ?LocaleT,
   /** A max date that is selectable. */
-  maxDate?: ?Date,
+  maxDate?: ?T,
   /** A min date that is selectable. */
-  minDate?: ?Date,
+  minDate?: ?T,
+  adapter: DateIOAdapter<T>,
   /** A number of months rendered in the calendar. */
   monthsShown?: number,
   /** Day's `click` event handler. */
-  onDayClick?: ({date: Date, event: Event}) => mixed,
+  onDayClick?: ({date: T, event: Event}) => mixed,
   /** Day's `focus` event handler. */
-  onDayFocus?: ({date: Date, event: Event}) => mixed,
+  onDayFocus?: ({date: T, event: Event}) => mixed,
   /** Day's `mouseover` event handler. */
-  onDayMouseOver?: ({date: Date, event: Event}) => mixed,
+  onDayMouseOver?: ({date: T, event: Event}) => mixed,
   /** Day's `mouseleave` event handler. */
-  onDayMouseLeave?: ({date: Date, event: Event}) => mixed,
+  onDayMouseLeave?: ({date: T, event: Event}) => mixed,
   /** Event handler that is called when the current rendered month is changed. */
-  onMonthChange?: ({date: Date}) => mixed,
+  onMonthChange?: ({date: T}) => mixed,
   /** Event handler that is called when the current rendered month's year is changed. */
-  onYearChange?: ({date: Date}) => mixed,
+  onYearChange?: ({date: T}) => mixed,
   /** Event handler that is called when a new date is selected. */
-  onChange?: onChangeT,
+  onChange?: onChangeT<T>,
   /** Sets the orientation of the calendar when multiple months are displayed */
   orientation?: $Values<typeof ORIENTATION>,
   overrides?: DatepickerOverridesT,
@@ -168,15 +180,15 @@ export type CalendarPropsT = {
   /** Defines if tabbing inside the calendar is circled within it. */
   trapTabbing?: boolean,
   /** Currently selected date. */
-  value?: ?Date | Array<Date>,
+  value?: ?T | Array<T>,
 };
 
-export type HeaderPropsT = CalendarPropsT & {
-  date: Date,
+export type HeaderPropsT<T = Date> = CalendarPropsT<T> & {
+  date: T,
   order: number,
 };
 
-export type DatepickerPropsT = CalendarPropsT & {
+export type DatepickerPropsT<T = Date> = CalendarPropsT<T> & {
   'aria-label'?: string,
   'aria-labelledby'?: string,
   'aria-describedby'?: ?string,
@@ -189,10 +201,7 @@ export type DatepickerPropsT = CalendarPropsT & {
   required?: boolean,
   clearable?: boolean,
   displayValueAtRangeIndex?: number,
-  formatDisplayValue?: (
-    date: ?Date | Array<Date>,
-    formatString: string,
-  ) => string,
+  formatDisplayValue?: (date: ?T | Array<T>, formatString: string) => string,
   formatString: string,
   /** Where to mount the popover */
   mountNode?: HTMLElement,
@@ -202,7 +211,8 @@ export type DatepickerPropsT = CalendarPropsT & {
 };
 
 export type SharedStylePropsT = {
-  $date: Date,
+  // eslint-disable-next-line flowtype/no-weak-types
+  $date: any,
   $disabled: ?boolean,
   $endDate: ?boolean,
   $endOfMonth: ?boolean,
@@ -224,49 +234,51 @@ export type SharedStylePropsT = {
 
 export type StateChangeTypeT = ?$Values<typeof STATE_CHANGE_TYPE>;
 
-export type ContainerStateT = {
+export type ContainerStateT<T = Date> = {
   /** Selected `Date`. If `range` is set, `value` is an array of 2 values. */
-  value?: ?Date | Array<Date>,
+  value?: ?T | Array<T>,
 };
 
-export type NavigationContainerStateT = {
+export type NavigationContainerStateT<T = Date> = {
   // indicates a highlighted date on hover and keyboard navigation
-  highlightedDate?: ?Date,
+  highlightedDate?: ?T,
   // used to disable keyboard navigation when a month or year select
   // dropdown is opened
   isActive?: boolean,
   // last remembered highlighted date to restore
   // when keyboard navigating after a mouse moved off the cal and reset
   // highlightedDate value
-  lastHighlightedDate?: Date,
+  lastHighlightedDate?: T,
 };
 
-export type StateReducerT = (
+export type StateReducerT<T = Date> = (
   stateType: StateChangeTypeT,
-  nextState: ContainerStateT,
-  currentState: ContainerStateT,
-) => ContainerStateT;
+  nextState: ContainerStateT<T>,
+  currentState: ContainerStateT<T>,
+) => ContainerStateT<T>;
 
-export type NavigationContainerStateReducerT = (
+export type NavigationContainerStateReducerT<T = Date> = (
   stateType: StateChangeTypeT,
-  nextState: NavigationContainerStateT,
-  currentState: NavigationContainerStateT,
-) => NavigationContainerStateT;
+  nextState: NavigationContainerStateT<T>,
+  currentState: NavigationContainerStateT<T>,
+) => NavigationContainerStateT<T>;
 
-export type StatefulContainerPropsT<T> = {
-  children: T => React.Node,
+export type StatefulContainerPropsT<PropsT, T = Date> = {
+  children: PropsT => React.Node,
   /** Initial state of an uncontrolled datepicker component. */
-  initialState: ContainerStateT,
+  initialState: ContainerStateT<T>,
   /** A state change handler. */
-  stateReducer: StateReducerT,
+  stateReducer: StateReducerT<T>,
   /** Event handler that is called when a date/time is selected. */
-  onChange?: onChangeT,
+  onChange?: onChangeT<T>,
+  adapter?: DateIOAdapter<T>,
   /** Should the date value be stored as an array or single value. */
   range?: boolean,
 };
 
-export type NavigationContainerPropsT = {
-  children: CalendarPropsT => React.Node,
+// This type is seemingly not used anywhere
+export type NavigationContainerPropsT<T = Date> = {
+  children: (CalendarPropsT<T>) => React.Node,
   range?: boolean,
   highlightedDate?: ?Date,
   /** Day's `mouseover` event handler. */
@@ -274,51 +286,26 @@ export type NavigationContainerPropsT = {
   /** Day's `mouseleave` event handler. */
   onDayMouseLeave: (params: {date: Date, event: Event}) => mixed,
   /** Event handler that is called when a new date is selected. */
-  onChange: onChangeT,
+  onChange: onChangeT<T>,
   /** Event handler that is called when the current rendered month is changed. */
-  onMonthChange?: ({date: Date}) => mixed,
+  onMonthChange?: ({date: T}) => mixed,
   /** Event handler that is called when the current rendered year is changed. */
-  onYearChange?: ({date: Date}) => mixed,
+  onYearChange?: ({date: T}) => mixed,
   /** Selected `Date`. If `range` is set, `value` is an array of 2 values. */
-  value?: ?Date | Array<Date>,
-  stateReducer: NavigationContainerStateReducerT,
+  value?: ?T | Array<T>,
+  stateReducer: NavigationContainerStateReducerT<T>,
   trapTabbing: boolean,
 };
 
-export type StatefulDatepickerPropsT<T> = $Diff<
-  StatefulContainerPropsT<T>,
+export type StatefulDatepickerPropsT<PropsT, T = Date> = $Diff<
+  StatefulContainerPropsT<PropsT, T>,
   {
-    children: T => React.Node,
+    children: PropsT => React.Node,
   },
 >;
 
-export type TimePickerPropsT = {
-  /** Render options in AM/PM format or 24 hour format. Defaults to 12 hour. */
-  format?: '12' | '24',
-  /** Callback for when time selection changes. */
-  onChange?: Date => mixed,
-  overrides?: {
-    Select?: OverrideT,
-  },
-  /** Set to true to allow times that aren't displayed in the options list to be entered manually. Defaults to false. */
-  creatable?: boolean,
-  /** Amount of seconds between each option time. Defaults to 900 (15 minutes). */
-  step?: number,
-  /**
-   * Optional value that can be provided to fully control the component. If not provided, TimePicker
-   * will manage state internally and default to the closest step to new Date().
-   */
-  value?: ?Date,
-  disabled?: boolean,
-  error?: boolean,
-  positive?: boolean,
-};
-export type TimePickerStateT = {
-  /** List of times (in seconds) displayed in the dropdown menu. */
-  steps: number[],
-  /** Internal value of the selected time as an integer since midnight (0) */
-  value: ?OptionT,
-};
+export type TimePickerPropsT<T = Date> = TimePickerPropsTBase<T>;
+export type TimePickerStateT = TimePickerStateTBase;
 
 export type TimezonePickerStateT = {
   /** List of timezones from the IANA database. */
