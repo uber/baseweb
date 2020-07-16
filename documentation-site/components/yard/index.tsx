@@ -95,7 +95,7 @@ const Yard: React.FC<TYardProps> = ({
     <Card>
       <Compiler
         {...params.compilerProps}
-        className={compilerStyles ? css(compilerStyles) : null}
+        className={compilerStyles ? css(compilerStyles) : undefined}
         minHeight={placeholderHeight}
         placeholder={() => (
           <div
