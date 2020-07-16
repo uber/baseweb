@@ -23,7 +23,7 @@ export type StarRatingPropsT = {
   /** Callback that's called with the newly selected value. */
   onChange?: ({value: number}) => mixed,
   /** Size of star icons. */
-  size: number,
+  size?: number,
 };
 
 export type EmoticonRatingPropsT = {
@@ -33,7 +33,7 @@ export type EmoticonRatingPropsT = {
   /** Callback that's called with the newly selected value. */
   onChange?: ({value: number}) => mixed,
   /**Size of emoticons. */
-  size: number,
+  size?: number,
 };
 
 export type RatingStateT = {
