@@ -40,7 +40,6 @@ export const StyledStar = styled<StyledRatingItemPropsT>(
   ({$theme, $isActive, $isSelected, $isFocusVisible, $size}) => {
     let starStroke = $theme.colors.mono500;
     let starFill = $theme.colors.mono300;
-
     if ($isActive) {
       starStroke = starFill = $theme.colors.rating400;
     }
