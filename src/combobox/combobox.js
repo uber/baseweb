@@ -139,7 +139,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
         onChange(mapOptionToString(clickedOption), clickedOption);
       } else {
         if (onSubmit) {
-          onSubmit({closeListbox: () => setIsOpen(false)});
+          onSubmit({closeListbox: () => setIsOpen(false), value});
         }
       }
     }
