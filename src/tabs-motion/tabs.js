@@ -142,24 +142,27 @@ export function Tabs({
   // the tab is not in view, the page will scroll it into view.
   // TODO: replace with custom scrolling logic.
   React.useEffect(() => {
-    if (
-      activeTabRef.current && isHorizontal(orientation)
-        ? activeTabRef.current.parentNode.scrollWidth >
-          activeTabRef.current.parentNode.clientWidth
-        : activeTabRef.current.parentNode.scrollHeight >
-          activeTabRef.current.parentNode.clientHeight
-    ) {
-      if (keyUpdated > 1) {
-        activeTabRef.current.scrollIntoView({
-          behavior: 'smooth',
-          block: 'nearest',
-          inline: 'nearest',
-        });
-      } else {
-        activeTabRef.current.scrollIntoView({
-          block: 'center',
-          inline: 'center',
-        });
+    // Flow needs this condition pulled out.
+    if (activeTabRef.current) {
+      if (
+        isHorizontal(orientation)
+          ? activeTabRef.current.parentNode.scrollWidth >
+            activeTabRef.current.parentNode.clientWidth
+          : activeTabRef.current.parentNode.scrollHeight >
+            activeTabRef.current.parentNode.clientHeight
+      ) {
+        if (keyUpdated > 1) {
+          activeTabRef.current.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'nearest',
+          });
+        } else {
+          activeTabRef.current.scrollIntoView({
+            block: 'center',
+            inline: 'center',
+          });
+        }
       }
     }
   }, [activeKey]);
