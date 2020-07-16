@@ -14,7 +14,7 @@ const fs = require('fs');
 const path = require('path');
 const {spawnSync} = require('child_process');
 
-const ROOT_DIR = path.resolve(__dirname, '..', '..');
+const ROOT_DIR = path.resolve(__dirname, '..');
 const ESLINT_PLUGIN_DIR = path.resolve(
   ROOT_DIR,
   'packages',
