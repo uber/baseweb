@@ -103,7 +103,7 @@ export function Tabs({
         });
       }
     }
-  });
+  }, [activeKey]);
 
   // Scroll active tab into view on mount. This should *not* scroll the page!
   React.useEffect(() => {
