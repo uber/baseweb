@@ -235,4 +235,28 @@ describe('combobox', () => {
     fireEvent.keyDown(input, {keyCode: 40});
     expect(input.getAttribute('value')).toBe('');
   });
+
+  it('can close listbox on submission', () => {
+    const {container} = render(
+      <Combobox
+        mapOptionToString={o => o}
+        onChange={() => {}}
+        onSubmit={({closeListbox}) => closeListbox()}
+        options={options}
+        value={''}
+      />,
+      {container: document.body},
+    );
+
+    const input = container.querySelector('input');
+    fireEvent.change(input, {target: {value: 'x'}});
+
+    const open = container.querySelector('ul');
+    expect(open).not.toBeNull();
+
+    fireEvent.keyDown(input, {keyCode: 13});
+
+    const closed = container.querySelector('ul');
+    expect(closed).toBeNull();
+  });
 });
