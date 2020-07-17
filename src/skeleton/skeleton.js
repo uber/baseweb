@@ -22,20 +22,36 @@ class Skeleton extends React.Component<SkeletonPropsT> {
 
     if (typeof this.props.rows === 'number') {
       return (
-        <Root $rows={this.props.rows} testid={'loader'} {...rootProps}>
+        <Root
+          $height={this.props.height}
+          $width={this.props.width}
+          $animation={this.props.animation}
+          $rows={this.props.rows}
+          testid={'loader'}
+          {...rootProps}
+        >
           {Array(this.props.rows)
             .fill()
             .map((item, index) => (
               <Row
                 $animation={this.props.animation}
                 key={index}
+                $isLastRow={index === this.props.rows - 1}
                 {...rowProps}
               ></Row>
             ))}
         </Root>
       );
     }
-    return <Root testid={'loader'} {...rootProps} />;
+    return (
+      <Root
+        $height={this.props.height}
+        $width={this.props.width}
+        $animation={this.props.animation}
+        testid={'loader'}
+        {...rootProps}
+      />
+    );
   }
 }
 

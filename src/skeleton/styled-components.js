@@ -8,52 +8,55 @@ LICENSE file in the root directory of this source tree.
 
 import {styled} from '../styles/index.js';
 
-export const StyledRoot = styled<{$rows?: number}>('div', props => {
-  if (typeof props.$rows === 'number') {
+const animationStyle = {
+  animationTimingFunction: 'ease-in-out',
+  animationDuration: '2s',
+  animationIterationCount: 'infinite',
+  animationName: {
+    '0%': {
+      opacity: 1,
+    },
+    '50%': {
+      opacity: 0.4,
+    },
+    '100%': {
+      opacity: 1,
+    },
+  },
+};
+
+export const StyledRoot = styled<{
+  $rows?: number,
+  $animation?: boolean,
+  $height?: string,
+  $width?: string,
+}>('div', props => {
+  if (typeof props.$rows === 'number' && props.$rows !== 0) {
     return {
       display: 'flex',
       flexDirection: 'column',
+      height: props.$height,
+      width: props.$width,
     };
   }
+
   return {
-    backgroundColor: '#eee',
+    ...(props.$animation ? animationStyle : {}),
+    backgroundColor: props.$theme.colors.backgroundTertiary,
+    height: props.$height,
+    width: props.$width,
   };
 });
 
-export const StyledRow = styled<{$animation?: boolean}>('div', props => {
-  if (props.$animation) {
+export const StyledRow = styled<{$animation?: boolean, $isLastRow: boolean}>(
+  'div',
+  props => {
     return {
-      backgroundColor: '#eee',
-      height: '100px',
-      width: '20px',
-      marginRight: '10px',
-      marginLeft: '10px',
-      marginTop: '10px',
-      marginBottom: '10px',
-      animationTimingFunction: 'ease-in-out',
-      animationDuration: '2s',
-      animationIterationCount: 'infinite',
-      animationName: {
-        '0%': {
-          opacity: 1,
-        },
-        '50%': {
-          opacity: 0.4,
-        },
-        '100%': {
-          opacity: 1,
-        },
-      },
+      ...(props.$animation ? animationStyle : {}),
+      backgroundColor: props.$theme.colors.backgroundTertiary,
+      width: '100%',
+      height: '15px',
+      marginBottom: props.$isLastRow ? '0px' : '10px',
     };
-  } else {
-    return {
-      backgroundColor: '#eee',
-      height: '100px',
-      width: '20px',
-      marginRight: '10px',
-      marginLeft: '10px',
-      marginTop: '10px',
-      marginBottom: '10px',
-    };
-  }
-});
+  },
+);

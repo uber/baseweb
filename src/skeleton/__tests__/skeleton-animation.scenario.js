@@ -16,46 +16,40 @@ export default function Scenario() {
       {Array(8)
         .fill()
         .map((item, index) => (
-          <div key={index}>
+          <div className={css({margin: '10px'})} key={index}>
             <Skeleton
+              height="150px"
+              width="300px"
               animation={true}
-              rows={1}
               overrides={{
-                Row: {
+                Root: {
                   style: {
-                    width: '300px',
-                    height: '150px',
+                    marginBottom: '10px',
                   },
                 },
               }}
             />
-            <div className={css({display: 'flex', flexDirection: 'row'})}>
+            <div
+              className={css({
+                alignItems: 'center',
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+              })}
+            >
               <Skeleton
+                width="50px"
+                height="50px"
                 animation={true}
-                rows={1}
                 overrides={{
-                  Row: {
+                  Root: {
                     style: {
-                      width: '50px',
-                      height: '50px',
                       borderRadius: '50%',
                     },
                   },
                 }}
               />
-              <Skeleton
-                animation={true}
-                rows={2}
-                overrides={{
-                  Row: {
-                    style: {
-                      width: '220px',
-                      height: '15px',
-                      marginBottom: '0px',
-                    },
-                  },
-                }}
-              />
+              <Skeleton animation={true} rows={2} width="220px" />
             </div>
           </div>
         ))}

@@ -19,4 +19,8 @@ export type SkeletonPropsT = {
   rows: number,
   /** Deinfes if the skeleton has an animation default is false*/
   animation: boolean,
+  /** Deinfes the height of the skeleton container*/
+  height?: string,
+  /** Deinfes the width of the skeleton container*/
+  width?: string,
 };

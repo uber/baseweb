@@ -21,83 +21,65 @@ export default function Scenario() {
   const [css] = useStyletron();
   if (loading) {
     return (
-      <div>
+      <div className={css({width: '300px', margin: '10px'})}>
         <Skeleton
-          rows={1}
+          height="150px"
+          width="300px"
           overrides={{
-            Row: {
+            Root: {
               style: {
-                width: '300px',
-                height: '150px',
+                marginBottom: '15px',
               },
             },
           }}
         />
-        <div className={css({display: 'flex', flexDirection: 'row'})}>
+        <div
+          className={css({
+            alignItems: 'center',
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          })}
+        >
           <Skeleton
-            rows={1}
+            width="50px"
+            height="50px"
             overrides={{
-              Row: {
+              Root: {
                 style: {
-                  width: '50px',
-                  height: '50px',
                   borderRadius: '50%',
                 },
               },
             }}
           />
-          <Skeleton
-            rows={2}
-            overrides={{
-              Row: {
-                style: {
-                  width: '220px',
-                  height: '15px',
-                  marginBottom: '0px',
-                },
-              },
-            }}
-          />
+          <Skeleton rows={2} width="220px" />
         </div>
       </div>
     );
   }
 
   return (
-    <div id="content">
+    <div id="content" className={css({width: '300px', margin: '10px'})}>
       <img
         className={css({
           width: '300px',
           height: '150px',
-          marginBottom: '10px',
-          marginTop: '10px',
-          marginLeft: '10px',
-          marginRight: '10px',
         })}
         alt=""
         src={imageFile}
       />
-      <div className={css({display: 'flex', flexDirection: 'row'})}>
-        <Avatar
-          name={`username`}
-          size={'50px'}
-          overrides={{
-            Root: {
-              style: {
-                marginTop: '10px',
-                marginBottom: '10px',
-                marginRight: '10px',
-                marginLeft: '10px',
-              },
-            },
-          }}
-        />
+      <div
+        className={css({
+          alignItems: 'center',
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+        })}
+      >
+        <Avatar name={`username`} size={'50px'} />
         <div>
           <p
             className={css({
-              marginLeft: '10px',
-              marginTop: '10px',
-              marginBottom: '0px',
               fontSize: '15px',
             })}
           >
@@ -105,9 +87,6 @@ export default function Scenario() {
           </p>
           <p
             className={css({
-              marginLeft: '10px',
-              marginTop: '10px',
-              marginBottom: '0px',
               fontSize: '15px',
             })}
           >
