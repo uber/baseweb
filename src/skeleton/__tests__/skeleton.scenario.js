@@ -18,6 +18,7 @@ export default function Scenario() {
         .map((item, index) => (
           <div key={index}>
             <Skeleton
+              rows={1}
               overrides={{
                 Row: {
                   style: {
@@ -29,6 +30,7 @@ export default function Scenario() {
             />
             <div className={css({display: 'flex', flexDirection: 'row'})}>
               <Skeleton
+                rows={1}
                 overrides={{
                   Row: {
                     style: {

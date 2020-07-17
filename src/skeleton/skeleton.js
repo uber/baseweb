@@ -8,31 +8,29 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {getOverrides} from '../helpers/overrides.js';
 import type {SkeletonPropsT} from './types.js';
-import {
-  StyledRoot,
-  StyledRow,
-  StyledAnimationRow,
-} from './styled-components.js';
+import {StyledRoot, StyledRow} from './styled-components.js';
 
 class Skeleton extends React.Component<SkeletonPropsT> {
   static defaultProps: SkeletonPropsT = {
-    rows: 1,
+    rows: 0,
     animation: false,
   };
   render() {
     const {overrides = {}} = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
-    const [Row, rowProps] = this.props.animation
-      ? getOverrides(overrides.Row, StyledAnimationRow)
-      : getOverrides(overrides.Row, StyledRow);
+    const [Row, rowProps] = getOverrides(overrides.Row, StyledRow);
 
     if (typeof this.props.rows === 'number') {
       return (
-        <Root testid={'loader'} {...rootProps}>
+        <Root $rows={this.props.rows} testid={'loader'} {...rootProps}>
           {Array(this.props.rows)
             .fill()
             .map((item, index) => (
-              <Row key={index} {...rowProps}></Row>
+              <Row
+                $animation={this.props.animation}
+                key={index}
+                {...rowProps}
+              ></Row>
             ))}
         </Root>
       );

@@ -19,6 +19,7 @@ export default function Scenario() {
           <div key={index}>
             <Skeleton
               animation={true}
+              rows={1}
               overrides={{
                 Row: {
                   style: {
@@ -31,6 +32,7 @@ export default function Scenario() {
             <div className={css({display: 'flex', flexDirection: 'row'})}>
               <Skeleton
                 animation={true}
+                rows={1}
                 overrides={{
                   Row: {
                     style: {
