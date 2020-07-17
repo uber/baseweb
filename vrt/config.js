@@ -398,6 +398,41 @@ const config = {
       },
     ],
   },
+  'tabs-motion-focus': {
+    skip: true,
+  },
+  'tabs-motion-manual': {
+    skip: true,
+  },
+  'tabs-motion-stateful': {
+    skip: true,
+  },
+  'tabs-motion-renderAll': {
+    skip: true,
+  },
+  'tabs-motion-vertical-pageScroll': {
+    interactions: [
+      {
+        name: 'ArrowDown',
+        behavior: async page => {
+          const tab = await page.$('[role=tab]');
+          await tab.focus();
+          await page.keyboard.press('ArrowDown');
+        },
+      },
+    ],
+  },
+  'tabs-motion': {
+    interactions: [
+      {
+        name: 'focus',
+        behavior: async page => {
+          const tab = await page.$('[role=tab]');
+          await tab.focus();
+        },
+      },
+    ],
+  },
   'toaster-focus': {
     skip: true,
   },

@@ -36,6 +36,7 @@ import {TYardProps} from './types';
 const Yard: React.FC<TYardProps> = ({
   componentName,
   placeholderHeight,
+  compilerStyles,
   scope,
   props,
   theme,
@@ -94,6 +95,7 @@ const Yard: React.FC<TYardProps> = ({
     <Card>
       <Compiler
         {...params.compilerProps}
+        className={compilerStyles ? css(compilerStyles) : undefined}
         minHeight={placeholderHeight}
         placeholder={() => (
           <div
