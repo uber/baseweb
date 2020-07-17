@@ -88,6 +88,7 @@ export const StyledTab = styled<{
     $focusVisible = false,
   }) => {
     const style: StyleObject = {
+      cursor: 'pointer',
       WebkitAppearance: 'none',
       marginLeft: '0',
       marginRight: '0',
