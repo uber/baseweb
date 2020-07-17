@@ -33,7 +33,12 @@ export default class PinCode extends React.Component<PropsT, StateT> {
       if (inputRef && inputRef.focus) inputRef.focus();
     }
   }
-
+  getMaskStyle(i: number) {
+    if (this.props.values[i] == '') return this.props.values[i];
+    if (typeof this.props.mask === 'boolean')
+      return this.props.mask ? '*' : this.props.values[i];
+    return this.props.mask;
+  }
   render() {
     const [Root, rootProps] = getOverrides(
       this.props.overrides.Root,
@@ -47,6 +52,7 @@ export default class PinCode extends React.Component<PropsT, StateT> {
       Root: {component: StyledInputOverrideRoot},
       Input: {component: StyledInputOverrideInput},
     };
+
     // $FlowFixMe
     inputProps.overrides = mergeOverrides(baseOverrides, inputProps.overrides);
     return (
@@ -129,7 +135,7 @@ export default class PinCode extends React.Component<PropsT, StateT> {
               required={this.props.required}
               size={this.props.size}
               type="text"
-              value={this.props.values[i]}
+              value={this.getMaskStyle(i)}
               {...inputProps}
             />
           );
