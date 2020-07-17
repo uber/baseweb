@@ -12,7 +12,7 @@ import {Tag, VARIANT as TAG_VARIANT} from '../tag/index.js';
 // eslint-disable-next-line flowtype/no-weak-types
 export default function MultiValue(props: any) {
   const {overrides = {}, removeValue, ...restProps} = props;
-  // todo(v10): remove the MultiValue override in favor of Tag
+  // todo(v11): remove the MultiValue override in favor of Tag
   const [MultiValue, tagProps] = getOverrides(
     overrides.Tag || overrides.MultiValue,
     Tag,

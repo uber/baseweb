@@ -61,7 +61,7 @@ export type ThemeT = {|
   sizing: SizingT,
   typography: TypographyT,
   zIndex: ZIndexT,
-  // Remove this section in next v10 major version
+  // Remove this section in next v11 major version
   // https://github.com/uber/baseweb/pull/1184
   tooltip?: {
     backgroundColor: string,

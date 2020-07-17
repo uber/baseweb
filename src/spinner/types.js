@@ -18,7 +18,7 @@ export type SpinnerPropsT = {
   /** Color of icon, will be used as svg fill */
   color?: string,
   /** Silence should only be used in baseui. Used to not spam console on composed components like Select */
-  $silenceV10DeprecationWarning?: boolean,
+  $silenceV11DeprecationWarning?: boolean,
   /** Allows you to set the SVG `<title>` label, which is used for accessibility */
   title?: string,
   overrides?: {

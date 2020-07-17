@@ -82,7 +82,7 @@ export type StyledGridPropsT = {
 };
 
 export type CellPropsT = {
-  // TODO(v10): Remove shared grid props from cell
+  // TODO(v11): Remove shared grid props from cell
   ...SharedGridPropsT,
   /** Control vertical alignment of individual cell at each breakpoint. Limited proxy for `align-self` CSS property. */
   align?: ResponsiveT<AlignmentT>,

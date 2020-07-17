@@ -43,7 +43,7 @@ const ProgressBarConfig: TConfig = {
     successValue: {
       value: 100,
       type: PropTypes.Number,
-      description: 'A custom completion value. Will be removed in v10.',
+      description: 'A custom completion value. Will be removed in v11.',
       hidden: true,
     },
     errorMessage: {
