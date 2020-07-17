@@ -254,7 +254,7 @@ export const ParagraphXSmall = React.forwardRef<BlockPropsT, HTMLElement>(
 );
 ParagraphXSmall.displayName = 'ParagraphXSmall';
 
-// TODO(v10): remove
+// TODO(v11): remove
 // Aliases for backwards compatability
 export const Display = DisplayLarge;
 export const Display1 = DisplayLarge;

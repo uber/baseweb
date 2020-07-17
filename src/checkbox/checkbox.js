@@ -54,7 +54,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       inputRef.current.focus();
     }
 
-    // TODO(v10)
+    // TODO(v11)
     if (__DEV__) {
       if (this.props.checkmarkType === STYLE_TYPE.toggle) {
         console.warn(
@@ -176,7 +176,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       $value: value,
       $checkmarkType: checkmarkType,
     };
-    // TODO(v10) - add check for children (#2172)
+    // TODO(v11) - add check for children (#2172)
     const labelComp = (
       <Label
         $labelPlacement={labelPlacement}

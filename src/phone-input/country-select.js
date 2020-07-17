@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 // The `CountrySelect` component is not designed to be used
 // as a standalone component and we should deprecate it
-// in the next v10 major version in favor of `CountryPicker`.
+// in the next v11 major version in favor of `CountryPicker`.
 // The `DialCode` rendering should be a part of the composed
 // non-split phone input.
 import React from 'react';

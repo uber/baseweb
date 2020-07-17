@@ -34,7 +34,7 @@ import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 class Modal extends React.Component<ModalPropsT, ModalStateT> {
   static defaultProps: $Shape<ModalPropsT> = {
     animate: true,
-    // TODO(v10): remove
+    // TODO(v11): remove
     autofocus: null,
     autoFocus: true,
     closeable: true,
@@ -59,7 +59,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
 
   componentDidMount() {
     this.setState({mounted: true});
-    // TODO(v10)
+    // TODO(v11)
     if (__DEV__) {
       if (!this.props.unstable_ModalBackdropScroll) {
         console.warn(`Consider setting 'unstable_ModalBackdropScroll' prop to true
