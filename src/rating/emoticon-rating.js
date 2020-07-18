@@ -48,7 +48,7 @@ class EmoticonRating extends React.Component<
   };
 
   renderRatingContents = () => {
-    const {overrides = {}, value = -1} = this.props;
+    const {overrides = {}, value = -1, size = 44} = this.props;
     const {previewIndex} = this.state;
 
     const [Emoticon, emoticonProps] = getOverrides(
@@ -72,6 +72,7 @@ class EmoticonRating extends React.Component<
           aria-setsize={5}
           aria-checked={x === value}
           aria-posinset={x}
+          $size={size}
           $index={x}
           $isActive={
             previewIndex !== undefined ? x === previewIndex : x === value

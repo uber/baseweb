@@ -49,7 +49,7 @@ export const StyledActivePath = styled<StylePropsT>('path', props => ({
   fill: props.$color || props.$theme.colors.accent,
 }));
 
-// TODO(v10): Replace Spinner with SpinnerNext
+// TODO(v11): Replace Spinner with SpinnerNext
 export const StyledSpinnerNext = styled<{$size?: SizeT}>(
   'div',
   ({$theme, $size = SIZE.medium}) => {

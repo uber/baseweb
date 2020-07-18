@@ -9,7 +9,7 @@ import colorTokens from './color-tokens.js';
 import type {ColorTokensT, ComponentColorTokensT} from '../types.js';
 
 /* ---- Component colors ---- */
-// TODO(#2318) Make it a plain object in the next v10 major version
+// TODO(#2318) Make it a plain object in the next v11 major version
 // with values taken from `colorTokens`.
 // Due to the legacy `createTheme` type the value need to be
 // overrideable through primitives (`foundation` )

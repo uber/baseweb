@@ -12,7 +12,7 @@ import type {ColorTokensT, DeprecatedSemanticColorTokensT} from '../types.js';
 export default (
   themePrimitives: ColorTokensT = colorTokens,
 ): DeprecatedSemanticColorTokensT => ({
-  // TODO(#2318) Remove Legacy Semantic Colors values in the next v10 major
+  // TODO(#2318) Remove Legacy Semantic Colors values in the next v11 major
   // since it's not used in the component specific tokens
   // and we ship semantic tokens separately
 

@@ -179,6 +179,10 @@ const routes = [
             title: 'Tabs',
             itemId: '/components/tabs',
           },
+          {
+            title: 'Tabs (Motion)',
+            itemId: '/components/tabs-motion',
+          },
         ],
       },
       {

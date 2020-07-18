@@ -627,7 +627,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       <LoadingIndicator
         size={16}
         overrides={{Svg: {style: getLoadingIconStyles}}}
-        $silenceV10DeprecationWarning
+        $silenceV11DeprecationWarning
         {...sharedProps}
         {...loadingIndicatorProps}
       />
@@ -841,7 +841,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     const sharedProps = this.getSharedProps();
 
     return (
-      // TODO(v10): remove searchIconProps from SearchIconContainer
+      // TODO(v11): remove searchIconProps from SearchIconContainer
       <SearchIconContainer
         {...sharedProps}
         {...searchIconProps}
