@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles/index.js';
+import {expandBorderStyles, styled} from '../styles/index.js';
 import type {SharedStylePropsArgT} from './types.js';
 
 /**
@@ -33,20 +33,11 @@ export const Item = styled<SharedStylePropsArgT>(
     return ({
       ':hover':
         !$isDragged && !$isSelected
-          ? {
-              borderTopWidth: '2px',
-              borderBottomWidth: '2px',
-              borderLeftWidth: '2px',
-              borderRightWidth: '2px',
-              borderTopStyle: 'solid',
-              borderBottomStyle: 'solid',
-              borderLeftStyle: 'solid',
-              borderRightStyle: 'solid',
-              borderTopColor: $theme.colors.primary,
-              borderBottomColor: $theme.colors.primary,
-              borderLeftColor: $theme.colors.primary,
-              borderRightColor: $theme.colors.primary,
-            }
+          ? expandBorderStyles({
+              borderWidth: '2px',
+              borderStyle: 'solid',
+              borderColor: $theme.colors.primary,
+            })
           : {},
       ':focus': {
         outline:
@@ -67,22 +58,12 @@ export const Item = styled<SharedStylePropsArgT>(
       cursor: $isDragged ? 'grabbing' : 'grab',
       backgroundColor: $theme.colors.backgroundPrimary,
       boxShadow: $isDragged ? '0 2px 6px rgba(0, 0, 0, 0.32)' : null,
-      borderTopWidth: '2px',
-      borderBottomWidth: '2px',
-      borderLeftWidth: '2px',
-      borderRightWidth: '2px',
-      borderTopStyle: 'solid',
-      borderBottomStyle: 'solid',
-      borderLeftStyle: 'solid',
-      borderRightStyle: 'solid',
-      borderTopColor:
-        $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
-      borderBottomColor:
-        $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
-      borderLeftColor:
-        $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
-      borderRightColor:
-        $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
+      ...expandBorderStyles({
+        borderWidth: '2px',
+        borderStyle: 'solid',
+        borderColor:
+          $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
+      }),
     }: {});
   },
 );

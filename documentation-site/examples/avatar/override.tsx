@@ -1,7 +1,10 @@
 import * as React from 'react';
 import {Avatar} from 'baseui/avatar';
 import {useStyletron} from 'baseui';
-import {expandBorderStyles} from 'baseui/styles';
+import {
+  expandBorderRadiusStyles,
+  expandBorderStyles,
+} from 'baseui/styles';
 
 export default () => {
   const [css] = useStyletron();
@@ -38,20 +41,12 @@ export default () => {
         <Avatar
           overrides={{
             Avatar: {
-              style: ({$theme}) => ({
-                borderTopLeftRadius: $theme.borders.radius100,
-                borderTopRightRadius: $theme.borders.radius100,
-                borderBottomRightRadius: $theme.borders.radius100,
-                borderBottomLeftRadius: $theme.borders.radius100,
-              }),
+              style: ({$theme}) =>
+                expandBorderRadiusStyles($theme.borders.radius100),
             },
             Root: {
-              style: ({$theme}) => ({
-                borderTopLeftRadius: $theme.borders.radius100,
-                borderTopRightRadius: $theme.borders.radius100,
-                borderBottomRightRadius: $theme.borders.radius100,
-                borderBottomLeftRadius: $theme.borders.radius100,
-              }),
+              style: ({$theme}) =>
+                expandBorderRadiusStyles($theme.borders.radius100),
             },
           }}
           name="user name #3"
@@ -62,20 +57,12 @@ export default () => {
         <Avatar
           overrides={{
             Avatar: {
-              style: ({$theme}) => ({
-                borderTopLeftRadius: $theme.borders.radius100,
-                borderTopRightRadius: $theme.borders.radius100,
-                borderBottomRightRadius: $theme.borders.radius100,
-                borderBottomLeftRadius: $theme.borders.radius100,
-              }),
+              style: ({$theme}) =>
+                expandBorderRadiusStyles($theme.borders.radius100),
             },
             Root: {
-              style: ({$theme}) => ({
-                borderTopLeftRadius: $theme.borders.radius100,
-                borderTopRightRadius: $theme.borders.radius100,
-                borderBottomRightRadius: $theme.borders.radius100,
-                borderBottomLeftRadius: $theme.borders.radius100,
-              }),
+              style: ({$theme}) =>
+                expandBorderRadiusStyles($theme.borders.radius100),
             },
           }}
           name="beyonce knowles"

@@ -5,7 +5,11 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles/index.js';
+import {
+  expandBorderRadiusStyles,
+  expandBorderStyles,
+  styled,
+} from '../styles/index.js';
 import {SIZE, SIZE_WIDTHS} from './constants.js';
 import type {SharedStylePropsArgT, SizePropT} from './types.js';
 
@@ -120,10 +124,7 @@ export const Dialog = styled<SharedStylePropsArgT>('div', props => {
   return ({
     position: 'relative',
     backgroundColor: $theme.colors.backgroundPrimary,
-    borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
-    borderTopRightRadius: $theme.borders.surfaceBorderRadius,
-    borderBottomRightRadius: $theme.borders.surfaceBorderRadius,
-    borderBottomLeftRadius: $theme.borders.surfaceBorderRadius,
+    ...expandBorderRadiusStyles($theme.borders.surfaceBorderRadius),
     marginLeft: $theme.sizing.scale600,
     marginTop: $theme.sizing.scale600,
     marginRight: $theme.sizing.scale600,
@@ -167,18 +168,11 @@ export const Close = styled<SharedStylePropsArgT>('button', props => {
     color: $theme.colors.modalCloseColor,
     transitionProperty: 'color, border-color',
     transitionDuration: $theme.animation.timing200,
-    borderLeftWidth: '1px',
-    borderRightWidth: '1px',
-    borderTopWidth: '1px',
-    borderBottomWidth: '1px',
-    borderLeftStyle: 'solid',
-    borderRightStyle: 'solid',
-    borderTopStyle: 'solid',
-    borderBottomStyle: 'solid',
-    borderLeftColor: 'transparent',
-    borderRightColor: 'transparent',
-    borderTopColor: 'transparent',
-    borderBottomColor: 'transparent',
+    ...expandBorderStyles({
+      borderWidth: '1px',
+      borderStyle: 'solid',
+      borderColor: 'transparent',
+    }),
     ':hover': {
       color: $theme.colors.modalCloseColorHover,
     },

@@ -13,6 +13,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {useStyletron, styled} from 'baseui';
+import {expandBorderStyles} from 'baseui/styles';
 import {LightTheme, DarkTheme} from 'baseui/themes';
 
 const monospaceFontFamily =
@@ -105,18 +106,20 @@ function Swatch({renderBox, previewTheme, left = false}) {
         paddingBottom: theme.sizing.scale800,
         display: 'flex',
         justifyContent: 'center',
-        borderTopStyle: 'solid',
-        borderBottomStyle: 'solid',
-        borderRightStyle: left ? null : 'solid',
-        borderLeftStyle: left ? 'solid' : null,
-        borderRightWidth: left ? null : '1px',
-        borderLeftWidth: left ? '1px' : null,
-        borderTopWidth: '1px',
-        borderBottomWidth: '1px',
-        borderTopColor: theme.colors.borderOpaque,
-        borderBottomColor: theme.colors.borderOpaque,
-        borderRightColor: theme.colors.borderOpaque,
-        borderLeftColor: theme.colors.borderOpaque,
+        ...expandBorderStyles({
+          borderWidth: '1px',
+          borderStyle: 'solid',
+          borderColor: theme.colors.borderOpaque,
+        }),
+        ...(left
+          ? {
+              borderRightStyle: null,
+              borderRightWidth: null,
+            }
+          : {
+              borderLeftStyle: null,
+              borderLeftWidth: null,
+            }),
       })}
     >
       {renderBox({

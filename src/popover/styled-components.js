@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles/index.js';
+import {expandBorderRadiusStyles, styled} from '../styles/index.js';
 import {ARROW_WIDTH} from './constants.js';
 import {
   getPopoverMarginStyles,
@@ -38,10 +38,7 @@ export function getBodyStyles(props: BodyStylePropsArgT & {$theme: ThemeT}) {
     top: 0,
     left: 0,
     backgroundColor: $theme.colors.backgroundTertiary,
-    borderTopLeftRadius: $theme.borders.popoverBorderRadius,
-    borderTopRightRadius: $theme.borders.popoverBorderRadius,
-    borderBottomRightRadius: $theme.borders.popoverBorderRadius,
-    borderBottomLeftRadius: $theme.borders.popoverBorderRadius,
+    ...expandBorderRadiusStyles($theme.borders.popoverBorderRadius),
     boxShadow: $theme.lighting.shadow600,
     transitionProperty: 'opacity,transform',
     transitionDuration: $isAnimating ? '0.1s' : '0s',
@@ -86,10 +83,7 @@ export const Arrow = styled<ArrowStylePropsArgT>('div', getArrowStyles);
 export function getInnerStyles({$theme}: {$theme: ThemeT}) {
   return {
     backgroundColor: $theme.colors.backgroundTertiary,
-    borderTopLeftRadius: $theme.borders.popoverBorderRadius,
-    borderTopRightRadius: $theme.borders.popoverBorderRadius,
-    borderBottomRightRadius: $theme.borders.popoverBorderRadius,
-    borderBottomLeftRadius: $theme.borders.popoverBorderRadius,
+    ...expandBorderRadiusStyles($theme.borders.popoverBorderRadius),
     color: $theme.colors.contentPrimary,
     position: 'relative',
   };

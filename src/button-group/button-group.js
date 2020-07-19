@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {KIND, SIZE, SHAPE} from '../button/index.js';
+import {expandBorderRadiusStyles} from '../styles/index.js';
 import {MODE} from './constants.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {LocaleContext} from '../locale/index.js';
@@ -115,36 +116,27 @@ export class ButtonGroupRoot extends React.Component<{|
             size,
             overrides: {
               BaseButton: {
-                style: () => {
-                  // Even though baseui's buttons have square corners, some applications override to
-                  // rounded. Maintaining corner radius in this circumstance is ideal to avoid further
-                  // customization.
-                  if (children.length === 1) {
-                    return {};
-                  }
-
-                  // left most button
-                  if (index === 0) {
-                    return {
-                      borderTopRightRadius: 0,
-                      borderBottomRightRadius: 0,
-                    };
-                  }
-                  // right most button
-                  if (index === children.length - 1) {
-                    return {
-                      borderTopLeftRadius: 0,
-                      borderBottomLeftRadius: 0,
-                    };
-                  }
-                  // inner button
-                  return {
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0,
-                    borderTopLeftRadius: 0,
-                    borderBottomLeftRadius: 0,
-                  };
-                },
+                style: () => ({
+                  ...(children.length === 1
+                    ? // Even though baseui's buttons have square corners, some applications override to
+                      // rounded. Maintaining corner radius in this circumstance is ideal to avoid further
+                      // customization.
+                      {}
+                    : index === 0
+                    ? // left most button
+                      {
+                        borderTopRightRadius: null,
+                        borderBottomRightRadius: null,
+                      }
+                    : // right most button
+                    index === children.length - 1
+                    ? {
+                        borderTopLeftRadius: null,
+                        borderBottomLeftRadius: null,
+                      }
+                    : // inner button
+                      expandBorderRadiusStyles(null)),
+                }),
                 props: {
                   'aria-checked': isSelected(selected, index),
                   role: isRadio ? 'radio' : 'checkbox',

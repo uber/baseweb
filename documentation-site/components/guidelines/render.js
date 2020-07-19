@@ -11,6 +11,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {useStyletron} from 'baseui';
+import {expandBorderRadiusStyles} from 'baseui/styles';
 
 // Figma returns global dictionaries for these, which are referenced by individual nodes
 const Styles = React.createContext<any>();
@@ -307,19 +308,9 @@ function getBorder(node) {
 
 function getBorderRadii(node) {
   return node.type === 'ELLIPSE'
-    ? {
-        borderTopLeftRadius: '100%',
-        borderTopRightRadius: '100%',
-        borderBottomRightRadius: '100%',
-        borderBottomLeftRadius: '100%',
-      }
+    ? expandBorderRadiusStyles('100%')
     : node.cornerRadius
-    ? {
-        borderTopLeftRadius: node.cornerRadius + 'px',
-        borderTopRightRadius: node.cornerRadius + 'px',
-        borderBottomRightRadius: node.cornerRadius + 'px',
-        borderBottomLeftRadius: node.cornerRadius + 'px',
-      }
+    ? expandBorderRadiusStyles(node.cornerRadius + 'px')
     : {
         borderTopLeftRadius:
           node.rectangleCornerRadii && node.rectangleCornerRadii[0]

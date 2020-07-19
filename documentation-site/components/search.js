@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 //@flow
 import * as React from 'react';
 import SearchIcon from 'baseui/icon/search';
+import {expandBorderStyles} from 'baseui/styles';
 import {themedStyled} from '../pages/_app';
 //$FlowFixMe
 import {trackEvent} from '../helpers/ga';
@@ -24,18 +25,11 @@ const PlainInput = themedStyled<{}>(
   ({$theme}) =>
     ({
       display: 'block',
-      borderLeftWidth: '2px',
-      borderRightWidth: '2px',
-      borderTopWidth: '2px',
-      borderBottomWidth: '2px',
-      borderLeftColor: $theme.colors.inputEnhancerFill,
-      borderRightColor: $theme.colors.inputEnhancerFill,
-      borderTopColor: $theme.colors.inputEnhancerFill,
-      borderBottomColor: $theme.colors.inputEnhancerFill,
-      borderLeftStyle: 'solid',
-      borderRightStyle: 'solid',
-      borderTopStyle: 'solid',
-      borderBottomStyle: 'solid',
+      ...expandBorderStyles({
+        borderWidth: '2px',
+        borderStyle: 'solid',
+        borderColor: $theme.colors.inputEnhancerFill,
+      }),
       paddingLeft: $theme.direction === 'rtl' ? '9px' : '36px',
       paddingRight: $theme.direction === 'rtl' ? '36px' : '9px',
       backgroundColor: 'transparent',

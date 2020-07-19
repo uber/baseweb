@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {Block} from 'baseui/block';
+import {expandBorderRadiusStyles} from 'baseui/styles';
 import Head from 'next/head';
 import {H1} from './markdown-elements';
 import {themedStyled} from '../pages/_app';
@@ -41,10 +42,7 @@ export const Demo = themedStyled('iframe', {
   borderRightWidth: 0,
   borderTopWidth: 0,
   borderBottomWidth: 0,
-  borderTopLeftRadius: '4px',
-  borderTopRightRadius: '4px',
-  borderBottomRightRadius: '4px',
-  borderBottomLeftRadius: '4px',
+  ...expandBorderRadiusStyles('4px'),
   height: '500px',
   overflow: 'hidden',
   width: '100%',

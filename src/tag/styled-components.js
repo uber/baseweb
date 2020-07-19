@@ -9,7 +9,11 @@ LICENSE file in the root directory of this source tree.
 import darken from 'polished/lib/color/darken.js';
 import lighten from 'polished/lib/color/lighten.js';
 
-import {styled} from '../styles/index.js';
+import {
+  expandBorderRadiusStyles,
+  expandBorderStyles,
+  styled,
+} from '../styles/index.js';
 import {KIND, VARIANT} from './constants.js';
 import type {SharedPropsArgT} from './types.js';
 
@@ -625,22 +629,12 @@ export const Root = styled<SharedPropsArgT>('span', props => {
     ...font150,
     alignItems: 'center',
     backgroundColor: backgroundColor(false, false),
-    borderLeftColor: regularBorderColor,
-    borderRightColor: regularBorderColor,
-    borderTopColor: regularBorderColor,
-    borderBottomColor: regularBorderColor,
-    borderLeftStyle: 'solid',
-    borderRightStyle: 'solid',
-    borderTopStyle: 'solid',
-    borderBottomStyle: 'solid',
-    borderLeftWidth: borderWidth,
-    borderRightWidth: borderWidth,
-    borderTopWidth: borderWidth,
-    borderBottomWidth: borderWidth,
-    borderTopLeftRadius: borderRadius,
-    borderTopRightRadius: borderRadius,
-    borderBottomRightRadius: borderRadius,
-    borderBottomLeftRadius: borderRadius,
+    ...expandBorderStyles({
+      borderWidth: borderWidth,
+      borderStyle: 'solid',
+      borderColor: regularBorderColor,
+    }),
+    ...expandBorderRadiusStyles(borderRadius),
     boxSizing: 'border-box',
     color: fontColor(props, false, false),
     cursor: $disabled ? 'not-allowed' : $clickable ? 'pointer' : 'default',

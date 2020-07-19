@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {styled} from '../styles/index.js';
+import {expandBorderRadiusStyles, styled} from '../styles/index.js';
 import {TYPE} from './constants.js';
 import {StyledList, StyledListItem} from '../menu/index.js';
 import {SIZE} from './constants.js';
@@ -220,10 +220,7 @@ export const StyledControlContainer = styled<SharedStylePropsArgT>(
       $theme: {borders, colors, animation},
     } = props;
     return {
-      borderTopLeftRadius: borders.inputBorderRadius,
-      borderTopRightRadius: borders.inputBorderRadius,
-      borderBottomRightRadius: borders.inputBorderRadius,
-      borderBottomLeftRadius: borders.inputBorderRadius,
+      ...expandBorderRadiusStyles(borders.inputBorderRadius),
       boxSizing: 'border-box',
       overflow: 'hidden',
       width: '100%',

@@ -7,16 +7,18 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 
-import {styled, withWrapper, expandBorderStyles} from '../styles/index.js';
+import {
+  expandBorderRadiusStyles,
+  expandBorderStyles,
+  styled,
+  withWrapper,
+} from '../styles/index.js';
 
 const StyledTableElement = styled<{}>('div', ({$theme}) => {
   return {
     ...expandBorderStyles($theme.borders.border300),
     backgroundColor: $theme.colors.tableBackground,
-    borderTopLeftRadius: $theme.borders.radius200,
-    borderTopRightRadius: $theme.borders.radius200,
-    borderBottomRightRadius: $theme.borders.radius200,
-    borderBottomLeftRadius: $theme.borders.radius200,
+    ...expandBorderRadiusStyles($theme.borders.radius200),
     display: 'flex',
     flexDirection: 'column',
     height: '100%',
@@ -218,8 +220,8 @@ export const StyledFilterButton = styled<{
 export const StyledFilterContent = styled<{}>('div', ({$theme}) => ({
   ...expandBorderStyles($theme.borders.border300),
   backgroundColor: $theme.colors.tableFilterBackground,
-  borderRightStyle: 'none',
-  borderLeftStyle: 'none',
+  borderRightStyle: null,
+  borderLeftStyle: null,
   maxHeight: '196px',
   paddingRight: $theme.sizing.scale600,
   paddingLeft: $theme.sizing.scale600,

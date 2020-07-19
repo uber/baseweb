@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import {styled} from '../styles/index.js';
+import {expandBorderRadiusStyles, styled} from '../styles/index.js';
 import type {StylePropsT} from './types.js';
 
 export const StyledProgressSteps = styled<{}>('ol', ({$theme}) => {
@@ -66,10 +66,7 @@ export const StyledIcon = styled<StylePropsT>(
       width: size,
       height: size,
       lineHeight: size,
-      borderTopLeftRadius: size,
-      borderTopRightRadius: size,
-      borderBottomRightRadius: size,
-      borderBottomLeftRadius: size,
+      ...expandBorderRadiusStyles(size),
       backgroundColor: currentColor,
       float: $theme.direction === 'rtl' ? 'right' : 'left',
       textAlign: 'center',
@@ -85,10 +82,7 @@ export const StyledInnerIcon = styled<StylePropsT>('div', ({$theme}) => {
     width: $theme.sizing.scale100,
     height: $theme.sizing.scale100,
     lineHeight: $theme.sizing.scale100,
-    borderTopLeftRadius: $theme.sizing.scale100,
-    borderTopRightRadius: $theme.sizing.scale100,
-    borderBottomRightRadius: $theme.sizing.scale100,
-    borderBottomLeftRadius: $theme.sizing.scale100,
+    ...expandBorderRadiusStyles($theme.sizing.scale100),
     backgroundColor: $theme.colors.progressStepsActiveText,
     textAlign: 'center',
   };
@@ -196,10 +190,7 @@ export const StyledNumberIcon = styled<StylePropsT>(
       marginTop,
       width: size,
       height: size,
-      borderTopLeftRadius: size,
-      borderTopRightRadius: size,
-      borderBottomRightRadius: size,
-      borderBottomLeftRadius: size,
+      ...expandBorderRadiusStyles(size),
       backgroundColor,
       color,
       float: $theme.direction === 'rtl' ? 'right' : 'left',

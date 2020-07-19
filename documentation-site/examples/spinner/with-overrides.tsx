@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {Spinner} from 'baseui/spinner';
+import {expandBorderRadiusStyles} from 'baseui/styles';
 
 export default () => (
   <Spinner
@@ -9,10 +10,7 @@ export default () => (
           'data-label': 'data-label',
         },
         style: ({$theme}) => ({
-          borderTopLeftRadius: '50%',
-          borderTopRightRadius: '50%',
-          borderBottomRightRadius: '50%',
-          borderBottomLeftRadius: '50%',
+          ...expandBorderRadiusStyles('50%'),
           backgroundColor: $theme.colors.primary50,
         }),
       },

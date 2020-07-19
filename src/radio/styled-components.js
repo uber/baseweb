@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles/index.js';
+import {expandBorderRadiusStyles, styled} from '../styles/index.js';
 import type {StylePropsT} from './types.js';
 
 const DEFAULT = 0;
@@ -151,10 +151,7 @@ export const RadioMarkInner = styled<StylePropsT>('div', props => {
 
   return {
     backgroundColor: getInnerColor(props),
-    borderTopLeftRadius: '50%',
-    borderTopRightRadius: '50%',
-    borderBottomRightRadius: '50%',
-    borderBottomLeftRadius: '50%',
+    ...expandBorderRadiusStyles('50%'),
     height: props.$checked ? sizing.scale200 : sizing.scale550,
     transitionDuration: animation.timing200,
     transitionTimingFunction: animation.easeOutCurve,
@@ -168,10 +165,7 @@ export const RadioMarkOuter = styled<StylePropsT>('div', props => {
   return ({
     alignItems: 'center',
     backgroundColor: getOuterColor(props),
-    borderTopLeftRadius: '50%',
-    borderTopRightRadius: '50%',
-    borderBottomRightRadius: '50%',
-    borderBottomLeftRadius: '50%',
+    ...expandBorderRadiusStyles('50%'),
     boxShadow:
       props.$isFocusVisible && props.$checked
         ? `0 0 0 3px ${props.$theme.colors.accent}`

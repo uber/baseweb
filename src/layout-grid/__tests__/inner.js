@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {useStyletron} from '../../styles/index.js';
+import {expandBorderStyles, useStyletron} from '../../styles/index.js';
 
 const Inner: React.StatelessFunctionalComponent<{
   children: React.Node,
@@ -19,18 +19,11 @@ const Inner: React.StatelessFunctionalComponent<{
       className={css({
         padding: theme.sizing.scale300,
         color: theme.colors.contentPrimary,
-        borderLeftStyle: `solid`,
-        borderRightStyle: `solid`,
-        borderTopStyle: `solid`,
-        borderBottomStyle: `solid`,
-        borderLeftWidth: `1px`,
-        borderRightWidth: `1px`,
-        borderTopWidth: `1px`,
-        borderBottomWidth: `1px`,
-        borderLeftColor: theme.colors.contentPrimary,
-        borderRightColor: theme.colors.contentPrimary,
-        borderTopColor: theme.colors.contentPrimary,
-        borderBottomColor: theme.colors.contentPrimary,
+        ...expandBorderStyles({
+          borderWidth: '1px',
+          borderStyle: 'solid',
+          borderColor: theme.colors.contentPrimary,
+        }),
         height: h,
       })}
     >

@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {styled} from '../styles/index.js';
+import {expandBorderStyles, styled} from '../styles/index.js';
 import type {StylePropsT} from './types.js';
 
 export const StyledFileDragAndDrop = styled<StylePropsT>('div', props => {
@@ -19,18 +19,11 @@ export const StyledFileDragAndDrop = styled<StylePropsT>('div', props => {
     backgroundColor: props.$isDragActive
       ? props.$theme.colors.fileUploaderBackgroundColorActive
       : props.$theme.colors.fileUploaderBackgroundColor,
-    borderLeftColor: borderColor,
-    borderRightColor: borderColor,
-    borderTopColor: borderColor,
-    borderBottomColor: borderColor,
-    borderLeftStyle: borderStyle,
-    borderRightStyle: borderStyle,
-    borderTopStyle: borderStyle,
-    borderBottomStyle: borderStyle,
-    borderLeftWidth: props.$theme.sizing.scale0,
-    borderRightWidth: props.$theme.sizing.scale0,
-    borderTopWidth: props.$theme.sizing.scale0,
-    borderBottomWidth: props.$theme.sizing.scale0,
+    ...expandBorderStyles({
+      borderWidth: props.$theme.sizing.scale0,
+      borderStyle: borderStyle,
+      borderColor: borderColor,
+    }),
     boxSizing: 'border-box',
     display: 'flex',
     flexDirection: 'column',

@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles/index.js';
+import {expandBorderRadiusStyles, styled} from '../styles/index.js';
 import type {ThemeT} from '../styles/types.js';
 import {ADJOINED, ENHANCER_POSITION, SIZE} from './constants.js';
 import type {SharedPropsT, SizeT} from './types.js';
@@ -224,30 +224,16 @@ export const InputEnhancer = styled<SharedPropsT>('div', props => {
 
 function getInputContainerBorderRadius(adjoined, radius) {
   return {
-    [ADJOINED.none]: {
-      borderTopLeftRadius: radius,
-      borderBottomLeftRadius: radius,
-      borderTopRightRadius: radius,
-      borderBottomRightRadius: radius,
-    },
+    [ADJOINED.none]: expandBorderRadiusStyles(radius),
     [ADJOINED.left]: {
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0,
       borderTopRightRadius: radius,
       borderBottomRightRadius: radius,
     },
     [ADJOINED.right]: {
       borderTopLeftRadius: radius,
       borderBottomLeftRadius: radius,
-      borderTopRightRadius: 0,
-      borderBottomRightRadius: 0,
     },
-    [ADJOINED.both]: {
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0,
-      borderTopRightRadius: 0,
-      borderBottomRightRadius: 0,
-    },
+    [ADJOINED.both]: {},
   }[adjoined];
 }
 

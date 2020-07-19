@@ -2,6 +2,7 @@ import * as React from 'react';
 import SimpleEditor from 'react-simple-code-editor';
 import Highlight, {Prism} from 'prism-react-renderer';
 import {useStyletron} from 'baseui';
+import {expandBorderStyles} from 'baseui/styles';
 
 import {
   lightTheme,
@@ -72,26 +73,13 @@ const Editor: React.FC<TEditorProps> = ({
         paddingTop: small ? '2px' : '0px',
         paddingBottom: small ? '2px' : '0px',
         overflow: 'hidden',
-        borderLeftWidth: '2px',
-        borderRightWidth: '2px',
-        borderTopWidth: '2px',
-        borderBottomWidth: '2px',
-        borderLeftStyle: 'solid',
-        borderTopStyle: 'solid',
-        borderRightStyle: 'solid',
-        borderBottomStyle: 'solid',
-        borderLeftColor: focused
-          ? theme.colors.borderFocus
-          : theme.colors.inputBorder,
-        borderTopColor: focused
-          ? theme.colors.borderFocus
-          : theme.colors.inputBorder,
-        borderRightColor: focused
-          ? theme.colors.borderFocus
-          : theme.colors.inputBorder,
-        borderBottomColor: focused
-          ? theme.colors.borderFocus
-          : theme.colors.inputBorder,
+        ...expandBorderStyles({
+          borderWidth: '2px',
+          borderStyle: 'solid',
+          borderColor: focused
+            ? theme.colors.borderFocus
+            : theme.colors.inputBorder,
+        }),
       })}
     >
       <style

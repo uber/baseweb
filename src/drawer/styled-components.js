@@ -5,7 +5,11 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles/index.js';
+import {
+  expandBorderRadiusStyles,
+  expandBorderStyles,
+  styled,
+} from '../styles/index.js';
 import {SIZE, SIZE_DIMENSION, ANCHOR} from './constants.js';
 import type {SharedStylePropsArgT, SizePropT, AnchorPropT} from './types.js';
 
@@ -129,10 +133,7 @@ export const StyledDrawerContainer = styled<SharedStylePropsArgT>(
     const {$animating, $isOpen, $isVisible, $theme} = props;
     return {
       backgroundColor: $theme.colors.backgroundPrimary,
-      borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
-      borderTopRightRadius: $theme.borders.surfaceBorderRadius,
-      borderBottomRightRadius: $theme.borders.surfaceBorderRadius,
-      borderBottomLeftRadius: $theme.borders.surfaceBorderRadius,
+      ...expandBorderRadiusStyles($theme.borders.surfaceBorderRadius),
       ...getAnchorStyles(props),
 
       // Animation
@@ -178,18 +179,11 @@ export const StyledClose = styled<SharedStylePropsArgT>('button', props => {
     fill: $theme.colors.primary,
     transitionProperty: 'fill, border-color',
     transitionDuration: $theme.animation.timing200,
-    borderLeftWidth: '1px',
-    borderRightWidth: '1px',
-    borderTopWidth: '1px',
-    borderBottomWidth: '1px',
-    borderLeftStyle: 'solid',
-    borderRightStyle: 'solid',
-    borderTopStyle: 'solid',
-    borderBottomStyle: 'solid',
-    borderLeftColor: 'transparent',
-    borderRightColor: 'transparent',
-    borderTopColor: 'transparent',
-    borderBottomColor: 'transparent',
+    ...expandBorderStyles({
+      borderWidth: '1px',
+      borderStyle: 'solid',
+      borderColor: 'transparent',
+    }),
     ':hover': {
       fill: $theme.colors.primary600,
     },

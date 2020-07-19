@@ -680,7 +680,7 @@ export type BorderT = {|
   borderColor: string,
   // longhand border-style properties do not accept string values
   borderStyle: Globals | LineStyle,
-  borderWidth: string,
+  borderWidth: string | number,
 |};
 
 export type BordersT = {

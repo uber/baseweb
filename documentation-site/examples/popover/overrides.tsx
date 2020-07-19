@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {Button} from 'baseui/button';
 import {StatefulPopover} from 'baseui/popover';
+import {expandBorderRadiusStyles} from 'baseui/styles';
 import {Paragraph3} from 'baseui/typography';
 
 export default () => (
@@ -16,19 +17,13 @@ export default () => (
       Body: {
         style: ({$theme}) => ({
           backgroundColor: $theme.colors.warning,
-          borderTopLeftRadius: $theme.borders.radius200,
-          borderTopRightRadius: $theme.borders.radius200,
-          borderBottomRightRadius: $theme.borders.radius200,
-          borderBottomLeftRadius: $theme.borders.radius200,
+          ...expandBorderRadiusStyles($theme.borders.radius200),
         }),
       },
       Inner: {
         style: ({$theme}) => ({
           backgroundColor: $theme.colors.warning,
-          borderTopLeftRadius: $theme.borders.radius200,
-          borderTopRightRadius: $theme.borders.radius200,
-          borderBottomRightRadius: $theme.borders.radius200,
-          borderBottomLeftRadius: $theme.borders.radius200,
+          ...expandBorderRadiusStyles($theme.borders.radius200),
           color: $theme.colors.white,
         }),
       },

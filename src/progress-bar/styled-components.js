@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled, hexToRgb} from '../styles/index.js';
+import {expandBorderRadiusStyles, hexToRgb, styled} from '../styles/index.js';
 
 import type {StylePropsT} from './types.js';
 
@@ -24,10 +24,7 @@ export const Bar = styled<StylePropsT>('div', props => {
     marginRight: sizing.scale500,
     marginTop: sizing.scale500,
     marginBottom: sizing.scale500,
-    borderTopLeftRadius: borderRadius,
-    borderTopRightRadius: borderRadius,
-    borderBottomRightRadius: borderRadius,
-    borderBottomLeftRadius: borderRadius,
+    ...expandBorderRadiusStyles(borderRadius),
     backgroundColor: hexToRgb(colors.progressbarTrackFill, '0.16'),
     height: '4px',
     position: 'relative',
@@ -69,10 +66,7 @@ export const BarProgress = styled<StylePropsT>('div', props => {
       };
 
   return {
-    borderTopLeftRadius: borderRadius,
-    borderTopRightRadius: borderRadius,
-    borderBottomRightRadius: borderRadius,
-    borderBottomLeftRadius: borderRadius,
+    ...expandBorderRadiusStyles(borderRadius),
     backgroundColor: colors.accent,
     height: '100%',
     ...animationStyles,

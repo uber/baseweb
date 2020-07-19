@@ -1,7 +1,10 @@
 import * as React from 'react';
 import {Button} from 'baseui/button';
 import {StatefulPagination} from 'baseui/pagination';
-import {expandBorderStyles} from 'baseui/styles';
+import {
+  expandBorderRadiusStyles,
+  expandBorderStyles,
+} from 'baseui/styles';
 
 export default () => (
   <StatefulPagination
@@ -10,10 +13,7 @@ export default () => (
       Root: {
         style: ({$theme}) => ({
           ...expandBorderStyles($theme.borders.border400),
-          borderTopLeftRadius: $theme.borders.radius200,
-          borderTopRightRadius: $theme.borders.radius200,
-          borderBottomRightRadius: $theme.borders.radius200,
-          borderBottomLeftRadius: $theme.borders.radius200,
+          ...expandBorderRadiusStyles($theme.borders.radius200),
           padding: $theme.sizing.scale400,
         }),
       },

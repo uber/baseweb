@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable */
-import {expandBorderStyles} from '../util.js';
+import {expandBorderRadiusStyles, expandBorderStyles} from '../util.js';
 
 test('expandBorderStyles', () => {
   const shorthandStyles = {
@@ -26,5 +26,15 @@ test('expandBorderStyles', () => {
     borderRightWidth: '3px',
     borderRightStyle: 'solid',
     borderRightColor: 'red',
+  });
+});
+
+test('expandBorderRadiusStyles', () => {
+  const borderRadius = '3px';
+  expect(expandBorderRadiusStyles(borderRadius)).toEqual({
+    borderTopLeftRadius: '3px',
+    borderTopRightRadius: '3px',
+    borderBottomRightRadius: '3px',
+    borderBottomLeftRadius: '3px',
   });
 });

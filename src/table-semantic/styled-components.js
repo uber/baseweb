@@ -8,7 +8,12 @@ LICENSE file in the root directory of this source tree.
 import Blank from '../icon/blank.js';
 import ChevronDown from '../icon/chevron-down.js';
 import ChevronUp from '../icon/chevron-up.js';
-import {styled, withStyle, expandBorderStyles} from '../styles/index.js';
+import {
+  expandBorderRadiusStyles,
+  expandBorderStyles,
+  styled,
+  withStyle,
+} from '../styles/index.js';
 
 export const StyledRoot = styled<{}>('div', ({$theme}) => {
   return {
@@ -17,10 +22,7 @@ export const StyledRoot = styled<{}>('div', ({$theme}) => {
     overflow: 'auto',
     WebkitOverflowScrolling: 'touch',
     backgroundColor: $theme.colors.tableBackground,
-    borderTopLeftRadius: $theme.borders.radius200,
-    borderTopRightRadius: $theme.borders.radius200,
-    borderBottomRightRadius: $theme.borders.radius200,
-    borderBottomLeftRadius: $theme.borders.radius200,
+    ...expandBorderRadiusStyles($theme.borders.radius200),
   };
 });
 

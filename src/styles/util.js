@@ -29,19 +29,36 @@ export const ellipsisText = {
   wordWrap: 'normal',
 };
 
-export function expandBorderStyles(borderStyles: BorderT) {
+export function expandBorderStyles({
+  borderWidth,
+  borderStyle,
+  borderColor,
+}: {
+  borderWidth: $PropertyType<BorderT, 'borderWidth'> | null,
+  borderStyle: $PropertyType<BorderT, 'borderStyle'> | null,
+  borderColor: $PropertyType<BorderT, 'borderColor'> | null,
+}) {
   return {
-    borderTopWidth: borderStyles.borderWidth,
-    borderTopStyle: borderStyles.borderStyle,
-    borderTopColor: borderStyles.borderColor,
-    borderBottomWidth: borderStyles.borderWidth,
-    borderBottomStyle: borderStyles.borderStyle,
-    borderBottomColor: borderStyles.borderColor,
-    borderLeftWidth: borderStyles.borderWidth,
-    borderLeftStyle: borderStyles.borderStyle,
-    borderLeftColor: borderStyles.borderColor,
-    borderRightWidth: borderStyles.borderWidth,
-    borderRightStyle: borderStyles.borderStyle,
-    borderRightColor: borderStyles.borderColor,
+    borderTopWidth: borderWidth,
+    borderTopStyle: borderStyle,
+    borderTopColor: borderColor,
+    borderBottomWidth: borderWidth,
+    borderBottomStyle: borderStyle,
+    borderBottomColor: borderColor,
+    borderLeftWidth: borderWidth,
+    borderLeftStyle: borderStyle,
+    borderLeftColor: borderColor,
+    borderRightWidth: borderWidth,
+    borderRightStyle: borderStyle,
+    borderRightColor: borderColor,
+  };
+}
+
+export function expandBorderRadiusStyles(borderRadius: string | number | null) {
+  return {
+    borderTopLeftRadius: borderRadius,
+    borderTopRightRadius: borderRadius,
+    borderBottomRightRadius: borderRadius,
+    borderBottomLeftRadius: borderRadius,
   };
 }

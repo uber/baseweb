@@ -6,7 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {styled, withWrapper} from '../styles/index.js';
+import {
+  expandBorderRadiusStyles,
+  styled,
+  withWrapper,
+} from '../styles/index.js';
 import {OPTION_LIST_SIZE} from './constants.js';
 
 type StyledPropsT = {
@@ -31,10 +35,7 @@ export const StyledList = styled<StyledPropsT>(
       paddingBottom: $theme.sizing.scale300,
       paddingLeft: 0,
       paddingRight: 0,
-      borderTopLeftRadius: $theme.borders.popoverBorderRadius,
-      borderTopRightRadius: $theme.borders.popoverBorderRadius,
-      borderBottomRightRadius: $theme.borders.popoverBorderRadius,
-      borderBottomLeftRadius: $theme.borders.popoverBorderRadius,
+      ...expandBorderRadiusStyles($theme.borders.popoverBorderRadius),
       boxShadow: $theme.lighting.shadow600,
       overflow: 'auto',
       ':focus': {
@@ -183,10 +184,7 @@ export const StyledProfileImgContainer = styled('div', {
 export const StyledProfileImg = styled('img', {
   width: '100%',
   height: '100%',
-  borderTopLeftRadius: '50%',
-  borderTopRightRadius: '50%',
-  borderBottomRightRadius: '50%',
-  borderBottomLeftRadius: '50%',
+  ...expandBorderRadiusStyles('50%'),
 });
 
 export const StyledProfileLabelsContainer = styled<StyledPropsT>(

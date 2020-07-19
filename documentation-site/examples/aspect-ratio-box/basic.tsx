@@ -3,6 +3,7 @@ import {
   AspectRatioBox,
   AspectRatioBoxBody,
 } from 'baseui/aspect-ratio-box';
+import {expandBorderStyles} from 'baseui/styles';
 
 export default () => (
   <React.Fragment>
@@ -14,18 +15,11 @@ export default () => (
         overrides={{
           Block: {
             style: {
-              borderLeftStyle: 'solid',
-              borderRightStyle: 'solid',
-              borderTopStyle: 'solid',
-              borderBottomStyle: 'solid',
-              borderLeftWidth: '2px',
-              borderTopWidth: '2px',
-              borderRightWidth: '2px',
-              borderBottomWidth: '2px',
-              borderLeftColor: `grey`,
-              borderTopColor: `grey`,
-              borderRightColor: `grey`,
-              borderBottomColor: `grey`,
+              ...expandBorderStyles({
+                borderWidth: '2px',
+                borderStyle: 'solid',
+                borderColor: 'grey',
+              }),
             },
           },
         }}
@@ -41,18 +35,11 @@ export default () => (
         overrides={{
           Block: {
             style: {
-              borderLeftStyle: 'solid',
-              borderRightStyle: 'solid',
-              borderTopStyle: 'solid',
-              borderBottomStyle: 'solid',
-              borderLeftWidth: '2px',
-              borderTopWidth: '2px',
-              borderRightWidth: '2px',
-              borderBottomWidth: '2px',
-              borderLeftColor: `grey`,
-              borderTopColor: `grey`,
-              borderRightColor: `grey`,
-              borderBottomColor: `grey`,
+              ...expandBorderStyles({
+                borderWidth: '2px',
+                borderStyle: 'solid',
+                borderColor: 'grey',
+              }),
             },
           },
         }}

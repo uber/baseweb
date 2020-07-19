@@ -7,7 +7,11 @@ LICENSE file in the root directory of this source tree.
 
 /* @flow */
 
-import {styled, expandBorderStyles} from '../styles/index.js';
+import {
+  expandBorderRadiusStyles,
+  expandBorderStyles,
+  styled,
+} from '../styles/index.js';
 
 export const Action = styled<{}>('div', ({$theme}) => ({
   ...$theme.typography.LabelMedium,
@@ -36,22 +40,12 @@ export const HeaderImage = styled<{}>('img', ({$theme}) => ({
 // by using the section tag, we can keep the h1 for the title
 // https://html.spec.whatwg.org/multipage/sections.html#headings-and-sections
 export const Root = styled<{}>('section', ({$theme}) => ({
-  borderLeftWidth: '2px',
-  borderTopWidth: '2px',
-  borderRightWidth: '2px',
-  borderBottomWidth: '2px',
-  borderLeftStyle: 'solid',
-  borderTopStyle: 'solid',
-  borderRightStyle: 'solid',
-  borderBottomStyle: 'solid',
-  borderLeftColor: $theme.colors.borderOpaque,
-  borderRightColor: $theme.colors.borderOpaque,
-  borderTopColor: $theme.colors.borderOpaque,
-  borderBottomColor: $theme.colors.borderOpaque,
-  borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
-  borderTopRightRadius: $theme.borders.surfaceBorderRadius,
-  borderBottomLeftRadius: $theme.borders.surfaceBorderRadius,
-  borderBottomRightRadius: $theme.borders.surfaceBorderRadius,
+  ...expandBorderStyles({
+    borderWidth: '2px',
+    borderStyle: 'solid',
+    borderColor: $theme.colors.borderOpaque,
+  }),
+  ...expandBorderRadiusStyles($theme.borders.surfaceBorderRadius),
   backgroundColor: $theme.colors.backgroundPrimary,
 }));
 
@@ -60,10 +54,7 @@ export const Thumbnail = styled<{}>('img', ({$theme}) => ({
   height: $theme.sizing.scale2400,
   width: $theme.sizing.scale2400,
   objectFit: 'cover',
-  borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
-  borderTopRightRadius: $theme.borders.surfaceBorderRadius,
-  borderBottomLeftRadius: $theme.borders.surfaceBorderRadius,
-  borderBottomRightRadius: $theme.borders.surfaceBorderRadius,
+  ...expandBorderRadiusStyles($theme.borders.surfaceBorderRadius),
   ...expandBorderStyles($theme.borders.border200),
   margin: `0 0 ${$theme.sizing.scale500} ${$theme.sizing.scale500}`,
 }));

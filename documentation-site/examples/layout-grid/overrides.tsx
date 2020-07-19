@@ -1,6 +1,7 @@
 import React from 'react';
 import {useStyletron} from 'baseui';
 import {Grid, Cell} from 'baseui/layout-grid';
+import {expandBorderStyles} from 'baseui/styles';
 
 export default function Scenario() {
   return (
@@ -8,20 +9,12 @@ export default function Scenario() {
       <Grid
         overrides={{
           Grid: {
-            style: ({$theme}) => ({
-              borderLeftWidth: '1px',
-              borderRightWidth: '1px',
-              borderTopWidth: '1px',
-              borderBottomWidth: '1px',
-              borderLeftStyle: 'solid',
-              borderTopStyle: 'solid',
-              borderRightStyle: 'solid',
-              borderBottomStyle: 'solid',
-              borderLeftColor: `${$theme.colors.positive400}`,
-              borderTopColor: `${$theme.colors.positive400}`,
-              borderRightColor: `${$theme.colors.positive400}`,
-              borderBottomColor: `${$theme.colors.positive400}`,
-            }),
+            style: ({$theme}) =>
+              expandBorderStyles({
+                borderWidth: '1px',
+                borderStyle: 'solid',
+                borderColor: $theme.colors.positive400,
+              }),
           },
         }}
       >

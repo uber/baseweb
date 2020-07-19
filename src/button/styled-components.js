@@ -5,7 +5,11 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles/index.js';
+import {
+  expandBorderRadiusStyles,
+  expandBorderStyles,
+  styled,
+} from '../styles/index.js';
 import {KIND, SIZE, SHAPE} from './constants.js';
 import type {SharedStylePropsT} from './types.js';
 
@@ -125,22 +129,13 @@ export const LoadingSpinner = styled<SharedStylePropsT>(
     return {
       height: dimension,
       width: dimension,
-      borderTopLeftRadius: '50%',
-      borderTopRightRadius: '50%',
-      borderBottomRightRadius: '50%',
-      borderBottomLeftRadius: '50%',
-      borderLeftStyle: 'solid',
-      borderTopStyle: 'solid',
-      borderRightStyle: 'solid',
-      borderBottomStyle: 'solid',
-      borderLeftWidth: $theme.sizing.scale0,
-      borderTopWidth: $theme.sizing.scale0,
-      borderRightWidth: $theme.sizing.scale0,
-      borderBottomWidth: $theme.sizing.scale0,
+      ...expandBorderRadiusStyles('50%'),
+      ...expandBorderStyles({
+        borderWidth: $theme.sizing.scale0,
+        borderStyle: 'solid',
+        borderColor: background,
+      }),
       borderTopColor: foreground,
-      borderLeftColor: background,
-      borderBottomColor: background,
-      borderRightColor: background,
       boxSizing: 'border-box',
       display: 'inline-block',
       animationDuration: $theme.animation.timing700,
@@ -209,12 +204,7 @@ function getBorderRadiiStyles({$theme, $size, $shape}) {
     value = '50%';
   }
 
-  return {
-    borderTopRightRadius: value,
-    borderBottomRightRadius: value,
-    borderTopLeftRadius: value,
-    borderBottomLeftRadius: value,
-  };
+  return expandBorderRadiusStyles(value);
 }
 
 function getFontStyles({$theme, $size}) {

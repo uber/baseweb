@@ -18,6 +18,7 @@ import {
   createThemedUseStyletron,
   withWrapper,
 } from '../styled.js';
+import {expandBorderRadiusStyles} from '../util.js';
 import {
   withStyletronProvider,
   withThemeProvider,
@@ -90,12 +91,7 @@ test('styled override prop', () => {
         <StyledMockButton id="testButton2" $style={{color: 'blue'}} />
         <StyledMockButton
           id="testButton3"
-          $style={{
-            borderTopLeftRadius: '2px',
-            borderTopRightRadius: '2px',
-            borderBottomRightRadius: '2px',
-            borderBottomLeftRadius: '2px',
-          }}
+          $style={expandBorderRadiusStyles('2px')}
         />
         <StyledMockButton id="testButton4" $color="red" $style={styleFn} />
         <StyledMockButton id="testButton5" $color="blue" $style={styleFn} />

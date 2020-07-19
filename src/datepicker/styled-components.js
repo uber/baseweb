@@ -5,7 +5,11 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles/index.js';
+import {
+  expandBorderRadiusStyles,
+  expandBorderStyles,
+  styled,
+} from '../styles/index.js';
 import getDayStateCode from './utils/day-state.js';
 import type {SharedStylePropsT} from './types.js';
 
@@ -28,10 +32,7 @@ export const StyledRoot = styled<SharedStylePropsT>('div', props => {
     color: colors.calendarForeground,
     backgroundColor: colors.calendarBackground,
     textAlign: 'center',
-    borderTopLeftRadius: borders.surfaceBorderRadius,
-    borderTopRightRadius: borders.surfaceBorderRadius,
-    borderBottomRightRadius: borders.surfaceBorderRadius,
-    borderBottomLeftRadius: borders.surfaceBorderRadius,
+    ...expandBorderRadiusStyles(borders.surfaceBorderRadius),
     display: 'inline-block',
   };
 });
@@ -82,8 +83,6 @@ export const StyledCalendarHeader = styled<SharedStylePropsT>('div', props => {
     backgroundColor: colors.calendarHeaderBackground,
     borderTopLeftRadius: borders.surfaceBorderRadius,
     borderTopRightRadius: borders.surfaceBorderRadius,
-    borderBottomRightRadius: 0,
-    borderBottomLeftRadius: 0,
     // account for the left/right arrow heights
     minHeight: `calc(${sizing.scale800} + ${sizing.scale0})`,
   };
@@ -583,22 +582,12 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
       paddingBottom: sizing.scale200,
       paddingLeft: sizing.scale200,
       paddingRight: sizing.scale200,
-      borderLeftWidth: '2px',
-      borderRightWidth: '2px',
-      borderTopWidth: '2px',
-      borderBottomWidth: '2px',
-      borderLeftStyle: 'solid',
-      borderRightStyle: 'solid',
-      borderTopStyle: 'solid',
-      borderBottomStyle: 'solid',
-      borderTopColor: colors.mono400,
-      borderBottomColor: colors.mono400,
-      borderRightColor: colors.mono400,
-      borderLeftColor: colors.mono400,
-      borderTopLeftRadius: '100%',
-      borderTopRightRadius: '100%',
-      borderBottomLeftRadius: '100%',
-      borderBottomRightRadius: '100%',
+      ...expandBorderStyles({
+        borderWidth: '2px',
+        borderStyle: 'solid',
+        borderColor: colors.mono400,
+      }),
+      ...expandBorderRadiusStyles('100%'),
       ...(getDayStyles(code, props.$theme)[':after'] || {}),
     },
     ...($range

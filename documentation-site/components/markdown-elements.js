@@ -12,6 +12,7 @@ import * as React from 'react';
 import Head from 'next/head';
 import {Block} from 'baseui/block';
 import {StyledLink} from 'baseui/link';
+import {expandBorderRadiusStyles} from 'baseui/styles';
 import Code from './code';
 import {themedStyled} from '../pages/_app';
 import Link from 'next/link';
@@ -81,10 +82,7 @@ export const UnorderedList = (props: Props) => <ul>{props.children}</ul>;
 
 const InlineCode = themedStyled('code', {
   backgroundColor: 'rgba(27, 31, 35, 0.05)',
-  borderTopLeftRadius: '3px',
-  borderTopRightRadius: '3px',
-  borderBottomRightRadius: '3px',
-  borderBottomLeftRadius: '3px',
+  ...expandBorderRadiusStyles('3px'),
   fontSize: '85%',
   marginLeft: 0,
   marginRight: 0,
@@ -97,10 +95,7 @@ const InlineCode = themedStyled('code', {
 
 const Blockquote = themedStyled('blockquote', {
   backgroundColor: 'rgba(27, 31, 35, 0.03)',
-  borderTopLeftRadius: '3px',
-  borderTopRightRadius: '3px',
-  borderBottomRightRadius: '3px',
-  borderBottomLeftRadius: '3px',
+  ...expandBorderRadiusStyles('3px'),
   marginLeft: 0,
   marginRight: 0,
   marginTop: 0,

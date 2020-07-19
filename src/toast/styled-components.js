@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {styled} from '../styles/index.js';
+import {expandBorderRadiusStyles, styled} from '../styles/index.js';
 import {getSvgStyles} from '../icon/styled-components.js';
 import {KIND, PLACEMENT, TYPE} from './constants.js';
 import type {
@@ -128,10 +128,7 @@ export const Body = styled<SharedStylePropsArgT>('div', props => {
     marginBottom: $theme.sizing.scale300,
     backgroundColor:
       getBackgroundColor($kind, $type, $theme) || $theme.colors.accent,
-    borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
-    borderTopRightRadius: $theme.borders.surfaceBorderRadius,
-    borderBottomRightRadius: $theme.borders.surfaceBorderRadius,
-    borderBottomLeftRadius: $theme.borders.surfaceBorderRadius,
+    ...expandBorderRadiusStyles($theme.borders.surfaceBorderRadius),
     boxShadow: isInline ? 'none' : $theme.lighting.shadow600,
     opacity: $isVisible ? 1 : 0,
     transitionProperty: 'all',

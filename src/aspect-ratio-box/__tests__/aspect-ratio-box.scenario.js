@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
+import {expandBorderStyles} from '../../styles.js';
 import {AspectRatioBox, AspectRatioBoxBody} from '../index.js';
 
 const bodyProps = {
@@ -17,18 +18,11 @@ const bodyProps = {
   overrides: {
     Block: {
       style: {
-        borderLeftStyle: 'solid',
-        borderRightStyle: 'solid',
-        borderTopStyle: 'solid',
-        borderBottomStyle: 'solid',
-        borderLeftWidth: '2px',
-        borderTopWidth: '2px',
-        borderRightWidth: '2px',
-        borderBottomWidth: '2px',
-        borderLeftColor: `grey`,
-        borderTopColor: `grey`,
-        borderRightColor: `grey`,
-        borderBottomColor: `grey`,
+        ...expandBorderStyles({
+          borderWidth: '2px',
+          borderStyle: 'solid',
+          borderColor: 'grey',
+        }),
       },
     },
   },

@@ -18,7 +18,7 @@ import {
 import Search from '../icon/search.js';
 import {Input, SIZE as INPUT_SIZES} from '../input/index.js';
 import {Popover} from '../popover/index.js';
-import {useStyletron} from '../styles/index.js';
+import {expandBorderRadiusStyles, useStyletron} from '../styles/index.js';
 import {Tag} from '../tag/index.js';
 import FilterMenu from './filter-menu.js';
 import {Unstable_DataTable} from './data-table.js';
@@ -115,10 +115,7 @@ function FilterTag(props) {
           overrides={{
             Root: {
               style: {
-                borderTopLeftRadius: '36px',
-                borderTopRightRadius: '36px',
-                borderBottomLeftRadius: '36px',
-                borderBottomRightRadius: '36px',
+                ...expandBorderRadiusStyles('36px'),
                 height: '36px',
                 marginTop: null,
                 marginBottom: theme.sizing.scale500,

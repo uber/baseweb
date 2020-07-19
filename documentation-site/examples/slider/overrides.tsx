@@ -1,5 +1,9 @@
 import * as React from 'react';
 import {Slider} from 'baseui/slider';
+import {
+  expandBorderRadiusStyles,
+  expandBorderStyles,
+} from 'baseui/styles';
 
 export default () => {
   const [value, setValue] = React.useState([70]);
@@ -19,22 +23,12 @@ export default () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            borderTopLeftRadius: '36px',
-            borderTopRightRadius: '36px',
-            borderBottomRightRadius: '36px',
-            borderBottomLeftRadius: '36px',
-            borderLeftStyle: 'solid',
-            borderRightStyle: 'solid',
-            borderTopStyle: 'solid',
-            borderBottomStyle: 'solid',
-            borderLeftWidth: '3px',
-            borderTopWidth: '3px',
-            borderRightWidth: '3px',
-            borderBottomWidth: '3px',
-            borderLeftColor: `#ccc`,
-            borderTopColor: `#ccc`,
-            borderRightColor: `#ccc`,
-            borderBottomColor: `#ccc`,
+            ...expandBorderRadiusStyles('36px'),
+            ...expandBorderStyles({
+              borderWidth: '3px',
+              borderStyle: 'solid',
+              borderColor: '#ccc',
+            }),
             backgroundColor: '#fff',
           }),
         },

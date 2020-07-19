@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {expandBorderStyles} from './baseui/styles';
 import {LightTheme as LT, DarkTheme as DT} from './baseui/themes';
 
 const LightTheme: any = LT;
@@ -133,18 +134,11 @@ const ColorCell: React.FC<{color: string}> = ({color}) => (
           width: '30px',
           height: '18px',
           marginRight: '10px',
-          borderLeftStyle: 'solid',
-          borderRightStyle: 'solid',
-          borderTopStyle: 'solid',
-          borderBottomStyle: 'solid',
-          borderLeftWidth: '1px',
-          borderTopWidth: '1px',
-          borderRightWidth: '1px',
-          borderBottomWidth: '1px',
-          borderLeftColor: `black`,
-          borderTopColor: `black`,
-          borderRightColor: `black`,
-          borderBottomColor: `black`,
+          ...expandBorderStyles({
+            borderWidth: '1px',
+            borderStyle: 'solid',
+            borderColor: 'black',
+          }),
         }}
       />
       {color.replace(/ /g, '')}
@@ -184,18 +178,11 @@ const Themeval: React.FC<{}> = () => {
                 <div
                   style={{
                     backgroundColor: 'white',
-                    borderLeftStyle: 'solid',
-                    borderRightStyle: 'solid',
-                    borderTopStyle: 'solid',
-                    borderBottomStyle: 'solid',
-                    borderLeftWidth: '1px',
-                    borderTopWidth: '1px',
-                    borderRightWidth: '1px',
-                    borderBottomWidth: '1px',
-                    borderLeftColor: `black`,
-                    borderTopColor: `black`,
-                    borderRightColor: `black`,
-                    borderBottomColor: `black`,
+                    ...expandBorderStyles({
+                      borderWidth: '1px',
+                      borderStyle: 'solid',
+                      borderColor: 'black',
+                    }),
                     height: '10px',
                     width: LightTheme.sizing[scale],
                   }}

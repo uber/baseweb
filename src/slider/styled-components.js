@@ -7,7 +7,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import {getTrackBackground} from 'react-range';
 
-import {styled} from '../styles/index.js';
+import {
+  expandBorderRadiusStyles,
+  expandBorderStyles,
+  styled,
+} from '../styles/index.js';
 import type {StylePropsT} from './types.js';
 
 export const Root = styled('div', {position: 'relative', width: '100%'});
@@ -40,10 +44,7 @@ export const InnerTrack = styled<StylePropsT>('div', props => {
   const {colors, borders, sizing, direction} = $theme;
   const borderRadius = $theme.borders.useRoundedCorners ? borders.radius100 : 0;
   return {
-    borderTopLeftRadius: borderRadius,
-    borderTopRightRadius: borderRadius,
-    borderBottomRightRadius: borderRadius,
-    borderBottomLeftRadius: borderRadius,
+    ...expandBorderRadiusStyles(borderRadius),
     background: getTrackBackground({
       values: $value,
       colors:
@@ -107,18 +108,11 @@ export const Thumb = styled<StylePropsT>('div', props => {
     outline: 'none',
     justifyContent: 'center',
     alignItems: 'center',
-    borderLeftWidth: '1px',
-    borderRightWidth: '1px',
-    borderTopWidth: '1px',
-    borderBottomWidth: '1px',
-    borderLeftStyle: 'solid',
-    borderRightStyle: 'solid',
-    borderTopStyle: 'solid',
-    borderBottomStyle: 'solid',
-    borderLeftColor: $theme.colors.mono400,
-    borderRightColor: $theme.colors.mono400,
-    borderTopColor: $theme.colors.mono400,
-    borderBottomColor: $theme.colors.mono400,
+    ...expandBorderStyles({
+      borderWidth: '1px',
+      borderStyle: 'solid',
+      borderColor: $theme.colors.mono400,
+    }),
     boxShadow: props.$isFocusVisible
       ? `0 0 0 3px ${$theme.colors.accent}`
       : '0 1px 4px rgba(0, 0, 0, 0.12)',
@@ -132,10 +126,7 @@ export const InnerThumb = styled<StylePropsT>('div', props => {
   return {
     height: '8px',
     width: '2px',
-    borderTopLeftRadius: '2px',
-    borderTopRightRadius: '2px',
-    borderBottomRightRadius: '2px',
-    borderBottomLeftRadius: '2px',
+    ...expandBorderRadiusStyles('2px'),
     backgroundColor: $isDragged ? $theme.colors.primary : $theme.colors.mono600,
   };
 });

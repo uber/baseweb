@@ -13,11 +13,8 @@ import {
 import type {SharedStylePropsT} from './types.js';
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
-export const StyledTextareaContainer = styled<SharedStylePropsT>(
-  'div',
-  props => ({
-    ...getInputContainerStyles(props),
-  }),
+export const StyledTextareaContainer = styled<SharedStylePropsT>('div', props =>
+  getInputContainerStyles(props),
 );
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745

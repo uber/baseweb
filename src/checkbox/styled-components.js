@@ -6,7 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 
 // @flow
-import {styled, expandBorderStyles} from '../styles/index.js';
+import {
+  expandBorderRadiusStyles,
+  expandBorderStyles,
+  styled,
+} from '../styles/index.js';
 import {STYLE_TYPE} from './constants.js';
 
 import type {SharedStylePropsT} from './types.js';
@@ -192,22 +196,12 @@ export const Checkmark = styled<SharedStylePropsT>('span', props => {
     left: '4px',
     top: '4px',
     boxSizing: 'border-box',
-    borderLeftStyle: 'solid',
-    borderRightStyle: 'solid',
-    borderTopStyle: 'solid',
-    borderBottomStyle: 'solid',
-    borderLeftWidth: '3px',
-    borderRightWidth: '3px',
-    borderTopWidth: '3px',
-    borderBottomWidth: '3px',
-    borderLeftColor: borderColor,
-    borderRightColor: borderColor,
-    borderTopColor: borderColor,
-    borderBottomColor: borderColor,
-    borderTopLeftRadius: borderRadius,
-    borderTopRightRadius: borderRadius,
-    borderBottomRightRadius: borderRadius,
-    borderBottomLeftRadius: borderRadius,
+    ...expandBorderStyles({
+      borderWidth: '3px',
+      borderStyle: 'solid',
+      borderColor: borderColor,
+    }),
+    ...expandBorderRadiusStyles(borderRadius),
     outline:
       $isFocusVisible && $checked
         ? `3px solid ${$theme.colors.accent}`
@@ -263,10 +257,7 @@ export const Toggle = styled<SharedStylePropsT>('div', props => {
       ...expandBorderStyles(props.$theme.borders.border300),
       alignItems: 'center',
       backgroundColor: props.$theme.colors.mono100,
-      borderTopLeftRadius: borderRadius,
-      borderTopRightRadius: borderRadius,
-      borderBottomRightRadius: borderRadius,
-      borderBottomLeftRadius: borderRadius,
+      ...expandBorderRadiusStyles(borderRadius),
       boxShadow: props.$isFocusVisible
         ? `0 0 0 3px ${props.$theme.colors.accent}`
         : props.$theme.lighting.shadow400,
@@ -289,10 +280,7 @@ export const Toggle = styled<SharedStylePropsT>('div', props => {
     }
     return {
       backgroundColor,
-      borderTopLeftRadius: '50%',
-      borderTopRightRadius: '50%',
-      borderBottomRightRadius: '50%',
-      borderBottomLeftRadius: '50%',
+      ...expandBorderRadiusStyles('50%'),
       boxShadow: props.$isFocusVisible
         ? `0 0 0 3px ${props.$theme.colors.accent}`
         : props.$isHovered && !props.$disabled
@@ -332,10 +320,7 @@ export const ToggleInner = styled<SharedStylePropsT>('div', props => {
     return {
       height: props.$theme.sizing.scale300,
       width: props.$theme.sizing.scale0,
-      borderTopLeftRadius: props.$theme.borders.radius100,
-      borderTopRightRadius: props.$theme.borders.radius100,
-      borderBottomRightRadius: props.$theme.borders.radius100,
-      borderBottomLeftRadius: props.$theme.borders.radius100,
+      ...expandBorderRadiusStyles(props.$theme.borders.radius100),
       backgroundColor: backgroundColor(),
     };
   }
@@ -355,10 +340,7 @@ export const ToggleTrack = styled<SharedStylePropsT>('div', props => {
     return ({
       alignItems: 'center',
       backgroundColor: getBackgroundColor(props),
-      borderTopLeftRadius: borderRadius,
-      borderTopRightRadius: borderRadius,
-      borderBottomRightRadius: borderRadius,
-      borderBottomLeftRadius: borderRadius,
+      ...expandBorderRadiusStyles(borderRadius),
       display: 'flex',
       height: props.$theme.sizing.scale600,
       justifyContent: props.$checked ? 'flex-end' : 'flex-start',
@@ -380,10 +362,7 @@ export const ToggleTrack = styled<SharedStylePropsT>('div', props => {
     return {
       alignItems: 'center',
       backgroundColor,
-      borderTopLeftRadius: '7px',
-      borderTopRightRadius: '7px',
-      borderBottomRightRadius: '7px',
-      borderBottomLeftRadius: '7px',
+      ...expandBorderRadiusStyles('7px'),
       display: 'flex',
       height: props.$theme.sizing.scale550,
       marginTop: props.$theme.sizing.scale200,

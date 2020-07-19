@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles/index.js';
+import {expandBorderStyles, styled} from '../styles/index.js';
 import {getSvgStyles} from '../icon/styled-components.js';
 import type {SizeT} from './types.js';
 import {SIZE} from './constants.js';
@@ -64,19 +64,13 @@ export const StyledSpinnerNext = styled<{$size?: SizeT}>(
       animationDuration: $theme.animation.timing1000,
       animationIterationCount: 'infinite',
       animationTimingFunction: 'linear',
-      borderLeftStyle: 'solid',
-      borderRightStyle: 'solid',
-      borderTopStyle: 'solid',
-      borderBottomStyle: 'solid',
+      ...expandBorderStyles({
+        borderWidth: borderWidth,
+        borderStyle: 'solid',
+        borderColor: $theme.colors.backgroundTertiary,
+      }),
       borderRadius: '50%',
       borderTopColor: $theme.colors.contentAccent,
-      borderRightColor: $theme.colors.backgroundTertiary,
-      borderBottomColor: $theme.colors.backgroundTertiary,
-      borderLeftColor: $theme.colors.backgroundTertiary,
-      borderLeftWidth: borderWidth,
-      borderRightWidth: borderWidth,
-      borderTopWidth: borderWidth,
-      borderBottomWidth: borderWidth,
       width: {
         large: $theme.sizing.scale1000,
         medium: $theme.sizing.scale900,

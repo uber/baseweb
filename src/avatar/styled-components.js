@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {styled} from '../styles/index.js';
+import {expandBorderRadiusStyles, styled} from '../styles/index.js';
 import type {
   AvatarStylePropsT,
   RootStylePropsT,
@@ -25,10 +25,7 @@ export const Avatar = styled<AvatarStylePropsT>('img', props => {
   const themedSize = getSize(props);
 
   return {
-    borderTopLeftRadius: '50%',
-    borderTopRightRadius: '50%',
-    borderBottomRightRadius: '50%',
-    borderBottomLeftRadius: '50%',
+    ...expandBorderRadiusStyles('50%'),
     boxSizing: 'border-box',
     display: 'block',
     height: themedSize,
@@ -52,10 +49,7 @@ export const Root = styled<RootStylePropsT>('div', props => {
 
   return ({
     backgroundColor: $didImageFailToLoad ? props.$theme.colors.primary : null,
-    borderTopLeftRadius: '50%',
-    borderTopRightRadius: '50%',
-    borderBottomRightRadius: '50%',
-    borderBottomLeftRadius: '50%',
+    ...expandBorderRadiusStyles('50%'),
     boxSizing: 'border-box',
     display: 'inline-block',
 
