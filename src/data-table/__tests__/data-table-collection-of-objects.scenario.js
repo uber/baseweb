@@ -14,7 +14,6 @@ import {
   NumericalColumn,
   Unstable_StatefulDataTable,
 } from '../index.js';
-
 import graphqlArrayData from './graphql-array-data.js';
 
 type RowDataT = {

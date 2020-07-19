@@ -6,18 +6,19 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-import {ThemeContext} from '../styles/theme-provider.js';
-import type {TreeLabelT, SharedStylePropsT} from './types.js';
-import {StyledIconContainer, StyledItemContent} from './styled-components.js';
-import ChevronRight from '../icon/chevron-right.js';
-import ChevronDown from '../icon/chevron-down.js';
-import ChevronLeft from '../icon/chevron-left.js';
-import BlankIcon from '../icon/blank.js';
+
 import {
   getOverride,
   getOverrideProps,
   getOverrides,
 } from '../helpers/overrides.js';
+import BlankIcon from '../icon/blank.js';
+import ChevronDown from '../icon/chevron-down.js';
+import ChevronLeft from '../icon/chevron-left.js';
+import ChevronRight from '../icon/chevron-right.js';
+import {ThemeContext} from '../styles/theme-provider.js';
+import {StyledIconContainer, StyledItemContent} from './styled-components.js';
+import type {SharedStylePropsT, TreeLabelT} from './types.js';
 
 const TreeLabel: React$ComponentType<TreeLabelT> = ({
   hasChildren,

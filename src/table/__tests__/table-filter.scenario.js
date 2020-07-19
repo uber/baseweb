@@ -7,16 +7,17 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {styled} from '../../styles/index.js';
+
 import {Checkbox} from '../../checkbox/index.js';
+import {styled} from '../../styles/index.js';
 import {
   Filter,
-  StyledTable,
+  StyledBody,
+  StyledCell,
   StyledHead,
   StyledHeadCell,
-  StyledBody,
   StyledRow,
-  StyledCell,
+  StyledTable,
 } from '../index.js';
 
 const FilterCheckbox = props => (

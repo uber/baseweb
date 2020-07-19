@@ -6,17 +6,17 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {styled} from '../styles/index.js';
 import {getSvgStyles} from '../icon/styled-components.js';
+import {styled} from '../styles/index.js';
+import type {ThemeT} from '../styles/types.js';
 import {KIND, PLACEMENT, TYPE} from './constants.js';
 import type {
-  SharedStylePropsArgT,
-  ToasterSharedStylePropsArgT,
   KindTypeT,
   NotificationTypeT,
   PlacementTypeT,
+  SharedStylePropsArgT,
+  ToasterSharedStylePropsArgT,
 } from './types.js';
-import type {ThemeT} from '../styles/types.js';
 
 function getBackgroundColor(
   kind: KindTypeT,

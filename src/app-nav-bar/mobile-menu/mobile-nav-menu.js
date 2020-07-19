@@ -7,9 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+
 import {StatefulMenu} from '../../menu/index.js';
-import MobileNavMenuItem from './mobile-nav-menu-item.js';
 import type {AppNavBarPropsT} from '../types.js';
+import MobileNavMenuItem from './mobile-nav-menu-item.js';
 
 const USER_MENU_ITEM = 'USER_MENU_ITEM';
 const PARENT_MENU_ITEM = 'PARENT_MENU_ITEM';

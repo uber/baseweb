@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import {getMediaQuery} from '../../helpers/responsive-helpers.js';
-import breakpoints from './breakpoints.js';
 import type {MediaQueryT} from '../types.js';
+import breakpoints from './breakpoints.js';
 
 const mediaQuery: MediaQueryT = {
   small: getMediaQuery(breakpoints.small),

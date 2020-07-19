@@ -6,15 +6,15 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-env node */
-import * as React from 'react';
 import {mount, shallow} from 'enzyme';
+import * as React from 'react';
 
 import {
-  StyledRoot,
-  StyledLabel,
+  Checkbox as StatelessCheckbox,
   StyledCheckmark,
   StyledInput,
-  Checkbox as StatelessCheckbox,
+  StyledLabel,
+  StyledRoot,
 } from '../index.js';
 
 describe('Stateless checkbox', function() {

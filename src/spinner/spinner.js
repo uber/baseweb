@@ -7,13 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 
-import {mergeOverrides, getOverrides} from '../helpers/overrides.js';
+import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import Icon from '../icon/icon.js';
-
 import {
-  Svg as StyledSvg,
   StyledActivePath,
   StyledTrackPath,
+  Svg as StyledSvg,
 } from './styled-components.js';
 import type {SpinnerPropsT} from './types.js';
 

@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 /* global document */
 // @flow
 
+import {fireEvent, render} from '@testing-library/react';
 import React from 'react';
-import {render, fireEvent} from '@testing-library/react';
 
 import {Combobox} from '../index.js';
 

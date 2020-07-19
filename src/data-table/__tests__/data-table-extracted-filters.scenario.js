@@ -10,14 +10,12 @@ import * as React from 'react';
 
 import {useStyletron} from '../../styles/index.js';
 import {Label4} from '../../typography/index.js';
-
 import {
-  Unstable_DataTable,
-  Unstable_StatefulContainer,
   CategoricalColumn,
   StringColumn,
+  Unstable_DataTable,
+  Unstable_StatefulContainer,
 } from '../index.js';
-
 import AnimalData from './animal-data.js';
 
 type RowDataT = [string, string, string, string, string, string];

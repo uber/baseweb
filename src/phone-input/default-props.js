@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {
-  SIZE,
   DEFAULT_MAX_DROPDOWN_HEIGHT,
   DEFAULT_MAX_DROPDOWN_WIDTH,
+  SIZE,
 } from './constants.js';
 
 const defaultProps = {

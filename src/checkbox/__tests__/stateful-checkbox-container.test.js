@@ -5,10 +5,10 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
 import {mount} from 'enzyme';
-import {STATE_TYPE} from '../constants.js';
+import * as React from 'react';
 
+import {STATE_TYPE} from '../constants.js';
 import {StatefulContainer} from '../index.js';
 import type {StateReducerT} from '../types.js';
 

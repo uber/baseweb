@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+
 import {styled, withWrapper} from '../styles/index.js';
 import {OPTION_LIST_SIZE} from './constants.js';
 

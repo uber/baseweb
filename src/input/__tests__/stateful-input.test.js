@@ -5,9 +5,10 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+import {mount, shallow} from 'enzyme';
 import * as React from 'react';
-import {shallow, mount} from 'enzyme';
-import {StatefulInput, StyledInput, StatefulContainer} from '../index.js';
+
+import {StatefulContainer, StatefulInput, StyledInput} from '../index.js';
 
 describe('', () => {
   test('basic render', () => {

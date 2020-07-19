@@ -6,17 +6,18 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+
 import {getOverrides} from '../helpers/overrides.js';
+import {forkBlur, forkFocus, isFocusVisible} from '../utils/focusVisible.js';
+import {KIND, VARIANT} from './constants.js';
 import {
   Action as StyledAction,
-  Root as StyledRoot,
   ActionIcon as StyledActionIcon,
+  Root as StyledRoot,
   Text as StyledText,
 } from './styled-components.js';
-import {KIND, VARIANT} from './constants.js';
-import {getTextFromChildren} from './utils.js';
 import type {PropsT, SharedPropsArgT} from './types.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import {getTextFromChildren} from './utils.js';
 
 const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
   const {

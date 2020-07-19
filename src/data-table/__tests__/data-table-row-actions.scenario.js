@@ -8,13 +8,12 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
+import {ArrowUp} from '../../icon/index.js';
 import CategoricalColumn from '../column-categorical.js';
 import NumericalColumn from '../column-numerical.js';
 import StringColumn from '../column-string.js';
 import {NUMERICAL_FORMATS} from '../constants.js';
 import {Unstable_StatefulDataTable} from '../stateful-data-table.js';
-
-import {ArrowUp} from '../../icon/index.js';
 
 type RowDataT = [string, string, number, number, number, number];
 

@@ -8,11 +8,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import type {EmoticonRatingPropsT, RatingStateT} from './types.js';
-import {StyledRoot, StyledEmoticon} from './styled-components.js';
+
 import {getOverrides} from '../helpers/overrides.js';
-import {ARROW_UP, ARROW_DOWN, ARROW_LEFT, ARROW_RIGHT} from './utils.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import {forkBlur, forkFocus, isFocusVisible} from '../utils/focusVisible.js';
+import {StyledEmoticon, StyledRoot} from './styled-components.js';
+import type {EmoticonRatingPropsT, RatingStateT} from './types.js';
+import {ARROW_DOWN, ARROW_LEFT, ARROW_RIGHT, ARROW_UP} from './utils.js';
 
 class EmoticonRating extends React.Component<
   EmoticonRatingPropsT,

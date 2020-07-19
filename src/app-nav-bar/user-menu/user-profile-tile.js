@@ -7,12 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+
 import {Avatar} from '../../avatar/index.js';
 import {LabelMedium, ParagraphSmall} from '../../typography/index.js';
 import {
-  StyledUserProfileTileContainer,
-  StyledUserProfilePictureContainer,
   StyledUserProfileInfoContainer,
+  StyledUserProfilePictureContainer,
+  StyledUserProfileTileContainer,
 } from '../styled-components.js';
 import type {UserMenuPropsT} from '../types.js';
 

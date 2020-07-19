@@ -6,8 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import SelectComponent from './select-component.js';
+
 import MultiValue from './multi-value.js';
+import SelectComponent from './select-component.js';
 import type {PropsT} from './types.js';
 
 function MultiSelect(props: $Shape<PropsT>) {

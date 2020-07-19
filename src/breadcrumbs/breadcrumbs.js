@@ -9,19 +9,19 @@ LICENSE file in the root directory of this source tree.
 
 import React, {Children} from 'react';
 
+import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import ChevronLeft from '../icon/chevron-left.js';
+import ChevronRight from '../icon/chevron-right.js';
 import {LocaleContext} from '../locale/index.js';
 import {ThemeContext} from '../styles/theme-provider.js';
-import ChevronRight from '../icon/chevron-right.js';
-import ChevronLeft from '../icon/chevron-left.js';
-import type {BreadcrumbsPropsT} from './types.js';
 import type {BreadcrumbLocaleT} from './locale.js';
 import {
-  StyledRoot,
-  StyledSeparator,
   StyledList,
   StyledListItem,
+  StyledRoot,
+  StyledSeparator,
 } from './styled-components.js';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import type {BreadcrumbsPropsT} from './types.js';
 
 type LocaleT = {|locale?: BreadcrumbLocaleT|};
 export function BreadcrumbsRoot(props: {|...BreadcrumbsPropsT, ...LocaleT|}) {

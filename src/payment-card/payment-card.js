@@ -5,15 +5,12 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
 import valid from 'card-validator';
-
-import {addGaps, getCaretPosition} from './utils.js';
+import * as React from 'react';
 
 import {getOverrides} from '../helpers/overrides.js';
 import {Input, SIZE} from '../input/index.js';
 import {ThemeContext} from '../styles/theme-provider.js';
-
 import AmexIcon from './icons/amex.js';
 import DinersClubIcon from './icons/dinersclub.js';
 import DiscoverIcon from './icons/discover.js';
@@ -24,10 +21,9 @@ import MaestroIcon from './icons/maestro.js';
 import MastercardIcon from './icons/mastercard.js';
 import UnionPayIcon from './icons/unionpay.js';
 import VisaIcon from './icons/visa.js';
-
 import {IconWrapper as StyledIconWrapper} from './styled-components.js';
-
 import type {PaymentCardPropsT} from './types.js';
+import {addGaps, getCaretPosition} from './utils.js';
 
 const CardTypeToComponent = {
   visa: VisaIcon,

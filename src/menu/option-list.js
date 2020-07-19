@@ -8,9 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {LocaleContext} from '../locale/index.js';
 import {getOverrides} from '../helpers/overrides.js';
-
+import {LocaleContext} from '../locale/index.js';
 import {OPTION_LIST_SIZE} from './constants.js';
 import MaybeChildMenu from './maybe-child-menu.js';
 import {StyledListItem, StyledListItemAnchor} from './styled-components.js';

@@ -5,24 +5,25 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
 import memoize from 'memoize-one';
-// Files
-import {LocaleContext} from '../locale/index.js';
-import {ThemeContext} from '../styles/theme-provider.js';
-import {Select as BaseSelect} from '../select/index.js';
+import * as React from 'react';
+
 import {Button, KIND} from '../button/index.js';
-import {
-  StyledRoot,
-  StyledMaxLabel,
-  StyledDropdownContainer,
-} from './styled-components.js';
+import {getOverrides} from '../helpers/overrides.js';
 import ChevronLeft from '../icon/chevron-left.js';
 import ChevronRight from '../icon/chevron-right.js';
-import {getOverrides} from '../helpers/overrides.js';
-import type {PaginationPropsT} from './types.js';
+// Files
+import {LocaleContext} from '../locale/index.js';
 import type {LocaleT} from '../locale/types.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import {Select as BaseSelect} from '../select/index.js';
+import {ThemeContext} from '../styles/theme-provider.js';
+import {forkBlur, forkFocus, isFocusVisible} from '../utils/focusVisible.js';
+import {
+  StyledDropdownContainer,
+  StyledMaxLabel,
+  StyledRoot,
+} from './styled-components.js';
+import type {PaginationPropsT} from './types.js';
 
 type PageOptionT = {
   label: number,

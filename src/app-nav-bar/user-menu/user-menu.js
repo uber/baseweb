@@ -7,14 +7,15 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {StatefulPopover, PLACEMENT, TRIGGER_TYPE} from '../../popover/index.js';
-import {Button} from '../../button/index.js';
+
 import {Avatar} from '../../avatar/index.js';
+import {Button} from '../../button/index.js';
 import ChevronDownSmallFilled from '../../icon/chevron-down.js';
 import ChevronUpSmallFilled from '../../icon/chevron-up.js';
-import UserMenuDropdown from './user-menu-dropdown.js';
+import {PLACEMENT, StatefulPopover, TRIGGER_TYPE} from '../../popover/index.js';
 import {StyledUserMenuButton} from '../styled-components.js';
 import type {AppNavBarPropsT} from '../types.js';
+import UserMenuDropdown from './user-menu-dropdown.js';
 
 const svgStyleOverride = ({$theme}) => ({paddingLeft: $theme.sizing.scale200});
 

@@ -7,13 +7,13 @@ LICENSE file in the root directory of this source tree.
 
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import * as React from 'react';
 import Document, {Head, Main, NextScript} from 'next/document';
+import * as React from 'react';
 import {Provider as StyletronProvider} from 'styletron-react';
 
 import Favicons from '../components/meta-favicons';
-import {styletron} from '../helpers/styletron';
 import {GA_ID} from '../helpers/ga';
+import {styletron} from '../helpers/styletron';
 
 export default class MyDocument extends Document {
   static getInitialProps(props) {

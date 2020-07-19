@@ -8,24 +8,25 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {Range, useThumbOverlap} from 'react-range';
-import type {PropsT} from './types.js';
-import {
-  isFocusVisible as focusVisible,
-  forkFocus,
-  forkBlur,
-} from '../utils/focusVisible.js';
-import {
-  Root as StyledRoot,
-  Track as StyledTrack,
-  InnerTrack as StyledInnerTrack,
-  Tick as StyledTick,
-  TickBar as StyledTickBar,
-  Thumb as StyledThumb,
-  InnerThumb as StyledInnerThumb,
-  ThumbValue as StyledThumbValue,
-} from './styled-components.js';
+
 import {getOverrides} from '../helpers/overrides.js';
 import {ThemeContext} from '../styles/theme-provider.js';
+import {
+  forkBlur,
+  forkFocus,
+  isFocusVisible as focusVisible,
+} from '../utils/focusVisible.js';
+import {
+  InnerThumb as StyledInnerThumb,
+  InnerTrack as StyledInnerTrack,
+  Root as StyledRoot,
+  Thumb as StyledThumb,
+  ThumbValue as StyledThumbValue,
+  Tick as StyledTick,
+  TickBar as StyledTickBar,
+  Track as StyledTrack,
+} from './styled-components.js';
+import type {PropsT} from './types.js';
 
 // value.length should not be bigger than two
 // because our design doesn't support more than

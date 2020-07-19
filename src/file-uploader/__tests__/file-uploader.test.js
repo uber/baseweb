@@ -6,15 +6,15 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
 import {mount} from 'enzyme';
+import * as React from 'react';
 
+import {Spinner} from '../../spinner/index.js';
 import {
   FileUploader,
   StyledContentMessage,
   StyledErrorMessage,
 } from '../index.js';
-import {Spinner} from '../../spinner/index.js';
 
 describe('FileUploader', () => {
   it('applies expected accessibility attributes to button', () => {

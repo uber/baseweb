@@ -5,11 +5,12 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
 import {mount} from 'enzyme';
-import SelectDropdown from '../dropdown.js';
-import {SIZE, TYPE} from '../constants.js';
+import * as React from 'react';
+
 import {StatefulMenu} from '../../menu/index.js';
+import {SIZE, TYPE} from '../constants.js';
+import SelectDropdown from '../dropdown.js';
 
 jest.mock('../../menu');
 

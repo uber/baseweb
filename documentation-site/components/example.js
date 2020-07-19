@@ -6,18 +6,18 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import {Block} from 'baseui/block';
 import {Button, KIND, SIZE} from 'baseui/button';
 import {ButtonGroup} from 'baseui/button-group';
 import {Card} from 'baseui/card';
-import {Block} from 'baseui/block';
+import * as React from 'react';
 
-import Code from './code';
-import CodeIcon from './code-icon';
+import {useStackBlitz} from '../components/hooks.js';
 //$FlowFixMe
 import {trackEvent} from '../helpers/ga';
+import Code from './code';
+import CodeIcon from './code-icon';
 import {H3} from './markdown-elements';
-import {useStackBlitz} from '../components/hooks.js';
 
 function Source(props: {children: ?React.Node}) {
   if (!props.children || typeof props.children !== 'string') return null;

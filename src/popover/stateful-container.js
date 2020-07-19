@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+
 import {
   ACCESSIBILITY_TYPE,
   PLACEMENT,
@@ -14,10 +15,10 @@ import {
 } from './constants.js';
 import type {
   PopoverPropsWithoutChildrenT,
-  StateT,
-  StatefulPopoverContainerPropsT,
   StateChangeTypeT,
+  StatefulPopoverContainerPropsT,
   StateReducerT,
+  StateT,
 } from './types.js';
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;

@@ -7,23 +7,23 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {List, AutoSizer} from 'react-virtualized';
+import {AutoSizer, List} from 'react-virtualized';
+
+import {getOverrides} from '../helpers/overrides.js';
+import {LocaleContext} from '../locale/index.js';
+import type {LocaleT} from '../locale/types.js';
+import {StyledEmptyState} from '../menu/styled-components.js';
 import defaultProps from './default-props.js';
 import {
-  StyledFlagContainer,
   StyledCountrySelectDropdownContainer as DefaultContainer,
-  StyledCountrySelectDropdownListItem as DefaultListItem,
-  StyledCountrySelectDropdownFlagColumn as DefaultFlagColumn,
-  StyledCountrySelectDropdownNameColumn as DefaultNameColumn,
   StyledCountrySelectDropdownDialcodeColumn as DefaultDialcodeColumn,
+  StyledCountrySelectDropdownFlagColumn as DefaultFlagColumn,
+  StyledCountrySelectDropdownListItem as DefaultListItem,
+  StyledCountrySelectDropdownNameColumn as DefaultNameColumn,
+  StyledFlagContainer,
 } from './styled-components.js';
-import {LocaleContext} from '../locale/index.js';
-import {StyledEmptyState} from '../menu/styled-components.js';
-import {getOverrides} from '../helpers/overrides.js';
-import {iso2FlagEmoji} from './utils.js';
-
 import type {CountrySelectDropdownPropsT} from './types.js';
-import type {LocaleT} from '../locale/types.js';
+import {iso2FlagEmoji} from './utils.js';
 
 CountrySelectDropdown.defaultProps = {
   maxDropdownHeight: defaultProps.maxDropdownHeight,

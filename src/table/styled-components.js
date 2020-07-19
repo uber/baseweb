@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 
-import {styled, withWrapper, expandBorderStyles} from '../styles/index.js';
+import {expandBorderStyles, styled, withWrapper} from '../styles/index.js';
 
 const StyledTableElement = styled<{}>('div', ({$theme}) => {
   return {

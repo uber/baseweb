@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {getOverrides} from '../helpers/overrides.js';
-import type {PropsT} from './types.js';
 import {Root as StyledRoot} from './styled-components.js';
+import type {PropsT} from './types.js';
 
 class HeaderNavigation extends React.Component<PropsT, {}> {
   static defaultProps = {

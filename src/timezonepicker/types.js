@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type {OverrideT} from '../helpers/overrides.js';
 
-import type {OptionT} from '../select/index.js';
+import type {OverrideT} from '../helpers/overrides.js';
 import type {SizeT} from '../input/types.js';
+import type {OptionT} from '../select/index.js';
 
 export type TimezonePickerStateT = {
   /** List of timezones from the IANA database. */

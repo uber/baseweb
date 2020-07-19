@@ -8,12 +8,12 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {FormControl} from '../index.js';
 import {StatefulCheckbox} from '../../checkbox/index.js';
-import {StatefulInput, SIZE} from '../../input/index.js';
-import {StatefulRadioGroup, Radio} from '../../radio/index.js';
-import {StatefulTextarea} from '../../textarea/index.js';
+import {SIZE, StatefulInput} from '../../input/index.js';
+import {Radio, StatefulRadioGroup} from '../../radio/index.js';
 import {StatefulSelect} from '../../select/index.js';
+import {StatefulTextarea} from '../../textarea/index.js';
+import {FormControl} from '../index.js';
 
 export default function Scenario() {
   return (

@@ -6,15 +6,16 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
 import {mount} from 'enzyme';
+import * as React from 'react';
+
 import {
   Calendar,
+  StyledDay,
+  StyledMonth,
   StyledRoot,
   StyledSelectorContainer,
-  StyledMonth,
   StyledWeek,
-  StyledDay,
 } from '../index.js';
 
 describe('Component', () => {

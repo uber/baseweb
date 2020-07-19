@@ -10,12 +10,13 @@ LICENSE file in the root directory of this source tree.
 // virualized example to regress. while this is not an explicit part of baseui's api,
 // pushing a change that would break applications using this example would be quite painful
 import React from 'react';
-import {withStyle} from 'styletron-react';
-import {StatefulMenu, OptionList, StyledList} from '../index.js';
-// eslint-disable-next-line import/extensions
-import List from 'react-virtualized/dist/commonjs/List';
 // eslint-disable-next-line import/extensions
 import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
+// eslint-disable-next-line import/extensions
+import List from 'react-virtualized/dist/commonjs/List';
+import {withStyle} from 'styletron-react';
+
+import {OptionList, StatefulMenu, StyledList} from '../index.js';
 
 const ITEMS = [...new Array(1500)].map((_, index) => ({
   label: `item number: ${index + 1}`,

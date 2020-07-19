@@ -6,11 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 /* global document */
 // @flow
-import * as React from 'react';
 import {mount} from 'enzyme';
-import Select from '../select.js';
-import SelectComponent from '../select-component.js';
+import * as React from 'react';
+
 import {STATE_CHANGE_TYPE, TYPE} from '../constants.js';
+import SelectComponent from '../select-component.js';
+import Select from '../select.js';
 
 describe('Select component', function() {
   let wrapper;

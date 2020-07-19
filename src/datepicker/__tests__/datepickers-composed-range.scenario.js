@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import React, {useState} from 'react';
 
-import {useStyletron} from '../../styles/index.js';
 import {FormControl} from '../../form-control/index.js';
 import ArrowRight from '../../icon/arrow-right.js';
+import {useStyletron} from '../../styles/index.js';
 import {Datepicker, TimePicker} from '../index.js';
 
 const START_DATE = new Date(2019, 3, 1, 12, 0, 0);

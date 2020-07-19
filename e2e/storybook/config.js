@@ -8,15 +8,14 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env browser */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
+import {addDecorator, addParameters, configure} from '@storybook/react';
 import * as React from 'react';
-import {configure, addDecorator, addParameters} from '@storybook/react';
 import {initializeRTL} from 'storybook-addon-rtl';
-
-import {Provider as StyletronProvider} from 'styletron-react';
 import {Client as Styletron} from 'styletron-engine-atomic';
+import {Provider as StyletronProvider} from 'styletron-react';
 
 import {BaseProvider} from '../../src/index.js';
-import {LightThemeMove, DarkThemeMove} from '../../src/themes/index.js';
+import {DarkThemeMove, LightThemeMove} from '../../src/themes/index.js';
 
 initializeRTL();
 

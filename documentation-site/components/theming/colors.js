@@ -6,9 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
-import {useStyletron, expandBorderStyles} from 'baseui/styles';
+import {expandBorderStyles, useStyletron} from 'baseui/styles';
 import {colors} from 'baseui/tokens';
+import * as React from 'react';
+
 import {PropertyCompareTheme} from './common.js';
 
 function getTokenFromCode(code) {

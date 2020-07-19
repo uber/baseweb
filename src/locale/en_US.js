@@ -8,13 +8,13 @@ LICENSE file in the root directory of this source tree.
 
 import accordion from '../accordion/locale.js';
 import breadcrumbs from '../breadcrumbs/locale.js';
-import datepicker from '../datepicker/locale.js';
-import datatable from '../data-table/locale.js';
 import buttongroup from '../button-group/locale.js';
+import datatable from '../data-table/locale.js';
+import datepicker from '../datepicker/locale.js';
+import drawer from '../drawer/locale.js';
 import fileuploader from '../file-uploader/locale.js';
 import menu from '../menu/locale.js';
 import modal from '../modal/locale.js';
-import drawer from '../drawer/locale.js';
 import pagination from '../pagination/locale.js';
 import select from '../select/locale.js';
 import toast from '../toast/locale.js';

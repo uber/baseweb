@@ -8,13 +8,13 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
+import type {CountryIsoT} from '../../phone-input/index.js';
 import {
-  PhoneInput,
   COUNTRIES,
   CountrySelectDropdown,
+  PhoneInput,
   StyledFlag,
 } from '../../phone-input/index.js';
-import type {CountryIsoT} from '../../phone-input/index.js';
 
 function CustomFlag(props: {children: React.Node, $iso: CountryIsoT}) {
   const {children, ...rest} = props;

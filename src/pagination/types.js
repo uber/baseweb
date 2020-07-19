@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import type {OverrideT} from '../helpers/overrides.js';
-import {STATE_CHANGE_TYPE} from './constants.js';
 import {SIZE} from '../input/constants.js';
+import {STATE_CHANGE_TYPE} from './constants.js';
 
 export type LabelsT = {
   prevButton?: string,

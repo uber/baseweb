@@ -11,10 +11,9 @@ import * as React from 'react';
 import {getOverrides} from '../helpers/overrides.js';
 import TriangleDown from '../icon/triangle-down.js';
 import TriangleUp from '../icon/triangle-up.js';
-
 import {SORT_DIRECTION} from './constants.js';
 import {StyledHeadCell, StyledSortableLabel} from './styled-components.js';
-import type {SortDirectionT, HeadCellPropsT} from './types.js';
+import type {HeadCellPropsT, SortDirectionT} from './types.js';
 
 function SortDirectionIcon({direction}: {direction: SortDirectionT}) {
   switch (direction) {

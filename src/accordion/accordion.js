@@ -6,9 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+
 import {getOverrides} from '../helpers/overrides.js';
-import {Root as StyledRoot} from './styled-components.js';
 import {STATE_CHANGE_TYPE} from './constants.js';
+import {Root as StyledRoot} from './styled-components.js';
 import type {
   AccordionPropsT,
   AccordionStateT,

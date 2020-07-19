@@ -7,11 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+
 import {withStyle, withWrapper} from '../styles/index.js';
 import {
-  StyledTable as FlexStyledTable,
-  StyledHeadCell as FlexStyledHeadCell,
   StyledCell as FlexStyledBodyCell,
+  StyledHeadCell as FlexStyledHeadCell,
+  StyledTable as FlexStyledTable,
 } from '../table/index.js';
 
 const StyledTableElement = withStyle<

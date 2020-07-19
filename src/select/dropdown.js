@@ -6,15 +6,16 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+
+import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import {StatefulMenu} from '../menu/index.js';
 import {
-  StyledDropdownContainer,
   StyledDropdown,
+  StyledDropdownContainer,
   StyledDropdownListItem,
   StyledOptionContent,
 } from './styled-components.js';
-import {StatefulMenu} from '../menu/index.js';
 import type {DropdownPropsT, OptionT, ValueT} from './types.js';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 
 function groupOptions(options: ValueT) {
   return options.reduce(

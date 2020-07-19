@@ -6,8 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+
 import {Button} from '../../button/index.js';
-import {Drawer, SIZE, ANCHOR} from '../index.js';
+import {ANCHOR, Drawer, SIZE} from '../index.js';
 
 function Example() {
   const [isOpen, setIsOpen] = React.useState(false);

@@ -5,12 +5,12 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable flowtype/require-valid-file-annotation */
-import {useRef, useState, useEffect, useCallback} from 'react';
 import sdk from '@stackblitz/sdk';
+import {useCallback, useEffect, useRef, useState} from 'react';
 
+import {version} from '../../package.json';
 import {trackEvent} from '../helpers/ga';
 import {sandboxHTML, sandboxIndexJS} from './const';
-import {version} from '../../package.json';
 
 export function useHover() {
   const [value, setValue] = useState(false);

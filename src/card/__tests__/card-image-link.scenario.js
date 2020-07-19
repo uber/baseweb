@@ -8,11 +8,10 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Card, StyledAction, StyledBody} from '../index.js';
 import {StyledLink} from '../../link/index.js';
 import {styled} from '../../styles/index.js';
-
 import {header} from '../images.js';
+import {Card, StyledAction, StyledBody} from '../index.js';
 
 const Container = styled('div', {width: '328px'});
 

@@ -5,12 +5,13 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
-import Popper from 'popper.js';
 import type {Instance as PopperInstance} from 'popper.js';
-import {toPopperPlacement, parsePopperOffset} from './utils.js';
+import Popper from 'popper.js';
+import * as React from 'react';
+
 import {TETHER_PLACEMENT} from './constants.js';
-import type {TetherPropsT, TetherStateT, PopperDataObjectT} from './types.js';
+import type {PopperDataObjectT, TetherPropsT, TetherStateT} from './types.js';
+import {parsePopperOffset, toPopperPlacement} from './utils.js';
 
 class Tether extends React.Component<TetherPropsT, TetherStateT> {
   static defaultProps = {

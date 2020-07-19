@@ -6,10 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 
 // @flow
-import * as React from 'react';
 import {mount} from 'enzyme';
-import {StyledListItem} from '../styled-components.js';
+import * as React from 'react';
+
 import OptionList from '../option-list.js';
+import {StyledListItem} from '../styled-components.js';
 
 const mockItem = {label: 'item1'};
 

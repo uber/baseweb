@@ -6,20 +6,20 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
-import {
-  Root as StyledRoot,
-  List as StyledList,
-  Item as StyledItem,
-  DragHandle as StyledDragHandle,
-  CloseHandle as StyledCloseHandle,
-  Label as StyledLabel,
-} from './styled-components.js';
 import {List as MovableList} from 'react-movable';
-import Grab from '../icon/grab.js';
-import Delete from '../icon/delete.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
+import {getOverrides} from '../helpers/overrides.js';
+import Delete from '../icon/delete.js';
+import Grab from '../icon/grab.js';
+import {forkBlur, forkFocus, isFocusVisible} from '../utils/focusVisible.js';
+import {
+  CloseHandle as StyledCloseHandle,
+  DragHandle as StyledDragHandle,
+  Item as StyledItem,
+  Label as StyledLabel,
+  List as StyledList,
+  Root as StyledRoot,
+} from './styled-components.js';
 import type {ListPropsT, SharedStylePropsArgT} from './types.js';
 
 class StatelessList extends React.Component<

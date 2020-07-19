@@ -6,13 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import type {
-  StateT,
-  StatefulComponentContainerPropsT,
-  StateChangeTypeT,
-  StateReducerT,
-} from './types.js';
 import {arrayMove, arrayRemove} from 'react-movable';
+
+import type {
+  StateChangeTypeT,
+  StatefulComponentContainerPropsT,
+  StateReducerT,
+  StateT,
+} from './types.js';
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 

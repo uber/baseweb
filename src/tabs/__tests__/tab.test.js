@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
 import {mount} from 'enzyme';
-import {StyledTab} from '../index.js';
+import * as React from 'react';
 
+import {StyledTab} from '../index.js';
 import {default as Tab} from '../tab.js';
 
 describe('Tab', () => {

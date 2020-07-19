@@ -6,18 +6,19 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
+import {mount} from 'enzyme';
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import {mount} from 'enzyme';
+
 import {
   KIND,
   PLACEMENT,
-  toaster,
-  ToasterContainer,
-  Toast,
-  StyledRoot,
   StyledBody,
   StyledCloseIcon,
+  StyledRoot,
+  Toast,
+  toaster,
+  ToasterContainer,
 } from '../index.js';
 
 // Mock React 16 portals

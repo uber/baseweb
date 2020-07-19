@@ -6,8 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
-import type {PropsT, DefaultPropsT, StatelessStateT} from './types.js';
+import {isFocusVisible} from '../utils/focusVisible.js';
+import {STYLE_TYPE} from './constants.js';
 import {
   Checkmark as StyledCheckmark,
   Input as StyledInput,
@@ -17,8 +19,7 @@ import {
   ToggleInner as StyledToggleInner,
   ToggleTrack as StyledToggleTrack,
 } from './styled-components.js';
-import {STYLE_TYPE} from './constants.js';
-import {isFocusVisible} from '../utils/focusVisible.js';
+import type {DefaultPropsT, PropsT, StatelessStateT} from './types.js';
 
 class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
   static defaultProps: DefaultPropsT = {

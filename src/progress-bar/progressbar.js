@@ -6,14 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+
 import {getOverrides} from '../helpers/overrides.js';
 import {
-  Root as StyledRoot,
   Bar as StyledBar,
-  Label as StyledLabel,
   BarProgress as StyledBarProgress,
+  Label as StyledLabel,
+  Root as StyledRoot,
 } from './styled-components.js';
-
 import type {ProgressBarPropsT} from './types.js';
 
 class ProgressBar extends React.Component<ProgressBarPropsT> {

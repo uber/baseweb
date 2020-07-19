@@ -8,17 +8,16 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
+import dateFnsAdapter from '../datepicker/utils/date-fns-adapter.js';
+import DateHelpers from '../datepicker/utils/date-helpers.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import {LocaleContext} from '../locale/index.js';
-import {Select, filterOptions} from '../select/index.js';
-import DateHelpers from '../datepicker/utils/date-helpers.js';
-import dateFnsAdapter from '../datepicker/utils/date-fns-adapter.js';
-
-import type {OptionT, OnChangeParamsT} from '../select/index.js';
+import type {OnChangeParamsT, OptionT} from '../select/index.js';
+import {filterOptions, Select} from '../select/index.js';
 import type {
+  TimePickerDefaultPropsT,
   TimePickerPropsT,
   TimePickerStateT,
-  TimePickerDefaultPropsT,
 } from './types.js';
 
 const MINUTE = 60;

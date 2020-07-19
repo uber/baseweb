@@ -5,14 +5,15 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
 import {useStyletron} from 'baseui';
 import Highlight, {defaultProps} from 'prism-react-renderer';
+import * as React from 'react';
 import {lightTheme} from 'react-view';
-//$FlowFixMe
-import darkTheme from './yard/dark-theme';
+
 //$FlowFixMe
 import CodeBox from './code-box';
+//$FlowFixMe
+import darkTheme from './yard/dark-theme';
 
 type PropsT = {
   children: string,

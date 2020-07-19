@@ -5,9 +5,10 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
 import {shallow} from 'enzyme';
-import {StatefulPopover, PLACEMENT, TRIGGER_TYPE} from '../index.js';
+import * as React from 'react';
+
+import {PLACEMENT, StatefulPopover, TRIGGER_TYPE} from '../index.js';
 
 describe('StatefulPopover', () => {
   test('basic render', () => {

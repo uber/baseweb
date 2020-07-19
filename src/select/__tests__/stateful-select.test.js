@@ -5,25 +5,26 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
 import {mount} from 'enzyme';
+import * as React from 'react';
+
+import SearchIconComponent from '../../icon/search.js';
 import {
   StatefulSelect,
   StatefulSelectContainer,
-  StyledRoot,
-  StyledControlContainer,
-  StyledValueContainer,
-  StyledPlaceholder,
-  StyledSingleValue,
-  StyledInputContainer,
-  StyledInput,
-  StyledInputSizer,
-  StyledSelectArrow,
   StyledClearIcon,
-  StyledSearchIconContainer,
+  StyledControlContainer,
+  StyledInput,
+  StyledInputContainer,
+  StyledInputSizer,
   StyledOptionContent,
+  StyledPlaceholder,
+  StyledRoot,
+  StyledSearchIconContainer,
+  StyledSelectArrow,
+  StyledSingleValue,
+  StyledValueContainer,
 } from '../index.js';
-import SearchIconComponent from '../../icon/search.js';
 import Select from '../select.js';
 
 jest.mock('../select', () => jest.fn(() => null));

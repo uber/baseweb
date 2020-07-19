@@ -8,15 +8,15 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import {styled} from '../styles/index.js';
-import type {StyledRootPropsT, StyledRatingItemPropsT} from './types.js';
 import {
-  starSVG,
   angryRatingSVG,
-  sadRatingSVG,
-  neutralRatingSVG,
   happyRatingSVG,
+  neutralRatingSVG,
+  sadRatingSVG,
+  starSVG,
   veryHappyRatingSVG,
 } from './svg-icons.js';
+import type {StyledRatingItemPropsT, StyledRootPropsT} from './types.js';
 
 export const StyledRoot = styled<StyledRootPropsT>('ul', ({$theme}) => {
   return {

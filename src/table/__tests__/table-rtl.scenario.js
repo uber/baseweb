@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
+import {LightTheme, ThemeProvider} from '../../index.js';
 import {Table} from '../index.js';
-import {ThemeProvider, LightTheme} from '../../index.js';
 
 export default function Scenario() {
   return (

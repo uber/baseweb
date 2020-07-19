@@ -9,9 +9,9 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import yargs from 'yargs';
+import {step, Stepper} from '@dubstep/core';
 import chalk from 'chalk';
-import {Stepper, step} from '@dubstep/core';
+import yargs from 'yargs';
 
 import styledV7TypeArguments from './styled-v7-type-arguments.js';
 import styledV8ToThemedStyled from './styled-v8-themedStyled.js';

@@ -7,12 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {StyledLink} from '../../link/index.js';
+
 import ChevronDown from '../../icon/chevron-down.js';
 import Delete from '../../icon/delete.js';
-import Icon from '../../icon/upload.js';
 import UserIcon from '../../icon/overflow.js';
-import {Unstable_AppNavBar as AppNavBar, POSITION} from '../index.js';
+import Icon from '../../icon/upload.js';
+import {StyledLink} from '../../link/index.js';
+import {POSITION, Unstable_AppNavBar as AppNavBar} from '../index.js';
 
 function renderItem(item) {
   return item.label;

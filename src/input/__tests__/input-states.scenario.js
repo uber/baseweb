@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulInput} from '../index.js';
 import {Block} from '../../block/index.js';
 import {Search} from '../../icon/index.js';
+import {StatefulInput} from '../index.js';
 
 export default function Scenario() {
   return (

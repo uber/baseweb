@@ -6,13 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
 import {format} from 'date-fns';
+import React from 'react';
 
 import {StyledLink} from '../../link/index.js';
 import {useStyletron} from '../../styles/index.js';
-
-import {StyledTable, StyledHeadCell, StyledBodyCell} from '../index.js';
+import {StyledBodyCell, StyledHeadCell, StyledTable} from '../index.js';
 import {useCellNavigation} from './shared.js';
 
 // [date, event description]

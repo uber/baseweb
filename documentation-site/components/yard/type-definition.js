@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import * as React from 'react';
 import {useStyletron} from 'baseui';
+import * as React from 'react';
 
 export function resolveToLast(type) {
   switch (type.kind) {

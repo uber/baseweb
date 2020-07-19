@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import Search from '../../icon/search.js';
-import {ListItem, ListItemLabel, ARTWORK_SIZES} from '../index.js';
+import {ARTWORK_SIZES, ListItem, ListItemLabel} from '../index.js';
 
 export default function Scenario() {
   return (

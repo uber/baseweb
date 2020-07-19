@@ -6,15 +6,16 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+
 import {getOverrides} from '../helpers/overrides.js';
-import type {InputPropsT, InternalStateT, AdjoinedT} from './types.js';
-import {getSharedProps} from './utils.js';
 import BaseInput from './base-input.js';
+import {ADJOINED, ENHANCER_POSITION, SIZE} from './constants.js';
 import {
-  Root as StyledRoot,
   InputEnhancer as StyledInputEnhancer,
+  Root as StyledRoot,
 } from './styled-components.js';
-import {SIZE, ADJOINED, ENHANCER_POSITION} from './constants.js';
+import type {AdjoinedT, InputPropsT, InternalStateT} from './types.js';
+import {getSharedProps} from './utils.js';
 
 class Input extends React.Component<InputPropsT, InternalStateT> {
   static defaultProps = {

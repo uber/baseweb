@@ -7,12 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {columns, rows} from './data-table.scenario.js';
-import {Unstable_DataTable} from '../index.js';
-import {ThemeProvider, LightTheme} from '../../index.js';
 
 import Alert from '../../icon/alert.js';
 import Check from '../../icon/check.js';
+import {LightTheme, ThemeProvider} from '../../index.js';
+import {Unstable_DataTable} from '../index.js';
+import {columns, rows} from './data-table.scenario.js';
 
 const rowActions = [
   {

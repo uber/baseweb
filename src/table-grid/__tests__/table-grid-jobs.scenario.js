@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
 import {format} from 'date-fns';
+import React from 'react';
 
 import {Button} from '../../button/index.js';
 import {Heading, HeadingLevel} from '../../heading/index.js';
@@ -16,11 +16,10 @@ import ChevronRight from '../../icon/chevron-right.js';
 import Overflow from '../../icon/overflow.js';
 import {StyledLink} from '../../link/index.js';
 import {StatefulMenu} from '../../menu/index.js';
-import {StatefulPopover, PLACEMENT} from '../../popover/index.js';
-import {styled, withStyle, useStyletron} from '../../styles/index.js';
+import {PLACEMENT, StatefulPopover} from '../../popover/index.js';
+import {styled, useStyletron, withStyle} from '../../styles/index.js';
 import {Tag} from '../../tag/index.js';
-
-import {StyledTable, StyledHeadCell, StyledBodyCell} from '../index.js';
+import {StyledBodyCell, StyledHeadCell, StyledTable} from '../index.js';
 import {useCellNavigation} from './shared.js';
 
 type StatusT = 'running' | 'passed' | 'failed';

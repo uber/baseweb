@@ -7,9 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+
+import {isFocusVisible} from '../utils/focusVisible.js';
 import {KIND} from './constants.js';
 import {StyledMainMenuItem} from './styled-components.js';
-import {isFocusVisible} from '../utils/focusVisible.js';
 import type {MainNavItemT, UserNavItemT} from './types.js';
 
 export default class MenuItem extends React.Component<

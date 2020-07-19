@@ -10,7 +10,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 
 import {StatefulPopover} from '../../popover/index.js';
-import {StatefulMenu, NestedMenus} from '../index.js';
+import {NestedMenus, StatefulMenu} from '../index.js';
 
 const OPEN_RECENT = 'Open Recent ->';
 const NEW_BREAKPOINT = 'New Breakpoint ->';

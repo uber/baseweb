@@ -6,11 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {styled, expandBorderStyles} from '../styles/index.js';
-
+import {expandBorderStyles, styled} from '../styles/index.js';
 import type {
-  StyledContentPropsT,
   StyledArtworkContainerPropsT,
+  StyledContentPropsT,
 } from './types.js';
 import {artworkSizeToValue} from './utils.js';
 

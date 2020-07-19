@@ -5,9 +5,9 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import colorTokens from './color-tokens.js';
 import {defaultFontTokens} from '../shared/typography.js';
 import type {PrimitivesT} from '../types.js';
+import colorTokens from './color-tokens.js';
 
 // We don't use this ourselves. We provide it for backward compatability.
 // People may have used it to create their own custom theme.

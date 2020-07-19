@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
 import {mount} from 'enzyme';
+import * as React from 'react';
 
-import {StatefulRadioGroup, Radio} from '../index.js';
+import {Radio, StatefulRadioGroup} from '../index.js';
 
 describe('radio-group', () => {
   it('sets clicked child checked', () => {

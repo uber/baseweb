@@ -8,10 +8,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {ORIENTATION, FILL, STATE_CHANGE_TYPE} from './constants.js';
 
 import type {OverrideT} from '../helpers/overrides.js';
 import type {IconPropsT} from '../icon/types.js';
+import {FILL, ORIENTATION, STATE_CHANGE_TYPE} from './constants.js';
 
 export type OrientationT = $Values<typeof ORIENTATION>;
 export type FillT = $Values<typeof FILL>;

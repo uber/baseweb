@@ -10,7 +10,6 @@ import * as React from 'react';
 
 import Alert from '../../icon/alert.js';
 import Check from '../../icon/check.js';
-
 import BooleanColumn from '../column-boolean.js';
 import NumericalColumn from '../column-numerical.js';
 import {Unstable_StatefulDataTable} from '../stateful-data-table.js';

@@ -7,9 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {ALIGNMENT, BEHAVIOR} from './constants.js';
 
 import type {OverrideT} from '../helpers/overrides.js';
+import {ALIGNMENT, BEHAVIOR} from './constants.js';
 
 export type ResponsiveT<T> = T | Array<T>;
 

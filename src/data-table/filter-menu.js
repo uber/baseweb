@@ -7,18 +7,17 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
+
 import {Button, SHAPE, SIZE} from '../button/index.js';
 import {Filter as FilterIcon} from '../icon/index.js';
 import {Input, SIZE as INPUT_SIZE} from '../input/index.js';
-import {Popover, PLACEMENT} from '../popover/index.js';
+import {PLACEMENT, Popover} from '../popover/index.js';
 import {useStyletron} from '../styles/index.js';
+import {isFocusVisible} from '../utils/focusVisible.js';
 import getBuiId from '../utils/get-bui-id.js';
-
 import {COLUMNS} from './constants.js';
 import {matchesQuery} from './text-search.js';
 import type {ColumnT} from './types.js';
-
-import {isFocusVisible} from '../utils/focusVisible.js';
 
 function ColumnIcon(props: {column: ColumnT<>}) {
   if (props.column.kind === COLUMNS.BOOLEAN) {

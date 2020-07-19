@@ -9,17 +9,16 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {useStyletron} from '../../styles/index.js';
-
 import {
   AnchorColumn,
   BooleanColumn,
   CategoricalColumn,
+  COLUMNS,
   CustomColumn,
   DatetimeColumn,
+  NUMERICAL_FORMATS,
   NumericalColumn,
   StringColumn,
-  COLUMNS,
-  NUMERICAL_FORMATS,
   Unstable_StatefulDataTable,
 } from '../index.js';
 

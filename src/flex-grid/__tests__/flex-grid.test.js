@@ -6,11 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
 import {mount} from 'enzyme';
+import * as React from 'react';
 
-import FlexGrid, {BaseFlexGrid} from '../flex-grid.js';
 import {camelToKebab} from '../../helpers/strings.js';
+import FlexGrid, {BaseFlexGrid} from '../flex-grid.js';
 
 describe('BaseFlexGrid', () => {
   it('renders', () => {

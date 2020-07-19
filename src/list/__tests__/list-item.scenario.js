@@ -12,7 +12,7 @@ import {Button} from '../../button/index.js';
 import Check from '../../icon/check.js';
 import ChevronRight from '../../icon/chevron-right.js';
 import Search from '../../icon/search.js';
-import {ListItem, ListItemLabel, ARTWORK_SIZES} from '../index.js';
+import {ARTWORK_SIZES, ListItem, ListItemLabel} from '../index.js';
 
 export default function Scenario() {
   return (

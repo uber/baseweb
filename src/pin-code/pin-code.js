@@ -8,15 +8,16 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import MultiRef from 'react-multi-ref';
-import defaultProps from './default-props.js';
-import {
-  StyledRoot,
-  StyledInputOverrideRoot,
-  StyledInputOverrideInput,
-} from './styled-components.js';
-import type {PropsT, StateT} from './types.js';
+
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import {Input as DefaultInput} from '../input/index.js';
+import defaultProps from './default-props.js';
+import {
+  StyledInputOverrideInput,
+  StyledInputOverrideRoot,
+  StyledRoot,
+} from './styled-components.js';
+import type {PropsT, StateT} from './types.js';
 
 export default class PinCode extends React.Component<PropsT, StateT> {
   static defaultProps = defaultProps;

@@ -5,11 +5,12 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
 import {mount} from 'enzyme';
+import * as React from 'react';
+
+import SelectComponent from '../select-component.js';
 import SingleSelect from '../single-select.js';
 import SingleValue from '../value.js';
-import SelectComponent from '../select-component.js';
 
 describe('SingleSelect component', function() {
   let wrapper;

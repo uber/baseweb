@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+
 import {getOverrides} from '../helpers/overrides.js';
 import {StyledProgressSteps} from './styled-components.js';
 import type {ProgressStepsPropsT, StepPropsT} from './types.js';

@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable import/prefer-default-export */
-import {ARROW_SIZE, POPOVER_MARGIN, PLACEMENT} from './constants.js';
+import {ARROW_SIZE, PLACEMENT, POPOVER_MARGIN} from './constants.js';
 import type {OffsetT, PopoverPlacementT} from './types.js';
 
 const OPPOSITE_POSITIONS = {

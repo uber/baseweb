@@ -7,10 +7,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {MenuAdapter, ListItemLabel, ARTWORK_SIZES} from '../../list/index.js';
+
 import ArrowLeft from '../../icon/arrow-left.js';
-import UserProfileTile from '../user-menu/user-profile-tile.js';
+import {ARTWORK_SIZES, ListItemLabel, MenuAdapter} from '../../list/index.js';
 import {StyledUserMenuListItem} from '../styled-components.js';
+import UserProfileTile from '../user-menu/user-profile-tile.js';
 
 // eslint-disable-next-line flowtype/no-weak-types
 export default React.forwardRef<{item: any}, HTMLLIElement>((props, ref) => {

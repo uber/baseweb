@@ -6,18 +6,18 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+
+import {getOverrides} from '../helpers/overrides.js';
+import {forkBlur, forkFocus, isFocusVisible} from '../utils/focusVisible.js';
+import ButtonInternals from './button-internals.js';
+import {defaultProps} from './default-props.js';
 import {
   BaseButton as StyledBaseButton,
   LoadingSpinner as StyledLoadingSpinner,
   LoadingSpinnerContainer as StyledLoadingSpinnerContainer,
 } from './styled-components.js';
-import {getSharedProps} from './utils.js';
-import ButtonInternals from './button-internals.js';
-import {defaultProps} from './default-props.js';
-import {getOverrides} from '../helpers/overrides.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
-
 import type {ButtonPropsT} from './types.js';
+import {getSharedProps} from './utils.js';
 
 class Button extends React.Component<
   // eslint-disable-next-line flowtype/no-weak-types

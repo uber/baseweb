@@ -8,7 +8,8 @@ LICENSE file in the root directory of this source tree.
 /* global window */
 
 import React from 'react';
-import {StatefulInput, SIZE} from '../index.js';
+
+import {SIZE, StatefulInput} from '../index.js';
 
 export default function Scenario() {
   return (

@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import type {TreeNodeT, TreeNodeIdT} from './types.js';
+import type {TreeNodeIdT, TreeNodeT} from './types.js';
 
 const getLastLeafId = (
   node: TreeNodeT<>,

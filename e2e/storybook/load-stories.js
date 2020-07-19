@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 /* global module */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import React from 'react';
 import {storiesOf} from '@storybook/react';
+import React from 'react';
 
 import scenarios from '../../src/**/*.scenario.js';
 

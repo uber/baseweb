@@ -7,15 +7,16 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React, {useState} from 'react';
+
 import {Button} from '../../button/index.js';
-import {StatefulSelect} from '../index.js';
 import {
   Modal,
-  ModalHeader,
   ModalBody,
-  ModalFooter,
   ModalButton,
+  ModalFooter,
+  ModalHeader,
 } from '../../modal/index.js';
+import {StatefulSelect} from '../index.js';
 
 export default function SelectInModal() {
   const [isOpen, setIsOpen] = useState(false);

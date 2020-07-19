@@ -9,13 +9,12 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {Checkbox} from '../checkbox/index.js';
-import {useStyletron} from '../styles/index.js';
 import ChevronDown from '../icon/chevron-down.js';
 import ChevronUp from '../icon/chevron-up.js';
-
+import {useStyletron} from '../styles/index.js';
+import {isFocusVisible} from '../utils/focusVisible.js';
 import {SORT_DIRECTIONS} from './constants.js';
 import type {SortDirectionsT} from './types.js';
-import {isFocusVisible} from '../utils/focusVisible.js';
 
 type HeaderCellPropsT = {|
   index: number,

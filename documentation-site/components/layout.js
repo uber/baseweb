@@ -6,22 +6,22 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
 import {MDXProvider} from '@mdx-js/tag';
 import {Block} from 'baseui/block';
 import {Button, KIND, SIZE} from 'baseui/button';
+import * as React from 'react';
 
-import TableOfContents from './table-of-contents';
-import {themedStyled} from '../pages/_app';
-import MarkdownElements from './markdown-elements';
-import Sidebar from './sidebar';
-import HeaderNavigation from './header-navigation';
-import Footer from './footer';
-import PencilIcon from './pencil-icon';
-import Routes from '../routes';
-import DirectionContext from '../components/direction-context';
 import ComponentSizes from '../../component-sizes.json';
+import DirectionContext from '../components/direction-context';
+import {themedStyled} from '../pages/_app';
+import Routes from '../routes';
+import Footer from './footer';
+import HeaderNavigation from './header-navigation';
+import MarkdownElements from './markdown-elements';
+import PencilIcon from './pencil-icon';
+import Sidebar from './sidebar';
 import SkipToContent from './skip-to-content';
+import TableOfContents from './table-of-contents';
 
 const GH_URL =
   'https://github.com/uber/baseweb/edit/master/documentation-site/pages';

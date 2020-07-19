@@ -8,21 +8,20 @@ LICENSE file in the root directory of this source tree.
 
 import React, {useState} from 'react';
 
-import {
-  StyledRoot,
-  StyledFlagContainer,
-  StyledCountrySelectDropdownListItem as DefaultListItem,
-  StyledCountrySelectDropdownFlagColumn as DefaultFlagColumn,
-  StyledCountrySelectDropdownNameColumn as DefaultNameColumn,
-  StyledCountrySelectDropdownDialcodeColumn as DefaultDialcodeColumn,
-} from './styled-components.js';
-import {SingleSelect as DefaultSelect} from '../select/index.js';
-import {PLACEMENT} from '../popover/index.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import {PLACEMENT} from '../popover/index.js';
+import {SingleSelect as DefaultSelect} from '../select/index.js';
 import defaultProps from './default-props.js';
+import {
+  StyledCountrySelectDropdownDialcodeColumn as DefaultDialcodeColumn,
+  StyledCountrySelectDropdownFlagColumn as DefaultFlagColumn,
+  StyledCountrySelectDropdownListItem as DefaultListItem,
+  StyledCountrySelectDropdownNameColumn as DefaultNameColumn,
+  StyledFlagContainer,
+  StyledRoot,
+} from './styled-components.js';
+import type {CountrySelectPropsT, CountryT} from './types.js';
 import {iso2FlagEmoji} from './utils.js';
-
-import type {CountryT, CountrySelectPropsT} from './types.js';
 
 CountryPicker.defaultProps = {
   disabled: defaultProps.disabled,

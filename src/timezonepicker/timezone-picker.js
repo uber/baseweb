@@ -18,7 +18,6 @@ import {formatZonedTime} from 'timezone-support/dist/parse-format.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import {LocaleContext} from '../locale/index.js';
 import {Select} from '../select/index.js';
-
 import type {TimezonePickerPropsT, TimezonePickerStateT} from './types.js';
 
 class TimezonePicker extends React.Component<

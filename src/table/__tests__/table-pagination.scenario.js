@@ -13,8 +13,7 @@ import {Button, KIND} from '../../button/index.js';
 import TriangleDown from '../../icon/triangle-down.js';
 import {StatefulMenu} from '../../menu/index.js';
 import {Pagination} from '../../pagination/index.js';
-import {StatefulPopover, PLACEMENT} from '../../popover/index.js';
-
+import {PLACEMENT, StatefulPopover} from '../../popover/index.js';
 import {Table} from '../index.js';
 
 const COLUMNS = [...new Array(5)].map(() => 'Label');

@@ -7,14 +7,14 @@ LICENSE file in the root directory of this source tree.
 /* global document */
 // @flow
 
-import React from 'react';
-import {render, fireEvent} from '@testing-library/react';
+import {fireEvent, render} from '@testing-library/react';
 import isEqual from 'date-fns/isEqual/index.js';
 import isSameDay from 'date-fns/isSameDay/index.js';
 import isSameHour from 'date-fns/isSameHour/index.js';
 import isSameMinute from 'date-fns/isSameMinute/index.js';
+import React from 'react';
 
-import {DatetimeColumn, DATETIME_OPERATIONS} from '../index.js';
+import {DATETIME_OPERATIONS, DatetimeColumn} from '../index.js';
 
 const padZero = n => (n < 10 ? `0${n}` : n);
 

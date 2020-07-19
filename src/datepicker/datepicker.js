@@ -7,16 +7,16 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 
-import {MaskedInput} from '../input/index.js';
-import {Popover, PLACEMENT} from '../popover/index.js';
-import Calendar from './calendar.js';
-import {getOverrides} from '../helpers/overrides.js';
 import getInterpolatedString from '../helpers/i18n-interpolation.js';
+import {getOverrides} from '../helpers/overrides.js';
+import {MaskedInput} from '../input/index.js';
 import {LocaleContext} from '../locale/index.js';
+import {PLACEMENT, Popover} from '../popover/index.js';
+import Calendar from './calendar.js';
 import {StyledInputWrapper} from './styled-components.js';
 import type {DatepickerPropsT} from './types.js';
-import DateHelpers from './utils/date-helpers.js';
 import dateFnsAdapter from './utils/date-fns-adapter.js';
+import DateHelpers from './utils/date-helpers.js';
 
 type StateT = {|
   calendarFocused: boolean,

@@ -7,8 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import Accordion from '../stateless-accordion.js';
+
 import Panel from '../panel.js';
+import Accordion from '../stateless-accordion.js';
 
 export default function Scenario() {
   const [expanded, setExpanded] = React.useState(['L1', 'L2']);

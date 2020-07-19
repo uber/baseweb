@@ -6,11 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import * as React from 'react';
 import {Block} from 'baseui/block';
-import Link from 'next/link';
-import {Card, StyledBody, StyledAction, StyledTitle} from 'baseui/card';
 import {Button, KIND} from 'baseui/button';
+import {Card, StyledAction, StyledBody, StyledTitle} from 'baseui/card';
+import Link from 'next/link';
+import * as React from 'react';
+
 import {themedStyled} from '../pages/_app';
 import posts from '../posts';
 

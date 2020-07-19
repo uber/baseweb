@@ -6,18 +6,19 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+
 // Files
 import getBuiId from '../utils/get-bui-id.js';
-import {STATE_CHANGE_TYPES, KEY_STRINGS} from './constants.js';
-import {scrollItemIntoView} from './utils.js';
+import {KEY_STRINGS, STATE_CHANGE_TYPES} from './constants.js';
 // Types
 import type {
-  StatefulContainerPropsT,
-  StatefulContainerStateT,
   GetRequiredItemPropsFnT,
   RenderPropsT,
+  StatefulContainerPropsT,
+  StatefulContainerStateT,
   StateReducerFnT,
 } from './types.js';
+import {scrollItemIntoView} from './utils.js';
 
 export default class MenuStatefulContainer extends React.Component<
   StatefulContainerPropsT,

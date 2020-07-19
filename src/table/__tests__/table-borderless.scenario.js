@@ -10,12 +10,12 @@ import * as React from 'react';
 import {withStyle} from 'styletron-react';
 
 import {
-  StyledTable,
-  StyledHead,
   StyledBody,
-  StyledRow,
   StyledCell,
+  StyledHead,
   StyledHeadCell,
+  StyledRow,
+  StyledTable,
 } from '../index.js';
 
 const BorderlessTable = withStyle(StyledTable, {

@@ -6,13 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React, {useState} from 'react';
+import MomentUtils from '@date-io/moment';
 // eslint-disable-next-line import/extensions
 import startOfDay from 'date-fns/startOfDay';
+import React, {useState} from 'react';
 
-import {TimePicker} from '../index.js';
 import {SIZE} from '../../input/index.js';
-import MomentUtils from '@date-io/moment';
+import {TimePicker} from '../index.js';
 const momentAdapter = new MomentUtils({});
 
 const MIDNIGHT = startOfDay(new Date(2019, 3, 19));

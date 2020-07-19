@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {H6, H5, H4, H3, H2, H1} from '../index.js';
+import {H1, H2, H3, H4, H5, H6} from '../index.js';
 
 const textString = 'We ignite opportunity by setting the world in motion.';
 

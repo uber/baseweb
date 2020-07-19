@@ -6,8 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {StyledInput, StyledInputSizer} from './styled-components.js';
+
 import {getOverrides} from '../helpers/overrides.js';
+import {StyledInput, StyledInputSizer} from './styled-components.js';
 import type {AutosizeInputPropsT, AutosizeInputStateT} from './types.js';
 
 export default class AutosizeInput extends React.Component<

@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Tag, KIND, VARIANT} from '../index.js';
+import {KIND, Tag, VARIANT} from '../index.js';
 
 // eslint-disable-next-line flowtype/no-weak-types
 const Row = ({kind, color}: {kind: any, color: string}) => (

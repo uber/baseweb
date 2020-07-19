@@ -7,9 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {ThemeProvider, LightTheme} from '../../index.js';
-import MenuScenario from './menu.scenario.js';
+
+import {LightTheme, ThemeProvider} from '../../index.js';
 import MenuNestedScenario from './menu-child.scenario.js';
+import MenuScenario from './menu.scenario.js';
 
 export default function Scenario() {
   return (

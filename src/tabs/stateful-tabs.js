@@ -6,12 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import Tabs from './tabs.js';
+
 import {STATE_CHANGE_TYPE} from './constants.js';
+import Tabs from './tabs.js';
 import type {
+  StateChangeTypeT,
   StatefulTabsPropsT,
   StatefulTabsStateT,
-  StateChangeTypeT,
 } from './types.js';
 
 export default class StatefulTabs extends React.Component<

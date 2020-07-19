@@ -11,10 +11,10 @@ import * as React from 'react';
 import {Button} from '../../button/index.js';
 import {
   Modal,
-  ModalHeader,
   ModalBody,
-  ModalFooter,
   ModalButton,
+  ModalFooter,
+  ModalHeader,
   SIZE,
 } from '../index.js';
 

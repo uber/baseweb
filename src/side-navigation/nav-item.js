@@ -7,8 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+
 import {getOverrides} from '../helpers/overrides.js';
-import {StyledNavLink, StyledNavItem} from './styled-components.js';
+import {StyledNavItem, StyledNavLink} from './styled-components.js';
 import type {NavItemPropsT} from './types.js';
 
 class NavItem extends React.Component<NavItemPropsT> {

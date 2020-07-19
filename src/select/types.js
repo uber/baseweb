@@ -9,8 +9,8 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import type {OverrideT} from '../helpers/overrides.js';
-import {STATE_CHANGE_TYPE, SIZE, TYPE} from './constants.js';
 import type {OnItemSelectFnT} from '../menu/types.js';
+import {SIZE, STATE_CHANGE_TYPE, TYPE} from './constants.js';
 
 export type ChangeActionT = $Keys<typeof STATE_CHANGE_TYPE>;
 export type SizeT = $Keys<typeof SIZE>;

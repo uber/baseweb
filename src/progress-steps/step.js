@@ -8,17 +8,17 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+
 import {getOverrides} from '../helpers/overrides.js';
 import {
-  StyledStep,
+  StyledContent,
+  StyledContentDescription,
+  StyledContentTail,
+  StyledContentTitle,
   StyledIcon,
   StyledInnerIcon,
-  StyledContent,
-  StyledContentTitle,
-  StyledContentTail,
-  StyledContentDescription,
+  StyledStep,
 } from './styled-components.js';
-
 import type {StepPropsT} from './types.js';
 
 function Step({

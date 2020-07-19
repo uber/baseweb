@@ -7,8 +7,8 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import codemod from './v9-theme-scale.js';
 import {Fixture} from './test-utilities.js';
+import codemod from './v9-theme-scale.js';
 
 async function transform(content) {
   const fixture = new Fixture();

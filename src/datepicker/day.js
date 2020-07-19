@@ -6,14 +6,15 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {StyledDay} from './styled-components.js';
-import dateFnsAdapter from './utils/date-fns-adapter.js';
-import DateHelpers from './utils/date-helpers.js';
+
 import {getOverrides} from '../helpers/overrides.js';
-import type {DayPropsT, DayStateT} from './types.js';
 import {LocaleContext} from '../locale/index.js';
 import type {LocaleT} from '../locale/types.js';
 import {isFocusVisible} from '../utils/focusVisible.js';
+import {StyledDay} from './styled-components.js';
+import type {DayPropsT, DayStateT} from './types.js';
+import dateFnsAdapter from './utils/date-fns-adapter.js';
+import DateHelpers from './utils/date-helpers.js';
 
 export default class Day<T = Date> extends React.Component<
   DayPropsT<T>,

@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
 import {mount} from 'enzyme';
+import * as React from 'react';
 
-import {StatefulContainer, MODE} from '../index.js';
+import {MODE, StatefulContainer} from '../index.js';
 
 describe('ButtonGroup StatefulContainer', () => {
   it('provides expected props to children render function', () => {

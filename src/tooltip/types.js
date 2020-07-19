@@ -9,19 +9,19 @@ LICENSE file in the root directory of this source tree.
 import type {
   AccessibilityTypeT,
   BasePopoverPropsT as BaseTooltipPropsT,
-  ChildT,
   ChildrenT,
+  ChildT,
   ContentRenderPropT,
   OverridesT,
   PopoverPlacementT as TooltipPlacementT,
   PopoverPropsT as TooltipPropsT,
   PopoverPropsWithoutChildrenT as TooltipPropsWithoutChildrenT,
   StateChangeTypeT,
-  StateT,
   StatefulContentRenderPropT,
-  StatefulPopoverPropsT as StatefulTooltipPropsT,
   StatefulPopoverContainerPropsT as StatefulTooltipContainerPropsT,
+  StatefulPopoverPropsT as StatefulTooltipPropsT,
   StateReducerT,
+  StateT,
   TriggerTypeT,
 } from '../popover/types.js';
 

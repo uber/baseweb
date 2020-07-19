@@ -7,9 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 // Styled elements
 import * as React from 'react';
-import {Link} from './styled-components.js';
+
 import {withWrapper} from '../styles/index.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import {forkBlur, forkFocus, isFocusVisible} from '../utils/focusVisible.js';
+import {Link} from './styled-components.js';
 
 function LinkFocus(props) {
   const [focusVisible, setFocusVisible] = React.useState(false);

@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {LightTheme} from '../themes/index.js';
 
+import {LightTheme} from '../themes/index.js';
 import type {ThemeT} from './types.js';
 
 export const ThemeContext: React.Context<ThemeT> = React.createContext(

@@ -6,9 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 
 // @flow
-import {styled, expandBorderStyles} from '../styles/index.js';
+import {expandBorderStyles, styled} from '../styles/index.js';
 import {STYLE_TYPE} from './constants.js';
-
 import type {SharedStylePropsT} from './types.js';
 
 function getBorderColor(props) {

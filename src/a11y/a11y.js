@@ -7,14 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* global document cancelIdleCallback requestIdleCallback */
 
-import * as React from 'react';
 import axe from 'axe-core';
+import * as React from 'react';
 
-import {Layer, TetherBehavior, TETHER_PLACEMENT} from '../layer/index.js';
-import {Paragraph3, Caption1} from '../typography/index.js';
+import {Layer, TETHER_PLACEMENT, TetherBehavior} from '../layer/index.js';
 import {styled} from '../styles/index.js';
 import {ThemeContext} from '../styles/theme-provider.js';
-
+import {Caption1, Paragraph3} from '../typography/index.js';
 import type {ViolationPropsT} from './types.js';
 
 function validateNode(node) {

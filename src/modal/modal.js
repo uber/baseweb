@@ -9,27 +9,26 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 
-import {LocaleContext} from '../locale/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {Layer} from '../layer/index.js';
-import {SIZE, ROLE, CLOSE_SOURCE} from './constants.js';
+import {LocaleContext} from '../locale/index.js';
+import {forkBlur, forkFocus, isFocusVisible} from '../utils/focusVisible.js';
+import {CloseIcon} from './close-icon.js';
+import {CLOSE_SOURCE, ROLE, SIZE} from './constants.js';
 import {
-  Root as StyledRoot,
   Backdrop as StyledBackdrop,
+  Close as StyledClose,
   Dialog as StyledDialog,
   DialogContainer as StyledDialogContainer,
-  Close as StyledClose,
+  Root as StyledRoot,
 } from './styled-components.js';
-import {CloseIcon} from './close-icon.js';
-
 import type {
+  CloseSourceT,
+  ElementRefT,
   ModalPropsT,
   ModalStateT,
   SharedStylePropsArgT,
-  CloseSourceT,
-  ElementRefT,
 } from './types.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 class Modal extends React.Component<ModalPropsT, ModalStateT> {
   static defaultProps: $Shape<ModalPropsT> = {

@@ -10,20 +10,20 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {getOverrides} from '../helpers/overrides.js';
-import {ADJOINED, SIZE, CUSTOM_INPUT_TYPE} from './constants.js';
+import Hide from '../icon/hide.js';
+import Show from '../icon/show.js';
+import createEvent from '../utils/create-event.js';
+import {forkBlur, forkFocus, isFocusVisible} from '../utils/focusVisible.js';
+import {ADJOINED, CUSTOM_INPUT_TYPE, SIZE} from './constants.js';
 import {
-  InputContainer as StyledInputContainer,
   Input as StyledInput,
+  InputContainer as StyledInputContainer,
   StyledClearIcon,
   StyledClearIconContainer,
   StyledMaskToggleButton,
 } from './styled-components.js';
 import type {BaseInputPropsT, InternalStateT} from './types.js';
 import {getSharedProps} from './utils.js';
-import Hide from '../icon/hide.js';
-import Show from '../icon/show.js';
-import createEvent from '../utils/create-event.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 const NullComponent = () => null;
 

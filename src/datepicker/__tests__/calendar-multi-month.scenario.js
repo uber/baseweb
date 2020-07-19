@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulCalendar, ORIENTATION} from '../index.js';
+import {ORIENTATION, StatefulCalendar} from '../index.js';
 
 export default function Scenario() {
   return (

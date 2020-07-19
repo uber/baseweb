@@ -7,24 +7,24 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* global document */
 import * as React from 'react';
+
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import DeleteIcon from '../icon/delete.js';
+import type {OverridesT} from '../icon/index.js';
+import {LocaleContext} from '../locale/index.js';
+import {forkBlur, forkFocus, isFocusVisible} from '../utils/focusVisible.js';
+import {KIND, TYPE} from './constants.js';
 import {
   Body as StyledBody,
   CloseIconSvg as StyledCloseIcon,
   InnerContainer as StyledInnerContainer,
 } from './styled-components.js';
-import {KIND, TYPE} from './constants.js';
-import {LocaleContext} from '../locale/index.js';
-
 import type {
-  ToastPropsT,
-  ToastPropsShapeT,
-  ToastPrivateStateT,
   SharedStylePropsArgT,
+  ToastPrivateStateT,
+  ToastPropsShapeT,
+  ToastPropsT,
 } from './types.js';
-import type {OverridesT} from '../icon/index.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   static defaultProps: ToastPropsShapeT = {

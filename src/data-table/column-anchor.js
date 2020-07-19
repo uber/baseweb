@@ -10,7 +10,6 @@ import * as React from 'react';
 
 import {StyledLink} from '../link/index.js';
 import {useStyletron} from '../styles/index.js';
-
 import CellShell from './cell-shell.js';
 import {COLUMNS} from './constants.js';
 import type {ColumnT} from './types.js';

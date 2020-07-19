@@ -7,12 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {ThemeProvider, LightTheme} from '../../index.js';
-import BasicInputScenario from './input.scenario.js';
+
+import {LightTheme, ThemeProvider} from '../../index.js';
+import EnhancerScenario from './input-before-after.scenario.js';
 import ClearableScenario from './input-clearable.scenario.js';
 import PasswordScenario from './input-password.scenario.js';
-import EnhancerScenario from './input-before-after.scenario.js';
 import StatesScenario from './input-states.scenario.js';
+import BasicInputScenario from './input.scenario.js';
 
 export default function Scenario() {
   return (

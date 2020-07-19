@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Notification, KIND} from '../index.js';
+import {KIND, Notification} from '../index.js';
 
 export default function Scenario() {
   return (

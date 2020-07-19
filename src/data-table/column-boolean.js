@@ -9,7 +9,6 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {useStyletron} from '../styles/index.js';
-
 import CellShell from './cell-shell.js';
 import {CategoricalFilter} from './column-categorical.js';
 import {COLUMNS} from './constants.js';

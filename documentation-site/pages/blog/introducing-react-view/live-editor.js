@@ -5,14 +5,13 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+/* eslint-disable */
+import presetTypescript from '@babel/preset-typescript';
 import * as React from 'react';
-import {useView, Compiler, Error} from 'react-view';
+import {Compiler, Error, useView} from 'react-view';
+
 //$FlowFixMe
 import Editor from '../../../components/yard/editor';
-
-/* eslint-disable */
-
-import presetTypescript from '@babel/preset-typescript';
 /* eslint-enable */
 
 export default ({initialCode}: {initialCode: string}) => {

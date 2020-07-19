@@ -7,14 +7,14 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import * as ReactIs from 'react-is';
-import {
-  StartEnhancer as StyledStartEnhancer,
-  EndEnhancer as StyledEndEnhancer,
-} from './styled-components.js';
-import {getSharedProps} from './utils.js';
-import {getOverrides} from '../helpers/overrides.js';
 
+import {getOverrides} from '../helpers/overrides.js';
+import {
+  EndEnhancer as StyledEndEnhancer,
+  StartEnhancer as StyledStartEnhancer,
+} from './styled-components.js';
 import type {ButtonPropsT} from './types.js';
+import {getSharedProps} from './utils.js';
 
 function RenderEnhancer(props) {
   const {Enhancer, ...restProps} = props;

@@ -6,8 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import type {BaseInputPropsT, StateReducerT, StateT} from '../input/types.js';
+
 import {ADJOINED, SIZE} from '../input/constants.js';
+import type {BaseInputPropsT, StateReducerT, StateT} from '../input/types.js';
 
 type SyntheticTextareaEvent = SyntheticEvent<HTMLTextAreaElement>;
 

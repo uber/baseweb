@@ -8,13 +8,14 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* global process */
 
-import React from 'react';
 import {useStyletron} from 'baseui';
 import {StyledLink} from 'baseui/link';
+import React from 'react';
+
 import outlines from '../cheat-sheet.js';
-import {H2} from './markdown-elements.js';
 // $FlowFixMe - because this is a .ts file
 import {trackEvent} from '../helpers/ga';
+import {H2} from './markdown-elements.js';
 
 function buildHref(file, line) {
   const commit = process.env.COMMIT_REF || 'master';

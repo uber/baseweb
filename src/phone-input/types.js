@@ -6,9 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {STATE_CHANGE_TYPE, SIZE, COUNTRIES} from './constants.js';
+
 import type {OverrideT} from '../helpers/overrides.js';
 import type {OnChangeParamsT} from '../select/types.js';
+import {COUNTRIES, SIZE, STATE_CHANGE_TYPE} from './constants.js';
 
 export type SizeT = $Keys<typeof SIZE>;
 

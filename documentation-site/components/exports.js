@@ -8,14 +8,14 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
+import Code from './code';
 import {
+  DocLink,
   H3,
+  ListItem,
   Paragraph,
   UnorderedList,
-  ListItem,
-  DocLink,
 } from './markdown-elements';
-import Code from './code';
 
 const Exports = props => {
   const {component, path, title, cheatsheet = true} = props;

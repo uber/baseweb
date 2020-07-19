@@ -6,15 +6,16 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {
-  Layer,
-  LayersManager,
-  TetherBehavior,
-  TETHER_PLACEMENT,
-} from '../index.js';
+
 import {Block} from '../../block/index.js';
 import {Button} from '../../button/index.js';
 import type {NormalizedOffsetsT} from '../../layer/types.js';
+import {
+  Layer,
+  LayersManager,
+  TETHER_PLACEMENT,
+  TetherBehavior,
+} from '../index.js';
 
 function BlockComponent(props) {
   const {children, forwardedRef, offset, color, ...restProps} = props;

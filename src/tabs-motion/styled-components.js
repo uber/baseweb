@@ -7,18 +7,18 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import {styled} from '../styles/index.js';
-import {ORIENTATION, FILL} from './constants.js';
-import {
-  isHorizontal,
-  isVertical,
-  isRTL,
-  isIntrinsic,
-  isFixed,
-} from './utils.js';
-
 import type {StyleObject} from 'styletron-standard';
-import type {OrientationT, FillT} from './types.js';
+
+import {styled} from '../styles/index.js';
+import {FILL, ORIENTATION} from './constants.js';
+import type {FillT, OrientationT} from './types.js';
+import {
+  isFixed,
+  isHorizontal,
+  isIntrinsic,
+  isRTL,
+  isVertical,
+} from './utils.js';
 
 export const StyledRoot = styled<{$orientation?: OrientationT}>(
   'div',

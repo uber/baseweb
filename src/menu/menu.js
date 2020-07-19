@@ -6,20 +6,20 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+
+import {getOverrides} from '../helpers/overrides.js';
 import {LocaleContext} from '../locale/index.js';
+import type {LocaleT} from '../locale/types.js';
+import {forkBlur, forkFocus, isFocusVisible} from '../utils/focusVisible.js';
+import OptionList from './option-list.js';
 // Components
 import {
-  StyledList,
   StyledEmptyState,
+  StyledList,
   StyledOptgroupHeader,
 } from './styled-components.js';
-import OptionList from './option-list.js';
-import {getOverrides} from '../helpers/overrides.js';
 // Types
 import type {StatelessMenuPropsT} from './types.js';
-import type {LocaleT} from '../locale/types.js';
-
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 export default function Menu(props: StatelessMenuPropsT) {
   const {

@@ -8,9 +8,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {SIZE, SHAPE, KIND} from '../button/index.js';
+import {KIND, SHAPE, SIZE} from '../button/index.js';
 import type {OverrideT} from '../helpers/overrides.js';
-
 import {MODE, STATE_CHANGE_TYPE} from './constants.js';
 
 // button-group

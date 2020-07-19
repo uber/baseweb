@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {styled} from '../styles/index.js';
 import {getMediaQueries} from '../helpers/responsive-helpers.js';
+import {styled} from '../styles/index.js';
 import {BEHAVIOR} from './constants.js';
-import type {ResponsiveT, StyledGridPropsT, StyledCellPropsT} from './types.js';
+import type {ResponsiveT, StyledCellPropsT, StyledGridPropsT} from './types.js';
 
 export const StyledGrid = styled<StyledGridPropsT>(
   'div',

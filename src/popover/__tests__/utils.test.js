@@ -10,10 +10,10 @@ LICENSE file in the root directory of this source tree.
 import {
   capitalize,
   fromPopperPlacement,
-  getOppositePosition,
-  getPopoverMarginStyles,
   getArrowPositionStyles,
   getEndPosition,
+  getOppositePosition,
+  getPopoverMarginStyles,
   getStartPosition,
   isVerticalPosition,
   splitPlacement,

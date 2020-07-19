@@ -10,10 +10,11 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable jsx-a11y/accessible-emoji */
 
 import * as React from 'react';
-import {Tab, Tabs} from '../index.js';
+
 import {Button, KIND} from '../../button/index.js';
-import {ArrowUp, ArrowRight, ArrowDown, ArrowLeft} from '../../icon/index.js';
-import {ThemeProvider, LightTheme} from '../../index.js';
+import {ArrowDown, ArrowLeft, ArrowRight, ArrowUp} from '../../icon/index.js';
+import {LightTheme, ThemeProvider} from '../../index.js';
+import {Tab, Tabs} from '../index.js';
 
 export default function Scenario() {
   const [activeKey, setActiveKey] = React.useState('0');

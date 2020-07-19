@@ -7,7 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {ThemeProvider, LightTheme} from '../../index.js';
+
+import {LightTheme, ThemeProvider} from '../../index.js';
 import TreeViewScenario from './tree-view.scenario.js';
 
 export default function Scenario() {

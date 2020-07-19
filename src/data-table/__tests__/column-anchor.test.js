@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
 import {render} from '@testing-library/react';
+import React from 'react';
 
 import {AnchorColumn} from '../index.js';
 

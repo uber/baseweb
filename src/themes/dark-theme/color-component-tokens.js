@@ -5,8 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import colorTokens from './color-tokens.js';
 import type {ColorTokensT, ComponentColorTokensT} from '../types.js';
+import colorTokens from './color-tokens.js';
 
 /* ---- Component colors ---- */
 // TODO(#2318) Make it a plain object in the next v11 major version

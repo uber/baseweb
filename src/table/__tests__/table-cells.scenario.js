@@ -8,24 +8,23 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
+import {StatefulPanel} from '../../accordion/index.js';
 import {Block} from '../../block/index.js';
 import ArrowDown from '../../icon/arrow-down.js';
 import ArrowUp from '../../icon/arrow-up.js';
-import Search from '../../icon/search.js';
-import Plus from '../../icon/plus.js';
 import Delete from '../../icon/delete.js';
 import Overflow from '../../icon/overflow.js';
-import {StatefulPanel} from '../../accordion/index.js';
+import Plus from '../../icon/plus.js';
+import Search from '../../icon/search.js';
 import {withStyle} from '../../styles/index.js';
-
 import {
-  StyledTable,
+  StyledAction,
+  StyledBody,
+  StyledCell,
   StyledHead,
   StyledHeadCell,
-  StyledBody,
   StyledRow,
-  StyledCell,
-  StyledAction,
+  StyledTable,
 } from '../index.js';
 
 const StyledHeadingCell = withStyle(StyledCell, {

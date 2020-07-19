@@ -8,13 +8,12 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env browser */
 
+import {Button, KIND} from 'baseui/button';
+import ChevronDown from 'baseui/icon/chevron-down';
+import {NestedMenus, StatefulMenu} from 'baseui/menu';
+import {PLACEMENT as PopoverPlacement, StatefulPopover} from 'baseui/popover';
 import * as React from 'react';
 import semver from 'semver';
-
-import ChevronDown from 'baseui/icon/chevron-down';
-import {StatefulPopover, PLACEMENT as PopoverPlacement} from 'baseui/popover';
-import {StatefulMenu, NestedMenus} from 'baseui/menu';
-import {Button, KIND} from 'baseui/button';
 
 import {version} from '../../package.json';
 import versions from '../../versions.json';

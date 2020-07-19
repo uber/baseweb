@@ -6,11 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
 import {mount} from 'enzyme';
-import {MaskedInput} from '../index.js';
+import * as React from 'react';
 
 import {styled} from '../../styles/index.js';
+import {MaskedInput} from '../index.js';
 
 test('MaskedInput - basic functionality', () => {
   const props = {

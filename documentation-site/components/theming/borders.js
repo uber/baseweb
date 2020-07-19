@@ -6,8 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
 import {useStyletron} from 'baseui';
+import * as React from 'react';
+
 import {Property, PropertyCompareTheme} from './common.js';
 
 export function Border({name}: {name: string}) {

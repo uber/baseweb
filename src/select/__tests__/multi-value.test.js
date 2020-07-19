@@ -5,10 +5,11 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
 import {mount} from 'enzyme';
-import MultiValue from '../multi-value.js';
+import * as React from 'react';
+
 import {Tag} from '../../tag/index.js';
+import MultiValue from '../multi-value.js';
 
 describe('Multi Value component', function() {
   test('renders Tag by default', function() {

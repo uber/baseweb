@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
+import {fireEvent, render} from '@testing-library/react';
 import React from 'react';
-import {render, fireEvent} from '@testing-library/react';
 
-import {NumericalColumn, NUMERICAL_FORMATS} from '../index.js';
+import {NUMERICAL_FORMATS, NumericalColumn} from '../index.js';
 
 describe('numerical column', () => {
   it('is sortable by default', () => {

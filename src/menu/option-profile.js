@@ -7,18 +7,19 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 import * as React from 'react';
+
+import {getOverrides} from '../helpers/overrides.js';
 // Components
 import MaybeChildMenu from './maybe-child-menu.js';
 import {
   StyledListItemProfile,
-  StyledProfileImgContainer,
-  StyledProfileImg,
-  StyledProfileLabelsContainer,
-  StyledProfileTitle,
-  StyledProfileSubtitle,
   StyledProfileBody,
+  StyledProfileImg,
+  StyledProfileImgContainer,
+  StyledProfileLabelsContainer,
+  StyledProfileSubtitle,
+  StyledProfileTitle,
 } from './styled-components.js';
-import {getOverrides} from '../helpers/overrides.js';
 // Types
 import type {OptionProfilePropsT} from './types.js';
 

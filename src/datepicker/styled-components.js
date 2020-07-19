@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {styled} from '../styles/index.js';
-import getDayStateCode from './utils/day-state.js';
 import type {SharedStylePropsT} from './types.js';
+import getDayStateCode from './utils/day-state.js';
 
 /**
  * Main component container element

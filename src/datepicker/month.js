@@ -6,12 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import Week from './week.js';
+
+import {getOverrides} from '../helpers/overrides.js';
 import {StyledMonth} from './styled-components.js';
+import type {MonthPropsT} from './types.js';
 import dateFnsAdapter from './utils/date-fns-adapter.js';
 import DateHelpers from './utils/date-helpers.js';
-import {getOverrides} from '../helpers/overrides.js';
-import type {MonthPropsT} from './types.js';
+import Week from './week.js';
 
 const defaultProps = {
   excludeDates: null,

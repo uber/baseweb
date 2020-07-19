@@ -9,9 +9,7 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 
 import {useStyletron} from '../../styles/index.js';
-
-import {StyledTable, StyledHeadCell, StyledBodyCell} from '../index.js';
-
+import {StyledBodyCell, StyledHeadCell, StyledTable} from '../index.js';
 import {useCellNavigation} from './shared.js';
 
 const data = Array(100)

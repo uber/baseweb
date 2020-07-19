@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+
 import Block from '../block/block.js';
 import {LevelContext} from './heading-level.js';
 import type {HeadingPropsT} from './types.js';

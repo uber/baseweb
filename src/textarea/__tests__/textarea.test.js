@@ -5,11 +5,12 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
 import {mount} from 'enzyme';
-import Textarea from '../textarea.js';
-import {StyledTextarea} from '../styled-components.js';
+import * as React from 'react';
+
 import {BaseInput} from '../../input/index.js';
+import {StyledTextarea} from '../styled-components.js';
+import Textarea from '../textarea.js';
 
 describe('Textarea', () => {
   test('Basic functionality', () => {

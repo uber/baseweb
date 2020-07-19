@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {ORIENTATION, FILL} from './constants.js';
 
+import {FILL, ORIENTATION} from './constants.js';
 import type {FillT, OrientationT} from './types.js';
 
 export const getTabId = (uid: string, key: React.Key) =>

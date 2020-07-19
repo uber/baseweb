@@ -5,16 +5,16 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+import type {TreeNodeT} from '../types.js';
 import {
-  getPrevId,
-  getParentId,
-  getNextId,
-  getFirstChildId,
+  defaultGetId as getId,
   getEndId,
   getExpandableSiblings,
-  defaultGetId as getId,
+  getFirstChildId,
+  getNextId,
+  getParentId,
+  getPrevId,
 } from '../utils.js';
-import type {TreeNodeT} from '../types.js';
 
 const data: TreeNodeT<>[] = [
   {

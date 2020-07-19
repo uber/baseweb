@@ -8,11 +8,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import type {StarRatingPropsT, RatingStateT} from './types.js';
-import {StyledRoot, StyledStar} from './styled-components.js';
+
 import {getOverrides} from '../helpers/overrides.js';
-import {ARROW_UP, ARROW_DOWN, ARROW_LEFT, ARROW_RIGHT} from './utils.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import {forkBlur, forkFocus, isFocusVisible} from '../utils/focusVisible.js';
+import {StyledRoot, StyledStar} from './styled-components.js';
+import type {RatingStateT, StarRatingPropsT} from './types.js';
+import {ARROW_DOWN, ARROW_LEFT, ARROW_RIGHT, ARROW_UP} from './utils.js';
 
 class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
   static defaultProps = {

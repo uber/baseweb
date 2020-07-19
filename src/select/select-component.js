@@ -9,36 +9,35 @@ import * as React from 'react';
 
 import {getOverrides} from '../helpers/overrides.js';
 import DeleteAlt from '../icon/delete-alt.js';
-import TriangleDownIcon from '../icon/triangle-down.js';
 import SearchIconComponent from '../icon/search.js';
+import TriangleDownIcon from '../icon/triangle-down.js';
 import {LocaleContext} from '../locale/index.js';
 import type {LocaleT} from '../locale/types.js';
-import {Popover, PLACEMENT} from '../popover/index.js';
+import {PLACEMENT, Popover} from '../popover/index.js';
 import {Spinner} from '../spinner/index.js';
 import getBuiId from '../utils/get-bui-id.js';
-
 import AutosizeInput from './autosize-input.js';
-import {TYPE, STATE_CHANGE_TYPE} from './constants.js';
+import {STATE_CHANGE_TYPE, TYPE} from './constants.js';
 import defaultProps from './default-props.js';
 import SelectDropdown from './dropdown.js';
 import {
-  StyledRoot,
-  StyledControlContainer,
-  StyledPlaceholder,
-  StyledValueContainer,
-  StyledInputContainer,
-  StyledIconsContainer,
-  StyledSelectArrow,
-  StyledClearIcon,
   getLoadingIconStyles,
+  StyledClearIcon,
+  StyledControlContainer,
+  StyledIconsContainer,
+  StyledInputContainer,
+  StyledPlaceholder,
+  StyledRoot,
   StyledSearchIconContainer,
+  StyledSelectArrow,
+  StyledValueContainer,
 } from './styled-components.js';
 import type {
+  ChangeActionT,
+  OptionT,
   PropsT,
   SelectStateT,
   ValueT,
-  OptionT,
-  ChangeActionT,
 } from './types.js';
 import {expandValue, normalizeOptions} from './utils/index.js';
 

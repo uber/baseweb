@@ -7,22 +7,21 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* global process */
 
-import * as React from 'react';
+import Octokit from '@octokit/rest';
+import {withStyle} from 'baseui';
 import {Block} from 'baseui/block';
 import {Button} from 'baseui/button';
+import {Card, StyledBody} from 'baseui/card';
 import {FlexGrid, FlexGridItem} from 'baseui/flex-grid';
 import {StyledLink as Link} from 'baseui/link';
-import {H1, H2} from '../components/markdown-elements';
-import {Card, StyledBody} from 'baseui/card';
 import {Tag} from 'baseui/tag';
-import {withStyle} from 'baseui';
-import Octokit from '@octokit/rest';
+import * as React from 'react';
 
-import BlogPosts from '../posts.js';
-
-import Layout from '../components/layout';
 import Contributors from '../components/contributors';
+import Layout from '../components/layout';
+import {H1, H2} from '../components/markdown-elements';
 import Markdown from '../components/markdown-elements';
+import BlogPosts from '../posts.js';
 
 const MinHeightBody = withStyle(StyledBody, {
   minHeight: '150px',

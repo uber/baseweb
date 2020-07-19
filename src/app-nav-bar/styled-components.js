@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import {styled, withStyle} from '../styles/index.js';
 import {StyledListItem} from '../menu/index.js';
+import {styled, withStyle} from '../styles/index.js';
 import {KIND} from './constants.js';
 
 const StyledButton = styled<{$isFocusVisible: boolean}>(

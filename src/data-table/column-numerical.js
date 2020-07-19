@@ -8,12 +8,11 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Button, SIZE} from '../button/index.js';
 import {ButtonGroup, MODE} from '../button-group/index.js';
+import {Button, SIZE} from '../button/index.js';
 import {Input, SIZE as INPUT_SIZE} from '../input/index.js';
 import {useStyletron} from '../styles/index.js';
 import {Paragraph4} from '../typography/index.js';
-
 import CellShell from './cell-shell.js';
 import {COLUMNS, NUMERICAL_FORMATS, NUMERICAL_OPERATIONS} from './constants.js';
 import FilterShell from './filter-shell.js';

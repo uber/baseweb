@@ -6,30 +6,31 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import ArrowRight from '../icon/arrow-right.js';
+
+import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import ArrowLeft from '../icon/arrow-left.js';
+import ArrowRight from '../icon/arrow-right.js';
 import TriangleDown from '../icon/triangle-down.js';
-import dateFnsAdapter from './utils/date-fns-adapter.js';
-import DateHelpers from './utils/date-helpers.js';
+import {LocaleContext} from '../locale/index.js';
+import type {LocaleT} from '../locale/types.js';
 import {StatefulMenu} from '../menu/index.js';
 import {Popover} from '../popover/index.js';
-import {LocaleContext} from '../locale/index.js';
 import {ThemeContext} from '../styles/theme-provider.js';
+import type {ThemeT} from '../styles/types.js';
+import {forkBlur, forkFocus, isFocusVisible} from '../utils/focusVisible.js';
+import {ORIENTATION, WEEKDAYS} from './constants.js';
 import {
   StyledCalendarHeader,
-  StyledPrevButton,
-  StyledNextButton,
   StyledMonthHeader,
-  StyledWeekdayHeader,
   StyledMonthYearSelectButton,
   StyledMonthYearSelectIconContainer,
+  StyledNextButton,
+  StyledPrevButton,
+  StyledWeekdayHeader,
 } from './styled-components.js';
-import {ORIENTATION, WEEKDAYS} from './constants.js';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import type {HeaderPropsT} from './types.js';
-import type {LocaleT} from '../locale/types.js';
-import type {ThemeT} from '../styles/types.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import dateFnsAdapter from './utils/date-fns-adapter.js';
+import DateHelpers from './utils/date-helpers.js';
 
 const navBtnStyle = ({$theme}) => ({
   cursor: 'pointer',

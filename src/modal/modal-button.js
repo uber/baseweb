@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+
 import {defaultProps} from '../button/default-props.js';
 import {Button} from '../button/index.js';
 import type {ButtonPropsT} from '../button/types.js';

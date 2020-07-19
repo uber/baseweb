@@ -6,13 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+
 import {STATE_CHANGE_TYPE} from './constants.js';
 import type {
+  ChangeActionT,
+  ParamsT,
   StatefulContainerPropsT,
   StateReducerT,
   StateT,
-  ParamsT,
-  ChangeActionT,
 } from './types.js';
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;

@@ -6,16 +6,17 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
+
+import type {OnChangeParamsT} from '../select/types.js';
 // needs to be removed from here
 import {COUNTRIES, STATE_CHANGE_TYPE} from './constants.js';
-import type {
-  StatefulPhoneInputContainerPropsT,
-  StateT,
-  StateReducerT,
-  StateChangeT,
-} from './types.js';
 import defaultProps from './default-props.js';
-import type {OnChangeParamsT} from '../select/types.js';
+import type {
+  StateChangeT,
+  StatefulPhoneInputContainerPropsT,
+  StateReducerT,
+  StateT,
+} from './types.js';
 
 const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
 

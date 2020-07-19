@@ -7,9 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {StatefulTreeView, TreeLabelInteractable} from '../index.js';
-import {Select} from '../../select/index.js';
+
 import {Checkbox} from '../../checkbox/index.js';
+import {Select} from '../../select/index.js';
+import {StatefulTreeView, TreeLabelInteractable} from '../index.js';
 
 const LabelSelect = node => {
   const [value, setValue] = React.useState();

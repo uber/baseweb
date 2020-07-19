@@ -6,11 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
 import {mount} from 'enzyme';
+import * as React from 'react';
 
-import MaybeChildMenu from '../maybe-child-menu.js';
 import {Popover} from '../../popover/index.js';
+import MaybeChildMenu from '../maybe-child-menu.js';
 
 describe('MaybeChildMenu', () => {
   it('does not render popover if getChildMenu is undefined', () => {

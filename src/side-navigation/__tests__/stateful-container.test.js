@@ -5,10 +5,11 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
 import {shallow} from 'enzyme';
-import StatefulContainer from '../stateful-container.js';
+import * as React from 'react';
+
 import {STATE_CHANGE_TYPE} from '../constants.js';
+import StatefulContainer from '../stateful-container.js';
 
 test('StatefulContainer - basic render', () => {
   const props = {

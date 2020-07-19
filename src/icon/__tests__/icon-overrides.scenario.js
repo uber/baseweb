@@ -8,10 +8,10 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
+import {getSvgStyles} from '../../icon/styled-components.js';
+import {LightTheme, styled, ThemeProvider} from '../../index.js';
 import DeleteIcon from '../delete.js';
 import PlusIcon from '../plus.js';
-import {ThemeProvider, LightTheme, styled} from '../../index.js';
-import {getSvgStyles} from '../../icon/styled-components.js';
 
 const XSmallFilled = ({title, ...props}) => {
   return (

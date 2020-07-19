@@ -7,9 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {styled} from '../../styles/index.js';
+
 import {Block} from '../../block/index.js';
-import {StatefulSelect, SingleSelect, MultiSelect} from '../index.js';
+import {styled} from '../../styles/index.js';
+import {MultiSelect, SingleSelect, StatefulSelect} from '../index.js';
 
 const options = [
   {id: 'AliceBlue', color: '#F0F8FF'},

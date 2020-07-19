@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {styled} from '../styles/index.js';
-import {KIND, SIZE, SHAPE} from './constants.js';
+import {KIND, SHAPE, SIZE} from './constants.js';
 import type {SharedStylePropsT} from './types.js';
 
 export const BaseButton = styled<SharedStylePropsT>(

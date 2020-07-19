@@ -7,7 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {MenuAdapter, ListItemLabel, ARTWORK_SIZES} from '../../list/index.js';
+
+import {ARTWORK_SIZES, ListItemLabel, MenuAdapter} from '../../list/index.js';
 
 // eslint-disable-next-line flowtype/no-weak-types
 const UserMenuListItem = React.forwardRef<{item: any}, HTMLLIElement>(

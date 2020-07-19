@@ -7,10 +7,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-env browser */
 
-import * as React from 'react';
 import {render} from '@testing-library/react';
-import {Icon} from '../index.js';
+import * as React from 'react';
+
 import * as Icons from '../icon-exports.js';
+import {Icon} from '../index.js';
 
 describe('Icon', () => {
   it('renders an icon with viewBox and title', () => {

@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {isValidElementType} from 'react-is';
+
 import deepMerge from '../utils/deep-merge.js';
 
 export type ConfigurationOverrideFunctionT = ({}) => ?{};

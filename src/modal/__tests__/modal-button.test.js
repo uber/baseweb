@@ -7,12 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-env browser */
 
-import * as React from 'react';
 import {shallow} from 'enzyme';
-import {ModalButton} from '../index.js';
+import * as React from 'react';
+
 import {Button, KIND} from '../../button/index.js';
-import {LightTheme} from '../../themes/index.js';
 import createMockTheme from '../../test/create-mock-theme.js';
+import {LightTheme} from '../../themes/index.js';
+import {ModalButton} from '../index.js';
 
 const mockTheme = createMockTheme(LightTheme);
 

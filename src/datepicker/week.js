@@ -6,14 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import Day from './day.js';
-import {StyledWeek} from './styled-components.js';
-import {WEEKDAYS} from './constants.js';
-import dateFnsAdapter from './utils/date-fns-adapter.js';
-import DateHelpers from './utils/date-helpers.js';
 
 import {getOverrides} from '../helpers/overrides.js';
+import {WEEKDAYS} from './constants.js';
+import Day from './day.js';
+import {StyledWeek} from './styled-components.js';
 import type {WeekPropsT} from './types.js';
+import dateFnsAdapter from './utils/date-fns-adapter.js';
+import DateHelpers from './utils/date-helpers.js';
 
 export default class Week<T = Date> extends React.Component<WeekPropsT<T>> {
   static defaultProps = {

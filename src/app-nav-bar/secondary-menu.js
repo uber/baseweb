@@ -7,12 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+
 import {Cell, Grid} from '../layout-grid/index.js';
-import MainMenuItem from './main-menu-item.js';
 import {KIND} from './constants.js';
+import MainMenuItem from './main-menu-item.js';
 import {
-  StyledSubnavContainer,
   StyledSecondaryMenuContainer,
+  StyledSubnavContainer,
 } from './styled-components.js';
 import type {SecondaryMenuT} from './types.js';
 

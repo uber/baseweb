@@ -11,9 +11,9 @@ LICENSE file in the root directory of this source tree.
  * properties and their default values.
  */
 
+import {styled, useStyletron} from 'baseui';
+import {DarkTheme, LightTheme} from 'baseui/themes';
 import * as React from 'react';
-import {useStyletron, styled} from 'baseui';
-import {LightTheme, DarkTheme} from 'baseui/themes';
 
 const monospaceFontFamily =
   'SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace';

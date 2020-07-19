@@ -6,22 +6,21 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import animation from '../shared/animation.js';
-import borders from './borders.js';
-import breakpoints from '../shared/breakpoints.js';
+import type {ThemeT} from '../../styles/types.js';
 import deepMerge from '../../utils/deep-merge.js';
-import defaultColorTokens from './color-tokens.js';
-import getComponentColorTokens from './color-component-tokens.js';
-import getDeprecatedSemanticColorTokens from './color-deprecated-semantic-tokens.js';
-import getSemanticColorTokens from './color-semantic-tokens.js';
-import getTypography from '../shared/typography.js';
+import animation from '../shared/animation.js';
+import breakpoints from '../shared/breakpoints.js';
 import grid from '../shared/grid.js';
 import lighting from '../shared/lighting.js';
 import mediaQuery from '../shared/media-query.js';
 import sizing from '../shared/sizing.js';
-
-import type {PrimitivesT, ColorTokensT} from '../types.js';
-import type {ThemeT} from '../../styles/types.js';
+import getTypography from '../shared/typography.js';
+import type {ColorTokensT, PrimitivesT} from '../types.js';
+import borders from './borders.js';
+import getComponentColorTokens from './color-component-tokens.js';
+import getDeprecatedSemanticColorTokens from './color-deprecated-semantic-tokens.js';
+import getSemanticColorTokens from './color-semantic-tokens.js';
+import defaultColorTokens from './color-tokens.js';
 
 export default function createDarkTheme(
   // Used to derive typography and color theme properties

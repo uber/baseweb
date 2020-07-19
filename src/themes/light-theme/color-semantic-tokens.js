@@ -5,15 +5,15 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+import {hexToRgb as hexToRgba} from '../../styles/util.js';
+import colors from '../../tokens/colors.js';
 import type {
   ColorTokensT,
-  CoreSemanticColorTokensT,
   CoreExtensionSemanticColorTokensT,
+  CoreSemanticColorTokensT,
   SemanticColorTokensT,
 } from '../types.js';
 import colorTokens from './color-tokens.js';
-import {hexToRgb as hexToRgba} from '../../styles/util.js';
-import colors from '../../tokens/colors.js';
 
 export default (
   // themePrimitives or foundation colors

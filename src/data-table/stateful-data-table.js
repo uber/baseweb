@@ -11,17 +11,17 @@ import ResizeObserver from 'resize-observer-polyfill';
 
 import {
   Button,
+  KIND as BUTTON_KINDS,
   SHAPE as BUTTON_SHAPES,
   SIZE as BUTTON_SIZES,
-  KIND as BUTTON_KINDS,
 } from '../button/index.js';
 import Search from '../icon/search.js';
 import {Input, SIZE as INPUT_SIZES} from '../input/index.js';
 import {Popover} from '../popover/index.js';
 import {useStyletron} from '../styles/index.js';
 import {Tag} from '../tag/index.js';
-import FilterMenu from './filter-menu.js';
 import {Unstable_DataTable} from './data-table.js';
+import FilterMenu from './filter-menu.js';
 import {Unstable_StatefulContainer} from './stateful-container.js';
 import type {StatefulDataTablePropsT} from './types.js';
 

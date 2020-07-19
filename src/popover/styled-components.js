@@ -6,19 +6,19 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {styled} from '../styles/index.js';
+import type {ThemeT} from '../styles/types.js';
 import {ARROW_WIDTH} from './constants.js';
-import {
-  getPopoverMarginStyles,
-  getArrowPositionStyles,
-  getStartPosition,
-  getEndPosition,
-} from './utils.js';
 import type {
   ArrowStylePropsArgT,
   BodyStylePropsArgT,
   InnerStylePropsArgT,
 } from './types.js';
-import type {ThemeT} from '../styles/types.js';
+import {
+  getArrowPositionStyles,
+  getEndPosition,
+  getPopoverMarginStyles,
+  getStartPosition,
+} from './utils.js';
 
 /**
  * Main popover container element that gets positioned next to the anchor

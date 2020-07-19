@@ -9,8 +9,8 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 import type {
   AvatarStylePropsT,
-  RootStylePropsT,
   InitialsStylePropsT,
+  RootStylePropsT,
 } from './types.js';
 
 function getSize(props) {

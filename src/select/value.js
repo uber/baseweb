@@ -6,8 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {StyledSingleValue} from './styled-components.js';
+
 import {getOverrides} from '../helpers/overrides.js';
+import {StyledSingleValue} from './styled-components.js';
 
 // eslint-disable-next-line flowtype/no-weak-types
 export default function Value(props: any) {

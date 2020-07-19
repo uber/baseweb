@@ -5,11 +5,12 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
 import {mount} from 'enzyme';
-import StatefulPagination from '../stateful-pagination.js';
-import StatefulContainer from '../stateful-container.js';
+import * as React from 'react';
+
 import Pagination from '../pagination.js';
+import StatefulContainer from '../stateful-container.js';
+import StatefulPagination from '../stateful-pagination.js';
 
 function getSharedProps() {
   return {

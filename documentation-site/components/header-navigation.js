@@ -6,20 +6,21 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
-import Link from 'next/link';
-import {themedUseStyletron as useStyletron} from '../pages/_app';
+import {Button, KIND, SHAPE, SIZE} from 'baseui/button';
 import Menu from 'baseui/icon/menu';
-import DarkLogo from '../images/base-web.svg';
+import Link from 'next/link';
+import * as React from 'react';
+
 import LightLogo from '../images/base-web-white.svg';
-import GithubLogo from './github-logo';
-import SlackLogo from './slack-logo';
+import DarkLogo from '../images/base-web.svg';
+import {themedUseStyletron as useStyletron} from '../pages/_app';
 import AlignLeftIcon from './align-left-icon';
 import AlignRightIcon from './align-right-icon';
-import VersionSelector from './version-selector.js';
-import Search from './search';
 import Bulb from './bulb';
-import {Button, KIND, SIZE, SHAPE} from 'baseui/button';
+import GithubLogo from './github-logo';
+import Search from './search';
+import SlackLogo from './slack-logo';
+import VersionSelector from './version-selector.js';
 
 // Breakpoint for un-wrapping the search bar from under the links and toggles.
 const WRAP_SEARCH = 715;

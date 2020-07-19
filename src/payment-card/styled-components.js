@@ -5,8 +5,8 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles/index.js';
 import {SIZE} from '../input/index.js';
+import {styled} from '../styles/index.js';
 
 export const IconWrapper = styled<{$size: typeof SIZE}>('div', props => {
   const {$size, $theme} = props;

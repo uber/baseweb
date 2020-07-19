@@ -7,13 +7,14 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
+
 import {
   StyledRoot,
   StyledTable,
-  StyledTableHeadRow,
-  StyledTableHeadCell,
-  StyledTableBodyRow,
   StyledTableBodyCell,
+  StyledTableBodyRow,
+  StyledTableHeadCell,
+  StyledTableHeadRow,
 } from '../index.js';
 
 export default function Scenario() {

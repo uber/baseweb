@@ -11,28 +11,28 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {useUID} from 'react-uid';
-import {useStyletron} from '../styles/index.js';
+
 import {getOverrides} from '../helpers/overrides.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
-import {ORIENTATION, FILL} from './constants.js';
+import {useStyletron} from '../styles/index.js';
+import {forkBlur, forkFocus, isFocusVisible} from '../utils/focusVisible.js';
+import {FILL, ORIENTATION} from './constants.js';
 import {
-  StyledRoot,
-  StyledTabList,
-  StyledTab,
   StyledArtworkContainer,
-  StyledTabHighlight,
+  StyledRoot,
+  StyledTab,
   StyledTabBorder,
+  StyledTabHighlight,
+  StyledTabList,
   StyledTabPanel,
 } from './styled-components.js';
+import type {TabsPropsT} from './types.js';
 import {
   getTabId,
   getTabPanelId,
-  isVertical,
   isHorizontal,
   isRTL,
+  isVertical,
 } from './utils.js';
-
-import type {TabsPropsT} from './types.js';
 
 const KEYBOARD_ACTION = {
   next: 'next',

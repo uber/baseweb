@@ -6,14 +6,15 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import {ORIENTATION} from './constants.js';
 import {
   Root as StyledRoot,
   TabBar as StyledTabBar,
   TabContent as StyledTabContent,
 } from './styled-components.js';
-import type {TabsPropsT, SharedStylePropsArgT} from './types.js';
-import {ORIENTATION} from './constants.js';
+import type {SharedStylePropsArgT, TabsPropsT} from './types.js';
 
 export default class Tabs extends React.Component<TabsPropsT> {
   static defaultProps: $Shape<TabsPropsT> = {

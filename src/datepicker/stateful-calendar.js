@@ -6,8 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import StatefulContainer from './stateful-container.js';
+
 import Calendar from './calendar.js';
+import StatefulContainer from './stateful-container.js';
 import type {CalendarPropsT, StatefulDatepickerPropsT} from './types.js';
 
 type PropsT<T> = StatefulDatepickerPropsT<CalendarPropsT<T>>;

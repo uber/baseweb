@@ -9,9 +9,9 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import * as React from 'react';
-import fetch from 'node-fetch';
 import {useStyletron} from 'baseui';
+import fetch from 'node-fetch';
+import * as React from 'react';
 
 declare var process: {env: {FIGMA_AUTH_TOKEN: string, FIGMA_FILE_ID: string}};
 

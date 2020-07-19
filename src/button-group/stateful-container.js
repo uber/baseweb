@@ -9,7 +9,6 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {MODE, STATE_CHANGE_TYPE} from './constants.js';
-
 import type {StatefulContainerPropsT, StateT} from './types.js';
 
 // handles the case where selected = 0

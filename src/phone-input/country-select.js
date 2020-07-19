@@ -12,15 +12,15 @@ LICENSE file in the root directory of this source tree.
 // The `DialCode` rendering should be a part of the composed
 // non-split phone input.
 import React from 'react';
-import {
-  StyledDialCode,
-  StyledCountrySelectContainer,
-} from './styled-components.js';
-import BaseCountryPicker from './base-country-picker.js';
-import {SingleSelect as DefaultSelect} from '../select/index.js';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
-import defaultProps from './default-props.js';
 
+import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import {SingleSelect as DefaultSelect} from '../select/index.js';
+import BaseCountryPicker from './base-country-picker.js';
+import defaultProps from './default-props.js';
+import {
+  StyledCountrySelectContainer,
+  StyledDialCode,
+} from './styled-components.js';
 import type {CountrySelectPropsT} from './types.js';
 
 CountrySelect.defaultProps = {

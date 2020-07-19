@@ -9,13 +9,13 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {
-  StyledTable,
-  StyledHead,
-  StyledBody,
-  StyledRow,
-  StyledCell,
-  SortableHeadCell,
   SORT_DIRECTION,
+  SortableHeadCell,
+  StyledBody,
+  StyledCell,
+  StyledHead,
+  StyledRow,
+  StyledTable,
 } from '../index.js';
 
 const DATA = [

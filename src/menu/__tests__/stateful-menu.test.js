@@ -5,11 +5,12 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
 import {mount} from 'enzyme';
-import StatefulMenu from '../stateful-menu.js';
-import StatefulContainer from '../stateful-container.js';
+import * as React from 'react';
+
 import Menu from '../menu.js';
+import StatefulContainer from '../stateful-container.js';
+import StatefulMenu from '../stateful-menu.js';
 
 describe('Menu StatefulMenu', () => {
   test('renders with props', () => {

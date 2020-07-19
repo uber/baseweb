@@ -8,30 +8,29 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env browser */
 
 // @flow
-import * as React from 'react';
 import {
+  BaseProvider,
   createThemedStyled,
   createThemedUseStyletron,
   createThemedWithStyle,
-  BaseProvider,
   DarkTheme,
   DarkThemeMove,
   LightTheme,
   LightThemeMove,
 } from 'baseui';
-import type {BreakpointsT, ThemeT} from 'baseui/styles/types';
-
-import App from 'next/app';
-import {Provider as StyletronProvider} from 'styletron-react';
 import {Block} from 'baseui/block';
-import Router from 'next/router';
-import type {AppProps} from 'next/app';
+import type {BreakpointsT, ThemeT} from 'baseui/styles/types';
 import type {NextPage, NextPageContext} from 'next';
+import type {AppProps} from 'next/app';
+import App from 'next/app';
+import Router from 'next/router';
+import * as React from 'react';
+import {Provider as StyletronProvider} from 'styletron-react';
 
-import {styletron, debug} from '../helpers/styletron';
+import DirectionContext from '../components/direction-context';
 // $FlowFixMe
 import {trackPageView} from '../helpers/ga';
-import DirectionContext from '../components/direction-context';
+import {debug, styletron} from '../helpers/styletron';
 
 const breakpoints: BreakpointsT = {
   small: 670,

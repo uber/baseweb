@@ -7,18 +7,17 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 
+import {getOverrides} from '../helpers/overrides.js';
 import {
   StyledRoot,
   StyledTable,
-  StyledTableHead,
-  StyledTableHeadRow,
-  StyledTableHeadCell,
   StyledTableBody,
-  StyledTableBodyRow,
   StyledTableBodyCell,
+  StyledTableBodyRow,
+  StyledTableHead,
+  StyledTableHeadCell,
+  StyledTableHeadRow,
 } from './styled-components.js';
-import {getOverrides} from '../helpers/overrides.js';
-
 import type {TablePropsT} from './types.js';
 
 export default class Table extends React.Component<TablePropsT> {

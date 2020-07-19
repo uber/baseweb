@@ -6,21 +6,21 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import type {ComponentType} from 'react';
-import type {IconPropsT} from '../icon/types.js';
 
+import type {IconPropsT} from '../icon/types.js';
 import type {
+  AnimationT,
+  BordersT,
+  BorderT,
+  BreakpointsT,
   ColorTokensT,
   ComponentColorTokensT,
-  SemanticColorTokensT,
   DeprecatedSemanticColorTokensT,
-  AnimationT,
-  BreakpointsT,
-  BorderT,
-  BordersT,
   FontT,
   GridT,
   LightingT,
   MediaQueryT,
+  SemanticColorTokensT,
   SizingT,
   TypographyT,
   ZIndexT,

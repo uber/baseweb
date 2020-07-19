@@ -7,10 +7,10 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
+import {expandBorderStyles, useStyletron} from 'baseui/styles';
 import React from 'react';
-import {H2} from '../components/markdown-elements';
-import {useStyletron, expandBorderStyles} from 'baseui/styles';
 
+import {H2} from '../components/markdown-elements';
 import * as thumbnails from '../components/thumbs';
 
 const COMPONENTS = {

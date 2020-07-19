@@ -6,9 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
 import {Avatar} from 'baseui/avatar';
 import {Block} from 'baseui/block';
+import * as React from 'react';
+
 import {H2} from './markdown-elements';
 
 type Contributor = {

@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-env node */
-import * as React from 'react';
 import {mount} from 'enzyme';
+import * as React from 'react';
 
-import {Radio, StyledRoot, StyledInput, StyledDescription} from '../index.js';
+import {Radio, StyledDescription, StyledInput, StyledRoot} from '../index.js';
 
 describe('Radio', () => {
   it('calls provided handlers', () => {

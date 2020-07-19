@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {Block} from '../../block/index.js';
 import {Button} from '../../button/index.js';
-import {ProgressSteps, NumberedStep} from '../index.js';
+import {NumberedStep, ProgressSteps} from '../index.js';
 
 export default function Scenario() {
   const [current, setCurrent] = React.useState(1);

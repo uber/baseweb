@@ -6,13 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
-import {shallow} from 'enzyme';
-import {render} from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 
-import {StatefulRadioGroup, RadioGroup, Radio} from '../index.js';
+import {render} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import {shallow} from 'enzyme';
+import * as React from 'react';
+
+import {Radio, RadioGroup, StatefulRadioGroup} from '../index.js';
 
 describe('radio-group', () => {
   it('sets expected child radio checked', () => {

@@ -5,10 +5,11 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
 import {mount} from 'enzyme';
-import {StyledList} from '../styled-components.js';
+import * as React from 'react';
+
 import Menu from '../menu.js';
+import {StyledList} from '../styled-components.js';
 
 const mockItems = [{label: 'item1'}, {label: 'item2'}];
 

@@ -8,13 +8,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {Tabs} from './tabs.js';
-import {STATE_CHANGE_TYPE} from './constants.js';
 
+import {STATE_CHANGE_TYPE} from './constants.js';
+import {Tabs} from './tabs.js';
 import type {
   StatefulTabsPropsT,
-  StatefulTabsStateT,
   StatefulTabsReducerT,
+  StatefulTabsStateT,
 } from './types.js';
 
 const getInitialState = (

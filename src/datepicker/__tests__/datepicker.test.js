@@ -5,15 +5,16 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
-import {mount} from 'enzyme';
-import {Datepicker, Calendar, ORIENTATION} from '../index.js';
-import {Input} from '../../input/index.js';
-import {Popover} from '../../popover/index.js';
 import {addDays, parse} from 'date-fns';
-import CalendarHeader from '../calendar-header.js';
+import {mount} from 'enzyme';
+import * as React from 'react';
+
 import ArrowLeft from '../../icon/arrow-left.js';
 import ArrowRight from '../../icon/arrow-right.js';
+import {Input} from '../../input/index.js';
+import {Popover} from '../../popover/index.js';
+import CalendarHeader from '../calendar-header.js';
+import {Calendar, Datepicker, ORIENTATION} from '../index.js';
 import {StyledMonthYearSelectButton} from '../styled-components.js';
 
 jest.useFakeTimers();

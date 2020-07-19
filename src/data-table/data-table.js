@@ -7,29 +7,28 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {VariableSizeGrid} from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
+import {VariableSizeGrid} from 'react-window';
 
 import {
   Button,
+  KIND as BUTTON_KINDS,
   SHAPE as BUTTON_SHAPES,
   SIZE as BUTTON_SIZES,
-  KIND as BUTTON_KINDS,
 } from '../button/index.js';
+import {LocaleContext} from '../locale/index.js';
 import {useStyletron} from '../styles/index.js';
-import {Tooltip, PLACEMENT} from '../tooltip/index.js';
-
+import {PLACEMENT, Tooltip} from '../tooltip/index.js';
 import {SORT_DIRECTIONS} from './constants.js';
 import HeaderCell from './header-cell.js';
 import MeasureColumnWidths from './measure-column-widths.js';
 import type {
   ColumnT,
   DataTablePropsT,
+  RowActionT,
   RowT,
   SortDirectionsT,
-  RowActionT,
 } from './types.js';
-import {LocaleContext} from '../locale/index.js';
 
 // consider pulling this out to a prop if useful.
 const HEADER_ROW_HEIGHT = 48;

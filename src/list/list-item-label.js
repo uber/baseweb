@@ -9,7 +9,6 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 
 import {Label2, Paragraph2, Paragraph3} from '../typography/index.js';
-
 import type {LabelPropsT} from './types.js';
 
 function ListItemLabel(props: LabelPropsT) {

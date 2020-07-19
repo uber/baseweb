@@ -6,18 +6,18 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {LocaleContext} from '../locale/index.js';
+
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
-import PlusIcon from '../icon/plus.js';
 import CheckIndeterminateIcon from '../icon/check-indeterminate.js';
+import PlusIcon from '../icon/plus.js';
+import {LocaleContext} from '../locale/index.js';
+import {forkBlur, forkFocus, isFocusVisible} from '../utils/focusVisible.js';
 import {
-  PanelContainer as StyledPanelContainer,
-  Header as StyledHeader,
   Content as StyledContent,
+  Header as StyledHeader,
+  PanelContainer as StyledPanelContainer,
   ToggleIcon as StyledToggleIcon,
 } from './styled-components.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
-
 import type {PanelPropsT, SharedStylePropsArgT} from './types.js';
 
 class Panel extends React.Component<PanelPropsT, {isFocusVisible: boolean}> {

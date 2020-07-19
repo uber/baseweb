@@ -5,9 +5,10 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+import {mount, shallow} from 'enzyme';
 import * as React from 'react';
-import {shallow, mount} from 'enzyme';
-import {StyledTextarea, StatefulTextarea, StatefulContainer} from '../index.js';
+
+import {StatefulContainer, StatefulTextarea, StyledTextarea} from '../index.js';
 describe('StatefulTextarea', () => {
   test('basic render', () => {
     const props = {

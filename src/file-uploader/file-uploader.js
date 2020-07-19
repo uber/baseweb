@@ -9,20 +9,19 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import Dropzone from 'react-dropzone';
 
-import {LocaleContext} from '../locale/index.js';
 import {Block} from '../block/index.js';
 import {Button, KIND} from '../button/index.js';
 import {getOverrides} from '../helpers/overrides.js';
+import {LocaleContext} from '../locale/index.js';
 import {ProgressBar} from '../progress-bar/index.js';
 import {Spinner} from '../spinner/index.js';
-
 import {
-  StyledRoot,
-  StyledFileDragAndDrop,
   StyledContentMessage,
   StyledContentSeparator,
   StyledErrorMessage,
+  StyledFileDragAndDrop,
   StyledHiddenInput,
+  StyledRoot,
 } from './styled-components.js';
 import type {PropsT} from './types.js';
 

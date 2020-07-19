@@ -9,10 +9,10 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {
-  StyledTable,
-  StyledBodyCell,
-  SortableHeadCell,
   SORT_DIRECTION,
+  SortableHeadCell,
+  StyledBodyCell,
+  StyledTable,
 } from '../index.js';
 import {useCellNavigation} from './shared.js';
 

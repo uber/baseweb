@@ -6,11 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
 import {shallow} from 'enzyme';
+import * as React from 'react';
 
 import {Button} from '../../button/index.js';
-
 import {ButtonGroupRoot as ButtonGroup} from '../button-group.js';
 
 function buildSimpleWrapper(props = {}) {

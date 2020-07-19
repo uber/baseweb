@@ -7,16 +7,16 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
+
 import type {OverrideT} from '../helpers/overrides.js';
 import type {SizeT} from '../input/types.js';
-import {ORIENTATION, STATE_CHANGE_TYPE} from './constants.js';
-import type {DateIOAdapter} from './utils/types.js';
+import type {OptionT} from '../select/index.js';
 import type {
   TimePickerPropsT as TimePickerPropsTBase,
   TimePickerStateT as TimePickerStateTBase,
 } from '../timepicker/types.js';
-
-import type {OptionT} from '../select/index.js';
+import {ORIENTATION, STATE_CHANGE_TYPE} from './constants.js';
+import type {DateIOAdapter} from './utils/types.js';
 
 // eslint-disable-next-line flowtype/no-weak-types
 type LocaleT = any; // see https://github.com/date-fns/date-fns/blob/master/src/locale/index.js.flow

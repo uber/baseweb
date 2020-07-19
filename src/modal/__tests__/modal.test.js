@@ -7,20 +7,21 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-env browser */
 
+import {mount} from 'enzyme';
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import {mount} from 'enzyme';
+
+import {styled} from '../../styles/index.js';
 import {
+  CLOSE_SOURCE,
   Modal,
-  ModalHeader,
-  ModalFooter,
   ModalBody,
+  ModalFooter,
+  ModalHeader,
   StyledBackdrop,
   StyledClose,
   StyledDialog,
-  CLOSE_SOURCE,
 } from '../index.js';
-import {styled} from '../../styles/index.js';
 
 jest.useFakeTimers();
 

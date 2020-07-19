@@ -9,13 +9,12 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 
 import {getOverrides} from '../helpers/overrides.js';
-
 import {ARTWORK_SIZES} from './constants.js';
 import {
-  StyledRoot,
+  StyledArtworkContainer,
   StyledContent,
   StyledEndEnhancerContainer,
-  StyledArtworkContainer,
+  StyledRoot,
 } from './styled-components.js';
 import type {PropsT} from './types.js';
 import {artworkSizeToValue} from './utils.js';

@@ -8,17 +8,17 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+
 import {getOverrides} from '../helpers/overrides.js';
+import StyledCheckIcon from '../icon/check.js';
 import {
-  StyledNumberStep,
-  StyledNumberIcon,
   StyledContent,
+  StyledContentDescription,
   StyledContentTitle,
   StyledNumberContentTail,
-  StyledContentDescription,
+  StyledNumberIcon,
+  StyledNumberStep,
 } from './styled-components.js';
-import StyledCheckIcon from '../icon/check.js';
-
 import type {NumberedStepPropsT} from './types.js';
 
 function NumberedStep({

@@ -8,17 +8,15 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
+import {ProgressBar} from '../progress-bar/index.js';
 import {
-  StyledTable,
+  StyledBody,
+  StyledCell,
   StyledHead,
   StyledHeadCell,
-  StyledBody,
   StyledRow,
-  StyledCell,
+  StyledTable,
 } from './styled-components.js';
-
-import {ProgressBar} from '../progress-bar/index.js';
-
 import type {TablePropsT} from './types.js';
 
 export default class Table extends React.Component<TablePropsT> {

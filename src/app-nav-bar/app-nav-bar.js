@@ -7,20 +7,21 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {useStyletron} from '../styles/index.js';
+
 import {Cell, Grid} from '../layout-grid/index.js';
-import MainMenuItem from './main-menu-item.js';
-import SecondaryMenu from './secondary-menu.js';
-import MobileNav from './mobile-menu/mobile-nav.js';
-import Logo from './logo.js';
-import UserMenu from './user-menu/user-menu.js';
+import {useStyletron} from '../styles/index.js';
 import {POSITION} from './constants.js';
+import Logo from './logo.js';
+import MainMenuItem from './main-menu-item.js';
+import MobileNav from './mobile-menu/mobile-nav.js';
+import SecondaryMenu from './secondary-menu.js';
 import {
+  StyledPrimaryMenuContainer,
   StyledRoot,
   StyledSpacing,
-  StyledPrimaryMenuContainer,
 } from './styled-components.js';
 import type {AppNavBarPropsT} from './types.js';
+import UserMenu from './user-menu/user-menu.js';
 
 export default function AppNavBar(props: AppNavBarPropsT) {
   const [css, theme] = useStyletron();

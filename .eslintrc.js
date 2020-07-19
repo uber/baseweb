@@ -6,6 +6,7 @@ module.exports = {
     'eslint-plugin-import',
     'header',
     'jsx-a11y',
+    'simple-import-sort',
   ],
   env: {
     jest: true,
@@ -45,6 +46,8 @@ module.exports = {
     ],
     'import/prefer-default-export': ['off'],
     'header/header': [2, 'LICENSE-HEAD'],
+    'simple-import-sort/sort': 'error',
+    'sort-imports': 'off',
   },
   overrides: [
     {

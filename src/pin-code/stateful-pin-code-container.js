@@ -8,14 +8,14 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
+import {STATE_CHANGE_TYPE} from '../input/index.js';
+import defaultProps from './default-props.js';
 import type {
   ChangeEventT,
   StatefulPinCodeContainerPropsT,
   StatefulPinCodeContainerStateT,
   StateReducerT,
 } from './types.js';
-import defaultProps from './default-props.js';
-import {STATE_CHANGE_TYPE} from '../input/index.js';
 
 const stateReducer: StateReducerT = (type, nextState) => nextState;
 

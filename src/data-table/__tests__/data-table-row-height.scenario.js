@@ -10,7 +10,6 @@ import * as React from 'react';
 
 import StringColumn from '../column-string.js';
 import {Unstable_StatefulDataTable} from '../stateful-data-table.js';
-
 import AnimalData from './animal-data.js';
 
 type RowDataT = {

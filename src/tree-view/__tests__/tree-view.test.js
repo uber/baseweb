@@ -5,11 +5,12 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
 import {mount} from 'enzyme';
-import {StyledTreeItem, StyledItemContent} from '../styled-components.js';
-import TreeView from '../tree-view.js';
+import * as React from 'react';
+
 import ChevronDown from '../../icon/chevron-down.js';
+import {StyledItemContent, StyledTreeItem} from '../styled-components.js';
+import TreeView from '../tree-view.js';
 
 const mockData = [
   {

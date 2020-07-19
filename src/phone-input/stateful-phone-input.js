@@ -6,9 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React from 'react';
-import StatefulPhoneInputContainer from './stateful-phone-input-container.js';
-import PhoneInput from './phone-input.js';
+
 import defaultProps from './default-props.js';
+import PhoneInput from './phone-input.js';
+import StatefulPhoneInputContainer from './stateful-phone-input-container.js';
 import type {PropsT, StatefulPhoneInputPropsT} from './types.js';
 
 StatefulPhoneInput.defaultProps = defaultProps;

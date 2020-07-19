@@ -6,10 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-env browser */
-import * as React from 'react';
 import {mount} from 'enzyme';
-import StatefulContainer from '../stateful-container.js';
+import * as React from 'react';
+
 import {KEY_STRINGS, STATE_CHANGE_TYPES} from '../constants.js';
+import StatefulContainer from '../stateful-container.js';
 import {scrollItemIntoView} from '../utils.js';
 
 jest.mock('../utils');

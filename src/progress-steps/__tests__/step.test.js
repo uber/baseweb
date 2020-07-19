@@ -7,8 +7,9 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import * as React from 'react';
 import {shallow} from 'enzyme';
+import * as React from 'react';
+
 import Step from '../step.js';
 
 describe('Step', () => {

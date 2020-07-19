@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
+
 import defaultProps from './default-props.js';
 import PinCode from './pin-code.js';
 import StatefulPinCodeContainer from './stateful-pin-code-container.js';

@@ -7,8 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+
 import type {OverrideT} from '../helpers/overrides.js';
-import {STATE_CHANGE_TYPES, OPTION_LIST_SIZE} from './constants.js';
+import {OPTION_LIST_SIZE, STATE_CHANGE_TYPES} from './constants.js';
 
 export type ItemT = *;
 export type ArrayItemsT = $ReadOnlyArray<ItemT>;

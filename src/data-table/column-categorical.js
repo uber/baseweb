@@ -8,19 +8,18 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Button, SIZE, KIND} from '../button/index.js';
 import {ButtonGroup} from '../button-group/index.js';
+import {Button, KIND, SIZE} from '../button/index.js';
 import {Checkbox, StyledLabel} from '../checkbox/index.js';
 import Search from '../icon/search.js';
 import {Input, SIZE as INPUT_SIZE} from '../input/index.js';
 import {useStyletron, withStyle} from '../styles/index.js';
 import {Label3} from '../typography/index.js';
-
 import CellShell from './cell-shell.js';
 import {COLUMNS} from './constants.js';
-import type {ColumnT} from './types.js';
 import FilterShell from './filter-shell.js';
-import {matchesQuery, splitByQuery, HighlightCellText} from './text-search.js';
+import {HighlightCellText, matchesQuery, splitByQuery} from './text-search.js';
+import type {ColumnT} from './types.js';
 
 type OptionsT = {|
   filterable?: boolean,

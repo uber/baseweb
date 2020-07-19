@@ -7,23 +7,22 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 
+import {getOverrides} from '../helpers/overrides.js';
+import {forkBlur, forkFocus, isFocusVisible} from '../utils/focusVisible.js';
 import {
   StyledRoot,
-  StyledTable,
-  StyledTableHead,
-  StyledTableHeadRow,
-  StyledTableHeadCell,
-  StyledTableHeadCellSortable,
-  StyledTableBody,
-  StyledTableBodyRow,
-  StyledTableBodyCell,
   StyledSortAscIcon,
   StyledSortDescIcon,
   StyledSortNoneIcon,
+  StyledTable,
+  StyledTableBody,
+  StyledTableBodyCell,
+  StyledTableBodyRow,
+  StyledTableHead,
+  StyledTableHeadCell,
+  StyledTableHeadCellSortable,
+  StyledTableHeadRow,
 } from './styled-components.js';
-import {getOverrides} from '../helpers/overrides.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
-
 import type {TableBuilderPropsT} from './types.js';
 
 export default class TableBuilder<T> extends React.Component<

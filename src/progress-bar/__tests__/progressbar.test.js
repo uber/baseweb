@@ -5,10 +5,11 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
 import {mount} from 'enzyme';
-import {ProgressBar, StyledLabel} from '../index.js';
+import * as React from 'react';
+
 import {styled} from '../../styles/index.js';
+import {ProgressBar, StyledLabel} from '../index.js';
 
 describe('Stateless progress bar', function() {
   let wrapper,

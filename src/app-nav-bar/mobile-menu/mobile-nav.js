@@ -7,12 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+
 import {Button} from '../../button/index.js';
-import {Drawer, ANCHOR} from '../../drawer/index.js';
+import {ANCHOR, Drawer} from '../../drawer/index.js';
 import MenuIcon from '../../icon/menu.js';
-import MobileNavMenu from './mobile-nav-menu.js';
 import {StyledSideMenuButton} from '../styled-components.js';
 import type {AppNavBarPropsT} from '../types.js';
+import MobileNavMenu from './mobile-nav-menu.js';
 
 export default function MobileNav(props: AppNavBarPropsT) {
   const [isOpen, setIsOpen] = React.useState(false);

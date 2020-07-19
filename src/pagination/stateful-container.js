@@ -6,14 +6,15 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+
 // Files
 import {STATE_CHANGE_TYPE} from './constants.js';
-import {clamp} from './utils.js';
 // Types
 import type {
   StatefulContainerPropsT,
   StatefulContainerStateT,
 } from './types.js';
+import {clamp} from './utils.js';
 
 const initialState = {
   currentPage: 1,

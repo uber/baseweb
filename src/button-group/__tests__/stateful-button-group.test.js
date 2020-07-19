@@ -6,12 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
 import {mount} from 'enzyme';
+import * as React from 'react';
 
 import {Button} from '../../button/index.js';
-
-import {StatefulButtonGroup, MODE} from '../index.js';
+import {MODE, StatefulButtonGroup} from '../index.js';
 
 function buildSimpleWrapper(props = {}) {
   return mount(

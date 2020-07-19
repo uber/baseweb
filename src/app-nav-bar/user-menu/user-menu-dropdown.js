@@ -7,11 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+
 import {StatefulMenu, StyledList} from '../../menu/index.js';
-import UserMenuListItem from './user-menu-list-item.js';
-import UserProfileTile from './user-profile-tile.js';
 import {StyledUserMenuListItem} from '../styled-components.js';
 import type {AppNavBarPropsT} from '../types.js';
+import UserMenuListItem from './user-menu-list-item.js';
+import UserProfileTile from './user-profile-tile.js';
 
 const MENU_ITEM_WIDTH = '275px';
 

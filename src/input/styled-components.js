@@ -5,11 +5,11 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+import DeleteAlt from '../icon/delete-alt.js';
 import {styled} from '../styles/index.js';
 import type {ThemeT} from '../styles/types.js';
 import {ADJOINED, ENHANCER_POSITION, SIZE} from './constants.js';
 import type {SharedPropsT, SizeT} from './types.js';
-import DeleteAlt from '../icon/delete-alt.js';
 
 export const StyledMaskToggleButton = styled<{
   $size: SizeT,

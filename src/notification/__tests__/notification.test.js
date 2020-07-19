@@ -6,11 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
 import {mount} from 'enzyme';
+import * as React from 'react';
 
+import {StyledBody, StyledCloseIcon, Toast} from '../../toast/index.js';
 import {Notification} from '../index.js';
-import {Toast, StyledBody, StyledCloseIcon} from '../../toast/index.js';
 
 jest.useFakeTimers();
 

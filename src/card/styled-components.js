@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 /* @flow */
 
-import {styled, expandBorderStyles} from '../styles/index.js';
+import {expandBorderStyles, styled} from '../styles/index.js';
 
 export const Action = styled<{}>('div', ({$theme}) => ({
   ...$theme.typography.LabelMedium,

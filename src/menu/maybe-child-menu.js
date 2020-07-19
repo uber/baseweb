@@ -9,10 +9,10 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {NestedMenuContext} from './nested-menus.js';
-import {Popover} from '../popover/index.js';
 import type {OverrideT} from '../helpers/overrides.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import {Popover} from '../popover/index.js';
+import {NestedMenuContext} from './nested-menus.js';
 
 type PropsT = {
   children: React.Node,

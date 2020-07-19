@@ -7,18 +7,18 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-env browser */
 
+import {mount} from 'enzyme';
 import * as React from 'react';
 import ReactDOM from 'react-dom';
+
 import {Layer, TetherBehavior} from '../../layer/index.js';
-import {mount} from 'enzyme';
+import {styled} from '../../styles/index.js';
 import {
+  ACCESSIBILITY_TYPE,
   Popover,
   StyledBody,
-  ACCESSIBILITY_TYPE,
   TRIGGER_TYPE,
 } from '../index.js';
-
-import {styled} from '../../styles/index.js';
 
 jest.useFakeTimers();
 

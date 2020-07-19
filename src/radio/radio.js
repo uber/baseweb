@@ -9,14 +9,13 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {getOverrides} from '../helpers/overrides.js';
-
 import {
-  Root as StyledRoot,
-  Label as StyledLabel,
+  Description as StyledDescription,
   Input as StyledInput,
+  Label as StyledLabel,
   RadioMarkInner as StyledRadioMarkInner,
   RadioMarkOuter as StyledRadioMarkOuter,
-  Description as StyledDescription,
+  Root as StyledRoot,
 } from './styled-components.js';
 import type {RadioPropsT, RadioStateT} from './types.js';
 

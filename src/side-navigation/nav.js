@@ -7,15 +7,16 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+
 import {getOverrides} from '../helpers/overrides.js';
+import {forkBlur, forkFocus, isFocusVisible} from '../utils/focusVisible.js';
 import NavItem from './nav-item.js';
 import {
-  StyledRoot,
   StyledNavItemContainer,
+  StyledRoot,
   StyledSubNavContainer,
 } from './styled-components.js';
-import type {NavPropsT, Item} from './types.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import type {Item, NavPropsT} from './types.js';
 
 export default class SideNav extends React.Component<
   NavPropsT,

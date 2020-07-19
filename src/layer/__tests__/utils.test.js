@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {toPopperPlacement, parsePopperOffset} from '../utils.js';
+import {parsePopperOffset, toPopperPlacement} from '../utils.js';
 
 describe('toPopperPlacement', () => {
   test('toPopperPlacement should convert from popover placements to popper placements', () => {

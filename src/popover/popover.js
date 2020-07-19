@@ -10,31 +10,30 @@ import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
+import {Layer, TetherBehavior} from '../layer/index.js';
+import type {NormalizedOffsetsT, PopperDataObjectT} from '../layer/types.js';
 import getBuiId from '../utils/get-bui-id.js';
 import {
   ACCESSIBILITY_TYPE,
+  ANIMATE_IN_TIME,
+  ANIMATE_OUT_TIME,
   PLACEMENT,
   TRIGGER_TYPE,
-  ANIMATE_OUT_TIME,
-  ANIMATE_IN_TIME,
 } from './constants.js';
-import {Layer, TetherBehavior} from '../layer/index.js';
+import defaultProps from './default-props.js';
 import {
   Arrow as StyledArrow,
   Body as StyledBody,
-  Inner as StyledInner,
   Hidden,
+  Inner as StyledInner,
 } from './styled-components.js';
-import {fromPopperPlacement} from './utils.js';
-import defaultProps from './default-props.js';
-
 import type {
   AnchorPropsT,
-  PopoverPropsT,
   PopoverPrivateStateT,
+  PopoverPropsT,
   SharedStylePropsArgT,
 } from './types.js';
-import type {PopperDataObjectT, NormalizedOffsetsT} from '../layer/types.js';
+import {fromPopperPlacement} from './utils.js';
 
 class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   static defaultProps: $Shape<PopoverPropsT> = defaultProps;

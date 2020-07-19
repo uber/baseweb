@@ -8,15 +8,15 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {
   createStyled,
-  withStyle as styletronWithStyle,
   useStyletron as styletronUseStyletron,
+  withStyle as styletronWithStyle,
   withWrapper as styletronWithWrapper,
 } from 'styletron-react';
-import {driver, getInitialStyle} from 'styletron-standard';
 import type {StyleObject} from 'styletron-standard';
-import type {ThemeT} from './types.js';
+import {driver, getInitialStyle} from 'styletron-standard';
 
 import {ThemeContext} from './theme-provider.js';
+import type {ThemeT} from './types.js';
 
 const wrapper = StyledComponent => {
   return React.forwardRef((props, ref) => (

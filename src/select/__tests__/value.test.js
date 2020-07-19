@@ -5,10 +5,11 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
 import {mount} from 'enzyme';
-import SingleValue from '../value.js';
+import * as React from 'react';
+
 import {StyledSingleValue} from '../styled-components.js';
+import SingleValue from '../value.js';
 
 describe('Single Value component', function() {
   test('renders StyledSingleValue', function() {

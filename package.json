@@ -136,6 +136,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.0",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.10.0",
+    "eslint-plugin-simple-import-sort": "^5.0.3",
     "extract-react-types": "^0.26.0",
     "extract-react-types-loader": "^0.3.13",
     "flow-bin": "^0.110.0",

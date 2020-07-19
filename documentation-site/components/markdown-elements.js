@@ -7,16 +7,16 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* global process */
-import * as React from 'react';
-
-import Head from 'next/head';
 import {Block} from 'baseui/block';
 import {StyledLink} from 'baseui/link';
-import Code from './code';
-import {themedStyled} from '../pages/_app';
+import Head from 'next/head';
 import Link from 'next/link';
-import Anchor from './anchor';
+import * as React from 'react';
+
 import slugify from '../helpers/slugify';
+import {themedStyled} from '../pages/_app';
+import Anchor from './anchor';
+import Code from './code';
 import {useHover} from './hooks';
 type Props = {
   children: string | React.Node,

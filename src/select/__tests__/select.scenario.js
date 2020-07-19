@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulSelect, SingleSelect, MultiSelect} from '../index.js';
+import {MultiSelect, SingleSelect, StatefulSelect} from '../index.js';
 
 const options = [
   {id: 'AliceBlue', color: '#F0F8FF'},

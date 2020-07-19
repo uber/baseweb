@@ -12,13 +12,12 @@ import FocusLock from 'react-focus-lock';
 import {Button, KIND, SIZE} from '../button/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import FilterIcon from '../icon/filter.js';
-import {StatefulPopover, PLACEMENT} from '../popover/index.js';
-
+import {PLACEMENT, StatefulPopover} from '../popover/index.js';
 import {
   StyledFilterButton,
   StyledFilterContent,
-  StyledFilterHeading,
   StyledFilterFooter,
+  StyledFilterHeading,
 } from './styled-components.js';
 import type {FilterProps} from './types.js';
 

@@ -9,28 +9,27 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 
-import {LocaleContext} from '../locale/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {Layer} from '../layer/index.js';
-import {SIZE, CLOSE_SOURCE, ANCHOR} from './constants.js';
-import {
-  StyledRoot,
-  StyledBackdrop,
-  StyledDrawerContainer,
-  StyledDrawerBody,
-  StyledClose,
-  Hidden,
-} from './styled-components.js';
+import {LocaleContext} from '../locale/index.js';
+import {forkBlur, forkFocus, isFocusVisible} from '../utils/focusVisible.js';
 import {CloseIcon} from './close-icon.js';
-
+import {ANCHOR, CLOSE_SOURCE, SIZE} from './constants.js';
+import {
+  Hidden,
+  StyledBackdrop,
+  StyledClose,
+  StyledDrawerBody,
+  StyledDrawerContainer,
+  StyledRoot,
+} from './styled-components.js';
 import type {
+  CloseSourceT,
   DrawerPropsT,
   DrawerStateT,
-  SharedStylePropsArgT,
-  CloseSourceT,
   ElementRefT,
+  SharedStylePropsArgT,
 } from './types.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
   static defaultProps: $Shape<DrawerPropsT> = {

@@ -6,26 +6,25 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
 import format from 'date-fns/format/index.js';
-import getYear from 'date-fns/getYear/index.js';
+import getDay from 'date-fns/getDay/index.js';
 import getMonth from 'date-fns/getMonth/index.js';
 import getQuarter from 'date-fns/getQuarter/index.js';
-import getDay from 'date-fns/getDay/index.js';
+import getYear from 'date-fns/getYear/index.js';
 import isAfter from 'date-fns/isAfter/index.js';
 import isBefore from 'date-fns/isBefore/index.js';
 import isEqual from 'date-fns/isEqual/index.js';
 import set from 'date-fns/set/index.js';
+import * as React from 'react';
 
-import {Button, SIZE} from '../button/index.js';
 import {ButtonGroup, MODE} from '../button-group/index.js';
+import {Button, SIZE} from '../button/index.js';
 import {Checkbox} from '../checkbox/index.js';
-import {applyDateToTime, applyTimeToDate} from '../datepicker/utils/index.js';
 import {Datepicker} from '../datepicker/index.js';
-import {TimePicker} from '../timepicker/index.js';
+import {applyDateToTime, applyTimeToDate} from '../datepicker/utils/index.js';
+import {type ValueT, Select} from '../select/index.js';
 import {useStyletron} from '../styles/index.js';
-import {Select, type ValueT} from '../select/index.js';
-
+import {TimePicker} from '../timepicker/index.js';
 import CellShell from './cell-shell.js';
 import {COLUMNS, DATETIME_OPERATIONS} from './constants.js';
 import FilterShell from './filter-shell.js';

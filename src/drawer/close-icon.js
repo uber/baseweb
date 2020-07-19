@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+
 import Delete from '../icon/delete.js';
 
 export function CloseIcon() {

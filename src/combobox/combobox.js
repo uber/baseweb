@@ -8,17 +8,16 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
+import {getOverrides} from '../helpers/overrides.js';
 import {Input, SIZE} from '../input/index.js';
 import {scrollItemIntoView} from '../menu/utils.js';
-import {getOverrides} from '../helpers/overrides.js';
-import {Popover, PLACEMENT} from '../popover/index.js';
+import {PLACEMENT, Popover} from '../popover/index.js';
 import getBuiId from '../utils/get-bui-id.js';
-
 import {
-  StyledRoot,
   StyledInputContainer,
   StyledListBox,
   StyledListItem,
+  StyledRoot,
 } from './styled-components.js';
 import type {PropsT} from './types.js';
 

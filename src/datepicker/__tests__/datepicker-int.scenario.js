@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
+import {hu} from 'date-fns/locale/index.js';
 import * as React from 'react';
 
 import {StatefulDatepicker} from '../index.js';
-import {hu} from 'date-fns/locale/index.js';
 
 export default function Scenario() {
   return (

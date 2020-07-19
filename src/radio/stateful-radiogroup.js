@@ -6,10 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-// eslint-disable-next-line import/no-named-default
-import StatefulContainer from './stateful-radiogroup-container.js';
+
 // eslint-disable-next-line import/no-named-default
 import RadioGroup from './radiogroup.js';
+// eslint-disable-next-line import/no-named-default
+import StatefulContainer from './stateful-radiogroup-container.js';
 import type {PropsT, StatefulRadioGroupPropsT} from './types.js';
 // Styled elements
 

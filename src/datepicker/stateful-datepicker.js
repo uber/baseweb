@@ -6,9 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import StatefulContainer from './stateful-container.js';
+
 import Datepicker from './datepicker.js';
-import type {StatefulDatepickerPropsT, DatepickerPropsT} from './types.js';
+import StatefulContainer from './stateful-container.js';
+import type {DatepickerPropsT, StatefulDatepickerPropsT} from './types.js';
 
 type PropsT<T> = StatefulDatepickerPropsT<DatepickerPropsT<T>, T>;
 

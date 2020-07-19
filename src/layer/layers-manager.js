@@ -6,14 +6,15 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {styled} from '../styles/index.js';
+
 import {getOverrides} from '../helpers/overrides.js';
+import {styled} from '../styles/index.js';
+import {initFocusVisible} from '../utils/focusVisible.js';
 import type {
+  LayersContextT,
   LayersManagerPropsT,
   LayersManagerStateT,
-  LayersContextT,
 } from './types.js';
-import {initFocusVisible} from '../utils/focusVisible.js';
 
 const StyledAppContainer = styled('div', {});
 const StyledLayersContainer = styled('div', {});

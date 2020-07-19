@@ -6,12 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import React, {useRef} from 'react';
+
+import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import {Input as DefaultInput} from '../input/index.js';
 import {COUNTRIES} from './constants.js';
 import CountryPicker from './country-picker.js';
 import defaultProps from './default-props.js';
-import {StyledPhoneInputRoot, StyledDialCode} from './styled-components.js';
-import {Input as DefaultInput} from '../input/index.js';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import {StyledDialCode, StyledPhoneInputRoot} from './styled-components.js';
 import type {LitePropsT} from './types.js';
 
 PhoneInputNext.defaultProps = {

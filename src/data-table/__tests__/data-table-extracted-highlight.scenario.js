@@ -9,12 +9,11 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {
+  BooleanColumn,
   CategoricalColumn,
   StringColumn,
-  BooleanColumn,
   Unstable_StatefulDataTable,
 } from '../index.js';
-
 import AnimalData from './animal-data.js';
 
 type RowDataT = {

@@ -9,21 +9,20 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import TreeNode from './tree-node.js';
+import {getOverride, getOverrideProps} from '../helpers/overrides.js';
+import {isFocusVisible} from '../utils/focusVisible.js';
 import {StyledTreeItemList} from './styled-components.js';
+import TreeNode from './tree-node.js';
+import type {TreeNodeIdT, TreeNodeT, TreeViewPropsT} from './types.js';
 import {
-  getPrevId,
-  getNextId,
-  getParentId,
-  getFirstChildId,
+  defaultGetId,
   getEndId,
   getExpandableSiblings,
-  defaultGetId,
+  getFirstChildId,
+  getNextId,
+  getParentId,
+  getPrevId,
 } from './utils.js';
-import type {TreeViewPropsT, TreeNodeT, TreeNodeIdT} from './types.js';
-import {isFocusVisible} from '../utils/focusVisible.js';
-
-import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 
 export default function TreeView(props: TreeViewPropsT) {
   const {

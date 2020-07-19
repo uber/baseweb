@@ -6,11 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
-import {Tab as StyledTab} from './styled-components.js';
-import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
-import type {TabPropsT, SharedStylePropsArgT} from './types.js';
+import {getOverrides} from '../helpers/overrides.js';
+import {forkBlur, forkFocus, isFocusVisible} from '../utils/focusVisible.js';
+import {Tab as StyledTab} from './styled-components.js';
+import type {SharedStylePropsArgT, TabPropsT} from './types.js';
 
 class TabComponent extends React.Component<
   TabPropsT,

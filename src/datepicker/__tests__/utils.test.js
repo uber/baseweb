@@ -6,13 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable import/extensions */
-import {es} from 'date-fns/locale/index.js';
-import * as utilsHelpers from '../utils/index';
-import {formatDate} from '../utils';
-import DateHelpers from '../utils/date-helpers';
-import adapter from '../utils/date-fns-adapter';
 import MomentUtils from '@date-io/moment';
+import {es} from 'date-fns/locale/index.js';
 import moment from 'moment';
+
+import {formatDate} from '../utils';
+import adapter from '../utils/date-fns-adapter';
+import DateHelpers from '../utils/date-helpers';
+import * as utilsHelpers from '../utils/index';
 const momentAdapter = new MomentUtils({instance: moment});
 /* eslint-enable import/extensions */
 const dateHelpers = new DateHelpers(adapter);

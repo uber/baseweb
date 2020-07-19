@@ -7,10 +7,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
+
+import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import {SingleSelect as DefaultSelect} from '../select/index.js';
 import BaseCountryPicker from './base-country-picker.js';
 import {SIZE} from './constants.js';
-import {SingleSelect as DefaultSelect} from '../select/index.js';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import defaultProps from './default-props.js';
 import type {CountrySelectPropsT} from './types.js';
 

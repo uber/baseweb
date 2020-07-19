@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* @flow */
 
 import * as React from 'react';
+
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 import {
   Action as StyledAction,
@@ -18,7 +19,6 @@ import {
   Thumbnail as StyledThumbnail,
   Title as StyledTitle,
 } from './styled-components.js';
-
 import type {CardsPropsT} from './types.js';
 
 export function hasThumbnail(props: {+thumbnail?: string}) {

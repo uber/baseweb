@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulMenu, NestedMenus} from '../index.js';
+import {NestedMenus, StatefulMenu} from '../index.js';
 
 const SSR = 'Rendered ->';
 const FILE = [{label: 'Server'}, {label: 'Side'}, {label: SSR}];

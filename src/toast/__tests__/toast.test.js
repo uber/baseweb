@@ -6,10 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
-import {render, getByTestId} from '@testing-library/react';
+import {getByTestId, render} from '@testing-library/react';
 import {mount} from 'enzyme';
-import {Toast, StyledBody, StyledCloseIcon, KIND} from '../index.js';
+import * as React from 'react';
+
+import {KIND, StyledBody, StyledCloseIcon, Toast} from '../index.js';
 
 describe('Toast', () => {
   beforeEach(async () => {

@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {styled} from '../styles/index.js';
-import {SIZE, SIZE_DIMENSION, ANCHOR} from './constants.js';
-import type {SharedStylePropsArgT, SizePropT, AnchorPropT} from './types.js';
+import {ANCHOR, SIZE, SIZE_DIMENSION} from './constants.js';
+import type {AnchorPropT, SharedStylePropsArgT, SizePropT} from './types.js';
 
 function getSizeStyles($size: SizePropT, $anchor: AnchorPropT) {
   const styles = {

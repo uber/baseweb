@@ -6,24 +6,25 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+
 import {FormControl} from '../form-control/index.js';
+import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import {LocaleContext} from '../locale/index.js';
 import {Select} from '../select/index.js';
-import CalendarHeader from './calendar-header.js';
-import Month from './month.js';
 import TimePicker from '../timepicker/timepicker.js';
-import type {DateIOAdapter} from './utils/types.js';
+import CalendarHeader from './calendar-header.js';
+import {ORIENTATION} from './constants.js';
+import Month from './month.js';
 import {
   StyledCalendarContainer,
   StyledMonthContainer,
   StyledRoot,
   StyledSelectorContainer,
 } from './styled-components.js';
+import type {CalendarInternalState, CalendarPropsT} from './types.js';
 import dateFnsAdapter from './utils/date-fns-adapter.js';
 import DateHelpers from './utils/date-helpers.js';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
-import type {CalendarPropsT, CalendarInternalState} from './types.js';
-import {ORIENTATION} from './constants.js';
+import type {DateIOAdapter} from './utils/types.js';
 
 export default class Calendar<T = Date> extends React.Component<
   CalendarPropsT<T>,

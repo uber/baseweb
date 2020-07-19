@@ -6,8 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+
 import {Button} from '../../button/index.js';
-import {toaster, ToasterContainer, PLACEMENT} from '../index.js';
+import {PLACEMENT, toaster, ToasterContainer} from '../index.js';
 
 export default function Scenario() {
   return (

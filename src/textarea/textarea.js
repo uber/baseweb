@@ -6,10 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import type {TextareaPropsT} from './types.js';
+
 import {mergeOverrides} from '../helpers/overrides.js';
-import {BaseInput, SIZE, CUSTOM_INPUT_TYPE} from '../input/index.js';
+import {BaseInput, CUSTOM_INPUT_TYPE, SIZE} from '../input/index.js';
 import {StyledTextarea, StyledTextareaContainer} from './styled-components.js';
+import type {TextareaPropsT} from './types.js';
 
 class Textarea extends React.Component<TextareaPropsT> {
   static defaultProps = {

@@ -7,8 +7,10 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import * as React from 'react';
 import {shallow} from 'enzyme';
+import * as React from 'react';
+
+import Block from '../../block/block.js';
 import {
   Caption1,
   Caption2,
@@ -24,7 +26,6 @@ import {
   Paragraph1,
   Paragraph2,
 } from '../index.js';
-import Block from '../../block/block.js';
 
 function getStyle(element: React.Node) {
   // $FlowFixMe

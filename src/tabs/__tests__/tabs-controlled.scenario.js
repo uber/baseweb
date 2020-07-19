@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Tabs, Tab} from '../index.js';
+import {Tab, Tabs} from '../index.js';
 
 type StateT = {
   activeKey: string,

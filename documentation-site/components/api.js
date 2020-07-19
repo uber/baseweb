@@ -6,12 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import * as React from 'react';
-import Props from 'pretty-proptypes';
-
 import {Block} from 'baseui/block';
-import {Button, SIZE as ButtonSize, KIND as ButtonKind} from 'baseui/button';
+import {Button, KIND as ButtonKind, SIZE as ButtonSize} from 'baseui/button';
 import {Paragraph3} from 'baseui/typography';
+import Props from 'pretty-proptypes';
+import * as React from 'react';
+
 import {H3} from './markdown-elements';
 
 const API = props => {

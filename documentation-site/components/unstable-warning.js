@@ -6,10 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
-import {Notification, KIND} from 'baseui/notification';
 import {StyledLink} from 'baseui/link';
+import {KIND, Notification} from 'baseui/notification';
 import Link from 'next/link';
+import React from 'react';
 
 export default function UnstableWarning() {
   return (

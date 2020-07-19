@@ -7,9 +7,10 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
+
 import {getOverrides} from '../helpers/overrides.js';
-import {StyledCell as DefaultStyledCell} from './styled-components.js';
 import {GridContext} from './grid.js';
+import {StyledCell as DefaultStyledCell} from './styled-components.js';
 import type {CellPropsT} from './types.js';
 
 export default function Cell({

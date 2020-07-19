@@ -8,13 +8,11 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Tag, KIND as TAG_KIND} from '../../tag/index.js';
-
+import {KIND as TAG_KIND, Tag} from '../../tag/index.js';
 import CategoricalColumn from '../column-categorical.js';
 import CustomColumn from '../column-custom.js';
 import StringColumn from '../column-string.js';
 import {Unstable_StatefulDataTable} from '../stateful-data-table.js';
-
 import AnimalData from './animal-data.js';
 
 type RowDataT = {

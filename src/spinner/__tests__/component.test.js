@@ -6,10 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
 import {mount} from 'enzyme';
-import {Spinner} from '../index.js';
+import * as React from 'react';
+
 import {Icon} from '../../icon/index.js';
+import {Spinner} from '../index.js';
 
 describe('Spinner', () => {
   test('color can be changed through props', () => {

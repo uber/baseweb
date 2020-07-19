@@ -6,11 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
+import MomentUtils from '@date-io/moment';
 import * as React from 'react';
 
-import {Datepicker} from '../index.js';
 import {Button} from '../../button/index.js';
-import MomentUtils from '@date-io/moment';
+import {Datepicker} from '../index.js';
 const adapter = new MomentUtils({});
 import moment from 'moment';
 

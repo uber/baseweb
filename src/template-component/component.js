@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 import {Root as StyledRoot} from './styled-components.js';
-
 import type {ComponentPropsT, SharedStylePropsT} from './types.js';
 
 class Component extends React.Component<ComponentPropsT> {

@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import type {PropsT, OptionT, OptionsT, OptgroupsT, ValueT} from '../types.js';
+import type {OptgroupsT, OptionsT, OptionT, PropsT, ValueT} from '../types.js';
 
 function groupedOptionsToArray(groupedOptions: OptgroupsT): ValueT {
   return Object.keys(groupedOptions).reduce((arr, optgroup) => {
