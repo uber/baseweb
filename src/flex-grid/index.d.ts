@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {BlockProps, Responsive, Scale} from '../block';
 
 export interface FlexGridProps extends BlockProps {

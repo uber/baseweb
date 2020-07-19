@@ -6,8 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
-
 import type {OverrideT} from '../helpers/overrides.js';
 import {STATE_CHANGE_TYPE, SIZE, TYPE} from './constants.js';
 import type {OnItemSelectFnT} from '../menu/types.js';
@@ -18,7 +16,7 @@ export type TypeT = $Keys<typeof TYPE>;
 
 export type OptionT = $ReadOnly<{
   id?: string | number,
-  label?: React.Node,
+  label?: React$Node,
   disabled?: boolean,
   clearableValue?: boolean,
   isCreatable?: boolean,
@@ -115,13 +113,13 @@ export type PropsT = {
       $disabled: boolean,
       $isHighlighted: boolean,
     },
-  }) => React.Node,
+  }) => React$Node,
   /** A custom method to get a display value for a selected option. */
-  getValueLabel: ?({option: OptionT}) => React.Node,
+  getValueLabel: ?({option: OptionT}) => React$Node,
   /** Sets the id attribute of the internal input element. Allows for usage with labels. */
   id?: string,
   /** A ref to access the input element powering the select if it's a search select, or the container div if it isn't. */
-  controlRef?: React.ElementRef<*>,
+  controlRef?: React$ElementRef<*>,
   /** Defines if the select is in a loading (async) state. */
   isLoading: boolean,
   /** Defines an option key for a default label value. */
@@ -131,7 +129,7 @@ export type PropsT = {
   /** Defines if multiple options can be selected. */
   multi: boolean,
   /** Message to be displayed if no options is found for a search query. */
-  noResultsMsg?: React.Node,
+  noResultsMsg?: React$Node,
   onBlur: (e: Event) => mixed,
   /** Defines if the input value is reset to an empty string when a blur event happens on the select. */
   onBlurResetsInput: boolean,
@@ -156,7 +154,7 @@ export type PropsT = {
   options: OptionsT,
   overrides: OverridesT,
   /** Sets the placeholder. */
-  placeholder?: React.Node,
+  placeholder?: React$Node,
   /** Defines if the select field is required to have a selection. */
   required: boolean,
   /** Defines if the search functionality is enabled. */
@@ -171,7 +169,7 @@ export type PropsT = {
    * prop set to true it will be rendered as a disabled selected option that can't be cleared. */
   value: ValueT,
   // eslint-disable-next-line flowtype/no-weak-types
-  valueComponent?: React.ComponentType<any>,
+  valueComponent?: React$AbstractComponent<*, *>,
   /** Defines a key name for an option's unique identifier value.
    * The value of the `valueKey` prop is used to identify what options are selected
    * or removed from the selection, it also used for default filtering out the
@@ -223,14 +221,14 @@ export type DropdownPropsT = {
       $disabled: boolean,
       $isHighlighted: boolean,
     },
-  }) => React.Node,
+  }) => React$Node,
   id?: string,
-  innerRef: React.ElementRef<*>,
+  innerRef: React$ElementRef<*>,
   isLoading: boolean,
   labelKey: string,
   maxDropdownHeight: string,
   multi: boolean,
-  noResultsMsg?: React.Node,
+  noResultsMsg?: React$Node,
   onActiveDescendantChange?: (id?: string) => mixed,
   onItemSelect: OnItemSelectFnT,
   options: ValueT,

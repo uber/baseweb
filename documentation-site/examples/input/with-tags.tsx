@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {useStyletron} from 'baseui';
 import {Input, StyledInput} from 'baseui/input';
 import {Tag, VARIANT as TAG_VARIANT} from 'baseui/tag';

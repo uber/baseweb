@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 
 type Ref = {current: HTMLElement | null};
 type ContextT = {
@@ -21,10 +21,10 @@ type StateT = {
   menus: Ref[],
 };
 type PropsT = {
-  children: React.Node,
+  children: React$Node,
 };
 
-export const NestedMenuContext: React.Context<ContextT> = React.createContext({
+export const NestedMenuContext: React$Context<ContextT> = React.createContext({
   addMenuToNesting: () => {},
   removeMenuFromNesting: () => {},
   getParentMenu: () => {},

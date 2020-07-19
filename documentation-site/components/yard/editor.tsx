@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import SimpleEditor from 'react-simple-code-editor';
 import Highlight, {Prism} from 'prism-react-renderer';
 import {useStyletron} from 'baseui';

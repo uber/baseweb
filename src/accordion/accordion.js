@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
+import React from 'react';
 import {getOverrides} from '../helpers/overrides.js';
 import {Root as StyledRoot} from './styled-components.js';
 import {STATE_CHANGE_TYPE} from './constants.js';
@@ -37,7 +37,7 @@ export default class Accordion extends React.Component<
     ...this.props.initialState,
   };
 
-  onPanelChange(key: React.Key, onChange: () => {}, ...args: *) {
+  onPanelChange(key: React$Key, onChange: () => {}, ...args: *) {
     let activeKeys = this.state.expanded;
     const {accordion} = this.props;
     if (accordion) {

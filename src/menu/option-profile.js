@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 // @flow
-import * as React from 'react';
+import React from 'react';
 // Components
 import MaybeChildMenu from './maybe-child-menu.js';
 import {

@@ -7,8 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import * as React from 'react';
-
+import React from 'react';
 import {StyledTreeItemList, StyledTreeItem} from './styled-components.js';
 import type {TreeNodePropsT} from './types.js';
 

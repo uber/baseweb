@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {Paragraph3} from 'baseui/typography';
 import {Radio, RadioGroup} from 'baseui/radio';
 

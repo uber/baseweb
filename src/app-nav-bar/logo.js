@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import {StyledAppName} from './styled-components.js';
 
-export default function Logo(props: {appDisplayName: ?React.Node}) {
+export default function Logo(props: {appDisplayName: ?React$Node}) {
   return <StyledAppName>{props.appDisplayName}</StyledAppName>;
 }

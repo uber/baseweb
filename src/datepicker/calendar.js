@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
+import React from 'react';
 import {FormControl} from '../form-control/index.js';
 import {LocaleContext} from '../locale/index.js';
 import {Select} from '../select/index.js';
@@ -56,7 +56,7 @@ export default class Calendar<T = Date> extends React.Component<
 
   dateHelpers: DateHelpers<T>;
 
-  calendar: React.ElementRef<*>;
+  calendar: null | React$ElementRef<React$AbstractComponent<*, *>>;
 
   constructor(props: CalendarPropsT<T>) {
     super(props);
@@ -187,7 +187,7 @@ export default class Calendar<T = Date> extends React.Component<
     this.setState({date: date}, () => this.handleYearChange(this.state.date));
   };
 
-  renderCalendarHeader: (T, number) => React.Node = (
+  renderCalendarHeader: (T, number) => React$Node = (
     date = this.state.date,
     order,
   ) => {
@@ -475,7 +475,7 @@ export default class Calendar<T = Date> extends React.Component<
   };
 
   // eslint-disable-next-line flowtype/no-weak-types
-  renderTimeSelect: (?T, Function, string) => React.Node = (
+  renderTimeSelect: (?T, Function, string) => React$Node = (
     value,
     onChange,
     label,

@@ -1,5 +1,5 @@
 // @flow
-import * as React from 'react';
+import React from 'react';
 import {useStyletron} from 'baseui';
 import {Select} from 'baseui/select';
 import {Button} from 'baseui/button';

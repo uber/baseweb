@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {Notification, KIND} from 'baseui/notification';
 
 export default () => (

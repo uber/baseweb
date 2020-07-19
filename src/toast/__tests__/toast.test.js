@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import {render, getByTestId} from '@testing-library/react';
 import {mount} from 'enzyme';
 import {Toast, StyledBody, StyledCloseIcon, KIND} from '../index.js';

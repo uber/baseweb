@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
+import React from 'react';
 
 import {getOverrides} from '../helpers/overrides.js';
 import DeleteAlt from '../icon/delete-alt.js';
@@ -81,7 +81,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
   // dropdown is a ref that refers to the popover element. This is required so that we can check if
   // clicks are on/off the dropdown element.
   dropdown: {current: HTMLElement | null} = React.createRef();
-  input: React.ElementRef<*>;
+  input: React$ElementRef<*>;
   // dragging is a flag to track whether a mobile device is currently scrolling versus clicking.
   dragging: boolean;
   // focusAfterClear is a flag to indicate that the dropdowm menu should open after a selected
@@ -447,12 +447,12 @@ class Select extends React.Component<PropsT, SelectStateT> {
         $isHighlighted: boolean,
       },
     },
-  ): React.Node =>
+  ): React$Node =>
     option.isCreatable
       ? `${locale.select.create} “${option[this.props.labelKey]}”`
       : option[this.props.labelKey];
 
-  getValueLabel = ({option}: {option: OptionT}): React.Node => {
+  getValueLabel = ({option}: {option: OptionT}): React$Node => {
     return option[this.props.labelKey];
   };
 
@@ -485,7 +485,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     }
   };
 
-  handleInputRef = (input: React.ElementRef<*>) => {
+  handleInputRef = (input: React$ElementRef<React$AbstractComponent<*, *>>) => {
     this.input = input;
     if (this.props.controlRef) {
       if (typeof this.props.controlRef === 'function') {
@@ -638,7 +638,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     valueArray: ValueT,
     isOpen: boolean,
     locale: LocaleT,
-  ): ?React.Node | Array<?React.Node> {
+  ): ?React$Node | Array<?React$Node> {
     const {overrides = {}} = this.props;
     const sharedProps = this.getSharedProps();
     const renderLabel = this.props.getValueLabel || this.getValueLabel;

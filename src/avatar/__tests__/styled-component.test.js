@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable */
 // @flow
-import * as React from 'react';
+import React from 'react';
 import {StyledInitials, StyledRoot, Avatar} from '../index.js';
 
 describe('Avatar styled Components flow', () => {

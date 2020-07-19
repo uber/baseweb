@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {StatefulPagination} from 'baseui/pagination';
 
 import {createTheme, lightThemePrimitives} from 'baseui';

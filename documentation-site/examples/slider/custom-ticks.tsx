@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {Slider} from 'baseui/slider';
 import {useStyletron} from 'baseui';
 

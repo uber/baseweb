@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* global window */
 
-import * as React from 'react';
+import React from 'react';
 
 import {getOverrides} from '../helpers/overrides.js';
 import {ADJOINED, SIZE, CUSTOM_INPUT_TYPE} from './constants.js';

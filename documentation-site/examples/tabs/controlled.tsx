@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {Tabs, Tab} from 'baseui/tabs';
 
 const content = ['Tab Content 1', 'Tab Content 2', 'Tab Content 3'];

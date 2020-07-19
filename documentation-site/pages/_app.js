@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env browser */
 
 // @flow
-import * as React from 'react';
+import React from 'react';
 import {
   createThemedStyled,
   createThemedUseStyletron,

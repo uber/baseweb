@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {StatefulPanel} from 'baseui/accordion';
 
 const content =

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {styled} from 'baseui';
 import {Select, Value} from 'baseui/select';
 import {expandBorderStyles} from 'baseui/styles';

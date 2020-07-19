@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 
 import {LocaleContext} from '../locale/index.js';
 import {getOverrides} from '../helpers/overrides.js';
@@ -16,7 +16,10 @@ import MaybeChildMenu from './maybe-child-menu.js';
 import {StyledListItem, StyledListItemAnchor} from './styled-components.js';
 import type {OptionListPropsT} from './types.js';
 
-function OptionList(props: OptionListPropsT, ref: React.ElementRef<*>) {
+function OptionList(
+  props: OptionListPropsT,
+  ref: React$ElementRef<React$AbstractComponent<*, *>>,
+) {
   const {
     getChildMenu,
     getItemLabel = item => (item ? item.label : ''),

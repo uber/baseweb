@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable react/prefer-stateless-function */
-import * as React from 'react';
+import React from 'react';
 
 import Menu from './menu.js';
 import {NestedMenuContext} from './nested-menus.js';
@@ -14,7 +14,7 @@ import StatefulContainer from './stateful-container.js';
 
 import type {StatefulMenuPropsT} from './types.js';
 
-export default class StatefulMenu extends React.PureComponent<StatefulMenuPropsT> {
+export default class StatefulMenu extends React.Component<StatefulMenuPropsT> {
   render() {
     const {overrides, ...props} = this.props;
     return (

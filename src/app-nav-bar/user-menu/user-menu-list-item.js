@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import {MenuAdapter, ListItemLabel, ARTWORK_SIZES} from '../../list/index.js';
 
 // eslint-disable-next-line flowtype/no-weak-types

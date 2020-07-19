@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {StyletronComponent} from 'styletron-react';
 import {Override} from '../overrides';
 
@@ -49,7 +49,7 @@ export interface BaseInputProps<T> {
   id?: string;
   'data-baseweb'?: string;
   inputMode?: string;
-  pattern?: string,
+  pattern?: string;
   inputRef?: React.Ref<T>;
   name?: string;
   onBlur?: React.FocusEventHandler<T>;

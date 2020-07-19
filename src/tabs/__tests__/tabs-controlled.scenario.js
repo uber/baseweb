@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 
 import {Tabs, Tab} from '../index.js';
 
@@ -19,7 +19,7 @@ class Example extends React.Component<{}, StateT> {
     activeKey: '0',
   };
 
-  onChange = (params: {activeKey: React.Key}) => {
+  onChange = (params: {activeKey: React$Key}) => {
     this.setState({activeKey: String(params.activeKey)});
   };
 

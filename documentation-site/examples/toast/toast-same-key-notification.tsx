@@ -1,5 +1,5 @@
 // @flow
-import * as React from 'react';
+import React from 'react';
 import {toaster} from 'baseui/toast';
 import {Button, SIZE} from 'baseui/button';
 import {Block} from 'baseui/block';

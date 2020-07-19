@@ -6,12 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable flowtype/generic-spacing */
-import * as React from 'react';
+import type {ChildrenArray} from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 import {STATE_CHANGE_TYPE} from './constants.js';
 
 export type AccordionStateT = {
-  expanded: Array<React.Key>,
+  expanded: Array<React$Key>,
 };
 
 export type PanelStateT = {
@@ -50,10 +50,10 @@ export type PanelOverridesT = {
 export type OnChangeHandlerT = ({expanded: boolean}) => mixed;
 
 export type AccordionOnChangeHandlerT = ({
-  expanded: Array<React.Key>,
+  expanded: Array<React$Key>,
 }) => mixed;
 
-type ChildrenT = React.ChildrenArray<React.Element<*>>;
+type ChildrenT = ChildrenArray<React$Element<*>>;
 
 export type AccordionPropsT = {
   /** Determines how many panels may be expanded at a time. If set to
@@ -85,8 +85,8 @@ export type AccordionPropsT = {
 };
 
 export type StatelessAccordionOnChangeHandlerT = ({
-  expanded: Array<React.Key>,
-  key: React.Key,
+  expanded: Array<React$Key>,
+  key: React$Key,
 }) => mixed;
 
 export type StatelessAccordionPropsT = {
@@ -99,7 +99,7 @@ export type StatelessAccordionPropsT = {
   /** If set to true all its children panels will be disabled from toggling. */
   disabled?: boolean,
   /** List of Panel keys which are expanded. */
-  expanded: Array<React.Key>,
+  expanded: Array<React$Key>,
   /** Handler called each time a panel is toggled. */
   onChange?: StatelessAccordionOnChangeHandlerT,
   overrides?: AccordionOverridesT & PanelOverridesT,
@@ -117,7 +117,7 @@ export type StatelessAccordionPropsT = {
 
 type SharedPanelPropsT = {
   /** The content visible when Panel is expanded. */
-  children: React.Node,
+  children: React$Node,
   /** Defaults to the disabled value provided by the parent Accordion component. */
   disabled?: boolean,
   /** Id for a panel, when provided populates aria-controls
@@ -126,7 +126,7 @@ type SharedPanelPropsT = {
   'aria-controls'?: string,
   /** The key of a Panel. Used to maintain list of expanded panels.
    * Must be unique across children of the Accordion. */
-  key?: React.Key,
+  key?: React$Key,
   /** Handler for individual Panel change events. */
   onChange?: OnChangeHandlerT,
   /** Handler for the Header's click events. */
@@ -135,7 +135,7 @@ type SharedPanelPropsT = {
   onKeyDown?: (e: KeyboardEvent) => mixed,
   overrides?: PanelOverridesT,
   /** The title of an accordion panel. */
-  title?: React.Node,
+  title?: React$Node,
   /**
    * Allows users to render all child content whether a panel is expanded or not
    * for SEO purposed
@@ -163,7 +163,7 @@ type SharedStatefulPanelContainerPropsT = {
   stateReducer?: PanelStateReducerT,
 };
 export type StatefulPanelContainerPropsT = SharedStatefulPanelContainerPropsT & {
-  children: (props: $Diff<PanelPropsT, {children: React.Node}>) => React.Node,
+  children: (props: $Diff<PanelPropsT, {children: React$Node}>) => React$Node,
 };
 
 // Props for stateful panel

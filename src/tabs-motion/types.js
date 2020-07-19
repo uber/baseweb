@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import * as React from 'react';
 import {ORIENTATION, FILL, STATE_CHANGE_TYPE} from './constants.js';
 
 import type {OverrideT} from '../helpers/overrides.js';
@@ -31,12 +30,12 @@ export type TabOverridesT = {|
 |};
 
 export type StatefulTabsStateT = {|
-  activeKey: React.Key,
+  activeKey: React$Key,
 |};
 
 export type StatefulTabsActionT = {|
   type: StateChangeT,
-  payload: React.Key,
+  payload: React$Key,
 |};
 
 export type StatefulTabsReducerT = (
@@ -44,11 +43,11 @@ export type StatefulTabsReducerT = (
   action: StatefulTabsActionT,
 ) => StatefulTabsStateT;
 
-export type onChangeT = (params: {activeKey: React.Key}) => void;
+export type onChangeT = (params: {activeKey: React$Key}) => void;
 
 export type TabsPropsT = {|
-  children: React.Node,
-  activeKey?: React.Key,
+  children: React$Node,
+  activeKey?: React$Key,
   disabled?: boolean,
   fill?: FillT,
   orientation?: OrientationT,
@@ -65,14 +64,17 @@ export type StatefulTabsPropsT = {|
 |};
 
 export type TabPropsT = {
-  title?: React.Node,
-  key?: React.Key,
-  tabRef?: React.Ref<'button'>,
+  title?: React$Node,
+  key?: React$Key,
+  tabRef?: React$Ref<'button'>,
   overrides?: TabOverridesT,
-  children?: React.Node,
-  artwork?: React.AbstractComponent<{
-    ...IconPropsT,
-    size: $PropertyType<IconPropsT, 'size'>,
-    color: $PropertyType<IconPropsT, 'color'>,
-  }>,
+  children?: React$Node,
+  artwork?: React$AbstractComponent<
+    {
+      ...IconPropsT,
+      size: $PropertyType<IconPropsT, 'size'>,
+      color: $PropertyType<IconPropsT, 'color'>,
+    },
+    *,
+  >,
 };

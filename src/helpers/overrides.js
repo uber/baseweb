@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
+import React from 'react';
 import {isValidElementType} from 'react-is';
 import deepMerge from '../utils/deep-merge.js';
 
@@ -20,13 +20,13 @@ export type StyleOverrideT = ConfigurationOverrideT;
 
 export type OverrideObjectT = {|
   // eslint-disable-next-line flowtype/no-weak-types
-  component?: ?React.ComponentType<any>,
+  component?: ?React$AbstractComponent<*, *>,
   props?: ?ConfigurationOverrideT,
   style?: ?ConfigurationOverrideT,
 |};
 
 // eslint-disable-next-line flowtype/no-weak-types
-export type OverrideT = OverrideObjectT | React.ComponentType<any>;
+export type OverrideT = OverrideObjectT | React$AbstractComponent<*, *>;
 
 export type OverridesT = {
   [string]: OverrideT,
@@ -81,12 +81,12 @@ export function toObjectOverride<T>(override: OverrideT): OverrideObjectT {
   if (isValidElementType(override)) {
     return {
       // eslint-disable-next-line flowtype/no-weak-types
-      component: ((override: any): React.ComponentType<T>),
+      component: ((override: any): React$AbstractComponent<T, *>),
     };
   }
 
   // Flow can't figure out that typeof 'function' above will
-  // catch React.StatelessFunctionalComponent
+  // catch React$StatelessFunctionalComponent
   // (probably related to https://github.com/facebook/flow/issues/6666)
   // eslint-disable-next-line flowtype/no-weak-types
   return ((override || {}: any): OverrideObjectT);
@@ -98,8 +98,8 @@ export function toObjectOverride<T>(override: OverrideT): OverrideObjectT {
 /* eslint-disable flowtype/no-weak-types */
 export function getOverrides(
   override: any,
-  defaultComponent: React.ComponentType<any>,
-): [React.ComponentType<any>, {}] {
+  defaultComponent: React$AbstractComponent<*, *>,
+): [React$AbstractComponent<*, *>, {}] {
   const Component = getOverride(override) || defaultComponent;
 
   if (

@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 
 import {Block} from '../block/index.js';
 import {mergeOverrides} from '../helpers/overrides.js';
@@ -162,7 +162,7 @@ const FlexGridItem = ({
   flexGridItemIndex,
   flexGridItemCount,
   ...restProps
-}): React.Node => {
+}): React$Node => {
   const flexGridItemOverrides = {
     Block: {
       style: flexGridItemStyle,

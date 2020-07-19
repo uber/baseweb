@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {StatefulTooltip} from 'baseui/tooltip';
 import {StyledLink} from 'baseui/link';
 import {useStyletron, DarkTheme, ThemeProvider} from 'baseui';

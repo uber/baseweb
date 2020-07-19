@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 
 import {styled} from '../../styles/index.js';
 import {getOverrides, type OverrideT} from '../overrides.js';

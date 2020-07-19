@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {Table} from 'baseui/table-semantic';
 
 const SIZER = Array(100).fill(null);

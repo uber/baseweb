@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 
 import {Block} from '../block/index.js';
 import {flattenFragments} from '../helpers/react-helpers.js';
@@ -35,7 +35,7 @@ const FlexGrid = ({
   flexGridColumnGap,
   flexGridRowGap,
   ...restProps
-}): React.Node => {
+}): React$Node => {
   const [FlexGrid, flexGridProps] = getOverrides(
     overrides && overrides.Block,
     BaseFlexGrid,
@@ -53,9 +53,9 @@ const FlexGrid = ({
       {// flatten fragments so FlexGrid correctly iterates over fragments’ children
       flattenFragments(children).map(
         (
-          child: React.Node,
+          child: React$Node,
           flexGridItemIndex: number,
-          {length: flexGridItemCount}: React.Node[],
+          {length: flexGridItemCount}: React$Node[],
         ) => {
           // $FlowFixMe https://github.com/facebook/flow/issues/4864
           return React.cloneElement(child, {

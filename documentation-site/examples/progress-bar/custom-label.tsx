@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {ProgressBar} from 'baseui/progress-bar';
 
 const MAX_MB_VALUE = 1000;

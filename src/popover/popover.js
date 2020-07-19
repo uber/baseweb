@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable react/no-find-dom-node */
-import * as React from 'react';
+import React from 'react';
 import FocusLock from 'react-focus-lock';
 
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
@@ -330,7 +330,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     return bodyProps;
   }
 
-  getSharedProps(): $Diff<SharedStylePropsArgT, {children?: React.Node}> {
+  getSharedProps(): $Diff<SharedStylePropsArgT, {children?: React$Node}> {
     const {isOpen, showArrow} = this.props;
     const {isAnimating, arrowOffset, popoverOffset, placement} = this.state;
     return {
@@ -370,7 +370,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     return <span {...anchorProps}>{anchor}</span>;
   }
 
-  renderPopover(renderedContent: React.Node) {
+  renderPopover(renderedContent: React$Node) {
     const {showArrow, overrides = {}} = this.props;
 
     const {

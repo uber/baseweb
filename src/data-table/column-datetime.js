@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import format from 'date-fns/format/index.js';
 import getYear from 'date-fns/getYear/index.js';
 import getMonth from 'date-fns/getMonth/index.js';

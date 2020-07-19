@@ -1,3 +1,3 @@
-import * as React from 'react';
+import React from 'react';
 
 export const Unstable_A11y: React.FC;

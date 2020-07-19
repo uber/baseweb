@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
+import React from 'react';
 import memoize from 'memoize-one';
 // Files
 import {LocaleContext} from '../locale/index.js';
@@ -28,7 +28,7 @@ type PageOptionT = {
   label: number,
 };
 
-export default class Pagination extends React.PureComponent<
+export default class Pagination extends React.Component<
   PaginationPropsT,
   {isFocusVisible: boolean},
 > {

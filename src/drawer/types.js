@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable flowtype/generic-spacing */
-import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 import {SIZE, CLOSE_SOURCE, ANCHOR} from './constants.js';
 
@@ -27,7 +26,7 @@ export type OverridesT = {
 };
 
 // eslint-disable-next-line flowtype/no-weak-types
-export type ElementRefT = {current: React.ElementRef<any> | null};
+export type ElementRefT = {current: React$ElementRef<any> | null};
 
 // Props shared by all flavors of modal
 export type DrawerPropsT = {
@@ -45,7 +44,7 @@ export type DrawerPropsT = {
   mountNode?: HTMLElement,
   /** Drawer content. The children-as-function API may be preferable
    * for performance reasons (wont render until opened) */
-  children?: React.Node | (() => React.Node),
+  children?: React$Node | (() => React$Node),
   /** Whether the modal should be closeable by the user
    *  (either via escape, backdrop click, etc). You can set this to
    * false if your modal has an action that the user must take before closing.*/
@@ -68,7 +67,7 @@ export type DrawerPropsT = {
 
 export type DrawerPropsWithoutChildrenT = $Diff<
   DrawerPropsT,
-  {children: ?React.Node},
+  {children: ?React$Node},
 >;
 
 export type DrawerStateT = {
@@ -78,7 +77,7 @@ export type DrawerStateT = {
 };
 
 export type SharedStylePropsArgT = {
-  children?: React.Node,
+  children?: React$Node,
   $animating: boolean,
   $isVisible: boolean,
   $isOpen: boolean,

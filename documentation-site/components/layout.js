@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import {MDXProvider} from '@mdx-js/tag';
 import {Block} from 'baseui/block';
 import {Button, KIND, SIZE} from 'baseui/button';
@@ -44,7 +44,7 @@ function findByPath(o, path) {
 }
 
 type PropsT = {
-  children: React.Node,
+  children: React$Node,
   path?: string,
   toggleTheme: () => void,
   toggleDirection: () => void,

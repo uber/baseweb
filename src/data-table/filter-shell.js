@@ -6,14 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 
 import {Button, SIZE as BUTTON_SIZE} from '../button/index.js';
 import {Checkbox, STYLE_TYPE} from '../checkbox/index.js';
 import {useStyletron} from '../styles/index.js';
 
 type PropsT = {
-  children: React.Node,
+  children: React$Node,
   exclude: boolean,
   onExcludeChange: () => void,
   onApply: () => void,

@@ -3,7 +3,7 @@
 // license https://fontawesome.com/license
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 
 type PropT = {
   size: number,

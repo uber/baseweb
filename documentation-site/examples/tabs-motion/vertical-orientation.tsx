@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {Tabs, Tab, ORIENTATION} from 'baseui/tabs-motion';
 
 export default () => {

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {Accordion, Panel} from 'baseui/accordion';
 
 const content =

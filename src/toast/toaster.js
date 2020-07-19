@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 // @flow
-import * as React from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import {KIND, PLACEMENT} from './constants.js';
@@ -24,7 +24,7 @@ import type {
   ToastPropsT,
 } from './types.js';
 
-let toasterRef: ?React.ElementRef<typeof ToasterContainer> = null;
+let toasterRef: ?React$ElementRef<typeof ToasterContainer> = null;
 
 export class ToasterContainer extends React.Component<
   $Shape<ToasterPropsT>,
@@ -60,13 +60,13 @@ export class ToasterContainer extends React.Component<
     this.setState({isMounted: true});
   }
 
-  getToastProps = (props: ToastPropsT): ToastPropsT & {key: React.Key} => {
+  getToastProps = (props: ToastPropsT): ToastPropsT & {key: React$Key} => {
     const {autoFocus, autoHideDuration, closeable} = this.props;
-    const key: React.Key = props.key || `toast-${this.toastId++}`;
+    const key: React$Key = props.key || `toast-${this.toastId++}`;
     return {autoFocus, autoHideDuration, closeable, ...props, key};
   };
 
-  show = (props: ToastPropsT = {}): React.Key => {
+  show = (props: ToastPropsT = {}): React$Key => {
     if (this.state.toasts.map(t => t.key).includes(props.key)) {
       this.update(props.key, props);
       return props.key;
@@ -78,7 +78,7 @@ export class ToasterContainer extends React.Component<
     return toastProps.key;
   };
 
-  update = (key: React.Key, props: ToastPropsT): void => {
+  update = (key: React$Key, props: ToastPropsT): void => {
     this.setState(({toasts}) => {
       const updatedToasts = toasts.map(toast => {
         if (toast.key === key) {
@@ -103,7 +103,7 @@ export class ToasterContainer extends React.Component<
     });
   };
 
-  dismiss = (key: React.Key) => {
+  dismiss = (key: React$Key) => {
     if (this.dismissHandlers[key]) {
       this.dismissHandlers[key]();
     }
@@ -115,11 +115,11 @@ export class ToasterContainer extends React.Component<
     });
   };
 
-  clear = (key?: React.Key) => {
+  clear = (key?: React$Key) => {
     key === undefined ? this.clearAll() : this.dismiss(key);
   };
 
-  internalOnClose = (key: React.Key) => {
+  internalOnClose = (key: React$Key) => {
     delete this.dismissHandlers[key];
     this.setState(({toasts}) => ({
       toasts: toasts.filter(t => {
@@ -128,14 +128,14 @@ export class ToasterContainer extends React.Component<
     }));
   };
 
-  getOnCloseHandler = (key: React.Key, onClose: ?() => mixed) => {
+  getOnCloseHandler = (key: React$Key, onClose: ?() => mixed) => {
     return () => {
       this.internalOnClose(key);
       typeof onClose === 'function' && onClose();
     };
   };
 
-  renderToast = (toastProps: ToastPropsT & {key: React.Key}): React.Node => {
+  renderToast = (toastProps: ToastPropsT & {key: React$Key}): React$Node => {
     const {onClose, children, key, ...restProps} = toastProps;
 
     const {
@@ -233,13 +233,13 @@ export class ToasterContainer extends React.Component<
 }
 
 const toaster = {
-  getRef: function(): ?React.ElementRef<typeof ToasterContainer> {
+  getRef: function(): ?React$ElementRef<typeof ToasterContainer> {
     return toasterRef;
   },
   show: function(
-    children: React.Node,
+    children: React$Node,
     props: ToastPropsShapeT = {},
-  ): ?React.Key {
+  ): ?React$Key {
     // toasts can not be added until Toaster is mounted
     // no SSR for the `toaster.show()`
     const toasterInstance = this.getRef();
@@ -252,30 +252,30 @@ const toaster = {
     }
   },
   info: function(
-    children: React.Node,
+    children: React$Node,
     props: ToastPropsShapeT = {},
-  ): React.Key {
+  ): React$Key {
     return this.show(children, {...props, kind: KIND.info});
   },
   positive: function(
-    children: React.Node,
+    children: React$Node,
     props: ToastPropsShapeT = {},
-  ): React.Key {
+  ): React$Key {
     return this.show(children, {...props, kind: KIND.positive});
   },
   warning: function(
-    children: React.Node,
+    children: React$Node,
     props: ToastPropsShapeT = {},
-  ): React.Key {
+  ): React$Key {
     return this.show(children, {...props, kind: KIND.warning});
   },
   negative: function(
-    children: React.Node,
+    children: React$Node,
     props: ToastPropsShapeT = {},
-  ): React.Key {
+  ): React$Key {
     return this.show(children, {...props, kind: KIND.negative});
   },
-  update: function(key: React.Key, props: $Shape<ToastPropsT>): void {
+  update: function(key: React$Key, props: $Shape<ToastPropsT>): void {
     const toasterInstance = this.getRef();
     if (toasterInstance) {
       toasterInstance.update(key, props);
@@ -284,7 +284,7 @@ const toaster = {
       console.error('No ToasterContainer is mounted yet.');
     }
   },
-  clear: function(key?: ?React.Key): void {
+  clear: function(key?: ?React$Key): void {
     const toasterInstance = this.getRef();
     if (toasterInstance) {
       toasterInstance.clear(key);

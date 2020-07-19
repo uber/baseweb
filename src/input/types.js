@@ -5,7 +5,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 import {
   STATE_CHANGE_TYPE,
@@ -25,6 +24,8 @@ export type InternalStateT = {
   isFocused?: boolean,
   /** Renders input in 'masked' state if type equals "password" */
   isMasked?: boolean,
+  /** Initial input type attribute. */
+  initialType?: string,
   /** Tracks if focus should be visible on the clear button. */
   isFocusVisibleForClear?: boolean,
   /** Tracks if focus should be visible on the mask toggle button. */
@@ -112,7 +113,7 @@ export type BaseInputPropsT<T> = {|
   /** A  hint as to the type of data that might be entered by the user while editing the element or its contents. */
   inputMode?: string,
   /** A ref to access an input element. */
-  inputRef?: React.ElementRef<*>,
+  inputRef?: React$ElementRef<*>,
   name: string,
   onBlur: (e: SyntheticFocusEvent<T>) => mixed,
   onChange?: (e: SyntheticInputEvent<T>) => mixed,
@@ -146,9 +147,9 @@ export type InputPropsT = {|
   ...BaseInputPropsT<HTMLInputElement>,
   overrides: InputComponentsT,
   /** An input helper rendered before and attached to the input field. */
-  startEnhancer: ?(React.Node | ((props: PropsT) => React.Node)),
+  startEnhancer: ?(React$Node | ((props: PropsT) => React$Node)),
   /** An input helper rendered after and attached to the input field. */
-  endEnhancer: ?(React.Node | ((props: PropsT) => React.Node)),
+  endEnhancer: ?(React$Node | ((props: PropsT) => React$Node)),
   /** Handler for the `focus` event. */
   onFocus: (e: SyntheticFocusEvent<HTMLInputElement>) => mixed,
   /** Handler for the `blur` event. */
@@ -164,7 +165,7 @@ export type MaskedInputPropsT = $Shape<{|
 |}>;
 
 export type StatefulContainerPropsT<T> = {|
-  children: (props: PropsT) => React.Node,
+  children: (props: PropsT) => React$Node,
   /** Initial state of an uncontrolled input component. */
   initialState?: StateT,
   /** A state change handler. Used to override default state transitions. */
@@ -177,7 +178,7 @@ export type StatefulContainerPropsT<T> = {|
 
 type OmitPropsT = {
   overrides: InputComponentsT,
-  children: ?(props: *) => React.Node,
+  children: ?(props: *) => React$Node,
 };
 
 type FullStPropsT = InputPropsT & StatefulContainerPropsT<HTMLInputElement>;

@@ -6,8 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
-
 import {COLUMNS, SORT_DIRECTIONS} from './constants.js';
 
 export type SortDirectionsT =
@@ -32,19 +30,25 @@ export type ColumnT<ValueT = any, FilterParamsT = any> = {|
   filterable: boolean,
   // eslint-disable-next-line flowtype/no-weak-types
   mapDataToValue: (data: any) => ValueT,
-  renderCell: React.AbstractComponent<{
-    value: ValueT,
-    isMeasured?: boolean,
-    isSelected?: boolean,
-    onSelect?: () => void,
-    textQuery?: string,
-  }>,
-  renderFilter: React.AbstractComponent<{|
-    close: () => void,
-    data: ValueT[],
-    filterParams?: FilterParamsT,
-    setFilter: FilterParamsT => void,
-  |}>,
+  renderCell: React$AbstractComponent<
+    {
+      value: ValueT,
+      isMeasured?: boolean,
+      isSelected?: boolean,
+      onSelect?: () => void,
+      textQuery?: string,
+    },
+    *,
+  >,
+  renderFilter: React$AbstractComponent<
+    {|
+      close: () => void,
+      data: ValueT[],
+      filterParams?: FilterParamsT,
+      setFilter: FilterParamsT => void,
+    |},
+    *,
+  >,
   buildFilter: FilterParamsT => ValueT => boolean,
   textQueryFilter?: (string, ValueT) => boolean,
   sortFn: (ValueT, ValueT) => number,
@@ -65,24 +69,24 @@ export type BatchActionT = {|
     event: SyntheticEvent<HTMLButtonElement>,
     selection: RowT[],
   }) => mixed,
-  renderIcon?: React.AbstractComponent<{|size: number|}>,
+  renderIcon?: React$AbstractComponent<{|size: number|}, *>,
 |};
 
 export type RowActionT = {|
   label: string,
   onClick: ({event: SyntheticEvent<HTMLButtonElement>, row: RowT}) => mixed,
-  renderIcon: React.AbstractComponent<{|size: number|}>,
+  renderIcon: React$AbstractComponent<{|size: number|}, *>,
 |};
 
 export type StatefulDataTablePropsT = {|
   batchActions?: BatchActionT[],
   columns: ColumnT<>[],
-  emptyMessage?: string | React.AbstractComponent<{||}>,
+  emptyMessage?: string | React$AbstractComponent<{||}, *>,
   filterable?: boolean,
   initialFilters?: Map<string, {description: string}>,
   initialSelectedRowIds?: Set<number | string>,
   loading?: boolean,
-  loadingMessage?: string | React.AbstractComponent<{||}>,
+  loadingMessage?: string | React$AbstractComponent<{||}, *>,
   onFilterAdd?: (string, {description: string}) => mixed,
   onFilterRemove?: string => mixed,
   onIncludedRowsChange?: (rows: RowT[]) => void,
@@ -98,10 +102,10 @@ export type StatefulDataTablePropsT = {|
 
 export type DataTablePropsT = {|
   ...StatefulDataTablePropsT,
-  emptyMessage?: string | React.AbstractComponent<{||}>,
+  emptyMessage?: string | React$AbstractComponent<{||}, *>,
   filters?: Map<string, {description: string}>,
   loading?: boolean,
-  loadingMessage?: string | React.AbstractComponent<{||}>,
+  loadingMessage?: string | React$AbstractComponent<{||}, *>,
   onIncludedRowsChange?: (rows: RowT[]) => void,
   onRowHighlightChange?: (rowIndex: number, row: RowT) => void,
   onSelectMany?: (rows: RowT[]) => void,
@@ -135,5 +139,5 @@ export type StatefulContainerPropsT = {|
     sortIndex: number,
     sortDirection: SortDirectionsT,
     textQuery: string,
-  |}) => React.Node,
+  |}) => React$Node,
 |};

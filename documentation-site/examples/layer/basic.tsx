@@ -1,5 +1,5 @@
 /* global document */
-import * as React from 'react';
+import React from 'react';
 import {Layer} from 'baseui/layer';
 import {useStyletron} from 'baseui';
 import {Button} from 'baseui/button';

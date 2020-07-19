@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
+import React from 'react';
 import {
   createStyled,
   withStyle as styletronWithStyle,
@@ -30,7 +30,7 @@ const wrapper = StyledComponent => {
 /* eslint-disable flowtype/no-weak-types */
 export type StyletronComponent<
   Props,
-> = React.StatelessFunctionalComponent<Props> & {
+> = React$StatelessFunctionalComponent<Props> & {
   __STYLETRON__: any,
 };
 
@@ -44,16 +44,16 @@ type StyleFn<Theme> = {
     ({$theme: Theme} & Props) => StyleObject,
   ): StyletronComponent<Props>,
 
-  <Base: React.ComponentType<any>>(
+  <Base: React$AbstractComponent<*, *>>(
     Base,
     StyleObject,
-  ): StyletronComponent<$Diff<React.ElementConfig<Base>, {className: any}>>,
+  ): StyletronComponent<$Diff<React$ElementConfig<Base>, {className: any}>>,
 
-  <Base: React.ComponentType<any>, Props>(
+  <Base: React$AbstractComponent<*, *>, Props>(
     Base,
     ({$theme: Theme} & Props) => StyleObject,
   ): StyletronComponent<
-    $Diff<React.ElementConfig<Base>, {className: any}> & Props,
+    $Diff<React$ElementConfig<Base>, {className: any}> & Props,
   >,
 };
 

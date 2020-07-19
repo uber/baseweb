@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {useStyletron} from 'baseui';
 import {Button, KIND} from 'baseui/button';
 import {TriangleDown} from 'baseui/icon';

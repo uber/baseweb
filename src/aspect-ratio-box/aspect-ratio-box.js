@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 
 import {Block} from '../block/index.js';
 import {mergeOverrides} from '../helpers/overrides.js';
@@ -35,7 +35,7 @@ const AspectRatioBox = ({
   aspectRatio = 1,
   overrides = {},
   ...restProps
-}): React.Node => {
+}): React$Node => {
   const aspectRatioBoxOverrides = {
     Block: {
       style: aspectRatioBoxStyle,

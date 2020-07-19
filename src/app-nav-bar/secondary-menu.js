@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import {Cell, Grid} from '../layout-grid/index.js';
 import MainMenuItem from './main-menu-item.js';
 import {KIND} from './constants.js';

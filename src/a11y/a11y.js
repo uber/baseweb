@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* global document cancelIdleCallback requestIdleCallback */
 
-import * as React from 'react';
+import React from 'react';
 import axe from 'axe-core';
 
 import {Layer, TetherBehavior, TETHER_PLACEMENT} from '../layer/index.js';
@@ -111,7 +111,7 @@ function Violation(props: ViolationPropsT) {
   );
 }
 
-export default function A11y(props: {children: React.Node}) {
+export default function A11y(props: {children: React$Node}) {
   const [violations, setViolations] = React.useState([]);
   const [idleID, setIdleID] = React.useState(null);
   const child = React.useRef(null);

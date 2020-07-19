@@ -6,13 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 
 import {Checkbox} from '../checkbox/index.js';
 import {useStyletron} from '../styles/index.js';
 
 type PropsT = {|
-  children: React.Node,
+  children: React$Node,
   isMeasured?: boolean,
   isSelected?: boolean,
   onSelect?: () => void,

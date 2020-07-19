@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env browser */
 
-import * as React from 'react';
+import React from 'react';
 import semver from 'semver';
 
 import ChevronDown from 'baseui/icon/chevron-down';

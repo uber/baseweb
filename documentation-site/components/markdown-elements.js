@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* global process */
-import * as React from 'react';
+import React from 'react';
 
 import Head from 'next/head';
 import {Block} from 'baseui/block';
@@ -19,7 +19,7 @@ import Anchor from './anchor';
 import slugify from '../helpers/slugify';
 import {useHover} from './hooks';
 type Props = {
-  children: string | React.Node,
+  children: string | React$Node,
 };
 
 const getText = children => {
@@ -35,7 +35,7 @@ const getText = children => {
   return label;
 };
 
-export const cleanAnchor = (anchor: React.Node) => slugify(getText(anchor));
+export const cleanAnchor = (anchor: React$Node) => slugify(getText(anchor));
 
 export const Heading = ({
   element,
@@ -44,7 +44,7 @@ export const Heading = ({
 }: {
   element: string,
   fontType: string,
-  children: React.Node,
+  children: React$Node,
 }) => {
   const [hoverRef, isHovered] = useHover();
   const slug = cleanAnchor(children);
@@ -126,7 +126,7 @@ export const DocLink = ({children, href}: {children: string, href: string}) => {
   );
 };
 
-export const H1 = ({children}: {children: React.Node}) => (
+export const H1 = ({children}: {children: React$Node}) => (
   <React.Fragment>
     <Head>
       <title key="title">
@@ -140,31 +140,31 @@ export const H1 = ({children}: {children: React.Node}) => (
   </React.Fragment>
 );
 
-export const H2 = ({children}: {children: React.Node}) => (
+export const H2 = ({children}: {children: React$Node}) => (
   <Heading element="h2" fontType="font650" marginTop="scale1000">
     {children}
   </Heading>
 );
 
-export const H3 = ({children}: {children: React.Node}) => (
+export const H3 = ({children}: {children: React$Node}) => (
   <Heading element="h3" fontType="font550">
     {children}
   </Heading>
 );
 
-export const H4 = ({children}: {children: React.Node}) => (
+export const H4 = ({children}: {children: React$Node}) => (
   <Heading element="h4" fontType="font400">
     {children}
   </Heading>
 );
 
-export const H5 = ({children}: {children: React.Node}) => (
+export const H5 = ({children}: {children: React$Node}) => (
   <Heading element="h5" fontType="font350">
     {children}
   </Heading>
 );
 
-export const H6 = ({children}: {children: React.Node}) => (
+export const H6 = ({children}: {children: React$Node}) => (
   <Heading element="h6" fontType="font250">
     {children}
   </Heading>

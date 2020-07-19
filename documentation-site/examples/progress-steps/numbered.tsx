@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {ProgressSteps, NumberedStep} from 'baseui/progress-steps';
 import {Button, ButtonProps} from 'baseui/button';
 import {useStyletron} from 'baseui';

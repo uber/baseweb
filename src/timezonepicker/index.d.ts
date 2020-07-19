@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {Option} from '../select';
 import {SIZE} from '../input';
 import {Override} from '../overrides';

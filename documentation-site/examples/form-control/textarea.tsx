@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {FormControl} from 'baseui/form-control';
 import {Textarea} from 'baseui/textarea';
 

@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable flowtype/generic-spacing */
-import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 
 import type {OptionT} from '../select/index.js';
@@ -37,7 +36,7 @@ export type TimezonePickerPropsT = {
    * Customize the option's label. Useful for translations and optionally mapping from
    * 'America/Los_Angeles' to 'Pacific Time'.
    */
-  mapLabels?: OptionT => React.Node,
+  mapLabels?: OptionT => React$Node,
   /** Callback for when the timezone selection changes. */
   onChange?: (value: ?TimezoneT) => mixed,
   overrides?: {Select?: OverrideT},

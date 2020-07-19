@@ -5,7 +5,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 import {STATE_CHANGE_TYPE} from './constants.js';
 
@@ -63,7 +62,7 @@ export type NavPropsT = {
 
 export type Item = {
   /** Navigation item's title to render */
-  title: React.Node,
+  title: React$Node,
   /**
     Identifier for the navigation item.
     Can be a path value or an action name.
@@ -91,7 +90,7 @@ export type NavItemPropsT = SharedPropsT & {
 };
 
 export type StatefulContainerPropsT = {
-  children: NavPropsT => React.Node,
+  children: NavPropsT => React$Node,
   /** Initial state of an uncontrolled component. */
   initialState?: StateT,
   /** A state change handler. Used to override default state transitions. */
@@ -100,7 +99,7 @@ export type StatefulContainerPropsT = {
 };
 
 type ExcludeT = {
-  children: NavPropsT => React.Node,
+  children: NavPropsT => React$Node,
 };
 
 export type StatefulNavPropsT = $Diff<StatefulContainerPropsT, ExcludeT>;

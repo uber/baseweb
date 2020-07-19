@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {StyletronComponent} from 'styletron-react';
 import {ButtonProps} from '../button';
 import {Override} from '../overrides';
@@ -87,7 +87,9 @@ export class ModalButton extends React.Component<
   ButtonProps & {autoFocus?: boolean}
 > {}
 
-export class FocusOnce extends React.Component<{children: React.ReactNode}> {}
+export class FocusOnce extends React.Component<{
+  children: React.ReactNode;
+}> {}
 
 export const StyledRoot: StyletronComponent<any>;
 export const StyledBackdrop: StyletronComponent<any>;

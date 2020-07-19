@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {StatefulDatepicker} from 'baseui/datepicker';
 import hu from 'date-fns/locale/hu';
 

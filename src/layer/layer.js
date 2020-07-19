@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* global document */
-import * as React from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import {styled} from '../styles/index.js';
 import {LayersContext, Consumer} from './layers-manager.js';

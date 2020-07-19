@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import {Button} from '../../button/index.js';
 import {StatefulSelect} from '../../select/index.js';
 import {Drawer} from '../index.js';

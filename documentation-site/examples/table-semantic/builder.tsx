@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {StyledLink as Link} from 'baseui/link';
 import {
   TableBuilder,

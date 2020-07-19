@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import {shallow, mount} from 'enzyme';
 
 import {Table, StyledTableBodyRow, StyledTableBodyCell} from '../index.js';

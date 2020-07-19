@@ -6,8 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
-
 import type {OverrideT} from '../helpers/overrides.js';
 import {SIZE} from '../input/index.js';
 
@@ -19,10 +17,13 @@ export type PropsT<OptionT = mixed> = {|
   // Proxies value through to Input component.
   error?: boolean,
   // Used to render a custom node besides the default.
-  mapOptionToNode?: React.AbstractComponent<{|
-    isSelected: boolean,
-    option: OptionT,
-  |}>,
+  mapOptionToNode?: React$AbstractComponent<
+    {|
+      isSelected: boolean,
+      option: OptionT,
+    |},
+    *,
+  >,
   // Options are often fetched from remote server, provides a simple way to
   // map whatever value the client gets into a visible string in the list item.
   mapOptionToString: OptionT => string,

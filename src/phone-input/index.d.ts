@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {StyletronComponent} from 'styletron-react';
 import {SIZE, InputProps} from '../input';
 import {OnChangeParams} from '../select';

@@ -1,6 +1,6 @@
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import {Tabs, Tab, FILL} from 'baseui/tabs-motion';
 
 export default () => {

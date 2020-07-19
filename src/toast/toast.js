@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* global document */
-import * as React from 'react';
+import React from 'react';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import DeleteIcon from '../icon/delete.js';
 import {

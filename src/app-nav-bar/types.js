@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
 import {POSITION} from './constants.js';
 
 // eslint-disable-next-line flowtype/no-weak-types
@@ -19,13 +18,13 @@ type onNavItemSelectT = (params: {item: MainNavItemT | UserNavItemT}) => mixed;
 export type MainNavItemT = {|
   active?: boolean,
   // eslint-disable-next-line flowtype/no-weak-types
-  icon?: React.AbstractComponent<any>,
+  icon?: React$AbstractComponent<*, *>,
   item: ItemT,
-  mapItemToNode?: ItemT => React.Node,
+  mapItemToNode?: ItemT => React$Node,
   mapItemToString: ItemT => string,
   nav?: MainNavItemT[],
   // eslint-disable-next-line flowtype/no-weak-types
-  navExitIcon?: React.AbstractComponent<any>,
+  navExitIcon?: React$AbstractComponent<*, *>,
   navPosition?: {
     desktop?: $Values<typeof POSITION>,
     mobile?: $Values<typeof POSITION>,
@@ -35,9 +34,9 @@ export type MainNavItemT = {|
 export type UserNavItemT = {|
   active?: boolean,
   // eslint-disable-next-line flowtype/no-weak-types
-  icon?: React.AbstractComponent<any>,
+  icon?: React$AbstractComponent<*, *>,
   item: ItemT,
-  mapItemToNode?: ItemT => React.Node,
+  mapItemToNode?: ItemT => React$Node,
   mapItemToString: ItemT => string,
   nav?: UserNavItemT[],
 |};
@@ -45,18 +44,18 @@ export type UserNavItemT = {|
 export type UserMenuPropsT = {|
   userNav?: UserNavItemT[],
   username?: string,
-  usernameSubtitle?: React.Node,
+  usernameSubtitle?: React$Node,
   userImgUrl?: string,
 |};
 
 export type AppNavBarPropsT = {|
-  appDisplayName?: React.Node,
+  appDisplayName?: React$Node,
   mainNav?: MainNavItemT[],
   isNavItemActive?: isNavItemActiveT,
   onNavItemSelect: onNavItemSelectT,
   userNav?: UserNavItemT[],
   username?: string,
-  usernameSubtitle?: React.Node,
+  usernameSubtitle?: React$Node,
   userImgUrl?: string,
 |};
 export type SecondaryMenuT = {|

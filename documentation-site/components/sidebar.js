@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import * as React from 'react';
+import React from 'react';
 import {withStyle} from 'baseui';
 import {Navigation, StyledNavItem, StyledNavLink} from 'baseui/side-navigation';
 import Link from 'next/link';

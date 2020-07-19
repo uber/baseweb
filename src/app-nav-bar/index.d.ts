@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 type ItemT = any;
 type mapItemToNode = (item: ItemT) => React.ReactNode;

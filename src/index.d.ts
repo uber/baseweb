@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {
   StyleObject,
   StyletronComponent,
@@ -31,7 +31,7 @@ export function mergeOverrides<T>(
 ): Overrides<T>;
 export function styled<
   P extends object,
-  C extends keyof JSX.IntrinsicElements | React.ComponentType<any>,
+  C extends keyof JSX.IntrinsicElements | React.Component<any>,
   T = Theme
 >(
   component: C,
@@ -78,7 +78,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps>;
 
 export interface StyledFn<T> extends StyletronStyledFn {
   <
-    C extends keyof JSX.IntrinsicElements | React.ComponentType<any>,
+    C extends keyof JSX.IntrinsicElements | React.Component<any>,
     P extends object
   >(
     component: C,

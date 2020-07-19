@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import {shallow} from 'enzyme';
 import {render} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';

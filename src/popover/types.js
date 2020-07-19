@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable flowtype/generic-spacing */
-import * as React from 'react';
+import type {ChildrenArray} from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 import type {TetherPlacementT} from '../layer/types.js';
 import {
@@ -39,11 +39,11 @@ export type StateReducerT = (
   currentState: StateT,
 ) => StateT;
 
-export type ContentRenderPropT = () => React.Node;
+export type ContentRenderPropT = () => React$Node;
 
 export type StatefulContentRenderPropT = ({
   close: () => void,
-}) => React.Node;
+}) => React$Node;
 
 export type OverridesT = {
   Body?: OverrideT,
@@ -52,8 +52,8 @@ export type OverridesT = {
 };
 
 // re-exports to maintain same public interface
-export type ChildT = React.Node;
-export type ChildrenT = React.ChildrenArray<ChildT>;
+export type ChildT = React$Node;
+export type ChildrenT = ChildrenArray<ChildT>;
 
 // Props shared by all flavors of popover
 export type BasePopoverPropsT = {
@@ -116,9 +116,9 @@ export type PopoverPropsT = BasePopoverPropsT & {
   /** Content that should trigger the popover to be shown (also acts as the anchor against
    * which the popover will be positioned).
    */
-  children: React.Node,
+  children: React$Node,
   /** Content to render within the popover when it's shown. */
-  content: React.Node | ContentRenderPropT,
+  content: React$Node | ContentRenderPropT,
   /** Whether or not to show the popover. */
   isOpen: boolean,
   /** Handler for clicks outside the anchor/popover elements. */
@@ -132,9 +132,9 @@ export type StatefulPopoverPropsT = BasePopoverPropsT & {
   /** Content that should trigger the popover to be shown (also acts as the anchor against
    * which the popover will be positioned).
    */
-  children: React.Node,
+  children: React$Node,
   /** Content to render within the popover when it's shown. */
-  content: React.Node | StatefulContentRenderPropT,
+  content: React$Node | StatefulContentRenderPropT,
   /** Whether to hide the popover when the user clicks anywhere outside the trigger/popover. */
   dismissOnClickOutside: boolean,
   /** Whether to hide the popover when the user presses the escape key. */
@@ -152,14 +152,14 @@ export type StatefulPopoverPropsT = BasePopoverPropsT & {
 // Props for state container
 export type StatefulPopoverContainerPropsT = $Diff<
   StatefulPopoverPropsT,
-  {children: React.Node},
+  {children: React$Node},
 > & {
-  children: (props: $Diff<PopoverPropsT, {children: React.Node}>) => React.Node,
+  children: (props: $Diff<PopoverPropsT, {children: React$Node}>) => React$Node,
 };
 
 export type PopoverPropsWithoutChildrenT = $Diff<
   PopoverPropsT,
-  {children: React.Node},
+  {children: React$Node},
 >;
 
 export type OffsetT = {
@@ -212,6 +212,6 @@ export type AnchorPropsT = {
   onFocus?: (e: Event) => mixed,
   onMouseEnter?: (e: Event) => mixed,
   onMouseLeave?: (e: Event) => mixed,
-  ref?: React.Ref<*>,
+  ref?: React$Ref<*>,
   tabIndex?: number,
 };

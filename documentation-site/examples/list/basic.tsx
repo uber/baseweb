@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {ListItem, ListItemLabel} from 'baseui/list';
 import {useStyletron} from 'baseui';
 

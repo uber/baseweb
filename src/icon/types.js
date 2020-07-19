@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable flowtype/generic-spacing */
-import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 
 export type OverridesT = {
@@ -22,7 +21,7 @@ export type StyledComponentArgsT = {
 };
 
 export type IconPropsT = {
-  children?: React.Node,
+  children?: React$Node,
   /** Size of element, will be passed to the svg width/height style. Can also be a value included in */
   size?: SizeT,
   /** Color of icon, will be used as svg fill */

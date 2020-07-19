@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 
 import ProgressSteps from './progress-steps.scenario.js';
 import {ThemeProvider, LightTheme} from '../../index.js';

@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 
 import {Unstable_StatefulDataTable, CategoricalColumn} from '../index.js';
 import {useStyletron} from '../../styles/index.js';

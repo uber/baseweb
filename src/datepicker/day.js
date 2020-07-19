@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
+import React from 'react';
 import {StyledDay} from './styled-components.js';
 import dateFnsAdapter from './utils/date-fns-adapter.js';
 import DateHelpers from './utils/date-helpers.js';
@@ -35,7 +35,7 @@ export default class Day<T = Date> extends React.Component<
     value: null,
   };
 
-  dayElm: React.ElementRef<*>;
+  dayElm: React$ElementRef<React$AbstractComponent<*, *>>;
 
   state = {
     isHovered: false,

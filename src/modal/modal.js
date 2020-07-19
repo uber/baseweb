@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* global document */
-import * as React from 'react';
+import React from 'react';
 import FocusLock from 'react-focus-lock';
 
 import {LocaleContext} from '../locale/index.js';
@@ -215,7 +215,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     });
   };
 
-  getSharedProps(): $Diff<SharedStylePropsArgT, {children?: React.Node}> {
+  getSharedProps(): $Diff<SharedStylePropsArgT, {children?: React$Node}> {
     const {
       animate,
       isOpen,

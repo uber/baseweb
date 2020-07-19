@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import {StatefulMenu} from '../../menu/index.js';
 import MobileNavMenuItem from './mobile-nav-menu-item.js';
 import type {AppNavBarPropsT} from '../types.js';

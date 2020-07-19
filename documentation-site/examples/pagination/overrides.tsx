@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {Button} from 'baseui/button';
 import {StatefulPagination} from 'baseui/pagination';
 import {expandBorderStyles} from 'baseui/styles';

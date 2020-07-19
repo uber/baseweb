@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import {List, AutoSizer} from 'react-virtualized';
 import defaultProps from './default-props.js';
 import {
@@ -31,7 +31,9 @@ CountrySelectDropdown.defaultProps = {
 };
 
 function CountrySelectDropdown(
-  props: CountrySelectDropdownPropsT & {$forwardedRef: React.ElementRef<*>},
+  props: CountrySelectDropdownPropsT & {
+    $forwardedRef: React$ElementRef<React$AbstractComponent<*, *>>,
+  },
 ) {
   const {
     $country: country,

@@ -53,7 +53,7 @@ const NotificationConfig: TConfig = {
         receives a dismiss method that can be called to
         dismiss the notification and can be used as a
         handler for an action inside the toast content.
-        React.ChildrenArray type is also accepted.`,
+        ChildrenArray type is also accepted.`,
       placeholder: '({dismiss}) => {}',
     },
     ...pick(changeHandlers, ['onBlur', 'onFocus']),

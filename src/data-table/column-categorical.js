@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 
 import {Button, SIZE, KIND} from '../button/index.js';
 import {ButtonGroup} from '../button-group/index.js';

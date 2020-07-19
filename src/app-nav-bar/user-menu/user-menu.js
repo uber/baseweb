@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import {StatefulPopover, PLACEMENT, TRIGGER_TYPE} from '../../popover/index.js';
 import {Button} from '../../button/index.js';
 import {Avatar} from '../../avatar/index.js';

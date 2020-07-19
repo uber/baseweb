@@ -6,8 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
-
 import {SIZE, SHAPE, KIND} from '../button/index.js';
 import type {OverrideT} from '../helpers/overrides.js';
 
@@ -18,7 +16,7 @@ export type PropsT = {|
   /** Accessible label. */
   ariaLabel?: string,
   /** Set of more than one `Button` components */
-  children: Array<React.Node>,
+  children: Array<React$Node>,
   /** Defines if the button group is disabled. */
   disabled?: boolean,
   /**
@@ -69,7 +67,7 @@ export type StatefulContainerPropsT = {|
     ...$Diff<PropsT, {children: mixed}>,
     onClick: ClickHandlerT,
     selected: number | Array<number>,
-  }) => React.Node,
+  }) => React$Node,
 |};
 
 export type StateT = {

@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/no-weak-types */
 
-import * as React from 'react';
+import React from 'react';
 import {getInitialStyle} from 'styletron-standard';
 import {LightTheme} from '../../themes/index.js';
 import createMockTheme from '../../test/create-mock-theme.js';
@@ -38,7 +38,7 @@ export function useStyletron() {
 }
 
 export function styled(
-  ElementName: string | React.ComponentType<{}>,
+  ElementName: string | React$AbstractComponent<{}, *>,
   objOrFn?: ObjOrFnT = {},
 ) {
   class MockStyledComponent extends React.Component<PropsT, StateT> {

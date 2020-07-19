@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {Notification} from 'baseui/notification';
 import {DeleteAlt} from 'baseui/icon';
 import {expandBorderStyles} from 'baseui/styles';

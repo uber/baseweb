@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {StyleObject} from 'styletron-react';
 import {Theme} from './theme';
 

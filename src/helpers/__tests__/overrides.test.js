@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
+import React from 'react';
 import {render} from '@testing-library/react';
 import {
   getOverride,
@@ -17,8 +17,8 @@ import {
   getOverrides,
 } from '../overrides.js';
 
-function getMockComponent(): React.ComponentType<*> {
-  const mock: React.ComponentType<*> = () => null;
+function getMockComponent(): React$AbstractComponent<*, *> {
+  const mock: React$AbstractComponent<*, *> = () => null;
   return mock;
 }
 
@@ -65,7 +65,7 @@ describe('Helpers - Overrides', () => {
     });
     expect(
       toObjectOverride({
-        component: (CustomComponent: React.ComponentType<*>),
+        component: (CustomComponent: React$AbstractComponent<*, *>),
         style: {width: '300px'},
       }),
     ).toEqual({
@@ -85,7 +85,7 @@ describe('Helpers - Overrides', () => {
 
     const overrides2 = {
       Root: {
-        component: (CustomFoo: React.ComponentType<*>),
+        component: (CustomFoo: React$AbstractComponent<*, *>),
       },
       Bar: CustomBar,
     };

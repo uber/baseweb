@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 import {SIZE, STATE_CHANGE_TYPE} from '../input/index.js';
 
@@ -76,7 +75,7 @@ export type StatefulPinCodePropsT = PropsT & {
 };
 
 export type StatefulPinCodeContainerPropsT = PropsT & {
-  children: PropsT => React.Node,
+  children: PropsT => React$Node,
   initialState: StatefulPinCodeContainerStateT,
   onChange: (event: ChangeEventT) => mixed,
   stateReducer: StateReducerT,

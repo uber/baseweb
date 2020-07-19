@@ -11,7 +11,7 @@ LICENSE file in the root directory of this source tree.
  * properties and their default values.
  */
 
-import * as React from 'react';
+import React from 'react';
 import {useStyletron, styled} from 'baseui';
 import {LightTheme, DarkTheme} from 'baseui/themes';
 

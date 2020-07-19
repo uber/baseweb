@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
+import React from 'react';
 import type {TextareaPropsT} from './types.js';
 import {mergeOverrides} from '../helpers/overrides.js';
 import {BaseInput, SIZE, CUSTOM_INPUT_TYPE} from '../input/index.js';

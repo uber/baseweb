@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {StyletronComponent} from 'styletron-react';
 import {CSSLengthUnitT} from '../theme';
 import {Override} from '../overrides';

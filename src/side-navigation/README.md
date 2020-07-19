@@ -5,7 +5,7 @@ The side navigation menu is a list of links that is used for a website navigatio
 ## Usage	
 
 ```javascript
-import * as React from 'react';
+import React from 'react';
 import {StatefulNavigation} from 'baseui/side-navigation';
 
 <StatefulNavigation items={[]} />
@@ -14,7 +14,7 @@ import {StatefulNavigation} from 'baseui/side-navigation';
  ### Advanced usage
 
  ```javascript	
-import * as React from 'react';	
+import React from 'react';	
 import {StatefulNavigation} from 'baseui/side-navigation';	
  export default () => {	
   return (<StatefulNavigation items={[]} />);	

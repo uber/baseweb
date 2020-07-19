@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 
 import {SORT_DIRECTIONS} from './constants.js';
 import type {ColumnT, StatefulContainerPropsT} from './types.js';

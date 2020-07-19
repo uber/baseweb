@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {Heading, HeadingLevel} from 'baseui/heading';
 import {Paragraph3} from 'baseui/typography';
 

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {LightTheme as LT, DarkTheme as DT} from './baseui/themes';
 
 const LightTheme: any = LT;

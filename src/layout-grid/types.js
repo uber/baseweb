@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
 import {ALIGNMENT, BEHAVIOR} from './constants.js';
 
 import type {OverrideT} from '../helpers/overrides.js';
@@ -55,7 +54,7 @@ export type GridPropsT = {
   /** Grid container behavior beyond max width. Fluid will continue to expand. Fixed will limit grid container to max width and center the container horizontally within parent element. */
   behavior?: BehaviorT,
   /** Children should be Cells. */
-  children: React.Node,
+  children: React$Node,
   /** Gap on either side of grid container at each breakpoint. */
   gridMargins?: ResponsiveT<number>,
   /** Maximum width of the grid container. Does not include Margins. Only applies when `behavior` is `fluid`. */
@@ -87,7 +86,7 @@ export type CellPropsT = {
   /** Control vertical alignment of individual cell at each breakpoint. Limited proxy for `align-self` CSS property. */
   align?: ResponsiveT<AlignmentT>,
   /** Content to be placed in Cell. */
-  children?: React.Node,
+  children?: React$Node,
   /** Control placement order of cell in flex row at each breakpoint. Proxy for `order` CSS property. */
   order?: ResponsiveT<number>,
   /** Control number of columns to offset cell at each breakpoint. */

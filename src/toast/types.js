@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable flowtype/generic-spacing */
-import * as React from 'react';
+import type {ChildrenArray} from 'react';
 
 import type {OverrideT} from '../helpers/overrides.js';
 import {KIND, PLACEMENT, TYPE} from './constants.js';
@@ -34,11 +34,11 @@ export type OverridesT = {
   InnerContainer?: OverrideT,
 };
 
-export type ComponentRenderPropT = (props: {dismiss: () => void}) => React.Node;
+export type ComponentRenderPropT = (props: {dismiss: () => void}) => React$Node;
 
-export type ChildT = React.Node;
+export type ChildT = React$Node;
 
-export type ChildrenT = React.ChildrenArray<ChildT>;
+export type ChildrenT = ChildrenArray<ChildT>;
 
 export type ToastPrivateStateT = {
   isFocusVisible: boolean,
@@ -69,7 +69,7 @@ export type ToastPropsT = {
   /** When set to true a close button is displayed and the notification can be dismissed by a user. */
   closeable: boolean,
   'data-baseweb'?: string,
-  key: React.Key,
+  key: React$Key,
   /** Defines the type of notification. */
   kind: KindTypeT,
   notificationType: NotificationTypeT,
@@ -103,7 +103,7 @@ export type ToasterPropsT = {
   /** The number of milliseconds to wait before automatically dismissing a
    * notification. This behavior is disabled when the value is set to 0.*/
   autoHideDuration: number,
-  children: React.Node,
+  children: React$Node,
   /** When set to true a close button is displayed and the notification can be dismissed by a user. */
   closeable: boolean,
   overrides: ToasterOverridesT,

@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 
 import {useStyletron} from '../styles/index.js';
 
@@ -38,7 +38,7 @@ function useDimensions() {
 type ElementMeasurerPropsT = {
   onDimensionsChange: (dimensions: {width: number}) => void,
   // eslint-disable-next-line flowtype/no-weak-types
-  item: React.Element<any>,
+  item: React$Element<any>,
 };
 
 function ElementMeasurer(props: ElementMeasurerPropsT) {

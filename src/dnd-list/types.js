@@ -6,12 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable flowtype/generic-spacing */
-import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 import {STATE_CHANGE_TYPE} from './constants.js';
 
 export type StateT = {
-  items: Array<React.Node>,
+  items: Array<React$Node>,
 };
 
 export type StateChangeTypeT = $Values<typeof STATE_CHANGE_TYPE>;
@@ -31,7 +30,7 @@ export type OverridesT = {
   Label?: OverrideT,
 };
 
-type ChildrenT = Array<React.Node>;
+type ChildrenT = Array<React$Node>;
 
 // Props shared by all flavors of component
 export type ListPropsT = {|
@@ -40,7 +39,7 @@ export type ListPropsT = {|
   /** Set if the list items should be removable by dragging them far left or right */
   removableByMove?: boolean,
   /** Items (labels) to be rendered */
-  items: Array<React.Node>,
+  items: Array<React$Node>,
   /** Handler for when drag and drop is finished and order changed or item is deleted (newIndex would be -1 in that case) */
   onChange: ({oldIndex: number, newIndex: number}) => mixed,
   overrides?: OverridesT,
@@ -58,7 +57,7 @@ export type StatefulListPropsT = {|
   removableByMove?: boolean,
   /** Handler for when drag and drop is finished and order changed or item is deleted (newIndex would be -1 in that case) */
   onChange?: (params: {
-    newState: Array<React.Node>,
+    newState: Array<React$Node>,
     oldIndex: number,
     newIndex: number,
     targetRect: ClientRect,
@@ -72,7 +71,7 @@ export type StatefulComponentContainerPropsT = $Diff<
   {children: ChildrenT},
 > & {
   initialState?: StateT,
-  children: (props: $Diff<ListPropsT, {children: ChildrenT}>) => React.Node,
+  children: (props: $Diff<ListPropsT, {children: ChildrenT}>) => React$Node,
 };
 
 export type SharedStylePropsArgT = {
@@ -82,5 +81,5 @@ export type SharedStylePropsArgT = {
   $isRemovable: boolean,
   $isRemovableByMove: boolean,
   $isOutOfBounds: boolean,
-  $value: React.Node,
+  $value: React$Node,
 };

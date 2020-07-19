@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import {Tabs} from './tabs.js';
 import {STATE_CHANGE_TYPE} from './constants.js';
 
@@ -18,7 +18,7 @@ import type {
 } from './types.js';
 
 const getInitialState = (
-  children: React.Node,
+  children: React$Node,
   initialState?: StatefulTabsStateT,
 ) => {
   if (initialState && initialState.activeKey) {

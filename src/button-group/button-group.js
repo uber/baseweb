@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 
 import {KIND, SIZE, SHAPE} from '../button/index.js';
 import {MODE} from './constants.js';
@@ -35,7 +35,7 @@ export class ButtonGroupRoot extends React.Component<{|
   ...LocaleT,
 |}> {
   childRefs: // eslint-disable-next-line flowtype/no-weak-types
-  {[key: number]: React.ElementRef<any>} = {};
+  {[key: number]: React$ElementRef<any>} = {};
   render() {
     const {
       overrides = {},

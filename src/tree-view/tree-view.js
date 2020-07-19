@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 
 import TreeNode from './tree-node.js';
 import {StyledTreeItemList} from './styled-components.js';
@@ -42,7 +42,7 @@ export default function TreeView(props: TreeViewPropsT) {
   const [focusVisible, setFocusVisible] = React.useState(false);
   const treeItemRefs: {
     // eslint-disable-next-line flowtype/no-weak-types
-    current: {[key: TreeNodeIdT]: React.ElementRef<any>},
+    current: {[key: TreeNodeIdT]: React$ElementRef<any>},
   } = React.useRef({});
 
   const focusTreeItem = (id: TreeNodeIdT | null) => {
@@ -144,7 +144,10 @@ export default function TreeView(props: TreeViewPropsT) {
           onKeyDown={onKeyDown}
           onFocus={onFocus}
           onBlur={onBlur}
-          addRef={(id: TreeNodeIdT, ref: React.ElementRef<HTMLLIElement>) => {
+          addRef={(
+            id: TreeNodeIdT,
+            ref: React$ElementRef<React$AbstractComponent<*, *>>,
+          ) => {
             treeItemRefs.current[id] = ref;
           }}
           removeRef={(id: TreeNodeIdT) => {

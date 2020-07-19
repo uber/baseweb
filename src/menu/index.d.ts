@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {StyletronComponent} from 'styletron-react';
 import {Override} from '../overrides';
 
@@ -128,7 +128,7 @@ export interface OptionProfileProps extends BaseMenuPropsT {
   getProfileItemLabels: (
     item: any,
   ) => {title?: string; subtitle?: string; body?: string};
-  getProfileItemImg: (item: any) => string | React.ComponentType<any>;
+  getProfileItemImg: (item: any) => string | React.Component<any>;
   getProfileItemImgText: (item: any) => string;
   overrides?: {
     ListItemProfile?: Override<any>;

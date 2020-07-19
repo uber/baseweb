@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {StatefulTreeView} from 'baseui/tree-view';
 
 const data = [

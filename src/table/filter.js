@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import FocusLock from 'react-focus-lock';
 
 import {Button, KIND, SIZE} from '../button/index.js';

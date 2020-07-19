@@ -6,13 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
 import {TETHER_PLACEMENT} from './constants.js';
 import type {OverrideT} from '../helpers/overrides.js';
 
 /** LayersManager */
 export type LayersManagerPropsT = {
-  children: React.Node,
+  children: React$Node,
   overrides?: {
     AppContainer?: OverrideT,
     LayersContainer?: OverrideT,
@@ -38,7 +37,7 @@ export type LayersContextT = {
 /** Layer */
 export type LayerPropsT = {
   /** Content to be rendered in the Layer. */
-  children: React.Node,
+  children: React$Node,
   /** A DOM element where the Layer will be inserted into as a child.
    The host value comes from the layers context provider.
    If there is no `LayersManager` added and therefore no host element
@@ -66,7 +65,7 @@ export type LayerPropsT = {
 };
 
 export type LayerComponentPropsT = {
-  children: React.Node,
+  children: React$Node,
   host: ?HTMLElement,
   index?: number,
   mountNode?: HTMLElement,
@@ -128,7 +127,7 @@ export type TetherPropsT = {
   /** The element used as a popper. */
   popperRef: ?HTMLElement,
   /** Content to be rendered in the Popper. */
-  children: React.Node,
+  children: React$Node,
   /** A handler that is called when popper positioning changes. */
   onPopperUpdate: (NormalizedOffsetsT, PopperDataObjectT) => mixed,
   /** Recommended placement of the popper. */

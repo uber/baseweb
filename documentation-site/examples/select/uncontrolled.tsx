@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {StatefulSelect} from 'baseui/select';
 
 export default () => (

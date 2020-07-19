@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable */
 // @flow
-import * as React from 'react';
+import React from 'react';
 import {StyledBody, StyledArrow, Popover, PLACEMENT} from '../index.js';
 import type {BodyStylePropsArgT} from '../index.js';
 

@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import {VariableSizeGrid} from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 
@@ -37,10 +37,10 @@ const HEADER_ROW_HEIGHT = 48;
 type HeaderContextT = {|
   columns: ColumnT<>[],
   columnHighlightIndex: number,
-  emptyMessage: string | React.ComponentType<{||}>,
+  emptyMessage: string | React$AbstractComponent<{||}, *>,
   filters: $PropertyType<DataTablePropsT, 'filters'>,
   loading: boolean,
-  loadingMessage: string | React.ComponentType<{||}>,
+  loadingMessage: string | React$AbstractComponent<{||}, *>,
   isScrollingX: boolean,
   isSelectable: boolean,
   isSelectedAll: boolean,
@@ -529,7 +529,7 @@ function LoadingOrEmptyMessage(props) {
 // replaces the content of the virtualized window with contents. in this case,
 // we are prepending a table header row before the table rows (children to the fn).
 const InnerTableElement = React.forwardRef<
-  {|children: React.Node, style: {[string]: mixed}|},
+  {|children: React$Node, style: {[string]: mixed}|},
   HTMLDivElement,
 >((props, ref) => {
   const [, theme] = useStyletron();

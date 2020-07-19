@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 /* global window */
 
-import * as React from 'react';
+import React from 'react';
 import {useUID} from 'react-uid';
 import {useStyletron} from '../styles/index.js';
 import {getOverrides} from '../helpers/overrides.js';

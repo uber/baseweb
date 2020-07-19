@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 // This scenario tests to make sure that when you overwrite the Input
 // with new styles the autosizer logic does not cut off any text.
 
-import * as React from 'react';
+import React from 'react';
 import {StatefulSelect} from '../index.js';
 
 export default function SelectComponent() {

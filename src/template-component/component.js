@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
+import React from 'react';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 import {Root as StyledRoot} from './styled-components.js';
 
@@ -17,7 +17,7 @@ class Component extends React.Component<ComponentPropsT> {
     onClick: () => {},
   };
 
-  getSharedProps(): $Diff<SharedStylePropsT, {children?: React.Node}> {
+  getSharedProps(): $Diff<SharedStylePropsT, {children?: React$Node}> {
     const {prop} = this.props;
     return {
       $prop: Boolean(prop),

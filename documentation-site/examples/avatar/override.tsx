@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {Avatar} from 'baseui/avatar';
 import {useStyletron} from 'baseui';
 import {expandBorderStyles} from 'baseui/styles';

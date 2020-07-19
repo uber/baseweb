@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {Button} from 'baseui/button';
 import {ChevronDown} from 'baseui/icon';
 import {StatefulPopover, PLACEMENT} from 'baseui/popover';

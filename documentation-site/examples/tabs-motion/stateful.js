@@ -1,6 +1,6 @@
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import {StatefulTabs, Tab} from 'baseui/tabs-motion';
 
 export default () => {

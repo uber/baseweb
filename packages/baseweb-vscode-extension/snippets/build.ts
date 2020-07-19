@@ -7,7 +7,7 @@ let snippets = {
     scope: 'javascript,javascriptreact,typescript,typescriptreact',
     prefix: ['React import'],
     description: 'React import statement.',
-    body: ["import * as React from 'react';"],
+    body: ["import React from 'react';"],
   },
   'React component': {
     scope: 'javascript,javascriptreact',

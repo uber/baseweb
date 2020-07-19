@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
 import type {BlockPropsT} from '../block/types.js';
 
 export type HeadingPropsT = {
@@ -15,5 +14,5 @@ export type HeadingPropsT = {
 } & BlockPropsT;
 export type HeadingLevelPropsT = {
   /** Content to be rendered in the HeadingLevel. */
-  children: React.Node,
+  children: React$Node,
 };

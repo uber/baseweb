@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {Radio, RadioGroup} from 'baseui/radio';
 
 export default () => {

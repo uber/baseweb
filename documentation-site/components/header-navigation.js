@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import Link from 'next/link';
 import {themedUseStyletron as useStyletron} from '../pages/_app';
 import Menu from 'baseui/icon/menu';

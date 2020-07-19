@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {Button} from 'baseui/button';
 import {StatefulPopover} from 'baseui/popover';
 import {Paragraph3} from 'baseui/typography';

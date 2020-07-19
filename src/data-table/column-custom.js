@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 
 import CellShell from './cell-shell.js';
 import {COLUMNS} from './constants.js';
@@ -20,13 +20,16 @@ type OptionsT<ValueT, FilterParamsT> = {|
   mapDataToValue: (data: any) => ValueT,
   maxWidth?: number,
   minWidth?: number,
-  renderCell: React.ComponentType<{value: ValueT, isMeasured?: boolean}>,
-  renderFilter?: React.ComponentType<{|
-    close: () => void,
-    data: ValueT[],
-    filterParams?: FilterParamsT,
-    setFilter: FilterParamsT => void,
-  |}>,
+  renderCell: React$AbstractComponent<{value: ValueT, isMeasured?: boolean}, *>,
+  renderFilter?: React$AbstractComponent<
+    {|
+      close: () => void,
+      data: ValueT[],
+      filterParams?: FilterParamsT,
+      setFilter: FilterParamsT => void,
+    |},
+    *,
+  >,
   buildFilter?: FilterParamsT => ValueT => boolean,
   textQueryFilter?: (string, ValueT) => boolean,
   sortable?: boolean,

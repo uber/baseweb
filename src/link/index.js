@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 // Styled elements
-import * as React from 'react';
+import React from 'react';
 import {Link} from './styled-components.js';
 import {withWrapper} from '../styles/index.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {withStyle} from 'baseui';
 import {Select, StyledDropdownListItem, Value} from 'baseui/select';
 import {

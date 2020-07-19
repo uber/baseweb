@@ -24,6 +24,7 @@ module.exports = {
   ],
   rules: {
     // Enforce flow file declarations
+    'flowtype/generic-spacing': 'off',
     'flowtype/require-valid-file-annotation': ['error', 'always'],
     'flowtype/no-weak-types': ['error'],
     'flowtype/space-after-type-colon': 'off',

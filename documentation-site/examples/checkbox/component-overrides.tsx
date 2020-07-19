@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {useStyletron} from 'baseui';
 import {StatefulCheckbox} from 'baseui/checkbox';
 import {Alert} from 'baseui/icon';

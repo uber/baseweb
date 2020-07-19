@@ -19,7 +19,7 @@ import {
   getOverrides,
 } from '../helpers/overrides.js';
 
-const TreeLabel: React$ComponentType<TreeLabelT> = ({
+const TreeLabel: React$AbstractComponent<TreeLabelT, *> = ({
   hasChildren,
   isExpanded,
   label,

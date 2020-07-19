@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {useStyletron} from 'baseui';
 import {StyledLink} from 'baseui/link';
 import {Input} from 'baseui/input';

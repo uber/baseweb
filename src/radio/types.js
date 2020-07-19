@@ -6,8 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
-
 import type {OverrideT} from '../helpers/overrides.js';
 import {ALIGN} from './constants.js';
 
@@ -60,7 +58,7 @@ export type PropsT = {
   // This prop will be deprecated in the next major update. Pass overrides to the 'Radio' component instead.
   overrides?: OverridesT,
   /** As `children` in React native approach represents radio buttons inside of Radio Group. Can use `Radio` from this package. */
-  children?: Array<React.Node>,
+  children?: Array<React$Node>,
   /** The value of radio button, which is preselected. */
   value?: string,
   /** Disabled all radio group from being changed. To disable some of radios provide disabled flag in each of them. */
@@ -111,7 +109,7 @@ export type RadioPropsT = {
   /** Disable the checkbox from being changed. */
   disabled?: boolean,
   /** Used to get a ref to the input element. Useful for programmatically focusing the input */
-  inputRef: React.ElementRef<*>,
+  inputRef: React$ElementRef<*>,
   /** Renders checkbox in errored state. */
   error?: boolean,
   /** You should use the error prop instead. */
@@ -166,7 +164,7 @@ export type StatelessStateT = {
 
 export type DefaultStatefulPropsT = {
   initialState: StateT,
-  children?: (props: PropsT) => React.Node,
+  children?: (props: PropsT) => React$Node,
   stateReducer: StateReducerT,
   onChange: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
 };
@@ -174,7 +172,7 @@ export type DefaultStatefulPropsT = {
 export type StatefulContainerPropsT = {
   overrides?: OverridesT,
   /** Should return `RadioGroup` instance with standard or customized inner elements. */
-  children?: (props: PropsT) => React.Node,
+  children?: (props: PropsT) => React$Node,
   /** Initial state populated into the component */
   initialState?: StateT,
   /** Reducer function to manipulate internal state updates. */
@@ -188,7 +186,7 @@ export type StatefulContainerPropsT = {
 export type StatefulRadioGroupPropsT = {
   overrides?: OverridesT,
   /** A list of `Radio` components. */
-  children?: Array<React.Node>,
+  children?: Array<React$Node>,
   /** Initial state populated into the component */
   initialState?: StateT,
   /** Set to be focused (active) on selected\checked radio. */

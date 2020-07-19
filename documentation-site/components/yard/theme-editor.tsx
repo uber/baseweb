@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {useValueDebounce} from 'react-view';
 import {Input, SIZE} from 'baseui/input';
 import {useStyletron} from 'baseui';

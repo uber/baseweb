@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import {Button, KIND, SIZE} from 'baseui/button';
 import {ButtonGroup} from 'baseui/button-group';
 import {Card} from 'baseui/card';
@@ -19,14 +19,14 @@ import {trackEvent} from '../helpers/ga';
 import {H3} from './markdown-elements';
 import {useStackBlitz} from '../components/hooks.js';
 
-function Source(props: {children: ?React.Node}) {
+function Source(props: {children: ?React$Node}) {
   if (!props.children || typeof props.children !== 'string') return null;
   return <Code>{props.children}</Code>;
 }
 
 type PropsT = {
   additionalPackages: {[string]: string},
-  children: React.Node,
+  children: React$Node,
   path: string, // required to fetch the uncompiled source code
   title: ?string,
 };

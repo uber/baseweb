@@ -5,7 +5,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
 import {STATE_CHANGE_TYPE, SIZE, COUNTRIES} from './constants.js';
 import type {OverrideT} from '../helpers/overrides.js';
 import type {OnChangeParamsT} from '../select/types.js';
@@ -41,7 +40,7 @@ export type mapIsoToLabelT = (iso: string) => string;
 
 export type CountrySelectDropdownPropsT = {
   // eslint-disable-next-line flowtype/no-weak-types
-  children: $ReadOnlyArray<React.Element<any>>,
+  children: $ReadOnlyArray<React$Element<any>>,
   $country: CountryT,
   $mapIsoToLabel?: mapIsoToLabelT,
   $maxDropdownHeight: string,
@@ -145,7 +144,7 @@ export type LitePropsT = {
 
 export type StatefulPhoneInputContainerPropsT = {
   ...$Exact<PropsT>,
-  children: PropsT => React.Node,
+  children: PropsT => React$Node,
   initialState: StateT,
   stateReducer: StateReducerT,
   onTextChange: (event: SyntheticInputEvent<HTMLInputElement>) => mixed,

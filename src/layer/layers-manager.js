@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
+import React from 'react';
 import {styled} from '../styles/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import type {
@@ -43,12 +43,12 @@ export default class LayersManager extends React.Component<
 > {
   host: {
     // eslint-disable-next-line flowtype/no-weak-types
-    current: React.ElementRef<any> | null,
+    current: React$ElementRef<any> | null,
   } = React.createRef();
 
   containerRef: {
     // eslint-disable-next-line flowtype/no-weak-types
-    current: React.ElementRef<any> | null,
+    current: React$ElementRef<any> | null,
   } = React.createRef();
 
   constructor(props: LayersManagerPropsT) {

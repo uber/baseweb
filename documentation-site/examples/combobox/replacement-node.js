@@ -1,6 +1,6 @@
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 
 import {useStyletron} from 'baseui';
 import {Combobox} from 'baseui/combobox';

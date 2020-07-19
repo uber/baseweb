@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 /* global document */
 // @flow
-import * as React from 'react';
+import React from 'react';
 import {mount} from 'enzyme';
 import {BaseInput} from '../index.js';
 

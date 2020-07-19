@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {PaymentCard, valid} from 'baseui/payment-card';
 import {MaskedInput} from 'baseui/input';
 import {FormControl} from 'baseui/form-control';

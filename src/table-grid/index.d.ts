@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {Override} from '../overrides';
 import {StyletronComponent} from 'styletron-react';
 import {SORT_DIRECTION, SortableHeadCell} from '../table/';

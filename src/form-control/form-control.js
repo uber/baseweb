@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 // @flow
-import * as React from 'react';
+import React from 'react';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 import getBuiId from '../utils/get-bui-id.js';
 import {

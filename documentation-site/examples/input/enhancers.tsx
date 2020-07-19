@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {Block} from 'baseui/block';
 import {Search} from 'baseui/icon';
 import {Input} from 'baseui/input';

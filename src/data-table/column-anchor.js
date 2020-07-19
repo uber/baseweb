@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 
 import {StyledLink} from '../link/index.js';
 import {useStyletron} from '../styles/index.js';
@@ -18,7 +18,7 @@ import type {ColumnT} from './types.js';
 type ValueT = {content: string, href: string};
 
 type OptionsT = {|
-  elementAs?: React.Node,
+  elementAs?: React$Node,
   // eslint-disable-next-line flowtype/no-weak-types
   mapDataToValue: (data: any) => ValueT,
   maxWidth?: number,

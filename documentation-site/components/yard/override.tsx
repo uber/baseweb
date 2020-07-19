@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {useStyletron} from 'baseui';
 import {StatefulTooltip} from 'baseui/tooltip';
 import {Button, KIND, SIZE} from 'baseui/button';

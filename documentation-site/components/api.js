@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import * as React from 'react';
+import React from 'react';
 import Props from 'pretty-proptypes';
 
 import {Block} from 'baseui/block';

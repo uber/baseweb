@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {Accordion, Panel} from 'baseui/accordion';
 import {Caption1} from 'baseui/typography';
 import Link from 'next/link';

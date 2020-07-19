@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
+import React from 'react';
 import {Provider as StyletronProvider} from 'styletron-react';
 import {Client as Styletron} from 'styletron-engine-atomic';
 import {ThemeProvider} from '../styles/index.js';
@@ -13,7 +13,9 @@ import {LightTheme} from '../themes/index.js';
 
 const engine = new Styletron();
 
-export const withStyletronProvider = (Component: React.ComponentType<*>) =>
+export const withStyletronProvider = (
+  Component: React$AbstractComponent<*, *>,
+) =>
   function withStyletronProviderHOC(props: {}) {
     return (
       <StyletronProvider value={engine}>
@@ -22,7 +24,7 @@ export const withStyletronProvider = (Component: React.ComponentType<*>) =>
     );
   };
 
-export const withThemeProvider = (Component: React.ComponentType<*>) =>
+export const withThemeProvider = (Component: React$AbstractComponent<*, *>) =>
   function withThemeProviderHOC(props: {}) {
     return (
       <ThemeProvider theme={LightTheme}>
@@ -31,7 +33,7 @@ export const withThemeProvider = (Component: React.ComponentType<*>) =>
     );
   };
 
-export const withAll = (Component: () => React.Element<*>) => {
+export const withAll = (Component: () => React$Element<*>) => {
   return (
     <StyletronProvider value={engine}>
       <ThemeProvider theme={LightTheme}>{Component()}</ThemeProvider>

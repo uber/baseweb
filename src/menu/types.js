@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 import {STATE_CHANGE_TYPES, OPTION_LIST_SIZE} from './constants.js';
 
@@ -15,7 +14,7 @@ export type ArrayItemsT = $ReadOnlyArray<ItemT>;
 export type GroupedItemsT = {__ungrouped: ArrayItemsT, [string]: ArrayItemsT};
 export type ItemsT = ArrayItemsT | GroupedItemsT;
 
-export type GetItemLabelFnT = (item: ItemT) => React.Node;
+export type GetItemLabelFnT = (item: ItemT) => React$Node;
 
 export type GetProfileItemLabelsFnT = (
   item: ItemT,
@@ -27,7 +26,7 @@ export type GetProfileItemLabelsFnT = (
 
 export type GetProfileItemImgFnT = (
   item: ItemT,
-) => string | React.ComponentType<*>;
+) => string | React$AbstractComponent<*, *>;
 
 export type GetProfileItemImgTextFnT = (item: ItemT) => string;
 
@@ -123,7 +122,7 @@ export type StatefulContainerPropsT = {
   /** Ref for the menu container element. Used to capture key events for navigation */
   rootRef?: RootRefT,
   /** Child as function pattern. */
-  children: RenderPropsT => React.Node,
+  children: RenderPropsT => React$Node,
   addMenuToNesting?: (ref: {current: HTMLElement | null}) => void,
   removeMenuFromNesting?: (ref: {current: HTMLElement | null}) => void,
   getParentMenu?: (ref: {current: HTMLElement | null}) => ?{
@@ -169,7 +168,7 @@ export type SharedStatelessPropsT = {
   /** List of menu items. */
   items: ItemsT,
   /** Message to be displayed if no menu items are passed in. */
-  noResultsMsg?: React.Node,
+  noResultsMsg?: React$Node,
   onBlur?: (event: SyntheticFocusEvent<HTMLElement>) => mixed,
   onFocus?: (event: SyntheticFocusEvent<HTMLElement>) => mixed,
   /** Ref for the menu container element. Used to capture key events for navigation */
@@ -195,7 +194,7 @@ export type StatefulMenuPropsT = {
   /** Ref for the menu container element. Used to capture key events for navigation */
   rootRef?: RootRefT,
   /** Child as function pattern. */
-  children?: RenderPropsT => React.Node,
+  children?: RenderPropsT => React$Node,
   addMenuToNesting?: (ref: {current: HTMLElement | null}) => void,
   removeMenuFromNesting?: (ref: {current: HTMLElement | null}) => void,
   getParentMenu?: (ref: {current: HTMLElement | null}) => ?{
@@ -220,7 +219,7 @@ export type OptionListPropsT = {
   /** Function used to get the string label for each item. */
   getItemLabel: GetItemLabelFnT,
   /** Used to render a sub menu at this menu item. You'll often render another menu from this function. */
-  getChildMenu?: (item: ItemT) => React.Node,
+  getChildMenu?: (item: ItemT) => React$Node,
   /** Callback used to change highlighted index in stateful menu. */
   onMouseEnter?: (event: MouseEvent) => mixed,
   /** Renders UI in defined scale. */
@@ -245,7 +244,7 @@ export type OptionProfilePropsT = {
   /** Item to parse and render. */
   item: ItemT,
   /** Used to render a sub menu at this menu item. You'll often render another menu from this function. */
-  getChildMenu?: (item: ItemT) => React.Node,
+  getChildMenu?: (item: ItemT) => React$Node,
   /** Returns an object consisting of title, subtitle, and body to render menu item */
   getProfileItemLabels: GetProfileItemLabelsFnT,
   /** Returns either an image source url, or a full React component to render as the image. */

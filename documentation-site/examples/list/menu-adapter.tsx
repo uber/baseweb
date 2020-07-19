@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import {ChevronRight, Search} from 'baseui/icon';
 import {StatefulMenu} from 'baseui/menu';

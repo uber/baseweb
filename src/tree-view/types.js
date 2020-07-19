@@ -5,7 +5,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 
 export type TreeLabelOverridesT = {
@@ -32,7 +31,7 @@ export type TreeNodeT<T = any> = {
   id?: TreeNodeIdT,
   children?: TreeNodeT<>[],
   isExpanded?: boolean,
-  label: ((node: TreeNodeT<>) => React.Node) | string,
+  label: ((node: TreeNodeT<>) => React$Node) | string,
   info?: T,
   // eslint-disable-next-line flowtype/no-weak-types
   [key: string]: any,
@@ -43,7 +42,7 @@ export type TreeLabelT = {
   isExpanded?: boolean,
   isSelected?: boolean,
   isFocusVisible?: boolean,
-  label: ((node: TreeNodeT<>) => React.Node) | string,
+  label: ((node: TreeNodeT<>) => React$Node) | string,
   overrides?: TreeLabelOverridesT,
   node: TreeNodeT<>,
 };
@@ -65,7 +64,7 @@ export type TreeNodePropsT = {
   onFocus?: (event: SyntheticEvent<>) => mixed,
   onBlur?: (event: SyntheticEvent<>) => mixed,
   selectedNodeId?: TreeNodeIdT,
-  addRef: (id: TreeNodeIdT, ref: React.ElementRef<*>) => mixed,
+  addRef: (id: TreeNodeIdT, ref: React$ElementRef<*>) => mixed,
   removeRef: (id: TreeNodeIdT) => mixed,
   isFocusVisible?: boolean,
   indentGuides?: boolean,
@@ -73,7 +72,7 @@ export type TreeNodePropsT = {
 
 export type StatefulContainerPropsT = {
   ...TreeViewPropsT,
-  children: (props: TreeViewPropsT) => React.Node,
+  children: (props: TreeViewPropsT) => React$Node,
 };
 
 export type TreeViewPropsT = {|

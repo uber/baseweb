@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable flowtype/generic-spacing */
-import * as React from 'react';
+import type {ChildrenArray} from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 import {ORIENTATION, STATE_CHANGE_TYPE} from './constants.js';
 
@@ -18,7 +18,7 @@ export type SharedStylePropsArgT = {
 };
 
 export type StatefulTabsStateT = {
-  activeKey: React.Key,
+  activeKey: React$Key,
 };
 
 export type StateChangeTypeT = $Keys<typeof STATE_CHANGE_TYPE>;
@@ -39,14 +39,14 @@ export type TabOverridesT = {
   Tab?: OverrideT,
 };
 
-export type OnChangeHandlerT = ({activeKey: React.Key}) => mixed;
+export type OnChangeHandlerT = ({activeKey: React$Key}) => mixed;
 
 export type TabsPropsT = {
   /** An array of Tab components. */
   // eslint-disable-next-line flowtype/no-weak-types
-  children: React.ChildrenArray<React.Element<any>>,
+  children: ChildrenArray<React$Element<any>>,
   /**  Key of the the tab to be selected. */
-  activeKey: React.Key,
+  activeKey: React$Key,
   /** If set to true all its tabs will be disabled */
   disabled?: boolean,
   /** Change handler that is called every time a new tab is selected */
@@ -58,7 +58,7 @@ export type TabsPropsT = {
   overrides?: TabsOverridesT,
 };
 
-export type StatefulTabsPropsT = $Diff<TabsPropsT, {activeKey: React.Key}> & {
+export type StatefulTabsPropsT = $Diff<TabsPropsT, {activeKey: React$Key}> & {
   /**  Initial state of the component */
   initialState?: StatefulTabsStateT,
   /**  A state change handler. */
@@ -66,12 +66,12 @@ export type StatefulTabsPropsT = $Diff<TabsPropsT, {activeKey: React.Key}> & {
 };
 
 export type TabPanelPropsT = {
-  children?: React.Node,
+  children?: React$Node,
   /** Sets the tab to disabled */
   disabled?: boolean,
   active?: boolean,
   /**  Unique key for the tab. Defaults to the child index. */
-  key?: React.Key,
+  key?: React$Key,
   /** onClick handler for the Tab element */
   onClick?: (e: Event) => mixed,
   /** onKeyDown handler for the Tab element */
@@ -80,7 +80,7 @@ export type TabPanelPropsT = {
   onSelect?: () => mixed,
   overrides?: TabOverridesT,
   /** Title of the Tab to be shown in the Tab bar */
-  title?: React.Node,
+  title?: React$Node,
 };
 
 export type TabPropsT = TabPanelPropsT & {

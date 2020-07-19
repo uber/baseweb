@@ -6,7 +6,6 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable flowtype/generic-spacing */
-import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 import type {SizeT} from '../input/types.js';
 import {ORIENTATION, STATE_CHANGE_TYPE} from './constants.js';
@@ -264,7 +263,7 @@ export type NavigationContainerStateReducerT<T = Date> = (
 ) => NavigationContainerStateT<T>;
 
 export type StatefulContainerPropsT<PropsT, T = Date> = {
-  children: PropsT => React.Node,
+  children: PropsT => React$Node,
   /** Initial state of an uncontrolled datepicker component. */
   initialState: ContainerStateT<T>,
   /** A state change handler. */
@@ -278,7 +277,7 @@ export type StatefulContainerPropsT<PropsT, T = Date> = {
 
 // This type is seemingly not used anywhere
 export type NavigationContainerPropsT<T = Date> = {
-  children: (CalendarPropsT<T>) => React.Node,
+  children: (CalendarPropsT<T>) => React$Node,
   range?: boolean,
   highlightedDate?: ?Date,
   /** Day's `mouseover` event handler. */
@@ -300,7 +299,7 @@ export type NavigationContainerPropsT<T = Date> = {
 export type StatefulDatepickerPropsT<PropsT, T = Date> = $Diff<
   StatefulContainerPropsT<PropsT, T>,
   {
-    children: PropsT => React.Node,
+    children: PropsT => React$Node,
   },
 >;
 
@@ -326,7 +325,7 @@ export type TimezonePickerPropsT = {
    * Customize the option's label. Useful for translations and optionally mapping from
    * 'America/Los_Angeles' to 'Pacific Time'.
    */
-  mapLabels?: OptionT => React.Node,
+  mapLabels?: OptionT => React$Node,
   /** Callback for when the timezone selection changes. */
   onChange?: (value: ?{id: string, label: string, offset: number}) => mixed,
   overrides?: {Select?: OverrideT},

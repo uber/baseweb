@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 
 import {getOverrides} from '../helpers/overrides.js';
 import TriangleDown from '../icon/triangle-down.js';
@@ -27,7 +27,7 @@ function SortDirectionIcon({direction}: {direction: SortDirectionT}) {
   }
 }
 export const SortableHeadCellFactory = (
-  CustomHeadCell: React.ComponentType<HeadCellPropsT> = StyledHeadCell,
+  CustomHeadCell: React$AbstractComponent<HeadCellPropsT, *> = StyledHeadCell,
 ) => {
   return function SortableHeadCell(props: HeadCellPropsT) {
     const {overrides = {}, fillClickTarget, disabled} = props;

@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable react/display-name*/
 
-import * as React from 'react';
+import React from 'react';
 
 import {StatefulSlider} from '../index.js';
 

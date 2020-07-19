@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import {KIND} from './constants.js';
 import {StyledMainMenuItem} from './styled-components.js';
 import {isFocusVisible} from '../utils/focusVisible.js';

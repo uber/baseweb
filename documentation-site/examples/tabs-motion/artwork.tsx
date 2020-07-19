@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {Tabs, Tab} from 'baseui/tabs-motion';
 import {Check} from 'baseui/icon';
 

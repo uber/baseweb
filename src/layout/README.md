@@ -13,7 +13,7 @@
 ![Example layout 1](./layout_1.png)
 
 ```javascript
-import * as React from 'react';
+import React from 'react';
 import {Layout, Header, Sidebar, Content} from 'baseui/layout';
 
 export default () => {
@@ -34,7 +34,7 @@ export default () => {
 ![Example layout 2](./layout_2.png)
 
 ```javascript
-import * as React from 'react';
+import React from 'react';
 import {Layout, Header, Sidebar, Content} from 'baseui/layout';
 
 export default () => {
@@ -55,7 +55,7 @@ export default () => {
 ![Example layout 3](./layout_3.png)
 
 ```javascript
-import * as React from 'react';
+import React from 'react';
 import {Layout, Header, Sidebar, Content} from 'baseui/layout';
 
 export default () => {
