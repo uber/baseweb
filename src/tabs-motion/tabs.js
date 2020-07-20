@@ -340,6 +340,7 @@ export function Tabs({
               tabIndex={isActive ? '0' : '-1'}
               ref={isActive ? activeTabRef : ref}
               disabled={!isActive && disabled}
+              type="button" // so it doesn't trigger a submit when used inside forms
               $focusVisible={focusVisible}
               {...sharedStylingProps}
               {...restProps}
