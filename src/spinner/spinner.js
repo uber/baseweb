@@ -26,12 +26,12 @@ class Spinner extends React.Component<SpinnerPropsT> {
   };
 
   componentDidMount() {
-    // TODO(v10): remove warning when switching default Spinner
+    // TODO(v11): remove warning when switching default Spinner
     if (__DEV__) {
-      if (!this.props.$silenceV10DeprecationWarning) {
+      if (!this.props.$silenceV11DeprecationWarning) {
         console.warn(
           `❖ [baseui] Please consider using "StyledSpinnerNext" instead of "Spinner". ` +
-            `In v10, "StyledSpinnerNext" will become the default "Spinner"` +
+            `In v11, "StyledSpinnerNext" will become the default "Spinner"` +
             ` and the current SVG based implementation will be deprecated.`,
         );
       }

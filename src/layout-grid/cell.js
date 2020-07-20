@@ -32,7 +32,7 @@ export default function Cell({
   return (
     <StyledCell
       $align={align}
-      // TODO(v10): Remove the four grid props, get them solely from GridContext
+      // TODO(v11): Remove the four grid props, get them solely from GridContext
       $gridColumns={gridColumns || gridContext.gridColumns}
       $gridGaps={gridGaps || gridContext.gridGaps}
       $gridGutters={gridGutters || gridContext.gridGutters}

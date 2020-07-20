@@ -32,7 +32,7 @@ import ApiTable from '../../components/api-table';
 export default Layout;
 
 <Notification overrides={{Body: {style: {width: 'auto'}}}} kind={KIND.info}>
-  We have a new, simplified Spinner coming out in v10. You can try it out today
+  We have a new, simplified Spinner coming out in v11. You can try it out today
   by importing StyledSpinnerNext!{' '}
   <StyledLink href="#spinner-next">Click here to read more</StyledLink>.
 </Notification>
@@ -81,13 +81,13 @@ Spinners provide a visual cue that an action is processing awaiting a course of 
 
 ## Spinner Next
 
-`StyledSpinnerNext` will replace our current `Spinner` in v10 of `baseui`. This will be a breaking change since the APIs between the new and old components are not the same.
+`StyledSpinnerNext` will replace our current `Spinner` in v11 of `baseui`. This will be a breaking change since the APIs between the new and old components are not the same.
 
 What's the difference?
 
 The new spinner uses a single `div` instead of an `svg`, which fixes a wobbling issue we found on Safari. The flattened structure also makes the new spinner a bit easier to customize since there are no more `overrides` to worry about.
 
-You can use the new spinner prior to v10 like so:
+You can use the new spinner prior to v11 like so:
 
 ```js
 import {StyledSpinnerNext} from 'baseui/spinner';

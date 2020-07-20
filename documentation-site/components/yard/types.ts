@@ -14,4 +14,5 @@ export type TYardProps = TConfig & {
   placeholderHeight: number;
   queryStringName?: string;
   mapTokensToProps?: {[key: string]: any};
+  compilerStyles: {[key: string]: any};
 };

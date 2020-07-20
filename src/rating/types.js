@@ -22,6 +22,7 @@ export type StarRatingPropsT = {
   numItems: number,
   /** Callback that's called with the newly selected value. */
   onChange?: ({value: number}) => mixed,
+  size?: number,
 };
 
 export type EmoticonRatingPropsT = {
@@ -30,6 +31,7 @@ export type EmoticonRatingPropsT = {
   value?: number,
   /** Callback that's called with the newly selected value. */
   onChange?: ({value: number}) => mixed,
+  size?: number,
 };
 
 export type RatingStateT = {
@@ -47,4 +49,5 @@ export type StyledRatingItemPropsT = {
   $isSelected: boolean,
   $isFocusVisible: boolean,
   $index: number,
+  $size: number,
 };

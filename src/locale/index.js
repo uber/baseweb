@@ -21,7 +21,7 @@ const LocaleProvider = (props: {
   if (__DEV__) {
     if (locale.datepicker && locale.datepicker.timePickerAriaLabel) {
       console.warn(
-        '`timePickerAriaLabel` will be removed in v10 - please use timePickerAriaLabel12Hour and timePickerAriaLabel24Hour instead',
+        '`timePickerAriaLabel` will be removed in v11 - please use timePickerAriaLabel12Hour and timePickerAriaLabel24Hour instead',
       );
     }
   }
