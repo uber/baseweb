@@ -17,7 +17,7 @@ export type PinCodeProps = Omit<InputProps, 'onChange' | 'value'> & {
   overrides?: PinCodeOverrides;
   values: string[];
   manageFocus?: boolean;
-  mask: boolean | string;
+  mask?: boolean | string;
   onChange: (args: {
     values: string[];
     event: React.FormEvent<HTMLInputElement>;
