@@ -23,6 +23,7 @@ export default class PinCode extends React.Component<PropsT, StateT> {
 
   _inputRefs = new MultiRef<number, HTMLInputElement>();
 
+  hasMask = typeof this.props.mask === 'boolean' ? this.props.mask : false;
   state = {
     hasFocus: false,
   };
@@ -33,12 +34,15 @@ export default class PinCode extends React.Component<PropsT, StateT> {
       if (inputRef && inputRef.focus) inputRef.focus();
     }
   }
+
   getMaskStyle(i: number) {
     if (this.props.values[i] == '') return this.props.values[i];
-    if (typeof this.props.mask === 'boolean')
-      return this.props.mask ? '*' : this.props.values[i];
-    return this.props.mask;
+    if (typeof this.props.mask !== 'boolean') {
+      return this.props.mask;
+    }
+    return this.props.values[i];
   }
+
   render() {
     const [Root, rootProps] = getOverrides(
       this.props.overrides.Root,
@@ -50,9 +54,11 @@ export default class PinCode extends React.Component<PropsT, StateT> {
     );
     const baseOverrides = {
       Root: {component: StyledInputOverrideRoot},
-      Input: {component: StyledInputOverrideInput},
+      Input: {
+        component: StyledInputOverrideInput,
+        props: {type: this.hasMask ? 'password' : 'text'},
+      },
     };
-
     // $FlowFixMe
     inputProps.overrides = mergeOverrides(baseOverrides, inputProps.overrides);
     return (
@@ -134,7 +140,6 @@ export default class PinCode extends React.Component<PropsT, StateT> {
               positive={this.props.positive}
               required={this.props.required}
               size={this.props.size}
-              type="text"
               value={this.getMaskStyle(i)}
               {...inputProps}
             />

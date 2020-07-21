@@ -11,12 +11,16 @@ import React from 'react';
 import {StatefulPinCode} from '../index.js';
 
 export default function Scenario() {
+  const [values, setValues] = React.useState(['', '', '', '']);
   return (
-    <>
-      <StatefulPinCode mask />
-      <br />
-      <StatefulPinCode mask="+" />
-      <br />
-    </>
+    <div>
+      <StatefulPinCode
+        values={values}
+        onChange={({values}) => setValues(values)}
+        clearOnEscape
+        mask="*"
+      />
+      <p data-testid="pinCodeValue">password:{values.join(' ')} </p>
+    </div>
   );
 }
