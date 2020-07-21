@@ -23,7 +23,6 @@ export default class PinCode extends React.Component<PropsT, StateT> {
 
   _inputRefs = new MultiRef<number, HTMLInputElement>();
 
-  hasMask = typeof this.props.mask === 'boolean' ? this.props.mask : false;
   state = {
     hasFocus: false,
   };
@@ -36,11 +35,11 @@ export default class PinCode extends React.Component<PropsT, StateT> {
   }
 
   getMaskStyle(i: number) {
-    if (this.props.values[i] == '') return this.props.values[i];
-    if (typeof this.props.mask !== 'boolean') {
+    if (this.props.values[i] !== '' && typeof this.props.mask === 'string') {
       return this.props.mask;
+    } else {
+      return this.props.values[i];
     }
-    return this.props.values[i];
   }
 
   render() {
@@ -56,7 +55,12 @@ export default class PinCode extends React.Component<PropsT, StateT> {
       Root: {component: StyledInputOverrideRoot},
       Input: {
         component: StyledInputOverrideInput,
-        props: {type: this.hasMask ? 'password' : 'text'},
+        props: {
+          type:
+            typeof this.props.mask === 'boolean' && this.props.mask
+              ? 'password'
+              : 'text',
+        },
       },
     };
     // $FlowFixMe
