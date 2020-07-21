@@ -30,7 +30,7 @@ export type PropsT<OptionT = mixed> = {|
   // Called when input value changes or option is selected. If user selects a
   // suggested option, that option will be provided as the second function parameter.
   // Otherwise the second parameter will be null.
-  // TODO(v10): consider consolidating function params into a single object bag.
+  // TODO(v11): consider consolidating function params into a single object bag.
   onChange: (string, OptionT | null) => mixed,
   // Called when no option is selected and the enter key is pressed. An argument to this
   // function is another function to close the listbox if needed.

@@ -151,11 +151,3 @@ steps:
           - e2e-server-healthy
     agents:
       queue: workers
-
-  - name: flow-check-build
-    command: ./scripts/flow-check-build.js
-    plugins:
-      'docker-compose#v3.0.3':
-        run: baseui
-    agents:
-      queue: workers

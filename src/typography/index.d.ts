@@ -20,7 +20,7 @@ export const ParagraphMedium: React.FC<BlockProps>;
 export const ParagraphSmall: React.FC<BlockProps>;
 export const ParagraphXSmall: React.FC<BlockProps>;
 
-// TODO(v10): remove
+// TODO(v11): remove
 export const Caption1: React.FC<BlockProps>;
 export const Caption2: React.FC<BlockProps>;
 export const Display: React.FC<BlockProps>;

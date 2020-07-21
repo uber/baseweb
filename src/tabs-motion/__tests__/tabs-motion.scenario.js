@@ -23,20 +23,22 @@ const Mounty = () => {
 export default function Scenario() {
   const [activeKey, setActiveKey] = React.useState(0);
   return (
-    <Tabs
-      activeKey={activeKey}
-      onChange={({activeKey}) => setActiveKey(activeKey)}
-    >
-      <Tab title="Robot">
-        <Button kind={KIND.secondary}>🤖</Button>
-      </Tab>
-      <Tab title="Monster">
-        <Button kind={KIND.secondary}>👺</Button>
-      </Tab>
-      <Tab title="Watermelon">
-        <Button kind={KIND.secondary}>🍉</Button>
-        <Mounty />
-      </Tab>
-    </Tabs>
+    <form>
+      <Tabs
+        activeKey={activeKey}
+        onChange={({activeKey}) => setActiveKey(activeKey)}
+      >
+        <Tab title="Robot">
+          <Button kind={KIND.secondary}>🤖</Button>
+        </Tab>
+        <Tab title="Monster">
+          <Button kind={KIND.secondary}>👺</Button>
+        </Tab>
+        <Tab title="Watermelon">
+          <Button kind={KIND.secondary}>🍉</Button>
+          <Mounty />
+        </Tab>
+      </Tabs>
+    </form>
   );
 }

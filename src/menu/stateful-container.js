@@ -281,7 +281,6 @@ export default class MenuStatefulContainer extends React.Component<
             onClick: this.handleItemClick.bind(this, index, item),
             onMouseEnter: this.handleMouseEnter.bind(this, index),
           }),
-      // $FlowFixMe due to flow-check-build failure on 0.111.3
       ...requiredItemProps,
     };
   };
