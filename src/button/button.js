@@ -67,7 +67,7 @@ class Button extends React.Component<
     const [BaseButton, baseButtonProps] = getOverrides(
       // adding both (1) BaseButton and (2) Root
       // (1) because it's a Button under the hood
-      // (2) because we want consitency with the rest of the components
+      // (2) because we want consistency with the rest of the components
       overrides.BaseButton || overrides.Root,
       StyledBaseButton,
     );

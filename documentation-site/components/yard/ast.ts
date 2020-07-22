@@ -18,11 +18,11 @@ export function toggleOverrideSharedProps(code: string, sharedProps: string[]) {
           newParams = properties.map((prop: any) => prop.key.name);
         }
 
-        const shoudlWeAddSharedProps = newParams.every(
+        const shouldWeAddSharedProps = newParams.every(
           name => !sharedProps.includes(name),
         );
 
-        if (shoudlWeAddSharedProps) {
+        if (shouldWeAddSharedProps) {
           sharedProps.forEach(param => {
             if (!newParams.includes(param)) {
               newParams.push(param);

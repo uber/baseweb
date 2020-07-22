@@ -45,7 +45,7 @@ export type PropsT = {
   required: boolean,
   /** Renders the component at a given size. */
   size: $Keys<typeof SIZE>,
-  /** If true, when a pin code input receives a valid value, focus will be transfered to the next pin code input (until the end of the inputs). */
+  /** If true, when a pin code input receives a valid value, focus will be transferred to the next pin code input (until the end of the inputs). */
   manageFocus: boolean,
   /** An array of values respective to each pin code input. */
   values: string[],

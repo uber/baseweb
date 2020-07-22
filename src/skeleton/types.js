@@ -17,10 +17,10 @@ export type SkeletonPropsT = {
   overrides?: OverridesT,
   /** Defines the number of row element in a skeleton */
   rows: number,
-  /** Deinfes if the skeleton has an animation default is false*/
+  /** Defines if the skeleton has an animation default is false*/
   animation: boolean,
-  /** Deinfes the height of the skeleton container*/
+  /** Defines the height of the skeleton container*/
   height?: string,
-  /** Deinfes the width of the skeleton container*/
+  /** Defines the width of the skeleton container*/
   width?: string,
 };

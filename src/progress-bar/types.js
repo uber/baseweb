@@ -25,7 +25,7 @@ export type ProgressBarPropsT = {
   successValue: number,
   /** If set to false, label is hidden and `getProgressLabel` is ignored. */
   showLabel: boolean,
-  /** If set to true, theres and infinite loading animation. */
+  /** If set to true, there’s and infinite loading animation. */
   infinite: boolean,
   /** Error message for screen-reader users**/
   errorMessage?: string,

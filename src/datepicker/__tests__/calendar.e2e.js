@@ -53,52 +53,52 @@ describe('Calendar', () => {
   it('navigates to next day on ArrowRight key press', async () => {
     await waitTillDay(page);
     await page.keyboard.press('ArrowRight');
-    const isdayActive = await isActiveEl(page, selectors.day);
-    expect(isdayActive).toBe(true);
+    const isDayActive = await isActiveEl(page, selectors.day);
+    expect(isDayActive).toBe(true);
   });
   it('navigates to prev day on ArrowLeft key press', async () => {
     await waitTillDay(page);
     await page.keyboard.press('ArrowLeft');
-    const isday1Active = await isActiveEl(page, selectors.day1);
-    expect(isday1Active).toBe(true);
+    const isDay1Active = await isActiveEl(page, selectors.day1);
+    expect(isDay1Active).toBe(true);
   });
 
   it('navigates to prev week on ArrowUp key press', async () => {
     await waitTillDay(page);
     await page.keyboard.press('ArrowUp');
-    const isday2Active = await isActiveEl(page, selectors.day2);
-    expect(isday2Active).toBe(true);
+    const isDay2Active = await isActiveEl(page, selectors.day2);
+    expect(isDay2Active).toBe(true);
   });
 
   it('navigates to prev week on ArrowDown key press', async () => {
     await waitTillDay(page);
     await page.keyboard.press('ArrowDown');
-    const isday3Active = await isActiveEl(page, selectors.day3);
-    expect(isday3Active).toBe(true);
+    const isDay3Active = await isActiveEl(page, selectors.day3);
+    expect(isDay3Active).toBe(true);
   });
 
   it('navigates to start of week on Home key press', async () => {
     await waitTillDay(page);
     await page.keyboard.press('Home');
-    const isday4Active = await isActiveEl(page, selectors.day4);
-    expect(isday4Active).toBe(true);
+    const isDay4Active = await isActiveEl(page, selectors.day4);
+    expect(isDay4Active).toBe(true);
   });
   it('navigates to end of week on End key press', async () => {
     await waitTillDay(page);
     await page.keyboard.press('End');
-    const isdayActive = await isActiveEl(page, selectors.day);
-    expect(isdayActive).toBe(true);
+    const isDayActive = await isActiveEl(page, selectors.day);
+    expect(isDayActive).toBe(true);
   });
   it('navigates to prev month on PageUp key press', async () => {
     await waitTillDay(page);
     await page.keyboard.press('PageUp');
-    const isday6Active = await isActiveEl(page, selectors.day6);
-    expect(isday6Active).toBe(true);
+    const isDay6Active = await isActiveEl(page, selectors.day6);
+    expect(isDay6Active).toBe(true);
   });
   it('navigates to next month on PageDown key press', async () => {
     await waitTillDay(page);
     await page.keyboard.press('PageDown');
-    const isday5Active = await isActiveEl(page, selectors.day5);
-    expect(isday5Active).toBe(true);
+    const isDay5Active = await isActiveEl(page, selectors.day5);
+    expect(isDay5Active).toBe(true);
   });
 });

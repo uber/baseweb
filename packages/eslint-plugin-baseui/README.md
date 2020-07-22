@@ -72,7 +72,7 @@ We sync the the versions for each package so you shouldn't have to worry about i
 
 ## Contributing
 
-To publish new versions of this package all you need to do is release a new version of `baseui`. Our deploy script will publish a new version of the eslint plugin which matches the new version of `baseui`. Note, this also means every version of `baseui` will publish a cooresponding version of `eslint-plugin-baseui`, even if there are no changes to the package.
+To publish new versions of this package all you need to do is release a new version of `baseui`. Our deploy script will publish a new version of the eslint plugin which matches the new version of `baseui`. Note, this also means every version of `baseui` will publish a corresponding version of `eslint-plugin-baseui`, even if there are no changes to the package.
 
 ## License
 

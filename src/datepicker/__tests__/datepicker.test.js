@@ -350,7 +350,7 @@ describe('Datepicker', () => {
     expect(renderedMonthHeaders.length).toEqual(monthsShown);
   });
 
-  test('hide pagination buttons and month drowndown with mutliple months', () => {
+  test('hide pagination buttons and month dropdown with multiple months', () => {
     const date = new Date('2019 01 01');
     const monthsShown = 3;
     const component = mount(

@@ -432,7 +432,7 @@ describe('toaster', () => {
     });
 
     test('toasts with the same key should extend autohide duration from ToastContainer', () => {
-      // open two toasts with the samae key, but different children
+      // open two toasts with the same key, but different children
       //
       const toastSameKey = 'same-key';
 

@@ -61,7 +61,7 @@ describe('radio-group', () => {
 describe('radio-group focus and a11y management', () => {
   it('sets the initial state', () => {
     const {getByDisplayValue} = render(
-      <StatefulRadioGroup name="numberss" initialState={{value: '3'}}>
+      <StatefulRadioGroup name="numbers" initialState={{value: '3'}}>
         <Radio value="1" />
         <Radio value="2" />
         <Radio value="3" />
@@ -87,7 +87,7 @@ describe('radio-group focus and a11y management', () => {
 
   it('focus selected radio', () => {
     const {getByDisplayValue} = render(
-      <StatefulRadioGroup name="numberss" initialState={{value: '3'}}>
+      <StatefulRadioGroup name="numbers" initialState={{value: '3'}}>
         <Radio value="1" />
         <Radio value="2" />
         <Radio value="3" />
@@ -107,7 +107,7 @@ describe('radio-group focus and a11y management', () => {
 
   it('focus first radio if no value is selected', () => {
     const {getByDisplayValue} = render(
-      <StatefulRadioGroup name="numberss" initialState={{value: undefined}}>
+      <StatefulRadioGroup name="numbers" initialState={{value: undefined}}>
         <Radio value="1" />
         <Radio value="2" />
         <Radio value="3" />

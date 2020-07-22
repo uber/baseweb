@@ -458,8 +458,8 @@ const config = {
         behavior: async page => {
           const selectSelector = '[data-baseweb="select"] input';
           const dropdownSelector = '[role="listbox"]';
-          const dropdownOptionSeletor = '[role="option"]';
-          const firstOption = `${dropdownSelector} ${dropdownOptionSeletor}:nth-child(1)`;
+          const dropdownOptionSelector = '[role="option"]';
+          const firstOption = `${dropdownSelector} ${dropdownOptionSelector}:nth-child(1)`;
           await page.waitForSelector(selectSelector);
           await page.click(selectSelector);
           await page.waitForSelector(dropdownSelector, {
