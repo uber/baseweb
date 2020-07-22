@@ -117,12 +117,12 @@ export const StyledSortableLabel = styled<{}>('button', ({$theme}) => {
 });
 
 const StyledBodyElement = styled<HorizontalStyleProps>('div', ({$width}) => {
-  return ({
+  return {
     width: $width ? $width : '100%',
     overflowX: 'hidden',
     overflowY: 'overlay',
     flex: 1,
-  }: {});
+  };
 });
 
 export const StyledBody = withWrapper(

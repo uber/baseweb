@@ -56,7 +56,7 @@ const Component = () => {
 import {useQuery} from '@apollo/react-hooks'
 import {Skeleton} from 'baseui/skeleton'
 import React from 'react'
-import {useStyletron} from 'styletron-react'
+import {useStyletron} from '@miksu/styletron-react'
 
 const Component = () => {
   const [css] = useStyletron()

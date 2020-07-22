@@ -12,8 +12,8 @@ import * as React from 'react';
 import {configure, addDecorator, addParameters} from '@storybook/react';
 import {initializeRTL} from 'storybook-addon-rtl';
 
-import {Provider as StyletronProvider} from 'styletron-react';
-import {Client as Styletron} from 'styletron-engine-atomic';
+import {Provider as StyletronProvider} from '@miksu/styletron-react';
+import {Client as Styletron} from '@miksu/styletron-engine-atomic';
 
 import {BaseProvider} from '../../src/index.js';
 import {LightThemeMove, DarkThemeMove} from '../../src/themes/index.js';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
+import {StyletronComponent} from '@miksu/styletron-react';
 import {Override} from '../overrides';
 
 export interface CardOverrides {
@@ -15,7 +15,12 @@ export interface CardProps {
   readonly action?: React.ReactNode;
   readonly children?: React.ReactNode;
   readonly hasThumbnail?: (props: {readonly thumbnail?: string}) => boolean;
-  readonly headerImage?: string | React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
+  readonly headerImage?:
+    | string
+    | React.DetailedHTMLProps<
+        React.ImgHTMLAttributes<HTMLImageElement>,
+        HTMLImageElement
+      >;
   readonly overrides?: CardOverrides;
   readonly thumbnail?: string;
   readonly title?: React.ReactNode;

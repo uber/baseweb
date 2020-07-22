@@ -124,7 +124,7 @@ const Component = styled('div', {color: 'red'});"
   it('does not apply change styled call is not imported from baseui', async () => {
     const content = `
 // @flow
-import {styled} from 'styletron-react';
+import {styled} from '@miksu/styletron-react';
 const Component = styled('div', {color: 'red'});`;
 
     const fixture = new Fixture();
@@ -136,7 +136,7 @@ const Component = styled('div', {color: 'red'});`;
     expect(transformed).toMatchInlineSnapshot(`
 "
 // @flow
-import {styled} from 'styletron-react';
+import {styled} from '@miksu/styletron-react';
 const Component = styled('div', {color: 'red'});"
 `);
   });

@@ -529,7 +529,7 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
     $theme: {colors, sizing},
   } = props;
   const code = getDayStateCode(props);
-  return ({
+  return {
     boxSizing: 'border-box',
     position: 'relative',
     cursor:
@@ -665,14 +665,14 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
           },
         }
       : {}),
-  }: {});
+  };
 });
 
 export const StyledWeekdayHeader = styled<SharedStylePropsT>('div', props => {
   const {
     $theme: {sizing},
   } = props;
-  return ({
+  return {
     boxSizing: 'border-box',
     position: 'relative',
     cursor: 'default',
@@ -691,5 +691,5 @@ export const StyledWeekdayHeader = styled<SharedStylePropsT>('div', props => {
     marginRight: 0,
     color: 'inherit',
     backgroundColor: 'transparent',
-  }: {});
+  };
 });

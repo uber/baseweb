@@ -117,7 +117,7 @@ export const DialogContainer = styled<SharedStylePropsArgT>('div', props => {
 
 export const Dialog = styled<SharedStylePropsArgT>('div', props => {
   const {$animate, $isOpen, $isVisible, $size, $theme} = props;
-  return ({
+  return {
     position: 'relative',
     backgroundColor: $theme.colors.backgroundPrimary,
     borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
@@ -148,7 +148,7 @@ export const Dialog = styled<SharedStylePropsArgT>('div', props => {
     ':focus': {
       outline: 'none',
     },
-  }: {});
+  };
 });
 
 export const Close = styled<SharedStylePropsArgT>('button', props => {

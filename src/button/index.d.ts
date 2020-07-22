@@ -3,7 +3,7 @@ import {
   StyledFn,
   StyletronComponent,
   StyletronComponentInjectedProps,
-} from 'styletron-react';
+} from '@miksu/styletron-react';
 import {Override} from '../overrides';
 
 export interface KIND {

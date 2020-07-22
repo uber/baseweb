@@ -4,7 +4,7 @@ import {
   StyletronComponent,
   WithStyleFn as StyletronWithStyleFn,
   StyledFn as StyletronStyledFn,
-} from 'styletron-react';
+} from '@miksu/styletron-react';
 import {Override, Overrides} from './overrides';
 import {Locale} from './locale';
 import {Theme, ThemePrimitives} from './theme';

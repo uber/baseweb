@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {Provider as StyletronProvider} from 'styletron-react';
-import {Client as Styletron} from 'styletron-engine-atomic';
+import {Provider as StyletronProvider} from '@miksu/styletron-react';
+import {Client as Styletron} from '@miksu/styletron-engine-atomic';
 import {ThemeProvider} from '../styles/index.js';
 import {LightTheme} from '../themes/index.js';
 

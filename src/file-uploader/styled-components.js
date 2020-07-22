@@ -14,7 +14,7 @@ export const StyledFileDragAndDrop = styled<StylePropsT>('div', props => {
     ? props.$theme.colors.fileUploaderBorderColorActive
     : props.$theme.colors.fileUploaderBorderColorDefault;
   const borderStyle = props.$afterFileDrop ? 'none' : 'dashed';
-  return ({
+  return {
     alignItems: 'center',
     backgroundColor: props.$isDragActive
       ? props.$theme.colors.fileUploaderBackgroundColorActive
@@ -42,32 +42,24 @@ export const StyledFileDragAndDrop = styled<StylePropsT>('div', props => {
       : props.$theme.sizing.scale900,
     paddingLeft: props.$theme.sizing.scale800,
     width: '100%',
-  }: {});
+  };
 });
 
-export const StyledContentMessage = styled<StylePropsT>(
-  'div',
-  props =>
-    ({
-      ...props.$theme.typography.font300,
-      color: props.$afterFileDrop
-        ? props.$theme.colors.fileUploaderMessageColor
-        : null,
-      marginBottom: props.$afterFileDrop ? props.$theme.sizing.scale600 : null,
-    }: {}),
-);
+export const StyledContentMessage = styled<StylePropsT>('div', props => ({
+  ...props.$theme.typography.font300,
+  color: props.$afterFileDrop
+    ? props.$theme.colors.fileUploaderMessageColor
+    : null,
+  marginBottom: props.$afterFileDrop ? props.$theme.sizing.scale600 : null,
+}));
 
 export const StyledContentSeparator = StyledContentMessage;
 
-export const StyledErrorMessage = styled<StylePropsT>(
-  'div',
-  props =>
-    ({
-      ...props.$theme.typography.font300,
-      color: props.$theme.colors.negative,
-      marginBottom: props.$afterFileDrop ? props.$theme.sizing.scale600 : null,
-    }: {}),
-);
+export const StyledErrorMessage = styled<StylePropsT>('div', props => ({
+  ...props.$theme.typography.font300,
+  color: props.$theme.colors.negative,
+  marginBottom: props.$afterFileDrop ? props.$theme.sizing.scale600 : null,
+}));
 
 export const StyledRoot = styled<StylePropsT>('div', props => ({
   ...props.$theme.typography.font300,

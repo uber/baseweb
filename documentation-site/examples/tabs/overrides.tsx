@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {StatefulTabs, Tab, StyledTab} from 'baseui/tabs';
 import {Label2} from 'baseui/typography';
-import {StyleObject} from 'styletron-react';
+import {StyleObject} from '@miksu/styletron-react';
 
 function TabOverride({children, ...rest}: any) {
   return (

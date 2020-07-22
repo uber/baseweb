@@ -31,8 +31,8 @@ npm install baseui styletron-react styletron-engine-atomic
 ```
 
 ```javascript
-import {Client as Styletron} from 'styletron-engine-atomic';
-import {Provider as StyletronProvider} from 'styletron-react';
+import {Client as Styletron} from '@miksu/styletron-engine-atomic';
+import {Provider as StyletronProvider} from '@miksu/styletron-react';
 import {LightTheme, BaseProvider, styled} from 'baseui';
 import {StatefulInput} from 'baseui/input';
 

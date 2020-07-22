@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/no-weak-types */
 
 import * as React from 'react';
-import {getInitialStyle} from 'styletron-standard';
+import {getInitialStyle} from '@miksu/styletron-standard';
 import {LightTheme} from '../../themes/index.js';
 import createMockTheme from '../../test/create-mock-theme.js';
 import type {ThemeT} from '../../styles/types.js';

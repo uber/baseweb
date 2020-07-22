@@ -19,18 +19,18 @@ export const Root = styled<SharedStylePropsArgT>('div', ({$theme}) => {
 Root.displayName = 'StyledRoot';
 
 export const List = styled<SharedStylePropsArgT>('ul', ({$isDragged}) => {
-  return ({
+  return {
     paddingLeft: 0,
     cursor: $isDragged ? 'grabbing' : null,
     pointerEvents: $isDragged ? 'none' : 'auto',
-  }: {});
+  };
 });
 List.displayName = 'StyledList';
 
 export const Item = styled<SharedStylePropsArgT>(
   'li',
   ({$isDragged, $isSelected, $theme, $isFocusVisible}) => {
-    return ({
+    return {
       ':hover':
         !$isDragged && !$isSelected
           ? {
@@ -83,7 +83,7 @@ export const Item = styled<SharedStylePropsArgT>(
         $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
       borderRightColor:
         $isDragged || $isSelected ? $theme.colors.primary : 'transparent',
-    }: {});
+    };
   },
 );
 List.displayName = 'StyledItem';

@@ -8,8 +8,8 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* global document */
 
-import {Client, Server} from 'styletron-engine-atomic';
-import {DebugEngine} from 'styletron-react';
+import {Client, Server} from '@miksu/styletron-engine-atomic';
+import {DebugEngine} from '@miksu/styletron-react';
 
 export const isServer = typeof window === 'undefined';
 

@@ -17,7 +17,7 @@ import {
   isFixed,
 } from './utils.js';
 
-import type {StyleObject} from 'styletron-standard';
+import type {StyleObject} from '@miksu/styletron-standard';
 import type {OrientationT, FillT} from './types.js';
 
 export const StyledRoot = styled<{$orientation?: OrientationT}>(

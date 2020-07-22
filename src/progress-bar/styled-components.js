@@ -19,7 +19,7 @@ export const Bar = styled<StylePropsT>('div', props => {
   const {$theme} = props;
   const {colors, sizing, borders} = $theme;
   const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
-  return ({
+  return {
     marginLeft: sizing.scale500,
     marginRight: sizing.scale500,
     marginTop: sizing.scale500,
@@ -32,7 +32,7 @@ export const Bar = styled<StylePropsT>('div', props => {
     height: '4px',
     position: 'relative',
     overflow: 'hidden',
-  }: {});
+  };
 });
 
 export const BarProgress = styled<StylePropsT>('div', props => {

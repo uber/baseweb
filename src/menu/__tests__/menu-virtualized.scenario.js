@@ -10,7 +10,7 @@ LICENSE file in the root directory of this source tree.
 // virualized example to regress. while this is not an explicit part of baseui's api,
 // pushing a change that would break applications using this example would be quite painful
 import React from 'react';
-import {withStyle} from 'styletron-react';
+import {withStyle} from '@miksu/styletron-react';
 import {StatefulMenu, OptionList, StyledList} from '../index.js';
 // eslint-disable-next-line import/extensions
 import List from 'react-virtualized/dist/commonjs/List';

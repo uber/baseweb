@@ -80,7 +80,7 @@ export const StyledNavItemElement = styled<SharedPropsT>('div', props => {
     hoverColor = null;
   }
 
-  return ({
+  return {
     backgroundColor: $active ? colors.backgroundInversePrimary : 'transparent',
     backgroundImage: $active
       ? `linear-gradient(0deg, ${bgImgGradient}, ${bgImgGradient})`
@@ -102,7 +102,7 @@ export const StyledNavItemElement = styled<SharedPropsT>('div', props => {
     ':focus': {
       color: $selectable ? colors.primary : null,
     },
-  }: {});
+  };
 });
 
 export const StyledNavItem = withWrapper(

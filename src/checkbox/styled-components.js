@@ -182,7 +182,7 @@ export const Checkmark = styled<SharedStylePropsT>('span', props => {
   const borderRadius = $theme.borders.inputBorderRadius;
   const borderColor = getBorderColor(props);
 
-  return ({
+  return {
     flex: '0 0 auto',
     transitionDuration: animation.timing200,
     transitionTimingFunction: animation.easeOutCurve,
@@ -227,7 +227,7 @@ export const Checkmark = styled<SharedStylePropsT>('span', props => {
     marginBottom: $theme.sizing.scale0,
     marginLeft: $theme.sizing.scale0,
     marginRight: $theme.sizing.scale0,
-  }: {});
+  };
 });
 
 export const Label = styled<SharedStylePropsT>('div', props => {

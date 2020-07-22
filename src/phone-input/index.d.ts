@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyletronComponent} from 'styletron-react';
+import {StyletronComponent} from '@miksu/styletron-react';
 import {SIZE, InputProps} from '../input';
 import {OnChangeParams} from '../select';
 import {Override} from '../overrides';

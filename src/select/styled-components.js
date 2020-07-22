@@ -122,12 +122,12 @@ export const StyledOptionContent = styled<SharedStylePropsArgT>(
   props => {
     const {$isHighlighted, $selected, $disabled, $theme} = props;
 
-    return ({
+    return {
       cursor: $disabled ? 'not-allowed' : 'pointer',
       color:
         $selected && !$isHighlighted ? $theme.colors.menuFontSelected : null,
       fontWeight: $selected ? 'bold' : 'normal',
-    }: {});
+    };
   },
 );
 
