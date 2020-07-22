@@ -62,6 +62,10 @@ function FileUploader(props: PropsT) {
     overrides.ButtonComponent,
     Button,
   );
+  const [SpinnerComponent, spinnerProps] = getOverrides(
+    overrides.SpinnerComponent,
+    Spinner,
+  );
 
   const afterFileDrop = !!(
     props.progressAmount ||
@@ -157,7 +161,11 @@ function FileUploader(props: PropsT) {
                         />
                       ) : props.errorMessage ? null : (
                         <Block marginBottom="scale300">
-                          <Spinner $silenceV11DeprecationWarning size={40} />
+                          <SpinnerComponent
+                            $silenceV11DeprecationWarning
+                            size={40}
+                            {...spinnerProps}
+                          />
                         </Block>
                       )}
                       {(props.errorMessage || props.progressMessage) &&
