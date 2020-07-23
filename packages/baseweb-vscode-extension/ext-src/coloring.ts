@@ -197,7 +197,7 @@ export default (context: vscode.ExtensionContext) => {
       while ((match = regEx.exec(text))) {
         // @ts-ignore
         const themePropVal: any = theme[themeProps[i]][match[3]];
-        // Do not decorate if the found porp key is not present in the theme object
+        // Do not decorate if the found prop key is not present in the theme object
         if (!themePropVal) {
           continue;
         }

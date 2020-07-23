@@ -26,7 +26,7 @@ export type SharedStylePropsT = {
 export type TextareaPropsT = {
   ...BaseInputPropsT<HTMLTextAreaElement>,
   /** Sets the size and number of visible text lines
-   of the texarea element. */
+   of the textarea element. */
   rows?: number,
 };
 

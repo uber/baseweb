@@ -365,7 +365,7 @@ export default class Datepicker<T = Date> extends React.Component<
   };
 
   normalizeDashes = (inputValue: string) => {
-    // replacing both hyphens and em-dashes with en-dashs
+    // replacing both hyphens and em-dashes with en-dashes
     return inputValue.replace(/-/g, '–').replace(/—/g, '–');
   };
 

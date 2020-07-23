@@ -76,7 +76,7 @@ class ReactPanel {
         // Enable javascript in the webview
         enableScripts: true,
 
-        // And restric the webview to only loading content from our extension's `media` directory.
+        // And restrict the webview to only loading content from our extension's `media` directory.
         localResourceRoots: [
           vscode.Uri.file(path.join(this._extensionPath, 'build')),
         ],
@@ -87,7 +87,7 @@ class ReactPanel {
     this._panel.webview.html = this._getHtmlForWebview();
 
     // Listen for when the panel is disposed
-    // This happens when the user closes the panel or when the panel is closed programatically
+    // This happens when the user closes the panel or when the panel is closed programmatically
     this._panel.onDidDispose(() => this.dispose(), null, this._disposables);
 
     // Handle messages from the webview

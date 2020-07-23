@@ -36,12 +36,12 @@ export function resolveFromGeneric(type) {
 }
 
 export function reduceToObj(type) {
-  const reducableKinds = ['generic', 'object', 'intersection'];
+  const reducibleKinds = ['generic', 'object', 'intersection'];
   if (type.kind === 'generic') {
-    // Only attempt to reduce generic if it has a reducable value
-    // Unreducable generics that have an identifier value, e.g. ElementConfig, are still valid
+    // Only attempt to reduce generic if it has a reducible value
+    // Unreducible generics that have an identifier value, e.g. ElementConfig, are still valid
     // so we return early to avoid the console warn below
-    return reducableKinds.includes(type.value.kind)
+    return reducibleKinds.includes(type.value.kind)
       ? reduceToObj(type.value)
       : [];
   } else if (type.kind === 'object') {
