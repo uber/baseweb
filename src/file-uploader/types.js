@@ -26,6 +26,7 @@ export type OverridesT = {|
   ProgressMessage?: OverrideT,
   ErrorMessage?: OverrideT,
   ButtonComponent?: OverrideT,
+  Spinner?: OverrideT,
 |};
 
 export type PropsT = {|

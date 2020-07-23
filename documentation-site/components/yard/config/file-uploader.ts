@@ -103,6 +103,7 @@ const FileUploaderConfig: TConfig = {
           'ErrorMessage',
           'FileDragAndDrop',
           'HiddenInput',
+          'Spinner',
         ],
         sharedProps: {},
       },
