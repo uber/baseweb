@@ -35,8 +35,11 @@ export const StyledInputOverrideRoot = withStyle<
   };
 });
 
-export const StyledInputOverrideInput = withStyle(StyledInputInput, {
-  textAlign: 'center',
-  paddingLeft: '0',
-  paddingRight: '0',
-});
+export const StyledInputOverrideInput = withStyle<typeof StyledInputInput>(
+  StyledInputInput,
+  {
+    textAlign: 'center',
+    paddingLeft: '0',
+    paddingRight: '0',
+  },
+);

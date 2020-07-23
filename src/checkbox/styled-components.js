@@ -233,14 +233,14 @@ export const Checkmark = styled<SharedStylePropsT>('span', props => {
 export const Label = styled<SharedStylePropsT>('div', props => {
   const {$theme, $checkmarkType} = props;
   const {typography} = $theme;
-  return ({
+  return {
     flex: $checkmarkType === STYLE_TYPE.toggle ? 'auto' : null,
     verticalAlign: 'middle',
     ...getLabelPadding(props),
     color: getLabelColor(props),
     ...typography.LabelMedium,
     lineHeight: '24px',
-  }: {});
+  };
 });
 
 // tricky style for focus event cause display: none doesn't work
@@ -259,7 +259,7 @@ export const Toggle = styled<SharedStylePropsT>('div', props => {
     const borderRadius = props.$theme.borders.useRoundedCorners
       ? props.$theme.borders.radius200
       : null;
-    return ({
+    return {
       ...expandBorderStyles(props.$theme.borders.border300),
       alignItems: 'center',
       backgroundColor: props.$theme.colors.mono100,
@@ -275,7 +275,7 @@ export const Toggle = styled<SharedStylePropsT>('div', props => {
       justifyContent: 'center',
       height: props.$theme.sizing.scale800,
       width: props.$theme.sizing.scale800,
-    }: {});
+    };
   }
 
   if (props.$checkmarkType === STYLE_TYPE.toggle_round) {
@@ -352,7 +352,7 @@ export const ToggleTrack = styled<SharedStylePropsT>('div', props => {
     const borderRadius = props.$theme.borders.useRoundedCorners
       ? props.$theme.borders.radius200
       : null;
-    return ({
+    return {
       alignItems: 'center',
       backgroundColor: getBackgroundColor(props),
       borderTopLeftRadius: borderRadius,
@@ -367,7 +367,7 @@ export const ToggleTrack = styled<SharedStylePropsT>('div', props => {
       marginLeft: props.$theme.sizing.scale100,
       marginRight: props.$theme.sizing.scale100,
       width: props.$theme.sizing.scale1000,
-    }: {});
+    };
   }
 
   if (props.$checkmarkType === STYLE_TYPE.toggle_round) {

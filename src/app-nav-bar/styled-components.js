@@ -161,11 +161,14 @@ export const StyledSecondaryMenuContainer = styled<{}>('div', ({$theme}) => {
 
 export const StyledUserMenuButton = StyledButton;
 
-export const StyledUserMenuListItem = withStyle(StyledListItem, {
-  paddingTop: '0',
-  paddingBottom: '0',
-  paddingRight: '0',
-});
+export const StyledUserMenuListItem = withStyle<typeof StyledListItem>(
+  StyledListItem,
+  {
+    paddingTop: '0',
+    paddingBottom: '0',
+    paddingRight: '0',
+  },
+);
 
 export const StyledUserProfileTileContainer = styled<{}>('div', ({$theme}) => {
   return {

@@ -44,12 +44,7 @@ type StyleFn<Theme> = {
     ({$theme: Theme} & Props) => StyleObject,
   ): StyletronComponent<Props>,
 
-  <Base: React.ComponentType<any>>(
-    Base,
-    StyleObject,
-  ): StyletronComponent<$Diff<React.ElementConfig<Base>, {className: any}>>,
-
-  <Base: React.ComponentType<any>, Props>(
+  <Base: React.ComponentType<any>, Props: {}>(
     Base,
     ({$theme: Theme} & Props) => StyleObject,
   ): StyletronComponent<
@@ -59,15 +54,10 @@ type StyleFn<Theme> = {
 
 type ExtractPropTypes = <T>(StyletronComponent<T>) => T;
 type WithStyleFn<Theme> = {
-  <Base: StyletronComponent<any>, Props>(
+  <Base: StyletronComponent<any>, Props: {}>(
     Base,
-    (Props & {$theme: Theme}) => StyleObject,
+    StyleObject | ((Props & {$theme: Theme}) => StyleObject),
   ): StyletronComponent<$Call<ExtractPropTypes, Base> & Props>,
-
-  <Base: StyletronComponent<any>>(
-    Base,
-    StyleObject,
-  ): StyletronComponent<$Call<ExtractPropTypes, Base>>,
 };
 /* eslint-enable flowtype/generic-spacing */
 /* eslint-enable flowtype/no-weak-types */

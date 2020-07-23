@@ -37,7 +37,7 @@ const StyledHeadingCell = withStyle(StyledCell, {
 const StyledDeltaCell = withStyle<typeof StyledCell, any>(
   StyledCell,
   props => ({
-    ...props.$theme.typography.font500,
+    ...props.$theme.typography.font400,
     alignItems: 'center',
     backgroundColor: props.$isNegative
       ? props.$theme.colors.negative50
