@@ -49,7 +49,7 @@ export type PropsT = {
   manageFocus: boolean,
   /** An array of values respective to each pin code input. */
   values: string[],
-  /** Mask for pin code. Default is no mask. Set it true then mask is ".". Also accept string input as customized mask style.  */
+  /** Mask for pin code. Default is no mask. Set it true then mask is ".". Also accept string input as customized mask style. */
   mask: boolean | string,
 };
 
