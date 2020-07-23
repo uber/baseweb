@@ -267,6 +267,10 @@ const routes = [
             itemId: '/components/progress-steps',
           },
           {
+            title: 'Skeleton',
+            itemId: '/components/skeleton',
+          },
+          {
             title: 'Spinner',
             itemId: '/components/spinner',
           },
