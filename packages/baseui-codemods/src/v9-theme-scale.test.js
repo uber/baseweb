@@ -272,7 +272,7 @@ export default Foo;"
       );
     });
 
-    it('similarly named object assignements', async () => {
+    it('similarly named object assignments', async () => {
       const content = `const $theme = {typography: {font100: {}}};`;
       expect(await transform(content)).toMatchInlineSnapshot(
         `"const $theme = {typography: {font100: {}}};"`,

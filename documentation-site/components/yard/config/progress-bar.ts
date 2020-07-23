@@ -18,7 +18,7 @@ const ProgressBarConfig: TConfig = {
       value: 10,
       type: PropTypes.Number,
       description:
-        'Progess bar value attribute normalized in the 0 to 100 range.',
+        'Progress bar value attribute normalized in the 0 to 100 range.',
       stateful: true,
     },
     getProgressLabel: {

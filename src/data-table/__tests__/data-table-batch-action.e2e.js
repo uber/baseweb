@@ -31,7 +31,7 @@ function wait(ms) {
 }
 
 async function getCheckboxValues(element) {
-  await wait(50); // breifly wait to give table state chance to update
+  await wait(50); // briefly wait to give table state chance to update
   return element.$$eval('label[data-baseweb="checkbox"] input', elements =>
     elements.map(el => el.checked),
   );

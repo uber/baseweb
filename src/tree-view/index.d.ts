@@ -70,7 +70,7 @@ export const StyledIconContainer: StyletronComponent<any>;
 type TGetId = (node: TreeNode) => string | number;
 type toggleIsExpandedT = (
   data: TreeNode[],
-  togggledNode: TreeNode,
+  toggledNode: TreeNode,
   getId?: TGetId,
 ) => TreeNode[];
 

@@ -74,7 +74,7 @@ If the number passed to `span` exceeds the current number of grid columns (based
 
 In the example above, each cell has a span of 2. This causes the excess cells to wrap on our small breakpoint. Cells that wrap to a new line will still align content to the columns of the grid.
 
-Sometimes this wrapping behavior is desireable, but sometimes you want to adapt to different breakpoints by setting spans specific to each breakpoint. The layout grid handles this by exposing "responsive" props.
+Sometimes this wrapping behavior is desirable, but sometimes you want to adapt to different breakpoints by setting spans specific to each breakpoint. The layout grid handles this by exposing "responsive" props.
 
 <Example title="Responsive" path="layout-grid/responsive.js">
   <ResponsiveExample />
@@ -138,7 +138,7 @@ To appreciate this example you may need to open it in StackBlitz. The "behavior"
 
 The grid can have one of two possible behaviors: `fixed` or `fluid`. By default the grid is `fixed`- that is, once it reaches its maximum width, it will stay centered in the containing element.
 
-A fluid grid essentially ignores any maximum width. The grid will continue to expand to fill the containing element's width ad inifinitum. Note, both fluid and fixed grids still have a margin on both sides.
+A fluid grid essentially ignores any maximum width. The grid will continue to expand to fill the containing element's width ad infinitum. Note, both fluid and fixed grids still have a margin on both sides.
 
 The `behavior` prop is not responsive. This is because, below the maximum width, both `fluid` and `fixed` grids are identical.
 

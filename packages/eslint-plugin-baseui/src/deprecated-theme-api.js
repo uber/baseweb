@@ -70,7 +70,7 @@ const deprecatedThemeProperties = {
     concern: 'colors',
   },
   // These are all component specific color properties.
-  // They currently have no effect, that is, they are unsued in our component code.
+  // They currently have no effect, that is, they are unused in our component code.
   // They will be removed in the next major version of baseweb.
   datepickerBackground: {
     concern: 'colors',

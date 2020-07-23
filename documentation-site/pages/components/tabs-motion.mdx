@@ -139,7 +139,7 @@ If you don't need to control the component yourself you can use the stateful ver
 
 The animated highlight that slides to the active tab is absolutely positioned and sized. When the active tab changes, the layout of the highlight is recalculated. This means any change in the active tab's position or size, not caused by an active tab change, could lead to the highlight having an outdated layout.
 
-To get around this potential issue we use a [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver), which watches each tab for sizing updates and does a highlight re-layout as needed. The `ResizeObserver` has full support accross modern browsers but doesn't exist in any version of Internet Explorer. If you need this behavior in IE, We suggest using a polyfill for the `ResizeObserver` such as [this one](https://github.com/juggle/resize-observer). We do not include the polyfill by default to avoid adding a few KB to the bundle size of the Tabs component.
+To get around this potential issue we use a [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver), which watches each tab for sizing updates and does a highlight re-layout as needed. The `ResizeObserver` has full support across modern browsers but doesn't exist in any version of Internet Explorer. If you need this behavior in IE, we suggest using a polyfill for the `ResizeObserver` such as [this one](https://github.com/juggle/resize-observer). We do not include the polyfill by default to avoid adding a few KB to the bundle size of the Tabs component.
 
 ## API
 

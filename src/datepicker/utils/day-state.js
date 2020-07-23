@@ -10,7 +10,7 @@ import type {SharedStylePropsT} from '../types.js';
 /**
   r == range - date range can be selected
   d == disabled - disabled date
-  h == highlighted - currently highlighed date, the highlight is triggered on hover or focus
+  h == highlighted - currently highlighted date, the highlight is triggered on hover or focus
   mO == hovered (mouse-over) - currently hovered date
   s == selected - selected date, in a range both start and end date are marked as `selected`
   rS == range-selected - when start and end dates of a range are set
@@ -23,7 +23,7 @@ import type {SharedStylePropsT} from '../types.js';
   rL == range-on-left - the range-highlighed case with the highlighed date is before the selected one
   sM == start-of-month - the first day of the month
   eM == end-of-month - the last day of the month
-  oM == outside-month - date outside of currently disaplayed month (when peekNextMonth is set to true)
+  oM == outside-month - date outside of currently displayed month (when peekNextMonth is set to true)
  */
 
 //  r  d  h  s  rS sD eD pS rH pH rR rL sM eM oM

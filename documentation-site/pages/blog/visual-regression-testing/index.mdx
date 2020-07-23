@@ -288,7 +288,7 @@ The added size to each screenshot is fairly limited. The white/black areas can b
 
 ### Flakiness
 
-Snapshot tests should be deterministic. That is, they should yield the same result if run in the same environment with the same inputs. Yet even after nailing down a consistent environment, there can be variations in the UI that lead to flakey test results. When your test runs take 5-10 minutes, you don't want to have flakey tests be the reason your tests did not pass.
+Snapshot tests should be deterministic. That is, they should yield the same result if run in the same environment with the same inputs. Yet even after nailing down a consistent environment, there can be variations in the UI that lead to flaky test results. When your test runs take 5-10 minutes, you don't want to have flaky tests be the reason your tests did not pass.
 
 Here are the two main things that produced flakiness in our snapshots:
 
@@ -316,7 +316,7 @@ When testing components that require interactions, you often need to wait for th
 await page.waitFor(250); // waits for 250ms before proceeding
 ```
 
-This should be a last resort as it will almost certainly flake at some point. When it does someone will probably just increase the wait duration- so over time these paddings accumulate. Thes can add up to make your test run unbearably slow. The preferable approach is to wait for assertions on the page to pass. Take this example from one of our interaction snapshots:
+This should be a last resort as it will almost certainly flake at some point. When it does someone will probably just increase the wait duration- so over time these paddings accumulate. These can add up to make your test run unbearably slow. The preferable approach is to wait for assertions on the page to pass. Take this example from one of our interaction snapshots:
 
 ```js
 const config = {
@@ -383,7 +383,7 @@ Base Web is used by hundreds of internal projects at Uber. When we make a change
 
 ### A New Service
 
-Moving images out of Git, speeding up test runs, investing in cross-browser testing, allowing other projects to use our tools... all of these goals point towards a more generalized service for visual snapshot testing. Essentially we want the benefits of one of the paid visual testing services, but scaleable for hundreds of projects and with the option of privacy for internal projects.
+Moving images out of Git, speeding up test runs, investing in cross-browser testing, allowing other projects to use our tools... all of these goals point towards a more generalized service for visual snapshot testing. Essentially we want the benefits of one of the paid visual testing services, but scalable for hundreds of projects and with the option of privacy for internal projects.
 
 This is likely the next step for our visual testing solution: Taking all of the logic spread out across GitHub, CI, Docker, and duck-tape utility scripts and making that easily runnable or accessible for other projects. By getting more projects onboard we also make the investment in new and improved features more valuable to the company. Ideally, the solutions we create can also be leveraged by the community, so stay tuned if you are interested in this space!
 
