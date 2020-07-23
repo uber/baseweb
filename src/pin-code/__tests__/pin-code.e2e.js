@@ -13,6 +13,7 @@ const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 const selectors = {
   input: 'input',
+  pinCodeValue: 'p[data-testid="pinCodeValue"]',
 };
 
 function findActiveElement(page) {
@@ -102,5 +103,30 @@ describe('PinCode', () => {
     await page.keyboard.press('ArrowRight'); // ensures no text is selected
     await page.keyboard.press('3');
     expect(await page.evaluate(el => el.value, input)).toBe('3');
+  });
+});
+
+describe('PinCodeMask', () => {
+  beforeEach(async () => {
+    await mount(page, 'pin-code-mask');
+    await page.waitFor(selectors.input);
+  });
+
+  it('successfully masks', async () => {
+    const inputs = await page.$$(selectors.input);
+    await page.focus(selectors.input);
+    await page.keyboard.press('1');
+    await page.keyboard.press('2');
+    await page.keyboard.press('3');
+    await page.keyboard.press('4');
+    expect(await page.evaluate(el => el.value, inputs[0])).toBe('*');
+    expect(await page.evaluate(el => el.value, inputs[1])).toBe('*');
+    expect(await page.evaluate(el => el.value, inputs[2])).toBe('*');
+    expect(await page.evaluate(el => el.value, inputs[3])).toBe('*');
+
+    const pinCodeValue = await page.$(selectors.pinCodeValue);
+    expect(await page.evaluate(el => el.textContent, pinCodeValue)).toBe(
+      'password:1 2 3 4 ',
+    );
   });
 });

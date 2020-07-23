@@ -276,6 +276,21 @@ const config = {
       },
     ],
   },
+  'pin-code-mask': {
+    interactions: [
+      {
+        name: 'numberInput',
+        behavior: async page => {
+          const inputSelector = 'input';
+          await page.focus(inputSelector);
+          await page.keyboard.press('1');
+          await page.keyboard.press('2');
+          await page.keyboard.press('3');
+          await page.keyboard.press('4');
+        },
+      },
+    ],
+  },
   'progress-steps': {
     interactions: [
       {

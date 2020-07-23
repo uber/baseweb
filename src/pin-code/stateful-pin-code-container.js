@@ -61,6 +61,7 @@ export default class StatefulPinCodeContainer extends React.Component<
       manageFocus: this.props.manageFocus,
       values: this.state.values,
       onChange: this.handleChange,
+      mask: this.props.mask,
     });
   }
 }
