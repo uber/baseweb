@@ -6,47 +6,34 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import * as React from 'react';
+import type {StyletronComponent} from '../styles/index.js.flow';
+import * as types from './types.js.flow';
 
-import {default as AccordionI} from './accordion.js';
-import {default as PanelI} from './panel.js';
-import {default as StatefulPanelI} from './stateful-panel.js';
-import {default as StatefulPanelContainerI} from './stateful-panel-container.js';
-import {default as StatelessAccordionI} from './stateless-accordion.js';
-import * as constants from './constants.js';
-import * as StyledComponents from './styled-components.js';
-import * as types from './types';
+export class Accordion extends React$Component<
+  types.AccordionPropsT,
+  types.AccordionStateT,
+> {}
 
-// export class Accordion extends React.Component<
-//   types.AccordionPropsT,
-//   types.AccordionStateT,
-// > {}
-declare export var Accordion: typeof AccordionI;
+export class Panel extends React$Component<
+  types.PanelPropsT,
+  {isFocusVisible: boolean},
+> {}
 
-// export class Panel extends React.Component<
-//   types.PanelPropsT,
-//   {isFocusVisible: boolean},
-// > {}
-declare export var Panel: typeof PanelI;
+declare export var StatefulPanel: React$StatelessFunctionalComponent<types.StatefulPanelPropsT>;
 
-// declare export var StatefulPanel: React.StatelessFunctionalComponent<types.StatefulPanelPropsT>;
-declare export var StatefulPanel: typeof StatefulPanelI;
+export class StatefulPanelContainer extends React$Component<
+  types.StatefulPanelContainerPropsT,
+  types.PanelStateT,
+> {}
 
-// export class StatefulPanelContainer extends React.Component<
-//   types.StatefulPanelContainerPropsT,
-//   types.PanelStateT,
-// > {}
-declare export var StatefulPanelContainer: typeof StatefulPanelContainerI;
+declare export var StatelessAccordion: React$StatelessFunctionalComponent<types.StatelessAccordionPropsT>;
 
-// declare export var StatelessAccordion: React.StatelessFunctionalComponent<types.StatelessAccordionPropsT>;
-declare export var StatelessAccordion: typeof StatelessAccordionI;
+declare export var STATE_CHANGE_TYPE: {expand: 'expand'};
 
-declare export var STATE_CHANGE_TYPE: typeof constants.STATE_CHANGE_TYPE;
-
-declare export var StyledRoot: typeof StyledComponents.Root;
-declare export var StyledPanelContainer: typeof StyledComponents.PanelContainer;
-declare export var StyledHeader: typeof StyledComponents.Header;
-declare export var StyledContent: typeof StyledComponents.Content;
-declare export var StyledToggleIcon: typeof StyledComponents.ToggleIcon;
+declare export var StyledRoot: StyletronComponent<{||}>;
+declare export var StyledPanelContainer: StyletronComponent<{||}>;
+declare export var StyledHeader: StyletronComponent<types.SharedStylePropsArgT>;
+declare export var StyledContent: StyletronComponent<types.SharedStylePropsArgT>;
+declare export var StyledToggleIcon: StyletronComponent<types.SharedStylePropsArgT>;
 
 export type * from './types';

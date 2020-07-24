@@ -1,0 +1,52 @@
+/*
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
+
+// remove, reference from styletron
+type StyleObject = any;
+
+export type StyletronComponent<
+  Props,
+> = React$StatelessFunctionalComponent<Props> & {
+  __STYLETRON__: any,
+};
+
+export type StyleFn<Theme> = {
+  (string): StyletronComponent<{||}>,
+
+  (string, StyleObject): StyletronComponent<{}>,
+
+  <Props>(
+    string,
+    ({$theme: Theme} & Props) => StyleObject,
+  ): StyletronComponent<Props>,
+
+  <Base: React$ComponentType<any>>(
+    Base,
+    StyleObject,
+  ): StyletronComponent<$Diff<React$ElementConfig<Base>, {className: any}>>,
+
+  <Base: React$ComponentType<any>, Props>(
+    Base,
+    ({$theme: Theme} & Props) => StyleObject,
+  ): StyletronComponent<
+    $Diff<React$ElementConfig<Base>, {className: any}> & Props,
+  >,
+};
+
+export type ExtractPropTypes = <T>(StyletronComponent<T>) => T;
+export type WithStyleFn<Theme> = {
+  <Base: StyletronComponent<any>, Props>(
+    Base,
+    (Props & {$theme: Theme}) => StyleObject,
+  ): StyletronComponent<$Call<ExtractPropTypes, Base> & Props>,
+
+  <Base: StyletronComponent<any>>(
+    Base,
+    StyleObject,
+  ): StyletronComponent<$Call<ExtractPropTypes, Base>>,
+};
