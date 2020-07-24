@@ -13,4 +13,4 @@ export type SkeletonPropsT = {
   height?: string;
   width?: string;
 };
-export class PinCode extends React.Component<SkeletonPropsT> {}
+export class Skeleton extends React.Component<SkeletonPropsT> {}
