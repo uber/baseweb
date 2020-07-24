@@ -1,4 +1,3 @@
-import omit from 'just-omit';
 import {Skeleton} from 'baseui/skeleton';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
