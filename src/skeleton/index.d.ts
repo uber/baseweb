@@ -8,8 +8,8 @@ export type OverridesT = {
 
 export type SkeletonPropsT = {
   overrides?: OverridesT;
-  rows: number;
-  animation: boolean;
+  rows?: number;
+  animation?: boolean;
   height?: string;
   width?: string;
 };
