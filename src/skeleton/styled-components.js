@@ -8,19 +8,35 @@ LICENSE file in the root directory of this source tree.
 
 import {styled} from '../styles/index.js';
 
+function getAnimationColor(props) {
+  const {$theme} = props;
+  return `linear-gradient(135deg,
+    ${$theme.colors.backgroundTertiary},
+    ${$theme.colors.backgroundTertiary},
+    ${$theme.colors.backgroundTertiary},
+    ${$theme.colors.backgroundTertiary},
+    ${$theme.colors.backgroundTertiary},
+    ${$theme.colors.backgroundTertiary},
+    ${$theme.colors.backgroundSecondary},
+    ${$theme.colors.backgroundTertiary},
+    ${$theme.colors.backgroundTertiary},
+    ${$theme.colors.backgroundTertiary},
+    ${$theme.colors.backgroundTertiary},
+    ${$theme.colors.backgroundTertiary},
+    ${$theme.colors.backgroundTertiary})`;
+}
+
 const animationStyle = {
-  animationTimingFunction: 'ease-in-out',
-  animationDuration: '2s',
+  animationTimingFunction: 'ease-out',
+  animationDuration: '1.5s',
   animationIterationCount: 'infinite',
+  backgroundSize: '400% 100%',
   animationName: {
     '0%': {
-      opacity: 1,
-    },
-    '50%': {
-      opacity: 0.4,
+      backgroundPosition: '100% 50%',
     },
     '100%': {
-      opacity: 1,
+      backgroundPosition: '0% 50%',
     },
   },
 };
@@ -41,8 +57,10 @@ export const StyledRoot = styled<{
   }
 
   return {
+    background: props.$animation
+      ? getAnimationColor(props)
+      : props.$theme.colors.backgroundTertiary,
     ...(props.$animation ? animationStyle : {}),
-    backgroundColor: props.$theme.colors.backgroundTertiary,
     height: props.$height,
     width: props.$width,
   };
@@ -52,8 +70,10 @@ export const StyledRow = styled<{$animation?: boolean, $isLastRow: boolean}>(
   'div',
   props => {
     return {
+      background: props.$animation
+        ? getAnimationColor(props)
+        : props.$theme.colors.backgroundTertiary,
       ...(props.$animation ? animationStyle : {}),
-      backgroundColor: props.$theme.colors.backgroundTertiary,
       width: '100%',
       height: '15px',
       marginBottom: props.$isLastRow ? '0px' : '10px',
