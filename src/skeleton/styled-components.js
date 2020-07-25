@@ -8,6 +8,24 @@ LICENSE file in the root directory of this source tree.
 
 import {styled} from '../styles/index.js';
 
+function getAnimationColor(props) {
+  const {$theme} = props;
+  return `linear-gradient(135deg,
+    ${$theme.colors.backgroundTertiary},
+    ${$theme.colors.backgroundTertiary},
+    ${$theme.colors.backgroundTertiary},
+    ${$theme.colors.backgroundTertiary},
+    ${$theme.colors.backgroundTertiary},
+    ${$theme.colors.backgroundTertiary},
+    ${$theme.colors.backgroundSecondary},
+    ${$theme.colors.backgroundTertiary},
+    ${$theme.colors.backgroundTertiary},
+    ${$theme.colors.backgroundTertiary},
+    ${$theme.colors.backgroundTertiary},
+    ${$theme.colors.backgroundTertiary},
+    ${$theme.colors.backgroundTertiary})`;
+}
+
 const animationStyle = {
   animationTimingFunction: 'ease-out',
   animationDuration: '1.5s',
@@ -40,11 +58,7 @@ export const StyledRoot = styled<{
 
   return {
     background: props.$animation
-      ? `linear-gradient(135deg, ${props.$theme.colors.backgroundTertiary},${props.$theme.colors.backgroundTertiary},${props.$theme.colors.backgroundTertiary},
-        ${props.$theme.colors.backgroundTertiary},${props.$theme.colors.backgroundTertiary},${props.$theme.colors.backgroundTertiary},
-        ${props.$theme.colors.backgroundSecondary},
-        ${props.$theme.colors.backgroundTertiary},${props.$theme.colors.backgroundTertiary},${props.$theme.colors.backgroundTertiary},
-        ${props.$theme.colors.backgroundTertiary},${props.$theme.colors.backgroundTertiary},${props.$theme.colors.backgroundTertiary})`
+      ? getAnimationColor(props)
       : props.$theme.colors.backgroundTertiary,
     ...(props.$animation ? animationStyle : {}),
     height: props.$height,
@@ -57,11 +71,7 @@ export const StyledRow = styled<{$animation?: boolean, $isLastRow: boolean}>(
   props => {
     return {
       background: props.$animation
-        ? `linear-gradient(135deg, ${props.$theme.colors.backgroundTertiary},${props.$theme.colors.backgroundTertiary},${props.$theme.colors.backgroundTertiary},
-        ${props.$theme.colors.backgroundTertiary},${props.$theme.colors.backgroundTertiary},${props.$theme.colors.backgroundTertiary},
-        ${props.$theme.colors.backgroundSecondary},
-        ${props.$theme.colors.backgroundTertiary},${props.$theme.colors.backgroundTertiary},${props.$theme.colors.backgroundTertiary},
-        ${props.$theme.colors.backgroundTertiary},${props.$theme.colors.backgroundTertiary},${props.$theme.colors.backgroundTertiary})`
+        ? getAnimationColor(props)
         : props.$theme.colors.backgroundTertiary,
       ...(props.$animation ? animationStyle : {}),
       width: '100%',
