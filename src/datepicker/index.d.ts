@@ -136,6 +136,7 @@ export interface DatepickerOverrides<T> {
   Week?: Override<T>;
   Day?: Override<T>;
   Input?: Override<T>;
+  InputWrapper?: Override<T>;
   Popover?: Override<T>;
 }
 export type DatepickerProps = CalendarProps & {
