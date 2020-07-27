@@ -274,6 +274,7 @@ const DatepickerConfig: TConfig = {
           'PrevButton',
           'Week',
           'WeekdayHeader',
+          'Input',
           'InputWrapper',
         ],
         sharedProps: {
