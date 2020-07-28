@@ -25,7 +25,7 @@ function ChevronLeft(props: IconPropsT, ref) {
       component:
         theme.icons && theme.icons.ChevronLeft ? theme.icons.ChevronLeft : null,
       props: {
-        title: 'Chevron Left',
+        title: 'Left',
         viewBox: '0 0 24 24',
         ...omitDollarPrefixedKeys(restProps),
       },
@@ -34,7 +34,7 @@ function ChevronLeft(props: IconPropsT, ref) {
   );
   return (
     <Icon
-      title="Chevron Left"
+      title="Left"
       viewBox="0 0 24 24"
       ref={ref}
       overrides={{Svg: SvgOverride}}
