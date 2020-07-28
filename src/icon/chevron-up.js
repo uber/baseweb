@@ -25,7 +25,7 @@ function ChevronUp(props: IconPropsT, ref) {
       component:
         theme.icons && theme.icons.ChevronUp ? theme.icons.ChevronUp : null,
       props: {
-        title: 'Chevron Up',
+        title: 'Up',
         viewBox: '0 0 24 24',
         ...omitDollarPrefixedKeys(restProps),
       },
@@ -34,7 +34,7 @@ function ChevronUp(props: IconPropsT, ref) {
   );
   return (
     <Icon
-      title="Chevron Up"
+      title="Up"
       viewBox="0 0 24 24"
       ref={ref}
       overrides={{Svg: SvgOverride}}
