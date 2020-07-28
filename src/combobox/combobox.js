@@ -223,7 +223,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
       // eslint-disable-next-line flowtype/no-weak-types
       ref={(rootRef: any)}
       {...rootProps}
-      onClicked={handleOpen}
+      onClick={handleOpen}
     >
       <OverriddenPopover
         isOpen={isOpen}
