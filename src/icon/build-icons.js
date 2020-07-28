@@ -31,6 +31,11 @@ function titleCase(str) {
     .join(' ');
 }
 
+// handle the exception from Chevrons, where we do not want the word Chevron in the title
+function removeChevronFromTitle(str) {
+  return str.replace('Chevron ', '');
+}
+
 // transform svg string to properly styled jsx
 function reactify(svgString) {
   return svgString
@@ -84,7 +89,7 @@ async function generateNewIcons() {
       'utf8',
     );
 
-    const title = titleCase(svgFile);
+    const title = removeChevronFromTitle(titleCase(svgFile));
     const viewboxRegex = svgFileContents.match(/viewBox="([^"]+)"/);
     let viewBox = null;
     if (viewboxRegex && viewboxRegex[1]) {
