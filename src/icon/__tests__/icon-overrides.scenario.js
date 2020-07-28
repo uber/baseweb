@@ -15,7 +15,7 @@ import {getSvgStyles} from '../../icon/styled-components.js';
 
 const XSmallFilled = ({title, ...props}) => {
   return (
-    <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none">
+    <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" {...props}>
       <path
         d="M18.1 8.1l-2.2-2.2-3.9 4-3.9-4-2.2 2.2 4 3.9-4 3.9 2.2 2.2 3.9-4 3.9 4 2.2-2.2-4-3.9 4-3.9z"
         fill="currentColor"
@@ -40,11 +40,16 @@ export default function Scenario() {
     <div>
       <ThemeProvider theme={{...LightTheme, icons: {Delete: XSmallFilled}}}>
         <StyledBody>
-          <DeleteIcon
-            ref={closeRef}
-            overrides={{Svg: {component: StyledCloseIcon}}}
-          />
-          Stuff
+          <p>
+            <DeleteIcon
+              ref={closeRef}
+              overrides={{Svg: {component: StyledCloseIcon}}}
+            />
+          </p>
+          <p>Stuff</p>
+          <p>
+            <DeleteIcon size="54px" />
+          </p>
         </StyledBody>
       </ThemeProvider>
       <div>
