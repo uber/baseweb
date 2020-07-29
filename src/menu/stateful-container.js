@@ -79,9 +79,9 @@ export default class MenuStatefulContainer extends React.Component<
         );
       }
 
-      if (this.state.isFocused) {
-        document.addEventListener('keydown', this.onKeyDown);
-      }
+      // if (this.state.isFocused) {
+      //   document.addEventListener('keydown', this.onKeyDown);
+      // }
     }
     this.props.addMenuToNesting && this.props.addMenuToNesting(rootRef);
   }
@@ -89,22 +89,22 @@ export default class MenuStatefulContainer extends React.Component<
   componentWillUnmount() {
     const rootRef = this.props.rootRef ? this.props.rootRef : this.rootRef;
 
-    if (__BROWSER__) {
-      document.removeEventListener('keydown', this.onKeyDown);
-    }
+    // if (__BROWSER__) {
+    //   document.removeEventListener('keydown', this.onKeyDown);
+    // }
     this.props.removeMenuFromNesting &&
       this.props.removeMenuFromNesting(rootRef);
   }
 
-  componentDidUpdate(_: mixed, prevState: StatefulContainerStateT) {
-    if (__BROWSER__) {
-      if (!prevState.isFocused && this.state.isFocused) {
-        document.addEventListener('keydown', this.onKeyDown);
-      } else if (prevState.isFocused && !this.state.isFocused) {
-        document.removeEventListener('keydown', this.onKeyDown);
-      }
-    }
-  }
+  // componentDidUpdate(_: mixed, prevState: StatefulContainerStateT) {
+  //   if (__BROWSER__) {
+  //     if (!prevState.isFocused && this.state.isFocused) {
+  //       document.addEventListener('keydown', this.onKeyDown);
+  //     } else if (prevState.isFocused && !this.state.isFocused) {
+  //       document.removeEventListener('keydown', this.onKeyDown);
+  //     }
+  //   }
+  // }
 
   // One array to hold all of list item refs
   refList: Array<React$ElementRef<*>> = [];
@@ -340,6 +340,7 @@ export default class MenuStatefulContainer extends React.Component<
         getRequiredItemProps: this.getRequiredItemProps,
         handleMouseLeave: this.handleMouseLeave,
         highlightedIndex: this.state.highlightedIndex,
+        handleKeyDown: this.onKeyDown,
         isFocused: this.state.isFocused,
         focusMenu: this.focusMenu,
         unfocusMenu: this.unfocusMenu,
