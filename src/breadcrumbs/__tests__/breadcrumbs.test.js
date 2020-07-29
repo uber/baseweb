@@ -38,6 +38,19 @@ describe('Breadcrumbs', () => {
     ).toMatchSnapshot();
   });
 
+  it('displays trailing separator', () => {
+    expect(
+      shallow(
+        <Breadcrumbs showTrailingSeparator>
+          <StyledLink href="#">Parent Page</StyledLink>
+          <StyledLink href="#">Sub-Parent Page</StyledLink>
+
+          <span>Current Page</span>
+        </Breadcrumbs>,
+      ),
+    ).toMatchSnapshot();
+  });
+
   it('ignores null, true, and false', () => {
     expect(
       shallow(
