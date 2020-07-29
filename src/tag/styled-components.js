@@ -177,7 +177,7 @@ function fontColor(props, isHovered?: boolean, isActionText?: boolean) {
 export const Action = styled<SharedPropsArgT>('span', props => {
   const {$disabled, $variant, $theme} = props;
 
-  function backgroundColor(isHovered?: boolean, isActive?: boolean) {
+  function backgroundColor(isHovered?: boolean) {
     if (props.$disabled || !isHovered) return 'transparent';
     switch (props.$variant) {
       case VARIANT.solid:
@@ -204,34 +204,23 @@ export const Action = styled<SharedPropsArgT>('span', props => {
       case VARIANT.outlined:
         switch (props.$kind) {
           case KIND.neutral:
-            if (!isActive) return props.$theme.colors.tagNeutralOutlinedHover;
-            return props.$theme.colors.tagNeutralOutlinedActive;
+            return props.$theme.colors.tagNeutralOutlinedHover;
           case KIND.accent:
-            if (!isActive) return props.$theme.colors.tagAccentOutlinedHover;
-            return props.$theme.colors.tagAccentOutlinedActive;
+            return props.$theme.colors.tagAccentOutlinedHover;
           case KIND.positive:
-            if (!isActive) return props.$theme.colors.tagPositiveOutlinedHover;
-            return props.$theme.colors.tagPositiveOutlinedActive;
+            return props.$theme.colors.tagPositiveOutlinedHover;
           case KIND.warning:
-            if (!isActive) return props.$theme.colors.tagWarningOutlinedHover;
-            return props.$theme.colors.tagWarningOutlinedActive;
+            return props.$theme.colors.tagWarningOutlinedHover;
           case KIND.negative:
-            if (!isActive) return props.$theme.colors.tagNegativeOutlinedHover;
-            return props.$theme.colors.tagNegativeOutlinedActive;
+            return props.$theme.colors.tagNegativeOutlinedHover;
           case KIND.custom:
-            if (!isActive)
-              return customOnRamp(
-                props.$color,
-                props.$theme.colors.tagOutlinedHoverRampUnit,
-              );
             return customOnRamp(
               props.$color,
-              props.$theme.colors.tagOutlinedActiveRampUnit,
+              props.$theme.colors.tagOutlinedHoverRampUnit,
             );
           case KIND.primary:
           default:
-            if (!isActive) return props.$theme.colors.tagPrimaryOutlinedHover;
-            return props.$theme.colors.tagPrimaryOutlinedActive;
+            return props.$theme.colors.tagPrimaryOutlinedHover;
         }
       case VARIANT.light:
       default:
@@ -287,7 +276,7 @@ export const Action = styled<SharedPropsArgT>('span', props => {
     transitionDuration: 'background-color',
     transitionTimingFunction: $theme.animation.easeOutCurve,
     ':hover': {
-      backgroundColor: backgroundColor(true, false),
+      backgroundColor: backgroundColor(true),
       color: fontColor(props, true, true),
     },
   }: {});
@@ -313,7 +302,7 @@ export const Root = styled<SharedPropsArgT>('span', props => {
     typography: {font150},
   } = $theme;
 
-  function backgroundColor(isHovered?: boolean, isActive?: boolean) {
+  function backgroundColor(isHovered?: boolean) {
     if (props.$variant === VARIANT.outlined) {
       return 'transparent';
     }
@@ -325,9 +314,6 @@ export const Root = styled<SharedPropsArgT>('span', props => {
             if ($disabled) {
               return props.$theme.colors.tagNeutralSolidDisabled;
             }
-            if (isActive) {
-              return props.$theme.colors.tagNeutralSolidActive;
-            }
             if (isHovered) {
               return props.$theme.colors.tagNeutralSolidHover;
             }
@@ -335,9 +321,6 @@ export const Root = styled<SharedPropsArgT>('span', props => {
           case KIND.accent:
             if ($disabled) {
               return props.$theme.colors.tagAccentSolidDisabled;
-            }
-            if (isActive) {
-              return props.$theme.colors.tagAccentSolidActive;
             }
             if (isHovered) {
               return props.$theme.colors.tagAccentSolidHover;
@@ -347,9 +330,6 @@ export const Root = styled<SharedPropsArgT>('span', props => {
             if ($disabled) {
               return props.$theme.colors.tagPositiveSolidDisabled;
             }
-            if (isActive) {
-              return props.$theme.colors.tagPositiveSolidActive;
-            }
             if (isHovered) {
               return props.$theme.colors.tagPositiveSolidHover;
             }
@@ -358,9 +338,6 @@ export const Root = styled<SharedPropsArgT>('span', props => {
             if ($disabled) {
               return props.$theme.colors.tagWarningSolidDisabled;
             }
-            if (isActive) {
-              return props.$theme.colors.tagWarningSolidActive;
-            }
             if (isHovered) {
               return props.$theme.colors.tagWarningSolidHover;
             }
@@ -368,9 +345,6 @@ export const Root = styled<SharedPropsArgT>('span', props => {
           case KIND.negative:
             if ($disabled) {
               return props.$theme.colors.tagNegativeSolidDisabled;
-            }
-            if (isActive) {
-              return props.$theme.colors.tagNegativeSolidActive;
             }
             if (isHovered) {
               return props.$theme.colors.tagNegativeSolidHover;
@@ -381,12 +355,6 @@ export const Root = styled<SharedPropsArgT>('span', props => {
               return customOnRamp(
                 props.$color,
                 props.$theme.colors.tagSolidDisabledRampUnit,
-              );
-            }
-            if (isActive) {
-              return customOnRamp(
-                props.$color,
-                props.$theme.colors.tagSolidActiveRampUnit,
               );
             }
             if (isHovered) {
@@ -405,9 +373,6 @@ export const Root = styled<SharedPropsArgT>('span', props => {
             if ($disabled) {
               return props.$theme.colors.tagPrimarySolidDisabled;
             }
-            if (isActive) {
-              return props.$theme.colors.tagPrimarySolidActive;
-            }
             if (isHovered) {
               return props.$theme.colors.tagPrimarySolidHover;
             }
@@ -420,9 +385,6 @@ export const Root = styled<SharedPropsArgT>('span', props => {
             if ($disabled) {
               return props.$theme.colors.tagNeutralLightDisabled;
             }
-            if (isActive) {
-              return props.$theme.colors.tagNeutralLightActive;
-            }
             if (isHovered) {
               return props.$theme.colors.tagNeutralLightHover;
             }
@@ -430,9 +392,6 @@ export const Root = styled<SharedPropsArgT>('span', props => {
           case KIND.accent:
             if ($disabled) {
               return props.$theme.colors.tagAccentLightDisabled;
-            }
-            if (isActive) {
-              return props.$theme.colors.tagAccentLightActive;
             }
             if (isHovered) {
               return props.$theme.colors.tagAccentLightHover;
@@ -442,9 +401,6 @@ export const Root = styled<SharedPropsArgT>('span', props => {
             if ($disabled) {
               return props.$theme.colors.tagPositiveLightDisabled;
             }
-            if (isActive) {
-              return props.$theme.colors.tagPositiveLightActive;
-            }
             if (isHovered) {
               return props.$theme.colors.tagPositiveLightHover;
             }
@@ -453,9 +409,6 @@ export const Root = styled<SharedPropsArgT>('span', props => {
             if ($disabled) {
               return props.$theme.colors.tagWarningLightDisabled;
             }
-            if (isActive) {
-              return props.$theme.colors.tagWarningLightActive;
-            }
             if (isHovered) {
               return props.$theme.colors.tagWarningLightHover;
             }
@@ -463,9 +416,6 @@ export const Root = styled<SharedPropsArgT>('span', props => {
           case KIND.negative:
             if ($disabled) {
               return props.$theme.colors.tagNegativeLightDisabled;
-            }
-            if (isActive) {
-              return props.$theme.colors.tagNegativeLightActive;
             }
             if (isHovered) {
               return props.$theme.colors.tagNegativeLightHover;
@@ -476,12 +426,6 @@ export const Root = styled<SharedPropsArgT>('span', props => {
               return customOnRamp(
                 props.$color,
                 props.$theme.colors.tagLightRampUnit,
-              );
-            }
-            if (isActive) {
-              return customOnRamp(
-                props.$color,
-                props.$theme.colors.tagLightActiveRampUnit,
               );
             }
             if (isHovered) {
@@ -499,9 +443,6 @@ export const Root = styled<SharedPropsArgT>('span', props => {
             if ($disabled) {
               return props.$theme.colors.tagPrimaryLightDisabled;
             }
-            if (isActive) {
-              return props.$theme.colors.tagPrimaryLightActive;
-            }
             if (isHovered) {
               return props.$theme.colors.tagPrimaryLightHover;
             }
@@ -510,7 +451,7 @@ export const Root = styled<SharedPropsArgT>('span', props => {
     }
   }
 
-  function borderColor(isHovered?: boolean, isActive?: boolean) {
+  function borderColor(isHovered?: boolean) {
     if (props.$variant !== VARIANT.outlined) {
       return null;
     }
@@ -520,9 +461,6 @@ export const Root = styled<SharedPropsArgT>('span', props => {
         if ($disabled) {
           return props.$theme.colors.tagNeutralOutlinedDisabled;
         }
-        if (isActive) {
-          return props.$theme.colors.tagNeutralOutlinedActive;
-        }
         if (isHovered) {
           return props.$theme.colors.tagNeutralOutlinedHover;
         }
@@ -530,9 +468,6 @@ export const Root = styled<SharedPropsArgT>('span', props => {
       case KIND.accent:
         if ($disabled) {
           return props.$theme.colors.tagAccentOutlinedDisabled;
-        }
-        if (isActive) {
-          return props.$theme.colors.tagAccentOutlinedActive;
         }
         if (isHovered) {
           return props.$theme.colors.tagAccentOutlinedHover;
@@ -542,9 +477,6 @@ export const Root = styled<SharedPropsArgT>('span', props => {
         if ($disabled) {
           return props.$theme.colors.tagPositiveOutlinedDisabled;
         }
-        if (isActive) {
-          return props.$theme.colors.tagPositiveOutlinedActive;
-        }
         if (isHovered) {
           return props.$theme.colors.tagPositiveOutlinedHover;
         }
@@ -553,9 +485,6 @@ export const Root = styled<SharedPropsArgT>('span', props => {
         if ($disabled) {
           return props.$theme.colors.tagWarningOutlinedDisabled;
         }
-        if (isActive) {
-          return props.$theme.colors.tagWarningOutlinedActive;
-        }
         if (isHovered) {
           return props.$theme.colors.tagWarningOutlinedHover;
         }
@@ -563,9 +492,6 @@ export const Root = styled<SharedPropsArgT>('span', props => {
       case KIND.negative:
         if ($disabled) {
           return props.$theme.colors.tagNegativeOutlinedDisabled;
-        }
-        if (isActive) {
-          return props.$theme.colors.tagNegativeOutlinedActive;
         }
         if (isHovered) {
           return props.$theme.colors.tagNegativeOutlinedHover;
@@ -576,12 +502,6 @@ export const Root = styled<SharedPropsArgT>('span', props => {
           return customOnRamp(
             props.$color,
             props.$theme.colors.tagOutlinedRampUnit,
-          );
-        }
-        if (isActive) {
-          return customOnRamp(
-            props.$color,
-            props.$theme.colors.tagOutlinedActiveRampUnit,
           );
         }
         if (isHovered) {
@@ -600,9 +520,6 @@ export const Root = styled<SharedPropsArgT>('span', props => {
         if ($disabled) {
           return props.$theme.colors.tagPrimaryOutlinedDisabled;
         }
-        if (isActive) {
-          return props.$theme.colors.tagPrimaryOutlinedActive;
-        }
         if (isHovered) {
           return props.$theme.colors.tagPrimaryOutlinedHover;
         }
@@ -619,12 +536,12 @@ export const Root = styled<SharedPropsArgT>('span', props => {
   const paddingEndDir: string =
     $theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
   const borderWidth = $variant === VARIANT.outlined ? '2px' : 0;
-  const regularBorderColor = borderColor(false, false);
-  const borderHoverColor = borderColor(true, false);
+  const regularBorderColor = borderColor(false);
+  const borderHoverColor = borderColor(true);
   return ({
     ...font150,
     alignItems: 'center',
-    backgroundColor: backgroundColor(false, false),
+    backgroundColor: backgroundColor(false),
     borderLeftColor: regularBorderColor,
     borderRightColor: regularBorderColor,
     borderTopColor: regularBorderColor,
@@ -660,7 +577,7 @@ export const Root = styled<SharedPropsArgT>('span', props => {
       $disabled || !$clickable
         ? {}
         : {
-            backgroundColor: backgroundColor(true, false),
+            backgroundColor: backgroundColor(true),
             borderLeftColor: borderHoverColor,
             borderRightColor: borderHoverColor,
             borderTopColor: borderHoverColor,
