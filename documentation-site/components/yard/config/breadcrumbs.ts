@@ -35,6 +35,13 @@ const BreadcrumbsConfig: TConfig = {
       description: 'Elements separated by divider',
       type: PropTypes.String,
     },
+    showTrailingSeparator: {
+      value: false,
+      type: PropTypes.Boolean,
+      description:
+        'Whether to show a trailing separator after the last breadcrumb.',
+      hidden: true,
+    },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
