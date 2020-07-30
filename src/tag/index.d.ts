@@ -10,6 +10,14 @@ export interface KIND {
   warning: 'warning';
   negative: 'negative';
   custom: 'custom';
+  black: 'black';
+  blue: 'blue';
+  red: 'red';
+  orange: 'orange';
+  yellow: 'yellow';
+  green: 'green';
+  purple: 'purple';
+  brown: 'brown';
 }
 export interface VARIANT {
   solid: 'solid';

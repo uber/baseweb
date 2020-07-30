@@ -321,7 +321,9 @@ function getRootBackgroundColor(params) {
           return colorTokens.blue50;
         case KIND.black:
         default:
-          return colorTokens.gray100;
+          // Designs use gray100, but should probably use semantic property.
+          // return colorTokens.gray100;
+          return props.$theme.colors.backgroundTertiary;
       }
     }
     // Default, outlined
