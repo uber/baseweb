@@ -38,5 +38,6 @@ export const StyledSeparator = styled<{}>('div', ({$theme}) => {
     color: $theme.colors.breadcrumbsSeparatorFill,
     marginLeft: $theme.sizing.scale300,
     marginRight: $theme.sizing.scale300,
+    verticalAlign: 'middle',
   };
 });
