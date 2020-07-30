@@ -52,149 +52,179 @@ function isPrimitive(kind) {
 function getFontColor(params) {
   const {props, isHovered = false, isActionText = false} = params;
 
-  if (props.$disabled) {
+  if (isPrimitive(props.$kind)) {
+    // Disabled
+    if (props.$disabled) {
+      switch (props.$kind) {
+        case KIND.black:
+        default:
+          return props.$theme.colors.contentStateDisabled;
+      }
+    }
+    // Solid, active
+    if (props.$variant === VARIANT.solid) {
+      switch (props.$kind) {
+        case KIND.black:
+        default:
+          return props.$theme.colors.contentInversePrimary;
+      }
+    }
+    // Hover, press
+    if (isHovered) {
+      switch (props.$kind) {
+        case KIND.black:
+        default:
+          return colorTokens.contentPrimary;
+      }
+    }
+    // Default, outlined
     switch (props.$kind) {
       case KIND.black:
-        return props.$theme.colors.contentStateDisabled;
-      case KIND.neutral:
-        return props.$theme.colors.tagNeutralFontDisabled;
-      case KIND.accent:
-        return props.$theme.colors.tagAccentFontDisabled;
-      case KIND.positive:
-        return props.$theme.colors.tagPositiveFontDisabled;
-      case KIND.warning:
-        return props.$theme.colors.tagWarningFontDisabled;
-      case KIND.negative:
-        return props.$theme.colors.tagNegativeFontDisabled;
-      case KIND.custom:
-        return customOnRamp(
-          props.$color,
-          props.$theme.colors.tagFontDisabledRampUnit,
-        );
-      case KIND.primary:
       default:
-        return props.$theme.colors.tagPrimaryFontDisabled;
+        return props.$theme.colors.contentPrimary;
     }
-  }
+  } else {
+    if (props.$disabled) {
+      switch (props.$kind) {
+        case KIND.black:
+          return props.$theme.colors.contentStateDisabled;
+        case KIND.neutral:
+          return props.$theme.colors.tagNeutralFontDisabled;
+        case KIND.accent:
+          return props.$theme.colors.tagAccentFontDisabled;
+        case KIND.positive:
+          return props.$theme.colors.tagPositiveFontDisabled;
+        case KIND.warning:
+          return props.$theme.colors.tagWarningFontDisabled;
+        case KIND.negative:
+          return props.$theme.colors.tagNegativeFontDisabled;
+        case KIND.custom:
+          return customOnRamp(
+            props.$color,
+            props.$theme.colors.tagFontDisabledRampUnit,
+          );
+        case KIND.primary:
+        default:
+          return props.$theme.colors.tagPrimaryFontDisabled;
+      }
+    }
 
-  switch (props.$variant) {
-    case VARIANT.solid:
-      switch (props.$kind) {
-        case KIND.black:
-          return props.$theme.colors.contentInversePrimary;
-        case KIND.neutral:
-          if (!isHovered) return props.$theme.colors.tagNeutralSolidFont;
-          return props.$theme.colors.tagNeutralSolidFontHover;
-        case KIND.accent:
-          if (!isHovered) return props.$theme.colors.tagAccentSolidFont;
-          return props.$theme.colors.tagAccentSolidFontHover;
-        case KIND.positive:
-          if (!isHovered) return props.$theme.colors.tagPositiveSolidFont;
-          return props.$theme.colors.tagPositiveSolidFontHover;
-        case KIND.warning:
-          if (!isHovered) return props.$theme.colors.tagWarningSolidFont;
-          return props.$theme.colors.tagWarningSolidFontHover;
-        case KIND.negative:
-          if (!isHovered) return props.$theme.colors.tagNegativeSolidFont;
-          return props.$theme.colors.tagNegativeSolidFontHover;
-        case KIND.custom:
-          if (!isHovered)
+    switch (props.$variant) {
+      case VARIANT.solid:
+        switch (props.$kind) {
+          case KIND.black:
+            return props.$theme.colors.contentInversePrimary;
+          case KIND.neutral:
+            if (!isHovered) return props.$theme.colors.tagNeutralSolidFont;
+            return props.$theme.colors.tagNeutralSolidFontHover;
+          case KIND.accent:
+            if (!isHovered) return props.$theme.colors.tagAccentSolidFont;
+            return props.$theme.colors.tagAccentSolidFontHover;
+          case KIND.positive:
+            if (!isHovered) return props.$theme.colors.tagPositiveSolidFont;
+            return props.$theme.colors.tagPositiveSolidFontHover;
+          case KIND.warning:
+            if (!isHovered) return props.$theme.colors.tagWarningSolidFont;
+            return props.$theme.colors.tagWarningSolidFontHover;
+          case KIND.negative:
+            if (!isHovered) return props.$theme.colors.tagNegativeSolidFont;
+            return props.$theme.colors.tagNegativeSolidFontHover;
+          case KIND.custom:
+            if (!isHovered)
+              return customOnRamp(
+                props.$color,
+                props.$theme.colors.tagSolidFontRampUnit,
+              );
             return customOnRamp(
               props.$color,
-              props.$theme.colors.tagSolidFontRampUnit,
+              props.$theme.colors.tagSolidFontHoverRampUnit,
             );
-          return customOnRamp(
-            props.$color,
-            props.$theme.colors.tagSolidFontHoverRampUnit,
-          );
-        case KIND.primary:
-        default:
-          if (!isHovered) return props.$theme.colors.tagPrimarySolidFont;
-          return props.$theme.colors.tagPrimarySolidFontHover;
-      }
-    case VARIANT.outlined:
-      switch (props.$kind) {
-        case KIND.black:
-          return props.$theme.colors.contentPrimary;
-        case KIND.neutral:
-          if (!isHovered || !isActionText) {
-            return props.$theme.colors.tagNeutralOutlinedFont;
-          }
-          return props.$theme.colors.tagNeutralOutlinedFontHover;
-        case KIND.accent:
-          if (!isHovered || !isActionText) {
-            return props.$theme.colors.tagAccentOutlinedFont;
-          }
-          return props.$theme.colors.tagAccentOutlinedFontHover;
-        case KIND.positive:
-          if (!isHovered || !isActionText) {
-            return props.$theme.colors.tagPositiveOutlinedFont;
-          }
-          return props.$theme.colors.tagPositiveOutlinedFontHover;
-        case KIND.warning:
-          if (!isHovered || !isActionText) {
-            return props.$theme.colors.tagWarningOutlinedFont;
-          }
-          return props.$theme.colors.tagWarningOutlinedFontHover;
-        case KIND.negative:
-          if (!isHovered || !isActionText) {
-            return props.$theme.colors.tagNegativeOutlinedFont;
-          }
-          return props.$theme.colors.tagNegativeOutlinedFontHover;
-        case KIND.custom:
-          if (!isHovered || !isActionText) {
+          case KIND.primary:
+          default:
+            if (!isHovered) return props.$theme.colors.tagPrimarySolidFont;
+            return props.$theme.colors.tagPrimarySolidFontHover;
+        }
+      case VARIANT.outlined:
+        switch (props.$kind) {
+          case KIND.black:
+            return props.$theme.colors.contentPrimary;
+          case KIND.neutral:
+            if (!isHovered || !isActionText) {
+              return props.$theme.colors.tagNeutralOutlinedFont;
+            }
+            return props.$theme.colors.tagNeutralOutlinedFontHover;
+          case KIND.accent:
+            if (!isHovered || !isActionText) {
+              return props.$theme.colors.tagAccentOutlinedFont;
+            }
+            return props.$theme.colors.tagAccentOutlinedFontHover;
+          case KIND.positive:
+            if (!isHovered || !isActionText) {
+              return props.$theme.colors.tagPositiveOutlinedFont;
+            }
+            return props.$theme.colors.tagPositiveOutlinedFontHover;
+          case KIND.warning:
+            if (!isHovered || !isActionText) {
+              return props.$theme.colors.tagWarningOutlinedFont;
+            }
+            return props.$theme.colors.tagWarningOutlinedFontHover;
+          case KIND.negative:
+            if (!isHovered || !isActionText) {
+              return props.$theme.colors.tagNegativeOutlinedFont;
+            }
+            return props.$theme.colors.tagNegativeOutlinedFontHover;
+          case KIND.custom:
+            if (!isHovered || !isActionText) {
+              return customOnRamp(
+                props.$color,
+                props.$theme.colors.tagOutlinedFontRampUnit,
+              );
+            }
             return customOnRamp(
               props.$color,
-              props.$theme.colors.tagOutlinedFontRampUnit,
+              props.$theme.colors.tagOutlinedFontHoverRampUnit,
             );
-          }
-          return customOnRamp(
-            props.$color,
-            props.$theme.colors.tagOutlinedFontHoverRampUnit,
-          );
-        case KIND.primary:
-        default:
-          if (!isHovered || !isActionText) {
-            return props.$theme.colors.tagPrimaryOutlinedFont;
-          }
-          return props.$theme.colors.tagPrimaryOutlinedFontHover;
-      }
-    case VARIANT.light:
-    default:
-      switch (props.$kind) {
-        // Primitive kinds do not have a "light" variant so we use outline as default.
-        case KIND.black:
-          return props.$theme.colors.contentPrimary;
-        case KIND.neutral:
-          if (!isHovered) return props.$theme.colors.tagNeutralLightFont;
-          return props.$theme.colors.tagNeutralLightFontHover;
-        case KIND.accent:
-          if (!isHovered) return props.$theme.colors.tagAccentLightFont;
-          return props.$theme.colors.tagAccentLightFontHover;
-        case KIND.positive:
-          if (!isHovered) return props.$theme.colors.tagPositiveLightFont;
-          return props.$theme.colors.tagPositiveLightFontHover;
-        case KIND.warning:
-          if (!isHovered) return props.$theme.colors.tagWarningLightFont;
-          return props.$theme.colors.tagWarningLightFontHover;
-        case KIND.negative:
-          if (!isHovered) return props.$theme.colors.tagNegativeLightFont;
-          return props.$theme.colors.tagNegativeLightFontHover;
-        case KIND.custom:
-          if (!isHovered)
+          case KIND.primary:
+          default:
+            if (!isHovered || !isActionText) {
+              return props.$theme.colors.tagPrimaryOutlinedFont;
+            }
+            return props.$theme.colors.tagPrimaryOutlinedFontHover;
+        }
+      case VARIANT.light:
+      default:
+        switch (props.$kind) {
+          case KIND.neutral:
+            if (!isHovered) return props.$theme.colors.tagNeutralLightFont;
+            return props.$theme.colors.tagNeutralLightFontHover;
+          case KIND.accent:
+            if (!isHovered) return props.$theme.colors.tagAccentLightFont;
+            return props.$theme.colors.tagAccentLightFontHover;
+          case KIND.positive:
+            if (!isHovered) return props.$theme.colors.tagPositiveLightFont;
+            return props.$theme.colors.tagPositiveLightFontHover;
+          case KIND.warning:
+            if (!isHovered) return props.$theme.colors.tagWarningLightFont;
+            return props.$theme.colors.tagWarningLightFontHover;
+          case KIND.negative:
+            if (!isHovered) return props.$theme.colors.tagNegativeLightFont;
+            return props.$theme.colors.tagNegativeLightFontHover;
+          case KIND.custom:
+            if (!isHovered)
+              return customOnRamp(
+                props.$color,
+                props.$theme.colors.tagLightFontRampUnit,
+              );
             return customOnRamp(
               props.$color,
-              props.$theme.colors.tagLightFontRampUnit,
+              props.$theme.colors.tagLightFontHoverRampUnit,
             );
-          return customOnRamp(
-            props.$color,
-            props.$theme.colors.tagLightFontHoverRampUnit,
-          );
-        case KIND.primary:
-        default:
-          if (!isHovered) return props.$theme.colors.tagPrimaryLightFont;
-          return props.$theme.colors.tagPrimaryLightFontHover;
-      }
+          case KIND.primary:
+          default:
+            if (!isHovered) return props.$theme.colors.tagPrimaryLightFont;
+            return props.$theme.colors.tagPrimaryLightFontHover;
+        }
+    }
   }
 }
 
