@@ -182,6 +182,7 @@ export default class MenuStatefulContainer extends React.Component<
     if (this.refList[nextIndex]) {
       scrollItemIntoView(
         this.refList[nextIndex].current,
+        // $FlowFixMe
         rootRef.current,
         nextIndex === 0,
         nextIndex === this.getItems().length - 1,
