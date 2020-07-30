@@ -110,7 +110,8 @@ export default class MenuStatefulContainer extends React.Component<
   refList: Array<React$ElementRef<*>> = [];
   // list of ids applied to list items. used to set aria-activedescendant
   optionIds: string[] = [];
-
+  //characters input from keyboard, will automatically be clear after some time
+  charsSoFar: string = '';
   // Internal set state function that will also invoke stateReducer
   internalSetState(
     changeType: $Keys<typeof STATE_CHANGE_TYPES>,
@@ -149,9 +150,68 @@ export default class MenuStatefulContainer extends React.Component<
         }
         this.handleEnterKey(event);
         break;
+      default:
+        this.findItemToFocus(event);
+        break;
     }
   };
+  findItemToFocus = (event: KeyboardEvent) => {
+    const rootRef = this.props.rootRef ? this.props.rootRef : this.rootRef;
+    const prevIndex = this.state.highlightedIndex;
 
+    this.charsSoFar += event.key;
+    this.clearCharsSoFarAfterDelay();
+
+    var nextIndex = this.findMatchInRange(
+      this.getItems(),
+      prevIndex + 1,
+      this.getItems().length,
+    );
+    if (!nextIndex) {
+      nextIndex = this.findMatchInRange(this.getItems(), 0, prevIndex);
+    }
+    if (!nextIndex) nextIndex = prevIndex;
+
+    this.internalSetState(STATE_CHANGE_TYPES.character, {
+      highlightedIndex: nextIndex,
+    });
+    if (this.refList[nextIndex]) {
+      scrollItemIntoView(
+        this.refList[nextIndex].current,
+        rootRef.current,
+        nextIndex === 0,
+        nextIndex === this.getItems().length - 1,
+      );
+    }
+  };
+  clearCharsSoFarAfterDelay = function() {
+    if (this.charClear) {
+      clearTimeout(this.charClear);
+      this.charClear = null;
+    }
+    this.charClear = setTimeout(
+      function() {
+        this.charsSoFar = '';
+        this.charClear = null;
+      }.bind(this),
+      500,
+    );
+  };
+
+  findMatchInRange = function(list, startIndex, endIndex) {
+    // Find the first item starting with the CharsSoFar substring, searching in
+    // the specified range of items
+    for (var n = startIndex; n < endIndex; n++) {
+      var label = 'label' in list[n] ? list[n].label : list[n].id;
+      if (
+        label &&
+        label.toUpperCase().indexOf(this.charsSoFar.toUpperCase()) === 0
+      ) {
+        return n;
+      }
+    }
+    return null;
+  };
   // Handler for arrow keys
   handleArrowKey = (event: KeyboardEvent) => {
     const rootRef = this.props.rootRef ? this.props.rootRef : this.rootRef;
