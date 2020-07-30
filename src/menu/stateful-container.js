@@ -112,7 +112,11 @@ export default class MenuStatefulContainer extends React.Component<
   optionIds: string[] = [];
   //characters input from keyboard, will automatically be clear after some time
   charsSoFar: string = '';
+  //count time for each continous keyboard input
+  charClear: * = null;
+
   // Internal set state function that will also invoke stateReducer
+
   internalSetState(
     changeType: $Keys<typeof STATE_CHANGE_TYPES>,
     changes: $Shape<StatefulContainerStateT>,
@@ -184,7 +188,7 @@ export default class MenuStatefulContainer extends React.Component<
       );
     }
   };
-  clearCharsSoFarAfterDelay = function() {
+  clearCharsSoFarAfterDelay = () => {
     if (this.charClear) {
       clearTimeout(this.charClear);
       this.charClear = null;
@@ -198,7 +202,7 @@ export default class MenuStatefulContainer extends React.Component<
     );
   };
 
-  findMatchInRange = function(list, startIndex, endIndex) {
+  findMatchInRange = (list: *, startIndex: number, endIndex: number) => {
     // Find the first item starting with the CharsSoFar substring, searching in
     // the specified range of items
     for (var n = startIndex; n < endIndex; n++) {
