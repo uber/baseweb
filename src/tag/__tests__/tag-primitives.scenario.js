@@ -16,11 +16,11 @@ export default function Scenario() {
     <React.Fragment>
       {[
         KIND.black,
+        KIND.blue,
         KIND.red,
         KIND.orange,
         KIND.yellow,
         KIND.green,
-        KIND.blue,
         KIND.purple,
         KIND.brown,
       ].map(kind => (
