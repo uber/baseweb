@@ -40,7 +40,6 @@ const BreadcrumbsConfig: TConfig = {
       type: PropTypes.Boolean,
       description:
         'Whether to show a trailing separator after the last breadcrumb.',
-      hidden: true,
     },
     overrides: {
       value: undefined,
