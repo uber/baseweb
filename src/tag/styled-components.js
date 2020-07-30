@@ -56,6 +56,8 @@ function getFontColor(params) {
     // Disabled
     if (props.$disabled) {
       switch (props.$kind) {
+        case KIND.orange:
+          return colorTokens.orange200;
         case KIND.red:
           return colorTokens.red200;
         case KIND.blue:
@@ -68,17 +70,17 @@ function getFontColor(params) {
     // Solid, active
     if (props.$variant === VARIANT.solid) {
       switch (props.$kind) {
-        case KIND.red:
-        case KIND.blue:
-          return props.$theme.colors.contentOnColor;
         case KIND.black:
-        default:
           return props.$theme.colors.contentInversePrimary;
+        default:
+          return props.$theme.colors.contentOnColor;
       }
     }
     // Hover, press
     if (isHovered) {
       switch (props.$kind) {
+        case KIND.orange:
+          return colorTokens.orange400;
         case KIND.red:
           return colorTokens.red400;
         case KIND.blue:
@@ -90,6 +92,8 @@ function getFontColor(params) {
     }
     // Default, outlined
     switch (props.$kind) {
+      case KIND.orange:
+        return colorTokens.orange400;
       case KIND.red:
         return colorTokens.red400;
       case KIND.blue:
@@ -253,6 +257,8 @@ function getRootBackgroundColor(params) {
     // Solid, active
     if (props.$variant === VARIANT.solid) {
       switch (props.$kind) {
+        case KIND.orange:
+          return colorTokens.orange400;
         case KIND.red:
           return colorTokens.red400;
         case KIND.blue:
@@ -265,6 +271,8 @@ function getRootBackgroundColor(params) {
     // Hover, press
     if (isHovered) {
       switch (props.$kind) {
+        case KIND.orange:
+          return colorTokens.orange50;
         case KIND.red:
           return colorTokens.red50;
         case KIND.blue:
@@ -275,12 +283,7 @@ function getRootBackgroundColor(params) {
       }
     }
     // Default, outlined
-    switch (props.$kind) {
-      case KIND.blue:
-      case KIND.black:
-      default:
-        return props.$theme.colors.backgroundPrimary;
-    }
+    return props.$theme.colors.backgroundPrimary;
   } else {
     // Older semantic kind variations... to be removed in a future major.
     if (props.$variant === VARIANT.outlined) {
@@ -437,6 +440,8 @@ function getRootBorderColor(params) {
     // Disabled
     if (props.$disabled) {
       switch (props.$kind) {
+        case KIND.orange:
+          return colorTokens.orange200;
         case KIND.red:
           return colorTokens.red200;
         case KIND.blue:
@@ -453,6 +458,8 @@ function getRootBorderColor(params) {
     // Hover, press
     if (isHovered) {
       switch (props.$kind) {
+        case KIND.orange:
+          return colorTokens.orange200;
         case KIND.red:
           return colorTokens.red200;
         case KIND.blue:
@@ -464,6 +471,8 @@ function getRootBorderColor(params) {
     }
     // Default, outlined
     switch (props.$kind) {
+      case KIND.orange:
+        return colorTokens.orange200;
       case KIND.red:
         return colorTokens.red200;
       case KIND.blue:
