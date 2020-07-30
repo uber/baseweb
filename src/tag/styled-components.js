@@ -12,6 +12,7 @@ import lighten from 'polished/lib/color/lighten.js';
 import {styled} from '../styles/index.js';
 import {KIND, VARIANT} from './constants.js';
 import type {SharedPropsArgT} from './types.js';
+import {colors as colorTokens} from '../tokens/index.js';
 
 export function customOnRamp(color?: string, unit?: string) {
   switch (unit) {
@@ -35,10 +36,26 @@ export function customOnRamp(color?: string, unit?: string) {
   }
 }
 
+function isPrimitive(kind) {
+  return [
+    KIND.black,
+    KIND.red,
+    KIND.orange,
+    KIND.yellow,
+    KIND.green,
+    KIND.blue,
+    KIND.purple,
+    KIND.brown,
+  ].includes(kind);
+}
+
 function getFontColor(params) {
   const {props, isHovered = false, isActionText = false} = params;
+
   if (props.$disabled) {
     switch (props.$kind) {
+      case KIND.black:
+        return props.$theme.colors.contentStateDisabled;
       case KIND.neutral:
         return props.$theme.colors.tagNeutralFontDisabled;
       case KIND.accent:
@@ -63,6 +80,8 @@ function getFontColor(params) {
   switch (props.$variant) {
     case VARIANT.solid:
       switch (props.$kind) {
+        case KIND.black:
+          return props.$theme.colors.contentInversePrimary;
         case KIND.neutral:
           if (!isHovered) return props.$theme.colors.tagNeutralSolidFont;
           return props.$theme.colors.tagNeutralSolidFontHover;
@@ -95,6 +114,8 @@ function getFontColor(params) {
       }
     case VARIANT.outlined:
       switch (props.$kind) {
+        case KIND.black:
+          return props.$theme.colors.contentPrimary;
         case KIND.neutral:
           if (!isHovered || !isActionText) {
             return props.$theme.colors.tagNeutralOutlinedFont;
@@ -141,6 +162,9 @@ function getFontColor(params) {
     case VARIANT.light:
     default:
       switch (props.$kind) {
+        // Primitive kinds do not have a "light" variant so we use outline as default.
+        case KIND.black:
+          return props.$theme.colors.contentPrimary;
         case KIND.neutral:
           if (!isHovered) return props.$theme.colors.tagNeutralLightFont;
           return props.$theme.colors.tagNeutralLightFontHover;
@@ -176,72 +200,78 @@ function getFontColor(params) {
 
 function getActionBackgroundColor(params) {
   const {props, isHovered = false} = params;
-  if (props.$disabled || !isHovered) return 'transparent';
-  switch (props.$variant) {
-    case VARIANT.solid:
-      switch (props.$kind) {
-        case KIND.neutral:
-          return props.$theme.colors.tagNeutralSolidActive;
-        case KIND.accent:
-          return props.$theme.colors.tagAccentSolidActive;
-        case KIND.positive:
-          return props.$theme.colors.tagPositiveSolidActive;
-        case KIND.warning:
-          return props.$theme.colors.tagWarningSolidActive;
-        case KIND.negative:
-          return props.$theme.colors.tagNegativeSolidActive;
-        case KIND.custom:
-          return customOnRamp(
-            props.$color,
-            props.$theme.colors.tagSolidActiveRampUnit,
-          );
-        case KIND.primary:
-        default:
-          return props.$theme.colors.tagPrimarySolidActive;
-      }
-    case VARIANT.outlined:
-      switch (props.$kind) {
-        case KIND.neutral:
-          return props.$theme.colors.tagNeutralOutlinedHover;
-        case KIND.accent:
-          return props.$theme.colors.tagAccentOutlinedHover;
-        case KIND.positive:
-          return props.$theme.colors.tagPositiveOutlinedHover;
-        case KIND.warning:
-          return props.$theme.colors.tagWarningOutlinedHover;
-        case KIND.negative:
-          return props.$theme.colors.tagNegativeOutlinedHover;
-        case KIND.custom:
-          return customOnRamp(
-            props.$color,
-            props.$theme.colors.tagOutlinedHoverRampUnit,
-          );
-        case KIND.primary:
-        default:
-          return props.$theme.colors.tagPrimaryOutlinedHover;
-      }
-    case VARIANT.light:
-    default:
-      switch (props.$kind) {
-        case KIND.neutral:
-          return props.$theme.colors.tagNeutralLightActive;
-        case KIND.accent:
-          return props.$theme.colors.tagAccentLightActive;
-        case KIND.positive:
-          return props.$theme.colors.tagPositiveLightActive;
-        case KIND.warning:
-          return props.$theme.colors.tagWarningLightActive;
-        case KIND.negative:
-          return props.$theme.colors.tagNegativeLightActive;
-        case KIND.custom:
-          return customOnRamp(
-            props.$color,
-            props.$theme.colors.tagLightActiveRampUnit,
-          );
-        case KIND.primary:
-        default:
-          return props.$theme.colors.tagPrimaryLightActive;
-      }
+  if (isPrimitive(props.$kind)) {
+    // No background for primitive kinds. An alternative is to use border color.
+    // return getRootBorderColor(params);
+    return null;
+  } else {
+    if (props.$disabled || !isHovered) return 'transparent';
+    switch (props.$variant) {
+      case VARIANT.solid:
+        switch (props.$kind) {
+          case KIND.neutral:
+            return props.$theme.colors.tagNeutralSolidActive;
+          case KIND.accent:
+            return props.$theme.colors.tagAccentSolidActive;
+          case KIND.positive:
+            return props.$theme.colors.tagPositiveSolidActive;
+          case KIND.warning:
+            return props.$theme.colors.tagWarningSolidActive;
+          case KIND.negative:
+            return props.$theme.colors.tagNegativeSolidActive;
+          case KIND.custom:
+            return customOnRamp(
+              props.$color,
+              props.$theme.colors.tagSolidActiveRampUnit,
+            );
+          case KIND.primary:
+          default:
+            return props.$theme.colors.tagPrimarySolidActive;
+        }
+      case VARIANT.outlined:
+        switch (props.$kind) {
+          case KIND.neutral:
+            return props.$theme.colors.tagNeutralOutlinedHover;
+          case KIND.accent:
+            return props.$theme.colors.tagAccentOutlinedHover;
+          case KIND.positive:
+            return props.$theme.colors.tagPositiveOutlinedHover;
+          case KIND.warning:
+            return props.$theme.colors.tagWarningOutlinedHover;
+          case KIND.negative:
+            return props.$theme.colors.tagNegativeOutlinedHover;
+          case KIND.custom:
+            return customOnRamp(
+              props.$color,
+              props.$theme.colors.tagOutlinedHoverRampUnit,
+            );
+          case KIND.primary:
+          default:
+            return props.$theme.colors.tagPrimaryOutlinedHover;
+        }
+      case VARIANT.light:
+      default:
+        switch (props.$kind) {
+          case KIND.neutral:
+            return props.$theme.colors.tagNeutralLightActive;
+          case KIND.accent:
+            return props.$theme.colors.tagAccentLightActive;
+          case KIND.positive:
+            return props.$theme.colors.tagPositiveLightActive;
+          case KIND.warning:
+            return props.$theme.colors.tagWarningLightActive;
+          case KIND.negative:
+            return props.$theme.colors.tagNegativeLightActive;
+          case KIND.custom:
+            return customOnRamp(
+              props.$color,
+              props.$theme.colors.tagLightActiveRampUnit,
+            );
+          case KIND.primary:
+          default:
+            return props.$theme.colors.tagPrimaryLightActive;
+        }
+    }
   }
 }
 
@@ -297,19 +327,37 @@ export const Text = styled<SharedPropsArgT>('span', props => {
 
 function getRootBackgroundColor(params) {
   const {props, isHovered = false} = params;
-  const isPrimitiveKind = [
-    'black',
-    'red',
-    'orange',
-    'yellow',
-    'green',
-    'blue',
-    'purple',
-    'brown',
-  ].includes(props.$kind);
-  if (isPrimitiveKind) {
-    // TODO: IMPLEMENT
-    return 'transparent';
+  if (isPrimitive(props.$kind)) {
+    // Disabled
+    if (props.$disabled) {
+      switch (props.$kind) {
+        case KIND.black:
+        default:
+          return props.$theme.colors.backgroundPrimary;
+      }
+    }
+    // Solid, active
+    if (props.$variant === VARIANT.solid) {
+      switch (props.$kind) {
+        case KIND.black:
+        default:
+          return props.$theme.colors.backgroundInversePrimary;
+      }
+    }
+    // Hover, press
+    if (isHovered) {
+      switch (props.$kind) {
+        case KIND.black:
+        default:
+          return colorTokens.gray100;
+      }
+    }
+    // Default, outlined
+    switch (props.$kind) {
+      case KIND.black:
+      default:
+        return props.$theme.colors.backgroundPrimary;
+    }
   } else {
     // Older semantic kind variations... to be removed in a future major.
     if (props.$variant === VARIANT.outlined) {
@@ -462,77 +510,106 @@ function getRootBackgroundColor(params) {
 
 function getRootBorderColor(params) {
   const {props, isHovered = false} = params;
-  if (props.$variant !== VARIANT.outlined) {
-    return null;
-  }
-  switch (props.$kind) {
-    case KIND.neutral:
-      if (props.$disabled) {
-        return props.$theme.colors.tagNeutralOutlinedDisabled;
+  if (isPrimitive(props.$kind)) {
+    // Disabled
+    if (props.$disabled) {
+      switch (props.$kind) {
+        case KIND.black:
+        default:
+          return props.$theme.colors.borderOpaque;
       }
-      if (isHovered) {
-        return props.$theme.colors.tagNeutralOutlinedHover;
+    }
+    // Solid, active
+    if (props.$variant === VARIANT.solid) {
+      return null;
+    }
+    // Hover, press
+    if (isHovered) {
+      switch (props.$kind) {
+        case KIND.black:
+        default:
+          return colorTokens.gray400;
       }
-      return props.$theme.colors.tagNeutralOutlinedBackground;
-    case KIND.accent:
-      if (props.$disabled) {
-        return props.$theme.colors.tagAccentOutlinedDisabled;
-      }
-      if (isHovered) {
-        return props.$theme.colors.tagAccentOutlinedHover;
-      }
-      return props.$theme.colors.tagAccentOutlinedBackground;
-    case KIND.positive:
-      if (props.$disabled) {
-        return props.$theme.colors.tagPositiveOutlinedDisabled;
-      }
-      if (isHovered) {
-        return props.$theme.colors.tagPositiveOutlinedHover;
-      }
-      return props.$theme.colors.tagPositiveOutlinedBackground;
-    case KIND.warning:
-      if (props.$disabled) {
-        return props.$theme.colors.tagWarningOutlinedDisabled;
-      }
-      if (isHovered) {
-        return props.$theme.colors.tagWarningOutlinedHover;
-      }
-      return props.$theme.colors.tagWarningOutlinedBackground;
-    case KIND.negative:
-      if (props.$disabled) {
-        return props.$theme.colors.tagNegativeOutlinedDisabled;
-      }
-      if (isHovered) {
-        return props.$theme.colors.tagNegativeOutlinedHover;
-      }
-      return props.$theme.colors.tagNegativeOutlinedBackground;
-    case KIND.custom:
-      if (props.$disabled) {
+    }
+    // Default, outlined
+    switch (props.$kind) {
+      case KIND.black:
+      default:
+        return colorTokens.gray400;
+    }
+  } else {
+    if (props.$variant !== VARIANT.outlined) {
+      return null;
+    }
+    switch (props.$kind) {
+      case KIND.neutral:
+        if (props.$disabled) {
+          return props.$theme.colors.tagNeutralOutlinedDisabled;
+        }
+        if (isHovered) {
+          return props.$theme.colors.tagNeutralOutlinedHover;
+        }
+        return props.$theme.colors.tagNeutralOutlinedBackground;
+      case KIND.accent:
+        if (props.$disabled) {
+          return props.$theme.colors.tagAccentOutlinedDisabled;
+        }
+        if (isHovered) {
+          return props.$theme.colors.tagAccentOutlinedHover;
+        }
+        return props.$theme.colors.tagAccentOutlinedBackground;
+      case KIND.positive:
+        if (props.$disabled) {
+          return props.$theme.colors.tagPositiveOutlinedDisabled;
+        }
+        if (isHovered) {
+          return props.$theme.colors.tagPositiveOutlinedHover;
+        }
+        return props.$theme.colors.tagPositiveOutlinedBackground;
+      case KIND.warning:
+        if (props.$disabled) {
+          return props.$theme.colors.tagWarningOutlinedDisabled;
+        }
+        if (isHovered) {
+          return props.$theme.colors.tagWarningOutlinedHover;
+        }
+        return props.$theme.colors.tagWarningOutlinedBackground;
+      case KIND.negative:
+        if (props.$disabled) {
+          return props.$theme.colors.tagNegativeOutlinedDisabled;
+        }
+        if (isHovered) {
+          return props.$theme.colors.tagNegativeOutlinedHover;
+        }
+        return props.$theme.colors.tagNegativeOutlinedBackground;
+      case KIND.custom:
+        if (props.$disabled) {
+          return customOnRamp(
+            props.$color,
+            props.$theme.colors.tagOutlinedRampUnit,
+          );
+        }
+        if (isHovered) {
+          return customOnRamp(
+            props.$color,
+            props.$theme.colors.tagOutlinedHoverRampUnit,
+          );
+        }
         return customOnRamp(
           props.$color,
           props.$theme.colors.tagOutlinedRampUnit,
         );
-      }
-      if (isHovered) {
-        return customOnRamp(
-          props.$color,
-          props.$theme.colors.tagOutlinedHoverRampUnit,
-        );
-      }
-      return customOnRamp(
-        props.$color,
-        props.$theme.colors.tagOutlinedRampUnit,
-      );
 
-    case KIND.primary:
-    default:
-      if (props.$disabled) {
-        return props.$theme.colors.tagPrimaryOutlinedDisabled;
-      }
-      if (isHovered) {
-        return props.$theme.colors.tagPrimaryOutlinedHover;
-      }
-      return props.$theme.colors.tagPrimaryOutlinedBackground;
+      case KIND.primary:
+      default:
+        if (props.$disabled) {
+          return props.$theme.colors.tagPrimaryOutlinedDisabled;
+        }
+        if (isHovered) {
+          return props.$theme.colors.tagPrimaryOutlinedHover;
+        }
+        return props.$theme.colors.tagPrimaryOutlinedBackground;
+    }
   }
 }
 
@@ -545,7 +622,13 @@ export const Root = styled<SharedPropsArgT>('span', props => {
     props.$theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
   const paddingEndDir: string =
     props.$theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
-  const borderWidth = props.$variant === VARIANT.outlined ? '2px' : 0;
+  const borderWidth = isPrimitive(props.$kind)
+    ? !props.$disabled && props.$variant === VARIANT.solid
+      ? 0
+      : '2px'
+    : props.$variant === VARIANT.outlined
+    ? '2px'
+    : 0;
   const borderColor = getRootBorderColor({props});
   const borderColorHover = getRootBorderColor({props, isHovered: true});
   return ({
