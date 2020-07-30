@@ -85,7 +85,6 @@ export type RenderProps = StatefulContainerState & {
 export interface StatefulContainerProps {
   items: ItemsT;
   initialState?: StatefulContainerState;
-
   stateReducer?: StateReducer;
   getRequiredItemProps?: GetRequiredItemProps;
   onActiveDescendantChange?: (id?: string) => void;
