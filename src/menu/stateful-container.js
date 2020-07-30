@@ -167,10 +167,10 @@ export default class MenuStatefulContainer extends React.Component<
       prevIndex + 1,
       this.getItems().length,
     );
-    if (!nextIndex) {
+    if (nextIndex < 0) {
       nextIndex = this.findMatchInRange(this.getItems(), 0, prevIndex);
     }
-    if (!nextIndex) nextIndex = prevIndex;
+    if (nextIndex < 0) nextIndex = prevIndex;
 
     this.internalSetState(STATE_CHANGE_TYPES.character, {
       highlightedIndex: nextIndex,
@@ -210,7 +210,7 @@ export default class MenuStatefulContainer extends React.Component<
         return n;
       }
     }
-    return null;
+    return -1;
   };
   // Handler for arrow keys
   handleArrowKey = (event: KeyboardEvent) => {
