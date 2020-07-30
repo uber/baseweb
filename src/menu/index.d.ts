@@ -19,6 +19,7 @@ export interface STATE_CHANGE_TYPES {
   mouseEnter: 'mouseEnter';
   focus: 'focus';
   reset: 'reset';
+  character: 'character';
 }
 
 export interface OPTION_LIST_SIZE {
@@ -84,11 +85,13 @@ export type RenderProps = StatefulContainerState & {
 export interface StatefulContainerProps {
   items: ItemsT;
   initialState?: StatefulContainerState;
+
   stateReducer?: StateReducer;
   getRequiredItemProps?: GetRequiredItemProps;
   onActiveDescendantChange?: (id?: string) => void;
   onItemSelect?: OnItemSelect;
   rootRef?: React.Ref<any>;
+  typeAhead?: boolean;
   children?: (args: RenderProps) => React.ReactNode;
   addMenuToNesting?: (ref: React.Ref<HTMLElement>) => void;
   removeMenuFromNesting?: (ref: React.Ref<HTMLElement>) => void;

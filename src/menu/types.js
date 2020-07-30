@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import type {OverrideT} from '../helpers/overrides.js';
 import {STATE_CHANGE_TYPES, OPTION_LIST_SIZE} from './constants.js';
+import {booleanLiteral} from '@babel/types';
 
 export type ItemT = *;
 export type ArrayItemsT = $ReadOnlyArray<ItemT>;
@@ -122,6 +123,8 @@ export type StatefulContainerPropsT = {
   onItemSelect: OnItemSelectFnT,
   /** Ref for the menu container element. Used to capture key events for navigation */
   rootRef?: RootRefT,
+  /** if have keyboard typeahead function */
+  typeAhead: boolean,
   /** Child as function pattern. */
   children: RenderPropsT => React.Node,
   addMenuToNesting?: (ref: {current: HTMLElement | null}) => void,
@@ -196,6 +199,8 @@ export type StatefulMenuPropsT = {
   rootRef?: RootRefT,
   /** Child as function pattern. */
   children?: RenderPropsT => React.Node,
+  /** if have keyboard typeahead function */
+  typeAhead?: boolean,
   addMenuToNesting?: (ref: {current: HTMLElement | null}) => void,
   removeMenuFromNesting?: (ref: {current: HTMLElement | null}) => void,
   getParentMenu?: (ref: {current: HTMLElement | null}) => ?{

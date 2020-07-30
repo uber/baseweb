@@ -30,11 +30,11 @@ export default class MenuStatefulContainer extends React.Component<
       highlightedIndex: -1,
       isFocused: false,
     },
+    typeAhead: true,
     stateReducer: ((changeType, changes) => changes: StateReducerFnT),
     onItemSelect: () => {},
     getRequiredItemProps: () => ({}),
     children: () => null,
-
     // from nested-menus context
     addMenuToNesting: () => {},
     removeMenuFromNesting: () => {},
@@ -155,7 +155,7 @@ export default class MenuStatefulContainer extends React.Component<
         this.handleEnterKey(event);
         break;
       default:
-        this.findItemToFocus(event);
+        if (this.props.typeAhead) this.findItemToFocus(event);
         break;
     }
   };
@@ -171,11 +171,9 @@ export default class MenuStatefulContainer extends React.Component<
       prevIndex + 1,
       this.getItems().length,
     );
-    if (nextIndex < 0) {
+    if (nextIndex < 0)
       nextIndex = this.findMatchInRange(this.getItems(), 0, prevIndex);
-    }
     if (nextIndex < 0) nextIndex = prevIndex;
-
     this.internalSetState(STATE_CHANGE_TYPES.character, {
       highlightedIndex: nextIndex,
     });
@@ -219,6 +217,7 @@ export default class MenuStatefulContainer extends React.Component<
   };
   // Handler for arrow keys
   handleArrowKey = (event: KeyboardEvent) => {
+    this.charsSoFar = '';
     const rootRef = this.props.rootRef ? this.props.rootRef : this.rootRef;
     const prevIndex = this.state.highlightedIndex;
     let nextIndex = prevIndex;
@@ -275,6 +274,7 @@ export default class MenuStatefulContainer extends React.Component<
 
   // Handler for enter key
   handleEnterKey = (event: KeyboardEvent) => {
+    this.charsSoFar = '';
     const {onItemSelect} = this.props;
     const {highlightedIndex} = this.state;
     const items = this.getItems();
