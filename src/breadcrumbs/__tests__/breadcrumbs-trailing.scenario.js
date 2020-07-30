@@ -13,10 +13,11 @@ import {Breadcrumbs} from '../index.js';
 
 export default function Scenario() {
   return (
-    <Breadcrumbs>
-      <StyledLink href="#">Parent Page</StyledLink>
-      <StyledLink href="#">Sub-Parent Page</StyledLink>
-      <span>Current Page</span>
-    </Breadcrumbs>
+    <React.Fragment>
+      <Breadcrumbs showTrailingSeparator>
+        <StyledLink href="#">Parent Page</StyledLink>
+        <StyledLink href="#">Sub-Parent Page</StyledLink>
+      </Breadcrumbs>
+    </React.Fragment>
   );
 }
