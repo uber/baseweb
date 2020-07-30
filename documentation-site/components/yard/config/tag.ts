@@ -211,18 +211,6 @@ const TagConfig: TConfig = {
       type: PropTypes.Boolean,
       description: `Disable the tag from being changed.`,
     },
-    isFocused: {
-      value: false,
-      type: PropTypes.Boolean,
-      description: `Is tag focused.`,
-      hidden: true,
-    },
-    isHovered: {
-      value: false,
-      type: PropTypes.Boolean,
-      description: `Is tag hovered.`,
-      hidden: true,
-    },
     title: {
       value: undefined,
       type: PropTypes.String,

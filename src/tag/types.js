@@ -28,7 +28,9 @@ export type PropsT = {
   closeable?: boolean,
   /** Disable control from being changed. */
   disabled?: boolean,
+  /** Deprecated. Will be removed in the next major version. */
   isFocused?: boolean,
+  /** Deprecated. Will be removed in the next major version. */
   isHovered?: boolean,
   /** Defines tags look by purpose. Set it to one of KIND[key] values. Defaults to KIND.primary */
   kind?: TagKindT,
