@@ -23,4 +23,6 @@ export type BreadcrumbsPropsT = {|
   children?: Node,
   overrides?: OverridesT,
   ariaLabel?: string,
+  /** Whether to show a trailing separator after the last breadcrumb. */
+  showTrailingSeparator?: boolean,
 |};

@@ -25,7 +25,7 @@ import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 
 type LocaleT = {|locale?: BreadcrumbLocaleT|};
 export function BreadcrumbsRoot(props: {|...BreadcrumbsPropsT, ...LocaleT|}) {
-  const {overrides = {}} = props;
+  const {overrides = {}, showTrailingSeparator = false} = props;
   const childrenArray = Children.toArray(props.children);
   const childrenWithSeparators = [];
 
@@ -58,7 +58,7 @@ export function BreadcrumbsRoot(props: {|...BreadcrumbsPropsT, ...LocaleT|}) {
         {...baseListItemProps}
       >
         {child}
-        {index !== childrenArray.length - 1 && (
+        {(showTrailingSeparator || index !== childrenArray.length - 1) && (
           <Separator {...baseSeparatorProps} key={`separator-${index}`}>
             <ThemeContext.Consumer>
               {theme =>
@@ -98,6 +98,7 @@ function Breadcrumbs(props: BreadcrumbsPropsT) {
 
 Breadcrumbs.defaultProps = {
   overrides: {},
+  showTrailingSeparator: false,
 };
 
 export default Breadcrumbs;
