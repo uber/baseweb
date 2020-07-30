@@ -40,14 +40,24 @@ export default function Scenario() {
             </Tag>
           </div>
           <div>
-            <Tag kind={kind}>Label</Tag>
-            <Tag kind={kind} onClick={() => alert('click')}>
+            <Tag kind={kind} onActionClick={() => alert('action')}>
               Label
             </Tag>
-            <Tag kind={kind} variant={VARIANT.solid}>
+            <Tag
+              kind={kind}
+              onClick={() => alert('click')}
+              onActionClick={() => alert('action')}
+            >
               Label
             </Tag>
-            <Tag kind={kind} disabled>
+            <Tag
+              kind={kind}
+              variant={VARIANT.solid}
+              onActionClick={() => alert('action')}
+            >
+              Label
+            </Tag>
+            <Tag kind={kind} disabled onActionClick={() => alert('action')}>
               Label
             </Tag>
           </div>
