@@ -171,6 +171,7 @@
     "react-dom": "^16.9.0",
     "react-icons": "^3.8.0",
     "react-markdown": "^4.0.3",
+    "react-router-dom": "^5.2.0",
     "react-twitter-embed": "^2.0.8",
     "react-view": "^2.2.2",
     "react-vis": "^1.11.6",
