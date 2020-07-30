@@ -549,7 +549,7 @@ export const Root = styled<SharedPropsArgT>('span', props => {
   const borderColor = getRootBorderColor({props});
   const borderColorHover = getRootBorderColor({props, isHovered: true});
   return ({
-    ...props.theme.typography.font150,
+    ...props.$theme.typography.font150,
     alignItems: 'center',
     backgroundColor: getRootBackgroundColor({props}),
     borderLeftColor: borderColor,
@@ -576,16 +576,16 @@ export const Root = styled<SharedPropsArgT>('span', props => {
       ? 'pointer'
       : 'default',
     display: 'inline-flex',
-    height: props.theme.sizing.scale800,
+    height: props.$theme.sizing.scale800,
     justifyContent: 'space-between',
     marginTop: '5px',
     marginBottom: '5px',
     marginLeft: '5px',
     marginRight: '5px',
-    paddingTop: props.theme.sizing.scale0,
-    paddingBottom: props.theme.sizing.scale0,
-    [paddingStartDir]: props.theme.sizing.scale500,
-    [paddingEndDir]: props.$closeable ? null : props.theme.sizing.scale500,
+    paddingTop: props.$theme.sizing.scale0,
+    paddingBottom: props.$theme.sizing.scale0,
+    [paddingStartDir]: props.$theme.sizing.scale500,
+    [paddingEndDir]: props.$closeable ? null : props.$theme.sizing.scale500,
     outline: 'none',
     ':hover':
       props.$disabled || !props.$clickable
@@ -602,9 +602,9 @@ export const Root = styled<SharedPropsArgT>('span', props => {
       props.$disabled || (!props.$clickable && !props.$closeable)
         ? {}
         : {
-            boxShadow: props.props.$isFocusVisible
-              ? `0 0 0 3px props.${
-                  props.props.$kind === KIND.accent
+            boxShadow: props.$isFocusVisible
+              ? `0 0 0 3px ${
+                  props.$kind === KIND.accent
                     ? props.$theme.colors.primaryA
                     : props.$theme.colors.accent
                 }`
