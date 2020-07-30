@@ -56,6 +56,8 @@ function getFontColor(params) {
     // Disabled
     if (props.$disabled) {
       switch (props.$kind) {
+        case KIND.yellow:
+          return colorTokens.yellow300;
         case KIND.orange:
           return colorTokens.orange200;
         case KIND.red:
@@ -70,6 +72,8 @@ function getFontColor(params) {
     // Solid, active
     if (props.$variant === VARIANT.solid) {
       switch (props.$kind) {
+        case KIND.yellow:
+          return colorTokens.yellow700;
         case KIND.black:
           return props.$theme.colors.contentInversePrimary;
         default:
@@ -79,6 +83,8 @@ function getFontColor(params) {
     // Hover, press
     if (isHovered) {
       switch (props.$kind) {
+        case KIND.yellow:
+          return colorTokens.yellow600;
         case KIND.orange:
           return colorTokens.orange400;
         case KIND.red:
@@ -92,6 +98,8 @@ function getFontColor(params) {
     }
     // Default, outlined
     switch (props.$kind) {
+      case KIND.yellow:
+        return colorTokens.yellow600;
       case KIND.orange:
         return colorTokens.orange400;
       case KIND.red:
@@ -257,6 +265,8 @@ function getRootBackgroundColor(params) {
     // Solid, active
     if (props.$variant === VARIANT.solid) {
       switch (props.$kind) {
+        case KIND.yellow:
+          return colorTokens.yellow400;
         case KIND.orange:
           return colorTokens.orange400;
         case KIND.red:
@@ -271,6 +281,8 @@ function getRootBackgroundColor(params) {
     // Hover, press
     if (isHovered) {
       switch (props.$kind) {
+        case KIND.yellow:
+          return colorTokens.yellow50;
         case KIND.orange:
           return colorTokens.orange50;
         case KIND.red:
@@ -440,6 +452,8 @@ function getRootBorderColor(params) {
     // Disabled
     if (props.$disabled) {
       switch (props.$kind) {
+        case KIND.yellow:
+          return colorTokens.yellow200;
         case KIND.orange:
           return colorTokens.orange200;
         case KIND.red:
@@ -458,6 +472,8 @@ function getRootBorderColor(params) {
     // Hover, press
     if (isHovered) {
       switch (props.$kind) {
+        case KIND.yellow:
+          return colorTokens.yellow200;
         case KIND.orange:
           return colorTokens.orange200;
         case KIND.red:
@@ -471,6 +487,8 @@ function getRootBorderColor(params) {
     }
     // Default, outlined
     switch (props.$kind) {
+      case KIND.yellow:
+        return colorTokens.yellow200;
       case KIND.orange:
         return colorTokens.orange200;
       case KIND.red:
