@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {useStyletron} from 'baseui';
+import slugify from '../helpers/slugify';
 
 function getPadding(componentType) {
   const multiplier = Number(componentType.replace('h', ''));
@@ -31,9 +32,7 @@ const TableOfContents = props => {
       ) {
         TOC.push({
           name: element.props.children,
-          anchor: `#${element.props.children
-            .toLowerCase()
-            .replace(/\s+/g, '-')}`,
+          anchor: `#${slugify(element.props.children)}`,
           component: element.props.name,
         });
       }
@@ -41,7 +40,7 @@ const TableOfContents = props => {
       if (element.props.title) {
         TOC.push({
           name: element.props.title,
-          anchor: `#${element.props.title.toLowerCase().replace(/\s+/g, '-')}`,
+          anchor: `#${slugify(element.props.title)}`,
           component: 'h3',
         });
       }
@@ -49,9 +48,7 @@ const TableOfContents = props => {
       if (element.props.api && element.props.heading) {
         TOC.push({
           name: element.props.heading,
-          anchor: `#${element.props.heading
-            .toLowerCase()
-            .replace(/\s+/g, '-')}`,
+          anchor: `#${slugify(element.props.heading)}`,
           component: 'h3',
         });
       }
