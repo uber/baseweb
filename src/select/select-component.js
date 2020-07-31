@@ -555,7 +555,10 @@ class Select extends React.Component<PropsT, SelectStateT> {
     const renderLabel = this.props.getValueLabel || this.getValueLabel;
     const labelForInput = renderLabel({option: item, index: valueLength - 1});
     // label might not be a string, it might be a Node of another kind.
-    if (typeof labelForInput === 'string') {
+    if (
+      !this.props.backspaceClearsInputValue &&
+      typeof labelForInput === 'string'
+    ) {
       const remainingInput = labelForInput.slice(0, -1);
       this.setState({
         inputValue: remainingInput,
