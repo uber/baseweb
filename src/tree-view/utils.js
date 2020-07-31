@@ -192,12 +192,10 @@ export const toggleIsExpanded = (
 export const getCharMatchId = (
   nodes: TreeNodeT<>[],
   nodeId: TreeNodeIdT,
-  chars: String,
+  chars: string,
   closestOmmer: TreeNodeIdT | null,
   getId: (TreeNodeT<>) => TreeNodeIdT,
 ) => {
-  console.log(chars);
-  console.log(nodes.length);
   var foundid = matchString(
     nodes,
     nodeId,
@@ -222,11 +220,11 @@ export const getCharMatchId = (
 export const matchString = (
   nodes: TreeNodeT<>[],
   nodeId: TreeNodeIdT,
-  chars: String,
+  chars: string,
   closestOmmer: TreeNodeIdT | null,
   getId: (TreeNodeT<>) => TreeNodeIdT,
-  passNodeId: Boolean,
-  rangeAfter: Boolean,
+  passNodeId: boolean,
+  rangeAfter: boolean,
 ) => {
   var pass = passNodeId;
   for (let i = 0; i < nodes.length; i++) {
