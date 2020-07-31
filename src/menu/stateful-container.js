@@ -111,9 +111,9 @@ export default class MenuStatefulContainer extends React.Component<
   // list of ids applied to list items. used to set aria-activedescendant
   optionIds: string[] = [];
   //characters input from keyboard, will automatically be clear after some time
-  charsSoFar: string = '';
+  typeAheadChars: string = '';
   //count time for each continous keyboard input
-  charClear: * = null;
+  typeAheadTimeOut: * = null;
 
   // Internal set state function that will also invoke stateReducer
 
@@ -155,28 +155,50 @@ export default class MenuStatefulContainer extends React.Component<
         this.handleEnterKey(event);
         break;
       default:
-        if (this.props.typeAhead) this.findItemToFocus(event);
+        if (this.props.typeAhead) this.handleAlphaDown(event);
         break;
     }
   };
-  findItemToFocus = (event: KeyboardEvent) => {
+  handleAlphaDown = (event: KeyboardEvent) => {
     const rootRef = this.props.rootRef ? this.props.rootRef : this.rootRef;
     const prevIndex = this.state.highlightedIndex;
 
-    this.charsSoFar += event.key;
-    this.clearCharsSoFarAfterDelay();
+    this.typeAheadChars += event.key;
+    this.typeAheadTimeOut = setTimeout(() => {
+      this.typeAheadChars = '';
+    }, 500);
 
-    var nextIndex = this.findMatchInRange(
-      this.getItems(),
-      prevIndex + 1,
-      this.getItems().length,
-    );
-    if (nextIndex < 0)
-      nextIndex = this.findMatchInRange(this.getItems(), 0, prevIndex);
-    if (nextIndex < 0) nextIndex = prevIndex;
+    var nextIndex = prevIndex;
+    var list = this.getItems();
+    var notMatch = true;
+    for (var n = 0; n < list.length; n++) {
+      var label = 'label' in list[n] ? list[n].label : list[n].id;
+      if (
+        label &&
+        label.toUpperCase().indexOf(this.typeAheadChars.toUpperCase()) === 0
+      ) {
+        nextIndex = n;
+        notMatch = false;
+        break;
+      }
+    }
+
+    if (notMatch) {
+      for (var n = 0; n < list.length; n++) {
+        var label = 'label' in list[n] ? list[n].label : list[n].id;
+        if (
+          label &&
+          label.toUpperCase().indexOf(this.typeAheadChars.toUpperCase()) > 0
+        ) {
+          nextIndex = n;
+          break;
+        }
+      }
+    }
     this.internalSetState(STATE_CHANGE_TYPES.character, {
       highlightedIndex: nextIndex,
     });
+
     if (this.refList[nextIndex]) {
       scrollItemIntoView(
         this.refList[nextIndex].current,
@@ -187,37 +209,10 @@ export default class MenuStatefulContainer extends React.Component<
       );
     }
   };
-  clearCharsSoFarAfterDelay = () => {
-    if (this.charClear) {
-      clearTimeout(this.charClear);
-      this.charClear = null;
-    }
-    this.charClear = setTimeout(
-      function() {
-        this.charsSoFar = '';
-        this.charClear = null;
-      }.bind(this),
-      500,
-    );
-  };
 
-  findMatchInRange = (list: *, startIndex: number, endIndex: number) => {
-    // Find the first item starting with the CharsSoFar substring, searching in
-    // the specified range of items
-    for (var n = startIndex; n < endIndex; n++) {
-      var label = 'label' in list[n] ? list[n].label : list[n].id;
-      if (
-        label &&
-        label.toUpperCase().indexOf(this.charsSoFar.toUpperCase()) === 0
-      ) {
-        return n;
-      }
-    }
-    return -1;
-  };
   // Handler for arrow keys
   handleArrowKey = (event: KeyboardEvent) => {
-    this.charsSoFar = '';
+    this.typeAheadChars = '';
     const rootRef = this.props.rootRef ? this.props.rootRef : this.rootRef;
     const prevIndex = this.state.highlightedIndex;
     let nextIndex = prevIndex;
@@ -274,7 +269,7 @@ export default class MenuStatefulContainer extends React.Component<
 
   // Handler for enter key
   handleEnterKey = (event: KeyboardEvent) => {
-    this.charsSoFar = '';
+    this.typeAheadChars = '';
     const {onItemSelect} = this.props;
     const {highlightedIndex} = this.state;
     const items = this.getItems();
