@@ -171,8 +171,8 @@ export default class MenuStatefulContainer extends React.Component<
     var nextIndex = prevIndex;
     var list = this.getItems();
     var notMatch = true;
-    for (var n = 0; n < list.length; n++) {
-      var label = 'label' in list[n] ? list[n].label : list[n].id;
+    for (let n = 0; n < list.length; n++) {
+      let label = 'label' in list[n] ? list[n].label : list[n].id;
       if (
         label &&
         label.toUpperCase().indexOf(this.typeAheadChars.toUpperCase()) === 0
@@ -184,8 +184,8 @@ export default class MenuStatefulContainer extends React.Component<
     }
 
     if (notMatch) {
-      for (var n = 0; n < list.length; n++) {
-        var label = 'label' in list[n] ? list[n].label : list[n].id;
+      for (let n = 0; n < list.length; n++) {
+        let label = 'label' in list[n] ? list[n].label : list[n].id;
         if (
           label &&
           label.toUpperCase().indexOf(this.typeAheadChars.toUpperCase()) > 0
