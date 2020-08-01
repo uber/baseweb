@@ -17,18 +17,10 @@ export const KIND = {
   primary: 'primary',
   accent: 'accent',
   positive: 'positive',
-  warning: 'warning',
   negative: 'negative',
-  custom: 'custom',
-  // Primitive color tags
-  // These are the Base approved tags going forwards
-  // TODO(major): remove semantic tags
-  black: 'black',
-  red: 'red',
+  warning: 'warning',
   orange: 'orange',
-  yellow: 'yellow',
-  green: 'green',
-  blue: 'blue',
   purple: 'purple',
   brown: 'brown',
+  custom: 'custom',
 };
