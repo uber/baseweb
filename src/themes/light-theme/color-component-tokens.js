@@ -224,6 +224,17 @@ export default (
   notificationNegativeText: themePrimitives.negative500,
 
   // Tag
+
+  // Custom ramps
+  tagFontDisabledRampUnit: '100',
+  tagOutlinedDisabledRampUnit: '200',
+  tagSolidFontRampUnit: '0',
+  tagSolidRampUnit: '400',
+  tagOutlinedFontHoverRampUnit: '400',
+  tagOutlinedHoverRampUnit: '50',
+  tagOutlinedFontRampUnit: '400',
+  tagOutlinedRampUnit: '300',
+  // Deprecated
   tagSolidHoverRampUnit: '50',
   tagSolidActiveRampUnit: '100',
   tagSolidDisabledRampUnit: '50',
@@ -236,20 +247,19 @@ export default (
   tagLightFontHoverRampUnit: '500',
   tagOutlinedActiveRampUnit: '0',
 
-  tagFontDisabledRampUnit: '100',
-  tagOutlinedDisabledRampUnit: '200',
-  tagSolidFontRampUnit: '0',
-  tagSolidRampUnit: '400',
-  tagOutlinedFontHoverRampUnit: '400',
-  tagOutlinedHoverRampUnit: '50',
-  tagOutlinedFontRampUnit: '400',
-  tagOutlinedRampUnit: '300',
-
-  tagNeutralSolidBackground: themePrimitives.mono900,
+  // Neutral
+  tagNeutralFontDisabled: themePrimitives.mono600,
+  tagNeutralOutlinedDisabled: themePrimitives.mono400,
+  tagNeutralSolidFont: themePrimitives.mono900,
+  tagNeutralSolidBackground: themePrimitives.mono300,
+  tagNeutralOutlinedFontHover: themePrimitives.mono800,
+  tagNeutralOutlinedHover: themePrimitives.mono200,
+  tagNeutralOutlinedBackground: themePrimitives.mono400,
+  tagNeutralOutlinedFont: themePrimitives.mono900,
+  // Deprecated
   tagNeutralSolidHover: themePrimitives.mono300,
   tagNeutralSolidActive: themePrimitives.mono400,
   tagNeutralSolidDisabled: themePrimitives.mono200,
-  tagNeutralSolidFont: themePrimitives.mono100,
   tagNeutralSolidFontHover: themePrimitives.mono900,
   tagNeutralLightBackground: themePrimitives.mono300,
   tagNeutralLightHover: themePrimitives.mono300,
@@ -257,13 +267,7 @@ export default (
   tagNeutralLightDisabled: themePrimitives.mono200,
   tagNeutralLightFont: themePrimitives.mono900,
   tagNeutralLightFontHover: themePrimitives.mono900,
-  tagNeutralOutlinedBackground: themePrimitives.mono900,
-  tagNeutralOutlinedHover: themePrimitives.mono800,
   tagNeutralOutlinedActive: themePrimitives.mono900,
-  tagNeutralOutlinedDisabled: themePrimitives.mono200,
-  tagNeutralOutlinedFont: themePrimitives.mono900,
-  tagNeutralOutlinedFontHover: themePrimitives.mono200,
-  tagNeutralFontDisabled: themePrimitives.mono500,
 
   // Primary
   tagPrimaryFontDisabled: themePrimitives.primary400,
