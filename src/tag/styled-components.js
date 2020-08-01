@@ -90,7 +90,7 @@ const colorMatrix = {
       borderColor: theme.colors.tagPrimaryOutlinedBackground,
     }),
     [STATE.outline]: theme => ({
-      color: theme.colors.contentPrimary,
+      color: theme.colors.tagPrimaryOutlinedFont,
       backgroundColor: null,
       borderColor: theme.colors.tagPrimaryOutlinedBackground,
     }),
