@@ -50,6 +50,10 @@ const STATE = {
   outline: 'outline',
 };
 
+// Probably best to bake this into the theme once we hit our next major.
+const pick = (theme, light, dark) =>
+  theme.name.includes('dark') ? dark : light;
+
 const colorMatrix = {
   [KIND.neutral]: {
     [STATE.disabled]: theme => ({
@@ -185,68 +189,76 @@ const colorMatrix = {
   },
   [KIND.orange]: {
     [STATE.disabled]: theme => ({
-      color: colorTokens.orange200,
+      color: pick(theme, colorTokens.orange200, colorTokens.orange600),
       backgroundColor: null,
-      borderColor: colorTokens.orange200,
+      borderColor: pick(theme, colorTokens.orange200, colorTokens.orange600),
     }),
     [STATE.solid]: theme => ({
-      color: theme.colors.contentOnColor,
-      backgroundColor: colorTokens.orange400,
+      color: pick(theme, colorTokens.white, colorTokens.orange50),
+      backgroundColor: pick(
+        theme,
+        colorTokens.orange400,
+        colorTokens.orange500,
+      ),
       borderColor: null,
     }),
     [STATE.hover]: theme => ({
       color: colorTokens.orange400,
-      backgroundColor: colorTokens.orange50,
-      borderColor: colorTokens.orange200,
+      backgroundColor: pick(theme, colorTokens.orange50, colorTokens.orange700),
+      borderColor: pick(theme, colorTokens.orange200, colorTokens.orange500),
     }),
     [STATE.outline]: theme => ({
       color: colorTokens.orange400,
       backgroundColor: null,
-      borderColor: colorTokens.orange200,
+      borderColor: pick(theme, colorTokens.orange200, colorTokens.orange500),
     }),
   },
   [KIND.purple]: {
     [STATE.disabled]: theme => ({
-      color: colorTokens.purple200,
+      color: pick(theme, colorTokens.purple200, colorTokens.purple600),
       backgroundColor: null,
-      borderColor: colorTokens.purple200,
+      borderColor: pick(theme, colorTokens.purple200, colorTokens.purple600),
     }),
     [STATE.solid]: theme => ({
-      color: theme.colors.contentOnColor,
-      backgroundColor: colorTokens.purple400,
+      color: pick(theme, colorTokens.white, colorTokens.purple50),
+      backgroundColor: pick(
+        theme,
+        colorTokens.purple400,
+        colorTokens.purple500,
+      ),
       borderColor: null,
     }),
     [STATE.hover]: theme => ({
       color: colorTokens.purple400,
-      backgroundColor: colorTokens.purple50,
-      borderColor: colorTokens.purple200,
+      backgroundColor: pick(theme, colorTokens.purple50, colorTokens.purple700),
+      borderColor: pick(theme, colorTokens.purple200, colorTokens.purple500),
     }),
     [STATE.outline]: theme => ({
       color: colorTokens.purple400,
       backgroundColor: null,
-      borderColor: colorTokens.purple200,
+      borderColor: pick(theme, colorTokens.purple200, colorTokens.purple500),
     }),
   },
   [KIND.brown]: {
     [STATE.disabled]: theme => ({
-      color: colorTokens.brown200,
+      color: pick(theme, colorTokens.brown200, colorTokens.brown600),
       backgroundColor: null,
-      borderColor: colorTokens.brown200,
+      borderColor: pick(theme, colorTokens.brown200, colorTokens.brown600),
     }),
     [STATE.solid]: theme => ({
-      color: theme.colors.contentOnColor,
-      backgroundColor: colorTokens.brown400,
+      color: pick(theme, colorTokens.white, colorTokens.brown50),
+      backgroundColor: pick(theme, colorTokens.brown400, colorTokens.brown500),
       borderColor: null,
     }),
     [STATE.hover]: theme => ({
       color: colorTokens.brown400,
-      backgroundColor: colorTokens.brown50,
-      borderColor: colorTokens.brown200,
+      backgroundColor: pick(theme, colorTokens.brown50, colorTokens.brown700),
+      borderColor: pick(theme, colorTokens.brown200, colorTokens.brown500),
     }),
     [STATE.outline]: theme => ({
       color: colorTokens.brown400,
       backgroundColor: null,
-      borderColor: colorTokens.brown200,
+      borderColor: pick(theme, colorTokens.brown200, colorTokens.brown500),
     }),
   },
   [KIND.custom]: {
