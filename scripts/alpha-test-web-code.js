@@ -22,10 +22,8 @@ function wait(ms) {
 async function createBuild(token, version) {
   const body = {
     commit: 'HEAD',
-    // revert branch change after land
-    branch: 'baseui-alpha-test-task',
-    // branch: 'master',
-    message: '[canary-test-baseui] Triggered from CI',
+    branch: 'master',
+    message: '[alpha-test-baseui] Triggered from CI',
     meta_data: {task: 'baseui-alpha-test'},
     env: {
       TASK: 'baseui-alpha-test',
@@ -74,12 +72,10 @@ async function main() {
     );
   }
 
-  // TODO: remove the hardcoded value before landing
-  const version = '0.0.0-alpha-767984c';
-  // const {version} = publishToNpm({
-  //   tag: 'alpha',
-  //   commit: process.env.BUILDKITE_COMMIT,
-  // });
+  const {version} = publishToNpm({
+    tag: 'alpha',
+    commit: process.env.BUILDKITE_COMMIT,
+  });
 
   const {web_url, number} = await createBuild(buildkiteToken, version);
 
