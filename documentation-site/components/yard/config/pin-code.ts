@@ -47,6 +47,11 @@ const PincodeConfig: TConfig = {
       'type',
       'inputRef',
     ]),
+    mask: {
+      value: false,
+      type: PropTypes.Boolean,
+      description: 'Masks the pin code',
+    },
     placeholder: {
       value: undefined,
       placeholder: 'x',

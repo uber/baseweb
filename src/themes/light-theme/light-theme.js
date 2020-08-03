@@ -37,7 +37,7 @@ export const LightTheme: ThemeT = {
   mediaQuery,
   sizing,
   typography: getTypography(),
-  // TODO(#2318) Remove it in the next v10 major version.
+  // TODO(#2318) Remove it in the next v11 major version.
   // Do not use.
   zIndex: {
     modal: 2000,

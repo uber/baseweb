@@ -55,6 +55,7 @@ class BaseInput<T: EventTarget> extends React.Component<
     onFocus: () => {},
     onClear: () => {},
     clearable: false,
+    clearOnEscape: true,
     overrides: {},
     pattern: null,
     placeholder: '',
@@ -115,7 +116,11 @@ class BaseInput<T: EventTarget> extends React.Component<
   }
 
   onInputKeyDown = (e: KeyboardEvent) => {
-    if (this.props.clearable && e.key === 'Escape' && this.inputRef.current) {
+    if (
+      this.props.clearOnEscape &&
+      e.key === 'Escape' &&
+      this.inputRef.current
+    ) {
       this.clearValue();
       // prevent event from closing modal or doing something unexpected
       e.stopPropagation();

@@ -40,8 +40,6 @@ export default class FormControl extends React.Component<
     overrides: {},
     label: null,
     caption: null,
-    error: false,
-    positive: false,
     disabled: false,
   };
   state = {captionId: getBuiId()};

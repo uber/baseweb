@@ -35,6 +35,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     disabled = false,
     error = false,
     onChange,
+    onSubmit,
     mapOptionToNode,
     mapOptionToString,
     name,
@@ -132,9 +133,14 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     if (event.keyCode === ENTER) {
       let clickedOption = options[selectionIndex];
       if (clickedOption) {
+        event.preventDefault();
         setIsOpen(false);
         setSelectionIndex(-1);
         onChange(mapOptionToString(clickedOption), clickedOption);
+      } else {
+        if (onSubmit) {
+          onSubmit({closeListbox: () => setIsOpen(false), value});
+        }
       }
     }
     if (event.keyCode === ESCAPE) {
@@ -268,7 +274,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
           aria-expanded={isOpen}
           aria-haspopup="listbox"
           aria-owns={listboxId}
-          // a11y linter implements the older 1.0 spec, supressing to use updated 1.1
+          // a11y linter implements the older 1.0 spec, suppressing to use updated 1.1
           // https://github.com/A11yance/aria-query/issues/43
           // https://github.com/evcohen/eslint-plugin-jsx-a11y/issues/442
           // eslint-disable-next-line jsx-a11y/role-has-required-aria-props

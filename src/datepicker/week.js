@@ -8,19 +8,16 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import Day from './day.js';
 import {StyledWeek} from './styled-components.js';
-import {
-  getStartOfWeek,
-  addDays,
-  isDayDisabled,
-  isSameDay,
-} from './utils/index.js';
 import {WEEKDAYS} from './constants.js';
+import dateFnsAdapter from './utils/date-fns-adapter.js';
+import DateHelpers from './utils/date-helpers.js';
+
 import {getOverrides} from '../helpers/overrides.js';
 import type {WeekPropsT} from './types.js';
 
-export default class Week extends React.Component<WeekPropsT> {
+export default class Week<T = Date> extends React.Component<WeekPropsT<T>> {
   static defaultProps = {
-    date: new Date(),
+    adapter: dateFnsAdapter,
     highlightedDate: null,
     onDayClick: () => {},
     onDayFocus: () => {},
@@ -32,22 +29,36 @@ export default class Week extends React.Component<WeekPropsT> {
     peekNextMonth: false,
   };
 
+  dateHelpers: DateHelpers<T>;
+
+  constructor(props: WeekPropsT<T>) {
+    super(props);
+    this.dateHelpers = new DateHelpers(props.adapter);
+  }
+
   renderDays = () => {
-    const startOfWeek = getStartOfWeek(this.props.date, this.props.locale);
+    const startOfWeek = this.dateHelpers.getStartOfWeek(
+      this.props.date || this.dateHelpers.date(),
+      this.props.locale,
+    );
     const days = [];
     // $FlowFixMe
     return days.concat(
       WEEKDAYS.map((offset: number) => {
-        const day = addDays(startOfWeek, offset);
+        const day = this.dateHelpers.addDays(startOfWeek, offset);
         return (
           // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
           <Day
+            adapter={this.props.adapter}
             date={day}
-            disabled={isDayDisabled(day, this.props)}
+            disabled={this.dateHelpers.isDayDisabled(day, this.props)}
             excludeDates={this.props.excludeDates}
             filterDate={this.props.filterDate}
             highlightedDate={this.props.highlightedDate}
-            highlighted={isSameDay(day, this.props.highlightedDate)}
+            highlighted={this.dateHelpers.isSameDay(
+              day,
+              this.props.highlightedDate,
+            )}
             includeDates={this.props.includeDates}
             focusedCalendar={this.props.focusedCalendar}
             range={this.props.range}

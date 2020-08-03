@@ -18,7 +18,7 @@ const ProgressBarConfig: TConfig = {
       value: 10,
       type: PropTypes.Number,
       description:
-        'Progess bar value attribute normalized in the 0 to 100 range.',
+        'Progress bar value attribute normalized in the 0 to 100 range.',
       stateful: true,
     },
     getProgressLabel: {
@@ -43,7 +43,7 @@ const ProgressBarConfig: TConfig = {
     successValue: {
       value: 100,
       type: PropTypes.Number,
-      description: 'A custom completion value. Will be removed in v10.',
+      description: 'A custom completion value. Will be removed in v11.',
       hidden: true,
     },
     errorMessage: {

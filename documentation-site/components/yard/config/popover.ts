@@ -160,8 +160,9 @@ const PopoverConfig: TConfig = {
     },
     mountNode: {
       value: undefined,
-      type: PropTypes.String,
-      description: 'Defines where to mount the popover.',
+      type: PropTypes.Object,
+      description:
+        'Defines where to mount the popover. It accepts an HTMLElement.',
       hidden: true,
     },
     popperOptions: {

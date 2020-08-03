@@ -179,6 +179,10 @@ const routes = [
             title: 'Tabs',
             itemId: '/components/tabs',
           },
+          {
+            title: 'Tabs (Motion)',
+            itemId: '/components/tabs-motion',
+          },
         ],
       },
       {
@@ -261,6 +265,10 @@ const routes = [
           {
             title: 'Progress Steps',
             itemId: '/components/progress-steps',
+          },
+          {
+            title: 'Skeleton',
+            itemId: '/components/skeleton',
           },
           {
             title: 'Spinner',

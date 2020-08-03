@@ -107,7 +107,7 @@ export function getOverrides(
     typeof override === 'object' &&
     typeof override.props === 'function'
   ) {
-    // TODO(v10)
+    // TODO(v11)
     if (__DEV__) {
       console.warn(
         'baseui:Overrides Props as a function will be removed in the next major version.',

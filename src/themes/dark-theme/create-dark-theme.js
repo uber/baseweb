@@ -55,7 +55,7 @@ export default function createDarkTheme(
     typography: primaryFontFamily
       ? getTypography({primaryFontFamily})
       : getTypography(),
-    // TODO(#2318) Remove in v10, the next major version.
+    // TODO(#2318) Remove in v11, the next major version.
     // Do not use.
     zIndex: {
       modal: 2000,

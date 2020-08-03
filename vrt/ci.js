@@ -76,7 +76,7 @@ function buildWasTriggeredByPR() {
   // This env variable can be a PR number ("1234") or "false"
   const result = BUILDKITE_PULL_REQUEST > 0;
   if (result) {
-    log(`This build was triggerd by a PR.`);
+    log(`This build was triggered by a PR.`);
   } else {
     log(`This build was not triggered by a PR.`);
   }
@@ -320,7 +320,7 @@ function pushChangesToGitHub() {
   );
   execSync(`git checkout -b ${SNAPSHOT_BRANCH_NAME}`);
   execSync(`git add vrt/__image_snapshots__/`);
-  log(`Commiting updated snapshots to ${SNAPSHOT_BRANCH_NAME}.`);
+  log(`Committing updated snapshots to ${SNAPSHOT_BRANCH_NAME}.`);
   execSync(
     `git commit -m "test(vrt): update visual snapshots for ${ORIGINAL_COMMIT_SHORT_HASH} [skip ci]"`,
   );

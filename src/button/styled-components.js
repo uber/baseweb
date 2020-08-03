@@ -87,7 +87,7 @@ export const StartEnhancer = styled<SharedStylePropsT>('div', ({$theme}) => {
 export const LoadingSpinnerContainer = styled<SharedStylePropsT>(
   'div',
   ({$theme, $size}) => {
-    // we don't have a themeing value for this
+    // we don't have a theming value for this
     let margins = '3px';
     if ($size === SIZE.mini || $size === SIZE.compact) {
       margins = $theme.sizing.scale0;

@@ -129,7 +129,7 @@ describe('Datepicker - keyboard navigation', () => {
     // focus the calendar
     await page.keyboard.press('ArrowDown');
     // the initially preset through the props highlighted date (Mar 10)
-    // is highlighten and focused when calendar gets opened and no date selected
+    // is highlighted and focused when calendar gets opened and no date selected
     const isMar10Active = await isActiveEl(page, selectors.mar10);
     expect(isMar10Active).toBe(true);
 
@@ -184,12 +184,12 @@ describe('Datepicker - keyboard navigation', () => {
     isMar12Active = await isActiveEl(page, selectors.mar12Selected);
     expect(isMar12Active).toBe(true);
 
-    // Now we'll check that with keyboard navigation the higlighed/focusable
-    // date is set appropriatly and doesn't jump beetween options like
+    // Now we'll check that with keyboard navigation the highlighted/focusable
+    // date is set appropriately and doesn't jump between options like
     // the first day of the month, preset highlighted date, or selected date.
 
     // Navigating out of the calendar into its header and then back into the calendar
-    // preserves the last highlighed day as highlighted/focusable.
+    // preserves the last highlighted day as highlighted/focusable.
 
     // navigate to the calendar's header
     await page.keyboard.press('Tab');

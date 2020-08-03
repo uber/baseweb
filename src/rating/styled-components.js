@@ -37,7 +37,7 @@ export const StyledRoot = styled<StyledRootPropsT>('ul', ({$theme}) => {
 
 export const StyledStar = styled<StyledRatingItemPropsT>(
   'li',
-  ({$theme, $isActive, $isSelected, $isFocusVisible}) => {
+  ({$theme, $isActive, $isSelected, $isFocusVisible, $size}) => {
     let starStroke = $theme.colors.mono500;
     let starFill = $theme.colors.mono300;
 
@@ -57,15 +57,17 @@ export const StyledStar = styled<StyledRatingItemPropsT>(
       marginTop: 0,
       marginBottom: 0,
       marginRight: $theme.sizing.scale300,
-      width: '22px',
-      height: '20px',
+      width: `${$size}px`,
+      height: `${$size}px`,
       transform: $isSelected ? 'scale(1.35)' : '',
       outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
       outlineOffset: '2px',
       ':after': {
         transition: `all ${$theme.animation.timing400}`,
         content:
-          `url('data:image/svg+xml,` + starSVG(starFill, starStroke) + `')`,
+          `url('data:image/svg+xml,` +
+          starSVG(starFill, starStroke, $size) +
+          `')`,
       },
     };
 
@@ -75,7 +77,7 @@ export const StyledStar = styled<StyledRatingItemPropsT>(
 
 export const StyledEmoticon = styled<StyledRatingItemPropsT>(
   'li',
-  ({$theme, $isActive, $isSelected, $index = 1, $isFocusVisible}) => {
+  ({$theme, $isActive, $isSelected, $index = 1, $isFocusVisible, $size}) => {
     let emoticonFill = $theme.colors.mono500;
 
     if ($isActive) {
@@ -83,11 +85,11 @@ export const StyledEmoticon = styled<StyledRatingItemPropsT>(
     }
 
     const ratingIcons = [
-      angryRatingSVG(emoticonFill),
-      sadRatingSVG(emoticonFill),
-      neutralRatingSVG(emoticonFill),
-      happyRatingSVG(emoticonFill),
-      veryHappyRatingSVG(emoticonFill),
+      angryRatingSVG(emoticonFill, $size),
+      sadRatingSVG(emoticonFill, $size),
+      neutralRatingSVG(emoticonFill, $size),
+      happyRatingSVG(emoticonFill, $size),
+      veryHappyRatingSVG(emoticonFill, $size),
     ];
 
     const styles = {
@@ -102,8 +104,8 @@ export const StyledEmoticon = styled<StyledRatingItemPropsT>(
       marginTop: 0,
       marginBottom: 0,
       marginRight: $theme.sizing.scale300,
-      width: '44px',
-      height: '44px',
+      width: `${$size}px`,
+      height: `${$size}px`,
       transform: $isSelected ? 'scale(1.1)' : '',
       outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
       outlineOffset: '2px',

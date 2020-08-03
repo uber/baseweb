@@ -219,6 +219,7 @@ const Index = (props: {
       logoSrcs={[
         '/images/uber-logo.png',
         '/images/broadcom-logo.png',
+        '/images/metromile-logo.png',
         '/images/extensis-logo.png',
         '/images/uptime-logo.png',
         '/images/streamlit-logo.png',

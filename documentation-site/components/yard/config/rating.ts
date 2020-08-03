@@ -28,7 +28,11 @@ const ratingConfig: TConfig = {
         into: 'value',
       },
     },
-
+    size: {
+      value: '22',
+      type: PropTypes.Number,
+      description: 'The size of rating icons.',
+    },
     value: {
       value: 4,
       type: PropTypes.Number,

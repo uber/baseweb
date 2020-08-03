@@ -21,11 +21,11 @@ export type ProgressBarPropsT = {
   getProgressLabel: (value: number, successValue: number) => React.Node,
   /** The value between `0` and `100 | successValue` of the progress indicator. */
   value: number,
-  /** A custom completion value. Should be deleted in v10. */
+  /** A custom completion value. Should be deleted in v11. */
   successValue: number,
   /** If set to false, label is hidden and `getProgressLabel` is ignored. */
   showLabel: boolean,
-  /** If set to true, theres and infinite loading animation. */
+  /** If set to true, there’s and infinite loading animation. */
   infinite: boolean,
   /** Error message for screen-reader users**/
   errorMessage?: string,

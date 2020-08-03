@@ -72,7 +72,7 @@ describe('categorical column', () => {
     );
 
     const checkboxes = container.querySelectorAll('input[type="checkbox"]');
-    // counts an additional checkbox to account for the 'exlude' toggle
+    // counts an additional checkbox to account for the 'exclude' toggle
     expect(checkboxes.length).toBe(4);
   });
 

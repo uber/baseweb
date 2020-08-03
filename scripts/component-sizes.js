@@ -109,7 +109,7 @@ function compare(original, current) {
 
     const ratio = currentSize / originalSize;
     if (ratio > 1.1 || ratio < 0.9) {
-      console.error(`This size of ${components[i]} changed signifcantly`);
+      console.error(`This size of ${components[i]} changed significantly`);
       console.error(
         'If this is expected, rerun this command with the environment variable FORCE_UPDATE=true',
       );

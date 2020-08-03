@@ -44,7 +44,7 @@ export default () => {
       >
         <CheckboxWithRef>
           Created a wrapper component that renders Checkbox and
-          passes popover's anchor props to the Chackbox's Root
+          passes popover's anchor props to the Checkbox's Root
           element.
         </CheckboxWithRef>
       </StatefulPopover>

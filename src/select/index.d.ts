@@ -78,6 +78,7 @@ export interface SelectProps {
   'aria-labelledby'?: string;
   autoFocus?: boolean;
   backspaceRemoves?: boolean;
+  backspaceClearsInputValue?: boolean;
   clearable?: boolean;
   closeOnSelect?: boolean;
   creatable?: boolean;
@@ -324,7 +325,7 @@ export const StyledIconsContainer: StyletronComponent<any>;
 export const StyledSelectArrow: StyletronComponent<any>;
 export const StyledClearIcon: StyletronComponent<any>;
 export const StyledSearchIconContainer: StyletronComponent<any>;
-// TODO(v10): remove StyledSearchIcon
+// TODO(v11): remove StyledSearchIcon
 export const StyledSearchIcon: StyletronComponent<any>;
 export const StyledDropdownContainer: StyletronComponent<any>;
 export const StyledDropdown: StyletronComponent<any>;

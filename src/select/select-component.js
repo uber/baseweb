@@ -555,7 +555,10 @@ class Select extends React.Component<PropsT, SelectStateT> {
     const renderLabel = this.props.getValueLabel || this.getValueLabel;
     const labelForInput = renderLabel({option: item, index: valueLength - 1});
     // label might not be a string, it might be a Node of another kind.
-    if (typeof labelForInput === 'string') {
+    if (
+      !this.props.backspaceClearsInputValue &&
+      typeof labelForInput === 'string'
+    ) {
       const remainingInput = labelForInput.slice(0, -1);
       this.setState({
         inputValue: remainingInput,
@@ -627,7 +630,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       <LoadingIndicator
         size={16}
         overrides={{Svg: {style: getLoadingIconStyles}}}
-        $silenceV10DeprecationWarning
+        $silenceV11DeprecationWarning
         {...sharedProps}
         {...loadingIndicatorProps}
       />
@@ -841,7 +844,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
     const sharedProps = this.getSharedProps();
 
     return (
-      // TODO(v10): remove searchIconProps from SearchIconContainer
+      // TODO(v11): remove searchIconProps from SearchIconContainer
       <SearchIconContainer
         {...sharedProps}
         {...searchIconProps}

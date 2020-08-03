@@ -26,6 +26,7 @@ const defaultProps = {
   size: SIZE.default,
   manageFocus: true,
   values: ['', '', '', ''],
+  mask: false,
 };
 
 export default defaultProps;

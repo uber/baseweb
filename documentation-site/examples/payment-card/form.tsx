@@ -29,7 +29,7 @@ export default () => {
   }
 
   return (
-    <div className={css({display: 'flex', flexDirecton: 'row'})}>
+    <div className={css({display: 'flex'})}>
       <FormControl
         overrides={getFormOverrides('250px')}
         caption="Card number"

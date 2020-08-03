@@ -21,6 +21,7 @@ import PinCodeCompletion from 'examples/pin-code/completion.js';
 import PinCodeOverride from 'examples/pin-code/override.js';
 import PinCodeEvent from 'examples/pin-code/event.js';
 import PinCodeStateful from 'examples/pin-code/stateful.js';
+import PinCodeMask from 'examples/pin-code/mask.js';
 
 import * as PinCodeExports from 'baseui/pin-code/index.js';
 import {StatefulPinCode} from 'baseui/pin-code/index.js';
@@ -88,6 +89,13 @@ You can control the size of the inputs with the `size` prop.
 
 If you donʼt like the default placeholder (`○`), you can change that too.
 Notice how each placeholder disappears when any of the inputs have focus.
+
+<Example title="Adding mask" path="pin-code/mask.js">
+  <PinCodeMask />
+</Example>
+
+You can add a default mask (`.`) by setting `mask=true`.
+Prop `mask` also accepts `string` input as customized mask style. For example, you can get an asterisk mask by setting `mask='*'`.
 
 <Example title="Disable focus management" path="pin-code/no-tab.js">
   <PinCodeNoTab />

@@ -7,14 +7,22 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 type DateValues<T> = T | string | number;
-type DateInput<T> = DateValues<T>;
+export type DateInput<T> = DateValues<T>;
 
 type Comparison<T> = (value: T, comparing: T) => boolean;
 type DateInDateOut<T> = (value: T) => T;
 
 type DateFunc<T> = (DateInput<T> | void) => T;
 
+export type AdapterOptions = {
+  locale?: mixed,
+  formats?: {[key: string]: string},
+  instance?: mixed,
+};
+
 export type DateIOAdapter<T> = {
+  locale?: mixed,
+  formats: {[key: string]: string},
   date: DateFunc<T>,
   toJsDate(value: DateInput<T>): Date,
   parse(value: string, format: string): T,
@@ -22,8 +30,8 @@ export type DateIOAdapter<T> = {
   is12HourCycleInCurrentLocale(): boolean,
 
   isNull(value?: T): boolean,
-  isValid(value: DateInput<T>): boolean,
-  getDiff: Comparison<T>,
+  isValid(value: mixed): boolean,
+  getDiff: (from: T, to: T) => number,
   isEqual: Comparison<T>,
   isSameDay: Comparison<T>,
   isSameMonth: Comparison<T>,
@@ -41,6 +49,8 @@ export type DateIOAdapter<T> = {
   startOfWeek: DateInDateOut<T>,
   endOfWeek(value: T): T,
   addDays(value: T, count: number): T,
+  addMonths(value: T, count: number): T,
+  isWithinRange(value: T, range: T[]): boolean,
 
   startOfDay: DateInDateOut<T>,
   endOfDay: DateInDateOut<T>,

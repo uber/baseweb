@@ -235,7 +235,7 @@ function getDayStyles(code, {colors}): any {
     ...generateDayStyles('000100000000000', {
       color: colors.calendarDayForegroundSelected,
     }),
-    // selected hightlighted date
+    // selected highlighted date
     ...generateDayStyles('001100000000000', {
       color: colors.calendarDayForegroundSelectedHighlighted,
     }),
@@ -372,7 +372,7 @@ function getDayStyles(code, {colors}): any {
       },
     },
     // range: pseudo-highlighted date (in a range where only one date is
-    // selected and second date is highlighed)
+    // selected and second date is highlighted)
     '101000001100000': {
       color: colors.calendarDayForegroundPseudoSelected,
       ':before': {
