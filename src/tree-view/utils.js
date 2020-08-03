@@ -196,64 +196,50 @@ export const getCharMatchId = (
   closestOmmer: TreeNodeIdT | null,
   getId: (TreeNodeT<>) => TreeNodeIdT,
 ) => {
-  var foundid = matchString(
-    nodes,
-    nodeId,
-    chars,
-    closestOmmer,
-    getId,
-    false,
-    true,
-  )[0];
-  if (!foundid)
-    foundid = matchString(
-      nodes,
-      nodeId,
-      chars,
-      closestOmmer,
-      getId,
-      false,
-      false,
-    )[0];
+  var foundid = matchString(nodes, nodeId, chars, closestOmmer, getId, true);
+  if (foundid) return foundid;
+  foundid = matchString(nodes, nodeId, chars, closestOmmer, getId, false);
   return foundid;
 };
+
 export const matchString = (
   nodes: TreeNodeT<>[],
   nodeId: TreeNodeIdT,
   chars: string,
   closestOmmer: TreeNodeIdT | null,
   getId: (TreeNodeT<>) => TreeNodeIdT,
-  passNodeId: boolean,
-  rangeAfter: boolean,
+  //set true, match the prefix; set false, match full text
+  matchPrefix: boolean,
 ) => {
-  var pass = passNodeId;
   for (let i = 0; i < nodes.length; i++) {
-    if (
-      pass === rangeAfter &&
-      nodes[i].label &&
-      nodes[i].label.toUpperCase().indexOf(chars.toUpperCase()) === 0
-    ) {
-      return [getId(nodes[i]), pass];
+    if (nodes[i].label && typeof nodes[i].label === 'string') {
+      if (
+        (matchPrefix &&
+          nodes[i].label.toUpperCase().indexOf(chars.toUpperCase()) === 0) ||
+        (!matchPrefix &&
+          nodes[i].label.toUpperCase().indexOf(chars.toUpperCase()) > 0)
+      ) {
+        return getId(nodes[i]);
+      }
     }
-    pass = getId(nodes[i]) === nodeId || pass;
     if (nodes[i].isExpanded && nodes[i].children && nodes[i].children.length) {
-      const [foundId, leafPass] = matchString(
+      const foundId = matchString(
         nodes[i].children,
         nodeId,
         chars,
         nodes[i + 1] ? getId(nodes[i + 1]) : closestOmmer,
         getId,
-        pass,
-        rangeAfter,
+        matchPrefix,
       );
-      pass = pass || leafPass;
+
       if (foundId) {
-        return [foundId, pass];
+        return foundId;
       }
     }
   }
-  return [null, pass];
+  return null;
 };
+
 export const defaultGetId = (node: TreeNodeT<>) => {
   if (!node.id) {
     throw Error(
