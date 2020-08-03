@@ -12,7 +12,7 @@ LICENSE file in the root directory of this source tree.
 const fetch = require('node-fetch').default;
 const publishToNpm = require('./publish-to-npm.js');
 
-const BASE_URL =
+const BUILDKITE_TASK_RUNNER_URL =
   'https://api.buildkite.com/v2/organizations/uber/pipelines/web-code-task-runner/builds';
 
 function wait(ms) {
@@ -23,17 +23,17 @@ async function createBuild(token, version) {
   const body = {
     commit: 'HEAD',
     // revert branch change after land
-    branch: 'baseui-upgrade-task-ignore-other-projects',
+    branch: 'baseui-alpha-test-task',
     // branch: 'master',
     message: '[canary-test-baseui] Triggered from CI',
-    meta_data: {task: 'upgrade-base-ui'},
+    meta_data: {task: 'baseui-alpha-test'},
     env: {
-      TASK: 'upgrade-base-ui',
+      TASK: 'baseui-alpha-test',
       TASK_ENV: `PACKAGE_VERSION=baseui@${version}`,
     },
   };
 
-  const createBuildResponse = await fetch(BASE_URL, {
+  const createBuildResponse = await fetch(BUILDKITE_TASK_RUNNER_URL, {
     method: 'post',
     body: JSON.stringify(body),
     headers: {Authorization: `Bearer ${token}`},
@@ -50,9 +50,10 @@ async function createBuild(token, version) {
 }
 
 async function getBuild(token, number) {
-  const getBuildResponse = await fetch(`${BASE_URL}/${number}`, {
-    headers: {Authorization: `Bearer ${token}`},
-  });
+  const getBuildResponse = await fetch(
+    `${BUILDKITE_TASK_RUNNER_URL}/${number}`,
+    {headers: {Authorization: `Bearer ${token}`}},
+  );
 
   if (!getBuildResponse.ok) {
     throw new Error(
@@ -73,8 +74,8 @@ async function main() {
     );
   }
 
-  // TODO: remove the dardcoded value before landing
-  const version = '0.0.0-alpha-e81abe3';
+  // TODO: remove the hardcoded value before landing
+  const version = '0.0.0-alpha-767984c';
   // const {version} = publishToNpm({
   //   tag: 'alpha',
   //   commit: process.env.BUILDKITE_COMMIT,
