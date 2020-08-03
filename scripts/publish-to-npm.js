@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 // Sets local package.json to current baseui version.
 
 /* eslint-env node */
+// @flow
 
 const fs = require('fs');
 const path = require('path');
@@ -72,7 +73,7 @@ function publishEslintPlugin(tag) {
 
 const rootPackageJSONPath = path.resolve(ROOT_DIR, 'package.json');
 
-module.exports = function publishToNpm(params) {
+module.exports = function publishToNpm(params /*: any */) {
   const {tag, commit} = params;
 
   if (tag !== ALPHA_TAG && tag !== LATEST_TAG) {

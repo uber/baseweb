@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 // Sets local package.json to current baseui version.
 
 /* eslint-env node */
+// @flow
 
 const fetch = require('node-fetch').default;
 const publishToNpm = require('./publish-to-npm.js');
@@ -81,6 +82,7 @@ async function main() {
 
   console.log(`View alpha build CI checks at ${web_url}.`);
 
+  // eslint-disable-next-line no-constant-condition
   while (true) {
     await wait(60 * 1000);
     const {state} = await getBuild(buildkiteToken, number);
