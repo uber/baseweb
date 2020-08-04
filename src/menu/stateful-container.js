@@ -218,7 +218,6 @@ export default class MenuStatefulContainer extends React.Component<
 
   // Handler for arrow keys
   handleArrowKey = (event: KeyboardEvent) => {
-    this.typeAheadChars = '';
     const rootRef = this.props.rootRef ? this.props.rootRef : this.rootRef;
     const prevIndex = this.state.highlightedIndex;
     let nextIndex = prevIndex;
@@ -276,7 +275,6 @@ export default class MenuStatefulContainer extends React.Component<
 
   // Handler for enter key
   handleEnterKey = (event: KeyboardEvent) => {
-    this.typeAheadChars = '';
     const {onItemSelect} = this.props;
     const {highlightedIndex} = this.state;
     const items = this.getItems();
