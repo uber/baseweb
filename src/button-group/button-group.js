@@ -79,6 +79,7 @@ export class ButtonGroupRoot extends React.Component<{|
               computedKind = KIND.secondary;
             }
           }
+
           return React.cloneElement(child, {
             disabled: disabled || child.props.disabled,
             ref: isRadio ? this.childRefs[index] : undefined,
@@ -106,7 +107,7 @@ export class ButtonGroupRoot extends React.Component<{|
                   this.childRefs[nextIndex].current.focus();
               }
             },
-            kind: !kind && isSelected(selected, index) ? KIND.primary : kind,
+            kind: computedKind,
             onClick: event => {
               if (disabled) {
                 return;
