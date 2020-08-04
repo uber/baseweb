@@ -106,7 +106,7 @@ export class ButtonGroupRoot extends React.Component<{|
                   this.childRefs[nextIndex].current.focus();
               }
             },
-            kind: computedKind,
+            kind: !kind && isSelected(selected, index) ? KIND.primary : kind,
             onClick: event => {
               if (disabled) {
                 return;
