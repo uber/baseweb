@@ -42,15 +42,11 @@ export default function TreeView(props: TreeViewPropsT) {
   const [selectedNodeId, setSelectedNodeId] = React.useState(firstId);
   const [focusVisible, setFocusVisible] = React.useState(false);
   const [typeAheadChars, setTypeAheadChars] = React.useState('');
+  const timeOutRef = React.useRef(null);
   const treeItemRefs: {
     // eslint-disable-next-line flowtype/no-weak-types
     current: {[key: TreeNodeIdT]: React.ElementRef<any>},
   } = React.useRef({});
-
-  React.useEffect(() => {
-    const timer = setTimeout(() => setTypeAheadChars(''), 500);
-    return () => clearTimeout(timer);
-  }, [typeAheadChars]);
 
   const focusTreeItem = (id: TreeNodeIdT | null) => {
     if (!id) return;
@@ -117,7 +113,14 @@ export default function TreeView(props: TreeViewPropsT) {
         break;
       default:
         e.preventDefault();
+        if (timeOutRef.current !== null) {
+          clearTimeout(timeOutRef.current);
+        }
         setTypeAheadChars(typeAheadChars + e.key);
+        timeOutRef.current = setTimeout(() => {
+          setTypeAheadChars('');
+        }, 500);
+
         focusTreeItem(
           getCharMatchId(
             data,
