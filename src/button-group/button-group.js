@@ -69,6 +69,16 @@ export class ButtonGroupRoot extends React.Component<{|
           if (isRadio) {
             this.childRefs[index] = React.createRef<HTMLButtonElement>();
           }
+
+          let computedKind = kind;
+
+          if (!computedKind) {
+            if (isSelected(selected, index)) {
+              computedKind = KIND.primary;
+            } else {
+              computedKind = KIND.secondary;
+            }
+          }
           return React.cloneElement(child, {
             disabled: disabled || child.props.disabled,
             ref: isRadio ? this.childRefs[index] : undefined,
@@ -96,7 +106,7 @@ export class ButtonGroupRoot extends React.Component<{|
                   this.childRefs[nextIndex].current.focus();
               }
             },
-            kind: isSelected(selected, index) ? KIND.primary : kind,
+            kind: computedKind,
             onClick: event => {
               if (disabled) {
                 return;
@@ -186,5 +196,4 @@ ButtonGroup.defaultProps = {
   onClick: () => {},
   shape: SHAPE.default,
   size: SIZE.default,
-  kind: KIND.secondary,
 };
