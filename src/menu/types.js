@@ -122,6 +122,8 @@ export type StatefulContainerPropsT = {
   onItemSelect: OnItemSelectFnT,
   /** Ref for the menu container element. Used to capture key events for navigation */
   rootRef?: RootRefT,
+  /** whether has keyboard type-ahead function */
+  typeAhead: boolean,
   /** Child as function pattern. */
   children: RenderPropsT => React.Node,
   addMenuToNesting?: (ref: {current: HTMLElement | null}) => void,
@@ -196,6 +198,8 @@ export type StatefulMenuPropsT = {
   rootRef?: RootRefT,
   /** Child as function pattern. */
   children?: RenderPropsT => React.Node,
+  /** whether has keyboard type-ahead function */
+  typeAhead?: boolean,
   addMenuToNesting?: (ref: {current: HTMLElement | null}) => void,
   removeMenuFromNesting?: (ref: {current: HTMLElement | null}) => void,
   getParentMenu?: (ref: {current: HTMLElement | null}) => ?{

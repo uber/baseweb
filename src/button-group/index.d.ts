@@ -9,6 +9,14 @@ export interface MODE {
   checkbox: 'checkbox';
   radio: 'radio';
 }
+
+export interface SHAPE {
+  default: 'default';
+  pill: 'pill';
+  round: 'round';
+  square: 'square';
+}
+
 export interface STATE_CHANGE_TYPE {
   change: 'change';
 }
@@ -62,4 +70,5 @@ export class StatefulContainer extends React.Component<
 }
 
 export const MODE: MODE;
+export const SHAPE: SHAPE;
 export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
