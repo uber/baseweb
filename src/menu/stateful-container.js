@@ -155,7 +155,10 @@ export default class MenuStatefulContainer extends React.Component<
         this.handleEnterKey(event);
         break;
       default:
-        if (this.props.typeAhead) this.handleAlphaDown(event);
+        if (this.props.typeAhead) {
+          clearTimeout(this.typeAheadTimeOut);
+          this.handleAlphaDown(event);
+        }
         break;
     }
   };
@@ -169,10 +172,13 @@ export default class MenuStatefulContainer extends React.Component<
     }, 500);
 
     var nextIndex = prevIndex;
+    event.preventDefault();
     var list = this.getItems();
+    if (list.length === 0 || !('label' in list[0])) return;
+
     var notMatch = true;
     for (let n = 0; n < list.length; n++) {
-      let label = 'label' in list[n] ? list[n].label : list[n].id;
+      let label = list[n].label;
       if (
         label &&
         label.toUpperCase().indexOf(this.typeAheadChars.toUpperCase()) === 0
@@ -185,7 +191,7 @@ export default class MenuStatefulContainer extends React.Component<
 
     if (notMatch) {
       for (let n = 0; n < list.length; n++) {
-        let label = 'label' in list[n] ? list[n].label : list[n].id;
+        let label = list[n].label;
         if (
           label &&
           label.toUpperCase().indexOf(this.typeAheadChars.toUpperCase()) > 0
@@ -205,7 +211,7 @@ export default class MenuStatefulContainer extends React.Component<
         // $FlowFixMe
         rootRef.current,
         nextIndex === 0,
-        nextIndex === this.getItems().length - 1,
+        nextIndex === list.length - 1,
       );
     }
   };
@@ -256,6 +262,7 @@ export default class MenuStatefulContainer extends React.Component<
         }
       }
     }
+
     if (this.refList[nextIndex]) {
       scrollItemIntoView(
         this.refList[nextIndex].current,
