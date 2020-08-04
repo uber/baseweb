@@ -82,6 +82,8 @@ export class ButtonGroupRoot extends React.Component<{|
 
           return React.cloneElement(child, {
             disabled: disabled || child.props.disabled,
+            isSelected: isSelected(selected, index),
+            $isSelected: false,
             ref: isRadio ? this.childRefs[index] : undefined,
             tabIndex:
               !isRadio ||
