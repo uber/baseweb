@@ -78,6 +78,7 @@ export interface SelectProps {
   'aria-labelledby'?: string;
   autoFocus?: boolean;
   backspaceRemoves?: boolean;
+  backspaceClearsInputValue?: boolean;
   clearable?: boolean;
   closeOnSelect?: boolean;
   creatable?: boolean;
