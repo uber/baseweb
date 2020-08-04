@@ -1,4 +1,4 @@
-import {ButtonGroup, MODE, SIZE} from 'baseui/button-group';
+import {ButtonGroup, MODE, SIZE, SHAPE} from 'baseui/button-group';
 import {Button} from 'baseui/button';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
@@ -18,6 +18,7 @@ const ButtonGroupConfig: TConfig = {
     ButtonGroup,
     MODE,
     SIZE,
+    SHAPE,
   },
   theme: [
     'buttonPrimaryFill',
@@ -78,6 +79,18 @@ const ButtonGroupConfig: TConfig = {
       imports: {
         'baseui/button-group': {
           named: ['SIZE'],
+        },
+      },
+    },
+    shape: {
+      value: 'SHAPE.default',
+      defaultValue: 'SHAPE.default',
+      options: SHAPE,
+      type: PropTypes.Enum,
+      description: 'Defines the shape of the button in the button group.',
+      imports: {
+        'baseui/button-group': {
+          named: ['SHAPE'],
         },
       },
     },
