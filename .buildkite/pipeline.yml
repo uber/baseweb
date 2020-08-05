@@ -72,7 +72,7 @@ steps:
       queue: workers
 
   - name: deploy-npm-latest
-    command: 'TAG=latest node scripts/publish-to-npm.js'
+    command: 'node scripts/publish-stable-release.js'
     if: build.branch == "master" && build.message =~ /^Release v[0-9]+\.[0-9]+\.[0-9]+/
     plugins:
       'docker-compose#v3.0.3':
@@ -80,9 +80,9 @@ steps:
     agents:
       queue: workers
 
-  - name: deploy-npm-alpha
-    command: 'GIT_COMMIT=$BUILDKITE_COMMIT TAG=alpha node scripts/publish-to-npm.js'
-    if: build.message =~ /^Release v[0-9]+\.[0-9]+\.[0-9]+/
+  - name: alpha-test-web-code
+    command: 'node scripts/alpha-test-web-code.js'
+    if: build.branch != "master" && build.message =~ /^Release v[0-9]+\.[0-9]+\.[0-9]+/
     plugins:
       'docker-compose#v3.0.3':
         run: baseui
