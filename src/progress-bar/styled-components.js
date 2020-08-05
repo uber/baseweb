@@ -6,8 +6,17 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {styled, hexToRgb} from '../styles/index.js';
+import {SIZE} from './constants.js';
 
 import type {StylePropsT} from './types.js';
+
+function getBarHeight(size) {
+  return {
+    [SIZE.small]: '2px',
+    [SIZE.medium]: '4px',
+    [SIZE.large]: '8px',
+  }[size];
+}
 
 export const Root = styled<StylePropsT>('div', props => {
   return {
@@ -16,7 +25,7 @@ export const Root = styled<StylePropsT>('div', props => {
 });
 
 export const Bar = styled<StylePropsT>('div', props => {
-  const {$theme} = props;
+  const {$theme, $size} = props;
   const {colors, sizing, borders} = $theme;
   const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
   return ({
@@ -29,7 +38,7 @@ export const Bar = styled<StylePropsT>('div', props => {
     borderBottomRightRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
     backgroundColor: hexToRgb(colors.progressbarTrackFill, '0.16'),
-    height: '4px',
+    height: getBarHeight($size),
     position: 'relative',
     overflow: 'hidden',
   }: {});
