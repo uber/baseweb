@@ -33,7 +33,7 @@ function Instance({size}: any) {
       <div className={css({width: '375px'})}>
         <Combobox
           value={value}
-          onChange={setValue}
+          onChange={nextValue => setValue(nextValue)}
           mapOptionToString={o => o.label}
           options={options}
           size={size}

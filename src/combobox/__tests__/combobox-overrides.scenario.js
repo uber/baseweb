@@ -29,7 +29,7 @@ function Example() {
       <Combobox
         value={value}
         mapOptionToString={o => o.label}
-        onChange={setValue}
+        onChange={nextValue => setValue(nextValue)}
         options={options}
         overrides={{
           Root: {style: {padding: '10px', backgroundColor: 'lightskyblue'}},
