@@ -8,22 +8,46 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {Label2, Paragraph2, Paragraph3} from '../typography/index.js';
+import {getOverrides} from '../helpers/overrides.js';
 
+import {
+  StyledLabelContent,
+  StyledLabelDescription,
+  StyledLabelSublistContent,
+} from './styled-components.js';
 import type {LabelPropsT} from './types.js';
 
 function ListItemLabel(props: LabelPropsT) {
+  const {overrides = {}} = props;
+
+  const [LabelSublistContent, labelSublistContentProps] = getOverrides(
+    overrides.LabelSublistContent,
+    StyledLabelSublistContent,
+  );
+  const [LabelContent, labelContentProps] = getOverrides(
+    overrides.LabelContent,
+    StyledLabelContent,
+  );
+  const [LabelDescription, labelDescriptionProps] = getOverrides(
+    overrides.LabelDescription,
+    StyledLabelDescription,
+  );
+
   if (props.sublist) {
-    return <Paragraph2>{props.children}</Paragraph2>;
+    return (
+      <LabelSublistContent {...labelSublistContentProps}>
+        {props.children}
+      </LabelSublistContent>
+    );
   }
 
   return (
     <div>
-      <Label2>{props.children}</Label2>
+      <LabelContent {...labelContentProps}>{props.children}</LabelContent>
       {props.description && (
-        <Paragraph3 $style={{marginTop: 0, marginBottom: 0}}>
+        <LabelDescription {...labelDescriptionProps}>
           {props.description}
-        </Paragraph3>
+        </LabelDescription>
       )}
     </div>
   );
