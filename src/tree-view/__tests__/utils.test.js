@@ -215,6 +215,6 @@ describe('getCharMatchId', () => {
   });
 
   test('full text match', () => {
-    expect(getCharMatchId(data, 1, '9', null, getId)).toBe(9);
+    expect(getCharMatchId(data, 1, '7', null, getId)).toBe(7);
   });
 });
