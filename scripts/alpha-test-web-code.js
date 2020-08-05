@@ -65,6 +65,8 @@ async function getBuild(token, number) {
 }
 
 async function main() {
+  console.log('--- Starting web-code alpha-test');
+
   const buildkiteToken = process.env.BUILDKITE_API_TOKEN;
 
   if (!buildkiteToken) {
