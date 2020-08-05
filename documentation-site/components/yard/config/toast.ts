@@ -58,7 +58,7 @@ const toastConfig: TConfig = {
               <Button size={SIZE.compact} onClick={()=>toaster.clear(toastKey)}>Ok</Button>
             </Block>
           );
-          const showMore = (<Block marginTop="15px" display="flex" justifyContent="center">
+          const showMore = (<Block marginTop="15px" display="flex" justifyContent="left">
             <Button size={SIZE.compact} onClick={()=>toaster.update(
               toastKey,
               {children: (<>{msg} to show different notification type. {ok}</>)}
