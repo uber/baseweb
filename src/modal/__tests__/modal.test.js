@@ -12,8 +12,6 @@ import ReactDOM from 'react-dom';
 import {mount} from 'enzyme';
 import {
   Modal,
-  ModalHeader,
-  ModalFooter,
   ModalBody,
   StyledBackdrop,
   StyledClose,
@@ -74,18 +72,6 @@ describe('Modal', () => {
     );
 
     expect(wrapper).toBeEmptyRender();
-  });
-
-  test('renders portal when open', () => {
-    wrapper = mount(
-      <Modal isOpen>
-        <ModalHeader>Hello world</ModalHeader>
-        <ModalBody>Modal Body</ModalBody>
-        <ModalFooter>Footer</ModalFooter>
-      </Modal>,
-    );
-
-    expect(wrapper).toMatchSnapshot('Rendered Modal');
   });
 
   test('close button triggers close', () => {
