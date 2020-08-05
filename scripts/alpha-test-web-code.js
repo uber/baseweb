@@ -65,8 +65,6 @@ async function getBuild(token, number) {
 }
 
 async function main() {
-  console.log('--- Starting web-code alpha-test');
-
   const buildkiteToken = process.env.BUILDKITE_API_TOKEN;
 
   if (!buildkiteToken) {
@@ -75,10 +73,12 @@ async function main() {
     );
   }
 
-  const {version} = publishToNpm({
+  const version = publishToNpm({
     tag: 'alpha',
     commit: process.env.BUILDKITE_COMMIT,
   });
+
+  console.log(`--- Starting web-code alpha-test with baseui@${version}`);
 
   const {web_url, number} = await createBuild(buildkiteToken, version);
 
