@@ -61,6 +61,7 @@ services:
       - CODECOV_TOKEN
       - CI=true
       - BUILDKITE
+      - BUILDKITE_API_TOKEN
       - BUILDKITE_BRANCH
       - BUILDKITE_BUILD_NUMBER
       - BUILDKITE_JOB_ID
