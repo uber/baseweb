@@ -326,8 +326,8 @@ function getKindStyles({
     case KIND.secondary:
       if ($isSelected) {
         return {
-          color: $theme.colors.buttonSecondarySelectedText,
-          backgroundColor: $theme.colors.buttonSecondarySelectedFill,
+          color: $theme.colors.buttonPrimaryText,
+          backgroundColor: $theme.colors.buttonPrimaryFill,
         };
       }
       return {
