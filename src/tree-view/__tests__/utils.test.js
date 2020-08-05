@@ -12,6 +12,7 @@ import {
   getFirstChildId,
   getEndId,
   getExpandableSiblings,
+  getCharMatchId,
   defaultGetId as getId,
 } from '../utils.js';
 import type {TreeNodeT} from '../types.js';
