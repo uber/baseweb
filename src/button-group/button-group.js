@@ -144,14 +144,16 @@ export class ButtonGroupRoot extends React.Component<{|
                     return {
                       borderTopLeftRadius: 0,
                       borderBottomLeftRadius: 0,
+                      marginLeft: '1px',
                     };
                   }
-                  // inner button
+                  // inner button(s)
                   return {
                     borderTopRightRadius: 0,
                     borderBottomRightRadius: 0,
                     borderTopLeftRadius: 0,
                     borderBottomLeftRadius: 0,
+                    marginLeft: '1px',
                   };
                 },
                 props: {
