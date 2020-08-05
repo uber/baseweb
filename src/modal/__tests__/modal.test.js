@@ -76,18 +76,6 @@ describe('Modal', () => {
     expect(wrapper).toBeEmptyRender();
   });
 
-  test('renders portal when open', () => {
-    wrapper = mount(
-      <Modal isOpen>
-        <ModalHeader>Hello world</ModalHeader>
-        <ModalBody>Modal Body</ModalBody>
-        <ModalFooter>Footer</ModalFooter>
-      </Modal>,
-    );
-
-    expect(wrapper).toMatchSnapshot('Rendered Modal');
-  });
-
   test('close button triggers close', () => {
     const onClose = jest.fn();
     wrapper = mount(
