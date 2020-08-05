@@ -65,7 +65,7 @@ function publishEslintPlugin(tag) {
   copyPackageJSONVersionFromRoot(
     path.resolve(ESLINT_PLUGIN_DIR, 'package.json'),
   );
-  spawnSync('npm', ['publish', '--tag', tag, 'dist'], {
+  spawnSync('npm', ['publish', 'dist', '--tag', tag], {
     stdio: 'inherit',
     cwd: ESLINT_PLUGIN_DIR,
   });

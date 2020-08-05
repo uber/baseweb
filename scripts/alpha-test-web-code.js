@@ -73,10 +73,12 @@ async function main() {
     );
   }
 
-  const {version} = publishToNpm({
+  const version = publishToNpm({
     tag: 'alpha',
     commit: process.env.BUILDKITE_COMMIT,
   });
+
+  console.log(`--- Starting web-code alpha-test with baseui@${version}`);
 
   const {web_url, number} = await createBuild(buildkiteToken, version);
 
