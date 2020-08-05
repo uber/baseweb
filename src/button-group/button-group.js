@@ -115,12 +115,21 @@ export class ButtonGroupRoot extends React.Component<{|
             size,
             overrides: {
               BaseButton: {
-                style: () => {
+                style: ({$theme}) => {
                   // Even though baseui's buttons have square corners, some applications override to
                   // rounded. Maintaining corner radius in this circumstance is ideal to avoid further
                   // customization.
                   if (children.length === 1) {
                     return {};
+                  }
+
+                  if (shape !== SHAPE.default) {
+                    if (index === 0) {
+                      return {};
+                    }
+                    return {
+                      marginLeft: $theme.sizing.scale300,
+                    };
                   }
 
                   // left most button
@@ -135,14 +144,16 @@ export class ButtonGroupRoot extends React.Component<{|
                     return {
                       borderTopLeftRadius: 0,
                       borderBottomLeftRadius: 0,
+                      marginLeft: '1px',
                     };
                   }
-                  // inner button
+                  // inner button(s)
                   return {
                     borderTopRightRadius: 0,
                     borderBottomRightRadius: 0,
                     borderTopLeftRadius: 0,
                     borderBottomLeftRadius: 0,
+                    marginLeft: '1px',
                   };
                 },
                 props: {

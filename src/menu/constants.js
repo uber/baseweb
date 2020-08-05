@@ -14,6 +14,7 @@ export const STATE_CHANGE_TYPES = {
   mouseLeave: 'mouseLeave',
   focus: 'focus',
   reset: 'reset',
+  character: 'character',
 };
 
 export const KEY_STRINGS = {

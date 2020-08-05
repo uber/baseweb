@@ -74,6 +74,24 @@ describe('menu-child', () => {
     expect(text).toBe('New Window');
   });
 
+  it('keyboard character input change highlighted item through type-ahead', async () => {
+    await mount(page, 'menu-child');
+    await hoverItem(page, 0, 0);
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('a');
+    const text = await findHighlightedLabel(page);
+    expect(text).toBe('Add Folder to Workspace...');
+  });
+
+  it('type-ahead can have fulltext match', async () => {
+    await mount(page, 'menu-child');
+    await hoverItem(page, 0, 0);
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('b');
+    const text = await findHighlightedLabel(page);
+    expect(text).toBe('Toggle Breakpoint');
+  });
+
   it('unhighlights item on mouse leave', async () => {
     await mount(page, 'menu-child');
     await hoverItem(page, 0, 0);
