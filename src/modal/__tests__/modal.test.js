@@ -12,8 +12,6 @@ import ReactDOM from 'react-dom';
 import {mount} from 'enzyme';
 import {
   Modal,
-  ModalHeader,
-  ModalFooter,
   ModalBody,
   StyledBackdrop,
   StyledClose,
