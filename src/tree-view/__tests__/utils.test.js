@@ -207,3 +207,13 @@ describe('getExpandableSiblings', () => {
     ]);
   });
 });
+
+describe('getCharMatchId', () => {
+  test('prefix match', () => {
+    expect(getCharMatchId(data, 1, 'Label 5', null, getId)).toBe(5);
+  });
+
+  test('full text match', () => {
+    expect(getCharMatchId(data, 1, '9', null, getId)).toBe(9);
+  });
+});
