@@ -38,7 +38,7 @@ function Example() {
         <div className={css({width: '375px'})}>
           <Combobox
             value={value}
-            onChange={setValue}
+            onChange={nextValue => setValue(nextValue)}
             onSubmit={({closeListbox}) => closeListbox()}
             mapOptionToString={o => o.label}
             options={options}

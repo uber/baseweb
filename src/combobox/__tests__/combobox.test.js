@@ -138,6 +138,72 @@ describe('combobox', () => {
     expect(handleChange.mock.calls[0][1]).toBe(options[2]);
   });
 
+  it('opens listbox on focus', () => {
+    const {container} = render(
+      <Combobox
+        mapOptionToString={o => o}
+        onChange={() => {}}
+        options={options}
+        value={''}
+      />,
+      {container: document.body},
+    );
+    const initial = container.querySelector('ul');
+    expect(initial).toBeNull();
+
+    const input = container.querySelector('input');
+    fireEvent.focus(input);
+
+    const open = container.querySelector('ul');
+    expect(open).not.toBeNull();
+  });
+
+  it('does not open listbox on focus if no options', () => {
+    const {container} = render(
+      <Combobox
+        mapOptionToString={o => o}
+        onChange={() => {}}
+        options={[]}
+        value={''}
+      />,
+      {container: document.body},
+    );
+    const initial = container.querySelector('ul');
+    expect(initial).toBeNull();
+
+    const input = container.querySelector('input');
+    fireEvent.focus(input);
+
+    const closed = container.querySelector('ul');
+    expect(closed).toBeNull();
+  });
+
+  it('closes listbox on option click', () => {
+    const {container} = render(
+      <Combobox
+        mapOptionToString={o => o}
+        onChange={() => {}}
+        options={options}
+        value={''}
+      />,
+      {container: document.body},
+    );
+    const initial = container.querySelector('ul');
+    expect(initial).toBeNull();
+
+    const input = container.querySelector('input');
+    fireEvent.focus(input);
+
+    const open = container.querySelector('ul');
+    expect(open).not.toBeNull();
+
+    const option = container.querySelector('li');
+    fireEvent.click(option);
+
+    const closed = container.querySelector('ul');
+    expect(closed).toBeNull();
+  });
+
   it('closes listbox on blur', () => {
     const {container} = render(
       <Combobox

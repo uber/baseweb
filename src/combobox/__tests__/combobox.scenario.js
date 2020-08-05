@@ -30,7 +30,7 @@ function Example() {
       <FormControl label="label" caption="caption">
         <Combobox
           value={value}
-          onChange={setValue}
+          onChange={nextValue => setValue(nextValue)}
           mapOptionToString={o => o.label}
           options={options}
         />
