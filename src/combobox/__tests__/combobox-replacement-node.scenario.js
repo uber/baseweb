@@ -51,7 +51,7 @@ function Example() {
     <div className={css({width: '375px', padding: '12px 48px'})}>
       <Combobox
         value={value}
-        onChange={setValue}
+        onChange={nextValue => setValue(nextValue)}
         mapOptionToString={o => o.label}
         mapOptionToNode={ReplacementNode}
         options={options}
