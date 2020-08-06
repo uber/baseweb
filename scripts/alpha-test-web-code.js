@@ -10,11 +10,20 @@ LICENSE file in the root directory of this source tree.
 /* eslint-env node */
 // @flow
 
+const {spawnSync} = require('child_process');
 const fetch = require('node-fetch').default;
 const publishToNpm = require('./publish-to-npm.js');
 
 const BUILDKITE_TASK_RUNNER_URL =
   'https://api.buildkite.com/v2/organizations/uber/pipelines/web-code-task-runner/builds';
+
+function annotateBuild(body, style = 'info') {
+  spawnSync(
+    'buildkite-agent',
+    ['annotate', body, '--append', '--style', style],
+    {stdio: 'inherit'},
+  );
+}
 
 function wait(ms) {
   return new Promise(res => setTimeout(res, ms));
@@ -82,6 +91,7 @@ async function main() {
 
   const {web_url, number} = await createBuild(buildkiteToken, version);
 
+  annotateBuild(`View web-code alpha build CI check [here]${web_url}`);
   console.log(`View alpha build CI checks at ${web_url}.`);
 
   // eslint-disable-next-line no-constant-condition
@@ -97,9 +107,10 @@ async function main() {
         `Alpha build CI checks are ${state}. Waiting 60s before polling again.`,
       );
     } else {
-      throw new Error(
+      console.log(
         `Alpha build CI checks failed with ${state || 'UNDEFINED'} state.`,
       );
+      process.exit(1);
     }
   }
 }
