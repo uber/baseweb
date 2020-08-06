@@ -17,7 +17,7 @@ const publishToNpm = require('./publish-to-npm.js');
 const BUILDKITE_TASK_RUNNER_URL =
   'https://api.buildkite.com/v2/organizations/uber/pipelines/web-code-task-runner/builds';
 
-function annotateBuild(token, body, style = 'info') {
+function annotateBuild(body, style = 'info') {
   spawnSync(
     'buildkite-agent',
     ['annotate', body, '--append', '--style', style],
@@ -91,10 +91,7 @@ async function main() {
 
   const {web_url, number} = await createBuild(buildkiteToken, version);
 
-  annotateBuild(
-    buildkiteToken,
-    `View web-code alpha build CI check [here]${web_url}`,
-  );
+  annotateBuild(`View web-code alpha build CI check [here]${web_url}`);
   console.log(`View alpha build CI checks at ${web_url}.`);
 
   // eslint-disable-next-line no-constant-condition
