@@ -53,4 +53,18 @@ describe('tree view', () => {
     isChecked = await page.$eval(checkboxInput, i => i.checked);
     expect(isChecked).toBe(true);
   });
+
+  it('type-ahead works normal', async () => {
+    await mount(page, 'tree-view');
+    await page.mouse.click(50, 20);
+    await page.mouse.click(50, 20);
+    await page.keyboard.press('g');
+    const highlightedSelector = '[tabindex="0"]';
+    const highlightedItem = await page.$(highlightedSelector);
+    const text = await page.evaluate(
+      item => (item ? item.textContent : 'NOT_FOUND'),
+      highlightedItem,
+    );
+    expect(text).toBe('BlankGrandchild 1');
+  });
 });
