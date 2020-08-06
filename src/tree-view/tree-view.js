@@ -19,6 +19,7 @@ import {
   getEndId,
   getExpandableSiblings,
   defaultGetId,
+  getCharMatchId,
 } from './utils.js';
 import type {TreeViewPropsT, TreeNodeT, TreeNodeIdT} from './types.js';
 import {isFocusVisible} from '../utils/focusVisible.js';
@@ -40,6 +41,8 @@ export default function TreeView(props: TreeViewPropsT) {
   const firstId = data.length && getId(data[0]);
   const [selectedNodeId, setSelectedNodeId] = React.useState(firstId);
   const [focusVisible, setFocusVisible] = React.useState(false);
+  const [typeAheadChars, setTypeAheadChars] = React.useState('');
+  const timeOutRef = React.useRef(null);
   const treeItemRefs: {
     // eslint-disable-next-line flowtype/no-weak-types
     current: {[key: TreeNodeIdT]: React.ElementRef<any>},
@@ -106,6 +109,26 @@ export default function TreeView(props: TreeViewPropsT) {
         e.preventDefault();
         getExpandableSiblings(data, selectedNodeId, getId).forEach(
           node => onToggle && onToggle(node),
+        );
+        break;
+      default:
+        e.preventDefault();
+        if (timeOutRef.current !== null) {
+          clearTimeout(timeOutRef.current);
+        }
+        setTypeAheadChars(typeAheadChars + e.key);
+        timeOutRef.current = setTimeout(() => {
+          setTypeAheadChars('');
+        }, 500);
+
+        focusTreeItem(
+          getCharMatchId(
+            data,
+            selectedNodeId,
+            typeAheadChars + e.key,
+            null,
+            getId,
+          ),
         );
         break;
     }
