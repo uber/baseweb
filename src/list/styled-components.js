@@ -78,6 +78,8 @@ export const StyledLabelContent = styled<{||}>('p', ({$theme}) => {
   return {
     ...$theme.typography.LabelMedium,
     color: $theme.colors.contentPrimary,
+    marginTop: 0,
+    marginBottom: 0,
   };
 });
 

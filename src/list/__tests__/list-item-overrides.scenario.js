@@ -15,9 +15,8 @@ export default function Scenario() {
     <ul
       style={{
         width: '375px',
-        paddingLeft: 0,
-        paddingRight: 0,
-        border: 'solid 1px lightskyblue',
+        padding: '24px',
+        backgroundColor: 'lightskyblue',
       }}
     >
       <ListItem>
