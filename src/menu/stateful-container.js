@@ -286,6 +286,11 @@ export default class MenuStatefulContainer extends React.Component<
       event.preventDefault();
       onItemSelect({item: items[highlightedIndex], event});
     }
+    if (this.getItems().length >= this.state.highlightedIndex) {
+      this.internalSetState(STATE_CHANGE_TYPES.enter, {
+        highlightedIndex: 0,
+      });
+    }
   };
 
   handleItemClick = (
@@ -386,6 +391,7 @@ export default class MenuStatefulContainer extends React.Component<
   render() {
     // omit the stateful-container's props and don't pass it down
     // to the children (stateless menu)
+
     const {
       initialState,
       stateReducer,
@@ -397,6 +403,7 @@ export default class MenuStatefulContainer extends React.Component<
       getChildMenu,
       ...restProps
     } = this.props;
+
     return this.props.children(
       ({
         ...restProps,
@@ -404,10 +411,7 @@ export default class MenuStatefulContainer extends React.Component<
         activedescendantId: this.optionIds[this.state.highlightedIndex],
         getRequiredItemProps: this.getRequiredItemProps,
         handleMouseLeave: this.handleMouseLeave,
-        highlightedIndex:
-          this.state.highlightedIndex >= this.getItems().length
-            ? 0
-            : this.state.highlightedIndex,
+        highlightedIndex: this.state.highlightedIndex,
         isFocused: this.state.isFocused,
         focusMenu: this.focusMenu,
         unfocusMenu: this.unfocusMenu,

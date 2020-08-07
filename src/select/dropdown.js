@@ -165,7 +165,6 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
             highlightedIndex: highlightedIndex,
           }}
           typeAhead={false}
-          focusFirstAfterKeyEnter={true}
           overrides={mergeOverrides(
             {
               List: {
