@@ -10,7 +10,9 @@ import * as React from 'react';
 import {Select} from '../index.js';
 
 export default function Scenario() {
-  const [value, setValue] = React.useState([]);
+  const [first, setFirst] = React.useState([]);
+  const [second, setSecond] = React.useState([]);
+
   return (
     <div>
       <div id="backspace-behavior">
@@ -26,9 +28,30 @@ export default function Scenario() {
           ]}
           labelKey="id"
           valueKey="color"
-          backspaceRemoves={true}
-          onChange={({value}) => setValue(value)}
-          value={value}
+          backspaceRemoves
+          onChange={({value}) => setFirst(value)}
+          value={first}
+          overrides={{ClearIcon: {props: {'data-id': 'clear-icon'}}}}
+        />
+      </div>
+
+      <div id="backspace-clears-input-value">
+        backspace clears input value
+        <Select
+          options={[
+            {id: 'AliceBlue', color: '#F0F8FF'},
+            {id: 'AntiqueWhite', color: '#FAEBD7'},
+            {id: 'Aqua', color: '#00FFFF'},
+            {id: 'Aquamarine', color: '#7FFFD4'},
+            {id: 'Azure', color: '#F0FFFF'},
+            {id: 'Beige', color: '#F5F5DC'},
+          ]}
+          labelKey="id"
+          valueKey="color"
+          backspaceRemoves
+          backspaceClearsInputValue
+          onChange={({value}) => setSecond(value)}
+          value={second}
           overrides={{ClearIcon: {props: {'data-id': 'clear-icon'}}}}
         />
       </div>

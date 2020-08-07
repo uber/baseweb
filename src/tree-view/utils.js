@@ -189,6 +189,56 @@ export const toggleIsExpanded = (
     return newNode;
   });
 };
+export const getCharMatchId = (
+  nodes: TreeNodeT<>[],
+  nodeId: TreeNodeIdT,
+  chars: string,
+  closestOmmer: TreeNodeIdT | null,
+  getId: (TreeNodeT<>) => TreeNodeIdT,
+) => {
+  var foundid = matchString(nodes, nodeId, chars, closestOmmer, getId, true);
+  if (foundid) return foundid;
+  foundid = matchString(nodes, nodeId, chars, closestOmmer, getId, false);
+  return foundid;
+};
+
+export const matchString = (
+  nodes: TreeNodeT<>[],
+  nodeId: TreeNodeIdT,
+  chars: string,
+  closestOmmer: TreeNodeIdT | null,
+  getId: (TreeNodeT<>) => TreeNodeIdT,
+  //set true, match the prefix; set false, match full text
+  matchPrefix: boolean,
+) => {
+  for (let i = 0; i < nodes.length; i++) {
+    if (nodes[i].label && typeof nodes[i].label === 'string') {
+      if (
+        (matchPrefix &&
+          nodes[i].label.toUpperCase().indexOf(chars.toUpperCase()) === 0) ||
+        (!matchPrefix &&
+          nodes[i].label.toUpperCase().indexOf(chars.toUpperCase()) > 0)
+      ) {
+        return getId(nodes[i]);
+      }
+    }
+    if (nodes[i].isExpanded && nodes[i].children && nodes[i].children.length) {
+      const foundId = matchString(
+        nodes[i].children,
+        nodeId,
+        chars,
+        nodes[i + 1] ? getId(nodes[i + 1]) : closestOmmer,
+        getId,
+        matchPrefix,
+      );
+
+      if (foundId) {
+        return foundId;
+      }
+    }
+  }
+  return null;
+};
 
 export const defaultGetId = (node: TreeNodeT<>) => {
   if (!node.id) {

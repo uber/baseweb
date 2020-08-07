@@ -38,7 +38,7 @@ export type ComponentRenderPropT = (props: {dismiss: () => void}) => React.Node;
 
 export type ChildT = React.Node;
 
-export type ChildrenT = React.ChildrenArray<ChildT>;
+export type ChildrenT = React.Node;
 
 export type ToastPrivateStateT = {
   isFocusVisible: boolean,

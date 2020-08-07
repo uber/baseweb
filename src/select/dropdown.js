@@ -164,6 +164,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
             isFocused: true,
             highlightedIndex: highlightedIndex,
           }}
+          typeAhead={false}
           overrides={mergeOverrides(
             {
               List: {

@@ -55,6 +55,14 @@ const SelectConfig: TConfig = {
       defaultValue: true,
       description: 'Defines if options can be removed by pressing backspace.',
     },
+    backspaceClearsInputValue: {
+      value: undefined,
+      type: PropTypes.Boolean,
+      defaultValue: false,
+      description:
+        'By default, backspace will only remove the last character of the input value. If true, the input value will be cleared.',
+      hidden: true,
+    },
     clearable: {
       value: true,
       type: PropTypes.Boolean,

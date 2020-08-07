@@ -29,7 +29,7 @@ function Example() {
       <Combobox
         disabled
         value={value}
-        onChange={setValue}
+        onChange={nextValue => setValue(nextValue)}
         mapOptionToString={o => o.label}
         options={options}
       />

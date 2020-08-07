@@ -12,6 +12,7 @@ import {
   getFirstChildId,
   getEndId,
   getExpandableSiblings,
+  getCharMatchId,
   defaultGetId as getId,
 } from '../utils.js';
 import type {TreeNodeT} from '../types.js';
@@ -205,5 +206,15 @@ describe('getExpandableSiblings', () => {
         ],
       },
     ]);
+  });
+});
+
+describe('getCharMatchId', () => {
+  test('prefix match', () => {
+    expect(getCharMatchId(data, 1, 'Label 5', null, getId)).toBe(5);
+  });
+
+  test('full text match', () => {
+    expect(getCharMatchId(data, 1, '7', null, getId)).toBe(7);
   });
 });
