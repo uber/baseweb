@@ -104,6 +104,14 @@ export default class MenuStatefulContainer extends React.Component<
         document.removeEventListener('keydown', this.onKeyDown);
       }
     }
+    if (
+      this.state.highlightedIndex > 0 &&
+      this.state.highlightedIndex >= this.getItems().length
+    ) {
+      this.internalSetState(STATE_CHANGE_TYPES.enter, {
+        highlightedIndex: 0,
+      });
+    }
   }
 
   // One array to hold all of list item refs
@@ -285,11 +293,6 @@ export default class MenuStatefulContainer extends React.Component<
     ) {
       event.preventDefault();
       onItemSelect({item: items[highlightedIndex], event});
-    }
-    if (this.getItems().length >= this.state.highlightedIndex) {
-      this.internalSetState(STATE_CHANGE_TYPES.enter, {
-        highlightedIndex: 0,
-      });
     }
   };
 
