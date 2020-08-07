@@ -20,7 +20,6 @@ export interface STATE_CHANGE_TYPES {
   focus: 'focus';
   reset: 'reset';
   character: 'character';
-  enter: 'enter';
 }
 
 export interface OPTION_LIST_SIZE {
@@ -92,7 +91,6 @@ export interface StatefulContainerProps {
   onItemSelect?: OnItemSelect;
   rootRef?: React.Ref<any>;
   typeAhead?: boolean;
-  focusFirstAfterKeyEnter?: boolean;
   children?: (args: RenderProps) => React.ReactNode;
   addMenuToNesting?: (ref: React.Ref<HTMLElement>) => void;
   removeMenuFromNesting?: (ref: React.Ref<HTMLElement>) => void;
