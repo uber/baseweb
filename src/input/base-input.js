@@ -328,6 +328,7 @@ class BaseInput<T: EventTarget> extends React.Component<
           disabled={this.props.disabled}
           id={this.props.id}
           inputMode={this.props.inputMode}
+          maxLength={this.props.maxLength}
           name={this.props.name}
           onBlur={this.onBlur}
           onChange={this.props.onChange}
