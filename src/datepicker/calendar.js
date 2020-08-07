@@ -397,11 +397,7 @@ export default class Calendar<T = Date> extends React.Component<
     const {value} = this.props;
     const selected = this.getSingleDate(value);
     let nextState;
-    if (
-      selected &&
-      this.dateHelpers.isSameMonth(selected, date) &&
-      this.dateHelpers.isSameYear(selected, date)
-    ) {
+    if (selected) {
       nextState = {highlightedDate: selected};
     } else {
       nextState = {
