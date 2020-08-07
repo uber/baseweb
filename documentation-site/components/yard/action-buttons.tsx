@@ -62,7 +62,7 @@ const ActionButtons: React.FC<{
           size={SIZE.compact}
           onClick={openStackBlitz}
         >
-          StackBlitz
+          Try example on StackBlitz
         </Button>
         <Button
           overrides={{
