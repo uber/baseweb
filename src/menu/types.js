@@ -124,6 +124,8 @@ export type StatefulContainerPropsT = {
   rootRef?: RootRefT,
   /** whether has keyboard type-ahead function */
   typeAhead: boolean,
+  /** if true, focus on the first element after key enter;if false, focus on the same as previous; default is false */
+  focusFirstAfterKeyEnter: boolean,
   /** Child as function pattern. */
   children: RenderPropsT => React.Node,
   addMenuToNesting?: (ref: {current: HTMLElement | null}) => void,

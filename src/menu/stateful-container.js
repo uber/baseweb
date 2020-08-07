@@ -31,6 +31,7 @@ export default class MenuStatefulContainer extends React.Component<
       isFocused: false,
     },
     typeAhead: true,
+    focusFirstAfterKeyEnter: false,
     stateReducer: ((changeType, changes) => changes: StateReducerFnT),
     onItemSelect: () => {},
     getRequiredItemProps: () => ({}),
@@ -285,6 +286,11 @@ export default class MenuStatefulContainer extends React.Component<
     ) {
       event.preventDefault();
       onItemSelect({item: items[highlightedIndex], event});
+    }
+    if (this.props.focusFirstAfterKeyEnter) {
+      this.internalSetState(STATE_CHANGE_TYPES.enter, {
+        highlightedIndex: 0,
+      });
     }
   };
 
