@@ -53,6 +53,12 @@ const ProgressBarConfig: TConfig = {
         },
       },
     },
+    stepped: {
+      value: undefined,
+      type: PropTypes.Number,
+      description:
+        'Renderes a dashed progress bar. Value should be set to a positive number larger than one.',
+    },
     successValue: {
       value: 100,
       type: PropTypes.Number,
@@ -69,7 +75,7 @@ const ProgressBarConfig: TConfig = {
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
-        names: ['Bar', 'BarProgress', 'Label', 'Root'],
+        names: ['Bar', 'BarProgress', 'BarContainer', 'Label', 'Root'],
         sharedProps: {
           $successValue: 'successValue',
           $value: 'value',
