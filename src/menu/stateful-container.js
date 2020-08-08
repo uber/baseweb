@@ -104,10 +104,12 @@ export default class MenuStatefulContainer extends React.Component<
         document.removeEventListener('keydown', this.onKeyDown);
       }
     }
-    if (
-      this.state.highlightedIndex > 0 &&
-      this.state.highlightedIndex >= this.getItems().length
-    ) {
+    var range = this.getItems().length;
+    if (range === 0 && this.state.highlightedIndex !== -1) {
+      this.internalSetState(STATE_CHANGE_TYPES.enter, {
+        highlightedIndex: -1,
+      });
+    } else if (this.state.highlightedIndex >= range) {
       this.internalSetState(STATE_CHANGE_TYPES.enter, {
         highlightedIndex: 0,
       });
