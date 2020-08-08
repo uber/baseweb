@@ -15,6 +15,7 @@ export const STATE_CHANGE_TYPES = {
   focus: 'focus',
   reset: 'reset',
   character: 'character',
+  enter: 'enter',
 };
 
 export const KEY_STRINGS = {
