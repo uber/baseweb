@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {getOverrides} from '../helpers/overrides.js';
+import {SIZE} from './constants.js';
 import {
   Root as StyledRoot,
   Bar as StyledBar,
@@ -20,11 +21,12 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
   static defaultProps = {
     getProgressLabel: (value: number, successValue: number) =>
       `${Math.round((value / successValue) * 100)}% Loaded`,
-    successValue: 100,
-    value: 0,
+    infinite: false,
     overrides: {},
     showLabel: false,
-    infinite: false,
+    size: SIZE.medium,
+    successValue: 100,
+    value: 0,
   };
 
   render() {
@@ -32,6 +34,7 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
       overrides = {},
       getProgressLabel,
       value,
+      size,
       successValue,
       showLabel,
       infinite,
@@ -45,9 +48,10 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
     );
     const [Label, labelProps] = getOverrides(overrides.Label, StyledLabel);
     const sharedProps = {
-      $value: value,
-      $successValue: successValue,
       $infinite: infinite,
+      $size: size,
+      $successValue: successValue,
+      $value: value,
     };
     return (
       <Root
