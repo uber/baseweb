@@ -6,11 +6,13 @@ exports[`Stateless progress bar should render component: Component has correct r
   infinite={false}
   overrides={Object {}}
   showLabel={false}
+  size="medium"
   successValue={100}
   value={75}
 >
   <ForwardRef
     $infinite={false}
+    $size="medium"
     $successValue={100}
     $value={75}
     aria-invalid={null}
@@ -22,6 +24,7 @@ exports[`Stateless progress bar should render component: Component has correct r
   >
     <MockStyledComponent
       $infinite={false}
+      $size="medium"
       $successValue={100}
       $value={75}
       aria-invalid={null}
@@ -46,11 +49,13 @@ exports[`Stateless progress bar should render component: Component has correct r
       >
         <ForwardRef
           $infinite={false}
+          $size="medium"
           $successValue={100}
           $value={75}
         >
           <MockStyledComponent
             $infinite={false}
+            $size="medium"
             $successValue={100}
             $value={75}
             forwardedRef={null}
@@ -74,11 +79,13 @@ exports[`Stateless progress bar should render component: Component has correct r
             >
               <ForwardRef
                 $infinite={false}
+                $size="medium"
                 $successValue={100}
                 $value={75}
               >
                 <MockStyledComponent
                   $infinite={false}
+                  $size="medium"
                   $successValue={100}
                   $value={75}
                   forwardedRef={null}
