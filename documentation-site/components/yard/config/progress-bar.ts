@@ -53,11 +53,11 @@ const ProgressBarConfig: TConfig = {
         },
       },
     },
-    stepped: {
+    steps: {
       value: undefined,
       type: PropTypes.Number,
       description:
-        'Renderes a dashed progress bar. Value should be set to a positive number larger than one.',
+        'Defines how many steps the progress bar has. Defaults to 1.',
     },
     successValue: {
       value: 100,

@@ -19,7 +19,7 @@ export default function Scenario() {
       <br />
       <ProgressBar value={20} showLabel size={SIZE.large} />
       <br />
-      <ProgressBar value={20} showLabel size={SIZE.large} stepped={5} />
+      <ProgressBar value={20} showLabel size={SIZE.large} steps={5} />
     </>
   );
 }

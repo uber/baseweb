@@ -26,7 +26,7 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
     overrides: {},
     showLabel: false,
     size: SIZE.medium,
-    stepped: 1,
+    steps: 1,
     successValue: 100,
     value: 0,
   };
@@ -37,7 +37,7 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
       getProgressLabel,
       value,
       size,
-      stepped,
+      steps,
       successValue,
       showLabel,
       infinite,
@@ -57,28 +57,20 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
     const sharedProps = {
       $infinite: infinite,
       $size: size,
-      $stepped: stepped,
+      $steps: steps,
       $successValue: successValue,
       $value: value,
     };
     function renderProgressBar() {
-      const steps = [];
-      if (stepped > 1) {
-        for (let i = 0; i < stepped; i++) {
-          steps.push(
-            <Bar key={i} {...sharedProps} {...barProps}>
-              <BarProgress $index={i} {...sharedProps} {...barProgressProps} />
-            </Bar>,
-          );
-        }
-      } else {
-        steps.push(
-          <Bar key={0} {...sharedProps} {...barProps}>
-            <BarProgress {...sharedProps} {...barProgressProps} />
+      const children = [];
+      for (let i = 0; i < steps; i++) {
+        children.push(
+          <Bar key={i} {...sharedProps} {...barProps}>
+            <BarProgress $index={i} {...sharedProps} {...barProgressProps} />
           </Bar>,
         );
       }
-      return steps;
+      return children;
     }
     return (
       <Root

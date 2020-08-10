@@ -7,12 +7,14 @@ exports[`Stateless progress bar should render component: Component has correct r
   overrides={Object {}}
   showLabel={false}
   size="medium"
+  steps={1}
   successValue={100}
   value={75}
 >
   <ForwardRef
     $infinite={false}
     $size="medium"
+    $steps={1}
     $successValue={100}
     $value={75}
     aria-invalid={null}
@@ -25,6 +27,7 @@ exports[`Stateless progress bar should render component: Component has correct r
     <MockStyledComponent
       $infinite={false}
       $size="medium"
+      $steps={1}
       $successValue={100}
       $value={75}
       aria-invalid={null}
@@ -50,12 +53,14 @@ exports[`Stateless progress bar should render component: Component has correct r
         <ForwardRef
           $infinite={false}
           $size="medium"
+          $steps={1}
           $successValue={100}
           $value={75}
         >
           <MockStyledComponent
             $infinite={false}
             $size="medium"
+            $steps={1}
             $successValue={100}
             $value={75}
             forwardedRef={null}
@@ -66,26 +71,21 @@ exports[`Stateless progress bar should render component: Component has correct r
   \\"marginLeft\\": \\"$theme.sizing.scale500\\",
   \\"marginRight\\": \\"$theme.sizing.scale500\\",
   \\"marginTop\\": \\"$theme.sizing.scale500\\",
-  \\"marginBottom\\": \\"$theme.sizing.scale500\\",
-  \\"borderTopLeftRadius\\": \\"$theme.sizing.scale0\\",
-  \\"borderTopRightRadius\\": \\"$theme.sizing.scale0\\",
-  \\"borderBottomRightRadius\\": \\"$theme.sizing.scale0\\",
-  \\"borderBottomLeftRadius\\": \\"$theme.sizing.scale0\\",
-  \\"backgroundColor\\": null,
-  \\"height\\": \\"4px\\",
-  \\"position\\": \\"relative\\",
-  \\"overflow\\": \\"hidden\\"
+  \\"marginBottom\\": \\"$theme.sizing.scale500\\"
 }"
             >
               <ForwardRef
                 $infinite={false}
                 $size="medium"
+                $steps={1}
                 $successValue={100}
                 $value={75}
+                key="0"
               >
                 <MockStyledComponent
                   $infinite={false}
                   $size="medium"
+                  $steps={1}
                   $successValue={100}
                   $value={75}
                   forwardedRef={null}
@@ -97,12 +97,45 @@ exports[`Stateless progress bar should render component: Component has correct r
   \\"borderTopRightRadius\\": \\"$theme.sizing.scale0\\",
   \\"borderBottomRightRadius\\": \\"$theme.sizing.scale0\\",
   \\"borderBottomLeftRadius\\": \\"$theme.sizing.scale0\\",
+  \\"backgroundColor\\": null,
+  \\"height\\": \\"4px\\",
+  \\"position\\": \\"relative\\",
+  \\"overflow\\": \\"hidden\\"
+}"
+                  >
+                    <ForwardRef
+                      $index={0}
+                      $infinite={false}
+                      $size="medium"
+                      $steps={1}
+                      $successValue={100}
+                      $value={75}
+                    >
+                      <MockStyledComponent
+                        $index={0}
+                        $infinite={false}
+                        $size="medium"
+                        $steps={1}
+                        $successValue={100}
+                        $value={75}
+                        forwardedRef={null}
+                      >
+                        <div
+                          styled-component="true"
+                          test-style="{
+  \\"borderTopLeftRadius\\": \\"$theme.sizing.scale0\\",
+  \\"borderTopRightRadius\\": \\"$theme.sizing.scale0\\",
+  \\"borderBottomRightRadius\\": \\"$theme.sizing.scale0\\",
+  \\"borderBottomLeftRadius\\": \\"$theme.sizing.scale0\\",
   \\"backgroundColor\\": \\"$theme.colors.accent\\",
   \\"height\\": \\"100%\\",
   \\"width\\": \\"75%\\",
   \\"transition\\": \\"width 0.5s\\"
 }"
-                  />
+                        />
+                      </MockStyledComponent>
+                    </ForwardRef>
+                  </div>
                 </MockStyledComponent>
               </ForwardRef>
             </div>

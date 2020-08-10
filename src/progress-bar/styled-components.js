@@ -36,7 +36,7 @@ export const StyledBarContainer = styled<StylePropsT>('div', props => {
 });
 
 export const StyledBar = styled<StylePropsT>('div', props => {
-  const {$theme, $size, $stepped} = props;
+  const {$theme, $size, $steps} = props;
   const {colors, sizing, borders} = $theme;
   const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
   return ({
@@ -48,12 +48,11 @@ export const StyledBar = styled<StylePropsT>('div', props => {
     height: getBarHeight($size),
     position: 'relative',
     overflow: 'hidden',
-    ...($stepped < 2
+    ...($steps < 2
       ? {}
       : {
           display: 'inline-block',
-          width: `calc((100% - ${sizing.scale300} * ${$stepped -
-            1})/${$stepped})`,
+          width: `calc((100% - ${sizing.scale300} * ${$steps - 1})/${$steps})`,
           marginLeft: sizing.scale300,
           ':first-child': {
             marginLeft: '0',
@@ -63,7 +62,7 @@ export const StyledBar = styled<StylePropsT>('div', props => {
 });
 
 export const StyledBarProgress = styled<StylePropsT>('div', props => {
-  const {$theme, $value, $successValue, $stepped, $index, $infinite} = props;
+  const {$theme, $value, $successValue, $steps, $index, $infinite} = props;
   const {colors, sizing, borders} = $theme;
   const width = `${($value / $successValue) * 100}%`;
 
@@ -74,8 +73,8 @@ export const StyledBarProgress = styled<StylePropsT>('div', props => {
     completed: 'completed',
   };
   let stepState = stepStates.default;
-  if ($stepped > 1) {
-    const stepValue = $successValue / $stepped;
+  if ($steps > 1) {
+    const stepValue = $successValue / $steps;
     const currentValue = ($value / $successValue) * 100;
     const completedSteps = Math.floor(currentValue / stepValue);
     if ($index < completedSteps) {
@@ -152,7 +151,7 @@ export const StyledBarProgress = styled<StylePropsT>('div', props => {
     borderBottomLeftRadius: borderRadius,
     backgroundColor: colors.accent,
     height: '100%',
-    ...($stepped > 1 ? stepAnimationStyles : animationStyles),
+    ...($steps > 1 ? stepAnimationStyles : animationStyles),
   };
 });
 

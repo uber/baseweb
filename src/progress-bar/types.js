@@ -33,7 +33,7 @@ export type ProgressBarPropsT = {
   /** Defines the size (thickness) of the progress bar. */
   size: SizeT,
   /** Renders a sectional progress bar. Value should be set to a positive number larger than one. */
-  stepped: number,
+  steps: number,
   /** A custom completion value. Should be deleted in v11. */
   successValue: number,
   /** The value between `0` and `100 | successValue` of the progress indicator. */
@@ -44,7 +44,7 @@ export type StylePropsT = {
   $infinite: boolean,
   $index: number,
   $size: SizeT,
-  $stepped: number,
+  $steps: number,
   $successValue: number,
   $value: number,
 };

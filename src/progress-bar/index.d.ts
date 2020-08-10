@@ -21,7 +21,7 @@ export interface ProgressBarProps {
   overrides?: ProgressBarOverrides;
   size?: keyof SIZE;
   showLabel?: boolean;
-  stepped?: number;
+  steps?: number;
   successValue?: number;
   value?: number;
 }
