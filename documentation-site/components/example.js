@@ -161,7 +161,7 @@ function Example(props: PropsT) {
             size={SIZE.compact}
             onClick={openStackBlitz}
           >
-            Edit on StackBlitz
+            Try example on StackBlitz
           </Button>
         </React.Fragment>
       )}

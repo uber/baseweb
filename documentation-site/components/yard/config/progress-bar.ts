@@ -1,4 +1,4 @@
-import {ProgressBar} from 'baseui/progress-bar';
+import {ProgressBar, SIZE} from 'baseui/progress-bar';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
@@ -11,6 +11,7 @@ const ProgressBarConfig: TConfig = {
   },
   scope: {
     ProgressBar,
+    SIZE,
   },
   theme: ['progressbarTrackFill'],
   props: {
@@ -39,6 +40,18 @@ const ProgressBarConfig: TConfig = {
       placeholder: 'false',
       type: PropTypes.Boolean,
       description: 'Can be used to show the infinite progress bar.',
+    },
+    size: {
+      value: 'SIZE.medium',
+      defaultValue: 'SIZE.medium',
+      options: SIZE,
+      type: PropTypes.Enum,
+      description: 'Renders component in provided size.',
+      imports: {
+        'baseui/progress-bar': {
+          named: ['SIZE'],
+        },
+      },
     },
     successValue: {
       value: 100,
