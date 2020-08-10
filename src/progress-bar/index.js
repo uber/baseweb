@@ -6,12 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 export {default as ProgressBar} from './progressbar.js';
+export {SIZE} from './constants.js';
 // Styled elements
 export {
-  Root as StyledRoot,
-  Bar as StyledBar,
-  BarProgress as StyledBarProgress,
-  Label as StyledLabel,
+  StyledRoot,
+  StyledBarContainer,
+  StyledBar,
+  StyledBarProgress,
+  StyledLabel,
 } from './styled-components.js';
 // Flow
 export type * from './types.js';
