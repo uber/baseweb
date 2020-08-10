@@ -13,6 +13,7 @@ export type SizeT = $Keys<typeof SIZE>;
 
 export type OverridesT = {
   Root?: OverrideT,
+  BarContainer?: OverrideT,
   Bar?: OverrideT,
   BarProgress?: OverrideT,
   Label?: OverrideT,
@@ -31,6 +32,8 @@ export type ProgressBarPropsT = {
   showLabel: boolean,
   /** Defines the size (thickness) of the progress bar. */
   size: SizeT,
+  /** Renders a sectional progress bar. Value should be set to a positive number larger than one. */
+  steps: number,
   /** A custom completion value. Should be deleted in v11. */
   successValue: number,
   /** The value between `0` and `100 | successValue` of the progress indicator. */
@@ -39,7 +42,9 @@ export type ProgressBarPropsT = {
 
 export type StylePropsT = {
   $infinite: boolean,
+  $index: number,
   $size: SizeT,
+  $steps: number,
   $successValue: number,
   $value: number,
 };

@@ -53,6 +53,12 @@ const ProgressBarConfig: TConfig = {
         },
       },
     },
+    steps: {
+      value: undefined,
+      type: PropTypes.Number,
+      description:
+        'Defines how many steps the progress bar has. Defaults to 1.',
+    },
     successValue: {
       value: 100,
       type: PropTypes.Number,
@@ -69,7 +75,7 @@ const ProgressBarConfig: TConfig = {
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
-        names: ['Bar', 'BarProgress', 'Label', 'Root'],
+        names: ['Bar', 'BarProgress', 'BarContainer', 'Label', 'Root'],
         sharedProps: {
           $successValue: 'successValue',
           $value: 'value',
