@@ -73,3 +73,28 @@ export const StyledArtworkContainer = styled<StyledArtworkContainerPropsT>(
     };
   },
 );
+
+export const StyledLabelContent = styled<{||}>('p', ({$theme}) => {
+  return {
+    ...$theme.typography.LabelMedium,
+    color: $theme.colors.contentPrimary,
+    marginTop: 0,
+    marginBottom: 0,
+  };
+});
+
+export const StyledLabelDescription = styled<{||}>('p', ({$theme}) => {
+  return {
+    ...$theme.typography.ParagraphSmall,
+    color: $theme.colors.contentPrimary,
+    marginTop: 0,
+    marginBottom: 0,
+  };
+});
+
+export const StyledLabelSublistContent = styled<{||}>('p', ({$theme}) => {
+  return {
+    ...$theme.typography.ParagraphMedium,
+    color: $theme.colors.contentPrimary,
+  };
+});
