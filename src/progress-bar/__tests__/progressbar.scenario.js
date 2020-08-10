@@ -20,6 +20,8 @@ export default function Scenario() {
       <ProgressBar value={20} showLabel size={SIZE.large} />
       <br />
       <ProgressBar value={20} showLabel size={SIZE.large} steps={5} />
+      <br />
+      <ProgressBar infinite />
     </>
   );
 }
