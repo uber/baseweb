@@ -9,6 +9,7 @@ export interface SIZE {
 }
 export interface ProgressBarOverrides {
   Root?: Override<any>;
+  BarContainer?: Override<any>;
   Bar?: Override<any>;
   BarProgress?: Override<any>;
   Label?: Override<any>;
@@ -20,6 +21,7 @@ export interface ProgressBarProps {
   overrides?: ProgressBarOverrides;
   size?: keyof SIZE;
   showLabel?: boolean;
+  steps?: number;
   successValue?: number;
   value?: number;
 }
@@ -27,6 +29,7 @@ export class ProgressBar extends React.Component<ProgressBarProps> {}
 
 export const SIZE: SIZE;
 export const StyledRoot: StyletronComponent<any>;
+export const StyledBarContainer: StyletronComponent<any>;
 export const StyledBar: StyletronComponent<any>;
 export const StyledBarProgress: StyletronComponent<any>;
 export const StyledLabel: StyletronComponent<any>;

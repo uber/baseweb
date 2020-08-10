@@ -77,6 +77,17 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     ) {
       this.setState({autoFocusAfterPositioning: true});
     }
+
+    if (__DEV__) {
+      if (!this.anchorRef.current) {
+        // eslint-disable-next-line no-console
+        console.warn(
+          `[baseui][Popover] ref has not been passed to the Popper's anchor element.
+              See how to pass the ref to an anchor element in the Popover example
+              http://baseui.design/components/popover#anchor-ref-handling-example`,
+        );
+      }
+    }
   }
 
   init(prevProps: PopoverPropsT, prevState: PopoverPrivateStateT) {

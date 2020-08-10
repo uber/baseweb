@@ -124,6 +124,7 @@ export type BaseInputPropsT<T> = {|
   clearable?: boolean,
   /** If undefined or true, clears the input when the Escape button is pressed with the input focused. True by default. */
   clearOnEscape?: boolean,
+  maxLength?: number,
   onClear?: (e: SyntheticEvent<T>) => mixed,
   overrides: BaseInputComponentsT,
   placeholder?: string,

@@ -18,21 +18,28 @@ function getBarHeight(size) {
   }[size];
 }
 
-export const Root = styled<StylePropsT>('div', props => {
+export const StyledRoot = styled<StylePropsT>('div', props => {
   return {
     width: '100%',
   };
 });
 
-export const Bar = styled<StylePropsT>('div', props => {
-  const {$theme, $size} = props;
-  const {colors, sizing, borders} = $theme;
-  const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
+export const StyledBarContainer = styled<StylePropsT>('div', props => {
+  const {$theme} = props;
+  const {sizing} = $theme;
   return ({
     marginLeft: sizing.scale500,
     marginRight: sizing.scale500,
     marginTop: sizing.scale500,
     marginBottom: sizing.scale500,
+  }: {});
+});
+
+export const StyledBar = styled<StylePropsT>('div', props => {
+  const {$theme, $size, $steps} = props;
+  const {colors, sizing, borders} = $theme;
+  const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
+  return ({
     borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
@@ -41,13 +48,44 @@ export const Bar = styled<StylePropsT>('div', props => {
     height: getBarHeight($size),
     position: 'relative',
     overflow: 'hidden',
+    ...($steps < 2
+      ? {}
+      : {
+          display: 'inline-block',
+          width: `calc((100% - ${sizing.scale300} * ${$steps - 1})/${$steps})`,
+          marginLeft: sizing.scale300,
+          ':first-child': {
+            marginLeft: '0',
+          },
+        }),
   }: {});
 });
 
-export const BarProgress = styled<StylePropsT>('div', props => {
-  const {$theme, $value, $successValue, $infinite} = props;
+export const StyledBarProgress = styled<StylePropsT>('div', props => {
+  const {$theme, $value, $successValue, $steps, $index, $infinite} = props;
   const {colors, sizing, borders} = $theme;
   const width = `${($value / $successValue) * 100}%`;
+
+  const stepStates = {
+    default: 'default',
+    awaits: 'awaits',
+    inProgress: 'inProgress',
+    completed: 'completed',
+  };
+  let stepState = stepStates.default;
+  if ($steps > 1) {
+    const stepValue = $successValue / $steps;
+    const currentValue = ($value / $successValue) * 100;
+    const completedSteps = Math.floor(currentValue / stepValue);
+    if ($index < completedSteps) {
+      stepState = stepStates.completed;
+    } else if ($index === completedSteps) {
+      stepState = stepStates.inProgress;
+    } else {
+      stepState = stepStates.awaits;
+    }
+  }
+
   const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
 
   const animationStyles = $infinite
@@ -77,6 +115,35 @@ export const BarProgress = styled<StylePropsT>('div', props => {
         transition: 'width 0.5s',
       };
 
+  const stepAnimationStyles =
+    stepState === stepStates.inProgress
+      ? {
+          position: 'absolute',
+          animationDuration: '2.1s',
+          animationIterationCount: 'infinite',
+          animationTimingFunction: $theme.animation.linearCurve,
+          animationName: {
+            '0%': {
+              width: '0%',
+              opacity: 1,
+            },
+            '50%': {
+              width: '100%',
+              opacity: 1,
+            },
+            '100%': {
+              width: '100%',
+              opacity: 0,
+            },
+          },
+        }
+      : stepState === stepStates.completed
+      ? {
+          width: '100%',
+          transition: 'width 0.5s',
+        }
+      : {width: '0%'};
+
   return {
     borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
@@ -84,11 +151,11 @@ export const BarProgress = styled<StylePropsT>('div', props => {
     borderBottomLeftRadius: borderRadius,
     backgroundColor: colors.accent,
     height: '100%',
-    ...animationStyles,
+    ...($steps > 1 ? stepAnimationStyles : animationStyles),
   };
 });
 
-export const Label = styled<StylePropsT>('div', props => {
+export const StyledLabel = styled<StylePropsT>('div', props => {
   return {
     textAlign: 'center',
     ...props.$theme.typography.font150,
