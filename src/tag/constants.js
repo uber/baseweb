@@ -13,14 +13,22 @@ export const VARIANT = Object.freeze({
 });
 
 export const KIND = {
+  custom: 'custom',
   neutral: 'neutral',
+  // semantic
   primary: 'primary',
   accent: 'accent',
   positive: 'positive',
   negative: 'negative',
   warning: 'warning',
+  // primitive
+  white: 'white',
+  black: 'black',
+  blue: 'blue',
+  green: 'green',
+  red: 'red',
+  yellow: 'yellow',
   orange: 'orange',
   purple: 'purple',
   brown: 'brown',
-  custom: 'custom',
 };

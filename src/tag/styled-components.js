@@ -291,6 +291,14 @@ const colorMatrix = {
   },
 };
 
+// Add aliases to semantic KIND values.
+colorMatrix[KIND.white] = colorMatrix[KIND.primary];
+colorMatrix[KIND.black] = colorMatrix[KIND.primary];
+colorMatrix[KIND.blue] = colorMatrix[KIND.accent];
+colorMatrix[KIND.green] = colorMatrix[KIND.positive];
+colorMatrix[KIND.red] = colorMatrix[KIND.negative];
+colorMatrix[KIND.yellow] = colorMatrix[KIND.warning];
+
 const getStateFromProps = props => {
   if (props.$disabled) return STATE.disabled;
   if (props.$variant === VARIANT.solid) return STATE.solid;
