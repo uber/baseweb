@@ -68,6 +68,7 @@ Object {
   "id": undefined,
   "inputMode": "text",
   "max": undefined,
+  "maxLength": undefined,
   "min": undefined,
   "name": "",
   "onBlur": [Function],
