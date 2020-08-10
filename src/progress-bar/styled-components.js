@@ -92,22 +92,42 @@ export const StyledBarProgress = styled<StylePropsT>('div', props => {
   const animationStyles = $infinite
     ? {
         width: '100%',
-        position: 'absolute',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        transitionProperty: 'background-image, width',
         animationDuration: '2.1s',
         animationIterationCount: 'infinite',
-        animationTimingFunction: 'cubic-bezier(0.65, 0.815, 0.735, 0.395)',
+        animationTimingFunction: $theme.animation.linearCurve,
         animationName: {
           '0%': {
-            left: '-200%',
-            right: '100%',
+            width: '0%',
+            opacity: 0,
+            backgroundImage: `linear-gradient(90deg, transparent 0%, ${colors.accent} 50%, transparent 100%)`,
           },
-          '60%': {
-            left: '107%',
-            right: '-8%',
+          '25%': {
+            width: '80%',
+            opacity: 1,
+            backgroundImage: `linear-gradient(90deg, transparent 0%, ${colors.accent} 50%, transparent 100%)`,
+          },
+          '45%': {
+            width: '100%',
+            opacity: 1,
+            backgroundImage: `linear-gradient(90deg, ${colors.accent} 0%, ${colors.accent} 100%)`,
+          },
+          '55%': {
+            width: '100%',
+            opacity: 1,
+            backgroundImage: `linear-gradient(90deg, ${colors.accent} 0%, ${colors.accent} 100%)`,
+          },
+          '75%': {
+            width: '100%',
+            opacity: 1,
+            backgroundImage: `linear-gradient(90deg, ${colors.accent} 0%, transparent 50%, ${colors.accent} 100%)`,
           },
           '100%': {
-            left: '107%',
-            right: '-8%',
+            width: '200%',
+            opacity: 0,
+            backgroundImage: `linear-gradient(90deg, transparent 0%, transparent 100%)`,
           },
         },
       }
@@ -119,7 +139,6 @@ export const StyledBarProgress = styled<StylePropsT>('div', props => {
   const stepAnimationStyles =
     stepState === stepStates.inProgress
       ? {
-          position: 'absolute',
           animationDuration: '2.1s',
           animationIterationCount: 'infinite',
           animationTimingFunction: $theme.animation.linearCurve,
@@ -150,7 +169,7 @@ export const StyledBarProgress = styled<StylePropsT>('div', props => {
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
-    backgroundColor: colors.accent,
+    backgroundColor: $infinite ? 'initial' : colors.accent,
     height: '100%',
     ...($steps > 1 ? stepAnimationStyles : animationStyles),
   };
