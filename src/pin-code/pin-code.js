@@ -80,7 +80,6 @@ export default class PinCode extends React.Component<PropsT, StateT> {
               inputMode="numeric"
               inputRef={this._inputRefs.ref(i)}
               key={i}
-              maxLength="1"
               name={this.props.name}
               onBlur={() => this.setState({hasFocus: false})}
               onFocus={() => this.setState({hasFocus: true})}
