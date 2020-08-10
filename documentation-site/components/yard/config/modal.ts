@@ -90,6 +90,13 @@ const ModalConfig: TConfig = {
         'If true, focus will shift to the first interactive element within the modal.',
       hidden: true,
     },
+    focusLock: {
+      defaultValue: true,
+      value: true,
+      type: PropTypes.Boolean,
+      description: 'If true, focus will be locked to the modal contents.',
+      hidden: true,
+    },
     size: {
       value: 'SIZE.default',
       options: SIZE,

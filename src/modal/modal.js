@@ -37,6 +37,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     // TODO(v11): remove
     autofocus: null,
     autoFocus: true,
+    focusLock: true,
     closeable: true,
     isOpen: false,
     overrides: {},
@@ -266,6 +267,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       unstable_ModalBackdropScroll,
       autofocus,
       autoFocus,
+      focusLock,
     } = this.props;
 
     const {
@@ -314,6 +316,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       <LocaleContext.Consumer>
         {locale => (
           <FocusLock
+            disabled={!focusLock}
             returnFocus
             // eslint-disable-next-line jsx-a11y/no-autofocus
             autoFocus={autofocus !== null ? autofocus : autoFocus}

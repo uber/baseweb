@@ -39,6 +39,9 @@ export type ModalPropsT = {
    */
   autofocus: boolean | null,
   autoFocus: boolean,
+  /** If true, focus will be locked to elements within the modal.
+   */
+  focusLock?: boolean,
   /** Modal content. The children-as-function API may be preferable
    * for performance reasons (wont render until opened) */
   children?: React.Node | (() => React.Node),
