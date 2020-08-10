@@ -104,6 +104,16 @@ export default class MenuStatefulContainer extends React.Component<
         document.removeEventListener('keydown', this.onKeyDown);
       }
     }
+    var range = this.getItems().length;
+    if (range === 0 && this.state.highlightedIndex !== -1) {
+      this.internalSetState(STATE_CHANGE_TYPES.enter, {
+        highlightedIndex: -1,
+      });
+    } else if (this.state.highlightedIndex >= range) {
+      this.internalSetState(STATE_CHANGE_TYPES.enter, {
+        highlightedIndex: 0,
+      });
+    }
   }
 
   // One array to hold all of list item refs
@@ -386,6 +396,7 @@ export default class MenuStatefulContainer extends React.Component<
   render() {
     // omit the stateful-container's props and don't pass it down
     // to the children (stateless menu)
+
     const {
       initialState,
       stateReducer,
@@ -397,6 +408,7 @@ export default class MenuStatefulContainer extends React.Component<
       getChildMenu,
       ...restProps
     } = this.props;
+
     return this.props.children(
       ({
         ...restProps,

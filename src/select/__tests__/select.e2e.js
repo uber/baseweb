@@ -167,6 +167,25 @@ describe('select', () => {
     expect(second).toBe('AliceBlueAntiqueWhite');
   });
 
+  it('subsequent multi select dropdown opens highlights first value after keyboard navigation', async () => {
+    await mount(page, 'select-search-multi');
+    await page.waitFor(selectors.selectInput);
+    await page.click(selectors.selectInput);
+    await page.waitFor(selectors.selectDropDown);
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('Enter');
+    await page.type(selectors.selectInput, 'be');
+    await page.keyboard.press('Enter');
+    const text = await page.$eval(
+      selectors.selectedList,
+      select => select.textContent,
+    );
+    expect(text).toBe('AzureBeige');
+  });
+
   it('creates and selects a new option', async () => {
     await mount(page, 'select-creatable');
     await page.waitFor(selectors.selectInput);
