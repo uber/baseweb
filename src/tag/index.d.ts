@@ -3,13 +3,14 @@ import {StyletronComponent} from 'styletron-react';
 import {Override} from '../overrides';
 
 export interface KIND {
+  custom: 'custom';
   neutral: 'neutral';
   primary: 'primary';
   accent: 'accent';
   positive: 'positive';
   warning: 'warning';
   negative: 'negative';
-  custom: 'custom';
+  white: 'white';
   black: 'black';
   blue: 'blue';
   red: 'red';
@@ -19,10 +20,17 @@ export interface KIND {
   purple: 'purple';
   brown: 'brown';
 }
+
 export interface VARIANT {
   solid: 'solid';
   light: 'light';
   outlined: 'outlined';
+}
+
+export interface SIZE {
+  small: 'small';
+  medium: 'medium';
+  large: 'large';
 }
 
 export interface TagOverrides {
@@ -43,6 +51,7 @@ export interface TagProps {
   children?: React.ReactNode;
   title?: string;
   color?: string;
+  size?: SIZE[keyof SIZE];
   onActionClick?: (e: Event, children?: React.ReactNode) => any;
   onActionKeyDown?: (e: Event, children?: React.ReactNode) => any;
   onClick?: (event: Event) => any;
@@ -61,3 +70,4 @@ export const StyledText: StyletronComponent<any>;
 
 export const KIND: KIND;
 export const VARIANT: VARIANT;
+export const SIZE: SIZE;

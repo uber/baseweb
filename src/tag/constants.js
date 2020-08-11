@@ -6,6 +6,12 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
+export const SIZE = {
+  small: 'small',
+  medium: 'medium',
+  large: 'large',
+};
+
 export const VARIANT = Object.freeze({
   solid: 'solid',
   light: 'light',

@@ -7,13 +7,15 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import type {OverrideT} from '../helpers/overrides.js';
-import {KIND, VARIANT} from './constants.js';
+import {KIND, VARIANT, SIZE} from './constants.js';
 
 export const TagKind = Object.freeze(KIND);
 export const TagVariant = Object.freeze(VARIANT);
+export const TagSize = Object.freeze(SIZE);
 
 export type TagKindT = $Keys<typeof TagKind>;
 export type TagVariantT = $Values<typeof TagVariant>;
+export type TagSizeT = $Keys<typeof TagSize>;
 
 export type OverridesT = {
   Root?: OverrideT,
@@ -50,6 +52,8 @@ export type PropsT = {
   onClick?: null | ((event: Event) => mixed),
   /** onkeydown handler for the tag. */
   onKeyDown?: null | ((event: Event) => mixed),
+  /** Determines the size of the Tag. */
+  size?: TagSizeT,
 };
 
 export type SharedPropsArgT = {
@@ -63,4 +67,5 @@ export type SharedPropsArgT = {
   $kind?: string,
   $variant?: string,
   $isFocusVisible: boolean,
+  $size?: string,
 };

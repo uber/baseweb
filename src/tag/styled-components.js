@@ -10,7 +10,7 @@ import tint from 'polished/lib/color/tint.js';
 import shade from 'polished/lib/color/shade.js';
 
 import {styled} from '../styles/index.js';
-import {KIND, VARIANT} from './constants.js';
+import {KIND, VARIANT, SIZE} from './constants.js';
 import type {SharedPropsArgT} from './types.js';
 import {colors as colorTokens} from '../tokens/index.js';
 
@@ -307,7 +307,7 @@ const getStateFromProps = props => {
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const Action = styled<SharedPropsArgT>('span', props => {
-  const {$theme, $disabled, $variant} = props;
+  const {$theme, $disabled, $size = SIZE.small} = props;
   const bottomRadiusDir: string =
     $theme.direction === 'rtl'
       ? 'borderBottomLeftRadius'
@@ -326,12 +326,12 @@ export const Action = styled<SharedPropsArgT>('span', props => {
       : 0,
     cursor: $disabled ? 'not-allowed' : 'pointer',
     display: 'flex',
-    [marginDir]: '8px',
+    [marginDir]: {
+      [SIZE.small]: '8px',
+      [SIZE.medium]: '12px',
+      [SIZE.large]: '16px',
+    }[$size],
     outline: 'none',
-    paddingTop: $variant === VARIANT.outlined ? '5px' : '7px',
-    paddingBottom: $variant === VARIANT.outlined ? '5px' : '7px',
-    paddingLeft: '8px',
-    paddingRight: '8px',
     transitionProperty: 'all',
     transitionDuration: 'background-color',
     transitionTimingFunction: $theme.animation.easeOutCurve,
@@ -361,14 +361,14 @@ export const Root = styled<SharedPropsArgT>('span', props => {
     $closeable,
     $isFocusVisible,
     $color,
+    $size = SIZE.small,
   } = props;
-  const borderRadius = $theme.borders.useRoundedCorners
-    ? $theme.borders.radius400
-    : 0;
-  const paddingStartDir: string =
-    $theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
-  const paddingEndDir: string =
-    $theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
+  const borderRadius = '24px';
+  const paddingMagnitude = {
+    [SIZE.small]: $theme.sizing.scale300,
+    [SIZE.medium]: $theme.sizing.scale500,
+    [SIZE.large]: $theme.sizing.scale600,
+  }[$size];
   const borderWidth = !$disabled && $variant === VARIANT.solid ? 0 : '2px';
   const {color, backgroundColor, borderColor} = colorMatrix[$kind][
     getStateFromProps(props)
@@ -379,7 +379,11 @@ export const Root = styled<SharedPropsArgT>('span', props => {
     borderColor: borderColorHover,
   } = colorMatrix[$kind][STATE.hover]($theme, $color);
   return ({
-    ...$theme.typography.font150,
+    ...{
+      [SIZE.small]: $theme.typography.LabelSmall,
+      [SIZE.medium]: $theme.typography.LabelMedium,
+      [SIZE.large]: $theme.typography.LabelLarge,
+    }[$size],
     alignItems: 'center',
     color,
     backgroundColor,
@@ -402,7 +406,11 @@ export const Root = styled<SharedPropsArgT>('span', props => {
     boxSizing: 'border-box',
     cursor: $disabled ? 'not-allowed' : $clickable ? 'pointer' : 'default',
     display: 'inline-flex',
-    height: $theme.sizing.scale800,
+    height: {
+      [SIZE.small]: '24px',
+      [SIZE.medium]: '32px',
+      [SIZE.large]: '40px',
+    }[$size],
     justifyContent: 'space-between',
     marginTop: '5px',
     marginBottom: '5px',
@@ -410,8 +418,8 @@ export const Root = styled<SharedPropsArgT>('span', props => {
     marginRight: '5px',
     paddingTop: $theme.sizing.scale0,
     paddingBottom: $theme.sizing.scale0,
-    [paddingStartDir]: $theme.sizing.scale500,
-    [paddingEndDir]: $closeable ? null : $theme.sizing.scale500,
+    paddingLeft: paddingMagnitude,
+    paddingRight: paddingMagnitude,
     outline: 'none',
     ':hover':
       $disabled || !$clickable
