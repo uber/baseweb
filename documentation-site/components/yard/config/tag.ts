@@ -214,10 +214,10 @@ const TagConfig: TConfig = {
       description: 'Determines how large the Tag will be.',
       imports: {
         'baseui/tag': {
-          named: ['SIZE']
-        }
-      }
-    }
+          named: ['SIZE'],
+        },
+      },
+    },
     disabled: {
       value: false,
       type: PropTypes.Boolean,
