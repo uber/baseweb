@@ -92,6 +92,7 @@ export interface StatefulContainerProps {
   onItemSelect?: OnItemSelect;
   rootRef?: React.Ref<any>;
   typeAhead?: boolean;
+  listenToDoc?: boolean;
   children?: (args: RenderProps) => React.ReactNode;
   addMenuToNesting?: (ref: React.Ref<HTMLElement>) => void;
   removeMenuFromNesting?: (ref: React.Ref<HTMLElement>) => void;

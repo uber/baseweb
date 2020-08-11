@@ -31,6 +31,7 @@ export default class MenuStatefulContainer extends React.Component<
       isFocused: false,
     },
     typeAhead: true,
+    listenToDoc: true,
     stateReducer: ((changeType, changes) => changes: StateReducerFnT),
     onItemSelect: () => {},
     getRequiredItemProps: () => ({}),
@@ -79,7 +80,7 @@ export default class MenuStatefulContainer extends React.Component<
         );
       }
 
-      if (this.state.isFocused) {
+      if (this.props.listenToDoc && this.state.isFocused) {
         document.addEventListener('keydown', this.onKeyDown);
       }
     }
@@ -90,7 +91,8 @@ export default class MenuStatefulContainer extends React.Component<
     const rootRef = this.props.rootRef ? this.props.rootRef : this.rootRef;
 
     if (__BROWSER__) {
-      document.removeEventListener('keydown', this.onKeyDown);
+      if (this.props.listenToDoc)
+        document.removeEventListener('keydown', this.onKeyDown);
     }
     this.props.removeMenuFromNesting &&
       this.props.removeMenuFromNesting(rootRef);
@@ -98,9 +100,17 @@ export default class MenuStatefulContainer extends React.Component<
 
   componentDidUpdate(_: mixed, prevState: StatefulContainerStateT) {
     if (__BROWSER__) {
-      if (!prevState.isFocused && this.state.isFocused) {
+      if (
+        this.props.listenToDoc &&
+        !prevState.isFocused &&
+        this.state.isFocused
+      ) {
         document.addEventListener('keydown', this.onKeyDown);
-      } else if (prevState.isFocused && !this.state.isFocused) {
+      } else if (
+        this.props.listenToDoc &&
+        prevState.isFocused &&
+        !this.state.isFocused
+      ) {
         document.removeEventListener('keydown', this.onKeyDown);
       }
     }
@@ -417,6 +427,7 @@ export default class MenuStatefulContainer extends React.Component<
         getRequiredItemProps: this.getRequiredItemProps,
         handleMouseLeave: this.handleMouseLeave,
         highlightedIndex: this.state.highlightedIndex,
+        handleKeyDown: this.props.listenToDoc ? event => {} : this.onKeyDown,
         isFocused: this.state.isFocused,
         focusMenu: this.focusMenu,
         unfocusMenu: this.unfocusMenu,

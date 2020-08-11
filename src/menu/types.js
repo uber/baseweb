@@ -124,6 +124,8 @@ export type StatefulContainerPropsT = {
   rootRef?: RootRefT,
   /** whether has keyboard type-ahead function */
   typeAhead: boolean,
+  /** whether has keyboard listens to document; if true, listens to document; if false, listens to itself; Default is true */
+  listenToDoc: boolean,
   /** Child as function pattern. */
   children: RenderPropsT => React.Node,
   addMenuToNesting?: (ref: {current: HTMLElement | null}) => void,
