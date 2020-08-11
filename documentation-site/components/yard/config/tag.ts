@@ -1,4 +1,4 @@
-import {Tag, KIND, VARIANT} from 'baseui/tag';
+import {Tag, KIND, VARIANT, SIZE} from 'baseui/tag';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
@@ -206,6 +206,18 @@ const TagConfig: TConfig = {
         },
       },
     },
+    size: {
+      value: 'SIZE.small',
+      defaultValue: 'SIZE.small',
+      options: SIZE,
+      type: PropTypes.Enum,
+      description: 'Determines how large the Tag will be.',
+      imports: {
+        'baseui/tag': {
+          named: ['SIZE']
+        }
+      }
+    }
     disabled: {
       value: false,
       type: PropTypes.Boolean,
