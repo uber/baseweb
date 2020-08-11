@@ -11,7 +11,7 @@ import Dropzone from 'react-dropzone';
 
 import {LocaleContext} from '../locale/index.js';
 import {Block} from '../block/index.js';
-import {Button, KIND} from '../button/index.js';
+import {Button, KIND, SHAPE} from '../button/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {ProgressBar} from '../progress-bar/index.js';
 import {StyledSpinnerNext, SIZE} from '../spinner/index.js';
@@ -114,6 +114,7 @@ function FileUploader(props: PropsT) {
                       >
                         {locale.fileuploader.dropFilesToUpload}
                       </ContentMessage>
+                      {/* TODO(v11): ContentSeparator potentially can be removed in the next major version */}
                       <ContentSeparator
                         {...prefixedStyledProps}
                         {...contentSeparatorProps}
@@ -123,14 +124,17 @@ function FileUploader(props: PropsT) {
                       <ButtonComponent
                         aria-controls="fileupload"
                         disabled={props.disabled}
-                        kind={KIND.minimal}
+                        kind={KIND.secondary}
+                        shape={SHAPE.pill}
                         onClick={open}
+                        role="button"
                         overrides={{
                           BaseButton: {
-                            style: {fontWeight: 'normal'},
+                            style: ({$theme}) => ({
+                              marginTop: $theme.sizing.scale500,
+                            }),
                           },
                         }}
-                        role="button"
                         {...prefixedStyledProps}
                         {...buttonProps}
                       >
@@ -155,7 +159,7 @@ function FileUploader(props: PropsT) {
                               style: ({$theme}) => ({
                                 backgroundColor: props.errorMessage
                                   ? $theme.colors.negative
-                                  : $theme.colors.primary,
+                                  : $theme.colors.accent,
                               }),
                             },
                           }}
@@ -193,11 +197,6 @@ function FileUploader(props: PropsT) {
                           aria-invalid={Boolean(props.errorMessage)}
                           aria-describedby={props['aria-describedby']}
                           aria-errormessage={props.errorMessage}
-                          overrides={{
-                            BaseButton: {
-                              style: {outline: null, fontWeight: 'normal'},
-                            },
-                          }}
                         >
                           {locale.fileuploader.retry}
                         </ButtonComponent>
@@ -210,7 +209,9 @@ function FileUploader(props: PropsT) {
                           aria-describedby={props['aria-describedby']}
                           overrides={{
                             BaseButton: {
-                              style: {outline: null, fontWeight: 'normal'},
+                              style: ({$theme}) => ({
+                                color: $theme.colors.contentNegative,
+                              }),
                             },
                           }}
                         >

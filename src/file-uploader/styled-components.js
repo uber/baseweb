@@ -11,13 +11,13 @@ import type {StylePropsT} from './types.js';
 
 export const StyledFileDragAndDrop = styled<StylePropsT>('div', props => {
   const borderColor = props.$isDragActive
-    ? props.$theme.colors.fileUploaderBorderColorActive
+    ? props.$theme.colors.borderAccent
     : props.$theme.colors.fileUploaderBorderColorDefault;
   const borderStyle = props.$afterFileDrop ? 'none' : 'dashed';
   return ({
     alignItems: 'center',
     backgroundColor: props.$isDragActive
-      ? props.$theme.colors.fileUploaderBackgroundColorActive
+      ? props.$theme.colors.backgroundLightAccent
       : props.$theme.colors.fileUploaderBackgroundColor,
     borderLeftColor: borderColor,
     borderRightColor: borderColor,
@@ -47,13 +47,15 @@ export const StyledFileDragAndDrop = styled<StylePropsT>('div', props => {
 
 export const StyledContentMessage = styled<StylePropsT>(
   'div',
-  props =>
+  ({$theme, $afterFileDrop, $isDragActive}) =>
     ({
-      ...props.$theme.typography.font300,
-      color: props.$afterFileDrop
-        ? props.$theme.colors.fileUploaderMessageColor
+      ...$theme.typography.font300,
+      color: $afterFileDrop
+        ? $theme.colors.fileUploaderMessageColor
+        : $isDragActive
+        ? $theme.colors.contentAccent
         : null,
-      marginBottom: props.$afterFileDrop ? props.$theme.sizing.scale600 : null,
+      marginBottom: $afterFileDrop ? $theme.sizing.scale600 : null,
     }: {}),
 );
 
