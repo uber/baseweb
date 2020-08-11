@@ -422,7 +422,7 @@ export const Root = styled<SharedPropsArgT>('span', props => {
     paddingRight: paddingMagnitude,
     outline: 'none',
     ':hover':
-      $disabled || !$clickable
+      $variant === VARIANT.solid || $disabled || !$clickable
         ? {}
         : {
             color: colorHover,
