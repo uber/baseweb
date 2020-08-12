@@ -5,12 +5,12 @@ export default function Scenario() {
   return (
     <React.Fragment>
       {[
-        'neutral',
-        'primary',
-        'accent',
-        'positive',
-        'negative',
-        'warning',
+        KIND.neutral,
+        KIND.primary,
+        KIND.accent,
+        KIND.positive,
+        KIND.negative,
+        KIND.warning,
       ].map(kind => (
         <div>
           <Tag
