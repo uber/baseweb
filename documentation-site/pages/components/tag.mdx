@@ -13,6 +13,7 @@ import Basic from 'examples/tag/basic.js';
 import Variants from 'examples/tag/variants.js';
 import Primitive from 'examples/tag/primitive.js';
 import Kinds from 'examples/tag/kinds.js';
+import Size from 'examples/tag/size.js';
 import NonClickable from 'examples/tag/non-clickable.js';
 import Clickable from 'examples/tag/clickable.js';
 import Disabled from 'examples/tag/disabled.js';
@@ -45,18 +46,24 @@ Compact UI to display a collection of concise information.
   <Basic />
 </Example>
 
-<Example title="Tag Kinds Prop Type" path="tag/kinds.js">
+<Example title="Semantic KIND values" path="tag/kinds.js">
   <Kinds />
 </Example>
 
-<Example title="Tag primitive kinds" path="tag/primitive.js">
+You can change the color of the tag by passing a value to the `kind` prop. Here we see the set of "semantic" color options. These will reflect the `negative`, `positive`, etc values that you use in your theme.
+
+<Example title="Primitive KIND values" path="tag/primitive.js">
   <Primitive />
 </Example>
 
-In addition to the semantic `primary` and `negative` type values you can pass to `kind`, there are also hard-coded primitive type values such as `blue` and `green`. These pull color values from [`baseui/tokens`](/components/tokens) and are not meant to be themed. Note the `black` kind mixes in a few semantic theme properties to maintain a legible contrast ratio in dark mode.
+In addition to the "semantic" `kind` colors, you can also use "primitive" colors such as `blue` or `green`. Some of these simply alias the "semantic" colors (and therefore your theme), but there are also color-ways not contained in the "semantic" set, such as `orange`, `purple`, and `brown`.
 
 <Example title="Tag Variants Prop Type" path="tag/variants.js">
   <Variants />
+</Example>
+
+<Example title="Tag sizing" path="tag/size.js">
+  <Size />
 </Example>
 
 <Example title="Tag closeable/non-clickable" path="tag/non-clickable.js">
