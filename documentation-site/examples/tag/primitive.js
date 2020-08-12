@@ -1,11 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import {useStyletron} from 'baseui';
 import {Tag, KIND, VARIANT} from 'baseui/tag';
 
 export default function Scenario() {
-  const [css] = useStyletron();
   return (
     <React.Fragment>
       {[

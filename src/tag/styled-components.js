@@ -54,252 +54,256 @@ const STATE = {
 const pick = (theme, light, dark) =>
   theme.name.includes('dark') ? dark : light;
 
-const colorMatrix = {
-  [KIND.neutral]: {
-    [STATE.disabled]: theme => ({
-      color: theme.colors.tagNeutralFontDisabled,
-      backgroundColor: null,
-      borderColor: theme.colors.tagNeutralOutlinedDisabled,
-    }),
-    [STATE.solid]: theme => ({
-      color: theme.colors.tagNeutralSolidFont,
-      backgroundColor: theme.colors.tagNeutralSolidBackground,
-      borderColor: null,
-    }),
-    [STATE.hover]: theme => ({
-      color: theme.colors.tagNeutralOutlinedFontHover,
-      backgroundColor: theme.colors.tagNeutralOutlinedHover,
-      borderColor: theme.colors.tagNeutralOutlinedBackground,
-    }),
-    [STATE.outline]: theme => ({
-      color: theme.colors.tagNeutralOutlinedFont,
-      backgroundColor: null,
-      borderColor: theme.colors.tagNeutralOutlinedBackground,
-    }),
-  },
-  [KIND.primary]: {
-    [STATE.disabled]: theme => ({
-      color: theme.colors.tagPrimaryFontDisabled,
-      backgroundColor: null,
-      borderColor: theme.colors.tagPrimaryOutlinedDisabled,
-    }),
-    [STATE.solid]: theme => ({
-      color: theme.colors.tagPrimarySolidFont,
-      backgroundColor: theme.colors.tagPrimarySolidBackground,
-      borderColor: null,
-    }),
-    [STATE.hover]: theme => ({
-      color: theme.colors.tagPrimaryOutlinedFontHover,
-      backgroundColor: theme.colors.tagPrimaryOutlinedHover,
-      borderColor: theme.colors.tagPrimaryOutlinedBackground,
-    }),
-    [STATE.outline]: theme => ({
-      color: theme.colors.tagPrimaryOutlinedFont,
-      backgroundColor: null,
-      borderColor: theme.colors.tagPrimaryOutlinedBackground,
-    }),
-  },
-  [KIND.accent]: {
-    [STATE.disabled]: theme => ({
-      color: theme.colors.tagAccentFontDisabled,
-      backgroundColor: null,
-      borderColor: theme.colors.tagAccentOutlinedDisabled,
-    }),
-    [STATE.solid]: theme => ({
-      color: theme.colors.tagAccentSolidFont,
-      backgroundColor: theme.colors.tagAccentSolidBackground,
-      borderColor: null,
-    }),
-    [STATE.hover]: theme => ({
-      color: theme.colors.tagAccentOutlinedFontHover,
-      backgroundColor: theme.colors.tagAccentOutlinedHover,
-      borderColor: theme.colors.tagAccentOutlinedBackground,
-    }),
-    [STATE.outline]: theme => ({
-      color: theme.colors.tagAccentOutlinedFont,
-      backgroundColor: null,
-      borderColor: theme.colors.tagAccentOutlinedBackground,
-    }),
-  },
-  [KIND.positive]: {
-    [STATE.disabled]: theme => ({
-      color: theme.colors.tagPositiveFontDisabled,
-      backgroundColor: null,
-      borderColor: theme.colors.tagPositiveOutlinedDisabled,
-    }),
-    [STATE.solid]: theme => ({
-      color: theme.colors.tagPositiveSolidFont,
-      backgroundColor: theme.colors.tagPositiveSolidBackground,
-      borderColor: null,
-    }),
-    [STATE.hover]: theme => ({
-      color: theme.colors.tagPositiveOutlinedFontHover,
-      backgroundColor: theme.colors.tagPositiveOutlinedHover,
-      borderColor: theme.colors.tagPositiveOutlinedBackground,
-    }),
-    [STATE.outline]: theme => ({
-      color: theme.colors.tagPositiveOutlinedFont,
-      backgroundColor: null,
-      borderColor: theme.colors.tagPositiveOutlinedBackground,
-    }),
-  },
-  [KIND.warning]: {
-    [STATE.disabled]: theme => ({
-      color: theme.colors.tagWarningFontDisabled,
-      backgroundColor: null,
-      borderColor: theme.colors.tagWarningOutlinedDisabled,
-    }),
-    [STATE.solid]: theme => ({
-      color: theme.colors.tagWarningSolidFont,
-      backgroundColor: theme.colors.tagWarningSolidBackground,
-      borderColor: null,
-    }),
-    [STATE.hover]: theme => ({
-      color: theme.colors.tagWarningOutlinedFontHover,
-      backgroundColor: theme.colors.tagWarningOutlinedHover,
-      borderColor: theme.colors.tagWarningOutlinedBackground,
-    }),
-    [STATE.outline]: theme => ({
-      color: theme.colors.tagWarningOutlinedFont,
-      backgroundColor: null,
-      borderColor: theme.colors.tagWarningOutlinedBackground,
-    }),
-  },
-  [KIND.negative]: {
-    [STATE.disabled]: theme => ({
-      color: theme.colors.tagNegativeFontDisabled,
-      backgroundColor: null,
-      borderColor: theme.colors.tagNegativeOutlinedDisabled,
-    }),
-    [STATE.solid]: theme => ({
-      color: theme.colors.tagNegativeSolidFont,
-      backgroundColor: theme.colors.tagNegativeSolidBackground,
-      borderColor: null,
-    }),
-    [STATE.hover]: theme => ({
-      color: theme.colors.tagNegativeOutlinedFontHover,
-      backgroundColor: theme.colors.tagNegativeOutlinedHover,
-      borderColor: theme.colors.tagNegativeOutlinedBackground,
-    }),
-    [STATE.outline]: theme => ({
-      color: theme.colors.tagNegativeOutlinedFont,
-      backgroundColor: null,
-      borderColor: theme.colors.tagNegativeOutlinedBackground,
-    }),
-  },
-  [KIND.orange]: {
-    [STATE.disabled]: theme => ({
-      color: pick(theme, colorTokens.orange200, colorTokens.orange600),
-      backgroundColor: null,
-      borderColor: pick(theme, colorTokens.orange200, colorTokens.orange600),
-    }),
-    [STATE.solid]: theme => ({
-      color: pick(theme, colorTokens.white, colorTokens.orange50),
-      backgroundColor: pick(
-        theme,
-        colorTokens.orange400,
-        colorTokens.orange500,
-      ),
-      borderColor: null,
-    }),
-    [STATE.hover]: theme => ({
-      color: colorTokens.orange400,
-      backgroundColor: pick(theme, colorTokens.orange50, colorTokens.orange700),
-      borderColor: pick(theme, colorTokens.orange200, colorTokens.orange500),
-    }),
-    [STATE.outline]: theme => ({
-      color: colorTokens.orange400,
-      backgroundColor: null,
-      borderColor: pick(theme, colorTokens.orange200, colorTokens.orange500),
-    }),
-  },
-  [KIND.purple]: {
-    [STATE.disabled]: theme => ({
-      color: pick(theme, colorTokens.purple200, colorTokens.purple600),
-      backgroundColor: null,
-      borderColor: pick(theme, colorTokens.purple200, colorTokens.purple600),
-    }),
-    [STATE.solid]: theme => ({
-      color: pick(theme, colorTokens.white, colorTokens.purple50),
-      backgroundColor: pick(
-        theme,
-        colorTokens.purple400,
-        colorTokens.purple500,
-      ),
-      borderColor: null,
-    }),
-    [STATE.hover]: theme => ({
-      color: colorTokens.purple400,
-      backgroundColor: pick(theme, colorTokens.purple50, colorTokens.purple700),
-      borderColor: pick(theme, colorTokens.purple200, colorTokens.purple500),
-    }),
-    [STATE.outline]: theme => ({
-      color: colorTokens.purple400,
-      backgroundColor: null,
-      borderColor: pick(theme, colorTokens.purple200, colorTokens.purple500),
-    }),
-  },
-  [KIND.brown]: {
-    [STATE.disabled]: theme => ({
-      color: pick(theme, colorTokens.brown200, colorTokens.brown600),
-      backgroundColor: null,
-      borderColor: pick(theme, colorTokens.brown200, colorTokens.brown600),
-    }),
-    [STATE.solid]: theme => ({
-      color: pick(theme, colorTokens.white, colorTokens.brown50),
-      backgroundColor: pick(theme, colorTokens.brown400, colorTokens.brown500),
-      borderColor: null,
-    }),
-    [STATE.hover]: theme => ({
-      color: colorTokens.brown400,
-      backgroundColor: pick(theme, colorTokens.brown50, colorTokens.brown700),
-      borderColor: pick(theme, colorTokens.brown200, colorTokens.brown500),
-    }),
-    [STATE.outline]: theme => ({
-      color: colorTokens.brown400,
-      backgroundColor: null,
-      borderColor: pick(theme, colorTokens.brown200, colorTokens.brown500),
-    }),
-  },
-  [KIND.custom]: {
-    [STATE.disabled]: (theme, color) => ({
-      color: customOnRamp(color, theme.colors.tagFontDisabledRampUnit),
-      backgroundColor: null,
-      borderColor: customOnRamp(
-        color,
-        theme.colors.tagOutlinedDisabledRampUnit,
-      ),
-    }),
-    [STATE.solid]: (theme, color) => ({
-      color: customOnRamp(color, theme.colors.tagSolidFontRampUnit),
-      backgroundColor: customOnRamp(color, theme.colors.tagSolidRampUnit),
-      borderColor: null,
-    }),
-    [STATE.hover]: (theme, color) => ({
-      color: customOnRamp(color, theme.colors.tagOutlinedFontRampUnit),
-      backgroundColor: customOnRamp(
-        color,
-        theme.colors.tagOutlinedHoverRampUnit,
-      ),
-      borderColor: customOnRamp(color, theme.colors.tagOutlinedRampUnit),
-    }),
-    [STATE.outline]: (theme, color) => ({
-      color: customOnRamp(color, theme.colors.tagOutlinedFontRampUnit),
-      backgroundColor: null,
-      borderColor: customOnRamp(color, theme.colors.tagOutlinedRampUnit),
-    }),
-  },
+const neutralColorStates = {
+  [STATE.disabled]: (theme, color) => ({
+    color: theme.colors.tagNeutralFontDisabled,
+    backgroundColor: null,
+    borderColor: theme.colors.tagNeutralOutlinedDisabled,
+  }),
+  [STATE.solid]: (theme, color) => ({
+    color: theme.colors.tagNeutralSolidFont,
+    backgroundColor: theme.colors.tagNeutralSolidBackground,
+    borderColor: null,
+  }),
+  [STATE.hover]: (theme, color) => ({
+    color: theme.colors.tagNeutralOutlinedFontHover,
+    backgroundColor: theme.colors.tagNeutralOutlinedHover,
+    borderColor: theme.colors.tagNeutralOutlinedBackground,
+  }),
+  [STATE.outline]: (theme, color) => ({
+    color: theme.colors.tagNeutralOutlinedFont,
+    backgroundColor: null,
+    borderColor: theme.colors.tagNeutralOutlinedBackground,
+  }),
 };
 
-// Add aliases to semantic KIND values.
-colorMatrix[KIND.white] = colorMatrix[KIND.primary];
-colorMatrix[KIND.black] = colorMatrix[KIND.primary];
-colorMatrix[KIND.blue] = colorMatrix[KIND.accent];
-colorMatrix[KIND.green] = colorMatrix[KIND.positive];
-colorMatrix[KIND.red] = colorMatrix[KIND.negative];
-colorMatrix[KIND.yellow] = colorMatrix[KIND.warning];
+const primaryColorStates = {
+  [STATE.disabled]: (theme, color) => ({
+    color: theme.colors.tagPrimaryFontDisabled,
+    backgroundColor: null,
+    borderColor: theme.colors.tagPrimaryOutlinedDisabled,
+  }),
+  [STATE.solid]: (theme, color) => ({
+    color: theme.colors.tagPrimarySolidFont,
+    backgroundColor: theme.colors.tagPrimarySolidBackground,
+    borderColor: null,
+  }),
+  [STATE.hover]: (theme, color) => ({
+    color: theme.colors.tagPrimaryOutlinedFontHover,
+    backgroundColor: theme.colors.tagPrimaryOutlinedHover,
+    borderColor: theme.colors.tagPrimaryOutlinedBackground,
+  }),
+  [STATE.outline]: (theme, color) => ({
+    color: theme.colors.tagPrimaryOutlinedFont,
+    backgroundColor: null,
+    borderColor: theme.colors.tagPrimaryOutlinedBackground,
+  }),
+};
 
-const getStateFromProps = props => {
+const accentColorStates = {
+  [STATE.disabled]: (theme, color) => ({
+    color: theme.colors.tagAccentFontDisabled,
+    backgroundColor: null,
+    borderColor: theme.colors.tagAccentOutlinedDisabled,
+  }),
+  [STATE.solid]: (theme, color) => ({
+    color: theme.colors.tagAccentSolidFont,
+    backgroundColor: theme.colors.tagAccentSolidBackground,
+    borderColor: null,
+  }),
+  [STATE.hover]: (theme, color) => ({
+    color: theme.colors.tagAccentOutlinedFontHover,
+    backgroundColor: theme.colors.tagAccentOutlinedHover,
+    borderColor: theme.colors.tagAccentOutlinedBackground,
+  }),
+  [STATE.outline]: (theme, color) => ({
+    color: theme.colors.tagAccentOutlinedFont,
+    backgroundColor: null,
+    borderColor: theme.colors.tagAccentOutlinedBackground,
+  }),
+};
+
+const positiveColorStates = {
+  [STATE.disabled]: (theme, color) => ({
+    color: theme.colors.tagPositiveFontDisabled,
+    backgroundColor: null,
+    borderColor: theme.colors.tagPositiveOutlinedDisabled,
+  }),
+  [STATE.solid]: (theme, color) => ({
+    color: theme.colors.tagPositiveSolidFont,
+    backgroundColor: theme.colors.tagPositiveSolidBackground,
+    borderColor: null,
+  }),
+  [STATE.hover]: (theme, color) => ({
+    color: theme.colors.tagPositiveOutlinedFontHover,
+    backgroundColor: theme.colors.tagPositiveOutlinedHover,
+    borderColor: theme.colors.tagPositiveOutlinedBackground,
+  }),
+  [STATE.outline]: (theme, color) => ({
+    color: theme.colors.tagPositiveOutlinedFont,
+    backgroundColor: null,
+    borderColor: theme.colors.tagPositiveOutlinedBackground,
+  }),
+};
+
+const warningColorStates = {
+  [STATE.disabled]: (theme, color) => ({
+    color: theme.colors.tagWarningFontDisabled,
+    backgroundColor: null,
+    borderColor: theme.colors.tagWarningOutlinedDisabled,
+  }),
+  [STATE.solid]: (theme, color) => ({
+    color: theme.colors.tagWarningSolidFont,
+    backgroundColor: theme.colors.tagWarningSolidBackground,
+    borderColor: null,
+  }),
+  [STATE.hover]: (theme, color) => ({
+    color: theme.colors.tagWarningOutlinedFontHover,
+    backgroundColor: theme.colors.tagWarningOutlinedHover,
+    borderColor: theme.colors.tagWarningOutlinedBackground,
+  }),
+  [STATE.outline]: (theme, color) => ({
+    color: theme.colors.tagWarningOutlinedFont,
+    backgroundColor: null,
+    borderColor: theme.colors.tagWarningOutlinedBackground,
+  }),
+};
+
+const negativeColorStates = {
+  [STATE.disabled]: (theme, color) => ({
+    color: theme.colors.tagNegativeFontDisabled,
+    backgroundColor: null,
+    borderColor: theme.colors.tagNegativeOutlinedDisabled,
+  }),
+  [STATE.solid]: (theme, color) => ({
+    color: theme.colors.tagNegativeSolidFont,
+    backgroundColor: theme.colors.tagNegativeSolidBackground,
+    borderColor: null,
+  }),
+  [STATE.hover]: (theme, color) => ({
+    color: theme.colors.tagNegativeOutlinedFontHover,
+    backgroundColor: theme.colors.tagNegativeOutlinedHover,
+    borderColor: theme.colors.tagNegativeOutlinedBackground,
+  }),
+  [STATE.outline]: (theme, color) => ({
+    color: theme.colors.tagNegativeOutlinedFont,
+    backgroundColor: null,
+    borderColor: theme.colors.tagNegativeOutlinedBackground,
+  }),
+};
+
+const orangeColorStates = {
+  [STATE.disabled]: (theme, color) => ({
+    color: pick(theme, colorTokens.orange200, colorTokens.orange600),
+    backgroundColor: null,
+    borderColor: pick(theme, colorTokens.orange200, colorTokens.orange600),
+  }),
+  [STATE.solid]: (theme, color) => ({
+    color: pick(theme, colorTokens.white, colorTokens.orange50),
+    backgroundColor: pick(theme, colorTokens.orange400, colorTokens.orange500),
+    borderColor: null,
+  }),
+  [STATE.hover]: (theme, color) => ({
+    color: colorTokens.orange400,
+    backgroundColor: pick(theme, colorTokens.orange50, colorTokens.orange700),
+    borderColor: pick(theme, colorTokens.orange200, colorTokens.orange500),
+  }),
+  [STATE.outline]: (theme, color) => ({
+    color: colorTokens.orange400,
+    backgroundColor: null,
+    borderColor: pick(theme, colorTokens.orange200, colorTokens.orange500),
+  }),
+};
+
+const purpleColorStates = {
+  [STATE.disabled]: (theme, color) => ({
+    color: pick(theme, colorTokens.purple200, colorTokens.purple600),
+    backgroundColor: null,
+    borderColor: pick(theme, colorTokens.purple200, colorTokens.purple600),
+  }),
+  [STATE.solid]: (theme, color) => ({
+    color: pick(theme, colorTokens.white, colorTokens.purple50),
+    backgroundColor: pick(theme, colorTokens.purple400, colorTokens.purple500),
+    borderColor: null,
+  }),
+  [STATE.hover]: (theme, color) => ({
+    color: colorTokens.purple400,
+    backgroundColor: pick(theme, colorTokens.purple50, colorTokens.purple700),
+    borderColor: pick(theme, colorTokens.purple200, colorTokens.purple500),
+  }),
+  [STATE.outline]: (theme, color) => ({
+    color: colorTokens.purple400,
+    backgroundColor: null,
+    borderColor: pick(theme, colorTokens.purple200, colorTokens.purple500),
+  }),
+};
+
+const brownColorStates = {
+  [STATE.disabled]: (theme, color) => ({
+    color: pick(theme, colorTokens.brown200, colorTokens.brown600),
+    backgroundColor: null,
+    borderColor: pick(theme, colorTokens.brown200, colorTokens.brown600),
+  }),
+  [STATE.solid]: (theme, color) => ({
+    color: pick(theme, colorTokens.white, colorTokens.brown50),
+    backgroundColor: pick(theme, colorTokens.brown400, colorTokens.brown500),
+    borderColor: null,
+  }),
+  [STATE.hover]: (theme, color) => ({
+    color: colorTokens.brown400,
+    backgroundColor: pick(theme, colorTokens.brown50, colorTokens.brown700),
+    borderColor: pick(theme, colorTokens.brown200, colorTokens.brown500),
+  }),
+  [STATE.outline]: (theme, color) => ({
+    color: colorTokens.brown400,
+    backgroundColor: null,
+    borderColor: pick(theme, colorTokens.brown200, colorTokens.brown500),
+  }),
+};
+
+const customColorStates = {
+  [STATE.disabled]: (theme, color) => ({
+    color: customOnRamp(color, theme.colors.tagFontDisabledRampUnit),
+    backgroundColor: null,
+    borderColor: customOnRamp(color, theme.colors.tagOutlinedDisabledRampUnit),
+  }),
+  [STATE.solid]: (theme, color) => ({
+    color: customOnRamp(color, theme.colors.tagSolidFontRampUnit),
+    backgroundColor: customOnRamp(color, theme.colors.tagSolidRampUnit),
+    borderColor: null,
+  }),
+  [STATE.hover]: (theme, color) => ({
+    color: customOnRamp(color, theme.colors.tagOutlinedFontRampUnit),
+    backgroundColor: customOnRamp(color, theme.colors.tagOutlinedHoverRampUnit),
+    borderColor: customOnRamp(color, theme.colors.tagOutlinedRampUnit),
+  }),
+  [STATE.outline]: (theme, color) => ({
+    color: customOnRamp(color, theme.colors.tagOutlinedFontRampUnit),
+    backgroundColor: null,
+    borderColor: customOnRamp(color, theme.colors.tagOutlinedRampUnit),
+  }),
+};
+
+const colorStates = {
+  [KIND.neutral]: neutralColorStates,
+  [KIND.primary]: primaryColorStates,
+  [KIND.accent]: accentColorStates,
+  [KIND.positive]: positiveColorStates,
+  [KIND.warning]: warningColorStates,
+  [KIND.negative]: negativeColorStates,
+  [KIND.white]: primaryColorStates,
+  [KIND.black]: primaryColorStates,
+  [KIND.blue]: accentColorStates,
+  [KIND.green]: positiveColorStates,
+  [KIND.red]: negativeColorStates,
+  [KIND.yellow]: warningColorStates,
+  [KIND.orange]: orangeColorStates,
+  [KIND.purple]: purpleColorStates,
+  [KIND.brown]: brownColorStates,
+  [KIND.custom]: customColorStates,
+};
+
+const getColorStateFromProps = props => {
   if (props.$disabled) return STATE.disabled;
   if (props.$variant === VARIANT.solid) return STATE.solid;
   return STATE.outline;
@@ -354,7 +358,7 @@ export const Text = styled<SharedPropsArgT>('span', props => {
 export const Root = styled<SharedPropsArgT>('span', props => {
   const {
     $theme,
-    $kind,
+    $kind = KIND.primary,
     $clickable,
     $variant,
     $disabled,
@@ -370,14 +374,14 @@ export const Root = styled<SharedPropsArgT>('span', props => {
     [SIZE.large]: $theme.sizing.scale600,
   }[$size];
   const borderWidth = !$disabled && $variant === VARIANT.solid ? 0 : '2px';
-  const {color, backgroundColor, borderColor} = colorMatrix[$kind][
-    getStateFromProps(props)
+  const {color, backgroundColor, borderColor} = colorStates[$kind][
+    getColorStateFromProps(props)
   ]($theme, $color);
   const {
     color: colorHover,
     backgroundColor: backgroundColorHover,
     borderColor: borderColorHover,
-  } = colorMatrix[$kind][STATE.hover]($theme, $color);
+  } = colorStates[$kind][STATE.hover]($theme, $color);
   return ({
     ...{
       [SIZE.small]: $theme.typography.LabelSmall,
