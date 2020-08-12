@@ -179,7 +179,7 @@ export default (
   inputFillDisabled: themePrimitives.mono200,
   inputFillActive: themePrimitives.mono200,
   inputFillPositive: themePrimitives.positive50,
-  inputTextDisabled: themePrimitives.mono800,
+  inputTextDisabled: themePrimitives.mono600,
   inputBorderError: themePrimitives.negative200,
   inputBorderPositive: themePrimitives.positive200,
   inputEnhancerFill: themePrimitives.mono300,
