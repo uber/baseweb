@@ -28,4 +28,20 @@ describe('select backspace works as expected', () => {
     const backspaced = await page.$eval(selector, i => i.value);
     expect(backspaced).toBe('AliceBlu');
   });
+
+  it('backspace clears input value', async () => {
+    await mount(page, 'select-backspace-behavior');
+    const selector = `#backspace-clears-input-value ${SELECT_INPUT}`;
+    await page.waitFor(selector);
+    const input = await page.$(selector);
+
+    // Select AliceBlue
+    await input.type('a');
+    await page.keyboard.press('Enter');
+
+    // Backspace on AliceBlue
+    await page.keyboard.press('Backspace');
+    const backspaced = await page.$eval(selector, i => i.value);
+    expect(backspaced).toBe('');
+  });
 });

@@ -54,7 +54,7 @@ function copyPackageJSONVersionFromRoot(filepath) {
 function publishBaseui(tag) {
   console.log('--- Publishing baseui to NPM');
   spawnSync('yarn', ['build'], {stdio: 'inherit', cwd: ROOT_DIR});
-  spawnSync('npm', ['publish', '--tag', tag, 'dist'], {
+  spawnSync('npm', ['publish', 'dist', '--tag', tag], {
     stdio: 'inherit',
     cwd: ROOT_DIR,
   });
@@ -65,20 +65,17 @@ function publishEslintPlugin(tag) {
   copyPackageJSONVersionFromRoot(
     path.resolve(ESLINT_PLUGIN_DIR, 'package.json'),
   );
-  spawnSync('npm', ['publish', '--tag', tag, 'dist'], {
+  spawnSync('npm', ['publish', '--tag', tag], {
     stdio: 'inherit',
     cwd: ESLINT_PLUGIN_DIR,
   });
 }
 
-function main() {
-  if (!process.env.TAG) {
-    throw new Error(
-      `Must specify a TAG environment variable. Use 'alpha' for preleases or 'latest' for stable releases.`,
-    );
-  }
+const rootPackageJSONPath = path.resolve(ROOT_DIR, 'package.json');
 
-  const tag = process.env.TAG;
+module.exports = function publishToNpm(params /*: any */) {
+  const {tag, commit} = params;
+
   if (tag !== ALPHA_TAG && tag !== LATEST_TAG) {
     throw new Error(
       `NPM tag ${tag} must be either ${ALPHA_TAG} or ${LATEST_TAG}.`,
@@ -86,24 +83,26 @@ function main() {
   }
 
   if (tag === ALPHA_TAG) {
-    console.log('--- Updating package.json version to alpha.');
-    const commitHash = process.env.GIT_COMMIT;
-    if (!commitHash) {
-      throw new Error('No GIT_COMMIT environment variable set.');
+    console.log('+++ Updating package.json version to alpha.');
+    if (!commit) {
+      throw new Error(
+        'Must provide a commit param to publish an alpha release.',
+      );
     }
-    const packageJSONPath = path.resolve(ROOT_DIR, 'package.json');
-    const packageJSON = readJSONFile(packageJSONPath);
-    const shortHash = commitHash.slice(-7);
+    const packageJSON = readJSONFile(rootPackageJSONPath);
+    const shortHash = commit.slice(-7);
     packageJSON.version = `0.0.0-alpha-${shortHash}`;
     console.log(
       `Updated package.json version to ${packageJSON.version} for alpha release.`,
     );
-    fs.writeFileSync(packageJSONPath, JSON.stringify(packageJSON, null, 2));
+    fs.writeFileSync(rootPackageJSONPath, JSON.stringify(packageJSON, null, 2));
   }
 
   writeNpmTokenFromEnv();
   publishBaseui(tag);
   publishEslintPlugin(tag);
-}
 
-main();
+  // returns the final version so that alpha-test-web-code script can kick off a test with the release
+  const packageJSON = readJSONFile(rootPackageJSONPath);
+  return packageJSON.version;
+};

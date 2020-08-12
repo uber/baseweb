@@ -30,11 +30,11 @@ export default class MenuStatefulContainer extends React.Component<
       highlightedIndex: -1,
       isFocused: false,
     },
+    typeAhead: true,
     stateReducer: ((changeType, changes) => changes: StateReducerFnT),
     onItemSelect: () => {},
     getRequiredItemProps: () => ({}),
     children: () => null,
-
     // from nested-menus context
     addMenuToNesting: () => {},
     removeMenuFromNesting: () => {},
@@ -104,14 +104,29 @@ export default class MenuStatefulContainer extends React.Component<
         document.removeEventListener('keydown', this.onKeyDown);
       }
     }
+    var range = this.getItems().length;
+    if (range === 0 && this.state.highlightedIndex !== -1) {
+      this.internalSetState(STATE_CHANGE_TYPES.enter, {
+        highlightedIndex: -1,
+      });
+    } else if (this.state.highlightedIndex >= range) {
+      this.internalSetState(STATE_CHANGE_TYPES.enter, {
+        highlightedIndex: 0,
+      });
+    }
   }
 
   // One array to hold all of list item refs
   refList: Array<React$ElementRef<*>> = [];
   // list of ids applied to list items. used to set aria-activedescendant
   optionIds: string[] = [];
+  //characters input from keyboard, will automatically be clear after some time
+  typeAheadChars: string = '';
+  //count time for each continous keyboard input
+  typeAheadTimeOut: * = null;
 
   // Internal set state function that will also invoke stateReducer
+
   internalSetState(
     changeType: $Keys<typeof STATE_CHANGE_TYPES>,
     changes: $Shape<StatefulContainerStateT>,
@@ -149,6 +164,65 @@ export default class MenuStatefulContainer extends React.Component<
         }
         this.handleEnterKey(event);
         break;
+      default:
+        if (this.props.typeAhead) {
+          clearTimeout(this.typeAheadTimeOut);
+          this.handleAlphaDown(event);
+        }
+        break;
+    }
+  };
+  handleAlphaDown = (event: KeyboardEvent) => {
+    const rootRef = this.props.rootRef ? this.props.rootRef : this.rootRef;
+    const prevIndex = this.state.highlightedIndex;
+
+    this.typeAheadChars += event.key;
+    this.typeAheadTimeOut = setTimeout(() => {
+      this.typeAheadChars = '';
+    }, 500);
+
+    var nextIndex = prevIndex;
+    event.preventDefault();
+    var list = this.getItems();
+    if (list.length === 0 || !('label' in list[0])) return;
+
+    var notMatch = true;
+    for (let n = 0; n < list.length; n++) {
+      let label = list[n].label;
+      if (
+        label &&
+        label.toUpperCase().indexOf(this.typeAheadChars.toUpperCase()) === 0
+      ) {
+        nextIndex = n;
+        notMatch = false;
+        break;
+      }
+    }
+
+    if (notMatch) {
+      for (let n = 0; n < list.length; n++) {
+        let label = list[n].label;
+        if (
+          label &&
+          label.toUpperCase().indexOf(this.typeAheadChars.toUpperCase()) > 0
+        ) {
+          nextIndex = n;
+          break;
+        }
+      }
+    }
+    this.internalSetState(STATE_CHANGE_TYPES.character, {
+      highlightedIndex: nextIndex,
+    });
+
+    if (this.refList[nextIndex]) {
+      scrollItemIntoView(
+        this.refList[nextIndex].current,
+        // $FlowFixMe
+        rootRef.current,
+        nextIndex === 0,
+        nextIndex === list.length - 1,
+      );
     }
   };
 
@@ -197,6 +271,7 @@ export default class MenuStatefulContainer extends React.Component<
         }
       }
     }
+
     if (this.refList[nextIndex]) {
       scrollItemIntoView(
         this.refList[nextIndex].current,
@@ -321,6 +396,7 @@ export default class MenuStatefulContainer extends React.Component<
   render() {
     // omit the stateful-container's props and don't pass it down
     // to the children (stateless menu)
+
     const {
       initialState,
       stateReducer,
@@ -332,6 +408,7 @@ export default class MenuStatefulContainer extends React.Component<
       getChildMenu,
       ...restProps
     } = this.props;
+
     return this.props.children(
       ({
         ...restProps,

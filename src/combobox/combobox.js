@@ -154,6 +154,12 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     }
   }
 
+  function handleFocus() {
+    if (!isOpen && options.length) {
+      handleOpen();
+    }
+  }
+
   function handleBlur(event) {
     if (
       listboxRef.current &&
@@ -293,6 +299,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
             name={name}
             onBlur={handleBlur}
             onChange={handleInputChange}
+            onFocus={handleFocus}
             onKeyDown={handleKeyDown}
             overrides={inputOverrides}
             positive={positive}

@@ -46,6 +46,11 @@ export type LabelPropsT = {|
   children: React.Node,
   description?: React.Node,
   sublist?: boolean,
+  overrides?: {|
+    LabelContent?: OverrideT,
+    LabelDescription?: OverrideT,
+    LabelSublistContent?: OverrideT,
+  |},
 |};
 
 export type MenuAdapterPropsT = {

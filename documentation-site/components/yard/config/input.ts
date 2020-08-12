@@ -193,6 +193,12 @@ export const inputProps = {
     description: 'max value when used as input type=number',
     hidden: true,
   },
+  maxLength: {
+    value: undefined,
+    type: PropTypes.Number,
+    description: 'max number of characters accepted in the input element',
+    hidden: true,
+  },
   ...pick(changeHandlers, [
     'onBlur',
     'onKeyDown',

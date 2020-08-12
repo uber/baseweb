@@ -214,6 +214,7 @@ export interface BlockOverrides {
 
 export interface BlockProps {
   children?: React.ReactNode;
+  className?: String;
   as?: React.ElementType;
   $style?: $StyleProp<BlockProps>;
   overrides?: BlockOverrides;

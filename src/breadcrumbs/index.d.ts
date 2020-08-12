@@ -14,6 +14,7 @@ export interface BreadcrumbsProps {
   children?: React.ReactNode;
   overrides?: BreadcrumbsOverrides;
   ariaLabel?: string;
+  showTrailingSeparator?: boolean;
 }
 
 export const Breadcrumbs: React.FC<BreadcrumbsProps>;

@@ -8,8 +8,18 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {ProgressBar} from '../index.js';
+import {ProgressBar, SIZE} from '../index.js';
 
 export default function Scenario() {
-  return <ProgressBar value={20} />;
+  return (
+    <>
+      <ProgressBar value={20} showLabel size={SIZE.small} />
+      <br />
+      <ProgressBar value={20} showLabel />
+      <br />
+      <ProgressBar value={20} showLabel size={SIZE.large} />
+      <br />
+      <ProgressBar value={20} showLabel size={SIZE.large} steps={5} />
+    </>
+  );
 }

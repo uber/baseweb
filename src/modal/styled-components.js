@@ -232,8 +232,5 @@ export const ModalFooter = styled<{}>('div', ({$theme}) => ({
   marginRight: $theme.sizing.scale800,
   paddingTop: $theme.sizing.scale500,
   paddingBottom: $theme.sizing.scale500,
-  borderTopWidth: '1px',
-  borderTopStyle: 'solid',
-  borderTopColor: $theme.colors.mono400,
   textAlign: $theme.direction === 'rtl' ? 'left' : 'right',
 }));
