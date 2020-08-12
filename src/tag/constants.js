@@ -20,13 +20,13 @@ export const VARIANT = Object.freeze({
 
 export const KIND = {
   custom: 'custom',
-  neutral: 'neutral',
   // semantic
+  neutral: 'neutral',
   primary: 'primary',
   accent: 'accent',
   positive: 'positive',
-  negative: 'negative',
   warning: 'warning',
+  negative: 'negative',
   // primitive
   white: 'white',
   black: 'black',

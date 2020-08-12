@@ -43,7 +43,7 @@ export function customOnRamp(color?: string, unit?: string) {
   }
 }
 
-const STATE = {
+const COLOR_STATE = {
   disabled: 'disabled',
   solid: 'solid',
   hover: 'hover',
@@ -55,22 +55,22 @@ const pick = (theme, light, dark) =>
   theme.name.includes('dark') ? dark : light;
 
 const neutralColorStates = {
-  [STATE.disabled]: (theme, color) => ({
+  [COLOR_STATE.disabled]: (theme, color) => ({
     color: theme.colors.tagNeutralFontDisabled,
     backgroundColor: null,
     borderColor: theme.colors.tagNeutralOutlinedDisabled,
   }),
-  [STATE.solid]: (theme, color) => ({
+  [COLOR_STATE.solid]: (theme, color) => ({
     color: theme.colors.tagNeutralSolidFont,
     backgroundColor: theme.colors.tagNeutralSolidBackground,
     borderColor: null,
   }),
-  [STATE.hover]: (theme, color) => ({
+  [COLOR_STATE.hover]: (theme, color) => ({
     color: theme.colors.tagNeutralOutlinedFontHover,
     backgroundColor: theme.colors.tagNeutralOutlinedHover,
     borderColor: theme.colors.tagNeutralOutlinedBackground,
   }),
-  [STATE.outline]: (theme, color) => ({
+  [COLOR_STATE.outline]: (theme, color) => ({
     color: theme.colors.tagNeutralOutlinedFont,
     backgroundColor: null,
     borderColor: theme.colors.tagNeutralOutlinedBackground,
@@ -78,22 +78,22 @@ const neutralColorStates = {
 };
 
 const primaryColorStates = {
-  [STATE.disabled]: (theme, color) => ({
+  [COLOR_STATE.disabled]: (theme, color) => ({
     color: theme.colors.tagPrimaryFontDisabled,
     backgroundColor: null,
     borderColor: theme.colors.tagPrimaryOutlinedDisabled,
   }),
-  [STATE.solid]: (theme, color) => ({
+  [COLOR_STATE.solid]: (theme, color) => ({
     color: theme.colors.tagPrimarySolidFont,
     backgroundColor: theme.colors.tagPrimarySolidBackground,
     borderColor: null,
   }),
-  [STATE.hover]: (theme, color) => ({
+  [COLOR_STATE.hover]: (theme, color) => ({
     color: theme.colors.tagPrimaryOutlinedFontHover,
     backgroundColor: theme.colors.tagPrimaryOutlinedHover,
     borderColor: theme.colors.tagPrimaryOutlinedBackground,
   }),
-  [STATE.outline]: (theme, color) => ({
+  [COLOR_STATE.outline]: (theme, color) => ({
     color: theme.colors.tagPrimaryOutlinedFont,
     backgroundColor: null,
     borderColor: theme.colors.tagPrimaryOutlinedBackground,
@@ -101,22 +101,22 @@ const primaryColorStates = {
 };
 
 const accentColorStates = {
-  [STATE.disabled]: (theme, color) => ({
+  [COLOR_STATE.disabled]: (theme, color) => ({
     color: theme.colors.tagAccentFontDisabled,
     backgroundColor: null,
     borderColor: theme.colors.tagAccentOutlinedDisabled,
   }),
-  [STATE.solid]: (theme, color) => ({
+  [COLOR_STATE.solid]: (theme, color) => ({
     color: theme.colors.tagAccentSolidFont,
     backgroundColor: theme.colors.tagAccentSolidBackground,
     borderColor: null,
   }),
-  [STATE.hover]: (theme, color) => ({
+  [COLOR_STATE.hover]: (theme, color) => ({
     color: theme.colors.tagAccentOutlinedFontHover,
     backgroundColor: theme.colors.tagAccentOutlinedHover,
     borderColor: theme.colors.tagAccentOutlinedBackground,
   }),
-  [STATE.outline]: (theme, color) => ({
+  [COLOR_STATE.outline]: (theme, color) => ({
     color: theme.colors.tagAccentOutlinedFont,
     backgroundColor: null,
     borderColor: theme.colors.tagAccentOutlinedBackground,
@@ -124,22 +124,22 @@ const accentColorStates = {
 };
 
 const positiveColorStates = {
-  [STATE.disabled]: (theme, color) => ({
+  [COLOR_STATE.disabled]: (theme, color) => ({
     color: theme.colors.tagPositiveFontDisabled,
     backgroundColor: null,
     borderColor: theme.colors.tagPositiveOutlinedDisabled,
   }),
-  [STATE.solid]: (theme, color) => ({
+  [COLOR_STATE.solid]: (theme, color) => ({
     color: theme.colors.tagPositiveSolidFont,
     backgroundColor: theme.colors.tagPositiveSolidBackground,
     borderColor: null,
   }),
-  [STATE.hover]: (theme, color) => ({
+  [COLOR_STATE.hover]: (theme, color) => ({
     color: theme.colors.tagPositiveOutlinedFontHover,
     backgroundColor: theme.colors.tagPositiveOutlinedHover,
     borderColor: theme.colors.tagPositiveOutlinedBackground,
   }),
-  [STATE.outline]: (theme, color) => ({
+  [COLOR_STATE.outline]: (theme, color) => ({
     color: theme.colors.tagPositiveOutlinedFont,
     backgroundColor: null,
     borderColor: theme.colors.tagPositiveOutlinedBackground,
@@ -147,22 +147,22 @@ const positiveColorStates = {
 };
 
 const warningColorStates = {
-  [STATE.disabled]: (theme, color) => ({
+  [COLOR_STATE.disabled]: (theme, color) => ({
     color: theme.colors.tagWarningFontDisabled,
     backgroundColor: null,
     borderColor: theme.colors.tagWarningOutlinedDisabled,
   }),
-  [STATE.solid]: (theme, color) => ({
+  [COLOR_STATE.solid]: (theme, color) => ({
     color: theme.colors.tagWarningSolidFont,
     backgroundColor: theme.colors.tagWarningSolidBackground,
     borderColor: null,
   }),
-  [STATE.hover]: (theme, color) => ({
+  [COLOR_STATE.hover]: (theme, color) => ({
     color: theme.colors.tagWarningOutlinedFontHover,
     backgroundColor: theme.colors.tagWarningOutlinedHover,
     borderColor: theme.colors.tagWarningOutlinedBackground,
   }),
-  [STATE.outline]: (theme, color) => ({
+  [COLOR_STATE.outline]: (theme, color) => ({
     color: theme.colors.tagWarningOutlinedFont,
     backgroundColor: null,
     borderColor: theme.colors.tagWarningOutlinedBackground,
@@ -170,22 +170,22 @@ const warningColorStates = {
 };
 
 const negativeColorStates = {
-  [STATE.disabled]: (theme, color) => ({
+  [COLOR_STATE.disabled]: (theme, color) => ({
     color: theme.colors.tagNegativeFontDisabled,
     backgroundColor: null,
     borderColor: theme.colors.tagNegativeOutlinedDisabled,
   }),
-  [STATE.solid]: (theme, color) => ({
+  [COLOR_STATE.solid]: (theme, color) => ({
     color: theme.colors.tagNegativeSolidFont,
     backgroundColor: theme.colors.tagNegativeSolidBackground,
     borderColor: null,
   }),
-  [STATE.hover]: (theme, color) => ({
+  [COLOR_STATE.hover]: (theme, color) => ({
     color: theme.colors.tagNegativeOutlinedFontHover,
     backgroundColor: theme.colors.tagNegativeOutlinedHover,
     borderColor: theme.colors.tagNegativeOutlinedBackground,
   }),
-  [STATE.outline]: (theme, color) => ({
+  [COLOR_STATE.outline]: (theme, color) => ({
     color: theme.colors.tagNegativeOutlinedFont,
     backgroundColor: null,
     borderColor: theme.colors.tagNegativeOutlinedBackground,
@@ -193,22 +193,22 @@ const negativeColorStates = {
 };
 
 const orangeColorStates = {
-  [STATE.disabled]: (theme, color) => ({
+  [COLOR_STATE.disabled]: (theme, color) => ({
     color: pick(theme, colorTokens.orange200, colorTokens.orange600),
     backgroundColor: null,
     borderColor: pick(theme, colorTokens.orange200, colorTokens.orange600),
   }),
-  [STATE.solid]: (theme, color) => ({
+  [COLOR_STATE.solid]: (theme, color) => ({
     color: pick(theme, colorTokens.white, colorTokens.orange50),
     backgroundColor: pick(theme, colorTokens.orange400, colorTokens.orange500),
     borderColor: null,
   }),
-  [STATE.hover]: (theme, color) => ({
+  [COLOR_STATE.hover]: (theme, color) => ({
     color: colorTokens.orange400,
     backgroundColor: pick(theme, colorTokens.orange50, colorTokens.orange700),
     borderColor: pick(theme, colorTokens.orange200, colorTokens.orange500),
   }),
-  [STATE.outline]: (theme, color) => ({
+  [COLOR_STATE.outline]: (theme, color) => ({
     color: colorTokens.orange400,
     backgroundColor: null,
     borderColor: pick(theme, colorTokens.orange200, colorTokens.orange500),
@@ -216,22 +216,22 @@ const orangeColorStates = {
 };
 
 const purpleColorStates = {
-  [STATE.disabled]: (theme, color) => ({
+  [COLOR_STATE.disabled]: (theme, color) => ({
     color: pick(theme, colorTokens.purple200, colorTokens.purple600),
     backgroundColor: null,
     borderColor: pick(theme, colorTokens.purple200, colorTokens.purple600),
   }),
-  [STATE.solid]: (theme, color) => ({
+  [COLOR_STATE.solid]: (theme, color) => ({
     color: pick(theme, colorTokens.white, colorTokens.purple50),
     backgroundColor: pick(theme, colorTokens.purple400, colorTokens.purple500),
     borderColor: null,
   }),
-  [STATE.hover]: (theme, color) => ({
+  [COLOR_STATE.hover]: (theme, color) => ({
     color: colorTokens.purple400,
     backgroundColor: pick(theme, colorTokens.purple50, colorTokens.purple700),
     borderColor: pick(theme, colorTokens.purple200, colorTokens.purple500),
   }),
-  [STATE.outline]: (theme, color) => ({
+  [COLOR_STATE.outline]: (theme, color) => ({
     color: colorTokens.purple400,
     backgroundColor: null,
     borderColor: pick(theme, colorTokens.purple200, colorTokens.purple500),
@@ -239,22 +239,22 @@ const purpleColorStates = {
 };
 
 const brownColorStates = {
-  [STATE.disabled]: (theme, color) => ({
+  [COLOR_STATE.disabled]: (theme, color) => ({
     color: pick(theme, colorTokens.brown200, colorTokens.brown600),
     backgroundColor: null,
     borderColor: pick(theme, colorTokens.brown200, colorTokens.brown600),
   }),
-  [STATE.solid]: (theme, color) => ({
+  [COLOR_STATE.solid]: (theme, color) => ({
     color: pick(theme, colorTokens.white, colorTokens.brown50),
     backgroundColor: pick(theme, colorTokens.brown400, colorTokens.brown500),
     borderColor: null,
   }),
-  [STATE.hover]: (theme, color) => ({
+  [COLOR_STATE.hover]: (theme, color) => ({
     color: colorTokens.brown400,
     backgroundColor: pick(theme, colorTokens.brown50, colorTokens.brown700),
     borderColor: pick(theme, colorTokens.brown200, colorTokens.brown500),
   }),
-  [STATE.outline]: (theme, color) => ({
+  [COLOR_STATE.outline]: (theme, color) => ({
     color: colorTokens.brown400,
     backgroundColor: null,
     borderColor: pick(theme, colorTokens.brown200, colorTokens.brown500),
@@ -262,29 +262,29 @@ const brownColorStates = {
 };
 
 const customColorStates = {
-  [STATE.disabled]: (theme, color) => ({
+  [COLOR_STATE.disabled]: (theme, color) => ({
     color: customOnRamp(color, theme.colors.tagFontDisabledRampUnit),
     backgroundColor: null,
     borderColor: customOnRamp(color, theme.colors.tagOutlinedDisabledRampUnit),
   }),
-  [STATE.solid]: (theme, color) => ({
+  [COLOR_STATE.solid]: (theme, color) => ({
     color: customOnRamp(color, theme.colors.tagSolidFontRampUnit),
     backgroundColor: customOnRamp(color, theme.colors.tagSolidRampUnit),
     borderColor: null,
   }),
-  [STATE.hover]: (theme, color) => ({
+  [COLOR_STATE.hover]: (theme, color) => ({
     color: customOnRamp(color, theme.colors.tagOutlinedFontRampUnit),
     backgroundColor: customOnRamp(color, theme.colors.tagOutlinedHoverRampUnit),
     borderColor: customOnRamp(color, theme.colors.tagOutlinedRampUnit),
   }),
-  [STATE.outline]: (theme, color) => ({
+  [COLOR_STATE.outline]: (theme, color) => ({
     color: customOnRamp(color, theme.colors.tagOutlinedFontRampUnit),
     backgroundColor: null,
     borderColor: customOnRamp(color, theme.colors.tagOutlinedRampUnit),
   }),
 };
 
-const colorStates = {
+const colorMap = {
   [KIND.neutral]: neutralColorStates,
   [KIND.primary]: primaryColorStates,
   [KIND.accent]: accentColorStates,
@@ -304,9 +304,9 @@ const colorStates = {
 };
 
 const getColorStateFromProps = props => {
-  if (props.$disabled) return STATE.disabled;
-  if (props.$variant === VARIANT.solid) return STATE.solid;
-  return STATE.outline;
+  if (props.$disabled) return COLOR_STATE.disabled;
+  if (props.$variant === VARIANT.solid) return COLOR_STATE.solid;
+  return COLOR_STATE.outline;
 };
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
@@ -374,14 +374,14 @@ export const Root = styled<SharedPropsArgT>('span', props => {
     [SIZE.large]: $theme.sizing.scale600,
   }[$size];
   const borderWidth = !$disabled && $variant === VARIANT.solid ? 0 : '2px';
-  const {color, backgroundColor, borderColor} = colorStates[$kind][
+  const {color, backgroundColor, borderColor} = colorMap[$kind][
     getColorStateFromProps(props)
   ]($theme, $color);
   const {
     color: colorHover,
     backgroundColor: backgroundColorHover,
     borderColor: borderColorHover,
-  } = colorStates[$kind][STATE.hover]($theme, $color);
+  } = colorMap[$kind][COLOR_STATE.hover]($theme, $color);
   return ({
     ...{
       [SIZE.small]: $theme.typography.LabelSmall,
