@@ -20,10 +20,10 @@ export default function Scenario() {
       <FormControl label="Input label" caption="Input caption" htmlFor="two">
         <StatefulInput id="two" />
       </FormControl>
-      <FormControl label="Input label" caption="Input caption" htmlFor="four">
-        <div>
-          <StatefulInput id="three" />
+      <FormControl label="Input label" caption="Input caption" htmlFor="five">
+        <div id="three">
           <StatefulInput id="four" />
+          <StatefulInput id="five" />
         </div>
       </FormControl>
     </div>
