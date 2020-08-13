@@ -154,6 +154,7 @@ export interface SharedStatelessProps {
   getRequiredItemProps?: (item: any, index: number) => RenderItemProps;
   highlightedIndex?: number;
   items: ItemsT;
+  isFocused?: boolean;
   noResultsMsg?: React.ReactNode;
   onBlur?: (event: React.FocusEvent<HTMLElement>) => any;
   onFocus?: (event: React.FocusEvent<HTMLElement>) => any;
