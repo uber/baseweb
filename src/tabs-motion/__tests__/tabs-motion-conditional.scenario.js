@@ -14,7 +14,10 @@ import * as React from 'react';
 import {Tab, Tabs} from '../index.js';
 import {Button, KIND} from '../../button/index.js';
 
-class ErrorBoundary extends React.Component {
+class ErrorBoundary extends React.Component<
+  {children: React.Node},
+  {hasError: boolean},
+> {
   static getDerivedStateFromError(error) {
     return {hasError: true};
   }
