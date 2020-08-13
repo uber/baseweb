@@ -1030,7 +1030,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
                 width: this.anchor.current
                   ? this.anchor.current.clientWidth
                   : null,
-                listenRef: this.anchor,
+                keyboardControlNode: this.anchor,
               };
 
               return (

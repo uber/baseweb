@@ -28,7 +28,7 @@ export default function Menu(props: StatelessMenuPropsT) {
     focusMenu = () => {},
     unfocusMenu = () => {},
     handleMouseLeave = () => {},
-    handleKeyDown = () => {},
+    handleKeyDown = (event: FocusEvent | MouseEvent | KeyboardEvent) => {},
     renderAll = false,
   } = props;
 

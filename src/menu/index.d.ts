@@ -91,6 +91,7 @@ export interface StatefulContainerProps {
   onActiveDescendantChange?: (id?: string) => void;
   onItemSelect?: OnItemSelect;
   rootRef?: React.Ref<any>;
+  keyboardControlNode?: React.Ref<any>;
   typeAhead?: boolean;
   children?: (args: RenderProps) => React.ReactNode;
   addMenuToNesting?: (ref: React.Ref<HTMLElement>) => void;

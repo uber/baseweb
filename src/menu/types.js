@@ -123,7 +123,8 @@ export type StatefulContainerPropsT = {
   onItemSelect: OnItemSelectFnT,
   /** Ref for the menu container element. Used to capture key events for navigation */
   rootRef?: RootRefT,
-  listenRef: listenRefT,
+  /** Ref for menu's keyboard listener. Default is null and keyboard listens to itself */
+  keyboardControlNode: listenRefT,
   /** whether has keyboard type-ahead function */
   typeAhead: boolean,
   /** Child as function pattern. */
