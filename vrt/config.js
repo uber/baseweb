@@ -413,6 +413,9 @@ const config = {
       },
     ],
   },
+  'tabs-motion-conditional': {
+    skip: true,
+  },
   'tabs-motion-focus': {
     skip: true,
   },
