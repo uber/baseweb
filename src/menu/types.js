@@ -168,6 +168,7 @@ export type SharedStatelessPropsT = {
    * bindings to work properly. Every rendered item should call this.
    */
   getRequiredItemProps?: GetRequiredItemPropsFnT,
+  isFocused?: boolean,
   handleMouseLeave?: () => mixed,
   /** Index of highlighted menu item. */
   highlightedIndex?: number,
