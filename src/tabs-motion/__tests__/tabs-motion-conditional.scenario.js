@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
+/* global window */
 /* eslint-disable jsx-a11y/accessible-emoji */
 
 import * as React from 'react';
@@ -23,8 +24,12 @@ class ErrorBoundary extends React.Component {
     this.state = {hasError: false};
   }
 
+  componentDidMount() {
+    window.__e2e__error = false;
+  }
+
   componentDidCatch(error) {
-    // console.log(error);
+    window.__e2e__error = true;
   }
 
   render() {
@@ -37,7 +42,11 @@ export default function Scenario() {
   const [show, setShow] = React.useState(false);
   return (
     <React.Fragment>
-      <button type="button" onClick={() => setShow(s => !s)}>
+      <button
+        type="button"
+        onClick={() => setShow(s => !s)}
+        id="toggle-robot-tab"
+      >
         Toggle Robot Tab
       </button>
       <ErrorBoundary>
