@@ -13,30 +13,51 @@ import * as React from 'react';
 import {Tab, Tabs} from '../index.js';
 import {Button, KIND} from '../../button/index.js';
 
+class ErrorBoundary extends React.Component {
+  static getDerivedStateFromError(error) {
+    return {hasError: true};
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = {hasError: false};
+  }
+
+  componentDidCatch(error) {
+    // console.log(error);
+  }
+
+  render() {
+    return this.props.children;
+  }
+}
+
 export default function Scenario() {
-  const [activeKey, setActiveKey] = React.useState(0);
+  const [activeKey, setActiveKey] = React.useState('monster');
   const [show, setShow] = React.useState(false);
   return (
     <React.Fragment>
-      <button type="button" onClick={() => setShow(true)}>
-        Show Robot Tab
+      <button type="button" onClick={() => setShow(s => !s)}>
+        Toggle Robot Tab
       </button>
-      <Tabs
-        activeKey={activeKey}
-        onChange={({activeKey}) => setActiveKey(activeKey)}
-      >
-        {show && (
-          <Tab title="Robot">
-            <Button kind={KIND.secondary}>🤖</Button>
+      <ErrorBoundary>
+        <Tabs
+          activeKey={activeKey}
+          onChange={({activeKey}) => setActiveKey(activeKey)}
+        >
+          {show && (
+            <Tab title="Robot" key="robot">
+              <Button kind={KIND.secondary}>🤖</Button>
+            </Tab>
+          )}
+          <Tab title="Monster" key="monster">
+            <Button kind={KIND.secondary}>👺</Button>
           </Tab>
-        )}
-        <Tab title="Monster">
-          <Button kind={KIND.secondary}>👺</Button>
-        </Tab>
-        <Tab title="Watermelon">
-          <Button kind={KIND.secondary}>🍉</Button>
-        </Tab>
-      </Tabs>
+          <Tab title="Watermelon" key="watermelon">
+            <Button kind={KIND.secondary}>🍉</Button>
+          </Tab>
+        </Tabs>
+      </ErrorBoundary>
     </React.Fragment>
   );
 }
