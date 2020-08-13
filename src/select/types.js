@@ -244,6 +244,7 @@ export type DropdownPropsT = {
   value: ValueT,
   valueKey: string,
   width: ?number,
+  listenRef: React.ElementRef<*>,
 };
 
 export type AutosizeInputOverridesT = {

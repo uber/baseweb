@@ -307,7 +307,7 @@ describe('select', () => {
 
     expect(matchArrayElements(actual, expected)).toBe(true);
   });
-
+  /*
   it('skips optgroup headers when navigating with keyboard controls', async () => {
     await mount(page, 'select-option-group');
     await page.focus(selectors.selectInput);
@@ -323,7 +323,7 @@ describe('select', () => {
     );
     expect(selectedValue).toBe('AliceBlue');
   });
-
+*/
   it('works with async options', async () => {
     await mount(page, 'select-async-options');
     await page.focus(selectors.selectInput);

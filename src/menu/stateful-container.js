@@ -31,6 +31,7 @@ export default class MenuStatefulContainer extends React.Component<
       isFocused: false,
     },
     typeAhead: true,
+    listenRef: {current: null},
     stateReducer: ((changeType, changes) => changes: StateReducerFnT),
     onItemSelect: () => {},
     getRequiredItemProps: () => ({}),
@@ -50,7 +51,7 @@ export default class MenuStatefulContainer extends React.Component<
   // We need to have access to the root component user renders
   // to correctly facilitate keyboard scrolling behavior
   rootRef = (React.createRef(): {current: HTMLElement | null});
-
+  listenRef = this.props.listenRef.current;
   getItems() {
     if (Array.isArray(this.props.items)) {
       return this.props.items;
@@ -80,7 +81,9 @@ export default class MenuStatefulContainer extends React.Component<
       }
 
       if (this.state.isFocused) {
-        document.addEventListener('keydown', this.onKeyDown);
+        if (this.listenRef) {
+          this.listenRef.addEventListener('keydown', this.onKeyDown);
+        }
       }
     }
     this.props.addMenuToNesting && this.props.addMenuToNesting(rootRef);
@@ -90,7 +93,8 @@ export default class MenuStatefulContainer extends React.Component<
     const rootRef = this.props.rootRef ? this.props.rootRef : this.rootRef;
 
     if (__BROWSER__) {
-      document.removeEventListener('keydown', this.onKeyDown);
+      if (this.listenRef)
+        this.listenRef.removeEventListener('keydown', this.onKeyDown);
     }
     this.props.removeMenuFromNesting &&
       this.props.removeMenuFromNesting(rootRef);
@@ -99,9 +103,11 @@ export default class MenuStatefulContainer extends React.Component<
   componentDidUpdate(_: mixed, prevState: StatefulContainerStateT) {
     if (__BROWSER__) {
       if (!prevState.isFocused && this.state.isFocused) {
-        document.addEventListener('keydown', this.onKeyDown);
+        if (this.listenRef)
+          this.listenRef.addEventListener('keydown', this.onKeyDown);
       } else if (prevState.isFocused && !this.state.isFocused) {
-        document.removeEventListener('keydown', this.onKeyDown);
+        if (this.listenRef)
+          this.listenRef.removeEventListener('keydown', this.onKeyDown);
       }
     }
     var range = this.getItems().length;
@@ -418,6 +424,9 @@ export default class MenuStatefulContainer extends React.Component<
         handleMouseLeave: this.handleMouseLeave,
         highlightedIndex: this.state.highlightedIndex,
         isFocused: this.state.isFocused,
+        handleKeyDown: this.props.listenRef.current
+          ? event => {}
+          : this.onKeyDown,
         focusMenu: this.focusMenu,
         unfocusMenu: this.unfocusMenu,
       }: RenderPropsT),

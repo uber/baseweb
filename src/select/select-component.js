@@ -350,8 +350,8 @@ class Select extends React.Component<PropsT, SelectStateT> {
       case 13: // enter
         event.preventDefault();
         event.stopPropagation();
-        if (!this.state.isOpen) {
-          this.setState({isOpen: true});
+        if (this.state.isOpen && !this.props.multi) {
+          this.setState({isOpen: false});
         }
         break;
       case 9: // tab
@@ -1030,6 +1030,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
                 width: this.anchor.current
                   ? this.anchor.current.clientWidth
                   : null,
+                listenRef: this.anchor,
               };
 
               return (
