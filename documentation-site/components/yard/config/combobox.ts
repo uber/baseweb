@@ -77,6 +77,18 @@ const ComboboxConfig: TConfig = {
       type: PropTypes.Boolean,
       description: 'Renders component in disabled state.',
     },
+    id: {
+      value: undefined,
+      type: PropTypes.String,
+      description: 'Id attribute.',
+      hidden: true,
+    },
+    name: {
+      value: undefined,
+      type: PropTypes.String,
+      description: 'Name attribute.',
+      hidden: true,
+    },
 
     overrides: {
       value: undefined,
