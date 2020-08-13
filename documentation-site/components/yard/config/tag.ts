@@ -15,6 +15,7 @@ const TagConfig: TConfig = {
     Tag,
     KIND,
     VARIANT,
+    SIZE,
   },
   theme: [
     'tagFontDisabledRampUnit',
