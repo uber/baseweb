@@ -350,9 +350,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
       case 13: // enter
         event.preventDefault();
         event.stopPropagation();
-        if (this.state.isOpen && !this.props.multi) {
-          this.setState({isOpen: false});
-        }
         break;
       case 9: // tab
         this.setState(prevState => ({
