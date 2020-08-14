@@ -96,7 +96,7 @@ class TimePicker<T = Date> extends React.Component<
     this.setState({value: params.value[0]});
     if (params.value.length === 0) {
       if (this.props.nullable) {
-        this.props.onChange && this.props.onChange();
+        this.props.onChange && this.props.onChange(null);
       }
       return;
     }
