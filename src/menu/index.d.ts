@@ -161,6 +161,7 @@ export interface SharedStatelessProps {
   rootRef?: React.Ref<any>;
   focusMenu?: (event: FocusEvent | MouseEvent | KeyboardEvent) => any;
   unfocusMenu?: () => any;
+  handleKeyDown?: (event: KeyboardEvent) => any;
 }
 
 export type StatelessMenuProps = SharedStatelessProps & MenuProps;

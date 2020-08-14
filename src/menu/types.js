@@ -34,7 +34,6 @@ export type GetProfileItemImgTextFnT = (item: ItemT) => string;
 export type SetRootRefFnT = (ref: React$ElementRef<*>) => void;
 
 export type RootRefT = React$ElementRef<*>;
-export type listenRefT = React$ElementRef<*>;
 
 export type OnItemSelectFnT = ({
   item: ItemT,
@@ -123,8 +122,8 @@ export type StatefulContainerPropsT = {
   onItemSelect: OnItemSelectFnT,
   /** Ref for the menu container element. Used to capture key events for navigation */
   rootRef?: RootRefT,
-  /** Ref for menu's keyboard listener. Default is null and keyboard listens to itself */
-  keyboardControlNode: listenRefT,
+  /** Node for menu's keyboard listener. Default is null and keyboard handlers will listen on menu root. */
+  keyboardControlNode: React$ElementRef<*>,
   /** whether has keyboard type-ahead function */
   typeAhead: boolean,
   /** Child as function pattern. */
@@ -182,7 +181,7 @@ export type SharedStatelessPropsT = {
   rootRef?: RootRefT,
   focusMenu?: (event: FocusEvent | MouseEvent | KeyboardEvent) => mixed,
   unfocusMenu?: () => mixed,
-  handleKeyDown?: (event: FocusEvent | MouseEvent | KeyboardEvent) => mixed,
+  handleKeyDown?: (event: KeyboardEvent) => mixed,
 };
 
 export type StatefulMenuPropsT = {

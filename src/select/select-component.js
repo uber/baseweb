@@ -347,10 +347,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
           this.backspaceValue();
         }
         break;
-      case 13: // enter
-        event.preventDefault();
-        event.stopPropagation();
-        break;
       case 9: // tab
         this.setState(prevState => ({
           isPseudoFocused: false,
