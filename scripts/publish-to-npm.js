@@ -30,8 +30,13 @@ function writeNpmTokenFromEnv() {
     throw new Error('NPM_TOKEN not found.');
   }
   const filepath = path.resolve(ROOT_DIR, '.npmrc');
+  const filePathEslintPlugin = path.resolve(ESLINT_PLUGIN_DIR, '.npmrc');
   fs.unlinkSync(filepath);
   fs.writeFileSync(filepath, `//registry.npmjs.org/:_authToken=${token}`);
+  fs.writeFileSync(
+    filePathEslintPlugin,
+    `//registry.npmjs.org/:_authToken=${token}`,
+  );
 }
 
 function readJSONFile(filepath) {
