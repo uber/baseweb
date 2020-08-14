@@ -55,7 +55,7 @@ function publishBaseui(tag) {
   console.log('--- Publishing baseui to NPM');
   spawnSync('yarn', ['build'], {stdio: 'inherit', cwd: ROOT_DIR});
   spawnSync('npm', ['publish', 'dist', '--tag', tag], {
-    stdio: 'inherit',
+    stdio: ['inherit', 'inherit', 'pipe'],
     cwd: ROOT_DIR,
   });
 }
@@ -66,7 +66,7 @@ function publishEslintPlugin(tag) {
     path.resolve(ESLINT_PLUGIN_DIR, 'package.json'),
   );
   spawnSync('npm', ['publish', '--tag', tag], {
-    stdio: 'inherit',
+    stdio: ['inherit', 'inherit', 'pipe'],
     cwd: ESLINT_PLUGIN_DIR,
   });
 }
