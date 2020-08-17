@@ -8,6 +8,8 @@ LICENSE file in the root directory of this source tree.
 import colorTokens from './color-tokens.js';
 import type {ColorTokensT, ComponentColorTokensT} from '../types.js';
 
+const tagHoverBackground = `rgba(255, 255, 255, 0.2)`;
+
 /* ---- Component colors ---- */
 // TODO(#2318) Make it a plain object in the next v11 major version
 // with values taken from `colorTokens`.
@@ -163,7 +165,7 @@ export default (
   tagNeutralSolidFont: themePrimitives.mono200,
   tagNeutralSolidBackground: themePrimitives.mono600,
   tagNeutralOutlinedFontHover: themePrimitives.mono100,
-  tagNeutralOutlinedHover: themePrimitives.mono700,
+  tagNeutralOutlinedHover: tagHoverBackground,
   tagNeutralOutlinedBackground: themePrimitives.mono300,
   tagNeutralOutlinedFont: themePrimitives.mono100,
   // Deprecated
@@ -185,7 +187,7 @@ export default (
   tagPrimarySolidFont: themePrimitives.primary700,
   tagPrimarySolidBackground: themePrimitives.primary200,
   tagPrimaryOutlinedFontHover: themePrimitives.primary200,
-  tagPrimaryOutlinedHover: themePrimitives.primary700,
+  tagPrimaryOutlinedHover: tagHoverBackground,
   tagPrimaryOutlinedBackground: themePrimitives.primary400,
   tagPrimaryOutlinedFont: themePrimitives.primary200,
   // Deprecated
@@ -207,7 +209,7 @@ export default (
   tagAccentSolidFont: themePrimitives.accent100,
   tagAccentSolidBackground: themePrimitives.accent500,
   tagAccentOutlinedFontHover: themePrimitives.accent200,
-  tagAccentOutlinedHover: themePrimitives.accent700,
+  tagAccentOutlinedHover: tagHoverBackground,
   tagAccentOutlinedBackground: themePrimitives.accent500,
   tagAccentOutlinedFont: themePrimitives.accent200,
   // Deprecated
@@ -229,7 +231,7 @@ export default (
   tagPositiveSolidFont: themePrimitives.positive100,
   tagPositiveSolidBackground: themePrimitives.positive500,
   tagPositiveOutlinedFontHover: themePrimitives.positive200,
-  tagPositiveOutlinedHover: themePrimitives.positive700,
+  tagPositiveOutlinedHover: tagHoverBackground,
   tagPositiveOutlinedBackground: themePrimitives.positive500,
   tagPositiveOutlinedFont: themePrimitives.positive200,
   // Deprecated
@@ -251,7 +253,7 @@ export default (
   tagWarningSolidFont: themePrimitives.warning100,
   tagWarningSolidBackground: themePrimitives.warning500,
   tagWarningOutlinedFontHover: themePrimitives.warning200,
-  tagWarningOutlinedHover: themePrimitives.warning700,
+  tagWarningOutlinedHover: tagHoverBackground,
   tagWarningOutlinedBackground: themePrimitives.warning500,
   tagWarningOutlinedFont: themePrimitives.warning200,
   // Deprecated
@@ -273,7 +275,7 @@ export default (
   tagNegativeSolidFont: themePrimitives.negative100,
   tagNegativeSolidBackground: themePrimitives.negative500,
   tagNegativeOutlinedFontHover: themePrimitives.negative200,
-  tagNegativeOutlinedHover: themePrimitives.negative700,
+  tagNegativeOutlinedHover: tagHoverBackground,
   tagNegativeOutlinedBackground: themePrimitives.negative500,
   tagNegativeOutlinedFont: themePrimitives.negative200,
   // Deprecated

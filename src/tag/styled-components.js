@@ -14,6 +14,11 @@ import {KIND, VARIANT, SIZE} from './constants.js';
 import type {SharedPropsArgT} from './types.js';
 import {colors as colorTokens} from '../tokens/index.js';
 
+const tagHoverBackgrounds = {
+  light: `rgba(0, 0, 0, 0.08)`,
+  dark: `rgba(255, 255, 255, 0.2)`,
+};
+
 export function customOnRamp(color?: string, unit?: string) {
   switch (unit) {
     case '0':
@@ -205,7 +210,11 @@ const orangeColorStates = {
   }),
   [COLOR_STATE.hover]: (theme, color) => ({
     color: colorTokens.orange400,
-    backgroundColor: pick(theme, colorTokens.orange50, colorTokens.orange700),
+    backgroundColor: pick(
+      theme,
+      tagHoverBackgrounds.light,
+      tagHoverBackgrounds.dark,
+    ),
     borderColor: pick(theme, colorTokens.orange200, colorTokens.orange500),
   }),
   [COLOR_STATE.outline]: (theme, color) => ({
@@ -228,7 +237,11 @@ const purpleColorStates = {
   }),
   [COLOR_STATE.hover]: (theme, color) => ({
     color: colorTokens.purple400,
-    backgroundColor: pick(theme, colorTokens.purple50, colorTokens.purple700),
+    backgroundColor: pick(
+      theme,
+      tagHoverBackgrounds.light,
+      tagHoverBackgrounds.dark,
+    ),
     borderColor: pick(theme, colorTokens.purple200, colorTokens.purple500),
   }),
   [COLOR_STATE.outline]: (theme, color) => ({
@@ -251,7 +264,11 @@ const brownColorStates = {
   }),
   [COLOR_STATE.hover]: (theme, color) => ({
     color: colorTokens.brown400,
-    backgroundColor: pick(theme, colorTokens.brown50, colorTokens.brown700),
+    backgroundColor: pick(
+      theme,
+      tagHoverBackgrounds.light,
+      tagHoverBackgrounds.dark,
+    ),
     borderColor: pick(theme, colorTokens.brown200, colorTokens.brown500),
   }),
   [COLOR_STATE.outline]: (theme, color) => ({
