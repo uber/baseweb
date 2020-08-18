@@ -10,6 +10,7 @@ import {
 
 export interface TextareaProps extends BaseInputProps<HTMLTextAreaElement> {
   rows?: number;
+  maxLength?: number;
 }
 
 export interface ADJOINED {
