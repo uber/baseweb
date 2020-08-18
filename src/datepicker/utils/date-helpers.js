@@ -35,7 +35,7 @@ class DateHelpers<T> {
         formats: {
           monthNumber: 'M',
           dayOfMonthNumber: 'd',
-          weekday: 'EEEE',
+          weekday: 'EEEEE',
           slashDate: 'yyyy/MM/dd',
           fullOrdinalWeek: 'EEEE, MMMM do yyyy',
         },
@@ -44,7 +44,7 @@ class DateHelpers<T> {
         formats: {
           monthNumber: 'M',
           dayOfMonthNumber: 'd',
-          weekday: 'EEEE',
+          weekday: 'EEEEE',
           slashDate: 'yyyy/MM/dd',
           fullOrdinalWeek: 'EEEE, MMMM dd yyyy',
         },
@@ -120,9 +120,7 @@ class DateHelpers<T> {
   };
   // eslint-disable-next-line flowtype/no-weak-types
   getWeekdayMinInLocale: (T, any) => string = (date, locale) => {
-    return this.getAdapterWithNewLocale(locale)
-      .format(date, 'weekday')
-      .charAt(0);
+    return this.getAdapterWithNewLocale(locale).format(date, 'weekday');
   };
   // eslint-disable-next-line flowtype/no-weak-types
   getMonthInLocale: (number, any) => string = (monthNumber, locale) => {
