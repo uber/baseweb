@@ -29,6 +29,9 @@ class DateHelpers<T> {
           fullOrdinalWeek: 'dddd, MMMM Do YYYY',
           slashDate: 'YYYY/MM/DD',
           weekday: 'dddd',
+          // moment does not have a similar 'single character' weekday format like the other libraries
+          // the format below will only supply two character abbreviations.
+          weekdaymin: 'dd',
         },
       },
       DateFnsUtils: {
@@ -36,6 +39,7 @@ class DateHelpers<T> {
           monthNumber: 'M',
           dayOfMonthNumber: 'd',
           weekday: 'EEEE',
+          weekdaymin: 'EEEEE',
           slashDate: 'yyyy/MM/dd',
           fullOrdinalWeek: 'EEEE, MMMM do yyyy',
         },
@@ -45,6 +49,7 @@ class DateHelpers<T> {
           monthNumber: 'M',
           dayOfMonthNumber: 'd',
           weekday: 'EEEE',
+          weekdaymin: 'EEEEE',
           slashDate: 'yyyy/MM/dd',
           fullOrdinalWeek: 'EEEE, MMMM dd yyyy',
         },
@@ -120,9 +125,7 @@ class DateHelpers<T> {
   };
   // eslint-disable-next-line flowtype/no-weak-types
   getWeekdayMinInLocale: (T, any) => string = (date, locale) => {
-    return this.getAdapterWithNewLocale(locale)
-      .format(date, 'weekday')
-      .charAt(0);
+    return this.getAdapterWithNewLocale(locale).format(date, 'weekdaymin');
   };
   // eslint-disable-next-line flowtype/no-weak-types
   getMonthInLocale: (number, any) => string = (monthNumber, locale) => {

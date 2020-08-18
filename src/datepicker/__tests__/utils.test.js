@@ -168,6 +168,7 @@ const helpers: DateHelpers<Date> = Object.keys(dateHelpers).reduce(
         ) {
           return dateHelpersReturn;
         }
+
         const differingAdapterMap = getDiffereningAdapterMap(
           (helpers, convertArgs) => {
             const convertedArgs = convertArgs(args);
@@ -176,6 +177,15 @@ const helpers: DateHelpers<Date> = Object.keys(dateHelpers).reduce(
           },
           dateHelpersReturn,
         );
+
+        const skippedFormatAlignment = ['getWeekdayMinInLocale'];
+        if (skippedFormatAlignment.includes(methodName)) {
+          console.log(
+            `Skipping format alignment test for ${methodName} method.`,
+          );
+          return dateHelpersReturn;
+        }
+
         if (Object.keys(differingAdapterMap).length > 0) {
           const adapterString = Object.keys(differingAdapterMap).reduce(
             (memo, name) => {
