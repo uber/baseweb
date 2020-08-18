@@ -411,7 +411,7 @@ function InternalTab({
       disabled={!isActive && disabled}
       type="button" // so it doesn't trigger a submit when used inside forms
       $focusVisible={focusVisible}
-      $active={isActive}
+      $isActive={isActive}
       {...sharedStylingProps}
       {...restProps}
       {...TabProps}
