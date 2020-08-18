@@ -15,7 +15,7 @@ export default function Scenario() {
     event.stopPropagation();
   }
   return (
-    <div tabIndex="0" onKeyDown={handleParentKeyDown}>
+    <a role="presentation" tabIndex="0" onKeyDown={handleParentKeyDown}>
       <StatefulMenu
         items={[
           {label: 'Item One'},
@@ -24,6 +24,6 @@ export default function Scenario() {
           {label: 'Item Four'},
         ]}
       />
-    </div>
+    </a>
   );
 }
