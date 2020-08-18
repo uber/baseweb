@@ -30,8 +30,13 @@ function writeNpmTokenFromEnv() {
     throw new Error('NPM_TOKEN not found.');
   }
   const filepath = path.resolve(ROOT_DIR, '.npmrc');
+  const filePathEslintPlugin = path.resolve(ESLINT_PLUGIN_DIR, '.npmrc');
   fs.unlinkSync(filepath);
   fs.writeFileSync(filepath, `//registry.npmjs.org/:_authToken=${token}`);
+  fs.writeFileSync(
+    filePathEslintPlugin,
+    `//registry.npmjs.org/:_authToken=${token}`,
+  );
 }
 
 function readJSONFile(filepath) {
@@ -55,7 +60,7 @@ function publishBaseui(tag) {
   console.log('--- Publishing baseui to NPM');
   spawnSync('yarn', ['build'], {stdio: 'inherit', cwd: ROOT_DIR});
   spawnSync('npm', ['publish', 'dist', '--tag', tag], {
-    stdio: 'inherit',
+    stdio: ['inherit', 'inherit', 'pipe'],
     cwd: ROOT_DIR,
   });
 }
@@ -66,7 +71,7 @@ function publishEslintPlugin(tag) {
     path.resolve(ESLINT_PLUGIN_DIR, 'package.json'),
   );
   spawnSync('npm', ['publish', '--tag', tag], {
-    stdio: 'inherit',
+    stdio: ['inherit', 'inherit', 'pipe'],
     cwd: ESLINT_PLUGIN_DIR,
   });
 }
