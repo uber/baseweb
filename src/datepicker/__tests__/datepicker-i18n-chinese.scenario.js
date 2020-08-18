@@ -8,22 +8,14 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulDatepicker} from '../index.js';
+import {StatefulCalendar} from '../index.js';
 import {zhCN} from 'date-fns/locale/index.js';
 
 export default function Scenario() {
   return (
-    <StatefulDatepicker
-      aria-label="Select a date"
+    <StatefulCalendar
+      highlightedDate={new Date('2019-02-14T10:00:00Z')}
       locale={zhCN}
-      overrides={{
-        MonthYearSelectButton: {props: {'data-id': 'monthYearSelectButton'}},
-        MonthYearSelectStatefulMenu: {
-          props: {
-            overrides: {List: {props: {'data-id': 'monthYearSelectMenu'}}},
-          },
-        },
-      }}
     />
   );
 }
