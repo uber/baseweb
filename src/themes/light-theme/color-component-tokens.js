@@ -233,9 +233,8 @@ export default (
   tagSolidFontRampUnit: '0',
   tagSolidRampUnit: '400',
   tagOutlinedFontHoverRampUnit: '400',
-  tagOutlinedHoverRampUnit: '50',
   tagOutlinedFontRampUnit: '400',
-  tagOutlinedRampUnit: '300',
+  tagOutlinedRampUnit: '200',
   // Deprecated
   tagSolidHoverRampUnit: '50',
   tagSolidActiveRampUnit: '100',
@@ -247,6 +246,7 @@ export default (
   tagLightDisabledRampUnit: '50',
   tagLightFontRampUnit: '500',
   tagLightFontHoverRampUnit: '500',
+  tagOutlinedHoverRampUnit: '50',
   tagOutlinedActiveRampUnit: '0',
 
   // Neutral
@@ -273,8 +273,8 @@ export default (
 
   // Primary
   tagPrimaryFontDisabled: themePrimitives.primary400,
-  tagPrimaryOutlinedDisabled: themePrimitives.primary400,
-  tagPrimarySolidFont: themePrimitives.primary50,
+  tagPrimaryOutlinedDisabled: themePrimitives.primary200,
+  tagPrimarySolidFont: themePrimitives.white,
   tagPrimarySolidBackground: themePrimitives.primary,
   tagPrimaryOutlinedFontHover: themePrimitives.primary,
   tagPrimaryOutlinedHover: tagHoverBackground,
@@ -296,7 +296,7 @@ export default (
   // Accent
   tagAccentFontDisabled: themePrimitives.accent200,
   tagAccentOutlinedDisabled: themePrimitives.accent200,
-  tagAccentSolidFont: themePrimitives.accent50,
+  tagAccentSolidFont: themePrimitives.white,
   tagAccentSolidBackground: themePrimitives.accent400,
   tagAccentOutlinedFontHover: themePrimitives.accent400,
   tagAccentOutlinedHover: tagHoverBackground,
@@ -318,7 +318,7 @@ export default (
   // Positive
   tagPositiveFontDisabled: themePrimitives.positive200,
   tagPositiveOutlinedDisabled: themePrimitives.positive200,
-  tagPositiveSolidFont: themePrimitives.positive50,
+  tagPositiveSolidFont: themePrimitives.white,
   tagPositiveSolidBackground: themePrimitives.positive400,
   tagPositiveOutlinedFontHover: themePrimitives.positive400,
   tagPositiveOutlinedHover: tagHoverBackground,
@@ -362,7 +362,7 @@ export default (
   // Negative
   tagNegativeFontDisabled: themePrimitives.negative200,
   tagNegativeOutlinedDisabled: themePrimitives.negative200,
-  tagNegativeSolidFont: themePrimitives.negative50,
+  tagNegativeSolidFont: themePrimitives.white,
   tagNegativeSolidBackground: themePrimitives.negative400,
   tagNegativeOutlinedFontHover: themePrimitives.negative400,
   tagNegativeOutlinedHover: tagHoverBackground,

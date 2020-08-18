@@ -201,15 +201,15 @@ const orangeColorStates = {
   [COLOR_STATE.disabled]: (theme, color) => ({
     color: pick(theme, colorTokens.orange200, colorTokens.orange600),
     backgroundColor: null,
-    borderColor: pick(theme, colorTokens.orange200, colorTokens.orange600),
+    borderColor: pick(theme, colorTokens.orange200, colorTokens.orange700),
   }),
   [COLOR_STATE.solid]: (theme, color) => ({
-    color: pick(theme, colorTokens.white, colorTokens.orange50),
+    color: colorTokens.white,
     backgroundColor: pick(theme, colorTokens.orange400, colorTokens.orange500),
     borderColor: null,
   }),
   [COLOR_STATE.hover]: (theme, color) => ({
-    color: colorTokens.orange400,
+    color: pick(theme, colorTokens.orange400, colorTokens.orange300),
     backgroundColor: pick(
       theme,
       tagHoverBackgrounds.light,
@@ -218,7 +218,7 @@ const orangeColorStates = {
     borderColor: pick(theme, colorTokens.orange200, colorTokens.orange500),
   }),
   [COLOR_STATE.outline]: (theme, color) => ({
-    color: colorTokens.orange400,
+    color: pick(theme, colorTokens.orange400, colorTokens.orange300),
     backgroundColor: null,
     borderColor: pick(theme, colorTokens.orange200, colorTokens.orange500),
   }),
@@ -228,15 +228,15 @@ const purpleColorStates = {
   [COLOR_STATE.disabled]: (theme, color) => ({
     color: pick(theme, colorTokens.purple200, colorTokens.purple600),
     backgroundColor: null,
-    borderColor: pick(theme, colorTokens.purple200, colorTokens.purple600),
+    borderColor: pick(theme, colorTokens.purple200, colorTokens.purple700),
   }),
   [COLOR_STATE.solid]: (theme, color) => ({
-    color: pick(theme, colorTokens.white, colorTokens.purple50),
+    color: colorTokens.white,
     backgroundColor: pick(theme, colorTokens.purple400, colorTokens.purple500),
     borderColor: null,
   }),
   [COLOR_STATE.hover]: (theme, color) => ({
-    color: colorTokens.purple400,
+    color: pick(theme, colorTokens.purple400, colorTokens.purple300),
     backgroundColor: pick(
       theme,
       tagHoverBackgrounds.light,
@@ -245,7 +245,7 @@ const purpleColorStates = {
     borderColor: pick(theme, colorTokens.purple200, colorTokens.purple500),
   }),
   [COLOR_STATE.outline]: (theme, color) => ({
-    color: colorTokens.purple400,
+    color: pick(theme, colorTokens.purple400, colorTokens.purple300),
     backgroundColor: null,
     borderColor: pick(theme, colorTokens.purple200, colorTokens.purple500),
   }),
@@ -255,15 +255,15 @@ const brownColorStates = {
   [COLOR_STATE.disabled]: (theme, color) => ({
     color: pick(theme, colorTokens.brown200, colorTokens.brown600),
     backgroundColor: null,
-    borderColor: pick(theme, colorTokens.brown200, colorTokens.brown600),
+    borderColor: pick(theme, colorTokens.brown200, colorTokens.brown700),
   }),
   [COLOR_STATE.solid]: (theme, color) => ({
-    color: pick(theme, colorTokens.white, colorTokens.brown50),
+    color: colorTokens.white,
     backgroundColor: pick(theme, colorTokens.brown400, colorTokens.brown500),
     borderColor: null,
   }),
   [COLOR_STATE.hover]: (theme, color) => ({
-    color: colorTokens.brown400,
+    color: pick(theme, colorTokens.brown400, colorTokens.brown300),
     backgroundColor: pick(
       theme,
       tagHoverBackgrounds.light,
@@ -272,7 +272,7 @@ const brownColorStates = {
     borderColor: pick(theme, colorTokens.brown200, colorTokens.brown500),
   }),
   [COLOR_STATE.outline]: (theme, color) => ({
-    color: colorTokens.brown400,
+    color: pick(theme, colorTokens.brown400, colorTokens.brown300),
     backgroundColor: null,
     borderColor: pick(theme, colorTokens.brown200, colorTokens.brown500),
   }),
@@ -291,7 +291,11 @@ const customColorStates = {
   }),
   [COLOR_STATE.hover]: (theme, color) => ({
     color: customOnRamp(color, theme.colors.tagOutlinedFontRampUnit),
-    backgroundColor: customOnRamp(color, theme.colors.tagOutlinedHoverRampUnit),
+    backgroundColor: pick(
+      theme,
+      tagHoverBackgrounds.light,
+      tagHoverBackgrounds.dark,
+    ),
     borderColor: customOnRamp(color, theme.colors.tagOutlinedRampUnit),
   }),
   [COLOR_STATE.outline]: (theme, color) => ({

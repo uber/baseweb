@@ -10,11 +10,14 @@ import * as React from 'react';
 import {useStyletron} from '../../styles/index.js';
 import {Tag, KIND, VARIANT} from '../index.js';
 
+const customColor = '#4AB';
+
 export default function Scenario() {
   const [css] = useStyletron();
   return (
     <React.Fragment>
       {[
+        KIND.neutral,
         KIND.black,
         KIND.white,
         KIND.blue,
@@ -64,6 +67,74 @@ export default function Scenario() {
           </div>
         </div>
       ))}
+      <div
+        key={KIND.custom}
+        color={customColor}
+        className={css({display: 'flex'})}
+      >
+        <div className={css({marginRight: '20px'})}>
+          <Tag kind={KIND.custom} color={customColor} closeable={false}>
+            Label
+          </Tag>
+          <Tag
+            kind={KIND.custom}
+            color={customColor}
+            onClick={() => alert('click')}
+            closeable={false}
+          >
+            Label
+          </Tag>
+          <Tag
+            kind={KIND.custom}
+            color={customColor}
+            variant={VARIANT.solid}
+            closeable={false}
+          >
+            Label
+          </Tag>
+          <Tag
+            kind={KIND.custom}
+            color={customColor}
+            disabled
+            closeable={false}
+          >
+            Label
+          </Tag>
+        </div>
+        <div>
+          <Tag
+            kind={KIND.custom}
+            color={customColor}
+            onActionClick={() => alert('action')}
+          >
+            Label
+          </Tag>
+          <Tag
+            kind={KIND.custom}
+            color={customColor}
+            onClick={() => alert('click')}
+            onActionClick={() => alert('action')}
+          >
+            Label
+          </Tag>
+          <Tag
+            kind={KIND.custom}
+            color={customColor}
+            variant={VARIANT.solid}
+            onActionClick={() => alert('action')}
+          >
+            Label
+          </Tag>
+          <Tag
+            kind={KIND.custom}
+            color={customColor}
+            disabled
+            onActionClick={() => alert('action')}
+          >
+            Label
+          </Tag>
+        </div>
+      </div>
     </React.Fragment>
   );
 }
