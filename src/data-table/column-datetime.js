@@ -396,6 +396,7 @@ function DatetimeFilter(props) {
                     format="24"
                     value={rangeDates[0]}
                     onChange={time =>
+                      time &&
                       setRangeDates([
                         applyTimeToDate(rangeDates[0], time),
                         rangeDates[1],
@@ -414,12 +415,13 @@ function DatetimeFilter(props) {
                   <TimePicker
                     format="24"
                     value={rangeDates[1]}
-                    onChange={time => {
+                    onChange={time =>
+                      time &&
                       setRangeDates([
                         rangeDates[0],
                         applyTimeToDate(rangeDates[1], time),
-                      ]);
-                    }}
+                      ])
+                    }
                     creatable
                     size="compact"
                   />
