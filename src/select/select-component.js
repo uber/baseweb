@@ -347,13 +347,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
           this.backspaceValue();
         }
         break;
-      case 13: // enter
-        event.preventDefault();
-        event.stopPropagation();
-        if (!this.state.isOpen) {
-          this.setState({isOpen: true});
-        }
-        break;
       case 9: // tab
         this.setState(prevState => ({
           isPseudoFocused: false,
@@ -1030,6 +1023,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
                 width: this.anchor.current
                   ? this.anchor.current.clientWidth
                   : null,
+                keyboardControlNode: this.anchor,
               };
 
               return (
