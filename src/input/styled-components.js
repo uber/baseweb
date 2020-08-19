@@ -98,18 +98,100 @@ function getFont(size, typography) {
   }[size];
 }
 
-export const Root = styled<SharedPropsT>('div', props => {
+function getRootColors($disabled, $isFocused, $error, $positive, colors) {
+  if ($disabled) {
+    return {
+      borderLeftColor: colors.inputFillDisabled,
+      borderRightColor: colors.inputFillDisabled,
+      borderTopColor: colors.inputFillDisabled,
+      borderBottomColor: colors.inputFillDisabled,
+    };
+  }
+
+  if ($isFocused) {
+    return {
+      borderLeftColor: colors.borderFocus,
+      borderRightColor: colors.borderFocus,
+      borderTopColor: colors.borderFocus,
+      borderBottomColor: colors.borderFocus,
+    };
+  }
+
+  if ($error) {
+    return {
+      borderLeftColor: colors.inputBorderError,
+      borderRightColor: colors.inputBorderError,
+      borderTopColor: colors.inputBorderError,
+      borderBottomColor: colors.inputBorderError,
+    };
+  }
+
+  if ($positive) {
+    return {
+      borderLeftColor: colors.inputBorderPositive,
+      borderRightColor: colors.inputBorderPositive,
+      borderTopColor: colors.inputBorderPositive,
+      borderBottomColor: colors.inputBorderPositive,
+    };
+  }
+
+  return {
+    borderLeftColor: colors.inputBorder,
+    borderRightColor: colors.inputBorder,
+    borderTopColor: colors.inputBorder,
+    borderBottomColor: colors.inputBorder,
+  };
+}
+
+function getRootBorderRadius(radius) {
+  return {
+    borderTopLeftRadius: radius,
+    borderBottomLeftRadius: radius,
+    borderTopRightRadius: radius,
+    borderBottomRightRadius: radius,
+  };
+}
+
+export const getRootStyles = (props: {
+  $adjoined: $Keys<typeof ADJOINED>,
+  $isFocused: boolean,
+  $error: boolean,
+  $disabled: boolean,
+  $positive: boolean,
+  $size: SizeT,
+  $theme: ThemeT,
+}) => {
   const {
+    $isFocused,
+    $adjoined,
+    $error,
+    $disabled,
+    $positive,
     $size,
-    $theme: {colors, typography},
+    $theme: {borders, colors, typography, animation},
   } = props;
   return {
-    ...getFont($size, typography),
-    color: colors.contentPrimary,
+    boxSizing: 'border-box',
     display: 'flex',
     width: '100%',
+    borderLeftWidth: '2px',
+    borderRightWidth: '2px',
+    borderTopWidth: '2px',
+    borderBottomWidth: '2px',
+    borderLeftStyle: 'solid',
+    borderRightStyle: 'solid',
+    borderTopStyle: 'solid',
+    borderBottomStyle: 'solid',
+    transitionProperty: 'border',
+    transitionDuration: animation.timing200,
+    transitionTimingFunction: animation.easeOutCurve,
+    ...getRootBorderRadius(borders.inputBorderRadius),
+    ...getFont($size, typography),
+    ...getRootColors($disabled, $isFocused, $error, $positive, colors),
   };
-});
+};
+
+export const Root = styled<SharedPropsT>('div', getRootStyles);
 
 // InputEnhancer
 
@@ -171,22 +253,22 @@ function getInputEnhancerColors(
 
   if ($isFocused) {
     return {
-      color: colors.contentInversePrimary,
-      backgroundColor: colors.borderFocus,
+      color: colors.contentPrimary,
+      backgroundColor: colors.inputFillActive,
     };
   }
 
   if ($error) {
     return {
       color: colors.contentPrimary,
-      backgroundColor: colors.inputBorderError,
+      backgroundColor: colors.inputFillError,
     };
   }
 
   if ($positive) {
     return {
       color: colors.contentPrimary,
-      backgroundColor: colors.inputBorderPositive,
+      backgroundColor: colors.inputFillPositive,
     };
   }
 
@@ -261,10 +343,6 @@ function getInputContainerColors(
   if ($disabled) {
     return {
       color: colors.inputTextDisabled,
-      borderLeftColor: colors.inputFillDisabled,
-      borderRightColor: colors.inputFillDisabled,
-      borderTopColor: colors.inputFillDisabled,
-      borderBottomColor: colors.inputFillDisabled,
       backgroundColor: colors.inputFillDisabled,
     };
   }
@@ -272,10 +350,6 @@ function getInputContainerColors(
   if ($isFocused) {
     return {
       color: colors.contentPrimary,
-      borderLeftColor: colors.borderFocus,
-      borderRightColor: colors.borderFocus,
-      borderTopColor: colors.borderFocus,
-      borderBottomColor: colors.borderFocus,
       backgroundColor: colors.inputFillActive,
     };
   }
@@ -283,10 +357,6 @@ function getInputContainerColors(
   if ($error) {
     return {
       color: colors.contentPrimary,
-      borderLeftColor: colors.inputBorderError,
-      borderRightColor: colors.inputBorderError,
-      borderTopColor: colors.inputBorderError,
-      borderBottomColor: colors.inputBorderError,
       backgroundColor: colors.inputFillError,
     };
   }
@@ -294,20 +364,12 @@ function getInputContainerColors(
   if ($positive) {
     return {
       color: colors.contentPrimary,
-      borderLeftColor: colors.inputBorderPositive,
-      borderRightColor: colors.inputBorderPositive,
-      borderTopColor: colors.inputBorderPositive,
-      borderBottomColor: colors.inputBorderPositive,
       backgroundColor: colors.inputFillPositive,
     };
   }
 
   return {
     color: colors.contentPrimary,
-    borderLeftColor: colors.inputBorder,
-    borderRightColor: colors.inputBorder,
-    borderTopColor: colors.inputBorder,
-    borderBottomColor: colors.inputBorder,
     backgroundColor: colors.inputFill,
   };
 }
@@ -331,18 +393,9 @@ export const getInputContainerStyles = (props: {
     $theme: {borders, colors, typography, animation},
   } = props;
   return {
-    boxSizing: 'border-box',
     display: 'flex',
     width: '100%',
-    borderLeftWidth: '2px',
-    borderRightWidth: '2px',
-    borderTopWidth: '2px',
-    borderBottomWidth: '2px',
-    borderLeftStyle: 'solid',
-    borderRightStyle: 'solid',
-    borderTopStyle: 'solid',
-    borderBottomStyle: 'solid',
-    transitionProperty: 'border, background-color',
+    transitionProperty: 'background-color',
     transitionDuration: animation.timing200,
     transitionTimingFunction: animation.easeOutCurve,
     ...getInputContainerBorderRadius($adjoined, borders.inputBorderRadius),
