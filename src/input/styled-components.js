@@ -163,7 +163,6 @@ export const getRootStyles = (props: {
 }) => {
   const {
     $isFocused,
-    $adjoined,
     $error,
     $disabled,
     $positive,
