@@ -186,4 +186,15 @@ describe('menu-child', () => {
     await page.click('button');
     await page.waitFor(childSelector, {hidden: true});
   });
+
+  it('keyboard navigation works when ancestor stopPropagations', async () => {
+    await mount(page, 'menu-propagation');
+    await hoverItem(page, 0, 0);
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('ArrowUp');
+
+    const text = await findHighlightedLabel(page);
+    expect(text).toBe('Item Two');
+  });
 });
