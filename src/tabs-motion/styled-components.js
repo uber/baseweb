@@ -79,7 +79,7 @@ export const StyledTab = styled<{
   $orientation?: OrientationT,
   $fill?: FillT,
   $focusVisible?: boolean,
-  $isActive?: Boolean,
+  $isActive?: boolean,
 }>(
   'button',
   ({
