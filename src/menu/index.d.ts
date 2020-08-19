@@ -91,6 +91,7 @@ export interface StatefulContainerProps {
   onActiveDescendantChange?: (id?: string) => void;
   onItemSelect?: OnItemSelect;
   rootRef?: React.Ref<any>;
+  keyboardControlNode?: React.Ref<any>;
   typeAhead?: boolean;
   children?: (args: RenderProps) => React.ReactNode;
   addMenuToNesting?: (ref: React.Ref<HTMLElement>) => void;
@@ -153,12 +154,14 @@ export interface SharedStatelessProps {
   getRequiredItemProps?: (item: any, index: number) => RenderItemProps;
   highlightedIndex?: number;
   items: ItemsT;
+  isFocused?: boolean;
   noResultsMsg?: React.ReactNode;
   onBlur?: (event: React.FocusEvent<HTMLElement>) => any;
   onFocus?: (event: React.FocusEvent<HTMLElement>) => any;
   rootRef?: React.Ref<any>;
   focusMenu?: (event: FocusEvent | MouseEvent | KeyboardEvent) => any;
   unfocusMenu?: () => any;
+  handleKeyDown?: (event: KeyboardEvent) => any;
 }
 
 export type StatelessMenuProps = SharedStatelessProps & MenuProps;
