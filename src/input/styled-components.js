@@ -221,40 +221,42 @@ function getInputEnhancerPadding($size, sizing, position): InputEnhancerStyles {
       paddingRight:
         position === ENHANCER_POSITION.start
           ? sizing.scale100
-          : sizing.scale300,
+          : sizing.scale200,
       paddingLeft:
-        position === ENHANCER_POSITION.start ? sizing.scale400 : sizing.scale0,
+        position === ENHANCER_POSITION.start
+          ? sizing.scale400
+          : sizing.scale200,
     },
     [SIZE.compact]: {
       paddingRight:
         position === ENHANCER_POSITION.start
           ? sizing.scale200
-          : sizing.scale550,
+          : sizing.scale400,
       paddingLeft:
         position === ENHANCER_POSITION.start
           ? sizing.scale600
-          : sizing.scale100,
+          : sizing.scale400,
     },
     [SIZE.default]: {
       paddingRight:
         position === ENHANCER_POSITION.start
           ? sizing.scale400
-          : sizing.scale700,
+          : sizing.scale600,
 
       paddingLeft:
         position === ENHANCER_POSITION.start
           ? sizing.scale800
-          : sizing.scale200,
+          : sizing.scale600,
     },
     [SIZE.large]: {
       paddingRight:
         position === ENHANCER_POSITION.start
           ? sizing.scale550
-          : sizing.scale800,
+          : sizing.scale650,
       paddingLeft:
         position === ENHANCER_POSITION.start
           ? sizing.scale900
-          : sizing.scale300,
+          : sizing.scale650,
     },
   }[$size];
 }
@@ -296,7 +298,7 @@ function getInputEnhancerColors(
 
   return {
     color: colors.contentPrimary,
-    backgroundColor: colors.inputEnhancerFill,
+    backgroundColor: colors.inputFill,
   };
 }
 
