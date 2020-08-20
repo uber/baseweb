@@ -252,12 +252,10 @@ export default (
   // Neutral
   tagNeutralFontDisabled: themePrimitives.mono600,
   tagNeutralOutlinedDisabled: themePrimitives.mono400,
-  tagNeutralSolidFont: themePrimitives.mono900,
-  tagNeutralSolidBackground: themePrimitives.mono300,
-  tagNeutralOutlinedFontHover: themePrimitives.mono800,
-  tagNeutralOutlinedHover: tagHoverBackground,
-  tagNeutralOutlinedBackground: themePrimitives.mono400,
-  tagNeutralOutlinedFont: themePrimitives.mono900,
+  tagNeutralSolidFont: themePrimitives.white,
+  tagNeutralSolidBackground: themePrimitives.black,
+  tagNeutralOutlinedBackground: themePrimitives.mono600,
+  tagNeutralOutlinedFont: themePrimitives.black,
   // Deprecated
   tagNeutralSolidHover: themePrimitives.mono300,
   tagNeutralSolidActive: themePrimitives.mono400,
@@ -270,6 +268,8 @@ export default (
   tagNeutralLightFont: themePrimitives.mono900,
   tagNeutralLightFontHover: themePrimitives.mono900,
   tagNeutralOutlinedActive: themePrimitives.mono900,
+  tagNeutralOutlinedFontHover: themePrimitives.mono800,
+  tagNeutralOutlinedHover: tagHoverBackground,
 
   // Primary
   tagPrimaryFontDisabled: themePrimitives.primary400,
@@ -277,8 +277,6 @@ export default (
   tagPrimarySolidFont: themePrimitives.white,
   tagPrimarySolidBackground: themePrimitives.primary,
   tagPrimaryOutlinedFontHover: themePrimitives.primary,
-  tagPrimaryOutlinedHover: tagHoverBackground,
-  tagPrimaryOutlinedBackground: themePrimitives.primary400,
   tagPrimaryOutlinedFont: themePrimitives.primary,
   // Deprecated
   tagPrimarySolidHover: themePrimitives.primary100,
@@ -292,14 +290,14 @@ export default (
   tagPrimaryLightFont: themePrimitives.primary500,
   tagPrimaryLightFontHover: themePrimitives.primary500,
   tagPrimaryOutlinedActive: themePrimitives.primary600,
+  tagPrimaryOutlinedHover: tagHoverBackground,
+  tagPrimaryOutlinedBackground: themePrimitives.primary400,
 
   // Accent
   tagAccentFontDisabled: themePrimitives.accent200,
   tagAccentOutlinedDisabled: themePrimitives.accent200,
   tagAccentSolidFont: themePrimitives.white,
   tagAccentSolidBackground: themePrimitives.accent400,
-  tagAccentOutlinedFontHover: themePrimitives.accent400,
-  tagAccentOutlinedHover: tagHoverBackground,
   tagAccentOutlinedBackground: themePrimitives.accent200,
   tagAccentOutlinedFont: themePrimitives.accent400,
   // Deprecated
@@ -314,14 +312,14 @@ export default (
   tagAccentLightFont: themePrimitives.accent500,
   tagAccentLightFontHover: themePrimitives.accent500,
   tagAccentOutlinedActive: themePrimitives.accent600,
+  tagAccentOutlinedFontHover: themePrimitives.accent400,
+  tagAccentOutlinedHover: tagHoverBackground,
 
   // Positive
   tagPositiveFontDisabled: themePrimitives.positive200,
   tagPositiveOutlinedDisabled: themePrimitives.positive200,
   tagPositiveSolidFont: themePrimitives.white,
   tagPositiveSolidBackground: themePrimitives.positive400,
-  tagPositiveOutlinedFontHover: themePrimitives.positive400,
-  tagPositiveOutlinedHover: tagHoverBackground,
   tagPositiveOutlinedBackground: themePrimitives.positive200,
   tagPositiveOutlinedFont: themePrimitives.positive400,
   // Deprecated
@@ -336,14 +334,14 @@ export default (
   tagPositiveLightFont: themePrimitives.positive500,
   tagPositiveLightFontHover: themePrimitives.positive500,
   tagPositiveOutlinedActive: themePrimitives.positive600,
+  tagPositiveOutlinedFontHover: themePrimitives.positive400,
+  tagPositiveOutlinedHover: tagHoverBackground,
 
   // Warning
   tagWarningFontDisabled: themePrimitives.warning300,
   tagWarningOutlinedDisabled: themePrimitives.warning300,
   tagWarningSolidFont: themePrimitives.warning700,
   tagWarningSolidBackground: themePrimitives.warning400,
-  tagWarningOutlinedFontHover: themePrimitives.warning600,
-  tagWarningOutlinedHover: tagHoverBackground,
   tagWarningOutlinedBackground: themePrimitives.warning300,
   tagWarningOutlinedFont: themePrimitives.warning600,
   // Deprecated
@@ -358,14 +356,14 @@ export default (
   tagWarningLightFont: themePrimitives.warning500,
   tagWarningLightFontHover: themePrimitives.warning500,
   tagWarningOutlinedActive: themePrimitives.warning600,
+  tagWarningOutlinedFontHover: themePrimitives.warning600,
+  tagWarningOutlinedHover: tagHoverBackground,
 
   // Negative
   tagNegativeFontDisabled: themePrimitives.negative200,
   tagNegativeOutlinedDisabled: themePrimitives.negative200,
   tagNegativeSolidFont: themePrimitives.white,
   tagNegativeSolidBackground: themePrimitives.negative400,
-  tagNegativeOutlinedFontHover: themePrimitives.negative400,
-  tagNegativeOutlinedHover: tagHoverBackground,
   tagNegativeOutlinedBackground: themePrimitives.negative200,
   tagNegativeOutlinedFont: themePrimitives.negative400,
   // Deprecated
@@ -380,6 +378,8 @@ export default (
   tagNegativeLightFont: themePrimitives.negative500,
   tagNegativeLightFontHover: themePrimitives.negative500,
   tagNegativeOutlinedActive: themePrimitives.negative600,
+  tagNegativeOutlinedFontHover: themePrimitives.negative400,
+  tagNegativeOutlinedHover: tagHoverBackground,
 
   // Table
   tableHeadBackgroundColor: themePrimitives.mono100,

@@ -19,12 +19,12 @@ export default function Scenario() {
       <br />
       {/* SEMANTIC TAGS */}
       {[
+        KIND.neutral,
         KIND.primary,
         KIND.accent,
         KIND.positive,
         KIND.negative,
         KIND.warning,
-        KIND.neutral,
       ].map(kind => (
         <div key={kind} className={css({display: 'flex'})}>
           <div className={css({marginRight: '20px'})}>

@@ -162,9 +162,9 @@ export default (
   // Neutral
   tagNeutralOutlinedFont: themePrimitives.mono100,
   tagNeutralOutlinedBackground: themePrimitives.mono200,
-  tagNeutralSolidFont: themePrimitives.mono100,
-  tagNeutralSolidBackground: themePrimitives.mono500,
-  tagNeutralFontDisabled: themePrimitives.mono300,
+  tagNeutralSolidFont: themePrimitives.black,
+  tagNeutralSolidBackground: themePrimitives.mono100,
+  tagNeutralFontDisabled: themePrimitives.mono400,
   tagNeutralOutlinedDisabled: themePrimitives.mono500,
   // Deprecated
   tagNeutralSolidHover: themePrimitives.mono600,
