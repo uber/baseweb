@@ -163,7 +163,7 @@ export default (
   tagNeutralOutlinedFont: themePrimitives.mono100,
   tagNeutralOutlinedBackground: themePrimitives.mono200,
   tagNeutralSolidFont: themePrimitives.black,
-  tagNeutralSolidBackground: themePrimitives.mono100,
+  tagNeutralSolidBackground: themePrimitives.primary200, // not much we can do to get the correct gray here
   tagNeutralFontDisabled: themePrimitives.mono400,
   tagNeutralOutlinedDisabled: themePrimitives.mono500,
   // Deprecated
