@@ -28,7 +28,6 @@ export const KIND = {
   warning: 'warning',
   negative: 'negative',
   // primitive
-  white: 'white',
   black: 'black',
   blue: 'blue',
   green: 'green',

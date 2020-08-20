@@ -7,7 +7,6 @@ export default function Scenario() {
     <React.Fragment>
       {[
         KIND.black,
-        KIND.white,
         KIND.blue,
         KIND.green,
         KIND.red,

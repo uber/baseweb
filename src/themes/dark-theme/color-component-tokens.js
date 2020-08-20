@@ -142,7 +142,6 @@ export default (
   tagOutlinedDisabledRampUnit: '700',
   tagSolidFontRampUnit: '0',
   tagSolidRampUnit: '500',
-  tagOutlinedFontHoverRampUnit: '100',
   tagOutlinedFontRampUnit: '500',
   tagOutlinedRampUnit: '500',
   // Deprecated
@@ -158,12 +157,11 @@ export default (
   tagLightFontHoverRampUnit: '100',
   tagOutlinedActiveRampUnit: '300',
   tagOutlinedHoverRampUnit: '800',
+  tagOutlinedFontHoverRampUnit: '100',
 
   // Neutral
   tagNeutralOutlinedFont: themePrimitives.mono100,
   tagNeutralOutlinedBackground: themePrimitives.mono200,
-  tagNeutralOutlinedFontHover: themePrimitives.mono100,
-  tagNeutralOutlinedHover: tagHoverBackground,
   tagNeutralSolidFont: themePrimitives.mono100,
   tagNeutralSolidBackground: themePrimitives.mono500,
   tagNeutralFontDisabled: themePrimitives.mono300,
@@ -180,12 +178,12 @@ export default (
   tagNeutralLightFont: themePrimitives.mono200,
   tagNeutralLightFontHover: themePrimitives.mono200,
   tagNeutralOutlinedActive: themePrimitives.mono400,
+  tagNeutralOutlinedFontHover: themePrimitives.mono100,
+  tagNeutralOutlinedHover: tagHoverBackground,
 
   // Primary
   tagPrimaryOutlinedFont: themePrimitives.primary200,
   tagPrimaryOutlinedBackground: themePrimitives.primary400,
-  tagPrimaryOutlinedFontHover: themePrimitives.primary200,
-  tagPrimaryOutlinedHover: tagHoverBackground,
   tagPrimarySolidFont: themePrimitives.black,
   tagPrimarySolidBackground: themePrimitives.primary200,
   tagPrimaryFontDisabled: themePrimitives.primary600,
@@ -202,12 +200,12 @@ export default (
   tagPrimaryLightFont: themePrimitives.primary100,
   tagPrimaryLightFontHover: themePrimitives.primary100,
   tagPrimaryOutlinedActive: themePrimitives.primary600,
+  tagPrimaryOutlinedFontHover: themePrimitives.primary200,
+  tagPrimaryOutlinedHover: tagHoverBackground,
 
   // Accent
   tagAccentOutlinedFont: themePrimitives.accent200,
   tagAccentOutlinedBackground: themePrimitives.accent500,
-  tagAccentOutlinedFontHover: themePrimitives.accent200,
-  tagAccentOutlinedHover: tagHoverBackground,
   tagAccentSolidFont: themePrimitives.white,
   tagAccentSolidBackground: themePrimitives.accent500,
   tagAccentFontDisabled: themePrimitives.accent600,
@@ -224,12 +222,12 @@ export default (
   tagAccentLightFont: themePrimitives.accent100,
   tagAccentLightFontHover: themePrimitives.accent100,
   tagAccentOutlinedActive: themePrimitives.accent300,
+  tagAccentOutlinedFontHover: themePrimitives.accent200,
+  tagAccentOutlinedHover: tagHoverBackground,
 
   // Positive
   tagPositiveOutlinedFont: themePrimitives.positive300,
   tagPositiveOutlinedBackground: themePrimitives.positive500,
-  tagPositiveOutlinedFontHover: themePrimitives.positive300,
-  tagPositiveOutlinedHover: tagHoverBackground,
   tagPositiveSolidFont: themePrimitives.white,
   tagPositiveSolidBackground: themePrimitives.positive500,
   tagPositiveFontDisabled: themePrimitives.positive600,
@@ -246,12 +244,12 @@ export default (
   tagPositiveLightFont: themePrimitives.positive100,
   tagPositiveLightFontHover: themePrimitives.positive100,
   tagPositiveOutlinedActive: themePrimitives.positive300,
+  tagPositiveOutlinedFontHover: themePrimitives.positive300,
+  tagPositiveOutlinedHover: tagHoverBackground,
 
   // Warning
   tagWarningOutlinedFont: themePrimitives.warning300,
   tagWarningOutlinedBackground: themePrimitives.warning500,
-  tagWarningOutlinedFontHover: themePrimitives.warning300,
-  tagWarningOutlinedHover: tagHoverBackground,
   tagWarningSolidFont: themePrimitives.black,
   tagWarningSolidBackground: themePrimitives.warning500,
   tagWarningFontDisabled: themePrimitives.warning600,
@@ -268,12 +266,12 @@ export default (
   tagWarningLightFont: themePrimitives.warning100,
   tagWarningLightFontHover: themePrimitives.warning100,
   tagWarningOutlinedActive: themePrimitives.warning300,
+  tagWarningOutlinedFontHover: themePrimitives.warning300,
+  tagWarningOutlinedHover: tagHoverBackground,
 
   // Negative
   tagNegativeOutlinedFont: themePrimitives.negative300,
   tagNegativeOutlinedBackground: themePrimitives.negative500,
-  tagNegativeOutlinedFontHover: themePrimitives.negative300,
-  tagNegativeOutlinedHover: tagHoverBackground,
   tagNegativeSolidFont: themePrimitives.white,
   tagNegativeSolidBackground: themePrimitives.negative500,
   tagNegativeFontDisabled: themePrimitives.negative600,
@@ -290,6 +288,8 @@ export default (
   tagNegativeLightFont: themePrimitives.negative100,
   tagNegativeLightFontHover: themePrimitives.negative100,
   tagNegativeOutlinedActive: themePrimitives.negative300,
+  tagNegativeOutlinedFontHover: themePrimitives.negative300,
+  tagNegativeOutlinedHover: tagHoverBackground,
 
   // Table
   tableHeadBackgroundColor: themePrimitives.mono700,

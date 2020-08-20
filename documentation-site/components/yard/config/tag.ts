@@ -22,7 +22,6 @@ const TagConfig: TConfig = {
     'tagOutlinedDisabledRampUnit',
     'tagSolidFontRampUnit',
     'tagSolidRampUnit',
-    'tagOutlinedFontHoverRampUnit',
     'tagOutlinedHoverRampUnit',
     'tagOutlinedFontRampUnit',
     'tagOutlinedRampUnit',
@@ -31,8 +30,6 @@ const TagConfig: TConfig = {
     'tagNeutralOutlinedDisabled',
     'tagNeutralSolidFont',
     'tagNeutralSolidBackground',
-    'tagNeutralOutlinedFontHover',
-    'tagNeutralOutlinedHover',
     'tagNeutralOutlinedBackground',
     'tagNeutralOutlinedFont',
 
@@ -40,8 +37,6 @@ const TagConfig: TConfig = {
     'tagPrimaryOutlinedDisabled',
     'tagPrimarySolidFont',
     'tagPrimarySolidBackground',
-    'tagPrimaryOutlinedFontHover',
-    'tagPrimaryOutlinedHover',
     'tagPrimaryOutlinedBackground',
     'tagPrimaryOutlinedFont',
 
@@ -49,8 +44,6 @@ const TagConfig: TConfig = {
     'tagAccentOutlinedDisabled',
     'tagAccentSolidFont',
     'tagAccentSolidBackground',
-    'tagAccentOutlinedFontHover',
-    'tagAccentOutlinedHover',
     'tagAccentOutlinedBackground',
     'tagAccentOutlinedFont',
 
@@ -58,8 +51,6 @@ const TagConfig: TConfig = {
     'tagPositiveOutlinedDisabled',
     'tagPositiveSolidFont',
     'tagPositiveSolidBackground',
-    'tagPositiveOutlinedFontHover',
-    'tagPositiveOutlinedHover',
     'tagPositiveOutlinedBackground',
     'tagPositiveOutlinedFont',
 
@@ -67,8 +58,6 @@ const TagConfig: TConfig = {
     'tagNegativeOutlinedDisabled',
     'tagNegativeSolidFont',
     'tagNegativeSolidBackground',
-    'tagNegativeOutlinedFontHover',
-    'tagNegativeOutlinedHover',
     'tagNegativeOutlinedBackground',
     'tagNegativeOutlinedFont',
 
@@ -76,8 +65,6 @@ const TagConfig: TConfig = {
     'tagWarningOutlinedDisabled',
     'tagWarningSolidFont',
     'tagWarningSolidBackground',
-    'tagWarningOutlinedFontHover',
-    'tagWarningOutlinedHover',
     'tagWarningOutlinedBackground',
     'tagWarningOutlinedFont',
   ],

@@ -232,7 +232,6 @@ export default (
   tagOutlinedDisabledRampUnit: '200',
   tagSolidFontRampUnit: '0',
   tagSolidRampUnit: '400',
-  tagOutlinedFontHoverRampUnit: '400',
   tagOutlinedFontRampUnit: '400',
   tagOutlinedRampUnit: '200',
   // Deprecated
@@ -248,6 +247,7 @@ export default (
   tagLightFontHoverRampUnit: '500',
   tagOutlinedHoverRampUnit: '50',
   tagOutlinedActiveRampUnit: '0',
+  tagOutlinedFontHoverRampUnit: '400',
 
   // Neutral
   tagNeutralFontDisabled: themePrimitives.mono600,
