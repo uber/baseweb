@@ -79,6 +79,7 @@ export const StyledTab = styled<{
   $orientation?: OrientationT,
   $fill?: FillT,
   $focusVisible?: boolean,
+  $isActive?: boolean,
 }>(
   'button',
   ({
@@ -86,6 +87,7 @@ export const StyledTab = styled<{
     $orientation = ORIENTATION.horizontal,
     $fill = FILL.intrinsic,
     $focusVisible = false,
+    $isActive = false,
   }) => {
     const style: StyleObject = {
       cursor: 'pointer',
