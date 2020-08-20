@@ -215,23 +215,46 @@ type InputEnhancerStyles = {|
   paddingRight: string,
   paddingLeft: string,
 |};
-function getInputEnhancerPadding($size, sizing): InputEnhancerStyles {
+function getInputEnhancerPadding($size, sizing, position): InputEnhancerStyles {
   return {
     [SIZE.mini]: {
-      paddingRight: sizing.scale200,
-      paddingLeft: sizing.scale200,
+      paddingRight:
+        position === ENHANCER_POSITION.start
+          ? sizing.scale200
+          : sizing.scale300,
+      paddingLeft:
+        position === ENHANCER_POSITION.start ? sizing.scale500 : sizing.scale0,
     },
     [SIZE.compact]: {
-      paddingRight: sizing.scale400,
-      paddingLeft: sizing.scale400,
+      paddingRight:
+        position === ENHANCER_POSITION.start
+          ? sizing.scale400
+          : sizing.scale550,
+      paddingLeft:
+        position === ENHANCER_POSITION.start
+          ? sizing.scale700
+          : sizing.scale100,
     },
     [SIZE.default]: {
-      paddingRight: sizing.scale600,
-      paddingLeft: sizing.scale600,
+      paddingRight:
+        position === ENHANCER_POSITION.start
+          ? sizing.scale550
+          : sizing.scale700,
+
+      paddingLeft:
+        position === ENHANCER_POSITION.start
+          ? sizing.scale850
+          : sizing.scale200,
     },
     [SIZE.large]: {
-      paddingRight: sizing.scale650,
-      paddingLeft: sizing.scale650,
+      paddingRight:
+        position === ENHANCER_POSITION.start
+          ? sizing.scale650
+          : sizing.scale800,
+      paddingLeft:
+        position === ENHANCER_POSITION.start
+          ? sizing.scale950
+          : sizing.scale300,
     },
   }[$size];
 }
@@ -296,7 +319,7 @@ export const InputEnhancer = styled<SharedPropsT>('div', props => {
     transitionTimingFunction: animation.easeOutCurve,
     ...getInputEnhancerBorderRadius($position, borders.inputBorderRadius),
     ...getFont($size, typography),
-    ...getInputEnhancerPadding($size, sizing),
+    ...getInputEnhancerPadding($size, sizing, $position),
     ...getInputEnhancerColors($disabled, $isFocused, $error, $positive, colors),
   };
 });
