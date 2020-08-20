@@ -220,40 +220,40 @@ function getInputEnhancerPadding($size, sizing, position): InputEnhancerStyles {
     [SIZE.mini]: {
       paddingRight:
         position === ENHANCER_POSITION.start
-          ? sizing.scale200
+          ? sizing.scale100
           : sizing.scale300,
       paddingLeft:
-        position === ENHANCER_POSITION.start ? sizing.scale500 : sizing.scale0,
+        position === ENHANCER_POSITION.start ? sizing.scale400 : sizing.scale0,
     },
     [SIZE.compact]: {
       paddingRight:
         position === ENHANCER_POSITION.start
-          ? sizing.scale400
+          ? sizing.scale200
           : sizing.scale550,
       paddingLeft:
         position === ENHANCER_POSITION.start
-          ? sizing.scale700
+          ? sizing.scale600
           : sizing.scale100,
     },
     [SIZE.default]: {
       paddingRight:
         position === ENHANCER_POSITION.start
-          ? sizing.scale550
+          ? sizing.scale400
           : sizing.scale700,
 
       paddingLeft:
         position === ENHANCER_POSITION.start
-          ? sizing.scale850
+          ? sizing.scale800
           : sizing.scale200,
     },
     [SIZE.large]: {
       paddingRight:
         position === ENHANCER_POSITION.start
-          ? sizing.scale650
+          ? sizing.scale550
           : sizing.scale800,
       paddingLeft:
         position === ENHANCER_POSITION.start
-          ? sizing.scale950
+          ? sizing.scale900
           : sizing.scale300,
     },
   }[$size];
