@@ -19,7 +19,7 @@ export default function Scenario() {
       initialState={{value: 'uber'}}
       startEnhancer="@"
       endEnhancer=".com"
-      size={SIZE.compact}
+      //size={SIZE.compact}
       overrides={{Input: {props: {'data-e2e': 'input'}}}}
     />
   );
