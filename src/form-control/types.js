@@ -32,6 +32,8 @@ export type FormControlPropsT = {
   error?: React.Node | ((props: {}) => React.Node),
   /** Positive state of the input. If an error prop passed it will be rendered in place of positive as an error message. */
   positive?: React.Node | ((props: {}) => React.Node),
+  /** The id of the related form element. Defaults to the id property of the child, if any. */
+  htmlFor?: string,
   children: React.Node,
 };
 

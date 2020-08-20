@@ -33,6 +33,7 @@ export type TabsOverridesT = {
   Root?: OverrideT,
   TabBar?: OverrideT,
   TabContent?: OverrideT,
+  Tab?: OverrideT,
 };
 
 export type TabOverridesT = {

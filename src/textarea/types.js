@@ -28,6 +28,7 @@ export type TextareaPropsT = {
   /** Sets the size and number of visible text lines
    of the textarea element. */
   rows?: number,
+  maxLength?: number,
 };
 
 export type StatefulContainerPropsT = {

@@ -56,7 +56,7 @@ export default function Controlled() {
           <FormControl label="Start Time" caption="HH:MM">
             <TimePicker
               value={dates[0]}
-              onChange={time => setDates([time, dates[1]])}
+              onChange={time => time && setDates([time, dates[1]])}
             />
           </FormControl>
         </div>
@@ -88,7 +88,7 @@ export default function Controlled() {
           <FormControl label="End Time" caption="HH:MM">
             <TimePicker
               value={dates[1]}
-              onChange={time => setDates([dates[0], time])}
+              onChange={time => time && setDates([dates[0], time])}
             />
           </FormControl>
         </div>

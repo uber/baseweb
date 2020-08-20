@@ -38,6 +38,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     onSubmit,
     mapOptionToNode,
     mapOptionToString,
+    id,
     name,
     options,
     overrides = {},
@@ -297,6 +298,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
             disabled={disabled}
             error={error}
             name={name}
+            id={id}
             onBlur={handleBlur}
             onChange={handleInputChange}
             onFocus={handleFocus}
