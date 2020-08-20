@@ -5,7 +5,6 @@ export default function Scenario() {
   return (
     <React.Fragment>
       {[
-        KIND.neutral,
         KIND.primary,
         KIND.accent,
         KIND.positive,
