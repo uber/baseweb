@@ -227,6 +227,8 @@ const Index = (props: {
         '/images/cadre-logo.png',
         '/images/banzaicloud-logo.png',
         '/images/sprinklr-logo.png',
+        '/images/radity-logo.png',
+        '/images/gcf-logo.png',
       ]}
     />
     <Contributors contributors={props.contributors} />
