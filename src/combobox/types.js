@@ -28,9 +28,7 @@ export type PropsT<OptionT = mixed> = {|
   mapOptionToString: OptionT => string,
   id?: string,
   name?: string,
-  // Called when input loses focus. If user selects a
-  // suggested option, that option will be provided as the second function parameter.
-  // Otherwise the second parameter will be the first option.
+  // Called when input loses focus.
   onBlur?: string => mixed,
   // Called when input value changes or option is selected. If user selects a
   // suggested option, that option will be provided as the second function parameter.
