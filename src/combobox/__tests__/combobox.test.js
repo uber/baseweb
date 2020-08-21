@@ -34,6 +34,26 @@ describe('combobox', () => {
     expect(handleChange.mock.calls[0][1]).toBe(null);
   });
 
+  it('calls onBlur when input loses focus', () => {
+    const handleBlur = jest.fn();
+    const {container} = render(
+      <Combobox
+        mapOptionToString={o => o}
+        onBlur={handleBlur}
+        onChange={() => {}}
+        options={options}
+        value={''}
+      />,
+      {container: document.body},
+    );
+    const input = container.querySelector('input');
+    fireEvent.change(input, {target: {value: 'x'}});
+    fireEvent.blur(input);
+
+    expect(handleBlur.mock.calls.length).toBe(1);
+    expect(handleBlur.mock.calls[0][0]).toBe('x');
+  });
+
   it('opens listbox when text is entered', () => {
     const {container} = render(
       <Combobox
