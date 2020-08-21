@@ -25,17 +25,5 @@ export default () => (
       endEnhancer={<Search size="18px" />}
       placeholder="Input with an icon enhancer"
     />
-    <br />
-    <Input
-      startEnhancer={({$isFocused}) => (
-        <Block color={$isFocused ? 'primary' : 'mono500'}>@</Block>
-      )}
-      endEnhancer={({$isFocused}) => (
-        <Block color={$isFocused ? 'primary' : 'mono500'}>
-          .com
-        </Block>
-      )}
-      placeholder="Input with function enhancers."
-    />
   </React.Fragment>
 );
