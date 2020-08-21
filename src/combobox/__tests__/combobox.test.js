@@ -51,7 +51,6 @@ describe('combobox', () => {
     fireEvent.blur(input);
 
     expect(handleBlur.mock.calls.length).toBe(1);
-    expect(handleBlur.mock.calls[0][0]).toBe('x');
   });
 
   it('opens listbox when text is entered', () => {
