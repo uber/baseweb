@@ -91,4 +91,17 @@ describe('popover', () => {
     await page.waitFor(selectors.tooltip, {hidden: true});
     await page.waitFor(selectors.content);
   });
+
+  it('updates position when width of popover changes', async () => {
+    await mount(page, 'popover-reposition');
+    await page.click('#e2e-open');
+    let popover = await page.$('#e2e-popover');
+    const {x: startX, width: startWidth} = await popover.boundingBox();
+    await page.click('#e2e-update');
+    await page.waitFor('#e2e-expanded');
+    await page.waitFor(1000); // wait for animation
+    const {x: endX, width: endWidth} = await popover.boundingBox();
+    expect(endWidth).toBeGreaterThan(startWidth);
+    expect(endX).toBeLessThan(startX);
+  });
 });
