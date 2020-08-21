@@ -177,7 +177,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     setIsOpen(false);
     setSelectionIndex(-1);
     setTempValue(value);
-    if (onBlur) onBlur(event.target.value);
+    if (onBlur) onBlur(event);
   }
 
   function handleInputChange(event) {

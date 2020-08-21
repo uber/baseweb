@@ -29,7 +29,7 @@ export type PropsT<OptionT = mixed> = {|
   id?: string,
   name?: string,
   // Called when input loses focus.
-  onBlur?: string => mixed,
+  onBlur?: (SyntheticInputEvent<HTMLInputElement>) => mixed,
   // Called when input value changes or option is selected. If user selects a
   // suggested option, that option will be provided as the second function parameter.
   // Otherwise the second parameter will be null.
