@@ -258,6 +258,9 @@ const config = {
   'nav-long': {
     skip: true,
   },
+  'popover-reposition': {
+    skip: true,
+  },
   'phone-input-custom-flags': {
     interactions: [
       {
