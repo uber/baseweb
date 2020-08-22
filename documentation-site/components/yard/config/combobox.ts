@@ -21,6 +21,15 @@ const ComboboxConfig: TConfig = {
       description: 'Text displayed in the Input component.',
       stateful: true,
     },
+    onBlur: {
+      value: 'nextValue => setValue(nextValue)',
+      type: PropTypes.Function,
+      description: 'Callback for when input focus changes.',
+      propHook: {
+        what: 'nextValue',
+        into: 'value',
+      },
+    },
     onChange: {
       value: 'nextValue => setValue(nextValue)',
       type: PropTypes.Function,

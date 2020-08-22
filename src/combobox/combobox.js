@@ -34,6 +34,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     autocomplete = true,
     disabled = false,
     error = false,
+    onBlur,
     onChange,
     onSubmit,
     mapOptionToNode,
@@ -173,10 +174,10 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     ) {
       return;
     }
-
     setIsOpen(false);
     setSelectionIndex(-1);
     setTempValue(value);
+    if (onBlur) onBlur(event);
   }
 
   function handleInputChange(event) {
