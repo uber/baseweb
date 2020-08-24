@@ -11,10 +11,10 @@ import Dropzone from 'react-dropzone';
 
 import {LocaleContext} from '../locale/index.js';
 import {Block} from '../block/index.js';
-import {Button, KIND, SHAPE} from '../button/index.js';
+import {Button, KIND, SHAPE, SIZE as BUTTON_SIZE} from '../button/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {ProgressBar} from '../progress-bar/index.js';
-import {StyledSpinnerNext, SIZE} from '../spinner/index.js';
+import {StyledSpinnerNext, SIZE as SPINNER_SIZE} from '../spinner/index.js';
 
 import {
   StyledRoot,
@@ -125,6 +125,7 @@ function FileUploader(props: PropsT) {
                         disabled={props.disabled}
                         kind={KIND.secondary}
                         shape={SHAPE.pill}
+                        size={BUTTON_SIZE.compact}
                         onClick={open}
                         role="button"
                         overrides={{
@@ -166,7 +167,7 @@ function FileUploader(props: PropsT) {
                       ) : props.errorMessage ? null : (
                         <Block marginBottom="scale300">
                           <SpinnerComponent
-                            $size={SIZE.medium}
+                            $size={SPINNER_SIZE.medium}
                             {...spinnerProps}
                           />
                         </Block>

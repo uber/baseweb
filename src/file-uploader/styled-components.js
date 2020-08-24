@@ -49,13 +49,16 @@ export const StyledContentMessage = styled<StylePropsT>(
   'div',
   ({$theme, $afterFileDrop, $isDragActive}) =>
     ({
-      ...$theme.typography.font300,
+      ...($afterFileDrop
+        ? $theme.typography.LabelMedium
+        : $theme.typography.LabelSmall),
       color: $afterFileDrop
-        ? $theme.colors.fileUploaderMessageColor
+        ? $theme.colors.contentPrimary
         : $isDragActive
         ? $theme.colors.contentAccent
         : null,
-      marginBottom: $afterFileDrop ? $theme.sizing.scale600 : null,
+      marginTop: $afterFileDrop ? $theme.sizing.scale100 : null,
+      marginBottom: $afterFileDrop ? $theme.sizing.scale100 : null,
     }: {}),
 );
 
@@ -65,9 +68,10 @@ export const StyledErrorMessage = styled<StylePropsT>(
   'div',
   props =>
     ({
-      ...props.$theme.typography.font300,
+      ...props.$theme.typography.LabelMedium,
       color: props.$theme.colors.negative,
-      marginBottom: props.$afterFileDrop ? props.$theme.sizing.scale600 : null,
+      marginTop: props.$afterFileDrop ? props.$theme.sizing.scale100 : null,
+      marginBottom: props.$afterFileDrop ? props.$theme.sizing.scale100 : null,
     }: {}),
 );
 
