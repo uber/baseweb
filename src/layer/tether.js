@@ -23,6 +23,7 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
 
   popper: ?PopperInstance;
   popperHeight = 0;
+  popperWidth = 0;
 
   state = {
     isMounted: false,
@@ -38,11 +39,14 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
     // the Select component, when options were filtered in the dropdown menu it creates a gap
     // between it and the input element.
     if (this.props.popperRef) {
-      const {height} = this.props.popperRef.getBoundingClientRect();
-      if (this.popperHeight !== height) {
+      const {height, width} = this.props.popperRef.getBoundingClientRect();
+
+      if (this.popperHeight !== height || this.popperWidth !== width) {
         this.popperHeight = height;
+        this.popperWidth = width;
         this.popper && this.popper.scheduleUpdate();
       }
+
       if (this.state.isMounted !== prevState.isMounted) {
         if (!this.props.anchorRef) {
           if (__DEV__) {

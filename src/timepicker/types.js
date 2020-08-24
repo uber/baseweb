@@ -16,7 +16,7 @@ export type TimePickerPropsT<T = Date> = {
   adapter: DateIOAdapter<T>,
   format?: '12' | '24',
   /** Callback for when time selection changes. */
-  onChange?: T => mixed,
+  onChange?: (T | null) => mixed,
   overrides?: {
     Select?: OverrideT,
   },
