@@ -122,7 +122,6 @@ function FileUploader(props: PropsT) {
                         {locale.fileuploader.or}
                       </ContentSeparator>
                       <ButtonComponent
-                        aria-controls="fileupload"
                         disabled={props.disabled}
                         kind={KIND.secondary}
                         shape={SHAPE.pill}
