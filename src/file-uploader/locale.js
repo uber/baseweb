@@ -15,8 +15,8 @@ export type FileUploaderLocaleT = {|
 |};
 
 const locale = {
-  dropFilesToUpload: 'Drop files here to upload',
-  or: 'or',
+  dropFilesToUpload: 'Drop files here to upload...',
+  or: '',
   browseFiles: 'Browse files',
   retry: 'Retry Upload',
   cancel: 'Cancel',

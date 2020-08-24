@@ -97,7 +97,7 @@ export default (
   fileUploaderBackgroundColorActive: themePrimitives.primary50,
   fileUploaderBorderColorActive: themePrimitives.primary,
   fileUploaderBorderColorDefault: themePrimitives.mono500,
-  fileUploaderMessageColor: themePrimitives.mono600,
+  fileUploaderMessageColor: themePrimitives.mono800,
 
   // Links
   linkText: themePrimitives.primary,

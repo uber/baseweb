@@ -20,8 +20,6 @@ describe('FileUploader', () => {
   it('applies expected accessibility attributes to button', () => {
     const wrapper = mount(<FileUploader />);
     const button = wrapper.find('button').getDOMNode();
-
-    expect(button.getAttribute('aria-controls')).toBe('fileupload');
     expect(button.getAttribute('role')).toBe('button');
   });
 
