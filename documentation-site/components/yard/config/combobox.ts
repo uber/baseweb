@@ -21,6 +21,15 @@ const ComboboxConfig: TConfig = {
       description: 'Text displayed in the Input component.',
       stateful: true,
     },
+    onBlur: {
+      value: 'nextValue => setValue(nextValue)',
+      type: PropTypes.Function,
+      description: 'Callback for when input focus changes.',
+      propHook: {
+        what: 'nextValue',
+        into: 'value',
+      },
+    },
     onChange: {
       value: 'nextValue => setValue(nextValue)',
       type: PropTypes.Function,
@@ -76,6 +85,18 @@ const ComboboxConfig: TConfig = {
       value: false,
       type: PropTypes.Boolean,
       description: 'Renders component in disabled state.',
+    },
+    id: {
+      value: undefined,
+      type: PropTypes.String,
+      description: 'Id attribute.',
+      hidden: true,
+    },
+    name: {
+      value: undefined,
+      type: PropTypes.String,
+      description: 'Name attribute.',
+      hidden: true,
     },
 
     overrides: {

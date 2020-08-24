@@ -155,7 +155,7 @@ export const StyledSecondaryMenuContainer = styled<{}>('div', ({$theme}) => {
     flexWrap: 'nowrap',
     justifyContent: 'flex-start',
     alignItems: 'stretch',
-    overflow: 'scroll',
+    overflow: 'auto',
   };
 });
 

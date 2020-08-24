@@ -13,7 +13,9 @@ export type PropsT<OptionT = unknown> = {
   disabled?: boolean;
   mapOptionToNode?: ({isSelected: boolean, option: OptionT}) => React.ReactNode;
   mapOptionToString: (OptionT) => string;
+  id?: string;
   name?: string;
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => any;
   onChange?: (value: string, option: OptionT | null) => any;
   onSubmit?: (params: {closeListbox: () => void; value: string}) => any;
   options: OptionT;

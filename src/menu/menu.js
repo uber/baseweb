@@ -28,6 +28,7 @@ export default function Menu(props: StatelessMenuPropsT) {
     focusMenu = () => {},
     unfocusMenu = () => {},
     handleMouseLeave = () => {},
+    handleKeyDown = (event: KeyboardEvent) => {},
     renderAll = false,
   } = props;
 
@@ -117,6 +118,11 @@ export default function Menu(props: StatelessMenuPropsT) {
           onMouseOver={focusMenu}
           onFocus={forkFocus({onFocus: focusMenu}, handleFocus)}
           onBlur={forkBlur({onBlur: unfocusMenu}, handleBlur)}
+          onKeyDown={event => {
+            if (props.isFocused) {
+              handleKeyDown(event);
+            }
+          }}
           tabIndex={0}
           data-baseweb="menu"
           $isFocusVisible={focusVisible}
