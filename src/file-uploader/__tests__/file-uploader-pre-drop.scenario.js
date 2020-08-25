@@ -13,7 +13,6 @@ import {FileUploader} from '../index.js';
 export default function Scenario() {
   return (
     <React.Fragment>
-      <p id="fileupload">upload</p>
       <FileUploader />
     </React.Fragment>
   );
