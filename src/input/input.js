@@ -85,7 +85,12 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
     }
 
     return (
-      <Root data-baseweb="input" {...sharedProps} {...rootProps}>
+      <Root
+        data-baseweb="input"
+        {...sharedProps}
+        {...rootProps}
+        $adjoined={getAdjoinedProp(startEnhancer, endEnhancer)}
+      >
         {startEnhancer && (
           <StartEnhancer
             {...sharedProps}

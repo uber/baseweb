@@ -16,11 +16,17 @@ export const StyledMaskToggleButton = styled<{
   $isFocusVisible: boolean,
   $theme: ThemeT,
 }>('button', ({$theme, $size, $isFocusVisible}) => {
-  const pad = {
-    [SIZE.mini]: $theme.sizing.scale300,
-    [SIZE.compact]: $theme.sizing.scale400,
-    [SIZE.default]: $theme.sizing.scale500,
-    [SIZE.large]: $theme.sizing.scale600,
+  const padLeft = {
+    [SIZE.mini]: $theme.sizing.scale100,
+    [SIZE.compact]: $theme.sizing.scale200,
+    [SIZE.default]: $theme.sizing.scale300,
+    [SIZE.large]: $theme.sizing.scale400,
+  }[$size];
+  const padRight = {
+    [SIZE.mini]: $theme.sizing.scale400,
+    [SIZE.compact]: $theme.sizing.scale600,
+    [SIZE.default]: $theme.sizing.scale750,
+    [SIZE.large]: $theme.sizing.scale850,
   }[$size];
   return {
     display: 'flex',
@@ -30,23 +36,35 @@ export const StyledMaskToggleButton = styled<{
     borderLeftStyle: 'none',
     borderRightStyle: 'none',
     background: 'none',
-    paddingLeft: pad,
-    paddingRight: pad,
+    paddingLeft: $theme.direction === 'rtl' ? padRight : padLeft,
+    paddingRight: $theme.direction === 'rtl' ? padLeft : padRight,
     outline: $isFocusVisible ? `solid 3px ${$theme.colors.accent}` : 'none',
     color: $theme.colors.contentPrimary,
   };
 });
 
 export const StyledClearIconContainer = styled<{
+  $size: SizeT,
   $alignTop: boolean,
   $theme: ThemeT,
-}>('div', ({$alignTop = false, $theme}) => {
-  const paddingDir: string =
-    $theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
+}>('div', ({$alignTop = false, $size, $theme}) => {
+  const padLeft = {
+    [SIZE.mini]: $theme.sizing.scale100,
+    [SIZE.compact]: $theme.sizing.scale200,
+    [SIZE.default]: $theme.sizing.scale300,
+    [SIZE.large]: $theme.sizing.scale400,
+  }[$size];
+  const padRight = {
+    [SIZE.mini]: $theme.sizing.scale400,
+    [SIZE.compact]: $theme.sizing.scale600,
+    [SIZE.default]: $theme.sizing.scale750,
+    [SIZE.large]: $theme.sizing.scale850,
+  }[$size];
   return {
     display: 'flex',
     alignItems: $alignTop ? 'flex-start' : 'center',
-    [paddingDir]: $theme.sizing.scale500,
+    paddingLeft: $theme.direction === 'rtl' ? padRight : padLeft,
+    paddingRight: $theme.direction === 'rtl' ? padLeft : padRight,
     paddingTop: $alignTop ? $theme.sizing.scale500 : '0px',
     color: $theme.colors.contentPrimary,
   };
@@ -89,6 +107,35 @@ function getInputPadding(size, sizing) {
   }[size];
 }
 
+function getRootPadding(adjoined, size, sizing, direction) {
+  let ifLeftPad =
+    adjoined === ADJOINED.both ||
+    (adjoined === ADJOINED.left) & (direction !== 'rtl') ||
+    (adjoined === ADJOINED.right) & (direction === 'rtl');
+  let ifRightPad =
+    adjoined === ADJOINED.both ||
+    (adjoined === ADJOINED.right) & (direction !== 'rtl') ||
+    (adjoined === ADJOINED.left) & (direction === 'rtl');
+  return {
+    [SIZE.mini]: {
+      paddingLeft: ifLeftPad ? sizing.scale200 : '0px',
+      paddingRight: ifRightPad ? sizing.scale200 : '0px',
+    },
+    [SIZE.compact]: {
+      paddingLeft: ifLeftPad ? sizing.scale400 : '0px',
+      paddingRight: ifRightPad ? sizing.scale400 : '0px',
+    },
+    [SIZE.default]: {
+      paddingLeft: ifLeftPad ? sizing.scale550 : '0px',
+      paddingRight: ifRightPad ? sizing.scale550 : '0px',
+    },
+    [SIZE.large]: {
+      paddingLeft: ifLeftPad ? sizing.scale650 : '0px',
+      paddingRight: ifRightPad ? sizing.scale650 : '0px',
+    },
+  }[size];
+}
+
 function getFont(size, typography) {
   return {
     [SIZE.mini]: typography.font100,
@@ -105,6 +152,7 @@ function getRootColors($disabled, $isFocused, $error, $positive, colors) {
       borderRightColor: colors.inputFillDisabled,
       borderTopColor: colors.inputFillDisabled,
       borderBottomColor: colors.inputFillDisabled,
+      backgroundColor: colors.inputFillDisabled,
     };
   }
 
@@ -114,6 +162,7 @@ function getRootColors($disabled, $isFocused, $error, $positive, colors) {
       borderRightColor: colors.borderFocus,
       borderTopColor: colors.borderFocus,
       borderBottomColor: colors.borderFocus,
+      backgroundColor: colors.inputFillActive,
     };
   }
 
@@ -123,6 +172,7 @@ function getRootColors($disabled, $isFocused, $error, $positive, colors) {
       borderRightColor: colors.inputBorderError,
       borderTopColor: colors.inputBorderError,
       borderBottomColor: colors.inputBorderError,
+      backgroundColor: colors.inputFillError,
     };
   }
 
@@ -132,6 +182,7 @@ function getRootColors($disabled, $isFocused, $error, $positive, colors) {
       borderRightColor: colors.inputBorderPositive,
       borderTopColor: colors.inputBorderPositive,
       borderBottomColor: colors.inputBorderPositive,
+      backgroundColor: colors.inputFillPositive,
     };
   }
 
@@ -140,6 +191,7 @@ function getRootColors($disabled, $isFocused, $error, $positive, colors) {
     borderRightColor: colors.inputBorder,
     borderTopColor: colors.inputBorder,
     borderBottomColor: colors.inputBorder,
+    backgroundColor: colors.inputFill,
   };
 }
 
@@ -163,15 +215,18 @@ export const getRootStyles = (props: {
 }) => {
   const {
     $isFocused,
+    $adjoined,
     $error,
     $disabled,
     $positive,
     $size,
-    $theme: {borders, colors, typography, animation},
+    $theme,
+    $theme: {borders, colors, sizing, typography, animation},
   } = props;
   return {
     boxSizing: 'border-box',
     display: 'flex',
+    overflow: 'hidden',
     width: '100%',
     borderLeftWidth: '2px',
     borderRightWidth: '2px',
@@ -187,6 +242,7 @@ export const getRootStyles = (props: {
     ...getRootBorderRadius(borders.inputBorderRadius),
     ...getFont($size, typography),
     ...getRootColors($disabled, $isFocused, $error, $positive, colors),
+    ...getRootPadding($adjoined, $size, sizing, $theme.direction),
   };
 };
 
@@ -194,69 +250,27 @@ export const Root = styled<SharedPropsT>('div', getRootStyles);
 
 // InputEnhancer
 
-function getInputEnhancerBorderRadius(position, radius) {
-  return {
-    [ENHANCER_POSITION.start]: {
-      borderTopLeftRadius: radius,
-      borderBottomLeftRadius: radius,
-      borderTopRightRadius: 0,
-      borderBottomRightRadius: 0,
-    },
-    [ENHANCER_POSITION.end]: {
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0,
-      borderTopRightRadius: radius,
-      borderBottomRightRadius: radius,
-    },
-  }[position];
-}
-
 type InputEnhancerStyles = {|
   paddingRight: string,
   paddingLeft: string,
 |};
-function getInputEnhancerPadding($size, sizing, position): InputEnhancerStyles {
+function getInputEnhancerPadding($size, sizing): InputEnhancerStyles {
   return {
     [SIZE.mini]: {
-      paddingRight:
-        position === ENHANCER_POSITION.start
-          ? sizing.scale100
-          : sizing.scale400,
-      paddingLeft:
-        position === ENHANCER_POSITION.start
-          ? sizing.scale400
-          : sizing.scale100,
+      paddingRight: sizing.scale100,
+      paddingLeft: sizing.scale100,
     },
     [SIZE.compact]: {
-      paddingRight:
-        position === ENHANCER_POSITION.start
-          ? sizing.scale200
-          : sizing.scale600,
-      paddingLeft:
-        position === ENHANCER_POSITION.start
-          ? sizing.scale600
-          : sizing.scale200,
+      paddingRight: sizing.scale200,
+      paddingLeft: sizing.scale200,
     },
     [SIZE.default]: {
-      paddingRight:
-        position === ENHANCER_POSITION.start
-          ? sizing.scale400
-          : sizing.scale800,
-
-      paddingLeft:
-        position === ENHANCER_POSITION.start
-          ? sizing.scale800
-          : sizing.scale400,
+      paddingRight: sizing.scale300,
+      paddingLeft: sizing.scale300,
     },
     [SIZE.large]: {
-      paddingRight:
-        position === ENHANCER_POSITION.start
-          ? sizing.scale550
-          : sizing.scale900,
-      paddingLeft:
-        position === ENHANCER_POSITION.start
-          ? sizing.scale900
-          : sizing.scale550,
+      paddingRight: sizing.scale400,
+      paddingLeft: sizing.scale400,
     },
   }[$size];
 }
@@ -271,7 +285,7 @@ function getInputEnhancerColors(
   if ($disabled) {
     return {
       color: colors.inputEnhancerTextDisabled,
-      backgroundColor: colors.inputEnhancerFillDisabled,
+      backgroundColor: colors.inputFillDisabled,
     };
   }
 
@@ -304,13 +318,12 @@ function getInputEnhancerColors(
 
 export const InputEnhancer = styled<SharedPropsT>('div', props => {
   const {
-    $position,
     $size,
     $disabled,
     $isFocused,
     $error,
     $positive,
-    $theme: {borders, colors, sizing, typography, animation},
+    $theme: {colors, sizing, typography, animation},
   } = props;
   return {
     display: 'flex',
@@ -319,43 +332,13 @@ export const InputEnhancer = styled<SharedPropsT>('div', props => {
     transitionProperty: 'color, background-color',
     transitionDuration: animation.timing200,
     transitionTimingFunction: animation.easeOutCurve,
-    ...getInputEnhancerBorderRadius($position, borders.inputBorderRadius),
     ...getFont($size, typography),
-    ...getInputEnhancerPadding($size, sizing, $position),
+    ...getInputEnhancerPadding($size, sizing),
     ...getInputEnhancerColors($disabled, $isFocused, $error, $positive, colors),
   };
 });
 
 // InputContainer
-
-function getInputContainerBorderRadius(adjoined, radius) {
-  return {
-    [ADJOINED.none]: {
-      borderTopLeftRadius: radius,
-      borderBottomLeftRadius: radius,
-      borderTopRightRadius: radius,
-      borderBottomRightRadius: radius,
-    },
-    [ADJOINED.left]: {
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0,
-      borderTopRightRadius: radius,
-      borderBottomRightRadius: radius,
-    },
-    [ADJOINED.right]: {
-      borderTopLeftRadius: radius,
-      borderBottomLeftRadius: radius,
-      borderTopRightRadius: 0,
-      borderBottomRightRadius: 0,
-    },
-    [ADJOINED.both]: {
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0,
-      borderTopRightRadius: 0,
-      borderBottomRightRadius: 0,
-    },
-  }[adjoined];
-}
 
 function getInputContainerColors(
   $disabled,
@@ -399,7 +382,6 @@ function getInputContainerColors(
 }
 
 export const getInputContainerStyles = (props: {
-  $adjoined: $Keys<typeof ADJOINED>,
   $isFocused: boolean,
   $error: boolean,
   $disabled: boolean,
@@ -409,12 +391,11 @@ export const getInputContainerStyles = (props: {
 }) => {
   const {
     $isFocused,
-    $adjoined,
     $error,
     $disabled,
     $positive,
     $size,
-    $theme: {borders, colors, typography, animation},
+    $theme: {colors, typography, animation},
   } = props;
   return {
     display: 'flex',
@@ -422,7 +403,6 @@ export const getInputContainerStyles = (props: {
     transitionProperty: 'background-color',
     transitionDuration: animation.timing200,
     transitionTimingFunction: animation.easeOutCurve,
-    ...getInputContainerBorderRadius($adjoined, borders.inputBorderRadius),
     ...getFont($size, typography),
     ...getInputContainerColors(
       $disabled,
