@@ -36,6 +36,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     error = false,
     onBlur,
     onChange,
+    onFocus,
     onSubmit,
     mapOptionToNode,
     mapOptionToString,
@@ -178,6 +179,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     setSelectionIndex(-1);
     setTempValue(value);
     if (onBlur) onBlur(event);
+    if (onFocus) onFocus(event);
   }
 
   function handleInputChange(event) {

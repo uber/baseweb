@@ -39,6 +39,15 @@ const ComboboxConfig: TConfig = {
         into: 'value',
       },
     },
+    onFocus: {
+      value: 'nextValue => setValue(nextValue)',
+      type: PropTypes.Function,
+      description: 'Callback for when input focus changes.',
+      propHook: {
+        what: 'nextValue',
+        into: 'value',
+      },
+    },
     size: {
       value: 'SIZE.default',
       defaultValue: 'SIZE.default',
