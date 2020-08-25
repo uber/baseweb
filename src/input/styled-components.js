@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import {styled} from '../styles/index.js';
 import type {ThemeT} from '../styles/types.js';
-import {ADJOINED, ENHANCER_POSITION, SIZE} from './constants.js';
+import {ADJOINED, SIZE} from './constants.js';
 import type {SharedPropsT, SizeT} from './types.js';
 import DeleteAlt from '../icon/delete-alt.js';
 
@@ -110,12 +110,12 @@ function getInputPadding(size, sizing) {
 function getRootPadding(adjoined, size, sizing, direction) {
   let ifLeftPad =
     adjoined === ADJOINED.both ||
-    (adjoined === ADJOINED.left) & (direction !== 'rtl') ||
-    (adjoined === ADJOINED.right) & (direction === 'rtl');
+    (adjoined === ADJOINED.left && direction !== 'rtl') ||
+    (adjoined === ADJOINED.right && direction === 'rtl');
   let ifRightPad =
     adjoined === ADJOINED.both ||
-    (adjoined === ADJOINED.right) & (direction !== 'rtl') ||
-    (adjoined === ADJOINED.left) & (direction === 'rtl');
+    (adjoined === ADJOINED.right && direction !== 'rtl') ||
+    (adjoined === ADJOINED.left && direction === 'rtl');
   return {
     [SIZE.mini]: {
       paddingLeft: ifLeftPad ? sizing.scale200 : '0px',
