@@ -51,7 +51,7 @@ const COLOR_STATE = {
 
 // Probably best to bake this into the theme once we hit our next major.
 const pick = (theme, light, dark) =>
-  theme.name.includes('dark') ? dark : light;
+  theme.name && theme.name.includes('dark') ? dark : light;
 
 const neutralColorStates = {
   [COLOR_STATE.disabled]: (theme, color) => ({
