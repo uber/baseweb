@@ -343,6 +343,7 @@ class BaseInput<T: EventTarget> extends React.Component<
           value={this.props.value}
           min={this.props.min}
           max={this.props.max}
+          step={this.props.step}
           rows={
             this.props.type === CUSTOM_INPUT_TYPE.textarea
               ? this.props.rows
