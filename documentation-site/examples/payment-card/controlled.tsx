@@ -2,7 +2,7 @@ import * as React from 'react';
 import {PaymentCard} from 'baseui/payment-card';
 
 export default () => {
-  const [value, setValue] = React.useState();
+  const [value, setValue] = React.useState('');
   return (
     <PaymentCard
       value={value}
