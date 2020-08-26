@@ -79,7 +79,7 @@ function QueryInput(props) {
 }
 
 function FilterTag(props) {
-  const [css, theme] = useStyletron();
+  const [, theme] = useStyletron();
   const [isOpen, setIsOpen] = React.useState(false);
   const columnIndex = props.columns.findIndex(c => c.title === props.title);
   const column = props.columns[columnIndex];
@@ -133,15 +133,7 @@ function FilterTag(props) {
             },
           }}
         >
-          <span
-            className={css({
-              ...theme.typography.font150,
-              color: theme.colors.contentPrimary,
-            })}
-          >
-            {props.title}
-          </span>
-          : {props.filter.description}
+          {props.title}: {props.filter.description}
         </Tag>
       </div>
     </Popover>

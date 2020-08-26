@@ -122,6 +122,8 @@ export type StatefulContainerPropsT = {
   onItemSelect: OnItemSelectFnT,
   /** Ref for the menu container element. Used to capture key events for navigation */
   rootRef?: RootRefT,
+  /** Node for menu's keyboard listener. Default is null and keyboard handlers will listen on menu root. */
+  keyboardControlNode: React$ElementRef<*>,
   /** whether has keyboard type-ahead function */
   typeAhead: boolean,
   /** Child as function pattern. */
@@ -165,6 +167,7 @@ export type SharedStatelessPropsT = {
    * bindings to work properly. Every rendered item should call this.
    */
   getRequiredItemProps?: GetRequiredItemPropsFnT,
+  isFocused?: boolean,
   handleMouseLeave?: () => mixed,
   /** Index of highlighted menu item. */
   highlightedIndex?: number,
@@ -178,6 +181,7 @@ export type SharedStatelessPropsT = {
   rootRef?: RootRefT,
   focusMenu?: (event: FocusEvent | MouseEvent | KeyboardEvent) => mixed,
   unfocusMenu?: () => mixed,
+  handleKeyDown?: (event: KeyboardEvent) => mixed,
 };
 
 export type StatefulMenuPropsT = {

@@ -34,10 +34,13 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     autocomplete = true,
     disabled = false,
     error = false,
+    onBlur,
     onChange,
+    onFocus,
     onSubmit,
     mapOptionToNode,
     mapOptionToString,
+    id,
     name,
     options,
     overrides = {},
@@ -154,10 +157,11 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     }
   }
 
-  function handleFocus() {
+  function handleFocus(event) {
     if (!isOpen && options.length) {
       handleOpen();
     }
+    if (onFocus) onFocus(event);
   }
 
   function handleBlur(event) {
@@ -172,10 +176,10 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     ) {
       return;
     }
-
     setIsOpen(false);
     setSelectionIndex(-1);
     setTempValue(value);
+    if (onBlur) onBlur(event);
   }
 
   function handleInputChange(event) {
@@ -297,6 +301,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
             disabled={disabled}
             error={error}
             name={name}
+            id={id}
             onBlur={handleBlur}
             onChange={handleInputChange}
             onFocus={handleFocus}
