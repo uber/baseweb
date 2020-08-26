@@ -193,6 +193,12 @@ export const inputProps = {
     description: 'max value when used as input type=number',
     hidden: true,
   },
+  step: {
+    value: undefined,
+    type: PropTypes.String,
+    description: 'step value when used as input type=number',
+    hidden: true,
+  },
   maxLength: {
     value: undefined,
     type: PropTypes.Number,
