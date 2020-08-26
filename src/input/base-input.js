@@ -239,12 +239,6 @@ class BaseInput<T: EventTarget> extends React.Component<
     if (!clearable || !value || !value.length || disabled) {
       return null;
     }
-    const iconSize = {
-      [SIZE.mini]: '12px',
-      [SIZE.compact]: '16px',
-      [SIZE.default]: '20px',
-      [SIZE.large]: '24px',
-    }[this.props.size];
     const [ClearIconContainer, clearIconContainerProps] = getOverrides(
       overrides.ClearIconContainer,
       StyledClearIconContainer,
@@ -255,6 +249,12 @@ class BaseInput<T: EventTarget> extends React.Component<
     );
     const ariaLabel = 'Clear value';
     const sharedProps = getSharedProps(this.props, this.state);
+    const iconSize = {
+      [SIZE.mini]: '12px',
+      [SIZE.compact]: '16px',
+      [SIZE.default]: '20px',
+      [SIZE.large]: '24px',
+    }[this.props.size];
     return (
       <ClearIconContainer
         $alignTop={this.props.type === CUSTOM_INPUT_TYPE.textarea}

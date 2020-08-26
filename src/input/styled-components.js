@@ -16,18 +16,13 @@ export const StyledMaskToggleButton = styled<{
   $isFocusVisible: boolean,
   $theme: ThemeT,
 }>('button', ({$theme, $size, $isFocusVisible}) => {
-  const padLeft = {
+  const pad = {
     [SIZE.mini]: $theme.sizing.scale100,
     [SIZE.compact]: $theme.sizing.scale200,
     [SIZE.default]: $theme.sizing.scale300,
     [SIZE.large]: $theme.sizing.scale400,
   }[$size];
-  const padRight = {
-    [SIZE.mini]: $theme.sizing.scale400,
-    [SIZE.compact]: $theme.sizing.scale600,
-    [SIZE.default]: $theme.sizing.scale750,
-    [SIZE.large]: $theme.sizing.scale850,
-  }[$size];
+
   return {
     display: 'flex',
     alignItems: 'center',
@@ -36,8 +31,8 @@ export const StyledMaskToggleButton = styled<{
     borderLeftStyle: 'none',
     borderRightStyle: 'none',
     background: 'none',
-    paddingLeft: $theme.direction === 'rtl' ? padRight : padLeft,
-    paddingRight: $theme.direction === 'rtl' ? padLeft : padRight,
+    paddingLeft: pad,
+    paddingRight: pad,
     outline: $isFocusVisible ? `solid 3px ${$theme.colors.accent}` : 'none',
     color: $theme.colors.contentPrimary,
   };
@@ -48,23 +43,18 @@ export const StyledClearIconContainer = styled<{
   $alignTop: boolean,
   $theme: ThemeT,
 }>('div', ({$alignTop = false, $size, $theme}) => {
-  const padLeft = {
+  const pad = {
     [SIZE.mini]: $theme.sizing.scale100,
     [SIZE.compact]: $theme.sizing.scale200,
     [SIZE.default]: $theme.sizing.scale300,
     [SIZE.large]: $theme.sizing.scale400,
   }[$size];
-  const padRight = {
-    [SIZE.mini]: $theme.sizing.scale400,
-    [SIZE.compact]: $theme.sizing.scale600,
-    [SIZE.default]: $theme.sizing.scale750,
-    [SIZE.large]: $theme.sizing.scale850,
-  }[$size];
+
   return {
     display: 'flex',
     alignItems: $alignTop ? 'flex-start' : 'center',
-    paddingLeft: $theme.direction === 'rtl' ? padRight : padLeft,
-    paddingRight: $theme.direction === 'rtl' ? padLeft : padRight,
+    paddingLeft: pad,
+    paddingRight: pad,
     paddingTop: $alignTop ? $theme.sizing.scale500 : '0px',
     color: $theme.colors.contentPrimary,
   };
@@ -107,15 +97,17 @@ function getInputPadding(size, sizing) {
   }[size];
 }
 
-function getRootPadding(adjoined, size, sizing, direction) {
+function getRootPadding(adjoined, size, sizing, direction, hasIconTrailing) {
   let ifLeftPad =
     adjoined === ADJOINED.both ||
     (adjoined === ADJOINED.left && direction !== 'rtl') ||
-    (adjoined === ADJOINED.right && direction === 'rtl');
+    (adjoined === ADJOINED.right && direction === 'rtl') ||
+    (hasIconTrailing && direction === 'rtl');
   let ifRightPad =
     adjoined === ADJOINED.both ||
     (adjoined === ADJOINED.right && direction !== 'rtl') ||
-    (adjoined === ADJOINED.left && direction === 'rtl');
+    (adjoined === ADJOINED.left && direction === 'rtl') ||
+    (hasIconTrailing && direction !== 'rtl');
   return {
     [SIZE.mini]: {
       paddingLeft: ifLeftPad ? sizing.scale200 : '0px',
@@ -212,6 +204,7 @@ export const getRootStyles = (props: {
   $positive: boolean,
   $size: SizeT,
   $theme: ThemeT,
+  $hasIconTrailing: boolean,
 }) => {
   const {
     $isFocused,
@@ -222,6 +215,7 @@ export const getRootStyles = (props: {
     $size,
     $theme,
     $theme: {borders, colors, sizing, typography, animation},
+    $hasIconTrailing,
   } = props;
   return {
     boxSizing: 'border-box',
@@ -242,7 +236,13 @@ export const getRootStyles = (props: {
     ...getRootBorderRadius(borders.inputBorderRadius),
     ...getFont($size, typography),
     ...getRootColors($disabled, $isFocused, $error, $positive, colors),
-    ...getRootPadding($adjoined, $size, sizing, $theme.direction),
+    ...getRootPadding(
+      $adjoined,
+      $size,
+      sizing,
+      $theme.direction,
+      $hasIconTrailing,
+    ),
   };
 };
 

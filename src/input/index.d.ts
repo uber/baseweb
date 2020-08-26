@@ -49,7 +49,7 @@ export interface BaseInputProps<T> {
   id?: string;
   'data-baseweb'?: string;
   inputMode?: string;
-  pattern?: string,
+  pattern?: string;
   inputRef?: React.Ref<T>;
   name?: string;
   onBlur?: React.FocusEventHandler<T>;
@@ -100,6 +100,8 @@ export type SharedProps = {
   /** Renders UI in 'required' state */
   $required: boolean;
   $position: keyof ENHANCER_POSITION;
+  /** Defines if has a clearable or MaskToggleButton at the end */
+  $hasIconTrailing: boolean;
 };
 
 export interface InputProps extends BaseInputProps<HTMLInputElement> {
