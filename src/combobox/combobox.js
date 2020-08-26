@@ -157,10 +157,11 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     }
   }
 
-  function handleFocus() {
+  function handleFocus(event) {
     if (!isOpen && options.length) {
       handleOpen();
     }
+    if (onFocus) onFocus(event);
   }
 
   function handleBlur(event) {
@@ -179,7 +180,6 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     setSelectionIndex(-1);
     setTempValue(value);
     if (onBlur) onBlur(event);
-    if (onFocus) onFocus(event);
   }
 
   function handleInputChange(event) {
