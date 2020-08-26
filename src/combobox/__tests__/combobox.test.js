@@ -53,6 +53,25 @@ describe('combobox', () => {
     expect(handleBlur.mock.calls.length).toBe(1);
   });
 
+  it('calls onFocus when input enters focus', () => {
+    const handleFocus = jest.fn();
+    const {container} = render(
+      <Combobox
+        mapOptionToString={o => o}
+        onChange={() => {}}
+        onFocus={handleFocus}
+        options={options}
+        value={''}
+      />,
+      {container: document.body},
+    );
+    const input = container.querySelector('input');
+    fireEvent.change(input, {target: {value: 'x'}});
+    fireEvent.focus(input);
+
+    expect(handleFocus.mock.calls.length).toBe(1);
+  });
+
   it('opens listbox when text is entered', () => {
     const {container} = render(
       <Combobox

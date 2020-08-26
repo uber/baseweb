@@ -36,6 +36,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     error = false,
     onBlur,
     onChange,
+    onFocus,
     onSubmit,
     mapOptionToNode,
     mapOptionToString,
@@ -156,10 +157,11 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     }
   }
 
-  function handleFocus() {
+  function handleFocus(event) {
     if (!isOpen && options.length) {
       handleOpen();
     }
+    if (onFocus) onFocus(event);
   }
 
   function handleBlur(event) {

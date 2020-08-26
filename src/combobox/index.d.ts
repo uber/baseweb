@@ -17,6 +17,7 @@ export type PropsT<OptionT = unknown> = {
   name?: string;
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => any;
   onChange?: (value: string, option: OptionT | null) => any;
+  onFocus?: (event: React.FocusEvent<HTMLInputElement>) => any;
   onSubmit?: (params: {closeListbox: () => void; value: string}) => any;
   options: OptionT;
   overrides?: {

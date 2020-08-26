@@ -35,6 +35,8 @@ export type PropsT<OptionT = mixed> = {|
   // Otherwise the second parameter will be null.
   // TODO(v11): consider consolidating function params into a single object bag.
   onChange: (string, OptionT | null) => mixed,
+  // Called when input enters focus.
+  onFocus?: (SyntheticInputEvent<HTMLInputElement>) => mixed,
   // Called when no option is selected and the enter key is pressed. An argument to this
   // function is another function to close the listbox if needed.
   onSubmit?: ({closeListbox: () => void, value: string}) => mixed,
