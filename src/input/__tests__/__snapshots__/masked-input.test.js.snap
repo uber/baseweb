@@ -83,6 +83,7 @@ Object {
   "placeholder": "Placeholder",
   "required": false,
   "rows": null,
+  "step": undefined,
   "styled-component": "true",
   "test-style": "{
   \\"boxSizing\\": \\"border-box\\",

@@ -49,7 +49,7 @@ export interface BaseInputProps<T> {
   id?: string;
   'data-baseweb'?: string;
   inputMode?: string;
-  pattern?: string,
+  pattern?: string;
   inputRef?: React.Ref<T>;
   name?: string;
   onBlur?: React.FocusEventHandler<T>;
@@ -67,6 +67,7 @@ export interface BaseInputProps<T> {
   rows?: number;
   min?: number;
   max?: number;
+  step?: number;
 }
 
 export interface State {
