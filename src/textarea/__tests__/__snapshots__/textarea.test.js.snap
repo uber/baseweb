@@ -30,6 +30,7 @@ Object {
   "placeholder": "Placeholder",
   "required": false,
   "rows": 3,
+  "step": undefined,
   "styled-component": "true",
   "test-style": "{
   \\"boxSizing\\": \\"border-box\\",
