@@ -16,7 +16,7 @@ function getFormOverrides(width: string) {
 }
 
 export default () => {
-  const [number, setNumber] = React.useState();
+  const [number, setNumber] = React.useState('');
   const [expiration, setExpiration] = React.useState();
   const [code, setCode] = React.useState();
   const [css] = useStyletron();

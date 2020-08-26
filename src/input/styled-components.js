@@ -44,10 +44,10 @@ export const StyledClearIconContainer = styled<{
   $theme: ThemeT,
 }>('div', ({$alignTop = false, $size, $theme}) => {
   const pad = {
-    [SIZE.mini]: $theme.sizing.scale100,
-    [SIZE.compact]: $theme.sizing.scale200,
-    [SIZE.default]: $theme.sizing.scale300,
-    [SIZE.large]: $theme.sizing.scale400,
+    [SIZE.mini]: 0,
+    [SIZE.compact]: $theme.sizing.scale0,
+    [SIZE.default]: $theme.sizing.scale100,
+    [SIZE.large]: $theme.sizing.scale200,
   }[$size];
 
   return {
