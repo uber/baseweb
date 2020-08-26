@@ -32,7 +32,7 @@ const PaymentCardConfig: TConfig = {
     ]),
     placeholder: {
       ...inputProps.placeholder,
-      value: 'Please enter your credit card number...',
+      value: undefined,
     },
     overrides: {
       value: undefined,
