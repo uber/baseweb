@@ -4,6 +4,7 @@ exports[`basic render: renders <Input/> as a child 1`] = `
 <Input
   autoComplete="on"
   autoFocus={false}
+  clearable={false}
   disabled={false}
   endEnhancer={null}
   error={false}
@@ -20,6 +21,7 @@ exports[`basic render: renders <Input/> as a child 1`] = `
   required={false}
   size="default"
   startEnhancer={null}
+  type="text"
   value=""
 />
 `;

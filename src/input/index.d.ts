@@ -101,6 +101,8 @@ export type SharedProps = {
   /** Renders UI in 'required' state */
   $required: boolean;
   $position: keyof ENHANCER_POSITION;
+  /** Defines if has a clearable or MaskToggleButton at the end */
+  $hasIconTrailing: boolean;
 };
 
 export interface InputProps extends BaseInputProps<HTMLInputElement> {

@@ -4,7 +4,7 @@ import {Input} from 'baseui/input';
 export default () => (
   <Input
     overrides={{
-      InputContainer: {
+      Root: {
         style: props => {
           const {
             $disabled,

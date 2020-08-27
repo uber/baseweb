@@ -1,6 +1,5 @@
 // @flow
 import * as React from 'react';
-import {Block} from 'baseui/block';
 import {Search} from 'baseui/icon';
 import {Input} from 'baseui/input';
 
@@ -25,18 +24,6 @@ export default () => (
     <Input
       endEnhancer={<Search size="18px" />}
       placeholder="Input with an icon enhancer"
-    />
-    <br />
-    <Input
-      startEnhancer={({$isFocused}) => (
-        <Block color={$isFocused ? 'primary' : 'mono700'}>@</Block>
-      )}
-      endEnhancer={({$isFocused}) => (
-        <Block color={$isFocused ? 'primary' : 'mono700'}>
-          .com
-        </Block>
-      )}
-      placeholder="Input with function enhancers."
     />
   </React.Fragment>
 );
