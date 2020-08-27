@@ -22,7 +22,8 @@ const ComboboxConfig: TConfig = {
       stateful: true,
     },
     onBlur: {
-      value: 'nextValue => setValue(nextValue)',
+      value: undefined,
+      placeholder: `() => console.log('blur')`,
       type: PropTypes.Function,
       description: 'Callback for when input focus changes.',
     },
@@ -36,7 +37,8 @@ const ComboboxConfig: TConfig = {
       },
     },
     onFocus: {
-      value: 'nextValue => setValue(nextValue)',
+      value: undefined,
+      placeholder: `() => console.log('focus')`,
       type: PropTypes.Function,
       description: 'Callback for when input focus changes.',
     },
