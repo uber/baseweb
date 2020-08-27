@@ -236,7 +236,6 @@ export const StyledNumberContentTail = styled<StylePropsT>(
       paddingBottom: 0,
       marginTop,
       width: $theme.sizing.scale0,
-      // paddingTop: $theme.sizing.scale800,
       backgroundColor: currentColor,
       display: 'inline-block',
     };
