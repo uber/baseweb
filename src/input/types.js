@@ -57,6 +57,8 @@ export type SharedPropsT = {|
   /** Renders UI in 'required' state */
   $required: boolean,
   $position: $Keys<typeof ENHANCER_POSITION>,
+  /** Defines if has a clearable or MaskToggleButton at the end */
+  $hasIconTrailing: boolean,
 |};
 
 export type PropsT = *;

@@ -249,6 +249,12 @@ class BaseInput<T: EventTarget> extends React.Component<
     );
     const ariaLabel = 'Clear value';
     const sharedProps = getSharedProps(this.props, this.state);
+    const iconSize = {
+      [SIZE.mini]: '14px',
+      [SIZE.compact]: '20px',
+      [SIZE.default]: '26px',
+      [SIZE.large]: '32px',
+    }[this.props.size];
     return (
       <ClearIconContainer
         $alignTop={this.props.type === CUSTOM_INPUT_TYPE.textarea}
@@ -256,7 +262,7 @@ class BaseInput<T: EventTarget> extends React.Component<
         {...clearIconContainerProps}
       >
         <ClearIcon
-          size={16}
+          size={iconSize}
           tabIndex={0}
           title={ariaLabel}
           aria-label={ariaLabel}
