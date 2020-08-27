@@ -36,25 +36,24 @@ export const StyledIcon = styled<StylePropsT>(
   ({$theme, $isActive, $isCompleted, $disabled}) => {
     let currentColor = $theme.colors.mono400;
     let size = $theme.sizing.scale300;
-    let marginRight = $theme.sizing.scale500;
-    let marginLeft = $theme.sizing.scale100;
+    let marginLeft = $theme.sizing.scale850;
+    let marginRight = $theme.sizing.scale850;
     let font = $theme.typography.font300;
+    let titlePad = $theme.sizing.scale800;
 
     if ($isCompleted) {
       currentColor = $theme.colors.primary;
     } else if ($isActive) {
-      font = $theme.typography.font350;
       currentColor = $theme.colors.progressStepsActiveFill;
     }
 
     if ($isActive) {
       size = $theme.sizing.scale600;
-      marginLeft = 0;
-      marginRight = $theme.sizing.scale300;
+      marginLeft = $theme.sizing.scale800;
+      marginRight = $theme.sizing.scale800;
     }
 
-    const marginTop = `calc((${font.lineHeight} - ${size}) / 2)`;
-
+    const marginTop = `calc(${titlePad} + (${font.lineHeight} - ${size}) / 2)`;
     if ($theme.direction === 'rtl') {
       [marginLeft, marginRight] = [marginRight, marginLeft];
     }
@@ -82,13 +81,13 @@ export const StyledIcon = styled<StylePropsT>(
 
 export const StyledInnerIcon = styled<StylePropsT>('div', ({$theme}) => {
   return {
-    width: $theme.sizing.scale100,
-    height: $theme.sizing.scale100,
-    lineHeight: $theme.sizing.scale100,
-    borderTopLeftRadius: $theme.sizing.scale100,
-    borderTopRightRadius: $theme.sizing.scale100,
-    borderBottomRightRadius: $theme.sizing.scale100,
-    borderBottomLeftRadius: $theme.sizing.scale100,
+    width: $theme.sizing.scale300,
+    height: $theme.sizing.scale300,
+    lineHeight: $theme.sizing.scale300,
+    borderTopLeftRadius: $theme.sizing.scale300,
+    borderTopRightRadius: $theme.sizing.scale300,
+    borderBottomRightRadius: $theme.sizing.scale300,
+    borderBottomLeftRadius: $theme.sizing.scale300,
     backgroundColor: $theme.colors.progressStepsActiveText,
     textAlign: 'center',
   };
@@ -98,24 +97,26 @@ export const StyledContent = styled<StylePropsT>('div', ({$theme}) => {
   const marginDir: string =
     $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
   return {
-    [marginDir]: $theme.sizing.scale900,
+    [marginDir]: $theme.sizing.scale1600,
   };
 });
 
 export const StyledContentTitle = styled<StylePropsT>(
   'div',
-  ({$theme, $isActive}) => {
-    let color = $theme.colors.contentSecondary;
-    let font = $theme.typography.font300;
-
-    if ($isActive) {
+  ({$theme, $isActive, $isCompleted}) => {
+    let color = $theme.colors.primary400;
+    if ($isCompleted) {
+      color = $theme.colors.contentSecondary;
+    } else if ($isActive) {
       color = $theme.colors.contentPrimary;
-      font = $theme.typography.font350;
     }
+    let font = $theme.typography.font300;
 
     return {
       ...font,
       color,
+      paddingTop: $theme.sizing.scale800,
+      paddingBottom: $theme.sizing.scale800,
     };
   },
 );
@@ -126,6 +127,7 @@ export const StyledContentTail = styled<StylePropsT>(
     let currentColor = $theme.colors.mono400;
     let size = $theme.sizing.scale300;
     let font = $theme.typography.font300;
+    let titlePad = $theme.sizing.scale800;
 
     if ($isActive) {
       size = $theme.sizing.scale600;
@@ -133,20 +135,18 @@ export const StyledContentTail = styled<StylePropsT>(
 
     if ($isCompleted) {
       currentColor = $theme.colors.primary;
-    } else if (!$isCompleted && $isActive) {
-      font = $theme.typography.font350;
     }
 
     const dir: string = $theme.direction === 'rtl' ? 'right' : 'left';
 
     return {
       position: 'absolute',
-      [dir]: '7px',
+      [dir]: '31px',
       top: 0,
       height: `calc(100% + ${$theme.sizing.scale500})`,
       marginBottom: 0,
       width: $theme.sizing.scale0,
-      marginTop: `calc(${size} + (${font.lineHeight} - ${size}) / 2)`,
+      marginTop: `calc(${titlePad} + (${font.lineHeight} + ${size}) / 2)`,
       display: 'inline-block',
       backgroundColor: currentColor,
     };
@@ -175,23 +175,26 @@ export const StyledNumberIcon = styled<StylePropsT>(
   ({$theme, $isActive, $isCompleted, $disabled}) => {
     let backgroundColor = $theme.colors.mono400;
     let color = $theme.colors.contentSecondary;
-    let size = $theme.sizing.scale800;
-    let marginRight = $theme.sizing.scale300;
-    let font = $theme.typography.font250;
+    let size = $theme.sizing.scale950;
+    let font = $theme.typography.font300;
+
+    let marginLeft = $theme.sizing.scale550;
+    let marginRight = $theme.sizing.scale550;
     let titleFont = $theme.typography.font300;
+    let titlePad = $theme.sizing.scale800;
 
     if ($isCompleted) {
       color = $theme.colors.progressStepsCompletedText;
       backgroundColor = $theme.colors.progressStepsCompletedFill;
     } else if ($isActive) {
-      titleFont = $theme.typography.font350;
       color = $theme.colors.progressStepsActiveText;
       backgroundColor = $theme.colors.progressStepsActiveFill;
     }
 
-    const marginTop = `calc((${titleFont.lineHeight} - ${size}) / 2)`;
+    const marginTop = `calc(${titlePad} + (${titleFont.lineHeight} - ${size}) / 2)`;
 
     return {
+      marginLeft,
       marginRight,
       marginTop,
       width: size,
@@ -216,24 +219,24 @@ export const StyledNumberContentTail = styled<StylePropsT>(
   'div',
   ({$theme, $isActive, $isCompleted, $disabled}) => {
     let currentColor = $theme.colors.mono300;
-    let size = $theme.sizing.scale800;
+    let size = $theme.sizing.scale950;
     let titleFont = $theme.typography.font300;
+    let titlePad = $theme.sizing.scale800;
+
     if ($isCompleted) {
       currentColor = $theme.colors.primary;
-    } else if ($isActive) {
-      titleFont = $theme.typography.font350;
     }
-    const marginTop = `calc(${size} + (${titleFont.lineHeight} - ${size}) / 2)`;
-
+    const marginTop = `calc(${titlePad} + ${size} + (${titleFont.lineHeight} - ${size}) / 2)`;
+    const dir: string = $theme.direction === 'rtl' ? 'right' : 'left';
     return {
       position: 'absolute',
-      left: '11px',
+      [dir]: '31px',
       top: 0,
-      height: `calc(100% - ${size})`,
+      height: `calc(100% - ${$theme.sizing.scale500})`,
       paddingBottom: 0,
       marginTop,
       width: $theme.sizing.scale0,
-      paddingTop: $theme.sizing.scale800,
+      // paddingTop: $theme.sizing.scale800,
       backgroundColor: currentColor,
       display: 'inline-block',
     };
