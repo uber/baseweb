@@ -64,10 +64,6 @@ Both Base Web and Styletron come with [flow types](https://flow.org/) and [TypeS
 yarn add @types/styletron-standard @types/styletron-react @types/styletron-engine-atomic
 ```
 
-## Example
-
-An example of an application using Base Web can be found [here](https://github.com/tajo/fusion-baseui). You can also check how it works on [CodeSandbox](https://codesandbox.io/s/patient-sky-nn8t7).
-
 ## Docs
 
 To read the documentation, please visit [baseweb.design](https://baseweb.design).
