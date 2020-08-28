@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {ProgressSteps, Step} from 'baseui/progress-steps';
-import {Button, SHAPE} from 'baseui/button';
+import {Button, SHAPE, ButtonProps} from 'baseui/button';
 import {StatefulSelect, TYPE} from 'baseui/select';
 
-function SpacedButton(props) {
+function SpacedButton(props: ButtonProps) {
   return (
     <Button
       {...props}
