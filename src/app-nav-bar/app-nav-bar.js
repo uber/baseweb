@@ -62,7 +62,7 @@ export default function AppNavBar(props: AppNavBarPropsT) {
   });
 
   return (
-    <StyledRoot>
+    <StyledRoot data-baseweb="app-nav-bar">
       {/* Mobile Nav Experience */}
       <div
         className={css({
