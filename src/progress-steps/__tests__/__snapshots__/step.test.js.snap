@@ -122,7 +122,6 @@ exports[`Step renders children correctly if isActive is provided 1`] = `
     >
     <ForwardRef />
   </ForwardRef>
-  </ForwardRef>
   <ForwardRef
     $isActive={true}
     $isCompleted={false}
