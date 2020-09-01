@@ -16,7 +16,7 @@ export default () => (
       </Button>
     </p>
     <p>
-      <Button shape={SHAPE.round}>
+      <Button shape={SHAPE.circle}>
         <Upload />
       </Button>
     </p>
