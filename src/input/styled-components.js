@@ -17,10 +17,10 @@ export const StyledMaskToggleButton = styled<{
   $theme: ThemeT,
 }>('button', ({$theme, $size, $isFocusVisible}) => {
   const pad = {
-    [SIZE.mini]: $theme.sizing.scale100,
-    [SIZE.compact]: $theme.sizing.scale200,
+    [SIZE.mini]: $theme.sizing.scale400,
+    [SIZE.compact]: $theme.sizing.scale400,
     [SIZE.default]: $theme.sizing.scale300,
-    [SIZE.large]: $theme.sizing.scale400,
+    [SIZE.large]: $theme.sizing.scale200,
   }[$size];
 
   return {
@@ -44,10 +44,10 @@ export const StyledClearIconContainer = styled<{
   $theme: ThemeT,
 }>('div', ({$alignTop = false, $size, $theme}) => {
   const pad = {
-    [SIZE.mini]: 0,
-    [SIZE.compact]: $theme.sizing.scale0,
+    [SIZE.mini]: $theme.sizing.scale200,
+    [SIZE.compact]: $theme.sizing.scale200,
     [SIZE.default]: $theme.sizing.scale100,
-    [SIZE.large]: $theme.sizing.scale200,
+    [SIZE.large]: $theme.sizing.scale0,
   }[$size];
 
   return {
@@ -73,14 +73,14 @@ function getInputPadding(size, sizing) {
     [SIZE.mini]: {
       paddingTop: sizing.scale100,
       paddingBottom: sizing.scale100,
-      paddingLeft: sizing.scale200,
-      paddingRight: sizing.scale200,
+      paddingLeft: sizing.scale550,
+      paddingRight: sizing.scale550,
     },
     [SIZE.compact]: {
       paddingTop: sizing.scale200,
       paddingBottom: sizing.scale200,
-      paddingLeft: sizing.scale400,
-      paddingRight: sizing.scale400,
+      paddingLeft: sizing.scale550,
+      paddingRight: sizing.scale550,
     },
     [SIZE.default]: {
       paddingTop: sizing.scale400,
@@ -91,8 +91,8 @@ function getInputPadding(size, sizing) {
     [SIZE.large]: {
       paddingTop: sizing.scale550,
       paddingBottom: sizing.scale550,
-      paddingLeft: sizing.scale650,
-      paddingRight: sizing.scale650,
+      paddingLeft: sizing.scale550,
+      paddingRight: sizing.scale550,
     },
   }[size];
 }
@@ -109,23 +109,9 @@ function getRootPadding(adjoined, size, sizing, direction, hasIconTrailing) {
     (adjoined === ADJOINED.left && direction === 'rtl') ||
     (hasIconTrailing && direction !== 'rtl');
   return {
-    [SIZE.mini]: {
-      paddingLeft: ifLeftPad ? sizing.scale200 : '0px',
-      paddingRight: ifRightPad ? sizing.scale200 : '0px',
-    },
-    [SIZE.compact]: {
-      paddingLeft: ifLeftPad ? sizing.scale400 : '0px',
-      paddingRight: ifRightPad ? sizing.scale400 : '0px',
-    },
-    [SIZE.default]: {
-      paddingLeft: ifLeftPad ? sizing.scale550 : '0px',
-      paddingRight: ifRightPad ? sizing.scale550 : '0px',
-    },
-    [SIZE.large]: {
-      paddingLeft: ifLeftPad ? sizing.scale650 : '0px',
-      paddingRight: ifRightPad ? sizing.scale650 : '0px',
-    },
-  }[size];
+    paddingLeft: ifLeftPad ? sizing.scale550 : '0px',
+    paddingRight: ifRightPad ? sizing.scale550 : '0px',
+  };
 }
 
 function getFont(size, typography) {
@@ -257,20 +243,20 @@ type InputEnhancerStyles = {|
 function getInputEnhancerPadding($size, sizing): InputEnhancerStyles {
   return {
     [SIZE.mini]: {
-      paddingRight: sizing.scale100,
-      paddingLeft: sizing.scale100,
+      paddingRight: sizing.scale400,
+      paddingLeft: sizing.scale400,
     },
     [SIZE.compact]: {
-      paddingRight: sizing.scale200,
-      paddingLeft: sizing.scale200,
+      paddingRight: sizing.scale400,
+      paddingLeft: sizing.scale400,
     },
     [SIZE.default]: {
       paddingRight: sizing.scale300,
       paddingLeft: sizing.scale300,
     },
     [SIZE.large]: {
-      paddingRight: sizing.scale400,
-      paddingLeft: sizing.scale400,
+      paddingRight: sizing.scale200,
+      paddingLeft: sizing.scale200,
     },
   }[$size];
 }
