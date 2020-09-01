@@ -10,7 +10,6 @@ import * as React from 'react';
 import {useStyletron} from '../../index.js';
 import {Button, SHAPE, SIZE, KIND} from '../index.js';
 import Upload from '../../icon/upload.js';
-// import ChevronRight from '../../icon/chevron-right.js';
 
 export default function Scenario() {
   const [css] = useStyletron();
