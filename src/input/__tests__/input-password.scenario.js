@@ -15,14 +15,12 @@ export default function Scenario() {
     <React.Fragment>
       <StatefulInput
         size={SIZE.mini}
-        clearable
         type="password"
         initialState={{value: '1234'}}
       />
       <br />
       <StatefulInput
         size={SIZE.compact}
-        clearable
         type="password"
         initialState={{value: '1234'}}
       />
@@ -36,7 +34,6 @@ export default function Scenario() {
       >
         <StatefulInput
           type="password"
-          clearable
           initialState={{value: '1234'}}
           overrides={{
             Input: {
@@ -55,7 +52,6 @@ export default function Scenario() {
       <br />
       <StatefulInput
         size={SIZE.large}
-        clearable
         type="password"
         initialState={{value: '1234'}}
       />
