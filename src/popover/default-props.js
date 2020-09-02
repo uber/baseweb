@@ -23,6 +23,7 @@ const baseDefaultProps: $Shape<BasePopoverPropsT> = {
   showArrow: false,
   triggerType: TRIGGER_TYPE.click,
   renderAll: false,
+  popoverMargin: 8,
 };
 
 export default baseDefaultProps;
