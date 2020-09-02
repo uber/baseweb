@@ -13,7 +13,7 @@ import {useStyletron} from '../../styles/index.js';
 export default function Scenario() {
   const [css, theme] = useStyletron();
   return (
-    <div className={css({width: '800px'})}>
+    <div className={css({width: '800px', color: theme.colors.contentPrimary})}>
       <div className={css({display: 'flex', justifyContent: 'space-between'})}>
         <div>
           <p>paragraph</p>
