@@ -75,7 +75,7 @@ export const Title = styled<{}>('h1', ({$theme}) => ({
   marginLeft: 0,
   marginTop: 0,
   marginRight: 0,
-  marginBottom: $theme.sizing.scale300,
+  marginBottom: $theme.sizing.scale500,
   paddingLeft: 0,
   paddingTop: 0,
   paddingRight: 0,
