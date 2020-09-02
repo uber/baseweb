@@ -78,3 +78,19 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: 'UberMoveMono';
+  src: url('/fonts/UberMoveMono-Regular.woff2') format('woff2'),
+    url('/fonts/UberMoveMono-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'UberMoveMono';
+  src: url('/fonts/UberMoveMono-Medium.woff2') format('woff2'),
+    url('/fonts/UberMoveMono-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
