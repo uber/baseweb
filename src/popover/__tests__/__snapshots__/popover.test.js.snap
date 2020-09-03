@@ -188,6 +188,7 @@ exports[`Popover component as anchor 1`] = `
               $isAnimating={false}
               $isOpen={true}
               $placement="auto"
+              $popoverMargin={8}
               $popoverOffset={
                 Object {
                   "left": 0,
@@ -209,6 +210,7 @@ exports[`Popover component as anchor 1`] = `
                 $isAnimating={false}
                 $isOpen={true}
                 $placement="auto"
+                $popoverMargin={8}
                 $popoverOffset={
                   Object {
                     "left": 0,
@@ -292,6 +294,7 @@ exports[`Popover component as anchor 1`] = `
                     $isAnimating={false}
                     $isOpen={true}
                     $placement="auto"
+                    $popoverMargin={8}
                     $popoverOffset={
                       Object {
                         "left": 0,
@@ -310,6 +313,7 @@ exports[`Popover component as anchor 1`] = `
                       $isAnimating={false}
                       $isOpen={true}
                       $placement="auto"
+                      $popoverMargin={8}
                       $popoverOffset={
                         Object {
                           "left": 0,
@@ -374,6 +378,7 @@ exports[`Popover component overrides: custom popover arrow has correct props 1`]
   $isAnimating={false}
   $isOpen={true}
   $placement="auto"
+  $popoverMargin={8}
   $popoverOffset={
     Object {
       "left": 0,
@@ -393,6 +398,7 @@ exports[`Popover component overrides: custom popover arrow has correct props 1`]
     $isAnimating={false}
     $isOpen={true}
     $placement="auto"
+    $popoverMargin={8}
     $popoverOffset={
       Object {
         "left": 0,
@@ -432,6 +438,7 @@ exports[`Popover component overrides: custom popover body has correct props 1`] 
   $isAnimating={false}
   $isOpen={true}
   $placement="auto"
+  $popoverMargin={8}
   $popoverOffset={
     Object {
       "left": 0,
@@ -455,6 +462,7 @@ exports[`Popover component overrides: custom popover body has correct props 1`] 
     $isAnimating={false}
     $isOpen={true}
     $placement="auto"
+    $popoverMargin={8}
     $popoverOffset={
       Object {
         "left": 0,
@@ -514,6 +522,7 @@ exports[`Popover component overrides: custom popover body has correct props 1`] 
         $isAnimating={false}
         $isOpen={true}
         $placement="auto"
+        $popoverMargin={8}
         $popoverOffset={
           Object {
             "left": 0,
@@ -533,6 +542,7 @@ exports[`Popover component overrides: custom popover body has correct props 1`] 
           $isAnimating={false}
           $isOpen={true}
           $placement="auto"
+          $popoverMargin={8}
           $popoverOffset={
             Object {
               "left": 0,
@@ -569,6 +579,7 @@ exports[`Popover component overrides: custom popover body has correct props 1`] 
         $isAnimating={false}
         $isOpen={true}
         $placement="auto"
+        $popoverMargin={8}
         $popoverOffset={
           Object {
             "left": 0,
@@ -587,6 +598,7 @@ exports[`Popover component overrides: custom popover body has correct props 1`] 
           $isAnimating={false}
           $isOpen={true}
           $placement="auto"
+          $popoverMargin={8}
           $popoverOffset={
             Object {
               "left": 0,
@@ -622,6 +634,7 @@ exports[`Popover component overrides: custom popover inner has correct props 1`]
   $isAnimating={false}
   $isOpen={true}
   $placement="auto"
+  $popoverMargin={8}
   $popoverOffset={
     Object {
       "left": 0,
@@ -640,6 +653,7 @@ exports[`Popover component overrides: custom popover inner has correct props 1`]
     $isAnimating={false}
     $isOpen={true}
     $placement="auto"
+    $popoverMargin={8}
     $popoverOffset={
       Object {
         "left": 0,

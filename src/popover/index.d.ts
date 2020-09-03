@@ -85,6 +85,7 @@ export interface SharedStylePropsArg {
   $popoverOffset?: Offset;
   $placement?: TetherPlacement[keyof TetherPlacement];
   $showArrow?: boolean;
+  $popoverMargin?: number;
 }
 export interface Overrides {
   Body?: Override<SharedStylePropsArg>;
@@ -109,6 +110,7 @@ export interface BasePopoverProps {
   animateOutTime?: number;
   popperOptions?: any;
   renderAll?: boolean;
+  popoverMargin?: number;
 }
 export type PopoverProps = BasePopoverProps & {
   children: React.ReactNode;

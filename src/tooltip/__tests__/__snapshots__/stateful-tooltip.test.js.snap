@@ -21,6 +21,7 @@ exports[`StatefulTooltip basic render: renders <StatefulContainer/> 1`] = `
     }
   }
   placement="topLeft"
+  popoverMargin={8}
   popperOptions={Object {}}
   renderAll={false}
   returnFocus={true}
@@ -54,6 +55,7 @@ exports[`StatefulTooltip basic render: renders <Tooltip/> 1`] = `
     }
   }
   placement="topLeft"
+  popoverMargin={8}
   popperOptions={Object {}}
   renderAll={false}
   returnFocus={true}
