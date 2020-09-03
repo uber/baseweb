@@ -32,6 +32,7 @@ StatefulPopover.defaultProps = {
   dismissOnClickOutside: true,
   dismissOnEsc: true,
   stateReducer: (_, nextState) => nextState,
+  popoverMargin: 8,
 };
 
 export default StatefulPopover;
