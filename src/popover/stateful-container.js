@@ -11,6 +11,7 @@ import {
   PLACEMENT,
   STATE_CHANGE_TYPE,
   TRIGGER_TYPE,
+  POPOVER_MARGIN,
 } from './constants.js';
 import type {
   PopoverPropsWithoutChildrenT,
@@ -39,7 +40,7 @@ class StatefulContainer extends React.Component<
     dismissOnClickOutside: true,
     dismissOnEsc: true,
     stateReducer: defaultStateReducer,
-    popoverMargin: 8,
+    popoverMargin: POPOVER_MARGIN,
   };
 
   state = {

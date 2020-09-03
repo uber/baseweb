@@ -110,7 +110,7 @@ export type BasePopoverPropsT = {
   /** Whether to toggle the popover when trigger is clicked or hovered. */
   triggerType: TriggerTypeT,
   /** Margin of the popover */
-  popoverMargin: number,
+  popoverMargin?: number,
 };
 
 // Props for stateless render logic

@@ -17,7 +17,6 @@ exports[`Popover component as anchor 1`] = `
   onMouseLeaveDelay={200}
   overrides={Object {}}
   placement="auto"
-  popoverMargin={8}
   renderAll={false}
   returnFocus={true}
   showArrow={false}
