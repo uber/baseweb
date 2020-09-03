@@ -18,6 +18,7 @@ import CellShell from './cell-shell.js';
 import {COLUMNS, NUMERICAL_FORMATS, NUMERICAL_OPERATIONS} from './constants.js';
 import FilterShell from './filter-shell.js';
 import type {ColumnT} from './types.js';
+import {LocaleContext} from '../locale/index.js';
 
 type NumericalFormats =
   | typeof NUMERICAL_FORMATS.DEFAULT
@@ -163,6 +164,7 @@ function filterParamsToInitialState(filterParams) {
 
 function NumericalFilter(props) {
   const [css, theme] = useStyletron();
+  const locale = React.useContext(LocaleContext);
 
   const initialState = filterParamsToInitialState(props.filterParams);
   const [exclude, setExclude] = React.useState(initialState.exclude);
@@ -329,13 +331,13 @@ function NumericalFilter(props) {
           type="button"
           overrides={{BaseButton: {style: {width: '100%'}}}}
         >
-          Range
+          {locale.datatable.range}
         </Button>
         <Button
           type="button"
           overrides={{BaseButton: {style: {width: '100%'}}}}
         >
-          Single Value
+          {locale.datatable.singleValue}
         </Button>
       </ButtonGroup>
 

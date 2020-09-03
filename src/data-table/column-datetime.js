@@ -30,6 +30,7 @@ import CellShell from './cell-shell.js';
 import {COLUMNS, DATETIME_OPERATIONS} from './constants.js';
 import FilterShell from './filter-shell.js';
 import type {ColumnT} from './types.js';
+import {LocaleContext} from '../locale/index.js';
 
 type OptionsT = {|
   filterable?: boolean,
@@ -199,6 +200,7 @@ function filterParamsToInitialState(input) {
 
 function DatetimeFilter(props) {
   const [css, theme] = useStyletron();
+  const locale = React.useContext(LocaleContext);
   const mountNode = React.useRef();
   const initialState = filterParamsToInitialState(props.filterParams);
 
@@ -323,13 +325,13 @@ function DatetimeFilter(props) {
             type="button"
             overrides={{BaseButton: {style: {width: '100%'}}}}
           >
-            Range
+            {locale.datatable.range}
           </Button>
           <Button
             type="button"
             overrides={{BaseButton: {style: {width: '100%'}}}}
           >
-            Categorical
+            {locale.datatable.categorical}
           </Button>
         </ButtonGroup>
 

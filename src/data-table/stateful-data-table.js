@@ -24,6 +24,7 @@ import FilterMenu from './filter-menu.js';
 import {Unstable_DataTable} from './data-table.js';
 import {Unstable_StatefulContainer} from './stateful-container.js';
 import type {StatefulDataTablePropsT} from './types.js';
+import {LocaleContext} from '../locale/index.js';
 
 function useResizeObserver(
   ref: {current: HTMLElement | null},
@@ -43,6 +44,7 @@ function useResizeObserver(
 
 function QueryInput(props) {
   const [css, theme] = useStyletron();
+  const locale = React.useContext(LocaleContext);
   const [value, setValue] = React.useState('');
 
   React.useEffect(() => {
@@ -53,7 +55,7 @@ function QueryInput(props) {
   return (
     <div className={css({width: '375px', marginBottom: theme.sizing.scale500})}>
       <Input
-        aria-label="Search by text"
+        aria-label={locale.datatable.searchAriaLabel}
         overrides={{
           Before: function Before() {
             return (

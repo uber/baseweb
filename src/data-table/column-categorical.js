@@ -18,7 +18,8 @@ import {Label3} from '../typography/index.js';
 
 import CellShell from './cell-shell.js';
 import {COLUMNS} from './constants.js';
-import type {ColumnT} from './types.js';
+import type {ColumnT, LocaleT} from './types.js';
+import {LocaleContext} from '../locale/index.js';
 import FilterShell from './filter-shell.js';
 import {matchesQuery, splitByQuery, HighlightCellText} from './text-search.js';
 
@@ -56,16 +57,17 @@ function InputBefore() {
 }
 
 function FilterQuickControls(props: {
+  locale: LocaleT,
   onSelectAll: () => void,
   onClearSelection: () => void,
 }) {
   return (
     <ButtonGroup size={SIZE.mini} kind={KIND.minimal}>
       <Button type="button" onClick={props.onSelectAll}>
-        Select All
+        {props.locale.datatable.selectAll}
       </Button>
       <Button type="button" onClick={props.onClearSelection}>
-        Clear
+        {props.locale.datatable.clearSelection}
       </Button>
     </ButtonGroup>
   );
@@ -119,6 +121,7 @@ type CategoricalFilterProps = {
 
 export function CategoricalFilter(props: CategoricalFilterProps) {
   const [css, theme] = useStyletron();
+  const locale = React.useContext(LocaleContext);
   const [selection, setSelection] = React.useState<Set<string>>(
     props.filterParams ? props.filterParams.selection : new Set(),
   );
@@ -167,6 +170,7 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
           }}
         >
           <FilterQuickControls
+            locale={locale}
             onSelectAll={() => {
               categories.forEach(c => selection.add(c));
               setSelection(new Set(selection));
@@ -185,7 +189,9 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
           marginTop: theme.sizing.scale600,
         })}
       >
-        {!filteredCategories.length && <Label3>No Categories Found</Label3>}
+        {!filteredCategories.length && (
+          <Label3>{locale.datatable.categoriesEmpty}</Label3>
+        )}
 
         {Boolean(filteredCategories.length) &&
           filteredCategories.map((category, i) => (
