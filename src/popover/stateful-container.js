@@ -39,6 +39,7 @@ class StatefulContainer extends React.Component<
     dismissOnClickOutside: true,
     dismissOnEsc: true,
     stateReducer: defaultStateReducer,
+    popoverMargin: 8,
   };
 
   state = {

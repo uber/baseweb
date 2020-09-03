@@ -57,6 +57,7 @@ exports[`StatefulPopover basic render: renders <StatefulContainer/> 1`] = `
     }
   }
   placement="topLeft"
+  popoverMargin={8}
   popperOptions={Object {}}
   showArrow={true}
   stateReducer={[MockFunction]}
