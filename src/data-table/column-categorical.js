@@ -18,7 +18,8 @@ import {Label3} from '../typography/index.js';
 
 import CellShell from './cell-shell.js';
 import {COLUMNS} from './constants.js';
-import type {ColumnT, LocaleT} from './types.js';
+import type {ColumnT} from './types.js';
+import type {LocaleT} from '../locale/types.js';
 import {LocaleContext} from '../locale/index.js';
 import FilterShell from './filter-shell.js';
 import {matchesQuery, splitByQuery, HighlightCellText} from './text-search.js';
