@@ -9,6 +9,10 @@ export interface Timezone {
   offset: number;
 }
 
+export interface TimezoneOverrides {
+  Select?: Override<any>;
+}
+
 export interface TimezonePickerProps {
   date?: Date;
   disabled?: boolean;
@@ -16,7 +20,7 @@ export interface TimezonePickerProps {
   error?: boolean;
   mapLabels?: (args: Option) => React.ReactNode;
   onChange?: (value: Timezone) => any;
-  overrides?: {Select?: Override<any>};
+  overrides?: TimezoneOverrides;
   value?: string;
   size?: SIZE[keyof SIZE];
 }

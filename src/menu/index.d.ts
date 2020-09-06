@@ -28,18 +28,20 @@ export interface OPTION_LIST_SIZE {
   compact: 'compact';
 }
 
+export interface MenuOverrides {
+  EmptyState?: Override<any>;
+  List?: Override<any>;
+  Option?: Override<any>;
+  ListItem?: Override<any>;
+}
+
 export type BaseMenuPropsT = {
   renderAll?: boolean;
 };
 
 export interface MenuProps extends BaseMenuPropsT {
   size?: keyof OPTION_LIST_SIZE;
-  overrides?: {
-    EmptyState?: Override<any>;
-    List?: Override<any>;
-    Option?: Override<any>;
-    ListItem?: Override<any>;
-  };
+  overrides?: MenuOverrides;
 }
 
 export type ItemT = any;

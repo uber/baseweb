@@ -16,6 +16,10 @@ export enum BEHAVIOR {
 
 export type Responsive<T> = T | T[];
 
+export interface GridOverrides {
+  Grid?: Override<any>;
+}
+
 export interface GridProps {
   align?: Responsive<ALIGNMENT>;
   behavior?: BEHAVIOR;
@@ -26,9 +30,7 @@ export interface GridProps {
   gridMargins?: Responsive<number>;
   gridMaxWidth?: number;
   gridUnit?: CSSLengthUnitT;
-  overrides?: {
-    Grid?: Override<any>;
-  };
+  overrides?: GridOverrides;
 }
 
 export interface StyledGridProps {
@@ -46,9 +48,7 @@ export interface CellProps {
   order?: Responsive<number>;
   skip?: Responsive<number>;
   span?: Responsive<number>;
-  overrides?: {
-    Cell?: Override<any>;
-  };
+  overrides?: GridOverrides;
 }
 
 export type StyledCellProps = {

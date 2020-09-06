@@ -8,6 +8,15 @@ export interface SIZE {
   mini: 'mini';
 }
 
+export interface ComboboxOverrides {
+  Root?: Override<any>;
+  InputContainer?: Override<any>;
+  Input?: Override<any>;
+  Popover?: Override<any>;
+  ListBox?: Override<any>;
+  ListItem?: Override<any>;
+}
+
 export type PropsT<OptionT = unknown> = {
   autocomplete?: boolean;
   disabled?: boolean;
@@ -20,14 +29,7 @@ export type PropsT<OptionT = unknown> = {
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => any;
   onSubmit?: (params: {closeListbox: () => void; value: string}) => any;
   options: OptionT;
-  overrides?: {
-    Root?: Override<any>;
-    InputContainer?: Override<any>;
-    Input?: Override<any>;
-    Popover?: Override<any>;
-    ListBox?: Override<any>;
-    ListItem?: Override<any>;
-  };
+  overrides?: ComboboxOverrides;
   size?: SIZE[keyof SIZE];
   value: string;
 };
