@@ -322,7 +322,7 @@ function FilterMenu(props: PropsT) {
           },
         }}
       >
-        {locale.datatable.addFilter}
+        {locale.datatable.filterAdd}
       </Button>
     </Popover>
   );

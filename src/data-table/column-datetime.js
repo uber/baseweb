@@ -325,13 +325,13 @@ function DatetimeFilter(props) {
             type="button"
             overrides={{BaseButton: {style: {width: '100%'}}}}
           >
-            {locale.datatable.range}
+            {locale.datatable.datetimeFilterRange}
           </Button>
           <Button
             type="button"
             overrides={{BaseButton: {style: {width: '100%'}}}}
           >
-            {locale.datatable.categorical}
+            {locale.datatable.datetimeFilterCategorical}
           </Button>
         </ButtonGroup>
 

@@ -53,10 +53,10 @@ function FilterShell(props: PropsT) {
           checkmarkType={STYLE_TYPE.toggle_round}
           labelPlacement="right"
         >
-          {locale.datatable.exclude}
+          {locale.datatable.filterExclude}
         </Checkbox>
         <Button size={BUTTON_SIZE.compact} type="submit">
-          {locale.datatable.apply}
+          {locale.datatable.filterApply}
         </Button>
       </div>
     </form>

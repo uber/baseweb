@@ -65,10 +65,10 @@ function FilterQuickControls(props: {
   return (
     <ButtonGroup size={SIZE.mini} kind={KIND.minimal}>
       <Button type="button" onClick={props.onSelectAll}>
-        {locale.datatable.selectAll}
+        {locale.datatable.categoricalFilterSelectAll}
       </Button>
       <Button type="button" onClick={props.onClearSelection}>
-        {locale.datatable.clearSelection}
+        {locale.datatable.categoricalFilterSelectClear}
       </Button>
     </ButtonGroup>
   );
@@ -191,7 +191,7 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
         })}
       >
         {!filteredCategories.length && (
-          <Label3>{locale.datatable.categoriesEmpty}</Label3>
+          <Label3>{locale.datatable.categoricalFilterEmpty}</Label3>
         )}
 
         {Boolean(filteredCategories.length) &&

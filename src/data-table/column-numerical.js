@@ -331,13 +331,13 @@ function NumericalFilter(props) {
           type="button"
           overrides={{BaseButton: {style: {width: '100%'}}}}
         >
-          {locale.datatable.range}
+          {locale.datatable.numericalFilterRange}
         </Button>
         <Button
           type="button"
           overrides={{BaseButton: {style: {width: '100%'}}}}
         >
-          {locale.datatable.singleValue}
+          {locale.datatable.numericalFilterSingleValue}
         </Button>
       </ButtonGroup>
 
