@@ -19,7 +19,6 @@ import {Label3} from '../typography/index.js';
 import CellShell from './cell-shell.js';
 import {COLUMNS} from './constants.js';
 import type {ColumnT} from './types.js';
-import type {LocaleT} from '../locale/types.js';
 import {LocaleContext} from '../locale/index.js';
 import FilterShell from './filter-shell.js';
 import {matchesQuery, splitByQuery, HighlightCellText} from './text-search.js';
@@ -58,17 +57,18 @@ function InputBefore() {
 }
 
 function FilterQuickControls(props: {
-  locale: LocaleT,
   onSelectAll: () => void,
   onClearSelection: () => void,
 }) {
+  const locale = React.useContext(LocaleContext);
+
   return (
     <ButtonGroup size={SIZE.mini} kind={KIND.minimal}>
       <Button type="button" onClick={props.onSelectAll}>
-        {props.locale.datatable.selectAll}
+        {locale.datatable.selectAll}
       </Button>
       <Button type="button" onClick={props.onClearSelection}>
-        {props.locale.datatable.clearSelection}
+        {locale.datatable.clearSelection}
       </Button>
     </ButtonGroup>
   );
