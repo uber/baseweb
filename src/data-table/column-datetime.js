@@ -20,7 +20,15 @@ import set from 'date-fns/set/index.js';
 import {Button, SIZE} from '../button/index.js';
 import {ButtonGroup, MODE} from '../button-group/index.js';
 import {Checkbox} from '../checkbox/index.js';
-import {applyDateToTime, applyTimeToDate} from '../datepicker/utils/index.js';
+import {
+  applyDateToTime,
+  applyTimeToDate,
+  getMonthInLocale,
+  getWeekdayInLocale,
+  getQuarterInLocale,
+  getStartOfWeek,
+  addDays,
+} from '../datepicker/utils/index.js';
 import {Datepicker} from '../datepicker/index.js';
 import {TimePicker} from '../timepicker/index.js';
 import {useStyletron} from '../styles/index.js';
@@ -41,6 +49,8 @@ type OptionsT = {|
   minWidth?: number,
   sortable?: boolean,
   title: string,
+  // eslint-disable-next-line flowtype/no-weak-types
+  locale?: any,
 |};
 
 type DatetimeOperationsT =
@@ -72,46 +82,48 @@ function sortDates(a, b) {
 }
 
 const RANGE_OPERATIONS = [
-  {label: 'Date, Time', id: DATETIME_OPERATIONS.RANGE_DATETIME},
-  {label: 'Date', id: DATETIME_OPERATIONS.RANGE_DATE},
-  {label: 'Time', id: DATETIME_OPERATIONS.RANGE_TIME},
+  {
+    localeLabelKey: 'datetimeFilterRangeDatetime',
+    id: DATETIME_OPERATIONS.RANGE_DATETIME,
+  },
+  {
+    localeLabelKey: 'datetimeFilterRangeDate',
+    id: DATETIME_OPERATIONS.RANGE_DATE,
+  },
+  {
+    localeLabelKey: 'datetimeFilterRangeTime',
+    id: DATETIME_OPERATIONS.RANGE_TIME,
+  },
 ];
 
 const CATEGORICAL_OPERATIONS = [
-  {label: 'Weekday', id: DATETIME_OPERATIONS.WEEKDAY},
-  {label: 'Month', id: DATETIME_OPERATIONS.MONTH},
-  {label: 'Quarter', id: DATETIME_OPERATIONS.QUARTER},
-  {label: 'Half', id: DATETIME_OPERATIONS.HALF},
-  {label: 'Year', id: DATETIME_OPERATIONS.YEAR},
+  {
+    localeLabelKey: 'datetimeFilterCategoricalWeekday',
+    id: DATETIME_OPERATIONS.WEEKDAY,
+  },
+  {
+    localeLabelKey: 'datetimeFilterCategoricalMonth',
+    id: DATETIME_OPERATIONS.MONTH,
+  },
+  {
+    localeLabelKey: 'datetimeFilterCategoricalQuarter',
+    id: DATETIME_OPERATIONS.QUARTER,
+  },
+  {
+    localeLabelKey: 'datetimeFilterCategoricalHalf',
+    id: DATETIME_OPERATIONS.HALF,
+  },
+  {
+    localeLabelKey: 'datetimeFilterCategoricalYear',
+    id: DATETIME_OPERATIONS.YEAR,
+  },
 ];
 
-const WEEKDAYS = [
-  'Sunday',
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday',
-];
+const WEEKDAYS = [0, 1, 2, 3, 4, 5, 6];
 
-const MONTHS = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
+const MONTHS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
-const QUARTERS = ['Q1', 'Q2', 'Q3', 'Q4'];
-const HALVES = ['H1', 'H2'];
+const QUARTERS = [0, 1, 2, 3];
 
 function Checks(props) {
   const [css, theme] = useStyletron();
@@ -248,6 +260,8 @@ function DatetimeFilter(props) {
   const isRange = comparatorIndex === 0;
   const isCategorical = comparatorIndex === 1;
 
+  const startOfWeek = getStartOfWeek(new Date());
+
   return (
     <FilterShell
       exclude={exclude}
@@ -342,7 +356,10 @@ function DatetimeFilter(props) {
               onChange={params => setRangeOperator(params.value)}
               // eslint-disable-next-line flowtype/no-weak-types
               mountNode={(mountNode.current: any)}
-              options={RANGE_OPERATIONS}
+              options={RANGE_OPERATIONS.map(op => ({
+                label: locale.datatable[op.localeLabelKey],
+                id: op.id,
+              }))}
               size="compact"
               clearable={false}
             />
@@ -376,6 +393,7 @@ function DatetimeFilter(props) {
                   overrides={{TimeSelect: {props: {size: 'compact'}}}}
                   range
                   size="compact"
+                  locale={props.locale}
                 />
               )}
             </div>
@@ -438,7 +456,10 @@ function DatetimeFilter(props) {
             <Select
               value={categoricalOperator}
               onChange={params => setCategoricalOperator(params.value)}
-              options={CATEGORICAL_OPERATIONS}
+              options={CATEGORICAL_OPERATIONS.map(op => ({
+                label: locale.datatable[op.localeLabelKey],
+                id: op.id,
+              }))}
               // eslint-disable-next-line flowtype/no-weak-types
               mountNode={(mountNode.current: any)}
               size="compact"
@@ -455,7 +476,14 @@ function DatetimeFilter(props) {
                 <Checks
                   value={weekdays}
                   setValue={setWeekdays}
-                  options={WEEKDAYS.map((w, i) => ({label: w, id: i}))}
+                  options={WEEKDAYS.map(w => {
+                    const day = addDays(startOfWeek, w);
+
+                    return {
+                      label: getWeekdayInLocale(day, props.locale),
+                      id: w,
+                    };
+                  })}
                 />
               )}
 
@@ -463,7 +491,10 @@ function DatetimeFilter(props) {
                 <Checks
                   value={months}
                   setValue={setMonths}
-                  options={MONTHS.map((m, i) => ({label: m, id: i}))}
+                  options={MONTHS.map(m => ({
+                    label: getMonthInLocale(m, props.locale),
+                    id: m,
+                  }))}
                 />
               )}
 
@@ -471,7 +502,10 @@ function DatetimeFilter(props) {
                 <Checks
                   value={quarters}
                   setValue={setQuarters}
-                  options={QUARTERS.map((q, i) => ({label: q, id: i}))}
+                  options={QUARTERS.map(q => ({
+                    label: getQuarterInLocale(q, props.locale),
+                    id: q,
+                  }))}
                 />
               )}
 
@@ -479,7 +513,18 @@ function DatetimeFilter(props) {
                 <Checks
                   value={halves}
                   setValue={setHalves}
-                  options={HALVES.map((h, i) => ({label: h, id: i}))}
+                  options={[
+                    {
+                      label:
+                        locale.datatable.datetimeFilterCategoricalFirstHalf,
+                      id: 0,
+                    },
+                    {
+                      label:
+                        locale.datatable.datetimeFilterCategoricalSecondHalf,
+                      id: 1,
+                    },
+                  ]}
                 />
               )}
 
@@ -601,7 +646,9 @@ function DatetimeColumn(options: OptionsT): DatetimeColumnT {
         />
       );
     }),
-    renderFilter: DatetimeFilter,
+    renderFilter: function RenderDatetimeFilter(props) {
+      return <DatetimeFilter {...props} locale={options.locale} />;
+    },
     sortable: normalizedOptions.sortable,
     sortFn: sortDates,
 
