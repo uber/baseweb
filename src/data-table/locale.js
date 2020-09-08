@@ -40,7 +40,7 @@ const locale = {
     'No rows match the filter criteria defined. Please remove one or more filters to view more data.',
   loadingState: 'Loading Rows.',
   searchAriaLabel: 'Search by text',
-  filterAdd: 'Add Fitler',
+  filterAdd: 'Add Filter',
   filterExclude: 'Exclude',
   filterApply: 'Apply',
   optionsLabel: 'Select column to filter by',
