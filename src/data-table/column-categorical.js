@@ -171,7 +171,6 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
           }}
         >
           <FilterQuickControls
-            locale={locale}
             onSelectAll={() => {
               categories.forEach(c => selection.add(c));
               setSelection(new Set(selection));
