@@ -997,6 +997,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
             mountNode={this.props.mountNode}
             onEsc={() => this.closeMenu()}
             isOpen={isOpen}
+            popoverMargin={0}
             content={() => {
               const dropdownProps = {
                 error: this.props.error,

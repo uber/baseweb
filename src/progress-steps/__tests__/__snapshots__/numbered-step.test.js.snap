@@ -36,7 +36,7 @@ exports[`NumberedStep applies isCompleted prop correctly 1`] = `
     $isCompleted={true}
   >
     <ForwardRef(Check)
-      size={12}
+      size={28}
     />
   </ForwardRef>
   <ForwardRef

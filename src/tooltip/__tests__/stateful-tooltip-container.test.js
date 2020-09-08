@@ -27,6 +27,7 @@ describe('StatefulTooltipContainer', () => {
       onClose: jest.fn(),
       onOpen: jest.fn(),
       placement: PLACEMENT.topLeft,
+      popoverMargin: 8,
       popperOptions: {},
       showArrow: true,
       stateReducer: jest.fn(),
