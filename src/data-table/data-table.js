@@ -410,6 +410,7 @@ function Header(props: HeaderProps) {
 
 function Headers(props: {||}) {
   const [css, theme] = useStyletron();
+  const locale = React.useContext(LocaleContext);
   const ctx = React.useContext(HeaderContext);
   const [resizeIndex, setResizeIndex] = React.useState(-1);
 
@@ -448,7 +449,7 @@ function Headers(props: {||}) {
                         color: theme.colors.contentInversePrimary,
                       })}
                     >
-                      filter applied to {column.title}
+                      {locale.datatable.filterAppliedTo} {column.title}
                     </p>
                     {activeFilter && (
                       <p
