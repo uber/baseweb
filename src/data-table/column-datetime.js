@@ -226,6 +226,15 @@ function DatetimeFilter(props) {
     });
     return Object.keys(dict).map(n => parseInt(n));
   }, [props.data]);
+  const startOfWeek = React.useMemo(() => {
+    return getStartOfWeek(new Date(), props.locale);
+  }, [props.locale]);
+  const localizedWeekdays = React.useMemo(() => {
+    return [
+      ...WEEKDAYS.slice(getDay(startOfWeek), 7),
+      ...WEEKDAYS.slice(0, getDay(startOfWeek)),
+    ];
+  }, [props.locale]);
 
   const [exclude, setExclude] = React.useState(initialState.exclude);
   const [comparatorIndex, setComparatorIndex] = React.useState(
@@ -259,8 +268,6 @@ function DatetimeFilter(props) {
 
   const isRange = comparatorIndex === 0;
   const isCategorical = comparatorIndex === 1;
-
-  const startOfWeek = getStartOfWeek(new Date());
 
   return (
     <FilterShell
@@ -476,8 +483,8 @@ function DatetimeFilter(props) {
                 <Checks
                   value={weekdays}
                   setValue={setWeekdays}
-                  options={WEEKDAYS.map(w => {
-                    const day = addDays(startOfWeek, w);
+                  options={localizedWeekdays.map((w, offset) => {
+                    const day = addDays(startOfWeek, offset);
 
                     return {
                       label: getWeekdayInLocale(day, props.locale),
