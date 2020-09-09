@@ -305,24 +305,57 @@ function DatetimeFilter(props) {
         if (isCategorical) {
           // eslint-disable-next-line flowtype/no-weak-types
           const op: DatetimeOperationsT = (categoricalOperator[0].id: any);
+
           let selection: number[] = [];
+          let operatorLocaleLabelKey = '';
+          let description = '';
           if (op === DATETIME_OPERATIONS.WEEKDAY) {
             selection = weekdays;
+            operatorLocaleLabelKey = CATEGORICAL_OPERATIONS[0].localeLabelKey;
+            description = weekdays
+              .map(w => {
+                const day = addDays(startOfWeek, localizedWeekdays.indexOf(w));
+
+                return getWeekdayInLocale(day, props.locale);
+              })
+              .join(', ');
           } else if (op === DATETIME_OPERATIONS.MONTH) {
             selection = months;
+            operatorLocaleLabelKey = CATEGORICAL_OPERATIONS[1].localeLabelKey;
+            description = months
+              .map(m => getMonthInLocale(m, props.locale))
+              .join(', ');
           } else if (op === DATETIME_OPERATIONS.QUARTER) {
             selection = quarters;
+            operatorLocaleLabelKey = CATEGORICAL_OPERATIONS[2].localeLabelKey;
+            description = quarters
+              .map(q => getQuarterInLocale(q, props.locale))
+              .join(', ');
           } else if (op === DATETIME_OPERATIONS.HALF) {
             selection = halves;
+            operatorLocaleLabelKey = CATEGORICAL_OPERATIONS[3].localeLabelKey;
+            description = halves
+              .map(h =>
+                h === 0
+                  ? locale.datatable.datetimeFilterCategoricalFirstHalf
+                  : locale.datatable.datetimeFilterCategoricalSecondHalf,
+              )
+              .join(', ');
           } else if (op === DATETIME_OPERATIONS.YEAR) {
             selection = years;
+            operatorLocaleLabelKey = CATEGORICAL_OPERATIONS[4].localeLabelKey;
+            description = years.join(', ');
+          }
+
+          if (operatorLocaleLabelKey) {
+            description = `${locale.datatable[operatorLocaleLabelKey]} - ${description}`;
           }
 
           props.setFilter({
             operation: op,
             range: [],
             selection,
-            description: `${op} - ${selection.join(', ')}`,
+            description,
             exclude,
           });
         }

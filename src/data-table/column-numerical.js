@@ -244,7 +244,7 @@ function NumericalFilter(props) {
               const operation = NUMERICAL_OPERATIONS.LT;
               props.setFilter({
                 comparisons: [{value, operation}],
-                description: `${operation} ${value}`,
+                description: `< ${value}`,
                 exclude,
               });
               break;
@@ -254,7 +254,7 @@ function NumericalFilter(props) {
               const operation = NUMERICAL_OPERATIONS.GT;
               props.setFilter({
                 comparisons: [{value, operation}],
-                description: `${operation} ${value}`,
+                description: `> ${value}`,
                 exclude,
               });
               break;
@@ -264,7 +264,7 @@ function NumericalFilter(props) {
               const operation = NUMERICAL_OPERATIONS.LTE;
               props.setFilter({
                 comparisons: [{value, operation}],
-                description: `${operation} ${value}`,
+                description: `≤ ${value}`,
                 exclude,
               });
               break;
@@ -274,7 +274,7 @@ function NumericalFilter(props) {
               const operation = NUMERICAL_OPERATIONS.GTE;
               props.setFilter({
                 comparisons: [{value, operation}],
-                description: `${operation} ${value}`,
+                description: `≥ ${value}`,
                 exclude,
               });
               break;
@@ -295,7 +295,7 @@ function NumericalFilter(props) {
                     operation: NUMERICAL_OPERATIONS.GT,
                   },
                 ],
-                description: `${NUMERICAL_OPERATIONS.GTE} ${leftValue} & ${NUMERICAL_OPERATIONS.LTE} ${rightValue}`,
+                description: `≥ ${leftValue} & ≤ ${rightValue}`,
                 exclude: !exclude,
               });
               break;
@@ -308,7 +308,7 @@ function NumericalFilter(props) {
           const operation = NUMERICAL_OPERATIONS.EQ;
           props.setFilter({
             comparisons: [{value, operation}],
-            description: `${operation} ${value}`,
+            description: `= ${value}`,
             exclude,
           });
         }
