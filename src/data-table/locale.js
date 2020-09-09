@@ -35,9 +35,9 @@ export type DataTableLocaleT = {|
   numericalFilterRange: string,
   numericalFilterSingleValue: string,
   booleanFilterTrue: string,
-  booleanFilterTrueShort: string,
   booleanFilterFalse: string,
-  booleanFilterFalseShort: string,
+  booleanColumnTrueShort: string,
+  booleanColumnFalseShort: string,
 |};
 
 const locale = {
@@ -70,9 +70,9 @@ const locale = {
   numericalFilterRange: 'Range',
   numericalFilterSingleValue: 'Single Value',
   booleanFilterTrue: 'true',
-  booleanFilterTrueShort: 'T',
   booleanFilterFalse: 'false',
-  booleanFilterFalseShort: 'F',
+  booleanColumnTrueShort: 'T',
+  booleanColumnFalseShort: 'F',
 };
 
 export default locale;

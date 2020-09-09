@@ -100,8 +100,8 @@ const BooleanCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
         })}
       >
         {props.value
-          ? locale.datatable.booleanFilterTrueShort
-          : locale.datatable.booleanFilterFalseShort}
+          ? locale.datatable.booleanColumnTrueShort
+          : locale.datatable.booleanColumnFalseShort}
       </div>
     </CellShell>
   );
