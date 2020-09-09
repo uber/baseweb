@@ -38,6 +38,7 @@ const columns = [
   }),
   AnchorColumn({
     // illustrates that this could be provided with a react-router-link
+    // eslint-disable-next-line react/display-name
     elementAs: ({children}) => <div style={{color: 'green'}}>{children}</div>,
     title: 'User',
     mapDataToValue: (data: RowDataT) => ({
