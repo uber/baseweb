@@ -34,6 +34,10 @@ export type DataTableLocaleT = {|
   datetimeFilterCategoricalYear: string,
   numericalFilterRange: string,
   numericalFilterSingleValue: string,
+  booleanFilterTrue: string,
+  booleanFilterTrueShort: string,
+  booleanFilterFalse: string,
+  booleanFilterFalseShort: string,
 |};
 
 const locale = {
@@ -65,6 +69,10 @@ const locale = {
   datetimeFilterCategoricalYear: 'Year',
   numericalFilterRange: 'Range',
   numericalFilterSingleValue: 'Single Value',
+  booleanFilterTrue: 'true',
+  booleanFilterTrueShort: 'T',
+  booleanFilterFalse: 'false',
+  booleanFilterFalseShort: 'F',
 };
 
 export default locale;
