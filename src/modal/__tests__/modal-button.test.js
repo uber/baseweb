@@ -33,7 +33,7 @@ describe('ModalButton', () => {
     const result = mergedOverrides.BaseButton.style({$theme: mockTheme});
     expect(result).toEqual({
       color: 'red',
-      ':nth-last-child(n+2)': {
+      ':not(:last-child)': {
         marginRight: '$theme.sizing.scale500',
       },
     });

@@ -18,7 +18,7 @@ const overrides = {
       const marginInlineEnd: string =
         $theme.direction !== 'rtl' ? 'marginRight' : 'marginLeft';
       return {
-        ':nth-last-child(n+2)': {
+        ':not(:last-child)': {
           [marginInlineEnd]: $theme.sizing.scale500,
         },
       };
