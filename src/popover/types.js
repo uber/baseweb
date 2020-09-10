@@ -109,6 +109,8 @@ export type BasePopoverPropsT = {
   showArrow?: boolean,
   /** Whether to toggle the popover when trigger is clicked or hovered. */
   triggerType: TriggerTypeT,
+  /** Margin of the popover */
+  popoverMargin?: number,
 };
 
 // Props for stateless render logic
@@ -188,6 +190,7 @@ export type BodyStylePropsArgT = {
   $popoverOffset: OffsetT,
   $placement: TetherPlacementT,
   $showArrow: boolean,
+  $popoverMargin: number,
 };
 
 export type InnerStylePropsArgT = {};

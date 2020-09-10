@@ -79,20 +79,21 @@ export const Paragraph = (props: Props) => (
 
 export const UnorderedList = (props: Props) => <ul>{props.children}</ul>;
 
-const InlineCode = themedStyled('code', {
-  backgroundColor: 'rgba(27, 31, 35, 0.05)',
-  borderTopLeftRadius: '3px',
-  borderTopRightRadius: '3px',
-  borderBottomRightRadius: '3px',
-  borderBottomLeftRadius: '3px',
-  fontSize: '85%',
-  marginLeft: 0,
-  marginRight: 0,
-  marginTop: 0,
-  marginBottom: 0,
-  padding: '0.2em 0.4em',
-  fontFamily:
-    'SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;',
+const InlineCode = themedStyled<{}>('code', ({$theme}) => {
+  return {
+    ...$theme.typography.MonoParagraphMedium,
+    backgroundColor: 'rgba(27, 31, 35, 0.05)',
+    borderTopLeftRadius: '3px',
+    borderTopRightRadius: '3px',
+    borderBottomRightRadius: '3px',
+    borderBottomLeftRadius: '3px',
+    fontSize: '85%',
+    marginLeft: 0,
+    marginRight: 0,
+    marginTop: 0,
+    marginBottom: 0,
+    padding: '0.2em 0.4em',
+  };
 });
 
 const Blockquote = themedStyled('blockquote', {

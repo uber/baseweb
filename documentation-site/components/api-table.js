@@ -30,8 +30,7 @@ const ApiTable = props => {
         <div
           key={prop}
           className={css({
-            fontFamily:
-              'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace',
+            ...theme.typography.MonoParagraphSmall,
             whiteSpace: 'nowrap',
           })}
         >
@@ -47,6 +46,7 @@ const ApiTable = props => {
             content={
               <div
                 className={css({
+                  ...theme.typography.MonoParagraphSmall,
                   backgroundColor: theme.colors.backgroundSecondary,
                   maxHeight: '300px',
                   maxWidth: '400px',
@@ -56,9 +56,6 @@ const ApiTable = props => {
                   paddingBottom: theme.sizing.scale100,
                   paddingLeft: theme.sizing.scale200,
                   whiteSpace: 'pre',
-                  fontFamily:
-                    'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace',
-                  fontSize: theme.sizing.scale500,
                 })}
               >
                 {flowTypes[prop]}
@@ -68,8 +65,7 @@ const ApiTable = props => {
             <div
               key={prop}
               className={css({
-                fontFamily:
-                  'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace',
+                ...theme.typography.MonoParagraphSmall,
                 whiteSpace: 'nowrap',
                 textDecoration: 'underline',
               })}
@@ -81,8 +77,7 @@ const ApiTable = props => {
           <div
             key={prop}
             className={css({
-              fontFamily:
-                'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace',
+              ...theme.typography.MonoParagraphSmall,
               whiteSpace: 'nowrap',
             })}
           >

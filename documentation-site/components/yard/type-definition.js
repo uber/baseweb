@@ -407,9 +407,8 @@ function TypeDefinition(props) {
   return (
     <div
       className={css({
+        ...theme.typography.MonoLabelSmall,
         whiteSpace: 'pre',
-        fontFamily: 'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace',
-        fontSize: theme.sizing.scale500,
       })}
     >
       {definition}

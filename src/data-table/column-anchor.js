@@ -17,8 +17,13 @@ import type {ColumnT} from './types.js';
 
 type ValueT = {content: string, href: string};
 
+type ReplacementElementAs = React.AbstractComponent<{|
+  href: string,
+  children: string,
+|}>;
+
 type OptionsT = {|
-  elementAs?: React.Node,
+  elementAs?: ReplacementElementAs | string,
   // eslint-disable-next-line flowtype/no-weak-types
   mapDataToValue: (data: any) => ValueT,
   maxWidth?: number,
@@ -31,7 +36,7 @@ type FilterParametersT = {};
 
 type AnchorColumnT = ColumnT<ValueT, FilterParametersT>;
 
-function StringFilter(props) {
+function AnchorFilter(props) {
   return <div>not implemented for anchor column</div>;
 }
 
@@ -76,7 +81,7 @@ function AnchorColumn(options: OptionsT): AnchorColumnT {
     renderCell: React.forwardRef((props, ref) => {
       return <AnchorCell {...props} ref={ref} elementAs={options.elementAs} />;
     }),
-    renderFilter: StringFilter,
+    renderFilter: AnchorFilter,
     sortable: options.sortable === undefined ? true : options.sortable,
     sortFn: function(a, b) {
       return a.content.localeCompare(b.content);
