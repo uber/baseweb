@@ -13,11 +13,8 @@ import {
   CategoricalColumn,
   SORT_DIRECTIONS,
 } from '../index.js';
-import {useStyletron} from '../../styles/index.js';
 
 export default function Scenario() {
-  const [css, theme] = useStyletron();
-
   const columns = [
     CategoricalColumn({
       title: 'column',

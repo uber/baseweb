@@ -12,7 +12,6 @@ const {mount} = require('../../../e2e/helpers');
 const {
   TABLE_ROOT,
   getCellContentsAtColumnIndex,
-  openFilterAtIndex,
   matchArrayElements,
 } = require('./utilities.js');
 
