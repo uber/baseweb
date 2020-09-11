@@ -386,7 +386,7 @@ export default (
   menuFillHover: themePrimitives.mono700,
   menuFontDefault: themePrimitives.mono300,
   menuFontDisabled: themePrimitives.mono400,
-  menuFontHighlighted: themePrimitives.mono200,
+  menuFontHighlighted: themePrimitives.white,
   menuFontSelected: themePrimitives.white,
 
   // Pagination
