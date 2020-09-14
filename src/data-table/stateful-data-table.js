@@ -157,6 +157,8 @@ export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
       columns={props.columns}
       initialFilters={props.initialFilters}
       initialSelectedRowIds={props.initialSelectedRowIds}
+      initialSortIndex={props.initialSortIndex}
+      initialSortDirection={props.initialSortDirection}
       onFilterAdd={props.onFilterAdd}
       onFilterRemove={props.onFilterRemove}
       onIncludedRowsChange={props.onIncludedRowsChange}
