@@ -54,13 +54,23 @@ export const InnerTrack = styled<StylePropsT>('div', props => {
       max: $max || 0,
       rtl: direction === 'rtl',
     }),
-    height: sizing.scale100,
+    height: '2px',
     width: '100%',
     alignSelf: 'center',
     cursor: $disabled ? 'not-allowed' : 'inherit',
   };
 });
 InnerTrack.displayName = 'StyledInnerTrack';
+
+export const Mark = styled<StylePropsT>('div', props => {
+  return {
+    width: '4px',
+    height: '2px',
+    backgroundColor: props.$theme.colors.backgroundPrimary,
+    marginLeft: '16px',
+  };
+});
+Mark.displayName = 'StyledMark';
 
 export const Tick = styled<StylePropsT>('div', props => {
   return {
@@ -96,29 +106,17 @@ export const Thumb = styled<StylePropsT>('div', props => {
 
   return {
     height: '24px',
-    width: isLeft || isRight ? '12px' : '24px',
-    borderTopLeftRadius: isRight ? '1px' : '4px',
-    borderTopRightRadius: isLeft ? '1px' : '4px',
-    borderBottomLeftRadius: isRight ? '1px' : '4px',
-    borderBottomRightRadius: isLeft ? '1px' : '4px',
-    backgroundColor: $theme.colors.mono100,
-    color: $theme.colors.contentPrimary,
+    width: '24px',
+    borderTopLeftRadius: '24px',
+    borderTopRightRadius: '24px',
+    borderBottomLeftRadius: '24px',
+    borderBottomRightRadius: '24px',
     display: 'flex',
-    outline: 'none',
     justifyContent: 'center',
     alignItems: 'center',
-    borderLeftWidth: '1px',
-    borderRightWidth: '1px',
-    borderTopWidth: '1px',
-    borderBottomWidth: '1px',
-    borderLeftStyle: 'solid',
-    borderRightStyle: 'solid',
-    borderTopStyle: 'solid',
-    borderBottomStyle: 'solid',
-    borderLeftColor: $theme.colors.mono400,
-    borderRightColor: $theme.colors.mono400,
-    borderTopColor: $theme.colors.mono400,
-    borderBottomColor: $theme.colors.mono400,
+    backgroundColor: $theme.colors.contentPrimary,
+    color: $theme.colors.contentPrimary,
+    outline: 'none',
     boxShadow: props.$isFocusVisible
       ? `0 0 0 3px ${$theme.colors.accent}`
       : '0 1px 4px rgba(0, 0, 0, 0.12)',

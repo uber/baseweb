@@ -77,6 +77,11 @@ const SliderConfig: TConfig = {
       description:
         'The granularity the slider can step through value. Default step is 1.',
     },
+    marks: {
+      value: false,
+      type: PropTypes.Boolean,
+      description: 'Display a mark at each step.',
+    },
     disabled: {
       value: false,
       type: PropTypes.Boolean,
@@ -96,6 +101,7 @@ const SliderConfig: TConfig = {
           'Tick',
           'TickBar',
           'Track',
+          'Mark',
         ],
         sharedProps: {
           $disabled: 'disabled',

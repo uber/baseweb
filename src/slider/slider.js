@@ -21,8 +21,8 @@ import {
   Tick as StyledTick,
   TickBar as StyledTickBar,
   Thumb as StyledThumb,
-  InnerThumb as StyledInnerThumb,
   ThumbValue as StyledThumbValue,
+  Mark as StyledMark,
 } from './styled-components.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {ThemeContext} from '../styles/theme-provider.js';
@@ -67,6 +67,7 @@ function ThumbLabel({
 function Slider({
   overrides = {},
   disabled = false,
+  marks = false,
   onChange = () => {},
   onFinalChange = () => {},
   min = 0,
@@ -105,6 +106,7 @@ function Slider({
     $step: step,
     $min: min,
     $max: max,
+    $marks: marks,
     $value: value,
     $isFocusVisible: isFocusVisible,
   };
@@ -116,10 +118,6 @@ function Slider({
     StyledInnerTrack,
   );
   const [Thumb, thumbProps] = getOverrides(overrides.Thumb, StyledThumb);
-  const [InnerThumb, innerThumbProps] = getOverrides(
-    overrides.InnerThumb,
-    StyledInnerThumb,
-  );
   const [ThumbValue, thumbValueProps] = getOverrides(
     overrides.ThumbValue,
     StyledThumbValue,
@@ -129,6 +127,7 @@ function Slider({
     overrides.TickBar,
     StyledTickBar,
   );
+  const [Mark, markProps] = getOverrides(overrides.Mark, StyledMark);
 
   return (
     <Root
@@ -188,14 +187,9 @@ function Slider({
               {...sharedProps}
               {...(thumbValueProps: mixed)}
             />
-            <InnerThumb
-              $thumbIndex={index}
-              $isDragged={isDragged}
-              {...sharedProps}
-              {...innerThumbProps}
-            />
           </Thumb>
         )}
+        renderMark={marks ? ({props}) => <Mark {...props} /> : undefined}
       />
       <TickBar {...sharedProps} {...tickBarProps}>
         <Tick {...sharedProps} {...tickProps}>
