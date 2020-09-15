@@ -19,6 +19,7 @@ import {Label3} from '../typography/index.js';
 import CellShell from './cell-shell.js';
 import {COLUMNS} from './constants.js';
 import type {ColumnT} from './types.js';
+import {LocaleContext} from '../locale/index.js';
 import FilterShell from './filter-shell.js';
 import {matchesQuery, splitByQuery, HighlightCellText} from './text-search.js';
 
@@ -59,13 +60,15 @@ function FilterQuickControls(props: {
   onSelectAll: () => void,
   onClearSelection: () => void,
 }) {
+  const locale = React.useContext(LocaleContext);
+
   return (
     <ButtonGroup size={SIZE.mini} kind={KIND.minimal}>
       <Button type="button" onClick={props.onSelectAll}>
-        Select All
+        {locale.datatable.categoricalFilterSelectAll}
       </Button>
       <Button type="button" onClick={props.onClearSelection}>
-        Clear
+        {locale.datatable.categoricalFilterSelectClear}
       </Button>
     </ButtonGroup>
   );
@@ -119,6 +122,7 @@ type CategoricalFilterProps = {
 
 export function CategoricalFilter(props: CategoricalFilterProps) {
   const [css, theme] = useStyletron();
+  const locale = React.useContext(LocaleContext);
   const [selection, setSelection] = React.useState<Set<string>>(
     props.filterParams ? props.filterParams.selection : new Set(),
   );
@@ -185,7 +189,9 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
           marginTop: theme.sizing.scale600,
         })}
       >
-        {!filteredCategories.length && <Label3>No Categories Found</Label3>}
+        {!filteredCategories.length && (
+          <Label3>{locale.datatable.categoricalFilterEmpty}</Label3>
+        )}
 
         {Boolean(filteredCategories.length) &&
           filteredCategories.map((category, i) => (
