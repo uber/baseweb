@@ -31,6 +31,7 @@ export function getBodyStyles(props: BodyStylePropsArgT & {$theme: ThemeT}) {
     $popoverOffset,
     $showArrow,
     $theme,
+    $popoverMargin,
   } = props;
 
   return {
@@ -52,8 +53,13 @@ export function getBodyStyles(props: BodyStylePropsArgT & {$theme: ThemeT}) {
     transform:
       $isAnimating && $isOpen
         ? getEndPosition($popoverOffset)
-        : getStartPosition($popoverOffset, $placement, $showArrow),
-    ...getPopoverMarginStyles($showArrow, $placement),
+        : getStartPosition(
+            $popoverOffset,
+            $placement,
+            $showArrow,
+            $popoverMargin,
+          ),
+    ...getPopoverMarginStyles($showArrow, $placement, $popoverMargin),
   };
 }
 

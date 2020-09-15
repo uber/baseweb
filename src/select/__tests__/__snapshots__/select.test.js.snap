@@ -97,6 +97,7 @@ exports[`Select component renders component in search mode and false for multipl
       onMouseLeaveDelay={200}
       overrides={Object {}}
       placement="bottom"
+      popoverMargin={0}
       renderAll={false}
       returnFocus={true}
       showArrow={false}
@@ -1100,6 +1101,7 @@ exports[`Select component renders component in search mode and true for multiple
       onMouseLeaveDelay={200}
       overrides={Object {}}
       placement="bottom"
+      popoverMargin={0}
       renderAll={false}
       returnFocus={true}
       showArrow={false}
@@ -2103,6 +2105,7 @@ exports[`Select component renders component in select mode and false for multipl
       onMouseLeaveDelay={200}
       overrides={Object {}}
       placement="bottom"
+      popoverMargin={0}
       renderAll={false}
       returnFocus={true}
       showArrow={false}
@@ -3113,6 +3116,7 @@ exports[`Select component renders component in select mode and true for multiple
       onMouseLeaveDelay={200}
       overrides={Object {}}
       placement="bottom"
+      popoverMargin={0}
       renderAll={false}
       returnFocus={true}
       showArrow={false}

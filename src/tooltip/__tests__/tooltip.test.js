@@ -44,6 +44,7 @@ describe('Tooltip', () => {
       },
       placement: PLACEMENT.topLeft,
       showArrow: true,
+      popoverMargin: 8,
       triggerType: TRIGGER_TYPE.hover,
     };
     const button = <button type="button">Hover me</button>;

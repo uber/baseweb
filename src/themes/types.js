@@ -587,6 +587,7 @@ export type TypographyT = {
   font1250: FontT,
   font1350: FontT,
   font1450: FontT,
+
   ParagraphXSmall: FontT,
   ParagraphSmall: FontT,
   ParagraphMedium: FontT,
@@ -605,6 +606,25 @@ export type TypographyT = {
   DisplaySmall: FontT,
   DisplayMedium: FontT,
   DisplayLarge: FontT,
+
+  MonoParagraphXSmall: FontT,
+  MonoParagraphSmall: FontT,
+  MonoParagraphMedium: FontT,
+  MonoParagraphLarge: FontT,
+  MonoLabelXSmall: FontT,
+  MonoLabelSmall: FontT,
+  MonoLabelMedium: FontT,
+  MonoLabelLarge: FontT,
+  MonoHeadingXSmall: FontT,
+  MonoHeadingSmall: FontT,
+  MonoHeadingMedium: FontT,
+  MonoHeadingLarge: FontT,
+  MonoHeadingXLarge: FontT,
+  MonoHeadingXXLarge: FontT,
+  MonoDisplayXSmall: FontT,
+  MonoDisplaySmall: FontT,
+  MonoDisplayMedium: FontT,
+  MonoDisplayLarge: FontT,
 };
 
 export type SizingT = {

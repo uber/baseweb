@@ -89,6 +89,12 @@ const PopoverConfig: TConfig = {
       description:
         'If true, an arrow will be shown pointing from the popover to the trigger element.',
     },
+    popoverMargin: {
+      value: 8,
+      defaultValue: 8,
+      type: PropTypes.Number,
+      description: 'Margin of the popover.',
+    },
     focusLock: {
       value: false,
       type: PropTypes.Boolean,

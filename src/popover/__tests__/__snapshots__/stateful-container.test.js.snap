@@ -23,6 +23,7 @@ Array [
       "Body": [Function],
     },
     "placement": "topLeft",
+    "popoverMargin": 8,
     "popperOptions": Object {},
     "renderAll": undefined,
     "returnFocus": undefined,

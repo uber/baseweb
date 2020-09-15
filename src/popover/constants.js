@@ -37,7 +37,6 @@ export const ACCESSIBILITY_TYPE = {
   menu: 'menu',
   tooltip: 'tooltip',
 };
-
 export const POPOVER_MARGIN = 8;
 
 export const ARROW_SIZE = 6;

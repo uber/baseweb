@@ -83,31 +83,31 @@ describe('Popover utils', () => {
   describe('getPopoverMarginStyles', () => {
     test('getPopoverMarginStyles should return correct margins without arrow', () => {
       const showArrow = false;
-      expect(getPopoverMarginStyles(showArrow, 'topLeft')).toEqual({
+      expect(getPopoverMarginStyles(showArrow, 'topLeft', 8)).toEqual({
         marginBottom: '8px',
       });
-      expect(getPopoverMarginStyles(showArrow, 'top')).toEqual({
+      expect(getPopoverMarginStyles(showArrow, 'top', 8)).toEqual({
         marginBottom: '8px',
       });
-      expect(getPopoverMarginStyles(showArrow, 'right')).toEqual({
+      expect(getPopoverMarginStyles(showArrow, 'right', 8)).toEqual({
         marginLeft: '8px',
       });
-      expect(getPopoverMarginStyles(showArrow, 'bottomLeft')).toEqual({
+      expect(getPopoverMarginStyles(showArrow, 'bottomLeft', 8)).toEqual({
         marginTop: '8px',
       });
     });
     test('getPopoverMarginStyles should return correct margins with arrow', () => {
       const showArrow = true;
-      expect(getPopoverMarginStyles(showArrow, 'topLeft')).toEqual({
+      expect(getPopoverMarginStyles(showArrow, 'topLeft', 8)).toEqual({
         marginBottom: '6px',
       });
-      expect(getPopoverMarginStyles(showArrow, 'top')).toEqual({
+      expect(getPopoverMarginStyles(showArrow, 'top', 8)).toEqual({
         marginBottom: '6px',
       });
-      expect(getPopoverMarginStyles(showArrow, 'right')).toEqual({
+      expect(getPopoverMarginStyles(showArrow, 'right', 8)).toEqual({
         marginLeft: '6px',
       });
-      expect(getPopoverMarginStyles(showArrow, 'bottomLeft')).toEqual({
+      expect(getPopoverMarginStyles(showArrow, 'bottomLeft', 8)).toEqual({
         marginTop: '6px',
       });
     });
@@ -133,7 +133,7 @@ describe('Popover utils', () => {
 
   describe('getStartPosition', () => {
     test('getStartPosition should return correct position for topLeft', () => {
-      expect(getStartPosition({left: 10, top: 15}, 'topLeft', true)).toEqual(
+      expect(getStartPosition({left: 10, top: 15}, 'topLeft', true, 8)).toEqual(
         'translate3d(10px, 27px, 0)',
       );
     });

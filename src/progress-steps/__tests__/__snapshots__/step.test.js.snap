@@ -9,7 +9,12 @@ exports[`Step applies isActive prop correctly 1`] = `
     $isActive={true}
     $isCompleted={false}
   >
-    <ForwardRef />
+    <ForwardRef
+      $isActive={true}
+      $isCompleted={false}
+    >
+      <ForwardRef />
+    </ForwardRef>
   </ForwardRef>
   <ForwardRef
     $isActive={true}
@@ -34,7 +39,11 @@ exports[`Step applies isCompleted prop correctly 1`] = `
 >
   <ForwardRef
     $isCompleted={true}
-  />
+  >
+    <ForwardRef
+      $isCompleted={true}
+    />
+  </ForwardRef>
   <ForwardRef
     $isCompleted={true}
   />
@@ -55,7 +64,11 @@ exports[`Step applies isLast prop correctly 1`] = `
 >
   <ForwardRef
     $isCompleted={false}
-  />
+  >
+    <ForwardRef
+      $isCompleted={false}
+    />
+  </ForwardRef>
   <ForwardRef
     $isCompleted={false}
   >
@@ -73,7 +86,11 @@ exports[`Step applies title prop correctly 1`] = `
 >
   <ForwardRef
     $isCompleted={false}
-  />
+  >
+    <ForwardRef
+      $isCompleted={false}
+    />
+  </ForwardRef>
   <ForwardRef
     $isCompleted={false}
   />
@@ -99,7 +116,12 @@ exports[`Step renders children correctly if isActive is provided 1`] = `
     $isActive={true}
     $isCompleted={false}
   >
-    <ForwardRef />
+    <ForwardRef
+      $isActive={true}
+      $isCompleted={false}
+    >
+      <ForwardRef />
+    </ForwardRef>
   </ForwardRef>
   <ForwardRef
     $isActive={true}

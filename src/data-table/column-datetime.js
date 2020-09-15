@@ -584,7 +584,7 @@ function DatetimeFilter(props) {
 }
 
 const DatetimeCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
-  const [css] = useStyletron();
+  const [css, theme] = useStyletron();
 
   return (
     <CellShell
@@ -595,9 +595,9 @@ const DatetimeCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
     >
       <div
         className={css({
+          ...theme.typography.MonoParagraphXSmall,
           display: 'flex',
           justifyContent: 'flex-end',
-          fontFamily: `"Lucida Console", Monaco, monospace`,
           width: '100%',
           whiteSpace: 'nowrap',
         })}
