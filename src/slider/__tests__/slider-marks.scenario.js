@@ -16,10 +16,11 @@ export default function Scenario() {
     <div
       style={{
         maxWidth: '500px',
+        margin: '32px',
       }}
     >
       <StatefulSlider
-        initialState={{value: [0]}}
+        initialState={{value: [20]}}
         step={10}
         min={0}
         max={100}

@@ -128,13 +128,11 @@ Thumb.displayName = 'StyledThumb';
 export const InnerThumb = styled<StylePropsT>('div', props => {
   const {$theme, $isDragged} = props;
   return {
-    height: '8px',
-    width: '2px',
-    borderTopLeftRadius: '2px',
-    borderTopRightRadius: '2px',
-    borderBottomRightRadius: '2px',
-    borderBottomLeftRadius: '2px',
-    backgroundColor: $isDragged ? $theme.colors.primary : $theme.colors.mono600,
+    position: 'absolute',
+    top: '-16px',
+    width: '4px',
+    height: '20px',
+    backgroundColor: $theme.colors.backgroundInversePrimary,
   };
 });
 InnerThumb.displayName = 'StyledInnerThumb';
@@ -143,9 +141,18 @@ export const ThumbValue = styled<{}>('div', props => {
   const {$theme} = props;
   return {
     position: 'absolute',
-    top: `-${$theme.sizing.scale800}`,
+    top: `-${$theme.sizing.scale1400}`,
     ...$theme.typography.font200,
-    backgroundColor: 'transparent',
+    backgroundColor: $theme.colors.backgroundInversePrimary,
+    color: $theme.colors.contentInversePrimary,
+    paddingLeft: $theme.sizing.scale600,
+    paddingRight: $theme.sizing.scale600,
+    paddingTop: $theme.sizing.scale500,
+    paddingBottom: $theme.sizing.scale500,
+    borderBottomLeftRadius: '48px',
+    borderBottomRightRadius: '48px',
+    borderTopLeftRadius: '48px',
+    borderTopRightRadius: '48px',
     whiteSpace: 'nowrap',
   };
 });
