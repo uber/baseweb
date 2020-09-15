@@ -168,7 +168,8 @@ function Slider({
         )}
         renderThumb={({props, index, isDragged}) => {
           const displayLabel =
-            (index && isHovered1) || (!index && isHovered0) || isDragged;
+            ((index && isHovered1) || (!index && isHovered0) || isDragged) &&
+            !disabled;
           return (
             <Thumb
               {...props}

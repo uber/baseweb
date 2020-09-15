@@ -48,8 +48,15 @@ export const InnerTrack = styled<StylePropsT>('div', props => {
       values: $value,
       colors:
         $value.length === 1
-          ? [colors.primary, colors.mono400]
-          : [colors.mono400, colors.primary, colors.mono400],
+          ? [
+              $disabled ? colors.borderOpaque : colors.primary,
+              $disabled ? colors.backgroundSecondary : colors.borderOpaque,
+            ]
+          : [
+              $disabled ? colors.backgroundSecondary : colors.borderOpaque,
+              $disabled ? colors.borderOpaque : colors.primary,
+              $disabled ? colors.backgroundSecondary : colors.borderOpaque,
+            ],
       min: $min || 0,
       max: $max || 0,
       rtl: direction === 'rtl',
@@ -114,8 +121,9 @@ export const Thumb = styled<StylePropsT>('div', props => {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: $theme.colors.contentPrimary,
-    color: $theme.colors.contentPrimary,
+    backgroundColor: $disabled
+      ? $theme.colors.contentInverseTertiary
+      : $theme.colors.contentPrimary,
     outline: 'none',
     boxShadow: props.$isFocusVisible
       ? `0 0 0 3px ${$theme.colors.accent}`
