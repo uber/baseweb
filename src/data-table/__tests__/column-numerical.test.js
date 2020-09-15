@@ -140,7 +140,7 @@ describe('numerical column', () => {
     expect(filterParams.comparisons[0].value).toBe(2);
     expect(filterParams.exclude).toBe(false);
     expect(filterParams.comparisons[0].operation).toBe('LT');
-    expect(filterParams.description).toBe('LT 2');
+    expect(filterParams.description).toBe('< 2');
   });
 
   it('hides operators if filter single value', () => {

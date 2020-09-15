@@ -14,6 +14,7 @@ import CellShell from './cell-shell.js';
 import {CategoricalFilter} from './column-categorical.js';
 import {COLUMNS} from './constants.js';
 import type {ColumnT} from './types.js';
+import {LocaleContext} from '../locale/index.js';
 
 type OptionsT = {|
   filterable?: boolean,
@@ -40,17 +41,24 @@ function mapSelection<X, Y>(selection: Set<X>, transform: X => Y): Set<Y> {
 }
 
 function BooleanFilter(props) {
+  const locale = React.useContext(LocaleContext);
+
   let selectionString = new Set();
   if (props.filterParams && props.filterParams.selection) {
     selectionString = mapSelection(props.filterParams.selection, i =>
-      String(i),
+      i
+        ? locale.datatable.booleanFilterTrue
+        : locale.datatable.booleanFilterFalse,
     );
   }
 
   return (
     <CategoricalFilter
       close={props.close}
-      data={['true', 'false']}
+      data={[
+        locale.datatable.booleanFilterTrue,
+        locale.datatable.booleanFilterFalse,
+      ]}
       filterParams={
         props.filterParams
           ? {
@@ -64,7 +72,7 @@ function BooleanFilter(props) {
         props.setFilter({
           selection: mapSelection(
             params.selection,
-            i => i.toLowerCase() === 'true',
+            i => i === locale.datatable.booleanFilterTrue,
           ),
           exclude: params.exclude,
           description: params.description,
@@ -76,6 +84,7 @@ function BooleanFilter(props) {
 
 const BooleanCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
   const [css, theme] = useStyletron();
+  const locale = React.useContext(LocaleContext);
   return (
     <CellShell
       ref={ref}
@@ -90,7 +99,9 @@ const BooleanCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
           width: '100%',
         })}
       >
-        {props.value ? 'T' : 'F'}
+        {props.value
+          ? locale.datatable.booleanColumnTrueShort
+          : locale.datatable.booleanColumnFalseShort}
       </div>
     </CellShell>
   );
