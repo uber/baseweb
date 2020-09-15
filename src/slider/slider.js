@@ -43,6 +43,7 @@ const limitValue = (value: number[]) => {
 export function useHover() {
   const [value, setValue] = React.useState(false);
 
+  // eslint-disable-next-line flowtype/no-weak-types
   const ref = React.useRef<any>(null);
 
   const handleMouseOver = () => setValue(true);
@@ -182,7 +183,11 @@ function Slider({
               $isFocusVisible={isFocusVisible && focusedThumbIndex === index}
             >
               {displayLabel && (
-                <ThumbValue $isDragged={isDragged} {...sharedProps}>
+                <ThumbValue
+                  $isDragged={isDragged}
+                  {...sharedProps}
+                  {...thumbValueProps}
+                >
                   {value[index]}
                 </ThumbValue>
               )}
@@ -199,6 +204,7 @@ function Slider({
         }}
         {...(marks
           ? {
+              // eslint-disable-next-line react/display-name
               renderMark: ({props}) => (
                 <Mark {...props} {...sharedProps} {...markProps} />
               ),

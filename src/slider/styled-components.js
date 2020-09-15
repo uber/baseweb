@@ -25,7 +25,7 @@ export const Track = styled<StylePropsT>('div', props => {
     cursor = 'pointer';
   }
   return {
-    paddingTop: sizing.scale1000,
+    paddingTop: sizing.scale600,
     paddingBottom: sizing.scale600,
     paddingRight: sizing.scale600,
     paddingLeft: sizing.scale600,
@@ -37,7 +37,7 @@ Track.displayName = 'StyledTrack';
 
 export const InnerTrack = styled<StylePropsT>('div', props => {
   const {$theme, $value = [], $min, $max, $disabled} = props;
-  const {colors, borders, sizing, direction} = $theme;
+  const {colors, borders, direction} = $theme;
   const borderRadius = $theme.borders.useRoundedCorners ? borders.radius100 : 0;
   return {
     borderTopLeftRadius: borderRadius,
@@ -126,7 +126,7 @@ export const Thumb = styled<StylePropsT>('div', props => {
 Thumb.displayName = 'StyledThumb';
 
 export const InnerThumb = styled<StylePropsT>('div', props => {
-  const {$theme, $isDragged} = props;
+  const {$theme} = props;
   return {
     position: 'absolute',
     top: '-16px',

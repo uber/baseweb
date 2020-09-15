@@ -14,7 +14,7 @@ import {Slider} from '../index.js';
 export default function Scenario() {
   const [rangeValue, setRangeValue] = React.useState([45, 50]);
   return (
-    <div style={{margin: '32px'}}>
+    <div style={{margin: '64px'}}>
       <Slider
         value={rangeValue}
         onChange={({value}) => value && setRangeValue(value)}
