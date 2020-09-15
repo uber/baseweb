@@ -221,9 +221,9 @@ export const StyledTabHighlight = styled<{
   },
 );
 
-export const StyledTabPanel = styled<{$pad: boolean, $focusVisible?: boolean}>(
+export const StyledTabPanel = styled<{$pad: boolean}>(
   'div',
-  ({$theme, $pad = true, $focusVisible = false}) => {
+  ({$theme, $pad = true}) => {
     const style: StyleObject = {
       flexGrow: 1, // only used in vertical orientation
       outline: 'none',
@@ -233,10 +233,6 @@ export const StyledTabPanel = styled<{$pad: boolean, $focusVisible?: boolean}>(
       style.paddingRight = $theme.sizing.scale600;
       style.paddingBottom = $theme.sizing.scale600;
       style.paddingLeft = $theme.sizing.scale600;
-    }
-    if ($focusVisible) {
-      style.outline = `3px solid ${$theme.colors.accent}`;
-      style.outlineOffset = '-3px';
     }
     return style;
   },
