@@ -29,6 +29,7 @@ export const isEndOfMonth = defaultDateHelpers.isEndOfMonth;
 export const getWeekdayMinInLocale = defaultDateHelpers.getWeekdayMinInLocale;
 export const getWeekdayInLocale = defaultDateHelpers.getWeekdayInLocale;
 export const getMonthInLocale = defaultDateHelpers.getMonthInLocale;
+export const getQuarterInLocale = defaultDateHelpers.getQuarterInLocale;
 export const isDayDisabled = defaultDateHelpers.isDayDisabled;
 export const isOutOfBounds = defaultDateHelpers.isOutOfBounds;
 export const monthDisabledBefore = defaultDateHelpers.monthDisabledBefore;
