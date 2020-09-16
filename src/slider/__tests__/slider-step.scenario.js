@@ -16,6 +16,7 @@ export default function Scenario() {
     <div
       style={{
         maxWidth: '500px',
+        margin: '64px',
       }}
     >
       <StatefulSlider

@@ -22,6 +22,12 @@ function CustomTicks() {
         }
       }}
       overrides={{
+        Root: {
+          style: {
+            marginTop: '24px',
+          },
+        },
+        InnerThumb: () => null,
         ThumbValue: ({$value}) => (
           <div
             className={css({
