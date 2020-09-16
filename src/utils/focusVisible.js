@@ -112,13 +112,8 @@ export function teardown(doc) {
 
 //$FlowFixMe
 export function isFocusVisible(event) {
-  const {target, currentTarget} = event;
-
-  // Ensure nested handlers do not all return true
-  if (target !== currentTarget) return false;
-
   try {
-    return target.matches(':focus-visible');
+    return event.target.matches(':focus-visible');
   } catch (error) {
     // browsers not implementing :focus-visible will throw a SyntaxError
     // we use our own heuristic for those browsers
@@ -128,7 +123,7 @@ export function isFocusVisible(event) {
 
   // no need for validFocusTarget check. the user does that by attaching it to
   // focusable events only
-  return hadKeyboardEvent || focusTriggersKeyboardModality(target);
+  return hadKeyboardEvent || focusTriggersKeyboardModality(event.target);
 }
 
 /**

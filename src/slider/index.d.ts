@@ -25,6 +25,7 @@ export interface SliderOverrides {
   Thumb?: Override<SharedProps>;
   InnerThumb?: Override<SharedProps>;
   ThumbValue?: Override<SharedProps>;
+  Mark?: Override<SharedProps>;
 }
 
 export interface SliderProps {
@@ -34,6 +35,7 @@ export interface SliderProps {
   step?: number;
   overrides?: SliderOverrides;
   disabled?: boolean;
+  marks?: boolean;
   onChange?: (e: State) => any;
   onFinalChange?: (e: State) => any;
 }
@@ -44,6 +46,7 @@ export interface StatefulSliderProps {
   min?: number;
   max?: number;
   step?: number;
+  marks?: boolean;
   onChange?: (e: State) => any;
   onFinalChange?: (e: State) => any;
 }
@@ -54,6 +57,7 @@ export interface StatefulContainerProps {
   min?: number;
   max?: number;
   step?: number;
+  marks?: boolean;
   initialState?: State;
   stateReducer?: StateReducer;
   onChange?: (e: State) => any;
@@ -67,6 +71,7 @@ export type SharedProps = {
   $min: number;
   $thumbIndex: number;
   $value: Array<number>;
+  $marks: boolean;
 };
 
 export const Slider: React.FC<SliderProps>;
@@ -87,5 +92,6 @@ export const StyledThumb: StyletronComponent<any>;
 export const StyledInnerThumb: StyletronComponent<any>;
 export const StyledTick: StyletronComponent<any>;
 export const StyledTickBar: StyletronComponent<any>;
+export const StyledMark: StyletronComponent<any>;
 
 export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;
