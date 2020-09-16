@@ -56,6 +56,9 @@ export default function AppNavBar(props: AppNavBarPropsT) {
         active={active}
         item={item}
         key={index}
+        onClick={props.onNavItemClick}
+        onAuxClick={props.onNavItemAuxClick}
+        onKeyDown={props.onNavItemKeyDown}
         onSelect={onNavItemSelect}
       />
     );
@@ -85,6 +88,9 @@ export default function AppNavBar(props: AppNavBarPropsT) {
           <SecondaryMenu
             nav={secondaryMenu}
             isNavItemActive={isNavItemActive}
+            onNavItemClick={props.onNavItemClick}
+            onNavItemAuxClick={props.onNavItemAuxClick}
+            onNavItemKeyDown={props.onNavItemKeyDown}
             onNavItemSelect={onNavItemSelect}
           />
         ) : null}
@@ -131,6 +137,9 @@ export default function AppNavBar(props: AppNavBarPropsT) {
           <SecondaryMenu
             nav={secondaryMenu}
             isNavItemActive={isNavItemActive}
+            onNavItemClick={props.onNavItemClick}
+            onNavItemAuxClick={props.onNavItemAuxClick}
+            onNavItemKeyDown={props.onNavItemKeyDown}
             onNavItemSelect={onNavItemSelect}
           />
         ) : null}

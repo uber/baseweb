@@ -14,6 +14,10 @@ type ItemT = any;
 type isNavItemActiveT = (params: {
   item: MainNavItemT | UserNavItemT,
 }) => boolean;
+
+type onNavItemClickT = (params: {item: MainNavItemT | UserNavItemT, event: Event}) => mixed;
+type onNavItemAuxClickT = (params: {item: MainNavItemT | UserNavItemT, event: Event}) => mixed;
+type onNavItemKeyDownT = (params: {item: MainNavItemT | UserNavItemT, event: KeyboardEvent}) => mixed;
 type onNavItemSelectT = (params: {item: MainNavItemT | UserNavItemT}) => mixed;
 
 export type MainNavItemT = {|
@@ -53,14 +57,21 @@ export type AppNavBarPropsT = {|
   appDisplayName?: React.Node,
   mainNav?: MainNavItemT[],
   isNavItemActive?: isNavItemActiveT,
+  onNavItemClick?: onNavItemClickT,
+  onNavItemAuxClick?: onNavItemAuxClickT,
+  onNavItemKeyDown?: onNavItemKeyDownT,
   onNavItemSelect: onNavItemSelectT,
   userNav?: UserNavItemT[],
   username?: string,
   usernameSubtitle?: React.Node,
   userImgUrl?: string,
 |};
+
 export type SecondaryMenuT = {|
   nav?: MainNavItemT[],
   isNavItemActive?: isNavItemActiveT,
+  onNavItemClick?: onNavItemClickT,
+  onNavItemAuxClick?: onNavItemAuxClickT,
+  onNavItemKeyDown?: onNavItemKeyDownT,
   onNavItemSelect: onNavItemSelectT,
 |};

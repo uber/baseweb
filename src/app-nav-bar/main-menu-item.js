@@ -10,16 +10,24 @@ import * as React from 'react';
 import {KIND} from './constants.js';
 import {StyledMainMenuItem} from './styled-components.js';
 import {isFocusVisible} from '../utils/focusVisible.js';
-import type {MainNavItemT, UserNavItemT} from './types.js';
+import type {
+  MainNavItemT,
+  UserNavItemT,
+  onNavItemClickT,
+  onNavItemAuxClickT,
+  onNavItemKeyDownT,
+  onNavItemSelectT
+} from './types.js';
 
 export default class MenuItem extends React.Component<
   {
     item: MainNavItemT | UserNavItemT,
     active?: boolean,
     kind?: $Values<typeof KIND>,
-    onClick?: (e: Event) => mixed,
-    onKeyDown?: (e: KeyboardEvent) => mixed,
-    onSelect: ({item: MainNavItemT | UserNavItemT}) => mixed,
+    onClick?: onNavItemClickT,
+    onAuxClick?: onNavItemAuxClickT,
+    onKeyDown?: onNavItemKeyDownT,
+    onSelect: onNavItemSelectT,
   },
   {hasFocusVisible: boolean},
 > {
@@ -43,14 +51,21 @@ export default class MenuItem extends React.Component<
 
   onClick = (e: Event) => {
     const {onClick, onSelect} = this.props;
-    typeof onClick === 'function' && onClick(e);
+    typeof onClick === 'function' && onClick({item: this.props.item, event: e});
     typeof onSelect === 'function' && onSelect({item: this.props.item});
+    return;
+  };
+
+  onAuxClick = (e: Event) => {
+    const {onAuxClick} = this.props;
+    typeof onAuxClick === 'function' && onAuxClick({item: this.props.item, event: e});
+    // don't call onSelect here
     return;
   };
 
   onKeyDown = (e: KeyboardEvent) => {
     const {onKeyDown, onSelect} = this.props;
-    typeof onKeyDown === 'function' && onKeyDown(e);
+    typeof onKeyDown === 'function' && onKeyDown({item: this.props.item, event: e});
     if (e.key === 'Enter') {
       typeof onSelect === 'function' && onSelect({item: this.props.item});
     }
@@ -69,6 +84,7 @@ export default class MenuItem extends React.Component<
         onFocus={this.handleFocus}
         onBlur={this.handleBlur}
         onClick={this.onClick}
+        onAuxClick={this.onAuxClick}
         onKeyDown={this.onKeyDown}
       >
         {typeof item.mapItemToNode === 'function'
