@@ -87,7 +87,7 @@ export interface SharedStylePropsArg {
   $showArrow?: boolean;
   $popoverMargin?: number;
 }
-export interface Overrides {
+export interface PopoverOverrides {
   Body?: Override<SharedStylePropsArg>;
   Arrow?: Override<SharedStylePropsArg>;
   Inner?: Override<SharedStylePropsArg>;
@@ -102,7 +102,7 @@ export interface BasePopoverProps {
   ignoreBoundary?: boolean;
   onMouseEnterDelay?: number;
   onMouseLeaveDelay?: number;
-  overrides?: Overrides;
+  overrides?: PopoverOverrides;
   placement?: TetherPlacement[keyof TetherPlacement];
   showArrow?: boolean;
   triggerType?: TRIGGER_TYPE[keyof TRIGGER_TYPE];
