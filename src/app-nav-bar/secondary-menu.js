@@ -37,6 +37,8 @@ export default function AppNavBar(props: SecondaryMenuT) {
                 item={item}
                 kind={KIND.secondary}
                 key={index}
+                onClick={props.onNavItemClick}
+                onKeyDown={props.onNavItemKeyDown}
                 onSelect={onNavItemSelect}
               />
             ))}

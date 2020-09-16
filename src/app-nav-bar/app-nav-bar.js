@@ -56,13 +56,15 @@ export default function AppNavBar(props: AppNavBarPropsT) {
         active={active}
         item={item}
         key={index}
+        onClick={props.onNavItemClick}
+        onKeyDown={props.onNavItemKeyDown}
         onSelect={onNavItemSelect}
       />
     );
   });
 
   return (
-    <StyledRoot data-baseweb="app-nav-bar">
+    <StyledRoot>
       {/* Mobile Nav Experience */}
       <div
         className={css({
@@ -85,6 +87,8 @@ export default function AppNavBar(props: AppNavBarPropsT) {
           <SecondaryMenu
             nav={secondaryMenu}
             isNavItemActive={isNavItemActive}
+            onClick={props.onNavItemClick}
+            onKeyDown={props.onNavItemKeyDown}
             onNavItemSelect={onNavItemSelect}
           />
         ) : null}
@@ -131,6 +135,8 @@ export default function AppNavBar(props: AppNavBarPropsT) {
           <SecondaryMenu
             nav={secondaryMenu}
             isNavItemActive={isNavItemActive}
+            onClick={props.onNavItemClick}
+            onKeyDown={props.onNavItemKeyDown}
             onNavItemSelect={onNavItemSelect}
           />
         ) : null}
