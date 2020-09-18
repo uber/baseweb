@@ -13,7 +13,7 @@ import Upload from '../../icon/upload.js';
 import {StyledSpinnerNext} from '../../spinner/index.js';
 import {withStyle, useStyletron} from '../../styles/index.js';
 
-import {Snackbar} from '../index.js';
+import {SnackbarElement} from '../index.js';
 
 const SizedStyledSpinnerNext = withStyle(
   StyledSpinnerNext,
@@ -30,19 +30,19 @@ export default function Scenario() {
   const [css] = useStyletron();
   return (
     <div style={{margin: '16px'}}>
-      <Snackbar message="The address was added to your saved places" />
+      <SnackbarElement message="The address was added to your saved places" />
 
       <div className={css({height: '36px'})} />
 
-      <Snackbar
-        message="Export_09.06.2020.CSV was uploaded"
+      <SnackbarElement
+        message="09.06.2020.CSV was uploaded"
         startEnhancer={({size}) => <Upload size={size} />}
       />
 
       <div className={css({height: '36px'})} />
 
-      <Snackbar
-        message="Export_09.06.2020.CSV was uploaded"
+      <SnackbarElement
+        message="09.06.2020.CSV was uploaded"
         startEnhancer={({size}) => <Upload size={size} />}
         actionMessage="Show in Finder"
         actionOnClick={event => console.log(event)}
@@ -50,11 +50,11 @@ export default function Scenario() {
 
       <div className={css({height: '36px'})} />
 
-      <Snackbar message="It seems to me then as if all the moments of our life occupy the same space, as if future events already existed and were only waiting for us to find our way to them at last, just as when we have accepted an invitation we duly arrive in a certain house at a given time." />
+      <SnackbarElement message="It seems to me then as if all the moments of our life occupy the same space, as if future events already existed and were only waiting for us to find our way to them at last, just as when we have accepted an invitation we duly arrive in a certain house at a given time." />
 
       <div className={css({height: '36px'})} />
 
-      <Snackbar
+      <SnackbarElement
         startEnhancer={({size}) => (
           <SizedStyledSpinnerNext $height={`${size}px`} $width={`${size}px`} />
         )}
@@ -63,7 +63,7 @@ export default function Scenario() {
 
       <div className={css({height: '36px'})} />
 
-      <Snackbar
+      <SnackbarElement
         startEnhancer={({size}) => (
           <SizedStyledSpinnerNext $height={`${size}px`} $width={`${size}px`} />
         )}
@@ -73,7 +73,14 @@ export default function Scenario() {
 
       <div className={css({height: '36px'})} />
 
-      <Snackbar
+      <SnackbarElement
+        message="It seems to me then as if all the moments of our life occupy the same space, as if future events already existed and were only waiting for us to find our way to them at last, just as when we have accepted an invitation we duly arrive in a certain house at a given time."
+        actionMessage="View in Finder"
+      />
+
+      <div className={css({height: '36px'})} />
+
+      <SnackbarElement
         message="It seems to me then as if all the moments of our life occupy the same space, as if future events already existed and were only waiting for us to find our way to them at last, just as when we have accepted an invitation we duly arrive in a certain house at a given time."
         actionMessage="A button label much longer than 50%"
       />
