@@ -171,7 +171,7 @@ function filterParamsToInitialState(input) {
 
   if (input) {
     const op = input.operation;
-    if (input.range) {
+    if (input.range && input.range.length) {
       if (op === DATETIME_OPERATIONS.RANGE_DATETIME) {
         output.rangeDates = input.range;
         output.rangeOperator = RANGE_OPERATIONS[0];
@@ -182,7 +182,7 @@ function filterParamsToInitialState(input) {
         output.rangeDates = input.range;
         output.rangeOperator = RANGE_OPERATIONS[2];
       }
-    } else if (input.selection) {
+    } else if (input.selection && input.selection.length) {
       output.comparatorIndex = 1;
       if (op === DATETIME_OPERATIONS.YEAR) {
         output.years = input.selection;
