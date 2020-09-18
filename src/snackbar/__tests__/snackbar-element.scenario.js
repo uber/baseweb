@@ -81,6 +81,9 @@ export default function Scenario() {
       <div className={css({height: '36px'})} />
 
       <SnackbarElement
+        startEnhancer={({size}) => (
+          <SizedStyledSpinnerNext $height={`${size}px`} $width={`${size}px`} />
+        )}
         message="It seems to me then as if all the moments of our life occupy the same space, as if future events already existed and were only waiting for us to find our way to them at last, just as when we have accepted an invitation we duly arrive in a certain house at a given time."
         actionMessage="A button label much longer than 50%"
       />

@@ -9,6 +9,8 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
+import type {OverrideT} from '../helpers/overrides.js';
+
 import {DURATION, PLACEMENT} from './constants.js';
 
 export type DurationT =
@@ -24,10 +26,19 @@ export type PlacementT =
   | typeof PLACEMENT.bottom
   | typeof PLACEMENT.bottomRight;
 
+export type SnackbarElementOverridesT = {|
+  Root?: OverrideT,
+  StartEnhancer?: OverrideT,
+  Content?: OverrideT,
+  Action?: OverrideT,
+  ActionButton?: OverrideT,
+|};
+
 export type SnackbarElementPropsT = {|
   actionMessage?: string,
   actionOnClick?: (SyntheticEvent<HTMLButtonElement>) => mixed,
   message: string,
+  overrides?: SnackbarElementOverridesT,
   startEnhancer?: React.AbstractComponent<{|
     size: number,
   |}>,
@@ -35,5 +46,8 @@ export type SnackbarElementPropsT = {|
 
 export type SnackbarProviderPropsT = {|
   children?: React.Node,
+  overrides?: {|
+    ...SnackbarElementOverridesT,
+  |},
   placement?: PlacementT,
 |};

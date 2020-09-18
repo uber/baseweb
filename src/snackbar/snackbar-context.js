@@ -82,6 +82,7 @@ function placementRules(placement) {
 
 export function SnackbarProvider({
   children,
+  overrides = {},
   placement,
 }: SnackbarProviderPropsT) {
   const [css, theme] = useStyletron();
@@ -97,7 +98,7 @@ export function SnackbarProvider({
   function enqueue(elementProps, duration = DURATION.short) {
     setSnackbars(prev => {
       if (prev.length === 0) {
-        display(duration);
+        take(duration);
       }
       return [...prev, {elementProps, duration}];
     });
@@ -109,32 +110,36 @@ export function SnackbarProvider({
     setSnackbars(prev => {
       const next = prev.slice(1);
       if (next.length > 0) {
-        display(next[0].duration);
+        take(next[0].duration);
       }
       return next;
     });
   }
 
-  function display(duration) {
+  function take(duration) {
     setAnimating(true);
     setTimeout(() => {
       setAnimating(false);
-      timeoutRef.current = setTimeout(() => {
-        setAnimating(true);
-        setTimeout(() => {
-          setAnimating(false);
-          dequeue();
-        }, 500);
-      }, duration);
+      display(duration);
     }, 500);
+  }
+
+  function display(duration) {
+    timeoutRef.current = setTimeout(() => {
+      setAnimating(true);
+      setTimeout(() => {
+        setAnimating(false);
+        // dequeue();
+      }, 500);
+    }, duration);
   }
 
   function handleMouseEnter() {
     clearTimeout(timeoutRef.current);
   }
 
-  function handleMouseLeave() {
-    display();
+  function handleMouseLeave(duration) {
+    display(duration);
   }
 
   React.useEffect(() => {
@@ -171,7 +176,12 @@ export function SnackbarProvider({
         })}
         ref={containerRef}
       >
-        {snackbars[0] && <SnackbarElement {...snackbars[0].elementProps} />}
+        {snackbars[0] && (
+          <SnackbarElement
+            overrides={overrides}
+            {...snackbars[0].elementProps}
+          />
+        )}
       </div>
 
       {snackbars.length > 0 && containerHeight !== 0 && (
@@ -197,10 +207,13 @@ export function SnackbarProvider({
           >
             <div
               onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              className={css({display: 'inline'})}
+              onMouseLeave={() => handleMouseLeave(snackbars[0].duration)}
+              className={css({display: 'inline', pointerEvents: 'all'})}
             >
-              <SnackbarElement {...snackbars[0].elementProps} />
+              <SnackbarElement
+                overrides={overrides}
+                {...snackbars[0].elementProps}
+              />
             </div>
           </div>
         </Layer>
