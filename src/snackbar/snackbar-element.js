@@ -12,12 +12,20 @@ import * as React from 'react';
 import {Button, KIND, SHAPE} from '../button/index.js';
 import {useStyletron} from '../styles/index.js';
 
+import {
+  StyledRoot,
+  StyledContent,
+  StyledStartEnhancerContainer,
+  StyledMessage,
+  StyledWrapActionButtonContainer,
+  StyledActionButtonContainer,
+} from './styled-components.js';
 import type {SnackbarElementPropsT} from './types.js';
 
 const ActionButton = React.forwardRef(({onClick, message}, ref) => {
   const [, theme] = useStyletron();
   return (
-    <div>
+    <StyledActionButtonContainer>
       <Button
         ref={ref}
         overrides={{
@@ -42,7 +50,7 @@ const ActionButton = React.forwardRef(({onClick, message}, ref) => {
       >
         {message}
       </Button>
-    </div>
+    </StyledActionButtonContainer>
   );
 });
 
@@ -50,6 +58,7 @@ export function SnackbarElement({
   actionMessage,
   actionOnClick,
   message,
+  overrides = {},
   startEnhancer: StartEnhancer,
 }: SnackbarElementPropsT) {
   const [css, theme] = useStyletron();
@@ -99,72 +108,29 @@ export function SnackbarElement({
         </div>
       )}
 
-      <div
-        ref={rootRef}
-        className={css({
-          backgroundColor: theme.colors.backgroundInverseSecondary,
-          borderTopLeftRadius: '16px',
-          borderTopRightRadius: '16px',
-          borderBottomRightRadius: '16px',
-          borderBottomLeftRadius: '16px',
-          boxShadow: '0px 16px 48px rgba(0, 0, 0, 0.22)',
-          color: theme.colors.contentInversePrimary,
-          display: 'inline-block',
-          maxWidth: '540px',
-          minWidth: '320px',
-        })}
-      >
-        <div
-          className={css({
-            alignItems: 'center',
-            display: 'inline-flex',
-          })}
-        >
+      <StyledRoot ref={rootRef}>
+        <StyledContent>
           {StartEnhancer !== null && StartEnhancer !== undefined && (
-            <span
-              className={css({
-                alignItems: 'center',
-                display: 'flex',
-                paddingLeft: '16px',
-              })}
-            >
+            <StyledStartEnhancerContainer>
               <StartEnhancer size={24} />
-            </span>
+            </StyledStartEnhancerContainer>
           )}
 
-          <p
-            // $FlowFixMe - suppressing due to webkit properties
-            className={css({
-              ...theme.typography.ParagraphMedium,
-              '-webkit-box-orient': 'vertical',
-              '-webkit-line-clamp': 3,
-              display: '-webkit-box',
-              marginTop: '16px',
-              marginBottom: '16px',
-              overflow: 'hidden',
-              paddingRight: actionMessage ? '8px' : '16px',
-              paddingLeft: '16px',
-            })}
-          >
+          <StyledMessage $hasSuffix={Boolean(actionMessage)}>
             {message}
-          </p>
+          </StyledMessage>
 
           {actionMessage && !wrapActionButton && (
             <ActionButton message={actionMessage} onClick={actionOnClick} />
           )}
-        </div>
+        </StyledContent>
 
         {actionMessage && wrapActionButton && (
-          <div
-            className={css({
-              display: 'flex',
-              flexDirection: 'row-reverse',
-            })}
-          >
+          <StyledWrapActionButtonContainer>
             <ActionButton message={actionMessage} onClick={actionOnClick} />
-          </div>
+          </StyledWrapActionButtonContainer>
         )}
-      </div>
+      </StyledRoot>
     </React.Fragment>
   );
 }

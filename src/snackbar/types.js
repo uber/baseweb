@@ -24,10 +24,15 @@ export type PlacementT =
   | typeof PLACEMENT.bottom
   | typeof PLACEMENT.bottomRight;
 
+export type SnackbarElementOverridesT = {|
+  //
+|};
+
 export type SnackbarElementPropsT = {|
   actionMessage?: string,
   actionOnClick?: (SyntheticEvent<HTMLButtonElement>) => mixed,
   message: string,
+  overrides?: SnackbarElementOverridesT,
   startEnhancer?: React.AbstractComponent<{|
     size: number,
   |}>,

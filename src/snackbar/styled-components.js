@@ -23,3 +23,39 @@ export const StyledRoot = styled<{}>('div', ({$theme}) => {
     minWidth: '320px',
   };
 });
+
+export const StyledContent = styled('div', {
+  alignItems: 'center',
+  display: 'inline-flex',
+});
+
+export const StyledStartEnhancerContainer = styled('span', {
+  alignItems: 'center',
+  display: 'flex',
+  paddingLeft: '16px',
+});
+
+export const StyledMessage = styled<{$hasSuffix: boolean}>(
+  'p',
+  // $FlowFixMe - suppressing due to webkit properties
+  ({$theme, $hasSuffix}) => {
+    return {
+      ...$theme.typography.ParagraphMedium,
+      '-webkit-box-orient': 'vertical',
+      '-webkit-line-clamp': 3,
+      display: '-webkit-box',
+      marginTop: '16px',
+      marginBottom: '16px',
+      overflow: 'hidden',
+      paddingRight: $hasSuffix ? '8px' : '16px',
+      paddingLeft: '16px',
+    };
+  },
+);
+
+export const StyledWrapActionButtonContainer = styled('div', {
+  display: 'flex',
+  flexDirection: 'row-reverse',
+});
+
+export const StyledActionButtonContainer = styled('div', {});
