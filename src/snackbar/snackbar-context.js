@@ -82,6 +82,7 @@ function placementRules(placement) {
 
 export function SnackbarProvider({
   children,
+  overrides,
   placement,
 }: SnackbarProviderPropsT) {
   const [css, theme] = useStyletron();
@@ -175,7 +176,12 @@ export function SnackbarProvider({
         })}
         ref={containerRef}
       >
-        {snackbars[0] && <SnackbarElement {...snackbars[0].elementProps} />}
+        {snackbars[0] && (
+          <SnackbarElement
+            {...snackbars[0].elementProps}
+            overrides={{...overrides, ...snackbars[0].elementProps.overrides}}
+          />
+        )}
       </div>
 
       {snackbars.length > 0 && containerHeight !== 0 && (
@@ -204,7 +210,13 @@ export function SnackbarProvider({
               onMouseLeave={() => handleMouseLeave(snackbars[0].duration)}
               className={css({display: 'inline', pointerEvents: 'all'})}
             >
-              <SnackbarElement {...snackbars[0].elementProps} />
+              <SnackbarElement
+                {...snackbars[0].elementProps}
+                overrides={{
+                  ...overrides,
+                  ...snackbars[0].elementProps.overrides,
+                }}
+              />
             </div>
           </div>
         </Layer>

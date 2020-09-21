@@ -47,5 +47,8 @@ export type SnackbarElementPropsT = {|
 
 export type SnackbarProviderPropsT = {|
   children?: React.Node,
+  overrides?: {|
+    ...SnackbarElementOverridesT,
+  |},
   placement?: PlacementT,
 |};
