@@ -11,10 +11,12 @@ import * as React from 'react';
 import ReactDOM from 'react-dom';
 
 import {Layer} from '../layer/index.js';
+import {getOverrides} from '../helpers/overrides.js';
 import {useStyletron} from '../styles/index.js';
 
 import {DURATION, PLACEMENT} from './constants.js';
 import {SnackbarElement} from './snackbar-element.js';
+import {StyledPlacementContainer} from './styled-components.js';
 import type {
   SnackbarElementPropsT,
   SnackbarProviderPropsT,
@@ -38,51 +40,9 @@ export function useSnackbar() {
   return {enqueue: context.enqueue};
 }
 
-function placementRules(placement) {
-  switch (placement) {
-    case PLACEMENT.topLeft:
-      return {
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
-        top: 0,
-      };
-    case PLACEMENT.topRight:
-      return {
-        alignItems: 'flex-end',
-        justifyContent: 'flex-start',
-        top: 0,
-      };
-    case PLACEMENT.bottom:
-      return {
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        bottom: 0,
-      };
-    case PLACEMENT.bottomLeft:
-      return {
-        alignItems: 'flex-start',
-        justifyContent: 'flex-end',
-        bottom: 0,
-      };
-    case PLACEMENT.bottomRight:
-      return {
-        alignItems: 'flex-end',
-        justifyContent: 'flex-end',
-        bottom: 0,
-      };
-    case PLACEMENT.top:
-    default:
-      return {
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        top: 0,
-      };
-  }
-}
-
 export function SnackbarProvider({
   children,
-  overrides,
+  overrides = {},
   placement,
 }: SnackbarProviderPropsT) {
   const [css, theme] = useStyletron();
@@ -165,6 +125,15 @@ export function SnackbarProvider({
     return value;
   }, [placement, containerHeight]);
 
+  const {
+    PlacementContainer: PlacementContainerOverrides,
+    ...snackbarOverrides
+  } = overrides;
+  const [PlacementContainer, placementContainerProps] = getOverrides(
+    PlacementContainerOverrides,
+    StyledPlacementContainer,
+  );
+
   return (
     <SnackbarContext.Provider value={{enqueue}}>
       <div
@@ -179,31 +148,21 @@ export function SnackbarProvider({
         {snackbars[0] && (
           <SnackbarElement
             {...snackbars[0].elementProps}
-            overrides={{...overrides, ...snackbars[0].elementProps.overrides}}
+            overrides={{
+              ...snackbarOverrides,
+              ...snackbars[0].elementProps.overrides,
+            }}
           />
         )}
       </div>
 
       {snackbars.length > 0 && containerHeight !== 0 && (
         <Layer>
-          <div
-            className={css({
-              ...placementRules(placement),
-              display: 'flex',
-              flexDirection: 'column',
-              pointerEvents: 'none',
-              position: 'fixed',
-              transform: animating ? `translateY(${translateHeight}px)` : null,
-              transitionProperty: 'all',
-              transitionTimingFunction: theme.animation.easeOutQuinticCurve,
-              transitionDuration: theme.animation.timing1000,
-              right: 0,
-              left: 0,
-              marginTop: '16px',
-              marginRight: '8px',
-              marginBottom: '16px',
-              marginLeft: '8px',
-            })}
+          <PlacementContainer
+            $animating={animating}
+            $placement={placement}
+            $translateHeight={translateHeight}
+            {...placementContainerProps}
           >
             <div
               onMouseEnter={handleMouseEnter}
@@ -213,12 +172,12 @@ export function SnackbarProvider({
               <SnackbarElement
                 {...snackbars[0].elementProps}
                 overrides={{
-                  ...overrides,
+                  ...snackbarOverrides,
                   ...snackbars[0].elementProps.overrides,
                 }}
               />
             </div>
-          </div>
+          </PlacementContainer>
         </Layer>
       )}
 

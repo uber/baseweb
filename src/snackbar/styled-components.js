@@ -9,6 +9,9 @@ LICENSE file in the root directory of this source tree.
 
 import {styled} from '../styles/index.js';
 
+import {PLACEMENT} from './constants.js';
+import type {PlacementT} from './types.js';
+
 export const StyledRoot = styled<{}>('div', ({$theme}) => {
   return {
     backgroundColor: $theme.colors.backgroundInverseSecondary,
@@ -59,3 +62,69 @@ export const StyledWrapActionButtonContainer = styled('div', {
 });
 
 export const StyledActionButtonContainer = styled('div', {});
+
+function placementRules(placement) {
+  switch (placement) {
+    case PLACEMENT.topLeft:
+      return {
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+        top: 0,
+      };
+    case PLACEMENT.topRight:
+      return {
+        alignItems: 'flex-end',
+        justifyContent: 'flex-start',
+        top: 0,
+      };
+    case PLACEMENT.bottom:
+      return {
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        bottom: 0,
+      };
+    case PLACEMENT.bottomLeft:
+      return {
+        alignItems: 'flex-start',
+        justifyContent: 'flex-end',
+        bottom: 0,
+      };
+    case PLACEMENT.bottomRight:
+      return {
+        alignItems: 'flex-end',
+        justifyContent: 'flex-end',
+        bottom: 0,
+      };
+    case PLACEMENT.top:
+    default:
+      return {
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        top: 0,
+      };
+  }
+}
+
+export const StyledPlacementContainer = styled<{
+  $animating: boolean,
+  $placement: PlacementT,
+  $translateHeight: number,
+}>('div', ({$animating, $placement, $translateHeight, $theme}) => {
+  return {
+    ...placementRules($placement),
+    display: 'flex',
+    flexDirection: 'column',
+    pointerEvents: 'none',
+    position: 'fixed',
+    transform: $animating ? `translateY(${$translateHeight}px)` : null,
+    transitionProperty: 'all',
+    transitionTimingFunction: $theme.animation.easeOutQuinticCurve,
+    transitionDuration: $theme.animation.timing1000,
+    right: 0,
+    left: 0,
+    marginTop: '16px',
+    marginRight: '8px',
+    marginBottom: '16px',
+    marginLeft: '8px',
+  };
+});

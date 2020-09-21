@@ -58,6 +58,7 @@ export default function Parent() {
         Message: {style: {border: 'solid 2px orange'}},
         WrapActionButtonContainer: {style: {border: 'solid 2px purple'}},
         ActionButtonContainer: {style: {border: 'solid 2px yellow'}},
+        PlacementContainer: {style: {border: 'solid 2px cyan'}},
       }}
     >
       <Child />
