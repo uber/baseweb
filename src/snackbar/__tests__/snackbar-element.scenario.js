@@ -30,6 +30,10 @@ export default function Scenario() {
   const [css] = useStyletron();
   return (
     <div style={{margin: '16px'}}>
+      <SnackbarElement message="short" actionMessage="click" />
+
+      <div className={css({height: '36px'})} />
+
       <SnackbarElement message="The address was added to your saved places" />
 
       <div className={css({height: '36px'})} />

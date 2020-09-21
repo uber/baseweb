@@ -16,8 +16,15 @@ function Child() {
 
   return (
     <div>
-      <button onClick={() => enqueue({message: 'one'})}>queue one</button>
       <button
+        data-testid="queue-one"
+        onClick={() => enqueue({message: 'one', actionMessage: 'click'})}
+      >
+        queue one
+      </button>
+
+      <button
+        data-testid="queue-three"
         onClick={() => {
           enqueue({message: 'one'});
           enqueue({message: 'two'});
@@ -32,7 +39,9 @@ function Child() {
 
 export default function Parent() {
   return (
-    <SnackbarProvider>
+    <SnackbarProvider
+      overrides={{Root: {props: {'data-testid': 'snackbar-root'}}}}
+    >
       <Child />
     </SnackbarProvider>
   );

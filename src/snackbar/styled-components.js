@@ -30,6 +30,7 @@ export const StyledRoot = styled<{}>('div', ({$theme}) => {
 export const StyledContent = styled('div', {
   alignItems: 'center',
   display: 'inline-flex',
+  width: '100%',
 });
 
 export const StyledStartEnhancerContainer = styled('span', {
@@ -61,7 +62,7 @@ export const StyledWrapActionButtonContainer = styled('div', {
   flexDirection: 'row-reverse',
 });
 
-export const StyledActionButtonContainer = styled('div', {});
+export const StyledActionButtonContainer = styled('div', {marginLeft: 'auto'});
 
 function placementRules(placement) {
   switch (placement) {

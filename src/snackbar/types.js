@@ -40,9 +40,7 @@ export type SnackbarElementPropsT = {|
   actionOnClick?: (SyntheticEvent<HTMLButtonElement>) => mixed,
   message: string,
   overrides?: SnackbarElementOverridesT,
-  startEnhancer?: React.AbstractComponent<{|
-    size: number,
-  |}>,
+  startEnhancer?: React.AbstractComponent<{|size: number|}>,
 |};
 
 export type SnackbarProviderPropsT = {|
