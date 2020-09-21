@@ -28,8 +28,9 @@ export type PlacementT =
 
 export type SnackbarElementOverridesT = {|
   Root?: OverrideT,
-  StartEnhancer?: OverrideT,
   Content?: OverrideT,
+  StartEnhancer?: OverrideT,
+  Message?: OverrideT,
   Action?: OverrideT,
   ActionButton?: OverrideT,
 |};

@@ -129,7 +129,7 @@ export function SnackbarProvider({
       setAnimating(true);
       setTimeout(() => {
         setAnimating(false);
-        // dequeue();
+        dequeue();
       }, 500);
     }, duration);
   }

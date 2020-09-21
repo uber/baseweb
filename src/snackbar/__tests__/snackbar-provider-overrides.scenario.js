@@ -29,6 +29,35 @@ function Child() {
       >
         enqueue provider overrides
       </button>
+
+      <button
+        onClick={() =>
+          enqueue({
+            message: '09.06.2020.CSV was uploaded',
+            startEnhancer: ({size}) => <Upload size={size} />,
+            actionMessage: 'Show in Finder',
+            overrides: {
+              Root: {
+                style: {border: 'dashed 2px green'},
+              },
+              Content: {
+                style: {border: 'dashed 2px red'},
+              },
+              StartEnhancer: {
+                style: {border: 'dashed 2px blue'},
+              },
+              Message: {
+                style: {border: 'dashed 2px purple'},
+              },
+              Action: {
+                style: {border: 'dashed 2px orange'},
+              },
+            },
+          })
+        }
+      >
+        enqueue individual overrides
+      </button>
     </div>
   );
 }
@@ -40,11 +69,14 @@ export default function Parent() {
         Root: {
           style: {border: 'solid 1px green'},
         },
+        Content: {
+          style: {border: 'solid 1px red'},
+        },
         StartEnhancer: {
           style: {border: 'solid 1px blue'},
         },
-        Content: {
-          style: {border: 'solid 1px red'},
+        Message: {
+          style: {border: 'solid 1px purple'},
         },
         Action: {
           style: {border: 'solid 1px orange'},

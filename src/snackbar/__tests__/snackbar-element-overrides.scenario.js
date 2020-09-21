@@ -26,11 +26,14 @@ export default function Scenario() {
           Root: {
             style: {border: 'solid 4px green'},
           },
+          Content: {
+            style: {border: 'solid 4px red'},
+          },
           StartEnhancer: {
             style: {border: 'solid 4px blue'},
           },
-          Content: {
-            style: {border: 'solid 4px red'},
+          Message: {
+            style: {border: 'solid 4px purple'},
           },
           Action: {
             style: {border: 'solid 4px orange'},

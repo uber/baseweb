@@ -15,8 +15,9 @@ import {useStyletron} from '../styles/index.js';
 
 import {
   StyledRoot,
-  StyledStartEnhancer,
   StyledContent,
+  StyledStartEnhancer,
+  StyledMessage,
   StyledAction,
 } from './styled-components.js';
 import type {SnackbarElementPropsT} from './types.js';
@@ -31,26 +32,32 @@ export function SnackbarElement({
   const [, theme] = useStyletron();
 
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+  const [Content, contentProps] = getOverrides(
+    overrides.Content,
+    StyledContent,
+  );
   const [StartEnhancerContainer, startEnhancerContainerProps] = getOverrides(
     overrides.StartEnhancer,
     StyledStartEnhancer,
   );
-  const [Content, contentProps] = getOverrides(
-    overrides.Content,
-    StyledContent,
+  const [Message, messageProps] = getOverrides(
+    overrides.Message,
+    StyledMessage,
   );
   const [Action, actionProps] = getOverrides(overrides.Action, StyledAction);
 
   return (
     <Root {...rootProps}>
-      {StartEnhancer !== null && StartEnhancer !== undefined && (
-        <StartEnhancerContainer {...startEnhancerContainerProps}>
-          <StartEnhancer size={24} />
-        </StartEnhancerContainer>
-      )}
+      <Content {...contentProps}>
+        {StartEnhancer !== null && StartEnhancer !== undefined && (
+          <StartEnhancerContainer {...startEnhancerContainerProps}>
+            <StartEnhancer size={24} />
+          </StartEnhancerContainer>
+        )}
 
-      <Content $hasSuffix={Boolean(actionMessage)} {...contentProps}>
-        {message}
+        <Message $hasSuffix={Boolean(actionMessage)} {...messageProps}>
+          {message}
+        </Message>
       </Content>
 
       {actionMessage && (
