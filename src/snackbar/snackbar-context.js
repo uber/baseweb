@@ -58,7 +58,7 @@ export function SnackbarProvider({
   function enqueue(elementProps, duration = DURATION.short) {
     setSnackbars(prev => {
       if (prev.length === 0) {
-        take(duration);
+        enter(duration);
       }
       return [...prev, {elementProps, duration}];
     });
@@ -70,13 +70,13 @@ export function SnackbarProvider({
     setSnackbars(prev => {
       const next = prev.slice(1);
       if (next.length > 0) {
-        take(next[0].duration);
+        enter(next[0].duration);
       }
       return next;
     });
   }
 
-  function take(duration) {
+  function enter(duration) {
     setAnimating(true);
     setTimeout(() => {
       setAnimating(false);
@@ -84,13 +84,17 @@ export function SnackbarProvider({
     }, 500);
   }
 
+  function exit() {
+    setAnimating(true);
+    setTimeout(() => {
+      setAnimating(false);
+      dequeue();
+    }, 500);
+  }
+
   function display(duration) {
     timeoutRef.current = setTimeout(() => {
-      setAnimating(true);
-      setTimeout(() => {
-        setAnimating(false);
-        dequeue();
-      }, 500);
+      exit();
     }, duration);
   }
 
@@ -100,6 +104,11 @@ export function SnackbarProvider({
 
   function handleMouseLeave(duration) {
     display(duration);
+  }
+
+  function handleActionClick() {
+    clearTimeout(timeoutRef.current);
+    exit();
   }
 
   React.useEffect(() => {
@@ -171,6 +180,12 @@ export function SnackbarProvider({
             >
               <SnackbarElement
                 {...snackbars[0].elementProps}
+                actionOnClick={event => {
+                  if (snackbars[0].elementProps.actionOnClick) {
+                    snackbars[0].elementProps.actionOnClick(event);
+                  }
+                  handleActionClick();
+                }}
                 overrides={{
                   ...snackbarOverrides,
                   ...snackbars[0].elementProps.overrides,
