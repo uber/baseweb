@@ -10,6 +10,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {Button, KIND, SHAPE} from '../button/index.js';
+import {getOverrides} from '../helpers/overrides.js';
 import {useStyletron} from '../styles/index.js';
 
 import {
@@ -22,37 +23,43 @@ import {
 } from './styled-components.js';
 import type {SnackbarElementPropsT} from './types.js';
 
-const ActionButton = React.forwardRef(({onClick, message}, ref) => {
-  const [, theme] = useStyletron();
-  return (
-    <StyledActionButtonContainer>
-      <Button
-        ref={ref}
-        overrides={{
-          BaseButton: {
-            style: {
-              color: theme.colors.contentInversePrimary,
-              marginRight: '4px',
-              width: '100%',
-              whiteSpace: 'nowrap',
-              ':hover': {
-                backgroundColor: theme.colors.borderInverseTransparent,
-              },
-              ':active': {
-                backgroundColor: theme.colors.backgroundInverseSecondary,
+const ActionButton = React.forwardRef(
+  ({onClick, message, overrides = {}}, ref) => {
+    const [, theme] = useStyletron();
+    const [ActionButtonContainer, actionButtonContainerProps] = getOverrides(
+      overrides.ActionButtonContainer,
+      StyledActionButtonContainer,
+    );
+    return (
+      <ActionButtonContainer {...actionButtonContainerProps}>
+        <Button
+          ref={ref}
+          overrides={{
+            BaseButton: {
+              style: {
+                color: theme.colors.contentInversePrimary,
+                marginRight: '4px',
+                width: '100%',
+                whiteSpace: 'nowrap',
+                ':hover': {
+                  backgroundColor: theme.colors.borderInverseTransparent,
+                },
+                ':active': {
+                  backgroundColor: theme.colors.backgroundInverseSecondary,
+                },
               },
             },
-          },
-        }}
-        kind={KIND.tertiary}
-        onClick={onClick}
-        shape={SHAPE.pill}
-      >
-        {message}
-      </Button>
-    </StyledActionButtonContainer>
-  );
-});
+          }}
+          kind={KIND.tertiary}
+          onClick={onClick}
+          shape={SHAPE.pill}
+        >
+          {message}
+        </Button>
+      </ActionButtonContainer>
+    );
+  },
+);
 
 export function SnackbarElement({
   actionMessage,
@@ -89,6 +96,27 @@ export function SnackbarElement({
 
   const wrapActionButton = actionMeasureWidth > rootWidth / 2;
 
+  const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+  const [Content, contentProps] = getOverrides(
+    overrides.Content,
+    StyledContent,
+  );
+  const [StartEnhancerContainer, startEnhancerContainerProps] = getOverrides(
+    overrides.StartEnhancerContainer,
+    StyledStartEnhancerContainer,
+  );
+  const [Message, messageProps] = getOverrides(
+    overrides.Message,
+    StyledMessage,
+  );
+  const [
+    WrapActionButtonContainer,
+    wrapActionButtonContainerProps,
+  ] = getOverrides(
+    overrides.WrapActionButtonContainer,
+    StyledWrapActionButtonContainer,
+  );
+
   return (
     <React.Fragment>
       {/* used to measure button width without flex causing text wrapping within the button */}
@@ -104,33 +132,43 @@ export function SnackbarElement({
             ref={actionMeasureRef}
             message={actionMessage}
             onClick={actionOnClick}
+            overrides={overrides}
           />
         </div>
       )}
 
-      <StyledRoot ref={rootRef}>
-        <StyledContent>
+      {/* $FlowFixMe */}
+      <Root ref={rootRef} {...rootProps}>
+        <Content {...contentProps}>
           {StartEnhancer !== null && StartEnhancer !== undefined && (
-            <StyledStartEnhancerContainer>
+            <StartEnhancerContainer {...startEnhancerContainerProps}>
               <StartEnhancer size={24} />
-            </StyledStartEnhancerContainer>
+            </StartEnhancerContainer>
           )}
 
-          <StyledMessage $hasSuffix={Boolean(actionMessage)}>
+          <Message $hasSuffix={Boolean(actionMessage)} {...messageProps}>
             {message}
-          </StyledMessage>
+          </Message>
 
           {actionMessage && !wrapActionButton && (
-            <ActionButton message={actionMessage} onClick={actionOnClick} />
+            <ActionButton
+              message={actionMessage}
+              onClick={actionOnClick}
+              overrides={overrides}
+            />
           )}
-        </StyledContent>
+        </Content>
 
         {actionMessage && wrapActionButton && (
-          <StyledWrapActionButtonContainer>
-            <ActionButton message={actionMessage} onClick={actionOnClick} />
-          </StyledWrapActionButtonContainer>
+          <WrapActionButtonContainer {...wrapActionButtonContainerProps}>
+            <ActionButton
+              message={actionMessage}
+              onClick={actionOnClick}
+              overrides={overrides}
+            />
+          </WrapActionButtonContainer>
         )}
-      </StyledRoot>
+      </Root>
     </React.Fragment>
   );
 }
