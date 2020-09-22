@@ -17,6 +17,7 @@ import {
   StyledRoot,
   StyledContent,
   StyledStartEnhancerContainer,
+  StyledSpinner,
   StyledMessage,
   StyledWrapActionButtonContainer,
   StyledActionButtonContainer,
@@ -66,6 +67,7 @@ export function SnackbarElement({
   actionOnClick,
   message,
   overrides = {},
+  progress,
   startEnhancer: StartEnhancer,
 }: SnackbarElementPropsT) {
   const [css, theme] = useStyletron();
@@ -105,6 +107,10 @@ export function SnackbarElement({
     overrides.StartEnhancerContainer,
     StyledStartEnhancerContainer,
   );
+  const [Spinner, spinnerProps] = getOverrides(
+    overrides.Spinner,
+    StyledSpinner,
+  );
   const [Message, messageProps] = getOverrides(
     overrides.Message,
     StyledMessage,
@@ -140,9 +146,13 @@ export function SnackbarElement({
       {/* $FlowFixMe */}
       <Root ref={rootRef} {...rootProps}>
         <Content {...contentProps}>
-          {StartEnhancer !== null && StartEnhancer !== undefined && (
+          {(Boolean(StartEnhancer) || progress) && (
             <StartEnhancerContainer {...startEnhancerContainerProps}>
-              <StartEnhancer size={24} />
+              {StartEnhancer !== null && StartEnhancer !== undefined ? (
+                <StartEnhancer size={24} />
+              ) : (
+                <Spinner $height={24} $width={24} {...spinnerProps} />
+              )}
             </StartEnhancerContainer>
           )}
 

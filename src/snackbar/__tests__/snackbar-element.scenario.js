@@ -10,21 +10,9 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import Upload from '../../icon/upload.js';
-import {StyledSpinnerNext} from '../../spinner/index.js';
-import {withStyle, useStyletron} from '../../styles/index.js';
+import {useStyletron} from '../../styles/index.js';
 
 import {SnackbarElement} from '../index.js';
-
-const SizedStyledSpinnerNext = withStyle(
-  StyledSpinnerNext,
-  ({$height, $width}) => {
-    return {
-      boxSizing: 'border-box',
-      height: $height,
-      width: $width,
-    };
-  },
-);
 
 export default function Scenario() {
   const [css] = useStyletron();
@@ -39,8 +27,10 @@ export default function Scenario() {
       <div className={css({height: '36px'})} />
 
       <SnackbarElement
-        message="09.06.2020.CSV was uploaded"
+        progress
+        // startEnhancer takes precedence over progress
         startEnhancer={({size}) => <Upload size={size} />}
+        message="09.06.2020.CSV was uploaded"
       />
 
       <div className={css({height: '36px'})} />
@@ -59,18 +49,14 @@ export default function Scenario() {
       <div className={css({height: '36px'})} />
 
       <SnackbarElement
-        startEnhancer={({size}) => (
-          <SizedStyledSpinnerNext $height={`${size}px`} $width={`${size}px`} />
-        )}
+        progress
         message="It seems to me then as if all the moments of our life occupy the same space, as if future events already existed and were only waiting for us to find our way to them at last, just as when we have accepted an invitation we duly arrive in a certain house at a given time."
       />
 
       <div className={css({height: '36px'})} />
 
       <SnackbarElement
-        startEnhancer={({size}) => (
-          <SizedStyledSpinnerNext $height={`${size}px`} $width={`${size}px`} />
-        )}
+        progress
         message="It seems to me then as if all the moments of our life occupy the same space, as if future events already existed and were only waiting for us to find our way to them at last, just as when we have accepted an invitation we duly arrive in a certain house at a given time."
         actionMessage="Undo"
       />

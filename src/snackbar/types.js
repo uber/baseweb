@@ -14,6 +14,7 @@ import type {OverrideT} from '../helpers/overrides.js';
 import {DURATION, PLACEMENT} from './constants.js';
 
 export type DurationT =
+  | typeof DURATION.infinite
   | typeof DURATION.short
   | typeof DURATION.medium
   | typeof DURATION.long;
@@ -30,17 +31,26 @@ export type SnackbarElementOverridesT = {|
   Root?: OverrideT,
   Content?: OverrideT,
   StartEnhancerContainer?: OverrideT,
+  Spinner?: OverrideT,
   Message?: OverrideT,
   WrapActionButtonContainer?: OverrideT,
   ActionButtonContainer?: OverrideT,
 |};
 
 export type SnackbarElementPropsT = {|
+  // message displayed in button
   actionMessage?: string,
+  // function executed on button click
   actionOnClick?: (SyntheticEvent<HTMLButtonElement>) => mixed,
+  // primary message displayed in snackbar
   message: string,
   overrides?: SnackbarElementOverridesT,
-  startEnhancer?: React.AbstractComponent<{|size: number|}>,
+  // renders spinner in start enhancer position
+  progress?: boolean,
+  // renders element as message prefix, takes precedence over progress prop
+  startEnhancer?: React.AbstractComponent<{|
+    size: number,
+  |}>,
 |};
 
 export type SnackbarProviderPropsT = {|
@@ -49,5 +59,6 @@ export type SnackbarProviderPropsT = {|
     ...SnackbarElementOverridesT,
     PlacementContainer?: OverrideT,
   |},
+  // location on page where snackbar will render
   placement?: PlacementT,
 |};

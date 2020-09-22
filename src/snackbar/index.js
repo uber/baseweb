@@ -10,3 +10,14 @@ LICENSE file in the root directory of this source tree.
 export {DURATION, PLACEMENT} from './constants.js';
 export {SnackbarElement} from './snackbar-element.js';
 export {SnackbarProvider, useSnackbar} from './snackbar-context.js';
+export {
+  StyledRoot,
+  StyledContent,
+  StyledStartEnhancerContainer,
+  StyledSpinner,
+  StyledMessage,
+  StyledWrapActionButtonContainer,
+  StyledActionButtonContainer,
+  StyledPlacementContainer,
+} from './styled-components.js';
+export type * from './types.js';

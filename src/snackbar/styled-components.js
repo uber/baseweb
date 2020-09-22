@@ -7,7 +7,8 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import {styled} from '../styles/index.js';
+import {StyledSpinnerNext} from '../spinner/index.js';
+import {styled, withStyle} from '../styles/index.js';
 
 import {PLACEMENT} from './constants.js';
 import type {PlacementT} from './types.js';
@@ -37,6 +38,17 @@ export const StyledStartEnhancerContainer = styled('span', {
   alignItems: 'center',
   display: 'flex',
   paddingLeft: '16px',
+});
+
+export const StyledSpinner = withStyle<
+  typeof StyledSpinnerNext,
+  {$height: number, $width: number},
+>(StyledSpinnerNext, ({$height, $width}) => {
+  return {
+    boxSizing: 'border-box',
+    height: `${$height}px`,
+    width: `${$width}px`,
+  };
 });
 
 export const StyledMessage = styled<{$hasSuffix: boolean}>(

@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 export const DURATION = {
+  infinite: 0,
   short: 3000,
   medium: 5000,
   long: 7000,

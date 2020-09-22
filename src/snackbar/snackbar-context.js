@@ -25,19 +25,23 @@ import type {
 
 type ContextT = {|
   enqueue: (elementProps: SnackbarElementPropsT, duration?: DurationT) => void,
+  dequeue: () => void,
 |};
 
+function fallbackHandler() {
+  if (__DEV__) {
+    console.warn('Snackbar context not found.');
+  }
+}
+
 export const SnackbarContext: React.Context<ContextT> = React.createContext({
-  enqueue: () => {
-    if (__DEV__) {
-      console.warn('Snackbar context not found.');
-    }
-  },
+  enqueue: fallbackHandler,
+  dequeue: fallbackHandler,
 });
 
 export function useSnackbar() {
   const context = React.useContext(SnackbarContext);
-  return {enqueue: context.enqueue};
+  return {enqueue: context.enqueue, dequeue: context.dequeue};
 }
 
 export function SnackbarProvider({
@@ -93,6 +97,10 @@ export function SnackbarProvider({
   }
 
   function display(duration) {
+    if (duration === DURATION.infinite) {
+      return;
+    }
+
     timeoutRef.current = setTimeout(() => {
       exit();
     }, duration);
@@ -144,7 +152,7 @@ export function SnackbarProvider({
   );
 
   return (
-    <SnackbarContext.Provider value={{enqueue}}>
+    <SnackbarContext.Provider value={{enqueue, dequeue: exit}}>
       <div
         className={css({
           boxSizing: 'border-box',
