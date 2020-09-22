@@ -17,6 +17,7 @@ export default function Scenario() {
   return (
     <div style={{margin: '16px'}}>
       <SnackbarElement
+        focus={false}
         message="09.06.2020.CSV was uploaded"
         startEnhancer={({size}) => <Upload size={size} />}
         overrides={{
@@ -30,6 +31,7 @@ export default function Scenario() {
       <div style={{height: '36px'}} />
 
       <SnackbarElement
+        focus={false}
         message="09.06.2020.CSV was uploaded"
         progress
         overrides={{
@@ -44,6 +46,7 @@ export default function Scenario() {
       <div style={{height: '36px'}} />
 
       <SnackbarElement
+        focus={false}
         message="It seems to me then as if all the moments of our life occupy the same space, as if future events already existed and were only waiting for us to find our way to them at last, just as when we have accepted an invitation we duly arrive in a certain house at a given time."
         actionMessage="A button label much longer than 50%"
         overrides={{

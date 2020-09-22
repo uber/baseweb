@@ -169,6 +169,7 @@ export function SnackbarProvider({
               ...snackbarOverrides,
               ...snackbars[0].elementProps.overrides,
             }}
+            focus={false}
           />
         )}
       </div>

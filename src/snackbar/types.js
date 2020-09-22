@@ -42,6 +42,8 @@ export type SnackbarElementPropsT = {|
   actionMessage?: string,
   // function executed on button click
   actionOnClick?: (SyntheticEvent<HTMLButtonElement>) => mixed,
+  // if action button preset focus it, defaults to true
+  focus?: boolean,
   // primary message displayed in snackbar
   message: string,
   overrides?: SnackbarElementOverridesT,

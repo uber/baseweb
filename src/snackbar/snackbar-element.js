@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+import FocusLock from 'react-focus-lock';
 
 import {Button, KIND, SHAPE} from '../button/index.js';
 import {getOverrides} from '../helpers/overrides.js';
@@ -68,6 +69,7 @@ const ActionButton = React.forwardRef(
 export function SnackbarElement({
   actionMessage,
   actionOnClick,
+  focus = true,
   message,
   overrides = {},
   progress,
@@ -146,42 +148,48 @@ export function SnackbarElement({
         </div>
       )}
 
-      {/* $FlowFixMe */}
-      <Root ref={rootRef} {...rootProps}>
-        <Content {...contentProps}>
-          {(Boolean(StartEnhancer) || progress) && (
-            <StartEnhancerContainer {...startEnhancerContainerProps}>
-              {StartEnhancer !== null && StartEnhancer !== undefined ? (
-                <StartEnhancer size={24} />
-              ) : (
-                <Spinner $height={24} $width={24} {...spinnerProps} />
-              )}
-            </StartEnhancerContainer>
+      <FocusLock
+        returnFocus
+        // eslint-disable-next-line jsx-a11y/no-autofocus
+        autoFocus={focus}
+      >
+        {/* $FlowFixMe */}
+        <Root ref={rootRef} {...rootProps}>
+          <Content {...contentProps}>
+            {(Boolean(StartEnhancer) || progress) && (
+              <StartEnhancerContainer {...startEnhancerContainerProps}>
+                {StartEnhancer !== null && StartEnhancer !== undefined ? (
+                  <StartEnhancer size={24} />
+                ) : (
+                  <Spinner $height={24} $width={24} {...spinnerProps} />
+                )}
+              </StartEnhancerContainer>
+            )}
+
+            <Message $hasSuffix={Boolean(actionMessage)} {...messageProps}>
+              {message}
+            </Message>
+
+            {actionMessage && !wrapActionButton && (
+              <ActionButton
+                message={actionMessage}
+                onClick={actionOnClick}
+                overrides={overrides}
+              />
+            )}
+          </Content>
+
+          {actionMessage && wrapActionButton && (
+            <WrapActionButtonContainer {...wrapActionButtonContainerProps}>
+              <ActionButton
+                message={actionMessage}
+                onClick={actionOnClick}
+                overrides={overrides}
+              />
+            </WrapActionButtonContainer>
           )}
-
-          <Message $hasSuffix={Boolean(actionMessage)} {...messageProps}>
-            {message}
-          </Message>
-
-          {actionMessage && !wrapActionButton && (
-            <ActionButton
-              message={actionMessage}
-              onClick={actionOnClick}
-              overrides={overrides}
-            />
-          )}
-        </Content>
-
-        {actionMessage && wrapActionButton && (
-          <WrapActionButtonContainer {...wrapActionButtonContainerProps}>
-            <ActionButton
-              message={actionMessage}
-              onClick={actionOnClick}
-              overrides={overrides}
-            />
-          </WrapActionButtonContainer>
-        )}
-      </Root>
+        </Root>
+      </FocusLock>
     </React.Fragment>
   );
 }

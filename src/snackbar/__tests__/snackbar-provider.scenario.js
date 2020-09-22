@@ -18,7 +18,13 @@ function Child() {
     <div>
       <button
         data-testid="queue-one"
-        onClick={() => enqueue({message: 'one', actionMessage: 'click'})}
+        onClick={() =>
+          enqueue({
+            message: 'one',
+            actionMessage: 'perform',
+            actionOnClick: () => console.log('click'),
+          })
+        }
       >
         queue one
       </button>
