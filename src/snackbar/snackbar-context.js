@@ -182,6 +182,7 @@ export function SnackbarProvider({
             {...placementContainerProps}
           >
             <div
+              role="alert"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={() => handleMouseLeave(snackbars[0].duration)}
               className={css({display: 'inline', pointerEvents: 'all'})}
