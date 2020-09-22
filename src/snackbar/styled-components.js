@@ -16,10 +16,10 @@ import type {PlacementT} from './types.js';
 export const StyledRoot = styled<{}>('div', ({$theme}) => {
   return {
     backgroundColor: $theme.colors.backgroundInverseSecondary,
-    borderTopLeftRadius: '16px',
-    borderTopRightRadius: '16px',
-    borderBottomRightRadius: '16px',
-    borderBottomLeftRadius: '16px',
+    borderTopLeftRadius: $theme.sizing.scale600,
+    borderTopRightRadius: $theme.sizing.scale600,
+    borderBottomRightRadius: $theme.sizing.scale600,
+    borderBottomLeftRadius: $theme.sizing.scale600,
     boxShadow: '0px 16px 48px rgba(0, 0, 0, 0.22)',
     color: $theme.colors.contentInversePrimary,
     display: 'inline-block',
@@ -34,10 +34,12 @@ export const StyledContent = styled('div', {
   width: '100%',
 });
 
-export const StyledStartEnhancerContainer = styled('span', {
-  alignItems: 'center',
-  display: 'flex',
-  paddingLeft: '16px',
+export const StyledStartEnhancerContainer = styled<{}>('span', ({$theme}) => {
+  return {
+    alignItems: 'center',
+    display: 'flex',
+    paddingLeft: $theme.sizing.scale600,
+  };
 });
 
 export const StyledSpinner = withStyle<
@@ -60,11 +62,13 @@ export const StyledMessage = styled<{$hasSuffix: boolean}>(
       '-webkit-box-orient': 'vertical',
       '-webkit-line-clamp': 3,
       display: '-webkit-box',
-      marginTop: '16px',
-      marginBottom: '16px',
+      marginTop: $theme.sizing.scale600,
+      marginBottom: $theme.sizing.scale600,
       overflow: 'hidden',
-      paddingRight: $hasSuffix ? '8px' : '16px',
-      paddingLeft: '16px',
+      paddingRight: $hasSuffix
+        ? $theme.sizing.scale300
+        : $theme.sizing.scale600,
+      paddingLeft: $theme.sizing.scale600,
     };
   },
 );
@@ -135,9 +139,15 @@ export const StyledPlacementContainer = styled<{
     transitionDuration: $theme.animation.timing1000,
     right: 0,
     left: 0,
-    marginTop: '16px',
-    marginRight: '8px',
-    marginBottom: '16px',
-    marginLeft: '8px',
+    marginTop: $theme.sizing.scale300,
+    marginRight: $theme.sizing.scale300,
+    marginBottom: $theme.sizing.scale300,
+    marginLeft: $theme.sizing.scale300,
+    [$theme.mediaQuery.medium]: {
+      marginTop: $theme.sizing.scale600,
+      marginRight: $theme.sizing.scale600,
+      marginBottom: $theme.sizing.scale600,
+      marginLeft: $theme.sizing.scale600,
+    },
   };
 });
