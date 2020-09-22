@@ -1,16 +1,17 @@
-interface Breakpoints {
+export interface Breakpoints {
   small: number;
   medium: number;
   large: number;
 }
 
-interface MediaQuery {
+export interface MediaQuery {
   small: string;
   medium: string;
   large: string;
 }
 
-type Responsive<T> = T | T[];
+export type Responsive<T> = T | T[];
+
 export type CSSLengthUnitT =
   | 'cm'
   | 'mm'
@@ -29,7 +30,8 @@ export type CSSLengthUnitT =
   | 'vmin'
   | 'vmax'
   | '%';
-interface Grid {
+
+export interface Grid {
   columns: Responsive<number>;
   gutters: Responsive<number>;
   margins: Responsive<number>;
@@ -38,7 +40,7 @@ interface Grid {
   unit: CSSLengthUnitT;
 }
 
-interface Colors {
+export interface Colors {
   // Primary Palette
   primaryA: string;
   primaryB: string;
@@ -571,7 +573,7 @@ interface Colors {
   /* ---- End of Component Specific Colors ---- */
 }
 
-interface Font {
+export interface Font {
   fontFamily: string;
   fontWeight:
     | '-moz-initial'
@@ -588,7 +590,7 @@ interface Font {
   lineHeight: string | number;
 }
 
-interface Typography {
+export interface Typography {
   font100: Font;
   font150: Font;
   font200: Font;
@@ -627,7 +629,7 @@ interface Typography {
   DisplayLarge: Font;
 }
 
-interface Sizing {
+export interface Sizing {
   scale0: string;
   scale100: string;
   scale200: string;
@@ -651,7 +653,7 @@ interface Sizing {
   scale4800: string;
 }
 
-interface Lighting {
+export interface Lighting {
   shadow400: string;
   shadow500: string;
   shadow600: string;
@@ -665,7 +667,7 @@ interface Lighting {
   overlay600: string;
 }
 
-interface Animation {
+export interface Animation {
   timing100: string;
   timing200: string;
   timing300: string;
@@ -691,7 +693,7 @@ export interface Border {
   borderWidth: string;
 }
 
-interface Borders {
+export interface Borders {
   border100: Border;
   border200: Border;
   border300: Border;
@@ -709,7 +711,7 @@ interface Borders {
   surfaceBorderRadius: string;
 }
 
-interface ZIndex {
+export interface ZIndex {
   modal: number;
 }
 
