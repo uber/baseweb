@@ -35,6 +35,7 @@ class StatefulSliderContainer extends React.Component<
     min: 0,
     max: 100,
     step: 1,
+    marks: false,
     onChange: () => {},
     onFinalChange: () => {},
   };

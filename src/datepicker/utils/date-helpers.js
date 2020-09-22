@@ -32,6 +32,7 @@ class DateHelpers<T> {
           // moment does not have a similar 'single character' weekday format like the other libraries
           // the format below will only supply two character abbreviations.
           weekdaymin: 'dd',
+          quarter: '[Q]Q',
         },
       },
       DateFnsUtils: {
@@ -42,6 +43,7 @@ class DateHelpers<T> {
           weekdaymin: 'EEEEE',
           slashDate: 'yyyy/MM/dd',
           fullOrdinalWeek: 'EEEE, MMMM do yyyy',
+          quarter: 'QQQ',
         },
       },
       LuxonUtils: {
@@ -52,6 +54,7 @@ class DateHelpers<T> {
           weekdaymin: 'EEEEE',
           slashDate: 'yyyy/MM/dd',
           fullOrdinalWeek: 'EEEE, MMMM dd yyyy',
+          quarter: 'Qq',
         },
       },
     };
@@ -138,6 +141,14 @@ class DateHelpers<T> {
   // eslint-disable-next-line flowtype/no-weak-types
   getWeekdayInLocale: (T, any) => string = (date, locale) => {
     return this.getAdapterWithNewLocale(locale).format(date, 'weekday');
+  };
+  // eslint-disable-next-line flowtype/no-weak-types
+  getQuarterInLocale: (number, any) => string = (quarterNumber, locale) => {
+    const localeAdapter = this.getAdapterWithNewLocale(locale);
+    return localeAdapter.format(
+      localeAdapter.setMonth(localeAdapter.date(), quarterNumber * 3),
+      'quarter',
+    );
   };
   getEndOfWeek: T => T = date => {
     return this.adapter.endOfWeek(date);

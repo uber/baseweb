@@ -14,16 +14,18 @@ import {Slider} from '../index.js';
 export default function Scenario() {
   const [rangeValue, setRangeValue] = React.useState([45, 50]);
   return (
-    <Slider
-      value={rangeValue}
-      onChange={({value}) => value && setRangeValue(value)}
-      overrides={{
-        ThumbValue: {
-          props: {
-            valueToLabel: l => l + ':00 AM',
+    <div style={{margin: '64px'}}>
+      <Slider
+        value={rangeValue}
+        onChange={({value}) => value && setRangeValue(value)}
+        overrides={{
+          ThumbValue: {
+            props: {
+              valueToLabel: l => l + ':00 AM',
+            },
           },
-        },
-      }}
-    />
+        }}
+      />
+    </div>
   );
 }

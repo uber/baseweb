@@ -13,7 +13,7 @@ import SliderScenario from './slider.scenario.js';
 export default function Scenario() {
   return (
     <ThemeProvider theme={{...LightTheme, direction: 'rtl'}}>
-      <div dir="rtl">
+      <div dir="rtl" style={{margin: '64px'}}>
         <SliderScenario />
       </div>
     </ThemeProvider>

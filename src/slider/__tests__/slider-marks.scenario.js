@@ -19,7 +19,13 @@ export default function Scenario() {
         margin: '64px',
       }}
     >
-      <StatefulSlider initialState={{value: [50]}} disabled />
+      <StatefulSlider
+        initialState={{value: [20]}}
+        step={10}
+        min={0}
+        max={100}
+        marks
+      />
     </div>
   );
 }

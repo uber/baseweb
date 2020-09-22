@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {Range, useThumbOverlap} from 'react-range';
+import {Range} from 'react-range';
 import type {PropsT} from './types.js';
 import {
   isFocusVisible as focusVisible,
@@ -23,6 +23,7 @@ import {
   Thumb as StyledThumb,
   InnerThumb as StyledInnerThumb,
   ThumbValue as StyledThumbValue,
+  Mark as StyledMark,
 } from './styled-components.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {ThemeContext} from '../styles/theme-provider.js';
@@ -39,34 +40,35 @@ const limitValue = (value: number[]) => {
   return value;
 };
 
-function ThumbLabel({
-  index,
-  values,
-  rangeRef,
-  Component,
-  separator,
-  valueToLabel,
-  $step: step,
-  ...props
-}) {
-  const [labelValue, style] = useThumbOverlap(
-    rangeRef,
-    values,
-    index,
-    step,
-    separator,
-    valueToLabel,
-  );
-  return (
-    <Component {...props} style={style}>
-      {labelValue}
-    </Component>
-  );
+export function useHover() {
+  const [value, setValue] = React.useState(false);
+
+  // eslint-disable-next-line flowtype/no-weak-types
+  const ref = React.useRef<any>(null);
+
+  const handleMouseOver = () => setValue(true);
+  const handleMouseOut = () => setValue(false);
+
+  React.useEffect(() => {
+    const node = ref.current;
+    if (node) {
+      node.addEventListener('mouseover', handleMouseOver);
+      node.addEventListener('mouseout', handleMouseOut);
+
+      return () => {
+        node.removeEventListener('mouseover', handleMouseOver);
+        node.removeEventListener('mouseout', handleMouseOut);
+      };
+    }
+  });
+
+  return [ref, value];
 }
 
 function Slider({
   overrides = {},
   disabled = false,
+  marks = false,
   onChange = () => {},
   onFinalChange = () => {},
   min = 0,
@@ -76,6 +78,8 @@ function Slider({
 }: PropsT) {
   const theme = React.useContext(ThemeContext);
 
+  const [hoverRef0, isHovered0] = useHover();
+  const [hoverRef1, isHovered1] = useHover();
   const [isFocusVisible, setIsFocusVisible] = React.useState(false);
   const [focusedThumbIndex, setFocusedThumbIndex] = React.useState(-1);
   const handleFocus = React.useCallback((event: SyntheticEvent<>) => {
@@ -94,17 +98,13 @@ function Slider({
     setFocusedThumbIndex(-1);
   }, []);
 
-  // Use ref callback pattern so useThumbOverlap can properly measure dom nodes
-  // https://reactjs.org/docs/hooks-faq.html#how-can-i-measure-a-dom-node
-  const [rangeRef, setRangeRef] = React.useState(null);
-  const rangeRefCallback = React.useCallback(node => setRangeRef(node), []);
-
   const value = limitValue(providedValue);
   const sharedProps = {
     $disabled: disabled,
     $step: step,
     $min: min,
     $max: max,
+    $marks: marks,
     $value: value,
     $isFocusVisible: isFocusVisible,
   };
@@ -129,6 +129,7 @@ function Slider({
     overrides.TickBar,
     StyledTickBar,
   );
+  const [Mark, markProps] = getOverrides(overrides.Mark, StyledMark);
 
   return (
     <Root
@@ -146,7 +147,6 @@ function Slider({
         disabled={disabled}
         onChange={value => onChange({value})}
         onFinalChange={value => onFinalChange({value})}
-        ref={rangeRefCallback}
         rtl={theme.direction === 'rtl'}
         renderTrack={({props, children, isDragged}) => (
           <Track
@@ -166,36 +166,51 @@ function Slider({
             </InnerTrack>
           </Track>
         )}
-        renderThumb={({props, index, isDragged}) => (
-          <Thumb
-            {...props}
-            $thumbIndex={index}
-            $isDragged={isDragged}
-            style={{
-              ...props.style,
-            }}
-            {...sharedProps}
-            {...thumbProps}
-            $isFocusVisible={isFocusVisible && focusedThumbIndex === index}
-          >
-            <ThumbLabel
-              Component={ThumbValue}
-              values={value}
-              index={index}
-              rangeRef={rangeRef}
+        renderThumb={({props, index, isDragged}) => {
+          const displayLabel =
+            ((index && isHovered1) || (!index && isHovered0) || isDragged) &&
+            !disabled;
+          return (
+            <Thumb
+              {...props}
+              ref={index ? hoverRef1 : hoverRef0}
               $thumbIndex={index}
               $isDragged={isDragged}
+              style={{
+                ...props.style,
+              }}
               {...sharedProps}
-              {...(thumbValueProps: mixed)}
-            />
-            <InnerThumb
-              $thumbIndex={index}
-              $isDragged={isDragged}
-              {...sharedProps}
-              {...innerThumbProps}
-            />
-          </Thumb>
-        )}
+              {...thumbProps}
+              $isFocusVisible={isFocusVisible && focusedThumbIndex === index}
+            >
+              {displayLabel && (
+                <ThumbValue
+                  $isDragged={isDragged}
+                  {...sharedProps}
+                  {...thumbValueProps}
+                >
+                  {value[index]}
+                </ThumbValue>
+              )}
+              {displayLabel && (
+                <InnerThumb
+                  $thumbIndex={index}
+                  $isDragged={isDragged}
+                  {...sharedProps}
+                  {...innerThumbProps}
+                />
+              )}
+            </Thumb>
+          );
+        }}
+        {...(marks
+          ? {
+              // eslint-disable-next-line react/display-name
+              renderMark: ({props}) => (
+                <Mark {...props} {...sharedProps} {...markProps} />
+              ),
+            }
+          : {})}
       />
       <TickBar {...sharedProps} {...tickBarProps}>
         <Tick {...sharedProps} {...tickProps}>

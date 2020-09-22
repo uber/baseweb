@@ -81,6 +81,8 @@ export type StatefulDataTablePropsT = {|
   filterable?: boolean,
   initialFilters?: Map<string, {description: string}>,
   initialSelectedRowIds?: Set<number | string>,
+  initialSortIndex?: number,
+  initialSortDirection?: SortDirectionsT,
   loading?: boolean,
   loadingMessage?: string | React.AbstractComponent<{||}>,
   onFilterAdd?: (string, {description: string}) => mixed,
