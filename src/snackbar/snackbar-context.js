@@ -85,7 +85,7 @@ export function SnackbarProvider({
     setTimeout(() => {
       setAnimating(false);
       display(duration);
-    }, 500);
+    }, 1000);
   }
 
   function exit() {
@@ -93,7 +93,7 @@ export function SnackbarProvider({
     setTimeout(() => {
       setAnimating(false);
       dequeue();
-    }, 500);
+    }, 1000);
   }
 
   function display(duration) {

@@ -39,7 +39,10 @@ const ActionButton = React.forwardRef(
             BaseButton: {
               style: {
                 color: theme.colors.contentInversePrimary,
-                marginRight: '4px',
+                marginRight:
+                  theme.direction === 'rtl' ? null : theme.sizing.scale100,
+                marginLeft:
+                  theme.direction === 'rtl' ? theme.sizing.scale100 : null,
                 width: '100%',
                 whiteSpace: 'nowrap',
                 ':hover': {

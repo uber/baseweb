@@ -35,10 +35,12 @@ export const StyledContent = styled('div', {
 });
 
 export const StyledStartEnhancerContainer = styled<{}>('span', ({$theme}) => {
+  const paddingDir =
+    $theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
   return {
     alignItems: 'center',
     display: 'flex',
-    paddingLeft: $theme.sizing.scale600,
+    [paddingDir]: $theme.sizing.scale600,
   };
 });
 
@@ -57,6 +59,10 @@ export const StyledMessage = styled<{$hasSuffix: boolean}>(
   'p',
   // $FlowFixMe - suppressing due to webkit properties
   ({$theme, $hasSuffix}) => {
+    const prefixPadding =
+      $theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
+    const suffixPadding =
+      $theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
     return {
       ...$theme.typography.ParagraphMedium,
       '-webkit-box-orient': 'vertical',
@@ -65,20 +71,25 @@ export const StyledMessage = styled<{$hasSuffix: boolean}>(
       marginTop: $theme.sizing.scale600,
       marginBottom: $theme.sizing.scale600,
       overflow: 'hidden',
-      paddingRight: $hasSuffix
+      [prefixPadding]: $theme.sizing.scale600,
+      [suffixPadding]: $hasSuffix
         ? $theme.sizing.scale300
         : $theme.sizing.scale600,
-      paddingLeft: $theme.sizing.scale600,
     };
   },
 );
 
 export const StyledWrapActionButtonContainer = styled('div', {
   display: 'flex',
-  flexDirection: 'row-reverse',
+  justifyContent: 'flex-end',
 });
 
-export const StyledActionButtonContainer = styled('div', {marginLeft: 'auto'});
+export const StyledActionButtonContainer = styled<{}>('div', ({$theme}) => {
+  const marginDir = $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+  return {
+    [marginDir]: 'auto',
+  };
+});
 
 function placementRules(placement) {
   switch (placement) {
