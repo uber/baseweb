@@ -14,7 +14,7 @@ import {getOverrides} from '../helpers/overrides.js';
 import {useStyletron} from '../styles/index.js';
 
 import {DURATION, PLACEMENT} from './constants.js';
-import {SnackbarElement} from './snackbar-element.js';
+import SnackbarElement from './snackbar-element.js';
 import {StyledPlacementContainer} from './styled-components.js';
 import type {
   SnackbarElementPropsT,
@@ -43,7 +43,7 @@ export function useSnackbar() {
   return {enqueue: context.enqueue, dequeue: context.dequeue};
 }
 
-export function SnackbarProvider({
+export default function SnackbarProvider({
   children,
   overrides = {},
   placement,
