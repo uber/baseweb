@@ -66,13 +66,13 @@ describe('snackbar', () => {
     const enqueue = await page.$(selectors.enqueueOne);
     await enqueue.click();
 
-    await wait(500);
+    await wait(1000);
 
     const actions = await page.$$(`${selectors.root} button`);
     await actions[1].click();
 
-    // normally, the snackbar would hide after 1000ms, 500ms for the animate out
-    await wait(500);
+    // normally, the snackbar would hide after 3000ms, 1000 for the animate out
+    await wait(1000);
 
     const snackbar = await page.$(selectors.root);
     expect(snackbar).toBeNull();
