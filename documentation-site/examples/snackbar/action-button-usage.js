@@ -21,6 +21,7 @@ export default function ActionButtonUsage() {
           actionOnClick={() => {
             // handle cancel
           }}
+          focus={false}
         />
       </div>
 
@@ -32,6 +33,7 @@ export default function ActionButtonUsage() {
           actionOnClick={() => {
             // handle undo
           }}
+          focus={false}
         />
       </div>
 
@@ -43,6 +45,7 @@ export default function ActionButtonUsage() {
           actionOnClick={() => {
             // handle see list
           }}
+          focus={false}
         />
       </div>
 
@@ -54,6 +57,7 @@ export default function ActionButtonUsage() {
           actionOnClick={() => {
             // handle try again
           }}
+          focus={false}
         />
       </div>
     </div>
