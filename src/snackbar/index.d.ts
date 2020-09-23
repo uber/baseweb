@@ -30,6 +30,7 @@ export type SnackbarElementOverridesT = {
 export type SnackbarElementPropsT = {
   actionMessage?: string;
   actionOnClick?: (event: React.MouseEvent<HTMLButtonElement>) => any;
+  focus?: boolean;
   message: string;
   overrides?: SnackbarElementOverridesT;
   progress?: boolean;
