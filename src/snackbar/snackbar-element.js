@@ -80,25 +80,29 @@ export function SnackbarElement({
   const rootRef = React.useRef(null);
   const [rootWidth, setRootWidth] = React.useState(0);
   React.useEffect(() => {
-    const observer = new window.ResizeObserver(([entry]) =>
-      setRootWidth(entry.contentRect.width),
-    );
-    if (rootRef.current) {
-      observer.observe(rootRef.current);
+    if (__BROWSER__) {
+      const observer = new window.ResizeObserver(([entry]) =>
+        setRootWidth(entry.contentRect.width),
+      );
+      if (rootRef.current) {
+        observer.observe(rootRef.current);
+      }
+      return () => observer.disconnect();
     }
-    return () => observer.disconnect();
   }, []);
 
   const actionMeasureRef = React.useRef(null);
   const [actionMeasureWidth, setActionMeasureWidth] = React.useState(0);
   React.useEffect(() => {
-    const observer = new window.ResizeObserver(([entry]) =>
-      setActionMeasureWidth(entry.contentRect.width),
-    );
-    if (actionMeasureRef.current) {
-      observer.observe(actionMeasureRef.current);
+    if (__BROWSER__) {
+      const observer = new window.ResizeObserver(([entry]) =>
+        setActionMeasureWidth(entry.contentRect.width),
+      );
+      if (actionMeasureRef.current) {
+        observer.observe(actionMeasureRef.current);
+      }
+      return () => observer.disconnect();
     }
-    return () => observer.disconnect();
   }, [actionMeasureRef.current]);
 
   const wrapActionButton = actionMeasureWidth > rootWidth / 2;

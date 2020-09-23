@@ -119,13 +119,15 @@ export function SnackbarProvider({
   }
 
   React.useEffect(() => {
-    const observer = new window.ResizeObserver(([entry]) =>
-      setContainerHeight(entry.contentRect.height),
-    );
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
+    if (__BROWSER__) {
+      const observer = new window.ResizeObserver(([entry]) =>
+        setContainerHeight(entry.contentRect.height),
+      );
+      if (containerRef.current) {
+        observer.observe(containerRef.current);
+      }
+      return () => observer.disconnect();
     }
-    return () => observer.disconnect();
   }, [snackbars.length, animating]);
 
   const translateHeight = React.useMemo(() => {
