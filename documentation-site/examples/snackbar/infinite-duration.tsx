@@ -33,7 +33,7 @@ function Child() {
     <div>
       <Button
         onClick={() => {
-          if (downloadCountdown === -1) {
+          if (downloadCountdown <= -1) {
             setDownloadCountdown(5);
             enqueue(
               {
