@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 
 import {Layer} from '../layer/index.js';
 import {getOverrides} from '../helpers/overrides.js';
@@ -49,7 +48,7 @@ export function SnackbarProvider({
   overrides = {},
   placement,
 }: SnackbarProviderPropsT) {
-  const [css, theme] = useStyletron();
+  const [css] = useStyletron();
 
   const [snackbars, setSnackbars] = React.useState([]);
   const [animating, setAnimating] = React.useState(false);
@@ -120,7 +119,7 @@ export function SnackbarProvider({
   }
 
   React.useEffect(() => {
-    const observer = new ResizeObserver(([entry]) =>
+    const observer = new window.ResizeObserver(([entry]) =>
       setContainerHeight(entry.contentRect.height),
     );
     if (containerRef.current) {

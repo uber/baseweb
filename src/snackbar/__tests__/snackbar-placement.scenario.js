@@ -58,6 +58,7 @@ export default function Parent() {
       <SnackbarProvider placement={placement}>
         <Child placement={placement} />
         <select
+          // eslint-disable-next-line jsx-a11y/no-onchange
           onChange={event => setPlacement(event.target.value)}
           value={placement}
         >

@@ -75,12 +75,12 @@ export function SnackbarElement({
   progress,
   startEnhancer: StartEnhancer,
 }: SnackbarElementPropsT) {
-  const [css, theme] = useStyletron();
+  const [css] = useStyletron();
 
   const rootRef = React.useRef(null);
   const [rootWidth, setRootWidth] = React.useState(0);
   React.useEffect(() => {
-    const observer = new ResizeObserver(([entry]) =>
+    const observer = new window.ResizeObserver(([entry]) =>
       setRootWidth(entry.contentRect.width),
     );
     if (rootRef.current) {
@@ -92,7 +92,7 @@ export function SnackbarElement({
   const actionMeasureRef = React.useRef(null);
   const [actionMeasureWidth, setActionMeasureWidth] = React.useState(0);
   React.useEffect(() => {
-    const observer = new ResizeObserver(([entry]) =>
+    const observer = new window.ResizeObserver(([entry]) =>
       setActionMeasureWidth(entry.contentRect.width),
     );
     if (actionMeasureRef.current) {

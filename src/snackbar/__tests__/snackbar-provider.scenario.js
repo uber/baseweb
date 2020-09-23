@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {SnackbarProvider, useSnackbar, DURATION} from '../index.js';
+import {SnackbarProvider, useSnackbar} from '../index.js';
 
 function Child() {
   const {enqueue} = useSnackbar();

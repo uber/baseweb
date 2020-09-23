@@ -1,5 +1,6 @@
 /*
 Copyright (c) 2018-2020 Uber Technologies, Inc.
+
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
@@ -10,7 +11,7 @@ import * as React from 'react';
 
 import Upload from '../../icon/upload.js';
 
-import {SnackbarProvider, useSnackbar, DURATION} from '../index.js';
+import {SnackbarProvider, useSnackbar} from '../index.js';
 
 function Child() {
   const {enqueue} = useSnackbar();
@@ -21,7 +22,9 @@ function Child() {
         onClick={() =>
           enqueue({
             message: '09.06.2020.CSV was uploaded',
-            startEnhancer: ({size}) => <Upload size={size} />,
+            startEnhancer: function StartEnhancer({size}) {
+              return <Upload size={size} />;
+            },
             actionMessage: 'Show in Finder',
           })
         }
@@ -33,7 +36,9 @@ function Child() {
         onClick={() =>
           enqueue({
             message: '09.06.2020.CSV was uploaded',
-            startEnhancer: ({size}) => <Upload size={size} />,
+            startEnhancer: function StartEnhancer({size}) {
+              return <Upload size={size} />;
+            },
             actionMessage: 'Show in Finder',
             overrides: {
               Message: {style: {border: 'dotted 2px orange'}},
