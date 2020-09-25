@@ -7,23 +7,18 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {POSITION} from './constants.js';
+import {KIND, POSITION} from './constants.js';
 
-// eslint-disable-next-line flowtype/no-weak-types
-type ItemT = any;
-type isNavItemActiveT = (params: {
-  item: MainNavItemT | UserNavItemT,
-}) => boolean;
-type onNavItemSelectT = (params: {item: MainNavItemT | UserNavItemT}) => mixed;
-
-export type MainNavItemT = {|
+export type NavItemT = {|
+  id?: number | string,
   active?: boolean,
   // eslint-disable-next-line flowtype/no-weak-types
   icon?: React.AbstractComponent<any>,
-  item: ItemT,
-  mapItemToNode?: ItemT => React.Node,
-  mapItemToString: ItemT => string,
-  nav?: MainNavItemT[],
+  // eslint-disable-next-line flowtype/no-weak-types
+  info?: any,
+  label: string,
+  mapItemToNode?: NavItemT => React.Node,
+  children?: NavItemT[],
   // eslint-disable-next-line flowtype/no-weak-types
   navExitIcon?: React.AbstractComponent<any>,
   navPosition?: {
@@ -32,35 +27,17 @@ export type MainNavItemT = {|
   },
 |};
 
-export type UserNavItemT = {|
-  active?: boolean,
-  // eslint-disable-next-line flowtype/no-weak-types
-  icon?: React.AbstractComponent<any>,
-  item: ItemT,
-  mapItemToNode?: ItemT => React.Node,
-  mapItemToString: ItemT => string,
-  nav?: UserNavItemT[],
-|};
-
 export type UserMenuPropsT = {|
-  userNav?: UserNavItemT[],
+  userItems?: NavItemT[],
   username?: string,
   usernameSubtitle?: React.Node,
   userImgUrl?: string,
+  onUserItemSelect?: NavItemT => mixed,
 |};
 
 export type AppNavBarPropsT = {|
-  appDisplayName?: React.Node,
-  mainNav?: MainNavItemT[],
-  isNavItemActive?: isNavItemActiveT,
-  onNavItemSelect: onNavItemSelectT,
-  userNav?: UserNavItemT[],
-  username?: string,
-  usernameSubtitle?: React.Node,
-  userImgUrl?: string,
-|};
-export type SecondaryMenuT = {|
-  nav?: MainNavItemT[],
-  isNavItemActive?: isNavItemActiveT,
-  onNavItemSelect: onNavItemSelectT,
+  ...UserMenuPropsT,
+  title?: React.Node,
+  mainItems?: NavItemT[],
+  onMainItemSelect?: NavItemT => mixed,
 |};

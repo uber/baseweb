@@ -10,174 +10,92 @@ import * as React from 'react';
 import {StyledLink} from '../../link/index.js';
 import ChevronDown from '../../icon/chevron-down.js';
 import Delete from '../../icon/delete.js';
-import Icon from '../../icon/upload.js';
+import Upload from '../../icon/upload.js';
 import UserIcon from '../../icon/overflow.js';
 import {Unstable_AppNavBar as AppNavBar, POSITION} from '../index.js';
 
-function renderItem(item) {
-  return item.label;
-}
-
-const MAIN_NAV = [
-  {
-    icon: Icon,
-    item: {label: 'Primary alpha1'},
-    mapItemToNode: renderItem,
-    mapItemToString: renderItem,
-  },
-  {
-    icon: Icon,
-    item: {label: 'Primary alpha2'},
-    mapItemToNode: renderItem,
-    mapItemToString: renderItem,
-  },
-  {
-    icon: ChevronDown,
-    item: {label: 'Primary alpha3'},
-    mapItemToNode: renderItem,
-    mapItemToString: renderItem,
-    navExitIcon: Delete,
-    navPosition: {
-      desktop: POSITION.horizontal,
-    },
-    nav: [
-      {
-        icon: Icon,
-        item: {label: 'Secondary menu1'},
-        mapItemToNode: renderItem,
-        mapItemToString: renderItem,
-      },
-      {
-        icon: Icon,
-        item: {label: 'Secondary menu2'},
-        mapItemToNode: renderItem,
-        mapItemToString: renderItem,
-      },
-      {
-        icon: Icon,
-        item: {label: 'Secondary menu3'},
-        mapItemToNode: renderItem,
-        mapItemToString: renderItem,
-      },
-      {
-        icon: Icon,
-        item: {label: 'Secondary menu4'},
-        mapItemToNode: renderItem,
-        mapItemToString: renderItem,
-      },
-    ],
-  },
-  {
-    icon: ChevronDown,
-    item: {label: 'Primary alpha4'},
-    mapItemToNode: renderItem,
-    mapItemToString: renderItem,
-    navExitIcon: Delete,
-    navPosition: {
-      desktop: POSITION.horizontal,
-      mobile: POSITION.horizontal,
-    },
-    nav: [
-      {
-        icon: ChevronDown,
-        item: {label: 'Secondary menu1'},
-        mapItemToNode: renderItem,
-        mapItemToString: renderItem,
-        nav: [
-          {
-            icon: Icon,
-            item: {label: 'Tertiary menu1'},
-            mapItemToNode: renderItem,
-            mapItemToString: renderItem,
-          },
-          {
-            icon: Icon,
-            item: {label: 'Tertiary menu2'},
-            mapItemToNode: renderItem,
-            mapItemToString: renderItem,
-          },
-        ],
-      },
-      {
-        icon: Icon,
-        item: {label: 'Secondary menu2'},
-        mapItemToNode: renderItem,
-        mapItemToString: renderItem,
-      },
-    ],
-  },
-];
-
-const USER_NAV = [
-  {
-    icon: UserIcon,
-    item: {label: 'Account item1'},
-    mapItemToNode: renderItem,
-    mapItemToString: renderItem,
-  },
-  {
-    icon: UserIcon,
-    item: {label: 'Account item2'},
-    mapItemToNode: renderItem,
-    mapItemToString: renderItem,
-  },
-  {
-    icon: UserIcon,
-    item: {label: 'Account item3'},
-    mapItemToNode: renderItem,
-    mapItemToString: renderItem,
-  },
-  {
-    icon: UserIcon,
-    item: {label: 'Account item4'},
-    mapItemToNode: renderItem,
-    mapItemToString: renderItem,
-  },
-];
-
-function isActive(arr, item, activeItem): boolean {
-  let active = false;
-  for (let i = 0; i < arr.length; i++) {
-    const elm = arr[i];
-    if (elm === item) {
-      if (item === activeItem) return true;
-      return isActive((item && item.nav) || [], activeItem, activeItem);
-    } else if (elm.nav) {
-      active = isActive(elm.nav || [], item, activeItem);
-    }
-  }
-  return active;
-}
-
 export default function Scenario() {
   const [activeNavItem, setActiveNavItem] = React.useState();
-  const appDisplayName = (
-    <StyledLink
-      $style={{
-        textDecoration: 'none',
-        color: 'inherit',
-        ':hover': {color: 'inherit'},
-        ':visited': {color: 'inherit'},
-      }}
-      href={'#'}
-    >
-      Uber Something
-    </StyledLink>
-  );
+  const [mainItems, setMainItems] = React.useState([
+    {id: 1, icon: Upload, label: 'Primary alpha1'},
+    {id: 2, icon: Upload, label: 'Primary alpha2'},
+    {
+      id: 3,
+      icon: ChevronDown,
+      label: 'Primary alpha3',
+      navExitIcon: Delete,
+      navPosition: {
+        desktop: POSITION.horizontal,
+      },
+      children: [
+        {id: 4, icon: Upload, label: 'Secondary menu1'},
+        {id: 5, icon: Upload, label: 'Secondary menu2'},
+        {id: 6, icon: Upload, label: 'Secondary menu3'},
+        {id: 7, icon: Upload, label: 'Secondary menu4'},
+      ],
+    },
+    {
+      id: 8,
+      icon: ChevronDown,
+      label: 'Primary alpha4',
+      navExitIcon: Delete,
+      navPosition: {
+        desktop: POSITION.horizontal,
+        mobile: POSITION.horizontal,
+      },
+      children: [
+        {
+          id: 9,
+          icon: ChevronDown,
+          label: 'Secondary menu1',
+          children: [
+            {id: 10, icon: Upload, label: 'Tertiary menu1'},
+            {id: 11, icon: Upload, label: 'Tertiary menu2'},
+          ],
+        },
+        {id: 12, icon: Upload, label: 'Secondary menu2'},
+      ],
+    },
+  ]);
+  const [userItems, setUserItems] = React.useState([
+    {id: 1, icon: UserIcon, label: 'Account item1'},
+    {id: 2, icon: UserIcon, label: 'Account item2'},
+    {id: 3, icon: UserIcon, label: 'Account item3'},
+    {id: 4, icon: UserIcon, label: 'Account item4'},
+  ]);
+
+  function setItemActive(item, id) {
+    const next = {...item};
+
+    if (item.id === id) {
+      next.active = true;
+    } else if (next.children) {
+      next.children = next.children.map(child => setItemActive(child, id));
+      if (next.children.some(child => child.active)) {
+        next.active = true;
+      }
+    } else {
+      next.active = false;
+    }
+    return next;
+  }
+
+  function handleMainItemSelect(item) {
+    console.log(item);
+    setMainItems(prev => prev.map(i => setItemActive(i, i.id)));
+  }
+
   return (
     <AppNavBar
-      appDisplayName={appDisplayName}
-      mainNav={MAIN_NAV}
-      isNavItemActive={({item}) => {
-        return (
-          item === activeNavItem || isActive(MAIN_NAV, item, activeNavItem)
-        );
+      title="Uber Something"
+      mainItems={mainItems}
+      userItems={userItems}
+      onMainItemSelect={item => {
+        console.log('main', item);
       }}
-      onNavItemSelect={({item}) => {
-        if (item === activeNavItem) return;
-        setActiveNavItem(item);
+      onUserItemSelect={item => {
+        console.log('user', item);
       }}
-      userNav={USER_NAV}
       username="Umka Marshmallow"
       usernameSubtitle="5.0"
       userImgUrl=""

@@ -1,20 +1,19 @@
 /*
 Copyright (c) 2018-2020 Uber Technologies, Inc.
-
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 
 import * as React from 'react';
-import {Avatar} from '../../avatar/index.js';
-import {LabelMedium, ParagraphSmall} from '../../typography/index.js';
+import {Avatar} from '../avatar/index.js';
+import {LabelMedium, ParagraphSmall} from '../typography/index.js';
 import {
   StyledUserProfileTileContainer,
   StyledUserProfilePictureContainer,
   StyledUserProfileInfoContainer,
-} from '../styled-components.js';
-import type {UserMenuPropsT} from '../types.js';
+} from './styled-components.js';
+import type {UserMenuPropsT} from './types.js';
 
 export default function UserProfileTile(props: UserMenuPropsT) {
   const {username, usernameSubtitle, userImgUrl} = props;
