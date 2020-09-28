@@ -10,7 +10,6 @@ import * as React from 'react';
 import {KIND, POSITION} from './constants.js';
 
 export type NavItemT = {|
-  id?: number | string,
   active?: boolean,
   // eslint-disable-next-line flowtype/no-weak-types
   icon?: React.AbstractComponent<any>,

@@ -22,6 +22,7 @@ import {
 import type {AppNavBarPropsT} from './types.js';
 import UserProfileTile from './user-profile-tile.js';
 
+const USER_TITLE_ITEM = 'USER_TITLE_ITEM';
 const USER_MENU_ITEM = 'USER_MENU_ITEM';
 const PARENT_MENU_ITEM = 'PARENT_MENU_ITEM';
 
@@ -40,7 +41,7 @@ const MobileNavMenuItem = React.forwardRef<{item: any}, HTMLLIElement>(
         </MenuAdapter>
       );
     }
-    if (item.USER_MENU_ITEM) {
+    if (item.USER_TITLE_ITEM) {
       // Replace with a user menu item renderer
       return (
         // $FlowFixMe
@@ -74,8 +75,13 @@ export default function MobileMenu(props: AppNavBarPropsT) {
           {
             item: {...rest},
             label: props.username,
-            [USER_MENU_ITEM]: true,
-            children: userItems,
+            [USER_TITLE_ITEM]: true,
+            children: userItems.map(item => {
+              return {
+                ...item,
+                [USER_MENU_ITEM]: true,
+              };
+            }),
           },
         ]
       : []),
@@ -121,7 +127,6 @@ export default function MobileMenu(props: AppNavBarPropsT) {
         <StatefulMenu
           items={currentNavItems}
           onItemSelect={({item}) => {
-            props.onItemSelect(item);
             if (item.PARENT_MENU_ITEM) {
               // Remove current parent item selected to return to
               // from the ancestors list (`ancestorNavItems[ancestorArrLength - 1]`)
@@ -140,15 +145,22 @@ export default function MobileMenu(props: AppNavBarPropsT) {
                   ],
                   [PARENT_MENU_ITEM]: true,
                 };
-                setCurrentNavItems([newParentItem, ...newParentItem.nav]);
+                setCurrentNavItems([newParentItem, ...newParentItem.children]);
               }
               setAncestorNavItems(updatedAncestorNavItems);
               return;
             }
-            if (item.nav && item.nav.length) {
+
+            if (item.USER_MENU_ITEM && props.onUserItemSelect) {
+              props.onUserItemSelect(item);
+            } else if (!item.USER_TITLE_ITEM && props.onMainItemSelect) {
+              props.onMainItemSelect(item);
+            }
+
+            if (item.children && item.children.length) {
               const parentItem = {...item, [PARENT_MENU_ITEM]: true};
               setAncestorNavItems([...ancestorNavItems, item]);
-              setCurrentNavItems([parentItem, ...item.nav]);
+              setCurrentNavItems([parentItem, ...item.children]);
               return;
             }
             toggleMenu();
