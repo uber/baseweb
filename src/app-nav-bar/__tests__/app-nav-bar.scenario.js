@@ -11,15 +11,10 @@ import {StyledLink} from '../../link/index.js';
 import ChevronDown from '../../icon/chevron-down.js';
 import Delete from '../../icon/delete.js';
 import Upload from '../../icon/upload.js';
-import UserIcon from '../../icon/overflow.js';
-import {
-  Unstable_AppNavBar as AppNavBar,
-  setItemActive,
-  POSITION,
-} from '../index.js';
+import Overflow from '../../icon/overflow.js';
+import {AppNavBar, setItemActive, POSITION} from '../index.js';
 
 export default function Scenario() {
-  const [activeNavItem, setActiveNavItem] = React.useState();
   const [mainItems, setMainItems] = React.useState([
     {icon: Upload, label: 'Primary A'},
     {icon: Upload, label: 'Primary B'},
@@ -59,10 +54,10 @@ export default function Scenario() {
     },
   ]);
   const [userItems, setUserItems] = React.useState([
-    {icon: UserIcon, label: 'Account item1'},
-    {icon: UserIcon, label: 'Account item2'},
-    {icon: UserIcon, label: 'Account item3'},
-    {icon: UserIcon, label: 'Account item4'},
+    {icon: Overflow, label: 'Account item1'},
+    {icon: Overflow, label: 'Account item2'},
+    {icon: Overflow, label: 'Account item3'},
+    {icon: Overflow, label: 'Account item4'},
   ]);
 
   function handleMainItemSelect(item) {

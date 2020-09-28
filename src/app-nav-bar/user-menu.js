@@ -50,8 +50,8 @@ function UserMenuDropdown(props) {
   return (
     <StatefulMenu
       items={props.userItems}
-      onItemSelect={(...args) => {
-        props.onItemSelect(...args);
+      onItemSelect={({item}) => {
+        props.onItemSelect(item);
         props.close();
       }}
       overrides={{
