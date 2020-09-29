@@ -19,55 +19,55 @@ import {
   StyledSideMenuButton,
   StyledUserMenuListItem,
 } from './styled-components.js';
-import type {AppNavBarPropsT} from './types.js';
+import type {AppNavBarPropsT, NavItemT} from './types.js';
 import UserProfileTile from './user-profile-tile.js';
+import {defaultMapItemToNode} from './utils.js';
 
 const USER_TITLE_ITEM = 'USER_TITLE_ITEM';
 const USER_MENU_ITEM = 'USER_MENU_ITEM';
 const PARENT_MENU_ITEM = 'PARENT_MENU_ITEM';
 
-const MobileNavMenuItem = React.forwardRef<{item: any}, HTMLLIElement>(
-  (props, ref) => {
-    const {item = {}, ...restProps} = props;
-    if (item.PARENT_MENU_ITEM) {
-      return (
-        <MenuAdapter
-          {...restProps}
-          ref={ref}
-          artwork={item.navExitIcon || ArrowLeft}
-          artworkSize={ARTWORK_SIZES.LARGE}
-        >
-          <ListItemLabel>{item.label}</ListItemLabel>
-        </MenuAdapter>
-      );
-    }
-    if (item.USER_TITLE_ITEM) {
-      // Replace with a user menu item renderer
-      return (
-        // $FlowFixMe
-        <StyledUserMenuListItem {...restProps} ref={ref}>
-          <UserProfileTile {...item.item} />
-        </StyledUserMenuListItem>
-      );
-    }
+const MobileNavMenuItem = React.forwardRef<
+  {item: any, mapItemToNode: NavItemT => React.Node},
+  HTMLLIElement,
+>((props, ref) => {
+  const {item, mapItemToNode = defaultMapItemToNode, ...restProps} = props;
+  if (item.PARENT_MENU_ITEM) {
     return (
-      // Replace with a main menu item renderer
       <MenuAdapter
         {...restProps}
         ref={ref}
-        artwork={item.icon || null}
+        artwork={item.navExitIcon || ArrowLeft}
         artworkSize={ARTWORK_SIZES.LARGE}
       >
-        <ListItemLabel>
-          {item.mapItemToNode ? item.mapItemToNode(item) : item.label}
-        </ListItemLabel>
+        <ListItemLabel>{item.label}</ListItemLabel>
       </MenuAdapter>
     );
-  },
-);
+  }
+  if (item.USER_TITLE_ITEM) {
+    // Replace with a user menu item renderer
+    return (
+      // $FlowFixMe
+      <StyledUserMenuListItem {...restProps} ref={ref}>
+        <UserProfileTile {...item.item} />
+      </StyledUserMenuListItem>
+    );
+  }
+  return (
+    // Replace with a main menu item renderer
+    <MenuAdapter
+      {...restProps}
+      ref={ref}
+      artwork={item.icon || null}
+      artworkSize={ARTWORK_SIZES.LARGE}
+    >
+      <ListItemLabel>{mapItemToNode(item)}</ListItemLabel>
+    </MenuAdapter>
+  );
+});
 
 export default function MobileMenu(props: AppNavBarPropsT) {
-  const {mainItems = [], userItems = [], ...rest} = props;
+  const {mainItems = [], userItems = [], mapItemToNode, ...rest} = props;
 
   const items = [
     ...(userItems.length
@@ -175,7 +175,12 @@ export default function MobileMenu(props: AppNavBarPropsT) {
               },
             },
             ListItem: {
-              component: MobileNavMenuItem,
+              component: listItemProps => (
+                <MobileNavMenuItem
+                  {...listItemProps}
+                  mapItemToNode={mapItemToNode}
+                />
+              ),
             },
           }}
         />

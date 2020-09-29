@@ -1,28 +1,24 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
-import {StyledLink} from 'baseui/link';
 import {Button} from 'baseui/button';
 import {Layer} from 'baseui/layer';
 import {ChevronDown, Delete, Overflow, Upload} from 'baseui/icon';
 import {
   AppNavBar,
   setItemActive,
-  POSITION,
+  NavItemT,
 } from 'baseui/app-nav-bar';
 
 export default () => {
   const [css] = useStyletron();
 
-  const [mainItems, setMainItems] = React.useState([
+  const [mainItems, setMainItems] = React.useState<NavItemT[]>([
     {icon: Upload, label: 'Primary A'},
     {icon: Upload, label: 'Primary B'},
     {
       icon: ChevronDown,
       label: 'Primary C',
       navExitIcon: Delete,
-      navPosition: {
-        desktop: POSITION.horizontal,
-      },
       children: [
         {icon: Upload, label: 'Secondary A'},
         {icon: Upload, label: 'Secondary B'},
@@ -34,10 +30,6 @@ export default () => {
       icon: ChevronDown,
       label: 'Primary D',
       navExitIcon: Delete,
-      navPosition: {
-        desktop: POSITION.horizontal,
-        mobile: POSITION.horizontal,
-      },
       children: [
         {
           icon: ChevronDown,
@@ -51,16 +43,16 @@ export default () => {
       ],
     },
   ]);
-  const [userItems, setUserItems] = React.useState([
+  const userItems = [
     {icon: Overflow, label: 'Account item1'},
     {icon: Overflow, label: 'Account item2'},
     {icon: Overflow, label: 'Account item3'},
     {icon: Overflow, label: 'Account item4'},
-  ]);
+  ];
 
   const [isNavVisible, setIsNavVisible] = React.useState(false);
 
-  function handleMainItemSelect(item) {
+  function handleMainItemSelect(item: NavItemT) {
     setMainItems(prev => setItemActive(prev, item));
   }
 

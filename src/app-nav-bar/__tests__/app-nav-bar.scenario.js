@@ -7,12 +7,13 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {StyledLink} from '../../link/index.js';
+
 import ChevronDown from '../../icon/chevron-down.js';
 import Delete from '../../icon/delete.js';
 import Upload from '../../icon/upload.js';
 import Overflow from '../../icon/overflow.js';
-import {AppNavBar, setItemActive, POSITION} from '../index.js';
+
+import {AppNavBar, setItemActive} from '../index.js';
 
 export default function Scenario() {
   const [mainItems, setMainItems] = React.useState([
@@ -22,9 +23,6 @@ export default function Scenario() {
       icon: ChevronDown,
       label: 'Primary C',
       navExitIcon: Delete,
-      navPosition: {
-        desktop: POSITION.horizontal,
-      },
       children: [
         {icon: Upload, label: 'Secondary A'},
         {icon: Upload, label: 'Secondary B'},
@@ -36,10 +34,6 @@ export default function Scenario() {
       icon: ChevronDown,
       label: 'Primary D',
       navExitIcon: Delete,
-      navPosition: {
-        desktop: POSITION.horizontal,
-        mobile: POSITION.horizontal,
-      },
       children: [
         {
           icon: ChevronDown,

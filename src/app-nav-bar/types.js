@@ -16,7 +16,6 @@ export type NavItemT = {|
   // eslint-disable-next-line flowtype/no-weak-types
   info?: any,
   label: string,
-  mapItemToNode?: NavItemT => React.Node,
   children?: NavItemT[],
   // eslint-disable-next-line flowtype/no-weak-types
   navExitIcon?: React.AbstractComponent<any>,
@@ -36,7 +35,8 @@ export type UserMenuPropsT = {|
 
 export type AppNavBarPropsT = {|
   ...UserMenuPropsT,
-  title?: React.Node,
   mainItems?: NavItemT[],
+  mapItemToNode?: NavItemT => React.Node,
   onMainItemSelect?: NavItemT => mixed,
+  title?: React.Node,
 |};

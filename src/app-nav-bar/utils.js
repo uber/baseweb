@@ -11,6 +11,17 @@ import type {NavItemT} from './types.js';
 
 type GetUniqueIdentifierT = NavItemT => string | number;
 
+export function defaultMapItemToNode(item: NavItemT) {
+  if (__DEV__) {
+    if (!item.label) {
+      throw Error(
+        'There needs to be an unique item.label. You can implement a custom mapping with the mapItemToNode prop.',
+      );
+    }
+  }
+  return item.label;
+}
+
 function defaultGetUniqueIdentifier(item: NavItemT) {
   if (__DEV__) {
     if (!item.label) {

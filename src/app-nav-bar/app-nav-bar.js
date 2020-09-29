@@ -25,9 +25,10 @@ import {
   StyledMainMenuItem,
 } from './styled-components.js';
 import type {AppNavBarPropsT} from './types.js';
+import {defaultMapItemToNode} from './utils.js';
 
 function MainMenuItem(props) {
-  const {item, kind = KIND.primary, onSelect} = props;
+  const {item, kind = KIND.primary, mapItemToNode, onSelect} = props;
   const [focusVisible, setFocusVisible] = React.useState(false);
 
   function handleFocus(event) {
@@ -55,7 +56,6 @@ function MainMenuItem(props) {
   }
 
   return (
-    // $FlowFixMe
     <StyledMainMenuItem
       $active={item.active}
       $isFocusVisible={focusVisible}
@@ -67,13 +67,13 @@ function MainMenuItem(props) {
       onKeyDown={handleKeyDown}
       tabIndex={0}
     >
-      {item.mapItemToNode ? item.mapItemToNode(item) : item.label}
+      {mapItemToNode(item)}
     </StyledMainMenuItem>
   );
 }
 
 function SecondaryMenu(props) {
-  const {items = [], onSelect} = props;
+  const {items = [], mapItemToNode, onSelect} = props;
 
   return (
     <StyledSubnavContainer>
@@ -86,6 +86,7 @@ function SecondaryMenu(props) {
             {items.map((item, index) => (
               // Replace with a menu item renderer
               <MainMenuItem
+                mapItemToNode={mapItemToNode}
                 item={item}
                 kind={KIND.secondary}
                 key={index}
@@ -103,6 +104,7 @@ export default function AppNavBar(props: AppNavBarPropsT) {
   const [css, theme] = useStyletron();
   const {
     title,
+    mapItemToNode = defaultMapItemToNode,
     onMainItemSelect = item => {},
     onUserItemSelect = item => {},
     mainItems = [],
@@ -138,7 +140,11 @@ export default function AppNavBar(props: AppNavBarPropsT) {
         </Grid>
 
         {secondaryMenu && mobileSubNavPosition === POSITION.horizontal ? (
-          <SecondaryMenu items={secondaryMenu} onSelect={onMainItemSelect} />
+          <SecondaryMenu
+            items={secondaryMenu}
+            mapItemToNode={mapItemToNode}
+            onSelect={onMainItemSelect}
+          />
         ) : null}
       </div>
 
@@ -177,6 +183,7 @@ export default function AppNavBar(props: AppNavBarPropsT) {
                   <MainMenuItem
                     item={item}
                     key={index}
+                    mapItemToNode={mapItemToNode}
                     onSelect={onMainItemSelect}
                   />
                 );
@@ -188,6 +195,7 @@ export default function AppNavBar(props: AppNavBarPropsT) {
             <Cell span={[0, 1, 1]}>
               <StyledSpacing>
                 <UserMenu
+                  mapItemToNode={mapItemToNode}
                   onItemSelect={onUserItemSelect}
                   username={username}
                   usernameSubtitle={usernameSubtitle}
@@ -200,7 +208,11 @@ export default function AppNavBar(props: AppNavBarPropsT) {
         </Grid>
 
         {secondaryMenu && desktopSubNavPosition === POSITION.horizontal ? (
-          <SecondaryMenu items={secondaryMenu} onSelect={onMainItemSelect} />
+          <SecondaryMenu
+            items={secondaryMenu}
+            mapItemToNode={mapItemToNode}
+            onSelect={onMainItemSelect}
+          />
         ) : null}
       </div>
     </StyledRoot>

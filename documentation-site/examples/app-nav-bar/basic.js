@@ -5,11 +5,7 @@ import {StyledLink} from 'baseui/link';
 import {Button} from 'baseui/button';
 import {Layer} from 'baseui/layer';
 import {ChevronDown, Delete, Overflow, Upload} from 'baseui/icon';
-import {
-  AppNavBar,
-  setItemActive,
-  POSITION,
-} from 'baseui/app-nav-bar';
+import {AppNavBar, setItemActive} from 'baseui/app-nav-bar';
 
 export default () => {
   const [css] = useStyletron();
@@ -21,9 +17,6 @@ export default () => {
       icon: ChevronDown,
       label: 'Primary C',
       navExitIcon: Delete,
-      navPosition: {
-        desktop: POSITION.horizontal,
-      },
       children: [
         {icon: Upload, label: 'Secondary A'},
         {icon: Upload, label: 'Secondary B'},
@@ -35,10 +28,6 @@ export default () => {
       icon: ChevronDown,
       label: 'Primary D',
       navExitIcon: Delete,
-      navPosition: {
-        desktop: POSITION.horizontal,
-        mobile: POSITION.horizontal,
-      },
       children: [
         {
           icon: ChevronDown,

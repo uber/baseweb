@@ -23,75 +23,76 @@ import {
 } from './styled-components.js';
 import type {UserMenuPropsT, NavItemT} from './types.js';
 import UserProfileTile from './user-profile-tile.js';
+import {defaultMapItemToNode} from './utils.js';
 
 const MENU_ITEM_WIDTH = '275px';
 
-const UserMenuListItem = React.forwardRef<{item: any}, HTMLLIElement>(
-  (props, ref) => {
-    const {item = {}} = props;
-    // Replace with a user menu item renderer
-    return (
-      <MenuAdapter
-        {...props}
-        ref={ref}
-        artwork={item.icon || null}
-        artworkSize={ARTWORK_SIZES.LARGE}
-      >
-        <ListItemLabel>
-          {item.mapItemToNode ? item.mapItemToNode(item) : item.label}
-        </ListItemLabel>
-      </MenuAdapter>
-    );
-  },
-);
-
-function UserMenuDropdown(props) {
-  // Provide API for handlers to be called on render, like analytics
+const UserMenuListItem = React.forwardRef<
+  {item: any, mapItemToNode: NavItemT => React.Node},
+  HTMLLIElement,
+>((props, ref) => {
+  const {item, mapItemToNode = defaultMapItemToNode} = props;
+  // Replace with a user menu item renderer
   return (
-    <StatefulMenu
-      items={props.userItems}
-      onItemSelect={({item}) => {
-        props.onItemSelect(item);
-        props.close();
-      }}
-      overrides={{
-        List: {
-          component: React.forwardRef(({children, ...restProps}, ref) => (
-            <StyledList {...restProps} ref={ref}>
-              <StyledUserMenuListItem>
-                {/* Replace with a renderer: renderUserProfileTile() */}
-                <UserProfileTile
-                  username={props.username}
-                  usernameSubtitle={props.usernameSubtitle}
-                  userImgUrl={props.userImgUrl}
-                />
-              </StyledUserMenuListItem>
-              {children}
-            </StyledList>
-          )),
-          style: {width: MENU_ITEM_WIDTH},
-        },
-        ListItem: {
-          component: UserMenuListItem,
-        },
-      }}
-    />
+    <MenuAdapter
+      {...props}
+      ref={ref}
+      artwork={item.icon || null}
+      artworkSize={ARTWORK_SIZES.LARGE}
+    >
+      <ListItemLabel>{mapItemToNode(item)}</ListItemLabel>
+    </MenuAdapter>
   );
-}
+});
 
 const svgStyleOverride = ({$theme}) => ({paddingLeft: $theme.sizing.scale200});
 
 export default function UserMenu(props: {|
   ...UserMenuPropsT,
   onItemSelect: NavItemT => mixed,
+  mapItemToNode: NavItemT => React.Node,
 |}) {
   // isOpen is used for displaying different arrow icons in open or closed state
   const [isOpen, setIsOpen] = React.useState(false);
-  const {username, userImgUrl} = props;
+  const {userItems = [], username, userImgUrl} = props;
 
   return (
     <StatefulPopover
-      content={({close}) => <UserMenuDropdown close={close} {...props} />}
+      content={({close}) => (
+        <StatefulMenu
+          items={userItems}
+          onItemSelect={({item}) => {
+            props.onItemSelect(item);
+            close();
+          }}
+          overrides={{
+            List: {
+              component: React.forwardRef(({children, ...restProps}, ref) => (
+                <StyledList {...restProps} ref={ref}>
+                  <StyledUserMenuListItem>
+                    {/* Replace with a renderer: renderUserProfileTile() */}
+                    <UserProfileTile
+                      username={props.username}
+                      usernameSubtitle={props.usernameSubtitle}
+                      userImgUrl={props.userImgUrl}
+                    />
+                  </StyledUserMenuListItem>
+                  {children}
+                </StyledList>
+              )),
+              style: {width: MENU_ITEM_WIDTH},
+            },
+            ListItem: {
+              component: listItemProps => (
+                <UserMenuListItem
+                  {...listItemProps}
+                  mapItemToNode={props.mapItemToNode}
+                />
+              ),
+            },
+          }}
+        />
+      )}
       dismissOnEsc={true}
       dismissOnClickOutside={true}
       onOpen={() => setIsOpen(true)}
