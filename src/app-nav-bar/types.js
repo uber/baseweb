@@ -9,6 +9,30 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {KIND, POSITION} from './constants.js';
 
+import type {OverrideT} from '../helpers/overrides.js';
+
+export type OverridesT = {|
+  Root?: OverrideT,
+  AppName?: OverrideT,
+  MainMenuItem?: OverrideT,
+  PrimaryMenuContainer?: OverrideT,
+  ProfileTileContainer?: OverrideT,
+  SecondaryMenuContainer?: OverrideT,
+  Spacing?: OverrideT,
+  SubnavContainer?: OverrideT,
+  UserMenuProfileListItem?: OverrideT,
+  UserProfileInfoContainer?: OverrideT,
+  UserProfilePictureContainer?: OverrideT,
+  UserProfileTileContainer?: OverrideT,
+
+  // nested overrides
+  MobileDrawer?: OverrideT,
+  MobileMenu?: OverrideT,
+  SideMenuButton?: OverrideT,
+  UserMenuButton?: OverrideT,
+  UserMenu?: OverrideT,
+|};
+
 export type NavItemT = {|
   active?: boolean,
   // eslint-disable-next-line flowtype/no-weak-types
@@ -38,5 +62,6 @@ export type AppNavBarPropsT = {|
   mainItems?: NavItemT[],
   mapItemToNode?: NavItemT => React.Node,
   onMainItemSelect?: NavItemT => mixed,
+  overrides?: OverridesT,
   title?: React.Node,
 |};

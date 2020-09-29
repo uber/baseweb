@@ -8,13 +8,14 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {useStyletron} from '../styles/index.js';
+import {getOverrides} from '../helpers/overrides.js';
 import {Cell, Grid} from '../layout-grid/index.js';
+import {useStyletron} from '../styles/index.js';
 import {isFocusVisible} from '../utils/focusVisible.js';
 
+import {KIND, POSITION} from './constants.js';
 import MobileNav from './mobile-menu.js';
 import UserMenu from './user-menu.js';
-import {KIND, POSITION} from './constants.js';
 import {
   StyledRoot,
   StyledSpacing,
@@ -28,7 +29,13 @@ import type {AppNavBarPropsT} from './types.js';
 import {defaultMapItemToNode} from './utils.js';
 
 function MainMenuItem(props) {
-  const {item, kind = KIND.primary, mapItemToNode, onSelect} = props;
+  const {
+    item,
+    kind = KIND.primary,
+    mapItemToNode,
+    onSelect,
+    overrides = {},
+  } = props;
   const [focusVisible, setFocusVisible] = React.useState(false);
 
   function handleFocus(event) {
@@ -55,8 +62,13 @@ function MainMenuItem(props) {
     }
   }
 
+  const [MainMenuItemElement, mainMenuItemElementProps] = getOverrides(
+    overrides.MainMenuItem,
+    StyledMainMenuItem,
+  );
+
   return (
-    <StyledMainMenuItem
+    <MainMenuItemElement
       $active={item.active}
       $isFocusVisible={focusVisible}
       $kind={kind}
@@ -66,22 +78,33 @@ function MainMenuItem(props) {
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       tabIndex={0}
+      {...mainMenuItemElementProps}
     >
       {mapItemToNode(item)}
-    </StyledMainMenuItem>
+    </MainMenuItemElement>
   );
 }
 
 function SecondaryMenu(props) {
-  const {items = [], mapItemToNode, onSelect} = props;
+  const {items = [], mapItemToNode, onSelect, overrides = {}} = props;
+
+  const [SubnavContainer, subnavContainerProps] = getOverrides(
+    overrides.SubnavContainer,
+    StyledSubnavContainer,
+  );
+  const [SecondaryMenuContainer, secondaryMenuContainerProps] = getOverrides(
+    overrides.SecondaryMenuContainer,
+    StyledSecondaryMenuContainer,
+  );
 
   return (
-    <StyledSubnavContainer>
+    <SubnavContainer {...subnavContainerProps}>
       <Grid>
         <Cell span={[0, 8, 12]}>
-          <StyledSecondaryMenuContainer
+          <SecondaryMenuContainer
             role="navigation"
             aria-label="Secondary navigation"
+            {...secondaryMenuContainerProps}
           >
             {items.map((item, index) => (
               // Replace with a menu item renderer
@@ -91,12 +114,13 @@ function SecondaryMenu(props) {
                 kind={KIND.secondary}
                 key={index}
                 onSelect={onSelect}
+                overrides={overrides}
               />
             ))}
-          </StyledSecondaryMenuContainer>
+          </SecondaryMenuContainer>
         </Cell>
       </Grid>
-    </StyledSubnavContainer>
+    </SubnavContainer>
   );
 }
 
@@ -108,18 +132,33 @@ export default function AppNavBar(props: AppNavBarPropsT) {
     onMainItemSelect = item => {},
     onUserItemSelect = item => {},
     mainItems = [],
+    overrides = {},
     userItems = [],
     username,
     usernameSubtitle,
     userImgUrl,
   } = props;
 
+  const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
+  const [Spacing, spacingProps] = getOverrides(
+    overrides.Spacing,
+    StyledSpacing,
+  );
+  const [AppName, appNameProps] = getOverrides(
+    overrides.AppName,
+    StyledAppName,
+  );
+  const [PrimaryMenuContainer, primaryMenuContainerProps] = getOverrides(
+    overrides.PrimaryMenuContainer,
+    StyledPrimaryMenuContainer,
+  );
+
   let secondaryMenu;
   let desktopSubNavPosition = POSITION.horizontal;
   let mobileSubNavPosition = POSITION.vertical;
 
   return (
-    <StyledRoot data-baseweb="app-nav-bar">
+    <Root {...rootProps} data-baseweb="app-nav-bar">
       {/* Mobile Nav Experience */}
       <div
         className={css({
@@ -130,22 +169,23 @@ export default function AppNavBar(props: AppNavBarPropsT) {
       >
         <Grid>
           <Cell span={[4, 8, 0]}>
-            <StyledSpacing>
+            <Spacing {...spacingProps}>
               {mainItems.length || userItems.length ? (
                 <MobileNav {...props} />
               ) : null}
-              <StyledAppName>{title}</StyledAppName>
-            </StyledSpacing>
+              <AppName {...appNameProps}>{title}</AppName>
+            </Spacing>
           </Cell>
         </Grid>
 
-        {secondaryMenu && mobileSubNavPosition === POSITION.horizontal ? (
+        {secondaryMenu && mobileSubNavPosition === POSITION.horizontal && (
           <SecondaryMenu
             items={secondaryMenu}
             mapItemToNode={mapItemToNode}
             onSelect={onMainItemSelect}
+            overrides={overrides}
           />
-        ) : null}
+        )}
       </div>
 
       {/* Desktop Nav Experience */}
@@ -158,15 +198,16 @@ export default function AppNavBar(props: AppNavBarPropsT) {
       >
         <Grid>
           <Cell span={[0, 3, 3]}>
-            <StyledSpacing>
+            <Spacing {...spacingProps}>
               {/* Replace with a Logo renderer */}
-              <StyledAppName>{title}</StyledAppName>
-            </StyledSpacing>
+              <AppName {...appNameProps}>{title}</AppName>
+            </Spacing>
           </Cell>
           <Cell span={userItems.length ? [0, 4, 8] : [0, 5, 9]}>
-            <StyledPrimaryMenuContainer
+            <PrimaryMenuContainer
               role="navigation"
               aria-label="Main navigation"
+              {...primaryMenuContainerProps}
             >
               {mainItems.map((item, index) => {
                 // For an active top level menu get the secondary navigation and its positioning
@@ -185,36 +226,39 @@ export default function AppNavBar(props: AppNavBarPropsT) {
                     key={index}
                     mapItemToNode={mapItemToNode}
                     onSelect={onMainItemSelect}
+                    overrides={overrides}
                   />
                 );
               })}
-            </StyledPrimaryMenuContainer>
+            </PrimaryMenuContainer>
           </Cell>
 
           {userItems.length ? (
             <Cell span={[0, 1, 1]}>
-              <StyledSpacing>
+              <Spacing {...spacingProps}>
                 <UserMenu
                   mapItemToNode={mapItemToNode}
                   onItemSelect={onUserItemSelect}
+                  overrides={overrides}
                   username={username}
                   usernameSubtitle={usernameSubtitle}
                   userImgUrl={userImgUrl}
                   userItems={userItems}
                 />
-              </StyledSpacing>
+              </Spacing>
             </Cell>
           ) : null}
         </Grid>
 
-        {secondaryMenu && desktopSubNavPosition === POSITION.horizontal ? (
+        {secondaryMenu && desktopSubNavPosition === POSITION.horizontal && (
           <SecondaryMenu
             items={secondaryMenu}
             mapItemToNode={mapItemToNode}
             onSelect={onMainItemSelect}
+            overrides={overrides}
           />
-        ) : null}
+        )}
       </div>
-    </StyledRoot>
+    </Root>
   );
 }

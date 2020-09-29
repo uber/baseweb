@@ -10,6 +10,7 @@ import * as React from 'react';
 
 import {Button} from '../button/index.js';
 import {Drawer, ANCHOR} from '../drawer/index.js';
+import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import ArrowLeft from '../icon/arrow-left.js';
 import MenuIcon from '../icon/menu.js';
 import {MenuAdapter, ListItemLabel, ARTWORK_SIZES} from '../list/index.js';
@@ -17,7 +18,7 @@ import {StatefulMenu} from '../menu/index.js';
 
 import {
   StyledSideMenuButton,
-  StyledUserMenuListItem,
+  StyledUserMenuProfileListItem,
 } from './styled-components.js';
 import type {AppNavBarPropsT, NavItemT} from './types.js';
 import UserProfileTile from './user-profile-tile.js';
@@ -27,11 +28,19 @@ const USER_TITLE_ITEM = 'USER_TITLE_ITEM';
 const USER_MENU_ITEM = 'USER_MENU_ITEM';
 const PARENT_MENU_ITEM = 'PARENT_MENU_ITEM';
 
-const MobileNavMenuItem = React.forwardRef<
-  {item: any, mapItemToNode: NavItemT => React.Node},
-  HTMLLIElement,
->((props, ref) => {
-  const {item, mapItemToNode = defaultMapItemToNode, ...restProps} = props;
+const MobileNavMenuItem = React.forwardRef((props, ref) => {
+  const {
+    item,
+    mapItemToNode = defaultMapItemToNode,
+    overrides = {},
+    ...restProps
+  } = props;
+
+  const [UserMenuProfileListItem, userMenuProfileListItemProps] = getOverrides(
+    overrides.UserMenuProfileListItem,
+    StyledUserMenuProfileListItem,
+  );
+
   if (item.PARENT_MENU_ITEM) {
     return (
       <MenuAdapter
@@ -47,10 +56,13 @@ const MobileNavMenuItem = React.forwardRef<
   if (item.USER_TITLE_ITEM) {
     // Replace with a user menu item renderer
     return (
-      // $FlowFixMe
-      <StyledUserMenuListItem {...restProps} ref={ref}>
+      <UserMenuProfileListItem
+        {...restProps}
+        {...userMenuProfileListItemProps}
+        ref={ref}
+      >
         <UserProfileTile {...item.item} />
-      </StyledUserMenuListItem>
+      </UserMenuProfileListItem>
     );
   }
   return (
@@ -67,7 +79,13 @@ const MobileNavMenuItem = React.forwardRef<
 });
 
 export default function MobileMenu(props: AppNavBarPropsT) {
-  const {mainItems = [], userItems = [], mapItemToNode, ...rest} = props;
+  const {
+    mainItems = [],
+    userItems = [],
+    mapItemToNode,
+    overrides = {},
+    ...rest
+  } = props;
 
   const items = [
     ...(userItems.length
@@ -96,35 +114,83 @@ export default function MobileMenu(props: AppNavBarPropsT) {
     setIsOpen(!isOpen);
   };
 
+  const [SideMenuButton, sideMenuButtonProps] = getOverrides(
+    overrides.SideMenuButton,
+    Button,
+  );
+  // $FlowFixMe
+  sideMenuButtonProps.overrides = mergeOverrides(
+    {BaseButton: {component: StyledSideMenuButton}},
+    // $FlowFixMe
+    sideMenuButtonProps.overrides,
+  );
+
+  const [MobileDrawer, drawerProps] = getOverrides(
+    overrides.MobileDrawer,
+    Drawer,
+  );
+  // $FlowFixMe
+  drawerProps.overrides = mergeOverrides(
+    {
+      DrawerBody: {
+        style: ({$theme}) => {
+          return {
+            marginTop: '0px',
+            marginBottom: '0px',
+            marginLeft: '0px',
+            marginRight: '0px',
+          };
+        },
+      },
+      // Removes the close icon from the drawer
+      Close: () => null,
+    },
+    // $FlowFixMe
+    drawerProps.overrides,
+  );
+
+  const [MobileMenu, menuProps] = getOverrides(
+    overrides.MobileMenu,
+    StatefulMenu,
+  );
+  // $FlowFixMe
+  menuProps.overrides = mergeOverrides(
+    {
+      List: {
+        style: {
+          paddingTop: '0',
+          paddingBottom: '0',
+          minHeight: '100vh',
+          boxShadow: 'none',
+        },
+      },
+      ListItem: {
+        component: listItemProps => (
+          <MobileNavMenuItem
+            {...listItemProps}
+            mapItemToNode={mapItemToNode}
+            overrides={overrides}
+          />
+        ),
+      },
+    },
+    // $FlowFixMe
+    menuProps.overrides,
+  );
+
   return (
     <>
-      <Button
-        overrides={{BaseButton: {component: StyledSideMenuButton}}}
-        onClick={toggleMenu}
-      >
+      <SideMenuButton onClick={toggleMenu} {...sideMenuButtonProps}>
         <MenuIcon size={'24px'} />
-      </Button>
-      <Drawer
+      </SideMenuButton>
+      <MobileDrawer
         anchor={ANCHOR.left}
         isOpen={isOpen}
         onClose={toggleMenu}
         size={'75%'}
-        overrides={{
-          DrawerBody: {
-            style: ({$theme}) => {
-              return {
-                marginTop: '0px',
-                marginBottom: '0px',
-                marginLeft: '0px',
-                marginRight: '0px',
-              };
-            },
-          },
-          // Removes the close icon from the drawer
-          Close: () => null,
-        }}
+        {...drawerProps}
       >
-        <StatefulMenu
+        <MobileMenu
           items={currentNavItems}
           onItemSelect={({item}) => {
             if (item.PARENT_MENU_ITEM) {
@@ -165,26 +231,9 @@ export default function MobileMenu(props: AppNavBarPropsT) {
             }
             toggleMenu();
           }}
-          overrides={{
-            List: {
-              style: {
-                paddingTop: '0',
-                paddingBottom: '0',
-                minHeight: '100vh',
-                boxShadow: 'none',
-              },
-            },
-            ListItem: {
-              component: listItemProps => (
-                <MobileNavMenuItem
-                  {...listItemProps}
-                  mapItemToNode={mapItemToNode}
-                />
-              ),
-            },
-          }}
+          {...menuProps}
         />
-      </Drawer>
+      </MobileDrawer>
     </>
   );
 }

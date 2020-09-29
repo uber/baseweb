@@ -41,6 +41,9 @@ export default function Scenario() {
         </div>
       )}
       onMainItemSelect={handleMainItemSelect}
+      username="Umka Marshmallow"
+      usernameSubtitle="5.0"
+      userImgUrl=""
     />
   );
 }
