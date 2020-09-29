@@ -142,6 +142,39 @@ When using **Gatsby** and `gatsby-plugin-styletron`, make sure to place `BasePro
 
 nesting. Otherwise, you could see this console warning: "_Did you forget to provide a Styletron engine instance..._".
 
+Furthermore, if you have a page that loads dynamically, you will have to dynamically import `styletron-engine-atomic` on the `useEffect` hook of your app's entry point:
+
+```javascript
+import { BaseProvider, LightTheme } from 'baseui';
+import React, { useEffect, useState } from 'react';
+import { Provider as StyletronProvider } from 'styletron-react';
+
+export default () => {
+  const [engine, setEngine] = useState(null);
+
+  useEffect(() => {
+    // Load the `styletron-engine-atomic` package dynamically.
+    // Reason: It requires use of `document`, which is not available
+    // outside the browser, so we need to wait until it successfully loads.
+    // Source: https://www.gatsbyjs.org/docs/debugging-html-builds/
+    import('styletron-engine-atomic').then(styletron => {
+      const clientEngine = new styletron.Client();
+      setEngine(clientEngine);
+    });
+  }, []);
+
+  if (!engine) return null;
+
+  return (
+    <StyletronProvider value={engine}>
+      <BaseProvider theme={LightTheme}>
+        {/* your code goes here */
+      </BaseProvider>
+    </StyletronProvider>
+  );
+};
+```
+
 ## Base Web for Designers
 
 Base Web is published on Figma Communities, so your design team can take advantage of the Base Web components too. Read more [here](https://baseweb.design/blog/base-figma-community/).
