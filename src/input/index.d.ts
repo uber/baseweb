@@ -44,6 +44,7 @@ export interface BaseInputProps<T> {
   autoFocus?: boolean;
   clearable?: boolean;
   clearOnEscape?: boolean;
+  maxLength?: number;
   disabled?: boolean;
   error?: boolean;
   positive?: boolean;
