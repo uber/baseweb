@@ -47,12 +47,12 @@ export default function Scenario() {
       ],
     },
   ]);
-  const [userItems, setUserItems] = React.useState([
+  const userItems = [
     {icon: Overflow, label: 'Account item1'},
     {icon: Overflow, label: 'Account item2'},
     {icon: Overflow, label: 'Account item3'},
     {icon: Overflow, label: 'Account item4'},
-  ]);
+  ];
 
   function handleMainItemSelect(item) {
     setMainItems(prev => setItemActive(prev, item));

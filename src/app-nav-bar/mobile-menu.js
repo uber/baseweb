@@ -20,7 +20,7 @@ import {
   StyledSideMenuButton,
   StyledUserMenuProfileListItem,
 } from './styled-components.js';
-import type {AppNavBarPropsT, NavItemT} from './types.js';
+import type {AppNavBarPropsT} from './types.js';
 import UserProfileTile from './user-profile-tile.js';
 import {defaultMapItemToNode} from './utils.js';
 
@@ -164,14 +164,14 @@ export default function MobileMenu(props: AppNavBarPropsT) {
           boxShadow: 'none',
         },
       },
-      ListItem: {
-        component: listItemProps => (
+      ListItem(listItemProps) {
+        return (
           <MobileNavMenuItem
             {...listItemProps}
             mapItemToNode={mapItemToNode}
             overrides={overrides}
           />
-        ),
+        );
       },
     },
     // $FlowFixMe

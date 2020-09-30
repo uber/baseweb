@@ -47,12 +47,12 @@ export default function Scenario() {
       ],
     },
   ]);
-  const [userItems, setUserItems] = React.useState([
+  const userItems = [
     {icon: Overflow, label: 'Account item1'},
     {icon: Overflow, label: 'Account item2'},
     {icon: Overflow, label: 'Account item3'},
     {icon: Overflow, label: 'Account item4'},
-  ]);
+  ];
 
   function handleMainItemSelect(item) {
     setMainItems(prev => setItemActive(prev, item));
@@ -78,7 +78,11 @@ export default function Scenario() {
         SecondaryMenuContainer: {style: {border: 'dashed 2px lightskyblue'}},
         SideMenuButton: {
           props: {
-            overrides: {BaseButton: props => <button {...props}>menu</button>},
+            overrides: {
+              BaseButton(props) {
+                return <button {...props}>menu</button>;
+              },
+            },
           },
         },
         UserMenuProfileListItem: {style: {border: 'solid 2px red'}},

@@ -16,7 +16,6 @@ import ChevronUpSmallFilled from '../icon/chevron-up.js';
 import {MenuAdapter, ListItemLabel, ARTWORK_SIZES} from '../list/index.js';
 import {StatefulMenu, StyledList} from '../menu/index.js';
 import {StatefulPopover, PLACEMENT, TRIGGER_TYPE} from '../popover/index.js';
-import {LabelMedium, ParagraphSmall} from '../typography/index.js';
 
 import {
   StyledUserMenuButton,
@@ -95,13 +94,13 @@ export default function UserMenuComponent(props: {|
         )),
         style: {width: MENU_ITEM_WIDTH},
       },
-      ListItem: {
-        component: listItemProps => (
+      ListItem(listItemProps) {
+        return (
           <UserMenuListItem
             {...listItemProps}
             mapItemToNode={props.mapItemToNode}
           />
-        ),
+        );
       },
     },
     // $FlowFixMe
