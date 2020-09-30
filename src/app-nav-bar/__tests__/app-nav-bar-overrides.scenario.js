@@ -68,6 +68,28 @@ export default function Scenario() {
       username="Umka Marshmallow"
       usernameSubtitle="5.0"
       userImgUrl=""
+      overrides={{
+        Root: {style: {border: 'dashed 2px red'}},
+        Spacing: {style: {border: 'dashed 2px orange'}},
+        AppName: {style: {border: 'dashed 2px yellow'}},
+        PrimaryMenuContainer: {style: {border: 'dashed 2px green'}},
+        MainMenuItem: {style: {border: 'dashed 2px blue'}},
+        SubnavContainer: {style: {border: 'dashed 2px purple'}},
+        SecondaryMenuContainer: {style: {border: 'dashed 2px lightskyblue'}},
+        SideMenuButton: {
+          props: {
+            overrides: {
+              BaseButton(props) {
+                return <button {...props}>menu</button>;
+              },
+            },
+          },
+        },
+        UserMenuProfileListItem: {style: {border: 'solid 2px red'}},
+        UserProfileInfoContainer: {style: {border: 'solid 2px blue'}},
+        UserProfilePictureContainer: {style: {border: 'solid 2px green'}},
+        UserProfileTileContainer: {style: {border: 'solid 2px purple'}},
+      }}
     />
   );
 }

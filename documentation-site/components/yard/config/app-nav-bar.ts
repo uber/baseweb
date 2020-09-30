@@ -1,124 +1,124 @@
-import {Unstable_AppNavBar} from 'baseui/app-nav-bar';
-import {
-  ChevronDown,
-  Delete,
-  Overflow,
-  Upload
-} from 'baseui/icon';
+import {AppNavBar, setItemActive} from 'baseui/app-nav-bar';
+import {ChevronDown, Delete, Overflow, Upload} from 'baseui/icon';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 
 const navBarProps = require('!!extract-react-types-loader!../../../../src/app-nav-bar/app-nav-bar.js');
 
 const NavigationBarConfig: TConfig = {
-  componentName: 'Unstable_AppNavBar',
+  componentName: 'AppNavBar',
   imports: {
     'baseui/app-nav-bar': {
-      named: ['Unstable_AppNavBar'],
+      named: ['AppNavBar', 'setItemActive'],
     },
     'baseui/icon': {
       named: ['ChevronDown', 'Delete', 'Overflow', 'Upload'],
     },
   },
   scope: {
-    Unstable_AppNavBar, 
-    ChevronDown, 
+    AppNavBar,
+    setItemActive,
+    ChevronDown,
     Delete,
     Overflow,
-    Upload
+    Upload,
   },
   theme: [],
   props: {
-    appDisplayName: {
-      value: '"Something App"',
+    title: {
+      value: '"Title"',
       type: PropTypes.ReactNode,
       description: 'Navigation bar title, application name, or logo.',
     },
-    appDisplayNameLink: {
-      value: '#',
-      type: PropTypes.String,
-      description: 'Alternative text description of the image.',
-    },
-    onNavItemSelect: {
-      value: '({item}) => console.log(item)',
-      type: PropTypes.Function,
-      description: 'Handler called when a menu item is selected.',
-    },
-    mainNav: {
-      hidden: true,
+
+    mainItems: {
       value: `[
-        {
-          icon: Upload, 
-          item: {label: 'Primary alpha1'},
-          mapItemToNode: item => item.label,
-          mapItemToString: item => item.label,
-        },
+        {icon: Upload, label: 'Main A'},
         {
           active: true,
           icon: ChevronDown,
-          item: {label: 'Primary alpha2'},
-          mapItemToNode: item => item.label,
-          mapItemToString: item => item.label,
+          label: 'Main B',
           navExitIcon: Delete,
-          nav: [
-            {
-              icon: Upload, 
-              item: {label: 'Secondary menu1'},
-              mapItemToNode: item => item.label,
-              mapItemToString: item => item.label,
-            },
-            {
-              icon: Upload, 
-              item: {label: 'Secondary menu2'},
-              mapItemToNode: item => item.label,
-              mapItemToString: item => item.label,
-            },
+          children: [
+            {icon: Upload, label: 'Secondary A'},
+            {icon: Upload, label: 'Secondary B'},
           ],
         },
       ]`,
       type: PropTypes.Array,
-      description:
-        'List of the primary navigation items.',
+      description: 'List of the primary navigation items.',
+      stateful: true,
+      hidden: true,
     },
+
+    onMainItemSelect: {
+      value:
+        '(item) => {\n setMainItems(prev =>\n   setItemActive(prev, item)\n )\n}',
+      type: PropTypes.Function,
+      description: 'Handler called when a menu item is selected.',
+    },
+
     username: {
       value: 'Umka Marshmallow',
       type: PropTypes.String,
       description: 'User profile name.',
     },
+
     usernameSubtitle: {
-      value: '5.0',
+      value: '"5 Stars"',
       type: PropTypes.ReactNode,
       description: 'User profile description or additional information.',
     },
+
     userImgUrl: {
       value: '',
       type: PropTypes.String,
       description: 'User profile image link.',
     },
-    userNav: {
+
+    userItems: {
       hidden: true,
       value: `[
         {
-          icon: Overflow, 
-          item: {label: 'Account item1'},
-          mapItemToNode: item => item.label,
-          mapItemToString: item => item.label,
+          icon: Overflow,
+          label: 'User A',
         },
         {
-          icon: Overflow, 
-          item: {label: 'Account item2'},
-          mapItemToNode: item => item.label,
-          mapItemToString: item => item.label,
+          icon: Overflow,
+          label: 'User B',
         },
       ]`,
       type: PropTypes.Array,
       description: 'List of the user profile navigation items.',
     },
+
+    onUserItemSelect: {
+      value: 'item => console.log(item)',
+      type: PropTypes.Function,
+      description: 'Handler called when a menu item is selected.',
+    },
+
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
-      custom: {},
+      custom: {
+        names: [
+          'Root',
+          'AppName',
+          'MainMenuItem',
+          'PrimaryMenuContainer',
+          'ProfileTileContainer',
+          'SecondaryMenuContainer',
+          'Spacing',
+          'SubnavContainer',
+          'UserMenuProfileListItem',
+          'UserProfileInfoContainer',
+          'UserProfilePictureContainer',
+          'UserProfileTileContainer',
+        ],
+        sharedProps: {},
+      },
     },
   },
   mapTokensToProps: {

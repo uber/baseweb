@@ -6,9 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-export {default as Unstable_AppNavBar} from './app-nav-bar.js';
+export {default as AppNavBar} from './app-nav-bar.js';
 export {POSITION} from './constants.js';
-// Styled elements
 export * from './styled-components.js';
-// Types
 export * from './types.js';
+
+export {setItemActive} from './utils.js';
