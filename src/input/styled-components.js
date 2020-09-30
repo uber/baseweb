@@ -408,7 +408,7 @@ export const InputContainer = styled<SharedPropsT>(
 function getInputColors($disabled, $isFocused, $error, colors) {
   if ($disabled) {
     return {
-      color: colors.contentSecondary,
+      color: colors.inputTextDisabled,
       caretColor: colors.contentPrimary,
       '::placeholder': {
         color: colors.inputPlaceholderDisabled,
