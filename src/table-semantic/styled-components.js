@@ -69,6 +69,7 @@ export const StyledTableHeadCell = styled<StyledTableHeadCellPropsT>(
       textAlign: 'left',
       verticalAlign: 'top',
       whiteSpace: 'nowrap',
+      zIndex: 1,
 
       // We have to use pseudo elements to add the border for headers
       // because browsers don't properly handle borders on sticky cells.
