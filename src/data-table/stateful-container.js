@@ -50,7 +50,7 @@ function useSortParameters(initialSortIndex = -1, initialSortDirection = null) {
   return [sortIndex, sortDirection, handleSort];
 }
 
-export function Unstable_StatefulContainer(props: StatefulContainerPropsT) {
+export function StatefulContainer(props: StatefulContainerPropsT) {
   useDuplicateColumnTitleWarning(props.columns);
   const [sortIndex, sortDirection, handleSort] = useSortParameters(
     props.initialSortIndex,

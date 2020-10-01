@@ -13,7 +13,7 @@ import {Tag, KIND as TAG_KIND} from '../../tag/index.js';
 import CategoricalColumn from '../column-categorical.js';
 import CustomColumn from '../column-custom.js';
 import StringColumn from '../column-string.js';
-import {Unstable_StatefulDataTable} from '../stateful-data-table.js';
+import {StatefulDataTable} from '../stateful-data-table.js';
 
 import AnimalData from './animal-data.js';
 
@@ -89,7 +89,7 @@ const rows = AnimalData.map(row => {
 export default function Scenario() {
   return (
     <div style={{height: '600px', width: '700px'}}>
-      <Unstable_StatefulDataTable columns={columns} rows={rows} />
+      <StatefulDataTable columns={columns} rows={rows} />
     </div>
   );
 }

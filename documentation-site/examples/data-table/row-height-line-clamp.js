@@ -3,7 +3,7 @@
 import React from 'react';
 
 import {
-  Unstable_StatefulDataTable,
+  StatefulDataTable,
   CategoricalColumn,
   NumericalColumn,
   StringColumn,
@@ -291,7 +291,7 @@ const rows = [
 export default () => {
   return (
     <div style={{height: '600px'}}>
-      <Unstable_StatefulDataTable
+      <StatefulDataTable
         columns={columns}
         rows={rows}
         rowHeight={78}

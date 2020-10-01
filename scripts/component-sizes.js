@@ -26,7 +26,7 @@ async function main() {
     button: 'Button',
     card: 'Card',
     checkbox: 'Checkbox',
-    'data-table': 'Unstable_StatefulDataTable',
+    'data-table': 'StatefulDataTable',
     datepicker: 'Datepicker',
     'dnd-list': 'List',
     drawer: 'Drawer',
