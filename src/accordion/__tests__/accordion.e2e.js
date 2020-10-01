@@ -16,7 +16,7 @@ const expanded = '[aria-expanded=true]';
 describe('accordion', () => {
   it('passes basic a11y tests', async () => {
     await mount(page, 'accordion');
-    await page.waitFor('ul');
+    await page.waitForSelector('ul');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });

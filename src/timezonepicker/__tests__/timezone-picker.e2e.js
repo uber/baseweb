@@ -24,16 +24,16 @@ const labelToShortCode = label => label.split(' ')[0];
 describe('TimezonePicker', () => {
   it('passes basic a11y tests', async () => {
     await mount(page, 'timezone-picker');
-    await page.waitFor(selectors.standard);
+    await page.waitForSelector(selectors.standard);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('provides appropriate zone options if standard time', async () => {
     await mount(page, 'timezone-picker');
-    await page.waitFor(selectors.standard);
+    await page.waitForSelector(selectors.standard);
     await page.click(`${selectors.standard} ${selectors.input}`);
-    await page.waitFor(selectors.dropdown);
+    await page.waitForSelector(selectors.dropdown);
     await page.keyboard.type('new york');
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
@@ -47,9 +47,9 @@ describe('TimezonePicker', () => {
 
   it('provides appropriate zone options if daylight savings time', async () => {
     await mount(page, 'timezone-picker');
-    await page.waitFor(selectors.daylight);
+    await page.waitForSelector(selectors.daylight);
     await page.click(`${selectors.daylight} ${selectors.input}`);
-    await page.waitFor(selectors.dropdown);
+    await page.waitForSelector(selectors.dropdown);
     await page.keyboard.type('new york');
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
@@ -63,7 +63,7 @@ describe('TimezonePicker', () => {
 
   it('prioritizes select with controlled value over browser default', async () => {
     await mount(page, 'timezone-picker');
-    await page.waitFor(selectors.controlled);
+    await page.waitForSelector(selectors.controlled);
     const initial = await page.$eval(
       `${selectors.controlled} ${selectors.value}`,
       select => select.textContent,
@@ -73,9 +73,9 @@ describe('TimezonePicker', () => {
 
   it('provides appropriate zone options if no acronym exists', async () => {
     await mount(page, 'timezone-picker');
-    await page.waitFor(selectors.daylight);
+    await page.waitForSelector(selectors.daylight);
     await page.click(`${selectors.daylight} ${selectors.input}`);
-    await page.waitFor(selectors.dropdown);
+    await page.waitForSelector(selectors.dropdown);
     await page.keyboard.type('minsk');
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');

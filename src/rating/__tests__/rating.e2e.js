@@ -18,14 +18,14 @@ const selectors = {
 describe('Rating', () => {
   it('passes basic a11y tests', async () => {
     await mount(page, 'rating-star');
-    await page.waitFor(selectors.container);
+    await page.waitForSelector(selectors.container);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('for a value of three, three stars are highlighted', async () => {
     await mount(page, 'rating-star');
-    await page.waitFor(selectors.container);
+    await page.waitForSelector(selectors.container);
 
     const highlightedStars = await page.$$eval(
       selectors.checked,
@@ -36,7 +36,7 @@ describe('Rating', () => {
 
   it('for a value of three, the third emoticon is highlighted', async () => {
     await mount(page, 'rating-emoticon');
-    await page.waitFor(selectors.container);
+    await page.waitForSelector(selectors.container);
 
     const highlightedEmoticons = await page.$$eval(
       selectors.checked,

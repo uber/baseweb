@@ -16,9 +16,9 @@ const selectors = {
 describe('tooltip', () => {
   it('passes basic a11y tests when hovered', async () => {
     await mount(page, 'tooltip');
-    await page.waitFor('span');
+    await page.waitForSelector('span');
     await page.hover('span');
-    await page.waitFor(selectors.tooltip);
+    await page.waitForSelector(selectors.tooltip);
     const accessibilityReport = await analyzeAccessibility(page);
     // focus locks applies guards with tabIndex=1 to trap the focus on purpose
     accessibilityReport.violations = accessibilityReport.violations.filter(

@@ -24,7 +24,7 @@ describe('data-table-extracted-filters', () => {
     await page.setViewport({width: 1366, height: 1000});
 
     await mount(page, 'data-table-extracted-filters');
-    await page.waitFor(TABLE_ROOT);
+    await page.waitForSelector(TABLE_ROOT);
     const phylumFilter = await page.$('#Phylum-filter');
     const checkboxes = await phylumFilter.$$('label[data-baseweb="checkbox"');
     await checkboxes[1].click();
