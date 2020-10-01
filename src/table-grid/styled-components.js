@@ -47,7 +47,7 @@ export const StyledHeadCell = withStyle<
       outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
       outlineOffset: '-3px',
     },
-    zIndex: 1,
+    zIndex: $sticky ? 1 : 'auto',
   };
 });
 
