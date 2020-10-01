@@ -9,12 +9,15 @@ import Example from '../../components/example';
 import Exports from '../../components/exports';
 import Layout from '../../components/layout';
 import SEO from '../../components/meta-seo';
-import appNavBarYardConfig from '../../components/yard/config/app-nav-bar';
 import ApiTable from '../../components/api-table';
+import Yard from '../../components/yard/index';
+import appNavBarYardConfig from '../../components/yard/config/app-nav-bar.ts';
 
 import * as AppNavBarExports from 'baseui/app-nav-bar';
 
 import Basic from 'examples/app-nav-bar/basic.js';
+import MapItemToNode from 'examples/app-nav-bar/map-item-to-node.js';
+import UniqueIdentifier from 'examples/app-nav-bar/unique-identifier.js';
 
 <SEO
   description="The shared navigation bar component enables users to orient and navigate different sections of applications reliably."
@@ -25,19 +28,35 @@ export default Layout;
 
 # Application navigation bar
 
+<Yard placeholderHeight={134} {...appNavBarYardConfig} />
+
 The navigation bar standardizes and creates a shared navigation experience across the applications and products.
 It enables users to orient and navigate different sections of applications reliably.
 
 ## Examples
 
-<Example title="Web application navigation bar " path="app-nav-bar/basic.js">
+<Example title="Basic example" path="app-nav-bar/basic.js">
   <Basic />
+</Example>
+
+You may need to render some icon or other non-text element in the menu item and the `mapItemToNode` prop is how
+to do it. Follow the example below to see how it renders colored borders on the item.
+
+<Example title="Custom menu item" path="app-nav-bar/map-item-to-node.js">
+  <MapItemToNode />
+</Example>
+
+The `AppNavBar` component comes with a `setItemActive` utility that will help manage the active state for you.
+This utility relies on unique label values to operate but can be customized following the example below.
+
+<Example title="Non unique labels" path="app-nav-bar/unique-identifier.js">
+  <UniqueIdentifier />
 </Example>
 
 ## API
 
 <ApiTable
-  title="Unstable_AppNavBar"
+  title="AppNavBar"
   config={appNavBarYardConfig}
   types={require('!!extract-react-types-loader!../../../src/app-nav-bar/app-nav-bar.js')}
 />

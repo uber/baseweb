@@ -163,14 +163,14 @@ export const StyledSecondaryMenuContainer = styled<{}>('div', ({$theme}) => {
 
 export const StyledUserMenuButton = StyledButton;
 
-export const StyledUserMenuListItem = withStyle<typeof StyledListItem, {}>(
-  StyledListItem,
-  ({$theme}) => ({
-    paddingTop: '0',
-    paddingBottom: '0',
-    ...($theme.direction === 'rtl' ? {paddingLeft: '0'} : {paddingRight: '0'}),
-  }),
-);
+export const StyledUserMenuProfileListItem = withStyle<
+  typeof StyledListItem,
+  {},
+>(StyledListItem, ({$theme}) => ({
+  paddingTop: '0',
+  paddingBottom: '0',
+  ...($theme.direction === 'rtl' ? {paddingLeft: '0'} : {paddingRight: '0'}),
+}));
 
 export const StyledUserProfileTileContainer = styled<{}>('div', ({$theme}) => {
   return {
