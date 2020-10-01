@@ -617,7 +617,7 @@ const InnerTableElement = React.forwardRef<
 });
 InnerTableElement.displayName = 'InnerTableElement';
 
-export function Unstable_DataTable(props: DataTablePropsT) {
+export function DataTable(props: DataTablePropsT) {
   const [, theme] = useStyletron();
   const locale = React.useContext(LocaleContext);
   const rowHeight = props.rowHeight || 36;

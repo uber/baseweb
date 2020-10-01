@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import StringColumn from '../column-string.js';
-import {Unstable_StatefulDataTable} from '../stateful-data-table.js';
+import {StatefulDataTable} from '../stateful-data-table.js';
 
 import AnimalData from './animal-data.js';
 
@@ -51,7 +51,7 @@ const actions = [
 export default function Scenario() {
   return (
     <div style={{height: '600px', width: '700px'}}>
-      <Unstable_StatefulDataTable
+      <StatefulDataTable
         batchActions={actions}
         columns={columns}
         rows={rows}

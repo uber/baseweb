@@ -12,7 +12,7 @@ import {
   AnchorColumn,
   CategoricalColumn,
   NumericalColumn,
-  Unstable_StatefulDataTable,
+  StatefulDataTable,
 } from '../index.js';
 
 import graphqlArrayData from './graphql-array-data.js';
@@ -76,7 +76,7 @@ const rows = [
 export default function Scenario() {
   return (
     <div style={{height: '600px', width: '700px'}}>
-      <Unstable_StatefulDataTable columns={columns} rows={rows} />
+      <StatefulDataTable columns={columns} rows={rows} />
     </div>
   );
 }

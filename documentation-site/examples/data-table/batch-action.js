@@ -6,7 +6,7 @@ import Alert from 'baseui/icon/alert.js';
 import Check from 'baseui/icon/check.js';
 
 import {
-  Unstable_StatefulDataTable,
+  StatefulDataTable,
   BooleanColumn,
   CategoricalColumn,
   NumericalColumn,
@@ -200,7 +200,7 @@ export default () => {
 
   return (
     <div style={{height: '300px'}}>
-      <Unstable_StatefulDataTable
+      <StatefulDataTable
         batchActions={batchActions}
         rowActions={rowActions}
         columns={columns}
