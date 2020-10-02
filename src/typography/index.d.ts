@@ -19,6 +19,24 @@ export const ParagraphLarge: React.FC<BlockProps>;
 export const ParagraphMedium: React.FC<BlockProps>;
 export const ParagraphSmall: React.FC<BlockProps>;
 export const ParagraphXSmall: React.FC<BlockProps>;
+export const MonoDisplayLarge: React.FC<BlockProps>;
+export const MonoDisplayMedium: React.FC<BlockProps>;
+export const MonoDisplaySmall: React.FC<BlockProps>;
+export const MonoDisplayXSmall: React.FC<BlockProps>;
+export const MonoHeadingXXLarge: React.FC<BlockProps>;
+export const MonoHeadingXLarge: React.FC<BlockProps>;
+export const MonoHeadingLarge: React.FC<BlockProps>;
+export const MonoHeadingMedium: React.FC<BlockProps>;
+export const MonoHeadingSmall: React.FC<BlockProps>;
+export const MonoHeadingXSmall: React.FC<BlockProps>;
+export const MonoLabelLarge: React.FC<BlockProps>;
+export const MonoLabelMedium: React.FC<BlockProps>;
+export const MonoLabelSmall: React.FC<BlockProps>;
+export const MonoLabelXSmall: React.FC<BlockProps>;
+export const MonoParagraphLarge: React.FC<BlockProps>;
+export const MonoParagraphMedium: React.FC<BlockProps>;
+export const MonoParagraphSmall: React.FC<BlockProps>;
+export const MonoParagraphXSmall: React.FC<BlockProps>;
 
 // TODO(v11): remove
 export const Caption1: React.FC<BlockProps>;
