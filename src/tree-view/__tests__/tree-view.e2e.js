@@ -46,7 +46,7 @@ describe('tree view', () => {
     const checkbox = '[data-baseweb="checkbox"]';
     const checkboxInput = '[data-baseweb="checkbox"] input';
     await mount(page, 'tree-view-interactable');
-    await page.waitFor(checkbox);
+    await page.waitForSelector(checkbox);
     let isChecked = await page.$eval(checkboxInput, i => i.checked);
     expect(isChecked).toBe(false);
     await page.click(checkbox);

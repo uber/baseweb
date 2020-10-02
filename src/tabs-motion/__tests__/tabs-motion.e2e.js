@@ -38,7 +38,7 @@ const isActiveEl = async el => {
 describe('tabs', () => {
   it('passes basic a11y tests', async () => {
     await mount(page, 'tabs-motion');
-    await page.waitFor('[role="tab"]');
+    await page.waitForSelector('[role="tab"]');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });

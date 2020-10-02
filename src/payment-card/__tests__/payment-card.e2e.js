@@ -17,7 +17,7 @@ const selectors = {
 describe('PaymentCard', () => {
   beforeEach(async () => {
     await mount(page, 'stateful-payment-card');
-    await page.waitFor(selectors.input);
+    await page.waitForSelector(selectors.input);
   });
 
   it('passes basic a11y tests', async () => {

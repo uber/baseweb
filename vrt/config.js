@@ -487,7 +487,7 @@ const config = {
             visible: true,
           });
           await page.click(firstOption);
-          await page.waitFor(dropdownSelector, {
+          await page.waitForSelector(dropdownSelector, {
             hidden: true,
           });
         },

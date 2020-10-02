@@ -12,14 +12,14 @@ const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 describe('tabs', () => {
   it('passes basic a11y tests', async () => {
     await mount(page, 'tabs');
-    await page.waitFor('[role="tab"]');
+    await page.waitForSelector('[role="tab"]');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('changes content on tab click', async () => {
     await mount(page, 'tabs');
-    await page.waitFor('[role="tab"]');
+    await page.waitForSelector('[role="tab"]');
 
     // verify initial state, tab 0 is visible, tab 1 and 2 are hidden
     let states = [true, false, false];

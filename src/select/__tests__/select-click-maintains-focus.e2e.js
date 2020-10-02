@@ -24,7 +24,7 @@ function getActiveTag(page) {
 describe('select option click returns focus', () => {
   it('returns focus to select input after clicking option', async () => {
     await mount(page, 'select-click-maintains-focus');
-    await page.waitFor(SELECT_INPUT);
+    await page.waitForSelector(SELECT_INPUT);
 
     const input = await page.$(SELECT_INPUT);
     await input.click();
