@@ -21,6 +21,9 @@ export const StyledRoot = styled<{}>('div', ({$theme}) => {
     borderTopRightRadius: $theme.borders.radius200,
     borderBottomRightRadius: $theme.borders.radius200,
     borderBottomLeftRadius: $theme.borders.radius200,
+    // Creates a stacking context so we can use z-index on the StyledTableHeadCell
+    // without affecting anything outside of this component.
+    transform: 'scale(1)',
   };
 });
 
