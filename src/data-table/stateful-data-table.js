@@ -21,9 +21,10 @@ import {Popover} from '../popover/index.js';
 import {useStyletron} from '../styles/index.js';
 import {Tag} from '../tag/index.js';
 import FilterMenu from './filter-menu.js';
-import {Unstable_DataTable} from './data-table.js';
-import {Unstable_StatefulContainer} from './stateful-container.js';
+import {DataTable} from './data-table.js';
+import {StatefulContainer} from './stateful-container.js';
 import type {StatefulDataTablePropsT} from './types.js';
+import {LocaleContext} from '../locale/index.js';
 
 function useResizeObserver(
   ref: {current: HTMLElement | null},
@@ -43,6 +44,7 @@ function useResizeObserver(
 
 function QueryInput(props) {
   const [css, theme] = useStyletron();
+  const locale = React.useContext(LocaleContext);
   const [value, setValue] = React.useState('');
 
   React.useEffect(() => {
@@ -53,7 +55,7 @@ function QueryInput(props) {
   return (
     <div className={css({width: '375px', marginBottom: theme.sizing.scale500})}>
       <Input
-        aria-label="Search by text"
+        aria-label={locale.datatable.searchAriaLabel}
         overrides={{
           Before: function Before() {
             return (
@@ -140,7 +142,7 @@ function FilterTag(props) {
   );
 }
 
-export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
+export function StatefulDataTable(props: StatefulDataTablePropsT) {
   const [css, theme] = useStyletron();
   const headlineRef = React.useRef(null);
   const [headlineHeight, setHeadlineHeight] = React.useState(64);
@@ -152,11 +154,13 @@ export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
   const searchable = props.searchable === undefined ? true : props.searchable;
 
   return (
-    <Unstable_StatefulContainer
+    <StatefulContainer
       batchActions={props.batchActions}
       columns={props.columns}
       initialFilters={props.initialFilters}
       initialSelectedRowIds={props.initialSelectedRowIds}
+      initialSortIndex={props.initialSortIndex}
+      initialSortDirection={props.initialSortDirection}
       onFilterAdd={props.onFilterAdd}
       onFilterRemove={props.onFilterRemove}
       onIncludedRowsChange={props.onIncludedRowsChange}
@@ -278,7 +282,7 @@ export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
           <div
             style={{width: '100%', height: `calc(100% - ${headlineHeight}px)`}}
           >
-            <Unstable_DataTable
+            <DataTable
               batchActions={props.batchActions}
               columns={props.columns}
               emptyMessage={props.emptyMessage}
@@ -304,6 +308,6 @@ export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
           </div>
         </React.Fragment>
       )}
-    </Unstable_StatefulContainer>
+    </StatefulContainer>
   );
 }

@@ -5,25 +5,20 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
+import {useStyletron} from 'baseui';
+import * as TokensExports from 'baseui/tokens';
+
 import Example from '../../components/example';
 import Layout from '../../components/layout';
 import BasicExample from 'examples/tokens/basic.js';
 import Exports from '../../components/exports';
 
-import * as TokensExports from 'baseui/tokens';
-
 export default Layout;
 
 export function ColorPreviewContainer(props) {
+  const [css, theme] = useStyletron();
   return (
-    <div
-      style={{
-        fontFamily: 'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace',
-        fontSize: '14px',
-        lineHeight: 1,
-      }}
-      {...props}
-    />
+    <div className={css({...theme.typography.MonoParagraphSmall})} {...props} />
   );
 }
 export function ColorPreview({name, value, displayValue}) {

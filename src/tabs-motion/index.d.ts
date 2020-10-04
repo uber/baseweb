@@ -86,7 +86,6 @@ interface TabOverrides {
   }>;
   TabPanel?: Override<{
     $pad?: boolean;
-    $focusVisible?: boolean;
   }>;
 }
 

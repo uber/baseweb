@@ -38,7 +38,6 @@ export const Link = styled<{
         ? underlineRTL
         : underlineLTR
       : 'none',
-    backgroundPosition: '0 bottom 0 bottom',
     ':hover': {
       color: colors.linkHover,
       backgroundSize:

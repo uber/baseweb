@@ -37,8 +37,10 @@ export const StyledContent = styled<StyledContentPropsT>(
       flexGrow: 1,
       height: $sublist ? '48px' : '72px',
       justifyContent: 'space-between',
-      paddingRight: $theme.sizing.scale600,
       marginLeft: $mLeft ? $theme.sizing.scale600 : null,
+      ...($theme.direction === 'rtl'
+        ? {paddingLeft: $theme.sizing.scale600}
+        : {paddingRight: $theme.sizing.scale600}),
     };
   },
 );

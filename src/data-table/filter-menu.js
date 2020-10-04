@@ -17,6 +17,7 @@ import getBuiId from '../utils/get-bui-id.js';
 import {COLUMNS} from './constants.js';
 import {matchesQuery} from './text-search.js';
 import type {ColumnT} from './types.js';
+import {LocaleContext} from '../locale/index.js';
 
 import {isFocusVisible} from '../utils/focusVisible.js';
 
@@ -53,6 +54,7 @@ type OptionsPropsT = {
 
 function Options(props: OptionsPropsT) {
   const [css, theme] = useStyletron();
+  const locale = React.useContext(LocaleContext);
   const inputRef = React.useRef(null);
   React.useEffect(() => {
     if (inputRef.current) {
@@ -93,7 +95,7 @@ function Options(props: OptionsPropsT) {
           paddingLeft: theme.sizing.scale600,
         })}
       >
-        Select column to filter by
+        {locale.datatable.optionsLabel}
       </p>
 
       {props.searchable && (
@@ -108,7 +110,7 @@ function Options(props: OptionsPropsT) {
             inputRef={inputRef}
             value={props.query}
             onChange={event => props.onQueryChange(event.target.value)}
-            placeholder="Search for a column to filter by..."
+            placeholder={locale.datatable.optionsSearch}
             size={INPUT_SIZE.compact}
             clearable
           />
@@ -123,7 +125,7 @@ function Options(props: OptionsPropsT) {
             paddingLeft: theme.sizing.scale600,
           })}
         >
-          No columns available.
+          {locale.datatable.optionsEmpty}
         </div>
       )}
 
@@ -208,6 +210,7 @@ type PropsT = {
 
 function FilterMenu(props: PropsT) {
   const [, theme] = useStyletron();
+  const locale = React.useContext(LocaleContext);
   const [isOpen, setIsOpen] = React.useState(false);
   const [highlightIndex, setHighlightIndex] = React.useState(-1);
   const [query, setQuery] = React.useState('');
@@ -319,7 +322,7 @@ function FilterMenu(props: PropsT) {
           },
         }}
       >
-        Add Filter
+        {locale.datatable.filterAdd}
       </Button>
     </Popover>
   );

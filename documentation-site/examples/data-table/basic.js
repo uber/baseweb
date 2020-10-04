@@ -3,7 +3,7 @@
 import React from 'react';
 import {useStyletron} from 'baseui';
 import {
-  Unstable_StatefulDataTable,
+  StatefulDataTable,
   BooleanColumn,
   CategoricalColumn,
   CustomColumn,
@@ -164,7 +164,7 @@ export default () => {
   const [css] = useStyletron();
   return (
     <div className={css({height: '800px'})}>
-      <Unstable_StatefulDataTable columns={columns} rows={rows} />
+      <StatefulDataTable columns={columns} rows={rows} />
     </div>
   );
 };

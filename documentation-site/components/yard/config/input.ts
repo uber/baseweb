@@ -183,13 +183,13 @@ export const inputProps = {
   },
   min: {
     value: undefined,
-    type: PropTypes.String,
+    type: PropTypes.Number,
     description: 'min value when used as input type=number',
     hidden: true,
   },
   max: {
     value: undefined,
-    type: PropTypes.String,
+    type: PropTypes.Number,
     description: 'max value when used as input type=number',
     hidden: true,
   },

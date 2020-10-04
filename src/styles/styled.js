@@ -35,7 +35,7 @@ export type StyletronComponent<
 };
 
 type StyleFn<Theme> = {
-  (string): StyletronComponent<{||}>,
+  (string): StyletronComponent<{}>,
 
   (string, StyleObject): StyletronComponent<{}>,
 

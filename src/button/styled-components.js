@@ -34,21 +34,10 @@ export const BaseButton = styled<SharedStylePropsT>(
     borderTopStyle: 'none',
     borderRightStyle: 'none',
     borderBottomStyle: 'none',
-    outline:
-      $isFocusVisible &&
-      $shape !== SHAPE.circle &&
-      $shape !== SHAPE.round &&
-      $shape !== SHAPE.pill
-        ? `3px solid ${$theme.colors.accent}`
-        : 'none',
-    outlineOffset: '-3px',
-    boxShadow:
-      $isFocusVisible &&
-      ($shape === SHAPE.circle ||
-        $shape === SHAPE.round ||
-        $shape === SHAPE.pill)
-        ? `0 0 0 3px ${$theme.colors.accent}`
-        : 'none',
+    outline: 'none',
+    boxShadow: $isFocusVisible
+      ? `inset 0 0 0 3px ${$theme.colors.accent}`
+      : 'none',
     textDecoration: 'none',
     WebkitAppearance: 'none',
     transitionProperty: 'background',

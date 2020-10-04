@@ -254,6 +254,250 @@ export const ParagraphXSmall = React.forwardRef<BlockPropsT, HTMLElement>(
 );
 ParagraphXSmall.displayName = 'ParagraphXSmall';
 
+export const MonoDisplayLarge = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props, ref) => (
+    <Block
+      data-baseweb="typo-monodisplaylarge"
+      {...props}
+      font={props.font || 'MonoDisplayLarge'}
+      color={props.color || 'contentPrimary'}
+      ref={ref}
+    />
+  ),
+);
+MonoDisplayLarge.displayName = 'MonoDisplayLarge';
+
+export const MonoDisplayMedium = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props, ref) => (
+    <Block
+      data-baseweb="typo-monodisplaymedium"
+      {...props}
+      font={props.font || 'MonoDisplayMedium'}
+      color={props.color || 'contentPrimary'}
+      ref={ref}
+    />
+  ),
+);
+MonoDisplayMedium.displayName = 'MonoDisplayMedium';
+
+export const MonoDisplaySmall = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props, ref) => (
+    <Block
+      data-baseweb="typo-monodisplaysmall"
+      {...props}
+      font={props.font || 'MonoDisplaySmall'}
+      color={props.color || 'contentPrimary'}
+      ref={ref}
+    />
+  ),
+);
+MonoDisplaySmall.displayName = 'MonoDisplaySmall';
+
+export const MonoDisplayXSmall = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props, ref) => (
+    <Block
+      data-baseweb="typo-monodisplayxsmall"
+      {...props}
+      font={props.font || 'MonoDisplayXSmall'}
+      color={props.color || 'contentPrimary'}
+      ref={ref}
+    />
+  ),
+);
+MonoDisplayXSmall.displayName = 'MonoDisplayXSmall';
+
+export const MonoHeadingXXLarge = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props, ref) => (
+    <Block
+      data-baseweb="typo-monoheadingxxlarge"
+      as={props.as || 'h1'}
+      {...props}
+      font={props.font || 'MonoHeadingXXLarge'}
+      color={props.color || 'contentPrimary'}
+      ref={ref}
+    />
+  ),
+);
+MonoHeadingXXLarge.displayName = 'MonoHeadingXXLarge';
+
+export const MonoHeadingXLarge = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props, ref) => (
+    <Block
+      data-baseweb="typo-monoheadingxlarge"
+      as={props.as || 'h2'}
+      {...props}
+      font={props.font || 'MonoHeadingXLarge'}
+      color={props.color || 'contentPrimary'}
+      ref={ref}
+    />
+  ),
+);
+MonoHeadingXLarge.displayName = 'MonoHeadingXLarge';
+
+export const MonoHeadingLarge = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props, ref) => (
+    <Block
+      data-baseweb="typo-monoheadinglarge"
+      as={props.as || 'h3'}
+      {...props}
+      font={props.font || 'MonoHeadingLarge'}
+      color={props.color || 'contentPrimary'}
+      ref={ref}
+    />
+  ),
+);
+MonoHeadingLarge.displayName = 'MonoHeadingLarge';
+
+export const MonoHeadingMedium = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props, ref) => (
+    <Block
+      data-baseweb="typo-monoheadingmedium"
+      as={props.as || 'h4'}
+      {...props}
+      font={props.font || 'MonoHeadingMedium'}
+      color={props.color || 'contentPrimary'}
+      ref={ref}
+    />
+  ),
+);
+MonoHeadingMedium.displayName = 'MonoHeadingMedium';
+
+export const MonoHeadingSmall = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props, ref) => (
+    <Block
+      data-baseweb="typo-monoheadingsmall"
+      as={props.as || 'h5'}
+      {...props}
+      font={props.font || 'MonoHeadingSmall'}
+      color={props.color || 'contentPrimary'}
+      ref={ref}
+    />
+  ),
+);
+MonoHeadingSmall.displayName = 'MonoHeadingSmall';
+
+export const MonoHeadingXSmall = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props, ref) => (
+    <Block
+      data-baseweb="typo-monoheadingxsmall"
+      as={props.as || 'h6'}
+      {...props}
+      font={props.font || 'MonoHeadingXSmall'}
+      color={props.color || 'contentPrimary'}
+      ref={ref}
+    />
+  ),
+);
+MonoHeadingXSmall.displayName = 'MonoHeadingXSmall';
+
+export const MonoLabelLarge = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props, ref) => (
+    <Block
+      data-baseweb="typo-monolabellarge"
+      {...props}
+      font={props.font || 'MonoLabelLarge'}
+      color={props.color || 'contentPrimary'}
+      ref={ref}
+    />
+  ),
+);
+MonoLabelLarge.displayName = 'MonoLabelLarge';
+
+export const MonoLabelMedium = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props, ref) => (
+    <Block
+      data-baseweb="typo-monolabelmedium"
+      {...props}
+      font={props.font || 'MonoLabelMedium'}
+      color={props.color || 'contentPrimary'}
+      ref={ref}
+    />
+  ),
+);
+MonoLabelMedium.displayName = 'MonoLabelMedium';
+
+export const MonoLabelSmall = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props, ref) => (
+    <Block
+      data-baseweb="typo-monolabelsmall"
+      {...props}
+      font={props.font || 'MonoLabelSmall'}
+      color={props.color || 'contentPrimary'}
+      ref={ref}
+    />
+  ),
+);
+MonoLabelSmall.displayName = 'MonoLabelSmall';
+
+export const MonoLabelXSmall = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props, ref) => (
+    <Block
+      data-baseweb="typo-monolabelxsmall"
+      {...props}
+      font={props.font || 'MonoLabelXSmall'}
+      color={props.color || 'contentPrimary'}
+      ref={ref}
+    />
+  ),
+);
+MonoLabelXSmall.displayName = 'MonoLabelXSmall';
+
+export const MonoParagraphLarge = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props, ref) => (
+    <Block
+      data-baseweb="typo-monoparagraphlarge"
+      as={props.as || 'p'}
+      {...props}
+      font={props.font || 'MonoParagraphLarge'}
+      color={props.color || 'contentPrimary'}
+      ref={ref}
+    />
+  ),
+);
+MonoParagraphLarge.displayName = 'MonoParagraphLarge';
+
+export const MonoParagraphMedium = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props, ref) => (
+    <Block
+      data-baseweb="typo-monoparagraphmedium"
+      as={props.as || 'p'}
+      {...props}
+      font={props.font || 'MonoParagraphMedium'}
+      color={props.color || 'contentPrimary'}
+      ref={ref}
+    />
+  ),
+);
+MonoParagraphMedium.displayName = 'MonoParagraphMedium';
+
+export const MonoParagraphSmall = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props, ref) => (
+    <Block
+      data-baseweb="typo-monoparagraphsmall"
+      as={props.as || 'p'}
+      {...props}
+      font={props.font || 'MonoParagraphSmall'}
+      color={props.color || 'contentPrimary'}
+      ref={ref}
+    />
+  ),
+);
+MonoParagraphSmall.displayName = 'MonoParagraphSmall';
+
+export const MonoParagraphXSmall = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props, ref) => (
+    <Block
+      data-baseweb="typo-monoparagraphxsmall"
+      as={props.as || 'p'}
+      {...props}
+      font={props.font || 'MonoParagraphXSmall'}
+      color={props.color || 'contentPrimary'}
+      ref={ref}
+    />
+  ),
+);
+MonoParagraphXSmall.displayName = 'MonoParagraphXSmall';
+
 // TODO(v11): remove
 // Aliases for backwards compatibility
 export const Display = DisplayLarge;

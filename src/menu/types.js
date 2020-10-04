@@ -277,3 +277,12 @@ export type OptionProfilePropsT = {
   /** Renders all menu content for SEO purposes regardless of menu  state */
   renderAll?: boolean,
 };
+
+export type NestedMenuRefT = {current: HTMLElement | null};
+export type NestedMenuContextT = {|
+  addMenuToNesting: (ref: NestedMenuRefT) => void,
+  removeMenuFromNesting: (ref: NestedMenuRefT) => void,
+  getParentMenu: (ref: NestedMenuRefT) => ?NestedMenuRefT,
+  getChildMenu: (ref: NestedMenuRefT) => ?NestedMenuRefT,
+  mountRef: NestedMenuRefT,
+|};

@@ -27,9 +27,11 @@ function useDuplicateColumnTitleWarning(columns: ColumnT<>[]) {
   }, [columns]);
 }
 
-function useSortParameters() {
-  const [sortIndex, setSortIndex] = React.useState(-1);
-  const [sortDirection, setSortDirection] = React.useState(null);
+function useSortParameters(initialSortIndex = -1, initialSortDirection = null) {
+  const [sortIndex, setSortIndex] = React.useState(initialSortIndex);
+  const [sortDirection, setSortDirection] = React.useState(
+    initialSortDirection,
+  );
 
   function handleSort(columnIndex) {
     if (columnIndex === sortIndex) {
@@ -48,9 +50,12 @@ function useSortParameters() {
   return [sortIndex, sortDirection, handleSort];
 }
 
-export function Unstable_StatefulContainer(props: StatefulContainerPropsT) {
+export function StatefulContainer(props: StatefulContainerPropsT) {
   useDuplicateColumnTitleWarning(props.columns);
-  const [sortIndex, sortDirection, handleSort] = useSortParameters();
+  const [sortIndex, sortDirection, handleSort] = useSortParameters(
+    props.initialSortIndex,
+    props.initialSortDirection,
+  );
   const [filters, setFilters] = React.useState(
     props.initialFilters || new Map(),
   );

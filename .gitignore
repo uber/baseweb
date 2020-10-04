@@ -29,4 +29,3 @@ versions.json
 __artifacts__
 # Local Netlify folder
 .netlify
-.env

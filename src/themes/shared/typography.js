@@ -12,6 +12,8 @@ export const defaultFontTokens: FontTokensT = {
     'system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif',
 };
 
+const monoFontFamily = '"Lucida Console", Monaco, monospace';
+
 export default (fontTokens?: FontTokensT = defaultFontTokens): TypographyT => {
   const font100 = {
     fontFamily: fontTokens.primaryFontFamily,
@@ -141,6 +143,7 @@ export default (fontTokens?: FontTokensT = defaultFontTokens): TypographyT => {
     font1250,
     font1350,
     font1450,
+
     ParagraphXSmall: font100,
     ParagraphSmall: font200,
     ParagraphMedium: font300,
@@ -159,5 +162,24 @@ export default (fontTokens?: FontTokensT = defaultFontTokens): TypographyT => {
     DisplaySmall: font1250,
     DisplayMedium: font1350,
     DisplayLarge: font1450,
+
+    MonoParagraphXSmall: {...font100, fontFamily: monoFontFamily},
+    MonoParagraphSmall: {...font200, fontFamily: monoFontFamily},
+    MonoParagraphMedium: {...font300, fontFamily: monoFontFamily},
+    MonoParagraphLarge: {...font400, fontFamily: monoFontFamily},
+    MonoLabelXSmall: {...font150, fontFamily: monoFontFamily},
+    MonoLabelSmall: {...font250, fontFamily: monoFontFamily},
+    MonoLabelMedium: {...font350, fontFamily: monoFontFamily},
+    MonoLabelLarge: {...font450, fontFamily: monoFontFamily},
+    MonoHeadingXSmall: {...font550, fontFamily: monoFontFamily},
+    MonoHeadingSmall: {...font650, fontFamily: monoFontFamily},
+    MonoHeadingMedium: {...font750, fontFamily: monoFontFamily},
+    MonoHeadingLarge: {...font850, fontFamily: monoFontFamily},
+    MonoHeadingXLarge: {...font950, fontFamily: monoFontFamily},
+    MonoHeadingXXLarge: {...font1050, fontFamily: monoFontFamily},
+    MonoDisplayXSmall: {...font1150, fontFamily: monoFontFamily},
+    MonoDisplaySmall: {...font1250, fontFamily: monoFontFamily},
+    MonoDisplayMedium: {...font1350, fontFamily: monoFontFamily},
+    MonoDisplayLarge: {...font1450, fontFamily: monoFontFamily},
   };
 };

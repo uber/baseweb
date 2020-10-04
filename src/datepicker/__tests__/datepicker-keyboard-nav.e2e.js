@@ -42,13 +42,13 @@ const isActiveEl = async (page, selector) => {
 describe('Datepicker - keyboard navigation', () => {
   it('calendar is focusable and can be navigated in', async () => {
     await mount(page, 'datepicker');
-    await page.waitFor(selectors.input);
+    await page.waitForSelector(selectors.input);
     await page.focus(selectors.input);
     const isInputActive = await isActiveEl(page, selectors.input);
     expect(isInputActive).toBe(true);
-    await page.waitFor(selectors.calendar);
+    await page.waitForSelector(selectors.calendar);
     // march should be visible
-    await page.waitFor(selectors.mar10);
+    await page.waitForSelector(selectors.mar10);
 
     // focus the calendar
     await page.keyboard.press('ArrowDown');
@@ -86,9 +86,9 @@ describe('Datepicker - keyboard navigation', () => {
     // press the next month button
     await page.keyboard.press('Enter');
     // make sure March is gone
-    await page.waitFor(selectors.mar10, {hidden: true});
+    await page.waitForSelector(selectors.mar10, {hidden: true});
     // and make sure April is now visible
-    await page.waitFor(selectors.apr1);
+    await page.waitForSelector(selectors.apr1);
 
     // tab into the calendar
     await page.keyboard.press('Tab');
@@ -117,14 +117,14 @@ describe('Datepicker - keyboard navigation', () => {
 
   it('calendar sets highlighted date appropriately when selecting a new date or navigating around', async () => {
     await mount(page, 'datepicker-range-highlight');
-    await page.waitFor(selectors.input);
+    await page.waitForSelector(selectors.input);
     // open the calendar by moving focus into input
     await page.focus(selectors.input);
     let isInputActive = await isActiveEl(page, selectors.input);
     expect(isInputActive).toBe(true);
-    await page.waitFor(selectors.calendar);
+    await page.waitForSelector(selectors.calendar);
     // march should be visible
-    await page.waitFor(selectors.mar10);
+    await page.waitForSelector(selectors.mar10);
 
     // focus the calendar
     await page.keyboard.press('ArrowDown');
@@ -143,7 +143,7 @@ describe('Datepicker - keyboard navigation', () => {
     await page.keyboard.press('Enter');
 
     // check that calendar stays opened
-    await page.waitFor(selectors.calendar);
+    await page.waitForSelector(selectors.calendar);
 
     // check that Mar 12 is still an active element
     isMar12Active = await isActiveEl(page, selectors.mar12Selected);
@@ -166,7 +166,7 @@ describe('Datepicker - keyboard navigation', () => {
     await page.keyboard.press('Enter');
 
     // check that calendar is closed and input gets focus
-    await page.waitFor(selectors.calendar, {hidden: true});
+    await page.waitForSelector(selectors.calendar, {hidden: true});
     isInputActive = await isActiveEl(page, selectors.input);
     expect(isInputActive).toBe(true);
 
@@ -177,7 +177,7 @@ describe('Datepicker - keyboard navigation', () => {
 
     // open the calendar again
     await page.keyboard.press('ArrowDown');
-    await page.waitFor(selectors.calendar);
+    await page.waitForSelector(selectors.calendar);
     // focus the calendar
     await page.keyboard.press('ArrowDown');
     // check that the first date (Mar 12) in the selected range is active
@@ -240,9 +240,9 @@ describe('Datepicker - keyboard navigation', () => {
     // press the next month button
     await page.keyboard.press('Enter');
     // make sure March is gone
-    await page.waitFor(selectors.mar14, {hidden: true});
+    await page.waitForSelector(selectors.mar14, {hidden: true});
     // and make sure April is now visible
-    await page.waitFor(selectors.apr1);
+    await page.waitForSelector(selectors.apr1);
 
     // tab into the calendar
     await page.keyboard.press('Tab');
@@ -263,9 +263,9 @@ describe('Datepicker - keyboard navigation', () => {
     // press the prev month button
     await page.keyboard.press('Enter');
     // make sure April is gone
-    await page.waitFor(selectors.apr1, {hidden: true});
+    await page.waitForSelector(selectors.apr1, {hidden: true});
     // and make sure March is now visible
-    await page.waitFor(selectors.mar10);
+    await page.waitForSelector(selectors.mar10);
 
     // navigate back into the calendar and check the focused date
     // to be the beginning of the selected range (Mar 12)

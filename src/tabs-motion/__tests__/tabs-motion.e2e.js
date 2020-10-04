@@ -38,7 +38,7 @@ const isActiveEl = async el => {
 describe('tabs', () => {
   it('passes basic a11y tests', async () => {
     await mount(page, 'tabs-motion');
-    await page.waitFor('[role="tab"]');
+    await page.waitForSelector('[role="tab"]');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
@@ -109,14 +109,11 @@ describe('tabs', () => {
     expect(await isActiveEl(tabs[1])).toBeTruthy();
   });
 
-  it('*tab* moves focus to tabpanel and then tab content', async () => {
+  it('*tab* moves focus to tab content', async () => {
     await mount(page, 'tabs-motion-focus');
     const tabs = await getTabs();
     await tabs[1].focus();
     expect(await isActiveEl(tabs[1])).toBeTruthy();
-    await page.keyboard.press('Tab');
-    const tabPanel = await page.$('#tab-panel');
-    expect(await isActiveEl(tabPanel)).toBeTruthy();
     await page.keyboard.press('Tab');
     const tabContent = await page.$('#tab-content');
     expect(await isActiveEl(tabContent)).toBeTruthy();

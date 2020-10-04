@@ -18,14 +18,14 @@ const selectors = {
 describe('pagination', () => {
   it('passes basic accessibility tests', async () => {
     await mount(page, 'pagination');
-    await page.waitFor(selectors.prevButton);
+    await page.waitForSelector(selectors.prevButton);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('can be navigated using the prev and next buttons', async () => {
     await mount(page, 'pagination');
-    await page.waitFor(selectors.prevButton);
+    await page.waitForSelector(selectors.prevButton);
     // assert initial state
     const initialValue = await page.$eval(
       selectors.dropDownButton,
@@ -52,7 +52,7 @@ describe('pagination', () => {
 
   it('can be navigated using the dropdown menu', async () => {
     await mount(page, 'pagination');
-    await page.waitFor(selectors.prevButton);
+    await page.waitForSelector(selectors.prevButton);
     // assert initial state
     const initialValue = await page.$eval(
       selectors.dropDownButton,

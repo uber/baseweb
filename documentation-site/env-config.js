@@ -17,9 +17,6 @@ if (prod) {
 module.exports = {
   'process.env.STATIC_ROOT': '/',
   'process.env.GITHUB_AUTH_TOKEN': process.env.GITHUB_AUTH_TOKEN || '',
-  // These are required to render pages at /guidelines based on a figma file
-  'process.env.FIGMA_AUTH_TOKEN': process.env.FIGMA_AUTH_TOKEN || '',
-  'process.env.FIGMA_FILE_ID': process.env.FIGMA_FILE_ID || '',
   // commit_ref used for type cheat sheet, links on doc site direct to github repo at commit
   // COMMIT_REF env var is populated from netlify build.
   // https://www.netlify.com/docs/continuous-deployment/#environment-variables

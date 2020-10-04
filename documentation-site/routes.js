@@ -271,6 +271,10 @@ const routes = [
             itemId: '/components/skeleton',
           },
           {
+            title: 'Snackbar',
+            itemId: '/components/snackbar',
+          },
+          {
             title: 'Spinner',
             itemId: '/components/spinner',
           },

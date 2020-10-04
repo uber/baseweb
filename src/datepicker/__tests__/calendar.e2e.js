@@ -32,7 +32,7 @@ const isActiveEl = async (page, selector) => {
 describe('Calendar', () => {
   it('calendar passes basic a11y tests', async () => {
     await mount(page, 'calendar');
-    await page.waitFor(selectors.calendar);
+    await page.waitForSelector(selectors.calendar);
     const accessibilityReport = await analyzeAccessibility(page, {
       rules: [
         {
@@ -45,8 +45,8 @@ describe('Calendar', () => {
   });
   const waitTillDay = async page => {
     await mount(page, 'calendar');
-    await page.waitFor(selectors.calendar);
-    await page.waitFor(selectors.day0);
+    await page.waitForSelector(selectors.calendar);
+    await page.waitForSelector(selectors.day0);
     await page.focus(selectors.day0);
   };
 

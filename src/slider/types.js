@@ -22,6 +22,7 @@ export type OverridesT = {
   Thumb?: OverrideT,
   InnerThumb?: OverrideT,
   ThumbValue?: OverrideT,
+  Mark?: OverrideT,
 };
 
 export type PropsT = {
@@ -36,6 +37,8 @@ export type PropsT = {
   overrides?: OverridesT,
   /** Disable control from being changed. */
   disabled?: boolean,
+  /** Display a mark at each step. */
+  marks?: boolean,
   /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
   onChange?: ({
     ...ParamsT,
@@ -79,6 +82,7 @@ export type StatefulSliderPropsT = {
   min?: number,
   max?: number,
   step?: number,
+  marks?: boolean,
   /** Handler for events on trigger element, each time thumbs change selection, which is passed in `value`. */
   onChange?: ({...ParamsT}) => mixed,
   /** Handler for events on trigger element, each time thumbs finish changing selection, which is passed in `value`. */
@@ -88,6 +92,7 @@ export type StatefulSliderPropsT = {
 export type StylePropsT = {
   $disabled?: boolean,
   $isDragged?: boolean,
+  $marks?: boolean,
   $max?: number,
   $min?: number,
   $thumbIndex?: number,

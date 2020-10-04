@@ -314,9 +314,7 @@ function Thumbnail({children, href}) {
     >
       <div
         className={css({
-          ...theme.typography.font100,
-          fontFamily:
-            'SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace',
+          ...theme.typography.MonoParagraphXSmall,
           ...expandBorderStyles(theme.borders.border300),
           borderLeftColor: theme.colors.border,
           borderRightColor: theme.colors.border,

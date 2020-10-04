@@ -293,7 +293,7 @@ function InternalTab({
   onChange,
   ...props
 }) {
-  const key = childKey || childIndex;
+  const key = childKey || String(childIndex);
   const isActive = key == activeKey;
   const {
     artwork: Artwork,
@@ -445,28 +445,13 @@ function InternalTabPanel({
   renderAll,
   ...props
 }) {
-  const key = childKey || childIndex;
+  const key = childKey || String(childIndex);
   const isActive = key == activeKey;
   const {overrides = {}, children} = props;
   const {TabPanel: TabPanelOverrides} = overrides;
   const [TabPanel, TabPanelProps] = getOverrides(
     TabPanelOverrides,
     StyledTabPanel,
-  );
-  // Keyboard focus styling
-  const [focusVisible, setFocusVisible] = React.useState(false);
-  const handleFocus = React.useCallback((event: SyntheticEvent<>) => {
-    if (isFocusVisible(event)) {
-      setFocusVisible(true);
-    }
-  }, []);
-  const handleBlur = React.useCallback(
-    (event: SyntheticEvent<>) => {
-      if (focusVisible !== false) {
-        setFocusVisible(false);
-      }
-    },
-    [focusVisible],
   );
   return (
     <TabPanel
@@ -475,14 +460,10 @@ function InternalTabPanel({
       role="tabpanel"
       id={getTabPanelId(uid, key)}
       aria-labelledby={getTabId(uid, key)}
-      tabIndex={isActive ? '0' : null}
       aria-expanded={isActive}
       hidden={!isActive}
-      $focusVisible={focusVisible}
       {...sharedStylingProps}
       {...TabPanelProps}
-      onFocus={forkFocus(TabPanelProps, handleFocus)}
-      onBlur={forkBlur(TabPanelProps, handleBlur)}
     >
       {isActive || renderAll ? children : null}
     </TabPanel>

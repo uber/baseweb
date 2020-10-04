@@ -12,6 +12,7 @@ const DEFAULT = 0;
 const HOVERED = 1;
 const ACTIVE = 2;
 type State = typeof DEFAULT | typeof HOVERED | typeof ACTIVE;
+
 function getState(props): State {
   if (props.$isActive) return ACTIVE;
   if (props.$isHovered) return HOVERED;
@@ -19,16 +20,21 @@ function getState(props): State {
 }
 
 function getOuterColor(props) {
-  const {colors} = props.$theme;
-
-  if (props.$disabled) return colors.tickFillDisabled;
-  if (!props.$checked) {
-    if (props.$disabled) return colors.tickMarkFillDisabled;
-    if (props.$isFocusVisible) return colors.borderSelected;
-    if (props.$error || props.$isError) return colors.tickBorderError;
+  const {
+    $theme: {colors},
+    $disabled,
+    $checked,
+    $isFocusVisible,
+    $error,
+    $isError,
+  } = props;
+  if ($disabled) return colors.tickFillDisabled;
+  if (!$checked) {
+    if ($isFocusVisible) return colors.borderSelected;
+    if ($error || $isError) return colors.tickBorderError;
     return colors.tickBorder;
   } else {
-    if (props.$error || props.$isError) {
+    if ($error || $isError) {
       switch (getState(props)) {
         case DEFAULT:
           return colors.tickFillErrorSelected;

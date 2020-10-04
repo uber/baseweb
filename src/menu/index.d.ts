@@ -39,6 +39,14 @@ export type BaseMenuPropsT = {
   renderAll?: boolean;
 };
 
+export interface MenuOverrides {
+  EmptyState?: Override<any>;
+  List?: Override<any>;
+  Option?: Override<any>;
+  ListItem?: Override<any>;
+  OptgroupHeader?: Override<any>;
+}
+
 export interface MenuProps extends BaseMenuPropsT {
   size?: keyof OPTION_LIST_SIZE;
   overrides?: MenuOverrides;
