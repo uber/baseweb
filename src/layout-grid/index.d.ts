@@ -20,6 +20,10 @@ export interface GridOverrides {
   Grid?: Override<any>;
 }
 
+export interface CellOverrides {
+  Cell?: Override<any>;
+}
+
 export interface GridProps {
   align?: Responsive<ALIGNMENT>;
   behavior?: BEHAVIOR;
@@ -48,7 +52,7 @@ export interface CellProps {
   order?: Responsive<number>;
   skip?: Responsive<number>;
   span?: Responsive<number>;
-  overrides?: GridOverrides;
+  overrides?: CellOverrides;
 }
 
 export type StyledCellProps = {
