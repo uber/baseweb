@@ -27,18 +27,18 @@ const selectors = {
 describe('Datepicker, Range', () => {
   it('selects range', async () => {
     await mount(page, 'datepicker-range');
-    await page.waitFor(selectors.input);
+    await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
-    await page.waitFor(selectors.calendar);
+    await page.waitForSelector(selectors.calendar);
     await page.click(selectors.day);
-    await page.waitFor(selectors.calendar);
+    await page.waitForSelector(selectors.calendar);
     const selectedValue1 = await page.$eval(
       selectors.input,
       input => input.value,
     );
     expect(selectedValue1).toBe('2019/03/10 –     /  /  ');
     await page.click(selectors.day2);
-    await page.waitFor(selectors.calendar, {
+    await page.waitForSelector(selectors.calendar, {
       hidden: true,
     });
     const selectedValue2 = await page.$eval(
@@ -49,18 +49,18 @@ describe('Datepicker, Range', () => {
   });
   it('selects range in multi-month', async () => {
     await mount(page, 'datepicker-range-multi-month');
-    await page.waitFor(selectors.input);
+    await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
-    await page.waitFor(selectors.calendar);
+    await page.waitForSelector(selectors.calendar);
     await page.click(selectors.day);
-    await page.waitFor(selectors.calendar);
+    await page.waitForSelector(selectors.calendar);
     const selectedValue1 = await page.$eval(
       selectors.input,
       input => input.value,
     );
     expect(selectedValue1).toBe('2019/03/10 –     /  /  ');
     await page.click(selectors.day4);
-    await page.waitFor(selectors.calendar, {
+    await page.waitForSelector(selectors.calendar, {
       hidden: true,
     });
     const selectedValue2 = await page.$eval(
@@ -71,14 +71,14 @@ describe('Datepicker, Range', () => {
   });
   it('selects range in multi-month - do not autoAdvance calendar months since selected date is in view', async () => {
     await mount(page, 'datepicker-range-multi-month');
-    await page.waitFor(selectors.input);
+    await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
-    await page.waitFor(selectors.calendar);
+    await page.waitForSelector(selectors.calendar);
     // datepicker should show 2 months - March and April
     // we can see both a day in March and a day in April are rendered
-    await page.waitFor(selectors.day);
+    await page.waitForSelector(selectors.day);
     await page.click(selectors.day4);
-    await page.waitFor(selectors.calendar);
+    await page.waitForSelector(selectors.calendar);
     const selectedValue1 = await page.$eval(
       selectors.input,
       input => input.value,
@@ -86,10 +86,10 @@ describe('Datepicker, Range', () => {
     expect(selectedValue1).toBe('2019/04/01 –     /  /  ');
     // after clicking on a date in April, in the second month, the months should NOT change at all. March should still be visible, and May should not be rendered
     // we finish off the test by clicking on a day in March (simulating clicking the "end" of the range first, then the "beginning" of the range last)
-    // await page.waitFor(selectors.day5, {hidden: true});
-    await page.waitFor(selectors.day);
+    // await page.waitForSelector(selectors.day5, {hidden: true});
+    await page.waitForSelector(selectors.day);
     await page.click(selectors.day);
-    await page.waitFor(selectors.calendar, {
+    await page.waitForSelector(selectors.calendar, {
       hidden: true,
     });
     const selectedValue2 = await page.$eval(
@@ -100,14 +100,14 @@ describe('Datepicker, Range', () => {
   });
   it('selected time is preserved when dates are changed', async () => {
     await mount(page, 'datepicker-range');
-    await page.waitFor(selectors.input);
+    await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
-    await page.waitFor(selectors.timeSelect);
+    await page.waitForSelector(selectors.timeSelect);
 
     let timeSelects = await page.$$(selectors.timeSelect);
     // Set the start time
     await timeSelects[0].click();
-    await page.waitFor(selectors.timeSelectDropdown);
+    await page.waitForSelector(selectors.timeSelectDropdown);
     await page.keyboard.type('12:30 AM');
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
@@ -118,7 +118,7 @@ describe('Datepicker, Range', () => {
     expect(timeSelectValue).toBe('12:30 AM');
     // Set the end time
     await timeSelects[1].click();
-    await page.waitFor(selectors.timeSelectDropdown);
+    await page.waitForSelector(selectors.timeSelectDropdown);
     await page.keyboard.type('4:30 AM');
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
@@ -128,8 +128,8 @@ describe('Datepicker, Range', () => {
     );
     expect(timeSelectValue2).toBe('4:30 AM');
     // Select the start day
-    await page.waitFor(selectors.calendar);
-    await page.waitFor(selectors.day);
+    await page.waitForSelector(selectors.calendar);
+    await page.waitForSelector(selectors.day);
     await page.click(selectors.day);
     const selectedValue1 = await page.$eval(
       selectors.input,
@@ -137,9 +137,9 @@ describe('Datepicker, Range', () => {
     );
     expect(selectedValue1).toBe('2019/03/10 –     /  /  ');
     // Select the start day
-    await page.waitFor(selectors.day2);
+    await page.waitForSelector(selectors.day2);
     await page.click(selectors.day2);
-    await page.waitFor(selectors.calendar, {
+    await page.waitForSelector(selectors.calendar, {
       hidden: true,
     });
     const selectedValue2 = await page.$eval(
@@ -147,11 +147,11 @@ describe('Datepicker, Range', () => {
       input => input.value,
     );
     expect(selectedValue2).toBe('2019/03/10 – 2019/03/28');
-    await page.waitFor(selectors.calendar, {hidden: true});
+    await page.waitForSelector(selectors.calendar, {hidden: true});
 
     // Open the calendar again and check that the time is set correctly
     await page.click(selectors.input);
-    await page.waitFor(selectors.timeSelect);
+    await page.waitForSelector(selectors.timeSelect);
     timeSelectValue = await page.$$eval(
       `${selectors.timeSelect} ${selectors.timeSelectValue}`,
       selects => selects[0].textContent,

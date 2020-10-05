@@ -24,7 +24,7 @@ describe('data table columns', () => {
   it('updates categorical column', async () => {
     const index = 1;
     await mount(page, 'data-table-columns');
-    await page.waitFor(TABLE_ROOT);
+    await page.waitForSelector(TABLE_ROOT);
     const initial = await getCellContentsAtColumnIndex(
       page,
       COLUMN_COUNT,
@@ -59,7 +59,7 @@ describe('data table columns', () => {
       const button = items.find(item => item.textContent === 'Apply');
       return button.click();
     });
-    await page.waitFor('div[data-baseweb="popover"]', {hidden: true});
+    await page.waitForSelector('div[data-baseweb="popover"]', {hidden: true});
 
     const updated = await getCellContentsAtColumnIndex(
       page,

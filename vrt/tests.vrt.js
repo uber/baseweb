@@ -11,7 +11,7 @@ LICENSE file in the root directory of this source tree.
 const globby = require('globby');
 const {configureToMatchImageSnapshot} = require('jest-image-snapshot');
 const {getSnapshotConfig} = require('./config.js');
-const {mount} = require('../e2e/helpers');
+const {mount, waitForTimeout} = require('../e2e/helpers');
 
 const THEME = {
   light: 'light',
@@ -68,7 +68,7 @@ describe('visual snapshot tests', () => {
         await interaction.behavior(page);
 
         // Bad, but lets let things settle down after the interaction.
-        await page.waitFor(250);
+        await waitForTimeout(250);
 
         await snapshot(`${scenarioName}__${interaction.name}`);
       });
@@ -106,7 +106,7 @@ async function preparePageForSnapshot(
   });
 
   // Bad, but lets let things settle down after resizing.
-  await page.waitFor(250);
+  await waitForTimeout(250);
 }
 
 async function getPageScrollHeight() {

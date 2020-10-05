@@ -15,7 +15,7 @@ describe('data table columns', () => {
   it('updates application state when rows change', async () => {
     const index = 0;
     await mount(page, 'data-table-included-rows-change');
-    await page.waitFor('div[data-baseweb="data-table"]');
+    await page.waitForSelector('div[data-baseweb="data-table"]');
 
     const initialLi = await page.$$('li');
     const initial = await Promise.all(

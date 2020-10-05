@@ -14,7 +14,7 @@ const {TABLE_ROOT} = require('./utilities.js');
 describe('data table initial filters', () => {
   it('mounts with initial rows selected', async () => {
     await mount(page, 'data-table-initial-selected-rows');
-    await page.waitFor(TABLE_ROOT);
+    await page.waitForSelector(TABLE_ROOT);
     // cell 1x1 should have a label with checkbox checked
     const cell1x1 = await page.$(
       `${TABLE_ROOT} > div:nth-child(2) label > input`,
