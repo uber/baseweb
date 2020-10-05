@@ -13,7 +13,7 @@ const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 describe('button-group', () => {
   it('radio mode passes basic a11y tests', async () => {
     await mount(page, 'button-group-radio');
-    await page.waitFor('div');
+    await page.waitForSelector('div');
     await page.click('button');
 
     const accessibilityReport = await analyzeAccessibility(page);
@@ -22,7 +22,7 @@ describe('button-group', () => {
 
   it('checkbox mode passes basic a11y tests', async () => {
     await mount(page, 'button-group-checkbox');
-    await page.waitFor('div');
+    await page.waitForSelector('div');
     await page.click('button');
 
     const accessibilityReport = await analyzeAccessibility(page);

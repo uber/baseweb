@@ -27,7 +27,7 @@ const UK = {iso: 'GB', dialCode: '+44'};
 describe('PhoneInput', () => {
   beforeEach(async () => {
     await mount(page, 'phone-input-next-dropdown');
-    await page.waitFor(selectors.phoneInput);
+    await page.waitForSelector(selectors.phoneInput);
   });
 
   it('passes basic a11y tests', async () => {
@@ -40,9 +40,9 @@ describe('PhoneInput', () => {
     // click select
     await page.click(selectors.countryPicker);
     // verify dropdown is open
-    await page.waitFor(selectors.countryPickerDropdown);
+    await page.waitForSelector(selectors.countryPickerDropdown);
     // select a new country - UK
-    await page.waitFor(countryListItemForIso(UK.iso));
+    await page.waitForSelector(countryListItemForIso(UK.iso));
     await page.click(countryListItemForIso(UK.iso));
     // verify dropdown has closed
     await page.waitForSelector(selectors.countryPickerDropdown, {

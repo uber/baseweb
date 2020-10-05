@@ -30,7 +30,7 @@ const unitedKingdom = {iso: 'GB', dialCode: '+44'};
 describe('PhoneInput', () => {
   beforeEach(async () => {
     await mount(page, 'phone-input');
-    await page.waitFor(selectors.phoneInput);
+    await page.waitForSelector(selectors.phoneInput);
   });
 
   it('passes basic a11y tests', async () => {
@@ -56,7 +56,7 @@ describe('PhoneInput', () => {
     // click select
     await page.click(selectors.phoneInputSelect);
     // verify dropdown is open
-    await page.waitFor(selectors.phoneInputSelectDropdown);
+    await page.waitForSelector(selectors.phoneInputSelectDropdown);
     // // verify US option is visible
     await page.waitForSelector(countryListItemForIso(unitedStates.iso), {
       visible: true,
@@ -67,7 +67,7 @@ describe('PhoneInput', () => {
     // click select
     await page.click(selectors.phoneInputSelect);
     // verify dropdown is open
-    await page.waitFor(selectors.phoneInputSelectDropdown);
+    await page.waitForSelector(selectors.phoneInputSelectDropdown);
 
     await page.keyboard.type('United');
     await page.keyboard.press('ArrowDown');
@@ -86,7 +86,7 @@ describe('PhoneInput', () => {
     // click select
     await page.click(selectors.phoneInputSelect);
     // verify dropdown is open
-    await page.waitFor(selectors.phoneInputSelectDropdown);
+    await page.waitForSelector(selectors.phoneInputSelectDropdown);
     // select a new country, United Kingdom
     await page.click(countryListItemForIso(unitedKingdom.iso));
     // verify dropdown has closed

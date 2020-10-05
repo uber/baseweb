@@ -20,7 +20,7 @@ import {
   StringColumn,
   COLUMNS,
   NUMERICAL_FORMATS,
-  Unstable_StatefulDataTable,
+  StatefulDataTable,
 } from '../index.js';
 
 type RowDataT = [
@@ -242,7 +242,7 @@ export const rows = makeRowsFromColumns(columns, 2000);
 export default function Scenario() {
   return (
     <div style={{height: '800px', width: '900px'}}>
-      <Unstable_StatefulDataTable columns={columns} rows={rows} />
+      <StatefulDataTable columns={columns} rows={rows} />
     </div>
   );
 }

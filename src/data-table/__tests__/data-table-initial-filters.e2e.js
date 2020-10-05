@@ -21,14 +21,14 @@ const COLUMN_COUNT = 1;
 describe('data table initial filters', () => {
   it('mounts with initial filters applied', async () => {
     await mount(page, 'data-table-initial-filters');
-    await page.waitFor(TABLE_ROOT);
+    await page.waitForSelector(TABLE_ROOT);
     const data = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, 0);
     expect(matchArrayElements(data, ['a'])).toBe(true);
   });
 
   it('calls onFilterRemove when expected', async () => {
     await mount(page, 'data-table-initial-filters');
-    await page.waitFor(TABLE_ROOT);
+    await page.waitForSelector(TABLE_ROOT);
     const before = await page.$$('li[data-log="remove"]');
     expect(before.length).toBe(0);
 
@@ -42,7 +42,7 @@ describe('data table initial filters', () => {
 
   it('calls onFilterAdd when expected', async () => {
     await mount(page, 'data-table-initial-filters');
-    await page.waitFor(TABLE_ROOT);
+    await page.waitForSelector(TABLE_ROOT);
 
     const before = await page.$$('li[data-log="add"]');
     expect(before.length).toBe(0);
