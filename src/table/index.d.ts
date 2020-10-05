@@ -7,15 +7,17 @@ export enum SORT_DIRECTION {
   DESC = 'DESC',
 }
 
+export interface SortableHeadCellOverrides {
+  HeadCell?: Override<any>;
+  SortableLabel?: Override<any>;
+}
+
 export interface SortableHeadCellProps {
   children?: React.ReactNode;
   direction: 'ASC' | 'DESC' | null;
   disabled?: boolean;
   onSort?: () => any;
-  overrides?: {
-    HeadCell?: Override<any>;
-    SortableLabel?: Override<any>;
-  };
+  overrides?: SortableHeadCellOverrides;
   title: string;
   fillClickTarget?: boolean;
 }
@@ -29,18 +31,20 @@ export interface TableProps {
 }
 export class Table extends React.Component<TableProps> {}
 
+export interface FilterOverrides {
+  MenuButton?: Override<any>;
+  Content?: Override<any>;
+  Heading?: Override<any>;
+  Footer?: Override<any>;
+}
+
 export interface FilterProps {
   active?: boolean;
   children: React.ReactNode;
   disabled?: boolean;
   onReset?: () => any;
   onSelectAll?: () => any;
-  overrides?: {
-    MenuButton?: Override<any>;
-    Content?: Override<any>;
-    Heading?: Override<any>;
-    Footer?: Override<any>;
-  };
+  overrides?: FilterOverrides;
 }
 export const Filter: React.FC<FilterProps>;
 

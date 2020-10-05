@@ -22,7 +22,7 @@ export interface StyledContentPropsT {
   $sublist: boolean;
 }
 
-export interface OverridesT {
+export interface ListOverrides {
   Root?: Override<{}>;
   ArtworkContainer?: Override<StyledArtworkContainerPropsT>;
   Content?: Override<StyledContentPropsT>;
@@ -34,7 +34,7 @@ export interface PropsT {
   artworkSize?: ArtworkSizesT | number;
   children: React.ReactNode;
   endEnhancer?: React.ReactNode;
-  overrides?: OverridesT;
+  overrides?: ListOverrides;
   sublist?: boolean;
 }
 

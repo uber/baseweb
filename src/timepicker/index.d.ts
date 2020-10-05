@@ -3,12 +3,14 @@ import {Option} from '../select';
 import {SIZE} from '../input';
 import {Override} from '../overrides';
 
+export interface TimePickerOverrides {
+  Select?: Override<any>;
+}
+
 export interface TimePickerProps {
   format?: '12' | '24';
   onChange?: (args: Date) => any;
-  overrides?: {
-    Select?: Override<any>;
-  };
+  overrides?: TimePickerOverrides;
   positive?: boolean;
   error?: boolean;
   creatable?: boolean;
