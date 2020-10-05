@@ -20,7 +20,7 @@ const COLUMN_COUNT = 1;
 describe('data table initial filters', () => {
   it('mounts with initial sort applied', async () => {
     await mount(page, 'data-table-initial-sort');
-    await page.waitFor(TABLE_ROOT);
+    await page.waitForSelector(TABLE_ROOT);
     const data = await getCellContentsAtColumnIndex(page, COLUMN_COUNT, 0);
     expect(matchArrayElements(data, ['d', 'c', 'b', 'a'])).toBe(true);
   });

@@ -83,6 +83,13 @@ async function analyzeAccessibility(page, options = {rules: []}) {
   return accessibilityReport;
 }
 
+// This utility is available in newer versions of puppetteer, but upgrading did not seem worth just for this
+function waitForTimeout(ms) {
+  return new Promise(res => {
+    setTimeout(res, ms);
+  });
+}
+
 const defaultOptions = {
   violationsThreshold: 0,
   incompleteThreshold: 0,
@@ -140,4 +147,5 @@ expect.extend({
 module.exports = {
   analyzeAccessibility,
   mount,
+  waitForTimeout,
 };

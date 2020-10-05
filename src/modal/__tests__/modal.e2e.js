@@ -28,14 +28,14 @@ const optionAtPosition = position =>
 describe('modal', () => {
   it('handles focus changes properly', async () => {
     await mount(page, 'modal');
-    await page.waitFor(selectors.closeButton);
+    await page.waitForSelector(selectors.closeButton);
     // close modal to start fresh
     await page.click(selectors.closeButton);
-    await page.waitFor(selectors.closeButton, {
+    await page.waitForSelector(selectors.closeButton, {
       hidden: true,
     });
     await page.click(selectors.openModal);
-    await page.waitFor(selectors.dialog);
+    await page.waitForSelector(selectors.dialog);
 
     const cancelButtonIsFocused = await page.$eval(
       selectors.cancelButton,
@@ -65,7 +65,7 @@ describe('modal', () => {
 
     // close again
     await page.click(selectors.closeButton);
-    await page.waitFor(selectors.closeButton, {
+    await page.waitForSelector(selectors.closeButton, {
       hidden: true,
     });
 
@@ -79,12 +79,12 @@ describe('modal', () => {
   // This is a regression test to verify that elements in a portal will still work.
   it('allows interaction with select', async () => {
     await mount(page, 'modal-select');
-    await page.waitFor(selectors.dialog);
+    await page.waitForSelector(selectors.dialog);
 
     await page.click(selectors.selectInput);
-    await page.waitFor(selectors.selectDropDown);
+    await page.waitForSelector(selectors.selectDropDown);
     await page.click(optionAtPosition(1));
-    await page.waitFor(selectors.selectDropDown, {
+    await page.waitForSelector(selectors.selectDropDown, {
       hidden: true,
     });
 
@@ -97,37 +97,37 @@ describe('modal', () => {
 
   it('closes one layer at a time on click outside', async () => {
     await mount(page, 'modal-select');
-    await page.waitFor(selectors.dialog);
+    await page.waitForSelector(selectors.dialog);
 
     await page.click(selectors.selectInput);
-    await page.waitFor(selectors.selectDropDown);
+    await page.waitForSelector(selectors.selectDropDown);
 
     // clicking outside of the modal content
     // and outside the select dropdown
     await page.click(selectors.openModal);
-    await page.waitFor(selectors.selectDropDown, {
+    await page.waitForSelector(selectors.selectDropDown, {
       hidden: true,
     });
-    await page.waitFor(selectors.dialog);
+    await page.waitForSelector(selectors.dialog);
 
     await page.click(selectors.openModal);
-    await page.waitFor(selectors.dialog, {
+    await page.waitForSelector(selectors.dialog, {
       hidden: true,
     });
   });
 
   it('closes one popover at a time on esc key press', async () => {
     await mount(page, 'modal-select');
-    await page.waitFor(selectors.dialog);
+    await page.waitForSelector(selectors.dialog);
 
     await page.click(selectors.selectInput);
-    await page.waitFor(selectors.selectDropDown);
+    await page.waitForSelector(selectors.selectDropDown);
 
     await page.keyboard.press('Escape');
-    await page.waitFor(selectors.selectDropDown, {hidden: true});
-    await page.waitFor(selectors.selectInput);
+    await page.waitForSelector(selectors.selectDropDown, {hidden: true});
+    await page.waitForSelector(selectors.selectInput);
 
     await page.keyboard.press('Escape');
-    await page.waitFor(selectors.selectInput, {hidden: true});
+    await page.waitForSelector(selectors.selectInput, {hidden: true});
   });
 });
