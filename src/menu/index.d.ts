@@ -28,6 +28,13 @@ export interface OPTION_LIST_SIZE {
   compact: 'compact';
 }
 
+export interface MenuOverrides {
+  EmptyState?: Override<any>;
+  List?: Override<any>;
+  Option?: Override<any>;
+  ListItem?: Override<any>;
+}
+
 export type BaseMenuPropsT = {
   renderAll?: boolean;
 };
