@@ -2,7 +2,7 @@ import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
 import {Override} from '../overrides';
 
-export interface Overrides {
+export interface TableOverrides {
   Root?: Override<any>;
   Table?: Override<any>;
   TableHead?: Override<any>;
@@ -13,14 +13,14 @@ export interface Overrides {
   TableBodyCell?: Override<any>;
 }
 export interface TableProps {
-  overrides?: Overrides;
+  overrides?: TableOverrides;
   columns: Array<React.ReactNode>;
   data: React.ReactNode[][];
   horizontalScrollWidth?: string;
 }
 export class Table extends React.Component<TableProps> {}
 
-export interface BuilderOverrides extends Overrides {
+export interface BuilderOverrides extends TableOverrides {
   TableHeadCellSortable?: Override<any>;
   SortAscIcon?: Override<any>;
   SortDescIcon?: Override<any>;
