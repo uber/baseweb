@@ -178,7 +178,7 @@ export default function HeaderNavigation({
         {/* Slack */}
         <Button
           $as="a"
-          href="https://join.slack.com/t/baseui/shared_invite/enQtNDI0NTgwMjU0NDUyLWQ0M2RhZWNiMDAwNDA4MDFiOWQyNmViODNkMzFmZDczYzM4MDliNjU3MmZhYWE5YjZhZmJjZWY0MDIxZjdkYzE"
+          href="https://join.slack.com/t/baseui/shared_invite/zt-5f1s4d10-1D2uywAECAG50m64PTH9cw"
           target="_blank"
           rel="noopener noreferrer"
           size={SIZE.compact}
