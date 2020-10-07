@@ -191,9 +191,7 @@ export default function() {
                 {...getCellProps(0, primaryRowIndex)}
                 $gridRow={`span ${row[2].length}`}
               >
-                <StyledLink href={String(row[1])}>
-                  {row[0]}
-                </StyledLink>
+                <StyledLink href={row[1]}>{row[0]}</StyledLink>
               </StyledBodyCell>
               {events.map((event, eventIndex) => {
                 const striped = eventIndex % 2 === 0;

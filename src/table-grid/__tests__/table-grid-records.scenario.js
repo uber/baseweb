@@ -67,7 +67,7 @@ export default function Scenario() {
                 {...getCellProps(0, primaryRowIndex)}
                 $gridRow={`span ${row[5].length}`}
               >
-                <StyledLink href={String(row[1])}>{row[0]}</StyledLink>
+                <StyledLink href={row[1]}>{row[0]}</StyledLink>
               </StyledBodyCell>
               <StyledBodyCell
                 {...getCellProps(1, primaryRowIndex)}
