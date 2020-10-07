@@ -231,6 +231,7 @@ describe('Helpers - Overrides', () => {
 
   test('dynamic prop overrides', () => {
     const consoleWarn = console.warn;
+    // $FlowFixMe
     console.warn = jest.fn();
 
     function DefaultComponent(props) {
@@ -250,13 +251,15 @@ describe('Helpers - Overrides', () => {
     const element = container.querySelector('div');
     expect(element.textContent).toBe('default 2');
 
-    // Cleans up CI logs and asserts deprecation warning
+    // $FlowFixMe
     expect(console.warn.mock.calls.length).toBe(1);
+    // $FlowFixMe
     console.warn = consoleWarn;
   });
 
   test('dynamic prop with component overrides', () => {
     const consoleWarn = console.warn;
+    // $FlowFixMe
     console.warn = jest.fn();
 
     function DefaultComponent(props) {
@@ -280,13 +283,15 @@ describe('Helpers - Overrides', () => {
     const element = container.querySelector('div');
     expect(element.textContent).toBe('custom 3');
 
-    // Cleans up CI logs and asserts deprecation warning
+    // $FlowFixMe
     expect(console.warn.mock.calls.length).toBe(1);
+    // $FlowFixMe
     console.warn = consoleWarn;
   });
 
   test('dynamic prop with style overrides', () => {
     const consoleWarn = console.warn;
+    // $FlowFixMe
     console.warn = jest.fn();
 
     function DefaultComponent(props) {
@@ -319,8 +324,9 @@ describe('Helpers - Overrides', () => {
     expect(element.getAttribute('style')).toBe('background-color: blue;');
     expect(element.textContent).toBe('custom 3');
 
-    // Cleans up CI logs and asserts deprecation warning
+    // $FlowFixMe
     expect(console.warn.mock.calls.length).toBe(1);
+    // $FlowFixMe
     console.warn = consoleWarn;
   });
 });

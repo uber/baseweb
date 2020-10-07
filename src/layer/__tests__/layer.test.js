@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {mount} from 'enzyme';
 
-import {BaseProvider} from '../../index.js';
+import {TestBaseProvider} from '../../test/test-utils.js';
 
 import {Layer, LayersManager} from '../index.js';
 
@@ -30,9 +30,9 @@ describe('Layer', () => {
       'data-id': 'data-id',
     };
     wrapper = mount(
-      <BaseProvider>
+      <TestBaseProvider>
         <Layer {...props}>{content}</Layer>
-      </BaseProvider>,
+      </TestBaseProvider>,
     );
 
     const layerElement = wrapper.find(Layer);
@@ -59,9 +59,9 @@ describe('Layer', () => {
       mountNode: mountNode.getDOMNode(),
     };
     wrapper = mount(
-      <BaseProvider>
+      <TestBaseProvider>
         <Layer {...props}>{content}</Layer>
-      </BaseProvider>,
+      </TestBaseProvider>,
     );
     // mountNode should have the content
     expect(mountNode).toHaveText('Hello world');

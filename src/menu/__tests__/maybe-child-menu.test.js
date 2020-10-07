@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {mount} from 'enzyme';
 
-import {BaseProvider} from '../../index.js';
+import {TestBaseProvider} from '../../test/test-utils.js';
 import {Popover} from '../../popover/index.js';
 
 import MaybeChildMenu from '../maybe-child-menu.js';
@@ -37,7 +37,7 @@ describe('MaybeChildMenu', () => {
 
   it('renders popover if getChildMenu is provided', () => {
     const wrapper = mount(
-      <BaseProvider>
+      <TestBaseProvider>
         <MaybeChildMenu
           isOpen={true}
           getChildMenu={() => <button>child menu</button>}
@@ -46,7 +46,7 @@ describe('MaybeChildMenu', () => {
         >
           <div>child</div>
         </MaybeChildMenu>
-      </BaseProvider>,
+      </TestBaseProvider>,
     );
 
     expect(wrapper.find(Popover)).not.toBeNull();

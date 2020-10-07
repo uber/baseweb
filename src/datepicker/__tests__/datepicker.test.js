@@ -17,12 +17,7 @@ import {
 
 import {TestBaseProvider} from '../../test/test-utils.js';
 import {addDays} from 'date-fns';
-import {
-  Datepicker,
-  Calendar,
-  ORIENTATION,
-  StyledMonthYearSelectButton,
-} from '../index.js';
+import {Datepicker, ORIENTATION} from '../index.js';
 
 jest.useFakeTimers();
 
@@ -67,7 +62,7 @@ describe('Datepicker', () => {
 
   it('calls provided onChange handler', () => {
     const onChange = jest.fn();
-    const {container, debug} = render(
+    const {container} = render(
       <TestBaseProvider>
         <Datepicker onChange={onChange} />
       </TestBaseProvider>,
@@ -139,6 +134,9 @@ describe('Datepicker', () => {
     const day = getByText(container, '1');
     fireEvent.click(day);
 
+    // $FlowFixMe
+    expect(onChange.mock.calls[1][0].date.length).toBe(1);
+    // $FlowFixMe
     expect(onChange.mock.calls[1][0].date[0]).toEqual(new Date('2020/11/1'));
 
     const after = queryByTestId(container, 'calendar');

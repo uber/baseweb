@@ -25,6 +25,7 @@ test('Clicking a button should work', () => {
 
 test('Form should submit normally', () => {
   const consoleError = console.error;
+  // $FlowFixMe
   console.error = jest.fn();
 
   const onSubmit = jest.fn();
@@ -41,7 +42,9 @@ test('Form should submit normally', () => {
   // JSDOM logs an error due to form submit being not implemented
   // asserting that it only logs one error here so that we will know
   // if additional errors come up in the future
+  // $FlowFixMe
   expect(console.error.mock.calls.length).toBe(1);
+  // $FlowFixMe
   console.error = consoleError;
 });
 

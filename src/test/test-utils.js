@@ -41,6 +41,6 @@ export const withAll = (Component: () => React.Element<*>) => {
   );
 };
 
-export function TestBaseProvider({children}) {
+export function TestBaseProvider({children}: {children?: React.Node}) {
   return <BaseProvider theme={LightTheme}>{children}</BaseProvider>;
 }

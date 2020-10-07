@@ -66,6 +66,7 @@ describe('Modal', () => {
 
   test('renders nothing when closed', () => {
     const consoleWarn = console.warn;
+    // $FlowFixMe
     console.warn = jest.fn();
 
     wrapper = mount(
@@ -76,12 +77,15 @@ describe('Modal', () => {
 
     expect(wrapper).toBeEmptyRender();
 
+    // $FlowFixMe
     expect(console.warn.mock.calls.length).toBe(1);
+    // $FlowFixMe
     console.warn = consoleWarn;
   });
 
   test('close button triggers close', () => {
     const consoleWarn = console.warn;
+    // $FlowFixMe
     console.warn = jest.fn();
 
     const onClose = jest.fn();
@@ -98,12 +102,15 @@ describe('Modal', () => {
       closeSource: CLOSE_SOURCE.closeButton,
     });
 
+    // $FlowFixMe
     expect(console.warn.mock.calls.length).toBe(1);
+    // $FlowFixMe
     console.warn = consoleWarn;
   });
 
   test('disable closeable', () => {
     const consoleWarn = console.warn;
+    // $FlowFixMe
     console.warn = jest.fn();
 
     const onClose = jest.fn();
@@ -117,12 +124,15 @@ describe('Modal', () => {
     wrapper.find(StyledBackdrop).simulate('click');
     expect(onClose).not.toHaveBeenCalled();
 
+    // $FlowFixMe
     expect(console.warn.mock.calls.length).toBe(1);
+    // $FlowFixMe
     console.warn = consoleWarn;
   });
 
   test('prevents scroll on mount node', () => {
     const consoleWarn = console.warn;
+    // $FlowFixMe
     console.warn = jest.fn();
 
     const onClose = jest.fn();
@@ -139,7 +149,9 @@ describe('Modal', () => {
     wrapper.setProps({isOpen: false});
     expect(body.style.overflow).toBe('');
 
+    // $FlowFixMe
     expect(console.warn.mock.calls.length).toBe(1);
+    // $FlowFixMe
     console.warn = consoleWarn;
   });
 
@@ -153,6 +165,7 @@ describe('Modal', () => {
 
     test('resets body scroll when top closes first', () => {
       const consoleWarn = console.warn;
+      // $FlowFixMe
       console.warn = jest.fn();
 
       wrapper = mount(<TwoModals />);
@@ -172,12 +185,15 @@ describe('Modal', () => {
       wrapper.setProps({isOpen1: false, isOpen2: false});
       expect(body.style.overflow).toBe('');
 
+      // $FlowFixMe
       expect(console.warn.mock.calls.length).toBe(2);
+      // $FlowFixMe
       console.warn = consoleWarn;
     });
 
     test('resets body scroll when bottom closes first', () => {
       const consoleWarn = console.warn;
+      // $FlowFixMe
       console.warn = jest.fn();
 
       wrapper = mount(<TwoModals />);
@@ -197,13 +213,16 @@ describe('Modal', () => {
       wrapper.setProps({isOpen1: false, isOpen2: false});
       expect(body.style.overflow).toBe('');
 
+      // $FlowFixMe
       expect(console.warn.mock.calls.length).toBe(2);
+      // $FlowFixMe
       console.warn = consoleWarn;
     });
   });
 
   test('override components', () => {
     const consoleWarn = console.warn;
+    // $FlowFixMe
     console.warn = jest.fn();
 
     const Root = styled('div', {});
@@ -232,12 +251,15 @@ describe('Modal', () => {
     expect(wrapper.find(Dialog)).toExist();
     expect(wrapper.find(Close)).toExist();
 
+    // $FlowFixMe
     expect(console.warn.mock.calls.length).toBe(2);
+    // $FlowFixMe
     console.warn = consoleWarn;
   });
 
   test('role', () => {
     const consoleWarn = console.warn;
+    // $FlowFixMe
     console.warn = jest.fn();
 
     wrapper = mount(
@@ -249,7 +271,9 @@ describe('Modal', () => {
 
     expect(wrapper.find(StyledDialog)).toHaveProp('role', 'mycustomrole');
 
+    // $FlowFixMe
     expect(console.warn.mock.calls.length).toBe(1);
+    // $FlowFixMe
     console.warn = consoleWarn;
   });
 });

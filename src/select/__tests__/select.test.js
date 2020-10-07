@@ -12,7 +12,7 @@ import {mount} from 'enzyme';
 import {TestBaseProvider} from '../../test/test-utils.js';
 import Select from '../select.js';
 import SelectComponent from '../select-component.js';
-import {STATE_CHANGE_TYPE, TYPE} from '../constants.js';
+import {STATE_CHANGE_TYPE} from '../constants.js';
 
 describe('Select component', function() {
   let wrapper;
