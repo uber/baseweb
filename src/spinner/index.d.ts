@@ -2,16 +2,18 @@ import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
 import {Override} from '../overrides';
 
+export interface SpinnerOverrides {
+  Svg?: Override<any>;
+  ActivePath?: Override<any>;
+  TrackPath?: Override<any>;
+}
+
 export interface SpinnerProps {
   'aria-label'?: string;
   size?: number | string;
   color?: string;
   title?: string;
-  overrides?: {
-    Svg?: Override<any>;
-    ActivePath?: Override<any>;
-    TrackPath?: Override<any>;
-  };
+  overrides?: SpinnerOverrides;
 }
 export class Spinner extends React.Component<SpinnerProps> {}
 
