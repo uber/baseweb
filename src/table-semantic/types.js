@@ -61,4 +61,5 @@ export type TableBuilderColumnPropsT<RowT> = {
   header?: React.Node,
   numeric?: boolean,
   sortable?: boolean,
+  tableHeadAriaLabel?: string,
 };

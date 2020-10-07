@@ -238,4 +238,29 @@ describe('Table Semantic Builder', () => {
       }),
     );
   });
+
+  it('renders aria label for column header', () => {
+    const wrapper = mount(
+      <TableBuilder data={DATA}>
+        <TableBuilderColumn
+          header={<span>Foo</span>}
+          tableHeadAriaLabel="Foo Aria Label"
+          sortable
+        >
+          {row => row.foo}
+        </TableBuilderColumn>
+        <TableBuilderColumn header="Bar" sortable>
+          {row => <a href={row.url}>{row.bar}</a>}
+        </TableBuilderColumn>
+        <TableBuilderColumn>{row => 'Hey'}</TableBuilderColumn>
+      </TableBuilder>,
+    );
+
+    const headCells = wrapper.find(StyledTableHeadCellSortable);
+
+    expect(headCells.at(0).prop('aria-label')).toBe(
+      'Foo Aria Label, ascending sorting',
+    );
+    expect(headCells.at(1).prop('aria-label')).toBe('Bar, ascending sorting');
+  });
 });
