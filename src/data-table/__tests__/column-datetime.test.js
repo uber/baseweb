@@ -14,6 +14,8 @@ import isSameDay from 'date-fns/isSameDay/index.js';
 import isSameHour from 'date-fns/isSameHour/index.js';
 import isSameMinute from 'date-fns/isSameMinute/index.js';
 
+import {TestBaseProvider} from '../../test/test-utils.js';
+
 import {DatetimeColumn, DATETIME_OPERATIONS} from '../index.js';
 
 const padZero = n => (n < 10 ? `0${n}` : n);
@@ -103,8 +105,9 @@ describe('datetime column', () => {
     const mockSetFilter = jest.fn();
     const Filter = column.renderFilter;
     const {container, getByText} = render(
-      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />
+      </TestBaseProvider>,
     );
 
     const select = container.querySelector("[data-baseweb='select'] div div");
@@ -132,8 +135,9 @@ describe('datetime column', () => {
     const mockSetFilter = jest.fn();
     const Filter = column.renderFilter;
     const {container, getByText} = render(
-      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />
+      </TestBaseProvider>,
     );
 
     const select = container.querySelector("[data-baseweb='select'] div div");
@@ -163,8 +167,9 @@ describe('datetime column', () => {
     const mockSetFilter = jest.fn();
     const Filter = column.renderFilter;
     const {container, getByText} = render(
-      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />
+      </TestBaseProvider>,
     );
 
     fireEvent.click(getByText('Categorical'));
@@ -192,8 +197,9 @@ describe('datetime column', () => {
     const mockSetFilter = jest.fn();
     const Filter = column.renderFilter;
     const {container, getByText} = render(
-      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />
+      </TestBaseProvider>,
     );
 
     fireEvent.click(getByText('Categorical'));
@@ -228,8 +234,9 @@ describe('datetime column', () => {
     const mockSetFilter = jest.fn();
     const Filter = column.renderFilter;
     const {container, getByText} = render(
-      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />
+      </TestBaseProvider>,
     );
 
     fireEvent.click(getByText('Categorical'));
@@ -264,8 +271,9 @@ describe('datetime column', () => {
     const mockSetFilter = jest.fn();
     const Filter = column.renderFilter;
     const {container, getByText} = render(
-      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />
+      </TestBaseProvider>,
     );
 
     fireEvent.click(getByText('Categorical'));
@@ -298,8 +306,9 @@ describe('datetime column', () => {
     const mockSetFilter = jest.fn();
     const Filter = column.renderFilter;
     const {container, getByText} = render(
-      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />
+      </TestBaseProvider>,
     );
 
     fireEvent.click(getByText('Categorical'));

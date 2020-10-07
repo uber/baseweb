@@ -87,6 +87,9 @@ Object {
   });
 
   test('Renders error if error and positive and caption are provided', () => {
+    const consoleWarn = console.warn;
+    console.warn = jest.fn();
+
     const error = jest.fn().mockReturnValue(<span>Error test</span>);
     const positive = jest.fn().mockReturnValue(<span>Positive test</span>);
     const caption = jest.fn().mockReturnValue(<span>Caption test</span>);
@@ -97,6 +100,9 @@ Object {
     );
     const errorRendered = rendered.find(Caption).first();
     expect(errorRendered).toHaveText('Error test');
+
+    expect(console.warn.mock.calls.length).toBe(1);
+    console.warn = consoleWarn;
   });
 
   test('Disables the input component if "disabled" is provided to form control', () => {

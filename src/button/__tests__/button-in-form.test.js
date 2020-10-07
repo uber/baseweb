@@ -24,15 +24,25 @@ test('Clicking a button should work', () => {
 });
 
 test('Form should submit normally', () => {
+  const consoleError = console.error;
+  console.error = jest.fn();
+
   const onSubmit = jest.fn();
   const utils = render(
     <form onSubmit={onSubmit}>
       <Button data-testid="button">Submit</Button>
     </form>,
   );
+
   const button = utils.getByTestId('button');
   fireEvent.click(button);
   expect(onSubmit).toHaveBeenCalled();
+
+  // JSDOM logs an error due to form submit being not implemented
+  // asserting that it only logs one error here so that we will know
+  // if additional errors come up in the future
+  expect(console.error.mock.calls.length).toBe(1);
+  console.error = consoleError;
 });
 
 test('Form should not submit when button is loading', () => {

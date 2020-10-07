@@ -63,6 +63,7 @@ describe('Pagination Stateless', () => {
     // $FlowFixMe
     document.removeEventListener = originalRemoveEventListener;
   });
+
   Object.keys(StyledComponents).forEach(componentName => {
     test(`support component override - ${componentName}`, () => {
       /* eslint-disable react/prop-types */
@@ -74,6 +75,7 @@ describe('Pagination Stateless', () => {
         $disabled,
         $isLoading,
         $isSelected,
+        $isFocusVisible,
         initialState,
         onItemSelect,
         ...restProps

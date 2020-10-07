@@ -65,6 +65,9 @@ describe('Modal', () => {
   });
 
   test('renders nothing when closed', () => {
+    const consoleWarn = console.warn;
+    console.warn = jest.fn();
+
     wrapper = mount(
       <Modal isOpen={false}>
         <ModalBody>Hello world</ModalBody>
@@ -72,9 +75,15 @@ describe('Modal', () => {
     );
 
     expect(wrapper).toBeEmptyRender();
+
+    expect(console.warn.mock.calls.length).toBe(1);
+    console.warn = consoleWarn;
   });
 
   test('close button triggers close', () => {
+    const consoleWarn = console.warn;
+    console.warn = jest.fn();
+
     const onClose = jest.fn();
     wrapper = mount(
       <Modal isOpen onClose={onClose}>
@@ -88,9 +97,15 @@ describe('Modal', () => {
     expect(onClose).toHaveBeenLastCalledWith({
       closeSource: CLOSE_SOURCE.closeButton,
     });
+
+    expect(console.warn.mock.calls.length).toBe(1);
+    console.warn = consoleWarn;
   });
 
   test('disable closeable', () => {
+    const consoleWarn = console.warn;
+    console.warn = jest.fn();
+
     const onClose = jest.fn();
     wrapper = mount(
       <Modal isOpen closeable={false} onClose={onClose}>
@@ -101,9 +116,15 @@ describe('Modal', () => {
     expect(wrapper.find(StyledClose)).not.toExist();
     wrapper.find(StyledBackdrop).simulate('click');
     expect(onClose).not.toHaveBeenCalled();
+
+    expect(console.warn.mock.calls.length).toBe(1);
+    console.warn = consoleWarn;
   });
 
   test('prevents scroll on mount node', () => {
+    const consoleWarn = console.warn;
+    console.warn = jest.fn();
+
     const onClose = jest.fn();
     wrapper = mount(
       <Modal onClose={onClose}>
@@ -117,6 +138,9 @@ describe('Modal', () => {
     expect(body.style.overflow).toBe('hidden');
     wrapper.setProps({isOpen: false});
     expect(body.style.overflow).toBe('');
+
+    expect(console.warn.mock.calls.length).toBe(1);
+    console.warn = consoleWarn;
   });
 
   describe('nested modals', () => {
@@ -128,6 +152,9 @@ describe('Modal', () => {
     );
 
     test('resets body scroll when top closes first', () => {
+      const consoleWarn = console.warn;
+      console.warn = jest.fn();
+
       wrapper = mount(<TwoModals />);
 
       const body = ((document.body: any): HTMLBodyElement);
@@ -144,9 +171,15 @@ describe('Modal', () => {
 
       wrapper.setProps({isOpen1: false, isOpen2: false});
       expect(body.style.overflow).toBe('');
+
+      expect(console.warn.mock.calls.length).toBe(2);
+      console.warn = consoleWarn;
     });
 
     test('resets body scroll when bottom closes first', () => {
+      const consoleWarn = console.warn;
+      console.warn = jest.fn();
+
       wrapper = mount(<TwoModals />);
 
       const body = ((document.body: any): HTMLBodyElement);
@@ -163,10 +196,16 @@ describe('Modal', () => {
 
       wrapper.setProps({isOpen1: false, isOpen2: false});
       expect(body.style.overflow).toBe('');
+
+      expect(console.warn.mock.calls.length).toBe(2);
+      console.warn = consoleWarn;
     });
   });
 
   test('override components', () => {
+    const consoleWarn = console.warn;
+    console.warn = jest.fn();
+
     const Root = styled('div', {});
     const Backdrop = styled('div', {});
     const DialogContainer = styled('div', {});
@@ -192,9 +231,15 @@ describe('Modal', () => {
     expect(wrapper.find(DialogContainer)).toExist();
     expect(wrapper.find(Dialog)).toExist();
     expect(wrapper.find(Close)).toExist();
+
+    expect(console.warn.mock.calls.length).toBe(2);
+    console.warn = consoleWarn;
   });
 
   test('role', () => {
+    const consoleWarn = console.warn;
+    console.warn = jest.fn();
+
     wrapper = mount(
       // eslint-disable-next-line jsx-a11y/aria-role
       <Modal role="mycustomrole" isOpen>
@@ -203,5 +248,8 @@ describe('Modal', () => {
     );
 
     expect(wrapper.find(StyledDialog)).toHaveProp('role', 'mycustomrole');
+
+    expect(console.warn.mock.calls.length).toBe(1);
+    console.warn = consoleWarn;
   });
 });
