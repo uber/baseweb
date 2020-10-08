@@ -22,6 +22,9 @@ const StyledTableElement = withStyle<
     display: 'grid',
     gridTemplateColumns: props.$gridTemplateColumns,
     flexDirection: 'unset',
+    // Creates a stacking context so we can use z-index on the StyledHeadCell
+    // without affecting anything outside of this component.
+    transform: 'scale(1)',
   };
 });
 
@@ -47,6 +50,7 @@ export const StyledHeadCell = withStyle<
       outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
       outlineOffset: '-3px',
     },
+    zIndex: $sticky ? 1 : 'auto',
   };
 });
 

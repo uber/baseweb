@@ -192,7 +192,9 @@ export default function() {
                 {...getCellProps(0, primaryRowIndex)}
                 $gridRow={`span ${row[2].length}`}
               >
-                <StyledLink href={row[1]}>{row[0]}</StyledLink>
+                <StyledLink href={String(row[1])}>
+                  {row[0]}
+                </StyledLink>
               </StyledBodyCell>
               {events.map(
                 (event: [Date, string], index: number) => {
