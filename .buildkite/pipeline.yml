@@ -8,6 +8,7 @@ steps:
         env: DOCKER_BUILDKIT=1
     agents:
       queue: builders
+
   - name: ':docker: :package: e2e'
     plugins:
       'docker-compose#v3.0.3':
@@ -19,9 +20,11 @@ steps:
         env: DOCKER_BUILDKIT=1
     agents:
       queue: builders
+
   # Wait until all images are built.
   # This way we can download the built image from a registry instead of building each for each test task.
   - wait
+
   # All of the commands after the wait are run in parallel.
   - name: validate-examples
     command: yarn validate:examples
@@ -57,6 +60,14 @@ steps:
 
   - name: ':jest:'
     command: yarn unit-test
+    plugins:
+      'docker-compose#v3.0.3':
+        run: baseui
+    agents:
+      queue: workers
+
+  - name: ':react: react@next unit-test'
+    command: yarn upgrade react@next react-dom@next && yarn unit-test
     plugins:
       'docker-compose#v3.0.3':
         run: baseui
@@ -128,6 +139,21 @@ steps:
     # we have to install puppeteer here to trigger the install.js script
     # and also to make sure we do not add this to the released build artifact
     command: yarn add puppeteer && yarn e2e:test:ci
+    artifact_paths:
+      - '__artifacts__/*.png'
+    plugins:
+      'docker-compose#v3.0.3':
+        run: e2e-test
+        pull:
+          - e2e-server
+          - e2e-server-healthy
+    agents:
+      queue: workers
+
+  - name: ':react: react@next e2e'
+    # we have to install puppeteer here to trigger the install.js script
+    # and also to make sure we do not add this to the released build artifact
+    command: yarn add puppeteer && yarn upgrade react@next react-dom@next && yarn e2e:test:ci
     artifact_paths:
       - '__artifacts__/*.png'
     plugins:
