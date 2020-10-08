@@ -4,11 +4,12 @@ Copyright (c) 2018-2020 Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-/* global document */
 // @flow
 
 import React from 'react';
 import {render, fireEvent} from '@testing-library/react';
+
+import {TestBaseProvider} from '../../test/test-utils.js';
 
 import {Combobox} from '../index.js';
 
@@ -18,13 +19,14 @@ describe('combobox', () => {
   it('calls onChange when text is entered', () => {
     const handleChange = jest.fn();
     const {container} = render(
-      <Combobox
-        mapOptionToString={o => o}
-        onChange={handleChange}
-        options={options}
-        value={''}
-      />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Combobox
+          mapOptionToString={o => o}
+          onChange={handleChange}
+          options={options}
+          value={''}
+        />
+      </TestBaseProvider>,
     );
     const input = container.querySelector('input');
     fireEvent.change(input, {target: {value: 'x'}});
@@ -37,14 +39,15 @@ describe('combobox', () => {
   it('calls onBlur when input loses focus', () => {
     const handleBlur = jest.fn();
     const {container} = render(
-      <Combobox
-        mapOptionToString={o => o}
-        onBlur={handleBlur}
-        onChange={() => {}}
-        options={options}
-        value={''}
-      />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Combobox
+          mapOptionToString={o => o}
+          onBlur={handleBlur}
+          onChange={() => {}}
+          options={options}
+          value={''}
+        />
+      </TestBaseProvider>,
     );
     const input = container.querySelector('input');
     fireEvent.change(input, {target: {value: 'x'}});
@@ -56,14 +59,15 @@ describe('combobox', () => {
   it('calls onFocus when input enters focus', () => {
     const handleFocus = jest.fn();
     const {container} = render(
-      <Combobox
-        mapOptionToString={o => o}
-        onChange={() => {}}
-        onFocus={handleFocus}
-        options={options}
-        value={''}
-      />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Combobox
+          mapOptionToString={o => o}
+          onChange={() => {}}
+          onFocus={handleFocus}
+          options={options}
+          value={''}
+        />
+      </TestBaseProvider>,
     );
     const input = container.querySelector('input');
     fireEvent.change(input, {target: {value: 'x'}});
@@ -74,13 +78,14 @@ describe('combobox', () => {
 
   it('opens listbox when text is entered', () => {
     const {container} = render(
-      <Combobox
-        mapOptionToString={o => o}
-        onChange={() => {}}
-        options={options}
-        value={''}
-      />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Combobox
+          mapOptionToString={o => o}
+          onChange={() => {}}
+          options={options}
+          value={''}
+        />
+      </TestBaseProvider>,
     );
     const before = container.querySelector('ul');
     expect(before).toBeNull();
@@ -94,13 +99,14 @@ describe('combobox', () => {
 
   it('opens listbox when arrow down is pressed', () => {
     const {container} = render(
-      <Combobox
-        mapOptionToString={o => o}
-        onChange={() => {}}
-        options={options}
-        value={''}
-      />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Combobox
+          mapOptionToString={o => o}
+          onChange={() => {}}
+          options={options}
+          value={''}
+        />
+      </TestBaseProvider>,
     );
     const before = container.querySelector('ul');
     expect(before).toBeNull();
@@ -115,13 +121,14 @@ describe('combobox', () => {
   it('does not call onChange selection changes', () => {
     const handleChange = jest.fn();
     const {container} = render(
-      <Combobox
-        mapOptionToString={o => o}
-        onChange={handleChange}
-        options={options}
-        value={''}
-      />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Combobox
+          mapOptionToString={o => o}
+          onChange={handleChange}
+          options={options}
+          value={''}
+        />
+      </TestBaseProvider>,
     );
     const input = container.querySelector('input');
     fireEvent.keyDown(input, {keyCode: 40});
@@ -134,13 +141,14 @@ describe('combobox', () => {
   it('calls onChange with selected value when enter key pressed', () => {
     const handleChange = jest.fn();
     const {container} = render(
-      <Combobox
-        mapOptionToString={o => o}
-        onChange={handleChange}
-        options={options}
-        value={''}
-      />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Combobox
+          mapOptionToString={o => o}
+          onChange={handleChange}
+          options={options}
+          value={''}
+        />
+      </TestBaseProvider>,
     );
     const input = container.querySelector('input');
     fireEvent.keyDown(input, {keyCode: 40});
@@ -155,13 +163,14 @@ describe('combobox', () => {
   it('calls onChange with selected value when option clicked', () => {
     const handleChange = jest.fn();
     const {container} = render(
-      <Combobox
-        mapOptionToString={o => o}
-        onChange={handleChange}
-        options={options}
-        value={''}
-      />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Combobox
+          mapOptionToString={o => o}
+          onChange={handleChange}
+          options={options}
+          value={''}
+        />
+      </TestBaseProvider>,
     );
     const input = container.querySelector('input');
     fireEvent.keyDown(input, {keyCode: 40});
@@ -178,13 +187,14 @@ describe('combobox', () => {
 
   it('opens listbox on focus', () => {
     const {container} = render(
-      <Combobox
-        mapOptionToString={o => o}
-        onChange={() => {}}
-        options={options}
-        value={''}
-      />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Combobox
+          mapOptionToString={o => o}
+          onChange={() => {}}
+          options={options}
+          value={''}
+        />
+      </TestBaseProvider>,
     );
     const initial = container.querySelector('ul');
     expect(initial).toBeNull();
@@ -198,13 +208,14 @@ describe('combobox', () => {
 
   it('does not open listbox on focus if no options', () => {
     const {container} = render(
-      <Combobox
-        mapOptionToString={o => o}
-        onChange={() => {}}
-        options={[]}
-        value={''}
-      />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Combobox
+          mapOptionToString={o => o}
+          onChange={() => {}}
+          options={[]}
+          value={''}
+        />
+      </TestBaseProvider>,
     );
     const initial = container.querySelector('ul');
     expect(initial).toBeNull();
@@ -218,13 +229,14 @@ describe('combobox', () => {
 
   it('closes listbox on option click', () => {
     const {container} = render(
-      <Combobox
-        mapOptionToString={o => o}
-        onChange={() => {}}
-        options={options}
-        value={''}
-      />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Combobox
+          mapOptionToString={o => o}
+          onChange={() => {}}
+          options={options}
+          value={''}
+        />
+      </TestBaseProvider>,
     );
     const initial = container.querySelector('ul');
     expect(initial).toBeNull();
@@ -244,13 +256,14 @@ describe('combobox', () => {
 
   it('closes listbox on blur', () => {
     const {container} = render(
-      <Combobox
-        mapOptionToString={o => o}
-        onChange={() => {}}
-        options={options}
-        value={''}
-      />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Combobox
+          mapOptionToString={o => o}
+          onChange={() => {}}
+          options={options}
+          value={''}
+        />
+      </TestBaseProvider>,
     );
     const initial = container.querySelector('ul');
     expect(initial).toBeNull();
@@ -271,7 +284,7 @@ describe('combobox', () => {
     function TestCase() {
       const [value, setValue] = React.useState('');
       return (
-        <div>
+        <TestBaseProvider>
           <Combobox
             mapOptionToString={o => o}
             onChange={v => setValue(v)}
@@ -279,7 +292,7 @@ describe('combobox', () => {
             value={value}
           />
           <button onClick={() => setValue('')}>clear</button>
-        </div>
+        </TestBaseProvider>
       );
     }
     const {container} = render(<TestCase />);
@@ -300,7 +313,7 @@ describe('combobox', () => {
     function TestCase() {
       const [value, setValue] = React.useState('');
       return (
-        <div>
+        <TestBaseProvider>
           <Combobox
             mapOptionToString={o => o}
             onChange={v => setValue(v)}
@@ -308,7 +321,7 @@ describe('combobox', () => {
             value={value}
           />
           <button onClick={() => setValue(updateValue)}>update</button>
-        </div>
+        </TestBaseProvider>
       );
     }
     const {container} = render(<TestCase />);
@@ -326,14 +339,15 @@ describe('combobox', () => {
 
   it('does not change input value while keyboard nav if autocomplete is false', () => {
     const {container} = render(
-      <Combobox
-        autocomplete={false}
-        mapOptionToString={o => o}
-        onChange={() => {}}
-        options={options}
-        value={''}
-      />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Combobox
+          autocomplete={false}
+          mapOptionToString={o => o}
+          onChange={() => {}}
+          options={options}
+          value={''}
+        />
+      </TestBaseProvider>,
     );
     const input = container.querySelector('input');
     fireEvent.keyDown(input, {keyCode: 40});
@@ -342,14 +356,15 @@ describe('combobox', () => {
 
   it('can close listbox on submission', () => {
     const {container} = render(
-      <Combobox
-        mapOptionToString={o => o}
-        onChange={() => {}}
-        onSubmit={({closeListbox}) => closeListbox()}
-        options={options}
-        value={''}
-      />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Combobox
+          mapOptionToString={o => o}
+          onChange={() => {}}
+          onSubmit={({closeListbox}) => closeListbox()}
+          options={options}
+          value={''}
+        />
+      </TestBaseProvider>,
     );
 
     const input = container.querySelector('input');
