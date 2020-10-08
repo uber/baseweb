@@ -8,9 +8,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {mount} from 'enzyme';
+
+import {TestBaseProvider} from '../../test/test-utils.js';
 import Select from '../select.js';
 import SelectComponent from '../select-component.js';
-import {STATE_CHANGE_TYPE, TYPE} from '../constants.js';
+import {STATE_CHANGE_TYPE} from '../constants.js';
 
 describe('Select component', function() {
   let wrapper;
@@ -36,27 +38,12 @@ describe('Select component', function() {
     wrapper && wrapper.unmount();
   });
 
-  test.each([
-    [TYPE.select, false],
-    [TYPE.select, true],
-    [TYPE.search, false],
-    [TYPE.search, true],
-  ])(
-    'renders component in %s mode and %s for multiple choice',
-    (type, multiple) => {
-      props.type = type;
-      props.multiple = multiple;
-      wrapper = mount(<Select {...props} />);
-      expect(wrapper).toMatchSnapshot(
-        'Component has correct render in ' +
-          type +
-          ' mode and multiple choice equals ' +
-          multiple,
-      );
-    },
-  );
   test('calls onInputChange when input value changes', function() {
-    wrapper = mount(<Select {...props} />);
+    wrapper = mount(
+      <TestBaseProvider>
+        <Select {...props} />
+      </TestBaseProvider>,
+    );
     const select = wrapper.find(SelectComponent).first();
     const e = {target: {value: 'test'}};
     // $FlowFixMe
@@ -77,6 +64,7 @@ describe('Select component', function() {
       value: [],
     });
   });
+
   test('select flow allows custom keys in options objects', function() {
     wrapper = mount(
       <Select

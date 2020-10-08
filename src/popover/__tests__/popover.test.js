@@ -214,15 +214,17 @@ describe('Popover', () => {
   test('autoFocus and returnFocus', () => {
     const buttonId = 'foo';
     const firstInputId = 'bar';
-    const FocusMe = React.forwardRef(() => {
+    const FocusMe = React.forwardRef((props, ref) => {
       const el = React.useRef(null);
       React.useEffect(() => {
         el.current && el.current.focus();
       });
       return (
-        <button id={buttonId} ref={el} type="button">
-          Click me
-        </button>
+        <div ref={ref}>
+          <button id={buttonId} ref={el} type="button">
+            Click me
+          </button>
+        </div>
       );
     });
     const content = (
@@ -291,7 +293,6 @@ describe('Popover', () => {
     expect(childProps['aria-controls']).toBe('bui-mock-id');
     expect(childProps['aria-haspopup']).toBe('true');
     expect(childProps['aria-expanded']).toBe('true');
-    expect(wrapper).toMatchSnapshot();
   });
 
   test('component overrides', () => {
@@ -315,11 +316,9 @@ describe('Popover', () => {
 
     const body = wrapper.find(overrides.Body);
     expect(body).toHaveLength(1);
-    expect(body).toMatchSnapshot('custom popover body has correct props');
 
     const arrow = wrapper.find(overrides.Arrow);
     expect(arrow).toHaveLength(1);
-    expect(arrow).toMatchSnapshot('custom popover arrow has correct props');
 
     const inner = wrapper.find(overrides.Inner);
     expect(inner).toHaveLength(1);
