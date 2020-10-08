@@ -9,8 +9,10 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {mount} from 'enzyme';
 
-import MaybeChildMenu from '../maybe-child-menu.js';
+import {TestBaseProvider} from '../../test/test-utils.js';
 import {Popover} from '../../popover/index.js';
+
+import MaybeChildMenu from '../maybe-child-menu.js';
 
 describe('MaybeChildMenu', () => {
   it('does not render popover if getChildMenu is undefined', () => {
@@ -32,26 +34,25 @@ describe('MaybeChildMenu', () => {
         .name(),
     ).toBe('div');
   });
+
   it('renders popover if getChildMenu is provided', () => {
     const wrapper = mount(
-      <MaybeChildMenu
-        isOpen={true}
-        getChildMenu={() => <button>child menu</button>}
-        item={{label: 'item'}}
-        resetParentMenu={() => {}}
-      >
-        <div>child</div>
-      </MaybeChildMenu>,
+      <TestBaseProvider>
+        <MaybeChildMenu
+          isOpen={true}
+          getChildMenu={() => <button>child menu</button>}
+          item={{label: 'item'}}
+          resetParentMenu={() => {}}
+        >
+          <div>child</div>
+        </MaybeChildMenu>
+      </TestBaseProvider>,
     );
 
-    expect(
-      wrapper
-        .children()
-        .first()
-        .name(),
-    ).toBe('Popover');
+    expect(wrapper.find(Popover)).not.toBeNull();
   });
-  test('renders with components overrides', () => {
+
+  it('renders with components overrides', () => {
     const NewPopover = () => <div id="popover" />;
     const overrides = {
       ChildMenuPopover: {

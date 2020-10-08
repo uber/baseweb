@@ -95,7 +95,9 @@ describe('TreeView Component', () => {
   test('TreeLabel override should override default icons as well', () => {
     const CustomTreeLabel = ({
       hasChildren,
+      isSelected,
       isExpanded,
+      isFocusVisible,
       label,
       overrides,
       node,

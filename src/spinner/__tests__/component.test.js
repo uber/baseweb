@@ -14,7 +14,9 @@ import {Icon} from '../../icon/index.js';
 describe('Spinner', () => {
   test('color can be changed through props', () => {
     let renderedIcon;
-    const spinner = mount(<Spinner color="red" />);
+    const spinner = mount(
+      <Spinner $silenceV11DeprecationWarning color="red" />,
+    );
 
     renderedIcon = spinner.find(Icon).first();
     expect(renderedIcon).toExist();
@@ -24,7 +26,9 @@ describe('Spinner', () => {
 
   test('size can be changed through props', () => {
     let renderedIcon;
-    const spinner = mount(<Spinner size="10px" />);
+    const spinner = mount(
+      <Spinner $silenceV11DeprecationWarning size="10px" />,
+    );
 
     renderedIcon = spinner.find(Icon).first();
     expect(renderedIcon).toExist();
@@ -38,7 +42,7 @@ describe('Spinner', () => {
     };
     const wrapper = mount(
       // $FlowFixMe
-      <Spinner overrides={overrides} />,
+      <Spinner $silenceV11DeprecationWarning overrides={overrides} />,
     );
     // $FlowFixMe
     const root = wrapper.find(overrides.Svg);
