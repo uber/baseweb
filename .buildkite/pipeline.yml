@@ -68,6 +68,7 @@ steps:
 
   - name: ':react: react@next unit-test'
     command: yarn upgrade react@next react-dom@next && yarn unit-test
+    soft_fail: true
     plugins:
       'docker-compose#v3.0.3':
         run: baseui
@@ -154,6 +155,7 @@ steps:
     # we have to install puppeteer here to trigger the install.js script
     # and also to make sure we do not add this to the released build artifact
     command: yarn add puppeteer && yarn upgrade react@next react-dom@next && yarn e2e:test:ci
+    soft_fail: true
     artifact_paths:
       - '__artifacts__/*.png'
     plugins:
