@@ -192,7 +192,7 @@ export default class TableBuilder<T> extends React.Component<
           $colIndex={colIndex}
           role="button"
           tabIndex="0"
-          aria-label={`${col.header}, ${sortLabel}`}
+          aria-label={`${col.tableHeadAriaLabel || col.header}, ${sortLabel}`}
           $isFocusVisible={isFocusVisible}
           onClick={() => onSort && onSort(col.id)}
           onKeyDown={(e: KeyboardEvent) => {

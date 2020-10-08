@@ -54,6 +54,7 @@ export interface TableBuilderColumnProps<RowT> {
   header?: React.ReactNode;
   numeric?: boolean;
   sortable?: boolean;
+  tableHeadAriaLabel?: string;
 }
 export class TableBuilderColumn<RowT> extends React.Component<
   TableBuilderColumnProps<RowT>
