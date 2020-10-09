@@ -210,6 +210,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
   \\"color\\": \\"$theme.colors.contentPrimary\\",
   \\"height\\": \\"16px\\",
   \\"width\\": \\"16px\\",
+  \\"flexShrink\\": 0,
   \\"cursor\\": \\"pointer\\"
 }"
                                   title="Expand"
@@ -448,6 +449,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
   \\"color\\": \\"$theme.colors.contentPrimary\\",
   \\"height\\": \\"16px\\",
   \\"width\\": \\"16px\\",
+  \\"flexShrink\\": 0,
   \\"cursor\\": \\"pointer\\"
 }"
                                   title="Expand"
@@ -686,6 +688,7 @@ exports[`Accordion basic render w/ SEO: Accordion renders all panel content with
   \\"color\\": \\"$theme.colors.contentPrimary\\",
   \\"height\\": \\"16px\\",
   \\"width\\": \\"16px\\",
+  \\"flexShrink\\": 0,
   \\"cursor\\": \\"pointer\\"
 }"
                                   title="Expand"
@@ -970,6 +973,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
   \\"color\\": \\"$theme.colors.contentPrimary\\",
   \\"height\\": \\"16px\\",
   \\"width\\": \\"16px\\",
+  \\"flexShrink\\": 0,
   \\"cursor\\": \\"pointer\\"
 }"
                                   title="Expand"
@@ -1206,6 +1210,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
   \\"color\\": \\"$theme.colors.contentPrimary\\",
   \\"height\\": \\"16px\\",
   \\"width\\": \\"16px\\",
+  \\"flexShrink\\": 0,
   \\"cursor\\": \\"pointer\\"
 }"
                                   title="Expand"
@@ -1442,6 +1447,7 @@ exports[`Accordion basic render: Accordion renders correctly 1`] = `
   \\"color\\": \\"$theme.colors.contentPrimary\\",
   \\"height\\": \\"16px\\",
   \\"width\\": \\"16px\\",
+  \\"flexShrink\\": 0,
   \\"cursor\\": \\"pointer\\"
 }"
                                   title="Expand"
