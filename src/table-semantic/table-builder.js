@@ -281,7 +281,7 @@ export default class TableBuilder<T> extends React.Component<
                 </td>
               </tr>
             )}
-            {isEmpty && (
+            {isEmpty && emptyMessage && (
               <tr>
                 <td colSpan={columns.length}>
                   <TableEmptyMessage {...tableEmptyMessageProps}>

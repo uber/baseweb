@@ -119,7 +119,7 @@ export default class Table extends React.Component<TablePropsT> {
                 </td>
               </tr>
             )}
-            {isEmpty && (
+            {isEmpty && emptyMessage && (
               <tr>
                 <td colSpan={columns.length}>
                   <TableEmptyMessage {...tableEmptyMessageProps}>
