@@ -34,6 +34,21 @@ const TableSemanticConfig: TConfig = {
       type: PropTypes.String,
       description: 'Table width fills this provided value.',
     },
+    isLoading: {
+      value: false,
+      type: PropTypes.Boolean,
+      description: 'Lets you specify loading state.',
+    },
+    loadingMessage: {
+      value: '',
+      type: PropTypes.ReactNode,
+      description: `Loading message.`,
+    },
+    emptyMessage: {
+      value: '',
+      type: PropTypes.ReactNode,
+      description: `Empty message.`,
+    },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,
@@ -49,6 +64,8 @@ const TableSemanticConfig: TConfig = {
           'TableBody',
           'TableBodyRow',
           'TableBodyCell',
+          'TableLoadingMessage',
+          'TableEmptyMessage',
           'SortAscIcon',
           'SortDescIcon',
           'SortNoneIcon',

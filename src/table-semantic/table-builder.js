@@ -17,6 +17,8 @@ import {
   StyledTableBody,
   StyledTableBodyRow,
   StyledTableBodyCell,
+  StyledTableLoadingMessage,
+  StyledTableEmptyMessage,
   StyledSortAscIcon,
   StyledSortDescIcon,
   StyledSortNoneIcon,
@@ -32,6 +34,8 @@ export default class TableBuilder<T> extends React.Component<
 > {
   static defaultProps = {
     data: [],
+    loadingMessage: 'Loading...',
+    emptyMessage: '',
   };
 
   state = {
@@ -59,6 +63,9 @@ export default class TableBuilder<T> extends React.Component<
       sortColumn,
       sortOrder = 'ASC',
       onSort,
+      isLoading,
+      loadingMessage,
+      emptyMessage,
       ...rest
     } = this.props;
 
@@ -99,6 +106,16 @@ export default class TableBuilder<T> extends React.Component<
     const [TableBodyCell, tableBodyCellProps] = getOverrides(
       overrides.TableBodyCell,
       StyledTableBodyCell,
+    );
+
+    const [TableLoadingMessage, tableLoadingMessageProps] = getOverrides(
+      overrides.TableLoadingMessage,
+      StyledTableLoadingMessage,
+    );
+
+    const [TableEmptyMessage, tableEmptyMessageProps] = getOverrides(
+      overrides.TableEmptyMessage,
+      StyledTableEmptyMessage,
     );
 
     const [SortAscIcon, sortAscIconProps] = getOverrides(
@@ -234,6 +251,9 @@ export default class TableBuilder<T> extends React.Component<
       );
     }
 
+    const isEmpty = !isLoading && data.length === 0;
+    const isRendered = !isLoading && !isEmpty;
+
     return (
       <Root data-baseweb="table-builder-semantic" {...rootProps} {...rest}>
         <Table
@@ -250,18 +270,41 @@ export default class TableBuilder<T> extends React.Component<
             </TableHeadRow>
           </TableHead>
           <TableBody {...tableBodyProps}>
-            {data.map((row, rowIndex) => (
-              <TableBodyRow
-                key={rowIndex}
-                $row={row}
-                $rowIndex={rowIndex}
-                {...tableBodyRowProps}
-              >
-                {columns.map((col, colIndex) =>
-                  renderCell(col, colIndex, row, rowIndex),
-                )}
-              </TableBodyRow>
-            ))}
+            {isLoading && (
+              <tr>
+                <td colSpan={columns.length}>
+                  <TableLoadingMessage {...tableLoadingMessageProps}>
+                    {typeof loadingMessage === 'function'
+                      ? loadingMessage()
+                      : loadingMessage}
+                  </TableLoadingMessage>
+                </td>
+              </tr>
+            )}
+            {isEmpty && (
+              <tr>
+                <td colSpan={columns.length}>
+                  <TableEmptyMessage {...tableEmptyMessageProps}>
+                    {typeof emptyMessage === 'function'
+                      ? emptyMessage()
+                      : emptyMessage}
+                  </TableEmptyMessage>
+                </td>
+              </tr>
+            )}
+            {isRendered &&
+              data.map((row, rowIndex) => (
+                <TableBodyRow
+                  key={rowIndex}
+                  $row={row}
+                  $rowIndex={rowIndex}
+                  {...tableBodyRowProps}
+                >
+                  {columns.map((col, colIndex) =>
+                    renderCell(col, colIndex, row, rowIndex),
+                  )}
+                </TableBodyRow>
+              ))}
           </TableBody>
         </Table>
       </Root>

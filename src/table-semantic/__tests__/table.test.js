@@ -9,7 +9,12 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {shallow, mount} from 'enzyme';
 
-import {Table, StyledTableBodyRow, StyledTableBodyCell} from '../index.js';
+import {
+  Table,
+  StyledTableBody,
+  StyledTableBodyRow,
+  StyledTableBodyCell,
+} from '../index.js';
 
 const COLUMNS = ['ID', 'First Name', 'Last Name', 'Age', 'Address'];
 
@@ -84,5 +89,27 @@ describe('Table Semantic', () => {
         $row: DATA[0],
       }),
     );
+  });
+
+  it('renders loading message', () => {
+    const wrapper = shallow(
+      <Table columns={COLUMNS} data={DATA} isLoading={true} />,
+    );
+    const styledRows = wrapper.find(StyledTableBodyRow);
+    expect(styledRows).toHaveLength(0);
+
+    const tableBody = wrapper.find(StyledTableBody);
+    expect(tableBody.text()).toContain('Loading...');
+  });
+
+  it('renders empty message', () => {
+    const wrapper = shallow(
+      <Table columns={COLUMNS} data={[]} emptyMessage="No data" />,
+    );
+    const rows = wrapper.find(StyledTableBodyRow);
+    expect(rows).toHaveLength(0);
+
+    const tableBody = wrapper.find(StyledTableBody);
+    expect(tableBody.text()).toContain('No data');
   });
 });

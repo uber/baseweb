@@ -16,6 +16,8 @@ import {
   StyledTableBody,
   StyledTableBodyRow,
   StyledTableBodyCell,
+  StyledTableLoadingMessage,
+  StyledTableEmptyMessage,
 } from './styled-components.js';
 import {getOverrides} from '../helpers/overrides.js';
 
@@ -25,6 +27,8 @@ export default class Table extends React.Component<TablePropsT> {
   static defaultProps = {
     columns: [],
     data: [[]],
+    loadingMessage: 'Loading...',
+    emptyMessage: '',
   };
 
   render() {
@@ -33,6 +37,9 @@ export default class Table extends React.Component<TablePropsT> {
       columns,
       data,
       horizontalScrollWidth,
+      isLoading,
+      loadingMessage,
+      emptyMessage,
       ...rest
     } = this.props;
 
@@ -70,6 +77,19 @@ export default class Table extends React.Component<TablePropsT> {
       StyledTableBodyCell,
     );
 
+    const [TableLoadingMessage, tableLoadingMessageProps] = getOverrides(
+      overrides.TableLoadingMessage,
+      StyledTableLoadingMessage,
+    );
+
+    const [TableEmptyMessage, tableEmptyMessageProps] = getOverrides(
+      overrides.TableEmptyMessage,
+      StyledTableEmptyMessage,
+    );
+
+    const isEmpty = !isLoading && data.length === 0;
+    const isRendered = !isLoading && !isEmpty;
+
     return (
       <Root data-baseweb="table-semantic" {...rootProps} {...rest}>
         <Table $width={horizontalScrollWidth} {...tableProps}>
@@ -88,27 +108,50 @@ export default class Table extends React.Component<TablePropsT> {
             </TableHeadRow>
           </TableHead>
           <TableBody {...tableBodyProps}>
-            {data.map((row, rowIndex) => (
-              <TableBodyRow
-                key={rowIndex}
-                $row={row}
-                $rowIndex={rowIndex}
-                {...tableBodyRowProps}
-              >
-                {columns.map((col, colIndex) => (
-                  <TableBodyCell
-                    key={colIndex}
-                    $col={col}
-                    $colIndex={colIndex}
-                    $row={row}
-                    $rowIndex={rowIndex}
-                    {...tableBodyCellProps}
-                  >
-                    {row[colIndex]}
-                  </TableBodyCell>
-                ))}
-              </TableBodyRow>
-            ))}
+            {isLoading && (
+              <tr>
+                <td colSpan={columns.length}>
+                  <TableLoadingMessage {...tableLoadingMessageProps}>
+                    {typeof loadingMessage === 'function'
+                      ? loadingMessage()
+                      : loadingMessage}
+                  </TableLoadingMessage>
+                </td>
+              </tr>
+            )}
+            {isEmpty && (
+              <tr>
+                <td colSpan={columns.length}>
+                  <TableEmptyMessage {...tableEmptyMessageProps}>
+                    {typeof emptyMessage === 'function'
+                      ? emptyMessage()
+                      : emptyMessage}
+                  </TableEmptyMessage>
+                </td>
+              </tr>
+            )}
+            {isRendered &&
+              data.map((row, rowIndex) => (
+                <TableBodyRow
+                  key={rowIndex}
+                  $row={row}
+                  $rowIndex={rowIndex}
+                  {...tableBodyRowProps}
+                >
+                  {columns.map((col, colIndex) => (
+                    <TableBodyCell
+                      key={colIndex}
+                      $col={col}
+                      $colIndex={colIndex}
+                      $row={row}
+                      $rowIndex={rowIndex}
+                      {...tableBodyCellProps}
+                    >
+                      {row[colIndex]}
+                    </TableBodyCell>
+                  ))}
+                </TableBodyRow>
+              ))}
           </TableBody>
         </Table>
       </Root>
