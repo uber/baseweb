@@ -28,7 +28,6 @@ export default class Table extends React.Component<TablePropsT> {
     columns: [],
     data: [[]],
     loadingMessage: 'Loading...',
-    emptyMessage: '',
   };
 
   render() {

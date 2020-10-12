@@ -14,6 +14,7 @@ import {
   StyledTableBody,
   StyledTableBodyRow,
   StyledTableBodyCell,
+  StyledTableLoadingMessage,
 } from '../index.js';
 
 const COLUMNS = ['ID', 'First Name', 'Last Name', 'Age', 'Address'];
@@ -111,5 +112,11 @@ describe('Table Semantic', () => {
 
     const tableBody = wrapper.find(StyledTableBody);
     expect(tableBody.text()).toContain('No data');
+  });
+
+  it('does not render unset empty message', () => {
+    const wrapper = shallow(<Table columns={COLUMNS} data={[]} />);
+    const rows = wrapper.find(StyledTableLoadingMessage);
+    expect(rows).toHaveLength(0);
   });
 });

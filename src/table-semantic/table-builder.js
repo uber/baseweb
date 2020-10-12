@@ -35,7 +35,6 @@ export default class TableBuilder<T> extends React.Component<
   static defaultProps = {
     data: [],
     loadingMessage: 'Loading...',
-    emptyMessage: '',
   };
 
   state = {

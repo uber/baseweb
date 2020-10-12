@@ -16,6 +16,7 @@ import {
   StyledTableHeadCellSortable,
   StyledTableBodyRow,
   StyledTableBodyCell,
+  StyledTableLoadingMessage,
   StyledSortAscIcon,
   StyledSortDescIcon,
   StyledSortNoneIcon,
@@ -297,5 +298,19 @@ describe('Table Semantic Builder', () => {
 
     const tableBody = wrapper.find(StyledTableBody);
     expect(tableBody.text()).toContain('No data');
+  });
+
+  it('does not render unset empty message', () => {
+    const wrapper = mount(
+      <TableBuilder data={[]}>
+        <TableBuilderColumn header="Foo">{row => row.foo}</TableBuilderColumn>
+        <TableBuilderColumn header="Bar">
+          {row => <a href={row.url}>{row.bar}</a>}
+        </TableBuilderColumn>
+        <TableBuilderColumn>{row => 'Hey'}</TableBuilderColumn>
+      </TableBuilder>,
+    );
+
+    expect(wrapper.find(StyledTableLoadingMessage)).toHaveLength(0);
   });
 });
