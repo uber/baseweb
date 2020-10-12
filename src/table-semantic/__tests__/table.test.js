@@ -15,6 +15,7 @@ import {
   StyledTableBodyRow,
   StyledTableBodyCell,
   StyledTableLoadingMessage,
+  StyledTableEmptyMessage,
 } from '../index.js';
 
 const COLUMNS = ['ID', 'First Name', 'Last Name', 'Age', 'Address'];
@@ -99,6 +100,13 @@ describe('Table Semantic', () => {
     const styledRows = wrapper.find(StyledTableBodyRow);
     expect(styledRows).toHaveLength(0);
 
+    expect(
+      wrapper
+        .find(StyledTableBody)
+        .find('td')
+        .prop('colSpan'),
+    ).toEqual(COLUMNS.length);
+
     const tableBody = wrapper.find(StyledTableBody);
     expect(tableBody.text()).toContain('Loading...');
   });
@@ -116,7 +124,7 @@ describe('Table Semantic', () => {
 
   it('does not render unset empty message', () => {
     const wrapper = shallow(<Table columns={COLUMNS} data={[]} />);
-    const rows = wrapper.find(StyledTableLoadingMessage);
+    const rows = wrapper.find(StyledTableEmptyMessage);
     expect(rows).toHaveLength(0);
   });
 });
