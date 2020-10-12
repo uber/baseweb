@@ -16,7 +16,6 @@ import {
   StyledTableHeadCellSortable,
   StyledTableBodyRow,
   StyledTableBodyCell,
-  StyledTableLoadingMessage,
   StyledTableEmptyMessage,
   StyledSortAscIcon,
   StyledSortDescIcon,
@@ -280,9 +279,8 @@ describe('Table Semantic Builder', () => {
 
     expect(wrapper.find(StyledTableBodyRow)).toHaveLength(0);
 
-    expect(wrapper.find(StyledTableBodyRow)).toHaveLength(0);
-
     const tableBody = wrapper.find(StyledTableBody);
+    expect(tableBody.find('td').prop('colSpan')).toEqual(3);
     expect(tableBody.text()).toContain('Loading...');
   });
 
@@ -298,14 +296,9 @@ describe('Table Semantic Builder', () => {
     );
 
     expect(wrapper.find(StyledTableBodyRow)).toHaveLength(0);
-    expect(
-      wrapper
-        .find(StyledTableBody)
-        .find('td')
-        .prop('colSpan'),
-    ).toEqual(3);
 
     const tableBody = wrapper.find(StyledTableBody);
+    expect(tableBody.find('td').prop('colSpan')).toEqual(3);
     expect(tableBody.text()).toContain('No data');
   });
 

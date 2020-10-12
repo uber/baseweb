@@ -14,7 +14,6 @@ import {
   StyledTableBody,
   StyledTableBodyRow,
   StyledTableBodyCell,
-  StyledTableLoadingMessage,
   StyledTableEmptyMessage,
 } from '../index.js';
 
@@ -97,17 +96,11 @@ describe('Table Semantic', () => {
     const wrapper = shallow(
       <Table columns={COLUMNS} data={DATA} isLoading={true} />,
     );
-    const styledRows = wrapper.find(StyledTableBodyRow);
-    expect(styledRows).toHaveLength(0);
 
-    expect(
-      wrapper
-        .find(StyledTableBody)
-        .find('td')
-        .prop('colSpan'),
-    ).toEqual(COLUMNS.length);
+    expect(wrapper.find(StyledTableBodyRow)).toHaveLength(0);
 
     const tableBody = wrapper.find(StyledTableBody);
+    expect(tableBody.find('td').prop('colSpan')).toEqual(COLUMNS.length);
     expect(tableBody.text()).toContain('Loading...');
   });
 
@@ -115,15 +108,17 @@ describe('Table Semantic', () => {
     const wrapper = shallow(
       <Table columns={COLUMNS} data={[]} emptyMessage="No data" />,
     );
-    const rows = wrapper.find(StyledTableBodyRow);
-    expect(rows).toHaveLength(0);
+
+    expect(wrapper.find(StyledTableBodyRow)).toHaveLength(0);
 
     const tableBody = wrapper.find(StyledTableBody);
+    expect(tableBody.find('td').prop('colSpan')).toEqual(COLUMNS.length);
     expect(tableBody.text()).toContain('No data');
   });
 
   it('does not render unset empty message', () => {
     const wrapper = shallow(<Table columns={COLUMNS} data={[]} />);
+
     const rows = wrapper.find(StyledTableEmptyMessage);
     expect(rows).toHaveLength(0);
   });
