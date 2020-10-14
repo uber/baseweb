@@ -212,3 +212,13 @@ export const StyledTableBodyCell = styled<StyledTableBodyCellPropsT>(
     };
   },
 );
+
+export const StyledTableLoadingMessage = styled<{}>('div', ({$theme}) => {
+  return {
+    ...$theme.typography.ParagraphSmall,
+    color: $theme.colors.contentPrimary,
+    padding: $theme.sizing.scale600,
+  };
+});
+
+export const StyledTableEmptyMessage = StyledTableLoadingMessage;

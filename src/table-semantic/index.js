@@ -19,6 +19,8 @@ export {
   StyledTableBody,
   StyledTableBodyRow,
   StyledTableBodyCell,
+  StyledTableLoadingMessage,
+  StyledTableEmptyMessage,
   StyledSortAscIcon,
   StyledSortDescIcon,
   StyledSortNoneIcon,

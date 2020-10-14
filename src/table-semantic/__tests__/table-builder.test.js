@@ -12,9 +12,11 @@ import {mount} from 'enzyme';
 import {
   TableBuilder,
   TableBuilderColumn,
+  StyledTableBody,
   StyledTableHeadCellSortable,
   StyledTableBodyRow,
   StyledTableBodyCell,
+  StyledTableEmptyMessage,
   StyledSortAscIcon,
   StyledSortDescIcon,
   StyledSortNoneIcon,
@@ -262,5 +264,55 @@ describe('Table Semantic Builder', () => {
       'Foo Aria Label, ascending sorting',
     );
     expect(headCells.at(1).prop('aria-label')).toBe('Bar, ascending sorting');
+  });
+
+  it('renders loading message', () => {
+    const wrapper = mount(
+      <TableBuilder data={DATA} isLoading={true}>
+        <TableBuilderColumn header="Foo">{row => row.foo}</TableBuilderColumn>
+        <TableBuilderColumn header="Bar">
+          {row => <a href={row.url}>{row.bar}</a>}
+        </TableBuilderColumn>
+        <TableBuilderColumn>{row => 'Hey'}</TableBuilderColumn>
+      </TableBuilder>,
+    );
+
+    expect(wrapper.find(StyledTableBodyRow)).toHaveLength(0);
+
+    const tableBody = wrapper.find(StyledTableBody);
+    expect(tableBody.find('td').prop('colSpan')).toEqual(3);
+    expect(tableBody.text()).toContain('Loading...');
+  });
+
+  it('renders empty message', () => {
+    const wrapper = mount(
+      <TableBuilder data={[]} emptyMessage="No data">
+        <TableBuilderColumn header="Foo">{row => row.foo}</TableBuilderColumn>
+        <TableBuilderColumn header="Bar">
+          {row => <a href={row.url}>{row.bar}</a>}
+        </TableBuilderColumn>
+        <TableBuilderColumn>{row => 'Hey'}</TableBuilderColumn>
+      </TableBuilder>,
+    );
+
+    expect(wrapper.find(StyledTableBodyRow)).toHaveLength(0);
+
+    const tableBody = wrapper.find(StyledTableBody);
+    expect(tableBody.find('td').prop('colSpan')).toEqual(3);
+    expect(tableBody.text()).toContain('No data');
+  });
+
+  it('does not render unset empty message', () => {
+    const wrapper = mount(
+      <TableBuilder data={[]}>
+        <TableBuilderColumn header="Foo">{row => row.foo}</TableBuilderColumn>
+        <TableBuilderColumn header="Bar">
+          {row => <a href={row.url}>{row.bar}</a>}
+        </TableBuilderColumn>
+        <TableBuilderColumn>{row => 'Hey'}</TableBuilderColumn>
+      </TableBuilder>,
+    );
+
+    expect(wrapper.find(StyledTableEmptyMessage)).toHaveLength(0);
   });
 });
