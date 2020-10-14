@@ -201,7 +201,15 @@ function getBorderRadiiStyles({$theme, $size, $shape}) {
     } else {
       value = '38px';
     }
-  } else if ($shape === SHAPE.circle || $shape === SHAPE.round) {
+  } else if ($shape === SHAPE.round) {
+    if ($size === SIZE.compact) {
+      value = '15px';
+    } else if ($size === SIZE.large) {
+      value = '21px';
+    } else {
+      value = '16px';
+    }
+  } else if ($shape === SHAPE.circle) {
     value = '50%';
   }
 
