@@ -59,15 +59,36 @@ export default function Scenario() {
       <br />
 
       <Button shape={SHAPE.round} size={SIZE.large}>
-        <Upload size={24} />
+        Label
+      </Button>
+      <Button
+        startEnhancer={() => <Upload />}
+        endEnhancer={() => <ChevronRight />}
+        shape={SHAPE.round}
+        size={SIZE.large}
+      >
+        Label
       </Button>
       <br />
-      <Button shape={SHAPE.round}>
-        <Upload size={20} />
+      <Button shape={SHAPE.round}>Label</Button>
+      <Button
+        startEnhancer={() => <Upload />}
+        endEnhancer={() => <ChevronRight />}
+        shape={SHAPE.round}
+      >
+        Label
       </Button>
       <br />
       <Button shape={SHAPE.round} size={SIZE.compact}>
-        <Upload />
+        Label
+      </Button>
+      <Button
+        startEnhancer={() => <Upload />}
+        endEnhancer={() => <ChevronRight />}
+        shape={SHAPE.round}
+        size={SIZE.compact}
+      >
+        Label
       </Button>
       <br />
       <br />
@@ -81,6 +102,20 @@ export default function Scenario() {
       </Button>
       <br />
       <Button shape={SHAPE.square} size={SIZE.compact}>
+        <Upload />
+      </Button>
+      <br />
+      <br />
+
+      <Button shape={SHAPE.circle} size={SIZE.large}>
+        <Upload size={24} />
+      </Button>
+      <br />
+      <Button shape={SHAPE.circle}>
+        <Upload size={20} />
+      </Button>
+      <br />
+      <Button shape={SHAPE.circle} size={SIZE.compact}>
         <Upload />
       </Button>
     </React.Fragment>
