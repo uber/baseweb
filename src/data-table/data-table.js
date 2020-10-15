@@ -617,10 +617,43 @@ const InnerTableElement = React.forwardRef<
 });
 InnerTableElement.displayName = 'InnerTableElement';
 
-export function Unstable_DataTable(props: DataTablePropsT) {
+function MeasureScrollbarWidth(props) {
+  const [css] = useStyletron();
+  const outerRef = React.useRef();
+  const innerRef = React.useRef();
+  React.useEffect(() => {
+    if (outerRef.current && innerRef.current) {
+      const width = outerRef.current.offsetWidth - innerRef.current.offsetWidth;
+      props.onWidthChange(width);
+    }
+  }, [outerRef.current, innerRef.current]);
+  return (
+    <div
+      className={css({
+        visibility: 'hidden',
+        overflow: 'scroll',
+      })}
+      ref={outerRef}
+    >
+      <div ref={innerRef} />
+    </div>
+  );
+}
+
+export function DataTable(props: DataTablePropsT) {
   const [, theme] = useStyletron();
   const locale = React.useContext(LocaleContext);
+
   const rowHeight = props.rowHeight || 36;
+  const rowHeightAtIndex = React.useCallback(
+    index => {
+      if (index === 0) {
+        return HEADER_ROW_HEIGHT;
+      }
+      return rowHeight;
+    },
+    [rowHeight],
+  );
   const gridRef = React.useRef<typeof VariableSizeGrid | null>(null);
   const [measuredWidths, setMeasuredWidths] = React.useState(
     props.columns.map(() => 0),
@@ -654,38 +687,6 @@ export function Unstable_DataTable(props: DataTablePropsT) {
     },
     [setResizeDeltas, resetAfterColumnIndex],
   );
-  const normalizedWidths = React.useMemo(() => {
-    const sum = ns => ns.reduce((s, n) => s + n, 0);
-    const resizedWidths = measuredWidths.map(
-      (w, i) => Math.floor(w) + Math.floor(resizeDeltas[i]),
-    );
-    if (gridRef.current) {
-      // minus 2 to account for the border stroke width
-      // $FlowFixMe
-      const domWidth = gridRef.current.props.width - 2;
-      const measuredWidth = sum(resizedWidths);
-      // $FlowFixMe
-      const offsetWidth = gridRef.current._outerRef.offsetWidth;
-      // $FlowFixMe
-      const clientWidth = gridRef.current._outerRef.clientWidth;
-      // sub 2 for border width
-      const scrollbar = offsetWidth - clientWidth - 2;
-
-      const remainder = domWidth - measuredWidth - scrollbar;
-      const padding = Math.floor(remainder / measuredWidths.length);
-      if (padding > 0) {
-        const result = [];
-        // -1 so that we loop over all but the last item
-        for (let i = 0; i < resizedWidths.length - 1; i++) {
-          result.push(resizedWidths[i] + padding);
-        }
-        result.push(domWidth - sum(result));
-        return result;
-      }
-    }
-
-    return resizedWidths;
-  }, [measuredWidths, resizeDeltas]);
 
   const [scrollLeft, setScrollLeft] = React.useState(0);
   const [isScrollingX, setIsScrollingX] = React.useState(false);
@@ -791,6 +792,46 @@ export function Unstable_DataTable(props: DataTablePropsT) {
     }
     return result;
   }, [sortedIndices, filteredIndices, props.onIncludedRowsChange, props.rows]);
+
+  const [browserScrollbarWidth, setBrowserScrollbarWidth] = React.useState(0);
+  const normalizedWidths = React.useMemo(() => {
+    const sum = ns => ns.reduce((s, n) => s + n, 0);
+    const resizedWidths = measuredWidths.map(
+      (w, i) => Math.floor(w) + Math.floor(resizeDeltas[i]),
+    );
+    if (gridRef.current) {
+      // $FlowFixMe
+      const gridProps = gridRef.current.props;
+
+      let isContentTallerThanContainer = false;
+      let visibleRowHeight = 0;
+      for (let rowIndex = 0; rowIndex < rows.length; rowIndex++) {
+        visibleRowHeight += rowHeightAtIndex(rowIndex);
+        if (visibleRowHeight >= gridProps.height) {
+          isContentTallerThanContainer = true;
+          break;
+        }
+      }
+
+      const scrollbarWidth = isContentTallerThanContainer
+        ? browserScrollbarWidth
+        : 0;
+
+      const remainder = gridProps.width - sum(resizedWidths) - scrollbarWidth;
+      const padding = Math.floor(remainder / measuredWidths.length);
+      if (padding > 0) {
+        const result = [];
+        // -1 so that we loop over all but the last item
+        for (let i = 0; i < resizedWidths.length - 1; i++) {
+          result.push(resizedWidths[i] + padding);
+        }
+        result.push(gridProps.width - sum(result) - scrollbarWidth);
+        resetAfterColumnIndex(0);
+        return result;
+      }
+    }
+    return resizedWidths;
+  }, [measuredWidths, resizeDeltas, browserScrollbarWidth, rows.length]);
 
   const isSelectable = props.batchActions ? !!props.batchActions.length : false;
   const isSelectedAll = React.useMemo(() => {
@@ -916,6 +957,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
         isSelectable={isSelectable}
         onWidthsChange={handleWidthsChange}
       />
+      <MeasureScrollbarWidth onWidthChange={w => setBrowserScrollbarWidth(w)} />
       <AutoSizer>
         {({height, width}) => (
           <HeaderContext.Provider
@@ -961,9 +1003,7 @@ export function Unstable_DataTable(props: DataTablePropsT) {
               height={height - 2}
               // plus one to account for additional header row
               rowCount={rows.length + 1}
-              rowHeight={rowIndex =>
-                rowIndex === 0 ? HEADER_ROW_HEIGHT : rowHeight
-              }
+              rowHeight={rowHeightAtIndex}
               width={width - 2}
               itemData={itemData}
               onScroll={handleScroll}

@@ -21,8 +21,8 @@ import {Popover} from '../popover/index.js';
 import {useStyletron} from '../styles/index.js';
 import {Tag} from '../tag/index.js';
 import FilterMenu from './filter-menu.js';
-import {Unstable_DataTable} from './data-table.js';
-import {Unstable_StatefulContainer} from './stateful-container.js';
+import {DataTable} from './data-table.js';
+import {StatefulContainer} from './stateful-container.js';
 import type {StatefulDataTablePropsT} from './types.js';
 import {LocaleContext} from '../locale/index.js';
 
@@ -142,7 +142,7 @@ function FilterTag(props) {
   );
 }
 
-export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
+export function StatefulDataTable(props: StatefulDataTablePropsT) {
   const [css, theme] = useStyletron();
   const headlineRef = React.useRef(null);
   const [headlineHeight, setHeadlineHeight] = React.useState(64);
@@ -154,7 +154,7 @@ export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
   const searchable = props.searchable === undefined ? true : props.searchable;
 
   return (
-    <Unstable_StatefulContainer
+    <StatefulContainer
       batchActions={props.batchActions}
       columns={props.columns}
       initialFilters={props.initialFilters}
@@ -282,7 +282,7 @@ export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
           <div
             style={{width: '100%', height: `calc(100% - ${headlineHeight}px)`}}
           >
-            <Unstable_DataTable
+            <DataTable
               batchActions={props.batchActions}
               columns={props.columns}
               emptyMessage={props.emptyMessage}
@@ -308,6 +308,6 @@ export function Unstable_StatefulDataTable(props: StatefulDataTablePropsT) {
           </div>
         </React.Fragment>
       )}
-    </Unstable_StatefulContainer>
+    </StatefulContainer>
   );
 }

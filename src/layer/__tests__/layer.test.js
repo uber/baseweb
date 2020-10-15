@@ -8,6 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {mount} from 'enzyme';
+
+import {TestBaseProvider} from '../../test/test-utils.js';
+
 import {Layer, LayersManager} from '../index.js';
 
 describe('Layer', () => {
@@ -26,18 +29,24 @@ describe('Layer', () => {
       onMount: jest.fn(),
       'data-id': 'data-id',
     };
-    wrapper = mount(<Layer {...props}>{content}</Layer>);
+    wrapper = mount(
+      <TestBaseProvider>
+        <Layer {...props}>{content}</Layer>
+      </TestBaseProvider>,
+    );
+
+    const layerElement = wrapper.find(Layer);
 
     // Should render Layer
     expect(wrapper.length).toBe(1);
-    expect(wrapper).toHaveDisplayName('Layer');
+    expect(layerElement).not.toBeNull();
     // Should render the LayerComponent and pass props to it
-    expect(wrapper.children().length).toBe(1);
-    expect(wrapper.childAt(0)).toHaveDisplayName('LayerComponent');
-    expect(wrapper.childAt(0)).toHaveProp(props);
+    expect(layerElement.children().length).toBe(1);
+    expect(layerElement.childAt(0)).toHaveDisplayName('LayerComponent');
+    expect(layerElement.childAt(0)).toHaveProp(props);
     // Layer should have the content
-    expect(wrapper.find('strong').first()).toExist();
-    expect(wrapper).toHaveText('Hello world');
+    expect(layerElement.find('strong').first()).toExist();
+    expect(layerElement).toHaveText('Hello world');
     // onMount should be called
     expect(props.onMount).toHaveBeenCalled();
   });
@@ -49,7 +58,11 @@ describe('Layer', () => {
       onMount: jest.fn(),
       mountNode: mountNode.getDOMNode(),
     };
-    wrapper = mount(<Layer {...props}>{content}</Layer>);
+    wrapper = mount(
+      <TestBaseProvider>
+        <Layer {...props}>{content}</Layer>
+      </TestBaseProvider>,
+    );
     // mountNode should have the content
     expect(mountNode).toHaveText('Hello world');
     // onMount should be called

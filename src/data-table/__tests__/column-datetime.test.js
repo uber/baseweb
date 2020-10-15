@@ -4,7 +4,6 @@ Copyright (c) 2018-2020 Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-/* global document */
 // @flow
 
 import React from 'react';
@@ -13,6 +12,8 @@ import isEqual from 'date-fns/isEqual/index.js';
 import isSameDay from 'date-fns/isSameDay/index.js';
 import isSameHour from 'date-fns/isSameHour/index.js';
 import isSameMinute from 'date-fns/isSameMinute/index.js';
+
+import {TestBaseProvider} from '../../test/test-utils.js';
 
 import {DatetimeColumn, DATETIME_OPERATIONS} from '../index.js';
 
@@ -103,8 +104,9 @@ describe('datetime column', () => {
     const mockSetFilter = jest.fn();
     const Filter = column.renderFilter;
     const {container, getByText} = render(
-      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />
+      </TestBaseProvider>,
     );
 
     const select = container.querySelector("[data-baseweb='select'] div div");
@@ -132,8 +134,9 @@ describe('datetime column', () => {
     const mockSetFilter = jest.fn();
     const Filter = column.renderFilter;
     const {container, getByText} = render(
-      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />
+      </TestBaseProvider>,
     );
 
     const select = container.querySelector("[data-baseweb='select'] div div");
@@ -163,8 +166,9 @@ describe('datetime column', () => {
     const mockSetFilter = jest.fn();
     const Filter = column.renderFilter;
     const {container, getByText} = render(
-      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />
+      </TestBaseProvider>,
     );
 
     fireEvent.click(getByText('Categorical'));
@@ -192,8 +196,9 @@ describe('datetime column', () => {
     const mockSetFilter = jest.fn();
     const Filter = column.renderFilter;
     const {container, getByText} = render(
-      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />
+      </TestBaseProvider>,
     );
 
     fireEvent.click(getByText('Categorical'));
@@ -228,8 +233,9 @@ describe('datetime column', () => {
     const mockSetFilter = jest.fn();
     const Filter = column.renderFilter;
     const {container, getByText} = render(
-      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />
+      </TestBaseProvider>,
     );
 
     fireEvent.click(getByText('Categorical'));
@@ -264,8 +270,9 @@ describe('datetime column', () => {
     const mockSetFilter = jest.fn();
     const Filter = column.renderFilter;
     const {container, getByText} = render(
-      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />
+      </TestBaseProvider>,
     );
 
     fireEvent.click(getByText('Categorical'));
@@ -298,8 +305,9 @@ describe('datetime column', () => {
     const mockSetFilter = jest.fn();
     const Filter = column.renderFilter;
     const {container, getByText} = render(
-      <Filter setFilter={mockSetFilter} close={() => {}} data={data} />,
-      {container: document.body},
+      <TestBaseProvider>
+        <Filter setFilter={mockSetFilter} close={() => {}} data={data} />
+      </TestBaseProvider>,
     );
 
     fireEvent.click(getByText('Categorical'));

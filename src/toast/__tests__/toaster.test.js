@@ -9,6 +9,8 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import {mount} from 'enzyme';
+import {render, getByTestId} from '@testing-library/react';
+
 import {
   KIND,
   PLACEMENT,
@@ -40,7 +42,13 @@ describe('toaster', () => {
   afterEach(() => {
     // $FlowFixMe
     ReactDOM.createPortal.mockClear();
-    wrapper && wrapper.unmount();
+    if (wrapper) {
+      try {
+        wrapper.unmount();
+      } catch (e) {
+        // some tests are written with react testing library
+      }
+    }
   });
 
   afterAll(() => {
@@ -106,28 +114,25 @@ describe('toaster', () => {
 
   describe('toaster overrides', () => {
     test('Inner components override', () => {
-      const overrides = {
-        Root: jest
-          .fn()
-          .mockImplementation(({children}) => <div>{children}</div>),
-        ToastBody: jest
-          .fn()
-          .mockImplementation(({children}) => <div>{children}</div>),
-        ToastCloseIcon: jest
-          .fn()
-          .mockImplementation(({children}) => <svg>{children}</svg>),
-      };
-      // $FlowFixMe
-      wrapper = mount(<ToasterContainer overrides={overrides} />);
-      const renderedToaster = wrapper.find(ToasterContainer).first();
-      toaster.getRef = jest.fn().mockReturnValue(renderedToaster.instance());
+      const {container} = render(
+        <ToasterContainer
+          overrides={{
+            Root: {props: {'data-testid': 'root'}},
+            ToastBody: {props: {'data-testid': 'toast-body'}},
+            ToastCloseIcon: {props: {'data-testid': 'toast-close-icon'}},
+          }}
+        />,
+      );
       toaster.show('Toast message');
-      wrapper.update();
 
-      Object.keys(overrides).forEach(name => {
-        // $FlowFixMe
-        expect(wrapper.find(overrides[name]).first()).toExist();
-      });
+      const root = getByTestId(container, 'root');
+      expect(root).not.toBeNull();
+
+      const toastBody = getByTestId(container, 'toast-body');
+      expect(toastBody).not.toBeNull();
+
+      const toastCloseIcon = getByTestId(container, 'toast-close-icon');
+      expect(toastCloseIcon).not.toBeNull();
     });
 
     test('Inner components props and styles overrides', () => {

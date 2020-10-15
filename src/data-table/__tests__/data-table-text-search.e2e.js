@@ -25,7 +25,7 @@ describe('data table text search', () => {
   jest.setTimeout(10 * 1000);
   it('filters to expected number of rows', async () => {
     await mount(page, 'data-table-text-search');
-    await page.waitFor(TABLE_ROOT);
+    await page.waitForSelector(TABLE_ROOT);
     await page.type('input', 'arti');
     await wait(250); // input is debounced by 250ms
 
@@ -36,7 +36,7 @@ describe('data table text search', () => {
 
   it('filters custom columns', async () => {
     await mount(page, 'data-table-text-search');
-    await page.waitFor(TABLE_ROOT);
+    await page.waitForSelector(TABLE_ROOT);
     await page.type('input', 'moll');
     await wait(250); // input is debounced by 250ms
 

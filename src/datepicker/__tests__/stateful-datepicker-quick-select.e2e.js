@@ -32,11 +32,11 @@ describe('Stateful Datepicker Quick Select', () => {
 
   it('can quick select with keyboard', async () => {
     await mount(page, 'stateful-datepicker-quick-select');
-    await page.waitFor(selectors.input);
+    await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
-    await page.waitFor(selectors.calendar);
+    await page.waitForSelector(selectors.calendar);
     await page.click(selectors.quickSelect);
-    await page.waitFor(selectors.quickSelectMenu);
+    await page.waitForSelector(selectors.quickSelectMenu);
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
 
@@ -54,11 +54,11 @@ describe('Stateful Datepicker Quick Select', () => {
 
   it('can quick select with mouse', async () => {
     await mount(page, 'stateful-datepicker-quick-select');
-    await page.waitFor(selectors.input);
+    await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
-    await page.waitFor(selectors.calendar);
+    await page.waitForSelector(selectors.calendar);
     await page.click(selectors.quickSelect);
-    await page.waitFor(selectors.quickSelectMenu);
+    await page.waitForSelector(selectors.quickSelectMenu);
     await page.click(selectors.quickSelectPastMonth);
 
     const selectedValue = await page.$eval(

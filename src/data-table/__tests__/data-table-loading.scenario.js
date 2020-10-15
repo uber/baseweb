@@ -8,11 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {
-  Unstable_StatefulDataTable,
-  BooleanColumn,
-  CategoricalColumn,
-} from '../index.js';
+import {StatefulDataTable, BooleanColumn, CategoricalColumn} from '../index.js';
 
 type RowDataT = [boolean, string];
 
@@ -31,10 +27,10 @@ export default function Scenario() {
   return (
     <React.Fragment>
       <div style={{height: '200px', width: '800px'}}>
-        <Unstable_StatefulDataTable loading columns={columns} rows={[]} />
+        <StatefulDataTable loading columns={columns} rows={[]} />
       </div>
       <div style={{height: '200px', width: '800px'}}>
-        <Unstable_StatefulDataTable
+        <StatefulDataTable
           loading
           loadingMessage="string loading message"
           columns={columns}
@@ -42,7 +38,7 @@ export default function Scenario() {
         />
       </div>
       <div style={{height: '200px', width: '800px'}}>
-        <Unstable_StatefulDataTable
+        <StatefulDataTable
           loading
           loadingMessage={() => <h1>component loading message</h1>}
           columns={columns}

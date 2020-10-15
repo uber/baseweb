@@ -293,7 +293,7 @@ function InternalTab({
   onChange,
   ...props
 }) {
-  const key = childKey || childIndex;
+  const key = childKey || String(childIndex);
   const isActive = key == activeKey;
   const {
     artwork: Artwork,
@@ -445,7 +445,7 @@ function InternalTabPanel({
   renderAll,
   ...props
 }) {
-  const key = childKey || childIndex;
+  const key = childKey || String(childIndex);
   const isActive = key == activeKey;
   const {overrides = {}, children} = props;
   const {TabPanel: TabPanelOverrides} = overrides;

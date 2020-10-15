@@ -27,7 +27,7 @@ function compareElements(page, a, b) {
 describe('PinCode', () => {
   beforeEach(async () => {
     await mount(page, 'pin-code');
-    await page.waitFor(selectors.input);
+    await page.waitForSelector(selectors.input);
   });
 
   it('passes basic a11y tests', async () => {
@@ -109,7 +109,7 @@ describe('PinCode', () => {
 describe('PinCodeMask', () => {
   beforeEach(async () => {
     await mount(page, 'pin-code-mask');
-    await page.waitFor(selectors.input);
+    await page.waitForSelector(selectors.input);
   });
 
   it('successfully masks', async () => {

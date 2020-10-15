@@ -18,6 +18,8 @@ export type OverridesT = {
   TableBody?: OverrideT,
   TableBodyRow?: OverrideT,
   TableBodyCell?: OverrideT,
+  TableLoadingMessage?: OverrideT,
+  TableEmptyMessage?: OverrideT,
 };
 
 export type TablePropsT = {
@@ -25,6 +27,9 @@ export type TablePropsT = {
   columns: Array<React.Node>,
   data: Array<Array<React.Node>>,
   horizontalScrollWidth?: string,
+  isLoading?: boolean,
+  loadingMessage?: React.Node | (() => React.Node),
+  emptyMessage?: React.Node | (() => React.Node),
 };
 
 export type BuilderOverridesT = {
@@ -43,6 +48,9 @@ export type TableBuilderPropsT<RowT> = {
   sortColumn?: ?string,
   sortOrder?: 'ASC' | 'DESC' | null,
   onSort?: (columnId: string) => void,
+  isLoading?: boolean,
+  loadingMessage?: React.Node | (() => React.Node),
+  emptyMessage?: React.Node | (() => React.Node),
 };
 
 export type ColumnOverridesT = {
@@ -61,4 +69,5 @@ export type TableBuilderColumnPropsT<RowT> = {
   header?: React.Node,
   numeric?: boolean,
   sortable?: boolean,
+  tableHeadAriaLabel?: string,
 };

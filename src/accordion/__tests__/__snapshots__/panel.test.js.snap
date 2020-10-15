@@ -190,6 +190,7 @@ exports[`Panel aria-controls populated when provided: Header has correct props w
   \\"color\\": \\"$theme.colors.contentPrimary\\",
   \\"height\\": \\"16px\\",
   \\"width\\": \\"16px\\",
+  \\"flexShrink\\": 0,
   \\"cursor\\": \\"pointer\\"
 }"
                 title="Expand"

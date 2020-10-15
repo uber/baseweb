@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {Unstable_StatefulDataTable, CategoricalColumn} from '../index.js';
+import {StatefulDataTable, CategoricalColumn} from '../index.js';
 
 import Alert from '../../icon/alert.js';
 import Check from '../../icon/check.js';
@@ -50,7 +50,7 @@ export default function Scenario() {
   return (
     <React.Fragment>
       <div style={{height: '400px', width: '800px'}}>
-        <Unstable_StatefulDataTable
+        <StatefulDataTable
           initialSelectedRowIds={initialSelectedRowIds}
           columns={columns}
           rows={rows}

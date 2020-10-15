@@ -64,6 +64,7 @@ export const ToggleIcon = styled<SharedStylePropsArgT>('svg', props => {
   const {$theme, $disabled, $color} = props;
   return {
     ...getSvgStyles(props),
+    flexShrink: 0,
     color: $color || $theme.colors.contentPrimary,
     cursor: $disabled ? 'not-allowed' : 'pointer',
   };

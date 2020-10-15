@@ -12,7 +12,7 @@ const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 describe('button', () => {
   it('passes basic a11y tests', async () => {
     await mount(page, 'button');
-    await page.waitFor('button');
+    await page.waitForSelector('button');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
