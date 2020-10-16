@@ -20,7 +20,6 @@ module.exports = {
   testEnvironment: 'jsdom',
   testPathIgnorePatterns: ['/node_modules/', '/dist/', '/packages/'],
   modulePathIgnorePatterns: ['<rootDir>/dist/'],
-  snapshotSerializers: ['enzyme-to-json/serializer'],
   testRegex: '(.|-)test\\.(js|ts|tsx|jsx)$',
   testURL: 'http://localhost/',
 };

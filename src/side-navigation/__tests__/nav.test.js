@@ -6,8 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {mount} from 'enzyme';
-import {Navigation, StyledNavItemContainer} from '../index.js';
+import {render, getByText} from '@testing-library/react';
+
+import {Navigation} from '../index.js';
 
 const nav = [
   {
@@ -36,9 +37,11 @@ const nav = [
 ];
 
 describe('Side navigation', () => {
-  it('renders expected number of nav items', () => {
-    const wrapper = mount(<Navigation items={nav} />);
-    expect(wrapper.find(StyledNavItemContainer)).toHaveLength(5);
+  it('renders expected nav items', () => {
+    const {container} = render(<Navigation items={nav} />);
+    getByText(container, 'Colors');
+    getByText(container, 'Sizing');
+    getByText(container, 'Typography');
   });
 
   it('renders titles correctly modified by mapItem', () => {
@@ -47,14 +50,16 @@ describe('Side navigation', () => {
       ...item,
       title: <Title item={item} />,
     });
-    const wrapper = mount(<Navigation items={nav} mapItem={mapItem} />);
-    expect(wrapper.find(Title)).toHaveLength(5);
+    const {container} = render(<Navigation items={nav} mapItem={mapItem} />);
+    getByText(container, 'New Colors');
+    getByText(container, 'New Sizing');
+    getByText(container, 'New Typography');
   });
 
   it('calls mapItem exactly once for each item', () => {
     const mapItem = jest.fn();
     mapItem.mockImplementation(item => item);
-    mount(<Navigation items={nav} mapItem={mapItem} />);
+    render(<Navigation items={nav} mapItem={mapItem} />);
     expect(mapItem).toHaveBeenCalledTimes(5);
   });
 });

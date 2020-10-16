@@ -6,20 +6,19 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {mount} from 'enzyme';
-import {Datepicker, StatefulDatepicker} from '../index.js';
+import {render, getByTestId} from '@testing-library/react';
+import {StatefulDatepicker} from '../index.js';
 
 describe('StatefulDatepicker', () => {
-  test('basic render', () => {
-    const props = {
-      initialState: {
-        value: new Date(),
-      },
-      onChange: jest.fn(),
-    };
-
-    const component = mount(<StatefulDatepicker {...props} />);
-    const renderedDatepicker = component.find(Datepicker);
-    expect(renderedDatepicker).toExist();
+  it('basic render', () => {
+    const {container} = render(
+      <StatefulDatepicker
+        initialState={{value: new Date()}}
+        overrides={{
+          Input: {props: {overrides: {Root: {props: {'data-testid': 'root'}}}}},
+        }}
+      />,
+    );
+    getByTestId(container, 'root');
   });
 });

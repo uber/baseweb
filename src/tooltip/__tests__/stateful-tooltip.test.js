@@ -6,28 +6,18 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {shallow} from 'enzyme';
-import {StatefulContainer as StatefulPopoverContainer} from '../../popover/index.js';
-import {Tooltip, StatefulTooltip, PLACEMENT, TRIGGER_TYPE} from '../index.js';
-import baseDefaultProps from '../default-props.js';
+import {render, fireEvent, findByText, getByText} from '@testing-library/react';
 
-function withoutChildren(props: any) {
-  const shallowCopy = {...props};
-  delete shallowCopy.children;
-  return shallowCopy;
-}
+import {TestBaseProvider} from '../../test/test-utils.js';
+import {StatefulTooltip, PLACEMENT, TRIGGER_TYPE} from '../index.js';
 
 describe('StatefulTooltip', () => {
-  test('basic render', () => {
-    function CustomBody() {
-      return <span />;
-    }
+  it('basic render', async () => {
+    const anchor = 'anchor';
+    const content = 'content';
 
     const props = {
-      overrides: {
-        Body: CustomBody,
-      },
-      content: jest.fn(),
+      content,
       initialState: {
         isOpen: true,
       },
@@ -43,29 +33,16 @@ describe('StatefulTooltip', () => {
       triggerType: TRIGGER_TYPE.hover,
     };
 
-    const component = shallow(
-      <StatefulTooltip {...props}>
-        <span>Hover me</span>
-      </StatefulTooltip>,
+    const {container} = render(
+      <TestBaseProvider>
+        <StatefulTooltip {...props}>
+          <span>{anchor}</span>
+        </StatefulTooltip>
+      </TestBaseProvider>,
     );
 
-    // Should first render a stateful tooltip container
-    expect(component).toMatchSnapshot('renders <StatefulContainer/>');
-
-    // Should delegate to stateful popover container
-    let dive = component.dive();
-    expect(dive.type()).toEqual(StatefulPopoverContainer);
-    expect(withoutChildren(dive.props())).toEqual({
-      ...baseDefaultProps,
-      ...props,
-      dismissOnClickOutside: true,
-      dismissOnEsc: true,
-      ignoreBoundary: false,
-    });
-
-    // But ultimately render a tooltip
-    dive = dive.dive();
-    expect(dive.type()).toEqual(Tooltip);
-    expect(dive).toMatchSnapshot('renders <Tooltip/>');
+    const anchorElement = getByText(container, anchor);
+    fireEvent.mouseEnter(anchorElement);
+    await findByText(container, content);
   });
 });

@@ -7,14 +7,8 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 import * as React from 'react';
-import {mount} from 'enzyme';
-import {
-  StyledListItemProfile,
-  StyledProfileImg,
-  StyledProfileTitle,
-  StyledProfileSubtitle,
-  StyledProfileBody,
-} from '../styled-components.js';
+import {render, getByTestId, getByText} from '@testing-library/react';
+
 import OptionProfile from '../option-profile.js';
 
 const mockItem = {
@@ -38,55 +32,31 @@ function getSharedProps() {
 }
 
 describe('Option Profile Stateless Component', () => {
-  test('basic renders', () => {
-    const component = mount(<OptionProfile {...getSharedProps()} />);
-
-    expect(component.find(StyledListItemProfile)).toExist();
-
-    expect(
-      component
-        .find(StyledProfileTitle)
-        .first()
-        .text(),
-    ).toEqual(mockItem.title);
-
-    expect(
-      component
-        .find(StyledProfileSubtitle)
-        .first()
-        .text(),
-    ).toEqual(mockItem.subtitle);
-
-    expect(
-      component
-        .find(StyledProfileBody)
-        .first()
-        .text(),
-    ).toEqual(mockItem.body);
-
-    expect(
-      component
-        .find(StyledProfileImg)
-        .first()
-        .prop('src'),
-    ).toEqual(mockItem.imgUrl);
+  it('basic renders', () => {
+    const {container} = render(<OptionProfile {...getSharedProps()} />);
+    getByText(container, mockItem.title);
+    getByText(container, mockItem.subtitle);
+    getByText(container, mockItem.body);
+    expect(container.querySelector('img').getAttribute('src')).toBe(
+      mockItem.imgUrl,
+    );
   });
 
-  test('renders with custom image component', () => {
+  it('renders with custom image component', () => {
     function MockComponent() {
-      return <div />;
+      return <div data-testid="mock-image-element" />;
     }
     const props = {
       ...getSharedProps(),
       getProfileItemImg: item => MockComponent,
     };
-    const component = mount(<OptionProfile {...props} />);
-    expect(component.find(MockComponent)).toExist();
+    const {container} = render(<OptionProfile {...props} />);
+    getByTestId(container, 'mock-image-element');
   });
 
-  test('renders with components overrides', () => {
+  it('renders with components overrides', () => {
     function MockComponent() {
-      return <div />;
+      return <div data-testid="mock-list-item-element" />;
     }
     const props = {
       ...getSharedProps(),
@@ -99,9 +69,7 @@ describe('Option Profile Stateless Component', () => {
         },
       },
     };
-    const component = mount(<OptionProfile {...props} />);
-    expect(component.find(StyledListItemProfile)).not.toExist();
-    expect(component.find(MockComponent)).toExist();
-    expect(component.find(MockComponent).prop('custom')).toEqual('prop');
+    const {container} = render(<OptionProfile {...props} />);
+    getByTestId(container, 'mock-list-item-element');
   });
 });

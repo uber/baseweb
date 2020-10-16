@@ -6,31 +6,41 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {mount} from 'enzyme';
+import {render, fireEvent, getByTestId} from '@testing-library/react';
+
 import MultiValue from '../multi-value.js';
-import {Tag} from '../../tag/index.js';
 
 describe('Multi Value component', function() {
-  test('renders Tag by default', function() {
-    const props = {children: 'test'};
-    const wrapper = mount(<MultiValue {...props} />);
-    const renderedTag = wrapper.find(Tag).first();
-    expect(renderedTag).toExist();
+  it('renders tag by default', () => {
+    const {container} = render(
+      <MultiValue
+        overrides={{
+          Tag: {props: {overrides: {Root: {props: {'data-testid': 'tag'}}}}},
+        }}
+      >
+        test
+      </MultiValue>,
+    );
+    const tag = getByTestId(container, 'tag');
+    expect(tag.textContent).toBe('test');
   });
 
-  test('renders MultiValue', function() {
-    const mock = jest.fn().mockImplementation(() => <span />);
-    const props = {
-      children: 'test',
-      removeValue: jest.fn(),
-      overrides: {MultiValue: mock},
-    };
-    mount(<MultiValue {...props} />);
-    expect(mock).toHaveBeenCalled();
-    const passedProps = mock.mock.calls[0][0];
-    expect(passedProps.onActionClick).toEqual(props.removeValue);
-    expect(passedProps).toMatchSnapshot(
-      'passes correct props to an underlying component',
+  it('clicking tag action calls removeValue', () => {
+    const removeValue = jest.fn();
+    const {container} = render(
+      <MultiValue
+        removeValue={removeValue}
+        overrides={{
+          Tag: {
+            props: {overrides: {Action: {props: {'data-testid': 'action'}}}},
+          },
+        }}
+      >
+        test
+      </MultiValue>,
     );
+    const action = getByTestId(container, 'action');
+    fireEvent.click(action);
+    expect(removeValue).toHaveBeenCalledTimes(1);
   });
 });

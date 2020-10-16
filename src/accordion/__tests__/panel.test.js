@@ -7,108 +7,58 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {mount} from 'enzyme';
-import {
-  Panel,
-  StyledContent,
-  StyledHeader,
-  StyledToggleIcon,
-} from '../index.js';
+import {render, fireEvent, getByText} from '@testing-library/react';
+
+import {Panel} from '../index.js';
 
 describe('Panel', () => {
-  test('basic rendering', () => {
-    const props = {
-      title: 'title',
-      children: 'content',
-    };
-    let renderedHeader;
-    let renderedContent;
-    let renderedToggleIcon;
-    const wrapper = mount(<Panel {...props} />);
-    renderedHeader = wrapper.find(StyledHeader).first();
-    renderedToggleIcon = wrapper.find(StyledToggleIcon).first();
-    renderedContent = wrapper.find(StyledContent).first();
-    expect(renderedHeader).toExist();
-    expect(renderedHeader.props()).toMatchSnapshot('Header has correct props');
-    expect(renderedToggleIcon).toExist();
-    expect(renderedContent).toExist();
-    expect(renderedContent.props()).toMatchSnapshot(
-      'Content has correct props',
+  it('applies aria-controls when provided', () => {
+    const {container} = render(
+      <Panel aria-controls="panel" title="title">
+        content
+      </Panel>,
     );
+    const panel = container.querySelector('[aria-controls="panel"]');
+    expect(panel).not.toBeNull();
   });
 
-  test('aria-controls populated when provided', () => {
-    const props = {
-      onChange: jest.fn(),
-      onKeyDown: jest.fn(),
-      children: 'content',
-      'aria-controls': 'panel',
-      title: 'title',
-    };
-    let renderedHeader;
-    let renderedContent;
-    const wrapper = mount(<Panel {...props} />);
-    renderedHeader = wrapper.find(StyledHeader).first();
-    renderedContent = wrapper.find(StyledContent).first();
-    expect(renderedHeader).toExist();
-    expect(renderedHeader).toMatchSnapshot(
-      'Header has correct props w/ aria-controls',
+  it('calls onChange on enter key press', () => {
+    const onChange = jest.fn();
+    const {container} = render(
+      <Panel onChange={onChange} title="title">
+        content
+      </Panel>,
     );
-    expect(renderedContent).toExist();
-    expect(renderedContent).toMatchSnapshot('Content has correct props w/ ID');
+
+    const header = getByText(container, 'title');
+    fireEvent.keyDown(header, {keyCode: 13});
+
+    expect(onChange.mock.calls.length).toBe(1);
   });
 
-  test('component overrides', () => {
-    const overrides = {
-      Header: jest
-        .fn()
-        .mockImplementation(({children}) => <span>{children}</span>),
-    };
-    // $FlowFixMe
-    const wrapper = mount(<Panel overrides={overrides}>Content</Panel>);
-    // $FlowFixMe
-    const header = wrapper.find(overrides.Header);
-    expect(header).toHaveLength(1);
+  it('calls onChange on space key press', () => {
+    const onChange = jest.fn();
+    const {container} = render(
+      <Panel onChange={onChange} title="title">
+        content
+      </Panel>,
+    );
+
+    const panel = getByText(container, 'title');
+    fireEvent.keyDown(panel, {keyCode: 32});
+    expect(onChange.mock.calls.length).toBe(1);
   });
 
-  test('onChange is called on a click event', () => {
-    const props = {
-      onChange: jest.fn(),
-      onClick: jest.fn(),
-      title: 'title',
-    };
-    const wrapper = mount(<Panel {...props}>Content</Panel>);
-    const header = wrapper.find(StyledHeader);
-    header.simulate('click');
-    expect(props.onChange).toHaveBeenCalledWith({expanded: true});
-    expect(props.onClick).toHaveBeenCalled();
-  });
+  it('calls onChange on click', () => {
+    const onChange = jest.fn();
+    const {container} = render(
+      <Panel onChange={onChange} title="title">
+        content
+      </Panel>,
+    );
 
-  test('onChange is called on a Enter keydown event', () => {
-    const props = {
-      onChange: jest.fn(),
-      onKeyDown: jest.fn(),
-      title: 'title',
-    };
-    const event = {key: 'Enter'};
-    const wrapper = mount(<Panel {...props}>Content</Panel>);
-    const header = wrapper.find(StyledHeader);
-    header.simulate('keydown', event);
-    expect(props.onChange).toHaveBeenCalledWith({expanded: true});
-    expect(props.onKeyDown).toHaveBeenCalled();
-  });
-
-  test('onChange is called on a Space keydown event', () => {
-    const props = {
-      onChange: jest.fn(),
-      onKeyDown: jest.fn(),
-      title: 'title',
-    };
-    const event = {which: 32};
-    const wrapper = mount(<Panel {...props}>Content</Panel>);
-    const header = wrapper.find(StyledHeader);
-    header.simulate('keydown', event);
-    expect(props.onChange).toHaveBeenCalledWith({expanded: true});
-    expect(props.onKeyDown).toHaveBeenCalled();
+    const panel = getByText(container, 'title');
+    fireEvent.click(panel);
+    expect(onChange.mock.calls.length).toBe(1);
   });
 });

@@ -43,7 +43,7 @@ Usually, we reject contributions if they meet any of the following requirements:
   - Run `yarn lint` , which has eslint-plugin-jsx-a11y running as part of it https://github.com/evcohen/eslint-plugin-jsx-a11y#supported-rules,
   - Check out `TESTING.md` to learn how to run end-to-end tests
 - [Styletron](https://www.styletron.org/) for CSS-in-JS styling
-- Unit tests with [jest](https://jestjs.io/en/) and [enzyme](https://airbnb.io/enzyme/)
+- Unit tests with [jest](https://jestjs.io/en/) and [react testing library](https://testing-library.com/docs/react-testing-library/intro)
 - [Flow](https://flow.org/) type coverage for all relevant component code and tests
   - TypeScript coverage for the API
 - Documentation added to the docs site. You start the doc site using `yarn documentation:dev:watch`.

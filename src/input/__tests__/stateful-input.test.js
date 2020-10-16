@@ -6,48 +6,22 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {shallow, mount} from 'enzyme';
-import {StatefulInput, StyledInput, StatefulContainer} from '../index.js';
+import {render, fireEvent} from '@testing-library/react';
+import {StatefulInput} from '../index.js';
 
-describe('', () => {
-  test('basic render', () => {
-    const props = {
-      onChange: jest.fn(),
-      overrides: {
-        Input: function CustomInput(props) {
-          return (
-            <span>
-              <StyledInput {...props} />
-            </span>
-          );
-        },
-      },
-    };
-    const component = shallow(<StatefulInput {...props} />);
-    expect(component).toMatchSnapshot('renders <StatefulContainer/>');
-    expect(component.dive()).toMatchSnapshot('renders <Input/> as a child');
+describe('stateful-input', () => {
+  it('renders input', () => {
+    const {container} = render(<StatefulInput />);
+    const input = container.querySelector('input');
+    expect(input).not.toBeNull();
   });
 
-  test('onChange handling and state updates', () => {
-    const props = {
-      onChange: jest.fn(),
-      stateReducer: jest
-        .fn()
-        .mockImplementation((type, nextState) => nextState),
-    };
-    const newValue = 'new value';
-    const event = {target: {value: newValue}};
-    const component = mount(<StatefulInput {...props} />);
-    const renderedStatefulContainer = component.find(StatefulContainer).first();
-    const statefulContainerInstance = renderedStatefulContainer.instance();
-    expect(statefulContainerInstance.state.value).toEqual('');
-    // $FlowFixMe
-    statefulContainerInstance.onChange(event);
-    expect(props.stateReducer).toHaveBeenCalledWith(
-      'change',
-      {value: newValue},
-      {value: ''},
-    );
-    expect(statefulContainerInstance.state.value).toEqual(newValue);
+  it('handles change events', () => {
+    const {container} = render(<StatefulInput />);
+    const input = container.querySelector('input');
+    expect(input.value).toBe('');
+
+    fireEvent.change(input, {target: {value: 'a'}});
+    expect(input.value).toBe('a');
   });
 });

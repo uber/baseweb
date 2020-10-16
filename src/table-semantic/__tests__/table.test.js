@@ -7,15 +7,9 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {shallow, mount} from 'enzyme';
+import {render, getByText, queryByText} from '@testing-library/react';
 
-import {
-  Table,
-  StyledTableBody,
-  StyledTableBodyRow,
-  StyledTableBodyCell,
-  StyledTableEmptyMessage,
-} from '../index.js';
+import {Table} from '../index.js';
 
 const COLUMNS = ['ID', 'First Name', 'Last Name', 'Age', 'Address'];
 
@@ -27,27 +21,23 @@ const DATA = [
 
 describe('Table Semantic', () => {
   it('renders expected number of rows', () => {
-    const wrapper = shallow(<Table columns={COLUMNS} data={DATA} />);
-
-    expect(wrapper.find(StyledTableBodyRow)).toHaveLength(DATA.length);
+    const {container} = render(<Table columns={COLUMNS} data={DATA} />);
+    const rows = container.querySelectorAll('tr');
+    expect(rows.length).toBe(DATA.length + 1);
   });
 
   it('renders expected number of columns', () => {
-    const wrapper = shallow(<Table columns={COLUMNS} data={DATA} />);
-    const cells = wrapper
-      .find(StyledTableBodyRow)
-      .first()
-      .find(StyledTableBodyCell);
-
-    expect(cells).toHaveLength(DATA[0].length);
+    const {container} = render(<Table columns={COLUMNS} data={DATA} />);
+    const headCells = container.querySelectorAll('th');
+    expect(headCells.length).toBe(DATA[0].length);
   });
 
   it('exposes row and column data to overrides', () => {
-    const mockTableHeadCellStyle = jest.fn();
-    const mockTableBodyRowStyle = jest.fn();
-    const mockTableBodyCellStyle = jest.fn();
+    const mockTableHeadCellStyle = jest.fn(() => null);
+    const mockTableBodyRowStyle = jest.fn(() => null);
+    const mockTableBodyCellStyle = jest.fn(() => null);
 
-    mount(
+    render(
       <Table
         columns={COLUMNS}
         data={DATA}
@@ -93,33 +83,21 @@ describe('Table Semantic', () => {
   });
 
   it('renders loading message', () => {
-    const wrapper = shallow(
+    const {container} = render(
       <Table columns={COLUMNS} data={DATA} isLoading={true} />,
     );
-
-    expect(wrapper.find(StyledTableBodyRow)).toHaveLength(0);
-
-    const tableBody = wrapper.find(StyledTableBody);
-    expect(tableBody.find('td').prop('colSpan')).toEqual(COLUMNS.length);
-    expect(tableBody.text()).toContain('Loading...');
+    getByText(container, 'Loading...');
   });
 
   it('renders empty message', () => {
-    const wrapper = shallow(
+    const {container} = render(
       <Table columns={COLUMNS} data={[]} emptyMessage="No data" />,
     );
-
-    expect(wrapper.find(StyledTableBodyRow)).toHaveLength(0);
-
-    const tableBody = wrapper.find(StyledTableBody);
-    expect(tableBody.find('td').prop('colSpan')).toEqual(COLUMNS.length);
-    expect(tableBody.text()).toContain('No data');
+    getByText(container, 'No data');
   });
 
   it('does not render unset empty message', () => {
-    const wrapper = shallow(<Table columns={COLUMNS} data={[]} />);
-
-    const rows = wrapper.find(StyledTableEmptyMessage);
-    expect(rows).toHaveLength(0);
+    const {container} = render(<Table columns={COLUMNS} data={[]} />);
+    expect(queryByText(container, 'Loading...')).toBeNull();
   });
 });

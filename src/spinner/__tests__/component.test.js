@@ -7,45 +7,46 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {mount} from 'enzyme';
+import {render, getByTestId} from '@testing-library/react';
+
 import {Spinner} from '../index.js';
-import {Icon} from '../../icon/index.js';
 
 describe('Spinner', () => {
-  test('color can be changed through props', () => {
-    let renderedIcon;
-    const spinner = mount(
+  it('color can be changed through props', () => {
+    const {container} = render(
       <Spinner $silenceV11DeprecationWarning color="red" />,
     );
 
-    renderedIcon = spinner.find(Icon).first();
-    expect(renderedIcon).toExist();
-
-    expect(renderedIcon.props().color).toBe('red');
+    const style = JSON.parse(
+      container.querySelector('svg').getAttribute('test-style'),
+    );
+    expect(style.color).toBe('red');
   });
 
-  test('size can be changed through props', () => {
-    let renderedIcon;
-    const spinner = mount(
+  it('size can be changed through props', () => {
+    const {container} = render(
       <Spinner $silenceV11DeprecationWarning size="10px" />,
     );
 
-    renderedIcon = spinner.find(Icon).first();
-    expect(renderedIcon).toExist();
-
-    expect(renderedIcon.props().size).toBe('10px');
+    const style = JSON.parse(
+      container.querySelector('svg').getAttribute('test-style'),
+    );
+    expect(style.width).toBe('10px');
+    expect(style.height).toBe('10px');
   });
 
-  test('component overrides', () => {
+  it('component overrides', () => {
     const overrides = {
-      Svg: jest.fn().mockImplementation(({children}) => <svg>{children}</svg>),
+      Svg: jest
+        .fn()
+        .mockImplementation(({children}) => (
+          <svg data-testid="mock">{children}</svg>
+        )),
     };
-    const wrapper = mount(
+    const {container} = render(
       // $FlowFixMe
       <Spinner $silenceV11DeprecationWarning overrides={overrides} />,
     );
-    // $FlowFixMe
-    const root = wrapper.find(overrides.Svg);
-    expect(root).toHaveLength(1);
+    getByTestId(container, 'mock');
   });
 });
