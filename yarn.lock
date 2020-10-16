@@ -17111,7 +17111,7 @@ react-proptype-conditional-require@^1.0.4:
   resolved "https://registry.yarnpkg.com/react-proptype-conditional-require/-/react-proptype-conditional-require-1.0.4.tgz#69c2d5741e6df5e08f230f36bbc2944ee1222555"
   integrity sha1-acLVdB5t9eCPIw82u8KUTuEiJVU=
 
-react-range@^1.7.0:
+react-range@1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/react-range/-/react-range-1.7.0.tgz#94ac3851661dabbb9bcc37001ba5ddd7cd0cca5d"
   integrity sha512-OFF+bcD5o1TJ8M6YcQI4A3b6OYh4bDG0gUkyXETPJHXeut39XL8RZZZPUgfeoEOP1PmtMtluGMbFleP59S9OXg==
