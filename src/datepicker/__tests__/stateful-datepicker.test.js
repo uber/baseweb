@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {render, getByTestId} from '@testing-library/react';
-import {Datepicker, StatefulDatepicker} from '../index.js';
+import {StatefulDatepicker} from '../index.js';
 
 describe('StatefulDatepicker', () => {
   it('basic render', () => {
