@@ -202,6 +202,7 @@ Object {
   it('paragraph 2', () => {
     const {container} = render(<Paragraph2>test</Paragraph2>);
     const element = getByText(container, 'test');
+    expect(getStyle(element)).toMatchInlineSnapshot(`
 Object {
   "color": "$theme.colors.contentPrimary",
   "fontFamily": "$theme.typography.ParagraphMedium.fontFamily",
