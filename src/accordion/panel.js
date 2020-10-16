@@ -59,10 +59,15 @@ class Panel extends React.Component<PanelPropsT, {isFocusVisible: boolean}> {
     if (disabled) {
       return;
     }
-    // toggle on Enter or Space button pressed
-    if (e.key === 'Enter' || e.which === 32) {
+
+    const ENTER = 13;
+    const SPACE = 32;
+
+    if (e.keyCode === ENTER || e.keyCode === SPACE) {
       typeof onChange === 'function' && onChange({expanded: !expanded});
-      e.which === 32 && e.preventDefault(); // prevent jumping scroll when using Space
+      if (e.keyCode === SPACE) {
+        e.preventDefault(); // prevent jumping scroll when using Space
+      }
     }
     typeof onKeyDown === 'function' && onKeyDown(e);
     return;

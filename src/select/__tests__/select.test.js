@@ -7,11 +7,11 @@ LICENSE file in the root directory of this source tree.
 /* global document */
 // @flow
 import * as React from 'react';
-import {mount} from 'enzyme';
+import {render, fireEvent, getByTestId} from '@testing-library/react';
 
 import {TestBaseProvider} from '../../test/test-utils.js';
+
 import Select from '../select.js';
-import SelectComponent from '../select-component.js';
 import {STATE_CHANGE_TYPE} from '../constants.js';
 
 describe('Select component', function() {
@@ -34,29 +34,28 @@ describe('Select component', function() {
     };
   });
 
-  afterEach(function() {
-    wrapper && wrapper.unmount();
-  });
-
-  test('calls onInputChange when input value changes', function() {
-    wrapper = mount(
+  it('calls onInputChange when input value changes', function() {
+    const {container} = render(
       <TestBaseProvider>
         <Select {...props} />
       </TestBaseProvider>,
     );
-    const select = wrapper.find(SelectComponent).first();
-    const e = {target: {value: 'test'}};
-    // $FlowFixMe
-    select.instance().handleInputChange(e);
-    expect(props.onInputChange).toHaveBeenCalledWith(e);
+
+    const input = container.querySelector('input');
+    fireEvent.change(input, {target: {value: 'test'}});
+    expect(props.onInputChange).toHaveBeenCalledTimes(1);
   });
 
-  test('removes selected tag on clear', function() {
-    wrapper = mount(<Select {...props} value={[item]} />);
-    const select = wrapper.find(SelectComponent).first();
-    const e = {type: 'click', button: 0, preventDefault: jest.fn()};
-    // $FlowFixMe
-    select.instance().clearValue(e);
+  it('removes selected tag on clear', function() {
+    const {container} = render(
+      <Select
+        {...props}
+        value={[item]}
+        overrides={{ClearIcon: {props: {'data-testid': 'clear-icon'}}}}
+      />,
+    );
+
+    fireEvent.click(getByTestId(container, 'clear-icon'));
     expect(props.onChange).toHaveBeenCalled();
     expect(props.onChange.mock.calls[0][0]).toEqual({
       type: STATE_CHANGE_TYPE.clear,
@@ -65,38 +64,41 @@ describe('Select component', function() {
     });
   });
 
-  test('select flow allows custom keys in options objects', function() {
-    wrapper = mount(
-      <Select
-        options={[
-          {id: 'AliceBlue', color: '#F0F8FF'},
-          {id: 'AntiqueWhite', color: '#FAEBD7'},
-        ]}
-        closeOnSelect={false}
-        onChange={({option}) => {
-          /* eslint-disable no-console */
-          // $FlowFixMe
-          console.info(option.color);
-          if (option !== null && option !== undefined && option.color) {
-            console.info(option.color);
-          }
-          /* eslint-enable no-console */
-        }}
-        labelKey="id"
-        multi
-        valueKey="color"
-      />,
+  it('select flow allows custom keys in options objects', function() {
+    const options = [
+      {id: 'AliceBlue', color: '#F0F8FF'},
+      {id: 'AntiqueWhite', color: '#FAEBD7'},
+    ];
+    const {container} = render(
+      <TestBaseProvider>
+        <Select
+          options={options}
+          labelKey="id"
+          valueKey="color"
+          overrides={{
+            ControlContainer: {props: {'data-testid': 'control-container'}},
+          }}
+        />
+      </TestBaseProvider>,
     );
+    fireEvent.click(getByTestId(container, 'control-container'));
+    const items = container.querySelectorAll('li');
+    expect(items.length).toBe(2);
+    expect(items[0].textContent).toBe(options[0].id);
+    expect(items[1].textContent).toBe(options[1].id);
   });
 
-  test('sets controlRef from props', () => {
-    const ref = React.createRef();
-    wrapper = mount(<Select {...props} controlRef={ref} />);
-    expect(ref.current).toBeDefined();
-    // $FlowFixMe
-    ref.current.focus();
-    expect(wrapper.find('input').getDOMNode() === document.activeElement).toBe(
-      true,
-    );
+  it('sets controlRef from props', () => {
+    function TestCase() {
+      const ref = React.useRef();
+      React.useEffect(() => {
+        if (ref.current) {
+          ref.current.focus();
+        }
+      }, []);
+      return <Select {...props} controlRef={ref} />;
+    }
+    const {container} = render(<TestCase />);
+    expect(container.querySelector('input')).toBe(document.activeElement);
   });
 });

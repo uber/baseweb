@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {shallow} from 'enzyme';
 import {render} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
@@ -16,7 +15,7 @@ import {StatefulRadioGroup, RadioGroup, Radio} from '../index.js';
 
 describe('radio-group', () => {
   it('sets expected child radio checked', () => {
-    const wrapper = shallow(
+    const {container} = render(
       <RadioGroup value="3">
         <Radio value="1" />
         <Radio value="2" />
@@ -24,13 +23,14 @@ describe('radio-group', () => {
       </RadioGroup>,
     );
 
-    wrapper.children().forEach((child, index) => {
-      expect(child).toHaveProp('checked', index === 2);
+    const inputs = container.querySelectorAll('input');
+    inputs.forEach((input, index) => {
+      expect(input.checked).toBe(index === 2);
     });
   });
 
   it('disables children if disabled', () => {
-    const wrapper = shallow(
+    const {container} = render(
       <RadioGroup disabled>
         <Radio />
         <Radio />
@@ -38,13 +38,14 @@ describe('radio-group', () => {
       </RadioGroup>,
     );
 
-    wrapper.children().forEach(child => {
-      expect(child).toHaveProp('disabled', true);
+    const inputs = container.querySelectorAll('input');
+    inputs.forEach((input, index) => {
+      expect(input.disabled).toBe(true);
     });
   });
 
   it('disabled prop on children take priority', () => {
-    const wrapper = shallow(
+    const {container} = render(
       <RadioGroup disabled={false}>
         <Radio disabled />
         <Radio />
@@ -52,8 +53,9 @@ describe('radio-group', () => {
       </RadioGroup>,
     );
 
-    wrapper.children().forEach((child, index) => {
-      expect(child).toHaveProp('disabled', index === 0);
+    const inputs = container.querySelectorAll('input');
+    inputs.forEach((input, index) => {
+      expect(input.disabled).toBe(index === 0);
     });
   });
 });

@@ -7,74 +7,50 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {mount} from 'enzyme';
+import {render, getByTestId, getByText} from '@testing-library/react';
 
 import {TestBaseProvider} from '../../test/test-utils.js';
-import {Popover} from '../../popover/index.js';
 
 import MaybeChildMenu from '../maybe-child-menu.js';
 
 describe('MaybeChildMenu', () => {
   it('does not render popover if getChildMenu is undefined', () => {
-    const wrapper = mount(
+    const content = 'content';
+    const {container} = render(
       <MaybeChildMenu
         isOpen={true}
         getChildMenu={null}
         item={{label: 'item'}}
         resetParentMenu={() => {}}
       >
-        <div>child</div>
+        {content}
       </MaybeChildMenu>,
     );
-
-    expect(
-      wrapper
-        .children()
-        .first()
-        .name(),
-    ).toBe('div');
+    expect(getByText(container, content).tagName).toBe('DIV');
   });
 
   it('renders popover if getChildMenu is provided', () => {
-    const wrapper = mount(
+    const {container} = render(
       <TestBaseProvider>
         <MaybeChildMenu
           isOpen={true}
           getChildMenu={() => <button>child menu</button>}
           item={{label: 'item'}}
           resetParentMenu={() => {}}
+          overrides={{
+            ChildMenuPopover: {
+              props: {
+                overrides: {
+                  Body: {props: {'data-testid': 'child-menu-popover'}},
+                },
+              },
+            },
+          }}
         >
           <div>child</div>
         </MaybeChildMenu>
       </TestBaseProvider>,
     );
-
-    expect(wrapper.find(Popover)).not.toBeNull();
-  });
-
-  it('renders with components overrides', () => {
-    const NewPopover = () => <div id="popover" />;
-    const overrides = {
-      ChildMenuPopover: {
-        component: NewPopover,
-        props: {
-          showArrow: true,
-        },
-      },
-    };
-    const component = mount(
-      <MaybeChildMenu
-        isOpen={true}
-        getChildMenu={() => <button>child menu</button>}
-        item={{label: 'item'}}
-        resetParentMenu={() => {}}
-        overrides={overrides}
-      >
-        <div>child</div>
-      </MaybeChildMenu>,
-    );
-    expect(component.find(Popover)).not.toExist();
-    expect(component.find(NewPopover)).toExist();
-    expect(component.find(NewPopover).prop('showArrow')).toBeTruthy();
+    getByTestId(container, 'child-menu-popover');
   });
 });

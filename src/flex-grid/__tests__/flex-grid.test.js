@@ -7,34 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {mount} from 'enzyme';
+import {render, prettyDOM} from '@testing-library/react';
 
 import FlexGrid, {BaseFlexGrid} from '../flex-grid.js';
 import {camelToKebab} from '../../helpers/strings.js';
 
-describe('BaseFlexGrid', () => {
-  it('renders', () => {
-    const wrapper = mount(<BaseFlexGrid />);
-    expect(wrapper).toMatchSnapshot('with default styles');
-
-    wrapper.setProps({
-      display: 'none',
-      flexWrap: false,
-      overrides: {Block: {style: {color: 'red'}}},
-    });
-    expect(wrapper).toMatchSnapshot('with overridden styles');
-  });
-});
-
 describe('FlexGrid', () => {
-  it('renders', () => {
-    const wrapper = mount(<FlexGrid />);
-    expect(wrapper).toMatchSnapshot('with default styles');
-
-    wrapper.setProps({overrides: {Block: {style: {color: 'red'}}}});
-    expect(wrapper).toMatchSnapshot('with overridden styles');
-  });
-
   it('passes FlexGrid props to children', () => {
     const MockFlexGridItem = props => (
       <div
@@ -45,12 +23,14 @@ describe('FlexGrid', () => {
         }, {})}
       />
     );
-    const wrapper = mount(
+    const {container, baseElement} = render(
       <FlexGrid flexGridColumnCount={4}>
         <MockFlexGridItem>Item 1</MockFlexGridItem>
         <MockFlexGridItem>Item 2</MockFlexGridItem>
       </FlexGrid>,
     );
-    expect(wrapper).toMatchSnapshot('FlexGridItem with flexGridColumnCount');
+    expect(prettyDOM(baseElement)).toMatchSnapshot(
+      'FlexGridItem with flexGridColumnCount',
+    );
   });
 });

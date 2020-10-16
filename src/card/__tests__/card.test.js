@@ -6,7 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {mount} from 'enzyme';
+import {render} from '@testing-library/react';
+
 import {Card} from '../index.js';
 import {header as headerImg, thumbnail as thumbnailImg} from '../images.js';
 
@@ -18,10 +19,8 @@ test('Card - basic functionality', () => {
     title: 'Card title',
   };
 
-  const wrapper = mount(<Card {...props}>Card body</Card>);
-
-  // Renders title, header image, thumbnail and action
-  expect(wrapper.find('img')).toHaveLength(2);
+  const {container} = render(<Card {...props}>Card body</Card>);
+  expect(container.querySelectorAll('img')).toHaveLength(2);
 });
 
 test('Card - header image object', () => {
@@ -32,14 +31,12 @@ test('Card - header image object', () => {
     title: 'Card title',
   };
 
-  const wrapper = mount(<Card {...props}>Card body</Card>);
+  const {container} = render(<Card {...props}>Card body</Card>);
 
-  // Renders title, header image with object props
-  const imgEl = wrapper.find('img');
-  expect(imgEl).toHaveLength(1);
-  expect(imgEl.prop('src')).toEqual(headerImg);
-  expect(imgEl.prop('alt')).toEqual(alt);
-  expect(imgEl.prop('srcSet')).toEqual(srcSet);
+  const img = container.querySelector('img');
+  expect(img.getAttribute('src')).toBe(headerImg);
+  expect(img.getAttribute('alt')).toBe(alt);
+  expect(img.getAttribute('srcSet')).toEqual(srcSet);
 });
 
 test('Card - no images', () => {
@@ -48,8 +45,6 @@ test('Card - no images', () => {
     title: 'Card title',
   };
 
-  const wrapper = mount(<Card {...props}>Card body</Card>);
-
-  // Renders title and action without images
-  expect(wrapper.find('img')).toHaveLength(0);
+  const {container} = render(<Card {...props}>Card body</Card>);
+  expect(container.querySelectorAll('img')).toHaveLength(0);
 });

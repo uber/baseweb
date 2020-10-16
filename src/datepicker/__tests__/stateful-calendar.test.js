@@ -6,21 +6,20 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {mount} from 'enzyme';
+import {render, getByTestId} from '@testing-library/react';
+
 import {StatefulCalendar, Calendar} from '../index.js';
 
 describe('StatefulCalendar', () => {
-  test('basic render', () => {
-    const props = {
-      initialState: {
-        highlightedDate: new Date(),
-      },
-      onChange: jest.fn(),
-      stateReducer: jest.fn(),
-    };
-
-    const component = mount(<StatefulCalendar {...props} />);
-    const renderedCalendar = component.find(Calendar);
-    expect(renderedCalendar).toExist();
+  it('basic render', () => {
+    const {container} = render(
+      <StatefulCalendar
+        initialState={{highlightedDate: new Date()}}
+        overrides={{
+          CalendarContainer: {props: {'data-testid': 'calendar-container'}},
+        }}
+      />,
+    );
+    getByTestId(container, 'calendar-container');
   });
 });

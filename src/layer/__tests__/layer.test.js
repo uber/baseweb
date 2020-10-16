@@ -7,159 +7,109 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {mount} from 'enzyme';
+import {render, getByTestId, getByText} from '@testing-library/react';
 
 import {TestBaseProvider} from '../../test/test-utils.js';
 
 import {Layer, LayersManager} from '../index.js';
 
 describe('Layer', () => {
-  let wrapper;
-  let mountNode;
-
-  afterEach(() => {
-    wrapper && wrapper.unmount();
-    mountNode && mountNode.unmount();
-    mountNode = null;
-  });
-
-  test('basic render', () => {
-    const content = <strong>Hello world</strong>;
-    const props = {
-      onMount: jest.fn(),
-      'data-id': 'data-id',
-    };
-    wrapper = mount(
+  it('renders layer content', () => {
+    const onMount = jest.fn();
+    const content = 'Hello world';
+    const {container} = render(
       <TestBaseProvider>
-        <Layer {...props}>{content}</Layer>
+        <Layer onMount={onMount}>{content}</Layer>
       </TestBaseProvider>,
     );
-
-    const layerElement = wrapper.find(Layer);
-
-    // Should render Layer
-    expect(wrapper.length).toBe(1);
-    expect(layerElement).not.toBeNull();
-    // Should render the LayerComponent and pass props to it
-    expect(layerElement.children().length).toBe(1);
-    expect(layerElement.childAt(0)).toHaveDisplayName('LayerComponent');
-    expect(layerElement.childAt(0)).toHaveProp(props);
-    // Layer should have the content
-    expect(layerElement.find('strong').first()).toExist();
-    expect(layerElement).toHaveText('Hello world');
-    // onMount should be called
-    expect(props.onMount).toHaveBeenCalled();
+    getByText(container, content);
+    expect(onMount).toBeCalledTimes(1);
   });
 
-  test('custom mountNode', () => {
-    mountNode = mount(<div />);
-    const content = <strong>Hello world</strong>;
-    const props = {
-      onMount: jest.fn(),
-      mountNode: mountNode.getDOMNode(),
-    };
-    wrapper = mount(
-      <TestBaseProvider>
-        <Layer {...props}>{content}</Layer>
-      </TestBaseProvider>,
-    );
-    // mountNode should have the content
-    expect(mountNode).toHaveText('Hello world');
-    // onMount should be called
-    expect(props.onMount).toHaveBeenCalled();
-  });
-
-  test('LayersManager', () => {
-    const content = <strong>Hello layer</strong>;
-    const props = {
-      onMount: jest.fn(),
-    };
-    function App() {
+  it('accepts custom mountNode', () => {
+    const content = 'Hello world';
+    function TestCase() {
+      const [mounted, setMounted] = React.useState(false);
+      const ref = React.useRef();
       return (
-        <div data-test="layers">
-          <strong>Hello world</strong>
-          <Layer {...props}>{content}</Layer>
-        </div>
-      );
-    }
-    wrapper = mount(
-      <LayersManager>
-        <App />
-      </LayersManager>,
-    );
-    // Should render two containers
-    expect(wrapper).toHaveDisplayName('LayersManager');
-    expect(wrapper.children().length).toBe(2);
-
-    // Should have the main content in the first container
-    expect(wrapper.childAt(0)).toHaveText('Hello world');
-    expect(wrapper.childAt(1)).not.toHaveText('Hello world');
-
-    // LayerComponent gets host prop value set to the second container
-    const hostNode = wrapper.childAt(1).getDOMNode();
-    const layerComponent = wrapper
-      .find(Layer)
-      .first()
-      .childAt(0);
-    expect(layerComponent.props().host === hostNode).toBe(true);
-
-    // onMount should be called
-    expect(props.onMount).toHaveBeenCalled();
-  });
-
-  test('Layers rendering', () => {
-    const content = 'Hello layer';
-    const props = {
-      onMount: jest.fn(),
-    };
-    function App() {
-      return (
-        <div data-test="layers">
-          <strong>Hello world</strong>
-          <Layer {...props}>{content} 1</Layer>
-          <Layer {...props}>{content} 2</Layer>
-        </div>
-      );
-    }
-    wrapper = mount(
-      <LayersManager>
-        <App />
-      </LayersManager>,
-    );
-    // Should have the later rendered layer prepended at the index 0
-    // in a layers container (hostNode)
-    const hostNode = wrapper.childAt(1).getDOMNode();
-    expect(hostNode.children.length).toEqual(2);
-    expect(hostNode.children[0].textContent).toEqual(`${content} 1`);
-    expect(hostNode.children[1].textContent).toEqual(`${content} 2`);
-  });
-
-  test('Layers rendering order when index is passed in', () => {
-    const content = 'Hello layer';
-    const props = {
-      onMount: jest.fn(),
-    };
-    function App() {
-      return (
-        <div data-test="layers">
-          <strong>Hello world</strong>
-          <Layer {...props}>{content} 1</Layer>
-          <Layer {...props} index={0}>
-            {content} 2
+        <TestBaseProvider>
+          <div data-testid="mount-node" ref={ref} />
+          <Layer
+            onMount={() => setMounted(true)}
+            mountNode={ref.current ? ref.current : undefined}
+          >
+            {content}
           </Layer>
-        </div>
+        </TestBaseProvider>
       );
     }
-    wrapper = mount(
-      <LayersManager>
-        <App />
+    const {container} = render(<TestCase />);
+    expect(getByTestId(container, 'mount-node').textContent).toBe(content);
+  });
+
+  it('renders layers-manager as expected', () => {
+    const onMount = jest.fn();
+    const appContent = 'app-content';
+    const layerContent = 'layer-content';
+    const {container} = render(
+      <LayersManager
+        overrides={{
+          AppContainer: {props: {'data-testid': 'app-container'}},
+          LayersContainer: {props: {'data-testid': 'layers-container'}},
+        }}
+      >
+        <p>{appContent}</p>
+        <Layer onMount={onMount}>{layerContent}</Layer>
       </LayersManager>,
     );
-    // Should have the later rendered layer prepended at the index 0
-    // in a layers container (hostNode)
-    const hostNode = wrapper.childAt(1).getDOMNode();
-    expect(hostNode.children.length).toEqual(2);
-    expect(hostNode.children[0].textContent).toEqual(`${content} 2`);
-    expect(hostNode.children[1].textContent).toEqual(`${content} 1`);
+
+    const appContainer = getByTestId(container, 'app-container');
+    expect(appContainer.children.length).toBe(1);
+    expect(appContainer.children[0].textContent).toBe(appContent);
+
+    const layersContainer = getByTestId(container, 'layers-container');
+    expect(layersContainer.children.length).toBe(1);
+    expect(layersContainer.children[0].textContent).toBe(layerContent);
+  });
+
+  it('renders multiple layers', () => {
+    const contentOne = 'content 1';
+    const contentTwo = 'content 2';
+    const onMount = jest.fn();
+    const {container} = render(
+      <LayersManager
+        overrides={{
+          LayersContainer: {props: {'data-testid': 'layers-container'}},
+        }}
+      >
+        <strong>Hello world</strong>
+        <Layer onMount={onMount}>{contentOne}</Layer>
+        <Layer onMount={onMount}>{contentTwo}</Layer>
+      </LayersManager>,
+    );
+    const layersContainer = getByTestId(container, 'layers-container');
+    expect(layersContainer.children.length).toBe(2);
+    expect(layersContainer.children[0].textContent).toBe(contentOne);
+    expect(layersContainer.children[1].textContent).toBe(contentTwo);
+  });
+
+  it('configures rendering order when index is provided', () => {
+    const contentOne = 'content 1';
+    const contentTwo = 'content 2';
+    const {container} = render(
+      <LayersManager
+        overrides={{
+          LayersContainer: {props: {'data-testid': 'layers-container'}},
+        }}
+      >
+        <strong>Hello world</strong>
+        <Layer>{contentOne}</Layer>
+        <Layer index={0}>{contentTwo}</Layer>
+      </LayersManager>,
+    );
+    const layersContainer = getByTestId(container, 'layers-container');
+    expect(layersContainer.children.length).toBe(2);
+    expect(layersContainer.children[0].textContent).toBe(contentTwo);
+    expect(layersContainer.children[1].textContent).toBe(contentOne);
   });
 });

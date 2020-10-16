@@ -23,8 +23,7 @@ import {
 } from './styled-components.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 
-type LocaleT = {|locale?: BreadcrumbLocaleT|};
-export function BreadcrumbsRoot(props: {|...BreadcrumbsPropsT, ...LocaleT|}) {
+export function Breadcrumbs(props: BreadcrumbsPropsT) {
   const {overrides = {}, showTrailingSeparator = false} = props;
   const childrenArray = Children.toArray(props.children);
   const childrenWithSeparators = [];
@@ -76,22 +75,16 @@ export function BreadcrumbsRoot(props: {|...BreadcrumbsPropsT, ...LocaleT|}) {
   });
 
   return (
-    <Root
-      aria-label={
-        props.ariaLabel || (props.locale ? props.locale.ariaLabel : '')
-      }
-      data-baseweb="breadcrumbs"
-      {...baseRootProps}
-    >
-      <List {...baseListProps}>{childrenWithSeparators}</List>
-    </Root>
-  );
-}
-
-function Breadcrumbs(props: BreadcrumbsPropsT) {
-  return (
     <LocaleContext.Consumer>
-      {locale => <BreadcrumbsRoot {...props} locale={locale.breadcrumbs} />}
+      {locale => (
+        <Root
+          aria-label={props.ariaLabel || locale.breadcrumbs.ariaLabel}
+          data-baseweb="breadcrumbs"
+          {...baseRootProps}
+        >
+          <List {...baseListProps}>{childrenWithSeparators}</List>
+        </Root>
+      )}
     </LocaleContext.Consumer>
   );
 }

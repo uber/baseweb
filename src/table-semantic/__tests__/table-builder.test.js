@@ -7,18 +7,14 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {mount} from 'enzyme';
-
 import {
-  TableBuilder,
-  TableBuilderColumn,
-  StyledTableHeadCellSortable,
-  StyledTableBodyRow,
-  StyledTableBodyCell,
-  StyledSortAscIcon,
-  StyledSortDescIcon,
-  StyledSortNoneIcon,
-} from '../index.js';
+  render,
+  fireEvent,
+  queryByTestId,
+  queryAllByTestId,
+} from '@testing-library/react';
+
+import {TableBuilder, TableBuilderColumn} from '../index.js';
 
 const DATA = [
   {
@@ -40,7 +36,7 @@ const DATA = [
 
 describe('Table Semantic Builder', () => {
   it('renders expected number of rows', () => {
-    const wrapper = mount(
+    const {container} = render(
       <TableBuilder data={DATA}>
         <TableBuilderColumn header="Foo">{row => row.foo}</TableBuilderColumn>
         <TableBuilderColumn header="Bar">
@@ -49,12 +45,12 @@ describe('Table Semantic Builder', () => {
         <TableBuilderColumn>{row => 'Hey'}</TableBuilderColumn>
       </TableBuilder>,
     );
-
-    expect(wrapper.find(StyledTableBodyRow)).toHaveLength(DATA.length);
+    const rows = container.querySelectorAll('tr');
+    expect(rows.length).toBe(DATA.length + 1);
   });
 
   it('renders expected number of columns', () => {
-    const wrapper = mount(
+    const {container} = render(
       <TableBuilder data={DATA}>
         <TableBuilderColumn header="Foo">{row => row.foo}</TableBuilderColumn>
         <TableBuilderColumn header="Bar">
@@ -63,17 +59,12 @@ describe('Table Semantic Builder', () => {
         <TableBuilderColumn>{row => 'Hey'}</TableBuilderColumn>
       </TableBuilder>,
     );
-
-    const cells = wrapper
-      .find(StyledTableBodyRow)
-      .first()
-      .find(StyledTableBodyCell);
-
-    expect(cells).toHaveLength(3);
+    const headCells = container.querySelectorAll('th');
+    expect(headCells.length).toBe(3);
   });
 
   it('renders expected number of anchors', () => {
-    const wrapper = mount(
+    const {container} = render(
       <TableBuilder data={DATA}>
         <TableBuilderColumn header="Foo">{row => row.foo}</TableBuilderColumn>
         <TableBuilderColumn header="Bar">
@@ -83,16 +74,24 @@ describe('Table Semantic Builder', () => {
       </TableBuilder>,
     );
 
-    const anchors = wrapper.find('a');
-
+    const anchors = container.querySelectorAll('a');
     expect(anchors).toHaveLength(DATA.length);
-    expect(anchors.at(0).prop('href')).toBe('https://example.com/b');
-    expect(anchors.at(0).prop('children')).toBe('banana');
+    expect(anchors[0].getAttribute('href')).toBe('https://example.com/b');
+    expect(anchors[0].textContent).toBe('banana');
   });
 
-  it('renders sorted results', () => {
-    const asc = mount(
-      <TableBuilder data={DATA} sortColumn={'foo'} sortOrder={'ASC'}>
+  it('renders sorted results ascending', () => {
+    const {container} = render(
+      <TableBuilder
+        data={DATA}
+        sortColumn={'foo'}
+        sortOrder={'ASC'}
+        overrides={{
+          SortAscIcon: {props: {'data-testid': 'sort-asc-icon'}},
+          SortDescIcon: {props: {'data-testid': 'sort-desc-icon'}},
+          SortNoneIcon: {props: {'data-testid': 'sort-none-icon'}},
+        }}
+      >
         <TableBuilderColumn header="Foo" id="foo" numeric sortable>
           {row => row.foo}
         </TableBuilderColumn>
@@ -102,12 +101,23 @@ describe('Table Semantic Builder', () => {
       </TableBuilder>,
     );
 
-    expect(asc.find(StyledSortAscIcon)).toHaveLength(1);
-    expect(asc.find(StyledSortDescIcon)).toHaveLength(0);
-    expect(asc.find(StyledSortNoneIcon)).toHaveLength(1);
+    expect(queryByTestId(container, 'sort-asc-icon')).not.toBeNull();
+    expect(queryByTestId(container, 'sort-desc-icon')).toBeNull();
+    expect(queryByTestId(container, 'sort-none-icon')).not.toBeNull();
+  });
 
-    const desc = mount(
-      <TableBuilder data={DATA} sortColumn={'bar'} sortOrder={'DESC'}>
+  it('renders sorted results descending', () => {
+    const {container} = render(
+      <TableBuilder
+        data={DATA}
+        sortColumn={'bar'}
+        sortOrder={'DESC'}
+        overrides={{
+          SortAscIcon: {props: {'data-testid': 'sort-asc-icon'}},
+          SortDescIcon: {props: {'data-testid': 'sort-desc-icon'}},
+          SortNoneIcon: {props: {'data-testid': 'sort-none-icon'}},
+        }}
+      >
         <TableBuilderColumn header="Foo" id="foo" numeric sortable>
           {row => row.foo}
         </TableBuilderColumn>
@@ -117,12 +127,21 @@ describe('Table Semantic Builder', () => {
       </TableBuilder>,
     );
 
-    expect(desc.find(StyledSortAscIcon)).toHaveLength(0);
-    expect(desc.find(StyledSortDescIcon)).toHaveLength(1);
-    expect(desc.find(StyledSortNoneIcon)).toHaveLength(1);
+    expect(queryByTestId(container, 'sort-asc-icon')).toBeNull();
+    expect(queryByTestId(container, 'sort-desc-icon')).not.toBeNull();
+    expect(queryByTestId(container, 'sort-none-icon')).not.toBeNull();
+  });
 
-    const none = mount(
-      <TableBuilder data={DATA}>
+  it('renders sorted results none', () => {
+    const {container} = render(
+      <TableBuilder
+        data={DATA}
+        overrides={{
+          SortAscIcon: {props: {'data-testid': 'sort-asc-icon'}},
+          SortDescIcon: {props: {'data-testid': 'sort-desc-icon'}},
+          SortNoneIcon: {props: {'data-testid': 'sort-none-icon'}},
+        }}
+      >
         <TableBuilderColumn header="Foo" id="foo" numeric sortable>
           {row => row.foo}
         </TableBuilderColumn>
@@ -132,15 +151,15 @@ describe('Table Semantic Builder', () => {
       </TableBuilder>,
     );
 
-    expect(none.find(StyledSortAscIcon)).toHaveLength(0);
-    expect(none.find(StyledSortDescIcon)).toHaveLength(0);
-    expect(none.find(StyledSortNoneIcon)).toHaveLength(2);
+    expect(queryByTestId(container, 'sort-asc-icon')).toBeNull();
+    expect(queryByTestId(container, 'sort-desc-icon')).toBeNull();
+    expect(queryAllByTestId(container, 'sort-none-icon').length).toBe(2);
   });
 
   it('executes onSort with column id when header is clicked', () => {
     const mockOnSort = jest.fn();
 
-    const wrapper = mount(
+    const {container} = render(
       <TableBuilder data={DATA} onSort={mockOnSort}>
         <TableBuilderColumn header="Foo" id="foo" sortable>
           {row => row.foo}
@@ -151,38 +170,31 @@ describe('Table Semantic Builder', () => {
       </TableBuilder>,
     );
 
-    const headCells = wrapper.find(StyledTableHeadCellSortable);
+    const headCells = container.querySelectorAll('th');
+    fireEvent.click(headCells[0]);
+    fireEvent.click(headCells[1]);
 
-    headCells.at(0).simulate('click');
-    headCells.at(1).simulate('click');
+    fireEvent.focus(headCells[1]);
+    fireEvent.keyDown(headCells[1], {key: 'Enter'});
 
-    headCells
-      .at(1)
-      .simulate('focus')
-      .simulate('keydown', {key: 'Enter'});
+    fireEvent.focus(headCells[1]);
+    fireEvent.keyDown(headCells[1], {key: ' '});
 
-    headCells
-      .at(1)
-      .simulate('focus')
-      .simulate('keydown', {key: ' '});
+    fireEvent.focus(headCells[1]);
+    fireEvent.keyDown(headCells[1], {key: 'a'});
 
-    headCells
-      .at(1)
-      .simulate('focus')
-      .simulate('keydown', {key: 'a'});
-
-    headCells.at(1).simulate('blur');
+    fireEvent.blur(headCells[1]);
 
     expect(mockOnSort.mock.calls.length).toBe(4);
     expect(mockOnSort.mock.calls).toEqual([['foo'], ['bar'], ['bar'], ['bar']]);
   });
 
   it('exposes row and column data to overrides', () => {
-    const mockTableHeadCellStyle = jest.fn();
-    const mockTableBodyRowStyle = jest.fn();
-    const mockTableBodyCellStyle = jest.fn();
+    const mockTableHeadCellStyle = jest.fn(() => null);
+    const mockTableBodyRowStyle = jest.fn(() => null);
+    const mockTableBodyCellStyle = jest.fn(() => null);
 
-    mount(
+    render(
       <TableBuilder
         data={DATA}
         overrides={{
@@ -240,7 +252,7 @@ describe('Table Semantic Builder', () => {
   });
 
   it('renders aria label for column header', () => {
-    const wrapper = mount(
+    const {container} = render(
       <TableBuilder data={DATA}>
         <TableBuilderColumn
           header={<span>Foo</span>}
@@ -256,11 +268,12 @@ describe('Table Semantic Builder', () => {
       </TableBuilder>,
     );
 
-    const headCells = wrapper.find(StyledTableHeadCellSortable);
-
-    expect(headCells.at(0).prop('aria-label')).toBe(
+    const headCells = container.querySelectorAll('th');
+    expect(headCells[0].getAttribute('aria-label')).toBe(
       'Foo Aria Label, ascending sorting',
     );
-    expect(headCells.at(1).prop('aria-label')).toBe('Bar, ascending sorting');
+    expect(headCells[1].getAttribute('aria-label')).toBe(
+      'Bar, ascending sorting',
+    );
   });
 });

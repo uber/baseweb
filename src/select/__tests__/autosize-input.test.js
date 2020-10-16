@@ -6,34 +6,19 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {mount} from 'enzyme';
+import {render} from '@testing-library/react';
+
 import AutosizeInput from '../autosize-input.js';
 import {StyledInput, StyledInputSizer} from '../styled-components.js';
 
 describe('AutosizeInput component', function() {
-  const props = {value: 'test', onChange: () => {}, id: 'test-id'};
-  const ref = React.createRef();
-
-  test('renders correctly', function() {
-    // $FlowFixMe
-    const wrapper = mount(<AutosizeInput {...props} inputRef={ref} />);
-    const renderedInput = wrapper.find(StyledInput).first();
-    const renderedSizer = wrapper.find(StyledInputSizer).first();
-    expect(renderedInput).toExist();
-    expect(renderedInput.props()).toMatchObject({
-      $width: '2px',
-      ...props,
-    });
-    expect(renderedSizer).toExist();
-    expect(renderedSizer.props()).toMatchObject({
-      children: props.value,
-    });
-  });
-
-  test('had correct initial state', function() {
-    const props = {value: 'test', onChange: () => {}};
-    // $FlowFixMe
-    const wrapper = mount(<AutosizeInput {...props} />);
-    expect(wrapper.state().inputWidth).toEqual(2);
+  it('renders correctly', function() {
+    const {container} = render(
+      // $FlowFixMe
+      <AutosizeInput value="test" onChange={jest.fn()} />,
+    );
+    const input = container.querySelector('input');
+    expect(input).not.toBeNull();
+    expect(input.getAttribute('value')).toBe('test');
   });
 });

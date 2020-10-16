@@ -6,38 +6,24 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {mount} from 'enzyme';
+import {render, getByTestId, getByText} from '@testing-library/react';
 
-import {styled} from '../../styles/index.js';
 import {HeaderNavigation} from '../index.js';
 
 describe('Stateless header navigation', function() {
-  let wrapper, children;
-  let allProps: any = {};
-
-  beforeEach(function() {
-    children = 'Some tag';
-  });
-
-  afterEach(function() {
-    jest.restoreAllMocks();
-    wrapper && wrapper.unmount();
-  });
-
-  test('should render component', function() {
-    wrapper = mount(
-      <HeaderNavigation {...allProps}>{children}</HeaderNavigation>,
+  it('should render component', function() {
+    const {container} = render(
+      <HeaderNavigation>hello world</HeaderNavigation>,
     );
-    expect(wrapper).toMatchSnapshot('Component has correct render');
+    getByText(container, 'hello world');
   });
 
-  test('should replace overridden root', function() {
-    const newRoot = styled('div', {color: 'red'});
-    allProps.overrides = {Root: newRoot};
-    wrapper = mount(
-      <HeaderNavigation {...allProps}>{children}</HeaderNavigation>,
+  it('applies root overrides', function() {
+    const {container} = render(
+      <HeaderNavigation overrides={{Root: {props: {'data-testid': 'root'}}}}>
+        hello world
+      </HeaderNavigation>,
     );
-    const renderedRoot = wrapper.find(allProps.overrides.Root);
-    expect(renderedRoot).toHaveLength(1);
+    getByTestId(container, 'root');
   });
 });

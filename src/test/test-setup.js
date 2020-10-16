@@ -5,10 +5,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-
-Enzyme.configure({adapter: new Adapter()});
 
 // At some point baseui published with errors in unit-tests that caused problems for users.
 // The assertions below will fail unit-tests if any errors or warnings are logs so that we
