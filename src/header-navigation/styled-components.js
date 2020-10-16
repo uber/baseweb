@@ -53,7 +53,7 @@ export const NavigationList = styled<{$align: $Values<typeof ALIGN>}>(
       ':last-child': {
         padding: 0,
       },
-      flexGrow: $align === ALIGN.right || $align === ALIGN.left ? 'none' : 1,
+      flexGrow: $align === ALIGN.right || $align === ALIGN.left ? 0 : 1,
       paddingLeft: scale800,
       paddingRight: scale800,
       justifySelf: $align,
