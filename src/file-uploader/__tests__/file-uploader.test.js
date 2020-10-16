@@ -9,13 +9,11 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {
   render,
-  fireEvent,
   getByRole,
   getByTestId,
   getByText,
   queryByRole,
   queryByTestId,
-  queryByText,
 } from '@testing-library/react';
 
 import {FileUploader} from '../index.js';

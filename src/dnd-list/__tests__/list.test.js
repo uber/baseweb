@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {render, getAllByTestId} from '@testing-library/react';
 
-import {List, StyledItem} from '../index.js';
+import {List} from '../index.js';
 
 describe('List', () => {
   //$FlowFixMe

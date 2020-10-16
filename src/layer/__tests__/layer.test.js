@@ -29,7 +29,7 @@ describe('Layer', () => {
   it('accepts custom mountNode', () => {
     const content = 'Hello world';
     function TestCase() {
-      const [mounted, setMounted] = React.useState(false);
+      const [, setMounted] = React.useState(false);
       const ref = React.useRef();
       return (
         <TestBaseProvider>

@@ -18,7 +18,7 @@ import {
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 
-import {TestBaseProvider} from '../../test/test-utils';
+import {TestBaseProvider} from '../../test/test-utils.js';
 import {Popover, ACCESSIBILITY_TYPE, TRIGGER_TYPE} from '../index.js';
 
 import {styled} from '../../styles/index.js';
@@ -51,8 +51,6 @@ describe('Popover', () => {
   });
 
   it('handles mouse enter/leave', async () => {
-    const onMouseEnter = jest.fn();
-
     const content = 'content';
     const anchorContent = 'hover';
 
@@ -199,7 +197,6 @@ describe('Popover', () => {
     expect(anchor.getAttribute('aria-controls')).toBe(null);
     fireEvent.click(anchor);
 
-    const anchorOpen = getByText(container, anchorContent);
     expect(anchor.getAttribute('aria-haspopup')).toBe('true');
     expect(anchor.getAttribute('aria-expanded')).toBe('true');
     expect(anchor.getAttribute('aria-controls')).toBe(id);
@@ -233,7 +230,6 @@ describe('Popover', () => {
     expect(anchor.getAttribute('aria-owns')).toBe(null);
     fireEvent.mouseEnter(anchor);
 
-    const anchorOpen = getByText(container, anchorContent);
     await findByText(container, content);
     expect(anchor.getAttribute('aria-haspopup')).toBe('true');
     expect(anchor.getAttribute('aria-expanded')).toBe('true');
@@ -262,7 +258,7 @@ describe('Popover', () => {
       );
     }
 
-    const {container, debug} = render(<TestCase />);
+    const {container} = render(<TestCase />);
 
     const anchor = getByText(container, anchorContent);
     expect(anchor.getAttribute('id')).toBe(`${id}__anchor`);

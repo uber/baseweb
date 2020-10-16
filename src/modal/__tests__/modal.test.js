@@ -51,7 +51,7 @@ describe('Modal', () => {
     console.warn = jest.fn();
 
     const onClose = jest.fn();
-    const {container, debug} = render(
+    const {container} = render(
       <Modal isOpen onClose={onClose}>
         <ModalBody>Modal Body</ModalBody>
       </Modal>,
@@ -74,7 +74,7 @@ describe('Modal', () => {
     // $FlowFixMe
     console.warn = jest.fn();
 
-    const {container, debug} = render(
+    const {container} = render(
       <Modal isOpen closeable={false}>
         <ModalBody>Modal Body</ModalBody>
       </Modal>,

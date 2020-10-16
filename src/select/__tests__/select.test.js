@@ -15,7 +15,6 @@ import Select from '../select.js';
 import {STATE_CHANGE_TYPE} from '../constants.js';
 
 describe('Select component', function() {
-  let wrapper;
   let props: any = {};
   const item = {id: 'id1', label: 'label1'};
   const options = [

@@ -11,7 +11,6 @@ import {
   render,
   fireEvent,
   getByTestId,
-  getByText,
   getByRole,
   queryByTestId,
   waitForElementToBeRemoved,

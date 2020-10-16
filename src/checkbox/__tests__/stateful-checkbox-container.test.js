@@ -9,29 +9,23 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {render, fireEvent} from '@testing-library/react';
 
-import {StatefulContainer, STATE_TYPE} from '../index.js';
-import type {StateReducerT} from '../types.js';
+import {StatefulContainer} from '../index.js';
 
 describe('Stateful container', function() {
   it('should provide all needed props to children render func', function() {
     const children = jest.fn(() => null);
-    const {container} = render(
-      <StatefulContainer foo="bar">{children}</StatefulContainer>,
-    );
-
+    render(<StatefulContainer foo="bar">{children}</StatefulContainer>);
     const props = children.mock.calls[0][0];
     expect(props.foo).toBe('bar');
   });
 
   it('should provide initial state as part of state', function() {
     const children = jest.fn(() => null);
-    const stateReducer = (type, nextState) => nextState;
-    const {container} = render(
+    render(
       <StatefulContainer initialState={{checked: true}}>
         {children}
       </StatefulContainer>,
     );
-
     const props = children.mock.calls[0][0];
     expect(props.checked).toBe(true);
   });

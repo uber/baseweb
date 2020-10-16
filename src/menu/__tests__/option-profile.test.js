@@ -9,13 +9,6 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {render, getByTestId, getByText} from '@testing-library/react';
 
-import {
-  StyledListItemProfile,
-  StyledProfileImg,
-  StyledProfileTitle,
-  StyledProfileSubtitle,
-  StyledProfileBody,
-} from '../styled-components.js';
 import OptionProfile from '../option-profile.js';
 
 const mockItem = {

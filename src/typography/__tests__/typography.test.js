@@ -34,7 +34,6 @@ describe('Typography', () => {
   it('caption 1', () => {
     const {container} = render(<Caption1 color="primary">test</Caption1>);
     const element = getByText(container, 'test');
-    const style = getStyle(element);
     expect(getStyle(element)).toMatchInlineSnapshot(`
 Object {
   "color": "$theme.colors.primary",
@@ -49,7 +48,6 @@ Object {
   it('caption 2', () => {
     const {container} = render(<Caption2 color="primary">test</Caption2>);
     const element = getByText(container, 'test');
-    const style = getStyle(element);
     expect(getStyle(element)).toMatchInlineSnapshot(`
 Object {
   "color": "$theme.colors.primary",
@@ -64,7 +62,6 @@ Object {
   it('display', () => {
     const {container} = render(<Display>test</Display>);
     const element = getByText(container, 'test');
-    const style = getStyle(element);
     expect(getStyle(element)).toMatchInlineSnapshot(`
 Object {
   "color": "$theme.colors.contentPrimary",
@@ -79,7 +76,6 @@ Object {
   it('h1', () => {
     const {container} = render(<H1>test</H1>);
     const element = getByText(container, 'test');
-    const style = getStyle(element);
     expect(getStyle(element)).toMatchInlineSnapshot(`
 Object {
   "color": "$theme.colors.contentPrimary",
@@ -94,7 +90,6 @@ Object {
   it('h2', () => {
     const {container} = render(<H2>test</H2>);
     const element = getByText(container, 'test');
-    const style = getStyle(element);
     expect(getStyle(element)).toMatchInlineSnapshot(`
 Object {
   "color": "$theme.colors.contentPrimary",
@@ -109,7 +104,6 @@ Object {
   it('h3', () => {
     const {container} = render(<H3>test</H3>);
     const element = getByText(container, 'test');
-    const style = getStyle(element);
     expect(getStyle(element)).toMatchInlineSnapshot(`
 Object {
   "color": "$theme.colors.contentPrimary",
@@ -124,7 +118,6 @@ Object {
   it('h4', () => {
     const {container} = render(<H4>test</H4>);
     const element = getByText(container, 'test');
-    const style = getStyle(element);
     expect(getStyle(element)).toMatchInlineSnapshot(`
 Object {
   "color": "$theme.colors.contentPrimary",
@@ -139,7 +132,6 @@ Object {
   it('h5', () => {
     const {container} = render(<H5>test</H5>);
     const element = getByText(container, 'test');
-    const style = getStyle(element);
     expect(getStyle(element)).toMatchInlineSnapshot(`
 Object {
   "color": "$theme.colors.contentPrimary",
@@ -154,7 +146,6 @@ Object {
   it('h6', () => {
     const {container} = render(<H6>test</H6>);
     const element = getByText(container, 'test');
-    const style = getStyle(element);
     expect(getStyle(element)).toMatchInlineSnapshot(`
 Object {
   "color": "$theme.colors.contentPrimary",
@@ -169,7 +160,6 @@ Object {
   it('label 1', () => {
     const {container} = render(<Label1>test</Label1>);
     const element = getByText(container, 'test');
-    const style = getStyle(element);
     expect(getStyle(element)).toMatchInlineSnapshot(`
 Object {
   "color": "$theme.colors.contentPrimary",
@@ -184,7 +174,6 @@ Object {
   it('label 2', () => {
     const {container} = render(<Label2>test</Label2>);
     const element = getByText(container, 'test');
-    const style = getStyle(element);
     expect(getStyle(element)).toMatchInlineSnapshot(`
 Object {
   "color": "$theme.colors.contentPrimary",
@@ -199,7 +188,6 @@ Object {
   it('paragraph 1', () => {
     const {container} = render(<Paragraph1>test</Paragraph1>);
     const element = getByText(container, 'test');
-    const style = getStyle(element);
     expect(getStyle(element)).toMatchInlineSnapshot(`
 Object {
   "color": "$theme.colors.contentPrimary",
@@ -214,8 +202,6 @@ Object {
   it('paragraph 2', () => {
     const {container} = render(<Paragraph2>test</Paragraph2>);
     const element = getByText(container, 'test');
-    const style = getStyle(element);
-    expect(getStyle(element)).toMatchInlineSnapshot(`
 Object {
   "color": "$theme.colors.contentPrimary",
   "fontFamily": "$theme.typography.ParagraphMedium.fontFamily",

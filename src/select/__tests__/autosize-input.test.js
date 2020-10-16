@@ -9,7 +9,6 @@ import * as React from 'react';
 import {render} from '@testing-library/react';
 
 import AutosizeInput from '../autosize-input.js';
-import {StyledInput, StyledInputSizer} from '../styled-components.js';
 
 describe('AutosizeInput component', function() {
   it('renders correctly', function() {

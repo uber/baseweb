@@ -12,7 +12,6 @@ import SingleValue from '../value.js';
 
 describe('Single Value component', function() {
   it('renders StyledSingleValue', function() {
-    const props = {children: 'test'};
     const {container} = render(<SingleValue>test</SingleValue>);
     const element = getByText(container, 'test');
     expect(element.getAttribute('aria-selected')).toBe('true');

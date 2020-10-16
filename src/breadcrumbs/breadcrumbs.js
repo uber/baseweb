@@ -14,7 +14,6 @@ import {ThemeContext} from '../styles/theme-provider.js';
 import ChevronRight from '../icon/chevron-right.js';
 import ChevronLeft from '../icon/chevron-left.js';
 import type {BreadcrumbsPropsT} from './types.js';
-import type {BreadcrumbLocaleT} from './locale.js';
 import {
   StyledRoot,
   StyledSeparator,

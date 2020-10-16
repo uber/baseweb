@@ -4,7 +4,6 @@ Copyright (c) 2018-2020 Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
-/* global document */
 // @flow
 import * as React from 'react';
 import {render, fireEvent} from '@testing-library/react';
@@ -63,8 +62,14 @@ describe('base-input', () => {
 
   it('calls focus handler when autoFocus is true', () => {
     const onFocus = jest.fn();
-    // $FlowFixMe
-    render(<BaseInput autoFocus onFocus={onFocus} />);
+    render(
+      // $FlowFixMe
+      <BaseInput
+        // eslint-disable-next-line jsx-a11y/no-autofocus
+        autoFocus
+        onFocus={onFocus}
+      />,
+    );
     expect(onFocus).toBeCalledTimes(1);
   });
 

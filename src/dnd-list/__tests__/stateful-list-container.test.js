@@ -42,7 +42,7 @@ describe('StatefulListContainer', () => {
       oldIndex: undefined,
     };
 
-    const {container} = render(
+    render(
       <StatefulListContainer {...props}>{children}</StatefulListContainer>,
     );
 
@@ -67,7 +67,7 @@ describe('StatefulListContainer', () => {
     };
     const children = jest.fn(() => null);
 
-    const {container} = render(
+    render(
       <StatefulListContainer {...props}>{children}</StatefulListContainer>,
     );
 

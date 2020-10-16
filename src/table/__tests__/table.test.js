@@ -7,12 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {
-  render,
-  getByText,
-  getByRole,
-  getAllByRole,
-} from '@testing-library/react';
+import {render, getByRole, getAllByRole} from '@testing-library/react';
 
 import {Table} from '../index.js';
 

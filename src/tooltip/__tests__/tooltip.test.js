@@ -45,7 +45,7 @@ describe('Tooltip', () => {
       const [open, setOpen] = React.useState(false);
       return (
         <TestBaseProvider>
-          <Tooltip {...props}>
+          <Tooltip {...props} onMouseEnter={() => setOpen(true)} isOpen={open}>
             <span>{anchor}</span>
           </Tooltip>
         </TestBaseProvider>

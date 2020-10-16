@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {render, fireEvent, getByText} from '@testing-library/react';
+import {render, fireEvent} from '@testing-library/react';
 
 import Block from '../block.js';
 

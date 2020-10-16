@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {render, prettyDOM} from '@testing-library/react';
 
-import FlexGrid, {BaseFlexGrid} from '../flex-grid.js';
+import FlexGrid from '../flex-grid.js';
 import {camelToKebab} from '../../helpers/strings.js';
 
 describe('FlexGrid', () => {
@@ -23,7 +23,7 @@ describe('FlexGrid', () => {
         }, {})}
       />
     );
-    const {container, baseElement} = render(
+    const {baseElement} = render(
       <FlexGrid flexGridColumnCount={4}>
         <MockFlexGridItem>Item 1</MockFlexGridItem>
         <MockFlexGridItem>Item 2</MockFlexGridItem>

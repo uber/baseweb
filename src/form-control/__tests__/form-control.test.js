@@ -14,7 +14,6 @@ import {
   queryByText,
 } from '@testing-library/react';
 import FormControl from '../form-control.js';
-import {Label, Caption, ControlContainer} from '../styled-components.js';
 import {Input} from '../../input/index.js';
 import {Textarea} from '../../textarea/index.js';
 import {Checkbox} from '../../checkbox/index.js';
