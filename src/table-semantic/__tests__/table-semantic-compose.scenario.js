@@ -21,12 +21,12 @@ export default function Scenario() {
     <StyledRoot>
       <StyledTable>
         <StyledTableHeadRow>
-          <StyledTableHeadCell colspan="2">Parent</StyledTableHeadCell>
-          <StyledTableHeadCell colspan="2">Children</StyledTableHeadCell>
+          <StyledTableHeadCell colSpan="2">Parent</StyledTableHeadCell>
+          <StyledTableHeadCell colSpan="2">Children</StyledTableHeadCell>
         </StyledTableHeadRow>
         <StyledTableBodyRow>
-          <StyledTableBodyCell rowspan="3">Sarah</StyledTableBodyCell>
-          <StyledTableBodyCell rowspan="3">Brown</StyledTableBodyCell>
+          <StyledTableBodyCell rowSpan="3">Sarah</StyledTableBodyCell>
+          <StyledTableBodyCell rowSpan="3">Brown</StyledTableBodyCell>
           <StyledTableBodyCell>Sally</StyledTableBodyCell>
           <StyledTableBodyCell>Brown</StyledTableBodyCell>
         </StyledTableBodyRow>
@@ -39,8 +39,8 @@ export default function Scenario() {
           <StyledTableBodyCell>Black</StyledTableBodyCell>
         </StyledTableBodyRow>
         <StyledTableBodyRow>
-          <StyledTableBodyCell rowspan="2">Jane</StyledTableBodyCell>
-          <StyledTableBodyCell rowspan="2">Smith</StyledTableBodyCell>
+          <StyledTableBodyCell rowSpan="2">Jane</StyledTableBodyCell>
+          <StyledTableBodyCell rowSpan="2">Smith</StyledTableBodyCell>
           <StyledTableBodyCell>Molly</StyledTableBodyCell>
           <StyledTableBodyCell>Smith</StyledTableBodyCell>
         </StyledTableBodyRow>

@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {render} from '@testing-library/react';
+import {render, getByText, queryByText} from '@testing-library/react';
 
 import {Table} from '../index.js';
 
@@ -80,5 +80,24 @@ describe('Table Semantic', () => {
         $row: DATA[0],
       }),
     );
+  });
+
+  it('renders loading message', () => {
+    const {container} = render(
+      <Table columns={COLUMNS} data={DATA} isLoading={true} />,
+    );
+    getByText(container, 'Loading...');
+  });
+
+  it('renders empty message', () => {
+    const {container} = render(
+      <Table columns={COLUMNS} data={[]} emptyMessage="No data" />,
+    );
+    getByText(container, 'No data');
+  });
+
+  it('does not render unset empty message', () => {
+    const {container} = render(<Table columns={COLUMNS} data={[]} />);
+    expect(queryByText(container, 'Loading...')).toBeNull();
   });
 });

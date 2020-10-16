@@ -10,8 +10,10 @@ import * as React from 'react';
 import {
   render,
   fireEvent,
+  getByText,
   queryByTestId,
   queryAllByTestId,
+  queryByText,
 } from '@testing-library/react';
 
 import {TableBuilder, TableBuilderColumn} from '../index.js';
@@ -275,5 +277,44 @@ describe('Table Semantic Builder', () => {
     expect(headCells[1].getAttribute('aria-label')).toBe(
       'Bar, ascending sorting',
     );
+  });
+
+  it('renders loading message', () => {
+    const {container} = render(
+      <TableBuilder data={DATA} isLoading={true}>
+        <TableBuilderColumn header="Foo">{row => row.foo}</TableBuilderColumn>
+        <TableBuilderColumn header="Bar">
+          {row => <a href={row.url}>{row.bar}</a>}
+        </TableBuilderColumn>
+        <TableBuilderColumn>{row => 'Hey'}</TableBuilderColumn>
+      </TableBuilder>,
+    );
+    getByText(container, 'Loading...');
+  });
+
+  it('renders empty message', () => {
+    const {container} = render(
+      <TableBuilder data={[]} emptyMessage="No data">
+        <TableBuilderColumn header="Foo">{row => row.foo}</TableBuilderColumn>
+        <TableBuilderColumn header="Bar">
+          {row => <a href={row.url}>{row.bar}</a>}
+        </TableBuilderColumn>
+        <TableBuilderColumn>{row => 'Hey'}</TableBuilderColumn>
+      </TableBuilder>,
+    );
+    getByText(container, 'No data');
+  });
+
+  it('does not render unset empty message', () => {
+    const {container} = render(
+      <TableBuilder data={[]}>
+        <TableBuilderColumn header="Foo">{row => row.foo}</TableBuilderColumn>
+        <TableBuilderColumn header="Bar">
+          {row => <a href={row.url}>{row.bar}</a>}
+        </TableBuilderColumn>
+        <TableBuilderColumn>{row => 'Hey'}</TableBuilderColumn>
+      </TableBuilder>,
+    );
+    expect(queryByText(container, 'Loading...')).toBeNull();
   });
 });
