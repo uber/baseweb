@@ -15,7 +15,6 @@ import {LocaleContext} from '../locale/index.js';
 
 import {StyledRoot} from './styled-components.js';
 import type {PropsT} from './types.js';
-import type {ButtonGroupLocaleT} from './locale.js';
 
 function isSelected(selected, index) {
   if (!Array.isArray(selected) && typeof selected !== 'number') {

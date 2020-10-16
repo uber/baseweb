@@ -10,7 +10,6 @@ import {render} from '@testing-library/react';
 
 import {
   StatefulSelect,
-  StatefulSelectContainer,
   StyledRoot,
   StyledControlContainer,
   StyledValueContainer,

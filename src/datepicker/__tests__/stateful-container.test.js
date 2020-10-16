@@ -24,7 +24,7 @@ describe('StatefulComponentContainer', () => {
     const children = jest.fn(() => null);
     const onDayMouseOver = jest.fn();
     const onDayMouseLeave = jest.fn();
-    const {container} = render(
+    render(
       <StatefulContainer
         onDayMouseOver={onDayMouseOver}
         onDayMouseLeave={onDayMouseLeave}

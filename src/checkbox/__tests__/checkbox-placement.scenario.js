@@ -10,7 +10,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {Checkbox} from '../index.js';
 
-export default () => {
+export default function Scenario() {
   const [checkboxes, setCheckboxes] = React.useState([
     false,
     false,
@@ -73,4 +73,4 @@ export default () => {
       </Checkbox>
     </React.Fragment>
   );
-};
+}

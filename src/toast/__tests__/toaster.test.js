@@ -24,7 +24,7 @@ jest.useFakeTimers();
 
 describe('toaster', () => {
   it('renders container', () => {
-    const {container} = render(
+    render(
       <ToasterContainer overrides={{Root: {props: {'data-testid': 'root'}}}} />,
     );
     getByTestId(document.body, 'root');
