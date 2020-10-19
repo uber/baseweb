@@ -111,10 +111,10 @@ export function Tabs({
     if (activeTabRef.current) {
       setHighlightLayout(getLayoutParams(activeTabRef.current, orientation));
     }
-  }, [activeKey, orientation]);
+  }, [activeTabRef.current, orientation]);
 
   // Update highlight on key and orientation changes.
-  React.useEffect(updateHighlight, [activeKey, orientation]);
+  React.useEffect(updateHighlight, [activeTabRef.current, orientation]);
 
   // Scroll active tab into view when the parent has scrollbar on mount and
   // on key change (smooth scroll). Note, if the active key changes while
@@ -144,7 +144,7 @@ export function Tabs({
         }
       }
     }
-  }, [activeKey]);
+  }, [activeTabRef.current]);
 
   // Collect shared styling props
   const sharedStylingProps = {
