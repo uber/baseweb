@@ -18,6 +18,7 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
   static defaultProps = {
     overrides: {},
     numItems: 5,
+    readOnly: false,
   };
 
   state = {isFocusVisible: false, previewIndex: undefined};
@@ -46,7 +47,13 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
   };
 
   renderRatingContents = () => {
-    const {overrides = {}, value = -1, numItems, size = 22} = this.props;
+    const {
+      overrides = {},
+      value = -1,
+      numItems,
+      size = 22,
+      readOnly = false,
+    } = this.props;
     const {previewIndex} = this.state;
     const [Star, starProps] = getOverrides(overrides.Item, StyledStar);
 
@@ -66,6 +73,7 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
           aria-setsize={numItems}
           aria-checked={x <= value}
           aria-posinset={x}
+          aria-disabled={readOnly}
           $size={size}
           $index={x}
           $isActive={
@@ -73,8 +81,17 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
           }
           $isSelected={x === previewIndex}
           $isFocusVisible={this.state.isFocusVisible && isFocusable}
-          onClick={() => this.selectItem(x)}
+          $isReadOnly={readOnly}
+          onClick={() => {
+            if (readOnly) {
+              return;
+            }
+            this.selectItem(x);
+          }}
           onKeyDown={e => {
+            if (readOnly) {
+              return;
+            }
             if (e.keyCode === ARROW_UP || e.keyCode === ARROW_LEFT) {
               e.preventDefault && e.preventDefault();
               const prevIndex = value - 1 < 1 ? numItems : value - 1;
@@ -88,7 +105,12 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
               refs[nextIndex].current && refs[nextIndex].current.focus();
             }
           }}
-          onMouseOver={() => this.updatePreview(x)}
+          onMouseOver={() => {
+            if (readOnly) {
+              return;
+            }
+            this.updatePreview(x);
+          }}
           {...starProps}
           onFocus={forkFocus(starProps, this.handleFocus)}
           onBlur={forkBlur(starProps, this.handleBlur)}
