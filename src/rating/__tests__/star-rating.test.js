@@ -33,6 +33,14 @@ describe('StarRating', () => {
     expect(items[4].getAttribute('aria-checked')).toBe('false');
   });
 
+  it('sets correct accessibility attributes to radio elements when read only', () => {
+    const {container} = render(<StarRating value={2} readOnly />);
+    const items = getAllByRole(container, 'radio');
+    items.forEach(item => {
+      expect(item.getAttribute('aria-disabled')).toBe('true');
+    });
+  });
+
   it('can update active radio on click', () => {
     function TestCase() {
       const [value, setValue] = React.useState(-1);
@@ -46,6 +54,27 @@ describe('StarRating', () => {
       expect(item.getAttribute('aria-checked')).toBe('false');
     }
     fireEvent.click(items[1]);
+    expect(items[0].getAttribute('aria-checked')).toBe('true');
+    expect(items[1].getAttribute('aria-checked')).toBe('true');
+    expect(items[2].getAttribute('aria-checked')).toBe('false');
+    expect(items[3].getAttribute('aria-checked')).toBe('false');
+    expect(items[4].getAttribute('aria-checked')).toBe('false');
+  });
+
+  it('cannot update rating on click when read only', () => {
+    function TestCase() {
+      const [value, setValue] = React.useState(2);
+      return (
+        <StarRating
+          value={value}
+          onChange={({value}) => setValue(value)}
+          readOnly
+        />
+      );
+    }
+    const {container} = render(<TestCase />);
+    const items = getAllByRole(container, 'radio');
+    fireEvent.click(items[4]);
     expect(items[0].getAttribute('aria-checked')).toBe('true');
     expect(items[1].getAttribute('aria-checked')).toBe('true');
     expect(items[2].getAttribute('aria-checked')).toBe('false');

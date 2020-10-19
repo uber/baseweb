@@ -20,6 +20,7 @@ class EmoticonRating extends React.Component<
 > {
   static defaultProps = {
     overrides: {},
+    readOnly: false,
   };
 
   state = {isFocusVisible: false, previewIndex: undefined};
@@ -48,7 +49,12 @@ class EmoticonRating extends React.Component<
   };
 
   renderRatingContents = () => {
-    const {overrides = {}, value = -1, size = 44} = this.props;
+    const {
+      overrides = {},
+      value = -1,
+      size = 44,
+      readOnly = false,
+    } = this.props;
     const {previewIndex} = this.state;
 
     const [Emoticon, emoticonProps] = getOverrides(
@@ -72,6 +78,7 @@ class EmoticonRating extends React.Component<
           aria-setsize={5}
           aria-checked={x === value}
           aria-posinset={x}
+          aria-disabled={readOnly}
           $size={size}
           $index={x}
           $isActive={
@@ -79,8 +86,17 @@ class EmoticonRating extends React.Component<
           }
           $isSelected={x === previewIndex}
           $isFocusVisible={this.state.isFocusVisible && isFocusable}
-          onClick={() => this.selectItem(x)}
+          $isReadOnly={readOnly}
+          onClick={() => {
+            if (readOnly) {
+              return;
+            }
+            this.selectItem(x);
+          }}
           onKeyDown={e => {
+            if (readOnly) {
+              return;
+            }
             if (e.keyCode === ARROW_UP || e.keyCode === ARROW_LEFT) {
               e.preventDefault && e.preventDefault();
               // 5 value comes from non-configurable number of icons
@@ -95,7 +111,12 @@ class EmoticonRating extends React.Component<
               refs[nextIndex].current && refs[nextIndex].current.focus();
             }
           }}
-          onMouseOver={() => this.updatePreview(x)}
+          onMouseOver={() => {
+            if (readOnly) {
+              return;
+            }
+            this.updatePreview(x);
+          }}
           onFocus={forkFocus(emoticonProps, this.handleFocus)}
           onBlur={forkBlur(emoticonProps, this.handleBlur)}
           {...emoticonProps}
