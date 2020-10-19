@@ -40,31 +40,6 @@ const limitValue = (value: number[]) => {
   return value;
 };
 
-export function useHover() {
-  const [value, setValue] = React.useState(false);
-
-  // eslint-disable-next-line flowtype/no-weak-types
-  const ref = React.useRef<any>(null);
-
-  const handleMouseOver = () => setValue(true);
-  const handleMouseOut = () => setValue(false);
-
-  React.useEffect(() => {
-    const node = ref.current;
-    if (node) {
-      node.addEventListener('mouseover', handleMouseOver);
-      node.addEventListener('mouseout', handleMouseOut);
-
-      return () => {
-        node.removeEventListener('mouseover', handleMouseOver);
-        node.removeEventListener('mouseout', handleMouseOut);
-      };
-    }
-  });
-
-  return [ref, value];
-}
-
 function Slider({
   overrides = {},
   disabled = false,
@@ -78,8 +53,9 @@ function Slider({
 }: PropsT) {
   const theme = React.useContext(ThemeContext);
 
-  const [hoverRef0, isHovered0] = useHover();
-  const [hoverRef1, isHovered1] = useHover();
+  const [isHovered0, setIsHovered0] = React.useState(false);
+  const [isHovered1, setIsHovered1] = React.useState(false);
+
   const [isFocusVisible, setIsFocusVisible] = React.useState(false);
   const [focusedThumbIndex, setFocusedThumbIndex] = React.useState(-1);
   const handleFocus = React.useCallback((event: SyntheticEvent<>) => {
@@ -173,7 +149,20 @@ function Slider({
           return (
             <Thumb
               {...props}
-              ref={index ? hoverRef1 : hoverRef0}
+              onMouseEnter={() => {
+                if (index === 0) {
+                  setIsHovered0(true);
+                } else {
+                  setIsHovered1(true);
+                }
+              }}
+              onMouseLeave={() => {
+                if (index === 0) {
+                  setIsHovered0(false);
+                } else {
+                  setIsHovered1(false);
+                }
+              }}
               $thumbIndex={index}
               $isDragged={isDragged}
               style={{

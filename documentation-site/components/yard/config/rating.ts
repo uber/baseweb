@@ -39,6 +39,11 @@ const ratingConfig: TConfig = {
       description: 'The current rating value.',
       stateful: true,
     },
+    readOnly: {
+      value: false,
+      type: PropTypes.Boolean,
+      description: 'Whether the rating is read-only or editable.',
+    },
     overrides: {
       value: undefined,
       type: PropTypes.Custom,

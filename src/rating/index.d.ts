@@ -15,6 +15,7 @@ export interface StarRatingProps {
   overrides?: RatingOverrides;
   value?: number;
   numItems?: number;
+  readOnly?: boolean;
   onChange?: (args: {value: number}) => any;
   size?: number;
 }
@@ -22,6 +23,7 @@ export interface StarRatingProps {
 export interface EmoticonRatingProps {
   overrides?: RatingOverrides;
   value?: number;
+  readOnly?: boolean;
   onChange?: (args: {value: number}) => any;
   size?: number;
 }
