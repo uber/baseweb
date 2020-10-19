@@ -42,6 +42,7 @@ export const NavigationList = styled<{$align: $Values<typeof ALIGN>}>(
   'ul',
   props => {
     const {$align, $theme} = props;
+    const aligned = $align === ALIGN.right || $align === ALIGN.left;
     const {
       sizing: {scale800},
     } = $theme;
@@ -53,7 +54,9 @@ export const NavigationList = styled<{$align: $Values<typeof ALIGN>}>(
       ':last-child': {
         padding: 0,
       },
-      flex: $align === ALIGN.right || $align === ALIGN.left ? 'none' : 1,
+      flexGrow: aligned ? 0 : 1,
+      flexShrink: aligned ? 0 : 1,
+      flexBasis: aligned ? 'auto' : '0%',
       paddingLeft: scale800,
       paddingRight: scale800,
       justifySelf: $align,
