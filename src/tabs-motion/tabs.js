@@ -39,17 +39,14 @@ const KEYBOARD_ACTION = {
   previous: 'previous',
 };
 
-const debounce = (fn, wait) => {
-  let timeout;
-  return (...args) => {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      fn(...args);
-    }, wait);
-  };
-};
+const getLayoutParams = (el, orientation) => {
+  if (!el) {
+    return {
+      length: 0,
+      distance: 0,
+    };
+  }
 
-const getHighlightLayoutParams = (el, orientation) => {
   // Note, we are using clientHeight/Width here, which excludes borders.
   // This means borders won't be taken into account if someone adds borders
   // through overrides. In that case you would use getBoundingClientRect
@@ -116,26 +113,15 @@ export function Tabs({
     distance: 0,
   });
 
-  // Update highlight on key and orientation changes.
-  React.useEffect(() => {
+  // Create a shared, memoized callback for tabs to call on resize.
+  const updateHighlight = React.useCallback(() => {
     if (activeTabRef.current) {
-      setHighlightLayout(
-        getHighlightLayoutParams(activeTabRef.current, orientation),
-      );
+      setHighlightLayout(getLayoutParams(activeTabRef.current, orientation));
     }
-  }, [activeKey, orientation, children]);
+  }, [activeTabRef.current, orientation]);
 
-  // Create a shared, memoized, debounced callback for tabs to call on resize.
-  const updateHighlight = React.useCallback(
-    debounce(() => {
-      if (activeTabRef.current) {
-        setHighlightLayout(
-          getHighlightLayoutParams(activeTabRef.current, orientation),
-        );
-      }
-    }, 100),
-    [activeKey, orientation],
-  );
+  // Update highlight on key and orientation changes.
+  React.useEffect(updateHighlight, [activeTabRef.current, orientation]);
 
   // Scroll active tab into view when the parent has scrollbar on mount and
   // on key change (smooth scroll). Note, if the active key changes while
@@ -165,7 +151,7 @@ export function Tabs({
         }
       }
     }
-  }, [activeKey]);
+  }, [activeTabRef.current]);
 
   // Collect shared styling props
   const sharedStylingProps = {
@@ -310,11 +296,36 @@ function InternalTab({
     return isActive ? activeTabRef.current : ref.current;
   });
 
+  // Track tab dimensions in a ref after each render
+  // This is used to compare params when the resize observer fires
+  const tabLayoutParams = React.useRef({length: 0, distance: 0});
+  React.useEffect(() => {
+    tabLayoutParams.current = getLayoutParams(
+      isActive ? activeTabRef.current : ref.current,
+      orientation,
+    );
+  });
+
+  // We need to potentially update the active tab highlight when the width or
+  // placement changes for a tab so we listen for resize updates in each tab.
   React.useEffect(() => {
     if (window.ResizeObserver) {
-      // We need to update the active tab highlight when the width or
-      // placement changes so we listen for resize updates in each tab.
-      const observer = new window.ResizeObserver(updateHighlight);
+      const observer = new window.ResizeObserver(entries => {
+        if (entries[0] && entries[0].target) {
+          const tabLayoutParamsAfterResize = getLayoutParams(
+            entries[0].target,
+            orientation,
+          );
+          if (
+            tabLayoutParamsAfterResize.length !==
+              tabLayoutParams.current.length ||
+            tabLayoutParamsAfterResize.distance !==
+              tabLayoutParams.current.distance
+          ) {
+            updateHighlight();
+          }
+        }
+      });
       observer.observe(isActive ? activeTabRef.current : ref.current);
       return () => {
         observer.disconnect();
