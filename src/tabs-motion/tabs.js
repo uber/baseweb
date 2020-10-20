@@ -40,6 +40,13 @@ const KEYBOARD_ACTION = {
 };
 
 const getLayoutParams = (el, orientation) => {
+  if (!el) {
+    return {
+      length: 0,
+      distance: 0,
+    };
+  }
+
   // Note, we are using clientHeight/Width here, which excludes borders.
   // This means borders won't be taken into account if someone adds borders
   // through overrides. In that case you would use getBoundingClientRect
@@ -291,10 +298,11 @@ function InternalTab({
 
   // Track tab dimensions in a ref after each render
   // This is used to compare params when the resize observer fires
-  const tabLayoutParams = React.useRef();
+  const tabLayoutParams = React.useRef({length: 0, distance: 0});
   React.useEffect(() => {
     tabLayoutParams.current = getLayoutParams(
       isActive ? activeTabRef.current : ref.current,
+      orientation,
     );
   });
 
@@ -304,7 +312,10 @@ function InternalTab({
     if (window.ResizeObserver) {
       const observer = new window.ResizeObserver(entries => {
         if (entries[0] && entries[0].target) {
-          const tabLayoutParamsAfterResize = getLayoutParams(entries[0].target);
+          const tabLayoutParamsAfterResize = getLayoutParams(
+            entries[0].target,
+            orientation,
+          );
           if (
             tabLayoutParamsAfterResize.length !==
               tabLayoutParams.current.length ||
