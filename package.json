@@ -14,7 +14,7 @@
   "module": "./esm/index.js",
   "repository": "uber/baseweb",
   "scripts": {
-    "lint:code": "eslint ./",
+    "lint:code": "eslint ./ --fix --cache",
     "lint:markdown": "markdownlint -c ./.markdownlint.json proposals",
     "lint": "yarn lint:code && yarn lint:markdown",
     "pretest": "yarn build:documentation-site-files",
