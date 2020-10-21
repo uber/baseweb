@@ -43,6 +43,7 @@ export type SnackbarProviderPropsT = {
     PlacementContainer?: Override<any>;
   };
   placement?: PlacementT;
+  defaultDuration?: DurationT;
 };
 
 export const DURATION: typeof DURATION;

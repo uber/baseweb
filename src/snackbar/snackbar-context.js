@@ -47,6 +47,7 @@ export default function SnackbarProvider({
   children,
   overrides = {},
   placement,
+  defaultDuration,
 }: SnackbarProviderPropsT) {
   const [css] = useStyletron();
 
@@ -58,7 +59,7 @@ export default function SnackbarProvider({
   const [containerHeight, setContainerHeight] = React.useState(0);
   const containerRef = React.useRef(null);
 
-  function enqueue(elementProps, duration = DURATION.medium) {
+  function enqueue(elementProps, duration = defaultDuration || DURATION.short) {
     setSnackbars(prev => {
       if (prev.length === 0) {
         enter(duration);

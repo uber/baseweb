@@ -63,4 +63,6 @@ export type SnackbarProviderPropsT = {|
   |},
   // location on page where snackbar will render
   placement?: PlacementT,
+  // default display duration
+  defaultDuration?: DurationT,
 |};
