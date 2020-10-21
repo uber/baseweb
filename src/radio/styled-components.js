@@ -215,8 +215,14 @@ export const Input = styled('input', {
   opacity: 0,
   width: 0,
   overflow: 'hidden',
-  margin: 0,
-  padding: 0,
+  marginTop: 0,
+  marginRight: 0,
+  marginBottom: 0,
+  marginLeft: 0,
+  paddingTop: 0,
+  paddingRight: 0,
+  paddingBottom: 0,
+  paddingLeft: 0,
   position: 'absolute',
 });
 
