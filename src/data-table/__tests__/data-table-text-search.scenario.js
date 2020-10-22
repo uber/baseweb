@@ -41,7 +41,7 @@ const columns = [
     minWidth: 90,
     mapDataToValue: (data: RowDataT) => data.Phylum,
     textQueryFilter: function(textQuery, data) {
-      return data.toLocaleLowerCase().includes(textQuery.toLowerCase());
+      return data.toLowerCase().includes(textQuery.toLowerCase());
     },
     renderCell: function PhylumnCell(props) {
       return (

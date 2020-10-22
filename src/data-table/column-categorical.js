@@ -257,7 +257,7 @@ function CategoricalColumn(options: OptionsT): CategoricalColumnT {
       };
     },
     textQueryFilter: function(textQuery, data) {
-      return data.toLocaleLowerCase().includes(textQuery.toLowerCase());
+      return data.toLowerCase().includes(textQuery.toLowerCase());
     },
     filterable: options.filterable === undefined ? true : options.filterable,
     mapDataToValue: options.mapDataToValue,
