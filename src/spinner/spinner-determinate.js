@@ -53,6 +53,7 @@ function SpinnerDeterminate({
   progress = 0,
   size = SIZE.medium,
   animate = true,
+  inline = false,
 }: SpinnerDeterminatePropsT) {
   const [css, theme] = useStyletron();
 
@@ -109,7 +110,7 @@ function SpinnerDeterminate({
         position: 'relative',
         width: sizeMetaData.width + 'px',
         height: sizeMetaData.height + 'px',
-        display: 'flex',
+        display: inline ? 'inline-flex' : 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         color: theme.colors.contentPrimary,

@@ -35,4 +35,6 @@ export type SpinnerDeterminatePropsT = {
   size?: SizeT,
   /** Toggle animating progress. */
   animate?: boolean,
+  /** Toggle container rendering as a block or inline. */
+  inline?: boolean,
 };

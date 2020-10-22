@@ -11,11 +11,24 @@ import {SpinnerDeterminate, SIZE} from '../index.js';
 export default function Scenario() {
   return (
     <React.Fragment>
-      <SpinnerDeterminate progress={0.5} size={SIZE.small} animate={false} />
-      <br />
-      <SpinnerDeterminate progress={0.5} size={SIZE.medium} animate={false} />
-      <br />
-      <SpinnerDeterminate progress={0.5} size={SIZE.large} animate={false} />
+      <SpinnerDeterminate
+        progress={0.5}
+        size={SIZE.small}
+        animate={false}
+        inline
+      />
+      <SpinnerDeterminate
+        progress={0.5}
+        size={SIZE.medium}
+        animate={false}
+        inline
+      />
+      <SpinnerDeterminate
+        progress={0.5}
+        size={SIZE.large}
+        animate={false}
+        inline
+      />
     </React.Fragment>
   );
 }
