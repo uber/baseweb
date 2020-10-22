@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 export {default as Spinner} from './spinner.js';
+export {default as SpinnerDeterminate} from './spinner-determinate.js';
 // Styled elements
 export {
   Svg as StyledSvg,

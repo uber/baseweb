@@ -27,3 +27,12 @@ export type SpinnerPropsT = {
     TrackPath?: OverrideT,
   },
 };
+
+export type SpinnerDeterminatePropsT = {
+  /** A number between 0 and 1 inclusive. Example: 0.75. */
+  progress?: number,
+  /** The size of the spinner. */
+  size?: SizeT,
+  /** Toggle animating progress. */
+  animate?: boolean,
+};
