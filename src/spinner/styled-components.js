@@ -93,7 +93,7 @@ export const StyledSpinnerNext = styled<{$size?: SizeT}>(
   },
 );
 
-const SIZES = {
+const DETERMINATE_SPINNER_SIZES = {
   [SIZE.large]: {
     d:
       'M47.5 4H71.5529C82.2933 4 91 12.9543 91 24C91 35.0457 82.2933 44 71.5529 44H23.4471C12.7067 44 4 35.0457 4 24C4 12.9543 12.7067 4 23.4471 4H47.5195',
@@ -120,13 +120,13 @@ const SIZES = {
   },
 };
 
-export const StyledSpinnerDeterminateContainer = styled<{
+export const StyledSpinnerDeterminateRoot = styled<{
   $size: SizeT,
   $inline: boolean,
 }>('div', ({$size, $inline}) => {
   return {
-    width: SIZES[$size].width + 'px',
-    height: SIZES[$size].height + 'px',
+    width: DETERMINATE_SPINNER_SIZES[$size].width + 'px',
+    height: DETERMINATE_SPINNER_SIZES[$size].height + 'px',
     position: 'relative',
     display: $inline ? 'inline-flex' : 'flex',
     alignItems: 'center',
@@ -138,8 +138,8 @@ const _StyledSpinnerDeterminateSvg = styled<{
   $size: SizeT,
 }>('svg', ({$size}) => {
   return {
-    width: SIZES[$size].width + 'px',
-    height: SIZES[$size].height + 'px',
+    width: DETERMINATE_SPINNER_SIZES[$size].width + 'px',
+    height: DETERMINATE_SPINNER_SIZES[$size].height + 'px',
     position: 'absolute',
     fill: 'none',
   };
@@ -151,7 +151,7 @@ export const StyledSpinnerDeterminateSvg = withWrapper(
     function StyledSpinnerDeterminateSvg(props) {
       return (
         <Styled
-          viewBox={`0 0 ${SIZES[props.$size].width} ${SIZES[props.$size].height}`}
+          viewBox={`0 0 ${DETERMINATE_SPINNER_SIZES[props.$size].width} ${DETERMINATE_SPINNER_SIZES[props.$size].height}`}
           xmlns="http://www.w3.org/2000/svg"
           {...props}
         />
@@ -164,7 +164,7 @@ const _StyledSpinnerDeterminateTrackBackground = styled<{
 }>('path', ({$theme, $size}) => {
   return {
     stroke: $theme.colors.backgroundTertiary,
-    strokeWidth: SIZES[$size].strokeWidth + 'px',
+    strokeWidth: DETERMINATE_SPINNER_SIZES[$size].strokeWidth + 'px',
   };
 });
 
@@ -172,7 +172,7 @@ export const StyledSpinnerDeterminateTrackBackground = withWrapper(
   _StyledSpinnerDeterminateTrackBackground,
   Styled =>
     function StyledSpinnerDeterminateSvg(props) {
-      return <Styled d={SIZES[props.$size].d} {...props} />;
+      return <Styled d={DETERMINATE_SPINNER_SIZES[props.$size].d} {...props} />;
     },
 );
 
@@ -185,7 +185,7 @@ const _StyledSpinnerDeterminateTrackForeground = styled<{
   return {
     visibility: $visible ? 'visible' : 'hidden',
     stroke: $theme.colors.borderAccent,
-    strokeWidth: SIZES[$size].strokeWidth + 'px',
+    strokeWidth: DETERMINATE_SPINNER_SIZES[$size].strokeWidth + 'px',
     strokeDasharray: $pathLength,
     strokeDashoffset: $pathLength * (1 - $pathProgress) + '',
   };
@@ -195,7 +195,7 @@ export const StyledSpinnerDeterminateTrackForeground = withWrapper(
   _StyledSpinnerDeterminateTrackForeground,
   Styled =>
     function StyledSpinnerDeterminateSvg(props) {
-      return <Styled d={SIZES[props.$size].d} {...props} />;
+      return <Styled d={DETERMINATE_SPINNER_SIZES[props.$size].d} {...props} />;
     },
 );
 
@@ -204,6 +204,6 @@ export const StyledSpinnerDeterminateText = styled<{
 }>('div', ({$theme, $size}) => {
   return {
     color: $theme.colors.contentPrimary,
-    ...$theme.typography[SIZES[$size].typography],
+    ...$theme.typography[DETERMINATE_SPINNER_SIZES[$size].typography],
   };
 });

@@ -37,4 +37,12 @@ export type SpinnerDeterminatePropsT = {
   animate?: boolean,
   /** Toggle container rendering as a block or inline. */
   inline?: boolean,
+  /** Overrides for sub-nodes in the rendering tree. */
+  overrides?: {
+    Root?: OverrideT,
+    Svg?: OverrideT,
+    TrackBackground?: OverrideT,
+    TrackForeground?: OverrideT,
+    Text?: OverrideT,
+  },
 };

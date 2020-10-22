@@ -9,12 +9,13 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {SIZE} from './constants.js';
 import {
-  StyledSpinnerDeterminateContainer,
+  StyledSpinnerDeterminateRoot,
   StyledSpinnerDeterminateSvg,
   StyledSpinnerDeterminateTrackBackground,
   StyledSpinnerDeterminateTrackForeground,
   StyledSpinnerDeterminateText,
 } from './styled-components.js';
+import {getOverrides} from '../helpers/overrides.js';
 import type {SpinnerDeterminatePropsT} from './types.js';
 
 function roundTo(n, digits) {
@@ -32,7 +33,37 @@ function SpinnerDeterminate({
   size = SIZE.medium,
   animate = true,
   inline = false,
+  overrides = {},
 }: SpinnerDeterminatePropsT) {
+  // Unpack overrides
+  const {
+    Root: RootOverrides,
+    Svg: SvgOverrides,
+    TrackBackground: TrackBackgroundOverrides,
+    TrackForeground: TrackForegroundOverrides,
+    Text: TextOverrides,
+  } = overrides;
+  const [Root, RootProps] = getOverrides(
+    RootOverrides,
+    StyledSpinnerDeterminateRoot,
+  );
+  const [Svg, SvgProps] = getOverrides(
+    SvgOverrides,
+    StyledSpinnerDeterminateSvg,
+  );
+  const [TrackBackground, TrackBackgroundProps] = getOverrides(
+    TrackBackgroundOverrides,
+    StyledSpinnerDeterminateTrackBackground,
+  );
+  const [TrackForeground, TrackForegroundProps] = getOverrides(
+    TrackForegroundOverrides,
+    StyledSpinnerDeterminateTrackForeground,
+  );
+  const [Text, TextProps] = getOverrides(
+    TextOverrides,
+    StyledSpinnerDeterminateText,
+  );
+
   // Get path length after initial render
   const [pathLength, setPathLength] = React.useState(0);
   const pathRef = React.useRef();
@@ -78,21 +109,22 @@ function SpinnerDeterminate({
   }, [progress]); // We want *only* `progress` to trigger this effect
 
   return (
-    <StyledSpinnerDeterminateContainer $size={size} $inline={inline}>
-      <StyledSpinnerDeterminateSvg $size={size}>
-        <StyledSpinnerDeterminateTrackBackground $size={size} />
-        <StyledSpinnerDeterminateTrackForeground
+    <Root $size={size} $inline={inline} {...RootProps}>
+      <Svg $size={size} {...SvgProps}>
+        <TrackBackground $size={size} {...TrackBackgroundProps} />
+        <TrackForeground
           ref={pathRef}
           $size={size}
           $visible={!!pathRef.current}
           $pathLength={pathLength}
           $pathProgress={pathProgress}
+          {...TrackForegroundProps}
         />
-      </StyledSpinnerDeterminateSvg>
-      <StyledSpinnerDeterminateText $size={size}>
+      </Svg>
+      <Text $size={size} {...TextProps}>
         {roundTo(Math.min(progress * 100, 100))}%
-      </StyledSpinnerDeterminateText>
-    </StyledSpinnerDeterminateContainer>
+      </Text>
+    </Root>
   );
 }
 

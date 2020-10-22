@@ -13,7 +13,7 @@ export {
   StyledTrackPath,
   StyledActivePath,
   StyledSpinnerNext,
-  StyledSpinnerDeterminateContainer,
+  StyledSpinnerDeterminateRoot,
   StyledSpinnerDeterminateSvg,
   StyledSpinnerDeterminateTrackBackground,
   StyledSpinnerDeterminateTrackForeground,
