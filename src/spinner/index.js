@@ -13,6 +13,11 @@ export {
   StyledTrackPath,
   StyledActivePath,
   StyledSpinnerNext,
+  StyledSpinnerDeterminateContainer,
+  StyledSpinnerDeterminateSvg,
+  StyledSpinnerDeterminateTrackBackground,
+  StyledSpinnerDeterminateTrackForeground,
+  StyledSpinnerDeterminateText,
 } from './styled-components.js';
 export {SIZE} from './constants.js';
 // Flow
