@@ -68,7 +68,6 @@ function SpinnerDeterminate({
   const [pathLength, setPathLength] = React.useState(0);
   const pathRef = React.useRef();
   React.useEffect(() => {
-    // $FlowFixMe - Not sure how to get Flow to understand this is a path element.
     if (pathRef.current && pathRef.current.getTotalLength) {
       setPathLength(pathRef.current.getTotalLength());
     }
@@ -113,6 +112,7 @@ function SpinnerDeterminate({
       <Svg $size={size} {...SvgProps}>
         <TrackBackground $size={size} {...TrackBackgroundProps} />
         <TrackForeground
+          // $FlowFixMe
           ref={pathRef}
           $size={size}
           $visible={!!pathRef.current}
