@@ -19,8 +19,22 @@ import {List as MovableList} from 'react-movable';
 import Grab from '../icon/grab.js';
 import Delete from '../icon/delete.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import {Layer} from '../layer/index.js';
 
 import type {ListPropsT, SharedStylePropsArgT} from './types.js';
+
+const ItemLayer = ({
+  children,
+  dragged,
+}: {
+  children: React.Node,
+  dragged: boolean,
+}) => {
+  if (!dragged) {
+    return children;
+  }
+  return <Layer>{children}</Layer>;
+};
 
 class StatelessList extends React.Component<
   ListPropsT,
@@ -110,40 +124,41 @@ class StatelessList extends React.Component<
               $index: index,
             };
             return (
-              <Item
-                {...sharedProps}
-                ref={props.ref}
-                key={props.key}
-                tabIndex={props.tabIndex}
-                aria-roledescription={props['aria-roledescription']}
-                onKeyDown={props.onKeyDown}
-                onWheel={props.onWheel}
-                {...itemProps}
-                style={{...props.style, display: 'flex'}}
-              >
-                <DragHandle {...sharedProps} {...dragHandleProps}>
-                  <Grab size={24} color="#CCC" />
-                </DragHandle>
-                <Label {...sharedProps} {...labelProps}>
-                  {value}
-                </Label>
-                {removable && (
-                  <CloseHandle
-                    {...sharedProps}
-                    onClick={evt => {
-                      evt.preventDefault();
-                      onChange &&
-                        onChange({
-                          oldIndex: typeof index !== 'undefined' ? index : 0,
-                          newIndex: -1,
-                        });
-                    }}
-                    {...closeHandleProps}
-                  >
-                    <Delete size={24} color="#CCC" />
-                  </CloseHandle>
-                )}
-              </Item>
+              <ItemLayer dragged={isDragged} key={props.key}>
+                <Item
+                  {...sharedProps}
+                  ref={props.ref}
+                  tabIndex={props.tabIndex}
+                  aria-roledescription={props['aria-roledescription']}
+                  onKeyDown={props.onKeyDown}
+                  onWheel={props.onWheel}
+                  {...itemProps}
+                  style={{...props.style, display: 'flex'}}
+                >
+                  <DragHandle {...sharedProps} {...dragHandleProps}>
+                    <Grab size={24} color="#CCC" />
+                  </DragHandle>
+                  <Label {...sharedProps} {...labelProps}>
+                    {value}
+                  </Label>
+                  {removable && (
+                    <CloseHandle
+                      {...sharedProps}
+                      onClick={evt => {
+                        evt.preventDefault();
+                        onChange &&
+                          onChange({
+                            oldIndex: typeof index !== 'undefined' ? index : 0,
+                            newIndex: -1,
+                          });
+                      }}
+                      {...closeHandleProps}
+                    >
+                      <Delete size={24} color="#CCC" />
+                    </CloseHandle>
+                  )}
+                </Item>
+              </ItemLayer>
             );
           }}
         />
