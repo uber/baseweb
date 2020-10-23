@@ -124,11 +124,10 @@ class StatelessList extends React.Component<
               $index: index,
             };
             return (
-              <ItemLayer dragged={isDragged}>
+              <ItemLayer dragged={isDragged} key={props.key}>
                 <Item
                   {...sharedProps}
                   ref={props.ref}
-                  key={props.key}
                   tabIndex={props.tabIndex}
                   aria-roledescription={props['aria-roledescription']}
                   onKeyDown={props.onKeyDown}
