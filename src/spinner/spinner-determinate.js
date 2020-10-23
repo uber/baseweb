@@ -34,6 +34,7 @@ function SpinnerDeterminate({
   animate = true,
   inline = false,
   overrides = {},
+  ...restProps
 }: SpinnerDeterminatePropsT) {
   // Unpack overrides
   const {
@@ -108,8 +109,13 @@ function SpinnerDeterminate({
   }, [progress]); // We want *only* `progress` to trigger this effect
 
   return (
-    <Root $size={size} $inline={inline} {...RootProps}>
-      <Svg $size={size} {...SvgProps}>
+    <Root
+      data-baseweb="spinner-determinate"
+      $size={size}
+      $inline={inline}
+      {...RootProps}
+    >
+      <Svg aria-label="Loading" $size={size} {...restProps} {...SvgProps}>
         <TrackBackground $size={size} {...TrackBackgroundProps} />
         <TrackForeground
           // $FlowFixMe
