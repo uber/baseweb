@@ -32,24 +32,24 @@
     "gzip": 18426
   },
   "data-table": {
-    "parsed": 1064926,
-    "gzip": 185694
+    "parsed": 1058079,
+    "gzip": 184012
   },
   "datepicker": {
-    "parsed": 740758,
-    "gzip": 132305
+    "parsed": 733911,
+    "gzip": 130913
   },
   "dnd-list": {
-    "parsed": 114623,
-    "gzip": 22520
+    "parsed": 153511,
+    "gzip": 33105
   },
   "drawer": {
     "parsed": 156345,
     "gzip": 35972
   },
   "file-uploader": {
-    "parsed": 165577,
-    "gzip": 33535
+    "parsed": 158731,
+    "gzip": 32078
   },
   "flex-grid": {
     "parsed": 94922,
@@ -96,16 +96,16 @@
     "gzip": 20857
   },
   "pagination": {
-    "parsed": 407230,
-    "gzip": 80583
+    "parsed": 400383,
+    "gzip": 79398
   },
   "payment-card": {
     "parsed": 182245,
     "gzip": 37389
   },
   "phone-input": {
-    "parsed": 1055854,
-    "gzip": 256233
+    "parsed": 1049005,
+    "gzip": 254526
   },
   "pin-code": {
     "parsed": 144452,
@@ -132,8 +132,8 @@
     "gzip": 17817
   },
   "select": {
-    "parsed": 366875,
-    "gzip": 74666
+    "parsed": 360028,
+    "gzip": 73443
   },
   "side-navigation": {
     "parsed": 89496,
