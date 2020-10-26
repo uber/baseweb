@@ -12,7 +12,6 @@ import type {StylePropsT} from './types.js';
 
 export const StyledProgressSteps = styled<{}>('ol', ({$theme}) => {
   return {
-    backgroundColor: $theme.colors.listHeaderFill,
     display: 'inline-block',
     marginBottom: 0,
     marginTop: 0,
