@@ -121,12 +121,8 @@ export default class Datepicker<T = Date> extends React.Component<
   }
 
   formatDisplayValue: (?T | Array<T>) => string = (date: ?T | Array<T>) => {
-    const {
-      displayValueAtRangeIndex,
-      formatDisplayValue,
-      formatString,
-      range,
-    } = this.props;
+    const {displayValueAtRangeIndex, formatDisplayValue, range} = this.props;
+    const formatString = this.normalizeDashes(this.props.formatString);
 
     if (typeof displayValueAtRangeIndex === 'number') {
       if (__DEV__) {
@@ -187,51 +183,56 @@ export default class Datepicker<T = Date> extends React.Component<
   };
 
   getMask = () => {
-    const {formatString} = this.props;
-    let mask = '';
-    if (this.props.mask !== null) {
-      mask =
-        // using the mask provided through the top-level API
-        this.props.mask ||
-        // to make sure it's not a breaking change, we try calculating the input mask
-        // from the formatString, if used by the developer
+    const {formatString, mask, range} = this.props;
 
-        // 1. mask generation from the formatstring if it's a range input
-        (formatString && this.props.range
-          ? `${formatString} – ${formatString}`.replace(/[a-z]/gi, '9')
-          : null) ||
-        // 2. mask generation from the formatstring if it is NOT a range input
-        (formatString ? formatString.replace(/[a-z]/gi, '9') : null) ||
-        // falling back to the default masks
-        (this.props.range ? '9999/99/99 – 9999/99/99' : '9999/99/99');
+    if (mask === null) {
+      return null;
     }
-    return mask;
+
+    if (mask) {
+      return this.normalizeDashes(mask);
+    }
+
+    const normalizedFormatString = this.normalizeDashes(formatString);
+    if (formatString) {
+      if (range) {
+        return `${normalizedFormatString} – ${normalizedFormatString}`.replace(
+          /[a-z]/gi,
+          '9',
+        );
+      } else {
+        return normalizedFormatString.replace(/[a-z]/gi, '9');
+      }
+    }
+
+    if (range) {
+      return '9999/99/99 – 9999/99/99';
+    }
+
+    return '9999/99/99';
   };
 
   handleInputChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
     const inputValue = event.currentTarget.value;
+    const mask = this.getMask();
 
     if (
-      inputValue === this.getMask().replace(/9/g, ' ') ||
+      (typeof mask === 'string' && inputValue === mask.replace(/9/g, ' ')) ||
       inputValue.length === 0
     ) {
-      if (this.props.range) {
-        this.props.onChange &&
-          this.props.onChange({
-            date: [],
-          });
-      } else {
-        this.props.onChange &&
-          this.props.onChange({
-            date: null,
-          });
+      if (this.props.onChange) {
+        if (this.props.range) {
+          this.props.onChange({date: []});
+        } else {
+          this.props.onChange({date: null});
+        }
       }
     }
 
     this.setState({inputValue});
 
+    const formatString = this.normalizeDashes(this.props.formatString);
     const parseDateString = dateString => {
-      const formatString = this.normalizeDashes(this.props.formatString);
       if (formatString === DEFAULT_DATE_FORMAT) {
         return this.dateHelpers.parse(
           dateString,
@@ -255,7 +256,6 @@ export default class Datepicker<T = Date> extends React.Component<
       let startDate = this.dateHelpers.date(left);
       let endDate = this.dateHelpers.date(right);
 
-      const formatString = this.props.formatString;
       if (formatString) {
         startDate = parseDateString(left);
         endDate = parseDateString(right);

@@ -214,24 +214,16 @@ describe('Datepicker', () => {
     const value = [date, addDays(date, 3)];
     const {container} = render(<Datepicker mask={mask} value={value} />);
     const input = container.querySelector('input');
-    // expect(input.value).toBe('2019/01/01 – 2019/01/04');
-
-    // This is broken! Old test didn't validate the displayed text
-    // TODO(Chase): Fix this bug
-    expect(input.value).toBe('2019/01/01 -  201/90/10');
+    expect(input.value).toBe('2019/01/01 – 2019/01/04');
   });
 
-  it('converts hyphen to en dashes', () => {
+  it('converts em dash to en dashes', () => {
     const date = new Date('2019 01 01');
     const mask = '9999/99/99 — 9999/99/99';
     const value = [date, addDays(date, 3)];
     const {container} = render(<Datepicker mask={mask} value={value} />);
     const input = container.querySelector('input');
-    // expect(input.value).toBe('2019/01/01 – 2019/01/04');
-
-    // This is broken! Old test didn't validate the displayed text
-    // TODO(Chase): Fix this bug
-    expect(input.value).toBe('2019/01/01 —  201/90/10');
+    expect(input.value).toBe('2019/01/01 – 2019/01/04');
   });
 
   it('handles space replacement correctly in formatString', () => {
