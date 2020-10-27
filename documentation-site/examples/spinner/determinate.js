@@ -7,11 +7,11 @@ import {useStyletron} from 'baseui';
 export default () => {
   const [css] = useStyletron();
   // Mimic some loading
-  const [x, xx] = React.useState(0);
+  const [progress, setProgress] = React.useState(0);
   const foo = React.useRef(0);
   React.useEffect(() => {
-    foo.current = x;
-  }, [x]);
+    foo.current = progress;
+  }, [progress]);
   return (
     <div className={css({display: 'flex'})}>
       <Button
@@ -20,11 +20,11 @@ export default () => {
         shape="pill"
         onClick={() => {
           if (foo.current >= 1) {
-            xx(0);
+            setProgress(0);
             return;
           }
           function tick() {
-            xx(x => x + Math.random() * 0.33);
+            setProgress(p => p + Math.random() * 0.33);
             if (foo.current < 1) {
               setTimeout(tick, Math.random() * 1000);
             }
@@ -32,7 +32,7 @@ export default () => {
           tick();
         }}
       >
-        {x >= 1 ? 'Reset' : 'Load'}
+        {progress >= 1 ? 'Reset' : 'Load'}
       </Button>
       <div className={css({width: '10px'})} />
       <SpinnerDeterminate progress={x} />
