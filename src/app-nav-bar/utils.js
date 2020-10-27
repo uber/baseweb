@@ -33,24 +33,19 @@ function defaultGetUniqueIdentifier(item: NavItemT) {
   return item.label;
 }
 
-export function setItemActive(
+export function mapItemsActive(
   items: NavItemT[],
-  item: NavItemT,
-  getUniqueIdentifier?: GetUniqueIdentifierT = defaultGetUniqueIdentifier,
+  predicate: NavItemT => boolean,
 ) {
-  if (!items) {
-    return items;
-  }
-
-  const nextItems = items.map<NavItemT>(current => {
-    if (getUniqueIdentifier(current) === getUniqueIdentifier(item)) {
+  return items.map<NavItemT>(current => {
+    if (predicate(current)) {
       current.active = true;
     } else {
       current.active = false;
     }
 
     if (current.children) {
-      current.children = setItemActive(current.children, item);
+      current.children = mapItemsActive(current.children, predicate);
       if (current.children.some(child => child.active)) {
         current.active = true;
       }
@@ -58,6 +53,15 @@ export function setItemActive(
 
     return current;
   });
+}
 
-  return nextItems;
+export function setItemActive(
+  items: NavItemT[],
+  item: NavItemT,
+  getUniqueIdentifier?: GetUniqueIdentifierT = defaultGetUniqueIdentifier,
+) {
+  return mapItemsActive(
+    items,
+    current => getUniqueIdentifier(current) === getUniqueIdentifier(item),
+  );
 }

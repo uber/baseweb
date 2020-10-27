@@ -26,7 +26,7 @@ import {
   StyledMainMenuItem,
 } from './styled-components.js';
 import type {AppNavBarPropsT} from './types.js';
-import {defaultMapItemToNode} from './utils.js';
+import {defaultMapItemToNode, mapItemsActive} from './utils.js';
 
 function MainMenuItem(props) {
   const {
@@ -131,13 +131,19 @@ export default function AppNavBar(props: AppNavBarPropsT) {
     mapItemToNode = defaultMapItemToNode,
     onMainItemSelect = item => {},
     onUserItemSelect = item => {},
-    mainItems = [],
     overrides = {},
     userItems = [],
     username,
     usernameSubtitle,
     userImgUrl,
   } = props;
+
+  const mainItems = React.useMemo(() => {
+    if (props.isMainItemActive) {
+      return mapItemsActive(props.mainItems || [], props.isMainItemActive);
+    }
+    return props.mainItems || [];
+  }, [props.mainItems, props.isMainItemActive]);
 
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
   const [Spacing, spacingProps] = getOverrides(
