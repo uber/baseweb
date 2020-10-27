@@ -111,11 +111,16 @@ function SpinnerDeterminate({
   return (
     <Root
       data-baseweb="spinner-determinate"
+      role="progressbar"
+      aria-valuenow={progress}
+      aria-valuemin={0}
+      aria-valuemax={1}
       $size={size}
       $inline={inline}
+      {...restProps}
       {...RootProps}
     >
-      <Svg aria-label="Loading" $size={size} {...restProps} {...SvgProps}>
+      <Svg $size={size} {...restProps} {...SvgProps}>
         <TrackBackground $size={size} {...TrackBackgroundProps} />
         <TrackForeground
           // $FlowFixMe
