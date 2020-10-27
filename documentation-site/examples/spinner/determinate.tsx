@@ -34,7 +34,7 @@ export default () => {
         {progress >= 1 ? 'Reset' : 'Load'}
       </Button>
       <div className={css({width: '10px'})} />
-      <SpinnerDeterminate progress={x} />
+      <SpinnerDeterminate progress={progress} />
     </div>
   );
 };
