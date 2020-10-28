@@ -174,6 +174,7 @@ function Slider({
             >
               {displayLabel && (
                 <ThumbValue
+                  $thumbIndex={index}
                   $isDragged={isDragged}
                   {...sharedProps}
                   {...thumbValueProps}
