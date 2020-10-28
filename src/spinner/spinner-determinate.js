@@ -18,6 +18,14 @@ import {
 import {useOverrides} from '../helpers/overrides.js';
 import type {SpinnerDeterminatePropsT} from './types.js';
 
+const defaults = {
+  Root: StyledSpinnerDeterminateRoot,
+  Svg: StyledSpinnerDeterminateSvg,
+  TrackBackground: StyledSpinnerDeterminateTrackBackground,
+  TrackForeground: StyledSpinnerDeterminateTrackForeground,
+  Text: StyledSpinnerDeterminateText,
+};
+
 function roundTo(n, digits) {
   if (digits === undefined) {
     digits = 0;
@@ -36,22 +44,13 @@ function SpinnerDeterminate({
   overrides = {},
   ...restProps
 }: SpinnerDeterminatePropsT) {
-  const [
-    [Root, RootProps],
-    [Svg, SvgProps],
-    [TrackBackground, TrackBackgroundProps],
-    [TrackForeground, TrackForegroundProps],
-    [Text, TextProps],
-  ] = useOverrides(
-    {
-      Root: StyledSpinnerDeterminateRoot,
-      Svg: StyledSpinnerDeterminateSvg,
-      TrackBackground: StyledSpinnerDeterminateTrackBackground,
-      TrackForeground: StyledSpinnerDeterminateTrackForeground,
-      Text: StyledSpinnerDeterminateText,
-    },
-    overrides,
-  );
+  const {
+    Root: [Root, rootProps],
+    Svg: [Svg, svgProps],
+    TrackBackground: [TrackBackground, trackBackgroundProps],
+    TrackForeground: [TrackForeground, trackForegroundProps],
+    Text: [Text, textProps],
+  } = useOverrides(defaults, overrides);
 
   // Get path length after initial render
   const [pathLength, setPathLength] = React.useState(0);
@@ -106,10 +105,10 @@ function SpinnerDeterminate({
       $size={size}
       $inline={inline}
       {...restProps}
-      {...RootProps}
+      {...rootProps}
     >
-      <Svg $size={size} {...restProps} {...SvgProps}>
-        <TrackBackground $size={size} {...TrackBackgroundProps} />
+      <Svg $size={size} {...restProps} {...svgProps}>
+        <TrackBackground $size={size} {...trackBackgroundProps} />
         <TrackForeground
           // $FlowFixMe
           ref={pathRef}
@@ -117,10 +116,10 @@ function SpinnerDeterminate({
           $visible={!!pathRef.current}
           $pathLength={pathLength}
           $pathProgress={pathProgress}
-          {...TrackForegroundProps}
+          {...trackForegroundProps}
         />
       </Svg>
-      <Text $size={size} {...TextProps}>
+      <Text $size={size} {...textProps}>
         {roundTo(Math.min(progress * 100, 100))}%
       </Text>
     </Root>

@@ -204,8 +204,12 @@ export function useOverrides(
   return React.useMemo(
     () =>
       // eslint-disable-next-line flowtype/no-weak-types
-      Object.keys(defaults).map<[React.ComponentType<any>, {}]>(key =>
-        getOverrides(overrides[key], defaults[key]),
+      Object.keys(defaults).reduce<{[string]: [React.ComponentType<any>, {}]}>(
+        (obj, key) => {
+          obj[key] = getOverrides(overrides[key], defaults[key]);
+          return obj;
+        },
+        {},
       ),
     [overrides],
   );
