@@ -7,9 +7,9 @@ export default () => {
   const [css] = useStyletron();
   // Mimic some loading
   const [progress, setProgress] = React.useState(0);
-  const foo = React.useRef(0);
+  const tracker = React.useRef(0);
   React.useEffect(() => {
-    foo.current = progress;
+    tracker.current = progress;
   }, [progress]);
   return (
     <div className={css({display: 'flex'})}>
@@ -18,13 +18,13 @@ export default () => {
         size="compact"
         shape="pill"
         onClick={() => {
-          if (foo.current >= 1) {
+          if (tracker.current >= 1) {
             setProgress(0);
             return;
           }
           function tick() {
             setProgress(p => p + Math.random() * 0.33);
-            if (foo.current < 1) {
+            if (tracker.current < 1) {
               setTimeout(tick, Math.random() * 1000);
             }
           }

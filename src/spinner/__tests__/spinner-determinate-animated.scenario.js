@@ -10,27 +10,27 @@ import {SpinnerDeterminate, SIZE} from '../index.js';
 
 export default function Scenario() {
   // Mimic some loading
-  const [x, xx] = React.useState(0);
-  const foo = React.useRef(0);
+  const [progress, setProgress] = React.useState(0);
+  const tracker = React.useRef(0);
   React.useEffect(() => {
     function tick() {
-      xx(x => x + Math.random() * 0.33);
-      if (foo.current < 1) {
+      setProgress(progress => progress + Math.random() * 0.33);
+      if (tracker.current < 1) {
         setTimeout(tick, Math.random() * 1000);
       }
     }
     tick();
   }, []);
   React.useEffect(() => {
-    foo.current = x;
-  }, [x]);
+    tracker.current = progress;
+  }, [progress]);
   return (
     <React.Fragment>
-      <SpinnerDeterminate progress={x} size={SIZE.small} />
+      <SpinnerDeterminate progress={progress} size={SIZE.small} />
       <br />
-      <SpinnerDeterminate progress={x} size={SIZE.medium} />
+      <SpinnerDeterminate progress={progress} size={SIZE.medium} />
       <br />
-      <SpinnerDeterminate progress={x} size={SIZE.large} />
+      <SpinnerDeterminate progress={progress} size={SIZE.large} />
     </React.Fragment>
   );
 }
