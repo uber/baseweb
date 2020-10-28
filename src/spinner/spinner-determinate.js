@@ -15,7 +15,7 @@ import {
   StyledSpinnerDeterminateTrackForeground,
   StyledSpinnerDeterminateText,
 } from './styled-components.js';
-import {getOverrides} from '../helpers/overrides.js';
+import {useOverrides} from '../helpers/overrides.js';
 import type {SpinnerDeterminatePropsT} from './types.js';
 
 function roundTo(n, digits) {
@@ -36,33 +36,21 @@ function SpinnerDeterminate({
   overrides = {},
   ...restProps
 }: SpinnerDeterminatePropsT) {
-  // Unpack overrides
-  const {
-    Root: RootOverrides,
-    Svg: SvgOverrides,
-    TrackBackground: TrackBackgroundOverrides,
-    TrackForeground: TrackForegroundOverrides,
-    Text: TextOverrides,
-  } = overrides;
-  const [Root, RootProps] = getOverrides(
-    RootOverrides,
-    StyledSpinnerDeterminateRoot,
-  );
-  const [Svg, SvgProps] = getOverrides(
-    SvgOverrides,
-    StyledSpinnerDeterminateSvg,
-  );
-  const [TrackBackground, TrackBackgroundProps] = getOverrides(
-    TrackBackgroundOverrides,
-    StyledSpinnerDeterminateTrackBackground,
-  );
-  const [TrackForeground, TrackForegroundProps] = getOverrides(
-    TrackForegroundOverrides,
-    StyledSpinnerDeterminateTrackForeground,
-  );
-  const [Text, TextProps] = getOverrides(
-    TextOverrides,
-    StyledSpinnerDeterminateText,
+  const [
+    [Root, RootProps],
+    [Svg, SvgProps],
+    [TrackBackground, TrackBackgroundProps],
+    [TrackForeground, TrackForegroundProps],
+    [Text, TextProps],
+  ] = useOverrides(
+    {
+      Root: StyledSpinnerDeterminateRoot,
+      Svg: StyledSpinnerDeterminateSvg,
+      TrackBackground: StyledSpinnerDeterminateTrackBackground,
+      TrackForeground: StyledSpinnerDeterminateTrackForeground,
+      Text: StyledSpinnerDeterminateText,
+    },
+    overrides,
   );
 
   // Get path length after initial render

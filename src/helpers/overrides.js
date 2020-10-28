@@ -192,3 +192,14 @@ export function mergeConfigurationOverrides(
     );
   };
 }
+
+// Lil' hook for memoized unpacking of overrides
+export function useOverrides(defaults, overrides = {}) {
+  return React.useMemo(
+    () =>
+      Object.keys(defaults).map(key =>
+        getOverrides(overrides[key], defaults[key]),
+      ),
+    [overrides],
+  );
+}
