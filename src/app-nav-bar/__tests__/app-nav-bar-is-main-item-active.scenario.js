@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {AppNavBar, setItemActive} from '../index.js';
+import {AppNavBar} from '../index.js';
 
 const mainItems = [
   {label: 'Primary A'},
@@ -22,16 +22,6 @@ const mainItems = [
       {label: 'Secondary D'},
     ],
   },
-  // {
-  //   label: 'Primary D',
-  //   children: [
-  //     {
-  //       label: 'Secondary E',
-  //       children: [{label: 'Tertiary A'}, {label: 'Tertiary B'}],
-  //     },
-  //     {label: 'Secondary F'},
-  //   ],
-  // },
 ];
 
 const userItems = [
