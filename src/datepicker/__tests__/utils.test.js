@@ -101,7 +101,6 @@ const adapterVersions = [
     convertLocale: locale => locale.code,
     getComparisonValue: value => {
       if (moment.isMoment(value)) {
-        //$FlowFixMe
         return momentHelpers.format(value, 'fullDateTime', 'en');
       }
       return value;
