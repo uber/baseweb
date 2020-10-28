@@ -22,6 +22,7 @@ export type UserMenuPropsT = {
 };
 
 export type AppNavBarPropsT = UserMenuPropsT & {
+  isMainItemActive?: (item: NavItemT) => boolean;
   mainItems?: NavItemT[];
   mapItemToNode?: (item: NavItemT) => React.ReactNode;
   onMainItemSelect?: (item: NavItemT) => mixed;
