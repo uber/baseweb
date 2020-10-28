@@ -194,10 +194,17 @@ export function mergeConfigurationOverrides(
 }
 
 // Lil' hook for memoized unpacking of overrides
-export function useOverrides(defaults, overrides = {}) {
+export function useOverrides(
+  defaults: {
+    // eslint-disable-next-line flowtype/no-weak-types
+    [string]: React.ComponentType<any>,
+  },
+  overrides?: OverridesT = {},
+) {
   return React.useMemo(
     () =>
-      Object.keys(defaults).map(key =>
+      // eslint-disable-next-line flowtype/no-weak-types
+      Object.keys(defaults).map<[React.ComponentType<any>, {}]>(key =>
         getOverrides(overrides[key], defaults[key]),
       ),
     [overrides],
