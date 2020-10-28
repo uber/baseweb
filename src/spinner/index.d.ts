@@ -2,6 +2,12 @@ import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
 import {Override} from '../overrides';
 
+export enum SIZE {
+  small = 'small',
+  medium = 'medium',
+  large = 'large',
+}
+
 export interface SpinnerOverrides {
   Svg?: Override<any>;
   ActivePath?: Override<any>;
@@ -16,6 +22,23 @@ export interface SpinnerProps {
   overrides?: SpinnerOverrides;
 }
 export class Spinner extends React.Component<SpinnerProps> {}
+
+export interface SpinnerDeterminateOverrides {
+  Root?: Override<any>;
+  Svg?: Override<any>;
+  TrackBackground?: Override<any>;
+  TrackForeground?: Override<any>;
+  Text?: Override<any>;
+}
+
+export interface SpinnerDeterminateProps {
+  progress?: number;
+  size?: SIZE[keyof SIZE];
+  animate?: boolean;
+  inline?: boolean;
+  overrides?: SpinnerDeterminateOverrides;
+}
+export const SpinnerDeterminate: React.FC<SpinnerDeterminateProps>;
 
 export const StyledSvg: StyletronComponent<any>;
 export const StyledTrackPath: StyletronComponent<any>;

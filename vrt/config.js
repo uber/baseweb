@@ -416,6 +416,9 @@ const config = {
       },
     ],
   },
+  'spinner-determinate-animated': {
+    skip: true,
+  },
   'tabs-motion-conditional': {
     skip: true,
   },
