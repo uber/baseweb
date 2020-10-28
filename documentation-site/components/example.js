@@ -68,6 +68,8 @@ function Example(props: PropsT) {
           .replace(/^\/\//, '')
           // remove all instances of <{}>
           .replace(/<\{.*\}>/g, '')
+          // remove all instances of <any>
+          .replace(/<any>/g, '')
           .trim(),
       });
     })();
