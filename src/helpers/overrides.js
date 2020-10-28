@@ -192,3 +192,25 @@ export function mergeConfigurationOverrides(
     );
   };
 }
+
+// Lil' hook for memoized unpacking of overrides
+export function useOverrides(
+  defaults: {
+    // eslint-disable-next-line flowtype/no-weak-types
+    [string]: React.ComponentType<any>,
+  },
+  overrides?: OverridesT = {},
+) {
+  return React.useMemo(
+    () =>
+      // eslint-disable-next-line flowtype/no-weak-types
+      Object.keys(defaults).reduce<{[string]: [React.ComponentType<any>, {}]}>(
+        (obj, key) => {
+          obj[key] = getOverrides(overrides[key], defaults[key]);
+          return obj;
+        },
+        {},
+      ),
+    [overrides],
+  );
+}
