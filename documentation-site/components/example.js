@@ -77,13 +77,15 @@ function Example(props: PropsT) {
   }, []);
 
   async function handleOpenExample() {
-    const url = await deploy(
-      `Base Web - ${title || 'Example'}`,
-      code.js,
-      additionalPackages,
-    );
-    if (url) {
-      window.open(url, '_blank');
+    if (code.js) {
+      const url = await deploy(
+        `Base Web - ${title || 'Example'}`,
+        code.js,
+        additionalPackages,
+      );
+      if (url) {
+        window.open(url, '_blank');
+      }
     }
   }
 

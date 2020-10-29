@@ -10,6 +10,7 @@ LICENSE file in the root directory of this source tree.
 import {finaliseCSB, sendFilesToCSB} from 'codesandboxer';
 
 import packageJson from '../../package.json';
+// $FlowFixMe - because this is a .ts file
 import {trackEvent} from '../helpers/ga';
 
 const html = `<div id="root" />`;
@@ -40,7 +41,11 @@ ReactDOM.render(
 );
 `;
 
-export async function deploy(title, source, additionalDependencies) {
+export async function deploy(
+  title /*: string */,
+  source /*: string */,
+  additionalDependencies /*: ?{[string]: string} */,
+) /*: Promise<?string> */ {
   try {
     const {devDependencies} = packageJson;
     const {parameters} = finaliseCSB(
