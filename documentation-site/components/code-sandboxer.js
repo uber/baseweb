@@ -5,8 +5,6 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
-// @flow
-
 import {fetchFiles, finaliseCSB, sendFilesToCSB} from 'codesandboxer';
 
 import packageJson from '../../package.json';
@@ -40,11 +38,7 @@ ReactDOM.render(
 );
 `;
 
-export async function deploy(
-  title: string,
-  source: string,
-  additionalDependencies: ?{[string]: string} = {},
-): ?string {
+export async function deploy(title, source, additionalDependencies) {
   try {
     const {devDependencies} = packageJson;
     const {parameters} = finaliseCSB(
