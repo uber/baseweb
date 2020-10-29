@@ -46,7 +46,7 @@ export const Tab = styled<SharedStylePropsArgT>('div', props => {
         : '2px solid transparent',
     display: 'inline-block',
   };
-  if (!$disabled) {
+  if (!$disabled && !$active) {
     style = {
       ...style,
       ':focus': {
