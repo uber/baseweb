@@ -20,7 +20,11 @@ import {
 
 import {toaster, ToasterContainer} from '../index.js';
 
-jest.useFakeTimers();
+function wait(ms) {
+  return new Promise(res => {
+    setTimeout(res, ms);
+  });
+}
 
 describe('toaster', () => {
   it('renders container', () => {
@@ -41,7 +45,7 @@ describe('toaster', () => {
       await findByText(document.body, 'update');
 
       toaster.clear(key);
-      waitForElementToBeRemoved(() => getByText(document.body, 'update'));
+      await waitForElementToBeRemoved(() => getByText(document.body, 'update'));
     });
 
     it('info, positive, warning, negative methods and clear all', async () => {
@@ -70,8 +74,9 @@ describe('toaster', () => {
       });
       await findByText(document.body, 'message');
       fireEvent.click(getByTestId(document.body, 'close'));
-      waitForElementToBeRemoved(() => getByText(document.body, 'message'));
-      jest.runAllTimers();
+      await waitForElementToBeRemoved(() =>
+        getByText(document.body, 'message'),
+      );
       expect(onClose).toHaveBeenCalled();
     });
 
@@ -79,8 +84,8 @@ describe('toaster', () => {
       render(<ToasterContainer autoHideDuration={100} />);
       toaster.info('info');
       await findByText(document.body, 'info');
-      jest.advanceTimersByTime(100);
-      jest.advanceTimersByTime(600);
+      await wait(100);
+      await wait(600);
       expect(queryByText(document.body, 'info')).toBeNull();
     });
 
@@ -88,10 +93,10 @@ describe('toaster', () => {
       render(<ToasterContainer autoHideDuration={100} />);
       toaster.info('info', {autoHideDuration: 1000});
       await findByText(document.body, 'info');
-      jest.advanceTimersByTime(100);
-      jest.advanceTimersByTime(600);
+      await wait(100);
+      await wait(600);
       expect(queryByText(document.body, 'info')).not.toBeNull();
-      jest.advanceTimersByTime(900);
+      await waitForElementToBeRemoved(() => getByText(document.body, 'info'));
       expect(queryByText(document.body, 'info')).toBeNull();
     });
   });
