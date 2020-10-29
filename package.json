@@ -94,7 +94,7 @@
     "@types/babel__traverse": "^7.0.7",
     "@types/babylon": "^6.16.5",
     "@types/card-validator": "^4.1.0",
-    "@types/jest": "^24.0.18",
+    "@types/jest": "^26.0.0",
     "@types/just-pick": "^2.1.0",
     "@types/lodash": "^4.14.141",
     "@types/node": "^12.6.8",
@@ -214,7 +214,9 @@
     "styletron-react": "^5.2.2"
   },
   "resolutions": {
-    "@types/react": "16.8.23"
+    "@types/react": "16.8.23",
+    "@types/jest/jest-diff": "^25.1.0",
+    "@types/jest/pretty-format": "^25.1.0"
   },
   "husky": {
     "hooks": {
