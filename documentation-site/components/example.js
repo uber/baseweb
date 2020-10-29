@@ -17,7 +17,7 @@ import CodeIcon from './code-icon';
 //$FlowFixMe
 import {trackEvent} from '../helpers/ga';
 import {H3} from './markdown-elements';
-import {useStackBlitz} from '../components/hooks.js';
+import {deploy} from '../components/code-sandboxer.js';
 
 function Source(props: {children: ?React.Node}) {
   if (!props.children || typeof props.children !== 'string') return null;
@@ -75,12 +75,16 @@ function Example(props: PropsT) {
     })();
   }, []);
 
-  // Open new StackBlitz project based on example.
-  const openStackBlitz = useStackBlitz({
-    additionalPackages,
-    code: code.js,
-    description: `Base Web - ${title || 'Example'}`,
-  });
+  async function handleOpenExample() {
+    const url = await deploy(
+      `Base Web - ${title || 'Example'}`,
+      code.js,
+      additionalPackages,
+    );
+    if (url) {
+      window.open(url, '_blank');
+    }
+  }
 
   return (
     <Card
@@ -161,9 +165,9 @@ function Example(props: PropsT) {
           <Button
             kind={KIND.secondary}
             size={SIZE.compact}
-            onClick={openStackBlitz}
+            onClick={handleOpenExample}
           >
-            Try example on StackBlitz
+            Try example on CodeSandbox
           </Button>
         </React.Fragment>
       )}
