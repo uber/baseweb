@@ -51,7 +51,7 @@ steps:
       queue: workers
 
   - name: ':flowtype:'
-    command: yarn flow check
+    command: yarn flow
     plugins:
       'docker-compose#v3.0.3':
         run: baseui
