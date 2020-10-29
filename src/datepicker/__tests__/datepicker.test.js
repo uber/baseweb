@@ -19,8 +19,6 @@ import {TestBaseProvider} from '../../test/test-utils.js';
 import {addDays} from 'date-fns';
 import {Datepicker, ORIENTATION} from '../index.js';
 
-jest.useFakeTimers();
-
 describe('Datepicker', () => {
   it('opens calendar on down arrow press', () => {
     const {container} = render(
