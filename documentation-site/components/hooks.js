@@ -57,8 +57,8 @@ export function useStackBlitz(config = {}) {
         tags: ['baseui'],
         dependencies: {
           baseui: version,
-          react: 'latest',
-          'react-dom': 'latest',
+          react: '16.14.0',
+          'react-dom': '16.14.0',
           'styletron-engine-atomic': 'latest',
           'styletron-react': 'latest',
           'styletron-standard': 'latest',
