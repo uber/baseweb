@@ -66,8 +66,8 @@ steps:
     agents:
       queue: workers
 
-  - name: ':react: react@next unit-test'
-    command: yarn upgrade react@next react-dom@next && yarn unit-test
+  - name: ':react: react@17 unit-test'
+    command: yarn upgrade react@^17.0.1 react-dom@^17.0.1 && yarn unit-test
     plugins:
       'docker-compose#v3.0.3':
         run: baseui
@@ -150,10 +150,10 @@ steps:
     agents:
       queue: workers
 
-  - name: ':react: react@next e2e'
+  - name: ':react: react@17 e2e'
     # we have to install puppeteer here to trigger the install.js script
     # and also to make sure we do not add this to the released build artifact
-    command: yarn add puppeteer && yarn upgrade react@next react-dom@next && yarn e2e:test:ci
+    command: yarn add puppeteer && yarn upgrade react@^17.0.1 react-dom@^17.0.1 && yarn e2e:test:ci
     artifact_paths:
       - '__artifacts__/*.png'
     plugins:
