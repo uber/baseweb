@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/no-weak-types */
 
+import {ARROW_SIZE} from '../constants.js';
 import {
   capitalize,
   fromPopperPlacement,
@@ -98,17 +99,18 @@ describe('Popover utils', () => {
     });
     test('getPopoverMarginStyles should return correct margins with arrow', () => {
       const showArrow = true;
+      const value = ARROW_SIZE + 8;
       expect(getPopoverMarginStyles(showArrow, 'topLeft', 8)).toEqual({
-        marginBottom: '6px',
+        marginBottom: `${value}px`,
       });
       expect(getPopoverMarginStyles(showArrow, 'top', 8)).toEqual({
-        marginBottom: '6px',
+        marginBottom: `${value}px`,
       });
       expect(getPopoverMarginStyles(showArrow, 'right', 8)).toEqual({
-        marginLeft: '6px',
+        marginLeft: `${value}px`,
       });
       expect(getPopoverMarginStyles(showArrow, 'bottomLeft', 8)).toEqual({
-        marginTop: '6px',
+        marginTop: `${value}px`,
       });
     });
   });

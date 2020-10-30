@@ -85,7 +85,7 @@ export function getPopoverMarginStyles(
   }
   const property = `margin${capitalize(opposite)}`;
   return {
-    [property]: `${showArrow ? ARROW_SIZE : popoverMargin}px`,
+    [property]: `${showArrow ? ARROW_SIZE + popoverMargin : popoverMargin}px`,
   };
 }
 
