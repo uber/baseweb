@@ -17,6 +17,7 @@ const baseDefaultProps: $Shape<BaseTooltipPropsT> = {
   onMouseLeaveDelay: 200,
   overrides: {},
   placement: PLACEMENT.auto,
+  popoverMargin: 0,
   showArrow: false,
   triggerType: TRIGGER_TYPE.hover,
   renderAll: false,
