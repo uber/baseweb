@@ -55,4 +55,17 @@ describe('Stateless checkbox', function() {
     expect(onFocus.mock.calls.length).toBe(1);
     expect(onBlur.mock.calls.length).toBe(1);
   });
+
+  it('only fires one click event', () => {
+    const onAncestorClick = jest.fn();
+    const {container} = render(
+      // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
+      <div onClick={onAncestorClick}>
+        <Checkbox>label</Checkbox>
+      </div>,
+    );
+    const label = container.querySelector('label');
+    fireEvent.click(label);
+    expect(onAncestorClick.mock.calls.length).toBe(1);
+  });
 });
