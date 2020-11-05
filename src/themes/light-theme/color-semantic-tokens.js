@@ -64,6 +64,7 @@ export default (
     contentStateDisabled: colors.gray400,
     contentAccent: foundation.accent,
     contentOnColor: colors.white,
+    contentOnColorInverse: colors.black,
     contentNegative: foundation.negative,
     contentWarning: colors.yellow500,
     contentPositive: foundation.positive,
