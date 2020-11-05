@@ -15,12 +15,10 @@ export function getSvgStyles({
   $size,
   $color,
 }: StyledComponentArgsT & {$theme: ThemeT}) {
-  if ($size) {
-    if ($theme.sizing[$size]) {
-      $size = $theme.sizing[$size];
-    } else if (typeof $size === 'number') {
-      $size = `${$size}px`;
-    }
+  if ($size && $theme.sizing[$size]) {
+    $size = $theme.sizing[$size];
+  } else if ($size && typeof $size === 'number') {
+    $size = `${$size}px`;
   } else {
     $size = $theme.sizing.scale600;
   }
