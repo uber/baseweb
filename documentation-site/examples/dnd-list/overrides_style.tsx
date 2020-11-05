@@ -13,7 +13,7 @@ export default () => (
           color: 'red',
         },
         props: {
-          'data-test-id': 'dnd-list-label',
+          'data-testid': 'dnd-list-label',
         },
       },
     }}
