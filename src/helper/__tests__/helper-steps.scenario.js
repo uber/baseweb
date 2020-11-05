@@ -10,12 +10,12 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {useStyletron} from '../../styles/index.js';
-import {HelperSteps} from '../helper-steps.js';
+import {Unstable_HelperSteps as HelperSteps} from '../index.js';
 
 const LENGTH = 5;
 
 export default function Scenario() {
-  const [css] = useStyletron();
+  const [css, theme] = useStyletron();
   const [index, setIndex] = React.useState(0);
   const [finished, setFinished] = React.useState(false);
 
@@ -40,8 +40,10 @@ export default function Scenario() {
         onPrev={handlePrev}
         onNext={handleNext}
       />
-      <p>current step index: {index}</p>
-      <p>is finished: {String(finished)}</p>
+      <div className={css({color: theme.colors.contentPrimary})}>
+        <p>current step index: {index}</p>
+        <p>is finished: {String(finished)}</p>
+      </div>
     </div>
   );
 }

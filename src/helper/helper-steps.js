@@ -13,13 +13,7 @@ import {ArrowLeft, ArrowRight, Check} from '../icon/index.js';
 import {Button, KIND, SHAPE} from '../button/index.js';
 import {useStyletron} from '../styles/index.js';
 
-type HelperStepsPropsT = {|
-  index: number,
-  length: number,
-  onFinish: () => mixed,
-  onPrev: () => mixed,
-  onNext: () => mixed,
-|};
+import type {HelperStepsPropsT} from './types.js';
 
 export function HelperSteps({
   index,
@@ -52,11 +46,14 @@ export function HelperSteps({
         {new Array(length).fill().map((_, i) => {
           return (
             <div
+              key={i}
               className={css({
                 height: '8px',
                 width: '8px',
                 backgroundColor:
-                  i === index ? theme.colors.accent : theme.colors.warning,
+                  i === index
+                    ? theme.colors.contentPrimary
+                    : theme.colors.backgroundTertiary,
                 borderTopLeftRadius: '50%',
                 borderTopRightRadius: '50%',
                 borderBottomRightRadius: '50%',
