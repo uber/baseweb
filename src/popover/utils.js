@@ -70,11 +70,9 @@ export function splitPlacement(placement: PopoverPlacementT): string[] {
 /**
  * Returns margin styles to add spacing between the popover
  * and its anchor.
- *
- * We may eventually want to make margin a prop that can be overridden.
  */
 export function getPopoverMarginStyles(
-  showArrow: boolean,
+  arrowSize: number,
   placement: PopoverPlacementT,
   popoverMargin: number,
 ) {
@@ -85,7 +83,7 @@ export function getPopoverMarginStyles(
   }
   const property = `margin${capitalize(opposite)}`;
   return {
-    [property]: `${showArrow ? ARROW_SIZE + popoverMargin : popoverMargin}px`,
+    [property]: `${arrowSize + popoverMargin}px`,
   };
 }
 
@@ -95,12 +93,12 @@ export function getPopoverMarginStyles(
 export function getStartPosition(
   offset: OffsetT,
   placement: PopoverPlacementT,
-  showArrow: boolean,
+  arrowSize: number,
   popoverMargin: number,
 ) {
   offset = {...offset};
   const [position] = splitPlacement(placement);
-  const margin = (showArrow ? ARROW_SIZE : popoverMargin) * 2;
+  const margin = (arrowSize > 0 ? arrowSize : popoverMargin) * 2;
   if (isVerticalPosition(position)) {
     offset.top += position === 'top' ? margin : -margin;
   } else {
