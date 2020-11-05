@@ -15,7 +15,7 @@ import Check from '../check.js';
 
 // Simulate roughly how our own icons are distributed
 const Triangle = React.forwardRef((props, ref) => {
-  const {title = 'Triangle', size = '1em', ...restProps} = props;
+  const {title, size = '1em', ...restProps} = props;
   return (
     <svg
       width={size}
@@ -43,10 +43,10 @@ const theme = createLightTheme(lightThemePrimitives, {
 export default function Scenario() {
   return (
     <ThemeProvider theme={theme}>
-      {/* Default Check */}
+      {/* A default icon */}
       <Check size={100} color="red" />
-      {/* Custom Upload */}
-      <Upload size={100} color="red" $testing="123" />
+      {/* A custom implementation */}
+      <Upload size={100} color="red" $testing="123" data-testing="123" />
     </ThemeProvider>
   );
 }

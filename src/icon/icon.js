@@ -17,10 +17,22 @@ function Icon(props: IconPropsT, ref) {
   // Determine how/which props are passed based on if the component is a Styletron component.
   // $FlowFixMe: __STYLETRON__ not in React.AbstractcomponentStatics
   const passThroughProps = Svg.__STYLETRON__
-    ? {$color: color, $size: size, ...restProps}
-    : {color, size, ...omitDollarPrefixedKeys(restProps)};
+    ? {
+        title,
+        $color: color,
+        $size: size,
+        ...restProps,
+        ...overrideProps,
+      }
+    : {
+        title,
+        color,
+        size,
+        ...omitDollarPrefixedKeys(restProps),
+        ...omitDollarPrefixedKeys(overrideProps),
+      };
   return (
-    <Svg data-baseweb="icon" ref={ref} {...passThroughProps} {...overrideProps}>
+    <Svg data-baseweb="icon" ref={ref} {...passThroughProps}>
       {title ? <title>{title}</title> : null}
       {children}
     </Svg>
