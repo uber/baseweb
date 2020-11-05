@@ -12,30 +12,25 @@ import {useStyletron} from '../styles/index.js';
 import {mergeOverride, toObjectOverride} from '../helpers/overrides.js';
 
 import Icon from './icon.js';
-import omitDollarPrefixedKeys from './omit-dollar-prefixed-keys.js';
 import type {IconPropsT} from './types.js';
 
 function Delete(props: IconPropsT, ref) {
   const [, theme] = useStyletron();
-  const {overrides = {}, ...restProps} = props;
+  const {title = 'Delete', size, color, overrides = {}, ...restProps} = props;
   const SvgOverride = mergeOverride(
-    // Icons from theme really targets the SVG override in the underlying Icon component, but
-    // have props typed with IconPropsT. Provided the missing props inline below here.
+    // Icons from the theme target the SVG override in the underlying Icon component
     {
       component: theme.icons && theme.icons.Delete ? theme.icons.Delete : null,
-      props: {
-        title: 'Delete',
-        viewBox: '0 0 24 24',
-        ...omitDollarPrefixedKeys(restProps),
-      },
     },
     overrides && overrides.Svg ? toObjectOverride(overrides.Svg) : {},
   );
   return (
     <Icon
-      title="Delete"
       viewBox="0 0 24 24"
       ref={ref}
+      title={title}
+      size={size}
+      color={color}
       overrides={{Svg: SvgOverride}}
       {...restProps}
     >
