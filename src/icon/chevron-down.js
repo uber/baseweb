@@ -16,13 +16,7 @@ import type {IconPropsT} from './types.js';
 
 function ChevronDown(props: IconPropsT, ref) {
   const [, theme] = useStyletron();
-  const {
-    title = 'ChevronDown',
-    size,
-    color,
-    overrides = {},
-    ...restProps
-  } = props;
+  const {title = 'Down', size, color, overrides = {}, ...restProps} = props;
   const SvgOverride = mergeOverride(
     // Icons from the theme target the SVG override in the underlying Icon component
     {

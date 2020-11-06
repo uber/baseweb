@@ -16,13 +16,7 @@ import type {IconPropsT} from './types.js';
 
 function ChevronLeft(props: IconPropsT, ref) {
   const [, theme] = useStyletron();
-  const {
-    title = 'ChevronLeft',
-    size,
-    color,
-    overrides = {},
-    ...restProps
-  } = props;
+  const {title = 'Left', size, color, overrides = {}, ...restProps} = props;
   const SvgOverride = mergeOverride(
     // Icons from the theme target the SVG override in the underlying Icon component
     {

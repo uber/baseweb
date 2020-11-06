@@ -17,7 +17,7 @@ import type {IconPropsT} from './types.js';
 function ArrowDown(props: IconPropsT, ref) {
   const [, theme] = useStyletron();
   const {
-    title = 'ArrowDown',
+    title = 'Arrow Down',
     size,
     color,
     overrides = {},

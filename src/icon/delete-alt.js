@@ -17,7 +17,7 @@ import type {IconPropsT} from './types.js';
 function DeleteAlt(props: IconPropsT, ref) {
   const [, theme] = useStyletron();
   const {
-    title = 'DeleteAlt',
+    title = 'Delete Alt',
     size,
     color,
     overrides = {},

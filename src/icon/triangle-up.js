@@ -17,7 +17,7 @@ import type {IconPropsT} from './types.js';
 function TriangleUp(props: IconPropsT, ref) {
   const [, theme] = useStyletron();
   const {
-    title = 'TriangleUp',
+    title = 'Triangle Up',
     size,
     color,
     overrides = {},

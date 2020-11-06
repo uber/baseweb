@@ -17,7 +17,7 @@ import type {IconPropsT} from './types.js';
 function CheckIndeterminate(props: IconPropsT, ref) {
   const [, theme] = useStyletron();
   const {
-    title = 'CheckIndeterminate',
+    title = 'Check Indeterminate',
     size,
     color,
     overrides = {},
