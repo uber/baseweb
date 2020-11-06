@@ -457,6 +457,17 @@ const config = {
       },
     ],
   },
+  textarea: {
+    interactions: [
+      {
+        name: 'focus',
+        behavior: async page => {
+          const input = await page.$('input');
+          await input.focus();
+        },
+      },
+    ],
+  },
   'toaster-focus': {
     skip: true,
   },
