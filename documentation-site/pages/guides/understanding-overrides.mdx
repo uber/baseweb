@@ -71,7 +71,7 @@ But as you might guess, there are multiple React components under the hood, comp
 - props of the subcomponent
 - the whole subcomponent
 
-**Every Base Web component has a top-level prop called `overrides`**. It accepts a map of subcomponents and desired overrides. For example, if we want to change the `Label`'s color and also add an additional `data-test-id` attribute (props are spread over the subcomponent), we can do:
+**Every Base Web component has a top-level prop called `overrides`**. It accepts a map of subcomponents and desired overrides. For example, if we want to change the `Label`'s color and also add an additional `data-testid` attribute (props are spread over the subcomponent), we can do:
 
 ```jsx
 <StatefulList
@@ -84,14 +84,14 @@ But as you might guess, there are multiple React components under the hood, comp
         color: '#892C21',
       },
       props: {
-        'data-test-id': 'dnd-list-label',
+        'data-testid': 'dnd-list-label',
       },
     },
   }}
 />
 ```
 
-We defined `overrides.Label.style` and `overrides.Label.props` properties and this is the result (inspect the element to see the `data-test-id` attribute):
+We defined `overrides.Label.style` and `overrides.Label.props` properties and this is the result (inspect the element to see the `data-testid` attribute):
 
 <DndListExampleStyle />
 
