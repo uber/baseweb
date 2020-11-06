@@ -15,22 +15,32 @@ export function getSvgStyles({
   $size,
   $color,
 }: StyledComponentArgsT & {$theme: ThemeT}) {
-  if ($size && $theme.sizing[$size]) {
-    $size = $theme.sizing[$size];
-  } else if ($size && typeof $size === 'number') {
-    $size = `${$size}px`;
-  } else {
-    $size = $theme.sizing.scale600;
+  let size = $theme.sizing.scale600;
+  if ($size) {
+    if ($theme.sizing[$size]) {
+      size = $theme.sizing[$size];
+    } else if (typeof $size === 'number') {
+      size = `${$size}px`;
+    } else {
+      size = $size;
+    }
   }
-  if ($color && $theme.colors[$color]) {
-    $color = $theme.colors[$color];
+
+  let color = 'currentColor';
+  if ($color) {
+    if ($theme.colors[$color]) {
+      color = $theme.colors[$color];
+    } else {
+      color = $color;
+    }
   }
+
   return {
     display: 'inline-block',
-    fill: $color || 'currentColor',
-    color: $color || 'currentColor',
-    height: $size,
-    width: $size,
+    fill: color,
+    color: color,
+    height: size,
+    width: size,
   };
 }
 
