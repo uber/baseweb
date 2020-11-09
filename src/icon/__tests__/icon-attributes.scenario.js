@@ -45,6 +45,16 @@ export default function Scenario() {
     <ThemeProvider theme={theme}>
       {/* A default icon */}
       <Check size={100} color="red" />
+      {/* $ props */}
+      <Check $size={100} $color="red" />
+      {/* Overrides */}
+      <Check
+        overrides={{
+          Svg: {
+            style: {fill: 'red', height: '100px', width: '100px'},
+          },
+        }}
+      />
       {/* A custom implementation */}
       <Upload size={100} color="red" $testing="123" data-testing="123" />
     </ThemeProvider>
