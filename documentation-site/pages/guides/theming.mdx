@@ -345,7 +345,18 @@ You can use any React component as a replacement for an icon, as long as they ac
 - `color`, to set their colors
 - `title`, to set the title of the icon for accessibility purposes
 
-> When creating these replacement components, pay special attention not to expose these properties to the DOM. If you do, you'll run into warning messages similar to this: `Warning: Invalid attribute name: 'size'`
+```
+When creating these replacement components, pay special attention not to expose these properties to the DOM. If you do, you'll run into warning messages similar to this: `Warning: Invalid attribute name: 'size'`
+```
+
+Your component will also recieve the following properties:
+
+- `data-baseweb`, always set to `"icon"`
+- `viewBox`, always set to `"0 0 24 24"`
+- `children`, the `path` elements in our default icons
+- Anything else you pass or override on the component instance
+
+How you handle these properties is up to you — for instance, you might want to omit `viewBox` if your icon set uses something different.
 
 You can find more about the [Icon API here](/components/icon/#icon-api) and also refer to this [list of available icons](https://baseweb.design/components/icon/#available-icons).
 
