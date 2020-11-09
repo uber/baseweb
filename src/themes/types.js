@@ -142,6 +142,7 @@ export type CoreExtensionSemanticColorTokensT = {|
   contentStateDisabled: string,
   contentAccent: string,
   contentOnColor: string,
+  contentOnColorInverse: string,
   contentNegative: string,
   contentWarning: string,
   contentPositive: string,

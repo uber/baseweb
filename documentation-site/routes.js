@@ -235,19 +235,19 @@ const routes = [
         subNav: [
           {
             title: 'Table',
-            itemId: '/components/table',
+            itemId: '/components/table-semantic',
           },
           {
             title: 'Data Table',
-            itemId: '/components/unstable-data-table',
+            itemId: '/components/data-table',
           },
           {
             title: 'Grid Table',
             itemId: '/components/table-grid',
           },
           {
-            title: 'Semantic Table',
-            itemId: '/components/table-semantic',
+            title: 'Flex Table',
+            itemId: '/components/table',
           },
         ],
       },
