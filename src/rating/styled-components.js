@@ -59,7 +59,7 @@ export const StyledStar = styled<StyledRatingItemPropsT>(
       marginRight: $theme.sizing.scale300,
       width: `${$size}px`,
       height: `${$size}px`,
-      transform: $isSelected ? 'scale(1.35)' : '',
+      transform: $isSelected ? 'scale(1.35)' : null,
       outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
       outlineOffset: '2px',
       ':after': {
@@ -114,7 +114,7 @@ export const StyledEmoticon = styled<StyledRatingItemPropsT>(
       marginRight: $theme.sizing.scale300,
       width: `${$size}px`,
       height: `${$size}px`,
-      transform: $isSelected ? 'scale(1.1)' : '',
+      transform: $isSelected ? 'scale(1.1)' : null,
       outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
       outlineOffset: '2px',
       ':after': {
