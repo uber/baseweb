@@ -166,7 +166,7 @@ const COMPONENTS = {
       Component: thumbnails.SvgTable,
     },
     {
-      href: '/components/unstable-data-table',
+      href: '/components/data-table',
       Component: thumbnails.SvgDataTable,
     },
     {
