@@ -462,8 +462,8 @@ const config = {
       {
         name: 'focus',
         behavior: async page => {
-          const input = await page.$('input');
-          await input.focus();
+          const element = await page.$('textarea');
+          await element.focus();
         },
       },
     ],
