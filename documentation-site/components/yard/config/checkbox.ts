@@ -131,6 +131,12 @@ const CheckboxConfig: TConfig = {
       description: 'Title attribute.',
       hidden: true,
     },
+    ariaLabel: {
+      value: undefined,
+      type: PropTypes.Sting,
+      description: 'Aria-label attribute',
+      hidden: true,
+    },
     ...pick(changeHandlers, [
       'onBlur',
       'onFocus',
