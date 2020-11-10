@@ -44,13 +44,13 @@ export default function ButtonInternals(props: ButtonPropsT) {
     <React.Fragment>
       {startEnhancer !== null && startEnhancer !== undefined && (
         <StartEnhancer {...sharedProps} {...startEnhancerProps}>
-          <RenderEnhancer {...sharedProps} Enhancer={startEnhancer} />
+          <RenderEnhancer Enhancer={startEnhancer} />
         </StartEnhancer>
       )}
       {children}
       {endEnhancer !== null && endEnhancer !== undefined && (
         <EndEnhancer {...sharedProps} {...endEnhancerProps}>
-          <RenderEnhancer {...sharedProps} Enhancer={endEnhancer} />
+          <RenderEnhancer Enhancer={endEnhancer} />
         </EndEnhancer>
       )}
     </React.Fragment>
