@@ -372,11 +372,19 @@ export default class MenuStatefulContainer extends React.Component<
   focusMenu = (event: FocusEvent | MouseEvent | KeyboardEvent) => {
     const rootRef = this.props.rootRef ? this.props.rootRef : this.rootRef;
 
-    if (this.state.isFocused) {
-      return;
-    }
-    // $FlowFixMe
-    if (rootRef.current && rootRef.current.contains(event.target)) {
+    if (
+      !this.state.isFocused &&
+      rootRef.current &&
+      // $FlowFixMe
+      rootRef.current.contains(event.target)
+    ) {
+      if (
+        event.relatedTarget &&
+        event.relatedTarget === document.activeElement
+      ) {
+        return;
+      }
+
       if (this.state.highlightedIndex < 0) {
         this.internalSetState(STATE_CHANGE_TYPES.focus, {
           isFocused: true,
