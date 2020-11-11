@@ -378,11 +378,13 @@ export default class MenuStatefulContainer extends React.Component<
       // $FlowFixMe
       rootRef.current.contains(event.target)
     ) {
-      if (
-        event.relatedTarget &&
-        event.relatedTarget === document.activeElement
-      ) {
-        return;
+      if (__BROWSER__) {
+        if (
+          event.relatedTarget &&
+          event.relatedTarget === document.activeElement
+        ) {
+          return;
+        }
       }
 
       if (this.state.highlightedIndex < 0) {
