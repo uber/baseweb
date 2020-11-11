@@ -43,6 +43,10 @@ const routes = [
         itemId: '/guides/theming',
       },
       {
+        title: 'Styling',
+        itemId: '/guides/styling',
+      },
+      {
         title: 'Overrides',
         itemId: '/guides/understanding-overrides',
       },

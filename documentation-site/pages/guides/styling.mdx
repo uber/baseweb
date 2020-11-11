@@ -1,0 +1,221 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Layout from '../../components/layout';
+import Example from '../../components/example';
+
+export default Layout;
+
+# Styling
+
+Base Web provides a variety of tools for styling your application. The intention of this guide is to give you an overview of these various tools. We will also offer guidance on when you might prefer to use one tool over another.
+
+## TLDR
+
+Here is a summary of our recommendations for styling your project:
+
+- Start with `useStyletron`. Apply styling directly to elements until you find a need for extracting a styling pattern into a component. At this point use styled to create a styled component which can be reused, configured or extended.
+- When extending a styled component, prefer `withStyle` over `\$style` to create maintainable variations of your base component.
+- When styling parts of your application, try to use values from your theme object whereever possible. The current theme is always made available in the various styling utilities exported from Base Web.
+- When customizing the look of Base Web components, first see if you can configure the theme object to achieve your desired look. If that doesn’t work, check if the component is a styled component. If it is, you can use `withStyle` to extend it. If it is not a styled component you will likely need to use the overrides pattern to pass new styles through or even swap in your own component.
+- Remember that Base Web components are built with Styletron styled components. These are all exported from their relevant modules and made targetable with overrides.
+
+For a more in depth tour of these recommendations, continue reading below...
+
+## The basics
+
+Let’s start with a common enough scenario: styling something from scratch. You have two options: the `styled` function or the `useStyletron` hook.
+
+The `useStyletron` hook returns a function for generating class names from style objects.
+
+EXAMPLE
+
+In this example you can see that the `css` function is very flexible. Pass it a style object and it returns a string that when assigned to an element (via `className`), will style the element accordingly.
+
+`useStyletron` also returns the nearest ancestor theme object. This is the theme you will have passed to `BaseProvider` (or a `ThemeProvider) as seen in our basic set up examples.
+
+EXAMPLE
+
+`useStyletron` alone provides you with everything you need to style your code. After using it for a while you will come to appreciate how quickly you can style elements with the `css` function and `theme` object.
+
+Of course, there are some tradeoffs when using `useStyletron`. First, you can only use it in functional components since it is a React Hook. And second, it doesn’t provide much in the way of reuse, extensibility, or configuration. Let’s take a look at another example.
+
+EXAMPLE
+
+Notice that we repeatedly pass the styling code for links multiple times. Also notice that we had to add some logic for determining when the link should show an external website icon. If we wanted to use a link in another part of our application we’d need to copy this logic again. Some readers might also object to how much styling logic has spilled into our parent component.
+
+One way to solve this problem would be to “extract” the link styling into a new component:
+
+EXAMPLE
+
+That is better. We’ve also added in some extensibility by spreading the style prop into our css function. The external prop gives us a bit of an configuration over how the link will be styled. The issue is that we will need to repeat a lot of these patterns every time we want to “extract” some styling into a component.
+
+This is where the `styled` function shines. It streamlines creating components with built in patterns for reuse, extensibility, and configuration. It does so by creating “styled components”.
+
+EXAMPLE
+
+This way of organizing styling into a reusable component is sometimes called “component oriented styling”. It’s a core tenet of Styletron and Base Web’s styling philosophy. All (or almost all) of the styling in Base Web is done via “styled components”.
+
+> Note, whenever you import a component with the “Styled” prefix, this is actually a Styletron styled component.
+
+Once you have a styled component, there are a couple ways you can extend it. The most direct way is to use the `$style` prop.
+
+EXAMPLE
+
+Notice, you can pass a function which has access to the theme object. This is something we didn’t even account for in our `useStyletron` version of Link.
+
+The `$style` prop is great, but it is an escape hatch. It can lead to inconsistencies building up around your codebase. You might ask yourself if the overwriting styles might be accounted for by updating the interface of the styled component.
+
+EXAMPLE
+
+That works but might this extension of the original styled component deserve to be a component all its own? Our interface might be a bit bloated after the update. This is where `withStyle` comes into play.
+
+EXAMPLE
+
+`withStyle` creates a new styled component. It “extends” the original styled component while maintaining all of the patterns (reuse, extensibility, configuration) styled components benefit from. We’ve kept our original styled component free of a bloated interface and we can easily reuse this extension as a new component.
+
+To review, we’ve introduced 3 utilities for styling: `useStyletron`, `styled`, and `withStyle`. Let’s review when it makes sense to use each utility.
+
+- `useStyletron`: Great for quickly styling elements and referencing the theme object.
+- `styled`: Great for creating reusable styling which may or may not require an interface for extensibility and configuration.
+- `withStyle`: Great for extending styled components in a maintainable manner.
+
+Our recommendation is to start with `useStyletron` and reach for `styled` when you notice that you might want to reuse a piece of styling or would like that styling to be configurable and/or extensible. Use `withStyle` when you want to reuse a modified version of a component without building that modified state into the original component. You shouldn’t need to use `withStyle` very often, but it is useful when the need arises.
+
+This is a decent development pattern of starting with something flexible and low-level and building up abstractions when they become apparently useful. At the end of the day, you are creating a style object and passing it to one of these utilities. The best way to do that depends on your codebase and your preferences.
+
+## The theme
+
+You’ll notice that every styling utility provides access to the theme object. This isn’t just a convenience- it is at the heart of our styling strategy.
+
+Backing up a bit: the theme object serves multiple purposes. It acts as an interface for configuring the look and feel of Base Web components. It allows us to alternate between light and dark themes. But when it comes to styling your own code, the theme also acts as a source of truth for styling values. Sometimes these recurring styling values are called “tokens”.
+
+EXAMPLE
+
+It doesn’t take long to notice how unmaintainable this approach will be. Another downside to this is that the custom part of the user interface doesn’t look consistent with the Base Web part. Let’s use theme tokens instead:
+
+EXAMPLE
+
+By using theme tokens, not only does our interface look better, but it saves us time and makes future refactors easier. Always be sure to reach for the theme object when styling your code or extending Base Web components.
+
+Looking through the theme object, you might notice that there are a lot of properties and sub-properties. Especially when considering the `color` property- there are a ton of potential tokens. So how do you know which one to use?
+
+Our recommendation is to look at this part of the theming guide. It lists what we consider to be “semantic” color tokens. Not only do these properties style the Base Web components, but, when using our default themes, automatically adjust between light and dark themes.
+
+EXAMPLE
+
+By using these “semantic” color tokens we can quickly create a user interface that works in both light and dark contexts.
+
+## Customization
+
+So far we have covered building parts of your application from scratch or in tandem with Base Web components. Next we’ll look at customizing and styling the components themselves.
+
+There are three main techniques for styling Base Web components: the theme, `withStyle`, and the overrides pattern.
+
+The [theming guide](/guides/theming) is your best resource for understanding the nuances of theming Base Web components. Theming is the first strategy we would recommend trying out when styling Base Web components. You can modify spacing, border radii, colors, typography scales- a whole slew of systemic theme tokens which will change the look of Base Web.
+
+EXAMPLE
+
+We think you can get pretty far with just the theming layer alone. When it isn’t enough there are a few more techniques available to you.
+
+We’ve already been introduced to `withStyle`. It allows us to extend a styled component. But how is this relevant to styling Base Web components? Remember that Base Web itself is built with styled components. Every module exports an entire suite of styled components used to build that component.
+
+EXAMPLE
+
+In some cases, we can import a styled component and then use `withStyle` to extend it to our purposes. You can use `withStyle` to create your own version of a component and import that around your application instead.
+
+This works for simple components, but most components, while being built with styled components, are not styled components themselves. We can’t use `withStyle` to extend or configure them.
+
+EXAMPLE
+
+Now we turn to the `overrides` prop, which exists on nearly every Base Web component. If it isn't a styled component, it will have an `overrides` prop.
+
+The override pattern allows us to pass styling and props to, or replace, a part of a Base Web component. Consider that a complex component is a tree of nodes. These nodes can be elements or other components (with subtrees of their own).
+
+DRAWING
+
+Typically a component encapsulates this subtree such that anything outside of the component does not need to be aware of that subtree. An override is a way of passing modifications to, or outright replacing a component node in that subtree. It breaks encapsulation but gives us power over the internals of our component.
+
+EXAMPLE
+
+It is critical that you understand the override pattern if you seek to customize the styling of Base Web components. Check out our extensive [overrides guide](/guides/understanding-overrides) for details. For now, we’ll explain how styling relates to overrides.
+
+Whenever a Base Web component uses any component internally, including a styled component, it makes it available as an override.
+
+DRAWING
+
+Using this pattern we can override styles, props, or even the entire sub-component.
+
+EXAMPLE
+
+In this example we pass a style object through the overrides interface to a styled component internal to the Base Web component. It is almost as if we used the `$style` prop on that internal styled component. An even more powerful pattern is to replace the sub-component entirely.
+
+EXAMPLE
+
+Recall (again), that Base Web components are composed of styled components. In this example, we import the styled component used inside of the component, extend it using `withStyle`, and then use this new component through the overrides interface.
+
+Overrides give you full control over the Base Web component. Passing style objects or styled components is the most common way you’ll style Base Web components. And of course, make sure to use the theme object to keep things consistent.
+
+Overrides are a more advanced technique. When it comes to styling concerns, the key here is remembering that every styled component used within a Base Web component will not only be targetable via overrides but will also be exported from the associated module.
+
+## Anti-patterns
+
+Let’s take a moment to consider some patterns and techniques that might seem useful at first but can lead to difficult to maintain code.
+
+### \$style
+
+While it can be tempting to use the `$style` prop to override styles on a styled component, we actually disallow this in our own codebase. We've found that using `$style` leads to difficult to maintain code and inconsistent styling. Whenever you find yourself reaching for `$style` consider if you could account for this variation with the styled component's interface or if this might warrant a new styled component altogether (via `withStyle`).
+
+### useStyletron
+
+`useStyletron` is a great low-level way to style elements. It allows you to iterate on your styling very quickly. Some people decide that they want to use it exclusively, forgoing styled components all together. This is fine, and in some circumstances the consistency within your project might warrant such a decision. There are a couple things to be wary of though. Consider the following example:
+
+EXAMPLE
+
+Here we are trying to make a reusable component with `useStyletron` and provide our own interface for extensibility. We notice that the css function returns a string of class names and so decide to concatenate them together with a style object passed through the style prop.
+
+There are two problems with this approach. First, the resulting CSS is not deduped, leading to bloated stylesheets. Second, if using the atomic Styletron engine, the resulting CSS might be applied in the wrong order.
+
+If you want to add some level of extensibility to a component using `useStyletron`, don’t concatenate class names, instead merge relevant style objects into one and pass the merged object to the `css` function.
+
+EXAMPLE
+
+Of course, an even better solution might be to leverage the `styled` utility and get these patterns for free.
+
+### Block
+
+The `Block` component allows you to quickly create elements and assign them styling values from your theme.
+
+EXAMPLE
+
+Some folks really enjoy this way of building out a UI. Indeed, `Block` makes it very easy to use your theme tokens and as we’ve stated earlier, you should use these tokens as often as possible.
+
+That said, we actually no longer recommend using `Block` to build out your UI. There are a number of reasons for this:
+
+- `Block` props do not have any awareness of your theme object. While developing you lose out on useful autocompletion and type information compared to using the theme object directly (as with useStyletron or styled/withStyle).
+- `Block` works well so long as the element only needs a few theme tokens. Once you want to do something more complicated, or something not covered by the existing props, you need to use an override. This can lead to hard to read code and inconsistent styling patterns over time.
+- `Block` has a fairly bloated interface at this point. You can shave a few KB from your bundle by omitting it from your project.
+- `Block` requires learning and memorizing the `Block` interface as well as the theme shape. Not only can this be confusing for people new to the codebase, but it also reinvents the wheel a bit by obscuring plain old CSS. Our conjecture is that code is more maintainable and legible when it leverages CSS syntax (through style objects)- something most frontend developers have some familiarity with already. Let’s avoid unnecessary abstraction when possible.
+- We much prefer `useStyletron` these days. There is no API to learn, no awkward edge cases, has great auto-completion/type support, and adds nothing to your bundle.
+
+All this said, if your team enjoys using `Block` and has found ways to keep it consistent and legible, go for it. We have no plans to remove it any time soon. Just keep in mind this common issue we see people run into with `Block`:
+
+EXAMPLE
+
+This seems like it should work, and sometimes it might result in what you want, but `Block` is not a styled component! You actually need to use an override to pass through the extra styles.
+
+EXAMPLE
+
+If you use `Block` extensively, you will want to be sure you avoid this common mistake.
+
+## Wrapping things up
+
+The above techniques give you an overview of styling techniques available to you when using Base Web and Styletron. This guide is how we think about styling, not only for users of our library, but within our own apps and Base Web itself.
+
+The ideas and techniques here are always evolving. We might decide later on that there are more useful patterns in other directions. Rest assured we won’t drop support for existing tools, but we might promote alternate techniques in our documentation.
+
+As always, feel free to discuss this on our Slack channel or open an issue on Github if you notice a problem with any of our current styling options.
