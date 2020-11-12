@@ -18,11 +18,11 @@ Base Web provides a variety of tools for styling your application. The intention
 
 Here is a summary of our recommendations for styling your project:
 
-- Start with `useStyletron`. Apply styling directly to elements until you find a need to extract a styling pattern into a component. At this point use `styled` to create a styled component which can be reused, configured or extended.
-- When extending a styled component, prefer `withStyle` over `$style` to create maintainable variations of your base component.
+- Start with [`useStyletron`](/components/use-styletron/). Apply styling directly to elements until you find a need to extract a styling pattern into a component. At this point use [`styled`](/components/styled/) to create a [styled component](https://www.styletron.org/react#styled-components) which can be reused, configured or extended.
+- When extending a styled component, prefer [`withStyle`](https://www.styletron.org/api-reference#withstyle) over [`$style`](https://www.styletron.org/react#style-prop) to create maintainable variations of your base component.
 - When styling parts of your application, try to use values from your theme object whereever possible. The current theme is always made available in the various styling utilities exported from Base Web.
-- When customizing the look of Base Web components, first see if you can configure the theme object to achieve your desired look. If that doesn’t work, check if the component is a styled component. If it is, you can use `withStyle` to extend it. If it is not a styled component you will likely need to use the overrides pattern to pass new styles through or even swap in your own component.
-- Remember that Base Web components are built with Styletron styled components. These are all exported from their relevant modules and made targetable with overrides.
+- When customizing the look of Base Web components, first see if you can configure the theme object to achieve your desired look. If that doesn’t work, check if the component is a styled component. If it is, you can use `withStyle` to extend it. If it is not a styled component you will likely need to use the [overrides pattern](/guides/understanding-overrides/) to pass new styles through or even swap in your own component.
+- Remember that Base Web components are built with [Styletron](https://www.styletron.org/) styled components. These are all exported from their relevant modules and made targetable with overrides.
 
 For a more in-depth tour of these recommendations, continue reading below...
 
@@ -30,7 +30,7 @@ For a more in-depth tour of these recommendations, continue reading below...
 
 Let’s start with a common enough scenario: styling something from scratch. You have two options: the `styled` function or the `useStyletron` hook.
 
-The `useStyletron` hook returns a function for generating class names from style objects.
+The [`useStyletron`](/components/use-styletron/) hook returns a function for generating class names from [style objects](https://www.styletron.org/concepts#style-object).
 
 ```js
 import * as React from 'react';
@@ -156,7 +156,7 @@ export default function Link({children, style, isExternal, ...rest}) {
 
 This is a bit better. We’ve added in some extensibility by spreading the `style` prop into our `css` function. The `isExternal` prop gives us a bit of configuration over how the link will be styled. The issue is that we will need to repeat a lot of these patterns every time we want to “extract” some styling into a component. This can lead to inconsistent interfaces. For instance, what if in one component we call the `style` prop `css`? What if it in another component the `style` prop is implemented in a slightly different way? To prevent this from getting unmaintainable we would need to establish conventions for how to create these sorts of components.
 
-This is where the `styled` function shines. It streamlines creating components with built in patterns for reuse, extensibility, and configuration. It does so by creating “styled components”.
+This is where the [`styled`](/components/styled/) function shines. It streamlines creating components with built in patterns for reuse, extensibility, and configuration. It does so by creating [styled components](https://www.styletron.org/react#styled-components).
 
 ```js
 import {styled} from 'baseui';
@@ -170,7 +170,7 @@ export const StyledLink = styled('a', ({$theme, $isExternal}) => ({
 }));
 ```
 
-And you can use it like so:
+Notice that with `styled`, we can pass a [style function](https://www.styletron.org/concepts#style-function) (instead of a style object) which has access to your Base Web theme (via `$theme`), as well as any props you would like the component to have. The style function is a very common pattern you will see used throughout Base Web and Styletron. You can use the styled component like so:
 
 ```js
 import * as React from 'react';
@@ -199,7 +199,7 @@ This way of organizing styling into a reusable component is sometimes called “
 
 > Note, by convention, whenever you import a component with the “Styled” prefix from Base Web, this is actually a Styletron styled component.
 
-Once you have a styled component, there are a couple ways you can extend it. The most direct way is to use the `$style` prop.
+Once you have a styled component, there are a couple ways you can extend it. The most direct way is to use the [`$style`](https://www.styletron.org/react#style-prop) prop.
 
 ```js
 import * as React from 'react';
@@ -215,9 +215,9 @@ export default function StyledFancyLink(props) {
 }
 ```
 
-Notice, you can pass a function which has access to the theme object (via `$theme`). This is something we didn’t even account for in our `useStyletron` version of this Link component.
+Notice, you can pass a function which has access to the theme object (via `$theme`). This is something we didn’t even account for in our `useStyletron` version of the Link component.
 
-The `$style` prop is great, but it is an escape hatch. It can lead to inconsistencies building up around your codebase. You might ask yourself if the overwriting styles might be accounted for by updating the interface of the styled component or if this extension of the original styled component might deserve to be a component all its own. This is where `withStyle` comes into play.
+The `$style` prop is great, but you should think of it as an escape hatch. It can lead to inconsistencies building up around your codebase. You might ask yourself if the overwriting styles might be accounted for by updating the interface of the styled component or if this extension of the original styled component might deserve to be a component all its own. This is where [`withStyle`](https://www.styletron.org/api-reference#withstyle) comes into play.
 
 ```js
 import {withStyle} from 'baseui';
@@ -418,7 +418,7 @@ This works for simple components, but most components, while being built with st
 
 Now we turn to the `overrides` prop, which exists on nearly every Base Web component. If it isn't a styled component, it will have an `overrides` prop.
 
-The override pattern allows us to pass styling and props to, or replace, a part of a Base Web component. Consider that a complex component is a tree of nodes. These nodes can be elements or other components (with subtrees of their own).
+The [override pattern](<(/guides/understanding-overrides)>) allows us to pass styling and props to, or replace, a part of a Base Web component. Consider that a complex component is a tree of nodes. These nodes can be elements or other components (with subtrees of their own).
 
 <BlogImage
   src="/images/overrides1.png"
@@ -521,7 +521,7 @@ While it can be tempting to use the `$style` prop to override styles on a styled
 
 ### useStyletron
 
-`useStyletron` is a great low-level way to style elements. It allows you to iterate on your styling very quickly. Some people decide that they want to use it exclusively, forgoing styled components all together. This is fine, and in some circumstances the consistency within your project might warrant such a decision. There are a couple things to be wary of though. Consider the following example:
+[`useStyletron`](/components/use-styletron) is a great low-level way to style elements. It allows you to iterate on your styling very quickly. Some people decide that they want to use it exclusively, forgoing styled components all together. This is fine, and in some circumstances the consistency within your project might warrant such a decision. There are a couple things to be wary of though. Consider the following example:
 
 ```js
 import * as React from 'react';
@@ -574,7 +574,7 @@ Of course, an even better solution might be to leverage the `styled` utility and
 
 ### Block
 
-The `Block` component allows you to quickly create elements and assign them styling values from your theme.
+The [`Block`](/components/block/) component allows you to quickly create elements and assign them styling values from your theme.
 
 ```js
 import * as React from 'react';
