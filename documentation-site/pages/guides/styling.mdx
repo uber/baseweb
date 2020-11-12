@@ -19,7 +19,7 @@ Base Web provides a variety of tools for styling your application. The intention
 Here is a summary of our recommendations for styling your project:
 
 - Start with `useStyletron`. Apply styling directly to elements until you find a need to extract a styling pattern into a component. At this point use `styled` to create a styled component which can be reused, configured or extended.
-- When extending a styled component, prefer `withStyle` over `\$style` to create maintainable variations of your base component.
+- When extending a styled component, prefer `withStyle` over `$style` to create maintainable variations of your base component.
 - When styling parts of your application, try to use values from your theme object whereever possible. The current theme is always made available in the various styling utilities exported from Base Web.
 - When customizing the look of Base Web components, first see if you can configure the theme object to achieve your desired look. If that doesn’t work, check if the component is a styled component. If it is, you can use `withStyle` to extend it. If it is not a styled component you will likely need to use the overrides pattern to pass new styles through or even swap in your own component.
 - Remember that Base Web components are built with Styletron styled components. These are all exported from their relevant modules and made targetable with overrides.
@@ -505,7 +505,7 @@ export default function Form() {
 }
 ```
 
-Recall (again), that Base Web components are composed of styled components. In this example, we import the styled component used inside of the component, extend it using `withStyle`, and then use it within a new component passed through the overrides interface. This is a common and pattern for advanced use-cases.
+Recall (again), that Base Web components are composed of styled components. In this example, we import the styled component used inside of the component, extend it using `withStyle`, and then use it within a new component passed through the overrides interface. This is a common pattern for advanced use-cases.
 
 Overrides give you full control over the Base Web component. Passing style objects or styled components is the most common way you’ll style Base Web components. And of course, make sure to use the theme object to keep things consistent.
 
