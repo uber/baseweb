@@ -32,10 +32,13 @@ describe('Icon', () => {
     expect(titleElement.textContent).toBe(title);
   });
 
-  it('renders with expected overrides', () => {
-    const overrides = {Svg: {style: {fill: 'purple'}}};
-    const {container} = render(
-      <Icon overrides={overrides}>
+  it('does not pass extraneous attributes to svg elements', () => {
+    // an exception
+    const consoleError = console.error;
+    // $FlowFixMe
+    console.error = jest.fn();
+    render(
+      <Icon $test="123">
         <path
           fillRule="evenodd"
           clipRule="evenodd"
@@ -43,25 +46,10 @@ describe('Icon', () => {
         />
       </Icon>,
     );
-    const svgElement = container.querySelector('svg');
-    const style = JSON.parse(svgElement.getAttribute('test-style'));
-    expect(style.fill).toBe(overrides.Svg.style.fill);
-  });
-
-  it('maintains color/size overrides passed to dollar prefix props', () => {
-    const overrides = {Svg: {style: {fill: 'purple'}}};
-    const {container} = render(
-      <Icon overrides={overrides}>
-        <path
-          fillRule="evenodd"
-          clipRule="evenodd"
-          d="M6 12C6 11.4477 6.44772 11 7 11H17C17.5523 11 18 11.4477 18 12C18 12.5523 17.5523 13 17 13H7C6.44772 13 6 12.5523 6 12Z"
-        />
-      </Icon>,
-    );
-    const svgElement = container.querySelector('svg');
-    const style = JSON.parse(svgElement.getAttribute('test-style'));
-    expect(style.fill).toBe('purple');
+    // $FlowFixMe
+    expect(console.error.mock.calls.length).toBe(0);
+    // $FlowFixMe
+    console.error = consoleError;
   });
 
   // Test that all the icons render
