@@ -11,6 +11,7 @@ LICENSE file in the root directory of this source tree.
 const {mount} = require('../../../e2e/helpers');
 
 const START_DATE_INPUT = '[id="start-date"] input';
+const START_TIME_SELECT = '[id="time-select-start"]';
 const END_DATE_INPUT = '[id="end-date"] input';
 
 const DISPLAY_START_DATE = '[id="display-start-date"]';
@@ -117,5 +118,19 @@ describe('datepicker-composed-range', () => {
 
     const after = await page.$eval(DISPLAY_END_DATE, e => e.textContent);
     expect(after).toBe('2019/4/10');
+  });
+
+  it('asdf', async () => {
+    await mount(page, 'datepickers-composed-range');
+    await page.waitForSelector(START_DATE_INPUT);
+
+    await page.focus(START_DATE_INPUT);
+    await page.keyboard.type('20201010');
+
+    await page.focus(END_DATE_INPUT);
+    await page.keyboard.type('20201010');
+
+    await page.focus(START_DATE_INPUT);
+    await page.waitForSelector(START_TIME_SELECT);
   });
 });

@@ -45,6 +45,11 @@ export default function Controlled() {
               placeholder="Start Date"
               displayValueAtRangeIndex={0}
               mask="9999/99/99"
+              overrides={{
+                TimeSelectContainer: {
+                  props: {id: 'time-select-start'},
+                },
+              }}
             />
           </FormControl>
         </div>
