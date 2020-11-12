@@ -12,18 +12,14 @@ import {
   render,
   fireEvent,
   getByTestId,
+  getByText,
   queryByText,
 } from '@testing-library/react';
 
-import {Modal, ModalBody, CLOSE_SOURCE} from '../index.js';
+import {StatefulSelect} from '../../select/index.js';
+import {TestBaseProvider} from '../../test/test-utils.js';
 
-jest.mock('../../layer/index.js', () => {
-  return {
-    Layer: jest.fn().mockImplementation(props => {
-      return props.children;
-    }),
-  };
-});
+import {Modal, ModalBody, CLOSE_SOURCE} from '../index.js';
 
 describe('Modal', () => {
   it('renders nothing when closed', () => {
@@ -33,9 +29,11 @@ describe('Modal', () => {
 
     const content = 'hello world';
     const {container} = render(
-      <Modal isOpen={false}>
-        <ModalBody>{content}</ModalBody>
-      </Modal>,
+      <TestBaseProvider>
+        <Modal isOpen={false}>
+          <ModalBody>{content}</ModalBody>
+        </Modal>
+      </TestBaseProvider>,
     );
     expect(queryByText(container, content)).toBeNull();
 
@@ -52,9 +50,11 @@ describe('Modal', () => {
 
     const onClose = jest.fn();
     const {container} = render(
-      <Modal isOpen onClose={onClose}>
-        <ModalBody>Modal Body</ModalBody>
-      </Modal>,
+      <TestBaseProvider>
+        <Modal isOpen onClose={onClose}>
+          <ModalBody>Modal Body</ModalBody>
+        </Modal>
+      </TestBaseProvider>,
     );
 
     fireEvent.click(container.querySelector('button'));
@@ -75,9 +75,11 @@ describe('Modal', () => {
     console.warn = jest.fn();
 
     const {container} = render(
-      <Modal isOpen closeable={false}>
-        <ModalBody>Modal Body</ModalBody>
-      </Modal>,
+      <TestBaseProvider>
+        <Modal isOpen closeable={false}>
+          <ModalBody>Modal Body</ModalBody>
+        </Modal>
+      </TestBaseProvider>,
     );
 
     expect(container.querySelectorAll('button').length).toBe(0);
@@ -94,18 +96,20 @@ describe('Modal', () => {
     console.warn = jest.fn();
 
     const {container} = render(
-      <Modal
-        isOpen
-        overrides={{
-          Root: {props: {'data-testid': 'root'}},
-          Backdrop: {props: {'data-testid': 'backdrop'}},
-          DialogContainer: {props: {'data-testid': 'dialog-container'}},
-          Dialog: {props: {'data-testid': 'dialog'}},
-          Close: {props: {'data-testid': 'close'}},
-        }}
-      >
-        <ModalBody>Modal Body</ModalBody>
-      </Modal>,
+      <TestBaseProvider>
+        <Modal
+          isOpen
+          overrides={{
+            Root: {props: {'data-testid': 'root'}},
+            Backdrop: {props: {'data-testid': 'backdrop'}},
+            DialogContainer: {props: {'data-testid': 'dialog-container'}},
+            Dialog: {props: {'data-testid': 'dialog'}},
+            Close: {props: {'data-testid': 'close'}},
+          }}
+        >
+          <ModalBody>Modal Body</ModalBody>
+        </Modal>
+      </TestBaseProvider>,
     );
 
     getByTestId(container, 'root');
@@ -126,10 +130,12 @@ describe('Modal', () => {
     console.warn = jest.fn();
 
     const {container} = render(
-      // eslint-disable-next-line jsx-a11y/aria-role
-      <Modal role="mycustomrole" isOpen>
-        <ModalBody>Modal Body</ModalBody>
-      </Modal>,
+      <TestBaseProvider>
+        {/* eslint-disable-next-line jsx-a11y/aria-role */}
+        <Modal role="mycustomrole" isOpen>
+          <ModalBody>Modal Body</ModalBody>
+        </Modal>
+      </TestBaseProvider>,
     );
 
     const dialog = container.querySelector('[role="mycustomrole"]');
@@ -139,5 +145,31 @@ describe('Modal', () => {
     expect(console.warn.mock.calls.length).toBe(1);
     // $FlowFixMe
     console.warn = consoleWarn;
+  });
+
+  it('raises no errors when operating on select in modal', () => {
+    const {container} = render(
+      <TestBaseProvider>
+        <Modal isOpen unstable_ModalBackdropScroll>
+          <StatefulSelect
+            options={[
+              {id: 'AliceBlue', color: '#F0F8FF'},
+              {id: 'AntiqueWhite', color: '#FAEBD7'},
+              {id: 'Aqua', color: '#00FFFF'},
+              {id: 'Aquamarine', color: '#7FFFD4'},
+              {id: 'Azure', color: '#F0FFFF'},
+              {id: 'Beige', color: '#F5F5DC'},
+            ]}
+            overrides={{ValueContainer: {props: {'data-testid': 'selected'}}}}
+            labelKey="id"
+            valueKey="color"
+          />
+        </Modal>
+      </TestBaseProvider>,
+    );
+
+    fireEvent.click(container.querySelector('input'));
+    fireEvent.click(getByText(container, 'AliceBlue'));
+    expect(getByTestId(container, 'selected').textContent).toBe('AliceBlue');
   });
 });

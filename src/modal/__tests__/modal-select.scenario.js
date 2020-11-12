@@ -23,6 +23,7 @@ const Example = () => {
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         overrides={{Backdrop: {props: {'data-e2e': 'backdrop'}}}}
+        unstable_ModalBackdropScroll
       >
         <ModalHeader>Hello world</ModalHeader>
         <ModalBody>
