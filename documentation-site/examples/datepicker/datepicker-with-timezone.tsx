@@ -15,10 +15,12 @@ export default () => {
     <React.Fragment>
       <FormControl label="Date">
         <DatePicker
-          onChange={({date}) => {
-            setDate(date as Date);
-          }}
-          value={new Date(date.getTime() + tz.offset * 60000)}
+          onChange={({date}) => setDate(date as Date)}
+          value={
+            date
+              ? new Date(date.getTime() + tz.offset * 60000)
+              : undefined
+          }
         />
       </FormControl>
       <FormControl label="Timezone">
