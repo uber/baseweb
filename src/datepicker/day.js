@@ -163,6 +163,11 @@ export default class Day<T = Date> extends React.Component<
     }
   }
 
+  clampToDayStart: T => T = dt => {
+    const {setSeconds, setMinutes, setHours} = this.dateHelpers;
+    return setSeconds(setMinutes(setHours(dt, 0), 0), 0);
+  };
+
   // calculated for range case only
   isPseudoSelected() {
     const date = this.getDateProp();
@@ -172,7 +177,11 @@ export default class Day<T = Date> extends React.Component<
     }
     // fix flow by passing a specific arg type and remove 'Array.isArray(value)'
     if (Array.isArray(value) && value.length > 1) {
-      return this.dateHelpers.isDayInRange(date, value[0], value[1]);
+      return this.dateHelpers.isDayInRange(
+        this.clampToDayStart(date),
+        this.clampToDayStart(value[0]),
+        this.clampToDayStart(value[1]),
+      );
     }
   }
 
@@ -183,12 +192,21 @@ export default class Day<T = Date> extends React.Component<
     if (Array.isArray(value) && !value[0] && !value[1]) {
       return false;
     }
+
     // fix flow by passing a specific arg type and remove 'Array.isArray(value)'
     if (Array.isArray(value) && highlightedDate && value[0] && !value[1]) {
       if (this.dateHelpers.isAfter(highlightedDate, value[0])) {
-        return this.dateHelpers.isDayInRange(date, value[0], highlightedDate);
+        return this.dateHelpers.isDayInRange(
+          this.clampToDayStart(date),
+          this.clampToDayStart(value[0]),
+          this.clampToDayStart(highlightedDate),
+        );
       } else {
-        return this.dateHelpers.isDayInRange(date, highlightedDate, value[0]);
+        return this.dateHelpers.isDayInRange(
+          this.clampToDayStart(date),
+          this.clampToDayStart(highlightedDate),
+          this.clampToDayStart(value[0]),
+        );
       }
     }
   }
