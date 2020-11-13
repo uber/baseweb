@@ -7,6 +7,7 @@ export default () => (
     locale={hu}
     onChange={({date}) => console.log(date)}
     formatString="yyyy MMMM d"
+    placeholder="YYYY MMMM d"
     mask={null}
   />
 );
