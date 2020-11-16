@@ -24,14 +24,24 @@ export type ColumnsT =
   | typeof COLUMNS.NUMERICAL
   | typeof COLUMNS.STRING;
 
-// eslint-disable-next-line flowtype/no-weak-types
-export type ColumnT<ValueT = any, FilterParamsT = any> = {|
-  kind: ColumnsT,
-  title: string,
-  sortable: boolean,
-  filterable: boolean,
+// These options are available on all column kinds. Most have additional
+// unique options depending on the data visualization requirements.
+export type SharedColumnOptionsT<ValueT> = {|
+  cellBlockAlign?: 'start' | 'center' | 'end',
   // eslint-disable-next-line flowtype/no-weak-types
   mapDataToValue: (data: any) => ValueT,
+  maxWidth?: number,
+  minWidth?: number,
+  sortable?: boolean,
+  title: string,
+|};
+
+// eslint-disable-next-line flowtype/no-weak-types
+export type ColumnT<ValueT = any, FilterParamsT = any> = {|
+  ...SharedColumnOptionsT<ValueT>,
+  kind: ColumnsT,
+  sortable: boolean,
+  filterable: boolean,
   renderCell: React.AbstractComponent<{
     value: ValueT,
     isMeasured?: boolean,
@@ -48,8 +58,6 @@ export type ColumnT<ValueT = any, FilterParamsT = any> = {|
   buildFilter: FilterParamsT => ValueT => boolean,
   textQueryFilter?: (string, ValueT) => boolean,
   sortFn: (ValueT, ValueT) => number,
-  maxWidth?: number,
-  minWidth?: number,
 |};
 
 export type RowT = {
