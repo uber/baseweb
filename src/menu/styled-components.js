@@ -191,11 +191,13 @@ export const StyledProfileImg = styled('img', {
 
 export const StyledProfileLabelsContainer = styled<StyledPropsT>(
   'div',
-  ({$theme}) => ({
-    marginLeft: $theme.sizing.scale600,
-    alignSelf: $theme.direction === 'rtl' ? 'flex-end' : 'flex-start',
+  ({$theme: {direction, sizing}}) => ({
+    alignSelf: direction === 'rtl' ? 'flex-end' : 'flex-start',
     display: 'flex',
     flexDirection: 'column',
+    ...(direction === 'rtl'
+      ? {marginRight: sizing.scale600}
+      : {marginLeft: sizing.scale600}),
   }),
 );
 
