@@ -652,6 +652,7 @@ export interface Sizing {
   scale500: string;
   scale550: string;
   scale600: string;
+  scale650: string;
   scale700: string;
   scale750: string;
   scale800: string;

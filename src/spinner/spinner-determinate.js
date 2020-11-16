@@ -80,14 +80,13 @@ function SpinnerDeterminate({
       }
       let animationTimeElapsed = now - animationTimeStarted;
       // Move out of state - might need to reverse calculate the path progress for interruped animations
-      setPathProgress(
-        Math.min(
-          (progress - pathProgress) *
-            (animationTimeElapsed / animationDuration) +
-            pathProgress,
-          1,
-        ),
+      let currentPathProgress = Math.min(
+        (progress - pathProgress) * (animationTimeElapsed / animationDuration) +
+          pathProgress,
+        1,
       );
+      currentPathProgress = Math.max(currentPathProgress, 0);
+      setPathProgress(currentPathProgress);
       if (animationTimeElapsed <= animationDuration) {
         animationFrameRef.current = window.requestAnimationFrame(loop);
       }

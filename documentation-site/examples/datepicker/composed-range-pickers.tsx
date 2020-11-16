@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {isAfter, isBefore} from 'date-fns';
 
 import {useStyletron} from 'baseui';
 import {FormControl} from 'baseui/form-control';
@@ -43,7 +44,15 @@ export default () => {
         <FormControl label="Start Time" caption="HH:MM">
           <TimePicker
             value={dates[0]}
-            onChange={time => setDates([time, dates[1]])}
+            onChange={time => {
+              if (time) {
+                if (isAfter(time, dates[1])) {
+                  setDates([time, time]);
+                } else {
+                  setDates([time, dates[1]]);
+                }
+              }
+            }}
           />
         </FormControl>
       </div>
@@ -83,7 +92,15 @@ export default () => {
         <FormControl label="End Time" caption="HH:MM">
           <TimePicker
             value={dates[1]}
-            onChange={time => setDates([dates[0], time])}
+            onChange={time => {
+              if (time) {
+                if (isBefore(time, dates[0])) {
+                  setDates([time, time]);
+                } else {
+                  setDates([dates[0], time]);
+                }
+              }
+            }}
           />
         </FormControl>
       </div>

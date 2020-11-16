@@ -12,29 +12,6 @@ import {render, getByTestId} from '@testing-library/react';
 import {Spinner} from '../index.js';
 
 describe('Spinner', () => {
-  it('color can be changed through props', () => {
-    const {container} = render(
-      <Spinner $silenceV11DeprecationWarning color="red" />,
-    );
-
-    const style = JSON.parse(
-      container.querySelector('svg').getAttribute('test-style'),
-    );
-    expect(style.color).toBe('red');
-  });
-
-  it('size can be changed through props', () => {
-    const {container} = render(
-      <Spinner $silenceV11DeprecationWarning size="10px" />,
-    );
-
-    const style = JSON.parse(
-      container.querySelector('svg').getAttribute('test-style'),
-    );
-    expect(style.width).toBe('10px');
-    expect(style.height).toBe('10px');
-  });
-
   it('component overrides', () => {
     const overrides = {
       Svg: jest
