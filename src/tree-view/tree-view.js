@@ -52,7 +52,8 @@ export default function TreeView(props: TreeViewPropsT) {
     if (!id) return;
     setSelectedNodeId(id);
 
-    const node = treeItemRefs.current[id]?.current;
+    const refs = treeItemRefs.current[id];
+    const node = refs && refs.current;
     if (node) node.focus();
   };
 
