@@ -10,7 +10,7 @@ LICENSE file in the root directory of this source tree.
 
 const mkdirp = require('mkdirp');
 
-jest.setTimeout(10 * 1000);
+jest.setTimeout(20 * 1000);
 jest.retryTimes(10);
 
 global.it = async function(name, func, timeout) {
