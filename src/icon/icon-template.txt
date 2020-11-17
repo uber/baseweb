@@ -12,28 +12,26 @@ import {useStyletron} from '../styles/index.js';
 import {mergeOverride, toObjectOverride} from '../helpers/overrides.js';
 
 import Icon from './icon.js';
-import omitDollarPrefixedKeys from './omit-dollar-prefixed-keys.js';
 import type {IconPropsT} from './types.js';
 
 function %%ICON_NAME%%(props: IconPropsT, ref) {
   const [, theme] = useStyletron();
-  const {overrides = {}, ...restProps} = props;
+  const {title = '%%SVG_TITLE%%', size, color, overrides = {},...restProps} = props;
   const SvgOverride = mergeOverride(
-    // Icons from theme really targets the SVG override in the underlying Icon component, but
-    // have props typed with IconPropsT. Provided the missing props inline below here.
+    // Icons from the theme target the SVG override in the underlying Icon component
     {
-      component: theme.icons && theme.icons.%%ICON_NAME%% ? theme.icons.%%ICON_NAME%% : null,
-      props: {
-        %%ICON_OBJ_PROPS%%
-        ...omitDollarPrefixedKeys(restProps),
-      },
+      component:
+        theme.icons && theme.icons.%%ICON_NAME%% ? theme.icons.%%ICON_NAME%% : null,
     },
     overrides && overrides.Svg ? toObjectOverride(overrides.Svg) : {},
   );
   return (
     <Icon
-      %%ICON_JSX_PROPS%%
+      %%SVG_VIEWBOX%%
       ref={ref}
+      title={title}
+      size={size}
+      color={color}
       overrides={{Svg: SvgOverride}}
       {...restProps}
     >

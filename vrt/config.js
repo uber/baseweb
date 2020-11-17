@@ -416,6 +416,9 @@ const config = {
       },
     ],
   },
+  'spinner-determinate-animated': {
+    skip: true,
+  },
   'tabs-motion-conditional': {
     skip: true,
   },
@@ -450,6 +453,17 @@ const config = {
         behavior: async page => {
           const tab = await page.$('[role=tab]');
           await tab.focus();
+        },
+      },
+    ],
+  },
+  textarea: {
+    interactions: [
+      {
+        name: 'focus',
+        behavior: async page => {
+          const element = await page.$('textarea');
+          await element.focus();
         },
       },
     ],

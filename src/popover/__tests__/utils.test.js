@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/no-weak-types */
 
+import {ARROW_SIZE} from '../constants.js';
 import {
   capitalize,
   fromPopperPlacement,
@@ -82,33 +83,38 @@ describe('Popover utils', () => {
 
   describe('getPopoverMarginStyles', () => {
     test('getPopoverMarginStyles should return correct margins without arrow', () => {
-      const showArrow = false;
-      expect(getPopoverMarginStyles(showArrow, 'topLeft', 8)).toEqual({
-        marginBottom: '8px',
+      const MARGIN_SIZE = 8;
+      expect(getPopoverMarginStyles(0, 'topLeft', MARGIN_SIZE)).toEqual({
+        marginBottom: `${MARGIN_SIZE}px`,
       });
-      expect(getPopoverMarginStyles(showArrow, 'top', 8)).toEqual({
-        marginBottom: '8px',
+      expect(getPopoverMarginStyles(0, 'top', MARGIN_SIZE)).toEqual({
+        marginBottom: `${MARGIN_SIZE}px`,
       });
-      expect(getPopoverMarginStyles(showArrow, 'right', 8)).toEqual({
-        marginLeft: '8px',
+      expect(getPopoverMarginStyles(0, 'right', MARGIN_SIZE)).toEqual({
+        marginLeft: `${MARGIN_SIZE}px`,
       });
-      expect(getPopoverMarginStyles(showArrow, 'bottomLeft', 8)).toEqual({
-        marginTop: '8px',
+      expect(getPopoverMarginStyles(0, 'bottomLeft', MARGIN_SIZE)).toEqual({
+        marginTop: `${MARGIN_SIZE}px`,
       });
     });
     test('getPopoverMarginStyles should return correct margins with arrow', () => {
-      const showArrow = true;
-      expect(getPopoverMarginStyles(showArrow, 'topLeft', 8)).toEqual({
-        marginBottom: '6px',
+      const MARGIN_SIZE = 8;
+      const value = ARROW_SIZE + MARGIN_SIZE;
+      expect(
+        getPopoverMarginStyles(ARROW_SIZE, 'topLeft', MARGIN_SIZE),
+      ).toEqual({
+        marginBottom: `${value}px`,
       });
-      expect(getPopoverMarginStyles(showArrow, 'top', 8)).toEqual({
-        marginBottom: '6px',
+      expect(getPopoverMarginStyles(ARROW_SIZE, 'top', MARGIN_SIZE)).toEqual({
+        marginBottom: `${value}px`,
       });
-      expect(getPopoverMarginStyles(showArrow, 'right', 8)).toEqual({
-        marginLeft: '6px',
+      expect(getPopoverMarginStyles(ARROW_SIZE, 'right', MARGIN_SIZE)).toEqual({
+        marginLeft: `${value}px`,
       });
-      expect(getPopoverMarginStyles(showArrow, 'bottomLeft', 8)).toEqual({
-        marginTop: '6px',
+      expect(
+        getPopoverMarginStyles(ARROW_SIZE, 'bottomLeft', MARGIN_SIZE),
+      ).toEqual({
+        marginTop: `${value}px`,
       });
     });
   });
@@ -133,9 +139,9 @@ describe('Popover utils', () => {
 
   describe('getStartPosition', () => {
     test('getStartPosition should return correct position for topLeft', () => {
-      expect(getStartPosition({left: 10, top: 15}, 'topLeft', true, 8)).toEqual(
-        'translate3d(10px, 27px, 0)',
-      );
+      expect(
+        getStartPosition({left: 10, top: 15}, 'topLeft', ARROW_SIZE, 8),
+      ).toEqual('translate3d(10px, 27px, 0)');
     });
   });
 

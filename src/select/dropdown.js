@@ -145,6 +145,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
     const groupedOptions = groupOptions(options);
     return (
       <DropdownContainer
+        data-no-focus-lock
         ref={this.props.innerRef}
         role="listbox"
         {...this.getSharedProps()}

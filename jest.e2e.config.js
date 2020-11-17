@@ -17,7 +17,6 @@ module.exports = {
   modulePathIgnorePatterns: ['<rootDir>/dist/'],
   preset: 'jest-puppeteer',
   testRunner: 'jest-circus/runner',
-  testRegex: './*\\e2e\\.js$', //only for now, will be changed back to e2e.js
-  transformIgnorePatterns: ['./babel/transform-cup-globals.js'],
+  testMatch: ['**/__tests__/*.e2e.js'],
   setupFilesAfterEnv: ['expect-puppeteer', '<rootDir>/jest.e2e.setup.js'],
 };

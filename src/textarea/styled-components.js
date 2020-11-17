@@ -9,8 +9,14 @@ import {styled} from '../styles/index.js';
 import {
   getInputStyles,
   getInputContainerStyles,
+  getRootStyles,
 } from '../input/styled-components.js';
 import type {SharedStylePropsT} from './types.js';
+
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
+export const StyledTextAreaRoot = styled<SharedStylePropsT>('div', props => {
+  return getRootStyles({...props, $hasIconTrailing: false});
+});
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const StyledTextareaContainer = styled<SharedStylePropsT>(

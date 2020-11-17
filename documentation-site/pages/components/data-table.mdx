@@ -5,27 +5,27 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
+import {Notification, KIND} from 'baseui/notification';
+
 import Example from '../../components/example';
 import Layout from '../../components/layout';
 import Exports from '../../components/exports';
 import UnstableWarning from '../../components/unstable-warning';
+import TableGuideNotification from '../../components/table-guide-notification';
 
 import Overrides from '../../components/overrides';
 import * as DataTableExports from 'baseui/data-table';
 
-import Basic, {
-  makeRowsFromColumns,
-  columns,
-} from 'examples/data-table/basic.js';
+import Basic from 'examples/data-table/basic.js';
 import BatchAction from 'examples/data-table/batch-action.js';
 import RowHeightLineClamp from 'examples/data-table/row-height-line-clamp.js';
 import CustomizedEmptyState from 'examples/data-table/customized-empty-state.js';
 
 export default Layout;
 
-# Data-Table
+<TableGuideNotification />
 
-<UnstableWarning />
+# Data-Table
 
 Displays tabular data for analysis. The component accepts strict column definitions to consistently
 render the following data types: categorical (enum), number, boolean, string, and arbitrary content.

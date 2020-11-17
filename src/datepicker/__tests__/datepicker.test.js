@@ -19,8 +19,6 @@ import {TestBaseProvider} from '../../test/test-utils.js';
 import {addDays} from 'date-fns';
 import {Datepicker, ORIENTATION} from '../index.js';
 
-jest.useFakeTimers();
-
 describe('Datepicker', () => {
   it('opens calendar on down arrow press', () => {
     const {container} = render(
@@ -94,10 +92,10 @@ describe('Datepicker', () => {
 
     fireEvent.focus(getByTestId(container, 'input'));
     fireEvent.click(getByTestId(container, 'month-year-select-button'));
-    fireEvent.click(getByText(container, 'November 2020'));
+    fireEvent.click(getByText(container, 'November 2019'));
     fireEvent.click(getByText(container, '1'));
 
-    expect(onChange.mock.calls[1][0].date).toEqual(new Date('2020/11/1'));
+    expect(onChange.mock.calls[1][0].date).toEqual(new Date('2019/11/1'));
   });
 
   it('does not close calendar if single date from range is selected', () => {
@@ -128,7 +126,7 @@ describe('Datepicker', () => {
     expect(before).not.toBeNull();
 
     fireEvent.click(getByTestId(container, 'month-year-select-button'));
-    const month = getByText(container, 'November 2020');
+    const month = getByText(container, 'November 2019');
     fireEvent.click(month);
 
     const day = getByText(container, '1');
@@ -137,7 +135,7 @@ describe('Datepicker', () => {
     // $FlowFixMe
     expect(onChange.mock.calls[1][0].date.length).toBe(1);
     // $FlowFixMe
-    expect(onChange.mock.calls[1][0].date[0]).toEqual(new Date('2020/11/1'));
+    expect(onChange.mock.calls[1][0].date[0]).toEqual(new Date('2019/11/1'));
 
     const after = queryByTestId(container, 'calendar');
     expect(after).not.toBeNull();
@@ -175,7 +173,7 @@ describe('Datepicker', () => {
     expect(before).not.toBeNull();
 
     fireEvent.click(getByTestId(container, 'month-year-select-button'));
-    fireEvent.click(getByText(container, 'November 2020'));
+    fireEvent.click(getByText(container, 'November 2019'));
     fireEvent.click(getByText(container, '1'));
     fireEvent.click(getByText(container, '2'));
 
@@ -214,24 +212,16 @@ describe('Datepicker', () => {
     const value = [date, addDays(date, 3)];
     const {container} = render(<Datepicker mask={mask} value={value} />);
     const input = container.querySelector('input');
-    // expect(input.value).toBe('2019/01/01 – 2019/01/04');
-
-    // This is broken! Old test didn't validate the displayed text
-    // TODO(Chase): Fix this bug
-    expect(input.value).toBe('2019/01/01 -  201/90/10');
+    expect(input.value).toBe('2019/01/01 – 2019/01/04');
   });
 
-  it('converts hyphen to en dashes', () => {
+  it('converts em dash to en dashes', () => {
     const date = new Date('2019 01 01');
     const mask = '9999/99/99 — 9999/99/99';
     const value = [date, addDays(date, 3)];
     const {container} = render(<Datepicker mask={mask} value={value} />);
     const input = container.querySelector('input');
-    // expect(input.value).toBe('2019/01/01 – 2019/01/04');
-
-    // This is broken! Old test didn't validate the displayed text
-    // TODO(Chase): Fix this bug
-    expect(input.value).toBe('2019/01/01 —  201/90/10');
+    expect(input.value).toBe('2019/01/01 – 2019/01/04');
   });
 
   it('handles space replacement correctly in formatString', () => {

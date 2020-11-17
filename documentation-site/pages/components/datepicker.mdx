@@ -21,6 +21,8 @@ import ComposedSinglePickers from 'examples/datepicker/composed-single-pickers.j
 import DatepickersColorStates from 'examples/datepicker/datepickers-color-states.js';
 import DatepickerTimezone from 'examples/datepicker/datepicker-with-timezone.js';
 import NestedOverride from 'examples/datepicker/nested-override.js';
+import DatepickerWithMask from 'examples/datepicker/with-mask.js';
+import DatepickerNullMask from 'examples/datepicker/null-mask.js';
 
 import {StatefulCalendar} from 'baseui/datepicker';
 import * as DatepickerExports from 'baseui/datepicker';
@@ -73,6 +75,18 @@ Please note, that some of the options require you to pass in the `locale` object
 <Example title="Datepicker with overrides" path="datepicker/with-overrides.js">
   <DatepickerWithOverrides />
 </Example>
+
+<Example title="Datepicker with custom mask" path="datepicker/with-mask.js">
+  <DatepickerWithMask />
+</Example>
+
+When using a custom mask `formatString` prop should be also set to match the mask format.
+
+<Example title="Datepicker with no mask" path="datepicker/null-mask.js">
+  <DatepickerNullMask />
+</Example>
+
+Some date formats will operate better without a restrictive input mask. You can disable that feature by applying `null` to the mask prop.
 
 <Example
   title="Calendar with time select actions"

@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {styled} from '../styles/index.js';
-import {ARROW_WIDTH} from './constants.js';
+import {ARROW_SIZE, ARROW_WIDTH} from './constants.js';
 import {
   getPopoverMarginStyles,
   getArrowPositionStyles,
@@ -56,10 +56,14 @@ export function getBodyStyles(props: BodyStylePropsArgT & {$theme: ThemeT}) {
         : getStartPosition(
             $popoverOffset,
             $placement,
-            $showArrow,
+            $showArrow ? ARROW_SIZE : 0,
             $popoverMargin,
           ),
-    ...getPopoverMarginStyles($showArrow, $placement, $popoverMargin),
+    ...getPopoverMarginStyles(
+      $showArrow ? ARROW_SIZE : 0,
+      $placement,
+      $popoverMargin,
+    ),
   };
 }
 

@@ -299,6 +299,13 @@ export interface Colors {
   progressStepsActiveFill: string;
   progressStepsIconActiveFill: string;
 
+  // Toggle
+  toggleFill: string;
+  toggleFillChecked: string;
+  toggleFillDisabled: string;
+  toggleTrackFill: string;
+  toggleTrackFillDisabled: string;
+
   // Ticks
   tickFill: string;
   tickFillHover: string;
@@ -345,10 +352,16 @@ export interface Colors {
   // Input
   inputBorder: string;
   inputFill: string;
-  inputFillActive: string;
   inputFillError: string;
   inputFillDisabled: string;
+  inputFillActive: string;
+  inputFillPositive: string;
   inputTextDisabled: string;
+  inputBorderError: string;
+  inputBorderPositive: string;
+  inputEnhancerFill: string;
+  inputEnhancerFillDisabled: string;
+  inputEnhancerTextDisabled: string;
   inputPlaceholder: string;
   inputPlaceholderDisabled: string;
 
@@ -547,6 +560,7 @@ export interface Colors {
   // Table
   tableHeadBackgroundColor: string;
   tableBackground: string;
+  tableStripedBackground: string;
   tableFilter: string;
   tableFilterHeading: string;
   tableFilterBackground: string;
@@ -638,6 +652,7 @@ export interface Sizing {
   scale500: string;
   scale550: string;
   scale600: string;
+  scale650: string;
   scale700: string;
   scale750: string;
   scale800: string;
