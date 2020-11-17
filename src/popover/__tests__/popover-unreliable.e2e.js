@@ -21,9 +21,6 @@ const selectors = {
 };
 
 describe('popover', () => {
-  jest.setTimeout(10 * 1000);
-  jest.retryTimes(3);
-
   it('closes one popover at a time on esc key press', async () => {
     await mount(page, 'popover-select');
     await page.waitForSelector('button');

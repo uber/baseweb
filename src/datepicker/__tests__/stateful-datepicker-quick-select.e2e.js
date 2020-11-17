@@ -24,8 +24,6 @@ const NOW = new Date();
 const FORMAT_STRING = 'yyyy/MM/dd';
 
 describe('Stateful Datepicker Quick Select', () => {
-  jest.retryTimes(3);
-
   beforeEach(async () => {
     await jestPuppeteer.resetPage();
   });
