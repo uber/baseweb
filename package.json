@@ -108,7 +108,7 @@
     "@types/styletron-standard": "^2.0.0",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-mdx": "^1.2.0",
-    "axe-core": "^3.1.2",
+    "axe-core": "^4.1.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.0",
     "babel-jest": "^24.0.0",
