@@ -61,7 +61,7 @@ export const StyledRoot = withStyle<typeof SelectStyledRoot, SizeStyleProps>(
 export const StyledDialCode = styled<{}>(
   'div',
   ({$theme: {direction, sizing}}) => {
-    const marginDir = direction === 'rtl' ? 'marginLeft' : 'marginRight';
+    const marginDir = direction === 'rtl' ? 'marginRight' : 'marginLeft';
     return {
       [marginDir]: sizing.scale100,
       display: 'flex',
