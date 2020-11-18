@@ -49,9 +49,12 @@ export default function PhoneInputNext(props: LitePropsT) {
 
   const baseDialCodeOverride = {
     component: StyledDialCode,
-    style: ({$theme}) => ({
-      marginLeft: $theme.sizing.scale600,
-    }),
+    style: ({$theme: {direction, sizing}}) => {
+      const marginDir = direction === 'rtl' ? 'marginRight' : 'marginLeft';
+      return {
+        [marginDir]: sizing.scale600,
+      };
+    },
     props: {children: country.dialCode},
   };
   const mergedDialCodeOverride = mergeOverrides(
@@ -61,7 +64,12 @@ export default function PhoneInputNext(props: LitePropsT) {
 
   const baseOverrides = {
     Input: {
-      style: ({$theme: {sizing}}) => ({paddingLeft: sizing.scale100}),
+      style: ({$theme: {direction, sizing}}) => {
+        const paddingDir = direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
+        return {
+          [paddingDir]: sizing.scale100,
+        };
+      },
     },
     Before: mergedDialCodeOverride.DialCode,
   };
