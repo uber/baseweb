@@ -26,8 +26,6 @@ const selectors = {
 };
 
 describe('Datepicker', () => {
-  jest.retryTimes(3);
-
   beforeEach(async () => {
     await jestPuppeteer.resetPage();
   });

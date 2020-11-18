@@ -59,6 +59,7 @@ type StyledTableHeadCellPropsT = {
 export const StyledTableHeadCell = styled<StyledTableHeadCellPropsT>(
   'th',
   ({$theme}) => {
+    const borderDir: string = $theme.direction === 'rtl' ? 'left' : 'right';
     return {
       ...$theme.typography.font350,
       position: 'sticky',
@@ -69,7 +70,7 @@ export const StyledTableHeadCell = styled<StyledTableHeadCellPropsT>(
       paddingLeft: $theme.sizing.scale600,
       backgroundColor: $theme.colors.tableHeadBackgroundColor,
       color: $theme.colors.contentPrimary,
-      textAlign: 'left',
+      textAlign: $theme.direction === 'rtl' ? 'right' : 'left',
       verticalAlign: 'top',
       whiteSpace: 'nowrap',
       zIndex: 1,
@@ -81,7 +82,7 @@ export const StyledTableHeadCell = styled<StyledTableHeadCellPropsT>(
         content: '""',
         position: 'absolute',
         top: '0',
-        right: '100%',
+        [borderDir]: '100%',
         bottom: '0',
         borderLeftColor: $theme.borders.border300.borderColor,
         borderLeftStyle: $theme.borders.border300.borderStyle,
