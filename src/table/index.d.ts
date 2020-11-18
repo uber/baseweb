@@ -13,12 +13,13 @@ export interface SortableHeadCellOverrides {
 }
 
 export interface SortableHeadCellProps {
+  ariaLabel?: string;
   children?: React.ReactNode;
   direction: 'ASC' | 'DESC' | null;
   disabled?: boolean;
   onSort?: () => any;
   overrides?: SortableHeadCellOverrides;
-  title: string;
+  title: React.ReactNode;
   fillClickTarget?: boolean;
 }
 export const SortableHeadCell: React.FC<SortableHeadCellProps>;
