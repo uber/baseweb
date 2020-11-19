@@ -25,6 +25,7 @@ import {getProvider, getThemeFromContext, TProviderValue} from './provider';
 import {customProps, TCustomPropFields} from './custom-props';
 import ThemeEditor from './theme-editor';
 import Overrides from './overrides';
+import OverridesDescription from './overrides-description';
 import Editor from './editor';
 import ActionButtons from './action-buttons';
 import Knobs from './knobs';
@@ -123,6 +124,7 @@ const Yard: React.FC<TYardProps> = ({
                 activeOverrides > 0 ? ` (${activeOverrides})` : ''
               }`}
             >
+              <OverridesDescription componentName={componentName} />
               <Overrides
                 componentName={componentName}
                 componentConfig={props}
