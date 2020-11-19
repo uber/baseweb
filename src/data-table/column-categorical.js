@@ -25,7 +25,6 @@ import {matchesQuery, splitByQuery, HighlightCellText} from './text-search.js';
 
 type OptionsT = {|
   ...SharedColumnOptionsT<string>,
-  filterable?: boolean,
 |};
 
 type FilterParametersT = {|
@@ -244,9 +243,7 @@ function CategoricalColumn(options: OptionsT): CategoricalColumnT {
       };
     },
     cellBlockAlign: options.cellBlockAlign,
-    textQueryFilter: function(textQuery, data) {
-      return data.toLowerCase().includes(textQuery.toLowerCase());
-    },
+    fillWidth: options.fillWidth,
     filterable: options.filterable === undefined ? true : options.filterable,
     mapDataToValue: options.mapDataToValue,
     maxWidth: options.maxWidth,
@@ -256,6 +253,9 @@ function CategoricalColumn(options: OptionsT): CategoricalColumnT {
     sortable: options.sortable === undefined ? true : options.sortable,
     sortFn: function(a, b) {
       return a.localeCompare(b);
+    },
+    textQueryFilter: function(textQuery, data) {
+      return data.toLowerCase().includes(textQuery.toLowerCase());
     },
     title: options.title,
   });
