@@ -50,7 +50,6 @@ function SelectAtEnd(props: any) {
 }
 
 export default function Scenario() {
-  const [css] = useStyletron();
   const [startInputValue, setStartInputValue] = React.useState('');
   const [startSelectValue, setStartSelectValue] = React.useState(
     [],
