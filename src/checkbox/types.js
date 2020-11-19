@@ -46,6 +46,8 @@ export type PropsT = {
   'aria-describedby'?: string,
   /** Id of element which contains a related error message */
   'aria-errormessage'?: string,
+  /** Passed to the input element aria-label attribute. */
+  ariaLabel?: string,
   /** Component or String value for label of checkbox. */
   children?: React$Node,
   overrides?: OverridesT,

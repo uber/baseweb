@@ -16,21 +16,16 @@ import {Input, SIZE as INPUT_SIZE} from '../input/index.js';
 import {useStyletron, withStyle} from '../styles/index.js';
 import {Label3} from '../typography/index.js';
 
-import CellShell from './cell-shell.js';
+import Column from './column.js';
 import {COLUMNS} from './constants.js';
-import type {ColumnT} from './types.js';
+import type {ColumnT, SharedColumnOptionsT} from './types.js';
 import {LocaleContext} from '../locale/index.js';
 import FilterShell from './filter-shell.js';
 import {matchesQuery, splitByQuery, HighlightCellText} from './text-search.js';
 
 type OptionsT = {|
+  ...SharedColumnOptionsT<string>,
   filterable?: boolean,
-  // eslint-disable-next-line flowtype/no-weak-types
-  mapDataToValue: (data: any) => string,
-  maxWidth?: number,
-  minWidth?: number,
-  sortable?: boolean,
-  title: string,
 |};
 
 type FilterParametersT = {|
@@ -219,36 +214,28 @@ export function CategoricalFilter(props: CategoricalFilterProps) {
   );
 }
 
-const CategoricalCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
+function CategoricalCell(props) {
   const [css] = useStyletron();
   return (
-    <CellShell
-      ref={ref}
-      isMeasured={props.isMeasured}
-      isSelected={props.isSelected}
-      onSelect={props.onSelect}
+    <div
+      className={css({
+        display: '-webkit-box',
+        WebkitLineClamp: 1,
+        WebkitBoxOrient: 'vertical',
+        overflow: 'hidden',
+      })}
     >
-      <div
-        className={css({
-          display: '-webkit-box',
-          WebkitLineClamp: 1,
-          WebkitBoxOrient: 'vertical',
-          overflow: 'hidden',
-        })}
-      >
-        {props.textQuery ? (
-          <HighlightCellText text={props.value} query={props.textQuery} />
-        ) : (
-          props.value
-        )}
-      </div>
-    </CellShell>
+      {props.textQuery ? (
+        <HighlightCellText text={props.value} query={props.textQuery} />
+      ) : (
+        props.value
+      )}
+    </div>
   );
-});
-CategoricalCell.displayName = 'CategoricalCell';
+}
 
 function CategoricalColumn(options: OptionsT): CategoricalColumnT {
-  return {
+  return Column({
     kind: COLUMNS.CATEGORICAL,
     buildFilter: function(params) {
       return function(data) {
@@ -256,6 +243,7 @@ function CategoricalColumn(options: OptionsT): CategoricalColumnT {
         return params.exclude ? !included : included;
       };
     },
+    cellBlockAlign: options.cellBlockAlign,
     textQueryFilter: function(textQuery, data) {
       return data.toLowerCase().includes(textQuery.toLowerCase());
     },
@@ -270,7 +258,7 @@ function CategoricalColumn(options: OptionsT): CategoricalColumnT {
       return a.localeCompare(b);
     },
     title: options.title,
-  };
+  });
 }
 
 export default CategoricalColumn;

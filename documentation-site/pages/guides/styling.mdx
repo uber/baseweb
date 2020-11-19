@@ -1,0 +1,652 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Layout from '../../components/layout';
+import {BlogImage} from '../../components/blog';
+
+export default Layout;
+
+# Styling
+
+Base Web provides a variety of tools for styling your application. The intention of this guide is to give you an overview of these various tools. We will also offer guidance on when you might prefer to use one tool over another.
+
+## TLDR
+
+Here is a summary of our recommendations for styling your project:
+
+- Start with [`useStyletron`](/components/use-styletron/). Apply styling directly to elements until you find a need to extract a styling pattern into a component. At this point use [`styled`](/components/styled/) to create a [styled component](https://www.styletron.org/react#styled-components) which can be reused, configured or extended.
+- When extending a styled component, prefer [`withStyle`](https://www.styletron.org/api-reference#withstyle) over [`$style`](https://www.styletron.org/react#style-prop) to create maintainable variations of your base component.
+- When styling parts of your application, try to use values from your theme object whereever possible. The current theme is always made available in the various styling utilities exported from Base Web.
+- When customizing the look of Base Web components, first see if you can configure the theme object to achieve your desired look. If that doesn’t work, check if the component is a styled component. If it is, you can use `withStyle` to extend it. If it is not a styled component you will likely need to use the [overrides pattern](/guides/understanding-overrides/) to pass new styles through or even swap in your own component.
+- Remember that Base Web components are built with [Styletron](https://www.styletron.org/) styled components. These are all exported from their relevant modules and made targetable with overrides.
+
+For a more in-depth tour of these recommendations, continue reading below...
+
+## The basics
+
+Let’s start with a common enough scenario: styling something from scratch. You have two options: the `styled` function or the `useStyletron` hook.
+
+The [`useStyletron`](/components/use-styletron/) hook returns a function for generating class names from [style objects](https://www.styletron.org/concepts#style-object).
+
+```js
+import * as React from 'react';
+import {useStyletron} from 'baseui';
+
+export default function PinkText({children}) {
+  const [css] = useStyletron();
+  return (
+    <span
+      className={css({
+        color: 'pink',
+      })}
+    >
+      {children}
+    </span>
+  );
+}
+```
+
+In this example you can see that the `css` function is very flexible. Pass it a style object and it returns a string that when assigned to an element (via `className`), will style the element accordingly.
+
+`useStyletron` also returns the nearest ancestor theme object. This is the theme you will have passed to `BaseProvider` (or a `ThemeProvider) as seen in our basic set up examples.
+
+```js
+import * as React from 'react';
+import {useStyletron} from 'baseui';
+
+export default function AccentText({children}) {
+  const [css, theme] = useStyletron();
+  return (
+    <span
+      className={css({
+        color: theme.colors.accent,
+      })}
+    >
+      {children}
+    </span>
+  );
+}
+```
+
+`useStyletron` alone provides you with everything you need to style your code. After using it for a while you will come to appreciate how quickly you can style elements with the `css` function and `theme` object.
+
+Of course, there are some tradeoffs when using `useStyletron`. First, you can only use it in functional components since it is a React Hook. And second, it doesn’t provide much in the way of reuse, extensibility, or configuration. Let’s take a look at another example.
+
+```js
+import * as React from 'react';
+import {useStyletron} from 'baseui';
+
+export default function Navigation() {
+  const [css, theme] = useStyletron();
+  return (
+    <ul>
+      <li>
+        <a
+          href="https://www.uber.com"
+          className={css({
+            textDecoration: 'none',
+            color: theme.colors.accent,
+          })}
+        >
+          Move
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://www.ubereats.com"
+          className={css({
+            textDecoration: 'none',
+            color: theme.colors.accent,
+            // External link
+            '&:after': {
+              content: '🔗',
+            },
+          })}
+        >
+          Eat
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://www.uber.com/us/en/atg/"
+          className={css({
+            textDecoration: 'none',
+            color: theme.colors.accent,
+          })}
+        >
+          ATG
+        </a>
+      </li>
+    </ul>
+  );
+}
+```
+
+Notice that we repeatedly pass the styling code for links multiple times. Also notice that we sometimes want to emphasize when a link is an external link. If we wanted to use a link in another part of our application we’d need to copy this code or maybe export the style object. Regardless, some readers might object (lol) to how much styling logic has spilled into our parent component.
+
+One way to solve this problem would be to “extract” the link styling into a new component:
+
+```js
+import * as React from 'react';
+import {useStyletron} from 'baseui';
+
+export default function Link({children, style, isExternal, ...rest}) {
+  const [css, theme] = useStyletron();
+  return (
+    <a
+      {...rest}
+      className={css({
+        textDecoration: 'none',
+        color: theme.colors.accent,
+        ':after': {
+          content: isExternal ? '🔗' : '',
+        },
+        ...style,
+      })}
+    >
+      {children}
+    </a>
+  );
+}
+```
+
+This is a bit better. We’ve added in some extensibility by spreading the `style` prop into our `css` function. The `isExternal` prop gives us a bit of configuration over how the link will be styled. The issue is that we will need to repeat a lot of these patterns every time we want to “extract” some styling into a component. This can lead to inconsistent interfaces. For instance, what if in one component we call the `style` prop `css`? What if it in another component the `style` prop is implemented in a slightly different way? To prevent this from getting unmaintainable we would need to establish conventions for how to create these sorts of components.
+
+This is where the [`styled`](/components/styled/) function shines. It streamlines creating components with built in patterns for reuse, extensibility, and configuration. It does so by creating [styled components](https://www.styletron.org/react#styled-components).
+
+```js
+import {styled} from 'baseui';
+
+export const StyledLink = styled('a', ({$theme, $isExternal}) => ({
+  textDecoration: 'none',
+  color: $theme.colors.accent,
+  ':after': {
+    content: $isExternal ? '🔗' : '',
+  },
+}));
+```
+
+Notice that with `styled`, we can pass a [style function](https://www.styletron.org/concepts#style-function) (instead of a style object) which has access to your Base Web theme (via `$theme`), as well as any props you would like the component to have. The style function is a very common pattern you will see used throughout Base Web and Styletron. You can use the styled component like so:
+
+```js
+import * as React from 'react';
+import {StyledLink} from './link';
+
+export default function Navigation() {
+  return (
+    <ul>
+      <li>
+        <StyledLink href="https://www.uber.com">Move</StyledLink>
+      </li>
+      <li>
+        <StyledLink href="https://www.ubereats.com" $isExternal>
+          Eats
+        </StyledLink>
+      </li>
+      <li>
+        <StyledLink href="https://www.uber.com/us/en/atg/">ATG</StyledLink>
+      </li>
+    </ul>
+  );
+}
+```
+
+This way of organizing styling into a reusable component is sometimes called “component oriented styling”. It’s a core tenet of Styletron and Base Web’s styling philosophy. All (or almost all) of the styling in Base Web is done via “styled components”.
+
+> Note, by convention, whenever you import a component with the “Styled” prefix from Base Web, this is actually a Styletron styled component.
+
+Once you have a styled component, there are a couple ways you can extend it. The most direct way is to use the [`$style`](https://www.styletron.org/react#style-prop) prop.
+
+```js
+import * as React from 'react';
+import {StyledLink} from './link';
+
+export default function StyledFancyLink(props) {
+  return (
+    <StyledLink
+      $style={({$theme}) => ({color: $theme.colors.primary})}
+      {...props}
+    />
+  );
+}
+```
+
+Notice, you can pass a function which has access to the theme object (via `$theme`). This is something we didn’t even account for in our `useStyletron` version of the Link component.
+
+The `$style` prop is great, but you should think of it as an escape hatch. It can lead to inconsistencies building up around your codebase. You might ask yourself if the overwriting styles might be accounted for by updating the interface of the styled component or if this extension of the original styled component might deserve to be a component all its own. This is where [`withStyle`](https://www.styletron.org/api-reference#withstyle) comes into play.
+
+```js
+import {withStyle} from 'baseui';
+import {StyledLink} from './link';
+
+export const StyledFancyLink = withStyle(StyledLink, ({$theme}) => ({
+  color: $theme.colors.primary,
+}));
+```
+
+`withStyle` creates a new styled component. It “extends” the original styled component while maintaining all of the patterns (reuse, extensibility, configuration) styled components benefit from. We’ve kept our original styled component free of a bloated interface and we can easily reuse this extension as a new component.
+
+To review, we’ve introduced 3 utilities for styling: `useStyletron`, `styled`, and `withStyle`. Let’s review when it makes sense to use each utility.
+
+- `useStyletron`: Great for quickly styling elements and referencing the theme object.
+- `styled`: Great for creating reusable styling which may or may not require an interface for extensibility and configuration.
+- `withStyle`: Great for extending styled components in a maintainable manner.
+
+Our recommendation is to start with `useStyletron` and reach for `styled` when you notice that you might want to reuse a piece of styling or would like that styling to be configurable and/or extensible. Use `withStyle` when you want to reuse a modified version of a component without building that modified state into the original component. You shouldn’t need to use `withStyle` very often, but it is useful when the need arises.
+
+This is a decent development pattern of starting with something flexible and low-level and building up abstractions when they become apparently useful. At the end of the day, you are creating a style object and passing it to one of these utilities. The best way to do that depends on your codebase and your preferences.
+
+## The theme
+
+You’ll notice that every styling utility provides access to the theme object. This isn’t just a convenience- it is at the heart of our styling strategy.
+
+Backing up a bit: the theme object serves multiple purposes. It acts as an interface for configuring the look and feel of Base Web components. It allows us to alternate between light and dark themes. But when it comes to styling your own code, the theme also acts as a source of truth for styling values. Sometimes these recurring styling values are called “tokens”.
+
+Let's consider what styling without these "tokens" looks like:
+
+```js
+import * as React from 'react';
+import {useStyletron} from 'baseui';
+import {Card} from 'baseui/card';
+
+export default function Media({left, right}) {
+  const [css] = useStyletron();
+  return (
+    <Card>
+      <div
+        className={css({
+          display: 'flex',
+          fontSize: '14px',
+          lineHeight: '1.25',
+        })}
+      >
+        <div
+          className={css({
+            padding: '8px',
+          })}
+        >
+          {left}
+        </div>
+        <div
+          className={css({
+            padding: '8px',
+            borderLeft: 'solid 2px #eee',
+          })}
+        >
+          {right}
+        </div>
+      </div>
+    </Card>
+  );
+}
+```
+
+It doesn’t take long to notice how unmaintainable this approach will be. Another downside to this is that the custom part of the user interface won't look consistent with the Base Web part. Let’s use theme tokens instead:
+
+```js
+import * as React from 'react';
+import {useStyletron} from 'baseui';
+import {Card} from 'baseui/card';
+
+export default function Media({left, right}) {
+  const [css, theme] = useStyletron();
+  return (
+    <Card>
+      <div
+        className={css({
+          display: 'flex',
+          ...theme.typography.ParagraphMedium,
+        })}
+      >
+        <div
+          className={css({
+            padding: theme.sizing.scale400,
+          })}
+        >
+          {left}
+        </div>
+        <div
+          className={css({
+            padding: theme.sizing.scale400,
+            borderLeft: `solid 2px ${theme.colors.border}`,
+          })}
+        >
+          {right}
+        </div>
+      </div>
+    </Card>
+  );
+}
+```
+
+By using theme tokens, not only will our interface look more consistent, but it saves us time and makes future refactors easier. Always be sure to reach for the theme object when styling your code or extending Base Web components.
+
+### Semantic tokens
+
+Looking through the theme object, you might notice that there are a lot of properties and sub-properties. Especially when considering the `colors` property- there are a ton of potential tokens. So how do you know which one to use?
+
+Our recommendation is to look at [this part of the theming guide](/guides/theming/#colors). It lists what we consider to be “semantic” color tokens. Not only do these properties style the Base Web components, but, when using our default themes, automatically adjust between light and dark themes.
+
+```js
+import * as React from 'react';
+import {useStyletron} from 'baseui';
+
+export default function Widget({children}) {
+  const [css, theme] = useStyletron();
+  return (
+    <div
+      className={css({
+        // These will adjust based on if the light/dark theme is active
+        border: `solid 2px ${theme.colors.borderOpaque}`,
+        background: theme.colors.backgroundPrimary,
+        color: theme.colors.contentPrimary,
+      })}
+    >
+      {children}
+    </div>
+  );
+}
+```
+
+By using these “semantic” color tokens we can quickly create a user interface that works in both light and dark contexts.
+
+## Customization
+
+So far we have covered building parts of your application from scratch or in tandem with Base Web components. Next we’ll look at customizing and styling the components themselves.
+
+There are three main techniques for styling Base Web components: the theme, `withStyle`, and the overrides pattern.
+
+### Theming
+
+The [theming guide](/guides/theming) is your best resource for understanding the nuances of theming Base Web components. Theming is the first strategy we would recommend trying out when styling Base Web components. You can modify spacing, border radii, colors, typography scales- a whole slew of systemic theme tokens which will change the look of Base Web.
+
+```js
+import {createLightTheme} from 'baseui';
+const primitives = {
+  accent: '#F127E4', // hot pink
+  accent50: '#FDEDFC',
+  accent100: '#FCD3F9',
+  accent200: '#F89FF3',
+  accent300: '#F45AEA',
+  accent400: '#F127E4',
+  accent500: '#B71DAD',
+  accent600: '#901788',
+  accent700: '#600F5B',
+};
+
+const overrides = {
+  colors: {
+    buttonSecondaryFill: primitives.accent100,
+    buttonSecondaryText: primitives.accent,
+    buttonSecondaryHover: primitives.accent200,
+    buttonSecondaryActive: primitives.accent300,
+    buttonSecondarySelectedFill: primitives.accent200,
+    buttonSecondarySelectedText: primitives.accent,
+    buttonSecondarySpinnerForeground: primitives.accent700,
+    buttonSecondarySpinnerBackground: primitives.accent300,
+  },
+};
+
+export const lightTheme = createLightTheme(primitives, overrides);
+export const darkTheme = createDarkTheme(primitives, overrides);
+```
+
+We think you can get pretty far with just the theming layer alone. When it isn’t enough there are a few more techniques available to you.
+
+### withStyle
+
+We’ve already been introduced to `withStyle`. It allows us to extend a styled component. But how is this relevant to styling Base Web components? Remember that Base Web itself is built with styled components. Every module exports an entire suite of styled components used to build that component.
+
+```js
+import {withStyle} from 'baseui';
+import {StyledLink} from 'baseui/link';
+
+export const MyStyledLink = withStyle(StyledLink, ({$theme}) => ({
+  borderBottom: `solid 2px ${theme.colors.primary}`,
+}));
+```
+
+In some cases, we can import a styled component and then use `withStyle` to extend it to our purposes. You can use `withStyle` to create your own version of a component and import that around your application instead.
+
+This works for simple components, but most components, while being built with styled components, are not styled components themselves. We can’t use `withStyle` to extend or configure them.
+
+### Overrides
+
+Now we turn to the `overrides` prop, which exists on nearly every Base Web component. If it isn't a styled component, it will have an `overrides` prop.
+
+The [override pattern](<(/guides/understanding-overrides)>) allows us to pass styling and props to, or replace, a part of a Base Web component. Consider that a complex component is a tree of nodes. These nodes can be elements or other components (with subtrees of their own).
+
+<BlogImage
+  src="/images/overrides1.png"
+  alt="A visual representation of a complex React component as a tree of nodes."
+  caption="A visual representation of a complex React component as a tree of nodes."
+/>
+
+Typically a component encapsulates this subtree such that anything outside of the component does not need to be aware of that subtree. An override is a way of passing modifications to, or outright replacing a component node in that subtree. It breaks encapsulation but gives us power over the internals of our component.
+
+<BlogImage
+  src="/images/overrides2.png"
+  alt="A visual representation of an override, which can target a node at any part of the abstract React component tree."
+  caption="A visual representation of an override, which can target a node at any part of the abstract React component tree."
+/>
+
+It is critical that you understand the override pattern if you seek to customize the styling of Base Web components. Check out our extensive [overrides guide](/guides/understanding-overrides) for details. For now, we’ll explain how styling relates to overrides.
+
+Whenever a Base Web component uses any component internally, including a styled component, it makes it available as an override. Using this pattern we can override styles, props, or even the entire sub-component.
+
+```js
+import * as React from 'react';
+import {FormControl} from 'baseui/form-control';
+import {Input} from 'baseui/input';
+
+export default function Form() {
+  return (
+    <form>
+      <FormControl
+        label="Email"
+        caption="We won't sell your data. Promise."
+        overrides={{
+          Label: {
+            // We are increasing the label size to LabelLarge
+            style: ({$theme}) => $theme.typography.LabelLarge,
+          },
+        }}
+      >
+        <Input />
+      </FormControl>
+    </form>
+  );
+}
+```
+
+In this example we pass a `style` function through the overrides interface to a styled component internal to the Base Web component. It is almost as if we used the `$style` prop on that internal styled component. Indeed, there is a `StyledLabel` component used internally and made targetable with `overrides`. An even more powerful pattern is to replace that sub-component entirely.
+
+```js
+import * as React from 'react';
+import {styled, withStyle} from 'baseui';
+import {FormControl, StyledLabel} from 'baseui/form-control';
+import {Input} from 'baseui/input';
+
+// Increase size of default label
+const CustomStyledLabel = withStyle(
+  StyledLabel,
+  ({$theme}) => $theme.typography.LabelLarge,
+);
+
+// Create a wrapper for our new label
+const LabelContainer = styled('div', ({$theme}) => ({
+  border: `solid 2px ${$theme.colors.borderOpaque}`,
+}));
+
+const CustomLabel = props => (
+  <LabelContainer>
+    <CustomStyledLabel {...props} />
+  </LabelContainer>
+);
+
+export default function Form() {
+  return (
+    <form>
+      <FormControl
+        label="Email"
+        caption="We won't sell your data. Promise."
+        overrides={{
+          Label: CustomLabel,
+        }}
+      >
+        <Input />
+      </FormControl>
+    </form>
+  );
+}
+```
+
+Recall (again), that Base Web components are composed of styled components. In this example, we import the styled component used inside of the component, extend it using `withStyle`, and then use it within a new component passed through the overrides interface. This is a common pattern for advanced use-cases.
+
+Overrides give you full control over the Base Web component. Passing style objects or styled components is the most common way you’ll style Base Web components. And of course, make sure to use the theme object to keep things consistent.
+
+Overrides are clearly a more advanced technique. They generally require you to understand the internals of the component. When it comes to styling concerns, the key here is remembering that every styled component used within a Base Web component will not only be targetable via overrides but will also be exported from the associated module.
+
+## Anti-patterns
+
+Let’s take a moment to consider some patterns and techniques that might seem useful at first but can lead to difficult to maintain code.
+
+### \$style
+
+While it can be tempting to use the `$style` prop to override styles on a styled component, we actually disallow this in our own codebase. We've found that using `$style` leads to difficult to maintain code and inconsistent styling. Whenever you find yourself reaching for `$style` consider if you could account for this variation with the styled component's interface or if this might warrant a new styled component altogether (via `withStyle`).
+
+### useStyletron
+
+[`useStyletron`](/components/use-styletron) is a great low-level way to style elements. It allows you to iterate on your styling very quickly. Some people decide that they want to use it exclusively, forgoing styled components all together. This is fine, and in some circumstances the consistency within your project might warrant such a decision. There are a couple things to be wary of though. Consider the following example:
+
+```js
+import * as React from 'react';
+import {useStyletron} from 'baseui';
+
+export default function Widget({style, ...props}) {
+  const [css] = useStyletron();
+  return (
+    <div
+      {...props}
+      className={[
+        css({
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }),
+        css(style),
+      ].join(' ')}
+    />
+  );
+}
+```
+
+Here we are trying to make a reusable component with `useStyletron` and provide our own interface for extensibility. We notice that the css function returns a string of class names and so decide to concatenate them together with a style object passed through the `style` prop.
+
+There are two problems with this approach. First, the resulting CSS is not deduped, leading to bloated stylesheets. Second, if using the atomic Styletron engine, the resulting CSS might be applied in the wrong order.
+
+If you want to add some level of extensibility to a component using `useStyletron`, don’t concatenate class names, instead merge relevant style objects into one and pass the merged object to the `css` function.
+
+```js
+import * as React from 'react';
+import {useStyletron} from 'baseui';
+import {deepMerge} from './util'; // Choose your own way to merge
+
+export default function Widget({style, ...props}) {
+  const [css] = useStyletron();
+  const finalStyles = deepMerge(
+    {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    style,
+  );
+  return <div {...props} className={css(finalStyles)} />;
+}
+```
+
+Of course, an even better solution might be to leverage the `styled` utility and get this pattern for free.
+
+### Block
+
+The [`Block`](/components/block/) component allows you to quickly create elements and assign them styling values from your theme.
+
+```js
+import * as React from 'react';
+import {Block} from 'baseui/block';
+
+export default function Widget({children}) {
+  return (
+    <Block backgroundColor="backgroundPrimary" color="contentPrimary">
+      {children}
+    </Block>
+  );
+}
+```
+
+Some folks really enjoy this way of building out a UI. Indeed, `Block` makes it very easy to use your theme tokens and as we’ve stated earlier, you should use these tokens as often as possible.
+
+That said, we actually no longer recommend using `Block` to build out your UI. There are a number of reasons for this:
+
+- `Block` props do not have any awareness of your theme object. While developing you lose out on useful autocompletion and type information compared to using the theme object directly (as with useStyletron or styled/withStyle).
+- `Block` works well so long as the element only needs a few theme tokens. Once you want to do something more complicated, or something not covered by the existing props, you need to use an override. This can lead to hard to read code and inconsistent styling patterns over time.
+- `Block` has a fairly bloated interface at this point. You can shave a few KB from your bundle by omitting it from your project.
+- `Block` requires learning and memorizing the `Block` [API](/components/block/#api) as well as the theme shape. Not only can this be confusing for people new to the codebase, but it also reinvents the wheel a bit by obscuring plain old CSS. Our conjecture is that code is more maintainable and legible when it leverages CSS syntax (through style objects)- something most frontend developers have some familiarity with already. Let’s avoid unnecessary abstraction when possible.
+- We much prefer `useStyletron` these days. There is no API to learn, no awkward edge cases, has great auto-completion/type support, and adds nothing to your bundle.
+
+All this said, if your team enjoys using `Block` and has found ways to keep it consistent and legible, go for it. We have no plans to remove it any time soon. Just keep in mind this common issue we see people run into with `Block`:
+
+```js
+import * as React from 'react';
+import {Block} from 'baseui/block';
+
+export default function Widget({children}) {
+  return (
+    <Block
+      backgroundColor="backgroundPrimary"
+      color="contentPrimary"
+      $style={{pointerEvents: 'none'}}
+    >
+      {children}
+    </Block>
+  );
+}
+```
+
+Here we want to use the `pointer-events` CSS property, which isn't part of the `Block` API. A lot of people assume `$style` should work for these edge cases, and sometimes it might result in what you want, but `Block` is not actually a styled component! You need to use an override to pass through these extra styles.
+
+```js
+import * as React from 'react';
+import {Block} from 'baseui/block';
+
+export default function Widget({children}) {
+  return (
+    <Block
+      backgroundColor="backgroundPrimary"
+      color="contentPrimary"
+      overrides={{
+        Block: {
+          style: {pointerEvents: 'none'},
+        },
+      }}
+    >
+      {children}
+    </Block>
+  );
+}
+```
+
+If you use `Block` extensively, you will want to be sure you avoid this common mistake.
+
+## Wrapping things up
+
+The above techniques give you an overview of styling techniques available to you when using Base Web and Styletron. This guide is how we think about styling, not only for users of our library, but within our own apps and Base Web itself.
+
+The ideas and techniques here are always evolving. We might decide later on that there are more useful patterns in other directions. Rest assured we won’t drop support for existing tools, but we might promote alternate techniques in our documentation.
+
+As always, feel free to discuss this on our [Slack channel](https://join.slack.com/t/baseui/shared_invite/zt-5f1s4d10-1D2uywAECAG50m64PTH9cw) or open an issue on [Github](https://github.com/uber/baseweb) if you notice a problem with any of our current styling options.
