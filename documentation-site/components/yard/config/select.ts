@@ -3,6 +3,7 @@ import {Select, SIZE, TYPE} from 'baseui/select';
 import {PropTypes} from 'react-view';
 import {changeHandlers} from './common/common';
 import {TConfig} from '../types';
+import TagConfig from './tag';
 
 const selectProps = require('!!extract-react-types-loader!../../../../src/select/select.js');
 
@@ -350,7 +351,7 @@ const SelectConfig: TConfig = {
           'Placeholder',
           'ValueContainer',
           'SingleValue',
-          'Tag',
+          TagConfig,
           'InputContainer',
           'Input',
           'IconsContainer',
