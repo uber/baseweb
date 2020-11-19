@@ -3,6 +3,7 @@ import {Select, SIZE, TYPE} from 'baseui/select';
 import {PropTypes} from 'react-view';
 import {changeHandlers} from './common/common';
 import {TConfig} from '../types';
+import TagConfig from './tag';
 
 const selectProps = require('!!extract-react-types-loader!../../../../src/select/select.js');
 
@@ -346,26 +347,26 @@ const SelectConfig: TConfig = {
       custom: {
         names: [
           'Root',
-          'ControlContainer',
-          'Placeholder',
-          'ValueContainer',
-          'SingleValue',
-          'Tag',
-          'InputContainer',
-          'Input',
-          'IconsContainer',
-          'SelectArrow',
-          'ClearIcon',
-          'LoadingIndicator',
-          'SearchIconContainer',
-          'SearchIcon',
-          'Popover',
-          'DropdownContainer',
-          'Dropdown',
-          'DropdownOption',
-          'DropdownListItem',
-          'OptionContent',
-          'StatefulMenu',
+          // 'ControlContainer',
+          // 'Placeholder',
+          // 'ValueContainer',
+          // 'SingleValue',
+          TagConfig,
+          // 'InputContainer',
+          // 'Input',
+          // 'IconsContainer',
+          // 'SelectArrow',
+          // 'ClearIcon',
+          // 'LoadingIndicator',
+          // 'SearchIconContainer',
+          // 'SearchIcon',
+          // 'Popover',
+          // 'DropdownContainer',
+          // 'Dropdown',
+          // 'DropdownOption',
+          // 'DropdownListItem',
+          // 'OptionContent',
+          // 'StatefulMenu',
         ],
         sharedProps: {
           $clearable: 'clearable',

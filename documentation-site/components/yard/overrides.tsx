@@ -1,9 +1,9 @@
 import * as React from 'react';
-import {Accordion, Panel} from 'baseui/accordion';
-import {Caption1} from 'baseui/typography';
-import Link from 'next/link';
-import {StyledLink} from 'baseui/link';
+import {StatelessAccordion as Accordion, Panel} from 'baseui/accordion';
+import {Tag} from 'baseui/tag';
+import {useRouter} from 'next/router';
 import {useStyletron} from 'baseui';
+import {TConfig} from './types';
 
 import Override, {getHighlightStyles} from './override';
 
@@ -12,6 +12,7 @@ type TOverridesProps = {
   overrides: any;
   componentConfig: any;
   componentName: string;
+  isNested?: boolean;
 };
 
 const Overrides: React.FC<TOverridesProps> = ({
@@ -19,8 +20,10 @@ const Overrides: React.FC<TOverridesProps> = ({
   set,
   componentName,
   componentConfig,
+  isNested,
 }) => {
   const [, theme] = useStyletron();
+  const router = useRouter();
   const isLightTheme = theme.name.startsWith('light-theme');
   if (
     !overrides ||
@@ -34,20 +37,25 @@ const Overrides: React.FC<TOverridesProps> = ({
   const overridesObj: {
     [key: string]: {
       style: any;
+      nested?: TConfig;
+      nestedValue?: any;
     };
   } = {};
 
-  overrides.custom.names.forEach((key: string) => {
-    if (overrides.value && overrides.value[key]) {
-      overridesObj[key] = overrides.value[key];
+  overrides.custom.names.forEach((key: string | TConfig) => {
+    const stringKey = typeof key === 'string' ? key : key.componentName;
+    if (overrides.value && overrides.value[stringKey]) {
+      overridesObj[stringKey] = overrides.value[stringKey];
     } else {
-      overridesObj[key] = {
+      overridesObj[stringKey] = {
         style: null,
       };
     }
+    overridesObj[stringKey]['nested'] =
+      typeof key === 'string' ? undefined : key;
   });
 
-  const handleChange = ({expanded}: {expanded: (string | number)[]}) => {
+  const getNewState = (expanded: (string | number)[]) => {
     const returnValue: any = {...overrides.value};
     if (overrides.value) {
       Object.keys(overrides.value).forEach(key => {
@@ -55,7 +63,13 @@ const Overrides: React.FC<TOverridesProps> = ({
       });
     }
     expanded.forEach(key => {
-      if (overridesObj[key].style === null) {
+      if (overridesObj[key].nestedValue || overridesObj[key].nested) {
+        if (!returnValue[key]) {
+          returnValue[key] = {
+            style: undefined,
+          };
+        }
+      } else if (overridesObj[key].style === null) {
         returnValue[key] = {
           style: getHighlightStyles(isLightTheme, []),
         };
@@ -66,58 +80,125 @@ const Overrides: React.FC<TOverridesProps> = ({
       }
       returnValue[key]['active'] = true;
     });
-    set(Object.keys(returnValue).length > 0 ? returnValue : undefined);
+    return returnValue;
   };
+
+  const handleChange = ({expanded}: {expanded: (string | number)[]}) => {
+    const newState = getNewState(expanded);
+    set(Object.keys(newState).length > 0 ? newState : undefined);
+  };
+
+  const expanded = Object.keys(overrides.value ? overrides.value : {})
+    .map(key => {
+      const override = overrides.value[key];
+      if (override.active) {
+        return key;
+      } else {
+        return null;
+      }
+    })
+    .filter(val => !!val);
 
   return (
     <React.Fragment>
-      <Caption1
-        marginLeft="scale200"
-        marginRight="scale200"
-        marginBottom="scale400"
-      >
-        Additionally, you can fully customize any part of the {componentName}{' '}
-        component through the overrides prop (
-        <Link href="/guides/understanding-overrides">
-          <StyledLink href="/guides/understanding-overrides">
-            learn more
-          </StyledLink>
-        </Link>
-        ). Try to update different <b>style overrides</b> in the explorer
-        bellow:
-      </Caption1>
       <Accordion
-        initialState={{
-          expanded: overrides.value ? Object.keys(overrides.value) : [],
+        overrides={{
+          Root: {
+            style: {
+              marginLeft: isNested ? '16px' : '0px',
+              width: 'auto',
+            },
+          },
         }}
+        expanded={expanded as string[]}
         onChange={handleChange}
         accordion={false}
       >
-        {Object.keys(overridesObj).map(overrideKey => (
-          <Panel
-            key={overrideKey}
-            title={overrideKey}
-            overrides={{
-              Content: {
-                style: {
-                  backgroundColor: 'transparent',
-                  paddingLeft: 0,
-                  paddingRight: 0,
-                },
-              },
-            }}
-          >
-            <Override
+        {Object.keys(overridesObj).map(overrideKey => {
+          const {nested} = overridesObj[overrideKey];
+          return (
+            <Panel
               key={overrideKey}
-              overrideKey={overrideKey}
-              overridesObj={overridesObj}
-              overrides={overrides}
-              componentConfig={componentConfig}
-              componentName={componentName}
-              set={set}
-            />
-          </Panel>
-        ))}
+              title={
+                <span>
+                  {overrideKey}
+                  {nested ? (
+                    <Tag
+                      onClick={e => {
+                        e.preventDefault();
+                        router.push(
+                          '/guides/understanding-overrides#override-nested-components',
+                        );
+                      }}
+                      overrides={{
+                        Root: {
+                          style: () => {
+                            return {
+                              marginLeft: '8px',
+                              marginTop: 0,
+                              marginBottom: 0,
+                            };
+                          },
+                        },
+                      }}
+                      closeable={false}
+                    >
+                      nested
+                    </Tag>
+                  ) : null}
+                </span>
+              }
+              overrides={{
+                Content: {
+                  style: {
+                    backgroundColor: 'transparent',
+                    paddingLeft: 0,
+                    paddingRight: 0,
+                  },
+                },
+              }}
+            >
+              {nested ? (
+                <Overrides
+                  overrides={{
+                    ...nested.props.overrides,
+                    value:
+                      overrides.value && overrides.value[overrideKey]
+                        ? overrides.value[overrideKey].nestedValue
+                        : undefined,
+                  }}
+                  componentConfig={nested.props}
+                  componentName={nested.componentName}
+                  set={(propValue: any) => {
+                    set(
+                      {
+                        ...getNewState(expanded as string[]),
+                        [overrideKey]: {
+                          active: Object.entries(propValue).some(
+                            ([, val]: any) => val.active,
+                          ),
+                          nestedValue: propValue,
+                        },
+                      },
+                      'overrides',
+                    );
+                  }}
+                  isNested
+                />
+              ) : (
+                <Override
+                  key={overrideKey}
+                  overrideKey={overrideKey}
+                  overridesObj={overridesObj}
+                  overrides={overrides}
+                  componentConfig={componentConfig}
+                  componentName={componentName}
+                  set={set}
+                />
+              )}
+            </Panel>
+          );
+        })}
       </Accordion>
     </React.Fragment>
   );
