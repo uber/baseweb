@@ -1,9 +1,8 @@
 import * as React from 'react';
 import {StatelessAccordion as Accordion, Panel} from 'baseui/accordion';
-import {Tag} from 'baseui/tag';
-import {useRouter} from 'next/router';
 import {useStyletron} from 'baseui';
 import {TConfig} from './types';
+import NestedTooltip from './nested-tooltip';
 
 import Override, {getHighlightStyles} from './override';
 
@@ -23,7 +22,6 @@ const Overrides: React.FC<TOverridesProps> = ({
   isNested,
 }) => {
   const [, theme] = useStyletron();
-  const router = useRouter();
   const isLightTheme = theme.name.startsWith('light-theme');
   if (
     !overrides ||
@@ -105,8 +103,28 @@ const Overrides: React.FC<TOverridesProps> = ({
         overrides={{
           Root: {
             style: {
-              marginLeft: isNested ? '16px' : '0px',
+              marginLeft: isNested ? '8px' : '0px',
               width: 'auto',
+            },
+          },
+          Header: {
+            style: {
+              paddingTop: '8px',
+              paddingBottom: '8px',
+              paddingLeft: '8px',
+              paddingRight: '8px',
+              fontSize: '16px',
+              borderBottomWidth: 0,
+            },
+          },
+          Content: {
+            style: {
+              backgroundColor: 'transparent',
+              paddingTop: 0,
+              paddingBottom: 0,
+              paddingLeft: '8px',
+              paddingRight: 0,
+              borderBottomWidth: 0,
             },
           },
         }}
@@ -123,40 +141,13 @@ const Overrides: React.FC<TOverridesProps> = ({
                 <span>
                   {overrideKey}
                   {nested ? (
-                    <Tag
-                      onClick={e => {
-                        e.preventDefault();
-                        router.push(
-                          '/guides/understanding-overrides#override-nested-components',
-                        );
-                      }}
-                      overrides={{
-                        Root: {
-                          style: () => {
-                            return {
-                              marginLeft: '8px',
-                              marginTop: 0,
-                              marginBottom: 0,
-                            };
-                          },
-                        },
-                      }}
-                      closeable={false}
-                    >
-                      nested
-                    </Tag>
+                    <NestedTooltip
+                      name={componentName}
+                      nestedName={nested.componentName}
+                    />
                   ) : null}
                 </span>
               }
-              overrides={{
-                Content: {
-                  style: {
-                    backgroundColor: 'transparent',
-                    paddingLeft: 0,
-                    paddingRight: 0,
-                  },
-                },
-              }}
             >
               {nested ? (
                 <Overrides
