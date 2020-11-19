@@ -133,7 +133,7 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
       children,
       required,
       title,
-      ariaLabel
+      ariaLabel,
     } = this.props;
 
     const {
