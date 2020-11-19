@@ -12,18 +12,18 @@ export const getHighlightStyles = (
   isLightTheme: boolean,
   sharedProps: string[],
 ) =>
-  formatCode(`({ $theme, ${sharedProps.join(',')} }) => { return ({
+  formatCode(`({ $theme, ${sharedProps.join(',')} }) => ({
     outline: \`\${${
       isLightTheme ? '$theme.colors.warning200' : '$theme.colors.warning600'
     }} solid\`,
     backgroundColor: ${
       isLightTheme ? '$theme.colors.warning200' : '$theme.colors.warning600'
     },
-    })}
+    })
   `);
 
 const getEmptyStyles = (sharedProps: string[]) =>
-  formatCode(`({ $theme, ${sharedProps.join(',')} }) => { return ({})}
+  formatCode(`({ $theme, ${sharedProps.join(',')} }) => ({})
 `);
 
 type TProps = {

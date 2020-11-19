@@ -8,7 +8,7 @@ export type TCustomPropFields = {
   sharedProps: {[key: string]: string | {type: string; description: string}};
 };
 
-const parseOverrides = (overrides: any, acc: any) => {
+const parseOverridesInner = (overrides: any, acc: any) => {
   overrides.forEach((override: any) => {
     const overrideName = override.key.name;
     const overrideProps = override.value.properties;
@@ -28,7 +28,7 @@ const parseOverrides = (overrides: any, acc: any) => {
               nestedValue: {},
               active: true,
             };
-            parseOverrides(
+            parseOverridesInner(
               subprop.value.properties,
               acc[overrideName].nestedValue,
             );
@@ -37,6 +37,14 @@ const parseOverrides = (overrides: any, acc: any) => {
       }
     });
   });
+};
+
+export const parseOverrides = (code: string) => {
+  const ast: any = parse(`const foo = ${code};`);
+  const topOverrides = ast.program.body[0].declarations[0].init.properties;
+  const returnValue = {};
+  parseOverridesInner(topOverrides, returnValue);
+  return returnValue;
 };
 
 type TGenerateValue = {
@@ -88,13 +96,6 @@ const generateOverrides = (value: TGenerateValue) => {
 export const customProps = {
   overrides: {
     generate: generateOverrides,
-    parse: (code: string) => {
-      const ast: any = parse(`const foo = ${code};`);
-      const topOverrides = ast.program.body[0].declarations[0].init.properties;
-      const returnValue = {};
-      parseOverrides(topOverrides, returnValue);
-      console.log(returnValue);
-      return returnValue;
-    },
+    parse: parseOverrides,
   },
 };

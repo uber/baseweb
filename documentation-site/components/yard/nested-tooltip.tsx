@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {StatefulTooltip} from 'baseui/tooltip';
 import {useStyletron} from 'baseui';
-import {StyledLink} from 'baseui/link';
 import Link from 'next/link';
 
 const NestedTooltip: React.FC<{name: string; nestedName: string}> = ({
@@ -45,7 +44,7 @@ const NestedTooltip: React.FC<{name: string; nestedName: string}> = ({
     >
       <span
         className={css({
-          marginLeft: theme.sizing.scale600,
+          marginLeft: theme.sizing.scale400,
           color: theme.colors.accent,
           borderBottom: `1px ${theme.colors.accent} dashed`,
           ...theme.typography.LabelXSmall,

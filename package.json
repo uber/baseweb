@@ -168,7 +168,7 @@
     "react-icons": "^3.8.0",
     "react-markdown": "^4.0.3",
     "react-twitter-embed": "^2.0.8",
-    "react-view": "^2.2.2",
+    "react-view": "^2.3.3",
     "react-vis": "^1.11.6",
     "remove-flow-types-loader": "^1.1.0",
     "semver": "^6.2.0",
