@@ -30,13 +30,16 @@ export default function CountryPicker(props: CountrySelectPropsT) {
   const {overrides} = props;
   const baseSelectOverrides = {
     Root: {
-      style: ({$theme}) => ({
-        marginRight: $theme.sizing.scale300,
-        width: 'auto',
-      }),
+      style: ({$theme: {direction, sizing}}) => {
+        const marginDir = direction === 'rtl' ? 'marginLeft' : 'marginRight';
+        return {
+          [marginDir]: sizing.scale300,
+          width: 'auto',
+        };
+      },
     },
     ControlContainer: {
-      style: ({$theme: {sizing}, ...props}) => {
+      style: ({$theme: {direction, sizing}, ...props}) => {
         const sizeToLeftPadding = {
           [SIZE.mini]: '0',
           [SIZE.compact]: sizing.scale0,
@@ -49,9 +52,12 @@ export default function CountryPicker(props: CountrySelectPropsT) {
           [SIZE.default]: sizing.scale600,
           [SIZE.large]: sizing.scale700,
         };
+        const padStartDir =
+          direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
+        const padEndDir = direction === 'rtl' ? 'paddingLeft' : 'paddingRight';
         const styleOverride = {
-          paddingLeft: sizeToLeftPadding[props.$size || SIZE.default],
-          paddingRight: sizeToRightPadding[props.$size || SIZE.default],
+          [padStartDir]: sizeToLeftPadding[props.$size || SIZE.default],
+          [padEndDir]: sizeToRightPadding[props.$size || SIZE.default],
         };
         // do not add positive and error color borders when not focused
         if (!props.$isFocused && !props.$isPseudoFocused) {
@@ -86,22 +92,24 @@ export default function CountryPicker(props: CountrySelectPropsT) {
 
   const baseOverrides = {
     FlagContainer: {
-      style: ({$theme: {sizing}, ...props}) => {
+      style: ({$theme: {direction, sizing}, ...props}) => {
         const sizeToMargin = {
           [SIZE.mini]: sizing.scale200,
           [SIZE.compact]: sizing.scale300,
           [SIZE.default]: sizing.scale400,
           [SIZE.large]: sizing.scale500,
         };
+        const marginDir = direction === 'rtl' ? 'marginLeft' : 'marginRight';
         return {
-          marginRight: sizeToMargin[props.$size || SIZE.default],
+          [marginDir]: sizeToMargin[props.$size || SIZE.default],
         };
       },
     },
     DialCode: {
-      style: ({$theme: {sizing}}) => {
+      style: ({$theme: {direction, sizing}}) => {
+        const marginDir = direction === 'rtl' ? 'marginRight' : 'marginLeft';
         return {
-          marginLeft: sizing.scale600,
+          [marginDir]: sizing.scale600,
         };
       },
     },

@@ -14,6 +14,8 @@ import type {OverrideT} from '../helpers/overrides.js';
 export type SortDirectionT = ?$Keys<typeof SORT_DIRECTION>;
 
 export type HeadCellPropsT = {|
+  /** Aria label applied to the sort button. */
+  ariaLabel?: string,
   /** Additional content to fill head cell. Most likely used for a filter button. */
   children?: React.Node,
   /** Visually indicates sort direction. Displays a chevron next to column title. */
@@ -27,7 +29,7 @@ export type HeadCellPropsT = {|
     SortableLabel?: OverrideT,
   },
   /** Column title. */
-  title: string,
+  title: React.Node,
   /** FillClickTarget enable click to sort on whitespace in a header cell. */
   fillClickTarget?: boolean,
 |};

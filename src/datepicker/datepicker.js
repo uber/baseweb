@@ -55,14 +55,26 @@ export default class Datepicker<T = Date> extends React.Component<
   }
 
   onChange: ({date: ?T | Array<T>}) => void = data => {
-    const {date} = data;
     let isOpen = false;
     let isPseudoFocused = false;
     let calendarFocused = false;
-    if (Array.isArray(date) && this.props.range && date.length < 2) {
-      isOpen = true;
-      isPseudoFocused = true;
-      calendarFocused = null;
+    let nextDate = data.date;
+
+    if (Array.isArray(nextDate) && this.props.range) {
+      if (nextDate.length < 2) {
+        isOpen = true;
+        isPseudoFocused = true;
+        calendarFocused = null;
+      } else if (nextDate.length === 2) {
+        const [start, end] = nextDate;
+        if (this.dateHelpers.isAfter(start, end)) {
+          nextDate = [start, start];
+        }
+
+        if (this.state.lastActiveElm) {
+          this.state.lastActiveElm.focus();
+        }
+      }
     } else if (this.state.lastActiveElm) {
       this.state.lastActiveElm.focus();
     }
@@ -82,13 +94,14 @@ export default class Datepicker<T = Date> extends React.Component<
       }
       return false;
     };
+
     const prevValue = this.props.value;
-    if (Array.isArray(date) && Array.isArray(prevValue)) {
-      if (date.some((d, i) => onlyTimeChanged(prevValue[i], d))) {
+    if (Array.isArray(nextDate) && Array.isArray(prevValue)) {
+      if (nextDate.some((d, i) => onlyTimeChanged(prevValue[i], d))) {
         isOpen = true;
       }
-    } else if (!Array.isArray(date) && !Array.isArray(prevValue)) {
-      if (onlyTimeChanged(prevValue, date)) {
+    } else if (!Array.isArray(nextDate) && !Array.isArray(prevValue)) {
+      if (onlyTimeChanged(prevValue, nextDate)) {
         isOpen = true;
       }
     }
@@ -97,9 +110,10 @@ export default class Datepicker<T = Date> extends React.Component<
       isOpen,
       isPseudoFocused,
       ...(calendarFocused === null ? {} : {calendarFocused}),
-      inputValue: this.formatDisplayValue(date),
+      inputValue: this.formatDisplayValue(nextDate),
     });
-    this.props.onChange && this.props.onChange(data);
+
+    this.props.onChange && this.props.onChange({date: nextDate});
   };
 
   formatDate(date: ?T | Array<T>, formatString: string) {

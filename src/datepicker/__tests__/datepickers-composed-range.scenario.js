@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React, {useState} from 'react';
+import {isAfter, isBefore} from 'date-fns';
 
 import {useStyletron} from '../../styles/index.js';
 import {FormControl} from '../../form-control/index.js';
@@ -19,6 +20,11 @@ const END_DATE = new Date(2019, 3, 10, 16, 0, 0);
 function printDate(dt) {
   if (!dt) return 'undefined';
   return dt.getFullYear() + '/' + (dt.getMonth() + 1) + '/' + dt.getDate();
+}
+
+function printTime(dt) {
+  if (!dt) return 'undefined';
+  return dt.toLocaleTimeString();
 }
 
 export default function Controlled() {
@@ -45,6 +51,11 @@ export default function Controlled() {
               placeholder="Start Date"
               displayValueAtRangeIndex={0}
               mask="9999/99/99"
+              overrides={{
+                TimeSelectContainer: {
+                  props: {id: 'time-select-start'},
+                },
+              }}
             />
           </FormControl>
         </div>
@@ -56,7 +67,15 @@ export default function Controlled() {
           <FormControl label="Start Time" caption="HH:MM">
             <TimePicker
               value={dates[0]}
-              onChange={time => time && setDates([time, dates[1]])}
+              onChange={time => {
+                if (time) {
+                  if (isAfter(time, dates[1])) {
+                    setDates([time, time]);
+                  } else {
+                    setDates([time, dates[1]]);
+                  }
+                }
+              }}
             />
           </FormControl>
         </div>
@@ -88,7 +107,15 @@ export default function Controlled() {
           <FormControl label="End Time" caption="HH:MM">
             <TimePicker
               value={dates[1]}
-              onChange={time => time && setDates([dates[0], time])}
+              onChange={time => {
+                if (time) {
+                  if (isBefore(time, dates[0])) {
+                    setDates([time, time]);
+                  } else {
+                    setDates([dates[0], time]);
+                  }
+                }
+              }}
             />
           </FormControl>
         </div>
@@ -100,7 +127,9 @@ export default function Controlled() {
 
       <div>
         <p id="display-start-date">{printDate(dates[0])}</p>
+        <p id="display-start-time">{printTime(dates[0])}</p>
         <p id="display-end-date">{printDate(dates[1])}</p>
+        <p id="display-end-time">{printTime(dates[1])}</p>
       </div>
     </div>
   );

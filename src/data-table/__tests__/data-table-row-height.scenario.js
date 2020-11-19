@@ -23,8 +23,14 @@ const loremIpsum = `"We went upstairs together, the colonel first with the lamp,
 const columns = [
   StringColumn({
     title: 'Name',
-    minWidth: 300,
+    minWidth: 250,
     mapDataToValue: (data: RowDataT) => data.Name,
+  }),
+  StringColumn({
+    title: 'Vertically Center',
+    minWidth: 250,
+    mapDataToValue: (data: RowDataT) => data.Name,
+    cellBlockAlign: 'center',
   }),
   StringColumn({
     title: 'Long Text',

@@ -11,10 +11,13 @@ LICENSE file in the root directory of this source tree.
 const {mount} = require('../../../e2e/helpers');
 
 const START_DATE_INPUT = '[id="start-date"] input';
+const START_TIME_SELECT = '[id="time-select-start"]';
 const END_DATE_INPUT = '[id="end-date"] input';
 
 const DISPLAY_START_DATE = '[id="display-start-date"]';
+const DISPLAY_START_TIME = '[id="display-start-time"]';
 const DISPLAY_END_DATE = '[id="display-end-date"]';
+const DISPLAY_END_TIME = '[id="display-end-time"]';
 
 const SET_UNDEFINED_BTN = '[id="set-undefined"]';
 
@@ -117,5 +120,33 @@ describe('datepicker-composed-range', () => {
 
     const after = await page.$eval(DISPLAY_END_DATE, e => e.textContent);
     expect(after).toBe('2019/4/10');
+  });
+
+  it('handles time selection after end datetime', async () => {
+    await mount(page, 'datepickers-composed-range');
+    await page.waitForSelector(START_DATE_INPUT);
+
+    await page.click(SET_UNDEFINED_BTN);
+
+    await page.focus(END_DATE_INPUT);
+    await page.keyboard.type('20201010');
+
+    await page.focus(START_DATE_INPUT);
+    await page.waitForSelector(START_TIME_SELECT);
+
+    await page.focus(`${START_TIME_SELECT} input`);
+    await page.keyboard.type('12:00 pm');
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('Enter');
+
+    const startDate = await page.$eval(DISPLAY_START_DATE, e => e.textContent);
+    const endDate = await page.$eval(DISPLAY_END_DATE, e => e.textContent);
+    const startTime = await page.$eval(DISPLAY_START_TIME, e => e.textContent);
+    const endTime = await page.$eval(DISPLAY_END_TIME, e => e.textContent);
+
+    expect(startDate).toBe('2020/10/10');
+    expect(startTime).toBe('12:00:00 PM');
+    expect(endDate).toBe('2020/10/10');
+    expect(endTime).toBe('12:00:00 PM');
   });
 });
