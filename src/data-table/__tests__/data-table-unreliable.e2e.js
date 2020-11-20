@@ -19,8 +19,6 @@ const {
 const COLUMN_COUNT = 5;
 
 describe('data table columns', () => {
-  jest.retryTimes(3);
-
   it('updates categorical column', async () => {
     const index = 1;
     await mount(page, 'data-table-columns');

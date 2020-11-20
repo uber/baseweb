@@ -10,19 +10,14 @@ import * as React from 'react';
 
 import {useStyletron} from '../styles/index.js';
 
-import CellShell from './cell-shell.js';
+import Column from './column.js';
 import {COLUMNS} from './constants.js';
 import {HighlightCellText} from './text-search.js';
-import type {ColumnT} from './types.js';
+import type {ColumnT, SharedColumnOptionsT} from './types.js';
 
 type OptionsT = {|
+  ...SharedColumnOptionsT<string>,
   lineClamp?: number,
-  // eslint-disable-next-line flowtype/no-weak-types
-  mapDataToValue: (data: any) => string,
-  maxWidth?: number,
-  minWidth?: number,
-  sortable?: boolean,
-  title: string,
 |};
 
 type FilterParametersT = {|
@@ -36,37 +31,30 @@ function StringFilter(props) {
   return <div>not implemented for string column</div>;
 }
 
-const StringCell = React.forwardRef<_, HTMLDivElement>((props, ref) => {
+function StringCell(props) {
   const [css] = useStyletron();
   return (
-    <CellShell
-      ref={ref}
-      isMeasured={props.isMeasured}
-      isSelected={props.isSelected}
-      onSelect={props.onSelect}
+    <div
+      className={css({
+        display: '-webkit-box',
+        WebkitLineClamp: props.lineClamp || 1,
+        WebkitBoxOrient: 'vertical',
+        overflow: 'hidden',
+      })}
     >
-      <div
-        className={css({
-          display: '-webkit-box',
-          WebkitLineClamp: props.lineClamp || 1,
-          WebkitBoxOrient: 'vertical',
-          overflow: 'hidden',
-        })}
-      >
-        {props.textQuery ? (
-          <HighlightCellText text={props.value} query={props.textQuery} />
-        ) : (
-          props.value
-        )}
-      </div>
-    </CellShell>
+      {props.textQuery ? (
+        <HighlightCellText text={props.value} query={props.textQuery} />
+      ) : (
+        props.value
+      )}
+    </div>
   );
-});
-StringCell.displayName = 'StringCell';
+}
 
 function StringColumn(options: OptionsT): StringColumnT {
-  return {
+  return Column({
     kind: COLUMNS.STRING,
+    cellBlockAlign: options.cellBlockAlign,
     buildFilter: function(params) {
       return function(data) {
         return true;
@@ -79,16 +67,16 @@ function StringColumn(options: OptionsT): StringColumnT {
     mapDataToValue: options.mapDataToValue,
     maxWidth: options.maxWidth,
     minWidth: options.minWidth,
-    renderCell: React.forwardRef((props, ref) => {
-      return <StringCell {...props} ref={ref} lineClamp={options.lineClamp} />;
-    }),
+    renderCell: function RenderStringCell(props) {
+      return <StringCell {...props} lineClamp={options.lineClamp} />;
+    },
     renderFilter: StringFilter,
     sortable: options.sortable === undefined ? true : options.sortable,
     sortFn: function(a, b) {
       return a.localeCompare(b);
     },
     title: options.title,
-  };
+  });
 }
 
 export default StringColumn;

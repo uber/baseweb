@@ -22,7 +22,7 @@ function Child() {
           enqueue({
             message: 'one',
             actionMessage: 'perform',
-            actionOnClick: () => console.log('click'),
+            actionOnClick: () => {},
           })
         }
       >
