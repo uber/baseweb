@@ -9,6 +9,12 @@ import {SIZE} from 'baseui/input';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
 import inputConfig from './input';
+import menuConfig from './menu';
+import popoverConfig from './popover';
+import iconConfig from './icon';
+import formControlConfig from './form-control';
+import timepickerConfig from './timepicker';
+import selectConfig from './select';
 
 const datepickerProps = require('!!extract-react-types-loader!../../../../src/datepicker/datepicker.js');
 
@@ -265,17 +271,28 @@ const DatepickerConfig: TConfig = {
           'CalendarContainer',
           'CalendarHeader',
           'Day',
+          inputConfig,
+          'InputWrapper',
           'Month',
           'MonthContainer',
           'MonthHeader',
           'MonthYearSelectButton',
           'MonthYearSelectIconContainer',
+          {...popoverConfig, componentName: 'MonthYearSelectPopover'},
+          {...menuConfig, componentName: 'MonthYearSelectStatefulMenu'},
           'NextButton',
+          {...iconConfig, componentName: 'NextButtonIcon'},
+          popoverConfig,
           'PrevButton',
+          {...iconConfig, componentName: 'PrevButtonIcon'},
+          {...selectConfig, componentName: 'QuickSelect'},
+          'QuickSelectContainer',
+          {...formControlConfig, componentName: 'QuickSelectFormControl'},
+          {...timepickerConfig, componentName: 'TimeSelect'},
+          'TimeSelectContainer',
+          {...formControlConfig, componentName: 'TimeSelectFormControl'},
           'Week',
           'WeekdayHeader',
-          'Input',
-          'InputWrapper',
         ],
         sharedProps: {
           $date: 'value',
