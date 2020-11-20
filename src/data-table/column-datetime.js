@@ -42,7 +42,6 @@ import {LocaleContext} from '../locale/index.js';
 
 type OptionsT = {|
   ...SharedColumnOptionsT<Date>,
-  filterable?: boolean,
   formatString?: string,
   // eslint-disable-next-line flowtype/no-weak-types
   locale?: any,
@@ -657,6 +656,7 @@ function DatetimeColumn(options: OptionsT): DatetimeColumnT {
       };
     },
     cellBlockAlign: options.cellBlockAlign,
+    fillWidth: options.fillWidth,
     filterable: normalizedOptions.filterable,
     mapDataToValue: options.mapDataToValue,
     maxWidth: options.maxWidth,

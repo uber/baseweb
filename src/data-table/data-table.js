@@ -136,10 +136,13 @@ function CellPlacement({columnIndex, rowIndex, data, style}) {
         }
         isSelected={data.isRowSelected(data.rows[rowIndex - 1].id)}
         textQuery={data.textQuery}
+        x={columnIndex}
+        y={rowIndex - 1}
       />
     </div>
   );
 }
+
 function compareCellPlacement(prevProps, nextProps) {
   // header cells are not rendered through this component
   if (prevProps.rowIndex === 0) {
@@ -818,12 +821,18 @@ export function DataTable(props: DataTablePropsT) {
         : 0;
 
       const remainder = gridProps.width - sum(resizedWidths) - scrollbarWidth;
-      const padding = Math.floor(remainder / measuredWidths.length);
+      const padding = Math.floor(
+        remainder / props.columns.filter(c => c.fillWidth).length,
+      );
       if (padding > 0) {
         const result = [];
         // -1 so that we loop over all but the last item
         for (let i = 0; i < resizedWidths.length - 1; i++) {
-          result.push(resizedWidths[i] + padding);
+          if (props.columns[i].fillWidth) {
+            result.push(resizedWidths[i] + padding);
+          } else {
+            result.push(resizedWidths[i]);
+          }
         }
         result.push(gridProps.width - sum(result) - scrollbarWidth);
         resetAfterColumnIndex(0);
@@ -831,7 +840,13 @@ export function DataTable(props: DataTablePropsT) {
       }
     }
     return resizedWidths;
-  }, [measuredWidths, resizeDeltas, browserScrollbarWidth, rows.length]);
+  }, [
+    measuredWidths,
+    resizeDeltas,
+    browserScrollbarWidth,
+    rows.length,
+    props.columns,
+  ]);
 
   const isSelectable = props.batchActions ? !!props.batchActions.length : false;
   const isSelectedAll = React.useMemo(() => {
