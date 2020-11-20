@@ -19,7 +19,7 @@ const NestedTooltip: React.FC<{name: string; nestedName: string}> = ({
         >
           <p>
             <b>{nestedName}</b> is a nested override of <b>{name}</b>. It means
-            that {name} component is using another base web component{' '}
+            that {name} component is using another Base Web component{' '}
             {nestedName} as its sub-component.
           </p>
           <p>
