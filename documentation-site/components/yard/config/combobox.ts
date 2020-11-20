@@ -1,6 +1,7 @@
 import {Combobox, SIZE} from 'baseui/combobox';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
+import inputConfig from './input';
 
 const comboboxProps = require('!!extract-react-types-loader!../../../../src/combobox/combobox.js');
 
@@ -107,7 +108,7 @@ const ComboboxConfig: TConfig = {
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
-        names: ['Root', 'InputContainer', 'ListBox', 'ListItem'],
+        names: ['Root', inputConfig, 'InputContainer', 'ListBox', 'ListItem'],
         sharedProps: {
           $isSelected: {
             type: PropTypes.Boolean,

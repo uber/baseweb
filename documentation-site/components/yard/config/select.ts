@@ -3,7 +3,10 @@ import {Select, SIZE, TYPE} from 'baseui/select';
 import {PropTypes} from 'react-view';
 import {changeHandlers} from './common/common';
 import {TConfig} from '../types';
-import TagConfig from './tag';
+import tagConfig from './tag';
+import popoverConfig from './popover';
+import spinnerConfig from './spinner';
+import iconConfig from './icon';
 
 const selectProps = require('!!extract-react-types-loader!../../../../src/select/select.js');
 
@@ -347,26 +350,26 @@ const SelectConfig: TConfig = {
       custom: {
         names: [
           'Root',
+          {...iconConfig, componentName: 'ClearIcon'},
           'ControlContainer',
-          'Placeholder',
-          'ValueContainer',
-          'SingleValue',
-          TagConfig,
-          'InputContainer',
-          'Input',
-          'IconsContainer',
-          'SelectArrow',
-          'ClearIcon',
-          'LoadingIndicator',
-          'SearchIconContainer',
-          'SearchIcon',
-          'Popover',
-          'DropdownContainer',
           'Dropdown',
-          'DropdownOption',
+          'DropdownContainer',
           'DropdownListItem',
+          'DropdownOption',
+          'Input',
+          'InputContainer',
+          'IconsContainer',
+          {...spinnerConfig, componentName: 'LoadingIndicator'},
           'OptionContent',
+          'Placeholder',
+          {...popoverConfig, componentName: 'Popover'},
+          {...iconConfig, componentName: 'SearchIcon'},
+          'SearchIconContainer',
+          {...iconConfig, componentName: 'SelectArrow'},
+          'SingleValue',
           'StatefulMenu',
+          tagConfig,
+          'ValueContainer',
         ],
         sharedProps: {
           $clearable: 'clearable',
