@@ -1,6 +1,7 @@
 import {FileUploader} from 'baseui/file-uploader';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
+import buttonConfig from './button';
 
 const fileUploaderProps = require('!!extract-react-types-loader!../../../../src/file-uploader/file-uploader.js');
 
@@ -99,6 +100,7 @@ const FileUploaderConfig: TConfig = {
       custom: {
         names: [
           'Root',
+          {...buttonConfig, componentName: 'ButtonComponent'},
           'ContentMessage',
           'ErrorMessage',
           'FileDragAndDrop',

@@ -282,7 +282,7 @@ const DatepickerConfig: TConfig = {
           {...menuConfig, componentName: 'MonthYearSelectStatefulMenu'},
           'NextButton',
           {...iconConfig, componentName: 'NextButtonIcon'},
-          popoverConfig,
+          {...popoverConfig, componentName: 'Popover'},
           'PrevButton',
           {...iconConfig, componentName: 'PrevButtonIcon'},
           {...selectConfig, componentName: 'QuickSelect'},

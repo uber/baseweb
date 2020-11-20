@@ -72,7 +72,7 @@ const TimepickerConfig: TConfig = {
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
-        names: [],
+        names: [selectConfig],
         sharedProps: {},
       },
     },

@@ -2,7 +2,7 @@ import omit from 'just-omit';
 import {PinCode, SIZE} from 'baseui/pin-code';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
-import {theme, inputProps} from './input';
+import inputConfig, {theme, inputProps} from './input';
 
 const pinCodeProps = require('!!extract-react-types-loader!../../../../src/pin-code/pin-code.js');
 
@@ -63,7 +63,7 @@ const PincodeConfig: TConfig = {
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
-        names: ['Root', 'Input'],
+        names: ['Root', inputConfig],
         sharedProps: {},
       },
     },

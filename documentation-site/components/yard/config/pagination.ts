@@ -1,6 +1,7 @@
 import {Pagination, SIZE} from 'baseui/pagination';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
+import selectConfig from './select';
 
 const paginationProps = require('!!extract-react-types-loader!../../../../src/pagination/pagination.js');
 
@@ -62,7 +63,7 @@ const PaginationConfig: TConfig = {
           'Root',
           'MaxLabel',
           'DropdownContainer',
-          'Select',
+          selectConfig,
           'NextButton',
           'PrevButton',
         ],
