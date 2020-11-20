@@ -20,6 +20,7 @@ function Column<ValueT, FilterParamsT>(
     kind: options.kind,
     buildFilter: options.buildFilter || (() => () => true),
     textQueryFilter: options.textQueryFilter,
+    fillWidth: options.fillWidth === undefined ? true : options.fillWidth,
     filterable:
       Boolean(options.filterable) &&
       Boolean(options.renderFilter) &&
@@ -70,7 +71,7 @@ function Column<ValueT, FilterParamsT>(
                 }}
               />
             )}
-            <ProvidedCell textQuery={props.textQuery} value={props.value} />
+            <ProvidedCell {...props} />
           </div>
         </div>
       );

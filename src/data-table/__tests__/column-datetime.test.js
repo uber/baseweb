@@ -52,7 +52,7 @@ describe('datetime column', () => {
       mapDataToValue: () => date,
     });
     const Cell = column.renderCell;
-    const {container} = render(<Cell value={date} />);
+    const {container} = render(<Cell value={date} x={0} y={0} />);
     const cell = container.querySelector('div');
     expect(cell.textContent).toBe('04-11-2011 10:20 30:00');
   });
@@ -65,7 +65,7 @@ describe('datetime column', () => {
       formatString: 'dd/MM/yyyy',
     });
     const Cell = column.renderCell;
-    const {container} = render(<Cell value={date} />);
+    const {container} = render(<Cell value={date} x={0} y={0} />);
     const cell = container.querySelector('div');
     expect(cell.textContent).toBe('11/04/2011');
   });

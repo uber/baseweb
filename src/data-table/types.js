@@ -28,6 +28,8 @@ export type ColumnsT =
 // unique options depending on the data visualization requirements.
 export type SharedColumnOptionsT<ValueT> = {|
   cellBlockAlign?: 'start' | 'center' | 'end',
+  fillWidth?: boolean,
+  filterable?: boolean,
   // eslint-disable-next-line flowtype/no-weak-types
   mapDataToValue: (data: any) => ValueT,
   maxWidth?: number,
@@ -36,25 +38,30 @@ export type SharedColumnOptionsT<ValueT> = {|
   title: string,
 |};
 
+export type RenderCellT<ValueT> = React.AbstractComponent<{
+  value: ValueT,
+  isMeasured?: boolean,
+  isSelected?: boolean,
+  onSelect?: () => void,
+  textQuery?: string,
+  x: number,
+  y: number,
+}>;
+
+export type RenderFilterT<ValueT, FilterParamsT> = React.AbstractComponent<{|
+  close: () => void,
+  data: ValueT[],
+  filterParams?: FilterParamsT,
+  setFilter: FilterParamsT => void,
+|}>;
+
 // eslint-disable-next-line flowtype/no-weak-types
 export type ColumnT<ValueT = any, FilterParamsT = any> = {|
   ...SharedColumnOptionsT<ValueT>,
   kind: ColumnsT,
   sortable: boolean,
-  filterable: boolean,
-  renderCell: React.AbstractComponent<{
-    value: ValueT,
-    isMeasured?: boolean,
-    isSelected?: boolean,
-    onSelect?: () => void,
-    textQuery?: string,
-  }>,
-  renderFilter: React.AbstractComponent<{|
-    close: () => void,
-    data: ValueT[],
-    filterParams?: FilterParamsT,
-    setFilter: FilterParamsT => void,
-  |}>,
+  renderCell: RenderCellT<ValueT>,
+  renderFilter: RenderFilterT<ValueT, FilterParamsT>,
   buildFilter: FilterParamsT => ValueT => boolean,
   textQueryFilter?: (string, ValueT) => boolean,
   sortFn: (ValueT, ValueT) => number,

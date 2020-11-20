@@ -60,9 +60,7 @@ function StringColumn(options: OptionsT): StringColumnT {
         return true;
       };
     },
-    textQueryFilter: function(textQuery, data) {
-      return data.toLowerCase().includes(textQuery.toLowerCase());
-    },
+    fillWidth: options.fillWidth,
     filterable: false,
     mapDataToValue: options.mapDataToValue,
     maxWidth: options.maxWidth,
@@ -74,6 +72,9 @@ function StringColumn(options: OptionsT): StringColumnT {
     sortable: options.sortable === undefined ? true : options.sortable,
     sortFn: function(a, b) {
       return a.localeCompare(b);
+    },
+    textQueryFilter: function(textQuery, data) {
+      return data.toLowerCase().includes(textQuery.toLowerCase());
     },
     title: options.title,
   });

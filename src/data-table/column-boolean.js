@@ -18,7 +18,6 @@ import {LocaleContext} from '../locale/index.js';
 
 type OptionsT = {|
   ...SharedColumnOptionsT<boolean>,
-  filterable?: boolean,
 |};
 
 type FilterParametersT = {|
@@ -105,6 +104,7 @@ function BooleanColumn(options: OptionsT): BooleanColumnT {
       };
     },
     cellBlockAlign: options.cellBlockAlign,
+    fillWidth: options.fillWidth,
     filterable: options.filterable === undefined ? true : options.filterable,
     mapDataToValue: options.mapDataToValue,
     maxWidth: options.maxWidth,

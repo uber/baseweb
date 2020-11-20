@@ -57,7 +57,11 @@ describe('anchor column', () => {
     const Cell = column.renderCell;
 
     const {container} = render(
-      <Cell value={{content: 'baseweb', href: 'https://baseweb.design'}} />,
+      <Cell
+        value={{content: 'baseweb', href: 'https://baseweb.design'}}
+        x={0}
+        y={0}
+      />,
     );
     const cell = container.querySelector('a');
     expect(cell.textContent).toBe('baseweb');
@@ -75,7 +79,11 @@ describe('anchor column', () => {
     const Cell = column.renderCell;
 
     const {container} = render(
-      <Cell value={{content: 'baseweb', href: 'https://baseweb.design'}} />,
+      <Cell
+        value={{content: 'baseweb', href: 'https://baseweb.design'}}
+        x={0}
+        y={0}
+      />,
     );
     const cell = container.querySelector('div');
     expect(cell.textContent).toBe('baseweb');

@@ -125,7 +125,11 @@ class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
       isGitHubEditDisabled = true;
     } else {
       isGitHubEditDisabled = route.isGitHubEditDisabled;
-      githubUrl = `${GH_URL}${path}.mdx`;
+      if (route.components) {
+        githubUrl = `${GH_URL}${path}/index.mdx`;
+      } else {
+        githubUrl = `${GH_URL}${path}.mdx`;
+      }
     }
 
     return (

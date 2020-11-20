@@ -53,7 +53,7 @@ describe('boolean column', () => {
     });
     const Cell = column.renderCell;
 
-    const {container} = render(<Cell value={true} />);
+    const {container} = render(<Cell value={true} x={0} y={0} />);
     const cell = container.querySelector('div');
     expect(cell.textContent).toBe('T');
   });
@@ -65,7 +65,7 @@ describe('boolean column', () => {
     });
     const Cell = column.renderCell;
 
-    const {container} = render(<Cell value={false} />);
+    const {container} = render(<Cell value={false} x={0} y={0} />);
     const cell = container.querySelector('div');
     expect(cell.textContent).toBe('F');
   });

@@ -176,6 +176,8 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
                 onSelect={
                   props.isSelectable && columnIndex === 0 ? () => {} : undefined
                 }
+                x={columnIndex}
+                y={rowIndex}
               />
             }
           />

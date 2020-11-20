@@ -53,7 +53,7 @@ describe('categorical column', () => {
     });
     const Cell = column.renderCell;
 
-    const {container} = render(<Cell value="A" />);
+    const {container} = render(<Cell value="A" x={0} y={0} />);
     const cell = container.querySelector('div');
     expect(cell.textContent).toBe('A');
   });

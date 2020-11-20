@@ -13,6 +13,7 @@ export const COLUMNS = Object.freeze({
   CUSTOM: 'CUSTOM',
   DATETIME: 'DATETIME',
   NUMERICAL: 'NUMERICAL',
+  ROW_INDEX: 'ROW_INDEX',
   STRING: 'STRING',
 });
 

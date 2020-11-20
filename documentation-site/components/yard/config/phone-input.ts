@@ -1,6 +1,8 @@
 import {PhoneInput, COUNTRIES, SIZE} from 'baseui/phone-input';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
+import selectConfig from './select';
+import inputConfig from './input';
 
 import {theme} from './input';
 
@@ -130,14 +132,16 @@ const PhoneInputConfig: TConfig = {
       description: 'Lets you customize all aspects of the component.',
       custom: {
         names: [
-          'CountrySelect',
+          {...selectConfig, componentName: 'CountrySelect'},
+          'CountrySelectContainer',
           'CountrySelectDropdown',
           'CountrySelectDropdownDialcodeColumn',
           'CountrySelectDropdownFlagColumn',
           'CountrySelectDropdownListItem',
           'CountrySelectDropdownNameColumn',
           'DialCode',
-          'Input',
+          'FlagContainer',
+          inputConfig,
         ],
         sharedProps: {},
       },
