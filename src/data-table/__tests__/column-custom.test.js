@@ -85,7 +85,7 @@ describe('custom column', () => {
     });
     const Cell = column.renderCell;
 
-    const {container} = render(<Cell value={{color: 'blue'}} />);
+    const {container} = render(<Cell value={{color: 'blue'}} x={0} y={0} />);
     const cell = container.querySelector('div');
     expect(cell.textContent).toBe('blue');
   });

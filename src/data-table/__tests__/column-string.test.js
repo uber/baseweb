@@ -35,7 +35,7 @@ describe('string column', () => {
     const column = StringColumn({title: 'column', mapDataToValue: () => ''});
     const Cell = column.renderCell;
 
-    const {container} = render(<Cell value="hello" />);
+    const {container} = render(<Cell value="hello" x={0} y={0} />);
     const cell = container.querySelector('div');
     expect(cell.textContent).toBe('hello');
   });

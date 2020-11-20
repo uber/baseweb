@@ -8,7 +8,11 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {StatefulDataTable, CategoricalColumn} from '../index.js';
+import {
+  StatefulDataTable,
+  CategoricalColumn,
+  RowIndexColumn,
+} from '../index.js';
 
 import Alert from '../../icon/alert.js';
 import Check from '../../icon/check.js';
@@ -32,6 +36,7 @@ const rowActions = [
 
 export default function Scenario() {
   const columns = [
+    RowIndexColumn(),
     CategoricalColumn({
       title: 'column',
       mapDataToValue: (data: string) => data,

@@ -62,6 +62,7 @@ function AnchorColumn(options: OptionsT): AnchorColumnT {
       };
     },
     cellBlockAlign: options.cellBlockAlign,
+    fillWidth: options.fillWidth,
     filterable: false,
     mapDataToValue: options.mapDataToValue,
     maxWidth: options.maxWidth,

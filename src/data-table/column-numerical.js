@@ -34,7 +34,6 @@ type NumericalOperations =
 
 type OptionsT = {|
   ...SharedColumnOptionsT<number>,
-  filterable?: boolean,
   format?: NumericalFormats | ((value: number) => string),
   highlight?: number => boolean,
   precision?: number,
@@ -503,6 +502,7 @@ function NumericalColumn(options: OptionsT): NumericalColumnT {
       };
     },
     cellBlockAlign: options.cellBlockAlign,
+    fillWidth: options.fillWidth,
     filterable: normalizedOptions.filterable,
     mapDataToValue: options.mapDataToValue,
     maxWidth: options.maxWidth,

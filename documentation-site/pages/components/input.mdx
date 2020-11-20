@@ -20,6 +20,7 @@ import WithTags from 'examples/input/with-tags.js';
 import Clearable from 'examples/input/clearable.js';
 import Password from 'examples/input/password.js';
 import BasicUncontrolled from 'examples/input/basic-uncontrolled.js';
+import WithSelect from 'examples/input/with-select.js';
 
 import {StatefulInput} from 'baseui/input';
 import * as InputExports from 'baseui/input';
@@ -121,6 +122,10 @@ Note, if all you want to do is change the icons, you could [update your theme](/
 </Example>
 
 In the example above we use `overrides` to add "tag" functionality to our input. Type a phrase and press enter to create a new tag. Use backspace to remove tags.
+
+<Example title="Combined with a Select component" path="input/with-select.js">
+  <WithSelect />
+</Example>
 
 <Example
   title="Stateful (uncontrolled) usage"
