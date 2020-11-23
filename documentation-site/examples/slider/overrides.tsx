@@ -1,15 +1,19 @@
 import * as React from 'react';
-import {Slider} from 'baseui/slider';
+import {Slider, SliderState} from 'baseui/slider';
 
 export default () => {
-  const [value, setValue] = React.useState([70]);
+  const [value, setValue] = React.useState<SliderState['value']>([
+    70,
+  ]);
   return (
     <Slider
       value={value}
       onChange={({value}) => setValue(value)}
       overrides={{
         InnerThumb: ({$value, $thumbIndex}) => (
-          <React.Fragment>{$value[$thumbIndex]}</React.Fragment>
+          <React.Fragment>
+            {Array.isArray($value) ? $value[$thumbIndex] : $value}
+          </React.Fragment>
         ),
         ThumbValue: () => null,
         Thumb: {

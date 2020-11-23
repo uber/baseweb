@@ -6,15 +6,17 @@ export interface STATE_CHANGE_TYPE {
   change: 'change';
 }
 
-export interface State {
-  value: number[];
+type SliderValue = number | number[];
+
+export interface SliderState {
+  value: SliderValue;
 }
 
 export type StateReducer = (
   stateType: string,
-  nextState: State,
-  currentState: State,
-) => State;
+  nextState: SliderState,
+  currentState: SliderState,
+) => SliderState;
 
 export interface SliderOverrides {
   Root?: Override<SharedProps>;
@@ -29,26 +31,26 @@ export interface SliderOverrides {
 }
 
 export interface SliderProps {
-  value: number[];
+  value: SliderValue;
   min?: number;
   max?: number;
   step?: number;
   overrides?: SliderOverrides;
   disabled?: boolean;
   marks?: boolean;
-  onChange?: (e: State) => any;
-  onFinalChange?: (e: State) => any;
+  onChange?: (e: SliderState) => any;
+  onFinalChange?: (e: SliderState) => any;
 }
 
 export interface StatefulSliderProps {
   overrides?: SliderOverrides;
-  initialState?: State;
+  initialState?: SliderState;
   min?: number;
   max?: number;
   step?: number;
   marks?: boolean;
-  onChange?: (e: State) => any;
-  onFinalChange?: (e: State) => any;
+  onChange?: (e: SliderState) => any;
+  onFinalChange?: (e: SliderState) => any;
 }
 
 export interface StatefulContainerProps {
@@ -58,10 +60,10 @@ export interface StatefulContainerProps {
   max?: number;
   step?: number;
   marks?: boolean;
-  initialState?: State;
+  initialState?: SliderState;
   stateReducer?: StateReducer;
-  onChange?: (e: State) => any;
-  onFinalChange?: (e: State) => any;
+  onChange?: (e: SliderState) => any;
+  onFinalChange?: (e: SliderState) => any;
 }
 
 export type SharedProps = {
@@ -70,7 +72,7 @@ export type SharedProps = {
   $max: number;
   $min: number;
   $thumbIndex: number;
-  $value: Array<number>;
+  $value: SliderValue;
   $marks: boolean;
 };
 
@@ -78,11 +80,11 @@ export const Slider: React.FC<SliderProps>;
 export const StatefulSlider: React.FC<StatefulSliderProps>;
 export class StatefulContainer extends React.Component<
   StatefulContainerProps,
-  State
+  SliderState
 > {
-  onChange(params: State): any;
-  onFinalChange?: (params: State) => any;
-  internalSetState(type: 'change', {value}: State): void;
+  onChange(params: SliderState): any;
+  onFinalChange?: (params: SliderState) => any;
+  internalSetState(type: 'change', {value}: SliderState): void;
 }
 
 export const StyledRoot: StyletronComponent<any>;

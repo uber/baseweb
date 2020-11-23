@@ -40,12 +40,12 @@ class StatefulSliderContainer extends React.Component<
     onFinalChange: () => {},
   };
 
-  onChange = (params: {value: Array<number>}) => {
+  onChange = (params: ParamsT) => {
     this.internalSetState(STATE_CHANGE_TYPE.change, params);
     return this.props.onChange({...params});
   };
 
-  onFinalChange = (params: {value: Array<number>}) => {
+  onFinalChange = (params: ParamsT) => {
     this.internalSetState(STATE_CHANGE_TYPE.finalChange, params);
     return this.props.onFinalChange({...params});
   };

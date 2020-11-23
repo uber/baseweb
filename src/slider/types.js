@@ -11,7 +11,8 @@ import {STATE_CHANGE_TYPE} from './constants.js';
 
 export type ChangeActionT = $Keys<typeof STATE_CHANGE_TYPE>;
 export type ParamsT = {
-  value: Array<number>,
+  /** Position of the thumbs. It can be a single point (one thumb) or 2 points array (range thumbs). */
+  value: number | Array<number>,
 };
 export type OverridesT = {
   Root?: OverrideT,
@@ -26,8 +27,7 @@ export type OverridesT = {
 };
 
 export type PropsT = {
-  /** Position of the thumbs. It can be a single point (one thumb) or 2 points array (range thumbs). */
-  value: Array<number>,
+  ...ParamsT,
   /** The minimum allowed value of the slider. Should not be bigger than max. */
   min?: number,
   /** The maximum allowed value of the slider. Should not be smaller than min. */
@@ -50,7 +50,7 @@ export type PropsT = {
 };
 
 export type StateT = {|
-  value: Array<number>,
+  value: $ElementType<ParamsT, 'value'>,
 |};
 
 export type StateReducerT = (
@@ -96,6 +96,7 @@ export type StylePropsT = {
   $max?: number,
   $min?: number,
   $thumbIndex?: number,
-  $value?: Array<number>,
+  $value?: $ElementType<ParamsT, 'value'>,
   $isFocusVisible?: boolean,
+  $theme: *,
 };

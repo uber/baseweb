@@ -1,8 +1,10 @@
 import * as React from 'react';
-import {Slider} from 'baseui/slider';
+import {Slider, SliderState} from 'baseui/slider';
 
 export default () => {
-  const [value, setValue] = React.useState([60]);
+  const [value, setValue] = React.useState<SliderState['value']>([
+    60,
+  ]);
   return (
     <Slider
       value={value}

@@ -31,13 +31,17 @@ import {ThemeContext} from '../styles/theme-provider.js';
 // value.length should not be bigger than two
 // because our design doesn't support more than
 // two thumbs
-const limitValue = (value: number[]) => {
-  if (value.length > 2 || value.length === 0) {
-    throw new Error(
-      'the value prop represents positions of thumbs, so its length can be only one or two',
-    );
+const limitValue = (value: number | number[]): number[] => {
+  if (Array.isArray(value)) {
+    if (value.length > 2 || value.length === 0) {
+      throw new Error(
+        'the value prop represents positions of thumbs, so its length can be only one or two',
+      );
+    }
+    return value;
   }
-  return value;
+
+  return [value];
 };
 
 function Slider({
@@ -107,6 +111,8 @@ function Slider({
   );
   const [Mark, markProps] = getOverrides(overrides.Mark, StyledMark);
 
+  const isValueNumeric = !Array.isArray(providedValue);
+
   return (
     <Root
       data-baseweb="slider"
@@ -121,7 +127,7 @@ function Slider({
         max={max}
         values={value}
         disabled={disabled}
-        onChange={value => onChange({value})}
+        onChange={value => onChange({value: isValueNumeric ? value[0] : value})}
         onFinalChange={value => onFinalChange({value})}
         rtl={theme.direction === 'rtl'}
         renderTrack={({props, children, isDragged}) => (

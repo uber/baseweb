@@ -35,19 +35,22 @@ export const Track = styled<StylePropsT>('div', props => {
 });
 Track.displayName = 'StyledTrack';
 
-export const InnerTrack = styled<StylePropsT>('div', props => {
+export const InnerTrack = styled<StylePropsT>('div', (props: StylePropsT) => {
   const {$theme, $value = [], $min, $max, $disabled} = props;
   const {colors, borders, direction} = $theme;
   const borderRadius = $theme.borders.useRoundedCorners ? borders.radius100 : 0;
+
+  const values: number[] = Array.isArray($value) ? $value : [$value];
+
   return {
     borderTopLeftRadius: borderRadius,
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
     background: getTrackBackground({
-      values: $value,
+      values,
       colors:
-        $value.length === 1
+        values.length === 1
           ? [
               $disabled ? colors.borderOpaque : colors.primary,
               $disabled ? colors.backgroundSecondary : colors.borderOpaque,
