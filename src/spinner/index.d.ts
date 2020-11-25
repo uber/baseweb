@@ -44,9 +44,3 @@ export const StyledSvg: StyletronComponent<any>;
 export const StyledTrackPath: StyletronComponent<any>;
 export const StyledActivePath: StyletronComponent<any>;
 export const StyledSpinnerNext: StyletronComponent<any>;
-
-export enum SIZE {
-  small = 'small',
-  medium = 'medium',
-  large = 'large',
-}
