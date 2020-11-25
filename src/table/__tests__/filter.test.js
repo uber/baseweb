@@ -58,28 +58,10 @@ describe('Table-Filter', () => {
     expect(queryByTestId(container, 'content')).toBeNull();
   });
 
-  it('does not display close button when enabled', () => {
-    const {container} = render(
-      <TestBaseProvider>
-        <Filter
-          hasCloseButton={false}
-        >
-          hello
-        </Filter>
-      </TestBaseProvider>,
-    );
-    fireEvent.click(container.querySelector('button'));
-    expect(getByText(container, 'Close')).toBeNull();
-  });
-
   it('does display close button when enabled', () => {
     const {container} = render(
       <TestBaseProvider>
-        <Filter
-          hasCloseButton={true}
-        >
-          hello
-        </Filter>
+        <Filter hasCloseButton={true}>hello</Filter>
       </TestBaseProvider>,
     );
     fireEvent.click(container.querySelector('button'));
