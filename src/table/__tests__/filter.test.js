@@ -58,6 +58,51 @@ describe('Table-Filter', () => {
     expect(queryByTestId(container, 'content')).toBeNull();
   });
 
+  it('does not display close button when enabled', () => {
+    const {container} = render(
+      <TestBaseProvider>
+        <Filter
+          hasCloseButton={false}
+        >
+          hello
+        </Filter>
+      </TestBaseProvider>,
+    );
+    fireEvent.click(container.querySelector('button'));
+    expect(getByText(container, 'Close')).toBeNull();
+  });
+
+  it('does display close button when enabled', () => {
+    const {container} = render(
+      <TestBaseProvider>
+        <Filter
+          hasCloseButton={true}
+        >
+          hello
+        </Filter>
+      </TestBaseProvider>,
+    );
+    fireEvent.click(container.querySelector('button'));
+    expect(getByText(container, 'Close')).not.toBeNull();
+  });
+
+  it('does close filter when when closed is clicked', () => {
+    const {container} = render(
+      <TestBaseProvider>
+        <Filter
+          hasCloseButton={true}
+          overrides={{Content: {props: {'data-testid': 'content'}}}}
+        >
+          hello
+        </Filter>
+      </TestBaseProvider>,
+    );
+    fireEvent.click(container.querySelector('button'));
+    const close = getByText(container, 'Close');
+    fireEvent.click(close);
+    expect(queryByTestId(container, 'content')).toBeNull();
+  });
+
   it('calls provided onSelectAll handler', () => {
     const spy = jest.fn();
     const {container} = render(

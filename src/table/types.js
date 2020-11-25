@@ -54,6 +54,8 @@ export type FilterProps = {|
   children: React.Node,
   /** Disables the icon click action. Filter menu does not open when clicked. */
   disabled?: boolean,
+  /** Adds a button to close the filter menu. */
+  hasCloseButton?: boolean,
   /** Callback for when the 'reset' button is clicked. */
   onReset?: () => mixed,
   /** Callback for when the 'select all' button is clicked. */
