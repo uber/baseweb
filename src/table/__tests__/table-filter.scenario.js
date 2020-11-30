@@ -76,6 +76,7 @@ class FilterTable extends React.Component<any, any> {
               active={!!this.state.filters.filter(Boolean).length}
               onReset={this.handleReset}
               onSelectAll={this.handleSelectAll}
+              hasCloseButton={true}
             >
               {this.FILTER_FUNCTIONS.map((_, index) => (
                 <FilterCheckbox
