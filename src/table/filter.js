@@ -54,7 +54,7 @@ export default function Filter(props: FilterProps) {
         }
         return nextState;
       }}
-      content={
+      content={({close}) => (
         // eslint-disable-next-line jsx-a11y/no-autofocus
         <FocusLock autoFocus={false}>
           <Heading {...headingProps}>Filter Column</Heading>
@@ -79,9 +79,17 @@ export default function Filter(props: FilterProps) {
             >
               Reset
             </Button>
+
+            { props.hasCloseButton && <Button
+              kind={KIND.minimal}
+              size={SIZE.compact}
+              onClick={close}
+            >
+              Close
+            </Button>}
           </Footer>
         </FocusLock>
-      }
+      )}
     >
       <MenuButton
         $active={props.active}
