@@ -187,8 +187,14 @@ const tagYardConfig = {
             description: 'Is tag active.',
           },
           $disabled: 'disabled',
-          $isHovered: 'isHovered',
-          $isFocused: 'isFocused',
+          $isHovered: {
+            type: PropTypes.Boolean,
+            description: 'Is tag hovered.',
+          },
+          $isFocused: {
+            type: PropTypes.Boolean,
+            description: 'Is tag focused.',
+          },
         },
       },
     },
