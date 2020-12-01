@@ -1,0 +1,17 @@
+{
+  "author": "Vojtech Miksu",
+  "authorLink": "https://twitter.com/vmiksu",
+  "title": "Nested Overrides Playground",
+  "tagline": "Complex components are easier to customize.",
+  "date": "1 December 2020",
+  "coverImage": "https://user-images.githubusercontent.com/1387913/100666854-922e5200-330e-11eb-8d90-c7869dbd32bd.jpg",
+  "coverImageWidth": 1200,
+  "coverImageHeight": 602,
+  "keyWords": [
+    "Playground",
+    "React View",
+    "Documentation",
+    "Overrides",
+    "Nested"
+  ]
+}
