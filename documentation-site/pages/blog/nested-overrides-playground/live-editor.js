@@ -70,6 +70,7 @@ const selectYardConfig = {
       value: {
         Tag: {
           active: true,
+          nested: tagConfig,
           nestedValue: {
             Root: {
               style:
