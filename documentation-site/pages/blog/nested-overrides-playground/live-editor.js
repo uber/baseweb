@@ -4,10 +4,13 @@ Copyright (c) 2018-2020 Uber Technologies, Inc.
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
+// @flow
 import * as React from 'react';
+// $FlowFixMe
 import Yard from '../../../components/yard/index';
 import {Select, SIZE, TYPE} from 'baseui/select';
 import {PropTypes} from 'react-view';
+// $FlowFixMe
 import tagConfig from '../../../components/yard/config/tag';
 
 const selectYardConfig = {
