@@ -25,6 +25,7 @@ const TableOfContents = props => {
     content.forEach &&
     content.forEach(element => {
       if (
+        element.props &&
         element.props.name &&
         element.props.name.startsWith('h') &&
         element.props.children &&
@@ -37,7 +38,7 @@ const TableOfContents = props => {
         });
       }
 
-      if (element.props.title) {
+      if (element.props && element.props.title) {
         TOC.push({
           name: element.props.title,
           anchor: `#${slugify(element.props.title)}`,
@@ -45,7 +46,7 @@ const TableOfContents = props => {
         });
       }
 
-      if (element.props.api && element.props.heading) {
+      if (element.props && element.props.api && element.props.heading) {
         TOC.push({
           name: element.props.heading,
           anchor: `#${slugify(element.props.heading)}`,

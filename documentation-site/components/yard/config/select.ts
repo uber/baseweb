@@ -170,7 +170,7 @@ const SelectConfig: TConfig = {
     valueKey: {
       value: undefined,
       type: PropTypes.String,
-      description: `/** Defines a key name for an option's unique identifier value.
+      description: `Defines a key name for an option's unique identifier value.
         The value of the 'valueKey' prop is used to identify what options are selected
         or removed from the selection, it also used for default filtering out the
         selected options from the dropdown list.`,
