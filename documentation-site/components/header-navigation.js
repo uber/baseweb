@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import Link from 'next/link';
+import Img from 'next/image';
 import {themedUseStyletron as useStyletron} from '../pages/_app';
 import Menu from 'baseui/icon/menu';
 import DarkLogo from '../images/base-web.svg';
@@ -81,10 +82,11 @@ export default function HeaderNavigation({
               },
             })}
           >
-            <img
+            <Img
               src={theme.name.startsWith('dark') ? LightLogo : DarkLogo}
-              className={css({height: '40px'})}
               alt="Base Web"
+              height="40px"
+              width="97px"
             />
           </a>
         </Link>

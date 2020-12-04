@@ -201,6 +201,8 @@ const tagYardConfig = {
   },
 };
 
-export default () => {
+function LiveEditorTag() {
   return <Yard placeholderHeight={34} {...tagYardConfig} initialTab="1" />;
-};
+}
+
+export default LiveEditorTag;
