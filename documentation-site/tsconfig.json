@@ -9,7 +9,12 @@
     "esModuleInterop": true,
     "module": "esnext",
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "baseUrl": ".",
+    "paths": {
+      "baseui/*": "../dist/*",
+      "examples/*": "examples/*"
+    }
   },
   "exclude": ["node_modules"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
