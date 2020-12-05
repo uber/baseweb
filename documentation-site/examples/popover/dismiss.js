@@ -5,7 +5,7 @@ import {Button} from 'baseui/button';
 import {StatefulPopover} from 'baseui/popover';
 import {Paragraph3} from 'baseui/typography';
 
-export default () => {
+export default function Example() {
   const [css, theme] = useStyletron();
   const contentCx = css({
     padding: theme.sizing.scale500,
@@ -30,4 +30,4 @@ export default () => {
       <Button>Click Me</Button>
     </StatefulPopover>
   );
-};
+}

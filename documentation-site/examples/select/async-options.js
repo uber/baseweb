@@ -72,7 +72,7 @@ function debounce(fn, delay) {
   return debounced;
 }
 
-export default function() {
+export default function Example() {
   const [value, setValue] = React.useState([]);
   const [options, setOptions] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);

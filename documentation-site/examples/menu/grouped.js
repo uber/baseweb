@@ -17,21 +17,23 @@ const ITEMS = {
   ],
 };
 
-export default () => (
-  <StatefulMenu
-    items={ITEMS}
-    onItemSelect={({item}) => console.log(item)}
-    overrides={{
-      List: {
-        style: {
-          width: '200px',
+export default function Example() {
+  return (
+    <StatefulMenu
+      items={ITEMS}
+      onItemSelect={({item}) => console.log(item)}
+      overrides={{
+        List: {
+          style: {
+            width: '200px',
+          },
         },
-      },
-      Option: {
-        props: {
-          getItemLabel: item => item.id,
+        Option: {
+          props: {
+            getItemLabel: item => item.id,
+          },
         },
-      },
-    }}
-  />
-);
+      }}
+    />
+  );
+}

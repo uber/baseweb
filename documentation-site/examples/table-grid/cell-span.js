@@ -31,7 +31,7 @@ const row = [
 
 const data = [row, row, row];
 
-export default function() {
+export default function Example() {
   const [css] = useStyletron();
   return (
     <div className={css({height: '600px'})}>

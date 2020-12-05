@@ -5,7 +5,7 @@ import {Button} from 'baseui/button';
 import {StatefulPopover, PLACEMENT} from 'baseui/popover';
 import {Paragraph3, Label3} from 'baseui/typography';
 
-export default () => {
+export default function Example() {
   const [css] = useStyletron();
   return (
     <div className={css({height: '300px', overflow: 'auto'})}>
@@ -40,4 +40,4 @@ export default () => {
       </div>
     </div>
   );
-};
+}

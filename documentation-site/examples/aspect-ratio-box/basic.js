@@ -29,17 +29,19 @@ const bodyProps = {
   },
 };
 
-export default () => (
-  <React.Fragment>
-    <AspectRatioBox>
-      <AspectRatioBoxBody {...bodyProps}>
-        Square by default
-      </AspectRatioBoxBody>
-    </AspectRatioBox>
-    <AspectRatioBox aspectRatio={16 / 9}>
-      <AspectRatioBoxBody {...bodyProps}>
-        16:9 aspect ratio
-      </AspectRatioBoxBody>
-    </AspectRatioBox>
-  </React.Fragment>
-);
+export default function Example() {
+  return (
+    <React.Fragment>
+      <AspectRatioBox>
+        <AspectRatioBoxBody {...bodyProps}>
+          Square by default
+        </AspectRatioBoxBody>
+      </AspectRatioBox>
+      <AspectRatioBox aspectRatio={16 / 9}>
+        <AspectRatioBoxBody {...bodyProps}>
+          16:9 aspect ratio
+        </AspectRatioBoxBody>
+      </AspectRatioBox>
+    </React.Fragment>
+  );
+}

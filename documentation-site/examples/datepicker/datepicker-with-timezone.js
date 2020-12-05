@@ -4,7 +4,7 @@ import {DatePicker} from 'baseui/datepicker';
 import {TimezonePicker} from 'baseui/timezonepicker';
 import {FormControl} from 'baseui/form-control';
 
-export default () => {
+export default function Example() {
   const [date, setDate] = useState<any>(new Date());
   const [tz, setZone] = useState<any>({
     id: 'America/Fort_Nelson',
@@ -29,4 +29,4 @@ export default () => {
       </FormControl>
     </React.Fragment>
   );
-};
+}

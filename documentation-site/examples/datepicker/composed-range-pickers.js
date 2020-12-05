@@ -11,7 +11,7 @@ import {TimePicker} from 'baseui/timepicker';
 const START_DATE = new Date(2019, 3, 1, 12, 0, 0);
 const END_DATE = new Date(2019, 3, 10, 16, 0, 0);
 
-export default () => {
+export default function Example() {
   const [css, theme] = useStyletron();
   const [dates, setDates] = useState<any>([START_DATE, END_DATE]);
 
@@ -122,4 +122,4 @@ export default () => {
       </div>
     </div>
   );
-};
+}

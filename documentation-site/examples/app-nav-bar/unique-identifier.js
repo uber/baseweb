@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import {AppNavBar, setItemActive} from 'baseui/app-nav-bar';
 
-export default function Scenario() {
+export default function Example() {
   const [mainItems, setMainItems] = React.useState([
     {label: 'label', info: {id: 1}},
     {label: 'label', info: {id: 2}},

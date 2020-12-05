@@ -9,27 +9,29 @@ const ITEMS = Array.from({length: 4}, () => ({
   imgUrl: 'https://via.placeholder.com/60x60',
 }));
 
-export default () => (
-  <StatefulMenu
-    items={ITEMS}
-    overrides={{
-      List: {
-        style: {
-          width: '350px',
+export default function Example() {
+  return (
+    <StatefulMenu
+      items={ITEMS}
+      overrides={{
+        List: {
+          style: {
+            width: '350px',
+          },
         },
-      },
-      Option: {
-        component: OptionProfile,
-        props: {
-          getProfileItemLabels: ({title, subtitle, body}) => ({
-            title,
-            subtitle,
-            body,
-          }),
-          getProfileItemImg: item => item.imgUrl,
-          getProfileItemImgText: item => item.title,
+        Option: {
+          component: OptionProfile,
+          props: {
+            getProfileItemLabels: ({title, subtitle, body}) => ({
+              title,
+              subtitle,
+              body,
+            }),
+            getProfileItemImg: item => item.imgUrl,
+            getProfileItemImgText: item => item.title,
+          },
         },
-      },
-    }}
-  />
-);
+      }}
+    />
+  );
+}

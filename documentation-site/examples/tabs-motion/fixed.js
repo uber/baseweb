@@ -3,7 +3,7 @@
 import * as React from 'react';
 import {Tabs, Tab, FILL} from 'baseui/tabs-motion';
 
-export default () => {
+export default function Example() {
   const [activeKey, setActiveKey] = React.useState(0);
   return (
     <Tabs
@@ -18,4 +18,4 @@ export default () => {
       </Tab>
     </Tabs>
   );
-};
+}

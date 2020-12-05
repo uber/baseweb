@@ -121,6 +121,6 @@ const DATA = Array.from({length: 45}, (_, i) =>
   Array.from({length: 5}, () => `row: ${i + 1}`),
 );
 
-export default () => (
-  <PaginatedTable columns={COLUMNS} data={DATA} />
-);
+export default function Example() {
+  return <PaginatedTable columns={COLUMNS} data={DATA} />;
+}

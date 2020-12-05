@@ -7,7 +7,7 @@ import {StatefulDatePicker} from 'baseui/datepicker';
 import {TimePicker} from 'baseui/timepicker';
 import {TimezonePicker} from 'baseui/timezonepicker';
 
-export default () => {
+export default function Example() {
   const [css, theme] = useStyletron();
   return (
     <React.Fragment>
@@ -109,4 +109,4 @@ export default () => {
       </div>
     </React.Fragment>
   );
-};
+}

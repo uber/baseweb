@@ -8,7 +8,7 @@ const iso2FlagEmoji = (iso: any) =>
     ),
   );
 
-export default () => {
+export default function Example() {
   const [text, setText] = useState('');
   const [country, setCountry] = useState(COUNTRIES.US);
   return (
@@ -24,4 +24,4 @@ export default () => {
       mapIsoToLabel={iso => iso2FlagEmoji(iso)}
     />
   );
-};
+}
