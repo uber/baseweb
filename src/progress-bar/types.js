@@ -48,3 +48,22 @@ export type StylePropsT = {
   $successValue: number,
   $value: number,
 };
+
+export type ProgressBarRoundedPropsT = {
+  /** A number between 0 and 1 inclusive. Example: 0.75. */
+  progress?: number,
+  /** The size of the progress bar. */
+  size?: SizeT,
+  /** Toggle animating progress. */
+  animate?: boolean,
+  /** Toggle container rendering as a block or inline. */
+  inline?: boolean,
+  /** Overrides for sub-nodes in the rendering tree. */
+  overrides?: {
+    Root?: OverrideT,
+    Svg?: OverrideT,
+    TrackBackground?: OverrideT,
+    TrackForeground?: OverrideT,
+    Text?: OverrideT,
+  },
+};

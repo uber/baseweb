@@ -9,21 +9,21 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {SIZE} from './constants.js';
 import {
-  StyledSpinnerDeterminateRoot,
-  StyledSpinnerDeterminateSvg,
-  StyledSpinnerDeterminateTrackBackground,
-  StyledSpinnerDeterminateTrackForeground,
-  StyledSpinnerDeterminateText,
+  StyledProgressBarRoundedRoot,
+  StyledProgressBarRoundedSvg,
+  StyledProgressBarRoundedTrackBackground,
+  StyledProgressBarRoundedTrackForeground,
+  StyledProgressBarRoundedText,
 } from './styled-components.js';
 import {useOverrides} from '../helpers/overrides.js';
-import type {SpinnerDeterminatePropsT} from './types.js';
+import type {ProgressBarRoundedPropsT} from './types.js';
 
 const defaults = {
-  Root: StyledSpinnerDeterminateRoot,
-  Svg: StyledSpinnerDeterminateSvg,
-  TrackBackground: StyledSpinnerDeterminateTrackBackground,
-  TrackForeground: StyledSpinnerDeterminateTrackForeground,
-  Text: StyledSpinnerDeterminateText,
+  Root: StyledProgressBarRoundedRoot,
+  Svg: StyledProgressBarRoundedSvg,
+  TrackBackground: StyledProgressBarRoundedTrackBackground,
+  TrackForeground: StyledProgressBarRoundedTrackForeground,
+  Text: StyledProgressBarRoundedText,
 };
 
 function roundTo(n, digits) {
@@ -36,14 +36,14 @@ function roundTo(n, digits) {
   return +test.toFixed(digits);
 }
 
-function SpinnerDeterminate({
+function ProgressBarRounded({
   progress = 0,
   size = SIZE.medium,
   animate = true,
   inline = false,
   overrides = {},
   ...restProps
-}: SpinnerDeterminatePropsT) {
+}: ProgressBarRoundedPropsT) {
   const {
     Root: [Root, rootProps],
     Svg: [Svg, svgProps],
@@ -96,7 +96,7 @@ function SpinnerDeterminate({
 
   return (
     <Root
-      data-baseweb="spinner-determinate"
+      data-baseweb="progressbar-rounded"
       role="progressbar"
       aria-valuenow={progress}
       aria-valuemin={0}
@@ -125,4 +125,4 @@ function SpinnerDeterminate({
   );
 }
 
-export default SpinnerDeterminate;
+export default ProgressBarRounded;
