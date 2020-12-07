@@ -27,6 +27,23 @@ export interface ProgressBarProps {
 }
 export class ProgressBar extends React.Component<ProgressBarProps> {}
 
+export interface ProgressBarRoundedOverrides {
+  Root?: Override<any>;
+  Svg?: Override<any>;
+  TrackBackground?: Override<any>;
+  TrackForeground?: Override<any>;
+  Text?: Override<any>;
+}
+
+export interface ProgressBarRoundedProps {
+  progress?: number;
+  size?: SIZE[keyof SIZE];
+  animate?: boolean;
+  inline?: boolean;
+  overrides?: ProgressBarRoundedOverrides;
+}
+export const ProgressBarRounded: React.FC<ProgressBarRoundedProps>;
+
 export const SIZE: SIZE;
 export const StyledRoot: StyletronComponent<any>;
 export const StyledBarContainer: StyletronComponent<any>;

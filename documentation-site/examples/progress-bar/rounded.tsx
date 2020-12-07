@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Button} from 'baseui/button';
-import {SpinnerDeterminate} from 'baseui/spinner';
+import {ProgressBarRounded} from 'baseui/progress-bar';
 import {useStyletron} from 'baseui';
 
 export default () => {
@@ -34,7 +34,7 @@ export default () => {
         {progress >= 1 ? 'Reset' : 'Load'}
       </Button>
       <div className={css({width: '10px'})} />
-      <SpinnerDeterminate progress={progress} />
+      <ProgressBarRounded progress={progress} />
     </div>
   );
 };

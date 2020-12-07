@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {SpinnerDeterminate, SIZE} from '../index.js';
+import {ProgressBarRounded, SIZE} from '../index.js';
 
 export default function Scenario() {
   // Mimic some loading
@@ -26,11 +26,11 @@ export default function Scenario() {
   }, [progress]);
   return (
     <React.Fragment>
-      <SpinnerDeterminate progress={progress} size={SIZE.small} />
+      <ProgressBarRounded progress={progress} size={SIZE.small} />
       <br />
-      <SpinnerDeterminate progress={progress} size={SIZE.medium} />
+      <ProgressBarRounded progress={progress} size={SIZE.medium} />
       <br />
-      <SpinnerDeterminate progress={progress} size={SIZE.large} />
+      <ProgressBarRounded progress={progress} size={SIZE.large} />
     </React.Fragment>
   );
 }
