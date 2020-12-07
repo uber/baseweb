@@ -43,6 +43,7 @@ const Yard: React.FC<TYardProps> = ({
   theme,
   imports,
   mapTokensToProps,
+  initialTab,
 }) => {
   const [css, baseTheme] = useStyletron();
   const componentTheme = getThemeFromContext(baseTheme, theme);
@@ -114,7 +115,7 @@ const Yard: React.FC<TYardProps> = ({
       />
       <Error msg={params.errorProps.msg} isPopup />
       {showOverrides || showTheme ? (
-        <YardTabs>
+        <YardTabs initialTab={initialTab}>
           <YardTab title={`Props${activeProps > 0 ? ` (${activeProps})` : ''}`}>
             <Knobs {...params.knobProps} />
           </YardTab>

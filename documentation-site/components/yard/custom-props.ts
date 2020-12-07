@@ -90,7 +90,11 @@ const generateOverrides = (value: TGenerateValue) => {
       ]),
     );
   });
-  return t.objectExpression(keys);
+  const keysWithoutNulls = keys.filter((val: any) => !!val);
+  if (keysWithoutNulls.length) {
+    return t.objectExpression(keysWithoutNulls);
+  }
+  return null;
 };
 
 export const customProps = {

@@ -1,10 +1,17 @@
+/*
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
+import * as React from 'react';
+// $FlowFixMe
+import Yard from '../../../components/yard/index';
 import {Tag, KIND, VARIANT, SIZE} from 'baseui/tag';
 import {PropTypes} from 'react-view';
-import {TConfig} from '../types';
 
-const tagProps = require('!!extract-react-types-loader!../../../../src/tag/tag.js');
-
-const TagConfig: TConfig = {
+const tagYardConfig = {
   componentName: 'Tag',
   imports: {
     'baseui/tag': {
@@ -161,7 +168,12 @@ const TagConfig: TConfig = {
       hidden: true,
     },
     overrides: {
-      value: undefined,
+      value: {
+        Text: {
+          active: true,
+          style: '({ $theme }) => ({\n  color: $theme.colors.accent,\n})',
+        },
+      },
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
@@ -187,9 +199,8 @@ const TagConfig: TConfig = {
       },
     },
   },
-  mapTokensToProps: {
-    Tag: tagProps,
-  },
 };
 
-export default TagConfig;
+export default () => {
+  return <Yard placeholderHeight={34} {...tagYardConfig} initialTab="1" />;
+};
