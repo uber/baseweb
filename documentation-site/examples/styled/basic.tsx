@@ -13,5 +13,5 @@ const BlueDiv = styled<
 }));
 
 export default function Example() {
-  return <BlueDiv>This is a blue div</BlueDiv>;
+  return <BlueDiv $color="accent">This is a blue div</BlueDiv>;
 }
