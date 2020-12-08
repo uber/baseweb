@@ -30,7 +30,7 @@ const DateBox = props => (
   </AspectRatioBox>
 );
 
-export default () => {
+export default function Example() {
   const [css] = useStyletron();
   return (
     <div className={css({display: 'flex', flexWrap: 'wrap'})}>
@@ -64,4 +64,4 @@ export default () => {
       <DateBox>28</DateBox>
     </div>
   );
-};
+}

@@ -9,7 +9,7 @@ import {TimezonePicker} from 'baseui/timezonepicker';
 
 const DATE = new Date(2019, 3, 1, 12, 0, 0);
 
-export default () => {
+export default function Example() {
   const [css, theme] = useStyletron();
   const [date, setDate] = useState<any>(DATE);
   const [zone, setZone] = useState(null);
@@ -57,4 +57,4 @@ export default () => {
       </div>
     </div>
   );
-};
+}

@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Button} from 'baseui/button';
 import {Drawer, ANCHOR} from 'baseui/drawer';
 
-export default () => {
+export default function Example() {
   let initialState: {[key: string]: boolean} = {};
   for (let anchor in ANCHOR) {
     initialState[anchor] = false;
@@ -47,4 +47,4 @@ export default () => {
       ))}
     </React.Fragment>
   );
-};
+}

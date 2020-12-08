@@ -3,7 +3,7 @@ import * as React from 'react';
 import {Avatar} from 'baseui/avatar';
 import {useStyletron, expandBorderStyles} from 'baseui/styles';
 
-export default () => {
+export default function Example() {
   const [css] = useStyletron();
   return (
     <React.Fragment>
@@ -85,4 +85,4 @@ export default () => {
       </div>
     </React.Fragment>
   );
-};
+}

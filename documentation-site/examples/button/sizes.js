@@ -3,7 +3,7 @@ import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {Button, SIZE} from 'baseui/button';
 
-export default () => {
+export default function Example() {
   const [css, theme] = useStyletron();
   const space = css({marginBottom: theme.sizing.scale300});
   return (
@@ -15,4 +15,4 @@ export default () => {
       <Button size={SIZE.large}>Large size</Button>
     </React.Fragment>
   );
-};
+}

@@ -9,4 +9,6 @@ const DATA = [
   ['Joe Black', 33, '100 Macquarie St., Sydney, Australia'],
 ];
 
-export default () => <Table columns={COLUMNS} data={DATA} />;
+export default function Example() {
+  return <Table columns={COLUMNS} data={DATA} />;
+}

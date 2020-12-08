@@ -27,7 +27,7 @@ function Wrapper(props: any) {
     </div>
   );
 }
-export default () => {
+export default function Example() {
   const [isFirstOpen, setIsFirstOpen] = React.useState(false);
   const [isSecondOpen, setIsSecondOpen] = React.useState(false);
   return (
@@ -60,4 +60,4 @@ export default () => {
       ) : null}
     </React.Fragment>
   );
-};
+}

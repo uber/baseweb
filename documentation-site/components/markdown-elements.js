@@ -10,6 +10,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import Head from 'next/head';
+import Img from 'next/image';
 import {Block} from 'baseui/block';
 import {StyledLink} from 'baseui/link';
 import Code from './code';
@@ -171,6 +172,24 @@ export const H6 = ({children}: {children: React.Node}) => (
   </Heading>
 );
 
+export const Image = ({
+  alt,
+  src,
+  height,
+  width,
+}: {
+  alt?: string,
+  src: string,
+  height?: string,
+  width?: string,
+}) => {
+  if (height || width) {
+    return <Img src={src} alt={alt} height={height} width={width} />;
+  } else {
+    return <Img src={src} alt={alt} layout="fill" />;
+  }
+};
+
 export default {
   code: Code,
   h1: H1,
@@ -179,6 +198,7 @@ export default {
   h4: H4,
   h5: H5,
   h6: H6,
+  img: Image,
   li: ListItem,
   p: Paragraph,
   ul: UnorderedList,

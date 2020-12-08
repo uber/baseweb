@@ -4,7 +4,7 @@ import * as React from 'react';
 import {toaster, ToasterContainer} from 'baseui/toast';
 import {Button} from 'baseui/button';
 
-export default () => {
+export default function Example() {
   const [toastKey, setToastKey] = React.useState(null);
 
   const showToast = () =>
@@ -23,4 +23,4 @@ export default () => {
       </Button>
     </ToasterContainer>
   );
-};
+}

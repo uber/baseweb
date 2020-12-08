@@ -3,7 +3,7 @@ import * as React from 'react';
 import {Button} from 'baseui/button';
 import {Drawer, SIZE} from 'baseui/drawer';
 
-export default () => {
+export default function Example() {
   let initialState = {};
   for (let size in SIZE) {
     initialState[size] = false;
@@ -46,4 +46,4 @@ export default () => {
       ))}
     </React.Fragment>
   );
-};
+}

@@ -3,7 +3,7 @@ import * as React from 'react';
 import {Button} from 'baseui/button';
 import {useStyletron} from 'baseui';
 
-export default () => {
+export default function Example() {
   const [css, theme] = useStyletron();
   const space = css({marginLeft: theme.sizing.scale300});
   return (
@@ -17,4 +17,4 @@ export default () => {
       <Button disabled>Disabled</Button>
     </React.Fragment>
   );
-};
+}

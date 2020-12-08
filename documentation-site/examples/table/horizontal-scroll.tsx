@@ -67,7 +67,7 @@ const DATA = [
 
 const COLUMNS = ['Id', 'First Name', 'Last Name', 'Age', 'Address'];
 
-export default () => {
+export default function Example() {
   const [css] = useStyletron();
   return (
     <div className={css({height: '400px'})}>
@@ -78,4 +78,4 @@ export default () => {
       />
     </div>
   );
-};
+}
