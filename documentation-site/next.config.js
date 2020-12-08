@@ -58,10 +58,13 @@ const withTM = require('next-transpile-modules')([
 module.exports = withTM(
   withMDX(
     withImages({
+      typescript: {
+        ignoreBuildErrors: true,
+      },
       publicRuntimeConfig: {
         loadYard: process.env.LOAD_YARD,
       },
-      exportTrailingSlash: true,
+      trailingSlash: true,
       webpack: (config, {buildId, dev, isServer, defaultLoaders}) => {
         config.resolve.alias.baseui = resolve(__dirname, '../dist');
         config.resolve.alias.examples = resolve(__dirname, 'examples');

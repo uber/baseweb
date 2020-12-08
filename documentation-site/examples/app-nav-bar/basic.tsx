@@ -9,7 +9,7 @@ import {
   NavItemT,
 } from 'baseui/app-nav-bar';
 
-export default () => {
+export default function Example() {
   const [css] = useStyletron();
 
   const [mainItems, setMainItems] = React.useState<NavItemT[]>([
@@ -87,4 +87,4 @@ export default () => {
       )}
     </React.Fragment>
   );
-};
+}

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Select, Value} from 'baseui/select';
 
-export default () => {
+export default function Example() {
   const [value, setValue] = React.useState<Value>([
     {label: 'Atlanta', id: 'ATL'},
   ]);
@@ -55,4 +55,4 @@ export default () => {
       value={value}
     />
   );
-};
+}

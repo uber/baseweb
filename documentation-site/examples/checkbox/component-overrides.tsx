@@ -3,7 +3,7 @@ import {useStyletron} from 'baseui';
 import {StatefulCheckbox} from 'baseui/checkbox';
 import {Alert} from 'baseui/icon';
 
-export default () => {
+export default function Example() {
   const [css, theme] = useStyletron();
   return (
     <StatefulCheckbox
@@ -27,4 +27,4 @@ export default () => {
       With style overrides
     </StatefulCheckbox>
   );
-};
+}

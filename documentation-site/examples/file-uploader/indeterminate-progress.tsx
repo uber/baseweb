@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {FileUploader} from 'baseui/file-uploader';
 
-export default function() {
+export default function Example() {
   const [isUploading, setIsUploading] = React.useState(false);
   const timeoutId = React.useRef<any>();
 

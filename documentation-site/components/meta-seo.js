@@ -10,19 +10,23 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import Head from 'next/head';
 
-export default props => (
-  <Head>
-    {props.description ? (
-      <meta
-        name="description"
-        property="og:description"
-        content={props.description}
-        key="description"
-      />
-    ) : null}
+function MetaSeo(props) {
+  return (
+    <Head>
+      {props.description ? (
+        <meta
+          name="description"
+          property="og:description"
+          content={props.description}
+          key="description"
+        />
+      ) : null}
 
-    {props.keywords ? (
-      <meta name="keywords" content={props.keywords} key="keywords" />
-    ) : null}
-  </Head>
-);
+      {props.keywords ? (
+        <meta name="keywords" content={props.keywords} key="keywords" />
+      ) : null}
+    </Head>
+  );
+}
+
+export default MetaSeo;

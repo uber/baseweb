@@ -16,7 +16,7 @@ const options = {
   ],
 };
 
-export default () => {
+export default function Example() {
   const [value, setValue] = React.useState([]);
   return (
     <Select
@@ -27,4 +27,4 @@ export default () => {
       value={value}
     />
   );
-};
+}

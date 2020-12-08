@@ -3,7 +3,7 @@ import * as React from 'react';
 import {FormControl} from 'baseui/form-control';
 import {Select} from 'baseui/select';
 
-export default () => {
+export default function Example() {
   const [value, setValue] = React.useState([]);
   return (
     <FormControl label="Select label" caption="Select caption">
@@ -24,4 +24,4 @@ export default () => {
       />
     </FormControl>
   );
-};
+}

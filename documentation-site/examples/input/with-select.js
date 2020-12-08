@@ -51,7 +51,7 @@ function SelectAtEnd(props) {
   );
 }
 
-export default function Scenario() {
+export default function Example() {
   const [startInputValue, setStartInputValue] = React.useState('');
   const [startSelectValue, setStartSelectValue] = React.useState(
     [],

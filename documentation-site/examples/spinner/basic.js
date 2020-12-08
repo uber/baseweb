@@ -2,4 +2,6 @@
 import * as React from 'react';
 import {Spinner} from 'baseui/spinner';
 
-export default () => <Spinner />;
+export default function Example() {
+  return <Spinner />;
+}

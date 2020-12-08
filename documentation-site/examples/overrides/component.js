@@ -6,12 +6,14 @@ function customButton(props) {
   return <button>{props.children}</button>;
 }
 
-export default () => (
-  <Button
-    overrides={{
-      BaseButton: customButton,
-    }}
-  >
-    Submit
-  </Button>
-);
+export default function Example() {
+  return (
+    <Button
+      overrides={{
+        BaseButton: customButton,
+      }}
+    >
+      Submit
+    </Button>
+  );
+}

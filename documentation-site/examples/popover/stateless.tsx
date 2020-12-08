@@ -3,7 +3,7 @@ import {useStyletron} from 'baseui';
 import {Popover} from 'baseui/popover';
 import {Paragraph3} from 'baseui/typography';
 
-export default () => {
+export default function Example() {
   const [css, theme] = useStyletron();
   return (
     <Popover
@@ -17,4 +17,4 @@ export default () => {
       </div>
     </Popover>
   );
-};
+}

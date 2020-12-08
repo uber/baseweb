@@ -2,7 +2,7 @@
 import * as React from 'react';
 import {Checkbox, STYLE_TYPE} from 'baseui/checkbox';
 
-export default () => {
+export default function Example() {
   const [checkboxes, setCheckboxes] = React.useState([
     false,
     false,
@@ -35,4 +35,4 @@ export default () => {
       </Checkbox>
     </React.Fragment>
   );
-};
+}

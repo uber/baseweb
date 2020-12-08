@@ -83,8 +83,9 @@ export default function HeaderNavigation({
           >
             <img
               src={theme.name.startsWith('dark') ? LightLogo : DarkLogo}
-              className={css({height: '40px'})}
               alt="Base Web"
+              height="40px"
+              width="97px"
             />
           </a>
         </Link>

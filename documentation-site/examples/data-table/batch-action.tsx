@@ -133,7 +133,7 @@ const initialRows = [
   ['Zookeeper', false, 'Romantic Comedy', 80, 170, 2.1, 5.0],
 ].map(r => ({id: String(r[0]), data: r}));
 
-export default () => {
+export default function Example() {
   const [rows, setRows] = React.useState(initialRows);
 
   function flagRows(ids: Array<string | number>) {
@@ -206,4 +206,4 @@ export default () => {
       />
     </div>
   );
-};
+}

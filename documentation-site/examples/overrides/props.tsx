@@ -1,16 +1,18 @@
 import * as React from 'react';
 import {Button} from 'baseui/button';
 
-export default () => (
-  <Button
-    overrides={{
-      BaseButton: {
-        props: {
-          'data-test': 'action-button',
+export default function Example() {
+  return (
+    <Button
+      overrides={{
+        BaseButton: {
+          props: {
+            'data-test': 'action-button',
+          },
         },
-      },
-    }}
-  >
-    Submit
-  </Button>
-);
+      }}
+    >
+      Submit
+    </Button>
+  );
+}

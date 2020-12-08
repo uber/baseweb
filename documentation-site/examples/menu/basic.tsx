@@ -16,22 +16,24 @@ const ITEMS = [
   {label: 'Item Twelve'},
 ];
 
-export default () => (
-  <StatefulMenu
-    items={ITEMS}
-    onItemSelect={console.log}
-    overrides={{
-      List: {
-        style: {
-          height: '250px',
-          width: '350px',
+export default function Example() {
+  return (
+    <StatefulMenu
+      items={ITEMS}
+      onItemSelect={console.log}
+      overrides={{
+        List: {
+          style: {
+            height: '250px',
+            width: '350px',
+          },
         },
-      },
-      Option: {
-        props: {
-          getItemLabel: (item: {label: string}) => item.label,
+        Option: {
+          props: {
+            getItemLabel: (item: {label: string}) => item.label,
+          },
         },
-      },
-    }}
-  />
-);
+      }}
+    />
+  );
+}

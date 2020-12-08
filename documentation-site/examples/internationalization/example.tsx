@@ -10,8 +10,10 @@ const localeOverrideHu = {
   },
 };
 
-export default () => (
-  <LocaleProvider locale={localeOverrideHu}>
-    <StatefulPagination numPages={10} />
-  </LocaleProvider>
-);
+export default function Example() {
+  return (
+    <LocaleProvider locale={localeOverrideHu}>
+      <StatefulPagination numPages={10} />
+    </LocaleProvider>
+  );
+}

@@ -55,7 +55,7 @@ const activePredicate = (item, location) =>
   (location && removeSlash(location) === removeSlash(item.itemId)) ||
   (!location && item.itemId === '/');
 
-export default ({path}) => {
+function Sidebar({path}) {
   return (
     <Navigation
       activeItemId={path}
@@ -67,4 +67,6 @@ export default ({path}) => {
       }}
     />
   );
-};
+}
+
+export default Sidebar;

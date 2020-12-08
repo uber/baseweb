@@ -2,7 +2,7 @@
 import React, {useState} from 'react';
 import {PhoneInput, COUNTRIES} from 'baseui/phone-input';
 
-export default () => {
+export default function Example() {
   const [text, setText] = useState('');
   const [country, setCountry] = useState(COUNTRIES.US);
   return (
@@ -30,4 +30,4 @@ export default () => {
       }}
     />
   );
-};
+}

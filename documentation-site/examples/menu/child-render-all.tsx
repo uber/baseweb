@@ -30,46 +30,48 @@ const SSR_SUB_MENU = [
   {label: 'Closed'},
 ];
 
-export default () => (
-  <NestedMenus>
-    <StatefulMenu
-      items={FILE}
-      renderAll
-      overrides={{
-        List: {style: {width: '350px', overflow: 'auto'}},
-        Option: {
-          props: {
-            size: 'compact',
-            getChildMenu: (item: {label: string}) => {
-              if (item.label === SSR) {
-                return (
-                  <StatefulMenu
-                    size="compact"
-                    items={SSR_SUB_MENU}
-                    overrides={{
-                      List: {style: {width: '200px'}},
-                      Option: {props: {size: 'compact'}},
-                    }}
-                  />
-                );
-              }
-              if (item.label === SERVER) {
-                return (
-                  <StatefulMenu
-                    size="compact"
-                    items={SERVER_SUB_MENU}
-                    overrides={{
-                      List: {style: {width: '200px'}},
-                      Option: {props: {size: 'compact'}},
-                    }}
-                  />
-                );
-              }
-              return undefined;
+export default function Example() {
+  return (
+    <NestedMenus>
+      <StatefulMenu
+        items={FILE}
+        renderAll
+        overrides={{
+          List: {style: {width: '350px', overflow: 'auto'}},
+          Option: {
+            props: {
+              size: 'compact',
+              getChildMenu: (item: {label: string}) => {
+                if (item.label === SSR) {
+                  return (
+                    <StatefulMenu
+                      size="compact"
+                      items={SSR_SUB_MENU}
+                      overrides={{
+                        List: {style: {width: '200px'}},
+                        Option: {props: {size: 'compact'}},
+                      }}
+                    />
+                  );
+                }
+                if (item.label === SERVER) {
+                  return (
+                    <StatefulMenu
+                      size="compact"
+                      items={SERVER_SUB_MENU}
+                      overrides={{
+                        List: {style: {width: '200px'}},
+                        Option: {props: {size: 'compact'}},
+                      }}
+                    />
+                  );
+                }
+                return undefined;
+              },
             },
           },
-        },
-      }}
-    />
-  </NestedMenus>
-);
+        }}
+      />
+    </NestedMenus>
+  );
+}
