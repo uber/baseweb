@@ -10,7 +10,6 @@
     "module": "esnext",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "ignoreBuildErrors": true,
     "baseUrl": "./",
     "paths": {
       "baseui": ["../dist"],
