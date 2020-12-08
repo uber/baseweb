@@ -180,7 +180,7 @@
     "styletron-standard": "^3.0.3",
     "tar": "^5.0.0",
     "tsconfig-paths": "^3.9.0",
-    "typescript": "^3.5.3",
+    "typescript": "^3.8.0",
     "universal-cookie": "^4.0.2",
     "webpack": "^4.17.1",
     "webpack-bundle-analyzer": "^3.5.0",
