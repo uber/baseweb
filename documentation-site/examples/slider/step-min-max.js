@@ -2,7 +2,7 @@
 import * as React from 'react';
 import {Slider} from 'baseui/slider';
 
-export default () => {
+export default function Example() {
   const [value, setValue] = React.useState([90]);
   return (
     <Slider
@@ -13,4 +13,4 @@ export default () => {
       onChange={({value}) => value && setValue(value)}
     />
   );
-};
+}

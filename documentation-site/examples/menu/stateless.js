@@ -17,21 +17,23 @@ const ITEMS = [
   {label: 'Item Twelve'},
 ];
 
-export default () => (
-  <Menu
-    items={ITEMS}
-    rootRef={React.createRef()}
-    overrides={{
-      List: {
-        style: {
-          width: '200px',
+export default function Example() {
+  return (
+    <Menu
+      items={ITEMS}
+      rootRef={React.createRef()}
+      overrides={{
+        List: {
+          style: {
+            width: '200px',
+          },
         },
-      },
-      Option: {
-        props: {
-          getItemLabel: item => item.label,
+        Option: {
+          props: {
+            getItemLabel: item => item.label,
+          },
         },
-      },
-    }}
-  />
-);
+      }}
+    />
+  );
+}

@@ -5,7 +5,7 @@ import {Button} from 'baseui/button';
 
 type INullableReactText = React.ReactText | null;
 
-export default () => {
+export default function Example() {
   const [toastKey, setToastKey] = React.useState<
     INullableReactText
   >(null);
@@ -28,4 +28,4 @@ export default () => {
       </Button>
     </ToasterContainer>
   );
-};
+}

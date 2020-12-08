@@ -21,6 +21,8 @@ const overrides = {
   },
 };
 
-export default () => (
-  <Table overrides={overrides} columns={COLUMNS} data={DATA} />
-);
+export default function Example() {
+  return (
+    <Table overrides={overrides} columns={COLUMNS} data={DATA} />
+  );
+}

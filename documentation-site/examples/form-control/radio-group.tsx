@@ -2,7 +2,7 @@ import * as React from 'react';
 import {FormControl} from 'baseui/form-control';
 import {RadioGroup, Radio} from 'baseui/radio';
 
-export default () => {
+export default function Example() {
   const [value, setValue] = React.useState('');
   return (
     <FormControl
@@ -19,4 +19,4 @@ export default () => {
       </RadioGroup>
     </FormControl>
   );
-};
+}

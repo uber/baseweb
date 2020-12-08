@@ -7,7 +7,7 @@ import {Layer} from 'baseui/layer';
 import {ChevronDown, Delete, Overflow, Upload} from 'baseui/icon';
 import {AppNavBar, setItemActive} from 'baseui/app-nav-bar';
 
-export default () => {
+export default function Example() {
   const [css] = useStyletron();
 
   const [mainItems, setMainItems] = React.useState([
@@ -85,4 +85,4 @@ export default () => {
       )}
     </React.Fragment>
   );
-};
+}

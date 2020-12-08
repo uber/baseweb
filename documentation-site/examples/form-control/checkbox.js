@@ -3,7 +3,7 @@ import * as React from 'react';
 import {FormControl} from 'baseui/form-control';
 import {Checkbox} from 'baseui/checkbox';
 
-export default () => {
+export default function Example() {
   const [checked, setChecked] = React.useState(false);
   return (
     <FormControl label="Checkbox label" caption="Checkbox caption">
@@ -15,4 +15,4 @@ export default () => {
       </Checkbox>
     </FormControl>
   );
-};
+}

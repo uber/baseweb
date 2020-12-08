@@ -106,6 +106,8 @@ const selectYardConfig = {
   },
 };
 
-export default () => {
+function LiveEditor() {
   return <Yard placeholderHeight={48} {...selectYardConfig} initialTab="1" />;
-};
+}
+
+export default LiveEditor;

@@ -37,7 +37,7 @@ const nav = [
   },
 ];
 
-export default () => {
+export default function Example() {
   const [location, setLocation] = useState('#level1.1.1');
   return (
     <Navigation
@@ -46,4 +46,4 @@ export default () => {
       onChange={({item}) => setLocation(item.itemId)}
     />
   );
-};
+}

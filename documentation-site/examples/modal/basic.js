@@ -9,7 +9,7 @@ import {
   ModalButton,
 } from 'baseui/modal';
 
-export default () => {
+export default function Example() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   function close() {
@@ -35,4 +35,4 @@ export default () => {
       </Modal>
     </React.Fragment>
   );
-};
+}

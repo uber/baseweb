@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Pagination} from 'baseui/pagination';
 
-export default function Basic() {
+export default function Example() {
   const [currentPage, setCurrentPage] = React.useState(1);
   return (
     <Pagination

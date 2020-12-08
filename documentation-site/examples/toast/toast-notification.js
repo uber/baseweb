@@ -7,11 +7,13 @@ import {
   KIND as BUTTON_KIND,
 } from 'baseui/button';
 
-export default () => (
-  <React.Fragment>
-    <Toast>Default info notification</Toast>
-    <Toast kind={KIND.positive}>Positive notification</Toast>
-    <Toast kind={KIND.warning}>Warning notification</Toast>
-    <Toast kind={KIND.negative}>Negative notification</Toast>
-  </React.Fragment>
-);
+export default function Example() {
+  return (
+    <React.Fragment>
+      <Toast>Default info notification</Toast>
+      <Toast kind={KIND.positive}>Positive notification</Toast>
+      <Toast kind={KIND.warning}>Warning notification</Toast>
+      <Toast kind={KIND.negative}>Negative notification</Toast>
+    </React.Fragment>
+  );
+}

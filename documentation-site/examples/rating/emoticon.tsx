@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {EmoticonRating} from 'baseui/rating';
 
-export default () => {
+export default function Example() {
   const [value, setValue] = React.useState(1);
   return (
     <EmoticonRating
@@ -9,4 +9,4 @@ export default () => {
       onChange={({value}) => setValue(value)}
     />
   );
-};
+}

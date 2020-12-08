@@ -19,11 +19,11 @@ const DATA = [
 
 const COLUMNS = ['Name', 'Age', 'Address'];
 
-export default () => {
+export default function Example() {
   const [css] = useStyletron();
   return (
     <div className={css({height: '500%'})}>
       <Table columns={COLUMNS} data={DATA} />
     </div>
   );
-};
+}

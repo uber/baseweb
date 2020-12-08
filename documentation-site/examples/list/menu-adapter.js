@@ -17,7 +17,7 @@ const ITEMS = Array.from({length: 10}, () => ({
   icon: Search,
 }));
 
-export default () => {
+export default function Example() {
   return (
     <StatefulMenu
       items={ITEMS}
@@ -55,4 +55,4 @@ export default () => {
       }}
     />
   );
-};
+}
