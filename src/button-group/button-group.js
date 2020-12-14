@@ -127,19 +127,13 @@ export default class ButtonGroup extends React.Component<PropsT> {
                       }
 
                       if (shape !== SHAPE.default) {
-                        if (index === 0) {
-                          return {};
-                        }
                         return {
-                          marginLeft: $theme.sizing.scale300,
+                          marginLeft: $theme.sizing.scale100,
+                          marginRight: $theme.sizing.scale100,
                         };
                       }
 
                       return {
-                        borderTopRightRadius: 0,
-                        borderBottomRightRadius: 0,
-                        borderTopLeftRadius: 0,
-                        borderBottomLeftRadius: 0,
                         marginLeft: '0.5px',
                         marginRight: '0.5px',
                       };
