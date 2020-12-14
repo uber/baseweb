@@ -1,43 +1,43 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {styled} from '../styles/index.js';
-import {StyledList} from '../menu/index.js';
-import {StyledBaseButton} from '../button/index.js';
 
-export const Root = styled('div', {
+export const StyledRoot = styled<{}>('div', ({$theme}) => ({
   display: 'flex',
   alignItems: 'center',
+  color: $theme.colors.backgroundInversePrimary,
+  ...$theme.typography.font350,
+}));
+
+export const StyledMaxLabel = styled<{}>('span', ({$theme}) => {
+  const marginStartDir: string =
+    $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+  const marginEndDir: string =
+    $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
+  return {
+    [marginStartDir]: $theme.sizing.scale300,
+    [marginEndDir]: $theme.sizing.scale600,
+  };
 });
 
-export const MaxLabel = styled('span', ({$theme}) => ({
-  ...$theme.typography.font300,
-  marginLeft: $theme.sizing.scale300,
-  marginRight: $theme.sizing.scale600,
-}));
+export const StyledDropdownContainer = styled<{$isFocusVisible: boolean}>(
+  'div',
+  ({$theme, $isFocusVisible}) => {
+    const marginStartDir: string =
+      $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
+    const marginEndDir: string =
+      $theme.direction === 'rtl' ? 'marginLeft' : 'marginRight';
 
-export const DropdownContainer = styled('div', ({$theme}) => ({
-  position: 'relative',
-  marginLeft: $theme.sizing.scale600,
-  marginRight: $theme.sizing.scale300,
-}));
-
-export const DropdownMenu = styled(StyledList, ({$theme}) => ({
-  position: 'absolute',
-  overflow: 'auto',
-  maxHeight: '200px',
-  top: 'auto',
-  marginTop: $theme.sizing.scale300,
-  left: 0,
-  right: 0,
-  zIndex: 1,
-}));
-
-export const DropdownButton = styled(StyledBaseButton, ({$theme}) => ({
-  color: $theme.colors.foreground,
-  minWidth: `calc(${$theme.sizing.scale1600} + ${$theme.sizing.scale400})`,
-}));
+    return {
+      position: 'relative',
+      outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
+      [marginStartDir]: $theme.sizing.scale600,
+      [marginEndDir]: $theme.sizing.scale300,
+    };
+  },
+);

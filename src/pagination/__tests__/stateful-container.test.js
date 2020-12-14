@@ -1,13 +1,14 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-env browser */
-import React from 'react';
-import {mount} from 'enzyme';
+import * as React from 'react';
+import {render} from '@testing-library/react';
+
 import {STATE_CHANGE_TYPE} from '../constants.js';
 import StatefulContainer from '../stateful-container.js';
 
@@ -15,7 +16,7 @@ const mockChildrenFn = jest.fn().mockImplementation(() => <div />);
 const mockOnPageChangeFn = jest.fn();
 const mockStateReducerFn = jest
   .fn()
-  .mockImplementation((changeType, changes) => changes);
+  .mockImplementation((changeType, changes) => (changes: any));
 
 function getSharedProps() {
   return {
@@ -31,57 +32,49 @@ describe('Pagination StatefulContainer', () => {
     jest.clearAllMocks();
   });
 
-  test('renders and passes required props to children function', () => {
-    const component = mount(<StatefulContainer {...getSharedProps()} />);
-    expect(mockChildrenFn.mock.calls[0][0]).toEqual({
-      currentPage: 1,
-      onPageChange: component.instance().onPageChange,
-    });
+  it('renders and passes required props to children function', () => {
+    render(<StatefulContainer {...getSharedProps()} />);
+    expect(mockChildrenFn.mock.calls[0][0]).toHaveProperty('currentPage', 1);
+    expect(mockChildrenFn.mock.calls[0][0]).toHaveProperty('onPageChange');
   });
 
-  test('with initialState', () => {
+  it('with initialState', () => {
     const props = {
       ...getSharedProps(),
       initialState: {
         currentPage: 5,
       },
     };
-    const component = mount(<StatefulContainer {...props} />);
-    expect(component.state('currentPage')).toBe(5);
+    render(<StatefulContainer {...props} />);
+    expect(mockChildrenFn.mock.calls[0][0]).toHaveProperty('currentPage', 5);
   });
 
-  test('onPageChange called if and only if page has changed', () => {
-    const component = mount(<StatefulContainer {...getSharedProps()} />);
-    const instance = component.instance();
-    instance.onPageChange({nextPage: 5});
-    expect(component.state('currentPage')).toBe(5);
+  it('onPageChange called if and only if page has changed', () => {
+    render(<StatefulContainer {...getSharedProps()} />);
+    mockChildrenFn.mock.calls[0][0].onPageChange({nextPage: 5});
+    expect(mockChildrenFn.mock.calls[1][0]).toHaveProperty('currentPage', 5);
     expect(mockOnPageChangeFn.mock.calls.length).toBe(1);
-    // Invoke again with same page
-    instance.onPageChange({nextPage: 5});
+    mockChildrenFn.mock.calls[1][0].onPageChange({nextPage: 5});
     expect(mockOnPageChangeFn.mock.calls.length).toBe(1);
   });
 
-  test('internalSetState calls stateReducer with the correct args', () => {
-    const component = mount(<StatefulContainer {...getSharedProps()} />);
-    component.instance().internalSetState(STATE_CHANGE_TYPE.changePage, {
-      currentPage: 2,
-    });
+  it('internalSetState calls stateReducer with the correct args', () => {
+    render(<StatefulContainer {...getSharedProps()} />);
+    mockChildrenFn.mock.calls[0][0].onPageChange({nextPage: 2});
     expect(mockStateReducerFn.mock.calls[0][0]).toEqual(
       STATE_CHANGE_TYPE.changePage,
     );
     expect(mockStateReducerFn.mock.calls[0][1]).toEqual({currentPage: 2});
   });
 
-  test('internalSetState should still call setState with no stateReducer', () => {
+  it('internalSetState should still call setState with no stateReducer', () => {
     const props = {
       ...getSharedProps(),
       stateReducer: null,
     };
     // $FlowFixMe
-    const component = mount(<StatefulContainer {...props} />);
-    component.instance().internalSetState(STATE_CHANGE_TYPE.changePage, {
-      currentPage: 2,
-    });
-    expect(component.state('currentPage')).toBe(2);
+    render(<StatefulContainer {...props} />);
+    mockChildrenFn.mock.calls[0][0].onPageChange({nextPage: 2});
+    expect(mockChildrenFn.mock.calls[1][0]).toHaveProperty('currentPage', 2);
   });
 });

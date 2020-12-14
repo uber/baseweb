@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "module": "commonjs",
+    "target": "es6",
+    "outDir": "build",
+    "lib": ["es6", "dom"],
+    "checkJs": false,
+    "types": ["node"],
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "declaration": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "rootDir": "ext-src",
+    "strict": true,
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "paths": {
+      "baseui/*": ["baseui/*"]
+    },
+    "typeRoots": ["node_modules/@types"]
+  },
+  "include": ["ext-src"],
+  "exclude": [".vscode-test", "snippets"]
+}

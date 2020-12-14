@@ -1,126 +1,258 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles/index.js';
-import type {SharedStylePropsT} from './types.js';
+import * as React from 'react';
 
-export const StyledTable = styled('div', ({$theme}: SharedStylePropsT) => {
+import {styled, withWrapper, expandBorderStyles} from '../styles/index.js';
+
+const StyledTableElement = styled<{}>('div', ({$theme}) => {
   return {
-    ...$theme.borders.border300,
-    borderRadius: $theme.borders.radius200,
+    ...expandBorderStyles($theme.borders.border300),
+    backgroundColor: $theme.colors.tableBackground,
+    borderTopLeftRadius: $theme.borders.radius200,
+    borderTopRightRadius: $theme.borders.radius200,
+    borderBottomRightRadius: $theme.borders.radius200,
+    borderBottomLeftRadius: $theme.borders.radius200,
     display: 'flex',
     flexDirection: 'column',
     height: '100%',
-    overflowX: 'scroll',
+    overflowX: 'auto',
   };
 });
 
+export const StyledTable = withWrapper(
+  StyledTableElement,
+  StyledComponent =>
+    function StyledTable(props) {
+      return (
+        <StyledComponent data-baseweb="table-custom" role="grid" {...props} />
+      );
+    },
+);
+
 type HorizontalStyleProps = {
-  ...SharedStylePropsT,
   $width?: string,
+  $cursor?: string,
 };
 
-export const StyledHead = styled(
+const StyledHeadElement = styled<HorizontalStyleProps>(
   'div',
-  ({$theme, $width}: HorizontalStyleProps) => {
+  ({$theme, $width}) => {
     return {
       backgroundColor: $theme.colors.tableHeadBackgroundColor,
       boxShadow: $theme.lighting.shadow400,
       display: 'flex',
       flexGrow: 0,
       width: $width ? $width : '100%',
-      zIndex: 1,
     };
   },
 );
 
-export const StyledHeadCell = styled('div', ({$theme}: SharedStylePropsT) => {
+export const StyledHead = withWrapper(
+  StyledHeadElement,
+  StyledComponent =>
+    function StyledHead(props) {
+      return <StyledComponent role="row" {...props} />;
+    },
+);
+
+const StyledHeadCellElement = styled<HorizontalStyleProps>(
+  'div',
+  ({$theme, $cursor}) => {
+    const borderDir: string =
+      $theme.direction === 'rtl' ? 'borderLeft' : 'borderRight';
+    return {
+      ...$theme.typography.font350,
+      ...expandBorderStyles($theme.borders.border300),
+      borderTopStyle: 'none',
+      borderBottomStyle: 'none',
+      borderLeftStyle: 'none',
+      color: $theme.colors.contentPrimary,
+      display: 'flex',
+      justifyContent: 'space-between',
+      paddingTop: $theme.sizing.scale500,
+      paddingRight: $theme.sizing.scale600,
+      paddingBottom: $theme.sizing.scale500,
+      paddingLeft: $theme.sizing.scale600,
+      cursor: $cursor ? $cursor : 'inherit',
+      width: '100%',
+      ':last-of-type': {
+        [borderDir]: 'none',
+      },
+    };
+  },
+);
+
+export const StyledHeadCell = withWrapper(
+  StyledHeadCellElement,
+  StyledComponent =>
+    function StyledHeadCell(props) {
+      return <StyledComponent role="columnheader" {...props} />;
+    },
+);
+
+export const StyledSortableLabel = styled<{}>('button', ({$theme}) => {
   return {
-    ...$theme.typography.font350,
-    ...$theme.borders.border300,
-    borderTop: 'none',
-    borderBottom: 'none',
-    borderLeft: 'none',
+    ...$theme.typography.font250,
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+    borderLeftStyle: 'none',
+    borderTopStyle: 'none',
+    borderRightStyle: 'none',
+    borderBottomStyle: 'none',
+    color: $theme.colors.contentPrimary,
     display: 'flex',
-    justifyContent: 'space-between',
-    paddingTop: $theme.sizing.scale500,
-    paddingRight: $theme.sizing.scale600,
-    paddingBottom: $theme.sizing.scale500,
-    paddingLeft: $theme.sizing.scale600,
-    width: '100%',
-    ':last-of-type': {
-      borderRight: 'none',
+    padding: 0,
+    ':hover:enabled': {
+      cursor: 'pointer',
+    },
+    ':disabled': {
+      color: $theme.colors.mono500,
     },
   };
 });
 
-export const StyledBody = styled('div', ({$width}: HorizontalStyleProps) => {
-  return {
+const StyledBodyElement = styled<HorizontalStyleProps>('div', ({$width}) => {
+  return ({
     width: $width ? $width : '100%',
-    overflowY: 'scroll',
+    overflowX: 'hidden',
+    overflowY: 'overlay',
     flex: 1,
-  };
+  }: {});
 });
 
-export const StyledRow = styled('div', ({$theme}) => ({
+export const StyledBody = withWrapper(
+  StyledBodyElement,
+  StyledComponent =>
+    function StyledBody(props) {
+      return <StyledComponent role="rowgroup" {...props} />;
+    },
+);
+
+const StyledRowElement = styled('div', {
   display: 'flex',
   alignItems: 'center',
-}));
+});
 
-export const StyledCell = styled('div', ({$theme}: SharedStylePropsT) => {
+export const StyledRow = withWrapper(
+  StyledRowElement,
+  StyledComponent =>
+    function StyledRow(props) {
+      return <StyledComponent role="row" {...props} />;
+    },
+);
+
+type CellStyledProps = {$striped?: boolean};
+
+const StyledCellElement = styled<CellStyledProps>(
+  'div',
+  ({$theme, $striped}) => {
+    return {
+      ...$theme.typography.font200,
+      backgroundColor: $striped ? $theme.colors.tableStripedBackground : null,
+      color: $theme.colors.contentPrimary,
+      display: 'flex',
+      flex: 1,
+      paddingTop: $theme.sizing.scale300,
+      paddingRight: $theme.sizing.scale600,
+      paddingBottom: $theme.sizing.scale300,
+      paddingLeft: $theme.sizing.scale600,
+    };
+  },
+);
+
+export const StyledCell = withWrapper(
+  StyledCellElement,
+  StyledComponent =>
+    function StyledCell(props) {
+      return <StyledComponent role="gridcell" {...props} />;
+    },
+);
+
+export const StyledFilterButton = styled<{
+  $disabled?: boolean,
+  $active?: boolean,
+}>('button', props => {
+  function getIconColor() {
+    if (props.$disabled) {
+      return props.$theme.colors.mono500;
+    }
+
+    if (props.$active) {
+      return props.$theme.colors.contentPrimary;
+    }
+
+    return props.$theme.colors.tableFilter;
+  }
+
+  function getIconHoverColor() {
+    if (props.$disabled || props.$active) {
+      return null;
+    }
+
+    return props.$theme.colors.contentPrimary;
+  }
+
   return {
-    ...$theme.typography.font300,
-    display: 'flex',
-    flex: 1,
-    paddingTop: $theme.sizing.scale300,
-    paddingRight: $theme.sizing.scale600,
-    paddingBottom: $theme.sizing.scale300,
-    paddingLeft: $theme.sizing.scale600,
+    backgroundColor: 'transparent',
+    borderLeftStyle: 'none',
+    borderTopStyle: 'none',
+    borderRightStyle: 'none',
+    borderBottomStyle: 'none',
+    color: getIconColor(),
+    cursor: props.$disabled ? null : 'pointer',
+    paddingTop: 'none',
+    paddingRight: 'none',
+    paddingBottom: 'none',
+    paddingLeft: 'none',
+    ':hover': {
+      color: getIconHoverColor(),
+    },
   };
 });
 
-export const StyledFilterButton = styled('button', {
-  border: 'none',
-  padding: 'none',
-});
-
-export const StyledFilterContent = styled('div', ({$theme}) => ({
-  ...$theme.borders.border300,
-  borderRight: 'none',
-  borderLeft: 'none',
+export const StyledFilterContent = styled<{}>('div', ({$theme}) => ({
+  ...expandBorderStyles($theme.borders.border300),
+  backgroundColor: $theme.colors.tableFilterBackground,
+  borderRightStyle: 'none',
+  borderLeftStyle: 'none',
   maxHeight: '196px',
   paddingRight: $theme.sizing.scale600,
   paddingLeft: $theme.sizing.scale600,
   overflow: 'auto',
 }));
 
-export const StyledFilterHeading = styled('div', ({$theme}) => ({
-  ...$theme.typography.font350,
-  color: $theme.colors.mono700,
+export const StyledFilterHeading = styled<{}>('div', ({$theme}) => ({
+  ...$theme.typography.font250,
+  color: $theme.colors.tableFilterHeading,
   paddingTop: $theme.sizing.scale500,
   paddingRight: $theme.sizing.scale600,
   paddingBottom: $theme.sizing.scale500,
   paddingLeft: $theme.sizing.scale600,
 }));
 
-export const StyledFilterFooter = styled('div', ({$theme}) => ({
-  backgroundColor: $theme.colors.mono200,
+export const StyledFilterFooter = styled<{}>('div', ({$theme}) => ({
+  backgroundColor: $theme.colors.tableFilterFooterBackground,
   paddingTop: $theme.sizing.scale300,
   paddingRight: $theme.sizing.scale100,
   paddingBottom: $theme.sizing.scale300,
   paddingLeft: $theme.sizing.scale100,
   display: 'flex',
   justifyContent: 'space-between',
-  width: '216px',
+  minWidth: '216px',
 }));
 
-export const StyledAction = styled('button', ({$theme}) => {
+export const StyledAction = styled<{}>('button', ({$theme}) => {
   return {
-    border: 'none',
+    backgroundColor: 'transparent',
+    borderLeftStyle: 'none',
+    borderTopStyle: 'none',
+    borderRightStyle: 'none',
+    borderBottomStyle: 'none',
     color: $theme.colors.primary,
     paddingTop: 0,
     paddingRight: 0,

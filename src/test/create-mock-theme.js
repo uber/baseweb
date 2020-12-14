@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -35,7 +35,7 @@ LICENSE file in the root directory of this source tree.
  *     radius300: '$theme.borders.radius300',
  *   },
  *   animation: {
- *     timing100: '$theme.animation.timing100',
+ *     timing100: '$theme.animation.timing200',
  *     timing400: '$theme.animation.timing400',
  *   }
  * }

@@ -1,13 +1,13 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable import/prefer-default-export */
-import {ARROW_SIZE, POPOVER_MARGIN, PLACEMENT} from './constants.js';
-import type {OffsetT, PopoverPlacementT, PopperOffsetT} from './types.js';
+import {ARROW_SIZE, PLACEMENT} from './constants.js';
+import type {OffsetT, PopoverPlacementT} from './types.js';
 
 const OPPOSITE_POSITIONS = {
   top: 'bottom',
@@ -42,18 +42,6 @@ export function capitalize(str: string): string {
 }
 
 /**
- * Converts our placement prop to a Popper.js placement
- * See docs: https://popper.js.org/popper-documentation.html
- * auto, top, right, bottom, left are the same but things
- * like 'rightTop' must be converted to 'right-start'
- */
-export function toPopperPlacement(placement: PopoverPlacementT): string {
-  return placement
-    .replace(/(Top|Left)$/, '-start')
-    .replace(/(Right|Bottom)$/, '-end');
-}
-
-/**
  * Opposite of function above, converts from Popper.js placement
  * to our placement prop
  */
@@ -80,24 +68,13 @@ export function splitPlacement(placement: PopoverPlacementT): string[] {
 }
 
 /**
- * Takes the offset passed from popper.js and normalizes it
- */
-export function parsePopperOffset(offset: PopperOffsetT): OffsetT {
-  return {
-    top: Math.floor(offset.top || 0),
-    left: Math.floor(offset.left || 0),
-  };
-}
-
-/**
  * Returns margin styles to add spacing between the popover
  * and its anchor.
- *
- * We may eventually want to make margin a prop that can be overridden.
  */
 export function getPopoverMarginStyles(
-  showArrow: boolean,
+  arrowSize: number,
   placement: PopoverPlacementT,
+  popoverMargin: number,
 ) {
   const [position] = splitPlacement(placement);
   const opposite = getOppositePosition(position);
@@ -106,7 +83,7 @@ export function getPopoverMarginStyles(
   }
   const property = `margin${capitalize(opposite)}`;
   return {
-    [property]: `${showArrow ? ARROW_SIZE : POPOVER_MARGIN}px`,
+    [property]: `${arrowSize + popoverMargin}px`,
   };
 }
 
@@ -116,11 +93,12 @@ export function getPopoverMarginStyles(
 export function getStartPosition(
   offset: OffsetT,
   placement: PopoverPlacementT,
-  showArrow: boolean,
+  arrowSize: number,
+  popoverMargin: number,
 ) {
   offset = {...offset};
   const [position] = splitPlacement(placement);
-  const margin = (showArrow ? ARROW_SIZE : POPOVER_MARGIN) * 2;
+  const margin = (arrowSize > 0 ? arrowSize : popoverMargin) * 2;
   if (isVerticalPosition(position)) {
     offset.top += position === 'top' ? margin : -margin;
   } else {
@@ -149,7 +127,9 @@ export function getArrowPositionStyles(
     return null;
   }
 
-  const alignmentProperty = isVerticalPosition(position) ? 'left' : 'top';
+  const alignmentProperty: string = isVerticalPosition(position)
+    ? 'left'
+    : 'top';
   return {
     [alignmentProperty]: `${offsets[alignmentProperty]}px`,
     [oppositePosition]: `-${ARROW_SIZE - 2}px`,

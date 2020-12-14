@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -14,10 +14,12 @@ import {
   Root as StyledRoot,
   Body as StyledBody,
   CloseIconSvg as StyledCloseIcon,
+  InnerContainer as StyledInnerContainer,
 } from './styled-components.js';
 import Toast from './toast.js';
 import type {
   ToasterPropsT,
+  ToastPropsShapeT,
   ToasterContainerStateT,
   ToastPropsT,
 } from './types.js';
@@ -29,14 +31,19 @@ export class ToasterContainer extends React.Component<
   ToasterContainerStateT,
 > {
   static defaultProps: ToasterPropsT = {
-    placement: PLACEMENT.top,
-    usePortal: true,
-    overrides: {},
+    autoFocus: false,
     autoHideDuration: 0,
+    children: null,
+    closeable: true,
+    overrides: {},
+    placement: PLACEMENT.top,
+    resetAutoHideTimerOnUpdate: true,
+    usePortal: true,
   };
 
   constructor(props: ToasterPropsT) {
     super(props);
+
     toasterRef = this;
   }
 
@@ -53,32 +60,45 @@ export class ToasterContainer extends React.Component<
     this.setState({isMounted: true});
   }
 
-  getToastProps = (
-    props: ToastPropsT,
-  ): $Shape<ToastPropsT> & {key: React.Key} => {
-    const {autoHideDuration} = this.props;
+  getToastProps = (props: ToastPropsT): ToastPropsT & {key: React.Key} => {
+    const {autoFocus, autoHideDuration, closeable} = this.props;
     const key: React.Key = props.key || `toast-${this.toastId++}`;
-    return {autoHideDuration, ...props, key};
+    return {autoFocus, autoHideDuration, closeable, ...props, key};
   };
 
-  show = (props: $Shape<ToastPropsT> = {}): React.Key => {
+  show = (props: ToastPropsT = {}): React.Key => {
+    if (this.state.toasts.map(t => t.key).includes(props.key)) {
+      this.update(props.key, props);
+      return props.key;
+    }
     const toastProps = this.getToastProps(props);
     this.setState(({toasts}) => {
-      toasts.push(toastProps);
-      return {toasts};
+      return {toasts: [...toasts, toastProps]};
     });
     return toastProps.key;
   };
 
   update = (key: React.Key, props: ToastPropsT): void => {
     this.setState(({toasts}) => {
-      toasts.forEach((t, index, arr) => {
-        if (t.key === key) {
-          arr[index] = {...t, ...this.getToastProps(props), key};
+      const updatedToasts = toasts.map(toast => {
+        if (toast.key === key) {
+          const updatedToastProps = {
+            ...toast,
+            ...this.getToastProps({
+              autoHideDuration: toast.autoHideDuration,
+              ...props,
+            }),
+            key,
+            ...(this.props.resetAutoHideTimerOnUpdate
+              ? {__updated: (parseInt(toast.__updated) || 0) + 1}
+              : {}),
+          };
+          return updatedToastProps;
         }
+        return toast;
       });
       return {
-        toasts,
+        toasts: updatedToasts,
       };
     });
   };
@@ -108,7 +128,7 @@ export class ToasterContainer extends React.Component<
     }));
   };
 
-  getOnCloseHandler = (key: React.Key, onClose: ?() => void) => {
+  getOnCloseHandler = (key: React.Key, onClose: ?() => mixed) => {
     return () => {
       this.internalOnClose(key);
       typeof onClose === 'function' && onClose();
@@ -116,16 +136,25 @@ export class ToasterContainer extends React.Component<
   };
 
   renderToast = (toastProps: ToastPropsT & {key: React.Key}): React.Node => {
-    const {onClose, children, key, ...rest} = toastProps;
+    const {onClose, children, key, ...restProps} = toastProps;
 
     const {
       ToastBody: BodyOverride,
       ToastCloseIcon: CloseIconOverride,
+      ToastInnerContainer: InnerContainerOverride,
     } = this.props.overrides;
     const globalToastOverrides = mergeOverrides(
-      {Body: StyledBody, CloseIcon: StyledCloseIcon},
+      {
+        Body: StyledBody,
+        CloseIcon: StyledCloseIcon,
+        InnerContainer: StyledInnerContainer,
+      },
       // $FlowFixMe
-      {Body: BodyOverride, CloseIcon: CloseIconOverride},
+      {
+        Body: BodyOverride,
+        CloseIcon: CloseIconOverride,
+        InnerContainer: InnerContainerOverride,
+      },
     );
     const toastOverrides = mergeOverrides(
       globalToastOverrides,
@@ -134,13 +163,14 @@ export class ToasterContainer extends React.Component<
 
     return (
       <Toast
-        {...rest}
+        {...restProps}
         overrides={toastOverrides}
         key={key}
         onClose={this.getOnCloseHandler(key, onClose)}
       >
         {({dismiss}) => {
           this.dismissHandlers[key] = dismiss;
+          // $FlowFixMe
           return children;
         }}
       </Toast>
@@ -170,7 +200,7 @@ export class ToasterContainer extends React.Component<
     }
 
     const root = (
-      <Root {...sharedProps} {...rootProps}>
+      <Root data-baseweb="toaster" {...sharedProps} {...rootProps}>
         {toastsToRender}
       </Root>
     );
@@ -178,14 +208,24 @@ export class ToasterContainer extends React.Component<
       // Only render on the browser (portals aren't supported server-side)
       if (this.props.usePortal) {
         if (__BROWSER__) {
-          return ReactDOM.createPortal(
-            root,
-            // $FlowFixMe
-            document.body,
+          return (
+            <>
+              {ReactDOM.createPortal(
+                root,
+                // $FlowFixMe
+                document.body,
+              )}
+              {this.props.children}
+            </>
           );
         }
       } else {
-        return root;
+        return (
+          <>
+            {root}
+            {this.props.children}
+          </>
+        );
       }
     }
     return null;
@@ -198,38 +238,40 @@ const toaster = {
   },
   show: function(
     children: React.Node,
-    props: $Shape<ToastPropsT> = {},
+    props: ToastPropsShapeT = {},
   ): ?React.Key {
     // toasts can not be added until Toaster is mounted
     // no SSR for the `toaster.show()`
     const toasterInstance = this.getRef();
     if (toasterInstance) {
-      return toasterInstance.show({children, ...props});
+      return toasterInstance.show({...props, children});
     } else if (__DEV__) {
-      throw new Error('Can not add any toasts until Toaster is mounted!');
+      throw new Error(
+        'Please make sure to add the ToasterContainer to your application before adding toasts! You can find more information here: https://baseweb.design/components/toast',
+      );
     }
   },
   info: function(
     children: React.Node,
-    props: $Shape<ToastPropsT> = {},
+    props: ToastPropsShapeT = {},
   ): React.Key {
     return this.show(children, {...props, kind: KIND.info});
   },
   positive: function(
     children: React.Node,
-    props: $Shape<ToastPropsT> = {},
+    props: ToastPropsShapeT = {},
   ): React.Key {
     return this.show(children, {...props, kind: KIND.positive});
   },
   warning: function(
     children: React.Node,
-    props: $Shape<ToastPropsT> = {},
+    props: ToastPropsShapeT = {},
   ): React.Key {
     return this.show(children, {...props, kind: KIND.warning});
   },
   negative: function(
     children: React.Node,
-    props: $Shape<ToastPropsT> = {},
+    props: ToastPropsShapeT = {},
   ): React.Key {
     return this.show(children, {...props, kind: KIND.negative});
   },

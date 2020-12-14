@@ -5,7 +5,8 @@
 <!-- Describe your changes below in as much detail as possible -->
 
 #### Scope
-
-- [ ] Patch: Bug Fix
-- [ ] Minor: New Feature
-- [ ] Major: Breaking Change
+<!-- Pick one:
+Patch: Bug Fix
+Minor: New Feature
+Major: Breaking change
+-->

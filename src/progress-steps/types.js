@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,11 +8,18 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import type {Node} from 'react';
-import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 
 export type ProgressStepsOverridesT = {
-  Root?: OverrideT<*>,
+  Root?: OverrideT,
+  StepRoot?: OverrideT,
+  IconContainer?: OverrideT,
+  Icon?: OverrideT,
+  InnerIcon?: OverrideT,
+  Tail?: OverrideT,
+  Content?: OverrideT,
+  Title?: OverrideT,
+  Description?: OverrideT,
 };
 
 export type ProgressStepsPropsT = {
@@ -23,13 +30,14 @@ export type ProgressStepsPropsT = {
 };
 
 export type StepOverridesT = {
-  Root?: OverrideT<*>,
-  Icon?: OverrideT<*>,
-  InnerIcon?: OverrideT<*>,
-  Tail?: OverrideT<*>,
-  Content?: OverrideT<*>,
-  Title?: OverrideT<*>,
-  Description?: OverrideT<*>,
+  Root?: OverrideT,
+  IconContainer?: OverrideT,
+  Icon?: OverrideT,
+  InnerIcon?: OverrideT,
+  Tail?: OverrideT,
+  Content?: OverrideT,
+  Title?: OverrideT,
+  Description?: OverrideT,
 };
 
 export type StepPropsT = {
@@ -38,31 +46,22 @@ export type StepPropsT = {
   /** Defines if the step is completed. */
   isCompleted: boolean,
   /** Defines if the step is currently active. */
-  isActive: boolean,
+  isActive?: boolean,
   /** Defines if the step is the last item displayed. */
   isLast: boolean,
   overrides?: StepOverridesT,
   children?: Node,
 };
 
-export type StyledProgressStepsPropsT = {
-  $theme: ThemeT,
-};
-
-export type StyledStepPropsT = {
-  $theme: ThemeT,
-  $isActive: boolean,
-  $isCompleted: boolean,
-};
-
 export type NumberedStepOverridesT = {
-  Root?: OverrideT<*>,
-  Icon?: OverrideT<*>,
-  InnerIcon?: OverrideT<*>,
-  Tail?: OverrideT<*>,
-  Content?: OverrideT<*>,
-  Title?: OverrideT<*>,
-  Description?: OverrideT<*>,
+  Root?: OverrideT,
+  IconContainer?: OverrideT,
+  Icon?: OverrideT,
+  InnerIcon?: OverrideT,
+  Tail?: OverrideT,
+  Content?: OverrideT,
+  Title?: OverrideT,
+  Description?: OverrideT,
 };
 
 export type NumberedStepPropsT = {
@@ -71,7 +70,7 @@ export type NumberedStepPropsT = {
   /** Defines if the step is completed. */
   isCompleted: boolean,
   /** Defines if the step is currently active. */
-  isActive: boolean,
+  isActive?: boolean,
   /** Defines if the step is the last item displayed. */
   isLast: boolean,
   overrides?: NumberedStepOverridesT,
@@ -80,22 +79,7 @@ export type NumberedStepPropsT = {
   step?: Node,
 };
 
-export type StyledNumberIconPropsT = {
-  $theme: ThemeT,
-  $isActive: boolean,
-  $isCompleted: boolean,
-  $disabled: boolean,
-};
-
-export type StyledNumberContentTailPropsT = {
-  $theme: ThemeT,
-  $isActive: boolean,
-  $isCompleted: boolean,
-  $disabled: boolean,
-};
-
-export type StyledNumberStepPropsT = {
-  $theme: ThemeT,
+export type StylePropsT = {
   $isActive: boolean,
   $isCompleted: boolean,
   $disabled: boolean,

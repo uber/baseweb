@@ -25,8 +25,8 @@ module.exports = {
   rules: {
     // Enforce flow file declarations
     'flowtype/require-valid-file-annotation': ['error', 'always'],
-    // allow mixed type: https://github.com/uber-web/baseui/issues/626
-    'flowtype/no-weak-types': ['error', {mixed: false}],
+    'flowtype/no-weak-types': ['error'],
+    'flowtype/space-after-type-colon': 'off',
     'react/jsx-filename-extension': 0,
     'react/prop-types': 0,
     // Enforces imports of external modules to be declared in the package.json
@@ -58,6 +58,15 @@ module.exports = {
       rules: {
         'import/extensions': 'off',
         'react/display-name': 'off',
+      },
+    },
+    {
+      files: [
+        'packages/eslint-plugin-baseui/**/*.js',
+        'packages/baseweb-vscode-extension/**/*.js',
+      ],
+      rules: {
+        'flowtype/require-valid-file-annotation': 'off',
       },
     },
   ],

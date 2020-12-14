@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,48 +8,50 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {shallow} from 'enzyme';
+import {
+  render,
+  fireEvent,
+  getByText,
+  queryByText,
+} from '@testing-library/react';
+
 import ProgressSteps from '../progress-steps.js';
 import Step from '../step.js';
 
-let example;
-
 describe('ProgressSteps', () => {
-  beforeEach(() => {
-    const steps = [];
-
-    for (let x = 0; x < 5; x++) {
-      steps.push(<Step key={x}>Step {x}</Step>);
+  it('can navigate between steps', () => {
+    function TestCase() {
+      const [current, setCurrent] = React.useState(0);
+      return (
+        <div>
+          <ProgressSteps current={current}>
+            <Step title="step 1">step 1 content</Step>
+            <Step title="step 2">step 2 content</Step>
+            <Step title="step 3">step 3 content</Step>
+          </ProgressSteps>
+          <button onClick={() => setCurrent(prev => prev + 1)}>next</button>
+        </div>
+      );
     }
 
-    example = shallow(<ProgressSteps current={3}>{steps}</ProgressSteps>);
-  });
+    const {container} = render(<TestCase />);
 
-  it('applies isLast prop to child if element is last child', () => {
-    example.children().forEach((element, index) => {
-      const isLast = index === 4;
-      expect(element).toHaveProp('isLast', isLast);
-    });
-  });
+    getByText(container, 'step 1');
+    getByText(container, 'step 2');
+    getByText(container, 'step 3');
 
-  it('applies isCompleted prop to child if element is rendered before the provided index', () => {
-    example.children().forEach((element, index) => {
-      const isCompleted = index === 0 || index === 1 || index === 2;
-      expect(element).toHaveProp('isCompleted', isCompleted);
-    });
-  });
+    getByText(container, 'step 1 content');
+    expect(queryByText(container, 'step 2 content')).toBeNull();
+    expect(queryByText(container, 'step 3 content')).toBeNull();
 
-  it('applies isActive prop to child if element is rendered at the provided index', () => {
-    example.children().forEach((element, index) => {
-      const isActive = index === 3;
-      expect(element).toHaveProp('isActive', isActive);
-    });
-  });
+    fireEvent.click(getByText(container, 'next'));
+    expect(queryByText(container, 'step 1 content')).toBeNull();
+    getByText(container, 'step 2 content');
+    expect(queryByText(container, 'step 3 content')).toBeNull();
 
-  it('applies step prop to child for the current index', () => {
-    example.children().forEach((element, index) => {
-      const step = index + 1;
-      expect(element).toHaveProp('step', step);
-    });
+    fireEvent.click(getByText(container, 'next'));
+    expect(queryByText(container, 'step 1 content')).toBeNull();
+    expect(queryByText(container, 'step 2 content')).toBeNull();
+    getByText(container, 'step 3 content');
   });
 });

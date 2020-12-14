@@ -1,0 +1,11 @@
+{
+  "author": "Jhey Tompkins",
+  "authorLink": "https://twitter.com/@jh3yy",
+  "title": "Getting Started with Styletron",
+  "tagline": "Let's build some buttons!",
+  "date": "9 April 2019",
+  "coverImage": "https://images.unsplash.com/photo-1533915828531-55b274d98dc5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+  "coverImageWidth": 500,
+  "coverImageHeight": 375,
+  "keyWords": ["Styletron", "CSS", "CSS in JS", "Tutorial"]
+}

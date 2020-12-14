@@ -1,67 +1,61 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import BasicHeader from 'examples/header-navigation/basic.js';
 import WithSearch from 'examples/header-navigation/with-search.js';
 
-import Overrides from '../../components/overrides';
 import {
   HeaderNavigation,
   ALIGN,
   StyledNavigationItem as NavigationItem,
   StyledNavigationList as NavigationList,
 } from 'baseui/header-navigation';
-import * as HeadernavigationExports from 'baseui/header-navigation';
+import * as HeaderNavigationExports from 'baseui/header-navigation';
+
+import Yard from '../../components/yard/index';
+import headerNavigationYardConfig from '../../components/yard/config/header-navigation';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
 # Header navigation
 
+<Yard placeholderHeight={52} {...headerNavigationYardConfig} />
+
 ## Examples
 
 <Example
   title="Header navigation basic usage"
-  path="examples/header-navigation/basic.js"
+  path="header-navigation/basic.js"
 >
   <BasicHeader />
 </Example>
 
 <Example
   title="Header navigation with search"
-  path="examples/header-navigation/with-search.js"
+  path="header-navigation/with-search.js"
 >
   <WithSearch />
 </Example>
 
-## Overrides
+## API
 
-<Overrides
-  name="Header Navigation"
-  component={HeadernavigationExports}
-  blacklisted={['NavigationItem', 'NavigationList']}
-  renderExample={props => (
-    <HeaderNavigation overrides={props.overrides}>
-      <NavigationList align={ALIGN.left}>
-        <NavigationItem>Uber</NavigationItem>
-      </NavigationList>
-      <NavigationList align={ALIGN.center} />
-      <NavigationList align={ALIGN.right}>
-        <NavigationItem>Tab One</NavigationItem>
-        <NavigationItem>Tab Two</NavigationItem>
-      </NavigationList>
-    </HeaderNavigation>
-  )}
+<ApiTable
+  title="Header Navigation props"
+  config={headerNavigationYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/header-navigation/header-navigation.js')}
 />
 
-<API
-  heading="HeaderNavigation API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/header-navigation/header-navigation.js')}
+<Exports
+  component={HeaderNavigationExports}
+  title="Header Navigation exports"
+  path="baseui/header-navigation"
 />

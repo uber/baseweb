@@ -1,0 +1,55 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import JSON from '../../components/json';
+import en_US from 'baseui/locale/en_US.js';
+import {Notification} from 'baseui/notification';
+
+import LocaleProviderExample from 'examples/internationalization/example.js';
+import DatepickerLocalizationExample from 'examples/datepicker/i18n.js';
+
+export default Layout;
+
+# Internationalization
+
+Base Web publishes a language translation utility called `LocaleProvider` so that strings required
+to display components can be configured to best support website visitors from non-English speaking
+locations. Please note that some factors of internationalization are not taken care of here; this
+includes pluralization, currency, and list formatting. If you need that support, take a look at the
+[Intl](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) API
+Date and time formatting are customized with
+[date-fns internationalization tools](https://date-fns.org/v2.15.0/docs/I18n).
+
+Below is an example of how to use the `LocaleProvider`. This component should generally wrap the
+application and must be provided with a dictionary of terms translated to the appropriate language.
+It is up to developers to handle state management and language switching based on their site
+requirements. In this particular example, we are customizing labels in the pagination component
+into Hungarian. 'next' becomes 'Következő' and 'prev' becomes 'Előző'. Fill out other terms in
+the locale if your application requires it.
+
+<Example title="LocaleProvider Example" path="internationalization/example.js">
+  <LocaleProviderExample />
+</Example>
+
+The next example shows how to leverage the `date-fns` internationalization helpers. View their
+[documentation](https://date-fns.org/v2.15.0/docs/I18n) for additional information. It also
+customizes the `formatString` to display the chosen date in a familar format to the target location.
+View the date-fns [format documentation](https://date-fns.org/v2.8.1/docs/format) for how to use
+this feature.
+
+<Example title="Datepicker localization Example" path="datepicker/i18n.js">
+  <DatepickerLocalizationExample />
+</Example>
+
+## The shape of the locale file
+
+<JSON src={en_US} />
+
+If you'd like to contribute a locale, please send a Pull Request based
+on the [en_US](https://github.com/uber/baseweb/tree/master/src/locale) locale.

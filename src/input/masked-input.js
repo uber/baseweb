@@ -1,50 +1,99 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 import InputMask from 'react-input-mask';
 
 import Input from './input.js';
 import {Input as StyledInput} from './styled-components.js';
-import type {InputPropsT} from './types.js';
+import type {MaskedInputPropsT} from './types.js';
 
-type PropsT = {
-  ...InputPropsT,
-  /** See pattern examples here: https://github.com/sanniassin/react-input-mask */
-  mask?: string,
-  /** Character to render for unfilled mask element. */
-  maskChar?: string,
-};
+const MaskOverride = React.forwardRef<MaskedInputPropsT, HTMLElement>(
+  (
+    {
+      // do nothing with these - we just don't want to pass it to the InputMask, as
+      // it does not have these properties
+      startEnhancer,
+      endEnhancer,
+      error,
+      positive,
+      // below are props that are used by the masked-input
+      onChange,
+      onFocus,
+      onBlur,
+      value,
+      disabled,
+      ...restProps
+    }: MaskedInputPropsT,
+    ref,
+  ) => {
+    return (
+      <InputMask
+        onChange={onChange}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        value={value}
+        disabled={disabled}
+        {...restProps}
+      >
+        {props => (
+          <StyledInput
+            ref={ref}
+            onChange={onChange}
+            onFocus={onFocus}
+            onBlur={onBlur}
+            value={value}
+            disabled={disabled}
+            {...props}
+          />
+        )}
+      </InputMask>
+    );
+  },
+);
 
-function MaskOverride(props: PropsT) {
-  return (
-    <InputMask {...props}>
-      {({startEnhancer, endEnhancer, error, ...maskProps}) => {
-        return <StyledInput {...maskProps} />;
-      }}
-    </InputMask>
-  );
-}
+export default function MaskedInput({
+  mask,
+  maskChar,
+  overrides: {Input: inputOverride = {}, ...restOverrides} = {},
+  ...restProps
+}: MaskedInputPropsT) {
+  let componentOverride = MaskOverride;
+  let propsOverride = {};
+  let styleOverride = {};
 
-export default function MaskedInput(props: PropsT) {
-  const {overrides = {}} = props;
+  if (typeof inputOverride === 'function') {
+    componentOverride = inputOverride;
+  } else if (typeof inputOverride === 'object') {
+    componentOverride = inputOverride.component || componentOverride;
+    propsOverride = inputOverride.props || {};
+    styleOverride = inputOverride.style || {};
+  }
+
+  if (typeof propsOverride === 'object') {
+    propsOverride = {
+      ...propsOverride,
+      mask: propsOverride.mask || mask,
+      maskChar: propsOverride.maskChar || maskChar,
+    };
+  }
+
   const nextOverrides = {
-    // seems similar to the issue described in overrides.js
-    // https://github.com/uber-web/baseui/blob/master/src/helpers/overrides.js#L32
-    // eslint-disable-next-line flowtype/no-weak-types
-    Input: ({component: MaskOverride, props}: any),
-    ...overrides,
+    Input: {
+      component: componentOverride,
+      props: propsOverride,
+      style: styleOverride,
+    },
+    ...restOverrides,
   };
-
-  return <Input {...props} overrides={nextOverrides} />;
+  return <Input {...restProps} overrides={nextOverrides} />;
 }
 
 MaskedInput.defaultProps = {
-  ...Input.defaultProps,
   maskChar: ' ',
 };

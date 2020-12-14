@@ -1,82 +1,79 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
+import Exports from '../../components/exports';
 import Layout from '../../components/layout';
+import SEO from '../../components/meta-seo';
 
 import Sizes from 'examples/avatar/sizes.js';
 import Error from 'examples/avatar/error.js';
 import Override from 'examples/avatar/override.js';
+import Initials from 'examples/avatar/initials.js';
 
-import Overrides from '../../components/overrides';
 import {Avatar} from 'baseui/avatar';
 import * as AvatarExports from 'baseui/avatar';
 import {Block} from 'baseui/block';
+
+import Yard from '../../components/yard/index';
+import avatarYardConfig from '../../components/yard/config/avatar';
+import ApiTable from '../../components/api-table';
+
+<SEO
+  description="The Avatar component adds additional visual information about a user."
+  keywords="avatar, react avatar, react user info"
+/>
 
 export default Layout;
 
 # Avatar
 
-Adds additional visual information about a user.
+<Yard placeholderHeight={52} {...avatarYardConfig} />
 
-### When to use
+The Avatar component adds additional visual information about a user.
+
+## When to use
 
 - When you want to show a user's image along contextual information.
 - When you want to attribute an action to a user.
 
-### Accessibility
+## Accessibility
 
 - Top level `name` prop will be set on the `<img>` element as its `alt` attribute.
 - If src fails to load, applies `aria-label` with provided name and `role` with 'img' to root div element.
 
 ## Examples
 
-<Example title="Avatar with available sizes" path="examples/avatar/sizes.js">
+<Example title="Avatar with available sizes" path="avatar/sizes.js">
   <Sizes />
 </Example>
 
-<Example title="Avatar with error fallback" path="examples/avatar/error.js">
+<Example title="Avatar with error fallback" path="avatar/error.js">
   <Error />
 </Example>
 
-<Example
-  title="Avatar with example overrides"
-  path="examples/avatar/override.js"
->
+<Example title="Avatar with initials" path="avatar/initials.js">
+  <Initials />
+</Example>
+
+<Example title="Avatar with example overrides" path="avatar/override.js">
   <Override />
 </Example>
 
-## Overrides
+## API
 
-<Overrides
-  name="Avatar"
-  component={AvatarExports}
-  renderExample={props => (
-    <React.Fragment>
-      <Avatar
-        overrides={props.overrides}
-        name="user name #1"
-        size="scale1400"
-        src="https://api.adorable.io/avatars/285/11@adorable.io.png"
-      />
-      <Block marginTop="scale800">
-        <Avatar
-          overrides={props.overrides}
-          name={`user`}
-          size="scale1400"
-          src="https://not-a-real-image.png"
-        />
-      </Block>
-    </React.Fragment>
-  )}
+<ApiTable
+  title="Avatar props"
+  config={avatarYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/avatar/avatar.js')}
 />
 
-<API
-  heading="Avatar API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/avatar/avatar.js')}
+<Exports
+  component={AvatarExports}
+  title="Avatar exports"
+  path="baseui/avatar"
 />

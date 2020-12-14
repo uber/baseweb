@@ -1,30 +1,45 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import DatepickerBasic from 'examples/datepicker/basic.js';
 import DatepickerInPopover from 'examples/datepicker/in-popover.js';
 import DatepickerQuickSelect from 'examples/datepicker/quick-select.js';
+import DatepickerTimeSelect from 'examples/datepicker/calendar-time-select.js';
+import DatepickerMultipleMonths from 'examples/datepicker/calendar-multiple-months.js';
+import DatepickerI18n from 'examples/datepicker/i18n.js';
 import DatepickerWithOverrides from 'examples/datepicker/with-overrides.js';
+import ComposedRangePickers from 'examples/datepicker/composed-range-pickers.js';
+import ComposedSinglePickers from 'examples/datepicker/composed-single-pickers.js';
+import DatepickersColorStates from 'examples/datepicker/datepickers-color-states.js';
+import DatepickerTimezone from 'examples/datepicker/datepicker-with-timezone.js';
+import NestedOverride from 'examples/datepicker/nested-override.js';
+import DatepickerWithMask from 'examples/datepicker/with-mask.js';
+import DatepickerNullMask from 'examples/datepicker/null-mask.js';
 
-import Overrides from '../../components/overrides';
 import {StatefulCalendar} from 'baseui/datepicker';
 import * as DatepickerExports from 'baseui/datepicker';
+
+import Yard from '../../components/yard/index';
+import datepickerConfig from '../../components/yard/config/datepicker';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
 # Datepicker
 
+<Yard placeholderHeight={48} {...datepickerConfig} />
+
 A simple and reusable component to work with or select a date or a range of dates.
 
-### Accessibility
+## Accessibility
 
 - Supports keyboard hotkeys: `tab` - to switch between inputs, arrows, month\year select and day grid. `escape` to close datepicker dropdown.
 - When month and year selects focused, `up` and `down` causes dropdown to open and move to value, `enter` and `space` to choose selected year or month.
@@ -34,52 +49,109 @@ A simple and reusable component to work with or select a date or a range of date
 
 ## Examples
 
-<Example title="Datepicker" path="examples/datepicker/basic.js">
+<Example title="Datepicker basic usage" path="datepicker/basic.js">
   <DatepickerBasic />
 </Example>
 
-<Example
-  title="Datepicker in a popover"
-  path="examples/datepicker/in-popover.js"
->
+<Example title="Datepicker in a popover" path="datepicker/in-popover.js">
   <DatepickerInPopover />
 </Example>
 
 <Example
   title="Datepicker with quick select actions"
-  path="examples/datepicker/quick-select.js"
+  path="datepicker/quick-select.js"
 >
   <DatepickerQuickSelect />
 </Example>
 
-<Example
-  title="Datepicker with overrides"
-  path="examples/datepicker/with-overrides.js"
->
+<Example title="Datepicker with localization" path="datepicker/i18n.js">
+  <DatepickerI18n />
+</Example>
+
+The `formatString` property supports all the patterns supported by [date-fns' format method](https://date-fns.org/v2.8.1/docs/format).
+For example, if someone wants to change it to Australian format, one has to simply pass the `formatString={'d/MM/YYYY'}` as the props.
+Please note, that some of the options require you to pass in the `locale` object too, just as shown in this example.
+
+<Example title="Datepicker with overrides" path="datepicker/with-overrides.js">
   <DatepickerWithOverrides />
 </Example>
 
-## Overrides
+<Example title="Datepicker with custom mask" path="datepicker/with-mask.js">
+  <DatepickerWithMask />
+</Example>
 
-<Overrides
-  name="Datepicker"
+When using a custom mask `formatString` prop should be also set to match the mask format.
+
+<Example title="Datepicker with no mask" path="datepicker/null-mask.js">
+  <DatepickerNullMask />
+</Example>
+
+Some date formats will operate better without a restrictive input mask. You can disable that feature by applying `null` to the mask prop.
+
+<Example
+  title="Calendar with time select actions"
+  path="datepicker/calendar-time-select.js"
+>
+  <DatepickerTimeSelect />
+</Example>
+
+<Example
+  title="Calendar with multiple months"
+  path="datepicker/calendar-multiple-months.js"
+>
+  <DatepickerMultipleMonths />
+</Example>
+
+<Example
+  title="Composed single pickers"
+  path="datepicker/composed-single-pickers.js"
+>
+  <ComposedSinglePickers />
+</Example>
+
+<Example
+  title="Composed range pickers"
+  path="datepicker/composed-range-pickers.js"
+>
+  <ComposedRangePickers />
+</Example>
+
+<Example
+  title="Datepicker states"
+  path="datepicker/datepickers-color-states.js"
+>
+  <DatepickersColorStates />
+</Example>
+
+<Example
+  title="Datepicker with timezone selection"
+  path="datepicker/datepicker-with-timezone.js"
+>
+  This example works for most use-cases, however certain edge-cases are not
+  handled here. If this data is mission critical for your systems, consider
+  using Moment.js, and pass the date object from Moment.js to the datepicker.
+  <DatepickerTimezone />
+</Example>
+
+<Example
+  title="Overriding a nested component"
+  path="datepicker/nested-override.js"
+>
+  <NestedOverride />
+</Example>
+
+In this example we use a [nested override](/guides/understanding-overrides/#override-nested-components) to customize the `ListItem` within the month/year dropdown (`MonthYearSelectStatefulMenu`).
+
+## API
+
+<ApiTable
+  title="Datepicker props"
+  config={datepickerConfig}
+  types={require('!!extract-react-types-loader!../../../src/datepicker/calendar.js')}
+/>
+
+<Exports
   component={DatepickerExports}
-  renderExample={props => (
-    <StatefulCalendar
-      initialState={{value: new Date()}}
-      range
-      quickSelect
-      overrides={props.overrides}
-    />
-  )}
-/>
-
-<API
-  heading="Datepicker API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/datepicker/calendar.js')}
-/>
-
-<API
-  heading="Stateful Datepicker API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/datepicker/stateful-calendar.js')}
+  title="Datepicker exports"
+  path="baseui/datepicker"
 />

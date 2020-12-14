@@ -1,7 +1,11 @@
 {
   "version": 2,
-  "alias": "baseui-documentation.now.sh",
-  "builds": [{"src": "public/**", "use": "@now/static"}],
-  "name": "baseui-documentation",
-  "routes": [{"src": "/(.*)", "dest": "public/$1"}]
+  "builds": [
+    {
+      "src": "./build-now.sh",
+      "use": "@now/static-build",
+      "config": {"distDir": "public"}
+    }
+  ],
+  "alias": ["baseweb.design"]
 }

@@ -1,0 +1,114 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import * as LayerExports from 'baseui/layer';
+
+import LayerBasic from 'examples/layer/basic.js';
+import LayerZIndex from 'examples/layer/layer-z-index.js';
+import TetherBasic from 'examples/layer/basic-tether.js';
+
+export default Layout;
+
+# Layers
+
+Every UI has stackable layers and it's important to have control over how the layers
+play together. Some examples of the stackable layers are tooltips, modals, popovers,
+select dropdowns or menus. The issues that come up along the layers usage are z-index
+and visibility handling, what layer goes on top. There are many other layer
+related issues that include focus management, hover management, keyboard navigation,
+click events and hotkeys usage.
+
+## LayersManager
+
+In order to start leveraging the layers approach add a
+[`BaseProvider`](https://baseweb.design/components/base-provider/) to your application.
+It needs to be added at the root of the application. It will add the `LayersManager`.
+Make sure you add the `BaseProvider` at the root of your application.
+
+`LayersManager` creates two adjacent divs. Your application will be mounted into
+the first div. The second div is used to host rendered layers. If the generated wrapper div
+around your application conflicts with the layout styles, then use overrides to fix the issue.
+For example, `overrides={{ AppContainer: { style: { height: '100%'} }}}`.
+
+**Please note:** If you don't wrap the application in a `BaseProvider` all layers will be added
+directly to the `body` element and may create conflicts with other libraries that may add
+children to `body`.
+
+Do not add the `BaseProvider` or `LayersManager` anywhere in the middle of your
+application since the host element for layers added within its context will be
+positioned at the point where the `LayersManager` is added and it will effect the layers stacking order.
+
+## Layer
+
+`Layer` component renders its children into a host element, instead of the `body`
+element, using `createPortal`. The application needs to be wrapped in a `LayersManager`
+in order to handle the rendering into a container. If no `LayersManager` is added
+the content will be added to the `body`. With layers there is no need for `z-index`
+css property usage as layers completely rely on the stacking context.
+
+<Example title="Layer basic usage" path="layer/basic.js">
+  <LayerBasic />
+</Example>
+
+### Things you need to know when using z-index in an application
+
+In general try to avoid using `z-index` in your component based application. If you need
+to have a `z-index` added to some element on a page make sure it's within an ordered
+stacking context. Read more on how to create a stacking context in the
+[MDN documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context).
+
+**Please note:** `z-index`es within separate stacking contexts are not
+compared and children within a stacking context that goes last will overlay those
+with a higher `z-index` but within a separate stacking context that goes earlier
+in the stacking order.
+In order to support applications that have stacking contexts with `z-index` set to
+a value other than `auto` `LayersManager` accepts `zIndex` number. When a `zIndex` value
+is passed it will set it as a `z-index` value for all the layers within its context.
+
+What `LayersManager`'s `z-index` value should be set to? There is no need to pass millions
+or thousands as its value. In fact, you can build your application in a way that all top
+level stacking contexts have the `z-index` value set to no more than `1` so the value you'd need
+to pass to the `LayersManager` will be `zIndex={1}` or `zIndex={2}`. If your application
+is build in a less structured way you'd need to pass a `zIndex` value that is equal or
+greater than the highest `z-index` value of all top level stacking contexts in your application
+(**note it may be not the highest `z-index` value across your application**).
+
+<Example title="Layers with z-index" path="layer/layer-z-index.js">
+  <LayerZIndex />
+</Example>
+
+## Tether behavior
+
+`Tether` component provides a behavior where its content positioned relatively to a provided anchor element. Popover component is a good example of the `Tether` component usage.
+
+<Example title="Tether basic usage" path="layer/basic-tether.js">
+  <TetherBasic />
+</Example>
+
+## API
+
+<API
+  heading="Layer API"
+  api={require('!!extract-react-types-loader!../../../src/layer/layer.js')}
+/>
+
+<API
+  heading="LayersManager API"
+  api={require('!!extract-react-types-loader!../../../src/layer/layers-manager.js')}
+/>
+
+<API
+  heading="Tether API"
+  api={require('!!extract-react-types-loader!../../../src/layer/tether.js')}
+/>
+
+<Exports component={LayerExports} title="Layer exports" path="baseui/layer" />

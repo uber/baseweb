@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -10,24 +10,67 @@ LICENSE file in the root directory of this source tree.
 
 const {resolve} = require('path');
 const withImages = require('next-images');
-const rehypePrism = require('@mapbox/rehype-prism');
 const withMDX = require('@zeit/next-mdx')({
   extension: /\.mdx?$/,
-  options: {
-    hastPlugins: [rehypePrism],
-  },
 });
-const withCSS = require('@zeit/next-css');
 
-module.exports = withCSS(
+// The following modules need to be transpiled for IE11.
+// If IE11 breaks again in the future, enable production source maps to find
+// which module is causing the issue.
+const withTM = require('next-transpile-modules')([
+  '@octokit/rest',
+  '@octokit/endpoint',
+  '@octokit/request',
+  '@octokit/request-error',
+  '@babel/core',
+  '@babel/code-frame',
+  '@babel/parser',
+  '@babel/generator',
+  '@babel/traverse',
+  '@babel/types',
+  '@babel/template',
+  '@babel/highlight',
+  '@babel/helpers',
+  '@babel/helper-plugin-utils',
+  '@babel/helper-builder-react-jsx',
+  '@babel/helper-function-name',
+  '@babel/helper-split-export-declaration',
+  '@babel/plugin-transform-react-jsx',
+  '@babel/plugin-transform-react-jsx-source',
+  '@babel/plugin-transform-react-jsx-self',
+  '@babel/plugin-transform-react-display-name',
+  '@babel/plugin-syntax-jsx',
+  '@babel/preset-react',
+  'octokit-pagination-methods',
+  'deprecation',
+  'vnopts',
+  'react-view',
+  'ansi-styles',
+  'debug',
+  'chalk',
+  'is-fullwidth-code-point',
+  'jest-docblock',
+  'gensync',
+  'string-width',
+  'jsesc',
+]);
+
+module.exports = withTM(
   withMDX(
     withImages({
+      typescript: {
+        ignoreBuildErrors: true,
+      },
+      publicRuntimeConfig: {
+        loadYard: process.env.LOAD_YARD,
+      },
+      trailingSlash: true,
       webpack: (config, {buildId, dev, isServer, defaultLoaders}) => {
         config.resolve.alias.baseui = resolve(__dirname, '../dist');
-        config.resolve.alias.examples = resolve(__dirname, 'static/examples');
-
+        config.resolve.alias.examples = resolve(__dirname, 'examples');
         // references next polyfills example: https://github.com/zeit/next.js/tree/canary/examples/with-polyfills
         const originalEntry = config.entry;
+        config['node'] = {fs: 'empty'};
         config.entry = async () => {
           const entries = await originalEntry();
 
@@ -40,6 +83,10 @@ module.exports = withCSS(
 
           return entries;
         };
+
+        if (dev) {
+          config.devtool = 'inline-source-map';
+        }
 
         return config;
       },

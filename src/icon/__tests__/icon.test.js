@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,16 +7,18 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-env browser */
 
-import React from 'react';
-import {shallow} from 'enzyme';
+import * as React from 'react';
+import {render} from '@testing-library/react';
 import {Icon} from '../index.js';
-import {Svg} from '../styled-components.js';
 import * as Icons from '../icon-exports.js';
 
 describe('Icon', () => {
-  test('renders an icon with viewbox and title', () => {
-    const wrapper = shallow(
-      <Icon viewBox="0 0 23px 23px" title="Test">
+  it('renders an icon with viewBox and title', () => {
+    const viewBox = '0 0 23px 23px';
+    const title = 'Test';
+
+    const {container} = render(
+      <Icon viewBox={viewBox} title={title}>
         <path
           fillRule="evenodd"
           clipRule="evenodd"
@@ -24,13 +26,19 @@ describe('Icon', () => {
         />
       </Icon>,
     );
-
-    expect(wrapper).toMatchSnapshot('Icon basic render');
+    const svgElement = container.querySelector('svg');
+    expect(svgElement.getAttribute('viewBox')).toBe(viewBox);
+    const titleElement = container.querySelector('title');
+    expect(titleElement.textContent).toBe(title);
   });
 
-  test('supports overrides', () => {
-    const wrapper = shallow(
-      <Icon overrides={{Svg: {style: {fill: 'purple'}}}}>
+  it('does not pass extraneous attributes to svg elements', () => {
+    // an exception
+    const consoleError = console.error;
+    // $FlowFixMe
+    console.error = jest.fn();
+    render(
+      <Icon $test="123">
         <path
           fillRule="evenodd"
           clipRule="evenodd"
@@ -38,16 +46,19 @@ describe('Icon', () => {
         />
       </Icon>,
     );
-
-    expect(wrapper.find(Svg).prop('$style')).toEqual({fill: 'purple'});
+    // $FlowFixMe
+    expect(console.error.mock.calls.length).toBe(0);
+    // $FlowFixMe
+    console.error = consoleError;
   });
 
   // Test that all the icons render
   Object.keys(Icons).forEach(key => {
     const Component = Icons[key];
     test(`renders ${key} icon`, () => {
-      const wrapper = shallow(<Component />);
-      expect(wrapper).toExist();
+      const {container} = render(<Component />);
+      const svgElement = container.querySelector('svg');
+      expect(svgElement).not.toBeNull();
     });
   });
 });

@@ -1,0 +1,250 @@
+import Layout from '../../../components/layout';
+import {BlogImage, Meta, Caption} from '../../../components/blog';
+import {Block} from 'baseui/block';
+import {StatefulInput} from 'baseui/input';
+import {StatefulSelect} from 'baseui/select';
+import {StatefulPaymentCard} from 'baseui/payment-card';
+import {StatefulPhoneInput} from 'baseui/phone-input';
+import metadata from './metadata.json';
+
+import aspectRatioBoxGif from './aspect-ratio-box.gif';
+import responsiveFlexGridGif from './responsive-flex-grid.gif';
+import responsiveHideGif from './responsive-hide.gif';
+import responsiveLoadStatusGif from './responsive-load-status.gif';
+import responsiveNavBarGif from './responsive-nav-bar.gif';
+import viewportMetaTagGif from './viewport-meta-tag.gif';
+
+export default Layout;
+
+<Meta data={metadata} />
+
+<BlogImage
+  src="/images/blog/responsive-web/responsive-shipper-tools.svg"
+  alt="mobile, laptop, and desktop devices running a web application"
+  caption="Responsive apps work across mobile and desktop"
+/>
+
+When building web applications, it is important to consider all users and prioritize accessibility. [More and more people are relying on their phones to access the web](https://www.pewinternet.org/fact-sheet/mobile/), which means we need to ensure our applications work well on smaller form factors. Here are some tips and tricks for using Base Web to build UIs for both mobile and desktop.
+
+## Setting the viewport meta tag
+
+Before we begin, we should set the viewport meta tag.
+
+<BlogImage
+  src={viewportMetaTagGif}
+  alt="resizing the window smaller and seeing the content shrink as the window gets thinner and thinner"
+  caption="Default behavior for resizing the browser shrinks content to fit the window width"
+/>
+
+The default browser behavior is to shrink the page until the entire width of the page is visible, forcing the user to pan and zoom on smaller devices. This behavior, however, is undesirable once you build a responsive app, and wish to see the content at its intended scale. In order properly size the content based on the device width, you will need to set the viewport `<meta>` in your `<head>` (or [`<Helmet>`](https://github.com/nfl/react-helmet))
+
+```js
+<head> // or <Helmet>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+</head>
+```
+
+This meta tag was originally introduced by [Apple](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html) for iOS Safari, but has since become an industry standard for controlling the viewport’s size and scale.
+
+- **`width=device-width`** sets the width of the page equal to the width of the device or window. E.g. if your screen has a width of 375px, then `width: 100%` will set the width to 375px.
+- **`initial-scale=1`** tells the browser to start at the 1:1 zoom level.
+- **`shrink-to-fit=no`** further prevents the page from scaling down in the event that you have elements on the page that overflow (either intentionally or unintentionally) the viewport bounds.
+
+## Custom breakpoints
+
+In many cases, you would want to override Base Web’s breakpoints with your own. The default breakpoints for Base Web are:
+
+- **`small: 320`**
+- **`medium: 600`**
+- **`large: 1280`**
+
+To override these, we recommend creating your own mapping, as well as generating the respective `min-width` media query strings so we can target different screen widths for styling:
+
+```js
+const breakpoints = {
+  small: 769,
+  medium: 1024,
+  large: 1216,
+};
+
+const ResponsiveTheme = Object.keys(breakpoints).reduce(
+  (acc, key) => {
+    acc.mediaQuery[
+      key
+    ] = `@media screen and (min-width: ${breakpoints[key]}px)`;
+    return acc;
+  },
+  {
+    breakpoints,
+    mediaQuery: {},
+  },
+);
+
+export const MyTheme = {...LightTheme, ...ResponsiveTheme};
+```
+
+This sets the following values inside `MyTheme`:
+
+```json
+{
+  "breakpoints": {
+    "small": 769
+    "medium": 1024,
+    "large": 1216,
+  },
+  "mediaQuery": {
+    "small": "@media screen and (min-width: 769px)"
+    "medium": "@media screen and (min-width: 1024px)",
+    "large": "@media screen and (min-width: 1216px)",
+  }
+}
+```
+
+Then you can use `MyTheme` throughout your app using Base Web’s [`ThemeProvider`](/guides/theming/#setup).
+
+## Mobile-first styling of components
+
+It is important to write your styles [mobile first](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Responsive/Mobile_first) by default, and to treat desktop styles as enhancements. This is because it is usually easier to scale up a mobile component for desktop than vice-versa; desktop components often have usability issues when shrunken down.
+
+Another benefit with this approach is the consistency with how Base Web components handle responsive props, which we will see later on with the **Block** and **FlexGrid** components.
+
+Now that our theme is set up with media queries, we can start using them to create responsively-styled components using `themeStyled()`:
+
+```js
+const LoadStatus = themedStyled('span', ({$theme}) => ({
+  ...$theme.typography.font250,
+  color: $theme.colors.mono800,
+  [$theme.mediaQuery.small]: {
+    ...$theme.typography.font550,
+    color: $theme.colors.mono900,
+  },
+}));
+```
+
+With our `small` breakpoint of 769px, this means that the component will change font-size and color as the screen increases past 769px:
+
+<BlogImage
+  src={responsiveLoadStatusGif}
+  alt="resizing the window larger and seeing the pink-highlighted text change font-size and color"
+  caption="LoadStatus component, highlighted in pink, changes font-size and color on desktop"
+/>
+
+## Block responsive API
+
+The [Block](/components/block/#responsive-layouts) component accepts props either as a single value or an array of values. When an array is used, it will generate media queries based on the current theme breakpoints.
+
+This gives us a simpler way of creating components:
+
+```js
+const NavBar = props => (
+  <Block
+    height={['scale1400', 'scale1600']}
+    paddingLeft={['scale800', 'scale1200']}
+    paddingRight={['scale800', 'scale1200']}
+    {...props}
+  />
+);
+
+// is equivalent to
+
+const NavBar = themedStyled('div', ({$theme}) => ({
+  height: $theme.sizing.scale1400,
+  paddingRight: $theme.sizing.scale800,
+  paddingLeft: $theme.sizing.scale800,
+  [$theme.mediaQuery.small]: {
+    height: $theme.sizing.scale1600,
+    paddingRight: $theme.sizing.scale1200,
+    paddingLeft: $theme.sizing.scale1200,
+  },
+}));
+```
+
+<BlogImage
+  src={responsiveNavBarGif}
+  alt="resizing the window larger and seeing the yellow-highlighted nav bar increase height and padding"
+  caption="NavBar component, highlighted in yellow, increases height and padding on desktop"
+/>
+
+## Mobile-only or desktop-only Blocks
+
+We can also take advantage of these responsive properties to completely hide a Block component using CSS `display: none`.
+
+```js
+// TabLink appears only on mobile
+const TabLink = props => <Block display={['block', 'none']} {...props} />;
+
+// NavLink appears only on desktop
+const NavLink = props => <Block display={['none', 'block']} {...props} />;
+```
+
+<BlogImage
+  src={responsiveHideGif}
+  alt="resizing the window larger and seeing the green-highlighted components appear or disappear"
+  caption="Mobile-only/desktop-only components, highlighted in green, appear or disappear on desktop"
+/>
+
+## FlexGrid component
+
+Another handy tool for building responsive UIs is the [FlexGrid](/components/flex-grid/) component ([v6.19.0](https://github.com/uber/baseweb/releases/tag/v6.19.0)+). This component lets you build grid layouts using CSS flexbox, supporting Internet Explorer 10+ users. It sets gaps between the columns and rows [using `:nth-child` and `:nth-last-child` math](https://github.com/uber/baseweb/blob/master/src/flex-grid/flex-grid-item.js), which avoids extra margins at the end of each row or column, and also adds extra margins to account for incomplete rows. **FlexGrid** also allows for responsive prop arrays like the [Block](/components/block/#responsive-layouts) component.
+
+```js
+// Example usage
+const Filters = () => (
+  <FlexGrid columnCount={[2, 1]} columnGap="scale300" rowGap="scale800">
+    <FlexGridItem>All Shipments</FlexGridItem>
+    <FlexGridItem>In Progress</FlexGridItem>
+    <FlexGridItem>Upcoming</FlexGridItem>
+    <FlexGridItem>Past</FlexGridItem>
+  </FlexGrid>
+);
+
+const Locations = ({Pickup, Dropoff}) => (
+  <FlexGrid columnCount={[1, 2]} columnGap="scale300" rowGap="scale300">
+    <FlexGridItem>
+      <Pickup />
+    </FlexGridItem>
+    <FlexGridItem>
+      <Dropoff />
+    </FlexGridItem>
+  </FlexGrid>
+);
+```
+
+These `columnCount` props mean that the Filters component will have two columns on mobile, and one column on desktop, whereas the Locations component will have one column on mobile, and two columns on desktop:
+
+<BlogImage
+  src={responsiveFlexGridGif}
+  alt="resizing the window larger and seeing the red-highlighted FlexGrid components change column-counts"
+  caption="FlexGrid components, highlighted in red, change column-counts on desktop"
+/>
+
+## AspectRatioBox component
+
+On slower network connections, especially apparent on cellular networks, images can cause content to jump around (reflow) as they are downloaded. When browsers see an image tag, they typically do not know how much space to allocate until it begins downloading the image headers, which can take some time.
+
+In order to avoid these reflows, we can take advantage of the [AspectRatioBox](/components/aspect-ratio-box) component ([v7.5.0](https://github.com/uber/baseweb/releases/tag/v7.5.0)+), which allows us to specify the aspect ratio for an element ahead of time using CSS (see [CSS-Tricks](https://css-tricks.com/aspect-ratio-boxes/#article-header-id-6) for how this works).
+
+```js
+// Example usage
+<AspectRatioBox aspectRatio={300 / 117}>
+  <AspectRatioBoxBody
+    as="img"
+    src={assetUrl('/error-image.svg')}
+    alt="Truck with scuba-gear on ocean floor with octopus and
+         fishes behind it"
+  />
+</AspectRatioBox>
+```
+
+<BlogImage
+  src={aspectRatioBoxGif}
+  alt="side-by-side comparison of app loading, left with an image that reflows on load"
+  caption="Right image uses AspectRatioBox component to prevent reflows on slower networks"
+/>
+
+## Final thoughts
+
+Base Web currently gives you a few foundational components to build responsive web applications: from **Block**, to **FlexGrid**, to **AspectRatioBox**. We hope these components, along with this guide, will help and encourage you to build applications that are accessible to as many users as possible. Base Web is also open-source, so if you want to contribute enhancements or additional components, please check out our [contributing guide](https://github.com/uber/baseweb/blob/master/CONTRIBUTING.md)!

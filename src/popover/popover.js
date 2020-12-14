@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,31 +7,35 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable react/no-find-dom-node */
 import * as React from 'react';
-import ReactDOM from 'react-dom';
+import FocusLock from 'react-focus-lock';
 
-import Popper from 'popper.js';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 import getBuiId from '../utils/get-bui-id.js';
-import {ACCESSIBILITY_TYPE, PLACEMENT, TRIGGER_TYPE} from './constants.js';
+import {
+  ACCESSIBILITY_TYPE,
+  PLACEMENT,
+  TRIGGER_TYPE,
+  ANIMATE_OUT_TIME,
+  ANIMATE_IN_TIME,
+  POPOVER_MARGIN,
+} from './constants.js';
+import {Layer, TetherBehavior} from '../layer/index.js';
 import {
   Arrow as StyledArrow,
   Body as StyledBody,
   Inner as StyledInner,
+  Hidden,
 } from './styled-components.js';
-import {
-  toPopperPlacement,
-  fromPopperPlacement,
-  parsePopperOffset,
-} from './utils.js';
+import {fromPopperPlacement} from './utils.js';
 import defaultProps from './default-props.js';
 
 import type {
   AnchorPropsT,
   PopoverPropsT,
   PopoverPrivateStateT,
-  PopperDataObjectT,
   SharedStylePropsArgT,
 } from './types.js';
+import type {PopperDataObjectT, NormalizedOffsetsT} from '../layer/types.js';
 
 class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   static defaultProps: $Shape<PopoverPropsT> = defaultProps;
@@ -43,7 +47,6 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   onMouseEnterTimer: ?TimeoutID;
   onMouseLeaveTimer: ?TimeoutID;
   generatedId: string = '';
-  popper: ?Popper;
   anchorRef = (React.createRef(): {current: *});
   popperRef = (React.createRef(): {current: *});
   arrowRef = (React.createRef(): {current: *});
@@ -57,33 +60,59 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   state = this.getDefaultState(this.props);
 
   componentDidMount() {
-    if (this.props.isOpen) {
-      this.initializePopper();
-      this.addDomEvents();
-    }
     this.generatedId = getBuiId();
+    this.setState({isMounted: true});
   }
 
-  componentDidUpdate(prevProps: PopoverPropsT) {
-    if (this.props.isOpen !== prevProps.isOpen) {
-      if (this.props.isOpen) {
+  componentDidUpdate(
+    prevProps: PopoverPropsT,
+    prevState: PopoverPrivateStateT,
+  ) {
+    this.init(prevProps, prevState);
+    if (
+      this.props.autoFocus &&
+      this.props.focusLock &&
+      !this.state.autoFocusAfterPositioning &&
+      this.popperRef.current !== null &&
+      this.popperRef.current.getBoundingClientRect().top > 0
+    ) {
+      this.setState({autoFocusAfterPositioning: true});
+    }
+
+    if (__DEV__) {
+      if (!this.anchorRef.current) {
+        // eslint-disable-next-line no-console
+        console.warn(
+          `[baseui][Popover] ref has not been passed to the Popper's anchor element.
+              See how to pass the ref to an anchor element in the Popover example
+              http://baseui.design/components/popover#anchor-ref-handling-example`,
+        );
+      }
+    }
+  }
+
+  init(prevProps: PopoverPropsT, prevState: PopoverPrivateStateT) {
+    if (
+      this.props.isOpen !== prevProps.isOpen ||
+      this.state.isMounted !== prevState.isMounted ||
+      this.state.isLayerMounted !== prevState.isLayerMounted
+    ) {
+      // Transition from closed to open.
+      if (this.props.isOpen && this.state.isLayerMounted) {
         // Clear any existing timers (like previous animateOutCompleteTimer)
         this.clearTimers();
-        // Opening
-        this.initializePopper();
-        this.addDomEvents();
-      } else {
-        // Closing
-        this.destroyPopover();
-        this.removeDomEvents();
+        return;
+      }
+
+      // Transition from open to closed.
+      if (!this.props.isOpen && prevProps.isOpen) {
         this.animateOutTimer = setTimeout(this.animateOut, 20);
+        return;
       }
     }
   }
 
   componentWillUnmount() {
-    this.destroyPopover();
-    this.removeDomEvents();
     this.clearTimers();
   }
 
@@ -93,6 +122,9 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       arrowOffset: {left: 0, top: 0},
       popoverOffset: {left: 0, top: 0},
       placement: props.placement,
+      isMounted: false,
+      isLayerMounted: false,
+      autoFocusAfterPositioning: false,
     };
   }
 
@@ -112,39 +144,9 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
           // Reset to ideal placement specified in props
           placement: this.props.placement,
         });
-      }, 500);
+      }, this.props.animateOutTime || ANIMATE_OUT_TIME);
     }
   };
-
-  initializePopper() {
-    const {placement} = this.state;
-    this.popper = new Popper(this.anchorRef.current, this.popperRef.current, {
-      // Recommended placement (popper may ignore if it causes a viewport overflow, etc)
-      placement: toPopperPlacement(placement),
-      modifiers: {
-        // Passing the arrow ref will measure the arrow when calculating styles
-        arrow: {
-          element: this.arrowRef.current,
-          enabled: this.props.showArrow,
-        },
-        computeStyle: {
-          // Make popper use top/left instead of transform translate, this is because
-          // we use transform for animations and we dont want them to conflict
-          gpuAcceleration: false,
-        },
-        applyStyle: {
-          // Disable default styling modifier, we'll apply styles on our own
-          enabled: false,
-        },
-        applyReactStyle: {
-          enabled: true,
-          fn: this.onPopperUpdate,
-          order: 900,
-        },
-        preventOverflow: {enabled: !this.props.ignoreBoundary},
-      },
-    });
-  }
 
   clearTimers() {
     [
@@ -166,22 +168,22 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     }
   };
 
-  onAnchorMouseEnter = () => {
+  onAnchorMouseEnter = (e: Event) => {
     // First clear any existing close timers, this ensures that the user can
     // move their mouse from the popover back to anchor without it hiding
     if (this.onMouseLeaveTimer) {
       clearTimeout(this.onMouseLeaveTimer);
     }
 
-    this.triggerOnMouseEnterWithDelay();
+    this.triggerOnMouseEnterWithDelay(e);
   };
 
-  onAnchorMouseLeave = () => {
+  onAnchorMouseLeave = (e: Event) => {
     // Clear any existing open timer, otherwise popover could be stuck open
     if (this.onMouseEnterTimer) {
       clearTimeout(this.onMouseEnterTimer);
     }
-    this.triggerOnMouseLeaveWithDelay();
+    this.triggerOnMouseLeaveWithDelay(e);
   };
 
   onPopoverMouseEnter = () => {
@@ -190,81 +192,62 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     }
   };
 
-  onPopoverMouseLeave = () => {
-    this.triggerOnMouseLeaveWithDelay();
+  onPopoverMouseLeave = (e: Event) => {
+    this.triggerOnMouseLeaveWithDelay(e);
   };
 
-  onKeyPress = (evt: KeyboardEvent) => {
-    if (evt.key === 'Escape' && this.props.onEsc) {
-      this.props.onEsc();
-    }
-  };
-
-  onPopperUpdate = (data: PopperDataObjectT) => {
+  onPopperUpdate = (
+    normalizedOffsets: NormalizedOffsetsT,
+    data: PopperDataObjectT,
+  ) => {
     const placement = fromPopperPlacement(data.placement) || PLACEMENT.top;
     this.setState({
-      arrowOffset: data.offsets.arrow
-        ? parsePopperOffset(data.offsets.arrow)
-        : {top: 0, left: 0},
-      popoverOffset: parsePopperOffset(data.offsets.popper),
+      arrowOffset: normalizedOffsets.arrow,
+      popoverOffset: normalizedOffsets.popper,
       placement,
     });
 
     // Now that element has been positioned, we can animate it in
-    this.animateInTimer = setTimeout(this.animateIn, 20);
+    this.animateInTimer = setTimeout(this.animateIn, ANIMATE_IN_TIME);
 
     return data;
   };
 
-  triggerOnMouseLeaveWithDelay() {
+  triggerOnMouseLeaveWithDelay(e: Event) {
     const {onMouseLeaveDelay} = this.props;
     if (onMouseLeaveDelay) {
       this.onMouseLeaveTimer = setTimeout(
-        this.triggerOnMouseLeave,
+        () => this.triggerOnMouseLeave(e),
         onMouseLeaveDelay,
       );
       return;
     }
-    this.triggerOnMouseLeave();
+    this.triggerOnMouseLeave(e);
   }
 
-  triggerOnMouseLeave = () => {
+  triggerOnMouseLeave = (e: Event) => {
     if (this.props.onMouseLeave) {
-      this.props.onMouseLeave();
+      this.props.onMouseLeave(e);
     }
   };
 
-  triggerOnMouseEnterWithDelay() {
+  triggerOnMouseEnterWithDelay(e: Event) {
     const {onMouseEnterDelay} = this.props;
     if (onMouseEnterDelay) {
       this.onMouseEnterTimer = setTimeout(
-        this.triggerOnMouseEnter,
+        () => this.triggerOnMouseEnter(e),
         onMouseEnterDelay,
       );
       return;
     }
-    this.triggerOnMouseEnter();
+    this.triggerOnMouseEnter(e);
   }
 
-  triggerOnMouseEnter = () => {
+  triggerOnMouseEnter = (e: Event) => {
     if (this.props.onMouseEnter) {
-      this.props.onMouseEnter();
+      this.props.onMouseEnter(e);
     }
   };
-
-  addDomEvents() {
-    if (__BROWSER__) {
-      document.addEventListener('mousedown', this.onDocumentClick);
-      document.addEventListener('keyup', this.onKeyPress);
-    }
-  }
-
-  removeDomEvents() {
-    if (__BROWSER__) {
-      document.removeEventListener('mousedown', this.onDocumentClick);
-      document.removeEventListener('keyup', this.onKeyPress);
-    }
-  }
 
   onDocumentClick = (evt: MouseEvent) => {
     const target = evt.target;
@@ -278,19 +261,9 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       return;
     }
     if (this.props.onClickOutside) {
-      this.props.onClickOutside();
+      this.props.onClickOutside(evt);
     }
   };
-
-  destroyPopover() {
-    if (this.popper) {
-      this.popper.destroy();
-      delete this.popper;
-    }
-    if (this.isClickTrigger()) {
-      this.removeDomEvents();
-    }
-  }
 
   isClickTrigger() {
     return this.props.triggerType === TRIGGER_TYPE.click;
@@ -317,27 +290,24 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     return this.props.id || this.generatedId || null;
   }
 
-  getAnchorProps(refKey: 'ref' | '$ref') {
+  getAnchorProps() {
     const {isOpen} = this.props;
 
     const anchorProps: AnchorPropsT = {
+      'aria-haspopup': 'true',
+      'aria-expanded': isOpen ? 'true' : 'false',
       key: 'popover-anchor',
-      // Once styletron gets forwardRef support, switch to always using ref
-      // https://github.com/rtsao/styletron/issues/253
-      [refKey]: this.anchorRef,
+      ref: this.anchorRef,
     };
 
-    const anchorId = this.getAnchorIdAttr();
     const popoverId = this.getPopoverIdAttr();
     if (this.isAccessibilityTypeMenu()) {
-      anchorProps['aria-haspopup'] = 'true';
-      anchorProps['aria-expanded'] = isOpen ? 'true' : 'false';
       const relationAttr = this.isClickTrigger()
         ? 'aria-controls'
         : 'aria-owns';
       anchorProps[relationAttr] = isOpen ? popoverId : null;
     } else if (this.isAccessibilityTypeTooltip()) {
-      anchorProps.id = anchorId;
+      anchorProps.id = this.getAnchorIdAttr();
       anchorProps['aria-describedby'] = isOpen ? popoverId : null;
     }
 
@@ -373,15 +343,16 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   }
 
   getSharedProps(): $Diff<SharedStylePropsArgT, {children?: React.Node}> {
-    const {isOpen, showArrow} = this.props;
+    const {isOpen, showArrow, popoverMargin = POPOVER_MARGIN} = this.props;
     const {isAnimating, arrowOffset, popoverOffset, placement} = this.state;
     return {
-      $showArrow: Boolean(showArrow),
+      $showArrow: !!showArrow,
       $arrowOffset: arrowOffset,
       $popoverOffset: popoverOffset,
       $placement: placement,
       $isAnimating: isAnimating,
       $isOpen: isOpen,
+      $popoverMargin: popoverMargin,
     };
   }
 
@@ -391,9 +362,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     if (childArray.length !== 1) {
       // eslint-disable-next-line no-console
       console.error(
-        `[baseui] Exactly 1 child must be passed to Popover/Tooltip, found ${
-          childArray.length
-        } children`,
+        `[baseui] Exactly 1 child must be passed to Popover/Tooltip, found ${childArray.length} children`,
       );
     }
     return childArray[0];
@@ -406,13 +375,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     }
 
     const isValidElement = React.isValidElement(anchor);
-    const isDomElement =
-      typeof anchor === 'object' && typeof anchor.type === 'string';
-
-    // Use $ref for complex components, ref for html elements
-    const refKey = isValidElement && !isDomElement ? '$ref' : 'ref';
-
-    const anchorProps = this.getAnchorProps(refKey);
+    const anchorProps = this.getAnchorProps();
 
     if (typeof anchor === 'object' && isValidElement) {
       return React.cloneElement(anchor, anchorProps);
@@ -420,8 +383,8 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     return <span {...anchorProps}>{anchor}</span>;
   }
 
-  renderPopover() {
-    const {showArrow, overrides = {}, content} = this.props;
+  renderPopover(renderedContent: React.Node) {
+    const {showArrow, overrides = {}} = this.props;
 
     const {
       Arrow: ArrowOverride,
@@ -439,7 +402,8 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
     return (
       <Body
         key="popover-body"
-        $ref={this.popperRef}
+        ref={this.popperRef}
+        data-baseweb={this.props['data-baseweb'] || 'popover'}
         {...bodyProps}
         {...sharedProps}
         {...getOverrideProps(BodyOverride)}
@@ -447,32 +411,73 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
         {showArrow ? (
           <Arrow
             key="popover-arrow"
-            $ref={this.arrowRef}
+            ref={this.arrowRef}
             {...sharedProps}
             {...getOverrideProps(ArrowOverride)}
           />
         ) : null}
-        <Inner
-          key="popover-inner"
-          {...sharedProps}
-          {...getOverrideProps(InnerOverride)}
-        >
-          {typeof content === 'function' ? content() : content}
+        <Inner {...sharedProps} {...getOverrideProps(InnerOverride)}>
+          {renderedContent}
         </Inner>
       </Body>
     );
   }
 
-  render() {
-    const rendered = [this.renderAnchor()];
+  renderContent() {
+    const {content} = this.props;
+    return typeof content === 'function' ? content() : content;
+  }
 
+  render() {
+    const mountedAndOpen = this.state.isMounted && this.props.isOpen;
+    const rendered = [this.renderAnchor()];
+    const renderedContent =
+      mountedAndOpen || this.props.renderAll ? this.renderContent() : null;
+
+    const defaultPopperOptions = {
+      modifiers: {
+        preventOverflow: {enabled: !this.props.ignoreBoundary},
+      },
+    };
     // Only render popover on the browser (portals aren't supported server-side)
-    if (__BROWSER__) {
-      if (this.props.isOpen || this.state.isAnimating) {
+    if (renderedContent) {
+      if (mountedAndOpen) {
         rendered.push(
-          // $FlowFixMe
-          ReactDOM.createPortal(this.renderPopover(), document.body),
+          <Layer
+            key="new-layer"
+            mountNode={this.props.mountNode}
+            onEscape={this.props.onEsc}
+            onDocumentClick={this.onDocumentClick}
+            onMount={() => this.setState({isLayerMounted: true})}
+            onUnmount={() => this.setState({isLayerMounted: false})}
+          >
+            <TetherBehavior
+              anchorRef={this.anchorRef.current}
+              arrowRef={this.arrowRef.current}
+              popperRef={this.popperRef.current}
+              // Remove the `ignoreBoundary` prop in the next major version
+              // and have it replaced with the TetherBehavior props overrides
+              popperOptions={{
+                ...defaultPopperOptions,
+                ...this.props.popperOptions,
+              }}
+              onPopperUpdate={this.onPopperUpdate}
+              placement={this.state.placement}
+            >
+              <FocusLock
+                disabled={!this.props.focusLock}
+                noFocusGuards={false}
+                // see popover-focus-loop.scenario.js for why hover cannot return focus
+                returnFocus={this.props.returnFocus && !this.isHoverTrigger()}
+                autoFocus={this.state.autoFocusAfterPositioning} // eslint-disable-line jsx-a11y/no-autofocus
+              >
+                {this.renderPopover(renderedContent)}
+              </FocusLock>
+            </TetherBehavior>
+          </Layer>,
         );
+      } else {
+        rendered.push(<Hidden key="hidden-layer">{renderedContent}</Hidden>);
       }
     }
     return rendered;

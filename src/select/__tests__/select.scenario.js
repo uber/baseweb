@@ -1,30 +1,50 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 
-import {StatefulSelect} from '../index.js';
+import {StatefulSelect, SingleSelect, MultiSelect} from '../index.js';
 
-export const name = 'select';
+const options = [
+  {id: 'AliceBlue', color: '#F0F8FF'},
+  {id: 'AntiqueWhite', color: '#FAEBD7'},
+  {id: 'Aqua', color: '#00FFFF'},
+  {id: 'Aquamarine', color: '#7FFFD4'},
+  {id: 'Azure', color: '#F0FFFF'},
+  {id: 'Beige', color: '#F5F5DC'},
+];
 
-export const component = () => (
-  <StatefulSelect
-    aria-label="Select a color"
-    options={[
-      {id: 'AliceBlue', color: '#F0F8FF'},
-      {id: 'AntiqueWhite', color: '#FAEBD7'},
-      {id: 'Aqua', color: '#00FFFF'},
-      {id: 'Aquamarine', color: '#7FFFD4'},
-      {id: 'Azure', color: '#F0FFFF'},
-      {id: 'Beige', color: '#F5F5DC'},
-    ]}
-    overrides={{ValueContainer: {props: {'data-id': 'selected'}}}}
-    labelKey="id"
-    valueKey="color"
-  />
-);
+export default function Scenario() {
+  return (
+    <>
+      <StatefulSelect
+        aria-label="Select a color"
+        options={options}
+        overrides={{ValueContainer: {props: {'data-id': 'selected'}}}}
+        labelKey="id"
+        valueKey="color"
+      />
+      <br />
+      <SingleSelect
+        aria-label="Select a color"
+        options={options}
+        labelKey="id"
+        valueKey="color"
+        value={[{color: '#00FFFF'}]}
+      />
+      <br />
+      <MultiSelect
+        aria-label="Select a color"
+        options={options}
+        labelKey="id"
+        valueKey="color"
+        value={[{color: '#00FFFF'}]}
+      />
+    </>
+  );
+}

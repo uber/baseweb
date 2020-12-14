@@ -1,17 +1,30 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import createTheme from './creator.js';
-import {primitives as lightThemePrimitives} from './light-theme-primitives.js';
-import {LightThemeMove} from './light-theme-with-move.js';
-import {DarkTheme} from './dark-theme.js';
+import {LightTheme} from './light-theme/light-theme.js';
+import {LightThemeMove} from './move-theme/light-theme-with-move.js';
+import {DarkTheme} from './dark-theme/dark-theme.js';
+import {DarkThemeMove} from './move-theme/dark-theme-with-move.js';
+import createDarkTheme from './dark-theme/create-dark-theme.js';
+import createLightTheme from './light-theme/create-light-theme.js';
+import darkThemePrimitives from './dark-theme/primitives.js';
+import lightThemePrimitives from './light-theme/primitives.js';
 
-export const LightTheme = createTheme(lightThemePrimitives);
+export {
+  createDarkTheme,
+  createLightTheme,
+  createLightTheme as createTheme,
+  LightTheme,
+  LightThemeMove,
+  lightThemePrimitives,
+  DarkTheme,
+  DarkThemeMove,
+  darkThemePrimitives,
+  DarkTheme as darkThemeOverrides,
+};
 
-export {createTheme, LightThemeMove, lightThemePrimitives, DarkTheme};
-
-export * from './types';
+export type * from './types.js';

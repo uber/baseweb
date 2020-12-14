@@ -1,13 +1,13 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import FileUploaderBasic from 'examples/file-uploader/basic.js';
 import FileUploaderError from 'examples/file-uploader/error.js';
@@ -15,67 +15,73 @@ import FileUploaderIndeterminate from 'examples/file-uploader/indeterminate-prog
 import FileUploaderDisabled from 'examples/file-uploader/disabled.js';
 import FileUploaderOverrides from 'examples/file-uploader/overrides.js';
 
-import Overrides from '../../components/overrides';
 import OverridesExample from 'examples/file-uploader/_overrides_component.js';
-import * as FileuploaderExports from 'baseui/file-uploader';
+import * as FileUploaderExports from 'baseui/file-uploader';
+
+import Yard from '../../components/yard/index';
+import fileUploaderYardConfig from '../../components/yard/config/file-uploader';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
 # File Uploader
 
+<Yard placeholderHeight={180} {...fileUploaderYardConfig} />
+
 Creates a dropzone for file uploads.
 
-### Accessibility
+## Accessibility
 
 - "Browse files" has `aria-controls="fileupload"` set.
 
-### When to use
+## When to use
 
 - Enable file(s) upload through drag and drop or the system _Browse files_ dialog.
 
+## Security considerations
+
+By default, the file uploader does not concern itself with validating and discarding potentially malicious files, as Base Web never runs any of the uploaded files. **It's the responsibility of the consuming application to do so.** To help with that, this component supports the `accept` property, which can limit the acceptable file extensions.
+
+To learn more, read the corresponding [OWASP article on file uploads](https://www.owasp.org/index.php/Unrestricted_File_Upload).
+
 ## Examples
 
-<Example
-  title="File uploader basic usage"
-  path="examples/file-uploader/basic.js"
->
+<Example title="File uploader basic usage" path="file-uploader/basic.js">
   <FileUploaderBasic />
 </Example>
 
-<Example title="File upload with error" path="examples/file-uploader/error.js">
+<Example title="File upload with error" path="file-uploader/error.js">
   <FileUploaderError />
 </Example>
 
 <Example
   title="File upload with unknown progress"
-  path="examples/file-uploader/indeterminate-progress.js"
+  path="file-uploader/indeterminate-progress.js"
 >
   <FileUploaderIndeterminate />
 </Example>
 
 <Example
   title="File uploader in disabled state"
-  path="examples/file-uploader/disabled.js"
+  path="file-uploader/disabled.js"
 >
   <FileUploaderDisabled />
 </Example>
 
-<Example
-  title="File uploader with overrides"
-  path="examples/file-uploader/overrides.js"
->
+<Example title="File uploader with overrides" path="file-uploader/overrides.js">
   <FileUploaderOverrides />
 </Example>
 
-## Overrides
+## API
 
-<Overrides
-  name="File Uploader"
-  component={FileuploaderExports}
-  renderExample={props => <OverridesExample overrides={props.overrides} />}
+<ApiTable
+  title="File uploader props"
+  config={fileUploaderYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/file-uploader/file-uploader.js')}
 />
 
-<API
-  heading="File Uploader API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/file-uploader/file-uploader.js')}
+<Exports
+  component={FileUploaderExports}
+  title="File uploader exports"
+  path="baseui/file-uploader"
 />

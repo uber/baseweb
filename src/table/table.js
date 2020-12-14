@@ -1,12 +1,12 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 
 import {
   StyledTable,
@@ -16,6 +16,8 @@ import {
   StyledRow,
   StyledCell,
 } from './styled-components.js';
+
+import {ProgressBar} from '../progress-bar/index.js';
 
 import type {TablePropsT} from './types.js';
 
@@ -29,25 +31,35 @@ export default class Table extends React.Component<TablePropsT> {
   render() {
     return (
       <StyledTable
-        role="grid"
+        data-baseweb="table"
         aria-colcount={this.props.columns.length}
         aria-rowcount={this.props.data.length}
       >
-        <StyledHead role="row" $width={this.props.horizontalScrollWidth}>
+        {this.props.isLoading && (
+          <ProgressBar
+            infinite
+            overrides={{
+              Bar: {
+                style: {
+                  marginBottom: 0,
+                  marginLeft: 0,
+                  marginRight: 0,
+                  marginTop: 0,
+                },
+              },
+            }}
+          />
+        )}
+        <StyledHead $width={this.props.horizontalScrollWidth}>
           {this.props.columns.map((column, index) => (
-            <StyledHeadCell role="columnheader" key={index}>
-              {column}
-            </StyledHeadCell>
+            <StyledHeadCell key={index}>{column}</StyledHeadCell>
           ))}
         </StyledHead>
-
-        <StyledBody role="rowgroup" $width={this.props.horizontalScrollWidth}>
+        <StyledBody $width={this.props.horizontalScrollWidth}>
           {this.props.data.map((row, index) => (
-            <StyledRow key={index} role="row">
+            <StyledRow key={index}>
               {row.map((cell, cellIndex) => (
-                <StyledCell key={cellIndex} role="gridcell">
-                  {cell}
-                </StyledCell>
+                <StyledCell key={cellIndex}>{cell}</StyledCell>
               ))}
             </StyledRow>
           ))}

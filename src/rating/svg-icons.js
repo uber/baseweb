@@ -1,14 +1,14 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-export function starSVG(fillColor: string, strokeColor: string) {
+export function starSVG(fillColor: string, strokeColor: string, size: number) {
   return encodeURIComponent(`
-    <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="${size}" height="${size}" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M11 1.54816L13.1268 7.78053L13.2423 8.11905H13.6H20.4143L14.9132 11.9714L14.6055 12.1869L14.7268 12.5424L16.8321 18.7118L11.2868 14.8285L11 14.6277L10.7132 14.8285L5.16792 18.7118L7.27321 12.5424L7.39454 12.1869L7.08681 11.9714L1.58566 8.11905H8.4H8.75769L8.87321 7.78053L11 1.54816Z"
         fill="${fillColor}"
@@ -18,9 +18,9 @@ export function starSVG(fillColor: string, strokeColor: string) {
   `);
 }
 
-export function angryRatingSVG(fillColor: string) {
+export function angryRatingSVG(fillColor: string, size: number) {
   return encodeURIComponent(`
-    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="${size}" height="${size}" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="22" cy="22" r="20" fill="${fillColor}"/>
       <path fill-rule="evenodd" clip-rule="evenodd" d="M21.8377 29C24.8073 29 26.6585 30.7697 27.1609 31.5442C27.4615 32.0075 28.0807 32.1395 28.5441 31.839C29.0074 31.5384 29.1394 30.9192 28.8388 30.4558C28.0439 29.2303 25.614 27 21.8377 27C18.0453 27 15.8091 29.25 15.1202 30.5245C14.8576 31.0103 15.0385 31.6171 15.5244 31.8797C16.0102 32.1423 16.617 31.9614 16.8796 31.4755C17.2718 30.75 18.8842 29 21.8377 29Z" fill="black"/>
       <path fill-rule="evenodd" clip-rule="evenodd" d="M11.684 16.949C11.1601 16.7743 10.8769 16.208 11.0516 15.684C11.2262 15.1601 11.7926 14.8769 12.3165 15.0516L18.3165 17.0516C18.8404 17.2262 19.1236 17.7926 18.949 18.3165C18.8093 18.7355 18.4192 19.0005 18.0005 19.0005C18.0004 20.105 17.105 21.0002 16.0005 21.0002C14.896 21.0002 14.0005 20.1048 14.0005 19.0002C14.0005 18.5694 14.1368 18.1703 14.3686 17.8438L11.684 16.949ZM32.949 15.684C33.1237 16.208 32.8405 16.7743 32.3166 16.949L29.6324 17.8437C29.8642 18.1702 30.0005 18.5693 30.0005 19.0002C30.0005 20.1048 29.1051 21.0002 28.0005 21.0002C26.8961 21.0002 26.0007 20.105 26.0005 19.0005C25.5817 19.0007 25.1914 18.7356 25.0516 18.3165C24.877 17.7926 25.1602 17.2262 25.6841 17.0516L31.6841 15.0516C32.208 14.8769 32.7744 15.1601 32.949 15.684Z" fill="black"/>
@@ -28,9 +28,9 @@ export function angryRatingSVG(fillColor: string) {
   `);
 }
 
-export function sadRatingSVG(fillColor: string) {
+export function sadRatingSVG(fillColor: string, size: number) {
   return encodeURIComponent(`
-    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="${size}" height="${size}" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="22" cy="22" r="20" fill="${fillColor}"/>
       <ellipse cx="16" cy="18" rx="2" ry="2" fill="black"/>
       <ellipse cx="28" cy="18" rx="2" ry="2" fill="black"/>
@@ -39,9 +39,9 @@ export function sadRatingSVG(fillColor: string) {
   `);
 }
 
-export function neutralRatingSVG(fillColor: string) {
+export function neutralRatingSVG(fillColor: string, size: number) {
   return encodeURIComponent(`
-    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="${size}" height="${size}" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="22" cy="22" r="20" fill="${fillColor}"/>
       <ellipse cx="16" cy="19" rx="2" ry="2" fill="black"/>
       <ellipse cx="28" cy="19" rx="2" ry="2" fill="black"/>
@@ -50,9 +50,9 @@ export function neutralRatingSVG(fillColor: string) {
   `);
 }
 
-export function happyRatingSVG(fillColor: string) {
+export function happyRatingSVG(fillColor: string, size: number) {
   return encodeURIComponent(`
-    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="${size}" height="${size}" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="22" cy="22" r="20" fill="${fillColor}"/>
       <ellipse cx="16" cy="18" rx="2" ry="2" fill="black"/>
       <ellipse cx="28" cy="18" rx="2" ry="2" fill="black"/>
@@ -61,9 +61,9 @@ export function happyRatingSVG(fillColor: string) {
   `);
 }
 
-export function veryHappyRatingSVG(fillColor: string) {
+export function veryHappyRatingSVG(fillColor: string, size: number) {
   return encodeURIComponent(`
-    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="${size}" height="${size}" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="22" cy="22" r="20" fill="${fillColor}"/>
       <ellipse cx="16" cy="18" rx="2" ry="2" fill="black"/>
       <ellipse cx="28" cy="18" rx="2" ry="2" fill="black"/>

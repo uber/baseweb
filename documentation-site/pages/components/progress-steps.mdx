@@ -1,90 +1,66 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import ProgressStepsDotted from 'examples/progress-steps/dotted';
 import ProgressStepsNumbered from 'examples/progress-steps/numbered';
 
-import Overrides from '../../components/overrides';
 import {ProgressSteps, Step, NumberedStep} from 'baseui/progress-steps';
-import * as ProgressstepsExports from 'baseui/progress-steps';
+import * as ProgressStepsExports from 'baseui/progress-steps';
 import {Block} from 'baseui/block';
+
+import Yard from '../../components/yard/index';
+import progressStepsYardConfig from '../../components/yard/config/progress-steps';
+import progressStepsNumberedYardConfig from '../../components/yard/config/progress-steps-numbered';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
 # Progress steps
+
+<Yard placeholderHeight={20} {...progressStepsYardConfig} />
+
+## Numbered progress steps
+
+<Yard
+  placeholderHeight={20}
+  queryStringName="numbered-steps-state"
+  {...progressStepsNumberedYardConfig}
+/>
 
 Progress lists in Base are used to denote staged progress of an action or activity. This
 list type provides the user with a sense of awareness around progress and the steps remaining.
 
 ## Examples
 
-<Example
-  title="Progress Steps Dotted Usage"
-  path="examples/progress-steps/dotted.js"
->
+<Example title="Progress Steps Dotted Usage" path="progress-steps/dotted.js">
   <ProgressStepsDotted />
 </Example>
 
 <Example
   title="Progress Steps Numbered Usage"
-  path="examples/progress-steps/numbered.js"
+  path="progress-steps/numbered.js"
 >
   <ProgressStepsNumbered />
 </Example>
 
-## Overrides
+## API
 
-<Overrides
-  name="ProgressSteps"
-  whitelisted={[
-    'Root',
-    'Icon',
-    'InnerIcon',
-    'Tail',
-    'Content',
-    'Title',
-    'Description',
-  ]}
-  component={ProgressstepsExports}
-  renderExample={props => (
-    <React.Fragment>
-      <ProgressSteps current={0} overrides={props.overrides}>
-        <Step title="Step 1" overrides={props.overrides}>
-          Content
-        </Step>
-        <Step title="Step 2" overrides={props.overrides} />
-      </ProgressSteps>
-      <Block marginTop="scale600">
-        <ProgressSteps current={1} overrides={props.overrides}>
-          <NumberedStep title="Step 1" overrides={props.overrides} />
-          <NumberedStep title="Step 2" overrides={props.overrides}>
-            Content
-          </NumberedStep>
-        </ProgressSteps>
-      </Block>
-    </React.Fragment>
-  )}
+<ApiTable
+  title="Progress Steps props"
+  config={progressStepsYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/progress-steps/progress-steps.js')}
 />
 
-<API
-  heading="ProgressSteps API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/progress-steps/progress-steps.js')}
-/>
-
-<API
-  heading="NumberedStep API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/progress-steps/numbered-step.js')}
-/>
-
-<API
-  heading="Step API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/progress-steps/step.js')}
+<Exports
+  component={ProgressStepsExports}
+  title="Progress Steps exports"
+  path="baseui/progress-steps"
 />

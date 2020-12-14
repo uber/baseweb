@@ -1,0 +1,109 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import {DocLink} from '../../components/markdown-elements';
+import Exports from '../../components/exports';
+
+import {StatefulPhoneInput, COUNTRIES} from 'baseui/phone-input/index.js';
+import * as PhoneInputExports from 'baseui/phone-input/index.js';
+import {Table} from 'baseui/table/index.js';
+import {Block} from 'baseui/block/index.js';
+
+import PhoneInputBasic from 'examples/phone-input/basic.js';
+import PhoneInputNext from 'examples/phone-input/basic-next.js';
+import PhoneInputUncontrolled from 'examples/phone-input/uncontrolled.js';
+import PhoneInputLocalized from 'examples/phone-input/localized.js';
+import FlagOverrides from 'examples/phone-input/flag-overrides.js';
+import WithNestedOverrides from 'examples/phone-input/nested-overrides.js';
+
+import Yard from '../../components/yard/index';
+import phoneInputYardConfig from '../../components/yard/config/phone-input';
+import ApiTable from '../../components/api-table';
+
+export default Layout;
+
+# Phone Input
+
+<Yard placeholderHeight={48} {...phoneInputYardConfig} />
+
+The Phone Input is used to collect phone numbers with international dial codes.
+It contains a dropdown which allows the user to choose from a list of countries and dial codes.
+
+## Examples
+
+<Example title="Basic usage" path="phone-input/basic.js">
+  <PhoneInputBasic />
+</Example>
+
+<Example title="Updated phone input design" path="phone-input/basic-next.js">
+  <PhoneInputNext />
+</Example>
+
+Starting in version v11, `PhoneInputNext` will replace the current `PhoneInput`, where the country picker is split from the input element.
+
+<Example title="Localized country names" path="phone-input/localized.js">
+  <PhoneInputLocalized />
+</Example>
+
+<Example
+  title="With flag overrides and virtualized dropdown list"
+  path="phone-input/flag-overrides.js"
+>
+  <FlagOverrides />
+</Example>
+
+<Example title="With nested overrides" path="phone-input/nested-overrides.js">
+  <WithNestedOverrides />
+</Example>
+
+Click [here](/guides/understanding-overrides//#override-nested-components) to learn more about nested overrides.
+
+<Example
+  title="Stateful (uncontrolled) usage"
+  path="phone-input/uncontrolled.js"
+>
+  <PhoneInputUncontrolled />
+</Example>
+
+As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulPhoneInput`, which manages its own state.
+
+## Supported Countries
+
+The following countries are available in the country selector dropdown.
+You can import these as an object `COUNTRIES` from `baseui/phone-input`.
+Note, the country objects are formatted for ease of use with our `Select` component.
+
+```js
+COUNTRIES: {
+  id: string,      // Country ISO
+  label: string,   // Country Name
+  dialCode: string // Country Dial Code
+}
+```
+
+<Block height="400px">
+  <Table
+    columns={['ID', 'Label', 'Dial Code']}
+    data={Object.values(COUNTRIES).map(c => [c.id, c.label, c.dialCode])}
+  />
+</Block>
+
+## API
+
+<ApiTable
+  title="Phone Input props"
+  config={phoneInputYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/phone-input/phone-input.js')}
+/>
+
+<Exports
+  component={PhoneInputExports}
+  title="Phone Input exports"
+  path="baseui/phone-input"
+/>

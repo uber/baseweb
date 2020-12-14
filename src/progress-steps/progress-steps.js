@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -22,18 +22,34 @@ function ProgressSteps({
   const modifiedChildren = React.Children.map(children, (child, index) => {
     if (!child) return;
 
+    const childOverrides = child.props.overrides || {};
+
+    const isActive =
+      child.props.isActive !== undefined
+        ? child.props.isActive
+        : index === current;
+
     return React.cloneElement(
       child,
       ({
         isLast: index === numChildren - 1,
         isCompleted: index < current,
-        isActive: index === current,
+        isActive,
         step: index + 1,
+        overrides: {
+          ...overrides,
+          Root: overrides.StepRoot,
+          ...childOverrides,
+        },
       }: StepPropsT),
     );
   });
 
-  return <Root {...rootProps}>{modifiedChildren}</Root>;
+  return (
+    <Root data-baseweb="progress-steps" {...rootProps}>
+      {modifiedChildren}
+    </Root>
+  );
 }
 
 ProgressSteps.defaultProps = {

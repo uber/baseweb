@@ -2,26 +2,29 @@ version: '2.3'
 services:
   # this spins up a server that serves the html/js/css for the e2e tests
   e2e-server:
-    build: .
     command: yarn e2e:serve
+    build:
+      dockerfile: e2e.Dockerfile
+      context: .
     expose:
       - 8080
-    ports:
-      - '8080:8080'
     healthcheck:
       test:
         [
           'CMD-SHELL',
-          'curl -H "Accept: text/html" -f http://localhost:8080 || exit 1',
+          'curl -H "Accept: text/html" -f http://e2e-server:8080 || exit 1',
         ]
       interval: 5s
       timeout: 10s
       retries: 5
+    environment:
+      - COMPOSE_HTTP_TIMEOUT
 
   # tests if the e2e-server is ready to serve traffic
   e2e-server-healthy:
     build: .
-    network_mode: 'host'
+    links:
+      - e2e-server
     depends_on:
       e2e-server:
         condition: service_healthy
@@ -29,7 +32,11 @@ services:
   # running the e2e tests in ci
   e2e-test:
     build: .
-    network_mode: 'host'
+    links:
+      - e2e-server
+    volumes:
+      - ./__artifacts__:/baseui/__artifacts__:delegated
+      - ./vrt/__image_snapshots__:/baseui/vrt/__image_snapshots__:delegated
     depends_on:
       - e2e-server-healthy
     environment:
@@ -42,6 +49,11 @@ services:
       - BUILDKITE_BUILD_URL
       - BUILDKITE_PROJECT_SLUG
       - BUILDKITE_COMMIT
+      - BUILDKITE_PULL_REQUEST
+      - BUILDKITE_PULL_REQUEST_REPO
+      - GITHUB_BOT_AUTH_TOKEN
+      - GITHUB_BOT_EMAIL
+      - GITHUB_BOT_NAME
 
   baseui:
     build: .
@@ -49,12 +61,28 @@ services:
       - CODECOV_TOKEN
       - CI=true
       - BUILDKITE
+      - BUILDKITE_API_TOKEN
       - BUILDKITE_BRANCH
       - BUILDKITE_BUILD_NUMBER
       - BUILDKITE_JOB_ID
       - BUILDKITE_BUILD_URL
       - BUILDKITE_PROJECT_SLUG
+      - BUILDKITE_PULL_REQUEST_REPO
       - BUILDKITE_COMMIT
+      - BUILDKITE_MESSAGE
       - GITHUB_AUTH_TOKEN
-      - SCREENER_API_KEY
       - ZEIT_NOW_TOKEN
+      - ZEIT_NOW_TEAM_ID
+      - ZEIT_NOW_PROJECT_ID
+      - FIGMA_AUTH_TOKEN
+      - FIGMA_FILE_ID
+      - FOSSA_API_KEY
+      - CF_ZONE_ID
+      - CF_ACCOUNT_ID
+      - CF_API_KEY
+      - CF_AUTH_EMAIL
+      - NPM_TOKEN
+      - NETLIFY_AUTH_TOKEN
+      - NETLIFY_SITE_ID
+      - AZURE_TOKEN
+      - WEBSITE_ENV

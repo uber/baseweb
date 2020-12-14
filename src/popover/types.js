@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,16 +7,21 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
+import type {TetherPlacementT} from '../layer/types.js';
 import {
   ACCESSIBILITY_TYPE,
-  PLACEMENT,
   STATE_CHANGE_TYPE,
   TRIGGER_TYPE,
 } from './constants.js';
 
-export type PopoverPlacementT = $Keys<typeof PLACEMENT>;
+export type {
+  PopperDataObjectT,
+  PopperOffsetT,
+  PopperOptionsT,
+} from '../layer/types.js';
+
+export type PopoverPlacementT = TetherPlacementT;
 
 export type TriggerTypeT = $Keys<typeof TRIGGER_TYPE>;
 
@@ -41,9 +46,9 @@ export type StatefulContentRenderPropT = ({
 }) => React.Node;
 
 export type OverridesT = {
-  Body?: OverrideT<SharedStylePropsArgT>,
-  Arrow?: OverrideT<SharedStylePropsArgT>,
-  Inner?: OverrideT<SharedStylePropsArgT>,
+  Body?: OverrideT,
+  Arrow?: OverrideT,
+  Inner?: OverrideT,
 };
 
 // re-exports to maintain same public interface
@@ -56,20 +61,56 @@ export type BasePopoverPropsT = {
    * See the A11Y section at the bottom of this document for more details.
    */
   accessibilityType?: AccessibilityTypeT,
+  /** How long should be fade out animation in ms, default 0ms */
+  animateOutTime?: number,
+  /** If true, focus will shift to the first interactive element within the popover.
+   * If false, the popover container itself will receive focus.
+   * Moving focus into a newly opened popover is important for accessibility purposes, so please be careful!
+   */
+  autoFocus?: boolean,
+  /** If true, focus will be locked to elements within the popover.
+   */
+  focusLock?: boolean,
+  'data-baseweb'?: string,
   id?: string,
   /** If true, popover element will not avoid element boundaries. */
   ignoreBoundary?: boolean,
+  /** Where to mount the popover */
+  mountNode?: HTMLElement,
+  /** Handler for blur events on trigger element. */
+  onBlur?: (e: Event) => mixed,
+  /** Handler for click events on trigger element. */
+  onClick?: (e: Event) => mixed,
+  /** Handler for 'Esc' keypress events */
+  onFocus?: (e: Event) => mixed,
+  /** Handler for mouseenter events on trigger element. */
+  onMouseEnter?: (e: Event) => mixed,
   /** Number of milliseconds to wait before showing the popover after mouse enters the trigger element (for triggerType `hover`). */
   onMouseEnterDelay?: number,
+  /** Handler for mouseleave events on trigger element. */
+  onMouseLeave?: (e: Event) => mixed,
   /** Number of milliseconds to wait before showing the popover after mouse leaves the trigger element (for triggerType `hover`). */
   onMouseLeaveDelay?: number,
   overrides?: OverridesT,
   /** How to position the popover relative to the target. */
-  placement: PopoverPlacementT,
+  placement: TetherPlacementT,
+  /** Popper options override
+   * https://github.com/popperjs/popper.js/blob/v1.x/docs/_includes/popper-documentation.md
+   */
+  // eslint-disable-next-line flowtype/no-weak-types
+  popperOptions?: any,
+  /** Renders all popover content for SEO purposes regardless of popover isOpen state */
+  renderAll?: boolean,
+  /** If true, focus will shift back to the original element that triggered the popover
+   * Be careful with elements that open the popover on focus (e.g. input) this will cause the popover to reopen on close!
+   */
+  returnFocus?: boolean,
   /** Whether or not to show the arrow pointing from the popover to the trigger. */
   showArrow?: boolean,
   /** Whether to toggle the popover when trigger is clicked or hovered. */
   triggerType: TriggerTypeT,
+  /** Margin of the popover */
+  popoverMargin?: number,
 };
 
 // Props for stateless render logic
@@ -82,20 +123,10 @@ export type PopoverPropsT = BasePopoverPropsT & {
   content: React.Node | ContentRenderPropT,
   /** Whether or not to show the popover. */
   isOpen: boolean,
-  /** Handler for blur events on trigger element. */
-  onBlur?: () => void,
-  /** Handler for click events on trigger element. */
-  onClick?: (e: Event) => void,
   /** Handler for clicks outside the anchor/popover elements. */
-  onClickOutside?: () => void,
+  onClickOutside?: (event: MouseEvent) => mixed,
   /** Handler for click events on trigger element. */
-  onEsc?: () => void,
-  /** Handler for 'Esc' keypress events */
-  onFocus?: () => void,
-  /** Handler for mouseenter events on trigger element. */
-  onMouseEnter?: () => void,
-  /** Handler for mouseleave events on trigger element. */
-  onMouseLeave?: () => void,
+  onEsc?: () => mixed,
 };
 
 // Props for stateful wrapper
@@ -113,9 +144,9 @@ export type StatefulPopoverPropsT = BasePopoverPropsT & {
   /** Initial state populated into the component */
   initialState?: StateT,
   /** Event handler when popover is hidden. */
-  onClose?: () => void,
+  onClose?: () => mixed,
   /** Event handler when popover is shown. */
-  onOpen?: () => void,
+  onOpen?: () => mixed,
   /** Reducer function to manipulate internal state updates. */
   stateReducer?: StateReducerT,
 };
@@ -138,56 +169,38 @@ export type OffsetT = {
   left: number,
 };
 
-export type PopperOffsetT = {
-  top?: number | null,
-  left?: number | null,
-};
-
-export type PopperDataObjectT = {
-  offsets: {
-    arrow?: PopperOffsetT,
-    popper: PopperOffsetT,
-  },
-  placement: string,
-};
-
-export type PopperOptionsT = {
-  placement: string,
-  modifiers: {
-    arrow: {},
-    computeStyle: {},
-    applyStyle: {},
-    applyReactStyle: {
-      fn: (data: PopperDataObjectT) => void,
-    },
-  },
-};
-
 export type PopoverPrivateStateT = {
   isAnimating: boolean,
   arrowOffset: OffsetT,
   popoverOffset: OffsetT,
-  placement: PopoverPlacementT,
+  placement: TetherPlacementT,
+  isLayerMounted: boolean,
+  isMounted: boolean,
+  autoFocusAfterPositioning: boolean,
 };
 
-export type SharedStylePropsArgT = {
+export type ArrowStylePropsArgT = {
   $arrowOffset: OffsetT,
+  $placement: TetherPlacementT,
+};
+
+export type BodyStylePropsArgT = {
   $isAnimating: boolean,
   $isOpen: boolean,
   $popoverOffset: OffsetT,
-  $placement: PopoverPlacementT,
+  $placement: TetherPlacementT,
   $showArrow: boolean,
-  children?: React.Node,
-
-  // Styletron stuff
-  $as?: string,
-  // styled function wrapper related
-  $style?: ?{},
-  $ref?: React.Ref<*>,
+  $popoverMargin: number,
 };
 
-export type SharedStylePropsT = SharedStylePropsArgT & {
-  $theme: ThemeT,
+export type InnerStylePropsArgT = {};
+/*
+ * Can't use Intersection types because of https://github.com/facebook/flow/issues/7946
+ * export type SharedStylePropsArgT = ArrowStylePropsArgT & BodyStylePropsArgT & InnerStylePropsArgT;
+ */
+export type SharedStylePropsArgT = {
+  ...$Exact<ArrowStylePropsArgT>,
+  ...$Exact<BodyStylePropsArgT>,
 };
 
 export type AnchorPropsT = {
@@ -197,12 +210,11 @@ export type AnchorPropsT = {
   'aria-haspopup'?: string,
   'aria-owns'?: string | null,
   id?: string | null,
-  onBlur?: () => void,
-  onClick?: (e: Event) => void,
-  onFocus?: () => void,
-  onMouseEnter?: (e: Event) => void,
-  onMouseLeave?: (e: Event) => void,
+  onBlur?: (e: Event) => mixed,
+  onClick?: (e: Event) => mixed,
+  onFocus?: (e: Event) => mixed,
+  onMouseEnter?: (e: Event) => mixed,
+  onMouseLeave?: (e: Event) => mixed,
   ref?: React.Ref<*>,
-  $ref?: React.Ref<*>,
-  tabIndex?: '0',
+  tabIndex?: number,
 };

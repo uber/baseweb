@@ -1,15 +1,16 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import Basic from 'examples/slider/basic.js';
+import Marks from 'examples/slider/marks.js';
 import Stateful from 'examples/slider/stateful.js';
 import Disabled from 'examples/slider/disabled.js';
 import Range from 'examples/slider/range.js';
@@ -17,13 +18,18 @@ import StepMinMax from 'examples/slider/step-min-max.js';
 import CustomTicks from 'examples/slider/custom-ticks.js';
 import Customization from 'examples/slider/overrides.js';
 
-import Overrides from '../../components/overrides';
 import {StatefulSlider as Slider} from 'baseui/slider';
 import * as SliderExports from 'baseui/slider';
+
+import Yard from '../../components/yard/index';
+import sliderYardConfig from '../../components/yard/config/slider';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
 # Slider
+
+<Yard placeholderHeight={90} {...sliderYardConfig} />
 
 Control input with sliding axis to choose a single value or range between min and max values.
 
@@ -51,62 +57,50 @@ The component is also **optimized for iOS and Android devices**.
 
 ## Examples
 
-<Example title="Slider Basic Usage" path="examples/slider/basic.js">
+<Example title="Basic usage" path="slider/basic.js">
   <Basic />
 </Example>
 
-<Example
-  title="Slider as a Stateful Component"
-  path="examples/slider/stateful.js"
->
-  <Stateful />
+<Example title="Marks" path="slider/marks.js">
+  <Marks />
 </Example>
 
-<Example title="Slider Range" path="examples/slider/range.js">
+<Example title="Range" path="slider/range.js">
   <Range />
 </Example>
 
-<Example title="Disabled Slider" path="examples/slider/disabled.js">
+<Example title="Disabled state" path="slider/disabled.js">
   <Disabled />
 </Example>
 
-<Example
-  title="Custom min, max and step"
-  path="examples/slider/step-min-max.js"
->
+<Example title="Custom min, max and step" path="slider/step-min-max.js">
   <StepMinMax />
 </Example>
 
-<Example
-  title="Slider with custom ticks"
-  path="examples/slider/custom-ticks.js"
->
+<Example title="Custom ticks" path="slider/custom-ticks.js">
   <CustomTicks />
 </Example>
 
-<Example title="Slider with Overrides" path="examples/slider/overrides.js">
+<Example title="Overrides usage" path="slider/overrides.js">
   <Customization />
 </Example>
 
-<Overrides
-  name="Slider"
+<Example title="Stateful (uncontrolled) usage" path="slider/stateful.js">
+  <Stateful />
+</Example>
+
+As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulSlider`, which manages its own state.
+
+## API
+
+<ApiTable
+  title="Slider props"
+  config={sliderYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/slider/slider.js')}
+/>
+
+<Exports
   component={SliderExports}
-  renderExample={props => (
-    <Slider initialState={{value: [25, 75]}} overrides={props.overrides} />
-  )}
-/>
-
-<API
-  heading="Slider API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/slider/slider.js')}
-/>
-
-<API
-  heading="Stateful Slider API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/slider/stateful-slider.js')}
-/>
-
-<API
-  heading="Stateful Slider Container API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/slider/stateful-slider-container.js')}
+  title="Slider exports"
+  path="baseui/slider"
 />

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -13,8 +13,25 @@ import {
   StyledOptionContent,
 } from './styled-components.js';
 import {StatefulMenu} from '../menu/index.js';
-import type {DropdownPropsT} from './types.js';
+import type {DropdownPropsT, OptionT, ValueT} from './types.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+
+function groupOptions(options: ValueT) {
+  return options.reduce(
+    (groups, option) => {
+      if (option.__optgroup) {
+        if (!groups[option.__optgroup]) {
+          groups[option.__optgroup] = [];
+        }
+        groups[option.__optgroup].push(option);
+      } else {
+        groups.__ungrouped.push(option);
+      }
+      return groups;
+    },
+    {__ungrouped: []},
+  );
+}
 
 export default class SelectDropdown extends React.Component<DropdownPropsT> {
   getSharedProps() {
@@ -26,6 +43,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
       size,
       searchable,
       type,
+      width,
     } = this.props;
     return {
       $error: error,
@@ -35,6 +53,7 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
       $searchable: searchable,
       $size: size,
       $type: type,
+      $width: width,
     };
   }
   // eslint-disable-next-line flowtype/no-weak-types
@@ -74,8 +93,28 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
     );
   };
 
-  onMouseDown = (e: Event) => {
-    e.preventDefault();
+  onMouseDown = (e: SyntheticEvent<>) => {
+    e.nativeEvent.stopImmediatePropagation();
+  };
+
+  getHighlightedIndex = () => {
+    const {value, options, valueKey} = this.props;
+    // Highlight only first value as menu supports only a single highlight index
+    let firstValue: OptionT = {};
+
+    if (Array.isArray(value) && value.length > 0) {
+      firstValue = value[0];
+    } else if (!(value instanceof Array)) {
+      firstValue = value;
+    }
+
+    if (Object.keys(firstValue).length > 0) {
+      const a = options.findIndex(
+        option => option && option[valueKey] === firstValue[valueKey],
+      );
+      return a === -1 ? 0 : a;
+    }
+    return 0;
   };
 
   render() {
@@ -83,10 +122,10 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
     const {
       maxDropdownHeight,
       multi,
+      noResultsMsg,
       onItemSelect,
       options = [],
       overrides = {},
-      value,
       size,
     } = this.props;
     const [DropdownContainer, dropdownContainerProps] = getOverrides(
@@ -97,27 +136,46 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
       overrides.DropdownListItem,
       StyledDropdownListItem,
     );
+    const [
+      OverriddenStatefulMenu,
+      // $FlowFixMe
+      {overrides: statefulMenuOverrides = {}, ...restStatefulMenuProps},
+    ] = getOverrides(overrides.StatefulMenu, StatefulMenu);
+    const highlightedIndex = this.getHighlightedIndex();
+    const groupedOptions = groupOptions(options);
     return (
       <DropdownContainer
+        data-no-focus-lock
+        ref={this.props.innerRef}
         role="listbox"
         {...this.getSharedProps()}
         {...dropdownContainerProps}
       >
-        <StatefulMenu
+        <OverriddenStatefulMenu
+          noResultsMsg={noResultsMsg}
+          onActiveDescendantChange={id => {
+            if (this.props.onActiveDescendantChange) {
+              this.props.onActiveDescendantChange(id);
+            }
+          }}
           onItemSelect={onItemSelect}
-          items={options}
+          items={groupedOptions}
           size={size}
           initialState={{
-            highlightedIndex:
-              Array.isArray(value) && value.length === 1
-                ? options.findIndex(opt => opt.id === value[0].id)
-                : 0,
+            isFocused: true,
+            highlightedIndex: highlightedIndex,
           }}
+          typeAhead={false}
+          keyboardControlNode={this.props.keyboardControlNode}
           overrides={mergeOverrides(
             {
               List: {
                 component: StyledDropdown,
+                style: p => ({
+                  maxHeight: p.$maxHeight || null,
+                }),
                 props: {
+                  id: this.props.id ? this.props.id : null,
                   $maxHeight: maxDropdownHeight,
                   'aria-multiselectable': multi,
                 },
@@ -131,21 +189,24 @@ export default class SelectDropdown extends React.Component<DropdownPropsT> {
                   overrides: {
                     ListItem: {
                       component: ListItem,
-                      props: listItemProps,
-                      // slightly a hacky way to handle the list item style overrides
+                      props: {...listItemProps, role: 'option'},
+                      // slightly hacky way to handle the list item style overrides
                       // since the menu component doesn't provide a top level overrides for it
                       // $FlowFixMe
                       style: listItemProps.$style,
                     },
                   },
+                  renderHrefAsAnchor: false,
                 },
               },
             },
             {
               List: overrides.Dropdown || {},
               Option: overrides.DropdownOption || {},
+              ...statefulMenuOverrides,
             },
           )}
+          {...restStatefulMenuProps}
         />
       </DropdownContainer>
     );

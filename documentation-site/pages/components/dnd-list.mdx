@@ -1,13 +1,13 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import Basic from 'examples/dnd-list/basic.js';
 import Stateless from 'examples/dnd-list/stateless.js';
@@ -16,21 +16,25 @@ import VaryingHeights from 'examples/dnd-list/varyingHeights.js';
 import CustomDragHandle from 'examples/dnd-list/customDragHandle.js';
 import OverrideLabel from 'examples/dnd-list/overrideLabel.js';
 
-import Overrides from '../../components/overrides';
 import {StatefulList} from 'baseui/dnd-list';
 import * as ListExports from 'baseui/dnd-list';
+import Yard from '../../components/yard/index';
+import dndListYardConfig from '../../components/yard/config/dnd-list';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
 # Drag and Drop List
 
+<Yard placeholderHeight={208} {...dndListYardConfig} />
+
 Allows users to create vertically sortable lists supporting drag and drop, touch or keyboard input.
 
-### When to use
+## When to use
 
 - When a user wants to change a collection order.
 
-### Accessibility
+## Accessibility
 
 - `tab` and `shift+tab` to focus items
 - `space` to `lift` or drop the item
@@ -42,70 +46,52 @@ This component also supports iOS and Android browsers and screen readers.
 
 ## Examples
 
-<Example title="Drag and Drop basic usage" path="examples/dnd-list/basic.js">
+<Example title="Drag and Drop basic usage" path="dnd-list/stateless.js">
+  <Stateless />
+</Example>
+
+<Example title="Drag and Drop stateful usage" path="dnd-list/basic.js">
   <Basic />
 </Example>
 
 <Example
-  title="Drag and Drop stateless usage"
-  path="examples/dnd-list/stateless.js"
->
-  <Stateless />
-</Example>
-
-<Example
   title="Drag and Drop with removable items"
-  path="examples/dnd-list/removable.js"
+  path="dnd-list/removable.js"
 >
   <Removable />
 </Example>
 
 <Example
   title="Drag and Drop with varying heights"
-  path="examples/dnd-list/varyingHeights.js"
+  path="dnd-list/varyingHeights.js"
 >
   <VaryingHeights />
 </Example>
 
 <Example
   title="Drag and Drop with custom drag handle"
-  path="examples/dnd-list/customDragHandle.js"
+  path="dnd-list/customDragHandle.js"
 >
   <CustomDragHandle />
 </Example>
 
 <Example
   title="Drag and Drop with label override"
-  path="examples/dnd-list/overrideLabel.js"
+  path="dnd-list/overrideLabel.js"
 >
   <OverrideLabel />
 </Example>
 
-## Overrides
+## API
 
-<Overrides
-  name="Drag and Drop List"
+<ApiTable
+  title="Dnd List props"
+  config={dndListYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/dnd-list/list.js')}
+/>
+
+<Exports
   component={ListExports}
-  renderExample={props => (
-    <StatefulList
-      removable
-      initialState={{items: ['Item 1', 'Item 2', 'Item 3', 'Item 4']}}
-      overrides={props.overrides}
-    />
-  )}
-/>
-
-<API
-  heading="List API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/dnd-list/list.js')}
-/>
-
-<API
-  heading="Stateful List API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/dnd-list/stateful-list.js')}
-/>
-
-<API
-  heading="Stateful List Container API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/dnd-list/stateful-list-container.js')}
+  title="Dnd List exports"
+  path="baseui/dnd-list"
 />

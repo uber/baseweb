@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,11 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* global document */
 import * as React from 'react';
-import ReactDOM from 'react-dom';
+import FocusLock from 'react-focus-lock';
 
-import {getOverride, getOverrideProps} from '../helpers/overrides.js';
+import {LocaleContext} from '../locale/index.js';
+import {getOverrides} from '../helpers/overrides.js';
+import {Layer} from '../layer/index.js';
 import {SIZE, ROLE, CLOSE_SOURCE} from './constants.js';
-import {ownerDocument} from './utils.js';
 import {
   Root as StyledRoot,
   Backdrop as StyledBackdrop,
@@ -28,16 +29,21 @@ import type {
   CloseSourceT,
   ElementRefT,
 } from './types.js';
+import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 class Modal extends React.Component<ModalPropsT, ModalStateT> {
   static defaultProps: $Shape<ModalPropsT> = {
     animate: true,
-    autofocus: true,
+    // TODO(v11): remove
+    autofocus: null,
+    autoFocus: true,
+    focusLock: true,
     closeable: true,
     isOpen: false,
     overrides: {},
     role: ROLE.dialog,
     size: SIZE.default,
+    unstable_ModalBackdropScroll: false,
   };
 
   animateOutTimer: ?TimeoutID;
@@ -49,14 +55,36 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   state = {
     isVisible: false,
     mounted: false,
+    isFocusVisible: false,
   };
 
   componentDidMount() {
     this.setState({mounted: true});
+    // TODO(v11)
+    if (__DEV__) {
+      if (!this.props.unstable_ModalBackdropScroll) {
+        console.warn(`Consider setting 'unstable_ModalBackdropScroll' prop to true
+        to prepare for the next major version upgrade. 'unstable_ModalBackdropScroll'
+        prop will be removed in the next major version but implemented as the default behavior.`);
+      }
+      if (this.props.overrides && this.props.overrides.Backdrop) {
+        console.warn(`Backdrop element will be removed in the next major version in favor of
+        DialogContainer element that will have the backdrop styles and backdrop click handle.
+        Consider setting 'unstable_ModalBackdropScroll' prop to true that will apply backdrop
+        styles to DialogContainer enable modal scrolling while cursor in over the backdrop.
+        Then pass backdrop overrides to DialogContainer instead. Tha will help you with
+        the next major version upgrade.`);
+      }
+      // $FlowFixMe: flow complains that this prop doesn't exist
+      if (this.props.closable) {
+        console.warn(
+          'The property `closable` is not supported on the Modal. Did you mean `closeable`?',
+        );
+      }
+    }
   }
 
   componentWillUnmount() {
-    this.removeDomEvents();
     this.resetMountNodeScroll();
     this.clearTimers();
   }
@@ -76,17 +104,17 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     }
   }
 
-  addDomEvents() {
-    if (__BROWSER__) {
-      document.addEventListener('keyup', this.onDocumentKeyPress);
+  handleFocus = (event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      this.setState({isFocusVisible: true});
     }
-  }
+  };
 
-  removeDomEvents() {
-    if (__BROWSER__) {
-      document.removeEventListener('keyup', this.onDocumentKeyPress);
+  handleBlur = (event: SyntheticEvent<>) => {
+    if (this.state.isFocusVisible !== false) {
+      this.setState({isFocusVisible: false});
     }
-  }
+  };
 
   disableMountNodeScroll() {
     const mountNode = this.getMountNode();
@@ -98,26 +126,34 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     const mountNode = this.getMountNode();
     const lastStyle = this.lastMountNodeOverflowStyle;
     if (mountNode && lastStyle !== null) {
-      mountNode.style.overflow = lastStyle || '';
+      // If overflow is not 'hidden', something else has changed the
+      // overflow style and we shouldn't try to reset it.
+      if (mountNode.style.overflow === 'hidden') {
+        mountNode.style.overflow = lastStyle || '';
+      }
       this.lastMountNodeOverflowStyle = null;
     }
   }
 
-  onDocumentKeyPress = (event: KeyboardEvent) => {
-    if (event.key !== 'Escape') {
-      return;
-    }
-
-    // Ignore events that have been `event.preventDefault()` marked.
-    if (event.defaultPrevented) {
-      return;
-    }
-
+  onEscape = () => {
     if (!this.props.closeable) {
       return;
     }
-
     this.triggerClose(CLOSE_SOURCE.escape);
+  };
+
+  onDocumentClick = (e: MouseEvent) => {
+    if (
+      e.target &&
+      e.target instanceof HTMLElement &&
+      // Handles modal closure when unstable_ModalBackdropScroll is set to true
+      (e.target.contains(this.getRef('DialogContainer').current) ||
+        // Handles modal closure when unstable_ModalBackdropScroll is set to false
+        // $FlowFixMe
+        e.target.contains(this.getRef('DeprecatedBackdrop').current))
+    ) {
+      this.onBackdropClick();
+    }
   };
 
   onBackdropClick = () => {
@@ -142,10 +178,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   }
 
   didOpen() {
-    // Store last focused item (we'll return focus after closing for a11y)
-    this.captureLastFocus();
-    this.autoFocus();
-
     // Sometimes scroll starts past zero, possibly due to animation
     // Reset scroll to 0 (other libraries do this as well)
     const rootRef = this.getRef('Root').current;
@@ -156,7 +188,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     // Clear any existing timers (like previous animateOutTimer)
     this.clearTimers();
 
-    this.addDomEvents();
     this.disableMountNodeScroll();
 
     // eslint-disable-next-line cup/no-undef
@@ -166,10 +197,8 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   }
 
   didClose() {
-    this.removeDomEvents();
     this.resetMountNodeScroll();
     this.animateOutTimer = setTimeout(this.animateOutComplete, 500);
-    this.restoreLastFocus();
   }
 
   triggerClose(source?: CloseSourceT) {
@@ -181,31 +210,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     }
   }
 
-  captureLastFocus = () => {
-    this.lastFocus = ownerDocument(this.getMountNode()).activeElement;
-  };
-
-  restoreLastFocus = () => {
-    if (this.lastFocus) {
-      // Not all elements in IE11 can focus
-      if (this.lastFocus.focus) {
-        this.lastFocus.focus();
-      }
-      this.lastFocus = null;
-    }
-  };
-
-  autoFocus = () => {
-    if (!this.props.autofocus) {
-      return;
-    }
-    const dialog = this.getRef('Dialog').current;
-    if (!dialog) {
-      return;
-    }
-    dialog.focus();
-  };
-
   animateOutComplete = () => {
     this.setState({
       isVisible: false,
@@ -213,14 +217,23 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   };
 
   getSharedProps(): $Diff<SharedStylePropsArgT, {children?: React.Node}> {
-    const {animate, isOpen, size, role, closeable} = this.props;
+    const {
+      animate,
+      isOpen,
+      size,
+      role,
+      closeable,
+      unstable_ModalBackdropScroll,
+    } = this.props;
     return {
       $animate: animate,
       $isVisible: this.state.isVisible,
-      $isOpen: Boolean(isOpen),
+      $isOpen: !!isOpen,
       $size: size,
       $role: role,
-      $closeable: Boolean(closeable),
+      $closeable: !!closeable,
+      $unstable_ModalBackdropScroll: unstable_ModalBackdropScroll,
+      $isFocusVisible: this.state.isFocusVisible,
     };
   }
 
@@ -240,13 +253,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   }
 
   getRef(component: string): ElementRefT {
-    const overrideProps: {$ref?: ElementRefT} = getOverrideProps(
-      this.props.overrides.Dialog,
-    );
-    const overrideRef = overrideProps.$ref;
-    if (overrideRef) {
-      return overrideRef;
-    }
     if (!this._refs[component]) {
       this._refs[component] = React.createRef();
     }
@@ -254,7 +260,15 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   }
 
   renderModal() {
-    const {overrides = {}, closeable, role} = this.props;
+    const {
+      overrides = {},
+      closeable,
+      role,
+      unstable_ModalBackdropScroll,
+      autofocus,
+      autoFocus,
+      focusLock,
+    } = this.props;
 
     const {
       Root: RootOverride,
@@ -264,58 +278,101 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       Close: CloseOverride,
     } = overrides;
 
-    const Root = getOverride(RootOverride) || StyledRoot;
-    const Backdrop = getOverride(BackdropOverride) || StyledBackdrop;
-    const DialogContainer =
-      getOverride(DialogContainerOverride) || StyledDialogContainer;
-    const Dialog = getOverride(DialogOverride) || StyledDialog;
-    const Close = getOverride(CloseOverride) || StyledClose;
+    const [Root, rootProps] = getOverrides(RootOverride, StyledRoot);
+    const [Backdrop, backdropProps] = getOverrides(
+      BackdropOverride,
+      StyledBackdrop,
+    );
+    const [DialogContainer, dialogContainerProps] = getOverrides(
+      DialogContainerOverride,
+      StyledDialogContainer,
+    );
+    const [Dialog, dialogProps] = getOverrides(DialogOverride, StyledDialog);
+    const [Close, closeProps] = getOverrides(CloseOverride, StyledClose);
 
     const sharedProps = this.getSharedProps();
     const children = this.getChildren();
 
+    if (autofocus === false && __DEV__) {
+      console.warn(
+        `The prop "autofocus" is deprecated in favor of "autoFocus" to be consistent across the project.
+        The property "autofocus" will be removed in a future major version.`,
+      );
+    }
+
+    // Handles backdrop click when `unstable_ModalBackdropScroll` is set to true
+    // $FlowFixMe
+    if (dialogContainerProps.ref) {
+      // $FlowFixMe
+      this._refs.DialogContainer = dialogContainerProps.ref;
+    }
+    const dialogContainerConditionalProps = unstable_ModalBackdropScroll
+      ? {
+          ref: this.getRef('DialogContainer'),
+        }
+      : {};
+
     return (
-      <Root
-        $ref={this.getRef('Root')}
-        {...sharedProps}
-        {...getOverrideProps(RootOverride)}
-      >
-        <Backdrop
-          onClick={this.onBackdropClick}
-          {...sharedProps}
-          {...getOverrideProps(BackdropOverride)}
-        />
-        <DialogContainer
-          {...sharedProps}
-          {...getOverrideProps(DialogContainerOverride)}
-        >
-          <Dialog
-            tabIndex="-1"
-            aria-modal={
-              // aria-modal replaces the need to apply aria-hidden="true" to all other page
-              // content underneath the modal.
-              // https://www.w3.org/TR/wai-aria-practices-1.1/examples/dialog-modal/dialog.html
-              'true'
-            }
-            role={role}
-            $ref={this.getRef('Dialog')}
-            {...sharedProps}
-            {...getOverrideProps(DialogOverride)}
+      <LocaleContext.Consumer>
+        {locale => (
+          <FocusLock
+            disabled={!focusLock}
+            returnFocus
+            // eslint-disable-next-line jsx-a11y/no-autofocus
+            autoFocus={autofocus !== null ? autofocus : autoFocus}
           >
-            {closeable ? (
-              <Close
-                aria-label="Close"
-                onClick={this.onCloseClick}
+            <Root
+              data-baseweb="modal"
+              ref={this.getRef('Root')}
+              {...sharedProps}
+              {...rootProps}
+            >
+              <Backdrop
+                {...(unstable_ModalBackdropScroll
+                  ? {}
+                  : {
+                      ref: this.getRef('DeprecatedBackdrop'),
+                    })}
                 {...sharedProps}
-                {...getOverrideProps(CloseOverride)}
+                {...backdropProps}
+              />
+              <DialogContainer
+                {...dialogContainerConditionalProps}
+                {...sharedProps}
+                {...dialogContainerProps}
               >
-                <CloseIcon />
-              </Close>
-            ) : null}
-            {children}
-          </Dialog>
-        </DialogContainer>
-      </Root>
+                <Dialog
+                  tabIndex={-1}
+                  aria-modal={
+                    // aria-modal replaces the need to apply aria-hidden="true" to all other page
+                    // content underneath the modal.
+                    // https://www.w3.org/TR/wai-aria-practices-1.1/examples/dialog-modal/dialog.html
+                    'true'
+                  }
+                  role={role}
+                  ref={this.getRef('Dialog')}
+                  {...sharedProps}
+                  {...dialogProps}
+                >
+                  {children}
+                  {closeable ? (
+                    <Close
+                      aria-label={locale.modal.close}
+                      onClick={this.onCloseClick}
+                      {...sharedProps}
+                      {...closeProps}
+                      onFocus={forkFocus(closeProps, this.handleFocus)}
+                      onBlur={forkBlur(closeProps, this.handleBlur)}
+                    >
+                      <CloseIcon />
+                    </Close>
+                  ) : null}
+                </Dialog>
+              </DialogContainer>
+            </Root>
+          </FocusLock>
+        )}
+      </LocaleContext.Consumer>
     );
   }
 
@@ -328,11 +385,15 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     if (!this.props.isOpen && !this.state.isVisible) {
       return null;
     }
-    const mountNode = this.getMountNode();
-    if (!mountNode) {
-      return null;
-    }
-    return ReactDOM.createPortal(this.renderModal(), mountNode);
+    return (
+      <Layer
+        onEscape={this.onEscape}
+        onDocumentClick={this.onDocumentClick}
+        mountNode={this.props.mountNode}
+      >
+        {this.renderModal()}
+      </Layer>
+    );
   }
 }
 

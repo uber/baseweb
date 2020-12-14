@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -10,231 +10,381 @@ LICENSE file in the root directory of this source tree.
 
 const routes = [
   {
-    text: 'Getting started',
-    children: [
+    title: 'Getting started',
+    subNav: [
       {
-        text: 'Installation',
-        path: '/getting-started/installation',
+        title: 'Home',
+        itemId: '/',
+        isGitHubEditDisabled: true,
       },
       {
-        text: 'Usage',
-        path: '/getting-started/usage',
+        title: 'Setup',
+        itemId: '/getting-started/setup',
       },
       {
-        text: 'Learn',
-        path: '/getting-started/learn',
-      },
-      {
-        text: 'Versioning policy',
-        path: '/getting-started/versioning-policy',
-      },
-      {
-        text: 'Supported platforms',
-        path: '/getting-started/supported-platforms',
-      },
-      {
-        text: 'Comparison with other component libraries',
-        path: '/getting-started/comparison',
+        title: 'Learn Base Web',
+        itemId: '/getting-started/learn',
       },
     ],
   },
   {
-    text: 'Theming',
-    children: [
+    title: 'Guides',
+    subNav: [
       {
-        text: 'Intro to Theming',
-        path: '/theming/custom-themes',
+        title: 'Internationalization',
+        itemId: '/guides/internationalization',
       },
       {
-        text: 'Theming values',
-        path: '/theming/theming-values',
+        title: 'Bidirectionality',
+        itemId: '/guides/bidirectionality',
       },
       {
-        text: 'Understanding Overrides',
-        path: '/theming/understanding-overrides',
+        title: 'Theming',
+        itemId: '/guides/theming',
+      },
+      {
+        title: 'Styling',
+        itemId: '/guides/styling',
+      },
+      {
+        title: 'Overrides',
+        itemId: '/guides/understanding-overrides',
+      },
+      {
+        title: 'API Cheat Sheet',
+        itemId: '/cheat-sheet',
       },
     ],
   },
   {
     components: true,
-    text: 'Components',
-    children: [
+    title: 'Components',
+    itemId: '/components',
+    subNav: [
       {
-        text: 'Basic Inputs',
-        children: [
+        title: 'Inputs',
+        subNav: [
           {
-            text: 'Button',
-            path: '/components/button',
+            title: 'Button',
+            itemId: '/components/button',
           },
           {
-            text: 'ButtonGroup',
-            path: '/components/button-group',
+            title: 'Button Group',
+            itemId: '/components/button-group',
           },
           {
-            text: 'Checkbox',
-            path: '/components/checkbox',
+            title: 'Checkbox',
+            itemId: '/components/checkbox',
           },
           {
-            text: 'Input',
-            path: '/components/input',
+            title: 'Combobox',
+            itemId: '/components/combobox',
           },
           {
-            text: 'Slider',
-            path: '/components/slider',
+            title: 'Form Control',
+            itemId: '/components/form-control',
           },
           {
-            text: 'Radio',
-            path: '/components/radio',
+            title: 'Input',
+            itemId: '/components/input',
           },
           {
-            text: 'Textarea',
-            path: '/components/textarea',
+            title: 'Payment Card',
+            itemId: '/components/payment-card',
           },
           {
-            text: 'FormControl',
-            path: '/components/form-control',
+            title: 'Phone Input',
+            itemId: '/components/phone-input',
+          },
+          {
+            title: 'Pin Code',
+            itemId: '/components/pin-code',
+          },
+          {
+            title: 'Radio',
+            itemId: '/components/radio',
+          },
+          {
+            title: 'Slider',
+            itemId: '/components/slider',
+          },
+          {
+            title: 'Textarea',
+            itemId: '/components/textarea',
           },
         ],
       },
       {
-        text: 'Navigation',
-        children: [
+        title: 'Pickers',
+        subNav: [
           {
-            text: 'Breadcrumbs',
-            path: '/components/breadcrumbs',
+            title: 'File Uploader',
+            itemId: '/components/file-uploader',
           },
           {
-            text: 'Header navigation',
-            path: '/components/header-navigation',
+            title: 'Menu',
+            itemId: '/components/menu',
           },
           {
-            text: 'Pagination',
-            path: '/components/pagination',
+            title: 'Rating',
+            itemId: '/components/rating',
           },
           {
-            text: 'Tab',
-            path: '/components/tabs',
-          },
-        ],
-      },
-      {
-        text: 'Content',
-        children: [
-          {
-            text: 'Accordion',
-            path: '/components/accordion',
-          },
-          {
-            text: 'Avatar',
-            path: '/components/avatar',
-          },
-          {
-            text: 'Drag and Drop List',
-            path: '/components/dnd-list',
-          },
-          {
-            text: 'Icon',
-            path: '/components/icon',
-          },
-          {
-            text: 'Tag',
-            path: '/components/tag',
-          },
-          {
-            text: 'Typography',
-            path: '/components/typography',
-          },
-          {
-            text: 'Table',
-            path: '/components/table',
+            title: 'Select',
+            itemId: '/components/select',
           },
         ],
       },
       {
-        text: 'Pickers',
-        children: [
+        title: 'Date & Time',
+        subNav: [
           {
-            text: 'File Uploader',
-            path: '/components/file-uploader',
+            title: 'Datepicker',
+            itemId: '/components/datepicker',
           },
           {
-            text: 'Menu',
-            path: '/components/menu',
+            title: 'Time Picker',
+            itemId: '/components/time-picker',
           },
           {
-            text: 'Rating',
-            path: '/components/rating',
-          },
-          {
-            text: 'Select',
-            path: '/components/select',
-          },
-          {
-            text: 'Datepicker',
-            path: '/components/datepicker',
+            title: 'Timezone Picker',
+            itemId: '/components/timezone-picker',
           },
         ],
       },
       {
-        text: 'Progress & Validation',
-        children: [
+        title: 'Navigation',
+        subNav: [
           {
-            text: 'Notification',
-            path: '/components/notification',
+            title: 'Breadcrumbs',
+            itemId: '/components/breadcrumbs',
           },
           {
-            text: 'ProgressBar',
-            path: '/components/progress-bar',
+            title: 'Navigation Bar',
+            itemId: '/components/app-nav-bar',
           },
           {
-            text: 'Progress steps',
-            path: '/components/progress-steps',
+            title: 'Header Navigation',
+            itemId: '/components/header-navigation',
           },
           {
-            text: 'Spinner',
-            path: '/components/spinner',
+            title: 'Link',
+            itemId: '/components/link',
           },
           {
-            text: 'Toast',
-            path: '/components/toast',
-          },
-        ],
-      },
-      {
-        text: 'Surfaces',
-        children: [
-          {
-            text: 'Card',
-            path: '/components/card',
+            title: 'Pagination',
+            itemId: '/components/pagination',
           },
           {
-            text: 'Modal',
-            path: '/components/modal',
+            title: 'Side Navigation',
+            itemId: '/components/side-nav',
           },
           {
-            text: 'Popover',
-            path: '/components/popover',
+            title: 'Tabs',
+            itemId: '/components/tabs',
           },
           {
-            text: 'Tooltip',
-            path: '/components/tooltip',
+            title: 'Tabs (Motion)',
+            itemId: '/components/tabs-motion',
           },
         ],
       },
       {
-        text: 'Utility',
-        children: [
+        title: 'Content',
+        subNav: [
           {
-            text: 'Block',
-            path: '/components/block',
+            title: 'Accordion',
+            itemId: '/components/accordion',
           },
           {
-            text: 'Styled',
-            path: '/components/styled',
+            title: 'Avatar',
+            itemId: '/components/avatar',
+          },
+          {
+            title: 'Drag and Drop List',
+            itemId: '/components/dnd-list',
+          },
+          {
+            title: 'Layout Grid',
+            itemId: '/components/layout-grid',
+          },
+          {
+            title: 'Heading',
+            itemId: '/components/heading',
+          },
+          {
+            title: 'Icon',
+            itemId: '/components/icon',
+          },
+          {
+            title: 'List',
+            itemId: '/components/list',
+          },
+          {
+            title: 'Tag',
+            itemId: '/components/tag',
+          },
+          {
+            title: 'Tree View',
+            itemId: '/components/tree-view',
+          },
+          {
+            title: 'Typography',
+            itemId: '/components/typography',
+          },
+        ],
+      },
+      {
+        title: 'Tables',
+        subNav: [
+          {
+            title: 'Table',
+            itemId: '/components/table-semantic',
+          },
+          {
+            title: 'Data Table',
+            itemId: '/components/data-table',
+          },
+          {
+            title: 'Grid Table',
+            itemId: '/components/table-grid',
+          },
+          {
+            title: 'Flex Table',
+            itemId: '/components/table',
+          },
+        ],
+      },
+      {
+        title: 'Progress & Validation',
+        subNav: [
+          {
+            title: 'Notification',
+            itemId: '/components/notification',
+          },
+          {
+            title: 'Progress Bar',
+            itemId: '/components/progress-bar',
+          },
+          {
+            title: 'Progress Steps',
+            itemId: '/components/progress-steps',
+          },
+          {
+            title: 'Skeleton',
+            itemId: '/components/skeleton',
+          },
+          {
+            title: 'Snackbar',
+            itemId: '/components/snackbar',
+          },
+          {
+            title: 'Spinner',
+            itemId: '/components/spinner',
+          },
+          {
+            title: 'Toast',
+            itemId: '/components/toast',
+          },
+        ],
+      },
+      {
+        title: 'Surfaces',
+        subNav: [
+          {
+            title: 'Card',
+            itemId: '/components/card',
+          },
+          {
+            title: 'Drawer',
+            itemId: '/components/drawer',
+          },
+          {
+            title: 'Modal',
+            itemId: '/components/modal',
+          },
+          {
+            title: 'Popover',
+            itemId: '/components/popover',
+          },
+          {
+            title: 'Tooltip',
+            itemId: '/components/tooltip',
+          },
+        ],
+      },
+      {
+        title: 'Utility',
+        subNav: [
+          {
+            title: 'AspectRatioBox',
+            itemId: '/components/aspect-ratio-box',
+          },
+          {
+            title: 'BaseProvider',
+            itemId: '/components/base-provider',
+          },
+          {
+            title: 'Block',
+            itemId: '/components/block',
+          },
+          {
+            title: 'FlexGrid',
+            itemId: '/components/flex-grid',
+          },
+          {
+            title: 'Layer',
+            itemId: '/components/layer',
+          },
+          {
+            title: 'UseStyletron',
+            itemId: '/components/use-styletron',
+          },
+          {
+            title: 'Styled',
+            itemId: '/components/styled',
+          },
+          {
+            title: 'Tokens',
+            itemId: '/components/tokens',
+          },
+          {
+            title: 'A11y Validator',
+            itemId: '/components/unstable-a11y',
           },
         ],
       },
     ],
+  },
+  {
+    title: 'Discover more',
+    subNav: [
+      {
+        title: 'Versioning policy',
+        itemId: '/discover-more/versioning-policy',
+      },
+      {
+        title: 'Supported platforms',
+        itemId: '/discover-more/supported-platforms',
+      },
+      {
+        title: 'Comparison',
+        itemId: '/discover-more/comparison',
+      },
+      {
+        title: 'Roadmap',
+        itemId: '/discover-more/roadmap',
+      },
+      {
+        title: 'SEO',
+        itemId: '/guides/seo',
+      },
+    ],
+  },
+  {
+    title: 'Blog',
+    itemId: '/blog',
+    isGitHubEditDisabled: true,
   },
 ];
 

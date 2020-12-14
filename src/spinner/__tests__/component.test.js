@@ -1,41 +1,29 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
-import {mount} from 'enzyme';
+import * as React from 'react';
+import {render, getByTestId} from '@testing-library/react';
+
 import {Spinner} from '../index.js';
-import {Spinner as SpinnerIcon} from '../../icon/index.js';
 
 describe('Spinner', () => {
-  test('renders spinner icon', () => {
-    let renderedIcon;
-    const spinner = mount(<Spinner />);
-
-    // renderedRoot = wrapper.find(StyledSvg).first();
-    renderedIcon = spinner.find(SpinnerIcon).first();
-    expect(renderedIcon).toExist();
-
-    // pass new size value set to 56
-    spinner.setProps({size: 56});
-
-    renderedIcon = spinner.find(SpinnerIcon).first();
-    expect(renderedIcon.props().size).toBe(56);
-  });
-
-  test('component overrides', () => {
+  it('component overrides', () => {
     const overrides = {
-      Svg: jest.fn().mockImplementation(({children}) => <svg>{children}</svg>),
+      Svg: jest
+        .fn()
+        .mockImplementation(({children}) => (
+          <svg data-testid="mock">{children}</svg>
+        )),
     };
-    const wrapper = mount(
+    const {container} = render(
       // $FlowFixMe
-      <Spinner overrides={overrides} />,
+      <Spinner $silenceV11DeprecationWarning overrides={overrides} />,
     );
-    const root = wrapper.find(overrides.Svg);
-    expect(root).toHaveLength(1);
+    getByTestId(container, 'mock');
   });
 });

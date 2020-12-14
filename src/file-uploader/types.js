@@ -1,12 +1,11 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 
 export type StylePropsT = {|
@@ -16,17 +15,18 @@ export type StylePropsT = {|
   $isDragAccept: boolean,
   $isDragReject: boolean,
   $isFocused: boolean,
-  $theme: ThemeT,
 |};
 
-export type OverridesT<T> = {|
-  Root?: OverrideT<T>,
-  FileDragAndDrop?: OverrideT<T>,
-  ContentMessage?: OverrideT<T>,
-  ContentSeparator?: OverrideT<T>,
-  HiddenInput?: OverrideT<T>,
-  ProgressMessage?: OverrideT<T>,
-  ErrorMessage?: OverrideT<T>,
+export type OverridesT = {|
+  Root?: OverrideT,
+  FileDragAndDrop?: OverrideT,
+  ContentMessage?: OverrideT,
+  ContentSeparator?: OverrideT,
+  HiddenInput?: OverrideT,
+  ProgressMessage?: OverrideT,
+  ErrorMessage?: OverrideT,
+  ButtonComponent?: OverrideT,
+  Spinner?: OverrideT,
 |};
 
 export type PropsT = {|
@@ -53,17 +53,18 @@ export type PropsT = {|
   onDropRejected?: DropFileEventHandlerT,
   onFileDialogCancel?: () => mixed,
   preventDropOnDocument?: boolean,
+  'aria-describedby'?: string,
 
-  // baseui
+  // Error message to be displayed
   errorMessage?: string,
   onCancel?: () => mixed,
   onRetry?: () => mixed,
-  overrides?: OverridesT<StylePropsT>,
+  overrides?: OverridesT,
   progressAmount?: number,
   progressMessage?: string,
 |};
 
-type DropFilesEventHandlerT = (
+export type DropFilesEventHandlerT = (
   accepted: File[],
   rejected: File[],
   event: SyntheticDragEvent<HTMLElement>,

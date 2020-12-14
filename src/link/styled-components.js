@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,20 +8,51 @@ LICENSE file in the root directory of this source tree.
 
 import {styled} from '../styles/index.js';
 
-export const Link = styled('a', ({$theme}) => {
-  const {colors, typography, animation} = $theme;
+export const Link = styled<{
+  $isAnimateUnderline: boolean,
+  $isFocusVisible: boolean,
+}>('a', ({$theme, $isAnimateUnderline, $isFocusVisible}) => {
+  const {colors, typography, animation, direction} = $theme;
+
+  const underlineLTR = `linear-gradient(transparent calc(100% - 1px), ${colors.linkHover} 1px), linear-gradient(transparent calc(100% - 1px), ${colors.linkText} 1px)`;
+
+  const underlineRTL = `linear-gradient(transparent calc(100% - 1px), ${colors.linkText} 1px), linear-gradient(transparent calc(100% - 1px), ${colors.linkHover} 1px)`;
+
   return {
-    color: colors.primary400,
-    ...typography.font450,
-    textDecoration: 'none',
-    transitionProperty: 'color',
-    transitionDuration: animation.timing100,
-    transitionTimingFunction: animation.easeOutCurve,
+    color: colors.linkText,
+    ...typography.font350,
+    fontSize: 'inherit',
+    lineHeight: 'inherit',
+    transitionProperty: !$isAnimateUnderline ? 'backgroundSize' : '',
+    transitionDuration: animation.timing500,
+    transitionTimingFunction: animation.easeOutQuinticCurve,
+    position: 'relative',
+    textDecoration: $isAnimateUnderline ? 'none' : 'underline',
+    textUnderlinePosition: 'under',
+    willChange: 'background-size',
+    backgroundSize:
+      direction === 'rtl' ? '100% 100%, 100% 100%' : '0% 100%, 100% 100%',
+    backgroundRepeat: 'no-repeat',
+    backgroundImage: $isAnimateUnderline
+      ? direction === 'rtl'
+        ? underlineRTL
+        : underlineLTR
+      : 'none',
     ':hover': {
-      color: colors.primary500,
+      color: colors.linkHover,
+      backgroundSize:
+        direction === 'rtl' ? '0% 100%, 100% 100%' : '100% 100%, 100% 100%',
+    },
+    ':focus': {
+      outline: $isFocusVisible ? `3px solid ${colors.accent}` : 'none',
+      outlineOffset: '1px',
+      textDecoration: 'none',
+    },
+    ':visited': {
+      color: colors.linkVisited,
     },
     ':active': {
-      color: colors.primary600,
+      color: colors.linkActive,
     },
   };
 });

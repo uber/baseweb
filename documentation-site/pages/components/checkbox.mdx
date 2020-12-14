@@ -1,15 +1,16 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
-import Basic from 'examples/checkbox/basic.js';
+import Basic from 'examples/checkbox/basic-controlled.js';
+import Uncontrolled from 'examples/checkbox/basic-uncontrolled';
 import Multiline from 'examples/checkbox/multiline.js';
 import Error from 'examples/checkbox/error.js';
 import Indeterminate from 'examples/checkbox/indeterminate.js';
@@ -20,22 +21,27 @@ import ComponentOverrides from 'examples/checkbox/component-overrides.js';
 import Focus from 'examples/checkbox/focus.js';
 import Toggle from 'examples/checkbox/toggle.js';
 
-import Overrides from '../../components/overrides';
 import {Block} from 'baseui/block';
 import {StatefulCheckbox, STYLE_TYPE} from 'baseui/checkbox';
 import * as CheckboxExports from 'baseui/checkbox';
+
+import Yard from '../../components/yard/index';
+import checkboxYardConfig from '../../components/yard/config/checkbox';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
 # Checkbox
 
+<Yard placeholderHeight={48} {...checkboxYardConfig} />
+
 Checkboxes are used to provide users with multiple options for selection in a series of options.
 
 When used as a toggle they allow the user to make a binary choice usually (but not limited) in
 the form of a yes/no or on/off suggestion. Toggles are often used in product settings or as filter
-options. When engaged (on), Base UI toggles are colored and when disengaged (off) they’re grey.
+options. When engaged (on), Base Web toggles are colored and when disengaged (off) they’re grey.
 
-### When to use
+## When to use
 
 - When a collection of options share context.
 - When a user wants to toggle an option on/off.
@@ -43,90 +49,68 @@ options. When engaged (on), Base UI toggles are colored and when disengaged (off
 
 ## Examples
 
-<Example title="Checkbox basic usage" path="examples/checkbox/basic.js">
+<Example title="Basic usage" path="checkbox/basic-controlled.js">
   <Basic />
 </Example>
 
-<Example
-  title="Checkbox multiline example"
-  path="examples/checkbox/multiline.js"
->
+<Example title="Multiple lines" path="checkbox/multiline.js">
   <Multiline />
 </Example>
 
-<Example title="Checkbox with error" path="examples/checkbox/error.js">
+<Example title="Error state" path="checkbox/error.js">
   <Error />
 </Example>
 
-<Example
-  title="Checkbox indeterminate state"
-  path="examples/checkbox/indeterminate.js"
->
+<Example title="Indeterminate state" path="checkbox/indeterminate.js">
   <Indeterminate />
 </Example>
 
-<Example title="Checkbox disabled example" path="examples/checkbox/disabled.js">
+<Example title="Disabled state" path="checkbox/disabled.js">
   <Disabled />
 </Example>
 
-<Example
-  title="Checkbox alignment example"
-  path="examples/checkbox/alignment.js"
->
+<Example title="Alignments" path="checkbox/alignment.js">
   <Alignment />
 </Example>
 
-<Example title="Checkbox with overrides" path="examples/checkbox/overrides.js">
+<Example title="Overriding styles" path="checkbox/overrides.js">
   <Customization />
 </Example>
 
 <Example
-  title="Checkbox with component overrides"
-  path="examples/checkbox/component-overrides.js"
+  title="Overriding sub-components"
+  path="checkbox/component-overrides.js"
 >
   <ComponentOverrides />
 </Example>
 
-<Example title="Checkbox focus with button" path="examples/checkbox/focus.js">
+<Example title="Focus and ref" path="checkbox/focus.js">
   <Focus />
 </Example>
 
-<Example title="Checkbox as a toggle" path="examples/checkbox/toggle.js">
+<Example title="As a toggle" path="checkbox/toggle.js">
   <Toggle />
 </Example>
 
-## Overrides
+<Example
+  title="Stateful (uncontrolled) usage"
+  path="checkbox/basic-uncontrolled.js"
+>
+  <Uncontrolled />
+</Example>
 
-<Overrides
-  name="Checkbox"
+As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulCheckbox`, which manages its own state.
+
+## API
+
+<ApiTable
+  title="Checkbox props"
+  config={checkboxYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/checkbox/checkbox.js')}
+/>
+
+<Exports
   component={CheckboxExports}
-  renderExample={props => (
-    <Block width="200px" marginTop="scale400">
-      <StatefulCheckbox onChange={console.log} overrides={props.overrides}>
-        Check Label
-      </StatefulCheckbox>
-      <br />
-      <StatefulCheckbox
-        checkmarkType={STYLE_TYPE.toggle}
-        overrides={props.overrides}
-      >
-        Toggle Label
-      </StatefulCheckbox>
-    </Block>
-  )}
-/>
-
-<API
-  heading="Checkbox API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/checkbox/checkbox.js')}
-/>
-
-<API
-  heading="Stateful Checkbox API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/checkbox/stateful-checkbox.js')}
-/>
-
-<API
-  heading="Stateful Checkbox Container API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/checkbox/stateful-checkbox-container.js')}
+  title="Checkbox exports"
+  path="baseui/checkbox"
 />

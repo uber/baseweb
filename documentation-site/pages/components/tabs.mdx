@@ -1,29 +1,46 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
-import Example from '../../components/example';
-import API from '../../components/api';
-import Layout from '../../components/layout';
-
-import TabBasic from 'examples/tabs/basic.js';
-import TabVertical from 'examples/tabs/vertical.js';
-import TabControlled from 'examples/tabs/controlled.js';
-
-import Overrides from '../../components/overrides';
-import {StatefulTabs, TabPanel} from 'baseui/tabs';
+import {Notification, KIND} from 'baseui/notification';
+import {StatefulTabs, Tab} from 'baseui/tabs';
 import * as TabsExports from 'baseui/tabs';
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import TabsControlled from 'examples/tabs/controlled.js';
+import TabsUncontrolled from 'examples/tabs/uncontrolled.js';
+import TabsCustomKeys from 'examples/tabs/custom-keys.js';
+import TabsVertical from 'examples/tabs/vertical.js';
+import TabsRenderAll from 'examples/tabs/renderall.js';
+import TabsOverrides from 'examples/tabs/overrides.js';
+
+import Yard from '../../components/yard/index';
+import tabsYardConfig from '../../components/yard/config/tabs';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
-# Tab
+<Notification overrides={{Body: {style: {width: 'auto'}}}} kind={KIND.warning}>
+  This component is deprecated and will be removed in our next major version,
+  slated for late 2021. We recommend using our new{' '}
+  <a href="/components/tabs-motion">Tabs (Motion)</a> component. It has an
+  animated highlight and is compliant with the WAI-ARIA 1.1 Specification. The
+  APIs are almost identical so give it a try!
+</Notification>
 
-The Tab component is used for navigating frequently accessed, but distinct categories.
+# Tabs
 
-### Accessibility
+<Yard placeholderHeight={102} {...tabsYardConfig} />
+
+The Tabs component is used for navigating frequently accessed, but distinct categories.
+
+## Accessibility
 
 - `tab`, `shift + tab` - to move focus between tabs.
 - `Space` or `Enter` - to display the selected tab's content
@@ -32,49 +49,38 @@ The Tab component is used for navigating frequently accessed, but distinct categ
 
 ## Examples
 
-<Example title="Tab Basic Usage" path="examples/tabs/basic.js">
-  <TabBasic />
+<Example title="Controlled Tabs Usage" path="tabs/controlled.js">
+  <TabsControlled />
 </Example>
 
-<Example title="Tab Vertical Usage" path="examples/tabs/vertical.js">
-  <TabVertical />
+<Example title="Uncontrolled Tabs Usage" path="tabs/uncontrolled.js">
+  <TabsUncontrolled />
 </Example>
 
-<Example title="Tab Controlled Usage" path="examples/tabs/controlled.js">
-  <TabControlled />
+<Example title="With Custom Keys" path="tabs/custom-keys.js">
+  <TabsCustomKeys />
 </Example>
 
-## Overrides
+We use tab order to provide default keys for each tab. You can however, pass in your own key to a tab and set `activeKey` accordingly.
 
-<Overrides
-  name="Tabs"
-  component={TabsExports}
-  renderExample={props => (
-    <StatefulTabs activeKey="1" overrides={props.overrides}>
-      <TabPanel overrides={props.overrides} title="Tab Link 1">
-        Tab 1 content
-      </TabPanel>
-      <TabPanel overrides={props.overrides} title="Tab Link 2">
-        Tab 2 content
-      </TabPanel>
-      <TabPanel overrides={props.overrides} title="Tab Link 3">
-        Tab 3 content
-      </TabPanel>
-    </StatefulTabs>
-  )}
+<Example title="Tabs SEO Friendly" path="tabs/renderall.js">
+  <TabsRenderAll />
+</Example>
+
+<Example title="Tabs Vertical Usage" path="tabs/vertical.js">
+  <TabsVertical />
+</Example>
+
+<Example title="Tabs Overrides" path="tabs/overrides.js">
+  <TabsOverrides />
+</Example>
+
+## API
+
+<ApiTable
+  title="Tabs props"
+  config={tabsYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/tabs/tabs.js')}
 />
 
-<API
-  heading="Tabs API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/tabs/tabs.js')}
-/>
-
-<API
-  heading="StatefulTabs API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/tabs/stateful-tabs.js')}
-/>
-
-<API
-  heading="TabPanel API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/tabs/tab-panel.js')}
-/>
+<Exports component={TabsExports} title="Tabs exports" path="baseui/tabs" />

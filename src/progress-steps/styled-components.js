@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,54 +8,48 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import {styled} from '../styles/index.js';
-import type {
-  StyledProgressStepsPropsT,
-  StyledStepPropsT,
-  StyledNumberIconPropsT,
-  StyledNumberContentTailPropsT,
-  StyledNumberStepPropsT,
-} from './types.js';
+import type {StylePropsT} from './types.js';
 
-export const StyledProgressSteps = styled(
-  'div',
-  ({$theme}: StyledProgressStepsPropsT) => {
-    return {
-      paddingTop: $theme.sizing.scale300,
-      paddingBottom: $theme.sizing.scale300,
-    };
-  },
-);
-
-export const StyledStep = styled('div', ({$theme}: StyledStepPropsT) => {
+export const StyledProgressSteps = styled<{}>('ol', ({$theme}) => {
   return {
+    display: 'inline-block',
+    marginBottom: 0,
+    marginTop: 0,
+    paddingTop: $theme.sizing.scale300,
+    paddingRight: $theme.sizing.scale100,
+    paddingLeft: $theme.sizing.scale100,
+    paddingBottom: $theme.sizing.scale300,
+  };
+});
+
+export const StyledStep = styled<StylePropsT>('li', ({$theme}) => {
+  return {
+    listStyleType: 'none',
     position: 'relative',
     overflow: 'visible',
   };
 });
 
-export const StyledIcon = styled(
+export const StyledIconContainer = styled<StylePropsT>(
   'div',
-  ({$theme, $isActive, $isCompleted, $disabled}: StyledStepPropsT) => {
-    let currentColor = $theme.colors.mono400;
-    let size = $theme.sizing.scale300;
-    let marginRight = $theme.sizing.scale500;
-    let marginLeft = $theme.sizing.scale100;
-    let font = $theme.typography.font400;
-
-    if ($isCompleted) {
-      currentColor = $theme.colors.primary400;
-    } else if ($isActive) {
-      font = $theme.typography.font450;
-      currentColor = $theme.colors.primary100;
-    }
+  ({$theme, $isActive, $isCompleted, $disabled}) => {
+    let currentColor = $theme.colors.backgroundPrimary;
+    let size = $theme.sizing.scale500;
+    let marginLeft = '26px';
+    let marginRight = '26px';
+    let font = $theme.typography.LabelMedium;
+    let titlePad = $theme.sizing.scale800;
 
     if ($isActive) {
-      size = $theme.sizing.scale600;
-      marginLeft = 0;
-      marginRight = $theme.sizing.scale300;
+      size = $theme.sizing.scale700;
+      marginLeft = $theme.sizing.scale750;
+      marginRight = $theme.sizing.scale750;
     }
 
-    const marginTop = `calc((${font.lineHeight} - ${size}) / 2)`;
+    const marginTop = `calc(${titlePad} + (${font.lineHeight} - ${size}) / 2)`;
+    if ($theme.direction === 'rtl') {
+      [marginLeft, marginRight] = [marginRight, marginLeft];
+    }
 
     return {
       marginRight,
@@ -64,9 +58,8 @@ export const StyledIcon = styled(
       width: size,
       height: size,
       lineHeight: size,
-      borderRadius: size,
       backgroundColor: currentColor,
-      float: 'left',
+      float: $theme.direction === 'rtl' ? 'right' : 'left',
       textAlign: 'center',
       display: 'flex',
       justifyContent: 'center',
@@ -75,117 +68,166 @@ export const StyledIcon = styled(
   },
 );
 
-export const StyledInnerIcon = styled('div', ({$theme}: StyledStepPropsT) => {
+export const StyledIcon = styled<StylePropsT>(
+  'div',
+  ({$theme, $isActive, $isCompleted, $disabled}) => {
+    let currentColor = $theme.colors.mono400;
+    let size = $theme.sizing.scale300;
+
+    if ($isCompleted) {
+      currentColor = $theme.colors.primary;
+    } else if ($isActive) {
+      currentColor = $theme.colors.progressStepsActiveFill;
+    }
+
+    if ($isActive) {
+      size = $theme.sizing.scale600;
+    }
+
+    return {
+      width: size,
+      height: size,
+      lineHeight: size,
+      borderTopLeftRadius: size,
+      borderTopRightRadius: size,
+      borderBottomRightRadius: size,
+      borderBottomLeftRadius: size,
+      backgroundColor: currentColor,
+      float: $theme.direction === 'rtl' ? 'right' : 'left',
+      textAlign: 'center',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    };
+  },
+);
+
+export const StyledInnerIcon = styled<StylePropsT>('div', ({$theme}) => {
   return {
-    width: $theme.sizing.scale100,
-    height: $theme.sizing.scale100,
-    lineHeight: $theme.sizing.scale100,
-    borderRadius: $theme.sizing.scale100,
-    backgroundColor: $theme.colors.primary400,
+    width: $theme.sizing.scale300,
+    height: $theme.sizing.scale300,
+    lineHeight: $theme.sizing.scale300,
+    borderTopLeftRadius: $theme.sizing.scale300,
+    borderTopRightRadius: $theme.sizing.scale300,
+    borderBottomRightRadius: $theme.sizing.scale300,
+    borderBottomLeftRadius: $theme.sizing.scale300,
+    backgroundColor: $theme.colors.progressStepsActiveText,
     textAlign: 'center',
   };
 });
 
-export const StyledContent = styled('div', ({$theme}: StyledStepPropsT) => {
+export const StyledContent = styled<StylePropsT>('div', ({$theme}) => {
+  const marginDir: string =
+    $theme.direction === 'rtl' ? 'marginRight' : 'marginLeft';
   return {
-    marginLeft: $theme.sizing.scale900,
+    [marginDir]: $theme.sizing.scale1600,
   };
 });
 
-export const StyledContentTitle = styled(
+export const StyledContentTitle = styled<StylePropsT>(
   'div',
-  ({$theme, $isActive}: StyledStepPropsT) => {
-    let color = $theme.colors.foregroundAlt;
-    let font = $theme.typography.font400;
-
-    if ($isActive) {
-      color = $theme.colors.foreground;
-      font = $theme.typography.font450;
+  ({$theme, $isActive, $isCompleted}) => {
+    let color = $theme.colors.primary400;
+    if ($isCompleted) {
+      color = $theme.colors.contentSecondary;
+    } else if ($isActive) {
+      color = $theme.colors.contentPrimary;
     }
+    let font = $theme.typography.LabelMedium;
 
     return {
       ...font,
       color,
+      paddingTop: $theme.sizing.scale800,
+      paddingBottom: $theme.sizing.scale800,
     };
   },
 );
 
-export const StyledContentTail = styled(
+export const StyledContentTail = styled<StylePropsT>(
   'div',
-  ({$theme, $isCompleted}: StyledStepPropsT) => {
+  ({$theme, $isCompleted, $isActive}) => {
     let currentColor = $theme.colors.mono400;
+    let size = $theme.sizing.scale500;
+    let font = $theme.typography.LabelMedium;
+    let titlePad = $theme.sizing.scale800;
+
+    if ($isActive) {
+      size = $theme.sizing.scale700;
+    }
 
     if ($isCompleted) {
-      currentColor = $theme.colors.primary400;
+      currentColor = $theme.colors.primary;
     }
+
+    const dir: string = $theme.direction === 'rtl' ? 'right' : 'left';
 
     return {
       position: 'absolute',
-      left: '7px',
+      [dir]: '31px',
       top: 0,
-      height: '100%',
-      paddingBottom: '0px',
+      height: `calc(100% + ${$theme.sizing.scale500})`,
+      marginBottom: 0,
       width: $theme.sizing.scale0,
-      paddingTop: $theme.sizing.scale600,
-      ':after': {
-        content: '""',
-        display: 'inline-block',
-        height: `calc(100% + ${$theme.sizing.scale500})`,
-        width: '100%',
-        backgroundColor: currentColor,
-      },
+      marginTop: `calc(${titlePad} + (${font.lineHeight} + ${size}) / 2)`,
+      display: 'inline-block',
+      backgroundColor: currentColor,
     };
   },
 );
 
-export const StyledContentDescription = styled(
+export const StyledContentDescription = styled<StylePropsT>(
   'div',
-  ({$theme}: StyledStepPropsT) => {
+  ({$theme}) => {
     return {
       marginBottom: $theme.sizing.scale700,
     };
   },
 );
 
-export const StyledNumberStep = styled(
-  'div',
-  ({$theme}: StyledNumberStepPropsT) => {
-    return {
-      position: 'relative',
-      overflow: 'visible',
-    };
-  },
-);
+export const StyledNumberStep = styled<StylePropsT>('li', ({$theme}) => {
+  return {
+    listStyleType: 'none',
+    position: 'relative',
+    overflow: 'visible',
+  };
+});
 
-export const StyledNumberIcon = styled(
+export const StyledNumberIcon = styled<StylePropsT>(
   'div',
-  ({$theme, $isActive, $isCompleted, $disabled}: StyledNumberIconPropsT) => {
+  ({$theme, $isActive, $isCompleted, $disabled}) => {
     let backgroundColor = $theme.colors.mono400;
-    let color = $theme.colors.primary400;
-    let size = $theme.sizing.scale800;
-    let marginRight = $theme.sizing.scale300;
-    let font = $theme.typography.font350;
-    let titleFont = $theme.typography.font400;
+    let color = $theme.colors.contentStateDisabled;
+    let size = $theme.sizing.scale950;
+    let font = $theme.typography.ParagraphMedium;
+    let marginLeft = $theme.sizing.scale550;
+    let marginRight = $theme.sizing.scale550;
+    let titlePad = $theme.sizing.scale800;
+    let titleFont = $theme.typography.LabelMedium;
 
     if ($isCompleted) {
-      backgroundColor = $theme.colors.primary400;
-      color = $theme.colors.mono100;
+      color = $theme.colors.progressStepsCompletedText;
+      backgroundColor = $theme.colors.progressStepsCompletedFill;
     } else if ($isActive) {
-      titleFont = $theme.typography.font450;
-      backgroundColor = $theme.colors.primary100;
+      color = $theme.colors.progressStepsActiveText;
+      backgroundColor = $theme.colors.progressStepsActiveFill;
     }
 
-    const marginTop = `calc((${titleFont.lineHeight} - ${size}) / 2)`;
+    const marginTop = `calc(${titlePad} + (${titleFont.lineHeight} - ${size}) / 2)`;
 
     return {
+      marginLeft,
       marginRight,
       marginTop,
       width: size,
       height: size,
-      borderRadius: size,
+      borderTopLeftRadius: size,
+      borderTopRightRadius: size,
+      borderBottomRightRadius: size,
+      borderBottomLeftRadius: size,
       backgroundColor,
       color,
-      float: 'left',
+      float: $theme.direction === 'rtl' ? 'right' : 'left',
       textAlign: 'center',
       display: 'flex',
       justifyContent: 'center',
@@ -195,36 +237,29 @@ export const StyledNumberIcon = styled(
   },
 );
 
-export const StyledNumberContentTail = styled(
+export const StyledNumberContentTail = styled<StylePropsT>(
   'div',
-  ({
-    $theme,
-    $isActive,
-    $isCompleted,
-    $disabled,
-  }: StyledNumberContentTailPropsT) => {
-    let currentColor = $theme.colors.mono400;
+  ({$theme, $isActive, $isCompleted, $disabled}) => {
+    let currentColor = $theme.colors.mono300;
+    let size = $theme.sizing.scale950;
+    let titleFont = $theme.typography.LabelMedium;
+    let titlePad = $theme.sizing.scale800;
 
     if ($isCompleted) {
-      currentColor = $theme.colors.primary400;
+      currentColor = $theme.colors.primary;
     }
-
+    const marginTop = `calc(${titlePad} + ${size} + (${titleFont.lineHeight} - ${size}) / 2)`;
+    const dir: string = $theme.direction === 'rtl' ? 'right' : 'left';
     return {
       position: 'absolute',
-      left: '11px',
+      [dir]: '31px',
       top: 0,
-      height: '100%',
-      marginTop: '5px',
-      paddingBottom: '0px',
+      height: `calc(100% - ${$theme.sizing.scale500})`,
+      paddingBottom: 0,
+      marginTop,
       width: $theme.sizing.scale0,
-      paddingTop: $theme.sizing.scale600,
-      ':after': {
-        content: '""',
-        display: 'inline-block',
-        height: '100%',
-        width: '100%',
-        backgroundColor: currentColor,
-      },
+      backgroundColor: currentColor,
+      display: 'inline-block',
     };
   },
 );

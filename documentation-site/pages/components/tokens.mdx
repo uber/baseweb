@@ -1,0 +1,140 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import {useStyletron} from 'baseui';
+import * as TokensExports from 'baseui/tokens';
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import BasicExample from 'examples/tokens/basic.js';
+import Exports from '../../components/exports';
+
+export default Layout;
+
+export function ColorPreviewContainer(props) {
+  const [css, theme] = useStyletron();
+  return (
+    <div className={css({...theme.typography.MonoParagraphSmall})} {...props} />
+  );
+}
+export function ColorPreview({name, value, displayValue}) {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        borderBottomStyle: 'solid',
+        borderBottomWidth: '1px',
+        borderBottomColor: `${value}`,
+      }}
+    >
+      <div
+        style={{
+          backgroundColor: value,
+          width: '100px',
+          minWidth: '100px',
+          height: '50px',
+          marginRight: '20px',
+        }}
+      ></div>
+      <div style={{flexGrow: 1}}>{name}</div>
+      <div>{displayValue}</div>
+    </div>
+  );
+}
+
+# Tokens
+
+You can import Base Web design tokens from `baseui/tokens`. A primitive token is just an alias for a value in your design system, such as a hex or pixel value. It creates a consistent way to reference an immutable value in a design system. For example:
+
+```js
+const acmeBlue = '#0000FF';
+```
+
+Anytime someone needs to reference the blue for Acme Co. there is a single place it is defined and exported. Note, this is a little different from a theme, which assigns semantic meaning to colors. A token is just a consistent way to reference an immutable value in a design system.
+
+Currently we only export `colors` from `baseui/tokens`. In the future, we may add more types of values to the module such as typography and spacing values. Eventually we may even move tokens into a separate package entirely- to better support other platforms and keep `baseui` focused on components.
+
+Not every color listed in tokens is used in a `baseui` component. This is simply the complete set of official Base Web colors. Ideally these are the only colors you would need to use in a Base Web project.
+
+## Usage
+
+So what do you do with a token? Should you import it wherever you need to use the color? Should you alias it in your theme object?
+
+You could employ either of those strategies. However, we think the best way to use tokens with `baseui` is to assign them to your theme's properties.
+
+You can create a custom theme with your choice of color tokens. Here is what that might look like:
+
+```js
+// myTheme.js
+
+import {createTheme, lightThemePrimitives} from 'baseui';
+import {colors} from 'baseui/tokens';
+
+const myThemePrimitives = {
+  ...lightThemePrimitives,
+  primary: colors.blue400,
+  primary50: colors.blue50,
+  primary100: colors.blue100,
+  primary200: colors.blue200,
+  primary300: colors.blue300,
+  primary400: colors.blue400,
+  primary500: colors.blue500,
+  primary600: colors.blue600,
+  primary700: colors.blue700,
+};
+
+const myTheme = createTheme(myThemePrimitives, {});
+
+export default myTheme;
+```
+
+You could also assign primitive color tokens as overrides on the theme if there is a specific theme property that needs further customization.
+Sometimes our default mapping of theme's building primitives to theme properties may differ from your own intentions.
+
+```js
+// myTheme.js
+
+import {createTheme, lightThemePrimitives} from 'baseui';
+import {colors} from 'baseui/tokens';
+
+const myThemeOverrides = {
+  colors: {
+    borderFocus: colors.yellow200,
+  },
+};
+
+const myTheme = createTheme(lightThemePrimitives, myThemeOverrides);
+
+export default myTheme;
+```
+
+It is best to assign things at the theme's building primitives level, with overrides as a backup.
+When you assign tokens directly in component code or alias them on the theme object you
+are opting out of the `baseui` way of doing things. We will try to support those use
+cases the best we can, but our priority will always be supporting theme primitives and
+overrides first.
+
+For more on `baseui` theming check out [the documentation](/guides/theming).
+
+## Primitive Color Tokens
+
+<ColorPreviewContainer>
+  {Object.entries(TokensExports.colors).map(([name, value]) => {
+    return <ColorPreview name={name} value={value} displayValue={value} />;
+  })}
+</ColorPreviewContainer>
+
+Not every color listed here is used in a `baseui` component. This is simply the complete set of official Base Web colors. Ideally these are the only colors you would need to use in a Base Web project.
+
+## API
+
+<Exports
+  component={TokensExports}
+  title="Tokens exports"
+  path="baseui/tokens"
+/>

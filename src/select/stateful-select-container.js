@@ -1,11 +1,11 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import React from 'react';
+import * as React from 'react';
 import type {
   StatefulContainerPropsT,
   StateReducerT,
@@ -46,11 +46,11 @@ class StatefulSelectContainer extends React.Component<
       children,
       initialState, // eslint-disable-line no-unused-vars
       stateReducer, // eslint-disable-line no-unused-vars
-      ...rest
+      ...restProps
     } = this.props;
     // $FlowFixMe
     return children({
-      ...rest,
+      ...restProps,
       ...this.state,
       onChange: this.onChange,
     });

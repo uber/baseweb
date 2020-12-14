@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -18,14 +18,14 @@ const selectors = {
 describe('Rating', () => {
   it('passes basic a11y tests', async () => {
     await mount(page, 'rating-star');
-    await page.waitFor(selectors.container);
+    await page.waitForSelector(selectors.container);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('for a value of three, three stars are highlighted', async () => {
     await mount(page, 'rating-star');
-    await page.waitFor(selectors.container);
+    await page.waitForSelector(selectors.container);
 
     const highlightedStars = await page.$$eval(
       selectors.checked,
@@ -36,7 +36,7 @@ describe('Rating', () => {
 
   it('for a value of three, the third emoticon is highlighted', async () => {
     await mount(page, 'rating-emoticon');
-    await page.waitFor(selectors.container);
+    await page.waitForSelector(selectors.container);
 
     const highlightedEmoticons = await page.$$eval(
       selectors.checked,
@@ -44,10 +44,10 @@ describe('Rating', () => {
     );
     expect(highlightedEmoticons).toBe(1);
 
-    const indexOfHighlihted = await page.$eval(
+    const indexOfHighlighted = await page.$eval(
       selectors.checked,
       star => +star.getAttribute('aria-posinset'),
     );
-    expect(indexOfHighlihted).toBe(3);
+    expect(indexOfHighlighted).toBe(3);
   });
 });

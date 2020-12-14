@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,8 +8,31 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
+import {SORT_DIRECTION} from './constants.js';
 import type {OverrideT} from '../helpers/overrides.js';
-import type {ThemeT} from '../styles/types.js';
+
+export type SortDirectionT = ?$Keys<typeof SORT_DIRECTION>;
+
+export type HeadCellPropsT = {|
+  /** Aria label applied to the sort button. */
+  ariaLabel?: string,
+  /** Additional content to fill head cell. Most likely used for a filter button. */
+  children?: React.Node,
+  /** Visually indicates sort direction. Displays a chevron next to column title. */
+  direction: SortDirectionT,
+  /** Disabled click-to-sort. Renders column title in muted color. */
+  disabled?: boolean,
+  /** Callback for when column title is clicked to trigger sort. */
+  onSort?: () => mixed,
+  overrides?: {
+    HeadCell?: OverrideT,
+    SortableLabel?: OverrideT,
+  },
+  /** Column title. */
+  title: React.Node,
+  /** FillClickTarget enable click to sort on whitespace in a header cell. */
+  fillClickTarget?: boolean,
+|};
 
 export type TablePropsT = {|
   /** Table columns. Data passed to each header cell. */
@@ -31,18 +54,18 @@ export type FilterProps = {|
   children: React.Node,
   /** Disables the icon click action. Filter menu does not open when clicked. */
   disabled?: boolean,
+  /** Adds a button to close the filter menu. */
+  hasCloseButton?: boolean,
   /** Callback for when the 'reset' button is clicked. */
   onReset?: () => mixed,
   /** Callback for when the 'select all' button is clicked. */
   onSelectAll?: () => mixed,
   overrides?: {
-    MenuButton: OverrideT<*>,
-    Content: OverrideT<*>,
-    Heading: OverrideT<*>,
-    Footer: OverrideT<*>,
+    MenuButton?: OverrideT,
+    Content?: OverrideT,
+    Heading?: OverrideT,
+    Footer?: OverrideT,
   },
-|};
-
-export type SharedStylePropsT = {|
-  $theme: ThemeT,
+  /** Determines whether focus is returned to Filter menu button. */
+  returnFocus?: boolean,
 |};

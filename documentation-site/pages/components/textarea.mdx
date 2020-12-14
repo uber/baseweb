@@ -1,51 +1,74 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import TextareaBasic from 'examples/textarea/basic.js';
+import TextareaStates from 'examples/textarea/states.js';
+import TextareaSizes from 'examples/textarea/sizes.js';
 import TextareaRef from 'examples/textarea/ref.js';
+import TextareaResizable from 'examples/textarea/resizable.js';
+import TextareaStateful from 'examples/textarea/stateful.js';
 
-import Overrides from '../../components/overrides';
 import {StatefulTextarea as Textarea, SIZE} from 'baseui/textarea';
 import * as TextareaExports from 'baseui/textarea';
+
+import Yard from '../../components/yard/index';
+import textareaYardConfig from '../../components/yard/config/textarea';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
 # Textarea
 
+<Yard placeholderHeight={48} {...textareaYardConfig} />
+
 ## Examples
 
-<Example title="Textarea Basic Usage" path="examples/textarea/basic.js">
+<Example title="Basic usage" path="textarea/basic.js">
   <TextareaBasic />
 </Example>
 
-<Example title="Textarea with ref" path="examples/textarea/ref.js">
+<Example title="States" path="textarea/states.js">
+  <TextareaStates />
+</Example>
+
+<Example title="Sizes" path="textarea/sizes.js">
+  <TextareaSizes />
+</Example>
+
+<Example title="Allow the user to resize" path="textarea/resizable.js">
+  <TextareaResizable />
+</Example>
+
+By default, `Textarea` is not resizeable. However, you can use `overrides` as in the example above to supply minimum and maximum dimensions for the component. This will allow users to resize the `Textarea` within the boundaries you define.
+
+<Example title="Focus and ref" path="textarea/ref.js">
   <TextareaRef />
 </Example>
 
-## Overrides
+<Example title="Stateful (uncontrolled) usage" path="textarea/stateful.js">
+  <TextareaStateful />
+</Example>
 
-<Overrides
-  name="Textarea"
-  component={TextareaExports}
-  whitelisted={['InputContainer', 'Input']}
-  renderExample={props => (
-    <Textarea
-      size={SIZE.compact}
-      placeholder="Placeholder"
-      overrides={props.overrides}
-    />
-  )}
+As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulTextarea`, which manages its own state.
+
+## API
+
+<ApiTable
+  title="Textarea props"
+  config={textareaYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/textarea/textarea.js')}
 />
 
-<API
-  heading="Textarea API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/textarea/textarea.js')}
+<Exports
+  component={TextareaExports}
+  title="Textarea exports"
+  path="baseui/textarea"
 />

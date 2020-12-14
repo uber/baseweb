@@ -1,17 +1,19 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 export {default as ProgressBar} from './progressbar.js';
+export {SIZE} from './constants.js';
 // Styled elements
 export {
-  Root as StyledRoot,
-  Bar as StyledBar,
-  BarProgress as StyledBarProgress,
-  Label as StyledLabel,
+  StyledRoot,
+  StyledBarContainer,
+  StyledBar,
+  StyledBarProgress,
+  StyledLabel,
 } from './styled-components.js';
 // Flow
-export * from './types.js';
+export type * from './types.js';

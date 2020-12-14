@@ -1,11 +1,12 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+import * as ReactIs from 'react-is';
 import {
   StartEnhancer as StyledStartEnhancer,
   EndEnhancer as StyledEndEnhancer,
@@ -15,8 +16,21 @@ import {getOverrides} from '../helpers/overrides.js';
 
 import type {ButtonPropsT} from './types.js';
 
+function RenderEnhancer(props) {
+  const {Enhancer, ...restProps} = props;
+  if (typeof Enhancer === 'string') {
+    return Enhancer;
+  }
+  if (ReactIs.isValidElementType(Enhancer)) {
+    // $FlowFixMe
+    return <Enhancer {...restProps} />;
+  }
+  // $FlowFixMe
+  return Enhancer;
+}
+
 export default function ButtonInternals(props: ButtonPropsT) {
-  const {children, overrides, startEnhancer, endEnhancer} = props;
+  const {children, overrides = {}, startEnhancer, endEnhancer} = props;
   const [StartEnhancer, startEnhancerProps] = getOverrides(
     overrides.StartEnhancer,
     StyledStartEnhancer,
@@ -28,19 +42,15 @@ export default function ButtonInternals(props: ButtonPropsT) {
   const sharedProps = getSharedProps(props);
   return (
     <React.Fragment>
-      {startEnhancer && (
+      {startEnhancer !== null && startEnhancer !== undefined && (
         <StartEnhancer {...sharedProps} {...startEnhancerProps}>
-          {typeof startEnhancer === 'function'
-            ? startEnhancer(sharedProps)
-            : startEnhancer}
+          <RenderEnhancer Enhancer={startEnhancer} />
         </StartEnhancer>
       )}
       {children}
-      {endEnhancer && (
+      {endEnhancer !== null && endEnhancer !== undefined && (
         <EndEnhancer {...sharedProps} {...endEnhancerProps}>
-          {typeof endEnhancer === 'function'
-            ? endEnhancer(sharedProps)
-            : endEnhancer}
+          <RenderEnhancer Enhancer={endEnhancer} />
         </EndEnhancer>
       )}
     </React.Fragment>

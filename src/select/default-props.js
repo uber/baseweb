@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -11,14 +11,17 @@ import {TYPE, SIZE} from './constants.js';
 const defaultProps = {
   'aria-label': null,
   'aria-describedby': null,
+  'aria-errormessage': null,
   'aria-labelledby': null,
   autoFocus: false,
   backspaceRemoves: true,
   clearable: true,
   closeOnSelect: true,
+  creatable: false,
   deleteRemoves: true,
   disabled: false,
   error: false,
+  positive: false,
   escapeClearsValue: true,
   filterOptions: defaultFilterOptions,
   filterOutSelected: true,
@@ -28,7 +31,6 @@ const defaultProps = {
   labelKey: 'label',
   maxDropdownHeight: '900px',
   multi: false,
-  noResultsMsg: 'No results found',
   onBlur: () => {},
   onBlurResetsInput: true,
   onChange: () => {},
@@ -39,9 +41,9 @@ const defaultProps = {
   onOpen: null,
   onClose: null,
   openOnClick: true,
+  startOpen: false,
   options: [],
   overrides: {},
-  placeholder: 'Select...',
   required: false,
   searchable: true,
   size: SIZE.default,

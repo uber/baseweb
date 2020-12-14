@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -11,6 +11,7 @@ import {
   PLACEMENT,
   STATE_CHANGE_TYPE,
   TRIGGER_TYPE,
+  POPOVER_MARGIN,
 } from './constants.js';
 import type {
   PopoverPropsWithoutChildrenT,
@@ -33,11 +34,13 @@ class StatefulContainer extends React.Component<
     onMouseEnterDelay: 200,
     onMouseLeaveDelay: 200,
     placement: PLACEMENT.auto,
+    popperOptions: {},
     showArrow: false,
     triggerType: TRIGGER_TYPE.click,
     dismissOnClickOutside: true,
     dismissOnEsc: true,
     stateReducer: defaultStateReducer,
+    popoverMargin: POPOVER_MARGIN,
   };
 
   state = {
@@ -45,11 +48,17 @@ class StatefulContainer extends React.Component<
     ...this.props.initialState,
   };
 
-  onBlur = () => {
+  onBlur = (e: Event) => {
+    if (this.props.onBlur) {
+      this.props.onBlur(e);
+    }
     this.close();
   };
 
-  onClick = () => {
+  onClick = (e: Event) => {
+    if (this.props.onClick) {
+      this.props.onClick(e);
+    }
     if (this.state.isOpen) {
       this.close();
     } else {
@@ -65,15 +74,24 @@ class StatefulContainer extends React.Component<
     this.close();
   };
 
-  onFocus = () => {
+  onFocus = (e: Event) => {
+    if (this.props.onFocus) {
+      this.props.onFocus(e);
+    }
     this.open();
   };
 
-  onMouseEnter = () => {
+  onMouseEnter = (e: Event) => {
+    if (this.props.onMouseEnter) {
+      this.props.onMouseEnter(e);
+    }
     this.open();
   };
 
-  onMouseLeave = () => {
+  onMouseLeave = (e: Event) => {
+    if (this.props.onMouseLeave) {
+      this.props.onMouseLeave(e);
+    }
     this.close();
   };
 
@@ -129,28 +147,52 @@ class StatefulContainer extends React.Component<
   render() {
     const {
       accessibilityType,
+      autoFocus,
       dismissOnClickOutside,
       dismissOnEsc,
+      focusLock,
       ignoreBoundary,
-      overrides,
+      mountNode,
+      onBlur,
+      onClick,
+      onFocus,
+      onMouseEnter,
+      onMouseLeave,
       onMouseEnterDelay,
       onMouseLeaveDelay,
+      overrides,
       placement,
+      popperOptions,
+      renderAll,
+      returnFocus,
       showArrow,
       triggerType,
+      popoverMargin,
     } = this.props;
 
     const popoverProps: PopoverPropsWithoutChildrenT = {
       accessibilityType,
+      autoFocus,
+      content: this.renderContent,
+      focusLock,
       ignoreBoundary,
       isOpen: this.state.isOpen,
-      overrides,
-      content: this.renderContent,
+      mountNode,
+      onBlur,
+      onClick,
+      onFocus,
+      onMouseEnter,
+      onMouseLeave,
       onMouseEnterDelay,
       onMouseLeaveDelay,
+      overrides,
       placement,
+      popperOptions,
+      renderAll,
+      returnFocus,
       showArrow,
       triggerType,
+      popoverMargin,
     };
 
     if (dismissOnClickOutside) {

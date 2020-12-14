@@ -1,0 +1,77 @@
+import Layout from '../../../components/layout';
+import Example from '../../../components/example';
+import {Meta} from '../../../components/blog';
+import metadata from './metadata.json';
+import {Button} from 'baseui/button';
+
+import Indeterminate from 'examples/checkbox/indeterminate.js';
+import CellNavigation from 'examples/table-grid/cell-navigation.js';
+import RadioMode from 'examples/button-group/radio-mode.js';
+import TreeViewBasic from 'examples/tree-view/basic.js';
+
+export default Layout;
+
+<Meta data={metadata} />
+
+Assistive technologies like [screen readers](https://webaccess.berkeley.edu/ask-pecan/what-is-a-screen-reader) are essential to people who are blind, vision impaired, or have learning disabilities. Providing support for them to operate on your web application or design system components is absolutely foundational to ensure equal functionality amongst all users. Over the past month the Base Web team has made it a priority to improve screen reader usability. In this blog post I will describe some of changes made, and provide suggestions for how you can do a similar audit of your application.
+
+## Is my application accessible when using Base Web?
+
+If you're using Base Web, rest assured that a significant portion of your application will be fine, but having accessible components does not mean you have an entirely accessible application. You absolutely need to audit your application to be sure every visitor can successfully use it. Consider the amount of code in your app that does not come from Base Web; it's a lot, right? We've done our best to hone the published components, but it's up to you to become familiar with best-practices. A good resource for learning more is the [WAI-ARIA Authoring Practices](https://w3c.github.io/aria-practices) document.
+
+## How do I use a screen reader?
+
+[A11yCasts](https://www.youtube.com/playlist?list=PLNYkxOF6rcICWx0C9LVWWVqvHlYJyqw7g) by Google Chrome Developers is a good YouTube series that offers solutions to common a11y-related problems. The series includes quick introductions to two popular assistive technologies Mac [VoiceOver](https://youtu.be/5R-6WvAihms) and Windows [NVDA](https://youtu.be/Jao3s_CwdRU). Operating the two screen readers are quite different and they offer different features. You'll want to become used to testing with both of these tools as well as another popular one [JAWS](https://www.freedomscientific.com/products/software/jaws/). In 2019 WebAIM published [survey results](https://webaim.org/projects/screenreadersurvey8/#primary) which found NVDA to be the most popular by a very slight margin over JAWS, but it's been trending downwards. Anecdotally, most web developers I know use Mac for development. Please notice that most users are on Windows. Be sure to test on both operating systems to ensure best support. Here's another good [post](https://webaim.org/articles/screenreader_testing/) from WebAIM that provides a text based guide on how to start testing applications with screen readers. The main two things to keep in mind when auditing your own application is to see if components announce their state and that the information contained in the component can be accessed by keyboard controls.
+
+## Components should announce their state
+
+When auditing Base Web components we often found that many states were only visually signaled and did not include appropriate [aria attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA). One example of this was the indeterminate Checkbox. We learned that the `aria-checked` attribute accepts a `mixed` value for this exact purpose. It's best to do a bit of research before looking towards something like `aria-live`.
+
+<Example title="Checkbox" path="checkbox/indeterminate.js">
+  <Indeterminate />
+</Example>
+
+The `aria-live` strategy was [used in the Menu component](https://github.com/uber/baseweb/pull/2950/files#diff-66db397a84ffba396815e0df84634ee5R124) to announce no options are rendered without the user navigating to the element. With the that attribute, you can specify the message's intrusiveness level. In the Menu case, it was set to `polite` which means that it will announce when finished with its current sentence. Paired with `aria-live` we included the `aria-atomic` attribute. This attribute signals to the screen reader to read the entire text content of the element. Without that flag, it would only read what changed from the last time it was announced.
+
+- Checkbox `aria-checked='mixed'` for indeterminate state ([PR](https://github.com/uber/baseweb/pull/2918))
+- Button loading state is announced through `aria-label` ([PR](https://github.com/uber/baseweb/pull/2890))
+- FileUploader applies `aria-errormessage` reference in the case of failure ([PR](https://github.com/uber/baseweb/pull/2937))
+- Timepicker announces the 12/24 hour format ([PR](https://github.com/uber/baseweb/pull/2963))
+- TableSemantic announces the sort direction of a column ([PR](https://github.com/uber/baseweb/pull/2984))
+- FormControl applies `aria-errormessage` and `aria-describedby` reference to form elements if caption or error messages exist ([PR](https://github.com/uber/baseweb/pull/2918))
+- Select announces selected value and highlighted option ([PR](https://github.com/uber/baseweb/pull/2947))
+- Menu announces if not options are provided ([PR](https://github.com/uber/baseweb/pull/2950/files))
+- PhoneInput asks for phone number without country code ([PR](https://github.com/uber/baseweb/pull/2972))
+
+## Components can be operated by keyboard
+
+The [WAI-ARIA Authoring Practices](https://www.w3.org/TR/wai-aria-practices/#keyboard-interaction-22) document outlines all of the critical and suggested keyboard operations for most components you would consider making. A good example of adhering to these specifications is Base Web's TreeView component. See [here](https://w3c.github.io/aria-practices/#keyboard-interaction-23) for a list of those controls. We still need to add type-ahead support to the component where if a user types a character 'focus moves to the next node with a name that starts with the typed character' or if multiple characters are typed in rapid succession 'focus moves to the next node with a name that starts with the string of characters typed'.
+
+<Example title="TreeView" path="tree-view/basic.js">
+  <TreeViewBasic />
+</Example>
+
+Sometimes your components may not adhere to common semantic elements. One example is how we added keyboard controls to the ButtonGroup component in `radio` mode so that it behaves similar to a radio group. If focused on one of the buttons, left and right arrows will navigate amongst the buttons in the group. When a button is navigated to in this way, it is selected.
+
+<Example title="ButtonGroup" path="button-group/radio-mode.js">
+  <RadioMode />
+</Example>
+
+Another similar case is how Base Web publishes a css-grid based table element called TableGrid. This component is not a semantic table element so screen readers do not have built-in support to navigate it; we needed to get a bit more creative to support keyboard navigation. [Here's a link](https://baseweb.design/components/table-grid#accessible-cell-navigation) to it on the docs page. It uses a react hook called `useCellNavigation` to apply keyboard controls to the focused cell and may be appropriate for a variety of tabular interface layouts. When in doubt, try to control your component without viewing it and see if you have enough information or the ability to navigate it. If not, you'll need to either research how it can be refactored to more supported patterns or build custom utilities yourself.
+
+<Example title="TableGrid" path="table-grid/cell-navigation.js">
+  <CellNavigation />
+</Example>
+
+- TreeView keyboard controls ([PR](https://github.com/uber/baseweb/pull/2924))
+- ButtonGroup in `radio` mode will operate like a radio group (PRs [1](https://github.com/uber/baseweb/pull/2913) & [2](https://github.com/uber/baseweb/pull/2941))
+- Input clear button is accessible by keyboard controls ([PR](https://github.com/uber/baseweb/pull/2936))
+- Tag adds keyboard controls to activate main button and close button ([PR](https://github.com/uber/baseweb/pull/2970))
+- TableGrid can have cell navigation applied with a suggested react hook ([PR](https://github.com/uber/baseweb/pull/2989))
+- Button + Popover + Menu example autofocuses the menu ([PR](https://github.com/uber/baseweb/pull/2997))
+- Datepicker keyboard navigation and date announcement improvements ([PR](https://github.com/uber/baseweb/pull/3010))
+- Toast can be autofocused with interactive elements ([PR](https://github.com/uber/baseweb/pull/2928))
+
+## Conclusion
+
+With Base Web we are determined to provide accessible user interfaces for application users and build a tool developers can rely on. This has been a considerable effort to specifically enhance screen reader support, but there are always areas to improve further. If you've found a bug or have a suggestion, please [open an issue](https://github.com/uber/baseweb//issues) or [contribute a fix](https://github.com/uber/baseweb/blob/master/CONTRIBUTING.md) to the open source project.

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,19 +7,19 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import type {TextareaPropsT} from './types.js';
-import {mergeOverrides} from '../helpers/overrides.js';
+import {mergeOverrides, getOverrides} from '../helpers/overrides.js';
 import {BaseInput, SIZE, CUSTOM_INPUT_TYPE} from '../input/index.js';
 import {
-  Textarea as StyledTextarea,
-  TextareaContainer as StyledTextareaContainer,
+  StyledTextAreaRoot,
+  StyledTextarea,
+  StyledTextareaContainer,
 } from './styled-components.js';
 
-class Textarea extends React.Component<TextareaPropsT> {
+class Textarea extends React.Component<TextareaPropsT, {isFocused: boolean}> {
   static defaultProps = {
     autoFocus: false,
     disabled: false,
     error: false,
-    inputRef: (React.createRef(): {current: ?HTMLInputElement}),
     name: '',
     onBlur: () => {},
     onChange: () => {},
@@ -35,20 +35,50 @@ class Textarea extends React.Component<TextareaPropsT> {
     value: '',
   };
 
+  state = {
+    isFocused: this.props.autoFocus || false,
+  };
+
+  onFocus = (e: SyntheticFocusEvent<HTMLTextAreaElement>) => {
+    this.setState({isFocused: true});
+    this.props.onFocus(e);
+  };
+
+  onBlur = (e: SyntheticFocusEvent<HTMLTextAreaElement>) => {
+    this.setState({isFocused: false});
+    this.props.onBlur(e);
+  };
+
   render() {
-    const overrides = mergeOverrides(
+    const {overrides = {}} = this.props;
+    const [Root, rootProps] = getOverrides(overrides.Root, StyledTextAreaRoot);
+    const inputOverrides = mergeOverrides(
       {
-        Input: StyledTextarea,
-        InputContainer: StyledTextareaContainer,
+        Input: {component: StyledTextarea},
+        InputContainer: {component: StyledTextareaContainer},
       },
-      this.props.overrides,
+      overrides,
     );
+
     return (
-      <BaseInput
-        {...this.props}
-        type={CUSTOM_INPUT_TYPE.textarea}
-        overrides={overrides}
-      />
+      <Root
+        data-baseweb="textarea"
+        $isFocused={this.state.isFocused}
+        $disabled={this.props.disabled}
+        $error={this.props.error}
+        $positive={this.props.positive}
+        $required={this.props.required}
+        {...rootProps}
+      >
+        {/* $FlowFixMe */}
+        <BaseInput
+          {...this.props}
+          type={CUSTOM_INPUT_TYPE.textarea}
+          overrides={inputOverrides}
+          onFocus={this.onFocus}
+          onBlur={this.onBlur}
+        />
+      </Root>
     );
   }
 }

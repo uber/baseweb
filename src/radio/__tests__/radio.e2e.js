@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -26,8 +26,8 @@ describe('radio', () => {
   it('changes selection on radio click', async () => {
     await mount(page, 'radio');
     expect(await checkedByValue(2)).toBeTruthy();
-    await page.click('label:nth-of-type(1)');
-    expect(await checkedByValue(1)).toBeTruthy();
+    await page.click('label:nth-of-type(3)');
+    expect(await checkedByValue(3)).toBeTruthy();
     expect(await checkedByValue(2)).toBeFalsy();
   });
 });

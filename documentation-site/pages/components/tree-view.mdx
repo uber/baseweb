@@ -1,0 +1,99 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import TreeViewBasic from 'examples/tree-view/basic.js';
+import TreeViewUncontrolled from 'examples/tree-view/uncontrolled.js';
+import CustomLabelledTreeView from 'examples/tree-view/custom-label.js';
+import TreeViewOverrides from 'examples/tree-view/overrides.js';
+import TreeViewLabelOverrides from 'examples/tree-view/label-overrides.js';
+import SingleExpanded from 'examples/tree-view/single-expanded.js';
+import LabelInteractable from 'examples/tree-view/interactable.js';
+
+import Yard from '../../components/yard/index';
+import treeviewYardConfig from '../../components/yard/config/tree-view';
+import ApiTable from '../../components/api-table';
+
+import * as TreeViewExports from 'baseui/tree-view';
+
+export default Layout;
+
+# Tree View
+
+<Yard placeholderHeight={134} {...treeviewYardConfig} />
+
+The TreeView is used to display a hierarchical list of items.
+
+## Examples
+
+<Example title="Basic usage" path="tree-view/basic.js">
+  <TreeViewBasic />
+</Example>
+
+<Example title="Adding custom labels" path="tree-view/custom-label.js">
+  <CustomLabelledTreeView />
+</Example>
+
+<Example
+  title="Customizing icons and rendering all content for SEO"
+  path="tree-view/overrides.js"
+>
+  <TreeViewOverrides />
+</Example>
+
+<Example
+  title="Customizing labels based on depth"
+  path="tree-view/label-overrides.js"
+>
+  <TreeViewLabelOverrides />
+</Example>
+
+<Example
+  title="Expanding a single node at a time with indent guides"
+  path="tree-view/single-expanded.js"
+>
+  <SingleExpanded />
+</Example>
+
+<Example title="Using interactable elements in a tree node label" path="tree-view/interactable.js">
+  <LabelInteractable />
+</Example>
+
+<Example title="Stateful (uncontrolled) usage" path="tree-view/uncontrolled.js">
+  <TreeViewUncontrolled />
+</Example>
+
+## Accessibility
+
+Aria rules are applied based on recommendations for Tree View [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices/#TreeView).
+
+- Expanded tree node will have 'aria-expanded' set to true.
+- Collapsed tree node will have 'aria-expanded' set to false.
+
+You can also `Tab` focus the component and use all shortcuts according to the spec above:
+
+- `Arrow Up`, `Arrow Down`, `Arrow Right`, `Arrow Left`
+- `Space`, `Enter`
+- `Home`, `End`
+- `*`
+
+## API
+
+<ApiTable
+  title="TreeView props"
+  config={treeviewYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/tree-view/tree-view.js')}
+/>
+
+<Exports
+  component={TreeViewExports}
+  title="Tree View exports"
+  path="baseui/tree-view"
+/>

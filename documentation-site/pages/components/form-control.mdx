@@ -1,50 +1,96 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
-import Basic from 'examples/form-control/basic.js';
+import InputExample from 'examples/form-control/input.js';
+import TextareaExample from 'examples/form-control/textarea.js';
+import CheckboxExample from 'examples/form-control/checkbox.js';
+import RadioGroupExample from 'examples/form-control/radio-group.js';
+import SelectExample from 'examples/form-control/select.js';
+import ValidationExample from 'examples/form-control/validation.js';
+import Kinds from 'examples/form-control/kinds.js';
 
-import Overrides from '../../components/overrides';
 import {FormControl} from 'baseui/form-control';
 import {StatefulInput} from 'baseui/input';
-import * as FormcontrolExports from 'baseui/form-control';
+import * as FormControlExports from 'baseui/form-control';
+
+import Yard from '../../components/yard/index';
+import formControlYardConfig from '../../components/yard/config/form-control';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
-# Form control
+# Form Control
 
-The `FormControl` component adds a label and caption for its child control. If an error message is passed it renders that message in place of the caption.
+<Yard placeholderHeight={136} {...formControlYardConfig} />
+
+The `FormControl` component adds a label and caption for its child control.
+If an error message is passed it renders that message in place of the caption.
+
+Note, the `FormControl` expects a single child component.
+If that child has an `id` prop, the `label` in the form control will assign the `htmlFor` accordingly.
 
 ## Examples
 
-<Example title="Form control usage" path="examples/form-control/basic.js">
-  <Basic />
+<Example title="Input" path="form-control/input.js">
+  <InputExample />
 </Example>
 
-## Overrides
+<Example title="Textarea" path="form-control/textarea.js">
+  <TextareaExample />
+</Example>
 
-<Overrides
-  name="Form Control"
-  component={FormcontrolExports}
-  renderExample={props => (
-    <FormControl
-      label="Input label"
-      caption="Input caption"
-      overrides={props.overrides}
-    >
-      <StatefulInput />
-    </FormControl>
-  )}
+<Example
+  title="Validation example (with email)"
+  path="form-control/validation.js"
+  additionalPackages={{'email-validator': '2.0.4'}}
+>
+  <ValidationExample />
+</Example>
+
+A common use case for an input on a form is to do some quick client side validation. Here, we are using the validate method from the `email-validator` package to track and update error states for both the form control and input components. This particular example shows the input in the context of a `<form>` element to show how the components' custom error states can compliment the browser's native form validation. The default form behavior is prevented so no network requests are sent on submit.
+
+<Example title="Checkbox" path="form-control/checkbox.js">
+  <CheckboxExample />
+</Example>
+
+Note, for a `Checkbox`, the actual label is the accompanying text on the right side of the checkbox element.
+
+<Example title="RadioGroup" path="form-control/radio-group.js">
+  <RadioGroupExample />
+</Example>
+
+Note, for a `Radio`/`RadioGroup`, the actual label is the accompanying text on the right side of the radio element.
+
+<Example title="Select" path="form-control/select.js">
+  <SelectExample />
+</Example>
+
+<Example title="States" path="form-control/kinds.js">
+  <Kinds />
+</Example>
+
+The `positive` and `error` props accept both `boolean` and `string` values.
+If you pass a `string`, it will be used as the `caption` of the form control, overriding any value passed to the `caption` prop.
+The example above showcases this behavior.
+
+## API
+
+<ApiTable
+  title="Form Control props"
+  config={formControlYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/form-control/form-control.js')}
 />
 
-<API
-  heading="FormControl API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/form-control/form-control.js')}
+<Exports
+  component={FormControlExports}
+  title="Form Control exports"
+  path="baseui/form-control"
 />

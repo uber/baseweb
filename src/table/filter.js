@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
+import FocusLock from 'react-focus-lock';
 
 import {Button, KIND, SIZE} from '../button/index.js';
 import {getOverrides} from '../helpers/overrides.js';
@@ -19,7 +20,6 @@ import {
   StyledFilterHeading,
   StyledFilterFooter,
 } from './styled-components.js';
-import TrapFocus from './trap-focus.js';
 import type {FilterProps} from './types.js';
 
 export default function Filter(props: FilterProps) {
@@ -45,26 +45,6 @@ export default function Filter(props: FilterProps) {
     StyledFilterFooter,
   );
 
-  function getIconColor(theme) {
-    if (props.disabled) {
-      return theme.colors.mono500;
-    }
-
-    if (props.active) {
-      return theme.colors.primary;
-    }
-
-    return theme.colors.mono600;
-  }
-
-  function getIconHoverColor(theme) {
-    if (props.disabled || props.active) {
-      return null;
-    }
-
-    return theme.colors.black;
-  }
-
   return (
     <StatefulPopover
       placement={PLACEMENT.bottom}
@@ -74,8 +54,9 @@ export default function Filter(props: FilterProps) {
         }
         return nextState;
       }}
-      content={
-        <TrapFocus>
+      content={({close}) => (
+        // eslint-disable-next-line jsx-a11y/no-autofocus
+        <FocusLock autoFocus={false}>
           <Heading {...headingProps}>Filter Column</Heading>
           <Content {...contentProps}>{props.children}</Content>
           <Footer {...footerProps}>
@@ -98,25 +79,25 @@ export default function Filter(props: FilterProps) {
             >
               Reset
             </Button>
+
+            { props.hasCloseButton && <Button
+              kind={KIND.minimal}
+              size={SIZE.compact}
+              onClick={close}
+            >
+              Close
+            </Button>}
           </Footer>
-        </TrapFocus>
-      }
+        </FocusLock>
+      )}
+      returnFocus={props.returnFocus}
     >
-      <MenuButton {...menuButtonProps}>
-        <FilterIcon
-          overrides={{
-            Svg: {
-              style: ({$theme}) => ({
-                color: getIconColor($theme),
-                ':hover': {
-                  color: getIconHoverColor($theme),
-                  cursor: props.disabled ? null : 'pointer',
-                },
-              }),
-            },
-          }}
-          size={18}
-        />
+      <MenuButton
+        $active={props.active}
+        $disabled={props.disabled}
+        {...menuButtonProps}
+      >
+        <FilterIcon size={18} />
       </MenuButton>
     </StatefulPopover>
   );

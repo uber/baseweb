@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 /* @flow */
 
-import React from 'react';
+import * as React from 'react';
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 import {
   Action as StyledAction,
@@ -22,7 +22,7 @@ import {
 import type {CardsPropsT} from './types.js';
 
 export function hasThumbnail(props: {+thumbnail?: string}) {
-  return Boolean(props.thumbnail);
+  return !!props.thumbnail;
 }
 
 function Card(props: CardsPropsT) {
@@ -34,7 +34,7 @@ function Card(props: CardsPropsT) {
     thumbnail: thumbnailSrc,
     title,
     overrides,
-    ...otherProps
+    ...restProps
   } = props;
 
   const {
@@ -55,12 +55,19 @@ function Card(props: CardsPropsT) {
   const Thumbnail = getOverride(ThumbnailOverride) || StyledThumbnail;
   const Title = getOverride(TitleOverride) || StyledTitle;
 
+  const headerImageProps =
+    typeof headerImage === 'string' ? {src: headerImage} : headerImage;
+
   const $hasThumbnail = hasThumbnail(props);
   return (
-    <Root {...otherProps} {...getOverrideProps(RootOverride)}>
+    <Root
+      data-baseweb="card"
+      {...restProps}
+      {...getOverrideProps(RootOverride)}
+    >
       {headerImage && (
         <HeaderImage
-          src={headerImage}
+          {...headerImageProps}
           {...getOverrideProps(HeaderImageOverride)}
         />
       )}

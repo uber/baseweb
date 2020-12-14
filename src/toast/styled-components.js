@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -10,8 +10,8 @@ import {styled} from '../styles/index.js';
 import {getSvgStyles} from '../icon/styled-components.js';
 import {KIND, PLACEMENT, TYPE} from './constants.js';
 import type {
-  SharedStylePropsT,
-  ToasterSharedStylePropsT,
+  SharedStylePropsArgT,
+  ToasterSharedStylePropsArgT,
   KindTypeT,
   NotificationTypeT,
   PlacementTypeT,
@@ -26,8 +26,8 @@ function getBackgroundColor(
   const isInline = type === TYPE.inline;
   return {
     [KIND.info]: isInline
-      ? theme.colors.notificationPrimaryBackground
-      : theme.colors.toastPrimaryBackground,
+      ? theme.colors.notificationInfoBackground
+      : theme.colors.toastInfoBackground,
     [KIND.positive]: isInline
       ? theme.colors.notificationPositiveBackground
       : theme.colors.toastPositiveBackground,
@@ -42,7 +42,7 @@ function getBackgroundColor(
 
 function getFontColor(kind: KindTypeT, theme: ThemeT) {
   return {
-    [KIND.info]: theme.colors.notificationPrimaryText,
+    [KIND.info]: theme.colors.notificationInfoText,
     [KIND.positive]: theme.colors.notificationPositiveText,
     [KIND.warning]: theme.colors.notificationWarningText,
     [KIND.negative]: theme.colors.notificationNegativeText,
@@ -90,10 +90,8 @@ export function getPlacement(placement: PlacementTypeT) {
   }[placement];
 }
 
-/**
- * Main component container element
- */
-export const Root = styled('div', (props: ToasterSharedStylePropsT) => {
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
+export const Root = styled<ToasterSharedStylePropsArgT>('div', props => {
   const {$placement, $theme} = props;
   return {
     pointerEvents: 'none',
@@ -109,11 +107,15 @@ export const Root = styled('div', (props: ToasterSharedStylePropsT) => {
   };
 });
 
-export const Body = styled('div', (props: SharedStylePropsT) => {
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
+export const InnerContainer = styled<SharedStylePropsArgT>('div', {});
+
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
+export const Body = styled<SharedStylePropsArgT>('div', props => {
   const {$isVisible, $kind, $type, $theme} = props;
   const isInline = $type === TYPE.inline;
   return {
-    ...$theme.typography.font350,
+    ...$theme.typography.font250,
     pointerEvents: 'auto',
     color: isInline ? getFontColor($kind, $theme) : $theme.colors.toastText,
     height: 'auto',
@@ -125,25 +127,30 @@ export const Body = styled('div', (props: SharedStylePropsT) => {
     marginTop: $theme.sizing.scale300,
     marginBottom: $theme.sizing.scale300,
     backgroundColor:
-      getBackgroundColor($kind, $type, $theme) || $theme.colors.primary500,
-    borderRadius: $theme.borders.useRoundedCorners
-      ? $theme.borders.radius200
-      : '0px',
+      getBackgroundColor($kind, $type, $theme) || $theme.colors.accent,
+    borderTopLeftRadius: $theme.borders.surfaceBorderRadius,
+    borderTopRightRadius: $theme.borders.surfaceBorderRadius,
+    borderBottomRightRadius: $theme.borders.surfaceBorderRadius,
+    borderBottomLeftRadius: $theme.borders.surfaceBorderRadius,
     boxShadow: isInline ? 'none' : $theme.lighting.shadow600,
     opacity: $isVisible ? 1 : 0,
     transitionProperty: 'all',
-    transitionDuration: $theme.animation.timing100,
+    transitionDuration: $theme.animation.timing200,
     transitionTimingFunction: $theme.animation.easeInOutCurve,
+    display: 'flex',
+    justifyContent: 'space-between',
   };
 });
 
-/**
- * DeleteAlt icon overrides
- */
-export const CloseIconSvg = styled('svg', props => {
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
+export const CloseIconSvg = styled<SharedStylePropsArgT>('svg', props => {
   return {
     ...getSvgStyles(props),
     cursor: 'pointer',
-    float: 'right',
+    width: props.$size || '16px',
+    flexShrink: 0,
+    outline: props.$isFocusVisible
+      ? `3px solid ${props.$theme.colors.accent}`
+      : 'none',
   };
 });

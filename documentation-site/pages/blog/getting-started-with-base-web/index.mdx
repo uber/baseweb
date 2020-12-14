@@ -1,0 +1,250 @@
+import Layout from '../../../components/layout';
+import {BlogImage, Demo, Meta} from '../../../components/blog';
+import metadata from './metadata.json';
+
+export default Layout;
+
+<Meta data={metadata} />
+
+<BlogImage
+  style={{marginTop: '20px'}}
+  full
+  src="https://cdn.dribbble.com/users/914217/screenshots/4615198/base_ui.png"
+  caption="Base Web by Uber Design"
+/>
+
+**In this post, you'll learn how to create a basic password generator using Base Web components. If you are unfamiliar with Base Web, please go over the [Getting started](/) section before continuing with this article.**
+
+<BlogImage src={'/images/blog/getting-started-with-base-web/result.png'} />
+
+## Setup
+
+For the sake of simplicity, we'll use `create-react-app` to bootstrap a React application.
+
+```shell
+create-react-app password-generator
+cd password-generator
+```
+
+Next, we need to pull in the packages for Base Web.
+
+```shell
+yarn add baseui styletron-engine-atomic styletron-react
+```
+
+You might be asking "What's Styletron?". [Styletron](https://www.styletron.org) is a CSS-in-JS solution for component-oriented styling.
+
+As per [Base Web's set up instructions](/getting-started/setup/), we need to wrap our app in both the Styletron Provider and the [Base Provider](/components/base-provider/) before we can begin:
+
+```js
+import {Provider as StyletronProvider} from 'styletron-react';
+import {Client as Styletron} from 'styletron-engine-atomic';
+import {LightTheme, BaseProvider} from 'baseui';
+
+const engine = new Styletron();
+
+ReactDOM.render(
+  <StyletronProvider value={engine}>
+    <BaseProvider theme={LightTheme}>
+      <App />
+    </BaseProvider>
+  </StyletronProvider>,
+  document.getElementById('root'),
+);
+```
+
+_Do you want to learn more about Styletron? Check out the [Styletron docs](https://www.styletron.org)._
+
+## What are we building?
+
+In this post, we'll implement the following mini-app, that can be used to generate passwords. It will look something like this:
+
+<BlogImage src={'/images/blog/getting-started-with-base-web/mockup.png'} />
+
+We can create the majority of our UI using the following components
+
+- [Card](/components/card)
+- [Button](/components/button)
+- [Input](/components/input)
+- [Accordion](/components/accordion)
+- [Slider](/components/slider)
+- [Checkbox](/components/checkbox)
+
+This puts us in a good spot without needing to make any changes.
+
+<BlogImage src={'/images/blog/getting-started-with-base-web/foundation.png'} />
+
+At this stage, we can hook up some logic and we are almost there. It's not pretty though. We need to add some of our own styling tweaks.
+
+## Overrides
+
+If you've ever consumed component libraries, you've likely hit some hurdles. You may want to pass extra props or tweak the rendering. The common scenario is wanting to adjust styles. Some libraries cater for this by exposing extra verbose props.
+
+```js
+<MyAwesomeComponent
+  callToActionsStyle={...}
+  onActionClick={...}
+  containerStyle={...}
+  style={...}
+/>
+```
+
+Base Web tackles this with an "Overrides" pattern. It provides a consistent API to override a components characteristics. You are able to override the styles, props and render logic of a component. And this is all made possible through one prop.
+
+_To learn more, check out the [Overrides guide](/guides/understanding-overrides/)._
+
+Don't throw everything into overrides though. Adjusting your theme values is better if you override the same properties over and over (_Read about themes [here](/guides/theming/#theme-properties)_).
+
+To customize the `Card` component to work better for our use-case, we can do something like this:
+
+```js
+<Card
+  overrides={{
+    Root: {
+      style: {
+        left: '50%',
+        maxWidth: '420px',
+        position: 'absolute',
+        top: '20px',
+        transform: 'translate(-50%, 0)',
+        width: '95vw',
+      },
+    },
+  }}
+>
+  ...
+</Card>
+```
+
+As a next step, let's move the button inside our input that generates a new password every time a user clicks it. We could use the `Button` component and tweak the positioning. But there is no need. Base Web already caters for scenarios like this:
+
+```js
+<Input
+  overrides={{
+    After: () => (
+      <Button kind={KIND.minimal}>
+        <Icon />
+      </Button>
+    ),
+  }}
+/>
+```
+
+Using overrides, we can leverage an `After` option and pass a `Button` to it.
+
+<BlogImage
+  src={'/images/blog/getting-started-with-base-web/input-with-cta.png'}
+/>
+
+## Adjusting the layout
+
+Our app looks almost there but the layout for those options doesn't look right. We need some labels and layout constraints. Base Web provides a component that aids with creating these less reusable layout pieces. We can use a [Block](/components/block/) whenever there's a need to layout UI.
+
+```js
+<Block marginBottom="scale800">
+  <FormControl label="Length">
+    <Slider {...sliderProps} />
+  </FormControl>
+</Block>
+```
+
+Alternatively, you can use the [useStyletron](/components/use-styletron/) hook to achieve the same result:
+
+```js
+const [css, theme] = useStyletron();
+
+<div className={css({marginBottom: theme.sizing.scale800})}>
+  <FormControl label="Length">
+    <Slider {...sliderProps} />
+  </FormControl>
+</div>;
+```
+
+## Hooking up the password generation
+
+Let's hook up the logic for our password generator. We will use [zxcvbn](https://www.npmjs.com/package/zxcvbn) and [generate-password](https://www.npmjs.com/package/generate-password) to handle validation and generation.
+
+Base Web exposes the props we need for various change and click handlers. Except for copying our password to clipboard, interactions will generate a new password.
+
+```js
+const setNewPassword = p => {
+  const newPassword = p
+    ? p
+    : generatePassword({length, numbers, uppercase, symbols});
+  const {score} = zxcvbn(newPassword);
+  setStrength(score);
+  setCopied(false);
+  setPassword(newPassword);
+};
+```
+
+We generate a new password inside an effect whenever one of our options changes. We also generate a new password when our Input action gets clicked.
+
+## Communicating password strength
+
+One thing we aren't doing yet is communicating how strong a generated password is. We have a strength score but we aren't using it. Let's communicate password strength with a thick colored border on our input.
+
+We can pass our strength score into a function that returns a color ID from our theme.
+
+```js
+const getStrengthColor = strength => {
+  switch (strength) {
+    case 0:
+      return 'negative400';
+    case 1:
+      return 'warning400';
+    case 2:
+      return 'rating400';
+    case 3:
+      return 'positive200';
+    case 4:
+      return 'positive400';
+    default:
+      return 'primary50';
+  }
+};
+```
+
+Tie that into our `Input`:
+
+```js
+<Input
+  inputRef={passwordRef}
+  value={password}
+  onChange={event => setNewPassword(event.target.value)}
+  overrides={{
+    InputContainer: {
+      style: ({ $theme }) => ({
+        borderLeftColor: $theme.colors[getStrengthColor(strength)],
+        borderRightColor: $theme.colors[getStrengthColor(strength)],
+        borderTopColor: $theme.colors[getStrengthColor(strength)],
+        borderBottomColor: $theme.colors[getStrengthColor(strength)],
+        borderLeftWidth: $theme.sizing.scale200,
+        borderRightWidth: $theme.sizing.scale200,
+        borderTopWidth: $theme.sizing.scale200,
+        borderBottomWidth: $theme.sizing.scale200,
+      })
+    },
+    After: () => (...)
+  }}
+/>
+```
+
+And this will give us
+
+<BlogImage
+  src={'/images/blog/getting-started-with-base-web/strength-meter.gif'}
+/>
+
+## Conclusion
+
+With little effort we've put together an example app that uses the Base design language.
+
+By default all the components have the Uber look and feel, but the powerful customization makes for a component library that feels less opinionated.
+
+You can see all the code for this post in the following demo:
+
+<Demo
+  src="https://codesandbox.io/embed/password-validatorgenerator-w-base-web-forked-8qtuc?fontsize=14"
+  sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+/>

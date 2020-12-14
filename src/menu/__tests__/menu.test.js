@@ -1,14 +1,13 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import React from 'react';
-import {mount} from 'enzyme';
-import {List} from '../styled-components.js';
-import OptionList from '../option-list.js';
+import * as React from 'react';
+import {render, getAllByTestId} from '@testing-library/react';
+
 import Menu from '../menu.js';
 
 const mockItems = [{label: 'item1'}, {label: 'item2'}];
@@ -22,48 +21,28 @@ function getSharedProps() {
 }
 
 describe('Menu Stateless Component', () => {
-  test('basic renders', () => {
-    const component = mount(<Menu {...getSharedProps()} />);
+  it('renders basic menu', () => {
+    const {container} = render(<Menu {...getSharedProps()} />);
 
-    expect(component.find(List)).toExist();
-    expect(component.find(List)).toHaveProp({
-      $ref: React.createRef(),
-    });
+    const list = container.querySelector('ul');
+    expect(list).not.toBeNull();
 
-    expect(component.find(OptionList)).toExist();
-
-    component.setProps({
-      getRequiredItemProps: (item, index) => ({
-        key: String(index),
-        isHighlighted: true,
-      }),
-    });
-    expect(component.find(OptionList).first()).toHaveProp({
-      $isHighlighted: true,
-    });
+    const items = container.querySelectorAll('li');
+    expect(items.length).toBe(2);
   });
 
-  test('renders with components overrides', () => {
-    const NewOption = () => <div />;
+  it('renders with components overrides', () => {
+    const NewOption = () => <div data-testid="option" />;
     const props = {
       ...getSharedProps(),
       overrides: {
         Option: {
           component: NewOption,
-          props: {
-            custom: 'prop',
-          },
         },
       },
     };
-    const component = mount(<Menu {...props} />);
-    expect(component.find(OptionList)).not.toExist();
-    expect(component.find(NewOption)).toExist();
-    expect(
-      component
-        .find(NewOption)
-        .first()
-        .prop('custom'),
-    ).toEqual('prop');
+    const {container} = render(<Menu {...props} />);
+    const options = getAllByTestId(container, 'option');
+    expect(options.length).toBe(2);
   });
 });

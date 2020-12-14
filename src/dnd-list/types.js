@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -23,12 +23,12 @@ export type StateReducerT = (
 ) => StateT;
 
 export type OverridesT = {
-  Root?: OverrideT<SharedStylePropsArgT>,
-  List?: OverrideT<SharedStylePropsArgT>,
-  Item?: OverrideT<SharedStylePropsArgT>,
-  DragHandle?: OverrideT<SharedStylePropsArgT>,
-  CloseHandle?: OverrideT<SharedStylePropsArgT>,
-  Label?: OverrideT<SharedStylePropsArgT>,
+  Root?: OverrideT,
+  List?: OverrideT,
+  Item?: OverrideT,
+  DragHandle?: OverrideT,
+  CloseHandle?: OverrideT,
+  Label?: OverrideT,
 };
 
 type ChildrenT = Array<React.Node>;
@@ -37,6 +37,8 @@ type ChildrenT = Array<React.Node>;
 export type ListPropsT = {|
   /** Set if the list items should be removable */
   removable?: boolean,
+  /** Set if the list items should be removable by dragging them far left or right */
+  removableByMove?: boolean,
   /** Items (labels) to be rendered */
   items: Array<React.Node>,
   /** Handler for when drag and drop is finished and order changed or item is deleted (newIndex would be -1 in that case) */
@@ -52,11 +54,14 @@ export type StatefulListPropsT = {|
   stateReducer?: StateReducerT,
   /** Set if the list items should be removable */
   removable?: boolean,
+  /** Set if the list items should be removable by dragging them far left or right */
+  removableByMove?: boolean,
   /** Handler for when drag and drop is finished and order changed or item is deleted (newIndex would be -1 in that case) */
   onChange?: (params: {
     newState: Array<React.Node>,
     oldIndex: number,
     newIndex: number,
+    targetRect: ClientRect,
   }) => mixed,
   overrides?: OverridesT,
 |};
@@ -73,5 +78,9 @@ export type StatefulComponentContainerPropsT = $Diff<
 export type SharedStylePropsArgT = {
   $isDragged: boolean,
   $isSelected: boolean,
+  $isFocusVisible: boolean,
   $isRemovable: boolean,
+  $isRemovableByMove: boolean,
+  $isOutOfBounds: boolean,
+  $value: React.Node,
 };

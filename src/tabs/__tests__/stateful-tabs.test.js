@@ -1,97 +1,81 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import React from 'react';
-import {mount} from 'enzyme';
-import {StatefulTabs, TabPanel, StyledTab, StyledTabContent} from '../index.js';
+import * as React from 'react';
+import {
+  render,
+  fireEvent,
+  getByText,
+  queryByText,
+} from '@testing-library/react';
+
+import {StatefulTabs, Tab} from '../index.js';
 import {STATE_CHANGE_TYPE} from '../constants.js';
 
 describe('StatefulTabs', () => {
   const Component = props => (
     <StatefulTabs {...props}>
-      <TabPanel title="Tab Link 1">Tab 1 content</TabPanel>
-      <TabPanel title="Tab Link 2">Tab 2 content</TabPanel>
-      <TabPanel title="Tab Link 3">Tab 3 content</TabPanel>
+      <Tab title="Tab Link 1">Tab 1 content</Tab>
+      <Tab title="Tab Link 2">Tab 2 content</Tab>
+      <Tab title="Tab Link 3">Tab 3 content</Tab>
     </StatefulTabs>
   );
 
-  test('basic render', () => {
-    const component = mount(<Component />);
-    expect(component).toMatchSnapshot('Stateful tabs render correctly');
+  it('basic render', () => {
+    const {container} = render(<Component />);
+    getByText(container, 'Tab Link 1');
+    getByText(container, 'Tab Link 2');
+    getByText(container, 'Tab Link 3');
+    getByText(container, 'Tab 1 content');
+    expect(queryByText(container, 'Tab 2 content')).toBeNull();
+    expect(queryByText(container, 'Tab 3 content')).toBeNull();
   });
 
-  test('basic render with initial state', () => {
+  it('basic render w/ SEO', () => {
+    const {container} = render(<Component renderAll />);
+    getByText(container, 'Tab Link 1');
+    getByText(container, 'Tab Link 2');
+    getByText(container, 'Tab Link 3');
+    getByText(container, 'Tab 1 content');
+    getByText(container, 'Tab 2 content');
+    getByText(container, 'Tab 3 content');
+  });
+
+  it('basic render with initial state', () => {
     const props = {
       initialState: {activeKey: '1'},
     };
-    const component = mount(<Component {...props} />);
-    expect(component).toMatchSnapshot(
-      'Stateful tabs render correctly with initial state',
-    );
-
-    const tab = component.find(StyledTab).at(1);
-    expect(tab).toHaveProp('$active', true);
-
-    const panel = component.find(StyledTabContent).at(1);
-    expect(panel).toHaveProp('$active', true);
+    const {container} = render(<Component {...props} />);
+    expect(queryByText(container, 'Tab 1 content')).toBeNull();
+    getByText(container, 'Tab 2 content');
+    expect(queryByText(container, 'Tab 3 content')).toBeNull();
   });
 
-  test('onChange functionality', () => {
+  it('onChange functionality', () => {
     const props = {
       onChange: jest.fn(),
     };
-    const component = mount(<Component {...props} />);
-
-    const tab = component.find(StyledTab).at(1);
-    tab.simulate('click');
-    const newState = {activeKey: '1'};
+    const {container} = render(<Component {...props} />);
+    fireEvent.click(getByText(container, 'Tab Link 2'));
     expect(props.onChange).toHaveBeenCalledTimes(1);
-    expect(props.onChange).toHaveBeenCalledWith(newState);
+    expect(props.onChange).toHaveBeenCalledWith({activeKey: '1'});
   });
 
-  test('stateReducer functionality', () => {
+  it('stateReducer functionality', () => {
     const props = {
       stateReducer: jest.fn((type, newState) => newState),
     };
-    const component = mount(<Component {...props} />);
-
-    const tab = component.find(StyledTab).at(1);
-    tab.simulate('click');
-    const oldState = {activeKey: '0'};
-    const newState = {activeKey: '1'};
+    const {container} = render(<Component {...props} />);
+    fireEvent.click(getByText(container, 'Tab Link 2'));
     expect(props.stateReducer).toHaveBeenCalledTimes(1);
     expect(props.stateReducer).toHaveBeenCalledWith(
       STATE_CHANGE_TYPE.change,
-      newState,
-      oldState,
+      {activeKey: '1'},
+      {activeKey: '0'},
     );
-  });
-
-  test('state changes', () => {
-    const component = mount(<Component />);
-    expect(component.find(StyledTab).at(0)).toHaveProp('$active', true);
-
-    component
-      .find(StyledTab)
-      .at(1)
-      .simulate('click');
-    expect(component.find(StyledTab).at(1)).toHaveProp('$active', true);
-
-    // Click the same tab again
-    component
-      .find(StyledTab)
-      .at(1)
-      .simulate('click');
-    expect(component.find(StyledTab).at(1)).toHaveProp('$active', true);
-
-    component
-      .find(StyledTab)
-      .at(0)
-      .simulate('click');
-    expect(component.find(StyledTab).at(0)).toHaveProp('$active', true);
   });
 });

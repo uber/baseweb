@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -11,6 +11,7 @@ import * as React from 'react';
 import {getOverrides} from '../helpers/overrides.js';
 import {
   StyledStep,
+  StyledIconContainer,
   StyledIcon,
   StyledInnerIcon,
   StyledContent,
@@ -30,6 +31,10 @@ function Step({
   children,
 }: StepPropsT) {
   const [Root, rootProps] = getOverrides(overrides.Root, StyledStep);
+  const [IconContainer, iconContainerProps] = getOverrides(
+    overrides.IconContainer,
+    StyledIconContainer,
+  );
   const [Icon, iconProps] = getOverrides(overrides.Icon, StyledIcon);
   const [InnerIcon, innerIconProps] = getOverrides(
     overrides.InnerIcon,
@@ -53,9 +58,11 @@ function Step({
 
   return (
     <Root {...sharedProps} {...rootProps}>
-      <Icon {...sharedProps} {...iconProps}>
-        {isActive && <InnerIcon {...innerIconProps} />}
-      </Icon>
+      <IconContainer {...sharedProps} {...iconContainerProps}>
+        <Icon {...sharedProps} {...iconProps}>
+          {isActive && <InnerIcon {...innerIconProps} />}
+        </Icon>
+      </IconContainer>
       {!isLast && <Tail {...sharedProps} {...tailProps} />}
       <Content {...sharedProps} {...contentProps}>
         <Title {...sharedProps} {...titleProps}>
@@ -69,7 +76,6 @@ function Step({
 
 Step.defaultProps = {
   isCompleted: false,
-  isActive: false,
   isLast: false,
 };
 

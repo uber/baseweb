@@ -1,0 +1,11 @@
+{
+  "author": "Gergely Nemeth",
+  "authorLink": "https://twitter.com/nthgergo",
+  "title": "What's changed in Base Web 7?",
+  "tagline": "Let's take a look at all the changes Base Web 7 brings",
+  "date": "10 May 2019",
+  "coverImage": "https://res.cloudinary.com/dawr8pobn/image/upload/c_scale,w_600/v1558459904/base-web-7_vpigth.png",
+  "coverImageWidth": 600,
+  "coverImageHeight": 450,
+  "keyWords": ["Base Web", "Design System", "React", "Changelog"]
+}

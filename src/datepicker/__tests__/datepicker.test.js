@@ -1,163 +1,288 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import React from 'react';
-import {mount} from 'enzyme';
-import {Datepicker, Calendar} from '../index.js';
-import {Input} from '../../input/index.js';
-import {Popover} from '../../popover/index.js';
-import {addDays} from 'date-fns';
+import * as React from 'react';
+import {
+  render,
+  fireEvent,
+  getByTestId,
+  queryByTestId,
+  queryAllByTestId,
+  getByText,
+} from '@testing-library/react';
 
-jest.useFakeTimers();
+import {TestBaseProvider} from '../../test/test-utils.js';
+import {addDays} from 'date-fns';
+import {Datepicker, ORIENTATION} from '../index.js';
 
 describe('Datepicker', () => {
-  test('basic render', () => {
+  it('opens calendar on down arrow press', () => {
+    const {container} = render(
+      <TestBaseProvider>
+        <Datepicker
+          overrides={{CalendarContainer: {props: {'data-testid': 'calendar'}}}}
+        />
+      </TestBaseProvider>,
+    );
+
+    const before = queryByTestId(container, 'calendar');
+    expect(before).toBeNull();
+
+    const input = container.querySelector('input');
+    fireEvent.keyDown(input, {keyCode: 40});
+
+    const after = queryByTestId(container, 'calendar');
+    expect(after).not.toBeNull();
+  });
+
+  it('opens calendar on input focus', () => {
+    const {container} = render(
+      <TestBaseProvider>
+        <Datepicker
+          overrides={{CalendarContainer: {props: {'data-testid': 'calendar'}}}}
+        />
+      </TestBaseProvider>,
+    );
+
+    const before = queryByTestId(container, 'calendar');
+    expect(before).toBeNull();
+
+    const input = container.querySelector('input');
+    fireEvent.focus(input);
+
+    const after = queryByTestId(container, 'calendar');
+    expect(after).not.toBeNull();
+  });
+
+  it('calls provided onChange handler', () => {
     const onChange = jest.fn();
+    const {container} = render(
+      <TestBaseProvider>
+        <Datepicker onChange={onChange} />
+      </TestBaseProvider>,
+    );
+    const input = container.querySelector('input');
+    fireEvent.change(input, {target: {value: '2011/11/04'}});
+    expect(onChange.mock.calls.length).toBe(1);
+  });
+
+  it('calls onChange with single date if not range datepicker', () => {
+    const onChange = jest.fn();
+    const {container} = render(
+      <TestBaseProvider>
+        <Datepicker
+          onChange={onChange}
+          value={null}
+          overrides={{
+            Input: {
+              props: {overrides: {Input: {props: {'data-testid': 'input'}}}},
+            },
+            MonthYearSelectButton: {
+              props: {'data-testid': 'month-year-select-button'},
+            },
+            CalendarContainer: {props: {'data-testid': 'calendar'}},
+          }}
+        />
+      </TestBaseProvider>,
+    );
+
+    fireEvent.focus(getByTestId(container, 'input'));
+    fireEvent.click(getByTestId(container, 'month-year-select-button'));
+    fireEvent.click(getByText(container, 'November 2019'));
+    fireEvent.click(getByText(container, '1'));
+
+    expect(onChange.mock.calls[1][0].date).toEqual(new Date('2019/11/1'));
+  });
+
+  it('does not close calendar if single date from range is selected', () => {
+    const onChange = jest.fn();
+    const {container} = render(
+      <TestBaseProvider>
+        <Datepicker
+          range
+          onChange={onChange}
+          value={[]}
+          overrides={{
+            Input: {
+              props: {overrides: {Input: {props: {'data-testid': 'input'}}}},
+            },
+            MonthYearSelectButton: {
+              props: {'data-testid': 'month-year-select-button'},
+            },
+            CalendarContainer: {props: {'data-testid': 'calendar'}},
+          }}
+        />
+      </TestBaseProvider>,
+    );
+
+    const input = getByTestId(container, 'input');
+    fireEvent.focus(input);
+
+    const before = queryByTestId(container, 'calendar');
+    expect(before).not.toBeNull();
+
+    fireEvent.click(getByTestId(container, 'month-year-select-button'));
+    const month = getByText(container, 'November 2019');
+    fireEvent.click(month);
+
+    const day = getByText(container, '1');
+    fireEvent.click(day);
+
     // $FlowFixMe
-    const component = mount(<Datepicker onChange={onChange} />);
-    const renderedPopover = component.find(Popover).first();
-    const renderedInput = component.find(Input).first();
-
-    expect(renderedPopover).toExist();
-    expect(renderedInput).toExist();
-
-    expect(component).toHaveState('isOpen', false);
-
-    // onKeyDown handler is passed to Input
-    expect(renderedInput.props().onKeyDown).toEqual(
-      component.instance().handleKeyDown,
-    );
-    // onFocus handler is passed to Input
-    expect(renderedInput.props().onFocus).toEqual(component.instance().open);
-    // default placeholder string is passed to Input
-    expect(renderedInput.props().placeholder).toEqual('YYYY/MM/DD');
-
-    // isOpen state value is passed to Popover
-    expect(renderedPopover.props().isOpen).toEqual(component.state().isOpen);
-    expect(renderedPopover.props().onEsc).toEqual(
-      component.instance().handleEsc,
-    );
-  });
-
-  test('popover content renders calendar', () => {
-    const onChange = jest.fn();
-    const onDayClick = jest.fn();
-    const date = new Date('2019 01 01');
-    const component = mount(
-      // $FlowFixMe
-      <Datepicker onChange={onChange} value={date} onDayClick={onDayClick} />,
-    );
-    const renderedPopover = component.find(Popover).first();
-    const PopoverContent = () => renderedPopover.props().content;
-
-    const renderedCal = mount(<PopoverContent />);
-    const renderedCalendar = renderedCal.find(Calendar).first();
-
-    expect(renderedCalendar).toExist();
-
-    expect(renderedCalendar.props().value).toEqual(date);
-    expect(renderedCalendar.props().onDayClick).toEqual(onDayClick);
-    expect(renderedCalendar.props().onChange).toEqual(
-      component.instance().onChange,
-    );
-  });
-
-  test('isOpen state change on down arrow keydown event', () => {
-    const onChange = jest.fn();
+    expect(onChange.mock.calls[1][0].date.length).toBe(1);
     // $FlowFixMe
-    const component = mount(<Datepicker onChange={onChange} />);
-    let renderedPopover = component.find(Popover).first();
-    const renderedInput = component.find(Input).first();
+    expect(onChange.mock.calls[1][0].date[0]).toEqual(new Date('2019/11/1'));
 
-    expect(component).toHaveState('isOpen', false);
-
-    renderedInput.props().onKeyDown({keyCode: 40});
-    expect(component).toHaveState('isOpen', true);
-
-    // isOpen state value is passed to Popover
-    component.update();
-    renderedPopover = component.find(Popover).first();
-    expect(renderedPopover.props().isOpen).toEqual(true);
+    const after = queryByTestId(container, 'calendar');
+    expect(after).not.toBeNull();
   });
 
-  test('isOpen state change on input focus', () => {
-    const onChange = jest.fn();
-    // $FlowFixMe
-    const component = mount(<Datepicker onChange={onChange} />);
-    let renderedPopover = component.find(Popover).first();
-    const renderedInput = component.find(Input).first();
+  it('closes calendar if both dates from range are selected', () => {
+    function TestCase() {
+      const [value, setValue] = React.useState([]);
+      return (
+        <TestBaseProvider>
+          <Datepicker
+            range
+            onChange={({date}) => setValue(date)}
+            value={value}
+            overrides={{
+              Input: {
+                props: {overrides: {Input: {props: {'data-testid': 'input'}}}},
+              },
+              MonthYearSelectButton: {
+                props: {'data-testid': 'month-year-select-button'},
+              },
+              CalendarContainer: {props: {'data-testid': 'calendar'}},
+            }}
+          />
+        </TestBaseProvider>
+      );
+    }
 
-    expect(component).toHaveState('isOpen', false);
+    const {container} = render(<TestCase />);
 
-    renderedInput.props().onFocus();
-    expect(component).toHaveState('isOpen', true);
+    const input = getByTestId(container, 'input');
+    fireEvent.focus(input);
 
-    // isOpen state value is passed to Popover
-    component.update();
-    renderedPopover = component.find(Popover).first();
-    expect(renderedPopover.props().isOpen).toEqual(true);
+    const before = queryByTestId(container, 'calendar');
+    expect(before).not.toBeNull();
+
+    fireEvent.click(getByTestId(container, 'month-year-select-button'));
+    fireEvent.click(getByText(container, 'November 2019'));
+    fireEvent.click(getByText(container, '1'));
+    fireEvent.click(getByText(container, '2'));
+
+    const after = queryByTestId(container, 'calendar');
+    expect(after).toBeNull();
   });
 
-  test('onChange handler from props is called', () => {
-    const onChange = jest.fn();
-    const data = {date: new Date('2019 01 01')};
-    // $FlowFixMe
-    const component = mount(<Datepicker onChange={onChange} />);
-
-    component.instance().onChange(data);
-    expect(onChange).toBeCalledWith(data);
-    expect(component).toHaveState('isOpen', false);
-  });
-
-  test('does not set isOpen state to false if a single date from a range selected', () => {
-    const onChange = jest.fn();
-    const data = {date: [new Date('2019 01 01')]};
-    const component = mount(
-      // $FlowFixMe
-      <Datepicker onChange={onChange} range value={[]} />,
+  it('renders input value in expected default format', () => {
+    const dateString = '2011/11/04';
+    const {container} = render(
+      <TestBaseProvider>
+        <Datepicker value={new Date(dateString)} />
+      </TestBaseProvider>,
     );
 
-    component.instance().onChange(data);
-    expect(onChange).toBeCalledWith(data);
-    expect(component).toHaveState('isOpen', true);
+    const input = container.querySelector('input');
+    expect(input.value).toBe(dateString);
   });
 
-  test('sets isOpen state to false if a range selected', () => {
-    const onChange = jest.fn();
-    const date = new Date('2019 01 01');
-    const data = {date: [date, addDays(date, 3)]};
-    const component = mount(
-      // $FlowFixMe
-      <Datepicker onChange={onChange} range value={[]} />,
-    );
-
-    component.instance().onChange(data);
-    expect(onChange).toBeCalledWith(data);
-    expect(component).toHaveState('isOpen', false);
-  });
-
-  test('default format input value', () => {
-    const onChange = jest.fn();
-    const date = new Date('2019 01 01');
-    // $FlowFixMe
-    const component = mount(<Datepicker onChange={onChange} value={date} />);
-    const renderedInput = component.find(Input).first();
-
-    expect(renderedInput.props().value).toEqual('2019/01/01');
-  });
-
-  test('default format input range value', () => {
-    const onChange = jest.fn();
+  it('renders range input value in expected default format', () => {
     const date = new Date('2019 01 01');
     const value = [date, addDays(date, 3)];
-    // $FlowFixMe
-    const component = mount(<Datepicker onChange={onChange} value={value} />);
-    const renderedInput = component.find(Input).first();
+    const {container} = render(
+      <TestBaseProvider>
+        <Datepicker range value={value} />
+      </TestBaseProvider>,
+    );
 
-    expect(renderedInput.props().value).toEqual('2019/01/01 - 2019/01/04');
+    const input = container.querySelector('input');
+    expect(input.value).toBe('2019/01/01 – 2019/01/04');
+  });
+
+  it('converts hyphen to en dashes', () => {
+    const date = new Date('2019 01 01');
+    const mask = '9999/99/99 - 9999/99/99';
+    const value = [date, addDays(date, 3)];
+    const {container} = render(<Datepicker mask={mask} value={value} />);
+    const input = container.querySelector('input');
+    expect(input.value).toBe('2019/01/01 – 2019/01/04');
+  });
+
+  it('converts em dash to en dashes', () => {
+    const date = new Date('2019 01 01');
+    const mask = '9999/99/99 — 9999/99/99';
+    const value = [date, addDays(date, 3)];
+    const {container} = render(<Datepicker mask={mask} value={value} />);
+    const input = container.querySelector('input');
+    expect(input.value).toBe('2019/01/01 – 2019/01/04');
+  });
+
+  it('handles space replacement correctly in formatString', () => {
+    const formatString = 'dd MM yyyy';
+    const date = new Date('2019/10/21');
+    const {container} = render(
+      <Datepicker value={date} formatString={formatString} />,
+    );
+    const input = container.querySelector('input');
+    expect(input.value).toBe('21 10 2019');
+  });
+
+  it('does not call onChange if input is shorter than default date format', () => {
+    const onChange = jest.fn();
+    const {container} = render(<Datepicker onChange={onChange} />);
+    const input = container.querySelector('input');
+    fireEvent.change(input, {currentTarget: {value: '1'}});
+    expect(onChange.mock.calls).toHaveLength(0);
+  });
+
+  it('disables pagination buttons and month dropdown with multiple months', () => {
+    const date = new Date('2019 01 01');
+    const monthsShown = 3;
+    const {container} = render(
+      <TestBaseProvider>
+        <Datepicker
+          monthsShown={monthsShown}
+          orientation={ORIENTATION.horizontal}
+          value={date}
+          overrides={{
+            CalendarContainer: {props: {'data-testid': 'calendar'}},
+            PrevButton: {props: {'data-testid': 'prev-button'}},
+            NextButton: {props: {'data-testid': 'next-button'}},
+            MonthYearSelectButton: {
+              props: {'data-testid': 'month-year-select-button'},
+            },
+          }}
+        />
+      </TestBaseProvider>,
+    );
+
+    const input = container.querySelector('input');
+    fireEvent.focus(input);
+
+    const calendar = queryAllByTestId(container, 'calendar');
+    expect(calendar.length).toBe(monthsShown);
+
+    const prev = queryAllByTestId(container, 'prev-button').filter(
+      el => !el.disabled,
+    );
+    expect(prev.length).toBe(1);
+
+    const next = queryAllByTestId(container, 'next-button').filter(
+      el => !el.disabled,
+    );
+    expect(next.length).toBe(1);
+
+    const selectButton = queryAllByTestId(
+      container,
+      'month-year-select-button',
+    );
+    expect(selectButton.length).toBe(0);
   });
 });

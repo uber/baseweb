@@ -1,31 +1,40 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import Stateless from 'examples/popover/stateless.js';
 import StatefulClick from 'examples/popover/stateful-click.js';
+import Link from 'examples/popover/link.js';
 import StatefulHover from 'examples/popover/stateful-hover.js';
 import Placements from 'examples/popover/placements.js';
 import WithArrow from 'examples/popover/with-arrow.js';
 import Dismiss from 'examples/popover/dismiss.js';
 import Clipping from 'examples/popover/clipping.js';
 import Customization from 'examples/popover/overrides.js';
+import AnchorRefHandling from 'examples/popover/ref-handling.js';
+import SSRRenderAll from 'examples/popover/ssr-render-all.js';
 
-import Overrides from '../../components/overrides';
 import {Popover, PLACEMENT} from 'baseui/popover';
 import * as PopoverExports from 'baseui/popover';
 import {Block} from 'baseui/block';
+import {Paragraph3, Label3} from 'baseui/typography';
+
+import Yard from '../../components/yard/index';
+import popoverYardConfig from '../../components/yard/config/popover';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
 # Popover
+
+<Yard placeholderHeight={20} {...popoverYardConfig} />
 
 Popovers provide the container and styles to overlay menus, tooltips, controls or text. They’re
 visually represented as a layer above other components and objects in a view, and float above a
@@ -33,13 +42,14 @@ content view after being triggered by a click-event (or hover) such as a button,
 icon. Popovers can contain range of content from simple text strings to inputs, or lightly
 structured content and imagery/illustration. It’s usage depends on the context.
 
-### When to use
+## When to use
 
 - Describe the difference between visually similar elements.
 - Hide information that's irrelevant once the user if familiar with the UI.
 
-### Accessibility
+## Accessibility
 
+- Upon opening, focus will be transferred to the first interactive element (unless `autofocus` is set to false)
 - The anchor will be focusable and user can tab to it using their keyboard.
 - When triggerType="hover" focusing on the anchor will open the tooltip automatically
 - When triggerType="click" a focused tooltip can be triggered via spacebar (assuming the anchor is a button)
@@ -51,79 +61,60 @@ structured content and imagery/illustration. It’s usage depends on the context
 
 ## Examples
 
-<Example title="Popover stateless example" path="examples/popover/stateless.js">
+<Example title="Popover stateless example" path="popover/stateless.js">
   <Stateless />
 </Example>
 
-<Example
-  title="Popover opens on Click"
-  path="examples/popover/stateful-click.js"
->
+<Example title="Popover opens on Click" path="popover/stateful-click.js">
   <StatefulClick />
 </Example>
 
-<Example
-  title="Popover Opens on Hover"
-  path="examples/popover/stateful-hover.js"
->
+<Example title="Popover opens on link Click" path="popover/link.js">
+  <Link />
+</Example>
+
+<Example title="Popover Opens on Hover" path="popover/stateful-hover.js">
   <StatefulHover />
 </Example>
 
-<Example
-  title="Popover Available Placements"
-  path="examples/popover/placements.js"
->
+<Example title="Popover Available Placements" path="popover/placements.js">
   <Placements />
 </Example>
 
-<Example title="Popover With Arrow" path="examples/popover/with-arrow.js">
+<Example title="Popover With Arrow" path="popover/with-arrow.js">
   <WithArrow />
 </Example>
 
-<Example title="Popover Close from Content" path="examples/popover/dismiss.js">
+<Example title="Popover Close from Content" path="popover/dismiss.js">
   <Dismiss />
 </Example>
 
-<Example title="Clipping Avoidance" path="examples/popover/clipping.js">
+<Example title="Anchor ref handling example" path="popover/ref-handling.js">
+  <AnchorRefHandling />
+</Example>
+
+<Example title="Clipping Avoidance" path="popover/clipping.js">
   <Clipping />
 </Example>
 
-<Example title="Popover with Overrides" path="examples/popover/overrides.js">
+<Example title="Popover with Overrides" path="popover/overrides.js">
   <Customization />
 </Example>
 
-## Overrides
+<Example title="SSR Popover" path="popover/ssr-render-all.js">
+  <SSRRenderAll />
+</Example>
 
-<Overrides
-  name="Popover"
-  blacklisted={['Padding']}
+## API
+
+<ApiTable
+  title="Popover props"
+  config={popoverYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/popover/popover.js')}
+/>
+
+<Exports
   component={PopoverExports}
-  renderExample={props => (
-    <Popover
-      isOpen
-      content={<Block padding="scale500">hello world</Block>}
-      showArrow
-      placement={PLACEMENT.right}
-      overrides={props.overrides}
-    >
-      <Block as="span" padding="scale500">
-        always open
-      </Block>
-    </Popover>
-  )}
-/>
-
-<API
-  heading="Popover API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/popover/popover.js')}
-/>
-
-<API
-  heading="Stateful Popover API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/popover/stateful-popover.js')}
-/>
-
-<API
-  heading="Stateful Container API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/popover/stateful-container.js')}
+  title="Popover exports"
+  path="baseui/popover"
 />

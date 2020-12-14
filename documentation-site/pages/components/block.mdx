@@ -1,22 +1,32 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
+import {Notification, KIND} from 'baseui/notification';
+
 import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import * as BlockExports from 'baseui/block';
 
 import Basic from 'examples/block/basic.js';
-import Fonts from 'examples/block/fonts.js';
-import Flexbox from 'examples/block/flexbox.js';
-import Grid from 'examples/block/grid.js';
 import Responsive from 'examples/block/responsive.js';
 import Override from 'examples/block/override.js';
 
 export default Layout;
+
+<Notification overrides={{Body: {style: {width: 'auto'}}}} kind={KIND.warning}>
+  We recommend using the <a href="/components/use-styletron">useStyletron</a>{' '}
+  hook to apply css styles to your html elements. It allows for simpler patterns
+  with less custom api to learn. It aligns much closer to basic html/css without
+  React and maintains the efficient inline benefits of using the Block
+  component.
+</Notification>
 
 # Block
 
@@ -29,22 +39,8 @@ styled elements (see [Bootstrap](https://getbootstrap.com/docs/4.1/utilities/siz
 
 The move to CSS-in-JS sort of eliminates these classes in favor of encapsulating styles within components. This is a generally a good thing because it promotes reusability, however the reality is that there are dozens or hundreds of different layout/spacing/typography combinations in any app, and there's not always a clear semantic meaning or potential for reuse. In practice you end up just defining and naming a bunch of things at the top of the file:
 
-## Examples
-
-<Example title="Block basic Usage" path="examples/block/basic.js">
+<Example title="Block basic Usage" path="block/basic.js">
   <Basic />
-</Example>
-
-<Example title="Block with font customization" path="examples/block/fonts.js">
-  <Fonts />
-</Example>
-
-<Example title="Block as a flexbox" path="examples/block/flexbox.js">
-  <Flexbox />
-</Example>
-
-<Example title="Block with grid usage" path="examples/block/grid.js">
-  <Grid />
 </Example>
 
 ## Responsive Layouts
@@ -58,34 +54,40 @@ By default, the breakpoint values are
 breakpoints: {
   small: 320,
   medium: 600,
-  large: 1280,
+  large: 1136,
 }
 ```
 
 Given a `marginTop` value of `['10px', '20px', '30px', '40px']` `Block` will create the css rules below:
 
 ```css
-@media screen and (min-width: 1280px) {
-  margin-top: 40px;
+margin-top: 10px;
+@media screen and (min-width: 320px) {
+  margin-top: 20px;
 }
 @media screen and (min-width: 600px) {
   margin-top: 30px;
 }
-@media screen and (min-width: 320px) {
-  margin-top: 20px;
+@media screen and (min-width: 1280px) {
+  margin-top: 40px;
 }
-margin-top: 10px;
 ```
 
-<Example title="Responsive Properties" path="examples/block/responsive.js">
+## Examples
+
+<Example title="Responsive Properties" path="block/responsive.js">
   <Responsive />
 </Example>
 
-<Example title="Overrides" path="examples/block/override.js">
+<Example title="Overrides" path="block/override.js">
   <Override />
 </Example>
 
+## API
+
 <API
   heading="Block API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/block/block.js')}
+  api={require('!!extract-react-types-loader!../../../src/block/block.js')}
 />
+
+<Exports component={BlockExports} title="Block exports" path="baseui/block" />

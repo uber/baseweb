@@ -1,0 +1,11 @@
+{
+  "author": "Vojtech Miksu",
+  "authorLink": "https://twitter.com/vmiksu",
+  "title": "Introducing React View, an Interactive Playground for Your Components",
+  "tagline": "Making documentation better.",
+  "date": "3 December 2019",
+  "coverImage": "https://user-images.githubusercontent.com/1387913/69589789-09196800-0fa2-11ea-9485-aeb506d18fe8.gif",
+  "coverImageWidth": 1302,
+  "coverImageHeight": 1135,
+  "keyWords": ["Playground", "React", "Documentation", "View"]
+}

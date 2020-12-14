@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -16,26 +16,27 @@ import type {
   StateReducerT,
 } from './types.js';
 
-const defaultStateReducer: StateReducerT = (type, nextState) => nextState;
+type InputProps<T> = CalendarPropsT<T> | DatepickerPropsT<T>;
 
-class StatefulContainer extends React.Component<
-  StatefulContainerPropsT<CalendarPropsT | DatepickerPropsT>,
-  ContainerStateT,
+type PropsT<T> = StatefulContainerPropsT<InputProps<T>, T>;
+
+class StatefulContainer<T = Date> extends React.Component<
+  PropsT<T>,
+  ContainerStateT<T>,
 > {
-  static defaultProps = {
-    initialState: {value: null},
-    stateReducer: defaultStateReducer,
+  static defaultProps: {stateReducer: StateReducerT<T>} = {
+    initialState: {},
+    stateReducer: (type, nextState) => nextState,
     onChange: () => {},
   };
 
-  state = {
-    ...{
-      value: null,
-    },
-    ...this.props.initialState,
-  };
+  constructor(props: PropsT<T>) {
+    super(props);
+    const value = props.range ? [] : (null: ?T);
+    this.state = {value, ...props.initialState};
+  }
 
-  onChange = (data: {date: ?Date | Array<Date>}) => {
+  onChange: ({date: ?T | Array<T>}) => mixed = data => {
     const {date} = data;
     this.internalSetState(STATE_CHANGE_TYPE.change, {value: date});
     if (typeof this.props.onChange === 'function') {
@@ -43,16 +44,15 @@ class StatefulContainer extends React.Component<
     }
   };
 
-  internalSetState(type: StateChangeTypeT, changes: ContainerStateT) {
+  internalSetState(type: StateChangeTypeT, changes: ContainerStateT<T>) {
     const {stateReducer} = this.props;
     this.setState(prevState => stateReducer(type, changes, prevState));
   }
 
   render() {
-    const {children, initialState, stateReducer, ...rest} = this.props;
-    // $FlowFixMe
+    const {children, initialState, stateReducer, ...restProps} = this.props;
     return this.props.children({
-      ...rest,
+      ...restProps,
       value: this.state.value,
       onChange: this.onChange,
     });

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -12,26 +12,26 @@ const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 const selectors = {
   prevButton: 'button[data-test="prev-button"]',
   nextButton: 'button[data-test="next-button"]',
-  dropDownButton: 'button[data-test="dropdown-button"]',
+  dropDownButton: '[data-baseweb="select"] [aria-selected]',
 };
 
 describe('pagination', () => {
   it('passes basic accessibility tests', async () => {
     await mount(page, 'pagination');
-    await page.waitFor(selectors.prevButton);
+    await page.waitForSelector(selectors.prevButton);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('can be navigated using the prev and next buttons', async () => {
     await mount(page, 'pagination');
-    await page.waitFor(selectors.prevButton);
+    await page.waitForSelector(selectors.prevButton);
     // assert initial state
-    const initalValue = await page.$eval(
+    const initialValue = await page.$eval(
       selectors.dropDownButton,
       input => input.textContent,
     );
-    expect(initalValue).toBe('1');
+    expect(initialValue).toBe('1');
 
     // paginate to the next page
     await page.click(selectors.nextButton);
@@ -52,13 +52,13 @@ describe('pagination', () => {
 
   it('can be navigated using the dropdown menu', async () => {
     await mount(page, 'pagination');
-    await page.waitFor(selectors.prevButton);
+    await page.waitForSelector(selectors.prevButton);
     // assert initial state
-    const initalValue = await page.$eval(
+    const initialValue = await page.$eval(
       selectors.dropDownButton,
       input => input.textContent,
     );
-    expect(initalValue).toBe('1');
+    expect(initialValue).toBe('1');
 
     // paginate using the dropdown menu
     await page.click(selectors.dropDownButton);

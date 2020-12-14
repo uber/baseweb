@@ -1,18 +1,16 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 
 import {Block} from '../../block/index.js';
 import {Button} from '../../button/index.js';
 import {ProgressSteps, Step} from '../index.js';
-
-export const name = 'progress-steps';
 
 class ProgressStepsContainer extends React.Component<{}, {current: number}> {
   state = {current: 0};
@@ -54,4 +52,4 @@ class ProgressStepsContainer extends React.Component<{}, {current: number}> {
   }
 }
 
-export const component = () => <ProgressStepsContainer />;
+export default ProgressStepsContainer;

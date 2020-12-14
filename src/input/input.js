@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -14,10 +14,11 @@ import {
   Root as StyledRoot,
   InputEnhancer as StyledInputEnhancer,
 } from './styled-components.js';
-import {ADJOINED, ENHANCER_POSITION} from './constants.js';
+import {SIZE, ADJOINED, ENHANCER_POSITION} from './constants.js';
 
 class Input extends React.Component<InputPropsT, InternalStateT> {
   static defaultProps = {
+    autoComplete: 'on',
     autoFocus: false,
     disabled: false,
     name: '',
@@ -26,9 +27,11 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
     onFocus: () => {},
     overrides: {},
     required: false,
-    size: 'default',
+    size: SIZE.default,
     startEnhancer: null,
     endEnhancer: null,
+    clearable: false,
+    type: 'text',
   };
 
   /**
@@ -50,13 +53,17 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
   };
 
   render() {
-    const {startEnhancer, endEnhancer, ...rest} = this.props;
-
     const {
-      Root: RootOverride,
-      StartEnhancer: StartEnhancerOverride,
-      EndEnhancer: EndEnhancerOverride,
-    } = this.props.overrides;
+      startEnhancer,
+      endEnhancer,
+      overrides: {
+        Root: RootOverride,
+        StartEnhancer: StartEnhancerOverride,
+        EndEnhancer: EndEnhancerOverride,
+        ...restOverrides
+      },
+      ...restProps
+    } = this.props;
 
     const [Root, rootProps] = getOverrides(RootOverride, StyledRoot);
     const [StartEnhancer, startEnhancerProps] = getOverrides(
@@ -70,8 +77,23 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
 
     const sharedProps = getSharedProps(this.props, this.state);
 
+    if (__DEV__) {
+      if (this.props.error && this.props.positive) {
+        // eslint-disable-next-line no-console
+        console.warn(
+          `[Input] \`error\` and \`positive\` are both set to \`true\`. \`error\` will take precedence but this may not be what you want.`,
+        );
+      }
+    }
+
     return (
-      <Root {...sharedProps} {...rootProps}>
+      <Root
+        data-baseweb="input"
+        {...sharedProps}
+        {...rootProps}
+        $adjoined={getAdjoinedProp(startEnhancer, endEnhancer)}
+        $hasIconTrailing={this.props.clearable || this.props.type == 'password'}
+      >
         {startEnhancer && (
           <StartEnhancer
             {...sharedProps}
@@ -84,7 +106,8 @@ class Input extends React.Component<InputPropsT, InternalStateT> {
           </StartEnhancer>
         )}
         <BaseInput
-          {...rest}
+          {...restProps}
+          overrides={restOverrides}
           adjoined={getAdjoinedProp(startEnhancer, endEnhancer)}
           onFocus={this.onFocus}
           onBlur={this.onBlur}

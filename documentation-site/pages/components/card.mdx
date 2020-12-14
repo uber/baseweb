@@ -1,26 +1,31 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import CardBasic from 'examples/card/basic.js';
 import CardWithImageCta from 'examples/card/image-cta.js';
 import CardWithThumbnailCta from 'examples/card/thumbnail-cta.js';
 
-import Overrides from '../../components/overrides';
 import {Card, StyledBody, StyledAction, StyledThumbnail} from 'baseui/card';
 import {Button} from 'baseui/button';
 import * as CardExports from 'baseui/card';
 
+import Yard from '../../components/yard/index';
+import cardYardConfig from '../../components/yard/config/card';
+import ApiTable from '../../components/api-table';
+
 export default Layout;
 
 # Card
+
+<Yard placeholderHeight={178} {...cardYardConfig} />
 
 Cards are a self-contained unit of information, usually as part of a feed or series of similar
 content. Cards have a dynamic range of modifiers that allow text-only, text and illustration,
@@ -29,43 +34,27 @@ The entire card can become an active click-target.
 
 ## Examples
 
-<Example title="Card basic usage" path="examples/card/basic.js">
+<Example title="Card basic usage" path="card/basic.js">
   <CardBasic />
 </Example>
 
-<Example title="Card with image and call to action" path="examples/card/image-cta.js">
+<Example title="Card with image and call to action" path="card/image-cta.js">
   <CardWithImageCta />
 </Example>
 
 <Example
   title="Card with thumbnail and call to action"
-  path="examples/card/thumbnail-cta.js"
+  path="card/thumbnail-cta.js"
 >
   <CardWithThumbnailCta />
 </Example>
 
-## Overrides
+## API
 
-<Overrides
-  name="Card"
-  component={CardExports}
-  renderExample={props => (
-    <div style={{width: '328px'}}>
-      <Card
-        overrides={props.overrides}
-        action={<Button style={{width: '100%'}}>Button Label</Button>}
-        headerImage={'https://source.unsplash.com/user/erondu/700x400'}
-        title="Example card"
-        thumbnail={'https://source.unsplash.com/user/erondu/300x300'}
-      >
-        Proin ut dui sed metus pharetra hend rerit vel non mi. Nulla ornare
-        faucibus ex, non facilisis nisl.
-      </Card>
-    </div>
-  )}
+<ApiTable
+  title="Card props"
+  config={cardYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/card/card.js')}
 />
 
-<API
-  heading="Card API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/card/card.js')}
-/>
+<Exports component={CardExports} title="Card exports" path="baseui/card" />

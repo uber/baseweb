@@ -1,25 +1,49 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 
-import {Button} from '../index.js';
-import ArrowRight from '../../icon/arrow-right.js';
+import {Button, KIND} from '../index.js';
 
-export const name = 'button';
-
-export const component = () => (
-  <React.Fragment>
-    <Button>Primary</Button>
-    <Button startEnhancer={ArrowRight}>Start Enhancer</Button>
-    <Button endEnhancer={ArrowRight}>End Enhancer</Button>
-    <Button startEnhancer={ArrowRight} endEnhancer={ArrowRight}>
-      Both Enhancers
-    </Button>
-  </React.Fragment>
-);
+export default function Scenario() {
+  return (
+    <table>
+      <tbody>
+        {Object.keys(KIND).map(kind => {
+          return (
+            <tr key={kind}>
+              <td>
+                <Button kind={kind}>Move</Button>
+              </td>
+              <td>
+                <Button kind={kind} isSelected>
+                  Move
+                </Button>
+              </td>
+              <td>
+                <Button kind={kind} isLoading>
+                  Move
+                </Button>
+              </td>
+              <td>
+                <Button kind={kind} disabled>
+                  Move
+                </Button>
+              </td>
+              <td>
+                <Button kind={kind} disabled isLoading>
+                  Move
+                </Button>
+              </td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  );
+}

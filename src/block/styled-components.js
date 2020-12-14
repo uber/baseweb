@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,9 +7,18 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
+import {getMediaQueries} from '../helpers/responsive-helpers.js';
 import {styled} from '../styles/index.js';
 import type {BreakpointsT} from '../styles/types.js';
 import type {StyledBlockPropsT} from './types.js';
+
+// styletron will throw when value is undefined. if so, replace with null
+function constrainToNull(value) {
+  if (value === undefined) {
+    return null;
+  }
+  return value;
+}
 
 type ApplyParams = {
   property: string,
@@ -20,9 +29,7 @@ type ApplyParams = {
 
 function build(breakpoints: BreakpointsT) {
   const styles = {};
-  const mediaQueries = Object.keys(breakpoints).map(
-    size => `@media screen and (min-width: ${breakpoints[size]}px)`,
-  );
+  const mediaQueries = getMediaQueries(breakpoints);
 
   return {
     apply: ({property, transform = x => x, value}: ApplyParams) => {
@@ -34,7 +41,7 @@ function build(breakpoints: BreakpointsT) {
         value.forEach((v, index) => {
           // Do not create a media query for the smallest breakpoint.
           if (index === 0) {
-            styles[property] = transform(v);
+            styles[property] = constrainToNull(transform(v));
             return;
           }
 
@@ -43,17 +50,22 @@ function build(breakpoints: BreakpointsT) {
             styles[mediaQuery] = {};
           }
 
-          styles[mediaQuery][property] = transform(v);
+          styles[mediaQuery][property] = constrainToNull(transform(v));
         });
       } else {
-        styles[property] = transform(value);
+        styles[property] = constrainToNull(transform(value));
       }
     },
     value: () => styles,
   };
 }
 
-export const StyledBlock = styled('div', (props: StyledBlockPropsT) => {
+function getFontValue(obj, key) {
+  if (!obj) return;
+  return obj[key];
+}
+
+export const StyledBlock = styled<StyledBlockPropsT>('div', props => {
   const {breakpoints, colors, typography, sizing} = props.$theme;
 
   const get = (obj, key) => obj[key];
@@ -65,29 +77,64 @@ export const StyledBlock = styled('div', (props: StyledBlockPropsT) => {
     value: get(props, '$color'),
     transform: color => colors[color] || color,
   });
-
+  styles.apply({
+    property: 'backgroundAttachment',
+    value: get(props, '$backgroundAttachment'),
+  });
+  styles.apply({
+    property: 'backgroundClip',
+    value: get(props, '$backgroundClip'),
+  });
+  styles.apply({
+    property: 'backgroundColor',
+    value: get(props, '$backgroundColor'),
+    transform: backgroundColor => colors[backgroundColor] || backgroundColor,
+  });
+  styles.apply({
+    property: 'backgroundImage',
+    value: get(props, '$backgroundImage'),
+  });
+  styles.apply({
+    property: 'backgroundOrigin',
+    value: get(props, '$backgroundOrigin'),
+  });
+  styles.apply({
+    property: 'backgroundPosition',
+    value: get(props, '$backgroundPosition'),
+  });
+  styles.apply({
+    property: 'backgroundRepeat',
+    value: get(props, '$backgroundRepeat'),
+  });
+  styles.apply({
+    property: 'backgroundSize',
+    value: get(props, '$backgroundSize'),
+  });
   styles.apply({
     property: 'fontFamily',
     value: get(props, '$font'),
-    transform: font => typography[font].fontFamily,
+    transform: font => getFontValue(typography[font], 'fontFamily'),
   });
   styles.apply({
     property: 'fontWeight',
     value: get(props, '$font'),
-    transform: font => typography[font].fontWeight,
+    transform: font => getFontValue(typography[font], 'fontWeight'),
   });
   styles.apply({
     property: 'fontSize',
     value: get(props, '$font'),
-    transform: font => typography[font].fontSize,
+    transform: font => getFontValue(typography[font], 'fontSize'),
   });
   styles.apply({
     property: 'lineHeight',
     value: get(props, '$font'),
-    transform: font => typography[font].lineHeight,
+    transform: font => getFontValue(typography[font], 'lineHeight'),
   });
 
-  styles.apply({property: 'alignContent', value: get(props, '$alignContent')});
+  styles.apply({
+    property: 'alignContent',
+    value: get(props, '$alignContent'),
+  });
   styles.apply({property: 'alignItems', value: get(props, '$alignItems')});
   styles.apply({property: 'alignSelf', value: get(props, '$alignSelf')});
   styles.apply({property: 'display', value: get(props, '$display')});
@@ -102,8 +149,14 @@ export const StyledBlock = styled('div', (props: StyledBlockPropsT) => {
     property: 'gridAutoColumns',
     value: get(props, '$gridAutoColumns'),
   });
-  styles.apply({property: 'gridAutoFlow', value: get(props, '$gridAutoFlow')});
-  styles.apply({property: 'gridAutoRows', value: get(props, '$gridAutoRows')});
+  styles.apply({
+    property: 'gridAutoFlow',
+    value: get(props, '$gridAutoFlow'),
+  });
+  styles.apply({
+    property: 'gridAutoRows',
+    value: get(props, '$gridAutoRows'),
+  });
   styles.apply({property: 'gridColumn', value: get(props, '$gridColumn')});
   styles.apply({
     property: 'gridColumnEnd',
@@ -124,8 +177,13 @@ export const StyledBlock = styled('div', (props: StyledBlockPropsT) => {
     transform: getScale,
   });
   styles.apply({property: 'gridRow', value: get(props, '$gridRow')});
-  styles.apply({property: 'gridRowStart', value: get(props, '$gridRowStart')});
   styles.apply({property: 'gridRowEnd', value: get(props, '$gridRowEnd')});
+  styles.apply({
+    property: 'gridRowGap',
+    value: get(props, '$gridRowGap'),
+    transform: getScale,
+  });
+  styles.apply({property: 'gridRowStart', value: get(props, '$gridRowStart')});
   styles.apply({property: 'gridTemplate', value: get(props, '$gridTemplate')});
   styles.apply({
     property: 'gridTemplateAreas',
@@ -143,15 +201,42 @@ export const StyledBlock = styled('div', (props: StyledBlockPropsT) => {
     property: 'justifyContent',
     value: get(props, '$justifyContent'),
   });
-  styles.apply({property: 'justifyItems', value: get(props, '$justifyItems')});
+  styles.apply({
+    property: 'justifyItems',
+    value: get(props, '$justifyItems'),
+  });
   styles.apply({property: 'justifySelf', value: get(props, '$justifySelf')});
   styles.apply({property: 'position', value: get(props, '$position')});
-  styles.apply({property: 'width', value: get(props, '$width')});
-  styles.apply({property: 'minWidth', value: get(props, '$minWidth')});
-  styles.apply({property: 'maxWidth', value: get(props, '$maxWidth')});
-  styles.apply({property: 'height', value: get(props, '$height')});
-  styles.apply({property: 'minHeight', value: get(props, '$minHeight')});
-  styles.apply({property: 'maxHeight', value: get(props, '$maxHeight')});
+  styles.apply({
+    property: 'width',
+    value: get(props, '$width'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'minWidth',
+    value: get(props, '$minWidth'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'maxWidth',
+    value: get(props, '$maxWidth'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'height',
+    value: get(props, '$height'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'minHeight',
+    value: get(props, '$minHeight'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'maxHeight',
+    value: get(props, '$maxHeight'),
+    transform: getScale,
+  });
   styles.apply({
     property: 'overflowX',
     value: get(props, '$overflow'),
@@ -235,7 +320,10 @@ export const StyledBlock = styled('div', (props: StyledBlockPropsT) => {
     transform: getScale,
   });
 
-  styles.apply({property: 'placeContent', value: get(props, '$placeContent')});
+  styles.apply({
+    property: 'placeContent',
+    value: get(props, '$placeContent'),
+  });
   styles.apply({property: 'placeItems', value: get(props, '$placeItems')});
   styles.apply({property: 'placeSelf', value: get(props, '$placeSelf')});
   styles.apply({
@@ -244,10 +332,29 @@ export const StyledBlock = styled('div', (props: StyledBlockPropsT) => {
     transform: () => 'wrap',
   });
 
-  styles.apply({property: 'top', value: get(props, '$top')});
-  styles.apply({property: 'right', value: get(props, '$right')});
-  styles.apply({property: 'left', value: get(props, '$left')});
-  styles.apply({property: 'bottom', value: get(props, '$bottom')});
+  styles.apply({
+    property: 'top',
+    value: get(props, '$top'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'right',
+    value: get(props, '$right'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'left',
+    value: get(props, '$left'),
+    transform: getScale,
+  });
+  styles.apply({
+    property: 'bottom',
+    value: get(props, '$bottom'),
+    transform: getScale,
+  });
+
+  styles.apply({property: 'textOverflow', value: get(props, '$textOverflow')});
+  styles.apply({property: 'whiteSpace', value: get(props, '$whiteSpace')});
 
   return styles.value();
 });

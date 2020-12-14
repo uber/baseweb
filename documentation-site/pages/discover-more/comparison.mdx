@@ -1,0 +1,54 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Layout from '../../components/layout';
+import {Table} from 'baseui/table';
+
+export default Layout;
+
+# How Base Web compares with other component libraries
+
+We understand that before start using a component library and invest
+time to learn it, you want to better understand how it is designed
+and what constraints you'll have to work with. On this page,
+we'd like to provide you with this information.
+
+## Technical overview
+
+The table below shows you a high-level comparison of the most popular
+React component libraries and Base Web. While we try to do our best
+to keep it up-to-date, it may have incorrect information. If you
+notice that, please let us know in a GitHub issue, or send a Pull Request fixing it!
+
+<Table
+  columns={['Name', 'CSS Engine', 'Customization']}
+  data={[
+    [
+      'Base Web',
+      'CSS-in-JS, using Styletron',
+      'Through an extensive overrides interface',
+    ],
+    ['Material-UI', 'CSS-in-JS, using JSS', 'Through CSS overrides'],
+    ['Ant Design', 'Less', 'Through Less variables'],
+    [
+      'React Bootstrap',
+      'SCSS, inherited from Bootstrap',
+      'Through Bootstrap themes',
+    ],
+    ['Semantic UI', 'Less', 'Through Less variables'],
+  ]}
+/>
+
+## Governance
+
+Base Web is a project created and maintained by the UI and Design Platform
+teams at Uber. Because of this, most of the components will address the
+requirements of internal Uber applications. While we may consider implementing
+missing components, we cannot guarantee that your proposals will ever land.
+
+In this sense, we are similar to Material-UI, where the design language
+is governed by Google.

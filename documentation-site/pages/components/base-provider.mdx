@@ -1,0 +1,43 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+
+export default Layout;
+
+# BaseProvider
+
+`BaseProvider` provides a single wrapper to configure your application.
+It adds a [`LayersManager`](/components/layer/)
+and a [`ThemeProvider`](/guides/theming/#setup)
+to handle styling and stacking context in the application.
+
+Wrap your application with the `BaseProvider` at its root:
+
+```jsx
+import {BaseProvider, LightTheme} from 'baseui';
+import {Provider as StyletronProvider} from 'styletron-react';
+
+export default function App() {
+  return (
+    <StyletronProvider value={engine}>
+      <BaseProvider theme={LightTheme}>
+        <YourApp />
+      </BaseProvider>
+    </StyletronProvider>
+  );
+}
+```
+
+## API
+
+<API
+  heading="BaseProvider API"
+  api={require('!!extract-react-types-loader!../../../src/helpers/base-provider.js')}
+/>

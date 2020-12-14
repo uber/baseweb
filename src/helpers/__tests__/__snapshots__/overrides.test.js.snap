@@ -9,6 +9,12 @@ Object {
 }
 `;
 
+exports[`Helpers - Overrides getOverrideProps: returns correct object when props is a function which return null 1`] = `
+Object {
+  "$style": undefined,
+}
+`;
+
 exports[`Helpers - Overrides getOverrideProps: returns empty object when no overrides 1`] = `Object {}`;
 
 exports[`Helpers - Overrides getOverrideProps: returns empty object when override is a component 1`] = `Object {}`;

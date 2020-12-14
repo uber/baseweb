@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,146 +8,216 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 import {MDXProvider} from '@mdx-js/tag';
-import Link from 'next/link';
-
 import {Block} from 'baseui/block';
-import {Button, KIND as ButtonKind} from 'baseui/button';
-import {
-  HeaderNavigation,
-  StyledNavigationList as NavigationList,
-  ALIGN,
-} from 'baseui/header-navigation';
+import {Button, KIND, SIZE} from 'baseui/button';
 
-import ComponentMenu from './component-menu';
+import TableOfContents from './table-of-contents';
+import {themedStyled} from '../pages/_app';
 import MarkdownElements from './markdown-elements';
 import Sidebar from './sidebar';
-import Logo from '../images/Logo.png';
-import GithubLogo from './github-logo';
-import SlackLogo from './slack-logo';
-import Search from './search';
-import {version} from '../../package.json';
+import HeaderNavigation from './header-navigation';
+import Footer from './footer';
+import PencilIcon from './pencil-icon';
+import Routes from '../routes';
+import DirectionContext from '../components/direction-context';
+import ComponentSizes from '../../component-sizes.json';
+import SkipToContent from './skip-to-content';
+
+const GH_URL =
+  'https://github.com/uber/baseweb/edit/master/documentation-site/pages';
+
+function findByPath(o, path) {
+  if (!path) return;
+  if (o.itemId === path) {
+    return o;
+  }
+  var result, p;
+  for (p in o) {
+    if (o[p] && typeof o[p] === 'object') {
+      result = findByPath(o[p], path);
+      if (result) {
+        return result;
+      }
+    }
+  }
+  return result;
+}
 
 type PropsT = {
   children: React.Node,
+  path?: string,
+  toggleTheme: () => void,
+  toggleDirection: () => void,
+  hideSideNavigation?: boolean,
+  maxContentWidth?: string,
 };
 
-export default (props: PropsT) => (
-  <React.Fragment>
-    <HeaderNavigation
-      overrides={{
-        Root: {
-          style: ({$theme}) => ({
-            paddingLeft: $theme.sizing.scale800,
-            paddingRight: $theme.sizing.scale800,
-          }),
-        },
-      }}
-    >
-      <NavigationList align={ALIGN.left}>
-        <Block display="flex" alignItems="center">
-          <Link href="/" prefetch>
-            <Block
-              as="img"
-              height="29.25px"
-              src={Logo}
-              width="101px"
-              overrides={{Block: {style: {cursor: 'pointer'}}}}
+const TOCWrapper = themedStyled<{}>('div', ({$theme}) => ({
+  display: 'none',
+  '@media screen and (min-width: 1340px)': {
+    display: 'block',
+    maxWidth: '16em',
+  },
+}));
+
+const SidebarWrapper = themedStyled<{
+  $isOpen: boolean,
+  $hideSideNavigation: boolean,
+}>('nav', ({$theme, $isOpen, $hideSideNavigation}) => ({
+  display: $isOpen ? 'block' : 'none',
+  paddingTop: $theme.sizing.scale700,
+  marginLeft: $theme.sizing.scale800,
+  marginRight: $theme.sizing.scale800,
+  [$theme.mediaQuery.medium]: {
+    display: $hideSideNavigation ? 'none' : 'block',
+    maxWidth: '16em',
+  },
+}));
+
+const ContentWrapper = themedStyled<{
+  $isSidebarOpen: boolean,
+  $maxWidth?: string,
+}>('main', ({$theme, $isSidebarOpen, $maxWidth}) => ({
+  position: 'relative',
+  boxSizing: 'border-box',
+  display: $isSidebarOpen ? 'none' : 'block',
+  paddingLeft: $theme.sizing.scale800,
+  paddingRight: $theme.sizing.scale800,
+  width: '100%',
+  outline: 'none',
+  maxWidth: $maxWidth ? $maxWidth : '40em',
+  [$theme.mediaQuery.medium]: {
+    display: 'block',
+    maxWidth: $maxWidth ? $maxWidth : '40em',
+  },
+}));
+
+class Layout extends React.Component<PropsT, {sidebarOpen: boolean}> {
+  constructor(props: PropsT) {
+    super(props);
+    this.state = {
+      sidebarOpen: false,
+    };
+  }
+  render() {
+    const {sidebarOpen} = this.state;
+    const {toggleTheme, toggleDirection, children} = this.props;
+    let {path = ''} = this.props;
+    let component;
+
+    // strip the query string
+    path = path.split('?')[0];
+
+    if (path && path.endsWith('/')) {
+      path = path.slice(0, -1);
+    }
+
+    if (path.includes('/components')) {
+      component = path.replace('/components/', '');
+    }
+    const componentStats = ComponentSizes[component] || {};
+    const componentSizeKb = Math.floor(componentStats.gzip / 1000);
+
+    const route = findByPath(Routes, path);
+    let isGitHubEditDisabled;
+    let githubUrl;
+    if (!path || !route) {
+      isGitHubEditDisabled = true;
+    } else {
+      isGitHubEditDisabled = route.isGitHubEditDisabled;
+      if (route.components) {
+        githubUrl = `${GH_URL}${path}/index.mdx`;
+      } else {
+        githubUrl = `${GH_URL}${path}.mdx`;
+      }
+    }
+
+    return (
+      <DirectionContext.Consumer>
+        {direction => (
+          <React.Fragment>
+            <SkipToContent />
+            <HeaderNavigation
+              toggleSidebar={() =>
+                this.setState(prevState => ({
+                  sidebarOpen: !prevState.sidebarOpen,
+                }))
+              }
+              toggleTheme={toggleTheme}
+              toggleDirection={toggleDirection}
             />
-          </Link>
-          <Block marginLeft="scale600">{version}</Block>
-          <Block
-            overrides={{
-              Block: {
-                style: {
-                  color: 'inherit',
-                  fontStyle: 'italic',
-                },
-              },
-            }}
-            target="_blank"
-            as="a"
-            href="https://github.com/uber-web/baseui/releases"
-          >
-            (Changelog)
-          </Block>
-        </Block>
-      </NavigationList>
-      <NavigationList align={ALIGN.center} />
-      <NavigationList align={ALIGN.right}>
-        <Search />
-        <Block marginLeft="scale600">
-          <ComponentMenu />
-        </Block>
-        <Block
-          $as="a"
-          href="https://github.com/uber-web/baseui"
-          marginLeft="scale600"
-          $style={{textDecoration: 'none'}}
-          target="_blank"
-        >
-          <Button
-            kind={ButtonKind.secondary}
-            overrides={{
-              EndEnhancer: {
-                style: {
-                  marginLeft: 0,
-                },
-              },
-            }}
-            endEnhancer={() => <GithubLogo size={24} color="#276EF1" />}
-          />
-        </Block>
-        <Block
-          $as="a"
-          href="https://join.slack.com/t/baseui/shared_invite/enQtNDI0NTgwMjU0NDUyLTk3YzM1NWY2MjY3NTVjNjk3NzY1MTE5OTI4Y2Q2ZmVkMTUyNDc1MTcwYjZhYjlhOWQ2M2NjOWJkZmQyNjFlYTA"
-          marginLeft="scale600"
-          $style={{textDecoration: 'none'}}
-          target="_blank"
-        >
-          <Button
-            kind={ButtonKind.secondary}
-            overrides={{
-              EndEnhancer: {
-                style: {
-                  marginLeft: 0,
-                },
-              },
-            }}
-            endEnhancer={() => <SlackLogo size={24} color="#276EF1" />}
-          />
-        </Block>
-        <Block marginLeft="scale600">
-          <Link href="/getting-started/installation" prefetch>
-            <Button>Get Started</Button>
-          </Link>
-        </Block>
-      </NavigationList>
-    </HeaderNavigation>
+            <Block
+              backgroundColor="backgroundPrimary"
+              color="contentPrimary"
+              marginTop="scale300"
+              display="flex"
+              paddingTop="scale400"
+              justifyContent="center"
+            >
+              <SidebarWrapper
+                aria-label="primary"
+                $isOpen={sidebarOpen}
+                $hideSideNavigation={!!this.props.hideSideNavigation}
+                onClick={() =>
+                  sidebarOpen && this.setState({sidebarOpen: false})
+                }
+              >
+                <Sidebar path={path} />
+              </SidebarWrapper>
+              <ContentWrapper
+                id="docSearch-content"
+                role="main"
+                tabIndex="-1"
+                $isSidebarOpen={sidebarOpen}
+                $maxWidth={this.props.maxContentWidth}
+              >
+                {isGitHubEditDisabled ? null : (
+                  <Block
+                    display={['none', 'block']}
+                    position="absolute"
+                    top="-10px"
+                    overrides={{
+                      Block: {
+                        style: {
+                          [direction === 'rtl' ? 'left' : 'right']: 0,
+                          [direction === 'rtl' ? 'right' : 'left']: 'auto',
+                        },
+                      },
+                    }}
+                  >
+                    <Button
+                      startEnhancer={() => (
+                        <PencilIcon size={16} color="#666666" />
+                      )}
+                      $as="a"
+                      href={githubUrl}
+                      target="_blank"
+                      size={SIZE.compact}
+                      kind={KIND.minimal}
+                    >
+                      Edit this page
+                    </Button>
+                  </Block>
+                )}
+                {componentSizeKb ? (
+                  <Block font="font100">
+                    Component size, gzipped: {componentSizeKb}kb
+                  </Block>
+                ) : null}
+                <MDXProvider components={MarkdownElements}>
+                  {children}
+                </MDXProvider>
+              </ContentWrapper>
+              <TOCWrapper>
+                <TableOfContents content={React.Children.toArray(children)} />
+              </TOCWrapper>
+            </Block>
+            <Footer />
+          </React.Fragment>
+        )}
+      </DirectionContext.Consumer>
+    );
+  }
+}
 
-    <Block display="flex" paddingTop="scale500">
-      <Block display="flex" marginLeft="scale800" marginRight="scale800">
-        <Sidebar />
-      </Block>
-
-      <Block
-        flex="2"
-        paddingLeft="scale900"
-        overrides={{
-          Block: {
-            style: ({$theme}) => ({
-              borderLeft: `1px solid ${$theme.colors.border}`,
-              maxWidth: '45rem',
-            }),
-            props: {
-              id: 'docSearch-content',
-            },
-          },
-        }}
-      >
-        <MDXProvider components={MarkdownElements}>
-          {props.children}
-        </MDXProvider>
-      </Block>
-    </Block>
-  </React.Fragment>
-);
+export default Layout;

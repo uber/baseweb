@@ -1,25 +1,35 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+import {isValidElementType} from 'react-is';
 import deepMerge from '../utils/deep-merge.js';
 
-export type StyleOverrideT = {} | (({}) => ?{});
+export type ConfigurationOverrideFunctionT = ({}) => ?{};
+export type ConfigurationOverrideObjectT = {};
 
-export type OverrideObjectT<T> = {|
-  component?: ?React.ComponentType<T>,
-  props?: ?{},
-  style?: ?StyleOverrideT,
+export type ConfigurationOverrideT =
+  | ConfigurationOverrideObjectT
+  | ConfigurationOverrideFunctionT;
+
+export type StyleOverrideT = ConfigurationOverrideT;
+
+export type OverrideObjectT = {|
+  // eslint-disable-next-line flowtype/no-weak-types
+  component?: ?React.ComponentType<any>,
+  props?: ?ConfigurationOverrideT,
+  style?: ?ConfigurationOverrideT,
 |};
 
-export type OverrideT<T> = OverrideObjectT<T> | React.ComponentType<T>;
+// eslint-disable-next-line flowtype/no-weak-types
+export type OverrideT = OverrideObjectT | React.ComponentType<any>;
 
-export type OverridesT<T> = {
-  [string]: OverrideT<T>,
+export type OverridesT = {
+  [string]: OverrideT,
 };
 
 /**
@@ -27,6 +37,10 @@ export type OverridesT<T> = {
  */
 // eslint-disable-next-line flowtype/no-weak-types
 export function getOverride(override: any): any {
+  if (isValidElementType(override)) {
+    return override;
+  }
+
   // Check if override is OverrideObjectT
   if (override && typeof override === 'object') {
     // Remove this 'any' once this flow issue is fixed:
@@ -34,7 +48,8 @@ export function getOverride(override: any): any {
     // eslint-disable-next-line flowtype/no-weak-types
     return (override: any).component;
   }
-  // Otherwise it must be a component type (function or class) or null/undefined
+
+  // null/undefined
   return override;
 }
 
@@ -42,14 +57,18 @@ export function getOverride(override: any): any {
  * Given an override argument, returns the override props that should be passed
  * to the component when rendering it.
  */
-export function getOverrideProps<T>(override: ?OverrideT<T>) {
+export function getOverrideProps(override: ?OverrideT) {
   if (override && typeof override === 'object') {
-    return {
-      // $FlowFixMe
-      ...override.props,
-      // $FlowFixMe
-      $style: override.style,
-    };
+    if (typeof override.props === 'object') {
+      return {
+        ...override.props,
+        $style: override.style,
+      };
+    } else {
+      return {
+        $style: override.style,
+      };
+    }
   }
   return {};
 }
@@ -58,19 +77,19 @@ export function getOverrideProps<T>(override: ?OverrideT<T>) {
  * Coerces an override argument into an override object
  * (sometimes it is just an override component)
  */
-export function toObjectOverride<T>(
-  override: OverrideT<T>,
-): OverrideObjectT<T> {
-  if (typeof override === 'function') {
+export function toObjectOverride<T>(override: OverrideT): OverrideObjectT {
+  if (isValidElementType(override)) {
     return {
-      component: (override: React.ComponentType<T>),
+      // eslint-disable-next-line flowtype/no-weak-types
+      component: ((override: any): React.ComponentType<T>),
     };
   }
+
   // Flow can't figure out that typeof 'function' above will
   // catch React.StatelessFunctionalComponent
   // (probably related to https://github.com/facebook/flow/issues/6666)
   // eslint-disable-next-line flowtype/no-weak-types
-  return ((override || {}: any): OverrideObjectT<T>);
+  return ((override || {}: any): OverrideObjectT);
 }
 
 /**
@@ -81,9 +100,30 @@ export function getOverrides(
   override: any,
   defaultComponent: React.ComponentType<any>,
 ): [React.ComponentType<any>, {}] {
-  const component = getOverride(override) || defaultComponent;
+  const Component = getOverride(override) || defaultComponent;
+
+  if (
+    override &&
+    typeof override === 'object' &&
+    typeof override.props === 'function'
+  ) {
+    // TODO(v11)
+    if (__DEV__) {
+      console.warn(
+        'baseui:Overrides Props as a function will be removed in the next major version.',
+      );
+    }
+    const DynamicOverride = React.forwardRef((props, ref) => {
+      const mappedProps = override.props(props);
+      const nextProps = getOverrideProps({...override, props: mappedProps});
+      return <Component ref={ref} {...nextProps} />;
+    });
+    DynamicOverride.displayName = Component.displayName;
+    return [DynamicOverride, {}];
+  }
+
   const props = getOverrideProps(override);
-  return [component, props];
+  return [Component, props];
 }
 /* eslint-enable flowtype/no-weak-types */
 
@@ -92,11 +132,14 @@ export function getOverrides(
  * overrides into a child component, but also accept further overrides from
  * from upstream. See `mergeOverride` below.
  */
-export function mergeOverrides<T>(
-  target?: OverridesT<T> = {},
-  source?: OverridesT<T> = {},
-): OverridesT<T> {
-  const allIdentifiers = Object.keys({...target, ...source});
+export function mergeOverrides(
+  target?: OverridesT = {},
+  source?: OverridesT = {},
+): OverridesT {
+  const merged = Object.assign({}, target, source);
+  const allIdentifiers = Object.keys(merged);
+  // const allIdentifiers = Object.keys({...target, ...source});
+
   return allIdentifiers.reduce((acc, name) => {
     acc[name] = mergeOverride(
       toObjectOverride(target[name]),
@@ -111,32 +154,30 @@ export function mergeOverrides<T>(
  * - Component implementation from the source (parent) replaces target
  * - Props and styles are both deep merged
  */
-export function mergeOverride<T>(
-  target: OverrideObjectT<T>,
-  source: OverrideObjectT<T>,
-): OverrideObjectT<T> {
+export function mergeOverride(
+  target: OverrideObjectT,
+  source: OverrideObjectT,
+): OverrideObjectT {
   // Shallow merge should handle `component`
   const merged = {...target, ...source};
-  // Props just use deep merge
   if (target.props && source.props) {
-    merged.props = deepMerge({}, target.props, source.props);
+    merged.props = mergeConfigurationOverrides(target.props, source.props);
   }
-  // Style overrides need special merging since they may be functions
   if (target.style && source.style) {
-    merged.style = mergeStyleOverrides(target.style, source.style);
+    merged.style = mergeConfigurationOverrides(target.style, source.style);
   }
   return merged;
 }
 
 /**
- * Since style overrides can be an object *or* a function, we need to handle
+ * Since style or props overrides can be an object *or* a function, we need to handle
  * the case that one of them is a function. We do this by returning a new
  * function that deep merges the result of each style override
  */
-export function mergeStyleOverrides(
-  target: StyleOverrideT,
-  source: StyleOverrideT,
-): StyleOverrideT {
+export function mergeConfigurationOverrides(
+  target: ConfigurationOverrideT,
+  source: ConfigurationOverrideT,
+): ConfigurationOverrideT {
   // Simple case of both objects
   if (typeof target === 'object' && typeof source === 'object') {
     return deepMerge({}, target, source);
@@ -150,4 +191,26 @@ export function mergeStyleOverrides(
       typeof source === 'function' ? source(...args) : source,
     );
   };
+}
+
+// Lil' hook for memoized unpacking of overrides
+export function useOverrides(
+  defaults: {
+    // eslint-disable-next-line flowtype/no-weak-types
+    [string]: React.ComponentType<any>,
+  },
+  overrides?: OverridesT = {},
+) {
+  return React.useMemo(
+    () =>
+      // eslint-disable-next-line flowtype/no-weak-types
+      Object.keys(defaults).reduce<{[string]: [React.ComponentType<any>, {}]}>(
+        (obj, key) => {
+          obj[key] = getOverrides(overrides[key], defaults[key]);
+          return obj;
+        },
+        {},
+      ),
+    [overrides],
+  );
 }

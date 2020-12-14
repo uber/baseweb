@@ -1,0 +1,11 @@
+{
+  "author": "Jhey Tompkins",
+  "authorLink": "https://twitter.com/@jh3yy",
+  "title": "Getting Started with Base Web",
+  "tagline": "Let's build a password generator!",
+  "date": "2 April 2019",
+  "coverImage": "https://cdn.dribbble.com/users/914217/screenshots/4615198/base_ui.png",
+  "coverImageWidth": 800,
+  "coverImageHeight": 600,
+  "keyWords": ["Design System", "React", "Tutorial"]
+}

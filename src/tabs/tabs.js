@@ -1,13 +1,12 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
-import Tab from './tab.js';
+import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import {
   Root as StyledRoot,
   TabBar as StyledTabBar,
@@ -22,6 +21,7 @@ export default class Tabs extends React.Component<TabsPropsT> {
     onChange: () => {},
     overrides: {},
     orientation: ORIENTATION.horizontal,
+    renderAll: false,
   };
 
   onChange({activeKey}: {activeKey: string}) {
@@ -30,22 +30,30 @@ export default class Tabs extends React.Component<TabsPropsT> {
   }
 
   getTabs() {
-    const {activeKey, disabled, orientation, children} = this.props;
+    const {
+      activeKey,
+      disabled,
+      orientation,
+      children,
+      overrides = {},
+    } = this.props;
     // eslint-disable-next-line flowtype/no-weak-types
     const tabs = React.Children.map(children, (child: any, index) => {
       if (!child) return;
+
       const key = child.key || String(index);
-      const props = {
+      return React.cloneElement(child, {
         key,
         id: key, // for aria-labelledby
         active: key === activeKey,
         disabled: disabled || child.props.disabled,
         $orientation: orientation,
-        overrides: child.props.overrides,
         onSelect: () => this.onChange({activeKey: key}),
-      };
-      return <Tab {...props}>{child.props.title}</Tab>;
+        children: child.props.title,
+        overrides: mergeOverrides(overrides, child.props.overrides || {}),
+      });
     });
+
     return tabs;
   }
 
@@ -56,6 +64,7 @@ export default class Tabs extends React.Component<TabsPropsT> {
       orientation,
       children,
       overrides = {},
+      renderAll,
     } = this.props;
     const {TabContent: TabContentOverride} = overrides;
     const [TabContent, tabContentProps] = getOverrides(
@@ -84,7 +93,8 @@ export default class Tabs extends React.Component<TabsPropsT> {
           {...tabContentProps}
           {...props}
         >
-          {isActive ? child.props.children : null}
+          {renderAll ? child.props.children : null}
+          {isActive && !renderAll ? child.props.children : null}
         </TabContent>
       );
     });
@@ -107,7 +117,7 @@ export default class Tabs extends React.Component<TabsPropsT> {
     const [TabBar, tabBarProps] = getOverrides(TabBarOverride, StyledTabBar);
 
     return (
-      <Root {...sharedProps} {...rootProps}>
+      <Root data-baseweb="tabs" {...sharedProps} {...rootProps}>
         <TabBar role="tablist" {...sharedProps} {...tabBarProps}>
           {this.getTabs()}
         </TabBar>

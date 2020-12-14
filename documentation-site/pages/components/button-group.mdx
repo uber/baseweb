@@ -1,103 +1,118 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
+import Exports from '../../components/exports';
 import Layout from '../../components/layout';
+import SEO from '../../components/meta-seo';
 
 import Basic from 'examples/button-group/basic.js';
+import Icon from 'examples/button-group/icon.js';
+import Enhancer from 'examples/button-group/enhancer.js';
 import RadioMode from 'examples/button-group/radio-mode.js';
 import CheckboxMode from 'examples/button-group/checkbox-mode.js';
 import Disabled from 'examples/button-group/disabled.js';
-import Controlled from 'examples/button-group/controlled.js';
+import DisabledButton from 'examples/button-group/disabled-button.js';
 import Dropdown from 'examples/button-group/dropdown.js';
+import StatefulRadio from 'examples/button-group/stateful-radio.js';
+import StatefulCheckbox from 'examples/button-group/stateful-checkbox.js';
 
-import Overrides from '../../components/overrides';
 import {Button} from 'baseui/button';
 import {ButtonGroup} from 'baseui/button-group';
 import * as ButtonGroupExports from 'baseui/button-group';
 
+import Yard from '../../components/yard/index';
+import buttonGroupYardConfig from '../../components/yard/config/button-group';
+import ApiTable from '../../components/api-table';
+
+<SEO
+  description="The Button Group component groups a collection of similar actions together."
+  keywords="button group, react button group"
+/>
+
 export default Layout;
 
-# ButtonGroup
+# Button Group
+
+<Yard placeholderHeight={52} {...buttonGroupYardConfig} />
 
 Groups a collection of similar actions together.
 
-### When to use
+## When to use
 
 - If you need to emphasize context of similar actions.
 - If a single option or multiple options of the set may be selected.
 
 ## Examples
 
-<Example title="Button group basic usage" path="examples/button-group/basic.js">
+<Example title="Basic usage" path="button-group/basic.js">
   <Basic />
 </Example>
 
-<Example
-  title="Button group with radio mode"
-  path="examples/button-group/radio-mode.js"
->
+<Example title="With icons" path="button-group/icon.js">
+  <Icon />
+</Example>
+
+<Example title="With enhancers" path="button-group/enhancer.js">
+  <Enhancer />
+</Example>
+
+<Example title="Radio mode" path="button-group/radio-mode.js">
   <RadioMode />
 </Example>
 
-<Example
-  title="Button group with checkbox mode"
-  path="examples/button-group/checkbox-mode.js"
->
+In `radio` mode, the button group functions similarly to a radio group. Only one button can be "selected" at a time.
+
+<Example title="Checkbox mode" path="button-group/checkbox-mode.js">
   <CheckboxMode />
 </Example>
 
-<Example
-  title="Button group with disabled buttons"
-  path="examples/button-group/disabled.js"
->
+In `checkbox` mode, the button group functions similarly to a group of checkboxes. Multiple buttons can be "selected" at the same time.
+
+<Example title="Disabled button group" path="button-group/disabled.js">
   <Disabled />
 </Example>
 
-<Example
-  title="Button group controlled example"
-  path="examples/button-group/controlled.js"
->
-  <Controlled />
+You can disable the entire button group as in the example above. Or you can disable isolated buttons as in the example below.
+
+<Example title="Single disabled button" path="button-group/disabled-button.js">
+  <DisabledButton />
 </Example>
 
-<Example
-  title="Button group with dropdown"
-  path="examples/button-group/dropdown.js"
->
+<Example title="With a dropdown" path="button-group/dropdown.js">
   <Dropdown />
 </Example>
 
-## Overrides
+<Example
+  title="Stateful (uncontrolled) with radio mode"
+  path="button-group/stateful-radio.js"
+>
+  <StatefulRadio />
+</Example>
 
-<Overrides
-  name="ButtonGroup"
+As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulButtonGroup`, which manages its own state. If `mode` is set to `radio` or `checkbox`, this stateful version of the component will adapt to keep track of the `selected` value(s).
+
+<Example
+  title="Stateful (uncontrolled) with checkbox mode"
+  path="button-group/stateful-checkbox.js"
+>
+  <StatefulCheckbox />
+</Example>
+
+## API
+
+<ApiTable
+  title="ButtonGroup props"
+  config={buttonGroupYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/button-group/button-group.js')}
+/>
+
+<Exports
   component={ButtonGroupExports}
-  renderExample={props => (
-    <ButtonGroup overrides={props.overrides}>
-      <Button>Label</Button>
-      <Button>Label</Button>
-      <Button>Label</Button>
-    </ButtonGroup>
-  )}
-/>
-
-<API
-  heading="ButtonGroup API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/button-group/button-group.js')}
-/>
-
-<API
-  heading="Stateful ButtonGroup API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/button-group/stateful-button-group.js')}
-/>
-
-<API
-  heading="Stateful Container API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/button-group/stateful-container.js')}
+  title="ButtonGroup exports"
+  path="baseui/button-group"
 />

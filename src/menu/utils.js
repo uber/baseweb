@@ -1,68 +1,57 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable import/prefer-default-export */
-import smoothscroll from 'smoothscroll-polyfill';
-import {SHARED_PROPS_MAPPER} from './constants.js';
 
-if (__BROWSER__) {
-  smoothscroll.polyfill();
-}
+// Helps scroll a list item into view when cycling through list via
+// keybindings and highlighted item is not in view.
 
-/**
- * Given a props object and a mapper dictionary of prop keys, we will prepend
- * all of the existing prop keys inside mapper with $ to present styletron
- * from passing through those props to the underlying React component.
- */
-export function getSharedProps(
-  props: {},
-  mapper: {} = SHARED_PROPS_MAPPER,
-): {} {
-  return Object.keys(props).reduce((newProps, propName) => {
-    const newName = mapper[propName] ? `$${propName}` : propName;
-    newProps[newName] = props[propName];
-    return newProps;
-  }, {});
-}
+// Previously, this util had been using `scrollIntoView`. The issue with that method is that
+// it will not only scroll the parent scroll but also the window scroll bar - causing a jump.
+// problem description https://lists.w3.org/Archives/Public/www-style/2014Jul/0386.html
 
-/**
- * Helps scroll a list item into view when cycling through list via
- * keybindings and highlighted item is not in view.
- */
-export function scrollItemIntoView({
-  node,
-  parentNode,
-  isFirst,
-  isLast,
-}: {
-  node: React$ElementRef<*>,
-  parentNode: React$ElementRef<*>,
+// CHASE: I've noticed some performance issues when testing this with many items in the list.
+// I imagine the browser can debounce the `node.scrollIntoView` calls. Callers of this function
+// will likely want to debounce themselves.
+export function scrollItemIntoView(
+  child: ?HTMLElement,
+  parent: HTMLElement,
   isFirst?: boolean,
   isLast?: boolean,
-}) {
-  const nodeDOM = node.current;
-  const parentNodeDOM = parentNode.current;
-  if (!nodeDOM) return;
-  const nodeRect = nodeDOM.getBoundingClientRect();
-  const parentNodeRect = parentNodeDOM.getBoundingClientRect();
+  scrollAlignInView?: 'auto' | 'center' = 'auto',
+) {
+  if (!child) return;
+
+  const childRect = child.getBoundingClientRect();
+  const parentRect = parent.getBoundingClientRect();
+
   // while scrolling down, if element is below view
-  if (nodeRect.bottom > parentNodeRect.bottom) {
+  if (childRect.bottom > parentRect.bottom) {
     if (isLast) {
-      parentNodeDOM.scrollTop =
-        parentNodeDOM.scrollHeight - parentNodeRect.height;
+      parent.scrollTop = parent.scrollHeight - parentRect.height;
     } else {
-      nodeDOM.scrollIntoView(false);
+      const targetBottom = child.offsetTop + childRect.height;
+      parent.scrollTop =
+        targetBottom -
+        (scrollAlignInView === 'center'
+          ? Math.round((parentRect.height + childRect.height) / 2)
+          : parentRect.height);
     }
+
     // while scrolling up, if element is above view
-  } else if (nodeRect.top < parentNodeRect.top) {
+  } else if (childRect.top < parentRect.top) {
     if (isFirst) {
-      parentNodeDOM.scrollTop = 0;
+      parent.scrollTop = 0;
     } else {
-      nodeDOM.scrollIntoView();
+      parent.scrollTop =
+        child.offsetTop -
+        (scrollAlignInView === 'center'
+          ? Math.round((parentRect.height - childRect.height) / 2)
+          : 0);
     }
   }
 }

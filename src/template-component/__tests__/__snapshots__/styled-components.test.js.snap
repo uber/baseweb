@@ -1,8 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Component styled components StyledRoot - basic render: StyledRoot has correct styles when prop is set to false 1`] = `
-Object {
-  "color": "$theme.colors.positive400",
-  "cursor": "pointer",
-}
-`;

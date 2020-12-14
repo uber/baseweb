@@ -1,0 +1,38 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import * as A11yExports from 'baseui/a11y';
+
+import Wrapper from 'examples/unstable-a11y/wrapper.js';
+
+export default Layout;
+
+# Unstable_A11y
+
+Experimental utility for validating accessibility at runtime. See the example below for mvp
+functionality.
+
+It uses the [axe-core](https://github.com/dequelabs/axe-core) library to perform the validations.
+[Here](https://dequeuniversity.com/rules/axe/3.2) is a link to the latest rules with descriptions
+and suggestions to fix.
+
+Please give this component a try to see if it helps in your application, and we welcome any
+suggestions for how to improve.
+
+## Examples
+
+<Example title="A11y wrapper example" path="unstable-a11y/wrapper.js">
+  <Wrapper />
+</Example>
+
+## API
+
+<Exports component={A11yExports} title="A11y exports" path="baseui/a11y" />

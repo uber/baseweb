@@ -1,90 +1,63 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import React from 'react';
-import {mount} from 'enzyme';
+import * as React from 'react';
+import {render, fireEvent, getByText} from '@testing-library/react';
 
-import {Input, StyledInputContainer} from '../index.js';
+import {Input} from '../index.js';
 
-test('Input - basic functionality', () => {
-  const props = {
-    value: 'input value',
-    placeholder: 'Placeholder',
-    onFocus: jest.fn(),
-    onBlur: jest.fn(),
-    onChange: jest.fn(),
-    onKeyDown: jest.fn(),
-    onKeyPress: jest.fn(),
-    onKeyUp: jest.fn(),
-  };
+describe('input', () => {
+  it('renders input element', () => {
+    const {container} = render(<Input />);
+    const input = container.querySelector('input');
+    expect(input).not.toBeNull();
+  });
 
-  const wrapper = mount(<Input {...props} />);
-  expect(wrapper).toHaveState('isFocused', false);
+  it('calls provided event handlers', () => {
+    const onFocus = jest.fn();
+    const onBlur = jest.fn();
+    const onChange = jest.fn();
+    const onKeyDown = jest.fn();
+    const onKeyUp = jest.fn();
 
-  // Renders input
-  const renderedInput = wrapper.find('input').first();
-  expect(renderedInput).toExist();
-  expect(renderedInput.props()).toMatchSnapshot('input has correct props');
+    const {container} = render(
+      <Input
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onChange={onChange}
+        onKeyDown={onKeyDown}
+        onKeyUp={onKeyUp}
+      />,
+    );
 
-  // onFocus handler from props is called
-  renderedInput.simulate('focus');
-  expect(props.onFocus).toBeCalled();
-  expect(wrapper).toHaveState('isFocused', true);
+    const input = container.querySelector('input');
 
-  // onBlur handler from props is called
-  renderedInput.simulate('blur');
-  expect(props.onBlur).toBeCalled();
-  expect(wrapper).toHaveState('isFocused', false);
+    fireEvent.focus(input);
+    expect(onFocus).toBeCalledTimes(1);
 
-  // onChange handler from props is called
-  renderedInput.simulate('change');
-  expect(props.onChange).toBeCalled();
+    fireEvent.blur(input);
+    expect(onBlur).toBeCalledTimes(1);
 
-  // onKeyDown handler from props is called
-  renderedInput.simulate('keyDown', {keyCode: 40});
-  expect(props.onKeyDown).toBeCalled();
+    fireEvent.change(input, {target: {value: 'a'}});
+    expect(onChange).toBeCalledTimes(1);
 
-  // onKeyPress handler from props is called
-  renderedInput.simulate('keyPress', {keyCode: 40});
-  expect(props.onKeyPress).toBeCalled();
+    fireEvent.keyDown(input, {key: 'A', code: 'KeyA'});
+    expect(onKeyDown).toBeCalledTimes(1);
 
-  // onKeyUp handler from props is called
-  renderedInput.simulate('keyUp', {keyCode: 40});
-  expect(props.onKeyUp).toBeCalled();
-});
+    fireEvent.keyUp(input, {key: 'A', code: 'KeyA'});
+    expect(onKeyUp).toBeCalledTimes(1);
+  });
 
-test('Input - renders enhancers', () => {
-  const props = {
-    onChange: jest.fn(),
-    startEnhancer: 'pre',
-    endEnhancer: 'post',
-  };
-
-  const wrapper = mount(<Input {...props} />);
-  expect(wrapper).toHaveState('isFocused', false);
-
-  // Renders input and enhancers
-  const renderedInput = wrapper.find(StyledInputContainer).first();
-  expect(renderedInput).toExist();
-  expect(renderedInput.props()).toMatchSnapshot(
-    'input has correct props when enhancers added',
-  );
-
-  wrapper.setProps({startEnhancer: 'pre', endEnhancer: null});
-  const renderedInput2 = wrapper.find(StyledInputContainer).first();
-  expect(renderedInput2).toExist();
-  expect(renderedInput2.props()).toMatchSnapshot(
-    'input has correct props when start enhancers added',
-  );
-  wrapper.setProps({startEnhancer: null, endEnhancer: 'post'});
-  const renderedInput3 = wrapper.find(StyledInputContainer).first();
-  expect(renderedInput3).toExist();
-  expect(renderedInput3.props()).toMatchSnapshot(
-    'input has correct props when end enhancers added',
-  );
+  it('renders enhancers', () => {
+    const {container} = render(
+      <Input startEnhancer="start" endEnhancer="end" />,
+    );
+    getByText(container, 'start');
+    getByText(container, 'end');
+  });
 });

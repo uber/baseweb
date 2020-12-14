@@ -1,0 +1,70 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import {Skeleton} from 'baseui/skeleton';
+import * as SkeletonExports from 'baseui/skeleton';
+
+import SkeletonBasic from 'examples/skeleton/basic.js';
+import SkeletonCircle from 'examples/skeleton/circle.js';
+import SkeletonAnimation from 'examples/skeleton/animation.js';
+import SkeletonSubElements from 'examples/skeleton/subElements.js';
+
+import Yard from '../../components/yard/index';
+import skeletonYardConfig from '../../components/yard/config/skeleton';
+import ApiTable from '../../components/api-table';
+
+export default Layout;
+
+# Skeleton
+
+<Yard placeholderHeight={44} {...skeletonYardConfig} />
+
+The `Skeleton` component is optimized for rendering shapes with or without animation while waiting for loading corresponding components.
+
+## Examples
+
+<Example title="Basic usage" path="skeleton/basic.js">
+  <SkeletonBasic />
+</Example>
+
+Set `height` and `width` to generate a single rectangular `Skeleton`.
+
+<Example title="Other Shapes" path="skeleton/circle.js">
+  <SkeletonCircle />
+</Example>
+
+You can change the shape and position of `Skeleton` through `overrides.Root`.
+
+<Example title="Animation" path="skeleton/animation.js">
+  <SkeletonAnimation />
+</Example>
+
+<Example title="Sub elements" path="skeleton/subElements.js">
+  <SkeletonSubElements />
+</Example>
+
+Set `rows` to a positive number and `Skeleton` will generate multiple sub elements with the same shape inside the `Root`.
+The background color of `Root` will become transparent automatically when the `rows` equals to a positive number.
+You can customize the sub elements' shape and position through `overrides.Row`.
+
+## API
+
+<ApiTable
+  title="Skeleton props"
+  config={skeletonYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/skeleton/skeleton.js')}
+/>
+
+<Exports
+  component={SkeletonExports}
+  title="Skeleton exports"
+  path="baseui/skeleton"
+/>

@@ -1,0 +1,30 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Layout from '../../components/layout';
+import {Table} from 'baseui/table';
+
+export default Layout;
+
+# Supported Platforms
+
+Base Web supports the latest, stable releases of all major browsers and platforms. **While for now we support IE11, we may drop that in the near future.**
+
+<Table
+  columns={['Browser', 'Supported version']}
+  data={[
+    ['Chrome', '>= 58'],
+    ['Firefox', 'ESR'],
+    ['Safari', '>= 10.1'],
+    ['Edge', '>= 16'],
+    ['Internet Explorer', '11'],
+    ['iOS Safari', '>= 10.3'],
+    ['Android', '>= 4.4'],
+  ]}
+/>
+
+**If you decide to opt-in to use the [overrides](https://baseweb.design/guides/understanding-overrides/) property, you are responsible to make sure it works in all browsers, as we cannot guarantee that.**

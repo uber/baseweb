@@ -1,35 +1,40 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import Controlled from 'examples/pagination/controlled.js';
 import Uncontrolled from 'examples/pagination/uncontrolled.js';
 import Labels from 'examples/pagination/labels.js';
 import Customization from 'examples/pagination/overrides.js';
 
-import Overrides from '../../components/overrides';
 import {StatefulPagination} from 'baseui/pagination';
 import * as PaginationExports from 'baseui/pagination';
+
+import Yard from '../../components/yard/index';
+import paginationYardConfig from '../../components/yard/config/pagination';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
 # Pagination
 
+<Yard placeholderHeight={52} {...paginationYardConfig} />
+
 Divide content into separate pages.
 
-### When to use
+## When to use
 
 - When the user will be searching for information rather than scanning.
-- When the user must maintain a sense of position amonst the paginated elements.
+- When the user must maintain a sense of position amongst the paginated elements.
 
-### Accessibility
+## Accessibility
 
 - `Tab` moves focus among the focus-able elements (button, dropdown)
 - `Escape` closes the dropdown once opened
@@ -37,50 +42,35 @@ Divide content into separate pages.
 
 ## Examples
 
-<Example
-  title="Pagination Controlled example"
-  path="examples/pagination/controlled.js"
->
+<Example title="Pagination Controlled example" path="pagination/controlled.js">
   <Controlled />
 </Example>
 
 <Example
   title="Pagination Uncontrolled example"
-  path="examples/pagination/uncontrolled.js"
+  path="pagination/uncontrolled.js"
 >
   <Uncontrolled />
 </Example>
 
-<Example
-  title="Pagination with Custom Labels"
-  path="examples/pagination/labels.js"
->
+<Example title="Pagination with Custom Labels" path="pagination/labels.js">
   <Labels />
 </Example>
 
-<Example
-  title="Pagination with Overrides"
-  path="examples/pagination/overrides.js"
->
+<Example title="Pagination with Overrides" path="pagination/overrides.js">
   <Customization />
 </Example>
 
-## Overrides
+## API
 
-<Overrides
-  name="Pagination"
+<ApiTable
+  title="Pagination props"
+  config={paginationYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/pagination/pagination.js')}
+/>
+
+<Exports
   component={PaginationExports}
-  renderExample={props => (
-    <StatefulPagination numPages={10} overrides={props.overrides} />
-  )}
-/>
-
-<API
-  heading="Pagination API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/pagination/pagination.js')}
-/>
-
-<API
-  heading="Stateful Pagination API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/pagination/stateful-pagination.js')}
+  title="Pagination exports"
+  path="baseui/pagination"
 />

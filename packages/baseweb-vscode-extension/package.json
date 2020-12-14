@@ -1,0 +1,392 @@
+{
+  "name": "baseweb",
+  "displayName": "BaseWeb",
+  "publisher": "Uber",
+  "description": "Base Web is a foundation for initiating, evolving, and unifying web products.",
+  "version": "0.0.0",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.41.0"
+  },
+  "repository": {
+    "directory": "packages/baseweb-vscode-extension",
+    "type": "git",
+    "url": "https://github.com/uber/baseweb"
+  },
+  "scripts": {
+    "build": "npm run build:code-snippets && npm run build:copy-baseui && npm run build-theme && npm run compile",
+    "build:copy-baseui": "rm -rf src/baseui && cp -r ../../dist/es src/baseui",
+    "build:code-snippets": "ts-node -r tsconfig-paths/register --project ./snippets/tsconfig.json ./snippets/build.ts",
+    "build-theme": "./scripts/build-non-split.js",
+    "deploy": "vsce publish --yarn",
+    "compile": "tsc -p tsconfig.extension.json",
+    "watch": "tsc -watch -p tsconfig.extension.json",
+    "pretest": "yarn run compile",
+    "test": "node ./build/test/runTest.js"
+  },
+  "icon": "images/icon.png",
+  "dependencies": {
+    "baseui": "^9.51.0"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.1",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.11.7",
+    "@types/react": "^16.3.14",
+    "@types/react-dom": "^16.0.5",
+    "@types/vscode": "^1.41.0",
+    "glob": "^7.1.5",
+    "mocha": "^6.2.2",
+    "react-scripts": "^2.1.3",
+    "rewire": "^4.0.1",
+    "ts-node": "^8.6.2",
+    "tslint": "^5.20.0",
+    "typescript": "^3.7.2",
+    "vsce": "^1.71.0",
+    "vscode-test": "^1.2.2"
+  },
+  "categories": [
+    "Extension Packs",
+    "Snippets"
+  ],
+  "activationEvents": [
+    "onLanguage:javascript",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact",
+    "onCommand:extension.baseweb.docs.icon",
+    "onCommand:extension.baseweb.docs.popover",
+    "onCommand:extension.baseweb.docs.card",
+    "onCommand:extension.baseweb.docs.button",
+    "onCommand:extension.baseweb.docs.button-group",
+    "onCommand:extension.baseweb.docs.modal",
+    "onCommand:extension.baseweb.docs.menu",
+    "onCommand:extension.baseweb.docs.checkbox",
+    "onCommand:extension.baseweb.docs.tooltip",
+    "onCommand:extension.baseweb.docs.spinner",
+    "onCommand:extension.baseweb.docs.pagination",
+    "onCommand:extension.baseweb.docs.input",
+    "onCommand:extension.baseweb.docs.select",
+    "onCommand:extension.baseweb.docs.tag",
+    "onCommand:extension.baseweb.docs.tabs",
+    "onCommand:extension.baseweb.docs.table",
+    "onCommand:extension.baseweb.docs.radio",
+    "onCommand:extension.baseweb.docs.textarea",
+    "onCommand:extension.baseweb.docs.progress-bar",
+    "onCommand:extension.baseweb.docs.slider",
+    "onCommand:extension.baseweb.docs.toast",
+    "onCommand:extension.baseweb.docs.accordion",
+    "onCommand:extension.baseweb.docs.block",
+    "onCommand:extension.baseweb.docs.avatar",
+    "onCommand:extension.baseweb.docs.breadcrumbs",
+    "onCommand:extension.baseweb.docs.header-navigation",
+    "onCommand:extension.baseweb.docs.notification",
+    "onCommand:extension.baseweb.docs.progress-steps",
+    "onCommand:extension.baseweb.docs.rating",
+    "onCommand:extension.baseweb.docs.file-uploader",
+    "onCommand:extension.baseweb.docs.datepicker",
+    "onCommand:extension.baseweb.docs.dnd-list",
+    "onCommand:extension.baseweb.docs.typography",
+    "onCommand:extension.baseweb.docs.side-navigation",
+    "onCommand:extension.baseweb.docs.layer",
+    "onCommand:extension.baseweb.docs.flex-grid",
+    "onCommand:extension.baseweb.docs.heading",
+    "onCommand:extension.baseweb.docs.phone-input",
+    "onCommand:extension.baseweb.docs.payment-card",
+    "onCommand:extension.baseweb.docs.pin-code",
+    "onCommand:extension.baseweb.docs.drawer",
+    "onCommand:extension.baseweb.docs.list",
+    "onCommand:extension.baseweb.docs.tree-view",
+    "onCommand:extension.baseweb.docs.data-table",
+    "onCommand:extension.baseweb.docs.table-semantic",
+    "onCommand:extension.baseweb.docs.table-grid",
+    "onCommand:extension.baseweb.docs.layout-grid"
+  ],
+  "main": "./build/extension.js",
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "Base Web plugin configuration",
+      "properties": {
+        "baseweb.theme.coloring.enabled": {
+          "type": "boolean",
+          "default": "true",
+          "description": "Set to false to turn off theme color samples."
+        },
+        "baseweb.theme.coloring.source": {
+          "type": "string",
+          "enum": [
+            "Light",
+            "Dark"
+          ],
+          "default": "Light",
+          "description": "The theme to be used for coloring."
+        },
+        "baseweb.theme.coloring.style": {
+          "type": "string",
+          "enum": [
+            "border",
+            "background",
+            "tooltipOnly",
+            "underline"
+          ],
+          "default": "underline",
+          "description": "Change the color samples display style."
+        }
+      }
+    },
+    "snippets": [
+      {
+        "path": "./snippets/baseweb.code-snippets"
+      }
+    ],
+    "commands": [
+      {
+        "command": "extension.baseweb.theme",
+        "title": "Open theme cheat sheet",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.select",
+        "title": "Open the docs for select",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.input",
+        "title": "Open the docs for the input component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.button",
+        "title": "Open the docs for the button component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.icon",
+        "title": "Open the docs for the icon component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.popover",
+        "title": "Open the docs for the popover component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.card",
+        "title": "Open the docs for the card component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.button-group",
+        "title": "Open the docs for the button-group component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.modal",
+        "title": "Open the docs for the modal component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.menu",
+        "title": "Open the docs for the menu component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.checkbox",
+        "title": "Open the docs for the checkbox component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.tooltip",
+        "title": "Open the docs for the tooltip component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.spinner",
+        "title": "Open the docs for the spinner component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.pagination",
+        "title": "Open the docs for the pagination component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.tag",
+        "title": "Open the docs for the tag component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.tabs",
+        "title": "Open the docs for the tabs component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.table",
+        "title": "Open the docs for the table component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.radio",
+        "title": "Open the docs for the radio component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.textarea",
+        "title": "Open the docs for the textarea component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.progress-bar",
+        "title": "Open the docs for the progress-bar component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.slider",
+        "title": "Open the docs for the slider component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.toast",
+        "title": "Open the docs for the toast component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.accordion",
+        "title": "Open the docs for the accordion component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.block",
+        "title": "Open the docs for the block component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.avatar",
+        "title": "Open the docs for the avatar component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.breadcrumbs",
+        "title": "Open the docs for the breadcrumbs component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.header-navigation",
+        "title": "Open the docs for the header-navigation component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.notification",
+        "title": "Open the docs for the notification component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.progress-steps",
+        "title": "Open the docs for the progress-steps component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.rating",
+        "title": "Open the docs for the rating component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.file-uploader",
+        "title": "Open the docs for the file-uploader component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.datepicker",
+        "title": "Open the docs for the datepicker component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.dnd-list",
+        "title": "Open the docs for the dnd-list component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.typography",
+        "title": "Open the docs for the typography component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.side-navigation",
+        "title": "Open the docs for the side-navigation component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.layer",
+        "title": "Open the docs for the layer component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.flex-grid",
+        "title": "Open the docs for the flex-grid component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.heading",
+        "title": "Open the docs for the heading component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.phone-input",
+        "title": "Open the docs for the phone-input component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.payment-card",
+        "title": "Open the docs for the payment-card component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.pin-code",
+        "title": "Open the docs for the pin-code component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.drawer",
+        "title": "Open the docs for the drawer component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.list",
+        "title": "Open the docs for the list component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.tree-view",
+        "title": "Open the docs for the tree-view component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.data-table",
+        "title": "Open the docs for the data-table component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.table-semantic",
+        "title": "Open the docs for the table-semantic component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.table-grid",
+        "title": "Open the docs for the table-grid component",
+        "category": "Base Web"
+      },
+      {
+        "command": "extension.baseweb.docs.layout-grid",
+        "title": "Open the docs for the layout-grid component",
+        "category": "Base Web"
+      }
+    ]
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

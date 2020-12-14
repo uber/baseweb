@@ -1,13 +1,14 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 //@flow
 import * as React from 'react';
-import {styled} from 'baseui/styles';
-import {default as SearchIcon} from 'baseui/icon/search';
+import SearchIcon from 'baseui/icon/search';
+import {themedStyled} from '../pages/_app';
+//$FlowFixMe
 import {trackEvent} from '../helpers/ga';
 
 const SEARCH_INPUT_ID = 'algolia-doc-search';
@@ -18,33 +19,63 @@ type State = {
 
 // can't really use baseui/input because algolia injects its
 // own markdown and breaks our component (that's fairly complex)
-const PlainInput = styled('input', ({$theme}) => ({
-  borderWidth: '1px',
-  borderRadius: '4px',
-  borderColor: $theme.colors.mono200,
-  borderStyle: 'solid',
-  paddingLeft: '42px',
-  color: $theme.colors.mono800,
-  paddingRight: '12px',
-  paddingTop: '9px',
-  paddingBottom: '9px',
-  fontSize: '14px',
-  width: '250px',
-  backgroundColor: $theme.colors.mono200,
-  lineHeight: '20px',
-  outline: 'none',
-  '-webkit-appearance': 'none',
-  ':focus': {
-    backgroundColor: $theme.colors.mono100,
-    borderColor: $theme.colors.primary,
-  },
-}));
+const PlainInput = themedStyled<{}>(
+  'input',
+  ({$theme}) =>
+    ({
+      display: 'block',
+      borderLeftWidth: '2px',
+      borderRightWidth: '2px',
+      borderTopWidth: '2px',
+      borderBottomWidth: '2px',
+      borderLeftColor: $theme.colors.inputEnhancerFill,
+      borderRightColor: $theme.colors.inputEnhancerFill,
+      borderTopColor: $theme.colors.inputEnhancerFill,
+      borderBottomColor: $theme.colors.inputEnhancerFill,
+      borderLeftStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderTopStyle: 'solid',
+      borderBottomStyle: 'solid',
+      paddingLeft: $theme.direction === 'rtl' ? '9px' : '36px',
+      paddingRight: $theme.direction === 'rtl' ? '36px' : '9px',
+      backgroundColor: 'transparent',
+      paddingTop: '9px',
+      paddingBottom: '9px',
+      fontSize: '14px',
+      width: '100%',
+      minWidth: '225px',
+      color: $theme.colors.contentPrimary,
+      lineHeight: '20px',
+      outline: 'none',
+      '-webkit-appearance': 'none',
+      ':focus': {
+        borderLeftColor: $theme.colors.primary,
+        borderRightColor: $theme.colors.primary,
+        borderTopColor: $theme.colors.primary,
+        borderBottomColor: $theme.colors.primary,
+      },
+    }: {}),
+);
 
-const IconWrapper = styled('div', {
-  marginRight: '-33px',
-  marginTop: '10px',
-  zIndex: 1,
-});
+const SearchContainer = themedStyled<{}>(
+  'div',
+  ({$theme}) =>
+    ({
+      display: 'flex',
+      alignItems: 'center',
+      backgroundColor: $theme.colors.inputEnhancerFill,
+      position: 'relative',
+    }: {}),
+);
+
+const IconWrapper = themedStyled<{}>('div', ({$theme}) => ({
+  position: 'absolute',
+  height: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '36px',
+}));
 
 class DocSearch extends React.Component<{}, State> {
   state = {
@@ -68,20 +99,30 @@ class DocSearch extends React.Component<{}, State> {
   }
 
   render() {
-    const {enabled} = this.state;
-    return enabled ? (
+    return this.state.enabled ? (
       <React.Fragment>
-        <style>{`.ds-dropdown-menu { margin-top: 12px !important }`}</style>
-        <IconWrapper>
-          <SearchIcon size={22} color="#666" />
-        </IconWrapper>
-        <PlainInput
-          id={SEARCH_INPUT_ID}
-          type="search"
-          placeholder="Search documentation"
-          aria-label="Search documentation"
-          onChange={e => trackEvent('algolia_search', e.target.value)}
-        />
+        <style>{`
+          .algolia-autocomplete {
+            width: 100%;
+          }
+          .ds-dropdown-menu {
+            margin-top: 12px !important;
+            width: calc(100vw - 50px) !important;
+            min-width: unset !important;
+          }
+        `}</style>
+        <SearchContainer>
+          <IconWrapper>
+            <SearchIcon size={24} color="contentPrimary" />
+          </IconWrapper>
+          <PlainInput
+            id={SEARCH_INPUT_ID}
+            type="search"
+            placeholder="Search documentation"
+            aria-label="Search documentation"
+            onChange={e => trackEvent('algolia_search', e.target.value)}
+          />
+        </SearchContainer>
       </React.Fragment>
     ) : null;
   }

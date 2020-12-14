@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/no-weak-types */
 
+import {ARROW_SIZE} from '../constants.js';
 import {
   capitalize,
   fromPopperPlacement,
@@ -16,9 +17,7 @@ import {
   getEndPosition,
   getStartPosition,
   isVerticalPosition,
-  parsePopperOffset,
   splitPlacement,
-  toPopperPlacement,
 } from '../utils.js';
 
 describe('Popover utils', () => {
@@ -40,17 +39,6 @@ describe('Popover utils', () => {
     });
   });
 
-  describe('toPopperPlacement', () => {
-    test('toPopperPlacement should convert from popover placements to popper placements', () => {
-      expect(toPopperPlacement('rightTop')).toBe('right-start');
-      expect(toPopperPlacement('right')).toBe('right');
-      expect(toPopperPlacement('rightBottom')).toBe('right-end');
-      expect(toPopperPlacement('topLeft')).toBe('top-start');
-      expect(toPopperPlacement('top')).toBe('top');
-      expect(toPopperPlacement('topRight')).toBe('top-end');
-    });
-  });
-
   describe('fromPopperPlacement', () => {
     test('fromPopperPlacement to convert from popper placements to popover placements', () => {
       expect(fromPopperPlacement('right-start')).toBe('rightTop');
@@ -60,33 +48,6 @@ describe('Popover utils', () => {
       expect(fromPopperPlacement('top')).toBe('top');
       expect(fromPopperPlacement('top-end')).toBe('topRight');
       expect(fromPopperPlacement('')).toBe(null);
-    });
-  });
-
-  describe('parsePopperOffset', () => {
-    test('parsePopperOffset should handle valid integer inputs', () => {
-      expect(
-        parsePopperOffset({
-          top: 10,
-          left: 15,
-        }),
-      ).toEqual({top: 10, left: 15});
-    });
-    test('parsePopperOffset should round float inputs', () => {
-      expect(
-        parsePopperOffset({
-          top: 10.1,
-          left: 15.24,
-        }),
-      ).toEqual({top: 10, left: 15});
-    });
-    test('parsePopperOffset should be resilient to null input', () => {
-      expect(
-        parsePopperOffset({
-          top: null,
-          left: null,
-        }),
-      ).toEqual({top: 0, left: 0});
     });
   });
 
@@ -122,33 +83,38 @@ describe('Popover utils', () => {
 
   describe('getPopoverMarginStyles', () => {
     test('getPopoverMarginStyles should return correct margins without arrow', () => {
-      const showArrow = false;
-      expect(getPopoverMarginStyles(showArrow, 'topLeft')).toEqual({
-        marginBottom: '8px',
+      const MARGIN_SIZE = 8;
+      expect(getPopoverMarginStyles(0, 'topLeft', MARGIN_SIZE)).toEqual({
+        marginBottom: `${MARGIN_SIZE}px`,
       });
-      expect(getPopoverMarginStyles(showArrow, 'top')).toEqual({
-        marginBottom: '8px',
+      expect(getPopoverMarginStyles(0, 'top', MARGIN_SIZE)).toEqual({
+        marginBottom: `${MARGIN_SIZE}px`,
       });
-      expect(getPopoverMarginStyles(showArrow, 'right')).toEqual({
-        marginLeft: '8px',
+      expect(getPopoverMarginStyles(0, 'right', MARGIN_SIZE)).toEqual({
+        marginLeft: `${MARGIN_SIZE}px`,
       });
-      expect(getPopoverMarginStyles(showArrow, 'bottomLeft')).toEqual({
-        marginTop: '8px',
+      expect(getPopoverMarginStyles(0, 'bottomLeft', MARGIN_SIZE)).toEqual({
+        marginTop: `${MARGIN_SIZE}px`,
       });
     });
     test('getPopoverMarginStyles should return correct margins with arrow', () => {
-      const showArrow = true;
-      expect(getPopoverMarginStyles(showArrow, 'topLeft')).toEqual({
-        marginBottom: '6px',
+      const MARGIN_SIZE = 8;
+      const value = ARROW_SIZE + MARGIN_SIZE;
+      expect(
+        getPopoverMarginStyles(ARROW_SIZE, 'topLeft', MARGIN_SIZE),
+      ).toEqual({
+        marginBottom: `${value}px`,
       });
-      expect(getPopoverMarginStyles(showArrow, 'top')).toEqual({
-        marginBottom: '6px',
+      expect(getPopoverMarginStyles(ARROW_SIZE, 'top', MARGIN_SIZE)).toEqual({
+        marginBottom: `${value}px`,
       });
-      expect(getPopoverMarginStyles(showArrow, 'right')).toEqual({
-        marginLeft: '6px',
+      expect(getPopoverMarginStyles(ARROW_SIZE, 'right', MARGIN_SIZE)).toEqual({
+        marginLeft: `${value}px`,
       });
-      expect(getPopoverMarginStyles(showArrow, 'bottomLeft')).toEqual({
-        marginTop: '6px',
+      expect(
+        getPopoverMarginStyles(ARROW_SIZE, 'bottomLeft', MARGIN_SIZE),
+      ).toEqual({
+        marginTop: `${value}px`,
       });
     });
   });
@@ -173,9 +139,9 @@ describe('Popover utils', () => {
 
   describe('getStartPosition', () => {
     test('getStartPosition should return correct position for topLeft', () => {
-      expect(getStartPosition({left: 10, top: 15}, 'topLeft', true)).toEqual(
-        'translate3d(10px, 27px, 0)',
-      );
+      expect(
+        getStartPosition({left: 10, top: 15}, 'topLeft', ARROW_SIZE, 8),
+      ).toEqual('translate3d(10px, 27px, 0)');
     });
   });
 

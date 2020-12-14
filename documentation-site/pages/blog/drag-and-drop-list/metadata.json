@@ -1,0 +1,11 @@
+{
+  "author": "Vojtech Miksu",
+  "authorLink": "https://twitter.com/vmiksu",
+  "title": "Building a Drag and Drop List",
+  "tagline": "What goes into building a drag and drop component in 2019?",
+  "date": "30 October 2019",
+  "coverImage": "https://res.cloudinary.com/flycatcher/image/upload/v1572289775/listgif_igl9j7.gif",
+  "coverImageWidth": 600,
+  "coverImageHeight": 383,
+  "keyWords": ["Drag and Drop", "React", "DnD"]
+}

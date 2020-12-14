@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable flowtype/generic-spacing */
 import * as React from 'react';
-import type {ThemeT} from '../styles/types.js';
 import type {OverrideT} from '../helpers/overrides.js';
 import {STATE_CHANGE_TYPE} from './constants.js';
 
@@ -26,7 +25,7 @@ export type StateReducerT = (
 export type ComponentRenderPropT = (props: {}) => React.Node;
 
 export type OverridesT = {
-  Root?: OverrideT<SharedStylePropsT>,
+  Root?: OverrideT,
 };
 
 export type ChildT = React.Node;
@@ -59,10 +58,6 @@ export type StatefulComponentContainerPropsT = $Diff<
   ) => React.Node,
 };
 
-export type SharedStylePropsArgT = {
-  $prop: ?boolean,
-};
-
-export type SharedStylePropsT = SharedStylePropsArgT & {
-  $theme: ThemeT,
+export type SharedStylePropsT = {
+  $prop: boolean,
 };

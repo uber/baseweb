@@ -1,120 +1,109 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import React from 'react';
-import {mount} from 'enzyme';
+import * as React from 'react';
+import {render, fireEvent} from '@testing-library/react';
+
 import {BaseInput} from '../index.js';
 
-test('BaseInput - basic functionality', () => {
-  const props = {
-    placeholder: 'Placeholder',
-    onFocus: jest.fn(),
-    onBlur: jest.fn(),
-    onChange: jest.fn(),
-    onKeyDown: jest.fn(),
-    onKeyPress: jest.fn(),
-    onKeyUp: jest.fn(),
-    overrides: {
-      Before: jest.fn().mockImplementation(() => <span />),
-      After: jest.fn().mockImplementation(() => <span />),
-    },
-  };
+describe('base-input', () => {
+  it('basic render', () => {
+    // $FlowFixMe
+    const {container} = render(<BaseInput />);
+    expect(container.querySelector('input')).not.toBeNull();
+  });
 
-  // $FlowFixMe
-  const wrapper = mount(<BaseInput {...props} />);
-  expect(wrapper).toHaveState('isFocused', false);
+  it('calls provided event handlers', () => {
+    const onFocus = jest.fn();
+    const onBlur = jest.fn();
+    const onChange = jest.fn();
+    const onKeyDown = jest.fn();
+    const onKeyUp = jest.fn();
 
-  // Renders input, before and after
-  const renderedInput = wrapper.find('input').first();
-  expect(renderedInput).toExist();
-  expect(renderedInput.props()).toMatchSnapshot('Base input has correct props');
+    const {container} = render(
+      // $FlowFixMe
+      <BaseInput
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onChange={onChange}
+        onKeyDown={onKeyDown}
+        onKeyUp={onKeyUp}
+      />,
+    );
 
-  expect(renderedInput.props().onFocus).toEqual(wrapper.instance().onFocus);
-  expect(renderedInput.props().onBlur).toEqual(wrapper.instance().onBlur);
+    const input = container.querySelector('input');
 
-  const renderedBefore = wrapper.find(props.overrides.Before);
-  expect(renderedBefore).toHaveLength(1);
-  expect(renderedBefore.props()).toMatchSnapshot('Before gets correct props');
+    fireEvent.focus(input);
+    expect(onFocus).toBeCalledTimes(1);
 
-  const renderedAfter = wrapper.find(props.overrides.After);
-  expect(renderedAfter).toHaveLength(1);
-  expect(renderedAfter.props()).toMatchSnapshot('After gets correct props');
+    fireEvent.blur(input);
+    expect(onBlur).toBeCalledTimes(1);
 
-  // onFocus handler from props is called
-  renderedInput.simulate('focus');
-  expect(props.onFocus).toBeCalled();
-  expect(wrapper).toHaveState('isFocused', true);
+    fireEvent.change(input, {target: {value: 'a'}});
+    expect(onChange).toBeCalledTimes(1);
 
-  // onBlur handler from props is called
-  renderedInput.simulate('blur');
-  expect(props.onBlur).toBeCalled();
-  expect(wrapper).toHaveState('isFocused', false);
+    fireEvent.keyDown(input, {key: 'A', code: 'KeyA'});
+    expect(onKeyDown).toBeCalledTimes(1);
 
-  // onChange handler from props is called
-  renderedInput.simulate('change');
-  expect(props.onChange).toBeCalled();
+    fireEvent.keyUp(input, {key: 'A', code: 'KeyA'});
+    expect(onKeyUp).toBeCalledTimes(1);
+  });
 
-  // onKeyDown handler from props is called
-  renderedInput.simulate('keyDown', {keyCode: 40});
-  expect(props.onKeyDown).toBeCalled();
+  it('BaseInput - should not take default value prop', () => {
+    // $FlowFixMe
+    const {container} = render(<BaseInput />);
+    // Guard against passing default value prop
+    expect(container.querySelector('input').value).toBe('');
+  });
 
-  // onKeyPress handler from props is called
-  renderedInput.simulate('keyPress', {keyCode: 40});
-  expect(props.onKeyPress).toBeCalled();
+  it('calls focus handler when autoFocus is true', () => {
+    const onFocus = jest.fn();
+    render(
+      // $FlowFixMe
+      <BaseInput
+        // eslint-disable-next-line jsx-a11y/no-autofocus
+        autoFocus
+        onFocus={onFocus}
+      />,
+    );
+    expect(onFocus).toBeCalledTimes(1);
+  });
 
-  // onKeyUp handler from props is called
-  renderedInput.simulate('keyUp', {keyCode: 40});
-  expect(props.onKeyUp).toBeCalled();
+  it('applies ref from inputRef prop', () => {
+    const onFocus = jest.fn();
+    function TestCase() {
+      const ref = React.useRef();
+      React.useEffect(() => {
+        if (ref.current) {
+          ref.current.focus();
+        }
+      }, []);
+      // $FlowFixMe
+      return <BaseInput inputRef={ref} onFocus={onFocus} />;
+    }
 
-  // Correct props passed when error state
-  wrapper.setProps({error: true});
+    render(<TestCase />);
+    expect(onFocus).toBeCalledTimes(1);
+  });
 
-  const updatedBefore = wrapper.find(props.overrides.Before);
-  expect(updatedBefore.props()).toMatchSnapshot(
-    'Before gets correct error prop',
-  );
+  it('applies expected autocomplete attribute if type is password', () => {
+    // $FlowFixMe
+    const {container} = render(<BaseInput type="password" />);
+    const input = container.querySelector('input');
+    expect(input.getAttribute('autocomplete')).toBe('new-password');
+  });
 
-  const updatedAfter = wrapper.find(props.overrides.After);
-  expect(updatedAfter.props()).toMatchSnapshot('After gets correct error prop');
-});
-
-test('BaseInput - should not take default value prop', () => {
-  // $FlowFixMe
-  const wrapper = mount(<BaseInput />);
-  // Guard against passing default value prop
-  expect(wrapper.prop('value')).not.toBeDefined();
-});
-
-test('BaseInput - autoFocus sets the initial focus state', () => {
-  const props = {
-    autoFocus: true,
-    onFocus: jest.fn(),
-    onChange: jest.fn(),
-  };
-
-  // $FlowFixMe
-  const wrapper = mount(<BaseInput {...props} />);
-  // Is focused when mount
-  expect(wrapper).toHaveState('isFocused', true);
-});
-
-test('BaseInput - inputRef from props', () => {
-  const focus = jest.fn();
-  const props = {
-    autoFocus: true,
-    onFocus: jest.fn(),
-    onChange: jest.fn(),
-    inputRef: {current: {focus}},
-  };
-
-  // $FlowFixMe
-  const wrapper = mount(<BaseInput {...props} />);
-  // Is focused when mount
-  expect(wrapper).toHaveState('isFocused', true);
-  // ref's focus method is called
-  expect(focus).toBeCalled();
+  it('applies provided autocomplete attribute', () => {
+    const autocomplete = 'current-password';
+    const {container} = render(
+      // $FlowFixMe
+      <BaseInput autoComplete={autocomplete} type="password" />,
+    );
+    const input = container.querySelector('input');
+    expect(input.getAttribute('autocomplete')).toBe(autocomplete);
+  });
 });

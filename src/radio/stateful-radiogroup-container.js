@@ -1,11 +1,11 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import React from 'react';
+import * as React from 'react';
 import {STATE_TYPE} from './constants.js';
 import type {
   StatefulContainerPropsT,
@@ -57,12 +57,12 @@ class StatefulRadioGroupContainer extends React.Component<
       children = (childProps: {}) => null, // eslint-disable-line no-unused-vars
       initialState, // eslint-disable-line no-unused-vars
       stateReducer, // eslint-disable-line no-unused-vars
-      ...rest
+      ...restProps
     } = this.props;
     const {onChange} = this;
     return children({
-      ...rest,
-      ...this.state,
+      ...restProps,
+      value: this.state.value,
       onChange,
     });
   }

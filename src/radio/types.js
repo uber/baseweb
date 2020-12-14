@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -9,53 +9,54 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import type {OverrideT} from '../helpers/overrides.js';
-import type {ThemeT} from '../styles/types.js';
+import {ALIGN} from './constants.js';
 
 export type LabelPlacementT = 'top' | 'right' | 'bottom' | 'left';
+export type AlignT = $Keys<typeof ALIGN>;
 
 export type RadioOverridesT = {
-  // This override will be deprecated in the next major version. Use 'RadioMarkInner' or 'RadioMarkOuter' instead.
-  RadioMark?: OverrideT<*>,
-  RadioMarkInner?: OverrideT<*>,
-  RadioMarkOuter?: OverrideT<*>,
-  Label?: OverrideT<*>,
-  Root?: OverrideT<*>,
-  Input?: OverrideT<*>,
+  RadioMarkInner?: OverrideT,
+  RadioMarkOuter?: OverrideT,
+  Label?: OverrideT,
+  Root?: OverrideT,
+  Input?: OverrideT,
+  Description?: OverrideT,
 };
 
 export type RadioGroupOverridesT = {
-  RadioGroupRoot?: OverrideT<*>,
+  RadioGroupRoot?: OverrideT,
 };
 
 export type OverridesT = {
-  ...RadioOverridesT,
-  ...RadioGroupOverridesT,
+  ...$Exact<RadioOverridesT>,
+  ...$Exact<RadioGroupOverridesT>,
 };
 
 export type DefaultPropsT = {
   value: string,
   disabled: boolean,
   isError: boolean,
+  error: boolean,
   autoFocus: boolean,
   labelPlacement: LabelPlacementT,
-  onChange: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onChange: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
 };
 
 export type PropsT = {
+  /** Id of element which contains a related caption */
+  'aria-describedby'?: string,
+  /** Id of element which contains a related error message */
+  'aria-errormessage'?: string,
   /**
    * Used to define a string that labels the radio group. Use this prop if the label is not
    * visible on screen. If the label is visible, use the 'aria-labeledby' prop instead.
    */
   'aria-label'?: string,
-  // This prop will be deprecated in the next major update. Use 'aria-label' instead.
-  ariaLabel?: string,
   /**
    * Establishes a relationship between the radio group and its label. Screen readers use this
    * attribute to catalog the object on a page so that users can navigate between them.
    */
   'aria-labelledby'?: string,
-  // This prop will be deprecated in the next major update. Use 'aria-labelledby' instead.
-  ariaLabelledBy?: string,
   // This prop will be deprecated in the next major update. Pass overrides to the 'Radio' component instead.
   overrides?: OverridesT,
   /** As `children` in React native approach represents radio buttons inside of Radio Group. Can use `Radio` from this package. */
@@ -67,26 +68,29 @@ export type PropsT = {
   /** Set if the control is required to be checked. */
   required?: boolean,
   /** Sets radio group into error state. */
+  error?: boolean,
+  /** You should use the error prop instead. */
   isError?: boolean,
   /** Set to be focused (active) on selected\checked radio. */
   autoFocus?: boolean,
   /** How to position radio buttons in the group. */
-  align?: string,
+  align?: AlignT,
   /** String value for the name of RadioGroup, it is used to group buttons. If missed default is random ID string. */
   name?: string,
   /** How to position the label relative to the radio itself. */
   labelPlacement?: LabelPlacementT,
-  $theme?: ThemeT,
+  /** Unique id for RadioGroup, help ARIA to identify element */
+  id?: string,
   /** Handler for change events on trigger element. */
-  onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for mouseenter events on trigger element. */
-  onMouseEnter?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onMouseEnter?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for mouseleave events on trigger element. */
-  onMouseLeave?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onMouseLeave?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for focus events on trigger element. */
-  onFocus?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onFocus?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Handler for blur events on trigger element. */
-  onBlur?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onBlur?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
 };
 
 export type StateT = {
@@ -96,16 +100,26 @@ export type StateT = {
 export type RadioPropsT = {
   /** Focus the radio on initial render. */
   autoFocus?: boolean,
+  /** How the radio will be displayed along with its description. Controls spacing */
+  align?: AlignT,
   /** Check or uncheck the control. */
   checked?: boolean,
   /** Label of radio. */
   children?: React$Node,
+  /** Add more detail about a radio element. */
+  description?: string,
   /** Disable the checkbox from being changed. */
   disabled?: boolean,
   /** Used to get a ref to the input element. Useful for programmatically focusing the input */
-  inputRef: {current: ?HTMLInputElement},
+  inputRef: React.ElementRef<*>,
   /** Renders checkbox in errored state. */
+  error?: boolean,
+  /** You should use the error prop instead. */
   isError?: boolean,
+  /** Is radio focused / active? */
+  isFocused?: boolean,
+  /** Is parent RadioGroup focused by keyboard? */
+  isFocusVisible?: boolean,
   /** How to position the label relative to the checkbox itself. */
   labelPlacement?: 'top' | 'right' | 'bottom' | 'left',
   /** Passed to the input element name attribute */
@@ -129,11 +143,12 @@ export type RadioPropsT = {
   required?: boolean,
   /** Passed to the input element value attribute */
   value?: string,
+  /** Passed to the input element, typically managed by RadioGroup */
+  tabIndex?: string,
 };
 
 export type RadioStateT = {
   isActive: boolean,
-  isFocused: boolean,
   isHovered: boolean,
 };
 
@@ -144,13 +159,16 @@ export type StateReducerT = (
   event: SyntheticInputEvent<HTMLInputElement>,
 ) => StateT;
 
-export type StatelessStateT = {};
+export type StatelessStateT = {
+  isFocusVisible: boolean,
+  focusedRadioIndex: number,
+};
 
 export type DefaultStatefulPropsT = {
   initialState: StateT,
   children?: (props: PropsT) => React.Node,
   stateReducer: StateReducerT,
-  onChange: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onChange: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
 };
 
 export type StatefulContainerPropsT = {
@@ -162,7 +180,7 @@ export type StatefulContainerPropsT = {
   /** Reducer function to manipulate internal state updates. */
   stateReducer: StateReducerT,
   /** Handler for change events on trigger element. */
-  onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
   /** Set to be focused (active) on selected\checked radio. */
   autoFocus?: boolean,
 };
@@ -176,5 +194,21 @@ export type StatefulRadioGroupPropsT = {
   /** Set to be focused (active) on selected\checked radio. */
   autoFocus?: boolean,
   /** Handler for change events on trigger element. */
-  onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => mixed,
+};
+
+export type StylePropsT = {
+  $align?: boolean,
+  $checked: boolean,
+  $disabled: boolean,
+  $hasDescription: boolean,
+  $isActive: boolean,
+  $isError: boolean,
+  $error: boolean,
+  $isFocused: boolean,
+  $isFocusVisible: boolean,
+  $isHovered: boolean,
+  $labelPlacement: LabelPlacementT,
+  $required: boolean,
+  $value: string,
 };

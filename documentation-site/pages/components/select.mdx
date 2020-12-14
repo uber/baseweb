@@ -1,28 +1,44 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
-import SelectBasic from 'examples/select/basic.js';
+import SelectUncontrolled from 'examples/select/uncontrolled.js';
+import SelectSizes from 'examples/select/sizes.js';
 import SelectControlled from 'examples/select/controlled.js';
+import SelectOverridden from 'examples/select/overridden.js';
+import SelectLabel from 'examples/select/label.js';
+import SelectInModal from 'examples/select/in-modal.js';
+import SelectNative from 'examples/select/native.js';
 import SelectSinglePickSearch from 'examples/select/search-single-pick.js';
 import SelectMultiPickSearch from 'examples/select/search-multi-pick.js';
 import SelectWithManyOptions from 'examples/select/with-many-options.js';
+import SelectCreatable from 'examples/select/creatable.js';
+import SelectCreatableMulti from 'examples/select/creatable-multi.js';
+import SelectOverriddenDropdown from 'examples/select/overridden-dropdown.js';
+import SelectGrouped from 'examples/select/grouped.js';
+import SelectAsyncOptions from 'examples/select/async-options.js';
+import SelectFocus from 'examples/select/focus.js';
 
-import Overrides from '../../components/overrides';
 import {StatefulSelect, TYPE} from 'baseui/select';
 import * as SelectExports from 'baseui/select';
 import {Block} from 'baseui/block';
 
+import Yard from '../../components/yard/index';
+import selectYardConfig from '../../components/yard/config/select';
+import ApiTable from '../../components/api-table';
+
 export default Layout;
 
 # Select
+
+<Yard placeholderHeight={48} {...selectYardConfig} />
 
 The select and search controls allow the user to select an option or options.
 
@@ -30,88 +46,104 @@ Select menus in Base hover atop of a selection menu while providing a simple lis
 Proper spacing, color, and a check-mark are clear indicators of a selection. Each menu is
 scrollable, if applicable.
 
+Note: by default, `id` and `label` are default properties that Select components look for in options array objects. To adapt to custom properties, use the `labelKey` and `valueKey` to override the defaults.
+
 ## Examples
 
-<Example title="Select Basic usage" path="examples/select/basic.js">
-  <SelectBasic />
-</Example>
-
-<Example title="Select Controlled Example" path="examples/select/controlled.js">
+<Example title="Select basic usage" path="select/controlled.js">
   <SelectControlled />
 </Example>
 
+Things to note in the example source code:
+
+- the `value` is always an `Array` to provide a consistent interface - no matter if you use multi or single selects,
+- you have to call `setState` with the entire object, not just the `id` value.
+
 <Example
-  title="Select as Single Pick Search"
-  path="examples/select/search-single-pick.js"
+  title="Select as single-pick search"
+  path="select/search-single-pick.js"
 >
   <SelectSinglePickSearch />
 </Example>
 
-<Example
-  title="Select as Multi Pick Search"
-  path="examples/select/search-multi-pick.js"
->
+When type is 'search' a magnifying glass icon will be rendered to the input's left and a dropdown
+arrow will not be rendered to the right.
+
+<Example title="Select with custom labels" path="select/label.js">
+  <SelectLabel />
+</Example>
+
+<Example title="Select creatable" path="select/creatable.js">
+  <SelectCreatable />
+</Example>
+
+The creatable select enables users to create new options along with choosing
+existing options.
+
+<Example title="Select as multi-pick search" path="select/search-multi-pick.js">
   <SelectMultiPickSearch />
 </Example>
 
+<Example title="Select creatable multi-pick" path="select/creatable-multi.js">
+  <SelectCreatableMulti />
+</Example>
+
+<Example title="Select sizes" path="select/sizes.js">
+  <SelectSizes />
+</Example>
+
+<Example title="Select with grouped options" path="select/grouped.js">
+  <SelectGrouped />
+</Example>
+
+<Example title="Select similar to native select" path="select/native.js">
+  <SelectNative />
+</Example>
+
+<Example title="Focus and ref" path="select/focus.js">
+  <SelectFocus />
+</Example>
+
+<Example title="Select uncontrolled example" path="select/uncontrolled.js">
+  <SelectUncontrolled />
+</Example>
+
 <Example
-  title="Select With Many Options"
-  path="examples/select/with-many-options.js"
-  additionalPackages={{'react-virtualized': '^9.21.0'}}
+  title="Select with many options"
+  path="select/with-many-options.js"
+  additionalPackages={{'react-window': '^1.8.5'}}
 >
   <SelectWithManyOptions />
 </Example>
 
-## Overrides
+<Example title="Select with async options" path="select/async-options.js">
+  <SelectAsyncOptions />
+</Example>
 
-<Overrides
-  name="Select"
+<Example title="Select in a modal dialog" path="select/in-modal.js">
+  <SelectInModal />
+</Example>
+
+<Example title="Select with overridden menu" path="select/overridden.js">
+  <SelectOverridden />
+</Example>
+
+<Example title="Select dropdown overrides" path="select/overridden-dropdown.js">
+  <SelectOverriddenDropdown />
+</Example>
+
+To override the `Popover` that's being used by the Dropdown subcomponent, you have to use a [nested override](/guides/understanding-overrides/#override-nested-components).
+
+## API
+
+<ApiTable
+  title="Select props"
+  config={selectYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/select/select-component.js')}
+/>
+
+<Exports
   component={SelectExports}
-  blacklisted={['SingleValue', 'InputSizer']}
-  renderExample={props => (
-    <React.Fragment>
-      <StatefulSelect
-        overrides={props.overrides}
-        options={[
-          {id: 'AliceBlue', color: '#F0F8FF'},
-          {id: 'AntiqueWhite', color: '#FAEBD7'},
-          {id: 'Aqua', color: '#00FFFF'},
-          {id: 'Aquamarine', color: '#7FFFD4'},
-          {id: 'Azure', color: '#F0FFFF'},
-          {id: 'Beige', color: '#F5F5DC'},
-        ]}
-        labelKey="id"
-        valueKey="color"
-        multi
-        type={TYPE.search}
-        onChange={event => console.log(event)}
-      />
-      <Block marginTop="scale800">
-        <StatefulSelect
-          overrides={props.overrides}
-          options={[
-            {id: 'AliceBlue', color: '#F0F8FF'},
-            {id: 'AntiqueWhite', color: '#FAEBD7'},
-            {id: 'Aqua', color: '#00FFFF'},
-            {id: 'Aquamarine', color: '#7FFFD4'},
-            {id: 'Azure', color: '#F0FFFF'},
-            {id: 'Beige', color: '#F5F5DC'},
-          ]}
-          labelKey="id"
-          valueKey="color"
-          onChange={event => console.log(event)}
-        />
-      </Block>
-    </React.Fragment>
-  )}
-/>
-
-<API
-  heading="Select API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/select/select.js')}
-/>
-
-<API
-  heading="StatefulSelectContainer API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/select/stateful-select-container.js')}
+  title="Select exports"
+  path="baseui/select"
 />

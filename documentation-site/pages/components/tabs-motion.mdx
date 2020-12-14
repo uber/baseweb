@@ -1,0 +1,158 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import {Notification, KIND} from 'baseui/notification';
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import Yard from '../../components/yard/index';
+import tabsYardConfig from '../../components/yard/config/tabs-motion';
+import tabYardConfig from '../../components/yard/config/tab-motion';
+
+import BasicExample from 'examples/tabs-motion/basic.js';
+import KeysExample from 'examples/tabs-motion/keys.js';
+import KeyboardActivationExample from 'examples/tabs-motion/keyboard-activation.js';
+import VerticalOrientationExample from 'examples/tabs-motion/vertical-orientation.js';
+import FixedExample from 'examples/tabs-motion/fixed.js';
+import DisabledExample from 'examples/tabs-motion/disabled.js';
+import ArtworkExample from 'examples/tabs-motion/artwork.js';
+import RenderAllExample from 'examples/tabs-motion/renderAll.js';
+import AlignmentExample from 'examples/tabs-motion/alignment.js';
+import RefsExample from 'examples/tabs-motion/refs.js';
+import StatefulExample from 'examples/tabs-motion/stateful.js';
+
+import * as TabsExports from 'baseui/tabs-motion';
+import ApiTable from '../../components/api-table';
+
+export default Layout;
+
+# Tabs (Motion)
+
+Tabs are a navigational element that allows users to easily move between groups of related content.
+
+<Yard
+  placeholderHeight={100}
+  compilerStyles={{width: '100%', marginBottom: '1rem'}}
+  {...tabsYardConfig}
+/>
+
+## Motion?
+
+There are two main differences between the `tabs-motion` module and the original `tabs` module:
+
+1. `tabs-motion` has an updated design using an animated Tab highlight.
+2. `tabs-motion` is implemented in accordance with the [WAI-ARIA 1.1 specification](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel).
+
+The newer design will be considered our default Tabs component going forward but the older design will remain until our next major version (which is currently slated for late 2021).
+
+## Accessibility
+
+This component implements the latest [WAI-ARIA Tabs specifications](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel). Here are the key takeaways from the spec:
+
+- Proper `role` and `aria` attributes are assigned based on the currently active Tab and TabList orientation.
+- Directional keys are used to move focus through Tabs.
+- When a Tab is focused, the associated TabPanel is automatically opened unless `activateOnFocus` is set to `false`.
+- When focusing a Tab, the next focusable target is the associated TabPanel's content.
+
+## Examples
+
+<Example title="Basics" path="tabs-motion/basic.js">
+  <BasicExample />
+</Example>
+
+A basic, uncontrolled `Tabs` component. Try focusing a Tab and using the directional keys to move focus to other Tabs. Focus will "wrap" once you've reached the start or end of the TabList. To shift focus to the Tab's content, just hit `Tab` at any time.
+
+<Example title="Keys" path="tabs-motion/keys.js">
+  <KeysExample />
+</Example>
+
+We use the index of each Tab to provide default keys. You can however, pass in your own keys to each Tab. React keys can be either a string or a number so `1` and `"1"` are both valid. The component will default to numbers if no keys are provided.
+
+<Example title="Keyboard activation" path="tabs-motion/keyboard-activation.js">
+  <KeyboardActivationExample />
+</Example>
+
+By default, when a Tab receives focus it will activate the Tab and show the corresponding TabPanel. You can change this by setting `activateOnFocus` to `false`. In the example above, focus a Tab and then use the directional keys to move focus to other Tabs. To activate the Tab you need to press `Enter` or the space bar.
+
+<Example
+  title="Vertical orientation"
+  path="tabs-motion/vertical-orientation.js"
+>
+  <VerticalOrientationExample />
+</Example>
+
+Tabs can be displayed in either a `horizontal` (the default) or `vertical` orientation. The `aria-orientation` attribute will be assigned accordingly. Note, when in the `vertical` orientation, the `Up` and `Down` keys are used to move focus between Tabs. While a Tab is focused, the page's default vertical page scroll is disabled.
+
+<Example title="Fixed fill" path="tabs-motion/fixed.js">
+  <FixedExample />
+</Example>
+
+The `fill` prop allows you to control how Tabs "fill" the available space.
+
+By default, `fill` is set to `intrinsic`, which means Tabs will take up as much space as their `title` content requires, with overflowing Tabs reachable via scrolling or moving focus with the direction keys.
+
+In the example above, we set `fill` to `fixed`, which divides the space in the TabList equally between each Tab. With this setting you need to be sure the content of the Tab is short enough to fit.
+
+<Example title="Disabled" path="tabs-motion/disabled.js">
+  <DisabledExample />
+</Example>
+
+You can disable all of the Tabs (except for the active one) by passing `disabled` to the top-level `Tabs` component. Note, you can also pass `disabled` to individual `Tab` components, which will override the top-level prop.
+
+<Example title="Leading icon" path="tabs-motion/artwork.js">
+  <ArtworkExample />
+</Example>
+
+You can use a leading icon for each Tab with the `artwork` prop. Icons from `baseui/icon` will work out-of-the-box, as you can see in the example above. If you want to use a custom icon or component, your component will be rendered with a small margin between it and the Tab title. Your component will receive a `size` and `color` prop too if you want to use them.
+
+<Example title="Rendering & SEO" path="tabs-motion/renderAll.js">
+  <RenderAllExample />
+</Example>
+
+By default, the content within a `TabPanel` will only mount once the corresponding Tab is active. If you want the content of each `TabPanel` to render when the `Tabs` component renders, you can use the `renderAll` prop as in the example above. If you inspect the markup for this example, you will notice that each Tab's content is rendered (though it still isn't visible). This option can be useful for SEO purposes where you might want all of your content to be crawlable.
+
+<Example title="Alignment" path="tabs-motion/alignment.js">
+  <AlignmentExample />
+</Example>
+
+In this example we align the Tabs and TabPanels with our LayoutGrid component. This allows the TabBorder to expand to fill the viewport. You may want to open this example in CodeSandbox to get a better sense of the visual effect.
+
+<Example title="Refs" path="tabs-motion/refs.js">
+  <RefsExample />
+</Example>
+
+You can pass refs to every internal element within the Tabs component using `overrides`. There is one exception however: the button elements rendered by `Tab`. Internally, the Tabs component keeps a ref attached to the active Tab's button element. This is used for the animated highlight. Because we already need to attach this ref internally, we "share" the ref via the `tabRef` prop. If you pass a ref to the `tabRef` you will receive a ref to the underlying button element, even when it is active.
+
+<Example title="Stateful" path="tabs-motion/stateful.js">
+  <StatefulExample />
+</Example>
+
+If you don't need to control the component yourself you can use the stateful version.
+
+### Resize observer
+
+The animated highlight that slides to the active tab is absolutely positioned and sized. When the active tab changes, the layout of the highlight is recalculated. This means any change in the active tab's position or size, not caused by an active tab change, could lead to the highlight having an outdated layout.
+
+To get around this potential issue we use a [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver), which watches each tab for sizing updates and does a highlight re-layout as needed. The `ResizeObserver` has full support across modern browsers but doesn't exist in any version of Internet Explorer. If you need this behavior in IE, we suggest using a polyfill for the `ResizeObserver` such as [this one](https://github.com/juggle/resize-observer). We do not include the polyfill by default to avoid adding a few KB to the bundle size of the Tabs component.
+
+## API
+
+<ApiTable
+  title="Tabs props"
+  config={tabsYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/tabs-motion/tabs.js')}
+/>
+
+<ApiTable
+  title="Tab props"
+  config={tabYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/tabs-motion/tab.js')}
+/>
+
+<Exports component={TabsExports} title="Exports" path="baseui/tabs-motion" />

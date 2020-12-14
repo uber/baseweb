@@ -1,0 +1,785 @@
+import {withStyle} from 'baseui';
+import {Block} from 'baseui/block';
+import {
+  Table,
+  StyledTable,
+  StyledHead,
+  StyledHeadCell,
+  StyledBody,
+  StyledRow,
+  StyledCell,
+} from 'baseui/table';
+
+import metadata from './metadata.json';
+import Layout from '../../../components/layout';
+import {BlogImage, Meta, Caption} from '../../../components/blog';
+
+export default Layout;
+
+<Meta data={metadata} />
+
+<BlogImage
+  src="https://res.cloudinary.com/dawr8pobn/image/upload/v1565816562/baseblack_oodvc1.png"
+  alt="updated base web components with black highlights"
+  caption="Base Web has an updated look"
+/>
+
+The Base design system has undergone a small makeover. `baseui` **v9** updates the component library to meet these latest specs. This includes **black as the new primary color**, a more accessible **color palette**, and an update to the **typography sizing ramp**.
+
+## Migration Guide
+
+After bumping to **v9**, your app will probably look a little different. _Don't panic!_ If you address each of the points below your app will look right in no time!
+
+- Customize your theme if the color changes in **v9** are not to your liking. [Read more 📖](#black-is-the-new-blue)
+- Update usage of typography theme values (`font100` for example) to the new scale. [Read more 📖](#typography-mapping)
+- Update usage of typography components (`Paragraph1`, `H1`) to the new scale. [Read more 📖](#typography-components)
+
+Be sure to check out our [codemod](#codemod) for automatically migrating your codebase to **v9**! Or, read on for more detail on all of the changes included in this new major.
+
+## Black is the New Blue
+
+We have changed the `primary` color in our default light theme from blue to black. Blue still lives on in our components as the new `accent` color but has a greatly reduced role. Also, note that the dark theme now uses white as the default color for `primary`.
+
+These changes are most noticeable in our buttons and the highlights on various inputs (controls). So what should you do if you aren't ready for full on black & white?
+
+### Default Branding
+
+If you use our default colors and you want to use blue as the `primary` color still, you can simply set `primary` back to blue in your theme `primitives` object.
+
+```js
+// myTheme.js
+
+import {createTheme, lightThemePrimitives} from 'baseui/themes';
+import {colors} from 'baseui/tokens';
+
+const myThemePrimitives = {
+  ...lightThemePrimitives,
+  primary: colors.blue400,
+  primary50: colors.blue50,
+  primary100: colors.blue100,
+  primary200: colors.blue200,
+  primary300: colors.blue300,
+  primary400: colors.blue400,
+  primary500: colors.blue500,
+  primary600: colors.blue600,
+  primary700: colors.blue700,
+};
+
+const myTheme = createTheme(myThemePrimitives);
+
+export default myTheme;
+```
+
+### Custom branding
+
+If you use custom colors in your theme, **v9** will change _how_ your colors are applied to components. In a few cases `primary` has been replaced by the new `accent` color so you will want to assign `accent` to something from your brand in your theme `primitives` object. If you do not need the additional theme variable, the easiest thing to do will be to set `accent` to the same color as `primary`.
+
+```js
+// myTheme.js
+
+import {createTheme} from 'baseui/themes';
+
+const myTokens = {
+  // define various brand colors here...
+  colors: {
+    neonPink400: '#FF69B4',
+  },
+};
+
+const myThemePrimitives = {
+  // define all the various primitives for my theme...
+  // adding in custom "accent" primitives
+  accent: myTokens.colors.neonPink400,
+  accent50: myTokens.colors.neonPink50,
+  accent100: myTokens.colors.neonPink100,
+  accent200: myTokens.colors.neonPink200,
+  accent300: myTokens.colors.neonPink300,
+  accent400: myTokens.colors.neonPink400,
+  accent500: myTokens.colors.neonPink500,
+  accent600: myTokens.colors.neonPink600,
+  accent700: myTokens.colors.neonPink700,
+};
+
+const myTheme = createTheme(myThemePrimitives);
+
+export default myTheme;
+```
+
+For more on how our theme system works, including how to override default theme values, check out [this page](/guides/theming).
+
+In summary, use the `primitives` object to assign semantic meaning to your project's colors. If you need more fine grained control over _how_ colors are used you may need to do some reassignments within `createTheme`'s `overrides` parameter.
+
+### Using `overrides`
+
+```js
+// myTheme.js
+
+import {createTheme} from 'baseui/themes';
+
+const myTokens = {
+  // define various brand colors here...
+};
+
+const myThemePrimitives = {
+  // define all the various primitives for my theme...
+};
+
+const myThemeOverrides = {
+  // override baseui default theme assignments...
+  colors: {
+    borderFocus: myThemePrimitives.accent,
+  },
+};
+
+const myTheme = createTheme(myThemePrimitives, myThemeOverrides);
+
+export default myTheme;
+```
+
+<Caption>We do a deep merge of your overrides with our default values.</Caption>
+
+The following sections detail theme variables you can override to adjust the look of your app after bumping to **v9**.
+
+### Button Group
+
+The `ButtonGroup` component has been updated to use buttons with `kind={KIND.secondary}` rather than the previous `tertiary`. If you still want to use `tertiary` you can now use `kind` as a top-level prop on `ButtonGroup`:
+
+```jsx
+<ButtonGroup kind={KIND.tertiary} />
+```
+
+This will set the children buttons to whatever kind you have passed to `ButtonGroup`. You can then theme these various button group `kind`s with a set of new theme variables:
+
+```
+buttonPrimarySelectedText
+buttonPrimarySelectedFill
+buttonSecondarySelectedText // default selected kind
+buttonSecondarySelectedFill // default selected kind
+buttonTertiarySelectedText
+buttonTertiarySelectedFill
+buttonMinimalSelectedText
+buttonMinimalSelectedFill
+```
+
+### A note on the `minimal` Button
+
+We are deprecating the `minimal` button. `tertiary` now serves the same purpose and so the two are redundant. We haven't removed the option yet to avoid an additional breaking change, so you can still set your buttons to `kind={KIND.minimal}` and use theme variables to target them. We encourage you to use `tertiary` going forward instead, however, as the `minimal` button may be removed in a future major.
+
+### Datepicker
+
+The `Datepicker` component has a new set of theme variables that allow for much more fine-grained customization. Previously it was a little difficult to theme the `Datepicker` and generally required `overrides`. Note that the old datepicker theme variables are deprecated- they remain in the theme object for backward compatibility.
+
+```
+calendarBackground
+calendarForeground
+calendarForegroundDisabled
+calendarHeaderBackground
+calendarHeaderForeground
+calendarHeaderBackgroundActive
+calendarHeaderForegroundDisabled
+calendarDayBackgroundPseudoSelected
+calendarDayForegroundPseudoSelected
+calendarDayBackgroundPseudoSelectedHighlighted
+calendarDayForegroundPseudoSelectedHighlighted
+calendarDayBackgroundSelected
+calendarDayForegroundSelected
+calendarDayBackgroundSelectedHighlighted
+calendarDayForegroundSelectedHighlighted
+```
+
+### Links
+
+The `primary` color values used for `Link` in light and dark themes have been updated to suit the new black/white aesthetic. You may want to update these theme variables to suit your own primary colors.
+
+```
+linkText
+linkVisited
+linkHover
+linkActive
+```
+
+### Progress Steps
+
+Updating the `ProgressSteps` component to black required some new theme variables. Feel free to use them for your own customizations:
+
+```
+progressStepsCompletedText
+progressStepsCompletedFill
+progressStepsActiveText
+progressStepsActiveFill
+progressStepsIconActiveFill
+```
+
+### Tag and Toast and Notification Kinds
+
+The `Tag`, `Toast`, and `Notification` components have been updated to account for the move to black. Here is what you need to know:
+
+The `Tag` component supports a new value, `accent`, for the `kind` prop, which is blue by default. You can use the following set of new theme variables to customize it:
+
+```
+tagAccentSolidBackground
+tagAccentSolidHover
+tagAccentSolidActive
+tagAccentSolidDisabled
+tagAccentSolidFont
+tagAccentSolidFontHover
+tagAccentLightBackground
+tagAccentLightHover
+tagAccentLightActive
+tagAccentLightDisabled
+tagAccentLightFont
+tagAccentLightFontHover
+tagAccentOutlinedBackground
+tagAccentOutlinedHover
+tagAccentOutlinedActive
+tagAccentOutlinedDisabled
+tagAccentOutlinedFont
+tagAccentOutlinedFontHover
+tagAccentFontDisabled
+```
+
+The `Toast` and `Notification` components also have a `kind` prop, which is `info` by default. The style for `info` can now be set with a few new theme variables:
+
+```
+toastInfoBackground
+notificationInfoBackground
+notificationInfoText // used for Toast and Notification text 🤔
+```
+
+### Breakpoints
+
+Unrelated to color but related to theming: we have updated the default breakpoints in the theme object. The largest breakpoint is now `1136px`. You can set it back to `1280px` in your theme.
+
+```js
+const theme = {
+  breakpoints: {
+    large: 1280,
+  },
+};
+```
+
+## Base Color Palette
+
+The base color primitives for both the default light and dark theme have been adjusted. These have been changed to improve the contrast ratios across our color palette.
+
+### New Black
+
+<StyledTable>
+  <StyledHead>
+    <StyledHeadCell>Name</StyledHeadCell>
+    <StyledHeadCell>New</StyledHeadCell>
+  </StyledHead>
+  <StyledBody>
+    {[
+      ['primary50', '#F6F6F6'],
+      ['primary100', '#EEEEEE'],
+      ['primary200', '#E2E2E2'],
+      ['primary300', '#CBCBCB'],
+      ['primary400', '#AFAFAF'],
+      ['primary500', '#757575'],
+      ['primary600', '#545454'],
+      ['primary700', '#333333'],
+    ].map((row, index) => {
+      const StyledColorCellNew = withStyle(StyledCell, {
+        backgroundColor: row[1],
+        color: index > 4 ? '#FFF' : '#000',
+      });
+      return (
+        <StyledRow key={index}>
+          <StyledCell>{row[0]}</StyledCell>
+          <StyledColorCellNew>{row[1]}</StyledColorCellNew>
+        </StyledRow>
+      );
+    })}
+  </StyledBody>
+</StyledTable>
+
+### Blue Changes
+
+<StyledTable>
+  <StyledHead>
+    <StyledHeadCell>Name</StyledHeadCell>
+    <StyledHeadCell>Old</StyledHeadCell>
+    <StyledHeadCell>New</StyledHeadCell>
+  </StyledHead>
+  <StyledBody>
+    {[
+      ['accent50', '#EDF3FE', '#EEF3FE'],
+      ['accent100', '#D2E0FC', '#D4E2FC'],
+      ['accent200', '#9CBCF8', '#A0BFF9'],
+      ['accent300', '#548BF4', '#5B91F4'],
+      ['accent400', '#276EF1', '#276EF1'],
+      ['accent500', '#174EB6', '#1E54B7'],
+      ['accent600', '#123D90', '#174291'],
+      ['accent700', '#0C2960', '#102C60'],
+    ].map((row, index) => {
+      const StyledColorCellOld = withStyle(StyledCell, {
+        backgroundColor: row[1],
+        color: index > 2 ? '#EDF3FE' : '#0C2960',
+      });
+      const StyledColorCellNew = withStyle(StyledCell, {
+        backgroundColor: row[2],
+        color: index > 2 ? '#EEF3FE' : '#102C60',
+      });
+      return (
+        <StyledRow key={index}>
+          <StyledCell>{row[0]}</StyledCell>
+          <StyledColorCellOld>{row[1]}</StyledColorCellOld>
+          <StyledColorCellNew>{row[2]}</StyledColorCellNew>
+        </StyledRow>
+      );
+    })}
+  </StyledBody>
+</StyledTable>
+
+### Red Changes
+
+<StyledTable>
+  <StyledHead>
+    <StyledHeadCell>Name</StyledHeadCell>
+    <StyledHeadCell>Old</StyledHeadCell>
+    <StyledHeadCell>New</StyledHeadCell>
+  </StyledHead>
+  <StyledBody>
+    {[
+      ['negative50', '#FDF0EF', '#FDF0EF'],
+      ['negative100', '#FADBD7', '#FADBD7'],
+      ['negative200', '#F4AFA7', '#F4AFA7'],
+      ['negative300', '#EB7567', '#EB7567'],
+      ['negative400', '#E54937', '#D44333'],
+      ['negative500', '#AE372A', '#AE372A'],
+      ['negative600', '#892C21', '#892C21'],
+      ['negative700', '#5C1D16', '#5C1D16'],
+    ].map((row, index) => {
+      const StyledColorCellOld = withStyle(StyledCell, {
+        backgroundColor: row[1],
+        color: index > 2 ? '#FDF0EF' : '#5C1D16',
+      });
+      const StyledColorCellNew = withStyle(StyledCell, {
+        backgroundColor: row[2],
+        color: index > 2 ? '#FDF0EF' : '#5C1D16',
+      });
+      return (
+        <StyledRow key={index}>
+          <StyledCell>{row[0]}</StyledCell>
+          <StyledColorCellOld>{row[1]}</StyledColorCellOld>
+          <StyledColorCellNew>{row[2]}</StyledColorCellNew>
+        </StyledRow>
+      );
+    })}
+  </StyledBody>
+</StyledTable>
+
+### Green Changes
+
+<StyledTable>
+  <StyledHead>
+    <StyledHeadCell>Name</StyledHeadCell>
+    <StyledHeadCell>Old</StyledHeadCell>
+    <StyledHeadCell>New</StyledHeadCell>
+  </StyledHead>
+  <StyledBody>
+    {[
+      ['positive50', '#EBF8F2', '#F0F9F4'],
+      ['positive100', '#CDEDDE', '#DAF0E3'],
+      ['positive200', '#88D3B0', '#AEDDC2'],
+      ['positive300', '#43B982', '#73C496'],
+      ['positive400', '#07A35A', '#3AA76D'],
+      ['positive500', '#057C44', '#368759'],
+      ['positive600', '#046236', '#2B6B46'],
+      ['positive700', '#034124', '#1C472F'],
+    ].map((row, index) => {
+      const StyledColorCellOld = withStyle(StyledCell, {
+        backgroundColor: row[1],
+        color: index > 2 ? '#EBF8F2' : '#034124',
+      });
+      const StyledColorCellNew = withStyle(StyledCell, {
+        backgroundColor: row[2],
+        color: index > 2 ? '#F0F9F4' : '#1C472F',
+      });
+      return (
+        <StyledRow key={index}>
+          <StyledCell>{row[0]}</StyledCell>
+          <StyledColorCellOld>{row[1]}</StyledColorCellOld>
+          <StyledColorCellNew>{row[2]}</StyledColorCellNew>
+        </StyledRow>
+      );
+    })}
+  </StyledBody>
+</StyledTable>
+
+### Orange Changes
+
+<StyledTable>
+  <StyledHead>
+    <StyledHeadCell>Name</StyledHeadCell>
+    <StyledHeadCell>Old</StyledHeadCell>
+    <StyledHeadCell>New</StyledHeadCell>
+  </StyledHead>
+  <StyledBody>
+    {[
+      ['warning50', '#FEF3EC', '#FEF3EF'],
+      ['warning100', '#FBE2CF', '#FBE2D6'],
+      ['warning200', '#F6BA8B', '#F7BFA5'],
+      ['warning300', '#F19248', '#F19164'],
+      ['warning400', '#ED6F0E', '#ED6E33'],
+      ['warning500', '#B4540B', '#B45427'],
+      ['warning600', '#8E4308', '#8E421F'],
+      ['warning700', '#5F2C06', '#5F2C14'],
+    ].map((row, index) => {
+      const StyledColorCellOld = withStyle(StyledCell, {
+        backgroundColor: row[1],
+        color: index > 2 ? '#FEF3EC' : '#5F2C06',
+      });
+      const StyledColorCellNew = withStyle(StyledCell, {
+        backgroundColor: row[2],
+        color: index > 2 ? '#FEF3EF' : '#5F2C14',
+      });
+      return (
+        <StyledRow key={index}>
+          <StyledCell>{row[0]}</StyledCell>
+          <StyledColorCellOld>{row[1]}</StyledColorCellOld>
+          <StyledColorCellNew>{row[2]}</StyledColorCellNew>
+        </StyledRow>
+      );
+    })}
+  </StyledBody>
+</StyledTable>
+
+The changes in most of the colors are quite subtle, but the gray (mono) palette has shifted more noticeably. Here are the updated grayscale values:
+
+### Gray Changes for Light Theme
+
+<StyledTable>
+  <StyledHead>
+    <StyledHeadCell>Name</StyledHeadCell>
+    <StyledHeadCell>Old</StyledHeadCell>
+    <StyledHeadCell>New</StyledHeadCell>
+  </StyledHead>
+  <StyledBody>
+    {[
+      ['mono100', '#FFFFFF', '#FFFFFF'],
+      ['mono200', '#F7F7F7', '#F6F6F6'],
+      ['mono300', '#F0F0F0', '#EEEEEE'],
+      ['mono400', '#E5E5E5', '#E2E2E2'],
+      ['mono500', '#CCCCCC', '#CBCBCB'],
+      ['mono600', '#B3B3B3', '#AFAFAF'],
+      ['mono700', '#999999', '#757575'],
+      ['mono800', '#666666', '#545454'],
+      ['mono900', '#333333', '#333333'],
+      ['mono1000', '#000000', '#000000'],
+    ].map((row, index) => {
+      const StyledColorCellOld = withStyle(StyledCell, {
+        backgroundColor: row[1],
+        color: index > 6 ? 'white' : 'black',
+      });
+      const StyledColorCellNew = withStyle(StyledCell, {
+        backgroundColor: row[2],
+        color: index > 5 ? 'white' : 'black',
+      });
+      return (
+        <StyledRow key={index}>
+          <StyledCell>{row[0]}</StyledCell>
+          <StyledColorCellOld>{row[1]}</StyledColorCellOld>
+          <StyledColorCellNew>{row[2]}</StyledColorCellNew>
+        </StyledRow>
+      );
+    })}
+  </StyledBody>
+</StyledTable>
+
+### Gray Changes for Dark Theme
+
+<StyledTable>
+  <StyledHead>
+    <StyledHeadCell>Name</StyledHeadCell>
+    <StyledHeadCell>Old</StyledHeadCell>
+    <StyledHeadCell>New</StyledHeadCell>
+  </StyledHead>
+  <StyledBody>
+    {[
+      ['mono100', '#CCCCCC', '#CBCBCB'],
+      ['mono200', '#999999', '#AFAFAF'],
+      ['mono300', '#7A7A7A', '#757575'],
+      ['mono400', '#5C5C5C', '#545454'],
+      ['mono500', '#3D3D3D', '#333333'],
+      ['mono600', '#292929', '#292929'],
+      ['mono700', '#1F1F1F', '#1F1F1F'],
+      ['mono800', '#141414', '#141414'],
+      ['mono900', '#111111', '#111111'],
+      ['mono1000', '#000000', '#000000'],
+    ].map((row, index) => {
+      const StyledColorCellOld = withStyle(StyledCell, {
+        backgroundColor: row[1],
+        color: index > 1 ? 'white' : 'black',
+      });
+      const StyledColorCellNew = withStyle(StyledCell, {
+        backgroundColor: row[2],
+        color: index > 1 ? 'white' : 'black',
+      });
+      return (
+        <StyledRow key={index}>
+          <StyledCell>{row[0]}</StyledCell>
+          <StyledColorCellOld>{row[1]}</StyledColorCellOld>
+          <StyledColorCellNew>{row[2]}</StyledColorCellNew>
+        </StyledRow>
+      );
+    })}
+  </StyledBody>
+</StyledTable>
+
+### Color Tokens
+
+You can access any of Base Web's colors on the `colors` object exported by `baseui/tokens`. You can read more this new module [here](/components/tokens).
+
+```js
+import {colors} from 'baseui/tokens';
+
+const theme = {
+  primary: colors.blue400,
+};
+```
+
+## Typography
+
+We have updated the typography scale included in our theme. This is the biggest breaking change in **v9**. We have removed values from the scale and shifted the default values upwards, so for instance, `font200` is now `14px` rather than `12px`. We have updated all of the components in the library to use lower typography values such that component sizing is unchanged. However, references to typography values in your code will likely need updating.
+
+**A number of values have been removed from the typography scale.** If you reference any of these in your code, _you must update these references_! Here are the removed values:
+
+- `font460`
+- `font470`
+- `font500`
+- `font600`
+- `font700`
+- `font800`
+- `font900`
+- `font1000`
+- `font1100`
+
+### Typography Mapping
+
+All of Base Web's components have been updated to adjust to the new scale such that there is very little visual change (with regards to sizing) in the components themselves. Still, you may have built some of your components or made adjustments using the typography theme object. References in your codebase will need to be updated accordingly.
+
+Here is the mapping of **v8** to **v9** typography values that we used in updating our components:
+
+<Table
+  columns={['Old', 'New']}
+  data={[
+    [`font100`, `font100`],
+    [`font200`, `font100`],
+    [`font250`, `font150`],
+    [`font300`, `font200`],
+    [`font350`, `font250`],
+    [`font400`, `font300`],
+    [`font450`, `font350`],
+    [`font460`, `font400`],
+    [`font470`, `font450`],
+    [`font500`, `font550`],
+    [`font600`, `font650`],
+    [`font700`, `font750`],
+    [`font800`, `font850`],
+    [`font900`, `font950`],
+    [`font1000`, `font1050`],
+    [`font1100`, `font1450`],
+  ]}
+/>
+
+Here is an example of updating direct uses of font theme variables in source code:
+
+```jsx
+// old
+// font300 used to return 14px/20px/400
+const StyledFoo = styled('div', props => ({
+  ...props.$theme.typography.font300,
+}));
+
+// new
+// font200 now returns 14px/20px/400
+const StyledFoo = styled('div', props => ({
+  ...props.$theme.typography.font200,
+}));
+```
+
+If you use the `Block` component to apply theme font properties, you will need to adjust those as well:
+
+```jsx
+// old
+<Block font="font300" />
+
+// new
+<Block font="font200" />
+```
+
+Note, all of this can be done automatically with our new [codemod](#codemod).
+
+### Comparison to v8
+
+The following is a comparison of the old and new typographic values:
+
+<Table
+  columns={['Old', 'Value', 'New', 'Value']}
+  data={[
+    [`font100`, `11px/16px/400`, `font100`, `12px/20px/400`],
+    [`-`, `-`, `font150`, `12px/20px/500`],
+    [`font200`, `12px/20px/400`, `font200`, `14px/20px/400`],
+    [`font250`, `12px/20px/500`, `font250`, `14px/20px/500`],
+    [`font300`, `14px/20px/400`, `font300`, `16px/24px/400`],
+    [`font350`, `14px/20px/500`, `font350`, `16px/24px/500`],
+    [`font400`, `16px/24px/400`, `font400`, `18px/28px/400`],
+    [`font450`, `16px/24px/500`, `font450`, `18px/28px/500`],
+    [`font460`, `18px/24px/400`, `-`, `-`],
+    [`font470`, `18px/24px/500`, `-`, `-`],
+    [`font500`, `20px/28px/500`, `-`, `-`],
+    [`-`, `-`, `font550`, `20px/28px/500`],
+    [`font600`, `24px/36px/500`, `-`, `-`],
+    [`-`, `-`, `font650`, `24px/32px/500`],
+    [`font700`, `32px/48px/500`, `-`, `-`],
+    [`-`, `-`, `font750`, `28px/36px/500`],
+    [`font800`, `40px/56px/500`, `-`, `-`],
+    [`-`, `-`, `font850`, `32px/40px/500`],
+    [`font900`, `52px/68px/500`, `-`, `-`],
+    [`-`, `-`, `font950`, `36px/44px/500`],
+    [`font1000`, `72px/96px/400`, `-`, `-`],
+    [`-`, `-`, `font1050`, `40px/52px/500`],
+    [`font1100`, `96px/116px/400`, `-`, `-`],
+    [`-`, `-`, `font1150`, `36px/44px/500`],
+    [`-`, `-`, `font1250`, `44px/52px/500`],
+    [`-`, `-`, `font1350`, `52px/64px/500`],
+    [`-`, `-`, `font1450`, `96px/112px/500`],
+  ]}
+/>
+
+You can see from this table that the new scale is not entirely equivalent to the old one. The new scale "resets" at `font1150` for `Display` sizes rather than growing linearly with each step. This means when migrating to **v9** you have some choices to make with regards to _how_ you map typography variables.
+
+### Typography Components
+
+All of the `baseui/typography` components have been updated according to the new typography ramps. Each typography theme value now maps one-to-one with a typography component.
+
+<Table
+  columns={['Component', 'Font', 'Value']}
+  data={[
+    [`Display1`, `font1450`, `96px/112px/500`],
+    [`Display2`, `font1350`, `52px/64px/500`],
+    [`Display3`, `font1250`, `44px/52px/500`],
+    [`Display4`, `font1150`, `36px/44px/500`],
+    [`H1`, `font1050`, `40px/52px/500`],
+    [`H2`, `font950`, `36px/44px/500`],
+    [`H3`, `font850`, `32px/40px/500`],
+    [`H4`, `font750`, `28px/36px/500`],
+    [`H5`, `font650`, `24px/32px/500`],
+    [`H6`, `font550`, `20px/28px/500`],
+    [`Label1`, `font450`, `18px/28px/500`],
+    [`Paragraph1`, `font400`, `18px/28px/400`],
+    [`Label2`, `font350`, `16px/24px/500`],
+    [`Paragraph2`, `font300`, `16px/24px/400`],
+    [`Label3`, `font250`, `14px/20px/500`],
+    [`Paragraph3`, `font200`, `14px/20px/400`],
+    [`Label4`, `font150`, `12px/20px/500`],
+    [`Paragraph4`, `font100`, `12px/20px/400`],
+  ]}
+/>
+
+There are a few important changes to note:
+
+1. **There are now four levels each of Display, Paragraph, and Label** (up from one, two, and two respectively).
+2. **`Paragraph` and `Label` no longer increase in `font-size` as the digit suffix increases**. This has been changed so that all of the typography components _decrease_ in size as the suffix increases, to stay consistent with the header (`h1`) pattern in HTML. This means you will want to change `Label1` and `Paragraph1` to `Label3` and `Paragraph3`. This can be done automatically with our new [codemod](#codemod).
+3. **`Caption1` and `Caption2` have been deprecated** in favor of `Paragraph4` and `Label4` respectively. The `Caption` components have not been removed but instead alias `Paragraph` and `Label` components. A future major may see these components removed, so it is best to swap your use of `Caption` for `Paragraph` and `Label`. This can be done automatically with our new [codemod](#codemod).
+
+For reference, here is a mapping of **v8** to **v9** components:
+
+<Table
+  columns={['Old', 'New', 'Note']}
+  data={[
+    ['Display', 'Display1', 'Aliased'],
+    ['Label1', 'Label3', ''],
+    ['Paragraph1', 'Paragraph3', ''],
+    ['Caption1', 'Paragraph4', 'Aliased'],
+    ['Caption2', 'Label4', 'Aliased'],
+  ]}
+/>
+
+### Body
+
+These values are used for body text: `Label`, and `Paragraph`.
+
+<Table
+  columns={['Name', 'Value']}
+  data={[
+    [`font100`, `12px/20px/400`],
+    [`font150`, `12px/20px/500`],
+    [`font200`, `14px/20px/400`],
+    [`font250`, `14px/20px/500`],
+    [`font300`, `16px/24px/400`],
+    [`font350`, `16px/24px/500`],
+    [`font400`, `18px/28px/400`],
+    [`font450`, `18px/28px/500`],
+  ]}
+/>
+<Caption>Read values as font-size/line-height/font-weight.</Caption>
+
+### Header
+
+These values are used for various headers: `H1`, `H2`, etc.
+
+<Table
+  columns={['Name', 'Value']}
+  data={[
+    [`font550`, `20px/28px/500`],
+    [`font650`, `24px/32px/500`],
+    [`font750`, `28px/36px/500`],
+    [`font850`, `32px/40px/500`],
+    [`font950`, `36px/44px/500`],
+    [`font1050`, `40px/52px/500`],
+  ]}
+/>
+<Caption>Read values as font-size/line-height/font-weight.</Caption>
+
+### Display
+
+These values are used for special headers, usually in association with marketing material. Internally, we assign these properties to a different `font-family`. This gives your app a little visual variety.
+
+<Table
+  columns={['Name', 'Value']}
+  data={[
+    [`font1150`, `36px/44px/500`],
+    [`font1250`, `44px/52px/500`],
+    [`font1350`, `52px/64px/500`],
+    [`font1450`, `96px/112px/500`],
+  ]}
+/>
+<Caption>Read values as font-size/line-height/font-weight.</Caption>
+
+## Codemod
+
+We made a codemod to help projects migrating to **v9**. You can run it with a single command via `npx`:
+
+```shell
+$ npx @uber-web-ui/baseui-codemods --mod=v9Styles --dir=<path_to_code>
+```
+
+This will go through all of the `*.js` files in your codebase, updating any usage of theme font values or typography components to their **v9** counterparts, following the various mappings in this post.
+
+The codemod _does not_ update your theme or colors. You should use [theme variables](#black-is-the-new-blue) and overrides if you want to customize the colors of various components.
+
+Run the script, check your diff, and click through your app to make sure things look good.
+
+Note, the codemod may not work perfectly- if we forgot any edge cases we will update the script (one more reason to use `npx`). [Click here](https://www.npmjs.com/package/@uber-web-ui/baseui-codemods) for more information on `baseui` codemods.
+
+## Inspiration
+
+Some folks may wonder why there is a noticeable stylistic update coming to Base Web. Aren't most components already implemented?
+
+It is important to remember that the Base design system is still evolving. The Base Web library has an ever-moving target ahead of it. Style changes are, at this point, a constant reality for the project.
+
+We consider this to be one of the main features of Base Web. Folks who use the Base design system know that by staying on the latest version of `baseui`, their app remains on-brand and consistent with other products.
+
+That said, we know these sorts of changes can be disruptive. We don't anticipate stylistic changes of this magnitude to come very often. When they do we will try to make the transition as painless as possible with migration guides (such as this blog post), codemods, and backward compatible mappings wherever possible.
+
+Thanks for using `baseui`!
+
+---
+
+<Caption>
+  Feel free to reach out to us on our Slack channel or through a GitHub issue if
+  you think something is missing from this migration guide.
+</Caption>

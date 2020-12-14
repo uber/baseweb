@@ -1,0 +1,11 @@
+{
+  "author": "Vojtech Miksu",
+  "authorLink": "https://twitter.com/vmiksu",
+  "title": "VS Code Extension for Base Web and React View Code Snippets",
+  "tagline": "Giving developers superpowers.",
+  "date": "19 February 2020",
+  "coverImage": "/images/blog/vs-code-extension/vscodelogo.png",
+  "coverImageWidth": 500,
+  "coverImageHeight": 500,
+  "keyWords": ["VS Code", "Code Snippets", "React", "Documentation", "View"]
+}

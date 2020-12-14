@@ -1,104 +1,147 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
-import BasicUncontrolled from 'examples/input/basic-uncontrolled.js';
 import BasicControlled from 'examples/input/basic-controlled.js';
-import CompactSize from 'examples/input/compact-size.js';
+import Sizes from 'examples/input/sizes.js';
 import AvailableStates from 'examples/input/available-states.js';
 import Enhancers from 'examples/input/enhancers.js';
-import BeforeAfter from 'examples/input/before-after.js';
 import Mask from 'examples/input/mask.js';
 import Customization from 'examples/input/overrides.js';
 import Focus from 'examples/input/focus.js';
 import WithTags from 'examples/input/with-tags.js';
+import Clearable from 'examples/input/clearable.js';
+import Password from 'examples/input/password.js';
+import BasicUncontrolled from 'examples/input/basic-uncontrolled.js';
+import WithSelect from 'examples/input/with-select.js';
 
-import Overrides from '../../components/overrides';
 import {StatefulInput} from 'baseui/input';
 import * as InputExports from 'baseui/input';
+
+import Yard from '../../components/yard/index';
+import inputYardConfig from '../../components/yard/config/input';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
 # Input
 
+<Yard placeholderHeight={48} {...inputYardConfig} />
+
 An input enables a person to type in text information.
 
-### When to use
+## When to use
 
 - When a person should provide information to the application.
 
-### Examples
+## Examples
 
-<Example title="Input basic usage" path="examples/input/basic-controlled.js">
+<Example title="Basic usage" path="input/basic-controlled.js">
   <BasicControlled />
 </Example>
 
+<Example title="States" path="input/available-states.js">
+  <AvailableStates />
+</Example>
+
+<Example title="Sizes" path="input/sizes.js">
+  <Sizes />
+</Example>
+
+<Example title="Enhancers" path="input/enhancers.js">
+  <Enhancers />
+</Example>
+
+<Example title="MaskedInput" path="input/mask.js">
+  <Mask />
+</Example>
+
+Masking an input can lead to accessibility problems. Screen-readers will read out the value of the input on focus and change events. With masking, an input's value might make visual sense, but sound strange when read aloud.
+
+Consider if you can format the value of the input on a blur event, rather than on change events. This still gives users visual feedback but also provides a much smoother experience for someone using a screenreader.
+
+<Example title="Clearable" path="input/clearable.js">
+  <Clearable />
+</Example>
+
+When `clearable` is true, clicking the clear icon on the right will clear the input's current value. By default, pressing the Escape key also clears the input, but this can be disabled by setting the `clearOnEscape` prop to false.
+Other input components such as [`Textarea`](/components/textarea), [`PhoneInput`](/components/phone-input), and [`PaymentCard`](/components/payment-card) also respect the `clearable` property.
+
+<Example title="Input for passwords" path="input/password.js">
+  <Password />
+</Example>
+
+`Input` has some built-in logic when you set `type` to `"password"`.
+A button is added to the right side of the input which, when activated, toggles the masking of the inputʼs current text.
+Allowing users to see the text they have entered is considered a [usability best practice](https://www.nngroup.com/articles/stop-password-masking/) so we have built-in this behavior.
+
+Please note, that by default the component will use the `autocomplete="new-password"` attribute. You can change that by providing the `autoComplete` property to the component, like `autoComplete="current-password"`. You can read more about this [decision here](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion#Preventing_autofilling_with_autocompletenew-password).
+
+If you want to opt-out of this behavior, you can override the toggle with a null component:
+
+```jsx
+<Input
+  type="password"
+  overrides={{
+    MaskToggleButton: () => null,
+  }}
+/>
+```
+
+You can also use `overrides` to customize the icons used in the toggle:
+
+```jsx
+<Input
+  type="password"
+  overrides={{
+    MaskToggleHideIcon: () => '🙈',
+    MaskToggleShowIcon: () => '🐵',
+  }}
+/>
+```
+
+Note, if all you want to do is change the icons, you could [update your theme](/guides/theming/#customizing-icons) instead.
+
+<Example title="Overrides usage" path="input/overrides.js">
+  <Customization />
+</Example>
+
+<Example title="Focus and ref" path="input/focus.js">
+  <Focus />
+</Example>
+
+<Example title="Create/Delete Tags" path="input/with-tags.js">
+  <WithTags />
+</Example>
+
+In the example above we use `overrides` to add "tag" functionality to our input. Type a phrase and press enter to create a new tag. Use backspace to remove tags.
+
+<Example title="Combined with a Select component" path="input/with-select.js">
+  <WithSelect />
+</Example>
+
 <Example
-  title="Input as an uncontrolled component"
-  path="examples/input/basic-uncontrolled.js"
+  title="Stateful (uncontrolled) usage"
+  path="input/basic-uncontrolled.js"
 >
   <BasicUncontrolled />
 </Example>
 
-<Example title="Input compact size" path="examples/input/compact-size.js">
-  <CompactSize />
-</Example>
+As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulInput`, which manages its own state.
 
-<Example
-  title="Input with all available states"
-  path="examples/input/available-states.js"
->
-  <AvailableStates />
-</Example>
+## API
 
-<Example title="Input with enhancers" path="examples/input/enhancers.js">
-  <Enhancers />
-</Example>
-
-<Example
-  title="Input with before and after overrides"
-  path="examples/input/before-after.js"
->
-  <BeforeAfter />
-</Example>
-
-<Example title="Input mask" path="examples/input/mask.js">
-  <Mask />
-</Example>
-
-<Example title="Input with overrides" path="examples/input/overrides.js">
-  <Customization />
-</Example>
-
-<Example title="Input Focus with a ref" path="examples/input/focus.js">
-  <Focus />
-</Example>
-
-<Example title="Create/Delete Tags" path="examples/input/with-tags.js">
-  <WithTags />
-</Example>
-
-<Overrides
-  name="Input"
-  component={InputExports}
-  renderExample={props => (
-    <StatefulInput
-      overrides={props.overrides}
-      startEnhancer="$"
-      endEnhancer=".00"
-      placeholder="Price"
-    />
-  )}
+<ApiTable
+  title="Input props"
+  config={inputYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/input/input.js')}
 />
 
-<API
-  heading="Input API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/input/input.js')}
-/>
+<Exports component={InputExports} title="Input exports" path="baseui/input" />

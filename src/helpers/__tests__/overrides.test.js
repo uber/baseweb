@@ -1,18 +1,19 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
+import {render} from '@testing-library/react';
 import {
   getOverride,
   getOverrideProps,
   toObjectOverride,
   mergeOverrides,
   mergeOverride,
-  mergeStyleOverrides,
+  mergeConfigurationOverrides,
   getOverrides,
 } from '../overrides.js';
 
@@ -43,6 +44,13 @@ describe('Helpers - Overrides', () => {
     );
     expect(getOverrideProps(override)).toMatchSnapshot(
       'returns correct object when override has props and styles',
+    );
+    expect(
+      getOverrideProps({
+        props: () => null,
+      }),
+    ).toMatchSnapshot(
+      'returns correct object when props is a function which return null',
     );
   });
 
@@ -138,20 +146,46 @@ describe('Helpers - Overrides', () => {
     });
   });
 
-  test('mergeStyleOverrides', () => {
-    const overrideObject1 = {color: 'red', textTransform: 'uppercase'};
-    const overrideObject2 = {color: 'blue'};
+  test('mergeOverride can compose props functions', () => {
+    const override1 = {
+      props: () => ({prop1: 'val1', prop2: 'val2'}),
+    };
+    const override2 = {props: () => ({prop1: 'newValue'})};
+    const result = mergeOverride(override1, override2);
+    expect(typeof result.props).toBe('function');
+    // $FlowFixMe props should be a function here
+    expect(result.props()).toEqual({
+      prop1: 'newValue',
+      prop2: 'val2',
+    });
+  });
+
+  test('mergeConfigurationOverrides', () => {
+    const overrideObject1 = {key1: 'value1', key2: 'value2'};
+    const overrideObject2 = {key1: 'overrideValue'};
     const overrideFunction1 = () => overrideObject1;
     const overrideFunction2 = () => overrideObject2;
     const expectedResult = {
-      color: 'blue',
-      textTransform: 'uppercase',
+      key1: 'overrideValue',
+      key2: 'value2',
     };
 
-    const result1 = mergeStyleOverrides(overrideObject1, overrideObject2);
-    const result2 = mergeStyleOverrides(overrideObject1, overrideFunction2);
-    const result3 = mergeStyleOverrides(overrideFunction1, overrideObject2);
-    const result4 = mergeStyleOverrides(overrideFunction1, overrideFunction2);
+    const result1 = mergeConfigurationOverrides(
+      overrideObject1,
+      overrideObject2,
+    );
+    const result2 = mergeConfigurationOverrides(
+      overrideObject1,
+      overrideFunction2,
+    );
+    const result3 = mergeConfigurationOverrides(
+      overrideFunction1,
+      overrideObject2,
+    );
+    const result4 = mergeConfigurationOverrides(
+      overrideFunction1,
+      overrideFunction2,
+    );
 
     expect(typeof result1).toBe('object');
     expect(result1).toEqual(expectedResult);
@@ -169,41 +203,130 @@ describe('Helpers - Overrides', () => {
     expect(result4()).toEqual(expectedResult);
   });
 
-  test('getOverrides', () => {
+  test('static getOverrides', () => {
     const DefaultComponent = getMockComponent();
     const OverrideComponent = getMockComponent();
 
-    expect(getOverrides(null, DefaultComponent)).toEqual([
-      DefaultComponent,
-      {},
-    ]);
+    const notSpecified = getOverrides(null, DefaultComponent);
+    expect(notSpecified).toEqual([DefaultComponent, {}]);
 
-    expect(getOverrides(OverrideComponent, DefaultComponent)).toEqual([
-      OverrideComponent,
-      {},
-    ]);
+    const customComponent = getOverrides(OverrideComponent, DefaultComponent);
+    expect(customComponent).toEqual([OverrideComponent, {}]);
 
-    expect(
-      getOverrides(
-        {
-          component: OverrideComponent,
-          props: {
-            custom: 'prop',
-          },
-          style: {
-            cursor: 'pointer',
-          },
-        },
-        DefaultComponent,
-      ),
-    ).toEqual([
-      OverrideComponent,
+    const staticProps = {custom: 'prop'};
+    const staticStyles = {cursor: 'pointer'};
+    const staticOverrides = getOverrides(
       {
-        custom: 'prop',
-        $style: {
-          cursor: 'pointer',
-        },
+        component: OverrideComponent,
+        props: staticProps,
+        style: staticStyles,
       },
+      DefaultComponent,
+    );
+    expect(staticOverrides).toEqual([
+      OverrideComponent,
+      {...staticProps, $style: staticStyles},
     ]);
+  });
+
+  test('dynamic prop overrides', () => {
+    const consoleWarn = console.warn;
+    // $FlowFixMe
+    console.warn = jest.fn();
+
+    function DefaultComponent(props) {
+      return <div>default {props.count}</div>;
+    }
+
+    function dynamicProps(props) {
+      return {count: props.count + 1};
+    }
+
+    const [Component, componentProps] = getOverrides(
+      {props: dynamicProps},
+      DefaultComponent,
+    );
+
+    const {container} = render(<Component count={1} {...componentProps} />);
+    const element = container.querySelector('div');
+    expect(element.textContent).toBe('default 2');
+
+    // $FlowFixMe
+    expect(console.warn.mock.calls.length).toBe(1);
+    // $FlowFixMe
+    console.warn = consoleWarn;
+  });
+
+  test('dynamic prop with component overrides', () => {
+    const consoleWarn = console.warn;
+    // $FlowFixMe
+    console.warn = jest.fn();
+
+    function DefaultComponent(props) {
+      return <div>default {props.count}</div>;
+    }
+
+    function CustomComponent(props) {
+      return <div>custom {props.count + 1}</div>;
+    }
+
+    function dynamicProps(props) {
+      return {count: props.count + 1};
+    }
+
+    const [Component, componentProps] = getOverrides(
+      {component: CustomComponent, props: dynamicProps},
+      DefaultComponent,
+    );
+
+    const {container} = render(<Component count={1} {...componentProps} />);
+    const element = container.querySelector('div');
+    expect(element.textContent).toBe('custom 3');
+
+    // $FlowFixMe
+    expect(console.warn.mock.calls.length).toBe(1);
+    // $FlowFixMe
+    console.warn = consoleWarn;
+  });
+
+  test('dynamic prop with style overrides', () => {
+    const consoleWarn = console.warn;
+    // $FlowFixMe
+    console.warn = jest.fn();
+
+    function DefaultComponent(props) {
+      return (
+        <div style={{backgroundColor: 'red', ...props.$style}}>
+          default {props.count}
+        </div>
+      );
+    }
+
+    function CustomComponent(props) {
+      return <div style={props.$style}>custom {props.count + 1}</div>;
+    }
+
+    function dynamicProps(props) {
+      return {count: props.count + 1};
+    }
+
+    const [Component, componentProps] = getOverrides(
+      {
+        component: CustomComponent,
+        props: dynamicProps,
+        style: {backgroundColor: 'blue'},
+      },
+      DefaultComponent,
+    );
+
+    const {container} = render(<Component count={1} {...componentProps} />);
+    const element = container.querySelector('div');
+    expect(element.getAttribute('style')).toBe('background-color: blue;');
+    expect(element.textContent).toBe('custom 3');
+
+    // $FlowFixMe
+    expect(console.warn.mock.calls.length).toBe(1);
+    // $FlowFixMe
+    console.warn = consoleWarn;
   });
 });

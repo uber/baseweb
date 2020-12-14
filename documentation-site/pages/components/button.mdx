@@ -1,30 +1,43 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
+import Exports from '../../components/exports';
 import Layout from '../../components/layout';
+import SEO from '../../components/meta-seo';
 
 import BasicButton from 'examples/button/basic.js';
-import BasicButtonCompact from 'examples/button/basic-compact.js';
+import Kinds from 'examples/button/kinds.js';
+import Sizes from 'examples/button/sizes.js';
 import WithEnhancer from 'examples/button/with-enhancers.js';
 import States from 'examples/button/states.js';
 import Shapes from 'examples/button/shapes.js';
 import Dropdown from 'examples/button/dropdown.js';
+import ButtonAsAnAnchor from 'examples/button/as-an-anchor.js';
 
-import Overrides from '../../components/overrides';
 import {Button, KIND} from 'baseui/button';
 import * as ButtonExports from 'baseui/button';
 import Upload from 'baseui/icon/upload';
 import ArrowRight from 'baseui/icon/arrow-right';
 
+import Yard from '../../components/yard/index';
+import buttonYardConfig from '../../components/yard/config/button';
+import ApiTable from '../../components/api-table';
+
+<SEO
+  description="Buttons provide cues for actions and events. These fundamental components allow users to process actions or navigate an experience."
+  keywords="button, react button, react cta, react call to action"
+/>
+
 export default Layout;
 
 # Button
+
+<Yard placeholderHeight={52} {...buttonYardConfig} />
 
 Buttons provide cues for actions and events. These fundamental components allow users to process actions or navigate an experience.
 
@@ -49,55 +62,48 @@ primary button action. As the name implies, it’s offered to supplement to crea
 
 ## Examples
 
-<Example title="Button basic usage" path="examples/button/basic.js">
+<Example title="Basic usage" path="button/basic.js">
   <BasicButton />
 </Example>
 
-<Example title="Button sizes" path="examples/button/basic-compact.js">
-  <BasicButtonCompact />
+<Example title="Kinds" path="button/kinds.js">
+  <Kinds />
 </Example>
 
-<Example title="Button with enhancers" path="examples/button/with-enhancers.js">
-  <WithEnhancer />
-</Example>
-
-<Example title="Button states" path="examples/button/states.js">
+<Example title="States" path="button/states.js">
   <States />
 </Example>
 
-<Example title="Button shapes" path="examples/button/shapes.js">
+<Example title="Sizes" path="button/sizes.js">
+  <Sizes />
+</Example>
+
+<Example title="Shapes" path="button/shapes.js">
   <Shapes />
 </Example>
 
-<Example title="Button dropdown" path="examples/button/dropdown.js">
+<Example title="Adding enhancers" path="button/with-enhancers.js">
+  <WithEnhancer />
+</Example>
+
+<Example title="As a dropdown" path="button/dropdown.js">
   <Dropdown />
 </Example>
 
-## Overrides
+<Example title="As an anchor" path="button/as-an-anchor.js">
+  <ButtonAsAnAnchor />
+</Example>
 
-<Overrides
-  name="Button"
-  component={ButtonExports}
-  renderExample={props => (
-    <React.Fragment>
-      <p>
-        <Button
-          startEnhancer={() => <ArrowRight size={24} />}
-          endEnhancer={() => <Upload size={24} />}
-          kind={KIND.secondary}
-          overrides={props.overrides}
-        >
-          Label
-        </Button>
-      </p>
-      <Button isLoading kind={KIND.secondary} overrides={props.overrides}>
-        Loading
-      </Button>
-    </React.Fragment>
-  )}
+## API
+
+<ApiTable
+  title="Button props"
+  config={buttonYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/button/button.js')}
 />
 
-<API
-  heading="Button API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/button/button.js')}
+<Exports
+  component={ButtonExports}
+  title="Button exports"
+  path="baseui/button"
 />

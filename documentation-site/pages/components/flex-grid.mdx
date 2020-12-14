@@ -1,0 +1,85 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import * as FlexGridExports from 'baseui/flex-grid';
+
+import Basic from 'examples/flex-grid/basic.js';
+import UnequalNarrow from 'examples/flex-grid/unequal-narrow.js';
+import UnequalWide from 'examples/flex-grid/unequal-wide.js';
+import Responsive from 'examples/flex-grid/responsive.js';
+import Missing from 'examples/flex-grid/missing.js';
+
+export default Layout;
+
+# FlexGrid
+
+Many layouts we build today are well-suited for the [`grid`](https://developer.mozilla.org/en-US/docs/Web/CSS/grid) CSS property, e.g. lining things up into rows or columns with specified gap sizes. Unfortunately, there is [limited support](https://caniuse.com/#feat=css-grid) in Internet Explorer today, so it is not recommended to use for certain sets of customer applications.
+
+**FlexGrid** aims to provide a grid-like component for these customer applications, using [`flexbox`](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox) to lay equal-width items in a row, and wrapping as needed to form a grid. It also supports specifying row or column gaps that only appear between items, and can adapt columns or gaps responsively to different screen widths.
+
+Note: **FlexGrid** must contain **FlexGridItem** components as children in order to get the desired behavior with widths and margins. Also note that these are both implemented using **Block**, and can take all the **Block** properties for styling.
+
+## Examples
+
+<Example title="FlexGrid basic usage" path="flex-grid/basic.js">
+  <Basic />
+</Example>
+
+<Example
+  title="FlexGrid unequal (narrow) widths"
+  path="flex-grid/unequal-narrow.js"
+>
+  <UnequalNarrow />
+</Example>
+
+It is possible to achieve unequal-width items using **Block** style overrides.
+
+<Example
+  title="FlexGrid unequal (wide) widths"
+  path="flex-grid/unequal-wide.js"
+>
+  <UnequalWide />
+</Example>
+
+Also, keep in mind that the margins won’t be set properly unless you have the correct number of items in each row. In this example, we add a hidden element after the wide element so that the last item in the first row has a margin-right of zero.
+
+<Example title="FlexGrid missing items" path="flex-grid/missing.js">
+  <Missing />
+</Example>
+
+**FlexGrid** will add additional margin after the last element such that it always lines up with the row above, and avoids `flexbox`’s default nature of spreading out.
+
+## Responsive Layouts
+
+**FlexGrid**, like **Block**, accepts props as either a single value or an array of values. See [Block](/components/block) for more details.
+
+<Example title="FlexGrid responsive usage" path="flex-grid/responsive.js">
+  <Responsive />
+</Example>
+
+## API
+
+<API
+  heading="FlexGrid API"
+  api={require('!!extract-react-types-loader!../../../src/flex-grid/flex-grid.js')}
+/>
+
+<API
+  heading="FlexGridItem API"
+  api={require('!!extract-react-types-loader!../../../src/flex-grid/flex-grid-item.js')}
+/>
+
+<Exports
+  component={FlexGridExports}
+  title="FlexGrid exports"
+  path="baseui/flex-grid"
+/>

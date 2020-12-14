@@ -1,0 +1,61 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import * as AspectRatioBoxExports from 'baseui/aspect-ratio-box';
+
+import AspectRatioBoxBasic from 'examples/aspect-ratio-box/basic.js';
+import AspectRatioBoxCalendar from 'examples/aspect-ratio-box/calendar.js';
+import AspectRatioBoxImage from 'examples/aspect-ratio-box/image.js';
+
+export default Layout;
+
+# AspectRatioBox
+
+There are times when it comes in handy to build a box with a specific aspect ratio, given a certain width. This utility component applies CSS to `::before` and `::after` pseudo-elements in order to achieve set aspect ratios. (See [CSS-Tricks](https://css-tricks.com/aspect-ratio-boxes/#article-header-id-6) for why this works.)
+
+Note: **AspectRatioBox** and **AspectRatioBoxBody** components are both implemented using **Block**, and can take all the **Block** properties for styling.
+
+## Examples
+
+<Example title="Basic usage" path="aspect-ratio-box/basic.js">
+  <AspectRatioBoxBasic />
+</Example>
+
+It can be useful to wrap an image component in an **AspectRatioBox**, so content does not reflow as the image loads. This is useful when building UIs for mobile devices, to avoid content moving around as images load on poor network connections.
+
+<Example title="Image in an AspectRatioBox" path="aspect-ratio-box/image.js">
+  <AspectRatioBoxImage />
+</Example>
+
+You could even build a calendar of square buttons with it, that resizes with the window width!
+
+<Example title="Full-width calendar" path="aspect-ratio-box/calendar.js">
+  <AspectRatioBoxCalendar />
+</Example>
+
+## API
+
+<API
+  heading="AspectRatioBox API"
+  api={require('!!extract-react-types-loader!../../../src/aspect-ratio-box/aspect-ratio-box.js')}
+/>
+
+<API
+  heading="AspectRatioBoxBody API"
+  api={require('!!extract-react-types-loader!../../../src/aspect-ratio-box/aspect-ratio-box-body.js')}
+/>
+
+<Exports
+  component={AspectRatioBoxExports}
+  title="AspectRatioBox exports"
+  path="baseui/aspect-ratio-box"
+/>

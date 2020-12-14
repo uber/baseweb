@@ -1,0 +1,65 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import * as DrawerExports from 'baseui/drawer';
+import Anchors from 'examples/drawer/anchors.js';
+import Sizes from 'examples/drawer/sizes.js';
+import SSRRenderAll from 'examples/drawer/ssr-render-all.js';
+
+import Yard from '../../components/yard/index';
+import drawerYardConfig from '../../components/yard/config/drawer';
+import ApiTable from '../../components/api-table';
+
+export default Layout;
+
+# Drawer
+
+<Yard placeholderHeight={0} {...drawerYardConfig} />
+
+<Example title="Drawer with anchor" path="drawer/anchors.js">
+  <Anchors />
+</Example>
+
+<Example title="Drawer with different size" path="drawer/sizes.js">
+  <Sizes />
+</Example>
+
+<Example
+  title="Drawer with renderAll for SSR / SEO"
+  path="drawer/ssr-render-all.js"
+>
+  <SSRRenderAll />
+</Example>
+
+## Accessibility
+
+We have built in functionality based on the recommendations for dialogs and drawers in [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices/#dialog_drawer).
+
+- Upon opening, focus will be transferred to the first interactive element (unless `autofocus` is set to false)
+- Container element has `aria-label="drawer"`
+- `Escape` key closes the drawer
+- Click on backdrop (anywhere outside dialog) hides drawer.
+- Background is not be scrollable while drawer is open (position: fixed).
+- Upon closing, focus should return to element that triggered drawer.
+
+## API
+
+<ApiTable
+  title="Drawer props"
+  config={drawerYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/drawer/drawer.js')}
+/>
+
+<Exports
+  component={DrawerExports}
+  title="Drawer exports"
+  path="baseui/drawer"
+/>

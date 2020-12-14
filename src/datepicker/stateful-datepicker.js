@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -10,18 +10,21 @@ import StatefulContainer from './stateful-container.js';
 import Datepicker from './datepicker.js';
 import type {StatefulDatepickerPropsT, DatepickerPropsT} from './types.js';
 
-function StatefulComponent(props: StatefulDatepickerPropsT<DatepickerPropsT>) {
-  return (
-    <StatefulContainer {...props}>
-      {extendedProps => <Datepicker {...extendedProps} />}
-    </StatefulContainer>
-  );
-}
+type PropsT<T> = StatefulDatepickerPropsT<DatepickerPropsT<T>, T>;
 
-StatefulComponent.defaultProps = {
-  initialState: {value: null},
-  stateReducer: (type, nextState) => nextState,
-  onChange: () => {},
-};
+class StatefulComponent<T = Date> extends React.Component<PropsT<T>> {
+  static defaultProps: PropsT<T> = {
+    initialState: {},
+    stateReducer: (type, nextState) => nextState,
+    onChange: () => {},
+  };
+  render() {
+    return (
+      <StatefulContainer {...this.props}>
+        {extendedProps => <Datepicker {...extendedProps} />}
+      </StatefulContainer>
+    );
+  }
+}
 
 export default StatefulComponent;

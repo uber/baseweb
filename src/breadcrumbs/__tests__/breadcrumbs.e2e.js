@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -13,7 +13,7 @@ const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 describe('breadcrumbs', () => {
   it('passes basic a11y tests', async () => {
     await mount(page, 'breadcrumbs');
-    await page.waitFor('a');
+    await page.waitForSelector('a');
 
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();

@@ -1,49 +1,65 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
+import Exports from '../../components/exports';
 import Layout from '../../components/layout';
+import SEO from '../../components/meta-seo';
 
 import BasicBreadcrumbs from 'examples/breadcrumbs/basic.js';
+import PseudoBreadcrumbs from 'examples/breadcrumbs/pseudo.js';
 
-import Overrides from '../../components/overrides';
 import {Breadcrumbs} from 'baseui/breadcrumbs';
 import * as BreadcrumbsExports from 'baseui/breadcrumbs';
 import {StyledLink as Link} from 'baseui/link';
 
+import Yard from '../../components/yard/index';
+import breadcrumbsYardConfig from '../../components/yard/config/breadcrumbs';
+import ApiTable from '../../components/api-table';
+
+<SEO
+  description="The Breadcrumbs component is a secondary navigation scheme that reveals the user’s location in an application."
+  keywords="breadcrumbs, react breadcrumbs"
+/>
+
 export default Layout;
 
 # Breadcrumbs
+
+<Yard placeholderHeight={24} {...breadcrumbsYardConfig} />
 
 The Breadcrumbs component is secondary navigation scheme that reveals
 the user’s location in an application.
 
 ## Examples
 
-<Example title="Breadcrumbs basic usage" path="examples/breadcrumbs/basic.js">
+<Example title="Breadcrumbs basic usage" path="breadcrumbs/basic.js">
   <BasicBreadcrumbs />
 </Example>
 
-## Overrides
+<Example
+  title="Breadcrumbs with pseudo separators"
+  path="breadcrumbs/pseudo.js"
+>
+  <PseudoBreadcrumbs />
+</Example>
 
-<Overrides
-  name="Breadcrumbs"
-  component={BreadcrumbsExports}
-  renderExample={props => (
-    <Breadcrumbs overrides={props.overrides}>
-      <Link href="#">Parent Page</Link>
-      <Link href="#">Sub-Parent Page</Link>
-      <span>Current Page</span>
-    </Breadcrumbs>
-  )}
+This is the recommended approach where SEO/Accessibility is important.
+
+## API
+
+<ApiTable
+  title="Breadcrumbs props"
+  config={breadcrumbsYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/breadcrumbs/breadcrumbs.js')}
 />
 
-<API
-  heading="Breadcrumbs API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/breadcrumbs/breadcrumbs.js')}
+<Exports
+  component={BreadcrumbsExports}
+  title="Breadcrumbs exports"
+  path="baseui/breadcrumbs"
 />

@@ -1,61 +1,126 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
+import {Notification, KIND} from 'baseui/notification';
+import {StyledLink} from 'baseui/link';
+
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import SpinnerBasic from 'examples/spinner/basic.js';
+import SpinnerNegative from 'examples/spinner/negative.js';
 import SpinnerWithSize from 'examples/spinner/with-size.js';
 import SpinnerWithOverrides from 'examples/spinner/with-overrides.js';
 
-import Overrides from '../../components/overrides';
+import SpinnerDeterminate from 'examples/spinner/determinate.js';
+
+import SpinnerNextBasic from 'examples/spinner/next-basic.js';
+import SpinnerNextSize from 'examples/spinner/next-size.js';
+import SpinnerNextCustom from 'examples/spinner/next-custom.js';
+import SpinnerNextSpan from 'examples/spinner/next-span.js';
+
 import {Spinner} from 'baseui/spinner';
 import * as SpinnerExports from 'baseui/spinner';
 
+import Yard from '../../components/yard/index';
+import spinnerYardConfig from '../../components/yard/config/spinner';
+import ApiTable from '../../components/api-table';
+
 export default Layout;
+
+<Notification overrides={{Body: {style: {width: 'auto'}}}} kind={KIND.info}>
+  We have a new, simplified Spinner coming out in v11. You can try it out today
+  by importing StyledSpinnerNext!{' '}
+  <StyledLink href="#spinner-next">Click here to read more</StyledLink>.
+</Notification>
 
 # Spinner
 
+<Yard placeholderHeight={44} {...spinnerYardConfig} />
+
 Spinners provide a visual cue that an action is processing awaiting a course of change or a result.
 
-### Accessibility
+## Accessibility
 
 - `role="progressbar"` is applied to the element.
 
 ## Examples
 
-<Example title="Spinner basic usage" path="examples/spinner/basic.js">
+<Example title="Spinner basic usage" path="spinner/basic.js">
   <SpinnerBasic />
 </Example>
 
-<Example
-  title="Spinner with different size"
-  path="examples/spinner/with-size.js"
->
+<Example title="Spinner with Negative Color" path="spinner/negative.js">
+  <SpinnerNegative />
+</Example>
+
+<Example title="Spinner with different size" path="spinner/with-size.js">
   <SpinnerWithSize />
 </Example>
 
-<Example
-  title="Spinner With Overrides"
-  path="examples/spinner/with-overrides.js"
->
+<Example title="Spinner With Overrides" path="spinner/with-overrides.js">
   <SpinnerWithOverrides />
 </Example>
 
-## Overrides
+## API
 
-<Overrides
-  name="Spinner"
+<ApiTable
+  title="Spinner props"
+  config={spinnerYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/spinner/spinner.js')}
+/>
+
+<Exports
   component={SpinnerExports}
-  renderExample={props => <Spinner overrides={props.overrides} />}
+  title="Spinner exports"
+  path="baseui/spinner"
 />
 
-<API
-  heading="Spinner API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/spinner/spinner.js')}
-/>
+## Spinner Determinate
+
+We also have a spinner for determinate loading progress, i.e. when you know how far into a task you are.
+
+<Example title="Determinate" path="spinner/determinate.js">
+  <SpinnerDeterminate />
+</Example>
+
+## Spinner Next
+
+`StyledSpinnerNext` will replace our current `Spinner` in v11 of `baseui`. This will be a breaking change since the APIs between the new and old components are not the same.
+
+What's the difference?
+
+The new spinner uses a single `div` instead of an `svg`, which fixes a wobbling issue we found on Safari. The flattened structure also makes the new spinner a bit easier to customize since there are no more `overrides` to worry about.
+
+You can use the new spinner prior to v11 like so:
+
+```js
+import {StyledSpinnerNext} from 'baseui/spinner';
+```
+
+Let's look at a few examples!
+
+<Example title="Basic" path="spinner/next-basic.js">
+  <SpinnerNextBasic />
+</Example>
+
+<Example title="Sizes" path="spinner/next-size.js">
+  <SpinnerNextSize />
+</Example>
+
+<Example title="Element" path="spinner/next-span.js">
+  <SpinnerNextSpan />
+</Example>
+
+By default the spinner styles a single `div` element. You can change the underlying element type by using the `$as` prop. In this example we change it to a `span`. This allows us to use the `Spinner` inside of a `p` element.
+
+<Example title="Customizing" path="spinner/next-custom.js">
+  <SpinnerNextCustom />
+</Example>
+
+If you want to customize the default styling of the spinner you can extend it using [`withStyle`](/blog/base-web-v8/#themed-withstyle-function). In this example we modify the size of the spinner (via `width`, `height`, and `borderWidth`) as well as the highlight color (via `borderTopColor`). You could also use `withStyle` to add margins to the spinner or align it within another element.

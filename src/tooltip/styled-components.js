@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -12,6 +12,7 @@ import {
   getInnerStyles,
 } from '../popover/styled-components.js';
 import {getEndPosition} from '../popover/utils.js';
+import type {SharedStylePropsArgT} from '../popover/types.js';
 
 /**
  * We want to reuse the default Popover styles and add our overrides
@@ -24,31 +25,28 @@ import {getEndPosition} from '../popover/utils.js';
  * We could create our own withStyleDeep that also takes the $style
  * prop into account
  */
-export const Body = styled('div', props => ({
+export const Body = styled<SharedStylePropsArgT>('div', props => ({
   ...getBodyStyles(props),
-  // Tooltip
-  backgroundColor: props.$theme.tooltip.backgroundColor,
-  borderRadius: props.$theme.borders.radius200,
+  backgroundColor: props.$theme.colors.tooltipBackground,
   boxShadow: props.$theme.lighting.shadow400,
-  color: props.$theme.colors.mono100,
+  color: props.$theme.colors.tooltipText,
   // Reset transition property to opacity only, and static transform
   transitionProperty: 'opacity',
   transform: getEndPosition(props.$popoverOffset),
 }));
 
-export const Inner = styled('div', props => ({
+export const Inner = styled<SharedStylePropsArgT>('div', props => ({
   ...getInnerStyles(props),
-  backgroundColor: props.$theme.tooltip.backgroundColor,
-  borderRadius: props.$theme.borders.radius200,
+  backgroundColor: props.$theme.colors.tooltipBackground,
   paddingTop: props.$theme.sizing.scale300,
   paddingBottom: props.$theme.sizing.scale300,
-  paddingLeft: props.$theme.sizing.scale300,
-  paddingRight: props.$theme.sizing.scale300,
-  ...props.$theme.typography.font250,
-  color: props.$theme.colors.background,
+  paddingLeft: props.$theme.sizing.scale600,
+  paddingRight: props.$theme.sizing.scale600,
+  ...props.$theme.typography.font150,
+  color: props.$theme.colors.tooltipText,
 }));
 
-export const Arrow = styled('div', props => ({
+export const Arrow = styled<SharedStylePropsArgT>('div', props => ({
   ...getArrowStyles(props),
-  backgroundColor: props.$theme.tooltip.backgroundColor,
+  backgroundColor: props.$theme.colors.tooltipBackground,
 }));

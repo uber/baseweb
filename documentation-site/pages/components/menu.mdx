@@ -1,20 +1,23 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import Basic from 'examples/menu/basic.js';
 import Compact from 'examples/menu/compact.js';
 import Profile from 'examples/menu/profile.js';
-import Stateful from 'examples/menu/stateful.js';
+import Stateless from 'examples/menu/stateless.js';
 import Child from 'examples/menu/child.js';
+import ChildRenderAll from 'examples/menu/child-render-all.js';
+import Grouped from 'examples/menu/grouped.js';
 import VirtualList from 'examples/menu/virtual-list.js';
+import Href from 'examples/menu/href.js';
 
 import Overrides from '../../components/overrides';
 import {StatefulMenu, OptionProfile} from 'baseui/menu';
@@ -22,52 +25,79 @@ import * as MenuExports from 'baseui/menu';
 import {Block} from 'baseui/block';
 import Code from '../../components/code';
 
+import Yard from '../../components/yard/index';
+import menuYardConfig from '../../components/yard/config/menu';
+import ApiTable from '../../components/api-table';
+
 export default Layout;
 
 # Menu
 
-Menus in Base UI provide an opportunity to nest various hierarchical navigation, features, or
+<Yard placeholderHeight={52} {...menuYardConfig} />
+
+Menus in Base Web provide an opportunity to nest various hierarchical navigation, features, or
 settings. Each menu item has an option to include an icon by default, but this can be removed.
 The menus themselves share the functionality and display of select menus.
 
-### When to use
+## When to use
 
 - When you want to display a navigational list.
 - When you want to display a list of actions.
 
-### Keybindings
+## Keybindings
 
 - `KeyDown / KeyUp` cycles down / up the menu list, highlighting items as needed.
 - `Enter` selects the currently highlighted item. If no item is highlighted, select the first item in the menu list.
 
+## Accessibility
+
+In order to have the `aria-activedescendant` attribute set on the menu you need to provide menu item id
+as one of the properties returned from the `getRequiredItemProps` function that is called for each rendered item.
+The provided id will be set as a value for the item container's `id` attribute therefore it has to be unique on a page.
+
 ## Examples
 
-<Example title="Menu Basic Usage" path="examples/menu/basic.js">
+<Example title="Menu Basic Usage" path="menu/basic.js">
   <Basic />
 </Example>
 
-<Example title="Menu with Compact Menu Items" path="examples/menu/compact.js">
+<Example title="Menu with Compact Menu Items" path="menu/compact.js">
   <Compact />
 </Example>
 
-<Example title="Menu with Profile Menu" path="examples/menu/profile.js">
+<Example title="Menu with Profile Menu" path="menu/profile.js">
   <Profile />
 </Example>
 
-<Example title="Menu Stateful example" path="examples/menu/stateful.js">
-  <Stateful />
+<Example title="Menu Stateless example" path="menu/stateless.js">
+  <Stateless />
 </Example>
 
-<Example title="Menu with Child Menu" path="examples/menu/child.js">
+<Example title="Menu with Child Menu" path="menu/child.js">
   <Child />
 </Example>
 
 <Example
+  title="Menu with Child Menu renderAll (SSR / SEO)"
+  path="menu/child-render-all.js"
+>
+  <ChildRenderAll />
+</Example>
+
+<Example title="Menu with Grouped Items" path="menu/grouped.js">
+  <Grouped />
+</Example>
+
+<Example
   title="Menu with Long Items List"
-  path="examples/menu/virtual-list.js"
+  path="menu/virtual-list.js"
   additionalPackages={{'react-virtualized': '^9.21.0'}}
 >
   <VirtualList />
+</Example>
+
+<Example title="Menu with URL href" path="menu/href.js">
+  <Href />
 </Example>
 
 ## Overrides
@@ -130,67 +160,52 @@ The menus themselves share the functionality and display of select menus.
       </Block>
       <Code>
         {`import {StatefulMenu, OptionProfile} from 'baseui/menu';
-export default () => (
-  <StatefulMenu
-    items={[...new Array(4)].map(() => ({
-      title: 'David Smith',
-      subtitle: 'Senior Engineering Manager',
-      body: 'Uber Everything',
-      imgUrl: 'https://via.placeholder.com/60x60',
-    }))}
-    overrides={{
-      List: {},
-      ListItem: {},
-      Option: {
-        component: OptionProfile,
-        props: {
-          getProfileItemLabels: ({title, subtitle, body}) => ({
-            title,
-            subtitle,
-            body,
-          }),
-          getProfileItemImg: item => item.imgUrl,
-          getProfileItemImgText: item => item.title,
-          overrides: {
-            ListItemProfile: {},
-            ProfileImgContainer: {},
-            ProfileImg: {},
-            ProfileLablesContainer: {},
-            ProfileTitle: {},
-            ProfileSubtitle: {},
-            ProfileBody: {}
-          },
-        },
-      },
-    }}
-  />
-);`}
+          export default () => (
+            <StatefulMenu
+              items={[...new Array(4)].map(() => ({
+                title: 'David Smith',
+                subtitle: 'Senior Engineering Manager',
+                body: 'Uber Everything',
+                imgUrl: 'https://via.placeholder.com/60x60',
+              }))}
+              overrides={{
+                List: {},
+                ListItem: {},
+                Option: {
+                  component: OptionProfile,
+                  props: {
+                    getProfileItemLabels: ({title, subtitle, body}) => ({
+                      title,
+                      subtitle,
+                      body,
+                    }),
+                    getProfileItemImg: item => item.imgUrl,
+                    getProfileItemImgText: item => item.title,
+                    overrides: {
+                      ListItemProfile: {},
+                      ProfileImgContainer: {},
+                      ProfileImg: {},
+                      ProfileLabelsContainer: {},
+                      ProfileTitle: {},
+                      ProfileSubtitle: {},
+                      ProfileBody: {}
+                    },
+                  },
+                },
+              }}
+            />
+          );`}
       </Code>
     </React.Fragment>
   )}
 />
 
-<API
-  heading="Menu API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/menu/menu.js')}
+## API
+
+<ApiTable
+  title="Menu props"
+  config={menuYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/menu/menu.js')}
 />
 
-<API
-  heading="Stateful Menu API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/menu/stateful-menu.js')}
-/>
-
-<API
-  heading="Stateful Container API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/menu/stateful-container.js')}
-/>
-
-<API
-  heading="Menu Item Api"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/menu/option-list.js')}
-/>
-
-<API
-  heading="Profile Menu Item Api"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/menu/option-profile.js')}
-/>
+<Exports component={MenuExports} title="Menu exports" path="baseui/menu" />

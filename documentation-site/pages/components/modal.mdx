@@ -1,19 +1,30 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import ModalBasic from 'examples/modal/basic.js';
+import ModalAutoFocus from 'examples/modal/autofocus.js';
+import ModalBuriedInteractiveElement from 'examples/modal/buried-interactive-element.js';
+import ModalNested from 'examples/modal/nested.js';
+import ModalSized from 'examples/modal/sized.js';
+import * as ModalExports from 'baseui/modal';
+
+import Yard from '../../components/yard/index';
+import modalYardConfig from '../../components/yard/config/modal';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
 # Modal
+
+<Yard placeholderHeight={0} {...modalYardConfig} />
 
 A design structure to organize and hide content, so as not to overwhelm the user.
 
@@ -30,23 +41,71 @@ The alert modal is to intended to focus the user on an urgent message that requi
 action. By contrast to standard modals, alert modals have no close “X”, nor do they allow for out
 of bounds dismissal. The primary action is always a system red with a grey cancel action.
 
-### Accessibility
+## Accessibility
 
-- Upon opening, focus will be transferred to the dialog itself (unless `autofocus` is set to false)
+We have built in functionality based on the recommendations for dialogs and modals in [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices/#dialog_modal).
+
+- Upon opening, focus will be transferred to the first interactive element (unless `autofocus` is set to false)
 - Dialog element has `aria-modal="true"`
 - Explicitly exposes a `role` prop to control whether `dialog` or `alertdialog` is used.
-- `Tab` key moves between focusable items (form inputs, footer buttons, etc). User should not be able to tab to items outside of modal – lucky for us most modern browsers seem to enforce this by default now for role dialog or aria-modal.
+- `Tab` key moves between focusable items (form inputs, footer buttons, etc). User should not be able to tab to items outside of modal.
 - `Escape` key closes the modal
 - Click on backdrop (anywhere outside dialog) hides modal.
 - Background is not be scrollable while modal is open (position: fixed).
+- Upon closing, focus should return to element that triggered modal.
 
 ## Examples
 
-<Example title="Modal With Button Trigger" path="examples/modal/basic.js">
+<Example title="Modal With Button Trigger" path="modal/basic.js">
   <ModalBasic />
 </Example>
 
-<API
-  heading="Modal API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/modal/modal.js')}
+<Example title="Placing initial focus" path="modal/autofocus.js">
+  <ModalAutoFocus />
+</Example>
+
+The modal will by default focus the first interactive element.
+If you want to focus something further down in the tab order, you can use the `autoFocus` property.
+This might be useful for targeting the most common action in the modal, such as a confirmation button.
+
+<Example title="Setting the size of the modal" path="modal/sized.js">
+  <ModalSized />
+</Example>
+
+A typical use case for more complex modals is to increase the size of the modal. Here, we are using a combination of overrides and in-line styles to set the height of the modal to `80vh` and the width to `80vw`. We also set the Modal to be a column-based flex container, while the ModalBody is then set to flex `1 1 0` in order to properly space the header and footer.
+
+<Example
+  title="Dealing with a buried interactive element"
+  path="modal/buried-interactive-element.js"
+>
+  <ModalBuriedInteractiveElement />
+</Example>
+
+In this example, the first interactive element (a button) is buried by the modal's content.
+The normal behavior of the modal will be to skip past the content and focus on the interactive element.
+In these cases, it is recommended by WAI-ARIA to avoid skipping content and focusing on a normally non-focusable element at the top of the content (such as an `h1` or `p` tag).
+Ideally, we want to avoid an abrupt shift in context both visually and for screen-readers.
+
+You can achieve this with the `FocusOnce` utility component included in `baseui/modal`.
+To use it, wrap a non interactive element at the top of the modal in `FocusOnce`.
+This will allow the element to be targeted by `autofocus`.
+Once the user tabs away, the element will be removed from the tab ordering.
+
+<Example title="Adding nested modals" path="modal/nested.js">
+  <ModalNested />
+</Example>
+
+**Notice** that you need to handle modals closing order following their stacking order
+when multiple modals are dismissed at the same time. This is important to have the body
+scrolling restored in an expected way. See how the initial modal's `close` function is
+passed as a callback to the modal that is stacked on top of it `toggleConfirm(false, close)`.
+
+## API
+
+<ApiTable
+  title="Modal props"
+  config={modalYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/modal/modal.js')}
 />
+
+<Exports component={ModalExports} title="Modal exports" path="baseui/modal" />

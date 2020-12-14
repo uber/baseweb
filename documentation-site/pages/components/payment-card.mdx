@@ -1,0 +1,95 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import Controlled from 'examples/payment-card/controlled.js';
+import Uncontrolled from 'examples/payment-card/uncontrolled.js';
+import DefaultValue from 'examples/payment-card/defaultvalue.js';
+import Form from 'examples/payment-card/form.js';
+
+import {StatefulPaymentCard} from 'baseui/payment-card';
+
+import * as PaymentCardExports from 'baseui/payment-card';
+import * as InputExports from 'baseui/input';
+
+import {Table} from 'baseui/table';
+
+import Yard from '../../components/yard/index';
+import paymentCardYardConfig from '../../components/yard/config/payment-card';
+import ApiTable from '../../components/api-table';
+
+export default Layout;
+
+# Payment Card
+
+<Yard placeholderHeight={48} {...paymentCardYardConfig} />
+
+The Payment Card input **automatically detects and formats credit card types**. It shows a small thumbnail icon of the parsed credit card brand to let users know they have entered their card in the correct format. The supported credit card brands are listed here:
+
+<Table
+  columns={['Card Type', 'Example Number']}
+  data={[
+    ['American Express', '378282246310005'],
+    ['Diners Club', '36259600000004'],
+    ['Discover', '6011111111111117'],
+    ['ELO', '6550000000000001'],
+    ['JCB', '3530111333300000'],
+    ['Maestro', '6304000000000000'],
+    ['Mastercard', '5555555555554444'],
+    ['UnionPay', '6246729687894613'],
+    ['Visa', '4111111111111111'],
+  ]}
+/>
+
+The [card-validator](https://github.com/braintree/card-validator) library is used to determine the card format. It's also re-exported from `baseui/payment-card` as `valid` in case you need more metadata about the card.
+
+This component is based on the [Input](/components/input) component. All of the props you can pass to `Input` also work on `PaymentCard`: `size`, `error`, `positive`, `disabled`, etc. The only exception to this is `overrides`, which has a [slightly different API](/components/payment-card/#overrides).
+
+## Examples
+
+<Example title="Basic usage" path="payment-card/controlled.js">
+  <Controlled />
+</Example>
+
+<Example title="Default value" path="payment-card/defaultvalue.js">
+  <DefaultValue />
+</Example>
+
+<Example title="Payment form" path="payment-card/form.js">
+  <Form />
+</Example>
+
+If you'd like to add further validations, check out the [card-validator](https://www.npmjs.com/package/card-validator)
+package that Base Web uses under the hood too.
+
+<Example
+  title="Stateful (uncontrolled) usage"
+  path="payment-card/uncontrolled.js"
+>
+  <Uncontrolled />
+</Example>
+
+As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulPaymentCard`, which manages its own state.
+
+## API
+
+<ApiTable
+  title="Payment Card props"
+  config={paymentCardYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/payment-card/payment-card.js')}
+/>
+
+<Exports
+  component={PaymentCardExports}
+  title="Payment Card exports"
+  path="baseui/payment-card"
+/>
+
+<Exports component={InputExports} title="Input exports" path="baseui/input" />

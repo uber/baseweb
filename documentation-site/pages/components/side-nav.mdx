@@ -1,0 +1,95 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import SideNavBasic from 'examples/side-navigation/basic.js';
+import NavOverrides from 'examples/side-navigation/nav-overrides.js';
+
+import {Navigation} from 'baseui/side-navigation';
+import * as NavExports from 'baseui/side-navigation';
+
+import Yard from '../../components/yard/index';
+import sideNavYardConfig from '../../components/yard/config/side-nav';
+import ApiTable from '../../components/api-table';
+
+export default Layout;
+
+# Side Navigation
+
+<Yard placeholderHeight={192} {...sideNavYardConfig} />
+
+The side navigation menu is a list of links that is used for a website navigation. The side navigation can provide a multi-level structure.
+
+## Examples
+
+<Example title="Side navigation basic usage" path="side-navigation/basic.js">
+  <SideNavBasic />
+</Example>
+
+<Example
+  title="Side navigation with overrides"
+  path="side-navigation/nav-overrides.js"
+>
+  <NavOverrides />
+</Example>
+
+## React Router
+
+By default, the `Navigation` component uses `<a href>` and reloads the page.
+When you use JavaScript based routing (for example `react-router`), you need
+to prevent the default action via `e.preventDefault()` first.
+
+```jsx
+import {withRouter} from 'react-router';
+
+const App = ({history, location}) => {
+  return (
+    <Navigation
+      items={[
+        {
+          title: 'Home',
+          itemId: '/home',
+        },
+      ]}
+      activeItemId={location.pathname}
+      onChange={({event, item}) => {
+        // prevent page reload
+        event.preventDefault();
+        history.push(item.itemId);
+      }}
+    />
+  );
+};
+
+export default withRouter(App);
+```
+
+## Performance
+
+If you are experiencing performance issues from rendering hundreds of items, consider adding a
+comparator function through the `itemMemoizationComparator` prop. This function is provided to
+a `React.memo` call on the `NavItem` component. See React's
+[documentation](https://reactjs.org/docs/react-api.html#reactmemo) for more information on how
+this works. Take care to ensure that you diff all of the props you care about. While powerful,
+intervening in React's default update schedule can lead to unexpected results.
+
+## API
+
+<ApiTable
+  title="Side Navigation props"
+  config={sideNavYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/side-navigation/nav.js')}
+/>
+
+<Exports
+  component={NavExports}
+  title="Side Navigation exports"
+  path="baseui/side-navigation"
+/>

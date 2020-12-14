@@ -1,0 +1,278 @@
+import metadata from './metadata.json';
+import LiveEditor from './live-editor';
+import Layout from '../../../components/layout';
+import Yard from '../../../components/yard/index';
+import {BlogImage, Meta, Caption} from '../../../components/blog';
+
+import {View, PropTypes} from 'react-view';
+import {Button, SIZE} from 'baseui/button';
+
+export default Layout;
+
+<Meta data={metadata} />
+
+React View is a set of tools that aspires to close the gap between users, developers and designers of component libraries. React View aims to make documentation more interactive and useful. It utilizes already popular tools such as babel and prettier.
+
+It is an interactive playground, documentation and code generator for your components. You can use it to document your React component APIs, enabling users to live-edit the props and grab the generated ready-to-use source code.
+
+The example below demonstrates the basic features of React View:
+
+- The component live preview (`baseui/button` in this case).
+- Knobs representing `Button` props (fully interactive).
+- The source code editor. The source code is automatically generated based on the initial configuration and playground state. The source code is also editable.
+- Some additional actions. For example, you can format the code with Prettier or reset the playground state.
+
+<div style={{margin: '2em 0.5em'}}>
+  <Yard
+    componentName="Button"
+    placeholderHeight={56}
+    theme={[]}
+    props={{
+      children: {
+        value: 'Hello',
+        type: PropTypes.ReactNode,
+        description: 'Visible label.',
+      },
+      size: {
+        value: 'SIZE.default',
+        defaultValue: 'SIZE.default',
+        options: SIZE,
+        type: PropTypes.Enum,
+        description: 'Defines the size of the button.',
+        imports: {
+          'baseui/button': {
+            named: ['SIZE'],
+          },
+        },
+      },
+      onClick: {
+        value: '() => alert("click")',
+        type: PropTypes.Function,
+        description: 'Function called when button is clicked.',
+      },
+      disabled: {
+        value: false,
+        type: PropTypes.Boolean,
+        description: 'Indicates that the button is disabled',
+      },
+      overrides: {
+        value: undefined,
+        type: PropTypes.Custom,
+        description: 'Lets you customize all aspects of the component.',
+        custom: {
+          names: [],
+          sharedProps: {},
+        },
+      },
+    }}
+    scope={{
+      Button,
+      SIZE,
+    }}
+    imports={{
+      'baseui/button': {
+        named: ['Button'],
+      },
+    }}
+  />
+</div>
+
+All these parts work in harmony—an update to one of them synchronizes the state across all of them. So you can change a knob to update the source code or edit the source code to update knobs.
+
+React View is open sourced as [uber/react-view](https://github.com/uber/react-view) and you can get it from npm right now:
+
+```
+yarn add react-view
+```
+
+## Wait...But Why?
+
+Our team is responsible for this website and the entire Base Web component library. You might assume that most of our job consists of building React components. However, as the number of Base Web users grows, some days it feels more like this:
+
+<BlogImage
+  src="https://user-images.githubusercontent.com/1387913/69685208-785d8d80-1070-11ea-82bf-81bd6b7f28ee.png"
+  alt="UI Platform team's workload"
+  caption="UI Platform team's workload"
+  style={{maxWidth: '400px'}}
+/>
+
+**And that's a good thing**. If you don’t spend a lot of time helping other developers, it means that nobody uses your tools. We went from 0 to 500 applications at Uber in a single year! That translates into about 1000 developers. There are over 50 components, hundreds of props and endless possibilities. Is there a way to reduce the burden of support?
+
+We believe that by building amazing documentation we can significantly reduce the number of questions we receive in support channels and make developers happier. We have invested a significant amount of time to experiment with different kinds of documentation and React View is our latest iteration.
+
+> Build documentation so good they can’t ignore it.
+
+Does it work? Check for yourself! You can browse through our components on the left-hand side and explore various features.
+
+## How to Use React View
+
+There are three main ways of using React View:
+
+- **All-in-one playground**. Import `<View />`, give it the component configuration and drop it in your web documentation. This is ideal if you want to start as quickly as possible and don't need to customize anything.
+- **Build your own playground**. Import the `useView` hook and give it the component configuration. This hook handles the playground state and returns various props and callbacks that you can use in your own UI components. React View also exports all default UI parts separately (`Editor`, `ActionButtons`, `Compiler`, `Knobs`, `Error`...) so you can reuse them. This is a great option if you want to customize some parts of the default UI (or all of it) without worrying about the rest.
+- **Live code editing only**. Sometimes it's useful to only have editable source code and live preview without the list of props. You can use `useView` for that too. Just don't give it any component configuration and don't render the `<Knobs />` component. React View uses babel, so you can add additional presets and enable TypeScript.
+
+### All-in-one Playground
+
+```tsx
+import {View, PropTypes} from 'react-view';
+import {Button} from 'baseui/button';
+
+export default () => (
+  <View
+    componentName="Button"
+    props={{
+      children: {
+        value: 'Hello',
+        type: PropTypes.ReactNode,
+        description: 'Visible label.',
+      },
+      onClick: {
+        value: '() => alert("click")',
+        type: PropTypes.Function,
+        description: 'Function called when button is clicked.',
+      },
+      disabled: {
+        value: false,
+        type: PropTypes.Boolean,
+        description: 'Indicates that the button is disabled',
+      },
+    }}
+    scope={{
+      Button,
+    }}
+    imports={{
+      'baseui/button': {
+        named: ['Button'],
+      },
+    }}
+  />
+);
+```
+
+This is a basic example demonstrating the all-in-one `View` component. You need to define the component name, props, scope and imports. This example renders the demo at the beginning of this article (except the `size` prop).
+
+### Build Your Own Playground
+
+**Bring your own UI**. The View component is a tiny wrapper around the `useView` hook. If you want to customize and have more control, you can use the `useView` hook directly. You can still re-use our default UI components or create your own:
+
+```tsx
+import * as React from 'react';
+import {Button} from 'baseui/button';
+
+import {
+  useView,
+  Compiler,
+  Knobs,
+  Editor,
+  Error,
+  ActionButtons,
+  Placeholder,
+  PropTypes,
+} from 'react-view';
+
+export default () => {
+  const params = useView({
+    componentName: 'Button',
+    props: {
+      children: {
+        value: 'Hello',
+        type: PropTypes.ReactNode,
+        description: 'Visible label.',
+      },
+      onClick: {
+        value: '() => alert("click")',
+        type: PropTypes.Function,
+        description: 'Function called when button is clicked.',
+      },
+      disabled: {
+        value: false,
+        type: PropTypes.Boolean,
+        description: 'Indicates that the button is disabled',
+      },
+    },
+    scope: {
+      Button,
+    },
+    imports: {
+      'baseui/button': {
+        named: ['Button'],
+      },
+    },
+  });
+
+  return (
+    <React.Fragment>
+      <Compiler
+        {...params.compilerProps}
+        minHeight={62}
+        placeholder={Placeholder}
+      />
+      <Error msg={params.errorProps.msg} isPopup />
+      <Knobs {...params.knobProps} />
+      <Editor {...params.editorProps} />
+      <Error {...params.errorProps} />
+      <ActionButtons {...params.actions} />
+    </React.Fragment>
+  );
+};
+```
+
+### Live Code Editing Only
+
+If you don't need the code generation or props documentation, you can also use React View for editing source code with a live preview.
+
+<LiveEditor
+  initialCode={`() => {
+  const text: string = "Hey";
+  return <h3>{text}</h3>;
+}`}
+/>
+
+### Usage
+
+```tsx
+import {useView, Compiler, Editor, Error} from 'react-view';
+import presetTypescript from '@babel/preset-typescript';
+
+export default () => {
+  const params = useView({
+    initialCode: `() => {
+      const text: string = "Hey";
+      return <h3>{text}</h3>;
+    }`,
+    scope: {},
+    onUpdate: console.log,
+  });
+
+  return (
+    <React.Fragment>
+      <Compiler {...params.compilerProps} presets={[presetTypescript]} />
+      <Editor {...params.editorProps} language="tsx" />
+      <Error {...params.errorProps} />
+    </React.Fragment>
+  );
+};
+```
+
+This example also demonstrates how to opt-in into TypeScript support. Since we use babel as the compiler, you can simply add additional presets (`preset-react` is applied by default). If you are using additional components or dependencies, you need to pass them through `scope`.
+
+It can also compile a naked JSX element:
+
+<LiveEditor initialCode={`<h3>Hey</h3>`} />
+
+Or pretty much anything that can be executed after the return statement of JavaScript function:
+
+<LiveEditor initialCode={`2 + 5`} />
+
+## Future
+
+This is just a start for us. We're always gathering feedback and moving forward. There is already a [list of things](https://github.com/uber/react-view/issues/2) we want to improve. And there is also a long-term vision about how far the automatic code generation could get us.
+
+> React View is a set of tools that aspires to close the gap between users, developers and designers of component libraries.
+
+For now, we have designed React View to be as flexible as possible. Our hope is that it will resonate with the community and we will see new applications, custom built UI components and 3rd party design system integrations.
+
+We could all save a lot of time by not writing code that can be generated.
+
+Please visit our [GitHub repository](https://github.com/uber/react-view) for more examples and documentation.

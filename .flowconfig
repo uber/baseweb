@@ -1,5 +1,6 @@
 [ignore]
-dist
+<PROJECT_ROOT>/dist/.*
+<PROJECT_ROOT>/packages/.*
 babel
 storybook-static
 .*/node_modules/.*[^(package)]\.json$
@@ -9,14 +10,18 @@ documentation-site/.next/.*
 
 [include]
 ./src/
+documentation-site/examples/.*
 
 [libs]
 
 [lints]
 
 [options]
+module.ignore_non_literal_requires=true
 module.name_mapper.extension='md' -> '<PROJECT_ROOT>/flow/WebpackAsset.js.flow'
-module.name_mapper='^baseui' ->'<PROJECT_ROOT>/dist'
-module.name_mapper='^examples' ->'<PROJECT_ROOT>/documentation-site/static/examples'
+module.name_mapper='^baseui' ->'<PROJECT_ROOT>/src'
+module.name_mapper='^examples' ->'<PROJECT_ROOT>/documentation-site/examples'
+log.file=.flow.log
+sharedmemory.hash_table_pow=21
 
 [strict]

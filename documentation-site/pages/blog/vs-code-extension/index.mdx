@@ -1,0 +1,115 @@
+import metadata from './metadata.json';
+import Layout from '../../../components/layout';
+import Yard from '../../../components/yard/index';
+import {BlogImage, Meta, Caption} from '../../../components/blog';
+
+import {View, PropTypes} from 'react-view';
+import {Button, SIZE} from 'baseui/button';
+
+import codeSnippets from './code-snippets.gif';
+import coloring from './coloring.png';
+import cheatSheet from './cheat-sheet.png';
+import commands from './commands.png';
+
+export default Layout;
+
+<Meta data={metadata} />
+
+VS Code is one of the most popular code editors for web developers globally and also at Uber. We have decided to look into its [extension API](https://code.visualstudio.com/api) and ways how we could enhance the VS Code experience for all Base Web users. Today we are introducing an official [Base Web extension](https://marketplace.visualstudio.com/items?itemName=Uber.baseweb) and also a code snippet generator for React View.
+
+## Code Snippets
+
+> Code snippets are templates that make it easier to enter repeating code patterns, such as loops or conditional-statements.
+
+How do you add an existing component in your code? You probably open some examples, copy & paste it and do the modifications. All that can take some significant time and a loss of focus. Code snippets are a much faster way to do all those things without switching windows:
+
+1. Start typing the snippet activation keyword, for example `Button import`.
+2. Press `Tab` to insert a suggested snippet.
+3. Keep pressing `Tab` to jump through predefined tabstops with placeholders to modify the default values.
+4. Let [Prettier](https://prettier.io/) to take care of the final formatting (optional).
+
+<BlogImage
+  src={codeSnippets}
+  style={{maxWidth: '540px'}}
+  alt="using code snippets to generate import statements and components"
+  caption="Usage of code snippets"
+  full
+/>
+
+Our [extension](https://marketplace.visualstudio.com/items?itemName=Uber.baseweb) has two code snippets for each Base Web component. One is for the import statement and second for the components itself. There are also some additional snippets for importing React and functional component body.
+
+You might wonder how these snippets are defined. VS Code provides a [special grammar](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_grammar) for that. For example, this is a definition for the `Button` component:
+
+```
+"Button": {
+  "scope": "javascript,javascriptreact,typescript,typescriptreact",
+  "prefix": [
+   "Button component"
+  ],
+  "description": "Base Button component.",
+  "body": [
+   "<Button",
+   "  ${1:onClick={${2:() => alert(\"click\")}\\}}",
+   "  ${3:startEnhancer={${4:undefined}\\}}",
+   "  ${5:endEnhancer={${6:undefined}\\}}",
+   "  ${7:disabled}",
+   "  ${8:kind={${9|KIND.primary,KIND.secondary,KIND.tertiary,KIND.minimal|}\\}}",
+   "  ${10:size={${11|SIZE.default,SIZE.mini,SIZE.compact,SIZE.large|}\\}}",
+   "  ${12:shape={${13|SHAPE.default,SHAPE.pill,SHAPE.round,SHAPE.square|}\\}}",
+   "  ${14:isLoading}",
+   "  ${15:isSelected}",
+   ">",
+   "  ${16:Hello}",
+   "</Button>"
+  ]
+}
+```
+
+Did we write definitions like that for all 50+ components? Nope! That would be
+
+- a lot of work
+- prone to bugs
+- hard keeping up to date
+
+This is where [React View](https://github.com/uber/react-view) comes to the picture. Our components are documented with React View and therefore they already have detailed documentation. We were able to leverage that and generate the snippets programmatically. **If you are using React View now you can get VS Code snippets for free.** For more information, go to the [React View documentation](https://github.com/uber/react-view#code-snippets).
+
+## Coloring
+
+When using the Base Web component library and design system, you need to often reference the design tokens and colors. It is not apparent what colors our variables result into. You might need to check the documentation first or test it in your app. Our extension adds a visual cue. By default, you will see all color variables underlined:
+
+<BlogImage
+  src={coloring}
+  alt="showing the colored underlines for Base Web color variables"
+  caption="Base Web colors visualized"
+  full
+/>
+
+This feature can be configured in settings. You can disable it, switch between Dark and Light themes or choose a different visual cue like the background color.
+
+## Theme Cheat Sheet
+
+One of the most visited pages of our documentation is [Theming](/guides/theming/). We already mentioned colors but there are many other theming values related to sizing, fonts, borders and others. We really want to streamline this look up process so we have added Theme Cheat Sheet. You can open it through the command palette: `Base Web: Open theme cheat sheet`.
+
+<BlogImage
+  src={cheatSheet}
+  alt="showing the Base Web theme cheat sheet"
+  caption="Theme Cheat Sheet"
+  full
+/>
+
+It opens instantly in a new VS Code tab, works offline and visualizes all theme variables so you can quickly get the right value.
+
+## Documentation shortcuts
+
+There is also a command for each Base Web component to open the documentation site. This might save a few seconds as well.
+
+<BlogImage
+  src={commands}
+  alt="Command palette to quickly open Base Web documentation"
+  caption="Quickly open Base Web documentation"
+  full
+/>
+
+## Conclusion
+
+We have released our first [Base Web extension](https://marketplace.visualstudio.com/items?itemName=Uber.baseweb). It has multiple features like code snippets, coloring and a theme cheat sheet to make developers more productive. We are looking forward to your feedback and if you have ideas for improvements or additional features, please [let us know](https://github.com/uber/baseweb/issues/new/choose)!

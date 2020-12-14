@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -59,7 +59,7 @@ function NumberedStep({
     <Root {...sharedProps} {...rootProps}>
       <Icon {...sharedProps} {...iconProps}>
         {!isCompleted && <span>{step}</span>}
-        {isCompleted && <CheckIcon size={12} {...checkIconProps} />}
+        {isCompleted && <CheckIcon size={28} {...checkIconProps} />}
       </Icon>
       {!isLast && <Tail {...sharedProps} {...tailProps} />}
       <Content {...sharedProps} {...contentProps}>
@@ -74,7 +74,6 @@ function NumberedStep({
 
 NumberedStep.defaultProps = {
   isCompleted: false,
-  isActive: false,
   isLast: false,
 };
 

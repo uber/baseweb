@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FlexGridItem flexGridItemMediaQueryStyle: 2 columns no gaps 1`] = `
+Object {
+  "marginBottom": 0,
+  "marginRight": 0,
+  "width": "calc((100% - 0px) / 2 - .5px)",
+}
+`;
+
+exports[`FlexGridItem flexGridItemMediaQueryStyle: 2 columns with gaps 1`] = `
+Object {
+  "marginBottom": "2px",
+  "marginRight": "1px",
+  "width": "calc((100% - 1px) / 2 - .5px)",
+}
+`;
+
+exports[`FlexGridItem flexGridItemMediaQueryStyle: 2 columns with gaps end of column 1`] = `
+Object {
+  "marginBottom": 0,
+  "marginRight": "1px",
+  "width": "calc((100% - 1px) / 2 - .5px)",
+}
+`;
+
+exports[`FlexGridItem flexGridItemMediaQueryStyle: 2 columns with gaps end of row 1`] = `
+Object {
+  "marginBottom": "2px",
+  "marginRight": 0,
+  "width": "calc((100% - 1px) / 2 - .5px)",
+}
+`;
+
+exports[`FlexGridItem flexGridItemMediaQueryStyle: 2 columns with gaps end of row and column 1`] = `
+Object {
+  "marginBottom": 0,
+  "marginRight": 0,
+  "width": "calc((100% - 1px) / 2 - .5px)",
+}
+`;
+
+exports[`FlexGridItem flexGridItemMediaQueryStyle: 2 columns with gaps row ends early 1`] = `
+Object {
+  "marginBottom": 0,
+  "marginRight": "calc(1 * (1px + (100% - 1px) / 2))",
+  "width": "calc((100% - 1px) / 2 - .5px)",
+}
+`;
+
+exports[`FlexGridItem flexGridItemStyle: no props 1`] = `
+Object {
+  "flexGrow": 1,
+  "marginBottom": 0,
+  "marginRight": 0,
+  "width": "calc((100% - 0px) / 1 - .5px)",
+}
+`;
+
+exports[`FlexGridItem flexGridItemStyle: non-responsive 1`] = `
+Object {
+  "flexGrow": 1,
+  "marginBottom": "2px",
+  "marginRight": "1px",
+  "width": "calc((100% - 1px) / 2 - .5px)",
+}
+`;
+
+exports[`FlexGridItem flexGridItemStyle: responsive columns 1`] = `
+Object {
+  "@media screen and (min-width: 0px)": Object {
+    "marginBottom": "2px",
+    "marginRight": "1px",
+    "width": "calc((100% - 1px) / 2 - .5px)",
+  },
+  "@media screen and (min-width: 320px)": Object {
+    "marginBottom": "2px",
+    "marginRight": "1px",
+    "width": "calc((100% - 2px) / 3 - .5px)",
+  },
+  "flexGrow": 1,
+}
+`;
+
+exports[`FlexGridItem flexGridItemStyle: responsive columns and gaps 1`] = `
+Object {
+  "@media screen and (min-width: 0px)": Object {
+    "marginBottom": "2px",
+    "marginRight": "1px",
+    "width": "calc((100% - 1px) / 2 - .5px)",
+  },
+  "@media screen and (min-width: 320px)": Object {
+    "marginBottom": "4px",
+    "marginRight": "2px",
+    "width": "calc((100% - 4px) / 3 - .5px)",
+  },
+  "flexGrow": 1,
+}
+`;

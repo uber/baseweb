@@ -1,294 +1,167 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 
 // @flow
-import React from 'react';
-import {mount} from 'enzyme';
+import * as React from 'react';
+import {
+  render,
+  getByTestId,
+  getByText,
+  queryByText,
+} from '@testing-library/react';
 import FormControl from '../form-control.js';
-import {Label, Caption, ControlContainer} from '../styled-components.js';
 import {Input} from '../../input/index.js';
 import {Textarea} from '../../textarea/index.js';
 import {Checkbox} from '../../checkbox/index.js';
 import {RadioGroup, Radio} from '../../radio/index.js';
 
 describe('FormControl - Label and Caption for controls', () => {
-  test('Renders label, caption, and error for the Input component', () => {
-    const rendered = mount(
-      <FormControl label="Label test" caption="Caption test">
-        <Input />
-      </FormControl>,
-    );
-    const label = rendered.find(Label).first();
-    expect(label).toExist();
-    expect(label).toHaveText('Label test');
-    expect(label.props()).toMatchObject({
-      $disabled: false,
-      $error: false,
-      $required: false,
-      $size: 'default',
-      children: 'Label test',
-    });
-    let caption = rendered.find(Caption).first();
-    expect(caption).toExist();
-    expect(caption).toHaveText('Caption test');
-    expect(caption.props()).toMatchObject({
-      $disabled: false,
-      $error: false,
-      $required: false,
-      $size: 'default',
-      children: 'Caption test',
-    });
-
-    rendered.setProps({
-      error: 'Error test',
-    });
-    caption = rendered.find(Caption).first();
-    expect(caption).toHaveText('Error test');
-    expect(caption.props()).toMatchObject({
-      $disabled: false,
-      $error: 'Error test',
-      $required: false,
-      $size: 'default',
-      children: 'Error test',
-    });
-  });
-
-  test('Accepts a node for label, caption, and error', () => {
-    const rendered = mount(
-      <FormControl
-        label={<span>Label test</span>}
-        caption={<span>Caption test</span>}
-      >
-        <Input />
-      </FormControl>,
-    );
-    const label = rendered.find(Label).first();
-    expect(label).toHaveText('Label test');
-    const caption = rendered.find(Caption).first();
-    expect(caption).toHaveText('Caption test');
-
-    rendered.setProps({
-      error: <span>Error test</span>,
-    });
-    expect(caption).toHaveText('Error test');
-  });
-
-  test('Accepts a function for label, caption, and error', () => {
-    const label = jest.fn().mockReturnValue(<span>Label test</span>);
-    const caption = jest.fn().mockReturnValue(<span>Caption test</span>);
-    const error = jest.fn().mockReturnValue(<span>Error test</span>);
-    const rendered = mount(
+  it('Renders label, caption, and error for the Input component', () => {
+    const label = 'Label test';
+    const caption = 'Caption test';
+    const {container} = render(
       <FormControl label={label} caption={caption}>
         <Input />
       </FormControl>,
     );
-    const sharedProps = {
-      $disabled: false,
-      $error: false,
-      $required: false,
-      $size: 'default',
-    };
-    const labelRendered = rendered.find(Label).first();
-    expect(label).toHaveBeenCalledWith(sharedProps);
-    expect(labelRendered).toHaveText('Label test');
-    const captionRendered = rendered.find(Caption).first();
-    expect(caption).toHaveBeenCalledWith(sharedProps);
-    expect(captionRendered).toHaveText('Caption test');
-    expect(error).not.toHaveBeenCalled();
-
-    rendered.setProps({
-      error: error,
-    });
-    expect(error).toHaveBeenCalledWith({
-      ...sharedProps,
-      $error: error,
-    });
-    expect(captionRendered).toHaveText('Error test');
+    getByText(container, label);
+    getByText(container, caption);
   });
 
-  test('Renders caption if error is set on the control', () => {
-    const rendered = mount(
-      <FormControl label="Label test" caption="Caption test">
-        <Input error />
+  it('renders error message if provided', () => {
+    const label = 'Label test';
+    const caption = 'Caption test';
+    const error = 'Error test';
+    const {container} = render(
+      <FormControl label={label} caption={caption} error={error}>
+        <Input />
       </FormControl>,
     );
-    const caption = rendered.find(Caption).first();
-    expect(caption).toHaveText('Caption test');
-    expect(caption.props()).toMatchObject({
-      $disabled: false,
-      $error: true,
-      $required: false,
-      $size: 'default',
-      children: 'Caption test',
-    });
+    expect(queryByText(container, caption)).toBeNull();
+    getByText(container, error);
   });
 
-  test('Passes correct props from the control to label and caption', () => {
-    const rendered = mount(
-      <FormControl label="Label test" caption="Caption test">
-        <Input disabled required error />
+  it('accepts node for label and caption', () => {
+    const label = 'Label test';
+    const caption = 'Caption test';
+    const {container} = render(
+      <FormControl
+        label={<span>{label}</span>}
+        caption={<span>{caption}</span>}
+      >
+        <Input />
       </FormControl>,
     );
-    const label = rendered.find(Label).first();
-    expect(label.props()).toMatchObject({
-      $disabled: true,
-      $error: true,
-      $required: true,
-      $size: 'default',
-      children: 'Label test',
-    });
-    const caption = rendered.find(Caption).first();
-    expect(caption.props()).toMatchObject({
-      $disabled: true,
-      $error: true,
-      $required: true,
-      $size: 'default',
-      children: 'Caption test',
-    });
-    rendered.setProps({
-      error: 'Error test',
-    });
-    expect(label.props()).toMatchObject({
-      $disabled: true,
-      $error: true,
-      $required: true,
-      $size: 'default',
-      children: 'Label test',
-    });
-    expect(caption.props()).toMatchObject({
-      $disabled: true,
-      $error: true,
-      $required: true,
-      $size: 'default',
-      children: 'Caption test',
-    });
-    expect(caption).toHaveText('Error test');
+    getByText(container, label);
+    getByText(container, caption);
   });
 
-  test('Renders label and caption for the Textarea component', () => {
-    const rendered = mount(
+  it('accepts node for error', () => {
+    const label = 'Label test';
+    const caption = 'Caption test';
+    const error = 'Error test';
+    const {container} = render(
+      <FormControl
+        label={<span>{label}</span>}
+        caption={<span>{caption}</span>}
+        error={<span>{error}</span>}
+      >
+        <Input />
+      </FormControl>,
+    );
+    expect(queryByText(container, caption)).toBeNull();
+    getByText(container, error);
+  });
+
+  it('Renders error if error and positive and caption are provided', () => {
+    const consoleWarn = console.warn;
+    // $FlowFixMe
+    console.warn = jest.fn();
+
+    const label = 'Label test';
+    const caption = 'Caption test';
+    const error = 'Error test';
+    const positive = 'Positive test';
+    const {container} = render(
+      <FormControl
+        label={<span>{label}</span>}
+        caption={<span>{caption}</span>}
+        error={<span>{error}</span>}
+        positive={<span>{positive}</span>}
+      >
+        <Input />
+      </FormControl>,
+    );
+    expect(queryByText(container, caption)).toBeNull();
+    expect(queryByText(container, positive)).toBeNull();
+    getByText(container, error);
+
+    // $FlowFixMe
+    expect(console.warn.mock.calls.length).toBe(1);
+    // $FlowFixMe
+    console.warn = consoleWarn;
+  });
+
+  it('Renders label and caption for the Textarea component', () => {
+    const label = 'Label test';
+    const caption = 'Caption test';
+    const {container} = render(
       <FormControl label="Label test" caption="Caption test">
         <Textarea required />
       </FormControl>,
     );
-    const label = rendered.find(Label).first();
-    expect(label).toExist();
-    expect(label.props()).toMatchObject({
-      $disabled: false,
-      $error: false,
-      $required: true,
-      $size: 'default',
-      children: 'Label test',
-    });
-    const caption = rendered.find(Caption).first();
-    expect(caption).toExist();
-    expect(caption.props()).toMatchObject({
-      $disabled: false,
-      $error: false,
-      $required: true,
-      $size: 'default',
-      children: 'Caption test',
-    });
+    getByText(container, label);
+    getByText(container, caption);
   });
-});
 
-test('Renders label and caption for the Checkbox component', () => {
-  const rendered = mount(
-    <FormControl label="Label test" caption="Caption test">
-      <Checkbox required />
-    </FormControl>,
-  );
-  const label = rendered.find(Label).first();
-  expect(label).toExist();
-  expect(label.props()).toMatchObject({
-    $disabled: false,
-    $error: undefined,
-    $required: true,
-    children: 'Label test',
-  });
-  const caption = rendered.find(Caption).first();
-  expect(caption).toExist();
-  expect(caption.props()).toMatchObject({
-    $disabled: false,
-    $error: undefined,
-    $required: true,
-    children: 'Caption test',
-  });
-});
-
-test('Renders label and caption for the RadioGroup component', () => {
-  const rendered = mount(
-    <FormControl label="Label test" caption="Caption test">
-      <RadioGroup required>
-        <Radio value="1">First</Radio>
-        <Radio value="2">Second</Radio>
-        <Radio value="3">Third</Radio>
-      </RadioGroup>
-    </FormControl>,
-  );
-  const label = rendered.find(Label).first();
-  expect(label).toExist();
-  expect(label.props()).toMatchObject({
-    $disabled: false,
-    $error: undefined,
-    $required: true,
-    children: 'Label test',
-  });
-  const caption = rendered.find(Caption).first();
-  expect(caption).toExist();
-  expect(caption.props()).toMatchObject({
-    $disabled: false,
-    $error: undefined,
-    $required: true,
-    children: 'Caption test',
-  });
-});
-
-describe('FormControl - overrides', () => {
-  test('Renders control container override', () => {
-    const ControlContainerOverride = () => (
-      <ControlContainer className="override" />
+  it('Renders label and caption for the Checkbox component', () => {
+    const label = 'Label test';
+    const caption = 'Caption test';
+    const {container} = render(
+      <FormControl label={label} caption={caption}>
+        <Checkbox required />
+      </FormControl>,
     );
-    const formControlOverrides = {
-      ControlContainer: ControlContainerOverride,
-    };
-    const rendered = mount(
-      <FormControl overrides={formControlOverrides}>
+    getByText(container, label);
+    getByText(container, caption);
+  });
+
+  it('Renders label and caption for the RadioGroup component', () => {
+    const label = 'Label test';
+    const caption = 'Caption test';
+    const {container} = render(
+      <FormControl label={label} caption={caption}>
+        <RadioGroup required>
+          <Radio value="1">First</Radio>
+          <Radio value="2">Second</Radio>
+          <Radio value="3">Third</Radio>
+        </RadioGroup>
+      </FormControl>,
+    );
+    getByText(container, label);
+    getByText(container, caption);
+  });
+
+  it('renders provided overrides', () => {
+    const {container} = render(
+      <FormControl
+        overrides={{
+          ControlContainer: {props: {'data-testid': 'control-container'}},
+          Label: {props: {'data-testid': 'label'}},
+          Caption: {props: {'data-testid': 'caption'}},
+        }}
+        label="label"
+        caption="caption"
+      >
         <Input />
       </FormControl>,
     );
-    expect(
-      rendered.contains(<ControlContainer className="override" />),
-    ).toEqual(true);
-  });
-
-  test('Renders label override', () => {
-    const LabelOverride = () => <Label className="override" />;
-    const formControlOverrides = {
-      Label: LabelOverride,
-    };
-    const rendered = mount(
-      <FormControl overrides={formControlOverrides} label="Label test">
-        <Input />
-      </FormControl>,
-    );
-    expect(rendered.contains(<Label className="override" />)).toEqual(true);
-  });
-
-  test('Renders caption override', () => {
-    const CaptionOverride = () => <Caption className="override" />;
-    const formControlOverrides = {
-      Caption: CaptionOverride,
-    };
-    const rendered = mount(
-      <FormControl overrides={formControlOverrides} caption="Caption test">
-        <Input />
-      </FormControl>,
-    );
-    expect(rendered.contains(<Caption className="override" />)).toEqual(true);
+    getByTestId(container, 'control-container');
+    getByTestId(container, 'label');
+    getByTestId(container, 'caption');
   });
 });

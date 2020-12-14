@@ -1,27 +1,42 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
+import Exports from '../../components/exports';
 import Layout from '../../components/layout';
-import Overrides from '../../components/overrides';
+import SEO from '../../components/meta-seo';
 import BasicAccordion from 'examples/accordion/basic.js';
-import StatefulAccordion from 'examples/accordion/stateful.js';
+import StatefulPanelExample from 'examples/accordion/stateful-panel.js';
+import AccordionSEO from 'examples/accordion/renderpanelcontent.js';
+import CustomPanel from 'examples/accordion/custom.js';
+import StatelessAccordion from 'examples/accordion/stateless.js';
 
 import * as AccordionExports from 'baseui/accordion';
+import * as PanelExports from 'baseui/accordion/panel.js';
 import {Accordion, Panel} from 'baseui/accordion';
+
+import Yard from '../../components/yard/index';
+import accordionYardConfig from '../../components/yard/config/accordion';
+import ApiTable from '../../components/api-table';
+
+<SEO
+  description="Accordions display a list of high-level options that can expand/contract to reveal more detailed information."
+  keywords="accordion, react accordion, react expansion panel, react collapse"
+/>
 
 export default Layout;
 
 # Accordion
 
+<Yard placeholderHeight={180} {...accordionYardConfig} />
+
 Accordions display a list of high-level options that can expand/contract to reveal more detailed information.
 
-### Accessibility
+## Accessibility
 
 - `tab`, `shift + tab` - to switch between panels.
 - `space` or `enter` - when focus is on the accordion panel header it will toggle (expand or
@@ -29,51 +44,47 @@ Accordions display a list of high-level options that can expand/contract to reve
 
 ## Examples
 
-<Example title="Accordion basic usage" path="examples/accordion/basic.js">
+<Example title="Custom Accordion" path="accordion/custom.js">
+  <CustomPanel />
+</Example>
+
+<Example title="Accordion basic usage" path="accordion/basic.js">
   <BasicAccordion />
 </Example>
 
-<Example
-  title="Accordion as a stateful component"
-  path="examples/accordion/stateful.js"
->
-  <StatefulAccordion />
+<Example title="Accordion SEO Friendly" path="accordion/renderpanelcontent.js">
+  <AccordionSEO />
 </Example>
 
-## Overrides
+<Example
+  title="Using a stateful panel component on it's own"
+  path="accordion/stateful-panel.js"
+>
+  <StatefulPanelExample />
+</Example>
 
-<Overrides
-  name="Accordion"
+<Example title="Stateless Accordion" path="accordion/stateless.js">
+  <StatelessAccordion />
+</Example>
+
+If you want to control the `expanded` state of the accordion panels yourself, you can use the stateless version of our accordion: `StatelessAccordion`. You can pass a list of React keys to `expanded`, which corresponds to the keys of the `Panels` that you want to be expanded.
+
+The `onChange` handler is called when one of the `Panels` would ordinarily be opened. It passes both the `key` of the `Panel` that caused the handler to fire as well as an updated `expanded` list. You can choose to use the new `expanded` list or `key` however you like to update your state. Note, by default the new `expanded` list will assume only one panel can be open at a time, but if you pass `accordion={false}` the `expanded` list will assume multiple can be open simultaneously.
+
+The `StatelessAccordion` gives you the flexibility to control the accordion as you like while still offering some convenience to cover the normal use cases.
+
+## API
+
+<ApiTable
+  title="Accordion props"
+  config={accordionYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/accordion/accordion.js')}
+/>
+
+**Note:** the `Panel` has the same overrides as `Accordion`, with the exception of the `Root` subcomponent.
+
+<Exports
   component={AccordionExports}
-  renderExample={props => {
-    const content = 'Some sample content';
-    return (
-      <Accordion overrides={props.overrides}>
-        <Panel overrides={props.overrides} title="Accordion panel 1">
-          {content}
-        </Panel>
-        <Panel overrides={props.overrides} title="Accordion panel 2">
-          {content}
-        </Panel>
-        <Panel overrides={props.overrides} title="Accordion panel 3">
-          {content}
-        </Panel>
-      </Accordion>
-    );
-  }}
-/>
-
-<API
-  heading="Accordion API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/accordion/accordion.js')}
-/>
-
-<API
-  heading="Panel API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/accordion/panel.js')}
-/>
-
-<API
-  heading="Stateful Panel API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/accordion/stateful-panel.js')}
+  title="Accordion exports"
+  path="baseui/accordion"
 />

@@ -1,0 +1,43 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import Timepicker from 'examples/timepicker/timepicker.js';
+import * as TimepickerExports from 'baseui/timepicker';
+
+import Yard from '../../components/yard/index';
+import timepickerConfig from '../../components/yard/config/timepicker';
+import ApiTable from '../../components/api-table';
+
+export default Layout;
+
+# Time Picker
+
+<Yard placeholderHeight={48} {...timepickerConfig} />
+
+## Examples
+
+<Example title="Timepicker" path="timepicker/timepicker.js">
+  <Timepicker />
+</Example>
+
+## API
+
+<ApiTable
+  title="Timepicker props"
+  config={timepickerConfig}
+  types={require('!!extract-react-types-loader!../../../src/timepicker/timepicker.js')}
+/>
+
+<Exports
+  component={TimepickerExports}
+  title="Timepicker exports"
+  path="baseui/timepicker"
+/>

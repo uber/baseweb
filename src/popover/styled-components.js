@@ -1,24 +1,29 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {styled} from '../styles/index.js';
-import {ARROW_WIDTH} from './constants.js';
+import {ARROW_SIZE, ARROW_WIDTH} from './constants.js';
 import {
   getPopoverMarginStyles,
   getArrowPositionStyles,
   getStartPosition,
   getEndPosition,
 } from './utils.js';
-import type {SharedStylePropsT} from './types.js';
+import type {
+  ArrowStylePropsArgT,
+  BodyStylePropsArgT,
+  InnerStylePropsArgT,
+} from './types.js';
+import type {ThemeT} from '../styles/types.js';
 
 /**
  * Main popover container element that gets positioned next to the anchor
  */
-export function getBodyStyles(props: SharedStylePropsT) {
+export function getBodyStyles(props: BodyStylePropsArgT & {$theme: ThemeT}) {
   const {
     $isOpen,
     $isAnimating,
@@ -26,19 +31,19 @@ export function getBodyStyles(props: SharedStylePropsT) {
     $popoverOffset,
     $showArrow,
     $theme,
+    $popoverMargin,
   } = props;
 
   return {
     position: 'absolute',
     top: 0,
     left: 0,
-    zIndex: 1050,
-    backgroundColor: $theme.colors.background,
-    borderRadius: $theme.borders.useRoundedCorners
-      ? $theme.borders.radius300
-      : '0px',
+    backgroundColor: $theme.colors.backgroundTertiary,
+    borderTopLeftRadius: $theme.borders.popoverBorderRadius,
+    borderTopRightRadius: $theme.borders.popoverBorderRadius,
+    borderBottomRightRadius: $theme.borders.popoverBorderRadius,
+    borderBottomLeftRadius: $theme.borders.popoverBorderRadius,
     boxShadow: $theme.lighting.shadow600,
-
     transitionProperty: 'opacity,transform',
     transitionDuration: $isAnimating ? '0.1s' : '0s',
     transitionTimingFunction: $isOpen
@@ -48,31 +53,39 @@ export function getBodyStyles(props: SharedStylePropsT) {
     transform:
       $isAnimating && $isOpen
         ? getEndPosition($popoverOffset)
-        : getStartPosition($popoverOffset, $placement, $showArrow),
-    ...getPopoverMarginStyles($showArrow, $placement),
+        : getStartPosition(
+            $popoverOffset,
+            $placement,
+            $showArrow ? ARROW_SIZE : 0,
+            $popoverMargin,
+          ),
+    ...getPopoverMarginStyles(
+      $showArrow ? ARROW_SIZE : 0,
+      $placement,
+      $popoverMargin,
+    ),
   };
 }
 
-export const Body = styled('div', getBodyStyles);
+export const Body = styled<BodyStylePropsArgT>('div', getBodyStyles);
 
 /**
  * Arrow shown between the popover and the anchor element
  */
-export function getArrowStyles(props: SharedStylePropsT) {
+export function getArrowStyles(props: ArrowStylePropsArgT & {$theme: ThemeT}) {
   const {$arrowOffset, $placement, $theme} = props;
   return {
-    backgroundColor: $theme.colors.backgroundAlt,
+    backgroundColor: $theme.colors.backgroundTertiary,
     boxShadow: $theme.lighting.shadow600,
     width: `${ARROW_WIDTH}px`,
     height: `${ARROW_WIDTH}px`,
     transform: 'rotate(45deg)',
     position: 'absolute',
-    zIndex: 1, // Below "Inner"
     ...getArrowPositionStyles($arrowOffset, $placement),
   };
 }
 
-export const Arrow = styled('div', getArrowStyles);
+export const Arrow = styled<ArrowStylePropsArgT>('div', getArrowStyles);
 
 /**
  * Extra div that holds the popover content. This extra element
@@ -80,19 +93,19 @@ export const Arrow = styled('div', getArrowStyles);
  * and rendering this extra element on top with a solid background
  * clips the part of the arrow that extends into the popover.
  */
-export function getInnerStyles({$theme}: SharedStylePropsT) {
+export function getInnerStyles({$theme}: {$theme: ThemeT}) {
   return {
-    backgroundColor: $theme.colors.backgroundAlt,
-    color: $theme.colors.foreground,
-    borderRadius: $theme.borders.useRoundedCorners
-      ? $theme.borders.radius300
-      : '0px',
+    backgroundColor: $theme.colors.backgroundTertiary,
+    borderTopLeftRadius: $theme.borders.popoverBorderRadius,
+    borderTopRightRadius: $theme.borders.popoverBorderRadius,
+    borderBottomRightRadius: $theme.borders.popoverBorderRadius,
+    borderBottomLeftRadius: $theme.borders.popoverBorderRadius,
+    color: $theme.colors.contentPrimary,
     position: 'relative',
-    zIndex: 2, // Above "Arrow"
   };
 }
 
-export const Inner = styled('div', getInnerStyles);
+export const Inner = styled<InnerStylePropsArgT>('div', getInnerStyles);
 
 /**
  * A drop-in component that provides the recommended padding
@@ -100,5 +113,12 @@ export const Inner = styled('div', getInnerStyles);
  * have to define this themselves.
  */
 export const Padding = styled('div', {
-  padding: '12px',
+  paddingLeft: '12px',
+  paddingTop: '12px',
+  paddingRight: '12px',
+  paddingBottom: '12px',
+});
+
+export const Hidden = styled('div', {
+  display: 'none',
 });

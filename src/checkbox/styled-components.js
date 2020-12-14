@@ -1,22 +1,35 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
+
 // @flow
-import {styled} from '../styles/index.js';
+import {styled, expandBorderStyles} from '../styles/index.js';
 import {STYLE_TYPE} from './constants.js';
 
+import type {SharedStylePropsT} from './types.js';
+
 function getBorderColor(props) {
-  const {$disabled, $checked, $isError, $isIndeterminate, $theme} = props;
+  const {
+    $disabled,
+    $checked,
+    $isError,
+    $error,
+    $isIndeterminate,
+    $theme,
+    $isFocusVisible,
+  } = props;
   const {colors} = $theme;
   if ($disabled) {
     return colors.tickFillDisabled;
   } else if ($checked || $isIndeterminate) {
     return 'transparent';
-  } else if ($isError) {
-    return colors.negative400;
+  } else if ($error || $isError) {
+    return colors.borderError;
+  } else if ($isFocusVisible) {
+    return colors.borderSelected;
   } else {
     return colors.tickBorder;
   }
@@ -24,7 +37,10 @@ function getBorderColor(props) {
 
 function getLabelPadding(props) {
   const {$labelPlacement = '', $theme} = props;
+  const {sizing} = $theme;
+  const {scale300} = sizing;
   let paddingDirection;
+
   switch ($labelPlacement) {
     case 'top':
       paddingDirection = 'Bottom';
@@ -40,8 +56,13 @@ function getLabelPadding(props) {
       paddingDirection = 'Left';
       break;
   }
-  const {sizing} = $theme;
-  const {scale300} = sizing;
+
+  if ($theme.direction === 'rtl' && paddingDirection === 'Left') {
+    paddingDirection = 'Right';
+  } else if ($theme.direction === 'rtl' && paddingDirection === 'Right') {
+    paddingDirection = 'Left';
+  }
+
   return {
     [`padding${paddingDirection}`]: scale300,
   };
@@ -52,8 +73,8 @@ function getBackgroundColor(props) {
     $disabled,
     $checked,
     $isIndeterminate,
-    $isFocused,
     $isError,
+    $error,
     $isHovered,
     $isActive,
     $theme,
@@ -62,33 +83,40 @@ function getBackgroundColor(props) {
   const isToggle = $checkmarkType === STYLE_TYPE.toggle;
   const {colors} = $theme;
   if ($disabled) {
-    return isToggle ? colors.sliderTrackFillDisabled : colors.tickFillDisabled;
-  } else if ($isError && ($isIndeterminate || $checked)) {
-    if ($isActive || $isFocused) {
-      return colors.negative600;
-    } else if ($isHovered) {
-      return colors.negative500;
-    } else {
-      return colors.negative400;
+    if (isToggle) {
+      return colors.sliderTrackFillDisabled;
     }
-  } else if ($isError) {
-    if ($isActive || $isFocused) {
-      return colors.negative200;
-    } else if ($isHovered) {
-      return colors.negative100;
+    if ($checked || $isIndeterminate) {
+      return colors.tickFillDisabled;
     } else {
-      return colors.negative50;
+      return colors.tickFill;
+    }
+  } else if (($error || $isError) && ($isIndeterminate || $checked)) {
+    if ($isActive) {
+      return colors.tickFillErrorSelectedHoverActive;
+    } else if ($isHovered) {
+      return colors.tickFillErrorSelectedHover;
+    } else {
+      return colors.tickFillErrorSelected;
+    }
+  } else if ($error || $isError) {
+    if ($isActive) {
+      return colors.tickFillErrorHoverActive;
+    } else if ($isHovered) {
+      return colors.tickFillErrorHover;
+    } else {
+      return colors.tickFillError;
     }
   } else if ($isIndeterminate || $checked) {
-    if ($isActive || $isFocused) {
-      return colors.primary600;
+    if ($isActive) {
+      return colors.tickFillSelectedHoverActive;
     } else if ($isHovered) {
-      return colors.primary500;
+      return colors.tickFillSelectedHover;
     } else {
-      return colors.primary400;
+      return colors.tickFillSelected;
     }
   } else {
-    if ($isActive || $isFocused) {
+    if ($isActive) {
       return isToggle ? colors.sliderTrackFillActive : colors.tickFillActive;
     } else if ($isHovered) {
       return isToggle ? colors.sliderTrackFillHover : colors.tickFillHover;
@@ -101,10 +129,10 @@ function getBackgroundColor(props) {
 function getLabelColor(props) {
   const {$disabled, $theme} = props;
   const {colors} = $theme;
-  return $disabled ? colors.foregroundAlt : colors.foreground;
+  return $disabled ? colors.contentSecondary : colors.contentPrimary;
 }
 
-export const Root = styled('label', props => {
+export const Root = styled<SharedStylePropsT>('label', props => {
   const {$disabled, $labelPlacement} = props;
   return {
     flexDirection:
@@ -121,83 +149,98 @@ export const Root = styled('label', props => {
   };
 });
 
-export const Checkmark = styled('span', props => {
-  const {$checked, $disabled, $isIndeterminate, $theme} = props;
+export const Checkmark = styled<SharedStylePropsT>('span', props => {
+  const {
+    $checked,
+    $disabled,
+    $isError,
+    $error,
+    $isIndeterminate,
+    $theme,
+    $isFocusVisible,
+  } = props;
   const {sizing, animation} = $theme;
 
   const tickColor = $disabled
-    ? $theme.colors.mono600
+    ? $theme.colors.tickMarkFillDisabled
+    : $isError || $error
+    ? $theme.colors.tickMarkFillError
     : $theme.colors.tickMarkFill;
 
   const indeterminate = encodeURIComponent(`
-    <svg width="12" height="2" viewBox="0 0 12 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <line
-      x1="1"
-      y1="-1"
-      x2="11"
-      y2="-1"
-      transform="translate(0 2)"
-      stroke="${tickColor}"
-      stroke-width="2"
-      stroke-linecap="round"
-    />
+    <svg width="14" height="4" viewBox="0 0 14 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14 0.5H0V3.5H14V0.5Z" fill="${tickColor}"/>
     </svg>
   `);
 
   const check = encodeURIComponent(`
-    <svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M10.6 0.200059C11.0418 0.53143 11.1314 1.15823 10.8 1.60006L4.8 9.60006C4.62607 9.83197 4.36005 9.97699 4.07089 9.99754C3.78173 10.0181 3.49788 9.91215 3.29289 9.70717L0.292893 6.70717C-0.0976311 6.31664 -0.0976311 5.68348 0.292893 5.29295C0.683417 4.90243 1.31658 4.90243 1.70711 5.29295L3.89181 7.47765L9.2 0.400059C9.53137 -0.0417689 10.1582 -0.131312 10.6 0.200059Z"
-        fill="${tickColor}"
-      />
+    <svg width="17" height="13" viewBox="0 0 17 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6.50002 12.6L0.400024 6.60002L2.60002 4.40002L6.50002 8.40002L13.9 0.900024L16.1 3.10002L6.50002 12.6Z" fill="${tickColor}"/>
     </svg>
   `);
 
-  return {
+  const borderRadius = $theme.borders.inputBorderRadius;
+  const borderColor = getBorderColor(props);
+
+  return ({
     flex: '0 0 auto',
-    transitionDuration: animation.timing100,
+    transitionDuration: animation.timing200,
     transitionTimingFunction: animation.easeOutCurve,
+    transitionProperty: 'background-image, border-color, background-color',
     width: sizing.scale700,
     height: sizing.scale700,
     left: '4px',
     top: '4px',
     boxSizing: 'border-box',
-    borderStyle: 'solid',
-    borderWidth: '2px',
-    borderColor: getBorderColor(props),
-    borderRadius: $theme.borders.useRoundedCorners
-      ? $theme.borders.radius200
-      : null,
+    borderLeftStyle: 'solid',
+    borderRightStyle: 'solid',
+    borderTopStyle: 'solid',
+    borderBottomStyle: 'solid',
+    borderLeftWidth: '3px',
+    borderRightWidth: '3px',
+    borderTopWidth: '3px',
+    borderBottomWidth: '3px',
+    borderLeftColor: borderColor,
+    borderRightColor: borderColor,
+    borderTopColor: borderColor,
+    borderBottomColor: borderColor,
+    borderTopLeftRadius: borderRadius,
+    borderTopRightRadius: borderRadius,
+    borderBottomRightRadius: borderRadius,
+    borderBottomLeftRadius: borderRadius,
+    outline:
+      $isFocusVisible && $checked
+        ? `3px solid ${$theme.colors.accent}`
+        : 'none',
     display: 'inline-block',
     verticalAlign: 'middle',
     backgroundImage: $isIndeterminate
-      ? `url('data:image/svg+xml;charset=utf8,${indeterminate}');`
+      ? `url('data:image/svg+xml,${indeterminate}');`
       : $checked
-        ? `url('data:image/svg+xml;charset=utf8,${check}');`
-        : null,
+      ? `url('data:image/svg+xml,${check}');`
+      : null,
     backgroundColor: getBackgroundColor(props),
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
+    backgroundSize: 'contain',
     marginTop: $theme.sizing.scale0,
     marginBottom: $theme.sizing.scale0,
     marginLeft: $theme.sizing.scale0,
     marginRight: $theme.sizing.scale0,
-  };
+  }: {});
 });
 
-export const Label = styled('div', props => {
+export const Label = styled<SharedStylePropsT>('div', props => {
   const {$theme, $checkmarkType} = props;
   const {typography} = $theme;
-  return {
+  return ({
     flex: $checkmarkType === STYLE_TYPE.toggle ? 'auto' : null,
     verticalAlign: 'middle',
     ...getLabelPadding(props),
     color: getLabelColor(props),
-    ...typography.font350,
+    ...typography.LabelMedium,
     lineHeight: '24px',
-  };
+  }: {});
 });
 
 // tricky style for focus event cause display: none doesn't work
@@ -211,49 +254,145 @@ export const Input = styled('input', {
   position: 'absolute',
 });
 
-export const Toggle = styled('div', props => ({
-  ...props.$theme.borders.border300,
-  alignItems: 'center',
-  backgroundColor: props.$theme.colors.mono100,
-  borderRadius: props.$theme.borders.useRoundedCorners
-    ? props.$theme.borders.radius200
-    : null,
-  boxShadow: props.$theme.lighting.shadow400,
-  display: 'flex',
-  justifyContent: 'center',
-  height: props.$theme.sizing.scale800,
-  width: props.$theme.sizing.scale800,
-}));
-
-export const ToggleInner = styled('div', props => {
-  function backgroundColor($theme) {
-    if (props.$disabled) return props.$theme.colors.mono400;
-    if (props.$isActive) return props.$theme.colors.primary500;
-    if (props.$isHovered || props.$checked) return props.$theme.colors.primary;
-
-    return props.$theme.colors.mono600;
+export const Toggle = styled<SharedStylePropsT>('div', props => {
+  if (props.$checkmarkType === STYLE_TYPE.toggle) {
+    const borderRadius = props.$theme.borders.useRoundedCorners
+      ? props.$theme.borders.radius200
+      : null;
+    return ({
+      ...expandBorderStyles(props.$theme.borders.border300),
+      alignItems: 'center',
+      backgroundColor: props.$theme.colors.mono100,
+      borderTopLeftRadius: borderRadius,
+      borderTopRightRadius: borderRadius,
+      borderBottomRightRadius: borderRadius,
+      borderBottomLeftRadius: borderRadius,
+      boxShadow: props.$isFocusVisible
+        ? `0 0 0 3px ${props.$theme.colors.accent}`
+        : props.$theme.lighting.shadow400,
+      outline: 'none',
+      display: 'flex',
+      justifyContent: 'center',
+      height: props.$theme.sizing.scale800,
+      width: props.$theme.sizing.scale800,
+    }: {});
   }
 
-  return {
-    height: props.$theme.sizing.scale300,
-    width: props.$theme.sizing.scale0,
-    borderRadius: props.$theme.borders.radius100,
-    backgroundColor: backgroundColor(),
-  };
+  if (props.$checkmarkType === STYLE_TYPE.toggle_round) {
+    let backgroundColor = props.$theme.colors.toggleFill;
+    if (props.$disabled) {
+      backgroundColor = props.$theme.colors.toggleFillDisabled;
+    } else if (props.$checked && (props.$error || props.$isError)) {
+      backgroundColor = props.$theme.colors.borderError;
+    } else if (props.$checked) {
+      backgroundColor = props.$theme.colors.toggleFillChecked;
+    }
+    return {
+      backgroundColor,
+      borderTopLeftRadius: '50%',
+      borderTopRightRadius: '50%',
+      borderBottomRightRadius: '50%',
+      borderBottomLeftRadius: '50%',
+      boxShadow: props.$isFocusVisible
+        ? `0 0 0 3px ${props.$theme.colors.accent}`
+        : props.$isHovered && !props.$disabled
+        ? props.$theme.lighting.shadow500
+        : props.$theme.lighting.shadow400,
+      outline: 'none',
+      height: props.$theme.sizing.scale700,
+      width: props.$theme.sizing.scale700,
+      transform: props.$checked
+        ? `translateX(${props.$theme.direction === 'rtl' ? '-100%' : '100%'})`
+        : null,
+      transition: `transform ${props.$theme.animation.timing200}`,
+    };
+  }
+
+  return {};
 });
 
-export const ToggleTrack = styled('div', props => ({
-  alignItems: 'center',
-  backgroundColor: getBackgroundColor(props),
-  borderRadius: props.$theme.borders.useRoundedCorners
-    ? props.$theme.borders.radius200
-    : null,
-  display: 'flex',
-  height: props.$theme.sizing.scale600,
-  justifyContent: props.$checked ? 'flex-end' : 'flex-start',
-  marginTop: props.$theme.sizing.scale100,
-  marginBottom: props.$theme.sizing.scale100,
-  marginLeft: props.$theme.sizing.scale100,
-  marginRight: props.$theme.sizing.scale100,
-  width: props.$theme.sizing.scale1000,
-}));
+export const ToggleInner = styled<SharedStylePropsT>('div', props => {
+  if (props.$checkmarkType === STYLE_TYPE.toggle) {
+    // eslint-disable-next-line no-inner-declarations
+    const backgroundColor = () => {
+      if (props.$disabled) {
+        return props.$theme.colors.sliderHandleInnerFillDisabled;
+      }
+
+      if (props.$isActive && props.$checked) {
+        return props.$theme.colors.sliderHandleInnerFillSelectedActive;
+      }
+
+      if (props.$isHovered && props.$checked) {
+        return props.$theme.colors.sliderHandleInnerFillSelectedHover;
+      }
+
+      return props.$theme.colors.sliderHandleInnerFill;
+    };
+    return {
+      height: props.$theme.sizing.scale300,
+      width: props.$theme.sizing.scale0,
+      borderTopLeftRadius: props.$theme.borders.radius100,
+      borderTopRightRadius: props.$theme.borders.radius100,
+      borderBottomRightRadius: props.$theme.borders.radius100,
+      borderBottomLeftRadius: props.$theme.borders.radius100,
+      backgroundColor: backgroundColor(),
+    };
+  }
+
+  if (props.$checkmarkType === STYLE_TYPE.toggle_round) {
+    return {};
+  }
+
+  return {};
+});
+
+export const ToggleTrack = styled<SharedStylePropsT>('div', props => {
+  if (props.$checkmarkType === STYLE_TYPE.toggle) {
+    const borderRadius = props.$theme.borders.useRoundedCorners
+      ? props.$theme.borders.radius200
+      : null;
+    return ({
+      alignItems: 'center',
+      backgroundColor: getBackgroundColor(props),
+      borderTopLeftRadius: borderRadius,
+      borderTopRightRadius: borderRadius,
+      borderBottomRightRadius: borderRadius,
+      borderBottomLeftRadius: borderRadius,
+      display: 'flex',
+      height: props.$theme.sizing.scale600,
+      justifyContent: props.$checked ? 'flex-end' : 'flex-start',
+      marginTop: props.$theme.sizing.scale100,
+      marginBottom: props.$theme.sizing.scale100,
+      marginLeft: props.$theme.sizing.scale100,
+      marginRight: props.$theme.sizing.scale100,
+      width: props.$theme.sizing.scale1000,
+    }: {});
+  }
+
+  if (props.$checkmarkType === STYLE_TYPE.toggle_round) {
+    let backgroundColor = props.$theme.colors.toggleTrackFill;
+    if (props.$disabled) {
+      backgroundColor = props.$theme.colors.toggleTrackFillDisabled;
+    } else if ((props.$error || props.$isError) && props.$checked) {
+      backgroundColor = props.$theme.colors.tickFillError;
+    }
+    return {
+      alignItems: 'center',
+      backgroundColor,
+      borderTopLeftRadius: '7px',
+      borderTopRightRadius: '7px',
+      borderBottomRightRadius: '7px',
+      borderBottomLeftRadius: '7px',
+      display: 'flex',
+      height: props.$theme.sizing.scale550,
+      marginTop: props.$theme.sizing.scale200,
+      marginBottom: props.$theme.sizing.scale100,
+      marginLeft: props.$theme.sizing.scale200,
+      marginRight: props.$theme.sizing.scale100,
+      width: props.$theme.sizing.scale1000,
+    };
+  }
+
+  return {};
+});

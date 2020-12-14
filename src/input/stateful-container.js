@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -24,6 +24,7 @@ class StatefulContainer<T: EventTarget> extends React.Component<
     initialState: {},
     stateReducer: defaultStateReducer,
     onChange: () => {},
+    onClear: () => {},
   };
 
   state: StateT = {
@@ -32,28 +33,22 @@ class StatefulContainer<T: EventTarget> extends React.Component<
   };
 
   onChange = (e: SyntheticInputEvent<T>) => {
-    this.internalSetState(STATE_CHANGE_TYPE.change, e);
+    const nextState = {value: e.target.value};
+    this.internalSetState(STATE_CHANGE_TYPE.change, nextState);
     this.props.onChange(e);
   };
 
-  internalSetState = <T: EventTarget>(
-    type: StateTypeT,
-    e: SyntheticInputEvent<T>,
-  ) => {
-    let nextState = {};
-    if (type === STATE_CHANGE_TYPE.change) {
-      nextState = {value: e.target.value};
-    }
+  internalSetState = (type: StateTypeT, nextState: StateT) => {
     const newState = this.props.stateReducer(type, nextState, this.state);
     this.setState(newState);
   };
 
   render() {
     // eslint-disable-next-line no-unused-vars
-    const {children, initialState, stateReducer, ...rest} = this.props;
+    const {children, initialState, stateReducer, ...restProps} = this.props;
     const {onChange} = this;
     return children({
-      ...rest,
+      ...restProps,
       ...this.state,
       onChange,
     });

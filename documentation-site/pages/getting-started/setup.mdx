@@ -1,0 +1,151 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Layout from '../../components/layout';
+
+export default Layout;
+
+# Setup
+
+## Installing Base Web
+
+Base Web is available on npm as [baseui](https://npmjs.com/package/baseui). This single
+package contains all Base Web components.
+
+```bash
+# using yarn
+yarn add baseui styletron-engine-atomic styletron-react
+
+# using npm
+npm install baseui styletron-engine-atomic styletron-react
+```
+
+Base Web ships with both Flow and TypeScript support. Styletron ships only with Flow. However, if you use
+TypeScript there are external TypeScript declarations:
+
+```bash
+yarn add @types/styletron-standard @types/styletron-react @types/styletron-engine-atomic
+```
+
+Our React components don't use [PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html).
+
+[Styletron](https://www.styletron.org/) is a toolkit for component-oriented styling, part of the CSS in JS family. Base Web requires Styletron as a peer dependency (it uses it to apply styles to components) so you need to add Styletron as a dependency too.
+
+### VSCode Extension
+
+VS Code is one of the most popular code editors for web developers globally - as such, we have first-class support for it.
+
+Features include:
+
+- code snippet support for quickly using Base Web components,
+- code coloring for theme values,
+- built-in theme cheat sheet,
+- shortcuts for the documentation package.
+
+Learn more [here](https://baseweb.design/blog/vs-code-extension/), or [grab the extension from the marketplace](https://marketplace.visualstudio.com/items?itemName=Uber.baseweb).
+
+### `eslint-plugin-baseui`
+
+Base Web also has a plugin for [ESLint](https://eslint.org/) that will warn you if you are using a deprecated component or API. It also flags certain common mistakes developers make when using `baseui`. In some cases it can also auto-fix issues for you!
+
+Assuming you already have ESLint installed, run:
+
+```sh
+# npm
+npm install eslint-plugin-baseui --save-dev
+
+# yarn
+yarn add eslint-plugin-baseui --dev
+```
+
+Then add it to your ESLint configuration:
+
+```js
+{
+  "plugins": [
+    // ...
+    "baseui",
+  ],
+  "rules": {
+    // ...
+    'baseui/deprecated-theme-api': "warn",
+    'baseui/deprecated-component-api': "warn",
+    'baseui/no-deep-imports': "warn",
+  }
+}
+```
+
+`baseui` and `eslint-plugin-baseui` have their versions synced, so you should generally bump them together and always keep them on the same version:
+
+```json
+{
+  "dependencies": {
+    "baseui": "10.0.0"
+  },
+  "devDependencies": {
+    "eslint-plugin-baseui": "10.0.0"
+  }
+}
+```
+
+## Adding Base Web to Your Application
+
+In order to use Base Web, you need to do a small setup and wrap the root of your
+application with `StyletronProvider` and [`BaseProvider`](https://baseweb.design/components/base-provider) components:
+
+```javascript
+import {Client as Styletron} from 'styletron-engine-atomic';
+import {Provider as StyletronProvider} from 'styletron-react';
+import {LightTheme, BaseProvider, styled} from 'baseui';
+import {StatefulInput} from 'baseui/input';
+
+const engine = new Styletron();
+
+const Centered = styled('div', {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100%',
+});
+
+export default function Hello() {
+  return (
+    <StyletronProvider value={engine}>
+      <BaseProvider theme={LightTheme}>
+        <Centered>
+          <StatefulInput />
+        </Centered>
+      </BaseProvider>
+    </StyletronProvider>
+  );
+}
+```
+
+There are detailed guides for Styletron setup for the following frameworks:
+
+- [Fusion.js](https://www.styletron.org/getting-started/#with-fusionjs)
+- [Next.js](https://www.styletron.org/getting-started/#with-nextjs)
+- [Gatsby](https://www.styletron.org/getting-started/#with-gatsby)
+- [Other React applications](https://www.styletron.org/getting-started/#with-react)
+
+When using **Gatsby** and `gatsby-plugin-styletron`, make sure to place `BaseProvider` into the root component of your application (typically `layout.js`) and not into `gatsby-client.js`. This will ensure the correct order of
+
+```
+<StyletronProvider>
+  <BaseProvider />
+</StyletronProvider>
+```
+
+nesting. Otherwise, you could see this console warning: "_Did you forget to provide a Styletron engine instance..._".
+
+## Base Web for Designers
+
+Base Web is published on Figma Communities, so your design team can take advantage of the Base Web components too. Read more [here](https://baseweb.design/blog/base-figma-community/).
+
+## Next step
+
+Check out the [Learn Base Web](/getting-started/learn), to better understand the concepts of Base Web.

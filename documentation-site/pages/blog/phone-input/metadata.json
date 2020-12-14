@@ -1,0 +1,11 @@
+{
+  "author": "Graham Murdoch",
+  "authorLink": "https://github.com/sandgraham",
+  "title": "Building an International Phone Input",
+  "tagline": "A new component exhibits the flexibility of Base Web",
+  "date": "26 June 2019",
+  "coverImage": "https://i.imgur.com/Q4M6njM.png",
+  "coverImageWidth": 1200,
+  "coverImageHeight": 630,
+  "keyWords": ["Design System", "React", "Phone Input", "Forms"]
+}

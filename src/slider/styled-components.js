@@ -1,20 +1,20 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import {styled} from '../styles/index.js';
 import {getTrackBackground} from 'react-range';
 
-export const Root = styled('div', props => {
-  return {};
-});
+import {styled} from '../styles/index.js';
+import type {StylePropsT} from './types.js';
+
+export const Root = styled('div', {position: 'relative', width: '100%'});
 Root.displayName = 'StyledRoot';
 
-export const Track = styled('div', props => {
-  const {$theme, $value, $disabled, $isDragged} = props;
+export const Track = styled<StylePropsT>('div', props => {
+  const {$theme, $value = [], $disabled, $isDragged} = props;
   const {sizing} = $theme;
   let cursor = 'inherit';
   if ($disabled) {
@@ -25,7 +25,7 @@ export const Track = styled('div', props => {
     cursor = 'pointer';
   }
   return {
-    paddingTop: sizing.scale1000,
+    paddingTop: sizing.scale600,
     paddingBottom: sizing.scale600,
     paddingRight: sizing.scale600,
     paddingLeft: sizing.scale600,
@@ -35,25 +35,33 @@ export const Track = styled('div', props => {
 });
 Track.displayName = 'StyledTrack';
 
-export const InnerTrack = styled('div', props => {
-  const {$theme, $value, $min, $max, $disabled} = props;
-  const {colors, borders, sizing} = $theme;
+export const InnerTrack = styled<StylePropsT>('div', props => {
+  const {$theme, $value = [], $min, $max, $disabled} = props;
+  const {colors, borders, direction} = $theme;
+  const borderRadius = $theme.borders.useRoundedCorners ? borders.radius100 : 0;
   return {
-    borderRadius: $theme.borders.useRoundedCorners ? borders.radius100 : '0px',
+    borderTopLeftRadius: borderRadius,
+    borderTopRightRadius: borderRadius,
+    borderBottomRightRadius: borderRadius,
+    borderBottomLeftRadius: borderRadius,
     background: getTrackBackground({
       values: $value,
       colors:
         $value.length === 1
-          ? [$disabled ? colors.mono600 : colors.primary, colors.mono400]
+          ? [
+              $disabled ? colors.borderOpaque : colors.primary,
+              $disabled ? colors.backgroundSecondary : colors.borderOpaque,
+            ]
           : [
-              colors.mono400,
-              $disabled ? colors.mono600 : colors.primary,
-              colors.mono400,
+              $disabled ? colors.backgroundSecondary : colors.borderOpaque,
+              $disabled ? colors.borderOpaque : colors.primary,
+              $disabled ? colors.backgroundSecondary : colors.borderOpaque,
             ],
-      min: $min,
-      max: $max,
+      min: $min || 0,
+      max: $max || 0,
+      rtl: direction === 'rtl',
     }),
-    height: sizing.scale100,
+    height: '2px',
     width: '100%',
     alignSelf: 'center',
     cursor: $disabled ? 'not-allowed' : 'inherit',
@@ -61,14 +69,25 @@ export const InnerTrack = styled('div', props => {
 });
 InnerTrack.displayName = 'StyledInnerTrack';
 
-export const Tick = styled('div', props => {
+export const Mark = styled<StylePropsT>('div', props => {
   return {
-    ...props.$theme.typography.font300,
+    width: '4px',
+    height: '2px',
+    backgroundColor: props.$theme.colors.backgroundPrimary,
+    marginLeft: '16px',
+  };
+});
+Mark.displayName = 'StyledMark';
+
+export const Tick = styled<StylePropsT>('div', props => {
+  return {
+    ...props.$theme.typography.font200,
+    color: props.$theme.colors.contentPrimary,
   };
 });
 Tick.displayName = 'StyledTick';
 
-export const TickBar = styled('div', props => {
+export const TickBar = styled<StylePropsT>('div', props => {
   const {$theme} = props;
   const {sizing} = $theme;
   return {
@@ -82,48 +101,67 @@ export const TickBar = styled('div', props => {
 });
 TickBar.displayName = 'StyledTickBar';
 
-export const Thumb = styled('div', props => {
-  const {$theme, $value, $thumbIndex, $disabled} = props;
-  const isLeft = $value.length === 2 && $thumbIndex === 0;
-  const isRight = $value.length === 2 && $thumbIndex === 1;
+export const Thumb = styled<StylePropsT>('div', props => {
+  const {$theme, $value = [], $thumbIndex, $disabled} = props;
+  let isLeft = $value.length === 2 && $thumbIndex === 0;
+  let isRight = $value.length === 2 && $thumbIndex === 1;
+
+  if ($theme.direction === 'rtl' && (isRight || isLeft)) {
+    isLeft = !isLeft;
+    isRight = !isRight;
+  }
+
   return {
     height: '24px',
-    width: isLeft || isRight ? '12px' : '24px',
-    borderTopLeftRadius: isRight ? '1px' : '4px',
-    borderTopRightRadius: isLeft ? '1px' : '4px',
-    borderBottomLeftRadius: isRight ? '1px' : '4px',
-    borderBottomRightRadius: isLeft ? '1px' : '4px',
-    backgroundColor: $theme.colors.mono100,
+    width: '24px',
+    borderTopLeftRadius: '24px',
+    borderTopRightRadius: '24px',
+    borderBottomLeftRadius: '24px',
+    borderBottomRightRadius: '24px',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: '1px',
-    borderStyle: 'solid',
-    borderColor: $theme.colors.mono400,
-    boxShadow: '0px 1px 4px rgba(0, 0, 0, 0.12)',
+    backgroundColor: $disabled
+      ? $theme.colors.contentInverseTertiary
+      : $theme.colors.contentPrimary,
+    outline: 'none',
+    boxShadow: props.$isFocusVisible
+      ? `0 0 0 3px ${$theme.colors.accent}`
+      : '0 1px 4px rgba(0, 0, 0, 0.12)',
     cursor: $disabled ? 'not-allowed' : 'inherit',
   };
 });
 Thumb.displayName = 'StyledThumb';
 
-export const InnerThumb = styled('div', props => {
-  const {$theme, $isDragged} = props;
+export const InnerThumb = styled<StylePropsT>('div', props => {
+  const {$theme} = props;
   return {
-    height: '8px',
-    width: '2px',
-    borderRadius: '2px',
-    backgroundColor: $isDragged ? $theme.colors.primary : $theme.colors.mono600,
+    position: 'absolute',
+    top: '-16px',
+    width: '4px',
+    height: '20px',
+    backgroundColor: $theme.colors.backgroundInversePrimary,
   };
 });
 InnerThumb.displayName = 'StyledInnerThumb';
 
-export const ThumbValue = styled('div', props => {
+export const ThumbValue = styled<{}>('div', props => {
   const {$theme} = props;
   return {
     position: 'absolute',
-    top: `-${$theme.sizing.scale800}`,
-    ...$theme.typography.font300,
-    backgroundColor: 'transparent',
+    top: `-${$theme.sizing.scale1400}`,
+    ...$theme.typography.font200,
+    backgroundColor: $theme.colors.backgroundInversePrimary,
+    color: $theme.colors.contentInversePrimary,
+    paddingLeft: $theme.sizing.scale600,
+    paddingRight: $theme.sizing.scale600,
+    paddingTop: $theme.sizing.scale500,
+    paddingBottom: $theme.sizing.scale500,
+    borderBottomLeftRadius: '48px',
+    borderBottomRightRadius: '48px',
+    borderTopLeftRadius: '48px',
+    borderTopRightRadius: '48px',
+    whiteSpace: 'nowrap',
   };
 });
 ThumbValue.displayName = 'StyledThumbValue';

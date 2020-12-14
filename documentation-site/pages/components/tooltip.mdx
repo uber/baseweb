@@ -1,25 +1,30 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import Stateful from 'examples/tooltip/stateful.js';
 import StatefulComplexContent from 'examples/tooltip/stateful-complex-content.js';
 
-import Overrides from '../../components/overrides';
 import {StatefulTooltip} from 'baseui/tooltip';
 import * as TooltipExports from 'baseui/tooltip';
 import {styled} from 'baseui';
 
+import Yard from '../../components/yard/index';
+import tooltipYardConfig from '../../components/yard/config/tooltip';
+import ApiTable from '../../components/api-table';
+
 export default Layout;
 
 # Tooltip
+
+<Yard placeholderHeight={20} {...tooltipYardConfig} />
 
 Tooltips provide additional information upon hover or click. They often include
 contextual helper text to guide the user through the experience or provide more detail.
@@ -28,41 +33,30 @@ Motion helps to reinforce its origin position.
 
 ## Examples
 
-<Example title="Tooltip stateful example" path="examples/tooltip/stateful.js">
+<Example title="Tooltip stateful example" path="tooltip/stateful.js">
   <Stateful />
 </Example>
 
 <Example
   title="Tooltip stateful example with complex content"
-  path="examples/tooltip/stateful-complex-content.js"
+  path="tooltip/stateful-complex-content.js"
 >
   <StatefulComplexContent />
 </Example>
 
-## Overrides
+Keep in mind that the tooltip's background may not have enough contrast with your content. In these situations, you can either wrap your content in a theme or override the styles for individual components.
 
-<Overrides
-  name="Tooltip"
-  component={TooltipExports}
-  renderExample={props => {
-    const FakeLink = styled('span', props => ({
-      borderBottom: `1px dotted ${props.$theme.colors.primary500}`,
-      color: props.$theme.colors.primary500,
-    }));
-    return (
-      <StatefulTooltip
-        accessibilityType={'tooltip'}
-        content="Tooltips display short messages."
-        showArrow
-        overrides={props.overrides}
-      >
-        <FakeLink tabIndex="0">hover over me</FakeLink>
-      </StatefulTooltip>
-    );
-  }}
+## API
+
+<ApiTable
+  title="Tooltip props"
+  config={tooltipYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/tooltip/tooltip.js')}
 />
 
-<API
-  heading="Stateful Tooltip API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/popover/popover.js')}
+<Exports
+  component={TooltipExports}
+  title="Tooltip exports"
+  path="baseui/tooltip"
+  cheatsheet={false}
 />

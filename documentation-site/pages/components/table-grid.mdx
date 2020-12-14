@@ -1,0 +1,71 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import API from '../../components/api';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+import TableGuideNotification from '../../components/table-guide-notification';
+
+import * as TableGridExports from 'baseui/table-grid';
+
+import Basic from 'examples/table-grid/basic.js';
+import Nested from 'examples/table-grid/nested.js';
+import CellSpan from 'examples/table-grid/cell-span.js';
+import Sortable from 'examples/table-grid/sortable.js';
+import CellNavigation from 'examples/table-grid/cell-navigation.js';
+
+export default Layout;
+
+<TableGuideNotification />
+
+# Table-Grid
+
+Display larger amounts of information in a scannable UI. This component is best suited for
+applications that _do not_ need to support older browsers like Internet Explorer. It is implemented with
+[css-grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) and can likely support more
+complex use-cases and layouts. If your application _does_ need legacy support, you may want to explore
+baseui's [table](/components/table), components, a visually similar table, but implemented
+with [flex-box](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox).
+
+## Examples
+
+<Example title="Basic usage" path="table-grid/basic.js">
+  <Basic />
+</Example>
+
+<Example title="Nested table" path="table-grid/nested.js">
+  <Nested />
+</Example>
+
+<Example title="Cell spanning" path="table-grid/cell-span.js">
+  <CellSpan />
+</Example>
+
+<Example title="Table with sorting by a column" path="table-grid/sortable.js">
+  <Sortable />
+</Example>
+
+## Accessibility
+
+Tables should be navigable by keyboard. The example below includes a useful react hook to apply arrow
+event handlers to cells.
+
+<Example
+  title="Accessible cell navigation"
+  path="table-grid/cell-navigation.js"
+>
+  <CellNavigation />
+</Example>
+
+## API
+
+<Exports
+  component={TableGridExports}
+  title="Table-Grid exports"
+  path="baseui/table-grid"
+/>

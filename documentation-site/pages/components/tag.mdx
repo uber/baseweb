@@ -1,65 +1,110 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import Basic from 'examples/tag/basic.js';
+import Variants from 'examples/tag/variants.js';
+import Primitive from 'examples/tag/primitive.js';
 import Kinds from 'examples/tag/kinds.js';
-import CustomColor from 'examples/tag/custom-color.js';
+import Size from 'examples/tag/size.js';
+import NonClickable from 'examples/tag/non-clickable.js';
+import Clickable from 'examples/tag/clickable.js';
 import Disabled from 'examples/tag/disabled.js';
-import Uncloseable from 'examples/tag/uncloseable.js';
+import NonCloseable from 'examples/tag/non-closeable.js';
+import ClickableNonCloseable from 'examples/tag/clickable-non-closeable.js';
+import CustomColor from 'examples/tag/custom-color.js';
 
-import Overrides from '../../components/overrides';
 import {Tag} from 'baseui/tag';
 import * as TagExports from 'baseui/tag';
+
+import Yard from '../../components/yard/index';
+import tagYardConfig from '../../components/yard/config/tag';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
 # Tag
 
-Compact UI to display a collection of consice information.
+<Yard placeholderHeight={34} {...tagYardConfig} />
 
-### When to use
+Compact UI to display a collection of concise information.
+
+## When to use
 
 - When displaying a list of tags.
 
 ## Examples
 
-<Example title="Tag basic Usage" path="examples/tag/basic.js">
+<Example title="Tag basic Usage" path="tag/basic.js">
   <Basic />
 </Example>
 
-<Example title="Tag with all available kinds" path="examples/tag/kinds.js">
+<Example title="Semantic KIND values" path="tag/kinds.js">
   <Kinds />
 </Example>
 
-<Example title="Tag Custom Color example" path="examples/tag/custom-color.js">
-  <CustomColor />
+You can change the color of the tag by passing a value to the `kind` prop. Here we see the set of "semantic" color options. These will reflect the `negative`, `positive`, etc values that you use in your theme.
+
+<Example title="Primitive KIND values" path="tag/primitive.js">
+  <Primitive />
 </Example>
 
-<Example title="Tag with disabled state" path="examples/tag/disabled.js">
+In addition to the "semantic" `kind` colors, you can also use "primitive" colors such as `blue` or `green`. Some of these simply alias the "semantic" colors (and therefore your theme), but there are also color-ways not contained in the "semantic" set, such as `orange`, `purple`, and `brown`.
+
+<Example title="Tag Variants Prop Type" path="tag/variants.js">
+  <Variants />
+</Example>
+
+<Example title="Tag sizing" path="tag/size.js">
+  <Size />
+</Example>
+
+<Example title="Tag closeable/non-clickable" path="tag/non-clickable.js">
+  <NonClickable />
+</Example>
+
+<Example title="Tag closeable/clickable" path="tag/clickable.js">
+  <Clickable />
+</Example>
+
+<Example title="Tag in a disabled state" path="tag/disabled.js">
   <Disabled />
 </Example>
 
-<Example title="Tag uncloseable example" path="examples/tag/uncloseable.js">
-  <Uncloseable />
+<Example title="Tag non-closeable/non-clickable" path="tag/non-closeable.js">
+  <NonCloseable />
 </Example>
 
-## Overrides
+<Example
+  title="Tag non-closeable/clickable"
+  path="tag/clickable-non-closeable.js"
+>
+  <ClickableNonCloseable />
+</Example>
 
-<Overrides
-  name="Tag"
-  component={TagExports}
-  renderExample={props => <Tag overrides={props.overrides}>Tag</Tag>}
+<Example title="Tag Custom Color example" path="tag/custom-color.js">
+  <CustomColor />
+</Example>
+
+## Accessibility
+
+- When the tag is closable or clickable and not disabled it gets the role button and is focusable.
+- Closable tag can be closed by pressing `backspace` or `delete`.
+- Clickable tag can be clicked by pressing `enter`.
+
+## API
+
+<ApiTable
+  title="Tag props"
+  config={tagYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/tag/tag.js')}
 />
 
-<API
-  heading="Tag API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/tag/tag.js')}
-/>
+<Exports component={TagExports} title="Tag exports" path="baseui/tag" />

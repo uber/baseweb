@@ -1,73 +1,101 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+import TableGuideNotification from '../../components/table-guide-notification';
+
+import * as TableExports from 'baseui/table';
 
 import Basic from 'examples/table/basic.js';
 import Cells from 'examples/table/cells.js';
+import Pagination from 'examples/table/pagination.js';
 import FixedWidthColumn from 'examples/table/fixed-width-column.js';
 import VerticalScroll from 'examples/table/vertical-scroll.js';
 import HorizontalScroll from 'examples/table/horizontal-scroll.js';
+import Sortable from 'examples/table/sortable.js';
 import Filter from 'examples/table/filter.js';
+import Graph from 'examples/table/graph.js';
 import Virtual from 'examples/table/virtual.js';
 import VirtualHorizontal from 'examples/table/virtual-horizontal-scroll.js';
 
+import Yard from '../../components/yard/index';
+import tableYardConfig from '../../components/yard/config/table';
+import ApiTable from '../../components/api-table';
+
 export default Layout;
+
+<TableGuideNotification />
 
 # Table
 
-Display larger amounts of information in a scannable UI.
+<Yard placeholderHeight={202} {...tableYardConfig} />
+
+Display larger amounts of information in a scannable UI. This component is best suited for
+applications that need to support older browsers like Internet Explorer. It is implemented with
+[flex-box](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox).
+If your application does not need legacy support, you may want to explore baseui's [table-grid](/components/table-grid),
+components, a visually similar table, but implemented with [css-grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout).
 
 ## Examples
 
-<Example title="Table basic usage" path="examples/table/basic.js">
+<Example title="Table basic usage" path="table/basic.js">
   <Basic />
 </Example>
 
-<Example title="Table cell examples" path="examples/table/cells.js">
+<Example title="Table cell examples" path="table/cells.js">
   <Cells />
+</Example>
+
+<Example title="Table with pagination" path="table/pagination.js">
+  <Pagination />
+</Example>
+
+<Example title="Table with sorting by a column" path="table/sortable.js">
+  <Sortable />
 </Example>
 
 <Example
   title="Table with fixed width column"
-  path="examples/table/fixed-width-column.js"
+  path="table/fixed-width-column.js"
 >
   <FixedWidthColumn />
 </Example>
 
-<Example
-  title="Table with vertical scroll"
-  path="examples/table/vertical-scroll.js"
->
+<Example title="Table with vertical scroll" path="table/vertical-scroll.js">
   <VerticalScroll />
 </Example>
 
-<Example
-  title="Table with horizontal scroll"
-  path="examples/table/horizontal-scroll.js"
->
+<Example title="Table with horizontal scroll" path="table/horizontal-scroll.js">
   <HorizontalScroll />
 </Example>
 
-<Example title="Table with column filtering" path="examples/table/filter.js">
+<Example title="Table with column filtering" path="table/filter.js">
   <Filter />
 </Example>
 
-### Virtualized Table Examples
+<Example
+  title="Using react-vis"
+  path="table/graph.js"
+  additionalPackages={{'react-vis': '1.11.6'}}
+>
+  <Graph />
+</Example>
+
+## Virtualized Table
 
 If your product requires infinite scroll functionality rather than pagination, take a look at the
-examples below for how to integrate `react-virtualized` with the table component. Base UI does not
+examples below for how to integrate `react-virtualized` with the table component. Base Web does not
 contain `react-virtualized` internally. You will need to install it yourself.
 
 <Example
   title="Table with virtualized table body"
-  path="examples/table/virtual.js"
+  path="table/virtual.js"
   additionalPackages={{'react-virtualized': '^9.21.0'}}
 >
   <Virtual />
@@ -75,13 +103,18 @@ contain `react-virtualized` internally. You will need to install it yourself.
 
 <Example
   title="Table with virtualized horizontal scroll"
-  path="examples/table/virtual-horizontal-scroll.js"
+  path="table/virtual-horizontal-scroll.js"
   additionalPackages={{'react-virtualized': '^9.21.0'}}
 >
   <VirtualHorizontal />
 </Example>
 
-<API
-  heading="Table API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/table/table.js')}
+## API
+
+<ApiTable
+  title="Table props"
+  config={tableYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/table/table.js')}
 />
+
+<Exports component={TableExports} title="Table exports" path="baseui/table" />

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -31,9 +31,15 @@ function titleCase(str) {
     .join(' ');
 }
 
+// handle the exception from Chevrons, where we do not want the word Chevron in the title
+function removeChevronFromTitle(str) {
+  return str.replace('Chevron ', '');
+}
+
 // transform svg string to properly styled jsx
 function reactify(svgString) {
   return svgString
+    .replace(/<!--.*-->\n/gm, '')
     .replace(/<\/?svg[^>]*>/gm, '')
     .replace(/^\s*\n/gm, '')
     .replace(/\n$/, '')
@@ -75,7 +81,7 @@ async function generateNewIcons() {
     const svgFile = svgFilename.split('.')[0];
     const componentName = pascalCase(svgFile);
     iconExports.push(
-      `export {default as ${componentName}} from './${svgFile}';`,
+      `export {default as ${componentName}} from './${svgFile}.js';`,
     );
 
     const svgFileContents = fs.readFileSync(
@@ -83,27 +89,33 @@ async function generateNewIcons() {
       'utf8',
     );
 
-    const iconProps = [`title="${titleCase(svgFile)}"`];
-
-    const viewBox = svgFileContents.match(/viewBox="[^"]+"/);
-    if (viewBox) {
-      iconProps.push(viewBox[0]);
+    const title = removeChevronFromTitle(titleCase(svgFile));
+    const viewboxRegex = svgFileContents.match(/viewBox="([^"]+)"/);
+    let viewBox = null;
+    if (viewboxRegex && viewboxRegex[1]) {
+      viewBox = viewboxRegex[1];
     }
 
     let result = iconTemplate
-      .replace('%%ICON_NAME%%', componentName)
-      .replace('%%ICON_PROPS%%', iconProps.join(' '))
-      .replace('%%ICON_PATH%%', reactify(svgFileContents));
+      .replace('%%ICON_PATH%%', reactify(svgFileContents))
+      .replace(new RegExp('%%ICON_NAME%%', 'g'), componentName)
+      .replace(new RegExp('%%SVG_TITLE%%', 'g'), title)
+      .replace(
+        new RegExp('%%SVG_VIEWBOX%%', 'g'),
+        viewBox && viewboxRegex[1] ? `viewBox="${viewBox}"` : '',
+      );
 
     fs.writeFileSync(
       path.resolve(__dirname, `./${svgFile}.js`),
-      prettier.format(result, {parser: 'babylon', ...prettierOptions}),
+      prettier.format(result, {parser: 'flow', ...prettierOptions}),
     );
   });
 
   fs.writeFileSync(
     path.resolve(__dirname, `./icon-exports.js`),
-    `// @flow\n${iconExports.join('\n')}\n`,
+    `/*\nCopyright (c) 2018-2020 Uber Technologies, Inc.\n\nThis source code is licensed under the MIT license found in the\nLICENSE file in the root directory of this source tree.\n*/\n// @flow\n${iconExports.join(
+      '\n',
+    )}\n`,
   );
 
   // eslint-disable-next-line no-console

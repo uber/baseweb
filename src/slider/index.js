@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -17,5 +17,7 @@ export {
   InnerThumb as StyledInnerThumb,
   Tick as StyledTick,
   TickBar as StyledTickBar,
+  ThumbValue as StyledThumbValue,
+  Mark as StyledMark,
 } from './styled-components.js';
-export * from './types.js';
+export type * from './types.js';

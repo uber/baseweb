@@ -1,55 +1,66 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-import React from 'react';
-import {mount} from 'enzyme';
-import {Tag, StyledAction} from '../index.js';
+import * as React from 'react';
+import {render, fireEvent, getByTestId} from '@testing-library/react';
 
-describe('Stateless tag', function() {
-  let wrapper,
-    events = {},
-    children;
-  let allProps: any = {},
-    mockFn;
+import {Tag} from '../index.js';
+import type {TagKindT} from '../index.js';
 
-  beforeEach(function() {
-    mockFn = jest.fn();
-    events = {
-      onActionClick: mockFn,
-    };
-    allProps = {
-      ...events,
-    };
-    children = 'Some tag';
+describe('Tag', () => {
+  it('renders provided children', () => {
+    const content = 'hello world';
+    const {getByText} = render(<Tag>{content}</Tag>);
+    const element = getByText(content);
+    expect(element).toBeDefined();
   });
 
-  afterEach(function() {
-    jest.restoreAllMocks();
-    wrapper && wrapper.unmount();
+  it('does not render a11y attributes if disabled', () => {
+    const {container} = render(
+      <Tag
+        disabled
+        onActionClick={() => {}}
+        overrides={{
+          Root: {props: {'data-testid': 'root'}},
+          Action: {props: {'data-testid': 'action'}},
+        }}
+      >
+        content
+      </Tag>,
+    );
+    const root = getByTestId(container, 'root');
+    expect(root.getAttribute('aria-label')).toBeNull();
+    expect(root.getAttribute('role')).toBeNull();
+    const action = getByTestId(container, 'action');
+    expect(action.getAttribute('aria-label')).toBeNull();
+    expect(action.getAttribute('role')).toBe('presentation');
   });
 
-  test('should render component', function() {
-    wrapper = mount(<Tag {...allProps}>{children}</Tag>);
-    expect(wrapper).toMatchSnapshot('Component has correct render');
+  it('calls action callback on click', () => {
+    const actionClickMock = jest.fn();
+    const {container} = render(
+      <Tag
+        onActionClick={actionClickMock}
+        overrides={{Action: {props: {'data-testid': 'action'}}}}
+      >
+        content
+      </Tag>,
+    );
+
+    const action = getByTestId(container, 'action');
+    fireEvent.click(action);
+    expect(actionClickMock.mock.calls.length).toBe(1);
   });
 
-  describe('On action', function() {
-    beforeEach(function() {
-      allProps.onActionClick = jest.fn();
-      wrapper = mount(<Tag {...allProps}>{children}</Tag>);
-    });
-
-    test('should call callback if action button is clicked', function() {
-      const actionIcon = wrapper.find(StyledAction);
-      actionIcon.first().simulate('click');
-      expect(allProps.onActionClick).toHaveBeenCalledWith(
-        allProps.onActionClick.mock.calls[0][0],
-        children,
-      );
-    });
+  it('passes flow check with tag enum', function() {
+    // https://github.com/uber/baseweb/issues/1910
+    // eslint-disable-next-line no-unused-vars
+    function TagWrapper(props: {kind: TagKindT}) {
+      return <Tag kind={props.kind} />;
+    }
   });
 });

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -9,13 +9,25 @@ import {styled} from '../styles/index.js';
 import {
   getInputStyles,
   getInputContainerStyles,
+  getRootStyles,
 } from '../input/styled-components.js';
+import type {SharedStylePropsT} from './types.js';
 
-export const TextareaContainer = styled('div', props => {});
-
-export const Textarea = styled('textarea', props => {
-  return {
-    ...getInputStyles(props),
-    ...getInputContainerStyles(props),
-  };
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
+export const StyledTextAreaRoot = styled<SharedStylePropsT>('div', props => {
+  return getRootStyles({...props, $hasIconTrailing: false});
 });
+
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
+export const StyledTextareaContainer = styled<SharedStylePropsT>(
+  'div',
+  props => ({
+    ...getInputContainerStyles(props),
+  }),
+);
+
+// $FlowFixMe https://github.com/facebook/flow/issues/7745
+export const StyledTextarea = styled<SharedStylePropsT>('textarea', props => ({
+  ...getInputStyles(props),
+  resize: 'none',
+}));

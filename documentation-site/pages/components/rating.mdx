@@ -1,25 +1,30 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import Star from 'examples/rating/star.js';
+import StarReadOnly from 'examples/rating/starReadOnly.js';
 import Emoticon from 'examples/rating/emoticon.js';
 
-import Overrides from '../../components/overrides';
 import {EmoticonRating, StarRating} from 'baseui/rating';
 import {Block} from 'baseui/block';
 import * as RatingExports from 'baseui/rating';
+import Yard from '../../components/yard/index';
+import ratingYardConfig from '../../components/yard/config/rating';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
 # Rating
+
+<Yard placeholderHeight={25} {...ratingYardConfig} />
 
 **Emoji ratings** are to be used to collect a user’s experience in the form of an emotional ranking.
 Like star ratings, there five options.
@@ -27,7 +32,7 @@ Like star ratings, there five options.
 **Star ratings** are to be used to collect feedback from a user’s experience with a product. The
 stars indicate a performance rating from one to five.
 
-### Accessibility
+## Accessibility
 
 This component uses the `[role="radiogroup"]` attribute with the following attributes for each individual rating item:
 
@@ -36,39 +41,32 @@ This component uses the `[role="radiogroup"]` attribute with the following attri
 - `[aria-setsize=5]` - total number of elements within the Rating
 - `[aria-checked]` - if the rating is active
 - `[aria-posinset]` - position within the Rating
+- `[aria-disabled]` - if the rating is read only
 
 ## Examples
 
-<Example title="Rating with stars" path="examples/rating/star.js">
+<Example title="Rating with stars" path="rating/star.js">
   <Star />
 </Example>
 
-<Example title="Rating with emoticons" path="examples/rating/emoticon.js">
+<Example title="Rating with stars read only" path="rating/starReadOnly.js">
+  <StarReadOnly />
+</Example>
+
+<Example title="Rating with emoticons" path="rating/emoticon.js">
   <Emoticon />
 </Example>
 
-## Overrides
+## API
 
-<Overrides
-  name="Rating"
+<ApiTable
+  title="Rating props"
+  config={ratingYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/rating/star-rating.js')}
+/>
+
+<Exports
   component={RatingExports}
-  whitelisted={['Root', 'Item']}
-  renderExample={props => (
-    <React.Fragment>
-      <EmoticonRating value={2} overrides={props.overrides} />
-      <Block marginTop="scale600">
-        <StarRating value={3} overrides={props.overrides} />
-      </Block>
-    </React.Fragment>
-  )}
-/>
-
-<API
-  heading="Star Rating API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/rating/star-rating.js')}
-/>
-
-<API
-  heading="Emotion Rating API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/rating/emoticon-rating.js')}
+  title="Rating exports"
+  path="baseui/rating"
 />

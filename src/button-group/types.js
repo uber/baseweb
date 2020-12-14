@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,16 +8,10 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {SIZE, SHAPE} from '../button/index.js';
+import {SIZE, SHAPE, KIND} from '../button/index.js';
 import type {OverrideT} from '../helpers/overrides.js';
-import type {ThemeT} from '../styles/index.js';
 
 import {MODE, STATE_CHANGE_TYPE} from './constants.js';
-
-// styled-components
-export type StylePropsT = {
-  $theme: ThemeT,
-};
 
 // button-group
 export type PropsT = {|
@@ -39,7 +33,7 @@ export type PropsT = {|
    * this handler will trigger.
    */
   onClick?: ClickHandlerT,
-  overrides?: OverridesT<StylePropsT>,
+  overrides?: OverridesT,
   /**
    * Index or array of indices of the selected Button(s).
    * Primarily for use with controlled components with a `mode` prop defined.
@@ -49,10 +43,12 @@ export type PropsT = {|
   shape?: $Values<typeof SHAPE>,
   /** Defines the size of the buttons in the button group. */
   size?: $Values<typeof SIZE>,
+  /** Defines the `kind` of the buttons in the group */
+  kind?: $Values<typeof KIND>,
 |};
 
-type OverridesT<T> = {
-  Root?: OverrideT<T>,
+type OverridesT = {
+  Root?: OverrideT,
 };
 
 // stateful-group

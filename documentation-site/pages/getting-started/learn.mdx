@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -9,28 +9,100 @@ import Layout from '../../components/layout';
 
 export default Layout;
 
-# Learning Base UI
+# Learning Base Web
 
-We understand that learning new libraries have their own set of challenges. To help you get started, we are here to help!
+We understand that learning new libraries have their own set of challenges.
+To help you get started, we are here to help! First, you'll learn the concepts
+of Base Web, then you'll build your first Base Web application.
 
-## Your first Base UI example
+## Concepts
 
-You can find the simples Base UI application example in the [Usage](/getting-started/usage) section, that only contains a button.
+### Styletron
 
-## Your next Base UI example
+Styletron is an universal toolkit for component-oriented styling. It uses a [CSS in JS](https://github.com/tuchk4/awesome-css-in-js/) approach.
 
-A more complex application using Base UI can be found [here](https://github.com/tajo/fusion-baseui), that helps you build an applicatio
-on top of Base UI, step by step.
+Base Web uses Styletron to apply styles to components. In addition to using Base Web components you'll probably be adding some components of your own. Since Styletron is
+already loaded in your project, **we recommend you use Styletron to style these new components too**:
+
+```js
+import {useStyletron} from 'baseui';
+
+export default () => {
+  const [css, theme] = useStyletron();
+  return (
+    <a
+      href="/my-link"
+      className={css({
+        fontSize: '20px',
+        color: theme.colors.primary,
+      })}
+    >
+      Custom Link
+    </a>
+  );
+};
+```
+
+_Want to learn more about Styletron? Go to [styletron.org](https://www.styletron.org)._
+
+Do you prefer other approaches when styling your components? CSS Modules? Styled-components?
+You can use them in parallel to Base Web and Styletron. Styletron adds only `8kB` to your bundle
+and works in an isolation.
+
+_Check out the documentation on [useStyletron](/components/use-styletron/) to learn more._
+
+### Overrides
+
+You can customize Base Web components by means of overrides. Each Base Web component consists of multiple subcomponents (for example list can have list container and list items). Overrides gives you a full access to all those subcomponents and lets you customize:
+
+- the styles of the subcomponent
+- the props of the subcomponent
+- or replace it completely
+
+Every Base Web component has a top-level prop called overrides. It accepts a map of subcomponents
+and desired overrides.
+
+_To learn more, check out the [Overrides guide](/guides/understanding-overrides/)._
+
+### Controlled and Uncontrolled components
+
+Most code examples you'll find on the documentation site feature controlled components.
+
+> In HTML, form elements such as `<input>`, `<textarea>`, and `<select>` typically maintain their own
+> state and update it based on user input. In React, mutable state is typically
+> kept in the state property of components, and only updated with setState().
+
+> We can combine the two by making the React state be the “single source of truth”.
+
+Most Base Web components are released with both options:
+
+- `Stateful` components, to support uncontrolled usage,
+- and the default component, that supports controlled usage.
+
+_To learn more about these, check out the official React docs on
+[Controlled components](https://reactjs.org/docs/forms.html#controlled-components)
+and [Uncontrolled components](https://reactjs.org/docs/uncontrolled-components.html)._
+
+## Building a password generator using Base Web
+
+Check out the [Getting started with Base Web](/blog/getting-started-with-base-web/) blogpost
+to learn how to build a simple password generator using Base Web.
 
 ## Next steps
 
-It's time for you to build something on your own! If you got stuck, or if you've built something using Base UI,
-please let us know, and we are happy to help, or feature your application on this website!
+It's time for you to build something on your own! If you got stuck, or if you've built something using Base Web,
+please let us know. We're happy to help or feature your application on this website!
 
-You can reach us in our [Slack channel](https://join.slack.com/t/baseui/shared_invite/enQtNDI0NTgwMjU0NDUyLTk3YzM1NWY2MjY3NTVjNjk3NzY1MTE5OTI4Y2Q2ZmVkMTUyNDc1MTcwYjZhYjlhOWQ2M2NjOWJkZmQyNjFlYTA)
-or through [GitHub issues](https://github.com/uber-web/baseui/issues).
+You can reach us in our [Slack channel](https://join.slack.com/t/baseui/shared_invite/zt-5f1s4d10-1D2uywAECAG50m64PTH9cw)
+or through [GitHub issues](https://github.com/uber/baseweb/issues).
 
-Once you have a better understanding of Base UI, we recommend diving into more advanced topics like:
+### Base Web with Data Fetching
 
-* [How Theming works](/theming/custom-themes)
-* [Understanding Overrides](/theming/understanding-overrides)
+A more complex application using Base Web can be found [here](https://github.com/tajo/fusion-baseui). You can also check how it works on [CodeSandbox](https://codesandbox.io/s/strange-shadow-0lhyw). It helps you build an application
+on top of Base Web, step by step.
+
+### Base Web Themes
+
+Once you have a better understanding of Base Web, we recommend diving into more advanced topics like:
+
+- [How Theming works](/guides/theming)

@@ -1,0 +1,130 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Layout from '../../components/layout';
+import {Table} from 'baseui/table';
+
+export default Layout;
+
+# Roadmap
+
+_The last update: 12 March 2020_
+
+If you want to see what we are working on and what won't be worked on, you've come to the right place.
+
+## Next up
+
+Items are not necessarily in priority order.
+
+<Table
+  columns={['Feature']}
+  data={[
+    ['Support for nested overrides in the playground'],
+    ['Better mobile support for all components'],
+    ['Updated visuals for the sidebar and tree view components'],
+    ['The next major, v10 (see below)'],
+  ]}
+/>
+
+## Not planned
+
+The following items won't be included in any future Base Web releases.
+
+<Table
+  columns={['Feature']}
+  data={[['Support for react-form, formik, or similar out of the box']]}
+/>
+
+## The next major
+
+We have a new major version, **v10**, planned for **September of 2021**. Below you will find all of the potentially breaking changes we are including in v10. To provide a seamless upgrade experience, we'll ship codemods for all changes.
+
+We will keep this list updated to give you as much time to prepare as possible. Also, feel free to [open an issue](https://github.com/uber/baseweb/issues) if you want to discuss any of the changes.
+
+### `baseui/label`
+
+- The `timePickerAriaLabel` prop will be removed in favor of `timePickerAriaLabel12Hour` or `timePickerAriaLabel24Hour`.
+
+### `baseui/modal`
+
+- The `Backdrop` override property will be removed in favor of `DialogContainer`.
+- The `unstable_ModalBackdropScroll` prop will be removed and become the default behavior.
+- The `autofocus` prop will be removed in favor of `autoFocus`.
+
+### `baseui/phone-input`
+
+- The design will be updated to split the dial code selector into a separate control (`CountryPicker`). Available now as [`PhoneInputNext`](https://baseweb.design/components/phone-input/#updated-phone-input-design). In v11, `PhoneInputNext` will replace the current default implementation (`PhoneInput`).
+- The `CountrySelect` component will be removed in favor of `CountryPicker`.
+
+### `baseui/spinner`
+
+- The design will be updated to use a fill without rounded corners. Available now as [`StyledSpinnerNext`](https://baseweb.design/components/spinner/#spinner-next). In v11, `StyledSpinnerNext` will replace the current default implementation (`Spinner`).
+
+### `baseui/theme`
+
+- The `zIndex` theme property will be removed in favor of the [`Layers`](https://baseweb.design/components/layer/) system.
+- The `tooltip` theme property will be removed in favor of the `colors.tooltipBackground` and `colors.tooltipText` properties. [Further context](https://github.com/uber/baseweb/pull/1184).
+- The legacy set of semantic color properties will be removed. You can use the following mapping to update to the newer set of semantic color properties:
+  - `colorPrimary` -> `contentPrimary`
+  - `colorSecondary` -> `contentSecondary`
+  - `background` -> `backgroundPrimary`
+  - `backgroundAlt` -> `backgroundSecondary`
+  - `backgroundInv` -> `backgroundInversePrimary`
+  - `foreground` -> `contentPrimary`
+  - `foregroundAlt` -> `contentSecondary`
+  - `foregroundInv` -> `contentInversePrimary`
+  - `border` -> `borderOpaque`
+  - `borderAlt` -> `borderTransparent`
+  - `borderFocus` -> `borderSelected`
+  - `borderError` -> `borderNegative`
+  - `shadowFocus` -> `-`
+  - `shadowError` -> `-`
+- There will be more refactoring of the theme, but not all of the details have been decided on yet. Track [this issue](https://github.com/uber/baseweb/issues/2318) if interested.
+
+### `baseui/accordion`
+
+- The `renderPanelContent` prop will be removed in favor of [`renderAll`](https://baseweb.design/components/accordion/#accordion-seo-friendly).
+
+### `baseui/checkbox`
+
+- The `checkmarkType` prop will use [`STYLE_TYPE.toggle_round`](https://baseweb.design/components/checkbox/#as-a-toggle) as the default value.
+- Unlabeled checkboxes will no longer receive padding on the right side. [Further context](https://github.com/uber/baseweb/pull/2172).
+
+### `baseui/progress-bar`
+
+- The `successValue` prop will be removed. The `value` prop should be normalized as though `successValue` were always set to `100`.
+
+### `baseui/radio`
+
+- All overrides on the `RadioGroup` component will be removed except for `RadioGroupRoot`. Overrides should be passed to `Radio` children instead.
+
+### `baseui/select`
+
+- The `StyledSearchIcon` component will be removed in favor of `StyledSearchIconContainer`. [Further context](https://github.com/uber/baseweb/pull/2397).
+
+### `baseui/typography`
+
+- The older typography components will be removed in favor of the newer typography components. The older components already alias the newer components according to this mapping:
+  - `Display` -> `DisplayLarge`
+  - `Display1` -> `DisplayLarge`
+  - `Display2` -> `DisplayMedium`
+  - `Display3` -> `DisplaySmall`
+  - `Display4` -> `DisplayXSmall`
+  - `H1` -> `HeadingXXLarge`
+  - `H2` -> `HeadingXLarge`
+  - `H3` -> `HeadingLarge`
+  - `H4` -> `HeadingMedium`
+  - `H5` -> `HeadingSmall`
+  - `H6` -> `HeadingXSmall`
+  - `Paragraph1` -> `ParagraphLarge`
+  - `Paragraph2` -> `ParagraphMedium`
+  - `Paragraph3` -> `ParagraphSmall`
+  - `Paragraph4` -> `ParagraphXSmall`
+  - `Label1` -> `LabelLarge`
+  - `Label2` -> `LabelMedium`
+  - `Label3` -> `LabelSmall`
+  - `Label4` -> `LabelXSmall`

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -7,16 +7,25 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 import type {BlockPropsT} from './types.js';
 import {StyledBlock} from './styled-components.js';
 import {getOverrides} from '../helpers/overrides.js';
 
 function Block({
+  forwardedRef,
   children,
-  as,
-  overrides,
+  as = 'div',
+  overrides = {},
   color,
+  backgroundAttachment,
+  backgroundClip,
+  backgroundColor,
+  backgroundImage,
+  backgroundOrigin,
+  backgroundPosition,
+  backgroundRepeat,
+  backgroundSize,
   font,
   alignContent,
   alignItems,
@@ -35,8 +44,9 @@ function Block({
   gridColumnStart,
   gridGap,
   gridRow,
-  gridRowStart,
   gridRowEnd,
+  gridRowGap,
+  gridRowStart,
   gridTemplate,
   gridTemplateAreas,
   gridTemplateColumns,
@@ -70,18 +80,31 @@ function Block({
   top,
   right,
   bottom,
-  ...other
-}: BlockPropsT) {
+  textOverflow,
+  whiteSpace,
+  ...restProps
+}) {
   const [BaseBlock, baseBlockProps] = getOverrides(
-    // $FlowFixMe
     overrides.Block,
     StyledBlock,
   );
 
   return (
     <BaseBlock
+      // coerced to any because because of how react components are typed.
+      // cannot guarantee an html element
+      // eslint-disable-next-line flowtype/no-weak-types
+      ref={(forwardedRef: any)}
       $as={as}
       $color={color}
+      $backgroundAttachment={backgroundAttachment}
+      $backgroundClip={backgroundClip}
+      $backgroundColor={backgroundColor}
+      $backgroundImage={backgroundImage}
+      $backgroundOrigin={backgroundOrigin}
+      $backgroundPosition={backgroundPosition}
+      $backgroundRepeat={backgroundRepeat}
+      $backgroundSize={backgroundSize}
       $font={font}
       $alignContent={alignContent}
       $alignItems={alignItems}
@@ -100,8 +123,9 @@ function Block({
       $gridColumnStart={gridColumnStart}
       $gridGap={gridGap}
       $gridRow={gridRow}
-      $gridRowStart={gridRowStart}
       $gridRowEnd={gridRowEnd}
+      $gridRowGap={gridRowGap}
+      $gridRowStart={gridRowStart}
       $gridTemplate={gridTemplate}
       $gridTemplateAreas={gridTemplateAreas}
       $gridTemplateColumns={gridTemplateColumns}
@@ -135,7 +159,10 @@ function Block({
       $top={top}
       $right={right}
       $bottom={bottom}
-      {...other}
+      $textOverflow={textOverflow}
+      $whiteSpace={whiteSpace}
+      data-baseweb="block"
+      {...restProps}
       {...baseBlockProps}
     >
       {children}
@@ -143,9 +170,8 @@ function Block({
   );
 }
 
-Block.defaultProps = {
-  overrides: {},
-  as: 'div',
-};
-
-export default Block;
+const BlockComponent = React.forwardRef<BlockPropsT, HTMLElement>(
+  (props: BlockPropsT, ref) => <Block {...props} forwardedRef={ref} />,
+);
+BlockComponent.displayName = 'Block';
+export default BlockComponent;

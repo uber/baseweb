@@ -1,50 +1,24 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
+/* global window */
 // @flow
-/* global fetch process */
 
 import * as React from 'react';
-import CodeSandboxer from 'react-codesandboxer';
-import {Button, KIND} from 'baseui/button';
+import {Button, KIND, SIZE} from 'baseui/button';
+import {ButtonGroup} from 'baseui/button-group';
 import {Card} from 'baseui/card';
 import {Block} from 'baseui/block';
-import {StyledLink} from 'baseui/link';
-import {styled} from 'baseui/styles';
 
-import Anchor from './anchor';
-import {version} from '../../package.json';
 import Code from './code';
+import CodeIcon from './code-icon';
+//$FlowFixMe
 import {trackEvent} from '../helpers/ga';
-
-const Link = styled(StyledLink, {cursor: 'pointer'});
-
-const index = `
-import React from "react";
-import ReactDOM from "react-dom";
-
-import { Provider as StyletronProvider } from "styletron-react";
-import { Client as Styletron } from "styletron-engine-atomic";
-
-import Example from "./example";
-
-const engine = new Styletron();
-
-function App() {
-  return <Example />;
-}
-
-const rootElement = document.getElementById("root");
-ReactDOM.render(
-  <StyletronProvider value={engine}>
-    <App />
-  </StyletronProvider>,
-  rootElement
-);
-`;
+import {H3} from './markdown-elements';
+import {deploy} from '../components/code-sandboxer.js';
 
 function Source(props: {children: ?React.Node}) {
   if (!props.children || typeof props.children !== 'string') return null;
@@ -55,142 +29,153 @@ type PropsT = {
   additionalPackages: {[string]: string},
   children: React.Node,
   path: string, // required to fetch the uncompiled source code
-  title: string,
+  title: ?string,
 };
 
-type StateT = {
-  isSourceOpen: boolean,
-  source: ?string,
-};
+function Example(props: PropsT) {
+  const {additionalPackages = {}, path, children, title = null} = props;
 
-class Example extends React.Component<PropsT, StateT> {
-  static defaultProps = {additionalPackages: {}};
-  state = {
-    isSourceOpen: false,
-    source: null,
-  };
+  // Which language the example should be displayed in.
+  const [selectedLanguage, setSelectedLanguage] = React.useState(-1);
 
-  async componentDidMount() {
-    const sourcePath = `${String(process.env.STATIC_ROOT)}${this.props.path}`;
-    const res = await fetch(sourcePath);
-    const source = await res.text();
-    this.setState({source});
+  // The example code for each of our three supported languages.
+  const [code, setCode] = React.useState({
+    js: null,
+    ts: null,
+    flow: null,
+  });
+
+  // Load example code for various languages on initial mount.
+  React.useEffect(() => {
+    (async () => {
+      const flowCode = await import(
+        /* webpackMode: "eager" */ `!!raw-loader!../examples/${path}`
+      );
+      const tsCode = await import(
+        /* webpackMode: "eager" */ `!!raw-loader!../examples/${path.replace(
+          '.js',
+          '.tsx',
+        )}`
+      );
+      const jsCode = await import(
+        /* webpackMode: "eager" */ `!!raw-loader!remove-flow-types-loader?pretty!../examples/${path}`
+      );
+
+      setCode({
+        flow: flowCode.default,
+        ts: tsCode.default,
+        js: jsCode.default
+          // flow-remove-types doesn't remove // from the first line
+          .replace(/^\/\//, '')
+          // remove all instances of <{}>
+          .replace(/<\{.*\}>/g, '')
+          // remove all instances of <any>
+          .replace(/<any>/g, '')
+          .trim(),
+      });
+    })();
+  }, []);
+
+  async function handleOpenExample() {
+    if (code.js) {
+      const url = await deploy(
+        `Base Web - ${title || 'Example'}`,
+        code.js,
+        additionalPackages,
+      );
+      if (url) {
+        window.open(url, '_blank');
+      }
+    }
   }
 
-  render() {
-    return (
-      <Card
-        overrides={{
-          Root: {
-            style: ({$theme}) => ({
-              maxWidth: '776px',
-              marginBottom: $theme.sizing.scale1200,
-            }),
+  return (
+    <Card
+      overrides={{
+        Root: {
+          style: ({$theme}) => ({
+            marginTop: 0,
+            marginBottom: 0,
+            borderTopWidth: 0,
+            borderRightWidth: 0,
+            borderBottomWidth: 0,
+            borderLeftWidth: 0,
+          }),
+        },
+        Contents: {
+          style: {
+            marginLeft: 0,
+            marginRight: 0,
+            marginTop: 0,
+            marginBottom: 0,
           },
-          Contents: {style: {margin: 0}},
-        }}
-      >
-        <Block
-          display="flex"
-          alignItems="center"
-          justifyContent="space-between"
-          paddingTop="scale600"
-          paddingRight="scale500"
-          paddingBottom="scale600"
-          paddingLeft="scale800"
-        >
-          <Block
-            overrides={{
-              Block: {
-                style: {
-                  textTransform: 'lowercase',
-                  ':first-letter': {
-                    textTransform: 'uppercase',
-                  },
-                },
-              },
-            }}
-            as="span"
-            font="font500"
-            color="mono1000"
-          >
-            <Anchor>{this.props.title}</Anchor>
-          </Block>
-          <Block display="flex" alignItems="center">
-            <Button
-              kind={KIND.secondary}
-              onClick={() => {
-                this.setState(prevState => ({
-                  isSourceOpen: !prevState.isSourceOpen,
-                }));
-                trackEvent('show_source', this.props.title);
-              }}
-            >
-              {this.state.isSourceOpen ? 'Hide' : 'Show'} Source
-            </Button>
-          </Block>
-        </Block>
+        },
+      }}
+    >
+      {title && <H3>{title}</H3>}
+      {children}
 
-        <Block
-          padding="scale600"
-          overrides={{
-            Block: {
-              style: ({$theme}) => ({
-                borderTop: `1px solid ${$theme.colors.border}`,
-                borderBottom: this.state.isSourceOpen
-                  ? `1px solid ${$theme.colors.border}`
-                  : null,
-              }),
-            },
+      <Block paddingTop="scale400">
+        <ButtonGroup
+          mode="radio"
+          size={SIZE.compact}
+          selected={selectedLanguage}
+          onClick={(event, index) => {
+            if (selectedLanguage !== index) {
+              setSelectedLanguage(index);
+            } else {
+              setSelectedLanguage(-1);
+            }
           }}
         >
-          {this.props.children}
-        </Block>
+          <Button
+            kind={KIND.secondary}
+            startEnhancer={() => <CodeIcon />}
+            onClick={() => {
+              trackEvent('show_js_source', title);
+            }}
+          >
+            JS
+          </Button>
+          <Button
+            kind={KIND.secondary}
+            startEnhancer={() => <CodeIcon />}
+            onClick={() => {
+              trackEvent('show_flow_source', title);
+            }}
+          >
+            Flow
+          </Button>
+          <Button
+            kind={KIND.secondary}
+            startEnhancer={() => <CodeIcon />}
+            onClick={() => {
+              trackEvent('show_ts_source', title);
+            }}
+          >
+            TS
+          </Button>
+        </ButtonGroup>
+      </Block>
 
-        {this.state.isSourceOpen && (
-          <Block margin="scale800">
-            <Block overflow="scrollX">
-              <Source>{this.state.source}</Source>
-            </Block>
-            <Block
-              display="flex"
-              justifyContent="flex-end"
-              marginTop="scale400"
-            >
-              <CodeSandboxer
-                examplePath="/"
-                example={this.state.source}
-                name={this.props.title}
-                afterDeploy={() => {
-                  trackEvent('codesandbox_deployed', this.props.title);
-                }}
-                afterDeployError={() => {
-                  trackEvent('codesandbox_deployed_error', this.props.title);
-                }}
-                dependencies={{
-                  baseui: version,
-                  react: '16.5.2',
-                  'react-dom': '16.5.2',
-                  'react-scripts': '2.0.3',
-                  'styletron-engine-atomic': '1.0.9',
-                  'styletron-react': '4.4.4',
-                  ...this.props.additionalPackages,
-                }}
-                providedFiles={{'index.js': {content: index}}}
-                template="create-react-app"
-              >
-                {() => (
-                  <Link>
-                    <Button kind={KIND.tertiary}>Edit on CodeSandbox</Button>
-                  </Link>
-                )}
-              </CodeSandboxer>
-            </Block>
+      {selectedLanguage > -1 && (
+        <React.Fragment>
+          <Block overflow="scrollX">
+            {selectedLanguage === 0 && <Source>{code.js}</Source>}
+            {selectedLanguage === 1 && <Source>{code.flow}</Source>}
+            {selectedLanguage === 2 && <Source>{code.ts}</Source>}
           </Block>
-        )}
-      </Card>
-    );
-  }
+          <Button
+            kind={KIND.secondary}
+            size={SIZE.compact}
+            onClick={handleOpenExample}
+          >
+            Try example on CodeSandbox
+          </Button>
+        </React.Fragment>
+      )}
+    </Card>
+  );
 }
 
 export default Example;

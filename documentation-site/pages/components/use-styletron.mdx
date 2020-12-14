@@ -1,0 +1,115 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+
+import UseStyletronBasic from 'examples/use-styletron/basic.js';
+import ReuseDefinitions from 'examples/use-styletron/reuse-css-definitions.js';
+import StyledOverrides from 'examples/use-styletron/overrides.js';
+
+export default Layout;
+
+# UseStyletron
+
+Base Web exports a modified version of [Styletron's](https://www.styletron.org/api-reference#usestyletron) `useStyletron`
+function. It is a lightweight approach to generating CSS classes for an element or component, without
+having to opt in to Styletron's styled component API. This allows you to style any element directly while
+still taking advantage of Styletron's efficient CSS generation. See
+[styletron's documentation](https://www.styletron.org/react/#usestyletron-hook) for more
+information about how this is used.
+
+## Examples
+
+This modified version has access to [theme variables](/guides/theming/#theme-properties):
+
+<Example title="Using theme values" path="use-styletron/basic.js">
+  <UseStyletronBasic />
+</Example>
+
+Since Styletron is already in your application and **you'll probably need to create new components anyway, we recommend you to use this `useStyletron` hook**!
+Do you prefer other approaches when styling your components? Feel free to use
+them in parallel to Base Web and Styletron. Styletron adds only `8kB` to your
+bundle and works in isolation.
+
+<Example
+  title="Reuse css definitions"
+  path="use-styletron/reuse-css-definitions.js"
+>
+  <ReuseDefinitions />
+</Example>
+
+In the example above, take a look at how css definitions are re-used by multiple elements. Consider how this can be
+further extended with your own custom hooks.
+
+## Additional State Props
+
+When you [use overrides](/guides/understanding-overrides/), you also get an access to additional component states, like `$disabled` or `$error`, depending
+on the given component:
+
+<Example title="Overriding subcomponents" path="use-styletron/overrides.js">
+  <StyledOverrides />
+</Example>
+
+To understand overrides better, go [here](/guides/understanding-overrides/).
+
+## Custom themes and Flow type
+
+The `styled` and `withStyle` functions imported from `baseui` provide flow type support for the
+default [theme shape](/guides/theming/#theme-properties). However, if you create a custom theme with additional fields,
+flow will show an error. To help, baseui exports two utility functions `createThemedStyled` and
+`createThemedWithStyle`. These will return their respective functions with a provided theme type.
+Doing so saves you from needing to import the custom theme type around. See below for an example.
+
+```diff
+ import {
+-  styled,
+-  withStyle,
+-  useStyletron,
++  createThemedStyled,
++  createThemedWithStyle,
++  createThemedUseStyletron,
+ } from 'baseui';
+
+ type CustomThemeT = {myBlue: string, myRed: string};
+
+// you'll likely want to import these functions from a relative path in your application
++const themedStyled = createThemedStyled<CustomThemeT>();
++const themedWithStyle = createThemedWithStyle<CustomThemeT>();
++const themedUseStyletron = createThemedUseStyletron<CustomThemeT>();
+
+ type PropsT = {
+   $active: boolean
+-  $theme: CustomThemeT
+ };
+
+-const First = styled<PropsT>('div', props => {
++const First = themedStyled<PropsT>('div', props => {
+   return {
+     backgroundColor: props.$active ? props.$theme.colors.myBlue : props.$theme.colors.myRed,
+   };
+ });
+
+-const Second = withStyle<PropsT>('div', props => {
++const Second = themedWithStyle<PropsT>(First, props => {
+   return {
+     color: props.$active ? props.$theme.colors.myBlue : props.$theme.colors.myRed,
+   };
+ });
+
+const Third = () => {
+- const [css, theme] = useStyletron();
++ const [css, theme] = themedUseStyletron();
+
+return (
+- <div className={css({color: theme.colors.primary})}>
++ <div className={css({color: theme.myBlue)}>
+    test
+  </div>
+);
+}
+```

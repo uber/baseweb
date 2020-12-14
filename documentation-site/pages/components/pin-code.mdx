@@ -1,0 +1,172 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import PinCodeBasic from 'examples/pin-code/basic.js';
+import PinCodeLength from 'examples/pin-code/length.js';
+import PinCodeIdAndName from 'examples/pin-code/id-and-name.js';
+import PinCodeStates from 'examples/pin-code/states.js';
+import PinCodeSizes from 'examples/pin-code/size.js';
+import PinCodePlaceholder from 'examples/pin-code/placeholder.js';
+import PinCodeNoTab from 'examples/pin-code/no-tab.js';
+import PinCodeAutofocus from 'examples/pin-code/autofocus.js';
+import PinCodeCompletion from 'examples/pin-code/completion.js';
+import PinCodeOverride from 'examples/pin-code/override.js';
+import PinCodeEvent from 'examples/pin-code/event.js';
+import PinCodeStateful from 'examples/pin-code/stateful.js';
+import PinCodeMask from 'examples/pin-code/mask.js';
+
+import * as PinCodeExports from 'baseui/pin-code/index.js';
+import {StatefulPinCode} from 'baseui/pin-code/index.js';
+
+import Yard from '../../components/yard/index';
+import pinYardConfig from '../../components/yard/config/pin-code';
+import ApiTable from '../../components/api-table';
+
+export default Layout;
+
+# Pin Code
+
+<Yard placeholderHeight={48} {...pinYardConfig} />
+
+The `PinCode` component is optimized for entering sequences of digits.
+The most common application is for entering single-use security codes.
+It is optimized for entering digits quickly.
+
+## Examples
+
+<Example title="Basic usage" path="pin-code/basic.js">
+  <PinCodeBasic />
+</Example>
+
+Each input collects one digit at a time.
+When a digit is entered, focus transfers to the next input in the sequence, until every input is filled in.
+A few things to note:
+
+1. You canʼt enter anything other than a digit.
+2. You can only enter one character per input.
+3. To overwrite the value of an input, you donʼt need to select the text in the input. If you type a digit while the input is focused, the input will update. This is an optimization for quickly editing the inputs.
+4. Pressing `Delete` when there is nothing in the input will transfer focus to, and clear the value of, the previous input (if any). This avoids the need to explicitly Shift+Tab & Delete.
+
+<Example title="Code length" path="pin-code/length.js">
+  <PinCodeLength />
+</Example>
+
+`PinCode` expects an array of strings for the `values` prop.
+The number of inputs rendered will match the length of the array.
+
+<Example title="Passing id and name" path="pin-code/id-and-name.js">
+  <PinCodeIdAndName />
+</Example>
+
+You can pass an individual `id` or `name` prop.
+`name` will be shared amongst the inputs, meaning they will each have their `name` set to this value.
+`id` will have an index appended to whatever string you provide and passed to the respective input.
+In the above example, the resulting ids are `foo-0`, `foo-1`, `foo-2`, and `foo-3` and each input has the name `pin-code`.
+
+<Example title="States" path="pin-code/states.js">
+  <PinCodeStates />
+</Example>
+
+`PinCode` accepts most of the same boolean props as our other inputs: `disabled`, `error`, `positive`, etc.
+
+<Example title="Sizes" path="pin-code/size.js">
+  <PinCodeSizes />
+</Example>
+
+You can control the size of the inputs with the `size` prop.
+
+<Example title="Changing the placeholder" path="pin-code/placeholder.js">
+  <PinCodePlaceholder />
+</Example>
+
+If you donʼt like the default placeholder (`○`), you can change that too.
+Notice how each placeholder disappears when any of the inputs have focus.
+
+<Example title="Adding mask" path="pin-code/mask.js">
+  <PinCodeMask />
+</Example>
+
+You can add a default mask (`.`) by setting `mask=true`.
+Prop `mask` also accepts `string` input as customized mask style. For example, you can get an asterisk mask by setting `mask='*'`.
+
+<Example title="Disable focus management" path="pin-code/no-tab.js">
+  <PinCodeNoTab />
+</Example>
+
+You can disable `PinCode`ʼs built-in focusing logic by toggling the `manageFocus` prop.
+It defaults to `true`, which makes it so that when an input receives a digit, focus is automatically changed to the next input.
+It also transfers focus to a previous input when `Delete` is pressed with focus on an empty input.
+Set `manageFocus` to `false` if, for some reason, you donʼt want this nifty behavior.
+You can use the `onChange` handler to implement your own thing.
+
+<Example title="The main Event" path="pin-code/event.js">
+  <PinCodeEvent />
+</Example>
+
+The object passed to `onChange` has two properties.
+`values` is the new array of strings that `PinCode` thinks you should update your state with.
+Of course, you can decide not to use those values.
+If, for some reason, you do not want to use `values`, the `onChange` object also includes an `event` property which references the original input change event.
+
+We do not envision a lot of scenarios where you would need this level of control- but just in case, it is there for you.
+Note, if you do decide to go off the rails with `event`, you may want to turn off `manageFocus` as well.
+Otherwise you may have focus jumping around in ways inconsistent with your customizations.
+
+<Example title="Autofocus" path="pin-code/autofocus.js">
+  <PinCodeAutofocus />
+</Example>
+
+There is a decent chance that if you are using `PinCode` you want it to be focused from the start.
+Simply set `autoFocus` to `true` to focus the first input upon initial mounting of the component.
+
+In the example above, click `Mount PinCode` to ...mount the PinCode component.
+With `autoFocus` toggled on, the first input receives focus immediately.
+
+<Example title="Once things are filled in" path="pin-code/completion.js">
+  <PinCodeCompletion />
+</Example>
+
+It is a common pattern to immediately submit the userʼs input once the full pin code has been entered.
+In the above example, we shift focus to the submit button once all of our inputs have been filled in.
+Keep in mind that folks may have mistyped a digit so auto-submitting might be a bit aggressive.
+
+<Example title="Autocomplete and Copy + Paste" path="pin-code/basic.js">
+  <PinCodeBasic />
+</Example>
+
+Try copying & pasting `1234` into any of the inputs in the example above.
+
+By default, you can only change one input at a time.
+But what if a user wants to copy and paste a value in?
+Or what if the userʼs browser can [autocomplete verification codes](https://developer.apple.com/documentation/security/password_autofill/enabling_password_autofill_on_an_html_input_element#3001194).
+
+If one of the individual inputs receives a longer string, `PinCode` does some basic validation (is the length right? does it contain only digits?) to see if it can fill all the inputs.
+If things seem promising, `PinCode` will call `onChange` will all of the values updated.
+
+<Example title="Stateful (uncontrolled) usage" path="pin-code/stateful.js">
+  <PinCodeStateful />
+</Example>
+
+As with many of our components, there is also an [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) version, `StatefulPinCode`, which manages its own state. The default code length for this component is four, but you can change that by passing in an array of a different length to `initialState`.
+
+## API
+
+<ApiTable
+  title="Pin Code props"
+  config={pinYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/pin-code/pin-code.js')}
+/>
+
+<Exports
+  component={PinCodeExports}
+  title="Pin Code exports"
+  path="baseui/pin-code"
+/>

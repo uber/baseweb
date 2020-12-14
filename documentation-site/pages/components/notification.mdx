@@ -1,13 +1,13 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 
 import Example from '../../components/example';
-import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
 import Basic from 'examples/notification/basic.js';
 import Kinds from 'examples/notification/kinds.js';
@@ -16,18 +16,22 @@ import Customization from 'examples/notification/overrides.js';
 import CustomDismiss from 'examples/notification/custom-dismiss.js';
 import FullWidth from 'examples/notification/full-width.js';
 
-import Overrides from '../../components/overrides';
 import {Notification} from 'baseui/notification';
-import * as NotificationExports from 'baseui/toast';
+import * as NotificationExports from 'baseui/notification';
+import Yard from '../../components/yard/index';
+import notificationYardConfig from '../../components/yard/config/notification';
+import ApiTable from '../../components/api-table';
 
 export default Layout;
 
 # Notification
 
+<Yard placeholderHeight={68} {...notificationYardConfig} />
+
 Notifications provide important information inline with the content body within a view. These
 notifications do not self-dismiss and have the option to include a close “X”.
 
-### When to use
+## When to use
 
 - When another user of the app direct messages the current user.
 - When the app requires immediate action by the current user.
@@ -35,44 +39,50 @@ notifications do not self-dismiss and have the option to include a close “X”
 
 ## Examples
 
-<Example title="Notification Basic Usage" path="examples/notification/basic.js">
+<Example title="Notification Basic Usage" path="notification/basic.js">
   <Basic />
 </Example>
 
-<Example title="Notification with all Available Kinds" path="examples/notification/kinds.js">
+<Example
+  title="Notification with all Available Kinds"
+  path="notification/kinds.js"
+>
   <Kinds />
 </Example>
 
-<Example title="Notification Closeable example" path="examples/notification/closeable.js">
+<Example
+  title="Notification Closeable example"
+  path="notification/closeable.js"
+>
   <Closeable />
 </Example>
 
-<Example title="Notification in Full width" path="examples/notification/full-width.js">
+<Example title="Notification in Full width" path="notification/full-width.js">
   <FullWidth />
 </Example>
 
-<Example title="Notification with Overrides" path="examples/notification/overrides.js">
+<Example title="Notification with Overrides" path="notification/overrides.js">
   <Customization />
 </Example>
 
-<Example title="Notification with Custom Dismiss" path="examples/notification/custom-dismiss.js">
+<Example
+  title="Notification with Custom Dismiss"
+  path="notification/custom-dismiss.js"
+>
   <CustomDismiss />
 </Example>
 
-## Overrides
+## API
 
-<Overrides
-  name="Notification"
-  component={NotificationExports}
-  blacklisted={['Root']}
-  renderExample={props => (
-    <Notification overrides={props.overrides} closeable>
-      Default info notification
-    </Notification>
-  )}
+<ApiTable
+  title="Notification props"
+  config={notificationYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/notification/notification.js')}
 />
 
-<API
-  heading="Notification API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/notification/notification.js')}
+<Exports
+  component={NotificationExports}
+  title="Notification exports"
+  path="baseui/notification"
+  cheatsheet={false}
 />

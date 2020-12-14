@@ -1,11 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>e2e test</title>
-  </head>
-  <body>
-    <div role="main" id="root"></div>
-    <script type="text/javascript" src="./index.js"></script>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <title>e2e test</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      -moz-transition: none !important;
+      transition: none !important;
+      -moz-animation: none !important;
+      animation: none !important;
+      caret-color: transparent !important;
+    }
+
+    .dark {
+      background: #000;
+    }
+  </style>
+</head>
+
+<body>
+  <div role="main" id="root"></div>
+  <script type="text/javascript" src="./index.js"></script>
+</body>
+
 </html>

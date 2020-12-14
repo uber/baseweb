@@ -1,0 +1,65 @@
+<!--
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+import Example from '../../components/example';
+import Layout from '../../components/layout';
+import Exports from '../../components/exports';
+
+import Basic from 'examples/list/basic.js';
+import ArtworkSizes from 'examples/list/artwork-sizes.js';
+import Enhancers from 'examples/list/enhancers.js';
+import Sublist from 'examples/list/sublist.js';
+import MenuAdapter from 'examples/list/menu-adapter.js';
+
+import {Button} from 'baseui/button';
+import Search from 'baseui/icon/search';
+import {ListItem, ListItemLabel} from 'baseui/list';
+import * as ListExports from 'baseui/list';
+
+import Yard from '../../components/yard/index';
+import listItemYardConfig from '../../components/yard/config/list-item';
+import ApiTable from '../../components/api-table';
+
+export default Layout;
+
+# List
+
+<Yard placeholderHeight={52} {...listItemYardConfig} />
+
+List items best used in mobile applications.
+
+## Examples
+
+<Example title="Basic usage" path="list/basic.js">
+  <Basic />
+</Example>
+
+<Example title="Artwork sizes" path="list/artwork-sizes.js">
+  <ArtworkSizes />
+</Example>
+
+<Example title="End enhancers" path="list/enhancers.js">
+  <Enhancers />
+</Example>
+
+<Example title="Sublist" path="list/sublist.js">
+  <Sublist />
+</Example>
+
+<Example title="Usage with Menu" path="list/menu-adapter.js">
+  <MenuAdapter />
+</Example>
+
+## API
+
+<ApiTable
+  title="List props"
+  config={listItemYardConfig}
+  types={require('!!extract-react-types-loader!../../../src/list/list-item.js')}
+/>
+
+<Exports component={ListExports} title="List exports" path="baseui/list" />

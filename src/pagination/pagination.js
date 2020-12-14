@@ -1,116 +1,111 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-/* global document */
 import * as React from 'react';
 import memoize from 'memoize-one';
 // Files
-import {Button, StyledBaseButton, KIND} from '../button/index.js';
-import {StatefulMenu as Menu} from '../menu/index.js';
+import {LocaleContext} from '../locale/index.js';
+import {ThemeContext} from '../styles/theme-provider.js';
+import {Select as BaseSelect} from '../select/index.js';
+import {Button, KIND} from '../button/index.js';
 import {
-  Root as StyledRoot,
-  MaxLabel as StyledMaxLabel,
-  DropdownContainer as StyledDropdownContainer,
-  DropdownMenu as StyledDropdownMenu,
-  DropdownButton as StyledDropdownButton,
+  StyledRoot,
+  StyledMaxLabel,
+  StyledDropdownContainer,
 } from './styled-components.js';
-import {ArrowLeft, ArrowRight, ArrowDown} from './icons.js';
+import ChevronLeft from '../icon/chevron-left.js';
+import ChevronRight from '../icon/chevron-right.js';
 import {getOverrides} from '../helpers/overrides.js';
-import type {PaginationPropsT, PaginationStateT} from './types.js';
-import type {OnItemSelectFnT} from '../menu/types.js';
+import type {PaginationPropsT} from './types.js';
+import type {LocaleT} from '../locale/types.js';
+import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
-type MenuItemT = {
+type PageOptionT = {
   label: number,
 };
 
 export default class Pagination extends React.PureComponent<
   PaginationPropsT,
-  PaginationStateT,
+  {isFocusVisible: boolean},
 > {
   static defaultProps = {
-    labels: {
-      prevButton: 'Prev',
-      nextButton: 'Next',
-      preposition: 'of',
-    },
+    labels: {},
     overrides: {},
   };
 
-  state = {isMenuOpen: false};
+  state = {isFocusVisible: false};
+  handleFocus = (event: SyntheticEvent<>) => {
+    if (isFocusVisible(event)) {
+      this.setState({isFocusVisible: true});
+    }
+  };
 
-  dropdownContainerRef = (React.createRef(): {current: ?HTMLDivElement});
-
-  onPageClick = (event: MouseEvent) => {
-    const el: ?HTMLDivElement = this.dropdownContainerRef.current;
-    /* eslint-disable-next-line flowtype/no-weak-types */
-    if (el && !el.contains((event.target: any))) {
-      this.setState({isMenuOpen: false});
+  handleBlur = (event: SyntheticEvent<>) => {
+    if (this.state.isFocusVisible !== false) {
+      this.setState({isFocusVisible: false});
     }
   };
 
   getMenuOptions = memoize((numPages: number) => {
     const menuOptions = [];
     for (let i = 1; i <= numPages; i++) {
-      menuOptions.push(({label: i}: MenuItemT));
+      menuOptions.push({label: i});
     }
     return menuOptions;
   });
 
-  onMenuItemSelect: OnItemSelectFnT = ({item}) => {
+  onMenuItemSelect = (data: {value: $ReadOnlyArray<PageOptionT>}) => {
+    const item = data.value[0];
     const {onPageChange, currentPage} = this.props;
     const page = item.label;
     if (page !== currentPage) {
       onPageChange && onPageChange({nextPage: page, prevPage: currentPage});
-      this.onDropdownButtonClick();
     }
   };
 
   onPrevClick = (event: SyntheticEvent<>) => {
     const {currentPage, onPageChange, onPrevClick} = this.props;
-    onPageChange &&
-      onPageChange({nextPage: currentPage - 1, prevPage: currentPage});
-    onPrevClick && onPrevClick({event});
+    if (currentPage > 1) {
+      onPageChange &&
+        onPageChange({nextPage: currentPage - 1, prevPage: currentPage});
+      onPrevClick && onPrevClick({event});
+    }
   };
 
   onNextClick = (event: SyntheticEvent<>) => {
-    const {currentPage, onPageChange, onNextClick} = this.props;
-    onPageChange &&
-      onPageChange({nextPage: currentPage + 1, prevPage: currentPage});
-    onNextClick && onNextClick({event});
+    const {currentPage, numPages, onPageChange, onNextClick} = this.props;
+    if (currentPage < numPages) {
+      onPageChange &&
+        onPageChange({nextPage: currentPage + 1, prevPage: currentPage});
+      onNextClick && onNextClick({event});
+    }
   };
 
-  onDropdownButtonClick = () => {
-    const isMenuOpen = !this.state.isMenuOpen;
-    // no __BROWSER__ check because click only happens client-side
-    if (isMenuOpen) {
-      document.addEventListener('click', this.onPageClick, {
-        capture: true,
-      });
-    } else {
-      document.removeEventListener('click', this.onPageClick, {
-        capture: true,
-      });
-    }
-    this.setState({isMenuOpen});
+  constructAriaWayfinderLabel = (locale: LocaleT, prefix: string) => {
+    const {currentPage, numPages, labels} = this.props;
+    return (
+      prefix +
+      ' ' +
+      currentPage +
+      ' ' +
+      `${
+        labels && labels.preposition
+          ? labels.preposition
+          : locale.pagination.preposition
+      }` +
+      ' ' +
+      numPages
+    );
   };
 
   render() {
-    const {overrides = {}, currentPage, labels, numPages} = this.props;
-    const {isMenuOpen} = this.state;
+    const {overrides = {}, currentPage, labels, numPages, size} = this.props;
 
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
-    const [PrevButton, prevButtonProps] = getOverrides(
-      overrides.PrevButton,
-      StyledBaseButton,
-    );
-    const [NextButton, nextButtonProps] = getOverrides(
-      overrides.NextButton,
-      StyledBaseButton,
-    );
     const [MaxLabel, maxLabelProps] = getOverrides(
       overrides.MaxLabel,
       StyledMaxLabel,
@@ -119,81 +114,152 @@ export default class Pagination extends React.PureComponent<
       overrides.DropdownContainer,
       StyledDropdownContainer,
     );
-    const [DropdownButton, dropdownButtonProps] = getOverrides(
-      overrides.DropdownButton,
-      StyledDropdownButton,
-    );
-    const [DropdownMenu, dropdownMenuProps] = getOverrides(
-      overrides.DropdownMenu,
-      Menu,
-    );
+    const [Select, selectProps] = getOverrides(overrides.Select, BaseSelect);
 
     const options = this.getMenuOptions(numPages);
 
     return (
-      <Root {...rootProps}>
-        <Button
-          onClick={this.onPrevClick}
-          startEnhancer={ArrowLeft}
-          kind={KIND.tertiary}
-          overrides={{
-            BaseButton: PrevButton,
-          }}
-          {...prevButtonProps}
-        >
-          {labels.prevButton}
-        </Button>
-        <DropdownContainer
-          $ref={this.dropdownContainerRef}
-          {...dropdownContainerProps}
-        >
-          <Button
-            onClick={this.onDropdownButtonClick}
-            endEnhancer={ArrowDown}
-            kind={KIND.tertiary}
-            overrides={{
-              BaseButton: DropdownButton,
-            }}
-            {...dropdownButtonProps}
-          >
-            {currentPage}
-          </Button>
-          {isMenuOpen && (
-            // $FlowFixMe
-            <DropdownMenu
-              items={options}
-              onItemSelect={this.onMenuItemSelect}
-              initialState={{
-                highlightedIndex: Math.max(currentPage - 1, 0),
-              }}
-              overrides={{
-                List: {
-                  component: StyledDropdownMenu,
-                  // Access $style manually because it has gone through transformation
-                  // from the override helper function already
-                  // $FlowFixMe
-                  style: dropdownMenuProps.$style,
-                },
-              }}
-              {...dropdownMenuProps}
-            />
-          )}
-        </DropdownContainer>
-        <MaxLabel {...maxLabelProps}>
-          {`${labels.preposition || ''} ${numPages}`}
-        </MaxLabel>
-        <Button
-          onClick={this.onNextClick}
-          endEnhancer={ArrowRight}
-          kind={KIND.tertiary}
-          overrides={{
-            BaseButton: NextButton,
-          }}
-          {...nextButtonProps}
-        >
-          {labels.nextButton}
-        </Button>
-      </Root>
+      <ThemeContext.Consumer>
+        {theme => (
+          <LocaleContext.Consumer>
+            {locale => (
+              <Root
+                aria-label="pagination"
+                data-baseweb="pagination"
+                {...rootProps}
+              >
+                <Button
+                  aria-label={this.constructAriaWayfinderLabel(
+                    locale,
+                    'previous page. current page',
+                  )}
+                  disabled={currentPage <= 1}
+                  onClick={this.onPrevClick}
+                  startEnhancer={() => {
+                    return theme.direction === 'rtl' ? (
+                      <ChevronRight title={''} size={24} />
+                    ) : (
+                      <ChevronLeft title={''} size={24} />
+                    );
+                  }}
+                  kind={KIND.tertiary}
+                  overrides={{
+                    BaseButton: overrides.PrevButton,
+                  }}
+                  size={size}
+                >
+                  {labels && labels.prevButton
+                    ? labels.prevButton
+                    : locale.pagination.prev}
+                </Button>
+                <DropdownContainer
+                  $isFocusVisible={this.state.isFocusVisible}
+                  {...dropdownContainerProps}
+                  onFocus={forkFocus(dropdownContainerProps, this.handleFocus)}
+                  onBlur={forkBlur(dropdownContainerProps, this.handleBlur)}
+                >
+                  <Select
+                    options={options}
+                    labelKey="label"
+                    valueKey="label"
+                    onChange={this.onMenuItemSelect}
+                    searchable={false}
+                    clearable={false}
+                    value={[{label: currentPage}]}
+                    maxDropdownHeight="200px"
+                    size={size}
+                    overrides={{
+                      ControlContainer: {
+                        style: ({$theme, $disabled, $isOpen, $error}) => ({
+                          borderLeftColor: 'transparent',
+                          borderRightColor: 'transparent',
+                          borderTopColor: 'transparent',
+                          borderBottomColor: 'transparent',
+                          boxShadow: 'none',
+                          backgroundColor: $disabled
+                            ? $theme.colors.buttonDisabledFill
+                            : $isOpen
+                            ? $theme.colors.buttonTertiaryHover
+                            : $error
+                            ? $theme.colors.negative50
+                            : $theme.colors.buttonTertiaryFill,
+                          ':hover': {
+                            backgroundColor: $theme.colors.buttonTertiaryHover,
+                          },
+                        }),
+                      },
+                      InputContainer: {
+                        style: {
+                          marginLeft: 0,
+                        },
+                      },
+                      ValueContainer: {
+                        style: ({$theme}) => ({
+                          flexBasis: 'auto',
+                        }),
+                      },
+                      SingleValue: {
+                        style: ({$theme}) => ({
+                          position: 'relative',
+                          paddingTop: '0',
+                          paddingBottom: '0',
+                          paddingLeft: $theme.sizing.scale200,
+                          paddingRight: $theme.sizing.scale500,
+                          color: $theme.colors.buttonTertiaryText,
+                          ...$theme.typography.font350,
+                          lineHeight: 'unset',
+                        }),
+                      },
+                      SelectArrow: {
+                        style: ({$theme}) => ({
+                          width: '24px',
+                          height: '24px',
+                          color: $theme.colors.buttonTertiaryText,
+                        }),
+                      },
+                    }}
+                    {...selectProps}
+                  />
+                </DropdownContainer>
+                <MaxLabel
+                  aria-label={this.constructAriaWayfinderLabel(locale, 'page')}
+                  {...maxLabelProps}
+                >
+                  {`${
+                    labels && labels.preposition
+                      ? labels.preposition
+                      : locale.pagination.preposition || ''
+                  } ${numPages}`}
+                </MaxLabel>
+                <Button
+                  aria-label={this.constructAriaWayfinderLabel(
+                    locale,
+                    'next page. current page',
+                  )}
+                  disabled={currentPage >= numPages}
+                  onClick={this.onNextClick}
+                  endEnhancer={() => {
+                    return theme.direction === 'rtl' ? (
+                      <ChevronLeft title={''} size={24} />
+                    ) : (
+                      <ChevronRight title={''} size={24} />
+                    );
+                  }}
+                  kind={KIND.tertiary}
+                  overrides={{
+                    BaseButton: overrides.NextButton,
+                  }}
+                  size={size}
+                >
+                  {labels && labels.nextButton
+                    ? labels.nextButton
+                    : locale.pagination.next}
+                </Button>
+              </Root>
+            )}
+          </LocaleContext.Consumer>
+        )}
+      </ThemeContext.Consumer>
     );
   }
 }

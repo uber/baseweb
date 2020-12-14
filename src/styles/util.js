@@ -1,10 +1,13 @@
 /*
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
+
+import type {BorderT} from '../themes/types.js';
+
 export function hexToRgb(hex: string = '', alpha: string = '1') {
   const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
   hex = hex.replace(shorthandRegex, function(m, r, g, b) {
@@ -25,3 +28,20 @@ export const ellipsisText = {
   whiteSpace: 'nowrap',
   wordWrap: 'normal',
 };
+
+export function expandBorderStyles(borderStyles: BorderT) {
+  return {
+    borderTopWidth: borderStyles.borderWidth,
+    borderTopStyle: borderStyles.borderStyle,
+    borderTopColor: borderStyles.borderColor,
+    borderBottomWidth: borderStyles.borderWidth,
+    borderBottomStyle: borderStyles.borderStyle,
+    borderBottomColor: borderStyles.borderColor,
+    borderLeftWidth: borderStyles.borderWidth,
+    borderLeftStyle: borderStyles.borderStyle,
+    borderLeftColor: borderStyles.borderColor,
+    borderRightWidth: borderStyles.borderWidth,
+    borderRightStyle: borderStyles.borderStyle,
+    borderRightColor: borderStyles.borderColor,
+  };
+}

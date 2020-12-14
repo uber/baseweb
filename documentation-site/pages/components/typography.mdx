@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018 Uber Technologies, Inc.
+Copyright (c) 2018-2020 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -8,36 +8,51 @@ LICENSE file in the root directory of this source tree.
 import Example from '../../components/example';
 import API from '../../components/api';
 import Layout from '../../components/layout';
+import Exports from '../../components/exports';
 
+import * as TypographyExports from 'baseui/typography';
+import Display from 'examples/typography/display.js';
 import Heading from 'examples/typography/heading.js';
 import Text from 'examples/typography/text.js';
-import Display from 'examples/typography/display.js';
 
 export default Layout;
 
 # Typography
 
-A set of heading and text block components for an out-of-the-box path to the BaseUI font standard.
+A set of text block components for an out-of-the-box path to the BaseUI font standard.
 
-### When to use
+You can find the font definitions in the [Theming values](/guides/theming/#typography) page.
 
-- Use the drop-in typhography components for titles and text blocks in an app.
+## When to use
+
+- Use the drop-in typography components for titles and text blocks in an app.
 
 ## Examples
 
-<Example title="Typography Headings" path="examples/typography/heading.js">
-  <Heading />
-</Example>
-
-<Example title="Typography Text Blocks" path="examples/typography/text.js">
-  <Text />
-</Example>
-
-<Example title="Typography Display Block" path="examples/typography/display.js">
+<Example title="Typography Display Blocks" path="typography/display.js">
   <Display />
 </Example>
 
+At Uber, we use Display components with an alternate font family to create typographic contrast in our UI.
+
+<Example title="Typography Heading Blocks" path="typography/heading.js">
+  <Heading />
+</Example>
+
+<Example title="Typography Body Blocks" path="typography/text.js">
+  <Text />
+</Example>
+
+## API
+
 <API
   heading="Typography API"
-  api={require('!!@uber-web-ui/extract-react-types-loader!../../../src/typography/index.js')}
+  api={require('!!extract-react-types-loader!../../../src/block/block.js')}
+/>
+
+<Exports
+  component={TypographyExports}
+  title="Typography exports"
+  path="baseui/typography"
+  cheatsheet={false}
 />
