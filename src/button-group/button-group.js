@@ -135,28 +135,13 @@ export default class ButtonGroup extends React.Component<PropsT> {
                         };
                       }
 
-                      // left most button
-                      if (index === 0) {
-                        return {
-                          borderTopRightRadius: 0,
-                          borderBottomRightRadius: 0,
-                        };
-                      }
-                      // right most button
-                      if (index === children.length - 1) {
-                        return {
-                          borderTopLeftRadius: 0,
-                          borderBottomLeftRadius: 0,
-                          marginLeft: '1px',
-                        };
-                      }
-                      // inner button(s)
                       return {
                         borderTopRightRadius: 0,
                         borderBottomRightRadius: 0,
                         borderTopLeftRadius: 0,
                         borderBottomLeftRadius: 0,
-                        marginLeft: '1px',
+                        marginLeft: '0.5px',
+                        marginRight: '0.5px',
                       };
                     },
                     props: {
