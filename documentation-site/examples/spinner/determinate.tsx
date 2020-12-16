@@ -3,7 +3,7 @@ import {Button} from 'baseui/button';
 import {SpinnerDeterminate} from 'baseui/spinner';
 import {useStyletron} from 'baseui';
 
-export default () => {
+export default function Example() {
   const [css] = useStyletron();
   // Mimic some loading
   const [progress, setProgress] = React.useState(0);
@@ -37,4 +37,4 @@ export default () => {
       <SpinnerDeterminate progress={progress} />
     </div>
   );
-};
+}

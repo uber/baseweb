@@ -8,7 +8,7 @@ import Search from 'baseui/icon/search';
 import {FormControl} from 'baseui/form-control';
 import {StatefulInput} from 'baseui/input';
 
-export default () => {
+export default function Example() {
   const [inputs, setInputs] = React.useState(['']);
   const [css, theme] = useStyletron();
 
@@ -44,4 +44,4 @@ export default () => {
       </div>
     </A11y>
   );
-};
+}

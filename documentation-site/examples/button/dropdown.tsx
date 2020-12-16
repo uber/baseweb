@@ -19,22 +19,24 @@ const ITEMS = [
   {label: 'Item Twelve'},
 ];
 
-export default () => (
-  <StatefulPopover
-    focusLock
-    placement={PLACEMENT.bottomLeft}
-    content={({close}) => (
-      <StatefulMenu
-        items={ITEMS}
-        onItemSelect={() => close()}
-        overrides={{
-          List: {style: {height: '150px', width: '138px'}},
-        }}
-      />
-    )}
-  >
-    <Button endEnhancer={() => <ChevronDown size={24} />}>
-      Open Menu
-    </Button>
-  </StatefulPopover>
-);
+export default function Example() {
+  return (
+    <StatefulPopover
+      focusLock
+      placement={PLACEMENT.bottomLeft}
+      content={({close}) => (
+        <StatefulMenu
+          items={ITEMS}
+          onItemSelect={() => close()}
+          overrides={{
+            List: {style: {height: '150px', width: '138px'}},
+          }}
+        />
+      )}
+    >
+      <Button endEnhancer={() => <ChevronDown size={24} />}>
+        Open Menu
+      </Button>
+    </StatefulPopover>
+  );
+}

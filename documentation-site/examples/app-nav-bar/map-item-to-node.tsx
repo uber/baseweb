@@ -7,7 +7,7 @@ import {
   NavItemT,
 } from 'baseui/app-nav-bar';
 
-export default function Scenario() {
+export default function Example() {
   const [css] = useStyletron();
 
   const [mainItems, setMainItems] = React.useState<NavItemT[]>([

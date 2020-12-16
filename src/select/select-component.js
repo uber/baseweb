@@ -149,6 +149,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
   componentWillUnmount() {
     if (__BROWSER__) {
       document.removeEventListener('touchstart', this.handleTouchOutside);
+      document.removeEventListener('click', this.handleClickOutside);
     }
     this.isMounted = false;
   }
@@ -289,10 +290,8 @@ class Select extends React.Component<PropsT, SelectStateT> {
       ) {
         return;
       }
-    } else {
-      if (containsNode(this.anchor.current, event.target)) {
-        return;
-      }
+    } else if (containsNode(this.anchor.current, event.target)) {
+      return;
     }
 
     if (this.props.onBlur) {
@@ -306,10 +305,6 @@ class Select extends React.Component<PropsT, SelectStateT> {
         isPseudoFocused: false,
         inputValue: this.props.onBlurResetsInput ? '' : this.state.inputValue,
       });
-    }
-
-    if (__BROWSER__) {
-      document.removeEventListener('click', this.handleClickOutside);
     }
   };
 

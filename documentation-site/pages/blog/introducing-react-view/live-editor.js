@@ -13,9 +13,8 @@ import Editor from '../../../components/yard/editor';
 /* eslint-disable */
 
 import presetTypescript from '@babel/preset-typescript';
-/* eslint-enable */
 
-export default ({initialCode}: {initialCode: string}) => {
+function LiveEditor({initialCode}: {initialCode: string}) {
   const params = useView({
     initialCode,
     scope: {},
@@ -36,4 +35,8 @@ export default ({initialCode}: {initialCode: string}) => {
       <Error {...params.errorProps} />
     </React.Fragment>
   );
-};
+}
+
+/* eslint-enable */
+
+export default LiveEditor;

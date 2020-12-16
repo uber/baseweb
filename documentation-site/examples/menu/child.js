@@ -35,44 +35,46 @@ const BREAKPOINTS = [
   {label: 'Logpoint...'},
 ];
 
-export default () => (
-  <NestedMenus>
-    <StatefulMenu
-      items={FILE}
-      overrides={{
-        List: {style: {width: '350px', overflow: 'auto'}},
-        Option: {
-          props: {
-            size: 'compact',
-            getChildMenu: item => {
-              if (item.label === OPEN_RECENT) {
-                return (
-                  <StatefulMenu
-                    size="compact"
-                    items={RECENT_FILES}
-                    overrides={{
-                      List: {style: {width: '200px'}},
-                      Option: {props: {size: 'compact'}},
-                    }}
-                  />
-                );
-              }
+export default function Example() {
+  return (
+    <NestedMenus>
+      <StatefulMenu
+        items={FILE}
+        overrides={{
+          List: {style: {width: '350px', overflow: 'auto'}},
+          Option: {
+            props: {
+              size: 'compact',
+              getChildMenu: item => {
+                if (item.label === OPEN_RECENT) {
+                  return (
+                    <StatefulMenu
+                      size="compact"
+                      items={RECENT_FILES}
+                      overrides={{
+                        List: {style: {width: '200px'}},
+                        Option: {props: {size: 'compact'}},
+                      }}
+                    />
+                  );
+                }
 
-              if (item.label === NEW_BREAKPOINT) {
-                return (
-                  <StatefulMenu
-                    items={BREAKPOINTS}
-                    overrides={{
-                      List: {style: {width: '220px'}},
-                      Option: {props: {size: 'compact'}},
-                    }}
-                  />
-                );
-              }
+                if (item.label === NEW_BREAKPOINT) {
+                  return (
+                    <StatefulMenu
+                      items={BREAKPOINTS}
+                      overrides={{
+                        List: {style: {width: '220px'}},
+                        Option: {props: {size: 'compact'}},
+                      }}
+                    />
+                  );
+                }
+              },
             },
           },
-        },
-      }}
-    />
-  </NestedMenus>
-);
+        }}
+      />
+    </NestedMenus>
+  );
+}

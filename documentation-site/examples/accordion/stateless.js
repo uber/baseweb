@@ -2,7 +2,7 @@
 import * as React from 'react';
 import {StatelessAccordion, Panel} from 'baseui/accordion';
 
-export default () => {
+export default function Example() {
   const [expanded, setExpanded] = React.useState(['L1', 'L2']);
   return (
     <StatelessAccordion
@@ -23,4 +23,4 @@ export default () => {
       </Panel>
     </StatelessAccordion>
   );
-};
+}

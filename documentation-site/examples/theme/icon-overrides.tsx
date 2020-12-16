@@ -16,8 +16,10 @@ const themeWithIcons = createTheme(
   },
 );
 
-export default () => (
-  <ThemeProvider theme={themeWithIcons}>
-    <StatefulPagination numPages={10} />
-  </ThemeProvider>
-);
+export default function Example() {
+  return (
+    <ThemeProvider theme={themeWithIcons}>
+      <StatefulPagination numPages={10} />
+    </ThemeProvider>
+  );
+}
