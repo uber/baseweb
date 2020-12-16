@@ -133,6 +133,11 @@ function FilterTag(props) {
                 height: '22px',
               },
             },
+            Text: {
+              style: {
+                maxWidth: '160px',
+              },
+            },
           }}
         >
           {props.title}: {props.filter.description}
