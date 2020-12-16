@@ -131,8 +131,11 @@ function Tasks(props) {
         padding: '32px 24px',
       })}
     >
-      <StyledTable role='grid' $gridTemplateColumns="max-content auto auto auto">
-        <div role='row' className={css({display: 'contents'})}>
+      <StyledTable
+        role="grid"
+        $gridTemplateColumns="max-content auto auto auto"
+      >
+        <div role="row" className={css({display: 'contents'})}>
           <StyledHeadCell $sticky={false}>Task</StyledHeadCell>
           <StyledHeadCell $sticky={false}>Status</StyledHeadCell>
           <StyledHeadCell $sticky={false}>Last Run</StyledHeadCell>
@@ -140,7 +143,7 @@ function Tasks(props) {
         </div>
         {props.tasks.map((task, index) => {
           return (
-            <div role='row' className={css({display: 'contents'})}>
+            <div role="row" className={css({display: 'contents'})}>
               <StyledBodyCell>{task[0]}</StyledBodyCell>
               <StyledBodyCell>
                 <Tag
@@ -174,7 +177,7 @@ function Row({striped, row}) {
   const [css] = useStyletron();
   const [expanded, setExpanded] = React.useState(false);
   return (
-    <div role='row' className={css({display: 'contents'})}>
+    <div role="row" className={css({display: 'contents'})}>
       <CenteredBodyCell $striped={striped}>
         <Button
           size="compact"
@@ -243,12 +246,15 @@ function Row({striped, row}) {
   );
 }
 
-export default function() {
+export default function Example() {
   const [css] = useStyletron();
   return (
     <div className={css({height: '600px'})}>
-      <StyledTable role='grid' $gridTemplateColumns="max-content min-content minmax(300px, max-content) max-content auto">
-        <div role='row' className={css({display: 'contents'})}>
+      <StyledTable
+        role="grid"
+        $gridTemplateColumns="max-content min-content minmax(300px, max-content) max-content auto"
+      >
+        <div role="row" className={css({display: 'contents'})}>
           <StyledHeadCell>Job Name</StyledHeadCell>
           <StyledHeadCell>Status</StyledHeadCell>
           <StyledHeadCell>Pull Request</StyledHeadCell>

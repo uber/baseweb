@@ -90,6 +90,7 @@ export default function Filter(props: FilterProps) {
           </Footer>
         </FocusLock>
       )}
+      returnFocus={props.returnFocus}
     >
       <MenuButton
         $active={props.active}

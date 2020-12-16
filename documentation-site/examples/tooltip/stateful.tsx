@@ -2,7 +2,7 @@ import * as React from 'react';
 import {StatefulTooltip} from 'baseui/tooltip';
 import {useStyletron} from 'baseui';
 
-export default () => {
+export default function Example() {
   const [css, theme] = useStyletron();
   return (
     <div>
@@ -27,4 +27,4 @@ export default () => {
       tweaks, so you can use all the features that Popover supports.
     </div>
   );
-};
+}

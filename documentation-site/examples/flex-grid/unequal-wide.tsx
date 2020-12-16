@@ -10,31 +10,33 @@ const itemProps: BlockProps = {
   justifyContent: 'center',
 };
 
-export default () => (
-  <FlexGrid
-    flexGridColumnCount={3}
-    flexGridColumnGap="scale800"
-    flexGridRowGap="scale800"
-    marginBottom="scale800"
-  >
-    <FlexGridItem
-      {...itemProps}
-      overrides={{
-        Block: {
-          style: ({$theme}) => ({
-            width: `calc((200% - ${$theme.sizing.scale800}) / 3)`,
-          }),
-        },
-      }}
+export default function Example() {
+  return (
+    <FlexGrid
+      flexGridColumnCount={3}
+      flexGridColumnGap="scale800"
+      flexGridRowGap="scale800"
+      marginBottom="scale800"
     >
-      Wide item
-    </FlexGridItem>
-    <FlexGridItem display="none">
-      This invisible one is needed so the margins line up
-    </FlexGridItem>
-    <FlexGridItem {...itemProps}>Item</FlexGridItem>
-    <FlexGridItem {...itemProps}>Item</FlexGridItem>
-    <FlexGridItem {...itemProps}>Item</FlexGridItem>
-    <FlexGridItem {...itemProps}>Item</FlexGridItem>
-  </FlexGrid>
-);
+      <FlexGridItem
+        {...itemProps}
+        overrides={{
+          Block: {
+            style: ({$theme}) => ({
+              width: `calc((200% - ${$theme.sizing.scale800}) / 3)`,
+            }),
+          },
+        }}
+      >
+        Wide item
+      </FlexGridItem>
+      <FlexGridItem display="none">
+        This invisible one is needed so the margins line up
+      </FlexGridItem>
+      <FlexGridItem {...itemProps}>Item</FlexGridItem>
+      <FlexGridItem {...itemProps}>Item</FlexGridItem>
+      <FlexGridItem {...itemProps}>Item</FlexGridItem>
+      <FlexGridItem {...itemProps}>Item</FlexGridItem>
+    </FlexGrid>
+  );
+}

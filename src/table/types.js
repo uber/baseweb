@@ -66,4 +66,6 @@ export type FilterProps = {|
     Heading?: OverrideT,
     Footer?: OverrideT,
   },
+  /** Determines whether focus is returned to Filter menu button. */
+  returnFocus?: boolean,
 |};

@@ -10,7 +10,7 @@ import {
   FocusOnce,
 } from 'baseui/modal';
 
-export default function() {
+export default function Example() {
   const [isOpen, setOpen] = React.useState(false);
   return (
     <React.Fragment>

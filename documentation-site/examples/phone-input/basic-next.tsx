@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {PhoneInputNext, COUNTRIES} from 'baseui/phone-input';
 
-export default () => {
+export default function Example() {
   const [text, setText] = useState('');
   const [country, setCountry] = useState(COUNTRIES.US);
   return (
@@ -16,4 +16,4 @@ export default () => {
       }}
     />
   );
-};
+}

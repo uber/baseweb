@@ -6,7 +6,7 @@ import ArrowRight from 'baseui/icon/arrow-right';
 import ArrowDown from 'baseui/icon/arrow-down';
 import ArrowLeft from 'baseui/icon/arrow-left';
 
-export default () => {
+export default function Example() {
   const [css, theme] = useStyletron();
   return (
     <div className={css({color: theme.colors.warning})}>
@@ -20,4 +20,4 @@ export default () => {
       <ArrowRight size={36} />
     </div>
   );
-};
+}

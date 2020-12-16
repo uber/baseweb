@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Textarea} from 'baseui/textarea';
 import {SIZE} from 'baseui/input';
 
-export default () => {
+export default function Example() {
   const [valueA, setValueA] = React.useState('Compact size...');
   const [valueB, setValueB] = React.useState('Default size...');
   const [valueC, setValueC] = React.useState('Large size...');
@@ -29,4 +29,4 @@ export default () => {
       />
     </React.Fragment>
   );
-};
+}

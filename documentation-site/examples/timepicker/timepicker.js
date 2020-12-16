@@ -4,7 +4,7 @@ import {useStyletron} from 'baseui';
 import {TimePicker} from 'baseui/timepicker';
 import {FormControl} from 'baseui/form-control';
 
-export default () => {
+export default function Example() {
   const [css] = useStyletron();
   const [twelveHourTime, setTwelveHourTime] = useState(null);
   const [twentyFourHourTime, setTwentyFourHourTime] = useState(
@@ -38,4 +38,4 @@ export default () => {
       </FormControl>
     </div>
   );
-};
+}

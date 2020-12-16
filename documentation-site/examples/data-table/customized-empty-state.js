@@ -82,7 +82,7 @@ export const columns = [
   }),
 ];
 
-export default () => {
+export default function Example() {
   const [css] = useStyletron();
   return (
     <React.Fragment>
@@ -102,4 +102,4 @@ export default () => {
       </div>
     </React.Fragment>
   );
-};
+}

@@ -25,28 +25,32 @@ const options = {
   maxDropdownHeight: '300px',
 };
 
-export default () => (
-  <HeaderNavigation>
-    <NavigationList $align={ALIGN.left}>
-      <NavigationItem>Uber</NavigationItem>
-    </NavigationList>
-    <NavigationList $align={ALIGN.center} />
-    <NavigationList $align={ALIGN.right}>
-      <NavigationItem>
-        <Link href="#search-link1">Tab Link One</Link>
-      </NavigationItem>
-    </NavigationList>
-    <NavigationList $align={ALIGN.right}>
-      <NavigationItem style={{width: '200px'}}>
-        <Search
-          {...options}
-          type={TYPE.search}
-          getOptionLabel={props =>
-            props.option && props.option.id ? props.option.id : null
-          }
-          onChange={() => {}}
-        />
-      </NavigationItem>
-    </NavigationList>
-  </HeaderNavigation>
-);
+export default function Example() {
+  return (
+    <HeaderNavigation>
+      <NavigationList $align={ALIGN.left}>
+        <NavigationItem>Uber</NavigationItem>
+      </NavigationList>
+      <NavigationList $align={ALIGN.center} />
+      <NavigationList $align={ALIGN.right}>
+        <NavigationItem>
+          <Link href="#search-link1">Tab Link One</Link>
+        </NavigationItem>
+      </NavigationList>
+      <NavigationList $align={ALIGN.right}>
+        <NavigationItem style={{width: '200px'}}>
+          <Search
+            {...options}
+            type={TYPE.search}
+            getOptionLabel={props =>
+              props.option && props.option.id
+                ? props.option.id
+                : null
+            }
+            onChange={() => {}}
+          />
+        </NavigationItem>
+      </NavigationList>
+    </HeaderNavigation>
+  );
+}

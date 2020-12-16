@@ -45,10 +45,12 @@ function Row(props: any) {
   );
 }
 
-export default () => (
-  <div>
-    {Object.entries(Icons).map(([title, Icon]: [string, any]) => (
-      <Row key={title} title={title} icon={Icon} />
-    ))}
-  </div>
-);
+export default function Example() {
+  return (
+    <div>
+      {Object.entries(Icons).map(([title, Icon]: [string, any]) => (
+        <Row key={title} title={title} icon={Icon} />
+      ))}
+    </div>
+  );
+}

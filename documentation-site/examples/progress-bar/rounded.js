@@ -4,7 +4,7 @@ import {Button} from 'baseui/button';
 import {ProgressBarRounded} from 'baseui/progress-bar';
 import {useStyletron} from 'baseui';
 
-export default () => {
+export default function Example() {
   const [css] = useStyletron();
   // Mimic some loading
   const [progress, setProgress] = React.useState(0);
@@ -38,4 +38,4 @@ export default () => {
       <ProgressBarRounded progress={progress} />
     </div>
   );
-};
+}

@@ -6,7 +6,7 @@ import {
   NavItemT,
 } from 'baseui/app-nav-bar';
 
-export default function Scenario() {
+export default function Example() {
   const [mainItems, setMainItems] = React.useState<NavItemT[]>([
     {label: 'label', info: {id: 1}},
     {label: 'label', info: {id: 2}},

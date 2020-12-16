@@ -7,7 +7,7 @@ import {
   TableBuilderColumn,
 } from 'baseui/table-semantic';
 
-export default () => {
+export default function Example() {
   const [data, setData] = useState([
     {
       foo: 10,
@@ -84,4 +84,4 @@ export default () => {
       </TableBuilderColumn>
     </TableBuilder>
   );
-};
+}

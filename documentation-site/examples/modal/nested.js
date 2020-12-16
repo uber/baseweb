@@ -37,7 +37,7 @@ class ModalStateContainer extends React.Component<
   }
 }
 
-export default () => {
+export default function Example() {
   const [isOpen, setIsOpen] = React.useState(false);
   return (
     <ModalStateContainer>
@@ -91,4 +91,4 @@ export default () => {
       )}
     </ModalStateContainer>
   );
-};
+}

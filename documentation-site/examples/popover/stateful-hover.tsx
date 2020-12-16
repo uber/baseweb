@@ -3,7 +3,7 @@ import {useStyletron} from 'baseui';
 import {StatefulPopover, TRIGGER_TYPE} from 'baseui/popover';
 import {Paragraph3} from 'baseui/typography';
 
-export default () => {
+export default function Example() {
   const [css, theme] = useStyletron();
   return (
     <StatefulPopover
@@ -18,4 +18,4 @@ export default () => {
       </span>
     </StatefulPopover>
   );
-};
+}
