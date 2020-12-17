@@ -26,7 +26,7 @@ const DATA = [
 export default function Example() {
   const overrides = {
     TableBodyRow: {
-      style: ({$theme, $rowIndex}) => ({
+      style: ({$theme, $rowIndex}: any) => ({
         backgroundColor:
           $rowIndex % 2
             ? $theme.colors.backgroundPrimary
