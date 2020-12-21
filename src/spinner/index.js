@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import {
+  ProgressBarRounded,
   StyledProgressBarRoundedRoot,
   StyledProgressBarRoundedSvg,
   StyledProgressBarRoundedText,
@@ -27,6 +28,7 @@ export type * from './types.js';
 // Backward compatibility with SpinnerDeterminate
 // Deprecated
 export {
+  ProgressBarRounded as SpinnerDeterminate,
   StyledProgressBarRoundedRoot as StyledSpinnerDeterminateRoot,
   StyledProgressBarRoundedSvg as StyledSpinnerDeterminateSvg,
   StyledProgressBarRoundedTrackBackground as StyledSpinnerDeterminateTrackBackground,
