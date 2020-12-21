@@ -56,6 +56,10 @@ export type FilterProps = {|
   disabled?: boolean,
   /** Adds a button to close the filter menu. */
   hasCloseButton?: boolean,
+  /** Callback for when the filter closes. */
+  onClose?: () => mixed,
+  /** Callback for when the filter opens. */
+  onOpen?: () => mixed,
   /** Callback for when the 'reset' button is clicked. */
   onReset?: () => mixed,
   /** Callback for when the 'select all' button is clicked. */

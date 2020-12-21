@@ -44,6 +44,8 @@ export interface FilterProps {
   children: React.ReactNode;
   disabled?: boolean;
   hasCloseButton?: boolean;
+  onClose?: () => any;
+  onOpen?: () => any;
   onReset?: () => any;
   onSelectAll?: () => any;
   overrides?: FilterOverrides;

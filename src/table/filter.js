@@ -47,6 +47,8 @@ export default function Filter(props: FilterProps) {
 
   return (
     <StatefulPopover
+      onClose={props.onClose}
+      onOpen={props.onOpen}
       placement={PLACEMENT.bottom}
       stateReducer={(_, nextState) => {
         if (props.disabled) {
@@ -80,13 +82,11 @@ export default function Filter(props: FilterProps) {
               Reset
             </Button>
 
-            { props.hasCloseButton && <Button
-              kind={KIND.minimal}
-              size={SIZE.compact}
-              onClick={close}
-            >
-              Close
-            </Button>}
+            {props.hasCloseButton && (
+              <Button kind={KIND.minimal} size={SIZE.compact} onClick={close}>
+                Close
+              </Button>
+            )}
           </Footer>
         </FocusLock>
       )}
