@@ -23,13 +23,15 @@ const DATA = [
   },
 ];
 
-export default () => (
-  <TableBuilder data={DATA}>
-    <TableBuilderColumn header="Produce">
-      {row => <Link href={row.url}>{row.bar}</Link>}
-    </TableBuilderColumn>
-    <TableBuilderColumn header="Quantity" numeric>
-      {row => row.foo}
-    </TableBuilderColumn>
-  </TableBuilder>
-);
+export default function Example() {
+  return (
+    <TableBuilder data={DATA}>
+      <TableBuilderColumn header="Produce">
+        {row => <Link href={row.url}>{row.bar}</Link>}
+      </TableBuilderColumn>
+      <TableBuilderColumn header="Quantity" numeric>
+        {row => row.foo}
+      </TableBuilderColumn>
+    </TableBuilder>
+  );
+}

@@ -2,16 +2,18 @@
 import * as React from 'react';
 import {Button} from 'baseui/button';
 
-export default () => (
-  <Button
-    overrides={{
-      BaseButton: {
-        style: {
-          backgroundColor: 'red',
+export default function Example() {
+  return (
+    <Button
+      overrides={{
+        BaseButton: {
+          style: {
+            backgroundColor: 'red',
+          },
         },
-      },
-    }}
-  >
-    Submit
-  </Button>
-);
+      }}
+    >
+      Submit
+    </Button>
+  );
+}

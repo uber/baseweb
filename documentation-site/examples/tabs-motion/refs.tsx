@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Tabs, Tab} from 'baseui/tabs-motion';
 
-export default () => {
+export default function Example() {
   const [activeKey, setActiveKey] = React.useState<React.Key>(0);
   const tabListRef = React.useRef();
   const firstTabRef = React.useRef();
@@ -29,4 +29,4 @@ export default () => {
       </Tab>
     </Tabs>
   );
-};
+}

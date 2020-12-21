@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Tabs, Tab} from 'baseui/tabs';
 
-export default () => {
+export default function Example() {
   const [activeKey, setActiveKey] = React.useState('black');
   return (
     <Tabs
@@ -25,4 +25,4 @@ export default () => {
       </Tab>
     </Tabs>
   );
-};
+}

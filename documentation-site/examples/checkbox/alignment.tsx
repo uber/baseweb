@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Checkbox} from 'baseui/checkbox';
 
-export default () => {
+export default function Example() {
   const [checkboxes, setCheckboxes] = React.useState([
     false,
     false,
@@ -64,4 +64,4 @@ export default () => {
       </Checkbox>
     </React.Fragment>
   );
-};
+}

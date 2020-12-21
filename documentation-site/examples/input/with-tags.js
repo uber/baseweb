@@ -31,7 +31,7 @@ const InputReplacement = React.forwardRef(
   },
 );
 
-export default () => {
+export default function Example() {
   const [value, setValue] = React.useState('');
   const [tags, setTags] = React.useState(['hello']);
   const addTag = (tag: string) => {
@@ -75,4 +75,4 @@ export default () => {
       }}
     />
   );
-};
+}

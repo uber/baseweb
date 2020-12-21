@@ -4,7 +4,7 @@ import {toaster} from 'baseui/toast';
 import {Button, SIZE} from 'baseui/button';
 import {Block} from 'baseui/block';
 
-export default () => {
+export default function Example() {
   const [count, setCount] = React.useState(0);
   return (
     <React.Fragment>
@@ -78,4 +78,4 @@ export default () => {
       </Button>
     </React.Fragment>
   );
-};
+}

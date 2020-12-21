@@ -86,7 +86,7 @@ for (let i = 0; i < 10000; i += 1) {
   });
 }
 
-export default () => {
+export default function Example() {
   const [value, setValue] = React.useState([]);
   return (
     <Select
@@ -98,4 +98,4 @@ export default () => {
       value={value}
     />
   );
-};
+}

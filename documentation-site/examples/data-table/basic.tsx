@@ -144,11 +144,11 @@ const columns = [
 
 const rows = makeRowsFromColumns(columns, 2000);
 
-export default () => {
+export default function Example() {
   const [css] = useStyletron();
   return (
     <div className={css({height: '800px'})}>
       <StatefulDataTable columns={columns} rows={rows} />
     </div>
   );
-};
+}

@@ -3,7 +3,7 @@ import * as React from 'react';
 import {Textarea} from 'baseui/textarea';
 import {Button} from 'baseui/button';
 
-export default () => {
+export default function Example() {
   const [value, setValue] = React.useState('');
   const inputRef = React.useRef(null);
   return (
@@ -24,4 +24,4 @@ export default () => {
       </Button>
     </React.Fragment>
   );
-};
+}

@@ -4,7 +4,7 @@ import {useStyletron} from 'baseui';
 import {TimezonePicker} from 'baseui/timezonepicker';
 import {FormControl} from 'baseui/form-control';
 
-export default () => {
+export default function Example() {
   const [css] = useStyletron();
   return (
     <div className={css({width: '400px'})}>
@@ -16,4 +16,4 @@ export default () => {
       </FormControl>
     </div>
   );
-};
+}

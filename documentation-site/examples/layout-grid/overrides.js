@@ -4,7 +4,7 @@ import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {Grid, Cell} from 'baseui/layout-grid';
 
-export default function Scenario() {
+export default function Example() {
   return (
     <Outer>
       <Grid

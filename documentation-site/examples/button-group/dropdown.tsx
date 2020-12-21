@@ -40,10 +40,12 @@ const Dropdown = (props: {children: React.ReactNode}) => {
   );
 };
 
-export default () => (
-  <ButtonGroup>
-    <Button>First</Button>
-    <Button>Second</Button>
-    <Dropdown>Third</Dropdown>
-  </ButtonGroup>
-);
+export default function Example() {
+  return (
+    <ButtonGroup>
+      <Button>First</Button>
+      <Button>Second</Button>
+      <Dropdown>Third</Dropdown>
+    </ButtonGroup>
+  );
+}

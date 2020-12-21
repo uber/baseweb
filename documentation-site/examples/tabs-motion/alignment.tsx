@@ -35,7 +35,7 @@ const TabOverrides = {
   },
 };
 
-export default () => {
+export default function Example() {
   const [activeKey, setActiveKey] = React.useState<React.Key>(0);
   return (
     <Tabs
@@ -54,4 +54,4 @@ export default () => {
       </Tab>
     </Tabs>
   );
-};
+}

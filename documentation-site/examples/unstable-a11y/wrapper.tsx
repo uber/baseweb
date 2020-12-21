@@ -6,7 +6,7 @@ import {Button} from 'baseui/button';
 import {FormControl} from 'baseui/form-control';
 import {StatefulInput} from 'baseui/input';
 
-export default () => {
+export default function Example() {
   const [inputs, setInputs] = React.useState(['']);
   const [css, theme] = useStyletron();
   return (
@@ -43,4 +43,4 @@ export default () => {
       </div>
     </A11y>
   );
-};
+}

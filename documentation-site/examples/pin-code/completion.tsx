@@ -3,7 +3,7 @@ import {useStyletron} from 'baseui';
 import {Button} from 'baseui/button';
 import {PinCode} from 'baseui/pin-code';
 
-export default function() {
+export default function Example() {
   const [css] = useStyletron();
   const [values, setValues] = React.useState(['', '', '', '']);
   const buttonRef = React.useRef<HTMLButtonElement>(null);

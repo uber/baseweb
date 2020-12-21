@@ -288,7 +288,7 @@ const rows = [
   },
 ].map(r => ({id: r.title, data: r}));
 
-export default () => {
+export default function Example() {
   return (
     <div style={{height: '600px'}}>
       <StatefulDataTable
@@ -298,4 +298,4 @@ export default () => {
       />
     </div>
   );
-};
+}

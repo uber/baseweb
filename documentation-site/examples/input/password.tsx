@@ -1,7 +1,7 @@
 import React from 'react';
 import {Input} from 'baseui/input';
 
-export default () => {
+export default function Example() {
   const [value, setValue] = React.useState('1234');
   return (
     <Input
@@ -10,4 +10,4 @@ export default () => {
       value={value}
     />
   );
-};
+}
