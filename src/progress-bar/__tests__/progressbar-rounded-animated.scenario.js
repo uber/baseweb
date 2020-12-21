@@ -8,15 +8,17 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {ProgressBarRounded, SIZE} from '../index.js';
 
+const FAKE_RANDOM = 0.5;
+
 export default function Scenario() {
   // Mimic some loading
   const [progress, setProgress] = React.useState(0);
   const tracker = React.useRef(0);
   React.useEffect(() => {
     function tick() {
-      setProgress(progress => progress + Math.random() * 0.33);
+      setProgress(progress => progress + FAKE_RANDOM * 0.33);
       if (tracker.current < 1) {
-        setTimeout(tick, Math.random() * 1000);
+        setTimeout(tick, FAKE_RANDOM * 1000);
       }
     }
     tick();
