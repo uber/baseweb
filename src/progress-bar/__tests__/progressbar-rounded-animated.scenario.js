@@ -6,7 +6,9 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {SpinnerDeterminate, SIZE} from '../index.js';
+import {ProgressBarRounded, SIZE} from '../index.js';
+
+const FAKE_RANDOM = 0.5;
 
 export default function Scenario() {
   // Mimic some loading
@@ -14,9 +16,9 @@ export default function Scenario() {
   const tracker = React.useRef(0);
   React.useEffect(() => {
     function tick() {
-      setProgress(progress => progress + Math.random() * 0.33);
+      setProgress(progress => progress + FAKE_RANDOM * 0.33);
       if (tracker.current < 1) {
-        setTimeout(tick, Math.random() * 1000);
+        setTimeout(tick, FAKE_RANDOM * 1000);
       }
     }
     tick();
@@ -26,11 +28,11 @@ export default function Scenario() {
   }, [progress]);
   return (
     <React.Fragment>
-      <SpinnerDeterminate progress={progress} size={SIZE.small} />
+      <ProgressBarRounded progress={progress} size={SIZE.small} />
       <br />
-      <SpinnerDeterminate progress={progress} size={SIZE.medium} />
+      <ProgressBarRounded progress={progress} size={SIZE.medium} />
       <br />
-      <SpinnerDeterminate progress={progress} size={SIZE.large} />
+      <ProgressBarRounded progress={progress} size={SIZE.large} />
     </React.Fragment>
   );
 }
