@@ -7,5 +7,21 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import {styled} from '../styles/index.js';
+import {SHAPE} from '../button/index.js';
 
-export const StyledRoot = styled('div', {display: 'flex'});
+export const StyledRoot = styled<{$shape: string, $lenght: number}>(
+  'div',
+  ({$shape, $lenght, $theme}) => {
+    const margin =
+      $lenght === 1
+        ? undefined
+        : $shape !== SHAPE.default
+        ? `-${$theme.sizing.scale100}`
+        : '-0.5px';
+    return {
+      display: 'flex',
+      marginLeft: margin,
+      marginRight: margin,
+    };
+  },
+);
