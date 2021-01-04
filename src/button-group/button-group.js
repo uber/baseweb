@@ -63,6 +63,8 @@ export default class ButtonGroup extends React.Component<PropsT> {
             aria-label={ariaLabel || locale.buttongroup.ariaLabel}
             data-baseweb="button-group"
             role={isRadio ? 'radiogroup' : 'group'}
+            $shape={shape}
+            $length={children.length}
             {...rootProps}
           >
             {React.Children.map(children, (child, index) => {
