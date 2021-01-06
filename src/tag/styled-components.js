@@ -294,11 +294,14 @@ export const ActionIcon = styled('svg', {});
 
 // $FlowFixMe https://github.com/facebook/flow/issues/7745
 export const Text = styled<SharedPropsArgT>('span', props => {
+  const {$theme} = props;
+
   return {
     overflow: 'hidden',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
     maxWidth: props.$theme.sizing.scale3200,
+    order: $theme.direction === 'rtl' ? 1 : 0,
   };
 });
 

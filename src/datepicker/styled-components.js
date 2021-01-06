@@ -216,6 +216,26 @@ function getDayStyles(code, {colors}): any {
     ':before': {content: null},
     ':after': {content: null},
   };
+  const outsideMonthDateStyle = {
+    color: colors.calendarForegroundDisabled,
+    ':before': {
+      borderTopStyle: 'none',
+      borderBottomStyle: 'none',
+      borderLeftStyle: 'none',
+      borderRightStyle: 'none',
+      backgroundColor: 'transparent',
+    },
+    ':after': {
+      borderTopLeftRadius: '0%',
+      borderTopRightRadius: '0%',
+      borderBottomLeftRadius: '0%',
+      borderBottomRightRadius: '0%',
+      borderTopColor: 'transparent',
+      borderBottomColor: 'transparent',
+      borderRightColor: 'transparent',
+      borderLeftColor: 'transparent',
+    },
+  }; 
   const highlightedStyle = {
     ':before': {content: null},
   };
@@ -250,9 +270,7 @@ function getDayStyles(code, {colors}): any {
       ':after': {content: null},
     },
     // date outside of the currently displayed month (when peekNextMonth is true)
-    '000000000000001': {
-      color: colors.calendarForegroundDisabled,
-    },
+    ...generateDayStyles('000000000000001', outsideMonthDateStyle),
     // Range Datepicker
     // range: highlighted date outside of a selected range
     ...generateDayStyles('101000000000000', highlightedStyle),
@@ -457,6 +475,14 @@ function getDayStyles(code, {colors}): any {
       color: colors.calendarDayForegroundPseudoSelectedHighlighted,
       ':before': {left: null, right: '50%'},
     },
+    // Range is true Date outside current month (when peekNextMonth is true)
+   ...generateDayStyles('100000000000001', outsideMonthDateStyle),
+   // peekNextMonth is true, date is outside month, start date is selected and range is highlighted is on right
+   ...generateDayStyles('100000001010001', outsideMonthDateStyle),
+   // peekNextMonth is true, date is outside month, start date is selected and range is highlighted is on left
+   ...generateDayStyles('100000001001001', outsideMonthDateStyle),
+   // peekNextMonth is true, date is outside month, range is selected
+   ...generateDayStyles('100010000000001', outsideMonthDateStyle),
   };
   return dayStateStyle[code] || defaultDayStyle;
 }

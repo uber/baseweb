@@ -25,11 +25,19 @@ export function Border({name}: {name: string}) {
         ></div>
       )}
       renderValue={({previewTheme}) => (
-        <React.Fragment>
-          <div>{previewTheme.borders[name].borderStyle}</div>
-          <div>{previewTheme.borders[name].borderWidth}</div>
-          <div>{previewTheme.borders[name].borderColor}</div>
-        </React.Fragment>
+        <pre
+          className={css({
+            fontSize: '12px',
+            fontFamily:
+              'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;',
+          })}
+        >
+          {`{
+  borderWidth: '${previewTheme.borders[name].borderWidth}',
+  borderStyle: '${previewTheme.borders[name].borderStyle}',
+  borderColor: '${previewTheme.borders[name].borderColor}'
+}`}
+        </pre>
       )}
     />
   );

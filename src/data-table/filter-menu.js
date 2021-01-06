@@ -140,8 +140,10 @@ function Options(props: OptionsPropsT) {
           listStyleType: 'none',
           marginBlockStart: 'unset',
           marginBlockEnd: 'unset',
+          maxHeight: '256px',
           paddingInlineStart: 'unset',
           outline: 'none',
+          overflowY: 'auto',
         })}
       >
         {props.columns.map((column, index) => {
