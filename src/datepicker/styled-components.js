@@ -249,10 +249,11 @@ function getDayStyles(code, {colors}): any {
       color: colors.calendarForegroundDisabled,
       ':after': {content: null},
     },
-    // date outside of the currently displayed month (when peekNextMonth is true)
-    '000000000000001': {
-      color: colors.calendarForegroundDisabled,
-    },
+
+    ...generateDayStyles('001000000000001', highlightedStyle),
+
+    ...generateDayStyles('101000000000001', highlightedStyle),
+
     // Range Datepicker
     // range: highlighted date outside of a selected range
     ...generateDayStyles('101000000000000', highlightedStyle),
