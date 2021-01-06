@@ -20,11 +20,19 @@ export function Type({name}: {name: string}) {
         <div className={css({...theme.typography[name]})}>Example</div>
       )}
       renderValue={() => (
-        <React.Fragment>
-          <div>{theme.typography[name].fontSize}</div>
-          <div>{theme.typography[name].fontWeight}</div>
-          <div>{theme.typography[name].lineHeight}</div>
-        </React.Fragment>
+        <pre
+          className={css({
+            fontSize: '14px',
+            fontFamily:
+              'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;',
+          })}
+        >
+          {`{
+  fontSize: '${theme.typography[name].fontSize}',
+  fontWeight: '${theme.typography[name].fontWeight}',
+  lineHeight: '${theme.typography[name].lineHeight}'
+}`}
+        </pre>
       )}
     />
   );
