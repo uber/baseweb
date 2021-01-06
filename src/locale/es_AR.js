@@ -56,7 +56,7 @@ export default {
     filterExclude: 'Excluir',
     filterApply: 'Aplicar',
     filterAppliedTo: 'filtro aplicado a',
-    optionsLabel: 'Selecciona una columna para filtrar por',
+    optionsLabel: 'Selecciona una columna para filtrar',
     optionsSearch: 'Busque una columna para filtrar por...',
     optionsEmpty: 'Sin columnas disponibles.',
     categoricalFilterSelectAll: 'Seleccionar Todo',
