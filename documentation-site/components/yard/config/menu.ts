@@ -18,6 +18,7 @@ const OptionConfig: TConfig = {
       named: ['OptionList'],
     },
   },
+  scope: {},
   theme: [],
   props: {
     overrides: {
