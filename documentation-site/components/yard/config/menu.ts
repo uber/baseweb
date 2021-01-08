@@ -11,6 +11,27 @@ const items = `[
   {label: 'Item Four'},
 ]`;
 
+const OptionConfig: TConfig = {
+  componentName: 'Option',
+  imports: {
+    'baseui/menu': {
+      named: ['OptionList'],
+    },
+  },
+  theme: [],
+  props: {
+    overrides: {
+      value: undefined,
+      type: PropTypes.Custom,
+      description: 'Lets you customize all aspects of the component.',
+      custom: {
+        names: ['ListItem', 'ListItemAnchor'],
+        sharedProps: {},
+      },
+    },
+  },
+};
+
 const MenuConfig: TConfig = {
   componentName: 'StatefulMenu',
   imports: {
@@ -57,7 +78,12 @@ const MenuConfig: TConfig = {
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
-        names: ['Option', 'List', 'EmptyState', 'OptgroupHeader'],
+        names: [
+          {...OptionConfig, componentName: 'Option'},
+          'List',
+          'EmptyState',
+          'OptgroupHeader',
+        ],
         sharedProps: {},
       },
     },
