@@ -96,6 +96,26 @@ const config = {
       },
     ],
   },
+  'data-table-add-remove-columns': {
+    interactions: [
+      {
+        name: 'addColumn',
+        behavior: async page => {
+          const button = '[data-testid="add"]';
+          await page.waitForSelector(button);
+          await page.click(button);
+        },
+      },
+      {
+        name: 'removeColumn',
+        behavior: async page => {
+          const button = '[data-testid="remove"]';
+          await page.waitForSelector(button);
+          await page.click(button);
+        },
+      },
+    ],
+  },
   'data-table-extracted-highlight': {
     interactions: [
       {
