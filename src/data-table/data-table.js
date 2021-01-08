@@ -643,11 +643,32 @@ function MeasureScrollbarWidth(props) {
   );
 }
 
-export function DataTable(props: DataTablePropsT) {
+export function DataTable({
+  batchActions,
+  columns,
+  filters,
+  emptyMessage,
+  loading,
+  loadingMessage,
+  onIncludedRowsChange,
+  onRowHighlightChange,
+  onSelectMany,
+  onSelectNone,
+  onSelectOne,
+  onSort,
+  resizableColumnWidths = false,
+  rows: allRows,
+  rowActions = [],
+  rowHeight = 36,
+  rowHighlightIndex: rowHighlightIndexControlled,
+  selectedRowIds,
+  sortIndex,
+  sortDirection,
+  textQuery = '',
+}: DataTablePropsT) {
   const [, theme] = useStyletron();
   const locale = React.useContext(LocaleContext);
 
-  const rowHeight = props.rowHeight || 36;
   const rowHeightAtIndex = React.useCallback(
     index => {
       if (index === 0) {
@@ -659,11 +680,18 @@ export function DataTable(props: DataTablePropsT) {
   );
   const gridRef = React.useRef<typeof VariableSizeGrid | null>(null);
   const [measuredWidths, setMeasuredWidths] = React.useState(
-    props.columns.map(() => 0),
+    columns.map(() => 0),
   );
-  const [resizeDeltas, setResizeDeltas] = React.useState(
-    props.columns.map(() => 0),
-  );
+  const [resizeDeltas, setResizeDeltas] = React.useState(columns.map(() => 0));
+  React.useEffect(() => {
+    setMeasuredWidths(prev => {
+      return columns.map((v, index) => prev[index] || 0);
+    });
+    setResizeDeltas(prev => {
+      return columns.map((v, index) => prev[index] || 0);
+    });
+  }, [columns]);
+
   const resetAfterColumnIndex = React.useCallback(
     columnIndex => {
       if (gridRef.current) {
@@ -717,60 +745,59 @@ export function DataTable(props: DataTablePropsT) {
   );
 
   const sortedIndices = React.useMemo(() => {
-    let toSort = props.rows.map((r, i) => [r, i]);
-    const index = props.sortIndex;
+    let toSort = allRows.map((r, i) => [r, i]);
+    const index = sortIndex;
 
-    if (index !== null && index !== undefined && index !== -1) {
-      const sortFn = props.columns[index].sortFn;
-      const getValue = row => props.columns[index].mapDataToValue(row.data);
-      if (props.sortDirection === SORT_DIRECTIONS.DESC) {
+    if (
+      index !== null &&
+      index !== undefined &&
+      index !== -1 &&
+      columns[index]
+    ) {
+      const sortFn = columns[index].sortFn;
+      const getValue = row => columns[index].mapDataToValue(row.data);
+      if (sortDirection === SORT_DIRECTIONS.DESC) {
         toSort.sort((a, b) => sortFn(getValue(a[0]), getValue(b[0])));
-      } else if (props.sortDirection === SORT_DIRECTIONS.ASC) {
+      } else if (sortDirection === SORT_DIRECTIONS.ASC) {
         toSort.sort((a, b) => sortFn(getValue(b[0]), getValue(a[0])));
       }
     }
 
     return toSort.map(el => el[1]);
-  }, [props.sortIndex, props.sortDirection, props.columns, props.rows]);
-
-  const textQuery = React.useMemo(() => props.textQuery || '', [
-    props.textQuery,
-  ]);
+  }, [sortIndex, sortDirection, columns, allRows]);
 
   const filteredIndices = React.useMemo(() => {
-    const set = new Set(props.rows.map((_, idx) => idx));
-    Array.from(props.filters || new Set(), f => f).forEach(
-      ([title, filter]) => {
-        const columnIndex = props.columns.findIndex(c => c.title === title);
-        const column = props.columns[columnIndex];
-        if (!column) {
-          return;
-        }
+    const set = new Set(allRows.map((_, idx) => idx));
+    Array.from(filters || new Set(), f => f).forEach(([title, filter]) => {
+      const columnIndex = columns.findIndex(c => c.title === title);
+      const column = columns[columnIndex];
+      if (!column) {
+        return;
+      }
 
-        const filterFn = column.buildFilter(filter);
-        Array.from(set).forEach(idx => {
-          if (!filterFn(column.mapDataToValue(props.rows[idx].data))) {
-            set.delete(idx);
-          }
-        });
-      },
-    );
+      const filterFn = column.buildFilter(filter);
+      Array.from(set).forEach(idx => {
+        if (!filterFn(column.mapDataToValue(allRows[idx].data))) {
+          set.delete(idx);
+        }
+      });
+    });
 
     if (textQuery) {
       const stringishColumnIndices = [];
-      for (let i = 0; i < props.columns.length; i++) {
-        if (props.columns[i].textQueryFilter) {
+      for (let i = 0; i < columns.length; i++) {
+        if (columns[i].textQueryFilter) {
           stringishColumnIndices.push(i);
         }
       }
       Array.from(set).forEach(idx => {
         const matches = stringishColumnIndices.some(cdx => {
-          const column = props.columns[cdx];
+          const column = columns[cdx];
           const textQueryFilter = column.textQueryFilter;
           if (textQueryFilter) {
             return textQueryFilter(
               textQuery,
-              column.mapDataToValue(props.rows[idx].data),
+              column.mapDataToValue(allRows[idx].data),
             );
           }
           return false;
@@ -783,18 +810,18 @@ export function DataTable(props: DataTablePropsT) {
     }
 
     return set;
-  }, [props.filters, textQuery, props.columns, props.rows]);
+  }, [filters, textQuery, columns, allRows]);
 
   const rows = React.useMemo(() => {
     const result = sortedIndices
       .filter(idx => filteredIndices.has(idx))
-      .map(idx => props.rows[idx]);
+      .map(idx => allRows[idx]);
 
-    if (props.onIncludedRowsChange) {
-      props.onIncludedRowsChange(result);
+    if (onIncludedRowsChange) {
+      onIncludedRowsChange(result);
     }
     return result;
-  }, [sortedIndices, filteredIndices, props.onIncludedRowsChange, props.rows]);
+  }, [sortedIndices, filteredIndices, onIncludedRowsChange, allRows]);
 
   const [browserScrollbarWidth, setBrowserScrollbarWidth] = React.useState(0);
   const normalizedWidths = React.useMemo(() => {
@@ -822,13 +849,13 @@ export function DataTable(props: DataTablePropsT) {
 
       const remainder = gridProps.width - sum(resizedWidths) - scrollbarWidth;
       const padding = Math.floor(
-        remainder / props.columns.filter(c => c.fillWidth).length,
+        remainder / columns.filter(c => (c ? c.fillWidth : true)).length,
       );
       if (padding > 0) {
         const result = [];
         // -1 so that we loop over all but the last item
         for (let i = 0; i < resizedWidths.length - 1; i++) {
-          if (props.columns[i].fillWidth) {
+          if (columns[i] && columns[i].fillWidth) {
             result.push(resizedWidths[i] + padding);
           } else {
             result.push(resizedWidths[i]);
@@ -845,59 +872,57 @@ export function DataTable(props: DataTablePropsT) {
     resizeDeltas,
     browserScrollbarWidth,
     rows.length,
-    props.columns,
+    columns,
   ]);
 
-  const isSelectable = props.batchActions ? !!props.batchActions.length : false;
+  const isSelectable = batchActions ? !!batchActions.length : false;
   const isSelectedAll = React.useMemo(() => {
-    if (!props.selectedRowIds) {
+    if (!selectedRowIds) {
       return false;
     }
-    return !!rows.length && props.selectedRowIds.size >= rows.length;
-  }, [props.selectedRowIds, rows.length]);
+    return !!rows.length && selectedRowIds.size >= rows.length;
+  }, [selectedRowIds, rows.length]);
   const isSelectedIndeterminate = React.useMemo(() => {
-    if (!props.selectedRowIds) {
+    if (!selectedRowIds) {
       return false;
     }
-    return (
-      !!props.selectedRowIds.size && props.selectedRowIds.size < rows.length
-    );
-  }, [props.selectedRowIds, rows.length]);
+    return !!selectedRowIds.size && selectedRowIds.size < rows.length;
+  }, [selectedRowIds, rows.length]);
   const isRowSelected = React.useCallback(
     id => {
-      if (props.selectedRowIds) {
-        return props.selectedRowIds.has(id);
+      if (selectedRowIds) {
+        return selectedRowIds.has(id);
       }
       return false;
     },
-    [props.selectedRowIds],
+    [selectedRowIds],
   );
   const handleSelectMany = React.useCallback(() => {
-    if (props.onSelectMany) {
-      props.onSelectMany(rows);
+    if (onSelectMany) {
+      onSelectMany(rows);
     }
-  }, [rows, props.onSelectMany]);
+  }, [rows, onSelectMany]);
   const handleSelectNone = React.useCallback(() => {
-    if (props.onSelectNone) {
-      props.onSelectNone();
+    if (onSelectNone) {
+      onSelectNone();
     }
-  }, [props.onSelectNone]);
+  }, [onSelectNone]);
   const handleSelectOne = React.useCallback(
     row => {
-      if (props.onSelectOne) {
-        props.onSelectOne(row);
+      if (onSelectOne) {
+        onSelectOne(row);
       }
     },
-    [props.onSelectOne],
+    [onSelectOne],
   );
 
   const handleSort = React.useCallback(
     columnIndex => {
-      if (props.onSort) {
-        props.onSort(columnIndex);
+      if (onSort) {
+        onSort(columnIndex);
       }
     },
-    [props.onSort],
+    [onSort],
   );
 
   const [columnHighlightIndex, setColumnHighlightIndex] = React.useState(-1);
@@ -910,8 +935,8 @@ export function DataTable(props: DataTablePropsT) {
         // $FlowFixMe - unable to get react-window types
         gridRef.current.scrollToItem({rowIndex: nextIndex});
       }
-      if (props.onRowHighlightChange) {
-        props.onRowHighlightChange(nextIndex, rows[nextIndex - 1]);
+      if (onRowHighlightChange) {
+        onRowHighlightChange(nextIndex, rows[nextIndex - 1]);
       }
     }
   }
@@ -934,10 +959,10 @@ export function DataTable(props: DataTablePropsT) {
   }
 
   React.useEffect(() => {
-    if (typeof props.rowHighlightIndex === 'number') {
-      handleRowHighlightIndexChange(props.rowHighlightIndex);
+    if (typeof rowHighlightIndexControlled === 'number') {
+      handleRowHighlightIndexChange(rowHighlightIndexControlled);
     }
-  }, [props.rowHighlightIndex]);
+  }, [rowHighlightIndexControlled]);
 
   const itemData = React.useMemo(() => {
     return {
@@ -947,7 +972,7 @@ export function DataTable(props: DataTablePropsT) {
       isSelectable,
       onRowMouseEnter: handleRowMouseEnter,
       onSelectOne: handleSelectOne,
-      columns: props.columns,
+      columns: columns,
       rows,
       textQuery,
     };
@@ -958,7 +983,7 @@ export function DataTable(props: DataTablePropsT) {
     isSelectable,
     rowHighlightIndex,
     rows,
-    props.columns,
+    columns,
     handleSelectOne,
     textQuery,
   ]);
@@ -966,8 +991,8 @@ export function DataTable(props: DataTablePropsT) {
   return (
     <React.Fragment>
       <MeasureColumnWidths
-        columns={props.columns}
-        rows={props.rows}
+        columns={columns}
+        rows={rows}
         widths={measuredWidths}
         isSelectable={isSelectable}
         onWidthsChange={handleWidthsChange}
@@ -977,13 +1002,12 @@ export function DataTable(props: DataTablePropsT) {
         {({height, width}) => (
           <HeaderContext.Provider
             value={{
-              columns: props.columns,
+              columns: columns,
               columnHighlightIndex,
-              emptyMessage: props.emptyMessage || locale.datatable.emptyState,
-              filters: props.filters,
-              loading: Boolean(props.loading),
-              loadingMessage:
-                props.loadingMessage || locale.datatable.loadingState,
+              emptyMessage: emptyMessage || locale.datatable.emptyState,
+              filters: filters,
+              loading: Boolean(loading),
+              loadingMessage: loadingMessage || locale.datatable.loadingState,
               isScrollingX,
               isSelectable,
               isSelectedAll,
@@ -995,15 +1019,14 @@ export function DataTable(props: DataTablePropsT) {
               onSelectMany: handleSelectMany,
               onSelectNone: handleSelectNone,
               onSort: handleSort,
-              resizableColumnWidths: Boolean(props.resizableColumnWidths),
-              rowActions: props.rowActions || [],
+              resizableColumnWidths,
+              rowActions,
               rowHeight,
               rowHighlightIndex,
               rows,
               scrollLeft,
-              sortDirection: props.sortDirection || null,
-              sortIndex:
-                typeof props.sortIndex === 'number' ? props.sortIndex : -1,
+              sortDirection: sortDirection || null,
+              sortIndex: typeof sortIndex === 'number' ? sortIndex : -1,
               tableHeight: height,
               widths: normalizedWidths,
             }}
@@ -1013,7 +1036,7 @@ export function DataTable(props: DataTablePropsT) {
               ref={(gridRef: any)}
               overscanRowCount={10}
               innerElementType={InnerTableElement}
-              columnCount={props.columns.length}
+              columnCount={columns.length}
               columnWidth={columnIndex => normalizedWidths[columnIndex]}
               height={height - 2}
               // plus one to account for additional header row
