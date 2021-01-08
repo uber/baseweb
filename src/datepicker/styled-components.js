@@ -235,7 +235,7 @@ function getDayStyles(code, {colors}): any {
       borderRightColor: 'transparent',
       borderLeftColor: 'transparent',
     },
-  }; 
+  };
   const highlightedStyle = {
     ':before': {content: null},
   };
@@ -246,244 +246,303 @@ function getDayStyles(code, {colors}): any {
   // See the ./utils/day-state.js file for the description of all available states
   // rdhsrSsDeDpSrHpHrRrLsMeMoM
   // '000000000000000'
-  const dayStateStyle = {
+  const dayStateStyle = Object.assign(
+    {},
     // highlighted date
-    ...generateDayStyles('001000000000000', {
+    generateDayStyles('001000000000000', {
       color: colors.calendarDayForegroundPseudoSelected,
     }),
     // selected date
-    ...generateDayStyles('000100000000000', {
+    generateDayStyles('000100000000000', {
       color: colors.calendarDayForegroundSelected,
     }),
     // selected highlighted date
-    ...generateDayStyles('001100000000000', {
+    generateDayStyles('001100000000000', {
       color: colors.calendarDayForegroundSelectedHighlighted,
     }),
     // disabled date
-    '010000000000000': {
-      color: colors.calendarForegroundDisabled,
-      ':after': {content: null},
+    {
+      '010000000000000': {
+        color: colors.calendarForegroundDisabled,
+        ':after': {content: null},
+      },
     },
     // disabled highlighted date
-    '011000000000000': {
-      color: colors.calendarForegroundDisabled,
-      ':after': {content: null},
+    {
+      '011000000000000': {
+        color: colors.calendarForegroundDisabled,
+        ':after': {content: null},
+      },
     },
     // date outside of the currently displayed month (when peekNextMonth is true)
-    ...generateDayStyles('000000000000001', outsideMonthDateStyle),
+    generateDayStyles('000000000000001', outsideMonthDateStyle),
     // Range Datepicker
     // range: highlighted date outside of a selected range
-    ...generateDayStyles('101000000000000', highlightedStyle),
-    ...generateDayStyles('101010000000000', highlightedStyle),
+    generateDayStyles('101000000000000', highlightedStyle),
+    generateDayStyles('101010000000000', highlightedStyle),
     // range: selected date
-    '100100000000000': {
-      color: colors.calendarDayForegroundSelected,
-      ':before': {content: null},
+    {
+      '100100000000000': {
+        color: colors.calendarDayForegroundSelected,
+        ':before': {content: null},
+      },
     },
     // range: selected highlighted date
     // when single date selected in a range
-    ...generateDayStyles('101100000000000', {
+    generateDayStyles('101100000000000', {
       color: colors.calendarDayForegroundSelectedHighlighted,
       ':before': {content: null},
     }),
     // range: selected start and end dates are the same
-    ...generateDayStyles('100111100000000', {
+    generateDayStyles('100111100000000', {
       color: colors.calendarDayForegroundSelected,
       ':before': {content: null},
     }),
-    ...generateDayStyles('101111100000000', {
+    generateDayStyles('101111100000000', {
       color: colors.calendarDayForegroundSelectedHighlighted,
       ':before': {content: null},
     }),
     // range: selected start date
-    '100111000000000': {
-      color: colors.calendarDayForegroundSelected,
+    {
+      '100111000000000': {
+        color: colors.calendarDayForegroundSelected,
+      },
     },
-    '100111000000100': {
-      color: colors.calendarDayForegroundSelected,
+    {
+      '100111000000100': {
+        color: colors.calendarDayForegroundSelected,
+      },
     },
-    '100111000000010': {
-      color: colors.calendarDayForegroundSelected,
-      ':before': {
-        content: null,
+    {
+      '100111000000010': {
+        color: colors.calendarDayForegroundSelected,
+        ':before': {
+          content: null,
+        },
       },
     },
     // range: selected end date
-    '100110100000000': {
-      color: colors.calendarDayForegroundSelected,
-      ':before': {left: null, right: '50%'},
-    },
-    '100110100000100': {
-      color: colors.calendarDayForegroundSelected,
-      ':before': {
-        content: null,
+    {
+      '100110100000000': {
+        color: colors.calendarDayForegroundSelected,
+        ':before': {left: null, right: '50%'},
       },
     },
-    '100110100000010': {
-      color: colors.calendarDayForegroundSelected,
-      ':before': {left: null, right: '50%'},
+    {
+      '100110100000100': {
+        color: colors.calendarDayForegroundSelected,
+        ':before': {
+          content: null,
+        },
+      },
+    },
+    {
+      '100110100000010': {
+        color: colors.calendarDayForegroundSelected,
+        ':before': {left: null, right: '50%'},
+      },
     },
     // range: first selected date while a range is highlighted but no second date selected yet
     // highlighted range on the right from the selected
-    ...generateDayStyles('100100001010000', {
+    generateDayStyles('100100001010000', {
       color: colors.calendarDayForegroundSelected,
     }),
     // highlighted range on the left from the selected
-    ...generateDayStyles('100100001001000', {
+    generateDayStyles('100100001001000', {
       color: colors.calendarDayForegroundSelected,
       ':before': {left: null, right: '50%'},
     }),
     // range: second date in a range that is highlighted but not selected
-    '101000001010000': {
-      ':before': {left: null, right: '50%'},
-    },
-    '101000001010100': {
-      ':before': {
-        content: null,
+    {
+      '101000001010000': {
+        ':before': {left: null, right: '50%'},
       },
     },
-    '101000001010010': {
-      ':before': {left: null, right: '50%'},
+    {
+      '101000001010100': {
+        ':before': {
+          content: null,
+        },
+      },
     },
-    '101000001001000': {},
-    '101000001001100': {},
-    '101000001001010': {
-      ':before': {content: null},
+    {
+      '101000001010010': {
+        ':before': {left: null, right: '50%'},
+      },
+    },
+    {'101000001001000': {}},
+    {'101000001001100': {}},
+    {
+      '101000001001010': {
+        ':before': {content: null},
+      },
     },
     // range: pseudo-selected date
-    '100010010000000': {
-      color: colors.calendarDayForegroundPseudoSelected,
-      ':before': {
-        left: '0',
-        width: '100%',
-      },
-      ':after': {
-        content: null,
-      },
-    },
-    '100010010000100': {
-      color: colors.calendarDayForegroundPseudoSelected,
-      ':before': {
-        left: '0',
-        width: '100%',
-        borderLeftWidth: '2px',
-        borderLeftColor: colors.mono400,
-        borderTopLeftRadius: '100%',
-        borderBottomLeftRadius: '100%',
-      },
-      ':after': {
-        content: null,
+    {
+      '100010010000000': {
+        color: colors.calendarDayForegroundPseudoSelected,
+        ':before': {
+          left: '0',
+          width: '100%',
+        },
+        ':after': {
+          content: null,
+        },
       },
     },
-    '100010010000010': {
-      color: colors.calendarDayForegroundPseudoSelected,
-      ':before': {
-        left: '0',
-        width: '100%',
-        borderRightWidth: '2px',
-        borderRightColor: colors.mono400,
-        borderTopRightRadius: '100%',
-        borderBottomRightRadius: '100%',
+    {
+      '100010010000100': {
+        color: colors.calendarDayForegroundPseudoSelected,
+        ':before': {
+          left: '0',
+          width: '100%',
+          borderLeftWidth: '2px',
+          borderLeftColor: colors.mono400,
+          borderTopLeftRadius: '100%',
+          borderBottomLeftRadius: '100%',
+        },
+        ':after': {
+          content: null,
+        },
       },
-      ':after': {
-        content: null,
+    },
+    {
+      '100010010000010': {
+        color: colors.calendarDayForegroundPseudoSelected,
+        ':before': {
+          left: '0',
+          width: '100%',
+          borderRightWidth: '2px',
+          borderRightColor: colors.mono400,
+          borderTopRightRadius: '100%',
+          borderBottomRightRadius: '100%',
+        },
+        ':after': {
+          content: null,
+        },
       },
     },
     // range: pseudo-highlighted date (in a range where only one date is
     // selected and second date is highlighted)
-    '101000001100000': {
-      color: colors.calendarDayForegroundPseudoSelected,
-      ':before': {
-        left: '0',
-        width: '100%',
-      },
-      ':after': {
-        content: null,
-      },
-    },
-    '100000001100000': {
-      color: colors.calendarDayForegroundPseudoSelected,
-      ':before': {
-        left: '0',
-        width: '100%',
-      },
-      ':after': {
-        content: null,
+    {
+      '101000001100000': {
+        color: colors.calendarDayForegroundPseudoSelected,
+        ':before': {
+          left: '0',
+          width: '100%',
+        },
+        ':after': {
+          content: null,
+        },
       },
     },
-    '100000001100100': {
-      color: colors.calendarDayForegroundPseudoSelected,
-      ':before': {
-        left: '0',
-        width: '100%',
-        borderLeftWidth: '2px',
-        borderLeftColor: colors.mono400,
-        borderTopLeftRadius: '100%',
-        borderBottomLeftRadius: '100%',
-      },
-      ':after': {
-        content: null,
+    {
+      '100000001100000': {
+        color: colors.calendarDayForegroundPseudoSelected,
+        ':before': {
+          left: '0',
+          width: '100%',
+        },
+        ':after': {
+          content: null,
+        },
       },
     },
-    '100000001100010': {
-      color: colors.calendarDayForegroundPseudoSelected,
-      ':before': {
-        left: '0',
-        width: '100%',
-        borderRightWidth: '2px',
-        borderRightColor: colors.mono400,
-        borderTopRightRadius: '100%',
-        borderBottomRightRadius: '100%',
+    {
+      '100000001100100': {
+        color: colors.calendarDayForegroundPseudoSelected,
+        ':before': {
+          left: '0',
+          width: '100%',
+          borderLeftWidth: '2px',
+          borderLeftColor: colors.mono400,
+          borderTopLeftRadius: '100%',
+          borderBottomLeftRadius: '100%',
+        },
+        ':after': {
+          content: null,
+        },
       },
-      ':after': {
-        content: null,
+    },
+    {
+      '100000001100010': {
+        color: colors.calendarDayForegroundPseudoSelected,
+        ':before': {
+          left: '0',
+          width: '100%',
+          borderRightWidth: '2px',
+          borderRightColor: colors.mono400,
+          borderTopRightRadius: '100%',
+          borderBottomRightRadius: '100%',
+        },
+        ':after': {
+          content: null,
+        },
       },
     },
     // highlighted start date in a range
-    '101111000000000': {
-      color: colors.calendarDayForegroundSelectedHighlighted,
+    {
+      '101111000000000': {
+        color: colors.calendarDayForegroundSelectedHighlighted,
+      },
     },
-    '101111000000100': {
-      color: colors.calendarDayForegroundSelectedHighlighted,
+    {
+      '101111000000100': {
+        color: colors.calendarDayForegroundSelectedHighlighted,
+      },
     },
-    '101111000000010': {
-      color: colors.calendarDayForegroundSelectedHighlighted,
-      ':before': {content: null},
+    {
+      '101111000000010': {
+        color: colors.calendarDayForegroundSelectedHighlighted,
+        ':before': {content: null},
+      },
     },
     // highlighted end date in a range
-    '101110100000000': {
-      color: colors.calendarDayForegroundSelectedHighlighted,
-      ':before': {left: null, right: '50%'},
+    {
+      '101110100000000': {
+        color: colors.calendarDayForegroundSelectedHighlighted,
+        ':before': {left: null, right: '50%'},
+      },
     },
-    '101110100000100': {
-      color: colors.calendarDayForegroundSelectedHighlighted,
-      ':before': {content: null},
+    {
+      '101110100000100': {
+        color: colors.calendarDayForegroundSelectedHighlighted,
+        ':before': {content: null},
+      },
     },
-    '101110100000010': {
-      color: colors.calendarDayForegroundSelectedHighlighted,
-      ':before': {left: null, right: '50%'},
+    {
+      '101110100000010': {
+        color: colors.calendarDayForegroundSelectedHighlighted,
+        ':before': {left: null, right: '50%'},
+      },
     },
     // range: pseudo-selected date
-    '101010010000000': {
-      color: colors.calendarDayForegroundPseudoSelectedHighlighted,
-      ':before': {left: '0', width: '100%'},
+    {
+      '101010010000000': {
+        color: colors.calendarDayForegroundPseudoSelectedHighlighted,
+        ':before': {left: '0', width: '100%'},
+      },
     },
-    '101010010000100': {
-      color: colors.calendarDayForegroundPseudoSelectedHighlighted,
+    {
+      '101010010000100': {
+        color: colors.calendarDayForegroundPseudoSelectedHighlighted,
+      },
     },
-    '101010010000010': {
-      color: colors.calendarDayForegroundPseudoSelectedHighlighted,
-      ':before': {left: null, right: '50%'},
+    {
+      '101010010000010': {
+        color: colors.calendarDayForegroundPseudoSelectedHighlighted,
+        ':before': {left: null, right: '50%'},
+      },
     },
     // Range is true Date outside current month (when peekNextMonth is true)
-   ...generateDayStyles('100000000000001', outsideMonthDateStyle),
-   // peekNextMonth is true, date is outside month, start date is selected and range is highlighted is on right
-   ...generateDayStyles('100000001010001', outsideMonthDateStyle),
-   // peekNextMonth is true, date is outside month, start date is selected and range is highlighted is on left
-   ...generateDayStyles('100000001001001', outsideMonthDateStyle),
-   // peekNextMonth is true, date is outside month, range is selected
-   ...generateDayStyles('100010000000001', outsideMonthDateStyle),
-  };
+    generateDayStyles('100000000000001', outsideMonthDateStyle),
+    // peekNextMonth is true, date is outside month, start date is selected and range is highlighted is on right
+    generateDayStyles('100000001010001', outsideMonthDateStyle),
+    // peekNextMonth is true, date is outside month, start date is selected and range is highlighted is on left
+    generateDayStyles('100000001001001', outsideMonthDateStyle),
+    // peekNextMonth is true, date is outside month, range is selected
+    generateDayStyles('100010000000001', outsideMonthDateStyle),
+  );
   return dayStateStyle[code] || defaultDayStyle;
 }
 
