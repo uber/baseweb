@@ -67,6 +67,9 @@ export default class CalendarHeader<T = Date> extends React.Component<
   };
 
   dateHelpers: DateHelpers<T>;
+  items: Array<{id: string, label: string}>;
+  minYear: number;
+  maxYear: number;
 
   constructor(props: HeaderPropsT<T>) {
     super(props);
@@ -351,7 +354,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
       (x, i) => i + minDateMonth,
     );
 
-    if(this.maxYear !== maxYear || this.minYear !== minYear) {
+    if (this.maxYear !== maxYear || this.minYear !== minYear) {
       this.maxYear = maxYear;
       this.minYear = minYear;
       this.items = [];

@@ -235,7 +235,7 @@ function getDayStyles(code, {colors}): any {
       borderRightColor: 'transparent',
       borderLeftColor: 'transparent',
     },
-  }; 
+  };
   const highlightedStyle = {
     ':before': {content: null},
   };
@@ -247,6 +247,7 @@ function getDayStyles(code, {colors}): any {
   // rdhsrSsDeDpSrHpHrRrLsMeMoM
   // '000000000000000'
   const dayStateStyle = Object.assign(
+    {},
     // highlighted date
     generateDayStyles('001000000000000', {
       color: colors.calendarDayForegroundPseudoSelected,
@@ -541,7 +542,7 @@ function getDayStyles(code, {colors}): any {
     generateDayStyles('100000001001001', outsideMonthDateStyle),
     // peekNextMonth is true, date is outside month, range is selected
     generateDayStyles('100010000000001', outsideMonthDateStyle),
-  ); 
+  );
   return dayStateStyle[code] || defaultDayStyle;
 }
 
