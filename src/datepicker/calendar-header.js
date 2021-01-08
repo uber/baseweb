@@ -67,10 +67,14 @@ export default class CalendarHeader<T = Date> extends React.Component<
   };
 
   dateHelpers: DateHelpers<T>;
+  items: Array<{id: string, label: string}>;
+  minYear: number;
+  maxYear: number;
 
   constructor(props: HeaderPropsT<T>) {
     super(props);
     this.dateHelpers = new DateHelpers(props.adapter);
+    this.items = [];
   }
 
   state = {
@@ -350,28 +354,31 @@ export default class CalendarHeader<T = Date> extends React.Component<
       (x, i) => i + minDateMonth,
     );
 
-    const items = [];
-
-    for (let i = minYear; i <= maxYear; i++) {
-      let months;
-      if (i === minYear && i === maxYear) {
-        months = maxYearMonths.filter(month => minYearMonths.includes(month));
-      } else if (i === minYear) {
-        months = minYearMonths;
-      } else if (i === maxYear) {
-        months = maxYearMonths;
-      } else {
-        months = defaultMonths;
-      }
-      months.forEach(month => {
-        items.push({
-          id: yearMonthToId(i, month),
-          label: `${this.dateHelpers.getMonthInLocale(month, locale)} ${i}`,
+    if (this.maxYear !== maxYear || this.minYear !== minYear) {
+      this.maxYear = maxYear;
+      this.minYear = minYear;
+      this.items = [];
+      for (let i = minYear; i <= maxYear; i++) {
+        let months;
+        if (i === minYear && i === maxYear) {
+          months = maxYearMonths.filter(month => minYearMonths.includes(month));
+        } else if (i === minYear) {
+          months = minYearMonths;
+        } else if (i === maxYear) {
+          months = maxYearMonths;
+        } else {
+          months = defaultMonths;
+        }
+        months.forEach(month => {
+          this.items.push({
+            id: yearMonthToId(i, month),
+            label: `${this.dateHelpers.getMonthInLocale(month, locale)} ${i}`,
+          });
         });
-      });
+      }
     }
 
-    const initialIndex = items.findIndex(item => {
+    const initialIndex = this.items.findIndex(item => {
       return (
         item.id ===
         yearMonthToId(
@@ -408,7 +415,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
               highlightedIndex: initialIndex,
               isFocused: true,
             }}
-            items={items}
+            items={this.items}
             onItemSelect={({item, event}) => {
               event.preventDefault();
               const [year, month] = idToYearMonth(item.id);
