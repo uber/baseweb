@@ -87,54 +87,64 @@ function generateSampleIndices(inputMin, inputMax, maxSamples) {
   return indices;
 }
 
-export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
+export default function MeasureColumnWidths({
+  columns,
+  rows,
+  widths,
+  isSelectable,
+  onWidthsChange,
+}: MeasureColumnWidthsPropsT) {
   const [css] = useStyletron();
 
   const measurementCount = React.useRef(0);
-  const sampleSize = React.useMemo(() => {
-    if (props.rows.length < MAX_SAMPLE_SIZE) {
-      return props.rows.length;
-    }
-    return MAX_SAMPLE_SIZE;
-  }, [props.rows.length]);
-  const finishedMeasurementCount = React.useMemo(
-    () => (sampleSize + 1) * props.columns.length,
-    [props.columns, sampleSize],
-  );
-  const dimensionsCache = React.useRef(props.widths);
+  const dimensionsCache = React.useRef(widths);
+
+  const sampleSize =
+    rows.length < MAX_SAMPLE_SIZE ? rows.length : MAX_SAMPLE_SIZE;
+  const finishedMeasurementCount = (sampleSize + 1) * columns.length;
 
   const sampleRowIndicesByColumn = React.useMemo<number[][]>(() => {
     measurementCount.current = 0;
-    dimensionsCache.current = props.widths;
+    dimensionsCache.current = widths;
 
-    const indices = generateSampleIndices(0, props.rows.length - 1, sampleSize);
-    return props.columns.map(() => indices);
-  }, [props.columns, props.rows, props.widths, sampleSize]);
+    const indices = generateSampleIndices(0, rows.length - 1, sampleSize);
+    return columns.map(() => indices);
+  }, [columns, rows, widths, sampleSize]);
 
-  function handleDimensionsChange(columnIndex, rowIndex, dimensions) {
-    if (dimensions.width === undefined) return;
+  const handleDimensionsChange = React.useCallback(
+    (columnIndex, rowIndex, dimensions) => {
+      if (dimensions.width === undefined) return;
 
-    measurementCount.current += 1;
+      if (
+        columns[columnIndex] === undefined ||
+        dimensionsCache.current[columnIndex] === undefined
+      ) {
+        return;
+      }
 
-    const nextWidth = Math.min(
-      Math.max(
-        props.columns[columnIndex].minWidth || 0,
-        dimensionsCache.current[columnIndex],
-        dimensions.width + 1,
-      ),
-      props.columns[columnIndex].maxWidth || Infinity,
-    );
+      measurementCount.current += 1;
 
-    if (nextWidth !== dimensionsCache.current[columnIndex]) {
-      const nextWidths = [...dimensionsCache.current];
-      nextWidths[columnIndex] = nextWidth;
-      dimensionsCache.current = nextWidths;
-    }
+      const nextWidth = Math.min(
+        Math.max(
+          columns[columnIndex].minWidth || 0,
+          dimensionsCache.current[columnIndex],
+          dimensions.width + 1,
+        ),
+        columns[columnIndex].maxWidth || Infinity,
+      );
 
-    if (measurementCount.current >= finishedMeasurementCount) {
-      props.onWidthsChange(dimensionsCache.current);
-    }
-  }
+      if (nextWidth !== dimensionsCache.current[columnIndex]) {
+        const nextWidths = [...dimensionsCache.current];
+        nextWidths[columnIndex] = nextWidth;
+        dimensionsCache.current = nextWidths;
+      }
+
+      if (measurementCount.current >= finishedMeasurementCount) {
+        onWidthsChange(dimensionsCache.current);
+      }
+    },
+    [columns, finishedMeasurementCount, onWidthsChange],
+  );
 
   const hiddenStyle = css({
     position: 'absolute',
@@ -142,25 +152,14 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
     height: 0,
   });
 
-  const [shouldMeasure, setShouldMeasure] = React.useState(true);
-  React.useEffect(() => {
-    if (measurementCount.current >= finishedMeasurementCount) {
-      setShouldMeasure(false);
-    } else {
-      if (!shouldMeasure) {
-        setShouldMeasure(true);
-      }
-    }
-  }, [measurementCount.current, finishedMeasurementCount]);
-
-  if (!shouldMeasure) {
+  if (measurementCount.current >= finishedMeasurementCount) {
     return null;
   }
 
   return (
     <div className={hiddenStyle} aria-hidden>
       {sampleRowIndicesByColumn.map((rowIndices, columnIndex) => {
-        const Cell = props.columns[columnIndex].renderCell;
+        const Cell = columns[columnIndex].renderCell;
         return rowIndices.map(rowIndex => (
           <ElementMeasurer
             key={`measure-${columnIndex}-${rowIndex}`}
@@ -169,12 +168,10 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
             }
             item={
               <Cell
-                value={props.columns[columnIndex].mapDataToValue(
-                  props.rows[rowIndex].data,
-                )}
+                value={columns[columnIndex].mapDataToValue(rows[rowIndex].data)}
                 isMeasured
                 onSelect={
-                  props.isSelectable && columnIndex === 0 ? () => {} : undefined
+                  isSelectable && columnIndex === 0 ? () => {} : undefined
                 }
                 x={columnIndex}
                 y={rowIndex}
@@ -183,7 +180,7 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
           />
         ));
       })}
-      {props.columns.map((column, columnIndex) => (
+      {columns.map((column, columnIndex) => (
         <ElementMeasurer
           key={`measure-column-${columnIndex}`}
           onDimensionsChange={dimensions =>
@@ -194,7 +191,7 @@ export default function MeasureColumnWidths(props: MeasureColumnWidthsPropsT) {
               index={columnIndex}
               isHovered
               isMeasured
-              isSelectable={props.isSelectable && columnIndex === 0}
+              isSelectable={isSelectable && columnIndex === 0}
               isSelectedAll={false}
               isSelectedIndeterminate={false}
               onMouseEnter={() => {}}
