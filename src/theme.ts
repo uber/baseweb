@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2018-2020 Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
+// @flow
 export interface Breakpoints {
   small: number;
   medium: number;
@@ -164,6 +171,7 @@ export interface Colors {
   contentStateDisabled: string;
   contentAccent: string;
   contentOnColor: string;
+  contentOnColorInverse: string;
   contentNegative: string;
   contentWarning: string;
   contentPositive: string;
@@ -623,6 +631,7 @@ export interface Typography {
   font1250: Font;
   font1350: Font;
   font1450: Font;
+
   ParagraphXSmall: Font;
   ParagraphSmall: Font;
   ParagraphMedium: Font;
@@ -641,6 +650,25 @@ export interface Typography {
   DisplaySmall: Font;
   DisplayMedium: Font;
   DisplayLarge: Font;
+
+  MonoParagraphXSmall: Font;
+  MonoParagraphSmall: Font;
+  MonoParagraphMedium: Font;
+  MonoParagraphLarge: Font;
+  MonoLabelXSmall: Font;
+  MonoLabelSmall: Font;
+  MonoLabelMedium: Font;
+  MonoLabelLarge: Font;
+  MonoHeadingXSmall: Font;
+  MonoHeadingSmall: Font;
+  MonoHeadingMedium: Font;
+  MonoHeadingLarge: Font;
+  MonoHeadingXLarge: Font;
+  MonoHeadingXXLarge: Font;
+  MonoDisplayXSmall: Font;
+  MonoDisplaySmall: Font;
+  MonoDisplayMedium: Font;
+  MonoDisplayLarge: Font;
 }
 
 export interface Sizing {
