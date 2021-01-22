@@ -110,7 +110,8 @@ export function getOverrides(
     // TODO(v11)
     if (__DEV__) {
       console.warn(
-        'baseui:Overrides Props as a function will be removed in the next major version.',
+        'baseui:Overrides Props as a function will be removed in the next major version. Override the whole component instead. ' +
+          'See https://baseweb.design/guides/understanding-overrides/#override-the-entire-subcomponent',
       );
     }
     const DynamicOverride = React.forwardRef((props, ref) => {

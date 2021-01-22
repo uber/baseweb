@@ -19,6 +19,7 @@ import DndListExampleStyle from 'examples/dnd-list/overrides_style.js';
 import DndListExampleStateProps from 'examples/dnd-list/overrides_state_props.js';
 import DndListExampleSubcomponent from 'examples/dnd-list/overrides_whole_subcomponent.js';
 import SelectTagExample from 'examples/select/overridden-tag.js';
+import DatePickerComponentExample from 'examples/datepicker/with-callback-overrides.js';
 
 export default Layout;
 
@@ -318,6 +319,14 @@ The named import always matches the override key with an addition of `Styled` pr
  initialState={{items: ['A', 'B', 'C']}}
 />
 ```
+
+### Enhancing & Merging component props
+
+This example demonstrates a complex scenario where component props are wrapped and enhanced but the original functionality is retained.
+
+<Example path="datepicker/with-callback-overrides.js">
+  <DatePickerComponentExample />
+</Example>
 
 **This technique gives you a ridiculous amount of flexibility.** However, with great power comes great responsibility. We might not be able to effectively support you if you run into issues and upgrades to future versions of Base Web can be complicated. If you have a need to change components behavior this way, you should first [ask maintainers](https://github.com/uber/baseweb/issues) of Base Web. We might add your feature through an official API instead so you don't need to use this override.
 
