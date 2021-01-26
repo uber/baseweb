@@ -45,6 +45,21 @@ describe('Drawer', () => {
     expect(text).not.toBeNull();
   });
 
+  it('renders backdrop with opacity 0 when showBackdrop is false', () => {
+    const {container} = render(
+      <Drawer
+        isOpen
+        anchor="right"
+        showBackdrop={false}
+        overrides={{Backdrop: {props: {'data-testid': 'backdrop'}}}}
+      >
+        Hello world
+      </Drawer>,
+    );
+    const backdrop = getByTestId(container, 'backdrop');
+    expect(backdrop).not.toBeNull();
+  });
+
   it('hides content when close button clicked', () => {
     const onClose = jest.fn();
     const {container} = render(
