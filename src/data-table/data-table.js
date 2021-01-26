@@ -634,7 +634,6 @@ function MeasureScrollbarWidth(props) {
     <div
       className={css({
         height: 0,
-        overflow: 'scroll',
         visibility: 'hidden',
         overflow: 'scroll',
       })}
