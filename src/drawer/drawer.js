@@ -195,7 +195,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
   };
 
   getSharedProps(): $Diff<SharedStylePropsArgT, {children?: React.Node}> {
-    const {animate, isOpen, size, closeable, anchor} = this.props;
+    const {animate, isOpen, size, closeable, anchor, showBackdrop} = this.props;
     return {
       $animating: animate,
       $isVisible: this.state.isVisible,
@@ -204,6 +204,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
       $closeable: !!closeable,
       $anchor: anchor,
       $isFocusVisible: this.state.isFocusVisible,
+      $showBackdrop: showBackdrop,
     };
   }
 
@@ -220,7 +221,7 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
   }
 
   renderDrawer(renderedContent: React.Node) {
-    const {overrides = {}, closeable, showBackdrop, autoFocus} = this.props;
+    const {overrides = {}, closeable, autoFocus} = this.props;
 
     const {
       Root: RootOverride,
@@ -259,13 +260,11 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
                 {...sharedProps}
                 {...rootProps}
               >
-                {showBackdrop && (
-                  <Backdrop
-                    onClick={this.onBackdropClick}
-                    {...sharedProps}
-                    {...backdropProps}
-                  />
-                )}
+                <Backdrop
+                  onClick={this.onBackdropClick}
+                  {...sharedProps}
+                  {...backdropProps}
+                />
                 <DrawerContainer
                   aria-label="drawer"
                   {...sharedProps}
