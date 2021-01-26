@@ -87,10 +87,10 @@ const DrawerConfig: TConfig = {
       hidden: true,
     },
     showBackdrop: {
-      value: false,
+      value: true,
+      defaultValue: true,
       type: PropTypes.Boolean,
       description: 'Whether the backdrop should be shown.',
-      hidden: true,
     },
     onBackdropClick: {
       value: false,
