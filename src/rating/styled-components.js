@@ -37,12 +37,25 @@ export const StyledRoot = styled<StyledRootPropsT>('ul', ({$theme}) => {
 
 export const StyledStar = styled<StyledRatingItemPropsT>(
   'li',
-  ({$theme, $isActive, $isSelected, $isFocusVisible, $isReadOnly, $size}) => {
+  ({
+    $theme,
+    $isActive,
+    $isPartialActive,
+    $isSelected,
+    $isFocusVisible,
+    $isReadOnly,
+    $size,
+  }) => {
     let starStroke = $theme.colors.mono500;
     let starFill = $theme.colors.mono300;
+    let prePartialStarStroke;
+    let prePartialStarFill;
 
     if ($isActive) {
       starStroke = starFill = $theme.colors.rating400;
+    }
+    if ($isPartialActive && !$isActive) {
+      prePartialStarStroke = prePartialStarFill = $theme.colors.rating400;
     }
 
     const styles = {
@@ -62,6 +75,7 @@ export const StyledStar = styled<StyledRatingItemPropsT>(
       transform: $isSelected ? 'scale(1.35)' : null,
       outline: $isFocusVisible ? `3px solid ${$theme.colors.accent}` : 'none',
       outlineOffset: '2px',
+      position: 'relative',
       ':after': {
         transition: `all ${$theme.animation.timing400}`,
         content:
@@ -69,6 +83,22 @@ export const StyledStar = styled<StyledRatingItemPropsT>(
           starSVG(starFill, starStroke, $size) +
           `')`,
       },
+      ':before': prePartialStarStroke
+        ? {
+            transition: `all ${$theme.animation.timing400}`,
+            position: 'absolute',
+            display: 'block',
+            top: 0,
+            left: 0,
+            width: '50%',
+            height: '100%',
+            overflow: 'hidden',
+            content:
+              `url('data:image/svg+xml,` +
+              starSVG(prePartialStarFill, prePartialStarStroke, $size) +
+              `')`,
+          }
+        : {},
       ':last-of-type': {
         marginRight: 0,
       },
