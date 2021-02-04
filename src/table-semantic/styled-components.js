@@ -134,8 +134,8 @@ export const StyledTableHeadCellSortable = withStyle<
   };
 });
 
-export const StyledSortAscIcon = styled<typeof ChevronDown, {}>(
-  ChevronDown,
+export const StyledSortAscIcon = styled<typeof ChevronUp, {}>(
+  ChevronUp,
   ({$theme}) => {
     return {
       position: 'absolute',
@@ -146,8 +146,8 @@ export const StyledSortAscIcon = styled<typeof ChevronDown, {}>(
   },
 );
 
-export const StyledSortDescIcon = styled<typeof ChevronUp, {}>(
-  ChevronUp,
+export const StyledSortDescIcon = styled<typeof ChevronDown, {}>(
+  ChevronDown,
   ({$theme}) => {
     return {
       position: 'absolute',

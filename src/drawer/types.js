@@ -86,4 +86,5 @@ export type SharedStylePropsArgT = {
   $closeable: boolean,
   $anchor: AnchorPropT,
   $isFocusVisible: boolean,
+  $showBackdrop: boolean,
 };

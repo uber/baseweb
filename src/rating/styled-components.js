@@ -69,6 +69,9 @@ export const StyledStar = styled<StyledRatingItemPropsT>(
           starSVG(starFill, starStroke, $size) +
           `')`,
       },
+      ':last-of-type': {
+        marginRight: 0,
+      },
     };
 
     return styles;
