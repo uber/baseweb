@@ -159,7 +159,7 @@
     "pretty-proptypes": "^1.0.5",
     "pretty-quick": "^1.4.1",
     "prism-react-renderer": "^1.0.1",
-    "puppeteer": "^1.20.0",
+    "puppeteer": "7.0.1",
     "raw-loader": "^3.1.0",
     "react": "^16.9.0",
     "react-codesandboxer": "^3.1.5",
