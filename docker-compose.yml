@@ -8,6 +8,8 @@ services:
       context: .
     expose:
       - 8080
+    ports:
+      - '8080:8080'
     healthcheck:
       test:
         [
