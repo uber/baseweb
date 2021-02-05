@@ -82,6 +82,7 @@ export const StyledStar = styled<StyledRatingItemPropsT>(
           `url('data:image/svg+xml,` +
           starSVG(starFill, starStroke, $size) +
           `')`,
+        height: '100%',
       },
       ':before': prePartialStarStroke
         ? {
