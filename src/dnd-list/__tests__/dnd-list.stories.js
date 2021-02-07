@@ -7,6 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import AspectRatioBoxDefault from './aspect-ratio-box.scenario.js';
+import DndListDefault from './dnd-list.scenario.js';
 
-export const AspectRatioBox = () => <AspectRatioBoxDefault />;
+export const DndList = () => <DndListDefault />;

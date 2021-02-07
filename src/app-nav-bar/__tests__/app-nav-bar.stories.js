@@ -14,9 +14,9 @@ import AppNavBarOverrides from './app-nav-bar-overrides.scenario.js';
 import AppNavBarTitleNode from './app-nav-bar-title-node.scenario.js';
 import AppNavBarDefault from './app-nav-bar.scenario.js';
 
-export const AppNavBar = () => <AppNavBarDefault />;
 export const GetUniqueIdentifier = () => <AppNavBarGetUniqueIdentifier />;
 export const IsMainItemActive = () => <AppNavBarIsMainItemActive />;
 export const MapItemToNode = () => <AppNavBarMapItemToNode />;
 export const Overrides = () => <AppNavBarOverrides />;
 export const TitleNode = () => <AppNavBarTitleNode />;
+export const AppNavBar = () => <AppNavBarDefault />;
