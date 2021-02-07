@@ -7,6 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import TimePicker from './time-picker.scenario.js';
+import TimePickerScenario from './time-picker.scenario.js';
 
-export const TimePicker = () => <TimePicker />;
+export const TimePicker = () => <TimePickerScenario />;

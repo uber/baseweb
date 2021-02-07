@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 import ToastDefault from './toast.scenario.js';
-import ToasterFocus from './toaster-focus.scenario.js';
-import Toaster from './toaster.scenario.js';
+import ToasterFocusScenario from './toaster-focus.scenario.js';
+import ToasterScenario from './toaster.scenario.js';
 
 export const Toast = () => <ToastDefault />;
-export const erFocus = () => <ToasterFocus />;
-export const er = () => <Toaster />;
+export const ToasterFocus = () => <ToasterFocusScenario />;
+export const Toaster = () => <ToasterScenario />;

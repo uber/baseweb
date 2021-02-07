@@ -7,16 +7,18 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import ProgressbarNegative from './progressbar-negative.scenario.js';
-import ProgressbarRoundedAnimated from './progressbar-rounded-animated.scenario.js';
-import ProgressbarRoundedOverrides from './progressbar-rounded-overrides.scenario.js';
-import ProgressbarRounded from './progressbar-rounded.scenario.js';
-import Progressbar from './progressbar.scenario.js';
+import ProgressbarNegativeScenario from './progressbar-negative.scenario.js';
+import ProgressbarRoundedAnimatedScenario from './progressbar-rounded-animated.scenario.js';
+import ProgressbarRoundedOverridesScenario from './progressbar-rounded-overrides.scenario.js';
+import ProgressbarRoundedScenario from './progressbar-rounded.scenario.js';
+import ProgressbarScenario from './progressbar.scenario.js';
 
-export const ProgressbarNegative = () => <ProgressbarNegative />;
-export const ProgressbarRoundedAnimated = () => <ProgressbarRoundedAnimated />;
-export const ProgressbarRoundedOverrides = () => (
-  <ProgressbarRoundedOverrides />
+export const ProgressbarNegative = () => <ProgressbarNegativeScenario />;
+export const ProgressbarRoundedAnimated = () => (
+  <ProgressbarRoundedAnimatedScenario />
 );
-export const ProgressbarRounded = () => <ProgressbarRounded />;
-export const Progressbar = () => <Progressbar />;
+export const ProgressbarRoundedOverrides = () => (
+  <ProgressbarRoundedOverridesScenario />
+);
+export const ProgressbarRounded = () => <ProgressbarRoundedScenario />;
+export const Progressbar = () => <ProgressbarScenario />;
