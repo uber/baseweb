@@ -7,6 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import TimezonePicker from './timezone-picker.scenario.js';
+import TimezonePickerScenario from './timezone-picker.scenario.js';
 
-export const TimezonePicker = () => <TimezonePicker />;
+export const TimezonePicker = () => <TimezonePickerScenario />;

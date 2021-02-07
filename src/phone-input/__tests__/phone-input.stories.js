@@ -7,16 +7,18 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import CountrySelectDropdown from './country-select-dropdown.scenario.js';
-import CountrySelectSmallDropdown from './country-select-small-dropdown.scenario.js';
+import CountrySelectDropdownScenario from './country-select-dropdown.scenario.js';
+import CountrySelectSmallDropdownScenario from './country-select-small-dropdown.scenario.js';
 import PhoneInputCustomFlags from './phone-input-custom-flags.scenario.js';
 import PhoneInputNextDropdown from './phone-input-next-dropdown.scenario.js';
 import PhoneInputNext from './phone-input-next.scenario.js';
 import PhoneInputOverrides from './phone-input-overrides.scenario.js';
 import PhoneInputDefault from './phone-input.scenario.js';
 
-export const CountrySelectDropdown = () => <CountrySelectDropdown />;
-export const CountrySelectSmallDropdown = () => <CountrySelectSmallDropdown />;
+export const CountrySelectDropdown = () => <CountrySelectDropdownScenario />;
+export const CountrySelectSmallDropdown = () => (
+  <CountrySelectSmallDropdownScenario />
+);
 export const CustomFlags = () => <PhoneInputCustomFlags />;
 export const NextDropdown = () => <PhoneInputNextDropdown />;
 export const Next = () => <PhoneInputNext />;

@@ -7,14 +7,14 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import NumberedSteps from './numbered-steps.scenario.js';
-import ProgressStepOverrides from './progress-step-overrides.scenario.js';
+import NumberedStepsScenario from './numbered-steps.scenario.js';
+import ProgressStepOverridesScenario from './progress-step-overrides.scenario.js';
 import ProgressStepsIsActive from './progress-steps-isActive.scenario.js';
 import ProgressStepsNumber from './progress-steps-number.scenario.js';
 import ProgressStepsDefault from './progress-steps.scenario.js';
 
-export const NumberedSteps = () => <NumberedSteps />;
-export const ProgressStepOverrides = () => <ProgressStepOverrides />;
+export const NumberedSteps = () => <NumberedStepsScenario />;
+export const ProgressStepOverrides = () => <ProgressStepOverridesScenario />;
 export const IsActive = () => <ProgressStepsIsActive />;
 export const Number = () => <ProgressStepsNumber />;
 export const ProgressSteps = () => <ProgressStepsDefault />;
