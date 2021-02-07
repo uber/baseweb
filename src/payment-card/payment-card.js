@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import valid from 'card-validator';
+import * as valid from 'card-validator';
 
 import {addGaps, getCaretPosition} from './utils.js';
 

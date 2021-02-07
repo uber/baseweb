@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {StyletronComponent} from 'styletron-react';
-import valid from 'card-validator';
+import * as valid from 'card-validator';
 import {Override} from '../overrides';
 import {
   SIZE,
