@@ -13,8 +13,8 @@ import AccordionExpanded from './accordion-expanded.scenario.js';
 import AccordionPanelOverride from './accordion-panel-override.scenario.js';
 import AccordionDefault from './accordion.scenario.js';
 
-export const Accordion = () => <AccordionDefault />;
 export const Controlled = () => <AccordionControlled />;
 export const Disabled = () => <AccordionDisabled />;
 export const Expanded = () => <AccordionExpanded />;
 export const PanelOverride = () => <AccordionPanelOverride />;
+export const Accordion = () => <AccordionDefault />;

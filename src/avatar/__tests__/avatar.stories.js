@@ -12,7 +12,7 @@ import AvatarError from './avatar-error.scenario.js';
 import AvatarNoSrc from './avatar-no-src.scenario.js';
 import AvatarDefault from './avatar.scenario.js';
 
-export const CustomInitial = () => <AvatarCustomInitials />;
+export const CustomInitials = () => <AvatarCustomInitials />;
 export const Error = () => <AvatarError />;
 export const NoSrc = () => <AvatarNoSrc />;
 export const Avatar = () => <AvatarDefault />;

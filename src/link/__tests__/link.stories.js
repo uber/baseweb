@@ -7,6 +7,6 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import AspectRatioBoxDefault from './aspect-ratio-box.scenario.js';
+import LinkDefault from './link.scenario.js';
 
-export const AspectRatioBox = () => <AspectRatioBoxDefault />;
+export const Link = () => <LinkDefault />;

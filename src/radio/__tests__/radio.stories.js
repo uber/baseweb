@@ -7,6 +7,8 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import AspectRatioBoxDefault from './aspect-ratio-box.scenario.js';
+import RadioStates from './radio-states.scenario.js';
+import RadioDefault from './radio.scenario.js';
 
-export const AspectRatioBox = () => <AspectRatioBoxDefault />;
+export const States = () => <RadioStates />;
+export const Radio = () => <RadioDefault />;
