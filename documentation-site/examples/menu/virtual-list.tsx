@@ -24,7 +24,7 @@ const VirtualList = React.forwardRef((props: any, ref) => {
               <OptionList
                 key={key}
                 style={style}
-                {...children[index].props}
+                {...(children[index] as any).props}
                 overrides={{
                   ListItem: {
                     style: {

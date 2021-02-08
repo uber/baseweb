@@ -62,11 +62,11 @@ export default function Example() {
     <Input
       placeholder={tags.length ? '' : 'Enter A Tag'}
       value={value}
-      onChange={e => setValue(e.currentTarget.value)}
+      onChange={(e: any) => setValue(e.currentTarget.value)}
       overrides={{
         Input: {
           style: {width: 'auto', flexGrow: 1},
-          component: InputReplacement,
+          component: InputReplacement as any,
           props: {
             tags: tags,
             removeTag: removeTag,

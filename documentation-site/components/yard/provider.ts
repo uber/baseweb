@@ -66,11 +66,11 @@ export const getProvider = (
             const colors = path.node.arguments[1].properties[0].value;
             colors.properties.forEach((prop: t.ObjectProperty) => {
               if (
-                initialThemeValues[prop.key.name] !==
+                initialThemeValues[(prop.key as any).name] !==
                 (prop.value as t.StringLiteral).value
               ) {
                 newThemeValues[
-                  prop.key.name
+                  (prop.key as any).name
                 ] = (prop.value as t.StringLiteral).value;
               }
             });

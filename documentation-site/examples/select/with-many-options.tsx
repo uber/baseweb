@@ -47,13 +47,13 @@ const FixedSizeListItem = ({
 const VirtualDropdown = React.forwardRef((props: any, ref) => {
   const children = React.Children.toArray(props.children);
 
-  if (!children[0] || !children[0].props.item) {
+  if (!children[0] || !(children[0] as any).props.item) {
     return (
       <StyledList
         $style={{height: EMPTY_LIST_HEIGHT + 'px'}}
         ref={ref}
       >
-        <StyledEmptyState {...children[0].props} />
+        <StyledEmptyState {...(children[0] as any).props} />
       </StyledList>
     );
   }
