@@ -21,7 +21,10 @@ const appDirectory = realpathSync(process.cwd());
 const resolvePath = relativePath => resolve(appDirectory, relativePath);
 
 function getUrl({launchUrl, name, theme}) {
-  const query = [[name, 'name'], [theme, 'theme']]
+  const query = [
+    [name, 'name'],
+    [theme, 'theme'],
+  ]
     .filter(([value]) => Boolean(value))
     .map(([value, key]) => `${key}=${encodeURIComponent(value)}`)
     .join('&');

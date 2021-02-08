@@ -73,6 +73,7 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
       return children;
     }
     return (
+      // eslint-disable-next-line jsx-a11y/role-supports-aria-props
       <Root
         data-baseweb="progress-bar"
         role="progressbar"

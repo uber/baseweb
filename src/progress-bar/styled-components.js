@@ -222,7 +222,9 @@ export const StyledProgressBarRoundedSvg = withWrapper(
     function StyledProgressBarRoundedSvg(props) {
       return (
         <Styled
-          viewBox={`0 0 ${PROGRESS_BAR_ROUNDED_SIZES[props.$size].width} ${PROGRESS_BAR_ROUNDED_SIZES[props.$size].height}`}
+          viewBox={`0 0 ${PROGRESS_BAR_ROUNDED_SIZES[props.$size].width} ${
+            PROGRESS_BAR_ROUNDED_SIZES[props.$size].height
+          }`}
           xmlns="http://www.w3.org/2000/svg"
           {...props}
         />

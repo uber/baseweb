@@ -87,7 +87,7 @@ class DateHelpers<T> {
           }),
         ),
       ),
-    ); 
+    );
   };
   // eslint-disable-next-line flowtype/no-weak-types
   format: (T, string, any) => string = (date, format, locale) => {

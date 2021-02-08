@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* eslint-disable flowtype/no-weak-types */
+/* eslint-disable react/display-name */
 
 import * as React from 'react';
 import {getInitialStyle} from 'styletron-standard';

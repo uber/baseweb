@@ -5,7 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 */
 // @flow
-
+/* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import {Notification, KIND} from 'baseui/notification';
 import {StyledLink} from 'baseui/link';

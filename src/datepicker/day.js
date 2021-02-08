@@ -236,7 +236,8 @@ export default class Day<T = Date> extends React.Component<
       $hasRangeOnRight:
         Array.isArray(value) &&
         $hasRangeHighlighted &&
-        (highlightedDate && value[0]) &&
+        highlightedDate &&
+        value[0] &&
         this.dateHelpers.isAfter(highlightedDate, value[0]),
       $hasRangeSelected: Array.isArray(value) ? value.length === 2 : false,
       $highlightedDate: highlightedDate,

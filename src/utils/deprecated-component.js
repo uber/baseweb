@@ -7,6 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 
+/* eslint-disable react/display-name */
 // eslint-disable-next-line flowtype/no-weak-types
 export default function(Component: any, displayName: string) {
   // eslint-disable-next-line flowtype/no-weak-types

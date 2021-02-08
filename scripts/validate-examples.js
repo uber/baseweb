@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable header/header */
 
 /*
 Copyright (c) 2018-2020 Uber Technologies, Inc.
@@ -9,6 +10,7 @@ LICENSE file in the root directory of this source tree.
 
 /* eslint-env node */
 // @flow
+
 const fs = require('fs');
 const globby = require('globby');
 const path = require('path');

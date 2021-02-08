@@ -467,6 +467,7 @@ function InternalTabPanel({
     StyledTabPanel,
   );
   return (
+    // eslint-disable-next-line jsx-a11y/role-supports-aria-props
     <TabPanel
       data-baseweb="tab-panel"
       key={key}

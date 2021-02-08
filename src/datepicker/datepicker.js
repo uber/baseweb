@@ -125,7 +125,7 @@ export default class Datepicker<T = Date> extends React.Component<
     };
     if (!date) {
       return '';
-    } else if (Array.isArray(date) && (!date[0] && !date[1])) {
+    } else if (Array.isArray(date) && !date[0] && !date[1]) {
       return '';
     } else if (Array.isArray(date)) {
       return date.map(day => format(day)).join(' – ');
