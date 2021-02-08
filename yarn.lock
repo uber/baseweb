@@ -1692,10 +1692,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@ladle/react@^0.0.12":
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/@ladle/react/-/react-0.0.12.tgz#d2729af4fe88fe46ee98d6a1140b00f31d515c33"
-  integrity sha512-UTiUpHq5I5Tk/4vwgH9cl6cT5LWax7RY3mvdcR71gXZEoK6Mq+EchUCHozHBBBpRc2L+9fz2Hsj2XDR9JjeLcg==
+"@ladle/react@^0.0.13":
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/@ladle/react/-/react-0.0.13.tgz#954081771b6220bf7601059091976803221cd683"
+  integrity sha512-ibCpfJmvzFuG3gY1uxMrS1/w8OXL1JbMw462MQxKWFANyVx0EQQsm8Aca28+RnhxNoQOT+3mC/USZczs0CBx3g==
   dependencies:
     "@babel/plugin-proposal-class-properties" "^7.12.1"
     "@babel/preset-env" "^7.12.11"
