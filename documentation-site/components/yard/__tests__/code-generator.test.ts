@@ -42,26 +42,52 @@ test('overrides', () => {
               value: {
                 loc: undefined,
                 type: 'ArrowFunctionExpression',
+                innerComments: undefined,
+                leadingComments: undefined,
+                trailingComments: undefined,
                 params: [],
                 generator: false,
                 async: false,
                 body: {
                   loc: undefined,
                   type: 'BlockStatement',
+                  innerComments: undefined,
+                  leadingComments: undefined,
+                  trailingComments: undefined,
+                  extra: {},
                   directives: [],
                   body: [
                     {
                       type: 'LabeledStatement',
-                      label: {type: 'Identifier', name: 'color'},
+                      label: {
+                        type: 'Identifier',
+                        name: 'color',
+                        innerComments: undefined,
+                        leadingComments: undefined,
+                        trailingComments: undefined,
+                        loc: undefined,
+                        extra: {},
+                      },
+                      leadingComments: undefined,
+                      trailingComments: undefined,
                       loc: undefined,
+                      extra: {},
+                      innerComments: undefined,
                       body: {
                         type: 'ExpressionStatement',
                         expression: {
                           type: 'StringLiteral',
                           value: 'black',
                           extra: {rawValue: 'black', raw: "'black'"},
+                          innerComments: undefined,
+                          leadingComments: undefined,
+                          trailingComments: undefined,
                           loc: undefined,
                         },
+                        innerComments: undefined,
+                        leadingComments: undefined,
+                        trailingComments: undefined,
+                        extra: {},
                         loc: undefined,
                       },
                     },
@@ -86,11 +112,13 @@ test('overrides', () => {
 describe('get theme AST primitives', () => {
   test('getAstThemeWrapper', () => {
     expect(
-      generate(generateThemeWrapper(
-        {inputFill: 'yellow'},
-        t.jsxText('Hey') as any,
-        'light-theme',
-      ) as any).code,
+      generate(
+        generateThemeWrapper(
+          {inputFill: 'yellow'},
+          t.jsxText('Hey') as any,
+          'light-theme',
+        ) as any,
+      ).code,
     ).toBe(`<ThemeProvider theme={createTheme(light-theme, {
   colors: {
     inputFill: "yellow"
