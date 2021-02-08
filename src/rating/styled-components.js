@@ -84,22 +84,23 @@ export const StyledStar = styled<StyledRatingItemPropsT>(
           `')`,
         height: '100%',
       },
-      ':before': prePartialStarStroke
-        ? {
-            transition: `all ${$theme.animation.timing400}`,
-            position: 'absolute',
-            display: 'block',
-            top: 0,
-            left: 0,
-            width: '50%',
-            height: '100%',
-            overflow: 'hidden',
-            content:
-              `url('data:image/svg+xml,` +
-              starSVG(prePartialStarFill, prePartialStarStroke, $size) +
-              `')`,
-          }
-        : {},
+      ':before':
+        prePartialStarFill && prePartialStarStroke
+          ? {
+              transition: `all ${$theme.animation.timing400}`,
+              position: 'absolute',
+              display: 'block',
+              top: 0,
+              left: 0,
+              width: '50%',
+              height: '100%',
+              overflow: 'hidden',
+              content:
+                `url('data:image/svg+xml,` +
+                starSVG(prePartialStarFill, prePartialStarStroke, $size) +
+                `')`,
+            }
+          : {},
       ':last-of-type': {
         marginRight: 0,
       },
