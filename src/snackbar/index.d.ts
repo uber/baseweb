@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import {Override} from './overrides';
 import {DURATION, PLACEMENT} from './constants.js';
+export {DURATION, PLACEMENT} from './constants.js';
 
 export type DurationT =
   | typeof DURATION.infinite
@@ -46,8 +47,6 @@ export type SnackbarProviderPropsT = {
   defaultDuration?: DurationT;
 };
 
-export const DURATION: typeof DURATION;
-export const PLACEMENT: typeof PLACEMENT;
 export const SnackbarElement: React.FC<SnackbarElementPropsT>;
 export const SnackbarProvider: React.FC<SnackbarProviderPropsT>;
 export const useSnackbar: () => {
