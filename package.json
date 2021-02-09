@@ -69,6 +69,8 @@
     "@babel/plugin-proposal-export-default-from": "^7.5.2",
     "@babel/plugin-syntax-flow": "^7.8.3",
     "@babel/plugin-transform-flow-strip-types": "^7.4.4",
+    "@babel/plugin-transform-react-jsx-self": "^7.12.13",
+    "@babel/plugin-transform-react-jsx-source": "^7.12.13",
     "@babel/plugin-transform-runtime": "^7.6.0",
     "@babel/polyfill": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
@@ -80,6 +82,7 @@
     "@commitlint/config-conventional": "^8.0.0",
     "@date-io/luxon": "^2.7.0",
     "@date-io/moment": "^2.7.0",
+    "@ladle/react": "^0.0.13",
     "@mdx-js/tag": "^0.20.0",
     "@octokit/rest": "^16.33.1",
     "@storybook/react": "^5.0.0",
@@ -226,7 +229,7 @@
     }
   },
   "volta": {
-    "node": "12.14.0",
+    "node": "14.15.4",
     "yarn": "1.19.1"
   },
   "engines": {

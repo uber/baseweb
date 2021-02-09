@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 
-import valid from 'card-validator';
+import * as valid from 'card-validator';
 
 export const addGaps = (gaps: number[], value: string) =>
   gaps.reduce(

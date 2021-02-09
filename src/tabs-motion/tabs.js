@@ -75,9 +75,11 @@ export function Tabs({
   orientation = ORIENTATION.horizontal,
   overrides = {},
   renderAll = false,
+  uid: customUid = null,
 }: TabsPropsT) {
   // Create unique id prefix for this tabs component
-  const uid = useUID();
+  const generatedUid = useUID();
+  const uid = customUid || generatedUid;
 
   // Unpack overrides
   const {

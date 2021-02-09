@@ -51,7 +51,7 @@ export const getProvider = (
 ): TProvider => {
   return {
     value: undefined,
-    parse: (astRoot: t.File): TProviderValue => {
+    parse: (astRoot: any): TProviderValue => {
       const newThemeValues: {[key: string]: string} = {};
       traverse(astRoot, {
         CallExpression(path) {
@@ -66,11 +66,11 @@ export const getProvider = (
             const colors = path.node.arguments[1].properties[0].value;
             colors.properties.forEach((prop: t.ObjectProperty) => {
               if (
-                initialThemeValues[prop.key.name] !==
+                initialThemeValues[(prop.key as any).name] !==
                 (prop.value as t.StringLiteral).value
               ) {
                 newThemeValues[
-                  prop.key.name
+                  (prop.key as any).name
                 ] = (prop.value as t.StringLiteral).value;
               }
             });

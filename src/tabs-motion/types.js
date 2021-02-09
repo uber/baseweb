@@ -56,6 +56,7 @@ export type TabsPropsT = {|
   onChange?: onChangeT,
   overrides?: TabsOverridesT,
   renderAll?: boolean,
+  uid?: string,
 |};
 
 export type StatefulTabsPropsT = {|
