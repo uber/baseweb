@@ -32,7 +32,7 @@ function wait(ms) {
 async function createBuild(token, version) {
   const body = {
     commit: 'HEAD',
-    branch: 'master',
+    branch: 'main',
     message: '[alpha-test-baseui] Triggered from CI',
     meta_data: {task: 'baseui-alpha-test'},
     env: {
