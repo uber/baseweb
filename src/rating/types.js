@@ -48,6 +48,7 @@ export type StyledRootPropsT = {
 export type StyledRatingItemPropsT = {
   $theme: ThemeT,
   $isActive: boolean,
+  $isPartialActive: boolean,
   $isSelected: boolean,
   $isFocusVisible: boolean,
   $isReadOnly: boolean,

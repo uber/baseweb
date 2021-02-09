@@ -79,6 +79,9 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
           $isActive={
             previewIndex !== undefined ? x <= previewIndex : x <= value
           }
+          $isPartialActive={
+            previewIndex !== undefined ? false : x <= value + 0.5
+          }
           $isSelected={x === previewIndex}
           $isFocusVisible={this.state.isFocusVisible && isFocusable}
           $isReadOnly={readOnly}
