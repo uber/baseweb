@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 /* global document */
+/* eslint-disable cup/no-undef */
 import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 
