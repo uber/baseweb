@@ -41,10 +41,6 @@ const ListItem = React.forwardRef<PropsT, HTMLLIElement>(
     );
 
     const artworkSize = React.useMemo(() => {
-      if (typeof artworkSize === 'number') {
-        return artworkSize;
-      }
-
       if (props.sublist) {
         let size = props.artworkSize || ARTWORK_SIZES.SMALL;
         if (props.artworkSize === ARTWORK_SIZES.MEDIUM) {
