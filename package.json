@@ -82,7 +82,7 @@
     "@commitlint/config-conventional": "^8.0.0",
     "@date-io/luxon": "^2.7.0",
     "@date-io/moment": "^2.7.0",
-    "@ladle/react": "^0.0.13",
+    "@ladle/react": "^0.0.14",
     "@mdx-js/tag": "^0.20.0",
     "@octokit/rest": "^16.33.1",
     "@storybook/react": "^5.0.0",
