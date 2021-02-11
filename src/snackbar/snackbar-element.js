@@ -81,9 +81,7 @@ export default function SnackbarElement({
   React.useEffect(() => {
     if (__BROWSER__) {
       const observer = new window.ResizeObserver(([entry]) =>
-        window.requestAnimationFrame(() =>
-          setRootWidth(entry.contentRect.width),
-        ),
+        setRootWidth(entry.contentRect.width),
       );
       if (rootRef.current) {
         observer.observe(rootRef.current);
@@ -97,9 +95,7 @@ export default function SnackbarElement({
   React.useEffect(() => {
     if (__BROWSER__) {
       const observer = new window.ResizeObserver(([entry]) =>
-        window.requestAnimationFrame(() =>
-          setActionMeasureWidth(entry.contentRect.width),
-        ),
+        setActionMeasureWidth(entry.contentRect.width),
       );
       if (actionMeasureRef.current) {
         observer.observe(actionMeasureRef.current);
