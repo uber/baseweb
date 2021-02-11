@@ -2613,10 +2613,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@ladle/react@^0.0.13":
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/@ladle/react/-/react-0.0.13.tgz#954081771b6220bf7601059091976803221cd683"
-  integrity sha512-ibCpfJmvzFuG3gY1uxMrS1/w8OXL1JbMw462MQxKWFANyVx0EQQsm8Aca28+RnhxNoQOT+3mC/USZczs0CBx3g==
+"@ladle/react@^0.0.14":
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/@ladle/react/-/react-0.0.14.tgz#2da45432de3a457ba07920912bead52127e63254"
+  integrity sha512-GowNRrFfmbe81pzybNyfOM+OgM2+1iA8bCj8KHyj3wJYWRW23uY1Qdr2Z0KeTErEfjhoKpl0s8sGX1sPwW0LXw==
   dependencies:
     "@babel/plugin-proposal-class-properties" "^7.12.1"
     "@babel/preset-env" "^7.12.11"
