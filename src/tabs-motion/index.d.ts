@@ -69,6 +69,7 @@ interface TabsProps {
   renderAll?: boolean;
   onChange?: (params: {activeKey: React.Key}) => void;
   overrides?: TabsOverrides;
+  uid?: string,
 }
 
 export const Tabs: React.FC<TabsProps>;
