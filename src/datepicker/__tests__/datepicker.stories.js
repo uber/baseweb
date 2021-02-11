@@ -40,9 +40,9 @@ export const RangeHighlight = () => <DatepickerRangeHighlight />;
 export const RangeMultiMonth = () => <DatepickerRangeMultiMonth />;
 export const Range = () => <DatepickerRange />;
 export const Datepicker = () => <DatepickerDefault />;
-export const sColorStates = () => <DatepickersColorStates />;
-export const sComposedRange = () => <DatepickersComposedRange />;
-export const sComposedSingle = () => <DatepickersComposedSingle />;
+export const StatefulColorStates = () => <DatepickersColorStates />;
+export const StatefulComposedRange = () => <DatepickersComposedRange />;
+export const StatefulComposedSingle = () => <DatepickersComposedSingle />;
 export const StatefulCalendarOverrides = () => (
   <StatefulCalendarOverridesScenario />
 );

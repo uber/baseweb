@@ -1,4 +1,5 @@
 node_modules
+build-ladle
 !packages/eslint-plugin-baseui/__tests__/example-config/node_modules
 .DS_STORE
 /.eslintcache

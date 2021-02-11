@@ -18,7 +18,7 @@ const selectors = {
 
 describe('Datepicker, Int', () => {
   it('parses input with formatString', async () => {
-    await mount(page, 'datepicker-int');
+    await mount(page, 'datepicker--int');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
 

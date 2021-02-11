@@ -14,7 +14,7 @@ const {sortColumnAtIndex, matchArrayElements} = require('./utilities.js');
 describe('data table columns', () => {
   it('updates application state when rows change', async () => {
     const index = 0;
-    await mount(page, 'data-table-included-rows-change');
+    await mount(page, 'data-table--included-rows-change');
     await page.waitForSelector('div[data-baseweb="data-table"]');
 
     const initialLi = await page.$$('li');

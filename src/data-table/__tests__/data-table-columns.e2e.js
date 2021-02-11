@@ -25,14 +25,14 @@ const COLUMN_COUNT = 5;
 
 describe('data table columns', () => {
   it('passes basic a11y tests', async () => {
-    await mount(page, 'data-table-columns');
+    await mount(page, 'data-table--columns');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('sorts boolean column', async () => {
     const index = 0;
-    await mount(page, 'data-table-columns');
+    await mount(page, 'data-table--columns');
     await page.waitForSelector('div[data-baseweb="data-table"]');
     const initial = await getCellContentsAtColumnIndex(
       page,
@@ -60,7 +60,7 @@ describe('data table columns', () => {
 
   it('sorts categorical column', async () => {
     const index = 1;
-    await mount(page, 'data-table-columns');
+    await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
     const initial = await getCellContentsAtColumnIndex(
       page,
@@ -88,7 +88,7 @@ describe('data table columns', () => {
 
   it('sorts numerical column', async () => {
     const index = 2;
-    await mount(page, 'data-table-columns');
+    await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
     const initial = await getCellContentsAtColumnIndex(
       page,
@@ -116,7 +116,7 @@ describe('data table columns', () => {
 
   it('sorts string column', async () => {
     const index = 3;
-    await mount(page, 'data-table-columns');
+    await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
     const initial = await getCellContentsAtColumnIndex(
       page,
@@ -150,7 +150,7 @@ describe('data table columns', () => {
 
   it('sorts datetime column', async () => {
     const index = 4;
-    await mount(page, 'data-table-columns');
+    await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
     const initial = await getCellContentsAtColumnIndex(
       page,
@@ -201,7 +201,7 @@ describe('data table columns', () => {
 
   it('filters boolean column', async () => {
     const index = 0;
-    await mount(page, 'data-table-columns');
+    await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
     const initial = await getCellContentsAtColumnIndex(
       page,
@@ -239,7 +239,7 @@ describe('data table columns', () => {
 
   it('filters categorical column', async () => {
     const index = 1;
-    await mount(page, 'data-table-columns');
+    await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
     const initial = await getCellContentsAtColumnIndex(
       page,
@@ -277,7 +277,7 @@ describe('data table columns', () => {
 
   it('filters numerical column as single value', async () => {
     const index = 2;
-    await mount(page, 'data-table-columns');
+    await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
     const initial = await getCellContentsAtColumnIndex(
       page,
@@ -320,7 +320,7 @@ describe('data table columns', () => {
 
   it('filters numerical column between case', async () => {
     const index = 2;
-    await mount(page, 'data-table-columns');
+    await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
     const initial = await getCellContentsAtColumnIndex(
       page,
@@ -358,7 +358,7 @@ describe('data table columns', () => {
 
   it('filters numerical column excludes between case', async () => {
     const index = 2;
-    await mount(page, 'data-table-columns');
+    await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
     const initial = await getCellContentsAtColumnIndex(
       page,
@@ -399,7 +399,7 @@ describe('data table columns', () => {
 
   it('filters datetime column - datetime range', async () => {
     const index = 4;
-    await mount(page, 'data-table-columns');
+    await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
     const initial = await getCellContentsAtColumnIndex(
       page,
@@ -451,7 +451,7 @@ describe('data table columns', () => {
 
   it('filters datetime column - date range', async () => {
     const index = 4;
-    await mount(page, 'data-table-columns');
+    await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
     const initial = await getCellContentsAtColumnIndex(
       page,
@@ -497,7 +497,7 @@ describe('data table columns', () => {
 
   it('filters datetime column - date range - default', async () => {
     const index = 4;
-    await mount(page, 'data-table-columns');
+    await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
     const initial = await getCellContentsAtColumnIndex(
       page,
@@ -542,7 +542,7 @@ describe('data table columns', () => {
 
   it('filters datetime column - time range', async () => {
     const index = 4;
-    await mount(page, 'data-table-columns');
+    await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
     const initial = await getCellContentsAtColumnIndex(
       page,
@@ -593,7 +593,7 @@ describe('data table columns', () => {
 
   it('filters datetime column - weekday categorical', async () => {
     const index = 4;
-    await mount(page, 'data-table-columns');
+    await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
     const initial = await getCellContentsAtColumnIndex(
       page,
@@ -632,7 +632,7 @@ describe('data table columns', () => {
 
   it('filters datetime column - month categorical', async () => {
     const index = 4;
-    await mount(page, 'data-table-columns');
+    await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
     const initial = await getCellContentsAtColumnIndex(
       page,
@@ -678,7 +678,7 @@ describe('data table columns', () => {
 
   it('filters datetime column - quarter categorical', async () => {
     const index = 4;
-    await mount(page, 'data-table-columns');
+    await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
     const initial = await getCellContentsAtColumnIndex(
       page,
@@ -724,7 +724,7 @@ describe('data table columns', () => {
 
   it('filters datetime column - half categorical', async () => {
     const index = 4;
-    await mount(page, 'data-table-columns');
+    await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
     const initial = await getCellContentsAtColumnIndex(
       page,
@@ -770,7 +770,7 @@ describe('data table columns', () => {
 
   it('filters datetime column - year categorical', async () => {
     const index = 4;
-    await mount(page, 'data-table-columns');
+    await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
     const initial = await getCellContentsAtColumnIndex(
       page,

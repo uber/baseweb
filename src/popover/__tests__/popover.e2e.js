@@ -26,14 +26,14 @@ const selectors = {
 
 describe('popover', () => {
   it('passes basic a11y tests', async () => {
-    await mount(page, 'popover');
+    await mount(page, 'popover--popover');
     await page.waitForSelector(selectors.tooltip);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('hover opens the popover', async () => {
-    await mount(page, 'popover-hover');
+    await mount(page, 'popover--hover');
     await page.waitForSelector('button');
     await page.hover('button');
     await page.waitForSelector(selectors.tooltip);
@@ -42,7 +42,7 @@ describe('popover', () => {
   });
 
   it('opened popover can be closed with ESC', async () => {
-    await mount(page, 'popover-click');
+    await mount(page, 'popover--click');
     await page.waitForSelector('button');
     await page.click('button');
     await page.waitForSelector(selectors.tooltip);
@@ -51,7 +51,7 @@ describe('popover', () => {
   });
 
   it('allows interaction with select', async () => {
-    await mount(page, 'popover-select');
+    await mount(page, 'popover--select');
     await page.waitForSelector('button');
     await page.click('button');
     await page.waitForSelector(selectors.tooltip);
@@ -85,7 +85,7 @@ describe('popover', () => {
   });
 
   it('renders content even when hidden: with renderAll prop', async () => {
-    await mount(page, 'popover-render-all');
+    await mount(page, 'popover--render-all');
     await page.waitForSelector('button');
     await page.waitForSelector(selectors.content);
     await page.click('button');
@@ -97,7 +97,7 @@ describe('popover', () => {
   });
 
   it('updates position when width of popover changes', async () => {
-    await mount(page, 'popover-reposition');
+    await mount(page, 'popover--reposition');
     await page.click('#e2e-open');
     let popover = await page.$('#e2e-popover');
     const {x: startX, width: startWidth} = await popover.boundingBox();

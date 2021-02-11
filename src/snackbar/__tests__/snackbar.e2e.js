@@ -26,13 +26,13 @@ describe('snackbar', () => {
   jest.setTimeout(10 * 1000);
 
   it('passes basic a11y tests', async () => {
-    await mount(page, 'snackbar-provider');
+    await mount(page, 'snackbar--provider');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('displays and hides single snackbar', async () => {
-    await mount(page, 'snackbar-provider');
+    await mount(page, 'snackbar--provider');
 
     const before = await page.$(selectors.root);
     expect(before).toBeNull();
@@ -46,7 +46,7 @@ describe('snackbar', () => {
   });
 
   it('displays only one snackbar at a time', async () => {
-    await mount(page, 'snackbar-provider');
+    await mount(page, 'snackbar--provider');
 
     const enqueue = await page.$(selectors.enqueueOne);
     await enqueue.click();
@@ -61,7 +61,7 @@ describe('snackbar', () => {
   });
 
   it('hides snackbar on action click', async () => {
-    await mount(page, 'snackbar-provider');
+    await mount(page, 'snackbar--provider');
 
     const enqueue = await page.$(selectors.enqueueOne);
     await enqueue.click();

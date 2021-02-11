@@ -37,14 +37,14 @@ const isActiveEl = async el => {
 
 describe('tabs', () => {
   it('passes basic a11y tests', async () => {
-    await mount(page, 'tabs-motion');
+    await mount(page, 'tabs-motion--tabs-motion');
     await page.waitForSelector('[role="tab"]');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('only the selected tab has visible content', async () => {
-    await mount(page, 'tabs-motion');
+    await mount(page, 'tabs-motion--tabs-motion');
     const tabs = await getTabs();
     const tabPanels = await getTabPanels();
     expect(await isSelected(tabs[0])).toBeTruthy();
@@ -59,7 +59,7 @@ describe('tabs', () => {
   });
 
   it('*click* selects tab', async () => {
-    await mount(page, 'tabs-motion');
+    await mount(page, 'tabs-motion--tabs-motion');
     const tabs = await getTabs();
     expect(await isSelected(tabs[0])).toBeTruthy();
     await tabs[1].click();
@@ -67,7 +67,7 @@ describe('tabs', () => {
   });
 
   it('*click* does not select disabled tab', async () => {
-    await mount(page, 'tabs-motion-disabled');
+    await mount(page, 'tabs-motion--disabled');
     const tabs = await getTabs();
     expect(await isSelected(tabs[0])).toBeTruthy();
     await tabs[1].click();
@@ -75,21 +75,21 @@ describe('tabs', () => {
   });
 
   it('does not mount non selected tab content', async () => {
-    await mount(page, 'tabs-motion');
+    await mount(page, 'tabs-motion--tabs-motion');
     const tabs = await getTabs();
     expect(await isSelected(tabs[0])).toBeTruthy();
     expect(await page.evaluate(`window.__e2e__mounted`)).toBe(false);
   });
 
   it('[renderAll] mounts non selected tab content', async () => {
-    await mount(page, 'tabs-motion-renderAll');
+    await mount(page, 'tabs-motion-render-all');
     const tabs = await getTabs();
     expect(await isSelected(tabs[0])).toBeTruthy();
     expect(await page.evaluate(`window.__e2e__mounted`)).toBe(true);
   });
 
   it('{regression} conditional tab does not throw error', async () => {
-    await mount(page, 'tabs-motion-conditional');
+    await mount(page, 'tabs-motion--conditional');
     const button = await page.$('#toggle-robot-tab');
     let firstTab = await page.$('#tabs-1-tab-robot');
     expect(firstTab).toBeFalsy();
@@ -100,7 +100,7 @@ describe('tabs', () => {
   });
 
   it('*tab* moves focus to active tab', async () => {
-    await mount(page, 'tabs-motion-focus');
+    await mount(page, 'tabs-motion--focus');
     const firstFocusElement = await page.$('#first-focus');
     await firstFocusElement.focus();
     expect(await isActiveEl(firstFocusElement)).toBeTruthy();
@@ -110,7 +110,7 @@ describe('tabs', () => {
   });
 
   it('*tab* moves focus to tab content', async () => {
-    await mount(page, 'tabs-motion-focus');
+    await mount(page, 'tabs-motion--focus');
     const tabs = await getTabs();
     await tabs[1].focus();
     expect(await isActiveEl(tabs[1])).toBeTruthy();
@@ -120,7 +120,7 @@ describe('tabs', () => {
   });
 
   it('*direction* moves focus to tab and selects tab', async () => {
-    await mount(page, 'tabs-motion');
+    await mount(page, 'tabs-motion--tabs-motion');
     const tabs = await getTabs();
     await tabs[0].focus();
     expect(await isActiveEl(tabs[0])).toBeTruthy();
@@ -131,7 +131,7 @@ describe('tabs', () => {
   });
 
   it('*direction* moves focus to tab and *enter* selects tab when [manual]', async () => {
-    await mount(page, 'tabs-motion-manual');
+    await mount(page, 'tabs-motion--manual');
     const tabs = await getTabs();
     await tabs[0].focus();
     expect(await isActiveEl(tabs[0])).toBeTruthy();
@@ -144,7 +144,7 @@ describe('tabs', () => {
   });
 
   it('*direction* moves focus to tab and *space* selects tab when [manual]', async () => {
-    await mount(page, 'tabs-motion-manual');
+    await mount(page, 'tabs-motion--manual');
     const tabs = await getTabs();
     await tabs[0].focus();
     expect(await isActiveEl(tabs[0])).toBeTruthy();
@@ -157,7 +157,7 @@ describe('tabs', () => {
   });
 
   it('*direction* moves focus and skips disabled tabs', async () => {
-    await mount(page, 'tabs-motion-disabled');
+    await mount(page, 'tabs-motion--disabled');
     const tabs = await getTabs();
     await tabs[0].focus();
     expect(await isActiveEl(tabs[0])).toBeTruthy();
@@ -169,7 +169,7 @@ describe('tabs', () => {
 
   describe('ltr', () => {
     it('*direction* moves focus to next tab', async () => {
-      await mount(page, 'tabs-motion');
+      await mount(page, 'tabs-motion--tabs-motion');
       const tabs = await getTabs();
       await tabs[0].focus();
       expect(await isActiveEl(tabs[0])).toBeTruthy();
@@ -178,7 +178,7 @@ describe('tabs', () => {
     });
 
     it('*direction* moves focus to previous tab', async () => {
-      await mount(page, 'tabs-motion');
+      await mount(page, 'tabs-motion--tabs-motion');
       const tabs = await getTabs();
       await tabs[1].focus();
       expect(await isActiveEl(tabs[1])).toBeTruthy();
@@ -187,7 +187,7 @@ describe('tabs', () => {
     });
 
     it('*direction* moves focus to first tab', async () => {
-      await mount(page, 'tabs-motion');
+      await mount(page, 'tabs-motion--tabs-motion');
       const tabs = await getTabs();
       await tabs[2].focus();
       expect(await isActiveEl(tabs[2])).toBeTruthy();
@@ -196,7 +196,7 @@ describe('tabs', () => {
     });
 
     it('*direction* moves focus to last tab', async () => {
-      await mount(page, 'tabs-motion');
+      await mount(page, 'tabs-motion--tabs-motion');
       const tabs = await getTabs();
       await tabs[0].focus();
       expect(await isActiveEl(tabs[0])).toBeTruthy();
@@ -207,7 +207,7 @@ describe('tabs', () => {
 
   describe('rtl', () => {
     it('*direction* moves focus to next tab', async () => {
-      await mount(page, 'tabs-motion-rtl');
+      await mount(page, 'tabs-motion--tabs-motion', 'light', true);
       const tabs = await getTabs();
       await tabs[0].focus();
       expect(await isActiveEl(tabs[0])).toBeTruthy();
@@ -216,7 +216,7 @@ describe('tabs', () => {
     });
 
     it('*direction* moves focus to previous tab', async () => {
-      await mount(page, 'tabs-motion-rtl');
+      await mount(page, 'tabs-motion--tabs-motion', 'light', true);
       const tabs = await getTabs();
       await tabs[1].focus();
       expect(await isActiveEl(tabs[1])).toBeTruthy();
@@ -225,7 +225,7 @@ describe('tabs', () => {
     });
 
     it('*direction* moves focus to first tab', async () => {
-      await mount(page, 'tabs-motion-rtl');
+      await mount(page, 'tabs-motion--tabs-motion', 'light', true);
       const tabs = await getTabs();
       await tabs[2].focus();
       expect(await isActiveEl(tabs[2])).toBeTruthy();
@@ -234,7 +234,7 @@ describe('tabs', () => {
     });
 
     it('*direction* moves focus to last tab', async () => {
-      await mount(page, 'tabs-motion-rtl');
+      await mount(page, 'tabs-motion--tabs-motion', 'light', true);
       const tabs = await getTabs();
       await tabs[0].focus();
       expect(await isActiveEl(tabs[0])).toBeTruthy();
@@ -245,7 +245,7 @@ describe('tabs', () => {
 
   describe('vertical', () => {
     it('*direction* moves focus to next tab', async () => {
-      await mount(page, 'tabs-motion-vertical');
+      await mount(page, 'tabs-motion--vertical');
       const tabs = await getTabs();
       await tabs[0].focus();
       expect(await isActiveEl(tabs[0])).toBeTruthy();
@@ -254,7 +254,7 @@ describe('tabs', () => {
     });
 
     it('*direction* moves focus to previous tab', async () => {
-      await mount(page, 'tabs-motion-vertical');
+      await mount(page, 'tabs-motion--vertical');
       const tabs = await getTabs();
       await tabs[1].focus();
       expect(await isActiveEl(tabs[1])).toBeTruthy();
@@ -263,7 +263,7 @@ describe('tabs', () => {
     });
 
     it('*direction* moves focus to first tab', async () => {
-      await mount(page, 'tabs-motion-vertical');
+      await mount(page, 'tabs-motion--vertical');
       const tabs = await getTabs();
       await tabs[2].focus();
       expect(await isActiveEl(tabs[2])).toBeTruthy();
@@ -272,7 +272,7 @@ describe('tabs', () => {
     });
 
     it('*direction* moves focus to last tab', async () => {
-      await mount(page, 'tabs-motion-vertical');
+      await mount(page, 'tabs-motion--vertical');
       const tabs = await getTabs();
       await tabs[0].focus();
       expect(await isActiveEl(tabs[0])).toBeTruthy();
