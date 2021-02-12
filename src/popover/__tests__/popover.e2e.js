@@ -37,7 +37,7 @@ describe('popover', () => {
     await page.waitForSelector('button');
     await page.hover('button');
     await page.waitForSelector(selectors.tooltip);
-    await page.mouse.move(0, 0);
+    await page.mouse.move(200, 200);
     await page.waitForSelector(selectors.tooltip, {hidden: true});
   });
 

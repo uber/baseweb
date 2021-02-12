@@ -82,7 +82,7 @@ describe('tabs', () => {
   });
 
   it('[renderAll] mounts non selected tab content', async () => {
-    await mount(page, 'tabs-motion-render-all');
+    await mount(page, 'tabs-motion--render-all');
     const tabs = await getTabs();
     expect(await isSelected(tabs[0])).toBeTruthy();
     expect(await page.evaluate(`window.__e2e__mounted`)).toBe(true);

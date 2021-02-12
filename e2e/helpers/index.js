@@ -26,7 +26,7 @@ function getPuppeteerUrl(name, theme, rtl) {
     story: name,
     theme,
     mode: 'preview',
-    rtl,
+    rtl: rtl === true ? 'true' : undefined,
   })}`;
 }
 
@@ -41,6 +41,7 @@ async function mount(page, scenarioName, theme, rtl) {
   });
 
   await page.goto(getPuppeteerUrl(scenarioName, theme, rtl));
+  await page.waitForSelector('[data-storyloaded]');
 }
 
 async function analyzeAccessibility(page, options = {rules: []}) {

@@ -63,7 +63,7 @@ describe('toast', () => {
   });
 
   it('opens two notifications if triggered twice (auto-generate incrementing keys)', async () => {
-    await mount(page, 'toast-toaster');
+    await mount(page, 'toast--toaster');
     await page.waitForSelector(selectors.buttonDefault);
     await page.click(selectors.buttonDefault);
     await page.click(selectors.buttonDefault);
@@ -77,7 +77,7 @@ describe('toast', () => {
   });
 
   it('updates existing notification if the same key is provided', async () => {
-    await mount(page, 'toast-toaster');
+    await mount(page, 'toast--toaster');
     await page.waitForSelector(selectors.buttonSameKey);
     await page.click(selectors.buttonSameKey);
     await page.click(selectors.buttonSameKey);
@@ -100,7 +100,7 @@ describe('toast', () => {
   });
 
   it('focuses toast dismiss when autofocus is active and refocuses previously focused element on close', async () => {
-    await mount(page, 'toast-toaster-focus');
+    await mount(page, 'toast--toaster-focus');
     await page.click(selectors.buttonDefault);
     await page.waitForSelector(selectors.toast);
     const isDismissActive = await isActiveEl(page, selectors.dismiss);
