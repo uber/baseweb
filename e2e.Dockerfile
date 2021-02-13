@@ -5,7 +5,7 @@ WORKDIR /baseui
 # Copy manifests and install dependencies.
 # Doing this before a build step can more effectively leverage Docker caching.
 COPY package.json yarn.lock /baseui/
-RUN yarn --ignore-scripts
+RUN yarn
 
 # Copy the current files to the docker image.
 COPY . .
