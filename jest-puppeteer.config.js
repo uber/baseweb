@@ -18,9 +18,6 @@ module.exports = {
   launch: {
     headless,
     slowMo: process.env.PUPPETEER_SLOWMO, // slow down tests with slowMo ms
-    executablePath: process.env.USE_CHROME
-      ? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
-      : undefined,
   },
   browserContext: 'default',
   tests: {
