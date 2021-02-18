@@ -22,8 +22,6 @@ export default function Scenario() {
       overrides={{
         Root: {
           style: ({$theme}) => ({
-            marginTop: '100vh',
-            marginBottom: '100vh',
             height: '250px',
             borderTop: `solid 1px ${$theme.colors.borderOpaque}`,
             borderBottom: `solid 1px ${$theme.colors.borderOpaque}`,
