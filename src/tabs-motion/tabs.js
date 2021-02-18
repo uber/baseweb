@@ -65,6 +65,35 @@ const getLayoutParams = (el, orientation) => {
   }
 };
 
+const scrollParentToCentreTarget = targetNode => {
+  const {
+    x: parentX,
+    y: parentY,
+    width: parentWidth,
+    height: parentHeight,
+  } = targetNode.parentNode.getBoundingClientRect();
+  const {
+    x: childX,
+    y: childY,
+    width: childWidth,
+    height: childHeight,
+  } = targetNode.getBoundingClientRect();
+
+  // get the position of the child centre, relative to parent
+  const childCentre = {
+    x: childX - parentX + childWidth / 2,
+    y: childY - parentY + childHeight / 2,
+  };
+  // aim for the centre of the child to be the centre of the parent
+  const {scrollLeft, scrollTop} = targetNode.parentNode;
+  const target = {
+    x: scrollLeft + childCentre.x - parentWidth / 2,
+    y: scrollTop + childCentre.y - parentHeight / 2,
+  };
+  // ignore out of bounds, the browser will manage this for us
+  targetNode.parentNode.scroll(target.x, target.y);
+};
+
 export function Tabs({
   activeKey = '0',
   disabled = false,
@@ -146,10 +175,7 @@ export function Tabs({
             inline: 'nearest',
           });
         } else {
-          activeTabRef.current.scrollIntoView({
-            block: 'center',
-            inline: 'center',
-          });
+          scrollParentToCentreTarget(activeTabRef.current);
         }
       }
     }
