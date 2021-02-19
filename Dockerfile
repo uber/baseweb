@@ -7,6 +7,7 @@ WORKDIR /baseui
 COPY package.json yarn.lock /baseui/
 RUN yarn --ignore-scripts
 RUN yarn global add now@16.5.2
+RUN yarn add puppeteer
 
 # Copy the current files to the docker image.
 COPY . .
@@ -17,3 +18,4 @@ RUN cd packages/baseweb-vscode-extension && yarn
 # Perform any build steps if you want binaries inside of the image
 RUN yarn build
 RUN yarn build:documentation-site-files
+RUN yarn e2e:build

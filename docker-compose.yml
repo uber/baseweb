@@ -3,9 +3,7 @@ services:
   # this spins up a server that serves the html/js/css for the e2e tests
   e2e-server:
     command: yarn e2e:serve
-    build:
-      dockerfile: e2e.Dockerfile
-      context: .
+    build: .
     expose:
       - 8080
     healthcheck:

@@ -1,18 +1,10 @@
 steps:
   # Build the image in a single place for all parallel steps to leverage the same image.
-  - name: ':docker: :package: unit'
-    plugins:
-      'docker-compose#v3.0.3':
-        build: baseui
-        image-repository: 027047743804.dkr.ecr.us-east-2.amazonaws.com/uber
-        env: DOCKER_BUILDKIT=1
-    agents:
-      queue: builders
-
-  - name: ':docker: :package: e2e'
+  - name: ':docker: :package: build'
     plugins:
       'docker-compose#v3.0.3':
         build:
+          - baseui
           - e2e-test
           - e2e-server
           - e2e-server-healthy
