@@ -130,7 +130,7 @@ steps:
   - name: e2e
     # we have to install puppeteer here to trigger the install.js script
     # and also to make sure we do not add this to the released build artifact
-    command: yarn add puppeteer && yarn e2e:test:ci
+    command: yarn e2e:test:ci
     artifact_paths:
       - '__artifacts__/*.png'
     plugins:
@@ -145,7 +145,7 @@ steps:
   - name: ':react: react@17 e2e'
     # we have to install puppeteer here to trigger the install.js script
     # and also to make sure we do not add this to the released build artifact
-    command: yarn add puppeteer && yarn upgrade react@^17.0.1 react-dom@^17.0.1 && yarn e2e:test:ci
+    command: yarn upgrade react@^17.0.1 react-dom@^17.0.1 && yarn e2e:test:ci
     artifact_paths:
       - '__artifacts__/*.png'
     plugins:
@@ -156,16 +156,15 @@ steps:
           - e2e-server-healthy
     agents:
       queue: workers
-
-  - name: vrt
-    command: yarn vrt:ci
-    artifact_paths:
-      - '__artifacts__/*.png'
-    plugins:
-      'docker-compose#v3.0.3':
-        run: e2e-test
-        pull:
-          - e2e-server
-          - e2e-server-healthy
-    agents:
-      queue: workers
+  # - name: vrt
+  #   command: yarn vrt:ci
+  #   artifact_paths:
+  #     - '__artifacts__/*.png'
+  #   plugins:
+  #     'docker-compose#v3.0.3':
+  #       run: e2e-test
+  #       pull:
+  #         - e2e-server
+  #         - e2e-server-healthy
+  #   agents:
+  #     queue: workers
