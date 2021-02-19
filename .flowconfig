@@ -2,7 +2,7 @@
 <PROJECT_ROOT>/dist/.*
 <PROJECT_ROOT>/packages/.*
 babel
-storybook-static
+build-ladle
 .*/node_modules/.*[^(package)]\.json$
 .*/node_modules/npmconf/.*
 .*examples/fusion/.*

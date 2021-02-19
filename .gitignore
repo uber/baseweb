@@ -7,7 +7,7 @@ build
 *.log
 dist
 stats.html
-storybook-static
+build-ladle
 coverage
 /e2e/dist/index.js
 .vscode
