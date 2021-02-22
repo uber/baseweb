@@ -156,15 +156,15 @@ steps:
           - e2e-server-healthy
     agents:
       queue: workers
-  # - name: vrt
-  #   command: yarn vrt:ci
-  #   artifact_paths:
-  #     - '__artifacts__/*.png'
-  #   plugins:
-  #     'docker-compose#v3.0.3':
-  #       run: e2e-test
-  #       pull:
-  #         - e2e-server
-  #         - e2e-server-healthy
-  #   agents:
-  #     queue: workers
+  - name: vrt
+    command: yarn vrt:ci
+    artifact_paths:
+      - '__artifacts__/*.png'
+    plugins:
+      'docker-compose#v3.0.3':
+        run: e2e-test
+        pull:
+          - e2e-server
+          - e2e-server-healthy
+    agents:
+      queue: workers
