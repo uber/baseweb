@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-env node */
 
-const globby = require('globby');
 const {configureToMatchImageSnapshot} = require('jest-image-snapshot');
 const {getSnapshotConfig} = require('./config.js');
 const {mount, waitForTimeout} = require('../e2e/helpers');
@@ -131,7 +130,12 @@ function configureJest() {
 }
 
 function getAllScenarioNames() {
-  return globby
-    .sync('src/**/*.scenario.js')
-    .map(filePath => filePath.match(/__tests__\/(.*).scenario/)[1]);
+  let names = [];
+  try {
+    const metaFile = require('../build-ladle/meta.json');
+    names = Object.keys(metaFile.stories);
+  } catch (e) {
+    console.log('build-ladle/meta.json not found. Build ladle first.');
+  }
+  return names;
 }
