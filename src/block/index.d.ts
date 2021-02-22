@@ -271,6 +271,7 @@ export interface BlockProps {
   gridTemplateColumns?: Responsive<string>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows */
   gridTemplateRows?: Responsive<string>;
+  id?: String;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content */
   justifyContent?: Responsive<JustifyContent>;
   /** available values: https://developer.mozilla.org/en-US/docs/Web/CSS/justify-items */
