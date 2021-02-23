@@ -30,6 +30,27 @@ function getPuppeteerUrl(name, theme, rtl) {
   })}`;
 }
 
+const addTestStyles = async page => {
+  const styleFn = () => {
+    // eslint-disable-next-line cup/no-undef
+    const styleElement = document.createElement('style');
+    styleElement.innerHTML = `
+  *,
+    *::before,
+    *::after {
+      -moz-transition: none !important;
+      transition: none !important;
+      -moz-animation: none !important;
+      animation: none !important;
+      caret-color: transparent !important;
+    }
+  `;
+    // eslint-disable-next-line cup/no-undef
+    document.head.appendChild(styleElement);
+  };
+  await page.evaluate(styleFn);
+};
+
 async function mount(page, scenarioName, theme, rtl) {
   // replicate console events into terminal
   page.on('console', msg => {
@@ -142,4 +163,5 @@ module.exports = {
   analyzeAccessibility,
   mount,
   waitForTimeout,
+  addTestStyles,
 };

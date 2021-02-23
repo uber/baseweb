@@ -10,7 +10,7 @@ LICENSE file in the root directory of this source tree.
 
 const {configureToMatchImageSnapshot} = require('jest-image-snapshot');
 const {getSnapshotConfig} = require('./config.js');
-const {mount, waitForTimeout} = require('../e2e/helpers');
+const {mount, waitForTimeout, addTestStyles} = require('../e2e/helpers');
 
 const THEME = {
   light: 'light',
@@ -94,6 +94,9 @@ async function preparePageForSnapshot(
   });
 
   await mount(page, scenarioName, theme);
+
+  // disables CSS transitions
+  await addTestStyles(page);
 
   // Set the viewport to our final screenshot dimensions.
   // When we take a screenshot we do not want any resizing, which can cause flakiness.
