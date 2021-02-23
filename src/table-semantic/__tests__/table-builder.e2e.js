@@ -11,7 +11,7 @@ const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 describe('table-semantic-builder', () => {
   it(`passes basic a11y tests`, async () => {
-    await mount(page, 'table-semantic-builder');
+    await mount(page, 'table-semantic--builder');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });

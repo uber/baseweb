@@ -12,13 +12,13 @@ const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 describe('skeleton-loading', () => {
   it('passes basic a11y tests', async () => {
-    await mount(page, 'skeleton-loading');
+    await mount(page, 'skeleton--loading');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('if loads component correctly', async () => {
-    await mount(page, 'skeleton-loading');
+    await mount(page, 'skeleton--loading');
     const haveSkeleton = await page.$$eval('div[testid="loader"]', divs => {
       if (divs.length > 0) {
         return true;

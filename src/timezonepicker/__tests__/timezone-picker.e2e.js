@@ -23,14 +23,14 @@ const labelToShortCode = label => label.split(' ')[0];
 
 describe('TimezonePicker', () => {
   it('passes basic a11y tests', async () => {
-    await mount(page, 'timezone-picker');
+    await mount(page, 'timezonepicker--timezone-picker');
     await page.waitForSelector(selectors.standard);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('provides appropriate zone options if standard time', async () => {
-    await mount(page, 'timezone-picker');
+    await mount(page, 'timezonepicker--timezone-picker');
     await page.waitForSelector(selectors.standard);
     await page.click(`${selectors.standard} ${selectors.input}`);
     await page.waitForSelector(selectors.dropdown);
@@ -46,7 +46,7 @@ describe('TimezonePicker', () => {
   });
 
   it('provides appropriate zone options if daylight savings time', async () => {
-    await mount(page, 'timezone-picker');
+    await mount(page, 'timezonepicker--timezone-picker');
     await page.waitForSelector(selectors.daylight);
     await page.click(`${selectors.daylight} ${selectors.input}`);
     await page.waitForSelector(selectors.dropdown);
@@ -62,7 +62,7 @@ describe('TimezonePicker', () => {
   });
 
   it('prioritizes select with controlled value over browser default', async () => {
-    await mount(page, 'timezone-picker');
+    await mount(page, 'timezonepicker--timezone-picker');
     await page.waitForSelector(selectors.controlled);
     const initial = await page.$eval(
       `${selectors.controlled} ${selectors.value}`,
@@ -72,7 +72,7 @@ describe('TimezonePicker', () => {
   });
 
   it('provides appropriate zone options if no acronym exists', async () => {
-    await mount(page, 'timezone-picker');
+    await mount(page, 'timezonepicker--timezone-picker');
     await page.waitForSelector(selectors.daylight);
     await page.click(`${selectors.daylight} ${selectors.input}`);
     await page.waitForSelector(selectors.dropdown);
