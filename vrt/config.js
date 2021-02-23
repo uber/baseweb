@@ -278,6 +278,9 @@ const config = {
   'side-navigation--nav-long': {
     skip: true,
   },
+  'snackbar--element': {
+    skip: true,
+  },
   'popover--reposition': {
     skip: true,
   },
