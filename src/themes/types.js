@@ -722,6 +722,7 @@ export type BordersT = {
   surfaceBorderRadius: string,
   inputBorderRadius: string,
   popoverBorderRadius: string,
+  tagBorderRadius: string,
 };
 
 export type GridT = {

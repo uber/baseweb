@@ -752,6 +752,7 @@ export interface Borders {
   inputBorderRadius: string;
   popoverBorderRadius: string;
   surfaceBorderRadius: string;
+  tagBorderRadius: string;
 }
 
 export interface ZIndex {
