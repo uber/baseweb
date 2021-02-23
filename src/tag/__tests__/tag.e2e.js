@@ -11,7 +11,7 @@ const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 describe('tag', () => {
   it('passes basic a11y tests', async () => {
-    await mount(page, 'tag');
+    await mount(page, 'tag--tag');
     const accessibilityReport = await analyzeAccessibility(page, {
       rules: [
         {

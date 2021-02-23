@@ -21,7 +21,7 @@ const selectors = {
 
 describe('Datepicker, Int', () => {
   it('selects range - int', async () => {
-    await mount(page, 'datepicker-int-range');
+    await mount(page, 'datepicker--int-range');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
     await page.waitForSelector(selectors.calendar);

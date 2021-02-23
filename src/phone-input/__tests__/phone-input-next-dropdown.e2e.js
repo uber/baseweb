@@ -26,7 +26,7 @@ const UK = {iso: 'GB', dialCode: '+44'};
 
 describe('PhoneInput', () => {
   beforeEach(async () => {
-    await mount(page, 'phone-input-next-dropdown');
+    await mount(page, 'phone-input--next-dropdown');
     await page.waitForSelector(selectors.phoneInput);
   });
 

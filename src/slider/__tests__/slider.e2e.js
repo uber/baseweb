@@ -13,7 +13,7 @@ const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 // most slider actions are covered in react-range e2e tests: https://github.com/tajo/react-range/tree/master/e2e
 describe('slider', () => {
   it('passes basic a11y tests', async () => {
-    await mount(page, 'slider');
+    await mount(page, 'slider--slider');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });

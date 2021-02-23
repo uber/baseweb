@@ -15,21 +15,21 @@ const expanded = '[aria-expanded=true]';
 
 describe('accordion', () => {
   it('passes basic a11y tests', async () => {
-    await mount(page, 'accordion');
+    await mount(page, 'accordion--accordion');
     await page.waitForSelector('ul');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('expands once the title is clicked', async () => {
-    await mount(page, 'accordion');
+    await mount(page, 'accordion--accordion');
     await page.click(collapsed);
     await page.waitForSelector(expanded);
     await expect(page).toMatchElement('li', {text: 'panel 1'});
   });
 
   it('collapses once expanded title is clicked', async () => {
-    await mount(page, 'accordion');
+    await mount(page, 'accordion--accordion');
 
     const initialCount = await page.$$eval(collapsed, panels => panels.length);
 

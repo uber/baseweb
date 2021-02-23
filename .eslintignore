@@ -1,7 +1,7 @@
 node_modules
 dist
 flow-typed
-storybook-static
+build-ladle
 coverage
 docs
 webpack.e2e.config.js
