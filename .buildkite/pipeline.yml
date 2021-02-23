@@ -91,6 +91,15 @@ steps:
     agents:
       queue: workers
 
+  - name: deploy-npm-next
+    command: 'node scripts/publish-bleeding-edge.js'
+    if: build.branch == "master"
+    plugins:
+      'docker-compose#v3.0.3':
+        run: baseui
+    agents:
+      queue: workers
+
   - name: alpha-test-web-code
     command: 'node scripts/alpha-test-web-code.js'
     if: build.branch != "master" && build.message =~ /^Release v[0-9]+\.[0-9]+\.[0-9]+/
