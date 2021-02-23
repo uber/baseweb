@@ -88,4 +88,4 @@ If a commit is part of a pull request, the `vrt` job will run the snapshot tests
 
 This is the preferred way to update snapshots so that folks do not need to worry about Docker locally. You can still update snapshots locally - but we provide a convenient async way to do it as well.
 
-Note, if the commit triggering CI is not part of a pull request, the `vrt` job will run the snapshot tests with out the update flag. This means it will just test to see if there are any detectable visual changes. If there are, the diffs will be uploaded as artifacts in Buildkite
+Note, if the commit triggering CI is not part of a pull request, the `vrt` job will run the snapshot tests with out the update flag. This means it will just test to see if there are any detectable visual changes. If there are, the diffs will be uploaded as artifacts in Buildkite.
