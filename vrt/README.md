@@ -4,7 +4,7 @@ We use `jest-image-snapshot` for a simple suite of visual regression tests (VRT)
 
 ## Set up
 
-The suite will pick up and run any test file with the `*.vrt.js` extension. By default we turn every ladle story file into a single snapshot test. To add a new test, simply create a new `.scenario.js` file in the `__tests__` directory of a component.
+The suite will pick up and run any test file with the `*.vrt.js` extension. By default we turn every ladle file into a single snapshot test. To add a new test, simply create a new `.scenario.js` file in the `__tests__` directory of a component.
 
 > Note, a temporary requirement is that the export `name` and file name of the scenario are identical.
 
