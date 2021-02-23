@@ -334,6 +334,7 @@ const config = {
           const selector = `li:nth-child(5)`;
           await page.$(selector);
           await page.click(selector);
+          await page.waitForTimeout(200);
         },
       },
     ],
