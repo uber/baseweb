@@ -11,7 +11,7 @@ const {mount} = require('../../../e2e/helpers');
 
 describe('popover', () => {
   it('hover trigger does not cause loop on click', async () => {
-    await mount(page, 'popover-focus-loop');
+    await mount(page, 'popover--focus-loop');
     await page.waitForSelector('button');
     await page.hover('button');
     await page.waitForSelector('div[data-e2e="content"]');
@@ -21,7 +21,7 @@ describe('popover', () => {
     await page.click('button');
     await page.waitForSelector('div[data-e2e="content"]', {hidden: true});
 
-    await page.mouse.move(0, 0);
+    await page.mouse.move(200, 200);
     await page.hover('button');
     await page.waitForSelector('div[data-e2e="content"]');
   });

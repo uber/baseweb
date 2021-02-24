@@ -21,7 +21,7 @@ const COLUMN_COUNT = 5;
 describe('data table columns', () => {
   it('updates categorical column', async () => {
     const index = 1;
-    await mount(page, 'data-table-columns');
+    await mount(page, 'data-table--columns');
     await page.waitForSelector(TABLE_ROOT);
     const initial = await getCellContentsAtColumnIndex(
       page,

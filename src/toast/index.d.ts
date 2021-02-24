@@ -38,7 +38,7 @@ export interface IToaster {
     props: Readonly<ToastProps>,
   ) => React.Key;
   update: (key: React.Key, props: Readonly<ToastProps>) => void;
-  clear: (key: React.Key) => void;
+  clear: (key?: React.Key) => void;
 }
 
 export const toaster: IToaster;

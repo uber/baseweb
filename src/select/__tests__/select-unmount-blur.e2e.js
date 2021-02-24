@@ -11,7 +11,7 @@ const {mount} = require('../../../e2e/helpers');
 
 describe('select unmount blur', () => {
   it('onBlur callback properly handles unmounted component', async () => {
-    await mount(page, 'select-unmount-blur');
+    await mount(page, 'select--unmount-blur');
     await page.click('button');
     await page.waitForSelector('[data-testid="select-container"]');
     await page.click('input');

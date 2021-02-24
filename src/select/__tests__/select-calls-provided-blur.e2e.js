@@ -23,7 +23,7 @@ function getActiveTag(page) {
 
 describe('select option click returns focus', () => {
   it('calls provided blur function when another element is focused', async () => {
-    await mount(page, 'select-calls-provided-blur');
+    await mount(page, 'select--calls-provided-blur');
     await page.waitForSelector(SELECT_INPUT);
 
     const input = await page.$(SELECT_INPUT);

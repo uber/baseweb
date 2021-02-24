@@ -11,7 +11,7 @@ const {mount, analyzeAccessibility} = require('../../../e2e/helpers');
 
 describe('header-navigation', () => {
   it(`passes basic a11y tests`, async () => {
-    await mount(page, 'header-navigation');
+    await mount(page, 'header-navigation--header-navigation');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });

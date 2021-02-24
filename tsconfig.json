@@ -37,7 +37,7 @@
     "public",
     "coverage",
     ".cache",
-    "storybook-static",
+    "build-ladle",
     /* Remove once we added lerna / yarn workspaces */
     "packages/baseweb-vscode-extension",
     "build"

@@ -17,7 +17,7 @@ function getActionButtonByLabel(parent, label) {
 
 describe('data-table-row-actions', () => {
   it('renders provided row action buttons', async () => {
-    await mount(page, 'data-table-row-actions');
+    await mount(page, 'data-table--row-actions');
     await page.mouse.move(150, 327);
     const actionButtonOne = await getActionButtonByLabel(
       page,
@@ -33,7 +33,7 @@ describe('data-table-row-actions', () => {
   });
 
   it('calls provided onclick function when clicked', async () => {
-    await mount(page, 'data-table-row-actions');
+    await mount(page, 'data-table--row-actions');
     await page.mouse.move(150, 327);
     const actionButton = await getActionButtonByLabel(
       page,
@@ -48,7 +48,7 @@ describe('data-table-row-actions', () => {
   });
 
   it('calls onclick with correct row after sorting', async () => {
-    await mount(page, 'data-table-row-actions');
+    await mount(page, 'data-table--row-actions');
     await sortColumnAtIndex(page, 0);
 
     await page.mouse.move(150, 327);
