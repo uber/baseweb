@@ -23,6 +23,7 @@ const ESLINT_PLUGIN_DIR = path.resolve(
 
 const ALPHA_TAG = 'alpha';
 const LATEST_TAG = 'latest';
+const NEXT_TAG = 'next';
 
 function writeNpmTokenFromEnv() {
   const token = process.env.NPM_TOKEN;
@@ -81,9 +82,9 @@ const rootPackageJSONPath = path.resolve(ROOT_DIR, 'package.json');
 module.exports = function publishToNpm(params /*: any */) {
   const {tag, commit} = params;
 
-  if (tag !== ALPHA_TAG && tag !== LATEST_TAG) {
+  if (tag !== ALPHA_TAG && tag !== LATEST_TAG && tag !== NEXT_TAG) {
     throw new Error(
-      `NPM tag ${tag} must be either ${ALPHA_TAG} or ${LATEST_TAG}.`,
+      `NPM tag ${tag} must be either ${ALPHA_TAG} or ${LATEST_TAG} or ${NEXT_TAG}.`,
     );
   }
 
