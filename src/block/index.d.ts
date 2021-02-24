@@ -285,6 +285,9 @@ export interface BlockProps {
   height?: Responsive<Scale>;
   minHeight?: Responsive<Scale>;
   maxHeight?: Responsive<Scale>;
+  onClick?: (e: Event) => any;
+  onMouseEnter?: (e: Event) => any;
+  onMouseLeave?: (e: Event) => any;
   overflow?: Responsive<Overflow>;
   margin?: Responsive<Scale>;
   marginTop?: Responsive<Scale>;
