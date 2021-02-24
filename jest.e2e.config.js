@@ -9,12 +9,7 @@ LICENSE file in the root directory of this source tree.
 /*eslint-env node*/
 
 module.exports = {
-  testPathIgnorePatterns: [
-    '/node_modules/',
-    '/dist/',
-    './babel/transform-cup-globals.js',
-  ],
-  modulePathIgnorePatterns: ['<rootDir>/dist/'],
+  roots: ['<rootDir>/src'],
   preset: 'jest-puppeteer',
   testRunner: 'jest-circus/runner',
   testMatch: ['**/__tests__/*.e2e.js'],

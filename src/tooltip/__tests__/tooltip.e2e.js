@@ -15,7 +15,7 @@ const selectors = {
 
 describe('tooltip', () => {
   it('passes basic a11y tests when hovered', async () => {
-    await mount(page, 'tooltip');
+    await mount(page, 'tooltip--tooltip');
     await page.waitForSelector('span');
     await page.hover('span');
     await page.waitForSelector(selectors.tooltip);

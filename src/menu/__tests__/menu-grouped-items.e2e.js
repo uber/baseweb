@@ -30,7 +30,7 @@ function matchArrayElements(a, b) {
 
 describe('menu-grouped-items', () => {
   it('renders expected li elements', async () => {
-    await mount(page, 'menu-grouped-items');
+    await mount(page, 'menu--grouped-items');
     const listElements = await page.$$('li');
     const actual = await Promise.all(
       listElements.map(listElement => {
@@ -53,7 +53,7 @@ describe('menu-grouped-items', () => {
   });
 
   it('skips optgroup headers when navigating with keyboard', async () => {
-    await mount(page, 'menu-grouped-items');
+    await mount(page, 'menu--grouped-items');
     await page.keyboard.press('Tab');
     await page.keyboard.press('ArrowDown');
 

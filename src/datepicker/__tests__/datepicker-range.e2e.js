@@ -26,7 +26,7 @@ const selectors = {
 
 describe('Datepicker, Range', () => {
   it('selects range', async () => {
-    await mount(page, 'datepicker-range');
+    await mount(page, 'datepicker--range');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
     await page.waitForSelector(selectors.calendar);
@@ -48,7 +48,7 @@ describe('Datepicker, Range', () => {
     expect(selectedValue2).toBe('2019/03/10 – 2019/03/28');
   });
   it('selects range in multi-month', async () => {
-    await mount(page, 'datepicker-range-multi-month');
+    await mount(page, 'datepicker--range-multi-month');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
     await page.waitForSelector(selectors.calendar);
@@ -70,7 +70,7 @@ describe('Datepicker, Range', () => {
     expect(selectedValue2).toBe('2019/03/10 – 2019/04/01');
   });
   it('selects range in multi-month - do not autoAdvance calendar months since selected date is in view', async () => {
-    await mount(page, 'datepicker-range-multi-month');
+    await mount(page, 'datepicker--range-multi-month');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
     await page.waitForSelector(selectors.calendar);
@@ -99,7 +99,7 @@ describe('Datepicker, Range', () => {
     expect(selectedValue2).toBe('2019/03/10 – 2019/04/01');
   });
   it('selected time is preserved when dates are changed', async () => {
-    await mount(page, 'datepicker-range');
+    await mount(page, 'datepicker--range');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
     await page.waitForSelector(selectors.timeSelect);

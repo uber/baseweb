@@ -21,7 +21,7 @@ const COLUMN_COUNT = 5;
 describe('data table non-sortable columns', () => {
   it('clicks on column header does not sort', async () => {
     const index = 0;
-    await mount(page, 'data-table-columns-not-sortable');
+    await mount(page, 'data-table--columns-not-sortable');
     await page.waitForSelector(TABLE_ROOT);
     const before = await getCellContentsAtColumnIndex(
       page,

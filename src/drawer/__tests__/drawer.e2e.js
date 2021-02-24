@@ -27,7 +27,7 @@ const optionAtPosition = position =>
 jest.setTimeout(60000);
 describe('drawer', () => {
   it('drawer component handles focus changes properly', async () => {
-    await mount(page, 'drawer');
+    await mount(page, 'drawer--drawer');
     await page.waitForSelector(selectors.closeButton);
     // close drawer to start fresh
     await page.click(selectors.closeButton);
@@ -70,7 +70,7 @@ describe('drawer', () => {
 
   // This is a regression test to verify that elements in a portal will still work.
   it('allows interaction with select', async () => {
-    await mount(page, 'drawer-select');
+    await mount(page, 'drawer--select');
     await page.waitForSelector(selectors.drawer);
 
     await page.click(selectors.selectInput);
@@ -88,7 +88,7 @@ describe('drawer', () => {
   });
 
   it('closes one popover at a time on esc key press', async () => {
-    await mount(page, 'drawer-select');
+    await mount(page, 'drawer--select');
     await page.waitForSelector(selectors.drawer);
 
     await page.click(selectors.selectInput);
@@ -103,7 +103,7 @@ describe('drawer', () => {
   });
 
   it('renders content even when hidden: with renderAll prop', async () => {
-    await mount(page, 'drawer-render-all');
+    await mount(page, 'drawer--render-all');
     // check for content while drawer is closed, then open
     await page.waitForSelector(selectors.drawerContent);
     await page.click(selectors.openDrawer);

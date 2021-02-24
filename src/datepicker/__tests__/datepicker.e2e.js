@@ -27,14 +27,14 @@ const selectors = {
 
 describe('Datepicker', () => {
   it('datepicker passes basic a11y tests', async () => {
-    await mount(page, 'datepicker');
+    await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('opens the calendar on click', async () => {
-    await mount(page, 'datepicker');
+    await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
     await page.waitForSelector(selectors.calendar);
@@ -46,7 +46,7 @@ describe('Datepicker', () => {
   });
 
   it('opens the calendar on input focus', async () => {
-    await mount(page, 'datepicker');
+    await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.focus(selectors.input);
     await page.waitForSelector(selectors.calendar);
@@ -58,7 +58,7 @@ describe('Datepicker', () => {
   });
 
   it('closes the calendar on esc', async () => {
-    await mount(page, 'datepicker');
+    await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
     await page.waitForSelector(selectors.calendar);
@@ -69,7 +69,7 @@ describe('Datepicker', () => {
   });
 
   it('selects day when clicked', async () => {
-    await mount(page, 'datepicker');
+    await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
     await page.waitForSelector(selectors.calendar);
@@ -86,7 +86,7 @@ describe('Datepicker', () => {
   });
 
   it('rerenders input if value is changed', async () => {
-    await mount(page, 'datepicker');
+    await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click('button');
 
@@ -98,7 +98,7 @@ describe('Datepicker', () => {
   });
 
   it('input causes calendar to switch to appropriate month', async () => {
-    await mount(page, 'datepicker');
+    await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
     await page.waitForSelector(selectors.calendar);
@@ -117,7 +117,7 @@ describe('Datepicker', () => {
   });
 
   it('month year dropdown opens on arrow down', async () => {
-    await mount(page, 'datepicker');
+    await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
     await page.waitForSelector(selectors.calendar);
@@ -129,7 +129,7 @@ describe('Datepicker', () => {
   });
 
   it('month year dropdown opens on arrow up', async () => {
-    await mount(page, 'datepicker');
+    await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
     await page.waitForSelector(selectors.calendar);
@@ -141,7 +141,7 @@ describe('Datepicker', () => {
   });
 
   it('month year dropdown escape does not close calendar', async () => {
-    await mount(page, 'datepicker');
+    await mount(page, 'datepicker--datepicker');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
     await page.waitForSelector(selectors.calendar);

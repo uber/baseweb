@@ -18,14 +18,14 @@ const selectors = {
 
 describe('progress steps', () => {
   it('passes basic a11y tests', async () => {
-    await mount(page, 'progress-steps');
+    await mount(page, 'progress-steps--progress-steps');
     await page.waitForSelector(selectors.nextButton);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('can be moved to the next step, and back too', async () => {
-    await mount(page, 'progress-steps');
+    await mount(page, 'progress-steps--progress-steps');
     await page.waitForSelector(selectors.nextButton);
 
     // verifies that the first content block is visible

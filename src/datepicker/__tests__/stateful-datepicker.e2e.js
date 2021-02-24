@@ -28,14 +28,14 @@ describe('Stateful Datepicker', () => {
   });
 
   it('passes basic a11y tests', async () => {
-    await mount(page, 'stateful-datepicker');
+    await mount(page, 'datepicker--stateful');
     await page.waitForSelector(selectors.input);
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('datepicker with min max date allows browsing', async () => {
-    await mount(page, 'stateful-datepicker-min-max-date');
+    await mount(page, 'datepicker--stateful-min-max-date');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
     await page.waitForSelector(selectors.calendar);
@@ -73,7 +73,7 @@ describe('Stateful Datepicker', () => {
   });
 
   it('datepicker with min max date shows valid months in header dropdown', async () => {
-    await mount(page, 'stateful-datepicker-min-max-date');
+    await mount(page, 'datepicker--stateful-min-max-date');
     await page.waitForSelector(selectors.input);
     await page.click(selectors.input);
     await page.waitForSelector(selectors.calendar);

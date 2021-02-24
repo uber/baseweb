@@ -14,19 +14,19 @@ const childLabel2 = '[data-name="child2"]';
 
 describe('checkbox', () => {
   it(`passes basic a11y tests`, async () => {
-    await mount(page, 'checkbox-indeterminate');
+    await mount(page, 'checkbox--indeterminate');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it(`passes basic a11y tests when unlabeled`, async () => {
-    await mount(page, 'checkbox-unlabeled');
+    await mount(page, 'checkbox--unlabeled');
     const accessibilityReport = await analyzeAccessibility(page);
     expect(accessibilityReport).toHaveNoAccessibilityIssues();
   });
 
   it('can switch states', async () => {
-    await mount(page, 'checkbox-indeterminate');
+    await mount(page, 'checkbox--indeterminate');
     await page.waitForSelector(childLabel2);
     await page.click(childLabel2);
     const checked = await page.$eval(parentCheckbox, input => input.checked);
