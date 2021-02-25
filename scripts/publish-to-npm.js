@@ -88,18 +88,18 @@ module.exports = function publishToNpm(params /*: any */) {
     );
   }
 
-  if (tag === ALPHA_TAG) {
-    console.log('+++ Updating package.json version to alpha.');
+  if (tag === ALPHA_TAG || tag === NEXT_TAG) {
+    console.log(`+++ Updating package.json version to ${tag}.`);
     if (!commit) {
       throw new Error(
-        'Must provide a commit param to publish an alpha release.',
+        `Must provide a commit param to publish an ${tag} release.`,
       );
     }
     const packageJSON = readJSONFile(rootPackageJSONPath);
     const shortHash = commit.slice(-7);
-    packageJSON.version = `0.0.0-alpha-${shortHash}`;
+    packageJSON.version = `0.0.0-${tag}-${shortHash}`;
     console.log(
-      `Updated package.json version to ${packageJSON.version} for alpha release.`,
+      `Updated package.json version to ${packageJSON.version} for ${tag} release.`,
     );
     fs.writeFileSync(rootPackageJSONPath, JSON.stringify(packageJSON, null, 2));
   }
