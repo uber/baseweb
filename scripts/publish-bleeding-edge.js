@@ -11,4 +11,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 const publishToNpm = require('./publish-to-npm.js');
-publishToNpm({tag: 'next'});
+publishToNpm({
+  tag: 'next',
+  commit: process.env.BUILDKITE_COMMIT,
+});
