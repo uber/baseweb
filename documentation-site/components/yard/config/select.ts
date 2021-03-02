@@ -218,6 +218,13 @@ const SelectConfig: TConfig = {
       description:
         'Defines if currently selected options are filtered out in the dropdown options. Only for `multi` select.',
     },
+    ignoreCase: {
+      value: true,
+      type: PropTypes.Boolean,
+      defaultValue: true,
+      description:
+        'Defines if a new input value is considered already selected ignoring case.',
+    },
     isLoading: {
       value: undefined,
       type: PropTypes.Boolean,

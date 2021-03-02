@@ -859,16 +859,15 @@ class Select extends React.Component<PropsT, SelectStateT> {
       );
     }
     // can user create a new option + there's no exact match already
+    const filterDoesNotMatchOption = this.props.ignoreCase
+      ? opt =>
+          opt[this.props.labelKey].toLowerCase() !==
+          filterValue.toLowerCase().trim()
+      : opt => opt[this.props.labelKey] !== filterValue.trim();
     if (
       filterValue &&
       this.props.creatable &&
-      this.options
-        .concat(this.props.value)
-        .every(
-          opt =>
-            opt[this.props.labelKey].toLowerCase() !==
-            filterValue.toLowerCase().trim(),
-        )
+      this.options.concat(this.props.value).every(filterDoesNotMatchOption)
     ) {
       // $FlowFixMe - this.options is typed as a read-only array
       this.options.push({
