@@ -136,6 +136,7 @@ export type StatefulContainerPropsT = {
   getChildMenu?: (ref: {current: HTMLElement | null}) => ?{
     current: HTMLElement | null,
   },
+  forceHighlight: boolean,
 };
 
 export type MenuPropsT = {
