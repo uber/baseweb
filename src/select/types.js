@@ -122,7 +122,7 @@ export type PropsT = {
   getValueLabel: ?({option: OptionT}) => React.Node,
   /** Sets the id attribute of the internal input element. Allows for usage with labels. */
   id?: string,
-  /** Defines if a new input value is considered already selected ignoring case. */
+  /** Defines if the comparison for a new creatable value should be case-insensitive. */
   ignoreCase?: boolean,
   /** A ref to access the input element powering the select if it's a search select, or the container div if it isn't. */
   controlRef?: React.ElementRef<*>,
