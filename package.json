@@ -211,8 +211,8 @@
     "timezone-support": "^2.0.2"
   },
   "peerDependencies": {
-    "react": ">= 16.8.0 < 17",
-    "react-dom": ">= 16.8.0 < 17",
+    "react": ">= 16.8.0 < 18",
+    "react-dom": ">= 16.8.0 < 18",
     "styletron-react": "^5.2.2"
   },
   "resolutions": {

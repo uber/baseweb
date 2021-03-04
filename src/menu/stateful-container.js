@@ -41,6 +41,7 @@ export default class MenuStatefulContainer extends React.Component<
     removeMenuFromNesting: () => {},
     getParentMenu: () => {},
     getChildMenu: () => {},
+    forceHighlight: false,
   };
 
   state: StatefulContainerStateT = {
@@ -114,6 +115,15 @@ export default class MenuStatefulContainer extends React.Component<
       }
     }
     var range = this.getItems().length;
+    if (
+      this.props.forceHighlight &&
+      this.state.highlightedIndex === -1 &&
+      range > 0
+    ) {
+      this.internalSetState(STATE_CHANGE_TYPES.enter, {
+        highlightedIndex: 0,
+      });
+    }
     if (range === 0 && this.state.highlightedIndex !== -1) {
       this.internalSetState(STATE_CHANGE_TYPES.enter, {
         highlightedIndex: -1,
@@ -330,7 +340,10 @@ export default class MenuStatefulContainer extends React.Component<
 
   handleMouseLeave = () => {
     const rootRef = this.props.rootRef ? this.props.rootRef : this.rootRef;
-    if (!this.props.getChildMenu || !this.props.getChildMenu(rootRef)) {
+    const childMenu =
+      this.props.getChildMenu && this.props.getChildMenu(rootRef);
+
+    if (!this.props.forceHighlight && !childMenu) {
       this.internalSetState(STATE_CHANGE_TYPES.mouseLeave, {
         highlightedIndex: -1,
       });
@@ -416,6 +429,7 @@ export default class MenuStatefulContainer extends React.Component<
       removeMenuFromNesting,
       getParentMenu,
       getChildMenu,
+      forceHighlight,
       ...restProps
     } = this.props;
 
