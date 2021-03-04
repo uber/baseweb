@@ -223,7 +223,7 @@ const SelectConfig: TConfig = {
       type: PropTypes.Boolean,
       defaultValue: true,
       description:
-        'Defines if a new input value is considered already selected ignoring case.',
+        'Defines if the comparison for a new creatable value should be case-insensitive.',
     },
     isLoading: {
       value: undefined,
