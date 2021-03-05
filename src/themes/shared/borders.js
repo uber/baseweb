@@ -54,6 +54,8 @@ const borders: BordersT = {
   popoverBorderRadius: '0px',
   /** Card, Datepicker, Modal, Toast, Notification */
   surfaceBorderRadius: '0px',
+  /** Tag */
+  tagBorderRadius: '24px',
 };
 
 export default borders;

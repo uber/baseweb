@@ -318,7 +318,7 @@ export const Root = styled<SharedPropsArgT>('span', props => {
     $color,
     $size = SIZE.small,
   } = props;
-  const borderRadius = '24px';
+  const borderRadius = $theme.borders.tagBorderRadius;
   const paddingMagnitude = {
     [SIZE.small]: $theme.sizing.scale300,
     [SIZE.medium]: $theme.sizing.scale500,
