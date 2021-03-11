@@ -28,6 +28,8 @@ export type PropsT<OptionT = mixed> = {|
   mapOptionToString: OptionT => string,
   id?: string,
   name?: string,
+  // A ref to access the inner Input component.
+  inputRef?: React.ElementRef<*>,
   // Called when input loses focus.
   onBlur?: (SyntheticInputEvent<HTMLInputElement>) => mixed,
   // Called when input value changes or option is selected. If user selects a

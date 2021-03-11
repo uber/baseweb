@@ -45,6 +45,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     options,
     overrides = {},
     positive = false,
+    inputRef: forwardInputRef,
     size = SIZE.default,
     value,
   } = props;
@@ -199,6 +200,17 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     setTempValue(event.target.value);
   }
 
+  function handleInputRef(input) {
+    inputRef.current = input;
+    if (forwardInputRef) {
+      if (typeof forwardInputRef === 'function') {
+        forwardInputRef(input);
+      } else {
+        forwardInputRef.current = input;
+      }
+    }
+  }
+
   function handleOptionClick(index) {
     let clickedOption = options[index];
     if (clickedOption) {
@@ -303,7 +315,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
           {...inputContainerProps}
         >
           <OverriddenInput
-            inputRef={inputRef}
+            inputRef={handleInputRef}
             aria-activedescendant={
               selectionIndex >= 0 ? activeDescendantId : undefined
             }
