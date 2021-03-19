@@ -236,9 +236,16 @@ class BaseInput<T: EventTarget> extends React.Component<
 
   renderClear() {
     const {clearable, value, disabled, overrides = {}} = this.props;
-    if (!clearable || !value || !value.length || disabled) {
+    if (
+      disabled ||
+      !clearable ||
+      typeof value === null ||
+      typeof value === undefined ||
+      (typeof value === 'string' && value.length === 0)
+    ) {
       return null;
     }
+
     const [ClearIconContainer, clearIconContainerProps] = getOverrides(
       overrides.ClearIconContainer,
       StyledClearIconContainer,
