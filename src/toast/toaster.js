@@ -294,3 +294,4 @@ const toaster = {
 };
 
 exports.ToasterContainer = withOverrides(ToasterContainer, 'ToasterContainer');
+export default toaster;

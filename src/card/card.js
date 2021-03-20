@@ -46,6 +46,7 @@ const SemanticTitle = ({children, ...restProps}) => {
 
 function Card(props: CardsPropsT) {
   const {
+    overrides = {},
     action,
     children,
     hasThumbnail,
