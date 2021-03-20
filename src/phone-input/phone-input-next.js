@@ -11,7 +11,11 @@ import CountryPicker from './country-picker.js';
 import defaultProps from './default-props.js';
 import {StyledPhoneInputRoot, StyledDialCode} from './styled-components.js';
 import {Input as DefaultInput} from '../input/index.js';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import {
+  getOverrides,
+  mergeOverrides,
+  withOverrides,
+} from '../helpers/overrides.js';
 import type {LitePropsT} from './types.js';
 
 PhoneInputNext.defaultProps = {
@@ -20,7 +24,7 @@ PhoneInputNext.defaultProps = {
   clearable: true,
 };
 
-export default function PhoneInputNext(props: LitePropsT) {
+function PhoneInputNext(props: LitePropsT) {
   const {
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
@@ -118,3 +122,5 @@ export default function PhoneInputNext(props: LitePropsT) {
     </Root>
   );
 }
+
+export default withOverrides(PhoneInputNext, 'PhoneInputNext');

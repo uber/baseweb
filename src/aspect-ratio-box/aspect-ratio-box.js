@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {Block} from '../block/index.js';
-import {mergeOverrides} from '../helpers/overrides.js';
+import {mergeOverrides, withOverrides} from '../helpers/overrides.js';
 import type {AspectRatioBoxPropsT} from './types.js';
 
 const aspectRatioBoxStyle = ({$aspectRatio}) => ({
@@ -63,4 +63,4 @@ const AspectRatioBoxComponent = React.forwardRef<
   <AspectRatioBox {...props} forwardedRef={ref} />
 ));
 AspectRatioBoxComponent.displayName = 'AspectRatioBox';
-export default AspectRatioBoxComponent;
+export default withOverrides(AspectRatioBoxComponent, 'AspectRatioBox');

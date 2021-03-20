@@ -7,7 +7,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 
-import {mergeOverrides, getOverrides} from '../helpers/overrides.js';
+import {
+  mergeOverrides,
+  getOverrides,
+  withOverrides,
+} from '../helpers/overrides.js';
 import Icon from '../icon/icon.js';
 
 import {
@@ -78,4 +82,4 @@ class Spinner extends React.Component<SpinnerPropsT> {
   }
 }
 
-export default Spinner;
+export default withOverrides(Spinner, 'Spinner');

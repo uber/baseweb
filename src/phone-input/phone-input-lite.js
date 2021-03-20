@@ -8,7 +8,11 @@ LICENSE file in the root directory of this source tree.
 import React, {useRef} from 'react';
 import {Input as DefaultInput} from '../input/index.js';
 import CountrySelect from './country-select.js';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import {
+  getOverrides,
+  withOverrides,
+  mergeOverrides,
+} from '../helpers/overrides.js';
 import defaultProps from './default-props.js';
 import type {LitePropsT} from './types.js';
 
@@ -16,7 +20,7 @@ const {country, ...lightDefaultProps} = defaultProps;
 
 PhoneInputLite.defaultProps = lightDefaultProps;
 
-export default function PhoneInputLite(props: LitePropsT) {
+function PhoneInputLite(props: LitePropsT) {
   const {
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
@@ -91,3 +95,5 @@ export default function PhoneInputLite(props: LitePropsT) {
     />
   );
 }
+
+export default withOverrides(PhoneInputLite, 'PhoneInput');

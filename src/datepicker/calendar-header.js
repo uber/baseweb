@@ -489,7 +489,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
     );
     return (
       <ThemeContext.Consumer>
-        {theme => (
+        {({theme}) => (
           <LocaleContext.Consumer>
             {locale => (
               <>

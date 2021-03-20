@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 import {
   StyledStep,
   StyledIconContainer,
@@ -79,4 +79,4 @@ Step.defaultProps = {
   isLast: false,
 };
 
-export default Step;
+export default withOverrides(Step, 'Step');

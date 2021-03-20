@@ -7,7 +7,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
+import {
+  getOverrides,
+  mergeOverrides,
+  withOverrides,
+} from '../helpers/overrides.js';
 import NavItem from './nav-item.js';
 import {
   StyledRoot,
@@ -17,10 +21,7 @@ import {
 import type {NavPropsT, Item} from './types.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
-export default class SideNav extends React.Component<
-  NavPropsT,
-  {isFocusVisible: boolean},
-> {
+class SideNav extends React.Component<NavPropsT, {isFocusVisible: boolean}> {
   static defaultProps = {
     activeItemId: '/',
     activePredicate: null,
@@ -132,3 +133,5 @@ export default class SideNav extends React.Component<
     );
   }
 }
+
+export default withOverrides(SideNav, 'SideNavigation');

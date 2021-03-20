@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {Block} from '../block/index.js';
-import {mergeOverrides} from '../helpers/overrides.js';
+import {mergeOverrides, withOverrides} from '../helpers/overrides.js';
 import {getMediaQueries, getMediaQuery} from '../helpers/responsive-helpers.js';
 import type {FlexGridItemPropsT} from './types.js';
 import type {ResponsiveT, ScaleT} from '../block/index.js';
@@ -198,4 +198,4 @@ const FlexGridItemComponent = React.forwardRef<FlexGridItemPropsT, HTMLElement>(
   ),
 );
 FlexGridItemComponent.displayName = 'FlexGridItem';
-export default FlexGridItemComponent;
+export default withOverrides(FlexGridItemComponent, 'FlexGridItem');

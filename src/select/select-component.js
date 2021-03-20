@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable cup/no-undef */
 import * as React from 'react';
 
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 import DeleteAlt from '../icon/delete-alt.js';
 import TriangleDownIcon from '../icon/triangle-down.js';
 import SearchIconComponent from '../icon/search.js';
@@ -859,15 +859,16 @@ class Select extends React.Component<PropsT, SelectStateT> {
       );
     }
     // can user create a new option + there's no exact match already
-    const filterDoesNotMatchOption = this.props.ignoreCase
-      ? opt =>
-          opt[this.props.labelKey].toLowerCase() !==
-          filterValue.toLowerCase().trim()
-      : opt => opt[this.props.labelKey] !== filterValue.trim();
     if (
       filterValue &&
       this.props.creatable &&
-      this.options.concat(this.props.value).every(filterDoesNotMatchOption)
+      this.options
+        .concat(this.props.value)
+        .every(
+          opt =>
+            opt[this.props.labelKey].toLowerCase() !==
+            filterValue.toLowerCase().trim(),
+        )
     ) {
       // $FlowFixMe - this.options is typed as a read-only array
       this.options.push({
@@ -1070,4 +1071,4 @@ class Select extends React.Component<PropsT, SelectStateT> {
   }
 }
 
-export default Select;
+export default withOverrides(Select, 'Select');

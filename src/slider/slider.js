@@ -25,7 +25,7 @@ import {
   ThumbValue as StyledThumbValue,
   Mark as StyledMark,
 } from './styled-components.js';
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 import {ThemeContext} from '../styles/theme-provider.js';
 
 // value.length should not be bigger than two
@@ -51,7 +51,7 @@ function Slider({
   step = 1,
   value: providedValue,
 }: PropsT) {
-  const theme = React.useContext(ThemeContext);
+  const {theme} = React.useContext(ThemeContext);
 
   const [isHovered0, setIsHovered0] = React.useState(false);
   const [isHovered1, setIsHovered1] = React.useState(false);
@@ -219,4 +219,4 @@ function Slider({
   );
 }
 
-export default Slider;
+export default withOverrides(Slider, 'Slider');

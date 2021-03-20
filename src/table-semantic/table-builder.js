@@ -23,12 +23,12 @@ import {
   StyledSortDescIcon,
   StyledSortNoneIcon,
 } from './styled-components.js';
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 import type {TableBuilderPropsT} from './types.js';
 
-export default class TableBuilder<T> extends React.Component<
+class TableBuilder<T> extends React.Component<
   TableBuilderPropsT<T>,
   {isFocusVisible: boolean},
 > {
@@ -310,3 +310,5 @@ export default class TableBuilder<T> extends React.Component<
     );
   }
 }
+
+export default withOverrides(TableBuilder, 'TableBuilder');

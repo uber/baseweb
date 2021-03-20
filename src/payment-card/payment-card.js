@@ -10,7 +10,7 @@ import * as valid from 'card-validator';
 
 import {addGaps, getCaretPosition} from './utils.js';
 
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 import {Input, SIZE} from '../input/index.js';
 import {ThemeContext} from '../styles/theme-provider.js';
 
@@ -111,7 +111,7 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
 
     return (
       <ThemeContext.Consumer>
-        {theme => (
+        {({theme}) => (
           <Input
             size={size}
             aria-label={ariaLabel}
@@ -141,4 +141,4 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
   }
 }
 
-export default PaymentCard;
+export default withOverrides(PaymentCard, 'PaymentCard');

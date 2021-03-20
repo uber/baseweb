@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 import type {SkeletonPropsT} from './types.js';
 import {StyledRoot, StyledRow} from './styled-components.js';
 
@@ -55,4 +55,4 @@ class Skeleton extends React.Component<SkeletonPropsT> {
   }
 }
 
-export default Skeleton;
+export default withOverrides(Skeleton, 'Skeleton');

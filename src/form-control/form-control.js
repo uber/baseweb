@@ -7,7 +7,11 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 import * as React from 'react';
-import {getOverride, getOverrideProps} from '../helpers/overrides.js';
+import {
+  getOverride,
+  getOverrideProps,
+  withOverrides,
+} from '../helpers/overrides.js';
 import getBuiId from '../utils/get-bui-id.js';
 import {
   Label as StyledLabel,
@@ -32,7 +36,7 @@ function chooseRenderedHint(caption, error, positive, sharedProps) {
   return null;
 }
 
-export default class FormControl extends React.Component<
+class FormControl extends React.Component<
   FormControlPropsT,
   FormControlStateT,
 > {
@@ -136,3 +140,5 @@ export default class FormControl extends React.Component<
     );
   }
 }
+
+export default withOverrides(FormControl, 'FormControl');

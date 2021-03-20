@@ -13,8 +13,10 @@ import type {BaseProviderPropsT} from './types.js';
 const BaseProvider = (props: BaseProviderPropsT) => {
   const {children, overrides, theme, zIndex} = props;
   return (
-    <LayersManager zIndex={zIndex} overrides={overrides}>
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    <LayersManager zIndex={zIndex}>
+      <ThemeProvider theme={theme} overrides={overrides}>
+        {children}
+      </ThemeProvider>
     </LayersManager>
   );
 };
