@@ -19,7 +19,7 @@ import {
 } from './styled-components.js';
 import ChevronLeft from '../icon/chevron-left.js';
 import ChevronRight from '../icon/chevron-right.js';
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 import type {PaginationPropsT} from './types.js';
 import type {LocaleT} from '../locale/types.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
@@ -28,7 +28,7 @@ type PageOptionT = {
   label: number,
 };
 
-export default class Pagination extends React.PureComponent<
+class Pagination extends React.PureComponent<
   PaginationPropsT,
   {isFocusVisible: boolean},
 > {
@@ -120,7 +120,7 @@ export default class Pagination extends React.PureComponent<
 
     return (
       <ThemeContext.Consumer>
-        {theme => (
+        {({theme}) => (
           <LocaleContext.Consumer>
             {locale => (
               <Root
@@ -263,3 +263,5 @@ export default class Pagination extends React.PureComponent<
     );
   }
 }
+
+export default withOverrides(Pagination, 'Pagination');

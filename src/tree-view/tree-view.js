@@ -24,9 +24,13 @@ import {
 import type {TreeViewPropsT, TreeNodeT, TreeNodeIdT} from './types.js';
 import {isFocusVisible} from '../utils/focusVisible.js';
 
-import {getOverride, getOverrideProps} from '../helpers/overrides.js';
+import {
+  getOverride,
+  getOverrideProps,
+  withOverrides,
+} from '../helpers/overrides.js';
 
-export default function TreeView(props: TreeViewPropsT) {
+function TreeView(props: TreeViewPropsT) {
   const {
     data,
     indentGuides = false,
@@ -180,3 +184,5 @@ export default function TreeView(props: TreeViewPropsT) {
     </Root>
   );
 }
+
+export default withOverrides(TreeView, 'TreeView');

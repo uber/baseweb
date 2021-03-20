@@ -59,7 +59,7 @@ function Violation(props: ViolationPropsT) {
   const [anchor, setAnchor] = React.useState(null);
   const [popper, setPopper] = React.useState(null);
   const [isHovered, setIsHovered] = React.useState(false);
-  const theme = React.useContext(ThemeContext);
+  const {theme} = React.useContext(ThemeContext);
 
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);

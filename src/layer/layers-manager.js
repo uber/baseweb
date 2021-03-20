@@ -96,7 +96,9 @@ export default class LayersManager extends React.Component<
 
   onAddEscapeHandler = (escapeKeyHandler: () => mixed) => {
     this.setState(prev => {
-      return {escapeKeyHandlers: [...prev.escapeKeyHandlers, escapeKeyHandler]};
+      return {
+        escapeKeyHandlers: [...prev.escapeKeyHandlers, escapeKeyHandler],
+      };
     });
   };
 

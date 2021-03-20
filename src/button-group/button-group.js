@@ -8,9 +8,9 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {KIND, SIZE, SHAPE} from '../button/index.js';
+import {KIND, SIZE, SHAPE, Button} from '../button/index.js';
 import {MODE} from './constants.js';
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 import {LocaleContext} from '../locale/index.js';
 
 import {StyledRoot} from './styled-components.js';
@@ -28,7 +28,7 @@ function isSelected(selected, index) {
   return selected === index;
 }
 
-export default class ButtonGroup extends React.Component<PropsT> {
+class ButtonGroup extends React.Component<PropsT> {
   childRefs: // eslint-disable-next-line flowtype/no-weak-types
   {[key: number]: React.ElementRef<any>} = {};
   static defaultProps = {
@@ -40,7 +40,6 @@ export default class ButtonGroup extends React.Component<PropsT> {
   };
   render() {
     const {
-      overrides = {},
       mode = MODE.checkbox,
       children,
       ariaLabel,
@@ -50,6 +49,7 @@ export default class ButtonGroup extends React.Component<PropsT> {
       kind,
       shape,
       size,
+      overrides = {},
     } = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
     const isRadio = mode === MODE.radio;
@@ -156,3 +156,5 @@ export default class ButtonGroup extends React.Component<PropsT> {
     );
   }
 }
+
+export default withOverrides(ButtonGroup, 'ButtonGroup');

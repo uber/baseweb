@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable react/no-find-dom-node */
 import * as React from 'react';
 import {Popover} from '../popover/index.js';
-import {mergeOverrides} from '../helpers/overrides.js';
+import {mergeOverrides, withOverrides} from '../helpers/overrides.js';
 import baseDefaultProps from './default-props.js';
 import type {TooltipPropsT} from './types.js';
 import {
@@ -37,4 +37,4 @@ class Tooltip extends React.Component<TooltipPropsT> {
   }
 }
 
-export default Tooltip;
+export default withOverrides(Tooltip, 'Tooltip');

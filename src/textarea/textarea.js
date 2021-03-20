@@ -7,7 +7,11 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import type {TextareaPropsT} from './types.js';
-import {mergeOverrides, getOverrides} from '../helpers/overrides.js';
+import {
+  mergeOverrides,
+  getOverrides,
+  withOverrides,
+} from '../helpers/overrides.js';
 import {BaseInput, SIZE, CUSTOM_INPUT_TYPE} from '../input/index.js';
 import {
   StyledTextAreaRoot,
@@ -83,4 +87,4 @@ class Textarea extends React.Component<TextareaPropsT, {isFocused: boolean}> {
   }
 }
 
-export default Textarea;
+export default withOverrides(Textarea, 'Textarea');

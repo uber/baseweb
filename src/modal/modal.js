@@ -11,7 +11,7 @@ import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 
 import {LocaleContext} from '../locale/index.js';
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 import {Layer} from '../layer/index.js';
 import {SIZE, ROLE, CLOSE_SOURCE} from './constants.js';
 import {
@@ -398,4 +398,4 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   }
 }
 
-export default Modal;
+export default withOverrides(Modal, 'Modal');

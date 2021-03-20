@@ -12,7 +12,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {useUID} from 'react-uid';
 import {useStyletron} from '../styles/index.js';
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 import {ORIENTATION, FILL} from './constants.js';
 import {
@@ -94,7 +94,7 @@ const scrollParentToCentreTarget = targetNode => {
   targetNode.parentNode.scroll(target.x, target.y);
 };
 
-export function Tabs({
+function Tabs({
   activeKey = '0',
   disabled = false,
   children,
@@ -508,3 +508,5 @@ function InternalTabPanel({
     </TabPanel>
   );
 }
+
+exports.TabsMotion = withOverrides(Tabs, 'TabsMotion');

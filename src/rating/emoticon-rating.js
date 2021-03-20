@@ -10,7 +10,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import type {EmoticonRatingPropsT, RatingStateT} from './types.js';
 import {StyledRoot, StyledEmoticon} from './styled-components.js';
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 import {ARROW_UP, ARROW_DOWN, ARROW_LEFT, ARROW_RIGHT} from './utils.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
@@ -145,4 +145,4 @@ class EmoticonRating extends React.Component<
   }
 }
 
-export default EmoticonRating;
+export default withOverrides(EmoticonRating, 'EmoticonRating');

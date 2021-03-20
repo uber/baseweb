@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 
 import {
   Avatar as StyledAvatar,
@@ -26,7 +26,7 @@ function getInitials(name) {
     .toUpperCase();
 }
 
-export default class Avatar extends React.Component<PropsT, StateT> {
+class Avatar extends React.Component<PropsT, StateT> {
   static defaultProps: $Shape<PropsT> = {
     overrides: {},
     size: 'scale1000',
@@ -49,7 +49,7 @@ export default class Avatar extends React.Component<PropsT, StateT> {
 
   render() {
     const {noImageAvailable} = this.state;
-    const {name, overrides = {}, size, src} = this.props;
+    const {name, size, src, overrides = {}} = this.props;
     const [Avatar, avatarProps] = getOverrides(overrides.Avatar, StyledAvatar);
     const [Initials, initialsProps] = getOverrides(
       overrides.Initials,
@@ -83,3 +83,5 @@ export default class Avatar extends React.Component<PropsT, StateT> {
     );
   }
 }
+
+export default withOverrides(Avatar, 'Avatar');

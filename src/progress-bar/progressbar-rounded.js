@@ -15,7 +15,7 @@ import {
   StyledProgressBarRoundedTrackForeground,
   StyledProgressBarRoundedText,
 } from './styled-components.js';
-import {useOverrides} from '../helpers/overrides.js';
+import {useOverrides, withOverrides} from '../helpers/overrides.js';
 import type {ProgressBarRoundedPropsT} from './types.js';
 
 const defaults = {
@@ -125,4 +125,4 @@ function ProgressBarRounded({
   );
 }
 
-export default ProgressBarRounded;
+export default withOverrides(ProgressBarRounded, 'ProgressBarRounded');

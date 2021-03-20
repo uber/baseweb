@@ -8,6 +8,7 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable cup/no-undef */
 import * as React from 'react';
 import {isValidElementType} from 'react-is';
+import {ThemeContext} from '../styles/theme-provider.js';
 import deepMerge from '../utils/deep-merge.js';
 
 export type ConfigurationOverrideFunctionT = ({}) => ?{};
@@ -31,6 +32,10 @@ export type OverrideT = OverrideObjectT | React.ComponentType<any>;
 
 export type OverridesT = {
   [string]: OverrideT,
+};
+
+export type ThemeLevelOverridesT = {
+  [string]: OverridesT,
 };
 
 /**
@@ -206,13 +211,55 @@ export function useOverrides(
   return React.useMemo(
     () =>
       // eslint-disable-next-line flowtype/no-weak-types
-      Object.keys(defaults).reduce<{[string]: [React.ComponentType<any>, {}]}>(
-        (obj, key) => {
-          obj[key] = getOverrides(overrides[key], defaults[key]);
-          return obj;
-        },
-        {},
-      ),
+      Object.keys(defaults).reduce<{
+        [string]: [React.ComponentType<any>, {}],
+      }>((obj, key) => {
+        obj[key] = getOverrides(overrides[key], defaults[key]);
+        return obj;
+      }, {}),
     [overrides],
   );
+}
+
+/**
+ *
+ * @param {React.Component} WrappedComponent React Component that is going to be overriden.
+ * @param {String} componentName Name representation of the component while passing global overrides.
+ * @returns {React.Component}
+ */
+// eslint-disable-next-line flowtype/no-weak-types
+export function withOverrides(
+  WrappedComponent: React.ComponentType<any>,
+  componentName: string,
+): React.ComponentType<any> {
+  // eslint-disable-next-line flowtype/no-weak-types
+  class WithOverrides extends React.Component<any> {
+    static contextType = ThemeContext;
+    constructor(props) {
+      super(props);
+    }
+
+    render() {
+      // Grab forwardedRef from props and pass it down.
+      const {forwardedRef, ...rest} = this.props;
+      // mergeOverrides from themeContext and props
+      const overrides = mergeOverrides(
+        this.context.overrides?.[componentName],
+        this.props.overrides,
+      );
+      return (
+        <WrappedComponent
+          {...this.props}
+          overrides={overrides}
+          ref={forwardedRef}
+        />
+      );
+    }
+  }
+  // Note the second param "ref" provided by React.forwardRef.
+  // We can pass it along to withOverrides as a regular prop, e.g. "forwardedRef"
+  // And it can then be attached to the Component.
+  return React.forwardRef((props, ref) => {
+    return <WithOverrides {...props} forwardedRef={ref} />;
+  });
 }

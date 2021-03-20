@@ -6,7 +6,11 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import {
+  getOverrides,
+  mergeOverrides,
+  withOverrides,
+} from '../helpers/overrides.js';
 import {
   Root as StyledRoot,
   TabBar as StyledTabBar,
@@ -15,7 +19,7 @@ import {
 import type {TabsPropsT, SharedStylePropsArgT} from './types.js';
 import {ORIENTATION} from './constants.js';
 
-export default class Tabs extends React.Component<TabsPropsT> {
+class Tabs extends React.Component<TabsPropsT> {
   static defaultProps: $Shape<TabsPropsT> = {
     disabled: false,
     onChange: () => {},
@@ -126,3 +130,5 @@ export default class Tabs extends React.Component<TabsPropsT> {
     );
   }
 }
+
+export default withOverrides(Tabs, 'Tabs');

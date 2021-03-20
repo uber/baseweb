@@ -14,7 +14,7 @@ import {
 import {getSharedProps} from './utils.js';
 import ButtonInternals from './button-internals.js';
 import {defaultProps} from './default-props.js';
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 import type {ButtonPropsT} from './types.js';
@@ -63,7 +63,6 @@ class Button extends React.Component<
       forwardedRef,
       ...restProps
     } = this.props;
-    // Get overrides
     const [BaseButton, baseButtonProps] = getOverrides(
       // adding both (1) BaseButton and (2) Root
       // (1) because it's a Button under the hood
@@ -138,4 +137,4 @@ const ForwardedButton = React.forwardRef<ButtonPropsT, HTMLButtonElement>(
   (props: ButtonPropsT, ref) => <Button forwardedRef={ref} {...props} />,
 );
 ForwardedButton.displayName = 'Button';
-export default ForwardedButton;
+export default withOverrides(ForwardedButton, 'Button');

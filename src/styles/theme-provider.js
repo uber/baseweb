@@ -8,16 +8,23 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {LightTheme} from '../themes/index.js';
 
-import type {ThemeT} from './types.js';
+import type {ThemeT, ThemeProviderT} from './types.js';
+import type {ThemeLevelOverridesT} from '../helpers/overrides';
 
-export const ThemeContext: React.Context<ThemeT> = React.createContext(
-  LightTheme,
-);
+export const ThemeContext: React.Context<ThemeProviderT> = React.createContext({
+  theme: LightTheme,
+});
 
-const ThemeProvider = (props: {theme: ThemeT, children: ?React.Node}) => {
-  const {theme, children} = props;
+const ThemeProvider = (props: {
+  theme: ThemeT,
+  children: ?React.Node,
+  overrides?: ThemeLevelOverridesT,
+}) => {
+  const {theme, children, overrides} = props;
   return (
-    <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
+    <ThemeContext.Provider value={{theme, overrides: overrides}}>
+      {children}
+    </ThemeContext.Provider>
   );
 };
 

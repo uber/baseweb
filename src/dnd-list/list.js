@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 import {
   Root as StyledRoot,
   List as StyledList,
@@ -167,4 +167,4 @@ class StatelessList extends React.Component<
   }
 }
 
-export default StatelessList;
+export default withOverrides(StatelessList, 'DragAndDropList');

@@ -10,7 +10,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {Button, KIND, SHAPE} from '../button/index.js';
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 import {useStyletron} from '../styles/index.js';
 
 import {
@@ -65,7 +65,7 @@ const ActionButton = React.forwardRef(
   },
 );
 
-export default function SnackbarElement({
+function SnackbarElement({
   actionMessage,
   actionOnClick,
   focus = true,
@@ -208,3 +208,5 @@ export default function SnackbarElement({
     </React.Fragment>
   );
 }
+
+export default withOverrides(SnackbarElement, 'SnackbarElement');

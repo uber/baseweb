@@ -10,7 +10,11 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 
-import {getOverride, getOverrideProps} from '../helpers/overrides.js';
+import {
+  getOverride,
+  getOverrideProps,
+  withOverrides,
+} from '../helpers/overrides.js';
 import getBuiId from '../utils/get-bui-id.js';
 import {
   ACCESSIBILITY_TYPE,
@@ -485,5 +489,5 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   }
 }
 
-export default Popover;
+export default withOverrides(Popover, 'Popover');
 /* eslint-enable react/no-find-dom-node */

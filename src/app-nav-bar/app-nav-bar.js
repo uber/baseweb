@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 import {Cell, Grid} from '../layout-grid/index.js';
 import {useStyletron} from '../styles/index.js';
 import {isFocusVisible} from '../utils/focusVisible.js';
@@ -124,7 +124,7 @@ function SecondaryMenu(props) {
   );
 }
 
-export default function AppNavBar(props: AppNavBarPropsT) {
+function AppNavBar(props: AppNavBarPropsT) {
   const [css, theme] = useStyletron();
   const {
     title,
@@ -268,3 +268,5 @@ export default function AppNavBar(props: AppNavBarPropsT) {
     </Root>
   );
 }
+
+export default withOverrides(AppNavBar, 'AppNavBar');

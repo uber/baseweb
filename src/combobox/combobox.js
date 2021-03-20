@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {Input, SIZE} from '../input/index.js';
 import {scrollItemIntoView} from '../menu/utils.js';
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
 import getBuiId from '../utils/get-bui-id.js';
 
@@ -318,4 +318,4 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
   );
 }
 
-export default Combobox;
+export default withOverrides(Combobox, 'Combobox');

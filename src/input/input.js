@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 import type {InputPropsT, InternalStateT, AdjoinedT} from './types.js';
 import {getSharedProps} from './utils.js';
 import BaseInput from './base-input.js';
@@ -139,4 +139,4 @@ function getAdjoinedProp(startEnhancer, endEnhancer): AdjoinedT {
   return ADJOINED.none;
 }
 
-export default Input;
+export default withOverrides(Input, 'Input');

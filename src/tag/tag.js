@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 import {
   Action as StyledAction,
   Root as StyledRoot,
@@ -161,4 +161,4 @@ const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
 });
 Tag.displayName = 'Tag';
 
-export default Tag;
+export default withOverrides(Tag, 'Tag');

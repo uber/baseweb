@@ -8,7 +8,11 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import {
+  getOverrides,
+  mergeOverrides,
+  withOverrides,
+} from '../helpers/overrides.js';
 import {LocaleContext} from '../locale/index.js';
 import {Select, filterOptions} from '../select/index.js';
 import DateHelpers from '../datepicker/utils/date-helpers.js';
@@ -298,4 +302,4 @@ class TimePicker<T = Date> extends React.Component<
   }
 }
 
-export default TimePicker;
+export default withOverrides(TimePicker, 'TimePicker');
