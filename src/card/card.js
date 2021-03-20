@@ -32,6 +32,7 @@ export function hasThumbnail(props: {+thumbnail?: string}) {
 
 function Card(props: CardsPropsT) {
   const {
+    overrides = {},
     action,
     children,
     hasThumbnail,
