@@ -23,7 +23,5 @@ module.name_mapper='^baseui' ->'<PROJECT_ROOT>/src'
 module.name_mapper='^examples' ->'<PROJECT_ROOT>/documentation-site/examples'
 log.file=.flow.log
 sharedmemory.hash_table_pow=21
-sharedmemory.heap_size=3221225472
-esproposal.optional_chaining=enable
 
 [strict]
