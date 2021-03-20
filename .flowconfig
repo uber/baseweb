@@ -24,4 +24,7 @@ module.name_mapper='^examples' ->'<PROJECT_ROOT>/documentation-site/examples'
 log.file=.flow.log
 sharedmemory.hash_table_pow=21
 merge_timeout=140
+sharedmemory.heap_size=3221225472
+esproposal.optional_chaining=enable
+
 [strict]
