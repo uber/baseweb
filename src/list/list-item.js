@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import React from 'react';
 
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 
 import {ARTWORK_SIZES, SHAPE} from './constants.js';
 import {
@@ -93,4 +93,4 @@ const ListItem = React.forwardRef<PropsT, HTMLLIElement>(
 );
 ListItem.displayName = 'ListItem';
 
-export default ListItem;
+export default withOverrides(ListItem, 'ListItem');

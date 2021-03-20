@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 import {SIZE} from './constants.js';
 import {
   StyledRoot,
@@ -127,4 +127,4 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
   }
 }
 
-export default ProgressBar;
+export default withOverrides(ProgressBar, 'ProgressBar');

@@ -8,8 +8,12 @@ LICENSE file in the root directory of this source tree.
 /* @flow */
 
 import * as React from 'react';
-import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 import {LevelContext} from '../heading/index.js';
+import {
+  getOverride,
+  getOverrideProps,
+  withOverrides,
+} from '../helpers/overrides.js';
 import {
   Action as StyledAction,
   Body as StyledBody,
@@ -48,10 +52,8 @@ function Card(props: CardsPropsT) {
     headerImage,
     thumbnail: thumbnailSrc,
     title,
-    overrides,
     ...restProps
   } = props;
-
   const {
     Action: ActionOverride,
     Body: BodyOverride,
@@ -117,4 +119,4 @@ Card.defaultProps = {
   overrides: {},
 };
 
-export default Card;
+export default withOverrides(Card, 'Card');

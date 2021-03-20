@@ -63,7 +63,7 @@ export type SharedPropsT = {|
 
 export type PropsT = *;
 
-export type BaseInputComponentsT = {|
+export type BaseInputComponentsT = {
   InputContainer?: OverrideT,
   Input?: OverrideT,
   Before?: OverrideT,
@@ -73,14 +73,14 @@ export type BaseInputComponentsT = {|
   MaskToggleButton?: OverrideT,
   MaskToggleShowIcon?: OverrideT,
   MaskToggleHideIcon?: OverrideT,
-|};
+};
 
-export type InputComponentsT = {|
+export type InputComponentsT = {
   ...BaseInputComponentsT,
   Root?: OverrideT,
   StartEnhancer?: OverrideT,
   EndEnhancer?: OverrideT,
-|};
+};
 
 export type BaseInputPropsT<T> = {|
   'aria-activedescendant'?: string,
@@ -108,7 +108,7 @@ export type BaseInputPropsT<T> = {|
   error?: boolean,
   /** Renders component in 'positive' state. */
   positive?: boolean,
-  /** A regex that is used to validate the value of the input on form submission. The Input component must be wrapped in a form element */
+  /** A regex that is used to validate the value of the input on form submission. */
   pattern?: string,
   /** Id attribute value to be added to the input element and as a label's for attribute value. */
   id?: string,
@@ -166,7 +166,7 @@ export type InputPropsT = {|
 
 export type MaskedInputPropsT = $Shape<{|
   ...InputPropsT,
-  /** See mask examples here: https://github.com/sanniassin/react-input-mask */
+  /** See pattern examples here: https://github.com/sanniassin/react-input-mask */
   mask?: string,
   /** Character to render for unfilled mask element. */
   maskChar?: string,

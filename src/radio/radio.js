@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 
 import {
   Root as StyledRoot,
@@ -179,4 +179,4 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
   }
 }
 
-export default Radio;
+export default withOverrides(Radio, 'Radio');

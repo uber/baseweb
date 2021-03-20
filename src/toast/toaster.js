@@ -9,7 +9,11 @@ LICENSE file in the root directory of this source tree.
 /* eslint-disable cup/no-undef */
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import {
+  getOverrides,
+  mergeOverrides,
+  withOverrides,
+} from '../helpers/overrides.js';
 import {KIND, PLACEMENT} from './constants.js';
 import {
   Root as StyledRoot,
@@ -27,7 +31,7 @@ import type {
 
 let toasterRef: ?React.ElementRef<typeof ToasterContainer> = null;
 
-export class ToasterContainer extends React.Component<
+class ToasterContainer extends React.Component<
   $Shape<ToasterPropsT>,
   ToasterContainerStateT,
 > {
@@ -289,4 +293,4 @@ const toaster = {
   },
 };
 
-export default toaster;
+exports.ToasterContainer = withOverrides(ToasterContainer, 'ToasterContainer');

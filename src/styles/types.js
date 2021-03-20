@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import type {ComponentType} from 'react';
+import type {ThemeLevelOverridesT} from '../helpers/overrides';
 import type {IconPropsT} from '../icon/types.js';
 
 import type {
@@ -67,6 +68,11 @@ export type ThemeT = {|
     backgroundColor: string,
   },
   // ^^^^^^^
+|};
+
+export type ThemeProviderT = {|
+  theme: ThemeT,
+  overrides?: ThemeLevelOverridesT,
 |};
 
 export type IconT = {

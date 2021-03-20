@@ -7,12 +7,12 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 import {StyledCell as DefaultStyledCell} from './styled-components.js';
 import {GridContext} from './grid.js';
 import type {CellPropsT} from './types.js';
 
-export default function Cell({
+function Cell({
   align,
   children,
   gridColumns,
@@ -46,3 +46,5 @@ export default function Cell({
     </StyledCell>
   );
 }
+
+export default withOverrides(Cell, 'Cell');

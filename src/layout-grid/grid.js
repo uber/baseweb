@@ -6,8 +6,8 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
 import {STYLE, STYLE_VALUES} from './constants.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 import {StyledGrid as DefaultStyledGrid} from './styled-components.js';
 
 import type {GridPropsT, SharedGridPropsT} from './types.js';
@@ -16,7 +16,7 @@ export const GridContext: React.Context<SharedGridPropsT> = React.createContext(
   {},
 );
 
-export default function Grid({
+function Grid({
   align,
   behavior,
   children,
@@ -72,3 +72,5 @@ export default function Grid({
     </StyledGrid>
   );
 }
+
+export default withOverrides(Grid, 'Grid');

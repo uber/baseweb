@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 /* eslint-disable cup/no-undef */
 import * as React from 'react';
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 import {Root as StyledRoot} from './styled-components.js';
 import {STATE_CHANGE_TYPE} from './constants.js';
 import type {
@@ -16,10 +16,7 @@ import type {
   StateChangeTypeT,
 } from './types.js';
 
-export default class Accordion extends React.Component<
-  AccordionPropsT,
-  AccordionStateT,
-> {
+class Accordion extends React.Component<AccordionPropsT, AccordionStateT> {
   static defaultProps: $Shape<AccordionPropsT> = {
     accordion: true,
     disabled: false,
@@ -129,3 +126,5 @@ export default class Accordion extends React.Component<
     );
   }
 }
+
+export default withOverrides(Accordion, 'Accordion');

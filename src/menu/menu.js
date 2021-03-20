@@ -14,14 +14,14 @@ import {
   StyledOptgroupHeader,
 } from './styled-components.js';
 import OptionList from './option-list.js';
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 // Types
 import type {StatelessMenuPropsT} from './types.js';
 import type {LocaleT} from '../locale/types.js';
 
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
-export default function Menu(props: StatelessMenuPropsT) {
+function Menu(props: StatelessMenuPropsT) {
   const {
     overrides = {},
     ariaLabel = 'Menu',
@@ -142,3 +142,5 @@ export default function Menu(props: StatelessMenuPropsT) {
     </LocaleContext.Consumer>
   );
 }
+
+export default withOverrides(Menu, 'Menu');

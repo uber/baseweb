@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 
 import {RadioGroupRoot as StyledRadioGroupRoot} from './styled-components.js';
 import type {PropsT, DefaultPropsT, StatelessStateT} from './types.js';
@@ -132,4 +132,4 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
   }
 }
 
-export default StatelessRadioGroup;
+export default withOverrides(StatelessRadioGroup, 'RadioGroup');

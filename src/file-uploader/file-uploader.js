@@ -12,7 +12,7 @@ import Dropzone from 'react-dropzone';
 import {LocaleContext} from '../locale/index.js';
 import {useStyletron} from '../styles/index.js';
 import {Button, KIND, SHAPE, SIZE as BUTTON_SIZE} from '../button/index.js';
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 import {ProgressBar} from '../progress-bar/index.js';
 import {StyledSpinnerNext, SIZE as SPINNER_SIZE} from '../spinner/index.js';
 
@@ -244,4 +244,4 @@ FileUploader.defaultProps = {
   overrides: {},
 };
 
-export default FileUploader;
+export default withOverrides(FileUploader, 'FileUploader');

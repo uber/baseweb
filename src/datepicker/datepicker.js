@@ -10,7 +10,7 @@ import * as React from 'react';
 import {MaskedInput} from '../input/index.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
 import Calendar from './calendar.js';
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 import getInterpolatedString from '../helpers/i18n-interpolation.js';
 import {LocaleContext} from '../locale/index.js';
 import {StyledInputWrapper} from './styled-components.js';
@@ -27,7 +27,7 @@ type StateT = {|
 |};
 export const DEFAULT_DATE_FORMAT = 'yyyy/MM/dd';
 
-export default class Datepicker<T = Date> extends React.Component<
+class Datepicker<T = Date> extends React.Component<
   DatepickerPropsT<T>,
   StateT,
 > {
@@ -528,3 +528,5 @@ export default class Datepicker<T = Date> extends React.Component<
     );
   }
 }
+
+export default withOverrides(Datepicker, 'Datepicker');

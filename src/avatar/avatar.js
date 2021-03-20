@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {getOverrides} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 
 import {
   Avatar as StyledAvatar,
@@ -26,7 +26,7 @@ function getInitials(name) {
     .toUpperCase();
 }
 
-export default function Avatar({
+function Avatar({
   initials,
   name = '',
   overrides = {},
@@ -94,3 +94,5 @@ export default function Avatar({
     </Root>
   );
 }
+
+export default withOverrides(Avatar, 'Avatar');

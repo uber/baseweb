@@ -77,4 +77,4 @@ NumberedStep.defaultProps = {
   isLast: false,
 };
 
-export default NumberedStep;
+export default withOverrides(NumberedStep, 'NumberedStep');

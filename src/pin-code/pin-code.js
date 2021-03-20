@@ -15,10 +15,14 @@ import {
   StyledInputOverrideInput,
 } from './styled-components.js';
 import type {PropsT, StateT} from './types.js';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import {
+  getOverrides,
+  mergeOverrides,
+  withOverrides,
+} from '../helpers/overrides.js';
 import {Input as DefaultInput} from '../input/index.js';
 
-export default class PinCode extends React.Component<PropsT, StateT> {
+class PinCode extends React.Component<PropsT, StateT> {
   static defaultProps = defaultProps;
 
   _inputRefs = new MultiRef<number, HTMLInputElement>();
@@ -152,3 +156,5 @@ export default class PinCode extends React.Component<PropsT, StateT> {
     );
   }
 }
+
+export default withOverrides(PinCode, 'PinCode');

@@ -21,11 +21,15 @@ import {
 } from './styled-components.js';
 import dateFnsAdapter from './utils/date-fns-adapter.js';
 import DateHelpers from './utils/date-helpers.js';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import {
+  getOverrides,
+  withOverrides,
+  mergeOverrides,
+} from '../helpers/overrides.js';
 import type {CalendarPropsT, CalendarInternalState} from './types.js';
 import {ORIENTATION} from './constants.js';
 
-export default class Calendar<T = Date> extends React.Component<
+class Calendar<T = Date> extends React.Component<
   CalendarPropsT<T>,
   CalendarInternalState<T>,
 > {
@@ -681,3 +685,5 @@ export default class Calendar<T = Date> extends React.Component<
     );
   }
 }
+
+export default withOverrides(Calendar, 'Calendar');

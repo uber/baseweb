@@ -18,7 +18,11 @@ import {
 } from './styled-components.js';
 import BaseCountryPicker from './base-country-picker.js';
 import {SingleSelect as DefaultSelect} from '../select/index.js';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import {
+  getOverrides,
+  mergeOverrides,
+  withOverrides,
+} from '../helpers/overrides.js';
 import defaultProps from './default-props.js';
 
 import type {CountrySelectPropsT} from './types.js';
@@ -35,7 +39,7 @@ CountrySelect.defaultProps = {
   required: defaultProps.required,
 };
 
-export default function CountrySelect(props: CountrySelectPropsT) {
+function CountrySelect(props: CountrySelectPropsT) {
   const {country, disabled, error, overrides, positive, required, size} = props;
   const sharedProps = {
     $disabled: disabled,
@@ -104,3 +108,5 @@ export default function CountrySelect(props: CountrySelectPropsT) {
     </CountrySelectContainer>
   );
 }
+
+export default withOverrides(CountrySelect, 'CountrySelect');
