@@ -284,6 +284,18 @@ const config = {
   'popover--reposition': {
     skip: true,
   },
+  'popover--reposition-with-anchor-update': {
+    interactions: [
+      {
+        name: 'addOptions',
+        behavior: async page => {
+          const options = await page.$$('[role="option"]');
+          await options[0].click();
+          await options[1].click();
+        },
+      },
+    ],
+  },
   'phone-input--custom-flags': {
     interactions: [
       {
