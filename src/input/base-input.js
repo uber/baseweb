@@ -239,8 +239,7 @@ class BaseInput<T: EventTarget> extends React.Component<
     if (
       disabled ||
       !clearable ||
-      typeof value === null ||
-      typeof value === undefined ||
+      value == null ||
       (typeof value === 'string' && value.length === 0)
     ) {
       return null;
