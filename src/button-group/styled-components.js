@@ -9,11 +9,11 @@ LICENSE file in the root directory of this source tree.
 import {styled} from '../styles/index.js';
 import {SHAPE} from '../button/index.js';
 
-export const StyledRoot = styled<{$shape: string, $lenght: number}>(
+export const StyledRoot = styled<{$shape: string, $length: number}>(
   'div',
-  ({$shape, $lenght, $theme}) => {
+  ({$shape, $length, $theme}) => {
     const margin =
-      $lenght === 1
+      $length === 1
         ? undefined
         : $shape !== SHAPE.default
         ? `-${$theme.sizing.scale100}`

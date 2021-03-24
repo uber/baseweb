@@ -407,13 +407,14 @@ export const InputContainer = styled<SharedPropsT>(
 
 function getInputColors($disabled, $isFocused, $error, colors) {
   if ($disabled) {
-    return {
+    return ({
       color: colors.inputTextDisabled,
+      '-webkit-text-fill-color': colors.inputTextDisabled,
       caretColor: colors.contentPrimary,
       '::placeholder': {
         color: colors.inputPlaceholderDisabled,
       },
-    };
+    }: {});
   }
 
   return {

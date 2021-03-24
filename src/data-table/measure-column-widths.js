@@ -22,7 +22,7 @@ function useDimensions() {
     setNode(node);
   }, []);
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     if (__BROWSER__) {
       if (node) {
         window.requestAnimationFrame(() => {

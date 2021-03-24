@@ -212,6 +212,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
         $isFocusVisible={this.state.isFocusVisible}
         type="button"
         $disabled={isDisabled}
+        $order={this.props.order}
         {...prevButtonProps}
       >
         {isHidden ? null : (
@@ -284,6 +285,7 @@ export default class CalendarHeader<T = Date> extends React.Component<
         type="button"
         $disabled={isDisabled}
         $isFocusVisible={this.state.isFocusVisible}
+        $order={this.props.order}
         {...nextButtonProps}
       >
         {isHidden ? null : (

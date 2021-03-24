@@ -26,7 +26,7 @@ export const Link = styled<{
     transitionProperty: !$isAnimateUnderline ? 'backgroundSize' : '',
     transitionDuration: animation.timing500,
     transitionTimingFunction: animation.easeOutQuinticCurve,
-    position: 'relative',
+    position: $isAnimateUnderline ? 'relative' : null,
     textDecoration: $isAnimateUnderline ? 'none' : 'underline',
     textUnderlinePosition: 'under',
     willChange: 'background-size',

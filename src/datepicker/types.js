@@ -230,6 +230,7 @@ export type SharedStylePropsT = {
   $hasRangeHighlighted: ?boolean,
   $hasRangeOnRight: ?boolean,
   $hasRangeSelected: ?boolean,
+  $order: ?number,
 };
 
 export type StateChangeTypeT = ?$Values<typeof STATE_CHANGE_TYPE>;
