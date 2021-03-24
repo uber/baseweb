@@ -16,6 +16,7 @@ import PopoverRenderAll from './popover-render-all.scenario.js';
 import PopoverReposition from './popover-reposition.scenario.js';
 import PopoverSelect from './popover-select.scenario.js';
 import PopoverDefault from './popover.scenario.js';
+import PopoverRepositionWithAnchorUpdate from './popover-reposition-with-anchor-update.scenario.js';
 
 export const Click = () => <PopoverClick />;
 export const FocusLoop = () => <PopoverFocusLoop />;
@@ -26,3 +27,6 @@ export const RenderAll = () => <PopoverRenderAll />;
 export const Reposition = () => <PopoverReposition />;
 export const Select = () => <PopoverSelect />;
 export const Popover = () => <PopoverDefault />;
+export const RepositionWithAnchorUpdate = () => (
+  <PopoverRepositionWithAnchorUpdate />
+);
