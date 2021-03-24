@@ -47,6 +47,7 @@ export interface ModalProps {
   autofocus?: boolean;
   autoFocus?: boolean;
   focusLock?: boolean;
+  returnFocus?: boolean | FocusOptions;
   children?: React.ReactNode;
   closeable?: boolean;
   isOpen?: boolean;
