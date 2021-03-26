@@ -509,4 +509,7 @@ function InternalTabPanel({
   );
 }
 
-exports.TabsMotion = withOverrides(Tabs, 'TabsMotion');
+// $FlowFixMe
+const tabsMotion = withOverrides(Tabs, 'TabsMotion');
+
+export {tabsMotion as Tabs};

@@ -212,6 +212,7 @@ export function useOverrides(
     () =>
       // eslint-disable-next-line flowtype/no-weak-types
       Object.keys(defaults).reduce<{
+        // eslint-disable-next-line flowtype/no-weak-types
         [string]: [React.ComponentType<any>, {}],
       }>((obj, key) => {
         obj[key] = getOverrides(overrides[key], defaults[key]);
@@ -221,27 +222,26 @@ export function useOverrides(
   );
 }
 
-/**
- *
- * @param {React.Component} WrappedComponent React Component that is going to be overriden.
- * @param {String} componentName Name representation of the component while passing global overrides.
- * @returns {React.Component}
- */
-// eslint-disable-next-line flowtype/no-weak-types
-export function withOverrides(
-  WrappedComponent: React.ComponentType<any>,
-  componentName: string,
-): React.ComponentType<any> {
+export function withOverrides<Config, Instance>(
+  WrappedComponent: React.AbstractComponent<Config, Instance>,
+  componentName: String,
   // eslint-disable-next-line flowtype/no-weak-types
-  class WithOverrides extends React.Component<any> {
+): React.AbstractComponent<Config, Instance> {
+  // eslint-disable-next-line flowtype/no-weak-types
+  class WithOverrides extends React.Component<{
+    ...Config,
+    // eslint-disable-next-line flowtype/no-weak-types
+    forwardedRef: ?any,
+    overrides?: OverridesT,
+  }> {
     static contextType = ThemeContext;
     constructor(props) {
       super(props);
     }
 
     render() {
-      // Grab forwardedRef from props and pass it down.
-      const {forwardedRef, ...rest} = this.props;
+      // Grab forwardedRef from props and pass it down
+      const {forwardedRef} = this.props;
       // mergeOverrides from themeContext and props
       const overrides = mergeOverrides(
         this.context.overrides?.[componentName],
@@ -259,7 +259,7 @@ export function withOverrides(
   // Note the second param "ref" provided by React.forwardRef.
   // We can pass it along to withOverrides as a regular prop, e.g. "forwardedRef"
   // And it can then be attached to the Component.
-  return React.forwardRef((props, ref) => {
+  return React.forwardRef<Config, Instance>((props, ref) => {
     return <WithOverrides {...props} forwardedRef={ref} />;
   });
 }

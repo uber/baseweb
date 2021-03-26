@@ -318,4 +318,5 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
   );
 }
 
+//$FlowFixMe
 export default withOverrides(Combobox, 'Combobox');

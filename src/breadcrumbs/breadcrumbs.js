@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 
 // @flow
 
-import React, {Children, useContext} from 'react';
+import React, {Children} from 'react';
 
 import {LocaleContext} from '../locale/index.js';
 import {ThemeContext} from '../styles/theme-provider.js';
@@ -97,4 +97,5 @@ Breadcrumbs.defaultProps = {
   showTrailingSeparator: false,
 };
 
+//$FlowFixMe
 export default withOverrides(Breadcrumbs, 'Breadcrumbs');

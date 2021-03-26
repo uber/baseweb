@@ -157,4 +157,5 @@ class PinCode extends React.Component<PropsT, StateT> {
   }
 }
 
+//$FlowFixMe
 export default withOverrides(PinCode, 'PinCode');

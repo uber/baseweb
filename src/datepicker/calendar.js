@@ -29,6 +29,7 @@ import {
 import type {CalendarPropsT, CalendarInternalState} from './types.js';
 import {ORIENTATION} from './constants.js';
 
+// $FlowFixMe
 class Calendar<T = Date> extends React.Component<
   CalendarPropsT<T>,
   CalendarInternalState<T>,
@@ -678,4 +679,5 @@ class Calendar<T = Date> extends React.Component<
   }
 }
 
+//$FlowFixMe
 export default withOverrides(Calendar, 'Calendar');

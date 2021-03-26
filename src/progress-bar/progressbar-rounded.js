@@ -125,4 +125,5 @@ function ProgressBarRounded({
   );
 }
 
+//$FlowFixMe
 export default withOverrides(ProgressBarRounded, 'ProgressBarRounded');

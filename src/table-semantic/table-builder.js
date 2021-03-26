@@ -28,6 +28,7 @@ import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 import type {TableBuilderPropsT} from './types.js';
 
+// $FlowFixMe
 class TableBuilder<T> extends React.Component<
   TableBuilderPropsT<T>,
   {isFocusVisible: boolean},
@@ -311,4 +312,5 @@ class TableBuilder<T> extends React.Component<
   }
 }
 
+//$FlowFixMe
 export default withOverrides(TableBuilder, 'TableBuilder');

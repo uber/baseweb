@@ -11,7 +11,6 @@ import * as React from 'react';
 import {
   getOverride,
   getOverrideProps,
-  mergeOverrides,
   withOverrides,
 } from '../helpers/overrides.js';
 import {
@@ -106,4 +105,5 @@ Card.defaultProps = {
   overrides: {},
 };
 
+//$FlowFixMe
 export default withOverrides(Card, 'Card');

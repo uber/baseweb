@@ -29,4 +29,5 @@ class HeaderNavigation extends React.Component<PropsT, {}> {
   }
 }
 
+//$FlowFixMe
 export default withOverrides(HeaderNavigation, 'HeaderNavigation');

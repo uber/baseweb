@@ -132,4 +132,5 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
   }
 }
 
+//$FlowFixMe
 export default withOverrides(StatelessRadioGroup, 'RadioGroup');

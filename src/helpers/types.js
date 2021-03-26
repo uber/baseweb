@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import type {ThemeT} from '../styles/types.js';
-import type {OverrideT, ThemeLevelOverridesT} from '../helpers/overrides.js';
+import type {ThemeLevelOverridesT} from '../helpers/overrides.js';
 
 export type BaseProviderPropsT = {
   /** Children element to be rendered. Normally the BaseProvider

@@ -317,4 +317,5 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
   }
 }
 
+//$FlowFixMe
 export default withOverrides(Drawer, 'Drawer');

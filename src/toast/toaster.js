@@ -300,5 +300,8 @@ const toaster = {
   },
 };
 
-exports.ToasterContainer = withOverrides(ToasterContainer, 'ToasterContainer');
+// $FlowFixMe
+const toasterContainer = withOverrides(ToasterContainer, 'ToasterContainer');
+
+export {toasterContainer as ToasterContainer};
 export default toaster;

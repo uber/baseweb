@@ -10,7 +10,7 @@ import * as React from 'react';
 
 import {Block} from '../block/index.js';
 import {flattenFragments} from '../helpers/react-helpers.js';
-import {getOverrides, withOverrides} from '../helpers/overrides.js';
+import {getOverrides} from '../helpers/overrides.js';
 import type {BlockPropsT} from '../block/types.js';
 import type {FlexGridPropsT} from './types.js';
 
@@ -75,4 +75,4 @@ const FlexGridComponent = React.forwardRef<FlexGridPropsT, HTMLElement>(
   (props: FlexGridPropsT, ref) => <FlexGrid {...props} forwardedRef={ref} />,
 );
 FlexGridComponent.displayName = 'FlexGrid';
-export default withOverrides(FlexGridComponent, 'FlexGrid');
+export default FlexGridComponent;

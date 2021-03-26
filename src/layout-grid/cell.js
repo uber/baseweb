@@ -47,4 +47,5 @@ function Cell({
   );
 }
 
+//$FlowFixMe
 export default withOverrides(Cell, 'Cell');

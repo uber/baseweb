@@ -214,4 +214,5 @@ function Slider({
   );
 }
 
+//$FlowFixMe
 export default withOverrides(Slider, 'Slider');

@@ -174,4 +174,6 @@ const BlockComponent = React.forwardRef<BlockPropsT, HTMLElement>(
   (props: BlockPropsT, ref) => <Block {...props} forwardedRef={ref} />,
 );
 BlockComponent.displayName = 'Block';
+
+//$FlowFixMe
 export default withOverrides(BlockComponent, 'Block');
