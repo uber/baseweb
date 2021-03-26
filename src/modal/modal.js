@@ -39,6 +39,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
     autofocus: null,
     autoFocus: true,
     focusLock: true,
+    returnFocus: true,
     closeable: true,
     isOpen: false,
     overrides: {},
@@ -269,6 +270,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       autofocus,
       autoFocus,
       focusLock,
+      returnFocus,
     } = this.props;
 
     const {
@@ -318,7 +320,7 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
         {locale => (
           <FocusLock
             disabled={!focusLock}
-            returnFocus
+            returnFocus={returnFocus}
             // eslint-disable-next-line jsx-a11y/no-autofocus
             autoFocus={autofocus !== null ? autofocus : autoFocus}
           >

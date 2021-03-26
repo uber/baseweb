@@ -38,6 +38,9 @@ export default function Scenario() {
         }}
         size="large"
       />
+      <br />
+      <p>renders clearable if initial value is number type</p>
+      <StatefulInput clearable initialState={{value: 5}} type="number" />
     </>
   );
 }
