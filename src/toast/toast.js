@@ -269,4 +269,5 @@ class Toast extends React.Component<ToastPropsT, ToastPrivateStateT> {
   }
 }
 
+//$FlowFixMe
 export default withOverrides(Toast, 'Toast');

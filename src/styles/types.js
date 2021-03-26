@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import type {ComponentType} from 'react';
-import type {ThemeLevelOverridesT} from '../helpers/overrides';
+import type {ThemeLevelOverridesT} from '../helpers/overrides.js';
 import type {IconPropsT} from '../icon/types.js';
 
 import type {

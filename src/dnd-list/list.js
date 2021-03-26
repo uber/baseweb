@@ -167,4 +167,6 @@ class StatelessList extends React.Component<
   }
 }
 
+//$FloxFixMe
+//$FlowFixMe
 export default withOverrides(StatelessList, 'DragAndDropList');

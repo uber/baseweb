@@ -87,4 +87,5 @@ class Textarea extends React.Component<TextareaPropsT, {isFocused: boolean}> {
   }
 }
 
+//$FlowFixMe
 export default withOverrides(Textarea, 'Textarea');

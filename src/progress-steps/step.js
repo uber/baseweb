@@ -79,4 +79,5 @@ Step.defaultProps = {
   isLast: false,
 };
 
+//$FlowFixMe
 export default withOverrides(Step, 'Step');

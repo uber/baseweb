@@ -142,4 +142,5 @@ class StarRating extends React.Component<StarRatingPropsT, RatingStateT> {
   }
 }
 
+//$FlowFixMe
 export default withOverrides(StarRating, 'StarRating');

@@ -14,15 +14,23 @@ import {camelToKebab} from '../../helpers/strings.js';
 
 describe('FlexGrid', () => {
   it('passes FlexGrid props to children', () => {
-    const MockFlexGridItem = props => (
-      <div
-        {...Object.keys(props).reduce((acc, key) => {
-          // Convert to kebab to avoid React warnings
+    const MockFlexGridItem = props => {
+      console.log(
+        Object.keys(props).reduce((acc, key) => {
           acc[camelToKebab(key)] = props[key];
           return acc;
-        }, {})}
-      />
-    );
+        }, {}),
+      );
+      return (
+        <div
+          {...Object.keys(props).reduce((acc, key) => {
+            // Convert to kebab to avoid React warnings
+            acc[camelToKebab(key)] = props[key];
+            return acc;
+          }, {})}
+        />
+      );
+    };
     const {baseElement} = render(
       <FlexGrid flexGridColumnCount={4}>
         <MockFlexGridItem>Item 1</MockFlexGridItem>

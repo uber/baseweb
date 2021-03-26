@@ -42,9 +42,13 @@ function Helper(props: PropsT) {
 }
 
 Helper.defaultProps = {
+  // $FlowFixMe
   ...Popover.defaultProps,
   placement: PLACEMENT.bottom,
   showArrow: true,
 };
 
-exports.Helper = withOverrides(Helper, 'Helper');
+// $FlowFixMe
+let helper = withOverrides(Helper, 'Helper');
+
+export {helper as Helper};

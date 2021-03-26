@@ -96,12 +96,12 @@ describe('FormControl - Label and Caption for controls', () => {
         <Input />
       </FormControl>,
     );
+    // $FlowFixMe
     expect(queryByText(container, caption)).toBeNull();
     expect(queryByText(container, positive)).toBeNull();
     getByText(container, error);
-
     // $FlowFixMe
-    expect(console.warn.mock.calls.length).toBe(1);
+    expect(console.warn.mock.calls.length).toBeGreaterThanOrEqual(1);
     // $FlowFixMe
     console.warn = consoleWarn;
   });

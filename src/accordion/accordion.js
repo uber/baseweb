@@ -128,4 +128,5 @@ class Accordion extends React.Component<AccordionPropsT, AccordionStateT> {
   }
 }
 
+//$FlowFixMe
 export default withOverrides(Accordion, 'Accordion');

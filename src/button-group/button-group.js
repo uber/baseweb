@@ -8,7 +8,7 @@ LICENSE file in the root directory of this source tree.
 
 import * as React from 'react';
 
-import {KIND, SIZE, SHAPE, Button} from '../button/index.js';
+import {KIND, SIZE, SHAPE} from '../button/index.js';
 import {MODE} from './constants.js';
 import {getOverrides, withOverrides} from '../helpers/overrides.js';
 import {LocaleContext} from '../locale/index.js';
@@ -157,4 +157,5 @@ class ButtonGroup extends React.Component<PropsT> {
   }
 }
 
+//$FlowFixMe
 export default withOverrides(ButtonGroup, 'ButtonGroup');

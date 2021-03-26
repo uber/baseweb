@@ -7,11 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 
 import * as React from 'react';
-import {
-  getOverrides,
-  mergeOverrides,
-  withOverrides,
-} from '../helpers/overrides.js';
+import {getOverrides, withOverrides} from '../helpers/overrides.js';
 import NavItem from './nav-item.js';
 import {
   StyledRoot,
@@ -134,4 +130,5 @@ class SideNav extends React.Component<NavPropsT, {isFocusVisible: boolean}> {
   }
 }
 
+//$FlowFixMe
 export default withOverrides(SideNav, 'SideNavigation');
