@@ -153,4 +153,5 @@ class TimezonePicker extends React.Component<
   }
 }
 
+//$FlowFixMe
 export default withOverrides(TimezonePicker, 'TimezonePicker');

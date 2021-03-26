@@ -143,4 +143,5 @@ function Menu(props: StatelessMenuPropsT) {
   );
 }
 
+//$FlowFixMe
 export default withOverrides(Menu, 'Menu');

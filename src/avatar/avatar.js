@@ -95,4 +95,5 @@ function Avatar({
   );
 }
 
+//$FlowFixMe
 export default withOverrides(Avatar, 'Avatar');

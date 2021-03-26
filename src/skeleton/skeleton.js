@@ -55,4 +55,5 @@ class Skeleton extends React.Component<SkeletonPropsT> {
   }
 }
 
+//$FlowFixMe
 export default withOverrides(Skeleton, 'Skeleton');

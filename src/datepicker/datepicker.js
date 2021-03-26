@@ -27,6 +27,7 @@ type StateT = {|
 |};
 export const DEFAULT_DATE_FORMAT = 'yyyy/MM/dd';
 
+// $FlowFixMe
 class Datepicker<T = Date> extends React.Component<
   DatepickerPropsT<T>,
   StateT,
@@ -529,4 +530,5 @@ class Datepicker<T = Date> extends React.Component<
   }
 }
 
+//$FlowFixMe
 export default withOverrides(Datepicker, 'Datepicker');

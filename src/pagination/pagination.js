@@ -261,4 +261,5 @@ class Pagination extends React.PureComponent<
   }
 }
 
+//$FlowFixMe
 export default withOverrides(Pagination, 'Pagination');

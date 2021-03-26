@@ -179,4 +179,5 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
   }
 }
 
+//$FlowFixMe
 export default withOverrides(Radio, 'Radio');

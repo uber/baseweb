@@ -1084,4 +1084,5 @@ class Select extends React.Component<PropsT, SelectStateT> {
   }
 }
 
+//$FlowFixMe
 export default withOverrides(Select, 'Select');

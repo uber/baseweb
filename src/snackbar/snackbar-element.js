@@ -213,4 +213,5 @@ function SnackbarElement({
   );
 }
 
+//$FlowFixMe
 export default withOverrides(SnackbarElement, 'SnackbarElement');

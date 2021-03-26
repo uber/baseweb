@@ -256,4 +256,5 @@ class StatelessCheckbox extends React.Component<PropsT, StatelessStateT> {
   }
 }
 
+//$FlowFixMe
 export default withOverrides(StatelessCheckbox, 'Checkbox');

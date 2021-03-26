@@ -177,4 +177,5 @@ const Tag = React.forwardRef<PropsT, HTMLSpanElement>((props, ref) => {
 });
 Tag.displayName = 'Tag';
 
+//$FlowFixMe
 export default withOverrides(Tag, 'Tag');

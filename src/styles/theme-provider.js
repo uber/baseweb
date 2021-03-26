@@ -9,7 +9,7 @@ import * as React from 'react';
 import {LightTheme} from '../themes/index.js';
 
 import type {ThemeT, ThemeProviderT} from './types.js';
-import type {ThemeLevelOverridesT} from '../helpers/overrides';
+import type {ThemeLevelOverridesT} from '../helpers/overrides.js';
 
 export const ThemeContext: React.Context<ThemeProviderT> = React.createContext({
   theme: LightTheme,
