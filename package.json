@@ -18,7 +18,7 @@
     "lint:markdown": "markdownlint -c ./.markdownlint.json proposals",
     "lint": "yarn lint:code && yarn lint:markdown",
     "pretest": "yarn build:documentation-site-files",
-    "test": "yarn validate:examples && yarn lint && yarn unit-test &&yarn flow && yarn tsc ",
+    "test": "yarn validate:examples && yarn lint && yarn flow && yarn tsc && yarn unit-test",
     "flow": "flow check --max-warnings 0",
     "prebuild": "shx rm -rf dist",
     "build:copy-files": "shx cp README.md dist/README.md",
