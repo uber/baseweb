@@ -244,6 +244,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
         isOpen={isOpen}
         overrides={popoverOverrides}
         placement={PLACEMENT.bottomLeft}
+        onClick={handleInputClick}
         content={
           <ListBox
             // TabIndex attribute exists to exclude option clicks from triggering onBlur event actions.
@@ -304,19 +305,16 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
             }
             aria-autocomplete="list"
             aria-controls={listboxId}
-            aria-haspopup="listbox"
             disabled={disabled}
             error={error}
             name={name}
             id={id}
             onBlur={handleBlur}
-            onClick={handleInputClick}
             onChange={handleInputChange}
             onFocus={handleFocus}
             onKeyDown={handleKeyDown}
             overrides={inputOverrides}
             positive={positive}
-            role="combobox"
             size={size}
             value={tempValue ? tempValue : value}
             {...restInputProps}
