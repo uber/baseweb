@@ -134,7 +134,6 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
       });
     }
     if (event.keyCode === ENTER) {
-      console.log('enter');
       let clickedOption = options[selectionIndex];
       if (clickedOption) {
         event.preventDefault();
@@ -181,6 +180,12 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     setSelectionIndex(-1);
     setTempValue(value);
     if (onBlur) onBlur(event);
+  }
+
+  function handleInputClick() {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   }
 
   function handleInputChange(event) {
@@ -304,6 +309,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
             name={name}
             id={id}
             onBlur={handleBlur}
+            onClick={handleInputClick}
             onChange={handleInputChange}
             onFocus={handleFocus}
             onKeyDown={handleKeyDown}
