@@ -88,6 +88,8 @@ export type BaseInputPropsT<T> = {|
   'aria-controls'?: string,
   /** Id of element which contains a related error message */
   'aria-errormessage'?: string,
+  /** Sets aria-haspopup attribute. */
+  'aria-haspopup'?: string,
   /** Sets aria-label attribute. */
   'aria-label'?: string,
   /** Sets aria-labelledby attribute. */

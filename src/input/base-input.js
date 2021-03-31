@@ -36,6 +36,7 @@ class BaseInput<T: EventTarget> extends React.Component<
     'aria-autocomplete': null,
     'aria-controls': null,
     'aria-errormessage': null,
+    'aria-haspopup': null,
     'aria-label': null,
     'aria-labelledby': null,
     'aria-describedby': null,
@@ -332,6 +333,7 @@ class BaseInput<T: EventTarget> extends React.Component<
           aria-autocomplete={this.props['aria-autocomplete']}
           aria-controls={this.props['aria-controls']}
           aria-errormessage={this.props['aria-errormessage']}
+          aria-haspopup={this.props['aria-haspopup']}
           aria-label={this.props['aria-label']}
           aria-labelledby={this.props['aria-labelledby']}
           aria-describedby={this.props['aria-describedby']}

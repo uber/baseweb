@@ -304,6 +304,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
             }
             aria-autocomplete="list"
             aria-controls={listboxId}
+            aria-haspopup="listbox"
             disabled={disabled}
             error={error}
             name={name}
