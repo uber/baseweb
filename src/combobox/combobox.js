@@ -134,6 +134,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
       });
     }
     if (event.keyCode === ENTER) {
+      console.log('enter');
       let clickedOption = options[selectionIndex];
       if (clickedOption) {
         event.preventDefault();
