@@ -113,6 +113,7 @@ export default function Menu(props: StatelessMenuPropsT) {
           aria-activedescendant={props.activedescendantId || null}
           role="listbox"
           ref={rootRef}
+          onClick={focusMenu}
           onMouseEnter={focusMenu}
           onMouseLeave={handleMouseLeave}
           onMouseOver={focusMenu}
