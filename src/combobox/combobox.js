@@ -308,6 +308,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
             onKeyDown={handleKeyDown}
             overrides={inputOverrides}
             positive={positive}
+            role="combobox"
             size={size}
             value={tempValue ? tempValue : value}
             {...restInputProps}

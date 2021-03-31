@@ -132,6 +132,8 @@ export type BaseInputPropsT<T> = {|
   placeholder?: string,
   /** Renders component in 'required' state. */
   required: boolean,
+  /** Input role attribute. */
+  role?: string,
   /** Renders component in provided size. */
   size: SizeT,
   /** Input type attribute. */

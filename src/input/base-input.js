@@ -60,6 +60,7 @@ class BaseInput<T: EventTarget> extends React.Component<
     pattern: null,
     placeholder: '',
     required: false,
+    role: null,
     size: SIZE.default,
     type: 'text',
   };
@@ -352,6 +353,7 @@ class BaseInput<T: EventTarget> extends React.Component<
           placeholder={this.props.placeholder}
           type={this.getInputType()}
           required={this.props.required}
+          role={this.props.role}
           value={this.props.value}
           min={this.props.min}
           max={this.props.max}
