@@ -186,6 +186,10 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     if (inputRef.current) {
       inputRef.current.focus();
     }
+
+    if (!isOpen && options.length) {
+      handleOpen();
+    }
   }
 
   function handleInputChange(event) {
