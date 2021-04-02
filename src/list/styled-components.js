@@ -35,7 +35,7 @@ export const StyledContent = styled<StyledContentPropsT>(
       borderLeftStyle: 'none',
       display: 'flex',
       flexGrow: 1,
-      height: $sublist ? '48px' : '72px',
+      minHeight: $sublist ? '48px' : '72px',
       justifyContent: 'space-between',
       marginLeft: $mLeft ? $theme.sizing.scale600 : null,
       ...($theme.direction === 'rtl'
