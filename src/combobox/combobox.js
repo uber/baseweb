@@ -182,6 +182,16 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     if (onBlur) onBlur(event);
   }
 
+  function handleInputClick() {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+
+    if (!isOpen && options.length) {
+      handleOpen();
+    }
+  }
+
   function handleInputChange(event) {
     handleOpen();
     setSelectionIndex(-1);
@@ -238,6 +248,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
         isOpen={isOpen}
         overrides={popoverOverrides}
         placement={PLACEMENT.bottomLeft}
+        onClick={handleInputClick}
         content={
           <ListBox
             // TabIndex attribute exists to exclude option clicks from triggering onBlur event actions.

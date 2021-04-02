@@ -196,8 +196,13 @@ function Slider({
         {...(marks
           ? {
               // eslint-disable-next-line react/display-name
-              renderMark: ({props}) => (
-                <Mark {...props} {...sharedProps} {...markProps} />
+              renderMark: ({props, index}) => (
+                <Mark
+                  $markIndex={index}
+                  {...props}
+                  {...sharedProps}
+                  {...markProps}
+                />
               ),
             }
           : {})}
