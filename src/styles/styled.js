@@ -26,7 +26,6 @@ const wrapper = StyledComponent => {
           ref={ref}
           {...props}
           $theme={themeAndOverrides.theme}
-          $overrides={themeAndOverrides.overrides}
         />
       )}
     </ThemeContext.Consumer>
@@ -125,12 +124,11 @@ export function withWrapper(
     Styled => {
       return React.forwardRef((props, ref) => (
         <ThemeContext.Consumer>
-          {({theme, overrides}) =>
+          {({theme}) =>
             wrapperFn(Styled)({
               ref: ref,
               ...props,
               $theme: theme,
-              overrides: overrides,
             })
           }
         </ThemeContext.Consumer>
