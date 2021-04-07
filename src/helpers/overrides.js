@@ -256,9 +256,7 @@ export function withOverrides<Config, Instance>(
       );
     }
   }
-  // Note the second param "ref" provided by React.forwardRef.
-  // We can pass it along to withOverrides as a regular prop, e.g. "forwardedRef"
-  // And it can then be attached to the Component.
+
   return React.forwardRef<Config, Instance>((props, ref) => {
     return <WithOverrides {...props} forwardedRef={ref} />;
   });
