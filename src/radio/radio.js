@@ -83,6 +83,12 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
     this.props.onMouseUp && this.props.onMouseUp(e);
   };
 
+  onInputClick = (e: SyntheticMouseEvent<HTMLInputElement>) => {
+    console.log(e);
+    console.log(e.currentTarget);
+    e.currentTarget.focus();
+  };
+
   render() {
     const {overrides = {}} = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
@@ -145,6 +151,7 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
             name={this.props.name}
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}
+            onClick={this.onInputClick}
             onChange={this.props.onChange}
             ref={this.props.inputRef}
             required={this.props.required}
