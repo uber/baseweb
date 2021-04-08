@@ -125,18 +125,19 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
 
     return (
       <React.Fragment>
-        <Root
-        // data-baseweb="radio"
-        // onMouseEnter={this.onMouseEnter}
-        // onMouseLeave={this.onMouseLeave}
-        // onMouseDown={this.onMouseDown}
-        // onMouseUp={this.onMouseUp}
-        // {...sharedProps}
-        // {...rootProps}
+        <label
+          style={{display: 'block'}}
+          // data-baseweb="radio"
+          // onMouseEnter={this.onMouseEnter}
+          // onMouseLeave={this.onMouseLeave}
+          // onMouseDown={this.onMouseDown}
+          // onMouseUp={this.onMouseUp}
+          // {...sharedProps}
+          // {...rootProps}
         >
           {/* {isLabelTopLeft(this.props.labelPlacement) && label} */}
 
-          <Input
+          <input
             // aria-invalid={this.props.error || this.props.isError || null}
             checked={this.props.checked}
             // disabled={this.props.disabled}
@@ -159,7 +160,9 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
 
           <span
             style={{
-              backgroundColor: this.props.checked ? 'orange' : 'firebrick',
+              backgroundColor: this.props.checked
+                ? 'papayawhip'
+                : 'lightskyblue',
               display: 'inline-block',
               height: '12px',
               width: '12px',
@@ -168,7 +171,7 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
 
           {/* {isLabelBottomRight(this.props.labelPlacement) && label} */}
           <span>{this.props.children}</span>
-        </Root>
+        </label>
 
         {/* {!!this.props.description && (
           <Description {...sharedProps} {...descriptionProps}>
