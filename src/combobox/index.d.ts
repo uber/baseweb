@@ -24,6 +24,7 @@ export type PropsT<OptionT = unknown> = {
   mapOptionToString: (OptionT) => string;
   id?: string;
   name?: string;
+  inputRef?: React.Ref<HTMLInputElement>;
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => any;
   onChange?: (value: string, option: OptionT | null) => any;
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => any;
