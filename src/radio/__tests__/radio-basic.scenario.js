@@ -27,7 +27,7 @@ function Standard() {
 }
 
 function WithoutGroup() {
-  const [value, setValue] = React.useState('regular crust');
+  const [value, setValue] = React.useState('1');
 
   function handleChange(e) {
     setValue(e.target.value);
@@ -35,25 +35,13 @@ function WithoutGroup() {
 
   return (
     <div role="radiogroup">
-      <Radio
-        onChange={handleChange}
-        value="regular crust"
-        checked={value === 'regular crust'}
-      >
-        Regular Crust
+      <Radio onChange={handleChange} value="1">
+        Regular crust
       </Radio>
-      <Radio
-        onChange={handleChange}
-        value="deep dish"
-        checked={value === 'deep dish'}
-      >
+      <Radio onChange={handleChange} value="2">
         Deep dish
       </Radio>
-      <Radio
-        onChange={handleChange}
-        value="thin crust"
-        checked={value === 'thin crust'}
-      >
+      <Radio onChange={handleChange} value="3">
         Thin crust
       </Radio>
     </div>
@@ -63,8 +51,6 @@ function WithoutGroup() {
 export default function Example() {
   return (
     <div>
-      <p tabIndex="0">focusable</p>
-
       <Standard />
 
       <WithoutGroup />
