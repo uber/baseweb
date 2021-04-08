@@ -148,14 +148,14 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
             // required={this.props.required}
             tabIndex={this.props.tabIndex}
             type="radio"
-            value={this.props.children}
+            value={this.props.value}
             // {...sharedProps}
             // {...inputProps}
           />
 
-          <RadioMarkOuter {...sharedProps} {...radioMarkOuterProps}>
+          {/* <RadioMarkOuter {...sharedProps} {...radioMarkOuterProps}>
             <RadioMarkInner {...sharedProps} {...radioMarkInnerProps} />
-          </RadioMarkOuter>
+          </RadioMarkOuter> */}
 
           {/* {isLabelBottomRight(this.props.labelPlacement) && label} */}
           <span>{this.props.children}</span>
