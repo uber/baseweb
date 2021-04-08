@@ -12,12 +12,14 @@ import {RadioGroup, Radio} from '../index.js';
 
 export default function Example() {
   const [value, setValue] = React.useState('1');
+
+  function handleChange(e) {
+    console.log(e);
+    setValue(e.target.value);
+  }
+
   return (
-    <RadioGroup
-      name="basic usage"
-      onChange={e => setValue(e.target.value)}
-      value={value}
-    >
+    <RadioGroup name="basic usage" onChange={handleChange} value={value}>
       <Radio value="1">First</Radio>
       <Radio value="2">Second</Radio>
       <Radio value="3">Third</Radio>

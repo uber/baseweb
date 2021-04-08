@@ -126,42 +126,44 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
     return (
       <React.Fragment>
         <Root
-          data-baseweb="radio"
-          onMouseEnter={this.onMouseEnter}
-          onMouseLeave={this.onMouseLeave}
-          onMouseDown={this.onMouseDown}
-          onMouseUp={this.onMouseUp}
-          {...sharedProps}
-          {...rootProps}
+        // data-baseweb="radio"
+        // onMouseEnter={this.onMouseEnter}
+        // onMouseLeave={this.onMouseLeave}
+        // onMouseDown={this.onMouseDown}
+        // onMouseUp={this.onMouseUp}
+        // {...sharedProps}
+        // {...rootProps}
         >
           {isLabelTopLeft(this.props.labelPlacement) && label}
+
           <RadioMarkOuter {...sharedProps} {...radioMarkOuterProps}>
             <RadioMarkInner {...sharedProps} {...radioMarkInnerProps} />
           </RadioMarkOuter>
+
           <Input
-            aria-invalid={this.props.error || this.props.isError || null}
+            // aria-invalid={this.props.error || this.props.isError || null}
             checked={this.props.checked}
-            disabled={this.props.disabled}
-            name={this.props.name}
-            onBlur={this.props.onBlur}
-            onFocus={this.props.onFocus}
+            // disabled={this.props.disabled}
+            // name={this.props.name}
+            // onBlur={this.props.onBlur}
+            // onFocus={this.props.onFocus}
             onChange={this.props.onChange}
-            ref={this.props.inputRef}
-            required={this.props.required}
+            // ref={this.props.inputRef}
+            // required={this.props.required}
             tabIndex={this.props.tabIndex}
             type="radio"
             value={this.props.value}
-            {...sharedProps}
-            {...inputProps}
+            // {...sharedProps}
+            // {...inputProps}
           />
           {isLabelBottomRight(this.props.labelPlacement) && label}
         </Root>
 
-        {!!this.props.description && (
+        {/* {!!this.props.description && (
           <Description {...sharedProps} {...descriptionProps}>
             {this.props.description}
           </Description>
-        )}
+        )} */}
       </React.Fragment>
     );
   }
