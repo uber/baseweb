@@ -117,11 +117,11 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
       $value: this.props.value,
     };
 
-    const label = (
-      <Label {...sharedProps} {...labelProps}>
-        {this.props.children}
-      </Label>
-    );
+    // const label = (
+    //   <Label {...sharedProps} {...labelProps}>
+    //     {this.props.children}
+    //   </Label>
+    // );
 
     return (
       <React.Fragment>
@@ -134,11 +134,11 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
         // {...sharedProps}
         // {...rootProps}
         >
-          {isLabelTopLeft(this.props.labelPlacement) && label}
+          {/* {isLabelTopLeft(this.props.labelPlacement) && label} */}
 
-          <RadioMarkOuter {...sharedProps} {...radioMarkOuterProps}>
+          {/* <RadioMarkOuter {...sharedProps} {...radioMarkOuterProps}>
             <RadioMarkInner {...sharedProps} {...radioMarkInnerProps} />
-          </RadioMarkOuter>
+          </RadioMarkOuter> */}
 
           <Input
             // aria-invalid={this.props.error || this.props.isError || null}
@@ -156,7 +156,8 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
             // {...sharedProps}
             // {...inputProps}
           />
-          {isLabelBottomRight(this.props.labelPlacement) && label}
+          {/* {isLabelBottomRight(this.props.labelPlacement) && label} */}
+          <span>{this.props.children}</span>
         </Root>
 
         {/* {!!this.props.description && (
