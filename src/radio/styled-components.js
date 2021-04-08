@@ -217,7 +217,7 @@ export const Label = styled<StylePropsT>('div', props => {
 
 // tricky style for focus event cause display: none doesn't work
 export const Input = styled('input', {
-  opacity: 0,
+  opacity: 0.001,
   width: 0,
   overflow: 'hidden',
   marginTop: 0,
