@@ -83,7 +83,7 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
     this.props.onMouseUp && this.props.onMouseUp(e);
   };
 
-  onInputClick = (e: SyntheticMouseEvent<HTMLInputElement>) => {
+  onClick = (e: SyntheticMouseEvent<HTMLLabelElement>) => {
     console.log(e);
     console.log(e.currentTarget);
     e.currentTarget.focus();
@@ -133,6 +133,7 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
       <React.Fragment>
         <Root
           data-baseweb="radio"
+          onClick={this.onClick}
           onMouseEnter={this.onMouseEnter}
           onMouseLeave={this.onMouseLeave}
           onMouseDown={this.onMouseDown}
@@ -151,7 +152,6 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
             name={this.props.name}
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}
-            onClick={this.onInputClick}
             onChange={this.props.onChange}
             ref={this.props.inputRef}
             required={this.props.required}
