@@ -84,19 +84,19 @@ class StatelessRadioGroup extends React.Component<PropsT, StatelessStateT> {
 
     return (
       <RadioGroupRoot
-        // id={this.props.id}
+        id={this.props.id}
         role="radiogroup"
-        // aria-describedby={this.props['aria-describedby']}
-        // aria-errormessage={this.props['aria-errormessage']}
-        // aria-invalid={this.props.error || this.props.isError || null}
-        // aria-label={this.props['aria-label']}
-        // aria-labelledby={this.props['aria-labelledby']}
-        // $align={this.props.align}
-        // $disabled={this.props.disabled}
-        // $isError={this.props.error || this.props.isError}
-        // $error={this.props.error || this.props.isError}
-        // $required={this.props.required}
-        // {...radioGroupRootProps}
+        aria-describedby={this.props['aria-describedby']}
+        aria-errormessage={this.props['aria-errormessage']}
+        aria-invalid={this.props.error || this.props.isError || null}
+        aria-label={this.props['aria-label']}
+        aria-labelledby={this.props['aria-labelledby']}
+        $align={this.props.align}
+        $disabled={this.props.disabled}
+        $isError={this.props.error || this.props.isError}
+        $error={this.props.error || this.props.isError}
+        $required={this.props.required}
+        {...radioGroupRootProps}
       >
         {React.Children.map(this.props.children, (child, index) => {
           if (!React.isValidElement(child)) {

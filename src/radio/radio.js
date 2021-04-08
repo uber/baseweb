@@ -117,67 +117,51 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
       $value: this.props.value,
     };
 
-    // const label = (
-    //   <Label {...sharedProps} {...labelProps}>
-    //     {this.props.children}
-    //   </Label>
-    // );
+    const label = (
+      <Label {...sharedProps} {...labelProps}>
+        {this.props.children}
+      </Label>
+    );
 
     return (
       <React.Fragment>
-        <label
-          style={{display: 'block'}}
-          // data-baseweb="radio"
-          // onMouseEnter={this.onMouseEnter}
-          // onMouseLeave={this.onMouseLeave}
-          // onMouseDown={this.onMouseDown}
-          // onMouseUp={this.onMouseUp}
-          // {...sharedProps}
-          // {...rootProps}
+        <Root
+          data-baseweb="radio"
+          onMouseEnter={this.onMouseEnter}
+          onMouseLeave={this.onMouseLeave}
+          onMouseDown={this.onMouseDown}
+          onMouseUp={this.onMouseUp}
+          {...sharedProps}
+          {...rootProps}
         >
-          {/* {isLabelTopLeft(this.props.labelPlacement) && label} */}
-
+          {isLabelTopLeft(this.props.labelPlacement) && label}
+          <RadioMarkOuter {...sharedProps} {...radioMarkOuterProps}>
+            <RadioMarkInner {...sharedProps} {...radioMarkInnerProps} />
+          </RadioMarkOuter>
           <Input
-            // aria-invalid={this.props.error || this.props.isError || null}
+            aria-invalid={this.props.error || this.props.isError || null}
             checked={this.props.checked}
-            // disabled={this.props.disabled}
+            disabled={this.props.disabled}
             name={this.props.name}
-            // onBlur={this.props.onBlur}
-            // onFocus={this.props.onFocus}
+            onBlur={this.props.onBlur}
+            onFocus={this.props.onFocus}
             onChange={this.props.onChange}
-            // ref={this.props.inputRef}
-            // required={this.props.required}
+            ref={this.props.inputRef}
+            required={this.props.required}
             tabIndex={this.props.tabIndex}
             type="radio"
             value={this.props.value}
-            // {...sharedProps}
-            // {...inputProps}
+            {...sharedProps}
+            {...inputProps}
           />
+          {isLabelBottomRight(this.props.labelPlacement) && label}
+        </Root>
 
-          {/* <RadioMarkOuter {...sharedProps} {...radioMarkOuterProps}>
-            <RadioMarkInner {...sharedProps} {...radioMarkInnerProps} />
-          </RadioMarkOuter> */}
-
-          <span
-            style={{
-              backgroundColor: this.props.checked
-                ? 'papayawhip'
-                : 'lightskyblue',
-              display: 'inline-block',
-              height: '12px',
-              width: '12px',
-            }}
-          />
-
-          {/* {isLabelBottomRight(this.props.labelPlacement) && label} */}
-          <span>{this.props.children}</span>
-        </label>
-
-        {/* {!!this.props.description && (
+        {!!this.props.description && (
           <Description {...sharedProps} {...descriptionProps}>
             {this.props.description}
           </Description>
-        )} */}
+        )}
       </React.Fragment>
     );
   }
