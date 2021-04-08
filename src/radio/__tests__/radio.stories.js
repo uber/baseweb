@@ -9,6 +9,8 @@ LICENSE file in the root directory of this source tree.
 import React from 'react';
 import RadioStates from './radio-states.scenario.js';
 import RadioDefault from './radio.scenario.js';
+import RadioBasic from './radio-basic.scenario.js';
 
 export const States = () => <RadioStates />;
 export const Radio = () => <RadioDefault />;
+export const Basic = () => <RadioBasic />;

@@ -83,12 +83,6 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
     this.props.onMouseUp && this.props.onMouseUp(e);
   };
 
-  onClick = (e: SyntheticMouseEvent<HTMLLabelElement>) => {
-    console.log(e);
-    console.log(e.currentTarget);
-    e.currentTarget.focus();
-  };
-
   render() {
     const {overrides = {}} = this.props;
     const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
@@ -133,7 +127,6 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
       <React.Fragment>
         <Root
           data-baseweb="radio"
-          onClick={this.onClick}
           onMouseEnter={this.onMouseEnter}
           onMouseLeave={this.onMouseLeave}
           onMouseDown={this.onMouseDown}
