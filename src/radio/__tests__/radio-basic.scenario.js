@@ -11,7 +11,8 @@ import * as React from 'react';
 import {RadioGroup, Radio} from '../index.js';
 
 function Standard() {
-  const [value, setValue] = React.useState('1');
+  const options = ['First', 'Second', 'Third'];
+  const [value, setValue] = React.useState(options[0]);
 
   function handleChange(e) {
     setValue(e.target.value);
@@ -19,15 +20,20 @@ function Standard() {
 
   return (
     <RadioGroup name="basic usage" onChange={handleChange} value={value}>
-      <Radio value="1">First</Radio>
-      <Radio value="2">Second</Radio>
-      <Radio value="3">Third</Radio>
+      {options.map(option => {
+        return (
+          <Radio key={option} value={option}>
+            {option}
+          </Radio>
+        );
+      })}
     </RadioGroup>
   );
 }
 
 function WithoutGroup() {
-  const [value, setValue] = React.useState('1');
+  const options = ['Regular crust', 'Deep dish', 'Thin crust'];
+  const [value, setValue] = React.useState(options[0]);
 
   function handleChange(e) {
     setValue(e.target.value);
@@ -35,15 +41,19 @@ function WithoutGroup() {
 
   return (
     <div role="radiogroup">
-      <Radio onChange={handleChange} value="1">
-        Regular crust
-      </Radio>
-      <Radio onChange={handleChange} value="2">
-        Deep dish
-      </Radio>
-      <Radio onChange={handleChange} value="3">
-        Thin crust
-      </Radio>
+      {options.map(option => {
+        return (
+          <Radio
+            key={option}
+            name="pizza"
+            onChange={handleChange}
+            value={option}
+            checked={value === option}
+          >
+            {option}
+          </Radio>
+        );
+      })}
     </div>
   );
 }
@@ -63,6 +73,7 @@ function Custom() {
         return (
           <label key={option} style={{display: 'block'}}>
             <input
+              name="pets"
               style={{height: 0, width: 0, margin: 0, padding: 0}}
               type="radio"
               value={option}

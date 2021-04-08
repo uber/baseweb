@@ -140,7 +140,7 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
             // aria-invalid={this.props.error || this.props.isError || null}
             checked={this.props.checked}
             // disabled={this.props.disabled}
-            // name={this.props.name}
+            name={this.props.name}
             // onBlur={this.props.onBlur}
             // onFocus={this.props.onFocus}
             onChange={this.props.onChange}
@@ -153,9 +153,9 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
             // {...inputProps}
           />
 
-          {/* <RadioMarkOuter {...sharedProps} {...radioMarkOuterProps}>
+          <RadioMarkOuter {...sharedProps} {...radioMarkOuterProps}>
             <RadioMarkInner {...sharedProps} {...radioMarkInnerProps} />
-          </RadioMarkOuter> */}
+          </RadioMarkOuter>
 
           {/* {isLabelBottomRight(this.props.labelPlacement) && label} */}
           <span>{this.props.children}</span>
