@@ -73,13 +73,13 @@ function Custom() {
         return (
           <label key={option} style={{display: 'block'}}>
             <input
-              tabIndex={checked ? '0' : '-1'}
+              checked={checked}
+              onChange={handleChange}
               name="pets"
               style={{height: 0, width: 0, margin: 0, padding: 0}}
+              tabIndex={checked ? '0' : '-1'}
               type="radio"
               value={option}
-              onChange={handleChange}
-              checked={checked}
             />
             <span
               style={{

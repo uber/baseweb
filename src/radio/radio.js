@@ -153,9 +153,18 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
             // {...inputProps}
           />
 
-          <RadioMarkOuter {...sharedProps} {...radioMarkOuterProps}>
+          {/* <RadioMarkOuter {...sharedProps} {...radioMarkOuterProps}>
             <RadioMarkInner {...sharedProps} {...radioMarkInnerProps} />
-          </RadioMarkOuter>
+          </RadioMarkOuter> */}
+
+          <span
+            style={{
+              backgroundColor: this.props.checked ? 'orange' : 'firebrick',
+              display: 'inline-block',
+              height: '12px',
+              width: '12px',
+            }}
+          />
 
           {/* {isLabelBottomRight(this.props.labelPlacement) && label} */}
           <span>{this.props.children}</span>
