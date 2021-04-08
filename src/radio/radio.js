@@ -152,7 +152,7 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
             // required={this.props.required}
             tabIndex={this.props.tabIndex}
             type="radio"
-            value={this.props.value}
+            value={this.props.children}
             // {...sharedProps}
             // {...inputProps}
           />

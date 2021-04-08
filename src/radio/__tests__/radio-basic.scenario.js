@@ -10,11 +10,10 @@ import * as React from 'react';
 
 import {RadioGroup, Radio} from '../index.js';
 
-export default function Example() {
+function Standard() {
   const [value, setValue] = React.useState('1');
 
   function handleChange(e) {
-    console.log(e);
     setValue(e.target.value);
   }
 
@@ -24,5 +23,43 @@ export default function Example() {
       <Radio value="2">Second</Radio>
       <Radio value="3">Third</Radio>
     </RadioGroup>
+  );
+}
+
+function WithoutGroup() {
+  const [value, setValue] = React.useState('first');
+
+  function handleChange(e) {
+    setValue(e.target.value);
+  }
+
+  return (
+    <div role="radiogroup">
+      <Radio onChange={handleChange} value="first" checked={value === 'first'}>
+        First
+      </Radio>
+      <Radio
+        onChange={handleChange}
+        value="second"
+        checked={value === 'second'}
+      >
+        Second
+      </Radio>
+      <Radio onChange={handleChange} value="third" checked={value === 'third'}>
+        Third
+      </Radio>
+    </div>
+  );
+}
+
+export default function Example() {
+  return (
+    <div>
+      <p tabIndex="0">focusable</p>
+
+      <Standard />
+
+      <WithoutGroup />
+    </div>
   );
 }
