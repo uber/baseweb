@@ -125,14 +125,15 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
 
     return (
       <React.Fragment>
-        <Root
-        // data-baseweb="radio"
-        // onMouseEnter={this.onMouseEnter}
-        // onMouseLeave={this.onMouseLeave}
-        // onMouseDown={this.onMouseDown}
-        // onMouseUp={this.onMouseUp}
-        // {...sharedProps}
-        // {...rootProps}
+        <label
+          style={{display: 'block'}}
+          // data-baseweb="radio"
+          // onMouseEnter={this.onMouseEnter}
+          // onMouseLeave={this.onMouseLeave}
+          // onMouseDown={this.onMouseDown}
+          // onMouseUp={this.onMouseUp}
+          // {...sharedProps}
+          // {...rootProps}
         >
           {/* {isLabelTopLeft(this.props.labelPlacement) && label} */}
 
@@ -170,7 +171,7 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
 
           {/* {isLabelBottomRight(this.props.labelPlacement) && label} */}
           <span>{this.props.children}</span>
-        </Root>
+        </label>
 
         {/* {!!this.props.description && (
           <Description {...sharedProps} {...descriptionProps}>
