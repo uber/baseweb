@@ -137,7 +137,7 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
         >
           {/* {isLabelTopLeft(this.props.labelPlacement) && label} */}
 
-          <input
+          <Input
             // aria-invalid={this.props.error || this.props.isError || null}
             checked={this.props.checked}
             // disabled={this.props.disabled}
