@@ -48,12 +48,49 @@ function WithoutGroup() {
   );
 }
 
+function Custom() {
+  const options = ['Cat', 'Dog', 'Fish'];
+  const [value, setValue] = React.useState(options[0]);
+
+  function handleChange(e) {
+    setValue(e.target.value);
+  }
+
+  return (
+    <div role="radiogroup">
+      {options.map(option => {
+        const checked = value === option;
+        return (
+          <label key={option} style={{display: 'block'}}>
+            <input
+              style={{height: 0, width: 0, margin: 0, padding: 0}}
+              type="radio"
+              value={option}
+              onChange={handleChange}
+              checked={checked}
+            />
+            <span
+              style={{
+                backgroundColor: checked ? 'orange' : 'firebrick',
+                display: 'inline-block',
+                height: '12px',
+                width: '12px',
+              }}
+            />
+            <span>{option}</span>
+          </label>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function Example() {
   return (
     <div>
       <Standard />
-
       <WithoutGroup />
+      <Custom />
     </div>
   );
 }
