@@ -73,6 +73,7 @@ function Custom() {
         return (
           <label key={option} style={{display: 'block'}}>
             <input
+              tabIndex={checked ? '0' : '-1'}
               name="pets"
               style={{height: 0, width: 0, margin: 0, padding: 0}}
               type="radio"
