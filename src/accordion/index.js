@@ -18,6 +18,7 @@ export {
   PanelContainer as StyledPanelContainer,
   Header as StyledHeader,
   Content as StyledContent,
+  ContentAnimationContainer as StyledContentAnimationContainer,
   ToggleIcon as StyledToggleIcon,
 } from './styled-components.js';
 // Flow

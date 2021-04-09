@@ -8,6 +8,7 @@ export interface STATE_CHANGE_TYPE {
 
 export interface AccordionOverrides<T> {
   Content?: Override<T>;
+  ContentAnimationContainer?: Override<T>;
   Header?: Override<T>;
   PanelContainer?: Override<T>;
   Root?: Override<T>;
@@ -70,6 +71,7 @@ export interface PanelOverrides<T> {
   Header?: Override<T>;
   ToggleIcon?: Override<T>;
   Content?: Override<T>;
+  ContentAnimationContainer?: Override<T>;
 }
 
 export interface SharedPanelProps {
@@ -127,6 +129,7 @@ export const StyledRoot: StyletronComponent<any>;
 export const StyledPanelContainer: StyletronComponent<any>;
 export const StyledHeader: StyletronComponent<any>;
 export const StyledContent: StyletronComponent<any>;
+export const StyledContentAnimationContainer: StyletronComponent<any>;
 export const StyledToggleIcon: StyletronComponent<any>;
 
 export const STATE_CHANGE_TYPE: STATE_CHANGE_TYPE;

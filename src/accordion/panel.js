@@ -15,47 +15,49 @@ import {
   Header as StyledHeader,
   Content as StyledContent,
   ToggleIcon as StyledToggleIcon,
+  ContentAnimationContainer as StyledContentAnimationContainer,
 } from './styled-components.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
-import type {PanelPropsT, SharedStylePropsArgT} from './types.js';
+import type {PanelPropsT} from './types.js';
 
-class Panel extends React.Component<PanelPropsT, {isFocusVisible: boolean}> {
-  static defaultProps = {
-    disabled: false,
-    expanded: false,
-    onChange: () => {},
-    onClick: () => {},
-    onKeyDown: () => {},
-    title: '',
-  };
-
-  state = {isFocusVisible: false};
-
-  handleFocus = (event: SyntheticEvent<>) => {
+const Panel = ({
+  'aria-controls': ariaControls,
+  children,
+  disabled = false,
+  expanded = false,
+  onChange = () => {},
+  onClick = () => {},
+  onKeyDown = () => {},
+  overrides = {},
+  title = '',
+  renderPanelContent = () => {},
+  renderAll = () => {},
+}: PanelPropsT) => {
+  const [localState, setLocalState] = React.useState({
+    expanded,
+    isFocusVisible: false,
+    elementHeight: 0,
+    animationInProgress: false,
+  });
+  const handleFocus = React.useCallback((event: SyntheticEvent<>) => {
     if (isFocusVisible(event)) {
-      this.setState({isFocusVisible: true});
+      setLocalState({...localState, isFocusVisible: true});
     }
-  };
-
-  handleBlur = (event: SyntheticEvent<>) => {
-    if (this.state.isFocusVisible !== false) {
-      this.setState({isFocusVisible: false});
+  });
+  const handleBlur = React.useCallback((event: SyntheticEvent<>) => {
+    if (localState.isFocusVisible !== false) {
+      setLocalState({...localState, isFocusVisible: false});
     }
-  };
-
-  onClick = (e: Event) => {
-    const {disabled, expanded, onChange, onClick} = this.props;
+  });
+  const _onClick = React.useCallback((e: Event) => {
     if (disabled) {
       return;
     }
     typeof onChange === 'function' && onChange({expanded: !expanded});
     typeof onClick === 'function' && onClick(e);
-    return;
-  };
-
-  onKeyDown = (e: KeyboardEvent) => {
-    const {disabled, expanded, onChange, onKeyDown} = this.props;
+  });
+  const _onKeyDown = React.useCallback((e: KeyboardEvent) => {
     if (disabled) {
       return;
     }
@@ -70,100 +72,158 @@ class Panel extends React.Component<PanelPropsT, {isFocusVisible: boolean}> {
       }
     }
     typeof onKeyDown === 'function' && onKeyDown(e);
-    return;
+  });
+  // eslint-disable-next-line flowtype/no-weak-types
+  const _animateRef = React.useRef<any>(null);
+
+  React.useEffect(() => {
+    if (_animateRef.current) {
+      const height = _animateRef.current.getBoundingClientRect().height;
+      // After the first render, and everything is in the DOM, we update the local
+      //state to indicate an animation is in progress.
+      if (expanded !== localState.expanded) {
+        setLocalState({
+          ...localState,
+          expanded,
+          animationInProgress: true,
+        });
+      } else if (parseInt(localState.elementHeight) !== height) {
+        // After the second render (where child elements were added to the Content)
+        //the Content height now reflects the true height. This kicks off the actual
+        //animation.
+        setLocalState({
+          ...localState,
+          elementHeight: height ? `${height + 1}px` : 0,
+        });
+      }
+    }
+  }, [
+    _animateRef.current,
+    expanded,
+    localState.elementHeight,
+    localState.expanded,
+    setLocalState,
+  ]);
+
+  const contentHeight = React.useMemo(() => {
+    // When closing, the first render will re-query the content element for the new
+    //height and set the height of the animation container from auto to a px value.
+    if (!expanded && localState.expanded) {
+      const height = _animateRef.current.getBoundingClientRect().height;
+      setLocalState({
+        ...localState,
+        elementHeight: height ? `${height + 1}px` : 0,
+      });
+      return localState.elementHeight;
+    }
+    if (!localState.expanded) {
+      return 0;
+    }
+    // When no longer animating, set the height to auto to accommodate dynamic nested components.
+    return localState.animationInProgress ? localState.elementHeight : 'auto';
+  }, [
+    expanded,
+    localState.expanded,
+    localState.animationInProgress,
+    localState.elementHeight,
+  ]);
+
+  const sharedProps = {
+    $disabled: disabled,
+    $expanded: expanded,
+    $isFocusVisible: localState.isFocusVisible,
   };
 
-  getSharedProps(): SharedStylePropsArgT {
-    const {disabled, expanded} = this.props;
-    return {
-      $disabled: disabled,
-      $expanded: expanded,
-      $isFocusVisible: this.state.isFocusVisible,
-    };
-  }
+  const {
+    PanelContainer: PanelContainerOverride,
+    Header: HeaderOverride,
+    Content: ContentOverride,
+    ContentAnimationContainer: ContentAnimationContainerOverride,
+    ToggleIcon: ToggleIconOverride,
+  } = overrides;
 
-  render() {
-    const {
-      expanded,
-      disabled,
-      overrides = {},
-      children,
-      'aria-controls': ariaControls,
-      title,
-      renderPanelContent,
-      renderAll,
-    } = this.props;
+  const [PanelContainer, panelContainerProps] = getOverrides(
+    PanelContainerOverride,
+    StyledPanelContainer,
+  );
+  const [Header, headerProps] = getOverrides(HeaderOverride, StyledHeader);
+  const [Content, contentProps] = getOverrides(ContentOverride, StyledContent);
+  const [ContentAnimationContainer, contentAnimationProps] = getOverrides(
+    ContentAnimationContainerOverride,
+    StyledContentAnimationContainer,
+  );
 
-    const sharedProps = this.getSharedProps();
-    const {
-      PanelContainer: PanelContainerOverride,
-      Header: HeaderOverride,
-      Content: ContentOverride,
-      ToggleIcon: ToggleIconOverride,
-    } = overrides;
+  const toggleIconOverrides = mergeOverrides(
+    {Svg: {component: StyledToggleIcon}},
+    // $FlowFixMe
+    {Svg: ToggleIconOverride},
+  );
 
-    const [PanelContainer, panelContainerProps] = getOverrides(
-      PanelContainerOverride,
-      StyledPanelContainer,
-    );
-    const [Header, headerProps] = getOverrides(HeaderOverride, StyledHeader);
-    const [Content, contentProps] = getOverrides(
-      ContentOverride,
-      StyledContent,
-    );
-
-    const toggleIconOverrides = mergeOverrides(
-      {Svg: {component: StyledToggleIcon}},
-      // $FlowFixMe
-      {Svg: ToggleIconOverride},
-    );
-
-    return (
-      <LocaleContext.Consumer>
-        {locale => (
-          <PanelContainer {...sharedProps} {...panelContainerProps}>
-            <Header
-              tabIndex={0}
-              role="button"
-              aria-expanded={expanded}
-              aria-disabled={disabled || null}
-              {...sharedProps}
-              {...headerProps}
-              {...(ariaControls ? {'aria-controls': ariaControls} : {})}
-              onClick={this.onClick}
-              onKeyDown={this.onKeyDown}
-              onFocus={forkFocus(headerProps, this.handleFocus)}
-              onBlur={forkBlur(headerProps, this.handleBlur)}
-            >
-              {title}
-              {expanded ? (
-                <CheckIndeterminateIcon
-                  size={16}
-                  title={locale.accordion.collapse}
-                  {...sharedProps}
-                  overrides={toggleIconOverrides}
-                />
-              ) : (
-                <PlusIcon
-                  size={16}
-                  title={locale.accordion.expand}
-                  {...sharedProps}
-                  overrides={toggleIconOverrides}
-                />
-              )}
-            </Header>
+  return (
+    <LocaleContext.Consumer>
+      {locale => (
+        <PanelContainer {...sharedProps} {...panelContainerProps}>
+          <Header
+            tabIndex={0}
+            role="button"
+            aria-expanded={expanded}
+            aria-disabled={disabled || null}
+            {...sharedProps}
+            {...headerProps}
+            {...(ariaControls ? {'aria-controls': ariaControls} : {})}
+            onClick={_onClick}
+            onKeyDown={_onKeyDown}
+            onFocus={forkFocus(headerProps, handleFocus)}
+            onBlur={forkBlur(headerProps, handleBlur)}
+          >
+            {title}
+            {expanded ? (
+              <CheckIndeterminateIcon
+                size={16}
+                title={locale.accordion.collapse}
+                {...sharedProps}
+                overrides={toggleIconOverrides}
+              />
+            ) : (
+              <PlusIcon
+                size={16}
+                title={locale.accordion.expand}
+                {...sharedProps}
+                overrides={toggleIconOverrides}
+              />
+            )}
+          </Header>
+          <ContentAnimationContainer
+            {...sharedProps}
+            {...contentAnimationProps}
+            data-testid="transitionDiv"
+            $height={contentHeight}
+            onTransitionEnd={() => {
+              console.log('transition');
+              console.log(localState);
+              if (localState.animationInProgress) {
+                setLocalState({...localState, animationInProgress: false});
+              }
+            }}
+          >
             <Content
+              ref={_animateRef}
               {...sharedProps}
               {...contentProps}
               {...(ariaControls ? {id: ariaControls} : {})}
             >
-              {expanded || renderPanelContent || renderAll ? children : null}
+              {localState.expanded ||
+              renderAll ||
+              renderPanelContent ||
+              localState.animationInProgress
+                ? children
+                : null}
             </Content>
-          </PanelContainer>
-        )}
-      </LocaleContext.Consumer>
-    );
-  }
-}
+          </ContentAnimationContainer>
+        </PanelContainer>
+      )}
+    </LocaleContext.Consumer>
+  );
+};
 
 export default Panel;

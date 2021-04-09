@@ -11,6 +11,7 @@ import {
   render,
   fireEvent,
   getByText,
+  getByTestId,
   queryAllByText,
 } from '@testing-library/react';
 
@@ -33,6 +34,7 @@ describe('Accordion', () => {
 
     const second = getByText(container, 'Accordion panel 2');
     fireEvent.click(second);
+    fireEvent.transitionEnd(getByTestId(first.parentElement, 'transitionDiv'));
     expect(queryAllByText(container, 'panel 1').length).toBe(0);
     expect(queryAllByText(container, 'panel 2').length).toBe(1);
 
