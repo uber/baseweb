@@ -34,6 +34,7 @@ export type PanelStateReducerT = (
 
 export type AccordionOverridesT = {
   Content?: OverrideT,
+  ContentAnimationContainer?: OverrideT,
   Header?: OverrideT,
   PanelContainer?: OverrideT,
   Root?: OverrideT,
@@ -45,6 +46,7 @@ export type PanelOverridesT = {
   Header?: OverrideT,
   ToggleIcon?: OverrideT,
   Content?: OverrideT,
+  ContentAnimationContainer?: OverrideT,
 };
 
 export type OnChangeHandlerT = ({expanded: boolean}) => mixed;

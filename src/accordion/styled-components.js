@@ -29,7 +29,6 @@ export const PanelContainer = styled('li', {
 export const Header = styled<SharedStylePropsArgT>('div', props => {
   const {
     $disabled,
-    $expanded,
     $isFocusVisible,
     $theme: {colors, sizing, typography},
   } = props;
@@ -46,9 +45,6 @@ export const Header = styled<SharedStylePropsArgT>('div', props => {
     marginBottom: 0,
     marginLeft: 0,
     marginRight: 0,
-    borderBottomWidth: '1px',
-    borderBottomStyle: 'solid',
-    borderBottomColor: $expanded ? colors.mono500 : colors.mono400,
     display: 'flex',
     alignItems: 'center',
     outline: $isFocusVisible ? `3px solid ${colors.accent}` : 'none',
@@ -79,23 +75,41 @@ export const Content = styled<SharedStylePropsArgT>('div', props => {
     ...typography.font200,
     backgroundColor: colors.listBodyFill,
     color: colors.contentPrimary,
-    paddingTop: $expanded ? sizing.scale800 : 0,
-    paddingBottom: $expanded ? sizing.scale1000 : 0,
+    paddingTop: sizing.scale800,
+    paddingBottom: sizing.scale1000,
     paddingLeft: sizing.scale800,
     paddingRight: sizing.scale800,
     marginTop: 0,
     marginBottom: 0,
     marginLeft: 0,
     marginRight: 0,
-    borderBottomWidth: '1px',
-    borderBottomStyle: $expanded ? 'solid' : 'none',
-    borderBottomColor: colors.border,
     boxSizing: 'border-box',
-    height: $expanded ? 'auto' : 0,
-    maxHeight: $expanded ? '100%' : 0,
     overflow: 'hidden',
-    transitionProperty: 'all',
-    transitionDuration: animation.timing400,
-    transitionTimingFunction: animation.easeInOutCurve,
+    opacity: $expanded ? 1 : 0,
+    visibility: $expanded ? 'visible' : 'hidden',
+    transitionProperty: 'opacity,visibility',
+    transitionDuration: animation.timing500,
+    transitionDelay: animation.timing200,
+    transitionTimingFunction: animation.easeOutQuinticCurve,
+  };
+});
+
+export const ContentAnimationContainer = styled<
+  {$height: string | number} & SharedStylePropsArgT,
+>('div', props => {
+  const {
+    $expanded,
+    $height,
+    $theme: {animation, colors},
+  } = props;
+  return {
+    height: `${$height}`,
+    overflow: 'hidden',
+    borderBottomWidth: '1px',
+    borderBottomStyle: 'solid',
+    borderBottomColor: $expanded ? colors.mono500 : colors.mono400,
+    transitionProperty: 'height',
+    transitionDuration: animation.timing500,
+    transitionTimingFunction: animation.easeOutQuinticCurve,
   };
 });
