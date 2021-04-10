@@ -21,7 +21,6 @@ describe('Spinner', () => {
         )),
     };
     const {container} = render(
-      // $FlowFixMe
       <Spinner $silenceV11DeprecationWarning overrides={overrides} />,
     );
     getByTestId(container, 'mock');

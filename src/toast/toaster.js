@@ -175,7 +175,6 @@ class ToasterContainer extends React.Component<
       >
         {({dismiss}) => {
           this.dismissHandlers[key] = dismiss;
-          // $FlowFixMe
           return children;
         }}
       </Toast>

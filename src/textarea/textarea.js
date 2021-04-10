@@ -74,7 +74,6 @@ class Textarea extends React.Component<TextareaPropsT, {isFocused: boolean}> {
         $required={this.props.required}
         {...rootProps}
       >
-        {/* $FlowFixMe */}
         <BaseInput
           {...this.props}
           type={CUSTOM_INPUT_TYPE.textarea}
