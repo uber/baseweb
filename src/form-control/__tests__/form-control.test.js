@@ -96,7 +96,6 @@ describe('FormControl - Label and Caption for controls', () => {
         <Textarea />
       </FormControl>,
     );
-    // $FlowFixMe
     expect(queryByText(container, caption)).toBeNull();
     expect(queryByText(container, positive)).toBeNull();
     getByText(container, error);
