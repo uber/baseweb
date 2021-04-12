@@ -45,6 +45,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     options,
     overrides = {},
     positive = false,
+    inputRef: forwardInputRef,
     size = SIZE.default,
     value,
   } = props;
@@ -182,11 +183,32 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
     if (onBlur) onBlur(event);
   }
 
+  function handleInputClick() {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+
+    if (!isOpen && options.length) {
+      handleOpen();
+    }
+  }
+
   function handleInputChange(event) {
     handleOpen();
     setSelectionIndex(-1);
     onChange(event.target.value, null);
     setTempValue(event.target.value);
+  }
+
+  function handleInputRef(input) {
+    inputRef.current = input;
+    if (forwardInputRef) {
+      if (typeof forwardInputRef === 'function') {
+        forwardInputRef(input);
+      } else {
+        forwardInputRef.current = input;
+      }
+    }
   }
 
   function handleOptionClick(index) {
@@ -238,6 +260,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
         isOpen={isOpen}
         overrides={popoverOverrides}
         placement={PLACEMENT.bottomLeft}
+        onClick={handleInputClick}
         content={
           <ListBox
             // TabIndex attribute exists to exclude option clicks from triggering onBlur event actions.
@@ -292,7 +315,7 @@ function Combobox<OptionT>(props: PropsT<OptionT>) {
           {...inputContainerProps}
         >
           <OverriddenInput
-            inputRef={inputRef}
+            inputRef={handleInputRef}
             aria-activedescendant={
               selectionIndex >= 0 ? activeDescendantId : undefined
             }

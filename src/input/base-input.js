@@ -36,6 +36,7 @@ class BaseInput<T: EventTarget> extends React.Component<
     'aria-autocomplete': null,
     'aria-controls': null,
     'aria-errormessage': null,
+    'aria-haspopup': null,
     'aria-label': null,
     'aria-labelledby': null,
     'aria-describedby': null,
@@ -60,6 +61,7 @@ class BaseInput<T: EventTarget> extends React.Component<
     pattern: null,
     placeholder: '',
     required: false,
+    role: null,
     size: SIZE.default,
     type: 'text',
   };
@@ -331,6 +333,7 @@ class BaseInput<T: EventTarget> extends React.Component<
           aria-autocomplete={this.props['aria-autocomplete']}
           aria-controls={this.props['aria-controls']}
           aria-errormessage={this.props['aria-errormessage']}
+          aria-haspopup={this.props['aria-haspopup']}
           aria-label={this.props['aria-label']}
           aria-labelledby={this.props['aria-labelledby']}
           aria-describedby={this.props['aria-describedby']}
@@ -352,6 +355,7 @@ class BaseInput<T: EventTarget> extends React.Component<
           placeholder={this.props.placeholder}
           type={this.getInputType()}
           required={this.props.required}
+          role={this.props.role}
           value={this.props.value}
           min={this.props.min}
           max={this.props.max}

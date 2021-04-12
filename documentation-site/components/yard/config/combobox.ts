@@ -102,6 +102,11 @@ const ComboboxConfig: TConfig = {
       description: 'Name attribute.',
       hidden: true,
     },
+    inputRef: {
+      value: undefined,
+      type: PropTypes.Ref,
+      description: 'A ref to access the input element.',
+    },
 
     overrides: {
       value: undefined,
