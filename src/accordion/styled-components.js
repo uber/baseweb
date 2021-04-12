@@ -21,9 +21,18 @@ export const Root = styled('ul', {
   width: '100%',
 });
 
-export const PanelContainer = styled('li', {
-  listStyleType: 'none',
-  width: '100%',
+export const PanelContainer = styled<SharedStylePropsArgT>('li', props => {
+  const {
+    $expanded,
+    $theme: {colors},
+  } = props;
+  return {
+    listStyleType: 'none',
+    width: '100%',
+    borderBottomWidth: '1px',
+    borderBottomStyle: 'solid',
+    borderBottomColor: $expanded ? colors.mono500 : colors.mono400,
+  };
 });
 
 export const Header = styled<SharedStylePropsArgT>('div', props => {
@@ -105,9 +114,6 @@ export const ContentAnimationContainer = styled<
   return {
     height: `${$height}`,
     overflow: 'hidden',
-    borderBottomWidth: '1px',
-    borderBottomStyle: 'solid',
-    borderBottomColor: $expanded ? colors.mono500 : colors.mono400,
     transitionProperty: 'height',
     transitionDuration: animation.timing500,
     transitionTimingFunction: animation.easeOutQuinticCurve,

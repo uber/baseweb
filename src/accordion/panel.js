@@ -199,8 +199,6 @@ const Panel = ({
             data-testid="transitionDiv"
             $height={contentHeight}
             onTransitionEnd={() => {
-              console.log('transition');
-              console.log(localState);
               if (localState.animationInProgress) {
                 setLocalState({...localState, animationInProgress: false});
               }
