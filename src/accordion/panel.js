@@ -93,7 +93,7 @@ const Panel = ({
         //animation.
         setLocalState({
           ...localState,
-          elementHeight: height ? `${height + 1}px` : 0,
+          elementHeight: height ? `${height}px` : 0,
         });
       }
     }
@@ -112,7 +112,7 @@ const Panel = ({
       const height = _animateRef.current.getBoundingClientRect().height;
       setLocalState({
         ...localState,
-        elementHeight: height ? `${height + 1}px` : 0,
+        elementHeight: height ? `${height}px` : 0,
       });
       return localState.elementHeight;
     }
