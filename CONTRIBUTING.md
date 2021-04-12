@@ -32,6 +32,7 @@ Usually, we reject contributions if they meet any of the following requirements:
 - Slight alterations of existing components - like introducing a new component called "Fancy Button".
 - Breaking changes - if your changeset introduces API changes, please make sure to do them in a backward-compatible way.
 - The PR includes opinionated changes that are not necessary - examples for this include introducing destructuring or moving files around based on personal preference.
+- Most examples for the documentation site that shows integration with a third-party library or service - we welcome these guides as blogposts. If you are interested in contributing one, please open a GitHub issue with the proposal!
 
 ## Definition of done
 
