@@ -48,6 +48,9 @@ export default function Scenario() {
           if (index !== i && index !== -1) {
             return null;
           }
+          if (placement === "auto") {
+            return null;
+          }
           return (
             <div
               key={placement}
