@@ -75,6 +75,17 @@ export const ToggleIcon = styled<SharedStylePropsArgT>('svg', props => {
   };
 });
 
+export const ToggleIconGroup = styled<SharedStylePropsArgT>('g', props => {
+  const {$theme, $expanded} = props;
+  return {
+    transform: $expanded ? 'rotate(0)' : 'rotate(-90deg)',
+    transformOrigin: 'center',
+    transitionProperty: 'transform',
+    transitionDuration: $theme.animation.timing500,
+    transitionTimingFunction: $theme.animation.easeOutQuinticCurve,
+  };
+});
+
 export const Content = styled<SharedStylePropsArgT>('div', props => {
   const {
     $theme: {animation, colors, sizing, typography},
