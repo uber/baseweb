@@ -71,13 +71,17 @@ const ExpandableCell = withStyle(StyledCell, {
 });
 
 const panelOverrides = {
-  Header: {
-    style: ({$theme: {colors, sizing, typography}, $expanded}) => ({
-      ...typography.font300,
-      color: 'inherit',
+  PanelContainer: {
+    style: ({$theme: {colors}, $expanded}) => ({
       borderBottomWidth: '1px',
       borderBottomStyle: 'solid',
       borderBottomColor: $expanded ? colors.mono500 : 'transparent',
+    }),
+  },
+  Header: {
+    style: ({$theme: {sizing, typography}}) => ({
+      ...typography.font300,
+      color: 'inherit',
       paddingTop: sizing.scale300,
       paddingBottom: sizing.scale300,
       paddingLeft: sizing.scale500,
