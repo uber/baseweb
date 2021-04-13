@@ -95,11 +95,11 @@ const panelOverrides = {
     }),
   },
   Content: {
-    style: ({$theme: {colors, sizing}, $expanded}) => ({
+    style: ({$theme: {colors, sizing}}) => ({
       backgroundColor: colors.mono200,
       color: colors.mono800,
-      paddingTop: $expanded ? sizing.scale300 : 0,
-      paddingBottom: $expanded ? sizing.scale600 : 0,
+      paddingTop: sizing.scale300,
+      paddingBottom: sizing.scale300,
       paddingLeft: sizing.scale1000,
       paddingRight: sizing.scale600,
     }),
