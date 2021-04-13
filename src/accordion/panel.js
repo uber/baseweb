@@ -8,18 +8,18 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {LocaleContext} from '../locale/index.js';
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
-import PlusIcon from '../icon/plus.js';
-import CheckIndeterminateIcon from '../icon/check-indeterminate.js';
 import {
   PanelContainer as StyledPanelContainer,
   Header as StyledHeader,
   Content as StyledContent,
   ToggleIcon as StyledToggleIcon,
+  ToggleIconGroup as StyledToggleIconGroup,
   ContentAnimationContainer as StyledContentAnimationContainer,
 } from './styled-components.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 import type {PanelPropsT} from './types.js';
+import Icon from '../icon/icon.js';
 
 const Panel = ({
   'aria-controls': ariaControls,
@@ -177,21 +177,30 @@ const Panel = ({
             onBlur={forkBlur(headerProps, handleBlur)}
           >
             {title}
-            {expanded ? (
-              <CheckIndeterminateIcon
-                size={16}
-                title={locale.accordion.collapse}
-                {...sharedProps}
-                overrides={toggleIconOverrides}
+            <Icon
+              viewBox="0 0 24 24"
+              title={
+                localState.expanded
+                  ? locale.accordion.collapse
+                  : locale.accordion.expand
+              }
+              size={16}
+              overrides={toggleIconOverrides}
+              {...sharedProps}
+            >
+              <StyledToggleIconGroup {...sharedProps}>
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M6 12C6 11.4477 6.44772 11 7 11H17C17.5523 11 18 11.4477 18 12C18 12.5523 17.5523 13 17 13H7C6.44772 13 6 12.5523 6 12Z"
+                />
+              </StyledToggleIconGroup>
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M6 12C6 11.4477 6.44772 11 7 11H17C17.5523 11 18 11.4477 18 12C18 12.5523 17.5523 13 17 13H7C6.44772 13 6 12.5523 6 12Z"
               />
-            ) : (
-              <PlusIcon
-                size={16}
-                title={locale.accordion.expand}
-                {...sharedProps}
-                overrides={toggleIconOverrides}
-              />
-            )}
+            </Icon>
           </Header>
           <ContentAnimationContainer
             {...sharedProps}
