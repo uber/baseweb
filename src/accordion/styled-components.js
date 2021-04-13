@@ -107,9 +107,8 @@ export const ContentAnimationContainer = styled<
   {$height: string | number} & SharedStylePropsArgT,
 >('div', props => {
   const {
-    $expanded,
     $height,
-    $theme: {animation, colors},
+    $theme: {animation},
   } = props;
   return {
     height: `${$height}`,
