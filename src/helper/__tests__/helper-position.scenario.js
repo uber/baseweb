@@ -22,10 +22,10 @@ export default function Scenario() {
       <select value={index} onChange={e => setIndex(Number(e.target.value))}>
         <option value={-1}>Show All</option>
         {Object.keys(PLACEMENT).map((placement, i) => {
-          if (placement === "auto") {
+          if (placement === 'auto') {
             return null;
           }
-          
+
           return (
             <option key={placement} value={i}>
               {placement}
@@ -48,7 +48,7 @@ export default function Scenario() {
           if (index !== i && index !== -1) {
             return null;
           }
-          if (placement === "auto") {
+          if (placement === 'auto') {
             return null;
           }
           return (

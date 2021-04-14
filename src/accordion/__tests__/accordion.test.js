@@ -20,7 +20,11 @@ import {Accordion, Panel} from '../index.js';
 describe('Accordion', () => {
   it('renders basic configuration', () => {
     const {container} = render(
-      <Accordion>
+      <Accordion
+        overrides={{
+          ContentAnimationContainer: {props: {'data-testid': 'transitionDiv'}},
+        }}
+      >
         <Panel title="Accordion panel 1">panel 1</Panel>
         <Panel title="Accordion panel 2">panel 2</Panel>
         <Panel title="Accordion panel 3">panel 3</Panel>

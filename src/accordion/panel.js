@@ -44,19 +44,19 @@ const Panel = ({
     if (isFocusVisible(event)) {
       setLocalState({...localState, isFocusVisible: true});
     }
-  });
+  }, []);
   const handleBlur = React.useCallback(() => {
     if (localState.isFocusVisible !== false) {
       setLocalState({...localState, isFocusVisible: false});
     }
-  });
+  }, []);
   const handleClick = React.useCallback((e: Event) => {
     if (disabled) {
       return;
     }
     typeof onChange === 'function' && onChange({expanded: !expanded});
     typeof onClick === 'function' && onClick(e);
-  });
+  }, []);
   const handleKeyDown = React.useCallback((e: KeyboardEvent) => {
     if (disabled) {
       return;
@@ -72,7 +72,7 @@ const Panel = ({
       }
     }
     typeof onKeyDown === 'function' && onKeyDown(e);
-  });
+  }, []);
   // eslint-disable-next-line flowtype/no-weak-types
   const _animateRef = React.useRef<any>(null);
 
@@ -140,6 +140,7 @@ const Panel = ({
     Content: ContentOverride,
     ContentAnimationContainer: ContentAnimationContainerOverride,
     ToggleIcon: ToggleIconOverride,
+    ToggleIconGroup: ToggleIconGroupOverride,
   } = overrides;
 
   const [PanelContainer, panelContainerProps] = getOverrides(
@@ -151,6 +152,10 @@ const Panel = ({
   const [ContentAnimationContainer, contentAnimationProps] = getOverrides(
     ContentAnimationContainerOverride,
     StyledContentAnimationContainer,
+  );
+  const [ToggleIconGroup, toggleIconGroupProps] = getOverrides(
+    ToggleIconGroupOverride,
+    StyledToggleIconGroup,
   );
 
   const toggleIconOverrides = mergeOverrides(
@@ -188,13 +193,13 @@ const Panel = ({
               overrides={toggleIconOverrides}
               {...sharedProps}
             >
-              <StyledToggleIconGroup {...sharedProps}>
+              <ToggleIconGroup {...sharedProps} {...toggleIconGroupProps}>
                 <path
                   fillRule="evenodd"
                   clipRule="evenodd"
                   d="M6 12C6 11.4477 6.44772 11 7 11H17C17.5523 11 18 11.4477 18 12C18 12.5523 17.5523 13 17 13H7C6.44772 13 6 12.5523 6 12Z"
                 />
-              </StyledToggleIconGroup>
+              </ToggleIconGroup>
               <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -205,7 +210,6 @@ const Panel = ({
           <ContentAnimationContainer
             {...sharedProps}
             {...contentAnimationProps}
-            data-testid="transitionDiv"
             $height={contentHeight}
             onTransitionEnd={() => {
               if (localState.animationInProgress) {

@@ -20,6 +20,7 @@ export {
   Content as StyledContent,
   ContentAnimationContainer as StyledContentAnimationContainer,
   ToggleIcon as StyledToggleIcon,
+  ToggleIconGroup as StyledToggleIconGroup,
 } from './styled-components.js';
 // Flow
 export type * from './types.js';

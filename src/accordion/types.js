@@ -39,12 +39,14 @@ export type AccordionOverridesT = {
   PanelContainer?: OverrideT,
   Root?: OverrideT,
   ToggleIcon?: OverrideT,
+  ToggleIconGroup?: OverrideT,
 };
 
 export type PanelOverridesT = {
   PanelContainer?: OverrideT,
   Header?: OverrideT,
   ToggleIcon?: OverrideT,
+  ToggleIconGroup?: OverrideT,
   Content?: OverrideT,
   ContentAnimationContainer?: OverrideT,
 };
