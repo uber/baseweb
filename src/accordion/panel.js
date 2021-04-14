@@ -79,7 +79,7 @@ const Panel = ({
   React.useEffect(() => {
     if (_animateRef.current) {
       const height = _animateRef.current.getBoundingClientRect().height;
-      // After the first render, and everything is in the DOM, update the local
+      // After the first render, when everything is in the DOM, update the local
       //state to indicate an animation is in progress.
       if (expanded !== localState.expanded) {
         setLocalState({
