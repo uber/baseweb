@@ -34,13 +34,8 @@ export default function Scenario() {
         <Panel
           title="hello"
           overrides={{
-            // eslint-disable-next-line
-            ToggleIcon: function(props) {
-              if (props.$expanded) {
-                return <div>collapse(override)</div>;
-              }
-              return <div>expand(override)</div>;
-            },
+            // eslint-disable-next-line react/display-name
+            ToggleIcon: () => <div>differentIcon(override)</div>,
           }}
         >
           hello puppeteer!
