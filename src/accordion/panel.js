@@ -45,19 +45,19 @@ const Panel = ({
       setLocalState({...localState, isFocusVisible: true});
     }
   });
-  const handleBlur = React.useCallback((event: SyntheticEvent<>) => {
+  const handleBlur = React.useCallback(() => {
     if (localState.isFocusVisible !== false) {
       setLocalState({...localState, isFocusVisible: false});
     }
   });
-  const _onClick = React.useCallback((e: Event) => {
+  const handleClick = React.useCallback((e: Event) => {
     if (disabled) {
       return;
     }
     typeof onChange === 'function' && onChange({expanded: !expanded});
     typeof onClick === 'function' && onClick(e);
   });
-  const _onKeyDown = React.useCallback((e: KeyboardEvent) => {
+  const handleKeyDown = React.useCallback((e: KeyboardEvent) => {
     if (disabled) {
       return;
     }
@@ -171,8 +171,8 @@ const Panel = ({
             {...sharedProps}
             {...headerProps}
             {...(ariaControls ? {'aria-controls': ariaControls} : {})}
-            onClick={_onClick}
-            onKeyDown={_onKeyDown}
+            onClick={handleClick}
+            onKeyDown={handleKeyDown}
             onFocus={forkFocus(headerProps, handleFocus)}
             onBlur={forkBlur(headerProps, handleBlur)}
           >
