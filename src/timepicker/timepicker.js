@@ -196,11 +196,7 @@ class TimePicker<T = Date> extends React.Component<
     const date = this.props.adapter.startOfDay(
       this.props.adapter.date(val || undefined),
     );
-    const upDate = setSeconds(
-      setMinutes(setHours(date, hours), minutes),
-      seconds,
-    );
-    return upDate;
+    return setSeconds(setMinutes(setHours(date, hours), minutes), seconds);
   };
 
   getTimeWindowInSeconds = (step: number): {start: number, end: number} => {
