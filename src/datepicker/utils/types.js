@@ -66,9 +66,6 @@ export type DateIOAdapter<T> = {
   getSeconds(value: T): number,
   setSeconds(value: T, count: number): T,
 
-  getMilliseconds(value: T): number,
-  setMilliseconds(value: T, count: number): T,
-
   getMonth(value: T): number,
   setMonth(value: T, count: number): T,
   getNextMonth: DateInDateOut<T>,
