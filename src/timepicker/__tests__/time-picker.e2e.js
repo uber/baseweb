@@ -16,6 +16,8 @@ const selectors = {
   twentyFourHourMoment: '[data-e2e="24-hour-moment"]',
   twelveHourCreatable: '[data-e2e="12-hour-creatable"]',
   twentyFourHourCreatable: '[data-e2e="24-hour-creatable"]',
+  minMaxTime: '[data-e2e="with-min-and-max-time"]',
+  minMaxTimeMoment: '[data-e2e="with-min-and-max-time-moment"]',
   hours: '[data-e2e="hours"]',
   minutes: '[data-e2e="minutes"]',
   input: 'input[role="combobox"]',
@@ -57,6 +59,33 @@ describe('TimePicker', () => {
 
     const minutes = await page.$eval(
       `${selectors.twelveHour} ${selectors.minutes}`,
+      select => select.textContent,
+    );
+    expect(minutes).toBe('minute: 0');
+  });
+
+  it('it renders only times within the min/max range', async () => {
+    await mount(page, 'timepicker--time-picker');
+    await page.waitForSelector(selectors.minMaxTime);
+    await page.click(`${selectors.minMaxTime} ${selectors.input}`);
+    await page.waitForSelector(selectors.dropdown);
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('Enter');
+
+    const value = await page.$eval(
+      `${selectors.minMaxTime} ${selectors.value}`,
+      select => select.textContent,
+    );
+    expect(value).toBe('10:00');
+
+    const hours = await page.$eval(
+      `${selectors.minMaxTime} ${selectors.hours}`,
+      select => select.textContent,
+    );
+    expect(hours).toBe('hour: 10');
+
+    const minutes = await page.$eval(
+      `${selectors.minMaxTime} ${selectors.minutes}`,
       select => select.textContent,
     );
     expect(minutes).toBe('minute: 0');
@@ -248,6 +277,33 @@ describe('TimePicker', () => {
 
       const minutes = await page.$eval(
         `${selectors.twentyFourHourMoment} ${selectors.minutes}`,
+        select => select.textContent,
+      );
+      expect(minutes).toBe('minute: 0');
+    });
+
+    it('it renders only times within the min/max range', async () => {
+      await mount(page, 'timepicker--time-picker');
+      await page.waitForSelector(selectors.minMaxTimeMoment);
+      await page.click(`${selectors.minMaxTimeMoment} ${selectors.input}`);
+      await page.waitForSelector(selectors.dropdown);
+      await page.keyboard.press('ArrowDown');
+      await page.keyboard.press('Enter');
+
+      const value = await page.$eval(
+        `${selectors.minMaxTimeMoment} ${selectors.value}`,
+        select => select.textContent,
+      );
+      expect(value).toBe('10:00');
+
+      const hours = await page.$eval(
+        `${selectors.minMaxTimeMoment} ${selectors.hours}`,
+        select => select.textContent,
+      );
+      expect(hours).toBe('hour: 10');
+
+      const minutes = await page.$eval(
+        `${selectors.minMaxTimeMoment} ${selectors.minutes}`,
         select => select.textContent,
       );
       expect(minutes).toBe('minute: 0');

@@ -82,6 +82,12 @@ const MomentControlled = ({
 
 export default function Scenario() {
   const [value, setValue] = React.useState(null);
+  const minTime = new Date(MIDNIGHT);
+  minTime.setHours(9, 30, 0, 0);
+  const maxTime = new Date(MIDNIGHT);
+  maxTime.setHours(18, 30, 0, 0);
+  const momentMinTime = momentAdapter.date(minTime);
+  const momentMaxTime = momentAdapter.date(maxTime);
   return (
     <div style={{width: '130px'}}>
       <div data-e2e="12-hour">
@@ -119,6 +125,44 @@ export default function Scenario() {
           onChange={date => setValue(date)}
           nullable
           placeholder="XX:YY"
+        />
+      </div>
+      <div data-e2e="with-min-time">
+        With min time
+        <Controlled
+          format="24"
+          step={1800}
+          minTime={minTime}
+          initialDate={MIDNIGHT}
+        />
+      </div>
+      <div data-e2e="with-max-time">
+        With max time
+        <Controlled
+          format="24"
+          step={1800}
+          maxTime={maxTime}
+          initialDate={MIDNIGHT}
+        />
+      </div>
+      <div data-e2e="with-min-and-max-time">
+        With min & max time
+        <Controlled
+          format="24"
+          step={1800}
+          minTime={minTime}
+          maxTime={maxTime}
+          initialDate={MIDNIGHT}
+        />
+      </div>
+      <div data-e2e="with-min-and-max-time-moment">
+        With min & max time (moment)
+        <MomentControlled
+          format="24"
+          step={1800}
+          minTime={momentMinTime}
+          maxTime={momentMaxTime}
+          initialDate={MOMENT_MIDNIGHT}
         />
       </div>
       <div data-e2e="24-hour-moment">

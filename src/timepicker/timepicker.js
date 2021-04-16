@@ -10,15 +10,14 @@ import * as React from 'react';
 
 import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
 import {LocaleContext} from '../locale/index.js';
-import {Select, filterOptions} from '../select/index.js';
+import type {OnChangeParamsT, OptionT} from '../select/index.js';
+import {filterOptions, Select} from '../select/index.js';
 import DateHelpers from '../datepicker/utils/date-helpers.js';
 import dateFnsAdapter from '../datepicker/utils/date-fns-adapter.js';
-
-import type {OptionT, OnChangeParamsT} from '../select/index.js';
 import type {
+  TimePickerDefaultPropsT,
   TimePickerPropsT,
   TimePickerStateT,
-  TimePickerDefaultPropsT,
 } from './types.js';
 
 const MINUTE = 60;
@@ -80,10 +79,12 @@ class TimePicker<T = Date> extends React.Component<
     const formatChanged = prevProps.format !== this.props.format;
     const stepChanged = prevProps.step !== this.props.step;
     const adapterChanged = prevProps.adapter !== this.props.adapter;
+    const minTimeChange = prevProps.minTime !== this.props.minTime;
+    const maxTimeChange = prevProps.maxTime !== this.props.maxTime;
     if (adapterChanged) {
       this.dateHelpers = new DateHelpers(this.props.adapter);
     }
-    if (formatChanged || stepChanged) {
+    if (formatChanged || stepChanged || minTimeChange || maxTimeChange) {
       const steps = this.buildSteps();
       this.setState({steps});
     }
@@ -180,18 +181,65 @@ class TimePicker<T = Date> extends React.Component<
   };
 
   handleChange = (seconds: number) => {
-    const date = this.props.adapter.date(this.props.value || undefined);
     const [hours, minutes] = this.dateHelpers.secondsToHourMinute(seconds);
-    const hourDate = this.props.adapter.setHours(date, hours);
-    const minuteDate = this.props.adapter.setMinutes(hourDate, minutes);
-    const updatedDate = this.props.adapter.setSeconds(minuteDate, 0);
+    const updatedDate = this.setTime(this.props.value, hours, minutes, 0);
     this.props.onChange && this.props.onChange(updatedDate);
+  };
+
+  setTime: (?T, number, number, number) => T = (
+    val,
+    hours,
+    minutes,
+    seconds,
+  ) => {
+    const {setSeconds, setMinutes, setHours} = this.dateHelpers;
+    const date = this.props.adapter.startOfDay(
+      this.props.adapter.date(val || undefined),
+    );
+    const upDate = setSeconds(
+      setMinutes(setHours(date, hours), minutes),
+      seconds,
+    );
+    return upDate;
+  };
+
+  getTimeWindowInSeconds = (step: number): {start: number, end: number} => {
+    let {minTime: min, maxTime: max} = this.props;
+    let midnight = this.setTime(this.props.value, 0, 0, 0);
+    if (!min) {
+      min = midnight;
+    }
+    if (!max) {
+      max = this.setTime(this.props.value, 24, 0, 0);
+    } else {
+      // maxTime (if provided) should be inclusive, so add an extra step here
+      max = this.props.adapter.setSeconds(
+        this.props.adapter.date(max),
+        this.props.adapter.getSeconds(max) + step,
+      );
+    }
+
+    const minDate = this.props.adapter.toJsDate(min);
+    const maxDate = this.props.adapter.toJsDate(max);
+    const midnightDate = this.props.adapter.toJsDate(midnight);
+    return {
+      start: (minDate - midnightDate) / 1000,
+      end: (maxDate - midnightDate) / 1000,
+    };
   };
 
   buildSteps = () => {
     const {step = 900} = this.props;
 
-    let stepCount = DAY / step;
+    const timeWindow = this.getTimeWindowInSeconds(step);
+    let stepCount = (timeWindow.end - timeWindow.start) / step;
+    if (__DEV__ && stepCount > 500) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        `Provided step value (${step}) results in ${stepCount} steps. Performance may suffer when more than 500 elements are rendered.`,
+      );
+    }
+
     if (!Number.isInteger(stepCount)) {
       const previousStepCount = stepCount;
       stepCount = Math.round(stepCount);
@@ -205,7 +253,7 @@ class TimePicker<T = Date> extends React.Component<
     }
 
     const options = [];
-    for (let i = 0; i < DAY; i += step) {
+    for (let i = timeWindow.start; i < timeWindow.end; i += step) {
       options.push(i);
     }
     return options;
@@ -242,13 +290,12 @@ class TimePicker<T = Date> extends React.Component<
       overrides.Select,
       Select,
     );
-    const selectOverrides = mergeOverrides(
+    // $FlowFixMe
+    selectProps.overrides = mergeOverrides(
       {Dropdown: {style: {maxHeight: '126px'}}},
       // $FlowFixMe
       selectProps.overrides,
     );
-    // $FlowFixMe
-    selectProps.overrides = selectOverrides;
 
     const value =
       this.props.value && adapter.isValid(this.props.value)
