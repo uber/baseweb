@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) 2018-2021 Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -24,8 +24,8 @@ yarn add baseui styletron-engine-atomic styletron-react
 npm install baseui styletron-engine-atomic styletron-react
 ```
 
-Base Web ships with both Flow and TypeScript support. Styletron ships only with Flow. However, if you use
-TypeScript there are external TypeScript declarations:
+Base Web ships with both Flow and TypeScript support. Styletron ships only with Flow. If you use
+TypeScript, however, there are external TypeScript declarations:
 
 ```bash
 yarn add @types/styletron-standard @types/styletron-react @types/styletron-engine-atomic
@@ -33,24 +33,24 @@ yarn add @types/styletron-standard @types/styletron-react @types/styletron-engin
 
 Our React components don't use [PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html).
 
-[Styletron](https://www.styletron.org/) is a toolkit for component-oriented styling, part of the CSS in JS family. Base Web requires Styletron as a peer dependency (it uses it to apply styles to components) so you need to add Styletron as a dependency too.
+[Styletron](https://www.styletron.org/) is a toolkit for component-oriented styling, part of the CSS-in-JS family. Base Web requires Styletron as a peer dependency (it uses it to apply styles to components), so you need to add Styletron as a dependency too.
 
-### VSCode Extension
+### Visual Studio (VS) code extension
 
-VS Code is one of the most popular code editors for web developers globally - as such, we have first-class support for it.
+VS Code is one of the most popular code editors for web developers globally-and, as such, we have first-class support for it.
 
 Features include:
 
-- code snippet support for quickly using Base Web components,
-- code coloring for theme values,
-- built-in theme cheat sheet,
-- shortcuts for the documentation package.
+- Code snippet support for quickly using Base Web components
+- Code coloring for theme values
+- Built-in theme cheat sheet
+- Shortcuts for the documentation package
 
 Learn more [here](https://baseweb.design/blog/vs-code-extension/), or [grab the extension from the marketplace](https://marketplace.visualstudio.com/items?itemName=Uber.baseweb).
 
 ### `eslint-plugin-baseui`
 
-Base Web also has a plugin for [ESLint](https://eslint.org/) that will warn you if you are using a deprecated component or API. It also flags certain common mistakes developers make when using `baseui`. In some cases it can also auto-fix issues for you!
+Base Web also has a plugin for [ESLint](https://eslint.org/) that will warn you if you’re using a deprecated component or API. In addition, it flags certain common mistakes developers make when using `baseui`. In some cases it can also auto-fix issues for you.
 
 Assuming you already have ESLint installed, run:
 
@@ -92,7 +92,7 @@ Then add it to your ESLint configuration:
 }
 ```
 
-## Adding Base Web to Your Application
+## Adding Base Web to your application
 
 In order to use Base Web, you need to do a small setup and wrap the root of your
 application with `StyletronProvider` and [`BaseProvider`](https://baseweb.design/components/base-provider) components:
@@ -140,12 +140,12 @@ When using **Gatsby** and `gatsby-plugin-styletron`, make sure to place `BasePro
 </StyletronProvider>
 ```
 
-nesting. Otherwise, you could see this console warning: "_Did you forget to provide a Styletron engine instance..._".
+nesting. Otherwise, you could see this console warning: "Did you forget to provide a Styletron engine instance...".
 
-## Base Web for Designers
+## Base Web for designers
 
-Base Web is published on Figma Communities, so your design team can take advantage of the Base Web components too. Read more [here](https://baseweb.design/blog/base-figma-community/).
+Base Web is published on Figma Community, so your design team can take advantage of the Base Web components too. Read more [here](https://baseweb.design/blog/base-figma-community/).
 
 ## Next step
 
-Check out the [Learn Base Web](/getting-started/learn), to better understand the concepts of Base Web.
+Check out the [Learning Base Web](/getting-started/learn) section, to better understand the concepts of Base Web.

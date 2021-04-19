@@ -20,6 +20,8 @@ export interface TimePickerProps {
   step?: number;
   value?: Date | null;
   size?: SIZE[keyof SIZE];
+  minTime?: Date;
+  maxTime?: Date;
 }
 export interface TimePickerState {
   steps: number[];

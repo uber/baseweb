@@ -35,6 +35,8 @@ export type TimePickerPropsT<T = Date> = {
   nullable?: boolean,
   placeholder?: string,
   size?: SizeT,
+  minTime?: T,
+  maxTime?: T,
 };
 export type TimePickerStateT = {
   /** List of times (in seconds) displayed in the dropdown menu. */
