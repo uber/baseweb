@@ -80,7 +80,7 @@ function Options(props: OptionsPropsT) {
   return (
     <div
       className={css({
-        backgroundColor: theme.colors.backgroundPrimary,
+        backgroundColor: theme.colors.menuFill,
         minWidth: '320px',
         outline: focusVisible ? `3px solid ${theme.colors.accent}` : 'none',
         paddingTop: theme.sizing.scale600,
@@ -163,7 +163,7 @@ function Options(props: OptionsPropsT) {
                 ...theme.typography.font100,
                 alignItems: 'center',
                 backgroundColor: isHighlighted
-                  ? theme.colors.backgroundSecondary
+                  ? theme.colors.menuFillHover
                   : null,
                 cursor: 'pointer',
                 display: 'flex',
