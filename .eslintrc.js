@@ -45,6 +45,12 @@ module.exports = {
     ],
     'import/prefer-default-export': ['off'],
     'header/header': [2, 'LICENSE-HEAD'],
+    'jsx-a11y/no-autofocus': [
+      2,
+      {
+        ignoreNonDOM: true,
+      },
+    ],
   },
   overrides: [
     {

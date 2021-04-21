@@ -253,7 +253,6 @@ class Drawer extends React.Component<DrawerPropsT, DrawerStateT> {
       <LocaleContext.Consumer>
         {locale => {
           return (
-            // eslint-disable-next-line jsx-a11y/no-autofocus
             <FocusLock returnFocus autoFocus={autoFocus}>
               <Root
                 data-baseweb="drawer"
