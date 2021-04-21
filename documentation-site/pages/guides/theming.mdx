@@ -34,27 +34,27 @@ In this guide, we will cover the basics of theming Base Web components. We'll go
 - [Accessing your theme through styling utilities](#using-the-theme)
 - [Theme properties](#theme-properties)
 
-## Benefits
+## The benefits of a theme
 
 The theming system that ships with Base Web provides developers with a few useful features:
 
-### Centralized Customization
+### Centralized customization
 
 The theme object allows you to configure system-wide styling values in one place. All of our components reference the theme object when assigning style values. This removes the need for certain types of styling overrides and frees you from maintaining custom versions of components simply because your interface requires a different color palette or typography scale.
 
-### Light and Dark Themes
+### Light and dark themes
 
-Because our theme is provided to components through React’s context system, we can dynamically change the theme at any time. The most common use case is toggling between Base Web’s light and dark themes, but there are many other possibilities. For example, you could introduce controls for modifying layout density or you could let users customize your interface in real-time.
+Because our theme is provided to components through React’s context system, we can dynamically change the theme at any time. The most common use case is toggling between Base Web’s light and dark themes, but there are many other possibilities. For example, you could introduce controls for modifying layout density, or you could let users customize your interface in real time.
 
-### Access to Design Tokens
+### Access to design tokens
 
 The theme object is easily accessible when working with Base Web’s various styling utilities (including `useStyletron`, `styled`, `withStyle`, and `Block`). This makes it easy to use consistent values when extending Base components or styling your components. Using consistent design tokens results in faster development, smaller bundle sizes, and better-looking interfaces.
 
-## Setup
+## Setting up Base Web with a theme
 
-Even if you are not interested in creating a custom theme, we require that you select a theme as part of Base Web’s boilerplate setup. Our components require a theme to assign styles.
+Even if you’re not interested in creating a custom theme, we require that you select a theme as part of Base Web’s boilerplate setup. Our components require a theme to assign styles.
 
-The theme object itself is nothing special. It is just an object with specific properties (a specific “shape”) that can be passed to our `ThemeProvider` or `BaseProvider`. Base Web components will then reference this object when assigning stylistic values such as color or font size.
+The theme object itself is nothing special—just an object with specific properties (a specific “shape”) that can be passed to our `ThemeProvider` or `BaseProvider`. Base Web components will then reference this object when assigning stylistic values such as color or font size.
 
 <Notification
   kind="warning"
@@ -66,15 +66,15 @@ The theme object itself is nothing special. It is just an object with specific p
     },
   }}
 >
-  Make sure to reference the Flow/Typescript definitions when customizing your
+  Make sure to reference the Flow/TypesScript definitions when customizing your
   theme object. Base Web components assume certain properties are on the theme
   object at run-time. A missing property on the theme object can lead to a
-  run-time error.
+  runtime error.
 </Notification>
 
 ### Default themes
 
-We provide two themes out of the box, `LightTheme` and `DarkTheme`, which style components in light & dark variants. If you don’t want to customize Base Web, you can use either of these ready-to-use themes as-is:
+We provide 2 themes out of the box, `LightTheme` and `DarkTheme`, which style components in light and dark variants. If you don’t want to customize Base Web, you can use either of these ready-to-use themes as is:
 
 ```js
 import React from 'react';
@@ -89,9 +89,10 @@ export default function App() {
 }
 ```
 
-### Toggling light and dark
+### Toggling between light and dark themes
 
-If you want to allow for toggling between the two themes at runtime, you need to allocate some state for determining which theme is passed to `ThemeProvider`.
+If you want to allow for toggling between the 2 themes at 
+, you need to allocate some state for determining which theme is passed to `ThemeProvider`.
 
 ```js
 import React from 'react';
@@ -144,15 +145,15 @@ export default function App() {
 
 This is all the setup required to use our default themes (including all of the Styletron boilerplate). Now let’s look at how you might configure Base Web with a custom theme.
 
-## A Custom Theme
+## Customizing your theme
 
-You could start writing a theme object from scratch if you were so inclined. We provide Flow and Typescript definitions for the theme object so that you won't miss any of the required theme properties. Another approach might be to take one of our default theme objects and start reassigning properties to your desired values.
+You could start writing a theme object from scratch if you were so inclined. We provide Flow and TypeScript definitions for the theme object so you won't miss any required theme properties. Another approach might be to take one of our default theme objects and start reassigning properties to your desired values.
 
-However, before you go down either of these roads, you should know that Base Web exports a handy factory function for creating theme objects.
+However, before you go down either road, you should know that Base Web exports a handy factory function for creating theme objects.
 
 ### `createTheme`
 
-As you might expect, `createTheme` is a factory function for Base Web compliant theme objects. We provide it as a utility for you to quickly create a custom theme.
+As you might expect, `createTheme` is a factory function for Base Web-compliant theme objects. We provide it as a utility for you to quickly create a custom theme.
 
 ```js
 import {createTheme} from 'baseui';
@@ -162,7 +163,7 @@ const theme = createTheme(/* primitives */, /* overrides */);
 
 #### `primitives`
 
-Our theme object has a lot of properties. Most of these properties are assigned to a subset of reoccurring values. We call these reoccurring values, theme building `primitives`. Primitives are made up mostly of colors, (`primary`, `accent`, etc), gradients of those colors (`primary100`, `primary200`, etc) as well as a `primaryFontFamily`. To see the exact shape for `primitives`, reference the [Flow](https://github.com/uber/baseweb/blob/master/src/themes/types.js#L560) or [Typescript](https://github.com/uber/baseweb/blob/master/src/theme.ts#L777) definitions.
+Our theme object has a lot of properties. Most of these properties are assigned to a subset of recurring values. We call these reoccurring values theme building `primitives`. Primitives are made up mostly of colors (`primary`, `accent`, etc.), gradients of those colors (`primary100`, `primary200`, etc.), and a `primaryFontFamily`. To see the exact shape for `primitives`, reference the [Flow](https://github.com/uber/baseweb/blob/master/src/themes/types.js#L560) or [TypeScript](https://github.com/uber/baseweb/blob/master/src/theme.ts#L777) definitions.
 
 These are passed as the first argument to `createTheme`.
 
@@ -184,7 +185,7 @@ const primitives = {
 const theme = createTheme(primitives);
 ```
 
-`createTheme` will use these primitive values to fill out all of the required properties on your theme object. Note, you don't have to assign every primitive right away. The primitives you pass into `createTheme` will override our default primitives so you can gradually build up your theme.
+`createTheme` will use these primitive values to fill out all required properties on your theme object. Note: you don't have to assign every primitive right away. The primitives you pass into `createTheme` will override our default primitives so you can gradually build up your theme.
 
 Once you've passed some primitives in, `createTheme` _maps_ this small set of `primitives` to a much larger set of theme properties in a sensible manner.
 
@@ -194,7 +195,7 @@ But what if the default _mapping_ (of primitives to theme properties) is not qui
 
 The second parameter for createTheme is an `overrides` object.
 
-The `overrides` object will be deep-merged with the initial result of mapping `primitives` to all of the theme properties. `overrides` is just a convenient shortcut for deep-merging assignments onto your theme object.
+The `overrides` object will be deep-merged with the initial result of mapping `primitives` to all the theme properties. `overrides` is just a convenient shortcut for deep-merging assignments onto your theme object.
 
 ```js
 import {createTheme} from 'baseui';
@@ -231,7 +232,7 @@ In this example, we first reassign the accent color on our theme primitives to h
 
 ### `createDarkTheme`
 
-One of the main reasons to have a dynamic theme is to toggle your app between light and dark modes. `createTheme` will by default map `primitives` to theme colors in a way suited to light themes. If you want to create a custom theme on top of our dark theme you can instead use the `createDarkTheme` function.
+One of the main reasons to have a dynamic theme is to toggle your app between light and dark modes. `createTheme` will by default map `primitives` to theme colors in a way suited to light themes. If you want to create a custom theme on top of our dark theme, you can instead use the `createDarkTheme` function.
 
 ```js
 import {createDarkTheme} from 'baseui';
@@ -251,7 +252,7 @@ const primitives = {
 const darkTheme = createDarkTheme(primitives);
 ```
 
-This works exactly the same way as `createTheme`, but `createDarkTheme` will map all of your `primitives` to theme properties in a way better suited to dark themes. Note, `createDarkTheme` also accepts an optional `overrides` object as the second argument.
+This works exactly the same as `createTheme`, but `createDarkTheme` will map all your `primitives` to theme properties in a way that’s better suited to dark themes. Note: `createDarkTheme` also accepts an optional `overrides` object as the second argument.
 
 ```js
 import {createDarkTheme} from 'baseui';
@@ -286,9 +287,9 @@ const darkTheme = createDarkTheme(primitives, overrides);
 
 This is equivalent to our earlier `overrides` example, only the result is a dark theme rather than a light theme.
 
-If you aren't sure why this change in mapping is necessary, try creating a dark theme with `createTheme`. You might notice that the colors look somewhat off. This is because, in a typical light theme, things start light and then get darker as they require more attention, whereas, in a dark theme, things start dark and become lighter. We need to know which direction (light/dark) to go when assigning your primitive colors to theme properties. By separating the assignment logic for light and dark theme creation we can better estimate which values to assign to various properties.
+If you aren't sure why this change in mapping is necessary, try creating a dark theme with `createTheme`. You might notice that the colors look somewhat off. This is because, in a typical light theme, things start light and then get darker as they require more attention; in a dark theme, things start dark and become lighter. We need to know which direction (light/dark) to go when assigning your primitive colors to theme properties. By separating the assignment logic for light and dark theme creation, we can better estimate which values to assign to various properties.
 
-### Customizing Typography
+### Customizing typography
 
 The `primitives` object has an optional property, `primaryFontFamily`, which allows you to set a custom font family string for typography components.
 
@@ -335,7 +336,7 @@ const theme = createTheme(primitives, overrides);
 
 Initially, `Verdana` will be mapped to every typography value as a `primitive`. By using `overrides`, we can easily deep-merge some reassignments over the theme object. In this case, we set our `Display` typography levels to use the `Georgia` font. We use this same `overrides` technique for our applications.
 
-### Customizing Icons
+### Customizing icons
 
 The theme object is also the source for customizing the icons we use in Base Web components.
 
@@ -358,7 +359,7 @@ Your component will also recieve the following properties:
 
 How you handle these properties is up to you — for instance, you might want to omit `viewBox` if your icon set uses something different.
 
-You can find more about the [Icon API here](/components/icon/#icon-api) and also refer to this [list of available icons](https://baseweb.design/components/icon/#available-icons).
+You can find more about the [Icon API here](/components/icon/#icon-api) and can refer to this [list of available icons](https://baseweb.design/components/icon/#available-icons).
 
 The example below overrides the `ChevronLeft` icon with the `ArrowLeft` icon, making the pagination appear slightly different.
 
@@ -368,7 +369,7 @@ All the icons that can be found on the Icon component page can be overridden usi
   <IconOverrides />
 </Example>
 
-### Customizing the Theme Type
+### Extending the Theme type
 
 <Notification
   kind="warning"
@@ -384,7 +385,7 @@ All the icons that can be found on the Icon component page can be overridden usi
   default theme first before extending it.
 </Notification>
 
-There may be a scenario where you want to extend our default theme. We do not recommend removing theme properties, as this may lead to a run-time error when a component references a missing property. However, _adding_ new properties are perfectly acceptable.
+There may be a scenario where you want to extend our default theme. We do not recommend removing theme properties, as this may lead to a runtime error when a component references a missing property. _Adding_ new properties, though is perfectly acceptable.
 
 ```js
 // @flow
@@ -402,7 +403,7 @@ import type {ThemeT} from 'baseui';
 
 const CustomThemeT = ThemeT & {customColor: string};
 
-const theme = createTheme(/*primtives, overrides*/);
+const theme = createTheme(/*primitives, overrides*/);
 const customTheme: CustomThemeT = {
   ...theme,
   customColor: 'pink',
@@ -413,9 +414,9 @@ function App() {
 }
 ```
 
-Note, you can use the custom type theme object with our provider so long as it _extends_ the default `ThemeT`. Base Web components will essentially ignore the additional properties, but the theme object will be available in component overrides.
+Note: you can use the custom type theme object with our provider as so long as it _extends_ the default `ThemeT`. Base Web components will essentially ignore the additional properties, but the theme object will be available in component overrides.
 
-If you are using Flow and want to use a custom theme shape with our various styling utilities, you can create new `styled`, `withStyle`, and `useStyletron` methods which respect your custom theme type.
+If you’re using Flow and want to use a custom theme shape with our various styling utilities, you can create new `styled`, `withStyle`, and `useStyletron`  methods that respect your custom theme type.
 
 ```js
 // my-style-utils.js
@@ -442,21 +443,21 @@ function Foo() {
 }
 ```
 
-## Using the Theme
+## Accessing your Theme through style utilities 
 
-The theme object acts as a centralized API for customizing global styling properties, but it also allows developers to use consistent values when extending components or styling new components. Base Web makes access to the theme object a priority across all of our styling utilities and component overrides so that you can always use the right value.
+The theme object acts not only as a centralized API for customizing global styling properties, but it also allows developers to use consistent values when extending components or styling new components. Base Web makes access to the theme object a priority across all of our styling utilities and component overrides so that you can always use the right value.
 
 Let's look at how you can use the theme object while extending our components and when building out your interfaces.
 
-> In some cases, the theme object may contain short-hand CSS properties, like the [border](#borders) values. If you had spread these values in the methods below, Styletron would raise warnings. In these cases, you can use a utility function that expands short-hand CSS properties to long-hand CSS properties. For this use-case, you may find [inline-style-expand-shorthand](https://github.com/robinweser/inline-style-expand-shorthand) or [lostyle](https://github.com/rtsao/lostyle) useful.
+> In some cases, the theme object may contain shorthand CSS properties, like the [border](#borders) values. If you had spread these values in the methods below, Styletron would have raised warnings. In these cases, you can use a utility function that expands shorthand CSS properties to long-hand CSS properties. For this use case, you may find [inline-style-expand-shorthand](https://github.com/robinweser/inline-style-expand-shorthand) or [lostyle](https://github.com/rtsao/lostyle) useful.
 
 ### Extension
 
-There are two supported methods for styling Base Web components: `withStyle` and `overrides`. Both have access to the nearest ancestor theme object.
+There are 2 supported methods for styling Base Web components: `withStyle`  and `overrides`. Both have access to the nearest ancestor theme object.
 
 #### `withStyle`
 
-Whenever Base Web exports a [Styletron](https://www.styletron.org/) styled component we prefix that component with `Styled`. You can use `withStyle` to extend a styled component with your custom styles:
+Whenever Base Web exports a [Styletron](https://www.styletron.org/) styled component, we prefix that component with `Styled`. You can use `withStyle` to extend a styled component with your custom styles:
 
 ```js
 import {withStyle} from 'baseui';
@@ -497,7 +498,7 @@ function App() {
 
 ### Creation
 
-Theming and extending the built-in Base Web components will get you a long way, but sometimes you need to create something new. This is where out other styling utilities come into play.
+Theming and extending the built-in Base Web components will get you a long way, but sometimes you need to create something new. This is where our other styling utilities come into play.
 
 #### `useStyletron`
 
@@ -536,7 +537,7 @@ function App() {
 }
 ```
 
-[`styled`](/components/styled) creates a new [Styletron](https://www.styletron.org/) styled component. We provide a version that wraps Styletron’s default `styled` function so that it gets a reference to your theme object. We use this `styled` function to create all of our styled-components in Base Web.
+[`styled`](/components/styled) creates a new [Styletron](https://www.styletron.org/) styled component. We provide a version that wraps Styletron’s default `styled` function so that it gets a reference to your theme object. We use this `styled` function to create all of our styled components in Base Web.
 
 #### `Block`
 
@@ -550,9 +551,9 @@ function App() {
 
 [`Block`](/components/block) is a unique tool. It allows you to assign common styling attributes using theme tokens, without having to do theme property lookups yourself. The intention is to let you quickly assign design system tokens to common style attributes, such as `font`, `color`, `margin`, etc.
 
-## Theme Properties
+## Theme properties
 
-The theme object organizes its various properties according to their respective concerns.
+The theme object organizes its various properties according to their respective concerns
 
 - [`animation`](#animation)
 - [`borders`](#borders)
@@ -736,7 +737,7 @@ The following colors are "primitive" colors used to construct the theme when usi
 <Color name="rating200" />
 <Color name="rating400" />
 
-The `theme.colors` object also includes component specific properties. We won't enumerate those here since you should rarely need to reference them yourself. The best way to explore component specific properties is to go to a component's documentation page and use the sandbox at the top of the page. There is an interactive **Theme** tab which lets you dynamically change any property relevant to the component.
+The `theme.colors` object also includes component-specific properties. We won't enumerate those here since you should rarely need to reference them. The best way to explore component-specific properties is to go to a component's documentation page and use the sandbox at the top. An interactive Theme tab lets you dynamically change any property relevant to the component.
 
 ### Direction
 
@@ -757,7 +758,7 @@ Control shadows.
 <Lighting name="shadow600" />
 <Lighting name="shadow700" />
 
-### Media Query
+### Media query
 
 Control media queries added to the theme for convenience.
 
@@ -844,6 +845,6 @@ Control typography family, size, weight, and height.
 <Type name="MonoDisplayMedium" />
 <Type name="MonoDisplayLarge" />
 
-### Z-Index
+### Z-index
 
 Control the base `z-index` for the theme. This should not be used and will be removed in v11 of Base Web.
