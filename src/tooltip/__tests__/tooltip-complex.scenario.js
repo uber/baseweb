@@ -31,9 +31,9 @@ export default function Scenario() {
         accessibilityType={'tooltip'}
         content={ComplexContent}
         showArrow
-        focusLock
         /* eslint-disable-next-line jsx-a11y/no-autofocus */
         autoFocus
+        focusLock
       >
         <span
           className={css({
