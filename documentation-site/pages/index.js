@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -152,7 +152,9 @@ const Index = (props: {
 
       <Card title="Learning Base Web" overrides={cardOverrides}>
         <MinHeightBody>
-          The best way to learn Base Web is to start building an application using it. Click on the link below to find 2 apps built using Base Web (one simple, one more complex).
+          The best way to learn Base Web is to start building an application
+          using it. Click on the link below to find 2 apps built using Base Web
+          (one simple, one more complex).
         </MinHeightBody>
         <Button
           $as="a"
@@ -172,8 +174,8 @@ const Index = (props: {
     </Block>
     <H2>Components</H2>
     <Markdown.p>
-      Base Web offers a robust suite of components out of the box. These
-      include complex, ready-to-use components such as {' '}
+      Base Web offers a robust suite of components out of the box. These include
+      complex, ready-to-use components such as{' '}
       <Link href="/components/datepicker">Datepicker</Link> and low-level
       composable primitives, such as <Link href="/components/layer">Layer</Link>
       .
@@ -187,9 +189,9 @@ const Index = (props: {
       Through the{' '}
       <Link href="/guides/understanding-overrides">Overrides API</Link> and{' '}
       <Link href="/guides/theming">configurable Themes</Link>, Base Web offers
-      an extreme level of customization. Whether you want to
-      modify a component in one place only or you want to build your design
-      system on top of Base Web, we have options.
+      an extreme level of customization. Whether you want to modify a component
+      in one place only or you want to build your design system on top of Base
+      Web, we have options.
     </Markdown.p>
     <H2>Built-in accessibility</H2>
     <Markdown.p>
@@ -210,8 +212,8 @@ const Index = (props: {
       <Link href="https://baseweb.design/blog/base-figma-community/">
         Figma Community
       </Link>
-      . This should help your design team adopt Base Web, while engineers can use
-      the React implementation.
+      . This should help your design team adopt Base Web, while engineers can
+      use the React implementation.
     </Markdown.p>
     <Adopters
       logoSrcs={[

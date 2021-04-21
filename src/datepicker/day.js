@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -236,7 +236,8 @@ export default class Day<T = Date> extends React.Component<
       $hasRangeOnRight:
         Array.isArray(value) &&
         $hasRangeHighlighted &&
-        (highlightedDate && value[0]) &&
+        highlightedDate &&
+        value[0] &&
         this.dateHelpers.isAfter(highlightedDate, value[0]),
       $hasRangeSelected: Array.isArray(value) ? value.length === 2 : false,
       $highlightedDate: highlightedDate,

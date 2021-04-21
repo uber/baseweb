@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2018-2020 Uber Technologies, Inc.
+Copyright (c) Uber Technologies, Inc.
 
 This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
@@ -125,7 +125,7 @@ export default class Datepicker<T = Date> extends React.Component<
     };
     if (!date) {
       return '';
-    } else if (Array.isArray(date) && (!date[0] && !date[1])) {
+    } else if (Array.isArray(date) && !date[0] && !date[1]) {
       return '';
     } else if (Array.isArray(date)) {
       return date.map(day => format(day)).join(' – ');
