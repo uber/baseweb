@@ -11,6 +11,7 @@ import {
   render,
   fireEvent,
   getByText,
+  getByTestId,
   queryAllByText,
 } from '@testing-library/react';
 
@@ -19,7 +20,11 @@ import {Accordion, Panel} from '../index.js';
 describe('Accordion', () => {
   it('renders basic configuration', () => {
     const {container} = render(
-      <Accordion>
+      <Accordion
+        overrides={{
+          ContentAnimationContainer: {props: {'data-testid': 'transitionDiv'}},
+        }}
+      >
         <Panel title="Accordion panel 1">panel 1</Panel>
         <Panel title="Accordion panel 2">panel 2</Panel>
         <Panel title="Accordion panel 3">panel 3</Panel>
@@ -33,6 +38,7 @@ describe('Accordion', () => {
 
     const second = getByText(container, 'Accordion panel 2');
     fireEvent.click(second);
+    fireEvent.transitionEnd(getByTestId(first.parentElement, 'transitionDiv'));
     expect(queryAllByText(container, 'panel 1').length).toBe(0);
     expect(queryAllByText(container, 'panel 2').length).toBe(1);
 

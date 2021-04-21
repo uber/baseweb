@@ -109,7 +109,7 @@ const Index = (props: {
         {BlogPosts[0].title}
       </Block>
     </Block>
-    <H1>Base Web React UI Framework</H1>
+    <H1>Base Web React UI framework</H1>
     <Markdown.p>
       Base Web is a foundation for initiating, evolving, and unifying web
       products.
@@ -152,9 +152,7 @@ const Index = (props: {
 
       <Card title="Learning Base Web" overrides={cardOverrides}>
         <MinHeightBody>
-          Probably the best way to learn Base Web is by start building an
-          application using it. On this page, you’ll find a simple and a more
-          complex app built using Base Web.
+          The best way to learn Base Web is to start building an application using it. Click on the link below to find 2 apps built using Base Web (one simple, one more complex).
         </MinHeightBody>
         <Button
           $as="a"
@@ -174,8 +172,8 @@ const Index = (props: {
     </Block>
     <H2>Components</H2>
     <Markdown.p>
-      Base Web provides a robust suite of components out of the box. These
-      include complex, ready to use components such as the{' '}
+      Base Web offers a robust suite of components out of the box. These
+      include complex, ready-to-use components such as {' '}
       <Link href="/components/datepicker">Datepicker</Link> and low-level
       composable primitives, such as <Link href="/components/layer">Layer</Link>
       .
@@ -188,12 +186,12 @@ const Index = (props: {
     <Markdown.p>
       Through the{' '}
       <Link href="/guides/understanding-overrides">Overrides API</Link> and{' '}
-      <Link href="/guides/theming">configurable Themes</Link>, Base Web provides
-      you with an extreme level of customization. No matter if you want to
-      modify a component in one place only, or you want to build your design
-      system on top of Base Web, we have the options for you.
+      <Link href="/guides/theming">configurable Themes</Link>, Base Web offers
+      an extreme level of customization. Whether you want to
+      modify a component in one place only or you want to build your design
+      system on top of Base Web, we have options.
     </Markdown.p>
-    <H2>Built-in Accessibility</H2>
+    <H2>Built-in accessibility</H2>
     <Markdown.p>
       Base Web does the heavy lifting for you—components are built with
       accessibility being a first-class citizen.
@@ -206,13 +204,13 @@ const Index = (props: {
       </Link>
       , this is one of the fastest solutions.
     </Markdown.p>
-    <H2>Figma Communities</H2>
+    <H2>Figma Community</H2>
     <Markdown.p>
       You can find all the Base Web components on{' '}
       <Link href="https://baseweb.design/blog/base-figma-community/">
-        Figma Communities
+        Figma Community
       </Link>
-      .This should help your design team adopt Base Web, while engineers can use
+      . This should help your design team adopt Base Web, while engineers can use
       the React implementation.
     </Markdown.p>
     <Adopters
