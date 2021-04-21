@@ -134,9 +134,8 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
                 right: -4,
               }}
             >
-              {(props.sortDirection === SORT_DIRECTIONS.DESC ||
-                !props.sortDirection) && (
-                <ChevronUp
+              {props.sortDirection === SORT_DIRECTIONS.DESC && (
+                <ChevronDown
                   color={
                     props.sortDirection
                       ? theme.colors.contentPrimary
@@ -144,8 +143,9 @@ const HeaderCell = React.forwardRef<HeaderCellPropsT, HTMLDivElement>(
                   }
                 />
               )}
-              {props.sortDirection === SORT_DIRECTIONS.ASC && (
-                <ChevronDown
+              {(props.sortDirection === SORT_DIRECTIONS.ASC ||
+                !props.sortDirection) && (
+                <ChevronUp
                   color={
                     props.sortDirection
                       ? theme.colors.contentPrimary
