@@ -757,9 +757,9 @@ export function DataTable({
     ) {
       const sortFn = columns[index].sortFn;
       const getValue = row => columns[index].mapDataToValue(row.data);
-      if (sortDirection === SORT_DIRECTIONS.DESC) {
+      if (sortDirection === SORT_DIRECTIONS.ASC) {
         toSort.sort((a, b) => sortFn(getValue(a[0]), getValue(b[0])));
-      } else if (sortDirection === SORT_DIRECTIONS.ASC) {
+      } else if (sortDirection === SORT_DIRECTIONS.DESC) {
         toSort.sort((a, b) => sortFn(getValue(b[0]), getValue(a[0])));
       }
     }
