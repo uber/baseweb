@@ -14,7 +14,6 @@ export default function Scenario() {
   return (
     <StatefulInput
       aria-label="stateful input example"
-      // eslint-disable-next-line jsx-a11y/no-autofocus
       autoFocus={true}
       initialState={{value: 'uber'}}
       startEnhancer="@"
