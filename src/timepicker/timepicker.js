@@ -332,6 +332,7 @@ class TimePicker<T = Date> extends React.Component<
               value={value ? [value] : value}
               clearable={false}
               backspaceRemoves={false}
+              valueKey="label"
               {...selectProps}
             />
           );
