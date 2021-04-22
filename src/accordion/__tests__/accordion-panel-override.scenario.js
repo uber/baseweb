@@ -30,15 +30,20 @@ const themeWithIcons = createTheme(
 export default function Scenario() {
   return (
     <ThemeProvider theme={themeWithIcons}>
-      <Accordion>
-        <Panel
-          title="hello"
-          overrides={{
-            // eslint-disable-next-line react/display-name
-            ToggleIcon: () => <div>differentIcon(override)</div>,
-          }}
-        >
-          hello puppeteer!
+      <Accordion
+        overrides={{
+          // eslint-disable-next-line react/display-name
+          ToggleIcon: function(props) {
+            if (props.$expanded) {
+              return <div>collapse(override)</div>;
+            }
+            return <div>expand(override)</div>;
+          },
+        }}
+      >
+        <Panel title="hello">hello puppeteer!</Panel>
+        <Panel title="hello_world" expanded>
+          hello world!
         </Panel>
       </Accordion>
     </ThemeProvider>
