@@ -35,15 +35,15 @@ function useSortParameters(initialSortIndex = -1, initialSortDirection = null) {
 
   function handleSort(columnIndex) {
     if (columnIndex === sortIndex) {
-      if (sortDirection === SORT_DIRECTIONS.ASC) {
+      if (sortDirection === SORT_DIRECTIONS.DESC) {
         setSortIndex(-1);
-        setSortDirection(SORT_DIRECTIONS.DESC);
-      } else {
         setSortDirection(SORT_DIRECTIONS.ASC);
+      } else {
+        setSortDirection(SORT_DIRECTIONS.DESC);
       }
     } else {
       setSortIndex(columnIndex);
-      setSortDirection(SORT_DIRECTIONS.DESC);
+      setSortDirection(SORT_DIRECTIONS.ASC);
     }
   }
 
