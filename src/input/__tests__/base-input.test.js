@@ -64,11 +64,7 @@ describe('base-input', () => {
     const onFocus = jest.fn();
     render(
       // $FlowFixMe
-      <BaseInput
-        // eslint-disable-next-line jsx-a11y/no-autofocus
-        autoFocus
-        onFocus={onFocus}
-      />,
+      <BaseInput autoFocus onFocus={onFocus} />,
     );
     expect(onFocus).toBeCalledTimes(1);
   });

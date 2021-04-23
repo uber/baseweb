@@ -57,7 +57,6 @@ export default function Filter(props: FilterProps) {
         return nextState;
       }}
       content={({close}) => (
-        // eslint-disable-next-line jsx-a11y/no-autofocus
         <FocusLock autoFocus={false}>
           <Heading {...headingProps}>Filter Column</Heading>
           <Content {...contentProps}>{props.children}</Content>

@@ -321,7 +321,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
           <FocusLock
             disabled={!focusLock}
             returnFocus={returnFocus}
-            // eslint-disable-next-line jsx-a11y/no-autofocus
             autoFocus={autofocus !== null ? autofocus : autoFocus}
           >
             <Root

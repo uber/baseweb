@@ -41,7 +41,6 @@ export default function Scenario() {
         overrides={{ValueContainer: {props: {'data-id': 'selected'}}}}
         labelKey="id"
         valueKey="color"
-        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus
       />
       <br />

@@ -31,6 +31,8 @@ export default function Scenario() {
         accessibilityType={'tooltip'}
         content={ComplexContent}
         showArrow
+        autoFocus
+        focusLock
       >
         <span
           className={css({

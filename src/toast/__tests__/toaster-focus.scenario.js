@@ -12,7 +12,6 @@ import {toaster, ToasterContainer, PLACEMENT} from '../index.js';
 export default function Scenario() {
   return (
     <React.Fragment>
-      {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
       <ToasterContainer placement={PLACEMENT.bottomRight} autoFocus />
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean

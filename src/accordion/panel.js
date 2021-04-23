@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree.
 // @flow
 import * as React from 'react';
 import {LocaleContext} from '../locale/index.js';
-import {getOverrides, mergeOverrides} from '../helpers/overrides.js';
+import {getOverrides} from '../helpers/overrides.js';
 import {
   PanelContainer as StyledPanelContainer,
   Header as StyledHeader,
@@ -19,7 +19,6 @@ import {
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
 
 import type {PanelPropsT} from './types.js';
-import Icon from '../icon/icon.js';
 
 const Panel = ({
   'aria-controls': ariaControls,
@@ -158,10 +157,9 @@ const Panel = ({
     StyledToggleIconGroup,
   );
 
-  const toggleIconOverrides = mergeOverrides(
-    {Svg: {component: StyledToggleIcon}},
-    // $FlowFixMe
-    {Svg: ToggleIconOverride},
+  const [ToggleIcon, toggleIconProps] = getOverrides(
+    ToggleIconOverride,
+    StyledToggleIcon,
   );
 
   return (
@@ -182,7 +180,7 @@ const Panel = ({
             onBlur={forkBlur(headerProps, handleBlur)}
           >
             {title}
-            <Icon
+            <ToggleIcon
               viewBox="0 0 24 24"
               title={
                 localState.expanded
@@ -190,7 +188,7 @@ const Panel = ({
                   : locale.accordion.expand
               }
               size={16}
-              overrides={toggleIconOverrides}
+              {...toggleIconProps}
               {...sharedProps}
             >
               <ToggleIconGroup {...sharedProps} {...toggleIconGroupProps}>
@@ -205,7 +203,7 @@ const Panel = ({
                 clipRule="evenodd"
                 d="M6 12C6 11.4477 6.44772 11 7 11H17C17.5523 11 18 11.4477 18 12C18 12.5523 17.5523 13 17 13H7C6.44772 13 6 12.5523 6 12Z"
               />
-            </Icon>
+            </ToggleIcon>
           </Header>
           <ContentAnimationContainer
             {...sharedProps}

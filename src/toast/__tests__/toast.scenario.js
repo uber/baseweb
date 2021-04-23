@@ -14,7 +14,6 @@ import {Toast, KIND} from '../index.js';
 export default function Scenario() {
   return (
     <React.Fragment>
-      {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
       <Toast autoFocus>Default info notification</Toast>
       <Toast>
         {({dismiss}) => {

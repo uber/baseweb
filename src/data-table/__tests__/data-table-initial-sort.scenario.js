@@ -36,7 +36,7 @@ export default function Scenario() {
           columns={columns}
           rows={rows}
           initialSortIndex={0}
-          initialSortDirection={SORT_DIRECTIONS.ASC}
+          initialSortDirection={SORT_DIRECTIONS.DESC}
         />
       </div>
     </React.Fragment>

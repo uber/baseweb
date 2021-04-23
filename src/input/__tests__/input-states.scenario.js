@@ -31,7 +31,6 @@ export default function Scenario() {
       <StatefulInput
         initialState={{value: 'Active'}}
         endEnhancer="00"
-        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus
         overrides={{
           // eslint-disable-next-line react/display-name
