@@ -18,14 +18,14 @@ export type UserMenuPropsT = {
   username?: string;
   usernameSubtitle?: React.ReactNode;
   userImgUrl?: string;
-  onUserItemSelect?: (item: NavItemT) => mixed;
+  onUserItemSelect?: (item: NavItemT) => any;
 };
 
 export type AppNavBarPropsT = UserMenuPropsT & {
   isMainItemActive?: (item: NavItemT) => boolean;
   mainItems?: NavItemT[];
   mapItemToNode?: (item: NavItemT) => React.ReactNode;
-  onMainItemSelect?: (item: NavItemT) => mixed;
+  onMainItemSelect?: (item: NavItemT) => any;
   title?: React.ReactNode;
 };
 
