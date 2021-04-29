@@ -227,6 +227,8 @@ export const Input = styled('input', {
   paddingRight: 0,
   paddingBottom: 0,
   paddingLeft: 0,
+  clip: 'rect(0 0 0 0)',
+  position: 'absolute',
 });
 
 export const Description = styled<StylePropsT>('div', props => {
