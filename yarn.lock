@@ -13297,9 +13297,9 @@ react-motion@^0.5.2:
     raf "^3.1.0"
 
 react-movable@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/react-movable/-/react-movable-2.4.0.tgz#c3fb46ca204f9899a72d300ed052679008b315e3"
-  integrity sha512-xKOF7wbeRfAbjBzz+bmC0fs3h8DhOoJx/THDaXyLK1QxvgcERXKUvldHVoI8YajSalxLLfHZ/pYJl0QFXoc83A==
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/react-movable/-/react-movable-2.5.4.tgz#1c28e8291476ab19b8625d06b60f97a89dd85a45"
+  integrity sha512-F+Ml4Il9S7uyY2Nr/UzwnXxWewwsHdQkmwgzAjk+Dsz73sy2yCJk7GkQkdqmh8W6XXTlviepz1VA0eHUWh9MZQ==
 
 react-multi-ref@^1.0.0:
   version "1.0.0"
