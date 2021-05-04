@@ -188,7 +188,6 @@ export default class Day<T = Date> extends React.Component<
       const lastDayOfPreviousMonth = this.clampToDayStart(
         this.dateHelpers.subDays(this.dateHelpers.getStartOfMonth(date), 1),
       );
-      // empty dates after the end of this month
       return (
         this.dateHelpers.isOnOrAfterDay(
           dates[1],

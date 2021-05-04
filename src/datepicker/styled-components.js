@@ -457,14 +457,10 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
       borderRightStyle: 'solid',
       borderTopStyle: 'solid',
       borderBottomStyle: 'solid',
-      borderTopColor:
-        $selected || $pseudoSelected ? colors.borderSelected : 'transparent',
-      borderBottomColor:
-        $selected || $pseudoSelected ? colors.borderSelected : 'transparent',
-      borderRightColor:
-        $selected || $pseudoSelected ? colors.borderSelected : 'transparent',
-      borderLeftColor:
-        $selected || $pseudoSelected ? colors.borderSelected : 'transparent',
+      borderTopColor: colors.borderSelected,
+      borderBottomColor: colors.borderSelected,
+      borderRightColor: colors.borderSelected,
+      borderLeftColor: colors.borderSelected,
       borderTopLeftRadius: '100%',
       borderTopRightRadius: '100%',
       borderBottomLeftRadius: '100%',
