@@ -150,6 +150,54 @@ export default class Day<T = Date> extends React.Component<
     );
   };
 
+  isOutsideOfMonthButWithinRange = () => {
+    const date = this.clampToDayStart(this.getDateProp());
+    const {highlightedDate, value} = this.props;
+    if (Array.isArray(value) && !value[0] && (!value[1] || !highlightedDate)) {
+      return false;
+    }
+    const firstDate = this.clampToDayStart(value[0]);
+    const secondDate =
+      value.length > 1
+        ? this.clampToDayStart(value[1])
+        : this.clampToDayStart(highlightedDate);
+    if (this.dateHelpers.isSameDay(firstDate, secondDate)) {
+      return false;
+    }
+    const dates = this.dateHelpers.isAfter(firstDate, secondDate)
+      ? [secondDate, firstDate]
+      : [firstDate, secondDate];
+
+    const day = this.dateHelpers.getDate(date);
+    /**
+     * Empty days (no number label) at the beginning/end of the month should be included
+     * within the range if the last day of a month and the first day of the next month are
+     * within the range.
+     */
+    if (day > 15) {
+      const firstDayOfNextMonth = this.clampToDayStart(
+        this.dateHelpers.addDays(this.dateHelpers.getEndOfMonth(date), 1),
+      );
+      return (
+        this.dateHelpers.isOnOrBeforeDay(
+          dates[0],
+          this.dateHelpers.getEndOfMonth(date),
+        ) && this.dateHelpers.isOnOrAfterDay(dates[1], firstDayOfNextMonth)
+      );
+    } else {
+      const lastDayOfPreviousMonth = this.clampToDayStart(
+        this.dateHelpers.subDays(this.dateHelpers.getStartOfMonth(date), 1),
+      );
+      // empty dates after the end of this month
+      return (
+        this.dateHelpers.isOnOrAfterDay(
+          dates[1],
+          this.dateHelpers.getStartOfMonth(date),
+        ) && this.dateHelpers.isOnOrBeforeDay(dates[0], lastDayOfPreviousMonth)
+      );
+    }
+  };
+
   isSelected() {
     const date = this.getDateProp();
     const {value} = this.props;
@@ -223,6 +271,13 @@ export default class Day<T = Date> extends React.Component<
       highlightedDate &&
       !this.dateHelpers.isSameDay(value[0], highlightedDate)
     );
+    const $outsideMonth = this.isOutsideMonth();
+    const $outsideMonthWithinRange = !!(
+      Array.isArray(value) &&
+      range &&
+      $outsideMonth &&
+      this.isOutsideOfMonthButWithinRange()
+    );
     return {
       $date: date,
       $disabled: this.props.disabled,
@@ -246,7 +301,8 @@ export default class Day<T = Date> extends React.Component<
       $isFocusVisible: this.state.isFocusVisible,
       $startOfMonth: this.dateHelpers.isStartOfMonth(date),
       $endOfMonth: this.dateHelpers.isEndOfMonth(date),
-      $outsideMonth: this.isOutsideMonth(),
+      $outsideMonth,
+      $outsideMonthWithinRange,
       $peekNextMonth: this.props.peekNextMonth,
       $pseudoHighlighted:
         this.props.range && !$isHighlighted && !$selected

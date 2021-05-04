@@ -222,7 +222,6 @@ export type ComponentColorTokensT = {|
   calendarDayForegroundPseudoSelected: string,
   calendarDayBackgroundPseudoSelectedHighlighted: string,
   calendarDayForegroundPseudoSelectedHighlighted: string,
-  calendarDayBackgroundSelected: string,
   calendarDayForegroundSelected: string,
   calendarDayBackgroundSelectedHighlighted: string,
   calendarDayForegroundSelectedHighlighted: string,
