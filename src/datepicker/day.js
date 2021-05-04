@@ -270,11 +270,12 @@ export default class Day<T = Date> extends React.Component<
       highlightedDate &&
       !this.dateHelpers.isSameDay(value[0], highlightedDate)
     );
-    const $outsideMonth = this.isOutsideMonth();
+    const $outsideMonth = !this.props.peekNextMonth && this.isOutsideMonth();
     const $outsideMonthWithinRange = !!(
       Array.isArray(value) &&
       range &&
       $outsideMonth &&
+      !this.props.peekNextMonth &&
       this.isOutsideOfMonthButWithinRange()
     );
     return {
