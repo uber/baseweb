@@ -136,6 +136,7 @@ export interface DatepickerOverrides<T> {
   Month?: Override<T>;
   Week?: Override<T>;
   Day?: Override<T>;
+  DayLabel?: Override<T>;
   Input?: Override<T>;
   InputWrapper?: Override<T>;
   Popover?: Override<T>;
@@ -242,4 +243,5 @@ export type SharedStylePropsT = {
   $hasRangeHighlighted: boolean;
   $hasRangeOnRight: boolean;
   $hasRangeSelected: boolean;
+  $hasDateLabel: boolean;
 };
