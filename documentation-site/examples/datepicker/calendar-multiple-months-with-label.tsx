@@ -9,7 +9,7 @@ export default function Example() {
       monthsShown={2}
       range
       quickSelect
-      dateLabel={date => `Aa`}
+      dateLabel={() => `Aa`}
     />
   );
 }
