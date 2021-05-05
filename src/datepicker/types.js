@@ -17,7 +17,6 @@ import type {
 } from '../timepicker/types.js';
 
 import type {OptionT} from '../select/index.js';
-import Month from './month';
 
 // eslint-disable-next-line flowtype/no-weak-types
 type LocaleT = any; // see https://github.com/date-fns/date-fns/blob/master/src/locale/index.js.flow
@@ -63,6 +62,7 @@ export type DatepickerOverridesT = {
 export type DayPropsT<T = Date> = {
   disabled: boolean,
   date: T,
+  dateLabel: ?(day: T) => React.Node,
   filterDate: ?(day: T) => boolean,
   highlightedDate: ?T,
   includeDates: ?Array<T>,
@@ -92,7 +92,7 @@ export type DayStateT = {
 
 export type WeekPropsT<T = Date> = {
   date: T,
-  dateLabel: ?(date: T) => React.ReactNode,
+  dateLabel: ?(date: T) => React.Node,
   excludeDates: ?Array<T>,
   filterDate: ?(day: T) => boolean,
   // highlighted while keyboard navigating or hovered
@@ -143,7 +143,7 @@ export type CalendarPropsT<T = Date> = {
   /** A filter function that is called to check the disabled state of a day. If `false` is returned the day is considered to be disabled. */
   filterDate?: ?(day: T) => boolean,
   /** A function that is called with the current date to render the label text under that day on the calendar. */
-  dateLabel?: ?(day: T) => React.ReactNode,
+  dateLabel?: ?(day: T) => React.Node,
   /** Indicates a highlighted date on hover and keyboard navigation */
   highlightedDate?: ?T,
   /** A list of selectable dates. */

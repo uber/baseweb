@@ -83,6 +83,7 @@ export default (
   calendarDayForegroundPseudoSelected: themePrimitives.primary,
   calendarDayBackgroundPseudoSelectedHighlighted: themePrimitives.primary600,
   calendarDayForegroundPseudoSelectedHighlighted: themePrimitives.primary,
+  calendarDayBackgroundSelected: themePrimitives.primary,
   calendarDayForegroundSelected: themePrimitives.black,
   calendarDayBackgroundSelectedHighlighted: themePrimitives.primary100,
   calendarDayForegroundSelectedHighlighted: themePrimitives.black,

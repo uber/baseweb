@@ -384,11 +384,9 @@ function getDayStyles(code, {colors}): any {
 export const StyledDay = styled<SharedStylePropsT>('div', props => {
   const {
     $disabled,
-    $isHovered,
     $isFocusVisible,
     $isHighlighted,
     $peekNextMonth,
-    $pseudoHighlighted,
     $pseudoSelected,
     $range,
     $selected,

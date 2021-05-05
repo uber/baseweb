@@ -150,24 +150,35 @@ export default class Day<T = Date> extends React.Component<
     );
   };
 
-  isOutsideOfMonthButWithinRange = () => {
-    const date = this.clampToDayStart(this.getDateProp());
+  getOrderedDates: () => T[] = () => {
     const {highlightedDate, value} = this.props;
-    if (Array.isArray(value) && !value[0] && (!value[1] || !highlightedDate)) {
-      return false;
+    if (
+      !value ||
+      !Array.isArray(value) ||
+      !value[0] ||
+      (!value[1] && !highlightedDate)
+    ) {
+      return [];
     }
-    const firstDate = this.clampToDayStart(value[0]);
-    const secondDate =
-      value.length > 1
-        ? this.clampToDayStart(value[1])
-        : this.clampToDayStart(highlightedDate);
-    if (this.dateHelpers.isSameDay(firstDate, secondDate)) {
-      return false;
+    const firstValue = value[0];
+    const secondValue =
+      value.length > 1 && value[1] ? value[1] : highlightedDate;
+    if (!firstValue || !secondValue) {
+      return [];
     }
-    const dates = this.dateHelpers.isAfter(firstDate, secondDate)
+    const firstDate = this.clampToDayStart(firstValue);
+    const secondDate = this.clampToDayStart(secondValue);
+    return this.dateHelpers.isAfter(firstDate, secondDate)
       ? [secondDate, firstDate]
       : [firstDate, secondDate];
+  };
 
+  isOutsideOfMonthButWithinRange = () => {
+    const date = this.clampToDayStart(this.getDateProp());
+    const dates = this.getOrderedDates();
+    if (dates.length < 2 || this.dateHelpers.isSameDay(dates[0], dates[1])) {
+      return false;
+    }
     const day = this.dateHelpers.getDate(date);
     /**
      * Empty days (no number label) at the beginning/end of the month should be included
