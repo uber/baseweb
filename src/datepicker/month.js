@@ -14,6 +14,7 @@ import {getOverrides} from '../helpers/overrides.js';
 import type {MonthPropsT} from './types.js';
 
 const defaultProps = {
+  dateLabel: null,
   excludeDates: null,
   filterDate: null,
   highlightDates: null,
@@ -72,6 +73,7 @@ export default class CalendarMonth<T = Date> extends React.Component<
         <Week
           adapter={this.props.adapter}
           date={currentWeekStart}
+          dateLabel={this.props.dateLabel}
           excludeDates={this.props.excludeDates}
           filterDate={this.props.filterDate}
           highlightedDate={this.props.highlightedDate}

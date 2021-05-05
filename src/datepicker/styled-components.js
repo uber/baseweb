@@ -394,6 +394,7 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
     $selected,
     $outsideMonth,
     $outsideMonthWithinRange,
+    $hasDateLabel,
     $theme: {colors, sizing},
   } = props;
   const code = getDayStateCode(props);
@@ -405,7 +406,7 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
     color: colors.calendarForeground,
     display: 'inline-block',
     width: sizing.scale1000,
-    height: sizing.scale1000,
+    height: $hasDateLabel ? '60px' : sizing.scale1000,
     lineHeight: sizing.scale800,
     textAlign: 'center',
     paddingTop: sizing.scale300,
@@ -433,13 +434,9 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
       boxShadow: $isFocusVisible ? `0 0 0 3px ${colors.accent}` : 'none',
       backgroundColor: $selected
         ? colors.calendarDayBackgroundSelectedHighlighted
-        : $pseudoSelected
-        ? $isHighlighted
-          ? colors.calendarDayBackgroundPseudoSelectedHighlighted
-          : 'transparent'
-        : $isHovered || $isHighlighted || $pseudoHighlighted
-        ? colors.backgroundTertiary
-        : 'transparent',
+        : $pseudoSelected && $isHighlighted
+        ? colors.calendarDayBackgroundPseudoSelectedHighlighted
+        : colors.calendarBackground,
       height: '100%',
       width: '100%',
       position: 'absolute',
@@ -447,8 +444,6 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
       left: 0,
       paddingTop: sizing.scale200,
       paddingBottom: sizing.scale200,
-      paddingLeft: sizing.scale200,
-      paddingRight: sizing.scale200,
       borderLeftWidth: '2px',
       borderRightWidth: '2px',
       borderTopWidth: '2px',
@@ -461,10 +456,10 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
       borderBottomColor: colors.borderSelected,
       borderRightColor: colors.borderSelected,
       borderLeftColor: colors.borderSelected,
-      borderTopLeftRadius: '100%',
-      borderTopRightRadius: '100%',
-      borderBottomLeftRadius: '100%',
-      borderBottomRightRadius: '100%',
+      borderTopLeftRadius: $hasDateLabel ? sizing.scale700 : '100%',
+      borderTopRightRadius: $hasDateLabel ? sizing.scale700 : '100%',
+      borderBottomLeftRadius: $hasDateLabel ? sizing.scale700 : '100%',
+      borderBottomRightRadius: $hasDateLabel ? sizing.scale700 : '100%',
       ...(getDayStyles(code, props.$theme)[':after'] || {}),
       ...($outsideMonthWithinRange ? {content: null} : {}),
     },
@@ -510,6 +505,17 @@ export const StyledDay = styled<SharedStylePropsT>('div', props => {
         // eslint-disable-next-line flowtype/no-weak-types
         ({}: any)),
   }: {});
+});
+
+export const StyledDayLabel = styled<SharedStylePropsT>('div', props => {
+  const {
+    $theme: {typography, colors},
+    $selected,
+  } = props;
+  return {
+    ...typography.ParagraphXSmall,
+    color: $selected ? colors.contentInverseTertiary : colors.contentTertiary,
+  };
 });
 
 export const StyledWeekdayHeader = styled<SharedStylePropsT>('div', props => {

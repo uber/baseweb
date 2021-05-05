@@ -17,6 +17,7 @@ import type {
 } from '../timepicker/types.js';
 
 import type {OptionT} from '../select/index.js';
+import Month from './month';
 
 // eslint-disable-next-line flowtype/no-weak-types
 type LocaleT = any; // see https://github.com/date-fns/date-fns/blob/master/src/locale/index.js.flow
@@ -51,6 +52,7 @@ export type DatepickerOverridesT = {
   Month?: OverrideT,
   Week?: OverrideT,
   Day?: OverrideT,
+  DayLabel?: OverrideT,
   /** Override for reused Input component. Input is **not a styled  element** but a react component that can be replaced */
   Input?: OverrideT,
   InputWrapper?: OverrideT,
@@ -90,6 +92,7 @@ export type DayStateT = {
 
 export type WeekPropsT<T = Date> = {
   date: T,
+  dateLabel: ?(date: T) => React.ReactNode,
   excludeDates: ?Array<T>,
   filterDate: ?(day: T) => boolean,
   // highlighted while keyboard navigating or hovered
@@ -139,6 +142,8 @@ export type CalendarPropsT<T = Date> = {
   }>,
   /** A filter function that is called to check the disabled state of a day. If `false` is returned the day is considered to be disabled. */
   filterDate?: ?(day: T) => boolean,
+  /** A function that is called with the current date to render the label text under that day on the calendar. */
+  dateLabel?: ?(day: T) => React.ReactNode,
   /** Indicates a highlighted date on hover and keyboard navigation */
   highlightedDate?: ?T,
   /** A list of selectable dates. */
@@ -232,6 +237,7 @@ export type SharedStylePropsT = {
   $hasRangeOnRight: ?boolean,
   $hasRangeSelected: ?boolean,
   $order: ?number,
+  $hasDateLabel: ?boolean,
 };
 
 export type StateChangeTypeT = ?$Values<typeof STATE_CHANGE_TYPE>;

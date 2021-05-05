@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import {StyledDay} from './styled-components.js';
+import {StyledDay, StyledDayLabel} from './styled-components.js';
 import dateFnsAdapter from './utils/date-fns-adapter.js';
 import DateHelpers from './utils/date-helpers.js';
 import {getOverrides} from '../helpers/overrides.js';
@@ -287,6 +287,7 @@ export default class Day<T = Date> extends React.Component<
           $selected &&
           this.dateHelpers.isSameDay(date, value[1])) ||
         false,
+      $hasDateLabel: !!this.props.dateLabel,
       $hasRangeHighlighted,
       $hasRangeOnRight:
         Array.isArray(value) &&
@@ -353,6 +354,11 @@ export default class Day<T = Date> extends React.Component<
     const {peekNextMonth, overrides = {}} = this.props;
     const sharedProps = this.getSharedProps();
     const [Day, dayProps] = getOverrides(overrides.Day, StyledDay);
+    const [DayLabel, dayLabelProps] = getOverrides(
+      overrides.DayLabel,
+      StyledDayLabel,
+    );
+    const dateLabel = this.props.dateLabel && this.props.dateLabel(date);
     return !peekNextMonth && sharedProps.$outsideMonth ? (
       <Day
         role="gridcell"
@@ -391,7 +397,12 @@ export default class Day<T = Date> extends React.Component<
             onMouseOver={this.onMouseOver}
             onMouseLeave={this.onMouseLeave}
           >
-            {this.dateHelpers.getDate(date)}
+            <div>{this.dateHelpers.getDate(date)}</div>
+            {dateLabel ? (
+              <DayLabel {...sharedProps} {...dayLabelProps}>
+                {dateLabel}
+              </DayLabel>
+            ) : null}
           </Day>
         )}
       </LocaleContext.Consumer>

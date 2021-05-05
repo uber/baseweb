@@ -51,6 +51,7 @@ export class StatefulContainer extends React.Component<
 
 export interface CalendarProps {
   autoFocusCalendar?: boolean;
+  dateLabel?: (day: Date) => React.ReactNode;
   excludeDates?: Date[];
   quickSelect?: boolean;
   quickSelectOptions?: Array<{id: string; beginDate: Date; endDate?: Date}>;
