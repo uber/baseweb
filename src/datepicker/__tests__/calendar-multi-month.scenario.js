@@ -12,13 +12,26 @@ import {StatefulCalendar, ORIENTATION} from '../index.js';
 
 export default function Scenario() {
   return (
-    <StatefulCalendar
-      onChange={({date}) => console.log(date)}
-      orientation={ORIENTATION.horizontal}
-      highlightedDate={new Date('March 10, 2019')}
-      monthsShown={3}
-      range
-      quickSelect
-    />
+    <>
+      <StatefulCalendar
+        onChange={({date}) => console.log(date)}
+        orientation={ORIENTATION.horizontal}
+        highlightedDate={new Date('March 10, 2019')}
+        monthsShown={3}
+        range
+        quickSelect
+        dateLabel={date => (date.getDay() <= 3 ? 'Aa' : null)}
+      />
+
+      <StatefulCalendar
+        onChange={({date}) => console.log(date)}
+        orientation={ORIENTATION.horizontal}
+        highlightedDate={new Date('March 10, 2019')}
+        monthsShown={3}
+        peekNextMonth
+        range
+        quickSelect
+      />
+    </>
   );
 }
