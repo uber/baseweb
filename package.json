@@ -178,7 +178,7 @@
     "shx": "^0.3.2",
     "static-server": "^2.2.1",
     "styletron-engine-atomic": "^1.4.3",
-    "styletron-react": "^6.0.1",
+    "styletron-react": "^5.2.4",
     "styletron-standard": "^3.0.3",
     "tar": "^5.0.0",
     "tsconfig-paths": "^3.9.0",
@@ -214,7 +214,7 @@
   "peerDependencies": {
     "react": ">= 16.8.0 < 18",
     "react-dom": ">= 16.8.0 < 18",
-    "styletron-react": "^6.0.1"
+    "styletron-react": ">=5.2.2 < 7"
   },
   "resolutions": {
     "@types/react": "16.8.23",
