@@ -15132,18 +15132,26 @@ styletron-engine-atomic@^1.4.3:
     inline-style-prefixer "^5.1.0"
     styletron-standard "^3.0.4"
 
-styletron-react@^5.2.4:
-  version "5.2.5"
-  resolved "https://registry.yarnpkg.com/styletron-react/-/styletron-react-5.2.5.tgz#e4c721de63f78e243fce4ffc5832e8e74d0b2a65"
-  integrity sha512-ju/XDDx15QEJ2PtObN1ryo7onGR4e5O2DmLUFF89xOSPDU3eiwEJWMZNUXozfeCxZwnfan7veZ1vgUiK9Hnq9w==
+styletron-react@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/styletron-react/-/styletron-react-6.0.1.tgz#bf4f51ce872e925bcf8ebdcc8ee69027578b93d0"
+  integrity sha512-GHgWrzR1fUyMr2JnHZOUP/XAKZ/dtDb3qxqq779xQkVC3Tjl1zWWrNLe+qnRwunygcEMiVVtinNdhvwHTIsiIQ==
   dependencies:
     prop-types "^15.6.0"
-    styletron-standard "^3.0.4"
+    styletron-standard "^3.0.5"
 
 styletron-standard@^3.0.3, styletron-standard@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/styletron-standard/-/styletron-standard-3.0.4.tgz#2b286752f464e4c9824faaee466013aa8f13cf6b"
   integrity sha512-AozOYUEtB5m0s+6ieLCObqYsBitLJmag3IoD/yg0Y9X32AYKwtGO4emx9cljD25k2S/R1XmLPgThOU+orjXTKg==
+  dependencies:
+    "@rtsao/csstype" "2.6.5-forked.0"
+    inline-style-prefixer "^5.1.0"
+
+styletron-standard@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/styletron-standard/-/styletron-standard-3.0.5.tgz#35dd4a584d668ef73b145988cdbece69a1e39085"
+  integrity sha512-0paxpsQg2QnlapGLnM49yEPZ015VEi/ovys9Hu0wBduimKshYUZLLl1Emfs5jx1LHVXrDn4j+DYVclJGWJC7Jw==
   dependencies:
     "@rtsao/csstype" "2.6.5-forked.0"
     inline-style-prefixer "^5.1.0"
