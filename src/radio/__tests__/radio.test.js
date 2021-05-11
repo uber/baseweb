@@ -14,7 +14,8 @@ import {
   getByText,
 } from '@testing-library/react';
 
-import {Radio} from '../index.js';
+import {ALIGN, Radio, StatefulRadioGroup} from '../index.js';
+import {Select} from '../../select/index.js';
 
 describe('Radio', () => {
   it('calls provided handlers', () => {
@@ -46,6 +47,21 @@ describe('Radio', () => {
     fireEvent.mouseDown(root);
     fireEvent.mouseUp(root);
     expect(spy).toHaveBeenCalledTimes(4);
+  });
+
+  it('does not select radio when interactive element is present', () => {
+    const {container} = render(
+      <StatefulRadioGroup name="number" align={ALIGN.vertical}>
+        <Radio>
+          <Select placeholder="Select color" />
+        </Radio>
+      </StatefulRadioGroup>,
+    );
+
+    const select = container.querySelector('[data-baseweb="select"]');
+    const radio = container.querySelector('input[type="radio"]');
+    fireEvent.click(select);
+    expect(radio.checked).toBe(false);
   });
 
   it('displays description if provided', () => {
