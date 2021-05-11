@@ -354,6 +354,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       $isAnimating: isAnimating,
       $isOpen: isOpen,
       $popoverMargin: popoverMargin,
+      $isHoverTrigger: this.isHoverTrigger(),
     };
   }
 

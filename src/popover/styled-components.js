@@ -32,6 +32,7 @@ export function getBodyStyles(props: BodyStylePropsArgT & {$theme: ThemeT}) {
     $showArrow,
     $theme,
     $popoverMargin,
+    $isHoverTrigger,
   } = props;
 
   return {
@@ -64,6 +65,16 @@ export function getBodyStyles(props: BodyStylePropsArgT & {$theme: ThemeT}) {
       $placement,
       $popoverMargin,
     ),
+    ...($isHoverTrigger
+      ? {
+          animationDuration: '.1s',
+          animationName: {
+            '0%': {pointerEvents: 'none'},
+            '99%': {pointerEvents: 'none'},
+            '100%': {pointerEvents: 'auto'},
+          },
+        }
+      : {}),
   };
 }
 

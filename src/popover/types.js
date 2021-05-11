@@ -186,6 +186,7 @@ export type ArrowStylePropsArgT = {
 
 export type BodyStylePropsArgT = {
   $isAnimating: boolean,
+  $isHoverTrigger: boolean,
   $isOpen: boolean,
   $popoverOffset: OffsetT,
   $placement: TetherPlacementT,
