@@ -30,8 +30,8 @@ const Panel = ({
   onKeyDown = () => {},
   overrides = {},
   title = '',
-  renderPanelContent = () => {},
-  renderAll = () => {},
+  renderPanelContent = false,
+  renderAll = false,
 }: PanelPropsT) => {
   const [localState, setLocalState] = React.useState({
     expanded,
