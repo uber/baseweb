@@ -53,4 +53,17 @@ describe('Radio', () => {
     const {container} = render(<Radio description={description}>bar</Radio>);
     getByText(container, description);
   });
+
+  it('only fires one click event', () => {
+    const onAncestorClick = jest.fn();
+    const {container} = render(
+      // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
+      <div onClick={onAncestorClick}>
+        <Radio>label</Radio>
+      </div>,
+    );
+    const label = container.querySelector('label');
+    fireEvent.click(label);
+    expect(onAncestorClick.mock.calls.length).toBe(1);
+  });
 });
