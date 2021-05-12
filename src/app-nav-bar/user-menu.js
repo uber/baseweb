@@ -124,7 +124,7 @@ export default function UserMenuComponent(props: {|
       onOpen={() => setIsOpen(true)}
       onClose={() => setIsOpen(false)}
       placement={PLACEMENT.bottomRight}
-      popperOptions={{modifiers: {flip: {enabled: false}}}}
+      popperOptions={{modifiers: [{name: 'flip', enabled: false}]}}
       triggerType={TRIGGER_TYPE.click}
     >
       <UserMenuButton {...userMenuButtonProps}>

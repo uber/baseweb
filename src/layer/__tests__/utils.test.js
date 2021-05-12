@@ -22,24 +22,24 @@ describe('parsePopperOffset', () => {
   test('parsePopperOffset should handle valid integer inputs', () => {
     expect(
       parsePopperOffset({
-        top: 10,
-        left: 15,
+        y: 10,
+        x: 15,
       }),
     ).toEqual({top: 10, left: 15});
   });
   test('parsePopperOffset should round float inputs', () => {
     expect(
       parsePopperOffset({
-        top: 10.1,
-        left: 15.24,
+        y: 10.1,
+        x: 15.24,
       }),
     ).toEqual({top: 10, left: 15});
   });
   test('parsePopperOffset should be resilient to null input', () => {
     expect(
       parsePopperOffset({
-        top: null,
-        left: null,
+        y: null,
+        x: null,
       }),
     ).toEqual({top: 0, left: 0});
   });

@@ -437,9 +437,9 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
       mountedAndOpen || this.props.renderAll ? this.renderContent() : null;
 
     const defaultPopperOptions = {
-      modifiers: {
-        preventOverflow: {enabled: !this.props.ignoreBoundary},
-      },
+      modifiers: [
+        {name: 'preventOverflow', enabled: !this.props.ignoreBoundary},
+      ],
     };
     // Only render popover on the browser (portals aren't supported server-side)
     if (renderedContent) {

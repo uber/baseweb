@@ -6,11 +6,10 @@ LICENSE file in the root directory of this source tree.
 */
 // @flow
 import * as React from 'react';
-import Popper from 'popper.js';
-import type {Instance as PopperInstance} from 'popper.js';
+import {createPopper, type Instance as PopperInstance} from '@popperjs/core';
 import {toPopperPlacement, parsePopperOffset} from './utils.js';
 import {TETHER_PLACEMENT} from './constants.js';
-import type {TetherPropsT, TetherStateT, PopperDataObjectT} from './types.js';
+import type {TetherPropsT, TetherStateT} from './types.js';
 
 class Tether extends React.Component<TetherPropsT, TetherStateT> {
   static defaultProps = {
@@ -47,7 +46,7 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
       if (this.anchorHeight !== height || this.anchorWidth !== width) {
         this.anchorHeight = height;
         this.anchorWidth = width;
-        this.popper && this.popper.scheduleUpdate();
+        this.popper && this.popper.update();
       }
     }
 
@@ -57,7 +56,7 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
       if (this.popperHeight !== height || this.popperWidth !== width) {
         this.popperHeight = height;
         this.popperWidth = width;
-        this.popper && this.popper.scheduleUpdate();
+        this.popper && this.popper.update();
       }
 
       if (this.state.isMounted !== prevState.isMounted) {
@@ -87,44 +86,56 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
 
     if (!this.props.anchorRef || !this.props.popperRef) return;
 
-    this.popper = new Popper(this.props.anchorRef, this.props.popperRef, {
+    this.popper = createPopper(this.props.anchorRef, this.props.popperRef, {
       // Recommended placement (popper may ignore if it causes a viewport overflow, etc)
       placement: toPopperPlacement(placement),
-      modifiers: {
+      modifiers: [
         // Passing the arrow ref will measure the arrow when calculating styles
-        arrow: {
-          element: this.props.arrowRef,
+        {
+          name: 'arrow',
           enabled: !!this.props.arrowRef,
+          options: {
+            element: this.props.arrowRef,
+          },
         },
-        computeStyle: {
+        {
           // Make popper use top/left instead of transform translate, this is because
           // we use transform for animations and we dont want them to conflict
-          gpuAcceleration: false,
+          name: 'computeStyles',
+          options: {
+            gpuAcceleration: false,
+            adaptive: false,
+          },
         },
-        applyStyle: {
+        {
           // Disable default styling modifier, we'll apply styles on our own
+          name: 'applyStyles',
           enabled: false,
         },
-        applyReactStyle: {
+        {
+          name: 'applyReactStyle',
           enabled: true,
+          phase: 'write',
           fn: this.onPopperUpdate,
-          order: 900,
         },
-        preventOverflow: {enabled: true},
+        {
+          name: 'preventOverflow',
+          enabled: true,
+        },
         ...modifiers,
-      },
+      ],
       ...restOptions,
     });
   }
 
-  onPopperUpdate = (data: PopperDataObjectT) => {
+  onPopperUpdate = ({state}) => {
     const normalizedOffsets = {
-      popper: parsePopperOffset(data.offsets.popper),
-      arrow: data.offsets.arrow
-        ? parsePopperOffset(data.offsets.arrow)
+      popper: parsePopperOffset(state.modifiersData.popperOffsets),
+      arrow: state.modifiersData.arrow
+        ? parsePopperOffset(state.modifiersData.arrow)
         : {top: 0, left: 0},
     };
-    this.props.onPopperUpdate(normalizedOffsets, data);
+    this.props.onPopperUpdate(normalizedOffsets, state);
   };
 
   destroyPopover() {
