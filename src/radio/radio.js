@@ -28,6 +28,8 @@ function isLabelBottomRight(labelPlacement) {
   return labelPlacement === 'bottom' || labelPlacement === 'right';
 }
 
+const stopPropagation = e => e.stopPropagation();
+
 class Radio extends React.Component<RadioPropsT, RadioStateT> {
   static defaultProps: $Shape<RadioPropsT> = {
     overrides: {},
@@ -152,6 +154,9 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
             name={this.props.name}
             onBlur={this.props.onBlur}
             onFocus={this.props.onFocus}
+            // Prevent a second click event from firing when label is clicked.
+            // See https://github.com/uber/baseweb/issues/3847 & https://github.com/uber/baseweb/issues/4033
+            onClick={stopPropagation}
             onChange={this.props.onChange}
             ref={this.props.inputRef}
             required={this.props.required}
