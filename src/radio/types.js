@@ -106,7 +106,7 @@ export type RadioPropsT = {
   checked?: boolean,
   /** Label of radio. */
   children?: React$Node,
-  /** Indicates if this select contains an interactive element (prevents events from bubbling up to the label for child elements) */
+  /** Indicates if this radio children contain an interactive element (prevents the label from moving focus from the child element to the radio button) */
   containsInteractiveElement?: boolean,
   /** Add more detail about a radio element. */
   description?: string,

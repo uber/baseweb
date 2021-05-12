@@ -53,7 +53,7 @@ const RadioGroupConfig: TConfig = {
       stateful: true,
     },
     onChange: {
-      value: 'e => setValue(e.target.value)',
+      value: 'e => setValue(e.currentTarget.value)',
       type: PropTypes.Function,
       description: 'Handler for change events on trigger element.',
       propHook: {
