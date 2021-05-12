@@ -25,12 +25,6 @@ export default function Scenario() {
         <Radio
           value="4"
           description="This one has a Select that only works with keyboard"
-        >
-          <Select placeholder="Select color" />
-        </Radio>
-        <Radio
-          value="5"
-          description="This one has a fully working Select"
           containsInteractiveElement
         >
           <Select placeholder="Select color" />

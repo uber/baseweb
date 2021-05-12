@@ -52,14 +52,16 @@ describe('Radio', () => {
   it('does not select radio when interactive element is present', () => {
     const {container} = render(
       <StatefulRadioGroup name="number" align={ALIGN.vertical}>
-        <Radio>
+        <Radio value="one" containsInteractiveElement>
           <Select placeholder="Select color" />
         </Radio>
+        <Radio value="two">Two</Radio>
       </StatefulRadioGroup>,
     );
 
     const select = container.querySelector('[data-baseweb="select"]');
     const radio = container.querySelector('input[type="radio"]');
+    expect(radio.checked).toBe(false);
     fireEvent.click(select);
     expect(radio.checked).toBe(false);
   });
