@@ -61,4 +61,36 @@ describe('Panel', () => {
     fireEvent.click(panel);
     expect(onChange.mock.calls.length).toBe(1);
   });
+
+  it('does not render content when not expanded', () => {
+    const {container} = render(<Panel title="title">content</Panel>);
+    expect(container.textContent).toBe('title');
+  });
+
+  it('does render content when expanded', () => {
+    const {container} = render(
+      <Panel title="title" expanded>
+        content
+      </Panel>,
+    );
+    expect(container.textContent).toBe('titlecontent');
+  });
+
+  it('does render content when not expanded but renderAll is true', () => {
+    const {container} = render(
+      <Panel title="title" renderAll>
+        content
+      </Panel>,
+    );
+    expect(container.textContent).toBe('titlecontent');
+  });
+
+  it('does render content when not expanded but renderPanelContent is true', () => {
+    const {container} = render(
+      <Panel title="title" renderPanelContent>
+        content
+      </Panel>,
+    );
+    expect(container.textContent).toBe('titlecontent');
+  });
 });
