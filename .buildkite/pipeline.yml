@@ -94,7 +94,6 @@ steps:
 
   - name: alpha-test-web-code
     command: 'node scripts/alpha-test-web-code.js'
-    if: build.branch != "master" && build.message =~ /^Release v[0-9]+\.[0-9]+\.[0-9]+/
     plugins:
       'docker-compose#v3.0.3':
         run: baseui
