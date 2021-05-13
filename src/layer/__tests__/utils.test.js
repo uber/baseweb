@@ -38,8 +38,8 @@ describe('parsePopperOffset', () => {
   test('parsePopperOffset should be resilient to null input', () => {
     expect(
       parsePopperOffset({
-        y: null,
-        x: null,
+        y: 0,
+        x: 0,
       }),
     ).toEqual({top: 0, left: 0});
   });

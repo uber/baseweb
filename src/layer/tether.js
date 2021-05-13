@@ -9,7 +9,7 @@ import * as React from 'react';
 import {createPopper, type Instance as PopperInstance} from '@popperjs/core';
 import {toPopperPlacement, parsePopperOffset} from './utils.js';
 import {TETHER_PLACEMENT} from './constants.js';
-import type {TetherPropsT, TetherStateT} from './types.js';
+import type {PopperDataObjectT, TetherPropsT, TetherStateT} from './types.js';
 
 class Tether extends React.Component<TetherPropsT, TetherStateT> {
   static defaultProps = {
@@ -18,6 +18,7 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
     placement: TETHER_PLACEMENT.auto,
     popperRef: null,
     popperOptions: {},
+    popperOffset: 0,
   };
 
   popper: ?PopperInstance;
@@ -25,6 +26,7 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
   popperWidth = 0;
   anchorHeight = 0;
   anchorWidth = 0;
+  popperOffset = 0;
 
   state = {
     isMounted: false,
@@ -74,6 +76,10 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
         }
       }
     }
+    if (this.popperOffset !== this.props.popperOffset) {
+      this.popperOffset = this.props.popperOffset;
+      this.popper && this.popper.update();
+    }
   }
 
   componentWillUnmount() {
@@ -96,6 +102,7 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
           enabled: !!this.props.arrowRef,
           options: {
             element: this.props.arrowRef,
+            placement: toPopperPlacement(placement),
           },
         },
         {
@@ -116,11 +123,49 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
           name: 'applyReactStyle',
           enabled: true,
           phase: 'write',
-          fn: this.onPopperUpdate,
+          fn: (instance: PopperInstance) => {
+            const {
+              state: {modifiersData},
+            } = instance;
+            const {
+              x: popperLeft,
+              y: popperTop,
+            } = modifiersData.popperOffsets || {x: null, y: null};
+            const {x: arrowLeft, y: arrowTop} = modifiersData.arrow || {
+              x: null,
+              y: null,
+            };
+            const arrow = {left: arrowLeft || null, top: arrowTop || null};
+            const popper = {left: popperLeft || null, top: popperTop || null};
+            this.onPopperUpdate({
+              placement: instance.state.placement,
+              offsets: {
+                arrow,
+                popper,
+              },
+            });
+          },
         },
         {
           name: 'preventOverflow',
           enabled: true,
+          options: {
+            padding: 5,
+          },
+        },
+        {
+          name: 'flip',
+          options: {
+            padding: 5,
+          },
+        },
+        {
+          name: 'offset',
+          options: {
+            offset: () => {
+              return [0, this.popperOffset];
+            },
+          },
         },
         ...modifiers,
       ],
@@ -128,14 +173,14 @@ class Tether extends React.Component<TetherPropsT, TetherStateT> {
     });
   }
 
-  onPopperUpdate = ({state}) => {
+  onPopperUpdate = (data: PopperDataObjectT) => {
     const normalizedOffsets = {
-      popper: parsePopperOffset(state.modifiersData.popperOffsets),
-      arrow: state.modifiersData.arrow
-        ? parsePopperOffset(state.modifiersData.arrow)
+      popper: parsePopperOffset(data.offsets.popper),
+      arrow: data.offsets.arrow
+        ? parsePopperOffset(data.offsets.arrow)
         : {top: 0, left: 0},
     };
-    this.props.onPopperUpdate(normalizedOffsets, state);
+    this.props.onPopperUpdate(normalizedOffsets, data);
   };
 
   destroyPopover() {

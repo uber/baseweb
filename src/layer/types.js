@@ -9,6 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 import {TETHER_PLACEMENT} from './constants.js';
 import type {OverrideT} from '../helpers/overrides.js';
+import type {Instance} from '@popperjs/core';
 
 /** LayersManager */
 export type LayersManagerPropsT = {
@@ -114,7 +115,7 @@ export type PopperOptionsT = {
     computeStyle: {},
     applyStyle: {},
     applyReactStyle: {
-      fn: (data: PopperDataObjectT) => void,
+      fn: (data: Instance) => void,
     },
   },
 };
@@ -138,6 +139,7 @@ export type TetherPropsT = {
    for the full list of available options. */
   // eslint-disable-next-line flowtype/no-weak-types
   popperOptions: any,
+  popperOffset: number,
 };
 
 export type TetherStateT = {

@@ -60,11 +60,11 @@ export function getBodyStyles(props: BodyStylePropsArgT & {$theme: ThemeT}) {
             $showArrow ? ARROW_SIZE : 0,
             $popoverMargin,
           ),
-    ...getPopoverMarginStyles(
-      $showArrow ? ARROW_SIZE : 0,
-      $placement,
-      $popoverMargin,
-    ),
+    // ...getPopoverMarginStyles(
+    //   $showArrow ? ARROW_SIZE : 0,
+    //   $placement,
+    //   $popoverMargin,
+    // ),
     ...($isHoverTrigger
       ? {
           animationDuration: '.1s',

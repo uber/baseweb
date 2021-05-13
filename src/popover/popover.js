@@ -19,6 +19,7 @@ import {
   ANIMATE_OUT_TIME,
   ANIMATE_IN_TIME,
   POPOVER_MARGIN,
+  ARROW_SIZE,
 } from './constants.js';
 import {Layer, TetherBehavior} from '../layer/index.js';
 import {
@@ -438,7 +439,10 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
 
     const defaultPopperOptions = {
       modifiers: [
-        {name: 'preventOverflow', enabled: !this.props.ignoreBoundary},
+        {
+          name: 'preventOverflow',
+          enabled: !this.props.ignoreBoundary,
+        },
       ],
     };
     // Only render popover on the browser (portals aren't supported server-side)
@@ -463,6 +467,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
                 ...defaultPopperOptions,
                 ...this.props.popperOptions,
               }}
+              popperOffset={ARROW_SIZE + POPOVER_MARGIN}
               onPopperUpdate={this.onPopperUpdate}
               placement={this.state.placement}
             >
