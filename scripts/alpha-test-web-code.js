@@ -20,7 +20,7 @@ const BUILDKITE_TASK_RUNNER_URL =
 function annotateBuild(body, style = 'info') {
   spawnSync(
     'buildkite-agent',
-    ['annotate', body, '--append', '--style', style],
+    ['annotate', `'${body}'`, '--append', '--style', style],
     {stdio: 'inherit'},
   );
 }
@@ -92,7 +92,8 @@ async function main() {
   const {web_url, number} = await createBuild(buildkiteToken, version);
 
   annotateBuild(`View web-code alpha build CI check [here]${web_url}`);
-  console.log(`View alpha build CI checks at ${web_url}.`);
+  console.log('View alpha build CI checks at:');
+  console.log(`\u001B]1339;url="${web_url}"\u0007.`);
 
   // eslint-disable-next-line no-constant-condition
   while (true) {
