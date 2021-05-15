@@ -94,8 +94,11 @@ export type ColorTokensT = {
   mono1000: string,
 
   // Rating Palette
-  rating200: string,
-  rating400: string,
+  ratingFill: string,
+  ratingActiveFill: string,
+  ratingStroke: string,
+  emoticonFill: string,
+  emoticonActiveFill: string,
 };
 
 export type CoreSemanticColorTokensT = {|
