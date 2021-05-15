@@ -91,7 +91,7 @@ export default function App() {
 
 ### Toggling between light and dark themes
 
-If you want to allow for toggling between the 2 themes at 
+If you want to allow for toggling between the 2 themes at
 , you need to allocate some state for determining which theme is passed to `ThemeProvider`.
 
 ```js
@@ -416,7 +416,7 @@ function App() {
 
 Note: you can use the custom type theme object with our provider as so long as it _extends_ the default `ThemeT`. Base Web components will essentially ignore the additional properties, but the theme object will be available in component overrides.
 
-If you’re using Flow and want to use a custom theme shape with our various styling utilities, you can create new `styled`, `withStyle`, and `useStyletron`  methods that respect your custom theme type.
+If you’re using Flow and want to use a custom theme shape with our various styling utilities, you can create new `styled`, `withStyle`, and `useStyletron` methods that respect your custom theme type.
 
 ```js
 // my-style-utils.js
@@ -443,7 +443,7 @@ function Foo() {
 }
 ```
 
-## Accessing your Theme through style utilities 
+## Accessing your Theme through style utilities
 
 The theme object acts not only as a centralized API for customizing global styling properties, but it also allows developers to use consistent values when extending components or styling new components. Base Web makes access to the theme object a priority across all of our styling utilities and component overrides so that you can always use the right value.
 
@@ -453,7 +453,7 @@ Let's look at how you can use the theme object while extending our components an
 
 ### Extension
 
-There are 2 supported methods for styling Base Web components: `withStyle`  and `overrides`. Both have access to the nearest ancestor theme object.
+There are 2 supported methods for styling Base Web components: `withStyle` and `overrides`. Both have access to the nearest ancestor theme object.
 
 #### `withStyle`
 
@@ -734,8 +734,11 @@ The following colors are "primitive" colors used to construct the theme when usi
 <Color name="mono800" />
 <Color name="mono900" />
 <Color name="mono1000" />
-<Color name="rating200" />
-<Color name="rating400" />
+<Color name="ratingFill" />
+<Color name="ratingActiveFill" />
+<Color name="ratingStroke" />
+<Color name="emoticonFill" />
+<Color name="emoticonActiveFill" />
 
 The `theme.colors` object also includes component-specific properties. We won't enumerate those here since you should rarely need to reference them. The best way to explore component-specific properties is to go to a component's documentation page and use the sandbox at the top. An interactive Theme tab lets you dynamically change any property relevant to the component.
 
