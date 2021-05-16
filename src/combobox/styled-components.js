@@ -30,31 +30,32 @@ export const StyledListBox = styled<{|$width: string|}>(
 );
 
 function buildStylesForSize(size, theme) {
+  const paddingDir = theme.direction === 'rtl' ? 'paddingRight' : 'paddingLeft';
   switch (size) {
     case SIZE.mini:
       return {
         ...theme.typography.ParagraphXSmall,
         height: '30px',
-        paddingLeft: theme.sizing.scale200,
+        [paddingDir]: theme.sizing.scale200,
       };
     case SIZE.compact:
       return {
         ...theme.typography.ParagraphSmall,
         height: '36px',
-        paddingLeft: theme.sizing.scale400,
+        [paddingDir]: theme.sizing.scale400,
       };
     case SIZE.large:
       return {
         ...theme.typography.ParagraphLarge,
         height: '56px',
-        paddingLeft: theme.sizing.scale650,
+        [paddingDir]: theme.sizing.scale650,
       };
     case SIZE.default:
     default:
       return {
         ...theme.typography.ParagraphMedium,
         height: '48px',
-        paddingLeft: theme.sizing.scale550,
+        [paddingDir]: theme.sizing.scale550,
       };
   }
 }
