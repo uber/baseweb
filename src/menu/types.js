@@ -230,6 +230,7 @@ export type OptionListPropsT = {
   getItemLabel: GetItemLabelFnT,
   /** Used to render a sub menu at this menu item. You'll often render another menu from this function. */
   getChildMenu?: (item: ItemT) => React.Node,
+  onClick?: (event: MouseEvent) => mixed,
   /** Callback used to change highlighted index in stateful menu. */
   onMouseEnter?: (event: MouseEvent) => mixed,
   /** Renders UI in defined scale. */
