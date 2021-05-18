@@ -27,16 +27,21 @@ type withOverridesT = {
   'data-testid'?: string,
 };
 
+class TestElement extends React.Component<withOverridesT> {
+  render() {
+    const overrides = this.props.overrides
+      ? this.props.overrides
+      : {props: {}, style: {}};
+    return <div {...overrides.props} style={overrides.style} />;
+  }
+}
+const TestComponent = withOverrides<withOverridesT, TestElement>(
+  TestElement,
+  'TestComponent',
+);
+
 describe('Global Overrides', () => {
   test('passes global overrides through ThemeProvider', () => {
-    // Mock behavior of baseui component
-    const TestElement = (props: withOverridesT) => {
-      const overrides = props.overrides
-        ? props.overrides
-        : {props: {}, style: {}};
-      return <div {...overrides.props} style={overrides.style}></div>;
-    };
-    const TestComponent = withOverrides(TestElement, 'TestComponent');
     const {container} = render(
       // $FlowFixMe
       <ThemeProvider
@@ -59,25 +64,16 @@ describe('Global Overrides', () => {
     expect(testComponent).toHaveStyle('color: red');
   });
   test('passes global overrides through BaseProvider', () => {
-    // Mock behavior of baseui component
-    const TestElement = (props: withOverridesT) => {
-      const overrides = props.overrides
-        ? props.overrides
-        : {props: {}, style: {}};
-      return <div {...overrides.props} style={overrides.style}></div>;
-    };
-    const TestComponent = withOverrides<withOverridesT, any>(
-      TestElement,
-      'TestComponent',
-    );
     const {container} = render(
       <BaseProvider
         theme={LightTheme}
         overrides={{
           TestComponent: {
+            // $FlowFixMe
             props: {
               'data-testid': 'global-overrides',
             },
+            // $FlowFixMe
             style: {
               color: 'red',
             },
@@ -92,13 +88,6 @@ describe('Global Overrides', () => {
     expect(testComponent).toHaveStyle('color: red');
   });
   test('local overrides replaces global overrides', () => {
-    // Mock behavior of baseui component
-    const TestElement = (props: withOverridesT) => {
-      return (
-        <div {...props.overrides.props} style={props.overrides.style}></div>
-      );
-    };
-    const TestComponent = withOverrides(TestElement, 'TestComponent');
     const {container} = render(
       // $FlowFixMe
       <BaseProvider
@@ -109,6 +98,7 @@ describe('Global Overrides', () => {
             },
             style: {
               color: 'red',
+              background: 'blue',
             },
           },
         }}
@@ -128,10 +118,11 @@ describe('Global Overrides', () => {
     const testComponent = getByTestId(container, 'local-overrides');
     expect(testComponent).toBeTruthy();
     expect(testComponent).toHaveStyle('color: green');
+    expect(testComponent).toHaveStyle('background: blue');
   });
   test('passes ref successfully', () => {
     /** Create nested forwardRefs */
-    const TestElement = (props: {
+    const TestElementRef = (props: {
       overrides?: OverrideObjectT,
       forwardedRef?: React.Ref<any>,
     }) => {
@@ -139,10 +130,13 @@ describe('Global Overrides', () => {
     };
     const ForwardingElement = React.forwardRef<withOverridesT, HTMLElement>(
       (props: withOverridesT, ref) => (
-        <TestElement {...props} forwardedRef={ref} />
+        <TestElementRef {...props} forwardedRef={ref} />
       ),
     );
-    const TestComponent = withOverrides(ForwardingElement, 'ForwardingElement');
+    const TestComponentRef = withOverrides(
+      ForwardingElement,
+      'ForwardingElement',
+    );
     const ToRender = ({mockFn}: any) => {
       const ref = React.createRef();
       const handleClick = () => {
@@ -162,7 +156,7 @@ describe('Global Overrides', () => {
           }}
         >
           {/* $FlowFixMe */}
-          <TestComponent ref={ref} />
+          <TestComponentRef ref={ref} />
           <button
             onClick={() => {
               handleClick();
