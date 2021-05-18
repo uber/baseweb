@@ -21,6 +21,7 @@ function OptionList(props: OptionListPropsT, ref: React.ElementRef<*>) {
     getChildMenu,
     getItemLabel = item => (item ? item.label : ''),
     item,
+    onClick = () => {},
     onMouseEnter = () => {},
     overrides = {},
     renderHrefAsAnchor = true,
@@ -61,6 +62,7 @@ function OptionList(props: OptionListPropsT, ref: React.ElementRef<*>) {
           item={item}
           resetParentMenu={resetMenu}
           renderAll={renderAll}
+          onClick={onClick}
           overrides={overrides}
         >
           <ListItem
@@ -71,6 +73,7 @@ function OptionList(props: OptionListPropsT, ref: React.ElementRef<*>) {
                 : null
             }
             item={item}
+            onClick={onClick}
             onMouseEnter={onMouseEnter}
             $size={size}
             $isHighlighted={$isHighlighted}
