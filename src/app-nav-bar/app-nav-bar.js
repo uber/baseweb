@@ -269,5 +269,4 @@ function AppNavBar(props: AppNavBarPropsT) {
   );
 }
 
-//$FlowFixMe
-export default withOverrides(AppNavBar, 'AppNavBar');
+export default withOverrides<AppNavBarPropsT, mixed>(AppNavBar, 'AppNavBar');

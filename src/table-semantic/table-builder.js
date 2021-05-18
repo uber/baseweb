@@ -312,5 +312,7 @@ class TableBuilder<T> extends React.Component<
   }
 }
 
-//$FlowFixMe
-export default withOverrides(TableBuilder, 'TableBuilder');
+export default withOverrides<TableBuilderPropsT<mixed>, mixed>(
+  TableBuilder,
+  'TableBuilder',
+);

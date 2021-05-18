@@ -130,5 +130,4 @@ class SideNav extends React.Component<NavPropsT, {isFocusVisible: boolean}> {
   }
 }
 
-//$FlowFixMe
-export default withOverrides(SideNav, 'SideNavigation');
+export default withOverrides<NavPropsT, mixed>(SideNav, 'SideNavigation');

@@ -97,5 +97,7 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
   }
 }
 
-//$FlowFixMe
-export default withOverrides(ProgressBar, 'ProgressBar');
+export default withOverrides<ProgressBarPropsT, mixed>(
+  ProgressBar,
+  'ProgressBar',
+);

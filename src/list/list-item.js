@@ -89,5 +89,4 @@ const ListItem = React.forwardRef<PropsT, HTMLLIElement>(
 );
 ListItem.displayName = 'ListItem';
 
-//$FlowFixMe
-export default withOverrides(ListItem, 'ListItem');
+export default withOverrides<PropsT, mixed>(ListItem, 'ListItem');

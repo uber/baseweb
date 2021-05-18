@@ -47,5 +47,4 @@ function Cell({
   );
 }
 
-//$FlowFixMe
-export default withOverrides(Cell, 'Cell');
+export default withOverrides<CellPropsT, mixed>(Cell, 'Cell');

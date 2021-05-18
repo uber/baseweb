@@ -209,5 +209,7 @@ function SnackbarElement({
   );
 }
 
-//$FlowFixMe
-export default withOverrides(SnackbarElement, 'SnackbarElement');
+export default withOverrides<SnackbarElementPropsT, mixed>(
+  SnackbarElement,
+  'SnackbarElement',
+);

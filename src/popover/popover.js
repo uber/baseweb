@@ -491,6 +491,5 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   }
 }
 
-//$FlowFixMe
-export default withOverrides(Popover, 'Popover');
+export default withOverrides<PopoverPropsT, mixed>(Popover, 'Popover');
 /* eslint-enable react/no-find-dom-node */

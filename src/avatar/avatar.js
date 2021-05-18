@@ -84,5 +84,4 @@ class Avatar extends React.Component<PropsT, StateT> {
   }
 }
 
-//$FlowFixMe
-export default withOverrides(Avatar, 'Avatar');
+export default withOverrides<PropsT, mixed>(Avatar, 'Avatar');

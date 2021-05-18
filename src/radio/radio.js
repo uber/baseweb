@@ -172,5 +172,4 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
   }
 }
 
-//$FlowFixMe
-export default withOverrides(Radio, 'Radio');
+export default withOverrides<RadioPropsT, mixed>(Radio, 'Radio');

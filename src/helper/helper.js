@@ -48,7 +48,6 @@ Helper.defaultProps = {
   showArrow: true,
 };
 
-// $FlowFixMe
-let helper = withOverrides(Helper, 'Helper');
+let helper = withOverrides<PropsT, mixed>(Helper, 'Helper');
 
 export {helper as Helper};

@@ -50,5 +50,4 @@ function Grid({
   );
 }
 
-//$FlowFixMe
-export default withOverrides(Grid, 'Grid');
+export default withOverrides<GridPropsT, mixed>(Grid, 'Grid');

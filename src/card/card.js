@@ -105,5 +105,4 @@ Card.defaultProps = {
   overrides: {},
 };
 
-//$FlowFixMe
-export default withOverrides(Card, 'Card');
+export default withOverrides<CardsPropsT, mixed>(Card, 'Card');

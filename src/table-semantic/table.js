@@ -158,5 +158,4 @@ class Table extends React.Component<TablePropsT> {
   }
 }
 
-//$FlowFixMe
-export default withOverrides(Table, 'Table');
+export default withOverrides<TablePropsT, mixed>(Table, 'Table');

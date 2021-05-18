@@ -399,5 +399,4 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   }
 }
 
-//$FlowFixMe
-export default withOverrides(Modal, 'Modal');
+export default withOverrides<ModalPropsT, mixed>(Modal, 'Modal');

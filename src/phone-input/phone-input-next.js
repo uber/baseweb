@@ -123,5 +123,7 @@ function PhoneInputNext(props: LitePropsT) {
   );
 }
 
-//$FlowFixMe
-export default withOverrides(PhoneInputNext, 'PhoneInputNext');
+export default withOverrides<LitePropsT, mixed>(
+  PhoneInputNext,
+  'PhoneInputNext',
+);

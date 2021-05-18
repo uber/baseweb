@@ -141,5 +141,7 @@ class FormControl extends React.Component<
   }
 }
 
-//$FlowFixMe
-export default withOverrides(FormControl, 'FormControl');
+export default withOverrides<FormControlPropsT, mixed>(
+  FormControl,
+  'FormControl',
+);

@@ -185,5 +185,4 @@ function TreeView(props: TreeViewPropsT) {
   );
 }
 
-//$FlowFixMe
-export default withOverrides(TreeView, 'TreeView');
+export default withOverrides<TreeViewPropsT, mixed>(TreeView, 'TreeView');

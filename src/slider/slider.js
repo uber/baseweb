@@ -219,5 +219,4 @@ function Slider({
   );
 }
 
-//$FlowFixMe
-export default withOverrides(Slider, 'Slider');
+export default withOverrides<PropsT, mixed>(Slider, 'Slider');
