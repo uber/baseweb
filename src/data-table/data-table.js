@@ -571,6 +571,7 @@ const InnerTableElement = React.forwardRef<
       {ctx.rowActions &&
         Boolean(ctx.rowActions.length) &&
         ctx.rowHighlightIndex > 0 &&
+        Boolean(ctx.rows[ctx.rowHighlightIndex - 1]) &&
         !ctx.isScrollingX && (
           <div
             style={{
