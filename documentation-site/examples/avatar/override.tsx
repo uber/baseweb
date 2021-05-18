@@ -18,7 +18,7 @@ export default function Example() {
           }}
           name="user name #1"
           size="scale1400"
-          src="https://api.adorable.io/avatars/285/11@adorable.io.png"
+          src="https://avatars.dicebear.com/api/human/override.svg?width=285&mood=happy"
         />
 
         <Avatar
@@ -56,7 +56,7 @@ export default function Example() {
           }}
           name="user name #3"
           size="scale1400"
-          src="https://api.adorable.io/avatars/285/12@adorable.io.png"
+          src="https://avatars.dicebear.com/api/human/override.svg?width=285&mood=happy"
         />
 
         <Avatar
