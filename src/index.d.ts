@@ -80,6 +80,9 @@ export const LocaleProvider: React.FC<LocaleProviderProps>;
 export interface ThemeProviderProps {
   theme: Theme;
   children?: React.ReactNode;
+  overrides?: {
+    [key: string]: Overrides<any>;
+  };
 }
 export const ThemeProvider: React.FC<ThemeProviderProps>;
 

@@ -225,9 +225,7 @@ export function useOverrides(
 export function withOverrides<Config, Instance>(
   WrappedComponent: React.AbstractComponent<Config, Instance>,
   componentName: string,
-  // eslint-disable-next-line flowtype/no-weak-types
 ): React.AbstractComponent<Config, Instance> {
-  // eslint-disable-next-line flowtype/no-weak-types
   class WithOverrides extends React.Component<{
     ...Config,
     // eslint-disable-next-line flowtype/no-weak-types
