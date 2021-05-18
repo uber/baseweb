@@ -37,5 +37,4 @@ class Tooltip extends React.Component<TooltipPropsT> {
   }
 }
 
-//$FlowFixMe
-export default withOverrides(Tooltip, 'Tooltip');
+export default withOverrides<TooltipPropsT, mixed>(Tooltip, 'Tooltip');

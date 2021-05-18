@@ -95,5 +95,4 @@ function Avatar({
   );
 }
 
-//$FlowFixMe
-export default withOverrides(Avatar, 'Avatar');
+export default withOverrides<PropsT, mixed>(Avatar, 'Avatar');

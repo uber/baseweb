@@ -109,5 +109,7 @@ function CountrySelect(props: CountrySelectPropsT) {
   );
 }
 
-//$FlowFixMe
-export default withOverrides(CountrySelect, 'CountrySelect');
+export default withOverrides<CountrySelectPropsT, mixed>(
+  CountrySelect,
+  'CountrySelect',
+);

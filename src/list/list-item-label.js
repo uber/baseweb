@@ -53,5 +53,7 @@ function ListItemLabel(props: LabelPropsT) {
   );
 }
 
-//$FlowFixMe
-export default withOverrides(ListItemLabel, 'ListItemLabel');
+export default withOverrides<LabelPropsT, mixed>(
+  ListItemLabel,
+  'ListItemLabel',
+);

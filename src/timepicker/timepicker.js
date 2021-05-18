@@ -347,5 +347,7 @@ class TimePicker<T = Date> extends React.Component<
   }
 }
 
-//$FlowFixMe
-export default withOverrides(TimePicker, 'TimePicker');
+export default withOverrides<TimePickerPropsT<Date>, mixed>(
+  TimePicker,
+  'TimePicker',
+);

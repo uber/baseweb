@@ -244,5 +244,4 @@ FileUploader.defaultProps = {
   overrides: {},
 };
 
-//$FlowFixMe
-export default withOverrides(FileUploader, 'FileUploader');
+export default withOverrides<PropsT, mixed>(FileUploader, 'FileUploader');

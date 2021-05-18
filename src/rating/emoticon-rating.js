@@ -145,5 +145,7 @@ class EmoticonRating extends React.Component<
   }
 }
 
-//$FlowFixMe
-export default withOverrides(EmoticonRating, 'EmoticonRating');
+export default withOverrides<EmoticonRatingPropsT, mixed>(
+  EmoticonRating,
+  'EmoticonRating',
+);

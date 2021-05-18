@@ -56,5 +56,7 @@ ProgressSteps.defaultProps = {
   current: 0,
 };
 
-//$FlowFixMe
-export default withOverrides(ProgressSteps, 'ProgressSteps');
+export default withOverrides<ProgressStepsPropsT, mixed>(
+  ProgressSteps,
+  'ProgressSteps',
+);

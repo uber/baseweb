@@ -96,5 +96,4 @@ function PhoneInputLite(props: LitePropsT) {
   );
 }
 
-//$FlowFixMe
-export default withOverrides(PhoneInputLite, 'PhoneInput');
+export default withOverrides<LitePropsT, mixed>(PhoneInputLite, 'PhoneInput');

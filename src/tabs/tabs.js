@@ -131,5 +131,4 @@ class Tabs extends React.Component<TabsPropsT> {
   }
 }
 
-//$FlowFixMe
-export default withOverrides(Tabs, 'Tabs');
+export default withOverrides<TabsPropsT, mixed>(Tabs, 'Tabs');

@@ -141,5 +141,7 @@ class PaymentCard extends React.Component<PaymentCardPropsT> {
   }
 }
 
-//$FlowFixMe
-export default withOverrides(PaymentCard, 'PaymentCard');
+export default withOverrides<PaymentCardPropsT, mixed>(
+  PaymentCard,
+  'PaymentCard',
+);

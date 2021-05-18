@@ -77,5 +77,7 @@ NumberedStep.defaultProps = {
   isLast: false,
 };
 
-//$FlowFixMe
-export default withOverrides(NumberedStep, 'NumberedStep');
+export default withOverrides<NumberedStepPropsT, mixed>(
+  NumberedStep,
+  'NumberedStep',
+);

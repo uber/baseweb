@@ -175,5 +175,4 @@ const BlockComponent = React.forwardRef<BlockPropsT, HTMLElement>(
 );
 BlockComponent.displayName = 'Block';
 
-//$FlowFixMe
-export default withOverrides(BlockComponent, 'Block');
+export default withOverrides<BlockPropsT, mixed>(BlockComponent, 'Block');

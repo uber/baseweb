@@ -162,5 +162,4 @@ class ButtonGroup extends React.Component<PropsT> {
   }
 }
 
-//$FlowFixMe
-export default withOverrides(ButtonGroup, 'ButtonGroup');
+export default withOverrides<PropsT, mixed>(ButtonGroup, 'ButtonGroup');

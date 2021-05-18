@@ -64,5 +64,7 @@ const AspectRatioBoxComponent = React.forwardRef<
 ));
 AspectRatioBoxComponent.displayName = 'AspectRatioBox';
 
-// $FlowFixMe
-export default withOverrides(AspectRatioBox, 'AspectRatioBox');
+export default withOverrides<AspectRatioBoxPropsT, mixed>(
+  AspectRatioBox,
+  'AspectRatioBox',
+);

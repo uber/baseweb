@@ -82,5 +82,4 @@ class Spinner extends React.Component<SpinnerPropsT> {
   }
 }
 
-//$FlowFixMe
-export default withOverrides(Spinner, 'Spinner');
+export default withOverrides<SpinnerPropsT, mixed>(Spinner, 'Spinner');

@@ -97,5 +97,7 @@ Breadcrumbs.defaultProps = {
   showTrailingSeparator: false,
 };
 
-//$FlowFixMe
-export default withOverrides(Breadcrumbs, 'Breadcrumbs');
+export default withOverrides<BreadcrumbsPropsT, mixed>(
+  Breadcrumbs,
+  'Breadcrumbs',
+);

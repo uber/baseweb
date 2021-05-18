@@ -137,5 +137,4 @@ const ForwardedButton = React.forwardRef<ButtonPropsT, HTMLButtonElement>(
   (props: ButtonPropsT, ref) => <Button forwardedRef={ref} {...props} />,
 );
 ForwardedButton.displayName = 'Button';
-//$FlowFixMe
-export default withOverrides(ForwardedButton, 'Button');
+export default withOverrides<ButtonPropsT, mixed>(ForwardedButton, 'Button');

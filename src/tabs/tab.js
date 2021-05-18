@@ -99,5 +99,4 @@ class TabComponent extends React.Component<
   }
 }
 
-//$FlowFixMe
-export default withOverrides(TabComponent, 'Tab');
+export default withOverrides<TabPropsT, mixed>(TabComponent, 'Tab');

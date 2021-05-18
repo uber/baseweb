@@ -530,5 +530,7 @@ class Datepicker<T = Date> extends React.Component<
   }
 }
 
-//$FlowFixMe
-export default withOverrides(Datepicker, 'Datepicker');
+export default withOverrides<DatepickerPropsT<Date>, mixed>(
+  Datepicker,
+  'Datepicker',
+);
