@@ -173,8 +173,7 @@ steps:
   - block: 'Alpha test?'
 
   - name: alpha-test-web-code
-    # command: 'node scripts/alpha-test-web-code.js'
-    command: 'echo alpha test'
+    command: 'node scripts/alpha-test-web-code.js'
     plugins:
       'docker-compose#v3.0.3':
         run: baseui
