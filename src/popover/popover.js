@@ -12,6 +12,7 @@ import FocusLock from 'react-focus-lock';
 
 import {getOverride, getOverrideProps} from '../helpers/overrides.js';
 import getBuiId from '../utils/get-bui-id.js';
+import getEventTarget from '../utils/getEventTarget.js';
 import {
   ACCESSIBILITY_TYPE,
   PLACEMENT,
@@ -251,8 +252,7 @@ class Popover extends React.Component<PopoverPropsT, PopoverPrivateStateT> {
   };
 
   onDocumentClick = (evt: MouseEvent) => {
-    //$FlowFixMe
-    const target = evt.composedPath ? evt.composedPath()[0] : evt.target;
+    const target = getEventTarget(evt);
     const popper = this.popperRef.current;
     const anchor = this.anchorRef.current;
     // Ignore document click if it came from popover or anchor
