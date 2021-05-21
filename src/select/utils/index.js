@@ -36,16 +36,14 @@ export function normalizeOptions(options: OptionsT): ValueT {
 export const expandValue = (
   // eslint-disable-next-line flowtype/no-weak-types
   value: OptionT,
-  props: $Shape<PropsT>,
+  options: OptgroupsT,
+  valueKey: string,
 ): OptionT => {
-  if (!props.options) return value;
+  if (!options) return value;
 
-  const normalizedOptions = normalizeOptions(props.options);
+  const normalizedOptions = normalizeOptions(options);
   for (let i = 0; i < normalizedOptions.length; i++) {
-    if (
-      String(normalizedOptions[i][props.valueKey]) ===
-      String(value[props.valueKey])
-    ) {
+    if (String(normalizedOptions[i][valueKey]) === String(value[valueKey])) {
       return normalizedOptions[i];
     }
   }
