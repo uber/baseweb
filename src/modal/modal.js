@@ -31,6 +31,7 @@ import type {
   ElementRefT,
 } from './types.js';
 import {isFocusVisible, forkFocus, forkBlur} from '../utils/focusVisible.js';
+import getEventTarget from '../utils/getEventTarget.js';
 
 class Modal extends React.Component<ModalPropsT, ModalStateT> {
   static defaultProps: $Shape<ModalPropsT> = {
@@ -145,14 +146,16 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
   };
 
   onDocumentClick = (e: MouseEvent) => {
+    const eventTarget = getEventTarget(e);
+
     if (
-      e.target &&
-      e.target instanceof HTMLElement &&
+      eventTarget &&
+      eventTarget instanceof HTMLElement &&
       // Handles modal closure when unstable_ModalBackdropScroll is set to true
-      (e.target.contains(this.getRef('DialogContainer').current) ||
+      (eventTarget.contains(this.getRef('DialogContainer').current) ||
         // Handles modal closure when unstable_ModalBackdropScroll is set to false
         // $FlowFixMe
-        e.target.contains(this.getRef('DeprecatedBackdrop').current))
+        eventTarget.contains(this.getRef('DeprecatedBackdrop').current))
     ) {
       this.onBackdropClick();
     }
