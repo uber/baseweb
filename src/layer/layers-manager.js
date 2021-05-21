@@ -64,6 +64,16 @@ export default class LayersManager extends React.Component<
       document.addEventListener('keyup', this.onKeyUp);
       // using mousedown event so that callback runs before events on children inside of the layer
       document.addEventListener('mousedown', this.onDocumentClick);
+
+      if (__DEV__) {
+        const rootNode = this.host.current.getRootNode();
+
+        if (rootNode.mode === 'closed') {
+          console.warn(
+            '`LayersManager` is rendered inside shadow DOM with "closed" mode. Events might not work properly.',
+          );
+        }
+      }
     }
   }
 
