@@ -17,6 +17,7 @@ import type {LocaleT} from '../locale/types.js';
 import {Popover, PLACEMENT} from '../popover/index.js';
 import {Spinner} from '../spinner/index.js';
 import getBuiId from '../utils/get-bui-id.js';
+import getEventTarget from '../utils/getEventTarget.js';
 
 import AutosizeInput from './autosize-input.js';
 import {TYPE, STATE_CHANGE_TYPE} from './constants.js';
@@ -163,8 +164,10 @@ class Select extends React.Component<PropsT, SelectStateT> {
   // Handle touch outside on mobile to dismiss menu, ensures that the
   // touch target is not within the anchor DOM node.
   handleTouchOutside = (event: TouchEvent) => {
-    if (containsNode(this.dropdown.current, event.target)) return;
-    if (!containsNode(this.anchor.current, event.target)) {
+    const eventTarget = getEventTarget(event);
+
+    if (containsNode(this.dropdown.current, eventTarget)) return;
+    if (!containsNode(this.anchor.current, eventTarget)) {
       this.closeMenu();
     }
   };
@@ -284,6 +287,8 @@ class Select extends React.Component<PropsT, SelectStateT> {
   };
 
   handleBlur = (event: FocusEvent | MouseEvent) => {
+    const eventTarget = getEventTarget(event);
+
     if (event.relatedTarget) {
       if (
         containsNode(this.anchor.current, event.relatedTarget) ||
@@ -291,7 +296,7 @@ class Select extends React.Component<PropsT, SelectStateT> {
       ) {
         return;
       }
-    } else if (containsNode(this.anchor.current, event.target)) {
+    } else if (containsNode(this.anchor.current, eventTarget)) {
       return;
     }
 
@@ -310,14 +315,16 @@ class Select extends React.Component<PropsT, SelectStateT> {
   };
 
   handleClickOutside = (event: MouseEvent) => {
+    const eventTarget = getEventTarget(event);
+
     if (this.justSelected) {
       this.justSelected = false;
       return;
     }
-    if (containsNode(this.dropdown.current, event.target)) return;
+    if (containsNode(this.dropdown.current, eventTarget)) return;
 
     const isFocused = this.state.isFocused || this.state.isPseudoFocused;
-    if (isFocused && !containsNode(this.anchor.current, event.target)) {
+    if (isFocused && !containsNode(this.anchor.current, eventTarget)) {
       this.handleBlur(event);
     }
   };
