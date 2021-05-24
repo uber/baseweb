@@ -170,7 +170,8 @@ steps:
     agents:
       queue: workers
 
-  - block: 'Alpha test?'
+  - block: 'Alpha test'
+    blocked_state: 'passed'
 
   - name: alpha-test-web-code
     command: 'node scripts/alpha-test-web-code.js'
