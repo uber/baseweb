@@ -10,7 +10,7 @@ export default function Example() {
     <AspectRatioBox width="scale1400">
       <AspectRatioBoxBody
         as="img"
-        src="https://api.adorable.io/avatars/285/11@adorable.io.png"
+        src="https://avatars.dicebear.com/api/human/aspect.svg?width=285&mood=happy"
       />
     </AspectRatioBox>
   );

@@ -108,9 +108,6 @@ const deprecatedThemeProperties = {
   sliderTrackFillSelectedActive: {
     concern: 'colors',
   },
-  sliderHandleFill: {
-    concern: 'colors',
-  },
   sliderHandleFillHover: {
     concern: 'colors',
   },
@@ -124,9 +121,6 @@ const deprecatedThemeProperties = {
     concern: 'colors',
   },
   sliderHandleFillSelectedActive: {
-    concern: 'colors',
-  },
-  sliderHandleFillDisabled: {
     concern: 'colors',
   },
   sliderBorder: {

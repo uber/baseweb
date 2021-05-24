@@ -14,7 +14,7 @@ export default function Example() {
         <Avatar
           name={`user`}
           size={size}
-          src={`https://api.adorable.io/avatars/285/${index}@adorable.io.png`}
+          src={`https://avatars.dicebear.com/api/human/${index}.svg?width=285&mood=happy`}
           key={size}
         />
       ))}

@@ -23,17 +23,25 @@ const parentSelector = '[data-e2e="parent-menu"]';
 const childSelector = '[data-e2e="child-menu"]';
 const highlightedSelector = '[aria-selected="true"]';
 
-function hoverItem(page, x, y) {
+function position(x, y) {
   const MENU_MARGIN_TOP = 16;
   const MENU_ITEM_HEIGHT = 26;
 
   const MENU_WIDTH = 300;
   const MENU_WIDTH_OFFSET = MENU_WIDTH / 2;
 
-  const xPos = MENU_WIDTH_OFFSET + MENU_WIDTH * x;
-  const yPos = MENU_MARGIN_TOP + MENU_ITEM_HEIGHT * y;
+  return [
+    MENU_WIDTH_OFFSET + MENU_WIDTH * x,
+    MENU_MARGIN_TOP + MENU_ITEM_HEIGHT * y,
+  ];
+}
 
-  return page.mouse.move(xPos, yPos);
+function clickItem(page, x, y) {
+  return page.mouse.click(...position(x, y));
+}
+
+function hoverItem(page, x, y) {
+  return page.mouse.move(...position(x, y));
 }
 
 function findActiveElement(page) {
@@ -160,6 +168,13 @@ describe('menu-child', () => {
     await hoverItem(page, 1, 5);
     const text = await findHighlightedLabel(page);
     expect(text).toBe('Reopen Closed Editor');
+  });
+
+  it('item with child menu triggers click handler', async () => {
+    await mount(page, 'menu--child');
+    await clickItem(page, 0, 5);
+    const log = await page.$$('#menu-child-click-log > li');
+    expect(log.length).toBe(1);
   });
 
   it('renders content even when hidden: with renderAll prop', async () => {
