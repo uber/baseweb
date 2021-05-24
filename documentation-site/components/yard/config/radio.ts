@@ -123,7 +123,7 @@ const RadioGroupConfig: TConfig = {
       value: false,
       type: PropTypes.Boolean,
       description:
-        'Indicates the radio button contains an interactive element, and the default label behavior should be prevented for child elements.',
+        'Indicates the radio contains an interactive element, and the default label behavior should be prevented for child elements.',
       hidden: true,
     },
     'aria-label': {
