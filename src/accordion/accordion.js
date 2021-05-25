@@ -78,7 +78,7 @@ export default class Accordion extends React.Component<
       overrides,
     } = this.props;
     // eslint-disable-next-line flowtype/no-weak-types
-    const newChildren = React.Children.map(children, (child: *, index) => {
+    return React.Children.map(children, (child: *, index) => {
       if (!child) return;
       // If there is no key provided use the panel order as a default key
       const key = child.key || String(index);
@@ -102,7 +102,6 @@ export default class Accordion extends React.Component<
       };
       return React.cloneElement(child, props);
     });
-    return newChildren;
   }
 
   componentDidMount() {
