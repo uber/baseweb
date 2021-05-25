@@ -58,6 +58,7 @@ export interface StatefulCheckboxProps {
   disabled?: boolean;
   isError?: boolean;
   error?: boolean;
+  containsInteractiveElement?: boolean;
   labelPlacement?: 'top' | 'right' | 'bottom' | 'left';
   inputRef?: React.Ref<HTMLInputElement>;
   isIndeterminate?: boolean;
@@ -88,6 +89,7 @@ export interface CheckboxProps {
   'aria-describedby'?: string;
   'aria-errormessage'?: string;
   children?: React.ReactNode;
+  containsInteractiveElement?: boolean;
   overrides?: CheckboxOverrides;
   checked?: boolean;
   disabled?: boolean;
