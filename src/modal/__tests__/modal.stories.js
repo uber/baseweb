@@ -10,7 +10,9 @@ import React from 'react';
 import ModalSelect from './modal-select.scenario.js';
 import ModalUncloseable from './modal-uncloseable.scenario.js';
 import ModalDefault from './modal.scenario.js';
+import ModalShadowDom from './modal-shadow-dom.scenario.js';
 
 export const Select = () => <ModalSelect />;
 export const Uncloseable = () => <ModalUncloseable />;
 export const Modal = () => <ModalDefault />;
+export const ShadowDom = () => <ModalShadowDom />;
