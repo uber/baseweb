@@ -28,6 +28,7 @@ import SelectSizes from './select-sizes.scenario.js';
 import SelectStates from './select-states.scenario.js';
 import SelectUnmountBlur from './select-unmount-blur.scenario.js';
 import SelectDefault from './select.scenario.js';
+import SelectShadowDom from './select-shadow-dom.scenario.js';
 
 export const AsyncOptions = () => <SelectAsyncOptions />;
 export const BackspaceBehavior = () => <SelectBackspaceBehavior />;
@@ -50,3 +51,4 @@ export const Sizes = () => <SelectSizes />;
 export const States = () => <SelectStates />;
 export const UnmountBlur = () => <SelectUnmountBlur />;
 export const Select = () => <SelectDefault />;
+export const ShadowDom = () => <SelectShadowDom />;
