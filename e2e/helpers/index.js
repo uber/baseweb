@@ -122,6 +122,14 @@ const printInvalidRule = rule =>
     .map(printInvalidNode)
     .join('\n')}`;
 
+const addShadowDomQuerySelector = (page, webComponentTagName) =>
+  page.evaluate(webComponentTag => {
+    window.shadowDomQuerySelector = selector =>
+      document
+        .querySelector(webComponentTag)
+        .shadowRoot.querySelector(selector);
+  }, webComponentTagName);
+
 // Add a new method to expect assertions with a very detailed error report
 expect.extend({
   toHaveNoAccessibilityIssues(accessibilityReport, options) {
@@ -164,4 +172,5 @@ module.exports = {
   mount,
   waitForTimeout,
   addTestStyles,
+  addShadowDomQuerySelector,
 };
