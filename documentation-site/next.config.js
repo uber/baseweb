@@ -59,7 +59,7 @@ module.exports = withTM(
   withMDX(
     withImages({
       images: {
-        loader: 'ls',
+        loader: 'imgix',
         path: '',
       },
       typescript: {
