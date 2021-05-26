@@ -60,7 +60,6 @@ module.exports = withTM(
     withImages({
       images: {
         loader: 'imgix',
-        path: '',
       },
       typescript: {
         ignoreBuildErrors: true,
