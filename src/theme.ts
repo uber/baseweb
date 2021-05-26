@@ -120,11 +120,10 @@ export interface Colors {
   black: string;
 
   // Rating Palette
-  ratingFill: string;
-  ratingActiveFill: string;
+  rating200: string;
+  rating400: string;
+  ratingInactiveFill: string;
   ratingStroke: string;
-  emoticonFill: string;
-  emoticonActiveFill: string;
 
   /* ---- Semantic Colors ---- */
 
@@ -845,6 +844,10 @@ export interface ThemePrimitives {
   mono800: string;
   mono900: string;
   mono1000: string;
+
+  // Rating Palette
+  rating200: string;
+  rating400: string;
 
   primaryFontFamily: string;
 }

@@ -76,11 +76,10 @@ const lightColorTokens: ColorTokensT = {
   mono900: colors.gray700,
   mono1000: colors.black,
   // Rating Palette,
-  ratingFill: colors.gray100,
-  ratingActiveFill: colors.yellow400,
+  rating200: colors.yellow200,
+  rating400: colors.yellow400,
+  ratingInactiveFill: colors.gray100,
   ratingStroke: colors.gray300,
-  emoticonFill: colors.gray300,
-  emoticonActiveFill: colors.yellow400,
 };
 
 export default lightColorTokens;
