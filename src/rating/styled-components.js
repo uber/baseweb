@@ -52,11 +52,10 @@ export const StyledStar = styled<StyledRatingItemPropsT>(
     let prePartialStarFill;
 
     if ($isActive) {
-      starStroke = starFill = $theme.colors.ratingActiveFill;
+      starStroke = starFill = $theme.colors.rating400;
     }
     if ($isPartialActive && !$isActive) {
-      prePartialStarStroke = prePartialStarFill =
-        $theme.colors.ratingActiveFill;
+      prePartialStarStroke = prePartialStarFill = $theme.colors.rating400;
     }
 
     const styles = {
@@ -126,7 +125,7 @@ export const StyledEmoticon = styled<StyledRatingItemPropsT>(
     let emoticonFill = $theme.colors.ratingInactiveFill;
 
     if ($isActive) {
-      emoticonFill = $theme.colors.emoticonActiveFill; //Emoticon active
+      emoticonFill = $theme.colors.rating400;
     }
 
     const ratingIcons = [

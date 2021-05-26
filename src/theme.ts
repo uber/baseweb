@@ -845,5 +845,9 @@ export interface ThemePrimitives {
   mono900: string;
   mono1000: string;
 
+  // Rating Palette
+  rating200: string;
+  rating400: string;
+
   primaryFontFamily: string;
 }
