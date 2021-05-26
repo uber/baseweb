@@ -18,13 +18,7 @@ const ratingConfig: TConfig = {
     },
   },
   scope: {StarRating},
-  theme: [
-    'ratingFill',
-    'ratingActiveFill',
-    'ratingStroke',
-    'emoticonFill',
-    'emoticonActiveFill',
-  ],
+  theme: ['rating200', 'rating400', 'ratingInactiveFill', 'ratingStroke'],
   props: {
     numItems: {
       value: 5,
