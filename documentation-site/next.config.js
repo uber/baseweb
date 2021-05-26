@@ -58,6 +58,10 @@ const withTM = require('next-transpile-modules')([
 module.exports = withTM(
   withMDX(
     withImages({
+      images: {
+        loader: 'ls',
+        path: '',
+      },
       typescript: {
         ignoreBuildErrors: true,
       },
