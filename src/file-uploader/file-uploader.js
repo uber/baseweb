@@ -10,7 +10,7 @@ import * as React from 'react';
 import Dropzone from 'react-dropzone';
 
 import {LocaleContext} from '../locale/index.js';
-import {Block} from '../block/index.js';
+import {useStyletron} from '../styles/index.js';
 import {Button, KIND, SHAPE, SIZE as BUTTON_SIZE} from '../button/index.js';
 import {getOverrides} from '../helpers/overrides.js';
 import {ProgressBar} from '../progress-bar/index.js';
@@ -35,6 +35,7 @@ function prependStyleProps(styleProps) {
 
 function FileUploader(props: PropsT) {
   const {overrides = {}} = props;
+  const [, theme] = useStyletron();
 
   const [Root, rootProps] = getOverrides(overrides.Root, StyledRoot);
   const [FileDragAndDrop, fileDragAndDropProps] = getOverrides(
@@ -165,12 +166,11 @@ function FileUploader(props: PropsT) {
                           }}
                         />
                       ) : props.errorMessage ? null : (
-                        <Block marginBottom="scale300">
-                          <SpinnerComponent
-                            $size={SPINNER_SIZE.medium}
-                            {...spinnerProps}
-                          />
-                        </Block>
+                        <SpinnerComponent
+                          $size={SPINNER_SIZE.medium}
+                          $style={{marginBottom: theme.sizing.scale300}}
+                          {...spinnerProps}
+                        />
                       )}
                       {(props.errorMessage || props.progressMessage) &&
                       props.errorMessage ? (
