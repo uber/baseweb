@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {StatefulSelect} from '../index.js';
-import renderInWebComponent from '../../helpers/renderInWebComponent';
+import renderInWebComponent from '../../helpers/renderInWebComponent.js';
 
 const options = [
   {id: 'AliceBlue', color: '#F0F8FF'},

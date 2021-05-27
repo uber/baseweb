@@ -14,7 +14,11 @@ import * as React from 'react';
 import BaseProvider from './base-provider.js';
 import {LightTheme} from '../themes/index.js';
 
-const renderInWebComponent = (tagName: string, Component: React.Component) => {
+const renderInWebComponent = (
+  tagName: string,
+  // eslint-disable-next-line flowtype/no-weak-types
+  Component: React.ComponentType<any>,
+) => {
   // eslint-disable-next-line cup/no-undef
   class WebComponent extends HTMLElement {
     constructor() {
@@ -26,7 +30,10 @@ const renderInWebComponent = (tagName: string, Component: React.Component) => {
       shadow.appendChild(wrapper);
 
       ReactDOM.render(
-        <StyletronProvider value={new Styletron({container: this.shadowRoot})}>
+        <StyletronProvider
+          // eslint-disable-next-line flowtype/no-weak-types
+          value={new Styletron({container: (this.shadowRoot: any)})}
+        >
           <BaseProvider theme={LightTheme}>
             <Component />
           </BaseProvider>

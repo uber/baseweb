@@ -11,6 +11,7 @@ LICENSE file in the root directory of this source tree.
  * This implementation also works for events dispatched from shadow DOM with mode === 'open'.
  */
 export default function getEventTarget(event: Event): EventTarget {
+  // $FlowFixMe
   if (event.composedPath) {
     return event.composedPath()[0];
   }

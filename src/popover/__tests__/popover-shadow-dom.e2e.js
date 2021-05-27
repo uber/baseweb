@@ -6,12 +6,14 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
+/* eslint-disable cup/no-undef */
 
 const {
   mount,
   addShadowDomQuerySelector,
   waitForTimeout,
-} = require('../../../e2e/helpers');
+  shadowDomQuerySelector,
+} = require('../../../e2e/helpers/index.js');
 
 const webComponentTag = 'popover-scenario';
 
@@ -61,7 +63,9 @@ describe('popover in shadow DOM', () => {
     await page.evaluate(() => shadowDomQuerySelector('button').click());
     await waitForTimeout(150);
     await page.evaluate(() =>
-      shadowDomQuerySelector('[data-e2e="content"]').dispatchEvent(new MouseEvent("mousedown", { "bubbles": true, "composed": true }))
+      shadowDomQuerySelector('[data-e2e="content"]').dispatchEvent(
+        new MouseEvent('mousedown', {bubbles: true, composed: true}),
+      ),
     );
     await waitForTimeout(150);
     const hastTooltip = await page.evaluate(

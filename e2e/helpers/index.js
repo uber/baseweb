@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree.
 */
 
 /* eslint-disable flowtype/require-valid-file-annotation */
+/* eslint-disable cup/no-undef */
 /* eslint-env node */
 
 const config = require('../../jest-puppeteer.config.js');

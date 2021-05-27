@@ -11,7 +11,8 @@ const {
   mount,
   addShadowDomQuerySelector,
   waitForTimeout,
-} = require('../../../e2e/helpers');
+  shadowDomQuerySelector,
+} = require('../../../e2e/helpers/index.js');
 
 const webComponentTag = 'select-scenario';
 
@@ -20,7 +21,9 @@ describe('select in shadow DOM', () => {
     await mount(page, 'select--shadow-dom');
     await page.waitForSelector(webComponentTag);
     await addShadowDomQuerySelector(page, webComponentTag);
-    await page.evaluate(() => shadowDomQuerySelector('input[role="combobox"]').click());
+    await page.evaluate(() =>
+      shadowDomQuerySelector('input[role="combobox"]').click(),
+    );
     await waitForTimeout(150);
     const hasTooltip = await page.evaluate(
       () => !!shadowDomQuerySelector('[role="listbox"]'),
@@ -32,11 +35,19 @@ describe('select in shadow DOM', () => {
     await mount(page, 'select--shadow-dom');
     await page.waitForSelector(webComponentTag);
     await addShadowDomQuerySelector(page, webComponentTag);
-    await page.evaluate(() => shadowDomQuerySelector('input[role="combobox"]').click());
+    await page.evaluate(() =>
+      shadowDomQuerySelector('input[role="combobox"]').click(),
+    );
     await waitForTimeout(150);
-    await page.evaluate(() => shadowDomQuerySelector('[role="listbox"] [role="option"]:nth-child(1)').click());
+    await page.evaluate(() =>
+      shadowDomQuerySelector(
+        '[role="listbox"] [role="option"]:nth-child(1)',
+      ).click(),
+    );
     await waitForTimeout(150);
-    const selectedValue = await page.evaluate(() => shadowDomQuerySelector('[aria-selected="true"]').textContent);
+    const selectedValue = await page.evaluate(
+      () => shadowDomQuerySelector('[aria-selected="true"]').textContent,
+    );
     expect(selectedValue).toBe('AliceBlue');
   });
 
@@ -44,7 +55,9 @@ describe('select in shadow DOM', () => {
     await mount(page, 'select--shadow-dom');
     await page.waitForSelector(webComponentTag);
     await addShadowDomQuerySelector(page, webComponentTag);
-    await page.evaluate(() => shadowDomQuerySelector('input[role="combobox"]').click());
+    await page.evaluate(() =>
+      shadowDomQuerySelector('input[role="combobox"]').click(),
+    );
     await waitForTimeout(150);
     await page.click('[data-e2e="outside-select"]');
     const hasTooltip = await page.evaluate(

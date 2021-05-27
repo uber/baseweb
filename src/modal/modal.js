@@ -154,7 +154,6 @@ class Modal extends React.Component<ModalPropsT, ModalStateT> {
       // Handles modal closure when unstable_ModalBackdropScroll is set to true
       (eventTarget.contains(this.getRef('DialogContainer').current) ||
         // Handles modal closure when unstable_ModalBackdropScroll is set to false
-        // $FlowFixMe
         eventTarget.contains(this.getRef('DeprecatedBackdrop').current))
     ) {
       this.onBackdropClick();

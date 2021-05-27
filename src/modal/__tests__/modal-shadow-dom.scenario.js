@@ -9,8 +9,8 @@ LICENSE file in the root directory of this source tree.
 import * as React from 'react';
 
 import {Button} from '../../button/index.js';
-import {Modal, ModalBody } from '../index.js';
-import renderInWebComponent from '../../helpers/renderInWebComponent';
+import {Modal, ModalBody} from '../index.js';
+import renderInWebComponent from '../../helpers/renderInWebComponent.js';
 
 renderInWebComponent('modal-scenario', () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -36,7 +36,5 @@ renderInWebComponent('modal-scenario', () => {
 });
 
 export default function Scenario() {
-  return (
-      <modal-scenario></modal-scenario>
-  );
+  return <modal-scenario></modal-scenario>;
 }

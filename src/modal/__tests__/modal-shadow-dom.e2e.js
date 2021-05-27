@@ -6,12 +6,13 @@ LICENSE file in the root directory of this source tree.
 */
 /* eslint-env node */
 /* eslint-disable flowtype/require-valid-file-annotation */
-
+/* eslint-disable cup/no-undef */
 const {
   mount,
   addShadowDomQuerySelector,
   waitForTimeout,
-} = require('../../../e2e/helpers');
+  shadowDomQuerySelector,
+} = require('../../../e2e/helpers/index.js');
 
 const webComponentTag = 'modal-scenario';
 
@@ -20,7 +21,9 @@ describe('modal in shadow DOM', () => {
     await mount(page, 'modal--shadow-dom');
     await page.waitForSelector(webComponentTag);
     await addShadowDomQuerySelector(page, webComponentTag);
-    await page.evaluate(() => shadowDomQuerySelector('.open-modal-button').click());
+    await page.evaluate(() =>
+      shadowDomQuerySelector('.open-modal-button').click(),
+    );
     await waitForTimeout(150);
     const isOpen = await page.evaluate(
       () => !!shadowDomQuerySelector('[role="dialog"]'),
@@ -32,9 +35,15 @@ describe('modal in shadow DOM', () => {
     await mount(page, 'modal--shadow-dom');
     await page.waitForSelector(webComponentTag);
     await addShadowDomQuerySelector(page, webComponentTag);
-    await page.evaluate(() => shadowDomQuerySelector('.open-modal-button').click());
+    await page.evaluate(() =>
+      shadowDomQuerySelector('.open-modal-button').click(),
+    );
     await waitForTimeout(150);
-    await page.evaluate(() => shadowDomQuerySelector('[data-e2e="backdrop"]').dispatchEvent(new MouseEvent("mousedown", { "bubbles": true, "composed": true })));
+    await page.evaluate(() =>
+      shadowDomQuerySelector('[data-e2e="backdrop"]').dispatchEvent(
+        new MouseEvent('mousedown', {bubbles: true, composed: true}),
+      ),
+    );
     await waitForTimeout(1000); // wait for animation
     const isClosed = await page.evaluate(
       () => !shadowDomQuerySelector('[role="dialog"]'),
