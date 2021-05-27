@@ -1,3 +1,9 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
 import pick from 'just-pick';
 
 import {Radio, RadioGroup, ALIGN} from 'baseui/radio';
@@ -47,7 +53,7 @@ const RadioGroupConfig: TConfig = {
       stateful: true,
     },
     onChange: {
-      value: 'e => setValue(e.target.value)',
+      value: 'e => setValue(e.currentTarget.value)',
       type: PropTypes.Function,
       description: 'Handler for change events on trigger element.',
       propHook: {
@@ -111,6 +117,13 @@ const RadioGroupConfig: TConfig = {
       value: false,
       type: PropTypes.Boolean,
       description: 'Set to be focused (active) on selectedchecked radio.',
+      hidden: true,
+    },
+    containsInteractiveElement: {
+      value: false,
+      type: PropTypes.Boolean,
+      description:
+        'Indicates the radio contains an interactive element, and the default label behavior should be prevented for child elements.',
       hidden: true,
     },
     'aria-label': {
