@@ -23,7 +23,7 @@ describe('popover in shadow DOM', () => {
     await page.waitForSelector(webComponentTag);
     await addShadowDomQuerySelector(page, webComponentTag);
     await page.evaluate(() => shadowDomQuerySelector('button').click());
-    await waitForTimeout(150);
+    await waitForTimeout(1000); // wait for animation
     const hasTooltip = await page.evaluate(
       () => !!shadowDomQuerySelector('[role="tooltip"]'),
     );
@@ -35,7 +35,7 @@ describe('popover in shadow DOM', () => {
     await page.waitForSelector(webComponentTag);
     await addShadowDomQuerySelector(page, webComponentTag);
     await page.evaluate(() => shadowDomQuerySelector('button').click());
-    await waitForTimeout(150);
+    await waitForTimeout(1000); // wait for animation
     await page.keyboard.press('Escape');
     const hasTooltip = await page.evaluate(
       () => !!shadowDomQuerySelector('[role="tooltip"]'),
@@ -48,7 +48,7 @@ describe('popover in shadow DOM', () => {
     await page.waitForSelector(webComponentTag);
     await addShadowDomQuerySelector(page, webComponentTag);
     await page.evaluate(() => shadowDomQuerySelector('button').click());
-    await waitForTimeout(150);
+    await waitForTimeout(1000); // wait for animation
     await page.click('[data-e2e="outside-popover"]');
     const hastTooltip = await page.evaluate(
       () => !!shadowDomQuerySelector('[role="tooltip"]'),
@@ -61,13 +61,13 @@ describe('popover in shadow DOM', () => {
     await page.waitForSelector(webComponentTag);
     await addShadowDomQuerySelector(page, webComponentTag);
     await page.evaluate(() => shadowDomQuerySelector('button').click());
-    await waitForTimeout(150);
+    await waitForTimeout(1000); // wait for animation
     await page.evaluate(() =>
       shadowDomQuerySelector('[data-e2e="content"]').dispatchEvent(
         new MouseEvent('mousedown', {bubbles: true, composed: true}),
       ),
     );
-    await waitForTimeout(150);
+    await waitForTimeout(1000); // wait for animation
     const hastTooltip = await page.evaluate(
       () => !!shadowDomQuerySelector('[role="tooltip"]'),
     );

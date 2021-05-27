@@ -24,7 +24,7 @@ describe('select in shadow DOM', () => {
     await page.evaluate(() =>
       shadowDomQuerySelector('input[role="combobox"]').click(),
     );
-    await waitForTimeout(150);
+    await waitForTimeout(1000); // wait for animation
     const hasTooltip = await page.evaluate(
       () => !!shadowDomQuerySelector('[role="listbox"]'),
     );
@@ -38,13 +38,13 @@ describe('select in shadow DOM', () => {
     await page.evaluate(() =>
       shadowDomQuerySelector('input[role="combobox"]').click(),
     );
-    await waitForTimeout(150);
+    await waitForTimeout(1000); // wait for animation
     await page.evaluate(() =>
       shadowDomQuerySelector(
         '[role="listbox"] [role="option"]:nth-child(1)',
       ).click(),
     );
-    await waitForTimeout(150);
+    await waitForTimeout(1000); // wait for animation
     const selectedValue = await page.evaluate(
       () => shadowDomQuerySelector('[aria-selected="true"]').textContent,
     );
@@ -58,7 +58,7 @@ describe('select in shadow DOM', () => {
     await page.evaluate(() =>
       shadowDomQuerySelector('input[role="combobox"]').click(),
     );
-    await waitForTimeout(150);
+    await waitForTimeout(1000); // wait for animation
     await page.click('[data-e2e="outside-select"]');
     const hasTooltip = await page.evaluate(
       () => !!shadowDomQuerySelector('[role="listbox"]'),

@@ -24,7 +24,7 @@ describe('modal in shadow DOM', () => {
     await page.evaluate(() =>
       shadowDomQuerySelector('.open-modal-button').click(),
     );
-    await waitForTimeout(150);
+    await waitForTimeout(1000); // wait for animation
     const isOpen = await page.evaluate(
       () => !!shadowDomQuerySelector('[role="dialog"]'),
     );
@@ -38,7 +38,7 @@ describe('modal in shadow DOM', () => {
     await page.evaluate(() =>
       shadowDomQuerySelector('.open-modal-button').click(),
     );
-    await waitForTimeout(150);
+    await waitForTimeout(1000); // wait for animation
     await page.evaluate(() =>
       shadowDomQuerySelector('[data-e2e="backdrop"]').dispatchEvent(
         new MouseEvent('mousedown', {bubbles: true, composed: true}),
