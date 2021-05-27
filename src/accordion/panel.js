@@ -39,16 +39,22 @@ const Panel = ({
     elementHeight: 0,
     animationInProgress: false,
   });
-  const handleFocus = React.useCallback((event: SyntheticEvent<>) => {
-    if (isFocusVisible(event)) {
-      setLocalState({...localState, isFocusVisible: true});
-    }
-  }, []);
-  const handleBlur = React.useCallback(() => {
-    if (localState.isFocusVisible !== false) {
-      setLocalState({...localState, isFocusVisible: false});
-    }
-  }, []);
+  const handleFocus = React.useCallback(
+    (event: SyntheticEvent<>) => {
+      if (isFocusVisible(event)) {
+        setLocalState({...localState, isFocusVisible: true});
+      }
+    },
+    [localState],
+  );
+  const handleBlur = React.useCallback(
+    (event: SyntheticEvent<>) => {
+      if (localState.isFocusVisible) {
+        setLocalState({...localState, isFocusVisible: false});
+      }
+    },
+    [localState],
+  );
   const handleClick = React.useCallback((e: Event) => {
     if (disabled) {
       return;

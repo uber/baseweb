@@ -33,6 +33,7 @@ const stopPropagation = e => e.stopPropagation();
 class Radio extends React.Component<RadioPropsT, RadioStateT> {
   static defaultProps: $Shape<RadioPropsT> = {
     overrides: {},
+    containsInteractiveElement: false,
     checked: false,
     disabled: false,
     autoFocus: false,
@@ -121,7 +122,13 @@ class Radio extends React.Component<RadioPropsT, RadioStateT> {
 
     const label = (
       <Label {...sharedProps} {...labelProps}>
-        {this.props.children}
+        {this.props.containsInteractiveElement ? (
+          // Prevents the event from bubbling up to the label and moving focus to the radio button
+          // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+          <div onClick={e => e.preventDefault()}>{this.props.children}</div>
+        ) : (
+          this.props.children
+        )}
       </Label>
     );
 

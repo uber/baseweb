@@ -361,6 +361,8 @@ function InternalTab({
     }
   }, [activeKey, orientation]);
 
+  React.useEffect(updateHighlight, [title]);
+
   // Collect overrides
   const {
     Tab: TabOverrides,
