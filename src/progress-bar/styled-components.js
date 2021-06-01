@@ -26,10 +26,10 @@ export const StyledRoot = styled<StylePropsT>('div', props => {
 });
 
 export const StyledBarContainer = styled<StylePropsT>('div', props => {
-  const {$theme, $infinite} = props;
+  const {$theme} = props;
   const {sizing} = $theme;
   return ({
-    display: $infinite ? 'flex' : 'block',
+    display: 'flex',
     marginLeft: sizing.scale500,
     marginRight: sizing.scale500,
     marginTop: sizing.scale500,
@@ -48,13 +48,11 @@ export const StyledBar = styled<StylePropsT>('div', props => {
     borderBottomLeftRadius: borderRadius,
     backgroundColor: hexToRgb(colors.progressbarTrackFill, '0.16'),
     height: getBarHeight($size),
-    position: 'relative',
+    flex: 1,
     overflow: 'hidden',
     ...($steps < 2
       ? {}
       : {
-          display: 'inline-block',
-          width: `calc((100% - ${sizing.scale300} * ${$steps - 1})/${$steps})`,
           marginLeft: sizing.scale300,
           ':first-child': {
             marginLeft: '0',
@@ -133,29 +131,31 @@ export const StyledBarProgress = styled<StylePropsT>('div', props => {
   };
 });
 
-export const InfiniteBar = styled<{side: string}>('div', props => {
-  const {$theme, side} = props;
-  const {colors, sizing, borders} = $theme;
-  const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
-  const animationStyles = {
-    display: 'inline-block',
-    flex: 1,
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    transitionProperty: 'background-position',
-    animationDuration: '1.5s',
-    animationIterationCount: 'infinite',
-    animationTimingFunction: $theme.animation.linearCurve,
-    backgroundSize: '300% auto',
-    backgroundRepeat: 'no-repeat',
-    backgroundPositionX: side === 'left' ? '-50%' : '150%',
-    backgroundImage: `linear-gradient(${
-      side === 'left' ? '90' : '270'
-    }deg, transparent 0%, ${colors.accent} 25%, ${
-      colors.accent
-    } 75%, transparent 100%)`,
-    animationName:
-      side === 'left'
+export const InfiniteBar = styled<{isLeft?: boolean, $size: SizeT}>(
+  'div',
+  props => {
+    const {$theme, isLeft = false, $size} = props;
+    const {colors, sizing, borders} = $theme;
+    const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
+    const height = getBarHeight($size);
+    const animationStyles = {
+      display: 'inline-block',
+      flex: 1,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      transitionProperty: 'background-position',
+      animationDuration: '1.5s',
+      animationIterationCount: 'infinite',
+      animationTimingFunction: $theme.animation.linearCurve,
+      backgroundSize: '300% auto',
+      backgroundRepeat: 'no-repeat',
+      backgroundPositionX: isLeft ? '-50%' : '150%',
+      backgroundImage: `linear-gradient(${
+        isLeft ? '90' : '270'
+      }deg, transparent 0%, ${colors.accent} 25%, ${
+        colors.accent
+      } 75%, transparent 100%)`,
+      animationName: isLeft
         ? {
             '0%': {
               backgroundPositionX: '-50%',
@@ -184,21 +184,22 @@ export const InfiniteBar = styled<{side: string}>('div', props => {
               backgroundPositionX: '-50%',
             },
           },
-  };
-  return {
-    ...(side === 'left'
-      ? {
-          borderTopLeftRadius: borderRadius,
-          borderBottomLeftRadius: borderRadius,
-        }
-      : {
-          borderTopRightRadius: borderRadius,
-          borderBottomRightRadius: borderRadius,
-        }),
-    height: '4px',
-    ...animationStyles,
-  };
-});
+    };
+    return {
+      ...(isLeft
+        ? {
+            borderTopLeftRadius: borderRadius,
+            borderBottomLeftRadius: borderRadius,
+          }
+        : {
+            borderTopRightRadius: borderRadius,
+            borderBottomRightRadius: borderRadius,
+          }),
+      height,
+      ...animationStyles,
+    };
+  },
+);
 
 export const StyledLabel = styled<StylePropsT>('div', props => {
   return {
