@@ -12,7 +12,7 @@
 
 <p align="center">
   <a href="https://baseweb.design">
-    <img width="501px" src="https://i.imgur.com/UaRZdTq.png">
+    <img width="500px" src="https://i.imgur.com/UaRZdTq.png">
   </a>
 </p>
 
