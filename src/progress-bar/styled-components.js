@@ -26,9 +26,10 @@ export const StyledRoot = styled<StylePropsT>('div', props => {
 });
 
 export const StyledBarContainer = styled<StylePropsT>('div', props => {
-  const {$theme} = props;
+  const {$theme, $infinite} = props;
   const {sizing} = $theme;
   return ({
+    display: $infinite ? 'flex' : 'block',
     marginLeft: sizing.scale500,
     marginRight: sizing.scale500,
     marginTop: sizing.scale500,
@@ -63,7 +64,7 @@ export const StyledBar = styled<StylePropsT>('div', props => {
 });
 
 export const StyledBarProgress = styled<StylePropsT>('div', props => {
-  const {$theme, $value, $successValue, $steps, $index, $infinite} = props;
+  const {$theme, $value, $successValue, $steps, $index} = props;
   const {colors, sizing, borders} = $theme;
   const width = `${($value / $successValue) * 100}%`;
 
@@ -88,53 +89,10 @@ export const StyledBarProgress = styled<StylePropsT>('div', props => {
   }
 
   const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
-
-  const animationStyles = $infinite
-    ? {
-        width: '100%',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        transitionProperty: 'background-image, width',
-        animationDuration: '2.1s',
-        animationIterationCount: 'infinite',
-        animationTimingFunction: $theme.animation.linearCurve,
-        animationName: {
-          '0%': {
-            width: '0%',
-            opacity: 0,
-            backgroundImage: `linear-gradient(90deg, transparent 0%, ${colors.accent} 50%, transparent 100%)`,
-          },
-          '25%': {
-            width: '80%',
-            opacity: 1,
-            backgroundImage: `linear-gradient(90deg, transparent 0%, ${colors.accent} 50%, transparent 100%)`,
-          },
-          '45%': {
-            width: '100%',
-            opacity: 1,
-            backgroundImage: `linear-gradient(90deg, ${colors.accent} 0%, ${colors.accent} 100%)`,
-          },
-          '55%': {
-            width: '100%',
-            opacity: 1,
-            backgroundImage: `linear-gradient(90deg, ${colors.accent} 0%, ${colors.accent} 100%)`,
-          },
-          '75%': {
-            width: '100%',
-            opacity: 1,
-            backgroundImage: `linear-gradient(90deg, ${colors.accent} 0%, transparent 50%, ${colors.accent} 100%)`,
-          },
-          '100%': {
-            width: '200%',
-            opacity: 0,
-            backgroundImage: `linear-gradient(90deg, transparent 0%, transparent 100%)`,
-          },
-        },
-      }
-    : {
-        width: width,
-        transition: 'width 0.5s',
-      };
+  const animationStyles = {
+    width: width,
+    transition: 'width 0.5s',
+  };
 
   const stepAnimationStyles =
     stepState === stepStates.inProgress
@@ -169,9 +127,75 @@ export const StyledBarProgress = styled<StylePropsT>('div', props => {
     borderTopRightRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
-    backgroundColor: $infinite ? 'initial' : colors.accent,
+    backgroundColor: colors.accent,
     height: '100%',
     ...($steps > 1 ? stepAnimationStyles : animationStyles),
+  };
+});
+
+export const InfiniteBar = styled<StylePropsT>('div', props => {
+  const {$theme, side} = props;
+  const {colors, sizing, borders} = $theme;
+  const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
+  const animationStyles = {
+    display: 'inline-block',
+    flex: 1,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    transitionProperty: 'background-position',
+    animationDuration: '1.5s',
+    animationIterationCount: 'infinite',
+    animationTimingFunction: $theme.animation.linearCurve,
+    backgroundSize: '300% auto',
+    backgroundRepeat: 'no-repeat',
+    backgroundImage: `linear-gradient(${
+      side === 'left' ? '90' : '270'
+    }deg, transparent 0%, ${colors.accent} 25%, ${
+      colors.accent
+    } 75%, transparent 100%)`,
+    animationName:
+      side === 'left'
+        ? {
+            '0%': {
+              backgroundPositionX: '-50%',
+            },
+            '33%': {
+              backgroundPositionX: '50%',
+            },
+            '66%': {
+              backgroundPositionX: '50%',
+            },
+            '100%': {
+              backgroundPositionX: '150%',
+            },
+          }
+        : {
+            '0%': {
+              backgroundPositionX: '150%',
+            },
+            '33%': {
+              backgroundPositionX: '50%',
+            },
+            '66%': {
+              backgroundPositionX: '50%',
+            },
+            '100%': {
+              backgroundPositionX: '-50%',
+            },
+          },
+  };
+  return {
+    ...(side === 'left'
+      ? {
+          borderTopLeftRadius: borderRadius,
+          borderBottomLeftRadius: borderRadius,
+        }
+      : {
+          borderTopRightRadius: borderRadius,
+          borderBottomRightRadius: borderRadius,
+        }),
+    height: '4px',
+    ...animationStyles,
   };
 });
 

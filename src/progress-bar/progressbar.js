@@ -14,6 +14,7 @@ import {
   StyledBar,
   StyledLabel,
   StyledBarProgress,
+  InfiniteBar,
 } from './styled-components.js';
 
 import type {ProgressBarPropsT} from './types.js';
@@ -85,7 +86,14 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
         {...rootProps}
       >
         <BarContainer {...sharedProps} {...barContainerProps}>
-          {renderProgressBar()}
+          {infinite ? (
+            <React.Fragment>
+              <InfiniteBar side="left" />
+              <InfiniteBar side="right" />
+            </React.Fragment>
+          ) : (
+            renderProgressBar()
+          )}
         </BarContainer>
         {showLabel && (
           <Label {...sharedProps} {...labelProps}>
