@@ -133,7 +133,7 @@ export const StyledBarProgress = styled<StylePropsT>('div', props => {
   };
 });
 
-export const InfiniteBar = styled<StylePropsT>('div', props => {
+export const InfiniteBar = styled<{side: string}>('div', props => {
   const {$theme, side} = props;
   const {colors, sizing, borders} = $theme;
   const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
@@ -148,6 +148,7 @@ export const InfiniteBar = styled<StylePropsT>('div', props => {
     animationTimingFunction: $theme.animation.linearCurve,
     backgroundSize: '300% auto',
     backgroundRepeat: 'no-repeat',
+    backgroundPositionX: side === 'left' ? '-50%' : '150%',
     backgroundImage: `linear-gradient(${
       side === 'left' ? '90' : '270'
     }deg, transparent 0%, ${colors.accent} 25%, ${

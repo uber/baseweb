@@ -1,6 +1,7 @@
 node_modules
 dist
 flow-typed
+build
 build-ladle
 coverage
 docs
