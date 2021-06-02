@@ -55,6 +55,10 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
       StyledBarProgress,
     );
     const [Label, labelProps] = getOverrides(overrides.Label, StyledLabel);
+    const [InfiniteBar, infiniteBarProps] = getOverrides(
+      overrides.InfiniteBar,
+      StyledInfiniteBar,
+    );
     const sharedProps = {
       $infinite: infinite,
       $size: size,
@@ -88,8 +92,12 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
         <BarContainer {...sharedProps} {...barContainerProps}>
           {infinite ? (
             <React.Fragment>
-              <StyledInfiniteBar isLeft={true} $size={sharedProps.$size} />
-              <StyledInfiniteBar $size={sharedProps.$size} />
+              <InfiniteBar
+                isLeft={true}
+                $size={sharedProps.$size}
+                {...infiniteBarProps}
+              />
+              <InfiniteBar $size={sharedProps.$size} {...infiniteBarProps} />
             </React.Fragment>
           ) : (
             renderProgressBar()

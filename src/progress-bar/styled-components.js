@@ -135,7 +135,7 @@ export const StyledBarProgress = styled<StylePropsT>('div', props => {
 export const StyledInfiniteBar = styled<{isLeft?: boolean, $size: SizeT}>(
   'div',
   props => {
-    const {$theme, isLeft = false, $size} = props;
+    const {$theme, isLeft = false, $size = SIZE.medium} = props;
     const {colors, sizing, borders} = $theme;
     const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
     const height = getBarHeight($size);
