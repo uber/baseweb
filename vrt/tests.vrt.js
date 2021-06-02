@@ -93,9 +93,6 @@ async function preparePageForSnapshot(
     height: 800,
   });
 
-  // disables CSS transitions before mounting the components
-  await addTestStyles(page);
-
   await mount(page, scenarioName, theme);
 
   // Set the viewport to our final screenshot dimensions.
@@ -105,6 +102,17 @@ async function preparePageForSnapshot(
   await page.setViewport({
     width: VIEWPORT_WIDTH[viewport],
     height: await getPageScrollHeight(),
+  });
+
+  // disables CSS transitions
+  await addTestStyles(page);
+
+  // get the next animation frame to allow settling after the resize
+  await page.evaluate(() => {
+    return new Promise(resolve => {
+      // eslint-disable-next-line cup/no-undef
+      window.requestAnimationFrame(resolve);
+    });
   });
 
   // Bad, but lets let things settle down after resizing.
