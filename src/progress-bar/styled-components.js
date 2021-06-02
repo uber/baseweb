@@ -64,7 +64,7 @@ export const StyledBar = styled<StylePropsT>('div', props => {
 export const StyledBarProgress = styled<StylePropsT>('div', props => {
   const {$theme, $value, $successValue, $steps, $index} = props;
   const {colors, sizing, borders} = $theme;
-  const width = `${($value / $successValue) * 100}%`;
+  const width = `${100 - ($value / $successValue) * 100}%`;
 
   const stepStates = {
     default: 'default',
@@ -88,38 +88,35 @@ export const StyledBarProgress = styled<StylePropsT>('div', props => {
 
   const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
   const animationStyles = {
-    width: width,
-    transition: 'width 0.5s',
+    transform: `translateX(-${width})`,
   };
 
   const stepAnimationStyles =
     stepState === stepStates.inProgress
       ? {
-          width: '0%',
           animationDuration: '2.1s',
           animationIterationCount: 'infinite',
           animationTimingFunction: $theme.animation.linearCurve,
           animationName: {
             '0%': {
-              width: '0%',
+              transform: 'translateX(-102%)',
               opacity: 1,
             },
             '50%': {
-              width: '100%',
+              transform: 'translateX(0%)',
               opacity: 1,
             },
             '100%': {
-              width: '100%',
+              transform: 'translateX(0%)',
               opacity: 0,
             },
           },
         }
       : stepState === stepStates.completed
       ? {
-          width: '100%',
-          transition: 'width 0.5s',
+          transform: 'translateX(0%)',
         }
-      : {width: '0%'};
+      : {transform: 'translateX(-102%)'};
 
   return {
     borderTopLeftRadius: borderRadius,
@@ -128,14 +125,17 @@ export const StyledBarProgress = styled<StylePropsT>('div', props => {
     borderBottomLeftRadius: borderRadius,
     backgroundColor: colors.accent,
     height: '100%',
+    width: '100%',
+    transform: 'translateX(-102%)',
+    transition: 'transform 0.5s',
     ...($steps > 1 ? stepAnimationStyles : animationStyles),
   };
 });
 
-export const StyledInfiniteBar = styled<{isLeft?: boolean, $size: SizeT}>(
+export const StyledInfiniteBar = styled<{$isLeft?: boolean, $size: SizeT}>(
   'div',
   props => {
-    const {$theme, isLeft = false, $size = SIZE.medium} = props;
+    const {$theme, $isLeft = false, $size = SIZE.medium} = props;
     const {colors, sizing, borders} = $theme;
     const borderRadius = borders.useRoundedCorners ? sizing.scale0 : 0;
     const height = getBarHeight($size);
@@ -150,13 +150,13 @@ export const StyledInfiniteBar = styled<{isLeft?: boolean, $size: SizeT}>(
       animationTimingFunction: $theme.animation.linearCurve,
       backgroundSize: '300% auto',
       backgroundRepeat: 'no-repeat',
-      backgroundPositionX: isLeft ? '-50%' : '150%',
+      backgroundPositionX: $isLeft ? '-50%' : '150%',
       backgroundImage: `linear-gradient(${
-        isLeft ? '90' : '270'
+        $isLeft ? '90' : '270'
       }deg, transparent 0%, ${colors.accent} 25%, ${
         colors.accent
       } 75%, transparent 100%)`,
-      animationName: isLeft
+      animationName: $isLeft
         ? {
             '0%': {
               backgroundPositionX: '-50%',
@@ -187,7 +187,7 @@ export const StyledInfiniteBar = styled<{isLeft?: boolean, $size: SizeT}>(
           },
     };
     return {
-      ...(isLeft
+      ...($isLeft
         ? {
             borderTopLeftRadius: borderRadius,
             borderBottomLeftRadius: borderRadius,

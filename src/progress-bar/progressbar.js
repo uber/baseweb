@@ -93,7 +93,7 @@ class ProgressBar extends React.Component<ProgressBarPropsT> {
           {infinite ? (
             <React.Fragment>
               <InfiniteBar
-                isLeft={true}
+                $isLeft={true}
                 $size={sharedProps.$size}
                 {...infiniteBarProps}
               />
