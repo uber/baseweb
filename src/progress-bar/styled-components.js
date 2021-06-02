@@ -95,6 +95,7 @@ export const StyledBarProgress = styled<StylePropsT>('div', props => {
   const stepAnimationStyles =
     stepState === stepStates.inProgress
       ? {
+          width: '0%',
           animationDuration: '2.1s',
           animationIterationCount: 'infinite',
           animationTimingFunction: $theme.animation.linearCurve,
