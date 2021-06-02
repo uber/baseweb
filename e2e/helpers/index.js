@@ -41,6 +41,7 @@ const addTestStyles = async page => {
       -moz-transition: none !important;
       transition: none !important;
       transition-duration: 0s !important;
+      transition-property: none !important;
       -moz-animation: none !important;
       animation: none !important;
       caret-color: transparent !important;
