@@ -69,7 +69,7 @@ function buildIsValid() {
 
 function installChromium() {
   log(`Add Puppeteer package to trigger Chromium installation script.`);
-  execSync(`yarn add puppeteer`);
+  execSync(`yarn add puppeteer@^7.0.4`);
 }
 
 function buildWasTriggeredByPR() {
