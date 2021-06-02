@@ -38,14 +38,15 @@ const addTestStyles = async page => {
   *,
     *::before,
     *::after {
-      -moz-transition: none !important;
-      transition: none !important;
+      transition-delay: 0s !important;
       transition-duration: 0s !important;
+      animation-delay: -0.0001s !important;
+      animation-duration: 0s !important;
+      animation-play-state: paused !important;
+      caret-color: transparent !important;
+      color-adjust: exact !important;
+      -moz-transition: none !important;
       -moz-transition-duration: 0s !important;
-      transition-property: none !important;
-      -moz-transition-property: none !important;
-      -moz-animation: none !important;
-      animation: none !important;
       caret-color: transparent !important;
     }
   `;
