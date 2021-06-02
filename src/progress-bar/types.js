@@ -16,6 +16,7 @@ export type OverridesT = {
   BarContainer?: OverrideT,
   Bar?: OverrideT,
   BarProgress?: OverrideT,
+  InfiniteBar?: OverrideT,
   Label?: OverrideT,
 };
 

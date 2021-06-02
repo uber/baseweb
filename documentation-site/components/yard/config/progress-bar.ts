@@ -1,3 +1,9 @@
+/*
+Copyright (c) Uber Technologies, Inc.
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+*/
 import {ProgressBar, SIZE} from 'baseui/progress-bar';
 import {PropTypes} from 'react-view';
 import {TConfig} from '../types';
@@ -75,7 +81,14 @@ const ProgressBarConfig: TConfig = {
       type: PropTypes.Custom,
       description: 'Lets you customize all aspects of the component.',
       custom: {
-        names: ['Bar', 'BarProgress', 'BarContainer', 'Label', 'Root'],
+        names: [
+          'Bar',
+          'BarProgress',
+          'BarContainer',
+          'InfiniteBar',
+          'Label',
+          'Root',
+        ],
         sharedProps: {
           $successValue: 'successValue',
           $value: 'value',
