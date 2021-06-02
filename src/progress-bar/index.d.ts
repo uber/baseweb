@@ -12,6 +12,7 @@ export interface ProgressBarOverrides {
   BarContainer?: Override<any>;
   Bar?: Override<any>;
   BarProgress?: Override<any>;
+  InfiniteBar?: Override<any>;
   Label?: Override<any>;
 }
 export interface ProgressBarProps {
@@ -49,4 +50,5 @@ export const StyledRoot: StyletronComponent<any>;
 export const StyledBarContainer: StyletronComponent<any>;
 export const StyledBar: StyletronComponent<any>;
 export const StyledBarProgress: StyletronComponent<any>;
+export const StyledInfiniteBar: StyletronComponent<any>;
 export const StyledLabel: StyletronComponent<any>;
