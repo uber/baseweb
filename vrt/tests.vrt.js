@@ -107,14 +107,6 @@ async function preparePageForSnapshot(
   // disables CSS transitions
   await addTestStyles(page);
 
-  // get the next animation frame to allow settling after the resize
-  await page.evaluate(() => {
-    return new Promise(resolve => {
-      // eslint-disable-next-line cup/no-undef
-      window.requestAnimationFrame(resolve);
-    });
-  });
-
   // Bad, but lets let things settle down after resizing.
   await waitForTimeout(300);
 }

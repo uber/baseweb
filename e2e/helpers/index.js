@@ -40,6 +40,7 @@ const addTestStyles = async page => {
     *::after {
       -moz-transition: none !important;
       transition: none !important;
+      transition-duration: 0s !important;
       -moz-animation: none !important;
       animation: none !important;
       caret-color: transparent !important;
