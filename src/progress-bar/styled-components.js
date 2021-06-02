@@ -132,7 +132,7 @@ export const StyledBarProgress = styled<StylePropsT>('div', props => {
   };
 });
 
-export const InfiniteBar = styled<{isLeft?: boolean, $size: SizeT}>(
+export const StyledInfiniteBar = styled<{isLeft?: boolean, $size: SizeT}>(
   'div',
   props => {
     const {$theme, isLeft = false, $size} = props;
