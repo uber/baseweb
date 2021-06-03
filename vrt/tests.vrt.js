@@ -96,9 +96,6 @@ async function preparePageForSnapshot(
 
   await mount(page, scenarioName, theme);
 
-  // disables CSS transitions
-  await addTestStyles(page);
-
   // Set the viewport to our final screenshot dimensions.
   // When we take a screenshot we do not want any resizing, which can cause flakiness.
   // We will set the viewport now and take a straight-up screenshot later.
@@ -107,6 +104,9 @@ async function preparePageForSnapshot(
     width: VIEWPORT_WIDTH[viewport],
     height: await getPageScrollHeight(),
   });
+
+  // disables CSS transitions
+  await addTestStyles(page);
 
   // Bad, but lets let things settle down after resizing.
   await waitForTimeout(200);
